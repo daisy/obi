@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>Notes from the Urakawa Application group</title>
+    <meta http-equiv="Content-Type" content="text/xml+html; charset=UTF-8"/>
+    <style type="text/css">
+      body { background-color: white; color: black; margin: 3em; text-align:
+        justify }
+      h1, h2 { font-family: sans-serif; color: #009 }
+      h1 { font-size: 150%; letter-spacing: .2em; text-align: center }
+      h2 { font-size: 120%; border-bottom: thin dotted #009 }
+      address { font-style: normal; text-align: center }
+      .in { text-indent: 1em }
+      a { color: #009; font-weight: bold; text-decoration: none }
+    </style>
+  </head>
+  <body>
+
+    <h1>Notes from the Urakawa Application group</h1>
+    <address>Julien Quint <code>&lt;<a href="mailto:julien@daisy-for-all.org">julien@daisy-for-all.org</a>&gt;</code><br/>
+      First draft, 28 November 2005</address>
+
+    <p>Here are some preliminary notes from the Application group of the
+    Urakawa project. The main purpose of this document is to discuss what the
+    application will look like and what manpower will be available to achieve
+    the August 2006 deadline of the first iteration. Quick TOC:
+    <a href="#deadlines">Deadlines</a>, <a href="#scope">Scope</a> and
+    <a href="#staffing">Staffing</a>.</p>
+
+    <h2 id="deadline">Deadlines</h2>
+    <p>One the first items on the todo list of the Application group is to make
+    a roadmap with precise milestones. But we can already identify three main
+    deadlines:</p>
+    <ol>
+      <li>A detailed project proposal for funding and staffing, which should be
+      ready ASAP (probably December?)</li>
+      <li>A first deliverable by the end of the fiscal year (<em>i.e.</em> end
+      of March 2006?) This would be a mockup of the Application, something like
+      a working GUI without the processor.</li>
+      <li>The Application itself is due in August 2006.</li>
+    </ol>
+    
+    <h2 id="scope">Scope</h2>
+    <p>There are three things that we could do with this Application:</p>
+    <ol>
+      <li>A testbed for the Urakawa processor. Not very exciting or useful to
+      end-users, but useful for the project and definitely achievable in the
+      given timeframe.</li>
+      <li>A solid, if limited in scope, Daisy production tool. This is the
+      best for end-users but will require very careful planning and
+      design.</li>
+      <li>An experimental platform for user interface interaction. I am by no
+      means an expert in accessibility and graphical user interface, but the
+      sorry state of the currently available DAISY production tools is an
+      indication that there must exist better ways to make DAISY books. The
+      Urakawa processor could then provide a good foundation for experimenting
+      with new interfaces and workflows.</li>
+    </ol>
+    <p>Reallistically, we should probably aim for the second target. That being
+    said, there can be room for the other two targets.</p>
+    <p class="in">With regards to testing, we should get some help later (after
+    April?) from the Swiss Library for the Blind for the express purpose of
+    testing. Moreover, even if the application has a limited scope, it will
+    probably still use many of the capabilities of the processor and still
+    provide a good testbed for the processor. It should also focus on new
+    features of the <a href="http://www.daisy.org/z3986/2005/z3986-2005.html">Z
+      spec</a>.</p>
+    <p class="in">With regards to experimentation, the fact that a mockup
+    is due before the full application is delivered can be used to try to
+    experiment with the final GUI. Making an accessible DAISY production tool
+    is especially challenging so there are many possibilities to explore.</p>
+    <p class="in">The problem of the exact scope of the Application still
+    remains. It is especially difficult to solve without a better idea of how
+    many people will actually work on implementing it. A way around this is
+    to have elastic goals that can be stretched or shrunk depending on the
+    resources available. Here is a short list of possible features for the
+    Application, roughly in the order in which they should be implemented:</p>
+    <ul>
+      <li>Importing a DAISY 2.02 book and saving it as a DAISY 3 book. This
+      should be made possible by the processor without much work on the
+      Application side.</li>
+      <li>Adding skippable items to the book.</li>
+      <li>Managing resources. This will require audio recording and editing
+      capabilities...</li>
+      <li>... which can be used to add and modify audio content of the book
+      (similar to what <a
+        href="http://daisy.org/tools/production.asp#sdar3">Sigtuna DAR 3</a>
+      can do.)</li>
+      <li>From there, there is a lot of possibilities to discuss. What kind(s)
+      of books do we want to target? How to modify the text content without
+      having to do a full DTBook markup editor?</li>
+    </ul>
+    <p>The Application should be modular and easily extensible, but we must
+    have long-term goals in mind when doing the design, even if we know that
+    there won't be enough time to reach all of them.</p>
+    <p class="in">Hopefully, the Application will prove useful to people
+    outside of the
+    Urakawa project. Since the application will be free software (the
+    management team still has to decide the exact licensing scheme, but we
+    can assume that it will allow anyone to access the source code, modify it
+    and redistribute it) and that we will have a clear plan for its extension,
+    we may benefit in the future from help from the user community.</p>
+    
+    <h2 id="staffing">Staffing</h2>
+    <p>After some initial discussions in Tunis, there are still many unknowns
+    about who will join the Application group. Currently I am the only member
+    and count for about 0.5 FTE; I hope that Linus can join soon for 0.5 FTE
+    as well. It seems that Jun Ishikawa would join to help with management at
+    first, with possible coding contributions after April? There is also the
+    "testing" team from Switzerland which may join around this time (see
+    above.)</p>
+    <p class="in">In any case, at
+    least one more developer is needed so that the three of us could get
+    something like 2 FTE total (which may involve some stretching.) Maybe
+    there are some possibilities from Dipendra's camp?</p>
+
+  </body>
+</html>
