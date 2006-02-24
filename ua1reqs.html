@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
   "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- $Id$ -->
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/xml+html; charset=UTF-8"/>
@@ -28,7 +29,7 @@
 
     <h1>The Urakawa Application First Iteration Requirements</h1>
     <address>Julien Quint <code>&lt;<a href="mailto:julien@daisy-for-all.org">julien@daisy-for-all.org</a>&gt;</code><br/>
-      First draft, Monday 20 February 2006</address>
+      First draft, Friday 24 February 2006</address>
 
     <p>This document summarizes the requirements for the first iteration
     of the Urakawa Application (UA.) This application will be built on top of
@@ -174,10 +175,16 @@
     more efficient. Therefore, ease of use and accessibility of the interface
     should be our main concern, to the possible detriment of more powerful
     capabilities.</p>
-    <p class="in">Key points (to be completed): multiple, but simple views;
-    use of HTML for accessible, internationalizable and customizable interface
-    (verbose, with only images, just text, etc.) rather than relying on
-    common widgets; extensibility through scripting (see below.)</p>
+    <p class="in">Typical authoring tools have a very complex interface, with
+    lots of panels, pop-up windows, etc. This is an intrisic problem of
+    authoring environments where the producer needs to keep track of various
+    resources, such as text, audio clips, table of contents, metadata, etc.</p>
+    <p class="in">One possible way to solve this problem is to have multiple
+    but simple views that will allow the user to focus on a given task. For
+    instance, the sound editor could have its dedicated view; in this view,
+    the user could manipulate audio resources through a visual waveform editor,
+    and/or through a physical device metaphor (play, pause, forward, etc.
+    buttons.)</p>
 
     <p class="back"><a href="#toc">[TOC]</a></p>
 
