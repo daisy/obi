@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="a2xhtml.xslt"?>
-<!-- $Id -->
+<!-- $Id$ -->
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
   xmlns:a="http://pom.clacbec.net/xmlns/a">
   <head>
@@ -112,7 +112,7 @@
             support full text in the first iteration.</dd>
 
           <dt>excl-1: DTBook editing.</dt>
-          <dd>The first iteration will no support text, so this is not an issue
+          <dd>The first iteration will not support text, so this is not an issue
             yet. However, when text is introduced, we may want to be extremely
             conservative (even to the point of forbidding editing of any kind,
             even for a minor typo.)</dd>
@@ -148,7 +148,101 @@
 
     <a:section id="audioreqs">
       <h2>Audio Editor Requirements</h2>
-
+      <pre>  Two widgets:
+   LiveAudioRecordingDialog
+   AudioEditEngine
+   
+  Functional Requirements on LiveAudioRecordingDialog (Avneesh and Sumans deliverable)
+     1. Recording of audiofiles     
+     should AudioEngine read core tree directly, or just get playback commands?
+     should AudioEngine be able populate the core tree directly?
+     tentative answer; AudioEngine is not aware of core tree, only recieves play and record commands     
+     also able to read asset manager files
+     Vu-meter (might be a third widget)
+     set options
+         
+  Functional Requirements on AudioEditEngine (Avneesh and Sumans deliverable)
+   Should be a .net "custom control"
+   Must have an assettManager registered with it (to which low level cut/copy/paste is delegated)
+   has internal command pattern impl for selections/markers etc
+         
+   1. Playback of audiofiles
+                       
+   2. Markers: 
+     points to a point in time (unknown whether represented in core tree)
+     support querying about exact time position and what file
+     support querying about index on current wave
+     can be moved around freely 
+     can have a name   
+     should be lockable and if unlocked easy to move     
+     insert manually or automatically while recording (passed an event from GUI)
+   
+   3. Selection:
+     a span in time (begin and end)
+     support query of start, end and length
+     used for cut copy paste
+     always contiguous (start and end in same file)
+     only one active at a given time in the widget
+     able to turn selection into phrase
+     able to select everyting
+     unselect
+     reselect (by undo/redo)      
+           
+   4. Phrases: 
+     AudioEngine can make phrase detection on a selection
+     would mark phrases on the audio, including leading silence for the
+     first one, and trailing silence for all
+     phrase is much like a selection;
+     a span in time (begin and end)
+     support query of start, end and length
+     used for cut copy paste
+     always contiguous (start and end in same file)
+     -->but also: can be named, can be more than one
+     and have more information because they are linked
+     to text nodes... they are first class citizens in 
+     the core tree
+     resistant to change (as compared to selection)
+     able to lock, unlock
+     when unlocked able to shrink and extend and move around
+     special behavior:
+      if move a phrase next to another
+      must not overlap
+  
+   5. Visualization
+   AudioEngine is also responsible for visualization: includes
+     waveform display 
+       zoom (in time, in amplitude, in, out, fit everything)
+       scroll while play
+     markers 
+       small label, small handle to move or lock
+       accessibilized; make indexes or a special play mode which is 'move marker'       
+     selection
+       highlight
+       extend or shrink
+       make a selection from two consecutive markers
+       or a selection and preceeding or following marker
+       non-visually - there is no selection; instead using indexes and phrases       
+     region (which equals smil:audioclip/'phrase' only when committed to tree)
+       framed(look like a box) and/or highlighted (different highlite than selections); 
+       small label and handle to move (whole, start, end) and lock
+       (goal of region is eventually to become a phrase)
+     
+     ability to tell whether a phrase is synchronized or not (ie comitted to tree or not)
+  
+   6. Editing operations
+     Low level operations: 
+       physical operations on selection in audio files:
+       cut - cuts and puts in clipboard
+       copy - puts selection in clipboard 
+       delete - deletes selection, doesnt put in clipboard
+       paste - pastes on cursor position, inserts (=doesnt replace) 
+                     
+       noise removal (not iter1)
+       normalization (not iter1, unless media framework gives it for free)
+       amplitude modification (not iter1, unless media framework gives it for free)
+     
+     High level operations: selections etc
+       phrase detection</pre>
     </a:section>
 
     <a:section id="assetreqs">
