@@ -55,10 +55,10 @@ IAudioPlayer
  void setAudioPlayerListener(IAudioPlayerListener listener)
  Collection<IAudioPlayerListener> getAudioPlayerListeners()
  IAudioPlayerListener getAudioPlayerListener(int i)  
- int getState() [returns states such as playing, idle, initializing]
+ constant getState() [returns states such as playing, idle, initializing]
  
 IAudioPlayerListener
- [listens to events raised by IAudioPlayer]
+ [listens to events raised by an implementor of IAudioPlayer]
  void audioPlayerStateChangedEvent(constant state) [recieves notification of state changes(such as playing, idle, initializing)]
  void audioPlayerReachedEndOfFileEvent()
  
@@ -73,10 +73,10 @@ IAudioRecorder
  void setAudioRecorderListener(IAudioRecorderListener listener)
  Collection<IAudioRecorderListener> getAudioRecorderListeners()
  IAudioPlayerListener getAudioRecorderListener(int i)  
- int getState() (returns states such as recording, idle, initializing)
+ constant getState() (returns states such as recording, idle, initializing)
 
 IAudioRecorderListener
- [listens to events raised by IAudioRecorder]
+ [listens to events raised by an implementor of IAudioRecorder]
  void audioRecorderStateChangedEvent(constant state)[recieves notification of state changes(such as recording, idle, initializing)]
    
 IVuMeter
@@ -90,15 +90,15 @@ IVuMeter
  void setVuMeterListener(IVuMeterListener listener)
  Collection<IVuMeterListener> getVuMeterListeners()
  IVuMeterListener getVuMeterListener(int i) 
- int getState() (return states such as rendering, analysing, idle)
+ constant getState() (return states such as rendering, analysing, idle)
  [may want to add additional functions to allow non-realtime modes for analysing existing wavefiles]
  
 IVuMeterListener 
- [listens to events raised by IVuMeter]
- void vuMeterPeakOverloadEvent(String measure, double bytePosition)
- void vuMeterPeakOverloadEvent(String measure, long timePosition)
- void vuMeterLevelTooLowEvent(String measure, double bytePositionStartOfRange, double bytePositionEndOfRange)
- void vuMeterLevelTooLowEvent(String measure, long timePositionStartOfRangeMillis, long timePositionEndOfRangeMillis) 
+ [listens to events raised by an implementor of IVuMeter]
+ void vuMeterPeakOverloadEvent(Object measureInfo, double bytePosition)
+ void vuMeterPeakOverloadEvent(Object measureInfo, long timePosition)
+ void vuMeterLevelTooLowEvent(Object measureInfo, double bytePositionStartOfRange, double bytePositionEndOfRange)
+ void vuMeterLevelTooLowEvent(Object measureInfo, long timePositionStartOfRangeMillis, long timePositionEndOfRangeMillis) 
  void vuMeterStreamFromMeter(ByteBuffer stream) [VuMeter always pass buffers through itself so that it can be part of a chain]
  void vuMeterStateChangedEvent(constant state)[recieves notification of state changes(such as rendering, analysing, idle)]
    
@@ -107,12 +107,17 @@ IAssetManager
  Collection<MediaAsset<SubType>> getAssets(constant assetType)
  MediaAsset getAsset(String assetLocalName) throws AssetManagerException 
  MediaAsset getAsset(URL assetURL) throws AssetManagerException 
- MediaAsset newAsset(int MediaAssetType) throws AssetManagerException [example: initializes a new outputstrem and gives it a name, feeds a recorded audiostream into the file]
+ MediaAsset newAsset(constant MediaAssetType) throws AssetManagerException [example: initializes a new outputstrem and gives it a name, feeds a recorded audiostream into the file]
  void deleteAsset(MediaAsset assetToDelete) throws AssetManagerException 
  MediaAsset copyAsset(MediaAsset source, MediaAsset dest, boolean replaceIfExisting) throws AssetManagerException 
  MediaAsset renameAsset(MediaAsset source, String newName) throws AssetManagerException 
  void addAsset(URL assetURL) throws AssetManagerException 
- void addAssets(Collection assetURLs) throws AssetManagerException 
+ void addAssets(Collection<URL> assetURLs) throws AssetManagerException 
+
+IAssetManagerListener
+  [listens to events raised by an implementor of IAssetManager]
+  void assetManagerAssetRenamedEvent(String oldName, MediaAsset newAsset)
+  void assetManagerAssetDeletedEvent(String name)
 
 abstract IMediaAsset  
   String getName()
@@ -123,10 +128,10 @@ abstract IMediaAsset
   boolean exists()
   boolean canRead()
   boolean canWrite()
+  protected boolean delete()
   URL getURL()
   FileReader getFileReader()
-  abstract boolean validate() [performs integrity check on an asset, subtype dependent)  
-  abstract void draw(WindowsForm surfaceToDrawOn) throws MediaAssetException [draws the whole file]
+  abstract boolean validate() [performs integrity check on an asset, subtype dependent)    
 
 IAudioMediaAsset  
   void appendByteBuffer(ByteBuffer buf) throws MediaAssetException [only support appending to the end of wavefiles]
@@ -135,6 +140,7 @@ IAudioMediaAsset
   void deleteChunk(double byteStartPosition, double byteEndPosition) throws MediaAssetException 
   void deleteChunk(long timeStartPositionMillis, long timeEndPositionMillis) throws MediaAssetException 
   long getLengthInMillis()
+  void draw(WindowsForm surfaceToDrawOn) throws MediaAssetException [draws the whole file]
   void draw(WindowsForm surfaceToDrawOn, double byteStartPosition, double byteEndPosition) throws MediaAssetException  [draws a part of the file]
   void draw(WindowsForm surfaceToDrawOn, long timeStartPositionMillis, long timeEndPositionMillis) throws MediaAssetException  [draws a part of the file]
       
