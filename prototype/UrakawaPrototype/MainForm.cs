@@ -118,6 +118,7 @@ namespace UrakawaPrototype
         private ToolStripSeparator toolStripSeparator14;
         private ToolStripMenuItem renameItemToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator12;
+        private ToolStripMenuItem resetToolbarsToolStripMenuItem;
         private ToolStripContainer toolStripContainer1;
 
 		public MainForm()
@@ -157,6 +158,16 @@ namespace UrakawaPrototype
             this.structureNavToolStrip = new System.Windows.Forms.ToolStrip();
             this.previousSectionButton = new System.Windows.Forms.ToolStripButton();
             this.nextSectionButton = new System.Windows.Forms.ToolStripButton();
+            this.pageToolStrip = new System.Windows.Forms.ToolStrip();
+            this.previousPageButton = new System.Windows.Forms.ToolStripButton();
+            this.nextPageButton = new System.Windows.Forms.ToolStripButton();
+            this.goToPageTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.goToPageButton = new System.Windows.Forms.ToolStripButton();
+            this.markerToolStrip = new System.Windows.Forms.ToolStrip();
+            this.previousMarkerButton = new System.Windows.Forms.ToolStripButton();
+            this.nextMarkerButton = new System.Windows.Forms.ToolStripButton();
+            this.addMarkerButton = new System.Windows.Forms.ToolStripButton();
+            this.deleteMarkerButton = new System.Windows.Forms.ToolStripButton();
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -232,11 +243,6 @@ namespace UrakawaPrototype
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pageToolStrip = new System.Windows.Forms.ToolStrip();
-            this.previousPageButton = new System.Windows.Forms.ToolStripButton();
-            this.nextPageButton = new System.Windows.Forms.ToolStripButton();
-            this.goToPageTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.goToPageButton = new System.Windows.Forms.ToolStripButton();
             this.audioToolStrip = new System.Windows.Forms.ToolStrip();
             this.playButton = new System.Windows.Forms.ToolStripSplitButton();
             this.playAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -249,13 +255,9 @@ namespace UrakawaPrototype
             this.phraseNavToolStrip = new System.Windows.Forms.ToolStrip();
             this.previousBlockButton = new System.Windows.Forms.ToolStripButton();
             this.nextBlockButton = new System.Windows.Forms.ToolStripButton();
-            this.markerToolStrip = new System.Windows.Forms.ToolStrip();
-            this.previousMarkerButton = new System.Windows.Forms.ToolStripButton();
-            this.nextMarkerButton = new System.Windows.Forms.ToolStripButton();
-            this.addMarkerButton = new System.Windows.Forms.ToolStripButton();
-            this.deleteMarkerButton = new System.Windows.Forms.ToolStripButton();
             this.structureView1 = new UrakawaPrototype.StructureView();
             this.blocksView1 = new UrakawaPrototype.BlocksView();
+            this.resetToolbarsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             previousSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -269,11 +271,11 @@ namespace UrakawaPrototype
             this.blocksAndDesc.Panel2.SuspendLayout();
             this.blocksAndDesc.SuspendLayout();
             this.structureNavToolStrip.SuspendLayout();
-            this.mainMenuStrip.SuspendLayout();
             this.pageToolStrip.SuspendLayout();
+            this.markerToolStrip.SuspendLayout();
+            this.mainMenuStrip.SuspendLayout();
             this.audioToolStrip.SuspendLayout();
             this.phraseNavToolStrip.SuspendLayout();
-            this.markerToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // previousSectionToolStripMenuItem
@@ -307,11 +309,11 @@ namespace UrakawaPrototype
             // 
             // toolStripContainer1.TopToolStripPanel
             // 
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.pageToolStrip);
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.markerToolStrip);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.mainMenuStrip);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.audioToolStrip);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.pageToolStrip);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.phraseNavToolStrip);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.markerToolStrip);
             // 
             // statusStrip1
             // 
@@ -400,9 +402,104 @@ namespace UrakawaPrototype
             this.nextSectionButton.Text = "Next Section";
             this.nextSectionButton.Click += new System.EventHandler(this.nextSection_Click);
             // 
+            // pageToolStrip
+            // 
+            this.pageToolStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this.pageToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.previousPageButton,
+            this.nextPageButton,
+            this.goToPageTextBox,
+            this.goToPageButton});
+            this.pageToolStrip.Location = new System.Drawing.Point(137, 24);
+            this.pageToolStrip.Name = "pageToolStrip";
+            this.pageToolStrip.Size = new System.Drawing.Size(101, 25);
+            this.pageToolStrip.TabIndex = 5;
+            // 
+            // previousPageButton
+            // 
+            this.previousPageButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.previousPageButton.Image = global::UrakawaPrototype.Properties.Resources.previousPage;
+            this.previousPageButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.previousPageButton.Name = "previousPageButton";
+            this.previousPageButton.Size = new System.Drawing.Size(23, 22);
+            this.previousPageButton.Text = "Previous Page";
+            // 
+            // nextPageButton
+            // 
+            this.nextPageButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.nextPageButton.Image = global::UrakawaPrototype.Properties.Resources.nextPage;
+            this.nextPageButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.nextPageButton.Name = "nextPageButton";
+            this.nextPageButton.Size = new System.Drawing.Size(23, 22);
+            this.nextPageButton.Text = "Next Page";
+            // 
+            // goToPageTextBox
+            // 
+            this.goToPageTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.goToPageTextBox.Name = "goToPageTextBox";
+            this.goToPageTextBox.Size = new System.Drawing.Size(20, 25);
+            // 
+            // goToPageButton
+            // 
+            this.goToPageButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.goToPageButton.Image = global::UrakawaPrototype.Properties.Resources.gotopage;
+            this.goToPageButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.goToPageButton.Name = "goToPageButton";
+            this.goToPageButton.Size = new System.Drawing.Size(23, 22);
+            this.goToPageButton.Text = "Go To Page";
+            // 
+            // markerToolStrip
+            // 
+            this.markerToolStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this.markerToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.previousMarkerButton,
+            this.nextMarkerButton,
+            this.addMarkerButton,
+            this.deleteMarkerButton});
+            this.markerToolStrip.Location = new System.Drawing.Point(294, 24);
+            this.markerToolStrip.Name = "markerToolStrip";
+            this.markerToolStrip.Size = new System.Drawing.Size(102, 25);
+            this.markerToolStrip.TabIndex = 1;
+            // 
+            // previousMarkerButton
+            // 
+            this.previousMarkerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.previousMarkerButton.Image = global::UrakawaPrototype.Properties.Resources.previousMarker;
+            this.previousMarkerButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.previousMarkerButton.Name = "previousMarkerButton";
+            this.previousMarkerButton.Size = new System.Drawing.Size(23, 22);
+            this.previousMarkerButton.Text = "Previous Marker";
+            // 
+            // nextMarkerButton
+            // 
+            this.nextMarkerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.nextMarkerButton.Image = global::UrakawaPrototype.Properties.Resources.nextMarker;
+            this.nextMarkerButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.nextMarkerButton.Name = "nextMarkerButton";
+            this.nextMarkerButton.Size = new System.Drawing.Size(23, 22);
+            this.nextMarkerButton.Text = "Next Marker";
+            // 
+            // addMarkerButton
+            // 
+            this.addMarkerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.addMarkerButton.Image = global::UrakawaPrototype.Properties.Resources.addMarker;
+            this.addMarkerButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.addMarkerButton.Name = "addMarkerButton";
+            this.addMarkerButton.Size = new System.Drawing.Size(23, 22);
+            this.addMarkerButton.Text = "Add Marker";
+            // 
+            // deleteMarkerButton
+            // 
+            this.deleteMarkerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.deleteMarkerButton.Image = global::UrakawaPrototype.Properties.Resources.deleteMarker;
+            this.deleteMarkerButton.ImageTransparentColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(204)))));
+            this.deleteMarkerButton.Name = "deleteMarkerButton";
+            this.deleteMarkerButton.Size = new System.Drawing.Size(23, 22);
+            this.deleteMarkerButton.Text = "Delete Marker";
+            // 
             // mainMenuStrip
             // 
-            this.mainMenuStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this.mainMenuStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
             this.mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
@@ -529,26 +626,26 @@ namespace UrakawaPrototype
             // undoToolStripMenuItem
             // 
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.undoToolStripMenuItem.Text = "&Undo";
             // 
             // redoToolStripMenuItem
             // 
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.redoToolStripMenuItem.Text = "&Redo";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(114, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
             // 
             // cutToolStripMenuItem
             // 
             this.cutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripMenuItem.Image")));
             this.cutToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.cutToolStripMenuItem.Text = "Cu&t";
             this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
             // 
@@ -557,7 +654,7 @@ namespace UrakawaPrototype
             this.copyToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyToolStripMenuItem.Image")));
             this.copyToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.copyToolStripMenuItem.Text = "&Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
@@ -566,26 +663,26 @@ namespace UrakawaPrototype
             this.pasteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("pasteToolStripMenuItem.Image")));
             this.pasteToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.pasteToolStripMenuItem.Text = "&Paste";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(114, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(149, 6);
             // 
             // selectAllToolStripMenuItem
             // 
             this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.selectAllToolStripMenuItem.Text = "Select &All";
             this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
             // 
@@ -901,7 +998,8 @@ namespace UrakawaPrototype
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.customizeToolStripMenuItem,
-            this.optionsToolStripMenuItem});
+            this.optionsToolStripMenuItem,
+            this.resetToolbarsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
@@ -909,13 +1007,13 @@ namespace UrakawaPrototype
             // customizeToolStripMenuItem
             // 
             this.customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.customizeToolStripMenuItem.Text = "&Customize";
             // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.optionsToolStripMenuItem.Text = "&Options";
             this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
@@ -960,52 +1058,6 @@ namespace UrakawaPrototype
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             // 
-            // pageToolStrip
-            // 
-            this.pageToolStrip.Dock = System.Windows.Forms.DockStyle.None;
-            this.pageToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.previousPageButton,
-            this.nextPageButton,
-            this.goToPageTextBox,
-            this.goToPageButton});
-            this.pageToolStrip.Location = new System.Drawing.Point(230, 24);
-            this.pageToolStrip.Name = "pageToolStrip";
-            this.pageToolStrip.Size = new System.Drawing.Size(101, 25);
-            this.pageToolStrip.TabIndex = 5;
-            // 
-            // previousPageButton
-            // 
-            this.previousPageButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.previousPageButton.Image = global::UrakawaPrototype.Properties.Resources.previousPage;
-            this.previousPageButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.previousPageButton.Name = "previousPageButton";
-            this.previousPageButton.Size = new System.Drawing.Size(23, 22);
-            this.previousPageButton.Text = "Previous Page";
-            // 
-            // nextPageButton
-            // 
-            this.nextPageButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.nextPageButton.Image = global::UrakawaPrototype.Properties.Resources.nextPage;
-            this.nextPageButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.nextPageButton.Name = "nextPageButton";
-            this.nextPageButton.Size = new System.Drawing.Size(23, 22);
-            this.nextPageButton.Text = "Next Page";
-            // 
-            // goToPageTextBox
-            // 
-            this.goToPageTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.goToPageTextBox.Name = "goToPageTextBox";
-            this.goToPageTextBox.Size = new System.Drawing.Size(20, 25);
-            // 
-            // goToPageButton
-            // 
-            this.goToPageButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.goToPageButton.Image = global::UrakawaPrototype.Properties.Resources.gotopage;
-            this.goToPageButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.goToPageButton.Name = "goToPageButton";
-            this.goToPageButton.Size = new System.Drawing.Size(23, 22);
-            this.goToPageButton.Text = "Go To Page";
-            // 
             // audioToolStrip
             // 
             this.audioToolStrip.Dock = System.Windows.Forms.DockStyle.None;
@@ -1017,7 +1069,7 @@ namespace UrakawaPrototype
             this.fastForwardButton});
             this.audioToolStrip.Location = new System.Drawing.Point(3, 24);
             this.audioToolStrip.Name = "audioToolStrip";
-            this.audioToolStrip.Size = new System.Drawing.Size(165, 25);
+            this.audioToolStrip.Size = new System.Drawing.Size(134, 25);
             this.audioToolStrip.TabIndex = 0;
             this.audioToolStrip.EndDrag += new System.EventHandler(this.endDragAudioToolstrip);
             // 
@@ -1094,7 +1146,7 @@ namespace UrakawaPrototype
             this.phraseNavToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.previousBlockButton,
             this.nextBlockButton});
-            this.phraseNavToolStrip.Location = new System.Drawing.Point(171, 24);
+            this.phraseNavToolStrip.Location = new System.Drawing.Point(238, 24);
             this.phraseNavToolStrip.Name = "phraseNavToolStrip";
             this.phraseNavToolStrip.Size = new System.Drawing.Size(56, 25);
             this.phraseNavToolStrip.TabIndex = 4;
@@ -1117,55 +1169,6 @@ namespace UrakawaPrototype
             this.nextBlockButton.Size = new System.Drawing.Size(23, 22);
             this.nextBlockButton.Text = "Next Block";
             // 
-            // markerToolStrip
-            // 
-            this.markerToolStrip.Dock = System.Windows.Forms.DockStyle.None;
-            this.markerToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.previousMarkerButton,
-            this.nextMarkerButton,
-            this.addMarkerButton,
-            this.deleteMarkerButton});
-            this.markerToolStrip.Location = new System.Drawing.Point(335, 24);
-            this.markerToolStrip.Name = "markerToolStrip";
-            this.markerToolStrip.Size = new System.Drawing.Size(102, 25);
-            this.markerToolStrip.TabIndex = 1;
-            // 
-            // previousMarkerButton
-            // 
-            this.previousMarkerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.previousMarkerButton.Image = global::UrakawaPrototype.Properties.Resources.previousMarker;
-            this.previousMarkerButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.previousMarkerButton.Name = "previousMarkerButton";
-            this.previousMarkerButton.Size = new System.Drawing.Size(23, 22);
-            this.previousMarkerButton.Text = "Previous Marker";
-            // 
-            // nextMarkerButton
-            // 
-            this.nextMarkerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.nextMarkerButton.Image = global::UrakawaPrototype.Properties.Resources.nextMarker;
-            this.nextMarkerButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.nextMarkerButton.Name = "nextMarkerButton";
-            this.nextMarkerButton.Size = new System.Drawing.Size(23, 22);
-            this.nextMarkerButton.Text = "Next Marker";
-            // 
-            // addMarkerButton
-            // 
-            this.addMarkerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.addMarkerButton.Image = global::UrakawaPrototype.Properties.Resources.addMarker;
-            this.addMarkerButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.addMarkerButton.Name = "addMarkerButton";
-            this.addMarkerButton.Size = new System.Drawing.Size(23, 22);
-            this.addMarkerButton.Text = "Add Marker";
-            // 
-            // deleteMarkerButton
-            // 
-            this.deleteMarkerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.deleteMarkerButton.Image = global::UrakawaPrototype.Properties.Resources.deleteMarker;
-            this.deleteMarkerButton.ImageTransparentColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(204)))));
-            this.deleteMarkerButton.Name = "deleteMarkerButton";
-            this.deleteMarkerButton.Size = new System.Drawing.Size(23, 22);
-            this.deleteMarkerButton.Text = "Delete Marker";
-            // 
             // structureView1
             // 
             this.structureView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1181,6 +1184,13 @@ namespace UrakawaPrototype
             this.blocksView1.Name = "blocksView1";
             this.blocksView1.Size = new System.Drawing.Size(376, 340);
             this.blocksView1.TabIndex = 0;
+            // 
+            // resetToolbarsToolStripMenuItem
+            // 
+            this.resetToolbarsToolStripMenuItem.Name = "resetToolbarsToolStripMenuItem";
+            this.resetToolbarsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.resetToolbarsToolStripMenuItem.Text = "Reset toolbars";
+            this.resetToolbarsToolStripMenuItem.Click += new System.EventHandler(this.resetToolbarsToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1209,16 +1219,16 @@ namespace UrakawaPrototype
             this.blocksAndDesc.ResumeLayout(false);
             this.structureNavToolStrip.ResumeLayout(false);
             this.structureNavToolStrip.PerformLayout();
-            this.mainMenuStrip.ResumeLayout(false);
-            this.mainMenuStrip.PerformLayout();
             this.pageToolStrip.ResumeLayout(false);
             this.pageToolStrip.PerformLayout();
+            this.markerToolStrip.ResumeLayout(false);
+            this.markerToolStrip.PerformLayout();
+            this.mainMenuStrip.ResumeLayout(false);
+            this.mainMenuStrip.PerformLayout();
             this.audioToolStrip.ResumeLayout(false);
             this.audioToolStrip.PerformLayout();
             this.phraseNavToolStrip.ResumeLayout(false);
             this.phraseNavToolStrip.PerformLayout();
-            this.markerToolStrip.ResumeLayout(false);
-            this.markerToolStrip.PerformLayout();
             this.ResumeLayout(false);
 
 		}
@@ -1407,7 +1417,21 @@ namespace UrakawaPrototype
 
         private void endDragAudioToolstrip(object sender, EventArgs e)
         {
-            
+            //this is where i think you should undock the toolstrip
+            //based on cursor position
+            //but i couldn't make it work
+            /*Control ctrl = this.GetChildAtPoint(Cursor.Position);
+
+            if (ctrl.GetType() != Type.GetType("ToolStripContentPanel"))
+            {
+                MessageBox.Show("dragged out");
+            }*/
+        }
+
+        private void resetToolbarsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+           
         }
 
         
