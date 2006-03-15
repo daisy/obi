@@ -10,6 +10,11 @@ namespace UrakawaPrototype
 {
     public partial class StructureView : UserControl
     {
+
+        private TreeNode mClipboard;
+        private int mFontSizeIterations;
+        private Font mOriginalFont;
+
         public StructureView()
         {
             InitializeComponent();
@@ -24,7 +29,6 @@ namespace UrakawaPrototype
         {
             addChild();
         }
-
         
         private void indentToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -66,6 +70,17 @@ namespace UrakawaPrototype
         private void moveUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             moveUp();
+        }
+        private void renameLabelToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            rename();
+        }
+
+        private void load(object sender, EventArgs e)
+        {
+            this.mOriginalFont = (Font)this.treeView1.Font.Clone();
+            this.mFontSizeIterations = 0;
+            this.treeView1.ExpandAll();
         }
 
         private void addNewNode(TreeNode parent)
@@ -274,8 +289,6 @@ namespace UrakawaPrototype
             }
         }
 
-        private TreeNode mClipboard;
-
 
         public void selectAll()
         {
@@ -298,14 +311,24 @@ namespace UrakawaPrototype
                 sel.Text = newname;
         }
 
-        private void renameLabelToolStripMenuItem_Click_1(object sender, EventArgs e)
+        public void resizeFont()
         {
-            rename();
-        }
+            if (this.mFontSizeIterations > 3)
+            {
+                this.treeView1.Font = mOriginalFont;
+                this.mFontSizeIterations = 0;
+            }
+            else
+            {
+                Font newfont = new Font(
+                    this.treeView1.Font.FontFamily,
+                    this.treeView1.Font.Size + 3,
+                    this.treeView1.Font.Style);
 
-        private void load(object sender, EventArgs e)
-        {
-            this.treeView1.ExpandAll();
+                this.treeView1.Font = newfont;
+
+                this.mFontSizeIterations++;
+            }
         }
     }
 }
