@@ -8,14 +8,13 @@ last edit mgylling 20060314
 4. Interfaces
 5. Classes
 
-
 1. AudioEngine Overview 
 The main purposes of AudioEngine are
  - to capture sound (wave data) from a system input device
  - to play sound data (from physical files or memory buffers) to a system output device
  AudioEngine achieves these purposes by instantiating and holding one instance each of AudioPlayer and AudioRecorder 
  AudioEngine can be implemented using the Singleton pattern. 
- Only one instance each of AudioPlayer and AudioRecorder are allowed simultaneously
+ Only one instance each of AudioPlayer and AudioRecorder are allowed simultaneously(?)
     
 2. VuMeter Overview 
 The main purposes of VuMeter are:
@@ -31,7 +30,7 @@ VuMeter is fully reentrant, ie several VuMeters may be instantiated simultaneous
 The main purposes of AssetManager are:
  - provide handles to the physical files that constitute the MediaAssets of a project
  - allow new physical assets to be created (for example, pipe wave data buffers to a file)
- - draw pictures of asset chunks on rendering surfaces
+ - draw graphs of asset chunks on rendering surfaces
  
 AssetManager can be implemented using the Singleton pattern. 
  
@@ -40,7 +39,7 @@ AssetManager can be implemented using the Singleton pattern.
 
 IAudioEngine
  AudioPlayer getAudioPlayer() 
- Audiorecorder getAudioRecorder()
+ AudioRecorder getAudioRecorder()
   
 IAudioPlayer
  OutputDevice setOutputDevice(OutputDevice) throws AudioPlayerException
@@ -86,7 +85,9 @@ IVuMeter
  WindowsForm setTextualRenderingSurface(WindowsForm form) throws VuMeterException
  WindowsForm getTextualRenderingSurface()
  void setPeakWarningLevel(int sampleLevel) throws VuMeterException
+ int getPeakWarningLevel() 
  void setTooLowRmsWarningLevel(int rmsLevel) throws VuMeterException
+ int getTooLowRmsWarningLevel()
  void setVuMeterListener(IVuMeterListener listener)
  Collection<IVuMeterListener> getVuMeterListeners()
  IVuMeterListener getVuMeterListener(int i) 
@@ -98,13 +99,12 @@ IVuMeterListener
  void vuMeterPeakOverloadEvent(Object measureInfo, double bytePosition)
  void vuMeterPeakOverloadEvent(Object measureInfo, long timePosition)
  void vuMeterLevelTooLowEvent(Object measureInfo, double bytePositionStartOfRange, double bytePositionEndOfRange)
- void vuMeterLevelTooLowEvent(Object measureInfo, long timePositionStartOfRangeMillis, long timePositionEndOfRangeMillis) 
- void vuMeterStreamFromMeter(ByteBuffer stream) [VuMeter always pass buffers through itself so that it can be part of a chain]
+ void vuMeterLevelTooLowEvent(Object measureInfo, long timePositionStartOfRangeMillis, long timePositionEndOfRangeMillis)  
  void vuMeterStateChangedEvent(constant state)[recieves notification of state changes(such as rendering, analysing, idle)]
    
 IAssetManager 
  Collection<MediaAsset> getAssets()
- Collection<MediaAsset<SubType>> getAssets(constant assetType)
+ Collection<MediaAssetSubType> getAssets(constant assetType)
  MediaAsset getAsset(String assetLocalName) throws AssetManagerException 
  MediaAsset getAsset(URL assetURL) throws AssetManagerException 
  MediaAsset newAsset(constant MediaAssetType) throws AssetManagerException [example: initializes a new outputstrem and gives it a name, feeds a recorded audiostream into the file]
@@ -140,6 +140,9 @@ IAudioMediaAsset
   void deleteChunk(double byteStartPosition, double byteEndPosition) throws MediaAssetException 
   void deleteChunk(long timeStartPositionMillis, long timeEndPositionMillis) throws MediaAssetException 
   long getLengthInMillis()
+  int getSampleRate()
+  int getNumberOfChannels()
+  int getBitDepth()
   void draw(WindowsForm surfaceToDrawOn) throws MediaAssetException [draws the whole file]
   void draw(WindowsForm surfaceToDrawOn, double byteStartPosition, double byteEndPosition) throws MediaAssetException  [draws a part of the file]
   void draw(WindowsForm surfaceToDrawOn, long timeStartPositionMillis, long timeEndPositionMillis) throws MediaAssetException  [draws a part of the file]
@@ -158,4 +161,3 @@ abstract MediaAsset implements IMediaAsset
 
 AudioMediaAsset implements IAudioMediaAsset extends MediaAsset
   instantiator: AudioMediaAsset(String name, int channels, int sampleRate, int bitDepth) 
-
