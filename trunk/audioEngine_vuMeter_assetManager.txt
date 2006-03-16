@@ -93,10 +93,8 @@ IVuMeter
  void setTooLowRmsWarningLevel(int rmsLevel) throws VuMeterException
  int getTooLowRmsWarningLevel()
  void resetStatistics() [resets peak and rms counts]
- void setVuMeterListener(IVuMeterListener listener)
- Collection<IVuMeterListener> getVuMeterListeners()
- IVuMeterListener getVuMeterListener(int i) 
- constant getState() (return states such as rendering, analysing, idle)
+
+
  [may want to add additional functions to allow non-realtime modes for analysing existing wavefiles]
  
 IVuMeterListener 

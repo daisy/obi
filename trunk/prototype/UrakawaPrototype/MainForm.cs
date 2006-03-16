@@ -1413,6 +1413,7 @@ namespace UrakawaPrototype
         private void increaseFontSizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.structureView1.resizeFont();
+            
         }
 
         private void endDragAudioToolstrip(object sender, EventArgs e)
