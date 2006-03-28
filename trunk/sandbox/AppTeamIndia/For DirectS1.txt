@@ -1,0 +1,22 @@
+Date 27 march 2006
+The code is written using c# 2003
+It is an experimental code and not compliant to coding conventions
+The code generates an form with buttons
+ and text boxes as
+
+Button Play, Button Stop
+The above are for playing from an static buffer using direct sound.
+
+
+Button PlayBack
+Plays file using directx AudioVideoPlayBack
+
+Button GetTime 
+gets the current time of file with respect to whole file and displayes in text box next to it.
+
+Button Jump Time
+Jumps the playing position to the offset given in text box next to it (in seconds).
+Note: currently this button is not taking input from textvox due to compile error so for now we have given offset of 60 seconds in program.
+
+Button StopPlayback
+Stops the playing file being played using AudioVideoPlayBack.
