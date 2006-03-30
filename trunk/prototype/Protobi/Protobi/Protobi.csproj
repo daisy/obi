@@ -1,0 +1,134 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{90A4F642-2B43-4816-8CD9-BAA76B5808F5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Protobi</RootNamespace>
+    <AssemblyName>Protobi</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Command.cs" />
+    <Compile Include="Commands.cs" />
+    <Compile Include="ContainerStrip.cs" />
+    <Compile Include="ContainerStripUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ContainerStripUserControl.Designer.cs">
+      <DependentUpon>ContainerStripUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Localizer.cs" />
+    <Compile Include="messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>messages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RenameStripBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RenameStripBox.Designer.cs">
+      <DependentUpon>RenameStripBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Strip.cs">
+    </Compile>
+    <Compile Include="StripUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StripUserControl.Designer.cs">
+      <DependentUpon>StripUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StripManager.cs" />
+    <Compile Include="WorkAreaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkAreaForm.Designer.cs">
+      <DependentUpon>WorkAreaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ContainerStripUserControl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ContainerStripUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="messages.ja.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="messages.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RenameStripBox.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>RenameStripBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StripUserControl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>StripUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkAreaForm.ja.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WorkAreaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkAreaForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WorkAreaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
