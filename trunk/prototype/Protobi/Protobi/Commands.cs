@@ -7,22 +7,23 @@ using System.Drawing;
 namespace Protobi
 {
     /// <summary>
-    /// Append a strip to the strip manager.
+    /// Append a container strip to the strip manager.
     /// </summary>
-    public class AppendStripCommand : Command
+    public class AppendParStripCommand : Command
     {
-        protected StripManagerController mManager;  // the strip manager
-        protected StripController mStrip;           // the strip to append
+        protected StripManager mManager;  // the strip manager
+        protected ParStrip mStrip;  // the strip to append
 
         public override string Label { get { return Localizer.GetString("append_strip"); } }
 
         /// <summary>
-        /// Create an append strip command. The strip will be created automatically.
+        /// Create an append container strip command. The strip will be created automagically.
         /// </summary>
         /// <param name="manager">The strip manager to append to.</param>
-        public AppendStripCommand(StripManagerController manager)
+        public AppendParStripCommand(StripManager manager)
         {
             mManager = manager;
+            // the strip will be created when the action is performed
             mStrip = null;
         }
 
@@ -33,7 +34,7 @@ namespace Protobi
         {
             if (mStrip == null)
             {
-                mStrip = mManager.AppendStrip();
+                mStrip = mManager.AppendNewParStrip();
             }
             else
             {
@@ -50,24 +51,41 @@ namespace Protobi
         }
     }
 
-    public class AppendContainerStripCommand : AppendStripCommand
+    public class EditHeadingCommand : Command
     {
-        public override string Label { get { return Localizer.GetString("append_container_strip"); } }
+        private StructureHead mHeading;
+        private string mLabelBefore;
+        private uint mLevelBefore;
+        private string mLabelAfter;
+        private uint mLevelAfter;
+        private StructureStripUserControl mControl; // !!! shouldn't be here
 
-        public AppendContainerStripCommand(StripManagerController manager): base(manager)
+        public override string Label { get { return Localizer.GetString("edit_heading"); } }
+
+        public EditHeadingCommand(StructureHead heading, string label_before, uint level_before, StructureStripUserControl control)
         {
+            mHeading = heading;
+            mLabelBefore = label_before;
+            mLevelBefore = level_before;
+            mLabelAfter = heading.Label;
+            mLevelAfter = heading.Level.Level;
+            mControl = control;
         }
 
         public override void Do()
         {
-            if (mStrip == null)
-            {
-                mStrip = mManager.AppendContainerStrip();
-            }
-            else
-            {
-                mManager.AppendStrip(mStrip);
-            }
+            mHeading.Label = mLabelAfter;
+            mHeading.Level.Level = mLevelAfter;
+            mControl.UpdateHeading(mLabelAfter);
+        }
+
+
+        // TODO restore size
+        public override void Undo()
+        {
+            mHeading.Label = mLabelBefore;
+            mHeading.Level.Level = mLevelBefore;
+            mControl.UpdateHeading(mLabelBefore);
         }
     }
 
@@ -76,7 +94,7 @@ namespace Protobi
     /// </summary>
     public class RenameStripCommand : Command
     {
-        private StripController mStrip;  // the renamed strip
+        private Strip mStrip;  // the renamed strip
         private string mLabelBefore;     // the original name of the strip
         private string mLabelAfter;      // the new name (once the command is done)
 
@@ -87,7 +105,7 @@ namespace Protobi
         /// </summary>
         /// <param name="strip">The strip to rename.</param>
         /// <param name="after">The new name of the strip.</param>
-        public RenameStripCommand(StripController strip, string after)
+        public RenameStripCommand(Strip strip, string after)
         {
             mStrip = strip;
             mLabelBefore = mStrip.Label;
@@ -116,7 +134,7 @@ namespace Protobi
     /// </summary>
     public class ResizeStripCommand : Command
     {
-        private StripController mStrip;  // the strip to resize
+        private Strip mStrip;  // the strip to resize
         private Size mSizeBefore;        // the original size of the strip
         private Size mSizeAfter;         // the new size of the strip
 
@@ -128,7 +146,7 @@ namespace Protobi
         /// <param name="strip">The strip to resize.</param>
         /// <param name="before">The original size of the strip, before the change.</param>
         /// <param name="after">The new size of the strip, after the change.</param>
-        public ResizeStripCommand(StripController strip, Size before, Size after)
+        public ResizeStripCommand(Strip strip, Size before, Size after)
         {
             mStrip = strip;
             mSizeBefore = before;
@@ -141,7 +159,7 @@ namespace Protobi
         /// </summary>
         /// <param name="strip">The strip to resize</param>
         /// <param name="after">The new size of the strip after the resizing takes effect.</param>
-        public ResizeStripCommand(StripController strip, Size after)
+        public ResizeStripCommand(Strip strip, Size after)
         {
             mStrip = strip;
             mSizeBefore = strip.UserControl.Size;

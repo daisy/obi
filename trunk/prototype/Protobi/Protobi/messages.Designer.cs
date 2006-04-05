@@ -61,20 +61,83 @@ namespace Protobi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to append container strip.
-        /// </summary>
-        internal static string append_container_strip {
-            get {
-                return ResourceManager.GetString("append_container_strip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to append strip.
         /// </summary>
         internal static string append_strip {
             get {
                 return ResourceManager.GetString("append_strip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Audio strip.
+        /// </summary>
+        internal static string audio_strip {
+            get {
+                return ResourceManager.GetString("audio_strip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current book title: {0}.
+        /// </summary>
+        internal static string current_title {
+            get {
+                return ResourceManager.GetString("current_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (untitled heading).
+        /// </summary>
+        internal static string default_heading {
+            get {
+                return ResourceManager.GetString("default_heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to edit heading.
+        /// </summary>
+        internal static string edit_heading {
+            get {
+                return ResourceManager.GetString("edit_heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error loading wave file.
+        /// </summary>
+        internal static string error_loading_wav {
+            get {
+                return ResourceManager.GetString("error_loading_wav", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level {0}.
+        /// </summary>
+        internal static string heading_level {
+            get {
+                return ResourceManager.GetString("heading_level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level 1 (title).
+        /// </summary>
+        internal static string heading_title {
+            get {
+                return ResourceManager.GetString("heading_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsupported file format: expected RIFF identifier, but got &quot;{0}&quot; instead..
+        /// </summary>
+        internal static string not_riff {
+            get {
+                return ResourceManager.GetString("not_riff", resourceCulture);
             }
         }
         
@@ -97,6 +160,15 @@ namespace Protobi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (A value is required).
+        /// </summary>
+        internal static string required {
+            get {
+                return ResourceManager.GetString("required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to resize strip.
         /// </summary>
         internal static string resize_strip {
@@ -115,11 +187,74 @@ namespace Protobi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Structure strip.
+        /// </summary>
+        internal static string structure_strip_label {
+            get {
+                return ResourceManager.GetString("structure_strip_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} {1}.
         /// </summary>
         internal static string undo {
             get {
                 return ResourceManager.GetString("undo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown format tag: expected 1 (PCM) but got {0} instead..
+        /// </summary>
+        internal static string unknown_format_tag {
+            get {
+                return ResourceManager.GetString("unknown_format_tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsupported file format: expected 16 bits per sample, but got {0} instead..
+        /// </summary>
+        internal static string unsupported_bits_per_sample {
+            get {
+                return ResourceManager.GetString("unsupported_bits_per_sample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsupported file format: data chunk before format chunk..
+        /// </summary>
+        internal static string unsupported_data {
+            get {
+                return ResourceManager.GetString("unsupported_data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsupported file format: more than one format chunk..
+        /// </summary>
+        internal static string unsupported_format {
+            get {
+                return ResourceManager.GetString("unsupported_format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsupported file format: expected WAVE RIFF type, but got &quot;{0}&quot; instead..
+        /// </summary>
+        internal static string unsupported_riff_type {
+            get {
+                return ResourceManager.GetString("unsupported_riff_type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (untitled).
+        /// </summary>
+        internal static string untitled {
+            get {
+                return ResourceManager.GetString("untitled", resourceCulture);
             }
         }
     }
