@@ -10,8 +10,9 @@ namespace Protobi
 {
     public partial class WorkAreaForm : Form
     {
-        private StripManagerController mStripManager;
-        private UndoRedoStack mUndoStack;
+        private StripManager mStripManager;  // the strip manager for the main layout
+        private UndoRedoStack mUndoStack;    // the application undo/redo stack
+        private Metadata mMetadata;          // should be an actuall Book object
 
         private string undo_label;  // keep track of the original labels
         private string redo_label;  // for undo and redo
@@ -19,13 +20,16 @@ namespace Protobi
         public WorkAreaForm()
         {
             InitializeComponent();
-            mStripManager = new StripManagerController(stripLayout);
+            mStripManager = new StripManager(stripLayout);
             mUndoStack = new UndoRedoStack();
+            mMetadata = new Metadata();
+            metadataInfoPanel1.MetadataController = mMetadata;
             undo_label = undoToolStripMenuItem.Text;
             redo_label = redoToolStripMenuItem.Text;
+            openFileDialog1.Filter = "Wave file|*.wav|Any file|*.*";
         }
 
-        // Exit cleanly.
+        // Exit cleanly. This should ask for confirmation when there is unsaved work.
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -92,9 +96,9 @@ namespace Protobi
         // Append a new container strip in the work area.
         private void appendStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AppendContainerStripCommand command = new AppendContainerStripCommand(mStripManager);
-            command.Do();
-            PushUndo(command);
+            AppendParStripCommand append = new AppendParStripCommand(mStripManager);
+            append.Do();
+            PushUndo(append);
         }
 
         // Clicking in the work area deselects any currently selected item.
@@ -110,10 +114,15 @@ namespace Protobi
         }
 
         // Update the menus when something is selected.
-        public void EnableDeselect()
+        public void EnableSelect()
         {
             deselectToolStripMenuItem.Enabled = true;     // we can now deselect
             renameStripToolStripMenuItem.Enabled = true;  // the selected item can be renamed
+            editHeadingToolStripMenuItem.Enabled = true;
+            addAudioStripToolStripMenuItem.Enabled = mStripManager.Selected == null ?
+                false : mStripManager.Selected.CanAddAudioStrip;
+            loadSoundFileToolStripMenuItem.Enabled = mStripManager.Selected == null ?
+                false : mStripManager.Selected.CanAddAudioFile;
         }
 
         // Update the menus when deselecting.
@@ -122,13 +131,16 @@ namespace Protobi
             mStripManager.Select(null);
             deselectToolStripMenuItem.Enabled = false;     // cannot deselect anymore
             renameStripToolStripMenuItem.Enabled = false;  // nothing to rename at the moment
+            editHeadingToolStripMenuItem.Enabled = false;
+            addAudioStripToolStripMenuItem.Enabled = false;
+            loadSoundFileToolStripMenuItem.Enabled = false;
         }
 
         // Rename the currently selected item. This brings a text entry window in which the user can type the new name.
         // Nothing happens if there is no selected item at the moment.
         private void renameStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StripController strip = mStripManager.Selected;
+            Strip strip = mStripManager.Selected;
             if (strip != null)
             {
                 RenameStripBox box = new RenameStripBox(strip.Label);
@@ -137,19 +149,55 @@ namespace Protobi
                 {
                     // Create the rename command. If the new label is too long for the strip, then resize it as well and issue
                     // a cons command so that undoing will restore the previous size of the strip.
+                    ResizeStripCommand resize = new ResizeStripCommand(strip, strip.Size);
                     RenameStripCommand rename = new RenameStripCommand(strip, box.Label);
                     rename.Do();
-                    if (strip.UserControl.Size.Width < strip.UserControl.MinSize.Width)
-                    {
-                        ResizeStripCommand resize =
-                            new ResizeStripCommand(strip, strip.UserControl.MinSize);
-                        resize.Do();
-                        PushUndo(new ConsCommand(rename.Label, resize, rename));
-                    }
-                    else
-                    {
-                        PushUndo(rename);
-                    }
+                    PushUndo(new ConsCommand(rename.Label, resize, rename));
+                }
+            }
+        }
+
+        private void bibliographicMetadataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mMetadata.Edit();
+        }
+
+        private void stripLayout_SizeChanged(object sender, EventArgs e)
+        {
+            metadataInfoPanel1.Width = Width;
+        }
+
+        private void editHeadingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Strip strip = mStripManager.Selected;
+            if (strip.GetType() == typeof(StructureStrip))
+            {
+                ((StructureStripUserControl)((StructureStrip)strip).UserControl).EditHeading();
+            }
+            else if (strip.GetType() == typeof(ParStrip))
+            {
+                ((StructureStripUserControl)((ParStrip)strip).StructureStrip.UserControl).EditHeading();
+            }
+        }
+
+        private void addAudioStripToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ((ParStrip)(mStripManager.Selected)).AddAudioStrip();
+        }
+
+        private void loadSoundFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    WaveFile wavefile = new WaveFile(openFileDialog1.FileName);
+                    ((AudioStrip)(mStripManager.Selected)).LoadFile(wavefile);
+                }
+                catch (Exception x)
+                {
+                    MessageBox.Show(x.Message, Localizer.GetString("error_loading_wav"),
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

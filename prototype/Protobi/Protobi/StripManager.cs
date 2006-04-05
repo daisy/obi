@@ -5,18 +5,70 @@ using System.Windows.Forms;
 
 namespace Protobi
 {
-    /// <summary>
-    /// The strip manager keeps track of all strips.
-    /// </summary>
     public class StripManager
     {
-        List<StripController> mStrips;
-        StripController mSelected;
+        private StripManagerModel mModel;
+        private FlowLayoutPanel mUserControl;
 
-        public List<StripController> Strips { get { return mStrips; } }
+        public Strip Selected { get { return mModel.Selected; } }
+
+        public StripManager(FlowLayoutPanel layout)
+        {
+            mUserControl = layout;
+            mModel = new StripManagerModel();
+        }
+
+        public ParStrip AppendNewParStrip()
+        {
+            Console.WriteLine("Append new ParStrip >>> {0}", mModel.NextLabel);
+            ParStrip strip = new ParStrip(this, mModel.NextLabel);
+            mModel.Strips.Add(strip);
+            mUserControl.Controls.Add(strip.UserControl);
+            return strip;
+        }
+
+        /// <summary>
+        /// Append an existing strip.
+        /// </summary>
+        /// <param name="stripController"></param>
+        public void AppendStrip(Strip stripController)
+        {
+            mUserControl.Controls.Add(stripController.UserControl);
+            mModel.Strips.Add(stripController);
+        }
+
+        public void RemoveLastStrip()
+        {
+            mModel.Strips[mModel.Strips.Count - 1].Selected = false;
+            mModel.Strips[mModel.Strips.Count - 1].UserControl.Selected = false;
+            mModel.Strips.RemoveAt(mModel.Strips.Count - 1);
+            mUserControl.Controls.RemoveAt(mUserControl.Controls.Count - 1);
+        }
+
+        public void Select(Strip strip)
+        {
+            if (mModel.Selected != strip)
+            {
+                mModel.Selected = strip;
+                mUserControl.Refresh();
+                ((WorkAreaForm)mUserControl.Parent).EnableSelect();
+            }
+        }
+    }
+
+    /// <summary>
+    /// The strip manager keeps track of container strips.
+    /// </summary>
+    public class StripManagerModel
+    {
+        List<Strip> mStrips;   // all the strips
+        List<ParStrip> mPars;  // just the containers
+        Strip mSelected;       // the currently selected strip
+
+        public List<Strip> Strips { get { return mStrips; } }
         public string NextLabel { get { return String.Format(Localizer.GetString("strip_name"), mStrips.Count + 1); } }
 
-        public StripController Selected
+        public Strip Selected
         {
             get
             {
@@ -29,78 +81,11 @@ namespace Protobi
             }
         }
 
-        public StripManager()
+        public StripManagerModel()
         {
-            mStrips = new List<StripController>();
+            mStrips = new List<Strip>();
+            mPars = new List<ParStrip>();
             mSelected = null;
-        }
-    }
-
-    public class StripManagerController
-    {
-        private StripManager mManager;
-        private FlowLayoutPanel mLayout;
-
-        public StripController Selected { get { return mManager.Selected; } }
-
-        public StripManagerController(FlowLayoutPanel layout)
-        {
-            mLayout = layout;
-            mManager = new StripManager();
-        }
-
-        /// <summary>
-        /// Append a newly created strip.
-        /// </summary>
-        /// <returns>The strip that was just added.</returns>
-        public StripController AppendStrip()
-        {
-            Strip strip = new Strip(mManager.NextLabel);
-            StripController stripController = new StripController(this, strip);
-            StripUserControl userControl = new StripUserControl(stripController, true);
-            stripController.UserControl = userControl;
-            mManager.Strips.Add(stripController);
-            mLayout.Controls.Add(userControl);
-            return stripController;
-        }
-
-        public StripController AppendContainerStrip()
-        {
-            ContainerStrip strip = new ContainerStrip(mManager.NextLabel);
-            ContainerStripController stripController = new ContainerStripController(this, strip);
-            ContainerStripUserControl userControl = new ContainerStripUserControl(stripController);
-            stripController.UserControl = userControl;
-            mManager.Strips.Add(stripController);
-            mLayout.Controls.Add(userControl);
-            return stripController;
-        }
-
-        /// <summary>
-        /// Append an existing strip.
-        /// </summary>
-        /// <param name="stripController"></param>
-        public void AppendStrip(StripController stripController)
-        {
-            mLayout.Controls.Add(stripController.UserControl);
-            mManager.Strips.Add(stripController);
-        }
-
-        public void RemoveLastStrip()
-        {
-            mManager.Strips[mManager.Strips.Count - 1].Selected = false;
-            mManager.Strips[mManager.Strips.Count - 1].UserControl.Selected = false;
-            mManager.Strips.RemoveAt(mManager.Strips.Count - 1);
-            mLayout.Controls.RemoveAt(mLayout.Controls.Count - 1);
-        }
-
-        public void Select(StripController strip)
-        {
-            if (mManager.Selected != strip)
-            {
-                mManager.Selected = strip;
-                mLayout.Refresh();
-                ((WorkAreaForm)mLayout.Parent).EnableDeselect();
-            }
         }
     }
 }

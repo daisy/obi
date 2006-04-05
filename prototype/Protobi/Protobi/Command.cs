@@ -8,13 +8,13 @@ namespace Protobi
     /// </summary>
     public abstract class Command
     {
-        public virtual string Label { get { return null; } } 
-        public abstract void Do();
-        public abstract void Undo();
+        public virtual string Label { get { return null; } }  // get the label (for user interaction purposes)
+        public abstract void Do();                            // actually perform the action
+        public abstract void Undo();                          // go back to the state before the action was performed
     }
 
     /// <summary>
-    /// A cons command looks like a regular command but in fact incorporates a series of commands.
+    /// A cons command looks like a regular command but is in fact a pair of commands in sequence.
     /// </summary>
     public class ConsCommand : Command
     {

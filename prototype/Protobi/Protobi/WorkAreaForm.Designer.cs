@@ -51,9 +51,13 @@ namespace Protobi
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deselectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.bibliographicMetadataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stripsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.appendStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renameStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editHeadingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addAudioStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,9 +70,13 @@ namespace Protobi
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripLayout = new System.Windows.Forms.FlowLayoutPanel();
-            this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
+            this.audioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadSoundFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.metadataInfoPanel1 = new Protobi.MetadataInfoPanel();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.stripLayout.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -77,11 +85,11 @@ namespace Protobi
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
             this.stripsToolStripMenuItem,
+            this.audioToolStripMenuItem,
             this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem});
             resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             // 
             // fileToolStripMenuItem
             // 
@@ -161,7 +169,9 @@ namespace Protobi
             this.pasteToolStripMenuItem,
             this.toolStripSeparator4,
             this.selectAllToolStripMenuItem,
-            this.deselectToolStripMenuItem});
+            this.deselectToolStripMenuItem,
+            this.toolStripSeparator6,
+            this.bibliographicMetadataToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             resources.ApplyResources(this.editToolStripMenuItem, "editToolStripMenuItem");
             // 
@@ -213,11 +223,24 @@ namespace Protobi
             this.deselectToolStripMenuItem.Name = "deselectToolStripMenuItem";
             this.deselectToolStripMenuItem.Click += new System.EventHandler(this.deselectToolStripMenuItem_Click);
             // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            resources.ApplyResources(this.toolStripSeparator6, "toolStripSeparator6");
+            // 
+            // bibliographicMetadataToolStripMenuItem
+            // 
+            this.bibliographicMetadataToolStripMenuItem.Name = "bibliographicMetadataToolStripMenuItem";
+            resources.ApplyResources(this.bibliographicMetadataToolStripMenuItem, "bibliographicMetadataToolStripMenuItem");
+            this.bibliographicMetadataToolStripMenuItem.Click += new System.EventHandler(this.bibliographicMetadataToolStripMenuItem_Click);
+            // 
             // stripsToolStripMenuItem
             // 
             this.stripsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.appendStripToolStripMenuItem,
-            this.renameStripToolStripMenuItem});
+            this.renameStripToolStripMenuItem,
+            this.editHeadingToolStripMenuItem,
+            this.addAudioStripToolStripMenuItem});
             this.stripsToolStripMenuItem.Name = "stripsToolStripMenuItem";
             resources.ApplyResources(this.stripsToolStripMenuItem, "stripsToolStripMenuItem");
             // 
@@ -232,6 +255,18 @@ namespace Protobi
             resources.ApplyResources(this.renameStripToolStripMenuItem, "renameStripToolStripMenuItem");
             this.renameStripToolStripMenuItem.Name = "renameStripToolStripMenuItem";
             this.renameStripToolStripMenuItem.Click += new System.EventHandler(this.renameStripToolStripMenuItem_Click);
+            // 
+            // editHeadingToolStripMenuItem
+            // 
+            resources.ApplyResources(this.editHeadingToolStripMenuItem, "editHeadingToolStripMenuItem");
+            this.editHeadingToolStripMenuItem.Name = "editHeadingToolStripMenuItem";
+            this.editHeadingToolStripMenuItem.Click += new System.EventHandler(this.editHeadingToolStripMenuItem_Click);
+            // 
+            // addAudioStripToolStripMenuItem
+            // 
+            resources.ApplyResources(this.addAudioStripToolStripMenuItem, "addAudioStripToolStripMenuItem");
+            this.addAudioStripToolStripMenuItem.Name = "addAudioStripToolStripMenuItem";
+            this.addAudioStripToolStripMenuItem.Click += new System.EventHandler(this.addAudioStripToolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -293,6 +328,7 @@ namespace Protobi
             this.toolStripStatusLabel1});
             resources.ApplyResources(this.statusStrip1, "statusStrip1");
             this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
             // 
             // toolStripStatusLabel1
             // 
@@ -302,15 +338,34 @@ namespace Protobi
             // stripLayout
             // 
             this.stripLayout.BackColor = System.Drawing.Color.White;
+            this.stripLayout.Controls.Add(this.metadataInfoPanel1);
             resources.ApplyResources(this.stripLayout, "stripLayout");
             this.stripLayout.Name = "stripLayout";
             this.stripLayout.MouseClick += new System.Windows.Forms.MouseEventHandler(this.stripLayout_MouseClick);
+            this.stripLayout.SizeChanged += new System.EventHandler(this.stripLayout_SizeChanged);
             // 
-            // directorySearcher1
+            // audioToolStripMenuItem
             // 
-            this.directorySearcher1.ClientTimeout = System.TimeSpan.Parse("-00:00:01");
-            this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
-            this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
+            this.audioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadSoundFileToolStripMenuItem});
+            this.audioToolStripMenuItem.Name = "audioToolStripMenuItem";
+            resources.ApplyResources(this.audioToolStripMenuItem, "audioToolStripMenuItem");
+            // 
+            // loadSoundFileToolStripMenuItem
+            // 
+            resources.ApplyResources(this.loadSoundFileToolStripMenuItem, "loadSoundFileToolStripMenuItem");
+            this.loadSoundFileToolStripMenuItem.Name = "loadSoundFileToolStripMenuItem";
+            this.loadSoundFileToolStripMenuItem.Click += new System.EventHandler(this.loadSoundFileToolStripMenuItem_Click);
+            // 
+            // metadataInfoPanel1
+            // 
+            this.metadataInfoPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            resources.ApplyResources(this.metadataInfoPanel1, "metadataInfoPanel1");
+            this.metadataInfoPanel1.Name = "metadataInfoPanel1";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // WorkAreaForm
             // 
@@ -325,6 +380,7 @@ namespace Protobi
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.stripLayout.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -369,7 +425,14 @@ namespace Protobi
         private System.Windows.Forms.FlowLayoutPanel stripLayout;
         private System.Windows.Forms.ToolStripMenuItem deselectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem renameStripToolStripMenuItem;
-        private System.DirectoryServices.DirectorySearcher directorySearcher1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem bibliographicMetadataToolStripMenuItem;
+        private MetadataInfoPanel metadataInfoPanel1;
+        private System.Windows.Forms.ToolStripMenuItem editHeadingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addAudioStripToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem audioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadSoundFileToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

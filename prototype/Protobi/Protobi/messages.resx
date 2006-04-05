@@ -117,13 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="append_container_strip" xml:space="preserve">
-    <value>append container strip</value>
-    <comment>AppendContainerStripCommand label</comment>
-  </data>
   <data name="append_strip" xml:space="preserve">
     <value>append strip</value>
     <comment>AppendStripCommand label</comment>
+  </data>
+  <data name="audio_strip" xml:space="preserve">
+    <value>Audio strip</value>
+    <comment>AudioStrip label</comment>
+  </data>
+  <data name="current_title" xml:space="preserve">
+    <value>Current book title: {0}</value>
+    <comment>Metadata info bar</comment>
+  </data>
+  <data name="default_heading" xml:space="preserve">
+    <value>(untitled heading)</value>
+    <comment>Untitled heading</comment>
+  </data>
+  <data name="edit_heading" xml:space="preserve">
+    <value>edit heading</value>
+    <comment>EditHeadingCommand label</comment>
+  </data>
+  <data name="error_loading_wav" xml:space="preserve">
+    <value>Error loading wave file</value>
+  </data>
+  <data name="heading_level" xml:space="preserve">
+    <value>Level {0}</value>
+  </data>
+  <data name="heading_title" xml:space="preserve">
+    <value>Level 1 (title)</value>
+  </data>
+  <data name="not_riff" xml:space="preserve">
+    <value>Unsupported file format: expected RIFF identifier, but got "{0}" instead.</value>
   </data>
   <data name="redo" xml:space="preserve">
     <value>{0} {1}</value>
@@ -133,6 +157,10 @@
     <value>rename strip</value>
     <comment>RenameStripCommand label</comment>
   </data>
+  <data name="required" xml:space="preserve">
+    <value>(A value is required)</value>
+    <comment>Mandatory metadata fields</comment>
+  </data>
   <data name="resize_strip" xml:space="preserve">
     <value>resize strip</value>
     <comment>ResizeStripCommand label</comment>
@@ -141,8 +169,31 @@
     <value>Strip {0}</value>
     <comment>Default name for strips</comment>
   </data>
+  <data name="structure_strip_label" xml:space="preserve">
+    <value>Structure strip</value>
+    <comment>Default label for a structure strip</comment>
+  </data>
   <data name="undo" xml:space="preserve">
     <value>{0} {1}</value>
     <comment>e.g. "Undo &lt;command&gt;"</comment>
+  </data>
+  <data name="unknown_format_tag" xml:space="preserve">
+    <value>Unknown format tag: expected 1 (PCM) but got {0} instead.</value>
+  </data>
+  <data name="unsupported_bits_per_sample" xml:space="preserve">
+    <value>Unsupported file format: expected 16 bits per sample, but got {0} instead.</value>
+  </data>
+  <data name="unsupported_data" xml:space="preserve">
+    <value>Unsupported file format: data chunk before format chunk.</value>
+  </data>
+  <data name="unsupported_format" xml:space="preserve">
+    <value>Unsupported file format: more than one format chunk.</value>
+  </data>
+  <data name="unsupported_riff_type" xml:space="preserve">
+    <value>Unsupported file format: expected WAVE RIFF type, but got "{0}" instead.</value>
+  </data>
+  <data name="untitled" xml:space="preserve">
+    <value>(untitled)</value>
+    <comment>Untitled book</comment>
   </data>
 </root>
