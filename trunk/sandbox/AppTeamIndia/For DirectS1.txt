@@ -1,3 +1,6 @@
+updated on 6 april 2006
+edit boxes and code are added to check the seek accuracy of playback of directX.
+
 Updated on 28 March 2006
 Step size in seconds is taken from text box next to button Jump Time .
 
