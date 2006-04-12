@@ -29,7 +29,12 @@ namespace urakawaApplication
         //throws AudioRecorderException 
         void record(IAudioMediaAsset wave);
         void stopRecording();
-        
+        void setAudioRecorderListener(eventListeners.IAudioRecorderEventListener listener);
+
+        //return value should be of type Collection<IAudioRecorderListener>
+        ArrayList getAudioRecorderListeners();
+
+        eventListeners.IAudioPlayerEventListener getAudioRecorderListener(int i);
 
         //returns states such as recording, idle, initializing
         //the return value type will be something like AudioRecorderStateType instead of Object
