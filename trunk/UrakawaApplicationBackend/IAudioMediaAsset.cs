@@ -9,25 +9,38 @@ namespace urakawaApplication
         //only support appending to the end of wavefiles
         //throws MediaAssetException
         //input param should, in the end, be of type ByteBuffer (or whatever we call it)
-        void appendByteBuffer(Object buf);
+        //void appendByteBuffer(Object buf);
 
         //throws MediaAssetException
         //return value should, in the end, be of type ByteBuffer (or whatever we call it)
-        Object getChunk(double byteStartPosition, double byteEndPosition);
+        //Object getChunk(double byteStartPosition, double byteEndPosition);
          
         // throws MediaAssetException 
         //return value should, in the end, be of type ByteBuffer (or whatever we call it)
-        Object getChunk(long timeStartPositionMillis, double timeEndPositionMillis);
+        //Object getChunk(long timeStartPositionMillis, double timeEndPositionMillis);
 
         // throws MediaAssetException 
-        void deleteChunk(double byteStartPosition, double byteEndPosition);
+        //void deleteChunk(double byteStartPosition, double byteEndPosition);
 
         // throws MediaAssetException 
-        void deleteChunk(long timeStartPositionMillis, long timeEndPositionMillis);
+        //void deleteChunk(long timeStartPositionMillis, long timeEndPositionMillis);
 
-        long getLengthInMillis();
-        int getSampleRate();
-        int getNumberOfChannels();
-        int getBitDepth();
+        //long getLengthInMillis();
+        //int getSampleRate();
+        //int getNumberOfChannels();
+        //int getBitDepth();
+
+		string FilePath
+		{		
+get;
+		set;
+		}
     }
-}
+
+	public class AudioMediaAsset :MediaAsset, IAudioMediaAsset 
+	{
+
+	}
+			
+
+	}
