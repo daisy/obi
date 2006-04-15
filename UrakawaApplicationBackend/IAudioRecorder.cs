@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Text;
-using System.Collections;
 using Microsoft.DirectX;
 using Microsoft.DirectX.DirectSound;
 
@@ -138,7 +137,7 @@ namespace urakawaApplication
 				//Turn the index into a WaveFormat then turn that into a
 				// string and put the string in the listbox
 				GetWaveFormatFromIndex(iIndex, ref format);
-				info.format = m_format;
+				info.format = format;
 				m_aformats.Add(info);
 			}
 			return m_aformats;
