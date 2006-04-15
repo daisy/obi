@@ -39,28 +39,28 @@ namespace urakawaApplication
 		//ie, an abstract base class implementation of this interface would not implement this function
 //		bool validate();    
 
-		string FilePath 
-		{
-			get;
-			set;
-		}
-
+string FilePath 
+{
+get;
+set;
+}
 	}
 
 
 	public class MediaAsset : IMediaAsset
 	{
+private string m_FilePath ;
+
 		public string FilePath 
-		{
-			
-			get
 {
-			return FilePath;
-}
-				set
+get
 {
-			FilePath = value ;
+return m_FilePath;
 }
-		}
+set
+{
+m_FilePath = value ;
+}
+}
 }
 }

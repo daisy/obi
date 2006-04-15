@@ -13,7 +13,8 @@ namespace urakawaApplication
         //IAssetManager getInstance();
 
         //return value is some sort of Collection<MediaAsset>
-         ArrayList getAssets();
+		//Parameter added: sDirPath for path of target directory and sFilter to act as filtering condition e.g. "*.*" to get all files, "*.wav" to get only wav files
+         ArrayList getAssets(string sDirPath, string sFilter);
 
         //returns value is some sort of Collection<MediaAssetSubType>
          //the parameter type will be something like MediaAssetType instead of Object
@@ -46,17 +47,17 @@ namespace urakawaApplication
 
 		
     }
-	class AssetManager :  IAssetManager 
+public 	class AssetManager :  IAssetManager 
 	{
 		
 	
 			public string m_sDirPath;
 
-		public ArrayList getAssets()
+		public ArrayList getAssets(string sDirPath, string sFilter)
 		{
-			DirectoryInfo dir = new DirectoryInfo(@m_sDirPath);
-			FileInfo[] bmpfiles = dir.GetFiles("*.*") ;
-			ArrayList m_alTemp= null;
+			DirectoryInfo dir = new DirectoryInfo(sDirPath);
+			FileInfo[] bmpfiles = dir.GetFiles(sFilter) ;
+			ArrayList m_alTemp = new ArrayList () ;
 			
 			foreach( FileInfo f in bmpfiles)
 			{
@@ -66,15 +67,16 @@ namespace urakawaApplication
 		}
 		public ArrayList getAssets(Object assetType)
 		{
-			DirectoryInfo dir = new DirectoryInfo(@m_sDirPath);
-			FileInfo[] bmpfiles = dir.GetFiles(assetType.ToString()) ;
-			ArrayList m_alTemp= null;
+			ArrayList alTemp = null ;
+			return alTemp;
+
 			
-			foreach( FileInfo f in bmpfiles)
-			{
-				m_alTemp.Add(f.FullName);
-			}
-			return m_alTemp;
+			
+
+			
+				
+			
+
 		}
 
 		public void deleteAsset(IMediaAsset assetToDelete)
@@ -117,18 +119,22 @@ MessageBox.Show("Original file not found");
 			}
 		}
 
-public IMediaAsset copyAsset(IMediaAsset source, IMediaAsset dest, bool replaceIfExisting)
-{
-			FileInfo file= new FileInfo (source.FilePath);		
-	try
+	public IMediaAsset copyAsset(IMediaAsset source, IMediaAsset dest, bool replaceIfExisting)
 	{
-		file.CopyTo(dest.FilePath,replaceIfExisting);
-	}
-	catch
-	{
-MessageBox.Show ("Can not copy the file");
-	}
- return dest;
+		FileInfo file= new FileInfo (source.FilePath);		
+		try
+		{
+			file.CopyTo(dest.FilePath,replaceIfExisting);
 		}
+		catch
+		{
+			MessageBox.Show ("Can not copy the file");
+		}
+		return dest;
+	}
+public void test ()
+{
+	MessageBox.Show("It is working");
+			}
 	}
 }
