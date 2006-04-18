@@ -44,7 +44,7 @@ namespace Protobi
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 12);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Title:";
+            this.label1.Text = "&Title:";
             // 
             // titleBox
             // 
@@ -61,10 +61,12 @@ namespace Protobi
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 12);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Heading level:";
+            this.label2.Text = "&Heading level:";
             // 
             // levelBox
             // 
+            this.levelBox.AllowDrop = true;
+            this.levelBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.levelBox.FormattingEnabled = true;
             this.levelBox.Location = new System.Drawing.Point(96, 35);
             this.levelBox.Name = "levelBox";
@@ -78,7 +80,7 @@ namespace Protobi
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 4;
-            this.okButton.Text = "OK";
+            this.okButton.Text = "&OK";
             this.okButton.UseVisualStyleBackColor = true;
             // 
             // cancelButton
@@ -88,11 +90,12 @@ namespace Protobi
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 5;
-            this.cancelButton.Text = "Cancel";
+            this.cancelButton.Text = "&Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
             // StructureItemDialog
             // 
+            this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 105);

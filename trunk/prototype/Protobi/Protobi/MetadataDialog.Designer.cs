@@ -54,7 +54,7 @@ namespace Protobi
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 12);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Title:";
+            this.label1.Text = "&Title:";
             // 
             // titleBox
             // 
@@ -72,7 +72,7 @@ namespace Protobi
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 12);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Publisher:";
+            this.label2.Text = "&Publisher:";
             // 
             // publisherBox
             // 
@@ -97,7 +97,7 @@ namespace Protobi
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(31, 12);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Date:";
+            this.label3.Text = "&Date:";
             // 
             // label4
             // 
@@ -107,7 +107,7 @@ namespace Protobi
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 12);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Identifier:";
+            this.label4.Text = "&Identifier:";
             // 
             // idBox
             // 
@@ -125,7 +125,7 @@ namespace Protobi
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 12);
             this.label5.TabIndex = 10;
-            this.label5.Text = "Scheme:";
+            this.label5.Text = "&Scheme:";
             // 
             // idSchemeBox
             // 
@@ -142,10 +142,12 @@ namespace Protobi
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(55, 12);
             this.label6.TabIndex = 12;
-            this.label6.Text = "Language:";
+            this.label6.Text = "&Language:";
             // 
             // languageBox
             // 
+            this.languageBox.AllowDrop = true;
+            this.languageBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.languageBox.FormattingEnabled = true;
             this.languageBox.Location = new System.Drawing.Point(72, 109);
             this.languageBox.Name = "languageBox";
@@ -160,7 +162,7 @@ namespace Protobi
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 14;
-            this.okButton.Text = "OK";
+            this.okButton.Text = "&OK";
             this.okButton.UseVisualStyleBackColor = true;
             // 
             // cancelButton
@@ -170,7 +172,7 @@ namespace Protobi
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 15;
-            this.cancelButton.Text = "Cancel";
+            this.cancelButton.Text = "&Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
             // dateEventBox
@@ -188,10 +190,11 @@ namespace Protobi
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(36, 12);
             this.label7.TabIndex = 6;
-            this.label7.Text = "Event:";
+            this.label7.Text = "&Event:";
             // 
             // MetadataDialog
             // 
+            this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(489, 186);
