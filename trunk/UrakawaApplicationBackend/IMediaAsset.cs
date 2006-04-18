@@ -1,66 +1,64 @@
 using System;
-using System.Collections;
-using System.Text;
+using System.IO;
 
-namespace urakawaApplication
+namespace UrakawaApplicationBackend
 {
+	/// <summary>
+	/// A media asset is an atomic unit of a given media (so far sound clip, but later on text, image, video...)
+	/// </summary>
 	public interface IMediaAsset
 	{
-//		string getName();
-		//returns the MediaAsset type, else use reflection 'instanceof'
-		//this function should be virtual/abstract
-		//ie, an abstract base class implementation of this interface would not implement this function
-		//Object getType();
+		/// <summary>
+		/// Name of the asset. The name must be unique within the whole project.
+		/// </summary>
+		string Name
+		{
+			get;
+			set;
+		}
 
-		//[returns the MIME type string]
-		//this function should be virtual/abstract
-		//ie, an abstract base class implementation of this interface would not implement this function
-		//string getMediaType();
+		/// <summary>
+		/// MIME type of the asset. For instance, WAV files are audio/x-wav (? check this)
+		/// </summary>
+		string MediaType
+		{
+			get;
+		}
 
-		//double getSizeInBytes();
+		/// <summary>
+		/// The size in bytes of the asset.
+		/// </summary>
+		ulong SizeInBytes
+		{
+			get;
+		}
 
-		//return value should, in the end, be some platform-accepted File object
-		//Object getFile();
+		/// <summary>
+		/// The file path for this asset.
+		/// </summary>
+		Path Path
+		{
+			get;
+		}
 
-		//bool exists();
-		//bool canRead();
-		//bool canWrite();
+		/// <summary>
+		/// The file object for the file that contains this asset.
+		/// </summary>
+		File File
+		{
+			get;
+		}
 
-		//this method should be "protected" not "public", but how to specify that in csharp?
-		//bool delete();
+		/// <summary>
+		/// Remove the asset from the project, and actually delete all corresponding resources.
+		/// Throw an exception if the asset could not be deleted.
+		/// </summary>
+		void Delete();
 
-		//Uri getURL();
-
-		//will return FileReader not Object
-		//Object getFileReader();
-
-		//performs integrity check on an asset, subtype dependent
-		//this function should be virtual/abstract
-		//ie, an abstract base class implementation of this interface would not implement this function
-//		bool validate();    
-
-string FilePath 
-{
-get;
-set;
-}
+		/// <summary>
+		/// Validate the asset by performing an integrity check.
+		/// </summary>
+		/// <returns>True if the asset was found to be valid, false otherwise.</returns>
+		bool Validate();    
 	}
-
-
-	public class MediaAsset : IMediaAsset
-	{
-private string m_FilePath ;
-
-		public string FilePath 
-{
-get
-{
-return m_FilePath;
-}
-set
-{
-m_FilePath = value ;
-}
-}
-}
 }

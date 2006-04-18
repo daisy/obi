@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Text;
 
-namespace urakawaApplication.events
+namespace UrakawaApplicationBackend.events
 {
     //This is a generic  class that can be
     //used, but ideally one uses the typed

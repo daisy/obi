@@ -3,7 +3,7 @@ using System.Collections;
 using System.Text;
 
 
-namespace urakawaApplication
+namespace UrakawaApplicationBackend
 {
  
     /* An IEventController functions as a hub

@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.DirectX;
 using Microsoft.DirectX.DirectSound;
 
-namespace urakawaApplication
+namespace UrakawaApplicationBackend
 {
 	public interface IAudioRecorder
 	{

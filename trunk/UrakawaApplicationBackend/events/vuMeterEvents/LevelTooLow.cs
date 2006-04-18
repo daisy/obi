@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Text;
 
-namespace urakawaApplication.events.vuMeterEvents
+namespace UrakawaApplicationBackend.events.vuMeterEvents
 {
     class LevelTooLow : VuMeterEvent
     {

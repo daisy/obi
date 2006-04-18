@@ -102,12 +102,22 @@
                     AssemblyName = "System.Windows.Forms"
                     HintPath = "H:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll"
                 />
+                <Reference
+                    Name = "System.Drawing"
+                    AssemblyName = "System.Drawing"
+                    HintPath = "..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll"
+                />
             </References>
         </Build>
         <Files>
             <Include>
                 <File
                     RelPath = "AssemblyInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "AssetManager.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -158,6 +168,11 @@
                 />
                 <File
                     RelPath = "IVuMeter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "MediaAsset.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

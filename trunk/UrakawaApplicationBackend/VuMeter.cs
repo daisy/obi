@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Text;
 
-namespace urakawaApplication
+namespace UrakawaApplicationBackend
 {
     
     //has all the methods from IVuMeter

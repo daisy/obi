@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Text;
 
-namespace urakawaApplication
+namespace UrakawaApplicationBackend
 {
     //base eventlistener interface
     public interface IEventListener
