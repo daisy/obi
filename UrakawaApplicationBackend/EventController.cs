@@ -1,9 +1,8 @@
 using System;
 using System.Collections;
 using System.Text;
-using System.Collections;
 
-namespace urakawaApplication
+namespace UrakawaApplicationBackend
 {
     class EventController : IEventController
     {
@@ -32,7 +31,7 @@ namespace urakawaApplication
                     //WARNING
                     //this first part needs to be rewritten to express the idea
                     //"if IEvent e is actually of type VU Meter Event object"
-				    if (e is urakawaApplication.events.vuMeterEvents.VuMeterEvent 
+				    if (e is UrakawaApplicationBackend.events.vuMeterEvents.VuMeterEvent 
                         && mListeners[i] is eventListeners.IVuMeterEventListener)
 				    {
                         ((IEventListener)mListeners[i]).notify(e);

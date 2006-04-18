@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Text;
 
-namespace urakawaApplication.events.audioPlayerEvents
+namespace UrakawaApplicationBackend.events.audioPlayerEvents
 {
 	//these are just some suggestions for states
 	enum AudioPlayerState {Playing, Idle, Initializing, Stopped};

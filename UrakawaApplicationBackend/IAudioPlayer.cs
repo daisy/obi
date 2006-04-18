@@ -5,7 +5,7 @@ using Microsoft.DirectX;
 using Microsoft.DirectX.DirectSound;
 using Microsoft.DirectX.AudioVideoPlayback;
 
-namespace urakawaApplication
+namespace UrakawaApplicationBackend
 {
     public interface IAudioPlayer
     {
@@ -44,14 +44,14 @@ namespace urakawaApplication
 		
 		public void play(IAudioMediaAsset wave)
 		{
-						ob_Audio = new Audio(wave.FilePath);
+						ob_Audio = new Audio(wave.Path.ToString());
 			ob_Audio.Play ();
 		}
 		
 		public void play(IAudioMediaAsset wave, double timePositionToStartFrom)
 		{
 
-			ob_Audio = new Audio(wave.FilePath);			
+			ob_Audio = new Audio(wave.Path.ToString());			
 			ob_Audio.CurrentPosition = timePositionToStartFrom ;
 			ob_Audio.Play ();
 		}

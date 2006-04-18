@@ -1,140 +1,90 @@
 using System;
+using System.Collections;
 using System.IO;
-using System.Collections;
-using System.Text;
-using System.Collections;
-using System.Windows.Forms;
 
-namespace urakawaApplication
+namespace UrakawaApplicationBackend
 {
-    public interface IAssetManager
-    {
-				
-        //IAssetManager getInstance();
-
-        //return value is some sort of Collection<MediaAsset>
-		//Parameter added: sDirPath for path of target directory and sFilter to act as filtering condition e.g. "*.*" to get all files, "*.wav" to get only wav files
-         ArrayList getAssets(string sDirPath, string sFilter);
-
-        //returns value is some sort of Collection<MediaAssetSubType>
-         //the parameter type will be something like MediaAssetType instead of Object
-          ArrayList getAssets(Object assetType);
-
-         //throws AssetManagerException 
-         //IMediaAsset getAsset(String assetLocalName);
-
-        // throws AssetManagerException 
-         //IMediaAsset getAsset(Uri assetURL);
-
-        // throws AssetManagerException [example: initializes a new outputstrem and gives it a name, feeds a recorded audiostream into the file]
-         ////the parameter type will be something like MediaAssetType instead of Object
-         //IMediaAsset newAsset(Object assetType);
-
-        // throws AssetManagerException 
-         void deleteAsset(IMediaAsset assetToDelete);
-
-        // throws AssetManagerException 
-         IMediaAsset copyAsset(IMediaAsset source, IMediaAsset dest, bool replaceIfExisting);
-
-        //throws AssetManagerException 
-         IMediaAsset renameAsset(IMediaAsset source, String newName);
-
-        //throws AssetManagerException 
-         //void addAsset(Uri assetURL);
-
-        //parameter is some sort of Collection<URL>
-        //void addAssets(ArrayList assetURLs);
-
-		
-    }
-public 	class AssetManager :  IAssetManager 
+	/// <summary>
+	/// The asset manager.
+	/// NOTE: the actual implementation must accept a root directory as a parameter when creating the instance.
+	/// </summary>
+	public interface IAssetManager
 	{
-		
-	
-			public string m_sDirPath;
-
-		public ArrayList getAssets(string sDirPath, string sFilter)
+		/// <summary>
+		/// Return the instance of the Asset Manager (this implements the singleton pattern.)
+		/// </summary>
+		IAssetManager Instance
 		{
-			DirectoryInfo dir = new DirectoryInfo(sDirPath);
-			FileInfo[] bmpfiles = dir.GetFiles(sFilter) ;
-			ArrayList m_alTemp = new ArrayList () ;
-			
-			foreach( FileInfo f in bmpfiles)
-			{
-				m_alTemp.Add(f.FullName);
-			}
-			return m_alTemp;
-		}
-		public ArrayList getAssets(Object assetType)
-		{
-			ArrayList alTemp = null ;
-			return alTemp;
-
-			
-			
-
-			
-				
-			
-
+			get;
 		}
 
-		public void deleteAsset(IMediaAsset assetToDelete)
+		/// <summary>
+		/// Return all assets currently managed. No order is guaranteed.
+		/// TODO: choose an actual list type.
+		/// </summary>
+		ArrayList Assets
 		{
-			
-			FileInfo m_file= new FileInfo	 (assetToDelete.FilePath);
-			if ( m_file.Exists)
-			{
-				m_file.Delete();
-			}
-			else
-			{
-				MessageBox.Show("File could not be deleted");
-			}
+			get;
 		}
 
-//parameter string newName must contain extension of file also like abc.wav
-		public IMediaAsset renameAsset(IMediaAsset source, String newName)
-		{
-			FileInfo file= new FileInfo (source.FilePath);		
-			string sTemp = file.DirectoryName + "\\" + newName ;
-			if (file.Exists)
-			{
-				try
-				{
-					file.MoveTo (sTemp);
-				}
-				catch
-				{
-					MessageBox.Show ("Cannot rename the file");
-				}
-					
-				source.FilePath = sTemp ;
-				return source ;
-			}
-			else
-			{
-MessageBox.Show("Original file not found");
-				return null;
-			}
-		}
+		/// <summary>
+		/// Return all the assets of a given type. No order is guaranteed.
+		/// </summary>
+		/// <param name="assetType">The type of assets.</param>
+		/// <returns>The list of assets of this type.</returns>
+		ArrayList GetAssets(Type assetType);
 
-	public IMediaAsset copyAsset(IMediaAsset source, IMediaAsset dest, bool replaceIfExisting)
-	{
-		FileInfo file= new FileInfo (source.FilePath);		
-		try
-		{
-			file.CopyTo(dest.FilePath,replaceIfExisting);
-		}
-		catch
-		{
-			MessageBox.Show ("Can not copy the file");
-		}
-		return dest;
+		/// <summary>
+		/// Return an asset given its name.
+		/// </summary>
+		/// <param name="name">Name of the asset to find.</param>
+		/// <returns>The asset of that name or null if no asset of that name could be found.</returns>
+		IMediaAsset GetAsset(string assetName);
+
+		/// <summary>
+		/// Create an empty asset that conforms to the required type. The asset is automatically named and added to the manager.
+		/// Throw an exception in case of trouble.
+		/// </summary>
+		/// <param name="assetType">Required asset type.</param>
+		/// <returns>A new asset of the required type, or some derived type.</returns>
+		IMediaAsset NewAsset(Type assetType);
+
+		/// <summary>
+		/// Delete an asset completely (remove it from the list and delete from the disk.)
+		/// Throw an exception if something went wrong (the asset could not be found, or could not be deleted.)
+		/// </summary>
+		/// <param name="assetToDelete">The asset to delete.</param>
+		void DeleteAsset(IMediaAsset assetToDelete);
+
+		/// <summary>
+		/// Make a copy of an existing asset and give it a new name (e.g. "Foo (copy)".)
+		/// Throw an exception if something went wrong (the asset could not be found, memory problem...)
+		/// </summary>
+		/// <param name="asset">The asset to copy.</param>
+		/// <returns>A copy of the asset.</returns>
+		//was: IMediaAsset copyAsset(IMediaAsset source, IMediaAsset dest, bool replaceIfExisting);
+		IMediaAsset CopyAsset(IMediaAsset asset);
+
+		/// <summary>
+		/// Rename an asset.
+		/// Throw an exception if something went wrong (the asset could not be found, an asset of the same name already exists...)
+		/// </summary>
+		/// <param name="asset">The asset to rename.</param>
+		/// <param name="newName">The new name for the asset.</param>
+		/// <returns>The renamed asset.</returns>
+		IMediaAsset RenameAsset(IMediaAsset asset, String newName);
+
+		/// <summary>
+		/// Create and add a new media asset from its file path.
+		/// </summary>
+		/// <param name="assetType">The type of the asset to add.</param>
+		/// <param name="assetPath">The path of the file for this asset.</param>
+		/// <returns>The asset that was added.</returns>
+		IMediaAsset AddAsset(Type assetType, Path assetPath);
+
+		//punt on this one so at the moment
+		//parameter is some sort of Collection<URL>
+		//void addAssets(ArrayList assetURLs);
 	}
-public void test ()
-{
-	MessageBox.Show("It is working");
-			}
-	}
+
 }
