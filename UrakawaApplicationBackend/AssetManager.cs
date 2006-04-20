@@ -74,6 +74,20 @@ namespace UrakawaApplicationBackend
 
 		//parameter string newName must contain extension of file also like abc.wav
 
+		public IMediaAsset GetAsset(string assetName)
+		{
+			
+			IDictionaryEnumerator en = m_htAssetList.GetEnumerator();
+
+			while (en.MoveNext() &&  assetName != en.Key )
+			{
+en.MoveNext ();
+			}
+string sTemp = en.Value.ToString () ;
+			MediaAsset ob =new MediaAsset  (sTemp) ;
+			return ob;
+		}
+
 public IMediaAsset RenameAsset(IMediaAsset asset, String newName)
 		{
 			FileInfo file= new FileInfo (asset.Path);		
@@ -165,23 +179,38 @@ return null ;
 
 				}
 
-/*
-		public IMediaAsset copyAsset(IMediaAsset asset, IMediaAsset dest, bool replaceIfExisting)
+		public void addAssets(Hashtable assetURLs)
 		{
-			FileInfo file= new FileInfo (asset.FilePath);		
+
+			IDictionaryEnumerator en = assetURLs.GetEnumerator();
+
+			while (en.MoveNext())
+			{
+				m_htAssetList.Add(en.Key, en.Value) ;
+			}
+
+		}
+
+
+  public IMediaAsset CopyAsset(IMediaAsset asset)
+				{
+			FileInfo file= new FileInfo (asset.Path);		
+			string sTemp = GenerateFileName ("wav", m_sDirPath) ;
 			try
 			{
-				file.CopyTo(dest.FilePath,replaceIfExisting);
+				file.CopyTo(sTemp,false);
 			}
 			catch
 			{
 				MessageBox.Show ("Can not copy the file");
 			}
-			return dest;
+			MediaAsset ob = new MediaAsset (sTemp);
+			return ob;
 		}
+		
 		public void test ()
 		{
 			MessageBox.Show("It is working");
-		}*/
+		}
 	}
 }

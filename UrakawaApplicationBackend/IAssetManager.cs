@@ -47,7 +47,7 @@ Hashtable GetAssets(Type assetType);
 		/// </summary>
 		/// <param name="name">Name of the asset to find.</param>
 		/// <returns>The asset of that name or null if no asset of that name could be found.</returns>
-		//IMediaAsset GetAsset(string assetName);
+		IMediaAsset GetAsset(string assetName);
 
 		/// <summary>
 		/// Create an empty asset that conforms to the required type. The asset is automatically named and added to the manager.
@@ -72,7 +72,7 @@ Hashtable GetAssets(Type assetType);
 		/// <param name="asset">The asset to copy.</param>
 		/// <returns>A copy of the asset.</returns>
 		//was: IMediaAsset copyAsset(IMediaAsset source, IMediaAsset dest, bool replaceIfExisting);
-		//IMediaAsset CopyAsset(IMediaAsset asset);
+		IMediaAsset CopyAsset(IMediaAsset asset);
 
 		/// <summary>
 		/// Rename an asset.
@@ -94,7 +94,8 @@ Hashtable GetAssets(Type assetType);
 
 		//punt on this one so at the moment
 		//parameter is some sort of Collection<URL>
-		//void addAssets(ArrayList assetURLs);
+		//--type of parameter changed to Hashtable from ArrayList
+		void addAssets(Hashtable assetURLs);
 	}
 
 }
