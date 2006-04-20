@@ -36,11 +36,10 @@ namespace UrakawaApplicationBackend
         //Object getState();
 
     }
-	class AudioPlayer : IAudioPlayer
+	public class AudioPlayer : IAudioPlayer
 	{
-		
-
-		public Audio ob_Audio ;
+	
+		Audio ob_Audio ;
 		
 		public void play(IAudioMediaAsset wave)
 		{

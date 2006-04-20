@@ -107,6 +107,16 @@
                     AssemblyName = "System.Drawing"
                     HintPath = "..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll"
                 />
+                <Reference
+                    Name = "mscorlib"
+                    AssemblyName = "mscorlib"
+                    HintPath = "H:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\mscorlib.dll"
+                />
+                <Reference
+                    Name = "mscorcfg"
+                    AssemblyName = "mscorcfg"
+                    HintPath = "H:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\mscorcfg.dll"
+                />
             </References>
         </Build>
         <Files>
