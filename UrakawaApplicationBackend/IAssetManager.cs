@@ -1,6 +1,11 @@
+
 using System;
+using System.Drawing;
 using System.Collections;
-using System.IO;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Data;
+
 
 namespace UrakawaApplicationBackend
 {
@@ -13,16 +18,19 @@ namespace UrakawaApplicationBackend
 		/// <summary>
 		/// Return the instance of the Asset Manager (this implements the singleton pattern.)
 		/// </summary>
-		IAssetManager Instance
-		{
-			get;
-		}
+		//IAssetManager Instance
+		//{
+			//get;
+		//}
 
 		/// <summary>
 		/// Return all assets currently managed. No order is guaranteed.
 		/// TODO: choose an actual list type.
 		/// </summary>
-		ArrayList Assets
+		/// 
+
+//----property type is changed to hashtable from ArrayList
+		Hashtable Assets
 		{
 			get;
 		}
@@ -32,14 +40,14 @@ namespace UrakawaApplicationBackend
 		/// </summary>
 		/// <param name="assetType">The type of assets.</param>
 		/// <returns>The list of assets of this type.</returns>
-		ArrayList GetAssets(Type assetType);
+Hashtable GetAssets(Type assetType);
 
 		/// <summary>
 		/// Return an asset given its name.
 		/// </summary>
 		/// <param name="name">Name of the asset to find.</param>
 		/// <returns>The asset of that name or null if no asset of that name could be found.</returns>
-		IMediaAsset GetAsset(string assetName);
+		//IMediaAsset GetAsset(string assetName);
 
 		/// <summary>
 		/// Create an empty asset that conforms to the required type. The asset is automatically named and added to the manager.
@@ -47,7 +55,8 @@ namespace UrakawaApplicationBackend
 		/// </summary>
 		/// <param name="assetType">Required asset type.</param>
 		/// <returns>A new asset of the required type, or some derived type.</returns>
-		IMediaAsset NewAsset(Type assetType);
+		/// //--the parameter type is changed to  string from type
+		IMediaAsset NewAsset(string assetType);
 
 		/// <summary>
 		/// Delete an asset completely (remove it from the list and delete from the disk.)
@@ -63,7 +72,7 @@ namespace UrakawaApplicationBackend
 		/// <param name="asset">The asset to copy.</param>
 		/// <returns>A copy of the asset.</returns>
 		//was: IMediaAsset copyAsset(IMediaAsset source, IMediaAsset dest, bool replaceIfExisting);
-		IMediaAsset CopyAsset(IMediaAsset asset);
+		//IMediaAsset CopyAsset(IMediaAsset asset);
 
 		/// <summary>
 		/// Rename an asset.
@@ -80,7 +89,8 @@ namespace UrakawaApplicationBackend
 		/// <param name="assetType">The type of the asset to add.</param>
 		/// <param name="assetPath">The path of the file for this asset.</param>
 		/// <returns>The asset that was added.</returns>
-		IMediaAsset AddAsset(Type assetType, Path assetPath);
+		/// /// //--the parameter type is changed to  string from type
+		IMediaAsset AddAsset(string assetType, string assetPath);
 
 		//punt on this one so at the moment
 		//parameter is some sort of Collection<URL>

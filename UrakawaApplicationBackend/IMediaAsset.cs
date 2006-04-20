@@ -20,15 +20,16 @@ namespace UrakawaApplicationBackend
 		/// <summary>
 		/// MIME type of the asset. For instance, WAV files are audio/x-wav (? check this)
 		/// </summary>
+		/// //--type "type" is changed to "string"
 		string MediaType
 		{
 			get;
 		}
 
-		/// <summary>
+		 //<summary>
 		/// The size in bytes of the asset.
 		/// </summary>
-		ulong SizeInBytes
+		long SizeInBytes
 		{
 			get;
 		}
@@ -36,15 +37,18 @@ namespace UrakawaApplicationBackend
 		/// <summary>
 		/// The file path for this asset.
 		/// </summary>
-		Path Path
+		/// //--type Path is changed to string
+		string Path
 		{
 			get;
+			set;
 		}
 
 		/// <summary>
 		/// The file object for the file that contains this asset.
 		/// </summary>
-		File File
+		/// //--type File is changed to FileInfo
+		FileInfo file
 		{
 			get;
 		}
@@ -53,12 +57,14 @@ namespace UrakawaApplicationBackend
 		/// Remove the asset from the project, and actually delete all corresponding resources.
 		/// Throw an exception if the asset could not be deleted.
 		/// </summary>
-		void Delete();
+		//void Delete();
 
 		/// <summary>
 		/// Validate the asset by performing an integrity check.
 		/// </summary>
 		/// <returns>True if the asset was found to be valid, false otherwise.</returns>
-		bool Validate();    
+		//bool Validate();    
+
 	}
+
 }
