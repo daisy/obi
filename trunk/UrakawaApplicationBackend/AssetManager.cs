@@ -13,10 +13,30 @@ namespace UrakawaApplicationBackend
 	public 	class AssetManager :  IAssetManager 
 	{	
 	
-		public string m_sDirPath;
+// string to hold path of project directory
+		private string m_sDirPath;
 
-		Hashtable m_htAssetList = new Hashtable();
+//hash table to hold paths of assets being managed
+		public Hashtable m_htAssetList = new Hashtable();
 
+//static counter to implement singleton
+private static int m_ConstructorCounter =0;
+
+//constructor
+		public AssetManager (string sProjectDir)
+		{
+			if (m_ConstructorCounter == 0)
+			{
+				m_sDirPath = sProjectDir ;
+				m_ConstructorCounter++ ;
+			}
+			else
+			{
+throw new Exception("This class is Singleton");
+				
+				}
+			}
+		
 
 		public Hashtable Assets
 		{
@@ -39,11 +59,13 @@ namespace UrakawaApplicationBackend
 			return m_alTemp;
 		}*/
 
-		
-			public Hashtable GetAssets(Type assetType)
+		//returns hashtable containing pat of assets from project directory
+		// Parameter should be of extension of file e.g. ".wav"
+			public Hashtable GetAssets(string assetType)
 		{
 			DirectoryInfo dir = new DirectoryInfo(m_sDirPath);
-			FileInfo[] bmpfiles = dir.GetFiles(assetType.ToString()) ;
+				string sTemp = "*" + assetType ;
+			FileInfo[] bmpfiles = dir.GetFiles(sTemp) ;
 			Hashtable htTemp = new Hashtable () ;
 			
 			foreach( FileInfo f in bmpfiles)
@@ -51,10 +73,10 @@ namespace UrakawaApplicationBackend
 				htTemp.Add(f.Name, f.FullName);
 			}
 
-			
 			return htTemp ;
 			}
 
+//Delete asset from Project directory and hash table
 		public void DeleteAsset(IMediaAsset assetToDelete)
 		{
 			
@@ -62,7 +84,15 @@ namespace UrakawaApplicationBackend
 			if ( m_file.Exists && m_htAssetList.ContainsValue(assetToDelete.Path) )
 			{
 			m_htAssetList.Remove(assetToDelete.Name) ;
-				m_file.Delete();
+
+				try
+				{
+					m_file.Delete();
+				}
+				catch
+				{
+MessageBox.Show("Error in deleting file") ;
+				}
 		
 			}
 			else
@@ -72,26 +102,48 @@ namespace UrakawaApplicationBackend
 		}
 
 
-		//parameter string newName must contain extension of file also like abc.wav
-
+		//parameter string assetName must contain extension of file also like abc.wav
+string m_sTempPath ;
 		public IMediaAsset GetAsset(string assetName)
 		{
 			
 			IDictionaryEnumerator en = m_htAssetList.GetEnumerator();
+			
+			string  sTemp ;
+			m_sTempPath = null ;
 
-			while (en.MoveNext() &&  assetName != en.Key )
+//find the path from hash table using key 
+				while (en.MoveNext() )
+				{
+					if (assetName == en.Key.ToString() )
+					{
+sTemp = en.Value.ToString() ;
+						m_sTempPath= sTemp ;
+						
+break ;
+					}
+					
+				}
+//if found, create object using path and return
+			if (m_sTempPath != null)
 			{
-en.MoveNext ();
+				MediaAsset ob =new MediaAsset  (m_sTempPath) ;
+				return ob;
 			}
-string sTemp = en.Value.ToString () ;
-			MediaAsset ob =new MediaAsset  (sTemp) ;
-			return ob;
-		}
+			else
+			{
 
+MessageBox.Show("Key not found in hash table") ;
+return null ;
+			}
+
+		}
+//specify newName without extension
 public IMediaAsset RenameAsset(IMediaAsset asset, String newName)
 		{
 			FileInfo file= new FileInfo (asset.Path);		
-			string sTemp = file.DirectoryName + "\\" + newName ;
+	string ext = file.Extension ;
+			string sTemp = file.DirectoryName + "\\" + newName + ext;
 
 			if (file.Exists && m_htAssetList.ContainsValue(asset.Path)  )
 			{
@@ -119,56 +171,85 @@ m_htAssetList.Remove(asset.Name) ;
 			}
 		}
 
+//create a new asset of specified without updating hash table
+		//string type must contain valid extension like .wav
 		public IMediaAsset NewAsset(string assetType)
 		{
 			string sTemp = GenerateFileName (assetType, m_sDirPath);
 
 			if (sTemp != null)
 			{
-				File.Create (sTemp) ;
+				try
+				{
+					File.Create (sTemp) ;
+				}
+				catch
+				{
+					MessageBox.Show("Exeption! file could not be created") ;
+				}
 				MediaAsset m= new MediaAsset (sTemp) ;
 				return m ;
 			}
 			else
 			{
+MessageBox.Show("File could not be created") ;
 return null ;
 			}
 					}
 
+		//create local asset from some external asset
 public 		IMediaAsset AddAsset(string assetType, string assetPath)
 		{
-			string sTemp = GenerateFileName (assetType, assetPath);
+			string sTemp = GenerateFileName (assetType, m_sDirPath);
 
 			if (sTemp != null)
 			{
-				File.Create (sTemp) ;
+				try
+				{
+					//File.Create (sTemp) ;
+					File.Copy(assetPath, sTemp,true) ;
+				}
+				catch
+				{
+MessageBox.Show("Exeption! Asset could not be created") ;
+				}
 
 				MediaAsset m= new MediaAsset (sTemp) ;
-m_htAssetList.Add(m.Name, m.Path) ; 
+				try
+				{
+					m_htAssetList.Add(m.Name, m.Path) ; 
+				}
+				catch
+				{
+MessageBox.Show("Exeption! can not add duplicate in hash table") ;
+				}
 				return m ;
 			}
 			else
 			{
+				MessageBox.Show("Asset could not be created and added") ;
 				return null ;
 			}
 		}
 
 
-		string GenerateFileName (string ext, string sDir)
+//generate file name for use in other methods
+		//name wil range to 0.ext to 89999.ext whichever is available;
+		public string GenerateFileName (string ext, string sDir)
 				{
 int i = 0 ;
 			string sTemp ;
-sTemp = sDir + "\\" + i.ToString() + "." + ext ;
+sTemp = sDir + "\\" + i.ToString() + ext ;
 //FileInfo file = new FileInfo(sTemp) ;
 
-					while (File.Exists(sTemp) && i<10000)
+					while (File.Exists(sTemp) && i<90000)
 					{
 i++;
-						sTemp = m_sDirPath + "\\" + i.ToString() + ".wav" ;
+						sTemp = sDir + "\\" + i.ToString() + ext ;
 
 					}
 
-			if (i<10000)
+			if (i<90000)
 			{
 				return sTemp ;
 			}
@@ -186,16 +267,23 @@ return null ;
 
 			while (en.MoveNext())
 			{
-				m_htAssetList.Add(en.Key, en.Value) ;
+				try
+				{
+					m_htAssetList.Add(en.Key, en.Value) ;
+				}
+				catch
+				{
+MessageBox.Show("Exxeption! Assets of same name exist in hash table.") ;
+				}
 			}
 
 		}
 
-
+//create a new  file in project directory and copy contents of source file to it.
   public IMediaAsset CopyAsset(IMediaAsset asset)
 				{
 			FileInfo file= new FileInfo (asset.Path);		
-			string sTemp = GenerateFileName ("wav", m_sDirPath) ;
+			string sTemp = GenerateFileName (file.Extension, m_sDirPath) ;
 			try
 			{
 				file.CopyTo(sTemp,false);
