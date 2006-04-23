@@ -18,7 +18,7 @@ namespace UrakawaApplicationBackend
 		/// <summary>
 		/// Sample rate in Hertz (support at least up to 44100 Hz.)
 		/// </summary>
-		uint SampleRate
+		int SampleRate
 		{
 			get;
 		}
@@ -26,7 +26,13 @@ namespace UrakawaApplicationBackend
 		/// <summary>
 		/// Number of channels (1 = mono or 2 = stereo.)
 		/// </summary>
-		uint Channels
+		int Channels
+		{
+			get;
+		}
+
+//Added later for frame size of wav file
+		int FrameSize
 		{
 			get;
 		}
@@ -34,11 +40,11 @@ namespace UrakawaApplicationBackend
 		/// <summary>
 		/// Bit depth is either 8 or 16.
 		/// </summary>
-		uint BitDepth
+		int BitDepth
 		{
 			get;
 		}
-
+/*
 		/// <summary>
 		/// Insert a byte buffer in an asset at a given byte position.
 		/// Throw an exception in case of problem (memory error, position is out of bounds, etc.)
@@ -80,7 +86,7 @@ namespace UrakawaApplicationBackend
 		/// </summary>
 		/// <param name="byteBeginPosition">Begin position (in bytes.)</param>
 		/// <param name="byteEndPosition">End position (in bytes.)</param>
-		void DeleteChunk(ulong byteBeginPosition, ulong byteEndPosition);
+		void DeleteChunk(long byteBeginPosition, long byteEndPosition);
 		
 		/// <summary>
 		/// Delete a byte buffer between two points in the asset.
@@ -90,5 +96,6 @@ namespace UrakawaApplicationBackend
 		/// <param name="timeBeginPosition">Begin position (in milliseconds.)</param>
 		/// <param name="timeEndPosition">End position (in milliseconds.)</param>
 		void DeleteChunk(double timeBeginPosition, double timeEndPosition);
+		*/
 	}
 }
