@@ -40,7 +40,7 @@ namespace UrakawaApplicationBackend
 		/// </summary>
 		/// <param name="assetType">The type of assets.</param>
 		/// <returns>The list of assets of this type.</returns>
-Hashtable GetAssets(Type assetType);
+Hashtable GetAssets(String assetType);
 
 		/// <summary>
 		/// Return an asset given its name.
