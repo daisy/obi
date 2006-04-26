@@ -13,6 +13,13 @@ namespace UrakawaApplicationBackend
 		double LengthInMilliseconds
 		{
 			get;
+			set;
+		}
+
+		long LengthByte
+		{
+get;
+			set;
 		}
 
 		/// <summary>
@@ -44,14 +51,15 @@ namespace UrakawaApplicationBackend
 		{
 			get;
 		}
-/*
+
 		/// <summary>
 		/// Insert a byte buffer in an asset at a given byte position.
 		/// Throw an exception in case of problem (memory error, position is out of bounds, etc.)
 		/// </summary>
 		/// <param name="buffer">The data to insert. The actual "byte buffer" type has yet to be specified.</param>
 		/// <param name="bytePosition">The position inside the asset to insert at, in bytes.</param>
-		void InsertByteBuffer(Object buffer, ulong bytePosition);
+		 void InsertByteBuffer(byte [] Buffer, long bytePosition) ;
+
 
 		/// <summary>
 		/// Insert a byte buffer in an asset at a given timee position.
@@ -59,7 +67,7 @@ namespace UrakawaApplicationBackend
 		/// </summary>
 		/// <param name="buffer">The data to insert. The actual "byte buffer" type has yet to be specified.</param>
 		/// <param name="timePosition">The position inside the asset to insert at, in millesconds.</param>
-		void InsertByteBuffer(Object buffer, double timePosition);
+		void InsertByteBuffer(byte []  Buffer, double timePosition);
 
 		/// <summary>
 		/// Get a byte buffer between two points in the asset.
@@ -68,7 +76,7 @@ namespace UrakawaApplicationBackend
 		/// <param name="byteBeginPosition">Begin position (in bytes.)</param>
 		/// <param name="byteEndPosition">End position (in bytes.)</param>
 		/// <returns>A byte buffer (specific type to be determined.)</returns>
-		Object GetChunk(ulong byteBeginPosition, ulong byteEndPosition);
+		byte [] GetChunk(long byteBeginPosition, long byteEndPosition);
 
 		/// <summary>
 		/// Get a byte buffer between two points in the asset.
@@ -77,7 +85,7 @@ namespace UrakawaApplicationBackend
 		/// <param name="timeBeginPosition">Begin position (in milliseconds.)</param>
 		/// <param name="timeEndPosition">End position (in milliseconds.)</param>
 		/// <returns>A byte buffer (specific type to be determined.)</returns>
-		Object GetChunk(double timeBeginPosition, double timeEndPosition);
+		byte []  GetChunk(double timeBeginPosition, double timeEndPosition);
 
 		/// <summary>
 		/// Delete a byte buffer between two points in the asset.
@@ -96,6 +104,11 @@ namespace UrakawaApplicationBackend
 		/// <param name="timeBeginPosition">Begin position (in milliseconds.)</param>
 		/// <param name="timeEndPosition">End position (in milliseconds.)</param>
 		void DeleteChunk(double timeBeginPosition, double timeEndPosition);
-		*/
+		
+long AdaptToFrame  (long lVal);
+long ConvertToDecimal (int [] Ar);
+		int [] ConvertFromDecimal (long lVal)  ;
+bool CheckStreamsFormat(byte [] Buffer);
+		bool CheckStreamsFormat(IAudioMediaAsset asset) ;
 	}
 }
