@@ -27,21 +27,30 @@ namespace UrakawaApplicationBackend
 			return  Result ;
 		}
 
+
+// The function opens two files (target file and source file)simultaneously  and copies from one to other frame by frame
+//This is done to reduce load on system memory as wave file may be as big as it go out of scope of RAM
+		// IAudioMediaAsset Target is destination file where the stream has to be inserted and  TargetBytePos is insertion position in bytes excluding header
+		//IAudioMediaAsset Source is asset from which data is taken between Positions in bytes (StartPos and EndPos) , these are also excluding header length
 		public void InsertAudio (IAudioMediaAsset Target, long TargetBytePos, IAudioMediaAsset Source, long StartPos, long EndPos)
 		{
-			if (Target.CheckStreamsFormat (Source)== true)
+			// checks the compatibility of formats of two assets and validity of parameters
+			if (Target.CheckStreamsFormat (Source)== true&& TargetBytePos < (Target.LengthData ) && StartPos < EndPos && EndPos < Source.LengthData)
 				// braces holds whole  function
 			{
+// opens Target asset and Source asset for reading and create temp file for manipulation
 				BinaryReader brTarget = new BinaryReader (File.OpenRead(Target.Path ))  ;
 				BinaryReader brSource = new BinaryReader (File.OpenRead(Source.Path ))  ;
 
 				BinaryWriter bw = new BinaryWriter (File.Create(Target.Path + "tmp")) ;
 
+// adapt positions to frame size
 				TargetBytePos = Target.AdaptToFrame (TargetBytePos) + 44; 
 				StartPos = Source.AdaptToFrame(StartPos) + 44;
 				EndPos = Source.AdaptToFrame (EndPos) + 44;
 				int Step = Target.FrameSize ;
 
+// copies audio stream before the insertion point into temp file
 				bw.BaseStream.Position = 0 ;
 				brTarget.BaseStream.Position = 0 ;
 				long lCount = TargetBytePos ;
@@ -52,7 +61,7 @@ namespace UrakawaApplicationBackend
 
 				}
 
-
+// copies the audio stream data (between marked positions) from scource file  to temp file
 				brSource.BaseStream.Position = StartPos ;
 				lCount = lCount + (EndPos - StartPos) ;
 				for (i = i ; i< lCount ; i= i +Step)
@@ -60,6 +69,7 @@ namespace UrakawaApplicationBackend
 					bw.Write(brSource.ReadBytes(Step)) ;
 				}
 
+// copies the remaining data after insertion point in Target asset into temp file
 				FileInfo file = new FileInfo (Target.Path) ;
 				lCount = file.Length - 44+ (EndPos - StartPos);
 
@@ -77,11 +87,12 @@ namespace UrakawaApplicationBackend
 					}
 				}
 
+				// Update lenth fields in header of temp file and also members of Target asset
 				FileInfo  filesize = new FileInfo (Target.Path + "tmp") ;
 				lCount = filesize.Length;
 				Target.LengthByte = lCount ;
 				Target.LengthInMilliseconds = ConvertByteToTime (lCount, Target) ;
-
+Target.LengthData = Target.LengthByte - 44 ;
 				// update length field (4 to 7 )in header
 				for ( i = 0; i<4 ; i++)
 				{
@@ -97,10 +108,12 @@ namespace UrakawaApplicationBackend
 
 				}			
 
+// close all the reading and writing objects
 				brTarget.Close() ;
 				brSource.Close() ;
 				bw.Close() ;
 
+//  Delete the target file and rename the temp file to target file
 				FileInfo pfile = new FileInfo (Target.Path ) ;
 				pfile.Delete () ;
 
@@ -109,13 +122,13 @@ namespace UrakawaApplicationBackend
 			}
 			else
 			{
-MessageBox.Show("Two files are of different format. Can not manipulate them") ;
+MessageBox.Show("Two files are of different format. Can not manipulate them or invalid parameters") ;
 			}
 
 // End insert  function
 			}
 
-
+// same as above function but take time position as parameter instead of byte position
 		public void InsertAudio (IAudioMediaAsset Target, double timeTargetPos, IAudioMediaAsset Source, double timeStartPos, double timeEndPos)
 		{
 long lTargetPos = ConvertTimeToByte (timeTargetPos, Target) ;
