@@ -52,12 +52,19 @@ get;
 			get;
 		}
 
+		long LengthData
+		{
+			get;
+			set;
+		}
+
 		/// <summary>
 		/// Insert a byte buffer in an asset at a given byte position.
 		/// Throw an exception in case of problem (memory error, position is out of bounds, etc.)
 		/// </summary>
 		/// <param name="buffer">The data to insert. The actual "byte buffer" type has yet to be specified.</param>
 		/// <param name="bytePosition">The position inside the asset to insert at, in bytes.</param>
+		/// /// // byte position is excluding header length
 		 void InsertByteBuffer(byte [] Buffer, long bytePosition) ;
 
 
@@ -67,6 +74,7 @@ get;
 		/// </summary>
 		/// <param name="buffer">The data to insert. The actual "byte buffer" type has yet to be specified.</param>
 		/// <param name="timePosition">The position inside the asset to insert at, in millesconds.</param>
+		/// /// // time position is excluding header length
 		void InsertByteBuffer(byte []  Buffer, double timePosition);
 
 		/// <summary>
@@ -76,6 +84,8 @@ get;
 		/// <param name="byteBeginPosition">Begin position (in bytes.)</param>
 		/// <param name="byteEndPosition">End position (in bytes.)</param>
 		/// <returns>A byte buffer (specific type to be determined.)</returns>
+		/// // the returned byte array is like virtual wave file in RAM with proper header
+		/// // byte position is excluding header length
 		byte [] GetChunk(long byteBeginPosition, long byteEndPosition);
 
 		/// <summary>
@@ -85,6 +95,7 @@ get;
 		/// <param name="timeBeginPosition">Begin position (in milliseconds.)</param>
 		/// <param name="timeEndPosition">End position (in milliseconds.)</param>
 		/// <returns>A byte buffer (specific type to be determined.)</returns>
+		/// // All the positions are relative to 44 th bit of header i.e header length is excluded
 		byte []  GetChunk(double timeBeginPosition, double timeEndPosition);
 
 		/// <summary>
@@ -94,6 +105,7 @@ get;
 		/// </summary>
 		/// <param name="byteBeginPosition">Begin position (in bytes.)</param>
 		/// <param name="byteEndPosition">End position (in bytes.)</param>
+		/// /// // byte position is excluding header length
 		void DeleteChunk(long byteBeginPosition, long byteEndPosition);
 		
 		/// <summary>
@@ -103,12 +115,22 @@ get;
 		/// </summary>
 		/// <param name="timeBeginPosition">Begin position (in milliseconds.)</param>
 		/// <param name="timeEndPosition">End position (in milliseconds.)</param>
+		/// /// // time position is excluding header length
 		void DeleteChunk(double timeBeginPosition, double timeEndPosition);
 		
+//  adjust the positions according to frame size to avoid any overlapping of channels etc
 long AdaptToFrame  (long lVal);
+
+// Decode the wave header to decimal format
 long ConvertToDecimal (int [] Ar);
+
+// Encode the Decimal format to wave header format
 		int [] ConvertFromDecimal (long lVal)  ;
+
+// Compare and checks the format of two audio streams for their compatibility
 bool CheckStreamsFormat(byte [] Buffer);
+
+// Compare and checks the format of audio assets  for compatibility
 		bool CheckStreamsFormat(IAudioMediaAsset asset) ;
 	}
 }
