@@ -32,6 +32,7 @@ namespace UrakawaApplicationBackend
 		long SizeInBytes
 		{
 			get;
+			set;
 		}
 
 		/// <summary>

@@ -40,6 +40,7 @@ namespace UrakawaApplicationBackend
 			{
 // opens Target asset and Source asset for reading and create temp file for manipulation
 				BinaryReader brTarget = new BinaryReader (File.OpenRead(Target.Path ))  ;
+				
 				BinaryReader brSource = new BinaryReader (File.OpenRead(Source.Path ))  ;
 
 				BinaryWriter bw = new BinaryWriter (File.Create(Target.Path + "tmp")) ;
@@ -90,9 +91,10 @@ namespace UrakawaApplicationBackend
 				// Update lenth fields in header of temp file and also members of Target asset
 				FileInfo  filesize = new FileInfo (Target.Path + "tmp") ;
 				lCount = filesize.Length;
-				Target.LengthByte = lCount ;
+			Target.SizeInBytes				= Target.LengthByte = lCount ;
 				Target.LengthInMilliseconds = ConvertByteToTime (lCount, Target) ;
 Target.LengthData = Target.LengthByte - 44 ;
+				
 				// update length field (4 to 7 )in header
 				for ( i = 0; i<4 ; i++)
 				{
@@ -119,10 +121,12 @@ Target.LengthData = Target.LengthByte - 44 ;
 
 				FileInfo nfile = new FileInfo (Target.Path + "tmp") ;
 				nfile.MoveTo (Target.Path);
+
 			}
 			else
 			{
-MessageBox.Show("Two files are of different format. Can not manipulate them or invalid parameters") ;
+MessageBox.Show("Can not manipulate. files are of different format or invalid input parameters passed") ;
+				
 			}
 
 // End insert  function

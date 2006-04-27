@@ -202,7 +202,7 @@ m_LengthData = value ;
 			}
 		}
 // deletes a section of audio streamfrom physical asset by takin byte position as parameter
-		public void DeleteChunk(long byteBeginPosition, long byteEndPosition)
+		public  IAudioMediaAsset  DeleteChunk(long byteBeginPosition, long byteEndPosition)
 		{
 			// checks for valid parameters
 			if (byteBeginPosition < byteEndPosition && byteEndPosition < m_LengthData)
@@ -278,21 +278,26 @@ m_LengthData = value ;
 				file.Delete () ;
 				FileInfo nfile = new FileInfo (m_sFilePath + "tmp") ;
 				nfile.MoveTo (m_sFilePath) ;
+
+				AudioMediaAsset am = new AudioMediaAsset (m_sFilePath) ;
+				return am ;
 			}
 			else
 			{
 MessageBox.Show("invalid parameters in DeleteChunk") ;
+				AudioMediaAsset am = new AudioMediaAsset (m_sFilePath) ;
+				return am ;
 			}
 		}
 
 		// delete by taking time as parameter
-		public 		void DeleteChunk(double timeBeginPosition, double timeEndPosition)
+		public 		IAudioMediaAsset DeleteChunk(double timeBeginPosition, double timeEndPosition)
 		{
 			// convert the time data to byte data and pass it as parameter to original byte function
 			long lBeginPos = ConvertTimeToByte (timeBeginPosition) ;
 			long lEndPos = ConvertTimeToByte (timeEndPosition) ;
 
-			DeleteChunk(lBeginPos, lEndPos);
+			return DeleteChunk(lBeginPos, lEndPos);
 		}
 
 		//Copy audio chunnk in RAM
@@ -362,7 +367,7 @@ MessageBox.Show("invalid parameters") ;
 			return GetChunk(lBeginPos, lEndPos) ;
 		}
 
-		public void InsertByteBuffer(byte [] bBuffer, long bytePosition)
+		public IAudioMediaAsset InsertByteBuffer(byte [] bBuffer, long bytePosition)
 		{
 //  allow to manipulate only if format  is compatible and parameters are valid
 			if (CheckStreamsFormat(bBuffer) == true && bytePosition < m_LengthData)
@@ -419,21 +424,26 @@ MessageBox.Show("invalid parameters") ;
 				pfile.Delete () ;
 
 				nfile.MoveTo (m_sFilePath) ;
+
+AudioMediaAsset am = new AudioMediaAsset (m_sFilePath) ;
+				return am ;
 			}
 				// main if statement
 			else
 			{
-				MessageBox.Show ("Audio streams are of different format. cannot manipulate them") ;	
+				MessageBox.Show ("cannot manipulate . Audio streams are of different format or invalid input parameters are passed") ;	
+				AudioMediaAsset am = new AudioMediaAsset (m_sFilePath) ;
+				return am ;
 			}
 			//  end function insert byte position
 		}
 
 
-		public void InsertByteBuffer(byte []  bBuffer, double timePosition)
+		public IAudioMediaAsset InsertByteBuffer(byte []  bBuffer, double timePosition)
 		{
 			long lTimePos = ConvertTimeToByte (timePosition) ;
 
-			InsertByteBuffer( bBuffer, lTimePos) ;
+			return InsertByteBuffer( bBuffer, lTimePos) ;
 		}
 
 

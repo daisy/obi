@@ -64,8 +64,9 @@ get;
 		/// </summary>
 		/// <param name="buffer">The data to insert. The actual "byte buffer" type has yet to be specified.</param>
 		/// <param name="bytePosition">The position inside the asset to insert at, in bytes.</param>
-		/// /// // byte position is excluding header length
-		 void InsertByteBuffer(byte [] Buffer, long bytePosition) ;
+		 // byte position is excluding header length
+		// return type is changed to IAudioMediaAsset from void
+		 IAudioMediaAsset InsertByteBuffer(byte [] Buffer, long bytePosition) ;
 
 
 		/// <summary>
@@ -75,7 +76,8 @@ get;
 		/// <param name="buffer">The data to insert. The actual "byte buffer" type has yet to be specified.</param>
 		/// <param name="timePosition">The position inside the asset to insert at, in millesconds.</param>
 		/// /// // time position is excluding header length
-		void InsertByteBuffer(byte []  Buffer, double timePosition);
+		/// return type is changed from void to IAudioMediaAsset
+		IAudioMediaAsset InsertByteBuffer(byte []  Buffer, double timePosition);
 
 		/// <summary>
 		/// Get a byte buffer between two points in the asset.
@@ -106,7 +108,8 @@ get;
 		/// <param name="byteBeginPosition">Begin position (in bytes.)</param>
 		/// <param name="byteEndPosition">End position (in bytes.)</param>
 		/// /// // byte position is excluding header length
-		void DeleteChunk(long byteBeginPosition, long byteEndPosition);
+		/// return type changed to IAudioMediaAsset from void
+		IAudioMediaAsset DeleteChunk(long byteBeginPosition, long byteEndPosition);
 		
 		/// <summary>
 		/// Delete a byte buffer between two points in the asset.
@@ -116,7 +119,8 @@ get;
 		/// <param name="timeBeginPosition">Begin position (in milliseconds.)</param>
 		/// <param name="timeEndPosition">End position (in milliseconds.)</param>
 		/// /// // time position is excluding header length
-		void DeleteChunk(double timeBeginPosition, double timeEndPosition);
+		/// // return type changed to IAudioMediaAsset from void
+		IAudioMediaAsset DeleteChunk(double timeBeginPosition, double timeEndPosition);
 		
 //  adjust the positions according to frame size to avoid any overlapping of channels etc
 long AdaptToFrame  (long lVal);
