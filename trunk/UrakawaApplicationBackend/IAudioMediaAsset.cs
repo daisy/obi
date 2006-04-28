@@ -121,6 +121,16 @@ get;
 		/// /// // time position is excluding header length
 		/// // return type changed to IAudioMediaAsset from void
 		IAudioMediaAsset DeleteChunk(double timeBeginPosition, double timeEndPosition);
+
+
+// function for detecting phrases  in IAudioMediaAsset  by taking byte position as input and output
+long [] DetectPhrases (IAudioMediaAsset Ref, long PhraseLength , long BeforePhrase) ;
+
+
+// function for detecting phrases  in IAudioMediaAsset  by taking time position in milliseconds as input and output
+		double [] DetectPhrases (IAudioMediaAsset Ref, double PhraseLength , double BeforePhrase) ;
+
+
 		
 //  adjust the positions according to frame size to avoid any overlapping of channels etc
 long AdaptToFrame  (long lVal);
