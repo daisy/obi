@@ -1,6 +1,8 @@
+
 using System;
 using System.IO;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace UrakawaApplicationBackend
 {
@@ -451,6 +453,7 @@ AudioMediaAsset am = new AudioMediaAsset (m_sFilePath) ;
 		{
 m_LengthData = Length - 44 ;
 			m_LengthTime = ConvertByteToTime (m_LengthData) ; 
+m_lSize = Length ;
 
 			// update length field (4 to 7 )in header
 			for (int i = 0; i<4 ; i++)
@@ -514,8 +517,197 @@ brBuffer.Close() ;
 return CheckStreamsFormat(bBuffer) ;
 		}
 		
-	
+// Phrase detection starts here	
+		// function to compute the amplitude of a small chunck of samples
 
+
+		long BlockSum (BinaryReader br,long Pos, int Block, int FrameSize, int 
+			Channels) 
+		{
+			long sum = 0;
+			long SubSum ;
+			for (int i = 0 ; i< Block ; i = i + FrameSize)
+			{
+				br.BaseStream.Position = i+ Pos ;
+				SubSum = 0 ;
+				if (FrameSize == 1)
+				{
+					SubSum = Convert.ToInt64((br.ReadByte ()) );
+					
+					// FrameSize 1 ends
+				}
+				else if (FrameSize == 2)
+				{
+					if (Channels == 1)
+					{
+						SubSum = Convert.ToInt64(br.ReadByte() )  ;
+						SubSum = SubSum + (Convert.ToInt64(br.ReadByte() ) * 256 );
+					}
+					else if (Channels == 2)
+					{
+						SubSum = Convert.ToInt64(br.ReadByte() )  ;
+						SubSum = SubSum + Convert.ToInt64(br.ReadByte() )  ;
+					}
+					// FrameSize 2 ends
+				}
+				else if (FrameSize == 4)
+				{
+					if (Channels == 1)
+					{
+						SubSum = Convert.ToInt64(br.ReadByte() )  ;
+						SubSum = SubSum + 
+							(Convert.ToInt64(br.ReadByte() ) * 256)  ;
+						SubSum = SubSum + 
+							(Convert.ToInt64(br.ReadByte() ) * 256 * 256)  ;
+						SubSum = SubSum + 
+							(Convert.ToInt64(br.ReadByte() ) * 256 * 256 * 256)  ;
+					}
+					else if (Channels == 2)
+					{
+						SubSum = Convert.ToInt64(br.ReadByte() )  ;
+						SubSum = SubSum + 
+							(Convert.ToInt64(br.ReadByte() ) * 256)  ;
+						// second channel
+						SubSum = SubSum + 
+							Convert.ToInt64(br.ReadByte() )  ;
+						SubSum = SubSum + 
+							(Convert.ToInt64(br.ReadByte() ) * 256)  ;
+					}
+					// FrameSize 4 ends
+				}
+				sum = sum + SubSum ;
+				// Outer, For ends
+			}
+			sum = sum / (Block / FrameSize) ;
+			return sum ;
+		}
+
+
+// Detect phrases by taking silent wave file as reference
+
+		public long [] DetectPhrases (IAudioMediaAsset Ref, long PhraseLength , long BeforePhrase) 
+		{
+			if (CheckStreamsFormat(Ref) == true)
+			{
+
+				// adapt values to frame size
+				PhraseLength = AdaptToFrame (PhraseLength) ;
+				BeforePhrase = AdaptToFrame (BeforePhrase) ;
+				BinaryReader brRef = new BinaryReader (File.OpenRead (Ref.Path  )) ;		
+				//FileInfo file = new FileInfo (Ref.Path) ;
+				//long lSize = file.Length ;
+				long lSize = Ref.LengthByte ;
+				int Block ;
+
+				if (Ref.SampleRate >22500)
+				{
+					Block = 96 ;
+				}
+				else
+				{
+					Block = 48 ;
+				}
+				brRef.BaseStream.Position = 44 ;
+				long lLargest = 0 ;
+				long lBlockSum ;			
+lSize = ((lSize / Block)*Block)-4;
+				for (int j = 44 ;j < (lSize / Block); j = j + 1)
+				{
+					lBlockSum = BlockSum(brRef , j , Block, Ref.FrameSize, Ref.Channels) ;	
+					if (lLargest < lBlockSum)
+					{
+						lLargest = lBlockSum ;
+					}
+				}
+			
+				long SilVal = Convert.ToInt64(lLargest * 1.01) ;
+				brRef.Close () ;
+
+
+				// Detection starts here
+
+				BinaryReader br = new BinaryReader (File.OpenRead (m_sFilePath)) ;		
+				//FileInfo file1 = new FileInfo (m_sFilePath) ;
+				//lSize = file1.Length ;
+				lSize = m_LengthByte ;
+
+
+				br.BaseStream.Position = 44 ;
+				long  lCountSilGap = PhraseLength / Block;
+				long lSum = 0 ;
+				ArrayList alPhrases = new ArrayList () ;
+				long lCheck= 0 ;
+lSize = ((lSize / Block) * Block) - 4;
+				for (int j = 44 ; j< (lSize / Block); j++)
+				{
+					lSum = BlockSum (br, (j*Block) + 44, Block, m_FrameSize, m_Channels) ;
+					if (lSum < SilVal)
+					{
+						lCheck ++ ;
+					}
+					else
+					{
+						if (lCheck > lCountSilGap)
+						{
+							
+							alPhrases.Add((j * Block) - BeforePhrase) ;
+							lCheck = 0 ;
+						}
+					}
+
+					// end outer For
+				}
+
+				br.Close () ;
+				long lArraySize = alPhrases.Count ;
+				long [] lArray = new long [lArraySize] ;
+
+				for (int i= 0 ; i< lArraySize ; i++)
+				{
+					lArray [i] = Convert.ToInt64 (alPhrases[i]) ;
+				}
+			
+				return   lArray ;
+// end of check wave format
+			}
+MessageBox.Show("Reference file is of different wave format. An null exception will be thrown") ;
+return null; 
+			// Phrase detection byte ends
+		}
+
+		// phrase detection with respect to time;
+		public double [] DetectPhrases (IAudioMediaAsset Ref, double PhraseLength , double BeforePhrase) 
+		{
+			
+long lPhraseLength = ConvertTimeToByte (PhraseLength) ;
+			long lBeforePhrase = ConvertTimeToByte (BeforePhrase) ;
+
+
+return ConvertToTimeArray (DetectPhrases(Ref ,lPhraseLength, lBeforePhrase)) ;
+
+//long [] lTempArray = (DetectPhrases (Ref, lPhraseLength , lBeforePhrase) ); 
+//long lCount = lTempArray.LongLength ;
+//double [] d = new double [lCount] ;
+
+			//for (long l = 0 ; l < lCount ; l ++)
+			//{
+//d[l] = ConvertByteToTime(lTempArray [l]) ;
+			//}
+			
+			//return d;
+			
+		}
+
+		double [] ConvertToTimeArray (long [] lArray)
+		{
+long lCount = lArray.LongLength ;
+			double [] ArrayReturn = new double [lCount] ;
+			for (int i = 0 ; i< lCount ; i ++)
+			{
+ArrayReturn [i] = ConvertByteToTime (lArray [i]) ;
+			}
+return ArrayReturn ;
+		}
 // class ends here
 	}
 }

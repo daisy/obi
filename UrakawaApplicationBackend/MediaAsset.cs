@@ -11,7 +11,7 @@ namespace UrakawaApplicationBackend
 		public string m_sFilePath ;
 		private string m_sFileName ;
 		private FileInfo m_flFile ;
-		private long m_lSize ;
+		protected long m_lSize ;
 		private string m_sMediaType ;
 
 //constructor
@@ -81,7 +81,8 @@ return m_sMediaType ;
 		/*
 				/// Validate the asset by performing an integrity check.
 		/// <returns>True if the asset was found to be valid, false otherwise.</returns>
-		public bool Validate()
+		
+		public bool Validate()    
 		{
 			
 			FileInfo FileName = new FileInfo(m_sFilePath);
