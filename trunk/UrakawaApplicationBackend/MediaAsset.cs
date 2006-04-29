@@ -78,7 +78,7 @@ return m_sMediaType ;
 			}
 		}
 
-		/*
+		
 				/// Validate the asset by performing an integrity check.
 		/// <returns>True if the asset was found to be valid, false otherwise.</returns>
 		
@@ -174,10 +174,10 @@ return m_sMediaType ;
 		}
 			//End Validate
 		}
-		*/
+
 
 // End of Class
 		}
 	
 
-}
+
