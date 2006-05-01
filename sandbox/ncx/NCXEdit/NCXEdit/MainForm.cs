@@ -10,15 +10,26 @@ namespace NCXEdit
 {
     public partial class MainForm : Form
     {
+        private NCX.NCX mNCX = null;
+
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private void appendNavigationPointToolStripMenuItem_Click(object sender, EventArgs e)
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TreeNode newNode = new TreeNode("Edit me!");
-            treeView.SelectedNode.Nodes.Add(newNode);
+            TitleAuthorDialog dialog = new TitleAuthorDialog();
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+
+            }
+        }
+        
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

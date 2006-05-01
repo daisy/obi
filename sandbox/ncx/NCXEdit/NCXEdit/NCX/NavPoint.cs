@@ -4,13 +4,63 @@ using System.Text;
 
 namespace NCXEdit.NCX
 {
-    class NavPoint
+    public class NavMapOrNavPoint
     {
-        private NavPoint mParent;          // parent navpoint or navmap
-        private uint mLevel;               // level
-        private NavPoint mPrev;            // previous navpoint
-        private NavPoint mNext;            // next navpoint
-        private string mIdAttr;            // XML id
+        protected uint mLevel;               // level (1 or more for navpoint, 0 for navmap)
+        protected NavMapOrNavPoint mParent;  // parent navpoint or navmap
+        protected NavMapOrNavPoint mPrev;    // previous navpoint, or start of navmap
+        protected NavPoint mNext;            // next navpoint
+        protected List<NavPoint> mChildren;  // children navpoints
+
+        protected string mIdAttr;            // id attribute (from an existing XML file) -- unused right now
+
+        public NavMapOrNavPoint Parent { get { return mParent; } set { mParent = value; } }
+        public NavMapOrNavPoint Prev { get { return mPrev; } set { mPrev = value; } }
+
+        public NavMapOrNavPoint(uint level)
+        {
+            mLevel = level;
+            mParent = null;
+            mPrev = null;
+            mNext = null;
+            mChildren = new List<NavPoint>();
+            mIdAttr = null;
+        }
+    }
+
+    public class NavMap: NavMapOrNavPoint
+    {
+        /// <summary>
+        /// Create a new navigation map. As it cannot be empty, a first navigation point is created as well.
+        /// </summary>
+        public NavMap(): base(0)
+        {
+            List<NavLabel> labels = new List<NavLabel>();
+            labels.Add(new NavLabel(new Text("*** Edit me! ***")));
+            NavPoint navpoint = new NavPoint(labels, new Content(new Uri("")));
+            mNext = navpoint;
+            navpoint.Parent = this;
+            navpoint.Prev = this;
+        }
+    }
+
+    public class NavPoint: NavMapOrNavPoint
+    {
+        private List<NavLabel> mLabels;  // navlabels
+        private Content mContent;        // content
+
+        private string mClassAttr;       // class attribute from existing XML file -- unused right now
+
+        public NavPoint(List<NavLabel> labels, Content content)
+            : base(1)
+        {
+            mLabels = labels;
+            mContent = content;
+        }
+
+        /*
+        
+        
         private string mClassAttr;         // XML class attribute
         private List<NavLabel> mLabels;    // navlabels
         private Content mContent;          // content
@@ -23,20 +73,13 @@ namespace NCXEdit.NCX
         /// <param name="content">SMIL content.</param>
         NavPoint(List<NavLabel> labels, Content content)
         {
-            mParent = null;
-            mLevel = 1;
-            mPrev = null;
-            mNext = null;
             mIdAttr = String.Format("navpoint_{0}", GetHashCode());
             mClassAttr = null;
             mLabels = labels;
-            mChildren = new List<NavPoint>();
+            mContent = content;
         }
 
-        public NavPoint Parent { get { return mParent; } set { mParent = value; } }
         public uint Level { get { return mLevel; } set { mLevel = value; } }
-        public NavPoint Prev { get { return mPrev; } set { mPrev = value; } }
-        public NavPoint Next { get { return mNext; } set { mNext = value; } }
 
         /// <summary>
         /// Append a child to the list of children. All links (parent, prev and next) and level are maintained.
@@ -117,6 +160,84 @@ namespace NCXEdit.NCX
         }
 
         /// <summary>
+        /// Decrease the level of a navpoint. This only works if it has no children and the level is higher than 1
+        /// (i.e. there is a grand parent)
+        /// </summary>
+        /// <returns>True if the change could be made, false otherwise. In case of failure, nothing was changed.</returns>
+        public bool DecreaseLevel()
+        {
+            if (mParent.Parent != null && mChildren.Count == 0)
+            {
+                List<NavPoint> siblings = mParent.RemoveChildAndSiblings(this);
+                NavPoint parent = mParent;
+                mParent = mParent.Parent;
+                mParent.AddChildAfter(this, parent);
+                foreach (NavPoint sibling in siblings)
+                {
+                    AppendChildRaw(sibling);
+                }
+                --mLevel;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Increase the level: only possible if the node has a previous sibling.
+        /// Then that sibling becomes the parent of the node and of its children.
+        /// </summary>
+        /// <returns>True if the change could be made, false otherwise. In case of failure, nothing was changed.</returns>
+        public bool IncreaseLevel()
+        {
+            NavPoint sibling = mParent.PreviousSibling(this);
+            if (sibling != null)
+            {
+                mParent.RemoveChild(this);
+                mParent = sibling;
+                mParent.AppendChildRaw(this);
+                foreach (NavPoint child in mChildren)
+                {
+                    mParent.AppendChildRaw(child);
+                }
+                mChildren.Clear();
+                ++mLevel;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Delete a navpoint, only if it has no children.
+        /// </summary>
+        /// <returns>True if the change could be made, false otherwise. In case of failure, nothing was changed.</returns>
+        public bool Remove()
+        {
+            if (mChildren.Count == 0)
+            {
+                mParent.RemoveChild(this);
+                if (mPrev != null)
+                {
+                    mPrev.Next = mNext;
+                }
+                if (mNext != null)
+                {
+                    mNext.Prev = mPrev;
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Add a new child after a (possibly) existing child. If the existing child is undefined, then prepend the new child.
         /// </summary>
         /// <param name="newChild">The new child to add.</param>
@@ -153,6 +274,24 @@ namespace NCXEdit.NCX
         }
 
         /// <summary>
+        /// Find the previous sibling of a child.
+        /// </summary>
+        /// <param name="child">The child whose sibling we are looking for.</param>
+        /// <returns>The previous sibling or null if it was the first child.</returns>
+        private NavPoint PreviousSibling(NavPoint child)
+        {
+            int i = mChildren.IndexOf(child);
+            if (i > 0)
+            {
+                return mChildren[i - 1];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Remove a child from the list of children. No other modification is made (no update of links, etc.)
         /// </summary>
         /// <param name="child">The child navpoint to remove.</param>
@@ -160,5 +299,19 @@ namespace NCXEdit.NCX
         {
             mChildren.Remove(child);
         }
+
+        /// <summary>
+        /// Remove a child node and all its following siblings and return the list of siblings
+        /// </summary>
+        /// <param name="child">The child navpoint to remove.</param>
+        /// <returns>The siblings of the remove navpoint.</returns>
+        private List<NavPoint> RemoveChildAndSiblings(NavPoint child)
+        {
+            int i = mChildren.IndexOf(child);
+            List<NavPoint> siblings = mChildren.GetRange(i + 1, mChildren.Count - i - 1);
+            mChildren.RemoveRange(i, mChildren.Count - i);
+            return siblings;
+        }
+         */
     }
 }

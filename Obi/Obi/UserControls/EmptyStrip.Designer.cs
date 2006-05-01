@@ -39,6 +39,7 @@ namespace Obi.UserControls
             this.mSelectHandle.Location = new System.Drawing.Point(0, 0);
             this.mSelectHandle.Margin = new System.Windows.Forms.Padding(0);
             this.mSelectHandle.Name = "mSelectHandle";
+            this.mSelectHandle.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.mSelectHandle.Size = new System.Drawing.Size(8, 150);
             this.mSelectHandle.TabIndex = 0;
             // 

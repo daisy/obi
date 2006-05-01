@@ -23,7 +23,7 @@ namespace Obi
         public ObiForm()
         {
             InitializeComponent();
-            mStrip.Resized += new EmptyStrip.ResizedHandler(mStrip_Resized);
+            //mStrip.Resized += new EmptyStrip.ResizedHandler(mStrip_Resized);
             UndoStackChanged += new UndoStackChangedHandler(mUndoStack_UndoStackChanged);
             mUndoStack = new UndoRedoStack();
             undo_label = mUndoToolStripMenuItem.Text;
