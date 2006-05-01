@@ -132,6 +132,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "AudioRecorder.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "EventController.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
