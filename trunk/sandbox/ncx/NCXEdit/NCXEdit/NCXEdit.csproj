@@ -36,15 +36,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TitleAuthorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TitleAuthorDialog.Designer.cs">
+      <DependentUpon>TitleAuthorDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NCX\Audio.cs" />
     <Compile Include="NCX\Content.cs" />
     <Compile Include="NCX\NavLabel.cs" />
     <Compile Include="NCX\NavPoint.cs" />
+    <Compile Include="NCX\NCX.cs" />
+    <Compile Include="NCX\Text.cs" />
+    <Compile Include="NCX\TitleAuthor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
@@ -55,6 +65,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TitleAuthorDialog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TitleAuthorDialog.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -69,6 +83,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="WaveFile.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
