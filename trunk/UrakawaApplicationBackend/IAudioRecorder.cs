@@ -20,21 +20,12 @@ namespace UrakawaApplicationBackend
 		//allowed values: 1 and 2 for the channels
 		//allowed values for the sample rates: 11025, 22050, 44100
 		//allowed value for the bit depth are 8 and 16
-		//void GetWaveFormatFromIndex(int Index, ref WaveFormat format);
+		void GetWaveFormatFromIndex(int Index, ref WaveFormat format);
 
 		// returns the array list of the formats based on the sample rate, channel  and the bit depth
-		//ArrayList GetFormatList();
+		ArrayList GetFormatList();
 
-		// a struct will be used in the class to get the wave format
-		//information 
-		//struct FormatInfo  
 		
-		//// takes the WaveFormat as a parameter and converts it to string 
-		// this is static method which will be used in the class 
-		//static string sConvertWaveFormatToString(WaveFormat format);
-		
-
-
 		//throws AudioRecorderException 
 		//		void record(IAudioMediaAsset wave);
 		//		void stopRecording();
