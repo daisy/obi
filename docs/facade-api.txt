@@ -1,0 +1,19 @@
+Obi façade API / Iteration 1
+$Id$
+
+See features.txt for description/status of features.
+Pseudo-code lines start with >
+
+  A001: Create a blank project.
+        A project is a DTB + our own stuff (most notably "unused" audio;
+        probably some authoring annotations as well.)
+
+        > project.dtb = new Presentation();
+
+  A002: Open an existing project from a XUK file.
+
+        > project.dtb = Presentation.import_xuk("foo.xuk");
+
+  A003: Save the current project to a XUK file.
+
+        > project.dtb.export_xuk("foo.xuk");
