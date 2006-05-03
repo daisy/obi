@@ -22,6 +22,14 @@ namespace UrakawaApplicationBackend
 			}
 		}
 
+		public IAudioMediaAsset CurrentAsset
+		{
+			get
+			{
+				return null;
+			}
+		}
+
 		public double CurrentBytePosition
 		{
 			get
