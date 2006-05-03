@@ -1,0 +1,77 @@
+Obi feature list / Iteration 1
+$Id$
+
+This document lists the features of the application and their completion
+status. They are numbered by category from A to F. Numbering is arbitrary.
+
+A. Project/User management
+
+  * Support for a single project at once.
+  * Support for a single user.
+  * The user profile helps with bibliographic metadata (see E.) and some
+  preferences, such as recording levels (see C.), file management, etc.
+
+  A001: Create a blank project.
+        An new, empty project is created. Try to fill as much metadata as
+        possible from the user profile.
+
+  A002: Open an existing project from a XUK file.
+
+  A003: Save the current project to a XUK file.
+        Actually we probably need a directory where the audio files are
+        stored (see Audio
+
+  Axxx: Have a user profile.
+
+
+B. Strips management
+
+  * The project has a list of strip.
+  * Each strip corresponds to exactly one navpoint.
+  * The strips are in the same order as the navpoints.
+  * The strips are indented by the level of their corresponding navpoint.
+  * 
+
+  B001: Append a new strip.
+        The strip is added at the end of the project.
+
+  B002: Insert a new strip.
+        The strip is inserted at a position chosen by the user.
+
+
+C. Audio engine and asset manager
+
+  * Includes the audio engine (player, recorder and VU meter) and the audio
+  asset manager.
+
+  C001: 
+
+
+D. NCX editor
+
+  * The NCX editor has a tree view of the table of contents (navmap and
+  navlists) of the project.
+
+
+E. Metadata editor and viewer
+
+
+F. GUI
+
+  F001: File->New menu item.
+        See A001. If a project is currently open, it must be closed first, so
+        ask the user if she wants to save/discard/cancel when creating a new
+        project.
+  
+  F002: File->Open menu item.
+        See A002.
+
+  F003: File->Save menu item.
+        See A003.
+
+  F004: File->Save as menu item.
+        See A003.
+
+  Fxxx: Edit the user profile.
+
+  Fxxx: Toggle user profile on/off.
