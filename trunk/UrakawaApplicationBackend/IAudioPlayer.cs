@@ -28,7 +28,16 @@ namespace UrakawaApplicationBackend
 		}
 
 		/// <summary>
-		/// Get and set the current byte position.
+		/// Get the asset currently playing or paused.
+		/// Return null if no asset is currently loaded.
+		/// </summary>
+		IAudioMediaAsset CurrentAsset
+		{
+			get;
+		}
+
+		/// <summary>
+		/// Get and set the current byte position of the current asset.
 		/// Setting the position allows to play from any point in the sound.
 		/// Must handle the case where we try to set the position after the end or before the beginning.
 		/// When playing or paused, the position can be anywhere between the start and the end of the asset being played.
@@ -51,6 +60,7 @@ namespace UrakawaApplicationBackend
 
 		/// <summary>
 		/// The current state of the player (playing, paused or stopped.)
+		/// When no asset has been loaded, the player is stopped.
 		/// </summary>
 		AudioPlayerState State
 		{
@@ -109,6 +119,7 @@ namespace UrakawaApplicationBackend
 		/// <summary>
 		/// Stop playing, even if the player was paused.
 		/// State after Stop() can only be Stopped.
+		/// The asset is unloaded from the player (i.e. if querying the current asset, return null.)
 		/// </summary>
 		void Stop();
     }
