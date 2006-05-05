@@ -4,25 +4,63 @@ $Id$
 This document lists the features of the application and their completion
 status. They are numbered by category from A to F. Numbering is arbitrary.
 
+
 A. Project/User management
 
   * Support for a single project at once.
   * Support for a single user.
   * The user profile helps with bibliographic metadata (see E.) and some
   preferences, such as recording levels (see C.), file management, etc.
+  * A project on disk will consist of a XUK file and a directory containing
+  the audio files and extra data.
+
+  1. Create/import/export
 
   A001: Create a blank project.
         An new, empty project is created. Try to fill as much metadata as
-        possible from the user profile.
+        possible from the user profile. A project directory is created to
+        contain all data.
 
   A002: Open an existing project from a XUK file.
+        The XUK file is read. Assuming that it is correct (the parser should
+        be forgiving anyway), a project directory is created if it couldn't
+        be found.
 
   A003: Save the current project to a XUK file.
         Actually we probably need a directory where the audio files are
         stored (see Audio
 
-  Axxx: Have a user profile.
+  A004: Clean the current project.
+        Remove all unreferenced audio and authoring cruft. This is done
+        through the asset manager, but in this iteration it is outside of
+        the scope of the toolkit (so no worry for the façade API at this
+        stage.)
 
+  2. User profile
+
+  * Have a user profile. The user profile allows to fill the bibliographic
+  metadata easily. Generate the author name, publisher (author's
+  organization), and language. The user is also the default narrator and
+  producer.
+
+  A005: Have a name for the user.
+        The user inputs her name. This can probably be obtained from the OS?
+        This is editable and optional.
+
+  A006: Have an organization for the user.
+        The user inputs the name of her organization. This is editable and
+        optional.
+
+  A007: Have a language for the user.
+        Choose from a list, and transform the value to an ISO string. This
+        can also be obtained from the OS probably.
+
+  A008: Have an identifier template.
+        Generated an identifier template from the user's name/organization.
+        Example: tpb-mg-xxxxx, where xxxxx is replaced by a number
+        increasing with each project. Editable but not optional. Can also be
+        generated randomly if there is no information (e.g. xPr7uW-xxxxx.)
+        
 
 B. Strips management
 
@@ -30,21 +68,37 @@ B. Strips management
   * Each strip corresponds to exactly one navpoint.
   * The strips are in the same order as the navpoints.
   * The strips are indented by the level of their corresponding navpoint.
-  * 
 
-  B001: Append a new strip.
+  1. Strips (in general)
+
+  2. Container strips (= par)
+
+  3. Audio strips
+
+  4. Label strips
+
+  5. Scale strips
+
+  6. Strip manager
+  
+  Bxxx: Append a new strip.
         The strip is added at the end of the project.
 
-  B002: Insert a new strip.
+  Bxxx: Insert a new strip.
         The strip is inserted at a position chosen by the user.
 
 
 C. Audio engine and asset manager
 
-  * Includes the audio engine (player, recorder and VU meter) and the audio
-  asset manager.
+  * Events are provided by C#
 
-  C001: 
+  1. Assets, Audio assets and Asset manager
+
+  2. Audio player
+
+  3. Audio recorder
+
+  4. VU Meter
 
 
 D. NCX editor
@@ -55,8 +109,139 @@ D. NCX editor
 
 E. Metadata editor and viewer
 
+  * Metadata is either editable or generated. The editable metadata is
+  edited by the user, using its profile or other sources for default values
+  when applicable. The generated metadata can be viewed.
+
+  * Skipped: dc:Type, dc:Coverage.
+
+  E001: Unique identifier for the project.
+        We can generate an identifier automatically (from the user template)
+        by incrementing a counter. This value is used for dc:Identifier and
+        dtb:uid for SMIL files (this is probably handled by DMFC when it
+        generates the files?)
+
+  E002: Edit project title.
+        For simplicity, the project title should be unique; the presentation
+        itself can have several titles (in different languages presumably.)
+        The project title is just a string, it has no set value for its
+        language.
+
+  E003: Edit presentation's titles.
+        [dc:Title] Required.
+        Get the first title from the project's title. The language is then
+        unspecified, the user will have to specify a language herself,
+        otherwise it will inherit its language value following XML's rules
+        in the final .opf document. The user is also free to add alternative
+        titles.
+
+  E004: Edit the creators.
+        [dc:Creator] Required. Other attributes: role and file-as.
+        This concerns the creator of the contents of the book, this is not
+        necessarily the user of the software so leave this blank by default
+        (but require at least one value to be input.)
+
+  E005: Edit the subjects.
+        [dc:Subject] Optional.
+
+  E006: Edit the descriptions.
+        [dc:Description] Optional.
+
+  E007: Edit the publishers.
+        [dc:Publisher] Required.
+        Since this is required, it defaults to the user's organization.
+
+  E008: Edit the contributors.
+        [dc:Contributor] Optional. Other attributes: role and file-as.
+
+  E009: Edit the date.
+        [dc:Date] Required. Other attributes: event. Format: YYYY[-MM[-DD]]
+        Can use the creation's day date; use only one value and the
+        dtb:revisionDate elements instead.
+
+  E010: View format of the presentation.
+        [dc:Format] Required. This cannot be changed, and must be "ANSI/NISO
+        Z39.86-2005". But this is shown if necessary.
+
+  E011: Set identifiers.
+        [dc:Identifier] Required. Optional attribute: scheme. The first
+        identifier is uneditable and synchronized with the project's
+        identifier. In DTB terms, this identifier has the id "uid" and is
+        referenced in the root element--I am not sure what it becomes in the
+        XUK file format. Other identifiers can be added.
+
+  E012: Set sources.
+        [dc:Source] Optional.
+
+  E013: Set languages.
+        [dc:Language] Required. Get the first language from the user's
+        profile. Allow only to input valid values.
+
+  E014: Set relations.
+        [dc:Relation] Optional.
+
+  E015: Set rights.
+        [dc:Rights] Optional.
+
+  E016: Change the language of any piece of (DC) metadata.
+        All meta attributes can have a language attribute (xml:lang.)
+
+  E017: Set source date.
+        [dtb:sourceDate] Optional, not repeatable. YYYY[-MM[-DD]].
+
+  E018: Set source edition.
+        [dtb:sourceDate] Optional, not repeatable.
+
+  E019: Set source publisher.
+        [dtb:sourcePublisher] Optional, not repeatable.
+
+  E020: Set source rights.
+        [dtb:sourceRights] Optional, not repeatable.
+
+  E021: Set source title.
+        [dtb:sourceTitle] Optional, not repeatable.
+        Warn if same as project title or one of the presentation's titles.
+
+  E022: View multimedia type.
+        [dtb:multimediaType] Required, not repeatable.
+        Always "AudioNCX".
+
+  E023: View multimedia content.
+        [dtb:multimediaContent] Required, not repeatable.
+        Always "audio,text".
+
+  E024: Set narrators.
+        [dtb:narrator] Required, repeatable.
+        First narrator defaults to user name.
+
+  E025: Set producers.
+        [dtb:narrator] Required, repeatable.
+        First narrator defaults to user organization.
+
+  E026: Set completion date.
+        [dtb:producedDate] Required, not repeatable. YYYY[-MM[-DD]]
+        Default to the day when the project is saved.
+
+  E027: Increase revision, update revision date and description
+        [dtb:revision] Optional, not repeatable.
+        [dtb:revisionDate] Optional, not repeatable. YYYY[-MM[-DD]]
+        [dtb:revisionDescription] Optional, not repeatable.
+        Increase revision by one from previous revision (or start from 1)
+        and set the default value of the revision to the current date.
+
+  E028: View total time.
+        [dtb:totalTime] Required, not repeatable. SMIL timing value.
+        This value is auto-generated by the asset manager.
+
+  E029: View audio format.
+        [dtb:audioFormat] Optional, repeatable.
+        Only value at the moment: "Linear PCM - RIFF WAVE format" (or should
+        it be the MIME type "audio/xwav"?)
+
 
 F. GUI
+
+  1. Project and user management
 
   F001: File->New menu item.
         See A001. If a project is currently open, it must be closed first, so
@@ -75,3 +260,18 @@ F. GUI
   Fxxx: Edit the user profile.
 
   Fxxx: Toggle user profile on/off.
+
+  Fxxx: Toggle TOC tree view.
+
+  Fxxx: File->Clean project menu item.
+
+  Fxxx: Change font size.
+
+  Fxxx: Change colors.
+
+  Fxxx: Keyboard/menu based navigation in the TOC tree view.
+
+  Fxxx: Import several audio files at once.
+
+
+G. Bugs and future features

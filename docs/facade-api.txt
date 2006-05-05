@@ -1,19 +1,66 @@
 Obi façade API / Iteration 1
 $Id$
 
-See features.txt for description/status of features.
-Pseudo-code lines start with >
+I use a rubyish (not rubbish) syntax; code lines start with two spaces and
+comments start with a # and end at the end of the line.
 
-  A001: Create a blank project.
-        A project is a DTB + our own stuff (most notably "unused" audio;
-        probably some authoring annotations as well.)
 
-        > project.dtb = new Presentation();
+* Presentation object
 
-  A002: Open an existing project from a XUK file.
+  # Create a blank presentation
+  Presentation();
+  
+  # Import a presentation from an XUK file
+  static Presentation import_xuk(filename);
+  static Presentation import_xuk(URI);
 
-        > project.dtb = Presentation.import_xuk("foo.xuk");
+  # Export a presentation to an XUK file
+  void export_xuk(filename);
+  void export_xuk(URI);
 
-  A003: Save the current project to a XUK file.
+  # Append a metadata element to the presentation (e.g. dc:Title, etc.)
+  # There can be more than one element with the same name (e.g. several
+  # authors)
+  void append_metadata(metadata_object);
 
-        > project.dtb.export_xuk("foo.xuk");
+  # Return all the metadata objects for the presentation
+  Metadata[] get_metadata();
+
+  # Return all the metadata objects for a given name
+  Metadata[] get_metadata(name);
+
+  # Delete all the metadata objects for a given name
+  void delete_metadata(name);
+
+  # Delete the metadata object from the presentation
+  void delete_metadata(metadata_object)
+
+
+* Audio stuff: see the UrakawaApplicationBackend project in the SVN repo.
+This part is the responsibility of the Application team but will be handled
+by the toolkit in the next iteration.
+
+  # Asset manager needs to compute total time
+
+
+* Metadata object -- this is basically a DOM element node where the name and
+content attributes have a special status.
+
+  # Create a metadata element <meta name="name" content="value"/>
+  Metadata(name, value);
+
+  # Change the value of a metadata object
+  void set_value(new_value)
+
+  # Set an optional/additional attribute
+  # e.g. dc:Creator has an additional, optional role attribute
+  void set_attribute(name, value);
+
+  # Should language (xml:lang) be a regular attribute or have a special type?
+  # void set_language(language);
+
+  # Should id be a regular attribute or have a special type?
+  # void set_id(id);
+
+  # Delete an attribute
+  void delete_attribute(name, value);
