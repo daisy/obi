@@ -1,15 +1,18 @@
 Obi timeline / Iteration 1
 $Id$
 
+Key:
 ! Urgent
 ? Doubtful, will probably changed, or unknown, must investigate.
 o OK, on track
 - Late
 + Done on time
 
+
 May 2006
 
 ! 05 Fri Deliver façade API to architecture/implementation team.
+         Status: slightly late, probably monday.
 
   08 Mon Inclusion tests of AudioPlayer/AssetManager
 
