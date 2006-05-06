@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Text;
-
+using Microsoft.DirectX;
+using Microsoft.DirectX.DirectSound;
+using Microsoft.DirectX.DirectInput ;
 namespace UrakawaApplicationBackend
 {
 	/// <summary>
@@ -17,33 +19,50 @@ namespace UrakawaApplicationBackend
 	/// </summary>
     public interface IAudioPlayer
     {
+// initialise the device object
+		
+
 		/// <summary>
 		/// Get and set the current output device.
 		/// </summary>
 		// Replace Object by the actual audio device class
-		Object OutputDevice
+		Microsoft.DirectX.DirectSound.Device 			  OutputDevice
 		{
 			get;
 			set;
 		}
 
-		/// <summary>
-		/// Get the asset currently playing or paused.
-		/// Return null if no asset is currently loaded.
-		/// </summary>
 		IAudioMediaAsset CurrentAsset
 		{
 			get;
 		}
 
+
+// true to switch on  fast play, false to switch to normal play
+		// not applicable to play buffer
+		bool FastPlay
+		{
+			get;
+			set;
+		}
+
+// time Compression Factor for Fast Play 
+		// value from 20(95% time of actual time) ....  10(80%)  ... 6 (66%)
+		// formula compressed time = ( 1 - (2/CompFactor)
+		int CompFactor
+		{
+get;
+			set;
+		}
+
 		/// <summary>
-		/// Get and set the current byte position of the current asset.
+		/// Get and set the current byte position.
 		/// Setting the position allows to play from any point in the sound.
 		/// Must handle the case where we try to set the position after the end or before the beginning.
 		/// When playing or paused, the position can be anywhere between the start and the end of the asset being played.
 		/// When stopped, the position is 0.
 		/// </summary>
-		double CurrentBytePosition
+		 long CurrentBytePosition
 		{
 			get;
 			set;
@@ -60,9 +79,8 @@ namespace UrakawaApplicationBackend
 
 		/// <summary>
 		/// The current state of the player (playing, paused or stopped.)
-		/// When no asset has been loaded, the player is stopped.
 		/// </summary>
-		AudioPlayerState State
+		 int State
 		{
 			get;
 		}
@@ -72,7 +90,7 @@ namespace UrakawaApplicationBackend
 		/// The device for the audio player can be set from one of these values.
 		/// </summary>
 		/// <returns>The list of available output devices.</returns>
-		ArrayList GetOutputDevices();  
+DevicesCollection  GetOutputDevices();
 
 		/// <summary>
 		/// Start playing an asset from the beginning to the end.
@@ -94,7 +112,7 @@ namespace UrakawaApplicationBackend
 		/// <param name="asset">The asset to play.</param>
 		/// <param name="timeForm">The time to start from.</param>
 		/// <param name="timeTo">The time to end at.</param>
-		void Play(IAudioMediaAsset asset, double timeForm, double timeTo);
+		void Play(IAudioMediaAsset asset, double timeFrom, double timeTo);
 
 		/// <summary>
 		/// Play an audio buffer (presumably from a selection.)
@@ -102,7 +120,7 @@ namespace UrakawaApplicationBackend
 		/// (sample rate and bit depth at least?)
 		/// </summary>
 		/// <param name="buffer">The buffer to play.</param>
-		void Play(Object buffer);
+		void Play(byte [] byteArray);
 
 		/// <summary>
 		/// Pause playing. No effect if already paused, or if no sound is playing.
@@ -119,7 +137,6 @@ namespace UrakawaApplicationBackend
 		/// <summary>
 		/// Stop playing, even if the player was paused.
 		/// State after Stop() can only be Stopped.
-		/// The asset is unloaded from the player (i.e. if querying the current asset, return null.)
 		/// </summary>
 		void Stop();
     }
