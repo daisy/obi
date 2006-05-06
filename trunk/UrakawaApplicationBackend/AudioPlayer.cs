@@ -132,11 +132,11 @@ m_Step = value ;
 				SetCurrentTimePosition (value) ;
 			}
 		}
-/*
+
 		public ArrayList GetOutputDevices()
 		{
+			CollectOutputDevices() ;
 			ArrayList OutputDevices = new ArrayList ();
-			DevicesCollection devList = new DevicesCollection();
 
 for(int i = 0; i < devList.Count; i++) 
 {
@@ -145,11 +145,18 @@ for(int i = 0; i < devList.Count; i++)
 }
 			return OutputDevices ;
 		}
-*/
-		public DevicesCollection  GetOutputDevices()
+
+		public void SetDevice (Control FormHandle, int Index)
 		{
-			
-			DevicesCollection devList = new DevicesCollection();
+Microsoft.DirectX.DirectSound.Device dSound = new  Microsoft.DirectX.DirectSound.Device ( devList [Index].DriverGuid);
+			dSound.SetCooperativeLevel(FormHandle, CooperativeLevel.Priority);
+			SndDevice  = dSound ;
+		}
+
+						DevicesCollection devList ;
+		DevicesCollection  CollectOutputDevices()
+		{
+			devList = new DevicesCollection();
 return devList  ;
 			}
 

@@ -1,4 +1,5 @@
 using System;
+using System.Windows.Forms;
 using System.Collections;
 using System.Text;
 using Microsoft.DirectX;
@@ -90,7 +91,12 @@ get;
 		/// The device for the audio player can be set from one of these values.
 		/// </summary>
 		/// <returns>The list of available output devices.</returns>
-DevicesCollection  GetOutputDevices();
+ArrayList GetOutputDevices();
+
+// Set the output device for playing
+		// FormHandle is handle  of  windows Form in which Play control is placed
+// Index is index of list or combo box which display drivers on front end
+		void SetDevice (Control FormHandle, int Index);
 
 		/// <summary>
 		/// Start playing an asset from the beginning to the end.
