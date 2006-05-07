@@ -13,7 +13,7 @@ namespace UrakawaApplicationBackend
 	/// Paused: playback was interrupted and can be resumed.
 	/// Stopped: player is idle.
 	/// </summary>
-	public enum AudioPlayerState { Playing, Paused, Stopped };
+	public enum AudioPlayerState { stopped, playing, paused};
 
 	/// <summary>
 	/// Audio player interface.
@@ -33,6 +33,7 @@ namespace UrakawaApplicationBackend
 			set;
 		}
 
+// Current asset which is being played
 		IAudioMediaAsset CurrentAsset
 		{
 			get;
@@ -79,13 +80,14 @@ get;
 		}
 
 		/// <summary>
-		/// The current state of the player (playing, paused or stopped.)
+		/// The current state of the player (stopped,playing, paused or .)
+		/// // 0 for stopped, 1 for playing , 2 for paused
 		/// </summary>
 		 int State
 		{
 			get;
 		}
-
+		
 		/// <summary>
 		/// Return a list of devices available for sound playing.
 		/// The device for the audio player can be set from one of these values.

@@ -107,6 +107,18 @@
                     AssemblyName = "System.Drawing"
                     HintPath = "..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll"
                 />
+                <Reference
+                    Name = "Microsoft.DirectX.DirectInput"
+                    AssemblyName = "Microsoft.DirectX.DirectInput"
+                    HintPath = "H:\WINDOWS\Microsoft.NET\DirectX for Managed Code\1.0.2902.0\Microsoft.DirectX.DirectInput.dll"
+                    AssemblyFolderKey = "hklm\dn\dx_1.0.2902.0"
+                />
+                <Reference
+                    Name = "Microsoft.DirectX.Diagnostics"
+                    AssemblyName = "Microsoft.DirectX.Diagnostics"
+                    HintPath = "H:\WINDOWS\Microsoft.NET\DirectX for Managed Code\1.0.2902.0\Microsoft.DirectX.Diagnostics.dll"
+                    AssemblyFolderKey = "hklm\dn\dx_1.0.2902.0"
+                />
             </References>
         </Build>
         <Files>
@@ -137,7 +149,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "AudioRecorder.cs"
+                    RelPath = "CalculationFunctions.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
