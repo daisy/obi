@@ -24,7 +24,6 @@ namespace UrakawaApplicationBackend
 		long m_lLength;
 		long m_lPlayed ;
 		Thread  RefreshThread ;
-		enum CurrentState {stopped, playing, paused} ;
 		
 		byte [] 	ByteBuffer ;
 		bool m_PlayFile ;
@@ -34,7 +33,7 @@ namespace UrakawaApplicationBackend
 		int m_Step ;
 		int m_FrameSize ;
 		int m_SamplingRate ;
-		CurrentState state ;
+		AudioPlayerState  state ;
 
 		//static counter to implement singleton
 		private static int m_ConstructorCounter =0;
@@ -44,7 +43,8 @@ namespace UrakawaApplicationBackend
 		{
 			if (m_ConstructorCounter == 0)
 			{
-				state = CurrentState.stopped ;
+				m_ConstructorCounter++ ;
+				state = AudioPlayerState .stopped ;
 				m_PlayFile = true ;
 				m_FastPlay = false ;
 				m_Step = 10 ;
@@ -56,6 +56,7 @@ namespace UrakawaApplicationBackend
 			}
 		}
 
+// gets the current AudioPlayer state
 		public int State
 		{
 			get
@@ -64,7 +65,7 @@ namespace UrakawaApplicationBackend
 			}
 		}
 		
-
+// Output  device object
 		public Microsoft.DirectX.DirectSound.Device 			   OutputDevice
 		{
 			get
@@ -105,7 +106,7 @@ return m_Step ;
 			}
 			set
 			{
-m_Step = value ;
+Set_m_Step (value) ;
 			}
 		}
 
@@ -133,6 +134,22 @@ m_Step = value ;
 			}
 		}
 
+// checks the input value of compression factor and sets it for fast play
+		// Default value  is 10 i.e. 80% time compression
+		/// </summary>
+		/// <param name="l_Step"></param>
+		void Set_m_Step(int l_Step)
+		{
+			if (l_Step >2&& l_Step <20)
+			{
+				m_Step = l_Step ;
+			}
+			else
+			{
+MessageBox.Show("Invalid compression factor") ;
+			}
+		}
+
 		public ArrayList GetOutputDevices()
 		{
 			CollectOutputDevices() ;
@@ -145,6 +162,7 @@ for(int i = 0; i < devList.Count; i++)
 }
 			return OutputDevices ;
 		}
+
 
 		public void SetDevice (Control FormHandle, int Index)
 		{
@@ -174,7 +192,7 @@ InitPlay(0, 0) ;
 		{
 			CalculationFunctions calc = new CalculationFunctions() ;
 // Check if anything is playing or input length is out of bound
-			if (state.Equals  (CurrentState.stopped))
+			if (state.Equals  (AudioPlayerState .stopped))
 			{
 				// Adjust the start and end position according to frame size
 				lStartPosition = calc.AdaptToFrame(lStartPosition, m_Asset.FrameSize) ;
@@ -246,7 +264,7 @@ m_SamplingRate = m_Asset.SampleRate ;
 
 				m_PlayFile = true ;
 				
-state = CurrentState.playing ;
+state = AudioPlayerState .playing ;
 				// starts playing
 				SoundBuffer.Play(0, BufferPlayFlags.Looping);
 				m_BufferCheck = 1 ;
@@ -268,6 +286,9 @@ state = CurrentState.playing ;
 int reduction = 0 ;
 			while (m_lPlayed < m_lLength)
 			{//1
+				if (SoundBuffer.Status.BufferLost  )
+					SoundBuffer.Restore () ;
+
 reduction = 0 ;
 				Thread.Sleep (50) ;
 				// check if play cursor is in second half , then refresh first half else second
@@ -344,7 +365,7 @@ time = Convert.ToInt32(dTemp * 0.48 );
 
 			Thread.Sleep (time) ;
 			SoundBuffer.Stop () ;
-state = CurrentState.stopped ;
+state = AudioPlayerState .stopped ;
 				
 			// RefreshBuffer ends
 		}
@@ -391,9 +412,21 @@ if (lStartPosition>0 && lStartPosition < lEndPosition && lEndPosition <= m_Asset
 			}
 		}
 
+
+byte [] ByteArrayCopy ;
 		public void Play(byte [] byteArray)
 		{
-			
+ByteArrayCopy = new byte[byteArray.LongLength] ;
+			for (long i = 0 ; i< byteArray.LongLength; i++)
+ByteArrayCopy[i] = byteArray [i] ;
+
+Play(byteArray, 0);
+		}
+
+
+		void Play(byte [] byteArray, long lStartPosition)
+		{
+
 CalculationFunctions calc = new CalculationFunctions () ;
 			
 			//declare   array variable of size 4 as the max chunk in header is 4 bytes long
@@ -429,18 +462,28 @@ m_FrameSize = Convert.ToInt32 (shFrameSize) ;
 			lTemp = calc.ConvertToDecimal (Ar) ;
 			short shBitDepth = Convert.ToInt16 (lTemp) ;
 
-// get the maximum length to play
-m_lLength = byteArray.LongLength ;
+// Adjust start position according frame size
+lStartPosition = calc.AdaptToFrame(lStartPosition, m_FrameSize) ;
+
+			//check for out of range value
+			if ( lStartPosition < (byteArray.LongLength - 44) )
+			{			
+			// get the maximum length to play
+			m_lLength = byteArray.LongLength  - lStartPosition;
 			
-// set the read position ahead of header
+			// deduct header length from total length
 			m_lLength = m_lLength - 44 ;
 
+long lAdditionalLength = m_SamplingRate*m_FrameSize/2 ;
 			// fill the byteBuffer to be played  from byte array
-ByteBuffer = new byte [m_lLength] ;
+			ByteBuffer = new byte [m_lLength + lAdditionalLength] ;
 			for (long i = 0 ; i< m_lLength ; i++)
-ByteBuffer[i] = byteArray [i+44] ;
+				ByteBuffer[i] = byteArray [i+44+ lStartPosition] ;
 
-// sets the wave format of secondary buffer
+for (long i = 0; i< lAdditionalLength; i++)
+ByteBuffer [i+m_lLength] = 0 ;
+
+			// sets the wave format of secondary buffer
 			WaveFormat newFormat = new WaveFormat () ;				
 			BufferDesc = new BufferDescription();
 
@@ -455,40 +498,42 @@ ByteBuffer[i] = byteArray [i+44] ;
 			newFormat.SamplesPerSecond = iSamplingRate ;
 
 			// gets the length to be played
-m_lLength = calc.AdaptToFrame(m_lLength , Convert.ToInt32(shFrameSize)) ;
+			m_lLength = calc.AdaptToFrame(m_lLength , Convert.ToInt32(shFrameSize)) ;
 
 			BufferDesc.Format = newFormat ;
 
-// gets the size of buffer to be created
+			// gets the size of buffer to be created
 			m_SizeBuffer = iSamplingRate *   shFrameSize;
 			m_RefreshLength = (iSamplingRate / 2 ) * shFrameSize;
-
+//m_lLength = (m_lLength/m_RefreshLength)*m_RefreshLength ;
 
 			BufferDesc.BufferBytes = m_SizeBuffer ;
 
 
-				// initialise the buffer
-SoundBuffer= new SecondaryBuffer(BufferDesc, SndDevice);
+			// initialise the buffer
+			SoundBuffer= new SecondaryBuffer(BufferDesc, SndDevice);
 
 			//creates temporary byte array to fill secondary buffer
-RefreshArray = new byte[m_SizeBuffer] ;
+			RefreshArray = new byte[m_SizeBuffer] ;
 			for (int i = 0 ; i< m_SizeBuffer ; i++)
 				RefreshArray[i] = ByteBuffer [i];
 
-// set the current position to be filled next time
-m_lArrayPosition = m_SizeBuffer ;
+			// set the current position to be filled next time
+			m_lArrayPosition = m_SizeBuffer ;
 
-SoundBuffer.Write (0 , RefreshArray, 0) ;
-m_lPlayed = m_SizeBuffer ;
+			SoundBuffer.Write (0 , RefreshArray, 0) ;
+			m_lPlayed = m_SizeBuffer ;
 			RefreshArray = new byte [m_RefreshLength] ;
 
-m_PlayFile = false ;
-state = CurrentState.playing ;
+			m_PlayFile = false ;
+			state = AudioPlayerState .playing ;
 			SoundBuffer.Play(0, BufferPlayFlags.Looping);
 			m_BufferCheck= 1 ;
 			RefreshThread = new Thread(new ThreadStart (RefreshBuffer));
 			RefreshThread.Start() ;
 
+// end of out of range check
+		}
 			// end of play byteBuffer
 		}
 
@@ -496,37 +541,40 @@ state = CurrentState.playing ;
 
 		public void Pause()
 		{
-			if (state.Equals(CurrentState.playing))
+			if (state.Equals(AudioPlayerState .playing))
 			{
 				SoundBuffer.Stop () ;
 				
-				state = CurrentState.paused ;
+				state = AudioPlayerState .paused ;
 			}
 		}
 
 		public void Resume()
 		{
-			if (state.Equals (CurrentState.paused))
+			if (state.Equals (AudioPlayerState .paused))
 			{
 				
-				state = CurrentState.playing ;
+				state = AudioPlayerState .playing ;
 				SoundBuffer.Play(0, BufferPlayFlags.Looping);
 			}			
 		}
 
 		public void Stop()
 		{
-			if (SoundBuffer.Status.Looping )			
+			if (!state.Equals(AudioPlayerState .stopped))			
 			{
 				SoundBuffer.Stop () ;
 
-state = CurrentState.stopped ;
+state = AudioPlayerState .stopped ;
 				RefreshThread.Abort () ;
 			
 				if (m_PlayFile == true)
 					fs.Close();
 				else
+				{
 					m_lArrayPosition = 0 ;
+					ByteBuffer = null ;
+				}
 			}
 
 		}
@@ -538,6 +586,7 @@ int PlayPosition  = SoundBuffer.PlayPosition;
 			long lCurrentPosition ;
 			if (PlayPosition < m_RefreshLength)
 			{ 
+				// takes the lPlayed position and subtract the part of buffer played from it
 				lCurrentPosition = m_lPlayed - ( 2 * m_RefreshLength) + PlayPosition ;
 			}
 			else
@@ -565,20 +614,34 @@ return lCurrentPosition ;
 					Stop();
 					InitPlay(localPosition , lByteTo);
 				}
-				
+				else
+				{
+					
+Stop () ;
+Play (ByteArrayCopy, localPosition) ;
+				}
 			}
-			else if (!SoundBuffer.Status.Looping)
+			
+			else if(state.Equals (AudioPlayerState .paused) )
 			{
 				if (m_PlayFile == true)
 				{
-					fs.Position = localPosition ;
+					Stop();
+					InitPlay(localPosition , lByteTo);
+					Thread.Sleep(30) ;
+					SoundBuffer.Stop () ;
+					// Stop () also change the state to stopped so change it to paused
+					state=AudioPlayerState .paused ;
 				}
-			}
-			else if(state.Equals (CurrentState.paused) )
-			{
-				Stop();
-				InitPlay(localPosition , lByteTo);
-				SoundBuffer.Stop () ;
+				else
+				{
+					Stop () ;
+					Play (ByteArrayCopy, localPosition) ;
+					Thread.Sleep(30) ;
+					SoundBuffer.Stop () ;
+					// Stop () also change the state to stopped so change it to paused
+										state=AudioPlayerState .paused ;
+				}
 			}
 		}
 
@@ -592,7 +655,7 @@ SetCurrentBytePosition(lTemp) ;
 
 		public void  test ()
 		{
-if (state.Equals(CurrentState.stopped))
+if (state.Equals(AudioPlayerState .stopped))
 	MessageBox.Show("Stopped") ;
 		}
 // End Class
