@@ -123,12 +123,22 @@ get;
 		IAudioMediaAsset DeleteChunk(double timeBeginPosition, double timeEndPosition);
 
 
+// Detect the maximum amplitude value in an prerecorded silent file.
+		// The parameter is the object of silent file
+//// returns amplitude as long  which is then used in DetectPhrases function for  threshold amplitude value
+///// the Ref file and Target file must be of same format i.e same in channels, bit depth, sampling rate.
+long GetSilenceAmplitude (IAudioMediaAsset Ref );
+
+
 // function for detecting phrases  in IAudioMediaAsset  by taking byte position as input and output
-long [] DetectPhrases (IAudioMediaAsset Ref, long PhraseLength , long BeforePhrase) ;
+		// parameter long SilVal is threshold value of amplitude derived from GetSilenceAmplitude using file of same format.
+		// parameter long PhraseLength is the minimum length of silence which will trigger phrase detection
+		// parameter long BeforePhrase is length of marker before actual phrase begins
+long [] DetectPhrases (long SilVal, long PhraseLength , long BeforePhrase) ;
 
 
 // function for detecting phrases  in IAudioMediaAsset  by taking time position in milliseconds as input and output
-		double [] DetectPhrases (IAudioMediaAsset Ref, double PhraseLength , double BeforePhrase) ;
+		double [] DetectPhrases (long SilVal, double PhraseLength , double BeforePhrase) ;
 
 
 		
