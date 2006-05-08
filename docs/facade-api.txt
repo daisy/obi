@@ -43,6 +43,19 @@ by the toolkit in the next iteration.
   # Asset manager needs to compute total time
 
 
+* NCX
+
+  # Navpoints have a level starting from 1
+  unsigned int get_level()
+
+  # Navmap is a special kind of navpoint, its level is 0, it has no navlabel
+
+  # Navpoint nodes need to know their parent/children/siblings, but also the
+  # previous and next navpoints in linear order
+  navpoint get_prev()
+  navpoint get_next()
+  
+
 * Metadata object -- this is basically a DOM element node where the name and
 content attributes have a special status.
 

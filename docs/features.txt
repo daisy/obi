@@ -4,6 +4,10 @@ $Id$
 This document lists the features of the application and their completion
 status. They are numbered by category from A to F. Numbering is arbitrary.
 
+Don't forget about:
+- Physical vs. logical edits
+- Commands
+
 
 A. Project/User management
 
@@ -71,18 +75,58 @@ B. Strips management
 
   1. Strips (in general)
 
+  * A strip has a label
+  * A strip has a selection handle
+  * A strip has a sizing handle
+
   2. Container strips (= par)
 
-  3. Audio strips
+  * A container strip always contains a navigation strip.
+  * A container strip always contains a single audio strip.
+  * A container strip may contain a single label strip.
+  * A container strip may contain a single scale strip.
+  * We put these restrictions so that we avoid cluttering the interface and
+  confusing the user.
 
-  4. Label strips
+  B001: Create a new container strip for 
+        A new container strip is created. It initially contains a navigation
+        strip (see B002 below) and an audio strip (see B004 below.) In order
+        to create the navigation strip, a navpoint has to be created first.
 
-  5. Scale strips
+  Bxxx: Add a label strip.
+        If the strip has no lable strip yet, a new label strip is created
+        and added to the container.
 
-  6. Strip manager
+  Bxxx: Add a scale strip.
+        If the strip has no scale strip yet, a new scale strip is created
+        and added to the container.
+
+  3. Navigation strips
+
+  * A navigation strip has a single navpoint (corresponding to a navpoint in
+  the NCX.), then zero or more pagetargets. Navtargets appear only in the
+  NCX part.
+
+  B002: Create a navigation strip from an existing navigation point.
+
+  4. Audio strips and phrases
   
-  Bxxx: Append a new strip.
-        The strip is added at the end of the project.
+  B003: Create a new audio strip.
+        A new, empty audio strip is created.
+
+  5. Label strips
+
+  Bxxx: Create a new label strip.
+
+  6. Scale strips
+
+  7. Strip manager
+
+  * The strip manager maintains a list of strips.
+
+  B001: Append a new container strip.
+        A container strip is created. It is added at the end of the list of
+        strips. Before the strip is created, a new navpoint is added 
 
   Bxxx: Insert a new strip.
         The strip is inserted at a position chosen by the user.
@@ -90,9 +134,12 @@ B. Strips management
 
 C. Audio engine and asset manager
 
-  * Events are provided by C#
+  * See the AudioBackEnd project for details.
+  * Events are provided by C#.
 
   1. Assets, Audio assets and Asset manager
+
+  * In this iteration there are only audio assets.
 
   2. Audio player
 
@@ -113,6 +160,8 @@ E. Metadata editor and viewer
   edited by the user, using its profile or other sources for default values
   when applicable. The generated metadata can be viewed.
 
+  1. Dublin Core metadata
+  
   * Skipped: dc:Type, dc:Coverage.
 
   E001: Unique identifier for the project.
@@ -186,11 +235,13 @@ E. Metadata editor and viewer
   E016: Change the language of any piece of (DC) metadata.
         All meta attributes can have a language attribute (xml:lang.)
 
+  2. DTB metadata
+
   E017: Set source date.
         [dtb:sourceDate] Optional, not repeatable. YYYY[-MM[-DD]].
 
   E018: Set source edition.
-        [dtb:sourceDate] Optional, not repeatable.
+        [dtb:sourceEdition] Optional, not repeatable.
 
   E019: Set source publisher.
         [dtb:sourcePublisher] Optional, not repeatable.
@@ -215,7 +266,7 @@ E. Metadata editor and viewer
         First narrator defaults to user name.
 
   E025: Set producers.
-        [dtb:narrator] Required, repeatable.
+        [dtb:producer] Required, repeatable.
         First narrator defaults to user organization.
 
   E026: Set completion date.
@@ -273,5 +324,7 @@ F. GUI
 
   Fxxx: Import several audio files at once.
 
+  2. Commands
+  
 
 G. Bugs and future features
