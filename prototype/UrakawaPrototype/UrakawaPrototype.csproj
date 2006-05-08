@@ -25,6 +25,23 @@
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
+    <ManifestCertificateThumbprint>9785BFB3905C5BFBFBF537DC4AC06526A7514A09</ManifestCertificateThumbprint>
+    <ManifestKeyFile>UrakawaPrototype_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>true</SignManifests>
+    <PublishUrl>C:\Documents and Settings\Julien Quint\My Documents\Urakawa Prototypes\UrakawaPrototype\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -116,6 +133,7 @@
     <None Include="img\nextMarker.jpg" />
     <None Include="img\nextBlock.jpg" />
     <None Include="Resources\Icon1.ico" />
+    <None Include="UrakawaPrototype_TemporaryKey.pfx" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="AudioImportDialog.cs">
       <SubType>Form</SubType>
@@ -204,6 +222,13 @@
       <SubType>Designer</SubType>
       <DependentUpon>VuMeter.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

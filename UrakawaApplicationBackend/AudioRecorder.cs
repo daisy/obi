@@ -16,8 +16,68 @@ namespace UrakawaApplicationBackend
 		private bool[] m_bInputFormatSupported = new bool[12];
 		private ArrayList m_aformats= new ArrayList();
 		
+		public Device InputDevice
+		{
+			get
+			{
+				return null;
+			}
+			set
+			{
+			}
+		}
+
+		public int Channels
+		{
+			get
+			{
+				return 1;
+			}
+			set
+			{
+			}
+		}
+
+		public int SampleRate
+		{
+			get
+			{
+				return 44100;
+			}
+			set
+			{
+			}
+		}
+
+		public int BitDepth
+		{
+			get
+			{
+				return 16;
+			}
+			set
+			{
+			}
+		}
+
+		public AudioRecorderState State
+		{
+			get
+			{
+				return AudioRecorderState.Idle;
+			}
+		}
+
+		public void Record(IAudioMediaAsset asset)
+		{
+		}
+
+		public void Stop()
+		{
+		}
+
 		// returns a list of input devices
-		public ArrayList GetInputDevice()
+		public ArrayList GetInputDevices()
 		{
 			CaptureDevicesCollection devices = new CaptureDevicesCollection();  // gathers the available capture devices
 			foreach (DeviceInformation info in devices)
@@ -32,8 +92,8 @@ namespace UrakawaApplicationBackend
 			public Guid SetInputDeviceGuid()
 		{
 			CaptureDevicesCollection devices = new CaptureDevicesCollection();
-			m_aGuid = GetInputDevice();
-		m_gCaptureDeviceGuid = devices[1].DriverGuid;
+			m_aGuid = GetInputDevices();
+			m_gCaptureDeviceGuid = devices[1].DriverGuid;
 			return m_gCaptureDeviceGuid;
 		}
 		
