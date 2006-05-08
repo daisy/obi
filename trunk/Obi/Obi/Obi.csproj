@@ -51,6 +51,7 @@
       <DependentUpon>ObiForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="ProjectManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="messages.resx">
       <SubType>Designer</SubType>
@@ -134,6 +135,7 @@
     <Compile Include="UserControls\MetadataPanel.Designer.cs">
       <DependentUpon>MetadataPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserProfile.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
