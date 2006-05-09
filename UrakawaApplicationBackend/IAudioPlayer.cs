@@ -39,17 +39,9 @@ namespace UrakawaApplicationBackend
 			get;
 		}
 
-
-// true to switch on  fast play, false to switch to normal play
-		// not applicable to play buffer
-		bool FastPlay
-		{
-			get;
-			set;
-		}
-
 // time Compression Factor for Fast Play 
-		// value from 20(95% time of actual time) ....  10(80%)  ... 6 (66%)
+		// if Compression factor = 1 , file will be played at  normal  speed else at fast speed
+		// value from 20(95% time of actual time) ....  10(80%)  ... 6 (66%)...
 		// formula compressed time = ( 1 - (2/CompFactor)
 		int CompFactor
 		{

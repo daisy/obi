@@ -47,7 +47,7 @@ namespace UrakawaApplicationBackend
 				state = AudioPlayerState .stopped ;
 				m_PlayFile = true ;
 				m_FastPlay = false ;
-				m_Step = 10 ;
+
 			}
 			else
 			{
@@ -85,18 +85,6 @@ namespace UrakawaApplicationBackend
 				return m_Asset ;
 			}
 		}
-
-		public bool FastPlay
-		{
-		get
-		{
-return m_FastPlay ;
-	}
-			set
-			{
-m_FastPlay = value ;
-			}
-	}
 
 		public int CompFactor
 		{
@@ -140,8 +128,13 @@ Set_m_Step (value) ;
 		/// <param name="l_Step"></param>
 		void Set_m_Step(int l_Step)
 		{
-			if (l_Step >2&& l_Step <20)
+			if (l_Step == 1)
 			{
+m_FastPlay = false ;
+			}
+			else if (l_Step >2&& l_Step <20)
+			{
+				m_FastPlay = true ;
 				m_Step = l_Step ;
 			}
 			else
@@ -237,6 +230,9 @@ m_SamplingRate = m_Asset.SampleRate ;
 
 				// sets the calculated size of buffer
 				BufferDesc.BufferBytes = m_SizeBuffer ;
+
+// Global focus is set to true so that the sound can be played in background also
+				BufferDesc.GlobalFocus = true ;
 
 				// initialising secondary buffer
 				SoundBuffer= new SecondaryBuffer(BufferDesc, SndDevice);
@@ -501,6 +497,9 @@ ByteBuffer [i+m_lLength] = 0 ;
 			m_lLength = calc.AdaptToFrame(m_lLength , Convert.ToInt32(shFrameSize)) ;
 
 			BufferDesc.Format = newFormat ;
+
+				// Global focus is set to true so that the sound can be played in background also
+				BufferDesc.GlobalFocus = true ;
 
 			// gets the size of buffer to be created
 			m_SizeBuffer = iSamplingRate *   shFrameSize;
