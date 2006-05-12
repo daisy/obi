@@ -14,13 +14,13 @@ namespace UrakawaApplicationBackend
 
 		// member variables 
 
-		double m_LengthTime ;
-		long m_LengthByte ;
-		int m_Channels ;
-		int m_SamplingRate ;
-		int m_FrameSize ;
-		int m_BitDepth ;
-		public long m_LengthData ;
+		protected double m_LengthTime ;
+		//protected long m_lSize  ;
+		protected int m_Channels ;
+		protected int m_SamplingRate ;
+		protected int m_FrameSize ;
+		protected int m_BitDepth ;
+		protected long m_AudioLengthBytes;
 
 // constructor to initialise above listed member variables
 		public AudioMediaAsset (string sPath) :base (sPath)
@@ -37,7 +37,7 @@ namespace UrakawaApplicationBackend
 			int [] Ar = new int[4] ;
 			Ar [0] = Ar [1] = Ar[2] = Ar [3] = 0 ;
 			BinaryReader br = new  BinaryReader (File.OpenRead(sPath)) ;
-
+/*
 			// length in bytes
 			br.BaseStream.Position = 4 ;
 
@@ -46,10 +46,10 @@ namespace UrakawaApplicationBackend
 				Ar [i] = Convert.ToInt32 (br.ReadByte()) ;
 
 			}
-			m_LengthByte  = ConvertToDecimal (Ar) ;
+			m_lSize   = ConvertToDecimal (Ar) ;
+*/
 
-
-			// length data
+			// AudioLengthBytes
 
 			br.BaseStream.Position = 40 ;
 
@@ -58,7 +58,7 @@ namespace UrakawaApplicationBackend
 				Ar [i] = Convert.ToInt32(br.ReadByte() );
 
 			}
-			m_LengthData  = ConvertToDecimal (Ar) ;
+			m_AudioLengthBytes = ConvertToDecimal (Ar) ;
 
 			// channels
 			Ar [0] = Ar [1] = Ar[2] = Ar [3] = 0 ;
@@ -105,7 +105,7 @@ namespace UrakawaApplicationBackend
 			m_BitDepth = Convert.ToInt32 (ConvertToDecimal (Ar)) ;
 
 			//size in time
-			m_LengthTime = Convert.ToDouble ((m_LengthByte * 1000)/ (m_SamplingRate * m_FrameSize));
+			m_LengthTime = Convert.ToDouble ((m_AudioLengthBytes * 1000)/ (m_SamplingRate * m_FrameSize));
 
 			br.Close() ;
 		}
@@ -146,19 +146,19 @@ namespace UrakawaApplicationBackend
 				m_LengthTime = value ;
 			}
 		}
-
+/*
 		public long LengthByte
 		{
 			get
 			{
-				return m_LengthByte ;
+				return m_lSize  ;
 			}
 			set
 			{
-				m_LengthByte = value ;
+				m_lSize  = value ;
 			}
 		}
-
+*/
 		public int SampleRate
 		{
 			get
@@ -192,22 +192,22 @@ namespace UrakawaApplicationBackend
 		}
 
 
-		public long LengthData
+		public long AudioLengthBytes
 		{
 			get
 			{
-return m_LengthData ;
+return m_AudioLengthBytes;
 			}
 			set
 			{
-m_LengthData = value ;
+m_AudioLengthBytes= value ;
 			}
 		}
 // deletes a section of audio streamfrom physical asset by takin byte position as parameter
-		public  IAudioMediaAsset  DeleteChunk(long byteBeginPosition, long byteEndPosition)
+		public  void DeleteChunk(long byteBeginPosition, long byteEndPosition)
 		{
 			// checks for valid parameters
-			if (byteBeginPosition < byteEndPosition && byteEndPosition < m_LengthData)
+			if (byteBeginPosition < byteEndPosition && byteEndPosition < m_AudioLengthBytes )
 			{
 				// opens the original file for reading
 
@@ -237,41 +237,8 @@ m_LengthData = value ;
 					bw.Write(br.ReadBytes(m_FrameSize)) ;
 				}
 
-				// gets the length property of temporary file and update it in header 
-				// The privat members representing length are also updated
-				//try 
-				//{
-					FileInfo tempfile = new FileInfo (m_sFilePath + "tmp") ;
-				
-				//}
-				//catch
-				//{
-//MessageBox.Show	 ("problem in reading lengtyh") ;
-				//}
-				
-				
-				m_LengthByte = tempfile.Length	 ;
-				//m_LengthByte = m_LengthByte - (byteEndPosition - byteBeginPosition) ;
-				m_LengthTime = ConvertByteToTime (m_LengthByte) ;
 
-				UpdateLengthHeader (m_LengthByte, bw);
 
-				/*
-							// update length field (4 to 7 )in header
-							for (int i = 0; i<4 ; i++)
-							{
-								bw.BaseStream.Position = i + 4 ;
-								bw.Write (Convert.ToByte (ConvertFromDecimal (m_LengthByte)[i])) ;
-
-							}
-							long TempLength = m_LengthByte - 44 ;
-							for (int i = 0; i<4 ; i++)
-							{
-								bw.BaseStream.Position = i + 40 ;
-								bw.Write (Convert.ToByte (ConvertFromDecimal (TempLength)[i])) ;
-
-							}
-							*/
 				br.Close() ;
 				bw.Close() ;
 
@@ -281,32 +248,46 @@ m_LengthData = value ;
 				FileInfo nfile = new FileInfo (m_sFilePath + "tmp") ;
 				nfile.MoveTo (m_sFilePath) ;
 
-				AudioMediaAsset am = new AudioMediaAsset (m_sFilePath) ;
-				return am ;
+				// gets the length property of temporary file and update it in header 
+				// The privat members representing length are also updated
+				
+
+					FileInfo tempfile = new FileInfo (m_sFilePath ) ;
+				
+				
+				m_lSize  = tempfile.Length	 ;
+m_AudioLengthBytes = m_lSize - 44 ;
+				m_LengthTime = ConvertByteToTime (m_AudioLengthBytes) ;
+
+
+BinaryWriter bw1 = new BinaryWriter (File.OpenWrite(m_sFilePath)) ;
+				UpdateLengthHeader (m_lSize , bw1);
+bw1.Close() ;
+				
+				// end of check if
 			}
 			else
 			{
 MessageBox.Show("invalid parameters in DeleteChunk") ;
-				AudioMediaAsset am = new AudioMediaAsset (m_sFilePath) ;
-				return am ;
+				
 			}
 		}
 
 		// delete by taking time as parameter
-		public 		IAudioMediaAsset DeleteChunk(double timeBeginPosition, double timeEndPosition)
+		public 		void DeleteChunk(double timeBeginPosition, double timeEndPosition)
 		{
 			// convert the time data to byte data and pass it as parameter to original byte function
 			long lBeginPos = ConvertTimeToByte (timeBeginPosition) ;
 			long lEndPos = ConvertTimeToByte (timeEndPosition) ;
 
-			return DeleteChunk(lBeginPos, lEndPos);
+			DeleteChunk(lBeginPos, lEndPos);
 		}
 
 		//Copy audio chunnk in RAM
 		// This funtion creates a virtual audio file in RAM with all header information
 		public byte [] GetChunk(long byteBeginPosition, long byteEndPosition)
 		{
-			if (byteBeginPosition < byteEndPosition&& byteEndPosition < m_LengthData)
+			if (byteBeginPosition < byteEndPosition&& byteEndPosition < m_AudioLengthBytes)
 			{
 				byteBeginPosition = AdaptToFrame (byteBeginPosition) + 44 ;
 				byteEndPosition = AdaptToFrame (byteEndPosition) + 44 ;
@@ -337,10 +318,10 @@ MessageBox.Show("invalid parameters in DeleteChunk") ;
 				for (i = 0; i<4 ; i++)
 				{
 
-					arByte [4+i ] =(Convert.ToByte (ConvertFromDecimal (m_LengthByte)[i])) ;
+					arByte [4+i ] =(Convert.ToByte (ConvertFromDecimal (m_lSize )[i])) ;
 
 				}
-				long TempLength = m_LengthByte - 44 ;
+				long TempLength = m_lSize  - 44 ;
 				for (i = 0; i<4 ; i++)
 				{
 				
@@ -369,10 +350,10 @@ MessageBox.Show("invalid parameters") ;
 			return GetChunk(lBeginPos, lEndPos) ;
 		}
 
-		public IAudioMediaAsset InsertByteBuffer(byte [] bBuffer, long bytePosition)
+		public void InsertByteBuffer(byte [] bBuffer, long bytePosition)
 		{
 //  allow to manipulate only if format  is compatible and parameters are valid
-			if (CheckStreamsFormat(bBuffer) == true && bytePosition < m_LengthData)
+			if (CheckStreamsFormat(bBuffer) == true && bytePosition < m_AudioLengthBytes )
 			{
 				bytePosition = AdaptToFrame (bytePosition) + 44 ;
 
@@ -404,55 +385,63 @@ MessageBox.Show("invalid parameters") ;
 				br.BaseStream.Position = bytePosition ;
 
 			
-				lCount = m_LengthByte - bytePosition ;
+				lCount = m_lSize  - bytePosition ;
 
 				for (i = 0 ; i< lCount ; i = i +m_FrameSize )
 				{
 					bw.Write(br.ReadBytes(m_FrameSize)) ;
 				}
 
-// updates to members and header
-				FileInfo nfile = new FileInfo (m_sFilePath + "tmp") ;
-				m_LengthByte = nfile.Length ;
-				m_LengthTime = ConvertByteToTime (m_LengthByte) ;
 
-				UpdateLengthHeader (m_LengthByte, bw) ;
 				br.Close() ;
 				bw.Close() ;
 
 
-// deletes original file and rename temp file to original file
+				// deletes original file and rename temp file to original file
 				FileInfo pfile = new FileInfo (m_sFilePath) ;
 				pfile.Delete () ;
 
+
+				
+				FileInfo nfile = new FileInfo (m_sFilePath + "tmp") ;
 				nfile.MoveTo (m_sFilePath) ;
 
-AudioMediaAsset am = new AudioMediaAsset (m_sFilePath) ;
-				return am ;
+// updates to members and header
+				FileInfo nefile = new FileInfo (m_sFilePath ) ;
+				m_lSize  = nefile.Length ;
+				
+
+
+				BinaryWriter bw1 = new BinaryWriter(File.OpenWrite(m_sFilePath )) ;  
+				UpdateLengthHeader (m_lSize , bw1) ;
+bw1.Close() ;
+
+
+				
 			}
 				// main if statement
 			else
 			{
 				MessageBox.Show ("cannot manipulate . Audio streams are of different format or invalid input parameters are passed") ;	
-				AudioMediaAsset am = new AudioMediaAsset (m_sFilePath) ;
-				return am ;
+				
+
 			}
 			//  end function insert byte position
 		}
 
 
-		public IAudioMediaAsset InsertByteBuffer(byte []  bBuffer, double timePosition)
+		public void InsertByteBuffer(byte []  bBuffer, double timePosition)
 		{
 			long lTimePos = ConvertTimeToByte (timePosition) ;
 
-			return InsertByteBuffer( bBuffer, lTimePos) ;
+			InsertByteBuffer( bBuffer, lTimePos) ;
 		}
 
 
 		void UpdateLengthHeader (long Length, BinaryWriter bw)
 		{
-m_LengthData = Length - 44 ;
-			m_LengthTime = ConvertByteToTime (m_LengthData) ; 
+m_AudioLengthBytes= Length - 44 ;
+			m_LengthTime = ConvertByteToTime (m_AudioLengthBytes) ; 
 m_lSize = Length ;
 
 			// update length field (4 to 7 )in header
@@ -462,7 +451,7 @@ m_lSize = Length ;
 				bw.Write (Convert.ToByte (ConvertFromDecimal (Length)[i])) ;
 
 			}
-			long TempLength = Length - 44 ;
+			long TempLength = AudioLengthBytes ;
 			for (int i = 0; i<4 ; i++)
 			{
 				bw.BaseStream.Position = i + 40 ;
@@ -596,7 +585,7 @@ SubSum = (SubSum * 256 ) / (65792  * 2);
 			//long lSize = file.Length ;
 
 			// creates counter of size equal to file size
-			long lSize = Ref.LengthByte ;
+			long lSize = Ref.SizeInBytes ;
 
 			// Block size of audio chunck which is least count of detection
 			int Block ;
@@ -670,7 +659,7 @@ return SilVal ;
 				//lSize = file1.Length ;
 
 // Gets the count of file size
-				long lSize = m_LengthByte ;
+				long lSize = m_lSize  ;
 
 
 				br.BaseStream.Position = 44 ;
@@ -759,6 +748,112 @@ ArrayReturn [i] = ConvertByteToTime (lArray [i]) ;
 			}
 return ArrayReturn ;
 		}
+
+
+
+		// The function opens two files (target file and source file)simultaneously  and copies from one to other frame by frame
+		//This is done to reduce load on system memory as wave file may be as big as it go out of scope of RAM
+		// IAudioMediaAsset Target is destination file where the stream has to be inserted and  TargetBytePos is insertion position in bytes excluding header
+		//IAudioMediaAsset Source is asset from which data is taken between Positions in bytes (StartPos and EndPos) , these are also excluding header length
+		public void InsertAudio ( long TargetBytePos, IAudioMediaAsset Source, long StartPos, long EndPos)
+		{
+			// checks the compatibility of formats of two assets and validity of parameters
+			if (CheckStreamsFormat (Source)== true&& TargetBytePos < (m_AudioLengthBytes ) && StartPos < EndPos && EndPos < Source.AudioLengthBytes )
+				// braces holds whole  function
+			{
+				// opens Target asset and Source asset for reading and create temp file for manipulation
+				BinaryReader brTarget = new BinaryReader (File.OpenRead(m_sFilePath))  ;
+				
+				BinaryReader brSource = new BinaryReader (File.OpenRead(Source.Path ))  ;
+
+				BinaryWriter bw = new BinaryWriter (File.Create(m_sFilePath + "tmp")) ;
+
+				// adapt positions to frame size
+				TargetBytePos = AdaptToFrame (TargetBytePos) + 44; 
+				StartPos = Source.AdaptToFrame(StartPos) + 44;
+				EndPos = Source.AdaptToFrame (EndPos) + 44;
+				int Step = FrameSize ;
+
+				// copies audio stream before the insertion point into temp file
+				bw.BaseStream.Position = 0 ;
+				brTarget.BaseStream.Position = 0 ;
+				long lCount = TargetBytePos ;
+				long i = 0 ;
+				for (i = 0 ; i < lCount ; i=i+Step) 
+				{
+					bw.Write(brTarget.ReadBytes(Step)) ;
+
+				}
+
+				// copies the audio stream data (between marked positions) from scource file  to temp file
+				brSource.BaseStream.Position = StartPos ;
+				lCount = lCount + (EndPos - StartPos) ;
+				for (i = i ; i< lCount ; i= i +Step)
+				{
+					bw.Write(brSource.ReadBytes(Step)) ;
+				}
+
+				// copies the remaining data after insertion point in Target asset into temp file
+				FileInfo file = new FileInfo (m_sFilePath) ;
+				lCount = file.Length - 44+ (EndPos - StartPos);
+
+				brTarget.BaseStream.Position = TargetBytePos;
+
+				for (i = i; i< lCount; i= i+Step)
+				{
+					try
+					{
+						bw.Write(brTarget.ReadBytes(Step)) ;
+					}
+					catch
+					{
+						MessageBox.Show("Problem   "+ i) ;
+					}
+				}
+
+
+				// close all the reading and writing objects
+				brTarget.Close() ;
+				brSource.Close() ;
+				bw.Close() ;
+
+				//  Delete the target file and rename the temp file to target file
+				FileInfo pfile = new FileInfo (m_sFilePath) ;
+				pfile.Delete () ;
+
+				FileInfo nfile = new FileInfo (m_sFilePath + "tmp") ;
+				nfile.MoveTo (m_sFilePath);
+
+
+				// Update lenth fields in header of temp file and also members of Target asset
+				FileInfo  filesize = new FileInfo (m_sFilePath) ;
+				m_lSize= filesize.Length;
+				
+BinaryWriter bw1 = new BinaryWriter (File.OpenWrite(m_sFilePath )) ;
+				UpdateLengthHeader (m_lSize, bw1) ;
+				bw1.Close() ;
+			}
+			else
+			{
+				MessageBox.Show("Can not manipulate. files are of different format or invalid input parameters passed") ;
+				
+			}
+
+			// End insert  function
+		}
+
+
+		// same as above function but take time position as parameter instead of byte position
+		public void InsertAudio (double timeTargetPos, IAudioMediaAsset Source, double timeStartPos, double timeEndPos)
+		{
+			long lTargetPos = ConvertTimeToByte (timeTargetPos) ;
+			long lStartPos = ConvertTimeToByte (timeStartPos) ;
+			long lEndPos = ConvertTimeToByte (timeEndPos) ;
+
+			InsertAudio ( lTargetPos, Source, lStartPos, lEndPos) ;
+		}
+
+
 // class ends here
 	}
 }
