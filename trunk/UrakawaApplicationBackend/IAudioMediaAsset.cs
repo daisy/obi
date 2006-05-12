@@ -15,12 +15,13 @@ namespace UrakawaApplicationBackend
 			get;
 			set;
 		}
-
+/*
 		long LengthByte
 		{
 get;
 			set;
 		}
+*/
 
 		/// <summary>
 		/// Sample rate in Hertz (support at least up to 44100 Hz.)
@@ -52,7 +53,7 @@ get;
 			get;
 		}
 
-		long LengthData
+		long AudioLengthBytes
 		{
 			get;
 			set;
@@ -66,7 +67,7 @@ get;
 		/// <param name="bytePosition">The position inside the asset to insert at, in bytes.</param>
 		 // byte position is excluding header length
 		// return type is changed to IAudioMediaAsset from void
-		 IAudioMediaAsset InsertByteBuffer(byte [] Buffer, long bytePosition) ;
+		 void InsertByteBuffer(byte [] Buffer, long bytePosition) ;
 
 
 		/// <summary>
@@ -77,7 +78,7 @@ get;
 		/// <param name="timePosition">The position inside the asset to insert at, in millesconds.</param>
 		/// /// // time position is excluding header length
 		/// return type is changed from void to IAudioMediaAsset
-		IAudioMediaAsset InsertByteBuffer(byte []  Buffer, double timePosition);
+		void InsertByteBuffer(byte []  Buffer, double timePosition);
 
 		/// <summary>
 		/// Get a byte buffer between two points in the asset.
@@ -109,7 +110,7 @@ get;
 		/// <param name="byteEndPosition">End position (in bytes.)</param>
 		/// /// // byte position is excluding header length
 		/// return type changed to IAudioMediaAsset from void
-		IAudioMediaAsset DeleteChunk(long byteBeginPosition, long byteEndPosition);
+		void DeleteChunk(long byteBeginPosition, long byteEndPosition);
 		
 		/// <summary>
 		/// Delete a byte buffer between two points in the asset.
@@ -120,7 +121,7 @@ get;
 		/// <param name="timeEndPosition">End position (in milliseconds.)</param>
 		/// /// // time position is excluding header length
 		/// // return type changed to IAudioMediaAsset from void
-		IAudioMediaAsset DeleteChunk(double timeBeginPosition, double timeEndPosition);
+		void DeleteChunk(double timeBeginPosition, double timeEndPosition);
 
 
 // Detect the maximum amplitude value in an prerecorded silent file.
@@ -141,20 +142,23 @@ long [] DetectPhrases (long SilVal, long PhraseLength , long BeforePhrase) ;
 		double [] DetectPhrases (long SilVal, double PhraseLength , double BeforePhrase) ;
 
 
-		
-//  adjust the positions according to frame size to avoid any overlapping of channels etc
-long AdaptToFrame  (long lVal);
+void InsertAudio ( long TargetBytePos, IAudioMediaAsset Source, long StartPos, long EndPos);
 
-// Decode the wave header to decimal format
-long ConvertToDecimal (int [] Ar);
+		void InsertAudio ( double TargetBytePos, IAudioMediaAsset Source, double StartPos, double EndPos);
 
-// Encode the Decimal format to wave header format
+		//  adjust the positions according to frame size to avoid any overlapping of channels etc
+		long AdaptToFrame  (long lVal);
+
+		// Decode the wave header to decimal format
+		long ConvertToDecimal (int [] Ar);
+
+		// Encode the Decimal format to wave header format
 		int [] ConvertFromDecimal (long lVal)  ;
 
-// Compare and checks the format of two audio streams for their compatibility
-bool CheckStreamsFormat(byte [] Buffer);
-
-// Compare and checks the format of audio assets  for compatibility
+		// Compare and checks the format of audio assets  for compatibility
 		bool CheckStreamsFormat(IAudioMediaAsset asset) ;
+
+
+		
 	}
 }

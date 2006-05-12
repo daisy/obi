@@ -134,11 +134,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "AudioManipulation.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "AudioMediaAsset.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

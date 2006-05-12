@@ -7,6 +7,8 @@ using Microsoft.DirectX;
 using Microsoft.DirectX.DirectSound;
 using Microsoft.DirectX.AudioVideoPlayback;
 using Microsoft.DirectX.DirectInput ;
+using UrakawaApplicationBackend.eventListeners ;
+using UrakawaApplicationBackend.events.audioPlayerEvents;
 
 namespace UrakawaApplicationBackend
 {
@@ -47,7 +49,7 @@ namespace UrakawaApplicationBackend
 				state = AudioPlayerState .stopped ;
 				m_PlayFile = true ;
 				m_FastPlay = false ;
-
+//AssociateEvents  () ;
 			}
 			else
 			{
@@ -55,7 +57,20 @@ namespace UrakawaApplicationBackend
 				
 			}
 		}
-
+/*
+// Create objects for triggering events
+StateChanged  ob_StateChanged = new StateChanged   () ;
+EndOfFile ob_EndOfFile = new EndOfFile() ;
+// create objects for handling events
+AudioPlayerEventListener  ob_AudioPlayerEventListener = new AudioPlayerEventListener   () ;
+		void AssociateEvents ()
+		{
+			
+			
+			ob_StateChanged.StateChangedEvent +=new DStateChangedEvent (ob_AudioPlayerEventListener.CatchEvent); 
+ob_EndOfFile.EndOfFileEvent +=new DEndOfFileEvent (ob_AudioPlayerEventListener.CatchEndOfFileEvent) ;
+		}
+*/
 // gets the current AudioPlayer state
 		public int State
 		{
@@ -177,6 +192,9 @@ return devList  ;
 		public void Play(IAudioMediaAsset asset )
 		{
 			m_Asset = asset ;
+
+//ob_StateChanged.TriggerEvent (state) ;
+			//ob_EndOfFile.TriggerEndOfFileEvent ( m_Asset.Path);
 
 InitPlay(0, 0) ;
 		}
@@ -374,7 +392,7 @@ CalculationFunctions calc = new CalculationFunctions () ;
 long lPosition = calc.ConvertTimeToByte (timeFrom, m_Asset .SampleRate, m_Asset .FrameSize) ;
 			lPosition = calc.AdaptToFrame(lPosition, m_Asset .FrameSize) ;
 
-			if(lPosition>0   && lPosition < m_Asset.LengthByte)
+			if(lPosition>0   && lPosition < m_Asset.AudioLengthBytes)
 			{
 				InitPlay ( lPosition, 0 );
 			}
@@ -398,7 +416,7 @@ long lByteTo = 0 ;
 			lByteTo = lEndPosition ;
 
 // check for valid arguments
-if (lStartPosition>0 && lStartPosition < lEndPosition && lEndPosition <= m_Asset.LengthByte)
+if (lStartPosition>0 && lStartPosition < lEndPosition && lEndPosition <= m_Asset.AudioLengthBytes)
 																						   {
 																							   InitPlay ( lStartPosition, lEndPosition );
 																						   }
