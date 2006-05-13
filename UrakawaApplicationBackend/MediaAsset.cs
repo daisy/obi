@@ -12,7 +12,7 @@ namespace UrakawaApplicationBackend
 		private string m_sFileName ;
 		private FileInfo m_flFile ;
 		protected long m_lSize ;
-		private string m_sMediaType ;
+		private TypeOfMedia m_MediaType ;
 
 //constructor
 		public MediaAsset (string sPath)
@@ -22,8 +22,8 @@ FileInfo m_flFile = new FileInfo(sPath) ;
 
 m_sFileName = m_flFile .Name ;
 			m_lSize = m_flFile .Length ;
-m_sMediaType = m_flFile .Extension ;
-			
+
+m_MediaType = 			GetMediaType (m_flFile .Extension ) ;
 		}
 
 		public string Name
@@ -70,12 +70,27 @@ m_lSize = value ;
 			}
 		}
 
-		public string MediaType
+		public TypeOfMedia  MediaType
 		{
 			get
 			{
-return m_sMediaType ;
+return m_MediaType ;
 			}
+		}
+
+		TypeOfMedia GetMediaType(string sExt)
+		{
+if (sExt == ".wav" || sExt == ".mp3")
+return TypeOfMedia.Audio ;
+	else if (sExt == ".txt")
+	return TypeOfMedia.Text ;
+else
+	return TypeOfMedia.Unknown ;
+		}
+
+		public  void Delete()
+		{
+
 		}
 
 		
