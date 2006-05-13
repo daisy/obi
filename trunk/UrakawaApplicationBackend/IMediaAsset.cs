@@ -3,6 +3,9 @@ using System.IO;
 
 namespace UrakawaApplicationBackend
 {
+// using enum for media type 1 is Audio 2 is text
+public 	enum TypeOfMedia {Audio, Text, Unknown} ;
+
 	/// <summary>
 	/// A media asset is an atomic unit of a given media (so far sound clip, but later on text, image, video...)
 	/// </summary>
@@ -21,7 +24,7 @@ namespace UrakawaApplicationBackend
 		/// MIME type of the asset. For instance, WAV files are audio/x-wav (? check this)
 		/// </summary>
 		/// //--type "type" is changed to "string"
-		string MediaType
+		TypeOfMedia MediaType
 		{
 			get;
 		}
@@ -58,7 +61,7 @@ namespace UrakawaApplicationBackend
 		/// Remove the asset from the project, and actually delete all corresponding resources.
 		/// Throw an exception if the asset could not be deleted.
 		/// </summary>
-		//void Delete();
+		void Delete();
 
 		/// <summary>
 		/// Validate the asset by performing an integrity check.
