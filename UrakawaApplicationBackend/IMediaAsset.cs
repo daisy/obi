@@ -63,11 +63,7 @@ public 	enum TypeOfMedia {Audio, Text, Unknown} ;
 		/// </summary>
 		void Delete();
 
-		/// <summary>
-		/// Validate the asset by performing an integrity check.
-		/// </summary>
-		/// <returns>True if the asset was found to be valid, false otherwise.</returns>
-		bool Validate();    
+
 
 	}
 

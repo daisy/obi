@@ -751,6 +751,7 @@ return ArrayReturn ;
 
 
 
+
 		// The function opens two files (target file and source file)simultaneously  and copies from one to other frame by frame
 		//This is done to reduce load on system memory as wave file may be as big as it go out of scope of RAM
 		// IAudioMediaAsset Target is destination file where the stream has to be inserted and  TargetBytePos is insertion position in bytes excluding header
@@ -852,6 +853,301 @@ BinaryWriter bw1 = new BinaryWriter (File.OpenWrite(m_sFilePath )) ;
 
 			InsertAudio ( lTargetPos, Source, lStartPos, lEndPos) ;
 		}
+		/// Validate the asset by performing an integrity check.
+		/// <returns>True if the asset was found to be valid, false otherwise.</returns>
+		
+		public bool Validate()    
+		{
+			
+			FileInfo FileName = new FileInfo(m_sFilePath);
+			m_sFileName = FileName.ToString();
+			FileStream fs = new FileStream(m_sFileName, FileMode.Open);
+			BinaryReader Reader = new BinaryReader(fs);
+			long RiffStartPos = Reader.BaseStream.Position ;
+			RiffStartPos = 0;
+			long RiffEndPpos = Reader.BaseStream.Position;
+			RiffEndPpos = 3;
+			string sRiff = string.Empty;
+			string rRiff = string.Empty;
+			for(long i = RiffStartPos; i<= RiffEndPpos ; i++)
+			{
+				sRiff = Reader.ReadChar().ToString();
+				rRiff = rRiff+sRiff;
+			}
+
+			long LenPos = Reader.BaseStream.Position;
+			LenPos = 4;
+			long LenEndPos = Reader.BaseStream.Position;
+			LenEndPos = 7;
+			int bLen = 0;
+			int brLen = 0;
+			
+			for(long i = LenPos; i <= LenEndPos ; i ++)
+			{
+				bLen = Reader.ReadByte();
+				brLen = brLen + bLen;
+			}
+
+			long WaveStartPos = Reader.BaseStream.Position;
+			WaveStartPos = 8;
+			long WaveEndPos = Reader.BaseStream.Position;
+			WaveEndPos = 11;
+			string sWave = string.Empty;
+			string rWave = string.Empty;
+			for(long i = WaveStartPos; i <= WaveEndPos ; i ++)
+			{
+				sWave = Reader.ReadChar().ToString();
+				rWave = rWave+sWave;
+			}
+
+			long fmtStartPos = Reader.BaseStream.Position;
+			fmtStartPos = 12;
+			long fmtEndPos = Reader.BaseStream.Position;
+			fmtEndPos = 15;
+			string sfmt = string.Empty;
+			string rfmt = string.Empty;
+			for(long i = fmtStartPos; i <= fmtEndPos ; i ++)
+			{
+				sfmt = Reader.ReadChar().ToString();
+				rfmt = rfmt+sfmt;
+			}
+
+			long fLenStartPos = Reader.BaseStream.Position;
+			fLenStartPos = 16;
+			long fLenEndPos = Reader.BaseStream.Position;
+			fLenEndPos = 19;
+			int fLen = 0;
+			int rfLen = 0;
+			for(long i = fLenStartPos; i <= fLenEndPos ; i ++)
+			{
+				fLen = Reader.ReadByte();
+				rfLen = rfLen + fLen;
+			}
+
+			long PadStartPos = Reader.BaseStream.Position;
+			PadStartPos = 20;
+			long PadEndPos = Reader.BaseStream.Position;
+			PadEndPos = 21;
+			int pLen = 0;
+			int rpLen = 0;
+			for(long i = PadStartPos; i <= PadEndPos ; i ++)
+			{
+				pLen = Reader.ReadByte();
+				rpLen = rpLen + pLen;
+			}
+			fs.Close();
+			if(rfLen == 16 || rRiff == "RIFF" && rWave == "WAVE" && rfmt== "fmt" && rpLen==1)
+			
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+
+
+
+
+
+		// The function opens two files (target file and source file)simultaneously  and copies from one to other frame by frame
+		//This is done to reduce load on system memory as wave file may be as big as it go out of scope of RAM
+		// IAudioMediaAsset Target is destination file where the stream has to be inserted and  TargetBytePos is insertion position in bytes excluding header
+		//IAudioMediaAsset Source is asset from which data is taken between Positions in bytes (StartPos and EndPos) , these are also excluding header length
+		public void InsertAudio ( long TargetBytePos, IAudioMediaAsset Source, long StartPos, long EndPos)
+		{
+			// checks the compatibility of formats of two assets and validity of parameters
+			if (CheckStreamsFormat (Source)== true&& TargetBytePos < (m_AudioLengthBytes ) && StartPos < EndPos && EndPos < Source.AudioLengthBytes )
+				// braces holds whole  function
+			{
+				// opens Target asset and Source asset for reading and create temp file for manipulation
+				BinaryReader brTarget = new BinaryReader (File.OpenRead(m_sFilePath))  ;
+				
+				BinaryReader brSource = new BinaryReader (File.OpenRead(Source.Path ))  ;
+
+				BinaryWriter bw = new BinaryWriter (File.Create(m_sFilePath + "tmp")) ;
+
+				// adapt positions to frame size
+				TargetBytePos = AdaptToFrame (TargetBytePos) + 44; 
+				StartPos = Source.AdaptToFrame(StartPos) + 44;
+				EndPos = Source.AdaptToFrame (EndPos) + 44;
+				int Step = FrameSize ;
+
+				// copies audio stream before the insertion point into temp file
+				bw.BaseStream.Position = 0 ;
+				brTarget.BaseStream.Position = 0 ;
+				long lCount = TargetBytePos ;
+				long i = 0 ;
+				for (i = 0 ; i < lCount ; i=i+Step) 
+				{
+					bw.Write(brTarget.ReadBytes(Step)) ;
+
+				}
+
+				// copies the audio stream data (between marked positions) from scource file  to temp file
+				brSource.BaseStream.Position = StartPos ;
+				lCount = lCount + (EndPos - StartPos) ;
+				for (i = i ; i< lCount ; i= i +Step)
+				{
+					bw.Write(brSource.ReadBytes(Step)) ;
+				}
+
+				// copies the remaining data after insertion point in Target asset into temp file
+				FileInfo file = new FileInfo (m_sFilePath) ;
+				lCount = file.Length - 44+ (EndPos - StartPos);
+
+				brTarget.BaseStream.Position = TargetBytePos;
+
+				for (i = i; i< lCount; i= i+Step)
+				{
+					try
+					{
+						bw.Write(brTarget.ReadBytes(Step)) ;
+					}
+					catch
+					{
+						MessageBox.Show("Problem   "+ i) ;
+					}
+				}
+
+
+				// close all the reading and writing objects
+				brTarget.Close() ;
+				brSource.Close() ;
+				bw.Close() ;
+
+				//  Delete the target file and rename the temp file to target file
+				FileInfo pfile = new FileInfo (m_sFilePath) ;
+				pfile.Delete () ;
+
+				FileInfo nfile = new FileInfo (m_sFilePath + "tmp") ;
+				nfile.MoveTo (m_sFilePath);
+
+
+				// Update lenth fields in header of temp file and also members of Target asset
+				FileInfo  filesize = new FileInfo (m_sFilePath) ;
+				m_lSize= filesize.Length;
+				
+BinaryWriter bw1 = new BinaryWriter (File.OpenWrite(m_sFilePath )) ;
+				UpdateLengthHeader (m_lSize, bw1) ;
+				bw1.Close() ;
+			}
+			else
+			{
+				MessageBox.Show("Can not manipulate. files are of different format or invalid input parameters passed") ;
+				
+			}
+
+			// End insert  function
+		}
+
+
+		// same as above function but take time position as parameter instead of byte position
+		public void InsertAudio (double timeTargetPos, IAudioMediaAsset Source, double timeStartPos, double timeEndPos)
+		{
+			long lTargetPos = ConvertTimeToByte (timeTargetPos) ;
+			long lStartPos = ConvertTimeToByte (timeStartPos) ;
+			long lEndPos = ConvertTimeToByte (timeEndPos) ;
+
+			InsertAudio ( lTargetPos, Source, lStartPos, lEndPos) ;
+		}
+
+		/// Validate the asset by performing an integrity check.
+		/// <returns>True if the asset was found to be valid, false otherwise.</returns>
+		
+		public bool ValidateAudio()    
+		{
+			
+			FileInfo FileName = new FileInfo(m_sFilePath);
+			m_sFileName = FileName.ToString();
+			FileStream fs = new FileStream(m_sFileName, FileMode.Open);
+			BinaryReader Reader = new BinaryReader(fs);
+			long RiffStartPos = Reader.BaseStream.Position ;
+			RiffStartPos = 0;
+			long RiffEndPpos = Reader.BaseStream.Position;
+			RiffEndPpos = 3;
+			string sRiff = string.Empty;
+			string rRiff = string.Empty;
+			for(long i = RiffStartPos; i<= RiffEndPpos ; i++)
+			{
+				sRiff = Reader.ReadChar().ToString();
+				rRiff = rRiff+sRiff;
+			}
+
+			long LenPos = Reader.BaseStream.Position;
+			LenPos = 4;
+			long LenEndPos = Reader.BaseStream.Position;
+			LenEndPos = 7;
+			int bLen = 0;
+			int brLen = 0;
+			
+			for(long i = LenPos; i <= LenEndPos ; i ++)
+			{
+				bLen = Reader.ReadByte();
+				brLen = brLen + bLen;
+			}
+
+			long WaveStartPos = Reader.BaseStream.Position;
+			WaveStartPos = 8;
+			long WaveEndPos = Reader.BaseStream.Position;
+			WaveEndPos = 11;
+			string sWave = string.Empty;
+			string rWave = string.Empty;
+			for(long i = WaveStartPos; i <= WaveEndPos ; i ++)
+			{
+				sWave = Reader.ReadChar().ToString();
+				rWave = rWave+sWave;
+			}
+
+			long fmtStartPos = Reader.BaseStream.Position;
+			fmtStartPos = 12;
+			long fmtEndPos = Reader.BaseStream.Position;
+			fmtEndPos = 15;
+			string sfmt = string.Empty;
+			string rfmt = string.Empty;
+			for(long i = fmtStartPos; i <= fmtEndPos ; i ++)
+			{
+				sfmt = Reader.ReadChar().ToString();
+				rfmt = rfmt+sfmt;
+			}
+
+			long fLenStartPos = Reader.BaseStream.Position;
+			fLenStartPos = 16;
+			long fLenEndPos = Reader.BaseStream.Position;
+			fLenEndPos = 19;
+			int fLen = 0;
+			int rfLen = 0;
+			for(long i = fLenStartPos; i <= fLenEndPos ; i ++)
+			{
+				fLen = Reader.ReadByte();
+				rfLen = rfLen + fLen;
+			}
+
+			long PadStartPos = Reader.BaseStream.Position;
+			PadStartPos = 20;
+			long PadEndPos = Reader.BaseStream.Position;
+			PadEndPos = 21;
+			int pLen = 0;
+			int rpLen = 0;
+			for(long i = PadStartPos; i <= PadEndPos ; i ++)
+			{
+				pLen = Reader.ReadByte();
+				rpLen = rpLen + pLen;
+			}
+			fs.Close();
+			if(rfLen == 16 || rRiff == "RIFF" && rWave == "WAVE" && rfmt== "fmt" && rpLen==1)
+			
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		//End Validate
 
 
 // class ends here

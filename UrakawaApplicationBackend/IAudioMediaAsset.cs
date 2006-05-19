@@ -158,6 +158,12 @@ void InsertAudio ( long TargetBytePos, IAudioMediaAsset Source, long StartPos, l
 		// Compare and checks the format of audio assets  for compatibility
 		bool CheckStreamsFormat(IAudioMediaAsset asset) ;
 
+		/// <summary>
+		/// Validate the asset by performing an integrity check.
+		/// </summary>
+		/// <returns>True if the asset was found to be valid, false otherwise.</returns>
+		bool ValidateAudio();    
+
 
 		
 	}
