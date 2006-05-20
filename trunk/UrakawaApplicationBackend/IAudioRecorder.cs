@@ -51,7 +51,7 @@ namespace UrakawaApplicationBackend
 		/// Get and set the bit depth (8 or 16) for recording.
 		/// Throw an exception in case of illegal value.
 		/// </summary>
-		int BitDepth
+		short BitDepth
 		{
 			get;
 			set;

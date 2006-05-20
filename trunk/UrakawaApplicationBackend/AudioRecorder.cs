@@ -35,7 +35,65 @@ namespace UrakawaApplicationBackend
 		private int nFormatChunkLength;
 		private FileStream WaveFile;
 		string m_sFileName;
-		CtAssetManager m_assetManager  = new AssetManager();
+		AssetManager m_assetManager  = new AssetManager();
+		private WaveFormat DefaultFormat;
+		private short m_bitDepth;
+		private int m_SamplesPerSecond;
+		private int m_iChannels;	
+
+
+
+		// this is used to get the default values for the channels as 1, 
+		//BitDepth = 16
+		// and SamplesPersecond as 44100
+		public void DefaultValues()
+		{
+			int m_iBitDepthIndex = 9;
+			DefaultFormat = GetInputFormat(m_iBitDepthIndex);
+			m_bitDepth = DefaultFormat.BitsPerSample;
+			m_iChannels = DefaultFormat.Channels;
+			m_SamplesPerSecond = DefaultFormat.SamplesPerSecond;
+		}
+
+		//this property is used for SamplesPerSEcond as 44100	
+		// this will use DefaultValues()
+		public int SamplesPerSecond
+		{
+			get
+			{
+				return m_SamplesPerSecond;
+			}
+			set
+			{
+				m_SamplesPerSecond = value;
+			}
+		}
+		// this will set the bit depth as 16 through DefaultValues()
+		public short BitDepth
+		{
+			get
+			{
+				return m_bitDepth;
+			}
+			set
+			{
+				m_bitDepth = value;
+			}
+		}
+		//this will set the number of channels to 1 through  DefaultValues()
+		public int Channels
+		{
+			get
+			{
+				return m_iChannels;
+			}
+			set
+			{
+				m_iChannels = value;
+			}
+		}
+
+
 
 
 
@@ -52,11 +110,11 @@ namespace UrakawaApplicationBackend
 
 		//returns the guid of the selected device, in this case the default 
 		//device guid has been returned
-			public Guid SetInputDeviceGuid()
+		public Guid SetInputDeviceGuid()
 		{
 			CaptureDevicesCollection devices = new CaptureDevicesCollection();
 			m_aGuid = GetInputDevice();
-		m_gCaptureDeviceGuid = devices[1].DriverGuid;
+			m_gCaptureDeviceGuid = devices[1].DriverGuid;
 			return m_gCaptureDeviceGuid;
 		}
 		
@@ -71,7 +129,7 @@ namespace UrakawaApplicationBackend
 			m_cApplicationDevice = new Capture(m_gCaptureDeviceGuid);
 			return m_cApplicationDevice;
 		}
-// structure for format information
+		// structure for format information
 		private struct FormatInfo
 		{
 			public WaveFormat format;
@@ -113,8 +171,8 @@ namespace UrakawaApplicationBackend
 			m_wFormat.BlockAlign = (short)(m_wFormat.Channels * (m_wFormat.BitsPerSample / 8)); 
 			// AverageBytesPerSecond Retrieves and sets the required average data-transfer rate, in bytes per second, for the format type.			
 			m_wFormat.AverageBytesPerSecond = m_wFormat.BlockAlign * m_wFormat.SamplesPerSecond;
-}
-//collects the list of all the formats in an ArrayList and returns the ArrayList
+		}
+		//collects the list of all the formats in an ArrayList and returns the ArrayList
 		public ArrayList GetFormatList()
 		{
 			FormatInfo  info			= new FormatInfo();			
@@ -145,8 +203,8 @@ namespace UrakawaApplicationBackend
 			m_sFileName  = m_assetManager.GenerateFileName(wav, m_sDirPath);
 			return m_sFileName;
 		}
-				// create a wavefile with all the basic of riff information
-				// only the data lenghts will be be filled in later
+		// create a wavefile with all the basic of riff information
+		// only the data lenghts will be be filled in later
 		public void CreateRIFF(string FileName, string sProjectDir)
 		{
 			// Open up the wave file for writing.
@@ -308,40 +366,11 @@ namespace UrakawaApplicationBackend
 			}
 		}
 
-		public int Channels
-		{
-			get
-			{
-				return 1;
-			}
-			set
-			{
-			}
-		}
+		
 
-		public int SampleRate
-		{
-			get
-			{
-				return 44100;
-			}
-			set
-			{
-			}
-		}
+		
 
-		public int BitDepth
-		{
-			get
-			{
-				return 16;
-			}
-			set
-			{
-
-			}
-		}
-
+		
 		public AudioRecorderState State
 		{
 			get
@@ -356,8 +385,8 @@ namespace UrakawaApplicationBackend
 
 		
 			
-		}
 	}
+}
 
 	
 
