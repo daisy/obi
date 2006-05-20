@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using Microsoft.DirectX;
+using System.Threading;
+using System.IO;
 using Microsoft.DirectX.DirectSound;
 namespace UrakawaApplicationBackend
 {
@@ -15,69 +17,30 @@ namespace UrakawaApplicationBackend
 		private Guid m_gCaptureDeviceGuid = Guid.Empty;  
 		private bool[] m_bInputFormatSupported = new bool[12];
 		private ArrayList m_aformats= new ArrayList();
-		
-		public Device InputDevice
-		{
-			get
-			{
-				return null;
-			}
-			set
-			{
-			}
-		}
+		private int m_iIndex;
+		private BufferPositionNotify[] PositionNotify = new BufferPositionNotify[NumberRecordNotifications + 1];  
+		private const int NumberRecordNotifications	= 16;
+		private AutoResetEvent NotificationEvent	= null;
+		private CaptureBuffer applicationBuffer ;
+		private Notify applicationNotify ;
+		private Thread NotifyThread ;
+		private BinaryWriter Writer ;
+		private int m_iNextCaptureOffset ;
+		private bool Recording = false;
+		private WaveFormat InputFormat;
+		private int m_iSampleCount ;
+		private bool Capturing ;
+		private int nLength ; // File length, minus first 8 bytes of RIFF description. This will be filled in later.
+		private short shBytesPerSample ; // Bytes per sample.
+		private int nFormatChunkLength;
+		private FileStream WaveFile;
+		string m_sFileName;
+		CtAssetManager m_assetManager  = new AssetManager();
 
-		public int Channels
-		{
-			get
-			{
-				return 1;
-			}
-			set
-			{
-			}
-		}
 
-		public int SampleRate
-		{
-			get
-			{
-				return 44100;
-			}
-			set
-			{
-			}
-		}
-
-		public int BitDepth
-		{
-			get
-			{
-				return 16;
-			}
-			set
-			{
-			}
-		}
-
-		public AudioRecorderState State
-		{
-			get
-			{
-				return AudioRecorderState.Idle;
-			}
-		}
-
-		public void Record(IAudioMediaAsset asset)
-		{
-		}
-
-		public void Stop()
-		{
-		}
 
 		// returns a list of input devices
-		public ArrayList GetInputDevices()
+		public ArrayList GetInputDevice()
 		{
 			CaptureDevicesCollection devices = new CaptureDevicesCollection();  // gathers the available capture devices
 			foreach (DeviceInformation info in devices)
@@ -92,8 +55,8 @@ namespace UrakawaApplicationBackend
 			public Guid SetInputDeviceGuid()
 		{
 			CaptureDevicesCollection devices = new CaptureDevicesCollection();
-			m_aGuid = GetInputDevices();
-			m_gCaptureDeviceGuid = devices[1].DriverGuid;
+			m_aGuid = GetInputDevice();
+		m_gCaptureDeviceGuid = devices[1].DriverGuid;
 			return m_gCaptureDeviceGuid;
 		}
 		
@@ -176,9 +139,226 @@ namespace UrakawaApplicationBackend
 			return Info.format;
 		}
 		
+		
+		public string ToGetFileName(string m_sDirPath)
+		{
+			m_sFileName  = m_assetManager.GenerateFileName(wav, m_sDirPath);
+			return m_sFileName;
+		}
+				// create a wavefile with all the basic of riff information
+				// only the data lenghts will be be filled in later
+		public void CreateRIFF(string FileName, string sProjectDir)
+		{
+			// Open up the wave file for writing.
+			InputFormat = GetInputFormat(m_iIndex);
+			FileName = ToGetFileName(sProjectDir);
+			WaveFile = new FileStream(FileName, FileMode.Create);	
+			Writer = new BinaryWriter(WaveFile);
+			// Set up file with RIFF chunk info.
+			char[] ChunkRiff = {'R','I','F','F'};
+			char[] ChunkType = {'W','A','V','E'};
+			char[] ChunkFmt	= {'f','m','t',' '};
+			char[] ChunkData = {'d','a','t','a'};
+			short shPad = 1; // File padding
+			nLength = 0;
+			int nFormatChunkLength = 0x10; 
+			// Format chunk length.
+			// Figure out how many bytes there will be per sample.
+			if (8 == InputFormat.BitsPerSample && 1 == InputFormat.Channels)
+				shBytesPerSample = 1;
+			else if ((8 == InputFormat.BitsPerSample && 2 == InputFormat.Channels) || (16 == InputFormat.BitsPerSample && 1 == InputFormat.Channels))
+				shBytesPerSample = 2;
+			else if (16 == InputFormat.BitsPerSample && 2 == InputFormat.Channels)
+				shBytesPerSample = 4;
+			// Fill in the riff info for the wave file.
+			Writer.Write(ChunkRiff);
+			Writer.Write(nLength);
+			Writer.Write(ChunkType);
+			// Fill in the format info for the wave file.
+			Writer.Write(ChunkFmt);
+			Writer.Write(nFormatChunkLength);
+			Writer.Write(shPad);
+			Writer.Write(InputFormat.Channels);
+			Writer.Write(InputFormat.SamplesPerSecond);
+			Writer.Write(InputFormat.AverageBytesPerSecond);
+			Writer.Write(shBytesPerSample);
+			Writer.Write(InputFormat.BitsPerSample);
+			// Now fill in the data chunk.
+			Writer.Write(ChunkData);
+			Writer.Write((int)0);	// The sample length will be written in later
+			
+		}
+
+		public  CaptureBuffer   GetCaptureBufferFromIndex(int Index)
+		{
+			CaptureBufferDescription dsc = new CaptureBufferDescription(); 
+			if (null != applicationBuffer)
+			{
+				applicationBuffer.Dispose();
+				applicationBuffer = null;
+			}
+			InputFormat = GetInputFormat(Index);
+							
+			m_iNotifySize = (1024 > InputFormat.AverageBytesPerSecond / 8) ? 1024 : (InputFormat.AverageBytesPerSecond / 8);
+			m_iNotifySize -= m_iNotifySize % InputFormat.BlockAlign;   
+			// Set the buffer sizes
+			m_iCaptureBufferSize = m_iNotifySize * NumberRecordNotifications;
+			// Create the capture buffer
+			dsc.BufferBytes = m_iCaptureBufferSize;
+			InputFormat.FormatTag = WaveFormatTag.Pcm;
+			dsc.Format = InputFormat; // Set the format during creatation
+			m_cApplicationDevice= InitDirectSound();
+			applicationBuffer = new CaptureBuffer(dsc, m_cApplicationDevice);
+			return applicationBuffer;
+		}
+		public void CreateCaptureBuffer()
+		{
+			
+			// Desc: Creates a capture buffer and sets the format 
+			if (null != applicationNotify)
+			{
+				applicationNotify.Dispose();
+				applicationNotify = null;
+			}	
+			InputFormat = GetInputFormat(m_iIndex);
+			m_iNotifySize = (1024 > InputFormat.AverageBytesPerSecond / 8) ? 1024 : (InputFormat.AverageBytesPerSecond / 8);
+			m_iNotifySize -= m_iNotifySize % InputFormat.BlockAlign;   
+			applicationBuffer = GetCaptureBufferFromIndex(m_iIndex);
+			InitNotifications();
+		}
+		public void InitNotifications()
+		{
+			// Name: InitNotifications()
+			// Desc: Inits the notifications on the capture buffer which are handled
+			//       in the notify thread.
+			if (null == applicationBuffer)
+				throw new NullReferenceException();
+			//Create a thread to monitor the notify events
+			if (null == NotifyThread)
+			{
+				NotifyThread = new Thread(new ThreadStart(WaitThread));										 			
+				Capturing = true;
+				NotifyThread.Start();
+				// Create a notification event, for when the sound stops playing
+				NotificationEvent = new AutoResetEvent(false);
+			}
+			// Setup the notification positions
+			for (int i = 0; i < NumberRecordNotifications; i++)
+			{
+				PositionNotify[i].Offset = (m_iNotifySize * i) + m_iNotifySize - 1;
+				PositionNotify[i].EventNotifyHandle = NotificationEvent.Handle;
+			}
+			applicationNotify = new Notify(applicationBuffer);
+			// Tell DirectSound when to notify the app. The notification will come in the from 
+			// of signaled events that are handled in the notify thread.
+			applicationNotify.SetNotificationPositions(PositionNotify, NumberRecordNotifications);
+		}
+		private void WaitThread()
+		{
+
+		
+		
+			while(Capturing)
+			{
+				//Sit here and wait for a message to arrive
+				NotificationEvent = new AutoResetEvent(false);
+				NotificationEvent.WaitOne(Timeout.Infinite, true);
+				//waits for infinite time span before recieving a signal
+				RecordCapturedData();
+			}
+		}
+		public void RecordCapturedData( ) 
+		{
+			// Desc: Copies data from the capture buffer to the output buffer 
+			int ReadPos ;
+			int CapturePos ;
+			int LockSize ;
+
+				
+			applicationBuffer.GetCurrentPosition(out CapturePos, out ReadPos);
+			LockSize = ReadPos - m_iNextCaptureOffset;
+			if (LockSize < 0)
+				LockSize += m_iCaptureBufferSize;
+			// Block align lock size so that we are always write on a boundary
+			LockSize -= (LockSize % m_iNotifySize);
+			if (0 == LockSize)
+				return;
+			// Read the capture buffer.
+			CaptureData = (byte[])applicationBuffer.Read(m_iNextCaptureOffset, typeof(byte), LockFlag.None, LockSize);
+			// Write the data into the wav file");
+			Writer = new BinaryWriter(WaveFile			);
+			Writer.Write(CaptureData, 0, CaptureData.Length);
+			// Update the number of samples, in bytes, of the file so far.
+			m_iSampleCount += CaptureData.Length;
+			// Move the capture offset along
+			m_iNextCaptureOffset += CaptureData.Length; 
+			m_iNextCaptureOffset %= m_iCaptureBufferSize; // Circular buffer
+		}
+		
+
+		
+		public Device InputDevice
+		{
+			get
+			{
+				return null;
+			}
+			set
+			{
+			}
+		}
+
+		public int Channels
+		{
+			get
+			{
+				return 1;
+			}
+			set
+			{
+			}
+		}
+
+		public int SampleRate
+		{
+			get
+			{
+				return 44100;
+			}
+			set
+			{
+			}
+		}
+
+		public int BitDepth
+		{
+			get
+			{
+				return 16;
+			}
+			set
+			{
+
+			}
+		}
+
+		public AudioRecorderState State
+		{
+			get
+			{
+				return AudioRecorderState.Idle;
+			}
+		}
+
+			
+
+
+
+		
 			
 		}
 	}
 
 	
+
 
