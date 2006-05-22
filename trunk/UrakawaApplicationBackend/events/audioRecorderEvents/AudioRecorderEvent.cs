@@ -4,7 +4,7 @@ using System.Text;
 
 namespace UrakawaApplicationBackend.events.audioRecorderEvents
 {
-    class AudioRecorderEvent : Event
+    public class AudioRecorderEvent : EventArgs
     {
     }
 }

@@ -7,7 +7,6 @@ using Microsoft.DirectX;
 using Microsoft.DirectX.DirectSound;
 using Microsoft.DirectX.AudioVideoPlayback;
 using Microsoft.DirectX.DirectInput ;
-using UrakawaApplicationBackend.eventListeners ;
 using UrakawaApplicationBackend.events.audioPlayerEvents;
 
 namespace UrakawaApplicationBackend

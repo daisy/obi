@@ -4,24 +4,28 @@ using System.Text;
 
 namespace UrakawaApplicationBackend.events.audioPlayerEvents
 {
-	//these are just some suggestions for states
-	enum AudioPlayerState {Playing, Idle, Initializing, Stopped};
-
-    class StateChanged : AudioPlayerEvent
+	/// <summary>
+	/// The state of the audio player changed.
+	/// </summary>
+    public class StateChanged : AudioPlayerEvent
     {
-		private AudioPlayerState mState;
+		private AudioPlayerState mOldState;  // the previous state of the player. The current state of the player is readily available.
 
-		public StateChanged(AudioPlayerState newState)
-		{
-			mState = newState;
-		}
-
-		public AudioPlayerState State
+		public AudioPlayerState OldState
 		{
 			get
 			{
-				return mState;
+				return mOldState;
 			}
+		}
+		
+		/// <summary>
+		/// Create a new StateChanged event.
+		/// </summary>
+		/// <param name="oldState">The state of the player before the change.</param>
+		public StateChanged(AudioPlayerState oldState)
+		{
+			mOldState = oldState;
 		}
     }
 }

@@ -4,8 +4,11 @@ using System.Text;
 
 namespace UrakawaApplicationBackend.events.audioPlayerEvents
 {
-    class AudioPlayerEvent : Event
+	/// <summary>
+	/// The base class for the asset manager events.
+	/// </summary>
+    public class AudioPlayerEvent : EventArgs
     {
-        
+		// future versions will be able to have custom data.        
     }
 }
