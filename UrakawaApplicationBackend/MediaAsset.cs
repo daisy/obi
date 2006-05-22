@@ -9,7 +9,7 @@ namespace UrakawaApplicationBackend
 	public class MediaAsset: IMediaAsset
 	{
 		public string m_sFilePath ;
-		private string m_sFileName ;
+		protected string m_sFileName ;
 		private FileInfo m_flFile ;
 		protected long m_lSize ;
 		private TypeOfMedia m_MediaType ;

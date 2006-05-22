@@ -4,22 +4,28 @@ using System.Text;
 
 namespace UrakawaApplicationBackend.events.assetManagerEvents
 {
-    class AssetDeleted : AssetManagerEvent
+	/// <summary>
+	/// An asset was deleted in the asset manager.
+	/// </summary>
+	public class AssetDeleted : AssetManagerEvent
     {
-		private string mEventName;
+		private IMediaAsset mAsset;  // the asset that was deleted
 
-		public AssetDeleted(string eventName)
-		{
-			mEventName = eventName;
-		}
-
-		public string EventName
+		public IMediaAsset Asset
 		{
 			get
 			{
-				return mEventName;
+				return mAsset;
 			}
-	
 		}
-    }
+
+		/// <summary>
+		/// Create a new AssetDeleted event.
+		/// </summary>
+		/// <param name="asset">The asset that was deleted.</param>
+		public AssetDeleted(IMediaAsset asset)
+		{
+			mAsset = asset;
+		}
+	}
 }

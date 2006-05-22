@@ -5,7 +5,7 @@ using System.Text;
 namespace UrakawaApplicationBackend.events.vuMeterEvents
 {
     //a generic event risen by VuMeter
-    class VuMeterEvent : Event
+    class VuMeterEvent : EventArgs
     {
         
     }

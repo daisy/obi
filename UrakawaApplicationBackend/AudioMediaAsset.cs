@@ -956,7 +956,7 @@ BinaryWriter bw1 = new BinaryWriter (File.OpenWrite(m_sFilePath )) ;
 		//This is done to reduce load on system memory as wave file may be as big as it go out of scope of RAM
 		// IAudioMediaAsset Target is destination file where the stream has to be inserted and  TargetBytePos is insertion position in bytes excluding header
 		//IAudioMediaAsset Source is asset from which data is taken between Positions in bytes (StartPos and EndPos) , these are also excluding header length
-		public void InsertAudio ( long TargetBytePos, IAudioMediaAsset Source, long StartPos, long EndPos)
+		public void InsertAudioByte ( long TargetBytePos, IAudioMediaAsset Source, long StartPos, long EndPos)
 		{
 			// checks the compatibility of formats of two assets and validity of parameters
 			if (CheckStreamsFormat (Source)== true&& TargetBytePos < (m_AudioLengthBytes ) && StartPos < EndPos && EndPos < Source.AudioLengthBytes )
@@ -1045,7 +1045,7 @@ BinaryWriter bw1 = new BinaryWriter (File.OpenWrite(m_sFilePath )) ;
 
 
 		// same as above function but take time position as parameter instead of byte position
-		public void InsertAudio (double timeTargetPos, IAudioMediaAsset Source, double timeStartPos, double timeEndPos)
+		public void InsertAudioTime (double timeTargetPos, IAudioMediaAsset Source, double timeStartPos, double timeEndPos)
 		{
 			long lTargetPos = ConvertTimeToByte (timeTargetPos) ;
 			long lStartPos = ConvertTimeToByte (timeStartPos) ;

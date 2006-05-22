@@ -142,9 +142,9 @@ long [] DetectPhrases (long SilVal, long PhraseLength , long BeforePhrase) ;
 		double [] DetectPhrases (long SilVal, double PhraseLength , double BeforePhrase) ;
 
 
-void InsertAudio ( long TargetBytePos, IAudioMediaAsset Source, long StartPos, long EndPos);
-
-		void InsertAudio ( double TargetBytePos, IAudioMediaAsset Source, double StartPos, double EndPos);
+		// Apparently the compiler doesn't like it if these two methods have the same name 
+		void InsertAudioByte (long TargetBytePos, IAudioMediaAsset Source, long StartPos, long EndPos);
+		void InsertAudioTime (double TargetBytePos, IAudioMediaAsset Source, double StartPos, double EndPos);
 
 		//  adjust the positions according to frame size to avoid any overlapping of channels etc
 		long AdaptToFrame  (long lVal);

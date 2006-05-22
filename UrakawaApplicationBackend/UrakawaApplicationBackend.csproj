@@ -149,11 +149,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "EventController.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "IAssetManager.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -209,31 +204,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "eventListeners\IAssetManagerEventListener.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "eventListeners\IAudioPlayerEventListener.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "eventListeners\IAudioRecorderEventListener.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "eventListeners\IVuMeterEventListener.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "events\Event.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "events\assetManagerEvents\AssetDeleted.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -254,7 +224,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "events\audioPlayerEvents\EndOfFile.cs"
+                    RelPath = "events\audioPlayerEvents\EndOfAudioData.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
