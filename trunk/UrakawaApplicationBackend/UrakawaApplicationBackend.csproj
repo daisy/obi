@@ -169,21 +169,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "IEvent.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IEventController.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "IEventListener.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "IMediaAsset.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
