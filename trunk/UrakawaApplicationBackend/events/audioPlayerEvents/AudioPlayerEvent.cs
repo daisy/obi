@@ -5,7 +5,7 @@ using System.Text;
 namespace UrakawaApplicationBackend.events.audioPlayerEvents
 {
 	/// <summary>
-	/// The base class for the asset manager events.
+	/// The base class for the audio player events.
 	/// </summary>
     public class AudioPlayerEvent : EventArgs
     {
