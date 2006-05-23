@@ -1,12 +1,16 @@
 Obi feature list / Iteration 1
 $Id$
 
-This document lists the features of the application and their completion
-status. They are numbered by category from A to F. Numbering is arbitrary.
 
-Don't forget about:
-- Physical vs. logical edits
-- Commands
+Introduction
+
+  This document lists the features of the application and their completion
+  status. They are numbered by category from A to G. Numbering is arbitrary.
+
+  Don't forget about:
+
+  - Physical vs. logical edits
+  - Commands
 
 
 A. Project/User management
@@ -18,7 +22,7 @@ A. Project/User management
   * A project on disk will consist of a XUK file and a directory containing
   the audio files and extra data.
 
-  1. Create/import/export
+  A.1. Create/import/export
 
   A001: Create a blank project.
         An new, empty project is created. Try to fill as much metadata as
@@ -40,7 +44,7 @@ A. Project/User management
         the scope of the toolkit (so no worry for the façade API at this
         stage.)
 
-  2. User profile
+  A.2. User profile
 
   * Have a user profile. The user profile allows to fill the bibliographic
   metadata easily. Generate the author name, publisher (author's
@@ -73,63 +77,179 @@ B. Strips management
   * The strips are in the same order as the navpoints.
   * The strips are indented by the level of their corresponding navpoint.
 
-  1. Strips (in general)
+  B.1. Strips and blocks (in general)
 
-  * A strip has a label
-  * A strip has a selection handle
-  * A strip has a sizing handle
+  * A strip has an editable label.
+  * A strip has a selection handle to select the whole strip.
+  * A strip has a sizing handle.
+  * A strip has blocks of data that are all of the same kind.
+  * There are three kinds of strips:
+      1. Continuous: data has an intrisic duration (e.g. audio, video.) The
+      beginning of a continuous block can be used as a synchronization
+      point. Visual note: the size of a block is proportional to its length.
+      There can be gaps between blocks but they cannot overlap.
+      2. Discrete: data has no instrisic duration (e.g. structure item,
+      text, image.) Labels are also discrete, but they are not part of the
+      presentation. Blocks can be placed anywhere in the strip, but they are
+      "attracted" to synchronization point. Visual display: blocks have a
+      size that is proportional to the content that they display. They can
+      be placed anywhere in the strip and can overlap (i.e. there may be
+      several lines of blocks in the strip.)
+      3. Empty: there is no data (e.g. scale strips.)
+  * A block can be synchronized, unsynchronized, or external (not part of
+  the presentation, but still in the project, like unused audio and labels.)
+  * Specific strips can override the behavior described here. Some features
+  do not apply to this iteration.
 
-  2. Container strips (= par)
+  B.1.1. Strips
 
+  B001: Create a new empty strip.
+        A new strip is created with a given label. It has no data. A default
+        label can be provided (e.g. "Audio strip n".)
+
+  B002: Delete a strip.
+        The strip and its data are removed from the project, provided that
+        this leaves the project in a valid state.
+
+  B003: Edit label.
+        The label must not be an empty string.
+
+  B.1.2. Continuous blocks
+
+  B004: Append continuous block.
+  B005: Insert continuous block.
+  B006: Delete continuous block.
+  B007: Exclude a continuous block.
+  B008: Include a continuous block.
+  B009: Move continuous block.
+  B010: Split continuous block.
+  B011: Merge continuous blocks.
+  B012: Edit data in continuous block.
+
+  B.1.3. Discrete blocks
+
+  B013: Append discrete block.
+  B014: Insert discrete block.
+  B015: Delete discrete block.
+  B016: Exclude a discrete block.
+  B017: Include a discrete block.
+  B018: Move discrete block.
+  B019: Align discrete block with synchronization point.
+  B020: Edit data in discrete block.
+
+  B.2. Container strips (= par)
+
+  * The container strip is a special kind of strip, as it contains other
+  strip, but not blocks proper.
   * A container strip always contains a navigation strip.
   * A container strip always contains a single audio strip.
   * A container strip may contain a single label strip.
   * A container strip may contain a single scale strip.
   * We put these restrictions so that we avoid cluttering the interface and
   confusing the user.
+  * The container strip shows synchronization points across all strips
+  corresponding to the beginning of every continuous block in the strip.
+  * Strips themselves are not included/excluded, only their blocks.
 
-  B001: Create a new container strip for 
+  B021: Create a new container strip from an existing navigation point.
         A new container strip is created. It initially contains a navigation
-        strip (see B002 below) and an audio strip (see B004 below.) In order
-        to create the navigation strip, a navpoint has to be created first.
+        strip (see B026 below) and an audio strip (see Bxxx below.) 
 
-  Bxxx: Add a label strip.
-        If the strip has no lable strip yet, a new label strip is created
+  B022: Add a label strip.
+        If the strip has no label strip yet, a new label strip is created
         and added to the container.
 
-  Bxxx: Add a scale strip.
+  B023: Delete the label strip.
+        The label strip can be removed at any time.
+
+  B024: Add a scale strip.
         If the strip has no scale strip yet, a new scale strip is created
         and added to the container.
 
-  3. Navigation strips
+  B025: Delete the scale strip.
+        The scale strip can be removed at anytime.
 
+  B.3. Navigation strips and navigation items (navpoint and pagetarget)
+
+  * The navigation strip contains discrete navigation items.
   * A navigation strip has a single navpoint (corresponding to a navpoint in
   the NCX.), then zero or more pagetargets. Navtargets appear only in the
   NCX part.
+  * The navpoint cannot be deleted or excluded from the project.
+  * The navpoint is always aligned with the first synchronization point of
+  the strip. If there is no synchronization point available, it appears at
+  the beginning of the strip.
 
-  B002: Create a navigation strip from an existing navigation point.
+  B026: Create a navigation strip from an existing navigation point.
+        A new navigation strip is created. It has a navpoint at its
+        beginning and no other target yet.
+
+  B023: Append a page target.
+        A new page target is added to the strip after the last navigation
+        item at the first synchronization point available, or somewhere
+        after the last item if there is no such point. The page is not
+        marked as synchronized.
+        
+  B024: Delete a page target.
+        A page target can always be deleted.
+
+  B025: Exclude a page target.
+        A page target can always be excluded from the project.
+
+  B026: Include a page target.
+        A previously included page target can always be included back into
+        the project.
 
   4. Audio strips and phrases
+
+  * The audio strip contains audio data, shown as a wave form. The wave form
+  is segmented into phrases, either manually or automatically. There are
+  three kinds of phrases:
+    1. Synchronized: the phrase is synchronized with text (in this
+    iteration, that means either a navpoint or a page.)
+    2. Unsynchronized: a simple phrase that is part of the book but not
+    synchronized with anything. It is accessible through playing and local
+    navigation.
+    3. Unused: the phrase is kept in the project but is not part of the
+    book.
+  * The beginning of every phrase is a potential synchronization point.
+
   
-  B003: Create a new audio strip.
+  Bxxx: Create a new audio strip.
         A new, empty audio strip is created.
 
   5. Label strips
 
+  * Label strips are discrete.
+  * Label blocks are external.
+
   Bxxx: Create a new label strip.
 
+  Bxxx: Delete a label strip.
+        A label strip can always be deleted.
+
+  Bxxx: Append a new label.
+        A new label is created and appended to the strip. The exact location
+        of the label is irrelevant but it should appear after all other
+        labels in the strip.
+
   6. Scale strips
+
+  * Scale strips are empty.
 
   7. Strip manager
 
   * The strip manager maintains a list of strips.
 
-  B001: Append a new container strip.
+  Bxxx: Append a new container strip.
         A container strip is created. It is added at the end of the list of
-        strips. Before the strip is created, a new navpoint is added 
+        strips. Before the strip is created, a new navpoint is appended (see
+        NCX below to see how new navpoints are created.)
 
   Bxxx: Insert a new strip.
         The strip is inserted at a position chosen by the user.
+
+  Bxxx: Delete a strip.
 
 
 C. Audio engine and asset manager
@@ -137,21 +257,29 @@ C. Audio engine and asset manager
   * See the AudioBackEnd project for details.
   * Events are provided by C#.
 
-  1. Assets, Audio assets and Asset manager
+  C.1. Assets, Audio assets and Asset manager
 
   * In this iteration there are only audio assets.
 
-  2. Audio player
+  C.2. Audio player
 
-  3. Audio recorder
+  C.3. Audio recorder
 
-  4. VU Meter
+  C.4. VU Meter
 
 
 D. NCX editor
 
   * The NCX editor has a tree view of the table of contents (navmap and
   navlists) of the project.
+
+  D.1. NCX metadata
+
+  D.2. Navmap
+
+  D.3. Page list
+
+  D.4. Navlists
 
 
 E. Metadata editor and viewer
@@ -160,7 +288,7 @@ E. Metadata editor and viewer
   edited by the user, using its profile or other sources for default values
   when applicable. The generated metadata can be viewed.
 
-  1. Dublin Core metadata
+  E.1. Dublin Core metadata
   
   * Skipped: dc:Type, dc:Coverage.
 
@@ -235,7 +363,7 @@ E. Metadata editor and viewer
   E016: Change the language of any piece of (DC) metadata.
         All meta attributes can have a language attribute (xml:lang.)
 
-  2. DTB metadata
+  E.2. DTB metadata
 
   E017: Set source date.
         [dtb:sourceDate] Optional, not repeatable. YYYY[-MM[-DD]].
@@ -292,39 +420,14 @@ E. Metadata editor and viewer
 
 F. GUI
 
-  1. Project and user management
-
-  F001: File->New menu item.
-        See A001. If a project is currently open, it must be closed first, so
-        ask the user if she wants to save/discard/cancel when creating a new
-        project.
-  
-  F002: File->Open menu item.
-        See A002.
-
-  F003: File->Save menu item.
-        See A003.
-
-  F004: File->Save as menu item.
-        See A003.
-
-  Fxxx: Edit the user profile.
-
-  Fxxx: Toggle user profile on/off.
-
-  Fxxx: Toggle TOC tree view.
-
-  Fxxx: File->Clean project menu item.
-
-  Fxxx: Change font size.
-
-  Fxxx: Change colors.
-
-  Fxxx: Keyboard/menu based navigation in the TOC tree view.
-
-  Fxxx: Import several audio files at once.
-
-  2. Commands
+  F.1. Project and user management
+  F.2. Commands
   
 
-G. Bugs and future features
+G. Bugs and features
+
+  * To be maintained during development
+
+  G.1. Bugs
+  G.2. Missing iteration 1 features
+  G.3. Features for future iterations
