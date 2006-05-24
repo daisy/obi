@@ -9,7 +9,15 @@ namespace UrakawaApplicationBackend.events.audioRecorderEvents
 	/// </summary>
 	public class StateChanged : AudioRecorderEvent
 	{
-		private AudioRecorderState mOldState;  // the previous state of the player. The current state of the player is readily available.
+		private static readonly StateChanged mFromInitializing = new StateChanged(AudioRecorderState.Initializing);
+		private static readonly StateChanged mFromIdle = new StateChanged(AudioRecorderState.Idle);
+		private static readonly StateChanged mFromRecording = new StateChanged(AudioRecorderState.Recording);
+
+		private AudioRecorderState mOldState;  // the previous state of the recorder. The current state of the player is readily available.
+
+		public StateChanged FromInitializing { get { return mFromInitializing; } }
+		public StateChanged FromIdle { get { return mFromIdle; } }
+		public StateChanged FromRecording { get { return mFromRecording; } }
 
 		public AudioRecorderState OldState
 		{
@@ -23,7 +31,7 @@ namespace UrakawaApplicationBackend.events.audioRecorderEvents
 		/// Create a new StateChanged event.
 		/// </summary>
 		/// <param name="oldState">The state of the recorder before the change.</param>
-		public StateChanged(AudioRecorderState oldState)
+		private StateChanged(AudioRecorderState oldState)
 		{
 			mOldState = oldState;
 		}
