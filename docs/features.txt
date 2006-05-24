@@ -12,6 +12,16 @@ Introduction
   - Physical vs. logical edits
   - Commands
 
+  Some possible workflows:
+
+  - The table of content is created/imported before any recording is done.
+  The strips are populated from the TOC. Recording is done by following the
+  table of content, marking new sections as they are encountered. Editing of
+  audio follows.
+  - The recording takes place before the TOC is completed. New structures
+  are created on the fly while recording; further editing concerns both the
+  audio data and the structure of the book.
+
 
 A. Project/User management
 
@@ -63,11 +73,20 @@ A. Project/User management
         Choose from a list, and transform the value to an ISO string. This
         can also be obtained from the OS probably.
 
+  A.3. Preferences
+
+  * Preference other than user profile
+
   A008: Have an identifier template.
         Generated an identifier template from the user's name/organization.
         Example: tpb-mg-xxxxx, where xxxxx is replaced by a number
         increasing with each project. Editable but not optional. Can also be
         generated randomly if there is no information (e.g. xPr7uW-xxxxx.)
+
+  A009: Set the default location for projects.
+        A new project will by default be created under this location. The
+        project is contained in a folder that will contain the XUK file and
+        the related audio files (plus additional stuff that we may need?)
         
 
 B. Strips management
@@ -240,6 +259,9 @@ B. Strips management
   7. Strip manager
 
   * The strip manager maintains a list of strips.
+  * Although the user will be able to create a new container strip directly,
+  actually strips are only created through the NCX editor by creating a new
+  navigation point.
 
   Bxxx: Append a new container strip.
         A container strip is created. It is added at the end of the list of
@@ -273,9 +295,43 @@ D. NCX editor
   * The NCX editor has a tree view of the table of contents (navmap and
   navlists) of the project.
 
-  D.1. NCX metadata
+  D.1. NCX metadata and head
 
-  D.2. Navmap
+  * dtb:uid is taken from the project identifier (see E001.)
+  * dtb:generator is set automatically.
+  * Title/authors come from the metadata editor.
+  * Do we need to do D001-D003 or is it handled by DMFC?
+
+  D001: View depth.
+        This is the value of the dtb:depth metadata element.
+
+  D002: View total page count.
+        This is the value of the dtb:totalPageCount metadata element.
+
+  D003: View maximum page number.
+        This is the value of the dtb:maxPageNumber metadata element.
+
+  D.2. Navmap and navpoints
+
+  * There is always exactly one navmap in the project.
+  * It is probably better to call it "Table of contents" for the user?
+  * The navmap is a special kind of navpoint, used as a root of the tree.
+  * A navpoint has:
+      1. A parent navpoint (except the navmap node)
+      2. A level (always greater than 0, except navmap's which is 0)
+      3. Children navpoints (zero or more; one or more for navmap)
+      4. An optional id (when read from an XML source; can be generated)
+      5. An optional class
+      6. Navigation labels (at least one)
+      7. Content: a pointer to a container strip.
+
+  D004: Initialize the navmap for a new project.
+        A new navmap is created with a navPoint corresponding to the title
+        of the book, that we get from metadata or create a dummy value for.
+
+  D005: Append a navpoint to the navmap
+        A navpoint is appended at the end of the navmap. Its level is the
+        same as the last navpoint.
 
   D.3. Page list
 
@@ -420,8 +476,56 @@ E. Metadata editor and viewer
 
 F. GUI
 
-  F.1. Project and user management
-  F.2. Commands
+  F.1. Tasks
+
+  F.1.1. Project tasks
+
+  * Only one project at a time.
+  * Initially, no project is shown.
+
+  F001: Create a blank project.
+        The user is prompted with a dialog to input the name and location of
+        the new project (see F999.) If the dialog is filled correctly, the
+        previously open project is closed (see F004) and replaced by the
+        blank project. See A001 for the contents of a blank project.
+        
+  F002: Open an existing project.
+  F003: Save the current project.
+  F004: Close the current project.
+
+  F.1.2. Strips
+
+  Fxxx: Add a new strip to the project.
+
+  F.1.3. Audio
+
+  F.1.4. Table of contents
+
+  * The tree view of the table of contents can be shown or hidden at
+  anytime.
+
+  Fxxx: Append a new navpoint to the table of contents.
+        A new navpoint is created. It has a placeholder label and no
+        content. Its level is the same as the last navpoint in the navmap.
+        A new 
+
+  Fxxx: Insert a new navpoint in the table of contents.
+  Fxxx: Paste a navpoint 
+
+  F.1.5. Metadata
+
+  F.2. Menus
+  F.3. Toolbars
+  F.4. Dialogs
+
+  F999: New project dialog.
+
+  F.5. User Controls
+
+  F.6. Preferences
+
+  * Preferences that are relevant to the GUI, such as colors, font sizes,
+  etc.
   
 
 G. Bugs and features
