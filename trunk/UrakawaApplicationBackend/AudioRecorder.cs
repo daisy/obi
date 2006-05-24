@@ -437,10 +437,43 @@ namespace UrakawaApplicationBackend
 		
 
 			
+		/// <summary>
+		/// Dummy property, to be implemented
+		/// </summary>
+		public Device InputDevice
+		{
+			get
+			{
+				return null;
+			}
+			set
+			{
+			}
+		}
+
+		/// <summary>
+		/// Dummy property, to be implemented
+		/// </summary>
+		public int SampleRate
+		{
+			get
+			{
+				return null;
+			}
+			set
+			{
+			}
+		}
 
 
-
-		
+		/// <summary>
+		/// Dummy method, to be implemented
+		/// </summary>
+		/// <returns>Null</returns>
+		public ArrayList GetInputDevices()
+		{
+			return null;
+		}
 			
 	}
 }
