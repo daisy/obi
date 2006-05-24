@@ -59,13 +59,14 @@ namespace UrakawaApplicationBackend
 
 		/// <summary>
 		/// Get the current recorder state (initializing, recording, or idle.)
+		///state is 0 when Initializing, 1 when Idle, 2 when Recording 
 		/// </summary>
-		AudioRecorderState State
+		int State
 		{
 			get;
 		}
-
-		// get the capture devices 
+		
+			// get the capture devices 
 		// this will return the capture devices list
 		// fixed a typo in the name
 		ArrayList GetInputDevices();
