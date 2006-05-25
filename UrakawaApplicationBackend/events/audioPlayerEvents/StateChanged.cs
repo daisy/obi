@@ -4,11 +4,16 @@ using System.Text;
 
 namespace UrakawaApplicationBackend.events.audioPlayerEvents
 {
+
+public delegate void DStateChangedEvent( object sender,  StateChanged state) ;
 	/// <summary>
 	/// The state of the audio player changed.
 	/// </summary>
     public class StateChanged : AudioPlayerEvent
     {
+
+
+
 		private static readonly StateChanged mFromStopped = new StateChanged(AudioPlayerState.stopped);
 		private static readonly StateChanged mFromPlaying = new StateChanged(AudioPlayerState.playing);
 		private static readonly StateChanged mFromPaused = new StateChanged(AudioPlayerState.paused);
@@ -19,7 +24,11 @@ namespace UrakawaApplicationBackend.events.audioPlayerEvents
 		public StateChanged FromPlaying { get { return mFromPlaying; } }
 		public StateChanged FromPaused { get { return mFromPaused; } }
 
-			public AudioPlayerState OldState
+
+
+		
+
+		public AudioPlayerState OldState
 		{
 			get
 			{
@@ -27,14 +36,21 @@ namespace UrakawaApplicationBackend.events.audioPlayerEvents
 			}
 		}
 		
+public event DStateChangedEvent StateChangedEvent ;
 		/// <summary>
 		/// Create a new StateChanged event.
 		/// </summary>
 		/// <param name="oldState">The state of the player before the change.</param>
-		private StateChanged(AudioPlayerState oldState)
+		public StateChanged(AudioPlayerState oldState)
 		{
 			mOldState = oldState;
+
+			
 		}
 
+		public void NotifyStateChanged (object sender, StateChanged state)
+		{
+StateChangedEvent ( sender, state ) ;
+		}
     }
 }

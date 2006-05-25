@@ -5,7 +5,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Data;
-
+using UrakawaApplicationBackend.events.assetManagerEvents ;
 
 namespace UrakawaApplicationBackend
 {
@@ -21,6 +21,8 @@ namespace UrakawaApplicationBackend
 
 //static counter to implement singleton
 private static int m_ConstructorCounter =0;
+
+CatchEvents ob_CatchEvents = new CatchEvents () ;
 
 //constructor
 		public AssetManager (string sProjectDir)
@@ -94,6 +96,9 @@ throw new Exception("This class is Singleton");
 MessageBox.Show("Error in deleting file") ;
 				}
 		
+AssetDeleted ob_AssetDeleted = new AssetDeleted (assetToDelete) ;
+ob_AssetDeleted.AssetDeletedEvent+=new DAssetDeletedEvent (ob_CatchEvents.CatchAssetDeletedEvent ) ;
+ob_AssetDeleted.NotifyAssetDeleted ( this , ob_AssetDeleted) ;
 			}
 			else
 			{
@@ -141,6 +146,7 @@ return null ;
 //specify newName without extension
 public IMediaAsset RenameAsset(IMediaAsset asset, String newName)
 		{
+	string OldName = asset.Name ;
 			FileInfo file= new FileInfo (asset.Path);		
 	string ext = file.Extension ;
 			string sTemp = file.DirectoryName + "\\" + newName + ext;
@@ -162,6 +168,11 @@ m_htAssetList.Remove(asset.Name) ;
 				asset.Path = sTemp ;
 				FileInfo file1 = new FileInfo (asset.Path);		
 				m_htAssetList.Add(file1.Name, file1.FullName ) ;
+
+AssetRenamed ob_AssetRenamed = new AssetRenamed (asset, OldName) ;
+ob_AssetRenamed.AssetRenamedEvent+= new DAssetRenamedEvent (ob_CatchEvents.CatchAssetRenamedEvent) ; 
+ob_AssetRenamed.NotifyAssetRenamed ( this, ob_AssetRenamed ) ;
+
 				return asset ;
 			}
 			else
