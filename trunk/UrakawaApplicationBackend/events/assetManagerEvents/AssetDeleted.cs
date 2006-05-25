@@ -4,11 +4,14 @@ using System.Text;
 
 namespace UrakawaApplicationBackend.events.assetManagerEvents
 {
+	public delegate void DAssetDeletedEvent ( object sender, AssetDeleted Asset ) ;
 	/// <summary>
 	/// An asset was deleted in the asset manager.
 	/// </summary>
 	public class AssetDeleted : AssetManagerEvent
     {
+
+public event DAssetDeletedEvent AssetDeletedEvent ;
 		private IMediaAsset mAsset;  // the asset that was deleted
 
 		public IMediaAsset Asset
@@ -26,6 +29,11 @@ namespace UrakawaApplicationBackend.events.assetManagerEvents
 		public AssetDeleted(IMediaAsset asset)
 		{
 			mAsset = asset;
+		}
+
+		public void NotifyAssetDeleted ( object sender , AssetDeleted Asset) 
+		{
+AssetDeletedEvent (sender , Asset) ;
 		}
 	}
 }

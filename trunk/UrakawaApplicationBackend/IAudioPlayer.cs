@@ -75,7 +75,7 @@ get;
 		/// The current state of the player (stopped,playing, paused or .)
 		/// // 0 for stopped, 1 for playing , 2 for paused
 		/// </summary>
-		 int State
+		 AudioPlayerState State
 		{
 			get;
 		}

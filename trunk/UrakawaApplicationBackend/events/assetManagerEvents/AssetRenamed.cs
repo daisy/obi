@@ -4,11 +4,16 @@ using System.Text;
 
 namespace UrakawaApplicationBackend.events.assetManagerEvents
 {
+public delegate void DAssetRenamedEvent ( object sender , AssetRenamed Asset) ;
+
 	/// <summary>
 	/// An asset was renamed in the asset manager.
 	/// </summary>
     public class AssetRenamed : AssetManagerEvent
     {
+
+public event DAssetRenamedEvent AssetRenamedEvent ; 
+
 		private IMediaAsset mAsset;  // the asset (can get its current name through Asset.Name)
 		private string mOldName;     // the asset's name before renaming
 
@@ -37,6 +42,11 @@ namespace UrakawaApplicationBackend.events.assetManagerEvents
 		{
 			mOldName = oldName;
 			mAsset = asset;
+		}
+
+		public void NotifyAssetRenamed ( object sender , AssetRenamed Asset) 
+		{
+AssetRenamedEvent (sender , Asset) ;
 		}
     }
 }
