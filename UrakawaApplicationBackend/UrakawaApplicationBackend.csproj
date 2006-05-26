@@ -239,11 +239,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "events\vuMeterEvents\LevelTooLow.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "events\vuMeterEvents\PeakOverload.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

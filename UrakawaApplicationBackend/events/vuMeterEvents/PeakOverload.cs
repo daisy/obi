@@ -4,37 +4,24 @@ using System.Text;
 
 namespace UrakawaApplicationBackend.events.vuMeterEvents
 {
-    //risen by a VuMeter when the signal level
-    //rises above the set peak threshold
+	/// <summary>
+	/// Event raised by the Vu meter when the signal level overloads.
+	/// </summary>
     class PeakOverload : VuMeterEvent 
     {
-		private Object mMeasureInfo;
-		private double mBytePosition;
-		private long mTimePosition;
+		private int mChannel;          // channel which overloaded
+		private long mBytePosition;    // position where the overload happened (from start of recording)
+		private double mTimePosition;  // time when the overload happened (from start of recording)
 
-		public PeakOverload(Object measureInfo, double bytePosition)
-		{
-			mMeasureInfo = measureInfo;
-			mBytePosition = bytePosition;
-			mTimePosition = 0;
-		}
-
-		public PeakOverload(Object measureInfo, long timePosition)
-		{
-			mMeasureInfo = measureInfo;
-			mBytePosition = 0;
-			mTimePosition = timePosition;
-		}
-       
-		public Object MeasureInfo
+		public int Channel
 		{
 			get
 			{
-				return mMeasureInfo;
+				return mChannel;
 			}
 		}
 
-		public double BytePosition
+		public long BytePosition
 		{
 			get
 			{
@@ -42,7 +29,7 @@ namespace UrakawaApplicationBackend.events.vuMeterEvents
 			}
 		}
 
-		public long TimePosition
+		public double TimePosition
 		{
 			get
 			{
@@ -50,5 +37,29 @@ namespace UrakawaApplicationBackend.events.vuMeterEvents
 			}
 		}
 
+		/// <summary>
+		/// Create a new PeakOverload event for a given byte position.
+		/// </summary>
+		/// <param name="channel">The channel that overloaded.</param>
+		/// <param name="bytePosition">The position where the event occurred.</param>
+		public PeakOverload(int channel, long bytePosition)
+		{
+			mChannel = channel;
+			mBytePosition = bytePosition;
+			mTimePosition = 0;
+		}
+
+		/// <summary>
+		/// Create a new PeakOverload event at a given time.
+		/// </summary>
+		/// <param name="channel">The channel that overloaded.</param>
+		/// <param name="timePosition">The time when the event occurred.</param>
+		public PeakOverload(int channel, double timePosition)
+		{
+			mChannel = channel;
+			mBytePosition = 0;
+			mTimePosition = timePosition;
+		}
+       
     }
 }

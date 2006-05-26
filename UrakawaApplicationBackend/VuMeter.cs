@@ -1,64 +1,73 @@
 using System;
 using System.Collections;
 using System.Text;
+using System.Windows.Forms;
 
 namespace UrakawaApplicationBackend
 {
-    
-    //has all the methods from IVuMeter
-    //when sending an event, uses;
-    //EventController.getInstance().notify(new SomeEvent())
-    class VuMeter : IVuMeter
+	/// <summary>
+	/// Stub for the VU Meter class
+	/// </summary>
+    public class VuMeter : IVuMeter
     {
-        public void streamIn(object stream)
-        {
-            
-        }
+		public int Channels
+		{
+			get
+			{
+				return 0;
+			}
+			set
+			{
+			}
+		}
 
-        public void setGraphicalWidget(object graphicalWidget)
-        {
-   
-        }
+		public object Stream
+		{
+			set
+			{
+			}
+		}
+		
+		public UserControl VisualControl
+		{
+			get
+			{
+				return null;
+			}
+			set
+			{
+			}
+		}
 
-        public void setTextualWidget(object textualWidget)
-        {
-           
-        }
+		public UserControl TextControl
+		{
+			get
+			{
+				return null;
+			}
+			set
+			{
+			}
+		}
 
-        public Object getGraphicalWidget()
-        {
-            return null;
+		public double[] PeakValue
+		{
+			get
+			{
+				return null;
+			}
+		}
 
-        }
+		public bool[] Overloaded
+		{
+			get
+			{
+				return null;
+			}
+		}
 
-        public Object getTextualWidget()
-        {
-            return null;
-        }
-
-        public void setPeakWarningLevel(int sampleLevel)
-        {
-
-        }
-
-        public int getPeakWarningLevel()
-        {
-            return 0;
-        }
-
-        public void setTooLowRmsWarningLevel(int rmsLevel)
-        {
-   
-        }
-
-        public int getTooLowRmsWarningLevel()
-        {
-            return 0;
-        }
-
-        public void resetStatistics()
-        {
-            
-        }
+		public void Reset()
+		{
+		}
     }
 }
