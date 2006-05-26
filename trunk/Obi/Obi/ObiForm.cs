@@ -12,6 +12,87 @@ namespace Obi
 {
     public partial class ObiForm : Form
     {
+        /// <summary>
+        /// Create a new project if the correct one was closed properly.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void createNewProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ClosedProject())
+            {
+                ProjectManager.Instance.CreateProject();
+            }
+            else
+            {
+                Console.WriteLine(Localizer.Message("cancelled") + ".");
+            }
+        }
+
+        /// <summary>
+        /// Open a project from a XUK file.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void openProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ClosedProject())
+            {
+                OpenFileDialog dialog = new OpenFileDialog();
+                dialog.Filter = "Obi project file (*.xuk)|*.xuk";
+                DialogResult result = dialog.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    ProjectManager.Instance.OpenXUK(dialog.FileName);
+                    return;
+                }
+            }
+            Console.WriteLine(Localizer.Message("cancelled") + ".");    
+        }
+
+        /// <summary>
+        /// Exit if and only if the currently open project was saved correctly.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ClosedProject())
+            {
+                Application.Exit();
+            }
+            else
+            {
+                Console.WriteLine(Localizer.Message("cancelled") + ".");
+            }
+        }
+
+        /// <summary>
+        /// Check whether a project is currently open and not saved; prompt the user about whatto do.
+        /// </summary>
+        /// <returns>True if there is no open project or the currently open project could be closed.</returns>
+        private bool ClosedProject()
+        {
+            if (ProjectManager.Instance.Unsaved)
+            {
+                DialogResult result = MessageBox.Show(Localizer.Message("closed_project_text"),
+                    Localizer.Message("close_project_caption"), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    // save the project
+                }
+                return result != DialogResult.Cancel;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+
+        
+        
+        
         private UndoRedoStack mUndoStack;
 
         private string undo_label;
@@ -63,11 +144,6 @@ namespace Obi
                 mRedoToolStripMenuItem.Enabled = false;
                 mRedoToolStripMenuItem.Text = redo_label;
             }
-        }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
         }
 
         private void mUndoToolStripMenuItem_Click(object sender, EventArgs e)

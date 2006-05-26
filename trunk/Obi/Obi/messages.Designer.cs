@@ -61,6 +61,33 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancelled.
+        /// </summary>
+        internal static string cancelled {
+            get {
+                return ResourceManager.GetString("cancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Closing a modified project.
+        /// </summary>
+        internal static string closed_project_caption {
+            get {
+                return ResourceManager.GetString("closed_project_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are about to close a project with unsaved modifications. Do you want to save these modifications before closing the project? You may also press Cancel to not close the project..
+        /// </summary>
+        internal static string closed_project_text {
+            get {
+                return ResourceManager.GetString("closed_project_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New strip.
         /// </summary>
         internal static string new_strip_label {
