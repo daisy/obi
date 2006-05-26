@@ -30,6 +30,8 @@ namespace Obi
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createNewProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mUndoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,15 +57,31 @@ namespace Obi
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createNewProjectToolStripMenuItem,
+            this.openProjectToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(36, 20);
             this.fileToolStripMenuItem.Text = "&File";
             // 
+            // createNewProjectToolStripMenuItem
+            // 
+            this.createNewProjectToolStripMenuItem.Name = "createNewProjectToolStripMenuItem";
+            this.createNewProjectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.createNewProjectToolStripMenuItem.Text = "&New project";
+            this.createNewProjectToolStripMenuItem.Click += new System.EventHandler(this.createNewProjectToolStripMenuItem_Click);
+            // 
+            // openProjectToolStripMenuItem
+            // 
+            this.openProjectToolStripMenuItem.Name = "openProjectToolStripMenuItem";
+            this.openProjectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openProjectToolStripMenuItem.Text = "&Open project";
+            this.openProjectToolStripMenuItem.Click += new System.EventHandler(this.openProjectToolStripMenuItem_Click);
+            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -119,6 +137,7 @@ namespace Obi
             this.metadataPanel1.Location = new System.Drawing.Point(0, 24);
             this.metadataPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.metadataPanel1.Name = "metadataPanel1";
+            this.metadataPanel1.Padding = new System.Windows.Forms.Padding(3);
             this.metadataPanel1.Size = new System.Drawing.Size(775, 60);
             this.metadataPanel1.TabIndex = 4;
             // 
@@ -153,6 +172,8 @@ namespace Obi
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private Obi.UserControls.MetadataPanel metadataPanel1;
+        private System.Windows.Forms.ToolStripMenuItem createNewProjectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openProjectToolStripMenuItem;
 
 
     }

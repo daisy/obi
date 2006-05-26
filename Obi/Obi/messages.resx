@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="cancelled" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="closed_project_caption" xml:space="preserve">
+    <value>Closing a modified project</value>
+  </data>
+  <data name="closed_project_text" xml:space="preserve">
+    <value>You are about to close a project with unsaved modifications. Do you want to save these modifications before closing the project? You may also press Cancel to not close the project.</value>
+  </data>
   <data name="new_strip_label" xml:space="preserve">
     <value>New strip</value>
   </data>
