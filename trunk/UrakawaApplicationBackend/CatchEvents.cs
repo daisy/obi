@@ -2,6 +2,7 @@ using System;
 using System.Windows.Forms ;
 using UrakawaApplicationBackend.events.audioPlayerEvents ;
 using UrakawaApplicationBackend.events.assetManagerEvents ;
+using UrakawaApplicationBackend.events.audioRecorderEvents;
 
 namespace UrakawaApplicationBackend
 {
@@ -11,11 +12,16 @@ namespace UrakawaApplicationBackend
 	public class CatchEvents
 	{
 		
-		public void CatchStateChangedEvent ( object sender, StateChanged   state)
+		public void CatchStateChangedEvent ( object sender, UrakawaApplicationBackend.events.audioPlayerEvents.StateChanged state)
 		{
 MessageBox.Show (  state.OldState.ToString () ) ;
 		}
-			
+
+		//Audiorecorder State 
+		public void CatchOnStateChangedEvent(Object sender, UrakawaApplicationBackend.events.audioRecorderEvents.StateChanged state)
+		{
+			MessageBox.Show (  state.OldState.ToString () ) ;
+		}
 		public void CatchEndOfAudioEvent ( object sender , EndOfAudioData Data )
 		{
 MessageBox.Show ("Audio ends") ;

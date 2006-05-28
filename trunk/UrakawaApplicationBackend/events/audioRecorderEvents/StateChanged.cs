@@ -4,6 +4,9 @@ using System.Text;
 
 namespace UrakawaApplicationBackend.events.audioRecorderEvents
 {
+
+// delegate for the state changes
+	public delegate void DStateChangedEventHandller(Object Sender, StateChanged state);
 	/// <summary>
 	/// The state of the audio recorder changed.
 	/// </summary>
@@ -17,8 +20,13 @@ namespace UrakawaApplicationBackend.events.audioRecorderEvents
 
 		public StateChanged FromInitializing { get { return mFromInitializing; } }
 		public StateChanged FromIdle { get { return mFromIdle; } }
-		public StateChanged FromRecording { get { return mFromRecording; } }
+		public StateChanged FromRecording { get { return mFromRecording; 
+											} 
+		}
 
+
+
+		
 		public AudioRecorderState OldState
 		{
 			get
@@ -26,14 +34,25 @@ namespace UrakawaApplicationBackend.events.audioRecorderEvents
 				return mOldState;
 			}
 		}
-		
-		/// <summary>
+
+/// <summary>	
 		/// Create a new StateChanged event.
 		/// </summary>
 		/// <param name="oldState">The state of the recorder before the change.</param>
-		private StateChanged(AudioRecorderState oldState)
+		public StateChanged(AudioRecorderState oldState)
 		{
 			mOldState = oldState;
 		}
+public event DStateChangedEventHandller OnStateChangedEvent;			
+		
+		public void NotifyChange(Object Sender, StateChanged state)
+		{
+			OnStateChangedEvent(Sender, state);
+		}
+
 	}
+
+	
+
+
 }

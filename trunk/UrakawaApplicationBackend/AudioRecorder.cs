@@ -4,6 +4,7 @@ using Microsoft.DirectX;
 using System.Threading;
 using System.IO;
 using Microsoft.DirectX.DirectSound;
+using UrakawaApplicationBackend.events.audioRecorderEvents;
 
 namespace UrakawaApplicationBackend
 
@@ -44,44 +45,26 @@ namespace UrakawaApplicationBackend
 		private int m_iChannels;	
 		private long Length;//length of the file, so that append can be implemented
 		private byte[] CaptureData;
-		AudioRecorderState state;
+		private bool mEventsEnabled = true;
+		private AudioRecorderState mState;
+		private Microsoft.DirectX.DirectSound.Device mInputDevice = null;
 		
 
 
-
-		public AudioRecorder()
+		//for input device
+		public Microsoft.DirectX.DirectSound.Device InputDevice
 		{
-			Index = 0;
-			if(0 == m_ConstructorCounter)
+			get
 			{
-				m_ConstructorCounter++;
-
-				Capturing= false;
-				state = AudioRecorderState.Idle;
+				return mInputDevice;
 			}
-			else
+			set
 			{
-				throw new Exception("This class is Singleton");
-			}			
+				mInputDevice = value;
+			}
 		}
 
-		// this is used to get the values for the channels as 1 or 2, 
-		//BitDepth = 16 or 8
-		// and SamplesPersecond as 11025, 22050, 44100
-		public void InputFormatValues()
-		{
-			//int m_iIndexValue = 9;  
-			//if the values need to be set for 
-			//1 channel, 16 bit and SamplePerSeconds as 44100 
-			//then index can be set to 9;
-			DefaultFormat = GetInputFormat(Index);
-			m_bitDepth = DefaultFormat.BitsPerSample;
-			m_iChannels = DefaultFormat.Channels;
-			m_SampleRate = DefaultFormat.SamplesPerSecond;
-		}
-
-		//this property is used for SamplesPerSEcond as 44100	
-		// this will use DefaultValues()
+		//this property is used for SampleRate
 		public int SampleRate
 		{
 			get
@@ -93,7 +76,7 @@ namespace UrakawaApplicationBackend
 				m_SampleRate = value;
 			}
 		}
-		// this will set the bit depth as 16 through DefaultValues()
+		//this will set the bit depth as 8 or 16
 		public short BitDepth
 		{
 			get
@@ -105,7 +88,7 @@ namespace UrakawaApplicationBackend
 				m_bitDepth = value;
 			}
 		}
-		//this will set the number of channels to 1 through  DefaultValues()
+		//this will set the number of channels to 1 or 2 through GetInputFormat(int Index)
 		public int Channels
 		{
 			get
@@ -118,14 +101,46 @@ namespace UrakawaApplicationBackend
 			}
 		}
 
-		public int State
+
+		public AudioRecorderState State
 		{
 			get
 			{
-				return Convert.ToInt32 (state) ;
+				return mState;
+
 			}
 		}
 
+
+	public AudioRecorder()
+		{
+			Index = 0;
+			if(0 == m_ConstructorCounter)
+			{
+				m_ConstructorCounter++;
+				mState = AudioRecorderState.Initializing;
+				Capturing= true;
+
+			}
+			else
+			{
+				throw new Exception("This class is Singleton");
+			}			
+		}
+		
+			
+		void FireEvent(StateChanged mStateChanged)
+		{
+			CatchEvents mCatchEvent = new CatchEvents();
+			if(mEventsEnabled == true)
+			{
+				mStateChanged.OnStateChangedEvent+=new DStateChangedEventHandller(mCatchEvent.CatchOnStateChangedEvent);
+				mStateChanged.NotifyChange(this, mStateChanged);
+			}
+		}
+		
+
+		
 
 		// returns a list of input devices
 		public ArrayList GetInputDevices()
@@ -137,6 +152,14 @@ namespace UrakawaApplicationBackend
 			}
 			return m_aSelect;
 		}
+
+		public void SetInputDevice()
+		{
+			CaptureDevicesCollection devices = new CaptureDevicesCollection();
+			Microsoft.DirectX.DirectSound.Device mDevice = new Device(devices[Index].DriverGuid);
+			mInputDevice = mDevice;
+		}
+
 
 		//returns the guid of the selected device, in this case the default 
 		//device guid has been returned
@@ -150,7 +173,7 @@ namespace UrakawaApplicationBackend
 		
 		//this return type is capture, where the device guid is used to set a capture which
 		//will be later on used to create the capture buffer for recording
-		public Capture SetDevice()
+		public Capture InitDirectSound()
 		{
 			m_iCaptureBufferSize = 0;
 			m_iNotifySize = 0;
@@ -224,14 +247,17 @@ namespace UrakawaApplicationBackend
 			m_aformats= GetFormatList();
 			GetWaveFormatFromIndex(m_iIndex, ref m_wFormat);
 			Info.format = m_wFormat;
+			m_bitDepth = m_wFormat.BitsPerSample;
+			m_SampleRate = m_wFormat.SamplesPerSecond;
+			m_iChannels = m_wFormat.Channels;
 			return Info.format;
 		}
 		
 		//this will get the file name for the recording		//it will get a file name from the directory
 		public string ToGetFileName(string m_sDirPath)
 		{
-			AssetManager m_assetManager = new AssetManager("m_DirPath");
-			m_sFileName  = m_assetManager.GenerateFileName("wav", "m_sDirPath");
+			AssetManager m_assetManager = new AssetManager(m_sDirPath);
+			m_sFileName  = m_assetManager.GenerateFileName("wav", m_sDirPath);
 			FileInfo fi = new FileInfo(m_sFileName);
 			Length = fi.Length ;
 			return m_sFileName;
@@ -265,7 +291,7 @@ namespace UrakawaApplicationBackend
 			dsc.BufferBytes = m_iCaptureBufferSize;
 			InputFormat.FormatTag = WaveFormatTag.Pcm;
 			dsc.Format = InputFormat; // Set the format during creatation
-			m_cApplicationDevice= SetDevice();
+			m_cApplicationDevice= InitDirectSound();
 			applicationBuffer = new CaptureBuffer(dsc, m_cApplicationDevice);
 			InitNotifications();	
 		}	
@@ -403,17 +429,21 @@ namespace UrakawaApplicationBackend
 
 			if(dsc.Format.ToString() != InputFormat.ToString())
 				throw new Exception("formats do not match");
+
 			if(SRecording)
 			{
+				StateChanged mStateChanged = new StateChanged(mState );
+				mState = AudioRecorderState.Recording;
+				FireEvent(mStateChanged);
 				CreateCaptureBuffer(Index);
 				applicationBuffer.Start(true);//it will set the looping till the stop is used
-				state = AudioRecorderState.Recording;				
+				
 			}
 			
 			else
 			{
+
 				applicationBuffer.Stop();
-				
 				RecordCapturedData();
 				Writer.Seek(4, SeekOrigin.Begin); // Seek to the length descriptor of the RIFF file.
 				Writer.Write((int)(SampleCount + 36));	// Write the file length, minus first 8 bytes of RIFF description.
@@ -423,7 +453,7 @@ namespace UrakawaApplicationBackend
 				Writer.Close();	// Close the file now.
 				Writer = null;	// Set the writer to null.
 				WaveFile = null; // Set the FileStream to null.
-				state = AudioRecorderState.Idle;
+
 			}
 		}
 		
@@ -432,6 +462,10 @@ namespace UrakawaApplicationBackend
 		{
 			// name:  this is to stop the recording
 			// desc:  this will first check the condition and stops the recording and then capture any left  overs recorded data which is not saved
+			StateChanged mStateChanged = new StateChanged(mState);
+			mState = AudioRecorderState.Idle;
+			FireEvent(mStateChanged);
+
 			Capturing = false;
 			NotificationEvent.Set();
 				
@@ -439,31 +473,5 @@ namespace UrakawaApplicationBackend
 				if (applicationBuffer.Capturing)
 					StartRecording(false, m_sFileName);
 		}			
-
-		
-
-			
-		/// <summary>
-		/// Dummy property, to be implemented
-		/// </summary>
-		public Device InputDevice
-		{
-			get
-			{
-				return null;
-			}
-			set
-			{
-			}
-		}
-		}
 	}
-
-
-
-
-
-
-
-
-
+}
