@@ -14,16 +14,16 @@ namespace UrakawaApplicationBackend
 		protected long m_lSize ;
 		private TypeOfMedia m_MediaType ;
 
-//constructor
+		//constructor
 		public MediaAsset (string sPath)
 		{
-m_sFilePath = sPath  ;
-FileInfo m_flFile = new FileInfo(sPath) ;
+			m_sFilePath = sPath  ;
+			FileInfo m_flFile = new FileInfo(sPath) ;
 
-m_sFileName = m_flFile .Name ;
+			m_sFileName = m_flFile .Name ;
 			m_lSize = m_flFile .Length ;
 
-m_MediaType = 			GetMediaType (m_flFile .Extension ) ;
+			m_MediaType = 			GetMediaType (m_flFile .Extension ) ;
 		}
 
 		public string Name
@@ -50,23 +50,23 @@ m_MediaType = 			GetMediaType (m_flFile .Extension ) ;
 			}
 		}
 
-public 			FileInfo file
+		public 			FileInfo file
 		{
 			get
 			{
-return m_flFile ;
-	}
+				return m_flFile ;
+			}
 		}
 
 		public long SizeInBytes
 		{
 			get
 			{
-return m_lSize ;
+				return m_lSize ;
 			}
 			set
 			{
-m_lSize = value ;
+				m_lSize = value ;
 			}
 		}
 
@@ -74,18 +74,18 @@ m_lSize = value ;
 		{
 			get
 			{
-return m_MediaType ;
+				return m_MediaType ;
 			}
 		}
 
 		TypeOfMedia GetMediaType(string sExt)
 		{
-if (sExt == ".wav" || sExt == ".mp3")
-return TypeOfMedia.Audio ;
-	else if (sExt == ".txt")
-	return TypeOfMedia.Text ;
-else
-	return TypeOfMedia.Unknown ;
+			if (sExt == ".wav" || sExt == ".mp3")
+				return TypeOfMedia.Audio ;
+			else if (sExt == ".txt")
+				return TypeOfMedia.Text ;
+			else
+				return TypeOfMedia.Unknown ;
 		}
 
 		public  void Delete()
@@ -93,13 +93,15 @@ else
 
 		}
 
-		
-
+		public virtual IMediaAsset MergeWith(IMediaAsset next)
+		{
+			return null;
 		}
+	}
 
 
-// End of Class
-		}
+	// End of Class
+}
 	
 
 

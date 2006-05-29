@@ -18,18 +18,16 @@ namespace UrakawaApplicationBackend
 		/// <summary>
 		/// Return the instance of the Asset Manager (this implements the singleton pattern.)
 		/// </summary>
-		//IAssetManager Instance
-		//{
-			//get;
-		//}
+		IAssetManager Instance
+		{
+			get;
+		}
 
 		/// <summary>
 		/// Return all assets currently managed. No order is guaranteed.
 		/// TODO: choose an actual list type.
 		/// </summary>
-		/// 
-
-//----property type is changed to hashtable from ArrayList
+		//----property type is changed to hashtable from ArrayList
 		Hashtable Assets
 		{
 			get;
@@ -40,7 +38,7 @@ namespace UrakawaApplicationBackend
 		/// </summary>
 		/// <param name="assetType">The type of assets.</param>
 		/// <returns>The list of assets of this type.</returns>
-Hashtable GetAssets(String assetType);
+		Hashtable GetAssets(String assetType);
 
 		/// <summary>
 		/// Return an asset given its name.
@@ -96,6 +94,33 @@ Hashtable GetAssets(String assetType);
 		//parameter is some sort of Collection<URL>
 		//--type of parameter changed to Hashtable from ArrayList
 		void addAssets(Hashtable assetURLs);
-	}
 
+		/// <summary>
+		/// Merge two consecutive assets of the same kind, and replace them by the resulting asset.
+		/// Throw an exception if the assets could not be merged (not of the same type, not consecutive, not in the manager, etc.)
+		/// </summary>
+		/// <param name="asset1">The first asset.</param>
+		/// <param name="asset2">The following asset.</param>
+		/// <returns>The new asset after merging.</returns>
+		IMediaAsset MergeAssets(IMediaAsset asset1, IMediaAsset asset2);
+
+		/// <summary>
+		/// Split an audio asset and replace it with the two assets that result from the split.
+		/// Throw an exception if the asset could not be split (not in the manager, invalid split point, etc.)
+		/// </summary>
+		/// <param name="asset">The asset to split.</param>
+		/// <returns>A list of two assets that result from the split.</returns>
+		ArrayList SplitAudioAsset(IAudioMediaAsset asset);
+
+		/// <summary>
+		/// Split an audio asset into phrases using a sentence detection algorithm.
+		/// The asset is replaced by as many new assets as there are phrases.
+		/// The first phrase may have leading silence, other phrases have no leading silence.
+		/// All phrases may have trailing silence.
+		/// </summary>
+		/// <param name="asset">The asset to split.</param>
+		/// <param name="silence">The minimum length of silence between phrases.</param>
+		/// <returns>The list of new audio assets in order.</returns>
+		ArrayList ApplyPhraseDetection(IAudioMediaAsset asset, long silence);
+	}
 }

@@ -12,7 +12,7 @@ namespace UrakawaApplicationBackend
 	
 	public 	class AssetManager :  IAssetManager 
 	{	
-	
+
 // string to hold path of project directory
 		private string m_sDirPath;
 
@@ -24,7 +24,16 @@ private static int m_ConstructorCounter =0;
 
 CatchEvents ob_CatchEvents = new CatchEvents () ;
 
-//constructor
+		// Please implement this
+		public IAssetManager Instance
+		{
+			get
+			{
+				return null;
+			}
+		}
+
+		//constructor [should be private]
 		public AssetManager (string sProjectDir)
 		{
 			if (m_ConstructorCounter == 0)
@@ -310,6 +319,21 @@ MessageBox.Show("Exxeption! Assets of same name exist in hash table.") ;
 		public void test ()
 		{
 			MessageBox.Show("It is working");
+		}
+		
+		public IMediaAsset MergeAssets(IMediaAsset asset1, IMediaAsset asset2)
+		{
+			return null;
+		}
+
+		public ArrayList SplitAudioAsset(IAudioMediaAsset asset)
+		{
+			return null;
+		}
+
+		public ArrayList ApplyPhraseDetection(IAudioMediaAsset asset, long silence)
+		{
+			return null;
 		}
 	}
 }
