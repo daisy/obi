@@ -328,10 +328,10 @@ MessageBox.Show("invalid parameters in DeleteChunk") ;
 				for (i = 0; i<4 ; i++)
 				{
 
-					arByte [4+i ] =(Convert.ToByte (ConvertFromDecimal (m_lSize )[i])) ;
+					arByte [4+i ] =(Convert.ToByte (ConvertFromDecimal (arByte.LongLength)[i])) ;
 
 				}
-				long TempLength = m_lSize  - 44 ;
+				long TempLength = arByte.LongLength - 44 ;
 				for (i = 0; i<4 ; i++)
 				{
 				
@@ -340,6 +340,7 @@ MessageBox.Show("invalid parameters in DeleteChunk") ;
 				}
 
 				br.Close () ;
+
 				return arByte ;
 			}
 			else
@@ -1159,15 +1160,60 @@ BinaryWriter bw1 = new BinaryWriter (File.OpenWrite(m_sFilePath )) ;
 		}
 		//End Validate
 
+
 		public ArrayList Split(long position)
 		{
-			return null;
+			if ( m_AudioLengthBytes > position )
+			{
+				position = this.AdaptToFrame (position) ;
+				string sTempPath = m_sFilePath  + "tmp" ;
+				BinaryWriter br = new BinaryWriter (File.Create ( sTempPath)) ;
+
+				br.Write (GetChunk ( 0 , position )) ;
+				br.Close () ;
+
+				FileInfo file = new FileInfo (sTempPath) ;
+				
+				
+				AssetManager am = new AssetManager (file.DirectoryName) ;
+
+				string sSplitName2 = am.GenerateFileName (".wav" , file.DirectoryName) ;
+				//MessageBox.Show ("About to create second file") ;
+				br = new BinaryWriter (File.Create (sSplitName2)) ;
+
+				br.Write (GetChunk (position , m_AudioLengthBytes  -m_FrameSize)); 
+				br.Close () ;
+
+				//MessageBox.Show ("Deleting and renaming") ;
+
+				FileInfo DeleteFile = new FileInfo (m_sFilePath) ;
+				DeleteFile.Delete () ;
+
+				FileInfo RenameFile = new FileInfo (sTempPath) ;
+				RenameFile.MoveTo (m_sFilePath) ;
+
+				// Create ArrayList of Files and return
+				ArrayList alReturn  = new ArrayList () ;
+				alReturn.Add (m_sFilePath) ;
+				alReturn.Add (sSplitName2) ;
+
+return alReturn ;
+			}
+			else
+			{
+				return null;
+			}
+
+// end of function
 		}
 
 		public ArrayList Split(double position)
 		{
-			return null;
+long lPosition = ConvertTimeToByte (position) ;
+			return Split (lPosition) ;
 		}
+
+
 // class ends here
 	}
 }
