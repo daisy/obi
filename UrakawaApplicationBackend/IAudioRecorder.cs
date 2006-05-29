@@ -8,17 +8,18 @@ namespace UrakawaApplicationBackend
 {
 	/// <summary>
 	/// The three states of the audio recorder.
-	/// Initializing: the recorder is not yet ready to record.
+	/// Initializing: the recorder is not yet ready to record. Is it necessary?
 	/// Idle: the recorder is ready to record.
+	/// Listening: the recording is listening but not writing any data.
 	/// Recording: sound is currently being recorded.
 	/// </summary>
-	public enum AudioRecorderState { Initializing, Idle, Recording };
+	public enum AudioRecorderState { Initializing, Idle, Listening, Recording };
 
 	public interface IAudioRecorder
 	{
-
+		/// <summary>
 		/// Get and set the current input device.
-
+		/// </summary>
 		// I guess that Device is the actual audio device class
 		// set may not be enough, so be free to replace it with SetInputDevice(...) if necessary.
 		Device InputDevice
@@ -65,27 +66,28 @@ namespace UrakawaApplicationBackend
 			get;
 		}
 		
-			// get the capture devices 
+		// get the capture devices 
 		// this will return the capture devices list
 		// fixed a typo in the name
 		ArrayList GetInputDevices();
-		
-				
+
+		/// <summary>
+		/// Start listening on the device but do not record yet. This allows the user to test the settings before actually recording.
+		/// </summary>
+		void StartListening();
+
 		/// <summary>
 		/// Start audio recording. Record to a given asset; if it contains data already, the new data is appended.
 		/// Throws an exception if the device is unset, or if the asset has the wrong format (no format conversion is done.)
 		/// The state after StartRecording() is Recording if succesful, Idle or Initializing otherwise.
 		/// </summary>
 		/// <param name="asset">The asset in which the audio is recorded.</param>
-		void StartRecording(bool StartRecording, string FileName);
+		void StartRecording(IAudioMediaAsset asset);
 
 		/// <summary>
 		/// Stop recording. The state after Stop() is Idle. If the recorder was not recording, there is no effect.
 		/// </summary>
-		void StopRecording();
-
-		        
-	
+		void StopRecording();	
 	}
 }
 	

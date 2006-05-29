@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 
 namespace UrakawaApplicationBackend
 {
@@ -164,7 +165,18 @@ long [] DetectPhrases (long SilVal, long PhraseLength , long BeforePhrase) ;
 		/// <returns>True if the asset was found to be valid, false otherwise.</returns>
 		bool ValidateAudio();    
 
+		/// <summary>
+		/// Split an audio asset at a given position.
+		/// </summary>
+		/// <param name="position">The position of the split in bytes.</param>
+		/// <returns>An array of the two assets resulting from the split.</returns>
+		ArrayList Split(long position);
 
-		
+		/// <summary>
+		/// Split an audio asset at a given position.
+		/// </summary>
+		/// <param name="position">The position of the split in milliseconds.</param>
+		/// <returns>An array of the two assets resulting from the split.</returns>
+		ArrayList Split(double position);
 	}
 }

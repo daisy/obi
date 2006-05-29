@@ -63,8 +63,13 @@ public 	enum TypeOfMedia {Audio, Text, Unknown} ;
 		/// </summary>
 		void Delete();
 
-
-
+		/// <summary>
+		/// Merge with the following asset.
+		/// Throw an exception if the assets could not be merged (e.g. they are of different type.)
+		/// </summary>
+		/// <param name="next">The asset that follows (must be of the same type.)</param>
+		/// <returns>The new asset resulting of the merger.</returns>
+		IMediaAsset MergeWith(IMediaAsset next);
 	}
 
 }

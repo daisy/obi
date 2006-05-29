@@ -417,6 +417,14 @@ namespace UrakawaApplicationBackend
 			NextCaptureOffset %= m_iCaptureBufferSize; // Circular buffer
 		}
 		
+		public void StartListening()
+		{
+		}
+
+		public void StartRecording(IAudioMediaAsset asset)
+		{
+		}
+
 		//it will start actual recording, append if there is data 
 		//in the wave file through the RecordCaptureData()
 		public void StartRecording(bool SRecording, string FileName)

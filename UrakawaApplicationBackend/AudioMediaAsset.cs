@@ -28,6 +28,16 @@ namespace UrakawaApplicationBackend
 			Init  (sPath) ;
 		}
 
+		/// <summary>
+		/// Create a new AudioMediaAsset from a file from a begin time to an end time.
+		/// Throw an exception when something wrong happens (file not readable, inconsistent begin/end times, ...)
+		/// </summary>
+		/// <param name="path">Path for the audio file.</param>
+		/// <param name="beginTime">Begin time of the asset inside the file in milliseconds.</param>
+		/// <param name="endTime">End time of the asset inside the file in milliseconds.</param>
+		public AudioMediaAsset(string path, double beginTime, double endTime): base(path)
+		{
+		}
 
 // function to initialise the member variables
 		void Init (string sPath)
@@ -510,7 +520,7 @@ return CheckStreamsFormat(bBuffer) ;
 		// function to compute the amplitude of a small chunck of samples
 
 
-		long BlockSum (BinaryReader br,long Pos, int Block, int FrameSize, int 
+		long BlockSum (BinaryReader br,long Pos, int Block, int FrameSize, int 
 			Channels) 
 		{
 			long sum = 0;
@@ -530,12 +540,12 @@ return CheckStreamsFormat(bBuffer) ;
 					if (Channels == 1)
 					{
 						SubSum = Convert.ToInt64(br.ReadByte() )  ;
-						SubSum = SubSum + (Convert.ToInt64(br.ReadByte() ) * 256 );						SubSum = (SubSum * 256)/65792 ;
+						SubSum = SubSum + (Convert.ToInt64(br.ReadByte() ) * 256 );						SubSum = (SubSum * 256)/65792 ;
 					}
 					else if (Channels == 2)
 					{
 						SubSum = Convert.ToInt64(br.ReadByte() )  ;
-						SubSum = SubSum + Convert.ToInt64(br.ReadByte() )  ;SubSum = SubSum/2 ;
+						SubSum = SubSum + Convert.ToInt64(br.ReadByte() )  ;SubSum = SubSum/2 ;
 					}
 					// FrameSize 2 ends
 				}
@@ -544,21 +554,21 @@ return CheckStreamsFormat(bBuffer) ;
 					if (Channels == 1)
 					{
 						SubSum = Convert.ToInt64(br.ReadByte() )  ;
-						SubSum = SubSum + 
+						SubSum = SubSum + 
 							(Convert.ToInt64(br.ReadByte() ) * 256)  ;
-						SubSum = SubSum + 
+						SubSum = SubSum + 
 							(Convert.ToInt64(br.ReadByte() ) * 256 * 256)  ;
-						SubSum = SubSum + 
+						SubSum = SubSum + 
 							(Convert.ToInt64(br.ReadByte() ) * 256 * 256 * 256)  ;
 					}
 					else if (Channels == 2)
 					{
 						SubSum = Convert.ToInt64(br.ReadByte() )  ;
 						
-						SubSum = SubSum + (Convert.ToInt64(br.ReadByte() ) * 256)  ;
+						SubSum = SubSum + (Convert.ToInt64(br.ReadByte() ) * 256)  ;
 							
 						// second channel
-						SubSum = SubSum + Convert.ToInt64(br.ReadByte() )  ;												SubSum = SubSum + (Convert.ToInt64(br.ReadByte() ) * 256)  ;						
+						SubSum = SubSum + Convert.ToInt64(br.ReadByte() )  ;												SubSum = SubSum + (Convert.ToInt64(br.ReadByte() ) * 256)  ;						
 SubSum = (SubSum * 256 ) / (65792  * 2);
 						
 					}
@@ -1149,7 +1159,15 @@ BinaryWriter bw1 = new BinaryWriter (File.OpenWrite(m_sFilePath )) ;
 		}
 		//End Validate
 
+		public ArrayList Split(long position)
+		{
+			return null;
+		}
 
+		public ArrayList Split(double position)
+		{
+			return null;
+		}
 // class ends here
 	}
 }
