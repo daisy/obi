@@ -30,7 +30,7 @@ namespace Obi
         /// </summary>
         public Project()
         {
-            mUnsaved = true;
+            mUnsaved = false;
         }
 
         /// <summary>
@@ -46,6 +46,11 @@ namespace Obi
         public void Save()
         {
             mUnsaved = false;
+        }
+
+        public void Touch()
+        {
+            mUnsaved = true;
         }
     }
 }

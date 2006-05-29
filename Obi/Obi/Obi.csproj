@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="Command.cs" />
     <Compile Include="Commands.cs" />
+    <Compile Include="Events\Project\StateChangedEventArgs.cs" />
     <Compile Include="Localizer.cs" />
     <Compile Include="messages.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -52,7 +53,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Project.cs" />
-    <Compile Include="ProjectManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="messages.resx">
       <SubType>Designer</SubType>

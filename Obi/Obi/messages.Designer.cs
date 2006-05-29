@@ -79,11 +79,49 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are about to close a project with unsaved modifications. Do you want to save these modifications before closing the project? You may also press Cancel to not close the project..
+        ///   Looks up a localized string similar to You are about to close a project with unsaved modifications.
+        ///Do you want to save these modifications before closing the project?
+        ///You may also press Cancel to not close the project..
         /// </summary>
         internal static string closed_project_text {
             get {
                 return ResourceManager.GetString("closed_project_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [DEBUG] Created project.
+        /// </summary>
+        internal static string debug_created_project {
+            get {
+                return ResourceManager.GetString("debug_created_project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [DEBUG] Opened project from XUK file {0}.
+        /// </summary>
+        internal static string debug_opened_project {
+            get {
+                return ResourceManager.GetString("debug_opened_project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [DEBUG] Saved project.
+        /// </summary>
+        internal static string debug_saved_project {
+            get {
+                return ResourceManager.GetString("debug_saved_project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [DEBUG] Touched project.
+        /// </summary>
+        internal static string debug_touched_project {
+            get {
+                return ResourceManager.GetString("debug_touched_project", resourceCulture);
             }
         }
         
@@ -93,6 +131,24 @@ namespace Obi {
         internal static string new_strip_label {
             get {
                 return ResourceManager.GetString("new_strip_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No project is currently open..
+        /// </summary>
+        internal static string no_open_project {
+            get {
+                return ResourceManager.GetString("no_open_project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ready..
+        /// </summary>
+        internal static string ready {
+            get {
+                return ResourceManager.GetString("ready", resourceCulture);
             }
         }
         
