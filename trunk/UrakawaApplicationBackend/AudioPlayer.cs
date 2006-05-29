@@ -21,7 +21,7 @@ namespace UrakawaApplicationBackend
 		private SecondaryBuffer SoundBuffer;
 		private Microsoft.DirectX.DirectSound.Device 			 SndDevice= null ;
 		private BufferDescription BufferDesc = null ;
-		private FileStream fs ;		private int m_BufferCheck ;
+		private FileStream fs ;		private int m_BufferCheck ;
 		private int m_SizeBuffer ;
 		private 		int m_RefreshLength ;
 		private 		long m_lLength;
@@ -67,10 +67,12 @@ AssociateEvents  () ;
 		
 EndOfAudioAsset  ob_EndOfAudioAsset  = new EndOfAudioAsset () ;
 EndOfAudioBuffer ob_EndOfAudioBuffer = new EndOfAudioBuffer () ;
+		//UpdateVuMeter ob_UpdateVuMeter = new UpdateVuMeter () ;
 
 // create objects for handling events
 CatchEvents ob_CatchEvents = new CatchEvents () ;
-//VuMeter ob_VuMeter = new VuMeter () ;
+VuMeter ob_VuMeter = new VuMeter () ;
+
 
 // bool variable to enable or disable event
 bool m_EventsEnabled = true ;
@@ -79,6 +81,7 @@ bool m_EventsEnabled = true ;
 //ob_StateChanged.StateChangedEvent+=new DStateChangedEvent (ob_CatchEvents.CatchStateChangedEvent) ;
 ob_EndOfAudioAsset.EndOfAudioAssetEvent+=new DEndOfAudioAssetEvent(ob_CatchEvents.CatchEndOfAudioEvent) ;
 ob_EndOfAudioBuffer.EndOfAudioBufferEvent+=new DEndOfAudioBufferEvent  (ob_CatchEvents.CatchEndOfAudioEvent) ;
+			
 		}
 			
 
@@ -240,7 +243,7 @@ InitPlay(0, 0) ;
 				lEndPosition = calc.AdaptToFrame(lEndPosition, m_Asset.FrameSize) ;
 m_SamplingRate = m_Asset.SampleRate ;
 				// creates file stream from file
-				fs = new FileStream (m_Asset .Path, FileMode.Open,  								FileAccess.Read) ;
+				fs = new FileStream (m_Asset .Path, FileMode.Open,  								FileAccess.Read) ;
 
 				// lEndPosition = 0 means that file is played to end
 				if (lEndPosition != 0)
@@ -333,7 +336,7 @@ TriggerStateChangedEvent (ob_StateChanged) ;
 		void RefreshBuffer ()
 		{
 		CalculationFunctions calc = new CalculationFunctions () ;
-			int PlayPosition ;
+			int ReadPosition;
 // variable to count byte difference in compressed and non compressed data of audio file
 int reduction = 0 ;
 			while (m_lPlayed < m_lLength)
@@ -343,11 +346,10 @@ int reduction = 0 ;
 
 reduction = 0 ;
 				Thread.Sleep (50) ;
-				PlayPosition = SoundBuffer.PlayPosition  ;
-				if (PlayPosition < ((m_SizeBuffer)- 4) )
+				ReadPosition = SoundBuffer.PlayPosition  ;
+				if (ReadPosition < ((m_SizeBuffer)- 4) )
 				{
-Array.Copy ( SoundBuffer.Read (PlayPosition , typeof (byte) , LockFlag.None ,4 ) , arUpdateVM , 4 ) ;				
-					//ob_UpdateVuMeter.TriggerUpdateVuMeterEvent (arUpdateVM , m_FrameSize, m_Channels) ;
+Array.Copy ( SoundBuffer.Read (ReadPosition , typeof (byte) , LockFlag.None ,4 ) , arUpdateVM , 4 ) ;				
 
 				}
 				// check if play cursor is in second half , then refresh first half else second
@@ -390,17 +392,17 @@ m_lArrayPosition = m_lArrayPosition + m_RefreshLength ;
 					{//2
 						if (m_FastPlay == false)
 						{//3
-							SoundBuffer.Write (m_RefreshLength, fs , m_RefreshLength, 0)  ;						}//-3						else						{//3							for (int i = 0 ; i< m_RefreshLength; i=i+(m_Step*m_FrameSize))
+							SoundBuffer.Write (m_RefreshLength, fs , m_RefreshLength, 0)  ;						}//-3						else						{//3							for (int i = 0 ; i< m_RefreshLength; i=i+(m_Step*m_FrameSize))
 							{//4
 								SoundBuffer.Write ( i+ m_RefreshLength, fs , m_Step*m_FrameSize, 0) ;
 								i = i-(2*m_FrameSize) ;
 								reduction = reduction + (2* m_FrameSize);
-															}						//-4
+															}						//-4
 							
 							// end of FastPlay check
-						}//-3					}//-2					else					{//2						for (int i = 0 ; i< m_RefreshLength ; i++)
-						RefreshArray[i] = ByteBuffer [m_lArrayPosition + i] ;						SoundBuffer.Write (m_RefreshLength , RefreshArray,  0) ;
-						m_lArrayPosition = m_lArrayPosition + m_RefreshLength ;						// end of file check					}//-2
+						}//-3					}//-2					else					{//2						for (int i = 0 ; i< m_RefreshLength ; i++)
+							RefreshArray[i] = ByteBuffer [m_lArrayPosition + i] ;						SoundBuffer.Write (m_RefreshLength , RefreshArray,  0) ;
+						m_lArrayPosition = m_lArrayPosition + m_RefreshLength ;						// end of file check					}//-2
 						m_lPlayed = m_lPlayed + m_RefreshLength+ reduction;
 
 					m_BufferCheck++ ;
