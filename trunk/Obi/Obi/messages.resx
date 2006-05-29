@@ -124,10 +124,30 @@
     <value>Closing a modified project</value>
   </data>
   <data name="closed_project_text" xml:space="preserve">
-    <value>You are about to close a project with unsaved modifications. Do you want to save these modifications before closing the project? You may also press Cancel to not close the project.</value>
+    <value>You are about to close a project with unsaved modifications.
+Do you want to save these modifications before closing the project?
+You may also press Cancel to not close the project.</value>
+  </data>
+  <data name="debug_created_project" xml:space="preserve">
+    <value>[DEBUG] Created project</value>
+  </data>
+  <data name="debug_opened_project" xml:space="preserve">
+    <value>[DEBUG] Opened project from XUK file {0}</value>
+  </data>
+  <data name="debug_saved_project" xml:space="preserve">
+    <value>[DEBUG] Saved project</value>
+  </data>
+  <data name="debug_touched_project" xml:space="preserve">
+    <value>[DEBUG] Touched project</value>
   </data>
   <data name="new_strip_label" xml:space="preserve">
     <value>New strip</value>
+  </data>
+  <data name="no_open_project" xml:space="preserve">
+    <value>No project is currently open.</value>
+  </data>
+  <data name="ready" xml:space="preserve">
+    <value>Ready.</value>
   </data>
   <data name="redo_label" xml:space="preserve">
     <value>{0} {1}</value>
