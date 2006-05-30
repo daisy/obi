@@ -33,6 +33,18 @@ CatchEvents ob_CatchEvents = new CatchEvents () ;
 			}
 		}
 
+		/// <summary>
+		/// Get the project directory for the asset manager.
+		/// </summary>
+		/// <remarks>Added by Julien</remarks>
+		public string ProjectDir
+		{
+			get
+			{
+				return m_sDirPath;
+			}
+		}
+
 		//constructor [should be private]
 		public AssetManager (string sProjectDir)
 		{
