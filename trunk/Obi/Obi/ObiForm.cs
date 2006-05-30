@@ -1,8 +1,13 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
+using System.IO.IsolatedStorage;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Soap;
 using System.Text;
 using System.Windows.Forms;
 
@@ -13,9 +18,10 @@ namespace Obi
     public partial class ObiForm : Form
     {
         private Project mProject;          // the project currently being authored
+        private Settings mSettings;        // application settings
         private UndoRedoStack mUndoStack;  // the undo stack for this project [should belong to the project; saved together]
-
-        private event Events.Project.StateChangedHandler ProjectStateChanged;
+        
+        private event Events.Project.StateChangedHandler ProjectStateChanged;  // track changes on the project
 
         /// <summary>
         /// Initialize a new form. No project is opened at creation time.
@@ -27,7 +33,7 @@ namespace Obi
             mProject = null;
             ProjectStateChanged += new Events.Project.StateChangedHandler(mProject_StateChanged);
             GUIUpdateNoProject();
-
+            GetSettings();
             mUndoStack = new UndoRedoStack();
             undo_label = mUndoToolStripMenuItem.Text;
             redo_label = mRedoToolStripMenuItem.Text;
@@ -43,7 +49,7 @@ namespace Obi
         {
             if (ClosedProject())
             {
-                mProject = new Project();
+                mProject = new Project(null);
                 OnProjectCreated();
             }
             else
@@ -52,8 +58,10 @@ namespace Obi
             }
         }
 
+        private const string XukFilter = "Obi project file (*.xuk)|*.xuk";
+
         /// <summary>
-        /// Open a project from a XUK file.
+        /// Open a project from a XUK file by prompting the user for a file location.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -62,16 +70,197 @@ namespace Obi
             if (ClosedProject())
             {
                 OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = "Obi project file (*.xuk)|*.xuk";
+                dialog.Filter = XukFilter;
                 DialogResult result = dialog.ShowDialog();
                 if (result == DialogResult.OK)
                 {
                     mProject = new Project(dialog.FileName);
+                    AddRecentProject(dialog.FileName);
                     OnProjectOpened();
-                    return;
+                }
+                else
+                {
+                    Ready();
                 }
             }
+            else
+            {
+                Ready();
+            }
+        }
+
+        /// <summary>
+        /// Add a project to the list of recent projects.
+        /// If the project was already in the list, promote it to the top of the list.
+        /// Update the recent menu if necessary.
+        /// </summary>
+        /// <param name="path">The path of the project to add.</param>
+        private void AddRecentProject(string path)
+        {
+            if (mSettings.RecentProjects.Count == 0)
+            {
+                openrecentProjectToolStripMenuItem.Enabled = true;
+            }
+            else
+            {
+                if (mSettings.RecentProjects.Contains(path))
+                {
+                    int i = mSettings.RecentProjects.IndexOf(path);
+                    mSettings.RecentProjects.RemoveAt(i);
+                    openrecentProjectToolStripMenuItem.DropDownItems.RemoveAt(i);
+                }
+            }
+            mSettings.RecentProjects.Insert(0, path);
+            ToolStripMenuItem item = new ToolStripMenuItem();
+            item.Text = Path.GetFileName(path);
+            item.Click += new System.EventHandler(delegate(object sender, EventArgs e) { OpenProject(path); });
+            openrecentProjectToolStripMenuItem.DropDownItems.Insert(0, item);
+        }
+
+        /// <summary>
+        /// Open a project from a XUK file.
+        /// </summary>
+        /// <param name="path">The path of the XUK file to open.</param>
+        private void OpenProject(string path)
+        {
+            if (ClosedProject())
+            {
+                mProject = new Project(path);
+                AddRecentProject(path);
+                OnProjectOpened();
+            }
+            else
+            {
+                Ready();
+            }
+        }
+
+        /// <summary>
+        /// Clear the list of recently opened files (prompt the user first.)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void clearListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(Localizer.Message("clear_recent_text"),
+                Localizer.Message("clear_recent_caption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                ClearRecentList();
+            }
             Ready();
+        }
+
+        /// <summary>
+        /// Clear the list of recent projects.
+        /// </summary>
+        private void ClearRecentList()
+        {
+            for (int i = mSettings.RecentProjects.Count - 1; i >= 0; --i)
+            {
+                openrecentProjectToolStripMenuItem.DropDownItems.RemoveAt(i);
+            }
+            mSettings.RecentProjects.Clear();
+            openrecentProjectToolStripMenuItem.Enabled = false;
+        }
+
+        /// <summary>
+        /// Save the current project under its current name, or ask for one if none is defined yet.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void saveProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProject.Unsaved)
+            {
+                if (mProject.XUKPath == null)
+                {
+                    SaveProjectAs();
+                }
+                else
+                {
+                    mProject.Save();
+                    OnProjectSaved();
+                }
+            }
+            else
+            {
+                Ready();
+            }
+        }
+
+        /// <summary>
+        /// Save the project under a (presumably) different name.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void saveProjectasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveProjectAs();
+        }
+
+        /// <summary>
+        /// Save the project under a file name supplied by the user through a file chooser.
+        /// The currently open project is still the old project.
+        /// </summary>
+        private void SaveProjectAs()
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = XukFilter;
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                if (mProject.SetXukPath(dialog.FileName))
+                {
+                    mProject.Save();
+                    OnProjectSaved();
+                }
+                else
+                {
+                    mProject.SaveAs(dialog.FileName);
+                    Debug(String.Format(Localizer.Message("debug_saved_project"), dialog.FileName));
+                }
+                AddRecentProject(dialog.FileName);
+            }
+            else
+            {
+                Ready();
+            }
+        }
+        
+        /// <summary>
+        /// Revert the project to its last saved state, or if it was never saved, just reset it to a blank project.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void revertToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProject.Unsaved)
+            {
+                DialogResult discard = MessageBox.Show(Localizer.Message("discard_changes_text"),
+                    Localizer.Message("discard_changes_caption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (discard == DialogResult.Yes)
+                {
+                    if (mProject.XUKPath == null)
+                    {
+                        mProject = new Project(null);
+                        OnProjectCreated();
+                    }
+                    else
+                    {
+                        mProject = new Project(mProject.XUKPath);
+                        OnProjectOpened();
+                    }
+                }
+                else
+                {
+                    Ready();
+                }
+            }
+            else
+            {
+                Ready();
+            }
         }
 
         /// <summary>
@@ -113,7 +302,7 @@ namespace Obi
             if (mProject != null && mProject.Unsaved)
             {
                 DialogResult result = MessageBox.Show(Localizer.Message("closed_project_text"),
-                    Localizer.Message("close_project_caption"), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    Localizer.Message("closed_project_caption"), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     mProject.Save();
@@ -132,6 +321,7 @@ namespace Obi
             }
             else
             {
+                OnProjectClosed();
                 Ready();
                 return true;
             }
@@ -217,6 +407,7 @@ namespace Obi
         /// </summary>
         private void GUIUpdateNoProject()
         {
+            this.Text = "Obi";
             closeProjectToolStripMenuItem.Enabled = false;
             saveProjectToolStripMenuItem.Enabled = false;
             saveProjectasToolStripMenuItem.Enabled = false;
@@ -230,6 +421,7 @@ namespace Obi
         /// </summary>
         private void GUIUpdateSavedProject()
         {
+            this.Text = mProject.Title + " - Obi";
             closeProjectToolStripMenuItem.Enabled = true;
             saveProjectToolStripMenuItem.Enabled = false;
             saveProjectasToolStripMenuItem.Enabled = true;
@@ -242,6 +434,7 @@ namespace Obi
         /// </summary>
         private void GUIUpdateUnsavedProject()
         {
+            this.Text = mProject.Title + "* - Obi";
             closeProjectToolStripMenuItem.Enabled = true;
             saveProjectToolStripMenuItem.Enabled = true;
             saveProjectasToolStripMenuItem.Enabled = true;
@@ -250,13 +443,78 @@ namespace Obi
             Ready();
         }
 
+        /// <summary>
+        /// Update the status bar to say "Ready."
+        /// </summary>
         private void Ready()
         {
             toolStripStatusLabel1.Text = Localizer.Message("ready");
         }
 
+        private const string SettingsFileName = "obi_settings.xml";
 
-        
+        /// <summary>
+        /// Read the settings, or create an empty settings object.
+        /// </summary>
+        private void GetSettings()
+        {
+            mSettings = new Settings();
+            mSettings.RecentProjects = new ArrayList();
+            ClearRecentList();
+        }
+
+        /*private void GetSettings()
+        {
+            mSettings = new Settings();
+            try
+            {
+                IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
+                IsolatedStorageFileStream stream =
+                    new IsolatedStorageFileStream(SettingsFileName, FileMode.Open, FileAccess.Read, file);
+                MessageBox.Show("OK (stream)", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                SoapFormatter soap = new SoapFormatter();
+                mSettings.RecentProjects = (ArrayList)soap.Deserialize(stream);
+                ClearRecentList();
+                for (int i = mSettings.RecentProjects.Count - 1; i >= 0; --i)
+                {
+                    //AddRecentProject((string) mSettings.RecentProjects[i]);
+                    Console.WriteLine("Add {0} ({1})", (string)mSettings.RecentProjects[i], i);
+                }
+                MessageBox.Show("OK (deserialize)", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                stream.Close();
+            }
+            catch (Exception e)
+            {
+                mSettings.RecentProjects = new ArrayList();
+                ClearRecentList();
+            }
+        }*/
+
+        /// <summary>
+        /// Save the settings when closing.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ObiForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            /*try
+            {
+                IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
+                IsolatedStorageFileStream stream =
+                    new IsolatedStorageFileStream(SettingsFileName, FileMode.Create, FileAccess.Write, file);
+                SoapFormatter soap = new SoapFormatter();
+                soap.Serialize(stream, mSettings.RecentProjects);
+                stream.Close();
+                string[] dirs = file.GetFileNames("*.*");
+                MessageBox.Show("OK: " + String.Join(" :: ", dirs), "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show(String.Format(Localizer.Message("save_settings_error_text"), x.Message),
+                    Localizer.Message("save_settings_error_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }*/
+        }
+
 
 
 
@@ -318,5 +576,14 @@ namespace Obi
                 UndoStackChanged(this, new EventArgs());
             }
         }
+    }
+
+    /// <summary>
+    /// Various persistent application settings.
+    /// </summary>
+    [Serializable()]
+    public class Settings
+    {
+        public ArrayList RecentProjects;  // paths to projects recently opened
     }
 }

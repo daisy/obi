@@ -11,5 +11,13 @@ namespace Obi
         private string mOrganization;
         private CultureInfo mLanguage;
         private string mIdTemplate;
+
+        public UserProfile()
+        {
+            mName = null;
+            mOrganization = null;
+            mLanguage = null;
+            mIdTemplate = null;
+        }
     }
 }

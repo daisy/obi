@@ -70,6 +70,25 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear the list of recent projects?.
+        /// </summary>
+        internal static string clear_recent_caption {
+            get {
+                return ResourceManager.GetString("clear_recent_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to clear the list of recent projects?
+        ///You cannot undo this operation..
+        /// </summary>
+        internal static string clear_recent_text {
+            get {
+                return ResourceManager.GetString("clear_recent_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Closing a modified project.
         /// </summary>
         internal static string closed_project_caption {
@@ -80,8 +99,7 @@ namespace Obi {
         
         /// <summary>
         ///   Looks up a localized string similar to You are about to close a project with unsaved modifications.
-        ///Do you want to save these modifications before closing the project?
-        ///You may also press Cancel to not close the project..
+        ///Do you want to save these modifications before closing the project?.
         /// </summary>
         internal static string closed_project_text {
             get {
@@ -108,7 +126,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [DEBUG] Saved project.
+        ///   Looks up a localized string similar to [DEBUG] Saved project to XUK file {0}.
         /// </summary>
         internal static string debug_saved_project {
             get {
@@ -122,6 +140,26 @@ namespace Obi {
         internal static string debug_touched_project {
             get {
                 return ResourceManager.GetString("debug_touched_project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discarding changes to a modified project.
+        /// </summary>
+        internal static string discard_changes_caption {
+            get {
+                return ResourceManager.GetString("discard_changes_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to discard all modifications made to this
+        ///project and revert it to its last saved state?
+        ///You cannot undo this operation..
+        /// </summary>
+        internal static string discard_changes_text {
+            get {
+                return ResourceManager.GetString("discard_changes_text", resourceCulture);
             }
         }
         
@@ -167,6 +205,27 @@ namespace Obi {
         internal static string resize_strip {
             get {
                 return ResourceManager.GetString("resize_strip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not save settings.
+        /// </summary>
+        internal static string save_settings_error_caption {
+            get {
+                return ResourceManager.GetString("save_settings_error_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following error occurred while trying to save the settings:
+        ///&quot;{0}&quot;
+        ///As a result, changes to the settings made during this session have not been saved.
+        ///Oh well..
+        /// </summary>
+        internal static string save_settings_error_text {
+            get {
+                return ResourceManager.GetString("save_settings_error_text", resourceCulture);
             }
         }
         
