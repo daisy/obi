@@ -33,13 +33,13 @@ namespace Obi
             this.createNewProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openrecentProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.openrecentSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.clearListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.saveProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveProjectasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.revertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,29 +98,23 @@ namespace Obi
             // openrecentProjectToolStripMenuItem
             // 
             this.openrecentProjectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripSeparator4,
+            this.openrecentSeparator,
             this.clearListToolStripMenuItem});
             this.openrecentProjectToolStripMenuItem.Name = "openrecentProjectToolStripMenuItem";
             this.openrecentProjectToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.openrecentProjectToolStripMenuItem.Text = "Open &recent project";
             // 
-            // toolStripSeparator4
+            // openrecentSeparator
             // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(114, 6);
+            this.openrecentSeparator.Name = "openrecentSeparator";
+            this.openrecentSeparator.Size = new System.Drawing.Size(114, 6);
             // 
             // clearListToolStripMenuItem
             // 
             this.clearListToolStripMenuItem.Name = "clearListToolStripMenuItem";
             this.clearListToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.clearListToolStripMenuItem.Text = "Clear list";
-            // 
-            // closeProjectToolStripMenuItem
-            // 
-            this.closeProjectToolStripMenuItem.Name = "closeProjectToolStripMenuItem";
-            this.closeProjectToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.closeProjectToolStripMenuItem.Text = "&Close project";
-            this.closeProjectToolStripMenuItem.Click += new System.EventHandler(this.closeProjectToolStripMenuItem_Click);
+            this.clearListToolStripMenuItem.Click += new System.EventHandler(this.clearListToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -132,18 +126,28 @@ namespace Obi
             this.saveProjectToolStripMenuItem.Name = "saveProjectToolStripMenuItem";
             this.saveProjectToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.saveProjectToolStripMenuItem.Text = "&Save project";
+            this.saveProjectToolStripMenuItem.Click += new System.EventHandler(this.saveProjectToolStripMenuItem_Click);
             // 
             // saveProjectasToolStripMenuItem
             // 
             this.saveProjectasToolStripMenuItem.Name = "saveProjectasToolStripMenuItem";
             this.saveProjectasToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.saveProjectasToolStripMenuItem.Text = "Save project &as";
+            this.saveProjectasToolStripMenuItem.Click += new System.EventHandler(this.saveProjectasToolStripMenuItem_Click);
             // 
             // revertToolStripMenuItem
             // 
             this.revertToolStripMenuItem.Name = "revertToolStripMenuItem";
             this.revertToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.revertToolStripMenuItem.Text = "&Discard changes";
+            this.revertToolStripMenuItem.Click += new System.EventHandler(this.revertToolStripMenuItem_Click);
+            // 
+            // closeProjectToolStripMenuItem
+            // 
+            this.closeProjectToolStripMenuItem.Name = "closeProjectToolStripMenuItem";
+            this.closeProjectToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.closeProjectToolStripMenuItem.Text = "&Close project";
+            this.closeProjectToolStripMenuItem.Click += new System.EventHandler(this.closeProjectToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -224,6 +228,7 @@ namespace Obi
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "ObiForm";
             this.Text = "Obi";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ObiForm_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -254,7 +259,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem revertToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripSeparator openrecentSeparator;
         private System.Windows.Forms.ToolStripMenuItem clearListToolStripMenuItem;
 
 
