@@ -119,8 +119,10 @@ namespace UrakawaApplicationBackend
 		/// All phrases may have trailing silence.
 		/// </summary>
 		/// <param name="asset">The asset to split.</param>
-		/// <param name="silence">The minimum length of silence between phrases.</param>
+		/// <param name="threshold">The maximum level of what is considered silence.</param>
+		/// <param name="length">The minimum length of silence between phrases.</param>
+		/// <param name="before">The amount of silence at the beginning of a phrase.</param>
 		/// <returns>The list of new audio assets in order.</returns>
-		ArrayList ApplyPhraseDetection(IAudioMediaAsset asset, long silence);
+		ArrayList ApplyPhraseDetection(IAudioMediaAsset asset, long threshold, long length, long before);
 	}
 }

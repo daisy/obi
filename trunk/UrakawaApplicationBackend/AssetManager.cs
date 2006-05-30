@@ -331,7 +331,7 @@ MessageBox.Show("Exxeption! Assets of same name exist in hash table.") ;
 			return null;
 		}
 
-		public ArrayList ApplyPhraseDetection(IAudioMediaAsset asset, long silence)
+		public ArrayList ApplyPhraseDetection(IAudioMediaAsset asset, long threshold, long length, long before)
 		{
 			return null;
 		}
