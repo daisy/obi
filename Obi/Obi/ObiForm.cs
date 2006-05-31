@@ -47,10 +47,18 @@ namespace Obi
         /// <param name="e"></param>
         private void createNewProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (ClosedProject())
+            Dialogs.NewProject dialog = new Dialogs.NewProject(mSettings.DefaultPath);
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
-                mProject = new Project(null);
-                OnProjectCreated();
+                if (ClosedProject())
+                {
+                    mProject = new Project(dialog.Title, dialog.Path);
+                    OnProjectCreated();
+                }
+                else
+                {
+                    Ready();
+                }
             }
             else
             {
@@ -74,7 +82,7 @@ namespace Obi
                 DialogResult result = dialog.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    mProject = new Project(dialog.FileName);
+                    mProject = Project.Open(dialog.FileName);
                     AddRecentProject(dialog.FileName);
                     OnProjectOpened();
                 }
@@ -125,7 +133,7 @@ namespace Obi
         {
             if (ClosedProject())
             {
-                mProject = new Project(path);
+                mProject = Project.Open(path);
                 AddRecentProject(path);
                 OnProjectOpened();
             }
@@ -243,12 +251,12 @@ namespace Obi
                 {
                     if (mProject.XUKPath == null)
                     {
-                        mProject = new Project(null);
+                        mProject = new Project(mProject.Title, mProject.XUKPath);
                         OnProjectCreated();
                     }
                     else
                     {
-                        mProject = new Project(mProject.XUKPath);
+                        mProject = Project.Open(mProject.XUKPath);
                         OnProjectOpened();
                     }
                 }
@@ -325,6 +333,41 @@ namespace Obi
                 Ready();
                 return true;
             }
+        }
+
+        /// <summary>
+        /// Edit the user profile through the user profile dialog.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void userSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Dialogs.UserProfile dialog = new Dialogs.UserProfile(mSettings.UserProfile);
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                Debug(String.Format(Localizer.Message("debug_user_profile"), mSettings.UserProfile.ToString()));
+            }
+            else
+            {
+                Ready();
+            }
+        }
+
+        /// <summary>
+        /// Edit the preferences.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings.IdTemplate, mSettings.DefaultPath);
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                if (dialog.IdTemplate.Contains("#")) mSettings.IdTemplate = dialog.IdTemplate;
+                if (Directory.Exists(dialog.DefaultDir)) mSettings.DefaultPath = dialog.DefaultDir;
+            }
+            Ready();
         }
 
         /// <summary>
@@ -461,6 +504,10 @@ namespace Obi
             mSettings = new Settings();
             mSettings.RecentProjects = new ArrayList();
             ClearRecentList();
+            mSettings.UserProfile = new UserProfile();
+            Console.WriteLine(mSettings.UserProfile);
+            mSettings.IdTemplate = "obi_####";
+            mSettings.DefaultPath = Environment.CurrentDirectory;
         }
 
         /*private void GetSettings()
@@ -585,5 +632,8 @@ namespace Obi
     public class Settings
     {
         public ArrayList RecentProjects;  // paths to projects recently opened
+        public UserProfile UserProfile;   // the user profile
+        public string IdTemplate;         // identifier template
+        public string DefaultPath;        // default location
     }
 }

@@ -37,12 +37,23 @@ namespace Obi
         /// <summary>
         /// Create a project from a XUK file.
         /// </summary>
-        /// <param name="xukPath"></param>
-        public Project(string xukPath)
+        /// <param name="path">Path of the directory in which to create the project.</param>
+        /// <param name="title">Title of the project.</param>
+        public Project(string title, string path)
         {
             mUnsaved = false;
-            mXUKPath = xukPath;
-            mTitle = xukPath == null ? "(Untitled project)" : System.IO.Path.GetFileNameWithoutExtension(xukPath);
+            mTitle = title;
+            mXUKPath = path;
+        }
+
+        /// <summary>
+        /// Open a project from a XUK file.
+        /// </summary>
+        /// <param name="path">XUK file path.</param>
+        /// <returns>The project object created from this file.</returns>
+        public static Project Open(string path)
+        {
+            return new Project(System.IO.Path.GetFileNameWithoutExtension(path), path);
         }
 
         /// <summary>
@@ -86,6 +97,16 @@ namespace Obi
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Get a short name from a given title. Usable for XUK file and project directory filename.
+        /// </summary>
+        /// <param name="title">Complete title.</param>
+        /// <returns>The short version.</returns>
+        public static string ShortName(string title)
+        {
+            return System.Text.RegularExpressions.Regex.Replace(title, @"[^a-zA-Z0-9_]", "_");
         }
     }
 }

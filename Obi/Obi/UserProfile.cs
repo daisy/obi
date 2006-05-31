@@ -7,17 +7,64 @@ namespace Obi
 {
     public class UserProfile
     {
-        private string mName;
-        private string mOrganization;
-        private CultureInfo mLanguage;
-        private string mIdTemplate;
+        private string mName;          // user name
+        private string mOrganization;  // user organization
+        private CultureInfo mCulture;  // user language
 
+        public string Name
+        {
+            get
+            {
+                return mName;
+            }
+            set
+            {
+                mName = value;
+            }
+        }
+
+        public string Organization
+        {
+            get
+            {
+                return mOrganization;
+            }
+            set
+            {
+                mOrganization = value;
+            }
+        }
+
+        public CultureInfo Culture
+        {
+            get
+            {
+                return mCulture;
+            }
+            set
+            {
+                mCulture = value;
+            }
+        }
+
+        /// <summary>
+        /// Create a new user profile from the OS settings.
+        /// </summary>
         public UserProfile()
         {
-            mName = null;
+            mName = Environment.UserName;
             mOrganization = null;
-            mLanguage = null;
-            mIdTemplate = null;
+            mCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+        }
+
+        /// <summary>
+        /// Short string version of the user profile.
+        /// e.g. "David Brent @Wernham Hogg [en-UK]"
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return String.Format("{0}{1} [{2}]", mName, mOrganization == null ? "" : " @" + mOrganization, mCulture);
         }
     }
 }

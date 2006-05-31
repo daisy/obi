@@ -144,6 +144,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to [DEBUG] User profile: {0}.
+        /// </summary>
+        internal static string debug_user_profile {
+            get {
+                return ResourceManager.GetString("debug_user_profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Discarding changes to a modified project.
         /// </summary>
         internal static string discard_changes_caption {
@@ -160,6 +169,15 @@ namespace Obi {
         internal static string discard_changes_text {
             get {
                 return ResourceManager.GetString("discard_changes_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New project.
+        /// </summary>
+        internal static string new_project {
+            get {
+                return ResourceManager.GetString("new_project", resourceCulture);
             }
         }
         
