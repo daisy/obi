@@ -39,6 +39,24 @@
   <ItemGroup>
     <Compile Include="Command.cs" />
     <Compile Include="Commands.cs" />
+    <Compile Include="Dialogs\NewProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\NewProject.Designer.cs">
+      <DependentUpon>NewProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Preferences.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Preferences.Designer.cs">
+      <DependentUpon>Preferences.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\UserProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\UserProfile.Designer.cs">
+      <DependentUpon>UserProfile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Events\Project\StateChangedEventArgs.cs" />
     <Compile Include="Localizer.cs" />
     <Compile Include="messages.Designer.cs">
@@ -55,6 +73,18 @@
     <Compile Include="Program.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Dialogs\NewProject.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NewProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Preferences.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Preferences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\UserProfile.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UserProfile.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="messages.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
