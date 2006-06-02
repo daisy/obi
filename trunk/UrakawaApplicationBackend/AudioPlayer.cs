@@ -34,8 +34,8 @@ namespace UrakawaApplicationBackend
 		private 		long m_lArrayPosition;
 		private 		bool m_FastPlay ;
 		private 		int m_Step ;
-		private int m_FrameSize ;
-		private int m_Channels ;
+		internal int m_FrameSize ;
+		internal int m_Channels ;
 		private 		int m_SamplingRate ;
 		private AudioPlayerState  m_State;
 
@@ -62,16 +62,19 @@ AssociateEvents  () ;
 			}
 		}
 
+		
+
+
 // Create objects for triggering events
 //StateChanged  ob_StateChanged = new StateChanged   ( AudioPlayerState.stopped) ;
 		
 EndOfAudioAsset  ob_EndOfAudioAsset  = new EndOfAudioAsset () ;
 EndOfAudioBuffer ob_EndOfAudioBuffer = new EndOfAudioBuffer () ;
-		//UpdateVuMeter ob_UpdateVuMeter = new UpdateVuMeter () ;
+		UpdateVuMeter ob_UpdateVuMeter = new UpdateVuMeter () ;
 
 // create objects for handling events
 CatchEvents ob_CatchEvents = new CatchEvents () ;
-VuMeter ob_VuMeter = new VuMeter () ;
+VuMeter ob_VuMeter ;
 
 
 // bool variable to enable or disable event
@@ -84,6 +87,25 @@ ob_EndOfAudioBuffer.EndOfAudioBufferEvent+=new DEndOfAudioBufferEvent  (ob_Catch
 			
 		}
 			
+// Set VuMeter object
+		public 		void SetVuMeterObject ( VuMeter ob_VuMeterArg )
+		{
+			ob_VuMeter = ob_VuMeterArg ;
+			ob_UpdateVuMeter.UpdateVuMeterEvent += new DUpdateVuMeterEvent (ob_VuMeter.CatchUpdateVuMeterEvent ) ;	
+			
+		}
+
+		public VuMeter VuMeterObject
+		{
+			get
+			{
+return ob_VuMeter ;
+			}
+			set
+			{
+SetVuMeterObject (value) ;
+			}
+		}
 
 
 		void TriggerStateChangedEvent ()
@@ -104,7 +126,7 @@ void TriggerStateChangedEvent ( StateChanged ob)
 		
 
 // array for update current amplitude to VuMeter
-		private byte [] arUpdateVM = new byte [4] ;
+		internal byte [] arUpdateVM = new byte [4] ;
 
 
 // gets the current AudioPlayer state
@@ -228,7 +250,8 @@ return devList  ;
 		public void Play(IAudioMediaAsset asset )
 		{
 			m_Asset = asset ;
-
+VuMeter ob_VuMeter  = new VuMeter () ;
+ob_VuMeter.DisplayGraph () ;
 InitPlay(0, 0) ;
 		}
 
@@ -350,7 +373,7 @@ reduction = 0 ;
 				if (ReadPosition < ((m_SizeBuffer)- 4) )
 				{
 Array.Copy ( SoundBuffer.Read (ReadPosition , typeof (byte) , LockFlag.None ,4 ) , arUpdateVM , 4 ) ;				
-
+ob_UpdateVuMeter.NotifyUpdateVuMeter ( this, ob_UpdateVuMeter ) ;
 				}
 				// check if play cursor is in second half , then refresh first half else second
 				if ((m_BufferCheck% 2) == 1 &&  SoundBuffer.PlayPosition > m_RefreshLength) 
@@ -679,7 +702,7 @@ m_State= AudioPlayerState .stopped ;
 			TriggerStateChangedEvent (ob_StateChanged) ;
 		}
 
-		long GetCurrentBytePosition()
+		internal long GetCurrentBytePosition()
 		{
 int PlayPosition  = SoundBuffer.PlayPosition;
 			
@@ -696,7 +719,7 @@ lCurrentPosition = m_lPlayed - (3 * m_RefreshLength) + PlayPosition ;
 return lCurrentPosition ;
 		}
 
-		double GetCurrentTimePosition()
+		internal double GetCurrentTimePosition()
 		{
 			CalculationFunctions calc = new CalculationFunctions () ;
 			long lPos = GetCurrentBytePosition ();

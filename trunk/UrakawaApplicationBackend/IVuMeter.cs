@@ -58,9 +58,33 @@ namespace UrakawaApplicationBackend
 			get;
 		}
 
+
+// Properties added by app team, india
+
+		VuMeter.Threshold AmplitudeThreshold
+		{
+get;
+			set;
+		}
+
+// provides the scale facor for graph 
+		double ScaleFactor
+		{
+get;
+			set ;
+		}
+
+		double SampleTimeLength
+		{
+			get ;
+			set ;
+		}
+
+
         /// <summary>
         /// Resets statistics from the VU meter (peak values and overload.)
         /// </summary>
         void Reset();
+		
     }
 }
