@@ -4,11 +4,20 @@ using System.Text;
 
 namespace UrakawaApplicationBackend.events.vuMeterEvents
 {
+	public delegate void DPeakOverloadEvent ( VuMeter ob_oVM , PeakOverload  Overload );
 	/// <summary>
 	/// Event raised by the Vu meter when the signal level overloads.
 	/// </summary>
-    class PeakOverload : VuMeterEvent 
+    public class PeakOverload : VuMeterEvent 
     {
+
+public event DPeakOverloadEvent PeakOverloadEvent ;
+
+		public void NotifyPeakOverload ( VuMeter ob_VM, PeakOverload Overload)
+		{
+if ( PeakOverloadEvent != null)
+PeakOverloadEvent ( ob_VM , Overload) ;
+		}
 		private int mChannel;          // channel which overloaded
 		private long mBytePosition;    // position where the overload happened (from start of recording)
 		private double mTimePosition;  // time when the overload happened (from start of recording)
@@ -42,11 +51,13 @@ namespace UrakawaApplicationBackend.events.vuMeterEvents
 		/// </summary>
 		/// <param name="channel">The channel that overloaded.</param>
 		/// <param name="bytePosition">The position where the event occurred.</param>
-		public PeakOverload(int channel, long bytePosition)
+		/// 
+		// timePosition is added in same constructor by app team, India
+		public PeakOverload(int channel, long bytePosition, double timePosition)
 		{
 			mChannel = channel;
 			mBytePosition = bytePosition;
-			mTimePosition = 0;
+			mTimePosition = timePosition;
 		}
 
 		/// <summary>

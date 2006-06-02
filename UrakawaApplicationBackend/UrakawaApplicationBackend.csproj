@@ -199,6 +199,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "VuMeterForm.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "events\assetManagerEvents\AssetDeleted.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -229,6 +234,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "events\audioPlayerEvents\UpdateVuMeter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "events\audioRecorderEvents\AudioRecorderEvent.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -240,6 +250,11 @@
                 />
                 <File
                     RelPath = "events\vuMeterEvents\PeakOverload.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "events\vuMeterEvents\UpdateForms.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
