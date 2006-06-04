@@ -255,5 +255,14 @@ namespace Obi {
                 return ResourceManager.GetString("undo_label", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Untitled.
+        /// </summary>
+        internal static string untitled {
+            get {
+                return ResourceManager.GetString("untitled", resourceCulture);
+            }
+        }
     }
 }
