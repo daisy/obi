@@ -29,7 +29,6 @@ namespace Obi
         public ObiForm()
         {
             InitializeComponent();
-            
             mProject = null;
             ProjectStateChanged += new Events.Project.StateChangedHandler(mProject_StateChanged);
             GUIUpdateNoProject();
@@ -52,7 +51,7 @@ namespace Obi
             {
                 if (ClosedProject())
                 {
-                    mProject = new Project(dialog.Title, dialog.Path);
+                    mProject = new Project(dialog.Title, dialog.Path, mSettings.IdTemplate, mSettings.UserProfile);
                     OnProjectCreated();
                 }
                 else
@@ -251,7 +250,8 @@ namespace Obi
                 {
                     if (mProject.XUKPath == null)
                     {
-                        mProject = new Project(mProject.Title, mProject.XUKPath);
+                        mProject = new Project(mProject.Metadata.Title, mProject.XUKPath, mProject.Metadata.Id,
+                            mSettings.UserProfile);
                         OnProjectCreated();
                     }
                     else
@@ -371,6 +371,25 @@ namespace Obi
         }
 
         /// <summary>
+        /// Edit the metadata for the project.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void metadataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProject != null)
+            {
+                Dialogs.EditMetadata dialog = new Dialogs.EditMetadata(mProject.Metadata);
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    mProject.Touch();
+                    OnProjectModified();
+                }
+                Ready();
+            }
+        }
+
+        /// <summary>
         /// Touch the project so that it seems that it was modified (used for debugging.)
         /// </summary>
         /// <param name="sender"></param>
@@ -456,6 +475,7 @@ namespace Obi
             saveProjectasToolStripMenuItem.Enabled = false;
             touchProjectToolStripMenuItem.Enabled = false;
             revertToolStripMenuItem.Enabled = false;
+            metadataToolStripMenuItem.Enabled = false;
             Ready();
         }
 
@@ -464,12 +484,13 @@ namespace Obi
         /// </summary>
         private void GUIUpdateSavedProject()
         {
-            this.Text = mProject.Title + " - Obi";
+            this.Text = mProject.Metadata.Title + " - Obi";
             closeProjectToolStripMenuItem.Enabled = true;
             saveProjectToolStripMenuItem.Enabled = false;
             saveProjectasToolStripMenuItem.Enabled = true;
             touchProjectToolStripMenuItem.Enabled = true;
             revertToolStripMenuItem.Enabled = false;
+            metadataToolStripMenuItem.Enabled = true;
         }
 
         /// <summary>
@@ -477,12 +498,13 @@ namespace Obi
         /// </summary>
         private void GUIUpdateUnsavedProject()
         {
-            this.Text = mProject.Title + "* - Obi";
+            this.Text = mProject.Metadata.Title + "* - Obi";
             closeProjectToolStripMenuItem.Enabled = true;
             saveProjectToolStripMenuItem.Enabled = true;
             saveProjectasToolStripMenuItem.Enabled = true;
             touchProjectToolStripMenuItem.Enabled = true;
             revertToolStripMenuItem.Enabled = true;
+            metadataToolStripMenuItem.Enabled = true;
             Ready();
         }
 

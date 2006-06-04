@@ -6,9 +6,9 @@ namespace Obi
 {
     public class Project
     {
-        private bool mUnsaved;    // true if the project was modified and not saved
-        private string mXUKPath;  // path to the XUK file
-        private string mTitle;    // temporary title (from file name)
+        private bool mUnsaved;       // true if the project was modified and not saved
+        private string mXUKPath;     // path to the XUK file
+        private Metadata mMetadata;  // metadata for this project.
 
         public bool Unsaved
         {
@@ -26,11 +26,11 @@ namespace Obi
             }
         }
 
-        public string Title
+        public Metadata Metadata
         {
             get
             {
-                return mTitle;
+                return mMetadata;
             }
         }
 
@@ -39,11 +39,13 @@ namespace Obi
         /// </summary>
         /// <param name="path">Path of the directory in which to create the project.</param>
         /// <param name="title">Title of the project.</param>
-        public Project(string title, string path)
+        /// <param name="id">Id (template) for the project.</param>
+        /// <param name="userProfile">User profile (for default metadata values.)</param>
+        public Project(string title, string path, string id, UserProfile userProfile)
         {
             mUnsaved = false;
-            mTitle = title;
             mXUKPath = path;
+            mMetadata = new Metadata(id, title, userProfile);
         }
 
         /// <summary>
@@ -53,7 +55,7 @@ namespace Obi
         /// <returns>The project object created from this file.</returns>
         public static Project Open(string path)
         {
-            return new Project(System.IO.Path.GetFileNameWithoutExtension(path), path);
+            return new Project(System.IO.Path.GetFileNameWithoutExtension(path), path, "no_id", null);
         }
 
         /// <summary>
@@ -90,7 +92,7 @@ namespace Obi
             if (mXUKPath == null)
             {
                 mXUKPath = path;
-                mTitle = System.IO.Path.GetFileNameWithoutExtension(path);
+                mMetadata.Titles[0] = System.IO.Path.GetFileNameWithoutExtension(path);
                 return true;
             }
             else

@@ -82,7 +82,7 @@ namespace Obi.Dialogs
             // button2
             // 
             this.button2.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button2.Location = new System.Drawing.Point(349, 75);
+            this.button2.Location = new System.Drawing.Point(180, 75);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 5;
@@ -93,7 +93,7 @@ namespace Obi.Dialogs
             // button3
             // 
             this.button3.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button3.Location = new System.Drawing.Point(430, 75);
+            this.button3.Location = new System.Drawing.Point(261, 75);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 6;

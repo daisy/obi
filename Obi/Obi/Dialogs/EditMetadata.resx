@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,77 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="cancelled" xml:space="preserve">
-    <value>Cancelled</value>
-  </data>
-  <data name="clear_recent_caption" xml:space="preserve">
-    <value>Clear the list of recent projects?</value>
-  </data>
-  <data name="clear_recent_text" xml:space="preserve">
-    <value>Are you sure you want to clear the list of recent projects?
-You cannot undo this operation.</value>
-  </data>
-  <data name="closed_project_caption" xml:space="preserve">
-    <value>Closing a modified project</value>
-  </data>
-  <data name="closed_project_text" xml:space="preserve">
-    <value>You are about to close a project with unsaved modifications.
-Do you want to save these modifications before closing the project?</value>
-  </data>
-  <data name="debug_created_project" xml:space="preserve">
-    <value>[DEBUG] Created project</value>
-  </data>
-  <data name="debug_opened_project" xml:space="preserve">
-    <value>[DEBUG] Opened project from XUK file {0}</value>
-  </data>
-  <data name="debug_saved_project" xml:space="preserve">
-    <value>[DEBUG] Saved project to XUK file {0}</value>
-  </data>
-  <data name="debug_touched_project" xml:space="preserve">
-    <value>[DEBUG] Touched project</value>
-  </data>
-  <data name="debug_user_profile" xml:space="preserve">
-    <value>[DEBUG] User profile: {0}</value>
-  </data>
-  <data name="discard_changes_caption" xml:space="preserve">
-    <value>Discarding changes to a modified project</value>
-  </data>
-  <data name="discard_changes_text" xml:space="preserve">
-    <value>Do you really want to discard all modifications made to this
-project and revert it to its last saved state?
-You cannot undo this operation.</value>
-  </data>
-  <data name="new_project" xml:space="preserve">
-    <value>New project</value>
-  </data>
-  <data name="new_strip_label" xml:space="preserve">
-    <value>New strip</value>
-  </data>
-  <data name="no_open_project" xml:space="preserve">
-    <value>No project is currently open.</value>
-  </data>
-  <data name="ready" xml:space="preserve">
-    <value>Ready.</value>
-  </data>
-  <data name="redo_label" xml:space="preserve">
-    <value>{0} {1}</value>
-  </data>
-  <data name="resize_strip" xml:space="preserve">
-    <value>resize strip</value>
-  </data>
-  <data name="save_settings_error_caption" xml:space="preserve">
-    <value>Could not save settings</value>
-  </data>
-  <data name="save_settings_error_text" xml:space="preserve">
-    <value>The following error occurred while trying to save the settings:
-"{0}"
-As a result, changes to the settings made during this session have not been saved.
-Oh well.</value>
-  </data>
-  <data name="undo_label" xml:space="preserve">
-    <value>{0} {1}</value>
-  </data>
-  <data name="untitled" xml:space="preserve">
-    <value>Untitled</value>
-  </data>
 </root>
