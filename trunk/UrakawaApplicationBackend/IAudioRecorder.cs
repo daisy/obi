@@ -73,8 +73,12 @@ namespace UrakawaApplicationBackend
 
 		/// <summary>
 		/// Start listening on the device but do not record yet. This allows the user to test the settings before actually recording.
+		/// Although no audio is recorded, this method takes an audio asset as a parameter so that it can determine the parameters of
+		/// the recording, such as channels, bit depth, frequency, etc. The asset is not modified and doesn't have to be the on that
+		/// will eventually be recorded to.
 		/// </summary>
-		void StartListening();
+		/// <param name="asset">The asset containing the required audio parameters.</param>
+		void StartListening(IAudioMediaAsset asset);
 
 		/// <summary>
 		/// Start audio recording. Record to a given asset; if it contains data already, the new data is appended.

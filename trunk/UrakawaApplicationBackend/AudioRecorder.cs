@@ -417,7 +417,7 @@ namespace UrakawaApplicationBackend
 			NextCaptureOffset %= m_iCaptureBufferSize; // Circular buffer
 		}
 		
-		public void StartListening()
+		public void StartListening(IAudioMediaAsset asset)
 		{
 		}
 

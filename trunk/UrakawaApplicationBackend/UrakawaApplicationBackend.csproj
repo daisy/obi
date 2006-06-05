@@ -204,6 +204,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "VuMeterForm.resx"
+                    DependentUpon = "VuMeterForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "events\assetManagerEvents\AssetDeleted.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
