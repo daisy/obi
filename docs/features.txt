@@ -22,6 +22,33 @@ Introduction
   are created on the fly while recording; further editing concerns both the
   audio data and the structure of the book.
 
+  Ultimately, the following requirements *must* be met:
+
+  * REQ-01: import of XUK format files.
+  * REQ-02: export of XUK.
+  * REQ-03: NCX authoring/editing facilities.
+  * REQ-04: live audio recording.
+  * REQ-05: audio editing facilities.
+  * REQ-06: accessible VU-meters.
+  * REQ-07: discard unreferenced media assets only on user request.
+  * REQ-08: XUK format shall be able to include unreferenced media asset;
+  also, annotations from the author.
+  * REQ-09: support skippable and escapable structures.
+  * REQ-10: support for NCX-Only DTBs -- BUT have text search as per Arun's
+  suggestion.
+  * REQ-11: phrase detection on existing audio files, not on live input.
+  * REQ-12: ability to merge a set of badly detected phrases and redo with
+  other parameters (see REQ-05.)
+  * REQ-13: set parameters for phrase detection.
+  * REQ-14: trim start and end of selected audio.
+  * REQ-15: an actual save button.
+  * REQ-17: only one recording mode: "append".
+  * REQ-18: ability to add markers while recording.
+  * REQ-19: only WAVE format of audio, but we probably can do uncompressed
+  audio in general.
+  * REQ-20: application manual (an XHTML file.)
+  * REQ-21: i18n: translatability of text prompts (see AMIS.)
+
 
 A. Project/User management
 
@@ -40,13 +67,13 @@ A. Project/User management
         contain all data.
 
   A002: Open an existing project from a XUK file.
-        The XUK file is read. Assuming that it is correct (the parser should
-        be forgiving anyway), a project directory is created if it couldn't
-        be found.
+        A XUK file is read. On success, create a new project object and fill
+        it with all the data from the XUK file. Audio assets are created
+        from the project's directory files through the asset manager (see
+        C001.) On failure, get the error message from the XUK parser and
+        translate it for the end-user.
 
   A003: Save the current project to a XUK file.
-        Actually we probably need a directory where the audio files are
-        stored (see Audio
 
   A004: Clean the current project.
         Remove all unreferenced audio and authoring cruft. This is done
@@ -234,8 +261,10 @@ B. Strips management
   * The beginning of every phrase is a potential synchronization point.
 
   
-  Bxxx: Create a new audio strip.
+  B027: Create a new audio strip.
         A new, empty audio strip is created.
+
+  B028: Append audio to strip.
 
   5. Label strips
 
@@ -282,6 +311,8 @@ C. Audio engine and asset manager
   C.1. Assets, Audio assets and Asset manager
 
   * In this iteration there are only audio assets.
+
+  C001: Create assets from existing project.
 
   C.2. Audio player
 
@@ -478,26 +509,45 @@ F. GUI
 
   F.1. Tasks
 
+  These must fill the following requirements:
+
   F.1.1. Project tasks
 
   * Only one project at a time.
   * Initially, no project is shown.
 
   F001: Create a blank project.
-        The user is prompted with a dialog to input the name and location of
-        the new project (see F999.) If the dialog is filled correctly, the
-        previously open project is closed (see F004) and replaced by the
-        blank project. See A001 for the contents of a blank project.
+        The user starts a new, empty project. See F007.
         
   F002: Open an existing project.
+        See F008 and F009.
+
   F003: Save the current project.
+        See F010 and F011.
+
+  F017: Revert the current project.
+        See F018.
+
   F004: Close the current project.
+        See F001, F002, F003 and F012.
 
   F.1.2. Strips
 
   Fxxx: Add a new strip to the project.
 
   F.1.3. Audio
+
+  F014: Record live audio.
+        The user selects an audio strip and starts recording. The newly
+        recorded audio will be appended at the end of the strip (see B028.)
+        Before recording begins, the user is presented with a dialog for
+        setting up parameters: input volume, output volume, sample rate, bit
+        depth, number of channels (see F015.) Sensible default values should
+        be provided. A VU meter is also shown so that the volume can be set.
+        When the user is happy with the settings, the actual recording
+        begins.
+
+  F016. Audio data being recorded is shown.
 
   F.1.4. Table of contents
 
@@ -515,10 +565,46 @@ F. GUI
   F.1.5. Metadata
 
   F.2. Menus
-  F.3. Toolbars
+
+  F006: File menu.
+
+  F007: File -> New project menu item.
+        The user is prompted with a dialog to input the name and location of
+        the new project (see F005.) If the dialog is filled correctly, the
+        previously open project is closed (see F004) and replaced by the
+        blank project. See A001 for the contents of a blank project.
+
+  F008: File -> Open project menu item.
+        The user is presented with a standard file chooser dialog and
+        chooses a .XUK file to open. If the dialog returns OK, and the
+        project can be read, the previously open project is closed (see
+        F004) and replaced by the open project. See A002 for details on
+        opening a project.
+
+  F009: File -> Open recent project menu item.
+        Gives a quick access to the last <n> opened projects.
+
+  F010: File -> Save project menu item.
+
+  F011: File -> Save project as... menu item.
+
+  F018: File -> Revert project menu item.
+        The currently open project is reloaded and all changes made since
+        are discarded.
+
+  F012: File -> Close project menu item.
+        If there is no currently open project, this has no effect. If there
+        is a currently open project, ask the user for confirmation if the
+        project is in an unsaved state (see F013.) If the project was saved
+        or the user confirms, then release the project object.
+
+  F.3. Toolbars, buttons and icons
+
   F.4. Dialogs
 
-  F999: New project dialog.
+  F005: New project dialog.
+  F013: Closing project dialog.
+  F015: Record settings dialog.
 
   F.5. User Controls
 

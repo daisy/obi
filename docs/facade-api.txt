@@ -40,8 +40,13 @@ comments start with a # and end at the end of the line.
 This part is the responsibility of the Application team but will be handled
 by the toolkit in the next iteration.
 
-  # Asset manager needs to compute total time
+  # Asset manager needs to compute total time. Gives a value in seconds.
+  double total_time()
 
+  # Asset manager creates AudioMediaAssets for all sound clips referred to
+  # in a XUK file. The audio_media object is of type AudioMedia, i.e. file
+  # name + start and end times.
+  AudioMediaAsset new_from_audio_media(audio_media)
 
 * NCX
 

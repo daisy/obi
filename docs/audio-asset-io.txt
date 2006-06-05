@@ -1,0 +1,62 @@
+Audio asset I/O
+$Id$
+
+
+This document specifies more clearly the actual handling of files by the
+asset manager for audio assets. The goal of the asset manager is to free the
+application from having to manage files and concentrate on assets.
+
+
+1. Creating assets and storing data
+
+Assets can be created from other assets (e.g. through splitting or merging),
+audio data (coming from existing assets) and files. The first two parts are
+covered by the exsting interfaces, but the last one is implementation
+dependent.
+
+Assets are objects in memory, but they need to back up the data to a
+physical file on disk. 
+
+* AudioMediaAsset.AudioMediaAsset(string path, double begin, double end);
+  This method creates a new AudioMediaAsset object from a WAVE file at the
+  given path. The asset has the same characteristics as the file (channels,
+  sample rate, bit depth, etc.) and the audio data contained between the
+  begin and end times (in milliseconds.) Start time is inclusive, end time
+  is exclusive.
+
+* string IMediaAsset.FilePath { get; }
+  Return the path of the backup file. A null value should be returned if the
+  file has not been actually saved (see below), even though the
+  implementation has written data in an actual file.
+
+* double IAudioMediaAsset.FileBeginTime { get; }
+  Begin time of the asset in the file.
+
+* double IAudioMediaAsset.FileEndTime { get; }
+  End time of the asset in the file.
+
+
+2. Saving assets
+
+A Save() method is necessary in the interface so that the application can
+guarantee that the data is saved when the user wants it saved. Once the
+
+* void Save();
+  Make sure that the file was saved, and make file-related data available to
+  the application (FilePath, FileBeginTime, FileEndTime.)
+
+
+3. Virtual vs. physical edits
+
+Main idea: use virtual edits and avoid physical changes as long as possible.
+In reality this may be tricky.
+
+
+4. Undo/redo
+
+Undo/redo should be left to the application, however the backend must allow
+the application to implement these operations. This means that deleted and
+otherwise edited data must be accessible so that it can be restored if the
+user wants to undo changes. The asset manager will keep these assets
+available until the application specifically asks for their deletion through
+IAssetManager.DeleteAsset().
