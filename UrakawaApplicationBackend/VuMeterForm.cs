@@ -57,6 +57,8 @@ namespace UrakawaApplicationBackend
 			this.txtAmplitudeLeft = new System.Windows.Forms.TextBox();
 			this.txtAmplitudeRight = new System.Windows.Forms.TextBox();
 			this.tmBeep = new System.Windows.Forms.Timer(this.components);
+			this.tmRefreshText = new System.Windows.Forms.Timer(this.components);
+			this.btnClose = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// tmRefresh
@@ -68,14 +70,14 @@ namespace UrakawaApplicationBackend
 			this.txtOverloadLeft.AccessibleName = "OverloadLeft";
 			this.txtOverloadLeft.Location = new System.Drawing.Point(424, 240);
 			this.txtOverloadLeft.Name = "txtOverloadLeft";
-			this.txtOverloadLeft.ReadOnly = true;
 			this.txtOverloadLeft.TabIndex = 0;
 			this.txtOverloadLeft.Text = "";
 			// 
 			// txtOverloadRight
 			// 
 			this.txtOverloadRight.AccessibleName = "Overload Right";
-			this.txtOverloadRight.Location = new System.Drawing.Point(424, 264);
+			this.txtOverloadRight.Enabled = false;
+			this.txtOverloadRight.Location = new System.Drawing.Point(424, 296);
 			this.txtOverloadRight.Name = "txtOverloadRight";
 			this.txtOverloadRight.ReadOnly = true;
 			this.txtOverloadRight.TabIndex = 1;
@@ -105,10 +107,25 @@ namespace UrakawaApplicationBackend
 			this.tmBeep.Interval = 1000;
 			this.tmBeep.Tick += new System.EventHandler(this.tmBeep_Tick);
 			// 
+			// tmRefreshText
+			// 
+			this.tmRefreshText.Enabled = true;
+			this.tmRefreshText.Interval = 1000;
+			this.tmRefreshText.Tick += new System.EventHandler(this.tmRefreshText_Tick);
+			// 
+			// btnClose
+			// 
+			this.btnClose.Location = new System.Drawing.Point(496, 496);
+			this.btnClose.Name = "btnClose";
+			this.btnClose.TabIndex = 4;
+			this.btnClose.Text = "&Close";
+			this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+			// 
 			// VuMeterForm
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.ClientSize = new System.Drawing.Size(592, 566);
+			this.Controls.Add(this.btnClose);
 			this.Controls.Add(this.txtAmplitudeRight);
 			this.Controls.Add(this.txtAmplitudeLeft);
 			this.Controls.Add(this.txtOverloadRight);
@@ -144,16 +161,28 @@ internal int BackGroundX ;
 internal int EraserLeft = 0 ;
 internal int EraserRight = 0 ;
 
+internal int PeakOverloadLightX  =0 ;
+		internal int PeakOverloadLightY  =0 ;
+		
+
+private int AmplitudeLeft = 0 ;
+		private int AmplitudeRight = 0 ;
+
 VuMeter ob_VuMeter ;
+
+
 
 		private System.Windows.Forms.Timer tmRefresh;
 		private System.Windows.Forms.TextBox txtOverloadLeft;
 		private System.Windows.Forms.TextBox txtOverloadRight;
 		internal System.Windows.Forms.TextBox txtAmplitudeLeft;
 		internal System.Windows.Forms.TextBox txtAmplitudeRight;
+		private System.Windows.Forms.Timer tmRefreshText;
+		private System.Windows.Forms.Button btnClose;
 		private System.Windows.Forms.Timer tmBeep;
 		
 
+// initialise the form and frame for graph display
 		private void VuMeterForm_Load(object sender, System.EventArgs e)
 		{
 			System.Drawing.Graphics objGraphics;
@@ -163,26 +192,25 @@ VuMeter ob_VuMeter ;
 			PenWhite.Width = BackGroundWidth;
 			objGraphics.DrawLine(PenWhite , BackGroundX , BackGroundTop , BackGroundX, BackGroundBottom ) ;		
 
+// enables the refresh timer for repainting graph at regular interval
 tmRefresh.Enabled = true ;
-
-//LoadBeep () ;
-
 			
 		}
 
+// load the beep file and plays it once
 		void LoadBeep ()
 		{
 Device BeepDevice  = new Device() ;
 			BeepDevice.SetCooperativeLevel(this, CooperativeLevel.Normal );
-
-			
-			
+	
 									SecondaryBuffer BeepBuffer  =  new SecondaryBuffer("c:\\beep.wav", BeepDevice );
+			
 
 BeepBuffer.Play(0, BufferPlayFlags.Default );		
-			//BeepBuffer.Play(0, BufferPlayFlags.Default );
+			
 		}
 
+// function to catch the update event from VuMeter class to update graph cordinates
 		public void CatchUpdateForms (VuMeter ob_VuMeterArg , UpdateForms Update )
 		{
 ob_VuMeter = ob_VuMeterArg ;
@@ -209,13 +237,20 @@ ob_VuMeter = ob_VuMeterArg ;
 			EraserLeft = ob_VuMeter.Graph.EraserLeft ;
 			EraserRight = ob_VuMeter.Graph.EraserRight ;
 
+PeakOverloadLightX =   ob_VuMeter.Graph.PeakOverloadLightX ;
+			PeakOverloadLightY =   ob_VuMeter.Graph.PeakOverloadLightY ;
+
+
+AmplitudeLeft = ob_VuMeter.m_MeanValueLeft ;
+AmplitudeRight = ob_VuMeter.m_MeanValueRight ;
+
+
 tmRefresh.Enabled = true ;
+			tmRefreshText.Enabled = true ;
 		}
 
 		private void tmRefresh_Tick(object sender, System.EventArgs e)
 		{
-
-
 
 // paint form
 			System.Drawing.Graphics objGraphics;
@@ -244,17 +279,25 @@ tmRefresh.Enabled = true ;
 			objGraphics.DrawLine(PenVackground , LeftGraphX, HighTop , LeftGraphX, EraserLeft );	
 			objGraphics.DrawLine(PenVackground , RightGraphX, HighTop , RightGraphX, EraserRight );	
 				
+			// paint the peak overload light
+			
+			if ( BeepEnabled == false)
+			{
+				objGraphics.DrawLine(PenVackground , PeakOverloadLightX, PeakOverloadLightY, PeakOverloadLightX , PeakOverloadLightY + LineWidth + LineWidth);	
+				objGraphics.DrawLine(PenVackground , PeakOverloadLightX + LineWidth, PeakOverloadLightY, PeakOverloadLightX + LineWidth , PeakOverloadLightY + LineWidth + LineWidth);	
+			}
+			else  // Paint the light red for warning
+			{
+				objGraphics.DrawLine(PenHigh, PeakOverloadLightX+ LineWidth , PeakOverloadLightY, PeakOverloadLightX , PeakOverloadLightY + LineWidth + LineWidth);	
+				objGraphics.DrawLine(PenHigh, PeakOverloadLightX, PeakOverloadLightY, PeakOverloadLightX + LineWidth , PeakOverloadLightY + LineWidth + LineWidth);	
+			}
 			
 		}
+		
 bool BeepEnabled = false ;
-
+// catch the peak overload event triggered by VuMeter
 		public void CatchPeakOverloadEvent ( VuMeter ob_VuMeter , PeakOverload ob_PeakOverload )
 		{
-
-			
-
-			
-
 
 			if (ob_PeakOverload .Channel == 1)
 			{
@@ -270,6 +313,7 @@ bool BeepEnabled = false ;
 BeepEnabled =true  ;
 			}	
 
+// repeats the LoadBeep function to repeat beeps while there is overload
 		private void tmBeep_Tick(object sender, System.EventArgs e)
 		{
 if (BeepEnabled == true)
@@ -277,10 +321,17 @@ if (BeepEnabled == true)
 
 BeepEnabled = false ;
 		}
-		void BeepSound ()
+
+// Updates the amplitude of channels at regular intervals
+		private void tmRefreshText_Tick(object sender, System.EventArgs e)
 		{
-tmBeep.Start () ;
-			
+		txtAmplitudeLeft.Text = AmplitudeLeft.ToString () ;
+txtAmplitudeRight.Text = AmplitudeRight.ToString () ;
+		}
+
+		private void btnClose_Click(object sender, System.EventArgs e)
+		{
+		this.Close () ;
 		}
 
 // end of class

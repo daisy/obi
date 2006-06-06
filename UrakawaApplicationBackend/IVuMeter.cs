@@ -45,7 +45,8 @@ namespace UrakawaApplicationBackend
 		/// <summary>
 		/// Current peak values from the stream. There is a value for each channel.
 		/// </summary>
-		double[] PeakValue
+		 // type is changed to int from double which is more favourable for decoding wave files
+		int [] PeakValue
 		{
 			get;
 		}
@@ -61,19 +62,29 @@ namespace UrakawaApplicationBackend
 
 // Properties added by app team, india
 
-		VuMeter.Threshold AmplitudeThreshold
+//The upper threshold according to which overload is determined , can be between 1 and  256
+		int UpperThreshold
 		{
 get;
 			set;
 		}
 
-// provides the scale facor for graph 
+//The lower threshold according to which overload is determined , can be between 1 and  256
+		int LowerThreshold
+		{
+get ;
+			set ;
+		}
+
+// provides the scale factor for graph, so as to magnify it for low vision person  ScaleFactor is 1 for size of 250 pixel height
 		double ScaleFactor
 		{
 get;
 			set ;
 		}
 
+// The time for which the mean or RMS value of audio amplitude is retrieved and calculated
+// it is in milliseconds
 		double SampleTimeLength
 		{
 			get ;
@@ -83,8 +94,7 @@ get;
 
         /// <summary>
         /// Resets statistics from the VU meter (peak values and overload.)
-        /// </summary>
-        void Reset();
+        /// </summary        void Reset();
 		
     }
 }

@@ -126,8 +126,8 @@ void TriggerStateChangedEvent ( StateChanged ob)
 		
 
 // array for update current amplitude to VuMeter
-		internal byte [] arUpdateVM = new byte [4] ;
-
+		internal byte [] arUpdateVM ;
+internal int m_UpdateVMArrayLength ;
 
 // gets the current AudioPlayer state
 		public AudioPlayerState State
@@ -302,6 +302,10 @@ m_Channels = m_Asset.Channels ;
 				// calculate size of buffer so as to contain 1 second of audio
 				m_SizeBuffer = m_Asset .SampleRate *  m_Asset .FrameSize ;
 				m_RefreshLength = (m_Asset .SampleRate / 2 ) * m_Asset .FrameSize ;
+// calculate the size of VuMeter Update array length
+				m_UpdateVMArrayLength = m_SizeBuffer  / 50 ;
+m_UpdateVMArrayLength = Convert.ToInt32 (calc.AdaptToFrame ( Convert.ToInt32 ( m_UpdateVMArrayLength ),  m_FrameSize)  );
+arUpdateVM = new byte [ m_UpdateVMArrayLength ] ;
 
 				// sets the calculated size of buffer
 				BufferDesc.BufferBytes = m_SizeBuffer ;
@@ -370,9 +374,9 @@ int reduction = 0 ;
 reduction = 0 ;
 				Thread.Sleep (50) ;
 				ReadPosition = SoundBuffer.PlayPosition  ;
-				if (ReadPosition < ((m_SizeBuffer)- 4) )
+				if (ReadPosition < ((m_SizeBuffer)- m_UpdateVMArrayLength  ) )
 				{
-Array.Copy ( SoundBuffer.Read (ReadPosition , typeof (byte) , LockFlag.None ,4 ) , arUpdateVM , 4 ) ;				
+Array.Copy ( SoundBuffer.Read (ReadPosition , typeof (byte) , LockFlag.None , m_UpdateVMArrayLength  ) , arUpdateVM , m_UpdateVMArrayLength  ) ;				
 ob_UpdateVuMeter.NotifyUpdateVuMeter ( this, ob_UpdateVuMeter ) ;
 				}
 				// check if play cursor is in second half , then refresh first half else second
