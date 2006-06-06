@@ -7,7 +7,64 @@ asset manager for audio assets. The goal of the asset manager is to free the
 application from having to manage files and concentrate on assets.
 
 
-1. Creating assets and storing data
+1. Physical vs. virtual edits
+
+What we mean by "physical edit" is that any operation on audio data is done
+on the physical file. If we split an asset, then the two resulting assets
+have each a new physical file containing the audio data. This is probably
+the simplest to implement but may take time when copying data, and also uses
+a lot of space, especially if we keep data for undo purposes.
+
+In the case of physical edits, an asset always corresponds to a single file.
+Changes to an asset lead to the creation of a copy of the asset (so that the
+operation can be undone, see below.)
+
+Example of physical edits:
+
+  a. Record live audio to asset a0. The file f0 is created.
+  b. Apply phrase detection to asset a0. Three new assets, a1, a2 and a3 are
+     created to replace a0. The files f1, f2 and f3 are created with data
+     copied from f0. f0 is unchanged. a0 is still in the asset manager.
+  c. Create a new asset a4 by importing file f4.
+  d. Merge a2 and a4. This creates a new asset a5 that replaces a2 and a4.
+     f0 and f4 are unchanged, but a new file f5 is created.
+  e. Delete a1. There is no actual change as far the asset manager is
+     concerned; actual deletion will occur when we save.
+  f. Save the project. Assets a0, a1, a2 and a4 are discarded, along with
+     their files f0, f1, f2 and f4. The data from a0, a2 and a4 was copied
+     to different assets, and a1 was explicitely deleted.
+
+On the other hand, "virtual edits" means that physical changes are delayed
+as long as necessary. In the virtual edit world, audio files only change
+when absolutely necessary. The basic idea is that instead of mapping an
+asset to a file, we map it to a list of files, each with start and end
+times. This becomes a sort of meta-asset, which application wise looks like
+a single atomic asset, whereas implementation wise, it is a collection of
+smaller assets.
+
+Example of virtual edits:
+
+  a. Record live audio to asset a0. The file f0 is created.
+  b. Apply phrase detection to asset a0. Three new assets, a1, a2 and a3 are
+     created to replace a0. a1, a2, and a3 all point to a different chunk of
+     f0, but f0 is unchanged. a0 is still in the asset manager.
+  c. Create a new asset a4 by importing file f1.
+  d. Merge a2 and a4. This creates a new asset a5 that replaces a2 and a4.
+     f0 and f1 are left unchanged. a5 points to a chunk of f0 and to all of
+     f1 (in that order.)
+  e. Delete a1. There is no actual change as far the asset manager is
+     concerned; actual deletion will occur when we save (see below.)
+  f. Save the project. Assets a0, a1, a2 and a4 are discarded. The portion
+     of f1 corresponding to asset a1 can be deleted. There are two main
+     possibilities: one is to keep f1 as is, create a copy f2 of f0 with
+     only the parts that are referrenced by a3 and a5, and delete f0. The
+     other possibility is to create new files f2 and f3 correspoding to the
+     audio data in a3 and a5, then deleting f0 and f1.
+
+
+[Following to be edited]
+
+2. Creating assets and storing data
 
 Assets can be created from other assets (e.g. through splitting or merging),
 audio data (coming from existing assets) and files. The first two parts are
@@ -15,28 +72,47 @@ covered by the exsting interfaces, but the last one is implementation
 dependent.
 
 Assets are objects in memory, but they need to back up the data to a
-physical file on disk. 
+physical file on disk.
+
+New methods:
 
 * AudioMediaAsset.AudioMediaAsset(string path, double begin, double end);
+
   This method creates a new AudioMediaAsset object from a WAVE file at the
   given path. The asset has the same characteristics as the file (channels,
   sample rate, bit depth, etc.) and the audio data contained between the
   begin and end times (in milliseconds.) Start time is inclusive, end time
   is exclusive.
 
+* IMediaAsset IMediaAsset.Copy();
+
+  Copy an existing asset.
+
+* IAudioMediaAsset IAudioMediaAsset.Copy();
+
+  Copy an existing audio asset.
+
+* IAudioMediaAsset IAudioMediaAsset.Copy(long beginPos, long endPos);
+
+  Copy an existing audio asset, but only the data contained between the
+  start and end times.
+
 * string IMediaAsset.FilePath { get; }
+  
   Return the path of the backup file. A null value should be returned if the
   file has not been actually saved (see below), even though the
   implementation has written data in an actual file.
 
 * double IAudioMediaAsset.FileBeginTime { get; }
+
   Begin time of the asset in the file.
 
 * double IAudioMediaAsset.FileEndTime { get; }
+
   End time of the asset in the file.
 
 
-2. Saving assets
+3. Saving assets
 
 A Save() method is necessary in the interface so that the application can
 guarantee that the data is saved when the user wants it saved. Once the
@@ -44,12 +120,6 @@ guarantee that the data is saved when the user wants it saved. Once the
 * void Save();
   Make sure that the file was saved, and make file-related data available to
   the application (FilePath, FileBeginTime, FileEndTime.)
-
-
-3. Virtual vs. physical edits
-
-Main idea: use virtual edits and avoid physical changes as long as possible.
-In reality this may be tricky.
 
 
 4. Undo/redo
@@ -60,3 +130,8 @@ otherwise edited data must be accessible so that it can be restored if the
 user wants to undo changes. The asset manager will keep these assets
 available until the application specifically asks for their deletion through
 IAssetManager.DeleteAsset().
+
+
+5. Changes and addition to the current API
+
+The first change is that the asset manager does not need to actually
