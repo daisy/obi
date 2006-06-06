@@ -15,23 +15,27 @@ namespace UrakawaApplicationBackend
 	public class VuMeter : IVuMeter
 	{
 
+// Constructor
 		public VuMeter  ()
 		{
 			//m_SampleCount = Convert.ToInt32 ( m_SampleTimeLength / 50) ;
-			m_SampleCount = 40 ;
-			SampleArrayLeft  = new int [ 2 * m_SampleCount] ;
-			SampleArrayRight  = new int [2 * m_SampleCount] ;
+			
 			m_SampleArrayPosition = 0 ;
+			
 			ob_UpdateForms.UpdateFormsEvent += new DUpdateFormsEvent ( ob_VuMeterForm.CatchUpdateForms ) ;
 
 		}
 		//Member variable used in properties
 		private int m_Channels ;
-		private double m_ScaleFactor = 1;
+		private double m_ScaleFactor ;
 		private double m_SampleTimeLength ;
+		internal bool m_bOverload = false ;
+		private int m_UpperThreshold ;
+		private int m_LowerThreshold ;
+private int [] arPeakOverloadValue = new int [2] ;
+private bool [] arPeakOverloadFlag = new bool [2] ;
 UpdateForms ob_UpdateForms = new UpdateForms () ;
-
-
+		
 		public int Channels
 		{
 			get
@@ -73,11 +77,11 @@ UpdateForms ob_UpdateForms = new UpdateForms () ;
 			}
 		}
 
-		public double[] PeakValue
+		public int [] PeakValue
 		{
 			get
 			{
-				return null;
+				return arPeakOverloadValue ;
 			}
 		}
 
@@ -85,23 +89,34 @@ UpdateForms ob_UpdateForms = new UpdateForms () ;
 		{
 			get
 			{
-				return null;
-			}
-		}
-Threshold m_Threshold ;
-		// properties added by app team india
-		public Threshold AmplitudeThreshold
-		{
-			get
-			{
-return m_Threshold ;
-			}
-			set
-			{
-m_Threshold = value ;
+				return arPeakOverloadFlag ;
 			}
 		}
 
+		// properties added by app team india
+		public int UpperThreshold 
+		{
+			get
+			{
+return m_UpperThreshold ;
+			}
+			set
+			{
+m_UpperThreshold = value ;
+			}
+		}
+
+		public int LowerThreshold
+		{
+			get
+			{
+return m_LowerThreshold ;
+			}
+			set
+			{
+m_LowerThreshold = value ;
+			}
+		}
 
 		public double ScaleFactor
 		{
@@ -124,26 +139,39 @@ m_Threshold = value ;
 			}
 			set
 			{
-				m_SampleTimeLength = value ;
+				SetSampleCount (value) ;
 			}
 		}
 
 
 		public void Reset()
 		{
+arPeakOverloadValue [0] = 0 ;
+			arPeakOverloadValue [1] = 0 ;
+arPeakOverloadFlag[0] = arPeakOverloadFlag [1] = false ;
+		}
 
+// calculate and sets the count of samples to be read for computing RMS or mean value of amplitude
+		void SetSampleCount ( double TimeLengthArg ) 
+		{
+			m_SampleTimeLength  = TimeLengthArg ;
+m_SampleCount  = Convert.ToInt32 (TimeLengthArg / 50 ); // 50 is byte reading interval 
+			SampleArrayLeft  = new int [ 2 * m_SampleCount] ;
+			SampleArrayRight  = new int [2 * m_SampleCount] ;
 		}
 
 		// member variables for internal processing
-		private int [] m_arUpdatedVM  = new int  [4] ;
+		private int [] m_arUpdatedVM  ;
+private int m_UpdateVMArrayLength ;
 		private int m_FrameSize ;
 
+// for position of graph which is centre of graph in Y and centre of left edges of two graph for x
 		private int m_GraphPositionX = 150 ;
 		private int m_GraphPositionY = 300 ;
 			
 
 private AudioPlayer ob_AudioPlayer ;
-		private int  m_SampleCount  = 40 ;
+		private int  m_SampleCount   ;
 		internal int m_MeanValueLeft ;
 		internal int m_MeanValueRight  ;
 		private  int [] SampleArrayLeft ;
@@ -155,41 +183,33 @@ private AudioPlayer ob_AudioPlayer ;
 			ob_AudioPlayer = Player ;
 			m_FrameSize = Player.m_FrameSize ;
 			m_Channels = Player.m_Channels ;
+m_UpdateVMArrayLength = Player.m_UpdateVMArrayLength ;
+m_arUpdatedVM  = new int  [m_UpdateVMArrayLength ] ;
 
-			for (int i = 0 ; i< 4 ; i++)
-				m_arUpdatedVM [i] = Player.arUpdateVM [i] ;  
-		
+Array.Copy ( Player.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
 			Thread UpdateVMForm = new Thread(new ThreadStart (AnimationComputation  ));
 			UpdateVMForm.Start()  ;
 
 		}
 
-		int m_UpperThreshold = 100 ;
-		int m_LowerThreshold = 50 ;
+		
 		int m_PeakValueLeft = 0;
 		int m_PeakValueRight = 0;
 		void AnimationComputation ()
 		{
 			//Thread.Sleep (25) ;
-
+// finds the origin i.e upper left corner of graph display rectangle
+			//origin is computed from centre position of graph
 			int OriginX = m_GraphPositionX -  Convert.ToInt32  ( ( m_ScaleFactor * 60 ));
 			int OriginY =m_GraphPositionY- Convert.ToInt32 ( 125 * m_ScaleFactor) ;
 
+			// create an local array and fill the amplitude value of both channels from function
 			int [] AmpArray = new int [2] ;
 			Array.Copy ( AmplitudeValue() , AmpArray , 2) ;
 
-			//m_MeanValueLeft  = AmpArray [0] ;
-			//m_MeanValueRight = AmpArray [1] ;
-
-
+// feed the amplitude in sampple array for computing mean value
 			SampleArrayLeft [m_SampleArrayPosition ] = AmpArray [0] ;
 			SampleArrayRight [m_SampleArrayPosition ] = AmpArray [1] ;
-
-			if (m_PeakValueLeft < m_MeanValueLeft)  
-				m_PeakValueLeft = m_MeanValueLeft ;
-
-			if (m_PeakValueRight < m_MeanValueRight )  
-				m_PeakValueRight = m_MeanValueRight ;
 
 
 			m_SampleArrayPosition++ ;
@@ -208,21 +228,36 @@ private AudioPlayer ob_AudioPlayer ;
 			}
 			m_MeanValueLeft = m_MeanValueLeft / m_SampleCount ;
 			m_MeanValueRight = m_MeanValueRight / m_SampleCount ;
-	
- // Check for Peak Overload ;
-			if ( m_MeanValueLeft > 100 )
+
+// update peak values if it is greater than previous value
+			if (m_PeakValueLeft < m_MeanValueLeft)  
+				arPeakOverloadValue[0] = m_PeakValueLeft = m_MeanValueLeft ;
+
+			if (m_PeakValueRight < m_MeanValueRight )  
+				arPeakOverloadValue[1] =  m_PeakValueRight = m_MeanValueRight ;
+
+
+ // Check for Peak Overload  and fire event if overloaded
+			if ( m_MeanValueLeft > m_UpperThreshold )
 			{
+				arPeakOverloadFlag [0] = true ;
+				
+				PeakOverload ob_PeakOverload = new PeakOverload ( 1,ob_AudioPlayer.GetCurrentBytePosition () , ob_AudioPlayer.GetCurrentTimePosition () ) ;
 
-PeakOverload ob_PeakOverload = new PeakOverload ( 1,ob_AudioPlayer.GetCurrentBytePosition () , ob_AudioPlayer.GetCurrentTimePosition () ) ;
+				ob_PeakOverload.PeakOverloadEvent += new DPeakOverloadEvent ( ob_VuMeterForm.CatchPeakOverloadEvent ) ;
 
-ob_PeakOverload.PeakOverloadEvent += new DPeakOverloadEvent ( ob_VuMeterForm.CatchPeakOverloadEvent ) ;
-
-ob_PeakOverload.NotifyPeakOverload ( this , ob_PeakOverload) ;
+				ob_PeakOverload.NotifyPeakOverload ( this , ob_PeakOverload) ;
 				
 			}
-
-			if ( m_MeanValueRight > 100 )
+			else
 			{
+arPeakOverloadFlag [0] = false ;
+			}
+
+			if ( m_MeanValueRight > m_UpperThreshold)
+			{
+				m_bOverload = true ;
+				arPeakOverloadFlag [1] = true ;
 				PeakOverload ob_PeakOverload = new PeakOverload ( 2 ,ob_AudioPlayer.GetCurrentBytePosition () , ob_AudioPlayer.GetCurrentTimePosition () ) ;
 
 				ob_PeakOverload.PeakOverloadEvent += new DPeakOverloadEvent ( ob_VuMeterForm.CatchPeakOverloadEvent ) ;
@@ -230,17 +265,14 @@ ob_PeakOverload.NotifyPeakOverload ( this , ob_PeakOverload) ;
 				ob_PeakOverload.NotifyPeakOverload ( this , ob_PeakOverload) ;
 				
 			}
-
-			if ( m_SampleArrayPosition == (m_SampleCount  - 1 ))
+			else
 			{
-ob_VuMeterForm.txtAmplitudeLeft.Text = m_MeanValueLeft.ToString ()  ;
-ob_VuMeterForm.txtAmplitudeRight.Text = m_MeanValueRight.ToString () ;
+arPeakOverloadFlag [1] = false ;
 			}
 
-
-			//			int LeftGraphX= OriginX ;
-			//int RightGraphX = OriginX +Convert.ToInt32 (m_ScaleFactor * 90) ;
+// compute the cordinates of graph and animation
 			DisplayGraph () ;
+
 
 			int ThresholdFactor  = 12500 / ( m_UpperThreshold - m_LowerThreshold) ;
 			int DisplayAmpLeft = (m_MeanValueLeft * ThresholdFactor )/100 ;
@@ -253,53 +285,64 @@ ob_VuMeterForm.txtAmplitudeRight.Text = m_MeanValueRight.ToString () ;
 			Graph.EraserRight= OriginY + Convert.ToInt32 (m_ScaleFactor * ( 254 - DisplayAmpRight)) ;
 
 //Thread.Sleep (25) ;
-			
+// Update ccurrent graph cordinates to VuMeter display			
 ob_UpdateForms.NotifyUpdateForms ( this , ob_UpdateForms ) ;
 
 		}
 
+// calculates the amplitude of both channels from input taken from DirectX buffers
 		int [] AmplitudeValue()
 		{
-
+long s0 =0 ;
+			long s1 = 0 ;
 			int Sum0 = 0 ;
 			int Sum1 = 0 ;
-
-			if (m_FrameSize == 1)
-				Sum0 = m_arUpdatedVM[0] ;
-			else if (m_FrameSize == 2)
+			for (int i = 0 ; i< m_UpdateVMArrayLength  ; i=i+m_FrameSize)
 			{
-				if (m_Channels == 2)
+				if (m_FrameSize == 1)
+					Sum0 = m_arUpdatedVM[0+i] ;
+				else if (m_FrameSize == 2)
 				{
-					Sum0 = (m_arUpdatedVM [0]  ) ;
-					Sum1 = m_arUpdatedVM [1] ;
+					if (m_Channels == 2)
+					{
+						Sum0 = (m_arUpdatedVM [0+i]  ) ;
+						Sum1 = m_arUpdatedVM [1+i] ;
 					
+					}
+					else if (m_Channels == 1)
+					{
+						Sum0 = m_arUpdatedVM[1+i] * 256 ;
+						Sum0 = Sum0 + m_arUpdatedVM[0 + i] ;
+						Sum0 = (Sum0 * 256 ) / 65792 ;
+					}
+					// / end of if (FrameSize == 2)
 				}
-				else if (m_Channels == 1)
+				else if (m_FrameSize == 4 && m_Channels == 2 )
 				{
-					Sum0 = m_arUpdatedVM[1] * 256 ;
-					Sum0 = Sum0 + m_arUpdatedVM[0] ;
-					Sum0 = (Sum0 * 256 ) / 65792 ;
+					Sum0 = m_arUpdatedVM[1+i] * 256 ;
+					Sum0 = Sum0 + m_arUpdatedVM [0+i] ;
+					Sum0 = (Sum0 * 256 ) /65792  ;
+
+					Sum1 = m_arUpdatedVM[3+i] * 256 ;
+					Sum1 = Sum1 + m_arUpdatedVM [2+i] ;
+					Sum1 = (Sum1 * 256 ) / 65792  ;
+
 				}
-				// / end of if (FrameSize == 2)
+s0 = s0 + Sum0 ;
+				s1 = s1 + Sum1 ;
 			}
-			else if (m_FrameSize == 4 && m_Channels == 2 )
-			{
-				Sum0 = m_arUpdatedVM[1] * 256 ;
-				Sum0 = Sum0 + m_arUpdatedVM [0] ;
-				Sum0 = (Sum0 * 256 ) /65792  ;
+			int Divisor = m_UpdateVMArrayLength  / m_FrameSize ;
+Sum0 = Convert.ToInt32 (s0 / Divisor ) ;
+			Sum1 = Convert.ToInt32 (s1 / Divisor ) ;
 
-				Sum1 = m_arUpdatedVM[3] * 256 ;
-				Sum1 = Sum1 + m_arUpdatedVM [2] ;
-				Sum1 = (Sum1 * 256 ) / 65792  ;
-
-			}
 			int [] arSum= new int [2] ;
 			arSum [0] = Sum0 ;
 			arSum[1] = Sum1 ;
 
 			return arSum ;
 		}
-		public int Counter = 0 ;
+		
+		// creates object of VuMeter form to comunicate with it
 		VuMeterForm ob_VuMeterForm = new VuMeterForm () ;
 
 		public void ShowForm ()
@@ -307,6 +350,7 @@ ob_UpdateForms.NotifyUpdateForms ( this , ob_UpdateForms ) ;
 			ob_VuMeterForm.Show () ;
 		}
 
+// calculates the values of graph cordinates with respect to position and scale factor
 public GraphPts Graph = new GraphPts() ;
 		public void DisplayGraph	 ()
 		{
@@ -335,10 +379,11 @@ public GraphPts Graph = new GraphPts() ;
 			Graph.LeftGraphX = OriginX ;
 			Graph.RightGraphX = OriginX +Convert.ToInt32 (m_ScaleFactor * 90) ;
 
-		
+		Graph.PeakOverloadLightX = 300 ;
+Graph.PeakOverloadLightY = 50 ;
 		}
 
-		public struct Threshold
+		public class Threshold
 		{
 	public int UpperThreshold ;
 			public int LowerThreshold ;
@@ -370,6 +415,8 @@ public GraphPts Graph = new GraphPts() ;
 			public int EraserLeft ;
 			public int EraserRight ;
 
+public int PeakOverloadLightX ;
+public int PeakOverloadLightY ;
 		}
 
 	// end of class
