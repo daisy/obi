@@ -618,6 +618,11 @@ ByteBuffer [i+m_lLength] = 0 ;
 			// gets the size of buffer to be created
 			m_SizeBuffer = iSamplingRate *   shFrameSize;
 			m_RefreshLength = (iSamplingRate / 2 ) * shFrameSize;
+				// calculate the size of VuMeter Update array length
+				m_UpdateVMArrayLength = m_SizeBuffer  / 50 ;
+				m_UpdateVMArrayLength = Convert.ToInt32 (calc.AdaptToFrame ( Convert.ToInt32 ( m_UpdateVMArrayLength ),  m_FrameSize)  );
+				arUpdateVM = new byte [ m_UpdateVMArrayLength ] ;
+
 //m_lLength = (m_lLength/m_RefreshLength)*m_RefreshLength ;
 
 			BufferDesc.BufferBytes = m_SizeBuffer ;
