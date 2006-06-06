@@ -76,10 +76,8 @@ namespace UrakawaApplicationBackend
 			// txtOverloadRight
 			// 
 			this.txtOverloadRight.AccessibleName = "Overload Right";
-			this.txtOverloadRight.Enabled = false;
 			this.txtOverloadRight.Location = new System.Drawing.Point(424, 296);
 			this.txtOverloadRight.Name = "txtOverloadRight";
-			this.txtOverloadRight.ReadOnly = true;
 			this.txtOverloadRight.TabIndex = 1;
 			this.txtOverloadRight.Text = "";
 			// 
