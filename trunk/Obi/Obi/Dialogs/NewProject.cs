@@ -22,25 +22,25 @@ namespace Obi.Dialogs
             InitializeComponent();
             mPath = path;
             mTitle = Localizer.Message("new_project");
-            titleBox.Text = mTitle;
-            fileBox.Text = mPath;
+            mTitleBox.Text = mTitle;
+            mFileBox.Text = mPath;
             GenerateFileName();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            mTitle = titleBox.Text;
-            mPath = fileBox.Text;
+            mTitle = mTitleBox.Text;
+            mPath = mFileBox.Text;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.InitialDirectory = System.IO.Path.GetDirectoryName(fileBox.Text);
+            dialog.InitialDirectory = System.IO.Path.GetDirectoryName(mFileBox.Text);
             dialog.Filter = "XUK project file (*.xuk)|*.xuk";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                fileBox.Text = dialog.FileName;
+                mFileBox.Text = dialog.FileName;
             }
         }
 
@@ -51,8 +51,8 @@ namespace Obi.Dialogs
 
         private void GenerateFileName()
         {
-            fileBox.Text = String.Format(@"{0}\{1}.xuk", System.IO.Path.GetDirectoryName(fileBox.Text),
-                Project.ShortName(titleBox.Text));
+            mFileBox.Text = String.Format(@"{0}\{1}.xuk", System.IO.Path.GetDirectoryName(mFileBox.Text),
+                Project.ShortName(mTitleBox.Text));
         }
     }
 }

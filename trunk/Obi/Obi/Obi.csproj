@@ -125,6 +125,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>MetadataPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ProjectPanel.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ProjectPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\StripPanel.resx">
       <SubType>Designer</SubType>
       <DependentUpon>StripPanel.cs</DependentUpon>
@@ -160,6 +164,12 @@
       <DependentUpon>EmptyStrip.cs</DependentUpon>
     </Compile>
     <Compile Include="Events.cs" />
+    <Compile Include="UserControls\ProjectPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ProjectPanel.Designer.cs">
+      <DependentUpon>ProjectPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\StripPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>

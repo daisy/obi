@@ -32,6 +32,7 @@ namespace Obi
             mProject = null;
             ProjectStateChanged += new Events.Project.StateChangedHandler(mProject_StateChanged);
             GUIUpdateNoProject();
+            UpdateShowHideTOC();
             GetSettings();
             mUndoStack = new UndoRedoStack();
             undo_label = mUndoToolStripMenuItem.Text;
@@ -392,12 +393,39 @@ namespace Obi
         /// <summary>
         /// Touch the project so that it seems that it was modified (used for debugging.)
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void touchProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProject.Touch();
             OnProjectModified();
+        }
+
+        /// <summary>
+        /// Show or hide the NCX panel in the project panel.
+        /// </summary>
+        private void tableOfContentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectPanel.NCXPanelVisible)
+            {
+                mProjectPanel.HideNCXPanel();
+                UpdateShowHideTOC();
+            }
+            else
+            {
+                mProjectPanel.ShowNCXPanel();
+                UpdateShowHideTOC();
+            }
+        }
+
+        private void UpdateShowHideTOC()
+        {
+            if (mProjectPanel.NCXPanelVisible)
+            {
+                tableOfContentsToolStripMenuItem.Text = Localizer.Message("hide_toc_label");
+            }
+            else
+            {
+                tableOfContentsToolStripMenuItem.Text = Localizer.Message("show_toc_label");
+            }
         }
 
         private void OnProjectClosed()
@@ -434,6 +462,9 @@ namespace Obi
                     break;
                 case Obi.Events.Project.StateChange.Created:
                     GUIUpdateSavedProject();
+                    mProjectPanel.Project = e.Project;
+                    tableOfContentsToolStripMenuItem.Enabled = true;
+                    UpdateShowHideTOC();
                     Debug(Localizer.Message("debug_created_project"));
                     break;
                 case Obi.Events.Project.StateChange.Modified:
@@ -442,6 +473,9 @@ namespace Obi
                     break;
                 case Obi.Events.Project.StateChange.Opened:
                     GUIUpdateSavedProject();
+                    mProjectPanel.Project = e.Project;
+                    tableOfContentsToolStripMenuItem.Enabled = true;
+                    UpdateShowHideTOC();
                     Debug(String.Format(Localizer.Message("debug_opened_project"), e.Project.XUKPath));
                     break;
                 case Obi.Events.Project.StateChange.Saved:
@@ -476,6 +510,8 @@ namespace Obi
             touchProjectToolStripMenuItem.Enabled = false;
             revertToolStripMenuItem.Enabled = false;
             metadataToolStripMenuItem.Enabled = false;
+            mProjectPanel.Project = null;
+            tableOfContentsToolStripMenuItem.Enabled = false;
             Ready();
         }
 

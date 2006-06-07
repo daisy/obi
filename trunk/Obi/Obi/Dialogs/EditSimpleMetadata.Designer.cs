@@ -44,6 +44,7 @@ namespace Obi.Dialogs
             // 
             // mOKButton
             // 
+            this.mOKButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.mOKButton.Location = new System.Drawing.Point(174, 171);
             this.mOKButton.Name = "mOKButton";
@@ -55,6 +56,7 @@ namespace Obi.Dialogs
             // 
             // mCancelButton
             // 
+            this.mCancelButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.mCancelButton.Location = new System.Drawing.Point(255, 171);
             this.mCancelButton.Name = "mCancelButton";
@@ -111,6 +113,8 @@ namespace Obi.Dialogs
             // 
             // mTitleBox
             // 
+            this.mTitleBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.mTitleBox.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.mTitleBox.Location = new System.Drawing.Point(73, 12);
             this.mTitleBox.Name = "mTitleBox";
@@ -119,6 +123,8 @@ namespace Obi.Dialogs
             // 
             // mAuthorBox
             // 
+            this.mAuthorBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.mAuthorBox.Location = new System.Drawing.Point(73, 41);
             this.mAuthorBox.Name = "mAuthorBox";
             this.mAuthorBox.Size = new System.Drawing.Size(419, 19);
@@ -126,6 +132,8 @@ namespace Obi.Dialogs
             // 
             // mPublisherBox
             // 
+            this.mPublisherBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.mPublisherBox.Location = new System.Drawing.Point(73, 66);
             this.mPublisherBox.Name = "mPublisherBox";
             this.mPublisherBox.Size = new System.Drawing.Size(419, 19);
@@ -133,6 +141,8 @@ namespace Obi.Dialogs
             // 
             // mIdentiferBox
             // 
+            this.mIdentiferBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.mIdentiferBox.Location = new System.Drawing.Point(73, 91);
             this.mIdentiferBox.Name = "mIdentiferBox";
             this.mIdentiferBox.Size = new System.Drawing.Size(419, 19);
@@ -140,6 +150,8 @@ namespace Obi.Dialogs
             // 
             // mLanguageBox
             // 
+            this.mLanguageBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.mLanguageBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.mLanguageBox.FormattingEnabled = true;
             this.mLanguageBox.Location = new System.Drawing.Point(73, 116);
@@ -166,6 +178,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.label1);
             this.Controls.Add(this.mCancelButton);
             this.Controls.Add(this.mOKButton);
+            this.MinimumSize = new System.Drawing.Size(0, 240);
             this.Name = "EditSimpleMetadata";
             this.Text = "Edit project metadata";
             this.ResumeLayout(false);
