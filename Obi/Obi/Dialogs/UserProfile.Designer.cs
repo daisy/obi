@@ -49,9 +49,11 @@ namespace Obi.Dialogs
             // 
             // nameBox
             // 
+            this.nameBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.nameBox.Location = new System.Drawing.Point(88, 12);
             this.nameBox.Name = "nameBox";
-            this.nameBox.Size = new System.Drawing.Size(192, 19);
+            this.nameBox.Size = new System.Drawing.Size(292, 19);
             this.nameBox.TabIndex = 1;
             // 
             // label2
@@ -65,9 +67,11 @@ namespace Obi.Dialogs
             // 
             // organizationBox
             // 
+            this.organizationBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.organizationBox.Location = new System.Drawing.Point(88, 37);
             this.organizationBox.Name = "organizationBox";
-            this.organizationBox.Size = new System.Drawing.Size(192, 19);
+            this.organizationBox.Size = new System.Drawing.Size(292, 19);
             this.organizationBox.TabIndex = 3;
             // 
             // label3
@@ -82,18 +86,21 @@ namespace Obi.Dialogs
             // cultureBox
             // 
             this.cultureBox.AllowDrop = true;
+            this.cultureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.cultureBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cultureBox.FormattingEnabled = true;
             this.cultureBox.Location = new System.Drawing.Point(88, 62);
             this.cultureBox.Name = "cultureBox";
-            this.cultureBox.Size = new System.Drawing.Size(192, 20);
+            this.cultureBox.Size = new System.Drawing.Size(292, 20);
             this.cultureBox.Sorted = true;
             this.cultureBox.TabIndex = 5;
             // 
             // button1
             // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button1.Location = new System.Drawing.Point(124, 103);
+            this.button1.Location = new System.Drawing.Point(118, 117);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 6;
@@ -103,8 +110,9 @@ namespace Obi.Dialogs
             // 
             // button2
             // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.Location = new System.Drawing.Point(205, 103);
+            this.button2.Location = new System.Drawing.Point(199, 117);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 7;
@@ -116,7 +124,7 @@ namespace Obi.Dialogs
             this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 138);
+            this.ClientSize = new System.Drawing.Size(392, 152);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.cultureBox);
@@ -125,6 +133,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.label2);
             this.Controls.Add(this.nameBox);
             this.Controls.Add(this.label1);
+            this.MinimumSize = new System.Drawing.Size(8, 186);
             this.Name = "UserProfile";
             this.Text = "Edit user profile";
             this.ResumeLayout(false);

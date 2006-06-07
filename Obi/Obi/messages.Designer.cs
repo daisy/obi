@@ -173,6 +173,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hide &amp;table of contents.
+        /// </summary>
+        internal static string hide_toc_label {
+            get {
+                return ResourceManager.GetString("hide_toc_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New project.
         /// </summary>
         internal static string new_project {
@@ -244,6 +253,15 @@ namespace Obi {
         internal static string save_settings_error_text {
             get {
                 return ResourceManager.GetString("save_settings_error_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show &amp;table of contents.
+        /// </summary>
+        internal static string show_toc_label {
+            get {
+                return ResourceManager.GetString("show_toc_label", resourceCulture);
             }
         }
         
