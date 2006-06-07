@@ -171,13 +171,14 @@ private int m_UpdateVMArrayLength ;
 			
 
 private AudioPlayer ob_AudioPlayer ;
+private AudioRecorder  ob_AudioRecorder ;
 		private int  m_SampleCount   ;
 		internal int m_MeanValueLeft ;
 		internal int m_MeanValueRight  ;
 		private  int [] SampleArrayLeft ;
 		private int [] SampleArrayRight ;
 		private int m_SampleArrayPosition = 0;
-
+// Handles VuMeter event from player
 		public void CatchUpdateVuMeterEvent ( AudioPlayer Player , UpdateVuMeter Update) 
 		{
 			ob_AudioPlayer = Player ;
@@ -192,7 +193,25 @@ Array.Copy ( Player.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
 
 		}
 
-		
+		// handles update event from audio recorder
+		public void CatchUpdateVuMeterEvent ( AudioRecorder Recorder, UpdateVuMeter Update) 
+		{
+			ob_AudioRecorder = Recorder ;
+/*
+			m_FrameSize = Recorder.m_FrameSize ;
+			m_Channels = Recorder.m_Channels ;
+			m_UpdateVMArrayLength = Recorder.m_UpdateVMArrayLength ;
+			m_arUpdatedVM  = new int  [m_UpdateVMArrayLength ] ;
+
+			Array.Copy ( Recorder.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
+			*/
+			Thread UpdateVMForm = new Thread(new ThreadStart (AnimationComputation  ));
+			UpdateVMForm.Start()  ;
+
+		}
+
+
+
 		int m_PeakValueLeft = 0;
 		int m_PeakValueRight = 0;
 		void AnimationComputation ()
