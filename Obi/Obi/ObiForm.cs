@@ -250,7 +250,7 @@ namespace Obi
                 {
                     if (mProject.XUKPath == null)
                     {
-                        mProject = new Project(mProject.Metadata.Title, mProject.XUKPath, mProject.Metadata.Id,
+                        mProject = new Project(mProject.Metadata.Title, mProject.XUKPath, mProject.Metadata.Identifier,
                             mSettings.UserProfile);
                         OnProjectCreated();
                     }
@@ -379,7 +379,7 @@ namespace Obi
         {
             if (mProject != null)
             {
-                Dialogs.EditMetadata dialog = new Dialogs.EditMetadata(mProject.Metadata);
+                Dialogs.EditSimpleMetadata dialog = new Dialogs.EditSimpleMetadata(mProject.Metadata);
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     mProject.Touch();

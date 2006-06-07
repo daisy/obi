@@ -6,33 +6,13 @@ namespace Obi
 {
     public class Project
     {
-        private bool mUnsaved;       // true if the project was modified and not saved
-        private string mXUKPath;     // path to the XUK file
-        private Metadata mMetadata;  // metadata for this project.
+        private bool mUnsaved;             // true if the project was modified and not saved
+        private string mXUKPath;           // path to the XUK file
+        private SimpleMetadata mMetadata;  // metadata for this project.
 
-        public bool Unsaved
-        {
-            get
-            {
-                return mUnsaved;
-            }
-        }
-
-        public string XUKPath
-        {
-            get
-            {
-                return mXUKPath;
-            }
-        }
-
-        public Metadata Metadata
-        {
-            get
-            {
-                return mMetadata;
-            }
-        }
+        public bool Unsaved { get { return mUnsaved; } }
+        public string XUKPath { get { return mXUKPath; } }
+        public SimpleMetadata Metadata { get { return mMetadata; } }
 
         /// <summary>
         /// Create a project from a XUK file.
@@ -45,7 +25,7 @@ namespace Obi
         {
             mUnsaved = false;
             mXUKPath = path;
-            mMetadata = new Metadata(id, title, userProfile);
+            mMetadata = new SimpleMetadata(title, id, userProfile);
         }
 
         /// <summary>
@@ -92,7 +72,7 @@ namespace Obi
             if (mXUKPath == null)
             {
                 mXUKPath = path;
-                mMetadata.Titles[0] = System.IO.Path.GetFileNameWithoutExtension(path);
+                mMetadata.Title = System.IO.Path.GetFileNameWithoutExtension(path);
                 return true;
             }
             else
