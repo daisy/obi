@@ -332,20 +332,5 @@ MessageBox.Show("Exxeption! Assets of same name exist in hash table.") ;
 		{
 			MessageBox.Show("It is working");
 		}
-		
-		public IMediaAsset MergeAssets(IMediaAsset asset1, IMediaAsset asset2)
-		{
-			return null;
-		}
-
-		public ArrayList SplitAudioAsset(IAudioMediaAsset asset)
-		{
-			return null;
-		}
-
-		public ArrayList ApplyPhraseDetection(IAudioMediaAsset asset, long threshold, long length, long before)
-		{
-			return null;
-		}
 	}
 }

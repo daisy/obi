@@ -166,17 +166,28 @@ long [] DetectPhrases (long SilVal, long PhraseLength , long BeforePhrase) ;
 		bool ValidateAudio();    
 
 		/// <summary>
-		/// Split an audio asset at a given position.
+		/// Split an audio asset at a given position. The asset is left unmodified.
 		/// </summary>
 		/// <param name="position">The position of the split in bytes.</param>
 		/// <returns>An array of the two assets resulting from the split.</returns>
 		ArrayList Split(long position);
 
 		/// <summary>
-		/// Split an audio asset at a given position.
+		/// Split an audio asset at a given position. The asset is left unmodified.
 		/// </summary>
 		/// <param name="position">The position of the split in milliseconds.</param>
 		/// <returns>An array of the two assets resulting from the split.</returns>
 		ArrayList Split(double position);
+
+		/// <summary>
+		/// Split an audio asset into phrases using a sentence detection algorithm.
+		/// The first phrase may have leading silence, other phrases have no leading silence.
+		/// All phrases may have trailing silence. The asset is left unmodified.
+		/// </summary>
+		/// <param name="threshold">The maximum level of what is considered silence.</param>
+		/// <param name="length">The minimum length of silence between phrases.</param>
+		/// <param name="before">The amount of silence at the beginning of a phrase.</param>
+		/// <returns>The list of new audio assets in order.</returns>
+		ArrayList ApplyPhraseDetection(long threshold, long length, long before);
 	}
 }

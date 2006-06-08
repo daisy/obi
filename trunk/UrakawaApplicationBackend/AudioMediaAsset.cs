@@ -1214,6 +1214,11 @@ long lPosition = ConvertTimeToByte (position) ;
 		}
 
 
+		public ArrayList ApplyPhraseDetection(long threshold, long length, long before)
+		{
+			return null;
+		}
+
 // class ends here
 	}
 }
