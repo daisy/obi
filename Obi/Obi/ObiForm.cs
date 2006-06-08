@@ -416,16 +416,13 @@ namespace Obi
             }
         }
 
+        /// <summary>
+        /// Change the label of th Show/Hide TOC menu item depending on the visibility of the NCX panel.
+        /// </summary>
         private void UpdateShowHideTOC()
         {
-            if (mProjectPanel.NCXPanelVisible)
-            {
-                tableOfContentsToolStripMenuItem.Text = Localizer.Message("hide_toc_label");
-            }
-            else
-            {
-                tableOfContentsToolStripMenuItem.Text = Localizer.Message("show_toc_label");
-            }
+            tableOfContentsToolStripMenuItem.Text = Localizer.Message(mProjectPanel.NCXPanelVisible ?
+                "hide_toc_label" : "show_toc_label");
         }
 
         private void OnProjectClosed()

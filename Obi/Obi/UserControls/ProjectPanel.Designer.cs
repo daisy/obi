@@ -30,8 +30,8 @@ namespace Obi.UserControls
         {
             this.label1 = new System.Windows.Forms.Label();
             this.mSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.ncxPanel1 = new Obi.UserControls.NCXPanel();
+            this.stripManagerPanel1 = new Obi.UserControls.StripManagerPanel();
             this.mSplitContainer.Panel1.SuspendLayout();
             this.mSplitContainer.Panel2.SuspendLayout();
             this.mSplitContainer.SuspendLayout();
@@ -51,43 +51,41 @@ namespace Obi.UserControls
             // 
             // mSplitContainer
             // 
+            this.mSplitContainer.BackColor = System.Drawing.Color.Transparent;
             this.mSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mSplitContainer.Location = new System.Drawing.Point(0, 0);
             this.mSplitContainer.Name = "mSplitContainer";
             // 
             // mSplitContainer.Panel1
             // 
-            this.mSplitContainer.Panel1.BackColor = System.Drawing.Color.PowderBlue;
-            this.mSplitContainer.Panel1.Controls.Add(this.label2);
+            this.mSplitContainer.Panel1.BackColor = System.Drawing.Color.Transparent;
+            this.mSplitContainer.Panel1.Controls.Add(this.ncxPanel1);
             // 
             // mSplitContainer.Panel2
             // 
-            this.mSplitContainer.Panel2.BackColor = System.Drawing.Color.SpringGreen;
-            this.mSplitContainer.Panel2.Controls.Add(this.label4);
+            this.mSplitContainer.Panel2.BackColor = System.Drawing.Color.Transparent;
+            this.mSplitContainer.Panel2.Controls.Add(this.stripManagerPanel1);
             this.mSplitContainer.Size = new System.Drawing.Size(631, 330);
             this.mSplitContainer.SplitterDistance = 210;
             this.mSplitContainer.TabIndex = 1;
             // 
-            // label2
+            // ncxPanel1
             // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(91, 159);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(28, 12);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "NCX";
+            this.ncxPanel1.BackColor = System.Drawing.SystemColors.Control;
+            this.ncxPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ncxPanel1.Location = new System.Drawing.Point(0, 0);
+            this.ncxPanel1.Name = "ncxPanel1";
+            this.ncxPanel1.Size = new System.Drawing.Size(210, 330);
+            this.ncxPanel1.TabIndex = 2;
             // 
-            // label4
+            // stripManagerPanel1
             // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.SpringGreen;
-            this.label4.Location = new System.Drawing.Point(191, 159);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 12);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Strips";
+            this.stripManagerPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.stripManagerPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.stripManagerPanel1.Location = new System.Drawing.Point(0, 0);
+            this.stripManagerPanel1.Name = "stripManagerPanel1";
+            this.stripManagerPanel1.Size = new System.Drawing.Size(417, 330);
+            this.stripManagerPanel1.TabIndex = 0;
             // 
             // ProjectPanel
             // 
@@ -99,9 +97,7 @@ namespace Obi.UserControls
             this.Name = "ProjectPanel";
             this.Size = new System.Drawing.Size(631, 330);
             this.mSplitContainer.Panel1.ResumeLayout(false);
-            this.mSplitContainer.Panel1.PerformLayout();
             this.mSplitContainer.Panel2.ResumeLayout(false);
-            this.mSplitContainer.Panel2.PerformLayout();
             this.mSplitContainer.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -112,8 +108,8 @@ namespace Obi.UserControls
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.SplitContainer mSplitContainer;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label4;
+        private NCXPanel ncxPanel1;
+        private StripManagerPanel stripManagerPanel1;
 
     }
 }
