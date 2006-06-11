@@ -4,6 +4,7 @@ using System.Collections;
 using System.Text;
 using System.Windows.Forms;
 using UrakawaApplicationBackend.events.audioPlayerEvents ;
+using UrakawaApplicationBackend.events.audioRecorderEvents;
 using UrakawaApplicationBackend.events.vuMeterEvents ;
 
 namespace UrakawaApplicationBackend
@@ -194,20 +195,17 @@ Array.Copy ( Player.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
 		}
 
 		// handles update event from audio recorder
-		public void CatchUpdateVuMeterEvent ( AudioRecorder Recorder, UpdateVuMeter Update) 
+		//public void CatchUpdateVuMeterEvent ( AudioRecorder Recorder, UpdateVuMeter Update) 
+		public void CatchUpdateVuMeterEvent (AudioRecorder Recorder, UpdateVuMeterFromRecorder UpdateVuMeter)
 		{
 			ob_AudioRecorder = Recorder ;
-/*
 			m_FrameSize = Recorder.m_FrameSize ;
 			m_Channels = Recorder.m_Channels ;
 			m_UpdateVMArrayLength = Recorder.m_UpdateVMArrayLength ;
 			m_arUpdatedVM  = new int  [m_UpdateVMArrayLength ] ;
-
 			Array.Copy ( Recorder.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
-			*/
 			Thread UpdateVMForm = new Thread(new ThreadStart (AnimationComputation  ));
 			UpdateVMForm.Start()  ;
-
 		}
 
 
