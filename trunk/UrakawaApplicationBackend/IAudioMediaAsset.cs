@@ -136,11 +136,11 @@ long GetSilenceAmplitude (IAudioMediaAsset Ref );
 		// parameter long SilVal is threshold value of amplitude derived from GetSilenceAmplitude using file of same format.
 		// parameter long PhraseLength is the minimum length of silence which will trigger phrase detection
 		// parameter long BeforePhrase is length of marker before actual phrase begins
-long [] DetectPhrases (long SilVal, long PhraseLength , long BeforePhrase) ;
+//long [] DetectPhrases (long SilVal, long PhraseLength , long BeforePhrase) ;
 
 
 // function for detecting phrases  in IAudioMediaAsset  by taking time position in milliseconds as input and output
-		double [] DetectPhrases (long SilVal, double PhraseLength , double BeforePhrase) ;
+		//double [] DetectPhrases (long SilVal, double PhraseLength , double BeforePhrase) ;
 
 
 		// Apparently the compiler doesn't like it if these two methods have the same name 

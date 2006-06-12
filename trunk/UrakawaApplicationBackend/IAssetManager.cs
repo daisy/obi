@@ -38,7 +38,7 @@ namespace UrakawaApplicationBackend
 		/// </summary>
 		/// <param name="assetType">The type of assets.</param>
 		/// <returns>The list of assets of this type.</returns>
-		Hashtable GetAssets(String assetType);
+		Hashtable GetAssets(TypeOfMedia assetType);
 
 		/// <summary>
 		/// Return an asset given its name.
@@ -54,7 +54,7 @@ namespace UrakawaApplicationBackend
 		/// <param name="assetType">Required asset type.</param>
 		/// <returns>A new asset of the required type, or some derived type.</returns>
 		/// //--the parameter type is changed to  string from type
-		IMediaAsset NewAsset(string assetType);
+		IMediaAsset NewAsset(TypeOfMedia  assetType);
 
 		/// <summary>
 		/// Delete an asset completely (remove it from the list and delete from the disk.)
@@ -87,8 +87,7 @@ namespace UrakawaApplicationBackend
 		/// <param name="assetType">The type of the asset to add.</param>
 		/// <param name="assetPath">The path of the file for this asset.</param>
 		/// <returns>The asset that was added.</returns>
-		/// /// //--the parameter type is changed to  string from type
-		IMediaAsset AddAsset(string assetType, string assetPath);
+		IMediaAsset AddAsset(TypeOfMedia assetType, string assetPath);
 
 		//punt on this one so at the moment
 		//parameter is some sort of Collection<URL>
