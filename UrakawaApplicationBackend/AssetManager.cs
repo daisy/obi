@@ -9,56 +9,49 @@ using UrakawaApplicationBackend.events.assetManagerEvents ;
 
 namespace UrakawaApplicationBackend
 {
-	
+
 	public 	class AssetManager :  IAssetManager 
 	{	
 
-// string to hold path of project directory
+		// string to hold path of project directory
 		private string m_sDirPath;
 
-//hash table to hold paths of assets being managed
-		public Hashtable m_htAssetList = new Hashtable();
+		//hash table to hold paths of assets being managed
+		private Hashtable m_htAssetList = new Hashtable();
 
-//static counter to implement singleton
-private static int m_ConstructorCounter =0;
+// static variable for directory to be used in other classes of namespace
+		internal static string ProjectDirectory  ;
 
-CatchEvents ob_CatchEvents = new CatchEvents () ;
+		//static counter to implement singleton
+		private static int m_ConstructorCounter =0;
+
+		CatchEvents ob_CatchEvents = new CatchEvents () ;
 
 		// Please implement this
 		public IAssetManager Instance
 		{
 			get
 			{
-				return null;
+				return this;
 			}
 		}
-
-		/// <summary>
-		/// Get the project directory for the asset manager.
-		/// </summary>
-		/// <remarks>Added by Julien</remarks>
-		public string ProjectDir
-		{
-			get
-			{
-				return m_sDirPath;
-			}
-		}
-
+		
 		//constructor [should be private]
 		public AssetManager (string sProjectDir)
 		{
 			if (m_ConstructorCounter == 0)
 			{
 				m_sDirPath = sProjectDir ;
+				ProjectDirectory = m_sDirPath ;
+
 				m_ConstructorCounter++ ;
 			}
 			else
 			{
-throw new Exception("This class is Singleton");
+				throw new Exception("This class is Singleton");
 				
-				}
 			}
+		}
 		
 
 		public Hashtable Assets
@@ -68,45 +61,40 @@ throw new Exception("This class is Singleton");
 				return m_htAssetList ;		
 			}
 		}
-/*
-		public ArrayList getAssets(string sDirPath, string sFilter)
-		{
-			DirectoryInfo dir = new DirectoryInfo(sDirPath);
-			FileInfo[] bmpfiles = dir.GetFiles(sFilter) ;
-			ArrayList m_alTemp = new ArrayList () ;
-			
-			foreach( FileInfo f in bmpfiles)
-			{
-				m_alTemp.Add(f.FullName);
-			}
-			return m_alTemp;
-		}*/
+
+				
 
 		//returns hashtable containing pat of assets from project directory
 		// Parameter should be of extension of file e.g. ".wav"
-			public Hashtable GetAssets(string assetType)
+		public Hashtable GetAssets(TypeOfMedia assetType)
 		{
-			DirectoryInfo dir = new DirectoryInfo(m_sDirPath);
-				string sTemp = "*" + assetType ;
-			FileInfo[] bmpfiles = dir.GetFiles(sTemp) ;
-			Hashtable htTemp = new Hashtable () ;
+			IDictionaryEnumerator en = m_htAssetList.GetEnumerator();
 			
-			foreach( FileInfo f in bmpfiles)
+			
+Hashtable htTemp = new Hashtable () ;
+MediaAsset m ;
+			//find the path from hash table using key 
+			while (en.MoveNext() )
 			{
-				htTemp.Add(f.Name, f.FullName);
-			}
+m =en.Value as MediaAsset ;
 
+				if (m.MediaType.Equals (assetType)) 
+				{
+htTemp.Add ( en.Key , en.Value) ; 
+				}
+					
+			}
 			return htTemp ;
-			}
+		}
 
-//Delete asset from Project directory and hash table
+		//Delete asset from Project directory and hash table
 		public void DeleteAsset(IMediaAsset assetToDelete)
 		{
 			
 			FileInfo m_file= new FileInfo	 (assetToDelete.Path);
-			if ( m_file.Exists && m_htAssetList.ContainsValue(assetToDelete.Path) )
+			if ( m_file.Exists && m_htAssetList.ContainsKey(assetToDelete.Name) )
 			{
-			m_htAssetList.Remove(assetToDelete.Name) ;
+				m_htAssetList.Remove(assetToDelete.Name) ;
 
 				try
 				{
@@ -114,12 +102,12 @@ throw new Exception("This class is Singleton");
 				}
 				catch
 				{
-MessageBox.Show("Error in deleting file") ;
+					MessageBox.Show("Error in deleting file") ;
 				}
 		
-AssetDeleted ob_AssetDeleted = new AssetDeleted (assetToDelete) ;
-ob_AssetDeleted.AssetDeletedEvent+=new DAssetDeletedEvent (ob_CatchEvents.CatchAssetDeletedEvent ) ;
-ob_AssetDeleted.NotifyAssetDeleted ( this , ob_AssetDeleted) ;
+				AssetDeleted ob_AssetDeleted = new AssetDeleted (assetToDelete) ;
+				ob_AssetDeleted.AssetDeletedEvent+=new DAssetDeletedEvent (ob_CatchEvents.CatchAssetDeletedEvent ) ;
+				ob_AssetDeleted.NotifyAssetDeleted ( this , ob_AssetDeleted) ;
 			}
 			else
 			{
@@ -128,8 +116,8 @@ ob_AssetDeleted.NotifyAssetDeleted ( this , ob_AssetDeleted) ;
 		}
 
 
-		//parameter string assetName must contain extension of file also like abc.wav
-string m_sTempPath ;
+		
+		string m_sTempPath ;
 		public IMediaAsset GetAsset(string assetName)
 		{
 			
@@ -138,136 +126,160 @@ string m_sTempPath ;
 			string  sTemp ;
 			m_sTempPath = null ;
 
-//find the path from hash table using key 
-				while (en.MoveNext() )
+			//find the path from hash table using key 
+			while (en.MoveNext() )
+			{
+				if (assetName == en.Key.ToString() )
 				{
-					if (assetName == en.Key.ToString() )
-					{
-sTemp = en.Value.ToString() ;
-						m_sTempPath= sTemp ;
+					MediaAsset m = en.Value as MediaAsset ;
+return m ;					
 						
-break ;
-					}
-					
+					//break ;
 				}
-//if found, create object using path and return
+					
+			}
+
+
+			/*
+			//if found, create object using path and return
 			if (m_sTempPath != null)
 			{
 				MediaAsset ob =new MediaAsset  (m_sTempPath) ;
 				return ob;
 			}
-			else
-			{
+			*/
+			
 
-MessageBox.Show("Key not found in hash table") ;
-return null ;
-			}
+
+				MessageBox.Show("Key not found in hash table") ;
+				return null ;
+			
 
 		}
-//specify newName without extension
-public IMediaAsset RenameAsset(IMediaAsset asset, String newName)
+		//specify newName without extension
+		public IMediaAsset RenameAsset(IMediaAsset asset, String newName)
 		{
-	string OldName = asset.Name ;
-			FileInfo file= new FileInfo (asset.Path);		
-	string ext = file.Extension ;
-			string sTemp = file.DirectoryName + "\\" + newName + ext;
-
-			if (file.Exists && m_htAssetList.ContainsValue(asset.Path)  )
-			{
-				try
+			
+			string OldName = asset.Name ;
+			IDictionaryEnumerator en = m_htAssetList.GetEnumerator();
+			
+			while (en.MoveNext() )
+			{	
+				if (en.Key.ToString ()  == asset.Name)
 				{
-					file.MoveTo (sTemp);
-				}
-				catch
-				{
-					MessageBox.Show ("Cannot rename the file");
-				}
 					
-m_htAssetList.Remove(asset.Name) ;
+m_htAssetList.Remove (en.Key) ;
+					asset.Name =newName ;
+					m_htAssetList.Add (asset.Name , asset) ;
 
+					AssetRenamed ob_AssetRenamed = new AssetRenamed (asset, OldName) ;
+					ob_AssetRenamed.AssetRenamedEvent+= new DAssetRenamedEvent (ob_CatchEvents.CatchAssetRenamedEvent) ; 
+					ob_AssetRenamed.NotifyAssetRenamed ( this, ob_AssetRenamed ) ;
 
-				asset.Path = sTemp ;
-				FileInfo file1 = new FileInfo (asset.Path);		
-				m_htAssetList.Add(file1.Name, file1.FullName ) ;
+					return asset ;
 
-AssetRenamed ob_AssetRenamed = new AssetRenamed (asset, OldName) ;
-ob_AssetRenamed.AssetRenamedEvent+= new DAssetRenamedEvent (ob_CatchEvents.CatchAssetRenamedEvent) ; 
-ob_AssetRenamed.NotifyAssetRenamed ( this, ob_AssetRenamed ) ;
-
-				return asset ;
+				}
 			}
-			else
-			{
-				MessageBox.Show("Original file not found");
-				return null;
-			}
+			MessageBox.Show ("Key not found, null will be returned") ;
+return null;
+
+// end of function
 		}
 
-//create a new asset of specified without updating hash table
+		
 		//string type must contain valid extension like .wav
-		public IMediaAsset NewAsset(string assetType)
+		// Parameter changed to enum TypeOfMedia
+		public IMediaAsset NewAsset(TypeOfMedia  assetType)
 		{
-			string sTemp = GenerateFileName (assetType, m_sDirPath);
 
-			if (sTemp != null)
+			string sTemp = null;
+			if (assetType.Equals (TypeOfMedia.Audio) )
 			{
-				try
-				{
-					File.Create (sTemp) ;
-				}
-				catch
-				{
-					MessageBox.Show("Exeption! file could not be created") ;
-				}
-				MediaAsset m= new MediaAsset (sTemp) ;
-				return m ;
+				sTemp = GenerateFileName (".wav", m_sDirPath);
 			}
-			else
+				if (sTemp != null)
+				{
+					
+
+					
+						//File.Create (sTemp) ;
+						BinaryWriter bw = new BinaryWriter ( File.Create(sTemp)) ;
+					
+
+					
+
+
+					
+
+					bw.BaseStream.Position = 0 ;
+byte b = Convert.ToByte (1) ;
+					for (int i = 0 ; i< 44 ; i++) 
+					{
+bw.Write (b) ;
+					}
+					b= Convert.ToByte(44) ;
+					bw.BaseStream.Position = 7 ;
+					bw.Write (b) ;
+bw.Close () ;
+
+					AudioMediaAsset am= new AudioMediaAsset (sTemp) ;
+					m_htAssetList.Add (am.Name, am) ;
+					return am ;
+				}
+				else
+				{
+					MessageBox.Show("File could not be created and newAsset will throw a null exeption") ;
+					return null ;
+				}
+			
+		
+	}
+			//create local asset from some external asset
+			public 		IMediaAsset AddAsset(TypeOfMedia assetType, string assetPath)
 			{
-MessageBox.Show("File could not be created") ;
-return null ;
-			}
+				string sTemp  = " ";
+				if ( assetType.Equals(TypeOfMedia.Audio)  )
+				{
+					sTemp = GenerateFileName (".wav", m_sDirPath);
+				}	
+
+
+				if (sTemp != null)
+				{
+					try
+					{
+						//File.Create (sTemp) ;
+						File.Copy(assetPath, sTemp,true) ;
+					}
+					catch
+					{
+						MessageBox.Show("Exeption! file could not be created in add asset in asset manager") ;
 					}
 
-		//create local asset from some external asset
-public 		IMediaAsset AddAsset(string assetType, string assetPath)
-		{
-			string sTemp = GenerateFileName (assetType, m_sDirPath);
+					AudioMediaAsset am= new AudioMediaAsset (sTemp) ;
 
-			if (sTemp != null)
-			{
-				try
-				{
-					//File.Create (sTemp) ;
-					File.Copy(assetPath, sTemp,true) ;
+					try
+					{
+						m_htAssetList.Add(am.Name, am) ; 
+					}
+					catch
+					{
+						MessageBox.Show("Exeption! can not add duplicate in hash table") ;
+					}
+					return am ;
 				}
-				catch
+				else
 				{
-MessageBox.Show("Exeption! Asset could not be created") ;
+					MessageBox.Show("Asset could not be created and added") ;
+					return null ;
 				}
-
-				MediaAsset m= new MediaAsset (sTemp) ;
-				try
-				{
-					m_htAssetList.Add(m.Name, m.Path) ; 
-				}
-				catch
-				{
-MessageBox.Show("Exeption! can not add duplicate in hash table") ;
-				}
-				return m ;
-			}
-			else
-			{
-				MessageBox.Show("Asset could not be created and added") ;
-				return null ;
-			}
-		}
+// end of function 
+	}
 
 
 //generate file name for use in other methods
 		//name wil range to 0.ext to 89999.ext whichever is available;
-		public string GenerateFileName (string ext, string sDir)
+		internal string GenerateFileName (string ext, string sDir)
 				{
 int i = 0 ;
 			string sTemp ;
@@ -323,14 +335,26 @@ MessageBox.Show("Exxeption! Assets of same name exist in hash table.") ;
 			catch
 			{
 				MessageBox.Show ("Can not copy the file");
+				return null ;
 			}
-			MediaAsset ob = new MediaAsset (sTemp);
+			AudioMediaAsset ob = new AudioMediaAsset (sTemp);
+	  m_htAssetList.Add ( ob.Name ,ob) ;
 			return ob;
 		}
 		
-		public void test ()
+		internal void test ()
 		{
+AudioMediaAsset am = new AudioMediaAsset  ("c:\\atest\\a\\Num.wav") ;
+			object o = am ;
+MediaAsset m = o as MediaAsset ;
+//m_htAssetList.Add  (1 , am) ;
+MessageBox.Show (m.GetType().ToString () );
+
 			MessageBox.Show("It is working");
 		}
+		
+	
+		// end of class
 	}
+// end of namespace
 }

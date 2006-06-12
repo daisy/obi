@@ -21,10 +21,12 @@ namespace UrakawaApplicationBackend
 		protected int m_FrameSize ;
 		protected int m_BitDepth ;
 		protected long m_AudioLengthBytes;
+private string m_sDirPath ;
 
 // constructor to initialise above listed member variables
 		public AudioMediaAsset (string sPath) :base (sPath)
 		{
+m_sDirPath = AssetManager.ProjectDirectory ;
 			Init  (sPath) ;
 		}
 
@@ -115,7 +117,10 @@ namespace UrakawaApplicationBackend
 			m_BitDepth = Convert.ToInt32 (ConvertToDecimal (Ar)) ;
 
 			//size in time
+			if (m_AudioLengthBytes  != 0)
 			m_LengthTime = Convert.ToDouble ((m_AudioLengthBytes * 1000)/ (m_SamplingRate * m_FrameSize));
+else
+m_LengthTime  =  0 ;
 
 			br.Close() ;
 		}
@@ -297,7 +302,7 @@ MessageBox.Show("invalid parameters in DeleteChunk") ;
 		// This funtion creates a virtual audio file in RAM with all header information
 		public byte [] GetChunk(long byteBeginPosition, long byteEndPosition)
 		{
-			if (byteBeginPosition < byteEndPosition&& byteEndPosition < m_AudioLengthBytes)
+			if (byteBeginPosition < byteEndPosition&& byteEndPosition <= m_AudioLengthBytes)
 			{
 				byteBeginPosition = AdaptToFrame (byteBeginPosition) + 44 ;
 				byteEndPosition = AdaptToFrame (byteEndPosition) + 44 ;
@@ -345,7 +350,7 @@ MessageBox.Show("invalid parameters in DeleteChunk") ;
 			}
 			else
 			{
-MessageBox.Show("invalid parameters") ;
+MessageBox.Show("invalid parameters in GetChunk") ;
 				byte [] b  = new byte [1];
 				return b ;
 			}
@@ -642,7 +647,7 @@ return SilVal ;
 
 // Detect phrases by taking silent wave file as reference
 
-		public long [] DetectPhrases (long SilVal, long PhraseLength , long BeforePhrase) 
+		public ArrayList DetectPhrases (long SilVal, long PhraseLength , long BeforePhrase) 
 		{
 
 				// adapt values to frame size
@@ -712,6 +717,9 @@ lSize = ((lSize / Block) * Block) - 4;
 
 				br.Close () ;
 
+return alPhrases ;
+
+/*
 // converts ArrayList to long array and return
 				long lArraySize = alPhrases.Count ;
 				long [] lArray = new long [lArraySize] ;
@@ -722,19 +730,61 @@ lSize = ((lSize / Block) * Block) - 4;
 				}
 			
 				return   lArray ;
-
+*/
 			// Phrase detection byte ends
 		}
 
+		public ArrayList ApplyPhraseDetection(long threshold, long length, long before)
+		{
+			ArrayList alByteMarks = new ArrayList ( DetectPhrases (threshold , length , before)  ) ;
+			ArrayList ReturnArrayList = new ArrayList () ;
+			string FileName ;
+			AudioMediaAsset am  ;
+			
+			BinaryWriter bw ;
+			if ( alByteMarks != null)
+			{
+int Count = alByteMarks.Count  ;
+for ( int i = 0 ; i < Count ; i++)
+	
+{
+
+	FileName = GenerateFileName ( ".wav" , m_sDirPath ) ;
+
+
+
+bw = new BinaryWriter (File.Create (FileName)) ;
+	//am = new AudioMediaAsset (FileName) ;
+	MessageBox.Show ("Before creating AudioMedia") ;
+if ( i < Count-1 )
+bw.Write (this.GetChunk ( Convert.ToInt64 (alByteMarks[i]) , Convert.ToInt64 (alByteMarks[i+ 1]) ) ) ;
+else
+bw.Write (this.GetChunk ( Convert.ToInt64 (alByteMarks[i]) , this.AudioLengthBytes  ) ) ;
+
+bw.Close () ;
+	MessageBox.Show ("Asset copied ") ;
+am = new AudioMediaAsset (FileName) ;
+ReturnArrayList.Add (am) ;
+
+
+
+				}
+			}
+
+ArrayList a = new ArrayList () ;
+			return ReturnArrayList ; 
+		}
+
 		// phrase detection with respect to time;
-		public double [] DetectPhrases (long SilVal, double PhraseLength , double BeforePhrase) 
+	public void  DetectPhrases (long SilVal, double PhraseLength , double BeforePhrase) 
 		{
 			
 long lPhraseLength = ConvertTimeToByte (PhraseLength) ;
 			long lBeforePhrase = ConvertTimeToByte (BeforePhrase) ;
 
 
-return ConvertToTimeArray (DetectPhrases(SilVal,lPhraseLength, lBeforePhrase)) ;
+//return ConvertToTimeArray (DetectPhrases(SilVal,lPhraseLength, lBeforePhrase)) ;
+			
 
 //long [] lTempArray = (DetectPhrases (Ref, lPhraseLength , lBeforePhrase) ); 
 //long lCount = lTempArray.LongLength ;
@@ -1166,36 +1216,29 @@ BinaryWriter bw1 = new BinaryWriter (File.OpenWrite(m_sFilePath )) ;
 			if ( m_AudioLengthBytes > position )
 			{
 				position = this.AdaptToFrame (position) ;
-				string sTempPath = m_sFilePath  + "tmp" ;
+				string sTempPath = GenerateFileName ( ".wav", m_sDirPath ) ;
 				BinaryWriter br = new BinaryWriter (File.Create ( sTempPath)) ;
 
 				br.Write (GetChunk ( 0 , position )) ;
 				br.Close () ;
 
-				FileInfo file = new FileInfo (sTempPath) ;
-				
-				
-				AssetManager am = new AssetManager (file.DirectoryName) ;
+				AudioMediaAsset am1 = new AudioMediaAsset (sTempPath) ;
 
-				string sSplitName2 = am.GenerateFileName (".wav" , file.DirectoryName) ;
+				string sTempPath2 = GenerateFileName (".wav" , m_sDirPath) ;
 				//MessageBox.Show ("About to create second file") ;
-				br = new BinaryWriter (File.Create (sSplitName2)) ;
+				br = new BinaryWriter (File.Create (sTempPath2 )) ;
 
-				br.Write (GetChunk (position , m_AudioLengthBytes  -m_FrameSize)); 
+				br.Write (GetChunk (position , m_AudioLengthBytes  )); 
 				br.Close () ;
 
+AudioMediaAsset am2 = new AudioMediaAsset (sTempPath2 ) ;
 				//MessageBox.Show ("Deleting and renaming") ;
 
-				FileInfo DeleteFile = new FileInfo (m_sFilePath) ;
-				DeleteFile.Delete () ;
-
-				FileInfo RenameFile = new FileInfo (sTempPath) ;
-				RenameFile.MoveTo (m_sFilePath) ;
 
 				// Create ArrayList of Files and return
 				ArrayList alReturn  = new ArrayList () ;
-				alReturn.Add (m_sFilePath) ;
-				alReturn.Add (sSplitName2) ;
+				alReturn.Add (am1) ;
+				alReturn.Add (am2) ;
 
 return alReturn ;
 			}
@@ -1212,12 +1255,49 @@ return alReturn ;
 long lPosition = ConvertTimeToByte (position) ;
 			return Split (lPosition) ;
 		}
-
-
-		public ArrayList ApplyPhraseDetection(long threshold, long length, long before)
+ 
+		public IAudioMediaAsset MergeWith(IAudioMediaAsset next)
 		{
-			return null;
+			AudioMediaAsset amNext = new AudioMediaAsset (next.Path ) ;
+
+			string sTempPath = GenerateFileName ( ".wav", m_sDirPath ) ;
+			BinaryWriter br = new BinaryWriter (File.Create ( sTempPath)) ;
+
+			br.Write (GetChunk ( 0 , this.AudioLengthBytes)) ;
+			br.Close () ;
+
+AudioMediaAsset am1 = new AudioMediaAsset (sTempPath) ;
+			am1.InsertByteBuffer(amNext.GetChunk (0 , amNext.AudioLengthBytes ) , this.AudioLengthBytes - 1) ;
+
+
+return am1 ;
 		}
+
+		public string GenerateFileName (string ext, string sDir)
+		{
+			int i = 0 ;
+			string sTemp ;
+			sTemp = sDir + "\\" + i.ToString() + ext ;
+			//FileInfo file = new FileInfo(sTemp) ;
+
+			while (File.Exists(sTemp) && i<90000)
+			{
+				i++;
+				sTemp = sDir + "\\" + i.ToString() + ext ;
+
+			}
+
+			if (i<90000)
+			{
+				return sTemp ;
+			}
+			else
+			{
+				return null ;
+			}
+
+		}
+
 
 // class ends here
 	}
