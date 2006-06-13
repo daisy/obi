@@ -132,32 +132,25 @@ get;
 long GetSilenceAmplitude (IAudioMediaAsset Ref );
 
 
-// function for detecting phrases  in IAudioMediaAsset  by taking byte position as input and output
-		// parameter long SilVal is threshold value of amplitude derived from GetSilenceAmplitude using file of same format.
-		// parameter long PhraseLength is the minimum length of silence which will trigger phrase detection
-		// parameter long BeforePhrase is length of marker before actual phrase begins
-//long [] DetectPhrases (long SilVal, long PhraseLength , long BeforePhrase) ;
+
+		
+		/// <summary>
+		/// Split an audio asset into phrases using a sentence detection algorithm.
+		/// The first phrase may have leading silence, other phrases have no leading silence.
+		/// All phrases may have trailing silence. The asset is left unmodified.
+		/// </summary>
+		/// <param name="threshold">The maximum level of what is considered silence.</param>
+		/// <param name="length">The minimum length of silence between phrases.</param>
+		/// <param name="before">The amount of silence at the beginning of a phrase.</param>
+		/// <returns>The list of new audio assets in order.</returns>
+		ArrayList ApplyPhraseDetection(long threshold, long length, long before);
 
 
-// function for detecting phrases  in IAudioMediaAsset  by taking time position in milliseconds as input and output
-		//double [] DetectPhrases (long SilVal, double PhraseLength , double BeforePhrase) ;
+		// same as above but take time in miliseconds as length and before parameters
+		ArrayList ApplyPhraseDetection(long threshold, double length, double before) ;
 
+		
 
-		// Apparently the compiler doesn't like it if these two methods have the same name 
-		void InsertAudioByte (long TargetBytePos, IAudioMediaAsset Source, long StartPos, long EndPos);
-		void InsertAudioTime (double TargetBytePos, IAudioMediaAsset Source, double StartPos, double EndPos);
-
-		//  adjust the positions according to frame size to avoid any overlapping of channels etc
-		long AdaptToFrame  (long lVal);
-
-		// Decode the wave header to decimal format
-		long ConvertToDecimal (int [] Ar);
-
-		// Encode the Decimal format to wave header format
-		int [] ConvertFromDecimal (long lVal)  ;
-
-		// Compare and checks the format of audio assets  for compatibility
-		bool CheckStreamsFormat(IAudioMediaAsset asset) ;
 
 		/// <summary>
 		/// Validate the asset by performing an integrity check.
@@ -172,6 +165,7 @@ long GetSilenceAmplitude (IAudioMediaAsset Ref );
 		/// <returns>An array of the two assets resulting from the split.</returns>
 		ArrayList Split(long position);
 
+
 		/// <summary>
 		/// Split an audio asset at a given position. The asset is left unmodified.
 		/// </summary>
@@ -179,15 +173,26 @@ long GetSilenceAmplitude (IAudioMediaAsset Ref );
 		/// <returns>An array of the two assets resulting from the split.</returns>
 		ArrayList Split(double position);
 
-		/// <summary>
-		/// Split an audio asset into phrases using a sentence detection algorithm.
-		/// The first phrase may have leading silence, other phrases have no leading silence.
-		/// All phrases may have trailing silence. The asset is left unmodified.
-		/// </summary>
-		/// <param name="threshold">The maximum level of what is considered silence.</param>
-		/// <param name="length">The minimum length of silence between phrases.</param>
-		/// <param name="before">The amount of silence at the beginning of a phrase.</param>
-		/// <returns>The list of new audio assets in order.</returns>
-		ArrayList ApplyPhraseDetection(long threshold, long length, long before);
+
+		// Merge the audiomedia asset passed in parameter with the audio media asset which calls this function
+		// Audio media asset which is passed as parameter is appended at back of audio media which calls this function
+		IAudioMediaAsset MergeWith(IAudioMediaAsset next) ;
+
+
+
+/*
+		//  adjust the positions according to frame size to avoid any overlapping of channels etc
+		long AdaptToFrame  (long lVal);
+
+		// Decode the wave header to decimal format
+		long ConvertToDecimal (int [] Ar);
+
+		// Encode the Decimal format to wave header format
+		int [] ConvertFromDecimal (long lVal)  ;
+
+		// Compare and checks the format of audio assets  for compatibility
+		bool CheckStreamsFormat(IAudioMediaAsset asset) ;
+*/
+
 	}
 }
