@@ -710,8 +710,14 @@ lSize = ((lSize / Block) * Block) - 4;
 						// checks the length of silence
 						if (lCheck > lCountSilGap)
 						{
-							
-							alPhrases.Add((j * Block) - BeforePhrase) ;
+							if ( (j-44) <= lCountSilGap)
+							{
+								alPhrases.Add( Convert.ToInt64 (0)) ;
+							}
+							else
+							{
+								alPhrases.Add((j * Block) - BeforePhrase) ;
+							}
 							lCheck = 0 ;
 						}
 					}
@@ -749,7 +755,7 @@ return alPhrases ;
 			BinaryWriter bw ;
 			if ( alByteMarks != null)
 			{
-
+/*
 // make a physical asset for first phrase
 				FileName = GenerateFileName ( ".wav" , m_sDirPath ) ;
 				bw = new BinaryWriter (File.Create (FileName)) ;
@@ -757,7 +763,7 @@ return alPhrases ;
 				bw.Close () ;
 				am = new AudioMediaAsset (FileName) ;
 				ReturnArrayList.Add (am) ;
-
+*/
 // for array following
 int Count = alByteMarks.Count  ;
 for ( int i = 0 ; i < Count ; i++)
@@ -791,11 +797,11 @@ ArrayList a = new ArrayList () ;
 		// phrase detection with respect to time;
 public ArrayList ApplyPhraseDetection(long threshold, double length, double before)
 {
-MessageBox.Show (length.ToString ()) ;
+
  long byteLength = ConvertTimeToByte (length) ;
-MessageBox.Show (before.ToString ()) ;
+
 	long byteBefore = ConvertTimeToByte (before) ;
-MessageBox.Show ("call byte function") ;
+
 return 	ApplyPhraseDetection(threshold, byteLength, byteBefore) ;
 	}
 
