@@ -525,7 +525,7 @@ namespace UrakawaApplicationBackend
 				//data recorded  after complete recording
 				//append the recorded data from the last position of the asset
 				//the last position is taken as Length -44
-				m_AudioMediaAsset.InsertAudioByte(Length, m_AudioMediaAsset, 44, SampleCount);
+				//m_AudioMediaAsset.InsertAudioByte(Length, m_AudioMediaAsset, 44, SampleCount);
 			}
 		}
 		

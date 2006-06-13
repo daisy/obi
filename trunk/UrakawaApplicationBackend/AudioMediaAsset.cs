@@ -125,19 +125,19 @@ m_LengthTime  =  0 ;
 			br.Close() ;
 		}
 
-		public long AdaptToFrame  (long lVal)
+		internal long AdaptToFrame  (long lVal)
 		{
 			long  lTemp = lVal / m_FrameSize ;
 			return lTemp * m_FrameSize ;
 		}
 
-		public long ConvertToDecimal (int [] Ar)
+		internal long ConvertToDecimal (int [] Ar)
 		{
 			//convert from mod 256 to mod 10
 			return Ar[0] + (Ar[1] * 256) + (Ar[2] *256 *256) + (Ar[3] *256 *256 *256) ;
 		}
 		
-		public int [] ConvertFromDecimal (long lVal) 
+		internal int [] ConvertFromDecimal (long lVal) 
 		{
 // convert  mod 10 to 4 byte array each of mod 256
 			int [] Result = new int [4] ;
@@ -218,6 +218,11 @@ return m_AudioLengthBytes;
 m_AudioLengthBytes= value ;
 			}
 		}
+
+
+
+// interface functions starts from here
+
 // deletes a section of audio streamfrom physical asset by takin byte position as parameter
 		public  void DeleteChunk(long byteBeginPosition, long byteEndPosition)
 		{
@@ -490,7 +495,7 @@ m_lSize = Length ;
 		}
 
 		// compare the format of two streams and return bool 
-		public bool CheckStreamsFormat(byte [] bBuffer)
+		internal bool CheckStreamsFormat(byte [] bBuffer)
 		{
 			BinaryReader br = new BinaryReader (File.OpenRead (m_sFilePath)) ;
 
@@ -647,7 +652,7 @@ return SilVal ;
 
 // Detect phrases by taking silent wave file as reference
 
-		public ArrayList DetectPhrases (long SilVal, long PhraseLength , long BeforePhrase) 
+		private ArrayList DetectPhrases (long SilVal, long PhraseLength , long BeforePhrase) 
 		{
 
 				// adapt values to frame size
@@ -744,6 +749,16 @@ return alPhrases ;
 			BinaryWriter bw ;
 			if ( alByteMarks != null)
 			{
+
+// make a physical asset for first phrase
+				FileName = GenerateFileName ( ".wav" , m_sDirPath ) ;
+				bw = new BinaryWriter (File.Create (FileName)) ;
+					bw.Write (this.GetChunk ( Convert.ToInt64 (0) , Convert.ToInt64 (alByteMarks[0]) ) ) ;
+				bw.Close () ;
+				am = new AudioMediaAsset (FileName) ;
+				ReturnArrayList.Add (am) ;
+
+// for array following
 int Count = alByteMarks.Count  ;
 for ( int i = 0 ; i < Count ; i++)
 	
@@ -751,18 +766,16 @@ for ( int i = 0 ; i < Count ; i++)
 
 	FileName = GenerateFileName ( ".wav" , m_sDirPath ) ;
 
-
-
 bw = new BinaryWriter (File.Create (FileName)) ;
 	//am = new AudioMediaAsset (FileName) ;
-	MessageBox.Show ("Before creating AudioMedia") ;
+
 if ( i < Count-1 )
 bw.Write (this.GetChunk ( Convert.ToInt64 (alByteMarks[i]) , Convert.ToInt64 (alByteMarks[i+ 1]) ) ) ;
 else
 bw.Write (this.GetChunk ( Convert.ToInt64 (alByteMarks[i]) , this.AudioLengthBytes  ) ) ;
 
 bw.Close () ;
-	MessageBox.Show ("Asset copied ") ;
+	
 am = new AudioMediaAsset (FileName) ;
 ReturnArrayList.Add (am) ;
 
@@ -776,28 +789,17 @@ ArrayList a = new ArrayList () ;
 		}
 
 		// phrase detection with respect to time;
-	public void  DetectPhrases (long SilVal, double PhraseLength , double BeforePhrase) 
-		{
-			
-long lPhraseLength = ConvertTimeToByte (PhraseLength) ;
-			long lBeforePhrase = ConvertTimeToByte (BeforePhrase) ;
+public ArrayList ApplyPhraseDetection(long threshold, double length, double before)
+{
+MessageBox.Show (length.ToString ()) ;
+ long byteLength = ConvertTimeToByte (length) ;
+MessageBox.Show (before.ToString ()) ;
+	long byteBefore = ConvertTimeToByte (before) ;
+MessageBox.Show ("call byte function") ;
+return 	ApplyPhraseDetection(threshold, byteLength, byteBefore) ;
+	}
 
 
-//return ConvertToTimeArray (DetectPhrases(SilVal,lPhraseLength, lBeforePhrase)) ;
-			
-
-//long [] lTempArray = (DetectPhrases (Ref, lPhraseLength , lBeforePhrase) ); 
-//long lCount = lTempArray.LongLength ;
-//double [] d = new double [lCount] ;
-
-			//for (long l = 0 ; l < lCount ; l ++)
-			//{
-//d[l] = ConvertByteToTime(lTempArray [l]) ;
-			//}
-			
-			//return d;
-			
-		}
 
 		double [] ConvertToTimeArray (long [] lArray)
 		{
@@ -817,8 +819,9 @@ return ArrayReturn ;
 		//This is done to reduce load on system memory as wave file may be as big as it go out of scope of RAM
 		// IAudioMediaAsset Target is destination file where the stream has to be inserted and  TargetBytePos is insertion position in bytes excluding header
 		//IAudioMediaAsset Source is asset from which data is taken between Positions in bytes (StartPos and EndPos) , these are also excluding header length
-		public void InsertAudio ( long TargetBytePos, IAudioMediaAsset Source, long StartPos, long EndPos)
+		internal void InsertAudio ( long TargetBytePos, IAudioMediaAsset ISource, long StartPos, long EndPos)
 		{
+AudioMediaAsset Source = new AudioMediaAsset (ISource.Path ) ;
 			// checks the compatibility of formats of two assets and validity of parameters
 			if (CheckStreamsFormat (Source)== true&& TargetBytePos < (m_AudioLengthBytes ) && StartPos < EndPos && EndPos < Source.AudioLengthBytes )
 				// braces holds whole  function
@@ -906,7 +909,7 @@ BinaryWriter bw1 = new BinaryWriter (File.OpenWrite(m_sFilePath )) ;
 
 
 		// same as above function but take time position as parameter instead of byte position
-		public void InsertAudio (double timeTargetPos, IAudioMediaAsset Source, double timeStartPos, double timeEndPos)
+		internal void InsertAudio (double timeTargetPos, IAudioMediaAsset Source, double timeStartPos, double timeEndPos)
 		{
 			long lTargetPos = ConvertTimeToByte (timeTargetPos) ;
 			long lStartPos = ConvertTimeToByte (timeStartPos) ;
@@ -914,6 +917,8 @@ BinaryWriter bw1 = new BinaryWriter (File.OpenWrite(m_sFilePath )) ;
 
 			InsertAudio ( lTargetPos, Source, lStartPos, lEndPos) ;
 		}
+
+
 		/// Validate the asset by performing an integrity check.
 		/// <returns>True if the asset was found to be valid, false otherwise.</returns>
 		
@@ -1017,8 +1022,9 @@ BinaryWriter bw1 = new BinaryWriter (File.OpenWrite(m_sFilePath )) ;
 		//This is done to reduce load on system memory as wave file may be as big as it go out of scope of RAM
 		// IAudioMediaAsset Target is destination file where the stream has to be inserted and  TargetBytePos is insertion position in bytes excluding header
 		//IAudioMediaAsset Source is asset from which data is taken between Positions in bytes (StartPos and EndPos) , these are also excluding header length
-		public void InsertAudioByte ( long TargetBytePos, IAudioMediaAsset Source, long StartPos, long EndPos)
+		internal void InsertAudioByte ( long TargetBytePos, IAudioMediaAsset ISource, long StartPos, long EndPos)
 		{
+			AudioMediaAsset Source = new AudioMediaAsset (ISource.Path) ;
 			// checks the compatibility of formats of two assets and validity of parameters
 			if (CheckStreamsFormat (Source)== true&& TargetBytePos < (m_AudioLengthBytes ) && StartPos < EndPos && EndPos < Source.AudioLengthBytes )
 				// braces holds whole  function
@@ -1106,7 +1112,7 @@ BinaryWriter bw1 = new BinaryWriter (File.OpenWrite(m_sFilePath )) ;
 
 
 		// same as above function but take time position as parameter instead of byte position
-		public void InsertAudioTime (double timeTargetPos, IAudioMediaAsset Source, double timeStartPos, double timeEndPos)
+		internal void InsertAudioTime (double timeTargetPos, IAudioMediaAsset Source, double timeStartPos, double timeEndPos)
 		{
 			long lTargetPos = ConvertTimeToByte (timeTargetPos) ;
 			long lStartPos = ConvertTimeToByte (timeStartPos) ;
@@ -1273,7 +1279,7 @@ AudioMediaAsset am1 = new AudioMediaAsset (sTempPath) ;
 return am1 ;
 		}
 
-		public string GenerateFileName (string ext, string sDir)
+		private string GenerateFileName (string ext, string sDir)
 		{
 			int i = 0 ;
 			string sTemp ;
