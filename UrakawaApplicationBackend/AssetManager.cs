@@ -117,7 +117,16 @@ htTemp.Add ( en.Key , en.Value) ;
 
 		public IMediaAsset RemoveAsset(IMediaAsset assetToRemove)
 		{
-			return null;
+			if (  m_htAssetList.ContainsKey(assetToRemove.Name) )
+			{
+				m_htAssetList.Remove(assetToRemove.Name) ;
+				return assetToRemove ;
+			}
+			else
+			{
+				MessageBox.Show ("Asset not in Hash Table") ;
+				return null;
+			}
 		}
 		
 		string m_sTempPath ;
@@ -200,6 +209,7 @@ return null;
 			{
 				sTemp = GenerateFileName (".wav", m_sDirPath);
 			}
+
 				if (sTemp != null)
 				{
 					
@@ -240,7 +250,7 @@ bw.Close () ;
 			//create local asset from some external asset
 			public 		IMediaAsset AddAsset(TypeOfMedia assetType, string assetPath)
 			{
-				string sTemp  = " ";
+				string sTemp  = null ;
 				if ( assetType.Equals(TypeOfMedia.Audio)  )
 				{
 					sTemp = GenerateFileName (".wav", m_sDirPath);
@@ -273,7 +283,7 @@ bw.Close () ;
 				}
 				else
 				{
-					MessageBox.Show("Asset could not be created and added") ;
+					MessageBox.Show("Asset could not be created and added. A null exeption will be thrown") ;
 					return null ;
 				}
 // end of function 

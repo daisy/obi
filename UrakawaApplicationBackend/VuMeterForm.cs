@@ -200,11 +200,18 @@ tmRefresh.Enabled = true ;
 		{
 Device BeepDevice  = new Device() ;
 			BeepDevice.SetCooperativeLevel(this, CooperativeLevel.Normal );
-	
-									SecondaryBuffer BeepBuffer  =  new SecondaryBuffer("c:\\beep.wav", BeepDevice );
-			
+			SecondaryBuffer BeepBuffer   ;
+			try
+			{
+				BeepBuffer  =  new SecondaryBuffer("c:\\beep.wav", BeepDevice );
+				BeepBuffer.Play(0, BufferPlayFlags.Default );		
+			}		
+			catch (Exception Ex)
+			{
+MessageBox.Show (Ex.ToString ()) ;
+			}
 
-BeepBuffer.Play(0, BufferPlayFlags.Default );		
+
 			
 		}
 
@@ -254,6 +261,13 @@ tmRefresh.Enabled = true ;
 			System.Drawing.Graphics objGraphics;
 			objGraphics = this.CreateGraphics();		
 
+// Paint Backgrounds
+			Pen PenVackPaint= new Pen(Color.White);
+			PenVackPaint.Width = 600 ;
+
+objGraphics.DrawLine(PenVackPaint , 0, 0, 0, 600);		
+
+// Paint two vertical graphs
 			Pen PenHigh  = new Pen(Color.Red );
 			PenHigh.Width = LineWidth ;
 
@@ -276,6 +290,7 @@ tmRefresh.Enabled = true ;
 // Erase the unwanted line starting from top according to amplitude of each channel
 			objGraphics.DrawLine(PenVackground , LeftGraphX, HighTop , LeftGraphX, EraserLeft );	
 			objGraphics.DrawLine(PenVackground , RightGraphX, HighTop , RightGraphX, EraserRight );	
+						
 				
 			// paint the peak overload light
 			
@@ -329,7 +344,8 @@ txtAmplitudeRight.Text = AmplitudeRight.ToString () ;
 
 		private void btnClose_Click(object sender, System.EventArgs e)
 		{
-		this.Close () ;
+			this.Visible = false  ;
+		//this.Close () ;
 		}
 
 // end of class
