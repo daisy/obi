@@ -115,7 +115,10 @@ htTemp.Add ( en.Key , en.Value) ;
 			}
 		}
 
-
+		public IMediaAsset RemoveAsset(IMediaAsset assetToRemove)
+		{
+			return null;
+		}
 		
 		string m_sTempPath ;
 		public IMediaAsset GetAsset(string assetName)
