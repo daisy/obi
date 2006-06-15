@@ -167,7 +167,7 @@ private int m_UpdateVMArrayLength ;
 		private int m_FrameSize ;
 
 // for position of graph which is centre of graph in Y and centre of left edges of two graph for x
-		private int m_GraphPositionX = 150 ;
+		private int m_GraphPositionX = 170 ;
 		private int m_GraphPositionY = 300 ;
 			
 
@@ -195,7 +195,6 @@ Array.Copy ( Player.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
 		}
 
 		// handles update event from audio recorder
-		//public void CatchUpdateVuMeterEvent ( AudioRecorder Recorder, UpdateVuMeter Update) 
 		public void CatchUpdateVuMeterEvent (AudioRecorder Recorder, UpdateVuMeterFromRecorder UpdateVuMeter)
 		{
 			ob_AudioRecorder = Recorder ;
@@ -207,6 +206,21 @@ Array.Copy ( Player.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
 			Thread UpdateVMForm = new Thread(new ThreadStart (AnimationComputation  ));
 			UpdateVMForm.Start()  ;
 		}
+
+
+			
+
+			
+
+			
+
+
+			
+
+			
+
+
+		
 
 
 
@@ -225,6 +239,7 @@ Array.Copy ( Player.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
 			Array.Copy ( AmplitudeValue() , AmpArray , 2) ;
 
 // feed the amplitude in sampple array for computing mean value
+				
 			SampleArrayLeft [m_SampleArrayPosition ] = AmpArray [0] ;
 			SampleArrayRight [m_SampleArrayPosition ] = AmpArray [1] ;
 
@@ -396,11 +411,11 @@ public GraphPts Graph = new GraphPts() ;
 			Graph.LeftGraphX = OriginX ;
 			Graph.RightGraphX = OriginX +Convert.ToInt32 (m_ScaleFactor * 90) ;
 
-		Graph.PeakOverloadLightX = 300 ;
+		Graph.PeakOverloadLightX = 350 ;
 Graph.PeakOverloadLightY = 50 ;
 		}
 
-		public class Threshold
+		internal class Threshold
 		{
 	public int UpperThreshold ;
 			public int LowerThreshold ;

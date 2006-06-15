@@ -88,7 +88,7 @@ ob_EndOfAudioBuffer.EndOfAudioBufferEvent+=new DEndOfAudioBufferEvent  (ob_Catch
 		}
 			
 // Set VuMeter object
-		public 		void SetVuMeterObject ( VuMeter ob_VuMeterArg )
+		private void SetVuMeterObject ( VuMeter ob_VuMeterArg )
 		{
 			ob_VuMeter = ob_VuMeterArg ;
 			ob_UpdateVuMeter.UpdateVuMeterEvent += new DUpdateVuMeterEvent (ob_VuMeter.CatchUpdateVuMeterEvent ) ;	
@@ -108,11 +108,6 @@ SetVuMeterObject (value) ;
 		}
 
 
-		void TriggerStateChangedEvent ()
-		{
-
-		}
-
 void TriggerStateChangedEvent ( StateChanged ob)
 {
 			if (m_EventsEnabled == true)
@@ -128,6 +123,8 @@ void TriggerStateChangedEvent ( StateChanged ob)
 // array for update current amplitude to VuMeter
 		internal byte [] arUpdateVM ;
 internal int m_UpdateVMArrayLength ;
+
+
 
 // gets the current AudioPlayer state
 		public AudioPlayerState State
@@ -790,7 +787,7 @@ CalculationFunctions calc = new CalculationFunctions() ;
 SetCurrentBytePosition(lTemp) ;
 		}
 
-		public void  test ()
+		private void  test ()
 		{
 if (m_State.Equals(AudioPlayerState .stopped))
 	MessageBox.Show("Stopped") ;
