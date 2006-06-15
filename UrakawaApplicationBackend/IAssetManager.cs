@@ -54,7 +54,7 @@ namespace UrakawaApplicationBackend
 		/// <param name="assetType">Required asset type.</param>
 		/// <returns>A new asset of the required type, or some derived type.</returns>
 		/// //--the parameter type is changed to  string from type
-		IMediaAsset NewAsset(TypeOfMedia  assetType);
+		IMediaAsset NewAsset(TypeOfMedia assetType);
 
 		/// <summary>
 		/// Delete an asset completely (remove it from the list and delete from the disk.)
@@ -62,6 +62,12 @@ namespace UrakawaApplicationBackend
 		/// </summary>
 		/// <param name="assetToDelete">The asset to delete.</param>
 		void DeleteAsset(IMediaAsset assetToDelete);
+
+		/// <summary>
+		/// Remove an asset from the asset manager. Do not delete the data.
+		/// </summary>
+		/// <param name="assetToDelete"></param>
+		IMediaAsset RemoveAsset(IMediaAsset assetToRemove);
 
 		/// <summary>
 		/// Make a copy of an existing asset and give it a new name (e.g. "Foo (copy)".)

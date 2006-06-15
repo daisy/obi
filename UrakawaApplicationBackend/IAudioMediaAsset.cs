@@ -174,10 +174,6 @@ long GetSilenceAmplitude (IAudioMediaAsset Ref );
 		ArrayList Split(double position);
 
 
-		// Merge the audiomedia asset passed in parameter with the audio media asset which calls this function
-		// Audio media asset which is passed as parameter is appended at back of audio media which calls this function
-		IAudioMediaAsset MergeWith(IAudioMediaAsset next) ;
-
 
 
 /*

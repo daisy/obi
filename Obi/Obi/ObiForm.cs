@@ -407,11 +407,13 @@ namespace Obi
             if (mProjectPanel.NCXPanelVisible)
             {
                 mProjectPanel.HideNCXPanel();
+                toolStripStatusLabel1.Text = Localizer.Message("status_toc_hidden");
                 UpdateShowHideTOC();
             }
             else
             {
                 mProjectPanel.ShowNCXPanel();
+                toolStripStatusLabel1.Text = Localizer.Message("status_toc_shown");
                 UpdateShowHideTOC();
             }
         }
@@ -677,6 +679,11 @@ namespace Obi
                 mUndoStack.Redo();
                 UndoStackChanged(this, new EventArgs());
             }
+        }
+
+        private void appendStripToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProject.AppendItem();
         }
     }
 

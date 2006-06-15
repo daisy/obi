@@ -266,6 +266,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hiding table of contents..
+        /// </summary>
+        internal static string status_toc_hidden {
+            get {
+                return ResourceManager.GetString("status_toc_hidden", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Showing table of contents..
+        /// </summary>
+        internal static string status_toc_shown {
+            get {
+                return ResourceManager.GetString("status_toc_shown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} {1}.
         /// </summary>
         internal static string undo_label {

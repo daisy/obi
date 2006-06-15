@@ -8,7 +8,8 @@ namespace Obi
     {
         private bool mUnsaved;             // true if the project was modified and not saved
         private string mXUKPath;           // path to the XUK file
-        private SimpleMetadata mMetadata;  // metadata for this project.
+        private SimpleMetadata mMetadata;  // metadata for this project
+        private NCX.NCX mNCX;              // TOC of the project
 
         public bool Unsaved { get { return mUnsaved; } }
         public string XUKPath { get { return mXUKPath; } }
@@ -26,6 +27,7 @@ namespace Obi
             mUnsaved = false;
             mXUKPath = path;
             mMetadata = new SimpleMetadata(title, id, userProfile);
+            mNCX = new NCX.NCX(this);
         }
 
         /// <summary>
@@ -89,6 +91,10 @@ namespace Obi
         public static string ShortName(string title)
         {
             return System.Text.RegularExpressions.Regex.Replace(title, @"[^a-zA-Z0-9_]", "_");
+        }
+
+        public void AppendItem()
+        {
         }
     }
 }

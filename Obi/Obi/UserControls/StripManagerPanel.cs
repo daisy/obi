@@ -8,22 +8,11 @@ using System.Windows.Forms;
 
 namespace Obi.UserControls
 {
-    public partial class NCXPanel : UserControl
+    public partial class StripManagerPanel : UserControl
     {
-        private NCX.NCX mNCX;
-
-        public NCX.NCX NCX
-        {
-            set
-            {
-                mNCX = value;
-            }
-        }
-
-        public NCXPanel()
+        public StripManagerPanel()
         {
             InitializeComponent();
-            mNCX = null;
         }
     }
 }
