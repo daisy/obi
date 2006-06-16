@@ -11,7 +11,7 @@
     <AssemblyName>Obi</AssemblyName>
     <ManifestCertificateThumbprint>008A35F93462D9C0E04B8DADD094D9A944FD6FCE</ManifestCertificateThumbprint>
     <ManifestKeyFile>Obi_TemporaryKey.pfx</ManifestKeyFile>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
     <SignManifests>true</SignManifests>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>C:\Documents and Settings\Julien Quint\My Documents\Obi Projects\</PublishUrl>
@@ -26,6 +26,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationVersion>0.1.2.414</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -172,6 +173,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Obi_TemporaryKey.pfx" />
+    <BaseApplicationManifest Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
