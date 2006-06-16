@@ -11,9 +11,9 @@
     <AssemblyName>Protobi</AssemblyName>
     <ManifestCertificateThumbprint>BEDE3D2D9D8F90903BAA02269D82C7EF9943CB34</ManifestCertificateThumbprint>
     <ManifestKeyFile>Protobi_TemporaryKey.pfx</ManifestKeyFile>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
     <TargetZone>LocalIntranet</TargetZone>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <StartupObject>Protobi.Program</StartupObject>
     <PublishUrl>C:\Documents and Settings\Julien Quint\My Documents\Urakawa Prototypes\Protobi\</PublishUrl>
