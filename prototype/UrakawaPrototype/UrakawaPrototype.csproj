@@ -27,8 +27,8 @@
     </UpgradeBackupLocation>
     <ManifestCertificateThumbprint>9785BFB3905C5BFBFBF537DC4AC06526A7514A09</ManifestCertificateThumbprint>
     <ManifestKeyFile>UrakawaPrototype_TemporaryKey.pfx</ManifestKeyFile>
-    <GenerateManifests>true</GenerateManifests>
-    <SignManifests>true</SignManifests>
+    <GenerateManifests>false</GenerateManifests>
+    <SignManifests>false</SignManifests>
     <PublishUrl>C:\Documents and Settings\Julien Quint\My Documents\Urakawa Prototypes\UrakawaPrototype\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -42,6 +42,7 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -132,6 +133,7 @@
     <None Include="img\nextPage.jpg" />
     <None Include="img\nextMarker.jpg" />
     <None Include="img\nextBlock.jpg" />
+    <BaseApplicationManifest Include="Properties\app.manifest" />
     <None Include="Resources\Icon1.ico" />
     <None Include="UrakawaPrototype_TemporaryKey.pfx" />
     <Compile Include="AssemblyInfo.cs" />

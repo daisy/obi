@@ -12,7 +12,7 @@
     <ManifestCertificateThumbprint>008A35F93462D9C0E04B8DADD094D9A944FD6FCE</ManifestCertificateThumbprint>
     <ManifestKeyFile>Obi_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>false</GenerateManifests>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>C:\Documents and Settings\Julien Quint\My Documents\Obi Projects\</PublishUrl>
     <Install>true</Install>
