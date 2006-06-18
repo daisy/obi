@@ -541,6 +541,7 @@ namespace UrakawaApplicationBackend
 				}
 				Writer.Close();	// Close the file now.
 				Writer = null;	// Set the writer to null.
+				m_AudioMediaAsset = new AudioMediaAsset(ProjectDirectory+"\\"|m_sFileName);
 				if(OldAsset.SizeInBytes >44)
 				{
 					OldAsset.MergeWith(m_AudioMediaAsset);
