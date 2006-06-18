@@ -59,6 +59,10 @@ namespace UrakawaApplicationBackend
 			this.tmBeep = new System.Windows.Forms.Timer(this.components);
 			this.tmRefreshText = new System.Windows.Forms.Timer(this.components);
 			this.btnClose = new System.Windows.Forms.Button();
+			this.labelOverLoadLeft = new System.Windows.Forms.Label();
+			this.labelOverLoadRight = new System.Windows.Forms.Label();
+			this.labelAmplitudeLeft = new System.Windows.Forms.Label();
+			this.labelAmplitudeRight = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// tmRefresh
@@ -68,26 +72,26 @@ namespace UrakawaApplicationBackend
 			// txtOverloadLeft
 			// 
 			this.txtOverloadLeft.AccessibleName = "OverloadLeft";
-			this.txtOverloadLeft.Location = new System.Drawing.Point(424, 240);
+			this.txtOverloadLeft.Location = new System.Drawing.Point(424, 312);
 			this.txtOverloadLeft.Name = "txtOverloadLeft";
-			this.txtOverloadLeft.TabIndex = 0;
+			this.txtOverloadLeft.TabIndex = 8;
 			this.txtOverloadLeft.Text = "";
 			// 
 			// txtOverloadRight
 			// 
 			this.txtOverloadRight.AccessibleName = "Overload Right";
-			this.txtOverloadRight.Location = new System.Drawing.Point(424, 296);
+			this.txtOverloadRight.Location = new System.Drawing.Point(416, 224);
 			this.txtOverloadRight.Name = "txtOverloadRight";
-			this.txtOverloadRight.TabIndex = 1;
+			this.txtOverloadRight.TabIndex = 6;
 			this.txtOverloadRight.Text = "";
 			// 
 			// txtAmplitudeLeft
 			// 
 			this.txtAmplitudeLeft.AccessibleName = "Left Channel Amplitude";
-			this.txtAmplitudeLeft.Location = new System.Drawing.Point(424, 32);
+			this.txtAmplitudeLeft.Location = new System.Drawing.Point(424, 136);
 			this.txtAmplitudeLeft.Name = "txtAmplitudeLeft";
 			this.txtAmplitudeLeft.ReadOnly = true;
-			this.txtAmplitudeLeft.TabIndex = 2;
+			this.txtAmplitudeLeft.TabIndex = 4;
 			this.txtAmplitudeLeft.Text = "";
 			// 
 			// txtAmplitudeRight
@@ -96,7 +100,7 @@ namespace UrakawaApplicationBackend
 			this.txtAmplitudeRight.Location = new System.Drawing.Point(424, 64);
 			this.txtAmplitudeRight.Name = "txtAmplitudeRight";
 			this.txtAmplitudeRight.ReadOnly = true;
-			this.txtAmplitudeRight.TabIndex = 3;
+			this.txtAmplitudeRight.TabIndex = 2;
 			this.txtAmplitudeRight.Text = "";
 			// 
 			// tmBeep
@@ -113,16 +117,48 @@ namespace UrakawaApplicationBackend
 			// 
 			// btnClose
 			// 
-			this.btnClose.Location = new System.Drawing.Point(496, 496);
+			this.btnClose.Location = new System.Drawing.Point(424, 480);
 			this.btnClose.Name = "btnClose";
-			this.btnClose.TabIndex = 4;
+			this.btnClose.TabIndex = 0;
 			this.btnClose.Text = "&Close";
 			this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+			// 
+			// labelOverLoadLeft
+			// 
+			this.labelOverLoadLeft.Location = new System.Drawing.Point(424, 272);
+			this.labelOverLoadLeft.Name = "labelOverLoadLeft";
+			this.labelOverLoadLeft.TabIndex = 7;
+			this.labelOverLoadLeft.Text = "OverLoad &Left";
+			// 
+			// labelOverLoadRight
+			// 
+			this.labelOverLoadRight.Location = new System.Drawing.Point(424, 184);
+			this.labelOverLoadRight.Name = "labelOverLoadRight";
+			this.labelOverLoadRight.TabIndex = 5;
+			this.labelOverLoadRight.Text = "OverLoad &Right";
+			// 
+			// labelAmplitudeLeft
+			// 
+			this.labelAmplitudeLeft.Location = new System.Drawing.Point(424, 104);
+			this.labelAmplitudeLeft.Name = "labelAmplitudeLeft";
+			this.labelAmplitudeLeft.TabIndex = 3;
+			this.labelAmplitudeLeft.Text = "Amplitude L&eft";
+			// 
+			// labelAmplitudeRight
+			// 
+			this.labelAmplitudeRight.Location = new System.Drawing.Point(424, 40);
+			this.labelAmplitudeRight.Name = "labelAmplitudeRight";
+			this.labelAmplitudeRight.TabIndex = 1;
+			this.labelAmplitudeRight.Text = "Amplitude R&ight";
 			// 
 			// VuMeterForm
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.ClientSize = new System.Drawing.Size(592, 566);
+			this.Controls.Add(this.labelAmplitudeRight);
+			this.Controls.Add(this.labelAmplitudeLeft);
+			this.Controls.Add(this.labelOverLoadRight);
+			this.Controls.Add(this.labelOverLoadLeft);
 			this.Controls.Add(this.btnClose);
 			this.Controls.Add(this.txtAmplitudeRight);
 			this.Controls.Add(this.txtAmplitudeLeft);
@@ -177,6 +213,10 @@ VuMeter ob_VuMeter ;
 		internal System.Windows.Forms.TextBox txtAmplitudeRight;
 		private System.Windows.Forms.Timer tmRefreshText;
 		private System.Windows.Forms.Button btnClose;
+		private System.Windows.Forms.Label labelOverLoadLeft;
+		private System.Windows.Forms.Label labelOverLoadRight;
+		private System.Windows.Forms.Label labelAmplitudeLeft;
+		private System.Windows.Forms.Label labelAmplitudeRight;
 		private System.Windows.Forms.Timer tmBeep;
 		
 
