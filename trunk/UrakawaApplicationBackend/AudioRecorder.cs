@@ -38,7 +38,7 @@ namespace UrakawaApplicationBackend
 		private CaptureBufferDescription dsc = new CaptureBufferDescription();
 		private int nFormatChunkLength;
 		//private FileStream WaveFile;
-		private string m_sFileName = "F;\\My Documents\\6.wav";
+		private string m_sFileName ;
 			internal static string ProjectDirectory  ;
 		private static int m_ConstructorCounter =0;
 		private short m_bitDepth;
