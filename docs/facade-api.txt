@@ -60,6 +60,12 @@ by the toolkit in the next iteration.
   navpoint get_prev()
   navpoint get_next()
   
+  # The navpoints can be moved up/down in the table of contents, provided
+  # that the levels keep consistent. The moving functions return a boolean
+  # value indicating whether or not the move could take place
+  bool move_up()
+  bool move_down()
+  
 
 * Metadata object -- this is basically a DOM element node where the name and
 content attributes have a special status.

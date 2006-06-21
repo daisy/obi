@@ -319,7 +319,7 @@ end
 
 class NavMap < NavPoint
 
-  def initialize()
+  def initialize
     @parent = nil
     @prev = nil
     @next = nil
@@ -340,23 +340,39 @@ class NavMap < NavPoint
     @children.each { |child| order, s = child.to_xml(order + 1); str += s }
     str + "</navMap>"
   end
+  
+end
+
+class NCX
+
+  def initialize
+    @navmap = NavMap.new
+    navpoint = NavPoint.new([NavLabel.text_only(Text.new("Title"))])
+    @navmap.append_child(navpoint)
+  end
+
+  attr_reader :navmap
 
 end
 
-navs = ["A", "B", "C", "D", "E", "F", "G"].map {
-  |l| NavPoint.new([NavLabel.text_only(Text.new(l))], 
-                   Content.new("foo.smil#" + l))
-}
-navmap = NavMap.new
-navmap.append_child(navs[0])
-navmap.append_child(navs[5])
-navs[0].append_child(navs[1])
-navs[1].append_child(navs[2])
-navs[0].append_child(navs[4])
-navs[1].append_child(navs[3])
-navs[5].append_child(navs[6])
-navs[5].increase_level
-navs[5].increase_level
-navs[5].increase_level
-navmap.show
+ncx = NCX.new
+#ncx.navmap.show
+
+
+#navs = ["A", "B", "C", "D", "E", "F", "G"].map {
+  #  |l| NavPoint.new([NavLabel.text_only(Text.new(l))], 
+  #                 Content.new("foo.smil#" + l))
+  #}
+  #navmap = NavMap.new
+  #navmap.append_child(navs[0])
+  #navmap.append_child(navs[5])
+  #navs[0].append_child(navs[1])
+  #navs[1].append_child(navs[2])
+  #navs[0].append_child(navs[4])
+  #navs[1].append_child(navs[3])
+  #navs[5].append_child(navs[6])
+  #navs[5].increase_level
+  #navs[5].increase_level
+  #navs[5].increase_level
+  #navmap.show
 #puts navmap.to_xml
