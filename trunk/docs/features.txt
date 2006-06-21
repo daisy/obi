@@ -375,15 +375,37 @@ E. Metadata editor and viewer
   edited by the user, using its profile or other sources for default values
   when applicable. The generated metadata can be viewed.
 
-  E.1. Dublin Core metadata
-  
-  * Skipped: dc:Type, dc:Coverage.
+  * We make a simple panel for project metadata and give the possibility to
+  edit actual Daisy metadata for power users.
+
+  E.1. Project ("simple") metadata
+
+  * The project metadata is the simplest set of metadata from which we can
+  derive all the mandatory metadata for the DAISY book.
 
   E001: Unique identifier for the project.
-        We can generate an identifier automatically (from the user template)
-        by incrementing a counter. This value is used for dc:Identifier and
-        dtb:uid for SMIL files (this is probably handled by DMFC when it
-        generates the files?)
+        We can generate an identifier automatically (from the user template.)
+        This value is used for dc:Identifier and dtb:uid for SMIL files (this
+        is probably handled by DMFC when it generates the files?) If there
+        is no template, we can have an application default (e.g.
+        obi-######.)
+
+  E002: Project author.
+        This defaults to the current user.
+
+  E003: Project publisher.
+        This defaults to the current user's organization. If left blank, we
+        can have something like "self-published."
+
+  E004: Project title.
+        The main title.
+
+  E005: Project language.
+        The main language of the project. Defaults to the user's language.
+
+  E.2. Dublin Core metadata
+  
+  * Skipped: dc:Type, dc:Coverage.
 
   E002: Edit project title.
         For simplicity, the project title should be unique; the presentation
@@ -450,7 +472,7 @@ E. Metadata editor and viewer
   E016: Change the language of any piece of (DC) metadata.
         All meta attributes can have a language attribute (xml:lang.)
 
-  E.2. DTB metadata
+  E.3. DTB metadata
 
   E017: Set source date.
         [dtb:sourceDate] Optional, not repeatable. YYYY[-MM[-DD]].
