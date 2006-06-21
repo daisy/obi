@@ -57,6 +57,10 @@ byte position to end byte position
 * void Play(IAudioMediaAsset asset, double begin, double end) plays from
 begin time to end time (in milliseconds.)
 
+1.4 New IClip interface
+
+The interface for clips.
+
 
 2 Creating an asset
 
@@ -90,30 +94,52 @@ for the asset is read from the files pointed to by every clip in the list.
 The assets are created through the asset manager; so the asset manager will
 have methods to add new clips from scratch or from existing data.
 
+2.4 Copying assets
+
+Actually copy data rather than sharing it between assets.
+
 
 3 Inserting and deleting audio in an asset
 
 3.1 Inserting data from live recording
 
-3.2 Inserting data from another asset
+Create then add new clips.
+
+3.2 Inserting data from existing clips
+
+Add existing clips to the list.
 
 3.3 Deleting data from an asset
+
+Make a new asset from the deleted data and put it to the unloved list.
 
 
 4 Merging, splitting and phrase detection
 
 4.1 Merging two assets
 
+Merge the clip lists; modify the first asset.
+
 4.2 Splitting an asset
 
+Split the clip lists; return the second asset.
+
 4.3 Applying phrase detection to an asset
+
+Make tons of new assets.
 
 
 5 Saving and deleting assets
 
 5.1 Saving an asset
 
+In the virtual edits world, saving an asset does not really have any effect.
+However, if necessary, physical files could be modified so that assets would
+not be too spread out. This is probably an improvement for later versions.
+
 5.2 Deleting an asset
+
+Move the asset to the unloved list.
 
 
 6 Undo and Redo
