@@ -48,6 +48,8 @@ namespace Obi
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.metadataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.touchProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.appendStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableOfContentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,9 +58,6 @@ namespace Obi
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectPanel = new Obi.UserControls.ProjectPanel();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.appendStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.appendTOCItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -183,8 +182,7 @@ namespace Obi
             this.metadataToolStripMenuItem,
             this.touchProjectToolStripMenuItem,
             this.toolStripSeparator4,
-            this.appendStripToolStripMenuItem,
-            this.appendTOCItemToolStripMenuItem});
+            this.appendStripToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.editToolStripMenuItem.Text = "&Edit";
@@ -194,7 +192,7 @@ namespace Obi
             this.mUndoToolStripMenuItem.Enabled = false;
             this.mUndoToolStripMenuItem.Name = "mUndoToolStripMenuItem";
             this.mUndoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.mUndoToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.mUndoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.mUndoToolStripMenuItem.Text = "&Undo";
             this.mUndoToolStripMenuItem.Click += new System.EventHandler(this.mUndoToolStripMenuItem_Click);
             // 
@@ -203,28 +201,40 @@ namespace Obi
             this.mRedoToolStripMenuItem.Enabled = false;
             this.mRedoToolStripMenuItem.Name = "mRedoToolStripMenuItem";
             this.mRedoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.mRedoToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.mRedoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.mRedoToolStripMenuItem.Text = "&Redo";
             this.mRedoToolStripMenuItem.Click += new System.EventHandler(this.mRedoToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(158, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // metadataToolStripMenuItem
             // 
             this.metadataToolStripMenuItem.Name = "metadataToolStripMenuItem";
-            this.metadataToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.metadataToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.metadataToolStripMenuItem.Text = "&Metadata";
             this.metadataToolStripMenuItem.Click += new System.EventHandler(this.metadataToolStripMenuItem_Click);
             // 
             // touchProjectToolStripMenuItem
             // 
             this.touchProjectToolStripMenuItem.Name = "touchProjectToolStripMenuItem";
-            this.touchProjectToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.touchProjectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.touchProjectToolStripMenuItem.Text = "&Touch project";
             this.touchProjectToolStripMenuItem.Click += new System.EventHandler(this.touchProjectToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(149, 6);
+            // 
+            // appendStripToolStripMenuItem
+            // 
+            this.appendStripToolStripMenuItem.Name = "appendStripToolStripMenuItem";
+            this.appendStripToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.appendStripToolStripMenuItem.Text = "&Append strip";
+            this.appendStripToolStripMenuItem.Click += new System.EventHandler(this.appendStripToolStripMenuItem_Click);
             // 
             // viewToolStripMenuItem
             // 
@@ -293,24 +303,6 @@ namespace Obi
             this.mProjectPanel.Size = new System.Drawing.Size(767, 450);
             this.mProjectPanel.TabIndex = 4;
             // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(158, 6);
-            // 
-            // appendStripToolStripMenuItem
-            // 
-            this.appendStripToolStripMenuItem.Name = "appendStripToolStripMenuItem";
-            this.appendStripToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.appendStripToolStripMenuItem.Text = "&Append strip";
-            this.appendStripToolStripMenuItem.Click += new System.EventHandler(this.appendStripToolStripMenuItem_Click);
-            // 
-            // appendTOCItemToolStripMenuItem
-            // 
-            this.appendTOCItemToolStripMenuItem.Name = "appendTOCItemToolStripMenuItem";
-            this.appendTOCItemToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.appendTOCItemToolStripMenuItem.Text = "A&ppend TOC item";
-            // 
             // ObiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -365,7 +357,6 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem tableOfContentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem appendStripToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem appendTOCItemToolStripMenuItem;
 
 
     }

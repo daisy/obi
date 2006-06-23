@@ -34,5 +34,10 @@ namespace Obi.Strips
         {
             mLabel = label;
         }
+
+        public override string ToString()
+        {
+            return String.Format("<{0}> \"{1}\"", base.ToString(), mLabel);
+        }
     }
 }

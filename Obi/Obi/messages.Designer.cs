@@ -108,6 +108,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to [DEBUG] Appended new strip {0}.
+        /// </summary>
+        internal static string debug_appended_strip {
+            get {
+                return ResourceManager.GetString("debug_appended_strip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to [DEBUG] Created project.
         /// </summary>
         internal static string debug_created_project {

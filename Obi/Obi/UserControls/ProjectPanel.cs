@@ -31,6 +31,8 @@ namespace Obi.UserControls
 
         public Boolean NCXPanelVisible { get { return !mSplitContainer.Panel1Collapsed; } }
 
+        public StripManagerPanel StripManager { get { return stripManagerPanel1; } }
+
         /// <summary>
         /// Create a new project panel with currently no project.
         /// </summary>

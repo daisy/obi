@@ -134,6 +134,9 @@ You cannot undo this operation.</value>
     <value>You are about to close a project with unsaved modifications.
 Do you want to save these modifications before closing the project?</value>
   </data>
+  <data name="debug_appended_strip" xml:space="preserve">
+    <value>[DEBUG] Appended new strip {0}</value>
+  </data>
   <data name="debug_created_project" xml:space="preserve">
     <value>[DEBUG] Created project</value>
   </data>

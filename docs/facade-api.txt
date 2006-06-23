@@ -5,6 +5,10 @@ I use a rubyish (not rubbish) syntax; code lines start with two spaces and
 comments start with a # and end at the end of the line.
 
 
+* Project: the project includes everything necessary to work on a book; that
+is a presentation and related data.
+
+
 * Presentation object
 
   # Create a blank presentation
