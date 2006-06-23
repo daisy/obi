@@ -7,7 +7,7 @@ asset manager for audio assets. The goal of the asset manager is to free the
 application from having to manage files and concentrate on assets.
 
 
-1. Virtual edits and sequential media
+1 Virtual edits and sequential media
 
 1.1 Audio clips
 
@@ -57,9 +57,10 @@ byte position to end byte position
 * void Play(IAudioMediaAsset asset, double begin, double end) plays from
 begin time to end time (in milliseconds.)
 
-1.4 New IClip interface
+1.4 No IAudioClip interface
 
-The interface for clips.
+Clips are implementation-dependant so there is no interface for them. See
+the stub of the AudioClip class.
 
 
 2 Creating an asset
@@ -71,39 +72,62 @@ exist at this point and the list of clips is empty. Presumably, new assets
 will be created by the application once the user has selected parameters for
 audio recording so all parameters are known.
 
-Here is a proposed constructor for AudioMediaAsset:
-
 * AudioMediaAsset(int channels, int bitDepth, int sampleRate)
 
-I think the frame size can be determined automatically from these
-parameters?
+A default name is given to the asset.
 
 2.2 Creating a new asset from a Sequential object
 
 The Urakawa toolkit defines the Sequential Media object, which is what the
 assets will be mapped to (i.e., audio objects in the core tree will be
-sequential media objects.) The list passed as argument is a list of Clip
+sequential media objects.) The list passed as argument is a list of AudioClip
 objects. The first clip's file will give the parameters for the asset, and
-the files for the other clips must have the same paramters. The audio data
+the files for the other clips must have the same parameters. The audio data
 for the asset is read from the files pointed to by every clip in the list.
 
 * AudioMediaAsset(ArrayList clips)
 
-2.3 Adding assets to the project
+A default name is given to the asset.
 
-The assets are created through the asset manager; so the asset manager will
-have methods to add new clips from scratch or from existing data.
+2.3 Copying assets and clips
 
-2.4 Copying assets
+A copy of an asset means that the new asset is created from an existing one,
+sharing the same format information. The clips are copied so that the list
+of clips for both assets are identical.
 
-Actually copy data rather than sharing it between assets.
+* AudioMediaAsset Copy()
+
+Copying a clip means creating a new clip object with the same information as
+the original one; no physical data is copied.
+
+* AudioClip Copy()
+
+2.4 Adding assets to the project
+
+The assets are always created through the asset manager. There is a general
+method for creating assets:
+
+* IMediaAsset NewAsset(TypeOfMedia assetType)
+
+However, this method is not very useful for creating audio assets as both
+asset creation methods need more data, so the AssetManager implementation
+provides two additional methods:
+
+* AudioMediaAsset NewAudioMediaAsset(int channels, int bitDepth, int sampleRate)
+* AudioMediaAsset NewAudioMediaAsset(ArrayList clips)
+
+These two methods create a new audio asset, insert it in the list of "loved"
+assets (see below) and return it.
 
 
 3 Inserting and deleting audio in an asset
 
 3.1 Inserting data from live recording
 
-Create then add new clips.
+The recorder will add data to an asset by simply appending bytes. The asset
+will actually create a new clip for the added bytes to save data to an
+existing or a new file and add this clip to the asset.
+
 
 3.2 Inserting data from existing clips
 
@@ -148,3 +172,10 @@ The asset manager keeps track of all assets, but separates between "loved"
 and "unloved" assets. Loved assets are the ones that are active in the
 project; unloved assets are those that are kept so that changes can be
 undone.
+
+
+NOTES
+
+Changes made:
+* Changed MediaType--only "audio" and "other"
+* Physical copy of clips rather than virtual copy
