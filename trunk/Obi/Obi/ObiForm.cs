@@ -507,6 +507,7 @@ namespace Obi
             saveProjectToolStripMenuItem.Enabled = false;
             saveProjectasToolStripMenuItem.Enabled = false;
             touchProjectToolStripMenuItem.Enabled = false;
+            appendStripToolStripMenuItem.Enabled = false;
             revertToolStripMenuItem.Enabled = false;
             metadataToolStripMenuItem.Enabled = false;
             mProjectPanel.Project = null;
@@ -524,6 +525,7 @@ namespace Obi
             saveProjectToolStripMenuItem.Enabled = false;
             saveProjectasToolStripMenuItem.Enabled = true;
             touchProjectToolStripMenuItem.Enabled = true;
+            appendStripToolStripMenuItem.Enabled = true;
             revertToolStripMenuItem.Enabled = false;
             metadataToolStripMenuItem.Enabled = true;
         }
@@ -538,6 +540,7 @@ namespace Obi
             saveProjectToolStripMenuItem.Enabled = true;
             saveProjectasToolStripMenuItem.Enabled = true;
             touchProjectToolStripMenuItem.Enabled = true;
+            appendStripToolStripMenuItem.Enabled = true;
             revertToolStripMenuItem.Enabled = true;
             metadataToolStripMenuItem.Enabled = true;
             Ready();
@@ -683,7 +686,10 @@ namespace Obi
 
         private void appendStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProject.AppendItem();
+            Strips.ParStrip par = mProject.Strips.AddNewParStrip();
+            mProjectPanel.StripManager.Add(par);
+            OnProjectModified();
+            Debug(String.Format(Localizer.Message("debug_appended_strip"), par));
         }
     }
 

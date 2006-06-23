@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Obi.Strips
 {
-    class Manager
+    public class Manager
     {
         private List<ParStrip> mPars;
         private Strip mSelected;

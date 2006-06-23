@@ -14,5 +14,12 @@ namespace Obi.UserControls
         {
             InitializeComponent();
         }
+
+        public void Add(Strips.ParStrip strip)
+        {
+            NRParStrip nrpar = new NRParStrip();
+            nrpar.Model = strip;
+            mFlowLayoutPanel.Controls.Add(nrpar);
+        }
     }
 }

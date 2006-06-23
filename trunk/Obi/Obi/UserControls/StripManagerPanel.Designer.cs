@@ -29,7 +29,7 @@ namespace Obi.UserControls
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.mFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
             // label1
@@ -42,22 +42,22 @@ namespace Obi.UserControls
             this.label1.TabIndex = 0;
             this.label1.Text = "Strip manager";
             // 
-            // flowLayoutPanel1
+            // mFlowLayoutPanel
             // 
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(150, 150);
-            this.flowLayoutPanel1.TabIndex = 1;
-            this.flowLayoutPanel1.WrapContents = false;
+            this.mFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.mFlowLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.mFlowLayoutPanel.Name = "mFlowLayoutPanel";
+            this.mFlowLayoutPanel.Size = new System.Drawing.Size(150, 150);
+            this.mFlowLayoutPanel.TabIndex = 1;
+            this.mFlowLayoutPanel.WrapContents = false;
             // 
             // StripManagerPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.mFlowLayoutPanel);
             this.Controls.Add(this.label1);
             this.Name = "StripManagerPanel";
             this.ResumeLayout(false);
@@ -68,6 +68,6 @@ namespace Obi.UserControls
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel mFlowLayoutPanel;
     }
 }

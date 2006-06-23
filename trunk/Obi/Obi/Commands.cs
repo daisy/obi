@@ -6,6 +6,28 @@ using System.Drawing;
 
 namespace Obi
 {
+    public class AddStripCommand : Command
+    {
+        private UserControls.NRParStrip mStrip;  // the strip that was added
+
+        public override string Label { get { return Localizer.Message("add strip"); } }
+
+        public AddStripCommand(UserControls.NRParStrip strip)
+        {
+            mStrip = strip;
+        }
+
+        public override void Do()
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
+        public override void Undo()
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+    }
+
     /// <summary>
     /// Change the size of a strip.
     /// </summary>

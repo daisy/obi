@@ -10,10 +10,12 @@ namespace Obi
         private string mXUKPath;           // path to the XUK file
         private SimpleMetadata mMetadata;  // metadata for this project
         private NCX.NCX mNCX;              // TOC of the project
+        private Strips.Manager mStrips;    // strip manager for the project
 
         public bool Unsaved { get { return mUnsaved; } }
         public string XUKPath { get { return mXUKPath; } }
         public SimpleMetadata Metadata { get { return mMetadata; } }
+        public Strips.Manager Strips { get { return mStrips; } }
 
         /// <summary>
         /// Create a project from a XUK file.
@@ -28,6 +30,7 @@ namespace Obi
             mXUKPath = path;
             mMetadata = new SimpleMetadata(title, id, userProfile);
             mNCX = new NCX.NCX(this);
+            mStrips = new Strips.Manager();
         }
 
         /// <summary>

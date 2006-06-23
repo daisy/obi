@@ -28,26 +28,26 @@ namespace Obi.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.mTitleLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // mTitleLabel
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(68, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Non-resizable par strip";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.mTitleLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.mTitleLabel.AutoSize = true;
+            this.mTitleLabel.Location = new System.Drawing.Point(68, 24);
+            this.mTitleLabel.Name = "mTitleLabel";
+            this.mTitleLabel.Size = new System.Drawing.Size(123, 12);
+            this.mTitleLabel.TabIndex = 0;
+            this.mTitleLabel.Text = "Non-resizable par strip";
+            this.mTitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // NRParStrip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.mTitleLabel);
             this.Name = "NRParStrip";
             this.Size = new System.Drawing.Size(258, 60);
             this.ResumeLayout(false);
@@ -57,6 +57,6 @@ namespace Obi.UserControls
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label mTitleLabel;
     }
 }
