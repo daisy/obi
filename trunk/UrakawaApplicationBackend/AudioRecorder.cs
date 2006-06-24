@@ -16,9 +16,9 @@ namespace UrakawaApplicationBackend
 		// member variables
 		private ArrayList m_aSelect = new ArrayList();
 		private ArrayList m_aGuid = new ArrayList();
-		private Capture m_cApplicationDevice = null;
-		private int m_iCaptureBufferSize = 0;
-		private int m_iNotifySize = 0;					
+		private Capture m_cApplicationDevice ;
+		private int m_iCaptureBufferSize ;
+		private int m_iNotifySize ;					
 		private Guid m_gCaptureDeviceGuid = Guid.Empty;  
 		private bool[] m_bInputFormatSupported = new bool[12];
 		private ArrayList m_aformats= new ArrayList();
@@ -34,11 +34,8 @@ namespace UrakawaApplicationBackend
 		private WaveFormat InputFormat; 
 		private long SampleCount ;
 		private bool Capturing = false;
-		private long nLength ; // File length, minus first 8 bytes of RIFF description. This will be filled in later.
 		private CaptureBufferDescription dsc = new CaptureBufferDescription();
-		private int nFormatChunkLength;
-		//private FileStream WaveFile;
-		private string m_sFileName ;
+		private string m_sFileName = "F:\\My Documents\\6.wav";
 			internal static string ProjectDirectory  ;
 		private static int m_ConstructorCounter =0;
 		private short m_bitDepth;
@@ -74,7 +71,14 @@ namespace UrakawaApplicationBackend
 		{
 			get
 			{
-				return m_SampleRate;
+				if((m_SampleRate == 11025) &&((m_SampleRate != 22050) || (m_SampleRate != 44100)))
+					return m_SampleRate;
+				else if(((m_SampleRate != 11025) ||(m_SampleRate != 44100)) &&(m_SampleRate == 22050))
+					return m_SampleRate;
+				else if(((m_SampleRate != 11025) ||(m_SampleRate != 22050)) &&(m_SampleRate == 44100))
+					return m_SampleRate;
+				else
+					throw new Exception("invalid sample rate");
 			}
 			set
 			{
@@ -86,7 +90,15 @@ namespace UrakawaApplicationBackend
 		{
 			get
 			{
-				return m_bitDepth;
+				if((m_bitDepth == 16) && (m_bitDepth != 8) || (m_bitDepth!= 16) &&(m_bitDepth == 8))
+				{
+					return m_bitDepth;
+				}
+				else
+				{
+					throw new Exception("invalid bit depth");
+				}
+
 			}
 			set
 			{
@@ -98,13 +110,25 @@ namespace UrakawaApplicationBackend
 		{
 			get
 			{
-				return m_Channels;
+				if((m_Channels ==1 && m_Channels != 2)|| (m_Channels !=1 && m_Channels == 2))	
+				{
+					return m_Channels;
+				}
+				else
+				{
+					throw new Exception("invalid channels");
+				}
+
+
 			}
 			set
-			{
-				m_Channels = value;
-			}
-		}
+			{	
+					m_Channels = value;
+}
+				}
+				
+
+
 
 
 		public AudioRecorderState State
@@ -204,8 +228,8 @@ namespace UrakawaApplicationBackend
 		//will be later on used to create the capture buffer for recording
 		public Capture InitDirectSound()
 		{
-			m_iCaptureBufferSize = 0;
-			m_iNotifySize = 0;
+			//m_iCaptureBufferSize = 0;
+			//m_iNotifySize = 0;
 			// Create DirectSound.Capture using the preferred capture device
 			m_gCaptureDeviceGuid = SetInputDeviceGuid();
 			m_cApplicationDevice = new Capture(m_gCaptureDeviceGuid);
@@ -276,11 +300,25 @@ namespace UrakawaApplicationBackend
 			m_aformats= GetFormatList();
 			GetWaveFormatFromIndex(m_iIndex, ref m_wFormat);
 			Info.format = m_wFormat;
-			m_bitDepth = m_wFormat.BitsPerSample;
-			m_SampleRate = m_wFormat.SamplesPerSecond;
-			m_Channels = m_wFormat.Channels;
-			m_FrameSize = m_wFormat.BlockAlign;
-			return Info.format;
+			
+			
+
+			if(m_iIndex < 12)
+			{	
+				m_bitDepth = m_wFormat.BitsPerSample;
+				m_SampleRate = m_wFormat.SamplesPerSecond;
+				m_Channels = m_wFormat.Channels;
+			}
+			else
+			{
+				throw new Exception("index out of range");
+			}
+			
+				
+				m_FrameSize = m_wFormat.BlockAlign;
+			
+
+				return Info.format;
 		}
 		
 		internal string GenerateFileName (string ext, string sDir)
@@ -310,13 +348,15 @@ namespace UrakawaApplicationBackend
 			public string GetFileName()
 			{
 				ProjectDirectory = AssetManager.ProjectDirectory;
-				m_sFileName= GenerateFileName("wav", ProjectDirectory);
+				string name= GenerateFileName(".wav", ProjectDirectory);
+				m_sFileName = ProjectDirectory+"\\"+name;
 				return m_sFileName;
 			}
 		
 		//it creates the buffer for recording
 		public void CreateCaptureBuffer(int Index)
 		{
+
 			
 			// Desc: Creates a capture buffer and sets the format 
 			if (null != applicationNotify)
@@ -334,49 +374,75 @@ namespace UrakawaApplicationBackend
 				return;
 			m_iNotifySize = (1024 > InputFormat.AverageBytesPerSecond / 8) ? 1024 : (InputFormat.AverageBytesPerSecond / 8);
 			m_iNotifySize -= m_iNotifySize % InputFormat.BlockAlign;   
+
 			// Set the buffer sizes
 			m_iCaptureBufferSize = m_iNotifySize * NumberRecordNotifications;
+
 			// calculate the size of VuMeter Update array length
 			m_UpdateVMArrayLength = m_iCaptureBufferSize/ 50 ;
+			
 			CalculationFunctions cf = new CalculationFunctions();
 			m_UpdateVMArrayLength = Convert.ToInt32 (cf.AdaptToFrame ( Convert.ToInt32 ( m_UpdateVMArrayLength ),  m_FrameSize)  );
 			arUpdateVM = new byte [ m_UpdateVMArrayLength ] ;
 
 			// Create the capture buffer
 			dsc.BufferBytes = m_iCaptureBufferSize;
+			
 			InputFormat.FormatTag = WaveFormatTag.Pcm;
+			
 			dsc.Format = InputFormat; // Set the format during creatation
+			
 			m_cApplicationDevice= InitDirectSound();
+			
 			applicationBuffer = new CaptureBuffer(dsc, m_cApplicationDevice);
+
+
 			InitNotifications();	
 		}	
 			
 		
+
 		public void InitNotifications()
 		{
+			
 			// Name: InitNotifications()
 			// Desc: Inits the notifications on the capture buffer which are handled
 			//       in the notify thread.
 			if (null == applicationBuffer)
 				throw new NullReferenceException();
+						
+
 			//Create a thread to monitor the notify events
 			if (null == NotifyThread)
 			{
 				NotifyThread = new Thread(new ThreadStart(WaitThread));										 			
+				
 				Capturing = true;
 				NotifyThread.Start();
 				// Create a notification event, for when the sound stops playing
 				NotificationEvent = new AutoResetEvent(false);
 			}
 			// Setup the notification positions
+			
+
 			for (int i = 0; i < NumberRecordNotifications; i++)
 			{
+
+
 				PositionNotify[i].Offset = (m_iNotifySize * i) + m_iNotifySize - 1;
+
 				PositionNotify[i].EventNotifyHandle = NotificationEvent.Handle;
 			}
 			applicationNotify = new Notify(applicationBuffer);
 			// Tell DirectSound when to notify the app. The notification will come in the from 
 			// of signaled events that are handled in the notify thread.
+
+			
+			
+			
+				
+
+			
 			applicationNotify.SetNotificationPositions(PositionNotify, NumberRecordNotifications);
 		}
 		private void WaitThread()
@@ -397,9 +463,9 @@ namespace UrakawaApplicationBackend
 			int ReadPos ;
 			int CapturePos ;
 			int LockSize ;
-				
 			applicationBuffer.GetCurrentPosition(out CapturePos, out ReadPos);
-			//ReadPos = CapturePos;
+			ReadPos = CapturePos;
+
 			if (ReadPos < ((m_iCaptureBufferSize)- m_UpdateVMArrayLength  ) )
 			{
 				Array.Copy ( applicationBuffer.Read(ReadPos , typeof (byte) , LockFlag.None , m_UpdateVMArrayLength  ) , arUpdateVM , m_UpdateVMArrayLength  ) ;				
@@ -414,15 +480,14 @@ namespace UrakawaApplicationBackend
 				return;
 			// Read the capture buffer.
 			CaptureData = (byte[])applicationBuffer.Read(NextCaptureOffset, typeof(byte), LockFlag.None, LockSize);
-//			m_sFileName = GetFileName();
 			FileInfo fi = new FileInfo(m_sFileName);
-			
 			Writer = new BinaryWriter(File.OpenWrite(m_sFileName));
 			// Write the data into the wav file");	   
 			Writer.BaseStream.Position = (long)(fi.Length);
 			//Writer.Seek(0, SeekOrigin.End);			
 			Writer.Write(CaptureData, 0, CaptureData.Length);
 			Writer.Close();
+//			Writer = null;
 			// Update the number of samples, in bytes, of the file so far.
 			//SampleCount+= datalength;
 			SampleCount+=(long)CaptureData.Length;
@@ -433,8 +498,8 @@ namespace UrakawaApplicationBackend
 		}
 		
 		//it will create a wave skeleton for the wave file
-		public void CreateRIFF(BinaryWriter Writer)
-		{
+		public void CreateRIFF(BinaryWriter Writer, string FileName)
+		{	
 			// Open up the wave file for writing.
 			InputFormat = GetInputFormat(Index);
 			// Set up file with RIFF chunk info.
@@ -443,8 +508,7 @@ namespace UrakawaApplicationBackend
 			char[] ChunkFmt	= {'f','m','t',' '};
 			char[] ChunkData = {'d','a','t','a'};
 			short shPad = 1; // File padding
-			 nLength = 1;
-			 nFormatChunkLength = 0x10; 
+			 int nFormatChunkLength = 0x10; 
 			// Format chunk length.
 			short shBytesPerSample  = 0;
 			// Figure out how many bytes there will be per sample.
@@ -456,7 +520,7 @@ namespace UrakawaApplicationBackend
 				shBytesPerSample = 4;
 			// Fill in the riff info for the wave file.
 			Writer.Write(ChunkRiff);
-			Writer.Write(nLength);
+			Writer.Write(1);
 			Writer.Write(ChunkType);
 			// Fill in the format info for the wave file.
 			Writer.Write(ChunkFmt);
@@ -468,11 +532,13 @@ namespace UrakawaApplicationBackend
 			Writer.Write(shBytesPerSample);
 			Writer.Write(InputFormat.BitsPerSample);
 			// Now fill in the data chunk.
+			Writer.BaseStream.Position = 36;
 			Writer.Write(ChunkData);
-			Writer.Write((int)0);	// The sample length will be written in later
+			Writer.BaseStream.Position = 40;
+			Writer.Write(0);	// The sample length will be written in later
 			Writer.Close();
-			Writer = null;
-		}
+			//Writer = null;
+}
 		
 
 		
@@ -483,10 +549,10 @@ namespace UrakawaApplicationBackend
 			FireEvent(mStateChanged);			
 			//m_AudioMediaAsset = new AudioMediaAsset(asset.Path);
 //			m_AudioMediaAsset = asset;
-			m_sFileName = GetFileName();
+			m_sFileName= GetFileName();
 			OldAsset = new AudioMediaAsset(asset.Path);
 			Writer = new BinaryWriter(File.OpenWrite(m_sFileName));
-			CreateRIFF(Writer);
+			CreateRIFF(Writer, m_sFileName);
 			InitRecording(true);
 		}
 
@@ -495,7 +561,7 @@ namespace UrakawaApplicationBackend
 			m_sFileName = GetFileName();
 			OldAsset= new AudioMediaAsset(asset.Path);
 			Writer = new BinaryWriter(File.OpenWrite(m_sFileName));
-			CreateRIFF(Writer);
+			CreateRIFF(Writer, m_sFileName);
 			InitRecording(true);
 		}
 
@@ -503,7 +569,6 @@ namespace UrakawaApplicationBackend
 		//in the wave file through the RecordCaptureData()
 		public void InitRecording(bool SRecording)
 		{
-
 			//if no device is set then it is informed then no device is set
 			if(null == m_cApplicationDevice)
 				throw new Exception("no device is set for recording");
@@ -522,7 +587,7 @@ namespace UrakawaApplicationBackend
 				applicationBuffer.Start(true);//it will set the looping till the stop is used
 			}
 			else
-			{
+			{	
 				applicationBuffer.Stop();
 				RecordCapturedData();
 				Writer = new BinaryWriter(File.OpenWrite(m_sFileName));
@@ -541,7 +606,8 @@ namespace UrakawaApplicationBackend
 				}
 				Writer.Close();	// Close the file now.
 				Writer = null;	// Set the writer to null.
-				m_AudioMediaAsset = new AudioMediaAsset(ProjectDirectory+"\\"|m_sFileName);
+				//m_AudioMediaAsset = new AudioMediaAsset(ProjectDirectory+"\\"+m_sFileName);
+				m_AudioMediaAsset = new AudioMediaAsset(m_sFileName);
 				if(OldAsset.SizeInBytes >44)
 				{
 					OldAsset.MergeWith(m_AudioMediaAsset);
@@ -569,7 +635,7 @@ namespace UrakawaApplicationBackend
 				
 			if(null != applicationBuffer)
 				if (applicationBuffer.Capturing)
-					InitRecording(true);
+					InitRecording(false);
 		}			
 	}
 }
