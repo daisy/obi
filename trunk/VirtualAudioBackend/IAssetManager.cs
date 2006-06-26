@@ -19,6 +19,12 @@ namespace VirtualAudioBackend
 		}
 
 		/// <summary>
+		/// Add an existing media asset to the manager. The asset is indexed by its name.
+		/// </summary>
+		/// <param name="asset">The asset to add.</param>
+		void AddAsset(IMediaAsset asset);
+
+		/// <summary>
 		/// Return all the assets of a given type.
 		/// </summary>
 		/// <param name="assetType">The type of assets.</param>
@@ -45,13 +51,14 @@ namespace VirtualAudioBackend
 		/// Throw an exception if something went wrong (the asset could not be found, or could not be deleted.)
 		/// </summary>
 		/// <param name="assetToDelete">The asset to delete.</param>
+		/// <remarks>A <see cref="DeleteAssetCommand"/> must be used if the operation is to be undone.</remarks>
 		void DeleteAsset(IMediaAsset assetToDelete);
 
 		/// <summary>
 		/// Remove an asset from the asset manager. Do not delete the data.
 		/// </summary>
-		/// <param name="assetToDelete"></param>
-		IMediaAsset RemoveAsset(IMediaAsset assetToRemove);
+		/// <param name="assetToRemove">The asset to remove</param>
+		void RemoveAsset(IMediaAsset assetToRemove);
 
 		/// <summary>
 		/// Make a copy of an existing asset and give it a new name (e.g. "Foo (copy)".)
@@ -59,7 +66,6 @@ namespace VirtualAudioBackend
 		/// </summary>
 		/// <param name="asset">The asset to copy.</param>
 		/// <returns>A copy of the asset.</returns>
-		//was: IMediaAsset copyAsset(IMediaAsset source, IMediaAsset dest, bool replaceIfExisting);
 		IMediaAsset CopyAsset(IMediaAsset asset);
 
 		/// <summary>
@@ -68,15 +74,8 @@ namespace VirtualAudioBackend
 		/// </summary>
 		/// <param name="asset">The asset to rename.</param>
 		/// <param name="newName">The new name for the asset.</param>
-		/// <returns>The renamed asset.</returns>
-		IMediaAsset RenameAsset(IMediaAsset asset, String newName);
-
-		/// <summary>
-		/// Create and add a new media asset from its file path.
-		/// </summary>
-		/// <param name="assetType">The type of the asset to add.</param>
-		/// <param name="assetPath">The path of the file for this asset.</param>
-		/// <returns>The asset that was added.</returns>
-		IMediaAsset AddAsset(MediaType assetType, string assetPath);
+		/// <returns>The old name of the asset.</returns>
+		/// <remarks>A <see cref="RenameAssetCommand"/> should be used for renaming assets.</remarks>
+		string RenameAsset(IMediaAsset asset, String newName);
 	}
 }

@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualAudioBackend", "..\V
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commands", "..\Commands\Commands.csproj", "{FF550564-7150-49B6-91F1-A68664F148FA}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -21,6 +25,10 @@ Global
 		{DED17369-21EE-4E7D-98FE-ABF4FD043496}.Debug.Build.0 = Debug|.NET
 		{DED17369-21EE-4E7D-98FE-ABF4FD043496}.Release.ActiveCfg = Release|.NET
 		{DED17369-21EE-4E7D-98FE-ABF4FD043496}.Release.Build.0 = Release|.NET
+		{FF550564-7150-49B6-91F1-A68664F148FA}.Debug.ActiveCfg = Debug|.NET
+		{FF550564-7150-49B6-91F1-A68664F148FA}.Debug.Build.0 = Debug|.NET
+		{FF550564-7150-49B6-91F1-A68664F148FA}.Release.ActiveCfg = Release|.NET
+		{FF550564-7150-49B6-91F1-A68664F148FA}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
