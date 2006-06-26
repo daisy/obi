@@ -5,9 +5,6 @@ namespace VirtualAudioBackend
 {
 	public class AudioMediaAsset: MediaAsset, IAudioMediaAsset
 	{
-		/// <summary>
-		/// Sample rate in Hertz (support at least up to 44100 Hz.)
-		/// </summary>
 		public int SampleRate
 		{
 			get
@@ -16,9 +13,6 @@ namespace VirtualAudioBackend
 			}
 		}
 
-		/// <summary>
-		/// Number of channels (1 = mono or 2 = stereo.)
-		/// </summary>
 		public int Channels
 		{
 			get
@@ -27,9 +21,6 @@ namespace VirtualAudioBackend
 			}
 		}
 
-		/// <summary>
-		/// Bit depth is either 8 or 16.
-		/// </summary>
 		public int BitDepth
 		{
 			get
@@ -38,9 +29,6 @@ namespace VirtualAudioBackend
 			}
 		}
 
-		/// <summary>
-		/// Length of the audio asset in milliseconds.
-		/// </summary>
 		public double LengthInMilliseconds
 		{
 			get
@@ -49,9 +37,6 @@ namespace VirtualAudioBackend
 			}
 		}
 
-		/// <summary>
-		/// Size of the audio data in bytes.
-		/// </summary>
 		public long AudioLengthInBytes
 		{
 			get
@@ -95,14 +80,65 @@ namespace VirtualAudioBackend
 		{
 		}
 
-		/// <summary>
-		/// Append new bytes at the end. The data is considered to have the correct format.
-		/// A new AudioClip object is created.
-		/// This is a simple case of InsertByteBuffer, where the position is the end of the data.
-		/// </summary>
-		/// <param name="buffer">The data to append.</param>
-		public void AppendByteBuffer(byte[] buffer)
+		public void AppendBytes(byte[] data)
 		{
+		}
+
+		public IAudioMediaAsset GetChunk(long beginPosition, long endPosition)
+		{
+			return null;
+		}
+
+		public IAudioMediaAsset GetChunk(double beginTime, double endTime)
+		{
+			return null;
+		}
+
+		public void InsertAsset(IAudioMediaAsset chunk, long position)
+		{
+		}
+
+		public void InsertAsset(IAudioMediaAsset chunk, double time)
+		{
+		}
+
+		public IAudioMediaAsset DeleteChunk(long beginPosition, long endPosition)
+		{
+			return null;
+		}
+
+		public IAudioMediaAsset DeleteChunk(double beginTime, double endTime)
+		{
+			return null;
+		}
+
+		public override void MergeWith(IMediaAsset next)
+		{
+		}
+
+		public IAudioMediaAsset Split(long position)
+		{
+			return null;
+		}
+
+		public IAudioMediaAsset Split(double time)
+		{
+			return null;
+		}
+
+		public long GetSilenceAmplitude(IAudioMediaAsset silenceRef)
+		{
+			return 0;
+		}
+
+		public ArrayList ApplyPhraseDetection(long threshold, long length, long before)
+		{
+			return null;
+		}
+
+		public ArrayList ApplyPhraseDetection(long threshold, double length, double before)
+		{
+			return null;
 		}
 	}
 }

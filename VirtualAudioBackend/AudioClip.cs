@@ -63,10 +63,18 @@ namespace VirtualAudioBackend
 		/// Split an audio clip at the given time (in millisecond.)
 		/// </summary>
 		/// <param name="time"></param>
-		/// <returns></returns>
+		/// <returns>The new clip (second half); the first clip has been modified.</returns>
 		public AudioClip Split(double time)
 		{
 			return null;
+		}
+
+		/// <summary>
+		/// Merge two audio clips. The end time of this clip must match the begin time of the next, and of course the files must match.
+		/// </summary>
+		/// <param name="next">The next clip to merge with.</param>
+		public void MergeWith(AudioClip next)
+		{
 		}
 	}
 }
