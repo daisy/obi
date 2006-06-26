@@ -2,6 +2,9 @@ Audio asset I/O
 $Id$
 
 
+WARNING: right now this document is not in sync with the source code, so in
+case of conflict, please refer to the code.
+
 This document specifies more clearly the actual handling of files by the
 asset manager for audio assets. The goal of the asset manager is to free the
 application from having to manage files and concentrate on assets.
@@ -128,25 +131,81 @@ The recorder will add data to an asset by simply appending bytes. The asset
 will actually create a new clip for the added bytes to save data to an
 existing or a new file and add this clip to the asset.
 
+In IAudioMediaAsset: void AppendByteBuffer(byte[] buffer)
 
 3.2 Inserting data from existing clips
 
-Add existing clips to the list.
+3.2.1 Getting existing data from an asset
+
+Since we are dealing with virtual files we can create assets that point to
+the same data without any problem; so instead of simply getting a byte
+buffer from an existing we can get a chunk of an asset as an asset itself.
+
+In IAudioMediaAsset: IAudioMediaAsset GetChunk(...)
+
+There are two variants of the method, as we can give the start and end
+positions as time (in milliseconds) or position (in bytes.)
+
+The new asset's list of clips is computed as follows: the clip in the
+original asset where the start time appears may need to be split; as well as
+the clip where the end time appears. The list of clips of the new asset is
+the second part of the first clip, followed by all clips until the first
+part of the last clip. See below for splitting clips.
+
+The new asset does not need to go into the asset manager as it is a
+transient asset. Check with undo/redo.
+
+3.2.2 Inserting existing data into an asset
+
+Once a chunk was obtained from the above function, it can be inserted into
+another asset (this is what happens when the user does copy/paste
+operations.)
+
+In IAudioMediaAsset: void InsertAsset(...)
+
+There are two variants, where the insertion point is specified by time or
+position.
+
+The clip where the insertion point appears may need to be split (see below.)
+Then the list of clips from the asset to insert is inserted in between the
+two parts of the split clip.
+
+Note: this replace InsertByteBuffer in the previous interface.
+
+3.2.3 Splitting clips
+
+When we need data starting from the middle of a clip, it needs to be split.
+Splitting a clip is simply creating a new clip pointing to the same file,
+with a begin time at the time of the split and the same ending time as the
+original clip. The original clip is in turn modified so that its end time
+matches the splitting point/begin time of the new clip.
+
+There is no merge function in AudioClip; however, if an asset happens to
+have two consecutive clips with corresponding ending/beginning time, they
+could be replaced by a new single AudioClip.
 
 3.3 Deleting data from an asset
 
-Make a new asset from the deleted data and put it to the unloved list.
+DeleteChunk() now returns the chunk of data that was deleted, just as
+GetChunk() does. This means this asset can be pointed to for undo/redo.
+
+Implementation note: this can be done as a combination of GetChunk() and
+removing the unneeded clips from the original asset.
 
 
 4 Merging, splitting and phrase detection
 
 4.1 Merging two assets
 
-Merge the clip lists; modify the first asset.
+This is defined in IMediaAsset; the MediaAsset implementation is virtual so
+a new implementation has to be provided in AudioMediaAsset. The asset to
+merge with another one is modified in place and the next one should be
+discarded afterwards. Only the clip lists is modified.
 
 4.2 Splitting an asset
 
-Split the clip lists; return the second asset.
+This is defined in IAudioMediaAsset. Split the clip lists; return the second
+asset. Once again the split point is given either by position or time.
 
 4.3 Applying phrase detection to an asset
 
@@ -168,14 +227,4 @@ Move the asset to the unloved list.
 
 6 Undo and Redo
 
-The asset manager keeps track of all assets, but separates between "loved"
-and "unloved" assets. Loved assets are the ones that are active in the
-project; unloved assets are those that are kept so that changes can be
-undone.
 
-
-NOTES
-
-Changes made:
-* Changed MediaType--only "audio" and "other"
-* Physical copy of clips rather than virtual copy
