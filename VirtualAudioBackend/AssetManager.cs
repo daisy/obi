@@ -37,6 +37,14 @@ namespace VirtualAudioBackend
 			return null;
 		}
 
+		/// <summary>
+		/// Produce a complete filename (in the project directory) suitable for creating a new clip/asset.
+		/// </summary>
+		public string NewFileName()
+		{
+			return "";
+		}
+
 		#region IAssetManager Members
 
 		public Hashtable Assets
