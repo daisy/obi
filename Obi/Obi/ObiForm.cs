@@ -14,6 +14,8 @@ using System.Windows.Forms;
 using Commands;
 using Obi.UserControls;
 
+using urakawa.core;
+
 namespace Obi
 {
     public partial class ObiForm : Form
@@ -687,7 +689,8 @@ namespace Obi
 
         private void appendStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Strips.ParStrip par = mProject.Strips.AddNewParStrip();
+            CoreNode new_node = mProject.AppendStrip();
+            Strips.ParStrip par = mProject.Strips.AddNewParStrip(new_node);
             mProjectPanel.StripManager.Add(par);
             OnProjectModified();
             Debug(String.Format(Localizer.Message("debug_appended_strip"), par));
