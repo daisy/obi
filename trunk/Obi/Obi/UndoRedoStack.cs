@@ -1,62 +1,9 @@
 using System;
 using System.Collections.Generic;
+using Commands;
 
 namespace Obi
 {
-    /// <summary>
-    /// The basic command class. All commands inherit from this one.
-    /// </summary>
-    public abstract class Command
-    {
-        public virtual string Label { get { return null; } }  // get the label (for user interaction purposes)
-        public abstract void Do();                            // actually perform the action
-        public abstract void Undo();                          // go back to the state before the action was performed
-    }
-
-    /// <summary>
-    /// A cons command looks like a regular command but is in fact a pair of commands in sequence.
-    /// </summary>
-    public class ConsCommand : Command
-    {
-        private string mLabel;            // the label that will be shown to the user
-        private Command mCar;             // the first command
-        private Command mCdr;             // the rest
-
-        public override string Label { get { return mLabel; } }
-
-        /// <summary>
-        /// Create a new cons command from two existing commands, and specifiy the label to use for the resulting command.
-        /// For the moment, the label has an ellipsis (...) appended to show that it is a ConsCommand.
-        /// </summary>
-        /// <param name="label">The label that will appear for this command.</param>
-        /// <param name="car">The first command.</param>
-        /// <param name="cdr">The second command.</param>
-        public ConsCommand(string label, Command car, Command cdr)
-        {
-            mLabel = label + " (...)";  // for debugging purposes only
-            mCar = car;
-            mCdr = cdr;
-        }
-
-        /// <summary>
-        /// Do the car command first, then the cdr.
-        /// </summary>
-        public override void Do()
-        {
-            mCar.Do();
-            mCdr.Do();
-        }
-
-        /// <summary>
-        /// Undo the cdr command first, then the car.
-        /// </summary>
-        public override void Undo()
-        {
-            mCdr.Undo();
-            mCar.Undo();
-        }
-    }
-
     /// <summary>
     /// A stack to manage undo/redo.
     /// </summary>

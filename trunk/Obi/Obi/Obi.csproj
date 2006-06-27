@@ -46,6 +46,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Commands, Version=1.0.2368.31338, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Commands\obj\Debug\Commands.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -55,7 +59,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Command.cs" />
     <Compile Include="Commands.cs" />
     <Compile Include="Dialogs\EditSimpleMetadata.cs">
       <SubType>Form</SubType>
@@ -186,6 +189,7 @@
     <Compile Include="Strips\Manager.cs" />
     <Compile Include="Strips\ParStrip.cs" />
     <Compile Include="Strips\Strip.cs" />
+    <Compile Include="UndoRedoStack.cs" />
     <Compile Include="UserControls\ContainerStrip.cs">
       <SubType>UserControl</SubType>
     </Compile>
