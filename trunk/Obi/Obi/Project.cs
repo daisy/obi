@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+using urakawa.core;
+using urakawa.media;
+
 namespace Obi
 {
     public class Project
@@ -11,6 +14,11 @@ namespace Obi
         private SimpleMetadata mMetadata;  // metadata for this project
         private NCX.NCX mNCX;              // TOC of the project
         private Strips.Manager mStrips;    // strip manager for the project
+
+        public static readonly string AUDIO_CHANNEL = "audio channel";
+
+        private Presentation mPresentation;       // the presentation itself
+        //private ChannelsProperty mAudioProperty;  // audio property for core nodes
 
         public bool Unsaved { get { return mUnsaved; } }
         public string XUKPath { get { return mXUKPath; } }
@@ -31,6 +39,13 @@ namespace Obi
             mMetadata = new SimpleMetadata(title, id, userProfile);
             mNCX = new NCX.NCX(this);
             mStrips = new Strips.Manager();
+
+            mPresentation = new Presentation();
+            Channel audio_channel = mPresentation.getChannelFactory().createChannel(AUDIO_CHANNEL);
+            mPresentation.getChannelsManager().addChannel(audio_channel);
+            AudioMedia audio_media = (AudioMedia)mPresentation.getMediaFactory().createMedia(MediaType.AUDIO);
+            //mAudioProperty = mPresentation.getPropertyFactory().createChannelsProperty();
+            //mAudioProperty.setMedia(audio_channel, audio_media);
         }
 
         /// <summary>
@@ -96,8 +111,29 @@ namespace Obi
             return System.Text.RegularExpressions.Regex.Replace(title, @"[^a-zA-Z0-9_]", "_");
         }
 
-        public void AppendItem()
+        /// <summary>
+        /// A new strip is appended: need to create a new node
+        /// </summary>
+        public CoreNode AppendStrip()
         {
+            CoreNode new_node = mPresentation.getCoreNodeFactory().createNode();
+            // new_node.setProperty(mAudioProperty);
+            // Find the last node after which to insert
+            CoreNode last = mPresentation.getRootNode();
+            while (last.getChildCount() > 0)
+            {
+                last = (CoreNode)last.getChild(last.getChildCount() - 1);
+            }
+            // Add the node as a sibling; or if this is the root node, as a child
+            if (last.getParent() == null)
+            {
+                last.appendChild(new_node);
+            }
+            else
+            {
+                ((CoreNode)(last.getParent())).appendChild(new_node);
+            }
+            return new_node;
         }
     }
 }

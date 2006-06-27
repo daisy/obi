@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+using urakawa.core;
+
 namespace Obi.Strips
 {
     public class Manager
@@ -29,9 +31,9 @@ namespace Obi.Strips
             mSelected = null;
         }
 
-        public ParStrip AddNewParStrip()
+        public ParStrip AddNewParStrip(CoreNode node)
         {
-            ParStrip par = new ParStrip(Localizer.Message("new_strip_label"));
+            ParStrip par = new ParStrip(Localizer.Message("new_strip_label"), node);
             mPars.Add(par);
             return par;
         }
