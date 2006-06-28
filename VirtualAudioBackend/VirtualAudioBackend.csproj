@@ -80,11 +80,6 @@
                     HintPath = "..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
                 <Reference
-                    Name = "Commands"
-                    Project = "{FF550564-7150-49B6-91F1-A68664F148FA}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
                     Name = "System.Windows.Forms"
                     AssemblyName = "System.Windows.Forms"
                     HintPath = "..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll"
@@ -106,6 +101,11 @@
                     AssemblyName = "Microsoft.DirectX.DirectSound"
                     HintPath = "..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\DirectX for Managed Code\1.0.2902.0\Microsoft.DirectX.DirectSound.dll"
                     AssemblyFolderKey = "hklm\dn\dx_1.0.2902.0"
+                />
+                <Reference
+                    Name = "Commands"
+                    AssemblyName = "Commands"
+                    HintPath = "..\Commands\bin\Debug\Commands.dll"
                 />
             </References>
         </Build>
@@ -133,6 +133,11 @@
                 />
                 <File
                     RelPath = "AudioMediaAssetStream.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "CalculationFunctions.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

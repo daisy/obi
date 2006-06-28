@@ -1,4 +1,5 @@
 using System;
+using System.Windows.Forms;
 using System.IO;
 
 namespace VirtualAudioBackend
@@ -10,14 +11,23 @@ namespace VirtualAudioBackend
 	{
 		#region IMediaAsset Members
 
+// member variables of class
+private string m_sName ;
+		private MediaType m_eMediaType ;
+
+protected long m_lSizeInBytes ;
+		internal AssetManager m_AssetManager ;
+
+
 		public string Name
 		{
 			get
 			{
-				return null;
+				return m_sName ;
 			}
 			set
 			{
+				m_sName = value ;
 			}
 		}
 
@@ -25,7 +35,7 @@ namespace VirtualAudioBackend
 		{
 			get
 			{
-				return MediaType.Other;
+				return m_eMediaType ;
 			}
 		}
 
@@ -33,10 +43,11 @@ namespace VirtualAudioBackend
 		{
 			get
 			{
-				return 0;
+				return m_lSizeInBytes ;
 			}
 			set
 			{
+				m_lSizeInBytes = value ;
 			}
 		}
 
@@ -44,16 +55,24 @@ namespace VirtualAudioBackend
 		{
 			get
 			{
-				return null;
+				return m_AssetManager ;
 			}
 		}
 
 		public void Add(IAssetManager manager)
 		{
+manager.Assets.Add (m_sName, this) ;
+			m_AssetManager = manager as AssetManager;
 		}
 
 		public void Remove()
 		{
+			if (  m_AssetManager.Assets.ContainsKey(this.Name) )			{
+				m_AssetManager.Assets.Remove(this.Name) ;
+				m_AssetManager = null ;
+			}
+else
+				MessageBox.Show ("MediaAsset can not be removed from AssetManager") ;
 		}
 
 		public abstract void Delete();
