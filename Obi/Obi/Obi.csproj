@@ -61,6 +61,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\implementation\UrakawaToolkit\obj\Debug\urakawa.dll</HintPath>
     </Reference>
+    <Reference Include="UrakawaApplicationBackend, Version=1.0.2368.31351, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\UrakawaApplicationBackend\obj\Debug\UrakawaApplicationBackend.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands.cs" />
@@ -190,9 +194,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="SimpleMetadata.cs" />
+    <Compile Include="Strips\AudioStrip.cs" />
     <Compile Include="Strips\Manager.cs" />
     <Compile Include="Strips\ParStrip.cs" />
     <Compile Include="Strips\Strip.cs" />
+    <Compile Include="Strips\StructureStrip.cs" />
     <Compile Include="UndoRedoStack.cs" />
     <Compile Include="UserControls\ContainerStrip.cs">
       <SubType>UserControl</SubType>

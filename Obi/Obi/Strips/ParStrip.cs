@@ -7,15 +7,26 @@ using urakawa.media;
 
 namespace Obi.Strips
 {
+    /// <summary>
+    /// ParStrips are similar to par elements in SMIL as they contain parallel contents.
+    /// In the current version a par strip contains:
+    ///   1. a structure strip
+    ///   2. an audio strip
+    /// </summary>
     public class ParStrip: Strip
     {
-        private string mLabel;         // the strip label
-        private CoreNode mNode;        // the core node corresponding to this strip
-        private SequenceMedia mAudio;  // heading audio object
+        private string mLabel;                   // the strip label
+        private CoreNode mNode;                  // the core node corresponding to this strip
+        private StructureStrip mStructureStrip;  // the structure strip
+        private AudioStrip mAudioStrip;          // the audio strip
 
         public delegate void LabelChangedHandler(object sender, LabelChangedEventArgs e);
         public event LabelChangedHandler LabelChanged;
 
+        /// <summary>
+        /// The label of the strip is intended to give information to the user.
+        /// It should be searchable.
+        /// </summary>
         public string Label
         {
             get
@@ -31,37 +42,35 @@ namespace Obi.Strips
         }
 
         /// <summary>
-        /// Audio to the heading
+        /// Get the presentation that this strip belongs to (from its node)
         /// </summary>
-        public SequenceMedia Audio
+        public Presentation Presentation
         {
             get
             {
-                return mAudio;
-            }
-            set
-            {
-                Presentation presentation = (Presentation)mNode.getPresentation();
-                ChannelsProperty audioprop = (ChannelsProperty)presentation.getPropertyFactory().createChannelsProperty();
-                ChannelsManager manager = (ChannelsManager)presentation.getChannelsManager();
-                Channel audiochan = (Channel)((manager.getChannelByName(Project.AUDIO_CHANNEL)[0]));
-                audioprop.setMedia(audiochan, value);
-                mNode.setProperty(audioprop);
+                return (Presentation)mNode.getPresentation();
             }
         }
 
         public ParStrip()
         {
             mLabel = null;
+            mStructureStrip = new StructureStrip(this);
+            mAudioStrip = new AudioStrip(this);
             mNode = null;
-            mAudio = null;
         }
 
+        /// <summary>
+        /// Create a new par strip.
+        /// </summary>
+        /// <param name="label">The strip's label.</param>
+        /// <param name="node">The strip's node (i.e. the heading node.)</param>
         public ParStrip(string label, CoreNode node)
         {
             mLabel = label;
+            mStructureStrip = new StructureStrip(this);
+            mAudioStrip = new AudioStrip(this);
             mNode = node;
-            mAudio = null;
         }
 
         public override string ToString()

@@ -1,5 +1,6 @@
 // All the actual commands used in the prototype.
 // See Command.cs for the command/undo framework.
+// Commands are now external, as they are also used by the audio backend.
 
 using System;
 using System.Drawing;
