@@ -34,7 +34,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="UrakawaApplicationBackend, Version=1.0.2368.31351, Culture=neutral">
+    <Reference Include="UrakawaApplicationBackend, Version=1.0.2371.20524, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\UrakawaApplicationBackend\obj\Debug\UrakawaApplicationBackend.dll</HintPath>
     </Reference>
