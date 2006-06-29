@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Forms;
 using System.Collections;
+using VirtualAudioBackend.events.AssetManagerEvents;
 
 namespace VirtualAudioBackend
 {
@@ -190,6 +191,10 @@ MessageBox.Show ("Asset not found in hashtable") ;
 				m_htAssetList.Remove(assetToDelete.Name) ;
 static_htExists.Remove(assetToDelete.Name) ;
 assetToDelete= null ;
+				CatchEvents ob_Catch = new CatchEvents();
+				AssetDeleted ob_AssetDeleted = new AssetDeleted(assetToDelete);
+				ob_AssetDeleted.AssetDeletedEvent+= new DAssetDeletedEvent(ob_Catch.CatchAssetDeletedEvent);
+				ob_AssetDeleted.NotifyAssetDeleted(this, ob_AssetDeleted);
 				
 			}
 			else
@@ -221,7 +226,23 @@ MediaAssetToRemove.m_AssetManager = null ;
 
 		public string RenameAsset(IMediaAsset asset, String newName)
 		{
-			return null;
+			string OldName = asset.Name;
+			IDictionaryEnumerator mEnumerator = m_htAssetList.GetEnumerator();
+			while(mEnumerator.MoveNext())
+			{
+				if(mEnumerator.Key.ToString() == asset.Name)
+				{
+					m_htAssetList.Remove(mEnumerator.Key);
+					asset.Name = newName;
+					m_htAssetList.Add(asset.Name, asset);
+				}
+			}
+			CatchEvents ob_Catch = new CatchEvents();
+			AssetRenamed ob_AssetRenamed =  new AssetRenamed(asset, OldName);
+			ob_AssetRenamed.AssetRenamedEvent+= new DAssetRenamedEvent(ob_Catch.CatchAssetRenamedEvent);
+			ob_AssetRenamed.NotifyAssetRenamed(this, ob_AssetRenamed);
+			return OldName;
+		}
 		}
 
 		#endregion
@@ -229,4 +250,3 @@ MediaAssetToRemove.m_AssetManager = null ;
 
 	}
 
-}

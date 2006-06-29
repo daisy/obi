@@ -137,7 +137,22 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "AudioPlayer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "AudioRecorder.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "CalculationFunctions.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "CatchEvents.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -178,6 +193,66 @@
                 />
                 <File
                     RelPath = "MediaAsset.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "VuMeter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "events\AssetManagerEvents\AssetDeleted.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "events\AssetManagerEvents\AssetManager.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "events\AssetManagerEvents\AssetRenamed.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "events\AudioPlayerEvents\AudioPlayerEvent.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "events\AudioPlayerEvents\EndOfAudioData.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "events\AudioPlayerEvents\StateChanged.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "events\AudioRecorderEvents\AudioRecorderEvent.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "events\AudioRecorderEvents\StateChanged.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "events\AudioRecorderEvents\UpdateVuMeterFromRecorder.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "events\VuMeterEvents\UpdateForms.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "events\VuMeterEvents\VuMeterEvent.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
