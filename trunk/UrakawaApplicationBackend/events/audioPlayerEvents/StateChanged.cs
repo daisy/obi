@@ -20,11 +20,20 @@ public delegate void DStateChangedEvent( object sender,  StateChanged state) ;
 
 		private AudioPlayerState mOldState;  // the previous state of the player. The current state of the player is readily available.
 
-		public StateChanged FromStopped { get { return mFromStopped; } }
-		public StateChanged FromPlaying { get { return mFromPlaying; } }
-		public StateChanged FromPaused { get { return mFromPaused; } }
+		public static StateChanged FromStopped { get { return mFromStopped; } }
+		public static StateChanged FromPlaying { get { return mFromPlaying; } }
+		public static StateChanged FromPaused { get { return mFromPaused; } }
 
-
+		public static StateChanged From(AudioPlayerState state)
+		{
+			switch(state)
+			{
+				case AudioPlayerState.paused: return mFromPaused;
+				case AudioPlayerState.playing: return mFromPlaying;
+				case AudioPlayerState.stopped: return mFromStopped;
+			}
+			return null;  // make the compiler happy
+		}
 
 		
 
@@ -36,7 +45,8 @@ public delegate void DStateChangedEvent( object sender,  StateChanged state) ;
 			}
 		}
 		
-public event DStateChangedEvent StateChangedEvent ;
+		public event DStateChangedEvent StateChangedEvent ;
+
 		/// <summary>
 		/// Create a new StateChanged event.
 		/// </summary>

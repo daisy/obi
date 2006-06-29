@@ -80,6 +80,8 @@ namespace UrakawaApplicationBackend
 			}
 		}
 
+		public DStateChangedEvent StateChangedEvent;
+
 			// create objects for handling events
 			CatchEvents ob_CatchEvents = new CatchEvents () ;
 		VuMeter ob_VuMeter ;
@@ -349,6 +351,7 @@ namespace UrakawaApplicationBackend
 				m_State= AudioPlayerState .playing ;
 
 				TriggerStateChangedEvent (ob_StateChanged) ;
+				StateChangedEvent(this, StateChanged.FromStopped);
 
 				// starts playing
 				SoundBuffer.Play(0, BufferPlayFlags.Looping);
@@ -475,10 +478,12 @@ namespace UrakawaApplicationBackend
 			// changes the state and trigger events
 			//ob_StateChanged = new StateChanged (m_State) ;
 
-			StateChanged ob_StateChanged = new StateChanged (m_State) ;
+			//StateChanged ob_StateChanged = new StateChanged (m_State) ;
+			StateChanged ob_StateChanged = StateChanged.From(m_State);
 			m_State= AudioPlayerState .stopped ;
 
 			TriggerStateChangedEvent (ob_StateChanged) ;
+			StateChangedEvent(this, ob_StateChanged);
 			//ob_EndOfFile.TriggerEndOfFileEvent ( m_Asset.Path);
 		
 			// RefreshBuffer ends
@@ -653,6 +658,8 @@ namespace UrakawaApplicationBackend
 				StateChanged ob_StateChanged = new StateChanged (m_State) ;
 				m_State= AudioPlayerState .playing ;
 				TriggerStateChangedEvent (ob_StateChanged) ;
+				StateChangedEvent(this, StateChanged.FromPlaying);
+
 
 				SoundBuffer.Play(0, BufferPlayFlags.Looping);
 				m_BufferCheck= 1 ;
@@ -676,6 +683,8 @@ namespace UrakawaApplicationBackend
 				StateChanged ob_StateChanged = new StateChanged (m_State) ;
 				m_State= AudioPlayerState .paused ;
 				TriggerStateChangedEvent (ob_StateChanged) ;
+				StateChangedEvent(this, StateChanged.FromPlaying);
+
 			}
 		}
 
@@ -688,6 +697,7 @@ namespace UrakawaApplicationBackend
 				StateChanged ob_StateChanged = new StateChanged (m_State) ;
 				m_State= AudioPlayerState .playing ;
 				TriggerStateChangedEvent (ob_StateChanged) ;
+				StateChangedEvent(this, StateChanged.FromPaused);
 				SoundBuffer.Play(0, BufferPlayFlags.Looping);
 			}			
 		}
@@ -714,6 +724,7 @@ namespace UrakawaApplicationBackend
 			StateChanged ob_StateChanged = new StateChanged (m_State) ;
 			m_State= AudioPlayerState .stopped ;
 			TriggerStateChangedEvent (ob_StateChanged) ;
+			StateChangedEvent(this, StateChanged.FromStopped);
 		}
 
 		internal long GetCurrentBytePosition()
