@@ -35,6 +35,10 @@ namespace Zaboom
             this.mLoadButton = new System.Windows.Forms.Button();
             this.mStopButton = new System.Windows.Forms.Button();
             this.mPlayButton = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.mPlayerStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -100,11 +104,36 @@ namespace Zaboom
             this.mPlayButton.UseVisualStyleBackColor = true;
             this.mPlayButton.Click += new System.EventHandler(this.mPlayButton_Click);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.mPlayerStatusLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 150);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.statusStrip1.Size = new System.Drawing.Size(472, 22);
+            this.statusStrip1.TabIndex = 7;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // mPlayerStatusLabel
+            // 
+            this.mPlayerStatusLabel.Name = "mPlayerStatusLabel";
+            this.mPlayerStatusLabel.Size = new System.Drawing.Size(57, 17);
+            this.mPlayerStatusLabel.Text = "(unknown)";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(107, 17);
+            this.toolStripStatusLabel1.Text = "Audio player status:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(472, 150);
+            this.ClientSize = new System.Drawing.Size(472, 172);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.mPlayButton);
             this.Controls.Add(this.mStopButton);
             this.Controls.Add(this.mLoadButton);
@@ -115,6 +144,8 @@ namespace Zaboom
             this.Name = "Form1";
             this.Text = "Zaboom";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -129,6 +160,9 @@ namespace Zaboom
         private System.Windows.Forms.Button mLoadButton;
         private System.Windows.Forms.Button mStopButton;
         private System.Windows.Forms.Button mPlayButton;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel mPlayerStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 
