@@ -12,8 +12,8 @@ namespace VirtualAudioBackend
 		#region IMediaAsset Members
 
 // member variables of class
-private string m_sName ;
-		private MediaType m_eMediaType ;
+protected string m_sName ;
+		protected MediaType m_eMediaType ;
 
 protected long m_lSizeInBytes ;
 		internal AssetManager m_AssetManager ;
