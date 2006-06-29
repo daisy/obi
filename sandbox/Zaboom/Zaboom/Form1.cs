@@ -15,6 +15,7 @@ namespace Zaboom
     public partial class Form1 : Form
     {
         private AudioPlayer mPlayer;
+        private VuMeter mVuMeter;
         private AudioMediaAsset mAsset;
 
         public Form1()
@@ -41,6 +42,16 @@ namespace Zaboom
             mAsset = null;
             mPlayButton.Enabled = false;
             mStopButton.Enabled = false;
+            UrakawaApplicationBackend.events.audioPlayerEvents.DEndOfAudioAssetEvent handler =
+                new UrakawaApplicationBackend.events.audioPlayerEvents.DEndOfAudioAssetEvent(OnEndOfAudio);
+            mPlayer.EndOfAudioAsset.EndOfAudioAssetEvent += handler;
+            // mVuMeter = new VuMeter();
+            // mPlayer.VuMeterObject = mVuMeter;
+            // mVuMeter.LowerThreshold = 50;
+            // mVuMeter.UpperThreshold = 83;
+            // mVuMeter.ScaleFactor = 2;
+            // mVuMeter.SampleTimeLength = 2000;
+            // mVuMeter.ShowForm();
         }
 
         private void mLoadButton_Click(object sender, EventArgs e)
@@ -52,9 +63,16 @@ namespace Zaboom
                 AudioMediaAsset asset = new AudioMediaAsset(dialog.FileName);
                 mAssetBox.Text = Path.GetFileNameWithoutExtension(dialog.FileName);
                 mAsset = asset;
+                // mVuMeter.Channels = mAsset.Channels;
                 mPlayButton.Enabled = true;
                 mStopButton.Enabled = true;
             }
+        }
+
+        public void OnEndOfAudio(object sender, UrakawaApplicationBackend.events.audioPlayerEvents.EndOfAudioData e)
+        {
+            //mPlayButton.Enabled = true;
+            Console.WriteLine("DONE");
         }
 
         private void mPlayButton_Click(object sender, EventArgs e)
@@ -69,7 +87,7 @@ namespace Zaboom
 
         private void mStopButton_Click(object sender, EventArgs e)
         {
-
+            mPlayer.Stop();
         }
     }
 }

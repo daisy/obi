@@ -67,7 +67,7 @@ namespace VirtualAudioBackend
 		/// Make a copy of the asset, sharing the same format and data.
 		/// </summary>
 		/// <returns>The new, identical asset.</returns>
-		public AudioMediaAsset Copy()
+		public override IMediaAsset Copy()
 		{
 			return null;
 		}

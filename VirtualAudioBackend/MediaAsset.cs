@@ -75,6 +75,8 @@ else
 				MessageBox.Show ("MediaAsset can not be removed from AssetManager") ;
 		}
 
+		public abstract IMediaAsset Copy();
+
 		public abstract void Delete();
 		
 		public abstract void MergeWith(IMediaAsset next);

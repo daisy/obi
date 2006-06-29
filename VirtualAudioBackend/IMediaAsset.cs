@@ -54,6 +54,12 @@ namespace VirtualAudioBackend
 		void Add(IAssetManager manager);
 
 		/// <summary>
+		/// Provide a copy of the asset.
+		/// </summary>
+		/// <returns>A new asset that is identical to the original one.</returns>
+		IMediaAsset Copy();
+
+		/// <summary>
 		/// Remove self from the project. The data is not deleted.
 		/// </summary>
 		void Remove();
