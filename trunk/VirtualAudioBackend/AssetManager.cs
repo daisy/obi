@@ -27,6 +27,9 @@ namespace VirtualAudioBackend
 // hash table to contain list of all existing assets
 internal static Hashtable static_htExists  = new Hashtable ();
 
+// object for catch class
+		CatchEvents ob_Catch = new CatchEvents();
+
 		/// <summary>
 		/// Create the asset manager taking as argument the project directory where the data should live.
 		/// </summary>
@@ -191,7 +194,7 @@ MessageBox.Show ("Asset not found in hashtable") ;
 				m_htAssetList.Remove(assetToDelete.Name) ;
 static_htExists.Remove(assetToDelete.Name) ;
 assetToDelete= null ;
-				CatchEvents ob_Catch = new CatchEvents();
+				
 				AssetDeleted ob_AssetDeleted = new AssetDeleted(assetToDelete);
 				ob_AssetDeleted.AssetDeletedEvent+= new DAssetDeletedEvent(ob_Catch.CatchAssetDeletedEvent);
 				ob_AssetDeleted.NotifyAssetDeleted(this, ob_AssetDeleted);
@@ -237,7 +240,7 @@ MediaAssetToRemove.m_AssetManager = null ;
 					m_htAssetList.Add(asset.Name, asset);
 				}
 			}
-			CatchEvents ob_Catch = new CatchEvents();
+			
 			AssetRenamed ob_AssetRenamed =  new AssetRenamed(asset, OldName);
 			ob_AssetRenamed.AssetRenamedEvent+= new DAssetRenamedEvent(ob_Catch.CatchAssetRenamedEvent);
 			ob_AssetRenamed.NotifyAssetRenamed(this, ob_AssetRenamed);
