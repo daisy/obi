@@ -323,9 +323,12 @@ objGraphics.DrawLine(PenVackPaint , 0, 0, 0, 600);
 			objGraphics.DrawLine(PenHigh, LeftGraphX, HighTop , LeftGraphX, HighBottom);		
 			objGraphics.DrawLine(PenHigh, RightGraphX, HighTop , RightGraphX, HighBottom);		
 
-			objGraphics.DrawLine(PenNormal, LeftGraphX, NormalTop, LeftGraphX, NormalBottom);				objGraphics.DrawLine(PenNormal, RightGraphX, NormalTop, RightGraphX, NormalBottom);	
+			objGraphics.DrawLine(PenNormal, LeftGraphX, NormalTop, LeftGraphX, NormalBottom);	
+			objGraphics.DrawLine(PenNormal, RightGraphX, NormalTop, RightGraphX, NormalBottom);	
+
 	objGraphics.DrawLine(PenLow, LeftGraphX, LowTop, LeftGraphX, LowBottom);	
-			objGraphics.DrawLine(PenLow, RightGraphX, LowTop, RightGraphX, LowBottom);	
+			objGraphics.DrawLine(PenLow, RightGraphX, LowTop, RightGraphX, LowBottom);	
+
 	
 // Erase the unwanted line starting from top according to amplitude of each channel
 			objGraphics.DrawLine(PenVackground , LeftGraphX, HighTop , LeftGraphX, EraserLeft );	
