@@ -25,7 +25,7 @@ namespace VirtualAudioBackend
 		internal static string static_sProjectDirectory  ;
 
 // hash table to contain list of all existing assets
-internal static Hashtable static_htExists  = new Hashtable ();
+public static Hashtable static_htExists  = new Hashtable ();
 
 // object for catch class
 		CatchEvents ob_Catch = new CatchEvents();
@@ -65,10 +65,8 @@ static_htExists.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;
 		{
 			if (clips != null)
 			{
-				//AudioClip ob_AudioClip = clips[0] as AudioClip;
-				//AudioMediaAsset ob_AudioMediaAsset = new AudioMediaAsset ( ob_AudioClip.Channels , ob_AudioClip.BitDepth , ob_AudioClip.SampleRate) ;
-				// below line is to be deleted
-				AudioMediaAsset ob_AudioMediaAsset = new AudioMediaAsset ( 0, 0, 0) ;
+				AudioMediaAsset ob_AudioMediaAsset = new AudioMediaAsset (clips) ;
+
 				ob_AudioMediaAsset.Name = NewMediaAssetName () ;
 				ob_AudioMediaAsset.m_AssetManager = this ;
 				m_htAssetList.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;
@@ -96,7 +94,7 @@ MessageBox.Show ("AudioMediaAsset can not be created with this function as clip 
 			string sTempName ;
 			sTempName = sTemp + i.ToString () ;
 
-			while ( static_htExists.ContainsKey (sTempName)  && i<900000)
+			while ( static_htExists.ContainsKey (sTempName)  && i<9000000)
 			{
 
 				i++;
@@ -106,7 +104,7 @@ MessageBox.Show ("AudioMediaAsset can not be created with this function as clip 
 			}
 
 
-			if (i<900000)
+			if (i<9000000)
 
 			{
 			
@@ -134,6 +132,10 @@ MessageBox.Show ("AudioMediaAsset can not be created with this function as clip 
 
 		public void AddAsset(IMediaAsset asset)
 		{
+			if (asset.Name.Equals (null))
+			{
+asset.Name = NewMediaAssetName () ;
+			}
 m_htAssetList.Add (asset.Name, asset) ;
 			static_htExists.Add (asset.Name, asset) ;
 		}
@@ -193,7 +195,6 @@ MessageBox.Show ("Asset not found in hashtable") ;
 			if (  m_htAssetList.ContainsKey(assetToDelete.Name) )			{
 				m_htAssetList.Remove(assetToDelete.Name) ;
 static_htExists.Remove(assetToDelete.Name) ;
-assetToDelete= null ;
 				
 				AssetDeleted ob_AssetDeleted = new AssetDeleted(assetToDelete);
 				ob_AssetDeleted.AssetDeletedEvent+= new DAssetDeletedEvent(ob_Catch.CatchAssetDeletedEvent);
@@ -202,9 +203,8 @@ assetToDelete= null ;
 			}
 			else
 			{
-	
-				MessageBox.Show ("Asset not in Hash Table and cannot be deleted") ;
-				
+
+				throw new Exception ("Asset could not be deleted : not in hashtable") ;
 			}
 
 		}
@@ -218,7 +218,7 @@ MediaAssetToRemove.m_AssetManager = null ;
 
 			}
 			else
-				MessageBox.Show ("Asset cannot be removed from hashtable");
+				throw new Exception ("Asset coulb be not removed : not in hashtable") ;
 			
 		}
 
@@ -230,17 +230,25 @@ MediaAssetToRemove.m_AssetManager = null ;
 		public string RenameAsset(IMediaAsset asset, String newName)
 		{
 			string OldName = asset.Name;
-			IDictionaryEnumerator mEnumerator = m_htAssetList.GetEnumerator();
-			while(mEnumerator.MoveNext())
+bool boolRenamed = false ;
+							IDictionaryEnumerator enRemove = m_htAssetList.GetEnumerator();
+			while(enRemove.MoveNext())
 			{
-				if(mEnumerator.Key.ToString() == asset.Name)
+MessageBox.Show ("") ;
+				if(enRemove.Key.ToString() == asset.Name)
 				{
-					m_htAssetList.Remove(mEnumerator.Key);
+					m_htAssetList.Remove(OldName );
+					static_htExists.Remove(OldName );
 					asset.Name = newName;
 					m_htAssetList.Add(asset.Name, asset);
+static_htExists.Add(asset.Name, asset);
+boolRenamed = true ;
+break ;
 				}
 			}
-			
+			if (boolRenamed == false)
+throw new Exception ("Asset cannot be renamed : not in hashtable") ;
+
 			AssetRenamed ob_AssetRenamed =  new AssetRenamed(asset, OldName);
 			ob_AssetRenamed.AssetRenamedEvent+= new DAssetRenamedEvent(ob_Catch.CatchAssetRenamedEvent);
 			ob_AssetRenamed.NotifyAssetRenamed(this, ob_AssetRenamed);

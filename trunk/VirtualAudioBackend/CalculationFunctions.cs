@@ -48,6 +48,37 @@ namespace VirtualAudioBackend
 		}
 
 
+		internal string GenerateNewAssetName ( IMediaAsset Asset)
+		{
+			
+			long i = 0 ;
+
+			string sTemp ;
+
+			sTemp = "MediaAsset" ;
+			string sTempName ;
+			sTempName = sTemp + i.ToString () ;
+
+			while ( AssetManager.static_htExists.ContainsKey (sTempName)  && i<9000000)
+			{
+
+				i++;
+				sTempName = sTemp + i.ToString () ;
+				
+			}
+
+			if (i<9000000)
+			{
+AssetManager.static_htExists.Add (sTempName , Asset) ;
+				return sTempName ;
+			}
+			else
+			{
+				return null ;
+			}
+		}
+		
+			
 
 		// end of cal function
 	}
