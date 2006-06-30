@@ -74,12 +74,13 @@ namespace VirtualAudioBackend
 		/// <param name="sampleRate">Sample rate in Hz.</param>
 		public AudioMediaAsset(int channels, int bitDepth, int sampleRate)
 		{
+
 			m_Channels = channels ;
 			m_BitDepth = bitDepth ;
 			m_SamplingRate = sampleRate ;
 			m_FrameSize = ( m_BitDepth / 8) * m_Channels ;
+			m_eMediaType = MediaType.Audio ;
 			
-
 		}
 
 		/// <summary>
@@ -88,6 +89,7 @@ namespace VirtualAudioBackend
 		/// <param name="clips">The list of <see cref="AudioClip"/>s.</param>
 		public AudioMediaAsset(ArrayList clips)
 		{
+m_eMediaType = MediaType.Audio ;
 			AudioClip ob_AudioClip = clips[0] as AudioClip ;
 			m_Channels = ob_AudioClip.Channels ;
 			m_BitDepth = ob_AudioClip.BitDepth ;
@@ -114,8 +116,9 @@ m_lSizeInBytes = m_lAudioLengthInBytes ;
 		{
 			AudioMediaAsset ob_AudioMediaAsset = new AudioMediaAsset ( this.Channels ,this.BitDepth , this.SampleRate) ;
 
-ob_AudioMediaAsset.Name  =m_sName ;
-ob_AudioMediaAsset.m_AssetManager  = m_AssetManager ;
+if (this.Name != null) 
+ob_AudioMediaAsset.Name  =Calc.GenerateNewAssetName (ob_AudioMediaAsset) ;
+
 ob_AudioMediaAsset.m_eMediaType = m_eMediaType ;
 			for (int i = 0 ; i < this.m_alClipList.Count ; i++ )
 				ob_AudioMediaAsset.m_alClipList.Add (  this.m_alClipList [i] );
@@ -127,12 +130,22 @@ ob_AudioMediaAsset.m_eMediaType = m_eMediaType ;
 			return ob_AudioMediaAsset ;
 		}
 
+		
 		/// <summary>
 		/// Remove the asset from the project, and actually delete all corresponding resources.
 		/// Throw an exception if the asset could not be deleted.
 		/// </summary>
 		public override void Delete()
 		{
+if (m_AssetManager != null)
+m_AssetManager.Assets.Remove (this.Name) ;
+
+if (VirtualAudioBackend.AssetManager.static_htExists.ContainsKey (this.Name))
+VirtualAudioBackend.AssetManager.static_htExists.Remove (this.Name) ;
+
+m_alClipList = null ;
+m_AssetManager = null ;
+m_sName = null;
 
 		}
 
@@ -289,51 +302,28 @@ double dBeginTime = Calc.ConvertByteToTime (beginPosition , m_SamplingRate , m_F
 
 		public IAudioMediaAsset DeleteChunk(double beginTime, double endTime)
 		{
-			
-ArrayList alNewClipList = new ArrayList () ;
+			AudioMediaAsset ob_FromtAsset  = new AudioMediaAsset (0,0,0) ;;
+			AudioMediaAsset ob_RearAsset = new AudioMediaAsset (0,0,0) ;;
 
-ArrayList alBeginList = new ArrayList (FindClipToProcess  ( beginTime) );
-int BeginClipIndex = Convert.ToInt32 (alBeginList [0]) ;
-double dBeginTimeMark = Convert.ToDouble(alBeginList [1]) ;
-
-			ArrayList alEndList = new ArrayList (FindClipToProcess  ( endTime) );
-			int EndClipIndex = Convert.ToInt32 (alEndList [0]) ;
-			double dEndTimeMark = Convert.ToDouble(alEndList [1]) ;
-
-AudioClip ob_BeginClip = m_alClipList[BeginClipIndex] as AudioClip ;
-
-			if (BeginClipIndex == EndClipIndex)
+			if (beginTime != 0&& endTime != m_dAudioLengthInTime)
 			{
-				AudioClip ob_NewClip= ob_BeginClip.CopyClipPart (dBeginTimeMark, dEndTimeMark) ;
-				alNewClipList.Add (ob_NewClip) ;
+				ob_FromtAsset= GetChunk (0 , beginTime)  as AudioMediaAsset;
+				ob_RearAsset = GetChunk (endTime , m_dAudioLengthInTime) as AudioMediaAsset ;
+				ob_FromtAsset.MergeWith (ob_RearAsset) ;
 			}
-			else
+			else if (beginTime != 0)
 			{
-			
-			
-				AudioClip ob_EndClip = m_alClipList[EndClipIndex] as AudioClip ;
-
-				if (dBeginTimeMark <ob_BeginClip.LengthInTime )
-				{
-					AudioClip ob_NewBeginClip= ob_BeginClip.CopyClipPart (dBeginTimeMark, ob_BeginClip.LengthInTime) ;
-					alNewClipList.Add (ob_NewBeginClip) ;
-				}
-				
-
-				for (int i = BeginClipIndex + 1 ; i < EndClipIndex ; i ++)
-				{
-				alNewClipList.Add (m_alClipList [i]) ;
-MessageBox.Show ("Clips in between") ;
-				}
-				if (dEndTimeMark > 0)
-				{
-					AudioClip ob_NewEndClip= ob_EndClip.CopyClipPart (0 ,dEndTimeMark) ;
-					alNewClipList.Add (ob_NewEndClip) ;
-				}			
-
+ob_FromtAsset = GetChunk (0 , beginTime) as AudioMediaAsset; 
+			}
+			else if (endTime != m_dAudioLengthInTime)
+			{
+				ob_FromtAsset= GetChunk (endTime , m_dAudioLengthInTime) as AudioMediaAsset ;
 			}
 
-AudioMediaAsset ob_AudioMediaAsset = new AudioMediaAsset (alNewClipList) ;
+
+
+return ob_FromtAsset;
+/*
 AudioClip ac ;
 			for (int i = 0 ; i <ob_AudioMediaAsset.m_alClipList.Count ; i++ )
 			{
@@ -342,6 +332,7 @@ ac = ob_AudioMediaAsset.m_alClipList[i] as AudioClip ;
 							MessageBox.Show (ac.EndTime.ToString ()) ;
 			}
 			return ob_AudioMediaAsset;
+			*/
 		}
 
 		private ArrayList FindClipToProcess  ( double Time)
@@ -350,9 +341,13 @@ ac = ob_AudioMediaAsset.m_alClipList[i] as AudioClip ;
 			AudioClip ob_AudioClip = m_alClipList [0] as AudioClip;
 			double TimeSum = 0 ;
 			int Count = 0 ;
-			while (TimeSum <= Time  )
+			while (TimeSum <= Time  && TimeSum < m_dAudioLengthInTime)
 			{
-				ob_AudioClip = m_alClipList [Count] as AudioClip;
+if (Count < m_alClipList.Count )
+ob_AudioClip = m_alClipList [Count] as AudioClip;
+else
+	break ;
+				
 				TimeSum = TimeSum + ob_AudioClip.LengthInTime ;
 				Count++ ;
 			}
@@ -381,8 +376,9 @@ return alReturnList  ;
 			{
 m_alClipList.Add (ob_AudioMediaAsset.m_alClipList [i]) ;
 			}
-			
-
+			m_dAudioLengthInTime = m_dAudioLengthInTime + ob_AudioMediaAsset.LengthInMilliseconds ;
+m_lAudioLengthInBytes = m_lAudioLengthInBytes + ob_AudioMediaAsset.AudioLengthInBytes ;
+m_lSizeInBytes = m_lSizeInBytes + ob_AudioMediaAsset.SizeInBytes ;
 	}
 
 		public IAudioMediaAsset Split(long position)
