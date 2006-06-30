@@ -8,6 +8,8 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
+using Microsoft.DirectX.DirectSound;
+
 using UrakawaApplicationBackend;
 using UrakawaApplicationBackend.events.audioPlayerEvents;
 
@@ -16,7 +18,7 @@ namespace Zaboom
     public partial class Form1 : Form
     {
         private AudioPlayer mPlayer;
-        // private VuMeter mVuMeter;
+        private VuMeter mVuMeter;
         private AudioMediaAsset mAsset;
 
         public Form1()
@@ -48,13 +50,13 @@ namespace Zaboom
             mPlayerStatusLabel.Text = mPlayer.State.ToString();
             mPlayer.StateChangedEvent +=
                 new UrakawaApplicationBackend.events.audioPlayerEvents.DStateChangedEvent(OnStateChanged);
-            // mVuMeter = new VuMeter();
-            // mPlayer.VuMeterObject = mVuMeter;
-            // mVuMeter.LowerThreshold = 50;
-            // mVuMeter.UpperThreshold = 83;
-            // mVuMeter.ScaleFactor = 2;
-            // mVuMeter.SampleTimeLength = 2000;
-            // mVuMeter.ShowForm();
+            /*mVuMeter = new VuMeter();
+            mPlayer.VuMeterObject = mVuMeter;
+            mVuMeter.LowerThreshold = 50;
+            mVuMeter.UpperThreshold = 83;
+            mVuMeter.ScaleFactor = 2;
+            mVuMeter.SampleTimeLength = 2000;
+            mVuMeter.ShowForm();*/
         }
 
         private void mLoadButton_Click(object sender, EventArgs e)
@@ -68,9 +70,8 @@ namespace Zaboom
                 AudioMediaAsset asset = new AudioMediaAsset(dialog.FileName);
                 mAssetBox.Text = Path.GetFileNameWithoutExtension(dialog.FileName);
                 mAsset = asset;
-                // mVuMeter.Channels = mAsset.Channels;
-                mPlayButton.Enabled = true;
-                mStopButton.Enabled = false;
+                //mVuMeter.Channels = mAsset.Channels;
+                UpdateButtons();
             }
         }
 
@@ -115,16 +116,22 @@ namespace Zaboom
                 switch (mPlayer.State)
                 {
                     case AudioPlayerState.paused:
+                        mPlayButton.Enabled = true;
                         mPlayButton.Text = "&Play";
                         mStopButton.Enabled = true;
+                        mDeviceBox.Enabled = false;
                         break;
                     case AudioPlayerState.playing:
+                        mPlayButton.Enabled = true;
                         mPlayButton.Text = "&Pause";
                         mStopButton.Enabled = true;
+                        mDeviceBox.Enabled = false;
                         break;
                     case AudioPlayerState.stopped:
+                        mPlayButton.Enabled = true;
                         mPlayButton.Text = "&Play";
                         mStopButton.Enabled = false;
+                        mDeviceBox.Enabled = true;
                         break;
                 }
             }
@@ -156,6 +163,26 @@ namespace Zaboom
         {
             mPlayer.Stop();
             UpdateButtons();
+        }
+
+        /// <summary>
+        /// A new device is selected from the list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mDeviceBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            mPlayer.SetDevice(this, mDeviceBox.SelectedIndex);
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void newAudioAssetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
