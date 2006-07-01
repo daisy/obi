@@ -34,19 +34,22 @@ namespace Zaboom
             this.mPlayerStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importAudioAssetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importAudioAssetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadXUKFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveXUKFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.renameAssetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.audioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.outputDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStopButton = new System.Windows.Forms.Button();
             this.mPlayButton = new System.Windows.Forms.Button();
             this.mAssetBox = new System.Windows.Forms.ComboBox();
             this.mPlayAllButton = new System.Windows.Forms.Button();
-            this.renameAssetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPrevButton = new System.Windows.Forms.Button();
+            this.mNextButton = new System.Windows.Forms.Button();
+            this.deleteAssetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -99,7 +102,7 @@ namespace Zaboom
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.importAudioAssetToolStripMenuItem,
+            this.importAudioAssetsToolStripMenuItem,
             this.loadXUKFileToolStripMenuItem,
             this.saveXUKFileToolStripMenuItem,
             this.toolStripSeparator1,
@@ -108,46 +111,54 @@ namespace Zaboom
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(36, 20);
             this.fileToolStripMenuItem.Text = "&File";
             // 
-            // importAudioAssetToolStripMenuItem
+            // importAudioAssetsToolStripMenuItem
             // 
-            this.importAudioAssetToolStripMenuItem.Name = "importAudioAssetToolStripMenuItem";
-            this.importAudioAssetToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.importAudioAssetToolStripMenuItem.Text = "&Import audio asset";
-            this.importAudioAssetToolStripMenuItem.Click += new System.EventHandler(this.importAudioAssetToolStripMenuItem_Click);
+            this.importAudioAssetsToolStripMenuItem.Name = "importAudioAssetsToolStripMenuItem";
+            this.importAudioAssetsToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.importAudioAssetsToolStripMenuItem.Text = "&Import audio assets";
+            this.importAudioAssetsToolStripMenuItem.Click += new System.EventHandler(this.importAudioAssetsToolStripMenuItem_Click);
             // 
             // loadXUKFileToolStripMenuItem
             // 
             this.loadXUKFileToolStripMenuItem.Name = "loadXUKFileToolStripMenuItem";
-            this.loadXUKFileToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.loadXUKFileToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.loadXUKFileToolStripMenuItem.Text = "&Load XUK file";
             this.loadXUKFileToolStripMenuItem.Visible = false;
             // 
             // saveXUKFileToolStripMenuItem
             // 
             this.saveXUKFileToolStripMenuItem.Name = "saveXUKFileToolStripMenuItem";
-            this.saveXUKFileToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.saveXUKFileToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.saveXUKFileToolStripMenuItem.Text = "&Save XUK file";
             this.saveXUKFileToolStripMenuItem.Visible = false;
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(162, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(168, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.renameAssetToolStripMenuItem});
+            this.renameAssetToolStripMenuItem,
+            this.deleteAssetToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.editToolStripMenuItem.Text = "&Edit";
+            // 
+            // renameAssetToolStripMenuItem
+            // 
+            this.renameAssetToolStripMenuItem.Name = "renameAssetToolStripMenuItem";
+            this.renameAssetToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.renameAssetToolStripMenuItem.Text = "&Rename asset";
+            this.renameAssetToolStripMenuItem.Click += new System.EventHandler(this.renameAssetToolStripMenuItem_Click);
             // 
             // audioToolStripMenuItem
             // 
@@ -203,18 +214,40 @@ namespace Zaboom
             this.mPlayAllButton.UseVisualStyleBackColor = true;
             this.mPlayAllButton.Click += new System.EventHandler(this.mPlayAllButton_Click);
             // 
-            // renameAssetToolStripMenuItem
+            // mPrevButton
             // 
-            this.renameAssetToolStripMenuItem.Name = "renameAssetToolStripMenuItem";
-            this.renameAssetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.renameAssetToolStripMenuItem.Text = "&Rename asset";
-            this.renameAssetToolStripMenuItem.Click += new System.EventHandler(this.renameAssetToolStripMenuItem_Click);
+            this.mPrevButton.Location = new System.Drawing.Point(37, 27);
+            this.mPrevButton.Name = "mPrevButton";
+            this.mPrevButton.Size = new System.Drawing.Size(75, 75);
+            this.mPrevButton.TabIndex = 9;
+            this.mPrevButton.Text = "Pre&v";
+            this.mPrevButton.UseVisualStyleBackColor = true;
+            this.mPrevButton.Click += new System.EventHandler(this.mPrevButton_Click);
+            // 
+            // mNextButton
+            // 
+            this.mNextButton.Location = new System.Drawing.Point(361, 27);
+            this.mNextButton.Name = "mNextButton";
+            this.mNextButton.Size = new System.Drawing.Size(75, 75);
+            this.mNextButton.TabIndex = 10;
+            this.mNextButton.Text = "&Next";
+            this.mNextButton.UseVisualStyleBackColor = true;
+            this.mNextButton.Click += new System.EventHandler(this.mNextButton_Click);
+            // 
+            // deleteAssetToolStripMenuItem
+            // 
+            this.deleteAssetToolStripMenuItem.Name = "deleteAssetToolStripMenuItem";
+            this.deleteAssetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteAssetToolStripMenuItem.Text = "&Delete asset";
+            this.deleteAssetToolStripMenuItem.Click += new System.EventHandler(this.deleteAssetToolStripMenuItem_Click);
             // 
             // ZaboomForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(472, 153);
+            this.Controls.Add(this.mNextButton);
+            this.Controls.Add(this.mPrevButton);
             this.Controls.Add(this.mPlayAllButton);
             this.Controls.Add(this.mAssetBox);
             this.Controls.Add(this.statusStrip1);
@@ -254,8 +287,11 @@ namespace Zaboom
         private System.Windows.Forms.Button mPlayAllButton;
         private System.Windows.Forms.ToolStripMenuItem audioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem outputDeviceToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem importAudioAssetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importAudioAssetsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem renameAssetToolStripMenuItem;
+        private System.Windows.Forms.Button mPrevButton;
+        private System.Windows.Forms.Button mNextButton;
+        private System.Windows.Forms.ToolStripMenuItem deleteAssetToolStripMenuItem;
     }
 }
 

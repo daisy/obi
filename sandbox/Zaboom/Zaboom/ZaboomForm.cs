@@ -26,7 +26,8 @@ namespace Zaboom
         private List<AudioMediaAsset> mPlayList;  // list of the audio assets to play
         //private VuMeter mVuMeter;                 // VU Meter (not debug-proof, will readd later)
 
-        private bool mPlayAll;                    // true if playing all assets, false if playing a single asset.
+        private Dictionary<string, AudioMediaAsset> mPaths;  // imported files
+        private bool mPlayAll;                               // true if playing all assets, false if playing a single asset.
 
         public ZaboomForm()
         {
@@ -51,8 +52,10 @@ namespace Zaboom
             mDeviceIndex = 0;
             mPlayer.SetDevice(this, mDeviceIndex);
             mPlayList = new List<AudioMediaAsset>();
+            mPaths = new Dictionary<string, AudioMediaAsset>();
             mPlayerStatusLabel.Text = mPlayer.State.ToString();
             renameAssetToolStripMenuItem.Enabled = false;
+            deleteAssetToolStripMenuItem.Enabled = false;
             UpdateButtons();
             // Set up the events handler: on end of audio, move to the next asset; on player state change, refresh the buttons.
             mPlayer.EndOfAudioAsset.EndOfAudioAssetEvent +=
@@ -71,31 +74,43 @@ namespace Zaboom
         #region "menu items"
 
         /// <summary>
-        /// Add a new asset to the list.
-        /// TODO: check that the same asset is not added twice.
+        /// Add new assets to the list. A same path cannot be added twice.
         /// </summary>
-        private void importAudioAssetToolStripMenuItem_Click(object sender, EventArgs e)
+        private void importAudioAssetsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = "Wave files (*.wav)|*.wav|Any file|*.*";
+            dialog.Multiselect = true;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                AudioMediaAsset asset = new AudioMediaAsset(dialog.FileName);
-                if (asset.Validate())
+                foreach (string path in dialog.FileNames)
                 {
-                    asset.Name = Path.GetFileNameWithoutExtension(dialog.FileName);
-                    mAssetBox.Items.Add(asset.Name);
-                    mPlayList.Add(asset);
-                    if (mPlayer.State == AudioPlayerState.stopped) mAssetBox.SelectedIndex = mAssetBox.Items.Count - 1;
-                    //mVuMeter.Channels = mAsset.Channels;
-                    UpdateButtons();
-                    renameAssetToolStripMenuItem.Enabled = true;
+                    AudioMediaAsset asset = new AudioMediaAsset(path);
+                    if (mPaths.ContainsKey(path))
+                    {
+                        MessageBox.Show("Path \"" + path + "\" was already added.", "Duplicate path",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        if (asset.Validate())
+                        {
+                            mPaths.Add(path, asset);
+                            asset.Name = Path.GetFileNameWithoutExtension(path);
+                            mAssetBox.Items.Add(asset.Name);
+                            mPlayList.Add(asset);
+                            if (mPlayer.State == AudioPlayerState.stopped) mAssetBox.SelectedIndex = mAssetBox.Items.Count - 1;
+                            renameAssetToolStripMenuItem.Enabled = true;
+                            deleteAssetToolStripMenuItem.Enabled = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Unable to read audio file \"" + path + "\", format is not supported.",
+                                "Unsupported audio format", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Unable to read audio file \"" + dialog.FileName + "\", format is not supported.",
-                        "Unsupported audio format", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                UpdateButtons();
             }
         }
 
@@ -126,6 +141,39 @@ namespace Zaboom
         }
 
         /// <summary>
+        /// Delete the current asset from the list of assets
+        /// TODO: clear the list when removing the last item?
+        /// </summary>
+        private void deleteAssetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mPlayer.State == AudioPlayerState.stopped && mAssetBox.SelectedIndex >= 0)
+            {
+                int selected = mAssetBox.SelectedIndex;
+                string path = null;
+                foreach (string p in mPaths.Keys)
+                {
+                    if (mPaths[p] == mPlayList[selected])
+                    {
+                        path = p;
+                        break;
+                    }
+                }
+                mPaths.Remove(path);
+                mPlayList.RemoveAt(selected);
+                mAssetBox.Items.RemoveAt(selected);
+                if (mPlayList.Count > 0)
+                {
+                    mAssetBox.SelectedIndex = selected == mAssetBox.Items.Count ? selected - 1 : selected;
+                }
+                else
+                {
+                    renameAssetToolStripMenuItem.Enabled = false;
+                    deleteAssetToolStripMenuItem.Enabled = false;
+                }
+            }
+        }
+
+        /// <summary>
         /// Show a dialog to choose an output audio device.
         /// Only works when the audio player is stopped.
         /// </summary>
@@ -149,6 +197,14 @@ namespace Zaboom
         /// </summary>
         private void mAssetBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            SelectedAssetChanged();
+        }
+
+        /// <summary>
+        /// Play a different asset
+        /// </summary>
+        private void SelectedAssetChanged()
+        {
             if (mPlayer.State == AudioPlayerState.playing)
             {
                 mPlayer.Stop();
@@ -160,6 +216,7 @@ namespace Zaboom
                 mPlayer.Play(mPlayList[mAssetBox.SelectedIndex]);
                 mPlayer.Pause();
             }
+            UpdateButtons();
         }
 
         /// <summary>
@@ -313,29 +370,35 @@ namespace Zaboom
                             mPlayAllButton.Text = "Pl&ay*";
                             mPlayAllButton.Enabled = true;
                             mPlayButton.Enabled = false;
+                            mNextButton.Enabled = mAssetBox.SelectedIndex < mAssetBox.Items.Count - 1;
                         }
                         else
                         {
                             mPlayButton.Text = "&Play";
                             mPlayButton.Enabled = true;
                             mPlayAllButton.Enabled = false;
+                            mNextButton.Enabled = false;
                         }
+                        mPrevButton.Enabled = true;
                         mStopButton.Enabled = true;
                         outputDeviceToolStripMenuItem.Enabled = false;
                         break;
                     case AudioPlayerState.playing:
                         if (mPlayAll)
                         {
-                            mPlayAllButton.Text = "&Pause";
+                            mPlayAllButton.Text = "P&ause";
                             mPlayAllButton.Enabled = true;
                             mPlayButton.Enabled = false;
+                            mNextButton.Enabled = mAssetBox.SelectedIndex < mAssetBox.Items.Count - 1;
                         }
                         else
                         {
                             mPlayButton.Text = "&Pause";
                             mPlayButton.Enabled = true;
                             mPlayAllButton.Enabled = false;
+                            mNextButton.Enabled = false;
                         }
+                        mPrevButton.Enabled = true;
                         mStopButton.Enabled = true;
                         outputDeviceToolStripMenuItem.Enabled = false;
                         break;
@@ -345,9 +408,57 @@ namespace Zaboom
                         mPlayButton.Text = "&Play";
                         mPlayButton.Enabled = mPlayList.Count > 0;
                         mStopButton.Enabled = false;
+                        mPrevButton.Enabled = mAssetBox.SelectedIndex > 0;
+                        mNextButton.Enabled = mAssetBox.SelectedIndex < mAssetBox.Items.Count - 1;
                         outputDeviceToolStripMenuItem.Enabled = true;
                         break;
                 }
+            }
+        }
+
+        private static readonly double MaxBackTime = 1000.0;  // max time for which we go back to the previous track
+
+        private void mPrevButton_Click(object sender, EventArgs e)
+        {
+            switch (mPlayer.State)
+            {
+                case AudioPlayerState.paused:
+                case AudioPlayerState.playing:
+                    if (mPlayer.CurrentTimePosition < MaxBackTime && mPlayAll & mAssetBox.SelectedIndex > 0)
+                    {
+                        --mAssetBox.SelectedIndex;
+                    }
+                    SelectedAssetChanged();
+                    break;
+                case AudioPlayerState.stopped:
+                    if (mAssetBox.SelectedIndex > 0)
+                    {
+                        --mAssetBox.SelectedIndex;
+                        SelectedAssetChanged();
+                    }
+                    break;
+            }
+        }
+
+        private void mNextButton_Click(object sender, EventArgs e)
+        {
+            switch (mPlayer.State)
+            {
+                case AudioPlayerState.paused:
+                case AudioPlayerState.playing:
+                    if (mPlayAll && mAssetBox.SelectedIndex <= mAssetBox.Items.Count - 1)
+                    {
+                        ++mAssetBox.SelectedIndex;
+                        SelectedAssetChanged();
+                    }
+                    break;
+                case AudioPlayerState.stopped:
+                    if (mAssetBox.SelectedIndex <= mAssetBox.Items.Count - 1)
+                    {
+                        ++mAssetBox.SelectedIndex;
+                        SelectedAssetChanged();
+                    }
+                    break;
             }
         }
     }
