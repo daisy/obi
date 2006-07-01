@@ -26,6 +26,9 @@ private long m_lBeginByte ;
 		private long m_lEndByte;
 private long m_lLengthInBytes ;
 
+private long m_lFileAudioLengthInBytes ;
+		private double m_dFileAudioLengthInTime  ;
+
 		/// <summary>
 		/// The path of the audio file that this clip is part of.
 		/// </summary>
@@ -132,21 +135,34 @@ CalculationFunctions Calc = new CalculationFunctions () ;
 		/// <param name="endTime">End time of the clip in milliseconds.</param>
 		public AudioClip(string path, double beginTime, double endTime)
 		{
+
 			Init (path) ;
-			m_sPath = path ;
-m_dBeginTime = beginTime ;
-m_dEndTime = endTime ;
-			m_dLengthInTime  = m_dEndTime  - m_dBeginTime ;
+			if (beginTime < 0 || endTime > m_dFileAudioLengthInTime )
+			{
+				throw new Exception ("time parameters of clip are out of bound of file size") ;
+			}
+			else if (beginTime >= endTime)
+			{
+throw new Exception ("BeginTime  more than EndTime of clip ") ;
+			}
+			else
+			{
+				m_sPath = path ;
+				m_dBeginTime = beginTime ;
+				m_dEndTime = endTime ;
+				m_dLengthInTime  = m_dEndTime  - m_dBeginTime ;
 
 
-m_lBeginByte = Calc.ConvertTimeToByte (m_dBeginTime , m_ClipSamplingRate , m_ClipFrameSize) ;
-			m_lBeginByte  = Calc.AdaptToFrame (m_lBeginByte  , m_ClipFrameSize) ;
+				m_lBeginByte = Calc.ConvertTimeToByte (m_dBeginTime , m_ClipSamplingRate , m_ClipFrameSize) ;
+				m_lBeginByte  = Calc.AdaptToFrame (m_lBeginByte  , m_ClipFrameSize) ;
 
-			m_lEndByte = Calc.ConvertTimeToByte (m_dEndTime , m_ClipSamplingRate , m_ClipFrameSize) ;
-			m_lEndByte  = Calc.AdaptToFrame (m_lEndByte  , m_ClipFrameSize) ;
+				m_lEndByte = Calc.ConvertTimeToByte (m_dEndTime , m_ClipSamplingRate , m_ClipFrameSize) ;
+				m_lEndByte  = Calc.AdaptToFrame (m_lEndByte  , m_ClipFrameSize) ;
 
-m_lLengthInBytes = m_lEndByte - m_lBeginByte ;
+				m_lLengthInBytes = m_lEndByte - m_lBeginByte ;
+			}
 		}
+
 
 		/// <summary>
 		/// Make a copy of the audio clip.
@@ -215,19 +231,8 @@ EndTime = m_dBeginTime + EndTime ;
 			Ar [0] = Ar [1] = Ar[2] = Ar [3] = 0 ;
 			BinaryReader br = new  BinaryReader (File.OpenRead(sPath)) ;
 						
-/*
-			// AudioLengthBytes
 
-			br.BaseStream.Position = 40 ;
-
-			for (int i = 0; i<4 ; i++)
-			{
-				Ar [i] = Convert.ToInt32(br.ReadByte() );
-
-			}
-			m_AudioLengthBytes = ConvertToDecimal (Ar) ;
-*/
-
+			
 			// channels
 			Ar [0] = Ar [1] = Ar[2] = Ar [3] = 0 ;
 
@@ -271,6 +276,20 @@ EndTime = m_dBeginTime + EndTime ;
 			}
 
 			m_ClipBitDepth = Convert.ToInt32 (ConvertToDecimal (Ar)) ;
+
+			// AudioLengthBytes
+
+			br.BaseStream.Position = 40 ;
+
+			for (int i = 0; i<4 ; i++)
+			{
+				Ar [i] = Convert.ToInt32(br.ReadByte() );
+
+			}
+			m_lFileAudioLengthInBytes= ConvertToDecimal (Ar) ;
+			m_dFileAudioLengthInTime = Calc.ConvertByteToTime (m_lFileAudioLengthInBytes, m_ClipSamplingRate , m_ClipFrameSize) -00;
+
+
 
 /*
 			//size in time
@@ -333,6 +352,9 @@ EndTime = m_dBeginTime + EndTime ;
 			// adjustment to prevent end of file exception
 			lSize = ((lSize / Block) * Block) - 4;
 
+// flags to indicate phrases and silence
+bool boolPhraseDetected = false ;
+
 			// scanning of file starts
 			for (long j = 44 + this.BeginByte; j< (lSize / Block); j++)
 			{
@@ -346,9 +368,13 @@ EndTime = m_dBeginTime + EndTime ;
 				}
 				else
 				{
+
 					// checks the length of silence
 					if (lCheck > lCountSilGap)
 					{
+						//sets the detection flag
+						boolPhraseDetected = true ;
+
 						if ( (j-44) <= lCountSilGap)
 						{
 							alPhrases.Add( Convert.ToInt64 (0)) ;
@@ -364,10 +390,34 @@ EndTime = m_dBeginTime + EndTime ;
 				// end outer For
 			}
 
-
 			br.Close () ;
 
-			return alPhrases ;
+double dBeginTime ;
+double dEndTime ;
+
+ArrayList alClipList = new ArrayList () ;
+
+alClipList.Add (boolPhraseDetected) ;
+
+			if (boolPhraseDetected == false)
+			{
+				alClipList.Add (this) ;
+				
+			}
+			else
+			{
+				for (int i = 0 ; i < alPhrases.Count- 1 ; i++)
+				{
+dBeginTime = Calc.ConvertByteToTime (Convert.ToInt64(alPhrases [i]) , m_ClipSamplingRate , m_ClipFrameSize );
+dEndTime = Calc.ConvertByteToTime (Convert.ToInt64(alPhrases [i+1]) , m_ClipSamplingRate , m_ClipFrameSize );
+alClipList.Add (CopyClipPart (dBeginTime , dEndTime) );
+				}
+				dBeginTime = Calc.ConvertByteToTime (Convert.ToInt64(alPhrases [alPhrases.Count - 1]) , m_ClipSamplingRate , m_ClipFrameSize );
+alClipList.Add (CopyClipPart ( dBeginTime , m_dEndTime) );
+			}
+
+			return alClipList ;
+			
 		}
 
 		public long GetClipSilenceAmplitude()
