@@ -9,7 +9,8 @@ namespace VirtualAudioBackend
 	public class AudioMediaAsset: MediaAsset, IAudioMediaAsset
 	{
 		// member variables
-		internal ArrayList m_alClipList = new ArrayList () ;
+//ArrayList is to be finally changed to internal
+		public ArrayList m_alClipList = new ArrayList () ;
 		private int m_Channels ;
 		private int m_BitDepth ;
 		private int m_SamplingRate ;
@@ -205,6 +206,7 @@ ArrayList alNewClipList = new ArrayList () ;
 
 			}
 AudioMediaAsset ob_AudioMediaAsset = new AudioMediaAsset (alNewClipList) ;
+/*
 			AudioClip ac ;
 			for (int i = 0 ; i <ob_AudioMediaAsset.m_alClipList.Count ; i++ )
 			{
@@ -212,86 +214,130 @@ AudioMediaAsset ob_AudioMediaAsset = new AudioMediaAsset (alNewClipList) ;
 				MessageBox.Show (ac.BeginTime.ToString ()) ;
 				MessageBox.Show (ac.EndTime.ToString ()) ;
 			}
+			*/
 			return ob_AudioMediaAsset;
 			
 		}
 
 		public void InsertAsset(IAudioMediaAsset chunk, long position)
 		{
+double dPosition = Calc.ConvertByteToTime (position , m_SamplingRate , m_FrameSize) ;
+InsertAsset(chunk, dPosition); 
 		}
 
 		public void InsertAsset(IAudioMediaAsset chunk, double time)
 		{
-ArrayList alClipMark = new ArrayList (FindClipToProcess (time)) ;
-int InsertPositionClipIndex = Convert.ToInt32 (alClipMark [0]) ;
-double dInsertionClipTime = Convert.ToDouble (alClipMark [1]) ;
+			if (CompareAudioAssetFormat (this , chunk)== true && time <= m_dAudioLengthInTime && time >= 0)
+			{
+				AudioMediaAsset ob1 = new AudioMediaAsset ( this.Channels ,this.SampleRate , this.BitDepth) ;
+				if (time > - 0 && time < m_dAudioLengthInTime)
+				{
+					ob1 = GetChunk (0 , time) as AudioMediaAsset;
+					ob1.MergeWith (chunk) ;
+					AudioMediaAsset ob2 = GetChunk (  time , this.LengthInMilliseconds) as AudioMediaAsset ;
+					ob1.MergeWith (ob2) ;
 
-// copy clips before insertion point to new ArrayList
-ArrayList alNewClipList = new ArrayList () ;
 
-			for (int i = 0 ; i< InsertPositionClipIndex ; i++)
-			{
-alNewClipList.Add (m_alClipList[i] ) ;  
-			}
-MessageBox.Show ("Clips copied before index") ;
-AudioClip ob_ClipProcessed = m_alClipList [InsertPositionClipIndex] as  AudioClip ;
-bool boolInsertNewClip ;
-			AudioClip ob_NewClip ;
-			if (dInsertionClipTime == ob_ClipProcessed.LengthInTime)
-			{
-				ob_NewClip  = ob_ClipProcessed ;
-				alNewClipList.Add (ob_ClipProcessed) ;
-				boolInsertNewClip  = false ;
-			}
-			else if ( dInsertionClipTime == 0)
-			{
-				ob_NewClip = ob_ClipProcessed ;
-				boolInsertNewClip  = true ;
-			}
+				}
+				else if (time==0) 
+				{
+					ob1 = chunk as AudioMediaAsset;
+					ob1.MergeWith (this) ;
+				}
+				m_alClipList.Clear () ;
+				for (int i = 0 ; i < ob1.m_alClipList.Count ; i++	) 
+				{
+					m_alClipList.Add (ob1.m_alClipList [i]) ;
+				}
+				m_dAudioLengthInTime = ob1.LengthInMilliseconds ;
+				m_lAudioLengthInBytes = ob1.AudioLengthInBytes ;
+				m_lSizeInBytes = ob1.SizeInBytes ;
+
+				if (time == m_dAudioLengthInTime)
+				{
+					MergeWith (chunk) ;
+				}
+
+			} // end of main format check
 			else
 			{
-AudioClip TempClip = ob_ClipProcessed.CopyClipPart (0 , dInsertionClipTime) ;
-alNewClipList.Add (TempClip) ;
-ob_NewClip = ob_ClipProcessed.CopyClipPart ( dInsertionClipTime, ob_ClipProcessed.LengthInTime) ;
-boolInsertNewClip  = true ;
+throw new Exception ("Incompatible format or Insertion time not in asset range") ;
 			}
 
+				/*
+				ArrayList alClipMark = new ArrayList (FindClipToProcess (time)) ;
+				int InsertPositionClipIndex = Convert.ToInt32 (alClipMark [0]) ;
+				double dInsertionClipTime = Convert.ToDouble (alClipMark [1]) ;
 
-			// copy clips from chunk
-AudioMediaAsset ob_Chunk  = chunk as AudioMediaAsset ;
-			for (int i = 0 ; i< ob_Chunk.m_alClipList.Count ; i++)
-			{
-alNewClipList.Add (ob_Chunk.m_alClipList	[i]) ;
+				// copy clips before insertion point to new ArrayList
+				ArrayList alNewClipList = new ArrayList () ;
+
+							for (int i = 0 ; i< InsertPositionClipIndex ; i++)
+							{
+				alNewClipList.Add (m_alClipList[i] ) ;  
+							}
+				MessageBox.Show ("Clips copied before index") ;
+				AudioClip ob_ClipProcessed = m_alClipList [InsertPositionClipIndex] as  AudioClip ;
+				bool boolInsertNewClip ;
+							AudioClip ob_NewClip ;
+							if (dInsertionClipTime == ob_ClipProcessed.LengthInTime)
+							{
+								ob_NewClip  = ob_ClipProcessed ;
+								alNewClipList.Add (ob_ClipProcessed) ;
+								boolInsertNewClip  = false ;
+							}
+							else if ( dInsertionClipTime == 0)
+							{
+								ob_NewClip = ob_ClipProcessed ;
+								boolInsertNewClip  = true ;
+							}
+							else
+							{
+				AudioClip TempClip = ob_ClipProcessed.CopyClipPart (0 , dInsertionClipTime) ;
+				alNewClipList.Add (TempClip) ;
+				ob_NewClip = ob_ClipProcessed.CopyClipPart ( dInsertionClipTime, ob_ClipProcessed.LengthInTime) ;
+				boolInsertNewClip  = true ;
+							}
+
+
+							// copy clips from chunk
+				AudioMediaAsset ob_Chunk  = chunk as AudioMediaAsset ;
+							for (int i = 0 ; i< ob_Chunk.m_alClipList.Count ; i++)
+							{
+				alNewClipList.Add (ob_Chunk.m_alClipList	[i]) ;
+							}
+
+				// insert new clip derived from processed clip
+							if (boolInsertNewClip == true) 
+							{
+				alNewClipList.Add (ob_NewClip) ;
+							}
+
+							// Add rest of clips in original asset to new clip list
+							for (int i = InsertPositionClipIndex+1 ; i < m_alClipList.Count ; i++) 
+							{
+				alNewClipList.Add (m_alClipList [i]) ;
+							}
+
+				m_alClipList.Clear () ;
+							m_alClipList = alNewClipList ;
+				m_dAudioLengthInTime = m_dAudioLengthInTime  + ob_Chunk.LengthInMilliseconds ;
+				m_lAudioLengthInBytes = Calc.ConvertTimeToByte (m_dAudioLengthInTime , m_SamplingRate , m_FrameSize) ;
+				m_lSizeInBytes = m_lAudioLengthInBytes  ;
+				*/
+				/*
+				MessageBox.Show ("ClipList") ;
+							AudioClip ac;
+
+							for (int i = 0 ; i < m_alClipList.Count ; i++)
+							{
+				ac = m_alClipList [i] as AudioClip;
+								MessageBox.Show (ac.BeginTime.ToString ()) ;
+								MessageBox.Show (ac.EndTime.ToString ()) ;
+							}
+							*/
+				// end of insert chunk function
 			}
-
-// insert new clip derived from processed clip
-			if (boolInsertNewClip == true) 
-			{
-alNewClipList.Add (ob_NewClip) ;
-			}
-
-			// Add rest of clips in original asset to new clip list
-			for (int i = InsertPositionClipIndex+1 ; i < m_alClipList.Count ; i++) 
-			{
-alNewClipList.Add (m_alClipList [i]) ;
-			}
-
-m_alClipList.Clear () ;
-			m_alClipList = alNewClipList ;
-m_dAudioLengthInTime = m_dAudioLengthInTime  + ob_Chunk.LengthInMilliseconds ;
-m_lAudioLengthInBytes = Calc.ConvertTimeToByte (m_dAudioLengthInTime , m_SamplingRate , m_FrameSize) ;
-m_lSizeInBytes = m_lAudioLengthInBytes  ;
-
-MessageBox.Show ("ClipList") ;
-			AudioClip ac;
-			for (int i = 0 ; i < m_alClipList.Count ; i++)
-			{
-ac = m_alClipList [i] as AudioClip;
-				MessageBox.Show (ac.BeginTime.ToString ()) ;
-				MessageBox.Show (ac.EndTime.ToString ()) ;
-			}
-// end of insert chunk function
-		}
 
 		public IAudioMediaAsset DeleteChunk(long beginPosition, long endPosition)
 		{
@@ -490,10 +536,51 @@ return Ref.GetClipSilenceAmplitude () ;
 			
 long lLength = Calc.ConvertTimeToByte (length , m_SamplingRate, m_FrameSize) ;
 			long lBefore = Calc.ConvertTimeToByte (before , m_SamplingRate , m_FrameSize) ;
-AudioClip ob_Clip ;
-ArrayList alPhraseList = new ArrayList () ;
-ArrayList alClipPhraseList ; 
 
+
+AudioClip ob_Clip ;
+ArrayList alAssetList= new ArrayList() ;
+ArrayList alClipList ; 
+AudioMediaAsset ob_Asset =new AudioMediaAsset ( m_Channels , m_SamplingRate , m_BitDepth) ;
+
+// apply phrase detection on each clip in clip list of this asset
+			for (int i = 0 ; i < m_alClipList.Count ; i++)
+			{
+ob_Clip = m_alClipList [i] as AudioClip ;
+				alClipList = ob_Clip.DetectPhrases(threshold , lLength , lBefore) ;
+MessageBox.Show (alClipList.Count.ToString () + "Clip Count") ;
+				if (Convert.ToBoolean (alClipList [0]) == false)
+				{
+MessageBox.Show ("bool is False") ;
+					ob_Asset.AddClip (alClipList [1] as AudioClip) ;
+				}
+				else
+				{
+MessageBox.Show ("bool is true") ;
+ob_Asset.AddClip (alClipList [1] as AudioClip) ;
+alAssetList.Add (ob_Asset) ;
+MessageBox.Show ("Asset Added before loop") ;
+					for (int j = 2 ; j< alClipList.Count ; j++)
+					{
+						ob_Asset = new AudioMediaAsset (m_Channels , m_SamplingRate , m_BitDepth) ;
+ob_Asset.AddClip (alClipList [j] as AudioClip) ;
+alAssetList.Add (ob_Asset) ;
+MessageBox.Show ("Asset added") ;
+					}
+					//ob_Asset = new AudioMediaAsset (m_Channels , m_SamplingRate , m_BitDepth) ;
+					//ob_Asset.AddClip (alClipList [alClipList.Count- 1 ] as AudioClip) ;
+
+					if (i == m_alClipList.Count - 1)
+					{
+//alAssetList.Add(ob_Asset) ;
+					}
+				} // bool if ends
+
+			}
+
+
+return alAssetList ;
+/*
 double dClipFromOrigin = 0 ;
 double dPhraseFromOrigin = 0 ;
 
@@ -539,7 +626,7 @@ MessageBox.Show ("Asset created") ;
 				
 			}
 			return alReturnAssetList ;
-			
+*/			
 
 		}
 
@@ -621,5 +708,15 @@ m_dAudioLengthInTime = m_dAudioLengthInTime + Clip.LengthInTime ;
 m_lAudioLengthInBytes = Calc.ConvertTimeToByte ( m_dAudioLengthInTime , m_SamplingRate , m_FrameSize) ;
 m_lSizeInBytes = m_lAudioLengthInBytes ;
 		}
+
+		private bool CompareAudioAssetFormat (IAudioMediaAsset asset1 , IAudioMediaAsset asset2)
+		{
+if ( asset1.Channels == asset2.Channels && asset2.SampleRate == asset2.SampleRate && asset1.BitDepth == asset2.BitDepth)
+	return true ;
+			else
+	return false ;
+
+		}
+
 	}// end of class
 }

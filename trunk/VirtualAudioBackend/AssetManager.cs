@@ -224,6 +224,20 @@ MediaAssetToRemove.m_AssetManager = null ;
 
 		public IMediaAsset CopyAsset(IMediaAsset asset)
 		{
+			if (m_htAssetList.ContainsKey (asset.Name)  )
+			{
+				MediaAsset ob_MediaAsset = asset.Copy()  as MediaAsset;
+				ob_MediaAsset.Name = NewMediaAssetName () ;
+				m_htAssetList.Add (ob_MediaAsset.Name, ob_MediaAsset) ;
+				static_htExists.Add (ob_MediaAsset.Name, ob_MediaAsset) ;
+				return ob_MediaAsset ;
+			}
+			else
+			{
+throw new Exception ("Asset not found in Hashtable") ;
+return null ;
+			}
+/*
 			IMediaAsset CopyAsset = null;
 			CopyAsset.Name = string.Empty;
 			bool BOOLAssetFound = false;
@@ -247,12 +261,8 @@ MediaAssetToRemove.m_AssetManager = null ;
 			if(BOOLAssetCopied == false)
 				throw new Exception("asset could not be copied");
 			return CopyAsset;
+			*/
 		}
-
-
-
-
-
 
 
 		public string RenameAsset(IMediaAsset asset, String newName)
