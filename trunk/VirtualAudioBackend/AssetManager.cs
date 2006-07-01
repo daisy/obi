@@ -224,8 +224,36 @@ MediaAssetToRemove.m_AssetManager = null ;
 
 		public IMediaAsset CopyAsset(IMediaAsset asset)
 		{
-			return null;
+			IMediaAsset CopyAsset = null;
+			CopyAsset.Name = string.Empty;
+			bool BOOLAssetFound = false;
+			bool BOOLAssetCopied = false;
+			IDictionaryEnumerator mEnumerator = m_htAssetList.GetEnumerator();
+			while(mEnumerator.MoveNext())
+			{
+				if(mEnumerator.Value  == asset)
+				{
+					BOOLAssetFound  =  true;
+					CopyAsset = asset.Copy();
+					CopyAsset.Name = "Copy"+"Of"+string.Copy(asset.Name);
+					BOOLAssetCopied = true;
+					m_htAssetList.Add(CopyAsset.Name, CopyAsset);
+					static_htExists.Add(CopyAsset.Name, CopyAsset);
+					break;
+				}
+			}
+				if(BOOLAssetFound == false)
+					throw new Exception("no such asset is found");
+			if(BOOLAssetCopied == false)
+				throw new Exception("asset could not be copied");
+			return CopyAsset;
 		}
+
+
+
+
+
+
 
 		public string RenameAsset(IMediaAsset asset, String newName)
 		{
