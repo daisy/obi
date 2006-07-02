@@ -101,10 +101,13 @@ m_alClipList = clips ;
 
 			for (int i = 0 ; i< clips.Count; i++)
 			{
+
 				ob_AudioClip = clips [i] as AudioClip ;
+
 				m_dAudioLengthInTime   = m_dAudioLengthInTime   + ob_AudioClip.LengthInTime ;
 
 			}
+
 			m_lAudioLengthInBytes = Calc.ConvertTimeToByte (m_dAudioLengthInTime, m_SamplingRate, m_FrameSize) ;
 m_lSizeInBytes = m_lAudioLengthInBytes ;
 		}
@@ -173,22 +176,27 @@ ArrayList alNewClipList = new ArrayList () ;
 			int EndClipIndex = Convert.ToInt32 (alEndList [0]) ;
 			double dEndTimeMark = Convert.ToDouble(alEndList [1]) ;
 
+// transfer clip to process to separate object
 			AudioClip ob_BeginClip = m_alClipList[BeginClipIndex] as AudioClip ;
+
 
 			if (BeginClipIndex == EndClipIndex)
 			{
 				AudioClip ob_NewClip= ob_BeginClip.CopyClipPart (dBeginTimeMark, dEndTimeMark) ;
 				alNewClipList.Add (ob_NewClip) ;
+
 			}
 			else
 			{
-			
 			
 				AudioClip ob_EndClip = m_alClipList[EndClipIndex] as AudioClip ;
 
 				if (dBeginTimeMark <ob_BeginClip.LengthInTime )
 				{
 					AudioClip ob_NewBeginClip= ob_BeginClip.CopyClipPart (dBeginTimeMark, ob_BeginClip.LengthInTime) ;
+if (ob_NewBeginClip.Equals (null)  ) 
+MessageBox.Show ("if (dBeginTimeMark <ob_BeginClip.LengthInTime )") ;
+
 					alNewClipList.Add (ob_NewBeginClip) ;
 				}
 				
@@ -196,15 +204,23 @@ ArrayList alNewClipList = new ArrayList () ;
 				for (int i = BeginClipIndex + 1 ; i < EndClipIndex ; i ++)
 				{
 					alNewClipList.Add (m_alClipList [i]) ;
-					MessageBox.Show ("Clips in between") ;
+					
 				}
+
 				if (dEndTimeMark > 0)
 				{
+
 					AudioClip ob_NewEndClip= ob_EndClip.CopyClipPart (0 ,dEndTimeMark) ;
+
+					if (ob_NewEndClip.Equals (null)  ) 
+						MessageBox.Show ("if (dEndTimeMark > 0)") ;
+
+
 					alNewClipList.Add (ob_NewEndClip) ;
 				}			
 
 			}
+
 AudioMediaAsset ob_AudioMediaAsset = new AudioMediaAsset (alNewClipList) ;
 /*
 			AudioClip ac ;
@@ -348,13 +364,18 @@ double dBeginTime = Calc.ConvertByteToTime (beginPosition , m_SamplingRate , m_F
 
 		public IAudioMediaAsset DeleteChunk(double beginTime, double endTime)
 		{
-			AudioMediaAsset ob_FromtAsset  = new AudioMediaAsset (0,0,0) ;;
-			AudioMediaAsset ob_RearAsset = new AudioMediaAsset (0,0,0) ;;
+AudioMediaAsset ob_NewAsset = GetChunk (beginTime , endTime ) as AudioMediaAsset ; 
+
+			AudioMediaAsset ob_FromtAsset  = new AudioMediaAsset (m_Channels , m_SamplingRate , m_BitDepth) ;
+			AudioMediaAsset ob_RearAsset = new AudioMediaAsset (m_Channels , m_SamplingRate , m_BitDepth) ;
 
 			if (beginTime != 0&& endTime != m_dAudioLengthInTime)
 			{
+
 				ob_FromtAsset= GetChunk (0 , beginTime)  as AudioMediaAsset;
+
 				ob_RearAsset = GetChunk (endTime , m_dAudioLengthInTime) as AudioMediaAsset ;
+
 				ob_FromtAsset.MergeWith (ob_RearAsset) ;
 			}
 			else if (beginTime != 0)
@@ -366,9 +387,14 @@ ob_FromtAsset = GetChunk (0 , beginTime) as AudioMediaAsset;
 				ob_FromtAsset= GetChunk (endTime , m_dAudioLengthInTime) as AudioMediaAsset ;
 			}
 
+m_alClipList = ob_FromtAsset.m_alClipList ;
+m_dAudioLengthInTime = ob_FromtAsset.LengthInMilliseconds ;
+			m_lAudioLengthInBytes = ob_FromtAsset.AudioLengthInBytes ;
+m_lSizeInBytes = ob_FromtAsset.SizeInBytes ;
 
+ob_FromtAsset = null ;
 
-return ob_FromtAsset;
+return ob_NewAsset ;
 /*
 AudioClip ac ;
 			for (int i = 0 ; i <ob_AudioMediaAsset.m_alClipList.Count ; i++ )
@@ -383,17 +409,21 @@ ac = ob_AudioMediaAsset.m_alClipList[i] as AudioClip ;
 
 		private ArrayList FindClipToProcess  ( double Time)
 		{
+if (	Time > m_dAudioLengthInTime || Time < 0)  
+throw new Exception ("find clip time is out of bound of Asset time") ;
 
 			AudioClip ob_AudioClip = m_alClipList [0] as AudioClip;
 			double TimeSum = 0 ;
 			int Count = 0 ;
 			while (TimeSum <= Time  && TimeSum < m_dAudioLengthInTime)
 			{
-if (Count < m_alClipList.Count )
-ob_AudioClip = m_alClipList [Count] as AudioClip;
-else
-	break ;
-				
+				if (Count < m_alClipList.Count )
+					ob_AudioClip = m_alClipList [Count] as AudioClip;
+				else
+				{
+
+					break ;
+				}				
 				TimeSum = TimeSum + ob_AudioClip.LengthInTime ;
 				Count++ ;
 			}
@@ -425,6 +455,7 @@ m_alClipList.Add (ob_AudioMediaAsset.m_alClipList [i]) ;
 			m_dAudioLengthInTime = m_dAudioLengthInTime + ob_AudioMediaAsset.LengthInMilliseconds ;
 m_lAudioLengthInBytes = m_lAudioLengthInBytes + ob_AudioMediaAsset.AudioLengthInBytes ;
 m_lSizeInBytes = m_lSizeInBytes + ob_AudioMediaAsset.SizeInBytes ;
+next = null ;
 	}
 
 		public IAudioMediaAsset Split(long position)
@@ -528,7 +559,10 @@ return Ref.GetClipSilenceAmplitude () ;
 
 		public ArrayList ApplyPhraseDetection(long threshold, long length, long before)
 		{
-			return null;
+double dLength = Calc.ConvertByteToTime ( length , m_SamplingRate , m_FrameSize ) ;
+			double dBefore = Calc.ConvertByteToTime ( before , m_SamplingRate , m_FrameSize ) ;
+
+			return ApplyPhraseDetection(threshold, dLength , dBefore) ;
 		}
 
 		public ArrayList ApplyPhraseDetection(long threshold, double length, double before)

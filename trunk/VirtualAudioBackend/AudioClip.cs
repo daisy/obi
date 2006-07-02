@@ -210,7 +210,17 @@ m_dLengthInTime  = m_dEndTime - m_dBeginTime ;
 			BeginTime =m_dBeginTime + BeginTime ;
 EndTime = m_dBeginTime + EndTime ;
 
-			
+
+		// temp checks are as follows
+if (BeginTime < this.BeginTime ) 
+MessageBox.Show ("error begin time") ;
+
+if (EndTime > this.EndTime  )
+			MessageBox.Show ("error in end time") ;
+
+if (BeginTime>= EndTime)
+MessageBox.Show ("both") ;
+
 			if (BeginTime >= this.BeginTime && EndTime <= this.EndTime  && BeginTime< EndTime)
 			{
 				AudioClip ob_AudioClip = new AudioClip ( this.Path ,BeginTime , EndTime ) ;
