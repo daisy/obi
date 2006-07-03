@@ -36,6 +36,14 @@ namespace UrakawaApplicationBackend
 			}
 		}
 		
+		public string Directory
+		{
+			get
+			{
+				return ProjectDirectory;
+			}
+		}
+
 		//constructor [should be private]
 		public AssetManager (string sProjectDir)
 		{

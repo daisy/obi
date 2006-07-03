@@ -112,7 +112,7 @@ namespace VirtualAudioBackend
 		public DeleteAssetCommand(IMediaAsset asset)
 		{
 			mAsset = asset;
-			mAssetManager = mAsset.AssetManager;
+			mAssetManager = mAsset.Manager;
 		}
 
 		/// <summary>
@@ -120,7 +120,7 @@ namespace VirtualAudioBackend
 		/// </summary>
 		public override void Do()
 		{
-			mAsset.AssetManager.RemoveAsset(mAsset);
+			mAsset.Manager.RemoveAsset(mAsset);
 		}
 		
 		/// <summary>
@@ -299,7 +299,7 @@ namespace VirtualAudioBackend
 		/// </summary>
 		public override void Do()
 		{
-			mName = mAsset.AssetManager.RenameAsset(mAsset, mName);
+			mName = mAsset.Manager.RenameAsset(mAsset, mName);
 		}
 
 		/// <summary>
@@ -307,7 +307,7 @@ namespace VirtualAudioBackend
 		/// </summary>
 		public override void Undo()
 		{
-			mName = mAsset.AssetManager.RenameAsset(mAsset, mName);
+			mName = mAsset.Manager.RenameAsset(mAsset, mName);
 		}
 	}
 

@@ -26,7 +26,7 @@ namespace VirtualAudioBackend
 		/// Which type of media (as understood by the project) is this asset.
 		/// When we introduce new media types, we may need the MIME type as well.
 		/// </summary>
-		MediaType MediaType
+		MediaType Type
 		{
 			get;
 		}
@@ -43,7 +43,7 @@ namespace VirtualAudioBackend
 		/// <summary>
 		/// The asset manager that manages this asset, or null if unmanaged.
 		/// </summary>
-		IAssetManager AssetManager
+		IAssetManager Manager
 		{
 			get;
 		}
