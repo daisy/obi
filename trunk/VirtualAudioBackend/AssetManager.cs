@@ -153,7 +153,7 @@ m_htAssetList.Add (asset.Name, asset) ;
 			{
 				m =en.Value as MediaAsset ;
 
-				if (m.MediaType.Equals (assetType)) 
+				if (m.Type.Equals (assetType)) 
 				{
 					htTemp.Add ( en.Key , en.Value) ; 
 				}

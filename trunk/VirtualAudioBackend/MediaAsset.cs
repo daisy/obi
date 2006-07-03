@@ -31,7 +31,7 @@ protected long m_lSizeInBytes ;
 			}
 		}
 
-		public MediaType MediaType
+		public MediaType Type
 		{
 			get
 			{
@@ -51,7 +51,7 @@ protected long m_lSizeInBytes ;
 			}
 		}
 
-		public IAssetManager AssetManager
+		public IAssetManager Manager
 		{
 			get
 			{
