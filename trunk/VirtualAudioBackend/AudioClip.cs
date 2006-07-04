@@ -163,6 +163,32 @@ throw new Exception ("BeginTime  more than EndTime of clip ") ;
 			}
 		}
 
+		public AudioClip(string path )
+		{
+
+			Init (path) ;
+			if (m_dFileAudioLengthInTime <= 0)
+			{
+				throw new Exception ("File has no audio data") ;
+			}
+			
+			else
+			{
+				m_sPath = path ;
+				m_dBeginTime = 0;
+				m_dEndTime = m_dFileAudioLengthInTime ;
+				m_dLengthInTime  = m_dFileAudioLengthInTime ;
+
+
+				m_lBeginByte = Calc.ConvertTimeToByte (m_dBeginTime , m_ClipSamplingRate , m_ClipFrameSize) ;
+				m_lBeginByte  = Calc.AdaptToFrame (m_lBeginByte  , m_ClipFrameSize) ;
+
+				m_lEndByte = Calc.ConvertTimeToByte (m_dEndTime , m_ClipSamplingRate , m_ClipFrameSize) ;
+				m_lEndByte  = Calc.AdaptToFrame (m_lEndByte  , m_ClipFrameSize) ;
+
+				m_lLengthInBytes = m_lEndByte - m_lBeginByte ;
+			}
+		}
 
 		/// <summary>
 		/// Make a copy of the audio clip.
@@ -297,7 +323,7 @@ MessageBox.Show ("both") ;
 
 			}
 			m_lFileAudioLengthInBytes= ConvertToDecimal (Ar) ;
-			m_dFileAudioLengthInTime = Calc.ConvertByteToTime (m_lFileAudioLengthInBytes, m_ClipSamplingRate , m_ClipFrameSize) -00;
+			m_dFileAudioLengthInTime = Calc.ConvertByteToTime (m_lFileAudioLengthInBytes, m_ClipSamplingRate , m_ClipFrameSize) -10;
 
 
 
