@@ -12,6 +12,7 @@ using Microsoft.DirectX.DirectSound;
 
 using UrakawaApplicationBackend;
 using UrakawaApplicationBackend.events.audioPlayerEvents;
+using UrakawaApplicationBackend.events.assetManagerEvents;
 
 namespace Zaboom
 {
@@ -23,10 +24,10 @@ namespace Zaboom
     {
         private AudioPlayer mPlayer;              // audio player instance
         private int mDeviceIndex;                 // index of the current output device in the list obtained from the player
+        private AssetManager mManager;            // asset manager for this project
         private List<AudioMediaAsset> mPlayList;  // list of the audio assets to play
         //private VuMeter mVuMeter;                 // VU Meter (not debug-proof, will readd later)
 
-        private Dictionary<string, AudioMediaAsset> mPaths;  // imported files
         private bool mPlayAll;                               // true if playing all assets, false if playing a single asset.
 
         public ZaboomForm()
@@ -51,8 +52,8 @@ namespace Zaboom
             }
             mDeviceIndex = 0;
             mPlayer.SetDevice(this, mDeviceIndex);
+            mManager = new AssetManager(GetTemporaryDirectory());
             mPlayList = new List<AudioMediaAsset>();
-            mPaths = new Dictionary<string, AudioMediaAsset>();
             mPlayerStatusLabel.Text = mPlayer.State.ToString();
             renameAssetToolStripMenuItem.Enabled = false;
             deleteAssetToolStripMenuItem.Enabled = false;
@@ -62,6 +63,8 @@ namespace Zaboom
                 new UrakawaApplicationBackend.events.audioPlayerEvents.DEndOfAudioAssetEvent(OnEndOfAsset);
             mPlayer.StateChangedEvent +=
                 new UrakawaApplicationBackend.events.audioPlayerEvents.DStateChangedEvent(OnStateChanged);
+            mManager.AssetRenamedEvent += new DAssetRenamedEvent(OnAssetRenamed);
+            mManager.AssetDeletedEvent += new DAssetDeletedEvent(OnAssetDeleted);
             /*mVuMeter = new VuMeter();
             mPlayer.VuMeterObject = mVuMeter;
             mVuMeter.LowerThreshold = 50;
@@ -69,6 +72,19 @@ namespace Zaboom
             mVuMeter.ScaleFactor = 2;
             mVuMeter.SampleTimeLength = 2000;
             mVuMeter.ShowForm();*/
+        }
+
+        /// <summary>
+        /// Get a temporary directory to store the assets.
+        /// </summary>
+        /// <returns>The name of the project directory.</returns>
+        private string GetTemporaryDirectory()
+        {
+            string path = Path.GetTempPath() + "\\zaboom-" + Path.GetRandomFileName();
+            while (Directory.Exists(path)) path = Path.GetTempPath() + "\\" + Path.GetRandomFileName();
+            Directory.CreateDirectory(path);
+            Console.WriteLine("Directory for audio: " + path);
+            return path;
         }
 
         #region "menu items"
@@ -86,28 +102,20 @@ namespace Zaboom
                 foreach (string path in dialog.FileNames)
                 {
                     AudioMediaAsset asset = new AudioMediaAsset(path);
-                    if (mPaths.ContainsKey(path))
+                    if (asset.Validate())
                     {
-                        MessageBox.Show("Path \"" + path + "\" was already added.", "Duplicate path",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        asset = (AudioMediaAsset)mManager.CopyAsset(asset);
+                        mManager.RenameAsset(asset, Path.GetFileNameWithoutExtension(path));
+                        mAssetBox.Items.Add(asset.Name);
+                        mPlayList.Add(asset);
+                        if (mPlayer.State == AudioPlayerState.stopped) mAssetBox.SelectedIndex = mAssetBox.Items.Count - 1;
+                        renameAssetToolStripMenuItem.Enabled = true;
+                        deleteAssetToolStripMenuItem.Enabled = true;
                     }
                     else
                     {
-                        if (asset.Validate())
-                        {
-                            mPaths.Add(path, asset);
-                            asset.Name = Path.GetFileNameWithoutExtension(path);
-                            mAssetBox.Items.Add(asset.Name);
-                            mPlayList.Add(asset);
-                            if (mPlayer.State == AudioPlayerState.stopped) mAssetBox.SelectedIndex = mAssetBox.Items.Count - 1;
-                            renameAssetToolStripMenuItem.Enabled = true;
-                            deleteAssetToolStripMenuItem.Enabled = true;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Unable to read audio file \"" + path + "\", format is not supported.",
-                                "Unsupported audio format", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        MessageBox.Show("Unable to read audio file \"" + path + "\", format is not supported.",
+                            "Unsupported audio format", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 UpdateButtons();
@@ -134,7 +142,7 @@ namespace Zaboom
                 RenameAssetDialog dialog = new RenameAssetDialog(asset.Name);
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    asset.Name = dialog.AssetName;
+                    mManager.RenameAsset(asset, dialog.AssetName);
                     mAssetBox.Items[mAssetBox.SelectedIndex] = asset.Name;
                 }
             }
@@ -149,16 +157,7 @@ namespace Zaboom
             if (mPlayer.State == AudioPlayerState.stopped && mAssetBox.SelectedIndex >= 0)
             {
                 int selected = mAssetBox.SelectedIndex;
-                string path = null;
-                foreach (string p in mPaths.Keys)
-                {
-                    if (mPaths[p] == mPlayList[selected])
-                    {
-                        path = p;
-                        break;
-                    }
-                }
-                mPaths.Remove(path);
+                mManager.DeleteAsset(mPlayList[selected]);
                 mPlayList.RemoveAt(selected);
                 mAssetBox.Items.RemoveAt(selected);
                 if (mPlayList.Count > 0)
@@ -170,6 +169,32 @@ namespace Zaboom
                     renameAssetToolStripMenuItem.Enabled = false;
                     deleteAssetToolStripMenuItem.Enabled = false;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Split the current asset at the current position
+        /// </summary>
+        private void splitAssetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mAssetBox.SelectedIndex >= 0)
+            {
+                int selected = mAssetBox.SelectedIndex;
+                AudioMediaAsset asset = mPlayList[selected];
+                ArrayList assets = asset.Split(mPlayer.CurrentTimePosition);
+                //mManager.DeleteAsset(asset);
+                mPlayList.RemoveAt(selected);
+                mAssetBox.Items.RemoveAt(selected);
+                AudioMediaAsset before = (AudioMediaAsset)assets[0];
+                mManager.AddAsset(before);
+                mPlayList.Insert(selected, before);
+                mAssetBox.Items.Insert(selected, before.Name);
+                AudioMediaAsset after = (AudioMediaAsset)assets[1];
+                mManager.AddAsset(after);
+                mPlayList.Insert(selected + 1, after);
+                mAssetBox.Items.Insert(selected + 1, after.Name);
+                mAssetBox.SelectedIndex = selected + 1;
+                mManager.DeleteAsset(asset);
             }
         }
 
@@ -188,6 +213,11 @@ namespace Zaboom
                     mPlayer.SetDevice(this, mDeviceIndex);
                 }
             }
+        }
+
+        private void inputDeviceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
         #endregion
@@ -272,6 +302,20 @@ namespace Zaboom
                     mPlayer.Play(mPlayList[mAssetBox.SelectedIndex]);
                 }
             }
+        }
+
+        /// <summary>
+        /// Catch renamed asset events.
+        /// </summary>
+        public void OnAssetRenamed(object sender, AssetRenamed e)
+        {
+        }
+
+        /// <summary>
+        /// Catch the deleted asset events.
+        /// </summary>
+        public void OnAssetDeleted(object sender, AssetDeleted e)
+        {
         }
 
         /// <summary>
