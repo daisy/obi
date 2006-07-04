@@ -107,6 +107,11 @@
                     AssemblyName = "Commands"
                     HintPath = "..\Commands\bin\Debug\Commands.dll"
                 />
+                <Reference
+                    Name = "System.Drawing"
+                    AssemblyName = "System.Drawing"
+                    HintPath = "..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -202,6 +207,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "VuMeterForm.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "VuMeterForm.resx"
+                    DependentUpon = "VuMeterForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "events\AssetManagerEvents\AssetDeleted.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -232,6 +247,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "events\AudioPlayerEvents\UpdateVuMeter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "events\AudioRecorderEvents\AudioRecorderEvent.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -243,6 +263,16 @@
                 />
                 <File
                     RelPath = "events\AudioRecorderEvents\UpdateVuMeterFromRecorder.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "events\VuMeterEvents\LevelTooLow.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "events\VuMeterEvents\PeakOverload.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
