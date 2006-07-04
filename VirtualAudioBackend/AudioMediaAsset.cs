@@ -407,7 +407,7 @@ ac = ob_AudioMediaAsset.m_alClipList[i] as AudioClip ;
 			*/
 		}
 
-		private ArrayList FindClipToProcess  ( double Time)
+		internal ArrayList FindClipToProcess  ( double Time)
 		{
 if (	Time > m_dAudioLengthInTime || Time < 0)  
 throw new Exception ("find clip time is out of bound of Asset time") ;
@@ -575,7 +575,7 @@ long lLength = Calc.ConvertTimeToByte (length , m_SamplingRate, m_FrameSize) ;
 AudioClip ob_Clip ;
 ArrayList alAssetList= new ArrayList() ;
 ArrayList alClipList ; 
-AudioMediaAsset ob_Asset =new AudioMediaAsset ( m_Channels , m_SamplingRate , m_BitDepth) ;
+AudioMediaAsset ob_Asset =new AudioMediaAsset ( m_Channels ,  m_BitDepth, m_SamplingRate) ;
 
 // apply phrase detection on each clip in clip list of this asset
 			for (int i = 0 ; i < m_alClipList.Count ; i++)
