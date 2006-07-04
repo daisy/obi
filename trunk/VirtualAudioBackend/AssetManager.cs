@@ -235,7 +235,7 @@ MediaAssetToRemove.m_AssetManager = null ;
 			else
 			{
 throw new Exception ("Asset not found in Hashtable") ;
-return null ;
+
 			}
 /*
 			IMediaAsset CopyAsset = null;
