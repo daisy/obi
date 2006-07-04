@@ -41,15 +41,19 @@ namespace Zaboom
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renameAssetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteAssetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.audioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.outputDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inputDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStopButton = new System.Windows.Forms.Button();
             this.mPlayButton = new System.Windows.Forms.Button();
             this.mAssetBox = new System.Windows.Forms.ComboBox();
             this.mPlayAllButton = new System.Windows.Forms.Button();
             this.mPrevButton = new System.Windows.Forms.Button();
             this.mNextButton = new System.Windows.Forms.Button();
-            this.deleteAssetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
+            this.splitAssetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -60,7 +64,7 @@ namespace Zaboom
             this.label2.Location = new System.Drawing.Point(12, 111);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 12);
-            this.label2.TabIndex = 3;
+            this.label2.TabIndex = 5;
             this.label2.Text = "Asse&t:";
             // 
             // statusStrip1
@@ -71,7 +75,7 @@ namespace Zaboom
             this.statusStrip1.Location = new System.Drawing.Point(0, 131);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.statusStrip1.Size = new System.Drawing.Size(472, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(504, 22);
             this.statusStrip1.TabIndex = 7;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -95,7 +99,7 @@ namespace Zaboom
             this.audioToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(472, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(504, 24);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -148,7 +152,9 @@ namespace Zaboom
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.renameAssetToolStripMenuItem,
-            this.deleteAssetToolStripMenuItem});
+            this.deleteAssetToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.splitAssetToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.editToolStripMenuItem.Text = "&Edit";
@@ -160,10 +166,18 @@ namespace Zaboom
             this.renameAssetToolStripMenuItem.Text = "&Rename asset";
             this.renameAssetToolStripMenuItem.Click += new System.EventHandler(this.renameAssetToolStripMenuItem_Click);
             // 
+            // deleteAssetToolStripMenuItem
+            // 
+            this.deleteAssetToolStripMenuItem.Name = "deleteAssetToolStripMenuItem";
+            this.deleteAssetToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.deleteAssetToolStripMenuItem.Text = "&Delete asset";
+            this.deleteAssetToolStripMenuItem.Click += new System.EventHandler(this.deleteAssetToolStripMenuItem_Click);
+            // 
             // audioToolStripMenuItem
             // 
             this.audioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.outputDeviceToolStripMenuItem});
+            this.outputDeviceToolStripMenuItem,
+            this.inputDeviceToolStripMenuItem});
             this.audioToolStripMenuItem.Name = "audioToolStripMenuItem";
             this.audioToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.audioToolStripMenuItem.Text = "Audi&o";
@@ -171,23 +185,31 @@ namespace Zaboom
             // outputDeviceToolStripMenuItem
             // 
             this.outputDeviceToolStripMenuItem.Name = "outputDeviceToolStripMenuItem";
-            this.outputDeviceToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.outputDeviceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.outputDeviceToolStripMenuItem.Text = "&Output device";
             this.outputDeviceToolStripMenuItem.Click += new System.EventHandler(this.outputDeviceToolStripMenuItem_Click);
             // 
+            // inputDeviceToolStripMenuItem
+            // 
+            this.inputDeviceToolStripMenuItem.Enabled = false;
+            this.inputDeviceToolStripMenuItem.Name = "inputDeviceToolStripMenuItem";
+            this.inputDeviceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.inputDeviceToolStripMenuItem.Text = "&Input device";
+            this.inputDeviceToolStripMenuItem.Click += new System.EventHandler(this.inputDeviceToolStripMenuItem_Click);
+            // 
             // mStopButton
             // 
-            this.mStopButton.Location = new System.Drawing.Point(280, 27);
+            this.mStopButton.Location = new System.Drawing.Point(336, 27);
             this.mStopButton.Name = "mStopButton";
             this.mStopButton.Size = new System.Drawing.Size(75, 75);
-            this.mStopButton.TabIndex = 2;
+            this.mStopButton.TabIndex = 3;
             this.mStopButton.Text = "&Stop";
             this.mStopButton.UseVisualStyleBackColor = true;
             this.mStopButton.Click += new System.EventHandler(this.mStopButton_Click);
             // 
             // mPlayButton
             // 
-            this.mPlayButton.Location = new System.Drawing.Point(199, 27);
+            this.mPlayButton.Location = new System.Drawing.Point(174, 27);
             this.mPlayButton.Name = "mPlayButton";
             this.mPlayButton.Size = new System.Drawing.Size(75, 75);
             this.mPlayButton.TabIndex = 1;
@@ -200,13 +222,13 @@ namespace Zaboom
             this.mAssetBox.FormattingEnabled = true;
             this.mAssetBox.Location = new System.Drawing.Point(55, 108);
             this.mAssetBox.Name = "mAssetBox";
-            this.mAssetBox.Size = new System.Drawing.Size(405, 20);
-            this.mAssetBox.TabIndex = 4;
+            this.mAssetBox.Size = new System.Drawing.Size(437, 20);
+            this.mAssetBox.TabIndex = 6;
             this.mAssetBox.SelectedIndexChanged += new System.EventHandler(this.mAssetBox_SelectedIndexChanged);
             // 
             // mPlayAllButton
             // 
-            this.mPlayAllButton.Location = new System.Drawing.Point(118, 27);
+            this.mPlayAllButton.Location = new System.Drawing.Point(93, 27);
             this.mPlayAllButton.Name = "mPlayAllButton";
             this.mPlayAllButton.Size = new System.Drawing.Size(75, 75);
             this.mPlayAllButton.TabIndex = 0;
@@ -216,36 +238,52 @@ namespace Zaboom
             // 
             // mPrevButton
             // 
-            this.mPrevButton.Location = new System.Drawing.Point(37, 27);
+            this.mPrevButton.Location = new System.Drawing.Point(12, 27);
             this.mPrevButton.Name = "mPrevButton";
             this.mPrevButton.Size = new System.Drawing.Size(75, 75);
-            this.mPrevButton.TabIndex = 9;
+            this.mPrevButton.TabIndex = 7;
             this.mPrevButton.Text = "Pre&v";
             this.mPrevButton.UseVisualStyleBackColor = true;
             this.mPrevButton.Click += new System.EventHandler(this.mPrevButton_Click);
             // 
             // mNextButton
             // 
-            this.mNextButton.Location = new System.Drawing.Point(361, 27);
+            this.mNextButton.Location = new System.Drawing.Point(417, 27);
             this.mNextButton.Name = "mNextButton";
             this.mNextButton.Size = new System.Drawing.Size(75, 75);
-            this.mNextButton.TabIndex = 10;
+            this.mNextButton.TabIndex = 4;
             this.mNextButton.Text = "&Next";
             this.mNextButton.UseVisualStyleBackColor = true;
             this.mNextButton.Click += new System.EventHandler(this.mNextButton_Click);
             // 
-            // deleteAssetToolStripMenuItem
+            // button1
             // 
-            this.deleteAssetToolStripMenuItem.Name = "deleteAssetToolStripMenuItem";
-            this.deleteAssetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.deleteAssetToolStripMenuItem.Text = "&Delete asset";
-            this.deleteAssetToolStripMenuItem.Click += new System.EventHandler(this.deleteAssetToolStripMenuItem_Click);
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(255, 27);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 75);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "&Record";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // splitAssetToolStripMenuItem
+            // 
+            this.splitAssetToolStripMenuItem.Name = "splitAssetToolStripMenuItem";
+            this.splitAssetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.splitAssetToolStripMenuItem.Text = "&Split asset";
+            this.splitAssetToolStripMenuItem.Click += new System.EventHandler(this.splitAssetToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // ZaboomForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(472, 153);
+            this.ClientSize = new System.Drawing.Size(504, 153);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.mNextButton);
             this.Controls.Add(this.mPrevButton);
             this.Controls.Add(this.mPlayAllButton);
@@ -292,6 +330,10 @@ namespace Zaboom
         private System.Windows.Forms.Button mPrevButton;
         private System.Windows.Forms.Button mNextButton;
         private System.Windows.Forms.ToolStripMenuItem deleteAssetToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripMenuItem inputDeviceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem splitAssetToolStripMenuItem;
     }
 }
 

@@ -25,6 +25,9 @@ namespace UrakawaApplicationBackend
 		//static counter to implement singleton
 		private static int m_ConstructorCounter =0;
 
+		public DAssetRenamedEvent AssetRenamedEvent;
+		public DAssetDeletedEvent AssetDeletedEvent;
+
 		CatchEvents ob_CatchEvents = new CatchEvents () ;
 
 		// Please implement this
@@ -114,8 +117,9 @@ htTemp.Add ( en.Key , en.Value) ;
 				}
 		
 				AssetDeleted ob_AssetDeleted = new AssetDeleted (assetToDelete) ;
-				ob_AssetDeleted.AssetDeletedEvent+=new DAssetDeletedEvent (ob_CatchEvents.CatchAssetDeletedEvent ) ;
-				ob_AssetDeleted.NotifyAssetDeleted ( this , ob_AssetDeleted) ;
+				//ob_AssetDeleted.AssetDeletedEvent+=new DAssetDeletedEvent (ob_CatchEvents.CatchAssetDeletedEvent ) ;
+				//ob_AssetDeleted.NotifyAssetDeleted ( this , ob_AssetDeleted) ;
+				AssetDeletedEvent(this, ob_AssetDeleted);
 			}
 			else
 			{
@@ -193,9 +197,10 @@ m_htAssetList.Remove (en.Key) ;
 					m_htAssetList.Add (asset.Name , asset) ;
 
 					AssetRenamed ob_AssetRenamed = new AssetRenamed (asset, OldName) ;
-					ob_AssetRenamed.AssetRenamedEvent+= new DAssetRenamedEvent (ob_CatchEvents.CatchAssetRenamedEvent) ; 
-					ob_AssetRenamed.NotifyAssetRenamed ( this, ob_AssetRenamed ) ;
-
+					//ob_AssetRenamed.AssetRenamedEvent+= new DAssetRenamedEvent (ob_CatchEvents.CatchAssetRenamedEvent) ; 
+					//ob_AssetRenamed.NotifyAssetRenamed ( this, ob_AssetRenamed ) ;					
+					AssetRenamedEvent(this, ob_AssetRenamed);
+					
 					return asset ;
 
 				}
@@ -324,6 +329,11 @@ return null ;
 			}
 
 				}
+
+		public void AddAsset(IMediaAsset asset)
+		{
+			m_htAssetList.Add(asset.Name, asset);
+		}
 
 		public void addAssets(Hashtable assetURLs)
 		{
