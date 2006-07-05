@@ -216,8 +216,9 @@ MessageBox.Show (Ex.ToString ()) ;
 		}
 
 // function to catch the update event from VuMeter class to update graph cordinates
-		public void CatchUpdateForms (VuMeter ob_VuMeterArg , UpdateForms Update )
+		public void CatchUpdateForms (object sender , UpdateForms Update )
 		{
+VuMeter ob_VuMeterArg  = sender as VuMeter ;
 ob_VuMeter = ob_VuMeterArg ;
 
 			// Update cordinates
@@ -309,9 +310,9 @@ objGraphics.DrawLine(PenVackPaint , 0, 0, 0, 600);
 		
 bool BeepEnabled = false ;
 // catch the peak overload event triggered by VuMeter
-		public void CatchPeakOverloadEvent ( VuMeter ob_VuMeter , PeakOverload ob_PeakOverload )
+		public void CatchPeakOverloadEvent ( object sender , PeakOverload ob_PeakOverload )
 		{
-
+VuMeter ob_VuMeter  = sender as VuMeter ;
 			if (ob_PeakOverload .Channel == 1)
 			{
 				txtOverloadLeft.Text	 = ob_VuMeter.m_MeanValueLeft.ToString () ;
