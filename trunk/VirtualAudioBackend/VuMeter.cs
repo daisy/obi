@@ -180,15 +180,15 @@ private AudioRecorder  ob_AudioRecorder ;
 		private int [] SampleArrayRight ;
 		private int m_SampleArrayPosition = 0;
 // Handles VuMeter event from player
-		public void CatchUpdateVuMeterEvent ( AudioPlayer Player , UpdateVuMeter Update) 
+		public void CatchUpdateVuMeterEvent ( object sender , UpdateVuMeter Update) 
 		{
-			ob_AudioPlayer = Player ;
-			m_FrameSize = Player.m_FrameSize ;
-			m_Channels = Player.m_Channels ;
-m_UpdateVMArrayLength = Player.m_UpdateVMArrayLength ;
+			ob_AudioPlayer = sender as AudioPlayer;
+			m_FrameSize = ob_AudioPlayer.m_FrameSize ;
+			m_Channels = ob_AudioPlayer.m_Channels ;
+m_UpdateVMArrayLength = ob_AudioPlayer.m_UpdateVMArrayLength ;
 m_arUpdatedVM  = new int  [m_UpdateVMArrayLength ] ;
 
-Array.Copy ( Player.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
+Array.Copy ( ob_AudioPlayer.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
 			Thread UpdateVMForm = new Thread(new ThreadStart (AnimationComputation  ));
 			UpdateVMForm.Start()  ;
 
