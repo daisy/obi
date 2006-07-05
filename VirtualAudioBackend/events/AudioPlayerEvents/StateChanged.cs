@@ -51,6 +51,7 @@ private static readonly StateChanged mFromNotReady = new StateChanged(AudioPlaye
 
 		public void NotifyStateChanged (object sender, StateChanged state)
 		{
+if (StateChangedEvent  != null)
 			StateChangedEvent ( sender, state ) ;
 		}
 	}
