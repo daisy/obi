@@ -53,6 +53,16 @@ namespace VirtualAudioBackend
 			}
 		}
 
+// member variables
+private IAudioMediaAsset m_Asset ;
+		private IAudioMediaAsset m_NewAsset ;
+private long m_lBeginPosition ;
+private long m_lEndPosition ;
+private double m_dBeginTime ;
+private double m_dEndTime ;
+		private bool m_boolTime ;
+
+
 		/// <summary>
 		/// Create a new command to delete audio data from an asset.
 		/// </summary>
@@ -61,6 +71,10 @@ namespace VirtualAudioBackend
 		/// <param name="endPosition">End position of data to delete in bytes.</param>
 		public DeleteAudioDataCommand(IAudioMediaAsset asset, long beginPosition, long endPosition)
 		{
+m_Asset = asset ;
+			m_lBeginPosition = beginPosition ;
+m_lEndPosition = endPosition ;
+m_boolTime = false ;
 		}
 
 		/// <summary>
@@ -69,8 +83,12 @@ namespace VirtualAudioBackend
 		/// <param name="asset">The asset to delete from.</param>
 		/// <param name="beginTime">Begin time of data to delete in milliseconds.</param>
 		/// <param name="endTime">End time of data to delete in milliseconds.</param>
-		public DeleteAudioDataCommand(IAudioMediaAsset asset, double beginTime, long endTime)
+		public DeleteAudioDataCommand(IAudioMediaAsset asset, double beginTime, double endTime)
 		{
+m_Asset = asset ;
+m_dBeginTime = beginTime ;
+m_dEndTime = endTime ;
+m_boolTime = true ;
 		}
 
 		/// <summary>
@@ -78,6 +96,11 @@ namespace VirtualAudioBackend
 		/// </summary>
 		public override void Do()
 		{
+if (m_boolTime == true)
+m_NewAsset = m_Asset.DeleteChunk (m_dBeginTime , m_dEndTime) ;
+else
+	m_NewAsset = m_Asset.DeleteChunk (m_lBeginPosition , m_lEndPosition ) ;
+
 		}
 
 		/// <summary>
@@ -85,6 +108,10 @@ namespace VirtualAudioBackend
 		/// </summary>
 		public override void Undo()
 		{
+if (m_boolTime == true)
+m_Asset.InsertAsset (m_NewAsset, m_dBeginTime ) ;
+else
+	m_Asset.InsertAsset (m_NewAsset , m_lBeginPosition ) ;
 		}
 	}
 
@@ -145,6 +172,13 @@ namespace VirtualAudioBackend
 			}
 		}
 
+// memger variables
+private IAudioMediaAsset m_Asset ;
+		private IAudioMediaAsset m_AssetChunk ;
+private long m_lInsertionPosition ;
+		private double m_dInsertionTime ;
+		private bool m_boolTime ;
+
 		/// <summary>
 		/// Create a new command to insert audio data into an asset.
 		/// </summary>
@@ -152,7 +186,11 @@ namespace VirtualAudioBackend
 		/// <param name="chunk">The chunk of data (as an asset itself) to insert into the asset.</param>
 		/// <param name="position">The insertion position, in bytes.</param>
 		public InsertAudioAssetCommand(IAudioMediaAsset asset, IAudioMediaAsset chunk, long position)
-		{
+		{	
+m_Asset = asset ;
+	m_AssetChunk = chunk ;
+m_lInsertionPosition = position ;
+			m_boolTime = false ;
 		}
 
 		/// <summary>
@@ -163,6 +201,10 @@ namespace VirtualAudioBackend
 		/// <param name="time">The insertion time, in milliseconds.</param>
 		public InsertAudioAssetCommand(IAudioMediaAsset asset, IAudioMediaAsset chunk, double time)
 		{
+			m_Asset = asset ;
+			m_AssetChunk = chunk ;
+			m_dInsertionTime = time ;
+			m_boolTime = true ;
 		}
 
 		/// <summary>
@@ -170,6 +212,11 @@ namespace VirtualAudioBackend
 		/// </summary>
 		public override void Do()
 		{
+			if (m_boolTime == true)
+				m_Asset.InsertAsset (m_AssetChunk , m_dInsertionTime) ;
+				else
+			m_Asset.InsertAsset (m_AssetChunk , m_lInsertionPosition ) ;
+
 		}
 
 		/// <summary>
@@ -177,6 +224,10 @@ namespace VirtualAudioBackend
 		/// </summary>
 		public override void Undo()
 		{
+if (m_boolTime == true)
+m_Asset.DeleteChunk (m_dInsertionTime , m_dInsertionTime + m_AssetChunk.LengthInMilliseconds) ;
+			else
+m_Asset.DeleteChunk (m_lInsertionPosition , m_lInsertionPosition + m_AssetChunk.AudioLengthInBytes) ;
 		}
 	}
 
@@ -193,6 +244,10 @@ namespace VirtualAudioBackend
 			}
 		}
 
+// member variables
+		private IAudioMediaAsset m_FirstAsset ;
+private IAudioMediaAsset m_SecondAsset ;
+
 		/// <summary>
 		/// Create a new command to merge two audio assets.
 		/// </summary>
@@ -200,6 +255,8 @@ namespace VirtualAudioBackend
 		/// <param name="second">The second asset.</param>
 		public MergeAudioAssetsCommand(IAudioMediaAsset first, IAudioMediaAsset second)
 		{
+m_FirstAsset = first ;
+			m_SecondAsset = second ;
 		}
 
 		/// <summary>
@@ -207,6 +264,7 @@ namespace VirtualAudioBackend
 		/// </summary>
 		public override void Do()
 		{
+m_FirstAsset.MergeWith (m_SecondAsset) ;
 		}
 
 		/// <summary>
@@ -214,6 +272,7 @@ namespace VirtualAudioBackend
 		/// </summary>
 		public override void Undo()
 		{
+m_SecondAsset = m_FirstAsset.Split(m_FirstAsset.LengthInMilliseconds) ;	 
 		}
 	}
 
@@ -274,6 +333,7 @@ namespace VirtualAudioBackend
 	{
 		private IMediaAsset mAsset;  // the asset to rename
 		private string mName;        // the new name of the asset
+		private string m_sOldName ;
 
 		public override string Label
 		{
@@ -292,6 +352,7 @@ namespace VirtualAudioBackend
 		{
 			mAsset = asset;
 			mName = name;
+m_sOldName = asset.Name ;
 		}
 
 		/// <summary>
@@ -307,7 +368,7 @@ namespace VirtualAudioBackend
 		/// </summary>
 		public override void Undo()
 		{
-			mName = mAsset.Manager.RenameAsset(mAsset, mName);
+			mName = mAsset.Manager.RenameAsset(mAsset, m_sOldName);
 		}
 	}
 
@@ -324,6 +385,13 @@ namespace VirtualAudioBackend
 			}
 		}
 
+// member variables
+private IAudioMediaAsset m_Asset ;
+private IAudioMediaAsset m_RearAsset ;
+		private long m_lSplitPosition ;
+private double m_dSplitTime ;
+bool m_boolTime ;
+
 		/// <summary>
 		/// Create a new command to split an audio asset.
 		/// </summary>
@@ -331,6 +399,9 @@ namespace VirtualAudioBackend
 		/// <param name="position">The split position, in bytes.</param>
 		public SplitAudioAssetCommand(IAudioMediaAsset asset, long position)
 		{
+m_Asset = asset ;
+			m_lSplitPosition = position ;
+m_boolTime = false ;
 		}
 
 		/// <summary>
@@ -338,8 +409,11 @@ namespace VirtualAudioBackend
 		/// </summary>
 		/// <param name="asset">The asset to split.</param>
 		/// <param name="time">The split time, in milliseconds.</param>
-		public SplitAudioAssetCommand(IAudioMediaAsset asset, IAudioMediaAsset chunk, double time)
+		public SplitAudioAssetCommand(IAudioMediaAsset asset, double time)
 		{
+			m_Asset = asset ;
+			m_dSplitTime = time ;
+			m_boolTime = true ;
 		}
 
 		/// <summary>
@@ -347,6 +421,11 @@ namespace VirtualAudioBackend
 		/// </summary>
 		public override void Do()
 		{
+			if (m_boolTime == true) 
+m_RearAsset = m_Asset.Split (m_dSplitTime) ;
+			else
+				m_RearAsset = m_Asset.Split (m_lSplitPosition) ;
+
 		}
 
 		/// <summary>
@@ -354,6 +433,7 @@ namespace VirtualAudioBackend
 		/// </summary>
 		public override void Undo()
 		{
+m_Asset.MergeWith (m_RearAsset) ;
 		}
 	}
 }
