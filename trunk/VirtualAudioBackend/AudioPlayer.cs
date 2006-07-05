@@ -375,6 +375,7 @@ reduction = 0 ;
 				if (ReadPosition < ((m_SizeBuffer)- m_UpdateVMArrayLength  ) )
 				{
 Array.Copy ( SoundBuffer.Read (ReadPosition , typeof (byte) , LockFlag.None , m_UpdateVMArrayLength  ) , arUpdateVM , m_UpdateVMArrayLength  ) ;				
+if ( m_EventsEnabled == true)
 ob_UpdateVuMeter.NotifyUpdateVuMeter ( this, ob_UpdateVuMeter ) ;
 				}
 				// check if play cursor is in second half , then refresh first half else second
@@ -601,6 +602,7 @@ m_StartPosition = localPosition ;
 				if (m_PlayFile == true)
 				{
 					Stop();
+					m_StartPosition = localPosition ;
 Thread.Sleep (20) ;
 					InitPlay(localPosition , 0);
 					Thread.Sleep(30) ;
