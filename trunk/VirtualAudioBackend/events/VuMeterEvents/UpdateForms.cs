@@ -2,7 +2,7 @@ using System;
 
 namespace VirtualAudioBackend.events.VuMeterEvents
 {
-	public delegate void DUpdateFormsEvent ( VuMeter ob_VuMeter , UpdateForms Update) ;
+	public delegate void DUpdateFormsEvent ( object sender , UpdateForms Update) ;
 	/// <summary>
 	/// Summary description for UpdateForms.
 	/// </summary>
@@ -10,13 +10,11 @@ namespace VirtualAudioBackend.events.VuMeterEvents
 	{
 		public event DUpdateFormsEvent UpdateFormsEvent;
 
-		public void NotifyUpdateForms ( VuMeter ob_VuMeter , UpdateForms Update )
+		public void NotifyUpdateForms ( object sender , UpdateForms Update )
 		{
 			if ( UpdateFormsEvent   != null) 
-				UpdateFormsEvent ( ob_VuMeter , Update) ;
+				UpdateFormsEvent ( sender , Update) ;
 		}
-
-			
 		
 	}
 }

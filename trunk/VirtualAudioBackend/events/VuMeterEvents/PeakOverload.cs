@@ -6,7 +6,7 @@ namespace VirtualAudioBackend.events.VuMeterEvents
 {
 		
 
-	public delegate void DPeakOverloadEvent ( VuMeter ob_oVM , PeakOverload  Overload );
+	public delegate void DPeakOverloadEvent ( object sender , PeakOverload  Overload );
 	/// <summary>
 	/// Event raised by the Vu meter when the signal level overloads.
 	/// </summary>
@@ -15,10 +15,10 @@ namespace VirtualAudioBackend.events.VuMeterEvents
 
 		public event DPeakOverloadEvent PeakOverloadEvent ;
 
-		public void NotifyPeakOverload ( VuMeter ob_VM, PeakOverload Overload)
+		public void NotifyPeakOverload ( object sender, PeakOverload Overload)
 		{
 			if ( PeakOverloadEvent != null)
-				PeakOverloadEvent ( ob_VM , Overload) ;
+				PeakOverloadEvent ( sender , Overload) ;
 		}
 		private int mChannel;          // channel which overloaded
 		private long mBytePosition;    // position where the overload happened (from start of recording)

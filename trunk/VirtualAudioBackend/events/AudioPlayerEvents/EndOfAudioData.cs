@@ -23,6 +23,7 @@ namespace VirtualAudioBackend.events.AudioPlayerEvents
 
 		public void NotifyEndOfAudioAsset ( object sender, EndOfAudioData EndData) 
 		{
+if (EndOfAudioAssetEvent   != null)
 			EndOfAudioAssetEvent   ( sender, EndData ) ;
 		}
 	}
