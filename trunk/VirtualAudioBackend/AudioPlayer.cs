@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Threading;
 using System.Collections;
+using System.Resources;
 using Microsoft.DirectX;
 using Microsoft.DirectX.DirectSound;
 using Microsoft.DirectX.DirectInput ;
@@ -42,26 +43,35 @@ private int m_CompAddition = 0 ;
 private long m_lClipByteCount ;
 
 		//static counter to implement singleton
-		private static int m_ConstructorCounter =0;
+		//private static int m_ConstructorCounter =0;
 
+        private static readonly AudioPlayer instance = new AudioPlayer ();
+		        private ResourceManager resmngr;
+		        public static AudioPlayer Instance { get { return instance; } }
 // constructor 
 		public 		AudioPlayer ()
 		{
-			if (m_ConstructorCounter == 0)
-			{
-				m_ConstructorCounter++ ;
+			            resmngr = new ResourceManager("VirtualBackend.messages", GetType().Assembly);
+			//if (m_ConstructorCounter == 0)
+			//{
+				//m_ConstructorCounter++ ;
 				//m_State= AudioPlayerState .stopped ;
 				m_PlayFile = true ;
 				m_FastPlay = false ;
 				
 AssociateEvents  () ;
 				
-			}
-			else
-			{
-				throw new Exception("This class is Singleton");
+			//}
+			//else
+			//{
+				//throw new Exception("This class is Singleton");
 				
-			}
+			//}
+		}
+
+		public static string Message(string key)
+		{
+			return instance.resmngr.GetString(key);
 		}
 
 		
