@@ -29,6 +29,17 @@ private long m_lLengthInBytes ;
 private long m_lFileAudioLengthInBytes ;
 		private double m_dFileAudioLengthInTime  ;
 
+internal static  Hashtable static_htClipExists = new Hashtable () ;
+		internal static long static_lNameCount ;
+private string m_sName ;
+// to finalised to internal in end
+		public string Name
+		{
+			get
+			{
+return m_sName ;
+			}
+		}
 		/// <summary>
 		/// The path of the audio file that this clip is part of.
 		/// </summary>
@@ -160,6 +171,9 @@ throw new Exception ("BeginTime  more than EndTime of clip ") ;
 				m_lEndByte  = Calc.AdaptToFrame (m_lEndByte  , m_ClipFrameSize) ;
 
 				m_lLengthInBytes = m_lEndByte - m_lBeginByte ;
+
+m_sName =GenerateClipName () ;
+static_htClipExists.Add (m_sName , this) ;
 			}
 		}
 
@@ -187,6 +201,10 @@ throw new Exception ("BeginTime  more than EndTime of clip ") ;
 				m_lEndByte  = Calc.AdaptToFrame (m_lEndByte  , m_ClipFrameSize) ;
 
 				m_lLengthInBytes = m_lEndByte - m_lBeginByte ;
+
+				m_sName =GenerateClipName () ;
+				static_htClipExists.Add (m_sName , this) ;
+
 			}
 		}
 
@@ -580,7 +598,71 @@ alClipList.Add (CopyClipPart ( dBeginTime , m_dEndTime) );
 			return sum ;
 		}
 
+		internal string GenerateClipName ()
+		{
+			if (static_lNameCount.Equals  (null ) )
+			{
+				long i = 0 ;
 
+				string sTempName ;
+				sTempName = i.ToString () ;
+
+				while ( static_htClipExists.ContainsKey (sTempName)  && i<9000000)
+				{
+
+					i++;
+					sTempName = i.ToString () ;
+				}
+
+				if (i<90000000)
+				{
+					static_lNameCount = i ;
+					return sTempName ;
+				}
+				else
+				{
+					return null ;
+				}
+			}
+			else
+			{
+static_lNameCount++ ;
+				return static_lNameCount.ToString () ;
+			}
+
+		}
+
+		internal void DeletePhysicalResource ()
+		{
+string sClipPath  ;
+			sClipPath = m_sPath ;
+m_sPath  = "  " ;
+			IDictionaryEnumerator en = static_htClipExists.GetEnumerator ();
+
+			long lCount = 0 ;
+AudioClip ob_Clip ;
+			while (en.MoveNext ())
+			{
+ob_Clip = en.Value as AudioClip ;
+				if (sClipPath == ob_Clip.Path.ToString () )
+					lCount++ ;
+					
+			}
+			if (lCount == 0)
+			{
+				
+				FileInfo ob_File = new FileInfo (sClipPath ) ;
+				try
+				{
+					ob_File.Delete () ;
+				}
+				catch ( Exception Ex)
+				{
+MessageBox.Show (Ex.ToString ()	 ) ;
+				}
+
+			}
+		}
 
 	}// end of class
 }
