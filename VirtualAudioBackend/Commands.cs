@@ -247,6 +247,7 @@ m_Asset.DeleteChunk (m_lInsertionPosition , m_lInsertionPosition + m_AssetChunk.
 // member variables
 		private IAudioMediaAsset m_FirstAsset ;
 private IAudioMediaAsset m_SecondAsset ;
+private double m_dUndoSplitTime ;
 
 		/// <summary>
 		/// Create a new command to merge two audio assets.
@@ -257,6 +258,7 @@ private IAudioMediaAsset m_SecondAsset ;
 		{
 m_FirstAsset = first ;
 			m_SecondAsset = second ;
+			m_dUndoSplitTime  = m_FirstAsset.LengthInMilliseconds ;
 		}
 
 		/// <summary>
@@ -272,7 +274,7 @@ m_FirstAsset.MergeWith (m_SecondAsset) ;
 		/// </summary>
 		public override void Undo()
 		{
-m_SecondAsset = m_FirstAsset.Split(m_FirstAsset.LengthInMilliseconds) ;	 
+m_SecondAsset = m_FirstAsset.Split(m_dUndoSplitTime ) ;	 
 		}
 	}
 

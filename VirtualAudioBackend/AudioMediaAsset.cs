@@ -487,12 +487,10 @@ ob_AudioClip.Split (dClipTimeMark) ;
 			{
 ClipIndex-- ;
 			}
-
+//MessageBox.Show (m_alClipList.Count.ToString () ) ;
 // Remove clips after clip index
-			for (int i = ClipIndex+1 ; i< m_alClipList.Count ; i++)
-			{
-m_alClipList.Remove (i) ;
-			}
+m_alClipList.RemoveRange (ClipIndex+1 ,(m_alClipList.Count - ClipIndex	-1) ) ;
+
 
 m_dAudioLengthInTime = m_dAudioLengthInTime  - ob_AudioMediaAsset.LengthInMilliseconds ;
 m_lAudioLengthInBytes = m_lAudioLengthInBytes  - ob_AudioMediaAsset.AudioLengthInBytes ;
