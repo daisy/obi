@@ -141,11 +141,23 @@ ob_AudioMediaAsset.m_eMediaType = m_eMediaType ;
 		/// </summary>
 		public override void Delete()
 		{
-if (m_AssetManager != null)
-m_AssetManager.Assets.Remove (this.Name) ;
+			if (m_AssetManager != null)
+			{
+				m_AssetManager.Assets.Remove (this.Name) ;
+				VirtualAudioBackend.AssetManager.static_htExists.Remove (this.Name) ;
+			}
+//if (VirtualAudioBackend.AssetManager.static_htExists.ContainsKey (this.Name))
+//VirtualAudioBackend.AssetManager.static_htExists.Remove (this.Name) ;
 
-if (VirtualAudioBackend.AssetManager.static_htExists.ContainsKey (this.Name))
-VirtualAudioBackend.AssetManager.static_htExists.Remove (this.Name) ;
+// clean up physical resources
+			AudioClip ob_Clip ;
+string sClipPath ;
+			for (int i = 0 ; i< m_alClipList.Count  ; i++)
+			{
+ob_Clip = m_alClipList [i] as AudioClip ;
+ob_Clip.DeletePhysicalResource () ;
+AudioClip.static_htClipExists.Remove (ob_Clip.Name) ;
+                    			}// current clip ends
 
 m_alClipList = null ;
 m_AssetManager = null ;
