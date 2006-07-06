@@ -111,9 +111,9 @@ htTemp.Add ( en.Key , en.Value) ;
 				{
 					m_file.Delete();
 				}
-				catch
+				catch (Exception e)
 				{
-					MessageBox.Show("Error in deleting file") ;
+					MessageBox.Show(String.Format("Error in deleting file:\n{0}", e.ToString()));
 				}
 		
 				AssetDeleted ob_AssetDeleted = new AssetDeleted (assetToDelete) ;
@@ -383,7 +383,12 @@ MessageBox.Show (m.GetType().ToString () );
 
 			MessageBox.Show("It is working");
 		}
-		
+	
+		public bool IsAssetNameAvailable(string name)
+		{
+			return !m_htAssetList.ContainsKey(name);
+		}
+
 	
 		// end of class
 	}
