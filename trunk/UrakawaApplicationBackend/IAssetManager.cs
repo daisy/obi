@@ -95,9 +95,11 @@ namespace UrakawaApplicationBackend
 		/// <returns>The asset that was added.</returns>
 		IMediaAsset AddAsset(TypeOfMedia assetType, string assetPath);
 
-		//punt on this one so at the moment
-		//parameter is some sort of Collection<URL>
-		//--type of parameter changed to Hashtable from ArrayList
-		void addAssets(Hashtable assetURLs);
+		/// <summary>
+		/// Check whether we can use the following name for an asset.
+		/// </summary>
+		/// <param name="name">The tentative asset name.</param>
+		/// <returns>True if there is no asset by this name already.</returns>
+		bool IsAssetNameAvailable(string name);
 	}
 }

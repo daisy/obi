@@ -28,7 +28,7 @@ namespace Zaboom
         private List<AudioMediaAsset> mPlayList;  // list of the audio assets to play
         //private VuMeter mVuMeter;                 // VU Meter (not debug-proof, will readd later)
 
-        private bool mPlayAll;                               // true if playing all assets, false if playing a single asset.
+        private bool mPlayAll;                    // true if playing all assets, false if playing a single asset.
 
         public ZaboomForm()
         {
@@ -128,6 +128,7 @@ namespace Zaboom
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mPlayer.State != AudioPlayerState.stopped) mPlayer.Stop();
+            Directory.Delete(mManager.Directory, true);
             Application.Exit();
         }
 
@@ -138,12 +139,13 @@ namespace Zaboom
         {
             if (mPlayList.Count > 0)
             {
-                AudioMediaAsset asset = mPlayList[mAssetBox.SelectedIndex];
+                int selected = mAssetBox.SelectedIndex;
+                AudioMediaAsset asset = mPlayList[selected];
                 RenameAssetDialog dialog = new RenameAssetDialog(asset.Name);
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     mManager.RenameAsset(asset, dialog.AssetName);
-                    mAssetBox.Items[mAssetBox.SelectedIndex] = asset.Name;
+                    mAssetBox.Items[selected] = asset.Name;
                 }
             }
         }
@@ -173,28 +175,62 @@ namespace Zaboom
         }
 
         /// <summary>
-        /// Split the current asset at the current position
+        /// Split the current asset at the current position. The first part keeps the same name and the second part is renamed.
+        /// Ask for confirmation before splitting.
+        /// For the moment split is only permitted while the asset is playing.
+        /// TODO: play from the splitting point to test if the position is fine; fine tune the position.
         /// </summary>
         private void splitAssetToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mAssetBox.SelectedIndex >= 0)
+            if (mAssetBox.SelectedIndex >= 0 && mPlayer.State == AudioPlayerState.paused &&
+                MessageBox.Show(String.Format("Are you sure that you want to split this asset?\nThis operation cannot be undone.\nBTW, current position is: {0}ms.", mPlayer.CurrentTimePosition),
+                    "Split the asset?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 int selected = mAssetBox.SelectedIndex;
                 AudioMediaAsset asset = mPlayList[selected];
                 ArrayList assets = asset.Split(mPlayer.CurrentTimePosition);
-                //mManager.DeleteAsset(asset);
+                mPlayer.Stop();
+                mManager.DeleteAsset(asset);
                 mPlayList.RemoveAt(selected);
                 mAssetBox.Items.RemoveAt(selected);
                 AudioMediaAsset before = (AudioMediaAsset)assets[0];
                 mManager.AddAsset(before);
                 mPlayList.Insert(selected, before);
+                mManager.RenameAsset(before, asset.Name);
                 mAssetBox.Items.Insert(selected, before.Name);
                 AudioMediaAsset after = (AudioMediaAsset)assets[1];
                 mManager.AddAsset(after);
                 mPlayList.Insert(selected + 1, after);
+                mManager.RenameAsset(after, GetAfterName(asset.Name));
                 mAssetBox.Items.Insert(selected + 1, after.Name);
                 mAssetBox.SelectedIndex = selected + 1;
-                mManager.DeleteAsset(asset);
+                UpdateButtons();
+            }
+        }
+
+        /// <summary>
+        /// Merge this asset with the following. Only when the player is stopped.
+        /// </summary>
+        private void mergeAssetWithNextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mPlayer.State == AudioPlayerState.stopped && mAssetBox.SelectedIndex >= 0 &&
+                mAssetBox.SelectedIndex < mAssetBox.Items.Count - 1 &&
+                MessageBox.Show("Are you sure that you want to merge this asset with the following one?\nThis operation cannot be undone.",
+                    "Merge the assets?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                int selected = mAssetBox.SelectedIndex;
+                AudioMediaAsset merged = (AudioMediaAsset)mPlayList[selected].MergeWith(mPlayList[selected + 1]);
+                merged.Name = mPlayList[selected].Name;
+                mManager.DeleteAsset(mPlayList[selected]);
+                mManager.DeleteAsset(mPlayList[selected + 1]);
+                mManager.AddAsset(merged);
+                mPlayList.RemoveRange(selected, 2);
+                mPlayList.Insert(selected, merged);
+                mAssetBox.Items.RemoveAt(selected + 1);
+                mAssetBox.Items.RemoveAt(selected);
+                mAssetBox.Items.Insert(selected, merged.Name);
+                mAssetBox.SelectedIndex = selected;
+                UpdateButtons();
             }
         }
 
@@ -221,6 +257,25 @@ namespace Zaboom
         }
 
         #endregion
+
+        /// <summary>
+        /// Get a new name for an asset after a split.
+        /// </summary>
+        /// <param name="name">The original name</param>
+        /// <returns>The new name (after split)</returns>
+        private string GetAfterName(string name)
+        {
+            name = System.Text.RegularExpressions.Regex.Replace(name, @" \(after split(, #\d+)?\)$", "");
+            string after = name + " (after split)";
+            int i = 2;
+            while (!mManager.IsAssetNameAvailable(after))
+            {
+                after = String.Format("{0} (after split, #{1})", name, i);
+                ++i;
+            }
+            return after;
+        }
+
 
         /// <summary>
         /// Change the asset to be played. If we are playing, restart from this asset.
@@ -390,9 +445,6 @@ namespace Zaboom
             UpdateButtons();
         }
 
-
-
-
         private delegate void UpdateButtonsCallback();
 
         /// <summary>
@@ -426,6 +478,8 @@ namespace Zaboom
                         mPrevButton.Enabled = true;
                         mStopButton.Enabled = true;
                         outputDeviceToolStripMenuItem.Enabled = false;
+                        splitAssetToolStripMenuItem.Enabled = true;
+                        mergeAssetWithNextToolStripMenuItem.Enabled = false;
                         break;
                     case AudioPlayerState.playing:
                         if (mPlayAll)
@@ -445,6 +499,8 @@ namespace Zaboom
                         mPrevButton.Enabled = true;
                         mStopButton.Enabled = true;
                         outputDeviceToolStripMenuItem.Enabled = false;
+                        splitAssetToolStripMenuItem.Enabled = false;
+                        mergeAssetWithNextToolStripMenuItem.Enabled = false;
                         break;
                     case AudioPlayerState.stopped:
                         mPlayAllButton.Text = "Pl&ay*";
@@ -455,13 +511,21 @@ namespace Zaboom
                         mPrevButton.Enabled = mAssetBox.SelectedIndex > 0;
                         mNextButton.Enabled = mAssetBox.SelectedIndex < mAssetBox.Items.Count - 1;
                         outputDeviceToolStripMenuItem.Enabled = true;
+                        splitAssetToolStripMenuItem.Enabled = false;
+                        mergeAssetWithNextToolStripMenuItem.Enabled = mAssetBox.SelectedIndex < mAssetBox.Items.Count - 1;
                         break;
                 }
             }
         }
 
+        #region "buttons"
+
         private static readonly double MaxBackTime = 1000.0;  // max time for which we go back to the previous track
 
+        /// <summary>
+        /// Go backward: if we are at the very beginning of the asset, move to the previous asset, otherwise move back to the
+        /// beginning of the asset.
+        /// </summary>
         private void mPrevButton_Click(object sender, EventArgs e)
         {
             switch (mPlayer.State)
@@ -484,6 +548,9 @@ namespace Zaboom
             }
         }
 
+        /// <summary>
+        /// Move forward: start playing from the beginning of the next asset.
+        /// </summary>
         private void mNextButton_Click(object sender, EventArgs e)
         {
             switch (mPlayer.State)
@@ -505,5 +572,7 @@ namespace Zaboom
                     break;
             }
         }
+
+        #endregion
     }
 }

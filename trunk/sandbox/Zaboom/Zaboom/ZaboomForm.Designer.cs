@@ -42,6 +42,8 @@ namespace Zaboom
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renameAssetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteAssetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.splitAssetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.audioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.outputDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inputDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,8 +54,7 @@ namespace Zaboom
             this.mPrevButton = new System.Windows.Forms.Button();
             this.mNextButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.splitAssetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mergeAssetWithNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -154,7 +155,8 @@ namespace Zaboom
             this.renameAssetToolStripMenuItem,
             this.deleteAssetToolStripMenuItem,
             this.toolStripSeparator2,
-            this.splitAssetToolStripMenuItem});
+            this.splitAssetToolStripMenuItem,
+            this.mergeAssetWithNextToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.editToolStripMenuItem.Text = "&Edit";
@@ -173,6 +175,18 @@ namespace Zaboom
             this.deleteAssetToolStripMenuItem.Text = "&Delete asset";
             this.deleteAssetToolStripMenuItem.Click += new System.EventHandler(this.deleteAssetToolStripMenuItem_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(140, 6);
+            // 
+            // splitAssetToolStripMenuItem
+            // 
+            this.splitAssetToolStripMenuItem.Name = "splitAssetToolStripMenuItem";
+            this.splitAssetToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.splitAssetToolStripMenuItem.Text = "&Split asset";
+            this.splitAssetToolStripMenuItem.Click += new System.EventHandler(this.splitAssetToolStripMenuItem_Click);
+            // 
             // audioToolStripMenuItem
             // 
             this.audioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -185,7 +199,7 @@ namespace Zaboom
             // outputDeviceToolStripMenuItem
             // 
             this.outputDeviceToolStripMenuItem.Name = "outputDeviceToolStripMenuItem";
-            this.outputDeviceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.outputDeviceToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.outputDeviceToolStripMenuItem.Text = "&Output device";
             this.outputDeviceToolStripMenuItem.Click += new System.EventHandler(this.outputDeviceToolStripMenuItem_Click);
             // 
@@ -193,7 +207,7 @@ namespace Zaboom
             // 
             this.inputDeviceToolStripMenuItem.Enabled = false;
             this.inputDeviceToolStripMenuItem.Name = "inputDeviceToolStripMenuItem";
-            this.inputDeviceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.inputDeviceToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.inputDeviceToolStripMenuItem.Text = "&Input device";
             this.inputDeviceToolStripMenuItem.Click += new System.EventHandler(this.inputDeviceToolStripMenuItem_Click);
             // 
@@ -219,6 +233,9 @@ namespace Zaboom
             // 
             // mAssetBox
             // 
+            this.mAssetBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.mAssetBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.mAssetBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.mAssetBox.FormattingEnabled = true;
             this.mAssetBox.Location = new System.Drawing.Point(55, 108);
             this.mAssetBox.Name = "mAssetBox";
@@ -266,17 +283,12 @@ namespace Zaboom
             this.button1.Text = "&Record";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // splitAssetToolStripMenuItem
+            // mergeAssetWithNextToolStripMenuItem
             // 
-            this.splitAssetToolStripMenuItem.Name = "splitAssetToolStripMenuItem";
-            this.splitAssetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.splitAssetToolStripMenuItem.Text = "&Split asset";
-            this.splitAssetToolStripMenuItem.Click += new System.EventHandler(this.splitAssetToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.mergeAssetWithNextToolStripMenuItem.Name = "mergeAssetWithNextToolStripMenuItem";
+            this.mergeAssetWithNextToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.mergeAssetWithNextToolStripMenuItem.Text = "&Merge asset with next";
+            this.mergeAssetWithNextToolStripMenuItem.Click += new System.EventHandler(this.mergeAssetWithNextToolStripMenuItem_Click);
             // 
             // ZaboomForm
             // 
@@ -334,6 +346,7 @@ namespace Zaboom
         private System.Windows.Forms.ToolStripMenuItem inputDeviceToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem splitAssetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mergeAssetWithNextToolStripMenuItem;
     }
 }
 
