@@ -44,6 +44,7 @@ namespace Zaboom
             this.deleteAssetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.splitAssetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mergeAssetWithNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.audioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.outputDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inputDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,7 +55,6 @@ namespace Zaboom
             this.mPrevButton = new System.Windows.Forms.Button();
             this.mNextButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.mergeAssetWithNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -135,7 +135,7 @@ namespace Zaboom
             this.saveXUKFileToolStripMenuItem.Name = "saveXUKFileToolStripMenuItem";
             this.saveXUKFileToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.saveXUKFileToolStripMenuItem.Text = "&Save XUK file";
-            this.saveXUKFileToolStripMenuItem.Visible = false;
+            this.saveXUKFileToolStripMenuItem.Click += new System.EventHandler(this.saveXUKFileToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -164,28 +164,35 @@ namespace Zaboom
             // renameAssetToolStripMenuItem
             // 
             this.renameAssetToolStripMenuItem.Name = "renameAssetToolStripMenuItem";
-            this.renameAssetToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.renameAssetToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.renameAssetToolStripMenuItem.Text = "&Rename asset";
             this.renameAssetToolStripMenuItem.Click += new System.EventHandler(this.renameAssetToolStripMenuItem_Click);
             // 
             // deleteAssetToolStripMenuItem
             // 
             this.deleteAssetToolStripMenuItem.Name = "deleteAssetToolStripMenuItem";
-            this.deleteAssetToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.deleteAssetToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.deleteAssetToolStripMenuItem.Text = "&Delete asset";
             this.deleteAssetToolStripMenuItem.Click += new System.EventHandler(this.deleteAssetToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(140, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(181, 6);
             // 
             // splitAssetToolStripMenuItem
             // 
             this.splitAssetToolStripMenuItem.Name = "splitAssetToolStripMenuItem";
-            this.splitAssetToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.splitAssetToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.splitAssetToolStripMenuItem.Text = "&Split asset";
             this.splitAssetToolStripMenuItem.Click += new System.EventHandler(this.splitAssetToolStripMenuItem_Click);
+            // 
+            // mergeAssetWithNextToolStripMenuItem
+            // 
+            this.mergeAssetWithNextToolStripMenuItem.Name = "mergeAssetWithNextToolStripMenuItem";
+            this.mergeAssetWithNextToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.mergeAssetWithNextToolStripMenuItem.Text = "&Merge asset with next";
+            this.mergeAssetWithNextToolStripMenuItem.Click += new System.EventHandler(this.mergeAssetWithNextToolStripMenuItem_Click);
             // 
             // audioToolStripMenuItem
             // 
@@ -282,13 +289,6 @@ namespace Zaboom
             this.button1.TabIndex = 2;
             this.button1.Text = "&Record";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // mergeAssetWithNextToolStripMenuItem
-            // 
-            this.mergeAssetWithNextToolStripMenuItem.Name = "mergeAssetWithNextToolStripMenuItem";
-            this.mergeAssetWithNextToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.mergeAssetWithNextToolStripMenuItem.Text = "&Merge asset with next";
-            this.mergeAssetWithNextToolStripMenuItem.Click += new System.EventHandler(this.mergeAssetWithNextToolStripMenuItem_Click);
             // 
             // ZaboomForm
             // 
