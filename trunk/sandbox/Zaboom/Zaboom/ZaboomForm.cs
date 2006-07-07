@@ -182,29 +182,31 @@ namespace Zaboom
         /// </summary>
         private void splitAssetToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mAssetBox.SelectedIndex >= 0 && mPlayer.State == AudioPlayerState.paused &&
-                MessageBox.Show(String.Format("Are you sure that you want to split this asset?\nThis operation cannot be undone.\nBTW, current position is: {0}ms.", mPlayer.CurrentTimePosition),
-                    "Split the asset?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            if (mAssetBox.SelectedIndex >= 0 && mPlayer.State == AudioPlayerState.paused)
             {
                 int selected = mAssetBox.SelectedIndex;
                 AudioMediaAsset asset = mPlayList[selected];
-                ArrayList assets = asset.Split(mPlayer.CurrentTimePosition);
-                mPlayer.Stop();
-                mManager.DeleteAsset(asset);
-                mPlayList.RemoveAt(selected);
-                mAssetBox.Items.RemoveAt(selected);
-                AudioMediaAsset before = (AudioMediaAsset)assets[0];
-                mManager.AddAsset(before);
-                mPlayList.Insert(selected, before);
-                mManager.RenameAsset(before, asset.Name);
-                mAssetBox.Items.Insert(selected, before.Name);
-                AudioMediaAsset after = (AudioMediaAsset)assets[1];
-                mManager.AddAsset(after);
-                mPlayList.Insert(selected + 1, after);
-                mManager.RenameAsset(after, GetAfterName(asset.Name));
-                mAssetBox.Items.Insert(selected + 1, after.Name);
-                mAssetBox.SelectedIndex = selected + 1;
-                UpdateButtons();
+                SplitForm dialog = new SplitForm(asset, mPlayer);
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    ArrayList assets = asset.Split(mPlayer.CurrentTimePosition);
+                    mPlayer.Stop();
+                    mManager.DeleteAsset(asset);
+                    mPlayList.RemoveAt(selected);
+                    mAssetBox.Items.RemoveAt(selected);
+                    AudioMediaAsset before = (AudioMediaAsset)assets[0];
+                    mManager.AddAsset(before);
+                    mPlayList.Insert(selected, before);
+                    mManager.RenameAsset(before, asset.Name);
+                    mAssetBox.Items.Insert(selected, before.Name);
+                    AudioMediaAsset after = (AudioMediaAsset)assets[1];
+                    mManager.AddAsset(after);
+                    mPlayList.Insert(selected + 1, after);
+                    mManager.RenameAsset(after, GetAfterName(asset.Name));
+                    mAssetBox.Items.Insert(selected + 1, after.Name);
+                    mAssetBox.SelectedIndex = selected + 1;
+                    UpdateButtons();
+                }
             }
         }
 
