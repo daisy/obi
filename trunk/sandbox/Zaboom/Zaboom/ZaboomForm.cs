@@ -14,6 +14,9 @@ using UrakawaApplicationBackend;
 using UrakawaApplicationBackend.events.audioPlayerEvents;
 using UrakawaApplicationBackend.events.assetManagerEvents;
 
+using urakawa.core;
+using urakawa.media;
+
 namespace Zaboom
 {
     /// <summary>
@@ -22,12 +25,14 @@ namespace Zaboom
     /// </summary>
     public partial class ZaboomForm : Form
     {
+        private Project mProject;                 // the Urakawa project for this bit
+
         private AudioPlayer mPlayer;              // audio player instance
         private int mDeviceIndex;                 // index of the current output device in the list obtained from the player
+        
         private AssetManager mManager;            // asset manager for this project
         private List<AudioMediaAsset> mPlayList;  // list of the audio assets to play
-        //private VuMeter mVuMeter;                 // VU Meter (not debug-proof, will readd later)
-
+        
         private bool mPlayAll;                    // true if playing all assets, false if playing a single asset.
 
         public ZaboomForm()
@@ -41,6 +46,10 @@ namespace Zaboom
         /// </summary>
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Create a new project object
+            mProject = new Project();
+            mProject.AppendMetadata("dc:Creator", Environment.UserName);
+            mProject.AppendMetadata("dc:Date", DateTime.Now.ToString("yyyyMMdd"));
             // Initialize the player and use the first output device by default.
             mPlayer = new AudioPlayer();
             ArrayList devices = mPlayer.GetOutputDevices();
@@ -65,13 +74,6 @@ namespace Zaboom
                 new UrakawaApplicationBackend.events.audioPlayerEvents.DStateChangedEvent(OnStateChanged);
             mManager.AssetRenamedEvent += new DAssetRenamedEvent(OnAssetRenamed);
             mManager.AssetDeletedEvent += new DAssetDeletedEvent(OnAssetDeleted);
-            /*mVuMeter = new VuMeter();
-            mPlayer.VuMeterObject = mVuMeter;
-            mVuMeter.LowerThreshold = 50;
-            mVuMeter.UpperThreshold = 83;
-            mVuMeter.ScaleFactor = 2;
-            mVuMeter.SampleTimeLength = 2000;
-            mVuMeter.ShowForm();*/
         }
 
         /// <summary>
@@ -111,6 +113,8 @@ namespace Zaboom
                         if (mPlayer.State == AudioPlayerState.stopped) mAssetBox.SelectedIndex = mAssetBox.Items.Count - 1;
                         renameAssetToolStripMenuItem.Enabled = true;
                         deleteAssetToolStripMenuItem.Enabled = true;
+                        // Create a node for this asset
+                        mProject.AppendPhrase(asset);
                     }
                     else
                     {
@@ -119,6 +123,21 @@ namespace Zaboom
                     }
                 }
                 UpdateButtons();
+            }
+        }
+
+        /// <summary>
+        /// Save the project to a XUK file.
+        /// </summary>
+        private void saveXUKFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "Urakawa project (*.xuk)|*.xuk";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                Uri uri = new Uri(dialog.FileName);
+                mProject.saveXUK(uri);
+                Console.WriteLine("Saved project to {0}", uri);
             }
         }
 
@@ -576,5 +595,6 @@ namespace Zaboom
         }
 
         #endregion
+
     }
 }
