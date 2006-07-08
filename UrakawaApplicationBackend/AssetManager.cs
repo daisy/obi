@@ -64,6 +64,17 @@ namespace UrakawaApplicationBackend
 			}
 		}
 		
+		/// <summary>
+		/// Change the project directory of the asset manager.
+		/// As a side effect, the list of managed is also cleared.
+		/// </summary>
+		/// <param name="path">The path of the new project directory.</param>
+		public void ChangeProjectDirectory(string path)
+		{
+			m_htAssetList.Clear();
+			m_sDirPath = path;
+			ProjectDirectory = m_sDirPath;
+		}
 
 		public Hashtable Assets
 		{
