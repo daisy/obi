@@ -28,6 +28,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.DirectX, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="Microsoft.DirectX.DirectSound, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -46,6 +48,13 @@
   <ItemGroup>
     <Compile Include="AssetMediaFactory.cs" />
     <Compile Include="AudioAsset.cs" />
+    <Compile Include="AudioVisitor.cs" />
+    <Compile Include="NameDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NameDialog.Designer.cs">
+      <DependentUpon>NameDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Project.cs" />
     <Compile Include="Zaboom.cs">
       <SubType>Form</SubType>
@@ -55,6 +64,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="NameDialog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NameDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Zaboom.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Zaboom.cs</DependentUpon>
