@@ -42,9 +42,6 @@ CalculationFunctions Calc = new CalculationFunctions () ;
 private int m_CompAddition = 0 ;
 private long m_lClipByteCount ;
 
-		//static counter to implement singleton
-		//private static int m_ConstructorCounter =0;
-
         private static readonly AudioPlayer instance = new AudioPlayer ();
 		        private ResourceManager resmngr;
 		        public static AudioPlayer Instance { get { return instance; } }
@@ -52,21 +49,12 @@ private long m_lClipByteCount ;
 		public 		AudioPlayer ()
 		{
 			            resmngr = new ResourceManager("VirtualBackend.messages", GetType().Assembly);
-			//if (m_ConstructorCounter == 0)
-			//{
-				//m_ConstructorCounter++ ;
-				//m_State= AudioPlayerState .stopped ;
+
 				m_PlayFile = true ;
 				m_FastPlay = false ;
 				
 AssociateEvents  () ;
-				
-			//}
-			//else
-			//{
-				//throw new Exception("This class is Singleton");
-				
-			//}
+			
 		}
 
 		public static string Message(string key)
@@ -251,7 +239,7 @@ Microsoft.DirectX.DirectSound.Device dSound = new  Microsoft.DirectX.DirectSound
 			devList = new DevicesCollection();
 return devList  ;
 			}
-double m_dStartPosition ;
+//double m_dStartPosition ;
 // Functions
 
 
@@ -307,7 +295,7 @@ m_Channels = m_Asset.Channels ;
 				m_SizeBuffer = m_Asset .SampleRate *  m_Asset .FrameSize ;
 				m_RefreshLength = (m_Asset .SampleRate / 2 ) * m_Asset .FrameSize ;
 // calculate the size of VuMeter Update array length
-				m_UpdateVMArrayLength = m_SizeBuffer  / 50 ;
+				m_UpdateVMArrayLength = m_SizeBuffer  / 20 ;
 m_UpdateVMArrayLength = Convert.ToInt32 (Calc.AdaptToFrame ( Convert.ToInt32 ( m_UpdateVMArrayLength ),  m_FrameSize)  );
 arUpdateVM = new byte [ m_UpdateVMArrayLength ] ;
 
@@ -676,7 +664,7 @@ m_lClipByteCount = m_lClipByteCount + m_FrameSize ;
 			else
 			{
 long l ;
-				for (l = 0 ; l < ob_Clip.LengthInBytes && l < (m_RefreshLength ) ; l = l+m_FrameSize) 
+				for (l = 0 ; l < ob_Clip.LengthInBytes && l < (m_RefreshLength ) && m_lClipByteCount  < ob_Clip.LengthInBytes  ; l = l+m_FrameSize ) 
 				{
 					SkipFrames () ;
 					m_MemoryStream.Write (m_br.ReadBytes(m_FrameSize), 0 , m_FrameSize) ;
