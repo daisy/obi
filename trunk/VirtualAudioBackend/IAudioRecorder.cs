@@ -27,33 +27,27 @@ namespace VirtualAudioBackend
 		}
 
 		/// <summary>
-		/// Get and set the number of channels (mono = 1, stereo = 2) for recording.
-		/// Throw an exception in case of illegal value.
+		/// Get the number of channels (mono = 1, stereo = 2) for recording.
 		/// </summary>
 		int Channels
 		{
 			get;
-			set;
 		}
 
 		/// <summary>
-		/// Get and set the sample rate for recording.
-		/// Throw an exception in case of illegal value.
+		/// Get the sample rate for recording.
 		/// </summary>
 		int SampleRate
 		{
 			get;
-			set;
 		}
 
 		/// <summary>
-		/// Get and set the bit depth (8 or 16) for recording.
-		/// Throw an exception in case of illegal value.
+		/// Get the bit depth (8 or 16) for recording.
 		/// </summary>
 		short BitDepth
 		{
 			get;
-			set;
 		}
 
 		/// <summary>
