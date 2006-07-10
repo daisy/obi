@@ -148,13 +148,14 @@
 
 Timeline sketch for July 10th--Auguts 18th
 
-07/10 Marisa and Markus rejoin the application team
-07/11 Marisa and Julien do some coding in Amsterdam
+07/10 Marisa and Markus rejoin the application team.
+07/11 Marisa and Julien do some coding in Amsterdam.
 07/17 Julien is back in Tokyo, works on tree view and strip manager shell
-        with Zaboom in empty strips
+        with Zaboom in empty strips.
 07/24 Marisa works on something?
+07/28 Avneesh and Suman deliver milestone 2 of audio backend.
 07/31 Markus and Julien in Delhi work mainly on audio and asset manager with
-        Avneesh and Suman
+        Avneesh and Suman.
 08/07 Julien back in Tokyo works on something or other.
 08/07 Markus back in Stockholm on usability, such as keyboard navigation and
         manual.
