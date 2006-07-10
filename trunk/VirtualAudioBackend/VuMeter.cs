@@ -399,13 +399,13 @@ public GraphPts Graph = new GraphPts() ;
 		Graph.PeakOverloadLightX = 350 ;
 Graph.PeakOverloadLightY = 50 ;
 		}
-
+/*
 		internal class Threshold
 		{
 	public int UpperThreshold ;
 			public int LowerThreshold ;
 		}
-
+*/
 		public struct GraphPts
 		{
 

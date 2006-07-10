@@ -151,7 +151,7 @@ ob_AudioMediaAsset.m_eMediaType = m_eMediaType ;
 
 // clean up physical resources
 			AudioClip ob_Clip ;
-string sClipPath ;
+
 			for (int i = 0 ; i< m_alClipList.Count  ; i++)
 			{
 ob_Clip = m_alClipList [i] as AudioClip ;
