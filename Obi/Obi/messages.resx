@@ -172,6 +172,9 @@ You cannot undo this operation.</value>
   <data name="no_open_project" xml:space="preserve">
     <value>No project is currently open.</value>
   </data>
+  <data name="obi" xml:space="preserve">
+    <value>Obi</value>
+  </data>
   <data name="ready" xml:space="preserve">
     <value>Ready.</value>
   </data>

@@ -218,6 +218,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Obi.
+        /// </summary>
+        internal static string obi {
+            get {
+                return ResourceManager.GetString("obi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ready..
         /// </summary>
         internal static string ready {

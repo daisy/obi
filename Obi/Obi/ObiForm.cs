@@ -510,7 +510,7 @@ namespace Obi
         /// </summary>
         private void GUIUpdateNoProject()
         {
-            this.Text = "Obi";
+            this.Text = Localizer.Message("obi");
             closeProjectToolStripMenuItem.Enabled = false;
             saveProjectToolStripMenuItem.Enabled = false;
             saveProjectasToolStripMenuItem.Enabled = false;
@@ -528,7 +528,7 @@ namespace Obi
         /// </summary>
         private void GUIUpdateSavedProject()
         {
-            this.Text = mProject.Metadata.Title + " - Obi";
+            this.Text = String.Format("{0} - {1}", mProject.Metadata.Title, Localizer.Message("obi"));
             closeProjectToolStripMenuItem.Enabled = true;
             saveProjectToolStripMenuItem.Enabled = false;
             saveProjectasToolStripMenuItem.Enabled = true;
@@ -543,7 +543,7 @@ namespace Obi
         /// </summary>
         private void GUIUpdateUnsavedProject()
         {
-            this.Text = mProject.Metadata.Title + "* - Obi";
+            this.Text = String.Format("{0}* - {1}", mProject.Metadata.Title, Localizer.Message("obi"));
             closeProjectToolStripMenuItem.Enabled = true;
             saveProjectToolStripMenuItem.Enabled = true;
             saveProjectasToolStripMenuItem.Enabled = true;
