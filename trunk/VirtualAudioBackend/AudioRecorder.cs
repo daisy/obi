@@ -70,7 +70,7 @@ namespace VirtualAudioBackend
 		// constructor 
 		public 		AudioRecorder()
 		{
-							sProjectDirectory = AssetManager.static_sProjectDirectory;
+							
 			resmngr = new ResourceManager("VirtualBackend.messages", GetType().Assembly);
 		}
 
@@ -161,6 +161,8 @@ namespace VirtualAudioBackend
 			m_SampleRate = asset.SampleRate;
 			mAsset = new AudioMediaAsset(m_Channels, m_bitDepth, m_SampleRate);
 			mAsset = asset.Copy() as AudioMediaAsset;
+AssetManager manager = mAsset.Manager as AssetManager;
+ sProjectDirectory= manager.DirPath ;
 			InputFormat = GetInputFormat();
 			m_sFileName = sProjectDirectory+"\\"+"Listen.wav";
 			BinaryWriter ListenWriter  = new BinaryWriter(File.OpenWrite(m_sFileName));
@@ -178,6 +180,8 @@ namespace VirtualAudioBackend
 			m_bitDepth = asset.BitDepth;
 			mAsset = new AudioMediaAsset(m_Channels, m_bitDepth, m_SampleRate);
 			mAsset = asset.Copy() as AudioMediaAsset;
+			AssetManager manager = mAsset.Manager as AssetManager;
+			sProjectDirectory= manager.DirPath ;
 			InputFormat = GetInputFormat();
 			m_sFileName = GetFileName();
 			BinaryWriter bw = new BinaryWriter(File.OpenWrite(m_sFileName));

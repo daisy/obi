@@ -144,7 +144,7 @@ ob_AudioMediaAsset.m_eMediaType = m_eMediaType ;
 			if (m_AssetManager != null)
 			{
 				m_AssetManager.Assets.Remove (this.Name) ;
-				VirtualAudioBackend.AssetManager.static_htExists.Remove (this.Name) ;
+				m_AssetManager.m_htExists.Remove (this.Name) ;
 			}
 //if (VirtualAudioBackend.AssetManager.static_htExists.ContainsKey (this.Name))
 //VirtualAudioBackend.AssetManager.static_htExists.Remove (this.Name) ;
