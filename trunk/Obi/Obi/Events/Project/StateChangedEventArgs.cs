@@ -8,13 +8,29 @@ namespace Obi.Events.Project
 
     public delegate void StateChangedHandler(object sender, StateChangedEventArgs e);
 
+    /// <summary>
+    /// This event indicates that the state of the project has changed. The project may have been opened, saved, modified, etc.
+    /// </summary>
     public class StateChangedEventArgs: EventArgs
     {
         private Obi.Project mProject;
         private StateChange mChange;
 
-        public Obi.Project Project { get { return mProject; } } 
-        public StateChange Change { get { return mChange; } }
+        public Obi.Project Project
+        {
+            get
+            {
+                return mProject;
+            }
+        }
+ 
+        public StateChange Change
+        {
+            get
+            {
+                return mChange;
+            }
+        }
 
         public StateChangedEventArgs(Obi.Project project, StateChange change)
         {
