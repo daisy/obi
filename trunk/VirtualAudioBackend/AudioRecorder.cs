@@ -98,13 +98,13 @@ namespace VirtualAudioBackend
 		}
 		
 		//this will set the bit depth as 8 or 16
-		public int BitDepth
+		public short BitDepth
 		{
 			get
 			{
 				if((m_bitDepth == 16) && (m_bitDepth != 8) || (m_bitDepth!= 16) &&(m_bitDepth == 8))
 				{
-					return m_bitDepth;
+					return Convert.ToInt16 (m_bitDepth);
 				}
 				else
 				{

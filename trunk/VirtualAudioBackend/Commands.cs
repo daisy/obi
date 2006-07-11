@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Commands;
 
 namespace VirtualAudioBackend
@@ -291,6 +292,18 @@ m_SecondAsset = m_FirstAsset.Split(m_dUndoSplitTime ) ;
 			}
 		}
 
+// member variables
+private IAudioMediaAsset m_Asset ;
+private ArrayList m_alAssets ;
+private IAssetManager m_Manager ;
+private long m_lThreshold ;
+		private long m_lPhraseLength ;
+		private long m_lBefore ;
+		private double m_dPhraseLength ;
+		private double m_dBefore ;
+		private bool m_boolTime ;
+
+
 		/// <summary>
 		/// Create a new command to apply phrase detection.
 		/// </summary>
@@ -300,6 +313,12 @@ m_SecondAsset = m_FirstAsset.Split(m_dUndoSplitTime ) ;
 		/// <param name="before">The legnth of leading silence for a sentece (in bytes.)</param>
 		public PhraseDetectionCommand(IAudioMediaAsset asset, long threshold, long length, long before)
 		{
+m_Asset = asset ;
+m_Manager = asset.Manager ;
+			m_lThreshold = threshold ;
+			m_lPhraseLength = length ;
+			m_lBefore = before ;
+			m_boolTime = false ;
 		}
 
 		/// <summary>
@@ -311,6 +330,12 @@ m_SecondAsset = m_FirstAsset.Split(m_dUndoSplitTime ) ;
 		/// <param name="before">The legnth of leading silence for a sentece (in milliseconds.)</param>
 		public PhraseDetectionCommand(IAudioMediaAsset asset, long threshold, double length, double before)
 		{
+			m_Asset = asset ;
+			m_Manager = asset.Manager ;
+			m_lThreshold = threshold ;
+			m_dPhraseLength = length ;
+			m_dBefore = before ;
+			m_boolTime = true ;
 		}
 
 		/// <summary>
@@ -318,6 +343,22 @@ m_SecondAsset = m_FirstAsset.Split(m_dUndoSplitTime ) ;
 		/// </summary>
 		public override void Do()
 		{
+			if (m_alAssets == null)
+			{
+				if (m_boolTime == true)
+					m_alAssets = new ArrayList ( m_Asset.ApplyPhraseDetection ( m_lThreshold, m_dPhraseLength , m_dBefore)) ;
+				else
+					m_alAssets = new ArrayList ( m_Asset.ApplyPhraseDetection ( m_lThreshold, m_lPhraseLength , m_lBefore)) ;
+			}
+
+// Replace original asset in AssetManager with ArrayList assets
+m_Manager.RemoveAsset (m_Asset ) ;
+
+			foreach ( int n in m_alAssets)
+			{
+			m_Manager.AddAsset (m_alAssets [n] as IAudioMediaAsset) ;
+			}
+
 		}
 
 		/// <summary>
@@ -325,6 +366,12 @@ m_SecondAsset = m_FirstAsset.Split(m_dUndoSplitTime ) ;
 		/// </summary>
 		public override void Undo()
 		{
+			foreach (int n in m_alAssets)
+			{
+m_Manager.RemoveAsset (m_alAssets [n] as IAudioMediaAsset) ;
+			}
+
+m_Manager.AddAsset (m_Asset) ;
 		}
 	}
 
