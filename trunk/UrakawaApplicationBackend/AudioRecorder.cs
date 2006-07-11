@@ -35,7 +35,7 @@ namespace UrakawaApplicationBackend
 		private long SampleCount ;
 		private bool Capturing = false;
 		private CaptureBufferDescription dsc = new CaptureBufferDescription();
-		private string m_sFileName = "F:\\My Documents\\6.wav";
+		private string m_sFileName ;
 			internal static string ProjectDirectory  ;
 		private static int m_ConstructorCounter =0;
 		private short m_bitDepth;
@@ -383,7 +383,7 @@ namespace UrakawaApplicationBackend
 			
 			CalculationFunctions cf = new CalculationFunctions();
 			m_UpdateVMArrayLength = Convert.ToInt32 (cf.AdaptToFrame ( Convert.ToInt32 ( m_UpdateVMArrayLength ),  m_FrameSize)  );
-			arUpdateVM = new byte [ m_UpdateVMArrayLength ] ;
+																																	   arUpdateVM = new byte [ m_UpdateVMArrayLength ] ;
 
 			// Create the capture buffer
 			dsc.BufferBytes = m_iCaptureBufferSize;
@@ -450,7 +450,6 @@ namespace UrakawaApplicationBackend
 			while(Capturing)
 			{
 				//Sit here and wait for a message to arrive
-				NotificationEvent = new AutoResetEvent(false);
 				NotificationEvent.WaitOne(Timeout.Infinite, true);
 				//waits for infinite time span before recieving a signal
 				RecordCapturedData();
@@ -611,7 +610,7 @@ namespace UrakawaApplicationBackend
 				if(OldAsset.SizeInBytes >44)
 				{
 					OldAsset.MergeWith(m_AudioMediaAsset);
-					m_AudioMediaAsset = OldAsset;
+					//m_AudioMediaAsset = OldAsset;
 				}
 			}
 		}
