@@ -16,16 +16,21 @@ namespace VirtualAudioBackend
 		
 		private string m_sDirPath;
 
+		internal string DirPath
+		{
+			get
+			{
+return m_sDirPath ;
+			}
+		}
+
 		
 		//hash table to hold paths of assets being managed
 		private Hashtable m_htAssetList = new Hashtable();
 
 
-		//		static variable for directory to be used in other classes of namespace
-		internal static string static_sProjectDirectory  ;
-
 // hash table to contain list of all existing assets
-public static Hashtable static_htExists  = new Hashtable ();
+public Hashtable m_htExists  = new Hashtable ();
 
 // object for catch class
 		CatchEvents ob_Catch = new CatchEvents();
@@ -36,7 +41,7 @@ public static Hashtable static_htExists  = new Hashtable ();
 		public AssetManager(string projectDirectory)
 		{
 			m_sDirPath = projectDirectory ;
-			static_sProjectDirectory   = projectDirectory  ;
+			
 		}
 
 		/// <summary>
@@ -52,7 +57,7 @@ public static Hashtable static_htExists  = new Hashtable ();
 			ob_AudioMediaAsset.Name = NewMediaAssetName () ;
 			ob_AudioMediaAsset.m_AssetManager = this ;
 			m_htAssetList.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;
-static_htExists.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;   
+m_htExists.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;   
 			return ob_AudioMediaAsset ;
 		}
 
@@ -63,7 +68,6 @@ static_htExists.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;
 		/// <returns>The newly created asset.</returns>
 		public AudioMediaAsset NewAudioMediaAsset(ArrayList clips)
 		{
-// following if check will be transfered to AudioMediaAsset constructor
 			if (clips != null)
 			{
 				AudioMediaAsset ob_AudioMediaAsset = new AudioMediaAsset (clips) ;
@@ -71,7 +75,7 @@ static_htExists.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;
 				ob_AudioMediaAsset.Name = NewMediaAssetName () ;
 				ob_AudioMediaAsset.m_AssetManager = this ;
 				m_htAssetList.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;
-				static_htExists.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;   
+				m_htExists.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;   
 				return ob_AudioMediaAsset ;
 			}
 			else
@@ -95,7 +99,7 @@ MessageBox.Show ("AudioMediaAsset can not be created with this function as clip 
 			string sTempName ;
 			sTempName = sTemp + i.ToString () ;
 
-			while ( static_htExists.ContainsKey (sTempName)  && i<9000000)
+			while ( m_htExists.ContainsKey (sTempName)  && i<9000000)
 			{
 
 				i++;
@@ -133,12 +137,12 @@ MessageBox.Show ("AudioMediaAsset can not be created with this function as clip 
 
 		public void AddAsset(IMediaAsset asset)
 		{
-			if (asset.Name.Equals (null))
+			if (asset.Name.Equals (" "))
 			{
 asset.Name = NewMediaAssetName () ;
 			}
 m_htAssetList.Add (asset.Name, asset) ;
-			static_htExists.Add (asset.Name, asset) ;
+			m_htExists.Add (asset.Name, asset) ;
 		}
 
 		public Hashtable GetAssets(VirtualAudioBackend.MediaType assetType)
@@ -195,12 +199,12 @@ MessageBox.Show ("Asset not found in hashtable") ;
 		
 			if (  m_htAssetList.ContainsKey(assetToDelete.Name) )			{
 				m_htAssetList.Remove(assetToDelete.Name) ;
-static_htExists.Remove(assetToDelete.Name) ;
+m_htExists.Remove(assetToDelete.Name) ;
 				
 				AssetDeleted ob_AssetDeleted = new AssetDeleted(assetToDelete);
 				ob_AssetDeleted.AssetDeletedEvent+= new DAssetDeletedEvent(ob_Catch.CatchAssetDeletedEvent);
 				ob_AssetDeleted.NotifyAssetDeleted(this, ob_AssetDeleted);
-				
+				assetToDelete = null ;
 			}
 			else
 			{
@@ -230,7 +234,7 @@ MediaAssetToRemove.m_AssetManager = null ;
 				MediaAsset ob_MediaAsset = asset.Copy()  as MediaAsset;
 				ob_MediaAsset.Name = NewMediaAssetName () ;
 				m_htAssetList.Add (ob_MediaAsset.Name, ob_MediaAsset) ;
-				static_htExists.Add (ob_MediaAsset.Name, ob_MediaAsset) ;
+				m_htExists.Add (ob_MediaAsset.Name, ob_MediaAsset) ;
 				return ob_MediaAsset ;
 			}
 			else
@@ -253,7 +257,7 @@ throw new Exception ("Asset not found in Hashtable") ;
 					CopyAsset.Name = "Copy"+"Of"+string.Copy(asset.Name);
 					BOOLAssetCopied = true;
 					m_htAssetList.Add(CopyAsset.Name, CopyAsset);
-					static_htExists.Add(CopyAsset.Name, CopyAsset);
+					m_htExists.Add(CopyAsset.Name, CopyAsset);
 					break;
 				}
 			}
@@ -277,17 +281,17 @@ MessageBox.Show ("") ;
 				if(enRemove.Key.ToString() == asset.Name)
 				{
 					m_htAssetList.Remove(OldName );
-					static_htExists.Remove(OldName );
+					m_htExists.Remove(OldName );
 					asset.Name = newName;
 					m_htAssetList.Add(asset.Name, asset);
-static_htExists.Add(asset.Name, asset);
+m_htExists.Add(asset.Name, asset);
 boolRenamed = true ;
 break ;
 				}
 			}
 			if (boolRenamed == false)
 throw new Exception ("Asset cannot be renamed : not in hashtable") ;
-// following statements would be in else brach of above if.
+
 			AssetRenamed ob_AssetRenamed =  new AssetRenamed(asset, OldName);
 			ob_AssetRenamed.AssetRenamedEvent+= new DAssetRenamedEvent(ob_Catch.CatchAssetRenamedEvent);
 			ob_AssetRenamed.NotifyAssetRenamed(this, ob_AssetRenamed);

@@ -58,8 +58,8 @@ namespace VirtualAudioBackend
 			sTemp = "MediaAsset" ;
 			string sTempName ;
 			sTempName = sTemp + i.ToString () ;
-
-			while ( AssetManager.static_htExists.ContainsKey (sTempName)  && i<9000000)
+AssetManager manager = Asset.Manager as AssetManager ;
+			while ( manager.m_htExists.ContainsKey (sTempName)  && i<9000000)
 			{
 
 				i++;
@@ -69,7 +69,7 @@ namespace VirtualAudioBackend
 
 			if (i<9000000)
 			{
-AssetManager.static_htExists.Add (sTempName , Asset) ;
+manager.m_htExists.Add (sTempName , Asset) ;
 				return sTempName ;
 			}
 			else
