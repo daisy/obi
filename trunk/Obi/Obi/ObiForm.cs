@@ -562,7 +562,7 @@ namespace Obi
         /// <summary>
         /// Read the settings, or create an empty settings object.
         /// </summary>
-        private void GetSettings()
+        /*private void GetSettings()
         {
             mSettings = new Settings();
             mSettings.RecentProjects = new ArrayList();
@@ -571,9 +571,9 @@ namespace Obi
             Console.WriteLine(mSettings.UserProfile);
             mSettings.IdTemplate = "obi_####";
             mSettings.DefaultPath = Environment.CurrentDirectory;
-        }
+        }*/
 
-        /*private void GetSettings()
+        private void GetSettings()
         {
             mSettings = new Settings();
             try
@@ -583,7 +583,7 @@ namespace Obi
                     new IsolatedStorageFileStream(SettingsFileName, FileMode.Open, FileAccess.Read, file);
                 MessageBox.Show("OK (stream)", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 SoapFormatter soap = new SoapFormatter();
-                mSettings.RecentProjects = (ArrayList)soap.Deserialize(stream);
+                mSettings = (Settings)soap.Deserialize(stream);
                 ClearRecentList();
                 for (int i = mSettings.RecentProjects.Count - 1; i >= 0; --i)
                 {
@@ -598,22 +598,20 @@ namespace Obi
                 mSettings.RecentProjects = new ArrayList();
                 ClearRecentList();
             }
-        }*/
+        }
 
         /// <summary>
         /// Save the settings when closing.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void ObiForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            /*try
+            try
             {
                 IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
                 IsolatedStorageFileStream stream =
                     new IsolatedStorageFileStream(SettingsFileName, FileMode.Create, FileAccess.Write, file);
                 SoapFormatter soap = new SoapFormatter();
-                soap.Serialize(stream, mSettings.RecentProjects);
+                soap.Serialize(stream, mSettings);
                 stream.Close();
                 string[] dirs = file.GetFileNames("*.*");
                 MessageBox.Show("OK: " + String.Join(" :: ", dirs), "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -622,7 +620,7 @@ namespace Obi
             {
                 MessageBox.Show(String.Format(Localizer.Message("save_settings_error_text"), x.Message),
                     Localizer.Message("save_settings_error_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }*/
+            }
         }
 
 

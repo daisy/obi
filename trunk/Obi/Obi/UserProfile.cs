@@ -5,6 +5,11 @@ using System.Globalization;
 
 namespace Obi
 {
+    /// <summary>
+    /// The user profile stores basic information about the user.
+    /// This information is used to provide default values for book metadata.
+    /// </summary>
+    [Serializable]
     public class UserProfile
     {
         private string mName;          // user name
