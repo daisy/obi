@@ -92,6 +92,7 @@
     <Compile Include="Dialogs\UserProfile.Designer.cs">
       <DependentUpon>UserProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Events\Node\AddSiblingSectionEventArgs.cs" />
     <Compile Include="Events\Node\CreatedEventArgs.cs" />
     <Compile Include="Events\Project\StateChangedEventArgs.cs" />
     <Compile Include="Localizer.cs" />
