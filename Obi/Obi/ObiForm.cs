@@ -39,7 +39,7 @@ namespace Obi
             ProjectStateChanged += new Events.Project.StateChangedHandler(mProject_StateChanged);
             GUIUpdateNoProject();
             UpdateShowHideTOC();
-            GetSettings();
+            mSettings = GetSettings();
             mUndoStack = new UndoRedoStack();
             undo_label = mUndoToolStripMenuItem.Text;
             redo_label = mRedoToolStripMenuItem.Text;
@@ -563,44 +563,33 @@ namespace Obi
         }
 
         /// <summary>
-        /// Read the settings, or create an empty settings object.
+        /// Read the settings; missing values are replaced with defaults.
         /// </summary>
-        /*private void GetSettings()
+        private Settings GetSettings()
         {
-            mSettings = new Settings();
-            mSettings.RecentProjects = new ArrayList();
-            ClearRecentList();
-            mSettings.UserProfile = new UserProfile();
-            Console.WriteLine(mSettings.UserProfile);
-            mSettings.IdTemplate = "obi_####";
-            mSettings.DefaultPath = Environment.CurrentDirectory;
-        }*/
-
-        private void GetSettings()
-        {
-            mSettings = new Settings();
+            IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
             try
             {
-                IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
                 IsolatedStorageFileStream stream =
                     new IsolatedStorageFileStream(SettingsFileName, FileMode.Open, FileAccess.Read, file);
-                MessageBox.Show("OK (stream)", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 SoapFormatter soap = new SoapFormatter();
                 mSettings = (Settings)soap.Deserialize(stream);
-                ClearRecentList();
-                for (int i = mSettings.RecentProjects.Count - 1; i >= 0; --i)
-                {
-                    //AddRecentProject((string) mSettings.RecentProjects[i]);
-                    Console.WriteLine("Add {0} ({1})", (string)mSettings.RecentProjects[i], i);
-                }
-                MessageBox.Show("OK (deserialize)", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 stream.Close();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                mSettings.RecentProjects = new ArrayList();
-                ClearRecentList();
+                mSettings = new Settings();
             }
+            if (mSettings.RecentProjects == null) mSettings.RecentProjects = new ArrayList();    
+            ClearRecentList();
+            for (int i = mSettings.RecentProjects.Count - 1; i >= 0; --i)
+            {
+                AddRecentProject((string)mSettings.RecentProjects[i]);
+            }
+            if (mSettings.UserProfile == null) mSettings.UserProfile = new UserProfile();
+            if (mSettings.IdTemplate == null) mSettings.IdTemplate = "obi_####";
+            if (mSettings.DefaultPath == null) mSettings.DefaultPath = Environment.CurrentDirectory;
+            return mSettings;
         }
 
         /// <summary>
@@ -616,8 +605,6 @@ namespace Obi
                 SoapFormatter soap = new SoapFormatter();
                 soap.Serialize(stream, mSettings);
                 stream.Close();
-                string[] dirs = file.GetFileNames("*.*");
-                MessageBox.Show("OK: " + String.Join(" :: ", dirs), "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception x)
             {
@@ -696,17 +683,5 @@ namespace Obi
             OnProjectModified();
             Debug(String.Format(Localizer.Message("debug_appended_strip"), par));
         }
-    }
-
-    /// <summary>
-    /// Various persistent application settings.
-    /// </summary>
-    [Serializable()]
-    public class Settings
-    {
-        public ArrayList RecentProjects;  // paths to projects recently opened
-        public UserProfile UserProfile;   // the user profile
-        public string IdTemplate;         // identifier template
-        public string DefaultPath;        // default location
     }
 }
