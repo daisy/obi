@@ -22,9 +22,11 @@ namespace Obi
     {
         private Project mProject;          // the project currently being authored
         private Settings mSettings;        // application settings
-        private UndoRedoStack mUndoStack;  // the undo stack for this project [should belong to the project; saved together]
+        private UndoRedoStack mUndoStack;  // the undo stack for this project (should it belong to the project?)
         
         private event Events.Project.StateChangedHandler ProjectStateChanged;  // track changes on the project
+
+        private static readonly string XukFilter = "Obi project file (*.xuk)|*.xuk";  // filter for opening/saving XUK files
 
         /// <summary>
         /// Initialize a new form. No project is opened at creation time.
@@ -43,11 +45,11 @@ namespace Obi
             UndoStackChanged += new UndoStackChangedHandler(mUndoStack_UndoStackChanged);
         }
 
+        #region Menu items
+
         /// <summary>
-        /// Create a new project if the correct one was closed properly.
+        /// Create a new project if the current one was closed properly, or if none was open.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void createNewProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Dialogs.NewProject dialog = new Dialogs.NewProject(mSettings.DefaultPath);
@@ -69,13 +71,15 @@ namespace Obi
             }
         }
 
-        private const string XukFilter = "Obi project file (*.xuk)|*.xuk";
+        #endregion
+
+
+
+
 
         /// <summary>
         /// Open a project from a XUK file by prompting the user for a file location.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void openProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (ClosedProject())
