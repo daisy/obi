@@ -92,6 +92,7 @@
     <Compile Include="Dialogs\UserProfile.Designer.cs">
       <DependentUpon>UserProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Events\Node\CreatedEventArgs.cs" />
     <Compile Include="Events\Project\StateChangedEventArgs.cs" />
     <Compile Include="Localizer.cs" />
     <Compile Include="messages.Designer.cs">
@@ -197,6 +198,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="SimpleMetadata.cs" />
     <Compile Include="Strips\AudioStrip.cs" />
     <Compile Include="Strips\Manager.cs" />
