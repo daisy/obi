@@ -178,6 +178,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>StripPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TOCPanel.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TOCPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -254,6 +258,12 @@
     </Compile>
     <Compile Include="UserControls\MetadataPanel.Designer.cs">
       <DependentUpon>MetadataPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TOCPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\TOCPanel.Designer.cs">
+      <DependentUpon>TOCPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="UserProfile.cs" />
   </ItemGroup>
