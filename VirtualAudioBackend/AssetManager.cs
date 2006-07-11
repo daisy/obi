@@ -63,6 +63,7 @@ static_htExists.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;
 		/// <returns>The newly created asset.</returns>
 		public AudioMediaAsset NewAudioMediaAsset(ArrayList clips)
 		{
+// following if check will be transfered to AudioMediaAsset constructor
 			if (clips != null)
 			{
 				AudioMediaAsset ob_AudioMediaAsset = new AudioMediaAsset (clips) ;
@@ -286,7 +287,7 @@ break ;
 			}
 			if (boolRenamed == false)
 throw new Exception ("Asset cannot be renamed : not in hashtable") ;
-
+// following statements would be in else brach of above if.
 			AssetRenamed ob_AssetRenamed =  new AssetRenamed(asset, OldName);
 			ob_AssetRenamed.AssetRenamedEvent+= new DAssetRenamedEvent(ob_Catch.CatchAssetRenamedEvent);
 			ob_AssetRenamed.NotifyAssetRenamed(this, ob_AssetRenamed);
