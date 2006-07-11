@@ -1,0 +1,38 @@
+$Id$
+
+If you want to have a look at the application, open Obi in Visual Studio 2005.
+If you want to have a look at the audio backend, open
+  UrakawaApplicationBackend in Visual Studio .Net 2003.
+
++ Commands
+  A 2003 project for the command pattern used by the application and the audio
+  backend. Part of UrakawaApplicationBackend.
+
++ Obi
+  A 2005 project for the application. This is the main project.
+
++ UrakawaApplicationBackend
+  A 2003 project for the audio backend (player, recorder, vu meter and) and
+  asset manager of the application. Includes also Commands and
+  VirtualAudioBackend. This is the first version with destructive edits.
+  Do not use this version.
+
++ VirtualAudioBackend
+  A 2003 project for the audio backend, this is the second version with
+  non-destructive edits and commands. Use this version. Part of
+  UrakawaApplicationBackend.
+
++ Zaboom
+  A 2005 project of a test application for audio editing and playing.
+
++ docs
+  Mostly outdated, features.txt contains the rough feature list of version
+  0.5/1.0/future of the application.
+
++ prototype
+  Contains the two prototypes/mockups that were delivered in April. Protobi
+  is more interactive, UrakawaPrototype shows more features. The application
+  will still look quite different. Both are 2005 projects.
+
++ sandbox
+  Stuff.
