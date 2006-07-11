@@ -27,6 +27,7 @@ namespace Obi
         private event Events.Project.StateChangedHandler ProjectStateChanged;  // track changes on the project
 
         private static readonly string XukFilter = "Obi project file (*.xuk)|*.xuk";  // filter for opening/saving XUK files
+        private static readonly string SettingsFileName = "obi_settings.xml";         // settings file name
 
         /// <summary>
         /// Initialize a new form. No project is opened at creation time.
@@ -560,8 +561,6 @@ namespace Obi
         {
             toolStripStatusLabel1.Text = Localizer.Message("ready");
         }
-
-        private const string SettingsFileName = "obi_settings.xml";
 
         /// <summary>
         /// Read the settings, or create an empty settings object.
