@@ -14,6 +14,13 @@ namespace Obi.UserControls
     public partial class TOCPanel : UserControl
     {
         public event Events.Node.AddSiblingSectionHandler AddSiblingSection;
+        public event Events.Node.AddChildSectionHandler AddChildSection;
+        public event Events.Node.BeginEditingSectionHeadingLabelHandler BeginEditingLabel;
+        public event Events.Node.DecreaseSectionLevelHandler DecreaseSectionLevel;
+        public event Events.Node.IncreaseSectionLevelHandler IncreaseSectionLevel;
+        public event Events.Node.LimitViewToSectionDepthHandler LimitDepthOfView;
+        public event Events.Node.MoveSectionDownHandler MoveSectionDown;
+        public event Events.Node.MoveSectionUpHandler MoveSectionUp;
 
         private string ObiTextChannelName = "Obi.Text";
 
@@ -32,11 +39,6 @@ namespace Obi.UserControls
             InitializeComponent();
         }
 
-        /*
-         * ************************************
-         * these functions are triggered from the outside
-         * *************************************
-        */
         /// <summary>
         /// Add a new heading as an immediate sibling of the relative node.
         /// The new heading has already been created as a <see cref="CoreNode"/>.  Now we
@@ -57,15 +59,14 @@ namespace Obi.UserControls
             string label = getCoreNodeText(newNode);
 
             //add as a sibling
-            //@todo
-            //this adds it as the last child, so for us that's going to look like
-            //the youngest sibling.  we need to add a middle sibling.
             System.Windows.Forms.TreeNode newTreeNode = 
-                relTreeNode.Parent.Nodes.Add(newNode.GetHashCode().ToString(), label);
-            
+                relTreeNode.Parent.Nodes.Insert
+                (relTreeNode.Index+1, newNode.GetHashCode().ToString(), label);
+
             newTreeNode.Tag = newNode;
 
             newTreeNode.ExpandAll();
+            newTreeNode.EnsureVisible();
         }
 
         /// <summary>
@@ -92,11 +93,17 @@ namespace Obi.UserControls
             newTreeNode.Tag = newNode;
 
             newTreeNode.ExpandAll();
+            newTreeNode.EnsureVisible();
         }
 
+        /// <summary>
+        /// Begin editing the label (activate the edit cursor) for the currently
+        /// selected section heading node.
+        /// </summary>
         public void BeginEditingLabelForCurrentSectionHeading()
         {
             System.Windows.Forms.TreeNode sel = this.tocTree.SelectedNode;
+            sel.EnsureVisible();
             sel.BeginEdit();
         }
 
@@ -105,11 +112,11 @@ namespace Obi.UserControls
          * you might move left if you go up and down
          * you won't move right
          */
-        public void MoveCurrentSectionUp(urakawa.core.CoreNode node)
+        public void MoveCurrentSectionUp()
         {
         }
 
-        public void MoveCurrentSectionDown(urakawa.core.CoreNode node)
+        public void MoveCurrentSectionDown()
         {
         }
         
@@ -127,9 +134,44 @@ namespace Obi.UserControls
         {
         }
 
+        /// <summary>
+        /// Show all the sections in the tree view.
+        /// </summary>
         public void ExpandViewToShowAllSections()
         {
             tocTree.ExpandAll();
+        }
+
+        /// <summary>
+        /// Return the core node version of the selected tree node.
+        /// </summary>
+        /// <returns>The selected section.</returns>
+        public CoreNode GetSelectedSection()
+        {
+            urakawa.core.CoreNode selectedCoreNode;
+            System.Windows.Forms.TreeNode sel = this.tocTree.SelectedNode;
+            selectedCoreNode = (urakawa.core.CoreNode)sel.Tag;
+            return selectedCoreNode;
+        }
+
+        /// <summary>
+        /// Selects a node in the tree view.
+        /// </summary>
+        /// <param name="node">The core node version of the node to select.</param>
+        /// <returns>true or false, depending on if the selection was successful</returns>
+        public bool SetSelectedSection(CoreNode node)
+        {
+            System.Windows.Forms.TreeNode sel = findTreeNodeFromCoreNode(node);
+
+            if (sel != null)
+            {
+                tocTree.SelectedNode = sel;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /*
@@ -140,11 +182,8 @@ namespace Obi.UserControls
         private void addSectionAtSameLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             urakawa.core.CoreNode selectedCoreNode;
-
             System.Windows.Forms.TreeNode sel = this.tocTree.SelectedNode;
-
             selectedCoreNode = (urakawa.core.CoreNode)sel.Tag;
-
             AddSiblingSection(this, new Events.Node.AddSiblingSectionEventArgs(selectedCoreNode));
         }
 
@@ -156,27 +195,42 @@ namespace Obi.UserControls
 
         private void moveUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            urakawa.core.CoreNode selectedCoreNode;
+            System.Windows.Forms.TreeNode sel = this.tocTree.SelectedNode;
+            selectedCoreNode = (urakawa.core.CoreNode)sel.Tag;
+            MoveSectionUp(this, new Events.Node.MoveSectionUpEventArgs(selectedCoreNode));
         }
 
         private void moveDownToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            urakawa.core.CoreNode selectedCoreNode;
+            System.Windows.Forms.TreeNode sel = this.tocTree.SelectedNode;
+            selectedCoreNode = (urakawa.core.CoreNode)sel.Tag;
+            MoveSectionDown(this, new Events.Node.MoveSectionDownEventArgs(selectedCoreNode));
         }
 
         private void increaseLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            urakawa.core.CoreNode selectedCoreNode;
+            System.Windows.Forms.TreeNode sel = this.tocTree.SelectedNode;
+            selectedCoreNode = (urakawa.core.CoreNode)sel.Tag;
+            IncreaseSectionLevel(this, new Events.Node.IncreaseSectionLevelEventArgs(selectedCoreNode));
         }
 
         private void decreaseLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            urakawa.core.CoreNode selectedCoreNode;
+            System.Windows.Forms.TreeNode sel = this.tocTree.SelectedNode;
+            selectedCoreNode = (urakawa.core.CoreNode)sel.Tag;
+            DecreaseSectionLevel(this, new Events.Node.DecreaseSectionLevelEventArgs(selectedCoreNode));
         }
 
         private void addSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            urakawa.core.CoreNode selectedCoreNode;
+            System.Windows.Forms.TreeNode sel = this.tocTree.SelectedNode;
+            selectedCoreNode = (urakawa.core.CoreNode)sel.Tag;
+            AddChildSection(this, new Events.Node.AddChildSectionEventArgs(selectedCoreNode));
         }
 
 
