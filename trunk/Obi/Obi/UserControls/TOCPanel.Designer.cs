@@ -60,7 +60,7 @@ namespace Obi.UserControls
             this.decreaseLevelToolStripMenuItem,
             this.editLabelToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(197, 158);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(197, 180);
             // 
             // addSectionAtSameLevelToolStripMenuItem
             // 
