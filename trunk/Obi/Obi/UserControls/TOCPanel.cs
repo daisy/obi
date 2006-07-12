@@ -50,7 +50,7 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="newNode">The new heading to add to the tree</param>
         /// <param name="relNode">The relative sibling node</param>
-        public void AddNewSiblingHeading(CoreNode newNode, CoreNode relNode)
+        public void AddNewSiblingSection(CoreNode newNode, CoreNode relNode)
         {
             System.Windows.Forms.TreeNode relTreeNode = findTreeNodeFromCoreNode(relNode);
      
@@ -79,7 +79,7 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="newNode">The new heading to add to the tree</param>
         /// <param name="relNode">The parent node for the new heading</param>
-        public void AddNewChildHeading(CoreNode newNode, CoreNode relNode)
+        public void AddNewChildSection(CoreNode newNode, CoreNode relNode)
         {
             System.Windows.Forms.TreeNode relTreeNode = findTreeNodeFromCoreNode(relNode);
      
@@ -94,7 +94,7 @@ namespace Obi.UserControls
             newTreeNode.ExpandAll();
         }
 
-        public void MakeLabelEditableForHeadingInFocus()
+        public void BeginEditingLabelForCurrentSectionHeading()
         {
             System.Windows.Forms.TreeNode sel = this.tocTree.SelectedNode;
             sel.BeginEdit();
@@ -105,29 +105,29 @@ namespace Obi.UserControls
          * you might move left if you go up and down
          * you won't move right
          */
-        public void MoveUp(urakawa.core.CoreNode node)
+        public void MoveCurrentSectionUp(urakawa.core.CoreNode node)
         {
         }
 
-        public void MoveDown(urakawa.core.CoreNode node)
+        public void MoveCurrentSectionDown(urakawa.core.CoreNode node)
         {
         }
         
         //always allowed until level 1
-        public void DecreaseLevel()
+        public void DecreaseCurrentSectionLevel()
         {
         }
 
         //allowed if you have a previous sibling
-        public void IncreaseLevel()
+        public void IncreaseCurrentSectionLevel()
         {
         }
 
-        public void LimitView()
+        public void LimitViewToDepthOfCurrentSection()
         {
         }
 
-        public void ExpandView()
+        public void ExpandViewToShowAllSections()
         {
             tocTree.ExpandAll();
         }
