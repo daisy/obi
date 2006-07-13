@@ -90,26 +90,31 @@ namespace VirtualAudioBackend
 		/// <param name="clips">The list of <see cref="AudioClip"/>s.</param>
 		public AudioMediaAsset(ArrayList clips)
 		{
-m_eMediaType = MediaType.Audio ;
-			AudioClip ob_AudioClip = clips[0] as AudioClip ;
-			m_Channels = ob_AudioClip.Channels ;
-			m_BitDepth = ob_AudioClip.BitDepth ;
-			m_SamplingRate = ob_AudioClip.SampleRate ;
-			m_FrameSize = ob_AudioClip.FrameSize ;
-m_alClipList = clips ;
-			m_dAudioLengthInTime  = 0 ;
-
-			for (int i = 0 ; i< clips.Count; i++)
+			if (clips != null)
 			{
+				m_eMediaType = MediaType.Audio ;
+				AudioClip ob_AudioClip = clips[0] as AudioClip ;
+				m_Channels = ob_AudioClip.Channels ;
+				m_BitDepth = ob_AudioClip.BitDepth ;
+				m_SamplingRate = ob_AudioClip.SampleRate ;
+				m_FrameSize = ob_AudioClip.FrameSize ;
+				m_alClipList = clips ;
+				m_dAudioLengthInTime  = 0 ;
 
-				ob_AudioClip = clips [i] as AudioClip ;
+				for (int i = 0 ; i< clips.Count; i++)
+				{
 
-				m_dAudioLengthInTime   = m_dAudioLengthInTime   + ob_AudioClip.LengthInTime ;
+					ob_AudioClip = clips [i] as AudioClip ;
 
+					m_dAudioLengthInTime   = m_dAudioLengthInTime   + ob_AudioClip.LengthInTime ;
+
+				}
+
+				m_lAudioLengthInBytes = Calc.ConvertTimeToByte (m_dAudioLengthInTime, m_SamplingRate, m_FrameSize) ;
+				m_lSizeInBytes = m_lAudioLengthInBytes ;
 			}
-
-			m_lAudioLengthInBytes = Calc.ConvertTimeToByte (m_dAudioLengthInTime, m_SamplingRate, m_FrameSize) ;
-m_lSizeInBytes = m_lAudioLengthInBytes ;
+else
+				throw new Exception ("No AudioMediaAsset can be created as clip list is empty") ;
 		}
 
 		/// <summary>
@@ -587,6 +592,7 @@ ArrayList alAssetList= new ArrayList() ;
 ArrayList alClipList ; 
 AudioMediaAsset ob_Asset =new AudioMediaAsset ( m_Channels ,  m_BitDepth, m_SamplingRate) ;
 
+
 // apply phrase detection on each clip in clip list of this asset
 			for (int i = 0 ; i < m_alClipList.Count ; i++)
 			{
@@ -595,28 +601,41 @@ ob_Clip = m_alClipList [i] as AudioClip ;
 MessageBox.Show (alClipList.Count.ToString () + "Clip Count") ;
 				if (Convert.ToBoolean (alClipList [0]) == false)
 				{
+
 MessageBox.Show ("bool is False") ;
 					ob_Asset.AddClip (alClipList [1] as AudioClip) ;
+
+					if (i == m_alClipList.Count - 1&& ob_Asset.m_alClipList != null)
+					{
+						alAssetList.Add(ob_Asset) ;
+						MessageBox.Show ("last Asset added") ;
+					}
 				}
 				else
 				{
 MessageBox.Show ("bool is true") ;
-ob_Asset.AddClip (alClipList [1] as AudioClip) ;
+
+//ob_Asset.AddClip (alClipList [1] as AudioClip) ;
+if (i != 0 )
 alAssetList.Add (ob_Asset) ;
 MessageBox.Show ("Asset Added before loop") ;
-					for (int j = 2 ; j< alClipList.Count ; j++)
+
+					for (int j = 1 ; j< alClipList.Count-1 ; j++)
 					{
 						ob_Asset = new AudioMediaAsset (m_Channels , m_SamplingRate , m_BitDepth) ;
 ob_Asset.AddClip (alClipList [j] as AudioClip) ;
 alAssetList.Add (ob_Asset) ;
-MessageBox.Show ("Asset added") ;
+MessageBox.Show ("Asset added inside loop") ;
 					}
-					//ob_Asset = new AudioMediaAsset (m_Channels , m_SamplingRate , m_BitDepth) ;
-					//ob_Asset.AddClip (alClipList [alClipList.Count- 1 ] as AudioClip) ;
+					ob_Asset = new AudioMediaAsset (m_Channels , m_SamplingRate , m_BitDepth) ;
 
-					if (i == m_alClipList.Count - 1)
+if (alClipList.Count >2)
+					ob_Asset.AddClip (alClipList [alClipList.Count- 1 ] as AudioClip) ;
+
+					if (i == m_alClipList.Count - 1&& ob_Asset.m_alClipList != null)
 					{
-//alAssetList.Add(ob_Asset) ;
+						alAssetList.Add(ob_Asset) ;
+MessageBox.Show ("last Asset added") ;
 					}
 				} // bool if ends
 
