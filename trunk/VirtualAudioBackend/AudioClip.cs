@@ -32,7 +32,7 @@ private long m_lFileAudioLengthInBytes ;
 internal static  Hashtable static_htClipExists = new Hashtable () ;
 		internal static long static_lNameCount ;
 private string m_sName ;
-// to finalised to internal in end
+// finalise as internal instead of public
 		public string Name
 		{
 			get
@@ -245,7 +245,7 @@ m_dEndTime = next.EndTime ;
 m_dLengthInTime  = m_dEndTime - m_dBeginTime ;
 																								}
 			else
-				MessageBox.Show ("Merging of clips cannot be done as they are of different format or different origin") ;
+throw new Exception ("Clips of different formats cannot be merged") ;				
 		}
 
 // takes relative time as parameters
@@ -271,10 +271,7 @@ MessageBox.Show ("both") ;
 				return ob_AudioClip ;
 			}
 			else
-			{
-				MessageBox.Show ("Partial clip could not be created from orignal clip" ) ;
-				return null ;
-			}
+			throw new Exception ("Partial clip cannot be created: Invalid time parameters") ;
 		}
 
 		void Init (string sPath)
@@ -408,9 +405,10 @@ MessageBox.Show ("both") ;
 
 // flags to indicate phrases and silence
 bool boolPhraseDetected = false ;
+bool boolBeginPhraseDetected = false ;
 
 			// scanning of file starts
-			for (long j = 44 + this.BeginByte; j< (lSize / Block); j++)
+			for (long j =  this.BeginByte/ Block ; j< (lSize / Block); j++)
 			{
 				// decodes audio chunck inside block
 				lSum = BlockSum (br, (j*Block) + 44, Block, this.FrameSize, this.Channels) ;
@@ -419,9 +417,18 @@ bool boolPhraseDetected = false ;
 				if (lSum < SilVal)
 				{
 					lCheck ++ ;
+					//lHighAmpCheck = 0 ;  
 				}
 				else
-				{
+				{				
+					if ( (j- (this.BeginByte/Block )) < lCountSilGap&& boolBeginPhraseDetected == false)
+					{
+boolBeginPhraseDetected  = true ;
+						alPhrases.Add( Convert.ToInt64 (0)) ;
+						boolPhraseDetected = true ;
+												lCheck = 0 ;
+						//lHighAmpCheck = 0 ;
+					}
 
 					// checks the length of silence
 					if (lCheck > lCountSilGap)
@@ -429,15 +436,10 @@ bool boolPhraseDetected = false ;
 						//sets the detection flag
 						boolPhraseDetected = true ;
 
-						if ( (j-44) <= lCountSilGap)
-						{
-							alPhrases.Add( Convert.ToInt64 (0)) ;
-						}
-						else
-						{
 							alPhrases.Add((j * Block) - BeforePhrase- this.BeginByte) ;
-						}
+						
 						lCheck = 0 ;
+						//lHighAmpCheck = 0 ;
 					}
 				}
 
@@ -509,7 +511,7 @@ alClipList.Add (CopyClipPart ( dBeginTime , m_dEndTime) );
 
 			// loop to end of file reading collective value of  samples in Block and determine highest value denoted by lLargest
 			// Step size is the Block size
-			for (long j = 44 + this.BeginByte;j < (lSize / Block); j = j + Block)
+			for (long j = 44 + this.BeginByte;j < (lSize ); j = j + Block)
 			{
 				//  BlockSum is function to retrieve average amplitude in  Block
 				lBlockSum = BlockSum(brRef , j , Block, this.FrameSize, this.Channels) ;	
