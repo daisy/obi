@@ -21,13 +21,18 @@ namespace Obi.UserControls
             set
             {
                 mModel = value;
-                mTitleLabel.Text = mModel.Label;
+                labelBox.Text = mModel.Label;
             }
         }
 
         public NRParStrip()
         {
             InitializeComponent();
+        }
+
+        private void labelBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Obi.Events.Node
     /// <summary>
     /// This event is fired when a view wants to add a new sibling section node in the core tree.
     /// </summary>
-    class AddSiblingSectionEventArgs : EventArgs
+    public class AddSiblingSectionEventArgs : EventArgs
     {
         private CoreNode mContextNode;  // the node after which to add the new sibling
 

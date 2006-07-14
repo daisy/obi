@@ -48,8 +48,9 @@ namespace Obi
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.metadataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.touchProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.appendStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addChildSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addsiblingSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableOfContentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,6 +68,7 @@ namespace Obi
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
+            this.tocToolStripMenuItem,
             this.viewToolStripMenuItem,
             this.toolsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -180,9 +182,7 @@ namespace Obi
             this.mRedoToolStripMenuItem,
             this.toolStripSeparator1,
             this.metadataToolStripMenuItem,
-            this.touchProjectToolStripMenuItem,
-            this.toolStripSeparator4,
-            this.appendStripToolStripMenuItem});
+            this.touchProjectToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.editToolStripMenuItem.Text = "&Edit";
@@ -224,17 +224,26 @@ namespace Obi
             this.touchProjectToolStripMenuItem.Text = "&Touch project";
             this.touchProjectToolStripMenuItem.Click += new System.EventHandler(this.touchProjectToolStripMenuItem_Click);
             // 
-            // toolStripSeparator4
+            // tocToolStripMenuItem
             // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(149, 6);
+            this.tocToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addChildSectionToolStripMenuItem,
+            this.addsiblingSectionToolStripMenuItem});
+            this.tocToolStripMenuItem.Name = "tocToolStripMenuItem";
+            this.tocToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.tocToolStripMenuItem.Text = "TO&C";
             // 
-            // appendStripToolStripMenuItem
+            // addChildSectionToolStripMenuItem
             // 
-            this.appendStripToolStripMenuItem.Name = "appendStripToolStripMenuItem";
-            this.appendStripToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.appendStripToolStripMenuItem.Text = "&Append strip";
-            this.appendStripToolStripMenuItem.Click += new System.EventHandler(this.appendStripToolStripMenuItem_Click);
+            this.addChildSectionToolStripMenuItem.Name = "addChildSectionToolStripMenuItem";
+            this.addChildSectionToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.addChildSectionToolStripMenuItem.Text = "&Add child section";
+            // 
+            // addsiblingSectionToolStripMenuItem
+            // 
+            this.addsiblingSectionToolStripMenuItem.Name = "addsiblingSectionToolStripMenuItem";
+            this.addsiblingSectionToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.addsiblingSectionToolStripMenuItem.Text = "Add &sibling section";
             // 
             // viewToolStripMenuItem
             // 
@@ -355,8 +364,9 @@ namespace Obi
         private Obi.UserControls.ProjectPanel mProjectPanel;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tableOfContentsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripMenuItem appendStripToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tocToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addChildSectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addsiblingSectionToolStripMenuItem;
 
 
     }
