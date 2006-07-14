@@ -4,6 +4,16 @@ If you want to have a look at the application, open Obi in Visual Studio 2005.
 If you want to have a look at the audio backend, open
   UrakawaApplicationBackend in Visual Studio .Net 2003.
 
+Prerequisites:
+1. You will need to install Direct X .Net SDK first.
+2. Once DirectX is installed, you can compile UrakawaApplicationBackend
+3. You also need to compile the Urakawa toolkit from the implementation
+   directory.
+4. Once you have DirectX, the backend and the toolkit, you can compile both
+   Obi and Zaboom. You *may* need to specify the location of the DLLs again
+   in the References section of the Solution Explorer; they can be found in
+   the bin/ directory of all projects. 
+
 + Commands
   A 2003 project for the command pattern used by the application and the audio
   backend. Part of UrakawaApplicationBackend.

@@ -7,98 +7,82 @@ using urakawa.media;
 
 namespace Obi
 {
-    public class Project
+    /// <summary>
+    /// An Obi project is an Urakawa project (core tree and metadata)
+    /// The core tree uses three channels:
+    ///   1. an audio channel for audio media
+    ///   2. a text channel for table of contents items (which will become NCX label in DTB)
+    ///   3. an annotation channel for text annotation of other items in the book (e.g. phrases.)
+    /// </summary>
+    public class Project : urakawa.project.Project
     {
-        private bool mUnsaved;             // true if the project was modified and not saved
-        private string mXUKPath;           // path to the XUK file
-        private SimpleMetadata mMetadata;  // metadata for this project
-        private NCX.NCX mNCX;              // TOC of the project
-        private Strips.Manager mStrips;    // strip manager for the project
+        private Channel mAudioChannel;       // handy pointer to the audio channel
+        private Channel mTextChannel;        // handy pointer to the text channel 
+        private Channel mAnnotationChannel;  // handy pointer to the annotation channel
 
-        public static readonly string AUDIO_CHANNEL = "audio channel";
+        private bool mUnsaved;               // saved flag
+        private string mXUKPath;             // path to the project XUK file
+        private SimpleMetadata mMetadata;    // metadata for this project
 
-        private Presentation mPresentation;       // the presentation itself
-        //private ChannelsProperty mAudioProperty;  // audio property for core nodes
-
-        public bool Unsaved { get { return mUnsaved; } }
-        public string XUKPath { get { return mXUKPath; } }
-        public SimpleMetadata Metadata { get { return mMetadata; } }
-        public Strips.Manager Strips { get { return mStrips; } }
+        public static readonly string AUDIO_CHANNEL = "obi.audio";            // canonical name of the audio channel
+        public static readonly string TEXT_CHANNEL = "obi.text";              // canonical name of the text channel
+        public static readonly string ANNOTATION_CHANNEL = "obi.annotation";  // canonical name of the annotation channel
 
         /// <summary>
-        /// Create a project from a XUK file.
+        /// This flag is set to true if the project contains modifications that have not been saved.
         /// </summary>
-        /// <param name="path">Path of the directory in which to create the project.</param>
-        /// <param name="title">Title of the project.</param>
-        /// <param name="id">Id (template) for the project.</param>
-        /// <param name="userProfile">User profile (for default metadata values.)</param>
-        public Project(string title, string path, string id, UserProfile userProfile)
+        public bool Unsaved
+        {
+            get
+            {
+                return mUnsaved;
+            }
+        }
+
+        /// <summary>
+        /// The metadata of the project.
+        /// </summary>
+        public SimpleMetadata Metadata
+        {
+            get
+            {
+                return mMetadata;
+            }
+        }
+
+        /// <summary>
+        /// The path to the XUK file for this project.
+        /// </summary>
+        public string XUKPath
+        {
+            get
+            {
+                return mXUKPath;
+            }
+        }
+
+        /// <summary>
+        /// Create a new project.
+        /// </summary>
+        public Project(string xukPath, string title, string id, UserProfile userProfile)
         {
             mUnsaved = false;
-            mXUKPath = path;
+            mXUKPath = xukPath;
             mMetadata = new SimpleMetadata(title, id, userProfile);
-            mNCX = new NCX.NCX(this);
-            mStrips = new Strips.Manager();
-
-            mPresentation = new Presentation();
-            Channel audio_channel = mPresentation.getChannelFactory().createChannel(AUDIO_CHANNEL);
-            mPresentation.getChannelsManager().addChannel(audio_channel);
-            AudioMedia audio_media = (AudioMedia)mPresentation.getMediaFactory().createMedia(MediaType.AUDIO);
-            //mAudioProperty = mPresentation.getPropertyFactory().createChannelsProperty();
-            //mAudioProperty.setMedia(audio_channel, audio_media);
+            mAudioChannel = getPresentation().getChannelFactory().createChannel(AUDIO_CHANNEL);
+            getPresentation().getChannelsManager().addChannel(mAudioChannel);
+            mTextChannel = getPresentation().getChannelFactory().createChannel(TEXT_CHANNEL);
+            getPresentation().getChannelsManager().addChannel(mTextChannel);
+            mAnnotationChannel = getPresentation().getChannelFactory().createChannel(ANNOTATION_CHANNEL);
+            getPresentation().getChannelsManager().addChannel(mAnnotationChannel);
         }
 
         /// <summary>
-        /// Open a project from a XUK file.
-        /// </summary>
-        /// <param name="path">XUK file path.</param>
-        /// <returns>The project object created from this file.</returns>
-        public static Project Open(string path)
-        {
-            return new Project(System.IO.Path.GetFileNameWithoutExtension(path), path, "no_id", null);
-        }
-
-        /// <summary>
-        /// Save the project.
+        /// Save the project to a XUK file.
         /// </summary>
         public void Save()
         {
-            mUnsaved = false;
-        }
-
-        /// <summary>
-        /// Make a copy of this project and save it under a new name.
-        /// </summary>
-        /// <param name="path">The path of the new project.</param>
-        public void SaveAs(string path)
-        {
-        }
-
-        /// <summary>
-        /// Pretend that the project was modified.
-        /// </summary>
-        public void Touch()
-        {
-            mUnsaved = true;
-        }
-
-        /// <summary>
-        /// Set the XUK path if and only if it was not set before.
-        /// </summary>
-        /// <param name="path">The new XUK path.</param>
-        /// <returns>True if the path was actually set.</returns>
-        public bool SetXukPath(string path)
-        {
-            if (mXUKPath == null)
-            {
-                mXUKPath = path;
-                mMetadata.Title = System.IO.Path.GetFileNameWithoutExtension(path);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            saveXUK(new Uri(mXUKPath));
         }
 
         /// <summary>
@@ -112,28 +96,55 @@ namespace Obi
         }
 
         /// <summary>
-        /// A new strip is appended: need to create a new node
+        /// Simulate a modification of the project.
         /// </summary>
-        public CoreNode AppendStrip()
+        public void Touch()
         {
-            CoreNode new_node = mPresentation.getCoreNodeFactory().createNode();
-            // new_node.setProperty(mAudioProperty);
-            // Find the last node after which to insert
-            CoreNode last = mPresentation.getRootNode();
-            while (last.getChildCount() > 0)
-            {
-                last = (CoreNode)last.getChild(last.getChildCount() - 1);
-            }
-            // Add the node as a sibling; or if this is the root node, as a child
-            if (last.getParent() == null)
-            {
-                last.appendChild(new_node);
-            }
-            else
-            {
-                ((CoreNode)(last.getParent())).appendChild(new_node);
-            }
-            return new_node;
+            mUnsaved = true;
         }
+
+        #region Event handlers
+
+        /// <summary>
+        /// Create a sibling section for a given section.
+        /// </summary>
+        public void CreateSiblingSection(object sender, Events.Node.AddSiblingSectionEventArgs e)
+        {
+            CoreNode sibling = CreateSectionNode();
+            CoreNode parent = (CoreNode)e.ContextNode.getParent();
+            parent.insert(sibling, parent.indexOf(e.ContextNode));
+            UserControls.ICoreTreeView view = (UserControls.ICoreTreeView)sender;
+            view.AddNewSiblingSection(sibling, e.ContextNode);
+        }
+
+        /// <summary>
+        /// Create a new child section for a given section. If the context node is null, add to the root of the tree.
+        /// </summary>
+        public void CreateChildSection(object sender, Events.Node.AddChildSectionEventArgs e)
+        {
+            CoreNode child = CreateSectionNode();
+            CoreNode parent = e.ContextNode;
+            if (parent == null) parent = getPresentation().getRootNode();
+            parent.appendChild(child);
+            UserControls.ICoreTreeView view = (UserControls.ICoreTreeView)sender;
+            view.AddNewChildSection(child, e.ContextNode);
+            view.BeginEditingNodeLabel(child);
+        }
+
+        /// <summary>
+        /// Create a new section node with a default text label.
+        /// </summary>
+        /// <returns>The created node.</returns>
+        private CoreNode CreateSectionNode()
+        {
+            CoreNode node = getPresentation().getCoreNodeFactory().createNode();
+            ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
+            TextMedia text = (TextMedia)getPresentation().getMediaFactory().createMedia(MediaType.TEXT);
+            text.setText(Localizer.Message("default_section_label"));
+            prop.setMedia(mTextChannel, text);
+            return node;
+        }
+
+        #endregion
     }
 }

@@ -152,6 +152,9 @@ Do you want to save these modifications before closing the project?</value>
   <data name="debug_user_profile" xml:space="preserve">
     <value>[DEBUG] User profile: {0}</value>
   </data>
+  <data name="default_section_label" xml:space="preserve">
+    <value>Untitled section</value>
+  </data>
   <data name="discard_changes_caption" xml:space="preserve">
     <value>Discarding changes to a modified project</value>
   </data>

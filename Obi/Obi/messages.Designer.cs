@@ -162,6 +162,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Untitled section.
+        /// </summary>
+        internal static string default_section_label {
+            get {
+                return ResourceManager.GetString("default_section_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Discarding changes to a modified project.
         /// </summary>
         internal static string discard_changes_caption {

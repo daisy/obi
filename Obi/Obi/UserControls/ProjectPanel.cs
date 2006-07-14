@@ -26,12 +26,37 @@ namespace Obi.UserControls
                 mProject = value;
                 mSplitContainer.Visible = mProject != null;
                 mSplitContainer.Panel1Collapsed = false;
+                if (mProject != null)
+                {
+                    tocPanel.AddChildSection += new Events.Node.AddChildSectionHandler(mProject.CreateChildSection);
+                    tocPanel.AddSiblingSection += new Events.Node.AddSiblingSectionHandler(mProject.CreateSiblingSection);
+                }
             }
         }
 
-        public Boolean NCXPanelVisible { get { return !mSplitContainer.Panel1Collapsed; } }
+        public Boolean TOCPanelVisible
+        {
+            get
+            {
+                return mProject != null && !mSplitContainer.Panel1Collapsed;
+            }
+        }
 
-        public StripManagerPanel StripManager { get { return stripManagerPanel1; } }
+        public StripManagerPanel StripManager
+        {
+            get
+            {
+                return stripManagerPanel1;
+            }
+        }
+
+        public TOCPanel TOCPanel
+        {
+            get
+            {
+                return tocPanel;
+            }
+        }
 
         /// <summary>
         /// Create a new project panel with currently no project.
@@ -42,12 +67,12 @@ namespace Obi.UserControls
             Project = null;
         }
 
-        public void HideNCXPanel()
+        public void HideTOCPanel()
         {
             mSplitContainer.Panel1Collapsed = true;
         }
 
-        public void ShowNCXPanel()
+        public void ShowTOCPanel()
         {
             mSplitContainer.Panel1Collapsed = false;
         }

@@ -109,10 +109,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>messages.resx</DependentUpon>
     </Compile>
-    <Compile Include="NCX\Audio.cs" />
-    <Compile Include="NCX\Navlabel.cs" />
-    <Compile Include="NCX\Navpoint.cs" />
-    <Compile Include="NCX\NCX.cs" />
     <Compile Include="ObiForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,10 +163,6 @@
     <EmbeddedResource Include="UserControls\MetadataPanel.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MetadataPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\NCXPanel.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>NCXPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\NRParStrip.resx">
       <SubType>Designer</SubType>
@@ -228,12 +220,7 @@
       <DependentUpon>EmptyStrip.cs</DependentUpon>
     </Compile>
     <Compile Include="Events.cs" />
-    <Compile Include="UserControls\NCXPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\NCXPanel.Designer.cs">
-      <DependentUpon>NCXPanel.cs</DependentUpon>
-    </Compile>
+    <Compile Include="UserControls\ICoreTreeView.cs" />
     <Compile Include="UserControls\NRParStrip.cs">
       <SubType>UserControl</SubType>
     </Compile>

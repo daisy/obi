@@ -11,7 +11,7 @@ namespace Obi.Events.Node
     /// <summary>
     /// This event is fired when a view wants to add a new child section node in the core tree.
     /// </summary>
-    class AddChildSectionEventArgs : EventArgs
+    public class AddChildSectionEventArgs : EventArgs
     {
         private CoreNode mContextNode;  // the parent node of the new child
 

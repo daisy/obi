@@ -11,7 +11,7 @@ using System.Collections;
 
 namespace Obi.UserControls
 {
-    public partial class TOCPanel : UserControl
+    public partial class TOCPanel : UserControl, ICoreTreeView
     {
         public event Events.Node.AddSiblingSectionHandler AddSiblingSection;
         public event Events.Node.AddChildSectionHandler AddChildSection;
@@ -22,7 +22,13 @@ namespace Obi.UserControls
         public event Events.Node.MoveSectionDownHandler MoveSectionDown;
         public event Events.Node.MoveSectionUpHandler MoveSectionUp;
 
-        private string ObiTextChannelName = "Obi.Text";
+        public bool Selected
+        {
+            get
+            {
+                return tocTree.SelectedNode != null;
+            }
+        }
 
         /*
          * Some discussion points we made:
@@ -77,34 +83,39 @@ namespace Obi.UserControls
         /// is given the key of its <see cref="CoreNode"/> object's hash code.
         /// This makes it faster to find a <see cref="System.Windows.Forms.TreeNode"/> 
         /// based on a given <see cref="CoreNode"/>.
+        /// If the relative node is null, then the new node is created as a child of the
+        /// presentation root.
         /// </summary>
         /// <param name="newNode">The new heading to add to the tree</param>
         /// <param name="relNode">The parent node for the new heading</param>
         public void AddNewChildSection(CoreNode newNode, CoreNode relNode)
         {
-            System.Windows.Forms.TreeNode relTreeNode = findTreeNodeFromCoreNode(relNode);
-     
+            System.Windows.Forms.TreeNode newTreeNode;
             string label = getCoreNodeText(newNode);
-
-            //add as a child
-            System.Windows.Forms.TreeNode newTreeNode = 
-                relTreeNode.Nodes.Add(newNode.GetHashCode().ToString(), label);
-            
+            if (relNode != null)
+            {
+                System.Windows.Forms.TreeNode relTreeNode = findTreeNodeFromCoreNode(relNode);
+                newTreeNode = relTreeNode.Nodes.Add(newNode.GetHashCode().ToString(), label);
+            }
+            else
+            {
+                newTreeNode = tocTree.Nodes.Add(newNode.GetHashCode().ToString(), label);
+            }
             newTreeNode.Tag = newNode;
-
             newTreeNode.ExpandAll();
             newTreeNode.EnsureVisible();
+            tocTree.SelectedNode = newTreeNode;
         }
 
         /// <summary>
         /// Begin editing the label (activate the edit cursor) for the currently
         /// selected section heading node.
         /// </summary>
-        public void BeginEditingLabelForCurrentSectionHeading()
+        public void BeginEditingNodeLabel(CoreNode node)
         {
-            System.Windows.Forms.TreeNode sel = this.tocTree.SelectedNode;
-            sel.EnsureVisible();
-            sel.BeginEdit();
+            System.Windows.Forms.TreeNode treeNode = findTreeNodeFromCoreNode(node);
+            treeNode.EnsureVisible();
+            treeNode.BeginEdit();
         }
 
 
@@ -145,13 +156,11 @@ namespace Obi.UserControls
         /// <summary>
         /// Return the core node version of the selected tree node.
         /// </summary>
-        /// <returns>The selected section.</returns>
+        /// <returns>The selected section, or null if no section is selected.</returns>
         public CoreNode GetSelectedSection()
         {
-            urakawa.core.CoreNode selectedCoreNode;
-            System.Windows.Forms.TreeNode sel = this.tocTree.SelectedNode;
-            selectedCoreNode = (urakawa.core.CoreNode)sel.Tag;
-            return selectedCoreNode;
+            System.Windows.Forms.TreeNode selected = this.tocTree.SelectedNode;
+            return selected == null ? null : (urakawa.core.CoreNode)selected.Tag;
         }
 
         /// <summary>
@@ -179,7 +188,7 @@ namespace Obi.UserControls
          * These functions "...ToolStripMenuItem_Click" are triggered
          * by the TOC panel's context menu
          */
-        private void addSectionAtSameLevelToolStripMenuItem_Click(object sender, EventArgs e)
+        public void addSectionAtSameLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             urakawa.core.CoreNode selectedCoreNode;
             System.Windows.Forms.TreeNode sel = this.tocTree.SelectedNode;
@@ -225,15 +234,10 @@ namespace Obi.UserControls
             DecreaseSectionLevel(this, new Events.Node.DecreaseSectionLevelEventArgs(selectedCoreNode));
         }
 
-        private void addSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        public void addSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            urakawa.core.CoreNode selectedCoreNode;
-            System.Windows.Forms.TreeNode sel = this.tocTree.SelectedNode;
-            selectedCoreNode = (urakawa.core.CoreNode)sel.Tag;
-            AddChildSection(this, new Events.Node.AddChildSectionEventArgs(selectedCoreNode));
+            AddChildSection(this, new Events.Node.AddChildSectionEventArgs(GetSelectedSection()));
         }
-
-
 
         /// <summary>
         /// A helper function to get the text from the given <see cref="CoreNode"/>.
@@ -246,19 +250,14 @@ namespace Obi.UserControls
         /// <returns>The text label.</returns>
         private string getCoreNodeText(CoreNode node)
         {
-            Channel textChannel;
             string textString = "";
-            
-            ChannelsProperty channelsProp = (ChannelsProperty)
-                node.getProperty(typeof(ChannelsProperty));
-
+            ChannelsProperty channelsProp = (ChannelsProperty) node.getProperty(typeof(ChannelsProperty));
+            Channel textChannel;
             IList channelsList = channelsProp.getListOfUsedChannels();
-
             for (int i = 0; i < channelsList.Count; i++)
             {
                 string channelName = ((IChannel)channelsList[i]).getName();
-
-                if (channelName == ObiTextChannelName)
+                if (channelName == Project.TEXT_CHANNEL)
                 {
                     textChannel = (Channel)channelsList[i];
                     TextMedia nodeText = (TextMedia)channelsProp.getMedia(textChannel);
@@ -266,7 +265,6 @@ namespace Obi.UserControls
                     break;
                 }
             }
-
             return textString;
         }
 

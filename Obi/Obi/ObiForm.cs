@@ -5,9 +5,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
-using System.IO.IsolatedStorage;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Soap;
 using System.Text;
 using System.Windows.Forms;
 
@@ -27,7 +24,6 @@ namespace Obi
         private event Events.Project.StateChangedHandler ProjectStateChanged;  // track changes on the project
 
         private static readonly string XukFilter = "Obi project file (*.xuk)|*.xuk";  // filter for opening/saving XUK files
-        private static readonly string SettingsFileName = "obi_settings.xml";         // settings file name
 
         /// <summary>
         /// Initialize a new form. No project is opened at creation time.
@@ -39,11 +35,40 @@ namespace Obi
             ProjectStateChanged += new Events.Project.StateChangedHandler(mProject_StateChanged);
             GUIUpdateNoProject();
             UpdateShowHideTOC();
-            mSettings = GetSettings();
+            InitializeSettings();
             mUndoStack = new UndoRedoStack();
             undo_label = mUndoToolStripMenuItem.Text;
             redo_label = mRedoToolStripMenuItem.Text;
             UndoStackChanged += new UndoStackChangedHandler(mUndoStack_UndoStackChanged);
+        }
+
+        /// <summary>
+        /// Initialize the application settings.
+        /// </summary>
+        private void InitializeSettings()
+        {
+            mSettings = Settings.GetSettings();
+            ClearRecentList();
+            for (int i = mSettings.RecentProjects.Count - 1; i >= 0; --i)
+            {
+                AddRecentProject((string)mSettings.RecentProjects[i]);
+            }
+        }
+
+        /// <summary>
+        /// Save the settings when closing.
+        /// </summary>
+        private void ObiForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                mSettings.SaveSettings();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show(String.Format(Localizer.Message("save_settings_error_text"), x.Message),
+                    Localizer.Message("save_settings_error_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #region Menu items
@@ -58,7 +83,7 @@ namespace Obi
             {
                 if (ClosedProject())
                 {
-                    mProject = new Project(dialog.Title, dialog.Path, mSettings.IdTemplate, mSettings.UserProfile);
+                    mProject = new Project(dialog.Path, dialog.Title, mSettings.IdTemplate, mSettings.UserProfile);
                     OnProjectCreated();
                 }
                 else
@@ -83,6 +108,7 @@ namespace Obi
         /// </summary>
         private void openProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            /*
             if (ClosedProject())
             {
                 OpenFileDialog dialog = new OpenFileDialog();
@@ -103,6 +129,7 @@ namespace Obi
             {
                 Ready();
             }
+             * */
         }
 
         /// <summary>
@@ -139,6 +166,7 @@ namespace Obi
         /// <param name="path">The path of the XUK file to open.</param>
         private void OpenProject(string path)
         {
+            /*
             if (ClosedProject())
             {
                 mProject = Project.Open(path);
@@ -149,6 +177,7 @@ namespace Obi
             {
                 Ready();
             }
+             * */
         }
 
         /// <summary>
@@ -221,6 +250,7 @@ namespace Obi
         /// </summary>
         private void SaveProjectAs()
         {
+            /*
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.Filter = XukFilter;
             DialogResult result = dialog.ShowDialog();
@@ -241,7 +271,7 @@ namespace Obi
             else
             {
                 Ready();
-            }
+            }*/
         }
         
         /// <summary>
@@ -251,6 +281,7 @@ namespace Obi
         /// <param name="e"></param>
         private void revertToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            /*
             if (mProject.Unsaved)
             {
                 DialogResult discard = MessageBox.Show(Localizer.Message("discard_changes_text"),
@@ -278,6 +309,7 @@ namespace Obi
             {
                 Ready();
             }
+             * */
         }
 
         /// <summary>
@@ -412,15 +444,15 @@ namespace Obi
         /// </summary>
         private void tableOfContentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProjectPanel.NCXPanelVisible)
+            if (mProjectPanel.TOCPanelVisible)
             {
-                mProjectPanel.HideNCXPanel();
+                mProjectPanel.HideTOCPanel();
                 toolStripStatusLabel1.Text = Localizer.Message("status_toc_hidden");
                 UpdateShowHideTOC();
             }
             else
             {
-                mProjectPanel.ShowNCXPanel();
+                mProjectPanel.ShowTOCPanel();
                 toolStripStatusLabel1.Text = Localizer.Message("status_toc_shown");
                 UpdateShowHideTOC();
             }
@@ -431,8 +463,10 @@ namespace Obi
         /// </summary>
         private void UpdateShowHideTOC()
         {
-            tableOfContentsToolStripMenuItem.Text = Localizer.Message(mProjectPanel.NCXPanelVisible ?
+            tableOfContentsToolStripMenuItem.Text = Localizer.Message(mProjectPanel.TOCPanelVisible ?
                 "hide_toc_label" : "show_toc_label");
+            addChildSectionToolStripMenuItem.Enabled = mProjectPanel.TOCPanelVisible;
+            addsiblingSectionToolStripMenuItem.Enabled = mProjectPanel.TOCPanelVisible && mProjectPanel.TOCPanel.Selected;
         }
 
         private void OnProjectClosed()
@@ -471,6 +505,10 @@ namespace Obi
                     GUIUpdateSavedProject();
                     mProjectPanel.Project = e.Project;
                     tableOfContentsToolStripMenuItem.Enabled = true;
+                    addChildSectionToolStripMenuItem.Click +=
+                        new System.EventHandler(mProjectPanel.TOCPanel.addSubSectionToolStripMenuItem_Click);
+                    addsiblingSectionToolStripMenuItem.Click +=
+                        new System.EventHandler(mProjectPanel.TOCPanel.addSectionAtSameLevelToolStripMenuItem_Click);
                     UpdateShowHideTOC();
                     Debug(Localizer.Message("debug_created_project"));
                     break;
@@ -515,7 +553,6 @@ namespace Obi
             saveProjectToolStripMenuItem.Enabled = false;
             saveProjectasToolStripMenuItem.Enabled = false;
             touchProjectToolStripMenuItem.Enabled = false;
-            appendStripToolStripMenuItem.Enabled = false;
             revertToolStripMenuItem.Enabled = false;
             metadataToolStripMenuItem.Enabled = false;
             mProjectPanel.Project = null;
@@ -533,7 +570,6 @@ namespace Obi
             saveProjectToolStripMenuItem.Enabled = false;
             saveProjectasToolStripMenuItem.Enabled = true;
             touchProjectToolStripMenuItem.Enabled = true;
-            appendStripToolStripMenuItem.Enabled = true;
             revertToolStripMenuItem.Enabled = false;
             metadataToolStripMenuItem.Enabled = true;
         }
@@ -548,7 +584,6 @@ namespace Obi
             saveProjectToolStripMenuItem.Enabled = true;
             saveProjectasToolStripMenuItem.Enabled = true;
             touchProjectToolStripMenuItem.Enabled = true;
-            appendStripToolStripMenuItem.Enabled = true;
             revertToolStripMenuItem.Enabled = true;
             metadataToolStripMenuItem.Enabled = true;
             Ready();
@@ -562,56 +597,6 @@ namespace Obi
             toolStripStatusLabel1.Text = Localizer.Message("ready");
         }
 
-        /// <summary>
-        /// Read the settings; missing values are replaced with defaults.
-        /// </summary>
-        private Settings GetSettings()
-        {
-            IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
-            try
-            {
-                IsolatedStorageFileStream stream =
-                    new IsolatedStorageFileStream(SettingsFileName, FileMode.Open, FileAccess.Read, file);
-                SoapFormatter soap = new SoapFormatter();
-                mSettings = (Settings)soap.Deserialize(stream);
-                stream.Close();
-            }
-            catch (Exception)
-            {
-                mSettings = new Settings();
-            }
-            if (mSettings.RecentProjects == null) mSettings.RecentProjects = new ArrayList();    
-            ClearRecentList();
-            for (int i = mSettings.RecentProjects.Count - 1; i >= 0; --i)
-            {
-                AddRecentProject((string)mSettings.RecentProjects[i]);
-            }
-            if (mSettings.UserProfile == null) mSettings.UserProfile = new UserProfile();
-            if (mSettings.IdTemplate == null) mSettings.IdTemplate = "obi_####";
-            if (mSettings.DefaultPath == null) mSettings.DefaultPath = Environment.CurrentDirectory;
-            return mSettings;
-        }
-
-        /// <summary>
-        /// Save the settings when closing.
-        /// </summary>
-        private void ObiForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            try
-            {
-                IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
-                IsolatedStorageFileStream stream =
-                    new IsolatedStorageFileStream(SettingsFileName, FileMode.Create, FileAccess.Write, file);
-                SoapFormatter soap = new SoapFormatter();
-                soap.Serialize(stream, mSettings);
-                stream.Close();
-            }
-            catch (Exception x)
-            {
-                MessageBox.Show(String.Format(Localizer.Message("save_settings_error_text"), x.Message),
-                    Localizer.Message("save_settings_error_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
 
 
@@ -673,15 +658,6 @@ namespace Obi
                 mUndoStack.Redo();
                 UndoStackChanged(this, new EventArgs());
             }
-        }
-
-        private void appendStripToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CoreNode new_node = mProject.AppendStrip();
-            Strips.ParStrip par = mProject.Strips.AddNewParStrip(new_node);
-            mProjectPanel.StripManager.Add(par);
-            OnProjectModified();
-            Debug(String.Format(Localizer.Message("debug_appended_strip"), par));
         }
     }
 }

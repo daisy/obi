@@ -4,6 +4,8 @@ using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
+using urakawa.project;
+
 namespace Obi
 {
     /// <summary>
@@ -12,17 +14,11 @@ namespace Obi
     /// </summary>
     public class SimpleMetadata
     {
-        private string mIdentifier;     // identifier of the project
-        private string mAuthor;         // author of the project
-        private string mPublisher;      // publisher of the project
-        private string mTitle;          // title of the project
-        private CultureInfo mLanguage;  // main language of the project
-
-        public string Identifier { get { return mIdentifier; } set { mIdentifier = value; } }
-        public string Author { get { return mAuthor; } set { mAuthor = value; } }
-        public string Publisher { get { return mPublisher; } set { mPublisher = value; } }
-        public string Title { get { return mTitle; } set { mTitle = value; } }
-        public CultureInfo Language { get { return mLanguage; } set { mLanguage = value; } }
+        public string Identifier;     // identifier of the project
+        public string Author;         // author of the project
+        public string Publisher;      // publisher of the project
+        public string Title;          // title of the project
+        public CultureInfo Language;  // main language of the project
 
         /// <summary>
         /// Create a new metadata object from user provided information.
@@ -32,11 +28,11 @@ namespace Obi
         /// <param name="profile">User profile (for name, publisher and language.)</param>
         public SimpleMetadata(string title, string id, UserProfile profile)
         {
-            mIdentifier = GenerateIdFromTemplate(id);
-            mAuthor = profile.Name;
-            mPublisher = profile.Organization;
-            mTitle = title;
-            mLanguage = profile.Culture;
+            Identifier = GenerateIdFromTemplate(id);
+            Author = profile.Name;
+            Publisher = profile.Organization;
+            Title = title;
+            Language = profile.Culture;
         }
 
         /// <summary>
