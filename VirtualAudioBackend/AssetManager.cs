@@ -68,8 +68,7 @@ m_htExists.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;
 		/// <returns>The newly created asset.</returns>
 		public AudioMediaAsset NewAudioMediaAsset(ArrayList clips)
 		{
-			if (clips != null)
-			{
+			
 				AudioMediaAsset ob_AudioMediaAsset = new AudioMediaAsset (clips) ;
 
 				ob_AudioMediaAsset.Name = NewMediaAssetName () ;
@@ -77,12 +76,8 @@ m_htExists.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;
 				m_htAssetList.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;
 				m_htExists.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;   
 				return ob_AudioMediaAsset ;
-			}
-			else
-			{
-MessageBox.Show ("AudioMediaAsset can not be created with this function as clip list is empty") ;
-				return null ;
-			}
+			
+
 		}
 
 		/// <summary>
@@ -137,7 +132,7 @@ MessageBox.Show ("AudioMediaAsset can not be created with this function as clip 
 
 		public void AddAsset(IMediaAsset asset)
 		{
-			if (asset.Name.Equals (" "))
+			if (asset.Name == null )
 			{
 asset.Name = NewMediaAssetName () ;
 			}
@@ -170,23 +165,23 @@ m_htAssetList.Add (asset.Name, asset) ;
 
 		public IMediaAsset GetAsset(string assetName)
 		{
-		
+
 			IDictionaryEnumerator en = m_htAssetList.GetEnumerator();
 
 			//find the asset from hash table using key 
-			while (en.MoveNext() )
-			{
-				if (assetName == en.Key.ToString() )
+				while (en.MoveNext() )
 				{
-					MediaAsset m = en.Value as MediaAsset ;
-return m ;					
+					if (assetName == en.Key.ToString() )
+					{
+						MediaAsset m = en.Value as MediaAsset ;
+						return m ;					
 						
-					//break ;
-				}
-					
+						//break ;
+					}
+
 			}
-MessageBox.Show ("Asset not found in hashtable") ;
-			return null;
+throw new Exception ("Asset not found in Hashtable") ;
+			
 		}
 
 		public IMediaAsset NewAsset(VirtualAudioBackend.MediaType assetType)
@@ -223,7 +218,7 @@ MediaAssetToRemove.m_AssetManager = null ;
 
 			}
 			else
-				throw new Exception ("Asset coulb be not removed : not in hashtable") ;
+				throw new Exception ("Asset could not be removed : not in hashtable") ;
 			
 		}
 
@@ -242,31 +237,7 @@ MediaAssetToRemove.m_AssetManager = null ;
 throw new Exception ("Asset not found in Hashtable") ;
 
 			}
-/*
-			IMediaAsset CopyAsset = null;
-			CopyAsset.Name = string.Empty;
-			bool BOOLAssetFound = false;
-			bool BOOLAssetCopied = false;
-			IDictionaryEnumerator mEnumerator = m_htAssetList.GetEnumerator();
-			while(mEnumerator.MoveNext())
-			{
-				if(mEnumerator.Value  == asset)
-				{
-					BOOLAssetFound  =  true;
-					CopyAsset = asset.Copy();
-					CopyAsset.Name = "Copy"+"Of"+string.Copy(asset.Name);
-					BOOLAssetCopied = true;
-					m_htAssetList.Add(CopyAsset.Name, CopyAsset);
-					m_htExists.Add(CopyAsset.Name, CopyAsset);
-					break;
-				}
-			}
-				if(BOOLAssetFound == false)
-					throw new Exception("no such asset is found");
-			if(BOOLAssetCopied == false)
-				throw new Exception("asset could not be copied");
-			return CopyAsset;
-			*/
+
 		}
 
 
@@ -277,7 +248,7 @@ bool boolRenamed = false ;
 							IDictionaryEnumerator enRemove = m_htAssetList.GetEnumerator();
 			while(enRemove.MoveNext())
 			{
-MessageBox.Show ("") ;
+
 				if(enRemove.Key.ToString() == asset.Name)
 				{
 					m_htAssetList.Remove(OldName );
