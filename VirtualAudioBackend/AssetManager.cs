@@ -132,12 +132,18 @@ m_htExists.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;
 
 		public void AddAsset(IMediaAsset asset)
 		{
-			if (asset.Name == null )
+			if (asset.Type== MediaType.Audio)
 			{
-asset.Name = NewMediaAssetName () ;
+AudioMediaAsset Asset  = asset as AudioMediaAsset;
+				if (Asset.Name == null )
+				{
+					Asset.Name = NewMediaAssetName () ;
+				}
+Asset.m_AssetManager = this ;
+
+				m_htAssetList.Add (Asset.Name, asset) ;
+				m_htExists.Add (Asset.Name, asset) ;
 			}
-m_htAssetList.Add (asset.Name, asset) ;
-			m_htExists.Add (asset.Name, asset) ;
 		}
 
 		public Hashtable GetAssets(VirtualAudioBackend.MediaType assetType)
