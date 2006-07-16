@@ -16,6 +16,9 @@ namespace VirtualAudioBackend
 	public class AudioRecorder: IAudioRecorder
 	{
 		//member variables
+				
+		
+		
 		
 		//the directory to hold the recorded files
 		private string sProjectDirectory; 
@@ -38,9 +41,9 @@ namespace VirtualAudioBackend
 		private const int NumberRecordNotifications = 16;
 		private BufferPositionNotify[] PositionNotify = new BufferPositionNotify[NumberRecordNotifications + 1];  
 		private int NextCaptureOffset;
-		private long SampleCount;
-		private AutoResetEvent NotificationEvent;
-		private Thread NotifyThread;
+		private long SampleCount = 0;
+		private AutoResetEvent NotificationEvent = null;
+		private Thread NotifyThread = null;
 		private string m_sFileName;
 		private CaptureBuffer applicationBuffer;
 		private Notify applicationNotify;
@@ -98,7 +101,7 @@ namespace VirtualAudioBackend
 		}
 		
 		//this will set the bit depth as 8 or 16
-		public short BitDepth
+		public int BitDepth
 		{
 			get
 			{
@@ -153,16 +156,19 @@ namespace VirtualAudioBackend
 			return m_devicesList;
 		}
 
-		
+//		bool BOOLListen = false;
 		public void StartListening(IAudioMediaAsset asset)
 		{
+			StateChanged mStateChanged = new StateChanged(mState );
+			mState = AudioRecorderState.Listening;
+			FireEvent(mStateChanged);
 			m_Channels = asset.Channels;
 			m_bitDepth = asset.BitDepth;
 			m_SampleRate = asset.SampleRate;
 			mAsset = new AudioMediaAsset(m_Channels, m_bitDepth, m_SampleRate);
 			mAsset = asset.Copy() as AudioMediaAsset;
-AssetManager manager = mAsset.Manager as AssetManager;
- sProjectDirectory= manager.DirPath ;
+			AssetManager manager = asset.Manager as AssetManager;
+			sProjectDirectory= manager.DirPath ;
 			InputFormat = GetInputFormat();
 			m_sFileName = sProjectDirectory+"\\"+"Listen.wav";
 			BinaryWriter ListenWriter  = new BinaryWriter(File.OpenWrite(m_sFileName));
@@ -171,10 +177,14 @@ AssetManager manager = mAsset.Manager as AssetManager;
 			InitRecording(true);
 		}
 
+		
 		//it will start actual recording, append if there is data 
 		//in the wave file through the RecordCaptureData()
 		public void StartRecording(IAudioMediaAsset asset)
-		{
+		{	
+			StateChanged mStateChanged = new StateChanged(mState );
+			mState = AudioRecorderState.Recording;
+			FireEvent(mStateChanged);
 			m_Channels = asset.Channels;
 			m_SampleRate = asset.SampleRate;
 			m_bitDepth = asset.BitDepth;
@@ -190,7 +200,26 @@ AssetManager manager = mAsset.Manager as AssetManager;
 			InitRecording(true);
 		}
 
+		// this is to stop the recording
+		// desc:  this will first check the condition and stops the recording and then capture any left  overs recorded data which is not saved
+		public void StopRecording()
+		{	
+			StateChanged mStateChanged = new StateChanged(mState );
+			mState = AudioRecorderState.Idle;
+			FireEvent(mStateChanged);
+			if (null != NotificationEvent)
+			{
+				Capturing = false;
+				NotificationEvent.Set();
+			}
+			if(null != applicationBuffer)
+				if(applicationBuffer.Capturing)
+					InitRecording(false);
+			applicationNotify = null;
+			applicationBuffer = null;
+		}			
 		
+
 		public Capture InitDirectSound(int Index)
 		{
 			CaptureDevicesCollection devices = new CaptureDevicesCollection();
@@ -294,8 +323,8 @@ AssetManager manager = mAsset.Manager as AssetManager;
 		}
 
 		public string GetFileName()
-		{
-            			m_sFileName= GenerateFileName(".wav", sProjectDirectory);
+		{	
+			m_sFileName= GenerateFileName(".wav", sProjectDirectory);
 			return m_sFileName;
 		}
 		
@@ -354,54 +383,38 @@ AssetManager manager = mAsset.Manager as AssetManager;
 			// Set the format during creatation
 			dsc.Format = InputFormat; 
 			applicationBuffer = new CaptureBuffer(dsc, this.m_cApplicationDevice);
+			NextCaptureOffset = 0;
 			InitNotifications();	
 		}	
 			
-		
-
 		public void InitNotifications()
-		{
-			
+		{	
 			// Name: InitNotifications()
 			// Desc: Inits the notifications on the capture buffer which are handled
 			//       in the notify thread.
 			if (null == applicationBuffer)
 				throw new NullReferenceException();
-						
-
 			//Create a thread to monitor the notify events
 			if (null == NotifyThread)
 			{
 				NotifyThread = new Thread(new ThreadStart(WaitThread));										 			
-				
 				Capturing = true;
 				NotifyThread.Start();
 				// Create a notification event, for when the sound stops playing
 				NotificationEvent = new AutoResetEvent(false);
 			}
-			// Setup the notification positions
-			
-
+			// Setup the notification POSITIONS 
 			for (int i = 0; i < NumberRecordNotifications; i++)
 			{
-
-
 				PositionNotify[i].Offset = (m_iNotifySize * i) + m_iNotifySize - 1;
-
 				PositionNotify[i].EventNotifyHandle = NotificationEvent.Handle;
 			}
 			applicationNotify = new Notify(applicationBuffer);
 			// Tell DirectSound when to notify the app. The notification will come in the from 
 			// of signaled events that are handled in the notify thread.
-
-			
-			
-			
-				
-
-			
 			applicationNotify.SetNotificationPositions(PositionNotify, NumberRecordNotifications);
 		}
+		
 		private void WaitThread()
 		{
 			while(Capturing)
@@ -423,7 +436,6 @@ AssetManager manager = mAsset.Manager as AssetManager;
 			int LockSize ;
 			applicationBuffer.GetCurrentPosition(out CapturePos, out ReadPos);
 			ReadPos = CapturePos;
-
 			if (ReadPos < ((m_iCaptureBufferSize)- m_UpdateVMArrayLength  ) )
 			{
 				Array.Copy ( applicationBuffer.Read(ReadPos , typeof (byte) , LockFlag.None , m_UpdateVMArrayLength  ) , arUpdateVM , m_UpdateVMArrayLength  ) ;				
@@ -445,11 +457,11 @@ AssetManager manager = mAsset.Manager as AssetManager;
 			//Writer.Seek(0, SeekOrigin.End);			
 			Writer.Write(CaptureData, 0, CaptureData.Length);
 			Writer.Close();
-			//			Writer = null;
+			Writer = null;
+			NotifyThread = null;	
 			// Update the number of samples, in bytes, of the file so far.
 			//SampleCount+= datalength;
 			SampleCount+=(long)CaptureData.Length;
-
 			// Move the capture offset along
 			NextCaptureOffset+= CaptureData.Length ; 
 			NextCaptureOffset %= m_iCaptureBufferSize; // Circular buffer
@@ -468,9 +480,6 @@ AssetManager manager = mAsset.Manager as AssetManager;
 
 			if(SRecording)
 			{	
-				StateChanged mStateChanged = new StateChanged(mState );
-				mState = AudioRecorderState.Recording;
-				FireEvent(mStateChanged);
 				CreateCaptureBuffer();
 				applicationBuffer.Start(true);//it will set the looping till the stop is used
 			}
@@ -493,32 +502,18 @@ AssetManager manager = mAsset.Manager as AssetManager;
 					Writer.Write (Convert.ToByte (cf.ConvertFromDecimal (SampleCount )[i])) ;
 				}
 				Writer.Close();	// Close the file now.
-				// Set the writer to null.
+				//Set the writer to null.
 				Writer = null;	
-				
+				SampleCount = 0;
+				Audiolength = 0;
 				AudioClip NewRecordedClip = new AudioClip(m_sFileName);
 				mAsset.AddClip(NewRecordedClip);
-			}
+			//NotifyThread = null;	
+}
 		}
 
 
-//it stops the recording
-		public void StopRecording()
-		{
-			// name:  this is to stop the recording
-			// desc:  this will first check the condition and stops the recording and then capture any left  overs recorded data which is not saved
-			StateChanged mStateChanged = new StateChanged(mState );
-			mState = AudioRecorderState.Idle;
-			FireEvent(mStateChanged);
-			Capturing = false;
-			NotificationEvent.Set();
-				
-			if(null != applicationBuffer)
-				if (applicationBuffer.Capturing)
-					InitRecording(false);
-		}			
-		
-		public void SetInputDeviceForRecording(Control FormHandle, int Index)
+public void SetInputDeviceForRecording(Control FormHandle, int Index)
 	{
 		CaptureDevicesCollection devices  = new CaptureDevicesCollection();
 		Microsoft.DirectX.DirectSound.Device mDevice = new  Microsoft.DirectX.DirectSound.Device ( devices[Index].DriverGuid);
