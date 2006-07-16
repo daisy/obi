@@ -75,7 +75,8 @@ namespace VirtualAudioBackend
 		/// <param name="sampleRate">Sample rate in Hz.</param>
 		public AudioMediaAsset(int channels, int bitDepth, int sampleRate)
 		{
-			if ((channels == 1 || channels == 2)  && (bitDepth == 8 || bitDepth == 16)&& (sampleRate >= 8000))
+			//MessageBox.Show (channels.ToString () + "-" + bitDepth.ToString () + "-" + sampleRate.ToString ()) ;
+			if (channels >= 1 && channels <= 2  && bitDepth >= 8 && bitDepth <= 16&& sampleRate >= 8000)
 			{
 				m_Channels = channels ;
 				m_BitDepth = bitDepth ;
@@ -244,8 +245,9 @@ m_sName = null;
 
 				}
 
-				AudioMediaAsset ob_AudioMediaAsset = new AudioMediaAsset (alNewClipList) ;
 
+
+				AudioMediaAsset ob_AudioMediaAsset = new AudioMediaAsset (alNewClipList) ;
 				return ob_AudioMediaAsset;
 			}
 else
@@ -297,79 +299,8 @@ InsertAsset(chunk, dPosition);
 			{
 throw new Exception ("Incompatible format or Insertion time not in asset range") ;
 			}
-
-				/*
-				ArrayList alClipMark = new ArrayList (FindClipToProcess (time)) ;
-				int InsertPositionClipIndex = Convert.ToInt32 (alClipMark [0]) ;
-				double dInsertionClipTime = Convert.ToDouble (alClipMark [1]) ;
-
-				// copy clips before insertion point to new ArrayList
-				ArrayList alNewClipList = new ArrayList () ;
-
-							for (int i = 0 ; i< InsertPositionClipIndex ; i++)
-							{
-				alNewClipList.Add (m_alClipList[i] ) ;  
-							}
-				MessageBox.Show ("Clips copied before index") ;
-				AudioClip ob_ClipProcessed = m_alClipList [InsertPositionClipIndex] as  AudioClip ;
-				bool boolInsertNewClip ;
-							AudioClip ob_NewClip ;
-							if (dInsertionClipTime == ob_ClipProcessed.LengthInTime)
-							{
-								ob_NewClip  = ob_ClipProcessed ;
-								alNewClipList.Add (ob_ClipProcessed) ;
-								boolInsertNewClip  = false ;
-							}
-							else if ( dInsertionClipTime == 0)
-							{
-								ob_NewClip = ob_ClipProcessed ;
-								boolInsertNewClip  = true ;
-							}
-							else
-							{
-				AudioClip TempClip = ob_ClipProcessed.CopyClipPart (0 , dInsertionClipTime) ;
-				alNewClipList.Add (TempClip) ;
-				ob_NewClip = ob_ClipProcessed.CopyClipPart ( dInsertionClipTime, ob_ClipProcessed.LengthInTime) ;
-				boolInsertNewClip  = true ;
-							}
-
-
-							// copy clips from chunk
-				AudioMediaAsset ob_Chunk  = chunk as AudioMediaAsset ;
-							for (int i = 0 ; i< ob_Chunk.m_alClipList.Count ; i++)
-							{
-				alNewClipList.Add (ob_Chunk.m_alClipList	[i]) ;
-							}
-
-				// insert new clip derived from processed clip
-							if (boolInsertNewClip == true) 
-							{
-				alNewClipList.Add (ob_NewClip) ;
-							}
-
-							// Add rest of clips in original asset to new clip list
-							for (int i = InsertPositionClipIndex+1 ; i < m_alClipList.Count ; i++) 
-							{
-				alNewClipList.Add (m_alClipList [i]) ;
-							}
-
-				m_alClipList.Clear () ;
-							m_alClipList = alNewClipList ;
-				m_dAudioLengthInTime = m_dAudioLengthInTime  + ob_Chunk.LengthInMilliseconds ;
-				m_lAudioLengthInBytes = Calc.ConvertTimeToByte (m_dAudioLengthInTime , m_SamplingRate , m_FrameSize) ;
-				m_lSizeInBytes = m_lAudioLengthInBytes  ;
-				*/
-				/*
-				MessageBox.Show ("ClipList") ;
-							AudioClip ac;
-
-							for (int i = 0 ; i < m_alClipList.Count ; i++)
-							{
-				ac = m_alClipList [i] as AudioClip;
-								MessageBox.Show (ac.BeginTime.ToString ()) ;
-								MessageBox.Show (ac.EndTime.ToString ()) ;
-							}
-							*/
+							
+							
 				// end of insert chunk function
 			}
 
@@ -386,8 +317,8 @@ double dBeginTime = Calc.ConvertByteToTime (beginPosition , m_SamplingRate , m_F
 			{
 				AudioMediaAsset ob_NewAsset = GetChunk (beginTime , endTime ) as AudioMediaAsset ; 
 
-				AudioMediaAsset ob_FromtAsset  = new AudioMediaAsset (m_Channels , m_SamplingRate , m_BitDepth) ;
-				AudioMediaAsset ob_RearAsset = new AudioMediaAsset (m_Channels , m_SamplingRate , m_BitDepth) ;
+				AudioMediaAsset ob_FromtAsset  = new AudioMediaAsset (m_Channels ,m_BitDepth ,m_SamplingRate  ) ;
+				AudioMediaAsset ob_RearAsset = new AudioMediaAsset (m_Channels , m_BitDepth , m_SamplingRate  ) ;
 
 				if (beginTime != 0&& endTime != m_dAudioLengthInTime)
 				{

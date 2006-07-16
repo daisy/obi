@@ -270,7 +270,7 @@ m_SamplingRate = m_Asset.SampleRate ;
 				}
 				else
 				{
-					m_lLength = (m_Asset .SizeInBytes - 44 - lStartPosition ) ;
+					m_lLength = (m_Asset .SizeInBytes  - lStartPosition ) ;
 				}
 
 				WaveFormat newFormat = new WaveFormat () ;				
@@ -293,6 +293,9 @@ m_Channels = m_Asset.Channels ;
 
 				// calculate size of buffer so as to contain 1 second of audio
 				m_SizeBuffer = m_Asset .SampleRate *  m_Asset .FrameSize ;
+if (m_SizeBuffer > m_Asset.AudioLengthInBytes)
+m_SizeBuffer = Convert.ToInt32 (m_Asset.AudioLengthInBytes );
+
 				m_RefreshLength = (m_Asset .SampleRate / 2 ) * m_Asset .FrameSize ;
 // calculate the size of VuMeter Update array length
 				m_UpdateVMArrayLength = m_SizeBuffer  / 20 ;
@@ -315,6 +318,7 @@ m_CompAddition = Convert.ToInt32 (Calc.AdaptToFrame (m_CompAddition , m_FrameSiz
 				}
 
 LoadStream (true) ;
+				
 				// check for fast play
 				int reduction = 0 ;
 				if (m_FastPlay == false)
@@ -658,35 +662,42 @@ m_lClipByteCount = lPositionInClip - ob_Clip.BeginByte ;
 					SkipFrames () ;
 					m_MemoryStream.Write (m_br.ReadBytes(m_FrameSize), 0 , m_FrameSize) ;
 m_lClipByteCount = m_lClipByteCount + m_FrameSize ;
+					ReadNextClip () ;
 				}
 //MessageBox.Show (m_MemoryStream.Position.ToString ()) ;
 			}
 			else
 			{
 long l ;
-				for (l = 0 ; l < ob_Clip.LengthInBytes && l < (m_RefreshLength ) && m_lClipByteCount  < ob_Clip.LengthInBytes  ; l = l+m_FrameSize ) 
+				for (l = 0 ; l < (m_RefreshLength ) && m_lClipByteCount  < ob_Clip.LengthInBytes  ; l = l+m_FrameSize ) 
 				{
+					//l < ob_Clip.LengthInBytes &&  
 					SkipFrames () ;
 					m_MemoryStream.Write (m_br.ReadBytes(m_FrameSize), 0 , m_FrameSize) ;
 					m_lClipByteCount = m_lClipByteCount + m_FrameSize ;
 				
-					if ( m_lClipByteCount >= ob_Clip.LengthInBytes)
-					{
-						if (m_ClipIndex <m_Asset.m_alClipList.Count - 1)
-						{
-							m_ClipIndex++ ;
-							ob_Clip = m_Asset.m_alClipList [m_ClipIndex] as AudioClip;
-						
-							m_br =new BinaryReader (File.OpenRead(ob_Clip.Path)) ;
-							m_br.BaseStream.Position = ob_Clip.BeginByte + 44;
-m_lClipByteCount = ob_Clip.BeginByte + 44 ;
-						}
-					}
+					ReadNextClip () ;
 				}
 			}
 m_MemoryStream.Position = 0 ;
 		}
 
+		void ReadNextClip ()
+		{
+			if ( m_lClipByteCount >= ob_Clip.LengthInBytes)
+			{
+				if (m_ClipIndex <m_Asset.m_alClipList.Count - 1)
+				{
+					m_ClipIndex++ ;
+					ob_Clip = m_Asset.m_alClipList [m_ClipIndex] as AudioClip;
+						
+					m_br =new BinaryReader (File.OpenRead(ob_Clip.Path)) ;
+					m_br.BaseStream.Position = ob_Clip.BeginByte + 44;
+					//m_lClipByteCount = ob_Clip.BeginByte + 44 ;
+					m_lClipByteCount = 0 ;
+				}
+			}
+		}
 		void SkipFrames()
 		{
 			if (m_Step != 1)
