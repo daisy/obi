@@ -45,7 +45,7 @@ namespace VirtualAudioBackend
 		/// <summary>
 		/// Get the bit depth (8 or 16) for recording.
 		/// </summary>
-		short BitDepth
+		int BitDepth
 		{
 			get;
 		}
