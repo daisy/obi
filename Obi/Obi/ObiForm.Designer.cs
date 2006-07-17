@@ -192,7 +192,7 @@ namespace Obi
             this.mUndoToolStripMenuItem.Enabled = false;
             this.mUndoToolStripMenuItem.Name = "mUndoToolStripMenuItem";
             this.mUndoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.mUndoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mUndoToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.mUndoToolStripMenuItem.Text = "&Undo";
             this.mUndoToolStripMenuItem.Click += new System.EventHandler(this.mUndoToolStripMenuItem_Click);
             // 
@@ -201,26 +201,26 @@ namespace Obi
             this.mRedoToolStripMenuItem.Enabled = false;
             this.mRedoToolStripMenuItem.Name = "mRedoToolStripMenuItem";
             this.mRedoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.mRedoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mRedoToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.mRedoToolStripMenuItem.Text = "&Redo";
             this.mRedoToolStripMenuItem.Click += new System.EventHandler(this.mRedoToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(137, 6);
             // 
             // metadataToolStripMenuItem
             // 
             this.metadataToolStripMenuItem.Name = "metadataToolStripMenuItem";
-            this.metadataToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.metadataToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.metadataToolStripMenuItem.Text = "&Metadata";
             this.metadataToolStripMenuItem.Click += new System.EventHandler(this.metadataToolStripMenuItem_Click);
             // 
             // touchProjectToolStripMenuItem
             // 
             this.touchProjectToolStripMenuItem.Name = "touchProjectToolStripMenuItem";
-            this.touchProjectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.touchProjectToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.touchProjectToolStripMenuItem.Text = "&Touch project";
             this.touchProjectToolStripMenuItem.Click += new System.EventHandler(this.touchProjectToolStripMenuItem_Click);
             // 
@@ -238,6 +238,7 @@ namespace Obi
             this.addChildSectionToolStripMenuItem.Name = "addChildSectionToolStripMenuItem";
             this.addChildSectionToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.addChildSectionToolStripMenuItem.Text = "&Add child section";
+            this.addChildSectionToolStripMenuItem.Click += new System.EventHandler(this.addChildSectionToolStripMenuItem_Click);
             // 
             // addsiblingSectionToolStripMenuItem
             // 
