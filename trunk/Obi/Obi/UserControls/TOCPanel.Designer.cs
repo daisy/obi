@@ -49,6 +49,7 @@ namespace Obi.UserControls
             this.tocTree.Name = "tocTree";
             this.tocTree.Size = new System.Drawing.Size(129, 123);
             this.tocTree.TabIndex = 0;
+            this.tocTree.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.tocTree_AfterLabelEdit);
             // 
             // contextMenuStrip1
             // 

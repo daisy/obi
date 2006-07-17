@@ -115,6 +115,7 @@ namespace Obi
             parent.insert(sibling, parent.indexOf(e.ContextNode));
             UserControls.ICoreTreeView view = (UserControls.ICoreTreeView)sender;
             view.AddNewSiblingSection(sibling, e.ContextNode);
+            view.BeginEditingNodeLabel(sibling);
         }
 
         /// <summary>

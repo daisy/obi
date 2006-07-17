@@ -659,5 +659,17 @@ namespace Obi
                 UndoStackChanged(this, new EventArgs());
             }
         }
+
+        /// <summary>
+        /// Update the status of the TOC menu items when a child section has been added.
+        ///   <list>
+        ///     <listheader>Changes to the menu items:</listheader>
+        ///     <item>we can add siblings (either to the selected item or to the last in the list.)</item>
+        ///   </list>
+        /// </summary>
+        private void addChildSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            addsiblingSectionToolStripMenuItem.Enabled = true;
+        }
     }
 }
