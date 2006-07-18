@@ -92,6 +92,7 @@
     <Compile Include="Dialogs\UserProfile.Designer.cs">
       <DependentUpon>UserProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Events\Node\DeleteSectionEventArgs.cs" />
     <Compile Include="Events\Node\ExpandViewToAllDepthsEventArgs.cs" />
     <Compile Include="Events\Node\AddChildSectionEventArgs.cs" />
     <Compile Include="Events\Node\AddSiblingSectionEventArgs.cs" />

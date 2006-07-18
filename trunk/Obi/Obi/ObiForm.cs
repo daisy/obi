@@ -97,28 +97,30 @@ namespace Obi
             }
         }
 
-        #endregion
-
-
-
-
-
         /// <summary>
         /// Open a project from a XUK file by prompting the user for a file location.
         /// </summary>
         private void openProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*
             if (ClosedProject())
             {
                 OpenFileDialog dialog = new OpenFileDialog();
                 dialog.Filter = XukFilter;
+                dialog.InitialDirectory = mSettings.DefaultPath;
                 DialogResult result = dialog.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    mProject = Project.Open(dialog.FileName);
-                    AddRecentProject(dialog.FileName);
-                    OnProjectOpened();
+                    try
+                    {
+                        mProject = new Project(dialog.FileName);
+                        AddRecentProject(dialog.FileName);
+                        OnProjectOpened();
+                    }
+                    catch (Exception x)
+                    {
+                        MessageBox.Show(x.Message, Localizer.Message("open_project_error_caption"),
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
@@ -129,8 +131,56 @@ namespace Obi
             {
                 Ready();
             }
-             * */
         }
+
+        /// <summary>
+        /// Close the current project.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void closeProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ClosedProject())
+            {
+                mProject = null;
+            }
+        }
+
+        /// <summary>
+        /// Update the status of the menu items when a child section has been added.
+        ///   <list>
+        ///     <listheader>Changes to the menu items:</listheader>
+        ///     <item>we can add siblings (either to the selected item or to the last in the list.)</item>
+        ///     <item>the project is unsaved.</item>
+        ///   </list>
+        /// </summary>
+        private void addChildSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            addsiblingSectionToolStripMenuItem.Enabled = true;
+            GUIUpdateUnsavedProject();
+        }
+
+        /// <summary>
+        /// Update the status of the menu items when a sibling section has been added.
+        /// </summary>
+        private void addsiblingSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GUIUpdateUnsavedProject();
+        }
+
+        private void deleteSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            GUIUpdateUnsavedProject();
+        }
+
+        #endregion
+
+
+
+
+
+
 
         /// <summary>
         /// Add a project to the list of recent projects.
@@ -312,18 +362,6 @@ namespace Obi
              * */
         }
 
-        /// <summary>
-        /// Close the current project.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void closeProjectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (ClosedProject())
-            {
-                mProject = null;
-            }
-        }
 
         /// <summary>
         /// Exit if and only if the currently open project was saved correctly.
@@ -343,7 +381,7 @@ namespace Obi
         }
 
         /// <summary>
-        /// Check whether a project is currently open and not saved; prompt the user about whatto do.
+        /// Check whether a project is currently open and not saved; prompt the user about what to do.
         /// </summary>
         /// <returns>True if there is no open project or the currently open project could be closed.</returns>
         private bool ClosedProject()
@@ -504,11 +542,14 @@ namespace Obi
                 case Obi.Events.Project.StateChange.Created:
                     GUIUpdateSavedProject();
                     mProjectPanel.Project = e.Project;
+                    mProjectPanel.Clear();
                     tableOfContentsToolStripMenuItem.Enabled = true;
                     addChildSectionToolStripMenuItem.Click +=
-                        new System.EventHandler(mProjectPanel.TOCPanel.addSubSectionToolStripMenuItem_Click);
+                        new System.EventHandler(mProjectPanel.TOCPanel.addChildSectionToolStripMenuItem_Click);
                     addsiblingSectionToolStripMenuItem.Click +=
                         new System.EventHandler(mProjectPanel.TOCPanel.addSectionAtSameLevelToolStripMenuItem_Click);
+                    deleteSectionToolStripMenuItem.Click +=
+                        new System.EventHandler(mProjectPanel.TOCPanel.deleteSectionToolStripMenuItem_Click);
                     UpdateShowHideTOC();
                     Debug(Localizer.Message("debug_created_project"));
                     break;
@@ -519,7 +560,15 @@ namespace Obi
                 case Obi.Events.Project.StateChange.Opened:
                     GUIUpdateSavedProject();
                     mProjectPanel.Project = e.Project;
+                    mProjectPanel.Clear();
+                    mProjectPanel.SynchronizeWithCoreTree(e.Project.getPresentation().getRootNode());
                     tableOfContentsToolStripMenuItem.Enabled = true;
+                    addChildSectionToolStripMenuItem.Click +=
+                        new System.EventHandler(mProjectPanel.TOCPanel.addChildSectionToolStripMenuItem_Click);
+                    addsiblingSectionToolStripMenuItem.Click +=
+                        new System.EventHandler(mProjectPanel.TOCPanel.addSectionAtSameLevelToolStripMenuItem_Click);
+                    deleteSectionToolStripMenuItem.Click +=
+                        new System.EventHandler(mProjectPanel.TOCPanel.deleteSectionToolStripMenuItem_Click);
                     UpdateShowHideTOC();
                     Debug(String.Format(Localizer.Message("debug_opened_project"), e.Project.XUKPath));
                     break;
@@ -658,18 +707,6 @@ namespace Obi
                 mUndoStack.Redo();
                 UndoStackChanged(this, new EventArgs());
             }
-        }
-
-        /// <summary>
-        /// Update the status of the TOC menu items when a child section has been added.
-        ///   <list>
-        ///     <listheader>Changes to the menu items:</listheader>
-        ///     <item>we can add siblings (either to the selected item or to the last in the list.)</item>
-        ///   </list>
-        /// </summary>
-        private void addChildSectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            addsiblingSectionToolStripMenuItem.Enabled = true;
         }
     }
 }

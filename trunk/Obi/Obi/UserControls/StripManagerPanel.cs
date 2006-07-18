@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Obi.UserControls
 {
-    public partial class StripManagerPanel : UserControl
+    public partial class StripManagerPanel : UserControl //, ICoreTreeView
     {
         public StripManagerPanel()
         {

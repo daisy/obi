@@ -178,6 +178,12 @@ You cannot undo this operation.</value>
   <data name="obi" xml:space="preserve">
     <value>Obi</value>
   </data>
+  <data name="open_project_error_caption" xml:space="preserve">
+    <value>Error opening project file</value>
+  </data>
+  <data name="open_project_error_text" xml:space="preserve">
+    <value>Could not read XUK file {0}.</value>
+  </data>
   <data name="ready" xml:space="preserve">
     <value>Ready.</value>
   </data>

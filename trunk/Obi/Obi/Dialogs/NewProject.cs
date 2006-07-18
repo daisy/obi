@@ -22,7 +22,7 @@ namespace Obi.Dialogs
         {
             get
             {
-                return titleBox.Text;
+                return mTitleBox.Text;
             }
         }
 
@@ -33,7 +33,7 @@ namespace Obi.Dialogs
         {
             get
             {
-                return fileBox.Text;
+                return mFileBox.Text;
             }
         }
 
@@ -44,8 +44,9 @@ namespace Obi.Dialogs
         public NewProject(string path)
         {
             InitializeComponent();
-            titleBox.Text = Localizer.Message("new_project");
-            fileBox.Text = path;
+            mTitleBox.Text = Localizer.Message("new_project");
+            // Add a trailing \ so that the last directory doesn't look like a file name (lame.)
+            mFileBox.Text = path + (path.EndsWith(@"\") ? "" : @"\");
             GenerateFileName();
         }
 
@@ -55,11 +56,11 @@ namespace Obi.Dialogs
         private void selectButton_Click(object sender, EventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.InitialDirectory = System.IO.Path.GetDirectoryName(fileBox.Text);
+            dialog.InitialDirectory = System.IO.Path.GetDirectoryName(mFileBox.Text);
             dialog.Filter = "XUK project file (*.xuk)|*.xuk";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                fileBox.Text = dialog.FileName;
+                mFileBox.Text = dialog.FileName;
             }
         }
 
@@ -76,8 +77,8 @@ namespace Obi.Dialogs
         /// </summary>
         private void GenerateFileName()
         {
-            fileBox.Text = String.Format(@"{0}\{1}.xuk", System.IO.Path.GetDirectoryName(fileBox.Text),
-                Project.ShortName(titleBox.Text));
+            mFileBox.Text = String.Format(@"{0}\{1}.xuk", System.IO.Path.GetDirectoryName(mFileBox.Text),
+                Project.ShortName(mTitleBox.Text));
         }
     }
 }

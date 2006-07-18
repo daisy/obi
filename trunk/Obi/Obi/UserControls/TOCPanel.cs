@@ -17,10 +17,11 @@ namespace Obi.UserControls
     /// change the label, etc. of headings.)
     /// This control implements the CoreTreeView interface so that it can be synchronized with the core tree.
     /// </summary>
-    public partial class TOCPanel : UserControl, ICoreTreeView
+    public partial class TOCPanel : UserControl, ICoreTreeView, ICoreNodeVisitor
     {
         public event Events.Node.AddSiblingSectionHandler AddSiblingSection;
         public event Events.Node.AddChildSectionHandler AddChildSection;
+        public event Events.Node.DeleteSectionHandler DeleteSection;
         public event Events.Node.BeginEditingSectionHeadingLabelHandler BeginEditingLabel;
         public event Events.Node.DecreaseSectionLevelHandler DecreaseSectionLevel;
         public event Events.Node.IncreaseSectionLevelHandler IncreaseSectionLevel;
@@ -53,6 +54,64 @@ namespace Obi.UserControls
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Remove all nodes from the tree.
+        /// </summary>
+        public void Clear()
+        {
+            tocTree.Nodes.Clear();
+            tocTree.SelectedNode = null;
+        }
+
+        /// <summary>
+        /// Synchronize the tree view with the core tree.
+        /// </summary>
+        public void SynchronizeWithCoreTree(CoreNode root)
+        {
+            root.acceptDepthFirst(this);
+        }
+
+        #region Synchronization visitor
+
+        /// <summary>
+        /// Do nothing.
+        /// </summary>
+        /// <param name="node">The node to do nothing with.</param>
+        public void postVisit(ICoreNode node)
+        {
+        }
+
+        /// <summary>
+        /// Create a new tree node for every core node. Skip the root node, and attach the children of the root directly to the
+        /// tree; the other children are attached to their parent node.
+        /// </summary>
+        /// <param name="node">The node to add to the tree.</param>
+        /// <returns>True </returns>
+        public bool preVisit(ICoreNode node)
+        {
+            if (node.getParent() != null)
+            {
+                string label = GetTextMedia((CoreNode)node).getText();
+                System.Windows.Forms.TreeNode newTreeNode;
+                if (node.getParent().getParent() != null)
+                {
+                    System.Windows.Forms.TreeNode parentTreeNode = FindTreeNodeFromCoreNode((CoreNode)node.getParent());
+                    newTreeNode = parentTreeNode.Nodes.Add(node.GetHashCode().ToString(), label);
+                }
+                else
+                {
+                    // top-level nodes
+                    newTreeNode = tocTree.Nodes.Add(node.GetHashCode().ToString(), label);
+                }
+                newTreeNode.Tag = node;
+                newTreeNode.ExpandAll();
+                newTreeNode.EnsureVisible();
+            }
+            return true;
+        }
+
+        #endregion
 
         /// <summary>
         /// Add a new heading as an immediate sibling of the relative node.
@@ -116,6 +175,19 @@ namespace Obi.UserControls
             newTreeNode.ExpandAll();
             newTreeNode.EnsureVisible();
             tocTree.SelectedNode = newTreeNode;
+        }
+
+        /// <summary>
+        /// Delete a section from the table contents. The core node was removed from the core tree.
+        /// </summary>
+        /// <param name="node">The core node that was removed.</param>
+        public void DeleteSectionNode(CoreNode node)
+        {
+            if (node != null)
+            {
+                System.Windows.Forms.TreeNode treeNode = FindTreeNodeFromCoreNode(node);
+                treeNode.Remove();
+            }
         }
 
         /// <summary>
@@ -200,7 +272,7 @@ namespace Obi.UserControls
         /// <summary>
         /// Triggered by the "add child section" menu item.
         /// </summary>
-        public void addSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        public void addChildSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddChildSection(this, new Events.Node.AddChildSectionEventArgs(GetSelectedSection()));
         }
@@ -211,6 +283,14 @@ namespace Obi.UserControls
         public void addSectionAtSameLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddSiblingSection(this, new Events.Node.AddSiblingSectionEventArgs(GetSelectedSection()));
+        }
+
+        /// <summary>
+        /// Triggered by the "delete section" menu item.
+        /// </summary>
+        public void deleteSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeleteSection(this, new Events.Node.DeleteSectionEventArgs(GetSelectedSection()));
         }
 
         /// <summary>

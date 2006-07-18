@@ -43,6 +43,7 @@ namespace Obi.UserControls
             // 
             // tocTree
             // 
+            this.tocTree.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tocTree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tocTree.LabelEdit = true;
             this.tocTree.Location = new System.Drawing.Point(0, 0);
@@ -76,7 +77,7 @@ namespace Obi.UserControls
             this.addSubSectionToolStripMenuItem.Name = "addSubSectionToolStripMenuItem";
             this.addSubSectionToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.addSubSectionToolStripMenuItem.Text = "Add sub-section";
-            this.addSubSectionToolStripMenuItem.Click += new System.EventHandler(this.addSubSectionToolStripMenuItem_Click);
+            this.addSubSectionToolStripMenuItem.Click += new System.EventHandler(this.addChildSectionToolStripMenuItem_Click);
             // 
             // moveUpToolStripMenuItem
             // 

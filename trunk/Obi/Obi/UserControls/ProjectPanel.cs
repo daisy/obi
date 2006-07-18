@@ -6,6 +6,8 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 
+using urakawa.core;
+
 namespace Obi.UserControls
 {
     /// <summary>
@@ -30,6 +32,7 @@ namespace Obi.UserControls
                 {
                     tocPanel.AddChildSection += new Events.Node.AddChildSectionHandler(mProject.CreateChildSection);
                     tocPanel.AddSiblingSection += new Events.Node.AddSiblingSectionHandler(mProject.CreateSiblingSection);
+                    tocPanel.DeleteSection += new Events.Node.DeleteSectionHandler(mProject.RemoveNode);
                 }
             }
         }
@@ -75,6 +78,21 @@ namespace Obi.UserControls
         public void ShowTOCPanel()
         {
             mSplitContainer.Panel1Collapsed = false;
+        }
+
+
+        public void Clear()
+        {
+            tocPanel.Clear();
+        }
+
+        /// <summary>
+        /// Synchronize the project views with the core tree. Used when opening a XUK file.
+        /// </summary>
+        public void SynchronizeWithCoreTree(CoreNode root)
+        {
+            tocPanel.SynchronizeWithCoreTree(root);
+            //stripManagerPanel1.SynchronizeWithCoreTree(root);
         }
     }
 }

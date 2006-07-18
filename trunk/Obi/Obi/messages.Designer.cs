@@ -236,6 +236,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error opening project file.
+        /// </summary>
+        internal static string open_project_error_caption {
+            get {
+                return ResourceManager.GetString("open_project_error_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not read XUK file {0}..
+        /// </summary>
+        internal static string open_project_error_text {
+            get {
+                return ResourceManager.GetString("open_project_error_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ready..
         /// </summary>
         internal static string ready {
