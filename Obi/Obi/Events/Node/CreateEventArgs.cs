@@ -6,12 +6,12 @@ using urakawa.core;
 
 namespace Obi.Events.Node
 {
-    public delegate void CreatedHandler(object sender, CreatedEventArgs e);
+    public delegate void CreateHandler(object sender, CreateEventArgs e);
 
     /// <summary>
     /// This event indicates that a new core node was created.
     /// </summary>
-    public class CreatedEventArgs : EventArgs
+    public class CreateEventArgs : EventArgs
     {
         private Obi.Project mProject;
         private CoreNode mNode;
@@ -32,7 +32,7 @@ namespace Obi.Events.Node
             }
         }
 
-        public CreatedEventArgs(Obi.Project project, CoreNode node)
+        public CreateEventArgs(Obi.Project project, CoreNode node)
         {
             mProject = project;
             mNode = node;

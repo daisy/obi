@@ -29,13 +29,13 @@ namespace Obi.Dialogs
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.nameBox = new System.Windows.Forms.TextBox();
+            this.mNameBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.organizationBox = new System.Windows.Forms.TextBox();
+            this.mOrganizationBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.cultureBox = new System.Windows.Forms.ComboBox();
-            this.okButton = new System.Windows.Forms.Button();
-            this.cancelButton = new System.Windows.Forms.Button();
+            this.mCultureBox = new System.Windows.Forms.ComboBox();
+            this.mOKButton = new System.Windows.Forms.Button();
+            this.mCancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -47,14 +47,14 @@ namespace Obi.Dialogs
             this.label1.TabIndex = 0;
             this.label1.Text = "Full &name:";
             // 
-            // nameBox
+            // mNameBox
             // 
-            this.nameBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.mNameBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.nameBox.Location = new System.Drawing.Point(88, 12);
-            this.nameBox.Name = "nameBox";
-            this.nameBox.Size = new System.Drawing.Size(292, 19);
-            this.nameBox.TabIndex = 1;
+            this.mNameBox.Location = new System.Drawing.Point(88, 12);
+            this.mNameBox.Name = "mNameBox";
+            this.mNameBox.Size = new System.Drawing.Size(292, 19);
+            this.mNameBox.TabIndex = 1;
             // 
             // label2
             // 
@@ -65,14 +65,14 @@ namespace Obi.Dialogs
             this.label2.TabIndex = 2;
             this.label2.Text = "&Organization:";
             // 
-            // organizationBox
+            // mOrganizationBox
             // 
-            this.organizationBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.mOrganizationBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.organizationBox.Location = new System.Drawing.Point(88, 37);
-            this.organizationBox.Name = "organizationBox";
-            this.organizationBox.Size = new System.Drawing.Size(292, 19);
-            this.organizationBox.TabIndex = 3;
+            this.mOrganizationBox.Location = new System.Drawing.Point(88, 37);
+            this.mOrganizationBox.Name = "mOrganizationBox";
+            this.mOrganizationBox.Size = new System.Drawing.Size(292, 19);
+            this.mOrganizationBox.TabIndex = 3;
             // 
             // label3
             // 
@@ -83,56 +83,54 @@ namespace Obi.Dialogs
             this.label3.TabIndex = 4;
             this.label3.Text = "&Language:";
             // 
-            // cultureBox
+            // mCultureBox
             // 
-            this.cultureBox.AllowDrop = true;
-            this.cultureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.mCultureBox.AllowDrop = true;
+            this.mCultureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.cultureBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cultureBox.FormattingEnabled = true;
-            this.cultureBox.Location = new System.Drawing.Point(88, 62);
-            this.cultureBox.Name = "cultureBox";
-            this.cultureBox.Size = new System.Drawing.Size(292, 20);
-            this.cultureBox.Sorted = true;
-            this.cultureBox.TabIndex = 5;
+            this.mCultureBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.mCultureBox.FormattingEnabled = true;
+            this.mCultureBox.Location = new System.Drawing.Point(88, 62);
+            this.mCultureBox.Name = "mCultureBox";
+            this.mCultureBox.Size = new System.Drawing.Size(292, 20);
+            this.mCultureBox.Sorted = true;
+            this.mCultureBox.TabIndex = 5;
             // 
-            // okButton
+            // mOKButton
             // 
-            this.okButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(118, 117);
-            this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 6;
-            this.okButton.Text = "&OK";
-            this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.button1_Click);
+            this.mOKButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.mOKButton.Location = new System.Drawing.Point(118, 117);
+            this.mOKButton.Name = "mOKButton";
+            this.mOKButton.Size = new System.Drawing.Size(75, 23);
+            this.mOKButton.TabIndex = 6;
+            this.mOKButton.Text = "&OK";
+            this.mOKButton.UseVisualStyleBackColor = true;
+            this.mOKButton.Click += new System.EventHandler(this.button1_Click);
             // 
-            // cancelButton
+            // mCancelButton
             // 
-            this.cancelButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(199, 117);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 7;
-            this.cancelButton.Text = "&Cancel";
-            this.cancelButton.UseVisualStyleBackColor = true;
+            this.mCancelButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.mCancelButton.Location = new System.Drawing.Point(199, 117);
+            this.mCancelButton.Name = "mCancelButton";
+            this.mCancelButton.Size = new System.Drawing.Size(75, 23);
+            this.mCancelButton.TabIndex = 7;
+            this.mCancelButton.Text = "&Cancel";
+            this.mCancelButton.UseVisualStyleBackColor = true;
             // 
             // UserProfile
             // 
-            this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(392, 152);
-            this.Controls.Add(this.cancelButton);
-            this.Controls.Add(this.okButton);
-            this.Controls.Add(this.cultureBox);
+            this.Controls.Add(this.mCancelButton);
+            this.Controls.Add(this.mOKButton);
+            this.Controls.Add(this.mCultureBox);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.organizationBox);
+            this.Controls.Add(this.mOrganizationBox);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.nameBox);
+            this.Controls.Add(this.mNameBox);
             this.Controls.Add(this.label1);
             this.MinimumSize = new System.Drawing.Size(8, 186);
             this.Name = "UserProfile";
@@ -145,12 +143,12 @@ namespace Obi.Dialogs
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox nameBox;
+        private System.Windows.Forms.TextBox mNameBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox organizationBox;
+        private System.Windows.Forms.TextBox mOrganizationBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cultureBox;
-        private System.Windows.Forms.Button okButton;
-        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.ComboBox mCultureBox;
+        private System.Windows.Forms.Button mOKButton;
+        private System.Windows.Forms.Button mCancelButton;
     }
 }

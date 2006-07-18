@@ -165,6 +165,7 @@ namespace Obi.Dialogs
             this.AcceptButton = this.mOKButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.mCancelButton;
             this.ClientSize = new System.Drawing.Size(504, 206);
             this.Controls.Add(this.mLanguageBox);
             this.Controls.Add(this.mIdentiferBox);
@@ -178,7 +179,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.label1);
             this.Controls.Add(this.mCancelButton);
             this.Controls.Add(this.mOKButton);
-            this.MinimumSize = new System.Drawing.Size(0, 240);
+            this.MinimumSize = new System.Drawing.Size(8, 240);
             this.Name = "EditSimpleMetadata";
             this.Text = "Edit project metadata";
             this.ResumeLayout(false);
