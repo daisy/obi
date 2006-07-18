@@ -545,7 +545,7 @@ namespace Obi
                     mProjectPanel.Clear();
                     tableOfContentsToolStripMenuItem.Enabled = true;
                     addChildSectionToolStripMenuItem.Click +=
-                        new System.EventHandler(mProjectPanel.TOCPanel.addChildSectionToolStripMenuItem_Click);
+                        new System.EventHandler(mProjectPanel.TOCPanel.addSubSectionToolStripMenuItem_Click);
                     addsiblingSectionToolStripMenuItem.Click +=
                         new System.EventHandler(mProjectPanel.TOCPanel.addSectionAtSameLevelToolStripMenuItem_Click);
                     deleteSectionToolStripMenuItem.Click +=
@@ -564,7 +564,7 @@ namespace Obi
                     mProjectPanel.SynchronizeWithCoreTree(e.Project.getPresentation().getRootNode());
                     tableOfContentsToolStripMenuItem.Enabled = true;
                     addChildSectionToolStripMenuItem.Click +=
-                        new System.EventHandler(mProjectPanel.TOCPanel.addChildSectionToolStripMenuItem_Click);
+                        new System.EventHandler(mProjectPanel.TOCPanel.addSubSectionToolStripMenuItem_Click);
                     addsiblingSectionToolStripMenuItem.Click +=
                         new System.EventHandler(mProjectPanel.TOCPanel.addSectionAtSameLevelToolStripMenuItem_Click);
                     deleteSectionToolStripMenuItem.Click +=
