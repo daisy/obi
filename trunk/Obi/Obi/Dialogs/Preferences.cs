@@ -20,9 +20,9 @@ namespace Obi.Dialogs
         {
             InitializeComponent();
             mIdTemplate = template;
-            templateBox.Text = mIdTemplate;
+            mTemplateBox.Text = mIdTemplate;
             mDefaultDir = dir;
-            directoryBox.Text = mDefaultDir;
+            mDirectoryBox.Text = mDefaultDir;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -32,14 +32,14 @@ namespace Obi.Dialogs
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 mDefaultDir = dialog.SelectedPath;
-                directoryBox.Text = mDefaultDir;
+                mDirectoryBox.Text = mDefaultDir;
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            mIdTemplate = templateBox.Text;
-            mDefaultDir = directoryBox.Text;
+            mIdTemplate = mTemplateBox.Text;
+            mDefaultDir = mDirectoryBox.Text;
         }
     }
 }

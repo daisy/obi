@@ -25,13 +25,13 @@ namespace Obi.Dialogs
         {
             InitializeComponent();
             mProfile = profile;
-            nameBox.Text = mProfile.Name;
-            organizationBox.Text = mProfile.Organization;
+            mNameBox.Text = mProfile.Name;
+            mOrganizationBox.Text = mProfile.Organization;
             foreach (CultureInfo c in CultureInfo.GetCultures(CultureTypes.AllCultures))
             {
-                cultureBox.Items.Add(c);
+                mCultureBox.Items.Add(c);
             }
-            cultureBox.SelectedItem = mProfile.Culture;
+            mCultureBox.SelectedItem = mProfile.Culture;
         }
 
         /// <summary>
@@ -41,12 +41,12 @@ namespace Obi.Dialogs
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
-            if (nameBox.Text != "")
+            if (mNameBox.Text != "")
             {
-                mProfile.Name = nameBox.Text;
+                mProfile.Name = mNameBox.Text;
             }
-            mProfile.Organization = organizationBox.Text == "" ? null : organizationBox.Text;
-            mProfile.Culture = (CultureInfo)cultureBox.SelectedItem;
+            mProfile.Organization = mOrganizationBox.Text == "" ? null : mOrganizationBox.Text;
+            mProfile.Culture = (CultureInfo)mCultureBox.SelectedItem;
         }
     }
 }

@@ -67,7 +67,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands.cs" />
     <Compile Include="Dialogs\EditSimpleMetadata.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,12 +91,12 @@
     <Compile Include="Dialogs\UserProfile.Designer.cs">
       <DependentUpon>UserProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Events\Node\CreateEventArgs.cs" />
     <Compile Include="Events\Node\DeleteSectionEventArgs.cs" />
     <Compile Include="Events\Node\ExpandViewToAllDepthsEventArgs.cs" />
     <Compile Include="Events\Node\AddChildSectionEventArgs.cs" />
     <Compile Include="Events\Node\AddSiblingSectionEventArgs.cs" />
     <Compile Include="Events\Node\BeginEditingSectionHeadingLabelEventArgs.cs" />
-    <Compile Include="Events\Node\CreatedEventArgs.cs" />
     <Compile Include="Events\Node\DecreaseSectionLevelEventArgs.cs" />
     <Compile Include="Events\Node\IncreaseSectionLevelEventArgs.cs" />
     <Compile Include="Events\Node\LimitViewToSectionDepthEventArgs.cs" />
@@ -149,26 +148,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\ContainerPanel.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>ContainerPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\ContainerStrip.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>ContainerStrip.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\EmptyStrip.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>EmptyStrip.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\MetadataPanel.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>MetadataPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\NRParStrip.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>NRParStrip.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ProjectPanel.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ProjectPanel.cs</DependentUpon>
@@ -176,10 +155,6 @@
     <EmbeddedResource Include="UserControls\StripManagerPanel.resx">
       <SubType>Designer</SubType>
       <DependentUpon>StripManagerPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\StripPanel.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>StripPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TOCPanel.resx">
       <SubType>Designer</SubType>
@@ -202,32 +177,8 @@
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="SimpleMetadata.cs" />
-    <Compile Include="Strips\AudioStrip.cs" />
-    <Compile Include="Strips\Manager.cs" />
-    <Compile Include="Strips\ParStrip.cs" />
-    <Compile Include="Strips\Strip.cs" />
-    <Compile Include="Strips\StructureStrip.cs" />
     <Compile Include="UndoRedoStack.cs" />
-    <Compile Include="UserControls\ContainerStrip.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\ContainerStrip.Designer.cs">
-      <DependentUpon>ContainerStrip.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\EmptyStrip.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\EmptyStrip.Designer.cs">
-      <DependentUpon>EmptyStrip.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Events.cs" />
     <Compile Include="UserControls\ICoreTreeView.cs" />
-    <Compile Include="UserControls\NRParStrip.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\NRParStrip.Designer.cs">
-      <DependentUpon>NRParStrip.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\ProjectPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -239,24 +190,6 @@
     </Compile>
     <Compile Include="UserControls\StripManagerPanel.Designer.cs">
       <DependentUpon>StripManagerPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\StripPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\StripPanel.Designer.cs">
-      <DependentUpon>StripPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\ContainerPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\ContainerPanel.Designer.cs">
-      <DependentUpon>ContainerPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\MetadataPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\MetadataPanel.Designer.cs">
-      <DependentUpon>MetadataPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\TOCPanel.cs">
       <SubType>UserControl</SubType>

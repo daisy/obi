@@ -656,11 +656,6 @@ namespace Obi
         private delegate void UndoStackChangedHandler(object sender, EventArgs e);
         private event UndoStackChangedHandler UndoStackChanged;
 
-        private void mStrip_Resized(object sender, ResizedEventArgs e)
-        {
-            PushUndo(new ResizeStripCommand((EmptyStrip)sender, e.Before, e.After));
-        }
-
         private void PushUndo(Command command)
         {
             mUndoStack.Push(command);

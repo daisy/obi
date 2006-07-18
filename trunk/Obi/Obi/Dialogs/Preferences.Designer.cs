@@ -29,12 +29,12 @@ namespace Obi.Dialogs
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.templateBox = new System.Windows.Forms.TextBox();
+            this.mTemplateBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.directoryBox = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.mDirectoryBox = new System.Windows.Forms.TextBox();
+            this.mBrowseButton = new System.Windows.Forms.Button();
+            this.mOKButton = new System.Windows.Forms.Button();
+            this.mCancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -46,14 +46,14 @@ namespace Obi.Dialogs
             this.label1.TabIndex = 0;
             this.label1.Text = "Project identifier &template:";
             // 
-            // templateBox
+            // mTemplateBox
             // 
-            this.templateBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.mTemplateBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.templateBox.Location = new System.Drawing.Point(158, 12);
-            this.templateBox.Name = "templateBox";
-            this.templateBox.Size = new System.Drawing.Size(347, 19);
-            this.templateBox.TabIndex = 1;
+            this.mTemplateBox.Location = new System.Drawing.Point(158, 12);
+            this.mTemplateBox.Name = "mTemplateBox";
+            this.mTemplateBox.Size = new System.Drawing.Size(347, 19);
+            this.mTemplateBox.TabIndex = 1;
             // 
             // label2
             // 
@@ -64,61 +64,62 @@ namespace Obi.Dialogs
             this.label2.TabIndex = 2;
             this.label2.Text = "Default projects &directory:";
             // 
-            // directoryBox
+            // mDirectoryBox
             // 
-            this.directoryBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.mDirectoryBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.directoryBox.Location = new System.Drawing.Point(158, 37);
-            this.directoryBox.Name = "directoryBox";
-            this.directoryBox.Size = new System.Drawing.Size(266, 19);
-            this.directoryBox.TabIndex = 3;
+            this.mDirectoryBox.Location = new System.Drawing.Point(158, 37);
+            this.mDirectoryBox.Name = "mDirectoryBox";
+            this.mDirectoryBox.Size = new System.Drawing.Size(266, 19);
+            this.mDirectoryBox.TabIndex = 3;
             // 
-            // button1
+            // mBrowseButton
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(430, 35);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "&Browse";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.mBrowseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mBrowseButton.Location = new System.Drawing.Point(430, 35);
+            this.mBrowseButton.Name = "mBrowseButton";
+            this.mBrowseButton.Size = new System.Drawing.Size(75, 23);
+            this.mBrowseButton.TabIndex = 4;
+            this.mBrowseButton.Text = "&Browse";
+            this.mBrowseButton.UseVisualStyleBackColor = true;
+            this.mBrowseButton.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // mOKButton
             // 
-            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button2.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button2.Location = new System.Drawing.Point(180, 93);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "&OK";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.mOKButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.mOKButton.Location = new System.Drawing.Point(180, 93);
+            this.mOKButton.Name = "mOKButton";
+            this.mOKButton.Size = new System.Drawing.Size(75, 23);
+            this.mOKButton.TabIndex = 5;
+            this.mOKButton.Text = "&OK";
+            this.mOKButton.UseVisualStyleBackColor = true;
+            this.mOKButton.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // mCancelButton
             // 
-            this.button3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button3.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button3.Location = new System.Drawing.Point(261, 93);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "&Cancel";
-            this.button3.UseVisualStyleBackColor = true;
+            this.mCancelButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.mCancelButton.Location = new System.Drawing.Point(261, 93);
+            this.mCancelButton.Name = "mCancelButton";
+            this.mCancelButton.Size = new System.Drawing.Size(75, 23);
+            this.mCancelButton.TabIndex = 6;
+            this.mCancelButton.Text = "&Cancel";
+            this.mCancelButton.UseVisualStyleBackColor = true;
             // 
             // Preferences
             // 
-            this.AcceptButton = this.button2;
+            this.AcceptButton = this.mOKButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.mCancelButton;
             this.ClientSize = new System.Drawing.Size(517, 128);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.directoryBox);
+            this.Controls.Add(this.mCancelButton);
+            this.Controls.Add(this.mOKButton);
+            this.Controls.Add(this.mBrowseButton);
+            this.Controls.Add(this.mDirectoryBox);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.templateBox);
+            this.Controls.Add(this.mTemplateBox);
             this.Controls.Add(this.label1);
             this.MinimumSize = new System.Drawing.Size(8, 162);
             this.Name = "Preferences";
@@ -131,11 +132,11 @@ namespace Obi.Dialogs
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox templateBox;
+        private System.Windows.Forms.TextBox mTemplateBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox directoryBox;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox mDirectoryBox;
+        private System.Windows.Forms.Button mBrowseButton;
+        private System.Windows.Forms.Button mOKButton;
+        private System.Windows.Forms.Button mCancelButton;
     }
 }
