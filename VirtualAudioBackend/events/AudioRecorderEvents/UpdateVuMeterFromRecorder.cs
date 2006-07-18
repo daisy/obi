@@ -3,7 +3,7 @@ using System;
 namespace VirtualAudioBackend.events.AudioRecorderEvents
 {
 
-	public delegate void DUpdateVuMeterEventHandller ( AudioRecorder Recorder , UpdateVuMeterFromRecorder Update) ;  	
+	public delegate void DUpdateVuMeterEventHandller ( object sender , UpdateVuMeterFromRecorder Update) ;  	
 	/// <summary>
 	/// Summary description for UpdateVuMeterFromRecorder.
 	/// </summary>
@@ -11,10 +11,10 @@ namespace VirtualAudioBackend.events.AudioRecorderEvents
 	public class UpdateVuMeterFromRecorder :AudioRecorderEvent
 	{
 		public event DUpdateVuMeterEventHandller UpdateVuMeterEvent;
-		public void NotifyUpdateVuMeter ( AudioRecorder Recorder, UpdateVuMeterFromRecorder Update )
+		public void NotifyUpdateVuMeter ( object sender , UpdateVuMeterFromRecorder Update )
 		{
 			if ( UpdateVuMeterEvent != null)
-				UpdateVuMeterEvent ( Recorder, Update) ;
+				UpdateVuMeterEvent ( sender , Update) ;
 		}
 
 
