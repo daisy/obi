@@ -11,7 +11,7 @@ using System.Collections;
 
 namespace Obi.UserControls
 {
-    /// <summary>
+	  /// <summary>
     /// The TOCPanel is a view of the tree that displays the table of contents of the book as a tree widget.
     /// The user can easily see the structure of the book and edit the table of contents (add, remove, move,
     /// change the label, etc. of headings.)
@@ -29,7 +29,7 @@ namespace Obi.UserControls
         public event Events.Node.MoveSectionDownHandler MoveSectionDown;
         public event Events.Node.MoveSectionUpHandler MoveSectionUp;
 
-        /// <summary>
+				/// <summary>
         /// Test whether a node is currently selected or not.
         /// </summary>
         public bool Selected
@@ -40,22 +40,7 @@ namespace Obi.UserControls
             }
         }
 
-        /*
-         * Some discussion points we made:
-            1. Expand new nodes by default
-            2. No image list
-            3. Use a right click menu
-            4. Use enter or double-click to load location
-         *  5. if no node is selected, assume the last one is selected
-         *  6. right-click should focus on the node under it
-         *  7. if the tree is empty, the command text is "add heading"
-         */
-        public TOCPanel()
-        {
-            InitializeComponent();
-        }
-
-        /// <summary>
+				/// <summary>
         /// Remove all nodes from the tree.
         /// </summary>
         public void Clear()
@@ -63,7 +48,7 @@ namespace Obi.UserControls
             tocTree.Nodes.Clear();
             tocTree.SelectedNode = null;
         }
-
+        
         /// <summary>
         /// Synchronize the tree view with the core tree.
         /// </summary>
@@ -71,8 +56,7 @@ namespace Obi.UserControls
         {
             root.acceptDepthFirst(this);
         }
-
-        #region Synchronization visitor
+         #region Synchronization visitor
 
         /// <summary>
         /// Do nothing.
@@ -96,7 +80,7 @@ namespace Obi.UserControls
                 System.Windows.Forms.TreeNode newTreeNode;
                 if (node.getParent().getParent() != null)
                 {
-                    System.Windows.Forms.TreeNode parentTreeNode = FindTreeNodeFromCoreNode((CoreNode)node.getParent());
+                    System.Windows.Forms.TreeNode parentTreeNode = findTreeNodeFromCoreNode((CoreNode)node.getParent());
                     newTreeNode = parentTreeNode.Nodes.Add(node.GetHashCode().ToString(), label);
                 }
                 else
@@ -112,6 +96,20 @@ namespace Obi.UserControls
         }
 
         #endregion
+        /*
+         * Some discussion points we made:
+            1. Expand new nodes by default
+            2. No image list
+            3. Use a right click menu
+            4. Use enter or double-click to load location
+         *  5. if no node is selected, assume the last one is selected
+         *  6. right-click should focus on the node under it
+         *  7. if the tree is empty, the command text is "add heading"
+         */
+        public TOCPanel()
+        {
+            InitializeComponent();
+        }
 
         /// <summary>
         /// Add a new heading as an immediate sibling of the relative node.
@@ -128,21 +126,35 @@ namespace Obi.UserControls
         /// <param name="relNode">The relative sibling node</param>
         public void AddNewSiblingSection(CoreNode newNode, CoreNode relNode)
         {
-            System.Windows.Forms.TreeNode newTreeNode;
-            string label = GetTextMedia(newNode).getText();
-            System.Windows.Forms.TreeNode relTreeNode = FindTreeNodeFromCoreNode(relNode);
+            System.Windows.Forms.TreeNode relTreeNode = findTreeNodeFromCoreNode(relNode);
+
+            if (relTreeNode == null)
+            {
+                return;
+            }
+
+            string label = getCoreNodeText(newNode);
+
+            //add as a sibling
+            System.Windows.Forms.TreeNodeCollection siblingCollection = null;
+
             if (relTreeNode.Parent != null)
             {
-                newTreeNode = relTreeNode.Parent.Nodes.Insert(relTreeNode.Index + 1, newNode.GetHashCode().ToString(), label);
+                siblingCollection = relTreeNode.Parent.Nodes;
             }
             else
             {
-                newTreeNode = tocTree.Nodes.Add(newNode.GetHashCode().ToString(), label);
+                siblingCollection = tocTree.Nodes;
             }
+
+            System.Windows.Forms.TreeNode newTreeNode = 
+                siblingCollection.Insert
+                (relTreeNode.Index+1, newNode.GetHashCode().ToString(), label);
+
             newTreeNode.Tag = newNode;
+
             newTreeNode.ExpandAll();
             newTreeNode.EnsureVisible();
-            tocTree.SelectedNode = newTreeNode;
         }
 
         /// <summary>
@@ -161,10 +173,10 @@ namespace Obi.UserControls
         public void AddNewChildSection(CoreNode newNode, CoreNode relNode)
         {
             System.Windows.Forms.TreeNode newTreeNode;
-            string label = GetTextMedia(newNode).getText();
+            string label = getCoreNodeText(newNode);
             if (relNode != null)
             {
-                System.Windows.Forms.TreeNode relTreeNode = FindTreeNodeFromCoreNode(relNode);
+                System.Windows.Forms.TreeNode relTreeNode = findTreeNodeFromCoreNode(relNode);
                 newTreeNode = relTreeNode.Nodes.Add(newNode.GetHashCode().ToString(), label);
             }
             else
@@ -176,7 +188,6 @@ namespace Obi.UserControls
             newTreeNode.EnsureVisible();
             tocTree.SelectedNode = newTreeNode;
         }
-
         /// <summary>
         /// Delete a section from the table contents. The core node was removed from the core tree.
         /// </summary>
@@ -185,19 +196,17 @@ namespace Obi.UserControls
         {
             if (node != null)
             {
-                System.Windows.Forms.TreeNode treeNode = FindTreeNodeFromCoreNode(node);
+                System.Windows.Forms.TreeNode treeNode = findTreeNodeFromCoreNode(node);
                 treeNode.Remove();
             }
         }
-
         /// <summary>
         /// Begin editing the label (activate the edit cursor) for the currently
         /// selected section heading node.
         /// </summary>
         public void BeginEditingNodeLabel(CoreNode node)
         {
-            System.Windows.Forms.TreeNode treeNode = FindTreeNodeFromCoreNode(node);
-            tocTree.SelectedNode = treeNode;
+            System.Windows.Forms.TreeNode treeNode = findTreeNodeFromCoreNode(node);
             treeNode.EnsureVisible();
             treeNode.BeginEdit();
         }
@@ -209,10 +218,103 @@ namespace Obi.UserControls
          */
         public void MoveCurrentSectionUp()
         {
+            System.Windows.Forms.TreeNode selected = this.tocTree.SelectedNode;
+            System.Windows.Forms.TreeNode clone = (System.Windows.Forms.TreeNode)
+                selected.Clone();
+            System.Windows.Forms.TreeNodeCollection siblingCollection = null;
+
+
+            if (selected.Parent != null)
+            {
+                siblingCollection = selected.Parent.Nodes;
+            }
+            else
+            {
+                siblingCollection = tocTree.Nodes;
+            }
+
+            //it is the first node in its list
+            //change its level and move it to be the previous sibling of its parent
+            if (selected.Index == 0)
+            {
+                if (selected.Parent != null)
+                {
+                    //it will be a sibling of its parent (soon to be former parent)
+                    if (selected.Parent.Parent != null)
+                    {
+                        siblingCollection = selected.Parent.Parent.Nodes;
+                    }
+                    //it is moving to the outermost level
+                    else
+                    {
+                        siblingCollection = tocTree.Nodes;
+                    }
+                }
+                //else it has index = 0 and no parent 
+                //so it's the first node in the tree and can't move up
+            }
+
+            if (siblingCollection != null)
+            {
+                //insert the clone at one above the node to be moved
+                siblingCollection.Insert(selected.Index - 1, clone);
+
+                //remove the node which was just moved
+                selected.Remove();
+
+                tocTree.SelectedNode = clone;
+
+                clone.Expand();
+            }
+            
         }
 
         public void MoveCurrentSectionDown()
         {
+            System.Windows.Forms.TreeNode selected = this.tocTree.SelectedNode;
+            System.Windows.Forms.TreeNode clone = (System.Windows.Forms.TreeNode)
+                selected.Clone();
+            System.Windows.Forms.TreeNodeCollection siblingCollection = null;
+
+            //get the set of sibling nodes that surround the selected node
+            if (selected.Parent != null)
+            {
+                siblingCollection = selected.Parent.Nodes;
+            }
+            else
+            {
+                siblingCollection = tocTree.Nodes;
+            }
+
+            //if this is the last node in its collection
+            if (selected.Index >= siblingCollection.Count - 1)
+            {
+                if (selected.Parent != null)
+                {
+                    //move it out a level
+                    if (selected.Parent.Parent != null)
+                    {
+                        siblingCollection = selected.Parent.Parent.Nodes;
+                    }
+                    else
+                    {
+                        siblingCollection = tocTree.Nodes;
+                    }
+                }
+            }
+
+            if (siblingCollection != null)
+            {
+                //insert the clone at one above the node to be moved
+                siblingCollection.Insert(selected.Index + 2, clone);
+
+                //remove the node which was just moved
+                selected.Remove();
+
+                tocTree.SelectedNode = clone;
+
+                clone.Expand();
+            }
         }
         
         //always allowed until level 1
@@ -254,7 +356,7 @@ namespace Obi.UserControls
         /// <returns>true or false, depending on if the selection was successful</returns>
         public bool SetSelectedSection(CoreNode node)
         {
-            System.Windows.Forms.TreeNode sel = FindTreeNodeFromCoreNode(node);
+            System.Windows.Forms.TreeNode sel = findTreeNodeFromCoreNode(node);
 
             if (sel != null)
             {
@@ -267,45 +369,19 @@ namespace Obi.UserControls
             }
         }
 
-        #region Event handlers
-
-        /// <summary>
-        /// Triggered by the "add child section" menu item.
-        /// </summary>
-        public void addChildSectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AddChildSection(this, new Events.Node.AddChildSectionEventArgs(GetSelectedSection()));
-        }
-
+        /*
+         * ***************************************
+         * These functions "...ToolStripMenuItem_Click" are triggered
+         * by the TOC panel's context menu
+         */
         /// <summary>
         /// Triggered by the "add sibling section" menu item.
         /// </summary>
         public void addSectionAtSameLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddSiblingSection(this, new Events.Node.AddSiblingSectionEventArgs(GetSelectedSection()));
+            AddSiblingSection(this,
+                new Events.Node.AddSiblingSectionEventArgs(GetSelectedSection()));
         }
-
-        /// <summary>
-        /// Triggered by the "delete section" menu item.
-        /// </summary>
-        public void deleteSectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DeleteSection(this, new Events.Node.DeleteSectionEventArgs(GetSelectedSection()));
-        }
-
-        /// <summary>
-        /// Update the text of the core node when we have edited a label in the tree.
-        /// </summary>
-        private void tocTree_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
-        {
-            if (e.Label != null)
-            {
-                CoreNode node = (CoreNode)e.Node.Tag;
-                GetTextMedia(node).setText(e.Label);
-            }
-        }
-
-        #endregion
 
         private void editLabelToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -315,34 +391,154 @@ namespace Obi.UserControls
 
         private void moveUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            urakawa.core.CoreNode selectedCoreNode;
-            System.Windows.Forms.TreeNode sel = this.tocTree.SelectedNode;
-            selectedCoreNode = (urakawa.core.CoreNode)sel.Tag;
-            MoveSectionUp(this, new Events.Node.MoveSectionUpEventArgs(selectedCoreNode));
+            //!! uncomment this when the event is handled by the ProjectPanel (or whomever)
+            //otherwise it crashes
+            /*MoveSectionUp(this, 
+                new Events.Node.MoveSectionUpEventArgs(GetSelectedSection()));*/
+
+            //this line will get deleted.  it's just for testing.
+            this.MoveCurrentSectionUp();
         }
 
         private void moveDownToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            urakawa.core.CoreNode selectedCoreNode;
-            System.Windows.Forms.TreeNode sel = this.tocTree.SelectedNode;
-            selectedCoreNode = (urakawa.core.CoreNode)sel.Tag;
-            MoveSectionDown(this, new Events.Node.MoveSectionDownEventArgs(selectedCoreNode));
+            //!! uncomment this when the event is handled by the ProjectPanel (or whomever)
+            //otherwise it crashes
+            /*MoveSectionDown(this,
+                new Events.Node.MoveSectionDownEventArgs(GetSelectedSection()));*/
+            //this line will get deleted.  it's just for testing.
+            this.MoveCurrentSectionDown();
         }
 
         private void increaseLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            urakawa.core.CoreNode selectedCoreNode;
-            System.Windows.Forms.TreeNode sel = this.tocTree.SelectedNode;
-            selectedCoreNode = (urakawa.core.CoreNode)sel.Tag;
-            IncreaseSectionLevel(this, new Events.Node.IncreaseSectionLevelEventArgs(selectedCoreNode));
+            IncreaseSectionLevel(this,
+                new Events.Node.IncreaseSectionLevelEventArgs(GetSelectedSection()));
         }
 
         private void decreaseLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            urakawa.core.CoreNode selectedCoreNode;
-            System.Windows.Forms.TreeNode sel = this.tocTree.SelectedNode;
-            selectedCoreNode = (urakawa.core.CoreNode)sel.Tag;
-            DecreaseSectionLevel(this, new Events.Node.DecreaseSectionLevelEventArgs(selectedCoreNode));
+        	System.Windows.Forms.TreeNode sel = this.tocTree.SelectedNode;
+          sel.BeginEdit();
+
+            DecreaseSectionLevel(this, 
+                new Events.Node.DecreaseSectionLevelEventArgs(GetSelectedSection()));
+        }
+
+				/// <summary>
+        /// Triggered by the "add sub-section" menu item.
+        /// </summary>
+        public void addSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddChildSection(this, 
+                new Events.Node.AddChildSectionEventArgs(GetSelectedSection()));
+        }
+        
+        		/// <summary>
+        /// Triggered by the "delete section" menu item.
+        /// </summary>
+        public void deleteSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeleteSection(this, new Events.Node.DeleteSectionEventArgs(GetSelectedSection()));
+        }
+        private void tocTree_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
+        {
+            CoreNode node = (CoreNode)e.Node.Tag;
+
+            //this line will likely be replaced with the raising of an event
+            //to signal that the label has changed
+            SetCoreNodeText(node, e.Label);
+            
+            /*alternate code found in a versioning conflict
+             if (e.Label != null)
+            {
+                CoreNode node = (CoreNode)e.Node.Tag;
+                GetTextMedia(node).setText(e.Label);
+            }
+            */
+        }
+
+        /// <summary>
+        /// A helper function to get the text from the given <see cref="CoreNode"/>.
+        /// The text channel which contains the desired text will be named so that we know 
+        /// what its purpose is (ie, "DefaultText" or "PrimaryText")
+        /// @todo
+        /// Otherwise we should use the default, only, or randomly first text channel found.
+        /// </summary>
+        /// <param name="node">The node whose text is to be retrieved</param>
+        /// <returns>The text label.</returns>
+        private string getCoreNodeText(CoreNode node)
+        {
+            string textString = "";
+
+            ChannelsProperty channelsProp = 
+                (ChannelsProperty) node.getProperty(typeof(ChannelsProperty));
+
+            Channel textChannel = GetChannelByName(node, Project.TEXT_CHANNEL);
+
+            if (textChannel != null)
+            {
+                TextMedia nodeText = (TextMedia)channelsProp.getMedia(textChannel);
+                textString = nodeText.getText();
+            }
+
+            return textString;
+        }
+
+        /// <summary>
+        /// helper function that will probably be deleted, as this class shouldn't
+        /// handle media object creation or value-setting
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="text"></param>
+        private void SetCoreNodeText(CoreNode node, string text)
+        {
+            ChannelsProperty channelsProp =
+                (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
+
+            Channel textChannel = GetChannelByName(node, Project.TEXT_CHANNEL);
+
+            if (textChannel != null)
+            {
+                TextMedia nodeText = (TextMedia)channelsProp.getMedia(textChannel);
+
+                if (nodeText == null)
+                {
+                    nodeText = (urakawa.media.TextMedia)
+                        node.getPresentation().getMediaFactory().createMedia
+                    (urakawa.media.MediaType.TEXT);
+                }
+
+                if (nodeText != null)
+                {
+                    nodeText.setText(text);
+                }
+            }
+        }
+
+        /// <summary>
+        /// helper function to get a channel based on its name
+        /// </summary>
+        /// <param name="node">the node (points to its own presentation)</param>
+        /// <param name="channelName">the channel name</param>
+        /// <returns></returns>
+        private Channel GetChannelByName(CoreNode node, string channelName)
+        {
+            ChannelsProperty channelsProp = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
+            Channel foundChannel = null;
+            IList channelsList = channelsProp.getListOfUsedChannels();
+            
+            for (int i = 0; i < channelsList.Count; i++)
+            {
+                string name = ((IChannel)channelsList[i]).getName();
+                if (name == channelName)
+                {
+                    foundChannel = (Channel)channelsList[i];
+                    break;
+                }
+            }
+
+            return foundChannel;
         }
 
         /// <summary>
@@ -355,28 +551,52 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
-        private System.Windows.Forms.TreeNode FindTreeNodeFromCoreNode(CoreNode node)
+        private System.Windows.Forms.TreeNode findTreeNodeFromCoreNode(CoreNode node)
         {
             System.Windows.Forms.TreeNode foundNode = null;
+
             System.Windows.Forms.TreeNode[] treeNodes 
                 = tocTree.Nodes.Find(node.GetHashCode().ToString(), true);
-            // Make sure that we found the right node, especially since the hash value may not be unique.
+
+            
+            //(please try to enjoy this long comment:)
+            //since a key isn't unique and we get a list back from Nodes.Find,
+            //try to be as sure as possible that it's the same node
+            //however, this is questionably valuable as it will get more complicated
+            //as text support improves and as multiple labels are supported on TOC items
             for (int i = 0; i < treeNodes.GetLength(0); i++)
             {
                 //check the tag field and the text label
-                if (treeNodes[i].Tag == node && treeNodes[i].Text == GetTextMedia(node).getText())
+                if (treeNodes[i].Tag == node && treeNodes[i].Text == getCoreNodeText(node))
                 {
                     foundNode = treeNodes[i];
                     break;
                 }
             }
-            // The node must be found, so raise an exception if it couldn't
+						
+						 // The node must be found, so raise an exception if it couldn't
             if (foundNode == null)
             {
                 throw new Exception(String.Format("Could not find tree node matching core node #{0} with label \"{1}\".",
                     node.GetHashCode(), GetTextMedia(node).getText()));
             }
+            
             return foundNode;
+        }
+        
+        //trying to figure out which event to call when the tree gets right-clicked
+        //it's really annoying to not have the node get selected when you right click it
+        //because then, menu actions are applied to whichever node *is* selected
+        //however, i'm not sure which function to use
+        //and i'm not online to look it up right now
+        private void tocTree_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+           
         }
 
         /// <summary>
@@ -399,5 +619,10 @@ namespace Obi.UserControls
             }
             return null;
         }
+
+
     }
+
+
+
 }
