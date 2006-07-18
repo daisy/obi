@@ -265,7 +265,7 @@ InsertAsset(chunk, dPosition);
 		{
 			if (CompareAudioAssetFormat (this , chunk)== true && time <= m_dAudioLengthInTime && time >= 0)
 			{
-				AudioMediaAsset ob1 = new AudioMediaAsset ( this.Channels ,this.SampleRate , this.BitDepth) ;
+				AudioMediaAsset ob1 = new AudioMediaAsset ( this.Channels ,this.BitDepth ,this.SampleRate  ) ;
 				if (time > - 0 && time < m_dAudioLengthInTime)
 				{
 					ob1 = GetChunk (0 , time) as AudioMediaAsset;
@@ -542,36 +542,41 @@ AudioMediaAsset ob_Asset =new AudioMediaAsset ( m_Channels ,  m_BitDepth, m_Samp
 			{
 ob_Clip = m_alClipList [i] as AudioClip ;
 				alClipList = ob_Clip.DetectPhrases(threshold , lLength , lBefore) ;
-MessageBox.Show (alClipList.Count.ToString () + "Clip Count") ;
+//MessageBox.Show (alClipList.Count.ToString () + "Clip Count") ;
 				if (Convert.ToBoolean (alClipList [0]) == false)
 				{
 
-MessageBox.Show ("bool is False") ;
+//MessageBox.Show ("bool is False") ;
 					ob_Asset.AddClip (alClipList [1] as AudioClip) ;
 
 					if (i == m_alClipList.Count - 1&& ob_Asset.m_alClipList != null)
 					{
 						alAssetList.Add(ob_Asset) ;
-						MessageBox.Show ("last Asset added") ;
+						//MessageBox.Show ("last Asset added") ;
 					}
 				}
 				else
 				{
-MessageBox.Show ("bool is true") ;
-
+//MessageBox.Show ("bool is true") ;
+					if (ob_Clip. BeginTime + 3000 < (alClipList [1] as AudioClip).BeginTime  ) 
+					{
+						ob_Asset.AddClip (ob_Clip.CopyClipPart (0 ,(alClipList [1] as AudioClip).BeginTime    - ob_Clip. BeginTime )) ;
+						if (i == 0 )
+							alAssetList.Add (ob_Asset) ;
+					}
 //ob_Asset.AddClip (alClipList [1] as AudioClip) ;
 if (i != 0 )
 alAssetList.Add (ob_Asset) ;
-MessageBox.Show ("Asset Added before loop") ;
+//MessageBox.Show ("Asset Added before loop") ;
 
 					for (int j = 1 ; j< alClipList.Count-1 ; j++)
 					{
-						ob_Asset = new AudioMediaAsset (m_Channels , m_SamplingRate , m_BitDepth) ;
+						ob_Asset = new AudioMediaAsset (m_Channels ,  m_BitDepth, m_SamplingRate ) ;
 ob_Asset.AddClip (alClipList [j] as AudioClip) ;
 alAssetList.Add (ob_Asset) ;
-MessageBox.Show ("Asset added inside loop") ;
+//MessageBox.Show ("Asset added inside loop") ;
 					}
-					ob_Asset = new AudioMediaAsset (m_Channels , m_SamplingRate , m_BitDepth) ;
+					ob_Asset = new AudioMediaAsset (m_Channels , m_BitDepth, m_SamplingRate  ) ;
 
 if (alClipList.Count >2)
 					ob_Asset.AddClip (alClipList [alClipList.Count- 1 ] as AudioClip) ;
@@ -579,7 +584,7 @@ if (alClipList.Count >2)
 					if (i == m_alClipList.Count - 1&& ob_Asset.m_alClipList != null)
 					{
 						alAssetList.Add(ob_Asset) ;
-MessageBox.Show ("last Asset added") ;
+//MessageBox.Show ("last Asset added") ;
 					}
 				} // bool if ends
 

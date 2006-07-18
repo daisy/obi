@@ -455,17 +455,21 @@ ArrayList alClipList = new ArrayList () ;
 
 alClipList.Add (boolPhraseDetected) ;
 
+
 			if (boolPhraseDetected == false)
 			{
 				alClipList.Add (this) ;
 				
+
 			}
 			else
 			{
+
 				for (int i = 0 ; i < alPhrases.Count- 1 ; i++)
 				{
 dBeginTime = Calc.ConvertByteToTime (Convert.ToInt64(alPhrases [i]) , m_ClipSamplingRate , m_ClipFrameSize );
 dEndTime = Calc.ConvertByteToTime (Convert.ToInt64(alPhrases [i+1]) , m_ClipSamplingRate , m_ClipFrameSize );
+					
 alClipList.Add (CopyClipPart (dBeginTime , dEndTime) );
 				}
 				dBeginTime = Calc.ConvertByteToTime (Convert.ToInt64(alPhrases [alPhrases.Count - 1]) , m_ClipSamplingRate , m_ClipFrameSize );
