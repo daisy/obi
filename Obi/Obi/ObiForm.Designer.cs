@@ -59,6 +59,7 @@ namespace Obi
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectPanel = new Obi.UserControls.ProjectPanel();
+            this.deleteSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -228,7 +229,8 @@ namespace Obi
             // 
             this.tocToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addChildSectionToolStripMenuItem,
-            this.addsiblingSectionToolStripMenuItem});
+            this.addsiblingSectionToolStripMenuItem,
+            this.deleteSectionToolStripMenuItem});
             this.tocToolStripMenuItem.Name = "tocToolStripMenuItem";
             this.tocToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
             this.tocToolStripMenuItem.Text = "TO&C";
@@ -245,6 +247,7 @@ namespace Obi
             this.addsiblingSectionToolStripMenuItem.Name = "addsiblingSectionToolStripMenuItem";
             this.addsiblingSectionToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.addsiblingSectionToolStripMenuItem.Text = "Add &sibling section";
+            this.addsiblingSectionToolStripMenuItem.Click += new System.EventHandler(this.addsiblingSectionToolStripMenuItem_Click);
             // 
             // viewToolStripMenuItem
             // 
@@ -313,6 +316,13 @@ namespace Obi
             this.mProjectPanel.Size = new System.Drawing.Size(767, 450);
             this.mProjectPanel.TabIndex = 4;
             // 
+            // deleteSectionToolStripMenuItem
+            // 
+            this.deleteSectionToolStripMenuItem.Name = "deleteSectionToolStripMenuItem";
+            this.deleteSectionToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.deleteSectionToolStripMenuItem.Text = "&Delete section";
+            this.deleteSectionToolStripMenuItem.Click += new System.EventHandler(this.deleteSectionToolStripMenuItem_Click);
+            // 
             // ObiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -368,6 +378,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem tocToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addChildSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addsiblingSectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteSectionToolStripMenuItem;
 
 
     }

@@ -21,6 +21,13 @@ namespace Obi
         public CultureInfo Language;  // main language of the project
 
         /// <summary>
+        /// Create an empty metadata object that will be filled field by field.
+        /// </summary>
+        public SimpleMetadata()
+        {
+        }
+
+        /// <summary>
         /// Create a new metadata object from user provided information.
         /// </summary>
         /// <param name="title">Title of the project.</param>

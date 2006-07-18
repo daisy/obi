@@ -64,11 +64,11 @@ namespace Obi
         /// <summary>
         /// Create a new project.
         /// </summary>
-        public Project(string xukPath, string title, string id, UserProfile userProfile)
+        public Project(string xukPath, string title, string id, UserProfile userProfile): base()
         {
             mUnsaved = false;
             mXUKPath = xukPath;
-            mMetadata = new SimpleMetadata(title, id, userProfile);
+            mMetadata = CreateMetadata(title, id, userProfile);
             mAudioChannel = getPresentation().getChannelFactory().createChannel(AUDIO_CHANNEL);
             getPresentation().getChannelsManager().addChannel(mAudioChannel);
             mTextChannel = getPresentation().getChannelFactory().createChannel(TEXT_CHANNEL);
@@ -78,11 +78,144 @@ namespace Obi
         }
 
         /// <summary>
+        /// Create a project from a XUK file.
+        /// </summary>
+        /// <param name="xukPath">The path of the XUK file.</param>
+        public Project(string xukPath): base()
+        {
+            if (openXUK(new Uri(xukPath)))
+            {
+                mUnsaved = false;
+                mXUKPath = xukPath;
+                mAudioChannel = FindChannel(AUDIO_CHANNEL);
+                mTextChannel = FindChannel(TEXT_CHANNEL);
+                mAnnotationChannel = FindChannel(ANNOTATION_CHANNEL);
+                mMetadata = new SimpleMetadata();
+                foreach (object o in getMetadataList())
+                {
+                    urakawa.project.Metadata meta = (urakawa.project.Metadata)o;
+                    switch (meta.getName())
+                    {
+                        case "dc:Title":
+                            mMetadata.Title = meta.getContent();
+                            break;
+                        case "dc:Creator":
+                            mMetadata.Author = meta.getContent();
+                            break;
+                        case "dc:Identifier":
+                            mMetadata.Identifier = meta.getContent();
+                            break;
+                        case "dc:Language":
+                            mMetadata.Language = new System.Globalization.CultureInfo(meta.getContent());
+                            break;
+                        case "dc:Publisher":
+                            mMetadata.Publisher = meta.getContent();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                throw new Exception(String.Format(Localizer.Message("open_project_error_text"), xukPath)); 
+            }
+        }
+
+        /// <summary>
+        /// Find the channel with the given name. It must be unique.
+        /// </summary>
+        /// <param name="name">Name of the channel that we are looking for.</param>
+        /// <returns>The channel found.</returns>
+        private Channel FindChannel(string name)
+        {
+            IChannel[] channels = getPresentation().getChannelsManager().getChannelByName(name);
+            if (channels.Length != 1)
+            {
+                throw new Exception(String.Format("Expected one channel named {0} in {1}, but got {2}.",
+                    name, mXUKPath, channels.Length));
+            }
+            return (Channel)channels[0];
+        }
+
+        /// <summary>
+        /// Create the metadata for the project.
+        /// </summary>
+        /// <returns>The simple metadata object for the project metadata.</returns>
+        private SimpleMetadata CreateMetadata(string title, string id, UserProfile userProfile)
+        {
+            SimpleMetadata metadata = new SimpleMetadata(title, id, userProfile);
+            AddMetadata("dc:Title", metadata.Title);
+            AddMetadata("dc:Creator", metadata.Author);  // missing "role"
+            AddMetadata("dc:Identifier", metadata.Identifier);
+            AddMetadata("dc:Language", metadata.Language.ToString());
+            AddMetadata("dc:Publisher", metadata.Publisher);
+            urakawa.project.Metadata metaDate = AddMetadata("dc:Date", DateTime.Today.ToString("yyyy-MM-dd"));
+            metaDate.setScheme("YYYY-MM-DD");
+            AddMetadata("xuk:generator", "Obi+Urakawa toolkit; let's share the blame.");
+            return metadata;
+        }
+
+        /// <summary>
+        /// Update the metadata of the project given the simple metadata object.
+        /// At the moment, the metadata is really updated only when the project is saved.
+        /// Also, this method is very ugly.
+        /// </summary>
+        private void UpdateMetadata()
+        {
+            foreach (object o in getMetadataList())
+            {
+                urakawa.project.Metadata meta = (urakawa.project.Metadata)o;
+                switch (meta.getName())
+                {
+                    case "dc:Title":
+                        meta.setContent(mMetadata.Title);
+                        break;
+                    case "dc:Creator":
+                        meta.setContent(mMetadata.Author);
+                        break;
+                    case "dc:Identifier":
+                        meta.setContent(mMetadata.Identifier);
+                        break;
+                    case "dc:Language":
+                        meta.setContent(mMetadata.Language.ToString());
+                        break;
+                    case "dc:Publisher":
+                        meta.setContent(mMetadata.Publisher);
+                        break;
+                    case "dc:Date":
+                        meta.setContent(DateTime.Today.ToString("yyyy-MM-dd"));
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Convenience method to create a new metadata object with a name/value pair.
+        /// </summary>
+        /// <param name="name">The name of the metadata property.</param>
+        /// <param name="value">Its content, i.e. the value.</param>
+        private urakawa.project.Metadata AddMetadata(string name, string value)
+        {
+            urakawa.project.Metadata meta = (urakawa.project.Metadata)getMetadataFactory().createMetadata("Metadata");
+            meta.setName(name);
+            meta.setContent(value);
+            this.appendMetadata(meta);
+            return meta;
+        }
+
+
+
+        /// <summary>
         /// Save the project to a XUK file.
         /// </summary>
         public void Save()
         {
+            UpdateMetadata();
             saveXUK(new Uri(mXUKPath));
+            mUnsaved = false;
         }
 
         /// <summary>
@@ -92,7 +225,10 @@ namespace Obi
         /// <returns>The short version.</returns>
         public static string ShortName(string title)
         {
-            return System.Text.RegularExpressions.Regex.Replace(title, @"[^a-zA-Z0-9_]", "_");
+            string shrtnm = System.Text.RegularExpressions.Regex.Replace(title, @"[^a-zA-Z0-9]+", "_");
+            shrtnm = System.Text.RegularExpressions.Regex.Replace(shrtnm, "^_", "");
+            shrtnm = System.Text.RegularExpressions.Regex.Replace(shrtnm, "_$", "");
+            return shrtnm;
         }
 
         /// <summary>
@@ -112,10 +248,11 @@ namespace Obi
         {
             CoreNode sibling = CreateSectionNode();
             CoreNode parent = (CoreNode)e.ContextNode.getParent();
-            parent.insert(sibling, parent.indexOf(e.ContextNode));
+            parent.insert(sibling, parent.indexOf(e.ContextNode) + 1);
             UserControls.ICoreTreeView view = (UserControls.ICoreTreeView)sender;
             view.AddNewSiblingSection(sibling, e.ContextNode);
             view.BeginEditingNodeLabel(sibling);
+            mUnsaved = true;
         }
 
         /// <summary>
@@ -130,6 +267,7 @@ namespace Obi
             UserControls.ICoreTreeView view = (UserControls.ICoreTreeView)sender;
             view.AddNewChildSection(child, e.ContextNode);
             view.BeginEditingNodeLabel(child);
+            mUnsaved = true;
         }
 
         /// <summary>
@@ -144,6 +282,16 @@ namespace Obi
             text.setText(Localizer.Message("default_section_label"));
             prop.setMedia(mTextChannel, text);
             return node;
+        }
+
+        /// <summary>
+        /// Remove a node from the core tree (simply detach it, and synchronize the views.)
+        /// </summary>
+        /// <param name="node"></param>
+        public void RemoveNode(object sender, Events.Node.DeleteSectionEventArgs e)
+        {
+            e.Node.detach();
+            ((UserControls.ICoreTreeView)sender).DeleteSectionNode(e.Node);
         }
 
         #endregion
