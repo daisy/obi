@@ -292,6 +292,21 @@ m_SecondAsset = m_FirstAsset.Split(m_dUndoSplitTime ) ;
 			}
 		}
 
+		public ArrayList AssetList
+		{
+			get
+			{
+return m_alAssets ;
+			}
+		}
+
+		public IAudioMediaAsset Asset
+		{
+			get
+			{
+return m_Asset ;
+			}
+		}
 // member variables
 private IAudioMediaAsset m_Asset ;
 private ArrayList m_alAssets ;
@@ -354,7 +369,7 @@ m_Manager = asset.Manager ;
 // Replace original asset in AssetManager with ArrayList assets
 m_Manager.RemoveAsset (m_Asset ) ;
 
-			foreach ( int n in m_alAssets)
+			for ( int n = 0 ;n < m_alAssets.Count ; n++)
 			{
 			m_Manager.AddAsset (m_alAssets [n] as IAudioMediaAsset) ;
 			}
