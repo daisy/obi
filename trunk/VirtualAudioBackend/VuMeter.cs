@@ -195,14 +195,15 @@ Array.Copy ( ob_AudioPlayer.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength)
 		}
 
 		// handles update event from audio recorder
-		public void CatchUpdateVuMeterEvent (AudioRecorder Recorder, UpdateVuMeterFromRecorder UpdateVuMeter)
+		public void CatchUpdateVuMeterEvent (object sender , UpdateVuMeterFromRecorder UpdateVuMeter)
 		{
+			AudioRecorder Recorder= sender as AudioRecorder ;
 			ob_AudioRecorder = Recorder ;
-			//m_FrameSize = Recorder.m_FrameSize ;
-			//m_Channels = Recorder.m_Channels ;
-			//m_UpdateVMArrayLength = Recorder.m_UpdateVMArrayLength ;
-			//m_arUpdatedVM  = new int  [m_UpdateVMArrayLength ] ;
-			//Array.Copy ( Recorder.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
+			m_FrameSize = Recorder.m_FrameSize ;
+			m_Channels = Recorder.m_Channels ;
+			m_UpdateVMArrayLength = Recorder.m_UpdateVMArrayLength ;
+			m_arUpdatedVM  = new int  [m_UpdateVMArrayLength ] ;
+			Array.Copy ( Recorder.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
 			Thread UpdateVMForm = new Thread(new ThreadStart (AnimationComputation  ));
 			UpdateVMForm.Start()  ;
 		}
