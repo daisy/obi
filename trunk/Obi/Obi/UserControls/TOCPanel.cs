@@ -370,6 +370,8 @@ namespace Obi.UserControls
          * by the TOC panel's context menu
          */
 
+        // These are internal so that the main menu can also link to them once the project is open.
+
         /// <summary>
         /// Triggered by the "add sibling section" menu item.
         /// </summary>
@@ -563,5 +565,57 @@ namespace Obi.UserControls
             }
             return null;
         }
+
+        #region Sync event handlers
+
+        /// <summary>
+        /// Show the child node that was added in the tree (if it is a section.)
+        /// If we were the ones to request its addition, also start editing its label right now.
+        /// </summary>
+        internal void SyncAddedChildNode(object sender, Events.Sync.AddedChildNodeEventArgs e)
+        {
+            System.Windows.Forms.TreeNode newTreeNode;
+            string label = GetTextMedia(e.Node).getText();
+            if (e.Node.getParent().getParent() != null)
+            {
+                System.Windows.Forms.TreeNode relTreeNode = findTreeNodeFromCoreNode((CoreNode)e.Node.getParent());
+                newTreeNode = relTreeNode.Nodes.Add(e.Node.GetHashCode().ToString(), label);
+            }
+            else
+            {
+                newTreeNode = tocTree.Nodes.Add(e.Node.GetHashCode().ToString(), label);
+            }
+            newTreeNode.Tag = e.Node;
+            newTreeNode.ExpandAll();
+            newTreeNode.EnsureVisible();
+            tocTree.SelectedNode = newTreeNode;
+            newTreeNode.BeginEdit();
+        }
+
+        internal void SyncAddedSiblingNode(object sender, Events.Sync.AddedSiblingNodeEventArgs e)
+        {
+            System.Windows.Forms.TreeNode relTreeNode = findTreeNodeFromCoreNode(e.ContextNode);
+            string label = GetTextMedia(e.Node).getText();
+            //add as a sibling
+            System.Windows.Forms.TreeNodeCollection siblingCollection = null;
+            if (relTreeNode.Parent != null)
+            {
+                siblingCollection = relTreeNode.Parent.Nodes;
+            }
+            else
+            {
+                siblingCollection = tocTree.Nodes;
+            }
+            System.Windows.Forms.TreeNode newTreeNode =
+                siblingCollection.Insert
+                (relTreeNode.Index + 1, e.Node.GetHashCode().ToString(), label);
+            newTreeNode.Tag = e.Node;
+            newTreeNode.ExpandAll();
+            newTreeNode.EnsureVisible();
+            tocTree.SelectedNode = newTreeNode;
+            newTreeNode.BeginEdit();
+        }
+
+        #endregion
     }
 }

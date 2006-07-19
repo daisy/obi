@@ -11,7 +11,7 @@ using urakawa.core;
 namespace Obi.UserControls
 {
     /// <summary>
-    /// Top level panel that displays the current project, using a splitter (NCX on the left, strips on the right.)
+    /// Top level panel that displays the current project, using a splitter (TOC on the left, strips on the right.)
     /// </summary>
     public partial class ProjectPanel : UserControl
     {
@@ -30,10 +30,12 @@ namespace Obi.UserControls
                 mSplitContainer.Panel1Collapsed = false;
                 if (mProject != null)
                 {
-                    tocPanel.AddChildSection += new Events.Node.AddChildSectionHandler(mProject.CreateChildSection);
-                    tocPanel.AddSiblingSection += new Events.Node.AddSiblingSectionHandler(mProject.CreateSiblingSection);
-                    tocPanel.MoveSectionUp += new Events.Node.MoveSectionUpHandler(mProject.MoveNodeUp);
-                    tocPanel.DeleteSection += new Events.Node.DeleteSectionHandler(mProject.RemoveNode);
+                    mTOCPanel.AddChildSection += new Events.Node.AddChildSectionHandler(mProject.CreateChildSection);
+                    mProject.AddedChildNode += new Events.Sync.AddedChildNodeHandler(mTOCPanel.SyncAddedChildNode);
+                    mTOCPanel.AddSiblingSection += new Events.Node.AddSiblingSectionHandler(mProject.CreateSiblingSection);
+                    mProject.AddedSiblingNode += new Events.Sync.AddedSiblingNodeHandler(mTOCPanel.SyncAddedSiblingNode);
+                    mTOCPanel.MoveSectionUp += new Events.Node.MoveSectionUpHandler(mProject.MoveNodeUp);
+                    mTOCPanel.DeleteSection += new Events.Node.DeleteSectionHandler(mProject.RemoveNode);
                 }
             }
         }
@@ -58,7 +60,7 @@ namespace Obi.UserControls
         {
             get
             {
-                return tocPanel;
+                return mTOCPanel;
             }
         }
 
@@ -84,7 +86,7 @@ namespace Obi.UserControls
 
         public void Clear()
         {
-            tocPanel.Clear();
+            mTOCPanel.Clear();
         }
 
         /// <summary>
@@ -92,7 +94,7 @@ namespace Obi.UserControls
         /// </summary>
         public void SynchronizeWithCoreTree(CoreNode root)
         {
-            tocPanel.SynchronizeWithCoreTree(root);
+            mTOCPanel.SynchronizeWithCoreTree(root);
         }
     }
 }
