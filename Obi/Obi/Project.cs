@@ -28,6 +28,10 @@ namespace Obi
         public static readonly string TEXT_CHANNEL = "obi.text";              // canonical name of the text channel
         public static readonly string ANNOTATION_CHANNEL = "obi.annotation";  // canonical name of the annotation channel
 
+        public event Events.Sync.AddedChildNodeHandler AddedChildNode;
+        public event Events.Sync.AddedSiblingNodeHandler AddedSiblingNode;
+        public event Events.Sync.DeletedNodeHandler DeletedNode;
+
         /// <summary>
         /// This flag is set to true if the project contains modifications that have not been saved.
         /// </summary>
@@ -253,19 +257,21 @@ namespace Obi
         public void CreateSiblingSection(object sender, Events.Node.AddSiblingSectionEventArgs e)
         {
             CoreNode sibling = CreateSectionNode();
-            UserControls.ICoreTreeView view = (UserControls.ICoreTreeView)sender;
+            //UserControls.ICoreTreeView view = (UserControls.ICoreTreeView)sender;
             if (e.ContextNode == null)
             {
                 getPresentation().getRootNode().appendChild(sibling);
-                view.AddNewChildSection(sibling, null);
+                AddedChildNode(this, new Events.Sync.AddedChildNodeEventArgs(sender, sibling));
+                //view.AddNewChildSection(sibling, null);
             }
             else
             {
                 CoreNode parent = (CoreNode)e.ContextNode.getParent();
                 parent.insert(sibling, parent.indexOf(e.ContextNode) + 1);
-                view.AddNewSiblingSection(sibling, e.ContextNode);
+                AddedSiblingNode(this, new Events.Sync.AddedSiblingNodeEventArgs(sender, sibling, e.ContextNode));
+                //view.AddNewSiblingSection(sibling, e.ContextNode);
             }
-            view.BeginEditingNodeLabel(sibling);
+            //view.BeginEditingNodeLabel(sibling);
             mUnsaved = true;
         }
 
@@ -279,8 +285,9 @@ namespace Obi
             if (parent == null) parent = getPresentation().getRootNode();
             parent.appendChild(child);
             UserControls.ICoreTreeView view = (UserControls.ICoreTreeView)sender;
-            view.AddNewChildSection(child, e.ContextNode);
-            view.BeginEditingNodeLabel(child);
+            AddedChildNode(this, new Events.Sync.AddedChildNodeEventArgs(sender, child));
+            //view.AddNewChildSection(child, e.ContextNode);
+            //view.BeginEditingNodeLabel(child);
             mUnsaved = true;
         }
 
@@ -305,7 +312,8 @@ namespace Obi
         public void RemoveNode(object sender, Events.Node.DeleteSectionEventArgs e)
         {
             e.Node.detach();
-            ((UserControls.ICoreTreeView)sender).DeleteSectionNode(e.Node);
+            DeletedNode(this, new Events.Sync.DeletedNodeEventArgs(sender, e.Node));
+            // ((UserControls.ICoreTreeView)sender).DeleteSectionNode(e.Node);
             mUnsaved = true;
         }
 
@@ -316,8 +324,8 @@ namespace Obi
         /// <param name="e"></param>
         public void MoveNodeUp(object sender, Events.Node.MoveSectionUpEventArgs e)
         {
-            ((UserControls.ICoreTreeView)sender).MoveCurrentSectionUp();
-            mUnsaved = true;
+            //((UserControls.ICoreTreeView)sender).MoveCurrentSectionUp();
+            //mUnsaved = true;
         }
 
         #endregion

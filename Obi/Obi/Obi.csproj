@@ -104,6 +104,9 @@
     <Compile Include="Events\Node\MoveSectionDownEventArgs.cs" />
     <Compile Include="Events\Node\MoveSectionUpEventArgs.cs" />
     <Compile Include="Events\Project\StateChangedEventArgs.cs" />
+    <Compile Include="Events\Sync\AddedChildNodeEventArgs.cs" />
+    <Compile Include="Events\Sync\AddedSiblingNodeEventArgs.cs" />
+    <Compile Include="Events\Sync\DeletedNodeEventArgs.cs" />
     <Compile Include="Localizer.cs" />
     <Compile Include="messages.Designer.cs">
       <AutoGen>True</AutoGen>

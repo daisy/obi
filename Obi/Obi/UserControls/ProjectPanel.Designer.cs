@@ -30,7 +30,7 @@ namespace Obi.UserControls
         {
             this.label1 = new System.Windows.Forms.Label();
             this.mSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.tocPanel = new Obi.UserControls.TOCPanel();
+            this.mTOCPanel = new Obi.UserControls.TOCPanel();
             this.stripManagerPanel1 = new Obi.UserControls.StripManagerPanel();
             this.mSplitContainer.Panel1.SuspendLayout();
             this.mSplitContainer.Panel2.SuspendLayout();
@@ -59,7 +59,7 @@ namespace Obi.UserControls
             // mSplitContainer.Panel1
             // 
             this.mSplitContainer.Panel1.BackColor = System.Drawing.Color.Transparent;
-            this.mSplitContainer.Panel1.Controls.Add(this.tocPanel);
+            this.mSplitContainer.Panel1.Controls.Add(this.mTOCPanel);
             // 
             // mSplitContainer.Panel2
             // 
@@ -69,13 +69,13 @@ namespace Obi.UserControls
             this.mSplitContainer.SplitterDistance = 210;
             this.mSplitContainer.TabIndex = 1;
             // 
-            // tocPanel
+            // mTOCPanel
             // 
-            this.tocPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tocPanel.Location = new System.Drawing.Point(0, 0);
-            this.tocPanel.Name = "tocPanel";
-            this.tocPanel.Size = new System.Drawing.Size(210, 330);
-            this.tocPanel.TabIndex = 0;
+            this.mTOCPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mTOCPanel.Location = new System.Drawing.Point(0, 0);
+            this.mTOCPanel.Name = "mTOCPanel";
+            this.mTOCPanel.Size = new System.Drawing.Size(210, 330);
+            this.mTOCPanel.TabIndex = 0;
             // 
             // stripManagerPanel1
             // 
@@ -108,7 +108,7 @@ namespace Obi.UserControls
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.SplitContainer mSplitContainer;
         private StripManagerPanel stripManagerPanel1;
-        private TOCPanel tocPanel;
+        private TOCPanel mTOCPanel;
 
     }
 }
