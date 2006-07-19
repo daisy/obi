@@ -11,7 +11,7 @@ namespace Obi.Events.Node
     /// <summary>
     /// This event is fired when a view wants to move a node up (reorder) in the core tree.
     /// </summary>
-    class MoveSectionUpEventArgs : EventArgs
+    public class MoveSectionUpEventArgs : EventArgs
     {
         private CoreNode mContextNode;  // the node that will move up
 
