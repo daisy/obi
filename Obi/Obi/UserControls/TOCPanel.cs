@@ -131,17 +131,9 @@ namespace Obi.UserControls
         public void AddNewSiblingSection(CoreNode newNode, CoreNode relNode)
         {
             System.Windows.Forms.TreeNode relTreeNode = findTreeNodeFromCoreNode(relNode);
-
-            if (relTreeNode == null)
-            {
-                return;
-            }
-
             string label = GetTextMedia(newNode).getText();
-
             //add as a sibling
             System.Windows.Forms.TreeNodeCollection siblingCollection = null;
-
             if (relTreeNode.Parent != null)
             {
                 siblingCollection = relTreeNode.Parent.Nodes;
@@ -150,15 +142,13 @@ namespace Obi.UserControls
             {
                 siblingCollection = tocTree.Nodes;
             }
-
             System.Windows.Forms.TreeNode newTreeNode = 
                 siblingCollection.Insert
                 (relTreeNode.Index+1, newNode.GetHashCode().ToString(), label);
-
             newTreeNode.Tag = newNode;
-
             newTreeNode.ExpandAll();
             newTreeNode.EnsureVisible();
+            tocTree.SelectedNode = newTreeNode;
         }
 
         /// <summary>
@@ -192,6 +182,7 @@ namespace Obi.UserControls
             newTreeNode.EnsureVisible();
             tocTree.SelectedNode = newTreeNode;
         }
+
         /// <summary>
         /// Delete a section from the table contents. The core node was removed from the core tree.
         /// </summary>
@@ -204,6 +195,7 @@ namespace Obi.UserControls
                 treeNode.Remove();
             }
         }
+
         /// <summary>
         /// Begin editing the label (activate the edit cursor) for the currently
         /// selected section heading node.
@@ -214,7 +206,6 @@ namespace Obi.UserControls
             treeNode.EnsureVisible();
             treeNode.BeginEdit();
         }
-
 
         /*
          * you might move left if you go up and down
@@ -398,6 +389,15 @@ namespace Obi.UserControls
         }
 
         /// <summary>
+        /// Triggered by the "move section up" menu item.
+        /// </summary>
+        internal void moveUpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MoveSectionUp(this, 
+                new Events.Node.MoveSectionUpEventArgs(GetSelectedSection()));
+        }
+
+        /// <summary>
         /// Triggered by the "delete section" menu item.
         /// </summary>
         internal void deleteSectionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -409,17 +409,6 @@ namespace Obi.UserControls
         {
             System.Windows.Forms.TreeNode sel = this.tocTree.SelectedNode;
             sel.BeginEdit();
-        }
-
-        private void moveUpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //!! uncomment this when the event is handled by the ProjectPanel (or whomever)
-            //otherwise it crashes
-            /*MoveSectionUp(this, 
-                new Events.Node.MoveSectionUpEventArgs(GetSelectedSection()));*/
-
-            //this line will get deleted.  it's just for testing.
-            this.MoveCurrentSectionUp();
         }
 
         private void moveDownToolStripMenuItem_Click(object sender, EventArgs e)

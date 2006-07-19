@@ -239,7 +239,13 @@ namespace Obi
             mUnsaved = true;
         }
 
-        #region Event handlers
+        #region Undo and redo
+
+
+
+        #endregion
+
+        #region TOC event handlers
 
         /// <summary>
         /// Create a sibling section for a given section.
@@ -247,10 +253,18 @@ namespace Obi
         public void CreateSiblingSection(object sender, Events.Node.AddSiblingSectionEventArgs e)
         {
             CoreNode sibling = CreateSectionNode();
-            CoreNode parent = (CoreNode)e.ContextNode.getParent();
-            parent.insert(sibling, parent.indexOf(e.ContextNode) + 1);
             UserControls.ICoreTreeView view = (UserControls.ICoreTreeView)sender;
-            view.AddNewSiblingSection(sibling, e.ContextNode);
+            if (e.ContextNode == null)
+            {
+                getPresentation().getRootNode().appendChild(sibling);
+                view.AddNewChildSection(sibling, null);
+            }
+            else
+            {
+                CoreNode parent = (CoreNode)e.ContextNode.getParent();
+                parent.insert(sibling, parent.indexOf(e.ContextNode) + 1);
+                view.AddNewSiblingSection(sibling, e.ContextNode);
+            }
             view.BeginEditingNodeLabel(sibling);
             mUnsaved = true;
         }
@@ -292,6 +306,18 @@ namespace Obi
         {
             e.Node.detach();
             ((UserControls.ICoreTreeView)sender).DeleteSectionNode(e.Node);
+            mUnsaved = true;
+        }
+
+        /// <summary>
+        /// Move a node up in the TOC.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void MoveNodeUp(object sender, Events.Node.MoveSectionUpEventArgs e)
+        {
+            ((UserControls.ICoreTreeView)sender).MoveCurrentSectionUp();
+            mUnsaved = true;
         }
 
         #endregion

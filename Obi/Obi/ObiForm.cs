@@ -503,8 +503,11 @@ namespace Obi
         {
             tableOfContentsToolStripMenuItem.Text = Localizer.Message(mProjectPanel.TOCPanelVisible ?
                 "hide_toc_label" : "show_toc_label");
-            addSubsectionToolStripMenuItem.Enabled = mProjectPanel.TOCPanelVisible;
-            addSectionAtSameLevelToolStripMenuItem.Enabled = mProjectPanel.TOCPanelVisible && mProjectPanel.TOCPanel.Selected;
+            addSubsectionToolStripMenuItem.Enabled =
+                addSectionAtSameLevelToolStripMenuItem.Enabled =
+                moveSectionupToolStripMenuItem.Enabled =
+                moveSectiondownToolStripMenuItem.Enabled =
+                deleteSectionToolStripMenuItem.Enabled = mProjectPanel.TOCPanelVisible;
         }
 
         private void OnProjectClosed()
@@ -548,6 +551,8 @@ namespace Obi
                         new System.EventHandler(mProjectPanel.TOCPanel.addSubSectionToolStripMenuItem_Click);
                     addSectionAtSameLevelToolStripMenuItem.Click +=
                         new System.EventHandler(mProjectPanel.TOCPanel.addSectionAtSameLevelToolStripMenuItem_Click);
+                    moveSectionupToolStripMenuItem.Click +=
+                        new System.EventHandler(mProjectPanel.TOCPanel.moveUpToolStripMenuItem_Click);
                     deleteSectionToolStripMenuItem.Click +=
                         new System.EventHandler(mProjectPanel.TOCPanel.deleteSectionToolStripMenuItem_Click);
                     UpdateShowHideTOC();
@@ -567,6 +572,8 @@ namespace Obi
                         new System.EventHandler(mProjectPanel.TOCPanel.addSubSectionToolStripMenuItem_Click);
                     addSectionAtSameLevelToolStripMenuItem.Click +=
                         new System.EventHandler(mProjectPanel.TOCPanel.addSectionAtSameLevelToolStripMenuItem_Click);
+                    moveSectionupToolStripMenuItem.Click +=
+                        new System.EventHandler(mProjectPanel.TOCPanel.moveUpToolStripMenuItem_Click);
                     deleteSectionToolStripMenuItem.Click +=
                         new System.EventHandler(mProjectPanel.TOCPanel.deleteSectionToolStripMenuItem_Click);
                     UpdateShowHideTOC();
@@ -664,7 +671,7 @@ namespace Obi
 
         private void mUndoStack_UndoStackChanged(object sender, EventArgs e)
         {
-            if (mUndoStack.CanUndo)
+            if (mUndoStack.HasUndo)
             {
                 mUndoToolStripMenuItem.Enabled = true;
                 mUndoToolStripMenuItem.Text = String.Format(Localizer.Message("undo_label"), undo_label, mUndoStack.UndoLabel);
@@ -674,7 +681,7 @@ namespace Obi
                 mUndoToolStripMenuItem.Enabled = false;
                 mUndoToolStripMenuItem.Text = undo_label;
             }
-            if (mUndoStack.CanRedo)
+            if (mUndoStack.HasRedo)
             {
                 mRedoToolStripMenuItem.Enabled = true;
                 mRedoToolStripMenuItem.Text = String.Format(Localizer.Message("redo_label"), redo_label, mUndoStack.RedoLabel);
@@ -688,7 +695,7 @@ namespace Obi
 
         private void mUndoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mUndoStack.CanUndo)
+            if (mUndoStack.HasUndo)
             {
                 mUndoStack.Undo();
                 UndoStackChanged(this, new EventArgs());
@@ -697,7 +704,7 @@ namespace Obi
 
         private void mRedoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mUndoStack.CanRedo)
+            if (mUndoStack.HasRedo)
             {
                 mUndoStack.Redo();
                 UndoStackChanged(this, new EventArgs());

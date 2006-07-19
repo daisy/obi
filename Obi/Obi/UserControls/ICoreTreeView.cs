@@ -36,6 +36,8 @@ namespace Obi.UserControls
         /// <param name="relNode">The parent node for the new heading</param>
         void AddNewChildSection(CoreNode newNode, CoreNode relNode);
 
+        void MoveCurrentSectionUp();
+
         /// <summary>
         /// Delete a section node.
         /// </summary>

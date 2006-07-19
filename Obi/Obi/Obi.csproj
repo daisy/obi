@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\TOC\AddChild.cs" />
     <Compile Include="Dialogs\EditSimpleMetadata.cs">
       <SubType>Form</SubType>
     </Compile>

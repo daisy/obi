@@ -32,6 +32,7 @@ namespace Obi.UserControls
                 {
                     tocPanel.AddChildSection += new Events.Node.AddChildSectionHandler(mProject.CreateChildSection);
                     tocPanel.AddSiblingSection += new Events.Node.AddSiblingSectionHandler(mProject.CreateSiblingSection);
+                    tocPanel.MoveSectionUp += new Events.Node.MoveSectionUpHandler(mProject.MoveNodeUp);
                     tocPanel.DeleteSection += new Events.Node.DeleteSectionHandler(mProject.RemoveNode);
                 }
             }
@@ -92,7 +93,6 @@ namespace Obi.UserControls
         public void SynchronizeWithCoreTree(CoreNode root)
         {
             tocPanel.SynchronizeWithCoreTree(root);
-            //stripManagerPanel1.SynchronizeWithCoreTree(root);
         }
     }
 }
