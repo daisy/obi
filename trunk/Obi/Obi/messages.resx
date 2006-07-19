@@ -163,6 +163,12 @@ Do you want to save these modifications before closing the project?</value>
 project and revert it to its last saved state?
 You cannot undo this operation.</value>
   </data>
+  <data name="empty_label_warning_caption" xml:space="preserve">
+    <value>Empty label</value>
+  </data>
+  <data name="empty_label_warning_text" xml:space="preserve">
+    <value>A section cannot have an empty label.</value>
+  </data>
   <data name="hide_toc_label" xml:space="preserve">
     <value>Hide &amp;table of contents</value>
   </data>
