@@ -191,6 +191,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Empty label.
+        /// </summary>
+        internal static string empty_label_warning_caption {
+            get {
+                return ResourceManager.GetString("empty_label_warning_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A section cannot have an empty label..
+        /// </summary>
+        internal static string empty_label_warning_text {
+            get {
+                return ResourceManager.GetString("empty_label_warning_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hide &amp;table of contents.
         /// </summary>
         internal static string hide_toc_label {

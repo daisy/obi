@@ -11,7 +11,7 @@ using System.Collections;
 
 namespace Obi.UserControls
 {
-	  /// <summary>
+	/// <summary>
     /// The TOCPanel is a view of the tree that displays the table of contents of the book as a tree widget.
     /// The user can easily see the structure of the book and edit the table of contents (add, remove, move,
     /// change the label, etc. of headings.)
@@ -29,7 +29,7 @@ namespace Obi.UserControls
         public event Events.Node.MoveSectionDownHandler MoveSectionDown;
         public event Events.Node.MoveSectionUpHandler MoveSectionUp;
 
-				/// <summary>
+		/// <summary>
         /// Test whether a node is currently selected or not.
         /// </summary>
         public bool Selected
@@ -40,7 +40,7 @@ namespace Obi.UserControls
             }
         }
 
-				/// <summary>
+		/// <summary>
         /// Remove all nodes from the tree.
         /// </summary>
         public void Clear()
@@ -51,12 +51,15 @@ namespace Obi.UserControls
         
         /// <summary>
         /// Synchronize the tree view with the core tree.
+        /// Since we need priviledged access to the class for synchronization,
+        /// we make it implement ICoreNodeVisitor directly.
         /// </summary>
         public void SynchronizeWithCoreTree(CoreNode root)
         {
             root.acceptDepthFirst(this);
         }
-         #region Synchronization visitor
+        
+        #region Synchronization visitor
 
         /// <summary>
         /// Do nothing.
@@ -96,6 +99,7 @@ namespace Obi.UserControls
         }
 
         #endregion
+
         /*
          * Some discussion points we made:
             1. Expand new nodes by default
@@ -133,7 +137,7 @@ namespace Obi.UserControls
                 return;
             }
 
-            string label = getCoreNodeText(newNode);
+            string label = GetTextMedia(newNode).getText();
 
             //add as a sibling
             System.Windows.Forms.TreeNodeCollection siblingCollection = null;
@@ -173,7 +177,7 @@ namespace Obi.UserControls
         public void AddNewChildSection(CoreNode newNode, CoreNode relNode)
         {
             System.Windows.Forms.TreeNode newTreeNode;
-            string label = getCoreNodeText(newNode);
+            string label = GetTextMedia(newNode).getText();
             if (relNode != null)
             {
                 System.Windows.Forms.TreeNode relTreeNode = findTreeNodeFromCoreNode(relNode);
@@ -374,13 +378,31 @@ namespace Obi.UserControls
          * These functions "...ToolStripMenuItem_Click" are triggered
          * by the TOC panel's context menu
          */
+
         /// <summary>
         /// Triggered by the "add sibling section" menu item.
         /// </summary>
-        public void addSectionAtSameLevelToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void addSectionAtSameLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddSiblingSection(this,
                 new Events.Node.AddSiblingSectionEventArgs(GetSelectedSection()));
+        }
+
+        /// <summary>
+        /// Triggered by the "add sub-section" menu item.
+        /// </summary>
+        internal void addSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddChildSection(this,
+                new Events.Node.AddChildSectionEventArgs(GetSelectedSection()));
+        }
+
+        /// <summary>
+        /// Triggered by the "delete section" menu item.
+        /// </summary>
+        internal void deleteSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeleteSection(this, new Events.Node.DeleteSectionEventArgs(GetSelectedSection()));
         }
 
         private void editLabelToolStripMenuItem_Click(object sender, EventArgs e)
@@ -425,98 +447,29 @@ namespace Obi.UserControls
                 new Events.Node.DecreaseSectionLevelEventArgs(GetSelectedSection()));
         }
 
-				/// <summary>
-        /// Triggered by the "add sub-section" menu item.
-        /// </summary>
-        public void addSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AddChildSection(this, 
-                new Events.Node.AddChildSectionEventArgs(GetSelectedSection()));
-        }
-        
-        		/// <summary>
-        /// Triggered by the "delete section" menu item.
-        /// </summary>
-        public void deleteSectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DeleteSection(this, new Events.Node.DeleteSectionEventArgs(GetSelectedSection()));
-        }
         private void tocTree_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
         {
-            CoreNode node = (CoreNode)e.Node.Tag;
-
-            //this line will likely be replaced with the raising of an event
-            //to signal that the label has changed
-            SetCoreNodeText(node, e.Label);
-            
-            /*alternate code found in a versioning conflict
-             if (e.Label != null)
+            // this will likely be replaced with the raising of an event
+            // to signal that the label has changed
+            // if a change has actually occurred, the label is not null.
+            if (e.Label != null)
             {
                 CoreNode node = (CoreNode)e.Node.Tag;
-                GetTextMedia(node).setText(e.Label);
-            }
-            */
-        }
-
-        /// <summary>
-        /// A helper function to get the text from the given <see cref="CoreNode"/>.
-        /// The text channel which contains the desired text will be named so that we know 
-        /// what its purpose is (ie, "DefaultText" or "PrimaryText")
-        /// @todo
-        /// Otherwise we should use the default, only, or randomly first text channel found.
-        /// </summary>
-        /// <param name="node">The node whose text is to be retrieved</param>
-        /// <returns>The text label.</returns>
-        private string getCoreNodeText(CoreNode node)
-        {
-            string textString = "";
-
-            ChannelsProperty channelsProp = 
-                (ChannelsProperty) node.getProperty(typeof(ChannelsProperty));
-
-            Channel textChannel = GetChannelByName(node, Project.TEXT_CHANNEL);
-
-            if (textChannel != null)
-            {
-                TextMedia nodeText = (TextMedia)channelsProp.getMedia(textChannel);
-                textString = nodeText.getText();
-            }
-
-            return textString;
-        }
-
-        /// <summary>
-        /// helper function that will probably be deleted, as this class shouldn't
-        /// handle media object creation or value-setting
-        /// </summary>
-        /// <param name="node"></param>
-        /// <param name="text"></param>
-        private void SetCoreNodeText(CoreNode node, string text)
-        {
-            ChannelsProperty channelsProp =
-                (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
-
-            Channel textChannel = GetChannelByName(node, Project.TEXT_CHANNEL);
-
-            if (textChannel != null)
-            {
-                TextMedia nodeText = (TextMedia)channelsProp.getMedia(textChannel);
-
-                if (nodeText == null)
+                if (e.Label == "")
                 {
-                    nodeText = (urakawa.media.TextMedia)
-                        node.getPresentation().getMediaFactory().createMedia
-                    (urakawa.media.MediaType.TEXT);
+                    e.CancelEdit = true;
+                    MessageBox.Show(Localizer.Message("empty_label_warning_text"),
+                        Localizer.Message("empty_label_warning_caption"),
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
-                if (nodeText != null)
+                else
                 {
-                    nodeText.setText(text);
+                    GetTextMedia(node).setText(e.Label);
                 }
             }
         }
 
-        /// <summary>
+       /// <summary>
         /// helper function to get a channel based on its name
         /// </summary>
         /// <param name="node">the node (points to its own presentation)</param>
@@ -554,11 +507,8 @@ namespace Obi.UserControls
         private System.Windows.Forms.TreeNode findTreeNodeFromCoreNode(CoreNode node)
         {
             System.Windows.Forms.TreeNode foundNode = null;
-
             System.Windows.Forms.TreeNode[] treeNodes 
-                = tocTree.Nodes.Find(node.GetHashCode().ToString(), true);
-
-            
+                = tocTree.Nodes.Find(node.GetHashCode().ToString(), true);            
             //(please try to enjoy this long comment:)
             //since a key isn't unique and we get a list back from Nodes.Find,
             //try to be as sure as possible that it's the same node
@@ -567,20 +517,18 @@ namespace Obi.UserControls
             for (int i = 0; i < treeNodes.GetLength(0); i++)
             {
                 //check the tag field and the text label
-                if (treeNodes[i].Tag == node && treeNodes[i].Text == getCoreNodeText(node))
+                if (treeNodes[i].Tag == node && treeNodes[i].Text == GetTextMedia(node).getText())
                 {
                     foundNode = treeNodes[i];
                     break;
                 }
             }
-						
-						 // The node must be found, so raise an exception if it couldn't
+            // The node must be found, so raise an exception if it couldn't
             if (foundNode == null)
             {
                 throw new Exception(String.Format("Could not find tree node matching core node #{0} with label \"{1}\".",
                     node.GetHashCode(), GetTextMedia(node).getText()));
             }
-            
             return foundNode;
         }
         
@@ -601,8 +549,15 @@ namespace Obi.UserControls
 
         /// <summary>
         /// Get the text media of a core node. The result can then be used to get or set the text of a node.
+        /// Original comments: A helper function to get the text from the given <see cref="CoreNode"/>.
+        /// The text channel which contains the desired text will be named so that we know 
+        /// what its purpose is (ie, "DefaultText" or "PrimaryText")
+        /// @todo
+        /// Otherwise we should use the default, only, or randomly first text channel found.
         /// </summary>
+        /// <remarks>This replaces get/setCoreNodeText. E.g. getCoreNodeText(node) = GetTextMedia(node).getText()</remarks>
         /// <param name="node">The node which text media we are interested in.</param>
+        /// <returns>The text media found, or null if none.</returns>
         private static TextMedia GetTextMedia(CoreNode node)
         {
             ChannelsProperty channelsProp = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
@@ -619,10 +574,5 @@ namespace Obi.UserControls
             }
             return null;
         }
-
-
     }
-
-
-
 }

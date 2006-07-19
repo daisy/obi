@@ -156,7 +156,7 @@ namespace Obi
         /// </summary>
         private void addChildSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            addsiblingSectionToolStripMenuItem.Enabled = true;
+            addSectionAtSameLevelToolStripMenuItem.Enabled = true;
             GUIUpdateUnsavedProject();
         }
 
@@ -503,8 +503,8 @@ namespace Obi
         {
             tableOfContentsToolStripMenuItem.Text = Localizer.Message(mProjectPanel.TOCPanelVisible ?
                 "hide_toc_label" : "show_toc_label");
-            addChildSectionToolStripMenuItem.Enabled = mProjectPanel.TOCPanelVisible;
-            addsiblingSectionToolStripMenuItem.Enabled = mProjectPanel.TOCPanelVisible && mProjectPanel.TOCPanel.Selected;
+            addSubsectionToolStripMenuItem.Enabled = mProjectPanel.TOCPanelVisible;
+            addSectionAtSameLevelToolStripMenuItem.Enabled = mProjectPanel.TOCPanelVisible && mProjectPanel.TOCPanel.Selected;
         }
 
         private void OnProjectClosed()
@@ -544,9 +544,9 @@ namespace Obi
                     mProjectPanel.Project = e.Project;
                     mProjectPanel.Clear();
                     tableOfContentsToolStripMenuItem.Enabled = true;
-                    addChildSectionToolStripMenuItem.Click +=
+                    addSubsectionToolStripMenuItem.Click +=
                         new System.EventHandler(mProjectPanel.TOCPanel.addSubSectionToolStripMenuItem_Click);
-                    addsiblingSectionToolStripMenuItem.Click +=
+                    addSectionAtSameLevelToolStripMenuItem.Click +=
                         new System.EventHandler(mProjectPanel.TOCPanel.addSectionAtSameLevelToolStripMenuItem_Click);
                     deleteSectionToolStripMenuItem.Click +=
                         new System.EventHandler(mProjectPanel.TOCPanel.deleteSectionToolStripMenuItem_Click);
@@ -563,9 +563,9 @@ namespace Obi
                     mProjectPanel.Clear();
                     mProjectPanel.SynchronizeWithCoreTree(e.Project.getPresentation().getRootNode());
                     tableOfContentsToolStripMenuItem.Enabled = true;
-                    addChildSectionToolStripMenuItem.Click +=
+                    addSubsectionToolStripMenuItem.Click +=
                         new System.EventHandler(mProjectPanel.TOCPanel.addSubSectionToolStripMenuItem_Click);
-                    addsiblingSectionToolStripMenuItem.Click +=
+                    addSectionAtSameLevelToolStripMenuItem.Click +=
                         new System.EventHandler(mProjectPanel.TOCPanel.addSectionAtSameLevelToolStripMenuItem_Click);
                     deleteSectionToolStripMenuItem.Click +=
                         new System.EventHandler(mProjectPanel.TOCPanel.deleteSectionToolStripMenuItem_Click);
