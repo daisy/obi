@@ -58,7 +58,7 @@ namespace Obi
         public UserProfile()
         {
             mName = Environment.UserName;
-            mOrganization = null;
+            mOrganization = Localizer.Message("default_organization");
             mCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
         }
 

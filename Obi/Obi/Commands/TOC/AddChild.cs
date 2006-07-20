@@ -31,8 +31,7 @@ namespace Obi.Commands.TOC
 
         public override void Do()
         {
-            mParent.appendChild(mNode);
-            
+            // mParent.appendChild(mNode);
         }
 
         public override void Undo()

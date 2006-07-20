@@ -30,13 +30,13 @@ namespace Obi.UserControls
                 mSplitContainer.Panel1Collapsed = false;
                 if (mProject != null)
                 {
-                    mTOCPanel.AddChildSection += new Events.Node.AddChildSectionHandler(mProject.CreateChildSection);
+                    mTOCPanel.AddChildSection += new Events.Node.AddChildSectionHandler(mProject.CreateChildSectionRequested);
                     mProject.AddedChildNode += new Events.Sync.AddedChildNodeHandler(mTOCPanel.SyncAddedChildNode);
-                    mTOCPanel.AddSiblingSection += new Events.Node.AddSiblingSectionHandler(mProject.CreateSiblingSection);
+                    mTOCPanel.AddSiblingSection += new Events.Node.AddSiblingSectionHandler(mProject.CreateSiblingSectionRequested);
                     mProject.AddedSiblingNode += new Events.Sync.AddedSiblingNodeHandler(mTOCPanel.SyncAddedSiblingNode);
-                    mTOCPanel.MoveSectionUp += new Events.Node.MoveSectionUpHandler(mProject.MoveNodeUp);
-                    mTOCPanel.DeleteSection += new Events.Node.DeleteSectionHandler(mProject.RemoveNode);
-                    mTOCPanel.RenameSection += new Events.Node.RenameSectionHandler(mProject.RenameNode);
+                    mTOCPanel.MoveSectionUp += new Events.Node.MoveSectionUpHandler(mProject.MoveNodeUpRequested);
+                    mTOCPanel.DeleteSection += new Events.Node.DeleteSectionHandler(mProject.RemoveNodeRequested);
+                    mTOCPanel.RenameSection += new Events.Node.RenameSectionHandler(mProject.RenameNodeRequested);
                     mProject.RenamedNode += new Events.Sync.RenamedNodeHandler(mTOCPanel.SyncRenamedNode);
                 }
             }

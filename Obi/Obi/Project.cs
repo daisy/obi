@@ -10,10 +10,14 @@ namespace Obi
 {
     /// <summary>
     /// An Obi project is an Urakawa project (core tree and metadata)
+    /// It also knows where to save itself and has a simpler set of metadata.
     /// The core tree uses three channels:
     ///   1. an audio channel for audio media
     ///   2. a text channel for table of contents items (which will become NCX label in DTB)
     ///   3. an annotation channel for text annotation of other items in the book (e.g. phrases.)
+    /// So we keep a handy pointer to those.
+    /// TODO: we should subclass the nodes, so that our tree has a root (CoreNode), section nodes
+    /// and phrase nodes.
     /// </summary>
     public class Project : urakawa.project.Project
     {
@@ -23,16 +27,18 @@ namespace Obi
 
         private bool mUnsaved;               // saved flag
         private string mXUKPath;             // path to the project XUK file
+        private string mLastPath;            // last path to which the project was saved (see save as)
         private SimpleMetadata mMetadata;    // metadata for this project
 
         public static readonly string AUDIO_CHANNEL = "obi.audio";            // canonical name of the audio channel
         public static readonly string TEXT_CHANNEL = "obi.text";              // canonical name of the text channel
         public static readonly string ANNOTATION_CHANNEL = "obi.annotation";  // canonical name of the annotation channel
 
-        public event Events.Sync.AddedChildNodeHandler AddedChildNode;
-        public event Events.Sync.AddedSiblingNodeHandler AddedSiblingNode;
-        public event Events.Sync.DeletedNodeHandler DeletedNode;
-        public event Events.Sync.RenamedNodeHandler RenamedNode;
+        public event Events.Project.StateChangedHandler StateChanged;       // the state of the project changed (modified, saved...)
+        public event Events.Sync.AddedChildNodeHandler AddedChildNode;      // a new child node was added to the presentation
+        public event Events.Sync.AddedSiblingNodeHandler AddedSiblingNode;  // a new sibling node was added to the presentation
+        public event Events.Sync.DeletedNodeHandler DeletedNode;            // a node was deleted from the presentation
+        public event Events.Sync.RenamedNodeHandler RenamedNode;            // a node was renamed in the presentation
 
         /// <summary>
         /// This flag is set to true if the project contains modifications that have not been saved.
@@ -68,11 +74,39 @@ namespace Obi
         }
 
         /// <summary>
-        /// Create a new project.
+        /// Last path under which the project was saved (different from the normal path when we save as)
         /// </summary>
-        public Project(string xukPath, string title, string id, UserProfile userProfile): base()
+        public string LastPath
+        {
+            get
+            {
+                return mLastPath;
+            }
+        }
+
+        /// <summary>
+        /// Create an empty project. And I mean empty.
+        /// </summary>
+        /// <remarks>
+        /// This is necessary because we need an instance of a project to set the event handler for the project state
+        /// changes, which happen as soon as the project is created or opened.
+        /// </remarks>
+        public Project()
+            : base()
         {
             mUnsaved = false;
+            mXUKPath = null;
+        }
+
+        /// <summary>
+        /// Create an empty project with some initial metadata.
+        /// </summary>
+        /// <param name="xukPath">The path of the XUK file.</param>
+        /// <param name="title">The title of the project.</param>
+        /// <param name="id">The id of the project.</param>
+        /// <param name="userProfile">The profile of the user who created it to fill in the metadata blanks.</param>
+        public void Create(string xukPath, string title, string id, UserProfile userProfile)
+        {
             mXUKPath = xukPath;
             mMetadata = CreateMetadata(title, id, userProfile);
             mAudioChannel = getPresentation().getChannelFactory().createChannel(AUDIO_CHANNEL);
@@ -81,13 +115,16 @@ namespace Obi
             getPresentation().getChannelsManager().addChannel(mTextChannel);
             mAnnotationChannel = getPresentation().getChannelFactory().createChannel(ANNOTATION_CHANNEL);
             getPresentation().getChannelsManager().addChannel(mAnnotationChannel);
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
+            SaveAs(mXUKPath);
         }
 
         /// <summary>
-        /// Create a project from a XUK file.
+        /// Open a project from a XUK file.
+        /// Throw an exception if the file could not be read.
         /// </summary>
         /// <param name="xukPath">The path of the XUK file.</param>
-        public Project(string xukPath): base()
+        public void Open(string xukPath)
         {
             if (openXUK(new Uri(xukPath)))
             {
@@ -121,6 +158,7 @@ namespace Obi
                             break;
                     }
                 }
+                StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
             }
             else
             {
@@ -131,6 +169,7 @@ namespace Obi
         /// <summary>
         /// Find the channel with the given name. It must be unique.
         /// </summary>
+        /// <remarks>This is a convenience method because the toolkit returns an array of channels.</remarks>
         /// <param name="name">Name of the channel that we are looking for.</param>
         /// <returns>The channel found.</returns>
         private Channel FindChannel(string name)
@@ -145,7 +184,7 @@ namespace Obi
         }
 
         /// <summary>
-        /// Create the metadata for the project.
+        /// Create the XUK metadata for the project from the SimpleMetadata object.
         /// </summary>
         /// <returns>The simple metadata object for the project metadata.</returns>
         private SimpleMetadata CreateMetadata(string title, string id, UserProfile userProfile)
@@ -157,15 +196,14 @@ namespace Obi
             AddMetadata("dc:Language", metadata.Language.ToString());
             AddMetadata("dc:Publisher", metadata.Publisher);
             urakawa.project.Metadata metaDate = AddMetadata("dc:Date", DateTime.Today.ToString("yyyy-MM-dd"));
-            metaDate.setScheme("YYYY-MM-DD");
+            if (metaDate != null) metaDate.setScheme("YYYY-MM-DD");
             AddMetadata("xuk:generator", "Obi+Urakawa toolkit; let's share the blame.");
             return metadata;
         }
 
         /// <summary>
-        /// Update the metadata of the project given the simple metadata object.
-        /// At the moment, the metadata is really updated only when the project is saved.
-        /// Also, this method is very ugly.
+        /// Update the XUK metadata of the project given the simple metadata object.
+        /// Also, this method is very ugly; hope the facade API makes this better.
         /// </summary>
         private void UpdateMetadata()
         {
@@ -200,41 +238,62 @@ namespace Obi
 
         /// <summary>
         /// Convenience method to create a new metadata object with a name/value pair.
+        /// Skip it if there is no value (the toolkit doesn't like it.)
         /// </summary>
         /// <param name="name">The name of the metadata property.</param>
         /// <param name="value">Its content, i.e. the value.</param>
         private urakawa.project.Metadata AddMetadata(string name, string value)
         {
-            urakawa.project.Metadata meta = (urakawa.project.Metadata)getMetadataFactory().createMetadata("Metadata");
-            meta.setName(name);
-            meta.setContent(value);
-            this.appendMetadata(meta);
-            return meta;
+            if (value != null)
+            {
+                urakawa.project.Metadata meta = (urakawa.project.Metadata)getMetadataFactory().createMetadata("Metadata");
+                meta.setName(name);
+                meta.setContent(value);
+                this.appendMetadata(meta);
+                return meta;
+            }
+            else
+            {
+                return null;
+            }
         }
-
-
 
         /// <summary>
         /// Save the project to a XUK file.
         /// </summary>
-        public void Save()
+        /// <remarks>
+        /// We probably need to catch exceptions here.
+        /// </remarks>
+        public void SaveAs(string path)
         {
             UpdateMetadata();
-            saveXUK(new Uri(mXUKPath));
+            saveXUK(new Uri(path));
             mUnsaved = false;
+            mLastPath = path;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Saved));
         }
 
         /// <summary>
-        /// Get a short name from a given title. Usable for XUK file and project directory filename.
+        /// Close the project. This doesn't do much except generate a Closed event.
+        /// </summary>
+        public void Close()
+        {
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Closed));
+        }
+
+        /// <summary>
+        /// Get a safe name from a given title. Usable for XUK file and project directory filename.
+        /// We allow only digits, letters and underscores in the safe name and transform anything else
+        /// to underscores. Note that the user is allowed to change this--this is only a suggestion.
         /// </summary>
         /// <param name="title">Complete title.</param>
-        /// <returns>The short version.</returns>
-        public static string ShortName(string title)
+        /// <returns>The safe version.</returns>
+        public static string SafeName(string title)
         {
-            string shrtnm = System.Text.RegularExpressions.Regex.Replace(title, @"[^a-zA-Z0-9]+", "_");
-            shrtnm = System.Text.RegularExpressions.Regex.Replace(shrtnm, "^_", "");
-            shrtnm = System.Text.RegularExpressions.Regex.Replace(shrtnm, "_$", "");
-            return shrtnm;
+            string safeName = System.Text.RegularExpressions.Regex.Replace(title, @"[^a-zA-Z0-9]+", "_");
+            safeName = System.Text.RegularExpressions.Regex.Replace(safeName, "^_", "");
+            safeName = System.Text.RegularExpressions.Regex.Replace(safeName, "_$", "");
+            return safeName;
         }
 
         /// <summary>
@@ -243,58 +302,66 @@ namespace Obi
         public void Touch()
         {
             mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
-
-        #region Undo and redo
-
-
-
-        #endregion
 
         #region TOC event handlers
 
+        // Here are the event handlers for request sent by the GUI when editing the TOC.
+        // Every request is passed to a method that uses mostly the same arguments,
+        // which can also be called directly by a command for undo/redo purposes.
+        // When we are done, a synchronization event is sent back.
+        // (As well as a state change event.)
+
         /// <summary>
         /// Create a sibling section for a given section.
+        /// The context node may be null if this is the first node that is added, in which case
+        /// we add a new child to the root (and not a sibling.)
         /// </summary>
-        public void CreateSiblingSection(object sender, Events.Node.AddSiblingSectionEventArgs e)
+        public void CreateSiblingSection(object origin, CoreNode contextNode)
         {
             CoreNode sibling = CreateSectionNode();
-            //UserControls.ICoreTreeView view = (UserControls.ICoreTreeView)sender;
-            if (e.ContextNode == null)
+            if (contextNode == null)
             {
                 getPresentation().getRootNode().appendChild(sibling);
-                AddedChildNode(this, new Events.Sync.AddedChildNodeEventArgs(sender, sibling));
-                //view.AddNewChildSection(sibling, null);
+                AddedChildNode(this, new Events.Sync.AddedChildNodeEventArgs(origin, sibling));
             }
             else
             {
-                CoreNode parent = (CoreNode)e.ContextNode.getParent();
-                parent.insert(sibling, parent.indexOf(e.ContextNode) + 1);
-                AddedSiblingNode(this, new Events.Sync.AddedSiblingNodeEventArgs(sender, sibling, e.ContextNode));
-                //view.AddNewSiblingSection(sibling, e.ContextNode);
+                CoreNode parent = (CoreNode)contextNode.getParent();
+                parent.insert(sibling, parent.indexOf(contextNode) + 1);
+                AddedSiblingNode(this, new Events.Sync.AddedSiblingNodeEventArgs(origin, sibling, contextNode));
             }
-            //view.BeginEditingNodeLabel(sibling);
             mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+
+        public void CreateSiblingSectionRequested(object sender, Events.Node.AddSiblingSectionEventArgs e)
+        {
+            CreateSiblingSection(sender, e.ContextNode);
         }
 
         /// <summary>
         /// Create a new child section for a given section. If the context node is null, add to the root of the tree.
         /// </summary>
-        public void CreateChildSection(object sender, Events.Node.AddChildSectionEventArgs e)
+        public void CreateChildSection(object origin, CoreNode parent)
         {
             CoreNode child = CreateSectionNode();
-            CoreNode parent = e.ContextNode;
             if (parent == null) parent = getPresentation().getRootNode();
             parent.appendChild(child);
-            UserControls.ICoreTreeView view = (UserControls.ICoreTreeView)sender;
-            AddedChildNode(this, new Events.Sync.AddedChildNodeEventArgs(sender, child));
-            //view.AddNewChildSection(child, e.ContextNode);
-            //view.BeginEditingNodeLabel(child);
+            AddedChildNode(this, new Events.Sync.AddedChildNodeEventArgs(origin, child));
             mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+
+        public void CreateChildSectionRequested(object sender, Events.Node.AddChildSectionEventArgs e)
+        {
+            CreateChildSection(sender, e.ContextNode);
         }
 
         /// <summary>
-        /// Create a new section node with a default text label.
+        /// Create a new section node with a default text label. The node is not attached to anything.
+        /// TODO: this should be a constructor/factory method for our derived node class.
         /// </summary>
         /// <returns>The created node.</returns>
         private CoreNode CreateSectionNode()
@@ -310,34 +377,48 @@ namespace Obi
         /// <summary>
         /// Remove a node from the core tree (simply detach it, and synchronize the views.)
         /// </summary>
-        /// <param name="node"></param>
-        public void RemoveNode(object sender, Events.Node.DeleteSectionEventArgs e)
+        public void RemoveNode(object origin, CoreNode node)
         {
-            e.Node.detach();
-            DeletedNode(this, new Events.Sync.DeletedNodeEventArgs(sender, e.Node));
-            // ((UserControls.ICoreTreeView)sender).DeleteSectionNode(e.Node);
+            node.detach();
+            DeletedNode(this, new Events.Sync.DeletedNodeEventArgs(origin, node));
             mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+        
+        public void RemoveNodeRequested(object sender, Events.Node.DeleteSectionEventArgs e)
+        {
+            RemoveNode(sender, e.Node);
         }
 
         /// <summary>
         /// Move a node up in the TOC.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public void MoveNodeUp(object sender, Events.Node.MoveSectionUpEventArgs e)
+        public void MoveNodeUp(object origin, CoreNode node)
         {
-            //((UserControls.ICoreTreeView)sender).MoveCurrentSectionUp();
-            //mUnsaved = true;
+            // doesn't do much yet
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+
+        public void MoveNodeUpRequested(object sender, Events.Node.MoveSectionUpEventArgs e)
+        {
+            MoveNodeUp(sender, e.ContextNode);
         }
 
         /// <summary>
         /// Change the text label of a node.
         /// </summary>
-        public void RenameNode(object sender, Events.Node.RenameSectionEventArgs e)
+        public void RenameNode(object origin, CoreNode node, string label)
         {
-            GetTextMedia(e.Node).setText(e.Label);
-            RenamedNode(this, new Events.Sync.RenamedNodeEventArgs(sender, e.Node, e.Label));
+            GetTextMedia(node).setText(label);
+            RenamedNode(this, new Events.Sync.RenamedNodeEventArgs(origin, node, label));
             mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+
+        public void RenameNodeRequested(object sender, Events.Node.RenameSectionEventArgs e)
+        {
+            RenameNode(sender, e.Node, e.Label);
         }
 
         #endregion

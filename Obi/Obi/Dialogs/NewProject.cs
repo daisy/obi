@@ -78,7 +78,7 @@ namespace Obi.Dialogs
         private void GenerateFileName()
         {
             mFileBox.Text = String.Format(@"{0}\{1}.xuk", System.IO.Path.GetDirectoryName(mFileBox.Text),
-                Project.ShortName(mTitleBox.Text));
+                Project.SafeName(mTitleBox.Text));
         }
     }
 }
