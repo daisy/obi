@@ -52,7 +52,7 @@ private long m_lClipByteCount ;
 
 				m_PlayFile = true ;
 				m_FastPlay = false ;
-				
+
 AssociateEvents  () ;
 			
 		}
@@ -73,7 +73,9 @@ EndOfAudioAsset  ob_EndOfAudioAsset  = new EndOfAudioAsset () ;
 
 // create objects for handling events
 CatchEvents ob_CatchEvents = new CatchEvents () ;
-VuMeter ob_VuMeter ;
+//VuMeter ob_VuMeter ;
+		VuMeter ob_VuMeter = new VuMeter () ;
+		
 
 
 // bool variable to enable or disable event
@@ -98,7 +100,7 @@ ob_EndOfAudioAsset.EndOfAudioAssetEvent+=new DEndOfAudioAssetEvent(ob_CatchEvent
 		{
 			get
 			{
-return null ;
+return ob_VuMeter;
 			}
 			set
 			{
@@ -255,7 +257,6 @@ InitPlay(0, 0) ;
 
 		void InitPlay(long lStartPosition, long lEndPosition)
 		{
-
 			
 			{
 				// Adjust the start and end position according to frame size
@@ -293,14 +294,16 @@ m_Channels = m_Asset.Channels ;
 
 				// calculate size of buffer so as to contain 1 second of audio
 				m_SizeBuffer = m_Asset .SampleRate *  m_Asset .FrameSize ;
-if (m_SizeBuffer > m_Asset.AudioLengthInBytes)
-m_SizeBuffer = Convert.ToInt32 (m_Asset.AudioLengthInBytes );
+if (m_SizeBuffer > m_lLength )
+m_SizeBuffer = Convert.ToInt32 (m_lLength );
 
 				m_RefreshLength = (m_Asset .SampleRate / 2 ) * m_Asset .FrameSize ;
 // calculate the size of VuMeter Update array length
 				m_UpdateVMArrayLength = m_SizeBuffer  / 20 ;
 m_UpdateVMArrayLength = Convert.ToInt32 (Calc.AdaptToFrame ( Convert.ToInt32 ( m_UpdateVMArrayLength ),  m_FrameSize)  );
 arUpdateVM = new byte [ m_UpdateVMArrayLength ] ;
+// reset the VuMeter
+ob_VuMeter.Reset () ;
 
 				// sets the calculated size of buffer
 				BufferDesc.BufferBytes = m_SizeBuffer ;
@@ -311,12 +314,14 @@ arUpdateVM = new byte [ m_UpdateVMArrayLength ] ;
 				// initialising secondary buffer
 				SoundBuffer= new SecondaryBuffer(BufferDesc, SndDevice);
 
+// Compensate played length due to the skip of frames during compression
 				if (m_Step != 1)
 				{
 					m_CompAddition = (m_RefreshLength * 2) / m_Step ;
 m_CompAddition = Convert.ToInt32 (Calc.AdaptToFrame (m_CompAddition , m_FrameSize) );
 				}
 
+// Load from file to memory
 LoadStream (true) ;
 				
 				// check for fast play
@@ -342,6 +347,8 @@ LoadStream (true) ;
 
 
 				m_PlayFile = true ;
+
+// trigger  events
 				StateChanged ob_StateChanged = new StateChanged (m_State) ;
 m_State  = AudioPlayerState.Playing ;
 				TriggerStateChangedEvent (ob_StateChanged) ;
@@ -374,6 +381,7 @@ int reduction = 0 ;
 reduction = 0 ;
 				Thread.Sleep (50) ;
 				ReadPosition = SoundBuffer.PlayPosition  ;
+
 				if (ReadPosition < ((m_SizeBuffer)- m_UpdateVMArrayLength  ) )
 				{
 Array.Copy ( SoundBuffer.Read (ReadPosition , typeof (byte) , LockFlag.None , m_UpdateVMArrayLength  ) , arUpdateVM , m_UpdateVMArrayLength  ) ;				
@@ -585,7 +593,15 @@ return Calc.ConvertByteToTime (GetCurrentBytePosition() , m_SamplingRate , m_Fra
 long m_StartPosition  ;
 		void SetCurrentBytePosition (long localPosition) 
 		{
+if (localPosition < 0)
+	localPosition = 0;
+
+			if (localPosition > m_Asset.AudioLengthInBytes)
+				localPosition = m_Asset.AudioLengthInBytes ;
+
+
 m_EventsEnabled = false ;
+
 			if (SoundBuffer.Status.Looping)
 			{
 			if ( m_PlayFile== true)
