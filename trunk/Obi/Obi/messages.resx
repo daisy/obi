@@ -130,6 +130,9 @@
     <value>Are you sure you want to clear the list of recent projects?
 You cannot undo this operation.</value>
   </data>
+  <data name="closed_project" xml:space="preserve">
+    <value>Closed project "{0}".</value>
+  </data>
   <data name="closed_project_caption" xml:space="preserve">
     <value>Closing a modified project</value>
   </data>
@@ -137,23 +140,8 @@ You cannot undo this operation.</value>
     <value>You are about to close a project with unsaved modifications.
 Do you want to save these modifications before closing the project?</value>
   </data>
-  <data name="debug_appended_strip" xml:space="preserve">
-    <value>[DEBUG] Appended new strip {0}</value>
-  </data>
-  <data name="debug_created_project" xml:space="preserve">
-    <value>[DEBUG] Created project</value>
-  </data>
-  <data name="debug_opened_project" xml:space="preserve">
-    <value>[DEBUG] Opened project from XUK file {0}</value>
-  </data>
-  <data name="debug_saved_project" xml:space="preserve">
-    <value>[DEBUG] Saved project to XUK file {0}</value>
-  </data>
-  <data name="debug_touched_project" xml:space="preserve">
-    <value>[DEBUG] Touched project</value>
-  </data>
-  <data name="debug_user_profile" xml:space="preserve">
-    <value>[DEBUG] User profile: {0}</value>
+  <data name="default_organization" xml:space="preserve">
+    <value>N/A</value>
   </data>
   <data name="default_section_label" xml:space="preserve">
     <value>Untitled section</value>
@@ -193,6 +181,9 @@ You cannot undo this operation.</value>
   <data name="open_project_error_text" xml:space="preserve">
     <value>Could not read XUK file {0}.</value>
   </data>
+  <data name="opened_project" xml:space="preserve">
+    <value>Opened XUK file {0}.</value>
+  </data>
   <data name="ready" xml:space="preserve">
     <value>Ready.</value>
   </data>
@@ -210,6 +201,9 @@ You cannot undo this operation.</value>
 "{0}"
 As a result, changes to the settings made during this session have not been saved.
 Oh well.</value>
+  </data>
+  <data name="saved_project" xml:space="preserve">
+    <value>Saved XUK file {0}.</value>
   </data>
   <data name="show_toc_label" xml:space="preserve">
     <value>Show &amp;table of contents</value>

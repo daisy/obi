@@ -46,9 +46,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Commands, Version=1.0.2368.31338, Culture=neutral">
+    <Reference Include="Commands, Version=1.0.2392.27219, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Commands\obj\Debug\Commands.dll</HintPath>
+      <HintPath>..\..\Commands\bin\Debug\Commands.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -57,9 +57,9 @@
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="urakawa, Version=1.0.2363.26816, Culture=neutral">
+    <Reference Include="urakawa, Version=1.0.2392.27158, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\implementation\UrakawaToolkit\obj\Debug\urakawa.dll</HintPath>
+      <HintPath>..\..\..\..\..\branches\port-implementation-to-VS2005\implementation\UrakawaToolkit\bin\Debug\urakawa.dll</HintPath>
     </Reference>
     <Reference Include="UrakawaApplicationBackend, Version=1.0.2368.31351, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\CommandManager.cs" />
     <Compile Include="Commands\TOC\AddChild.cs" />
     <Compile Include="Dialogs\EditSimpleMetadata.cs">
       <SubType>Form</SubType>
@@ -183,7 +184,6 @@
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="SimpleMetadata.cs" />
-    <Compile Include="UndoRedoStack.cs" />
     <Compile Include="UserControls\ICoreTreeView.cs" />
     <Compile Include="UserControls\ProjectPanel.cs">
       <SubType>UserControl</SubType>

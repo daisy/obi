@@ -10,7 +10,11 @@ namespace Obi
 {
     /// <summary>
     /// Various persistent application settings.
+    /// This is mostly a glorified struct.
+    /// We mark this class as serializable so that it can be easily serialized through the SOAP serializer
+    /// (this is probably overkill, but it's available.)
     /// </summary>
+    /// <remarks>It seems that the recent list is not saved, have to investigate...</remarks>
     [Serializable()]
     public class Settings
     {
@@ -54,7 +58,7 @@ namespace Obi
         {
             IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
             IsolatedStorageFileStream stream =
-                new IsolatedStorageFileStream(Settings.SettingsFileName, FileMode.Create, FileAccess.Write, file);
+                new IsolatedStorageFileStream(SettingsFileName, FileMode.Create, FileAccess.Write, file);
             SoapFormatter soap = new SoapFormatter();
             soap.Serialize(stream, this);
             stream.Close();

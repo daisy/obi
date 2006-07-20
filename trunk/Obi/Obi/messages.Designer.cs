@@ -98,6 +98,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Closed project &quot;{0}&quot;..
+        /// </summary>
+        internal static string closed_project {
+            get {
+                return ResourceManager.GetString("closed_project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Closing a modified project.
         /// </summary>
         internal static string closed_project_caption {
@@ -117,56 +126,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [DEBUG] Appended new strip {0}.
+        ///   Looks up a localized string similar to N/A.
         /// </summary>
-        internal static string debug_appended_strip {
+        internal static string default_organization {
             get {
-                return ResourceManager.GetString("debug_appended_strip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to [DEBUG] Created project.
-        /// </summary>
-        internal static string debug_created_project {
-            get {
-                return ResourceManager.GetString("debug_created_project", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to [DEBUG] Opened project from XUK file {0}.
-        /// </summary>
-        internal static string debug_opened_project {
-            get {
-                return ResourceManager.GetString("debug_opened_project", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to [DEBUG] Saved project to XUK file {0}.
-        /// </summary>
-        internal static string debug_saved_project {
-            get {
-                return ResourceManager.GetString("debug_saved_project", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to [DEBUG] Touched project.
-        /// </summary>
-        internal static string debug_touched_project {
-            get {
-                return ResourceManager.GetString("debug_touched_project", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to [DEBUG] User profile: {0}.
-        /// </summary>
-        internal static string debug_user_profile {
-            get {
-                return ResourceManager.GetString("debug_user_profile", resourceCulture);
+                return ResourceManager.GetString("default_organization", resourceCulture);
             }
         }
         
@@ -281,6 +245,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Opened XUK file {0}..
+        /// </summary>
+        internal static string opened_project {
+            get {
+                return ResourceManager.GetString("opened_project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ready..
         /// </summary>
         internal static string ready {
@@ -325,6 +298,15 @@ namespace Obi {
         internal static string save_settings_error_text {
             get {
                 return ResourceManager.GetString("save_settings_error_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saved XUK file {0}..
+        /// </summary>
+        internal static string saved_project {
+            get {
+                return ResourceManager.GetString("saved_project", resourceCulture);
             }
         }
         
