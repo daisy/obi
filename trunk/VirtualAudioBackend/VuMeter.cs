@@ -147,9 +147,20 @@ m_LowerThreshold = value ;
 
 		public void Reset()
 		{
-arPeakOverloadValue [0] = 0 ;
+			arPeakOverloadValue [0] = 0 ;
 			arPeakOverloadValue [1] = 0 ;
-arPeakOverloadFlag[0] = arPeakOverloadFlag [1] = false ;
+			arPeakOverloadFlag[0] = arPeakOverloadFlag [1] = false ;
+
+			for (int i = 0 ; i< m_SampleCount ; i++)
+			{
+				SampleArrayLeft [i] = 0;
+				SampleArrayRight [i] = 0;
+				
+
+			}
+			m_SampleArrayPosition  = 0 ;
+			m_MeanValueLeft = 0 ;
+			m_MeanValueRight = 0 ;
 		}
 
 // calculate and sets the count of samples to be read for computing RMS or mean value of amplitude
@@ -179,9 +190,12 @@ private AudioRecorder  ob_AudioRecorder ;
 		private  int [] SampleArrayLeft ;
 		private int [] SampleArrayRight ;
 		private int m_SampleArrayPosition = 0;
+
+private bool boolPlayer =false ;
 // Handles VuMeter event from player
 		public void CatchUpdateVuMeterEvent ( object sender , UpdateVuMeter Update) 
 		{
+			boolPlayer = true ;
 			ob_AudioPlayer = sender as AudioPlayer;
 			m_FrameSize = ob_AudioPlayer.m_FrameSize ;
 			m_Channels = ob_AudioPlayer.m_Channels ;
@@ -195,15 +209,15 @@ Array.Copy ( ob_AudioPlayer.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength)
 		}
 
 		// handles update event from audio recorder
-		public void CatchUpdateVuMeterEvent (object sender , UpdateVuMeterFromRecorder UpdateVuMeter)
+		public void CatchUpdateVuMeterEvent (object sender, UpdateVuMeterFromRecorder UpdateVuMeter)
 		{
-			AudioRecorder Recorder= sender as AudioRecorder ;
+AudioRecorder Recorder  = sender as AudioRecorder ;
 			ob_AudioRecorder = Recorder ;
-			m_FrameSize = Recorder.m_FrameSize ;
-			m_Channels = Recorder.m_Channels ;
-			m_UpdateVMArrayLength = Recorder.m_UpdateVMArrayLength ;
-			m_arUpdatedVM  = new int  [m_UpdateVMArrayLength ] ;
-			Array.Copy ( Recorder.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
+			//m_FrameSize = Recorder.m_FrameSize ;
+			//m_Channels = Recorder.m_Channels ;
+			//m_UpdateVMArrayLength = Recorder.m_UpdateVMArrayLength ;
+			//m_arUpdatedVM  = new int  [m_UpdateVMArrayLength ] ;
+			//Array.Copy ( Recorder.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
 			Thread UpdateVMForm = new Thread(new ThreadStart (AnimationComputation  ));
 			UpdateVMForm.Start()  ;
 		}
@@ -258,10 +272,15 @@ Array.Copy ( ob_AudioPlayer.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength)
  // Check for Peak Overload  and fire event if overloaded
 			if ( m_MeanValueLeft > m_UpperThreshold )
 			{
-				arPeakOverloadFlag [0] = true ;
 				
-				PeakOverload ob_PeakOverload = new PeakOverload ( 1,ob_AudioPlayer.GetCurrentBytePosition () , ob_AudioPlayer.GetCurrentTimePosition () ) ;
+				arPeakOverloadFlag [0] = true ;
 
+				PeakOverload ob_PeakOverload  ;
+				if (boolPlayer == true)
+					ob_PeakOverload = new PeakOverload ( 1,ob_AudioPlayer.GetCurrentBytePosition () , ob_AudioPlayer.GetCurrentTimePosition () ) ;
+				else
+					ob_PeakOverload = new PeakOverload ( 1,0 , 0) ;
+				
 				ob_PeakOverload.PeakOverloadEvent += new DPeakOverloadEvent ( ob_VuMeterForm.CatchPeakOverloadEvent ) ;
 
 				ob_PeakOverload.NotifyPeakOverload ( this , ob_PeakOverload) ;
@@ -275,8 +294,13 @@ arPeakOverloadFlag [0] = false ;
 			if ( m_MeanValueRight > m_UpperThreshold)
 			{
 				m_bOverload = true ;
+
 				arPeakOverloadFlag [1] = true ;
-				PeakOverload ob_PeakOverload = new PeakOverload ( 2 ,ob_AudioPlayer.GetCurrentBytePosition () , ob_AudioPlayer.GetCurrentTimePosition () ) ;
+				PeakOverload ob_PeakOverload  ;
+				if (boolPlayer == true)
+					ob_PeakOverload = new PeakOverload ( 2,ob_AudioPlayer.GetCurrentBytePosition () , ob_AudioPlayer.GetCurrentTimePosition () ) ;
+				else
+					ob_PeakOverload = new PeakOverload ( 2,0 , 0) ;
 
 				ob_PeakOverload.PeakOverloadEvent += new DPeakOverloadEvent ( ob_VuMeterForm.CatchPeakOverloadEvent ) ;
 
