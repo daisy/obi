@@ -4,17 +4,17 @@ using System.Text;
 
 using urakawa.core;
 
-namespace Obi.Events.Sync
+namespace Obi.Events.Node
 {
-    public delegate void RenamedNodeHandler(object sender, RenamedNodeEventArgs e);
+    public delegate void RenameSectionHandler(object sender, RenameSectionEventArgs e);
 
     /// <summary>
-    /// This event is fired when a node has been renamed.
+    /// This event is fired when a view wants to rename a section.
     /// </summary>
-    public class RenamedNodeEventArgs : EventArgs
+    public class RenameSectionEventArgs : EventArgs
     {
-        private CoreNode mNode;  // the renamed node
-        private string mLabel;   // its new label (easier to find this way :))
+        private CoreNode mNode;  // the node to rename
+        private string mLabel;   // the new text label of the node
 
         public CoreNode Node
         {
@@ -32,7 +32,7 @@ namespace Obi.Events.Sync
             }
         }
 
-        public RenamedNodeEventArgs(CoreNode node, string label)
+        public RenameSectionEventArgs(CoreNode node, string label)
         {
             mNode = node;
             mLabel = label;

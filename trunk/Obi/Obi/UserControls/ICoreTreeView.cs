@@ -27,14 +27,14 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="newNode">The newly created node.</param>
         /// <param name="relNode">Its preceding sibling node.</param>
-        void AddNewSiblingSection(CoreNode newNode, CoreNode relNode);
+        //void AddNewSiblingSection(CoreNode newNode, CoreNode relNode);
 
         /// <summary>
         /// Add a new heading as a child of the relative node.
         /// </summary>
         /// <param name="newNode">The new heading to add to the tree</param>
         /// <param name="relNode">The parent node for the new heading</param>
-        void AddNewChildSection(CoreNode newNode, CoreNode relNode);
+        //void AddNewChildSection(CoreNode newNode, CoreNode relNode);
 
         void MoveCurrentSectionUp();
 
@@ -47,6 +47,6 @@ namespace Obi.UserControls
         /// <summary>
         /// Edit the label of the currently selected heading.
         /// </summary>
-        void BeginEditingNodeLabel(CoreNode node);
+        //void BeginEditingNodeLabel(CoreNode node);
     }
 }
