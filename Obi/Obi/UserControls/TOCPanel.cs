@@ -28,6 +28,7 @@ namespace Obi.UserControls
         public event Events.Node.LimitViewToSectionDepthHandler LimitDepthOfView;
         public event Events.Node.MoveSectionDownHandler MoveSectionDown;
         public event Events.Node.MoveSectionUpHandler MoveSectionUp;
+        public event Events.Node.RenameSectionHandler RenameSection;
 
 		/// <summary>
         /// Test whether a node is currently selected or not.
@@ -79,7 +80,7 @@ namespace Obi.UserControls
         {
             if (node.getParent() != null)
             {
-                string label = GetTextMedia((CoreNode)node).getText();
+                string label = Project.GetTextMedia((CoreNode)node).getText();
                 System.Windows.Forms.TreeNode newTreeNode;
                 if (node.getParent().getParent() != null)
                 {
@@ -128,7 +129,7 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="newNode">The new heading to add to the tree</param>
         /// <param name="relNode">The relative sibling node</param>
-        public void AddNewSiblingSection(CoreNode newNode, CoreNode relNode)
+        /*public void AddNewSiblingSection(CoreNode newNode, CoreNode relNode)
         {
             System.Windows.Forms.TreeNode relTreeNode = findTreeNodeFromCoreNode(relNode);
             string label = GetTextMedia(newNode).getText();
@@ -149,7 +150,7 @@ namespace Obi.UserControls
             newTreeNode.ExpandAll();
             newTreeNode.EnsureVisible();
             tocTree.SelectedNode = newTreeNode;
-        }
+        }*/
 
         /// <summary>
         /// Add a new heading as a child of the relative node.
@@ -164,7 +165,7 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="newNode">The new heading to add to the tree</param>
         /// <param name="relNode">The parent node for the new heading</param>
-        public void AddNewChildSection(CoreNode newNode, CoreNode relNode)
+        /*public void AddNewChildSection(CoreNode newNode, CoreNode relNode)
         {
             System.Windows.Forms.TreeNode newTreeNode;
             string label = GetTextMedia(newNode).getText();
@@ -181,7 +182,7 @@ namespace Obi.UserControls
             newTreeNode.ExpandAll();
             newTreeNode.EnsureVisible();
             tocTree.SelectedNode = newTreeNode;
-        }
+        }*/
 
         /// <summary>
         /// Delete a section from the table contents. The core node was removed from the core tree.
@@ -200,12 +201,12 @@ namespace Obi.UserControls
         /// Begin editing the label (activate the edit cursor) for the currently
         /// selected section heading node.
         /// </summary>
-        public void BeginEditingNodeLabel(CoreNode node)
+        /*public void BeginEditingNodeLabel(CoreNode node)
         {
             System.Windows.Forms.TreeNode treeNode = findTreeNodeFromCoreNode(node);
             treeNode.EnsureVisible();
             treeNode.BeginEdit();
-        }
+        }*/
 
         /*
          * you might move left if you go up and down
@@ -438,29 +439,32 @@ namespace Obi.UserControls
                 new Events.Node.DecreaseSectionLevelEventArgs(GetSelectedSection()));
         }
 
+        /// <summary>
+        /// The user has edited a label in the tree, so an event is raised to rename the node.
+        /// </summary>
         private void tocTree_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
         {
-            // this will likely be replaced with the raising of an event
-            // to signal that the label has changed
-            // if a change has actually occurred, the label is not null.
             if (e.Label != null)
             {
-                CoreNode node = (CoreNode)e.Node.Tag;
                 if (e.Label == "")
                 {
+                    // Normally, the toolkit would cause an exception for an empty string;
+                    // but it's easier to catch it here and cancel the event.
+                    // In any case I am not sure that the behavior of the toolkit is good
+                    // in this situation.
                     e.CancelEdit = true;
                     MessageBox.Show(Localizer.Message("empty_label_warning_text"),
                         Localizer.Message("empty_label_warning_caption"),
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-                else
+                else if (e.Label != Project.GetTextMedia((CoreNode)e.Node.Tag).getText())
                 {
-                    GetTextMedia(node).setText(e.Label);
+                    RenameSection(this, new Events.Node.RenameSectionEventArgs((CoreNode)e.Node.Tag, e.Label));
                 }
             }
         }
 
-       /// <summary>
+        /// <summary>
         /// helper function to get a channel based on its name
         /// </summary>
         /// <param name="node">the node (points to its own presentation)</param>
@@ -508,7 +512,7 @@ namespace Obi.UserControls
             for (int i = 0; i < treeNodes.GetLength(0); i++)
             {
                 //check the tag field and the text label
-                if (treeNodes[i].Tag == node && treeNodes[i].Text == GetTextMedia(node).getText())
+                if (treeNodes[i].Tag == node && treeNodes[i].Text == Project.GetTextMedia(node).getText())
                 {
                     foundNode = treeNodes[i];
                     break;
@@ -518,7 +522,7 @@ namespace Obi.UserControls
             if (foundNode == null)
             {
                 throw new Exception(String.Format("Could not find tree node matching core node #{0} with label \"{1}\".",
-                    node.GetHashCode(), GetTextMedia(node).getText()));
+                    node.GetHashCode(), Project.GetTextMedia(node).getText()));
             }
             return foundNode;
         }
@@ -538,34 +542,6 @@ namespace Obi.UserControls
            
         }
 
-        /// <summary>
-        /// Get the text media of a core node. The result can then be used to get or set the text of a node.
-        /// Original comments: A helper function to get the text from the given <see cref="CoreNode"/>.
-        /// The text channel which contains the desired text will be named so that we know 
-        /// what its purpose is (ie, "DefaultText" or "PrimaryText")
-        /// @todo
-        /// Otherwise we should use the default, only, or randomly first text channel found.
-        /// </summary>
-        /// <remarks>This replaces get/setCoreNodeText. E.g. getCoreNodeText(node) = GetTextMedia(node).getText()</remarks>
-        /// <param name="node">The node which text media we are interested in.</param>
-        /// <returns>The text media found, or null if none.</returns>
-        private static TextMedia GetTextMedia(CoreNode node)
-        {
-            ChannelsProperty channelsProp = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
-            Channel textChannel;
-            IList channelsList = channelsProp.getListOfUsedChannels();
-            for (int i = 0; i < channelsList.Count; i++)
-            {
-                string channelName = ((IChannel)channelsList[i]).getName();
-                if (channelName == Project.TEXT_CHANNEL)
-                {
-                    textChannel = (Channel)channelsList[i];
-                    return (TextMedia)channelsProp.getMedia(textChannel);
-                }
-            }
-            return null;
-        }
-
         #region Sync event handlers
 
         /// <summary>
@@ -575,7 +551,7 @@ namespace Obi.UserControls
         internal void SyncAddedChildNode(object sender, Events.Sync.AddedChildNodeEventArgs e)
         {
             System.Windows.Forms.TreeNode newTreeNode;
-            string label = GetTextMedia(e.Node).getText();
+            string label = Project.GetTextMedia(e.Node).getText();
             if (e.Node.getParent().getParent() != null)
             {
                 System.Windows.Forms.TreeNode relTreeNode = findTreeNodeFromCoreNode((CoreNode)e.Node.getParent());
@@ -595,7 +571,7 @@ namespace Obi.UserControls
         internal void SyncAddedSiblingNode(object sender, Events.Sync.AddedSiblingNodeEventArgs e)
         {
             System.Windows.Forms.TreeNode relTreeNode = findTreeNodeFromCoreNode(e.ContextNode);
-            string label = GetTextMedia(e.Node).getText();
+            string label = Project.GetTextMedia(e.Node).getText();
             //add as a sibling
             System.Windows.Forms.TreeNodeCollection siblingCollection = null;
             if (relTreeNode.Parent != null)
@@ -614,6 +590,15 @@ namespace Obi.UserControls
             newTreeNode.EnsureVisible();
             tocTree.SelectedNode = newTreeNode;
             newTreeNode.BeginEdit();
+        }
+
+        internal void SyncRenamedNode(object sender, Events.Sync.RenamedNodeEventArgs e)
+        {
+            if (e.Origin != this)
+            {
+                System.Windows.Forms.TreeNode treeNode = findTreeNodeFromCoreNode(e.Node);
+                treeNode.Text = e.Label;
+            }
         }
 
         #endregion

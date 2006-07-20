@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -31,6 +32,7 @@ namespace Obi
         public event Events.Sync.AddedChildNodeHandler AddedChildNode;
         public event Events.Sync.AddedSiblingNodeHandler AddedSiblingNode;
         public event Events.Sync.DeletedNodeHandler DeletedNode;
+        public event Events.Sync.RenamedNodeHandler RenamedNode;
 
         /// <summary>
         /// This flag is set to true if the project contains modifications that have not been saved.
@@ -328,6 +330,46 @@ namespace Obi
             //mUnsaved = true;
         }
 
+        /// <summary>
+        /// Change the text label of a node.
+        /// </summary>
+        public void RenameNode(object sender, Events.Node.RenameSectionEventArgs e)
+        {
+            GetTextMedia(e.Node).setText(e.Label);
+            RenamedNode(this, new Events.Sync.RenamedNodeEventArgs(sender, e.Node, e.Label));
+            mUnsaved = true;
+        }
+
         #endregion
+
+        /// <summary>
+        /// Get the text media of a core node. The result can then be used to get or set the text of a node.
+        /// Original comments: A helper function to get the text from the given <see cref="CoreNode"/>.
+        /// The text channel which contains the desired text will be named so that we know 
+        /// what its purpose is (ie, "DefaultText" or "PrimaryText")
+        /// @todo
+        /// Otherwise we should use the default, only, or randomly first text channel found.
+        /// </summary>
+        /// <remarks>This replaces get/setCoreNodeText. E.g. getCoreNodeText(node) = GetTextMedia(node).getText()</remarks>
+        /// <remarks>This is taken from TOCPanel, and should probably be a node method;
+        /// we would subclass CoreNode fort his.</remarks>
+        /// <param name="node">The node which text media we are interested in.</param>
+        /// <returns>The text media found, or null if none.</returns>
+        public static TextMedia GetTextMedia(CoreNode node)
+        {
+            ChannelsProperty channelsProp = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
+            Channel textChannel;
+            IList channelsList = channelsProp.getListOfUsedChannels();
+            for (int i = 0; i < channelsList.Count; i++)
+            {
+                string channelName = ((IChannel)channelsList[i]).getName();
+                if (channelName == Project.TEXT_CHANNEL)
+                {
+                    textChannel = (Channel)channelsList[i];
+                    return (TextMedia)channelsProp.getMedia(textChannel);
+                }
+            }
+            return null;
+        }
     }
 }

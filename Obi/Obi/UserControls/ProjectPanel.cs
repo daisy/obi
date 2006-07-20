@@ -36,6 +36,8 @@ namespace Obi.UserControls
                     mProject.AddedSiblingNode += new Events.Sync.AddedSiblingNodeHandler(mTOCPanel.SyncAddedSiblingNode);
                     mTOCPanel.MoveSectionUp += new Events.Node.MoveSectionUpHandler(mProject.MoveNodeUp);
                     mTOCPanel.DeleteSection += new Events.Node.DeleteSectionHandler(mProject.RemoveNode);
+                    mTOCPanel.RenameSection += new Events.Node.RenameSectionHandler(mProject.RenameNode);
+                    mProject.RenamedNode += new Events.Sync.RenamedNodeHandler(mTOCPanel.SyncRenamedNode);
                 }
             }
         }
