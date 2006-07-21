@@ -91,10 +91,10 @@ namespace Obi.UserControls
         }
 
 
-        public void Clear()
+        /*public void Clear()
         {
             mTOCPanel.Clear();
-        }
+        }*/
 
         /// <summary>
         /// Synchronize the project views with the core tree. Used when opening a XUK file.

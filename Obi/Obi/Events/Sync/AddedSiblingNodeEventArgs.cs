@@ -13,6 +13,7 @@ namespace Obi.Events.Sync
         private object mOrigin;         // the originator of the request
         private CoreNode mNode;         // the node that was added
         private CoreNode mContextNode;  // the sibling node that we added to
+        private int mPosition;          // position of the node in the flat list of sections
 
         public object Origin
         {
@@ -38,11 +39,20 @@ namespace Obi.Events.Sync
             }
         }
 
-        public AddedSiblingNodeEventArgs(object origin, CoreNode node, CoreNode contextNode)
+        public int Position
+        {
+            get
+            {
+                return mPosition;
+            }
+        }
+
+        public AddedSiblingNodeEventArgs(object origin, CoreNode node, CoreNode contextNode, int position)
         {
             mOrigin = origin;
             mNode = node;
             mContextNode = contextNode;
+            mPosition = position;
         }
     }
 }

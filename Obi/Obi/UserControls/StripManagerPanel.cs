@@ -68,18 +68,21 @@ namespace Obi.UserControls
 
         internal void SyncAddedSiblingNode(object sender, Events.Sync.AddedSiblingNodeEventArgs e)
         {
-            SectionStrip strip = new SectionStrip();
-            strip.Label = Project.GetTextMedia(e.Node).getText();
-            mNodeMap[e.Node] = strip;
-            mFlowLayoutPanel.Controls.Add(strip);
+            AddStripFromNode(e.Node, e.Position);
         }
 
         internal void SyncAddedChildNode(object sender, Events.Sync.AddedChildNodeEventArgs e)
         {
+            AddStripFromNode(e.Node, e.Position);
+        }
+
+        private void AddStripFromNode(CoreNode node, int position)
+        {
             SectionStrip strip = new SectionStrip();
-            strip.Label = Project.GetTextMedia(e.Node).getText();
-            mNodeMap[e.Node] = strip;
+            strip.Label = Project.GetTextMedia(node).getText();
+            mNodeMap[node] = strip;
             mFlowLayoutPanel.Controls.Add(strip);
+            mFlowLayoutPanel.Controls.SetChildIndex(strip, position);
         }
 
         internal void SyncRenamedNode(object sender, Events.Sync.RenamedNodeEventArgs e)
