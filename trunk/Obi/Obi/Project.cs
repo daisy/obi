@@ -100,12 +100,14 @@ namespace Obi
 
         /// <summary>
         /// Create an empty project with some initial metadata.
+        /// We can also automatically create the first node.
         /// </summary>
         /// <param name="xukPath">The path of the XUK file.</param>
         /// <param name="title">The title of the project.</param>
         /// <param name="id">The id of the project.</param>
         /// <param name="userProfile">The profile of the user who created it to fill in the metadata blanks.</param>
-        public void Create(string xukPath, string title, string id, UserProfile userProfile)
+        /// <param name="createTitle">Create a title section.</param>
+        public void Create(string xukPath, string title, string id, UserProfile userProfile, bool createTitle)
         {
             mXUKPath = xukPath;
             mMetadata = CreateMetadata(title, id, userProfile);
@@ -115,6 +117,12 @@ namespace Obi
             getPresentation().getChannelsManager().addChannel(mTextChannel);
             mAnnotationChannel = getPresentation().getChannelFactory().createChannel(ANNOTATION_CHANNEL);
             getPresentation().getChannelsManager().addChannel(mAnnotationChannel);
+            if (createTitle)
+            {
+                CoreNode node = CreateSectionNode();
+                GetTextMedia(node).setText(title);
+                getPresentation().getRootNode().appendChild(node);
+            }
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
             SaveAs(mXUKPath);
         }

@@ -254,6 +254,25 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Replace project?.
+        /// </summary>
+        internal static string overwrite_file_caption {
+            get {
+                return ResourceManager.GetString("overwrite_file_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file {0} already exists.
+        ///Do you want to replace the project contained in this file?.
+        /// </summary>
+        internal static string overwrite_file_text {
+            get {
+                return ResourceManager.GetString("overwrite_file_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ready..
         /// </summary>
         internal static string ready {

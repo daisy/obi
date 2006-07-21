@@ -220,4 +220,11 @@ Oh well.</value>
   <data name="untitled" xml:space="preserve">
     <value>Untitled</value>
   </data>
+  <data name="overwrite_file_caption" xml:space="preserve">
+    <value>Replace project?</value>
+  </data>
+  <data name="overwrite_file_text" xml:space="preserve">
+    <value>The file {0} already exists.
+Do you want to replace the project contained in this file?</value>
+  </data>
 </root>
