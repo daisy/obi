@@ -381,6 +381,8 @@ namespace Obi.UserControls
         /// </summary>
         internal void addSectionAtSameLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("TOC panel click!\n");
+
             AddSiblingSection(this,
                 new Events.Node.AddSiblingSectionEventArgs(GetSelectedSection()));
         }
@@ -555,6 +557,9 @@ namespace Obi.UserControls
         {
             System.Windows.Forms.TreeNode newTreeNode;
             string label = Project.GetTextMedia(e.Node).getText();
+
+            System.Diagnostics.Debug.WriteLine("TocPanel: SyncAddedChildNode -- " + label);
+
             if (e.Node.getParent().getParent() != null)
             {
                 System.Windows.Forms.TreeNode relTreeNode = findTreeNodeFromCoreNode((CoreNode)e.Node.getParent());
@@ -573,8 +578,12 @@ namespace Obi.UserControls
 
         internal void SyncAddedSiblingNode(object sender, Events.Sync.AddedSiblingNodeEventArgs e)
         {
+            
             System.Windows.Forms.TreeNode relTreeNode = findTreeNodeFromCoreNode(e.ContextNode);
             string label = Project.GetTextMedia(e.Node).getText();
+
+            System.Diagnostics.Debug.WriteLine("TocPanel: SyncAddedSiblingNode -- " + label);
+
             //add as a sibling
             System.Windows.Forms.TreeNodeCollection siblingCollection = null;
             if (relTreeNode.Parent != null)

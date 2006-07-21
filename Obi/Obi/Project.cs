@@ -350,6 +350,7 @@ namespace Obi
 
         public void CreateSiblingSectionRequested(object sender, Events.Node.AddSiblingSectionEventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("create sibling request from " + sender.ToString() + " with hash: " + sender.GetHashCode());
             CreateSiblingSection(sender, e.ContextNode);
         }
 
