@@ -44,12 +44,13 @@ namespace Obi.UserControls
 		/// <summary>
         /// Remove all nodes from the tree.
         /// </summary>
-        public void Clear()
+/*        public void Clear()
         {
             tocTree.Nodes.Clear();
             tocTree.SelectedNode = null;
         }
-        
+  */
+      
         /// <summary>
         /// Synchronize the tree view with the core tree.
         /// Since we need priviledged access to the class for synchronization,
@@ -57,6 +58,8 @@ namespace Obi.UserControls
         /// </summary>
         public void SynchronizeWithCoreTree(CoreNode root)
         {
+            tocTree.Nodes.Clear();
+            tocTree.SelectedNode = null;
             root.acceptDepthFirst(this);
         }
         

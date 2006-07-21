@@ -115,6 +115,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>messages.resx</DependentUpon>
     </Compile>
+    <Compile Include="NodePositionVisitor.cs" />
     <Compile Include="ObiForm.cs">
       <SubType>Form</SubType>
     </Compile>

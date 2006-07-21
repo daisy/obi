@@ -288,7 +288,6 @@ namespace Obi
                     break;
                 case Obi.Events.Project.StateChange.Opened:
                     mProjectPanel.Project = mProject;
-                    mProjectPanel.Clear();
                     mProjectPanel.SynchronizeWithCoreTree(mProject.getPresentation().getRootNode());
                     mAddSectionAtSameLevelToolStripMenuItem.Click +=
                         new System.EventHandler(mProjectPanel.TOCPanel.addSectionAtSameLevelToolStripMenuItem_Click);
