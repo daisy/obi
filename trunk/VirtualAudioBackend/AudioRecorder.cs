@@ -16,13 +16,11 @@ namespace VirtualAudioBackend
 	public class AudioRecorder: IAudioRecorder
 	{
 		//member variables
-				
-		
-		
-		
 		//the directory to hold the recorded files
 		private string sProjectDirectory; 
-
+		//the variables for current position and current time for VuMeter
+		long CurrentPositionInByte ;
+		double dCurrentTime;
 		//the variable  in firing events
 		bool mEventsEnabled  = true;
 		// basic elements of WaveFormat
@@ -44,15 +42,18 @@ namespace VirtualAudioBackend
 		private long SampleCount = 0;
 		private AutoResetEvent NotificationEvent = null;
 		private Thread NotifyThread = null;
-		private string m_sFileName;
-		private CaptureBuffer applicationBuffer;
+		private CaptureBuffer applicationBuffer;	
 		private Notify applicationNotify;
 		WaveFormat InputFormat;
+
+		private string m_sFileName;
+		
 		//		 array for update current amplitude to VuMeter
 		internal byte [] arUpdateVM ;
 		internal int m_UpdateVMArrayLength ;
 		UpdateVuMeterFromRecorder ob_UpdateVuMeter = new UpdateVuMeterFromRecorder();		
 		VuMeter ob_VuMeter;
+		
 		AudioMediaAsset m_AudioMediaAsset; 
 		
 		//this is the audio asset which will be used to store the old asset
@@ -171,7 +172,7 @@ namespace VirtualAudioBackend
 			sProjectDirectory= manager.DirPath ;
 			InputFormat = GetInputFormat();
 			m_sFileName = sProjectDirectory+"\\"+"Listen.wav";
-			BinaryWriter ListenWriter  = new BinaryWriter(File.OpenWrite(m_sFileName));
+			BinaryWriter ListenWriter  = new BinaryWriter(File.Create(m_sFileName));
 			CreateRIFF(ListenWriter);
 			CreateCaptureBuffer();
 			InitRecording(true);
@@ -194,7 +195,7 @@ namespace VirtualAudioBackend
 			sProjectDirectory= manager.DirPath ;
 			InputFormat = GetInputFormat();
 			m_sFileName = GetFileName();
-			BinaryWriter bw = new BinaryWriter(File.OpenWrite(m_sFileName));
+			BinaryWriter bw = new BinaryWriter(File.Create(m_sFileName));
 			CreateRIFF(bw);
 			CreateCaptureBuffer();
 			InitRecording(true);
@@ -227,7 +228,7 @@ namespace VirtualAudioBackend
 			mGuid = devices[Index].DriverGuid;
 			m_cApplicationDevice = new Capture(mGuid);
 			return m_cApplicationDevice;
-		}
+		}	
 
 		void FireEvent(StateChanged mStateChanged)
 		{
@@ -259,7 +260,7 @@ namespace VirtualAudioBackend
 		public void CreateRIFF(BinaryWriter Writer)
 		{	
 
-			InputFormat = GetInputFormat();
+
 			// Set up file with RIFF chunk info.
 			char[] ChunkRiff = {'R','I','F','F'};
 			char[] ChunkType = {'W','A','V','E'};
@@ -365,7 +366,6 @@ namespace VirtualAudioBackend
 				applicationBuffer.Dispose();
 				applicationBuffer = null;
 			}
-			InputFormat = GetInputFormat();
 			if(0 == InputFormat.Channels)
 				return;
 			m_iNotifySize = (1024 > InputFormat.AverageBytesPerSecond / 8) ? 1024 : (InputFormat.AverageBytesPerSecond / 8);
@@ -373,11 +373,13 @@ namespace VirtualAudioBackend
 			// Set the buffer sizes
 			m_iCaptureBufferSize = m_iNotifySize * NumberRecordNotifications;
 			//calculate the size of VuMeter Update array length
+/*
 			m_UpdateVMArrayLength = m_iCaptureBufferSize/ 50 ;
 			CalculationFunctions cf = new CalculationFunctions();
 			m_UpdateVMArrayLength = Convert.ToInt32 (cf.AdaptToFrame ( Convert.ToInt32 ( m_UpdateVMArrayLength ),  m_FrameSize)  );
 			arUpdateVM = new byte [ m_UpdateVMArrayLength ] ;
-			// Create the capture buffer
+*/			
+// Create the capture buffer
 			dsc.BufferBytes = m_iCaptureBufferSize;
 			InputFormat.FormatTag = WaveFormatTag.Pcm;
 			// Set the format during creatation
@@ -435,7 +437,17 @@ namespace VirtualAudioBackend
 			int CapturePos ;
 			int LockSize ;
 			applicationBuffer.GetCurrentPosition(out CapturePos, out ReadPos);
+			CalculationFunctions cf = new CalculationFunctions();
+			long CurrentPosition = (long) CapturePos;
+			CurrentPositionInByte = CurrentPosition +SampleCount;
+
+			dCurrentTime = cf.ConvertByteToTime(CurrentPosition, m_SampleRate, m_FrameSize);
+			m_UpdateVMArrayLength = m_iCaptureBufferSize/ 50 ;
+			m_UpdateVMArrayLength = Convert.ToInt32 (cf.AdaptToFrame ( Convert.ToInt32 ( m_UpdateVMArrayLength ),  m_FrameSize)  );
+
+			arUpdateVM = new byte [ m_UpdateVMArrayLength ] ;
 			ReadPos = CapturePos;
+
 			if (ReadPos < ((m_iCaptureBufferSize)- m_UpdateVMArrayLength  ) )
 			{
 				Array.Copy ( applicationBuffer.Read(ReadPos , typeof (byte) , LockFlag.None , m_UpdateVMArrayLength  ) , arUpdateVM , m_UpdateVMArrayLength  ) ;				
@@ -466,6 +478,33 @@ namespace VirtualAudioBackend
 			NextCaptureOffset+= CaptureData.Length ; 
 			NextCaptureOffset %= m_iCaptureBufferSize; // Circular buffer
 		}
+		internal long GetCurrentPositioninBytes
+		{
+			get
+			{
+				return CurrentPositionInByte;
+			}
+			set
+			{
+				CurrentPositionInByte= value;
+			}
+		}
+
+		internal double  GetTime
+		{
+			get
+			{
+				return dCurrentTime;
+			}
+			set
+			{
+				dCurrentTime = value;
+			}
+		}
+
+
+
+
 
 		
 		public void InitRecording(bool SRecording)
