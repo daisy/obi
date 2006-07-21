@@ -22,8 +22,9 @@ namespace Obi
         private Project mProject;                  // the project currently being authored
         private Settings mSettings;                // application settings
         private Commands.CommandManager mCmdMngr;  // the undo stack for this project (should it belong to the project?)
-        
-        private static readonly string XUKFilter = "Obi project file (*.xuk)|*.xuk";  // filter for opening/saving XUK files
+
+        // filter for opening/saving XUK files
+        public static readonly string XUKFilter = "Obi project file (*.xuk)|*.xuk|Any file|*.*";
 
         /// <summary>
         /// Initialize a new form. No project is opened at creation time.
@@ -52,7 +53,8 @@ namespace Obi
                 {
                     mProject = new Project();
                     mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
-                    mProject.Create(dialog.Path, dialog.Title, mSettings.IdTemplate, mSettings.UserProfile);
+                    mProject.Create(dialog.Path, dialog.Title, mSettings.IdTemplate, mSettings.UserProfile,
+                        dialog.CreateTitleSection);
                 }
                 else
                 {
@@ -164,7 +166,7 @@ namespace Obi
         /// <summary>
         /// Close the current project.
         /// </summary>
-        private void closeProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mCloseProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (ClosedProject())
             {
@@ -406,7 +408,7 @@ namespace Obi
             mSaveProjectToolStripMenuItem.Enabled = false;                        // cannot save
             mSaveProjectasToolStripMenuItem.Enabled = false;                      // cannot save as
             mDiscardChangesToolStripMenuItem.Enabled = false;                             // cannot discard changes
-            closeProjectToolStripMenuItem.Enabled = false;                       // cannot close
+            mCloseProjectToolStripMenuItem.Enabled = false;                       // cannot close
             foreach (ToolStripItem item in editToolStripMenuItem.DropDownItems)  // cannot do any edit
             {
                 item.Enabled = false;
@@ -437,7 +439,7 @@ namespace Obi
         {
             FormUpdateSavedProject();
             mSaveProjectasToolStripMenuItem.Enabled = true;
-            closeProjectToolStripMenuItem.Enabled = true;
+            mCloseProjectToolStripMenuItem.Enabled = true;
             FormUpdateShowHideTOC();
             foreach (ToolStripItem item in editToolStripMenuItem.DropDownItems)  // cannot do any edit
             {
@@ -470,7 +472,7 @@ namespace Obi
             mSaveProjectToolStripMenuItem.Enabled = true;
             mSaveProjectasToolStripMenuItem.Enabled = true;
             mDiscardChangesToolStripMenuItem.Enabled = true;
-            closeProjectToolStripMenuItem.Enabled = true;
+            mCloseProjectToolStripMenuItem.Enabled = true;
             Ready();
         }
 
