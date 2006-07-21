@@ -15,6 +15,7 @@ namespace Obi
     /// (this is probably overkill, but it's available.)
     /// </summary>
     /// <remarks>It seems that the recent list is not saved, have to investigate...</remarks>
+    /// <remarks>It also seems that making a change in the class resets the existing settings?</remarks>
     [Serializable()]
     public class Settings
     {
@@ -22,6 +23,7 @@ namespace Obi
         public UserProfile UserProfile;   // the user profile
         public string IdTemplate;         // identifier template
         public string DefaultPath;        // default location
+        public bool CreateTitleSection;   // defaulf for "create title section" in new project
 
         public static readonly string SettingsFileName = "obi_settings.xml";  // settings file name
 

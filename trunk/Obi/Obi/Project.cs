@@ -30,9 +30,9 @@ namespace Obi
         private string mLastPath;            // last path to which the project was saved (see save as)
         private SimpleMetadata mMetadata;    // metadata for this project
 
-        public static readonly string AUDIO_CHANNEL = "obi.audio";            // canonical name of the audio channel
-        public static readonly string TEXT_CHANNEL = "obi.text";              // canonical name of the text channel
-        public static readonly string ANNOTATION_CHANNEL = "obi.annotation";  // canonical name of the annotation channel
+        public static readonly string AudioChannel = "obi.audio";            // canonical name of the audio channel
+        public static readonly string TextChannel = "obi.text";              // canonical name of the text channel
+        public static readonly string AnnotationChannel = "obi.annotation";  // canonical name of the annotation channel
 
         public event Events.Project.StateChangedHandler StateChanged;       // the state of the project changed (modified, saved...)
         public event Events.Sync.AddedChildNodeHandler AddedChildNode;      // a new child node was added to the presentation
@@ -111,11 +111,11 @@ namespace Obi
         {
             mXUKPath = xukPath;
             mMetadata = CreateMetadata(title, id, userProfile);
-            mAudioChannel = getPresentation().getChannelFactory().createChannel(AUDIO_CHANNEL);
+            mAudioChannel = getPresentation().getChannelFactory().createChannel(AudioChannel);
             getPresentation().getChannelsManager().addChannel(mAudioChannel);
-            mTextChannel = getPresentation().getChannelFactory().createChannel(TEXT_CHANNEL);
+            mTextChannel = getPresentation().getChannelFactory().createChannel(TextChannel);
             getPresentation().getChannelsManager().addChannel(mTextChannel);
-            mAnnotationChannel = getPresentation().getChannelFactory().createChannel(ANNOTATION_CHANNEL);
+            mAnnotationChannel = getPresentation().getChannelFactory().createChannel(AnnotationChannel);
             getPresentation().getChannelsManager().addChannel(mAnnotationChannel);
             if (createTitle)
             {
@@ -138,9 +138,9 @@ namespace Obi
             {
                 mUnsaved = false;
                 mXUKPath = xukPath;
-                mAudioChannel = FindChannel(AUDIO_CHANNEL);
-                mTextChannel = FindChannel(TEXT_CHANNEL);
-                mAnnotationChannel = FindChannel(ANNOTATION_CHANNEL);
+                mAudioChannel = FindChannel(AudioChannel);
+                mTextChannel = FindChannel(TextChannel);
+                mAnnotationChannel = FindChannel(AnnotationChannel);
                 mMetadata = new SimpleMetadata();
                 foreach (object o in getMetadataList())
                 {
@@ -368,21 +368,6 @@ namespace Obi
         }
 
         /// <summary>
-        /// Create a new section node with a default text label. The node is not attached to anything.
-        /// TODO: this should be a constructor/factory method for our derived node class.
-        /// </summary>
-        /// <returns>The created node.</returns>
-        private CoreNode CreateSectionNode()
-        {
-            CoreNode node = getPresentation().getCoreNodeFactory().createNode();
-            ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
-            TextMedia text = (TextMedia)getPresentation().getMediaFactory().createMedia(MediaType.TEXT);
-            text.setText(Localizer.Message("default_section_label"));
-            prop.setMedia(mTextChannel, text);
-            return node;
-        }
-
-        /// <summary>
         /// Remove a node from the core tree (simply detach it, and synchronize the views.)
         /// </summary>
         public void RemoveNode(object origin, CoreNode node)
@@ -432,6 +417,21 @@ namespace Obi
         #endregion
 
         /// <summary>
+        /// Create a new section node with a default text label. The node is not attached to anything.
+        /// TODO: this should be a constructor/factory method for our derived node class.
+        /// </summary>
+        /// <returns>The created node.</returns>
+        private CoreNode CreateSectionNode()
+        {
+            CoreNode node = getPresentation().getCoreNodeFactory().createNode();
+            ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
+            TextMedia text = (TextMedia)getPresentation().getMediaFactory().createMedia(MediaType.TEXT);
+            text.setText(Localizer.Message("default_section_label"));
+            prop.setMedia(mTextChannel, text);
+            return node;
+        }
+
+        /// <summary>
         /// Get the text media of a core node. The result can then be used to get or set the text of a node.
         /// Original comments: A helper function to get the text from the given <see cref="CoreNode"/>.
         /// The text channel which contains the desired text will be named so that we know 
@@ -452,7 +452,7 @@ namespace Obi
             for (int i = 0; i < channelsList.Count; i++)
             {
                 string channelName = ((IChannel)channelsList[i]).getName();
-                if (channelName == Project.TEXT_CHANNEL)
+                if (channelName == Project.TextChannel)
                 {
                     textChannel = (Channel)channelsList[i];
                     return (TextMedia)channelsProp.getMedia(textChannel);

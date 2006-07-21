@@ -46,9 +46,6 @@ namespace Obi
             this.metadataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.touchProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addSectionAtSameLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addSubsectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableOfContentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,6 +54,7 @@ namespace Obi
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectPanel = new Obi.UserControls.ProjectPanel();
+            this.mAddSectionAtSameLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -185,44 +183,24 @@ namespace Obi
             // metadataToolStripMenuItem
             // 
             this.metadataToolStripMenuItem.Name = "metadataToolStripMenuItem";
-            this.metadataToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.metadataToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.metadataToolStripMenuItem.Text = "&Metadata";
             this.metadataToolStripMenuItem.Click += new System.EventHandler(this.metadataToolStripMenuItem_Click);
             // 
             // touchProjectToolStripMenuItem
             // 
             this.touchProjectToolStripMenuItem.Name = "touchProjectToolStripMenuItem";
-            this.touchProjectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.touchProjectToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.touchProjectToolStripMenuItem.Text = "&Touch project";
             this.touchProjectToolStripMenuItem.Click += new System.EventHandler(this.touchProjectToolStripMenuItem_Click);
             // 
             // tocToolStripMenuItem
             // 
             this.tocToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addSectionAtSameLevelToolStripMenuItem,
-            this.addSubsectionToolStripMenuItem,
-            this.deleteSectionToolStripMenuItem});
+            this.mAddSectionAtSameLevelToolStripMenuItem});
             this.tocToolStripMenuItem.Name = "tocToolStripMenuItem";
             this.tocToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
             this.tocToolStripMenuItem.Text = "TO&C";
-            // 
-            // addSectionAtSameLevelToolStripMenuItem
-            // 
-            this.addSectionAtSameLevelToolStripMenuItem.Name = "addSectionAtSameLevelToolStripMenuItem";
-            this.addSectionAtSameLevelToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.addSectionAtSameLevelToolStripMenuItem.Text = "Add &section at same level";
-            // 
-            // addSubsectionToolStripMenuItem
-            // 
-            this.addSubsectionToolStripMenuItem.Name = "addSubsectionToolStripMenuItem";
-            this.addSubsectionToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.addSubsectionToolStripMenuItem.Text = "&Add sub-section";
-            // 
-            // deleteSectionToolStripMenuItem
-            // 
-            this.deleteSectionToolStripMenuItem.Name = "deleteSectionToolStripMenuItem";
-            this.deleteSectionToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.deleteSectionToolStripMenuItem.Text = "&Delete section";
             // 
             // viewToolStripMenuItem
             // 
@@ -291,6 +269,12 @@ namespace Obi
             this.mProjectPanel.Size = new System.Drawing.Size(767, 450);
             this.mProjectPanel.TabIndex = 4;
             // 
+            // mAddSectionAtSameLevelToolStripMenuItem
+            // 
+            this.mAddSectionAtSameLevelToolStripMenuItem.Name = "mAddSectionAtSameLevelToolStripMenuItem";
+            this.mAddSectionAtSameLevelToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.mAddSectionAtSameLevelToolStripMenuItem.Text = "&Add section at same level";
+            // 
             // ObiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -341,9 +325,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tableOfContentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tocToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addSubsectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addSectionAtSameLevelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteSectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mAddSectionAtSameLevelToolStripMenuItem;
 
 
     }

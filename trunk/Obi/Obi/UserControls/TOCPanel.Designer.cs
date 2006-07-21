@@ -38,7 +38,6 @@ namespace Obi.UserControls
             this.increaseLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decreaseLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -65,10 +64,9 @@ namespace Obi.UserControls
             this.increaseLevelToolStripMenuItem,
             this.editLabelToolStripMenuItem,
             this.decreaseLevelToolStripMenuItem,
-            this.toolStripSeparator1,
             this.deleteSectionToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(205, 208);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(205, 202);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // addSectionAtSameLevelToolStripMenuItem
@@ -120,11 +118,6 @@ namespace Obi.UserControls
             this.decreaseLevelToolStripMenuItem.Text = "Decrease level";
             this.decreaseLevelToolStripMenuItem.Click += new System.EventHandler(this.decreaseLevelToolStripMenuItem_Click);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(201, 6);
-            // 
             // deleteSectionToolStripMenuItem
             // 
             this.deleteSectionToolStripMenuItem.Name = "deleteSectionToolStripMenuItem";
@@ -155,7 +148,6 @@ namespace Obi.UserControls
         private System.Windows.Forms.ToolStripMenuItem increaseLevelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem decreaseLevelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editLabelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem deleteSectionToolStripMenuItem;
     }
 }

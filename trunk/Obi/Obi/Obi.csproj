@@ -57,9 +57,9 @@
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="urakawa, Version=1.0.2392.27158, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="urakawa, Version=1.0.2393.35010, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\branches\port-implementation-to-VS2005\implementation\UrakawaToolkit\bin\Debug\urakawa.dll</HintPath>
+      <HintPath>..\..\..\implementation\UrakawaToolkit\bin\Debug\urakawa.dll</HintPath>
     </Reference>
     <Reference Include="UrakawaApplicationBackend, Version=1.0.2368.31351, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
@@ -93,7 +93,6 @@
     <Compile Include="Dialogs\UserProfile.Designer.cs">
       <DependentUpon>UserProfile.cs</DependentUpon>
     </Compile>
-    <Compile Include="Events\Node\CreateEventArgs.cs" />
     <Compile Include="Events\Node\DeleteSectionEventArgs.cs" />
     <Compile Include="Events\Node\ExpandViewToAllDepthsEventArgs.cs" />
     <Compile Include="Events\Node\AddChildSectionEventArgs.cs" />
@@ -159,6 +158,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>ProjectPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\SectionStrip.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SectionStrip.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\StripManagerPanel.resx">
       <SubType>Designer</SubType>
       <DependentUpon>StripManagerPanel.cs</DependentUpon>
@@ -184,12 +187,19 @@
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="SimpleMetadata.cs" />
-    <Compile Include="UserControls\ICoreTreeView.cs" />
+    <Compile Include="Strips\SectionStrip.cs" />
+    <Compile Include="Strips\Strip.cs" />
     <Compile Include="UserControls\ProjectPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\ProjectPanel.Designer.cs">
       <DependentUpon>ProjectPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SectionStrip.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\SectionStrip.Designer.cs">
+      <DependentUpon>SectionStrip.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\StripManagerPanel.cs">
       <SubType>UserControl</SubType>

@@ -44,6 +44,7 @@ namespace Obi.UserControls
             // 
             // mFlowLayoutPanel
             // 
+            this.mFlowLayoutPanel.BackColor = System.Drawing.Color.Transparent;
             this.mFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.mFlowLayoutPanel.Location = new System.Drawing.Point(0, 0);

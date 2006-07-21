@@ -47,6 +47,7 @@ namespace Obi
         private void mNewProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Dialogs.NewProject dialog = new Dialogs.NewProject(mSettings.DefaultPath);
+            dialog.CreateTitleSection = mSettings.CreateTitleSection;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 if (ClosedProject())
@@ -55,6 +56,7 @@ namespace Obi
                     mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
                     mProject.Create(dialog.Path, dialog.Title, mSettings.IdTemplate, mSettings.UserProfile,
                         dialog.CreateTitleSection);
+                    mSettings.CreateTitleSection = dialog.CreateTitleSection;
                 }
                 else
                 {
@@ -285,20 +287,12 @@ namespace Obi
                     FormUpdateModifiedProject();
                     break;
                 case Obi.Events.Project.StateChange.Opened:
-                    FormUpdateOpenedProject();
                     mProjectPanel.Project = mProject;
                     mProjectPanel.Clear();
                     mProjectPanel.SynchronizeWithCoreTree(mProject.getPresentation().getRootNode());
-                    /*tableOfContentsToolStripMenuItem.Enabled = true;
-                    addSubsectionToolStripMenuItem.Click +=
-                        new System.EventHandler(mProjectPanel.TOCPanel.addSubSectionToolStripMenuItem_Click);
-                    addSectionAtSameLevelToolStripMenuItem.Click +=
+                    mAddSectionAtSameLevelToolStripMenuItem.Click +=
                         new System.EventHandler(mProjectPanel.TOCPanel.addSectionAtSameLevelToolStripMenuItem_Click);
-                    moveSectionupToolStripMenuItem.Click +=
-                        new System.EventHandler(mProjectPanel.TOCPanel.moveUpToolStripMenuItem_Click);
-                    deleteSectionToolStripMenuItem.Click +=
-                        new System.EventHandler(mProjectPanel.TOCPanel.deleteSectionToolStripMenuItem_Click);
-                    FormUpdateShowHideTOC();*/
+                    FormUpdateOpenedProject();
                     break;
                 case Obi.Events.Project.StateChange.Saved:
                     FormUpdateSavedProject();
@@ -405,10 +399,10 @@ namespace Obi
         private void FormUpdateClosedProject()
         {
             this.Text = Localizer.Message("obi");
-            mSaveProjectToolStripMenuItem.Enabled = false;                        // cannot save
-            mSaveProjectasToolStripMenuItem.Enabled = false;                      // cannot save as
-            mDiscardChangesToolStripMenuItem.Enabled = false;                             // cannot discard changes
-            mCloseProjectToolStripMenuItem.Enabled = false;                       // cannot close
+            mSaveProjectToolStripMenuItem.Enabled = false;                       // cannot save
+            mSaveProjectasToolStripMenuItem.Enabled = false;                     // cannot save as
+            mDiscardChangesToolStripMenuItem.Enabled = false;                    // cannot discard changes
+            mCloseProjectToolStripMenuItem.Enabled = false;                      // cannot close
             foreach (ToolStripItem item in editToolStripMenuItem.DropDownItems)  // cannot do any edit
             {
                 item.Enabled = false;
@@ -433,23 +427,29 @@ namespace Obi
         }
 
         /// <summary>
-        /// Update the form to reflect enabled/disabled actions when no project is opened.
+        /// Update the form to reflect enabled/disabled actions when a project is opened.
         /// </summary>
         private void FormUpdateOpenedProject()
         {
-            FormUpdateSavedProject();
+            this.Text = String.Format("{0} - {1}", mProject.Metadata.Title, Localizer.Message("obi"));
+            mSaveProjectToolStripMenuItem.Enabled = false;
             mSaveProjectasToolStripMenuItem.Enabled = true;
+            mDiscardChangesToolStripMenuItem.Enabled = false;
             mCloseProjectToolStripMenuItem.Enabled = true;
+            foreach (ToolStripItem item in editToolStripMenuItem.DropDownItems)  // can do edits
+            {
+                item.Enabled = true;
+            }
+            foreach (ToolStripItem item in tocToolStripMenuItem.DropDownItems)   // can modify the TOC
+            {
+                item.Enabled = true;
+            }
+            foreach (ToolStripItem item in viewToolStripMenuItem.DropDownItems)  // can change view
+            {
+                item.Enabled = true;
+            }
             FormUpdateShowHideTOC();
-            foreach (ToolStripItem item in editToolStripMenuItem.DropDownItems)  // cannot do any edit
-            {
-                item.Enabled = true;
-            }
-            foreach (ToolStripItem item in viewToolStripMenuItem.DropDownItems)  // cannot change view
-            {
-                item.Enabled = true;
-            }
-            mProjectPanel.Project = null;
+            toolStripStatusLabel1.Text = String.Format(Localizer.Message("opened_project"), mProject.XUKPath);
         }
 
         /// <summary>
@@ -464,7 +464,7 @@ namespace Obi
         }
 
         /// <summary>
-        /// Update the form to reflect enabled/disabled actions when the project is unsaved.
+        /// Update the form to reflect enabled/disabled actions when the project is modified.
         /// </summary>
         private void FormUpdateModifiedProject()
         {

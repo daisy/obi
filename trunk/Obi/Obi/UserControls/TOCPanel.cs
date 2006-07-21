@@ -17,11 +17,10 @@ namespace Obi.UserControls
     /// change the label, etc. of headings.)
     /// This control implements the CoreTreeView interface so that it can be synchronized with the core tree.
     /// </summary>
-    public partial class TOCPanel : UserControl, ICoreTreeView, ICoreNodeVisitor
+    public partial class TOCPanel : UserControl, ICoreNodeVisitor
     {
         public event Events.Node.AddSiblingSectionHandler AddSiblingSection;
         public event Events.Node.AddChildSectionHandler AddChildSection;
-        public event Events.Node.DeleteSectionHandler DeleteSection;
         public event Events.Node.BeginEditingSectionHeadingLabelHandler BeginEditingLabel;
         public event Events.Node.DecreaseSectionLevelHandler DecreaseSectionLevel;
         public event Events.Node.IncreaseSectionLevelHandler IncreaseSectionLevel;
@@ -29,6 +28,7 @@ namespace Obi.UserControls
         public event Events.Node.MoveSectionDownHandler MoveSectionDown;
         public event Events.Node.MoveSectionUpHandler MoveSectionUp;
         public event Events.Node.RenameSectionHandler RenameSection;
+        public event Events.Node.DeleteSectionHandler DeleteSection;
 
 		/// <summary>
         /// Test whether a node is currently selected or not.
