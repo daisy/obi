@@ -40,6 +40,10 @@ namespace Obi.Dialogs
             {
                 return mAutoTitleCheckBox.Checked;
             }
+            set
+            {
+                mAutoTitleCheckBox.Checked = value;
+            }
         }
 
         /// <summary>

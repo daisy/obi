@@ -31,7 +31,7 @@ namespace Obi.UserControls
             this.label1 = new System.Windows.Forms.Label();
             this.mSplitContainer = new System.Windows.Forms.SplitContainer();
             this.mTOCPanel = new Obi.UserControls.TOCPanel();
-            this.stripManagerPanel1 = new Obi.UserControls.StripManagerPanel();
+            this.mStripManagerPanel = new Obi.UserControls.StripManagerPanel();
             this.mSplitContainer.Panel1.SuspendLayout();
             this.mSplitContainer.Panel2.SuspendLayout();
             this.mSplitContainer.SuspendLayout();
@@ -64,7 +64,7 @@ namespace Obi.UserControls
             // mSplitContainer.Panel2
             // 
             this.mSplitContainer.Panel2.BackColor = System.Drawing.Color.Transparent;
-            this.mSplitContainer.Panel2.Controls.Add(this.stripManagerPanel1);
+            this.mSplitContainer.Panel2.Controls.Add(this.mStripManagerPanel);
             this.mSplitContainer.Size = new System.Drawing.Size(631, 330);
             this.mSplitContainer.SplitterDistance = 210;
             this.mSplitContainer.TabIndex = 1;
@@ -77,14 +77,14 @@ namespace Obi.UserControls
             this.mTOCPanel.Size = new System.Drawing.Size(210, 330);
             this.mTOCPanel.TabIndex = 0;
             // 
-            // stripManagerPanel1
+            // mStripManagerPanel
             // 
-            this.stripManagerPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.stripManagerPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.stripManagerPanel1.Location = new System.Drawing.Point(0, 0);
-            this.stripManagerPanel1.Name = "stripManagerPanel1";
-            this.stripManagerPanel1.Size = new System.Drawing.Size(417, 330);
-            this.stripManagerPanel1.TabIndex = 0;
+            this.mStripManagerPanel.BackColor = System.Drawing.Color.Transparent;
+            this.mStripManagerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mStripManagerPanel.Location = new System.Drawing.Point(0, 0);
+            this.mStripManagerPanel.Name = "mStripManagerPanel";
+            this.mStripManagerPanel.Size = new System.Drawing.Size(417, 330);
+            this.mStripManagerPanel.TabIndex = 0;
             // 
             // ProjectPanel
             // 
@@ -107,7 +107,7 @@ namespace Obi.UserControls
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.SplitContainer mSplitContainer;
-        private StripManagerPanel stripManagerPanel1;
+        private StripManagerPanel mStripManagerPanel;
         private TOCPanel mTOCPanel;
 
     }

@@ -30,14 +30,19 @@ namespace Obi.UserControls
                 mSplitContainer.Panel1Collapsed = false;
                 if (mProject != null)
                 {
-                    mTOCPanel.AddChildSection += new Events.Node.AddChildSectionHandler(mProject.CreateChildSectionRequested);
-                    mProject.AddedChildNode += new Events.Sync.AddedChildNodeHandler(mTOCPanel.SyncAddedChildNode);
                     mTOCPanel.AddSiblingSection += new Events.Node.AddSiblingSectionHandler(mProject.CreateSiblingSectionRequested);
                     mProject.AddedSiblingNode += new Events.Sync.AddedSiblingNodeHandler(mTOCPanel.SyncAddedSiblingNode);
+                    mProject.AddedSiblingNode += new Events.Sync.AddedSiblingNodeHandler(mStripManagerPanel.SyncAddedSiblingNode);
+                    mTOCPanel.AddChildSection += new Events.Node.AddChildSectionHandler(mProject.CreateChildSectionRequested);
+                    mProject.AddedChildNode += new Events.Sync.AddedChildNodeHandler(mTOCPanel.SyncAddedChildNode);
+                    mProject.AddedChildNode += new Events.Sync.AddedChildNodeHandler(mStripManagerPanel.SyncAddedChildNode);
+
                     mTOCPanel.MoveSectionUp += new Events.Node.MoveSectionUpHandler(mProject.MoveNodeUpRequested);
                     mTOCPanel.DeleteSection += new Events.Node.DeleteSectionHandler(mProject.RemoveNodeRequested);
+
                     mTOCPanel.RenameSection += new Events.Node.RenameSectionHandler(mProject.RenameNodeRequested);
                     mProject.RenamedNode += new Events.Sync.RenamedNodeHandler(mTOCPanel.SyncRenamedNode);
+                    mProject.RenamedNode += new Events.Sync.RenamedNodeHandler(mStripManagerPanel.SyncRenamedNode);
                 }
             }
         }
@@ -54,7 +59,7 @@ namespace Obi.UserControls
         {
             get
             {
-                return stripManagerPanel1;
+                return mStripManagerPanel;
             }
         }
 
@@ -97,6 +102,7 @@ namespace Obi.UserControls
         public void SynchronizeWithCoreTree(CoreNode root)
         {
             mTOCPanel.SynchronizeWithCoreTree(root);
+            mStripManagerPanel.SynchronizeWithCoreTree(root);
         }
     }
 }
