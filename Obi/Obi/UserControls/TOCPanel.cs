@@ -42,6 +42,17 @@ namespace Obi.UserControls
         }
 
         /// <summary>
+        /// Get the context menu strip of the tree view so that we can replicate it in the form.
+        /// </summary>
+        public ContextMenuStrip TocTreeContextMenuStrip
+        {
+            get
+            {
+                return tocTree.ContextMenuStrip;
+            }
+        }
+
+        /// <summary>
         /// Synchronize the tree view with the core tree.
         /// Since we need priviledged access to the class for synchronization,
         /// we make it implement ICoreNodeVisitor directly.

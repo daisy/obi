@@ -381,10 +381,13 @@ namespace Obi
         /// </summary>
         public void RemoveNode(object origin, CoreNode node)
         {
-            node.detach();
-            DeletedNode(this, new Events.Sync.DeletedNodeEventArgs(origin, node));
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            if (node != null)
+            {
+                node.detach();
+                DeletedNode(this, new Events.Sync.DeletedNodeEventArgs(origin, node));
+                mUnsaved = true;
+                StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            }
         }
         
         public void RemoveNodeRequested(object sender, Events.Node.DeleteSectionEventArgs e)

@@ -36,6 +36,8 @@ namespace Obi
             mSettings = null;
             mCmdMngr = new Commands.CommandManager();
             InitializeSettings();
+
+            mOpenRecentProjectToolStripMenuItem.Enabled = mSettings.RecentProjects.Count > 0;
             FormUpdateClosedProject();  // no project opened, same as if we closed a project.
         }
 
@@ -57,6 +59,7 @@ namespace Obi
                     mProject.Create(dialog.Path, dialog.Title, mSettings.IdTemplate, mSettings.UserProfile,
                         dialog.CreateTitleSection);
                     mSettings.CreateTitleSection = dialog.CreateTitleSection;
+                    AddRecentProject(mProject.XUKPath);
                 }
                 else
                 {
@@ -219,7 +222,7 @@ namespace Obi
         /// <summary>
         /// Show or hide the NCX panel in the project panel.
         /// </summary>
-        private void tableOfContentsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mShowhideTableOfContentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mProjectPanel.TOCPanelVisible)
             {
@@ -289,14 +292,25 @@ namespace Obi
                 case Obi.Events.Project.StateChange.Opened:
                     mProjectPanel.Project = mProject;
                     mProjectPanel.SynchronizeWithCoreTree(mProject.getPresentation().getRootNode());
-                    //mAddSectionAtSameLevelToolStripMenuItem.Click +=
-                    //    new System.EventHandler(mProjectPanel.TOCPanel.addSectionAtSameLevelToolStripMenuItem_Click);
                     FormUpdateOpenedProject();
                     break;
                 case Obi.Events.Project.StateChange.Saved:
                     FormUpdateSavedProject();
                     break;
             }
+        }
+
+        /// <summary>
+        /// Setup the TOC and strip menus in the same way as the context menus for TOCPanel and StripManager.
+        /// </summary>
+        private void ObiForm_Load(object sender, EventArgs e)
+        {
+            mAddSectionAtSameLevelToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.TOCPanel.addSectionAtSameLevelToolStripMenuItem_Click);
+            mAddsubsectionToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.TOCPanel.addSubSectionToolStripMenuItem_Click);
+            mDeleteSectionToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.TOCPanel.deleteSectionToolStripMenuItem_Click);
         }
 
         #endregion
@@ -334,6 +348,7 @@ namespace Obi
             {
                 MessageBox.Show(e.Message, Localizer.Message("open_project_error_caption"),
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mProject = null;
             }
         }
 
@@ -344,10 +359,9 @@ namespace Obi
         private void InitializeSettings()
         {
             mSettings = Settings.GetSettings();
-            ClearRecentList();
             for (int i = mSettings.RecentProjects.Count - 1; i >= 0; --i)
             {
-                AddRecentProject((string)mSettings.RecentProjects[i]);
+                AddRecentProjectsItem((string)mSettings.RecentProjects[i]);
             }
         }
 
@@ -356,9 +370,9 @@ namespace Obi
         /// </summary>
         private void ClearRecentList()
         {
-            for (int i = mSettings.RecentProjects.Count - 1; i >= 0; --i)
+            while (mOpenRecentProjectToolStripMenuItem.DropDownItems.Count > 2)
             {
-                mOpenRecentProjectToolStripMenuItem.DropDownItems.RemoveAt(i);
+                mOpenRecentProjectToolStripMenuItem.DropDownItems.RemoveAt(0);
             }
             mSettings.RecentProjects.Clear();
             mOpenRecentProjectToolStripMenuItem.Enabled = false;
@@ -386,6 +400,15 @@ namespace Obi
                 }
             }
             mSettings.RecentProjects.Insert(0, path);
+            AddRecentProjectsItem(path);
+        }
+
+        /// <summary>
+        /// Add an item in the recent projects list
+        /// </summary>
+        /// <param name="path">The path of the item to add.</param>
+        private void AddRecentProjectsItem(string path)
+        {
             ToolStripMenuItem item = new ToolStripMenuItem();
             item.Text = Path.GetFileName(path);
             item.Click += new System.EventHandler(delegate(object sender, EventArgs e) { OpenProject(path); });
@@ -406,11 +429,7 @@ namespace Obi
             {
                 item.Enabled = false;
             }
-            foreach (ToolStripItem item in tocToolStripMenuItem.DropDownItems)   // cannot modify the TOC
-            {
-                item.Enabled = false;
-            }
-            foreach (ToolStripItem item in viewToolStripMenuItem.DropDownItems)  // cannot change view
+            foreach (ToolStripItem item in mTocToolStripMenuItem.DropDownItems)   // cannot modify the TOC
             {
                 item.Enabled = false;
             }
@@ -439,11 +458,7 @@ namespace Obi
             {
                 item.Enabled = true;
             }
-            foreach (ToolStripItem item in tocToolStripMenuItem.DropDownItems)   // can modify the TOC
-            {
-                item.Enabled = true;
-            }
-            foreach (ToolStripItem item in viewToolStripMenuItem.DropDownItems)  // can change view
+            foreach (ToolStripItem item in mTocToolStripMenuItem.DropDownItems)   // can modify the TOC
             {
                 item.Enabled = true;
             }
@@ -480,12 +495,13 @@ namespace Obi
         /// </summary>
         private void FormUpdateShowHideTOC()
         {
-            tableOfContentsToolStripMenuItem.Text =
+            mShowhideTableOfCOntentsToolStripMenuItem.Text =
                 Localizer.Message(mProjectPanel.TOCPanelVisible ? "hide_toc_label" : "show_toc_label");
-            foreach (ToolStripItem item in tocToolStripMenuItem.DropDownItems)
+            foreach (ToolStripItem item in mTocToolStripMenuItem.DropDownItems)
             {
                 item.Enabled = mProjectPanel.TOCPanelVisible;
             }
+            mShowhideTableOfCOntentsToolStripMenuItem.Enabled = true;
         }
 
         /// <summary>
