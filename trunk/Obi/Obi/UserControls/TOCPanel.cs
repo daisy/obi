@@ -41,16 +41,6 @@ namespace Obi.UserControls
             }
         }
 
-		/// <summary>
-        /// Remove all nodes from the tree.
-        /// </summary>
-/*        public void Clear()
-        {
-            tocTree.Nodes.Clear();
-            tocTree.SelectedNode = null;
-        }
-  */
-      
         /// <summary>
         /// Synchronize the tree view with the core tree.
         /// Since we need priviledged access to the class for synchronization,
@@ -191,14 +181,14 @@ namespace Obi.UserControls
         /// Delete a section from the table contents. The core node was removed from the core tree.
         /// </summary>
         /// <param name="node">The core node that was removed.</param>
-        public void DeleteSectionNode(CoreNode node)
+        /*public void DeleteSectionNode(CoreNode node)
         {
             if (node != null)
             {
                 System.Windows.Forms.TreeNode treeNode = findTreeNodeFromCoreNode(node);
                 treeNode.Remove();
             }
-        }
+        }*/
 
         /// <summary>
         /// Begin editing the label (activate the edit cursor) for the currently
@@ -611,6 +601,15 @@ namespace Obi.UserControls
                 System.Windows.Forms.TreeNode treeNode = findTreeNodeFromCoreNode(e.Node);
                 treeNode.Text = e.Label;
             }
+        }
+
+        internal void SyncDeletedNode(object sender, Events.Sync.DeletedNodeEventArgs e)
+        {
+            if (e.Node != null)
+            {
+                System.Windows.Forms.TreeNode treeNode = findTreeNodeFromCoreNode(e.Node);
+                treeNode.Remove();
+            }    
         }
 
         #endregion

@@ -289,8 +289,8 @@ namespace Obi
                 case Obi.Events.Project.StateChange.Opened:
                     mProjectPanel.Project = mProject;
                     mProjectPanel.SynchronizeWithCoreTree(mProject.getPresentation().getRootNode());
-                    mAddSectionAtSameLevelToolStripMenuItem.Click +=
-                        new System.EventHandler(mProjectPanel.TOCPanel.addSectionAtSameLevelToolStripMenuItem_Click);
+                    //mAddSectionAtSameLevelToolStripMenuItem.Click +=
+                    //    new System.EventHandler(mProjectPanel.TOCPanel.addSectionAtSameLevelToolStripMenuItem_Click);
                     FormUpdateOpenedProject();
                     break;
                 case Obi.Events.Project.StateChange.Saved:
