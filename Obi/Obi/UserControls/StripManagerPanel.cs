@@ -91,6 +91,15 @@ namespace Obi.UserControls
             strip.Label = e.Label;
         }
 
+        internal void SyncDeletedNode(object sender, Events.Sync.DeletedNodeEventArgs e)
+        {
+            if (e.Node != null)
+            {
+                SectionStrip strip = mNodeMap[e.Node];
+                mFlowLayoutPanel.Controls.Remove(strip);
+            }
+        }
+
         #endregion
     }
 }
