@@ -457,6 +457,7 @@ time = Convert.ToInt32(dTemp * 0.48 );
 			
 // Stopping process begins
 			SoundBuffer.Stop () ;
+			ob_VuMeter.Reset () ;
 			if (m_PlayFile == true)
 			{
 				m_br.Close();
@@ -557,7 +558,7 @@ StateChanged ob_StateChanged = new StateChanged (m_State) ;
 
 
 				RefreshThread.Abort () ;
-			
+ob_VuMeter.Reset () ;			
 				if (m_PlayFile == true)
 					m_br.Close();
 				

@@ -277,6 +277,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "events\VuMeterEvents\Reset.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "events\VuMeterEvents\UpdateForms.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

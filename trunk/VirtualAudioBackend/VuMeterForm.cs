@@ -70,6 +70,7 @@ namespace VirtualAudioBackend
 			this.txtOverloadLeft.AccessibleName = "OverloadLeft";
 			this.txtOverloadLeft.Location = new System.Drawing.Point(424, 240);
 			this.txtOverloadLeft.Name = "txtOverloadLeft";
+			this.txtOverloadLeft.ReadOnly = true;
 			this.txtOverloadLeft.TabIndex = 0;
 			this.txtOverloadLeft.Text = "";
 			// 
@@ -78,6 +79,7 @@ namespace VirtualAudioBackend
 			this.txtOverloadRight.AccessibleName = "Overload Right";
 			this.txtOverloadRight.Location = new System.Drawing.Point(424, 296);
 			this.txtOverloadRight.Name = "txtOverloadRight";
+			this.txtOverloadRight.ReadOnly = true;
 			this.txtOverloadRight.TabIndex = 1;
 			this.txtOverloadRight.Text = "";
 			// 
@@ -325,6 +327,7 @@ VuMeter ob_VuMeter  = sender as VuMeter ;
 			}
 
 BeepEnabled =true  ;
+			
 			}	
 
 // repeats the LoadBeep function to repeat beeps while there is overload
@@ -347,6 +350,41 @@ txtAmplitudeRight.Text = AmplitudeRight.ToString () ;
 		{
 			this.Visible = false  ;
 		//this.Close () ;
+		}
+
+		internal void CatchResetEvent ( object sender , VuMeterEvent ob_VuMeterEvent)
+		{
+			System.Drawing.Graphics objGraphics;
+			objGraphics = this.CreateGraphics();		
+
+			
+
+			
+			Pen PenVackPaint= new Pen(Color.White);
+			PenVackPaint.Width = 600 ;
+
+			objGraphics.DrawLine(PenVackPaint , 0, 0, 0, 600);		
+
+			Pen PenVackground = new Pen(Color.White);
+			PenVackground.Width = LineWidth ;
+			objGraphics.DrawLine(PenVackground , PeakOverloadLightX, PeakOverloadLightY, PeakOverloadLightX , PeakOverloadLightY + LineWidth + LineWidth);	
+			objGraphics.DrawLine(PenVackground , PeakOverloadLightX + LineWidth, PeakOverloadLightY, PeakOverloadLightX + LineWidth , PeakOverloadLightY + LineWidth + LineWidth);	
+
+			HighTop =0 ;
+		HighBottom = 0 ;
+
+		NormalTop = 0 ;
+		NormalBottom = 0 ;
+
+		LowTop = 0 ;
+		LowBottom = 0 ;
+
+LineWidth = 0 ;
+AmplitudeLeft = 0 ;
+			AmplitudeRight = 0 ;
+
+			txtOverloadLeft.Text = " " ;
+			txtOverloadRight.Text = " " ;
 		}
 
 // end of class
