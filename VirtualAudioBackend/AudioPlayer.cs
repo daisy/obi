@@ -72,7 +72,7 @@ EndOfAudioAsset  ob_EndOfAudioAsset  = new EndOfAudioAsset () ;
 		UpdateVuMeter ob_UpdateVuMeter = new UpdateVuMeter () ;
 
 // create objects for handling events
-CatchEvents ob_CatchEvents = new CatchEvents () ;
+//CatchEvents ob_CatchEvents = new CatchEvents () ;
 //VuMeter ob_VuMeter ;
 		VuMeter ob_VuMeter = new VuMeter () ;
 		
@@ -82,8 +82,8 @@ CatchEvents ob_CatchEvents = new CatchEvents () ;
 bool m_EventsEnabled = true ;
 		void AssociateEvents ()
 		{
-ob_StateChanged.StateChangedEvent+=new DStateChangedEvent (ob_CatchEvents.CatchStateChangedEvent) ;
-ob_EndOfAudioAsset.EndOfAudioAssetEvent+=new DEndOfAudioAssetEvent(ob_CatchEvents.CatchEndOfAudioEvent) ;
+//ob_StateChanged.StateChangedEvent+=new DStateChangedEvent (ob_CatchEvents.CatchStateChangedEvent) ;
+//ob_EndOfAudioAsset.EndOfAudioAssetEvent+=new DEndOfAudioAssetEvent(ob_CatchEvents.CatchEndOfAudioEvent) ;
 //ob_EndOfAudioBuffer.EndOfAudioBufferEvent+=new DEndOfAudioBufferEvent  (ob_CatchEvents.CatchEndOfAudioEvent) ;
 			
 		}
@@ -113,7 +113,7 @@ void TriggerStateChangedEvent ( StateChanged ob)
 {
 			if (m_EventsEnabled == true)
 			{
-				ob.StateChangedEvent+=new DStateChangedEvent (ob_CatchEvents.CatchStateChangedEvent) ;
+//				ob.StateChangedEvent+=new DStateChangedEvent (ob_CatchEvents.CatchStateChangedEvent) ;
 
 				ob.NotifyStateChanged ( this, ob) ;
 			}
@@ -210,7 +210,7 @@ Set_m_Step (value) ;
 			}
 			else
 			{
-MessageBox.Show("Invalid compression factor") ;
+throw new Exception ("Invalid Compression Factor") ;
 			}
 		}
 

@@ -232,10 +232,10 @@ namespace VirtualAudioBackend
 
 		void FireEvent(StateChanged mStateChanged)
 		{
-			CatchEvents mCatchEvent = new CatchEvents();
+			//CatchEvents mCatchEvent = new CatchEvents();
 			if(mEventsEnabled == true)
 			{
-				mStateChanged.OnStateChangedEvent+=new DStateChangedEventHandller(mCatchEvent.CatchOnStateChangedEvent);
+				//mStateChanged.OnStateChangedEvent+=new DStateChangedEventHandller(mCatchEvent.CatchOnStateChangedEvent);
 				mStateChanged.NotifyChange(this, mStateChanged);
 			}
 		}
