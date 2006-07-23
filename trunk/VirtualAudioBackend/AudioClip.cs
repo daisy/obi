@@ -256,6 +256,7 @@ EndTime = m_dBeginTime + EndTime ;
 
 
 		// temp checks are as follows
+/*
 if (BeginTime < this.BeginTime ) 
 MessageBox.Show ("error begin time") ;
 
@@ -264,6 +265,7 @@ if (EndTime > this.EndTime  )
 
 if (BeginTime>= EndTime)
 MessageBox.Show ("both") ;
+*/
 
 			if (BeginTime >= this.BeginTime && EndTime <= this.EndTime  && BeginTime< EndTime)
 			{

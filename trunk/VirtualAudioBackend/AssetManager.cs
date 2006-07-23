@@ -33,7 +33,7 @@ return m_sDirPath ;
 public Hashtable m_htExists  = new Hashtable ();
 
 // object for catch class
-		CatchEvents ob_Catch = new CatchEvents();
+		//CatchEvents ob_Catch = new CatchEvents();
 
 		/// <summary>
 		/// Create the asset manager taking as argument the project directory where the data should live.
@@ -203,7 +203,7 @@ throw new Exception ("Asset not found in Hashtable") ;
 m_htExists.Remove(assetToDelete.Name) ;
 				
 				AssetDeleted ob_AssetDeleted = new AssetDeleted(assetToDelete);
-				ob_AssetDeleted.AssetDeletedEvent+= new DAssetDeletedEvent(ob_Catch.CatchAssetDeletedEvent);
+				//ob_AssetDeleted.AssetDeletedEvent+= new DAssetDeletedEvent(ob_Catch.CatchAssetDeletedEvent);
 				ob_AssetDeleted.NotifyAssetDeleted(this, ob_AssetDeleted);
 				assetToDelete = null ;
 			}
@@ -270,7 +270,7 @@ break ;
 throw new Exception ("Asset cannot be renamed : not in hashtable") ;
 
 			AssetRenamed ob_AssetRenamed =  new AssetRenamed(asset, OldName);
-			ob_AssetRenamed.AssetRenamedEvent+= new DAssetRenamedEvent(ob_Catch.CatchAssetRenamedEvent);
+			//ob_AssetRenamed.AssetRenamedEvent+= new DAssetRenamedEvent(ob_Catch.CatchAssetRenamedEvent);
 			ob_AssetRenamed.NotifyAssetRenamed(this, ob_AssetRenamed);
 			return OldName;
 		}

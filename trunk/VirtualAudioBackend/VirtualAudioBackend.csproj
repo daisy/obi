@@ -157,11 +157,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "CatchEvents.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Commands.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
