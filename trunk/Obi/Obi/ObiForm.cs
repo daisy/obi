@@ -309,6 +309,8 @@ namespace Obi
                 new EventHandler(mProjectPanel.TOCPanel.addSectionAtSameLevelToolStripMenuItem_Click);
             mAddsubsectionToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.TOCPanel.addSubSectionToolStripMenuItem_Click);
+            mRenameSectionToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.TOCPanel.editLabelToolStripMenuItem_Click);
             mDeleteSectionToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.TOCPanel.deleteSectionToolStripMenuItem_Click);
         }
@@ -354,14 +356,18 @@ namespace Obi
 
 
         /// <summary>
-        /// Initialize the application settings.
+        /// Initialize the application settings: get the settings from the saved user settings or the system
+        /// and add the list of recent projects (at least those that actually exist) to the recent project menu.
         /// </summary>
         private void InitializeSettings()
         {
             mSettings = Settings.GetSettings();
             for (int i = mSettings.RecentProjects.Count - 1; i >= 0; --i)
             {
-                AddRecentProjectsItem((string)mSettings.RecentProjects[i]);
+                if (!AddRecentProjectsItem((string)mSettings.RecentProjects[i]))
+                {
+                    mSettings.RecentProjects.RemoveAt(i);
+                }
             }
         }
 
@@ -399,20 +405,28 @@ namespace Obi
                     mOpenRecentProjectToolStripMenuItem.DropDownItems.RemoveAt(i);
                 }
             }
-            mSettings.RecentProjects.Insert(0, path);
-            AddRecentProjectsItem(path);
+            if (AddRecentProjectsItem(path)) mSettings.RecentProjects.Insert(0, path);
         }
 
         /// <summary>
-        /// Add an item in the recent projects list
+        /// Add an item in the recent projects list, if the file actually exists.
         /// </summary>
         /// <param name="path">The path of the item to add.</param>
-        private void AddRecentProjectsItem(string path)
+        /// <returns>True if the file was added.</returns>
+        private bool AddRecentProjectsItem(string path)
         {
-            ToolStripMenuItem item = new ToolStripMenuItem();
-            item.Text = Path.GetFileName(path);
-            item.Click += new System.EventHandler(delegate(object sender, EventArgs e) { OpenProject(path); });
-            mOpenRecentProjectToolStripMenuItem.DropDownItems.Insert(0, item);
+            if (File.Exists(path))
+            {
+                ToolStripMenuItem item = new ToolStripMenuItem();
+                item.Text = Path.GetFileName(path);
+                item.Click += new System.EventHandler(delegate(object sender, EventArgs e) { OpenProject(path); });
+                mOpenRecentProjectToolStripMenuItem.DropDownItems.Insert(0, item);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>

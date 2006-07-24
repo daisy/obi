@@ -62,12 +62,11 @@ namespace Obi.UserControls
             this.moveUpToolStripMenuItem,
             this.moveDownToolStripMenuItem,
             this.increaseLevelToolStripMenuItem,
-            this.editLabelToolStripMenuItem,
             this.decreaseLevelToolStripMenuItem,
+            this.editLabelToolStripMenuItem,
             this.deleteSectionToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(205, 202);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // addSectionAtSameLevelToolStripMenuItem
             // 
