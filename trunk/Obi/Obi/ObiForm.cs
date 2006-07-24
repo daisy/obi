@@ -313,6 +313,8 @@ namespace Obi
                 new EventHandler(mProjectPanel.TOCPanel.editLabelToolStripMenuItem_Click);
             mDeleteSectionToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.TOCPanel.deleteSectionToolStripMenuItem_Click);
+            mAddStripToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.StripManager.addStripToolStripMenuItem_Click);
         }
 
         #endregion

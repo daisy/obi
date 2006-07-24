@@ -29,6 +29,8 @@ namespace Obi.UserControls
                 if (mProject != null)
                 {
                     mTOCPanel.AddSiblingSection -= new Events.Node.AddSiblingSectionHandler(mProject.CreateSiblingSectionRequested);
+                    mStripManagerPanel.AddSiblingSection -=
+                        new Events.Node.AddSiblingSectionHandler(mProject.CreateSiblingSectionRequested);
                     mProject.AddedSiblingNode -= new Events.Sync.AddedSiblingNodeHandler(mTOCPanel.SyncAddedSiblingNode);
                     mProject.AddedSiblingNode -= new Events.Sync.AddedSiblingNodeHandler(mStripManagerPanel.SyncAddedSiblingNode);
 
@@ -50,6 +52,8 @@ namespace Obi.UserControls
                 if (value != null)
                 {
                     mTOCPanel.AddSiblingSection += new Events.Node.AddSiblingSectionHandler(value.CreateSiblingSectionRequested);
+                    mStripManagerPanel.AddSiblingSection +=
+                        new Events.Node.AddSiblingSectionHandler(value.CreateSiblingSectionRequested);
                     value.AddedSiblingNode += new Events.Sync.AddedSiblingNodeHandler(mTOCPanel.SyncAddedSiblingNode);
                     value.AddedSiblingNode += new Events.Sync.AddedSiblingNodeHandler(mStripManagerPanel.SyncAddedSiblingNode);
 
