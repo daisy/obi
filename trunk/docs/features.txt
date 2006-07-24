@@ -1,20 +1,70 @@
+Obi feature list for iterations 1 and 2.
+$Id$
+
+This is an edited version of the feature list decided in Amsterdam in July
+2006. The plan for iteration 1 is to reach version 0.5 of the application,
+where most backend features are implemented (i.e. the application is
+functional) but the graphical interface is deliberately unpolished (e.g. no
+display of waveform.) Version 1.0 is to be reached by iteration 2, where the
+goal is to deliver a fully-usable and documented beta version of Obi.
+
+
+Iteration 1 Target
+
+Version 0.5 focuses on audio rather than graphics, to emphasize the audio
+aspect and the accessibility of the application (and also shorten
+development time.) This will also serve as a testbed to see how abstract the
+graphical representation of elements can be.
+
+High-level feature list:
+
+  - NCX-only book
+  - NCX editing: the table of contents can be viewed as a tree (which will
+    become the NCX once exported to DAISY) and contains all the headings. A
+    text label can be attached to the heading (only one at the moment,
+    although the Z spec allows several.) This is the only text content of
+    the book.
+  - Page numbers can be inserted directly in the book, they do not appear in
+    the table of contents. Although there will probably be a special dialog to
+    manage them, at least for QA purposes. At this point, it looks like page
+    numbers will be shifted to iteration 2. No navlist, no skippable
+    structures.
+
+The application has two main view of the book:
+
+  1. Table of contents is a tree view.
+     Each node in the tree is a section, child nodes are subsections.
+     The tree view represents the top of the actual core tree, without all
+     the phrases.
+     This view behaves like a tree: deleting a section node will delete all
+     of its descendants.
+     This view allows the editor of the book to focus on the structure.
+     No recording takes place in this view, but when audio assets are
+     associated with headings, they should be playable here.
+
+  2. Book content is a strip view.
+     Each section is represented in a strip. The strip view shows a flat
+     list of strip, just like a book would be. A section strip contains all
+     the contents of the section, not just the heading--every phrase is
+     there.
+
+
+Iteration 2
+
+  - Some DAISY 3 features: pages (a must), navlist (probably not), skippable
+    structures (doable), resources (really not sure.) Those missing features
+    can be part of iteration 3; version 1.5 could add missing features,
+    version 2 could be addition of text.
+
+
+
+---
+
+Rough notes below:
+
 
 ** Application team **
 
-  Exact target for application end iter1 target
-  - to have very little emphasis on graphical information in the app;
-  rely mostly on audio, as much as possible. The two reasons are
-  	- helps with accessibility
-  	- emphasizes the audio aspect
-  - for this iter we should stick to a very abstract representation
-  	How far can we go without using forms for selection etc?
-  	We still have a path to go from that towards a graphical representation
-  	We still have strips, but manipulate blocks.
-  - Roadmap, and top level design, exlusions and inclusion
-  High Level view:
-   create an ncx only book
-   put headings
-   put pages, no navlists, no skippable structures
    main view is strip view, where every strip
 	     container strip (corresponds to one heading)            
 	       audio strip
@@ -33,9 +83,6 @@
         parallell to audio strip
         small marker that tells us; this is a heading, page etc
         Has exactly one heading and 0..n pages
-   tree view for table of contents
-     name of headings
-     can add heading either via treeview or strips     
    Should we draw the waveform? Not this time. Iteration two (january) should be version 1,
    which will include this.
    Where do we put the text that actually should go into the book?
