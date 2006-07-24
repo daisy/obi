@@ -9,12 +9,13 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Obi</RootNamespace>
     <AssemblyName>Obi</AssemblyName>
-    <ManifestCertificateThumbprint>008A35F93462D9C0E04B8DADD094D9A944FD6FCE</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>03ED7178F8829969A9A733DAABF858F68795A179</ManifestCertificateThumbprint>
     <ManifestKeyFile>Obi_TemporaryKey.pfx</ManifestKeyFile>
-    <GenerateManifests>false</GenerateManifests>
-    <SignManifests>false</SignManifests>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>true</SignManifests>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Documents and Settings\Julien Quint\My Documents\Obi Projects\</PublishUrl>
+    <TargetZone>LocalIntranet</TargetZone>
+    <PublishUrl>C:\Documents and Settings\Julien Quint\My Documents\Urakawa\trunk\urakawa\application\sandbox\Publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -24,9 +25,9 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationVersion>0.1.2.414</ApplicationVersion>
+    <ApplicationVersion>0.1.2.648</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetZone>LocalIntranet</TargetZone>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -178,6 +179,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <BaseApplicationManifest Include="Properties\app.manifest" />
+    <None Include="Obi_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
