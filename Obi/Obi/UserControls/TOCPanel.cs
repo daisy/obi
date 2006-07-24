@@ -414,13 +414,13 @@ namespace Obi.UserControls
             DeleteSection(this, new Events.Node.DeleteSectionEventArgs(GetSelectedSection()));
         }
 
-        private void editLabelToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void editLabelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.TreeNode sel = this.tocTree.SelectedNode;
             sel.BeginEdit();
         }
 
-        private void moveDownToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void moveDownToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //!! uncomment this when the event is handled by the ProjectPanel (or whomever)
             //otherwise it crashes
@@ -430,13 +430,13 @@ namespace Obi.UserControls
             this.MoveCurrentSectionDown();
         }
 
-        private void increaseLevelToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void increaseLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             IncreaseSectionLevel(this,
                 new Events.Node.IncreaseSectionLevelEventArgs(GetSelectedSection()));
         }
 
-        private void decreaseLevelToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void decreaseLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
         	System.Windows.Forms.TreeNode sel = this.tocTree.SelectedNode;
           sel.BeginEdit();
@@ -540,12 +540,7 @@ namespace Obi.UserControls
         //and i'm not online to look it up right now
         private void tocTree_Click(object sender, EventArgs e)
         {
-            
-        }
 
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
-        {
-           
         }
 
         #region Sync event handlers
@@ -624,5 +619,6 @@ namespace Obi.UserControls
         }
 
         #endregion
+
     }
 }
