@@ -95,17 +95,11 @@
     <Compile Include="Dialogs\UserProfile.Designer.cs">
       <DependentUpon>UserProfile.cs</DependentUpon>
     </Compile>
-    <Compile Include="Events\Node\DeleteSectionEventArgs.cs" />
-    <Compile Include="Events\Node\AddSectionEventArgs.cs" />
-    <Compile Include="Events\Node\ChangeSectionLevelEventArgs.cs" />
-    <Compile Include="Events\Node\MoveSectionEventArgs.cs" />
-    <Compile Include="Events\Node\RenameSectionEventArgs.cs" />
+    <Compile Include="Events\Node\NodeEventArgs.cs" />
+    <Compile Include="Events\Node\RenameNodeEventArgs.cs" />
     <Compile Include="Events\Project\StateChangedEventArgs.cs" />
     <Compile Include="Events\Strip\SelectedEventArgs.cs" />
-    <Compile Include="Events\Sync\AddedSectionNodeEventArgs.cs" />
-    <Compile Include="Events\Sync\DeletedNodeEventArgs.cs" />
-    <Compile Include="Events\Sync\MovedNodeEventArgs.cs" />
-    <Compile Include="Events\Sync\RenamedNodeEventArgs.cs" />
+    <Compile Include="Events\Node\AddedSectionNodeEventArgs.cs" />
     <Compile Include="Localizer.cs" />
     <Compile Include="messages.Designer.cs">
       <AutoGen>True</AutoGen>

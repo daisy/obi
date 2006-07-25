@@ -35,11 +35,11 @@ namespace Obi
         public static readonly string AnnotationChannel = "obi.annotation";  // canonical name of the annotation channel
 
         public event Events.Project.StateChangedHandler StateChanged;       // the state of the project changed (modified, saved...)
-        public event Events.Sync.AddedSectionNodeHandler AddedSectionNode;  // a section node was added to the TOC
-        public event Events.Sync.DeletedNodeHandler DeletedNode;            // a node was deleted from the presentation
-        public event Events.Sync.RenamedNodeHandler RenamedNode;            // a node was renamed in the presentation
-        public event Events.Sync.MovedNodeUpHandler MovedNodeUp;            // a node was moved up in the presentation
-        public event Events.Sync.MovedNodeDownHandler MovedNodeDown;        // a node was moved down in the presentation
+        public event Events.Node.AddedSectionNodeHandler AddedSectionNode;  // a section node was added to the TOC
+        public event Events.Node.DeletedNodeHandler DeletedNode;            // a node was deleted from the presentation
+        public event Events.Node.RenamedNodeHandler RenamedNode;            // a node was renamed in the presentation
+        public event Events.Node.MovedNodeUpHandler MovedNodeUp;            // a node was moved up in the presentation
+        public event Events.Node.MovedNodeDownHandler MovedNodeDown;        // a node was moved down in the presentation
         /// <summary>
         /// This flag is set to true if the project contains modifications that have not been saved.
         /// </summary>
@@ -334,7 +334,7 @@ namespace Obi
                 getPresentation().getRootNode().appendChild(sibling);
                 NodePositionVisitor visitor = new NodePositionVisitor(sibling);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
-                AddedSectionNode(this, new Events.Sync.AddedSectionNodeEventArgs(origin, sibling,
+                AddedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs(origin, sibling,
                     ((CoreNode)sibling.getParent()).indexOf(sibling), visitor.Position));
             }
             else
@@ -343,17 +343,17 @@ namespace Obi
                 parent.insert(sibling, parent.indexOf(contextNode) + 1);
                 NodePositionVisitor visitor = new NodePositionVisitor(sibling);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
-                AddedSectionNode(this, new Events.Sync.AddedSectionNodeEventArgs(origin, sibling, parent.indexOf(sibling),
+                AddedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs(origin, sibling, parent.indexOf(sibling),
                     visitor.Position));
             }
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
 
-        public void CreateSiblingSectionRequested(object sender, Events.Node.AddSectionEventArgs e)
+        public void CreateSiblingSectionRequested(object sender, Events.Node.NodeEventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("create sibling request from " + sender.ToString() + " with hash: " + sender.GetHashCode());
-            CreateSiblingSection(sender, e.ContextNode);
+            CreateSiblingSection(sender, e.Node);
         }
 
         /// <summary>
@@ -366,14 +366,14 @@ namespace Obi
             parent.appendChild(child);
             NodePositionVisitor visitor = new NodePositionVisitor(child);
             getPresentation().getRootNode().acceptDepthFirst(visitor);
-            AddedSectionNode(this, new Events.Sync.AddedSectionNodeEventArgs(origin, child, parent.indexOf(child), visitor.Position));
+            AddedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs(origin, child, parent.indexOf(child), visitor.Position));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
 
-        public void CreateChildSectionRequested(object sender, Events.Node.AddSectionEventArgs e)
+        public void CreateChildSectionRequested(object sender, Events.Node.NodeEventArgs e)
         {
-            CreateChildSection(sender, e.ContextNode);
+            CreateChildSection(sender, e.Node);
         }
 
         /// <summary>
@@ -384,7 +384,7 @@ namespace Obi
         {
             CoreNode parent = (CoreNode)node.getParent();
             parent.insert(node, index);
-            AddedSectionNode(this, new Events.Sync.AddedSectionNodeEventArgs(this, node, index, position));
+            AddedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs(this, node, index, position));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
@@ -397,13 +397,13 @@ namespace Obi
             if (node != null)
             {
                 node.detach();
-                DeletedNode(this, new Events.Sync.DeletedNodeEventArgs(origin, node));
+                DeletedNode(this, new Events.Node.NodeEventArgs(origin, node));
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
             }
         }
         
-        public void RemoveNodeRequested(object sender, Events.Node.DeleteSectionEventArgs e)
+        public void RemoveNodeRequested(object sender, Events.Node.NodeEventArgs e)
         {
             RemoveNode(sender, e.Node);
         }
@@ -417,7 +417,7 @@ namespace Obi
             bool moveUpSucceeded = ExecuteMoveNodeUpLogic(node);
             if (moveUpSucceeded)
             {
-                MovedNodeUp(this, new Events.Sync.MovedNodeEventArgs(origin, node));
+                MovedNodeUp(this, new Events.Node.NodeEventArgs(origin, node));
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
             }
@@ -462,7 +462,7 @@ namespace Obi
             }
          }
         
-        public void MoveNodeUpRequested(object sender, Events.Node.MoveSectionEventArgs e)
+        public void MoveNodeUpRequested(object sender, Events.Node.NodeEventArgs e)
         {
             MoveNodeUp(sender, e.Node);
         }
@@ -473,7 +473,7 @@ namespace Obi
             bool moveDownSucceeded = ExecuteMoveNodeDownLogic(node);
             if (moveDownSucceeded)
             {
-                MovedNodeDown(this, new Events.Sync.MovedNodeEventArgs(origin, node));
+                MovedNodeDown(this, new Events.Node.NodeEventArgs(origin, node));
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
             }
@@ -518,7 +518,7 @@ namespace Obi
             }
         }
 
-        public void MoveNodeDownRequested(object sender, Events.Node.MoveSectionEventArgs e)
+        public void MoveNodeDownRequested(object sender, Events.Node.NodeEventArgs e)
         {
             MoveNodeDown(sender, e.Node);
         }
@@ -529,12 +529,12 @@ namespace Obi
         public void RenameNode(object origin, CoreNode node, string label)
         {
             GetTextMedia(node).setText(label);
-            RenamedNode(this, new Events.Sync.RenamedNodeEventArgs(origin, node, label));
+            RenamedNode(this, new Events.Node.RenameNodeEventArgs(origin, node, label));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
 
-        public void RenameNodeRequested(object sender, Events.Node.RenameSectionEventArgs e)
+        public void RenameNodeRequested(object sender, Events.Node.RenameNodeEventArgs e)
         {
             RenameNode(sender, e.Node, e.Label);
         }

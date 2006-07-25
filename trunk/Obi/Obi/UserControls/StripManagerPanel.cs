@@ -18,8 +18,8 @@ namespace Obi.UserControls
         private Dictionary<CoreNode, SectionStrip> mNodeMap;  // find a strip for a given node
         private CoreNode mSelectedNode;                       // the selected node
 
-        public event Events.Node.AddSiblingSectionHandler AddSiblingSection;
-        public event Events.Node.RenameSectionHandler RenameSection;
+        public event Events.Node.RequestToAddSiblingNodeHandler AddSiblingSection;
+        public event Events.Node.RequestToRenameNodeHandler RenameSection;
         public event Events.Strip.SelectedHandler SelectedStrip;
 
         public CoreNode SelectedNode
@@ -99,7 +99,7 @@ namespace Obi.UserControls
 
         #region Sync event handlers
 
-        internal void SyncAddedSectionNode(object sender, Events.Sync.AddedSectionNodeEventArgs e)
+        internal void SyncAddedSectionNode(object sender, Events.Node.AddedSectionNodeEventArgs e)
         {
             AddStripFromNode(e.Node, e.Position, e.Origin == this);
         }
@@ -127,7 +127,7 @@ namespace Obi.UserControls
             if (rename) strip.StartRenaming();
         }
 
-        internal void SyncRenamedNode(object sender, Events.Sync.RenamedNodeEventArgs e)
+        internal void SyncRenamedNode(object sender, Events.Node.RenameNodeEventArgs e)
         {
             SectionStrip strip = mNodeMap[e.Node];
             strip.Label = e.Label;
@@ -136,7 +136,7 @@ namespace Obi.UserControls
         /// <summary>
         /// When deleting a node from the tree, all descendants are deleted as well.
         /// </summary>
-        internal void SyncDeletedNode(object sender, Events.Sync.DeletedNodeEventArgs e)
+        internal void SyncDeletedNode(object sender, Events.Node.NodeEventArgs e)
         {
             if (e.Node != null)
             {
@@ -161,7 +161,7 @@ namespace Obi.UserControls
 
         internal void addStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddSiblingSection(this, new Events.Node.AddSectionEventArgs(mSelectedNode));
+            AddSiblingSection(this, new Events.Node.NodeEventArgs(this, mSelectedNode));
         }
 
         internal void renameStripToolStripMenuItem_Click(object sender, EventArgs e)
@@ -181,7 +181,7 @@ namespace Obi.UserControls
         /// <param name="strip">The renamed strip (with its new name as a label.)</param>
         internal void RenamedSectionStrip(SectionStrip strip)
         {
-            RenameSection(this, new Events.Node.RenameSectionEventArgs(strip.Node, strip.Label));
+            RenameSection(this, new Events.Node.RenameNodeEventArgs(this, strip.Node, strip.Label));
         }
     }
 }
