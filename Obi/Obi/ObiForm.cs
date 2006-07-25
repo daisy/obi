@@ -315,6 +315,8 @@ namespace Obi
                 new EventHandler(mProjectPanel.TOCPanel.deleteSectionToolStripMenuItem_Click);
             mAddStripToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.addStripToolStripMenuItem_Click);
+            renameStripToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.StripManager.renameStripToolStripMenuItem_Click);
         }
 
         #endregion
@@ -437,15 +439,19 @@ namespace Obi
         private void FormUpdateClosedProject()
         {
             this.Text = Localizer.Message("obi");
-            mSaveProjectToolStripMenuItem.Enabled = false;                       // cannot save
-            mSaveProjectasToolStripMenuItem.Enabled = false;                     // cannot save as
-            mDiscardChangesToolStripMenuItem.Enabled = false;                    // cannot discard changes
-            mCloseProjectToolStripMenuItem.Enabled = false;                      // cannot close
-            foreach (ToolStripItem item in editToolStripMenuItem.DropDownItems)  // cannot do any edit
+            mSaveProjectToolStripMenuItem.Enabled = false;                        // cannot save
+            mSaveProjectasToolStripMenuItem.Enabled = false;                      // cannot save as
+            mDiscardChangesToolStripMenuItem.Enabled = false;                     // cannot discard changes
+            mCloseProjectToolStripMenuItem.Enabled = false;                       // cannot close
+            foreach (ToolStripItem item in editToolStripMenuItem.DropDownItems)   // cannot do any edit
             {
                 item.Enabled = false;
             }
-            foreach (ToolStripItem item in mTocToolStripMenuItem.DropDownItems)   // cannot modify the TOC
+            foreach (ToolStripItem item in mTocToolStripMenuItem.DropDownItems)    // cannot modify the TOC
+            {
+                item.Enabled = false;
+            }
+            foreach (ToolStripItem item in mStripsToolStripMenuItem.DropDownItems)  // cannot modify the strips
             {
                 item.Enabled = false;
             }
@@ -470,11 +476,15 @@ namespace Obi
             mSaveProjectasToolStripMenuItem.Enabled = true;
             mDiscardChangesToolStripMenuItem.Enabled = false;
             mCloseProjectToolStripMenuItem.Enabled = true;
-            foreach (ToolStripItem item in editToolStripMenuItem.DropDownItems)  // can do edits
+            foreach (ToolStripItem item in editToolStripMenuItem.DropDownItems)     // can do edits
             {
                 item.Enabled = true;
             }
-            foreach (ToolStripItem item in mTocToolStripMenuItem.DropDownItems)   // can modify the TOC
+            foreach (ToolStripItem item in mTocToolStripMenuItem.DropDownItems)     // can modify the TOC
+            {
+                item.Enabled = true;
+            }
+            foreach (ToolStripItem item in mStripsToolStripMenuItem.DropDownItems)  // can modify the strips
             {
                 item.Enabled = true;
             }

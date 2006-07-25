@@ -19,6 +19,7 @@ namespace Obi.UserControls
         private CoreNode mSelectedNode;                       // the selected node
 
         public event Events.Node.AddSiblingSectionHandler AddSiblingSection;
+        public event Events.Node.RenameSectionHandler RenameSection;
 
         public CoreNode SelectedNode
         {
@@ -146,6 +147,19 @@ namespace Obi.UserControls
             AddSiblingSection(this, new Events.Node.AddSiblingSectionEventArgs(mSelectedNode));
         }
 
+        internal void renameStripToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mSelectedNode != null)
+            {
+                mNodeMap[mSelectedNode].StartRenaming();
+            }
+        }
+
         #endregion
+
+        internal void RenamedSectionStrip(SectionStrip strip)
+        {
+            RenameSection(this, new Events.Node.RenameSectionEventArgs(strip.Node, strip.Label));
+        }
     }
 }

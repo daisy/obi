@@ -507,9 +507,25 @@ namespace Obi.UserControls
         /// <returns></returns>
         private System.Windows.Forms.TreeNode findTreeNodeFromCoreNode(CoreNode node)
         {
+            System.Windows.Forms.TreeNode foundNode = FindTreeNodeWithoutLabel(node);
+            if (foundNode.Text != Project.GetTextMedia(node).getText())
+            {
+                throw new Exception(String.Format("Found tree node matching core node #{0} but labels mismatch (wanted \"{1}\" but got \"{2}\").",
+                    node.GetHashCode(), Project.GetTextMedia(node).getText(), foundNode.Text));
+            }
+            return foundNode;
+        }
+
+        /// <summary>
+        /// Find a tree node for a core node, regardless of its label (used by rename.)
+        /// </summary>
+        /// <param name="node">The node to find.</param>
+        /// <returns>The corresponding tree node.</returns>
+        private System.Windows.Forms.TreeNode FindTreeNodeWithoutLabel(CoreNode node)
+        {
             System.Windows.Forms.TreeNode foundNode = null;
-            System.Windows.Forms.TreeNode[] treeNodes 
-                = tocTree.Nodes.Find(node.GetHashCode().ToString(), true);            
+            System.Windows.Forms.TreeNode[] treeNodes
+                = tocTree.Nodes.Find(node.GetHashCode().ToString(), true);
             //(please try to enjoy this long comment:)
             //since a key isn't unique and we get a list back from Nodes.Find,
             //try to be as sure as possible that it's the same node
@@ -517,8 +533,8 @@ namespace Obi.UserControls
             //as text support improves and as multiple labels are supported on TOC items
             for (int i = 0; i < treeNodes.GetLength(0); i++)
             {
-                //check the tag field and the text label
-                if (treeNodes[i].Tag == node && treeNodes[i].Text == Project.GetTextMedia(node).getText())
+                //check the tag field only
+                if (treeNodes[i].Tag == node)
                 {
                     foundNode = treeNodes[i];
                     break;
@@ -532,7 +548,7 @@ namespace Obi.UserControls
             }
             return foundNode;
         }
-        
+
         //trying to figure out which event to call when the tree gets right-clicked
         //it's really annoying to not have the node get selected when you right click it
         //because then, menu actions are applied to whichever node *is* selected
@@ -604,7 +620,7 @@ namespace Obi.UserControls
         {
             if (e.Origin != this)
             {
-                System.Windows.Forms.TreeNode treeNode = findTreeNodeFromCoreNode(e.Node);
+                System.Windows.Forms.TreeNode treeNode = FindTreeNodeWithoutLabel(e.Node);
                 treeNode.Text = e.Label;
             }
         }
