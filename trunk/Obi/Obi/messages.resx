@@ -227,4 +227,7 @@ Oh well.</value>
     <value>The file {0} already exists.
 Do you want to replace the project contained in this file?</value>
   </data>
+  <data name="add_section_command_label" xml:space="preserve">
+    <value>add section</value>
+  </data>
 </root>

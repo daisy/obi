@@ -68,7 +68,7 @@ namespace Obi.UserControls
             this.renameStripToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(128, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(114, 48);
             // 
             // addStripToolStripMenuItem
             // 

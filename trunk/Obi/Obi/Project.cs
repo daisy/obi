@@ -35,6 +35,7 @@ namespace Obi
         public static readonly string AnnotationChannel = "obi.annotation";  // canonical name of the annotation channel
 
         public event Events.Project.StateChangedHandler StateChanged;       // the state of the project changed (modified, saved...)
+        public event Events.Sync.AddedSectionNodeHandler AddedSectionNode;  // a section node was added to the TOC
         public event Events.Sync.AddedChildNodeHandler AddedChildNode;      // a new child node was added to the presentation
         public event Events.Sync.AddedSiblingNodeHandler AddedSiblingNode;  // a new sibling node was added to the presentation
         public event Events.Sync.DeletedNodeHandler DeletedNode;            // a node was deleted from the presentation
@@ -334,7 +335,9 @@ namespace Obi
                 getPresentation().getRootNode().appendChild(sibling);
                 NodePositionVisitor visitor = new NodePositionVisitor(sibling);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
-                AddedChildNode(this, new Events.Sync.AddedChildNodeEventArgs(origin, sibling, visitor.Position));
+                //AddedChildNode(this, new Events.Sync.AddedChildNodeEventArgs(origin, sibling, visitor.Position));
+                AddedSectionNode(this, new Events.Sync.AddedSectionNodeEventArgs(origin, sibling,
+                    ((CoreNode)sibling.getParent()).indexOf(sibling), visitor.Position));
             }
             else
             {
@@ -342,7 +345,9 @@ namespace Obi
                 parent.insert(sibling, parent.indexOf(contextNode) + 1);
                 NodePositionVisitor visitor = new NodePositionVisitor(sibling);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
-                AddedSiblingNode(this, new Events.Sync.AddedSiblingNodeEventArgs(origin, sibling, contextNode, visitor.Position));
+                //AddedSiblingNode(this, new Events.Sync.AddedSiblingNodeEventArgs(origin, sibling, contextNode, visitor.Position));
+                AddedSectionNode(this, new Events.Sync.AddedSectionNodeEventArgs(origin, sibling, parent.indexOf(sibling),
+                    visitor.Position));
             }
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -362,11 +367,11 @@ namespace Obi
             CoreNode child = CreateSectionNode();
             if (parent == null) parent = getPresentation().getRootNode();
             parent.appendChild(child);
-
             NodePositionVisitor visitor = new NodePositionVisitor(child);
             getPresentation().getRootNode().acceptDepthFirst(visitor);
-
-            AddedChildNode(this, new Events.Sync.AddedChildNodeEventArgs(origin, child, visitor.Position));
+            //AddedChildNode(this, new Events.Sync.AddedChildNodeEventArgs(origin, child, visitor.Position));
+            AddedSectionNode(this, new Events.Sync.AddedSectionNodeEventArgs(origin, child, parent.indexOf(child),
+                visitor.Position));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
@@ -374,6 +379,19 @@ namespace Obi
         public void CreateChildSectionRequested(object sender, Events.Node.AddChildSectionEventArgs e)
         {
             CreateChildSection(sender, e.ContextNode);
+        }
+
+        /// <summary>
+        /// This should be used by add child/add sibling.
+        /// AddedSectionNode event to replace AddedChild/Sibling as well.
+        /// </summary>
+        public void RedoAddSection(CoreNode node, int index, int position)
+        {
+            CoreNode parent = (CoreNode)node.getParent();
+            parent.insert(node, index);
+            AddedSectionNode(this, new Events.Sync.AddedSectionNodeEventArgs(this, node, index, position));
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
 
         /// <summary>

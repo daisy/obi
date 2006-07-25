@@ -81,6 +81,7 @@ namespace Obi.UserControls
             mTextBox.BackColor = BackColor;
             mTextBox.SelectedText = mLabel.Text;
             mTextBox.Visible = true;
+            mFlowLayoutPanel.Focus();
             mTextBox.Focus();
         }
 
