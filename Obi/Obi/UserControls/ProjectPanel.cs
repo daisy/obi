@@ -31,12 +31,15 @@ namespace Obi.UserControls
                     mTOCPanel.AddSiblingSection -= new Events.Node.AddSiblingSectionHandler(mProject.CreateSiblingSectionRequested);
                     mStripManagerPanel.AddSiblingSection -=
                         new Events.Node.AddSiblingSectionHandler(mProject.CreateSiblingSectionRequested);
-                    mProject.AddedSiblingNode -= new Events.Sync.AddedSiblingNodeHandler(mTOCPanel.SyncAddedSiblingNode);
-                    mProject.AddedSiblingNode -= new Events.Sync.AddedSiblingNodeHandler(mStripManagerPanel.SyncAddedSiblingNode);
+                    //mProject.AddedSiblingNode -= new Events.Sync.AddedSiblingNodeHandler(mTOCPanel.SyncAddedSiblingNode);
+                    //mProject.AddedSiblingNode -= new Events.Sync.AddedSiblingNodeHandler(mStripManagerPanel.SyncAddedSiblingNode);
+
+                    mProject.AddedSectionNode -= new Events.Sync.AddedSectionNodeHandler(mTOCPanel.SyncAddedSectionNode);
+                    mProject.AddedSectionNode -= new Events.Sync.AddedSectionNodeHandler(mStripManagerPanel.SyncAddedSectionNode);
 
                     mTOCPanel.AddChildSection -= new Events.Node.AddChildSectionHandler(mProject.CreateChildSectionRequested);
-                    mProject.AddedChildNode -= new Events.Sync.AddedChildNodeHandler(mTOCPanel.SyncAddedChildNode);
-                    mProject.AddedChildNode -= new Events.Sync.AddedChildNodeHandler(mStripManagerPanel.SyncAddedChildNode);
+                    //mProject.AddedChildNode -= new Events.Sync.AddedChildNodeHandler(mTOCPanel.SyncAddedChildNode);
+                    //mProject.AddedChildNode -= new Events.Sync.AddedChildNodeHandler(mStripManagerPanel.SyncAddedChildNode);
 
                     mTOCPanel.MoveSectionUp -= new Events.Node.MoveSectionUpHandler(mProject.MoveNodeUpRequested);
 
@@ -55,12 +58,15 @@ namespace Obi.UserControls
                     mTOCPanel.AddSiblingSection += new Events.Node.AddSiblingSectionHandler(value.CreateSiblingSectionRequested);
                     mStripManagerPanel.AddSiblingSection +=
                         new Events.Node.AddSiblingSectionHandler(value.CreateSiblingSectionRequested);
-                    value.AddedSiblingNode += new Events.Sync.AddedSiblingNodeHandler(mTOCPanel.SyncAddedSiblingNode);
-                    value.AddedSiblingNode += new Events.Sync.AddedSiblingNodeHandler(mStripManagerPanel.SyncAddedSiblingNode);
+                    //value.AddedSiblingNode += new Events.Sync.AddedSiblingNodeHandler(mTOCPanel.SyncAddedSiblingNode);
+                    //value.AddedSiblingNode += new Events.Sync.AddedSiblingNodeHandler(mStripManagerPanel.SyncAddedSiblingNode);
+
+                    value.AddedSectionNode += new Events.Sync.AddedSectionNodeHandler(mTOCPanel.SyncAddedSectionNode);
+                    value.AddedSectionNode += new Events.Sync.AddedSectionNodeHandler(mStripManagerPanel.SyncAddedSectionNode);
 
                     mTOCPanel.AddChildSection += new Events.Node.AddChildSectionHandler(value.CreateChildSectionRequested);
-                    value.AddedChildNode += new Events.Sync.AddedChildNodeHandler(mTOCPanel.SyncAddedChildNode);
-                    value.AddedChildNode += new Events.Sync.AddedChildNodeHandler(mStripManagerPanel.SyncAddedChildNode);
+                    //value.AddedChildNode += new Events.Sync.AddedChildNodeHandler(mTOCPanel.SyncAddedChildNode);
+                    //value.AddedChildNode += new Events.Sync.AddedChildNodeHandler(mStripManagerPanel.SyncAddedChildNode);
 
                     mTOCPanel.MoveSectionUp += new Events.Node.MoveSectionUpHandler(value.MoveNodeUpRequested);
 

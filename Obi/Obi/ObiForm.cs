@@ -291,8 +291,8 @@ namespace Obi
                     break;
                 case Obi.Events.Project.StateChange.Opened:
                     mProjectPanel.Project = mProject;
-                    mProjectPanel.SynchronizeWithCoreTree(mProject.getPresentation().getRootNode());
                     FormUpdateOpenedProject();
+                    mProjectPanel.SynchronizeWithCoreTree(mProject.getPresentation().getRootNode());
                     break;
                 case Obi.Events.Project.StateChange.Saved:
                     FormUpdateSavedProject();
@@ -313,10 +313,17 @@ namespace Obi
                 new EventHandler(mProjectPanel.TOCPanel.editLabelToolStripMenuItem_Click);
             mDeleteSectionToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.TOCPanel.deleteSectionToolStripMenuItem_Click);
+
+            mProjectPanel.StripManager.SelectedStrip += new Events.Strip.SelectedHandler(StripManager_Selected);
             mAddStripToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.addStripToolStripMenuItem_Click);
             renameStripToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.renameStripToolStripMenuItem_Click);
+        }
+
+        private void StripManager_Selected(object sender, Events.Strip.SelectedEventArgs e)
+        {
+            renameStripToolStripMenuItem.Enabled = e.Selected;
         }
 
         #endregion

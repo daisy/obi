@@ -29,7 +29,7 @@ namespace Obi.UserControls
         private void InitializeComponent()
         {
             this.mLabel = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.mFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.mTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
@@ -44,17 +44,17 @@ namespace Obi.UserControls
             this.mLabel.Text = "xxx";
             this.mLabel.Click += new System.EventHandler(this.SectionStrip_Click);
             // 
-            // flowLayoutPanel1
+            // mFlowLayoutPanel
             // 
-            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.mFlowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanel1.AutoSize = true;
-            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(2, 19);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(237, 58);
-            this.flowLayoutPanel1.TabIndex = 1;
-            this.flowLayoutPanel1.WrapContents = false;
+            this.mFlowLayoutPanel.AutoSize = true;
+            this.mFlowLayoutPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.mFlowLayoutPanel.Location = new System.Drawing.Point(2, 19);
+            this.mFlowLayoutPanel.Name = "mFlowLayoutPanel";
+            this.mFlowLayoutPanel.Size = new System.Drawing.Size(237, 58);
+            this.mFlowLayoutPanel.TabIndex = 1;
+            this.mFlowLayoutPanel.WrapContents = false;
             // 
             // mTextBox
             // 
@@ -77,7 +77,7 @@ namespace Obi.UserControls
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.PaleGreen;
             this.Controls.Add(this.mTextBox);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.mFlowLayoutPanel);
             this.Controls.Add(this.mLabel);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.Name = "SectionStrip";
@@ -91,7 +91,7 @@ namespace Obi.UserControls
         #endregion
 
         private System.Windows.Forms.Label mLabel;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel mFlowLayoutPanel;
         private System.Windows.Forms.TextBox mTextBox;
     }
 }

@@ -70,6 +70,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to add section.
+        /// </summary>
+        internal static string add_section_command_label {
+            get {
+                return ResourceManager.GetString("add_section_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancelled.
         /// </summary>
         internal static string cancelled {

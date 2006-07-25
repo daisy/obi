@@ -469,6 +469,30 @@ namespace Obi.UserControls
 
         #region Sync event handlers
 
+        internal void SyncAddedSectionNode(object sender, Events.Sync.AddedSectionNodeEventArgs e)
+        {
+            System.Windows.Forms.TreeNode newTreeNode;
+            string label = Project.GetTextMedia(e.Node).getText();
+            if (e.Node.getParent().getParent() != null)
+            {
+                System.Windows.Forms.TreeNode relTreeNode = findTreeNodeFromCoreNode((CoreNode)e.Node.getParent());
+                newTreeNode = relTreeNode.Nodes.Insert(e.Index, e.Node.GetHashCode().ToString(), label);
+            }
+            else
+            {
+                newTreeNode = tocTree.Nodes.Insert(e.Index, e.Node.GetHashCode().ToString(), label);
+            }
+            newTreeNode.Tag = e.Node;
+            newTreeNode.ExpandAll();
+            newTreeNode.EnsureVisible();
+            tocTree.SelectedNode = newTreeNode;
+            //start editing if the request to add a node happened in the tree view
+            if (e.Origin.Equals(this))
+            {
+                newTreeNode.BeginEdit();
+            }
+        }
+
         /// <summary>
         /// Show the child node that was added in the tree (if it is a section.)
         /// If we were the ones to request its addition, also start editing its label right now.

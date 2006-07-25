@@ -20,6 +20,7 @@ namespace Obi.UserControls
 
         public event Events.Node.AddSiblingSectionHandler AddSiblingSection;
         public event Events.Node.RenameSectionHandler RenameSection;
+        public event Events.Strip.SelectedHandler SelectedStrip;
 
         public CoreNode SelectedNode
         {
@@ -31,7 +32,17 @@ namespace Obi.UserControls
             {
                 if (mSelectedNode != null) mNodeMap[mSelectedNode].MarkDeselected();
                 mSelectedNode = value;
-                if (mSelectedNode != null) mNodeMap[mSelectedNode].MarkSelected();
+                if (mSelectedNode != null)
+                {
+                    mNodeMap[mSelectedNode].MarkSelected();
+                    renameStripToolStripMenuItem.Enabled = true;
+                    SelectedStrip(this, new Events.Strip.SelectedEventArgs(true));
+                }
+                else
+                {
+                    renameStripToolStripMenuItem.Enabled = false;
+                    SelectedStrip(this, new Events.Strip.SelectedEventArgs(false));
+                }
             }
         }
 
@@ -52,6 +63,7 @@ namespace Obi.UserControls
             mNodeMap.Clear();
             mFlowLayoutPanel.Controls.Clear();
             root.acceptDepthFirst(this);
+            SelectedNode = null;
         }
 
         #region Synchronization visitor
@@ -87,19 +99,22 @@ namespace Obi.UserControls
 
         #region Sync event handlers
 
+        internal void SyncAddedSectionNode(object sender, Events.Sync.AddedSectionNodeEventArgs e)
+        {
+            AddStripFromNode(e.Node, e.Position, e.Origin == this);
+        }
+
         internal void SyncAddedSiblingNode(object sender, Events.Sync.AddedSiblingNodeEventArgs e)
         {
-            AddStripFromNode(e.Node, e.Position);
-            if (e.Node != null) SelectedNode = e.Node;
+            AddStripFromNode(e.Node, e.Position, e.Origin == this);
         }
 
         internal void SyncAddedChildNode(object sender, Events.Sync.AddedChildNodeEventArgs e)
         {
-            AddStripFromNode(e.Node, e.Position);
-            if (e.Node != null) SelectedNode = e.Node;
+            AddStripFromNode(e.Node, e.Position, e.Origin == this);
         }
 
-        private void AddStripFromNode(CoreNode node, int position)
+        private void AddStripFromNode(CoreNode node, int position, bool rename)
         {
             SectionStrip strip = new SectionStrip();
             strip.Label = Project.GetTextMedia(node).getText();
@@ -108,6 +123,8 @@ namespace Obi.UserControls
             mNodeMap[node] = strip;
             mFlowLayoutPanel.Controls.Add(strip);
             mFlowLayoutPanel.Controls.SetChildIndex(strip, position);
+            SelectedNode = node;
+            if (rename) strip.StartRenaming();
         }
 
         internal void SyncRenamedNode(object sender, Events.Sync.RenamedNodeEventArgs e)
@@ -157,6 +174,11 @@ namespace Obi.UserControls
 
         #endregion
 
+        /// <summary>
+        /// Convenience method to send the event that a strip was renamed, so that we don't have to track down
+        /// all individual strips.
+        /// </summary>
+        /// <param name="strip">The renamed strip (with its new name as a label.)</param>
         internal void RenamedSectionStrip(SectionStrip strip)
         {
             RenameSection(this, new Events.Node.RenameSectionEventArgs(strip.Node, strip.Label));
