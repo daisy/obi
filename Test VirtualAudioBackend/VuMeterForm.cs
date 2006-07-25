@@ -119,6 +119,7 @@ namespace VirtualAudioBackend
 			// 
 			// btnClose
 			// 
+			this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnClose.Location = new System.Drawing.Point(496, 496);
 			this.btnClose.Name = "btnClose";
 			this.btnClose.TabIndex = 0;
@@ -156,6 +157,7 @@ namespace VirtualAudioBackend
 			// VuMeterForm
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+			this.CancelButton = this.btnClose;
 			this.ClientSize = new System.Drawing.Size(592, 566);
 			this.Controls.Add(this.lblOverloadRight);
 			this.Controls.Add(this.lblOverloadLeft);
