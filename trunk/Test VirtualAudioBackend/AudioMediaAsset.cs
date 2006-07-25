@@ -110,8 +110,10 @@ namespace VirtualAudioBackend
 
 					ob_AudioClip = clips [i] as AudioClip ;
 
+if ( m_Channels == ob_AudioClip.Channels && m_BitDepth == ob_AudioClip.BitDepth && m_SamplingRate == ob_AudioClip.SampleRate)
 					m_dAudioLengthInTime   = m_dAudioLengthInTime   + ob_AudioClip.LengthInTime ;
-
+else
+	throw new Exception ("Clip format do not match Asset format") ;
 				}
 
 				m_lAudioLengthInBytes = Calc.ConvertTimeToByte (m_dAudioLengthInTime, m_SamplingRate, m_FrameSize) ;
@@ -715,10 +717,15 @@ MessageBox.Show ("Asset created") ;
 
 		public void AddClip (AudioClip Clip )
 		{
-m_alClipList.Add (Clip) ;
-m_dAudioLengthInTime = m_dAudioLengthInTime + Clip.LengthInTime ;
-m_lAudioLengthInBytes = Calc.ConvertTimeToByte ( m_dAudioLengthInTime , m_SamplingRate , m_FrameSize) ;
-m_lSizeInBytes = m_lAudioLengthInBytes ;
+			if (m_Channels == Clip.Channels && m_BitDepth == Clip.BitDepth && m_SamplingRate == Clip.SampleRate)
+			{
+				m_alClipList.Add (Clip) ;
+				m_dAudioLengthInTime = m_dAudioLengthInTime + Clip.LengthInTime ;
+				m_lAudioLengthInBytes = Calc.ConvertTimeToByte ( m_dAudioLengthInTime , m_SamplingRate , m_FrameSize) ;
+				m_lSizeInBytes = m_lAudioLengthInBytes ;
+			}
+			else
+				throw new Exception ("Clip format do not match Asset format") ;
 		}
 
 		private bool CompareAudioAssetFormat (IAudioMediaAsset asset1 , IAudioMediaAsset asset2)
