@@ -36,11 +36,10 @@ namespace Obi
 
         public event Events.Project.StateChangedHandler StateChanged;       // the state of the project changed (modified, saved...)
         public event Events.Sync.AddedSectionNodeHandler AddedSectionNode;  // a section node was added to the TOC
-        public event Events.Sync.AddedChildNodeHandler AddedChildNode;      // a new child node was added to the presentation
-        public event Events.Sync.AddedSiblingNodeHandler AddedSiblingNode;  // a new sibling node was added to the presentation
         public event Events.Sync.DeletedNodeHandler DeletedNode;            // a node was deleted from the presentation
         public event Events.Sync.RenamedNodeHandler RenamedNode;            // a node was renamed in the presentation
-
+        public event Events.Sync.MovedNodeUpHandler MovedNodeUp;            // a node was moved up in the presentation
+        public event Events.Sync.MovedNodeDownHandler MovedNodeDown;        // a node was moved down in the presentation
         /// <summary>
         /// This flag is set to true if the project contains modifications that have not been saved.
         /// </summary>
@@ -351,7 +350,7 @@ namespace Obi
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
 
-        public void CreateSiblingSectionRequested(object sender, Events.Node.AddSiblingSectionEventArgs e)
+        public void CreateSiblingSectionRequested(object sender, Events.Node.AddSectionEventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("create sibling request from " + sender.ToString() + " with hash: " + sender.GetHashCode());
             CreateSiblingSection(sender, e.ContextNode);
@@ -372,7 +371,7 @@ namespace Obi
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
 
-        public void CreateChildSectionRequested(object sender, Events.Node.AddChildSectionEventArgs e)
+        public void CreateChildSectionRequested(object sender, Events.Node.AddSectionEventArgs e)
         {
             CreateChildSection(sender, e.ContextNode);
         }
@@ -414,14 +413,114 @@ namespace Obi
         /// </summary>
         public void MoveNodeUp(object origin, CoreNode node)
         {
-            // doesn't do much yet
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            //a facade API function could do this for us
+            bool moveUpSucceeded = ExecuteMoveNodeUpLogic(node);
+            if (moveUpSucceeded)
+            {
+                MovedNodeUp(this, new Events.Sync.MovedNodeEventArgs(origin, node));
+                mUnsaved = true;
+                StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            }
         }
 
-        public void MoveNodeUpRequested(object sender, Events.Node.MoveSectionUpEventArgs e)
+        private bool ExecuteMoveNodeUpLogic(CoreNode node)
         {
-            MoveNodeUp(sender, e.ContextNode);
+            CoreNode newParent = null;
+            int newIndex = 0;
+
+            int currentIndex = ((CoreNode)node.getParent()).indexOf(node);
+
+            //if it is the first node in its list
+            //change its level and move it to be the previous sibling of its parent
+            if (currentIndex == 0)
+            {
+                //it will be a sibling of its parent (soon to be former parent)
+                if (node.getParent().getParent() != null)
+                {
+                    newParent = (CoreNode)node.getParent().getParent();
+
+                    newIndex = newParent.indexOf((CoreNode)node.getParent());
+                    
+                }
+            }
+            else
+            {
+                //keep our current parent
+                newParent = (CoreNode)node.getParent();
+                newIndex = currentIndex - 1;
+            }
+
+            if (newParent != null)
+            {
+                CoreNode movedNode = (CoreNode)node.detach();
+                newParent.insert(movedNode, newIndex);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+         }
+        
+        public void MoveNodeUpRequested(object sender, Events.Node.MoveSectionEventArgs e)
+        {
+            MoveNodeUp(sender, e.Node);
+        }
+
+        public void MoveNodeDown(object origin, CoreNode node)
+        {
+            //a facade API function could do this for us
+            bool moveDownSucceeded = ExecuteMoveNodeDownLogic(node);
+            if (moveDownSucceeded)
+            {
+                MovedNodeDown(this, new Events.Sync.MovedNodeEventArgs(origin, node));
+                mUnsaved = true;
+                StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            }
+        }
+
+        private bool ExecuteMoveNodeDownLogic(CoreNode node)
+        {
+            CoreNode newParent = null;
+            int newIndex = 0;
+
+            int currentIndex = ((CoreNode)node.getParent()).indexOf(node);
+
+            //if it is the last node in its list
+            //change its level and move it to be the next sibling of its parent
+            if (currentIndex == node.getParent().getChildCount() - 1)
+            {
+                //it will be a sibling of its parent (soon to be former parent)
+                if (node.getParent().getParent() != null)
+                {
+                    newParent = (CoreNode)node.getParent().getParent();
+
+                    newIndex = newParent.indexOf((CoreNode)node.getParent()) + 1;
+
+                }
+            }
+            else
+            {
+                //keep our current parent
+                newParent = (CoreNode)node.getParent();
+                newIndex = currentIndex + 1;
+            }
+
+            if (newParent != null)
+            {
+                CoreNode movedNode = (CoreNode)node.detach();
+                newParent.insert(movedNode, newIndex);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void MoveNodeDownRequested(object sender, Events.Node.MoveSectionEventArgs e)
+        {
+            MoveNodeDown(sender, e.Node);
         }
 
         /// <summary>
@@ -440,6 +539,7 @@ namespace Obi
             RenameNode(sender, e.Node, e.Label);
         }
 
+        
         #endregion
 
         /// <summary>

@@ -7,6 +7,7 @@ using urakawa.core;
 namespace Obi.Events.Sync
 {
     public delegate void DeletedNodeHandler(object sender, DeletedNodeEventArgs e);
+    public delegate void ShallowDeletedNodeHandler(object sender, DeletedNodeEventArgs e);
 
     class DeletedNodeEventArgs : EventArgs
     {

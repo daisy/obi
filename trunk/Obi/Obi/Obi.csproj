@@ -96,22 +96,15 @@
       <DependentUpon>UserProfile.cs</DependentUpon>
     </Compile>
     <Compile Include="Events\Node\DeleteSectionEventArgs.cs" />
-    <Compile Include="Events\Node\ExpandViewToAllDepthsEventArgs.cs" />
-    <Compile Include="Events\Node\AddChildSectionEventArgs.cs" />
-    <Compile Include="Events\Node\AddSiblingSectionEventArgs.cs" />
-    <Compile Include="Events\Node\BeginEditingSectionHeadingLabelEventArgs.cs" />
-    <Compile Include="Events\Node\DecreaseSectionLevelEventArgs.cs" />
-    <Compile Include="Events\Node\IncreaseSectionLevelEventArgs.cs" />
-    <Compile Include="Events\Node\LimitViewToSectionDepthEventArgs.cs" />
-    <Compile Include="Events\Node\MoveSectionDownEventArgs.cs" />
-    <Compile Include="Events\Node\MoveSectionUpEventArgs.cs" />
+    <Compile Include="Events\Node\AddSectionEventArgs.cs" />
+    <Compile Include="Events\Node\ChangeSectionLevelEventArgs.cs" />
+    <Compile Include="Events\Node\MoveSectionEventArgs.cs" />
     <Compile Include="Events\Node\RenameSectionEventArgs.cs" />
     <Compile Include="Events\Project\StateChangedEventArgs.cs" />
     <Compile Include="Events\Strip\SelectedEventArgs.cs" />
-    <Compile Include="Events\Sync\AddedChildNodeEventArgs.cs" />
     <Compile Include="Events\Sync\AddedSectionNodeEventArgs.cs" />
-    <Compile Include="Events\Sync\AddedSiblingNodeEventArgs.cs" />
     <Compile Include="Events\Sync\DeletedNodeEventArgs.cs" />
+    <Compile Include="Events\Sync\MovedNodeEventArgs.cs" />
     <Compile Include="Events\Sync\RenamedNodeEventArgs.cs" />
     <Compile Include="Localizer.cs" />
     <Compile Include="messages.Designer.cs">

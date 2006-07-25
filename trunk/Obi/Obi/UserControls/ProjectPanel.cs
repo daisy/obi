@@ -42,6 +42,10 @@ namespace Obi.UserControls
                     //mProject.AddedChildNode -= new Events.Sync.AddedChildNodeHandler(mStripManagerPanel.SyncAddedChildNode);
 
                     mTOCPanel.MoveSectionUp -= new Events.Node.MoveSectionUpHandler(mProject.MoveNodeUpRequested);
+                    mProject.MovedNodeUp -= new Events.Sync.MovedNodeUpHandler(mTOCPanel.SyncMovedNodeUp);
+
+                    mTOCPanel.MoveSectionDown -= new Events.Node.MoveSectionDownHandler(mProject.MoveNodeDownRequested);
+                    mProject.MovedNodeDown -= new Events.Sync.MovedNodeDownHandler(mTOCPanel.SyncMovedNodeDown);
 
                     mTOCPanel.RenameSection -= new Events.Node.RenameSectionHandler(mProject.RenameNodeRequested);
                     mStripManagerPanel.RenameSection -= new Events.Node.RenameSectionHandler(mProject.RenameNodeRequested);
@@ -50,7 +54,9 @@ namespace Obi.UserControls
 
                     mTOCPanel.DeleteSection -= new Events.Node.DeleteSectionHandler(mProject.RemoveNodeRequested);
                     mProject.DeletedNode -= new Events.Sync.DeletedNodeHandler(mTOCPanel.SyncDeletedNode);
-                    mProject.DeletedNode += new Events.Sync.DeletedNodeHandler(mStripManagerPanel.SyncDeletedNode);
+                    
+                    //comment: this used to say += but I think it was a typo
+                    mProject.DeletedNode -= new Events.Sync.DeletedNodeHandler(mStripManagerPanel.SyncDeletedNode);
                 }
                 // Set up the handlers for the new project
                 if (value != null)
@@ -58,9 +64,6 @@ namespace Obi.UserControls
                     mTOCPanel.AddSiblingSection += new Events.Node.AddSiblingSectionHandler(value.CreateSiblingSectionRequested);
                     mStripManagerPanel.AddSiblingSection +=
                         new Events.Node.AddSiblingSectionHandler(value.CreateSiblingSectionRequested);
-                    //value.AddedSiblingNode += new Events.Sync.AddedSiblingNodeHandler(mTOCPanel.SyncAddedSiblingNode);
-                    //value.AddedSiblingNode += new Events.Sync.AddedSiblingNodeHandler(mStripManagerPanel.SyncAddedSiblingNode);
-
                     value.AddedSectionNode += new Events.Sync.AddedSectionNodeHandler(mTOCPanel.SyncAddedSectionNode);
                     value.AddedSectionNode += new Events.Sync.AddedSectionNodeHandler(mStripManagerPanel.SyncAddedSectionNode);
 
@@ -69,6 +72,10 @@ namespace Obi.UserControls
                     //value.AddedChildNode += new Events.Sync.AddedChildNodeHandler(mStripManagerPanel.SyncAddedChildNode);
 
                     mTOCPanel.MoveSectionUp += new Events.Node.MoveSectionUpHandler(value.MoveNodeUpRequested);
+                    value.MovedNodeUp += new Events.Sync.MovedNodeUpHandler(mTOCPanel.SyncMovedNodeUp);
+
+                    mTOCPanel.MoveSectionDown += new Events.Node.MoveSectionDownHandler(value.MoveNodeDownRequested);
+                    value.MovedNodeDown += new Events.Sync.MovedNodeDownHandler(mTOCPanel.SyncMovedNodeDown);
 
                     mTOCPanel.RenameSection += new Events.Node.RenameSectionHandler(value.RenameNodeRequested);
                     mStripManagerPanel.RenameSection += new Events.Node.RenameSectionHandler(value.RenameNodeRequested);
