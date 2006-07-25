@@ -313,6 +313,8 @@ namespace Obi
                 new EventHandler(mProjectPanel.TOCPanel.editLabelToolStripMenuItem_Click);
             mDeleteSectionToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.TOCPanel.deleteSectionToolStripMenuItem_Click);
+            mMoveSectionUpToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.TOCPanel.moveUpToolStripMenuItem_Click);
 
             mProjectPanel.StripManager.SelectedStrip += new Events.Strip.SelectedHandler(StripManager_Selected);
             mAddStripToolStripMenuItem.Click +=
@@ -576,5 +578,7 @@ namespace Obi
         {
             toolStripStatusLabel1.Text = Localizer.Message("ready");
         }
+
+      
     }
 }

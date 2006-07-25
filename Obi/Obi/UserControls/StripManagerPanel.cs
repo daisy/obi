@@ -104,7 +104,7 @@ namespace Obi.UserControls
             AddStripFromNode(e.Node, e.Position, e.Origin == this);
         }
 
-        internal void SyncAddedSiblingNode(object sender, Events.Sync.AddedSiblingNodeEventArgs e)
+       /* internal void SyncAddedSiblingNode(object sender, Events.Sync.AddedSiblingNodeEventArgs e)
         {
             AddStripFromNode(e.Node, e.Position, e.Origin == this);
         }
@@ -112,7 +112,7 @@ namespace Obi.UserControls
         internal void SyncAddedChildNode(object sender, Events.Sync.AddedChildNodeEventArgs e)
         {
             AddStripFromNode(e.Node, e.Position, e.Origin == this);
-        }
+        }*/
 
         private void AddStripFromNode(CoreNode node, int position, bool rename)
         {
@@ -161,7 +161,7 @@ namespace Obi.UserControls
 
         internal void addStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddSiblingSection(this, new Events.Node.AddSiblingSectionEventArgs(mSelectedNode));
+            AddSiblingSection(this, new Events.Node.AddSectionEventArgs(mSelectedNode));
         }
 
         internal void renameStripToolStripMenuItem_Click(object sender, EventArgs e)
