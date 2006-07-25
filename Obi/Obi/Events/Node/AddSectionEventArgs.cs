@@ -6,12 +6,13 @@ using urakawa.core;
 
 namespace Obi.Events.Node
 {
-    public delegate void AddSiblingSectionHandler(object sender, AddSiblingSectionEventArgs e);
+    public delegate void AddSiblingSectionHandler(object sender, AddSectionEventArgs e);
+    public delegate void AddChildSectionHandler(object sender, AddSectionEventArgs e);
 
     /// <summary>
     /// This event is fired when a view wants to add a new sibling section node in the core tree.
     /// </summary>
-    public class AddSiblingSectionEventArgs : EventArgs
+    public class AddSectionEventArgs : EventArgs
     {
         private CoreNode mContextNode;  // the node after which to add the new sibling
 
@@ -23,7 +24,7 @@ namespace Obi.Events.Node
             }
         }
 
-        public AddSiblingSectionEventArgs(CoreNode contextNode)
+        public AddSectionEventArgs(CoreNode contextNode)
         {
             mContextNode = contextNode;
         }
