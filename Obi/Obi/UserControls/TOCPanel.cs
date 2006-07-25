@@ -19,14 +19,14 @@ namespace Obi.UserControls
     /// </summary>
     public partial class TOCPanel : UserControl, ICoreNodeVisitor
     {
-        public event Events.Node.AddSiblingSectionHandler AddSiblingSection;
-        public event Events.Node.AddChildSectionHandler AddChildSection;
-        public event Events.Node.DecreaseSectionLevelHandler DecreaseSectionLevel;
-        public event Events.Node.IncreaseSectionLevelHandler IncreaseSectionLevel;
-        public event Events.Node.MoveSectionDownHandler MoveSectionDown;
-        public event Events.Node.MoveSectionUpHandler MoveSectionUp;
-        public event Events.Node.RenameSectionHandler RenameSection;
-        public event Events.Node.DeleteSectionHandler DeleteSection;
+        public event Events.Node.RequestToAddSiblingNodeHandler AddSiblingSection;
+        public event Events.Node.RequestToAddChildNodeHandler AddChildSection;
+        public event Events.Node.RequestToDecreaseNodeLevelHandler DecreaseSectionLevel;
+        public event Events.Node.RequestToIncreaseNodeLevelHandler IncreaseSectionLevel;
+        public event Events.Node.RequestToMoveNodeDownHandler MoveSectionDown;
+        public event Events.Node.RequestToMoveNodeUpHandler MoveSectionUp;
+        public event Events.Node.RequestToRenameNodeHandler RenameSection;
+        public event Events.Node.RequestToDeleteNodeHandler DeleteSection;
       
 		/// <summary>
         /// Test whether a node is currently selected or not.
@@ -118,16 +118,6 @@ namespace Obi.UserControls
             InitializeComponent();
         }
 
-        //always allowed until level 1
-        public void DecreaseCurrentSectionLevel()
-        {
-        }
-
-        //allowed if you have a previous sibling
-        public void IncreaseCurrentSectionLevel()
-        {
-        }
-
         public void LimitViewToDepthOfCurrentSection()
         {
         }
@@ -187,7 +177,7 @@ namespace Obi.UserControls
             System.Diagnostics.Debug.WriteLine("TOC panel click!\n");
 
             AddSiblingSection(this,
-                new Events.Node.AddSectionEventArgs(GetSelectedSection()));
+                new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
 
         /// <summary>
@@ -196,7 +186,7 @@ namespace Obi.UserControls
         internal void addSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddChildSection(this,
-                new Events.Node.AddSectionEventArgs(GetSelectedSection()));
+                new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
 
         /// <summary>
@@ -205,7 +195,7 @@ namespace Obi.UserControls
         internal void moveUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MoveSectionUp(this, 
-                new Events.Node.MoveSectionEventArgs(GetSelectedSection()));
+                new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
 
         /// <summary>
@@ -213,7 +203,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void deleteSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DeleteSection(this, new Events.Node.DeleteSectionEventArgs(GetSelectedSection()));
+            DeleteSection(this, new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
 
         internal void editLabelToolStripMenuItem_Click(object sender, EventArgs e)
@@ -225,13 +215,13 @@ namespace Obi.UserControls
         internal void moveDownToolStripMenuItem_Click(object sender, EventArgs e)
         {
            MoveSectionDown(this,
-                new Events.Node.MoveSectionEventArgs(GetSelectedSection()));
+                new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
 
         internal void increaseLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             IncreaseSectionLevel(this,
-                new Events.Node.ChangeSectionLevelEventArgs(GetSelectedSection()));
+                new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
 
         internal void decreaseLevelToolStripMenuItem_Click(object sender, EventArgs e)
@@ -240,7 +230,7 @@ namespace Obi.UserControls
           sel.BeginEdit();
 
             DecreaseSectionLevel(this, 
-                new Events.Node.ChangeSectionLevelEventArgs(GetSelectedSection()));
+                new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
         #endregion
 
@@ -264,7 +254,7 @@ namespace Obi.UserControls
                 }
                 else if (e.Label != Project.GetTextMedia((CoreNode)e.Node.Tag).getText())
                 {
-                    RenameSection(this, new Events.Node.RenameSectionEventArgs((CoreNode)e.Node.Tag, e.Label));
+                    RenameSection(this, new Events.Node.RenameNodeEventArgs(this, (CoreNode)e.Node.Tag, e.Label));
                 }
             }
         }
@@ -297,7 +287,7 @@ namespace Obi.UserControls
         /// <param name="sender">The sender of this event notification</param>
         /// <param name="e"><see cref="e.Node"/> is the new heading to add to the tree</param>
         
-        internal void SyncAddedSectionNode(object sender, Events.Sync.AddedSectionNodeEventArgs e)
+        internal void SyncAddedSectionNode(object sender, Events.Node.AddedSectionNodeEventArgs e)
         {
             System.Windows.Forms.TreeNode newTreeNode;
             string label = Project.GetTextMedia(e.Node).getText();
@@ -327,7 +317,7 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="sender">The sender of this event notification</param>
         /// <param name="e"><see cref="e.Node"/> is the tree node being renamed.</param>
-        internal void SyncRenamedNode(object sender, Events.Sync.RenamedNodeEventArgs e)
+        internal void SyncRenamedNode(object sender, Events.Node.RenameNodeEventArgs e)
         {
             if (e.Origin != this)
             {
@@ -342,7 +332,7 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="sender">The sender of this event notification</param>
         /// <param name="e"><see cref="e.Node"/> is the node to be removed.</param>
-        internal void SyncDeletedNode(object sender, Events.Sync.DeletedNodeEventArgs e)
+        internal void SyncDeletedNode(object sender, Events.Node.NodeEventArgs e)
         {
             if (e.Node != null)
             {
@@ -356,7 +346,7 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        internal void SyncShallowDeletedNode(object sender, Events.Sync.DeletedNodeEventArgs e)
+        internal void SyncShallowDeletedNode(object sender, Events.Node.NodeEventArgs e)
         {
         }
 
@@ -365,7 +355,7 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        internal void SyncMovedNodeUp(object sender, Events.Sync.MovedNodeEventArgs e)
+        internal void SyncMovedNodeUp(object sender, Events.Node.NodeEventArgs e)
         {
             System.Windows.Forms.TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
 
@@ -425,7 +415,12 @@ namespace Obi.UserControls
 
         }
 
-        internal void SyncMovedNodeDown(object sender, Events.Sync.MovedNodeEventArgs e)
+        /// <summary>
+        /// Move a tree node down
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        internal void SyncMovedNodeDown(object sender, Events.Node.NodeEventArgs e)
         {
             System.Windows.Forms.TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
             System.Windows.Forms.TreeNode clone = (System.Windows.Forms.TreeNode)
@@ -481,6 +476,9 @@ namespace Obi.UserControls
             }
         }
 
+        internal void SyncIncreaseNodeLevel(object sender, Events.Node.NodeEventArgs e)
+        {
+        }
         #endregion
 
         #region helper functions
