@@ -33,6 +33,7 @@ namespace Obi.UserControls
             this.mFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.renameStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,10 +64,11 @@ namespace Obi.UserControls
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addStripToolStripMenuItem});
+            this.addStripToolStripMenuItem,
+            this.renameStripToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(93, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(128, 70);
             // 
             // addStripToolStripMenuItem
             // 
@@ -74,6 +76,13 @@ namespace Obi.UserControls
             this.addStripToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.addStripToolStripMenuItem.Text = "&Add strip";
             this.addStripToolStripMenuItem.Click += new System.EventHandler(this.addStripToolStripMenuItem_Click);
+            // 
+            // renameStripToolStripMenuItem
+            // 
+            this.renameStripToolStripMenuItem.Name = "renameStripToolStripMenuItem";
+            this.renameStripToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.renameStripToolStripMenuItem.Text = "&Rename strip";
+            this.renameStripToolStripMenuItem.Click += new System.EventHandler(this.renameStripToolStripMenuItem_Click);
             // 
             // StripManagerPanel
             // 
@@ -95,5 +104,6 @@ namespace Obi.UserControls
         private System.Windows.Forms.FlowLayoutPanel mFlowLayoutPanel;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem addStripToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem renameStripToolStripMenuItem;
     }
 }

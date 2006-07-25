@@ -37,6 +37,10 @@ namespace Obi.UserControls
 
         public CoreNode Node
         {
+            get
+            {
+                return mNode;
+            }
             set
             {
                 mNode = value;
@@ -64,6 +68,67 @@ namespace Obi.UserControls
         {
             BackColor = Color.PaleGreen;
             Console.WriteLine("{0} becomes green!", mLabel);
+        }
+
+        /// <summary>
+        /// The strip has a normally invisible text box aligned with the label.
+        /// When renaming, the text box is shown and initialized with the original label.
+        /// The whole text is selected and the text box is given the focus so that the
+        /// user can start editing right away.
+        /// </summary>
+        public void StartRenaming()
+        {
+            mTextBox.BackColor = BackColor;
+            mTextBox.SelectedText = mLabel.Text;
+            mTextBox.Visible = true;
+            mTextBox.Focus();
+        }
+
+        /// <summary>
+        /// Leaving the text box updates the text property.
+        /// </summary>
+        private void mTextBox_Leave(object sender, EventArgs e)
+        {
+            UpdateText();
+        }
+
+        /// <summary>
+        /// Typing return updates the text property; escape cancels the edit.
+        /// </summary>
+        private void mTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    UpdateText();
+                    break;
+                case Keys.Escape:
+                    mTextBox.Visible = false;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Upate the text label from the text box input.
+        /// If the input is empty, then do not change the text and warn the user.
+        /// The manager is then asked to send a rename event.
+        /// </summary>
+        private void UpdateText()
+        {
+            mTextBox.Visible = false;
+            if (mTextBox.Text != "")
+            {
+                mLabel.Text = mTextBox.Text;
+                mManager.RenamedSectionStrip(this);
+            }
+            else
+            {
+                MessageBox.Show(Localizer.Message("empty_label_warning_text"),
+                    Localizer.Message("empty_label_warning_caption"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
     }
 }

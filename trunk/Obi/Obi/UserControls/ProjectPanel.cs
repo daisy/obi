@@ -41,6 +41,7 @@ namespace Obi.UserControls
                     mTOCPanel.MoveSectionUp -= new Events.Node.MoveSectionUpHandler(mProject.MoveNodeUpRequested);
 
                     mTOCPanel.RenameSection -= new Events.Node.RenameSectionHandler(mProject.RenameNodeRequested);
+                    mStripManagerPanel.RenameSection -= new Events.Node.RenameSectionHandler(mProject.RenameNodeRequested);
                     mProject.RenamedNode -= new Events.Sync.RenamedNodeHandler(mTOCPanel.SyncRenamedNode);
                     mProject.RenamedNode -= new Events.Sync.RenamedNodeHandler(mStripManagerPanel.SyncRenamedNode);
 
@@ -64,6 +65,7 @@ namespace Obi.UserControls
                     mTOCPanel.MoveSectionUp += new Events.Node.MoveSectionUpHandler(value.MoveNodeUpRequested);
 
                     mTOCPanel.RenameSection += new Events.Node.RenameSectionHandler(value.RenameNodeRequested);
+                    mStripManagerPanel.RenameSection += new Events.Node.RenameSectionHandler(value.RenameNodeRequested);
                     value.RenamedNode += new Events.Sync.RenamedNodeHandler(mTOCPanel.SyncRenamedNode);
                     value.RenamedNode += new Events.Sync.RenamedNodeHandler(mStripManagerPanel.SyncRenamedNode);
 

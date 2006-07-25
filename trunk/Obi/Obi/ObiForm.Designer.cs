@@ -50,16 +50,17 @@ namespace Obi
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mAddSectionAtSameLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddsubsectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mRenameSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mDeleteSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStripsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mAddStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.mRenameSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mAddStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mProjectPanel = new Obi.UserControls.ProjectPanel();
+            this.renameStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -236,6 +237,12 @@ namespace Obi
             this.mAddsubsectionToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.mAddsubsectionToolStripMenuItem.Text = "Add &sub-section";
             // 
+            // mRenameSectionToolStripMenuItem
+            // 
+            this.mRenameSectionToolStripMenuItem.Name = "mRenameSectionToolStripMenuItem";
+            this.mRenameSectionToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.mRenameSectionToolStripMenuItem.Text = "&Rename section";
+            // 
             // mDeleteSectionToolStripMenuItem
             // 
             this.mDeleteSectionToolStripMenuItem.Name = "mDeleteSectionToolStripMenuItem";
@@ -245,10 +252,17 @@ namespace Obi
             // mStripsToolStripMenuItem
             // 
             this.mStripsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mAddStripToolStripMenuItem});
+            this.mAddStripToolStripMenuItem,
+            this.renameStripToolStripMenuItem});
             this.mStripsToolStripMenuItem.Name = "mStripsToolStripMenuItem";
             this.mStripsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.mStripsToolStripMenuItem.Text = "Strips";
+            // 
+            // mAddStripToolStripMenuItem
+            // 
+            this.mAddStripToolStripMenuItem.Name = "mAddStripToolStripMenuItem";
+            this.mAddStripToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mAddStripToolStripMenuItem.Text = "&Add strip";
             // 
             // toolsToolStripMenuItem
             // 
@@ -262,14 +276,14 @@ namespace Obi
             // userSettingsToolStripMenuItem
             // 
             this.userSettingsToolStripMenuItem.Name = "userSettingsToolStripMenuItem";
-            this.userSettingsToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.userSettingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.userSettingsToolStripMenuItem.Text = "&User profile";
             this.userSettingsToolStripMenuItem.Click += new System.EventHandler(this.userSettingsToolStripMenuItem_Click);
             // 
             // preferencesToolStripMenuItem
             // 
             this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.preferencesToolStripMenuItem.Text = "&Preferences";
             this.preferencesToolStripMenuItem.Click += new System.EventHandler(this.preferencesToolStripMenuItem_Click);
             // 
@@ -290,18 +304,6 @@ namespace Obi
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // mRenameSectionToolStripMenuItem
-            // 
-            this.mRenameSectionToolStripMenuItem.Name = "mRenameSectionToolStripMenuItem";
-            this.mRenameSectionToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.mRenameSectionToolStripMenuItem.Text = "&Rename section";
-            // 
-            // mAddStripToolStripMenuItem
-            // 
-            this.mAddStripToolStripMenuItem.Name = "mAddStripToolStripMenuItem";
-            this.mAddStripToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.mAddStripToolStripMenuItem.Text = "&Add strip";
-            // 
             // mProjectPanel
             // 
             this.mProjectPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -313,6 +315,12 @@ namespace Obi
             this.mProjectPanel.Project = null;
             this.mProjectPanel.Size = new System.Drawing.Size(767, 450);
             this.mProjectPanel.TabIndex = 4;
+            // 
+            // renameStripToolStripMenuItem
+            // 
+            this.renameStripToolStripMenuItem.Name = "renameStripToolStripMenuItem";
+            this.renameStripToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.renameStripToolStripMenuItem.Text = "&Rename strip";
             // 
             // ObiForm
             // 
@@ -371,6 +379,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mDeleteSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mRenameSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mAddStripToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem renameStripToolStripMenuItem;
 
 
     }
