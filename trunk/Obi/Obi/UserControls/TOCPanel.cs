@@ -120,97 +120,9 @@ namespace Obi.UserControls
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Add a new heading as an immediate sibling of the relative node.
-        /// The new heading has already been created as a <see cref="CoreNode"/>.  Now we
-        /// need to add it as a <see cref="System.Windows.Forms.TreeNode"/>.
-        /// Internally, the new <see cref="System.Windows.Forms.TreeNode"/>
-        /// is given the key of its <see cref="CoreNode"/> object's hash code.
-        /// This makes it faster to find a <see cref="System.Windows.Forms.TreeNode"/> 
-        /// based on a given <see cref="CoreNode"/>.
-        /// A <see cref="CoreNode"/> can always be found from a <see cref="System.Windows.Forms.TreeNode"/>
-        /// because the <see cref="System.Windows.Forms.TreeNode.Tag"/> field contains a reference to the <see cref="CoreNode"/>
-        /// </summary>
-        /// <param name="newNode">The new heading to add to the tree</param>
-        /// <param name="relNode">The relative sibling node</param>
-        /*public void AddNewSiblingSection(CoreNode newNode, CoreNode relNode)
-        {
-            System.Windows.Forms.TreeNode relTreeNode = findTreeNodeFromCoreNode(relNode);
-            string label = GetTextMedia(newNode).getText();
-            //add as a sibling
-            System.Windows.Forms.TreeNodeCollection siblingCollection = null;
-            if (relTreeNode.Parent != null)
-            {
-                siblingCollection = relTreeNode.Parent.Nodes;
-            }
-            else
-            {
-                siblingCollection = tocTree.Nodes;
-            }
-            System.Windows.Forms.TreeNode newTreeNode = 
-                siblingCollection.Insert
-                (relTreeNode.Index+1, newNode.GetHashCode().ToString(), label);
-            newTreeNode.Tag = newNode;
-            newTreeNode.ExpandAll();
-            newTreeNode.EnsureVisible();
-            tocTree.SelectedNode = newTreeNode;
-        }*/
+      
+ 
 
-        /// <summary>
-        /// Add a new heading as a child of the relative node.
-        /// The new heading has already been created as a <see cref="CoreNode"/>.  Now we
-        /// need to add it as a <see cref="System.Windows.Forms.TreeNode"/>.
-        /// Internally, the new <see cref="System.Windows.Forms.TreeNode"/>
-        /// is given the key of its <see cref="CoreNode"/> object's hash code.
-        /// This makes it faster to find a <see cref="System.Windows.Forms.TreeNode"/> 
-        /// based on a given <see cref="CoreNode"/>.
-        /// If the relative node is null, then the new node is created as a child of the
-        /// presentation root.
-        /// </summary>
-        /// <param name="newNode">The new heading to add to the tree</param>
-        /// <param name="relNode">The parent node for the new heading</param>
-        /*public void AddNewChildSection(CoreNode newNode, CoreNode relNode)
-        {
-            System.Windows.Forms.TreeNode newTreeNode;
-            string label = GetTextMedia(newNode).getText();
-            if (relNode != null)
-            {
-                System.Windows.Forms.TreeNode relTreeNode = findTreeNodeFromCoreNode(relNode);
-                newTreeNode = relTreeNode.Nodes.Add(newNode.GetHashCode().ToString(), label);
-            }
-            else
-            {
-                newTreeNode = tocTree.Nodes.Add(newNode.GetHashCode().ToString(), label);
-            }
-            newTreeNode.Tag = newNode;
-            newTreeNode.ExpandAll();
-            newTreeNode.EnsureVisible();
-            tocTree.SelectedNode = newTreeNode;
-        }*/
-
-        /// <summary>
-        /// Delete a section from the table contents. The core node was removed from the core tree.
-        /// </summary>
-        /// <param name="node">The core node that was removed.</param>
-        /*public void DeleteSectionNode(CoreNode node)
-        {
-            if (node != null)
-            {
-                System.Windows.Forms.TreeNode treeNode = findTreeNodeFromCoreNode(node);
-                treeNode.Remove();
-            }
-        }*/
-
-        /// <summary>
-        /// Begin editing the label (activate the edit cursor) for the currently
-        /// selected section heading node.
-        /// </summary>
-        /*public void BeginEditingNodeLabel(CoreNode node)
-        {
-            System.Windows.Forms.TreeNode treeNode = findTreeNodeFromCoreNode(node);
-            treeNode.EnsureVisible();
-            treeNode.BeginEdit();
-        }*/
 
         /*
          * you might move left if you go up and down
@@ -422,12 +334,8 @@ namespace Obi.UserControls
 
         internal void moveDownToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //!! uncomment this when the event is handled by the ProjectPanel (or whomever)
-            //otherwise it crashes
-            /*MoveSectionDown(this,
-                new Events.Node.MoveSectionDownEventArgs(GetSelectedSection()));*/
-            //this line will get deleted.  it's just for testing.
-            this.MoveCurrentSectionDown();
+           MoveSectionDown(this,
+                new Events.Node.MoveSectionDownEventArgs(GetSelectedSection()));
         }
 
         internal void increaseLevelToolStripMenuItem_Click(object sender, EventArgs e)
@@ -564,9 +472,22 @@ namespace Obi.UserControls
         /// <summary>
         /// Show the child node that was added in the tree (if it is a section.)
         /// If we were the ones to request its addition, also start editing its label right now.
+        ///
+        /// The new heading has already been created as a <see cref="CoreNode"/>.  It is in its correct 
+        /// place in the core tree.  
+        /// Now we need to add it as a <see cref="System.Windows.Forms.TreeNode"/> so it shows up in the tree view.
+        /// Internally, the new <see cref="System.Windows.Forms.TreeNode"/>
+        /// is given the key of its <see cref="CoreNode"/> object's hash code.
+        /// This makes it faster to find a <see cref="System.Windows.Forms.TreeNode"/> 
+        /// based on a given <see cref="CoreNode"/>.
+        /// If the relative node is null, then the new node is created as a child of the
+        /// presentation root.
         /// </summary>
+        /// <param name="sender">The sender of this event notification</param>
+        /// <param name="e"><see cref="e.Node"/> is the new heading to add to the tree</param>
         internal void SyncAddedChildNode(object sender, Events.Sync.AddedChildNodeEventArgs e)
         {
+            
             System.Windows.Forms.TreeNode newTreeNode;
             string label = Project.GetTextMedia(e.Node).getText();
 
@@ -585,9 +506,32 @@ namespace Obi.UserControls
             newTreeNode.ExpandAll();
             newTreeNode.EnsureVisible();
             tocTree.SelectedNode = newTreeNode;
-            newTreeNode.BeginEdit();
+
+            //start editing if the request to add a node happened in the tree view
+            if (e.Origin.Equals(this))
+            {
+                newTreeNode.BeginEdit();
+            }
         }
 
+        /// <summary>
+        /// Add a new heading as an immediate sibling of the relative node.
+        /// If we were the ones to request its addition, also start editing its label right now.
+        /// 
+        /// The new heading has already been created as a <see cref="CoreNode"/>.  Now we
+        /// need to add it as a <see cref="System.Windows.Forms.TreeNode"/>.
+        /// Internally, the new <see cref="System.Windows.Forms.TreeNode"/>
+        /// is given the key of its <see cref="CoreNode"/> object's hash code.
+        /// This makes it faster to find a <see cref="System.Windows.Forms.TreeNode"/> 
+        /// based on a given <see cref="CoreNode"/>.
+        /// A <see cref="CoreNode"/> can always be found from a <see cref="System.Windows.Forms.TreeNode"/>
+        /// because the <see cref="System.Windows.Forms.TreeNode.Tag"/> field contains a reference to the <see cref="CoreNode"/>
+        /// </summary>
+        /// <param name="sender">The sender of this event notification</param>
+        /// <param name="e"><see cref="e.Node"/> is the new heading to add to the tree, and 
+        /// <see cref="e.ContextNode"/> is the relative sibling node.</param>
+        /// <remarks>We don't actually need a context node parameter since the core node is already
+        /// in the correct place in its tree.  However, having the parameter doesn't hurt.</remarks>
         internal void SyncAddedSiblingNode(object sender, Events.Sync.AddedSiblingNodeEventArgs e)
         {
             
@@ -613,9 +557,20 @@ namespace Obi.UserControls
             newTreeNode.ExpandAll();
             newTreeNode.EnsureVisible();
             tocTree.SelectedNode = newTreeNode;
-            newTreeNode.BeginEdit();
+
+            //start editing if the request to add a node happened in the tree view
+            if (e.Origin.Equals(this))
+            {
+                newTreeNode.BeginEdit();
+            }
         }
 
+        /// <summary>
+        /// Change the label of the tree view node.
+        /// This is in response to external renames (i.e. those not originating from within the tree view itself)
+        /// </summary>
+        /// <param name="sender">The sender of this event notification</param>
+        /// <param name="e"><see cref="e.Node"/> is the tree node being renamed.</param>
         internal void SyncRenamedNode(object sender, Events.Sync.RenamedNodeEventArgs e)
         {
             if (e.Origin != this)
@@ -625,6 +580,12 @@ namespace Obi.UserControls
             }
         }
 
+        /// <summary>
+        /// Remove a node from the tree view.
+        /// This will remove the whole subtree.
+        /// </summary>
+        /// <param name="sender">The sender of this event notification</param>
+        /// <param name="e"><see cref="e.Node"/> is the node to be removed.</param>
         internal void SyncDeletedNode(object sender, Events.Sync.DeletedNodeEventArgs e)
         {
             if (e.Node != null)
