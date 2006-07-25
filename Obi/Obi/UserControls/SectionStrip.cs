@@ -79,6 +79,7 @@ namespace Obi.UserControls
         public void StartRenaming()
         {
             mTextBox.BackColor = BackColor;
+            mTextBox.Text = "";
             mTextBox.SelectedText = mLabel.Text;
             mTextBox.Visible = true;
             mFlowLayoutPanel.Focus();

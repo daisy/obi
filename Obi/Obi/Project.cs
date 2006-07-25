@@ -335,7 +335,6 @@ namespace Obi
                 getPresentation().getRootNode().appendChild(sibling);
                 NodePositionVisitor visitor = new NodePositionVisitor(sibling);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
-                //AddedChildNode(this, new Events.Sync.AddedChildNodeEventArgs(origin, sibling, visitor.Position));
                 AddedSectionNode(this, new Events.Sync.AddedSectionNodeEventArgs(origin, sibling,
                     ((CoreNode)sibling.getParent()).indexOf(sibling), visitor.Position));
             }
@@ -345,7 +344,6 @@ namespace Obi
                 parent.insert(sibling, parent.indexOf(contextNode) + 1);
                 NodePositionVisitor visitor = new NodePositionVisitor(sibling);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
-                //AddedSiblingNode(this, new Events.Sync.AddedSiblingNodeEventArgs(origin, sibling, contextNode, visitor.Position));
                 AddedSectionNode(this, new Events.Sync.AddedSectionNodeEventArgs(origin, sibling, parent.indexOf(sibling),
                     visitor.Position));
             }
@@ -369,9 +367,7 @@ namespace Obi
             parent.appendChild(child);
             NodePositionVisitor visitor = new NodePositionVisitor(child);
             getPresentation().getRootNode().acceptDepthFirst(visitor);
-            //AddedChildNode(this, new Events.Sync.AddedChildNodeEventArgs(origin, child, visitor.Position));
-            AddedSectionNode(this, new Events.Sync.AddedSectionNodeEventArgs(origin, child, parent.indexOf(child),
-                visitor.Position));
+            AddedSectionNode(this, new Events.Sync.AddedSectionNodeEventArgs(origin, child, parent.indexOf(child), visitor.Position));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
