@@ -7,49 +7,45 @@ using urakawa.core;
 
 namespace Obi.Commands.TOC
 {
-    class AddSection: Command
+    class DeleteSection : Command
     {
         private Project mProject;
         private CoreNode mNode;
         private CoreNode mParent;
         private int mIndex;
         private int mPosition;
-        private string mOriginalLabel;
 
         public override string Label
         {
             get
             {
-                return Localizer.Message("add_section_command_label");
+                return Localizer.Message("delete_section_command_label");
             }
         }
 
-        public AddSection(Project project, CoreNode node, CoreNode parent, int index, int position)
+        public DeleteSection(Project project, CoreNode node, CoreNode parent, int index, int position)
         {
             mProject = project;
             mNode = node;
             mParent = parent;
             mIndex = index;
             mPosition = position;
-            mOriginalLabel = Project.GetTextMedia(node).getText();
         }
 
         /// <summary>
-        /// Do: add the node to the project; it will send the synchronization events.
-        /// This is really redo, so the node exists and so does its parent.
+        /// Do: delete the node from the project.
         /// </summary>
         public override void Do()
         {
-            mProject.ReaddSection(mNode, mParent, mIndex, mPosition, mOriginalLabel);
+            mProject.RemoveNode(mProject, mNode);
         }
 
         /// <summary>
-        /// Undo: remove the node from the project; it will send the synchronization events.
-        /// This node has no descendant when we undo.
+        /// Undo: restore the node and its descendants.
         /// </summary>
         public override void Undo()
         {
-            mProject.RemoveNode(mProject, mNode);
+            mProject.UndeleteSectionNode(mNode, mParent, mIndex, mPosition);
         }
     }
 }

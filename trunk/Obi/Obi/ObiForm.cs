@@ -568,7 +568,7 @@ namespace Obi
             {
                 mRedoToolStripMenuItem.Enabled = true;
                 mRedoToolStripMenuItem.Text = String.Format(Localizer.Message("redo_label"), Localizer.Message("redo"),
-                    mCmdMngr.UndoLabel);
+                    mCmdMngr.RedoLabel);
             }
             else
             {
