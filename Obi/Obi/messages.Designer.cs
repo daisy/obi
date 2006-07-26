@@ -144,6 +144,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to delete section.
+        /// </summary>
+        internal static string delete_section_command_label {
+            get {
+                return ResourceManager.GetString("delete_section_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Discarding changes to a modified project.
         /// </summary>
         internal static string discard_changes_caption {
@@ -296,6 +305,15 @@ namespace Obi {
         internal static string redo_label {
             get {
                 return ResourceManager.GetString("redo_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to rename node.
+        /// </summary>
+        internal static string rename_command_label {
+            get {
+                return ResourceManager.GetString("rename_command_label", resourceCulture);
             }
         }
         

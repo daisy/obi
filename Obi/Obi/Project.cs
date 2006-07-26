@@ -381,16 +381,33 @@ namespace Obi
         }
 
         /// <summary>
-        /// This should be used by add child/add sibling.
-        /// AddedSectionNode event to replace AddedChild/Sibling as well.
+        /// Add a section that had previously been added.
         /// </summary>
-        public void RedoAddSection(CoreNode node, CoreNode parent, int index, int position, string originalLabel)
+        /// <param name="node"></param>
+        /// <param name="parent"></param>
+        /// <param name="index"></param>
+        /// <param name="position"></param>
+        /// <param name="originalLabel"></param>
+        public void ReaddSection(CoreNode node, CoreNode parent, int index, int position, string originalLabel)
         {
-            parent.insert(node, index);
-            Project.GetTextMedia(node).setText(originalLabel);
+            if (node.getParent() == null) parent.insert(node, index);
+            if (originalLabel != null) Project.GetTextMedia(node).setText(originalLabel);
             AddedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs(this, node, index, position));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+
+        /// <summary>
+        /// Readd a section node that was previously delete and restore all its contents.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="parent"></param>
+        /// <param name="index"></param>
+        /// <param name="position"></param>
+        public void UndeleteSectionNode(CoreNode node, CoreNode parent, int index, int position)
+        {
+            Visitors.UndeleteSubtree visitor = new Visitors.UndeleteSubtree(this, parent, index, position);
+            node.acceptDepthFirst(visitor);
         }
 
         /// <summary>
@@ -400,10 +417,19 @@ namespace Obi
         {
             if (node != null)
             {
+                Commands.TOC.DeleteSection command = null;
+                if (origin != this)
+                {
+                    CoreNode parent = (CoreNode)node.getParent();
+                    NodePositionVisitor visitor = new NodePositionVisitor(node);
+                    getPresentation().getRootNode().acceptDepthFirst(visitor);
+                    command = new Commands.TOC.DeleteSection(this, node, parent, parent.indexOf(node), visitor.Position);
+                }
                 node.detach();
                 DeletedNode(this, new Events.Node.NodeEventArgs(origin, node));
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+                if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             }
         }
         
@@ -532,10 +558,13 @@ namespace Obi
         /// </summary>
         public void RenameNode(object origin, CoreNode node, string label)
         {
+            TextMedia text = GetTextMedia(node);
+            Commands.TOC.Rename command = origin == this ? null : new Commands.TOC.Rename(this, node, text.getText(), label);
             GetTextMedia(node).setText(label);
             RenamedNode(this, new Events.Node.RenameNodeEventArgs(origin, node, label));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
         public void RenameNodeRequested(object sender, Events.Node.RenameNodeEventArgs e)
