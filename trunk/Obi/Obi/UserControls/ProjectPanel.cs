@@ -28,37 +28,33 @@ namespace Obi.UserControls
                 // Reset the handlers from the previous project
                 if (mProject != null)
                 {
-                    mTOCPanel.AddSiblingSection -= new Events.Node.RequestToAddSiblingNodeHandler(mProject.CreateSiblingSectionRequested);
+                    mTOCPanel.RequestToAddSiblingSection -= new Events.Node.RequestToAddSiblingNodeHandler(mProject.CreateSiblingSectionRequested);
                     mStripManagerPanel.AddSiblingSection -=
                         new Events.Node.RequestToAddSiblingNodeHandler(mProject.CreateSiblingSectionRequested);
-                    //mProject.AddedSiblingNode -= new Events.Sync.AddedSiblingNodeHandler(mTOCPanel.SyncAddedSiblingNode);
-                    //mProject.AddedSiblingNode -= new Events.Sync.AddedSiblingNodeHandler(mStripManagerPanel.SyncAddedSiblingNode);
-
+                    
                     mProject.AddedSectionNode -= new Events.Node.AddedSectionNodeHandler(mTOCPanel.SyncAddedSectionNode);
                     mProject.AddedSectionNode -= new Events.Node.AddedSectionNodeHandler(mStripManagerPanel.SyncAddedSectionNode);
 
-                    mTOCPanel.AddChildSection -= new Events.Node.RequestToAddChildNodeHandler(mProject.CreateChildSectionRequested);
-                    //mProject.AddedChildNode -= new Events.Sync.AddedChildNodeHandler(mTOCPanel.SyncAddedChildNode);
-                    //mProject.AddedChildNode -= new Events.Sync.AddedChildNodeHandler(mStripManagerPanel.SyncAddedChildNode);
-
-                    mTOCPanel.MoveSectionUp -= new Events.Node.RequestToMoveNodeUpHandler(mProject.MoveNodeUpRequested);
+                    mTOCPanel.RequestToAddChildSection -= new Events.Node.RequestToAddChildNodeHandler(mProject.CreateChildSectionRequested);
+                    
+                    mTOCPanel.RequestToMoveSectionUp -= new Events.Node.RequestToMoveNodeUpHandler(mProject.MoveNodeUpRequested);
                     mProject.MovedNodeUp -= new Events.Node.MovedNodeUpHandler(mTOCPanel.SyncMovedNodeUp);
 
-                    mTOCPanel.MoveSectionDown -= new Events.Node.RequestToMoveNodeDownHandler(mProject.MoveNodeDownRequested);
+                    mTOCPanel.RequestToMoveSectionDown -= new Events.Node.RequestToMoveNodeDownHandler(mProject.MoveNodeDownRequested);
                     mProject.MovedNodeDown -= new Events.Node.MovedNodeDownHandler(mTOCPanel.SyncMovedNodeDown);
 
-                    mTOCPanel.IncreaseSectionLevel -= new Events.Node.RequestToIncreaseNodeLevelHandler(mProject.IncreaseNodeLevelRequested);
+                    mTOCPanel.RequestToIncreaseSectionLevel -= new Events.Node.RequestToIncreaseNodeLevelHandler(mProject.IncreaseNodeLevelRequested);
                     mProject.IncreasedNodeLevel -= new Events.Node.IncreasedNodeLevelHandler(mTOCPanel.SyncIncreasedNodeLevel);
 
-                    mTOCPanel.DecreaseSectionLevel -= new Events.Node.RequestToDecreaseNodeLevelHandler(mProject.DecreaseNodeLevelRequested);
+                    mTOCPanel.RequestToDecreaseSectionLevel -= new Events.Node.RequestToDecreaseNodeLevelHandler(mProject.DecreaseNodeLevelRequested);
                     mProject.DecreasedNodeLevel -= new Events.Node.DecreasedNodeLevelHandler(mTOCPanel.SyncDecreasedNodeLevel);
 
-                    mTOCPanel.RenameSection -= new Events.Node.RequestToRenameNodeHandler(mProject.RenameNodeRequested);
+                    mTOCPanel.RequestToRenameSection -= new Events.Node.RequestToRenameNodeHandler(mProject.RenameNodeRequested);
                     mStripManagerPanel.RenameSection -= new Events.Node.RequestToRenameNodeHandler(mProject.RenameNodeRequested);
                     mProject.RenamedNode -= new Events.Node.RenamedNodeHandler(mTOCPanel.SyncRenamedNode);
                     mProject.RenamedNode -= new Events.Node.RenamedNodeHandler(mStripManagerPanel.SyncRenamedNode);
 
-                    mTOCPanel.DeleteSection -= new Events.Node.RequestToDeleteNodeHandler(mProject.RemoveNodeRequested);
+                    mTOCPanel.RequestToDeleteSection -= new Events.Node.RequestToDeleteNodeHandler(mProject.RemoveNodeRequested);
                     mProject.DeletedNode -= new Events.Node.DeletedNodeHandler(mTOCPanel.SyncDeletedNode);
                     
                     //comment: this used to say += but I think it was a typo
@@ -67,34 +63,32 @@ namespace Obi.UserControls
                 // Set up the handlers for the new project
                 if (value != null)
                 {
-                    mTOCPanel.AddSiblingSection += new Events.Node.RequestToAddSiblingNodeHandler(value.CreateSiblingSectionRequested);
+                    mTOCPanel.RequestToAddSiblingSection += new Events.Node.RequestToAddSiblingNodeHandler(value.CreateSiblingSectionRequested);
                     mStripManagerPanel.AddSiblingSection +=
                         new Events.Node.RequestToAddSiblingNodeHandler(value.CreateSiblingSectionRequested);
                     value.AddedSectionNode += new Events.Node.AddedSectionNodeHandler(mTOCPanel.SyncAddedSectionNode);
                     value.AddedSectionNode += new Events.Node.AddedSectionNodeHandler(mStripManagerPanel.SyncAddedSectionNode);
 
-                    mTOCPanel.AddChildSection += new Events.Node.RequestToAddChildNodeHandler(value.CreateChildSectionRequested);
-                    //value.AddedChildNode += new Events.Sync.AddedChildNodeHandler(mTOCPanel.SyncAddedChildNode);
-                    //value.AddedChildNode += new Events.Sync.AddedChildNodeHandler(mStripManagerPanel.SyncAddedChildNode);
-
-                    mTOCPanel.MoveSectionUp += new Events.Node.RequestToMoveNodeUpHandler(value.MoveNodeUpRequested);
+                    mTOCPanel.RequestToAddChildSection += new Events.Node.RequestToAddChildNodeHandler(value.CreateChildSectionRequested);
+                    
+                    mTOCPanel.RequestToMoveSectionUp += new Events.Node.RequestToMoveNodeUpHandler(value.MoveNodeUpRequested);
                     value.MovedNodeUp += new Events.Node.MovedNodeUpHandler(mTOCPanel.SyncMovedNodeUp);
 
-                    mTOCPanel.MoveSectionDown += new Events.Node.RequestToMoveNodeDownHandler(value.MoveNodeDownRequested);
+                    mTOCPanel.RequestToMoveSectionDown += new Events.Node.RequestToMoveNodeDownHandler(value.MoveNodeDownRequested);
                     value.MovedNodeDown += new Events.Node.MovedNodeDownHandler(mTOCPanel.SyncMovedNodeDown);
 
-                    mTOCPanel.IncreaseSectionLevel += new Events.Node.RequestToIncreaseNodeLevelHandler(value.IncreaseNodeLevelRequested);
+                    mTOCPanel.RequestToIncreaseSectionLevel += new Events.Node.RequestToIncreaseNodeLevelHandler(value.IncreaseNodeLevelRequested);
                     value.IncreasedNodeLevel += new Events.Node.IncreasedNodeLevelHandler(mTOCPanel.SyncIncreasedNodeLevel);
 
-                    mTOCPanel.DecreaseSectionLevel += new Events.Node.RequestToDecreaseNodeLevelHandler(value.DecreaseNodeLevelRequested);
+                    mTOCPanel.RequestToDecreaseSectionLevel += new Events.Node.RequestToDecreaseNodeLevelHandler(value.DecreaseNodeLevelRequested);
                     value.DecreasedNodeLevel += new Events.Node.DecreasedNodeLevelHandler(mTOCPanel.SyncDecreasedNodeLevel);
 
-                    mTOCPanel.RenameSection += new Events.Node.RequestToRenameNodeHandler(value.RenameNodeRequested);
+                    mTOCPanel.RequestToRenameSection += new Events.Node.RequestToRenameNodeHandler(value.RenameNodeRequested);
                     mStripManagerPanel.RenameSection += new Events.Node.RequestToRenameNodeHandler(value.RenameNodeRequested);
                     value.RenamedNode += new Events.Node.RenamedNodeHandler(mTOCPanel.SyncRenamedNode);
                     value.RenamedNode += new Events.Node.RenamedNodeHandler(mStripManagerPanel.SyncRenamedNode);
 
-                    mTOCPanel.DeleteSection += new Events.Node.RequestToDeleteNodeHandler(value.RemoveNodeRequested);
+                    mTOCPanel.RequestToDeleteSection += new Events.Node.RequestToDeleteNodeHandler(value.RemoveNodeRequested);
                     value.DeletedNode += new Events.Node.DeletedNodeHandler(mTOCPanel.SyncDeletedNode);
                     value.DeletedNode += new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeletedNode);
                 }

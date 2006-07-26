@@ -18,14 +18,14 @@ namespace Obi.UserControls
     /// </summary>
     public partial class TOCPanel : UserControl, urakawa.core.ICoreNodeVisitor
     {
-        public event Events.Node.RequestToAddSiblingNodeHandler AddSiblingSection;
-        public event Events.Node.RequestToAddChildNodeHandler AddChildSection;
-        public event Events.Node.RequestToDecreaseNodeLevelHandler DecreaseSectionLevel;
-        public event Events.Node.RequestToIncreaseNodeLevelHandler IncreaseSectionLevel;
-        public event Events.Node.RequestToMoveNodeDownHandler MoveSectionDown;
-        public event Events.Node.RequestToMoveNodeUpHandler MoveSectionUp;
-        public event Events.Node.RequestToRenameNodeHandler RenameSection;
-        public event Events.Node.RequestToDeleteNodeHandler DeleteSection;
+        public event Events.Node.RequestToAddSiblingNodeHandler RequestToAddSiblingSection;
+        public event Events.Node.RequestToAddChildNodeHandler RequestToAddChildSection;
+        public event Events.Node.RequestToDecreaseNodeLevelHandler RequestToDecreaseSectionLevel;
+        public event Events.Node.RequestToIncreaseNodeLevelHandler RequestToIncreaseSectionLevel;
+        public event Events.Node.RequestToMoveNodeDownHandler RequestToMoveSectionDown;
+        public event Events.Node.RequestToMoveNodeUpHandler RequestToMoveSectionUp;
+        public event Events.Node.RequestToRenameNodeHandler RequestToRenameSection;
+        public event Events.Node.RequestToDeleteNodeHandler RequestToDeleteSection;
       
 		/// <summary>
         /// Test whether a node is currently selected or not.
@@ -173,7 +173,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void addSectionAtSameLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           AddSiblingSection(this,
+            RequestToAddSiblingSection(this,
                 new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
 
@@ -182,7 +182,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void addSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddChildSection(this,
+            RequestToAddChildSection(this,
                 new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
 
@@ -191,7 +191,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void moveUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MoveSectionUp(this, 
+            RequestToMoveSectionUp(this, 
                 new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
 
@@ -200,7 +200,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void deleteSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DeleteSection(this, new Events.Node.NodeEventArgs(this, GetSelectedSection()));
+            RequestToDeleteSection(this, new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
 
         internal void editLabelToolStripMenuItem_Click(object sender, EventArgs e)
@@ -211,22 +211,19 @@ namespace Obi.UserControls
 
         internal void moveDownToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           MoveSectionDown(this,
+            RequestToMoveSectionDown(this,
                 new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
 
         internal void increaseLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            IncreaseSectionLevel(this,
+            RequestToIncreaseSectionLevel(this,
                 new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
 
         internal void decreaseLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-        	TreeNode sel = this.tocTree.SelectedNode;
-          sel.BeginEdit();
-
-            DecreaseSectionLevel(this, 
+        	RequestToDecreaseSectionLevel(this, 
                 new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
         #endregion
@@ -251,7 +248,7 @@ namespace Obi.UserControls
                 }
                 else if (e.Label != Project.GetTextMedia((urakawa.core.CoreNode)e.Node.Tag).getText())
                 {
-                    RenameSection(this, new Events.Node.RenameNodeEventArgs(this, (urakawa.core.CoreNode)e.Node.Tag, e.Label));
+                    RequestToRenameSection(this, new Events.Node.RenameNodeEventArgs(this, (urakawa.core.CoreNode)e.Node.Tag, e.Label));
                 }
             }
         }
