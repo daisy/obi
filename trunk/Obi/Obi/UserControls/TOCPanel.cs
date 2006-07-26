@@ -464,9 +464,9 @@ namespace Obi.UserControls
                 //remove the node which was just moved
                 selected.Remove();
 
+                clone.ExpandAll();
+                clone.EnsureVisible();
                 tocTree.SelectedNode = clone;
-
-                clone.Expand();
             }
         }
 
@@ -506,7 +506,9 @@ namespace Obi.UserControls
 
                 tocTree.SelectedNode = clone;
 
-                clone.Expand();
+                clone.ExpandAll();
+                clone.EnsureVisible();
+                tocTree.SelectedNode = clone;
             }
         }
 
@@ -567,8 +569,9 @@ namespace Obi.UserControls
                 clone.Nodes.Add((TreeNode)node);
             }
 
-            clone.Expand();
+            clone.ExpandAll();
             clone.EnsureVisible();
+            tocTree.SelectedNode = clone;
         }
 
         #endregion

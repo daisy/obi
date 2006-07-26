@@ -350,7 +350,7 @@ namespace Obi
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
             Commands.TOC.AddSection command = new Commands.TOC.AddSection(this, sibling, parent, parent.indexOf(sibling),
                 visitor.Position);
-            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+           //MED CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
         public void CreateSiblingSectionRequested(object sender, Events.Node.NodeEventArgs e)
@@ -374,7 +374,7 @@ namespace Obi
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
             Commands.TOC.AddSection command = new Commands.TOC.AddSection(this, child, parent, parent.indexOf(child),
                 visitor.Position);
-            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            //MEDCommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
         public void CreateChildSectionRequested(object sender, Events.Node.NodeEventArgs e)
@@ -625,11 +625,15 @@ namespace Obi
             ArrayList futureChildren = new ArrayList();
             int nodeIndex = ((CoreNode)node.getParent()).indexOf(node);
 
+            int numChildren = node.getParent().getChildCount();
+
             //make copies of our future children, and remove them from the tree
-            for (int i = nodeIndex + 1; i<node.getParent().getChildCount(); i++)
+            for (int i = numChildren-1; i>nodeIndex; i--)
             {
                futureChildren.Add(node.getParent().getChild(i).detach());
             }
+            //since the list was built in backwards order, rearrange it
+            futureChildren.Reverse();
 
             CoreNode newParent = (CoreNode)node.getParent().getParent();
             int newIndex = newParent.indexOf((CoreNode)node.getParent()) + 1;
@@ -663,7 +667,7 @@ namespace Obi
             RenamedNode(this, new Events.Node.RenameNodeEventArgs(origin, node, label));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-            if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            //MEDif (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
         public void RenameNodeRequested(object sender, Events.Node.RenameNodeEventArgs e)
