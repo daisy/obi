@@ -60,6 +60,7 @@ namespace Obi.UserControls
             // 
             this.mTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.mTextBox.BackColor = System.Drawing.Color.LemonChiffon;
             this.mTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mTextBox.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.mTextBox.Location = new System.Drawing.Point(3, 0);

@@ -54,20 +54,25 @@ namespace Obi.UserControls
 
         private void SectionStrip_Click(object sender, EventArgs e)
         {
-            mManager.SelectedNode = mNode;
-            Console.WriteLine("Selected {0}", mLabel);
+            if (mManager.SelectedNode == mNode)
+            {
+                StartRenaming();
+            }
+            else
+            {
+                mManager.SelectedNode = mNode;
+            }
         }
 
         public void MarkSelected()
         {
             BackColor = Color.Gold;
-            Console.WriteLine("{0} becomes gold!", mLabel);
         }
 
         public void MarkDeselected()
         {
+            mTextBox.Visible = false;
             BackColor = Color.PaleGreen;
-            Console.WriteLine("{0} becomes green!", mLabel);
         }
 
         /// <summary>
@@ -91,7 +96,8 @@ namespace Obi.UserControls
         /// </summary>
         private void mTextBox_Leave(object sender, EventArgs e)
         {
-            UpdateText();
+            System.Diagnostics.Debug.Print("Leaving the text box...");
+            mTextBox.Visible = false;
         }
 
         /// <summary>

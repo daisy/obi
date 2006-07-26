@@ -60,6 +60,7 @@ namespace Obi.UserControls
             this.mFlowLayoutPanel.TabIndex = 1;
             this.mFlowLayoutPanel.WrapContents = false;
             this.mFlowLayoutPanel.Click += new System.EventHandler(this.mFlowLayoutPanel_Click);
+            this.mFlowLayoutPanel.Leave += new System.EventHandler(this.mFlowLayoutPanel_Leave);
             // 
             // contextMenuStrip1
             // 
@@ -73,14 +74,14 @@ namespace Obi.UserControls
             // addStripToolStripMenuItem
             // 
             this.addStripToolStripMenuItem.Name = "addStripToolStripMenuItem";
-            this.addStripToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.addStripToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.addStripToolStripMenuItem.Text = "&Add strip";
             this.addStripToolStripMenuItem.Click += new System.EventHandler(this.addStripToolStripMenuItem_Click);
             // 
             // renameStripToolStripMenuItem
             // 
             this.renameStripToolStripMenuItem.Name = "renameStripToolStripMenuItem";
-            this.renameStripToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.renameStripToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.renameStripToolStripMenuItem.Text = "&Rename strip";
             this.renameStripToolStripMenuItem.Click += new System.EventHandler(this.renameStripToolStripMenuItem_Click);
             // 

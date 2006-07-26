@@ -61,15 +61,6 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to add sub-section.
-        /// </summary>
-        internal static string add_child_command_label {
-            get {
-                return ResourceManager.GetString("add_child_command_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to add section.
         /// </summary>
         internal static string add_section_command_label {
@@ -291,6 +282,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Redo.
+        /// </summary>
+        internal static string redo {
+            get {
+                return ResourceManager.GetString("redo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} {1}.
         /// </summary>
         internal static string redo_label {
@@ -362,6 +362,15 @@ namespace Obi {
         internal static string status_toc_shown {
             get {
                 return ResourceManager.GetString("status_toc_shown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Undo.
+        /// </summary>
+        internal static string undo {
+            get {
+                return ResourceManager.GetString("undo", resourceCulture);
             }
         }
         

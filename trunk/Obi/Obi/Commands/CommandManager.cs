@@ -65,6 +65,15 @@ namespace Obi.Commands
         }
 
         /// <summary>
+        /// Clear the undo/redo stack, used when reading in a new project.
+        /// </summary>
+        public void Clear()
+        {
+            mUndo.Clear();
+            mRedo.Clear();
+        }
+
+        /// <summary>
         /// Push a new command to the undo stack and clear the redo stack.
         /// It is assumed that the command just has, or will immediatly be executed.
         /// </summary>
