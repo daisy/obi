@@ -47,6 +47,12 @@ namespace Obi.UserControls
                     mTOCPanel.MoveSectionDown -= new Events.Node.RequestToMoveNodeDownHandler(mProject.MoveNodeDownRequested);
                     mProject.MovedNodeDown -= new Events.Node.MovedNodeDownHandler(mTOCPanel.SyncMovedNodeDown);
 
+                    mTOCPanel.IncreaseSectionLevel -= new Events.Node.RequestToIncreaseNodeLevelHandler(mProject.IncreaseNodeLevelRequested);
+                    mProject.IncreasedNodeLevel -= new Events.Node.IncreasedNodeLevelHandler(mTOCPanel.SyncIncreasedNodeLevel);
+
+                    mTOCPanel.DecreaseSectionLevel -= new Events.Node.RequestToDecreaseNodeLevelHandler(mProject.DecreaseNodeLevelRequested);
+                    mProject.DecreasedNodeLevel -= new Events.Node.DecreasedNodeLevelHandler(mTOCPanel.SyncDecreasedNodeLevel);
+
                     mTOCPanel.RenameSection -= new Events.Node.RequestToRenameNodeHandler(mProject.RenameNodeRequested);
                     mStripManagerPanel.RenameSection -= new Events.Node.RequestToRenameNodeHandler(mProject.RenameNodeRequested);
                     mProject.RenamedNode -= new Events.Node.RenamedNodeHandler(mTOCPanel.SyncRenamedNode);
@@ -76,6 +82,12 @@ namespace Obi.UserControls
 
                     mTOCPanel.MoveSectionDown += new Events.Node.RequestToMoveNodeDownHandler(value.MoveNodeDownRequested);
                     value.MovedNodeDown += new Events.Node.MovedNodeDownHandler(mTOCPanel.SyncMovedNodeDown);
+
+                    mTOCPanel.IncreaseSectionLevel += new Events.Node.RequestToIncreaseNodeLevelHandler(value.IncreaseNodeLevelRequested);
+                    value.IncreasedNodeLevel += new Events.Node.IncreasedNodeLevelHandler(mTOCPanel.SyncIncreasedNodeLevel);
+
+                    mTOCPanel.DecreaseSectionLevel += new Events.Node.RequestToDecreaseNodeLevelHandler(value.DecreaseNodeLevelRequested);
+                    value.DecreasedNodeLevel += new Events.Node.DecreasedNodeLevelHandler(mTOCPanel.SyncDecreasedNodeLevel);
 
                     mTOCPanel.RenameSection += new Events.Node.RequestToRenameNodeHandler(value.RenameNodeRequested);
                     mStripManagerPanel.RenameSection += new Events.Node.RequestToRenameNodeHandler(value.RenameNodeRequested);

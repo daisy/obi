@@ -42,6 +42,8 @@ namespace Obi
         public event Events.Node.RenamedNodeHandler RenamedNode;            // a node was renamed in the presentation
         public event Events.Node.MovedNodeUpHandler MovedNodeUp;            // a node was moved up in the presentation
         public event Events.Node.MovedNodeDownHandler MovedNodeDown;        // a node was moved down in the presentation
+        public event Events.Node.IncreasedNodeLevelHandler IncreasedNodeLevel; //a node's level was increased in the presentation
+        public event Events.Node.DecreasedNodeLevelHandler DecreasedNodeLevel; //a node's level was decreased in the presentation
         /// <summary>
         /// This flag is set to true if the project contains modifications that have not been saved.
         /// </summary>
@@ -444,8 +446,8 @@ namespace Obi
         public void MoveNodeUp(object origin, CoreNode node)
         {
             //a facade API function could do this for us
-            bool moveUpSucceeded = ExecuteMoveNodeUpLogic(node);
-            if (moveUpSucceeded)
+            bool succeeded = ExecuteMoveNodeUp(node);
+            if (succeeded)
             {
                 MovedNodeUp(this, new Events.Node.NodeEventArgs(origin, node));
                 mUnsaved = true;
@@ -453,7 +455,7 @@ namespace Obi
             }
         }
 
-        private bool ExecuteMoveNodeUpLogic(CoreNode node)
+        private bool ExecuteMoveNodeUp(CoreNode node)
         {
             CoreNode newParent = null;
             int newIndex = 0;
@@ -500,8 +502,8 @@ namespace Obi
         public void MoveNodeDown(object origin, CoreNode node)
         {
             //a facade API function could do this for us
-            bool moveDownSucceeded = ExecuteMoveNodeDownLogic(node);
-            if (moveDownSucceeded)
+            bool succeeded = ExecuteMoveNodeDown(node);
+            if (succeeded)
             {
                 MovedNodeDown(this, new Events.Node.NodeEventArgs(origin, node));
                 mUnsaved = true;
@@ -509,7 +511,13 @@ namespace Obi
             }
         }
 
-        private bool ExecuteMoveNodeDownLogic(CoreNode node)
+        /// <summary>
+        /// Move a node down in the presentation. If it has a younger sibling, then they swap
+        /// places.  If not, it changes level and becomes a younger sibling of its parent.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        private bool ExecuteMoveNodeDown(CoreNode node)
         {
             CoreNode newParent = null;
             int newIndex = 0;
@@ -524,9 +532,7 @@ namespace Obi
                 if (node.getParent().getParent() != null)
                 {
                     newParent = (CoreNode)node.getParent().getParent();
-
                     newIndex = newParent.indexOf((CoreNode)node.getParent()) + 1;
-
                 }
             }
             else
@@ -551,6 +557,99 @@ namespace Obi
         public void MoveNodeDownRequested(object sender, Events.Node.NodeEventArgs e)
         {
             MoveNodeDown(sender, e.Node);
+        }
+
+        public void IncreaseNodeLevel(object origin, CoreNode node)
+        {
+            //a facade API function could do this for us
+            bool succeeded = ExecuteIncreaseNodeLevel(node);
+            if (succeeded)
+            {
+                IncreasedNodeLevel(this, new Events.Node.NodeEventArgs(origin, node));
+                mUnsaved = true;
+                StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            }
+        }
+
+        private bool ExecuteIncreaseNodeLevel(CoreNode node)
+        {
+            int nodeIndex = ((CoreNode)node.getParent()).indexOf(node);
+
+            //the node's level can be increased if it has an older sibling
+            if (nodeIndex == 0)
+            {
+                return false;
+            }
+
+            CoreNode newParent = ((CoreNode)node.getParent()).getChild(nodeIndex - 1);
+
+            if (newParent != null)
+            {
+                CoreNode movedNode = (CoreNode)node.detach();
+                newParent.appendChild(movedNode);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void IncreaseNodeLevelRequested(object sender, Events.Node.NodeEventArgs e)
+        {
+            IncreaseNodeLevel(sender, e.Node);
+        }
+
+        public void DecreaseNodeLevel(object origin, CoreNode node)
+        {
+            //a facade API function could do this for us
+            bool succeeded = ExecuteDecreaseNodeLevel(node);
+            if (succeeded)
+            {
+                DecreasedNodeLevel(this, new Events.Node.NodeEventArgs(origin, node));
+                mUnsaved = true;
+                StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            }
+        }
+
+        private bool ExecuteDecreaseNodeLevel(CoreNode node)
+        {
+            //the only reason we can't decrease the level is if the node is already 
+            //at the outermost level
+            if (node.getParent() == null ||
+                node.getParent().Equals(node.getPresentation().getRootNode()))
+            {
+                return false;
+            }
+
+            ArrayList futureChildren = new ArrayList();
+            int nodeIndex = ((CoreNode)node.getParent()).indexOf(node);
+
+            //make copies of our future children, and remove them from the tree
+            for (int i = nodeIndex + 1; i<node.getParent().getChildCount(); i++)
+            {
+               futureChildren.Add(node.getParent().getChild(i).detach());
+            }
+
+            CoreNode newParent = (CoreNode)node.getParent().getParent();
+            int newIndex = newParent.indexOf((CoreNode)node.getParent()) + 1;
+            
+            CoreNode clone = (CoreNode)node.detach();
+
+            newParent.insert(clone, newIndex);
+            
+            foreach (object childnode in futureChildren)
+            {
+                clone.appendChild((CoreNode)childnode);
+            }
+
+            return true;
+
+        }
+
+        public void DecreaseNodeLevelRequested(object sender, Events.Node.NodeEventArgs e)
+        {
+            DecreaseNodeLevel(sender, e.Node);
         }
 
         /// <summary>

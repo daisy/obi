@@ -5,7 +5,6 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using urakawa.core;
 using urakawa.media;
 using System.Collections;
 
@@ -17,7 +16,7 @@ namespace Obi.UserControls
     /// change the label, etc. of headings.)
     /// This control implements the CoreTreeView interface so that it can be synchronized with the core tree.
     /// </summary>
-    public partial class TOCPanel : UserControl, ICoreNodeVisitor
+    public partial class TOCPanel : UserControl, urakawa.core.ICoreNodeVisitor
     {
         public event Events.Node.RequestToAddSiblingNodeHandler AddSiblingSection;
         public event Events.Node.RequestToAddChildNodeHandler AddChildSection;
@@ -55,7 +54,7 @@ namespace Obi.UserControls
         /// Since we need priviledged access to the class for synchronization,
         /// we make it implement ICoreNodeVisitor directly.
         /// </summary>
-        public void SynchronizeWithCoreTree(CoreNode root)
+        public void SynchronizeWithCoreTree(urakawa.core.CoreNode root)
         {
             tocTree.Nodes.Clear();
             tocTree.SelectedNode = null;
@@ -68,7 +67,7 @@ namespace Obi.UserControls
         /// Do nothing.
         /// </summary>
         /// <param name="node">The node to do nothing with.</param>
-        public void postVisit(ICoreNode node)
+        public void postVisit(urakawa.core.ICoreNode node)
         {
         }
 
@@ -78,15 +77,15 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="node">The node to add to the tree.</param>
         /// <returns>True </returns>
-        public bool preVisit(ICoreNode node)
+        public bool preVisit(urakawa.core.ICoreNode node)
         {
             if (node.getParent() != null)
             {
-                string label = Project.GetTextMedia((CoreNode)node).getText();
-                System.Windows.Forms.TreeNode newTreeNode;
+                string label = Project.GetTextMedia((urakawa.core.CoreNode)node).getText();
+                TreeNode newTreeNode;
                 if (node.getParent().getParent() != null)
                 {
-                    System.Windows.Forms.TreeNode parentTreeNode = FindTreeNodeFromCoreNode((CoreNode)node.getParent());
+                    TreeNode parentTreeNode = FindTreeNodeFromCoreNode((urakawa.core.CoreNode)node.getParent());
                     newTreeNode = parentTreeNode.Nodes.Add(node.GetHashCode().ToString(), label);
                 }
                 else
@@ -134,9 +133,9 @@ namespace Obi.UserControls
         /// Return the core node version of the selected tree node.
         /// </summary>
         /// <returns>The selected section, or null if no section is selected.</returns>
-        public CoreNode GetSelectedSection()
+        public urakawa.core.CoreNode GetSelectedSection()
         {
-            System.Windows.Forms.TreeNode selected = this.tocTree.SelectedNode;
+            TreeNode selected = this.tocTree.SelectedNode;
             return selected == null ? null : (urakawa.core.CoreNode)selected.Tag;
         }
 
@@ -145,9 +144,9 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="node">The core node version of the node to select.</param>
         /// <returns>true or false, depending on if the selection was successful</returns>
-        public bool SetSelectedSection(CoreNode node)
+        public bool SetSelectedSection(urakawa.core.CoreNode node)
         {
-            System.Windows.Forms.TreeNode sel = FindTreeNodeFromCoreNode(node);
+            TreeNode sel = FindTreeNodeFromCoreNode(node);
 
             if (sel != null)
             {
@@ -174,9 +173,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void addSectionAtSameLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("TOC panel click!\n");
-
-            AddSiblingSection(this,
+           AddSiblingSection(this,
                 new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
 
@@ -208,7 +205,7 @@ namespace Obi.UserControls
 
         internal void editLabelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.TreeNode sel = this.tocTree.SelectedNode;
+            TreeNode sel = this.tocTree.SelectedNode;
             sel.BeginEdit();
         }
 
@@ -226,7 +223,7 @@ namespace Obi.UserControls
 
         internal void decreaseLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-        	System.Windows.Forms.TreeNode sel = this.tocTree.SelectedNode;
+        	TreeNode sel = this.tocTree.SelectedNode;
           sel.BeginEdit();
 
             DecreaseSectionLevel(this, 
@@ -252,9 +249,9 @@ namespace Obi.UserControls
                         Localizer.Message("empty_label_warning_caption"),
                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-                else if (e.Label != Project.GetTextMedia((CoreNode)e.Node.Tag).getText())
+                else if (e.Label != Project.GetTextMedia((urakawa.core.CoreNode)e.Node.Tag).getText())
                 {
-                    RenameSection(this, new Events.Node.RenameNodeEventArgs(this, (CoreNode)e.Node.Tag, e.Label));
+                    RenameSection(this, new Events.Node.RenameNodeEventArgs(this, (urakawa.core.CoreNode)e.Node.Tag, e.Label));
                 }
             }
         }
@@ -278,10 +275,10 @@ namespace Obi.UserControls
         ///
         /// The new heading has already been created as a <see cref="CoreNode"/>.  
         /// It is in its correct place in the core tree.  
-        /// Now we need to add it as a <see cref="System.Windows.Forms.TreeNode"/> so 
-        /// it shows up in the tree view. Internally, the new <see cref="System.Windows.Forms.TreeNode"/>
+        /// Now we need to add it as a <see cref="TreeNode"/> so 
+        /// it shows up in the tree view. Internally, the new <see cref="TreeNode"/>
         /// is given the key of its <see cref="CoreNode"/> object's hash code.
-        /// This makes it faster to find a <see cref="System.Windows.Forms.TreeNode"/> 
+        /// This makes it faster to find a <see cref="TreeNode"/> 
         /// based on a given <see cref="CoreNode"/>.
         /// </summary>
         /// <param name="sender">The sender of this event notification</param>
@@ -289,11 +286,11 @@ namespace Obi.UserControls
         
         internal void SyncAddedSectionNode(object sender, Events.Node.AddedSectionNodeEventArgs e)
         {
-            System.Windows.Forms.TreeNode newTreeNode;
+            TreeNode newTreeNode;
             string label = Project.GetTextMedia(e.Node).getText();
             if (e.Node.getParent().getParent() != null)
             {
-                System.Windows.Forms.TreeNode relTreeNode = FindTreeNodeFromCoreNode((CoreNode)e.Node.getParent());
+                TreeNode relTreeNode = FindTreeNodeFromCoreNode((urakawa.core.CoreNode)e.Node.getParent());
                 newTreeNode = relTreeNode.Nodes.Insert(e.Index, e.Node.GetHashCode().ToString(), label);
             }
             else
@@ -321,7 +318,7 @@ namespace Obi.UserControls
         {
             if (e.Origin != this)
             {
-                System.Windows.Forms.TreeNode treeNode = FindTreeNodeWithoutLabel(e.Node);
+                TreeNode treeNode = FindTreeNodeWithoutLabel(e.Node);
                 treeNode.Text = e.Label;
             }
         }
@@ -336,7 +333,7 @@ namespace Obi.UserControls
         {
             if (e.Node != null)
             {
-                System.Windows.Forms.TreeNode treeNode = FindTreeNodeFromCoreNode(e.Node);
+                TreeNode treeNode = FindTreeNodeFromCoreNode(e.Node);
                 treeNode.Remove();
             }    
         }
@@ -359,8 +356,8 @@ namespace Obi.UserControls
         {
             System.Windows.Forms.TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
 
-            System.Windows.Forms.TreeNode clone = (System.Windows.Forms.TreeNode)selected.Clone();
-            System.Windows.Forms.TreeNodeCollection siblingCollection = null;
+            TreeNode clone = (TreeNode)selected.Clone();
+            TreeNodeCollection siblingCollection = null;
 
             int newIndex = 0;
 
@@ -422,10 +419,10 @@ namespace Obi.UserControls
         /// <param name="e"></param>
         internal void SyncMovedNodeDown(object sender, Events.Node.NodeEventArgs e)
         {
-            System.Windows.Forms.TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
-            System.Windows.Forms.TreeNode clone = (System.Windows.Forms.TreeNode)
+            TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
+            TreeNode clone = (TreeNode)
                 selected.Clone();
-            System.Windows.Forms.TreeNodeCollection siblingCollection = null;
+            TreeNodeCollection siblingCollection = null;
 
             int newIndex = 0;
 
@@ -476,9 +473,107 @@ namespace Obi.UserControls
             }
         }
 
-        internal void SyncIncreaseNodeLevel(object sender, Events.Node.NodeEventArgs e)
+        internal void SyncIncreasedNodeLevel(object sender, Events.Node.NodeEventArgs e)
         {
+            TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
+
+            //you can always increase a node's level if it has an older sibling
+            if (selected.Index == 0)
+            {
+                return;
+            }
+
+            TreeNode clone = (TreeNode)selected.Clone();
+            TreeNodeCollection siblingCollection = null;
+
+            TreeNode newParent = null;
+
+            if (selected.Parent != null)
+            {
+                siblingCollection = selected.Parent.Nodes;
+            }
+            else
+            {
+                siblingCollection = tocTree.Nodes;
+            }
+
+            newParent = siblingCollection[selected.Index - 1];
+
+            if (newParent != null)
+            {
+                //insert the clone as another child of its new parent
+                newParent.Nodes.Add(clone);
+
+                //remove the node which was just moved
+                selected.Remove();
+
+                tocTree.SelectedNode = clone;
+
+                clone.Expand();
+            }
         }
+
+        /// <summary>
+        /// Decrease the node level.
+        /// When a node becomes shallower, it adopts its former younger siblings.
+        /// We'll have to get feedback on how users like this behavior.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        internal void SyncDecreasedNodeLevel(object sender, Events.Node.NodeEventArgs e)
+        {
+            TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
+
+            //the only reason we can't decrease the level is if the node is already 
+            //at the outermost level
+            if (selected.Parent == null)
+            {
+                return;
+            }
+
+            ArrayList futureChildren = new ArrayList();
+
+            int idx = 0;
+            //make copies of our future children, and remove them from the tree
+            foreach (TreeNode node in selected.Parent.Nodes)
+            {
+                if (node.Index > selected.Index)
+                {
+                    futureChildren.Add(node.Clone());
+                    node.Remove();
+                    idx++;
+                }
+            }
+
+            TreeNodeCollection siblingCollection = null;
+
+            //move it out a level
+            if (selected.Parent.Parent != null)
+            {
+                siblingCollection = selected.Parent.Parent.Nodes;
+            }
+            else
+            {
+                siblingCollection = tocTree.Nodes;
+            }
+
+            int newIndex = selected.Parent.Index + 1;
+
+            TreeNode clone = 
+                (TreeNode)selected.Clone();
+            selected.Remove();
+
+            siblingCollection.Insert(newIndex, clone);
+
+            foreach (object node in futureChildren)
+            {
+                clone.Nodes.Add((TreeNode)node);
+            }
+
+            clone.Expand();
+            clone.EnsureVisible();
+        }
+
         #endregion
 
         #region helper functions
@@ -488,18 +583,19 @@ namespace Obi.UserControls
         /// <param name="node">the node (points to its own presentation)</param>
         /// <param name="channelName">the channel name</param>
         /// <returns></returns>
-        private Channel GetChannelByName(CoreNode node, string channelName)
+        private urakawa.core.Channel GetChannelByName(urakawa.core.CoreNode node, string channelName)
         {
-            ChannelsProperty channelsProp = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
-            Channel foundChannel = null;
+            urakawa.core.ChannelsProperty channelsProp = 
+                (urakawa.core.ChannelsProperty)node.getProperty(typeof(urakawa.core.ChannelsProperty));
+            urakawa.core.Channel foundChannel = null;
             IList channelsList = channelsProp.getListOfUsedChannels();
 
             for (int i = 0; i < channelsList.Count; i++)
             {
-                string name = ((IChannel)channelsList[i]).getName();
+                string name = ((urakawa.core.IChannel)channelsList[i]).getName();
                 if (name == channelName)
                 {
-                    foundChannel = (Channel)channelsList[i];
+                    foundChannel = (urakawa.core.Channel)channelsList[i];
                     break;
                 }
             }
@@ -517,9 +613,9 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
-        private System.Windows.Forms.TreeNode FindTreeNodeFromCoreNode(CoreNode node)
+        private TreeNode FindTreeNodeFromCoreNode(urakawa.core.CoreNode node)
         {
-            System.Windows.Forms.TreeNode foundNode = FindTreeNodeWithoutLabel(node);
+            TreeNode foundNode = FindTreeNodeWithoutLabel(node);
             if (foundNode.Text != Project.GetTextMedia(node).getText())
             {
                 throw new Exception(String.Format("Found tree node matching core node #{0} but labels mismatch (wanted \"{1}\" but got \"{2}\").",
@@ -533,10 +629,10 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="node">The node to find.</param>
         /// <returns>The corresponding tree node.</returns>
-        private System.Windows.Forms.TreeNode FindTreeNodeWithoutLabel(CoreNode node)
+        private TreeNode FindTreeNodeWithoutLabel(urakawa.core.CoreNode node)
         {
-            System.Windows.Forms.TreeNode foundNode = null;
-            System.Windows.Forms.TreeNode[] treeNodes
+            TreeNode foundNode = null;
+            TreeNode[] treeNodes
                 = tocTree.Nodes.Find(node.GetHashCode().ToString(), true);
           
             //since a key isn't unique and we get a list back from Nodes.Find,
