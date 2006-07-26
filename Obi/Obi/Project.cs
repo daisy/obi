@@ -35,6 +35,8 @@ namespace Obi
         public static readonly string AnnotationChannel = "obi.annotation";  // canonical name of the annotation channel
 
         public event Events.Project.StateChangedHandler StateChanged;       // the state of the project changed (modified, saved...)
+        public event Events.Project.CommandCreatedHandler CommandCreated;   // a new command must be added to the command manager
+
         public event Events.Node.AddedSectionNodeHandler AddedSectionNode;  // a section node was added to the TOC
         public event Events.Node.DeletedNodeHandler DeletedNode;            // a node was deleted from the presentation
         public event Events.Node.RenamedNodeHandler RenamedNode;            // a node was renamed in the presentation
@@ -328,26 +330,25 @@ namespace Obi
         /// </summary>
         public void CreateSiblingSection(object origin, CoreNode contextNode)
         {
+            CoreNode parent = (CoreNode)(contextNode == null ? getPresentation().getRootNode() : contextNode.getParent());
             CoreNode sibling = CreateSectionNode();
             if (contextNode == null)
             {
-                getPresentation().getRootNode().appendChild(sibling);
-                NodePositionVisitor visitor = new NodePositionVisitor(sibling);
-                getPresentation().getRootNode().acceptDepthFirst(visitor);
-                AddedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs(origin, sibling,
-                    ((CoreNode)sibling.getParent()).indexOf(sibling), visitor.Position));
+                parent.appendChild(sibling);
             }
             else
             {
-                CoreNode parent = (CoreNode)contextNode.getParent();
                 parent.insert(sibling, parent.indexOf(contextNode) + 1);
-                NodePositionVisitor visitor = new NodePositionVisitor(sibling);
-                getPresentation().getRootNode().acceptDepthFirst(visitor);
-                AddedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs(origin, sibling, parent.indexOf(sibling),
-                    visitor.Position));
             }
+            NodePositionVisitor visitor = new NodePositionVisitor(sibling);
+            getPresentation().getRootNode().acceptDepthFirst(visitor);
+            AddedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs(origin, sibling, parent.indexOf(sibling),
+                visitor.Position));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            Commands.TOC.AddSection command = new Commands.TOC.AddSection(this, sibling, parent, parent.indexOf(sibling),
+                visitor.Position);
+            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
         public void CreateSiblingSectionRequested(object sender, Events.Node.NodeEventArgs e)
@@ -369,6 +370,9 @@ namespace Obi
             AddedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs(origin, child, parent.indexOf(child), visitor.Position));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            Commands.TOC.AddSection command = new Commands.TOC.AddSection(this, child, parent, parent.indexOf(child),
+                visitor.Position);
+            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
         public void CreateChildSectionRequested(object sender, Events.Node.NodeEventArgs e)
@@ -380,10 +384,10 @@ namespace Obi
         /// This should be used by add child/add sibling.
         /// AddedSectionNode event to replace AddedChild/Sibling as well.
         /// </summary>
-        public void RedoAddSection(CoreNode node, int index, int position)
+        public void RedoAddSection(CoreNode node, CoreNode parent, int index, int position, string originalLabel)
         {
-            CoreNode parent = (CoreNode)node.getParent();
             parent.insert(node, index);
+            Project.GetTextMedia(node).setText(originalLabel);
             AddedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs(this, node, index, position));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));

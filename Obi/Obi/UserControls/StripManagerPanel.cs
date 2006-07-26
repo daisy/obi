@@ -104,16 +104,6 @@ namespace Obi.UserControls
             AddStripFromNode(e.Node, e.Position, e.Origin == this);
         }
 
-       /* internal void SyncAddedSiblingNode(object sender, Events.Sync.AddedSiblingNodeEventArgs e)
-        {
-            AddStripFromNode(e.Node, e.Position, e.Origin == this);
-        }
-
-        internal void SyncAddedChildNode(object sender, Events.Sync.AddedChildNodeEventArgs e)
-        {
-            AddStripFromNode(e.Node, e.Position, e.Origin == this);
-        }*/
-
         private void AddStripFromNode(CoreNode node, int position, bool rename)
         {
             SectionStrip strip = new SectionStrip();
@@ -152,11 +142,6 @@ namespace Obi.UserControls
 
         #endregion
 
-        private void mFlowLayoutPanel_Click(object sender, EventArgs e)
-        {
-            SelectedNode = null;
-        }
-
         #region Menu items
 
         internal void addStripToolStripMenuItem_Click(object sender, EventArgs e)
@@ -182,6 +167,16 @@ namespace Obi.UserControls
         internal void RenamedSectionStrip(SectionStrip strip)
         {
             RenameSection(this, new Events.Node.RenameNodeEventArgs(this, strip.Node, strip.Label));
+        }
+
+        private void mFlowLayoutPanel_Click(object sender, EventArgs e)
+        {
+            SelectedNode = null;
+        }
+
+        private void mFlowLayoutPanel_Leave(object sender, EventArgs e)
+        {
+            SelectedNode = null;
         }
     }
 }

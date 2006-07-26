@@ -36,7 +36,6 @@ namespace Obi
             mSettings = null;
             mCmdMngr = new Commands.CommandManager();
             InitializeSettings();
-
             mOpenRecentProjectToolStripMenuItem.Enabled = mSettings.RecentProjects.Count > 0;
             FormUpdateClosedProject();  // no project opened, same as if we closed a project.
         }
@@ -118,6 +117,7 @@ namespace Obi
             if (mProject.Unsaved)
             {
                 mProject.SaveAs(mProject.XUKPath);
+                mCmdMngr.Clear();
             }
             else
             {
@@ -177,6 +177,7 @@ namespace Obi
             {
                 mProject.Close();
                 mProject = null;
+                mCmdMngr.Clear();
             }
         }
 
@@ -292,12 +293,19 @@ namespace Obi
                 case Obi.Events.Project.StateChange.Opened:
                     mProjectPanel.Project = mProject;
                     FormUpdateOpenedProject();
+                    mCmdMngr.Clear();
                     mProjectPanel.SynchronizeWithCoreTree(mProject.getPresentation().getRootNode());
                     break;
                 case Obi.Events.Project.StateChange.Saved:
                     FormUpdateSavedProject();
                     break;
             }
+        }
+
+        private void mProject_CommandCreated(object sender, Events.Project.CommandCreatedEventArgs e)
+        {
+            mCmdMngr.Add(e.Command);
+            FormUpdateUndoRedoLabels();
         }
 
         /// <summary>
@@ -356,6 +364,7 @@ namespace Obi
             {
                 mProject = new Project();
                 mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
+                mProject.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
                 mProject.Open(path);
                 AddRecentProject(path);
             }
@@ -456,6 +465,7 @@ namespace Obi
             {
                 item.Enabled = false;
             }
+            FormUpdateUndoRedoLabels();
             foreach (ToolStripItem item in mTocToolStripMenuItem.DropDownItems)    // cannot modify the TOC
             {
                 item.Enabled = false;
@@ -489,6 +499,7 @@ namespace Obi
             {
                 item.Enabled = true;
             }
+            FormUpdateUndoRedoLabels();
             foreach (ToolStripItem item in mTocToolStripMenuItem.DropDownItems)     // can modify the TOC
             {
                 item.Enabled = true;
@@ -509,6 +520,7 @@ namespace Obi
             this.Text = String.Format("{0} - {1}", mProject.Metadata.Title, Localizer.Message("obi"));
             mSaveProjectToolStripMenuItem.Enabled = false;
             mDiscardChangesToolStripMenuItem.Enabled = false;
+            FormUpdateUndoRedoLabels();
             toolStripStatusLabel1.Text = String.Format(Localizer.Message("saved_project"), mProject.LastPath);
         }
 
@@ -537,6 +549,32 @@ namespace Obi
                 item.Enabled = mProjectPanel.TOCPanelVisible;
             }
             mShowhideTableOfCOntentsToolStripMenuItem.Enabled = true;
+        }
+
+        private void FormUpdateUndoRedoLabels()
+        {
+            if (mCmdMngr.HasUndo)
+            {
+                mUndoToolStripMenuItem.Enabled = true;
+                mUndoToolStripMenuItem.Text = String.Format(Localizer.Message("undo_label"), Localizer.Message("undo"),
+                    mCmdMngr.UndoLabel);
+            }
+            else
+            {
+                mUndoToolStripMenuItem.Enabled = false;
+                mUndoToolStripMenuItem.Text = Localizer.Message("undo");
+            }
+            if (mCmdMngr.HasRedo)
+            {
+                mRedoToolStripMenuItem.Enabled = true;
+                mRedoToolStripMenuItem.Text = String.Format(Localizer.Message("redo_label"), Localizer.Message("redo"),
+                    mCmdMngr.UndoLabel);
+            }
+            else
+            {
+                mRedoToolStripMenuItem.Enabled = false;
+                mRedoToolStripMenuItem.Text = Localizer.Message("redo");
+            }
         }
 
         /// <summary>
@@ -579,6 +617,23 @@ namespace Obi
             toolStripStatusLabel1.Text = Localizer.Message("ready");
         }
 
-      
+        private void mUndoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mCmdMngr.HasUndo)
+            {
+                mCmdMngr.Undo();
+                FormUpdateUndoRedoLabels();
+            }
+        }
+
+        private void mRedoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mCmdMngr.HasRedo)
+            {
+                mCmdMngr.Redo();
+                FormUpdateUndoRedoLabels();
+            }
+        }
+
     }
 }

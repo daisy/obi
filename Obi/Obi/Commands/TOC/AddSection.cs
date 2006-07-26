@@ -11,14 +11,27 @@ namespace Obi.Commands.TOC
     {
         private Project mProject;
         private CoreNode mNode;
-        private int mPosition;
+        private CoreNode mParent;
         private int mIndex;
+        private int mPosition;
+        private string mOriginalLabel;
 
-        public AddSection(Project project, CoreNode node, int index, int position)
+        public override string Label
+        {
+            get
+            {
+                return Localizer.Message("add_section_command_label");
+            }
+        }
+
+        public AddSection(Project project, CoreNode node, CoreNode parent, int index, int position)
         {
             mProject = project;
             mNode = node;
+            mParent = parent;
             mIndex = index;
+            mPosition = position;
+            mOriginalLabel = Project.GetTextMedia(node).getText();
         }
 
         /// <summary>
@@ -27,7 +40,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            mProject.RedoAddSection(mNode, mIndex, mPosition);
+            mProject.RedoAddSection(mNode, mParent, mIndex, mPosition, mOriginalLabel);
         }
 
         /// <summary>

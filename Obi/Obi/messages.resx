@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="add_child_command_label" xml:space="preserve">
-    <value>add sub-section</value>
-  </data>
   <data name="cancelled" xml:space="preserve">
     <value>Cancelled</value>
   </data>
@@ -229,5 +226,11 @@ Do you want to replace the project contained in this file?</value>
   </data>
   <data name="add_section_command_label" xml:space="preserve">
     <value>add section</value>
+  </data>
+  <data name="redo" xml:space="preserve">
+    <value>&amp;Redo</value>
+  </data>
+  <data name="undo" xml:space="preserve">
+    <value>&amp;Undo</value>
   </data>
 </root>

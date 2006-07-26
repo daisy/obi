@@ -97,6 +97,7 @@
     </Compile>
     <Compile Include="Events\Node\NodeEventArgs.cs" />
     <Compile Include="Events\Node\RenameNodeEventArgs.cs" />
+    <Compile Include="Events\Project\CommandCreatedEventArgs.cs" />
     <Compile Include="Events\Project\StateChangedEventArgs.cs" />
     <Compile Include="Events\Strip\SelectedEventArgs.cs" />
     <Compile Include="Events\Node\AddedSectionNodeEventArgs.cs" />
