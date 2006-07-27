@@ -692,6 +692,18 @@ namespace Obi.UserControls
         }
         #endregion
 
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+            if (tocTree.Nodes.Count == 0)
+            {
+                this.addSubSectionToolStripMenuItem.Enabled = false;
+            }
+            else
+            {
+                this.addSubSectionToolStripMenuItem.Enabled = true;
+            }
+        }
+
        
     }
 }
