@@ -68,7 +68,6 @@ namespace Obi.UserControls
             this.mTextBox.Size = new System.Drawing.Size(235, 16);
             this.mTextBox.TabIndex = 2;
             this.mTextBox.Visible = false;
-            this.mTextBox.Leave += new System.EventHandler(this.mTextBox_Leave);
             this.mTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mTextBox_KeyDown);
             // 
             // SectionStrip

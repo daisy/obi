@@ -47,9 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Commands, Version=1.0.2392.27219, Culture=neutral">
+    <Reference Include="Commands, Version=1.0.2399.28565, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Commands\bin\Debug\Commands.dll</HintPath>
+      <HintPath>..\..\VirtualAudioBackend\bin\Debug\Commands.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -65,6 +65,10 @@
     <Reference Include="UrakawaApplicationBackend, Version=1.0.2368.31351, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\UrakawaApplicationBackend\obj\Debug\UrakawaApplicationBackend.dll</HintPath>
+    </Reference>
+    <Reference Include="VirtualAudioBackend, Version=1.0.2399.28607, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\VirtualAudioBackend\bin\Debug\VirtualAudioBackend.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +105,7 @@
     <Compile Include="Events\Node\RenameNodeEventArgs.cs" />
     <Compile Include="Events\Project\CommandCreatedEventArgs.cs" />
     <Compile Include="Events\Project\StateChangedEventArgs.cs" />
+    <Compile Include="Events\Strip\ImportAssetEventArgs.cs" />
     <Compile Include="Events\Strip\SelectedEventArgs.cs" />
     <Compile Include="Events\Node\AddedSectionNodeEventArgs.cs" />
     <Compile Include="Localizer.cs" />

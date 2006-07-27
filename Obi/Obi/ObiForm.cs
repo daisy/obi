@@ -329,6 +329,8 @@ namespace Obi
                 new EventHandler(mProjectPanel.StripManager.addStripToolStripMenuItem_Click);
             renameStripToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.renameStripToolStripMenuItem_Click);
+            importAssetToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.StripManager.importAssetToolStripMenuItem_Click);
         }
 
         private void StripManager_Selected(object sender, Events.Strip.SelectedEventArgs e)
