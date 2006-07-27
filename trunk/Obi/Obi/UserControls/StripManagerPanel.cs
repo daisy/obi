@@ -20,6 +20,7 @@ namespace Obi.UserControls
 
         public event Events.Node.RequestToAddSiblingNodeHandler AddSiblingSection;
         public event Events.Node.RequestToRenameNodeHandler RenameSection;
+        public event Events.Strip.RequestToImportAssetHandler ImportPhrase;
         public event Events.Strip.SelectedHandler SelectedStrip;
 
         public CoreNode SelectedNode
@@ -154,6 +155,20 @@ namespace Obi.UserControls
             if (mSelectedNode != null)
             {
                 mNodeMap[mSelectedNode].StartRenaming();
+            }
+        }
+
+        internal void importAssetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (SelectedNode != null)
+            {
+                OpenFileDialog dialog = new OpenFileDialog();
+                dialog.Filter = "WAVE file (*.wav)|*.wav|Any file|*.*";
+                dialog.ShowDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    ImportPhrase(this, new Events.Strip.ImportAssetEventArgs(mSelectedNode, dialog.FileName));
+                }
             }
         }
 

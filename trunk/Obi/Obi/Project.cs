@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 using urakawa.core;
 using urakawa.media;
+using VirtualAudioBackend;
 
 namespace Obi
 {
@@ -24,6 +26,9 @@ namespace Obi
         private Channel mAudioChannel;       // handy pointer to the audio channel
         private Channel mTextChannel;        // handy pointer to the text channel 
         private Channel mAnnotationChannel;  // handy pointer to the annotation channel
+
+        private AssetManager mAssManager;    // the asset manager
+        private string mAssPath;             // the path to the asset manager directory
 
         private bool mUnsaved;               // saved flag
         private string mXUKPath;             // path to the project XUK file
@@ -98,6 +103,7 @@ namespace Obi
         public Project()
             : base()
         {
+            mAssManager = null;
             mUnsaved = false;
             mXUKPath = null;
         }
@@ -114,6 +120,8 @@ namespace Obi
         public void Create(string xukPath, string title, string id, UserProfile userProfile, bool createTitle)
         {
             mXUKPath = xukPath;
+            mAssPath = GetAssetDirectory(xukPath);
+            mAssManager = new AssetManager(mAssPath);
             mMetadata = CreateMetadata(title, id, userProfile);
             mAudioChannel = getPresentation().getChannelFactory().createChannel(AudioChannel);
             getPresentation().getChannelsManager().addChannel(mAudioChannel);
@@ -129,6 +137,18 @@ namespace Obi
             }
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
             SaveAs(mXUKPath);
+        }
+
+        /// <summary>
+        /// Get a suitable directory name to store the assets.
+        /// </summary>
+        /// <param name="xukPath"></param>
+        /// <returns></returns>
+        private string GetAssetDirectory(string path)
+        {
+            string assetdir = Path.GetDirectoryName(path) + @"\" + Path.GetFileNameWithoutExtension(path) + "_assets";
+            System.Diagnostics.Debug.Print("Directory for assets: {0}", assetdir);
+            return assetdir;
         }
 
         /// <summary>
@@ -166,10 +186,19 @@ namespace Obi
                         case "dc:Publisher":
                             mMetadata.Publisher = meta.getContent();
                             break;
+                        case "obi:assetsdir":
+                            mAssPath = meta.getContent();
+                            break;
                         default:
                             break;
                     }
                 }
+                if (mAssPath == null)
+                {
+                    mAssPath = GetAssetDirectory(mXUKPath);
+                    AddMetadata("obi:assetsdir", mAssPath);
+                }
+                mAssManager = new AssetManager(mAssPath);
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
             }
             else
@@ -210,6 +239,7 @@ namespace Obi
             urakawa.project.Metadata metaDate = AddMetadata("dc:Date", DateTime.Today.ToString("yyyy-MM-dd"));
             if (metaDate != null) metaDate.setScheme("YYYY-MM-DD");
             AddMetadata("xuk:generator", "Obi+Urakawa toolkit; let's share the blame.");
+            AddMetadata("obi:assetsdir", mAssPath);
             return metadata;
         }
 
@@ -350,7 +380,7 @@ namespace Obi
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
             Commands.TOC.AddSection command = new Commands.TOC.AddSection(this, sibling, parent, parent.indexOf(sibling),
                 visitor.Position);
-           //MED CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+           CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
         public void CreateSiblingSectionRequested(object sender, Events.Node.NodeEventArgs e)
@@ -374,7 +404,7 @@ namespace Obi
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
             Commands.TOC.AddSection command = new Commands.TOC.AddSection(this, child, parent, parent.indexOf(child),
                 visitor.Position);
-            //MEDCommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
         public void CreateChildSectionRequested(object sender, Events.Node.NodeEventArgs e)
@@ -667,7 +697,7 @@ namespace Obi
             RenamedNode(this, new Events.Node.RenameNodeEventArgs(origin, node, label));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-            //MEDif (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
         public void RenameNodeRequested(object sender, Events.Node.RenameNodeEventArgs e)
@@ -675,6 +705,21 @@ namespace Obi
             RenameNode(sender, e.Node, e.Label);
         }
 
+        /// <summary>
+        /// Create a new phrase node and add it to the section node.
+        /// (Well it's not added yet because otherwise it would create all sorts of problems.)
+        /// </summary>
+        public void ImportPhraseRequested(object sender, Events.Strip.ImportAssetEventArgs e)
+        {
+            ArrayList list = new ArrayList(1);
+            list.Add(new AudioClip(e.AssetPath));
+            AudioMediaAsset asset = mAssManager.NewAudioMediaAsset(list);
+            CoreNode node = CreatePhraseNode(asset);
+            // e.SectionNode.appendChild(node);
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            // notify the strip panel
+        }
         
         #endregion
 
@@ -687,9 +732,33 @@ namespace Obi
         {
             CoreNode node = getPresentation().getCoreNodeFactory().createNode();
             ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
-            TextMedia text = (TextMedia)getPresentation().getMediaFactory().createMedia(MediaType.TEXT);
+            TextMedia text = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
             text.setText(Localizer.Message("default_section_label"));
             prop.setMedia(mTextChannel, text);
+            return node;
+        }
+
+        /// <summary>
+        /// Create a new phrase node from an asset.
+        /// Add a default annotation with the name of the file (should be the original name, not the internal one.)
+        /// Add a seq media object with the clips of the audio asset. Do not forget to set begin/end time explicitely.
+        /// </summary>
+        /// <param name="asset">The asset for the phrase.</param>
+        /// <returns>The created node.</returns>
+        private CoreNode CreatePhraseNode(AudioMediaAsset asset)
+        {
+            CoreNode node = getPresentation().getCoreNodeFactory().createNode();
+            ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
+            TextMedia annotation = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
+            annotation.setText(asset.Name);
+            prop.setMedia(mAnnotationChannel, annotation);
+            SequenceMedia seq =
+                (SequenceMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.EMPTY_SEQUENCE);
+            AudioMedia audio = (AudioMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.AUDIO);
+            AudioClip clip = (AudioClip)asset.m_alClipList[0];  // should be clip = asset.Clip(0); or better: foreach clip...
+            audio.setLocation(new MediaLocation(clip.Path));
+            seq.appendItem(audio);
+            prop.setMedia(mAudioChannel, seq);
             return node;
         }
 
