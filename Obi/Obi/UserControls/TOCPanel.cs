@@ -226,6 +226,13 @@ namespace Obi.UserControls
         	RequestToDecreaseSectionLevel(this, 
                 new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
+
+        private void testShallowDeleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SyncShallowDeletedNode(this, 
+                new Events.Node.NodeEventArgs(this, GetSelectedSection()));
+        }
+
         #endregion
 
         /// <summary>
@@ -342,6 +349,28 @@ namespace Obi.UserControls
         /// <param name="e"></param>
         internal void SyncShallowDeletedNode(object sender, Events.Node.NodeEventArgs e)
         {
+            System.Windows.Forms.TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
+            TreeNode newSelection = null;
+
+            //save the first child as our new selection (for the end of this function)
+            if (selected.Nodes.Count > 0)
+            {
+                newSelection = selected.Nodes[0];
+            }
+
+            foreach (TreeNode childnode in selected.Nodes)
+            {
+                ExecuteDecreaseNodeLevel(childnode);
+            }
+
+            selected.Remove();
+            
+            //make the currently selected node something reasonable
+            if (newSelection != null)
+            {
+                tocTree.SelectedNode = newSelection;
+            }
+
         }
 
         /// <summary>
@@ -402,9 +431,9 @@ namespace Obi.UserControls
                 //remove the node which was just moved
                 selected.Remove();
 
+                clone.ExpandAll();
+                clone.EnsureVisible();
                 tocTree.SelectedNode = clone;
-
-                clone.Expand();
             }
 
         }
@@ -522,10 +551,16 @@ namespace Obi.UserControls
         internal void SyncDecreasedNodeLevel(object sender, Events.Node.NodeEventArgs e)
         {
             TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
+            ExecuteDecreaseNodeLevel(selected);
+        }
 
+        //this logic was separated from the SyncXXX function because
+        //we need to use it separately during a shallow delete
+        internal void ExecuteDecreaseNodeLevel(TreeNode selectedNode)
+        {
             //the only reason we can't decrease the level is if the node is already 
             //at the outermost level
-            if (selected.Parent == null)
+            if (selectedNode.Parent == null)
             {
                 return;
             }
@@ -534,9 +569,9 @@ namespace Obi.UserControls
 
             int idx = 0;
             //make copies of our future children, and remove them from the tree
-            foreach (TreeNode node in selected.Parent.Nodes)
+            foreach (TreeNode node in selectedNode.Parent.Nodes)
             {
-                if (node.Index > selected.Index)
+                if (node.Index > selectedNode.Index)
                 {
                     futureChildren.Add(node.Clone());
                     node.Remove();
@@ -547,20 +582,19 @@ namespace Obi.UserControls
             TreeNodeCollection siblingCollection = null;
 
             //move it out a level
-            if (selected.Parent.Parent != null)
+            if (selectedNode.Parent.Parent != null)
             {
-                siblingCollection = selected.Parent.Parent.Nodes;
+                siblingCollection = selectedNode.Parent.Parent.Nodes;
             }
             else
             {
                 siblingCollection = tocTree.Nodes;
             }
 
-            int newIndex = selected.Parent.Index + 1;
+            int newIndex = selectedNode.Parent.Index + 1;
 
-            TreeNode clone = 
-                (TreeNode)selected.Clone();
-            selected.Remove();
+            TreeNode clone = (TreeNode)selectedNode.Clone();
+            selectedNode.Remove();
 
             siblingCollection.Insert(newIndex, clone);
 
@@ -657,5 +691,7 @@ namespace Obi.UserControls
             return foundNode;
         }
         #endregion
+
+       
     }
 }
