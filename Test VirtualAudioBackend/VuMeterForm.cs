@@ -90,7 +90,7 @@ namespace VirtualAudioBackend
 			// txtAmplitudeLeft
 			// 
 			this.txtAmplitudeLeft.AccessibleName = "Left Channel Amplitude";
-			this.txtAmplitudeLeft.Location = new System.Drawing.Point(480, 88);
+			this.txtAmplitudeLeft.Location = new System.Drawing.Point(480, 136);
 			this.txtAmplitudeLeft.Name = "txtAmplitudeLeft";
 			this.txtAmplitudeLeft.ReadOnly = true;
 			this.txtAmplitudeLeft.TabIndex = 2;
@@ -99,7 +99,7 @@ namespace VirtualAudioBackend
 			// txtAmplitudeRight
 			// 
 			this.txtAmplitudeRight.AccessibleName = "Right Channel Amplitude";
-			this.txtAmplitudeRight.Location = new System.Drawing.Point(480, 112);
+			this.txtAmplitudeRight.Location = new System.Drawing.Point(480, 160);
 			this.txtAmplitudeRight.Name = "txtAmplitudeRight";
 			this.txtAmplitudeRight.ReadOnly = true;
 			this.txtAmplitudeRight.TabIndex = 4;
@@ -128,14 +128,14 @@ namespace VirtualAudioBackend
 			// 
 			// lblAmplitudeLeftt
 			// 
-			this.lblAmplitudeLeftt.Location = new System.Drawing.Point(376, 80);
+			this.lblAmplitudeLeftt.Location = new System.Drawing.Point(376, 136);
 			this.lblAmplitudeLeftt.Name = "lblAmplitudeLeftt";
 			this.lblAmplitudeLeftt.TabIndex = 1;
 			this.lblAmplitudeLeftt.Text = "Amplitude L&eft";
 			// 
 			// lblAmplitudeRight
 			// 
-			this.lblAmplitudeRight.Location = new System.Drawing.Point(376, 112);
+			this.lblAmplitudeRight.Location = new System.Drawing.Point(376, 160);
 			this.lblAmplitudeRight.Name = "lblAmplitudeRight";
 			this.lblAmplitudeRight.TabIndex = 3;
 			this.lblAmplitudeRight.Text = "Amplitude R&ight";
@@ -169,7 +169,7 @@ namespace VirtualAudioBackend
 			this.Controls.Add(this.txtOverloadRight);
 			this.Controls.Add(this.txtOverloadLeft);
 			this.Name = "VuMeterForm";
-			this.Text = "VuMeterForm";
+			this.Text = "VuMeter";
 			this.Load += new System.EventHandler(this.VuMeterForm_Load);
 			this.ResumeLayout(false);
 

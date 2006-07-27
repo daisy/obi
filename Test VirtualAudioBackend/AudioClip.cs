@@ -670,5 +670,95 @@ MessageBox.Show (Ex.ToString ()	 ) ;
 			}
 		}
 
+// validates the wave file
+		public bool Validate( string sPath)    
+		{
+			
+			BinaryReader Reader = new BinaryReader(File.OpenRead(sPath));
+			long RiffStartPos = Reader.BaseStream.Position ;
+			RiffStartPos = 0;
+			long RiffEndPpos = Reader.BaseStream.Position;
+			RiffEndPpos = 3;
+			string sRiff = string.Empty;
+			string rRiff = string.Empty;
+			for(long i = RiffStartPos; i<= RiffEndPpos ; i++)
+			{
+				sRiff = Reader.ReadChar().ToString();
+				rRiff = rRiff+sRiff;
+			}
+
+			long LenPos = Reader.BaseStream.Position;
+			LenPos = 4;
+			long LenEndPos = Reader.BaseStream.Position;
+			LenEndPos = 7;
+			int bLen = 0;
+			int brLen = 0;
+			
+			for(long i = LenPos; i <= LenEndPos ; i ++)
+			{
+				bLen = Reader.ReadByte();
+				brLen = brLen + bLen;
+			}
+
+			long WaveStartPos = Reader.BaseStream.Position;
+			WaveStartPos = 8;
+			long WaveEndPos = Reader.BaseStream.Position;
+			WaveEndPos = 11;
+			string sWave = string.Empty;
+			string rWave = string.Empty;
+			for(long i = WaveStartPos; i <= WaveEndPos ; i ++)
+			{
+				sWave = Reader.ReadChar().ToString();
+				rWave = rWave+sWave;
+			}
+
+			long fmtStartPos = Reader.BaseStream.Position;
+			fmtStartPos = 12;
+			long fmtEndPos = Reader.BaseStream.Position;
+			fmtEndPos = 15;
+			string sfmt = string.Empty;
+			string rfmt = string.Empty;
+			for(long i = fmtStartPos; i <= fmtEndPos ; i ++)
+			{
+				sfmt = Reader.ReadChar().ToString();
+				rfmt = rfmt+sfmt;
+			}
+
+			long fLenStartPos = Reader.BaseStream.Position;
+			fLenStartPos = 16;
+			long fLenEndPos = Reader.BaseStream.Position;
+			fLenEndPos = 19;
+			int fLen = 0;
+			int rfLen = 0;
+			for(long i = fLenStartPos; i <= fLenEndPos ; i ++)
+			{
+				fLen = Reader.ReadByte();
+				rfLen = rfLen + fLen;
+			}
+
+			long PadStartPos = Reader.BaseStream.Position;
+			PadStartPos = 20;
+			long PadEndPos = Reader.BaseStream.Position;
+			PadEndPos = 21;
+			int pLen = 0;
+			int rpLen = 0;
+			for(long i = PadStartPos; i <= PadEndPos ; i ++)
+			{
+				pLen = Reader.ReadByte();
+				rpLen = rpLen + pLen;
+			}
+			Reader.Close () ; 
+			if(rfLen == 16 &&  rRiff == "RIFF" && rWave == "WAVE" && rfmt== "fmt" && rpLen==1)
+			
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+
 	}// end of class
 }
