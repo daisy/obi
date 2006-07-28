@@ -777,7 +777,7 @@ MessageBox.Show (Ex.ToString ()	 ) ;
 				rpLen = rpLen + pLen;
 			}
 			Reader.Close () ; 
-			if(rfLen == 16 &&  rRiff == "RIFF" && rWave == "WAVE" && rfmt== "fmt" && rpLen==1)
+			if(rfLen == 16 ||  rRiff == "RIFF" && rWave == "WAVE" && rfmt== "fmt" && rpLen==1)
 			
 			{
 				return true;
