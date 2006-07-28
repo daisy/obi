@@ -730,5 +730,33 @@ if ( asset1.Channels == asset2.Channels && asset2.SampleRate == asset2.SampleRat
 
 		}
 
+		// Added by Julien
+		// These should be used instead of accessing directly the audio clips array
+
+		/// <summary>
+		/// Get the number of audio clips for this asset.
+		/// </summary>
+		public int AudioClipsCount
+		{
+			get
+			{
+				return m_alClipList.Count;
+			}
+		}
+
+		/// <summary>
+		/// Get the nth clip from the clip list. Raise an error if there is no such clip.
+		/// </summary>
+		/// <param name="n">Index of the clip to get.</param>
+		/// <returns>The clip at this index.</returns>
+		public AudioClip GetClip(int n)
+		{
+			if (n < 0 || n >= m_alClipList.Count)
+			{
+				throw new Exception(String.Format("Audio clip index {0} out of range [0..{1}].", n, m_alClipList.Count - 1));
+			}
+			return (AudioClip)m_alClipList[n];
+		}
+
 	}// end of class
 }
