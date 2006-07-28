@@ -403,7 +403,7 @@ txtAmplitudeRight.Text = AmplitudeRight.ToString () ;
 
 			
 			Pen PenVackPaint= new Pen(Color.White);
-			PenVackPaint.Width = 600 ;
+			PenVackPaint.Width = 300 ;
 
 			objGraphics.DrawLine(PenVackPaint , 0, 0, 0, 600);		
 

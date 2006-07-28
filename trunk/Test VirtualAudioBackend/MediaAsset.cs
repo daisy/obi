@@ -72,7 +72,7 @@ manager.Assets.Add (m_sName, this) ;
 				m_AssetManager = null ;
 			}
 else
-				MessageBox.Show ("MediaAsset can not be removed from AssetManager") ;
+				throw new Exception ("MediaAsset could not be removed from AssetManager") ;
 		}
 
 		public abstract IMediaAsset Copy();
