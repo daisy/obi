@@ -26,9 +26,11 @@ private long m_lBeginByte ;
 		private long m_lEndByte;
 private long m_lLengthInBytes ;
 
+		// Total length of file for checking the valid time input
 private long m_lFileAudioLengthInBytes ;
 		private double m_dFileAudioLengthInTime  ;
 
+// hash table to contain entry for active clips and the Name and the NameCount for support of hash table
 internal static  Hashtable static_htClipExists = new Hashtable () ;
 		internal static long static_lNameCount ;
 private string m_sName ;
@@ -137,7 +139,9 @@ return m_dLengthInTime ;
 			}
 		}
 
+// create calc object for calculations class
 CalculationFunctions Calc = new CalculationFunctions () ;
+
 		/// <summary>
 		/// Create a new AudioClip object from an existing audio file.
 		/// </summary>
@@ -146,8 +150,10 @@ CalculationFunctions Calc = new CalculationFunctions () ;
 		/// <param name="endTime">End time of the clip in milliseconds.</param>
 		public AudioClip(string path, double beginTime, double endTime)
 		{
-
+// Read header and assign values to member variables
 			Init (path) ;
+
+// check validity of input parameters 
 			if (beginTime < 0 || endTime > m_dFileAudioLengthInTime )
 			{
 				throw new Exception ("time parameters of clip are out of bound of file size") ;
@@ -172,6 +178,7 @@ throw new Exception ("BeginTime  more than EndTime of clip ") ;
 
 				m_lLengthInBytes = m_lEndByte - m_lBeginByte ;
 
+// generate unique clip name and add entry to hash table for representation of active clip
 m_sName =GenerateClipName () ;
 static_htClipExists.Add (m_sName , this) ;
 			}
@@ -179,8 +186,10 @@ static_htClipExists.Add (m_sName , this) ;
 
 		public AudioClip(string path )
 		{
-
+// read values from file header and assign them to member variables
 			Init (path) ;
+
+//checks if the file has audio data
 			if (m_dFileAudioLengthInTime <= 0)
 			{
 				throw new Exception ("File has no audio data") ;
@@ -226,9 +235,15 @@ static_htClipExists.Add (m_sName , this) ;
 		/// <returns>The new clip (second half); the first clip has been modified.</returns>
 		public AudioClip Split(double time)
 		{
+// time taken as input parameter is respect to clip so it is converted to absolute time
 			time = m_dBeginTime + time ;
+
+// create a new clip of back part for returning
 			AudioClip ob_AudioClip = new AudioClip ( this.Path , time, this.EndTime) ;
+
+// end time of original clip is modified
 m_dEndTime = time ;
+m_dLengthInTime = m_dEndTime -m_dBeginTime ;
 
 			return ob_AudioClip ;
 		}
@@ -239,6 +254,7 @@ m_dEndTime = time ;
 		/// <param name="next">The next clip to merge with.</param>
 		public void MergeWith(AudioClip next)
 		{
+			// checks if clips have same source file  and times  are compatible
 			if (m_sPath == next.Path  && m_ClipChannels == next.Channels && m_ClipBitDepth == next.BitDepth && m_ClipSamplingRate == next.SampleRate&& 																m_dEndTime <= next.BeginTime )
 																								{
 m_dEndTime = next.EndTime ;
@@ -248,14 +264,18 @@ m_dLengthInTime  = m_dEndTime - m_dBeginTime ;
 throw new Exception ("Clips of different formats cannot be merged") ;				
 		}
 
+// Create a small clip from a large clip
+		// param BeginTime is starting time of new clip
+		// parameter  EndTime is end time of new clip
 // takes relative time as parameters
 		internal AudioClip CopyClipPart (double BeginTime , double EndTime)
 		{
+			//convert relative time taken as input parameters to absolute time
 			BeginTime =m_dBeginTime + BeginTime ;
 EndTime = m_dBeginTime + EndTime ;
 
 
-		// temp checks are as follows
+		// temp checks are as follows , these are to be removed during finalising
 if (BeginTime < this.BeginTime ) 
 MessageBox.Show ("error begin time") ;
 
@@ -265,6 +285,7 @@ if (EndTime > this.EndTime  )
 if (BeginTime>= EndTime)
 MessageBox.Show ("both") ;
 
+// checks that the new clip time parameters are not out of boun of original clip
 			if (BeginTime >= this.BeginTime && EndTime <= this.EndTime  && BeginTime< EndTime)
 			{
 				AudioClip ob_AudioClip = new AudioClip ( this.Path ,BeginTime , EndTime ) ;
@@ -274,6 +295,8 @@ MessageBox.Show ("both") ;
 			throw new Exception ("Partial clip cannot be created: Invalid time parameters") ;
 		}
 
+
+// to be called in constructor , reads theheader of  wav file and assign values to member variables
 		void Init (string sPath)
 		{
 
@@ -282,8 +305,6 @@ MessageBox.Show ("both") ;
 			Ar [0] = Ar [1] = Ar[2] = Ar [3] = 0 ;
 			BinaryReader br = new  BinaryReader (File.OpenRead(sPath)) ;
 						
-
-			
 			// channels
 			Ar [0] = Ar [1] = Ar[2] = Ar [3] = 0 ;
 
@@ -360,7 +381,11 @@ MessageBox.Show ("both") ;
 		}
 
 
-
+// Detects the phrases in a clip
+		// return an ArrayList containing Clips of detected phrases
+		// param SilVal is value of silence determined by GetSilenceAmplitude function
+		// param PhraseLength is minimum length of phrases to be detected
+		// param Before is audio included before actual begining of phrase
 		internal ArrayList DetectPhrases ( long SilVal, long PhraseLength , long BeforePhrase) 
 		{
 
@@ -391,7 +416,7 @@ MessageBox.Show ("both") ;
 			// Gets the count of file size
 			long lSize = this.EndByte + 44;
 
-
+// sets position to begining position of clip + header offset of 44
 			br.BaseStream.Position = 44 + this.BeginByte;
 
 			// count chunck of silence which trigger phrase detection
@@ -448,6 +473,7 @@ boolBeginPhraseDetected  = true ;
 
 			br.Close () ;
 
+// create clips from time information of phrases added in ArrayList
 double dBeginTime ;
 double dEndTime ;
 
@@ -480,11 +506,10 @@ alClipList.Add (CopyClipPart ( dBeginTime , m_dEndTime) );
 			
 		}
 
+// Detecs the maximum size of noise level in a silent sample file
 		public long GetClipSilenceAmplitude()
 		{
 			
-
-
 			BinaryReader brRef = new BinaryReader (File.OpenRead (this.Path  )) ;		
 			
 
@@ -604,6 +629,8 @@ alClipList.Add (CopyClipPart ( dBeginTime , m_dEndTime) );
 			return sum ;
 		}
 
+
+//Generate a unique clip name for each active clip in hash table
 		internal string GenerateClipName ()
 		{
 			if (static_lNameCount.Equals  (null ) )
@@ -638,6 +665,8 @@ static_lNameCount++ ;
 
 		}
 
+
+// checks if a physical file is held by any clip and deletes it if it is free
 		internal void DeletePhysicalResource ()
 		{
 string sClipPath  ;
