@@ -216,11 +216,11 @@ Array.Copy ( ob_AudioPlayer.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength)
 		{
 			AudioRecorder Recorder = sender as AudioRecorder ;
 			ob_AudioRecorder = Recorder ;
-			//m_FrameSize = Recorder.m_FrameSize ;
-			//m_Channels = Recorder.m_Channels ;
-			//m_UpdateVMArrayLength = Recorder.m_UpdateVMArrayLength ;
-			//m_arUpdatedVM  = new int  [m_UpdateVMArrayLength ] ;
-			//Array.Copy ( Recorder.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
+			m_FrameSize = Recorder.m_FrameSize ;
+			m_Channels = Recorder.m_Channels ;
+			m_UpdateVMArrayLength = Recorder.m_UpdateVMArrayLength ;
+			m_arUpdatedVM  = new int  [m_UpdateVMArrayLength ] ;
+			Array.Copy ( Recorder.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
 			Thread UpdateVMForm = new Thread(new ThreadStart (AnimationComputation  ));
 			UpdateVMForm.Start()  ;
 		}

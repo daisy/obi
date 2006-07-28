@@ -598,7 +598,7 @@ if (localPosition < 0)
 	localPosition = 0;
 
 			if (localPosition > m_Asset.AudioLengthInBytes)
-				localPosition = m_Asset.AudioLengthInBytes ;
+				localPosition = m_Asset.AudioLengthInBytes - 100;
 
 
 m_EventsEnabled = false ;
