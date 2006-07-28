@@ -1,94 +1,85 @@
-Obi façade API / Iteration 1
+Obi façade API for iteration 2
 $Id$
 
-I use a rubyish (not rubbish) syntax; code lines start with two spaces and
-comments start with a # and end at the end of the line.
+
+This new version of the facade is more a reaction to the current state of
+the design and its implementation and how the application would like to see
+it. This is still very sketchy but provides a starting point (and a laundry
+list) for discussion. Order is not important but numbers allow to refer to
+some points more easily.
 
 
-* Project: the project includes everything necessary to work on a book; that
-is a presentation and related data.
+1. Currently, the asset manager uses double for time whereas the toolkit
+uses long. We need to make them agree.
 
 
-* Presentation object
-
-  # Create a blank presentation
-  Presentation();
-  
-  # Import a presentation from an XUK file
-  static Presentation import_xuk(filename);
-  static Presentation import_xuk(URI);
-
-  # Export a presentation to an XUK file
-  void export_xuk(filename);
-  void export_xuk(URI);
-
-  # Append a metadata element to the presentation (e.g. dc:Title, etc.)
-  # There can be more than one element with the same name (e.g. several
-  # authors)
-  void append_metadata(metadata_object);
-
-  # Return all the metadata objects for the presentation
-  Metadata[] get_metadata();
-
-  # Return all the metadata objects for a given name
-  Metadata[] get_metadata(name);
-
-  # Delete all the metadata objects for a given name
-  void delete_metadata(name);
-
-  # Delete the metadata object from the presentation
-  void delete_metadata(metadata_object)
+2. Have a hash function for nodes that returns an unique value.
 
 
-* Audio stuff: see the UrakawaApplicationBackend project in the SVN repo.
-This part is the responsibility of the Application team but will be handled
-by the toolkit in the next iteration.
+3. Have a method that returns a single channel given a name, a null value if
+there is no channel with that name, and throw an exception if there is more
+than one channel with that name (or return a null value.) This makes channel
+management more enjoyable if we want only one channel with a given name at
+any time.
 
-  # Asset manager needs to compute total time. Gives a value in seconds.
-  double total_time()
 
-  # Asset manager creates AudioMediaAssets for all sound clips referred to
-  # in a XUK file. The audio_media object is of type AudioMedia, i.e. file
-  # name + start and end times.
-  AudioMediaAsset new_from_audio_media(audio_media)
+4. More specfically, have a method that returns the media object for a node
+set on a channel given its name. We probably need a mechanism for tying
+media types to channels.
 
-* NCX
 
-  # Navpoints have a level starting from 1
-  unsigned int get_level()
+5. Allow empty strings (not null, but with a length of zero) for TextMedia.
 
-  # Navmap is a special kind of navpoint, its level is 0, it has no navlabel
 
-  # Navpoint nodes need to know their parent/children/siblings, but also the
-  # previous and next navpoints in linear order
-  navpoint get_prev()
-  navpoint get_next()
-  
-  # The navpoints can be moved up/down in the table of contents, provided
-  # that the levels keep consistent. The moving functions return a boolean
-  # value indicating whether or not the move could take place
-  bool move_up()
-  bool move_down()
-  
+6. Use delegates for visitor. I am using the C# terminology here, so it
+should be formalized in the design by more neutral terminology. I propose
+the following methods:
 
-* Metadata object -- this is basically a DOM element node where the name and
-content attributes have a special status.
+  IVisitableNode.VisitDepthFirst(delegate bool previsit(ICoreNode node));
+  IVisitableNode.VisitDepthFirst(delegate bool previsit(ICoreNode node),
+                                   delegate void postvisit(ICoreNode node));
 
-  # Create a metadata element <meta name="name" content="value"/>
-  Metadata(name, value);
+This is so much more practical than creating a new class everytime we need a
+slightly different visitor, especially when we need intimate access to the
+current class (which can be solved by having the class itself implement
+ICoreNodeVisitor, but it is a bit kludgy and works only once.)
 
-  # Change the value of a metadata object
-  void set_value(new_value)
+Also, in my experience so far, there are many cases where only a previsitor
+is necessary. We may even be able to specify
 
-  # Set an optional/additional attribute
-  # e.g. dc:Creator has an additional, optional role attribute
-  void set_attribute(name, value);
+  IVisitableNode.VisitDepthFirst(delegate void postvisit(ICoreNode node));
 
-  # Should language (xml:lang) be a regular attribute or have a special type?
-  # void set_language(language);
+if necessary. In the same way we could have VisitBreadthFirst() methods.
 
-  # Should id be a regular attribute or have a special type?
-  # void set_id(id);
+BTW, I am not necessarily saying the we should get rid of the visitor
+interface, but in many cases I would rather use the delegates than a visitor
+class.
 
-  # Delete an attribute
-  void delete_attribute(name, value);
+
+7. Have metadata be accessible as a hash, with the name of the metadata
+property as key, and a list of values as value (we may have several metadata
+tags with the same name, e.g. several authors.)
+
+
+8. Allow extra attributes for metadata (e.g. "role", see DC metadata for
+DAISY 3.)
+
+
+9. Have the C# toolkit use C# features: properties, generic classes (e.g.
+node lists would be List<CoreNode> instead of ArrayList), delegates (see
+visitors), etc.
+
+
+10. Allow to change the NodeFactory of a presentation. I want to subclass
+CoreNode, but not Presentation.
+
+
+11. Project.openXUK() should return a meaningful error message when failing
+to read in a XUK file.
+
+
+12. Commands: so far in the application, we only create a new command if its
+action was succesful, so we do not need predicates to test whether we can
+undo or redo a method. The invariant of the command manager is that when a
+command is undone, we go back to a state where redoing must succeed just
+like it did when we issued the command. Same for redo.

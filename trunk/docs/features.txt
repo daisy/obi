@@ -6,7 +6,8 @@ This is an edited version of the feature list decided in Amsterdam in July
 where most backend features are implemented (i.e. the application is
 functional) but the graphical interface is deliberately unpolished (e.g. no
 display of waveform.) Version 1.0 is to be reached by iteration 2, where the
-goal is to deliver a fully-usable and documented beta version of Obi.
+goal is to deliver a fully-usable and documented beta version of Obi with a
+somewhat rich, but accessible, GUI.
 
 
 Iteration 1 Target
@@ -18,188 +19,107 @@ graphical representation of elements can be.
 
 High-level feature list:
 
-  - NCX-only book
+  - NCX-only book editing.
+
   - NCX editing: the table of contents can be viewed as a tree (which will
     become the NCX once exported to DAISY) and contains all the headings. A
     text label can be attached to the heading (only one at the moment,
     although the Z spec allows several.) This is the only text content of
     the book.
+
   - Page numbers can be inserted directly in the book, they do not appear in
-    the table of contents. Although there will probably be a special dialog to
-    manage them, at least for QA purposes. At this point, it looks like page
-    numbers will be shifted to iteration 2. No navlist, no skippable
-    structures.
+    the table of contents; probably a special menu that allows to navigate
+    them, insert/delete them, etc.
 
 The application has two main view of the book:
 
-  1. Table of contents is a tree view.
-     Each node in the tree is a section, child nodes are subsections.
-     The tree view represents the top of the actual core tree, without all
-     the phrases.
-     This view behaves like a tree: deleting a section node will delete all
-     of its descendants.
-     This view allows the editor of the book to focus on the structure.
-     No recording takes place in this view, but when audio assets are
-     associated with headings, they should be playable here.
+  - Table of contents is a tree view.
 
-  2. Book content is a strip view.
-     Each section is represented in a strip. The strip view shows a flat
-     list of strip, just like a book would be. A section strip contains all
-     the contents of the section, not just the heading--every phrase is
-     there.
+    Each node in the tree is a section, child nodes are subsections.
+    The tree view represents the top of the actual core tree, without all
+    the phrases.
 
+    This view behaves like a tree: deleting a section node will delete all
+    of its descendants.
 
-Iteration 2
+    This view allows the editor of the book to focus on the structure.
+    No recording takes place in this view, but when audio assets are
+    associated with headings, they should be playable here.
 
-  - Some DAISY 3 features: pages (a must), navlist (probably not), skippable
-    structures (doable), resources (really not sure.) Those missing features
-    can be part of iteration 3; version 1.5 could add missing features,
-    version 2 could be addition of text.
+  - Book content is a strip view.
 
+    Each section is represented in a strip. The strip view shows a flat
+    list of strip, just like a book would be. A section strip contains all
+    the contents of the section, not just the heading--every phrase is
+    there.
 
+    A section strip itself contains two strips: an audio strip and a
+    synchronization strip.
 
----
+    The audio strip contains phrases, represented as a block. Each phrase is
+    an audio asset, which can be split, merged with another asset, deleted,
+    cut, copied, pasted and moved. There are no gaps between blocks. In
+    version 0.5, a block is a black box--we don't see what's inside. Blocks
+    can be annotated; the annotation is a string ot text that is displayed
+    in the block. It can be the text of the phrase ("The tsunami will hit
+    several times. Zaboom! Zaboom!") or a short description ("jack speaks
+    1/3".) Annotations are not exported to a DAISY book but are saved by Obi
+    for future uses. An audio strip contains zero or more audio blocks.
 
-Rough notes below:
+    The synchronization strip is a strip where we add heading (exactly one
+    per strip) and pages (zero or more.) The two strips run parallel and
+    every phrase beginning creates a synchronization point. Having a
+    synchronization item (heading or page) at a synchronization point
+    effectively synchronizes the item with the phrase: this will give an
+    audio phrase for the heading or the page number. There can be zero or
+    one item at every synchronization point.
 
+    Phrases can have three states: synchronized, regular, unused. Regular
+    phrases are unsynchronized. Unused phrases are kept in the project but
+    will be deleted when cleaning up. Heading phrases (i.e. synchronized
+    with a heading) cannot be marked as unused but page phrases can. When
+    un-marked, they become synchronized again.
 
-** Application team **
+  - Synchronization of a heading: there is always a heading block in the
+    synchronization strip. Its label is the same in the tree and in the
+    synchronization strip. It can be changed from either. The heading block
+    can be moved to any free synchronization point in the strip.
 
-   main view is strip view, where every strip
-	     container strip (corresponds to one heading)            
-	       audio strip
-	       navigation strip
-	    so for every headings we will have a different container strip
-	    in the strip view, they will be ordered the way the headings are ordered
-	    we could indent these; non visually we can go up and down
-   inside container strip: two strips
-      audio strip: flat strip of audio blocks (list of phrases)
-        three kinds of phrases:
-        	synchronization phrases: tied to navigation
-        	non-synch phrases (just next and previous)
-        	not-part-of-book phrases
-        phrases should just be boxes with text label
-      label strip
-        parallell to audio strip
-        small marker that tells us; this is a heading, page etc
-        Has exactly one heading and 0..n pages
-   Should we draw the waveform? Not this time. Iteration two (january) should be version 1,
-   which will include this.
-   Where do we put the text that actually should go into the book?
-   In the labels in the structure strip.
+  - Synchronization of a page: the page is inserted at the selected block's
+    synchronization point. If there is no selected block or the selected one
+    is not free, use the first following free one. A section strip must be
+    selected. Page blocks can be moved to any free point. Page blocks can be
+    deleted. Default value: 1 higher than previous.
 
-   Horizontal Zoomability: in.
-   Also collapse of each strip
+  - Audio management.
 
+    The application is able to import audio files (WAVE only) into an audio
+    strip or record live audio. Insertion of audio happens at the end of an
+    audio or after a selected phrase. Audio is never overwritten--it has to
+    be explicitly deleted.
 
-   add new things in toc or tree
-   record data and edit data
-   import wavefiles, just appends to the end of the selected strip 
+  - Metadata: the metadata is very simple and does not include the full set
+    of metadata mandated by the DAISY standard.
 
+  - QA playback: Obi implements its own crude QA player. Can play the book,
+    a complete strip, or a single phrase. When playing a book or a strip,
+    the unused blocks are skipped. Possibility to play at higher or lower
+    speed, but pitch changes. Three time counters: book time, strip time,
+    asset time.
 
+  - Markers: phrase markers can be dropped on the fly while recording to
+    create new phrase blocks.
 
-   Chicken and egg: create new strip needs a heading, heading needs a strip
-     node; label with default text, null audio, XmlProperty
-
-   "ScratchPad" for yet unassigned audio iter2; in iter1 alwats create a new heading
-
-
-   Navigation: 
-     Decision to use XmlProperty + TextChannel for navigation (ncx:pagenum and ncx:hx)
-
-   **Structure Editing**
-   Treeview:
-     only place to create new headings
-     +all features of strip
-   StripView
-     move, indent, outdent, delete, copy, paste     
-   Metadata
-     daisy metadata by version 1 (iter 2)
-     a grid view: left is popup with name, other fields for content
-
-   **Audio Editing**
-   Record/import always appends to *end* in currently selected audio strip, is always a new phrase 
-   Insert: append to adjacent new block or by default at end of strip
-   AssetManager: split merge move
-   Phrase detection 3 params: threshold, min length silence, leading space before beginning
-   Mark blocks as used or unused, cannot do this with heading block. However with pages use/unused is possible
-   When playing book or strip, unused block not played, when playing single block, unused is played.
-
-   ** structure strip editing **
-   has to be one heading block:
-     change its label
-     move it to a different synchronization
-   pages:
-    select a strip
-    insert page (at selected block, if a block is not selected fallback: to first found free synh point))  
-    page blocks can be moved to a different free synch point
-    page can be deleted
-    when created, created with default value one higher than prev
-    autonumber in iteration two
+  - Keyboard navigation with single key.
 
 
-   **Playback operations**
-   play only this block 
-     blockmove backward and forward between blocks
-     timemove  
-   play whole strip
-
-   CrudeQA
-     play the book, have full navigation
-     playback speed w chipmunk    
-     markers? none for the moment; iter2
-
-   Three time counters
-     book time
-     strip time
-     asset time
-
-   Markers
-     iteration1: phrase marker (does on-the-fly cut)
-     iteration1: page marker (adds XmlProperty to node, else lke phrase marker)
-     iteration2: heading-on-the-fly marker
-
-   Search: 
-     we are missing a pagelist: will do a simple search for page dialog
-
-   Keyboard interface:  
-     prefer single key shortcuts
-     disprefer mousing (learn the fucking shortcut paperclip)
-     prefer menu equivalents
-
-   Synchronization:
-       Does the toolkit need to emit events?
-
-    ** Project **
-      input/output device: done by obi
-      volume slider: hopefully in India
-
-  When is everyone available
-    Julien: every day until 18th
-    Marisa: starting 24th
-    Markus: starting india
-	
-  How to split up the work
- 	Avneesh & Suman currently do iteration two now-->next two weeks 
-	  	asset manager refactorting
-	  	moving to nondestructive edit
-	After that, more asset manager refactoring
-	More robustness, they dont through enough exceptions
-
-	Separate what happens 
-	  inside strips
-	  in stripmanager
-	  in tree
-
----
-
-Timeline sketch for July 10th--Auguts 18th
+Timeline sketch for July 10th--August 18th (end of iteration 1)
 
 07/10 Marisa and Markus rejoin the application team.
 07/11 Marisa and Julien do some coding in Amsterdam.
 07/17 Julien is back in Tokyo, works on tree view and strip manager shell
         with Zaboom in empty strips.
-07/24 Marisa works on something?
+07/24 Marisa works on tree view, Julien on strip view.
 07/28 Avneesh and Suman deliver milestone 2 of audio backend.
 07/31 Markus and Julien in Delhi work mainly on audio and asset manager with
         Avneesh and Suman.
@@ -208,3 +128,53 @@ Timeline sketch for July 10th--Auguts 18th
         manual.
 08/18 Julien releases version 0.5 of the application then leaves on
         vacation.
+
+
+Iteration 2
+
+  - Actual DAISY metadata. This is not hard to but there are many
+    attributes to support. We can use a grid view: left is popup with name,
+    other fields for content.
+
+  - Some DAISY 3 features: navlist maybe (probably not), skippable structures
+    (doable), resources (really not sure.) Those missing features can be part
+    of iteration 3; version 1.5 could add missing features, version 2 could be
+    addition of text.
+
+  - Graphical audio editing: we display the waveforms inside the audio
+    blocks, and allow mouse selection for easier manipulation by sighted
+    users. This will be optional so that we can have a very simple
+    non-visual editor if we want to. Add zoom/unzoom, etc.
+
+  - Strips can be collapsed to unclutter the strip view. Collapsing means we
+    hide the contents and keep only the label of the section strip.
+
+  - Search function: all text contents (section labels, annotations,
+    metadata) can be searched.
+
+  - DAISY 3 export: natively export a DTB fileset from the current project.
+
+  - AMIS as a QA player.
+
+  - Autonumbering of pages.
+
+  - Audio markers: on the fly page markers.
+
+
+Future features:
+
+  - DAISY 2/3 import/export through DMFC.
+
+  - Text: unformatted text can be done quite easily, but synchronization
+    with a DTBook document (other than extracting the structure) is
+    difficult.
+
+  - Audio: support for compressed audio (e.g. MP3) and all of DAISY mandated
+    formats. More functionality (e.g. change volume, filters, time
+    stretching...) Add an audio scratchpad: at the moment, all audio content
+    must be created through an audio strip; if we want to record/add audio
+    contents it *must* go into an existing part of the book. The scratchpad
+    would just keep audio assets that the project wants to use at some
+    point.
+
+  - Audio markers: on the fly headings.
