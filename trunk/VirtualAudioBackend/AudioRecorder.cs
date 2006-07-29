@@ -236,7 +236,7 @@ namespace VirtualAudioBackend
 			if(mEventsEnabled == true)
 			{
 				//mStateChanged.OnStateChangedEvent+=new DStateChangedEventHandller(mCatchEvent.CatchOnStateChangedEvent);
-				mStateChanged.NotifyChange(this, mStateChanged);
+				//mStateChanged.NotifyChange(this, mStateChanged);
 			}
 		}
 		
