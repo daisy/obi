@@ -21,6 +21,7 @@ namespace TestAssetManager
 		private System.Windows.Forms.Button btnRename;
 		private System.Windows.Forms.Button btnGetAssetList;
 		private System.Windows.Forms.Button btnCopy;
+		private System.Windows.Forms.Button btnGetAsset;
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -68,6 +69,7 @@ namespace TestAssetManager
 			this.btnRename = new System.Windows.Forms.Button();
 			this.btnGetAssetList = new System.Windows.Forms.Button();
 			this.btnCopy = new System.Windows.Forms.Button();
+			this.btnGetAsset = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// lbHashTable
@@ -132,10 +134,19 @@ namespace TestAssetManager
 			this.btnCopy.Text = "Copy";
 			this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
 			// 
+			// btnGetAsset
+			// 
+			this.btnGetAsset.Location = new System.Drawing.Point(0, 248);
+			this.btnGetAsset.Name = "btnGetAsset";
+			this.btnGetAsset.TabIndex = 8;
+			this.btnGetAsset.Text = "GetAsset";
+			this.btnGetAsset.Click += new System.EventHandler(this.btnGetAsset_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.ClientSize = new System.Drawing.Size(292, 273);
+			this.Controls.Add(this.btnGetAsset);
 			this.Controls.Add(this.btnCopy);
 			this.Controls.Add(this.btnGetAssetList);
 			this.Controls.Add(this.btnRename);
@@ -249,6 +260,12 @@ am.CopyAsset (a) ;
 						AddList (am.Assets , am.m_htExists) ;
 MessageBox.Show ("Asset copied") ;
 
+		}
+
+		private void btnGetAsset_Click(object sender, System.EventArgs e)
+		{
+		AudioMediaAsset a = am.GetAsset("amMediaAsset3") as AudioMediaAsset ;
+			MessageBox.Show (a.Name) ;
 		}
 	}
 }
