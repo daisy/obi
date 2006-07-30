@@ -92,7 +92,7 @@
                 <Reference
                     Name = "VirtualAudioBackend"
                     AssemblyName = "VirtualAudioBackend"
-                    HintPath = "..\..\..\..\Urakawa\urakawa\application\Test VirtualAudioBackend\bin\Debug\VirtualAudioBackend.dll"
+                    HintPath = "..\..\..\..\VirtualAudioBackend\bin\Debug\VirtualAudioBackend.dll"
                 />
             </References>
         </Build>
