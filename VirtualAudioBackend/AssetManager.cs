@@ -171,23 +171,14 @@ Asset.m_AssetManager = this ;
 
 		public IMediaAsset GetAsset(string assetName)
 		{
-
-			IDictionaryEnumerator en = m_htAssetList.GetEnumerator();
-
-			//find the asset from hash table using key 
-				while (en.MoveNext() )
-				{
-					if (assetName == en.Key.ToString() )
-					{
-						MediaAsset m = en.Value as MediaAsset ;
-						return m ;					
-						
-						//break ;
-					}
-
+			if (m_htAssetList.ContainsKey (assetName))
+			{
+return m_htAssetList [assetName] as MediaAsset;
 			}
+			else
 throw new Exception ("Asset not found in Hashtable") ;
-			
+						
+						
 		}
 
 		public IMediaAsset NewAsset(VirtualAudioBackend.MediaType assetType)
