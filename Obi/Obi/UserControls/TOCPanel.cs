@@ -26,6 +26,7 @@ namespace Obi.UserControls
         public event Events.Node.RequestToMoveNodeUpHandler RequestToMoveSectionUp;
         public event Events.Node.RequestToRenameNodeHandler RequestToRenameSection;
         public event Events.Node.RequestToDeleteNodeHandler RequestToDeleteSection;
+        public event Events.Node.RequestToUndoMoveNodeHandler RequestToUndoMoveNode;
       
 		/// <summary>
         /// Test whether a node is currently selected or not.
@@ -703,6 +704,11 @@ namespace Obi.UserControls
             {
                 this.addSubSectionToolStripMenuItem.Enabled = true;
             }
+        }
+
+        private void testUndoMoveNodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RequestToUndoMoveNode(this, new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
 
        

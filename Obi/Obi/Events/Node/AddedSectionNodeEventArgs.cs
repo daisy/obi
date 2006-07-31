@@ -7,6 +7,7 @@ using urakawa.core;
 namespace Obi.Events.Node
 {
     public delegate void AddedSectionNodeHandler(object sender, AddedSectionNodeEventArgs e);
+    public delegate void UndidMoveNodeHandler(object sender, AddedSectionNodeEventArgs e);
  
     /// <summary>
     /// A section node was added.

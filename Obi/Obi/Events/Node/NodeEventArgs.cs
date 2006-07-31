@@ -13,6 +13,7 @@ namespace Obi.Events.Node
     public delegate void RequestToDeleteNodeHandler(object sender, NodeEventArgs e);
     public delegate void RequestToMoveNodeUpHandler(object sender, NodeEventArgs e);
     public delegate void RequestToMoveNodeDownHandler(object sender, NodeEventArgs e);
+    public delegate void RequestToUndoMoveNodeHandler(object sender, NodeEventArgs e);
 
     public delegate void IncreasedNodeLevelHandler(object sender, NodeEventArgs e);
     public delegate void DecreasedNodeLevelHandler(object sender, NodeEventArgs e);

@@ -72,6 +72,8 @@
     <Compile Include="Commands\CommandManager.cs" />
     <Compile Include="Commands\TOC\AddSection.cs" />
     <Compile Include="Commands\TOC\DeleteSection.cs" />
+    <Compile Include="Commands\TOC\MoveSectionDown.cs" />
+    <Compile Include="Commands\TOC\MoveSectionUp.cs" />
     <Compile Include="Commands\TOC\Rename.cs" />
     <Compile Include="DescendantsVisitor.cs" />
     <Compile Include="Dialogs\EditSimpleMetadata.cs">

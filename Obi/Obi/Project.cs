@@ -49,8 +49,13 @@ namespace Obi
         public event Events.Node.MovedNodeDownHandler MovedNodeDown;        // a node was moved down in the presentation
         public event Events.Node.IncreasedNodeLevelHandler IncreasedNodeLevel; //a node's level was increased in the presentation
         public event Events.Node.DecreasedNodeLevelHandler DecreasedNodeLevel; //a node's level was decreased in the presentation
-
         public event Events.Node.ImportedAssetHandler ImportedAsset;  // an asset was imported into the project
+        public event Events.Node.UndidMoveNodeHandler UndidMoveNode;    //a node was restored to its previous location
+        
+        //marisa: TESTING
+        private Obi.Commands.TOC.MoveSectionUp mLastMoveSectionUpCommand;
+        //marisa: TESTING
+        private Obi.Commands.TOC.MoveSectionDown mLastMoveSectionDownCommand;
 
         /// <summary>
         /// This flag is set to true if the project contains modifications that have not been saved.
@@ -489,16 +494,36 @@ namespace Obi
         /// </summary>
         public void MoveNodeUp(object origin, CoreNode node)
         {
-            //a facade API function could do this for us
+            Commands.TOC.MoveSectionUp command = null;
+            
+            //marisa: TESTING
+            mLastMoveSectionUpCommand = null;
+
+            if (origin != this)
+            {
+                CoreNode parent = (CoreNode)node.getParent();
+                NodePositionVisitor visitor = new NodePositionVisitor(node);
+                getPresentation().getRootNode().acceptDepthFirst(visitor);
+                //we need to save the state of the node before it is moved
+                command = new Commands.TOC.MoveSectionUp
+                    (this, node, parent, parent.indexOf(node), visitor.Position);
+            }
+            
             bool succeeded = ExecuteMoveNodeUp(node);
+
             if (succeeded)
             {
+                //marisa: TESTING
+                mLastMoveSectionUpCommand = command;
+
                 MovedNodeUp(this, new Events.Node.NodeEventArgs(origin, node));
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+                if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             }
         }
 
+        //a facade API function could do this for us
         private bool ExecuteMoveNodeUp(CoreNode node)
         {
             CoreNode newParent = null;
@@ -543,15 +568,65 @@ namespace Obi
             MoveNodeUp(sender, e.Node);
         }
 
+        /// <summary>
+        /// reposition the node at the index under its given parent
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="parent"></param>
+        /// <param name="index"></param>
+        /// <param name="position"></param>
+        public void UndoMoveNode(CoreNode node, CoreNode parent, int index, int position)
+        {
+            if (node.getParent() != null) node.detach();
+            parent.insert(node, index);
+            
+            UndidMoveNode(this, new Events.Node.AddedSectionNodeEventArgs(this, node, index, position));
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+}
+
+        //marisa: TESTING
+        public void TestUndoMoveNode(object sender, Events.Node.NodeEventArgs e)
+        {
+           if (mLastMoveSectionUpCommand != null)
+           {
+               mLastMoveSectionUpCommand.Undo();
+               mLastMoveSectionUpCommand = null;
+        
+           }
+           else if (mLastMoveSectionDownCommand != null)
+           {
+               mLastMoveSectionDownCommand.Undo();
+           }
+        }
+
         public void MoveNodeDown(object origin, CoreNode node)
         {
+            Commands.TOC.MoveSectionDown command = null;
+            //marisa: TESTING
+            mLastMoveSectionDownCommand = null;
+
+            if (origin != this)
+            {
+                CoreNode parent = (CoreNode)node.getParent();
+                NodePositionVisitor visitor = new NodePositionVisitor(node);
+                getPresentation().getRootNode().acceptDepthFirst(visitor);
+                //we need to save the state of the node before it is moved
+                command = new Commands.TOC.MoveSectionDown
+                    (this, node, parent, parent.indexOf(node), visitor.Position);
+            }
+
             //a facade API function could do this for us
             bool succeeded = ExecuteMoveNodeDown(node);
             if (succeeded)
             {
+                //marisa: TESTING
+                mLastMoveSectionDownCommand = command;
+
                 MovedNodeDown(this, new Events.Node.NodeEventArgs(origin, node));
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+                if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             }
         }
 
