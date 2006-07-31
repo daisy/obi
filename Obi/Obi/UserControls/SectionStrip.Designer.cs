@@ -52,7 +52,7 @@ namespace Obi.UserControls
             this.mFlowLayoutPanel.BackColor = System.Drawing.SystemColors.ControlLight;
             this.mFlowLayoutPanel.Location = new System.Drawing.Point(2, 19);
             this.mFlowLayoutPanel.Name = "mFlowLayoutPanel";
-            this.mFlowLayoutPanel.Size = new System.Drawing.Size(237, 58);
+            this.mFlowLayoutPanel.Size = new System.Drawing.Size(237, 10);
             this.mFlowLayoutPanel.TabIndex = 1;
             this.mFlowLayoutPanel.WrapContents = false;
             // 
@@ -81,7 +81,7 @@ namespace Obi.UserControls
             this.Controls.Add(this.mLabel);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.Name = "SectionStrip";
-            this.Size = new System.Drawing.Size(241, 80);
+            this.Size = new System.Drawing.Size(241, 32);
             this.Click += new System.EventHandler(this.SectionStrip_Click);
             this.ResumeLayout(false);
             this.PerformLayout();

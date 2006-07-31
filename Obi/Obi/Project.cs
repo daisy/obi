@@ -211,6 +211,8 @@ namespace Obi
                     AddMetadata("obi:assetsdir", mAssPath);
                 }
                 mAssManager = new AssetManager(mAssPath);
+                // Recreate the assets from the phrase nodes
+                getPresentation().getRootNode().acceptDepthFirst(new Visitors.AssetVisitor());
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
             }
             else
