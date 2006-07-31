@@ -49,6 +49,9 @@ namespace Obi
         public event Events.Node.MovedNodeDownHandler MovedNodeDown;        // a node was moved down in the presentation
         public event Events.Node.IncreasedNodeLevelHandler IncreasedNodeLevel; //a node's level was increased in the presentation
         public event Events.Node.DecreasedNodeLevelHandler DecreasedNodeLevel; //a node's level was decreased in the presentation
+
+        public event Events.Node.ImportedAssetHandler ImportedAsset;  // an asset was imported into the project
+
         /// <summary>
         /// This flag is set to true if the project contains modifications that have not been saved.
         /// </summary>
@@ -106,6 +109,7 @@ namespace Obi
             mAssManager = null;
             mUnsaved = false;
             mXUKPath = null;
+            getPresentation().setPropertyFactory(new NodeTypePropertyFactory(getPresentation()));
         }
 
         /// <summary>
@@ -129,6 +133,14 @@ namespace Obi
             getPresentation().getChannelsManager().addChannel(mTextChannel);
             mAnnotationChannel = getPresentation().getChannelFactory().createChannel(AnnotationChannel);
             getPresentation().getChannelsManager().addChannel(mAnnotationChannel);
+
+            NodeTypeProperty typeProp =
+                (NodeTypeProperty)getPresentation().getPropertyFactory().createProperty("NodeTypeProperty");
+            typeProp.Type = NodeType.RootNode;
+            getPresentation().getRootNode().setProperty(typeProp);
+            NodeTypeProperty rootType = (NodeTypeProperty)getPresentation().getRootNode().getProperty(typeof(NodeTypeProperty));
+            System.Diagnostics.Debug.Print("ROOT NODE = ", rootType.Type);
+
             if (createTitle)
             {
                 CoreNode node = CreateSectionNode();
@@ -715,10 +727,10 @@ namespace Obi
             list.Add(new AudioClip(e.AssetPath));
             AudioMediaAsset asset = mAssManager.NewAudioMediaAsset(list);
             CoreNode node = CreatePhraseNode(asset);
-            // e.SectionNode.appendChild(node);
+            e.SectionNode.appendChild(node);
+            ImportedAsset(this, new Events.Node.NodeEventArgs(sender, node));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-            // notify the strip panel
         }
         
         #endregion
@@ -735,6 +747,9 @@ namespace Obi
             TextMedia text = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
             text.setText(Localizer.Message("default_section_label"));
             prop.setMedia(mTextChannel, text);
+            NodeTypeProperty typeProp = (NodeTypeProperty)getPresentation().getPropertyFactory().createProperty("NodeTypeProperty");
+            typeProp.Type = NodeType.SectionNode;
+            node.setProperty(typeProp);
             return node;
         }
 
@@ -755,10 +770,18 @@ namespace Obi
             SequenceMedia seq =
                 (SequenceMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.EMPTY_SEQUENCE);
             AudioMedia audio = (AudioMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.AUDIO);
-            AudioClip clip = (AudioClip)asset.m_alClipList[0];  // should be clip = asset.Clip(0); or better: foreach clip...
-            audio.setLocation(new MediaLocation(clip.Path));
-            seq.appendItem(audio);
+            for (int i = 0; i < asset.m_alClipList.Count; ++i)
+            {
+                AudioClip clip = asset.GetClip(i);
+                audio.setLocation(new MediaLocation(clip.Path));
+                audio.setClipBegin(new Time((long)Math.Round(clip.BeginTime)));
+                audio.setClipEnd(new Time((long)Math.Round(clip.EndTime)));
+                seq.appendItem(audio);
+            }
             prop.setMedia(mAudioChannel, seq);
+            NodeTypeProperty typeProp = (NodeTypeProperty)getPresentation().getPropertyFactory().createProperty("NodeTypeProperty");
+            typeProp.Type = NodeType.PhraseNode;
+            node.setProperty(typeProp);
             return node;
         }
 
@@ -790,6 +813,47 @@ namespace Obi
                 }
             }
             return null;
+        }
+
+        /// <summary>
+        /// Get the media object of a node for the first channel found wit the given name,
+        /// or null if no such channel is found.
+        /// </summary>
+        /// <param name="node">The node for which we want a media object.</param>
+        /// <param name="channel">The name of the channel that we are interested in.</param>
+        /// <returns>The media object set on the first channel of that name, or null.</returns>
+        public static IMedia GetMediaForChannel(CoreNode node, string channel)
+        {
+            ChannelsProperty channelsProp = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
+            Channel foundChannel;
+            IList channelsList = channelsProp.getListOfUsedChannels();
+            for (int i = 0; i < channelsList.Count; i++)
+            {
+                string channelName = ((IChannel)channelsList[i]).getName();
+                if (channelName == channel)
+                {
+                    foundChannel = (Channel)channelsList[i];
+                    return channelsProp.getMedia(foundChannel);
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Get the type of a node depending on its position in the tree or its channels.
+        /// </summary>
+        /// <param name="node">The node for which we want the type.</param>
+        public static NodeType GetNodeType(CoreNode node)
+        {
+            NodeTypeProperty prop =(NodeTypeProperty)node.getProperty(typeof(NodeTypeProperty));
+            if (prop != null)
+            {
+                return prop.Type;
+            }
+            else
+            {
+                return NodeType.Vanilla;
+            }
         }
     }
 }

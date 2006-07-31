@@ -62,6 +62,7 @@ namespace Obi.UserControls
                     mProject.DeletedNode -= new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeletedNode);
 
                     mStripManagerPanel.ImportPhrase -= new Events.Strip.RequestToImportAssetHandler(mProject.ImportPhraseRequested);
+                    mProject.ImportedAsset -= new Events.Node.ImportedAssetHandler(mStripManagerPanel.SyncImportedAsset);
                 }
                 // Set up the handlers for the new project
                 if (value != null)
@@ -96,6 +97,7 @@ namespace Obi.UserControls
                     value.DeletedNode += new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeletedNode);
 
                     mStripManagerPanel.ImportPhrase += new Events.Strip.RequestToImportAssetHandler(value.ImportPhraseRequested);
+                    value.ImportedAsset += new Events.Node.ImportedAssetHandler(mStripManagerPanel.SyncImportedAsset);
                 }
                 mProject = value;
                 mSplitContainer.Visible = mProject != null;
