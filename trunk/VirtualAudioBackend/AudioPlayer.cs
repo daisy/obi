@@ -52,7 +52,7 @@ private long m_lClipByteCount ;
 
 				m_PlayFile = true ;
 				m_FastPlay = false ;
-
+m_State = AudioPlayerState.NotReady ;
 AssociateEvents  () ;
 			
 		}
