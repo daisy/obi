@@ -21,6 +21,8 @@ namespace Obi.Events.Node
     public delegate void MovedNodeUpHandler(object sender, NodeEventArgs e);
     public delegate void MovedNodeDownHandler(object sender, NodeEventArgs e);
 
+    public delegate void ImportedAssetHandler(object sender, NodeEventArgs e);
+
     public class NodeEventArgs : EventArgs
     {
         private CoreNode mNode;  // the node on which the operation is performed

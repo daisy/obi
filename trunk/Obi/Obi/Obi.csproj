@@ -115,6 +115,7 @@
       <DependentUpon>messages.resx</DependentUpon>
     </Compile>
     <Compile Include="NodePositionVisitor.cs" />
+    <Compile Include="NodeTypeProperty.cs" />
     <Compile Include="ObiForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +155,10 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\AudioBlock.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AudioBlock.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ProjectPanel.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ProjectPanel.cs</DependentUpon>
@@ -188,6 +193,12 @@
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="SimpleMetadata.cs" />
+    <Compile Include="UserControls\AudioBlock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\AudioBlock.Designer.cs">
+      <DependentUpon>AudioBlock.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ProjectPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>

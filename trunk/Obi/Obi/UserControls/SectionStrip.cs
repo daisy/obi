@@ -138,5 +138,10 @@ namespace Obi.UserControls
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+
+        public void AppendAudioBlock(AudioBlock block)
+        {
+            mFlowLayoutPanel.Controls.Add(block);
+        }
     }
 }

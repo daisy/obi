@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using urakawa.core;
+using urakawa.media;
 
 namespace Obi.UserControls
 {
@@ -78,13 +79,14 @@ namespace Obi.UserControls
         }
 
         /// <summary>
-        /// Create a new strip for every core node. Skip the root node.
+        /// Create a new strip for every core node.
+        /// Skip the root node and nodes that do not have a text channel (i.e. phrase nodes.)
         /// </summary>
         /// <param name="node">The node to add to the tree.</param>
         /// <returns>True.</returns>
         public bool preVisit(ICoreNode node)
         {
-            if (node.getParent() != null)
+            if (node.getParent() != null && Project.GetMediaForChannel((CoreNode)node, Project.TextChannel) != null)
             {
                 SectionStrip strip = new SectionStrip();
                 strip.Label = Project.GetTextMedia((CoreNode)node).getText();
@@ -141,6 +143,18 @@ namespace Obi.UserControls
             }
         }
 
+        internal void SyncImportedAsset(object sender, Events.Node.NodeEventArgs e)
+        {
+            if (e.Node != null && mSelectedNode != null)
+            {
+                SectionStrip strip = mNodeMap[mSelectedNode];
+                AudioBlock block = new AudioBlock();
+                TextMedia annotation = (TextMedia)Project.GetMediaForChannel(e.Node, Project.AnnotationChannel);
+                block.Annotation = annotation.getText();
+                strip.AppendAudioBlock(block);
+            }
+        }
+
         #endregion
 
         #region Menu items
@@ -164,7 +178,6 @@ namespace Obi.UserControls
             {
                 OpenFileDialog dialog = new OpenFileDialog();
                 dialog.Filter = "WAVE file (*.wav)|*.wav|Any file|*.*";
-                dialog.ShowDialog();
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     ImportPhrase(this, new Events.Strip.ImportAssetEventArgs(mSelectedNode, dialog.FileName));

@@ -55,6 +55,7 @@ namespace Obi
                 {
                     mProject = new Project();
                     mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
+                    mProject.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
                     mProject.Create(dialog.Path, dialog.Title, mSettings.IdTemplate, mSettings.UserProfile,
                         dialog.CreateTitleSection);
                     mSettings.CreateTitleSection = dialog.CreateTitleSection;
@@ -619,6 +620,11 @@ namespace Obi
             toolStripStatusLabel1.Text = Localizer.Message("ready");
         }
 
+        /// <summary>
+        /// Handle the undo menu item.
+        /// If there is something to undo, undo it and update the labels of undo and redo
+        /// to synchronize them with the command manager.
+        /// </summary>
         private void mUndoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mCmdMngr.HasUndo)
@@ -628,6 +634,11 @@ namespace Obi
             }
         }
 
+        /// <summary>
+        /// Handle the redo menu item.
+        /// If there is something to undo, undo it and update the labels of undo and redo
+        /// to synchronize them with the command manager.
+        /// </summary>
         private void mRedoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mCmdMngr.HasRedo)

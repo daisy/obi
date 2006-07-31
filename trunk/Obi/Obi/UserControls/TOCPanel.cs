@@ -74,12 +74,13 @@ namespace Obi.UserControls
         /// <summary>
         /// Create a new tree node for every core node. Skip the root node, and attach the children of the root directly to the
         /// tree; the other children are attached to their parent node.
+        /// Skip the phrase nodes as well (they do not have a text channel.)
         /// </summary>
         /// <param name="node">The node to add to the tree.</param>
         /// <returns>True </returns>
         public bool preVisit(urakawa.core.ICoreNode node)
         {
-            if (node.getParent() != null)
+            if (Project.GetNodeType((urakawa.core.CoreNode)node) == NodeType.SectionNode)
             {
                 string label = Project.GetTextMedia((urakawa.core.CoreNode)node).getText();
                 TreeNode newTreeNode;
