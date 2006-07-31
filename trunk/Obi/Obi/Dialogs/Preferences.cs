@@ -5,7 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-
+using VirtualAudioBackend;
+using System.Collections;
 namespace Obi.Dialogs
 {
     public partial class Preferences : Form
@@ -15,6 +16,12 @@ namespace Obi.Dialogs
 
         public string IdTemplate { get { return mIdTemplate; } }
         public string DefaultDir { get { return mDefaultDir; } }
+        public string strInDeviceName;
+        public string strOutDeviceName;
+        ArrayList m_InDevicesList = new ArrayList();
+        ArrayList m_OutDevicesList = new ArrayList();
+        AudioRecorder ob_AudioRecorder = new AudioRecorder();
+        AudioPlayer ob_AudioPlayer = new AudioPlayer();
 
         public Preferences(string template, string dir)
         {
@@ -38,8 +45,19 @@ namespace Obi.Dialogs
 
         private void button2_Click(object sender, EventArgs e)
         {
-            mIdTemplate = mTemplateBox.Text;
+            mIdTemplate      = mTemplateBox.Text;
             mDefaultDir = mDirectoryBox.Text;
+            strInDeviceName = comboInputDevice.SelectedItem.ToString();
+            strOutDeviceName = comboOutputDevice.SelectedItem.ToString();
+            
+        }
+
+        private void Preferences_Load(object sender, EventArgs e)
+        {
+            m_InDevicesList = ob_AudioRecorder.GetInputDevices();
+            m_OutDevicesList = ob_AudioPlayer.GetOutputDevices();
+            comboInputDevice.DataSource = m_InDevicesList;
+            comboOutputDevice.DataSource = m_OutDevicesList;
         }
     }
 }
