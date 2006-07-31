@@ -24,6 +24,8 @@ namespace Obi
         public string IdTemplate;         // identifier template
         public string DefaultPath;        // default location
         public bool CreateTitleSection;   // defaulf for "create title section" in new project
+        public string LastOutputDevice;   // the name of the last output device selected by the user
+        public string LastInputDevice;    // the name of the last input device selected by the user
 
         public static readonly string SettingsFileName = "obi_settings.xml";  // settings file name
 
@@ -50,6 +52,8 @@ namespace Obi
             if (settings.UserProfile == null) settings.UserProfile = new UserProfile();
             if (settings.IdTemplate == null) settings.IdTemplate = "obi_####";
             if (settings.DefaultPath == null) settings.DefaultPath = Environment.CurrentDirectory;
+            if (settings.LastOutputDevice == null) settings.LastOutputDevice = "";
+            if (settings.LastInputDevice == null) settings.LastInputDevice = "";
             return settings;
         }
 

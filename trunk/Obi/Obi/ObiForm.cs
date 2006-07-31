@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using Commands;
+using VirtualAudioBackend;
 
 namespace Obi
 {
@@ -394,6 +395,15 @@ namespace Obi
                     mSettings.RecentProjects.RemoveAt(i);
                 }
             }
+            // Use the first available device by default
+            ArrayList devices = AudioPlayer.Instance.GetOutputDevices();
+            if (devices.Count == 0)
+            {
+                MessageBox.Show(Localizer.Message("no_output_device_text"), Localizer.Message("no_output_device_caption"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
+            AudioPlayer.Instance.SetDevice(this, 0);
         }
 
         /// <summary>

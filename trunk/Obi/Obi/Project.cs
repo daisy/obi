@@ -109,7 +109,7 @@ namespace Obi
             mAssManager = null;
             mUnsaved = false;
             mXUKPath = null;
-            getPresentation().setPropertyFactory(new NodeTypePropertyFactory(getPresentation()));
+            getPresentation().setPropertyFactory(new AssetPropertyFactory(getPresentation()));
         }
 
         /// <summary>
@@ -779,6 +779,9 @@ namespace Obi
                 seq.appendItem(audio);
             }
             prop.setMedia(mAudioChannel, seq);
+            AssetProperty assProp = (AssetProperty)getPresentation().getPropertyFactory().createProperty("AssetProperty");
+            assProp.Asset = asset;
+            node.setProperty(assProp);
             NodeTypeProperty typeProp = (NodeTypeProperty)getPresentation().getPropertyFactory().createProperty("NodeTypeProperty");
             typeProp.Type = NodeType.PhraseNode;
             node.setProperty(typeProp);
@@ -845,7 +848,7 @@ namespace Obi
         /// <param name="node">The node for which we want the type.</param>
         public static NodeType GetNodeType(CoreNode node)
         {
-            NodeTypeProperty prop =(NodeTypeProperty)node.getProperty(typeof(NodeTypeProperty));
+            NodeTypeProperty prop = (NodeTypeProperty)node.getProperty(typeof(NodeTypeProperty));
             if (prop != null)
             {
                 return prop.Type;
@@ -853,6 +856,24 @@ namespace Obi
             else
             {
                 return NodeType.Vanilla;
+            }
+        }
+
+        /// <summary>
+        /// Get the actual audio media object for a phrase node.
+        /// </summary>
+        /// <param name="node">The node for which we want the asset.</param>
+        /// <returns>The asset or null if it could not be found.</returns>
+        public static AudioMediaAsset GetAudioMediaAsset(CoreNode node)
+        {
+            AssetProperty prop = (AssetProperty)node.getProperty(typeof(AssetProperty));
+            if (prop != null)
+            {
+                return prop.Asset;
+            }
+            else
+            {
+                return null;
             }
         }
     }
