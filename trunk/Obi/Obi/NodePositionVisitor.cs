@@ -7,7 +7,7 @@ using urakawa.core;
 namespace Obi
 {
     /// <summary>
-    /// Find the position of a node in the core tree, as seen in a flat list.
+    /// Find the position of a node in the TOC tree, as seen in a flat list.
     /// </summary>
     public class NodePositionVisitor: ICoreNodeVisitor
     {

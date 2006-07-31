@@ -86,7 +86,7 @@ namespace Obi.UserControls
         /// <returns>True.</returns>
         public bool preVisit(ICoreNode node)
         {
-            if (node.getParent() != null && Project.GetMediaForChannel((CoreNode)node, Project.TextChannel) != null)
+            if (Project.GetNodeType((CoreNode)node) == NodeType.SectionNode)
             {
                 SectionStrip strip = new SectionStrip();
                 strip.Label = Project.GetTextMedia((CoreNode)node).getText();
@@ -94,6 +94,16 @@ namespace Obi.UserControls
                 strip.Node = (CoreNode)node;
                 mNodeMap[(CoreNode)node] = strip;
                 mFlowLayoutPanel.Controls.Add(strip);
+                SelectedNode = strip.Node;
+            }
+            else if (Project.GetNodeType((CoreNode)node) == NodeType.PhraseNode)
+            {
+                SectionStrip strip = mNodeMap[mSelectedNode];
+                AudioBlock block = new AudioBlock();
+                TextMedia annotation = (TextMedia)Project.GetMediaForChannel((CoreNode)node, Project.AnnotationChannel);
+                block.Annotation = annotation.getText();
+                block.Time = (Project.GetAudioMediaAsset((CoreNode)node).LengthInMilliseconds / 1000).ToString() + "s";
+                strip.AppendAudioBlock(block);
             }
             return true;
         }
@@ -151,6 +161,7 @@ namespace Obi.UserControls
                 AudioBlock block = new AudioBlock();
                 TextMedia annotation = (TextMedia)Project.GetMediaForChannel(e.Node, Project.AnnotationChannel);
                 block.Annotation = annotation.getText();
+                block.Time = (Project.GetAudioMediaAsset(e.Node).LengthInMilliseconds / 1000).ToString() + "s";
                 strip.AppendAudioBlock(block);
             }
         }

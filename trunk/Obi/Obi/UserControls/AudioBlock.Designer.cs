@@ -69,11 +69,11 @@ namespace Obi.UserControls
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.LightPink;
+            this.BackColor = System.Drawing.Color.MistyRose;
             this.Controls.Add(this.mPlayLabel);
             this.Controls.Add(this.mTimeLabel);
             this.Controls.Add(this.mAnnotationLabel);
-            this.Margin = new System.Windows.Forms.Padding(0);
+            this.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
             this.Name = "AudioBlock";
             this.ResumeLayout(false);
             this.PerformLayout();

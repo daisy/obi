@@ -231,6 +231,7 @@
       <DependentUpon>TOCPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="UserProfile.cs" />
+    <Compile Include="Visitors\AssetVisitor.cs" />
     <Compile Include="Visitors\UndeleteSubtree.cs" />
   </ItemGroup>
   <ItemGroup>
