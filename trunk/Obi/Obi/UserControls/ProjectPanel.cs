@@ -56,13 +56,13 @@ namespace Obi.UserControls
 
                     mTOCPanel.RequestToDeleteSection -= new Events.Node.RequestToDeleteNodeHandler(mProject.RemoveNodeRequested);
                     mProject.DeletedNode -= new Events.Node.DeletedNodeHandler(mTOCPanel.SyncDeletedNode);
-                    
-                    //comment: this used to say += but I think it was a typo
-                    //reply: yes it was. -= is the way to go.
                     mProject.DeletedNode -= new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeletedNode);
 
                     mStripManagerPanel.ImportPhrase -= new Events.Strip.RequestToImportAssetHandler(mProject.ImportPhraseRequested);
                     mProject.ImportedAsset -= new Events.Node.ImportedAssetHandler(mStripManagerPanel.SyncImportedAsset);
+
+                    //marisa: TESTING only
+                    mTOCPanel.RequestToUndoMoveNode -= new Events.Node.RequestToUndoMoveNodeHandler(mProject.TestUndoMoveNode);
                 }
                 // Set up the handlers for the new project
                 if (value != null)
@@ -98,6 +98,9 @@ namespace Obi.UserControls
 
                     mStripManagerPanel.ImportPhrase += new Events.Strip.RequestToImportAssetHandler(value.ImportPhraseRequested);
                     value.ImportedAsset += new Events.Node.ImportedAssetHandler(mStripManagerPanel.SyncImportedAsset);
+
+                    //marisa: TESTING only
+                    mTOCPanel.RequestToUndoMoveNode += new Events.Node.RequestToUndoMoveNodeHandler(value.TestUndoMoveNode);
                 }
                 mProject = value;
                 mSplitContainer.Visible = mProject != null;
