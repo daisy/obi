@@ -388,6 +388,7 @@ namespace Obi
         private void InitializeSettings()
         {
             mSettings = Settings.GetSettings();
+
             for (int i = mSettings.RecentProjects.Count - 1; i >= 0; --i)
             {
                 if (!AddRecentProjectsItem((string)mSettings.RecentProjects[i]))
