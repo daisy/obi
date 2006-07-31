@@ -227,6 +227,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No audio output device found.
+        /// </summary>
+        internal static string no_output_device_caption {
+            get {
+                return ResourceManager.GetString("no_output_device_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not select an audio output device: none found. Sorry :(.
+        /// </summary>
+        internal static string no_output_device_text {
+            get {
+                return ResourceManager.GetString("no_output_device_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Obi.
         /// </summary>
         internal static string obi {
