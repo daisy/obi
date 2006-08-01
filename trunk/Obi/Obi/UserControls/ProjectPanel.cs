@@ -37,14 +37,13 @@ namespace Obi.UserControls
 
                     mTOCPanel.RequestToAddChildSection -= new Events.Node.RequestToAddChildNodeHandler(mProject.CreateChildSectionRequested);
                     
+                    //these are all events related to moving nodes up and down
                     mTOCPanel.RequestToMoveSectionUp -= new Events.Node.RequestToMoveNodeUpHandler(mProject.MoveNodeUpRequested);
                     mTOCPanel.RequestToMoveSectionDown -= new Events.Node.RequestToMoveNodeDownHandler(mProject.MoveNodeDownRequested);
-                   
                     mProject.MovedNode -= new Events.Node.MovedNodeHandler(mTOCPanel.SyncMovedNode);
-
-                     //mProject.MovedNodeDown -= new Events.Node.MovedNodeDownHandler(mTOCPanel.SyncMovedNodeDown);
-
+                    mProject.MovedNode -= new Events.Node.MovedNodeHandler(mStripManagerPanel.SyncMovedNode);
                     mProject.UndidMoveNode -= new Events.Node.MovedNodeHandler(mTOCPanel.SyncMovedNode);
+                    mProject.UndidMoveNode -= new Events.Node.MovedNodeHandler(mStripManagerPanel.SyncMovedNode);
 
                     mTOCPanel.RequestToIncreaseSectionLevel -= new Events.Node.RequestToIncreaseNodeLevelHandler(mProject.IncreaseNodeLevelRequested);
                     mProject.IncreasedNodeLevel -= new Events.Node.IncreasedNodeLevelHandler(mTOCPanel.SyncIncreasedNodeLevel);
@@ -78,14 +77,13 @@ namespace Obi.UserControls
 
                     mTOCPanel.RequestToAddChildSection += new Events.Node.RequestToAddChildNodeHandler(value.CreateChildSectionRequested);
                     
+                    //these all relate to moving nodes up and down
                     mTOCPanel.RequestToMoveSectionUp += new Events.Node.RequestToMoveNodeUpHandler(value.MoveNodeUpRequested);
                     mTOCPanel.RequestToMoveSectionDown += new Events.Node.RequestToMoveNodeDownHandler(value.MoveNodeDownRequested);
-                   
                     value.MovedNode += new Events.Node.MovedNodeHandler(mTOCPanel.SyncMovedNode);
-
-                   // value.MovedNodeDown += new Events.Node.MovedNodeDownHandler(mTOCPanel.SyncMovedNodeDown);
-
+                    value.MovedNode += new Events.Node.MovedNodeHandler(mStripManagerPanel.SyncMovedNode);
                     value.UndidMoveNode += new Events.Node.MovedNodeHandler(mTOCPanel.SyncMovedNode);
+                    value.UndidMoveNode += new Events.Node.MovedNodeHandler(mStripManagerPanel.SyncMovedNode);
 
                     mTOCPanel.RequestToIncreaseSectionLevel += new Events.Node.RequestToIncreaseNodeLevelHandler(value.IncreaseNodeLevelRequested);
                     value.IncreasedNodeLevel += new Events.Node.IncreasedNodeLevelHandler(mTOCPanel.SyncIncreasedNodeLevel);
