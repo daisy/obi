@@ -64,6 +64,7 @@ namespace Obi.UserControls
                     mProject.ImportedAsset -= new Events.Node.ImportedAssetHandler(mStripManagerPanel.SyncImportedAsset);
 
                     mStripManagerPanel.SetMedia -= new Events.Node.SetMediaHandler(mProject.SetMediaRequested);
+                    mProject.MediaSet -= new Events.Node.MediaSetHandler(mStripManagerPanel.SyncMediaSet);
 
                     //marisa: TESTING only
                     mTOCPanel.RequestToUndoMoveNode -= new Events.Node.RequestToUndoMoveNodeHandler(mProject.TestUndoMoveNode);
@@ -106,6 +107,7 @@ namespace Obi.UserControls
                     value.ImportedAsset += new Events.Node.ImportedAssetHandler(mStripManagerPanel.SyncImportedAsset);
 
                     mStripManagerPanel.SetMedia += new Events.Node.SetMediaHandler(value.SetMediaRequested);
+                    value.MediaSet += new Events.Node.MediaSetHandler(mStripManagerPanel.SyncMediaSet);
 
                     //marisa: TESTING only
                     mTOCPanel.RequestToUndoMoveNode += new Events.Node.RequestToUndoMoveNodeHandler(value.TestUndoMoveNode);
