@@ -9,10 +9,11 @@ Prerequisites:
 2. Once DirectX is installed, you can compile UrakawaApplicationBackend
 3. You also need to compile the Urakawa toolkit from the implementation
    directory.
-4. Once you have DirectX, the backend and the toolkit, you can compile both
-   Obi and Zaboom. You *may* need to specify the location of the DLLs again
-   in the References section of the Solution Explorer; they can be found in
-   the bin/ directory of all projects. 
+4. Once you have DirectX, the backend and the toolkit, you can compile Obi.
+   You *may* need to specify the location of the DLLs again in the References
+   section of the Solution Explorer; they can be found in the bin/ directory
+   of all projects. (Sometimes, just looking at the properties of a "missing"
+   reference does the trick.) 
 
 + Commands
   A 2003 project for the command pattern used by the application and the audio
@@ -31,9 +32,6 @@ Prerequisites:
   A 2003 project for the audio backend, this is the second version with
   non-destructive edits and commands. Use this version. Part of
   UrakawaApplicationBackend.
-
-+ Zaboom
-  A 2005 project of a test application for audio editing and playing.
 
 + docs
   Mostly outdated, features.txt contains the rough feature list of version

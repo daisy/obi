@@ -283,6 +283,11 @@ namespace Obi
         {
             if (dialog.IdTemplate.Contains("#")) mSettings.IdTemplate = dialog.IdTemplate;
             if (Directory.Exists(dialog.DefaultDir)) mSettings.DefaultPath = dialog.DefaultDir;
+            mSettings.LastOutputDevice = dialog.OutputDevice;
+            mSettings.LastInputDevice = dialog.InputDevice;
+            mSettings.AudioChannels = dialog.AudioChannels;
+            mSettings.SampleRate = dialog.SampleRate;
+            mSettings.BitDepth = dialog.BitDepth;
         }
 
         /// <summary>
@@ -358,6 +363,7 @@ namespace Obi
         private void StripManager_Selected(object sender, Events.Strip.SelectedEventArgs e)
         {
             renameStripToolStripMenuItem.Enabled = e.Selected;
+            importAssetToolStripMenuItem.Enabled = e.Selected;
         }
 
         #endregion
