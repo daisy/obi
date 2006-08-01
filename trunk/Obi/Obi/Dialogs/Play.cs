@@ -92,10 +92,31 @@ namespace Obi.Dialogs
         private void tmUpdateCurrentTime_Tick(object sender, EventArgs e)
         {
             double dMiliSeconds = AudioPlayer.Instance.CurrentTimePosition; 
-            double dSeconds = dMiliSeconds / 1000;
-            int Minutes = Convert.ToInt32(dSeconds / 60);
+            int Seconds = Convert.ToInt32 (dMiliSeconds / 1000);
+            string sSeconds;
+            if (Seconds  > 9)
+                sSeconds = Seconds.ToString();
+            else
+                sSeconds = "0" + Seconds.ToString();
+
+            int Minutes = Convert.ToInt32(Seconds / 60);
+            string sMinutes;
+            if (Minutes  > 9)
+                sMinutes = Minutes.ToString();
+            else
+                sMinutes = "0" + Minutes.ToString();
+
+
             int Hours = Minutes / 60;
-            string sDisplayTime = Hours.ToString () +":" + Minutes.ToString () + ":" + dSeconds.ToString()    ;
+            string sHours;
+            if (Hours > 9)
+                sHours = Hours.ToString();
+            else
+                sHours = "0" + Hours.ToString();
+
+
+            //string sDisplayTime = Hours.ToString () +":" + Minutes.ToString () + ":" + Seconds.ToString()    ;
+            string sDisplayTime = sHours + ":" + sMinutes + ":" + sSeconds;
             txtDisplayTime.Text = sDisplayTime;
         }
 
@@ -130,7 +151,7 @@ namespace Obi.Dialogs
 
         private void Play_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            AudioPlayer.Instance.Stop();           
         }
     }
 }
