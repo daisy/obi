@@ -42,6 +42,10 @@ namespace Obi.Dialogs
             this.mTab = new System.Windows.Forms.TabControl();
             this.mProjectTab = new System.Windows.Forms.TabPage();
             this.mAudioTab = new System.Windows.Forms.TabPage();
+            this.comboSampleRate = new System.Windows.Forms.ComboBox();
+            this.labelSampleRate = new System.Windows.Forms.Label();
+            this.comboChannels = new System.Windows.Forms.ComboBox();
+            this.labelChannel = new System.Windows.Forms.Label();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             this.mAudioTab.SuspendLayout();
@@ -52,7 +56,7 @@ namespace Obi.Dialogs
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(140, 12);
+            this.label1.Size = new System.Drawing.Size(128, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Project identifier &template:";
             // 
@@ -62,15 +66,15 @@ namespace Obi.Dialogs
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mTemplateBox.Location = new System.Drawing.Point(152, 0);
             this.mTemplateBox.Name = "mTemplateBox";
-            this.mTemplateBox.Size = new System.Drawing.Size(392, 19);
+            this.mTemplateBox.Size = new System.Drawing.Size(392, 20);
             this.mTemplateBox.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 33);
+            this.label2.Location = new System.Drawing.Point(6, 36);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(138, 12);
+            this.label2.Size = new System.Drawing.Size(127, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Default projects &directory:";
             // 
@@ -78,17 +82,17 @@ namespace Obi.Dialogs
             // 
             this.mDirectoryBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.mDirectoryBox.Location = new System.Drawing.Point(152, 30);
+            this.mDirectoryBox.Location = new System.Drawing.Point(152, 33);
             this.mDirectoryBox.Name = "mDirectoryBox";
-            this.mDirectoryBox.Size = new System.Drawing.Size(392, 19);
+            this.mDirectoryBox.Size = new System.Drawing.Size(392, 20);
             this.mDirectoryBox.TabIndex = 3;
             // 
             // mBrowseButton
             // 
             this.mBrowseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mBrowseButton.Location = new System.Drawing.Point(533, 65);
+            this.mBrowseButton.Location = new System.Drawing.Point(533, 70);
             this.mBrowseButton.Name = "mBrowseButton";
-            this.mBrowseButton.Size = new System.Drawing.Size(75, 23);
+            this.mBrowseButton.Size = new System.Drawing.Size(75, 25);
             this.mBrowseButton.TabIndex = 4;
             this.mBrowseButton.Text = "&Browse";
             this.mBrowseButton.UseVisualStyleBackColor = true;
@@ -98,9 +102,9 @@ namespace Obi.Dialogs
             // 
             this.mOKButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.mOKButton.Location = new System.Drawing.Point(243, 430);
+            this.mOKButton.Location = new System.Drawing.Point(243, 466);
             this.mOKButton.Name = "mOKButton";
-            this.mOKButton.Size = new System.Drawing.Size(75, 23);
+            this.mOKButton.Size = new System.Drawing.Size(75, 25);
             this.mOKButton.TabIndex = 5;
             this.mOKButton.Text = "&OK";
             this.mOKButton.UseVisualStyleBackColor = true;
@@ -110,9 +114,9 @@ namespace Obi.Dialogs
             // 
             this.mCancelButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.mCancelButton.Location = new System.Drawing.Point(324, 430);
+            this.mCancelButton.Location = new System.Drawing.Point(324, 466);
             this.mCancelButton.Name = "mCancelButton";
-            this.mCancelButton.Size = new System.Drawing.Size(75, 23);
+            this.mCancelButton.Size = new System.Drawing.Size(75, 25);
             this.mCancelButton.TabIndex = 6;
             this.mCancelButton.Text = "&Cancel";
             this.mCancelButton.UseVisualStyleBackColor = true;
@@ -120,9 +124,9 @@ namespace Obi.Dialogs
             // labelInputDeviceName
             // 
             this.labelInputDeviceName.AutoSize = true;
-            this.labelInputDeviceName.Location = new System.Drawing.Point(13, 19);
+            this.labelInputDeviceName.Location = new System.Drawing.Point(13, 21);
             this.labelInputDeviceName.Name = "labelInputDeviceName";
-            this.labelInputDeviceName.Size = new System.Drawing.Size(102, 12);
+            this.labelInputDeviceName.Size = new System.Drawing.Size(99, 13);
             this.labelInputDeviceName.TabIndex = 7;
             this.labelInputDeviceName.Text = "&Input Device Name";
             // 
@@ -131,80 +135,122 @@ namespace Obi.Dialogs
             this.comboInputDevice.AllowDrop = true;
             this.comboInputDevice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboInputDevice.FormattingEnabled = true;
-            this.comboInputDevice.Location = new System.Drawing.Point(121, 16);
+            this.comboInputDevice.Location = new System.Drawing.Point(121, 17);
             this.comboInputDevice.Name = "comboInputDevice";
-            this.comboInputDevice.Size = new System.Drawing.Size(235, 20);
+            this.comboInputDevice.Size = new System.Drawing.Size(235, 21);
             this.comboInputDevice.TabIndex = 8;
             // 
             // labelOutputDeviceName
             // 
             this.labelOutputDeviceName.AutoSize = true;
-            this.labelOutputDeviceName.Location = new System.Drawing.Point(6, 51);
+            this.labelOutputDeviceName.Location = new System.Drawing.Point(6, 55);
             this.labelOutputDeviceName.Name = "labelOutputDeviceName";
-            this.labelOutputDeviceName.Size = new System.Drawing.Size(109, 12);
+            this.labelOutputDeviceName.Size = new System.Drawing.Size(105, 13);
             this.labelOutputDeviceName.TabIndex = 9;
-            this.labelOutputDeviceName.Text = "&Output Device name";
+            this.labelOutputDeviceName.Text = "O&utput Device name";
             // 
             // comboOutputDevice
             // 
             this.comboOutputDevice.AllowDrop = true;
             this.comboOutputDevice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboOutputDevice.FormattingEnabled = true;
-            this.comboOutputDevice.Location = new System.Drawing.Point(121, 48);
+            this.comboOutputDevice.Location = new System.Drawing.Point(121, 52);
             this.comboOutputDevice.Name = "comboOutputDevice";
-            this.comboOutputDevice.Size = new System.Drawing.Size(236, 20);
+            this.comboOutputDevice.Size = new System.Drawing.Size(236, 21);
             this.comboOutputDevice.TabIndex = 10;
             // 
             // mTab
             // 
             this.mTab.Controls.Add(this.mProjectTab);
             this.mTab.Controls.Add(this.mAudioTab);
-            this.mTab.Location = new System.Drawing.Point(12, 12);
+            this.mTab.Location = new System.Drawing.Point(12, 13);
             this.mTab.Name = "mTab";
             this.mTab.SelectedIndex = 0;
-            this.mTab.Size = new System.Drawing.Size(619, 412);
+            this.mTab.Size = new System.Drawing.Size(619, 446);
             this.mTab.TabIndex = 11;
             // 
-            // mProjectTabPage
+            // mProjectTab
             // 
             this.mProjectTab.Controls.Add(this.label1);
             this.mProjectTab.Controls.Add(this.mTemplateBox);
             this.mProjectTab.Controls.Add(this.label2);
             this.mProjectTab.Controls.Add(this.mBrowseButton);
             this.mProjectTab.Controls.Add(this.mDirectoryBox);
-            this.mProjectTab.Location = new System.Drawing.Point(4, 21);
-            this.mProjectTab.Name = "mProjectTabPage";
+            this.mProjectTab.Location = new System.Drawing.Point(4, 22);
+            this.mProjectTab.Name = "mProjectTab";
             this.mProjectTab.Padding = new System.Windows.Forms.Padding(3);
-            this.mProjectTab.Size = new System.Drawing.Size(611, 387);
+            this.mProjectTab.Size = new System.Drawing.Size(611, 420);
             this.mProjectTab.TabIndex = 0;
             this.mProjectTab.Text = "Project";
             this.mProjectTab.UseVisualStyleBackColor = true;
             // 
             // mAudioTab
             // 
+            this.mAudioTab.Controls.Add(this.comboSampleRate);
+            this.mAudioTab.Controls.Add(this.labelSampleRate);
+            this.mAudioTab.Controls.Add(this.comboChannels);
+            this.mAudioTab.Controls.Add(this.labelChannel);
             this.mAudioTab.Controls.Add(this.comboOutputDevice);
             this.mAudioTab.Controls.Add(this.comboInputDevice);
             this.mAudioTab.Controls.Add(this.labelOutputDeviceName);
             this.mAudioTab.Controls.Add(this.labelInputDeviceName);
-            this.mAudioTab.Location = new System.Drawing.Point(4, 21);
+            this.mAudioTab.Location = new System.Drawing.Point(4, 22);
             this.mAudioTab.Name = "mAudioTab";
             this.mAudioTab.Padding = new System.Windows.Forms.Padding(3);
-            this.mAudioTab.Size = new System.Drawing.Size(611, 387);
+            this.mAudioTab.Size = new System.Drawing.Size(611, 420);
             this.mAudioTab.TabIndex = 1;
             this.mAudioTab.Text = "Audio";
             this.mAudioTab.UseVisualStyleBackColor = true;
             // 
+            // comboSampleRate
+            // 
+            this.comboSampleRate.AllowDrop = true;
+            this.comboSampleRate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboSampleRate.FormattingEnabled = true;
+            this.comboSampleRate.Location = new System.Drawing.Point(158, 129);
+            this.comboSampleRate.Name = "comboSampleRate";
+            this.comboSampleRate.Size = new System.Drawing.Size(121, 21);
+            this.comboSampleRate.TabIndex = 14;
+            // 
+            // labelSampleRate
+            // 
+            this.labelSampleRate.AutoSize = true;
+            this.labelSampleRate.Location = new System.Drawing.Point(170, 106);
+            this.labelSampleRate.Name = "labelSampleRate";
+            this.labelSampleRate.Size = new System.Drawing.Size(101, 13);
+            this.labelSampleRate.TabIndex = 13;
+            this.labelSampleRate.Text = "Select &Sample Rate";
+            // 
+            // comboChannels
+            // 
+            this.comboChannels.AllowDrop = true;
+            this.comboChannels.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboChannels.FormattingEnabled = true;
+            this.comboChannels.Location = new System.Drawing.Point(26, 131);
+            this.comboChannels.Name = "comboChannels";
+            this.comboChannels.Size = new System.Drawing.Size(121, 21);
+            this.comboChannels.TabIndex = 12;
+            // 
+            // labelChannel
+            // 
+            this.labelChannel.AutoSize = true;
+            this.labelChannel.Location = new System.Drawing.Point(18, 105);
+            this.labelChannel.Name = "labelChannel";
+            this.labelChannel.Size = new System.Drawing.Size(84, 13);
+            this.labelChannel.TabIndex = 11;
+            this.labelChannel.Text = "Select &Channels";
+            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
-            this.ClientSize = new System.Drawing.Size(643, 465);
+            this.ClientSize = new System.Drawing.Size(643, 504);
             this.Controls.Add(this.mTab);
             this.Controls.Add(this.mCancelButton);
             this.Controls.Add(this.mOKButton);
-            this.MinimumSize = new System.Drawing.Size(8, 162);
+            this.MinimumSize = new System.Drawing.Size(8, 173);
             this.Name = "Preferences";
             this.Text = "Edit preferences";
             this.Load += new System.EventHandler(this.Preferences_Load);
@@ -233,5 +279,9 @@ namespace Obi.Dialogs
         private System.Windows.Forms.TabControl mTab;
         private System.Windows.Forms.TabPage mProjectTab;
         private System.Windows.Forms.TabPage mAudioTab;
+        private System.Windows.Forms.ComboBox comboChannels;
+        private System.Windows.Forms.Label labelChannel;
+        private System.Windows.Forms.ComboBox comboSampleRate;
+        private System.Windows.Forms.Label labelSampleRate;
     }
 }
