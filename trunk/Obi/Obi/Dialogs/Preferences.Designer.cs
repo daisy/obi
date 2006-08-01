@@ -42,13 +42,15 @@ namespace Obi.Dialogs
             this.mTab = new System.Windows.Forms.TabControl();
             this.mProjectTab = new System.Windows.Forms.TabPage();
             this.mAudioTab = new System.Windows.Forms.TabPage();
-            this.comboSampleRate = new System.Windows.Forms.ComboBox();
             this.labelSampleRate = new System.Windows.Forms.Label();
-            this.comboChannels = new System.Windows.Forms.ComboBox();
-            this.labelChannel = new System.Windows.Forms.Label();
+            this.comboSampleRate = new System.Windows.Forms.ComboBox();
+            this.GroupBoxChannels = new System.Windows.Forms.GroupBox();
+            this.radioMono = new System.Windows.Forms.RadioButton();
+            this.radioStereo = new System.Windows.Forms.RadioButton();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             this.mAudioTab.SuspendLayout();
+            this.GroupBoxChannels.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -186,10 +188,9 @@ namespace Obi.Dialogs
             // 
             // mAudioTab
             // 
+            this.mAudioTab.Controls.Add(this.GroupBoxChannels);
             this.mAudioTab.Controls.Add(this.comboSampleRate);
             this.mAudioTab.Controls.Add(this.labelSampleRate);
-            this.mAudioTab.Controls.Add(this.comboChannels);
-            this.mAudioTab.Controls.Add(this.labelChannel);
             this.mAudioTab.Controls.Add(this.comboOutputDevice);
             this.mAudioTab.Controls.Add(this.comboInputDevice);
             this.mAudioTab.Controls.Add(this.labelOutputDeviceName);
@@ -202,43 +203,57 @@ namespace Obi.Dialogs
             this.mAudioTab.Text = "Audio";
             this.mAudioTab.UseVisualStyleBackColor = true;
             // 
-            // comboSampleRate
-            // 
-            this.comboSampleRate.AllowDrop = true;
-            this.comboSampleRate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboSampleRate.FormattingEnabled = true;
-            this.comboSampleRate.Location = new System.Drawing.Point(158, 129);
-            this.comboSampleRate.Name = "comboSampleRate";
-            this.comboSampleRate.Size = new System.Drawing.Size(121, 21);
-            this.comboSampleRate.TabIndex = 14;
-            // 
             // labelSampleRate
             // 
             this.labelSampleRate.AutoSize = true;
-            this.labelSampleRate.Location = new System.Drawing.Point(170, 106);
+            this.labelSampleRate.Location = new System.Drawing.Point(49, 213);
             this.labelSampleRate.Name = "labelSampleRate";
             this.labelSampleRate.Size = new System.Drawing.Size(101, 13);
             this.labelSampleRate.TabIndex = 13;
             this.labelSampleRate.Text = "Select &Sample Rate";
             // 
-            // comboChannels
+            // comboSampleRate
             // 
-            this.comboChannels.AllowDrop = true;
-            this.comboChannels.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboChannels.FormattingEnabled = true;
-            this.comboChannels.Location = new System.Drawing.Point(26, 131);
-            this.comboChannels.Name = "comboChannels";
-            this.comboChannels.Size = new System.Drawing.Size(121, 21);
-            this.comboChannels.TabIndex = 12;
+            this.comboSampleRate.AllowDrop = true;
+            this.comboSampleRate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboSampleRate.FormattingEnabled = true;
+            this.comboSampleRate.Location = new System.Drawing.Point(39, 231);
+            this.comboSampleRate.Name = "comboSampleRate";
+            this.comboSampleRate.Size = new System.Drawing.Size(121, 21);
+            this.comboSampleRate.TabIndex = 14;
             // 
-            // labelChannel
+            // GroupBoxChannels
             // 
-            this.labelChannel.AutoSize = true;
-            this.labelChannel.Location = new System.Drawing.Point(18, 105);
-            this.labelChannel.Name = "labelChannel";
-            this.labelChannel.Size = new System.Drawing.Size(84, 13);
-            this.labelChannel.TabIndex = 11;
-            this.labelChannel.Text = "Select &Channels";
+            this.GroupBoxChannels.Controls.Add(this.radioStereo);
+            this.GroupBoxChannels.Controls.Add(this.radioMono);
+            this.GroupBoxChannels.Location = new System.Drawing.Point(40, 112);
+            this.GroupBoxChannels.Name = "GroupBoxChannels";
+            this.GroupBoxChannels.Size = new System.Drawing.Size(200, 100);
+            this.GroupBoxChannels.TabIndex = 15;
+            this.GroupBoxChannels.TabStop = false;
+            this.GroupBoxChannels.Text = "Select &Channels";
+            // 
+            // radioMono
+            // 
+            this.radioMono.AutoSize = true;
+            this.radioMono.Location = new System.Drawing.Point(8, 24);
+            this.radioMono.Name = "radioMono";
+            this.radioMono.Size = new System.Drawing.Size(52, 17);
+            this.radioMono.TabIndex = 0;
+            this.radioMono.TabStop = true;
+            this.radioMono.Text = "&Mono";
+            this.radioMono.UseVisualStyleBackColor = true;
+            // 
+            // radioStereo
+            // 
+            this.radioStereo.AutoSize = true;
+            this.radioStereo.Location = new System.Drawing.Point(9, 46);
+            this.radioStereo.Name = "radioStereo";
+            this.radioStereo.Size = new System.Drawing.Size(56, 17);
+            this.radioStereo.TabIndex = 1;
+            this.radioStereo.TabStop = true;
+            this.radioStereo.Text = "S&tereo";
+            this.radioStereo.UseVisualStyleBackColor = true;
             // 
             // Preferences
             // 
@@ -259,6 +274,8 @@ namespace Obi.Dialogs
             this.mProjectTab.PerformLayout();
             this.mAudioTab.ResumeLayout(false);
             this.mAudioTab.PerformLayout();
+            this.GroupBoxChannels.ResumeLayout(false);
+            this.GroupBoxChannels.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -279,9 +296,10 @@ namespace Obi.Dialogs
         private System.Windows.Forms.TabControl mTab;
         private System.Windows.Forms.TabPage mProjectTab;
         private System.Windows.Forms.TabPage mAudioTab;
-        private System.Windows.Forms.ComboBox comboChannels;
-        private System.Windows.Forms.Label labelChannel;
-        private System.Windows.Forms.ComboBox comboSampleRate;
         private System.Windows.Forms.Label labelSampleRate;
+        private System.Windows.Forms.ComboBox comboSampleRate;
+        private System.Windows.Forms.GroupBox GroupBoxChannels;
+        private System.Windows.Forms.RadioButton radioMono;
+        private System.Windows.Forms.RadioButton radioStereo;
     }
 }

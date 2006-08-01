@@ -78,8 +78,8 @@ namespace Obi.Dialogs
 
         ArrayList m_InDevicesList = new ArrayList();
         ArrayList m_OutDevicesList = new ArrayList();
-        AudioRecorder ob_AudioRecorder = new AudioRecorder();
-        AudioPlayer ob_AudioPlayer = new AudioPlayer();
+        AudioRecorder ob_AudioRecorder = AudioRecorder.Instance;
+        AudioPlayer ob_AudioPlayer = AudioPlayer.Instance;
 
         /// <summary>
         /// Initialize the preferences with the user settings.
@@ -110,10 +110,12 @@ namespace Obi.Dialogs
             mDefaultDir = mDirectoryBox.Text;
             mInputDevice = comboInputDevice.SelectedItem.ToString();
             mOutputDevice = comboOutputDevice.SelectedItem.ToString();
+            /*
             if (comboChannels.SelectedItem.ToString() == "Mono")
                 mAudioChannels = 1;
             else
                 mAudioChannels = 2;
+             * */
             mSampleRate = Convert.ToInt32(comboSampleRate.SelectedItem);
             mBitDepth = 16;
         }
@@ -124,14 +126,17 @@ namespace Obi.Dialogs
             m_OutDevicesList = ob_AudioPlayer.GetOutputDevices();
             comboInputDevice.DataSource = m_InDevicesList;
             comboOutputDevice.DataSource = m_OutDevicesList;
-            comboChannels.Items.Add("Mono");
-            comboChannels.Items.Add("Stereo");
-            comboSampleRate.Items.Add("11025");
-            comboSampleRate.Items.Add("22050");
-            comboSampleRate.Items.Add("44100");
+            ArrayList mSample = new ArrayList();
+            mSample.Add("11025");
+            mSample.Add("22050");
+            mSample.Add("44100");
+            mSample.Add("48000");
+            comboSampleRate.DataSource= mSample;
+            comboSampleRate.SelectedItem = mSample[2];
+            }    
             
 
-        }
+        
 
         public void SelectProjectTab()
         {
