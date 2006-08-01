@@ -35,14 +35,12 @@ namespace Obi.UserControls
             this.addSubSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.testShallowDeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.moveUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moveDownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.increaseLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decreaseLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.testUndoMoveNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,97 +63,81 @@ namespace Obi.UserControls
             this.addSubSectionToolStripMenuItem,
             this.toolStripSeparator1,
             this.deleteSectionToolStripMenuItem,
-            this.testShallowDeleteToolStripMenuItem,
             this.editLabelToolStripMenuItem,
             this.toolStripSeparator2,
             this.moveUpToolStripMenuItem,
             this.moveDownToolStripMenuItem,
             this.increaseLevelToolStripMenuItem,
-            this.decreaseLevelToolStripMenuItem,
-            this.testUndoMoveNodeToolStripMenuItem});
+            this.decreaseLevelToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(179, 258);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 214);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // addSectionAtSameLevelToolStripMenuItem
             // 
             this.addSectionAtSameLevelToolStripMenuItem.Name = "addSectionAtSameLevelToolStripMenuItem";
-            this.addSectionAtSameLevelToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.addSectionAtSameLevelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addSectionAtSameLevelToolStripMenuItem.Text = "&Add section";
             this.addSectionAtSameLevelToolStripMenuItem.Click += new System.EventHandler(this.addSectionAtSameLevelToolStripMenuItem_Click);
             // 
             // addSubSectionToolStripMenuItem
             // 
             this.addSubSectionToolStripMenuItem.Name = "addSubSectionToolStripMenuItem";
-            this.addSubSectionToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.addSubSectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addSubSectionToolStripMenuItem.Text = "Add &sub-section";
             this.addSubSectionToolStripMenuItem.Click += new System.EventHandler(this.addSubSectionToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(175, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // deleteSectionToolStripMenuItem
             // 
             this.deleteSectionToolStripMenuItem.Name = "deleteSectionToolStripMenuItem";
-            this.deleteSectionToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.deleteSectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.deleteSectionToolStripMenuItem.Text = "&Delete section";
             this.deleteSectionToolStripMenuItem.Click += new System.EventHandler(this.deleteSectionToolStripMenuItem_Click);
-            // 
-            // testShallowDeleteToolStripMenuItem
-            // 
-            this.testShallowDeleteToolStripMenuItem.Name = "testShallowDeleteToolStripMenuItem";
-            this.testShallowDeleteToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.testShallowDeleteToolStripMenuItem.Text = "Test shallow delete";
-            this.testShallowDeleteToolStripMenuItem.Click += new System.EventHandler(this.testShallowDeleteToolStripMenuItem_Click);
             // 
             // editLabelToolStripMenuItem
             // 
             this.editLabelToolStripMenuItem.Name = "editLabelToolStripMenuItem";
-            this.editLabelToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.editLabelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.editLabelToolStripMenuItem.Text = "Rena&me";
             this.editLabelToolStripMenuItem.Click += new System.EventHandler(this.editLabelToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(175, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // moveUpToolStripMenuItem
             // 
             this.moveUpToolStripMenuItem.Name = "moveUpToolStripMenuItem";
-            this.moveUpToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.moveUpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.moveUpToolStripMenuItem.Text = "Move up";
             this.moveUpToolStripMenuItem.Click += new System.EventHandler(this.moveUpToolStripMenuItem_Click);
             // 
             // moveDownToolStripMenuItem
             // 
             this.moveDownToolStripMenuItem.Name = "moveDownToolStripMenuItem";
-            this.moveDownToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.moveDownToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.moveDownToolStripMenuItem.Text = "Move down";
             this.moveDownToolStripMenuItem.Click += new System.EventHandler(this.moveDownToolStripMenuItem_Click);
             // 
             // increaseLevelToolStripMenuItem
             // 
             this.increaseLevelToolStripMenuItem.Name = "increaseLevelToolStripMenuItem";
-            this.increaseLevelToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.increaseLevelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.increaseLevelToolStripMenuItem.Text = "Increase level";
             this.increaseLevelToolStripMenuItem.Click += new System.EventHandler(this.increaseLevelToolStripMenuItem_Click);
             // 
             // decreaseLevelToolStripMenuItem
             // 
             this.decreaseLevelToolStripMenuItem.Name = "decreaseLevelToolStripMenuItem";
-            this.decreaseLevelToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.decreaseLevelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.decreaseLevelToolStripMenuItem.Text = "Decrease level";
             this.decreaseLevelToolStripMenuItem.Click += new System.EventHandler(this.decreaseLevelToolStripMenuItem_Click);
-            // 
-            // testUndoMoveNodeToolStripMenuItem
-            // 
-            this.testUndoMoveNodeToolStripMenuItem.Name = "testUndoMoveNodeToolStripMenuItem";
-            this.testUndoMoveNodeToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.testUndoMoveNodeToolStripMenuItem.Text = "Test undo move node";
-            this.testUndoMoveNodeToolStripMenuItem.Click += new System.EventHandler(this.testUndoMoveNodeToolStripMenuItem_Click);
             // 
             // TOCPanel
             // 
@@ -181,9 +163,7 @@ namespace Obi.UserControls
         private System.Windows.Forms.ToolStripMenuItem decreaseLevelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editLabelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteSectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem testShallowDeleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem testUndoMoveNodeToolStripMenuItem;
     }
 }
