@@ -119,6 +119,15 @@ namespace Obi.Dialogs
         /// <param name="e"></param>
         private void mOKButton_Click(object sender, EventArgs e)
         {
+            //mg: start with making sure we have an existing dir
+            if (IOUtils.ValidateAndCreateDir
+                (System.IO.Path.GetDirectoryName(mFileBox.Text))){
+                mCanClose = true;
+            }else{
+                //wont be able to render XUK since the dir doesnt exist
+                mCanClose = false;
+            }
+            
             if (mCheckExisting && File.Exists(mFileBox.Text))
             {
                 DialogResult result = MessageBox.Show(String.Format(Localizer.Message("overwrite_file_text"), mFileBox.Text),
