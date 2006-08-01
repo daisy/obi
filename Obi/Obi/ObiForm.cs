@@ -253,37 +253,37 @@ namespace Obi
         }
 
         /// <summary>
-        /// Edit the preferences, starting from the Project tab.
+        /// Edit the preferences, starting from the Project tab. (JQ)
         /// </summary>
         private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings.IdTemplate, mSettings.DefaultPath);
+            Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings);
             dialog.SelectProjectTab();
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                if (dialog.IdTemplate.Contains("#")) mSettings.IdTemplate = dialog.IdTemplate;
-                if (Directory.Exists(dialog.DefaultDir)) mSettings.DefaultPath = dialog.DefaultDir;
-            }
+            if (dialog.ShowDialog() == DialogResult.OK) UpdateSettings(dialog);
             Ready();
         }
 
         /// <summary>
-        /// Edit the preferences, starting from the Audio tab.
+        /// Edit the preferences, starting from the Audio tab. (JQ)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void audioPreferencesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings.IdTemplate, mSettings.DefaultPath);
+            Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings);
             dialog.SelectAudioTab();
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                if (dialog.IdTemplate.Contains("#")) mSettings.IdTemplate = dialog.IdTemplate;
-                if (Directory.Exists(dialog.DefaultDir)) mSettings.DefaultPath = dialog.DefaultDir;
-            }
+            if (dialog.ShowDialog() == DialogResult.OK) UpdateSettings(dialog);
             Ready();
         }
 
+        /// <summary>
+        /// Update the settings after the user has made some changes in the preferrences dialog. (JQ)
+        /// </summary>
+        private void UpdateSettings(Dialogs.Preferences dialog)
+        {
+            if (dialog.IdTemplate.Contains("#")) mSettings.IdTemplate = dialog.IdTemplate;
+            if (Directory.Exists(dialog.DefaultDir)) mSettings.DefaultPath = dialog.DefaultDir;
+        }
 
         /// <summary>
         /// Save the settings when closing.
