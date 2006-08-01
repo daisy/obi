@@ -24,25 +24,26 @@ namespace Obi.Dialogs
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            ob_play.Stop();
+
+            AudioPlayer.Instance.Stop();
             this.Close();
         }
-        
-        AudioPlayer ob_play =new AudioPlayer();
+
+        //AudioPlayer ob_play = AudioPlayer.Instance;
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
- 
 
-            if (ob_play.State.Equals (AudioPlayerState.Playing))
+
+            if (AudioPlayer.Instance.State.Equals(AudioPlayerState.Playing))
             {
-                ob_play.Pause();
+                AudioPlayer.Instance.Pause();
                 btnPlay.Text = "&Play";
                 tmUpdateCurrentTime.Enabled = false;
             }
-            else if (ob_play.State.Equals(AudioPlayerState.Paused))
+            else if (AudioPlayer.Instance.State.Equals(AudioPlayerState.Paused))
             {
-                ob_play.Resume();
+                AudioPlayer.Instance.Resume();
                 btnPlay.Text = "&Pause";
                 tmUpdateCurrentTime.Enabled = true;
             }
@@ -51,7 +52,7 @@ namespace Obi.Dialogs
 
         private void tmUpdateCurrentTime_Tick(object sender, EventArgs e)
         {
-            double dMiliSeconds = ob_play.CurrentTimePosition ; 
+            double dMiliSeconds = AudioPlayer.Instance.CurrentTimePosition; 
             double dSeconds = dMiliSeconds / 1000;
             int Minutes = Convert.ToInt32(dSeconds / 60);
             int Hours = Minutes / 60;
@@ -64,7 +65,7 @@ namespace Obi.Dialogs
             
             txtDisplayAsset.Text = ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).getText();
 
-            if (ob_play.State.Equals(AudioPlayerState.NotReady))
+            if (AudioPlayer.Instance.State.Equals(AudioPlayerState.NotReady))
 
             {
 
@@ -76,11 +77,12 @@ namespace Obi.Dialogs
                 ob_VuMeter.UpperThreshold = 150;
                 ob_VuMeter.SampleTimeLength = 1000;
                 ob_VuMeter.ShowForm();
-                ob_play.VuMeterObject = ob_VuMeter;
-                ob_play.GetOutputDevices();
+                AudioPlayer.Instance.VuMeterObject = ob_VuMeter;
+//                AudioPlayer.Instance.GetOutputDevices();
 
-                ob_play.SetDevice(this, 0);
-                ob_play.Play(Project.GetAudioMediaAsset(mNode));
+                
+                //AudioPlayer.Instance.SetDevice(this, 0);
+                AudioPlayer.Instance.Play(Project.GetAudioMediaAsset(mNode));
                 btnPlay.Text = "&Pause";
                 tmUpdateCurrentTime.Enabled = true;
             }
