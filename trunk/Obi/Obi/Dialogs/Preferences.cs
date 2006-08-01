@@ -110,6 +110,12 @@ namespace Obi.Dialogs
             mDefaultDir = mDirectoryBox.Text;
             mInputDevice = comboInputDevice.SelectedItem.ToString();
             mOutputDevice = comboOutputDevice.SelectedItem.ToString();
+            if (comboChannels.SelectedItem.ToString() == "Mono")
+                mAudioChannels = 1;
+            else
+                mAudioChannels = 2;
+            mSampleRate = Convert.ToInt32(comboSampleRate.SelectedItem);
+            mBitDepth = 16;
         }
 
         private void Preferences_Load(object sender, EventArgs e)
@@ -118,6 +124,13 @@ namespace Obi.Dialogs
             m_OutDevicesList = ob_AudioPlayer.GetOutputDevices();
             comboInputDevice.DataSource = m_InDevicesList;
             comboOutputDevice.DataSource = m_OutDevicesList;
+            comboChannels.Items.Add("Mono");
+            comboChannels.Items.Add("Stereo");
+            comboSampleRate.Items.Add("11025");
+            comboSampleRate.Items.Add("22050");
+            comboSampleRate.Items.Add("44100");
+            
+
         }
 
         public void SelectProjectTab()
@@ -129,5 +142,9 @@ namespace Obi.Dialogs
         {
             mTab.SelectedTab = mAudioTab;
         }
+
+        
+
+        
     }
 }
