@@ -24,8 +24,12 @@ namespace Obi
         public string IdTemplate;         // identifier template
         public string DefaultPath;        // default location
         public bool CreateTitleSection;   // defaulf for "create title section" in new project
+
         public string LastOutputDevice;   // the name of the last output device selected by the user
         public string LastInputDevice;    // the name of the last input device selected by the user
+        public int AudioChannels;         // number of channels for recording
+        public int SampleRate;            // sample rate in Hertz
+        public int BitDepth;              // sample bit depth
 
         public static readonly string SettingsFileName = "obi_settings.xml";  // settings file name
 
@@ -54,6 +58,9 @@ namespace Obi
             if (settings.DefaultPath == null) settings.DefaultPath = Environment.CurrentDirectory;
             if (settings.LastOutputDevice == null) settings.LastOutputDevice = "";
             if (settings.LastInputDevice == null) settings.LastInputDevice = "";
+            if (settings.AudioChannels == 0) settings.AudioChannels = 1;
+            if (settings.SampleRate == 0) settings.SampleRate = 44000;
+            if (settings.BitDepth == 0) settings.BitDepth = 16;
             return settings;
         }
 
