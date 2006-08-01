@@ -14,8 +14,50 @@ namespace Obi.Dialogs
         private string mIdTemplate;  // identifier template
         private string mDefaultDir;  // default project directory
 
-        public string IdTemplate { get { return mIdTemplate; } }
-        public string DefaultDir { get { return mDefaultDir; } }
+        public string IdTemplate
+        {
+            get
+            {
+                return mIdTemplate;
+            }
+        }
+
+        public string DefaultDir
+        {
+            get
+            {
+                return mDefaultDir;
+            }
+        }
+
+        private int mAudioChannels;  // preferred number of audio channels
+        private int mSampleRate;     // preferred sample rate
+        private int mBitDepth;       // preferred bit depth
+
+        public int AudioChannels
+        {
+            get
+            {
+                return mAudioChannels;
+            }
+        }
+
+        public int SampleRate
+        {
+            get
+            {
+                return mSampleRate;
+            }
+        }
+
+        public int BitDepth
+        {
+            get
+            {
+                return mBitDepth;
+            }
+        }
+
         Settings settings = new Settings();
 
         ArrayList m_InDevicesList = new ArrayList();
@@ -57,6 +99,16 @@ namespace Obi.Dialogs
             m_OutDevicesList = ob_AudioPlayer.GetOutputDevices();
             comboInputDevice.DataSource = m_InDevicesList;
             comboOutputDevice.DataSource = m_OutDevicesList;
+        }
+
+        public void SelectProjectTab()
+        {
+            mTab.SelectedTab = mProjectTab;
+        }
+
+        public void SelectAudioTab()
+        {
+            mTab.SelectedTab = mAudioTab;
         }
     }
 }

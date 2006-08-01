@@ -253,11 +253,12 @@ namespace Obi
         }
 
         /// <summary>
-        /// Edit the preferences.
+        /// Edit the preferences, starting from the Project tab.
         /// </summary>
         private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings.IdTemplate, mSettings.DefaultPath);
+            dialog.SelectProjectTab();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 if (dialog.IdTemplate.Contains("#")) mSettings.IdTemplate = dialog.IdTemplate;
@@ -265,6 +266,24 @@ namespace Obi
             }
             Ready();
         }
+
+        /// <summary>
+        /// Edit the preferences, starting from the Audio tab.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void audioPreferencesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings.IdTemplate, mSettings.DefaultPath);
+            dialog.SelectAudioTab();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                if (dialog.IdTemplate.Contains("#")) mSettings.IdTemplate = dialog.IdTemplate;
+                if (Directory.Exists(dialog.DefaultDir)) mSettings.DefaultPath = dialog.DefaultDir;
+            }
+            Ready();
+        }
+
 
         /// <summary>
         /// Save the settings when closing.
@@ -665,6 +684,7 @@ namespace Obi
             Play ob_PlayDialog = new Play();
             ob_PlayDialog.Show();
         }
+
 
     }
 }
