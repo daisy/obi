@@ -1,0 +1,174 @@
+** Searchable TOC **
+DAY ONE
+PLAYER DIALOG
+Input/Output device selection
+DAY TWO
+RECORDER DIALOG
+SPLITTING DIALOG
+
+** agenda items for the week **
+1. Main purpose: to get the audio backend working
+2. Extended responsibilites and additional worktasks for Avneesh and Suman
+3. A DAISY DTB introduction session
+4. API: if 2005 works for Avneesh and Suman, we could move the audio backend to 2005
+5. API: Exception typing
+
+
+** DAY ONE **
+Short walkthrough among participants
+Avneesh: 
+	all that remains in audio backend is a bit of adjustments to the API.
+Julien: 
+	Main integration work to do is:
+	Content strips with phrases; synchronizing the phrases, either during recording or after recording
+    	Also, phrases are synchronized with section headings or phrases or nothing
+	
+	When it comes to the integration, its tricky to divide the above work.
+
+	Suggested tasks for Avneesh and Suman:	  	
+  	
+  	Splitting and merging assets
+  	  A preview function, primarly for splitting:
+  	    select an asset to split: two modes
+  	      play, pause at split point, select split  
+  	      we need a preview so that we can listen before committing the change
+  	      need a dialog for splitting where you listen to the phrase, go forward backward fast and slow
+  	      function play from splitting point  	      
+  	      The possibility to invoke split dialog either when a phrase selected or when you are playing
+  	      If the player has no current position, time is at zero in the phrase, so splitting not allowed  	        	        	      
+  	  Merging can probably be done without a dialog
+  	
+  	feature set SPLITTING DIALOG  
+  	  This is a separate dialog 
+  	  We dont implement the "play, pause at split point, split" feature at this time.
+  	  It should look as much as possible as the play dialog; should do everything the play dialog does, and more.
+  	  fast forward
+  	  slow forward
+  	  fast rewind
+  	  fast rewind
+  	  box that shows current position is editable, to allow jumping
+  	  when you pause, the point of pause is the split point.
+  	  preview button: starts plaaing from cutting point, plays only the first couple of seconds. 
+  	  Preview is the only method of listening that doesnt change the split position
+  	  stop button; closes without splitting (equal to cancel) 
+  	  split button; will split and close dialog, unless we are the beginning or at the end
+  	  When we close dialog with split button it doesnt split, it only generates an event: SplitRequestEvent
+  	  
+  	  The project catches the event and executes the split, rename etc.
+  	  At this point, the strip asset is in annotation edit mode, but a new unique name is already given.
+  	  
+  	  Splitting dialog API: 
+  	    invoked with a CoreNode and an initial time position
+  	    private time var which is splitt pos
+  	    accessor to get this position (when dialog is closed, this position is queried)
+  	    split button should be accept button, and stop should be cancel button.
+  	  
+  	  
+  	Front end for phrase detection:
+  	  Have one audio asset, want to separate that into phrases. 
+  	  For the user we want it to be a one button thing; 
+  	  and a dialog where you could change threshold values, but should have sensible defaults.
+
+	VUMeter integration in front end
+	  Useful to have not only when recording but also when playing.
+  	
+  	Modal dialog for playing and recording  	
+  	  When AudioPlayer or AudioRecorder is invoked, a modal dialog is opened:
+  	    feature set PLAYER DIALOG
+  	      instantiated with a node, which can rootnode, sectionnode or phrase node
+  	      play should start
+  	      phrase node implemented first  	      
+  	      Should show:
+  	      	- which asset is playing (show the name; the phrases nodes annotation channels textmedia object)
+  	      	- current time position, being updated at an interval of 1/10th 
+  	      	- buttons: 
+  	      	     In first simple version  	      	       
+  	      	       pause/play
+  	      	       stop (closes the dialog) 	       
+  	      	     In possible second more advanced version
+			stop (stop playback, rewind to beginning)
+			close (closes the dialog)
+			pause (same button as play button) stop playback at position)
+  	      		play (same button as pause button)
+  	      		fastforward
+  	      		rewind
+  	      		playback speed slider  	      		  	      		
+  	      		time remaining
+  	    feature set RECORDER DIALOG
+  	      	ability to adjust input volume slider
+  	      	time counter which is reset for every new asset
+  	      buttons: 
+  	      	record and pause (same button with toggle function)  	      	
+  	      	stop
+  	      	phrase marker
+  	      	  
+  	      We also need to have a place to set:
+  	       number of channels, samplerate
+  	       We choose a separate tab in the preferences dialog
+  	       so the preferences dialog should now have a project tab and an recording tab
+  	       we also need menu items that opens a specified tab directly, in
+  	       other words menu: "project preferences", and menu: "audio preferences"
+  	      
+  	      Pause button, stop recording, finish asset, keeps dialog open
+  	      Stop button: stop recording, finish asset, close dialog
+  	      Phrase button: keeps recording but creates a new asset
+  	       
+  	      At "Record" in main view:
+  	      Open dialog, already set to listening, but not recording
+  	      Initialized with user settings which are passed to dialog as argument
+  	      Dialog maintains a list of created assets; and exposes these
+  	      
+  	      Events: 
+  	        - CreatedAsset
+  	        - FinishedAsset
+  	      
+  	      Working order:  	      
+  	      Julien changes the preferences object and modifies the dialog
+  	      Suman writes the code for the new preferences dialog
+  	        channels (mono,stereo) radio button
+  	        sample rate (11025, 22050, 44100, 48000) where 44100 is the default
+  	      	We fix the bit depth to 16 bits for  now so no setting needed for that.  
+  	      	We still create a preference however, in order to be able to fix it later; but
+  	      	at the moment no GUI item for changing it.
+  	      While Suman does preferences, Julien creates basic record dialog API, then Suman
+  	      can work on that.
+  	      	  	      	  
+  	Input/Output device selection in preferences
+  	  Problem: how to find a name of devices to display to the user
+  	  Problem: how to persist a device selection: via strings?
+  	  change to a GetDeviceInformation object
+  	  Settings class: this is what is saved between sessions
+  	    lastOutputDevice and lastInputDevice
+  	  Suman: in Dialogs.Preferences 
+  	   -add two comboboxes: input device and output device
+  	   -add two fields in preferences
+  	   -initialize
+  	   -save
+  	   when dialog is created, ask audioplayer about list
+  	   when user changes in dialogs, update audioplayer  	   
+  	   ObiForm.InitializeSettings; should select preference instead
+  	     	    	  
+  	Start to think about the QA Player  
+  	  Bare minimum is: You have one asset; you can play it and stop it.
+  	  Play the section heading assets in the tree
+  	  	Select a node a play only the audio phrase that is associated with a heading
+  	  Ideal is:
+  	    play the whole book
+  	    play a strip
+  	    navigate
+  	  	
+  	
+** DAY TWO **   
+  when the loader lock exception appears in vs2005:
+  debug menu, exceptions item, managed debugging assistance, uncheck loader lock
+  
+  Summary of where we are:
+    Yesterday; 
+      Suman: started play dialog GUI
+             input output device preference
+      Avneesh: implementing play function in play dialog
+      	       remains to implement getting the core node
+      	       code for dummy asset playtback is in svn	
+
+   Today;
+      Suman starts working on the record dialog
