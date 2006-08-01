@@ -40,7 +40,11 @@ namespace Obi.Dialogs
 
             
                 VuMeter ob_VuMeter = new VuMeter();
-                //ob_VuMeter.ShowForm();
+                ob_VuMeter.ScaleFactor = 2;
+                ob_VuMeter.LowerThreshold = 70;
+                ob_VuMeter.UpperThreshold = 150;
+                ob_VuMeter.SampleTimeLength = 1000;
+                ob_VuMeter.ShowForm();
                 ob_play.VuMeterObject = ob_VuMeter;
                 ob_play.GetOutputDevices();
                 
