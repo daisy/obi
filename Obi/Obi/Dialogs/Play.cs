@@ -70,12 +70,17 @@ namespace Obi.Dialogs
 
         private void tmUpdateCurrentTime_Tick(object sender, EventArgs e)
         {
-            txtDisplayTime.Text = ob_play.CurrentTimePosition.ToString(); 
+            double dMiliSeconds = ob_play.CurrentTimePosition ; 
+            double dSeconds = dMiliSeconds / 1000;
+            int Minutes = Convert.ToInt32(dSeconds / 60);
+            int Hours = Minutes / 60;
+            string sDisplayTime = Hours.ToString () +":" + Minutes.ToString () + ":" + dSeconds.ToString()    ;
+            txtDisplayTime.Text = sDisplayTime;
         }
 
         private void Play_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("Openning Play Diaglog");
+            
             txtDisplayAsset.Text = ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).getText();
         }
             
