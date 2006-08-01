@@ -16,8 +16,8 @@ namespace Obi.Dialogs
 
         public string IdTemplate { get { return mIdTemplate; } }
         public string DefaultDir { get { return mDefaultDir; } }
-        public string strInDeviceName;
-        public string strOutDeviceName;
+        Settings settings = new Settings();
+
         ArrayList m_InDevicesList = new ArrayList();
         ArrayList m_OutDevicesList = new ArrayList();
         AudioRecorder ob_AudioRecorder = new AudioRecorder();
@@ -47,9 +47,8 @@ namespace Obi.Dialogs
         {
             mIdTemplate      = mTemplateBox.Text;
             mDefaultDir = mDirectoryBox.Text;
-            strInDeviceName = comboInputDevice.SelectedItem.ToString();
-            strOutDeviceName = comboOutputDevice.SelectedItem.ToString();
-            
+            settings.LastInputDevice = comboInputDevice.SelectedItem.ToString();
+            settings.LastOutputDevice = comboOutputDevice.SelectedItem.ToString();
         }
 
         private void Preferences_Load(object sender, EventArgs e)
