@@ -40,7 +40,7 @@ namespace Obi.Dialogs
 
             
                 VuMeter ob_VuMeter = new VuMeter();
-                ob_VuMeter.ShowForm();
+                //ob_VuMeter.ShowForm();
                 ob_play.VuMeterObject = ob_VuMeter;
                 ob_play.GetOutputDevices();
                 
