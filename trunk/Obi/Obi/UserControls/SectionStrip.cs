@@ -54,13 +54,13 @@ namespace Obi.UserControls
 
         private void SectionStrip_Click(object sender, EventArgs e)
         {
-            if (mManager.SelectedNode == mNode)
+            if (mManager.SelectedSection == mNode)
             {
                 StartRenaming();
             }
             else
             {
-                mManager.SelectedNode = mNode;
+                mManager.SelectedSection = mNode;
             }
         }
 

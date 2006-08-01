@@ -678,13 +678,5 @@ namespace Obi
                 FormUpdateUndoRedoLabels();
             }
         }
-
-        private void btnPlay_Click(object sender, EventArgs e)
-        {
-            Play ob_PlayDialog = new Play();
-            ob_PlayDialog.Show();
-        }
-
-
     }
 }

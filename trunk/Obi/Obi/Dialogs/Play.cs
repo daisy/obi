@@ -7,13 +7,19 @@ using System.Text;
 using System.Windows.Forms;
 using VirtualAudioBackend;
 
+using urakawa.core;
+using urakawa.media;
+
 namespace Obi.Dialogs
 {
     public partial class Play : Form
     {
-        public Play()
+        private CoreNode mNode;  // the node whose asset we want to play
+
+        public Play(CoreNode node)
         {
             InitializeComponent();
+            mNode = node;
         }
 
         private void btnStop_Click(object sender, EventArgs e)
@@ -22,8 +28,6 @@ namespace Obi.Dialogs
             this.Close();
         }
         
-        AudioClip Clip;
-        AudioMediaAsset ob_AudioMedia;
         AudioPlayer ob_play =new AudioPlayer();
 
         private void btnPlay_Click(object sender, EventArgs e)
@@ -33,10 +37,6 @@ namespace Obi.Dialogs
 //            if (i == 1)
             {
                 
-            Clip = new AudioClip("c:\\atest\\a\\a1.wav");
-            ArrayList al = new ArrayList();
-            al.Add(Clip);
-            ob_AudioMedia = new AudioMediaAsset(al);
 
             
                 VuMeter ob_VuMeter = new VuMeter();
@@ -49,7 +49,7 @@ namespace Obi.Dialogs
                 ob_play.GetOutputDevices();
                 
                 ob_play.SetDevice(this , 0);
-            ob_play.Play(ob_AudioMedia);
+                ob_play.Play(Project.GetAudioMediaAsset(mNode));
         btnPlay.Text = "&Pause";
         tmUpdateCurrentTime.Enabled = true;
             }
@@ -75,8 +75,8 @@ namespace Obi.Dialogs
 
         private void Play_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("Openning Play Diaglog"); 
-            //txtDisplayAsset.Text = 
+            MessageBox.Show("Openning Play Diaglog");
+            txtDisplayAsset.Text = ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).getText();
         }
             
 
