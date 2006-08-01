@@ -38,25 +38,25 @@ namespace Obi.Dialogs
             // 
             // txtDisplayAsset
             // 
-            this.txtDisplayAsset.Location = new System.Drawing.Point(20, 20);
+            this.txtDisplayAsset.Location = new System.Drawing.Point(20, 18);
             this.txtDisplayAsset.Name = "txtDisplayAsset";
             this.txtDisplayAsset.ReadOnly = true;
-            this.txtDisplayAsset.Size = new System.Drawing.Size(228, 20);
+            this.txtDisplayAsset.Size = new System.Drawing.Size(228, 19);
             this.txtDisplayAsset.TabIndex = 0;
             // 
             // txtDisplayTime
             // 
-            this.txtDisplayTime.Location = new System.Drawing.Point(20, 110);
+            this.txtDisplayTime.Location = new System.Drawing.Point(20, 102);
             this.txtDisplayTime.Name = "txtDisplayTime";
             this.txtDisplayTime.ReadOnly = true;
-            this.txtDisplayTime.Size = new System.Drawing.Size(100, 20);
+            this.txtDisplayTime.Size = new System.Drawing.Size(100, 19);
             this.txtDisplayTime.TabIndex = 4;
             // 
             // btnPlay
             // 
-            this.btnPlay.Location = new System.Drawing.Point(20, 50);
+            this.btnPlay.Location = new System.Drawing.Point(20, 46);
             this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(75, 23);
+            this.btnPlay.Size = new System.Drawing.Size(75, 21);
             this.btnPlay.TabIndex = 2;
             this.btnPlay.Text = "&Play";
             this.btnPlay.UseVisualStyleBackColor = true;
@@ -64,9 +64,9 @@ namespace Obi.Dialogs
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(20, 80);
+            this.btnStop.Location = new System.Drawing.Point(20, 74);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(75, 23);
+            this.btnStop.Size = new System.Drawing.Size(75, 21);
             this.btnStop.TabIndex = 3;
             this.btnStop.Text = "&Stop";
             this.btnStop.UseVisualStyleBackColor = true;
@@ -79,15 +79,16 @@ namespace Obi.Dialogs
             // 
             // Play
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 266);
+            this.ClientSize = new System.Drawing.Size(292, 246);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.txtDisplayTime);
             this.Controls.Add(this.txtDisplayAsset);
             this.Name = "Play";
             this.Text = "Play";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Play_FormClosing);
             this.Load += new System.EventHandler(this.Play_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -127,9 +127,10 @@ namespace Obi.Dialogs
             }
 
         }
-            
 
+        private void Play_FormClosing(object sender, FormClosingEventArgs e)
+        {
 
-    
+        }
     }
 }

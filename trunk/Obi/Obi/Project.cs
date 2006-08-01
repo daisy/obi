@@ -151,12 +151,12 @@ namespace Obi
             mAnnotationChannel = getPresentation().getChannelFactory().createChannel(AnnotationChannel);
             getPresentation().getChannelsManager().addChannel(mAnnotationChannel);
 
+            // Give a custom property to the root node to make it a RootNode.
             NodeTypeProperty typeProp =
                 (NodeTypeProperty)getPresentation().getPropertyFactory().createProperty("NodeTypeProperty");
             typeProp.Type = NodeType.RootNode;
             getPresentation().getRootNode().setProperty(typeProp);
             NodeTypeProperty rootType = (NodeTypeProperty)getPresentation().getRootNode().getProperty(typeof(NodeTypeProperty));
-            System.Diagnostics.Debug.Print("ROOT NODE = ", rootType.Type);
 
             if (createTitle)
             {
@@ -170,13 +170,13 @@ namespace Obi
 
         /// <summary>
         /// Get a suitable directory name to store the assets.
+        /// The default name is the same as the XUK file with _assets instead of .xuk as a suffix.
+        /// Mangle the name until a free name is found.
         /// </summary>
-        /// <param name="xukPath"></param>
-        /// <returns></returns>
         private string GetAssetDirectory(string path)
         {
             string assetdir = Path.GetDirectoryName(path) + @"\" + Path.GetFileNameWithoutExtension(path) + "_assets";
-            System.Diagnostics.Debug.Print("Directory for assets: {0}", assetdir);
+            while (Directory.Exists(assetdir) || File.Exists(assetdir)) assetdir += "_";
             return assetdir;
         }
 
