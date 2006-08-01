@@ -350,6 +350,15 @@ namespace Obi
                 new EventHandler(mProjectPanel.TOCPanel.deleteSectionToolStripMenuItem_Click);
             mMoveSectionUpToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.TOCPanel.moveUpToolStripMenuItem_Click);
+            
+            //marisa added these event hooks 01 aug 06
+            moveSectionDownToolStripMenuItem.Click += 
+                new EventHandler(mProjectPanel.TOCPanel.moveDownToolStripMenuItem_Click);
+            increaseSectionDepthToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.TOCPanel.increaseLevelToolStripMenuItem_Click);
+            decreaseSectionLevelToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.TOCPanel.decreaseLevelToolStripMenuItem_Click);
+            //end marisa work
 
             mProjectPanel.StripManager.SelectedStrip += new Events.Strip.SelectedHandler(StripManager_Selected);
             mAddStripToolStripMenuItem.Click +=

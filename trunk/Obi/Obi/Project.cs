@@ -53,11 +53,6 @@ namespace Obi
 
         public event Events.Node.MediaSetHandler MediaSet;  // a media object was set on a node
         
-        //marisa: TESTING
-        private Obi.Commands.TOC.MoveSectionUp mLastMoveSectionUpCommand;
-        //marisa: TESTING
-        private Obi.Commands.TOC.MoveSectionDown mLastMoveSectionDownCommand;
-
         /// <summary>
         /// This flag is set to true if the project contains modifications that have not been saved.
         /// </summary>
@@ -508,9 +503,6 @@ namespace Obi
         {
             Commands.TOC.MoveSectionUp command = null;
             
-            //marisa: TESTING
-            mLastMoveSectionUpCommand = null;
-
             if (origin != this)
             {
                 CoreNode parent = (CoreNode)node.getParent();
@@ -525,9 +517,6 @@ namespace Obi
 
             if (succeeded)
             {
-                //marisa: TESTING
-                mLastMoveSectionUpCommand = command;
-
                 CoreNode newParent = (CoreNode)node.getParent();
 
                 NodePositionVisitor visitor = new NodePositionVisitor(node);
@@ -601,30 +590,12 @@ namespace Obi
             UndidMoveNode(this, new Events.Node.MovedNodeEventArgs(this, node, parent, index, position));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-}
-
-        //marisa: TESTING
-        public void TestUndoMoveNode(object sender, Events.Node.NodeEventArgs e)
-        {
-           if (mLastMoveSectionUpCommand != null)
-           {
-               mLastMoveSectionUpCommand.Undo();
-               mLastMoveSectionUpCommand = null;
-        
-           }
-           else if (mLastMoveSectionDownCommand != null)
-           {
-               mLastMoveSectionDownCommand.Undo();
-               mLastMoveSectionDownCommand = null;
-           }
         }
 
         public void MoveNodeDown(object origin, CoreNode node)
         {
             Commands.TOC.MoveSectionDown command = null;
-            //marisa: TESTING
-            mLastMoveSectionDownCommand = null;
-
+          
             if (origin != this)
             {
                 CoreNode parent = (CoreNode)node.getParent();
@@ -639,9 +610,6 @@ namespace Obi
             bool succeeded = ExecuteMoveNodeDown(node);
             if (succeeded)
             {
-                //marisa: TESTING
-                mLastMoveSectionDownCommand = command;
-
                 CoreNode newParent = (CoreNode)node.getParent();
 
                 NodePositionVisitor visitor = new NodePositionVisitor(node);

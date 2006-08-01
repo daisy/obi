@@ -66,8 +66,6 @@ namespace Obi.UserControls
                     mStripManagerPanel.SetMedia -= new Events.Node.SetMediaHandler(mProject.SetMediaRequested);
                     mProject.MediaSet -= new Events.Node.MediaSetHandler(mStripManagerPanel.SyncMediaSet);
 
-                    //marisa: TESTING only
-                    mTOCPanel.RequestToUndoMoveNode -= new Events.Node.RequestToUndoMoveNodeHandler(mProject.TestUndoMoveNode);
                 }
                 // Set up the handlers for the new project
                 if (value != null)
@@ -79,7 +77,7 @@ namespace Obi.UserControls
                     value.AddedSectionNode += new Events.Node.AddedSectionNodeHandler(mStripManagerPanel.SyncAddedSectionNode);
 
                     mTOCPanel.RequestToAddChildSection += new Events.Node.RequestToAddChildNodeHandler(value.CreateChildSectionRequested);
-                    
+
                     //these all relate to moving nodes up and down
                     mTOCPanel.RequestToMoveSectionUp += new Events.Node.RequestToMoveNodeUpHandler(value.MoveNodeUpRequested);
                     mTOCPanel.RequestToMoveSectionDown += new Events.Node.RequestToMoveNodeDownHandler(value.MoveNodeDownRequested);
@@ -109,9 +107,7 @@ namespace Obi.UserControls
                     mStripManagerPanel.SetMedia += new Events.Node.SetMediaHandler(value.SetMediaRequested);
                     value.MediaSet += new Events.Node.MediaSetHandler(mStripManagerPanel.SyncMediaSet);
 
-                    //marisa: TESTING only
-                    mTOCPanel.RequestToUndoMoveNode += new Events.Node.RequestToUndoMoveNodeHandler(value.TestUndoMoveNode);
-                }
+                } 
                 mProject = value;
                 mSplitContainer.Visible = mProject != null;
                 mSplitContainer.Panel1Collapsed = false;
