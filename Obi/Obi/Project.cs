@@ -807,6 +807,26 @@ namespace Obi
             RenameNode(sender, e.Node, e.Label);
         }
 
+        private void SetMedia(object origin, CoreNode node, string channel, IMedia media)
+        {
+            ChannelsProperty channelsProp = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
+            IList channelsList = channelsProp.getListOfUsedChannels();
+            for (int i = 0; i < channelsList.Count; i++)
+            {
+                string channelName = ((IChannel)channelsList[i]).getName();
+                if (channelName == channel)
+                {
+                    channelsProp.setMedia((Channel)channelsList[i], media);
+                }
+            }
+            throw new Exception("argl!");
+        }
+
+        public void SetMediaRequested(object sender, Events.Node.SetMediaEventArgs e)
+        {
+            SetMedia(sender, e.Node, e.Channel, e.Media);
+        }
+
         /// <summary>
         /// Create a new phrase node and add it to the section node.
         /// (Well it's not added yet because otherwise it would create all sorts of problems.)

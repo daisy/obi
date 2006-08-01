@@ -14,7 +14,7 @@ namespace Obi.Events.Node
     /// </summary>
     public class RenameNodeEventArgs : NodeEventArgs
     {
-        private string mLabel;   // the new text label of the node
+        private string mLabel;    // the new text label of the node
 
         public string Label
         {

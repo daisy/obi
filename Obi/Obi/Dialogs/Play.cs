@@ -34,7 +34,21 @@ namespace Obi.Dialogs
         private void AudioPlayer_EndOfAudioAsset(object sender, EndOfAudioAsset e)
         {
             AudioPlayer.Instance.VuMeterObject.CloseVuMeterForm();
-            this.Close();
+            Close();
+        }
+
+        // Convoluted way to close necessary for debugging (JQ)
+        private delegate void CloseCallback();
+        public new void Close()
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new CloseCallback(Close));
+            }
+            else
+            {
+                base.Close();
+            }
         }
 
         private void AudioPlayer_EndOfAudioBuffer(object sender, EndOfAudioBuffer e)

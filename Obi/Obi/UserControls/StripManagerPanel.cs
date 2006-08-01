@@ -24,6 +24,7 @@ namespace Obi.UserControls
 
         public event Events.Node.RequestToAddSiblingNodeHandler AddSiblingSection;
         public event Events.Node.RequestToRenameNodeHandler RenameSection;
+        public event Events.Node.SetMediaHandler SetMedia;
         public event Events.Strip.RequestToImportAssetHandler ImportPhrase;
         public event Events.Strip.SelectedHandler SelectedStrip;
 
@@ -135,7 +136,7 @@ namespace Obi.UserControls
                 block.Node = (CoreNode)node;
                 mPhraseNodeMap[(CoreNode)node] = block;
                 TextMedia annotation = (TextMedia)Project.GetMediaForChannel((CoreNode)node, Project.AnnotationChannel);
-                block.Annotation = annotation.getText();
+                block.Label = annotation.getText();
                 block.Time = (Project.GetAudioMediaAsset((CoreNode)node).LengthInMilliseconds / 1000).ToString() + "s";
                 strip.AppendAudioBlock(block);
                 SelectedPhrase = block.Node;
@@ -198,7 +199,7 @@ namespace Obi.UserControls
                 block.Node = e.Node;
                 mPhraseNodeMap[e.Node] = block;
                 TextMedia annotation = (TextMedia)Project.GetMediaForChannel(e.Node, Project.AnnotationChannel);
-                block.Annotation = annotation.getText();
+                block.Label = annotation.getText();
                 block.Time = (Project.GetAudioMediaAsset(e.Node).LengthInMilliseconds / 1000).ToString() + "s";
                 strip.AppendAudioBlock(block);
             }
@@ -259,6 +260,7 @@ namespace Obi.UserControls
         {
             if (mSelectedPhrase != null)
             {
+                mPhraseNodeMap[mSelectedPhrase].StartRenaming();
             }
         }
 
@@ -273,6 +275,13 @@ namespace Obi.UserControls
         internal void RenamedSectionStrip(SectionStrip strip)
         {
             RenameSection(this, new Events.Node.RenameNodeEventArgs(this, strip.Node, strip.Label));
+        }
+
+        internal void RenamedAudioBlock(AudioBlock block)
+        {
+            TextMedia media = (TextMedia)block.Node.getPresentation().getMediaFactory().createMedia(MediaType.TEXT);
+            media.setText(block.Label);
+            SetMedia(this, new Events.Node.SetMediaEventArgs(this, block.Node, Project.AnnotationChannel, media));
         }
 
         private void mFlowLayoutPanel_Click(object sender, EventArgs e)

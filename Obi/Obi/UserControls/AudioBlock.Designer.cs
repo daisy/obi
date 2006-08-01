@@ -30,6 +30,7 @@ namespace Obi.UserControls
         {
             this.mAnnotationLabel = new System.Windows.Forms.Label();
             this.mTimeLabel = new System.Windows.Forms.Label();
+            this.mRenameBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // mAnnotationLabel
@@ -52,12 +53,24 @@ namespace Obi.UserControls
             this.mTimeLabel.TabIndex = 1;
             this.mTimeLabel.Text = "(time)";
             // 
+            // mRenameBox
+            // 
+            this.mRenameBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.mRenameBox.Location = new System.Drawing.Point(5, 3);
+            this.mRenameBox.Name = "mRenameBox";
+            this.mRenameBox.Size = new System.Drawing.Size(100, 12);
+            this.mRenameBox.TabIndex = 2;
+            this.mRenameBox.Visible = false;
+            this.mRenameBox.Leave += new System.EventHandler(this.mRenameBox_Leave);
+            this.mRenameBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mRenameBox_KeyDown);
+            // 
             // AudioBlock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.MistyRose;
+            this.Controls.Add(this.mRenameBox);
             this.Controls.Add(this.mTimeLabel);
             this.Controls.Add(this.mAnnotationLabel);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
@@ -72,5 +85,6 @@ namespace Obi.UserControls
 
         private System.Windows.Forms.Label mAnnotationLabel;
         private System.Windows.Forms.Label mTimeLabel;
+        private System.Windows.Forms.TextBox mRenameBox;
     }
 }
