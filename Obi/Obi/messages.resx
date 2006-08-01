@@ -214,8 +214,8 @@ Oh well.</value>
   <data name="undo_label" xml:space="preserve">
     <value>{0} {1}</value>
   </data>
-  <data name="untitled" xml:space="preserve">
-    <value>Untitled</value>
+  <data name="create_directory_query" xml:space="preserve">
+    <value>The directory {0} does not exist. Do you want to create it?</value>
   </data>
   <data name="overwrite_file_caption" xml:space="preserve">
     <value>Replace project?</value>
@@ -244,5 +244,14 @@ Do you want to replace the project contained in this file?</value>
   </data>
   <data name="no_output_device_text" xml:space="preserve">
     <value>Could not select an audio output device: none found. Sorry :(</value>
+  </data>
+  <data name="create_directory_caption" xml:space="preserve">
+    <value>Create Directory</value>
+  </data>
+  <data name="create_directory_failure" xml:space="preserve">
+    <value>The directory {0} could not be created: {1}</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Error</value>
   </data>
 </root>
