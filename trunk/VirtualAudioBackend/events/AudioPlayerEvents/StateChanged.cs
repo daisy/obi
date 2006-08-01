@@ -4,30 +4,52 @@ using System.Text;
 
 namespace VirtualAudioBackend.events.AudioPlayerEvents
 {
+	public delegate void StateChangedHandler(object sender, StateChanged e);  // JQ
+	// public delegate void DStateChangedEvent( object sender,  StateChanged state) ;
 
-	public delegate void DStateChangedEvent( object sender,  StateChanged state) ;
 	/// <summary>
 	/// The state of the audio player changed.
 	/// </summary>
 	public class StateChanged : AudioPlayerEvent
 	{
-
-
-private static readonly StateChanged mFromNotReady = new StateChanged(AudioPlayerState.NotReady);
+		private static readonly StateChanged mFromNotReady = new StateChanged(AudioPlayerState.NotReady);
 		private static readonly StateChanged mFromStopped = new StateChanged(AudioPlayerState.Stopped);
 		private static readonly StateChanged mFromPlaying = new StateChanged(AudioPlayerState.Paused);
 		private static readonly StateChanged mFromPaused = new StateChanged(AudioPlayerState.Paused);
 
+		public StateChanged FromNotReady
+		{
+			get 
+			{ 
+				return mFromNotReady;
+			}
+		}
+
+		public StateChanged FromStopped 
+		{
+			get
+			{
+				return mFromStopped;
+			}
+		}
+
+		public StateChanged FromPlaying 
+		{
+			get
+			{
+				return mFromPlaying;
+			}
+		}
+
+		public StateChanged FromPaused 
+		{
+			get
+			{
+				return mFromPaused;
+			}
+		}
+
 		private AudioPlayerState mOldState;  // the previous state of the player. The current state of the player is readily available.
-
-		public StateChanged FromNotReady{ get { return mFromNotReady; } }
-		public StateChanged FromStopped { get { return mFromStopped; } }
-		public StateChanged FromPlaying { get { return mFromPlaying; } }
-		public StateChanged FromPaused { get { return mFromPaused; } }
-
-
-
-		
 
 		public AudioPlayerState OldState
 		{
@@ -37,7 +59,8 @@ private static readonly StateChanged mFromNotReady = new StateChanged(AudioPlaye
 			}
 		}
 		
-		public event DStateChangedEvent StateChangedEvent ;
+		// public event DStateChangedEvent StateChangedEvent ;
+
 		/// <summary>
 		/// Create a new StateChanged event.
 		/// </summary>
@@ -45,14 +68,12 @@ private static readonly StateChanged mFromNotReady = new StateChanged(AudioPlaye
 		public StateChanged(AudioPlayerState oldState)
 		{
 			mOldState = oldState;
-
-			
 		}
 
-		public void NotifyStateChanged (object sender, StateChanged state)
+		/*public void NotifyStateChanged (object sender, StateChanged state)
 		{
-if (StateChangedEvent  != null)
-			StateChangedEvent ( sender, state ) ;
-		}
+			if (StateChangedEvent  != null)
+				StateChangedEvent ( sender, state ) ;
+		}*/
 	}
 }

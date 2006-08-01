@@ -41,11 +41,13 @@ namespace Obi.UserControls
                 {
                     mSectionNodeMap[mSelectedSection].MarkSelected();
                     renameStripToolStripMenuItem.Enabled = true;
+                    importAssetToolStripMenuItem.Enabled = true;
                     SelectedStrip(this, new Events.Strip.SelectedEventArgs(true));
                 }
                 else
                 {
                     renameStripToolStripMenuItem.Enabled = false;
+                    importAssetToolStripMenuItem.Enabled = false;
                     SelectedStrip(this, new Events.Strip.SelectedEventArgs(false));
                 }
             }
@@ -63,7 +65,13 @@ namespace Obi.UserControls
                 mSelectedPhrase = value;
                 if (mSelectedPhrase != null)
                 {
+                    SelectedSection = (CoreNode)mSelectedPhrase.getParent();
                     mPhraseNodeMap[mSelectedPhrase].MarkSelected();
+                    playAssetToolStripMenuItem.Enabled = true;
+                }
+                else
+                {
+                    playAssetToolStripMenuItem.Enabled = false;
                 }
             }
         }
@@ -88,6 +96,7 @@ namespace Obi.UserControls
             mFlowLayoutPanel.Controls.Clear();
             root.acceptDepthFirst(this);
             SelectedSection = null;
+            SelectedPhrase = null;
         }
 
         #region Synchronization visitor
@@ -129,6 +138,7 @@ namespace Obi.UserControls
                 block.Annotation = annotation.getText();
                 block.Time = (Project.GetAudioMediaAsset((CoreNode)node).LengthInMilliseconds / 1000).ToString() + "s";
                 strip.AppendAudioBlock(block);
+                SelectedPhrase = block.Node;
             }
             return true;
         }
@@ -233,8 +243,6 @@ namespace Obi.UserControls
         /// <summary>
         /// Play the currently selected audio block. (JQ)
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void playAssetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mSelectedPhrase != null)
@@ -243,6 +251,17 @@ namespace Obi.UserControls
                 dialog.ShowDialog();
             }
         }
+
+        /// <summary>
+        /// Rename the currently selected audio block (JQ)
+        /// </summary>
+        private void renameAssetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mSelectedPhrase != null)
+            {
+            }
+        }
+
 
         #endregion
 
@@ -259,11 +278,13 @@ namespace Obi.UserControls
         private void mFlowLayoutPanel_Click(object sender, EventArgs e)
         {
             SelectedSection = null;
+            SelectedPhrase = null;
         }
 
         private void mFlowLayoutPanel_Leave(object sender, EventArgs e)
         {
             SelectedSection = null;
+            SelectedPhrase = null;
         }
     }
 }

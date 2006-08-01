@@ -37,6 +37,7 @@ namespace Obi.UserControls
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.importAssetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playAssetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.renameAssetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,10 +73,11 @@ namespace Obi.UserControls
             this.renameStripToolStripMenuItem,
             this.toolStripSeparator1,
             this.importAssetToolStripMenuItem,
-            this.playAssetToolStripMenuItem});
+            this.playAssetToolStripMenuItem,
+            this.renameAssetToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(128, 120);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(128, 142);
             // 
             // addStripToolStripMenuItem
             // 
@@ -110,6 +112,13 @@ namespace Obi.UserControls
             this.playAssetToolStripMenuItem.Text = "&Play asset";
             this.playAssetToolStripMenuItem.Click += new System.EventHandler(this.playAssetToolStripMenuItem_Click);
             // 
+            // renameAssetToolStripMenuItem
+            // 
+            this.renameAssetToolStripMenuItem.Name = "renameAssetToolStripMenuItem";
+            this.renameAssetToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.renameAssetToolStripMenuItem.Text = "Re&name asset";
+            this.renameAssetToolStripMenuItem.Click += new System.EventHandler(this.renameAssetToolStripMenuItem_Click);
+            // 
             // StripManagerPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -134,5 +143,6 @@ namespace Obi.UserControls
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem importAssetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem playAssetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem renameAssetToolStripMenuItem;
     }
 }

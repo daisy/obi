@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using VirtualAudioBackend;
+using VirtualAudioBackend.events.AudioPlayerEvents;
 
 using urakawa.core;
 using urakawa.media;
@@ -20,6 +21,26 @@ namespace Obi.Dialogs
         {
             InitializeComponent();
             mNode = node;
+            AudioPlayer.Instance.StateChanged += new StateChangedHandler(AudioPlayer_StateChanged);
+            AudioPlayer.Instance.EndOfAudioAsset += new EndOfAudioAssetHandler(AudioPlayer_EndOfAudioAsset);
+            AudioPlayer.Instance.EndOfAudioBuffer += new EndOfAudioBufferHandler(AudioPlayer_EndOfAudioBuffer);
+            AudioPlayer.Instance.UpdateVuMeter += new UpdateVuMeterHandler(AudioPlayer_UpdateVuMeter);
+        }
+
+        private void AudioPlayer_StateChanged(object sender, StateChanged e)
+        {
+        }
+
+        private void AudioPlayer_EndOfAudioAsset(object sender, EndOfAudioAsset e)
+        {
+        }
+
+        private void AudioPlayer_EndOfAudioBuffer(object sender, EndOfAudioBuffer e)
+        {
+        }
+
+        private void AudioPlayer_UpdateVuMeter(object sender, UpdateVuMeter e)
+        {
         }
 
         private void btnStop_Click(object sender, EventArgs e)
@@ -28,6 +49,7 @@ namespace Obi.Dialogs
             AudioPlayer.Instance.Stop();
             this.Close();
         }
+        //ob_play.
 
         //AudioPlayer ob_play = AudioPlayer.Instance;
 
