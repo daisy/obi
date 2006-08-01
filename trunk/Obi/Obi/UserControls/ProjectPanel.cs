@@ -63,6 +63,8 @@ namespace Obi.UserControls
                     mStripManagerPanel.ImportPhrase -= new Events.Strip.RequestToImportAssetHandler(mProject.ImportPhraseRequested);
                     mProject.ImportedAsset -= new Events.Node.ImportedAssetHandler(mStripManagerPanel.SyncImportedAsset);
 
+                    mStripManagerPanel.SetMedia -= new Events.Node.SetMediaHandler(mProject.SetMediaRequested);
+
                     //marisa: TESTING only
                     mTOCPanel.RequestToUndoMoveNode -= new Events.Node.RequestToUndoMoveNodeHandler(mProject.TestUndoMoveNode);
                 }
@@ -102,6 +104,8 @@ namespace Obi.UserControls
 
                     mStripManagerPanel.ImportPhrase += new Events.Strip.RequestToImportAssetHandler(value.ImportPhraseRequested);
                     value.ImportedAsset += new Events.Node.ImportedAssetHandler(mStripManagerPanel.SyncImportedAsset);
+
+                    mStripManagerPanel.SetMedia += new Events.Node.SetMediaHandler(value.SetMediaRequested);
 
                     //marisa: TESTING only
                     mTOCPanel.RequestToUndoMoveNode += new Events.Node.RequestToUndoMoveNodeHandler(value.TestUndoMoveNode);

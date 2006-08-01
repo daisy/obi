@@ -352,6 +352,25 @@ objGraphics.DrawLine(PenVackPaint , 0, 0, 0, 600);
 			
 		}
 		
+		/// <summary>
+		/// Thread-safe way to set the text on a control.
+		/// </summary>
+		/// <remarks>Added by JQ</remarks>
+		/// <param name="BeepEnabled"></param>
+		private void SetTextBoxText(TextBox box, string text)
+		{
+			if (InvokeRequired)
+			{
+				Invoke(new SetTextBoxTextCallback(SetTextBoxText), new object[] { box, text }); 
+			}
+			else
+			{
+				box.Text = text;
+			}
+		}
+
+		private delegate void SetTextBoxTextCallback(TextBox box, string text);
+
 bool BeepEnabled = false ;
 // catch the peak overload event triggered by VuMeter
 		public void CatchPeakOverloadEvent ( object sender , PeakOverload ob_PeakOverload )
@@ -359,13 +378,15 @@ bool BeepEnabled = false ;
 VuMeter ob_VuMeter  = sender as VuMeter ;
 			if (ob_PeakOverload .Channel == 1)
 			{
-				txtOverloadLeft.Text	 = ob_VuMeter.m_MeanValueLeft.ToString () ;
+				//txtOverloadLeft.Text	 = ob_VuMeter.m_MeanValueLeft.ToString () ;
+				SetTextBoxText(txtOverloadLeft, ob_VuMeter.m_MeanValueLeft.ToString());  // JQ -- avoid race condition
 
 			}
 			
 			if (ob_PeakOverload .Channel== 2)
 			{
-				txtOverloadRight.Text = ob_VuMeter.m_MeanValueRight.ToString ()  ;
+				//txtOverloadRight.Text = ob_VuMeter.m_MeanValueRight.ToString ()  ;
+				SetTextBoxText(txtOverloadRight, ob_VuMeter.m_MeanValueRight.ToString());
 			}
 
 BeepEnabled =true  ;
@@ -427,6 +448,20 @@ AmplitudeLeft = 0 ;
 
 			txtOverloadLeft.Text = " " ;
 			txtOverloadRight.Text = " " ;
+		}
+
+		private delegate void CloseCallback();
+
+		public new void Close()
+		{
+			if (InvokeRequired)
+			{
+				Invoke(new CloseCallback(Close));
+			}
+			else
+			{
+				base.Close();
+			}
 		}
 
 // end of class
