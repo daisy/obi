@@ -33,27 +33,8 @@ namespace Obi.Dialogs
         private void btnPlay_Click(object sender, EventArgs e)
         {
  
-            if (ob_play.State.Equals(AudioPlayerState.NotReady))	
-//            if (i == 1)
-            {
-                
 
-            
-                VuMeter ob_VuMeter = new VuMeter();
-                ob_VuMeter.ScaleFactor = 2;
-                ob_VuMeter.LowerThreshold = 70;
-                ob_VuMeter.UpperThreshold = 150;
-                ob_VuMeter.SampleTimeLength = 1000;
-                ob_VuMeter.ShowForm();
-                ob_play.VuMeterObject = ob_VuMeter;
-                ob_play.GetOutputDevices();
-                
-                ob_play.SetDevice(this , 0);
-                ob_play.Play(Project.GetAudioMediaAsset(mNode));
-        btnPlay.Text = "&Pause";
-        tmUpdateCurrentTime.Enabled = true;
-            }
-            else if (ob_play.State.Equals (AudioPlayerState.Playing))
+            if (ob_play.State.Equals (AudioPlayerState.Playing))
             {
                 ob_play.Pause();
                 btnPlay.Text = "&Play";
@@ -82,6 +63,28 @@ namespace Obi.Dialogs
         {
             
             txtDisplayAsset.Text = ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).getText();
+
+            if (ob_play.State.Equals(AudioPlayerState.NotReady))
+
+            {
+
+
+
+                VuMeter ob_VuMeter = new VuMeter();
+                ob_VuMeter.ScaleFactor = 2;
+                ob_VuMeter.LowerThreshold = 70;
+                ob_VuMeter.UpperThreshold = 150;
+                ob_VuMeter.SampleTimeLength = 1000;
+                ob_VuMeter.ShowForm();
+                ob_play.VuMeterObject = ob_VuMeter;
+                ob_play.GetOutputDevices();
+
+                ob_play.SetDevice(this, 0);
+                ob_play.Play(Project.GetAudioMediaAsset(mNode));
+                btnPlay.Text = "&Pause";
+                tmUpdateCurrentTime.Enabled = true;
+            }
+
         }
             
 
