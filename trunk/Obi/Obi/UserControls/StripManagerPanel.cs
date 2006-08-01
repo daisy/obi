@@ -166,6 +166,10 @@ namespace Obi.UserControls
             }
         }
 
+        internal void SyncMovedNode(object sender, Events.Node.MovedNodeEventArgs e)
+        {
+        }
+
         #endregion
 
         #region Menu items

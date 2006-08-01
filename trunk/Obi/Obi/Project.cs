@@ -45,12 +45,11 @@ namespace Obi
         public event Events.Node.AddedSectionNodeHandler AddedSectionNode;  // a section node was added to the TOC
         public event Events.Node.DeletedNodeHandler DeletedNode;            // a node was deleted from the presentation
         public event Events.Node.RenamedNodeHandler RenamedNode;            // a node was renamed in the presentation
-        public event Events.Node.MovedNodeUpHandler MovedNodeUp;            // a node was moved up in the presentation
-        public event Events.Node.MovedNodeDownHandler MovedNodeDown;        // a node was moved down in the presentation
+        public event Events.Node.MovedNodeHandler MovedNode;            // a node was moved in the presentation
         public event Events.Node.IncreasedNodeLevelHandler IncreasedNodeLevel; //a node's level was increased in the presentation
         public event Events.Node.DecreasedNodeLevelHandler DecreasedNodeLevel; //a node's level was decreased in the presentation
         public event Events.Node.ImportedAssetHandler ImportedAsset;  // an asset was imported into the project
-        public event Events.Node.UndidMoveNodeHandler UndidMoveNode;    //a node was restored to its previous location
+        public event Events.Node.MovedNodeHandler UndidMoveNode;    //a node was restored to its previous location
         
         //marisa: TESTING
         private Obi.Commands.TOC.MoveSectionUp mLastMoveSectionUpCommand;
@@ -516,7 +515,13 @@ namespace Obi
                 //marisa: TESTING
                 mLastMoveSectionUpCommand = command;
 
-                MovedNodeUp(this, new Events.Node.NodeEventArgs(origin, node));
+                CoreNode newParent = (CoreNode)node.getParent();
+
+                NodePositionVisitor visitor = new NodePositionVisitor(node);
+                getPresentation().getRootNode().acceptDepthFirst(visitor);
+
+                MovedNode(this, new Events.Node.MovedNodeEventArgs
+                    (this, node, newParent, newParent.indexOf(node), visitor.Position));
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
                 if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
@@ -580,7 +585,7 @@ namespace Obi
             if (node.getParent() != null) node.detach();
             parent.insert(node, index);
             
-            UndidMoveNode(this, new Events.Node.AddedSectionNodeEventArgs(this, node, index, position));
+            UndidMoveNode(this, new Events.Node.MovedNodeEventArgs(this, node, parent, index, position));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
 }
@@ -597,6 +602,7 @@ namespace Obi
            else if (mLastMoveSectionDownCommand != null)
            {
                mLastMoveSectionDownCommand.Undo();
+               mLastMoveSectionDownCommand = null;
            }
         }
 
@@ -623,7 +629,14 @@ namespace Obi
                 //marisa: TESTING
                 mLastMoveSectionDownCommand = command;
 
-                MovedNodeDown(this, new Events.Node.NodeEventArgs(origin, node));
+                CoreNode newParent = (CoreNode)node.getParent();
+
+                NodePositionVisitor visitor = new NodePositionVisitor(node);
+                getPresentation().getRootNode().acceptDepthFirst(visitor);
+
+                MovedNode(this, new Events.Node.MovedNodeEventArgs
+                    (this, node, newParent, newParent.indexOf(node), visitor.Position));
+
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
                 if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));

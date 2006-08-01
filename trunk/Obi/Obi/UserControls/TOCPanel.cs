@@ -375,12 +375,38 @@ namespace Obi.UserControls
 
         }
 
+        internal void SyncMovedNode(object sender, Events.Node.MovedNodeEventArgs e)
+        {
+            TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
+            TreeNode parent = FindTreeNodeFromCoreNode(e.Parent);
+
+            if (selected == null)
+            {
+                return;
+            }
+
+            TreeNode clone = (TreeNode)selected.Clone();
+
+            selected.Remove();
+
+            TreeNodeCollection siblings = null;
+            if (parent == null)
+            {
+                siblings = tocTree.Nodes;
+            }
+            else
+            {
+                siblings = parent.Nodes;
+            }
+
+            siblings.Insert(e.Index, clone);
+        }
         /// <summary>
         /// Move a tree node up
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        internal void SyncMovedNodeUp(object sender, Events.Node.NodeEventArgs e)
+     /*   internal void SyncMovedNodeUp(object sender, Events.Node.MovedNodeEventArgs e)
         {
             System.Windows.Forms.TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
 
@@ -438,14 +464,14 @@ namespace Obi.UserControls
                 tocTree.SelectedNode = clone;
             }
 
-        }
+        }*/
 
         /// <summary>
         /// Move a tree node down
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        internal void SyncMovedNodeDown(object sender, Events.Node.NodeEventArgs e)
+  /*      internal void SyncMovedNodeDown(object sender, Events.Node.NodeEventArgs e)
         {
             TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
             TreeNode clone = (TreeNode)
@@ -499,7 +525,7 @@ namespace Obi.UserControls
                 clone.EnsureVisible();
                 tocTree.SelectedNode = clone;
             }
-        }
+        }*/
 
         internal void SyncIncreasedNodeLevel(object sender, Events.Node.NodeEventArgs e)
         {
