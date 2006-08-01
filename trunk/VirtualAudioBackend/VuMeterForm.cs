@@ -176,7 +176,7 @@ namespace VirtualAudioBackend
 		}
 		#endregion
 
-internal int HighTop =0 ;
+		internal int HighTop =0 ;
 		internal int HighBottom = 0 ;
 
 		internal int NormalTop = 0 ;
@@ -185,28 +185,28 @@ internal int HighTop =0 ;
 		internal int LowTop = 0 ;
 		internal int LowBottom = 0 ;
 
-internal int LineWidth = 0 ;
+		internal int LineWidth = 0 ;
 
-internal int ScaleFactor = 1 ;
+		internal int ScaleFactor = 1 ;
 		internal int LeftGraphX = 0 ;
-internal int RightGraphX = 0 ;
+		internal int RightGraphX = 0 ;
 
-internal int BackGroundWidth = 0 ;
+		internal int BackGroundWidth = 0 ;
 		internal int BackGroundTop = 0 ;
-internal int BackGroundBottom = 0 ;
-internal int BackGroundX ;
+		internal int BackGroundBottom = 0 ;
+		internal int BackGroundX ;
 
-internal int EraserLeft = 0 ;
-internal int EraserRight = 0 ;
+		internal int EraserLeft = 0 ;
+		internal int EraserRight = 0 ;
 
-internal int PeakOverloadLightX  =0 ;
+		internal int PeakOverloadLightX  =0 ;
 		internal int PeakOverloadLightY  =0 ;
 		
 
-private int AmplitudeLeft = 0 ;
+		private int AmplitudeLeft = 0 ;
 		private int AmplitudeRight = 0 ;
 
-VuMeter ob_VuMeter ;
+		VuMeter ob_VuMeter ;
 
 
 
@@ -224,7 +224,7 @@ VuMeter ob_VuMeter ;
 		private System.Windows.Forms.Timer tmBeep;
 		
 
-// initialise the form and frame for graph display
+		// initialise the form and frame for graph display
 		private void VuMeterForm_Load(object sender, System.EventArgs e)
 		{
 			System.Drawing.Graphics objGraphics;
@@ -234,15 +234,15 @@ VuMeter ob_VuMeter ;
 			PenWhite.Width = BackGroundWidth;
 			objGraphics.DrawLine(PenWhite , BackGroundX , BackGroundTop , BackGroundX, BackGroundBottom ) ;		
 
-// enables the refresh timer for repainting graph at regular interval
-tmRefresh.Enabled = true ;
+			// enables the refresh timer for repainting graph at regular interval
+			tmRefresh.Enabled = true ;
 			
 		}
 
-// load the beep file and plays it once
+		// load the beep file and plays it once
 		void LoadBeep ()
 		{
-Device BeepDevice  = new Device() ;
+			Device BeepDevice  = new Device() ;
 			BeepDevice.SetCooperativeLevel(this, CooperativeLevel.Normal );
 			SecondaryBuffer BeepBuffer   ;
 			try
@@ -252,18 +252,18 @@ Device BeepDevice  = new Device() ;
 			}		
 			catch (Exception Ex)
 			{
-MessageBox.Show (Ex.ToString ()) ;
+				MessageBox.Show (Ex.ToString ()) ;
 			}
 
 
 			
 		}
 
-// function to catch the update event from VuMeter class to update graph cordinates
+		// function to catch the update event from VuMeter class to update graph cordinates
 		public void CatchUpdateForms (object sender , UpdateForms Update )
 		{
-VuMeter ob_VuMeterArg  = sender as VuMeter ;
-ob_VuMeter = ob_VuMeterArg ;
+			VuMeter ob_VuMeterArg  = sender as VuMeter ;
+			ob_VuMeter = ob_VuMeterArg ;
 
 			// Update cordinates
 			HighTop =ob_VuMeter.Graph.HighTop ;
@@ -287,32 +287,32 @@ ob_VuMeter = ob_VuMeterArg ;
 			EraserLeft = ob_VuMeter.Graph.EraserLeft ;
 			EraserRight = ob_VuMeter.Graph.EraserRight ;
 
-PeakOverloadLightX =   ob_VuMeter.Graph.PeakOverloadLightX ;
+			PeakOverloadLightX =   ob_VuMeter.Graph.PeakOverloadLightX ;
 			PeakOverloadLightY =   ob_VuMeter.Graph.PeakOverloadLightY ;
 
 
-AmplitudeLeft = ob_VuMeter.m_MeanValueLeft ;
-AmplitudeRight = ob_VuMeter.m_MeanValueRight ;
+			AmplitudeLeft = ob_VuMeter.m_MeanValueLeft ;
+			AmplitudeRight = ob_VuMeter.m_MeanValueRight ;
 
 
-tmRefresh.Enabled = true ;
+			tmRefresh.Enabled = true ;
 			tmRefreshText.Enabled = true ;
 		}
 
 		private void tmRefresh_Tick(object sender, System.EventArgs e)
 		{
 
-// paint form
+			// paint form
 			System.Drawing.Graphics objGraphics;
 			objGraphics = this.CreateGraphics();		
 
-// Paint Backgrounds
+			// Paint Backgrounds
 			Pen PenVackPaint= new Pen(Color.White);
 			PenVackPaint.Width = 600 ;
 
-objGraphics.DrawLine(PenVackPaint , 0, 0, 0, 600);		
+			objGraphics.DrawLine(PenVackPaint , 0, 0, 0, 600);		
 
-// Paint two vertical graphs
+			// Paint two vertical graphs
 			Pen PenHigh  = new Pen(Color.Red );
 			PenHigh.Width = LineWidth ;
 
@@ -329,10 +329,10 @@ objGraphics.DrawLine(PenVackPaint , 0, 0, 0, 600);
 			objGraphics.DrawLine(PenHigh, RightGraphX, HighTop , RightGraphX, HighBottom);		
 
 			objGraphics.DrawLine(PenNormal, LeftGraphX, NormalTop, LeftGraphX, NormalBottom);				objGraphics.DrawLine(PenNormal, RightGraphX, NormalTop, RightGraphX, NormalBottom);	
-	objGraphics.DrawLine(PenLow, LeftGraphX, LowTop, LeftGraphX, LowBottom);	
+			objGraphics.DrawLine(PenLow, LeftGraphX, LowTop, LeftGraphX, LowBottom);	
 			objGraphics.DrawLine(PenLow, RightGraphX, LowTop, RightGraphX, LowBottom);	
 	
-// Erase the unwanted line starting from top according to amplitude of each channel
+			// Erase the unwanted line starting from top according to amplitude of each channel
 			objGraphics.DrawLine(PenVackground , LeftGraphX, HighTop , LeftGraphX, EraserLeft );	
 			objGraphics.DrawLine(PenVackground , RightGraphX, HighTop , RightGraphX, EraserRight );	
 						
@@ -371,11 +371,11 @@ objGraphics.DrawLine(PenVackPaint , 0, 0, 0, 600);
 
 		private delegate void SetTextBoxTextCallback(TextBox box, string text);
 
-bool BeepEnabled = false ;
-// catch the peak overload event triggered by VuMeter
+		bool BeepEnabled = false ;
+		// catch the peak overload event triggered by VuMeter
 		public void CatchPeakOverloadEvent ( object sender , PeakOverload ob_PeakOverload )
 		{
-VuMeter ob_VuMeter  = sender as VuMeter ;
+			VuMeter ob_VuMeter  = sender as VuMeter ;
 			if (ob_PeakOverload .Channel == 1)
 			{
 				//txtOverloadLeft.Text	 = ob_VuMeter.m_MeanValueLeft.ToString () ;
@@ -389,30 +389,30 @@ VuMeter ob_VuMeter  = sender as VuMeter ;
 				SetTextBoxText(txtOverloadRight, ob_VuMeter.m_MeanValueRight.ToString());
 			}
 
-BeepEnabled =true  ;
+			BeepEnabled =true  ;
 			
-			}	
+		}	
 
-// repeats the LoadBeep function to repeat beeps while there is overload
+		// repeats the LoadBeep function to repeat beeps while there is overload
 		private void tmBeep_Tick(object sender, System.EventArgs e)
 		{
-if (BeepEnabled == true)
-			LoadBeep () ;
+			if (BeepEnabled == true)
+				LoadBeep () ;
 
-BeepEnabled = false ;
+			BeepEnabled = false ;
 		}
 
-// Updates the amplitude of channels at regular intervals
+		// Updates the amplitude of channels at regular intervals
 		private void tmRefreshText_Tick(object sender, System.EventArgs e)
 		{
-		txtAmplitudeLeft.Text = AmplitudeLeft.ToString () ;
-txtAmplitudeRight.Text = AmplitudeRight.ToString () ;
+			txtAmplitudeLeft.Text = AmplitudeLeft.ToString () ;
+			txtAmplitudeRight.Text = AmplitudeRight.ToString () ;
 		}
 
 		private void btnClose_Click(object sender, System.EventArgs e)
 		{
 			this.Visible = false  ;
-		//this.Close () ;
+			//this.Close () ;
 		}
 
 		internal void CatchResetEvent ( object sender , VuMeterEvent ob_VuMeterEvent)
@@ -434,22 +434,25 @@ txtAmplitudeRight.Text = AmplitudeRight.ToString () ;
 			objGraphics.DrawLine(PenVackground , PeakOverloadLightX + LineWidth, PeakOverloadLightY, PeakOverloadLightX + LineWidth , PeakOverloadLightY + LineWidth + LineWidth);	
 
 			HighTop =0 ;
-		HighBottom = 0 ;
+			HighBottom = 0 ;
 
-		NormalTop = 0 ;
-		NormalBottom = 0 ;
+			NormalTop = 0 ;
+			NormalBottom = 0 ;
 
-		LowTop = 0 ;
-		LowBottom = 0 ;
+			LowTop = 0 ;
+			LowBottom = 0 ;
 
-LineWidth = 0 ;
-AmplitudeLeft = 0 ;
+			LineWidth = 0 ;
+			AmplitudeLeft = 0 ;
 			AmplitudeRight = 0 ;
 
-			txtOverloadLeft.Text = " " ;
-			txtOverloadRight.Text = " " ;
+			//txtOverloadLeft.Text = " " ;
+			//txtOverloadRight.Text = " " ;
+			SetTextBoxText(txtOverloadLeft, " ");   // avoid race condition - JQ
+			SetTextBoxText(txtOverloadRight, " ");  // JQ
 		}
 
+		// Added to avoid race condition - JQ
 		private delegate void CloseCallback();
 
 		public new void Close()
@@ -464,6 +467,6 @@ AmplitudeLeft = 0 ;
 			}
 		}
 
-// end of class
+		// end of class
 	}
 }
