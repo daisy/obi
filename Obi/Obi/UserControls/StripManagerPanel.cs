@@ -137,7 +137,7 @@ namespace Obi.UserControls
                 mPhraseNodeMap[(CoreNode)node] = block;
                 TextMedia annotation = (TextMedia)Project.GetMediaForChannel((CoreNode)node, Project.AnnotationChannel);
                 block.Label = annotation.getText();
-                block.Time = (Project.GetAudioMediaAsset((CoreNode)node).LengthInMilliseconds / 1000).ToString() + "s";
+                block.Time = (Math.Round(Project.GetAudioMediaAsset((CoreNode)node).LengthInMilliseconds / 1000)).ToString() + "s";
                 strip.AppendAudioBlock(block);
                 SelectedPhrase = block.Node;
             }
@@ -200,7 +200,7 @@ namespace Obi.UserControls
                 mPhraseNodeMap[e.Node] = block;
                 TextMedia annotation = (TextMedia)Project.GetMediaForChannel(e.Node, Project.AnnotationChannel);
                 block.Label = annotation.getText();
-                block.Time = (Project.GetAudioMediaAsset(e.Node).LengthInMilliseconds / 1000).ToString() + "s";
+                block.Time = (Math.Round(Project.GetAudioMediaAsset(e.Node).LengthInMilliseconds / 1000)).ToString() + "s";
                 strip.AppendAudioBlock(block);
             }
         }
