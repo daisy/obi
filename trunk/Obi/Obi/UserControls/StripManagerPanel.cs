@@ -211,6 +211,10 @@ namespace Obi.UserControls
             mFlowLayoutPanel.Controls.SetChildIndex(strip, e.Position);
         }
 
+        internal void SyncMediaSet(object sender, Events.Node.SetMediaEventArgs e)
+        {
+        }
+
         #endregion
 
         #region Menu items

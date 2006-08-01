@@ -79,6 +79,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not find channel named &quot;{0}&quot;..
+        /// </summary>
+        internal static string channe_not_found {
+            get {
+                return ResourceManager.GetString("channe_not_found", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear the list of recent projects?.
         /// </summary>
         internal static string clear_recent_caption {
@@ -122,6 +131,33 @@ namespace Obi {
         internal static string closed_project_text {
             get {
                 return ResourceManager.GetString("closed_project_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Directory.
+        /// </summary>
+        internal static string create_directory_caption {
+            get {
+                return ResourceManager.GetString("create_directory_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The directory {0} could not be created: {1}.
+        /// </summary>
+        internal static string create_directory_failure {
+            get {
+                return ResourceManager.GetString("create_directory_failure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The directory {0} does not exist. Do you want to create it?.
+        /// </summary>
+        internal static string create_directory_query {
+            get {
+                return ResourceManager.GetString("create_directory_query", resourceCulture);
             }
         }
         
@@ -187,6 +223,15 @@ namespace Obi {
         internal static string empty_label_warning_text {
             get {
                 return ResourceManager.GetString("empty_label_warning_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string error {
+            get {
+                return ResourceManager.GetString("error", resourceCulture);
             }
         }
         
@@ -416,15 +461,6 @@ namespace Obi {
         internal static string undo_label {
             get {
                 return ResourceManager.GetString("undo_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Untitled.
-        /// </summary>
-        internal static string untitled {
-            get {
-                return ResourceManager.GetString("untitled", resourceCulture);
             }
         }
     }

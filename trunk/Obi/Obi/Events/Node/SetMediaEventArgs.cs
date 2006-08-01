@@ -8,6 +8,7 @@ using urakawa.media;
 namespace Obi.Events.Node
 {
     public delegate void SetMediaHandler(object sender, SetMediaEventArgs e);
+    public delegate void MediaSetHandler(object sender, SetMediaEventArgs e);
 
     public class SetMediaEventArgs: NodeEventArgs
     {
