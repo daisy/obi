@@ -33,6 +33,8 @@ namespace Obi.Dialogs
 
         private void AudioPlayer_EndOfAudioAsset(object sender, EndOfAudioAsset e)
         {
+            AudioPlayer.Instance.VuMeterObject.CloseVuMeterForm();
+            this.Close();
         }
 
         private void AudioPlayer_EndOfAudioBuffer(object sender, EndOfAudioBuffer e)
@@ -47,6 +49,7 @@ namespace Obi.Dialogs
         {
 
             AudioPlayer.Instance.Stop();
+            AudioPlayer.Instance.VuMeterObject.CloseVuMeterForm();
             this.Close();
         }
         //ob_play.
@@ -87,7 +90,7 @@ namespace Obi.Dialogs
             
             txtDisplayAsset.Text = ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).getText();
 
-            if (AudioPlayer.Instance.State.Equals(AudioPlayerState.NotReady))
+            if (AudioPlayer.Instance.State.Equals(AudioPlayerState.Stopped))
 
             {
 
