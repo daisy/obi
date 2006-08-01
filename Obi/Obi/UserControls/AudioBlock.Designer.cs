@@ -30,7 +30,6 @@ namespace Obi.UserControls
         {
             this.mAnnotationLabel = new System.Windows.Forms.Label();
             this.mTimeLabel = new System.Windows.Forms.Label();
-            this.mPlayLabel = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // mAnnotationLabel
@@ -53,28 +52,17 @@ namespace Obi.UserControls
             this.mTimeLabel.TabIndex = 1;
             this.mTimeLabel.Text = "(time)";
             // 
-            // mPlayLabel
-            // 
-            this.mPlayLabel.AutoSize = true;
-            this.mPlayLabel.Location = new System.Drawing.Point(3, 39);
-            this.mPlayLabel.Margin = new System.Windows.Forms.Padding(3);
-            this.mPlayLabel.Name = "mPlayLabel";
-            this.mPlayLabel.Size = new System.Drawing.Size(27, 12);
-            this.mPlayLabel.TabIndex = 2;
-            this.mPlayLabel.TabStop = true;
-            this.mPlayLabel.Text = "Play";
-            // 
             // AudioBlock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.MistyRose;
-            this.Controls.Add(this.mPlayLabel);
             this.Controls.Add(this.mTimeLabel);
             this.Controls.Add(this.mAnnotationLabel);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
             this.Name = "AudioBlock";
+            this.Click += new System.EventHandler(this.AudioBlock_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -84,6 +72,5 @@ namespace Obi.UserControls
 
         private System.Windows.Forms.Label mAnnotationLabel;
         private System.Windows.Forms.Label mTimeLabel;
-        private System.Windows.Forms.LinkLabel mPlayLabel;
     }
 }

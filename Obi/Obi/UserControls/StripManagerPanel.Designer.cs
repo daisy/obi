@@ -34,8 +34,9 @@ namespace Obi.UserControls
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renameStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importAssetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.importAssetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.playAssetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,10 +71,11 @@ namespace Obi.UserControls
             this.addStripToolStripMenuItem,
             this.renameStripToolStripMenuItem,
             this.toolStripSeparator1,
-            this.importAssetToolStripMenuItem});
+            this.importAssetToolStripMenuItem,
+            this.playAssetToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(128, 98);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(128, 120);
             // 
             // addStripToolStripMenuItem
             // 
@@ -89,6 +91,11 @@ namespace Obi.UserControls
             this.renameStripToolStripMenuItem.Text = "&Rename strip";
             this.renameStripToolStripMenuItem.Click += new System.EventHandler(this.renameStripToolStripMenuItem_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(124, 6);
+            // 
             // importAssetToolStripMenuItem
             // 
             this.importAssetToolStripMenuItem.Name = "importAssetToolStripMenuItem";
@@ -96,10 +103,12 @@ namespace Obi.UserControls
             this.importAssetToolStripMenuItem.Text = "&Import asset";
             this.importAssetToolStripMenuItem.Click += new System.EventHandler(this.importAssetToolStripMenuItem_Click);
             // 
-            // toolStripSeparator1
+            // playAssetToolStripMenuItem
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(124, 6);
+            this.playAssetToolStripMenuItem.Name = "playAssetToolStripMenuItem";
+            this.playAssetToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.playAssetToolStripMenuItem.Text = "&Play asset";
+            this.playAssetToolStripMenuItem.Click += new System.EventHandler(this.playAssetToolStripMenuItem_Click);
             // 
             // StripManagerPanel
             // 
@@ -124,5 +133,6 @@ namespace Obi.UserControls
         private System.Windows.Forms.ToolStripMenuItem renameStripToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem importAssetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem playAssetToolStripMenuItem;
     }
 }
