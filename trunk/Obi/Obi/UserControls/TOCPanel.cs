@@ -104,16 +104,6 @@ namespace Obi.UserControls
 
         #endregion
 
-        /*
-         * Some discussion points we made:
-            1. Expand new nodes by default
-            2. No image list
-            3. Use a right click menu
-            4. Use enter or double-click to load location
-         *  5. if no node is selected, assume the last one is selected
-         *  6. right-click should focus on the node under it
-         *  7. if the tree is empty, the command text is "add heading"
-         */
         public TOCPanel()
         {
             InitializeComponent();
@@ -400,175 +390,11 @@ namespace Obi.UserControls
             }
 
             siblings.Insert(e.Index, clone);
+            clone.ExpandAll();
+            clone.EnsureVisible();
+            tocTree.SelectedNode = clone;
         }
-        /// <summary>
-        /// Move a tree node up
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-     /*   internal void SyncMovedNodeUp(object sender, Events.Node.MovedNodeEventArgs e)
-        {
-            System.Windows.Forms.TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
-
-            TreeNode clone = (TreeNode)selected.Clone();
-            TreeNodeCollection siblingCollection = null;
-
-            int newIndex = 0;
-
-            if (selected.Parent != null)
-            {
-                siblingCollection = selected.Parent.Nodes;
-            }
-            else
-            {
-                siblingCollection = tocTree.Nodes;
-            }
-
-            //it is the first node in its list
-            //change its level and move it to be the previous sibling of its parent
-            if (selected.Index == 0)
-            {
-                if (selected.Parent != null)
-                {
-                    newIndex = selected.Parent.Index;
-
-                    //it will be a sibling of its parent (soon to be former parent)
-                    if (selected.Parent.Parent != null)
-                    {
-                        siblingCollection = selected.Parent.Parent.Nodes;
-                    }
-                    //it is moving to the outermost level
-                    else
-                    {
-                        siblingCollection = tocTree.Nodes;
-                    }
-                }
-                //else it has index = 0 and no parent 
-                //so it's the first node in the tree and can't move up
-            }
-            else
-            {
-                newIndex = selected.Index - 1;
-            }
-
-            if (siblingCollection != null)
-            {
-                //insert the clone at one above the node to be moved
-                siblingCollection.Insert(newIndex, clone);
-
-                //remove the node which was just moved
-                selected.Remove();
-
-                clone.ExpandAll();
-                clone.EnsureVisible();
-                tocTree.SelectedNode = clone;
-            }
-
-        }*/
-
-        /// <summary>
-        /// Move a tree node down
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-  /*      internal void SyncMovedNodeDown(object sender, Events.Node.NodeEventArgs e)
-        {
-            TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
-            TreeNode clone = (TreeNode)
-                selected.Clone();
-            TreeNodeCollection siblingCollection = null;
-
-            int newIndex = 0;
-
-            //get the set of sibling nodes that surround the selected node
-            if (selected.Parent != null)
-            {
-                siblingCollection = selected.Parent.Nodes;
-            }
-            else
-            {
-                siblingCollection = tocTree.Nodes;
-            }
-
-            //if this is the last node in its collection
-            if (selected.Index >= siblingCollection.Count - 1)
-            {
-                if (selected.Parent != null)
-                {
-                    newIndex = selected.Parent.Index + 1;
-
-                    //move it out a level
-                    if (selected.Parent.Parent != null)
-                    {
-                        siblingCollection = selected.Parent.Parent.Nodes;
-                    }
-                    else
-                    {
-                        siblingCollection = tocTree.Nodes;
-                    }
-                }
-            }
-            else
-            {
-                newIndex = selected.Index + 2;
-            }
-
-            if (siblingCollection != null)
-            {
-                //insert the clone at one above the node to be moved
-                siblingCollection.Insert(newIndex, clone);
-
-                //remove the node which was just moved
-                selected.Remove();
-
-                clone.ExpandAll();
-                clone.EnsureVisible();
-                tocTree.SelectedNode = clone;
-            }
-        }*/
-
-        internal void SyncIncreasedNodeLevel(object sender, Events.Node.NodeEventArgs e)
-        {
-            TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
-
-            //you can always increase a node's level if it has an older sibling
-            if (selected.Index == 0)
-            {
-                return;
-            }
-
-            TreeNode clone = (TreeNode)selected.Clone();
-            TreeNodeCollection siblingCollection = null;
-
-            TreeNode newParent = null;
-
-            if (selected.Parent != null)
-            {
-                siblingCollection = selected.Parent.Nodes;
-            }
-            else
-            {
-                siblingCollection = tocTree.Nodes;
-            }
-
-            newParent = siblingCollection[selected.Index - 1];
-
-            if (newParent != null)
-            {
-                //insert the clone as another child of its new parent
-                newParent.Nodes.Add(clone);
-
-                //remove the node which was just moved
-                selected.Remove();
-
-                tocTree.SelectedNode = clone;
-
-                clone.ExpandAll();
-                clone.EnsureVisible();
-                tocTree.SelectedNode = clone;
-            }
-        }
-
+ 
         /// <summary>
         /// Decrease the node level.
         /// When a node becomes shallower, it adopts its former younger siblings.
@@ -731,12 +557,5 @@ namespace Obi.UserControls
                 this.addSubSectionToolStripMenuItem.Enabled = true;
             }
         }
-
-        private void testUndoMoveNodeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            RequestToUndoMoveNode(this, new Events.Node.NodeEventArgs(this, GetSelectedSection()));
-        }
-
-       
     }
 }
