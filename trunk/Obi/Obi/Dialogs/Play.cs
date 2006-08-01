@@ -151,6 +151,7 @@ namespace Obi.Dialogs
 
         private void Play_FormClosing(object sender, FormClosingEventArgs e)
         {
+            AudioPlayer.Instance.VuMeterObject.CloseVuMeterForm();
             AudioPlayer.Instance.Stop();           
         }
     }
