@@ -63,7 +63,7 @@ namespace VirtualAudioBackend
 			resmngr = new ResourceManager("VirtualBackend.messages", GetType().Assembly);
 			m_PlayFile = true ;
 			m_FastPlay = false ;
-			m_State = AudioPlayerState.NotReady ;
+			m_State = AudioPlayerState.Stopped;
 			// AssociateEvents();
 		}
 

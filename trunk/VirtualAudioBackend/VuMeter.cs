@@ -463,6 +463,10 @@ Graph.PeakOverloadLightY = 50 ;
 public int PeakOverloadLightX ;
 public int PeakOverloadLightY ;
 		}
+		public void CloseVuMeterForm()
+		{
+			ob_VuMeterForm.Close();
+		}
 
 	// end of class
 }
