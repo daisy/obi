@@ -19,9 +19,7 @@ namespace Obi.Events.Node
     public delegate void DecreasedNodeLevelHandler(object sender, NodeEventArgs e);
     public delegate void DeletedNodeHandler(object sender, NodeEventArgs e);
     public delegate void ShallowDeletedNodeHandler(object sender, NodeEventArgs e);
-    public delegate void MovedNodeUpHandler(object sender, NodeEventArgs e);
-    public delegate void MovedNodeDownHandler(object sender, NodeEventArgs e);
-
+    
     public delegate void ImportedAssetHandler(object sender, NodeEventArgs e);
 
     public class NodeEventArgs : EventArgs
