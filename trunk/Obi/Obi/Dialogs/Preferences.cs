@@ -107,7 +107,16 @@ namespace Obi.Dialogs
         private void button2_Click(object sender, EventArgs e)
         {
             mIdTemplate = mTemplateBox.Text;
-            mDefaultDir = mDirectoryBox.Text;
+            //mDefaultDir = mDirectoryBox.Text;
+            //mg: rewrite of the above to try to make sure dir exists
+            //only if the value changed since showdialog...
+            if (!mDefaultDir.Equals(mDirectoryBox.Text))                
+            {
+                //...do we go through the test to avoid annyoing repeats
+                if (IOUtils.ValidateAndCreateDir(mDirectoryBox.Text))
+                    mDefaultDir = mDirectoryBox.Text;                
+            }
+            
             mInputDevice = comboInputDevice.SelectedItem.ToString();
             mOutputDevice = comboOutputDevice.SelectedItem.ToString();
             if (comboChannels.SelectedItem.ToString() == "Mono")
