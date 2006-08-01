@@ -125,17 +125,15 @@ namespace Obi.Dialogs
             comboInputDevice.DataSource = m_InDevicesList;
             comboOutputDevice.DataSource = m_OutDevicesList;
             ArrayList mSample = new ArrayList();
+            mSample.Add("44100");
             mSample.Add("11025");
             mSample.Add("22050");
-            mSample.Add("44100");
             mSample.Add("48000");
             comboSampleRate.DataSource= mSample;
-            comboSampleRate.SelectedItem = mSample[2];
             ArrayList mArrayChannels = new ArrayList();
             mArrayChannels.Add("Mono");
             mArrayChannels.Add("Stereo");
             comboChannels.DataSource = mArrayChannels;
-            comboChannels.SelectedItem = mArrayChannels[0];
             }    
             
 
