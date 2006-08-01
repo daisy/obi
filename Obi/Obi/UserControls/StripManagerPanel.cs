@@ -168,6 +168,8 @@ namespace Obi.UserControls
 
         internal void SyncMovedNode(object sender, Events.Node.MovedNodeEventArgs e)
         {
+            SectionStrip strip = mNodeMap[e.Node];
+            mFlowLayoutPanel.Controls.SetChildIndex(strip, e.Position);
         }
 
         #endregion
