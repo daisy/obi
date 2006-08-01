@@ -46,7 +46,6 @@ namespace Obi
         public event Events.Node.DeletedNodeHandler DeletedNode;            // a node was deleted from the presentation
         public event Events.Node.RenamedNodeHandler RenamedNode;            // a node was renamed in the presentation
         public event Events.Node.MovedNodeHandler MovedNode;            // a node was moved in the presentation
-        public event Events.Node.IncreasedNodeLevelHandler IncreasedNodeLevel; //a node's level was increased in the presentation
         public event Events.Node.DecreasedNodeLevelHandler DecreasedNodeLevel; //a node's level was decreased in the presentation
         public event Events.Node.ImportedAssetHandler ImportedAsset;  // an asset was imported into the project
         public event Events.Node.MovedNodeHandler UndidMoveNode;    //a node was restored to its previous location
@@ -592,6 +591,27 @@ namespace Obi
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
 
+        /// <summary>
+        /// Undo increase level
+        /// </summary>
+        /// <param name="origin"></param>
+        /// <param name="node"></param>
+        //added by marisa 01 aug 06
+        public void UndoIncreaseNodeLevel(CoreNode node, CoreNode parent, int index, int position)
+        {
+            UndoMoveNode(node, parent, index, position);
+        }
+
+        /// <summary>
+        /// Undo decrease level
+        /// </summary>
+        /// <param name="origin"></param>
+        /// <param name="node"></param>
+        //added by marisa 01 aug 06
+        public void UndoDecreaseSectionLevel(CoreNode node, CoreNode parent, int index, int position)
+        {
+        }
+
         public void MoveNodeDown(object origin, CoreNode node)
         {
             Commands.TOC.MoveSectionDown command = null;
@@ -674,14 +694,36 @@ namespace Obi
 
         public void IncreaseNodeLevel(object origin, CoreNode node)
         {
+            Commands.TOC.IncreaseSectionLevel command = null;
+
+            if (origin != this)
+            {
+                CoreNode parent = (CoreNode)node.getParent();
+                NodePositionVisitor visitor = new NodePositionVisitor(node);
+                getPresentation().getRootNode().acceptDepthFirst(visitor);
+                //we need to save the state of the node before it is altered
+                command = new Commands.TOC.IncreaseSectionLevel
+                    (this, node, parent, parent.indexOf(node), visitor.Position);
+            }
+
             //a facade API function could do this for us
             bool succeeded = ExecuteIncreaseNodeLevel(node);
             if (succeeded)
             {
-                IncreasedNodeLevel(this, new Events.Node.NodeEventArgs(origin, node));
+                CoreNode newParent = (CoreNode)node.getParent();
+
+                NodePositionVisitor visitor = new NodePositionVisitor(node);
+                getPresentation().getRootNode().acceptDepthFirst(visitor);
+
+                //IncreasedNodeLevel(this, new Events.Node.NodeEventArgs(origin, node));
+                MovedNode(this, new Events.Node.MovedNodeEventArgs
+                    (origin, node, newParent, newParent.indexOf(node), visitor.Position));
+
                 mUnsaved = true;
-                StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+                StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified)); 
+                if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             }
+           
         }
 
         private bool ExecuteIncreaseNodeLevel(CoreNode node)

@@ -46,7 +46,7 @@ namespace Obi.UserControls
                     mProject.UndidMoveNode -= new Events.Node.MovedNodeHandler(mStripManagerPanel.SyncMovedNode);
 
                     mTOCPanel.RequestToIncreaseSectionLevel -= new Events.Node.RequestToIncreaseNodeLevelHandler(mProject.IncreaseNodeLevelRequested);
-                    mProject.IncreasedNodeLevel -= new Events.Node.IncreasedNodeLevelHandler(mTOCPanel.SyncIncreasedNodeLevel);
+                    //marisa: the former "mProject.IncreasedSectionLevel" event is now handled by MovedNode
 
                     mTOCPanel.RequestToDecreaseSectionLevel -= new Events.Node.RequestToDecreaseNodeLevelHandler(mProject.DecreaseNodeLevelRequested);
                     mProject.DecreasedNodeLevel -= new Events.Node.DecreasedNodeLevelHandler(mTOCPanel.SyncDecreasedNodeLevel);
@@ -87,7 +87,7 @@ namespace Obi.UserControls
                     value.UndidMoveNode += new Events.Node.MovedNodeHandler(mStripManagerPanel.SyncMovedNode);
 
                     mTOCPanel.RequestToIncreaseSectionLevel += new Events.Node.RequestToIncreaseNodeLevelHandler(value.IncreaseNodeLevelRequested);
-                    value.IncreasedNodeLevel += new Events.Node.IncreasedNodeLevelHandler(mTOCPanel.SyncIncreasedNodeLevel);
+                    //marisa: the former "mProject.IncreasedSectionLevel" event is now handled by MovedNode
 
                     mTOCPanel.RequestToDecreaseSectionLevel += new Events.Node.RequestToDecreaseNodeLevelHandler(value.DecreaseNodeLevelRequested);
                     value.DecreasedNodeLevel += new Events.Node.DecreasedNodeLevelHandler(mTOCPanel.SyncDecreasedNodeLevel);
