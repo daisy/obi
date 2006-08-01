@@ -42,10 +42,10 @@ namespace Obi.Dialogs
             this.mTab = new System.Windows.Forms.TabControl();
             this.mProjectTab = new System.Windows.Forms.TabPage();
             this.mAudioTab = new System.Windows.Forms.TabPage();
+            this.comboChannels = new System.Windows.Forms.ComboBox();
+            this.labelChannels = new System.Windows.Forms.Label();
             this.comboSampleRate = new System.Windows.Forms.ComboBox();
             this.labelSampleRate = new System.Windows.Forms.Label();
-            this.labelChannels = new System.Windows.Forms.Label();
-            this.comboChannels = new System.Windows.Forms.ComboBox();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             this.mAudioTab.SuspendLayout();
@@ -202,12 +202,31 @@ namespace Obi.Dialogs
             this.mAudioTab.Text = "Audio";
             this.mAudioTab.UseVisualStyleBackColor = true;
             // 
+            // comboChannels
+            // 
+            this.comboChannels.AllowDrop = true;
+            this.comboChannels.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboChannels.FormattingEnabled = true;
+            this.comboChannels.Location = new System.Drawing.Point(181, 138);
+            this.comboChannels.Name = "comboChannels";
+            this.comboChannels.Size = new System.Drawing.Size(121, 21);
+            this.comboChannels.TabIndex = 16;
+            // 
+            // labelChannels
+            // 
+            this.labelChannels.AutoSize = true;
+            this.labelChannels.Location = new System.Drawing.Point(191, 111);
+            this.labelChannels.Name = "labelChannels";
+            this.labelChannels.Size = new System.Drawing.Size(84, 13);
+            this.labelChannels.TabIndex = 15;
+            this.labelChannels.Text = "Select &Channels";
+            // 
             // comboSampleRate
             // 
             this.comboSampleRate.AllowDrop = true;
             this.comboSampleRate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboSampleRate.FormattingEnabled = true;
-            this.comboSampleRate.Location = new System.Drawing.Point(211, 134);
+            this.comboSampleRate.Location = new System.Drawing.Point(16, 138);
             this.comboSampleRate.Name = "comboSampleRate";
             this.comboSampleRate.Size = new System.Drawing.Size(121, 21);
             this.comboSampleRate.TabIndex = 14;
@@ -215,30 +234,11 @@ namespace Obi.Dialogs
             // labelSampleRate
             // 
             this.labelSampleRate.AutoSize = true;
-            this.labelSampleRate.Location = new System.Drawing.Point(203, 111);
+            this.labelSampleRate.Location = new System.Drawing.Point(28, 111);
             this.labelSampleRate.Name = "labelSampleRate";
             this.labelSampleRate.Size = new System.Drawing.Size(101, 13);
             this.labelSampleRate.TabIndex = 13;
             this.labelSampleRate.Text = "Select &Sample Rate";
-            // 
-            // labelChannels
-            // 
-            this.labelChannels.AutoSize = true;
-            this.labelChannels.Location = new System.Drawing.Point(47, 111);
-            this.labelChannels.Name = "labelChannels";
-            this.labelChannels.Size = new System.Drawing.Size(84, 13);
-            this.labelChannels.TabIndex = 15;
-            this.labelChannels.Text = "Select &Channels";
-            // 
-            // comboChannels
-            // 
-            this.comboChannels.AllowDrop = true;
-            this.comboChannels.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboChannels.FormattingEnabled = true;
-            this.comboChannels.Location = new System.Drawing.Point(55, 134);
-            this.comboChannels.Name = "comboChannels";
-            this.comboChannels.Size = new System.Drawing.Size(121, 21);
-            this.comboChannels.TabIndex = 16;
             // 
             // Preferences
             // 
