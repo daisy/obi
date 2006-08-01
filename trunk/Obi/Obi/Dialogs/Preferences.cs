@@ -110,12 +110,10 @@ namespace Obi.Dialogs
             mDefaultDir = mDirectoryBox.Text;
             mInputDevice = comboInputDevice.SelectedItem.ToString();
             mOutputDevice = comboOutputDevice.SelectedItem.ToString();
-            /*
             if (comboChannels.SelectedItem.ToString() == "Mono")
                 mAudioChannels = 1;
             else
                 mAudioChannels = 2;
-             * */
             mSampleRate = Convert.ToInt32(comboSampleRate.SelectedItem);
             mBitDepth = 16;
         }
@@ -133,6 +131,11 @@ namespace Obi.Dialogs
             mSample.Add("48000");
             comboSampleRate.DataSource= mSample;
             comboSampleRate.SelectedItem = mSample[2];
+            ArrayList mArrayChannels = new ArrayList();
+            mArrayChannels.Add("Mono");
+            mArrayChannels.Add("Stereo");
+            comboChannels.DataSource = mArrayChannels;
+            comboChannels.SelectedItem = mArrayChannels[0];
             }    
             
 
