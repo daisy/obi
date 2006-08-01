@@ -106,6 +106,12 @@
     <Compile Include="Dialogs\Record.Designer.cs">
       <DependentUpon>Record.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\Split.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Split.Designer.cs">
+      <DependentUpon>Split.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\UserProfile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +164,10 @@
     <EmbeddedResource Include="Dialogs\Record.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Record.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Split.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Split.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\UserProfile.resx">
       <SubType>Designer</SubType>
