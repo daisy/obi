@@ -28,15 +28,17 @@ namespace Obi.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtDisplayAsset = new System.Windows.Forms.TextBox();
             this.txtDisplayTime = new System.Windows.Forms.TextBox();
             this.btnPlay = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
+            this.tmUpdateCurrentTime = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // txtDisplayAsset
             // 
-            this.txtDisplayAsset.Location = new System.Drawing.Point(9, 17);
+            this.txtDisplayAsset.Location = new System.Drawing.Point(20, 20);
             this.txtDisplayAsset.Name = "txtDisplayAsset";
             this.txtDisplayAsset.ReadOnly = true;
             this.txtDisplayAsset.Size = new System.Drawing.Size(228, 20);
@@ -44,15 +46,15 @@ namespace Obi.Dialogs
             // 
             // txtDisplayTime
             // 
-            this.txtDisplayTime.Location = new System.Drawing.Point(17, 62);
+            this.txtDisplayTime.Location = new System.Drawing.Point(20, 110);
             this.txtDisplayTime.Name = "txtDisplayTime";
             this.txtDisplayTime.ReadOnly = true;
             this.txtDisplayTime.Size = new System.Drawing.Size(100, 20);
-            this.txtDisplayTime.TabIndex = 1;
+            this.txtDisplayTime.TabIndex = 4;
             // 
             // btnPlay
             // 
-            this.btnPlay.Location = new System.Drawing.Point(25, 103);
+            this.btnPlay.Location = new System.Drawing.Point(20, 50);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(75, 23);
             this.btnPlay.TabIndex = 2;
@@ -62,13 +64,18 @@ namespace Obi.Dialogs
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(33, 145);
+            this.btnStop.Location = new System.Drawing.Point(20, 80);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 3;
             this.btnStop.Text = "&Stop";
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            // 
+            // tmUpdateCurrentTime
+            // 
+            this.tmUpdateCurrentTime.Interval = 1000;
+            this.tmUpdateCurrentTime.Tick += new System.EventHandler(this.tmUpdateCurrentTime_Tick);
             // 
             // Play
             // 
@@ -81,6 +88,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.txtDisplayAsset);
             this.Name = "Play";
             this.Text = "Play";
+            this.Load += new System.EventHandler(this.Play_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -92,5 +100,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.TextBox txtDisplayTime;
         private System.Windows.Forms.Button btnPlay;
         private System.Windows.Forms.Button btnStop;
+        private System.Windows.Forms.Timer tmUpdateCurrentTime;
     }
 }

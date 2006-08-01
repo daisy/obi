@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using Commands;
 using VirtualAudioBackend;
+using Obi.Dialogs;
 
 namespace Obi
 {
@@ -657,6 +658,12 @@ namespace Obi
                 mCmdMngr.Redo();
                 FormUpdateUndoRedoLabels();
             }
+        }
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            Play ob_PlayDialog = new Play();
+            ob_PlayDialog.Show();
         }
 
     }
