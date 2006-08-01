@@ -30,9 +30,27 @@ namespace Obi.Dialogs
             }
         }
 
-        private int mAudioChannels;  // preferred number of audio channels
-        private int mSampleRate;     // preferred sample rate
-        private int mBitDepth;       // preferred bit depth
+        private string mOutputDevice;  // preferred output device
+        private string mInputDevice;   // preferred input device
+        private int mAudioChannels;    // preferred number of audio channels
+        private int mSampleRate;       // preferred sample rate
+        private int mBitDepth;         // preferred bit depth
+
+        public string OutputDevice
+        {
+            get
+            {
+                return mOutputDevice;
+            }
+        }
+
+        public string InputDevice
+        {
+            get
+            {
+                return mInputDevice;
+            }
+        }
 
         public int AudioChannels
         {
@@ -58,19 +76,20 @@ namespace Obi.Dialogs
             }
         }
 
-        Settings settings = new Settings();
-
         ArrayList m_InDevicesList = new ArrayList();
         ArrayList m_OutDevicesList = new ArrayList();
         AudioRecorder ob_AudioRecorder = new AudioRecorder();
         AudioPlayer ob_AudioPlayer = new AudioPlayer();
 
-        public Preferences(string template, string dir)
+        /// <summary>
+        /// Initialize the preferences with the user settings.
+        /// </summary>
+        public Preferences(Settings settings)
         {
             InitializeComponent();
-            mIdTemplate = template;
+            mIdTemplate = settings.IdTemplate;
             mTemplateBox.Text = mIdTemplate;
-            mDefaultDir = dir;
+            mDefaultDir = settings.DefaultPath;
             mDirectoryBox.Text = mDefaultDir;
         }
 
@@ -87,10 +106,10 @@ namespace Obi.Dialogs
 
         private void button2_Click(object sender, EventArgs e)
         {
-            mIdTemplate      = mTemplateBox.Text;
+            mIdTemplate = mTemplateBox.Text;
             mDefaultDir = mDirectoryBox.Text;
-            settings.LastInputDevice = comboInputDevice.SelectedItem.ToString();
-            settings.LastOutputDevice = comboOutputDevice.SelectedItem.ToString();
+            mInputDevice = comboInputDevice.SelectedItem.ToString();
+            mOutputDevice = comboOutputDevice.SelectedItem.ToString();
         }
 
         private void Preferences_Load(object sender, EventArgs e)
