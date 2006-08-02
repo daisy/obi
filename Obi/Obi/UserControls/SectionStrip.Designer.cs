@@ -41,7 +41,7 @@ namespace Obi.UserControls
             this.mFlowLayoutPanel.Location = new System.Drawing.Point(2, 21);
             this.mFlowLayoutPanel.Name = "mFlowLayoutPanel";
             this.mFlowLayoutPanel.Size = new System.Drawing.Size(237, 11);
-            this.mFlowLayoutPanel.TabIndex = 1;
+            this.mFlowLayoutPanel.TabIndex = 2;
             this.mFlowLayoutPanel.WrapContents = false;
             // 
             // mTextBox
@@ -53,8 +53,9 @@ namespace Obi.UserControls
             this.mTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.mTextBox.Location = new System.Drawing.Point(3, 0);
             this.mTextBox.Name = "mTextBox";
+            this.mTextBox.ReadOnly = true;
             this.mTextBox.Size = new System.Drawing.Size(235, 19);
-            this.mTextBox.TabIndex = 2;
+            this.mTextBox.TabIndex = 1;
             this.mTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mTextBox_KeyDown);
             // 
             // SectionStrip
