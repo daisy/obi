@@ -19,11 +19,11 @@ namespace Obi.UserControls
         {
             get
             {
-                return mLabel.Text;
+                return mTextBox.Text;
             }
             set
             {
-                mLabel.Text = value;
+                mTextBox.Text = value;
             }
         }
 
@@ -49,6 +49,7 @@ namespace Obi.UserControls
 
         public SectionStrip()
         {
+            this.TabStop = true; //mg: not in designer for some reason
             InitializeComponent();
         }
 
@@ -56,7 +57,9 @@ namespace Obi.UserControls
         {
             if (mManager.SelectedSection == mNode)
             {
-                StartRenaming();
+                //mg: changed renaming to not be 
+                //default state at focus:
+                //StartRenaming();
             }
             else
             {
@@ -67,12 +70,13 @@ namespace Obi.UserControls
         public void MarkSelected()
         {
             BackColor = Color.Gold;
+            mTextBox.BackColor = Color.Gold;
         }
 
         public void MarkDeselected()
         {
-            mTextBox.Visible = false;
             BackColor = Color.PaleGreen;
+            mTextBox.BackColor = Color.PaleGreen;
         }
 
         /// <summary>
@@ -83,10 +87,9 @@ namespace Obi.UserControls
         /// </summary>
         public void StartRenaming()
         {
+            mTextBox.ReadOnly = false;
             mTextBox.BackColor = BackColor;
-            mTextBox.Text = "";
-            mTextBox.SelectedText = mLabel.Text;
-            mTextBox.Visible = true;
+            mTextBox.SelectAll();
             mFlowLayoutPanel.Focus();
             mTextBox.Focus();
         }
@@ -97,7 +100,7 @@ namespace Obi.UserControls
         private void mTextBox_Leave(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.Print("Leaving the text box...");
-            mTextBox.Visible = false;
+            mTextBox.ReadOnly = true;
         }
 
         /// <summary>
@@ -108,10 +111,18 @@ namespace Obi.UserControls
             switch (e.KeyCode)
             {
                 case Keys.Return:
+                    mTextBox.ReadOnly = true;
                     UpdateText();
                     break;
                 case Keys.Escape:
-                    mTextBox.Visible = false;
+                    mTextBox.Text = Project.GetTextMedia(this.Node).getText();
+                    mTextBox.ReadOnly = true;
+                    break;
+                case Keys.F2:
+                    if (mTextBox.ReadOnly)
+                    {
+                        this.StartRenaming();
+                    }
                     break;
                 default:
                     break;
@@ -125,10 +136,8 @@ namespace Obi.UserControls
         /// </summary>
         private void UpdateText()
         {
-            mTextBox.Visible = false;
             if (mTextBox.Text != "")
             {
-                mLabel.Text = mTextBox.Text;
                 mManager.RenamedSectionStrip(this);
             }
             else
@@ -143,5 +152,18 @@ namespace Obi.UserControls
         {
             mFlowLayoutPanel.Controls.Add(block);
         }
+
+        //mg: for tab navigation et al
+        private void SectionStrip_leave(object sender, EventArgs e)
+        {
+            this.MarkDeselected();
+        }
+
+        //mg: for tab navigation et al
+        private void SectionStrip_enter(object sender, EventArgs e)
+        {
+            //System.Diagnostics.Debug.Print("SectionStrip:tabindex:"+this.TabIndex.ToString());
+            this.MarkSelected();
+        } 
     }
 }
