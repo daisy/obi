@@ -67,6 +67,7 @@ namespace Obi
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.importAssetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playFirstPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitFirstAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,7 +75,7 @@ namespace Obi
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectPanel = new Obi.UserControls.ProjectPanel();
-            this.splitFirstAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startRecordingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -335,7 +336,8 @@ namespace Obi
             this.toolStripSeparator5,
             this.importAssetToolStripMenuItem,
             this.playFirstPhraseToolStripMenuItem,
-            this.splitFirstAudioBlockToolStripMenuItem});
+            this.splitFirstAudioBlockToolStripMenuItem,
+            this.startRecordingToolStripMenuItem});
             this.mStripsToolStripMenuItem.Name = "mStripsToolStripMenuItem";
             this.mStripsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.mStripsToolStripMenuItem.Text = "Strips";
@@ -369,6 +371,13 @@ namespace Obi
             this.playFirstPhraseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.playFirstPhraseToolStripMenuItem.Text = "&Play first audio block";
             this.playFirstPhraseToolStripMenuItem.Click += new System.EventHandler(this.playFirstPhraseToolStripMenuItem_Click);
+            // 
+            // splitFirstAudioBlockToolStripMenuItem
+            // 
+            this.splitFirstAudioBlockToolStripMenuItem.Name = "splitFirstAudioBlockToolStripMenuItem";
+            this.splitFirstAudioBlockToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.splitFirstAudioBlockToolStripMenuItem.Text = "&Split first audio block";
+            this.splitFirstAudioBlockToolStripMenuItem.Click += new System.EventHandler(this.splitFirstAudioBlockToolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -430,12 +439,12 @@ namespace Obi
             this.mProjectPanel.Size = new System.Drawing.Size(767, 450);
             this.mProjectPanel.TabIndex = 4;
             // 
-            // splitFirstAudioBlockToolStripMenuItem
+            // startRecordingToolStripMenuItem
             // 
-            this.splitFirstAudioBlockToolStripMenuItem.Name = "splitFirstAudioBlockToolStripMenuItem";
-            this.splitFirstAudioBlockToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.splitFirstAudioBlockToolStripMenuItem.Text = "&Split first audio block";
-            this.splitFirstAudioBlockToolStripMenuItem.Click += new System.EventHandler(this.splitFirstAudioBlockToolStripMenuItem_Click);
+            this.startRecordingToolStripMenuItem.Name = "startRecordingToolStripMenuItem";
+            this.startRecordingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.startRecordingToolStripMenuItem.Text = "S&tart recording";
+            this.startRecordingToolStripMenuItem.Click += new System.EventHandler(this.startRecordingToolStripMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -509,6 +518,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem increaseSectionDepthToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem decreaseSectionLevelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem splitFirstAudioBlockToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem startRecordingToolStripMenuItem;
 
 
     }

@@ -125,6 +125,7 @@ namespace Obi.Dialogs
             // 
             // btnStop
             // 
+            this.btnStop.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnStop.Location = new System.Drawing.Point(120, 166);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 21);
@@ -145,8 +146,10 @@ namespace Obi.Dialogs
             // 
             // Split
             // 
+            this.AcceptButton = this.btnSplit;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnStop;
             this.ClientSize = new System.Drawing.Size(292, 252);
             this.Controls.Add(this.btnPause);
             this.Controls.Add(this.btnStop);

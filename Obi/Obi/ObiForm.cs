@@ -723,5 +723,14 @@ namespace Obi
                 dialog.ShowDialog();
             }
         }
+
+        /// <summary>
+        /// Quick test for recording dialog
+        /// For debugging purposes only!
+        /// </summary>
+        private void startRecordingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProject.StartRecording(mSettings);
+        }
     }
 }
