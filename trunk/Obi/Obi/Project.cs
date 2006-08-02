@@ -694,7 +694,7 @@ namespace Obi
 
         public void IncreaseNodeLevel(object origin, CoreNode node)
         {
-            Commands.TOC.IncreaseSectionLevel command = null;
+            //Commands.TOC.IncreaseSectionLevel command = null;  // the command file is missing :( JQ
 
             if (origin != this)
             {
@@ -702,8 +702,8 @@ namespace Obi
                 NodePositionVisitor visitor = new NodePositionVisitor(node);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
                 //we need to save the state of the node before it is altered
-                command = new Commands.TOC.IncreaseSectionLevel
-                    (this, node, parent, parent.indexOf(node), visitor.Position);
+                //command = new Commands.TOC.IncreaseSectionLevel
+                //    (this, node, parent, parent.indexOf(node), visitor.Position);  // Same problem JQ
             }
 
             //a facade API function could do this for us
@@ -721,7 +721,7 @@ namespace Obi
 
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified)); 
-                if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+                // if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));  // JQ
             }
            
         }
