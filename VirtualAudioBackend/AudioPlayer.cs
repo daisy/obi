@@ -441,6 +441,7 @@ namespace VirtualAudioBackend
 			lPosition = Calc.AdaptToFrame(lPosition, m_Asset .FrameSize) ;
 			if(lPosition>0   && lPosition < m_Asset.AudioLengthInBytes)
 			{
+							m_StartPosition   =  lPosition ;
 				InitPlay ( lPosition, 0 );
 			}
 			else
