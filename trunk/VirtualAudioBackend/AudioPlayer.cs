@@ -224,7 +224,9 @@ namespace VirtualAudioBackend
 			}
 			else
 			{
-				m_lLength = (m_Asset .SizeInBytes  - lStartPosition ) ;
+				// folowing one line is modified on 2 Aug 2006
+				//m_lLength = (m_Asset .SizeInBytes  - lStartPosition ) ;
+				m_lLength = (m_Asset .SizeInBytes  ) ;
 			}
 
 			WaveFormat newFormat = new WaveFormat () ;				
@@ -296,7 +298,8 @@ namespace VirtualAudioBackend
 
 			}
 			// Adds the length (count) of file played into a variable
-			m_lPlayed = m_SizeBuffer + reduction+ (2 * m_CompAddition);
+			// Folowing one line was modified on 2 Aug 2006 i.e lStartPosition is added
+			m_lPlayed = m_SizeBuffer + reduction+ (2 * m_CompAddition) + lStartPosition;
 
 
 			m_PlayFile = true ;
@@ -431,7 +434,7 @@ namespace VirtualAudioBackend
 			// RefreshBuffer ends
 		}
 		
-		private void Play(IAudioMediaAsset  asset, double timeFrom)
+		public void Play(IAudioMediaAsset  asset, double timeFrom)
 		{
 			m_Asset = asset as AudioMediaAsset;
 			long lPosition = Calc.ConvertTimeToByte (timeFrom, m_Asset .SampleRate, m_Asset .FrameSize) ;
@@ -441,9 +444,9 @@ namespace VirtualAudioBackend
 				InitPlay ( lPosition, 0 );
 			}
 			else
-			{
-				MessageBox.Show ("Parameters out of range") ;
-			}
+			throw new Exception ("Start Position is out of bounds of Audio Asset") ;
+				
+			
 		}
 
 		// contains the end position  to play to be used in starting playing  after seeking
