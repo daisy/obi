@@ -158,5 +158,10 @@ namespace Obi.Dialogs
         private void AudioPlayer_UpdateVuMeter(object sender, UpdateVuMeter e)
         {
         }
+
+        private void Split_FormClosing(object sender, FormClosingEventArgs e)
+        {
+        }
+
     }// end of class
 }
