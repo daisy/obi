@@ -245,6 +245,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mono.
+        /// </summary>
+        internal static string mono {
+            get {
+                return ResourceManager.GetString("mono", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New project.
         /// </summary>
         internal static string new_project {
@@ -461,6 +470,15 @@ namespace Obi {
         internal static string status_toc_shown {
             get {
                 return ResourceManager.GetString("status_toc_shown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stereo.
+        /// </summary>
+        internal static string stereo {
+            get {
+                return ResourceManager.GetString("stereo", resourceCulture);
             }
         }
         

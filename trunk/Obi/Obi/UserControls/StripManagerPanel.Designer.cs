@@ -77,46 +77,46 @@ namespace Obi.UserControls
             this.renameAssetToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(128, 142);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(149, 120);
             // 
             // addStripToolStripMenuItem
             // 
             this.addStripToolStripMenuItem.Name = "addStripToolStripMenuItem";
-            this.addStripToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.addStripToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.addStripToolStripMenuItem.Text = "&Add strip";
             this.addStripToolStripMenuItem.Click += new System.EventHandler(this.addStripToolStripMenuItem_Click);
             // 
             // renameStripToolStripMenuItem
             // 
             this.renameStripToolStripMenuItem.Name = "renameStripToolStripMenuItem";
-            this.renameStripToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.renameStripToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.renameStripToolStripMenuItem.Text = "&Rename strip";
             this.renameStripToolStripMenuItem.Click += new System.EventHandler(this.renameStripToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(124, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(145, 6);
             // 
             // importAssetToolStripMenuItem
             // 
             this.importAssetToolStripMenuItem.Name = "importAssetToolStripMenuItem";
-            this.importAssetToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
-            this.importAssetToolStripMenuItem.Text = "&Import asset";
+            this.importAssetToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.importAssetToolStripMenuItem.Text = "&Import audio file";
             this.importAssetToolStripMenuItem.Click += new System.EventHandler(this.importAssetToolStripMenuItem_Click);
             // 
             // playAssetToolStripMenuItem
             // 
             this.playAssetToolStripMenuItem.Name = "playAssetToolStripMenuItem";
-            this.playAssetToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
-            this.playAssetToolStripMenuItem.Text = "&Play asset";
+            this.playAssetToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.playAssetToolStripMenuItem.Text = "&Play audio block";
             this.playAssetToolStripMenuItem.Click += new System.EventHandler(this.playAssetToolStripMenuItem_Click);
             // 
             // renameAssetToolStripMenuItem
             // 
             this.renameAssetToolStripMenuItem.Name = "renameAssetToolStripMenuItem";
-            this.renameAssetToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
-            this.renameAssetToolStripMenuItem.Text = "Re&name asset";
+            this.renameAssetToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.renameAssetToolStripMenuItem.Text = "Re&name audio block";
             this.renameAssetToolStripMenuItem.Click += new System.EventHandler(this.renameAssetToolStripMenuItem_Click);
             // 
             // StripManagerPanel

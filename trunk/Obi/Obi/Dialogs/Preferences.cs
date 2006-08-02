@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using VirtualAudioBackend;
 using System.Collections;
+
 namespace Obi.Dialogs
 {
     public partial class Preferences : Form
@@ -146,21 +147,15 @@ namespace Obi.Dialogs
             mSample.Add("22050");
             mSample.Add("44100");
             mSample.Add("48000");
-            comboSampleRate.DataSource= mSample;
+            comboSampleRate.DataSource = mSample;
             comboSampleRate.SelectedIndex = mSample.IndexOf(mSampleRate.ToString());
             ArrayList mArrayChannels = new ArrayList();
-            mArrayChannels.Add("Mono");
-            mArrayChannels.Add("Stereo");
+            mArrayChannels.Add(Localizer.Message("mono"));
+            mArrayChannels.Add(Localizer.Message("stereo"));
             comboChannels.DataSource = mArrayChannels;
-            if (mAudioChannels == 1)
-                comboChannels.SelectedIndex = mArrayChannels.IndexOf("Mono");
-            else
-                comboChannels.SelectedIndex = mArrayChannels.IndexOf("Stereo");
-            }    
-            
-
-        
-
+            comboChannels.SelectedIndex = mArrayChannels.IndexOf(Localizer.Message(mAudioChannels == 1 ? "mono" : "stereo"));
+        }
+ 
         public void SelectProjectTab()
         {
             mTab.SelectedTab = mProjectTab;
@@ -170,9 +165,5 @@ namespace Obi.Dialogs
         {
             mTab.SelectedTab = mAudioTab;
         }
-
-        
-
-        
     }
 }

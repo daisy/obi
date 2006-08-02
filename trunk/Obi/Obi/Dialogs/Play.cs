@@ -85,38 +85,20 @@ namespace Obi.Dialogs
 
         private void tmUpdateCurrentTime_Tick(object sender, EventArgs e)
         {
-            double dMiliSeconds = AudioPlayer.Instance.CurrentTimePosition; 
+            double dMiliSeconds = AudioPlayer.Instance.CurrentTimePosition;
             int Seconds = Convert.ToInt32 (dMiliSeconds / 1000);
-            string sSeconds;
-            if (Seconds  > 9)
-                sSeconds = Seconds.ToString();
-            else
-                sSeconds = "0" + Seconds.ToString();
-
+            string sSeconds = Seconds.ToString("00");
             int Minutes = Convert.ToInt32(Seconds / 60);
-            string sMinutes;
-            if (Minutes  > 9)
-                sMinutes = Minutes.ToString();
-            else
-                sMinutes = "0" + Minutes.ToString();
-
-
+            string sMinutes = Minutes.ToString("00");
             int Hours = Minutes / 60;
-            string sHours;
-            if (Hours > 9)
-                sHours = Hours.ToString();
-            else
-                sHours = "0" + Hours.ToString();
-
-
-            //string sDisplayTime = Hours.ToString () +":" + Minutes.ToString () + ":" + Seconds.ToString()    ;
-            string sDisplayTime = sHours + ":" + sMinutes + ":" + sSeconds;
-            mTimeDisplay.Text = sDisplayTime;
+            string sHours = Hours.ToString("00");
+            mTimeDisplay.Text = sHours + ":" + sMinutes + ":" + sSeconds;
         }
 
         private void Play_Load(object sender, EventArgs e)
         {
             mNameDisplay.Text = ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).getText();
+            mTimeDisplay.Text = "00:00:00";
             if (AudioPlayer.Instance.State.Equals(AudioPlayerState.Stopped))
             {
                 VuMeter ob_VuMeter = new VuMeter();

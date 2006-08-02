@@ -3,15 +3,12 @@ using System;
 namespace VirtualAudioBackend.events.AudioRecorderEvents
 {
 	/// <summary>
-	/// Summary description for AudioRecorderEvent.
+	/// Base class for audio recorder events.
 	/// </summary>
 	public class AudioRecorderEvent
 	{
 		public AudioRecorderEvent()
 		{
-			//
-			// TODO: Add constructor logic here
-			//
 		}
 	}
 }

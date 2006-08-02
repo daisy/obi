@@ -356,7 +356,6 @@ namespace VirtualAudioBackend
 		/// Thread-safe way to set the text on a control.
 		/// </summary>
 		/// <remarks>Added by JQ</remarks>
-		/// <param name="BeepEnabled"></param>
 		private void SetTextBoxText(TextBox box, string text)
 		{
 			if (InvokeRequired)
@@ -389,8 +388,8 @@ namespace VirtualAudioBackend
 				SetTextBoxText(txtOverloadRight, ob_VuMeter.m_MeanValueRight.ToString());
 			}
 
-			BeepEnabled =true  ;
-			
+			//BeepEnabled =true  ;
+			BeepEnabled = false;  // don't beep (JQ)
 		}	
 
 		// repeats the LoadBeep function to repeat beeps while there is overload

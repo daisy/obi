@@ -2,26 +2,12 @@ using System;
 
 namespace VirtualAudioBackend.events.AudioRecorderEvents
 {
+	public delegate void UpdateVuMeterFromRecorderHandler(object sender, UpdateVuMeterFromRecorder e);
 
-	public delegate void DUpdateVuMeterEventHandller ( object sender , UpdateVuMeterFromRecorder Update) ;  	
 	/// <summary>
-	/// Summary description for UpdateVuMeterFromRecorder.
+	/// Recorder want an update in the VU meter.
 	/// </summary>
-
 	public class UpdateVuMeterFromRecorder :AudioRecorderEvent
 	{
-		public event DUpdateVuMeterEventHandller UpdateVuMeterEvent;
-		public void NotifyUpdateVuMeter ( object sender , UpdateVuMeterFromRecorder Update )
-		{
-			if ( UpdateVuMeterEvent != null)
-				UpdateVuMeterEvent ( sender , Update) ;
-		}
-
-
-		
-			
-
-			
-		
 	}
 }

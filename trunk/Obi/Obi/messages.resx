@@ -266,4 +266,12 @@ Do you want to replace the project contained in this file?</value>
     <value>&amp;Play</value>
     <comment>Play button label (JQ)</comment>
   </data>
+  <data name="mono" xml:space="preserve">
+    <value>Mono</value>
+    <comment>one channel (JQ)</comment>
+  </data>
+  <data name="stereo" xml:space="preserve">
+    <value>Stereo</value>
+    <comment>two channels (JQ)</comment>
+  </data>
 </root>

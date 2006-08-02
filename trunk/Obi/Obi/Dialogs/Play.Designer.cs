@@ -41,11 +41,11 @@ namespace Obi.Dialogs
             // 
             this.mNameDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.mNameDisplay.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mNameDisplay.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mNameDisplay.Location = new System.Drawing.Point(12, 24);
             this.mNameDisplay.Name = "mNameDisplay";
             this.mNameDisplay.ReadOnly = true;
-            this.mNameDisplay.Size = new System.Drawing.Size(268, 19);
+            this.mNameDisplay.Size = new System.Drawing.Size(268, 12);
             this.mNameDisplay.TabIndex = 0;
             this.mNameDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -53,11 +53,11 @@ namespace Obi.Dialogs
             // 
             this.mTimeDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.mTimeDisplay.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mTimeDisplay.Location = new System.Drawing.Point(96, 49);
+            this.mTimeDisplay.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.mTimeDisplay.Location = new System.Drawing.Point(12, 49);
             this.mTimeDisplay.Name = "mTimeDisplay";
             this.mTimeDisplay.ReadOnly = true;
-            this.mTimeDisplay.Size = new System.Drawing.Size(100, 19);
+            this.mTimeDisplay.Size = new System.Drawing.Size(268, 12);
             this.mTimeDisplay.TabIndex = 4;
             this.mTimeDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
