@@ -19,7 +19,16 @@ namespace VirtualAudioBackend
 		private string sProjectDirectory; 
 		//the variables for current position and current time for VuMeter
 		long CurrentPositionInByte ;
-		double dCurrentTime;
+		private double dCurrentTime;
+
+		public double CurrentTime
+		{
+			get
+			{
+				return dCurrentTime;
+			}
+		}
+
 		// basic elements of WaveFormat
 		internal int m_Channels;
 		internal int m_bitDepth;
@@ -216,6 +225,9 @@ namespace VirtualAudioBackend
 					InitRecording(false);
 			applicationNotify = null;
 			applicationBuffer = null;
+			FileInfo fi = new FileInfo(m_sFileName);
+			if(fi.Length == 44)
+				File.Delete(m_sFileName);
 		}			
 		
 
