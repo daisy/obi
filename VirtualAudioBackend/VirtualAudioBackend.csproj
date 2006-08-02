@@ -212,21 +212,6 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "events\AssetManagerEvents\AssetDeleted.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "events\AssetManagerEvents\AssetManager.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "events\AssetManagerEvents\AssetRenamed.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "events\AudioPlayerEvents\AudioPlayerEvent.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

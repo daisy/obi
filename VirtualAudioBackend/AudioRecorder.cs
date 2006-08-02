@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using Microsoft.DirectX;
 using Microsoft.DirectX.DirectSound;
 using System.Threading;
-using System.Resources;
 
 namespace VirtualAudioBackend
 {
@@ -57,8 +56,7 @@ namespace VirtualAudioBackend
 		//		 array for update current amplitude to VuMeter
 		internal byte [] arUpdateVM ;
 		internal int m_UpdateVMArrayLength ;
-		events.AudioRecorderEvents.UpdateVuMeterFromRecorder ob_UpdateVuMeter =
-			new events.AudioRecorderEvents.UpdateVuMeterFromRecorder();		
+
 		VuMeter ob_VuMeter;
 		
 		AudioMediaAsset m_AudioMediaAsset; 
@@ -68,7 +66,6 @@ namespace VirtualAudioBackend
 		
 
 		private static readonly AudioRecorder instance = new AudioRecorder();
-		private ResourceManager resmngr;
 		
 		public static AudioRecorder Instance
 		{ 
@@ -78,64 +75,34 @@ namespace VirtualAudioBackend
 			} 
 		}
 
-		// constructor 
-		public 		AudioRecorder()
-		{
-							
-			resmngr = new ResourceManager("VirtualBackend.messages", GetType().Assembly);
+		// constructor, made private by JQ 
+		private AudioRecorder()
+		{			
+			ob_VuMeter = null;
 		}
 
-		public static string Message(string key)
-		{
-			return instance.resmngr.GetString(key);
-		}
-
-	
-
-		//the sample rate is 11025, 22050  or 44100
 		public int SampleRate
 		{
 			get
 			{
-				if((m_SampleRate == 11025) &&((m_SampleRate != 22050) || (m_SampleRate != 44100)))
-					return m_SampleRate;
-				else if(((m_SampleRate != 11025) ||(m_SampleRate != 44100)) &&(m_SampleRate == 22050))
-					return m_SampleRate;
-				else if(((m_SampleRate != 11025) ||(m_SampleRate != 22050)) &&(m_SampleRate == 44100))
-					return m_SampleRate;
-				else
-					throw new Exception("invalid sample rate");
+				return m_SampleRate;
+
 			}
 		}
 		
-		//this will set the bit depth as 8 or 16
 		public int BitDepth
 		{
 			get
 			{
-				if((m_bitDepth == 16) && (m_bitDepth != 8) || (m_bitDepth!= 16) &&(m_bitDepth == 8))
-				{
-					return Convert.ToInt16 (m_bitDepth);
-				}
-				else
-				{
-					throw new Exception("invalid bit depth");
-				}
+				return Convert.ToInt16 (m_bitDepth);
 			}
-			
 		}
 		
-		//this will set the number of channels to 1 or 2 
 		public int Channels
 		{
 			get
 			{
-				if((m_Channels ==1 && m_Channels != 2)|| (m_Channels !=1 && m_Channels == 2))	
-				{
-					return m_Channels;
-				}
-				else
-					throw new Exception("invalid channels");
+				return m_Channels;
 			}
 		}
 				
@@ -145,7 +112,6 @@ namespace VirtualAudioBackend
 			get
 			{
 				return mState;
-
 			}
 		}
 
@@ -164,7 +130,6 @@ namespace VirtualAudioBackend
 			return m_devicesList;
 		}
 
-		//		bool BOOLListen = false;
 		public void StartListening(IAudioMediaAsset asset)
 		{
 			events.AudioRecorderEvents.StateChanged e = new events.AudioRecorderEvents.StateChanged(mState);
@@ -184,7 +149,6 @@ namespace VirtualAudioBackend
 			CreateCaptureBuffer();
 			InitRecording(true);
 		}
-
 		
 		//it will start actual recording, append if there is data 
 		//in the wave file through the RecordCaptureData()
@@ -330,14 +294,6 @@ namespace VirtualAudioBackend
 			return m_sFileName;
 		}
 		
-		// Set VuMeter object
-		public 		void SetVuMeterObject ( VuMeter ob_VuMeterArg )
-		{
-			ob_VuMeter = ob_VuMeterArg ;
-			// Modified by JQ
-			//ob_UpdateVuMeter.UpdateVuMeterEvent+= new DUpdateVuMeterEventHandller (ob_VuMeter.CatchUpdateVuMeterEvent);
-		}
-
 		public VuMeter VuMeterObject
 		{
 			get
@@ -346,13 +302,9 @@ namespace VirtualAudioBackend
 			}
 			set
 			{
-				SetVuMeterObject (value) ;
+				ob_VuMeter = value;
 			}
 		}
-
-
-
-
 
 		public void CreateCaptureBuffer()
 		{	
@@ -454,7 +406,7 @@ namespace VirtualAudioBackend
 			{
 				Array.Copy ( applicationBuffer.Read(ReadPos , typeof (byte) , LockFlag.None , m_UpdateVMArrayLength  ) , arUpdateVM , m_UpdateVMArrayLength  ) ;				
 				//ob_UpdateVuMeter.NotifyUpdateVuMeter ( this, ob_UpdateVuMeter ) ;
-				UpdateVuMeterFromRecorder(this, ob_UpdateVuMeter);
+				UpdateVuMeterFromRecorder(this, new events.AudioRecorderEvents.UpdateVuMeterFromRecorder());
 			}
 			LockSize = ReadPos - NextCaptureOffset;
 			if (LockSize < 0)
@@ -481,6 +433,7 @@ namespace VirtualAudioBackend
 			NextCaptureOffset+= CaptureData.Length ; 
 			NextCaptureOffset %= m_iCaptureBufferSize; // Circular buffer
 		}
+
 		internal long GetCurrentPositioninBytes
 		{
 			get
@@ -536,7 +489,6 @@ namespace VirtualAudioBackend
 				{
 					Writer.BaseStream.Position = i + 4 ;
 					Writer.Write (Convert.ToByte (cf.ConvertFromDecimal (Audiolength)[i])) ;
-
 				}
 				for (int i = 0; i<4 ; i++)
 				{

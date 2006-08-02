@@ -4,20 +4,22 @@ using System.Text;
 
 namespace VirtualAudioBackend.events.VuMeterEvents
 {
-	class LevelTooLow : VuMeterEvent
+	public delegate void LevelTooLowHandler(object sender, LevelTooLow e);
+
+	public class LevelTooLow : VuMeterEvent
 	{
-		private Object mMeasureInfo;
+		private object mMeasureInfo;
 		private double mBytePositionStartOfRange;
 		private double mBytePositionEndOfRange;
 
-		public LevelTooLow(Object measureInfo, double startOfRange, double endOfRange)
+		public LevelTooLow(object measureInfo, double startOfRange, double endOfRange)
 		{
 			mMeasureInfo = measureInfo;
 			mBytePositionStartOfRange = startOfRange;
 			mBytePositionEndOfRange = endOfRange;
 		}
 
-		public Object MeasureInfo
+		public object MeasureInfo
 		{
 			get
 			{

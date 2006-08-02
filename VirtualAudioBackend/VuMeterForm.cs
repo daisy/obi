@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
-using VirtualAudioBackend.events.VuMeterEvents;
 using Microsoft.DirectX ;
 using Microsoft.DirectX.DirectSound ;
 
@@ -14,18 +13,17 @@ namespace VirtualAudioBackend
 	/// </summary>
 	public class VuMeterForm : System.Windows.Forms.Form
 	{
+		private VuMeter mVuMeter;  // the vu meter model for this form
+
 		private System.ComponentModel.IContainer components;
 
-		public VuMeterForm()
+		public VuMeterForm(VuMeter vuMeter)
 		{
-			//
-			// Required for Windows Form Designer support
-			//
 			InitializeComponent();
-
-			//
-			// TODO: Add any constructor code after InitializeComponent call
-			//
+			mVuMeter = vuMeter;
+			mVuMeter.PeakOverload += new events.VuMeterEvents.PeakOverloadHandler(CatchPeakOverloadEvent);
+			mVuMeter.UpdateForms += new events.VuMeterEvents.UpdateFormsHandler(CatchUpdateForms);
+			mVuMeter.ResetEvent += new events.VuMeterEvents.ResetHandler(CatchResetEvent);
 		}
 
 		/// <summary>
@@ -260,7 +258,7 @@ namespace VirtualAudioBackend
 		}
 
 		// function to catch the update event from VuMeter class to update graph cordinates
-		public void CatchUpdateForms (object sender , UpdateForms Update )
+		public void CatchUpdateForms (object sender , events.VuMeterEvents.UpdateForms Update )
 		{
 			VuMeter ob_VuMeterArg  = sender as VuMeter ;
 			ob_VuMeter = ob_VuMeterArg ;
@@ -372,7 +370,7 @@ namespace VirtualAudioBackend
 
 		bool BeepEnabled = false ;
 		// catch the peak overload event triggered by VuMeter
-		public void CatchPeakOverloadEvent ( object sender , PeakOverload ob_PeakOverload )
+		public void CatchPeakOverloadEvent ( object sender , events.VuMeterEvents.PeakOverload ob_PeakOverload )
 		{
 			VuMeter ob_VuMeter  = sender as VuMeter ;
 			if (ob_PeakOverload .Channel == 1)
@@ -414,7 +412,7 @@ namespace VirtualAudioBackend
 			//this.Close () ;
 		}
 
-		internal void CatchResetEvent ( object sender , VuMeterEvent ob_VuMeterEvent)
+		internal void CatchResetEvent ( object sender , events.VuMeterEvents.Reset ob_VuMeterEvent)
 		{
 			System.Drawing.Graphics objGraphics;
 			objGraphics = this.CreateGraphics();		
