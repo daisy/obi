@@ -138,7 +138,7 @@ namespace Obi.Dialogs
             this.btnPause.Location = new System.Drawing.Point(150, 30);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(75, 23);
-            this.btnPause.TabIndex = 9;
+            this.btnPause.TabIndex = 0;
             this.btnPause.Text = "Pause";
             this.btnPause.UseVisualStyleBackColor = true;
             this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
