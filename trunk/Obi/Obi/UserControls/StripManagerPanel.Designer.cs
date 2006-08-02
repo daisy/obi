@@ -38,6 +38,7 @@ namespace Obi.UserControls
             this.importAssetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playAssetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renameAssetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,10 +75,11 @@ namespace Obi.UserControls
             this.toolStripSeparator1,
             this.importAssetToolStripMenuItem,
             this.playAssetToolStripMenuItem,
+            this.splitAudioBlockToolStripMenuItem,
             this.renameAssetToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(149, 120);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(149, 164);
             // 
             // addStripToolStripMenuItem
             // 
@@ -119,6 +121,13 @@ namespace Obi.UserControls
             this.renameAssetToolStripMenuItem.Text = "Re&name audio block";
             this.renameAssetToolStripMenuItem.Click += new System.EventHandler(this.renameAssetToolStripMenuItem_Click);
             // 
+            // splitAudioBlockToolStripMenuItem
+            // 
+            this.splitAudioBlockToolStripMenuItem.Name = "splitAudioBlockToolStripMenuItem";
+            this.splitAudioBlockToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.splitAudioBlockToolStripMenuItem.Text = "&Split audio block";
+            this.splitAudioBlockToolStripMenuItem.Click += new System.EventHandler(this.splitAudioBlockToolStripMenuItem_Click);
+            // 
             // StripManagerPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -144,5 +153,6 @@ namespace Obi.UserControls
         private System.Windows.Forms.ToolStripMenuItem importAssetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem playAssetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem renameAssetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem splitAudioBlockToolStripMenuItem;
     }
 }

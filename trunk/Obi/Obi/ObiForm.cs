@@ -698,8 +698,6 @@ namespace Obi
         /// Find the first phrase in the book and play it.
         /// For debugging purposes only!
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void playFirstPhraseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Visitors.PhraseEnumerator enumerator = new Visitors.PhraseEnumerator();
@@ -707,6 +705,21 @@ namespace Obi
             if (enumerator.Phrases.Count > 0)
             {
                 Dialogs.Play dialog = new Dialogs.Play(enumerator.Phrases[0]);
+                dialog.ShowDialog();
+            }
+        }
+
+        /// <summary>
+        /// Find the first phrase in the book and split it.
+        /// For debugging purposes only!
+        /// </summary>
+        private void splitFirstAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Visitors.PhraseEnumerator enumerator = new Visitors.PhraseEnumerator();
+            mProject.RootNode.acceptDepthFirst(enumerator);
+            if (enumerator.Phrases.Count > 0)
+            {
+                Dialogs.Split dialog = new Dialogs.Split(enumerator.Phrases[0], 0.0);
                 dialog.ShowDialog();
             }
         }
