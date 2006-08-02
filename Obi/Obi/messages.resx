@@ -258,4 +258,12 @@ Do you want to replace the project contained in this file?</value>
     <value>Could not find channel named "{0}".</value>
     <comment>Channel not found exception (JQ)</comment>
   </data>
+  <data name="pause" xml:space="preserve">
+    <value>&amp;Pause</value>
+    <comment>Pause button label (JQ)</comment>
+  </data>
+  <data name="play" xml:space="preserve">
+    <value>&amp;Play</value>
+    <comment>Play button label (JQ)</comment>
+  </data>
 </root>
