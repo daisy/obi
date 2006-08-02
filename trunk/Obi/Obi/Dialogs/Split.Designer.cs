@@ -37,6 +37,9 @@ namespace Obi.Dialogs
             this.btnFastForward = new System.Windows.Forms.Button();
             this.btnFineRewind = new System.Windows.Forms.Button();
             this.btnFineForward = new System.Windows.Forms.Button();
+            this.btnSplit = new System.Windows.Forms.Button();
+            this.btnStop = new System.Windows.Forms.Button();
+            this.btnPause = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnPreview
@@ -110,11 +113,44 @@ namespace Obi.Dialogs
             this.btnFineForward.UseVisualStyleBackColor = true;
             this.btnFineForward.Click += new System.EventHandler(this.btnFineForward_Click);
             // 
+            // btnSplit
+            // 
+            this.btnSplit.Location = new System.Drawing.Point(30, 180);
+            this.btnSplit.Name = "btnSplit";
+            this.btnSplit.Size = new System.Drawing.Size(75, 23);
+            this.btnSplit.TabIndex = 7;
+            this.btnSplit.Text = "Split";
+            this.btnSplit.UseVisualStyleBackColor = true;
+            this.btnSplit.Click += new System.EventHandler(this.btnSplit_Click);
+            // 
+            // btnStop
+            // 
+            this.btnStop.Location = new System.Drawing.Point(120, 180);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(75, 23);
+            this.btnStop.TabIndex = 8;
+            this.btnStop.Text = "Stop";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            // 
+            // btnPause
+            // 
+            this.btnPause.Location = new System.Drawing.Point(150, 30);
+            this.btnPause.Name = "btnPause";
+            this.btnPause.Size = new System.Drawing.Size(75, 23);
+            this.btnPause.TabIndex = 9;
+            this.btnPause.Text = "Pause";
+            this.btnPause.UseVisualStyleBackColor = true;
+            this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
+            // 
             // Split
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 273);
+            this.Controls.Add(this.btnPause);
+            this.Controls.Add(this.btnStop);
+            this.Controls.Add(this.btnSplit);
             this.Controls.Add(this.btnFineForward);
             this.Controls.Add(this.btnFineRewind);
             this.Controls.Add(this.btnFastForward);
@@ -124,6 +160,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.btnPreview);
             this.Name = "Split";
             this.Text = "Split";
+            this.Load += new System.EventHandler(this.Split_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -139,5 +176,8 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button btnFastForward;
         private System.Windows.Forms.Button btnFineRewind;
         private System.Windows.Forms.Button btnFineForward;
+        private System.Windows.Forms.Button btnSplit;
+        private System.Windows.Forms.Button btnStop;
+        private System.Windows.Forms.Button btnPause;
     }
 }
