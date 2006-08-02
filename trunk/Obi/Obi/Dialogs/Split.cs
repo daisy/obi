@@ -15,6 +15,15 @@ namespace Obi.Dialogs
     public partial class Split : Form
     {
         private CoreNode mNode;  // the node to split
+        private AudioMediaAsset mResultAsset;  // the new asset created by the split
+
+        public AudioMediaAsset ResultAsset
+        {
+            get
+            {
+                return mResultAsset;
+            }
+        }
 
         public double SplitTime
         {
@@ -93,7 +102,7 @@ namespace Obi.Dialogs
 
         private void btnSplit_Click(object sender, EventArgs e)
         {
-
+            // result of the split must be in mSplitResult
         }
 
         private void btnStop_Click(object sender, EventArgs e)
