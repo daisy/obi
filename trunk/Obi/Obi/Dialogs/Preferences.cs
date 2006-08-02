@@ -91,6 +91,12 @@ namespace Obi.Dialogs
             mTemplateBox.Text = mIdTemplate;
             mDefaultDir = settings.DefaultPath;
             mDirectoryBox.Text = mDefaultDir;
+            mInputDevice = settings.LastInputDevice;
+            mOutputDevice = settings.LastOutputDevice;
+            mSampleRate = settings.SampleRate;
+            mSampleRate = settings.SampleRate;
+            mAudioChannels = settings.AudioChannels;
+            mBitDepth = settings.BitDepth;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -132,17 +138,24 @@ namespace Obi.Dialogs
             m_InDevicesList = ob_AudioRecorder.GetInputDevices();
             m_OutDevicesList = ob_AudioPlayer.GetOutputDevices();
             comboInputDevice.DataSource = m_InDevicesList;
+            comboInputDevice.SelectedIndex = m_InDevicesList.IndexOf(mInputDevice);
             comboOutputDevice.DataSource = m_OutDevicesList;
+            comboOutputDevice.SelectedIndex = m_OutDevicesList.IndexOf(mOutputDevice);
             ArrayList mSample = new ArrayList();
-            mSample.Add("44100");
             mSample.Add("11025");
             mSample.Add("22050");
+            mSample.Add("44100");
             mSample.Add("48000");
             comboSampleRate.DataSource= mSample;
+            comboSampleRate.SelectedIndex = mSample.IndexOf(mSampleRate.ToString());
             ArrayList mArrayChannels = new ArrayList();
             mArrayChannels.Add("Mono");
             mArrayChannels.Add("Stereo");
             comboChannels.DataSource = mArrayChannels;
+            if (mAudioChannels == 1)
+                comboChannels.SelectedIndex = mArrayChannels.IndexOf("Mono");
+            else
+                comboChannels.SelectedIndex = mArrayChannels.IndexOf("Stereo");
             }    
             
 
