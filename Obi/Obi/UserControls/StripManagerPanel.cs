@@ -246,13 +246,27 @@ namespace Obi.UserControls
         }
 
         /// <summary>
-        /// Play the currently selected audio block. (JQ)
+        /// Play the currently selected audio block.
         /// </summary>
+        /// <remarks>JQ</remarks>
         private void playAssetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mSelectedPhrase != null)
             {
                 Dialogs.Play dialog = new Dialogs.Play(mSelectedPhrase);
+                dialog.ShowDialog();
+            }
+        }
+
+        /// <summary>
+        /// Split the currently selected audio block.
+        /// </summary>
+        /// <remarks>JQ</remarks>
+        private void splitAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mSelectedPhrase != null)
+            {
+                Dialogs.Split dialog = new Dialogs.Split(mSelectedPhrase, 0.0);
                 dialog.ShowDialog();
             }
         }

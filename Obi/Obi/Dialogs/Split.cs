@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
+using urakawa.core;
 using VirtualAudioBackend;
 using VirtualAudioBackend.events.AudioPlayerEvents;
 
@@ -13,20 +14,27 @@ namespace Obi.Dialogs
 {
     public partial class Split : Form
     {
-        public Split()
+        private CoreNode mNode;  // the node to split
+
+        public double SplitTime
+        {
+            get
+            {
+                return m_dSplitTime;
+            }
+        }
+
+        public Split(CoreNode node, double splitTime)
         {
             InitializeComponent();
+            mNode = node;
+            m_dSplitTime = splitTime;
+            ob_AudioAsset = Project.GetAudioMediaAsset(node);
             AudioPlayer.Instance.StateChanged += new StateChangedHandler(AudioPlayer_StateChanged);
                         AudioPlayer.Instance.EndOfAudioAsset += new EndOfAudioAssetHandler(AudioPlayer_EndOfAudioAsset);
             AudioPlayer.Instance.EndOfAudioBuffer += new EndOfAudioBufferHandler(AudioPlayer_EndOfAudioBuffer);
             AudioPlayer.Instance.UpdateVuMeter += new UpdateVuMeterHandler(AudioPlayer_UpdateVuMeter);
             tmUpdateTimePosition.Enabled = true;
-        
-
-            AudioClip ob_Clip = new AudioClip("c:\\atest\\a\\a1.wav");
-        ArrayList al = new ArrayList();
-         al.Add(ob_Clip);
-            ob_AudioAsset = new AudioMediaAsset (al) ;
         }
         
         AudioMediaAsset ob_AudioAsset;
