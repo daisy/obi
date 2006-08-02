@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Forms;
 using System.Collections;
+using System.IO;
 
 namespace VirtualAudioBackend
 {
@@ -35,11 +36,22 @@ namespace VirtualAudioBackend
 
 		/// <summary>
 		/// Create the asset manager taking as argument the project directory where the data should live.
+		/// The directory is created if it didn't exist; an exception is raised if a problem occurs.
 		/// </summary>
 		public AssetManager(string projectDirectory)
 		{
-			m_sDirPath = projectDirectory ;
-			
+			m_sDirPath = projectDirectory;
+			if (!Directory.Exists(m_sDirPath))
+			{
+				try
+				{
+					Directory.CreateDirectory(m_sDirPath);
+				}
+				catch (Exception e)
+				{
+					throw new Exception(String.Format("Could not create project directory {0}", m_sDirPath), e);
+				}
+			}
 		}
 
 		/// <summary>

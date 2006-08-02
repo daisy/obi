@@ -187,6 +187,14 @@ namespace VirtualAudioBackend
 			SndDevice  = dSound ;
 		}
 
+		/// <summary>
+		/// Find the device that matches this name; if it could not be found, default to 0.
+		/// </summary>
+		public void SetDevice (Control FormHandle, string name)
+		{
+			SetDevice(FormHandle, 0);
+		}
+
 		DevicesCollection devList ;
 		DevicesCollection  CollectOutputDevices()
 		{

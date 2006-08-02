@@ -284,7 +284,9 @@ namespace Obi
             if (dialog.IdTemplate.Contains("#")) mSettings.IdTemplate = dialog.IdTemplate;
             if (Directory.Exists(dialog.DefaultDir)) mSettings.DefaultPath = dialog.DefaultDir;
             mSettings.LastOutputDevice = dialog.OutputDevice;
+            AudioPlayer.Instance.SetDevice(this, dialog.OutputDeviceIndex);
             mSettings.LastInputDevice = dialog.InputDevice;
+            AudioRecorder.Instance.SetInputDeviceForRecording(this, dialog.InputDeviceIndex);
             mSettings.AudioChannels = dialog.AudioChannels;
             mSettings.SampleRate = dialog.SampleRate;
             mSettings.BitDepth = dialog.BitDepth;
@@ -431,7 +433,7 @@ namespace Obi
                     mSettings.RecentProjects.RemoveAt(i);
                 }
             }
-            // Use the first available device by default
+            // Try to use the last input and output devices
             ArrayList devices = AudioPlayer.Instance.GetOutputDevices();
             if (devices.Count == 0)
             {
@@ -439,7 +441,15 @@ namespace Obi
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
-            AudioPlayer.Instance.SetDevice(this, 0);
+            AudioPlayer.Instance.SetDevice(this, mSettings.LastOutputDevice);
+            devices = AudioRecorder.Instance.GetInputDevices();
+            if (devices.Count == 0)
+            {
+                MessageBox.Show(Localizer.Message("no_input_device_text"), Localizer.Message("no_input_device_caption"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
+            AudioRecorder.Instance.SetInputDeviceForRecording(this, mSettings.LastInputDevice);
         }
 
         /// <summary>

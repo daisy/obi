@@ -64,7 +64,7 @@ namespace Obi.Dialogs
         {
             ArrayList arDevices = new ArrayList();
             arDevices = AudioRecorder.Instance.GetInputDevices();
-            AudioRecorder.Instance.InitDirectSound(2);
+            //AudioRecorder.Instance.InitDirectSound(2);
 //AudioRecorder.Instance.InitDirectSound(mIndex);
 
                 ob_VuMeter.ScaleFactor = 2;

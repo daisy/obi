@@ -108,7 +108,7 @@ namespace Obi.Dialogs
             this.mOKButton.TabIndex = 5;
             this.mOKButton.Text = "&OK";
             this.mOKButton.UseVisualStyleBackColor = true;
-            this.mOKButton.Click += new System.EventHandler(this.button2_Click);
+            this.mOKButton.Click += new System.EventHandler(this.mOKButton_Click);
             // 
             // mCancelButton
             // 
