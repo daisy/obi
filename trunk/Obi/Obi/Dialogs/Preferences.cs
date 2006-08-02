@@ -31,11 +31,13 @@ namespace Obi.Dialogs
             }
         }
 
-        private string mOutputDevice;  // preferred output device
-        private string mInputDevice;   // preferred input device
-        private int mAudioChannels;    // preferred number of audio channels
-        private int mSampleRate;       // preferred sample rate
-        private int mBitDepth;         // preferred bit depth
+        private string mOutputDevice;    // preferred output device
+        private int mOutputDeviceIndex;  // index of the output device
+        private string mInputDevice;     // preferred input device
+        private int mInputDeviceIndex;   // index of the input device
+        private int mAudioChannels;      // preferred number of audio channels
+        private int mSampleRate;         // preferred sample rate
+        private int mBitDepth;           // preferred bit depth
 
         public string OutputDevice
         {
@@ -45,11 +47,27 @@ namespace Obi.Dialogs
             }
         }
 
+        public int OutputDeviceIndex
+        {
+            get
+            {
+                return mOutputDeviceIndex;
+            }
+        }
+
         public string InputDevice
         {
             get
             {
                 return mInputDevice;
+            }
+        }
+
+        public int InputDeviceIndex
+        {
+            get
+            {
+                return mInputDeviceIndex;
             }
         }
 
@@ -111,7 +129,7 @@ namespace Obi.Dialogs
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void mOKButton_Click(object sender, EventArgs e)
         {
             mIdTemplate = mTemplateBox.Text;
             //mDefaultDir = mDirectoryBox.Text;
@@ -125,7 +143,9 @@ namespace Obi.Dialogs
             }
             
             mInputDevice = comboInputDevice.SelectedItem.ToString();
+            mInputDeviceIndex = comboInputDevice.SelectedIndex;
             mOutputDevice = comboOutputDevice.SelectedItem.ToString();
+            mOutputDeviceIndex = comboOutputDevice.SelectedIndex;
             if (comboChannels.SelectedItem.ToString() == "Mono")
                 mAudioChannels = 1;
             else

@@ -514,6 +514,12 @@ namespace VirtualAudioBackend
 			mDevice .SetCooperativeLevel(FormHandle, CooperativeLevel.Priority);
 			m_InputDevice = mDevice;
 		}
+
+		public void SetInputDeviceForRecording(Control FormHandle, string name)
+		{
+			SetInputDeviceForRecording(FormHandle, 0);
+		}
+
 		public Device InputDevice
 		{
 			get

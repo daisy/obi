@@ -274,4 +274,10 @@ Do you want to replace the project contained in this file?</value>
     <value>Stereo</value>
     <comment>two channels (JQ)</comment>
   </data>
+  <data name="no_input_device_caption" xml:space="preserve">
+    <value>No input device found</value>
+  </data>
+  <data name="no_input_device_text" xml:space="preserve">
+    <value>Could not select and audio input device: node found. Sorry :(</value>
+  </data>
 </root>

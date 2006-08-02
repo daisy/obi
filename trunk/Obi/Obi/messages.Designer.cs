@@ -272,6 +272,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No input device found.
+        /// </summary>
+        internal static string no_input_device_caption {
+            get {
+                return ResourceManager.GetString("no_input_device_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not select and audio input device: node found. Sorry :(.
+        /// </summary>
+        internal static string no_input_device_text {
+            get {
+                return ResourceManager.GetString("no_input_device_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No project is currently open..
         /// </summary>
         internal static string no_open_project {
