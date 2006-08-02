@@ -59,6 +59,8 @@ namespace Obi.UserControls
 
         public AudioBlock()
         {
+            //mg:
+            this.TabStop = true;  
             InitializeComponent();
         }
 
@@ -140,9 +142,17 @@ namespace Obi.UserControls
             }
         }
 
-        private void mTabPanel_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        //mg: for tab navigation et al
+        private void AudioBlock_enter(object sender, EventArgs e)
         {
-            MessageBox.Show("Key down = " + e.ToString());
+            //System.Diagnostics.Debug.Print("Audioblock:tabindex:"+this.TabIndex.ToString());
+            MarkSelected();
+        }
+
+        //mg: for tab navigation et al
+        private void AudioBlock_leave(object sender, EventArgs e)
+        {
+            MarkDeselected();
         }
     }
 }
