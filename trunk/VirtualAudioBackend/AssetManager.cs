@@ -1,7 +1,6 @@
 using System;
 using System.Windows.Forms;
 using System.Collections;
-using VirtualAudioBackend.events.AssetManagerEvents;
 
 namespace VirtualAudioBackend
 {
@@ -10,7 +9,6 @@ namespace VirtualAudioBackend
 	/// </summary>
 	public class AssetManager: IAssetManager
 	{
-
 		// member variables
 		// hold path of project directory
 		
@@ -20,7 +18,7 @@ namespace VirtualAudioBackend
 		{
 			get
 			{
-return m_sDirPath ;
+				return m_sDirPath ;
 			}
 		}
 
@@ -29,10 +27,10 @@ return m_sDirPath ;
 		private Hashtable m_htAssetList = new Hashtable();
 
 
-// hash table to contain list of all existing assets
-public Hashtable m_htExists  = new Hashtable ();
+		// hash table to contain list of all existing assets
+		public Hashtable m_htExists  = new Hashtable ();
 
-// object for catch class
+		// object for catch class
 		//CatchEvents ob_Catch = new CatchEvents();
 
 		/// <summary>
@@ -57,7 +55,7 @@ public Hashtable m_htExists  = new Hashtable ();
 			ob_AudioMediaAsset.Name = NewMediaAssetName () ;
 			ob_AudioMediaAsset.m_AssetManager = this ;
 			m_htAssetList.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;
-m_htExists.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;   
+			m_htExists.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;   
 			return ob_AudioMediaAsset ;
 		}
 
@@ -69,13 +67,13 @@ m_htExists.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;
 		public AudioMediaAsset NewAudioMediaAsset(ArrayList clips)
 		{
 			
-				AudioMediaAsset ob_AudioMediaAsset = new AudioMediaAsset (clips) ;
+			AudioMediaAsset ob_AudioMediaAsset = new AudioMediaAsset (clips) ;
 
-				ob_AudioMediaAsset.Name = NewMediaAssetName () ;
-				ob_AudioMediaAsset.m_AssetManager = this ;
-				m_htAssetList.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;
-				m_htExists.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;   
-				return ob_AudioMediaAsset ;
+			ob_AudioMediaAsset.Name = NewMediaAssetName () ;
+			ob_AudioMediaAsset.m_AssetManager = this ;
+			m_htAssetList.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;
+			m_htExists.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;   
+			return ob_AudioMediaAsset ;
 			
 
 		}
@@ -134,12 +132,12 @@ m_htExists.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;
 		{
 			if (asset.Type== MediaType.Audio)
 			{
-AudioMediaAsset Asset  = asset as AudioMediaAsset;
+				AudioMediaAsset Asset  = asset as AudioMediaAsset;
 				if (Asset.Name == null )
 				{
 					Asset.Name = NewMediaAssetName () ;
 				}
-Asset.m_AssetManager = this ;
+				Asset.m_AssetManager = this ;
 
 				m_htAssetList.Add (Asset.Name, asset) ;
 				m_htExists.Add (Asset.Name, asset) ;
@@ -173,10 +171,10 @@ Asset.m_AssetManager = this ;
 		{
 			if (m_htAssetList.ContainsKey (assetName))
 			{
-return m_htAssetList [assetName] as MediaAsset;
+				return m_htAssetList [assetName] as MediaAsset;
 			}
 			else
-throw new Exception ("Asset not found in Hashtable") ;
+				throw new Exception ("Asset not found in Hashtable") ;
 						
 						
 		}
@@ -191,11 +189,7 @@ throw new Exception ("Asset not found in Hashtable") ;
 		
 			if (  m_htAssetList.ContainsKey(assetToDelete.Name) )			{
 				m_htAssetList.Remove(assetToDelete.Name) ;
-m_htExists.Remove(assetToDelete.Name) ;
-				
-				AssetDeleted ob_AssetDeleted = new AssetDeleted(assetToDelete);
-				//ob_AssetDeleted.AssetDeletedEvent+= new DAssetDeletedEvent(ob_Catch.CatchAssetDeletedEvent);
-				ob_AssetDeleted.NotifyAssetDeleted(this, ob_AssetDeleted);
+				m_htExists.Remove(assetToDelete.Name) ;
 				assetToDelete = null ;
 			}
 			else
@@ -208,10 +202,10 @@ m_htExists.Remove(assetToDelete.Name) ;
 
 		public void RemoveAsset(IMediaAsset assetToRemove)
 		{
-MediaAsset MediaAssetToRemove = assetToRemove as MediaAsset ;
+			MediaAsset MediaAssetToRemove = assetToRemove as MediaAsset ;
 			if (  m_htAssetList.ContainsKey(MediaAssetToRemove.Name) )			{
 				m_htAssetList.Remove(MediaAssetToRemove.Name) ;
-MediaAssetToRemove.m_AssetManager = null ;
+				MediaAssetToRemove.m_AssetManager = null ;
 
 			}
 			else
@@ -231,7 +225,7 @@ MediaAssetToRemove.m_AssetManager = null ;
 			}
 			else
 			{
-throw new Exception ("Asset not found in Hashtable") ;
+				throw new Exception ("Asset not found in Hashtable") ;
 
 			}
 
@@ -241,8 +235,8 @@ throw new Exception ("Asset not found in Hashtable") ;
 		public string RenameAsset(IMediaAsset asset, String newName)
 		{
 			string OldName = asset.Name;
-bool boolRenamed = false ;
-							IDictionaryEnumerator enRemove = m_htAssetList.GetEnumerator();
+			bool boolRenamed = false ;
+			IDictionaryEnumerator enRemove = m_htAssetList.GetEnumerator();
 			while(enRemove.MoveNext())
 			{
 
@@ -252,23 +246,19 @@ bool boolRenamed = false ;
 					m_htExists.Remove(OldName );
 					asset.Name = newName;
 					m_htAssetList.Add(asset.Name, asset);
-m_htExists.Add(asset.Name, asset);
-boolRenamed = true ;
-break ;
+					m_htExists.Add(asset.Name, asset);
+					boolRenamed = true ;
+					break ;
 				}
 			}
 			if (boolRenamed == false)
-throw new Exception ("Asset cannot be renamed : not in hashtable") ;
-
-			AssetRenamed ob_AssetRenamed =  new AssetRenamed(asset, OldName);
-			//ob_AssetRenamed.AssetRenamedEvent+= new DAssetRenamedEvent(ob_Catch.CatchAssetRenamedEvent);
-			ob_AssetRenamed.NotifyAssetRenamed(this, ob_AssetRenamed);
+				throw new Exception ("Asset cannot be renamed : not in hashtable") ;
 			return OldName;
 		}
-		}
-
-		#endregion
-
-
 	}
+
+	#endregion
+
+
+}
 

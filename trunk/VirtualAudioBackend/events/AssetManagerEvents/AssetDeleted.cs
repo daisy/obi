@@ -2,17 +2,15 @@ using System;
 using System.Collections;
 using System.Text;
 
-
 namespace VirtualAudioBackend.events.AssetManagerEvents
 {
-	public delegate void DAssetDeletedEvent ( object sender, AssetDeleted Asset ) ;
+	public delegate void AssetDeletedHandler(object sender, AssetDeleted e);
+
 	/// <summary>
 	/// An asset was deleted in the asset manager.
 	/// </summary>
 	public class AssetDeleted : AssetManagerEvent
 	{
-
-		public event DAssetDeletedEvent AssetDeletedEvent ;
 		private IMediaAsset mAsset;  // the asset that was deleted
 
 		public IMediaAsset Asset
@@ -30,11 +28,6 @@ namespace VirtualAudioBackend.events.AssetManagerEvents
 		public AssetDeleted(IMediaAsset asset)
 		{
 			mAsset = asset;
-		}
-
-		public void NotifyAssetDeleted ( object sender , AssetDeleted Asset) 
-		{
-			AssetDeletedEvent (sender , Asset) ;
 		}
 	}
 }

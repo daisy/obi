@@ -4,22 +4,13 @@ using System.Text;
 
 namespace VirtualAudioBackend.events.VuMeterEvents
 {
-		
+	public delegate void PeakOverloadHandler(object sender, PeakOverload e);
 
-	public delegate void DPeakOverloadEvent ( object sender , PeakOverload  Overload );
 	/// <summary>
 	/// Event raised by the Vu meter when the signal level overloads.
 	/// </summary>
 	public class PeakOverload : VuMeterEvent 
 	{
-
-		public event DPeakOverloadEvent PeakOverloadEvent ;
-
-		public void NotifyPeakOverload ( object sender, PeakOverload Overload)
-		{
-			if ( PeakOverloadEvent != null)
-				PeakOverloadEvent ( sender , Overload) ;
-		}
 		private int mChannel;          // channel which overloaded
 		private long mBytePosition;    // position where the overload happened (from start of recording)
 		private double mTimePosition;  // time when the overload happened (from start of recording)
@@ -72,7 +63,6 @@ namespace VirtualAudioBackend.events.VuMeterEvents
 			mChannel = channel;
 			mBytePosition = 0;
 			mTimePosition = timePosition;
-		}
-       
+		}       
 	}
 }

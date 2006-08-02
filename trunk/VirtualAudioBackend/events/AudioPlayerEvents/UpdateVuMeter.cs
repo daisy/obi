@@ -1,7 +1,6 @@
 using System;
-using VirtualAudioBackend.events.AudioPlayerEvents ;
 
-namespace VirtualAudioBackend
+namespace VirtualAudioBackend.events.AudioPlayerEvents
 {
 	public delegate void UpdateVuMeterHandler(object sender, UpdateVuMeter e);  // JQ
 	//public delegate void DUpdateVuMeterEvent ( object sender , UpdateVuMeter Update) ;

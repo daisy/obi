@@ -3,48 +3,42 @@ using System.IO;
 using System.Windows.Forms;
 using System.Threading;
 using System.Collections;
-using System.Resources;
 using Microsoft.DirectX;
 using Microsoft.DirectX.DirectSound;
 using Microsoft.DirectX.DirectInput ;
-using VirtualAudioBackend.events.AudioPlayerEvents ;
 
 namespace VirtualAudioBackend
 {
 	public class AudioPlayer : IAudioPlayer
 	{
 		// Events of the audio player (JQ)
-		public event EndOfAudioAssetHandler EndOfAudioAsset;
-		public event EndOfAudioBufferHandler EndOfAudioBuffer;
-		public event StateChangedHandler StateChanged;
-		public event UpdateVuMeterHandler UpdateVuMeter;
+		public event events.AudioPlayerEvents.EndOfAudioAssetHandler EndOfAudioAsset;
+		public event events.AudioPlayerEvents.EndOfAudioBufferHandler EndOfAudioBuffer;
+		public event events.AudioPlayerEvents.StateChangedHandler StateChanged;
+		public event events.AudioPlayerEvents.UpdateVuMeterHandler UpdateVuMeter;
 
 		// declare member variables
 		private AudioMediaAsset m_Asset ;
 		private SecondaryBuffer SoundBuffer;
-		private Microsoft.DirectX.DirectSound.Device SndDevice= null;
-		private BufferDescription BufferDesc = null;
-				private int m_BufferCheck ;
+		private Microsoft.DirectX.DirectSound.Device SndDevice = null;
+		private BufferDescription BufferDesc = null;			private int m_BufferCheck ;
 		private int m_SizeBuffer ;
 		private int m_RefreshLength ;
 		private long m_lLength;
 		private long m_lPlayed ;
-		Thread RefreshThread ;
-		CalculationFunctions Calc = new CalculationFunctions () ;
-
-		private 		bool m_PlayFile;
-		
-
-		private 		bool m_FastPlay = false;
-		private 		int m_Step = 1;
+		private Thread RefreshThread;
+		private CalculationFunctions Calc;
+		private bool m_PlayFile;
+		private bool m_FastPlay = false;
+		private int m_Step = 1;
 		internal int m_FrameSize ;
 		internal int m_Channels ;
-		private 		int m_SamplingRate ;
+		private int m_SamplingRate ;
 		private AudioPlayerState  m_State;
 		private int m_CompAddition = 0 ;
 		private long m_lClipByteCount ;
 
-		private ResourceManager resmngr;
+		private VuMeter ob_VuMeter;
 
 		private static readonly AudioPlayer mInstance = new AudioPlayer();
 
@@ -56,51 +50,18 @@ namespace VirtualAudioBackend
 			}
 		}
 
-		// constructor 
-		// JQ: change it to private
-		public AudioPlayer()
+		// JQ changed constructor to be private (singleton)
+		private AudioPlayer()
 		{
-			resmngr = new ResourceManager("VirtualBackend.messages", GetType().Assembly);
 			m_PlayFile = true ;
 			m_FastPlay = false ;
 			m_State = AudioPlayerState.Stopped;
-			// AssociateEvents();
+			ob_VuMeter = null;  // JQ
+			Calc = new CalculationFunctions(); 
 		}
-
-		public static string Message(string key)
-		{
-			return mInstance.resmngr.GetString(key);
-		}
-
-		// Create objects for triggering events
-		//StateChanged  ob_StateChanged = new StateChanged   ( AudioPlayerState.Stopped ) ;
-		//EndOfAudioAsset  ob_EndOfAudioAsset  = new EndOfAudioAsset () ;
-		//EndOfAudioBuffer ob_EndOfAudioBuffer = new EndOfAudioBuffer () ;
-		//UpdateVuMeter ob_UpdateVuMeter = new UpdateVuMeter () ;
-
-		// create objects for handling events
-		//CatchEvents ob_CatchEvents = new CatchEvents () ;
-		VuMeter ob_VuMeter = new VuMeter () ;
-		
-
 
 		// bool variable to enable or disable event
 		bool m_EventsEnabled = true ;
-		/*void AssociateEvents ()
-		{
-			//ob_StateChanged.StateChangedEvent+=new DStateChangedEvent (ob_CatchEvents.CatchStateChangedEvent) ;
-			//ob_EndOfAudioAsset.EndOfAudioAssetEvent+=new DEndOfAudioAssetEvent(ob_CatchEvents.CatchEndOfAudioEvent) ;
-			//ob_EndOfAudioBuffer.EndOfAudioBufferEvent+=new DEndOfAudioBufferEvent  (ob_CatchEvents.CatchEndOfAudioEvent) ;
-			
-		}*/
-			
-		// Set VuMeter object
-		private void SetVuMeterObject ( VuMeter ob_VuMeterArg )
-		{
-			ob_VuMeter = ob_VuMeterArg ;
-			//ob_UpdateVuMeter.UpdateVuMeterEvent += new DUpdateVuMeterEvent (ob_VuMeter.CatchUpdateVuMeterEvent ) ;	
-			UpdateVuMeter += new UpdateVuMeterHandler(ob_VuMeter.CatchUpdateVuMeterEvent);
-		}
 
 		public VuMeter VuMeterObject
 		{
@@ -110,28 +71,18 @@ namespace VirtualAudioBackend
 			}
 			set
 			{
-				SetVuMeterObject (value) ;
+				ob_VuMeter = value;  // the vu meter should then be told to listen to this audio player
 			}
 		}
 
-		void TriggerStateChangedEvent ( StateChanged ob)
+		void TriggerStateChangedEvent(events.AudioPlayerEvents.StateChanged e)
 		{
-			if (m_EventsEnabled == true)
-			{
-				//				ob.StateChangedEvent+=new DStateChangedEvent (ob_CatchEvents.CatchStateChangedEvent) ;
-
-				StateChanged(this, ob);
-				//				ob.NotifyStateChanged ( this, ob) ;
-			}
+			if (m_EventsEnabled) StateChanged(this, e);
 		}
-
-		
 
 		// array for update current amplitude to VuMeter
 		internal byte [] arUpdateVM ;
 		internal int m_UpdateVMArrayLength ;
-
-
 
 		// gets the current AudioPlayer state
 		public AudioPlayerState State
@@ -201,8 +152,6 @@ namespace VirtualAudioBackend
 
 		// checks the input value of compression factor and sets it for fast play
 		// Default value  is 10 i.e. 80% time compression
-		/// </summary>
-		/// <param name="l_Step"></param>
 		void Set_m_Step(int l_Step)
 		{
 			if (l_Step == 1)
@@ -223,20 +172,17 @@ namespace VirtualAudioBackend
 		public ArrayList GetOutputDevices()
 		{
 			CollectOutputDevices() ;
-			ArrayList OutputDevices = new ArrayList ();
-
-			for(int i = 0; i < devList.Count; i++) 
+			ArrayList OutputDevices = new ArrayList();
+			for (int i = 0; i < devList.Count; i++) 
 			{
-				OutputDevices.Add (devList[i].Description);
-	
+				OutputDevices.Add(devList[i].Description);
 			}
 			return OutputDevices ;
 		}
 
-
 		public void SetDevice (Control FormHandle, int Index)
 		{
-			Microsoft.DirectX.DirectSound.Device dSound = new  Microsoft.DirectX.DirectSound.Device ( devList [Index].DriverGuid);
+			Microsoft.DirectX.DirectSound.Device dSound = new  Microsoft.DirectX.DirectSound.Device(devList[Index].DriverGuid);
 			dSound.SetCooperativeLevel(FormHandle, CooperativeLevel.Priority);
 			SndDevice  = dSound ;
 		}
@@ -247,18 +193,13 @@ namespace VirtualAudioBackend
 			devList = new DevicesCollection();
 			return devList  ;
 		}
-		//double m_dStartPosition ;
-		// Functions
-
 
 		public void Play(IAudioMediaAsset asset )
 		{
 			m_StartPosition   = 0 ;
 			m_State  = AudioPlayerState.NotReady ;
 			m_Asset = asset as AudioMediaAsset;
-			//VuMeter ob_VuMeter  = new VuMeter () ;
-			//ob_VuMeter.DisplayGraph () ;
-			InitPlay(0, 0) ;
+			InitPlay(0, 0);
 		}
 
 		void InitPlay(long lStartPosition, long lEndPosition)
@@ -306,8 +247,8 @@ namespace VirtualAudioBackend
 			m_UpdateVMArrayLength = m_SizeBuffer  / 20 ;
 			m_UpdateVMArrayLength = Convert.ToInt32 (Calc.AdaptToFrame ( Convert.ToInt32 ( m_UpdateVMArrayLength ),  m_FrameSize)  );
 			arUpdateVM = new byte [ m_UpdateVMArrayLength ] ;
-			// reset the VuMeter
-			ob_VuMeter.Reset () ;
+			// reset the VuMeter (if set)
+			if (ob_VuMeter != null) ob_VuMeter.Reset () ;
 
 			// sets the calculated size of buffer
 			BufferDesc.BufferBytes = m_SizeBuffer ;
@@ -316,7 +257,7 @@ namespace VirtualAudioBackend
 			BufferDesc.GlobalFocus = true ;
 
 			// initialising secondary buffer
-			SoundBuffer= new SecondaryBuffer(BufferDesc, SndDevice);
+			SoundBuffer = new SecondaryBuffer(BufferDesc, SndDevice);
 
 			// Compensate played length due to the skip of frames during compression
 			if (m_Step != 1)
@@ -353,9 +294,9 @@ namespace VirtualAudioBackend
 			m_PlayFile = true ;
 
 			// trigger  events (modified JQ)
-			StateChanged changeEvent = new StateChanged(m_State);
+			events.AudioPlayerEvents.StateChanged e = new events.AudioPlayerEvents.StateChanged(m_State);
 			m_State  = AudioPlayerState.Playing ;
-			StateChanged(this, changeEvent);
+			StateChanged(this, e);
 			// starts playing
 			SoundBuffer.Play(0, BufferPlayFlags.Looping);
 			m_BufferCheck = 1 ;
@@ -389,7 +330,7 @@ namespace VirtualAudioBackend
 					Array.Copy ( SoundBuffer.Read (ReadPosition , typeof (byte) , LockFlag.None , m_UpdateVMArrayLength  ) , arUpdateVM , m_UpdateVMArrayLength  ) ;				
 					//if ( m_EventsEnabled == true)
 					//ob_UpdateVuMeter.NotifyUpdateVuMeter ( this, ob_UpdateVuMeter ) ;
-					UpdateVuMeter(this, new UpdateVuMeter());  // JQ
+					UpdateVuMeter(this, new events.AudioPlayerEvents.UpdateVuMeter());  // JQ
 				}
 				// check if play cursor is in second half , then refresh first half else second
 				if ((m_BufferCheck% 2) == 1 &&  SoundBuffer.PlayPosition > m_RefreshLength) 
@@ -460,7 +401,7 @@ namespace VirtualAudioBackend
 			
 			// Stopping process begins
 			SoundBuffer.Stop () ;
-			ob_VuMeter.Reset () ;
+			if (ob_VuMeter != null) ob_VuMeter.Reset () ;
 			if (m_PlayFile == true)
 			{
 				m_br.Close();
@@ -472,21 +413,21 @@ namespace VirtualAudioBackend
 			// changes the state and trigger events
 			//ob_StateChanged = new StateChanged (m_State) ;
 
-			StateChanged ob_StateChanged = new StateChanged (m_State) ;
+			EndOfAudioAsset(this, new events.AudioPlayerEvents.EndOfAudioAsset());  // JQ
+
+
+			events.AudioPlayerEvents.StateChanged e = new events.AudioPlayerEvents.StateChanged(m_State);
 			m_State= AudioPlayerState.Stopped;
-			TriggerStateChangedEvent (ob_StateChanged) ;
-			EndOfAudioAsset(this, new EndOfAudioAsset());  // JQ
+			TriggerStateChangedEvent(e);
+
 			// RefreshBuffer ends
 		}
 		
 		private void Play(IAudioMediaAsset  asset, double timeFrom)
 		{
-
 			m_Asset = asset as AudioMediaAsset;
-
 			long lPosition = Calc.ConvertTimeToByte (timeFrom, m_Asset .SampleRate, m_Asset .FrameSize) ;
 			lPosition = Calc.AdaptToFrame(lPosition, m_Asset .FrameSize) ;
-
 			if(lPosition>0   && lPosition < m_Asset.AudioLengthInBytes)
 			{
 				InitPlay ( lPosition, 0 );
@@ -502,14 +443,10 @@ namespace VirtualAudioBackend
 		private void Play(IAudioMediaAsset asset , double timeFrom, double timeTo)
 		{
 			m_Asset = asset as AudioMediaAsset;
-			
-
 			long lStartPosition = Calc.ConvertTimeToByte (timeFrom, m_Asset .SampleRate, m_Asset .FrameSize) ;
 			lStartPosition = Calc.AdaptToFrame(lStartPosition, m_Asset .FrameSize) ;
-
 			long lEndPosition = Calc.ConvertTimeToByte (timeTo , m_Asset.SampleRate, m_Asset.FrameSize) ;
 			lByteTo = lEndPosition ;
-
 			// check for valid arguments
 			if (lStartPosition>0 && lStartPosition < lEndPosition && lEndPosition <= m_Asset.AudioLengthInBytes)
 			{
@@ -521,31 +458,25 @@ namespace VirtualAudioBackend
 			}
 		}
 
-
-
-
 		public void Pause()
 		{
 			if (m_State.Equals(AudioPlayerState .Playing))
 			{
 				SoundBuffer.Stop () ;
 				// Change the state and trigger event
-
-				StateChanged ob_StateChanged = new StateChanged (m_State) ;
+				events.AudioPlayerEvents.StateChanged e = new events.AudioPlayerEvents.StateChanged (m_State) ;
 				m_State= AudioPlayerState .Paused;
-				TriggerStateChangedEvent (ob_StateChanged) ;
+				TriggerStateChangedEvent(e);
 			}
 		}
 
 		public void Resume()
 		{
-			if (m_State.Equals (AudioPlayerState .Paused))
+			if (m_State.Equals(AudioPlayerState.Paused))
 			{
-				
-
-				StateChanged ob_StateChanged = new StateChanged (m_State) ;
+				events.AudioPlayerEvents.StateChanged e = new events.AudioPlayerEvents.StateChanged(m_State);
 				m_State= AudioPlayerState .Playing ;
-				TriggerStateChangedEvent (ob_StateChanged) ;
+				TriggerStateChangedEvent(e) ;
 				SoundBuffer.Play(0, BufferPlayFlags.Looping);
 			}			
 		}
@@ -554,20 +485,14 @@ namespace VirtualAudioBackend
 		{
 			if (!m_State.Equals(AudioPlayerState .Stopped))			
 			{
-				SoundBuffer.Stop () ;
-
-
-
-				RefreshThread.Abort () ;
-				ob_VuMeter.Reset () ;			
-				if (m_PlayFile == true)
-					m_br.Close();
-				
+				SoundBuffer.Stop();
+				RefreshThread.Abort();
+				if (ob_VuMeter != null) ob_VuMeter.Reset();			
+				if (m_PlayFile) m_br.Close();
 			}
-
-			StateChanged ob_StateChanged = new StateChanged (m_State) ;
-			m_State= AudioPlayerState .Stopped ;
-			TriggerStateChangedEvent (ob_StateChanged) ;
+			events.AudioPlayerEvents.StateChanged e = new events.AudioPlayerEvents.StateChanged(m_State);
+			m_State = AudioPlayerState.Stopped;
+			TriggerStateChangedEvent(e);
 		}
 
 		internal long GetCurrentBytePosition()
@@ -588,11 +513,12 @@ namespace VirtualAudioBackend
 		}
 
 		internal double GetCurrentTimePosition()
-		{
-			
+		{	
 			return Calc.ConvertByteToTime (GetCurrentBytePosition() , m_SamplingRate , m_FrameSize);
-		}		
+		}
+		
 		long m_StartPosition  ;
+
 		void SetCurrentBytePosition (long localPosition) 
 		{
 			if (localPosition < 0)
@@ -640,15 +566,8 @@ namespace VirtualAudioBackend
 
 		void SetCurrentTimePosition (double localPosition) 
 		{
-
 			long lTemp = Calc.ConvertTimeToByte (localPosition, m_SamplingRate, m_FrameSize);
 			SetCurrentBytePosition(lTemp) ;
-		}
-
-		private void  test ()
-		{
-			//if (m_State.Equals(AudioPlayerState .stopped))
-			//MessageBox.Show("Stopped") ;
 		}
 
 		MemoryStream m_MemoryStream = new MemoryStream () ;
@@ -658,9 +577,7 @@ namespace VirtualAudioBackend
 
 		void LoadStream (bool boolInit  )
 		{
-			
 			m_MemoryStream.Position = 0 ;
-			
 			if (boolInit == true)
 			{
 				m_StartPosition  = Calc.AdaptToFrame (m_StartPosition , m_FrameSize) ;
@@ -669,12 +586,10 @@ namespace VirtualAudioBackend
 				m_ClipIndex = Convert.ToInt32 (alInfo [0] );
 				ob_Clip = m_Asset.m_alClipList [m_ClipIndex] as AudioClip;
 				double dPositionInClip = Convert.ToDouble (alInfo [1]) + ob_Clip.BeginTime ;
-
 				m_br =new BinaryReader (File.OpenRead(ob_Clip.Path)) ;
 				long lPositionInClip = Calc.ConvertTimeToByte (dPositionInClip , m_SamplingRate , m_FrameSize) + 44;
 				m_br.BaseStream.Position = lPositionInClip  ;
 				m_lClipByteCount = lPositionInClip - ob_Clip.BeginByte ;
-
 				for (long l = 0 ; l < ob_Clip.LengthInBytes && l < 2* (m_RefreshLength ); l=l+m_FrameSize) 
 				{
 					SkipFrames () ;
@@ -682,18 +597,15 @@ namespace VirtualAudioBackend
 					m_lClipByteCount = m_lClipByteCount + m_FrameSize ;
 					ReadNextClip () ;
 				}
-				//MessageBox.Show (m_MemoryStream.Position.ToString ()) ;
 			}
 			else
 			{
 				long l ;
 				for (l = 0 ; l < (m_RefreshLength ) && m_lClipByteCount  < ob_Clip.LengthInBytes  ; l = l+m_FrameSize ) 
 				{
-					//l < ob_Clip.LengthInBytes &&  
 					SkipFrames () ;
 					m_MemoryStream.Write (m_br.ReadBytes(m_FrameSize), 0 , m_FrameSize) ;
 					m_lClipByteCount = m_lClipByteCount + m_FrameSize ;
-				
 					ReadNextClip () ;
 				}
 			}
@@ -711,11 +623,11 @@ namespace VirtualAudioBackend
 						
 					m_br =new BinaryReader (File.OpenRead(ob_Clip.Path)) ;
 					m_br.BaseStream.Position = ob_Clip.BeginByte + 44;
-					//m_lClipByteCount = ob_Clip.BeginByte + 44 ;
 					m_lClipByteCount = 0 ;
 				}
 			}
 		}
+
 		void SkipFrames()
 		{
 			if (m_Step != 1)
