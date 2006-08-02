@@ -37,10 +37,12 @@ namespace Obi.Dialogs
             tmUpdateTimePosition.Enabled = true;
         }
         
+        //member variables
         AudioMediaAsset ob_AudioAsset;
         double m_dSplitTime;
         int m_Step=10000;
         int m_FineStep = 2000;
+        double dPrevLength = 0;
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
@@ -57,7 +59,7 @@ namespace Obi.Dialogs
 
         private void tmUpdateTimePosition_Tick(object sender, EventArgs e)
         {
-            txtDisplayTime.Text = AudioPlayer.Instance.CurrentTimePosition.ToString();
+            txtDisplayTime.Text = ChangeTimeToDisplay();
         }
 
         private void btnFastRewind_Click(object sender, EventArgs e)
@@ -114,10 +116,28 @@ namespace Obi.Dialogs
 
         private void btnPause_Click(object sender, EventArgs e)
         {
-            m_dSplitTime = AudioPlayer.Instance.CurrentTimePosition;
-            AudioPlayer.Instance.Stop();
+
+            
+            if(AudioPlayer.Instance.State== AudioPlayerState.Playing)
+            {
+                m_dSplitTime = AudioPlayer.Instance.CurrentTimePosition;
+                AudioPlayer.Instance.Stop();
             tmUpdateTimePosition.Enabled = false;
+                btnPause.Text = "&Play";
+            }
+            else if (AudioPlayer.Instance.State == AudioPlayerState.Stopped)
+            {
+                MessageBox.Show(m_dSplitTime.ToString());
+                //AudioPlayer.Instance.Play(ob_AudioAsset.GetChunk(m_dSplitTime, ob_AudioAsset.LengthInMilliseconds));
+                AudioPlayer.Instance.Play( ob_AudioAsset);
+                //AudioPlayer.Instance.Resume();
+                AudioPlayer.Instance.CurrentTimePosition = m_dSplitTime;
+                tmUpdateTimePosition.Enabled = true;
+                btnPause.Text = "&Pause";
+            }
+
             txtDisplayTime.Text = m_dSplitTime.ToString();
+            txtDisplayTime.Text = ChangeTimeToDisplay();
         }
 
         
@@ -161,6 +181,23 @@ namespace Obi.Dialogs
 
         private void Split_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (AudioPlayer.Instance.State == AudioPlayerState.Playing)
+                AudioPlayer.Instance.Stop();
+
+AudioPlayer.Instance.VuMeterObject.CloseVuMeterForm();
+        }
+
+        string ChangeTimeToDisplay()
+        {
+                        double dMiliSeconds = AudioPlayer.Instance.CurrentTimePosition;
+            int Seconds = Convert.ToInt32 (dMiliSeconds / 1000);
+            string sSeconds = Seconds.ToString("00");
+            int Minutes = Convert.ToInt32(Seconds / 60);
+            string sMinutes = Minutes.ToString("00");
+            int Hours = Minutes / 60;
+            string sHours = Hours.ToString("00");
+            return sHours + ":" + sMinutes + ":" + sSeconds;
+        
         }
 
     }// end of class
