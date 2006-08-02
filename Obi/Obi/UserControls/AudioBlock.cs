@@ -77,6 +77,13 @@ namespace Obi.UserControls
             mManager.SelectedPhrase = mNode; 
         }
 
+        private void AudioBlock_DoubleClick(object sender, EventArgs e)
+        {
+            mManager.SelectedPhrase = mNode;
+            Dialogs.Play dialog = new Dialogs.Play(mNode);
+            dialog.ShowDialog();
+        }
+
         internal void StartRenaming()
         {
             mRenameBox.BackColor = BackColor;
@@ -131,6 +138,11 @@ namespace Obi.UserControls
                     Localizer.Message("empty_label_warning_caption"),
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        private void mTabPanel_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            MessageBox.Show("Key down = " + e.ToString());
         }
     }
 }

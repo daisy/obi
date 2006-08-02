@@ -60,6 +60,7 @@ namespace Obi.UserControls
             this.mRenameBox.Name = "mRenameBox";
             this.mRenameBox.Size = new System.Drawing.Size(100, 12);
             this.mRenameBox.TabIndex = 2;
+            this.mRenameBox.TabStop = false;
             this.mRenameBox.Visible = false;
             this.mRenameBox.Leave += new System.EventHandler(this.mRenameBox_Leave);
             this.mRenameBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mRenameBox_KeyDown);
@@ -75,6 +76,8 @@ namespace Obi.UserControls
             this.Controls.Add(this.mAnnotationLabel);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
             this.Name = "AudioBlock";
+            this.Size = new System.Drawing.Size(206, 150);
+            this.DoubleClick += new System.EventHandler(this.AudioBlock_DoubleClick);
             this.Click += new System.EventHandler(this.AudioBlock_Click);
             this.ResumeLayout(false);
             this.PerformLayout();

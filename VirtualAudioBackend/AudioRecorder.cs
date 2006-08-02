@@ -6,23 +6,20 @@ using Microsoft.DirectX;
 using Microsoft.DirectX.DirectSound;
 using System.Threading;
 using System.Resources;
-using VirtualAudioBackend.events.AudioRecorderEvents;
-using VirtualAudioBackend.events.VuMeterEvents;
 
 namespace VirtualAudioBackend
-	
 {
-	
 	public class AudioRecorder: IAudioRecorder
 	{
+		public event events.AudioRecorderEvents.StateChangedHandler StateChanged;
+		public event events.AudioRecorderEvents.UpdateVuMeterFromRecorderHandler UpdateVuMeterFromRecorder;
+
 		//member variables
 		//the directory to hold the recorded files
 		private string sProjectDirectory; 
 		//the variables for current position and current time for VuMeter
 		long CurrentPositionInByte ;
 		double dCurrentTime;
-		//the variable  in firing events
-		bool mEventsEnabled  = true;
 		// basic elements of WaveFormat
 		internal int m_Channels;
 		internal int m_bitDepth;
@@ -51,7 +48,8 @@ namespace VirtualAudioBackend
 		//		 array for update current amplitude to VuMeter
 		internal byte [] arUpdateVM ;
 		internal int m_UpdateVMArrayLength ;
-		UpdateVuMeterFromRecorder ob_UpdateVuMeter = new UpdateVuMeterFromRecorder();		
+		events.AudioRecorderEvents.UpdateVuMeterFromRecorder ob_UpdateVuMeter =
+			new events.AudioRecorderEvents.UpdateVuMeterFromRecorder();		
 		VuMeter ob_VuMeter;
 		
 		AudioMediaAsset m_AudioMediaAsset; 
@@ -65,11 +63,11 @@ namespace VirtualAudioBackend
 		
 		public static AudioRecorder Instance
 		{ 
-		get 
-		{ 
-		return instance; 
-	} 
-}
+			get 
+			{ 
+				return instance; 
+			} 
+		}
 
 		// constructor 
 		public 		AudioRecorder()
@@ -130,7 +128,7 @@ namespace VirtualAudioBackend
 				else
 					throw new Exception("invalid channels");
 			}
-}
+		}
 				
 		//state of the AudioRecorder
 		public AudioRecorderState State
@@ -157,12 +155,12 @@ namespace VirtualAudioBackend
 			return m_devicesList;
 		}
 
-//		bool BOOLListen = false;
+		//		bool BOOLListen = false;
 		public void StartListening(IAudioMediaAsset asset)
 		{
-			StateChanged mStateChanged = new StateChanged(mState );
+			events.AudioRecorderEvents.StateChanged e = new events.AudioRecorderEvents.StateChanged(mState);
 			mState = AudioRecorderState.Listening;
-			FireEvent(mStateChanged);
+			StateChanged(this, e);
 			m_Channels = asset.Channels;
 			m_bitDepth = asset.BitDepth;
 			m_SampleRate = asset.SampleRate;
@@ -183,9 +181,9 @@ namespace VirtualAudioBackend
 		//in the wave file through the RecordCaptureData()
 		public void StartRecording(IAudioMediaAsset asset)
 		{	
-			StateChanged mStateChanged = new StateChanged(mState );
+			events.AudioRecorderEvents.StateChanged e = new events.AudioRecorderEvents.StateChanged(mState);
 			mState = AudioRecorderState.Recording;
-			FireEvent(mStateChanged);
+			StateChanged(this, e);
 			m_Channels = asset.Channels;
 			m_SampleRate = asset.SampleRate;
 			m_bitDepth = asset.BitDepth;
@@ -205,9 +203,9 @@ namespace VirtualAudioBackend
 		// desc:  this will first check the condition and stops the recording and then capture any left  overs recorded data which is not saved
 		public void StopRecording()
 		{	
-			StateChanged mStateChanged = new StateChanged(mState );
+			events.AudioRecorderEvents.StateChanged e = new events.AudioRecorderEvents.StateChanged(mState);
 			mState = AudioRecorderState.Idle;
-			FireEvent(mStateChanged);
+			StateChanged(this, e);
 			if (null != NotificationEvent)
 			{
 				Capturing = false;
@@ -230,15 +228,6 @@ namespace VirtualAudioBackend
 			return m_cApplicationDevice;
 		}	
 
-		void FireEvent(StateChanged mStateChanged)
-		{
-			//CatchEvents mCatchEvent = new CatchEvents();
-			if(mEventsEnabled == true)
-			{
-				//mStateChanged.OnStateChangedEvent+=new DStateChangedEventHandller(mCatchEvent.CatchOnStateChangedEvent);
-				//mStateChanged.NotifyChange(this, mStateChanged);
-			}
-		}
 		
 
 		
@@ -252,7 +241,7 @@ namespace VirtualAudioBackend
 			InputFormat.AverageBytesPerSecond = m_AudioMediaAsset.SampleRate * m_AudioMediaAsset.FrameSize;
 			InputFormat.BlockAlign = Convert.ToInt16(m_AudioMediaAsset.FrameSize);
 			m_FrameSize = m_AudioMediaAsset.FrameSize;
-//			m_Channels = m_AudioMediaAsset.Channels;
+			//			m_Channels = m_AudioMediaAsset.Channels;
 			//m_SampleRate =  m_AudioMediaAsset.SampleRate;
 			return InputFormat;
 		}
@@ -333,7 +322,8 @@ namespace VirtualAudioBackend
 		public 		void SetVuMeterObject ( VuMeter ob_VuMeterArg )
 		{
 			ob_VuMeter = ob_VuMeterArg ;
-			ob_UpdateVuMeter.UpdateVuMeterEvent+= new DUpdateVuMeterEventHandller (ob_VuMeter.CatchUpdateVuMeterEvent);
+			// Modified by JQ
+			//ob_UpdateVuMeter.UpdateVuMeterEvent+= new DUpdateVuMeterEventHandller (ob_VuMeter.CatchUpdateVuMeterEvent);
 		}
 
 		public VuMeter VuMeterObject
@@ -373,13 +363,13 @@ namespace VirtualAudioBackend
 			// Set the buffer sizes
 			m_iCaptureBufferSize = m_iNotifySize * NumberRecordNotifications;
 			//calculate the size of VuMeter Update array length
-/*
-			m_UpdateVMArrayLength = m_iCaptureBufferSize/ 50 ;
-			CalculationFunctions cf = new CalculationFunctions();
-			m_UpdateVMArrayLength = Convert.ToInt32 (cf.AdaptToFrame ( Convert.ToInt32 ( m_UpdateVMArrayLength ),  m_FrameSize)  );
-			arUpdateVM = new byte [ m_UpdateVMArrayLength ] ;
-*/			
-// Create the capture buffer
+			/*
+						m_UpdateVMArrayLength = m_iCaptureBufferSize/ 50 ;
+						CalculationFunctions cf = new CalculationFunctions();
+						m_UpdateVMArrayLength = Convert.ToInt32 (cf.AdaptToFrame ( Convert.ToInt32 ( m_UpdateVMArrayLength ),  m_FrameSize)  );
+						arUpdateVM = new byte [ m_UpdateVMArrayLength ] ;
+			*/			
+			// Create the capture buffer
 			dsc.BufferBytes = m_iCaptureBufferSize;
 			InputFormat.FormatTag = WaveFormatTag.Pcm;
 			// Set the format during creatation
@@ -451,7 +441,8 @@ namespace VirtualAudioBackend
 			if (ReadPos < ((m_iCaptureBufferSize)- m_UpdateVMArrayLength  ) )
 			{
 				Array.Copy ( applicationBuffer.Read(ReadPos , typeof (byte) , LockFlag.None , m_UpdateVMArrayLength  ) , arUpdateVM , m_UpdateVMArrayLength  ) ;				
-				ob_UpdateVuMeter.NotifyUpdateVuMeter ( this, ob_UpdateVuMeter ) ;
+				//ob_UpdateVuMeter.NotifyUpdateVuMeter ( this, ob_UpdateVuMeter ) ;
+				UpdateVuMeterFromRecorder(this, ob_UpdateVuMeter);
 			}
 			LockSize = ReadPos - NextCaptureOffset;
 			if (LockSize < 0)
@@ -547,18 +538,18 @@ namespace VirtualAudioBackend
 				Audiolength = 0;
 				AudioClip NewRecordedClip = new AudioClip(m_sFileName);
 				mAsset.AddClip(NewRecordedClip);
-			//NotifyThread = null;	
-}
+				//NotifyThread = null;	
+			}
 		}
 
 
-public void SetInputDeviceForRecording(Control FormHandle, int Index)
-	{
-		CaptureDevicesCollection devices  = new CaptureDevicesCollection();
-		Microsoft.DirectX.DirectSound.Device mDevice = new  Microsoft.DirectX.DirectSound.Device ( devices[Index].DriverGuid);
-		mDevice .SetCooperativeLevel(FormHandle, CooperativeLevel.Priority);
-		m_InputDevice = mDevice;
-	}
+		public void SetInputDeviceForRecording(Control FormHandle, int Index)
+		{
+			CaptureDevicesCollection devices  = new CaptureDevicesCollection();
+			Microsoft.DirectX.DirectSound.Device mDevice = new  Microsoft.DirectX.DirectSound.Device ( devices[Index].DriverGuid);
+			mDevice .SetCooperativeLevel(FormHandle, CooperativeLevel.Priority);
+			m_InputDevice = mDevice;
+		}
 		public Device InputDevice
 		{
 			get

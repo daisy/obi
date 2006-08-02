@@ -4,10 +4,8 @@ using System.Text;
 
 namespace VirtualAudioBackend.events.AudioRecorderEvents
 {
+	public delegate void StateChangedHandler(object sender, StateChanged e);  // JQ
 
-	// delegate for the state changes
-	public delegate void DStateChangedEventHandller(Object Sender, StateChanged state);
-	
 	/// <summary>
 	/// The state of the audio recorder changed.
 	/// </summary>
@@ -41,13 +39,5 @@ namespace VirtualAudioBackend.events.AudioRecorderEvents
 		{
 			mOldState = oldState;
 		}
-
-		public event DStateChangedEventHandller OnStateChangedEvent;			
-		
-		public void NotifyChange(Object Sender, StateChanged state)
-		{
-			OnStateChangedEvent(Sender, state);
-		}
-
 	}
 }

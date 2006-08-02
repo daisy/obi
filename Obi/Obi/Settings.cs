@@ -76,6 +76,5 @@ namespace Obi
             soap.Serialize(stream, this);
             stream.Close();
         }
-
     }
 }
