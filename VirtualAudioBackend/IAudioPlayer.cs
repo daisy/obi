@@ -99,6 +99,10 @@ namespace VirtualAudioBackend
 		/// <param name="asset">The asset to play.</param>
 		void Play(IAudioMediaAsset asset);
 
+// to play an asset from a position in between its length
+		// it plays from a start position to end of Asset
+		void Play(IAudioMediaAsset  asset, double timeFrom);
+
 		/// <summary>
 		/// Pause playing. No effect if already paused, or if no sound is playing.
 		/// State after Pause() can only be Paused or Stopped. 
