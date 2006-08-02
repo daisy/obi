@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
+
 using urakawa.core;
 using VirtualAudioBackend;
 using VirtualAudioBackend.events.AudioPlayerEvents;
@@ -52,6 +53,7 @@ namespace Obi.Dialogs
         int m_Step=10000;
         int m_FineStep = 2000;
         double dPrevLength = 0;
+        public  AudioMediaAsset mSplitResult;
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
@@ -68,34 +70,34 @@ namespace Obi.Dialogs
 
         private void tmUpdateTimePosition_Tick(object sender, EventArgs e)
         {
-            txtDisplayTime.Text = ChangeTimeToDisplay();
+            txtDisplayTime.Text = ChangeTimeToDisplay(AudioPlayer.Instance.CurrentTimePosition);
         }
 
         private void btnFastRewind_Click(object sender, EventArgs e)
         {
                     m_dSplitTime = m_dSplitTime - m_Step;
-                    txtDisplayTime.Text = m_dSplitTime.ToString();
+                    txtDisplayTime.Text = ChangeTimeToDisplay(m_dSplitTime);
 
         }
 
         private void btnFastForward_Click(object sender, EventArgs e)
         {
             m_dSplitTime = m_dSplitTime + m_Step;
-            txtDisplayTime.Text = m_dSplitTime.ToString();
+            txtDisplayTime.Text = ChangeTimeToDisplay(m_dSplitTime);
 
         }
 
         private void btnFineRewind_Click(object sender, EventArgs e)
         {
             m_dSplitTime = m_dSplitTime - m_FineStep;
-            txtDisplayTime.Text = m_dSplitTime.ToString();
+            txtDisplayTime.Text = ChangeTimeToDisplay(m_dSplitTime);
 
         }
 
         private void btnFineForward_Click(object sender, EventArgs e)
         {
             m_dSplitTime = m_dSplitTime + m_FineStep;
-            txtDisplayTime.Text = m_dSplitTime.ToString();
+            txtDisplayTime.Text = m_dSplitTime.ToString(); txtDisplayTime.Text = ChangeTimeToDisplay(m_dSplitTime);
             //double dTempPosition = AudioPlayer.Instance.CurrentTimePosition;
             //AudioPlayer.Instance.CurrentTimePosition= dTempPosition +m_FineStep;
         }
@@ -103,6 +105,13 @@ namespace Obi.Dialogs
         private void btnSplit_Click(object sender, EventArgs e)
         {
             // result of the split must be in mSplitResult
+            if (m_dSplitTime > 0 && m_dSplitTime < ob_AudioAsset.LengthInMilliseconds)
+            {
+                mSplitResult = ob_AudioAsset.Split(m_dSplitTime) as AudioMediaAsset;
+                ob_AudioAsset.Manager.AddAsset(mSplitResult);
+            }
+            
+                
         }
 
         private void btnStop_Click(object sender, EventArgs e)
@@ -145,8 +154,8 @@ namespace Obi.Dialogs
                 btnPause.Text = "&Pause";
             }
 
-            txtDisplayTime.Text = m_dSplitTime.ToString();
-            txtDisplayTime.Text = ChangeTimeToDisplay();
+            //txtDisplayTime.Text = m_dSplitTime.ToString();
+            txtDisplayTime.Text = ChangeTimeToDisplay(m_dSplitTime);
         }
 
         
@@ -196,9 +205,9 @@ namespace Obi.Dialogs
 AudioPlayer.Instance.VuMeterObject.CloseVuMeterForm();
         }
 
-        string ChangeTimeToDisplay()
+        string ChangeTimeToDisplay(double dTime)
         {
-                        double dMiliSeconds = AudioPlayer.Instance.CurrentTimePosition;
+            double dMiliSeconds = dTime;
             int Seconds = Convert.ToInt32 (dMiliSeconds / 1000);
             string sSeconds = Seconds.ToString("00");
             int Minutes = Convert.ToInt32(Seconds / 60);
