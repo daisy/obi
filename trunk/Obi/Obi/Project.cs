@@ -120,7 +120,7 @@ namespace Obi
             mAssManager = null;
             mUnsaved = false;
             mXUKPath = null;
-            getPresentation().setPropertyFactory(new AssetPropertyFactory(getPresentation()));
+            getPresentation().setPropertyFactory(new ObiPropertyFactory(getPresentation()));
         }
 
         /// <summary>
@@ -137,6 +137,10 @@ namespace Obi
             mXUKPath = xukPath;
             mAssPath = GetAssetDirectory(xukPath);
             mAssManager = new AssetManager(mAssPath);
+
+            // now make the ass path relative to the xuk path (JQ)
+            mAssPath = (new Uri(xukPath)).MakeRelativeUri(new Uri(mAssPath)).ToString();
+
             mMetadata = CreateMetadata(title, id, userProfile);
             mAudioChannel = getPresentation().getChannelFactory().createChannel(AudioChannel);
             getPresentation().getChannelsManager().addChannel(mAudioChannel);
@@ -145,10 +149,11 @@ namespace Obi
             mAnnotationChannel = getPresentation().getChannelFactory().createChannel(AnnotationChannel);
             getPresentation().getChannelsManager().addChannel(mAnnotationChannel);
 
-            // Give a custom property to the root node to make it a RootNode.
+            // Give a custom property to the root node to make it a Root node.
             NodeTypeProperty typeProp =
-                (NodeTypeProperty)getPresentation().getPropertyFactory().createProperty("NodeTypeProperty");
-            typeProp.Type = NodeType.RootNode;
+                (NodeTypeProperty)getPresentation().getPropertyFactory().createProperty("NodeTypeProperty",
+                ObiPropertyFactory.ObiNS);
+            typeProp.NodeType = NodeType.Root;
             getPresentation().getRootNode().setProperty(typeProp);
             NodeTypeProperty rootType = (NodeTypeProperty)getPresentation().getRootNode().getProperty(typeof(NodeTypeProperty));
 
@@ -183,6 +188,7 @@ namespace Obi
         {
             if (openXUK(new Uri(xukPath)))
             {
+                Directory.SetCurrentDirectory(Path.GetDirectoryName(xukPath));
                 mUnsaved = false;
                 mXUKPath = xukPath;
                 mAudioChannel = FindChannel(AudioChannel);
@@ -216,12 +222,9 @@ namespace Obi
                             break;
                     }
                 }
-                if (mAssPath == null)
-                {
-                    mAssPath = GetAssetDirectory(mXUKPath);
-                    AddMetadata("obi:assetsdir", mAssPath);
-                }
-                mAssManager = new AssetManager(mAssPath);
+                if (mAssPath == null) throw new Exception(Localizer.Message("missing_asset_path"));
+                Uri absoluteAssPath = new Uri(new Uri(xukPath), mAssPath); 
+                mAssManager = new AssetManager(absoluteAssPath.AbsolutePath);
                 // Recreate the assets from the phrase nodes
                 getPresentation().getRootNode().acceptDepthFirst(new Visitors.AssetVisitor());
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
@@ -263,7 +266,7 @@ namespace Obi
             AddMetadata("dc:Publisher", metadata.Publisher);
             urakawa.project.Metadata metaDate = AddMetadata("dc:Date", DateTime.Today.ToString("yyyy-MM-dd"));
             if (metaDate != null) metaDate.setScheme("YYYY-MM-DD");
-            AddMetadata("xuk:generator", "Obi+Urakawa toolkit; let's share the blame.");
+            AddMetadata("xuk:generator", "Obi+Urakawa toolkit");
             AddMetadata("obi:assetsdir", mAssPath);
             return metadata;
         }
@@ -313,7 +316,7 @@ namespace Obi
         {
             if (value != null)
             {
-                urakawa.project.Metadata meta = (urakawa.project.Metadata)getMetadataFactory().createMetadata("Metadata");
+                urakawa.project.Metadata meta = (urakawa.project.Metadata)getMetadataFactory().createMetadata();
                 meta.setName(name);
                 meta.setContent(value);
                 this.appendMetadata(meta);
@@ -892,8 +895,9 @@ namespace Obi
             TextMedia text = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
             text.setText(Localizer.Message("default_section_label"));
             prop.setMedia(mTextChannel, text);
-            NodeTypeProperty typeProp = (NodeTypeProperty)getPresentation().getPropertyFactory().createProperty("NodeTypeProperty");
-            typeProp.Type = NodeType.SectionNode;
+            NodeTypeProperty typeProp = (NodeTypeProperty)getPresentation().getPropertyFactory().createProperty("NodeTypeProperty",
+                ObiPropertyFactory.ObiNS);
+            typeProp.NodeType = NodeType.Section;
             node.setProperty(typeProp);
             return node;
         }
@@ -924,11 +928,13 @@ namespace Obi
                 seq.appendItem(audio);
             }
             prop.setMedia(mAudioChannel, seq);
-            AssetProperty assProp = (AssetProperty)getPresentation().getPropertyFactory().createProperty("AssetProperty");
+            AssetProperty assProp = (AssetProperty)getPresentation().getPropertyFactory().createProperty("AssetProperty",
+                ObiPropertyFactory.ObiNS);
             assProp.Asset = asset;
             node.setProperty(assProp);
-            NodeTypeProperty typeProp = (NodeTypeProperty)getPresentation().getPropertyFactory().createProperty("NodeTypeProperty");
-            typeProp.Type = NodeType.PhraseNode;
+            NodeTypeProperty typeProp = (NodeTypeProperty)getPresentation().getPropertyFactory().createProperty("NodeTypeProperty",
+                ObiPropertyFactory.ObiNS);
+            typeProp.NodeType = NodeType.Phrase;
             node.setProperty(typeProp);
             return node;
         }
@@ -996,7 +1002,7 @@ namespace Obi
             NodeTypeProperty prop = (NodeTypeProperty)node.getProperty(typeof(NodeTypeProperty));
             if (prop != null)
             {
-                return prop.Type;
+                return prop.NodeType;
             }
             else
             {

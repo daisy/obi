@@ -8,6 +8,8 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
+using Microsoft.DirectX.DirectSound;
+
 using Commands;
 using VirtualAudioBackend;
 using Obi.Dialogs;

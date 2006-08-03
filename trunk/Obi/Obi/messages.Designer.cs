@@ -245,6 +245,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not find path to asset directory..
+        /// </summary>
+        internal static string missing_asset_path {
+            get {
+                return ResourceManager.GetString("missing_asset_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mono.
         /// </summary>
         internal static string mono {

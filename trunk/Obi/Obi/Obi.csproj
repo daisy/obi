@@ -70,7 +70,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssetProperty.cs" />
     <Compile Include="Commands\CommandManager.cs" />
     <Compile Include="Commands\TOC\AddSection.cs" />
     <Compile Include="Commands\TOC\DeleteSection.cs" />
@@ -78,6 +77,7 @@
     <Compile Include="Commands\TOC\MoveSectionDown.cs" />
     <Compile Include="Commands\TOC\MoveSectionUp.cs" />
     <Compile Include="Commands\TOC\Rename.cs" />
+    <Compile Include="CustomProperties.cs" />
     <Compile Include="DescendantsVisitor.cs" />
     <Compile Include="Dialogs\EditSimpleMetadata.cs">
       <SubType>Form</SubType>
@@ -138,7 +138,6 @@
       <DependentUpon>messages.resx</DependentUpon>
     </Compile>
     <Compile Include="NodePositionVisitor.cs" />
-    <Compile Include="NodeTypeProperty.cs" />
     <Compile Include="ObiForm.cs">
       <SubType>Form</SubType>
     </Compile>

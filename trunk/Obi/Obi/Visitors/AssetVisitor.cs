@@ -21,7 +21,7 @@ namespace Obi.Visitors
         /// </summary>
         public bool preVisit(ICoreNode node)
         {
-            if (Project.GetNodeType((CoreNode)node) == NodeType.PhraseNode)
+            if (Project.GetNodeType((CoreNode)node) == NodeType.Phrase)
             {
                 SequenceMedia media = (SequenceMedia)Project.GetMediaForChannel((CoreNode)node, Project.AudioChannel);
                 ArrayList clips = new ArrayList(media.getCount()); 
@@ -34,7 +34,8 @@ namespace Obi.Visitors
                 AudioMediaAsset asset = new AudioMediaAsset(clips);
                 asset.Name = ((TextMedia)Project.GetMediaForChannel((CoreNode)node, Project.AnnotationChannel)).getText();
                 AssetProperty assProp =
-                    (AssetProperty)node.getPresentation().getPropertyFactory().createProperty("AssetProperty");
+                    (AssetProperty)node.getPresentation().getPropertyFactory().createProperty("AssetProperty",
+                    ObiPropertyFactory.ObiNS);
                 assProp.Asset = asset;
                 node.setProperty(assProp);
             }

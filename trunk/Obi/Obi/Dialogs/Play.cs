@@ -61,8 +61,7 @@ namespace Obi.Dialogs
 
         private void mStopButton_Click(object sender, EventArgs e)
         {
-            AudioPlayer.Instance.Stop();
-            AudioPlayer.Instance.VuMeterObject.CloseVuMeterForm();
+            // closing stops playing (JQ)
             this.Close();
         }
 
@@ -98,6 +97,7 @@ namespace Obi.Dialogs
         private void Play_Load(object sender, EventArgs e)
         {
             mNameDisplay.Text = ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).getText();
+            mNameDisplay.SelectionStart = mNameDisplay.Text.Length;
             mTimeDisplay.Text = "00:00:00";
             if (AudioPlayer.Instance.State.Equals(AudioPlayerState.Stopped))
             {

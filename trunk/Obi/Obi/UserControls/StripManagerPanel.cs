@@ -118,7 +118,7 @@ namespace Obi.UserControls
         /// <returns>True.</returns>
         public bool preVisit(ICoreNode node)
         {
-            if (Project.GetNodeType((CoreNode)node) == NodeType.SectionNode)
+            if (Project.GetNodeType((CoreNode)node) == NodeType.Section)
             {
                 SectionStrip strip = new SectionStrip();
                 strip.Label = Project.GetTextMedia((CoreNode)node).getText();
@@ -128,7 +128,7 @@ namespace Obi.UserControls
                 mFlowLayoutPanel.Controls.Add(strip);
                 SelectedSection = strip.Node;
             }
-            else if (Project.GetNodeType((CoreNode)node) == NodeType.PhraseNode)
+            else if (Project.GetNodeType((CoreNode)node) == NodeType.Phrase)
             {
                 SectionStrip strip = mSectionNodeMap[mSelectedSection];
                 AudioBlock block = new AudioBlock();
