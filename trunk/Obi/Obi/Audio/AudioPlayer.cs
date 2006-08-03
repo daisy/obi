@@ -37,7 +37,6 @@ namespace Obi.Audio
 		private long m_lLength;
 		private long m_lPlayed ;
 		private Thread RefreshThread;
-		private CalculationFunctions Calc;
 		private bool m_PlayFile;
 		private bool m_FastPlay = false;
 		private int m_Step = 1;
@@ -67,7 +66,6 @@ namespace Obi.Audio
 			m_FastPlay = false ;
 			m_State = AudioPlayerState.Stopped;
 			ob_VuMeter = null;  // JQ
-			Calc = new CalculationFunctions(); 
 		}
 
 		// bool variable to enable or disable event
@@ -223,8 +221,8 @@ namespace Obi.Audio
 		void InitPlay(long lStartPosition, long lEndPosition)
 		{
 			// Adjust the start and end position according to frame size
-			lStartPosition = Calc.AdaptToFrame(lStartPosition, m_Asset.FrameSize) ;
-			lEndPosition = Calc.AdaptToFrame(lEndPosition, m_Asset.FrameSize) ;
+			lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, m_Asset.FrameSize) ;
+			lEndPosition = CalculationFunctions.AdaptToFrame(lEndPosition, m_Asset.FrameSize) ;
 			m_SamplingRate = m_Asset.SampleRate ;
 				
 			// lEndPosition = 0 means that file is played to end
@@ -265,7 +263,7 @@ namespace Obi.Audio
 			m_RefreshLength = (m_Asset .SampleRate / 2 ) * m_Asset .FrameSize ;
 			// calculate the size of VuMeter Update array length
 			m_UpdateVMArrayLength = m_SizeBuffer  / 20 ;
-			m_UpdateVMArrayLength = Convert.ToInt32 (Calc.AdaptToFrame ( Convert.ToInt32 ( m_UpdateVMArrayLength ),  m_FrameSize)  );
+			m_UpdateVMArrayLength = Convert.ToInt32 (CalculationFunctions.AdaptToFrame ( Convert.ToInt32 ( m_UpdateVMArrayLength ),  m_FrameSize)  );
 			arUpdateVM = new byte [ m_UpdateVMArrayLength ] ;
 			// reset the VuMeter (if set)
 			if (ob_VuMeter != null) ob_VuMeter.Reset () ;
@@ -283,7 +281,7 @@ namespace Obi.Audio
 			if (m_Step != 1)
 			{
 				m_CompAddition = (m_RefreshLength * 2) / m_Step ;
-				m_CompAddition = Convert.ToInt32 (Calc.AdaptToFrame (m_CompAddition , m_FrameSize) );
+				m_CompAddition = Convert.ToInt32 (CalculationFunctions.AdaptToFrame (m_CompAddition , m_FrameSize) );
 			}
 
 			// Load from file to memory
@@ -455,8 +453,8 @@ namespace Obi.Audio
 		public void Play(Assets.AudioMediaAsset  asset, double timeFrom)
 		{
 			m_Asset = asset as Assets.AudioMediaAsset;
-			long lPosition = Calc.ConvertTimeToByte (timeFrom, m_Asset .SampleRate, m_Asset .FrameSize) ;
-			lPosition = Calc.AdaptToFrame(lPosition, m_Asset .FrameSize) ;
+			long lPosition = CalculationFunctions.ConvertTimeToByte (timeFrom, m_Asset .SampleRate, m_Asset .FrameSize) ;
+			lPosition = CalculationFunctions.AdaptToFrame(lPosition, m_Asset .FrameSize) ;
 			if(lPosition>=0   && lPosition < m_Asset.AudioLengthInBytes)
 			{
 							m_StartPosition   =  lPosition ;
@@ -473,9 +471,9 @@ namespace Obi.Audio
 		private void Play(Assets.AudioMediaAsset asset , double timeFrom, double timeTo)
 		{
 			m_Asset = asset as Assets.AudioMediaAsset;
-			long lStartPosition = Calc.ConvertTimeToByte (timeFrom, m_Asset .SampleRate, m_Asset .FrameSize) ;
-			lStartPosition = Calc.AdaptToFrame(lStartPosition, m_Asset .FrameSize) ;
-			long lEndPosition = Calc.ConvertTimeToByte (timeTo , m_Asset.SampleRate, m_Asset.FrameSize) ;
+			long lStartPosition = CalculationFunctions.ConvertTimeToByte (timeFrom, m_Asset .SampleRate, m_Asset .FrameSize) ;
+			lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, m_Asset .FrameSize) ;
+			long lEndPosition = CalculationFunctions.ConvertTimeToByte (timeTo , m_Asset.SampleRate, m_Asset.FrameSize) ;
 			lByteTo = lEndPosition ;
 			// check for valid arguments
 			if (lStartPosition>0 && lStartPosition < lEndPosition && lEndPosition <= m_Asset.AudioLengthInBytes)
@@ -544,7 +542,7 @@ namespace Obi.Audio
 
 		internal double GetCurrentTimePosition()
 		{	
-			return Calc.ConvertByteToTime (GetCurrentBytePosition() , m_SamplingRate , m_FrameSize);
+			return CalculationFunctions.ConvertByteToTime (GetCurrentBytePosition() , m_SamplingRate , m_FrameSize);
 		}
 		
 		long m_StartPosition  ;
@@ -596,7 +594,7 @@ namespace Obi.Audio
 
 		void SetCurrentTimePosition (double localPosition) 
 		{
-			long lTemp = Calc.ConvertTimeToByte (localPosition, m_SamplingRate, m_FrameSize);
+			long lTemp = CalculationFunctions.ConvertTimeToByte (localPosition, m_SamplingRate, m_FrameSize);
 			SetCurrentBytePosition(lTemp) ;
 		}
 
@@ -610,15 +608,15 @@ namespace Obi.Audio
 			m_MemoryStream.Position = 0 ;
 			if (boolInit == true)
 			{
-				m_StartPosition  = Calc.AdaptToFrame (m_StartPosition , m_FrameSize) ;
-				double dStartPosition = Calc.ConvertByteToTime (m_StartPosition , m_SamplingRate , m_FrameSize) ;
+				m_StartPosition  = CalculationFunctions.AdaptToFrame (m_StartPosition , m_FrameSize) ;
+				double dStartPosition = CalculationFunctions.ConvertByteToTime (m_StartPosition , m_SamplingRate , m_FrameSize) ;
 				ArrayList alInfo = new ArrayList (m_Asset.FindClipToProcess(dStartPosition)) ;
 				m_ClipIndex = Convert.ToInt32 (alInfo [0] );
 				ob_Clip = m_Asset.m_alClipList [m_ClipIndex] as Assets.AudioClip;
 				double dPositionInClip = Convert.ToDouble (alInfo [1]) + ob_Clip.BeginTime ;
 				m_br =new BinaryReader (File.OpenRead(ob_Clip.Path)) ;
-				long lPositionInClip = Calc.ConvertTimeToByte (dPositionInClip , m_SamplingRate , m_FrameSize) + 44;
-                lPositionInClip = Calc.AdaptToFrame(lPositionInClip, m_FrameSize);
+				long lPositionInClip = CalculationFunctions.ConvertTimeToByte (dPositionInClip , m_SamplingRate , m_FrameSize) + 44;
+                lPositionInClip = CalculationFunctions.AdaptToFrame(lPositionInClip, m_FrameSize);
                 m_br.BaseStream.Position = lPositionInClip  ;
                 m_lClipByteCount = lPositionInClip - ob_Clip.BeginByte ;
 				for (long l = 0 ; l < ob_Clip.LengthInBytes && l < 2* (m_RefreshLength ); l=l+m_FrameSize) 

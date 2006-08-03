@@ -69,10 +69,14 @@ namespace Obi.UserControls
                     SelectedSection = (CoreNode)mSelectedPhrase.getParent();
                     mPhraseNodeMap[mSelectedPhrase].MarkSelected();
                     playAssetToolStripMenuItem.Enabled = true;
+                    splitAudioBlockToolStripMenuItem.Enabled = true;
+                    renameAssetToolStripMenuItem.Enabled = true;
                 }
                 else
                 {
                     playAssetToolStripMenuItem.Enabled = false;
+                    splitAudioBlockToolStripMenuItem.Enabled = false;
+                    renameAssetToolStripMenuItem.Enabled = false;
                 }
             }
         }

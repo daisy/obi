@@ -9,19 +9,19 @@ namespace Obi.Audio
 	public class CalculationFunctions
 	{
 
-		public long AdaptToFrame  (long lVal, int FrameSize)
+		public static long AdaptToFrame  (long lVal, int FrameSize)
 		{
 			long  lTemp = lVal / FrameSize ;
 			return lTemp * FrameSize ;
 		}
 
-		public long ConvertToDecimal (int [] Ar)
+		public static long ConvertToDecimal (int [] Ar)
 		{
 			//convert from mod 256 to mod 10
 			return Ar[0] + (Ar[1] * 256) + (Ar[2] *256 *256) + (Ar[3] *256 *256 *256) ;
 		}
 		
-		public int [] ConvertFromDecimal (long lVal) 
+		public static int [] ConvertFromDecimal (long lVal) 
 		{
 			// convert  mod 10 to 4 byte array each of mod 256
 			int [] Result = new int [4] ;
@@ -37,19 +37,19 @@ namespace Obi.Audio
 
 
 		// function for converting time into bytes
-		public long ConvertTimeToByte (double dTime, int SamplingRate , int FrameSize)
+		public static long ConvertTimeToByte (double dTime, int SamplingRate , int FrameSize)
 		{
 			return Convert.ToInt64(( dTime * SamplingRate  * FrameSize)/1000) ;
 		}
 
-		public double ConvertByteToTime (long lByte, int SamplingRate, int FrameSize)
+		public static double ConvertByteToTime (long lByte, int SamplingRate, int FrameSize)
 		{
 			long lTemp = (1000 * lByte) / (SamplingRate * FrameSize) ;
 			return Convert.ToDouble (lTemp) ;
 		}
 
 
-		internal string GenerateNewAssetName (Assets.MediaAsset Asset)
+		internal static string GenerateNewAssetName (Assets.MediaAsset Asset)
 		{
 			
 			long i = 0 ;
@@ -80,7 +80,7 @@ manager.m_htExists.Add (sTempName , Asset) ;
 		}
 		
 			
-		internal string GenerateFileName (string ext, string sDir)
+		internal static string GenerateFileName (string ext, string sDir)
 		{
 			int i = 0 ;
 			string sTemp ;

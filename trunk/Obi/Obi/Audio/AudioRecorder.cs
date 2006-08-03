@@ -400,13 +400,12 @@ namespace Obi.Audio
 			int CapturePos ;
 			int LockSize ;
 			applicationBuffer.GetCurrentPosition(out CapturePos, out ReadPos);
-			CalculationFunctions cf = new CalculationFunctions();
 			long CurrentPosition = (long) CapturePos;
 			CurrentPositionInByte = CurrentPosition +SampleCount;
 
-			dCurrentTime = cf.ConvertByteToTime(CurrentPosition, m_SampleRate, m_FrameSize);
+			dCurrentTime = CalculationFunctions.ConvertByteToTime(CurrentPosition, m_SampleRate, m_FrameSize);
 			m_UpdateVMArrayLength = m_iCaptureBufferSize/ 50 ;
-			m_UpdateVMArrayLength = Convert.ToInt32 (cf.AdaptToFrame ( Convert.ToInt32 ( m_UpdateVMArrayLength ),  m_FrameSize)  );
+			m_UpdateVMArrayLength = Convert.ToInt32 (CalculationFunctions.AdaptToFrame ( Convert.ToInt32 ( m_UpdateVMArrayLength ),  m_FrameSize)  );
 
 			arUpdateVM = new byte [ m_UpdateVMArrayLength ] ;
 			ReadPos = CapturePos;
@@ -493,16 +492,15 @@ namespace Obi.Audio
 				RecordCapturedData();
 				BinaryWriter Writer = new BinaryWriter(File.OpenWrite(m_sFileName));
 				long Audiolength = (long)(SampleCount+44);
-				CalculationFunctions cf = new CalculationFunctions();
 				for (int i = 0; i<4 ; i++)
 				{
 					Writer.BaseStream.Position = i + 4 ;
-					Writer.Write (Convert.ToByte (cf.ConvertFromDecimal (Audiolength)[i])) ;
+					Writer.Write (Convert.ToByte (CalculationFunctions.ConvertFromDecimal (Audiolength)[i])) ;
 				}
 				for (int i = 0; i<4 ; i++)
 				{
 					Writer.BaseStream.Position = i + 40 ;
-					Writer.Write (Convert.ToByte (cf.ConvertFromDecimal (SampleCount )[i])) ;
+					Writer.Write (Convert.ToByte (CalculationFunctions.ConvertFromDecimal (SampleCount )[i])) ;
 				}
 				Writer.Close();	// Close the file now.
 				//Set the writer to null.

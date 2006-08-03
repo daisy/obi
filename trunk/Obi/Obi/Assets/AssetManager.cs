@@ -266,6 +266,19 @@ namespace Obi.Assets
 				throw new Exception ("Asset cannot be renamed : not in hashtable") ;
 			return OldName;
 		}
+
+        /// <summary>
+        /// Create an asset directly from a file and add it into the manager.
+        /// Its file is copied to the asset manager directory.
+        /// </summary>
+        /// <param name="path">The path of the file to import.</param>
+        /// <returns>The asset created.</returns>
+        public AudioMediaAsset ImportAudioMediaAsset(string path)
+        {
+            ArrayList clips = new ArrayList(1);
+            clips.Add(AudioClip.ImportClip(path, this));
+            return NewAudioMediaAsset(clips);
+        }
 	}
 
 	#endregion
