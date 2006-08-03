@@ -58,7 +58,7 @@ namespace Obi.Dialogs
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
-            if (ob_AudioAsset.AudioLengthInBytes > m_dSplitTime)
+            if (ob_AudioAsset.AudioLengthInBytes > m_dSplitTime && AudioPlayer.Instance.State== AudioPlayerState.Stopped)
             {
                 VuMeter ob_VuMeter = new VuMeter();
                 ob_VuMeter.LowerThreshold = 50;
@@ -76,8 +76,13 @@ namespace Obi.Dialogs
 
         private void btnFastRewind_Click(object sender, EventArgs e)
         {
+            
             if (AudioPlayer.Instance.State == AudioPlayerState.Playing)
-                AudioPlayer.Instance.CurrentTimePosition = AudioPlayer.Instance.CurrentTimePosition - m_Step;
+            {
+                double dCurrentPlayPosition = AudioPlayer.Instance.CurrentTimePosition;
+                if (dCurrentPlayPosition - m_Step > 0)
+                AudioPlayer.Instance.CurrentTimePosition = dCurrentPlayPosition - m_Step;
+            }
             else
             {
                 m_dSplitTime = m_dSplitTime - m_Step;
@@ -91,7 +96,11 @@ namespace Obi.Dialogs
         private void btnFastForward_Click(object sender, EventArgs e)
         {
             if (AudioPlayer.Instance.State == AudioPlayerState.Playing)
-                AudioPlayer.Instance.CurrentTimePosition = AudioPlayer.Instance.CurrentTimePosition + m_Step;
+            {
+                double dCurrentPlayPosition = AudioPlayer.Instance.CurrentTimePosition;
+                if (dCurrentPlayPosition + m_Step < ob_AudioAsset.LengthInMilliseconds)
+                    AudioPlayer.Instance.CurrentTimePosition = dCurrentPlayPosition + m_Step;
+            }
             else
             {
                 m_dSplitTime = m_dSplitTime + m_Step;
@@ -105,7 +114,11 @@ namespace Obi.Dialogs
         private void btnFineRewind_Click(object sender, EventArgs e)
         {
             if (AudioPlayer.Instance.State == AudioPlayerState.Playing)
-                AudioPlayer.Instance.CurrentTimePosition = AudioPlayer.Instance.CurrentTimePosition - m_FineStep;
+            {
+                double dCurrentPlayPosition = AudioPlayer.Instance.CurrentTimePosition;
+                if (dCurrentPlayPosition - m_FineStep > 0)
+                    AudioPlayer.Instance.CurrentTimePosition = dCurrentPlayPosition - m_FineStep;
+            }
             else
             {
                 m_dSplitTime = m_dSplitTime - m_FineStep;
@@ -117,15 +130,19 @@ namespace Obi.Dialogs
 
         private void btnFineForward_Click(object sender, EventArgs e)
         {
-            if(AudioPlayer.Instance.State==AudioPlayerState.Playing)
-            AudioPlayer.Instance.CurrentTimePosition =AudioPlayer.Instance.CurrentTimePosition + m_FineStep;
+            if (AudioPlayer.Instance.State == AudioPlayerState.Playing)
+            {
+                double dCurrentPlayPosition = AudioPlayer.Instance.CurrentTimePosition;
+                if (dCurrentPlayPosition + m_FineStep < ob_AudioAsset.LengthInMilliseconds)
+                    AudioPlayer.Instance.CurrentTimePosition = dCurrentPlayPosition + m_FineStep;
+            }
             else
             {
-            m_dSplitTime = m_dSplitTime + m_FineStep;
-            if (m_dSplitTime > ob_AudioAsset.LengthInMilliseconds)
-                m_dSplitTime = ob_AudioAsset.LengthInMilliseconds;
+                m_dSplitTime = m_dSplitTime + m_FineStep;
+                if (m_dSplitTime > ob_AudioAsset.LengthInMilliseconds)
+                    m_dSplitTime = ob_AudioAsset.LengthInMilliseconds;
 
-            txtDisplayTime.Text = m_dSplitTime.ToString(); txtDisplayTime.Text = ChangeTimeToDisplay(m_dSplitTime);
+                txtDisplayTime.Text = m_dSplitTime.ToString(); txtDisplayTime.Text = ChangeTimeToDisplay(m_dSplitTime);
             }
             //double dTempPosition = AudioPlayer.Instance.CurrentTimePosition;
             //AudioPlayer.Instance.CurrentTimePosition= dTempPosition +m_FineStep;
@@ -183,6 +200,7 @@ namespace Obi.Dialogs
                 //AudioPlayer.Instance.CurrentTimePosition = m_dSplitTime;
                 tmUpdateTimePosition.Enabled = true;
                 btnPause.Text = "&Pause";
+                btnPreview.Enabled = false;
             }
 
             //txtDisplayTime.Text = m_dSplitTime.ToString();
@@ -202,8 +220,8 @@ namespace Obi.Dialogs
 
         private void AudioPlayer_EndOfAudioAsset(object sender, EndOfAudioAsset e)
         {
-            
-
+            tmUpdateTimePosition.Enabled = false;
+            btnPause.Text = "&Play";
         }
 
         // Convoluted way to close necessary for debugging (JQ)
