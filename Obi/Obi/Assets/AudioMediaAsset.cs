@@ -17,7 +17,6 @@ namespace Obi.Assets
         private long m_lAudioLengthInBytes = 0;
         private double m_dAudioLengthInTime = 0;
 
-        private Audio.CalculationFunctions Calc = new Audio.CalculationFunctions();
         public int SampleRate
         {
             get
@@ -116,7 +115,7 @@ namespace Obi.Assets
                         throw new Exception("Clip format do not match Asset format");
                 }
 
-                m_lAudioLengthInBytes = Calc.ConvertTimeToByte(m_dAudioLengthInTime, m_SamplingRate, m_FrameSize);
+                m_lAudioLengthInBytes = Audio.CalculationFunctions.ConvertTimeToByte(m_dAudioLengthInTime, m_SamplingRate, m_FrameSize);
                 m_lSizeInBytes = m_lAudioLengthInBytes;
             }
             else
@@ -188,8 +187,8 @@ namespace Obi.Assets
 
         public Assets.AudioMediaAsset GetChunk(long beginPosition, long endPosition)
         {
-            double dBeginTime = Calc.ConvertByteToTime(beginPosition, m_SamplingRate, m_FrameSize);
-            double dEndTime = Calc.ConvertByteToTime(endPosition, m_SamplingRate, m_FrameSize);
+            double dBeginTime = Audio.CalculationFunctions.ConvertByteToTime(beginPosition, m_SamplingRate, m_FrameSize);
+            double dEndTime = Audio.CalculationFunctions.ConvertByteToTime(endPosition, m_SamplingRate, m_FrameSize);
             return GetChunk(dBeginTime, dEndTime);
         }
 
@@ -273,7 +272,7 @@ namespace Obi.Assets
 
         public void InsertAsset(Assets.AudioMediaAsset chunk, long position)
         {
-            double dPosition = Calc.ConvertByteToTime(position, m_SamplingRate, m_FrameSize);
+            double dPosition = Audio.CalculationFunctions.ConvertByteToTime(position, m_SamplingRate, m_FrameSize);
             InsertAsset(chunk, dPosition);
         }
 
@@ -334,8 +333,8 @@ namespace Obi.Assets
 
         public Assets.AudioMediaAsset DeleteChunk(long beginPosition, long endPosition)
         {
-            double dBeginTime = Calc.ConvertByteToTime(beginPosition, m_SamplingRate, m_FrameSize);
-            double dEndTime = Calc.ConvertByteToTime(endPosition, m_SamplingRate, m_FrameSize);
+            double dBeginTime = Audio.CalculationFunctions.ConvertByteToTime(beginPosition, m_SamplingRate, m_FrameSize);
+            double dEndTime = Audio.CalculationFunctions.ConvertByteToTime(endPosition, m_SamplingRate, m_FrameSize);
             return DeleteChunk(dBeginTime, dEndTime);
         }
 
@@ -459,7 +458,7 @@ namespace Obi.Assets
 
         public Assets.AudioMediaAsset Split(long position)
         {
-            double dTime = Calc.ConvertByteToTime(position, m_SamplingRate, m_FrameSize);
+            double dTime = Audio.CalculationFunctions.ConvertByteToTime(position, m_SamplingRate, m_FrameSize);
             return Split(dTime);
         }
 
@@ -513,8 +512,8 @@ namespace Obi.Assets
 
         public ArrayList ApplyPhraseDetection(long threshold, long length, long before)
         {
-            double dLength = Calc.ConvertByteToTime(length, m_SamplingRate, m_FrameSize);
-            double dBefore = Calc.ConvertByteToTime(before, m_SamplingRate, m_FrameSize);
+            double dLength = Audio.CalculationFunctions.ConvertByteToTime(length, m_SamplingRate, m_FrameSize);
+            double dBefore = Audio.CalculationFunctions.ConvertByteToTime(before, m_SamplingRate, m_FrameSize);
 
             return ApplyPhraseDetection(threshold, dLength, dBefore);
         }
@@ -522,8 +521,8 @@ namespace Obi.Assets
         public ArrayList ApplyPhraseDetection(long threshold, double length, double before)
         {
             //			 convert input parameters from time to byte
-            long lLength = Calc.ConvertTimeToByte(length, m_SamplingRate, m_FrameSize);
-            long lBefore = Calc.ConvertTimeToByte(before, m_SamplingRate, m_FrameSize);
+            long lLength = Audio.CalculationFunctions.ConvertTimeToByte(length, m_SamplingRate, m_FrameSize);
+            long lBefore = Audio.CalculationFunctions.ConvertTimeToByte(before, m_SamplingRate, m_FrameSize);
 
 
             AudioClip ob_Clip;
@@ -669,7 +668,7 @@ namespace Obi.Assets
             {
                 m_alClipList.Add(Clip);
                 m_dAudioLengthInTime = m_dAudioLengthInTime + Clip.LengthInTime;
-                m_lAudioLengthInBytes = Calc.ConvertTimeToByte(m_dAudioLengthInTime, m_SamplingRate, m_FrameSize);
+                m_lAudioLengthInBytes = Audio.CalculationFunctions.ConvertTimeToByte(m_dAudioLengthInTime, m_SamplingRate, m_FrameSize);
                 m_lSizeInBytes = m_lAudioLengthInBytes;
             }
             else

@@ -38,11 +38,12 @@ namespace Obi.UserControls
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mFlowLayoutPanel.AutoSize = true;
             this.mFlowLayoutPanel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.mFlowLayoutPanel.Location = new System.Drawing.Point(2, 21);
+            this.mFlowLayoutPanel.Location = new System.Drawing.Point(2, 19);
             this.mFlowLayoutPanel.Name = "mFlowLayoutPanel";
-            this.mFlowLayoutPanel.Size = new System.Drawing.Size(237, 11);
+            this.mFlowLayoutPanel.Size = new System.Drawing.Size(237, 10);
             this.mFlowLayoutPanel.TabIndex = 2;
             this.mFlowLayoutPanel.WrapContents = false;
+            this.mFlowLayoutPanel.Click += new System.EventHandler(this.mFlowLayoutPanel_Click);
             // 
             // mTextBox
             // 
@@ -50,7 +51,7 @@ namespace Obi.UserControls
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mTextBox.BackColor = System.Drawing.Color.LemonChiffon;
             this.mTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.mTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.mTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.mTextBox.Location = new System.Drawing.Point(3, 0);
             this.mTextBox.Name = "mTextBox";
             this.mTextBox.ReadOnly = true;
@@ -62,7 +63,7 @@ namespace Obi.UserControls
             // 
             // SectionStrip
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.PaleGreen;
@@ -70,7 +71,7 @@ namespace Obi.UserControls
             this.Controls.Add(this.mFlowLayoutPanel);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.Name = "SectionStrip";
-            this.Size = new System.Drawing.Size(241, 35);
+            this.Size = new System.Drawing.Size(241, 32);
             this.Enter += new System.EventHandler(this.SectionStrip_enter);
             this.Click += new System.EventHandler(this.SectionStrip_Click);
             this.Leave += new System.EventHandler(this.SectionStrip_leave);

@@ -182,6 +182,15 @@ namespace Obi.UserControls
         }
 
         /// <summary>
+        /// Clicking in the audio strip (i.e. the flow layout) selects the strip but unselects the audio block.
+        /// </summary>
+        private void mFlowLayoutPanel_Click(object sender, EventArgs e)
+        {
+            mManager.SelectedSection = mNode;
+            mManager.SelectedPhrase = null;
+        }
+
+        /// <summary>
         /// Reflows the tab order (tabindex property)
         /// of blocks in this SectionStrip starting from the
         /// inparam block, continuing to the end of the strip.

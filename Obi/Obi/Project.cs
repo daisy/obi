@@ -870,9 +870,7 @@ namespace Obi
         /// <remarks>JQ</remarks>
         public void ImportPhraseRequested(object sender, Events.Strip.ImportAssetEventArgs e)
         {
-            ArrayList list = new ArrayList(1);
-            list.Add(new Assets.AudioClip(e.AssetPath));
-            Assets.AudioMediaAsset asset = mAssManager.NewAudioMediaAsset(list);
+            Assets.AudioMediaAsset asset = mAssManager.ImportAudioMediaAsset(e.AssetPath);
             CoreNode node = CreatePhraseNode(asset);
             e.SectionNode.appendChild(node);
             ImportedAsset(this, new Events.Node.NodeEventArgs(sender, node));
