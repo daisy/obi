@@ -33,6 +33,11 @@ namespace Obi.UserControls
             {
                 mManager = value;
             }
+            //manager:
+            get 
+            {
+                return mManager;
+            }
         }
 
         public CoreNode Node
@@ -49,7 +54,7 @@ namespace Obi.UserControls
 
         public SectionStrip()
         {
-            this.TabStop = true; //mg: not in designer for some reason
+            this.TabStop = true; //mg: not in designer for some reason            
             InitializeComponent();
         }
 
@@ -101,6 +106,15 @@ namespace Obi.UserControls
         {
             System.Diagnostics.Debug.Print("Leaving the text box...");
             mTextBox.ReadOnly = true;
+        }
+
+        private void mTextBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            //mg: override the TextBox ContextMenu with that in StripManagerPanel
+            //We seem to have to do this at every mousedown,
+            //else the first pop of contextmenu is that of the textbox
+            //(windows does the redraw before the event)
+            this.mTextBox.ContextMenuStrip = this.Manager.PanelContextMenuStrip;
         }
 
         /// <summary>

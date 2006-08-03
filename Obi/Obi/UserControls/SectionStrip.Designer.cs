@@ -57,6 +57,7 @@ namespace Obi.UserControls
             this.mTextBox.Size = new System.Drawing.Size(235, 19);
             this.mTextBox.TabIndex = 1;
             this.mTextBox.Click += new System.EventHandler(this.SectionStrip_Click);
+            this.mTextBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mTextBox_MouseDown);
             this.mTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mTextBox_KeyDown);
             // 
             // SectionStrip
