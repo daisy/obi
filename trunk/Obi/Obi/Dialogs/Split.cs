@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using urakawa.core;
-
+using urakawa.media;
 namespace Obi.Dialogs
 {
     public partial class Split : Form
@@ -167,6 +167,7 @@ namespace Obi.Dialogs
 
         private void Split_Load(object sender, EventArgs e)
         {
+            txtDisplayAsset.Text = ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).getText();
             txtDisplayTime.Text = "00:00:00";
             Audio.VuMeter ob_VuMeter = new Audio.VuMeter();
             ob_VuMeter.LowerThreshold = 50;
