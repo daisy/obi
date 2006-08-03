@@ -77,13 +77,23 @@ namespace Obi.UserControls
             }
         }
 
+        //mg: for access by sectionstrip that needs
+        //to override the textbox menu
+        internal ContextMenuStrip PanelContextMenuStrip
+        {
+            get
+            {
+                return this.contextMenuStrip1;
+            }
+        }
+
         public StripManagerPanel()
         {
             InitializeComponent();
             mSectionNodeMap = new Dictionary<CoreNode, SectionStrip>();
             mSelectedSection = null;
             mPhraseNodeMap = new Dictionary<CoreNode, AudioBlock>();
-            mSelectedPhrase = null;
+            mSelectedPhrase = null;            
         }
 
         /// <summary>
@@ -438,7 +448,7 @@ namespace Obi.UserControls
             CoreNode cur = null;
             CoreNode parent = (CoreNode)node.getParent();
 
-            if (parent.getChildCount() != null && parent.getChildCount() > 0)
+            if (parent != null && parent.getChildCount() > 0)
             {
                 CoreNode prev = null;
                 for (int i = 0; i < parent.getChildCount(); i++)
@@ -476,6 +486,5 @@ namespace Obi.UserControls
             }
 
         }
-
     }
 }
