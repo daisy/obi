@@ -52,8 +52,9 @@ namespace Obi.Dialogs
         double m_dSplitTime;
         int m_Step=10000;
         int m_FineStep = 2000;
-        double dPrevLength = 0;
-        public  AudioMediaAsset mSplitResult;
+        
+
+        
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
@@ -75,40 +76,68 @@ namespace Obi.Dialogs
 
         private void btnFastRewind_Click(object sender, EventArgs e)
         {
-                    m_dSplitTime = m_dSplitTime - m_Step;
-                    txtDisplayTime.Text = ChangeTimeToDisplay(m_dSplitTime);
+            if (AudioPlayer.Instance.State == AudioPlayerState.Playing)
+                AudioPlayer.Instance.CurrentTimePosition = AudioPlayer.Instance.CurrentTimePosition - m_Step;
+            else
+            {
+                m_dSplitTime = m_dSplitTime - m_Step;
+                if (m_dSplitTime < 0)
+                    m_dSplitTime = 0;
 
+                txtDisplayTime.Text = ChangeTimeToDisplay(m_dSplitTime);
+            }
         }
 
         private void btnFastForward_Click(object sender, EventArgs e)
         {
-            m_dSplitTime = m_dSplitTime + m_Step;
-            txtDisplayTime.Text = ChangeTimeToDisplay(m_dSplitTime);
+            if (AudioPlayer.Instance.State == AudioPlayerState.Playing)
+                AudioPlayer.Instance.CurrentTimePosition = AudioPlayer.Instance.CurrentTimePosition + m_Step;
+            else
+            {
+                m_dSplitTime = m_dSplitTime + m_Step;
+                if (m_dSplitTime > ob_AudioAsset.LengthInMilliseconds)
+                    m_dSplitTime = ob_AudioAsset.LengthInMilliseconds;
 
+                txtDisplayTime.Text = ChangeTimeToDisplay(m_dSplitTime);
+            }
         }
 
         private void btnFineRewind_Click(object sender, EventArgs e)
         {
-            m_dSplitTime = m_dSplitTime - m_FineStep;
-            txtDisplayTime.Text = ChangeTimeToDisplay(m_dSplitTime);
-
+            if (AudioPlayer.Instance.State == AudioPlayerState.Playing)
+                AudioPlayer.Instance.CurrentTimePosition = AudioPlayer.Instance.CurrentTimePosition - m_FineStep;
+            else
+            {
+                m_dSplitTime = m_dSplitTime - m_FineStep;
+                if (m_dSplitTime < 0)
+                    m_dSplitTime = 0;
+                txtDisplayTime.Text = ChangeTimeToDisplay(m_dSplitTime);
+            }
         }
 
         private void btnFineForward_Click(object sender, EventArgs e)
         {
+            if(AudioPlayer.Instance.State==AudioPlayerState.Playing)
+            AudioPlayer.Instance.CurrentTimePosition =AudioPlayer.Instance.CurrentTimePosition + m_FineStep;
+            else
+            {
             m_dSplitTime = m_dSplitTime + m_FineStep;
+            if (m_dSplitTime > ob_AudioAsset.LengthInMilliseconds)
+                m_dSplitTime = ob_AudioAsset.LengthInMilliseconds;
+
             txtDisplayTime.Text = m_dSplitTime.ToString(); txtDisplayTime.Text = ChangeTimeToDisplay(m_dSplitTime);
+            }
             //double dTempPosition = AudioPlayer.Instance.CurrentTimePosition;
             //AudioPlayer.Instance.CurrentTimePosition= dTempPosition +m_FineStep;
         }
 
         private void btnSplit_Click(object sender, EventArgs e)
         {
-            // result of the split must be in mSplitResult
+            // result of the split must be in mResultAsset
             if (m_dSplitTime > 0 && m_dSplitTime < ob_AudioAsset.LengthInMilliseconds)
             {
-                mSplitResult = ob_AudioAsset.Split(m_dSplitTime) as AudioMediaAsset;
-                ob_AudioAsset.Manager.AddAsset(mSplitResult);
+                mResultAsset = ob_AudioAsset.Split(m_dSplitTime) as AudioMediaAsset;
+                ob_AudioAsset.Manager.AddAsset(mResultAsset);
             }
             
                 
@@ -123,13 +152,14 @@ namespace Obi.Dialogs
 
         private void Split_Load(object sender, EventArgs e)
         {
-            
+            txtDisplayTime.Text = "00:00:00";
             VuMeter ob_VuMeter = new VuMeter();
             ob_VuMeter.LowerThreshold = 50;
             ob_VuMeter.UpperThreshold = 300;
             ob_VuMeter.SampleTimeLength = 1000;
             AudioPlayer.Instance.VuMeterObject = ob_VuMeter;
             AudioPlayer.Instance.Play(ob_AudioAsset);
+            btnPreview.Enabled = false;
         }
 
         private void btnPause_Click(object sender, EventArgs e)
@@ -142,14 +172,15 @@ namespace Obi.Dialogs
                 AudioPlayer.Instance.Stop();
             tmUpdateTimePosition.Enabled = false;
                 btnPause.Text = "&Play";
+                btnPreview.Enabled= true;
             }
             else if (AudioPlayer.Instance.State == AudioPlayerState.Stopped)
             {
-                MessageBox.Show(m_dSplitTime.ToString());
+                //MessageBox.Show(m_dSplitTime.ToString());
                 //AudioPlayer.Instance.Play(ob_AudioAsset.GetChunk(m_dSplitTime, ob_AudioAsset.LengthInMilliseconds));
-                AudioPlayer.Instance.Play( ob_AudioAsset);
+                AudioPlayer.Instance.Play( ob_AudioAsset , m_dSplitTime);
                 //AudioPlayer.Instance.Resume();
-                AudioPlayer.Instance.CurrentTimePosition = m_dSplitTime;
+                //AudioPlayer.Instance.CurrentTimePosition = m_dSplitTime;
                 tmUpdateTimePosition.Enabled = true;
                 btnPause.Text = "&Pause";
             }
