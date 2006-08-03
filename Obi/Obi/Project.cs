@@ -225,7 +225,7 @@ namespace Obi
                 Uri absoluteAssPath = new Uri(new Uri(xukPath), mAssPath); 
                 mAssManager = new Assets.AssetManager(absoluteAssPath.AbsolutePath);
                 // Recreate the assets from the phrase nodes
-                getPresentation().getRootNode().acceptDepthFirst(new Visitors.AssetVisitor());
+                getPresentation().getRootNode().acceptDepthFirst(new Visitors.AssetVisitor(mAssManager));
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
             }
             else

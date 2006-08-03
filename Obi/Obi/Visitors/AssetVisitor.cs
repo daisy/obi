@@ -9,6 +9,13 @@ namespace Obi.Visitors
 {
     class AssetVisitor: ICoreNodeVisitor
     {
+        private Assets.AssetManager mAssManager;
+
+        public AssetVisitor(Assets.AssetManager assManager)
+        {
+            mAssManager = assManager;
+        }
+
         #region ICoreNodeVisitor Members
 
         public void postVisit(ICoreNode node)
@@ -30,8 +37,9 @@ namespace Obi.Visitors
                     clips.Add(new Assets.AudioClip(audio.getLocation().Location, audio.getClipBegin().getAsMilliseconds(),
                         audio.getClipEnd().getAsMilliseconds()));
                 }
-                Assets.AudioMediaAsset asset = new Assets.AudioMediaAsset(clips);
-                asset.Name = ((TextMedia)Project.GetMediaForChannel((CoreNode)node, Project.AnnotationChannel)).getText();
+                Assets.AudioMediaAsset asset = mAssManager.NewAudioMediaAsset(clips);
+                mAssManager.RenameAsset(asset,
+                    ((TextMedia)Project.GetMediaForChannel((CoreNode)node, Project.AnnotationChannel)).getText());
                 AssetProperty assProp =
                     (AssetProperty)node.getPresentation().getPropertyFactory().createProperty("AssetProperty",
                     ObiPropertyFactory.ObiNS);
