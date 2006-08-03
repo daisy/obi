@@ -162,8 +162,37 @@ namespace Obi.UserControls
         //mg: for tab navigation et al
         private void SectionStrip_enter(object sender, EventArgs e)
         {
-            //System.Diagnostics.Debug.Print("SectionStrip:tabindex:"+this.TabIndex.ToString());
+            System.Diagnostics.Debug.Print("SectionStrip:tabindex:"+this.TabIndex.ToString());
             this.MarkSelected();
-        } 
+        }
+        /// <summary>
+        /// Reflows the tab order (tabindex property)
+        /// of all blocks in this SectionStrip
+        /// </summary>
+        /// <param name="lastUsedIndex">The tabindex value to preemptively increase before setting on the first control in this strip</param>
+        /// <returns>The last (highest) tabindex added</returns>
+        //   added by mg 20060803
+        internal int ReflowTabOrder(int lastUsedIndex) {            
+            for (int i = 0; i < this.mFlowLayoutPanel.Controls.Count; i++)
+            {
+                Control c = this.mFlowLayoutPanel.Controls[i];
+                if (c is AudioBlock) //note: needs to be changed as block types are added
+                {                    
+                    c.TabIndex = ++lastUsedIndex;                    
+                }
+                else
+                {
+                    try
+                    {
+                        c.TabStop = false;
+                    }
+                    catch (Exception)
+                    {
+                        //instead of reflection
+                    }
+                }
+            }
+            return lastUsedIndex;
+        }
     }
 }
