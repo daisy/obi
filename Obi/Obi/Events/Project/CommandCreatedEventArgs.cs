@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-using Commands;
+using Obi.Commands;
 using urakawa.core;
 
 namespace Obi.Events.Project

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 
 using urakawa.core;
-using VirtualAudioBackend;
 
 // This file contains the custom properties sutff
 
@@ -138,9 +137,9 @@ namespace Obi
 
     public class AssetProperty: ObiProperty
     {
-        private AudioMediaAsset mAsset;  // the asset for this node
+        private Assets.AudioMediaAsset mAsset;  // the asset for this node
 
-        public AudioMediaAsset Asset
+        public Assets.AudioMediaAsset Asset
         {
             get { return mAsset; }
             set { mAsset = value; }
