@@ -439,6 +439,8 @@ namespace VirtualAudioBackend
 			m_Asset = asset as AudioMediaAsset;
 			long lPosition = Calc.ConvertTimeToByte (timeFrom, m_Asset .SampleRate, m_Asset .FrameSize) ;
 			lPosition = Calc.AdaptToFrame(lPosition, m_Asset .FrameSize) ;
+			
+
 			if(lPosition>=0   && lPosition < m_Asset.AudioLengthInBytes)
 			{
 							m_StartPosition   =  lPosition ;
@@ -600,6 +602,7 @@ namespace VirtualAudioBackend
 				double dPositionInClip = Convert.ToDouble (alInfo [1]) + ob_Clip.BeginTime ;
 				m_br =new BinaryReader (File.OpenRead(ob_Clip.Path)) ;
 				long lPositionInClip = Calc.ConvertTimeToByte (dPositionInClip , m_SamplingRate , m_FrameSize) + 44;
+lPositionInClip  = Calc.AdaptToFrame (lPositionInClip  , m_FrameSize) ;
 				m_br.BaseStream.Position = lPositionInClip  ;
 				m_lClipByteCount = lPositionInClip - ob_Clip.BeginByte ;
 				for (long l = 0 ; l < ob_Clip.LengthInBytes && l < 2* (m_RefreshLength ); l=l+m_FrameSize) 
