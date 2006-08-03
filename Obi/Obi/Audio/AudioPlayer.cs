@@ -618,9 +618,9 @@ namespace Obi.Audio
 				double dPositionInClip = Convert.ToDouble (alInfo [1]) + ob_Clip.BeginTime ;
 				m_br =new BinaryReader (File.OpenRead(ob_Clip.Path)) ;
 				long lPositionInClip = Calc.ConvertTimeToByte (dPositionInClip , m_SamplingRate , m_FrameSize) + 44;
-				m_br.BaseStream.Position = lPositionInClip  ;
                 lPositionInClip = Calc.AdaptToFrame(lPositionInClip, m_FrameSize);
-				m_lClipByteCount = lPositionInClip - ob_Clip.BeginByte ;
+                m_br.BaseStream.Position = lPositionInClip  ;
+                m_lClipByteCount = lPositionInClip - ob_Clip.BeginByte ;
 				for (long l = 0 ; l < ob_Clip.LengthInBytes && l < 2* (m_RefreshLength ); l=l+m_FrameSize) 
 				{
 					SkipFrames () ;
