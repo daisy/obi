@@ -96,6 +96,9 @@ namespace Obi.UserControls
             mSectionNodeMap.Clear();
             mFlowLayoutPanel.Controls.Clear();
             root.acceptDepthFirst(this);
+            //mg:
+            if (mFlowLayoutPanel.Controls.Count > 0)
+                this.ReflowTabOrder(mFlowLayoutPanel.Controls[0]);
             SelectedSection = null;
             SelectedPhrase = null;
         }
@@ -186,6 +189,8 @@ namespace Obi.UserControls
                     SectionStrip strip = mSectionNodeMap[node];
                     mFlowLayoutPanel.Controls.Remove(strip);
                 }
+                //mg:
+                this.ReflowTabOrder(mSectionNodeMap[e.Node]);
             }
         }
 
@@ -202,6 +207,8 @@ namespace Obi.UserControls
                 block.Label = annotation.getText();
                 block.Time = (Math.Round(Project.GetAudioMediaAsset(e.Node).LengthInMilliseconds / 1000)).ToString() + "s";
                 strip.AppendAudioBlock(block);
+                //mg:
+                this.ReflowTabOrder(block);
             }
         }
 
@@ -209,6 +216,8 @@ namespace Obi.UserControls
         {
             SectionStrip strip = mSectionNodeMap[e.Node];
             mFlowLayoutPanel.Controls.SetChildIndex(strip, e.Position);
+            //mg:
+            this.ReflowTabOrder(strip);
         }
 
         internal void SyncMediaSet(object sender, Events.Node.SetMediaEventArgs e)
@@ -313,5 +322,160 @@ namespace Obi.UserControls
             SelectedSection = null;
             SelectedPhrase = null;
         }
+
+        /// <summary>
+        /// Reflow the tab order (tabindex property)
+        /// of strips and blocks in this StripManagerPanel
+        /// starting from the inparam control,
+        /// continuing to the the last block in the last strip.
+        /// </summary>  
+        /// <param name="startFrom">Either a SectionStrip or an AudioBlock </param>
+        /// <returns>The last (highest) tabindex added</returns>
+        //   added by mg 20060803
+        internal int ReflowTabOrder(Control startFrom)
+        {
+            //get the previous tabindex, considered valid
+            Control previous = getPreviousNodesControl(startFrom);
+            int index;
+            if (previous == startFrom)
+            {
+                index = -1;
+            }
+            else
+            {
+                index = previous.TabIndex;
+            }
+            System.Diagnostics.Debug.Print("Reflowing taborder from index " + index);
+
+            //find out what strip to start from
+            SectionStrip startStrip;
+            if (startFrom is AudioBlock)
+            {
+                startStrip = mSectionNodeMap
+                    [(CoreNode)((AudioBlock)startFrom).Node.getParent()];
+            }
+            else
+            {
+                startStrip = (SectionStrip)startFrom;
+            }
+
+            //proceed with the reflowing            
+            bool firstIter = true;
+            for (int i = 0; i < this.mFlowLayoutPanel.Controls.Count; i++)
+            {
+                Control c = this.mFlowLayoutPanel.Controls[i];
+                if (c == startStrip || (!firstIter))
+                {
+                    if (c is SectionStrip)
+                    {
+                        SectionStrip ss = c as SectionStrip;
+                        if (firstIter)
+                        {
+                            if (startFrom is SectionStrip)
+                            {
+                                ss.TabIndex = ++index;
+                                index = ss.ReflowTabOrder(index);
+                            }
+                            else
+                            {
+                                index = ss.ReflowTabOrder(startFrom, index);
+                            }
+                            firstIter = false;
+                        }
+                        else
+                        {
+                            ss.TabIndex = ++index;
+                            index = ss.ReflowTabOrder(index);
+                        }
+                    } //if (c is SectionStrip)
+                    else
+                    {
+                        try
+                        {
+                            c.TabStop = false;
+                        }
+                        catch (Exception)
+                        {
+                            //instead of reflection
+                        }
+                    }
+                }
+            }
+
+            return index;
+        }
+
+        /// <summary>
+        /// Get the StripManagerPanel control corresponding to the previous Urakawa node
+        /// </summary>  
+        /// <returns>The control corresponding to the previous node in the tree,
+        /// or the inparam control if no previous node exists</returns>
+        // mg 20060803
+        private Control getPreviousNodesControl(Control ctrl)
+        {
+            //we use the ukawa tree because it gets less messy than 
+            //the windows.forms control hierarchy
+
+            CoreNode node = null;
+
+            if (ctrl is SectionStrip)
+            {
+                node = ((SectionStrip)ctrl).Node;
+            }
+            else if (ctrl is AudioBlock)
+            {
+                node = ((AudioBlock)ctrl).Node;
+            }
+            else
+            {
+                //TODO, when new types are added
+                return ctrl;
+            }
+
+            if (node == node.getPresentation().getRootNode()) return ctrl;
+
+            CoreNode previous = null;
+            CoreNode cur = null;
+            CoreNode parent = (CoreNode)node.getParent();
+
+            if (parent.getChildCount() != null && parent.getChildCount() > 0)
+            {
+                CoreNode prev = null;
+                for (int i = 0; i < parent.getChildCount(); i++)
+                {
+                    cur = parent.getChild(i);
+                    if (cur == node)
+                    {
+                        if (prev != null)
+                        {
+                            previous = prev;
+                        }
+                        else
+                        {
+                            previous = cur;
+                        }
+                        break;
+                    }
+                    prev = cur;
+                }
+
+            }
+            else
+            {
+                previous = parent;
+            }
+
+            //now we have the prev node
+            if (mPhraseNodeMap.ContainsKey(previous))
+            {
+                return this.mPhraseNodeMap[previous];
+            }
+            else
+            {
+                return this.mSectionNodeMap[previous];
+            }
+
+        }
+
     }
 }

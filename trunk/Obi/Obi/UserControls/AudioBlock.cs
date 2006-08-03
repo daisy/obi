@@ -144,6 +144,7 @@ namespace Obi.UserControls
         //mg: for tab navigation et al
         private void AudioBlock_enter(object sender, EventArgs e)
         {
+            mManager.SelectedPhrase = mNode;
             //System.Diagnostics.Debug.Print("Audioblock:tabindex:"+this.TabIndex.ToString());
             MarkSelected();
         }

@@ -162,37 +162,70 @@ namespace Obi.UserControls
         //mg: for tab navigation et al
         private void SectionStrip_enter(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.Print("SectionStrip:tabindex:"+this.TabIndex.ToString());
+            mManager.SelectedSection = mNode;
+            System.Diagnostics.Debug.Print("SectionStrip:tabindex:" + this.TabIndex.ToString());
             this.MarkSelected();
         }
+
         /// <summary>
         /// Reflows the tab order (tabindex property)
-        /// of all blocks in this SectionStrip
+        /// of blocks in this SectionStrip starting from the
+        /// inparam block, continuing to the end of the strip.
         /// </summary>
-        /// <param name="lastUsedIndex">The tabindex value to preemptively increase before setting on the first control in this strip</param>
-        /// <returns>The last (highest) tabindex added</returns>
+        /// <param name="startBlock">The block to start from</param>
+        /// <param name="prevIndex">The tabindex value to preemptively increase before setting on the first Block in this strip</param>
+        /// <returns>The last (highest) tabindex added, if startBlock is not in strip, returns -1</returns>
+        /// <remarks>Use this to reflow the taborder of a partial strip</remarks>
         //   added by mg 20060803
-        internal int ReflowTabOrder(int lastUsedIndex) {            
-            for (int i = 0; i < this.mFlowLayoutPanel.Controls.Count; i++)
+
+        internal int ReflowTabOrder(Control startBlock, int prevIndex)
+        {
+            try
             {
-                Control c = this.mFlowLayoutPanel.Controls[i];
-                if (c is AudioBlock) //note: needs to be changed as block types are added
-                {                    
-                    c.TabIndex = ++lastUsedIndex;                    
-                }
-                else
+                for (int i = mFlowLayoutPanel.Controls.GetChildIndex(startBlock); i < this.mFlowLayoutPanel.Controls.Count; i++)
                 {
-                    try
+                    Control c = this.mFlowLayoutPanel.Controls[i];
+                    if (c is AudioBlock) //note: needs to be changed as block types are added
                     {
-                        c.TabStop = false;
+                        c.TabIndex = ++prevIndex;
                     }
-                    catch (Exception)
+                    else
                     {
-                        //instead of reflection
+                        try
+                        {
+                            c.TabStop = false;
+                        }
+                        catch (Exception)
+                        {
+                            //instead of reflection
+                        }
                     }
-                }
+                }//for
             }
-            return lastUsedIndex;
+            catch (Exception x)
+            {
+                //if startBlock was not in ControlCollection
+                System.Diagnostics.Debug.Print("SectionStrip.ReflowTabOrder exception: " + x.Message);
+                return -1;
+            }
+            return prevIndex;
+        }
+
+        /// <summary>
+        /// Reflows the tab order (tabindex property)
+        /// of all blocks in this SectionStrip.
+        /// </summary>
+        /// <param name="prevIndex">The tabindex value to preemptively increase before setting on the first Block in this strip</param>
+        /// <returns>The last (highest) tabindex added, if no blocks are in strip, returns the inparam value</returns>
+        /// <remarks>Use this to reflow the taborder of an entire strip</remarks>
+        //   added by mg 20060803
+        internal int ReflowTabOrder(int prevIndex)
+        {
+            if (mFlowLayoutPanel.Controls.Count > 0)
+            {
+                return this.ReflowTabOrder(mFlowLayoutPanel.Controls[0], prevIndex);
+            }
+            return prevIndex;
         }
     }
 }
