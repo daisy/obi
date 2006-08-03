@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 
 namespace VirtualAudioBackend
 {
@@ -79,6 +80,30 @@ manager.m_htExists.Add (sTempName , Asset) ;
 		}
 		
 			
+		internal string GenerateFileName (string ext, string sDir)
+		{
+			int i = 0 ;
+			string sTemp ;
+			sTemp = sDir + "\\" + i.ToString() + ext ;
+			//FileInfo file = new FileInfo(sTemp) ;
+
+			while (File.Exists(sTemp) && i<90000)
+			{
+				i++;
+				sTemp = sDir + "\\" + i.ToString() + ext ;
+
+			}
+
+			if (i<90000)
+			{
+				return sTemp ;
+			}
+			else
+			{
+				return null ;
+			}
+		}
+
 
 		// end of cal function
 	}
