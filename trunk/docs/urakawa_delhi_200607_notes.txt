@@ -6,6 +6,9 @@ SPLITTING DIALOG
 Input/Output device selection
 DAY TWO
 DAY THREE
+DAY FOUR
+iteration 2-feature n collection area
+
 
 ** agenda items for the week **
 1. Main purpose: to get the audio backend working
@@ -175,7 +178,7 @@ Julien:
       Suman starts working on the record dialog
       
 ** DAY THREE (Wednesday)**      
-  Decision to move phrase detection forward.
+  Decision to move phrase detection forward in time.
   We may push it to iteration two, or as an assignment during the next two weeks.
   Julien: updates to the toolkit have been made that break Obi: dont recompile.
     
@@ -193,4 +196,26 @@ Julien:
     Julien: 	management of audio blocks inside audio strip
     		redo events for recorder
     
-      
+** DAY FOUR (Thursday) **
+
+ Yesterday;
+   play dialog problems finished
+   strip view keyboard navigation starting to work
+   
+ Today
+   Markus: 
+   	context menu for text label in strips
+   	taborder reflow
+   	move between tree and strip, maintaning section position
+   Avneesh: Split Dialog  
+   Julien: managing of audio blocks
+   Suman: recording   
+   
+   
+   
+   iteration 2-feature n collection area
+   
+     remember the size of the main window between sessions
+     implement phrase detection; add a one or several ways to provide sensible parameters to the already existing detection routine
+     add an abstract block under audioblock
+     exception typing, exception localization
