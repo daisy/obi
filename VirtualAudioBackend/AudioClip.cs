@@ -789,5 +789,21 @@ MessageBox.Show (Ex.ToString ()	 ) ;
 		}
 
 
+		public AudioClip ImportClip (string Path , AssetManager manager)
+		{
+string sNewFilePath = Calc.GenerateFileName (".wav" , manager.DirPath	) ;
+FileInfo ob_FileInfo = new FileInfo (Path) ;
+			try
+			{
+				ob_FileInfo.CopyTo (sNewFilePath) ;
+			}
+			catch (Exception Ex)
+			{
+MessageBox.Show (Ex.ToString()) ;
+			}
+AudioClip ob_AudioClip = new AudioClip (sNewFilePath) ;
+return ob_AudioClip ;
+		}
+
 	}// end of class
 }
