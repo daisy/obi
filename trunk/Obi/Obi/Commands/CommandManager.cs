@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-using Commands;
-
 namespace Obi.Commands
 {
     class CommandManager

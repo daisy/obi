@@ -47,11 +47,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Commands, Version=1.0.2399.28565, Culture=neutral">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\VirtualAudioBackend\bin\Debug\Commands.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.DirectX, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="Microsoft.DirectX.DirectInput, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="Microsoft.DirectX.DirectSound, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -64,13 +61,24 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\implementation\UrakawaToolkit\bin\Debug\urakawa.dll</HintPath>
     </Reference>
-    <Reference Include="VirtualAudioBackend, Version=1.0.2399.28607, Culture=neutral">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\VirtualAudioBackend\bin\Debug\VirtualAudioBackend.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AssetManager.cs" />
+    <Compile Include="Assets\AudioClip.cs" />
+    <Compile Include="Audio\AudioDevice.cs" />
+    <Compile Include="Assets\AudioMediaAsset.cs" />
+    <Compile Include="Audio\AudioPlayer.cs" />
+    <Compile Include="Audio\AudioRecorder.cs" />
+    <Compile Include="Audio\CalculationFunctions.cs" />
+    <Compile Include="Audio\Commands.cs" />
+    <Compile Include="Assets\MediaAsset.cs" />
+    <Compile Include="Audio\VuMeter.cs" />
+    <Compile Include="Audio\VuMeterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\CommandManager.cs" />
+    <Compile Include="Commands\ConsCommand.cs" />
     <Compile Include="Commands\TOC\AddSection.cs" />
     <Compile Include="Commands\TOC\DeleteSection.cs" />
     <Compile Include="Commands\TOC\IncreaseSectionLevel.cs" />
@@ -121,6 +129,15 @@
     <Compile Include="Dialogs\UserProfile.Designer.cs">
       <DependentUpon>UserProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Events\Audio\Player\EndOfAudioDataEventArgs.cs" />
+    <Compile Include="Events\Audio\Player\StateChangedEventArgs.cs" />
+    <Compile Include="Events\Audio\Player\UpdateVuMeter.cs" />
+    <Compile Include="Events\Audio\Recorder\StateChangedEventArgs.cs" />
+    <Compile Include="Events\Audio\Recorder\UpdateVuMeter.cs" />
+    <Compile Include="Events\Audio\VuMeter\LevelTooLowEventArgs.cs" />
+    <Compile Include="Events\Audio\VuMeter\PeakOverloadEventArgs.cs" />
+    <Compile Include="Events\Audio\VuMeter\ResetEventArgs.cs" />
+    <Compile Include="Events\Audio\VuMeter\UpdateFormsEventArgs.cs" />
     <Compile Include="Events\Node\NodeEventArgs.cs" />
     <Compile Include="Events\Node\RenameNodeEventArgs.cs" />
     <Compile Include="Events\Node\MovedNodeEventArgs.cs" />
@@ -147,6 +164,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Audio\VuMeterForm.resx">
+      <DependentUpon>VuMeterForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\EditSimpleMetadata.resx">
       <SubType>Designer</SubType>
       <DependentUpon>EditSimpleMetadata.cs</DependentUpon>

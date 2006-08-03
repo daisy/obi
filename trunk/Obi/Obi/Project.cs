@@ -6,7 +6,6 @@ using System.Text;
 
 using urakawa.core;
 using urakawa.media;
-using VirtualAudioBackend;
 
 namespace Obi
 {
@@ -27,8 +26,8 @@ namespace Obi
         private Channel mTextChannel;        // handy pointer to the text channel 
         private Channel mAnnotationChannel;  // handy pointer to the annotation channel
 
-        private AssetManager mAssManager;    // the asset manager
-        private string mAssPath;             // the path to the asset manager directory
+        private Assets.AssetManager mAssManager;  // the asset manager
+        private string mAssPath;                  // the path to the asset manager directory
 
         private bool mUnsaved;               // saved flag
         private string mXUKPath;             // path to the project XUK file
@@ -136,7 +135,7 @@ namespace Obi
         {
             mXUKPath = xukPath;
             mAssPath = GetAssetDirectory(xukPath);
-            mAssManager = new AssetManager(mAssPath);
+            mAssManager = new Assets.AssetManager(mAssPath);
 
             // now make the ass path relative to the xuk path (JQ)
             mAssPath = (new Uri(xukPath)).MakeRelativeUri(new Uri(mAssPath)).ToString();
@@ -224,7 +223,7 @@ namespace Obi
                 }
                 if (mAssPath == null) throw new Exception(Localizer.Message("missing_asset_path"));
                 Uri absoluteAssPath = new Uri(new Uri(xukPath), mAssPath); 
-                mAssManager = new AssetManager(absoluteAssPath.AbsolutePath);
+                mAssManager = new Assets.AssetManager(absoluteAssPath.AbsolutePath);
                 // Recreate the assets from the phrase nodes
                 getPresentation().getRootNode().acceptDepthFirst(new Visitors.AssetVisitor());
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
@@ -872,8 +871,8 @@ namespace Obi
         public void ImportPhraseRequested(object sender, Events.Strip.ImportAssetEventArgs e)
         {
             ArrayList list = new ArrayList(1);
-            list.Add(new AudioClip(e.AssetPath));
-            AudioMediaAsset asset = mAssManager.NewAudioMediaAsset(list);
+            list.Add(new Assets.AudioClip(e.AssetPath));
+            Assets.AudioMediaAsset asset = mAssManager.NewAudioMediaAsset(list);
             CoreNode node = CreatePhraseNode(asset);
             e.SectionNode.appendChild(node);
             ImportedAsset(this, new Events.Node.NodeEventArgs(sender, node));
@@ -909,7 +908,7 @@ namespace Obi
         /// </summary>
         /// <param name="asset">The asset for the phrase.</param>
         /// <returns>The created node.</returns>
-        private CoreNode CreatePhraseNode(AudioMediaAsset asset)
+        private CoreNode CreatePhraseNode(Assets.AudioMediaAsset asset)
         {
             CoreNode node = getPresentation().getCoreNodeFactory().createNode();
             ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
@@ -921,7 +920,7 @@ namespace Obi
             AudioMedia audio = (AudioMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.AUDIO);
             for (int i = 0; i < asset.m_alClipList.Count; ++i)
             {
-                AudioClip clip = asset.GetClip(i);
+                Assets.AudioClip clip = asset.GetClip(i);
                 audio.setLocation(new MediaLocation(clip.Path));
                 audio.setClipBegin(new Time((long)Math.Round(clip.BeginTime)));
                 audio.setClipEnd(new Time((long)Math.Round(clip.EndTime)));
@@ -1015,7 +1014,7 @@ namespace Obi
         /// </summary>
         /// <param name="node">The node for which we want the asset.</param>
         /// <returns>The asset or null if it could not be found.</returns>
-        public static AudioMediaAsset GetAudioMediaAsset(CoreNode node)
+        public static Assets.AudioMediaAsset GetAudioMediaAsset(CoreNode node)
         {
             AssetProperty prop = (AssetProperty)node.getProperty(typeof(AssetProperty));
             if (prop != null)

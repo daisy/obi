@@ -6,7 +6,6 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 
-using VirtualAudioBackend;
 using urakawa.core;
 using urakawa.media;
 

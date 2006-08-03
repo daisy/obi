@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using VirtualAudioBackend;
 using System.Collections;
 
 namespace Obi.Dialogs
@@ -97,8 +96,8 @@ namespace Obi.Dialogs
 
         ArrayList m_InDevicesList = new ArrayList();
         ArrayList m_OutDevicesList = new ArrayList();
-        AudioRecorder ob_AudioRecorder = AudioRecorder.Instance;
-        AudioPlayer ob_AudioPlayer = AudioPlayer.Instance;
+        Audio.AudioRecorder ob_AudioRecorder = Audio.AudioRecorder.Instance;
+        Audio.AudioPlayer ob_AudioPlayer = Audio.AudioPlayer.Instance;
 
         /// <summary>
         /// Initialize the preferences with the user settings.

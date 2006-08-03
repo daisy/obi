@@ -9,11 +9,6 @@ using System.Windows.Forms;
 using Microsoft.DirectX;
 using Microsoft.DirectX.DirectSound;
 
-using VirtualAudioBackend;
-using VirtualAudioBackend.events.AudioRecorderEvents;
-
-
-
 namespace Obi.Dialogs
 {
     /// <summary>
@@ -27,15 +22,15 @@ namespace Obi.Dialogs
         private int mChannels;                  // required number of channels
         private int mSampleRate;                // required sample rate
         private int mBitDepth;                  // required bit depth
-        private AssetManager mAssManager;       // the asset manager (for creating new assets)
-        private VuMeter ob_VuMeter = new VuMeter();
+        private Assets.AssetManager mAssManager;       // the asset manager (for creating new assets)
+        private Audio.VuMeter ob_VuMeter = new Audio.VuMeter();
 
-        private List<AudioMediaAsset> mAssets;  // the list of assets created while recording
+        private List<Assets.AudioMediaAsset> mAssets;  // the list of assets created while recording
 
         /// <summary>
         /// The list of assets created.
         /// </summary>
-        public List<AudioMediaAsset> Assets
+        public List<Assets.AudioMediaAsset> Assets
         {
             get
             {
@@ -43,27 +38,31 @@ namespace Obi.Dialogs
             }
         }
 
-        public Record(int channels, int sampleRate, int bitDepth, AssetManager assManager)
+        public Record(int channels, int sampleRate, int bitDepth, Assets.AssetManager assManager)
         {
             InitializeComponent();
             mChannels = channels;
             mSampleRate = sampleRate;
             mBitDepth = bitDepth;
             mAssManager = assManager;
-            mAssets = new List<AudioMediaAsset>();
-            AudioRecorder.Instance.StateChanged += new StateChangedHandler(AudioRecorder_StateChanged);
-            AudioRecorder.Instance.UpdateVuMeterFromRecorder += new UpdateVuMeterFromRecorderHandler(AudioRecorder_UpdateVuMeter);
+            mAssets = new List<Assets.AudioMediaAsset>();
+            Audio.AudioRecorder.Instance.StateChanged += new Events.Audio.Recorder.StateChangedHandler(AudioRecorder_StateChanged);
+            Audio.AudioRecorder.Instance.UpdateVuMeterFromRecorder +=
+                new Events.Audio.Recorder.UpdateVuMeterHandler(AudioRecorder_UpdateVuMeter);
         }
-        private void AudioRecorder_StateChanged(object sender, StateChanged state)
+
+        private void AudioRecorder_StateChanged(object sender, Events.Audio.Recorder.StateChangedEventArgs state)
         {
         }
-        private void AudioRecorder_UpdateVuMeter(Object sender, UpdateVuMeterFromRecorder update)
+
+        private void AudioRecorder_UpdateVuMeter(Object sender, Events.Audio.Recorder.UpdateVuMeterEventArgs update)
         {
         }
+
         private void Record_Load(object sender, EventArgs e)
         {
             ArrayList arDevices = new ArrayList();
-            arDevices = AudioRecorder.Instance.GetInputDevices();
+            arDevices = Audio.AudioRecorder.Instance.GetInputDevices();
             //AudioRecorder.Instance.InitDirectSound(2);
 //AudioRecorder.Instance.InitDirectSound(mIndex);
 
@@ -71,11 +70,11 @@ namespace Obi.Dialogs
                 ob_VuMeter.SampleTimeLength = 2000;
                 ob_VuMeter.UpperThreshold = 150;
                 ob_VuMeter.LowerThreshold = 100;
-                AudioRecorder.Instance.VuMeterObject = ob_VuMeter;
+                Audio.AudioRecorder.Instance.VuMeterObject = ob_VuMeter;
                 ob_VuMeter.ShowForm();
-                AudioMediaAsset mAudioAsset = new AudioMediaAsset(mChannels, mBitDepth, mSampleRate);
+                Assets.AudioMediaAsset mAudioAsset = new Assets.AudioMediaAsset(mChannels, mBitDepth, mSampleRate);
                 mAssManager.AddAsset(mAudioAsset);    
-            AudioRecorder.Instance.StartListening(mAudioAsset);
+            Audio.AudioRecorder.Instance.StartListening(mAudioAsset);
                 timer1.Enabled = true;
             }
 
@@ -83,30 +82,33 @@ namespace Obi.Dialogs
         private void btnRecordAndPause_Click(object sender, EventArgs e)
         {
             // AudioRecorder.Instance.InitDirectSound(mIndex);
-            AudioMediaAsset mRecordAsset = new AudioMediaAsset(mChannels, mBitDepth, mSampleRate);
+            Assets.AudioMediaAsset mRecordAsset = new Assets.AudioMediaAsset(mChannels, mBitDepth, mSampleRate);
             mAssManager.AddAsset(mRecordAsset);
-            if (AudioRecorder.Instance.State == AudioRecorderState.Idle && btnRecordAndPause.Text == "Record")
+            if (Audio.AudioRecorder.Instance.State == Audio.AudioRecorderState.Idle && btnRecordAndPause.Text == "Record")
             {
                 timer1.Enabled = true;
                 btnRecordAndPause.Text ="&Pause";
-                AudioRecorder.Instance.StartRecording(mRecordAsset);
+                Audio.AudioRecorder.Instance.StartRecording(mRecordAsset);
 }
-            if(AudioRecorder.Instance.State == AudioRecorderState.Recording && btnRecordAndPause.Text == "Pause")
+            if(Audio.AudioRecorder.Instance.State == Audio.AudioRecorderState.Recording && btnRecordAndPause.Text == "Pause")
             {
-                AudioRecorder.Instance.StopRecording();
+                Audio.AudioRecorder.Instance.StopRecording();
                 btnRecordAndPause.Text ="&Record";
                 timer1.Enabled = false;
             }
         }
 
-private void btnStop_Click(object sender, EventArgs e)
+        private void btnStop_Click(object sender, EventArgs e)
         {
-    if(AudioRecorder.Instance.State == AudioRecorderState.Recording || AudioRecorder.Instance.State == AudioRecorderState.Listening)
-                AudioRecorder.Instance.StopRecording();
-                AudioRecorder.Instance.VuMeterObject.CloseVuMeterForm();
-                timer1.Enabled = false;
-                this.Close();
+            if (Audio.AudioRecorder.Instance.State == Audio.AudioRecorderState.Recording ||
+                Audio.AudioRecorder.Instance.State == Audio.AudioRecorderState.Listening)
+            {
+                Audio.AudioRecorder.Instance.StopRecording();
             }
+            Audio.AudioRecorder.Instance.VuMeterObject.CloseVuMeterForm();
+            timer1.Enabled = false;
+            this.Close();
+        }
 
         
 
@@ -114,7 +116,7 @@ private void btnStop_Click(object sender, EventArgs e)
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            double dMiliSeconds = AudioRecorder.Instance.CurrentTime;
+            double dMiliSeconds = Audio.AudioRecorder.Instance.CurrentTime;
             int Seconds = Convert.ToInt32(dMiliSeconds / 1000);
             string sSeconds;
             if (Seconds > 9)

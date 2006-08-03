@@ -4,7 +4,6 @@ using System.Text;
 
 using urakawa.core;
 using urakawa.media;
-using VirtualAudioBackend;
 
 namespace Obi.Visitors
 {
@@ -28,10 +27,10 @@ namespace Obi.Visitors
                 for (int i = 0; i < media.getCount(); ++i)
                 {
                     AudioMedia audio = (AudioMedia)media.getItem(i);
-                    clips.Add(new AudioClip(audio.getLocation().Location, audio.getClipBegin().getAsMilliseconds(),
+                    clips.Add(new Assets.AudioClip(audio.getLocation().Location, audio.getClipBegin().getAsMilliseconds(),
                         audio.getClipEnd().getAsMilliseconds()));
                 }
-                AudioMediaAsset asset = new AudioMediaAsset(clips);
+                Assets.AudioMediaAsset asset = new Assets.AudioMediaAsset(clips);
                 asset.Name = ((TextMedia)Project.GetMediaForChannel((CoreNode)node, Project.AnnotationChannel)).getText();
                 AssetProperty assProp =
                     (AssetProperty)node.getPresentation().getPropertyFactory().createProperty("AssetProperty",
