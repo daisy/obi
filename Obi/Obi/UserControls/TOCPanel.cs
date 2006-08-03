@@ -81,7 +81,7 @@ namespace Obi.UserControls
         /// <returns>True </returns>
         public bool preVisit(urakawa.core.ICoreNode node)
         {
-            if (Project.GetNodeType((urakawa.core.CoreNode)node) == NodeType.SectionNode)
+            if (Project.GetNodeType((urakawa.core.CoreNode)node) == NodeType.Section)
             {
                 string label = Project.GetTextMedia((urakawa.core.CoreNode)node).getText();
                 TreeNode newTreeNode;
