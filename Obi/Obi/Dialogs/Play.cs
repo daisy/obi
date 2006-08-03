@@ -33,7 +33,6 @@ namespace Obi.Dialogs
 
         private void AudioPlayer_EndOfAudioAsset(object sender, EndOfAudioAsset e)
         {
-            AudioPlayer.Instance.VuMeterObject.CloseVuMeterForm();
             Close();
         }
 
@@ -62,7 +61,7 @@ namespace Obi.Dialogs
         private void mStopButton_Click(object sender, EventArgs e)
         {
             // closing stops playing (JQ)
-            this.Close();
+            Close();
         }
 
         private void mPlayButton_Click(object sender, EventArgs e)
