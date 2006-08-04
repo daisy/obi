@@ -95,3 +95,10 @@ have several factories that would not need to know about each other.
 
 
 14. There is no function to get the previous and next sibling of a node.
+
+
+15. MG: Toolkit factories should provide the facility of ascertaining required
+properties on the factory before calling create(), or, when a certain attribute
+of the returned object is required, provide a (non-overloaded) create() method 
+that takes the required attribute as params. This makes the use less errorprone, 
+and the usage code less verbose.
