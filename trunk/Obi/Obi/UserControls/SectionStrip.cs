@@ -15,6 +15,8 @@ namespace Obi.UserControls
         private StripManagerPanel mManager;  // the manager for this strip
         private CoreNode mNode;              // the core node for this strip
 
+        #region properties
+
         public string Label
         {
             get
@@ -33,7 +35,7 @@ namespace Obi.UserControls
             {
                 mManager = value;
             }
-            //manager:
+            //mg
             get 
             {
                 return mManager;
@@ -52,41 +54,21 @@ namespace Obi.UserControls
             }
         }
 
+        #endregion
+
+        #region instantiators
         public SectionStrip()
         {
             this.TabStop = true; //mg: not in designer for some reason            
             InitializeComponent();
         }
+        #endregion
 
-        private void SectionStrip_Click(object sender, EventArgs e)
-        {
-            if (mManager.SelectedSection == mNode)
-            {
-                //mg: changed renaming to not be 
-                //default state at focus:
-                //StartRenaming();
-            }
-            else
-            {
-                mManager.SelectedSection = mNode;
-            }
-        }
-
-        public void MarkSelected()
-        {
-            BackColor = Color.Gold;
-            mTextBox.BackColor = Color.Gold;
-        }
-
-        public void MarkDeselected()
-        {
-            BackColor = Color.PaleGreen;
-            mTextBox.BackColor = Color.PaleGreen;
-        }
+        #region TextBox (the label strip)
 
         /// <summary>
-        /// The strip has a normally invisible text box aligned with the label.
-        /// When renaming, the text box is shown and initialized with the original label.
+        /// The strip has a normally readonly text box at the top.
+        /// When renaming, the text box is initialized with the original label.
         /// The whole text is selected and the text box is given the focus so that the
         /// user can start editing right away.
         /// </summary>
@@ -108,12 +90,14 @@ namespace Obi.UserControls
             mTextBox.ReadOnly = true;
         }
 
+        /// <summary>
+        /// Using this eventhandler to override the TextBox's native ContextMenu with that in StripManagerPanel
+        /// </summary>
+        ///<remarks>We seem to have to do this at every mousedown, 
+        ///else the first pop of contextmenu is that of the textbox 
+        ///(windows does the redraw before the event).</remarks>
         private void mTextBox_MouseDown(object sender, MouseEventArgs e)
         {
-            //mg: override the TextBox ContextMenu with that in StripManagerPanel
-            //We seem to have to do this at every mousedown,
-            //else the first pop of contextmenu is that of the textbox
-            //(windows does the redraw before the event)
             this.mTextBox.ContextMenuStrip = this.Manager.PanelContextMenuStrip;
         }
 
@@ -161,13 +145,26 @@ namespace Obi.UserControls
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
-
-        public void AppendAudioBlock(AudioBlock block)
+        
+        #endregion
+        
+        #region SectionStrip (this)
+        
+        private void SectionStrip_Click(object sender, EventArgs e)
         {
-            mFlowLayoutPanel.Controls.Add(block);
+            if (mManager.SelectedSection == mNode)
+            {
+                //mg: changed renaming to not be 
+                //default state at focus:
+                //StartRenaming();
+            }
+            else
+            {
+                mManager.SelectedSection = mNode;
+            }
         }
-
         //mg: for tab navigation et al
+        
         private void SectionStrip_leave(object sender, EventArgs e)
         {
             this.MarkDeselected();
@@ -176,18 +173,21 @@ namespace Obi.UserControls
         //mg: for tab navigation et al
         private void SectionStrip_enter(object sender, EventArgs e)
         {
-            mManager.SelectedSection = mNode;
-            System.Diagnostics.Debug.Print("SectionStrip:tabindex:" + this.TabIndex.ToString());
+            //System.Diagnostics.Debug.Print("SectionStrip:tabindex:" + this.TabIndex.ToString());
+            mManager.SelectedSection = mNode;            
             this.MarkSelected();
         }
 
-        /// <summary>
-        /// Clicking in the audio strip (i.e. the flow layout) selects the strip but unselects the audio block.
-        /// </summary>
-        private void mFlowLayoutPanel_Click(object sender, EventArgs e)
+        public void MarkSelected()
         {
-            mManager.SelectedSection = mNode;
-            mManager.SelectedPhrase = null;
+            BackColor = Color.Gold;
+            mTextBox.BackColor = Color.Gold;
+        }
+
+        public void MarkDeselected()
+        {
+            BackColor = Color.PaleGreen;
+            mTextBox.BackColor = Color.PaleGreen;
         }
 
         /// <summary>
@@ -250,5 +250,24 @@ namespace Obi.UserControls
             }
             return prevIndex;
         }
+        #endregion
+
+        #region audio strip
+
+        public void AppendAudioBlock(AudioBlock block)
+        {
+            mFlowLayoutPanel.Controls.Add(block);
+        }
+
+        /// <summary>
+        /// Clicking in the audio strip (i.e. the flow layout) selects the strip but unselects the audio block.
+        /// </summary>
+        private void mFlowLayoutPanel_Click(object sender, EventArgs e)
+        {
+            mManager.SelectedSection = mNode;
+            mManager.SelectedPhrase = null;
+        }
+        #endregion
+
     }
 }

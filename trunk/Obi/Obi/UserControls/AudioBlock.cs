@@ -11,30 +11,31 @@ using urakawa.media;
 
 namespace Obi.UserControls
 {
-    public partial class AudioBlock : UserControl
+    public partial class AudioBlock : AbstractBlock 
     {
-        private StripManagerPanel mManager;  // the manager for this block
-        private CoreNode mNode;              // the phrase node for this block
+        //private StripManagerPanel mManager;  // the manager for this block
+        //private CoreNode mNode;              // the phrase node for this block
 
-        public StripManagerPanel Manager
-        {
-            set
-            {
-                mManager = value;
-            }
-        }
+        #region properties
+        //public StripManagerPanel Manager
+        //{
+        //    set
+        //    {
+        //        mManager = value;
+        //    }
+        //}
 
-        public CoreNode Node
-        {
-            get
-            {
-                return mNode;
-            }
-            set
-            {
-                mNode = value;
-            }
-        }
+        //public CoreNode Node
+        //{
+        //    get
+        //    {
+        //        return mNode;
+        //    }
+        //    set
+        //    {
+        //        mNode = value;
+        //    }
+        //}
 
         public string Label
         {
@@ -55,14 +56,18 @@ namespace Obi.UserControls
                 mTimeLabel.Text = value;
             }
         }
-
-        public AudioBlock()
+#endregion
+        
+        #region instantiators
+        public AudioBlock() : base()
         {
             //mg:
             this.TabStop = true;  
             InitializeComponent();
         }
+        #endregion
 
+        #region AudioBlock (this)
         internal void MarkDeselected()
         {
             BackColor = Color.MistyRose;
@@ -84,6 +89,23 @@ namespace Obi.UserControls
             Dialogs.Play dialog = new Dialogs.Play(mNode);
             dialog.ShowDialog();
         }
+
+        //mg: for tab navigation et al
+        private void AudioBlock_enter(object sender, EventArgs e)
+        {
+            mManager.SelectedPhrase = mNode;
+            System.Diagnostics.Debug.Print("Audioblock:tabindex:" + this.TabIndex.ToString());
+            MarkSelected();
+        }
+
+        //mg: for tab navigation et al
+        private void AudioBlock_leave(object sender, EventArgs e)
+        {
+            MarkDeselected();
+        }
+#endregion
+
+        #region Rename Box
 
         internal void StartRenaming()
         {
@@ -141,18 +163,8 @@ namespace Obi.UserControls
             }
         }
 
-        //mg: for tab navigation et al
-        private void AudioBlock_enter(object sender, EventArgs e)
-        {
-            mManager.SelectedPhrase = mNode;
-            //System.Diagnostics.Debug.Print("Audioblock:tabindex:"+this.TabIndex.ToString());
-            MarkSelected();
-        }
+        #endregion
+        
 
-        //mg: for tab navigation et al
-        private void AudioBlock_leave(object sender, EventArgs e)
-        {
-            MarkDeselected();
-        }
     }
 }
