@@ -607,16 +607,6 @@ namespace Obi
             UndoMoveNode(node, parent, index, position);
         }
 
-        /// <summary>
-        /// Undo decrease level
-        /// </summary>
-        /// <param name="origin"></param>
-        /// <param name="node"></param>
-        //added by marisa 01 aug 06
-        public void UndoDecreaseSectionLevel(CoreNode node, CoreNode parent, int index, int position)
-        {
-        }
-
         public void MoveNodeDown(object origin, CoreNode node)
         {
             Commands.TOC.MoveSectionDown command = null;
@@ -814,6 +804,46 @@ namespace Obi
         public void DecreaseNodeLevelRequested(object sender, Events.Node.NodeEventArgs e)
         {
             DecreaseNodeLevel(sender, e.Node);
+        }
+
+        /// <summary>
+        /// undo decrease node level is a bit tricky because we might have to move some of the node's
+        /// children out a level, but only if they were newly adopted after the decrease level action happened. 
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="parent"></param>
+        /// <param name="index"></param>
+        /// <param name="position"></param>
+        /// <param name="childCount">number of children this node used to have before the decrease level action happened</param>
+        //added by marisa
+        public void UndoDecreaseSectionLevel(CoreNode node, CoreNode parent, int index, int position, int originalChildCount)
+        {
+            //error-checking
+            if (node.getChildCount() < originalChildCount)
+            {
+                //this would be a pretty strange thing to have happen.
+                //todo: throw an exception?  
+                return;
+            }
+
+            //detach the non-original children (child nodes originalChildCount...n-1)
+            ArrayList nonOriginalChildren = new ArrayList();
+            int totalNumChildren = node.getChildCount();
+
+            for (int i = totalNumChildren - 1; i >=originalChildCount; i++)
+            {
+                CoreNode child = (CoreNode)node.getChild(i);
+                if (child != null)
+                {
+                    nonOriginalChildren.Add(child);
+                    child.detach();
+                }
+            }
+
+            //move the node itself in one level
+            ExecuteIncreaseNodeLevel(node);
+
+            //reattach the children
         }
 
         /// <summary>
