@@ -141,7 +141,7 @@ namespace Obi.Audio
 
 		public void StartListening(Assets.AudioMediaAsset asset)
 		{
-			Events.Audio.Recorder.StateChangedEventArgs e = new Events.Audio.Recorder.StateChangedEventArgs(mState);
+        Events.Audio.Recorder.StateChangedEventArgs e = new Events.Audio.Recorder.StateChangedEventArgs(mState);
 			mState = AudioRecorderState.Listening;
 			StateChanged(this, e);
 			m_Channels = asset.Channels;
@@ -163,7 +163,7 @@ namespace Obi.Audio
 		//in the wave file through the RecordCaptureData()
 		public void StartRecording(Assets.AudioMediaAsset asset)
 		{	
-			Events.Audio.Recorder.StateChangedEventArgs e = new Events.Audio.Recorder.StateChangedEventArgs(mState);
+            Events.Audio.Recorder.StateChangedEventArgs e = new Events.Audio.Recorder.StateChangedEventArgs(mState);
 			mState = AudioRecorderState.Recording;
 			StateChanged(this, e);
 			m_Channels = asset.Channels;
@@ -174,7 +174,9 @@ namespace Obi.Audio
 			Assets.AssetManager manager = mAsset.Manager as Assets.AssetManager;
 			sProjectDirectory= manager.DirPath ;
 			InputFormat = GetInputFormat();
-			m_sFileName = GetFileName();
+            if (File.Exists(sProjectDirectory+"\\"+"Listen.wav"))
+                File.Delete(sProjectDirectory+"\\"+"Listen.wav");
+            m_sFileName = GetFileName();
 			BinaryWriter bw = new BinaryWriter(File.Create(m_sFileName));
 			CreateRIFF(bw);
 			CreateCaptureBuffer();
@@ -184,11 +186,11 @@ namespace Obi.Audio
 		// this is to stop the recording
 		// desc:  this will first check the condition and stops the recording and then capture any left  overs recorded data which is not saved
 		public void StopRecording()
-		{	
-			Events.Audio.Recorder.StateChangedEventArgs e = new Events.Audio.Recorder.StateChangedEventArgs(mState);
+		{   
+        Events.Audio.Recorder.StateChangedEventArgs e = new Events.Audio.Recorder.StateChangedEventArgs(mState);
 			mState = AudioRecorderState.Idle;
 			StateChanged(this, e);
-			if (null != NotificationEvent)
+            if (null != NotificationEvent)
 			{
 				Capturing = false;
 				NotificationEvent.Set();
@@ -196,10 +198,11 @@ namespace Obi.Audio
 			if(null != applicationBuffer)
 				if(applicationBuffer.Capturing)
 					InitRecording(false);
-			applicationNotify = null;
-			applicationBuffer = null;
-			FileInfo fi = new FileInfo(m_sFileName);
-			if(fi.Length == 44)
+            FileInfo fi = new FileInfo(m_sFileName);
+            if (File.Exists(sProjectDirectory + "\\" + "Listen.wav"))
+                File.Delete(sProjectDirectory + "\\" + "Listen.wav");
+            if(File.Exists(m_sFileName))
+			    if(fi.Length == 44)
 				File.Delete(m_sFileName);
 		}			
 		
@@ -233,10 +236,8 @@ namespace Obi.Audio
 
 		public void CreateRIFF(BinaryWriter Writer)
 		{	
-
-
-			// Set up file with RIFF chunk info.
-			char[] ChunkRiff = {'R','I','F','F'};
+            // Set up file with RIFF chunk info.
+   			char[] ChunkRiff = {'R','I','F','F'};
 			char[] ChunkType = {'W','A','V','E'};
 			char[] ChunkFmt	= {'f','m','t',' '};
 			char[] ChunkData = {'d','a','t','a'};
