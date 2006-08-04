@@ -8,11 +8,12 @@ DAY TWO
 DAY THREE
 DAY FOUR
 DAY FIVE
+iteration 2-n feature local collection area
 SKYPE CALLS for end iteration one
 REMAINING ITEMS AND WORK DISTRIBUTION FOR ITERATION ONE
 OVERARCHING TIMELINE AND VERSION STRATEGY NOW UNTIL VERSION 1.0
 
-iteration 2-n feature local collection area
+
 
 ** agenda items for the week **
 1. Main purpose: to get the audio backend working
@@ -262,15 +263,16 @@ Julien:
    
    
 iteration 2-n feature local collection area
-   
+     (more in "REMAINING ITEMS" below)
      remember the size of the main window between sessions
      implement phrase detection; add a one or several ways to provide sensible parameters to the already existing detection routine     
      exception typing, exception localization
      graceful handling of invalid phrases/blocks (for iter 1, invalid nodes on reading XUK (missing physical resource for example) are skipped
-       StatusProperty used, unused, synhronized, invalid
+       StatusProperty used, unused, synchronized, invalid
      phrase detection  
      control strip (play, pause rec etc)
      integration/removal of the play, rec, split dialogs(?)
+     remove tabbing in stripview and use arrowkeys ruled by .Node
        
 SKYPE CALLS
   8pm in Delhi
@@ -278,7 +280,7 @@ SKYPE CALLS
   second week: monday 14th,  wednesday 16th.
 
 
-REMAINING WORK ITEMS AND WORK DISTRIBUTION FOR ITERATION ONE
+REMAINING ITEMS AND WORK DISTRIBUTION FOR ITERATION ONE
 
   Backend:
 		    
