@@ -240,10 +240,13 @@ Julien:
         default device should not be first (primary capture driver)    
       Suman and Julien look at state change problem in recorder
       Suman: writes audio device class.
-      Suman: phrase button: when pressed closes the asset and creates a new one immediately
-        Collect a list in milliseconds in recorder for each phrase
-        Send a new event AssetCreated, although it actually isnt at the point of pressing "new phrase"
-        Then, use AudioMediaAsset.getChunk()
+      Suman: phrase button: 
+        Initial plan was: 
+        	when pressed closes the asset and creates a new one immediately
+        But instead:
+        	Collect a list in milliseconds in recorder for each phrase
+        	Send a new event AssetCreated, although it actually isnt at the point of pressing "new phrase"
+        	Then, use AudioMediaAsset.getChunk()
       Avneesh:
         comment the audio code
       Markus:
