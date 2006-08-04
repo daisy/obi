@@ -246,6 +246,9 @@
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="SimpleMetadata.cs" />
+    <Compile Include="UserControls\AbstractBlock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UserControls\AudioBlock.cs">
       <SubType>UserControl</SubType>
     </Compile>
