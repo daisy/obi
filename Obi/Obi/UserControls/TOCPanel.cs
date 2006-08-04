@@ -292,15 +292,7 @@ namespace Obi.UserControls
         //}
 
         //JQ: trying to figure out which event to call when the tree gets right-clicked
-        //it's really annoying to not have the node get selected when you right click it
-        //because then, menu actions are applied to whichever node *is* selected
-        //however, i'm not sure which function to use
-        //and i'm not online to look it up right now
-        private void tocTree_Click(object sender, EventArgs e)
-        {
-
-        }
-
+       
 
         /// <summary>
         /// The user has edited a label in the tree, so an event is raised to rename the node.
@@ -622,6 +614,48 @@ namespace Obi.UserControls
             {
                 this.addSubSectionToolStripMenuItem.Enabled = true;
             }
+        }
+
+        /// <summary>
+        /// select a node upon receiving a mouse-click (including right-clicks)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tocTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            tocTree.SelectedNode = e.Node;
+            
+        }
+
+        /// <summary>
+        /// synchronize the highlight with the strip view on double-click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <remarks>todo: this should override the default behavior (expand/collapse), 
+        /// and, it's a bit weird to have the strip node rename-able upon select</remarks>
+        //marisa added this 4 aug 06
+        private void tocTree_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            this.showInStripViewToolStripMenuItem_Click(this, null);
+        }
+
+        /// <summary>
+        /// synchronize the highlight with the strip view upon pressing enter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        //marisa added this 4 aug 06
+        private void tocTree_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (tocTree.SelectedNode != null)
+                {
+                    this.showInStripViewToolStripMenuItem_Click(this, null);
+                }
+            }
+                
         }
 
     }
