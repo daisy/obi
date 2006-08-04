@@ -20,6 +20,18 @@ namespace Obi.Assets
 			}
 		}
 
+        private Uri mBaseURI;
+
+        /// <summary>
+        /// Base URI of the asset manager directory.
+        /// </summary>
+        public Uri BaseURI
+        {
+            get
+            {
+                return mBaseURI;
+            }
+        }
 		
 		//hash table to hold paths of assets being managed
 		private Hashtable m_htAssetList = new Hashtable();
@@ -37,7 +49,11 @@ namespace Obi.Assets
 		/// </summary>
 		public AssetManager(string projectDirectory)
 		{
-			m_sDirPath = projectDirectory;
+            UriBuilder builder = new UriBuilder();
+            builder.Scheme = "file";
+            builder.Path = projectDirectory + @"\";
+            mBaseURI = builder.Uri;
+            m_sDirPath = System.Text.RegularExpressions.Regex.Replace(mBaseURI.LocalPath, @"^\\\\localhost\\", "");
 			if (!Directory.Exists(m_sDirPath))
 			{
 				try

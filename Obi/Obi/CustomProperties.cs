@@ -51,8 +51,9 @@ namespace Obi
                 {
                     case "AssetProperty":
                         return new AssetProperty();
-                    case "NodeTypeProperty":
-                        return new NodeTypeProperty();
+                    case "info":
+                    case "NodeInformationProperty":
+                        return new NodeInformationProperty();
                     default:
                         throw new Exception(String.Format("Cannot create property named `{0}'", localName));
                 }
@@ -71,9 +72,32 @@ namespace Obi
     /// </summary>
     public enum NodeType { Root, Section, Phrase, Page, Vanilla };
 
-    public class NodeTypeProperty : ObiProperty
+    /// <summary>
+    /// Possible status of a node in the tree:
+    ///   * Used: a regular node, it is currently used.
+    ///   * Synchronized: synchronized with another node (or other nodes in the future.)
+    ///   * Unused: kept in the project but let's pretend it's not here.
+    ///   * Invalid: the node has invalid asset (for instance.)
+    ///   * NA: not applicable.
+    /// </summary>
+    public enum NodeStatus { Used, Synchronized, Unused, Invalid, NA };
+
+    /// <summary>
+    /// Information about a node: id, type, status.
+    /// </summary>
+    public class NodeInformationProperty : ObiProperty
     {
-        private NodeType mNodeType;
+        private int mId;                   // node id for easier reference
+        private NodeType mNodeType;        // type of the node
+        private NodeStatus mNodeStatus;    // status of the node
+
+        private static int IdCounter = 0;                 // counts created objects 
+        public static readonly string NodeName = "info";  // the XML element name for XUK in/out
+
+        public int Id
+        {
+            get { return mId; }
+        }
 
         public NodeType NodeType
         {
@@ -81,32 +105,49 @@ namespace Obi
             set { mNodeType = value; }
         }
 
-        internal NodeTypeProperty()
+        public NodeStatus NodeStatus
+        {
+            get { return mNodeStatus; }
+            set { mNodeStatus = value; }
+        }
+
+        internal NodeInformationProperty()
             : base()
         {
+            mId = IdCounter++;
             mNodeType = NodeType.Vanilla;
+            mNodeStatus = NodeStatus.NA;
         }
 
         public override IProperty copy()
         {
-            NodeTypeProperty copy = new NodeTypeProperty();
+            NodeInformationProperty copy = new NodeInformationProperty();
             copy.setOwner(mOwner);
             copy.NodeType = mNodeType;
+            copy.NodeStatus = mNodeStatus;
             return copy;
         }
 
         public override bool XUKIn(System.Xml.XmlReader source)
         {
             if (source == null) throw new urakawa.exception.MethodParameterIsNullException("Xml Reader is null");
-            if (source.LocalName == "NodeTypeProperty" &&
+            if (source.LocalName == NodeName &&
                 source.NamespaceURI == ObiPropertyFactory.ObiNS &&
                 source.NodeType == System.Xml.XmlNodeType.Element)
             {
+                string id = source.GetAttribute("id");
+                mId = Int32.Parse(id);
+                if (IdCounter < mId) IdCounter = mId;
                 string type = source.GetAttribute("type");
                 mNodeType = type == "Root" ? NodeType.Root :
                     type == "Section" ? NodeType.Section :
                     type == "Phrase" ? NodeType.Phrase :
                     type == "Page" ? NodeType.Page : NodeType.Vanilla;
+                string status = source.GetAttribute("status");
+                mNodeStatus = status == "Used" ? NodeStatus.Used :
+                    status == "Synchronized" ? NodeStatus.Synchronized :
+                    status == "Unused" ? NodeStatus.Unused :
+                    status == "Invalid" ? NodeStatus.Invalid : NodeStatus.NA;
                 if (source.IsEmptyElement) return true;
                 while (source.Read())
                 {
@@ -128,8 +169,10 @@ namespace Obi
         public override bool XUKOut(System.Xml.XmlWriter destination)
         {
             if (destination == null) throw new urakawa.exception.MethodParameterIsNullException("Xml Writer is null");
-            destination.WriteStartElement("NodeTypeProperty", ObiPropertyFactory.ObiNS);
+            destination.WriteStartElement(NodeName, ObiPropertyFactory.ObiNS);
+            destination.WriteAttributeString("id", mId.ToString());
             destination.WriteAttributeString("type", mNodeType.ToString());
+            destination.WriteAttributeString("status", mNodeStatus.ToString());
             destination.WriteEndElement();
             return true;
         }
