@@ -1,41 +1,30 @@
 $Id$
 
-If you want to have a look at the application, open Obi in Visual Studio 2005.
-If you want to have a look at the audio backend, open
-  UrakawaApplicationBackend in Visual Studio .Net 2003.
+Obi is now a self-contained application; the asset manager and audio backend
+have been included in the same project. The Obi project can then be opened
+in Visual Studio 2005 and compiled/run from there. There are still some
+prerequisites:
 
 Prerequisites:
 1. You will need to install Direct X .Net SDK first.
-2. Once DirectX is installed, you can compile UrakawaApplicationBackend
-3. You also need to compile the Urakawa toolkit from the implementation
+2. You also need to compile the Urakawa toolkit from the implementation
    directory.
-4. Once you have DirectX, the backend and the toolkit, you can compile Obi.
-   You *may* need to specify the location of the DLLs again in the References
+3. Once you have DirectX and the toolkit, you can compile Obi.  You *may*
+   need to specify the location of the DLLs again in the References
    section of the Solution Explorer; they can be found in the bin/ directory
    of all projects. (Sometimes, just looking at the properties of a "missing"
    reference does the trick.) 
 
-+ Commands
-  A 2003 project for the command pattern used by the application and the audio
-  backend. Part of UrakawaApplicationBackend.
+What's where:
 
 + Obi
   A 2005 project for the application. This is the main project.
 
-+ UrakawaApplicationBackend
-  A 2003 project for the audio backend (player, recorder, vu meter and) and
-  asset manager of the application. Includes also Commands and
-  VirtualAudioBackend. This is the first version with destructive edits.
-  Do not use this version.
-
-+ VirtualAudioBackend
-  A 2003 project for the audio backend, this is the second version with
-  non-destructive edits and commands. Use this version. Part of
-  UrakawaApplicationBackend.
-
 + docs
   Mostly outdated, features.txt contains the rough feature list of version
-  0.5/1.0/future of the application.
+  0.5/1.0/future of the application. Also some notes from the application
+  team meeting in Delhi in August 2006 and initial comments for the façade
+  API (facade-api.txt)
 
 + prototype
   Contains the two prototypes/mockups that were delivered in April. Protobi
@@ -44,3 +33,6 @@ Prerequisites:
 
 + sandbox
   Stuff.
+
+All the rest is old stuff (original 2003 projects for the audio backend and
+asset manager) that will be moved away.
