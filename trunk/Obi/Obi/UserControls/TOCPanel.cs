@@ -28,8 +28,7 @@ namespace Obi.UserControls
         public event Events.Node.RequestToMoveNodeUpHandler RequestToMoveSectionUp;
         public event Events.Node.RequestToRenameNodeHandler RequestToRenameSection;
         public event Events.Node.RequestToDeleteNodeHandler RequestToDeleteSection;
-        public event Events.Node.RequestToUndoMoveNodeHandler RequestToUndoMoveNode;
-
+       
         #region properties
         /// <summary>
         /// Test whether a node is currently selected or not.

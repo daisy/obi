@@ -534,7 +534,12 @@ namespace Obi
             }
         }
 
-        //a facade API function could do this for us
+        /// <summary>
+        /// move the node up
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        /// <remarks>a facade API function could do this for us</remarks>
         private bool ExecuteMoveNodeUp(CoreNode node)
         {
             CoreNode newParent = null;
@@ -621,7 +626,6 @@ namespace Obi
                     (this, node, parent, parent.indexOf(node), visitor.Position);
             }
 
-            //a facade API function could do this for us
             bool succeeded = ExecuteMoveNodeDown(node);
             if (succeeded)
             {
@@ -645,6 +649,7 @@ namespace Obi
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
+        ///<remarks>a facade API function could do this for us</remarks>
         private bool ExecuteMoveNodeDown(CoreNode node)
         {
             CoreNode newParent = null;
@@ -689,7 +694,7 @@ namespace Obi
 
         public void IncreaseNodeLevel(object origin, CoreNode node)
         {
-            Commands.TOC.IncreaseSectionLevel command = null;  // the command file is unmissing :) JQ
+            Commands.TOC.IncreaseSectionLevel command = null;  
 
             if (origin != this)
             {
@@ -701,7 +706,6 @@ namespace Obi
                     (this, node, parent, parent.indexOf(node), visitor.Position);
             }
 
-            //a facade API function could do this for us
             bool succeeded = ExecuteIncreaseNodeLevel(node);
             if (succeeded)
             {
@@ -721,6 +725,12 @@ namespace Obi
            
         }
 
+        /// <summary>
+        /// Move the node "in"
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        /// <remarks>a facade API function could do this for us</remarks>
         private bool ExecuteIncreaseNodeLevel(CoreNode node)
         {
             int nodeIndex = ((CoreNode)node.getParent()).indexOf(node);
@@ -752,16 +762,40 @@ namespace Obi
 
         public void DecreaseNodeLevel(object origin, CoreNode node)
         {
-            //a facade API function could do this for us
+            Commands.TOC.DecreaseSectionLevel command = null;  
+
+            if (origin != this)
+            {
+                CoreNode parent = (CoreNode)node.getParent();
+                Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
+                getPresentation().getRootNode().acceptDepthFirst(visitor);
+                //we need to save the state of the node before it is altered
+                command = new Commands.TOC.DecreaseSectionLevel
+                    (this, node, parent, parent.indexOf(node), visitor.Position, node.getChildCount());
+            }
+
             bool succeeded = ExecuteDecreaseNodeLevel(node);
             if (succeeded)
             {
+                CoreNode newParent = (CoreNode)node.getParent();
+
+                Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
+                getPresentation().getRootNode().acceptDepthFirst(visitor);
+
                 DecreasedNodeLevel(this, new Events.Node.NodeEventArgs(origin, node));
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            
+                if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));  
             }
         }
 
+       /// <summary>
+       /// move the node "out"
+       /// </summary>
+       /// <param name="node"></param>
+       /// <returns></returns>
+        ///<remarks>a facade API function could do this for us</remarks>
         private bool ExecuteDecreaseNodeLevel(CoreNode node)
         {
             //the only reason we can't decrease the level is if the node is already 
@@ -830,7 +864,7 @@ namespace Obi
             ArrayList nonOriginalChildren = new ArrayList();
             int totalNumChildren = node.getChildCount();
 
-            for (int i = totalNumChildren - 1; i >=originalChildCount; i++)
+            for (int i = totalNumChildren - 1; i >=originalChildCount - 1; i--)
             {
                 CoreNode child = (CoreNode)node.getChild(i);
                 if (child != null)
@@ -840,10 +874,29 @@ namespace Obi
                 }
             }
 
-            //move the node itself in one level
-            ExecuteIncreaseNodeLevel(node);
+            //insert the node back in its old location
+            node.detach();
+            parent.insert(node, index);
 
+            MovedNode(this, new Events.Node.MovedNodeEventArgs(this, node, parent, index, position));
+            
+            Visitors.SectionNodePosition visitor = null;
+            
             //reattach the children
+            for (int i = 0; i < nonOriginalChildren.Count; i++)
+            {
+                parent.appendChild((CoreNode)nonOriginalChildren[i]);
+                //find the position for the first one
+                if (i == 0)
+                {
+                    visitor = new Visitors.SectionNodePosition(node);
+                    getPresentation().getRootNode().acceptDepthFirst(visitor);
+                }
+
+                MovedNode(this, new Events.Node.MovedNodeEventArgs
+                    (this, (CoreNode)nonOriginalChildren[i], parent, 
+                    parent.getChildCount() - 1, visitor.Position + i));
+            }
         }
 
         /// <summary>
