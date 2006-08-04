@@ -83,3 +83,15 @@ action was succesful, so we do not need predicates to test whether we can
 undo or redo a method. The invariant of the command manager is that when a
 command is undone, we go back to a state where redoing must succeed just
 like it did when we issued the command. Same for redo.
+
+---
+
+13. Custom property factories: the new scheme for creating properties with
+local name/namespace is better, but it may be hard to mix the usage of
+several factories within an application, as they have to follow an
+inheritance pattern. Maybe we could associate a factory with a namespace and
+dispatch property creation based on a namespace? An application could then
+have several factories that would not need to know about each other.
+
+
+14. There is no function to get the previous and next sibling of a node.
