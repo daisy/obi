@@ -63,9 +63,10 @@ namespace Obi.Dialogs
         {
             ArrayList arDevices = new ArrayList();
             arDevices = Audio.AudioRecorder.Instance.GetInputDevices();
-            //AudioRecorder.Instance.InitDirectSound(2);
-//AudioRecorder.Instance.InitDirectSound(mIndex);
-
+            
+              Audio.AudioRecorder.Instance.InitDirectSound(1);
+//              mRecordButton.Text = Localizer.Message("&Pause");
+              mRecordButton.Text = "&Pause";
                 ob_VuMeter.ScaleFactor = 2;
                 ob_VuMeter.SampleTimeLength = 2000;
                 ob_VuMeter.UpperThreshold = 150;
@@ -80,22 +81,20 @@ namespace Obi.Dialogs
 
 
         private void btnRecordAndPause_Click(object sender, EventArgs e)
-        {
+        {   
             // AudioRecorder.Instance.InitDirectSound(mIndex);
             Assets.AudioMediaAsset mRecordAsset = new Assets.AudioMediaAsset(mChannels, mBitDepth, mSampleRate);
             mAssManager.AddAsset(mRecordAsset);
-            if (Audio.AudioRecorder.Instance.State == Audio.AudioRecorderState.Idle && btnRecordAndPause.Text == "Record")
+            Audio.AudioRecorder.Instance.StopRecording();
+            timer1.Enabled = false;
+            mRecordButton.Text = Localizer.Message("&Record");
+
+            if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Idle))
             {
                 timer1.Enabled = true;
-                btnRecordAndPause.Text ="&Pause";
+                mRecordButton.Text = Localizer.Message("&Pause");
                 Audio.AudioRecorder.Instance.StartRecording(mRecordAsset);
-}
-            if(Audio.AudioRecorder.Instance.State == Audio.AudioRecorderState.Recording && btnRecordAndPause.Text == "Pause")
-            {
-                Audio.AudioRecorder.Instance.StopRecording();
-                btnRecordAndPause.Text ="&Record";
-                timer1.Enabled = false;
-            }
+            } 
         }
 
         private void btnStop_Click(object sender, EventArgs e)
@@ -142,7 +141,7 @@ namespace Obi.Dialogs
 
 
             string sDisplayTime = sHours + ":" + sMinutes + ":" + sSeconds;
-            txtDisplayTime.Text = sDisplayTime;            
+            mTimeTextBox.Text = sDisplayTime;            
                 
         }
     }
