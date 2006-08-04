@@ -36,13 +36,13 @@ namespace Obi.UserControls
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.showInStripViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.moveUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moveDownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.increaseLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decreaseLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.showInStripViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,9 +57,11 @@ namespace Obi.UserControls
             this.tocTree.Name = "tocTree";
             this.tocTree.Size = new System.Drawing.Size(129, 133);
             this.tocTree.TabIndex = 0;
+            this.tocTree.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tocTree_NodeMouseDoubleClick);
             this.tocTree.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.tocTree_AfterLabelEdit);
+            this.tocTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tocTree_NodeMouseClick);
             this.tocTree.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.tocTree_BeforeSelect);
-            this.tocTree.Click += new System.EventHandler(this.tocTree_Click);
+            this.tocTree.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tocTree_KeyDown);
             // 
             // contextMenuStrip1
             // 
@@ -73,7 +75,7 @@ namespace Obi.UserControls
             this.toolStripSeparator3,
             this.showInStripViewToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(161, 170);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(161, 148);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // addSectionAtSameLevelToolStripMenuItem
@@ -109,18 +111,6 @@ namespace Obi.UserControls
             this.editLabelToolStripMenuItem.Text = "Rena&me";
             this.editLabelToolStripMenuItem.Click += new System.EventHandler(this.editLabelToolStripMenuItem_Click);
             // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(157, 6);
-            // 
-            // showInStripViewToolStripMenuItem
-            // 
-            this.showInStripViewToolStripMenuItem.Name = "showInStripViewToolStripMenuItem";
-            this.showInStripViewToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.showInStripViewToolStripMenuItem.Text = "Show in strip &view";
-            this.showInStripViewToolStripMenuItem.Click += new System.EventHandler(this.showInStripViewToolStripMenuItem_Click);
-            // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -135,30 +125,42 @@ namespace Obi.UserControls
             // moveUpToolStripMenuItem
             // 
             this.moveUpToolStripMenuItem.Name = "moveUpToolStripMenuItem";
-            this.moveUpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.moveUpToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
             this.moveUpToolStripMenuItem.Text = "Up";
             this.moveUpToolStripMenuItem.Click += new System.EventHandler(this.moveUpToolStripMenuItem_Click);
             // 
             // moveDownToolStripMenuItem
             // 
             this.moveDownToolStripMenuItem.Name = "moveDownToolStripMenuItem";
-            this.moveDownToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.moveDownToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
             this.moveDownToolStripMenuItem.Text = "Down";
             this.moveDownToolStripMenuItem.Click += new System.EventHandler(this.moveDownToolStripMenuItem_Click);
             // 
             // increaseLevelToolStripMenuItem
             // 
             this.increaseLevelToolStripMenuItem.Name = "increaseLevelToolStripMenuItem";
-            this.increaseLevelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.increaseLevelToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
             this.increaseLevelToolStripMenuItem.Text = "In";
             this.increaseLevelToolStripMenuItem.Click += new System.EventHandler(this.increaseLevelToolStripMenuItem_Click);
             // 
             // decreaseLevelToolStripMenuItem
             // 
             this.decreaseLevelToolStripMenuItem.Name = "decreaseLevelToolStripMenuItem";
-            this.decreaseLevelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.decreaseLevelToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
             this.decreaseLevelToolStripMenuItem.Text = "Out";
             this.decreaseLevelToolStripMenuItem.Click += new System.EventHandler(this.decreaseLevelToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(157, 6);
+            // 
+            // showInStripViewToolStripMenuItem
+            // 
+            this.showInStripViewToolStripMenuItem.Name = "showInStripViewToolStripMenuItem";
+            this.showInStripViewToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.showInStripViewToolStripMenuItem.Text = "Show in strip &view";
+            this.showInStripViewToolStripMenuItem.Click += new System.EventHandler(this.showInStripViewToolStripMenuItem_Click);
             // 
             // TOCPanel
             // 
