@@ -7,8 +7,9 @@ Input/Output device selection
 DAY TWO
 DAY THREE
 DAY FOUR
-iteration 2-feature n collection area
+DAY FIVE
 
+iteration 2-n feature local collection area
 
 ** agenda items for the week **
 1. Main purpose: to get the audio backend working
@@ -211,9 +212,49 @@ Julien:
    Julien: managing of audio blocks
    Suman: recording   
    
+
+** DAY FIVE **   
+   SVN:
+     Sandbox renamed to misc, and the old project goes in there
+
+   Yesterday,
+     Markus:
+       taborder reflow
+       context menus
+     Avneesh:
+       split additions being commited right now
+       import asset and import clip function in asset manager
+       Player: new overload, play from point
+     Suman:
+       finished implementing basic recording, submitted this morning
+       some changes to the audio recorder
+     Julien:
+       Mostly moving the backend into the application
+       Original audiobackend now splitinto two namespaces: assets and audio  
+               
+   Today,
+      Directly after lunch, write remaining actions list
+      Julien: audio device change: device object
+        problem: no way to tell current name of device
+            also an abstract object allows us to change implementation
+        default device should not be first (primary capture driver)    
+      Suman and Julien look at state change problem in recorder
+      Suman: writes audio device class.
+      Suman: phrase button: when pressed closes the asset and creates a new one immediately
+        Collect a list in milliseconds in recorder for each phrase
+        Send a new event AssetCreated, although it actually isnt at the point of pressing "new phrase"
+        Then, use AudioMediaAsset.getChunk()
+      Avneesh:
+        comment the audio code
+      Markus:
+        move between tree and strip, maintaning section position
+        abstract block
+        unbold the label when edited
+          
+        
    
    
-   iteration 2-feature n collection area
+iteration 2-n feature local collection area
    
      remember the size of the main window between sessions
      implement phrase detection; add a one or several ways to provide sensible parameters to the already existing detection routine
