@@ -145,8 +145,8 @@ namespace Obi.UserControls
         {
             InitializeComponent();
             //mg 20060804: set two convenince attrs on the toc and tree views
-            mTOCPanel.ParentControl = this;
-            mStripManagerPanel.ParentControl = this;
+            mTOCPanel.ProjectPanel = this;
+            mStripManagerPanel.ProjectPanel = this;
             //end mg
             Project = null;
         }

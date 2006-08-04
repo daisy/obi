@@ -61,6 +61,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add audio block.
+        /// </summary>
+        internal static string add_phrase_command_label {
+            get {
+                return ResourceManager.GetString("add_phrase_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to add section.
         /// </summary>
         internal static string add_section_command_label {

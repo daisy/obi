@@ -80,12 +80,12 @@ namespace Obi.UserControls
 
         private void AudioBlock_Click(object sender, EventArgs e)
         {
-            mManager.SelectedPhrase = mNode; 
+            mManager.SelectedPhraseNode = mNode; 
         }
 
         private void AudioBlock_DoubleClick(object sender, EventArgs e)
         {
-            mManager.SelectedPhrase = mNode;
+            mManager.SelectedPhraseNode = mNode;
             Dialogs.Play dialog = new Dialogs.Play(mNode);
             dialog.ShowDialog();
         }
@@ -93,7 +93,7 @@ namespace Obi.UserControls
         //mg: for tab navigation et al
         private void AudioBlock_enter(object sender, EventArgs e)
         {
-            mManager.SelectedPhrase = mNode;
+            mManager.SelectedPhraseNode = mNode;
             System.Diagnostics.Debug.Print("Audioblock:tabindex:" + this.TabIndex.ToString());
             MarkSelected();
         }

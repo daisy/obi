@@ -288,4 +288,7 @@ Do you want to replace the project contained in this file?</value>
     <value>&amp;Record</value>
     <comment>RecordButtonLabel</comment>
   </data>
+  <data name="add_phrase_command_label" xml:space="preserve">
+    <value>Add audio block</value>
+  </data>
 </root>

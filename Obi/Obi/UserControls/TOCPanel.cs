@@ -57,7 +57,7 @@ namespace Obi.UserControls
         /// Get and set the parent ProjectPanel control 
         /// </summary>
         // mg 20060804
-        internal ProjectPanel ParentControl
+        internal ProjectPanel ProjectPanel
         {
             get
             {
@@ -259,9 +259,9 @@ namespace Obi.UserControls
             //mg 20060804
             if (GetSelectedSection() != null)
             {
-                ParentControl.StripManager.SelectedSection = GetSelectedSection();
-                if (ParentControl.StripManager.SelectedSection != null)
-                    ParentControl.StripManager.ControlOfSelectedSection.Focus();
+                ProjectPanel.StripManager.SelectedSectionNode = GetSelectedSection();
+                if (ProjectPanel.StripManager.SelectedSectionNode != null)
+                    ProjectPanel.StripManager.SelectedSectionStrip.Focus();
             }
         }
 

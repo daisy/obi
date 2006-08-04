@@ -38,9 +38,9 @@ namespace Obi.UserControls
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mFlowLayoutPanel.AutoSize = true;
             this.mFlowLayoutPanel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.mFlowLayoutPanel.Location = new System.Drawing.Point(2, 19);
+            this.mFlowLayoutPanel.Location = new System.Drawing.Point(2, 25);
             this.mFlowLayoutPanel.Name = "mFlowLayoutPanel";
-            this.mFlowLayoutPanel.Size = new System.Drawing.Size(237, 10);
+            this.mFlowLayoutPanel.Size = new System.Drawing.Size(237, 0);
             this.mFlowLayoutPanel.TabIndex = 2;
             this.mFlowLayoutPanel.WrapContents = false;
             this.mFlowLayoutPanel.Click += new System.EventHandler(this.mFlowLayoutPanel_Click);
@@ -71,7 +71,7 @@ namespace Obi.UserControls
             this.Controls.Add(this.mFlowLayoutPanel);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.Name = "SectionStrip";
-            this.Size = new System.Drawing.Size(241, 32);
+            this.Size = new System.Drawing.Size(241, 28);
             this.Enter += new System.EventHandler(this.SectionStrip_enter);
             this.Click += new System.EventHandler(this.SectionStrip_Click);
             this.Leave += new System.EventHandler(this.SectionStrip_leave);

@@ -152,7 +152,7 @@ namespace Obi.UserControls
         
         private void SectionStrip_Click(object sender, EventArgs e)
         {
-            if (mManager.SelectedSection == mNode)
+            if (mManager.SelectedSectionNode == mNode)
             {
                 //mg: changed renaming to not be 
                 //default state at focus:
@@ -160,7 +160,7 @@ namespace Obi.UserControls
             }
             else
             {
-                mManager.SelectedSection = mNode;
+                mManager.SelectedSectionNode = mNode;
             }
         }
         //mg: for tab navigation et al
@@ -174,7 +174,7 @@ namespace Obi.UserControls
         private void SectionStrip_enter(object sender, EventArgs e)
         {
             //System.Diagnostics.Debug.Print("SectionStrip:tabindex:" + this.TabIndex.ToString());
-            mManager.SelectedSection = mNode;            
+            mManager.SelectedSectionNode = mNode;            
             this.MarkSelected();
         }
 
@@ -264,8 +264,8 @@ namespace Obi.UserControls
         /// </summary>
         private void mFlowLayoutPanel_Click(object sender, EventArgs e)
         {
-            mManager.SelectedSection = mNode;
-            mManager.SelectedPhrase = null;
+            mManager.SelectedSectionNode = mNode;
+            mManager.SelectedPhraseNode = null;
         }
         #endregion
 

@@ -31,8 +31,11 @@ namespace Obi.Visitors
 
         public bool preVisit(ICoreNode node)
         {
-            mProject.AddExistingSection((CoreNode)node, mParent, mIndex, mPosition, null);
-            mIndex = 0;
+            if (Project.GetNodeType((CoreNode)node) == NodeType.Section)
+            {
+                mProject.AddExistingSection((CoreNode)node, mParent, mIndex, mPosition, null);
+                mIndex = 0;
+            }
             ++mPosition;
             return true;
         }
