@@ -31,7 +31,7 @@ namespace Obi.Visitors
 
         public bool preVisit(ICoreNode node)
         {
-            mProject.ReaddSection((CoreNode)node, mParent, mIndex, mPosition, null);
+            mProject.AddExistingSection((CoreNode)node, mParent, mIndex, mPosition, null);
             mIndex = 0;
             ++mPosition;
             return true;

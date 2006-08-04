@@ -147,12 +147,13 @@ namespace Obi
             getPresentation().getChannelsManager().addChannel(mAnnotationChannel);
 
             // Give a custom property to the root node to make it a Root node.
-            NodeTypeProperty typeProp =
-                (NodeTypeProperty)getPresentation().getPropertyFactory().createProperty("NodeTypeProperty",
+            NodeInformationProperty typeProp =
+                (NodeInformationProperty)getPresentation().getPropertyFactory().createProperty("NodeInformationProperty",
                 ObiPropertyFactory.ObiNS);
             typeProp.NodeType = NodeType.Root;
+            typeProp.NodeStatus = NodeStatus.Used;
             getPresentation().getRootNode().setProperty(typeProp);
-            NodeTypeProperty rootType = (NodeTypeProperty)getPresentation().getRootNode().getProperty(typeof(NodeTypeProperty));
+            NodeInformationProperty rootType = (NodeInformationProperty)getPresentation().getRootNode().getProperty(typeof(NodeInformationProperty));
 
             if (createTitle)
             {
@@ -449,7 +450,7 @@ namespace Obi
         /// <param name="index"></param>
         /// <param name="position"></param>
         /// <param name="originalLabel"></param>
-        public void ReaddSection(CoreNode node, CoreNode parent, int index, int position, string originalLabel)
+        public void AddExistingSection(CoreNode node, CoreNode parent, int index, int position, string originalLabel)
         {
             if (node.getParent() == null) parent.insert(node, index);
             if (originalLabel != null) Project.GetTextMedia(node).setText(originalLabel);
@@ -894,9 +895,11 @@ namespace Obi
             TextMedia text = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
             text.setText(Localizer.Message("default_section_label"));
             prop.setMedia(mTextChannel, text);
-            NodeTypeProperty typeProp = (NodeTypeProperty)getPresentation().getPropertyFactory().createProperty("NodeTypeProperty",
+            NodeInformationProperty typeProp =
+                (NodeInformationProperty)getPresentation().getPropertyFactory().createProperty("NodeInformationProperty",
                 ObiPropertyFactory.ObiNS);
             typeProp.NodeType = NodeType.Section;
+            typeProp.NodeStatus = NodeStatus.Used;
             node.setProperty(typeProp);
             return node;
         }
@@ -921,7 +924,11 @@ namespace Obi
             for (int i = 0; i < asset.m_alClipList.Count; ++i)
             {
                 Assets.AudioClip clip = asset.GetClip(i);
-                audio.setLocation(new MediaLocation(clip.Path));
+                UriBuilder builder = new UriBuilder();
+                builder.Scheme = "file";
+                builder.Path = clip.Path;
+                Uri relUri = mAssManager.BaseURI.MakeRelativeUri(builder.Uri);
+                audio.setLocation(new MediaLocation(relUri.ToString()));
                 audio.setClipBegin(new Time((long)Math.Round(clip.BeginTime)));
                 audio.setClipEnd(new Time((long)Math.Round(clip.EndTime)));
                 seq.appendItem(audio);
@@ -931,9 +938,11 @@ namespace Obi
                 ObiPropertyFactory.ObiNS);
             assProp.Asset = asset;
             node.setProperty(assProp);
-            NodeTypeProperty typeProp = (NodeTypeProperty)getPresentation().getPropertyFactory().createProperty("NodeTypeProperty",
+            NodeInformationProperty typeProp =
+                (NodeInformationProperty)getPresentation().getPropertyFactory().createProperty("NodeInformationProperty",
                 ObiPropertyFactory.ObiNS);
             typeProp.NodeType = NodeType.Phrase;
+            typeProp.NodeStatus = NodeStatus.Used;
             node.setProperty(typeProp);
             return node;
         }
@@ -998,7 +1007,7 @@ namespace Obi
         /// <param name="node">The node for which we want the type.</param>
         public static NodeType GetNodeType(CoreNode node)
         {
-            NodeTypeProperty prop = (NodeTypeProperty)node.getProperty(typeof(NodeTypeProperty));
+            NodeInformationProperty prop = (NodeInformationProperty)node.getProperty(typeof(NodeInformationProperty));
             if (prop != null)
             {
                 return prop.NodeType;

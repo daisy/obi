@@ -49,7 +49,10 @@ namespace Obi.Visitors
                     AudioMedia audio = (AudioMedia)media.getItem(i);
                     try
                     {
-                        clips.Add(new Assets.AudioClip(audio.getLocation().Location, audio.getClipBegin().getAsMilliseconds(),
+                        // location is an URI relative to the asset manager location
+                        Uri assetUri = new Uri(mAssManager.BaseURI, audio.getLocation().Location);
+                        string location = System.Text.RegularExpressions.Regex.Replace(assetUri.LocalPath, @"^\\\\localhost\\", "");
+                        clips.Add(new Assets.AudioClip(location, audio.getClipBegin().getAsMilliseconds(),
                             audio.getClipEnd().getAsMilliseconds()));
                     }
                     catch (Exception e)
