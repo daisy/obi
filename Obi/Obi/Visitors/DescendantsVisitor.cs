@@ -4,7 +4,7 @@ using System.Text;
 
 using urakawa.core;
 
-namespace Obi
+namespace Obi.Visitors
 {
     /// <summary>
     /// Visitor building a flat list of all descendant nodes (including the root.)
