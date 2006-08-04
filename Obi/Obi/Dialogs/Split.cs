@@ -74,7 +74,8 @@ namespace Obi.Dialogs
 
         private void btnFastRewind_Click(object sender, EventArgs e)
         {
-            
+            btnSplit.Enabled = true;
+            btnPause.Text = "&Play";
             if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
             {
                 double dCurrentPlayPosition = Audio.AudioPlayer.Instance.CurrentTimePosition;
@@ -86,7 +87,7 @@ namespace Obi.Dialogs
                 m_dSplitTime = m_dSplitTime - m_Step;
                 if (m_dSplitTime < 0)
                     m_dSplitTime = 0;
-
+                UpdateSplitTime();
                 txtDisplayTime.Text = ChangeTimeToDisplay(m_dSplitTime);
             }
         }
@@ -104,13 +105,14 @@ namespace Obi.Dialogs
                 m_dSplitTime = m_dSplitTime + m_Step;
                 if (m_dSplitTime > ob_AudioAsset.LengthInMilliseconds)
                     m_dSplitTime = ob_AudioAsset.LengthInMilliseconds;
-
+                UpdateSplitTime();
                 txtDisplayTime.Text = ChangeTimeToDisplay(m_dSplitTime);
             }
         }
 
         private void btnFineRewind_Click(object sender, EventArgs e)
         {
+            btnPause.Text = "&Play";
             if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
             {
                 double dCurrentPlayPosition = Audio.AudioPlayer.Instance.CurrentTimePosition;
@@ -122,6 +124,7 @@ namespace Obi.Dialogs
                 m_dSplitTime = m_dSplitTime - m_FineStep;
                 if (m_dSplitTime < 0)
                     m_dSplitTime = 0;
+                UpdateSplitTime();
                 txtDisplayTime.Text = ChangeTimeToDisplay(m_dSplitTime);
             }
         }
@@ -139,7 +142,7 @@ namespace Obi.Dialogs
                 m_dSplitTime = m_dSplitTime + m_FineStep;
                 if (m_dSplitTime > ob_AudioAsset.LengthInMilliseconds)
                     m_dSplitTime = ob_AudioAsset.LengthInMilliseconds;
-
+                UpdateSplitTime();
                 txtDisplayTime.Text = m_dSplitTime.ToString(); txtDisplayTime.Text = ChangeTimeToDisplay(m_dSplitTime);
             }
             //double dTempPosition = AudioPlayer.Instance.CurrentTimePosition;
@@ -167,6 +170,7 @@ namespace Obi.Dialogs
 
         private void Split_Load(object sender, EventArgs e)
         {
+            
             txtDisplayAsset.Text = ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).getText();
             txtDisplayTime.Text = "00:00:00";
             Audio.VuMeter ob_VuMeter = new Audio.VuMeter();
@@ -176,6 +180,7 @@ namespace Obi.Dialogs
             Audio.AudioPlayer.Instance.VuMeterObject = ob_VuMeter;
             Audio.AudioPlayer.Instance.Play(ob_AudioAsset);
             btnPreview.Enabled = false;
+            btnSplit.Enabled = false;
         }
 
         private void btnPause_Click(object sender, EventArgs e)
@@ -187,6 +192,7 @@ namespace Obi.Dialogs
             tmUpdateTimePosition.Enabled = false;
                 btnPause.Text = "&Play";
                 btnPreview.Enabled= true;
+                UpdateSplitTime();
             }
             else if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped)
             {
@@ -218,10 +224,11 @@ namespace Obi.Dialogs
         private void AudioPlayer_EndOfAudioAsset(object sender, Events.Audio.Player.EndOfAudioAssetEventArgs e)
         {
             tmUpdateTimePosition.Enabled = false;
-            btnPause.Text = "&Play";
+            
+            //btnPause.Text = "&Play";
         }
 
-        // Convoluted way to close necessary for debugging (JQ)
+         //Convoluted way to close necessary for debugging (JQ)
         private delegate void CloseCallback();
         public new void Close()
         {
@@ -249,7 +256,7 @@ namespace Obi.Dialogs
                 Audio.AudioPlayer.Instance.Stop();
             Audio.AudioPlayer.Instance.VuMeterObject.CloseVuMeterForm();
         }
-
+        
         string ChangeTimeToDisplay(double dTime)
         {
             double dMiliSeconds = dTime;
@@ -262,6 +269,27 @@ namespace Obi.Dialogs
             return sHours + ":" + sMinutes + ":" + sSeconds;
         
         }
+
+        protected override void OnKeyPress(KeyPressEventArgs e)
+        {
+
+                MessageBox.Show("Key handled");
+
+        }
+
+
+        
+        void UpdateSplitTime ( )
+        {
+            double dDisplaySplitTime = m_dSplitTime / 1000;
+                txtSplitTime.Text = dDisplaySplitTime.ToString ();
+        }
+
+        
+
+
+        
+
 
     }// end of class
 }
