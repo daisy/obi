@@ -211,6 +211,7 @@ namespace Obi.Dialogs
             
             txtDisplayAsset.Text = ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).getText();
             txtDisplayTime.Text = "00:00:00";
+            txtSplitTime.Text = "0";
             Audio.VuMeter ob_VuMeter = new Audio.VuMeter();
             ob_VuMeter.LowerThreshold = 50;
             ob_VuMeter.UpperThreshold = 300;
@@ -267,8 +268,21 @@ namespace Obi.Dialogs
             tmUpdateTimePosition.Enabled = false;
             PreviewEnabled = false;
             //btnPause.Text = "&Play";
+            
+            CallEndAssetOperations();
+        }
+            void CallEndAssetOperations()
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new CloseCallback(EndFileOperations));
+            }
         }
 
+        void EndFileOperations()
+        {
+            btnPause.Text = "&Play";
+        }
          //Convoluted way to close necessary for debugging (JQ)
         private delegate void CloseCallback();
 
