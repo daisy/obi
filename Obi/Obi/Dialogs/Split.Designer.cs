@@ -45,11 +45,11 @@ namespace Obi.Dialogs
             // 
             // btnPreview
             // 
-            this.btnPreview.Location = new System.Drawing.Point(30, 30);
+            this.btnPreview.Location = new System.Drawing.Point(30, 28);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(75, 23);
             this.btnPreview.TabIndex = 0;
-            this.btnPreview.Text = "&Preview";
+            this.btnPreview.Text = "Pre&view";
             this.btnPreview.UseVisualStyleBackColor = true;
             this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
@@ -65,6 +65,7 @@ namespace Obi.Dialogs
             // 
             this.txtDisplayTime.Location = new System.Drawing.Point(30, 60);
             this.txtDisplayTime.Name = "txtDisplayTime";
+            this.txtDisplayTime.ReadOnly = true;
             this.txtDisplayTime.Size = new System.Drawing.Size(100, 20);
             this.txtDisplayTime.TabIndex = 2;
             // 
