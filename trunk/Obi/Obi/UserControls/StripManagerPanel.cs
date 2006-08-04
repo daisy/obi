@@ -31,7 +31,8 @@ namespace Obi.UserControls
         public event Events.Strip.SelectedHandler SelectedStrip;
 
         #region properties
-        public CoreNode SelectedSection
+
+        public CoreNode SelectedSectionNode
         {
             get
             {
@@ -59,7 +60,7 @@ namespace Obi.UserControls
             }
         }
 
-        public CoreNode SelectedPhrase
+        public CoreNode SelectedPhraseNode
         {
             get
             {
@@ -71,7 +72,7 @@ namespace Obi.UserControls
                 mSelectedPhrase = value;
                 if (mSelectedPhrase != null)
                 {
-                    SelectedSection = (CoreNode)mSelectedPhrase.getParent();
+                    SelectedSectionNode = (CoreNode)mSelectedPhrase.getParent();
                     mPhraseNodeMap[mSelectedPhrase].MarkSelected();
                     playAssetToolStripMenuItem.Enabled = true;
                     splitAudioBlockToolStripMenuItem.Enabled = true;
@@ -90,7 +91,7 @@ namespace Obi.UserControls
         /// Get the SectionStrip that is currently seleced, or null if no current selection exists.
         /// </summary>
         // mg20060804
-        internal SectionStrip ControlOfSelectedSection
+        internal SectionStrip SelectedSectionStrip
         {
             get
             {
@@ -104,7 +105,7 @@ namespace Obi.UserControls
         /// Get the control of the Block (phrase) that is currently seleced, or null if no current selection exists.
         /// </summary>
         // mg20060804
-        internal AbstractBlock ControlOfSelectedBlock
+        internal AbstractBlock SelectedBlock
         {
             get
             {
@@ -130,7 +131,7 @@ namespace Obi.UserControls
         /// Get and set the parent ProjectPanel control 
         /// </summary>
         // mg 20060804
-        internal ProjectPanel ParentControl
+        internal ProjectPanel ProjectPanel
         {
             get 
             {
@@ -168,8 +169,8 @@ namespace Obi.UserControls
             //mg:
             if (mFlowLayoutPanel.Controls.Count > 0)
                 this.ReflowTabOrder(mFlowLayoutPanel.Controls[0]);
-            SelectedSection = null;
-            SelectedPhrase = null;
+            SelectedSectionNode = null;
+            SelectedPhraseNode = null;
         }
 
         #region Synchronization visitor
@@ -198,7 +199,7 @@ namespace Obi.UserControls
                 strip.Node = (CoreNode)node;
                 mSectionNodeMap[(CoreNode)node] = strip;
                 mFlowLayoutPanel.Controls.Add(strip);
-                SelectedSection = strip.Node;
+                SelectedSectionNode = strip.Node;
             }
             else if (Project.GetNodeType((CoreNode)node) == NodeType.Phrase)
             {
@@ -211,7 +212,7 @@ namespace Obi.UserControls
                 block.Label = annotation.getText();
                 block.Time = (Math.Round(Project.GetAudioMediaAsset((CoreNode)node).LengthInMilliseconds / 1000)).ToString() + "s";
                 strip.AppendAudioBlock(block);
-                SelectedPhrase = block.Node;
+                SelectedPhraseNode = block.Node;
             }
             return true;
         }
@@ -234,7 +235,7 @@ namespace Obi.UserControls
             mSectionNodeMap[node] = strip;
             mFlowLayoutPanel.Controls.Add(strip);
             mFlowLayoutPanel.Controls.SetChildIndex(strip, position);
-            SelectedSection = node;
+            SelectedSectionNode = node;
             if (rename) strip.StartRenaming();
         }
 
@@ -255,11 +256,14 @@ namespace Obi.UserControls
                 e.Node.acceptDepthFirst(visitor);
                 foreach (CoreNode node in visitor.Nodes)
                 {
-                    SectionStrip strip = mSectionNodeMap[node];
-                    mFlowLayoutPanel.Controls.Remove(strip);
+                    if (Project.GetNodeType(node) == NodeType.Section)
+                    {
+                        SectionStrip strip = mSectionNodeMap[node];
+                        mFlowLayoutPanel.Controls.Remove(strip);
+                    }
                 }
                 //mg:
-                this.ReflowTabOrder(mSectionNodeMap[e.Node]);
+                //this.ReflowTabOrder(mSectionNodeMap[e.Node]);
             }
         }
 
@@ -312,7 +316,7 @@ namespace Obi.UserControls
 
         internal void importAssetToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedSection != null)
+            if (SelectedSectionNode != null)
             {
                 OpenFileDialog dialog = new OpenFileDialog();
                 dialog.Filter = "WAVE file (*.wav)|*.wav|Any file|*.*";
@@ -370,10 +374,10 @@ namespace Obi.UserControls
         {
             if (mSelectedSection!=null)
             {
-                ParentControl.TOCPanel.SetSelectedSection(mSelectedSection);
+                ProjectPanel.TOCPanel.SetSelectedSection(mSelectedSection);
                 //since the tree can be hidden:
-                if (ParentControl.TOCPanel.Visible == true)
-                    ParentControl.TOCPanel.Focus();
+                if (ProjectPanel.TOCPanel.Visible == true)
+                    ProjectPanel.TOCPanel.Focus();
             }
         }
 
@@ -398,14 +402,14 @@ namespace Obi.UserControls
 
         private void mFlowLayoutPanel_Click(object sender, EventArgs e)
         {
-            SelectedSection = null;
-            SelectedPhrase = null;
+            SelectedSectionNode = null;
+            SelectedPhraseNode = null;
         }
 
         private void mFlowLayoutPanel_Leave(object sender, EventArgs e)
         {
-            SelectedSection = null;
-            SelectedPhrase = null;
+            SelectedSectionNode = null;
+            SelectedPhraseNode = null;
         }
 
         /// <summary>
@@ -517,7 +521,7 @@ namespace Obi.UserControls
                 return ctrl;
             }
 
-            if (node == node.getPresentation().getRootNode()) return ctrl;
+            if (ctrl.Controls.Count == 0) return ctrl;
 
             CoreNode previous = null;
             CoreNode cur = null;

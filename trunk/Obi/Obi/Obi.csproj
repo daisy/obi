@@ -79,6 +79,7 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\CommandManager.cs" />
     <Compile Include="Commands\ConsCommand.cs" />
+    <Compile Include="Commands\Strips\AddPhrase.cs" />
     <Compile Include="Commands\TOC\AddSection.cs" />
     <Compile Include="Commands\TOC\DeleteSection.cs" />
     <Compile Include="Commands\TOC\IncreaseSectionLevel.cs" />
@@ -282,8 +283,8 @@
     <Compile Include="UserProfile.cs" />
     <Compile Include="Visitors\AssetVisitor.cs" />
     <Compile Include="Visitors\DescendantsVisitor.cs" />
-    <Compile Include="Visitors\NodePositionVisitor.cs" />
     <Compile Include="Visitors\PhraseEnumerator.cs" />
+    <Compile Include="Visitors\SectionNodePosition.cs" />
     <Compile Include="Visitors\UndeleteSubtree.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -7,9 +7,9 @@ using urakawa.core;
 namespace Obi.Visitors
 {
     /// <summary>
-    /// Find the position of a node in the TOC tree, as seen in a flat list.
+    /// Find the position of a section node in the TOC tree, as seen in a flat list.
     /// </summary>
-    public class NodePositionVisitor: ICoreNodeVisitor
+    public class SectionNodePosition: ICoreNodeVisitor
     {
         private CoreNode mTarget;
         private int mCounter;
@@ -19,11 +19,11 @@ namespace Obi.Visitors
         {
             get
             {
-                return mPosition - 1;
+                return mPosition;
             }
         }
 
-        public NodePositionVisitor(CoreNode target)
+        public SectionNodePosition(CoreNode target)
         {
             mTarget = target;
             mCounter = 0;
@@ -38,8 +38,11 @@ namespace Obi.Visitors
 
         public bool preVisit(ICoreNode node)
         {
-            if (node == mTarget) mPosition = mCounter;
-            ++mCounter;
+            if (Project.GetNodeType((CoreNode)node) == NodeType.Section)
+            {
+                if (node == mTarget) mPosition = mCounter;
+                ++mCounter;
+            }
             return true;
         }
 

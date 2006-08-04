@@ -402,7 +402,7 @@ namespace Obi
             {
                 parent.insert(sibling, parent.indexOf(contextNode) + 1);
             }
-            Visitors.NodePositionVisitor visitor = new Visitors.NodePositionVisitor(sibling);
+            Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(sibling);
             getPresentation().getRootNode().acceptDepthFirst(visitor);
             AddedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs(origin, sibling, parent.indexOf(sibling),
                 visitor.Position));
@@ -427,7 +427,7 @@ namespace Obi
             CoreNode child = CreateSectionNode();
             if (parent == null) parent = getPresentation().getRootNode();
             parent.appendChild(child);
-            Visitors.NodePositionVisitor visitor = new Visitors.NodePositionVisitor(child);
+            Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(child);
             getPresentation().getRootNode().acceptDepthFirst(visitor);
             AddedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs(origin, child, parent.indexOf(child), visitor.Position));
             mUnsaved = true;
@@ -483,7 +483,7 @@ namespace Obi
                 if (origin != this)
                 {
                     CoreNode parent = (CoreNode)node.getParent();
-                    Visitors.NodePositionVisitor visitor = new Visitors.NodePositionVisitor(node);
+                    Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
                     getPresentation().getRootNode().acceptDepthFirst(visitor);
                     command = new Commands.TOC.DeleteSection(this, node, parent, parent.indexOf(node), visitor.Position);
                 }
@@ -510,7 +510,7 @@ namespace Obi
             if (origin != this)
             {
                 CoreNode parent = (CoreNode)node.getParent();
-                Visitors.NodePositionVisitor visitor = new Visitors.NodePositionVisitor(node);
+                Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
                 //we need to save the state of the node before it is moved
                 command = new Commands.TOC.MoveSectionUp
@@ -523,7 +523,7 @@ namespace Obi
             {
                 CoreNode newParent = (CoreNode)node.getParent();
 
-                Visitors.NodePositionVisitor visitor = new Visitors.NodePositionVisitor(node);
+                Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
 
                 MovedNode(this, new Events.Node.MovedNodeEventArgs
@@ -624,7 +624,7 @@ namespace Obi
             if (origin != this)
             {
                 CoreNode parent = (CoreNode)node.getParent();
-                Visitors.NodePositionVisitor visitor = new Visitors.NodePositionVisitor(node);
+                Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
                 //we need to save the state of the node before it is moved
                 command = new Commands.TOC.MoveSectionDown
@@ -637,7 +637,7 @@ namespace Obi
             {
                 CoreNode newParent = (CoreNode)node.getParent();
 
-                Visitors.NodePositionVisitor visitor = new Visitors.NodePositionVisitor(node);
+                Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
 
                 MovedNode(this, new Events.Node.MovedNodeEventArgs
@@ -704,7 +704,7 @@ namespace Obi
             if (origin != this)
             {
                 CoreNode parent = (CoreNode)node.getParent();
-                Visitors.NodePositionVisitor visitor = new Visitors.NodePositionVisitor(node);
+                Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
                 //we need to save the state of the node before it is altered
                 command = new Commands.TOC.IncreaseSectionLevel
@@ -717,7 +717,7 @@ namespace Obi
             {
                 CoreNode newParent = (CoreNode)node.getParent();
 
-                Visitors.NodePositionVisitor visitor = new Visitors.NodePositionVisitor(node);
+                Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
 
                 //IncreasedNodeLevel(this, new Events.Node.NodeEventArgs(origin, node));
@@ -876,6 +876,7 @@ namespace Obi
             Assets.AudioMediaAsset asset = mAssManager.ImportAudioMediaAsset(e.AssetPath);
             CoreNode node = CreatePhraseNode(asset);
             e.SectionNode.appendChild(node);
+
             ImportedAsset(this, new Events.Node.NodeEventArgs(sender, node));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
