@@ -61,12 +61,17 @@ namespace Obi.Dialogs
 
         private void Record_Load(object sender, EventArgs e)
         {
+            //suman
+            //the state changed events do not trigger
+            //the text of the Record button changes to an empty string on using localizer.message
+            //on closing the record form the recording does not stop
+            //phrase marker and volume control are incomplete
             ArrayList arDevices = new ArrayList();
             arDevices = Audio.AudioRecorder.Instance.GetInputDevices();
             
               Audio.AudioRecorder.Instance.InitDirectSound(1);
-//              mRecordButton.Text = Localizer.Message("&Pause");
-              mRecordButton.Text = "&Pause";
+              mRecordButton.Text = Localizer.Message("&Recorde");
+//              mRecordButton.Text = "&Pause";
                 ob_VuMeter.ScaleFactor = 2;
                 ob_VuMeter.SampleTimeLength = 2000;
                 ob_VuMeter.UpperThreshold = 150;
@@ -87,7 +92,7 @@ namespace Obi.Dialogs
             mAssManager.AddAsset(mRecordAsset);
             Audio.AudioRecorder.Instance.StopRecording();
             timer1.Enabled = false;
-            mRecordButton.Text = Localizer.Message("&Record");
+            //mRecordButton.Text = Localizer.Message("&Record");
 
             if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Idle))
             {

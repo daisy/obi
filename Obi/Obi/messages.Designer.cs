@@ -397,7 +397,20 @@ namespace Obi {
                 return ResourceManager.GetString("play", resourceCulture);
             }
         }
-        
+
+
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Record.
+        /// </summary>
+        internal static string Record
+        {
+            get
+            {
+                return ResourceManager.GetString("Record", resourceCulture);
+            }
+        }
+
+/// 
         /// <summary>
         ///   Looks up a localized string similar to Ready..
         /// </summary>
