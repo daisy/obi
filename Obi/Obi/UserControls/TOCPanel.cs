@@ -18,6 +18,8 @@ namespace Obi.UserControls
     /// </summary>
     public partial class TOCPanel : UserControl, urakawa.core.ICoreNodeVisitor
     {
+        private ProjectPanel mProjectPanel; //the parent of this control
+
         public event Events.Node.RequestToAddSiblingNodeHandler RequestToAddSiblingSection;
         public event Events.Node.RequestToAddChildNodeHandler RequestToAddChildSection;
         public event Events.Node.RequestToDecreaseNodeLevelHandler RequestToDecreaseSectionLevel;
@@ -27,8 +29,9 @@ namespace Obi.UserControls
         public event Events.Node.RequestToRenameNodeHandler RequestToRenameSection;
         public event Events.Node.RequestToDeleteNodeHandler RequestToDeleteSection;
         public event Events.Node.RequestToUndoMoveNodeHandler RequestToUndoMoveNode;
-      
-		/// <summary>
+
+        #region properties
+        /// <summary>
         /// Test whether a node is currently selected or not.
         /// </summary>
         public bool Selected
@@ -49,6 +52,31 @@ namespace Obi.UserControls
                 return tocTree.ContextMenuStrip;
             }
         }
+        
+        /// <summary>
+        /// Get and set the parent ProjectPanel control 
+        /// </summary>
+        // mg 20060804
+        internal ProjectPanel ParentControl
+        {
+            get
+            {
+                return mProjectPanel;
+            }
+            set
+            {
+                mProjectPanel = value;
+            }
+        }
+
+        #endregion
+
+        #region instantiators
+        public TOCPanel()
+        {
+            InitializeComponent();            
+        }
+        #endregion
 
         /// <summary>
         /// Synchronize the tree view with the core tree.
@@ -104,10 +132,7 @@ namespace Obi.UserControls
 
         #endregion
 
-        public TOCPanel()
-        {
-            InitializeComponent();
-        }
+
 
         public void LimitViewToDepthOfCurrentSection()
         {
@@ -225,7 +250,58 @@ namespace Obi.UserControls
                 new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
 
+        /// <summary>
+        /// If a node is selected, set focus on that node in the Strip view.
+        /// </summary>
+        //  mg20060804
+        internal void showInStripViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //mg 20060804
+            if (GetSelectedSection() != null)
+            {
+                ParentControl.StripManager.SelectedSection = GetSelectedSection();
+                if (ParentControl.StripManager.SelectedSection != null)
+                    ParentControl.StripManager.ControlOfSelectedSection.Focus();
+            }
+        }
+
         #endregion
+
+        /// <summary>
+        /// Using this event to assure that a node is selected. 
+        /// </summary>
+        //mg
+        private void tocTree_BeforeSelect(object sender, TreeViewCancelEventArgs e)
+        {
+            this.showInStripViewToolStripMenuItem.Enabled = true;
+        }
+
+        ////mg xxx
+        //private void tocTree_Leave(object sender, EventArgs e)
+        //{
+        //     this.showInStripViewToolStripMenuItem.Enabled = false;
+        //}
+
+        //private void TOCPanel_Leave(object sender, EventArgs e)
+        //{
+        //     //this.showInStripViewToolStripMenuItem.Enabled = false;
+        //}
+
+        //private void TOCPanel_Enter(object sender, EventArgs e)
+        //{
+        //    //this.showInStripViewToolStripMenuItem.Enabled = true;
+        //}
+
+        //JQ: trying to figure out which event to call when the tree gets right-clicked
+        //it's really annoying to not have the node get selected when you right click it
+        //because then, menu actions are applied to whichever node *is* selected
+        //however, i'm not sure which function to use
+        //and i'm not online to look it up right now
+        private void tocTree_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
         /// <summary>
         /// The user has edited a label in the tree, so an event is raised to rename the node.
@@ -253,15 +329,6 @@ namespace Obi.UserControls
         }
 
        
-        //trying to figure out which event to call when the tree gets right-clicked
-        //it's really annoying to not have the node get selected when you right click it
-        //because then, menu actions are applied to whichever node *is* selected
-        //however, i'm not sure which function to use
-        //and i'm not online to look it up right now
-        private void tocTree_Click(object sender, EventArgs e)
-        {
-
-        }
 
         #region Sync event handlers
 
@@ -557,5 +624,6 @@ namespace Obi.UserControls
                 this.addSubSectionToolStripMenuItem.Enabled = true;
             }
         }
+
     }
 }

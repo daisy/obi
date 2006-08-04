@@ -22,12 +22,15 @@ namespace Obi.UserControls
         private Dictionary<CoreNode, AudioBlock> mPhraseNodeMap;     // find an audio block for a given phrase node
         private CoreNode mSelectedPhrase;                            // the selected audio block
 
+        private ProjectPanel mProjectPanel; //the parent of this control
+
         public event Events.Node.RequestToAddSiblingNodeHandler AddSiblingSection;
         public event Events.Node.RequestToRenameNodeHandler RenameSection;
         public event Events.Node.SetMediaHandler SetMedia;
         public event Events.Strip.RequestToImportAssetHandler ImportPhrase;
         public event Events.Strip.SelectedHandler SelectedStrip;
 
+        #region properties
         public CoreNode SelectedSection
         {
             get
@@ -43,12 +46,14 @@ namespace Obi.UserControls
                     mSectionNodeMap[mSelectedSection].MarkSelected();
                     renameStripToolStripMenuItem.Enabled = true;
                     importAssetToolStripMenuItem.Enabled = true;
+                    showInTOCViewToolStripMenuItem.Enabled = true;
                     SelectedStrip(this, new Events.Strip.SelectedEventArgs(true));
                 }
                 else
                 {
                     renameStripToolStripMenuItem.Enabled = false;
                     importAssetToolStripMenuItem.Enabled = false;
+                    showInTOCViewToolStripMenuItem.Enabled = false;
                     SelectedStrip(this, new Events.Strip.SelectedEventArgs(false));
                 }
             }
@@ -80,9 +85,39 @@ namespace Obi.UserControls
                 }
             }
         }
+        
+        /// <summary>
+        /// Get the SectionStrip that is currently seleced, or null if no current selection exists.
+        /// </summary>
+        // mg20060804
+        internal SectionStrip ControlOfSelectedSection
+        {
+            get
+            {
+                if(mSelectedSection!=null)
+                    return mSectionNodeMap[mSelectedSection];
+                return null;
+            }
+        }
 
-        //mg: for access by sectionstrip that needs
-        //to override the textbox menu
+        /// <summary>
+        /// Get the control of the Block (phrase) that is currently seleced, or null if no current selection exists.
+        /// </summary>
+        // mg20060804
+        internal AbstractBlock ControlOfSelectedBlock
+        {
+            get
+            {
+                if (this.mSelectedPhrase != null)
+                    return this.mPhraseNodeMap[mSelectedPhrase];
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Get the context menu strip of this StripManagerPanel
+        /// </summary>
+        /// <remarks>mg: for access by sectionstrip that needs to override the textbox menu</remarks> 
         internal ContextMenuStrip PanelContextMenuStrip
         {
             get
@@ -91,14 +126,34 @@ namespace Obi.UserControls
             }
         }
 
+        /// <summary>
+        /// Get and set the parent ProjectPanel control 
+        /// </summary>
+        // mg 20060804
+        internal ProjectPanel ParentControl
+        {
+            get 
+            {
+                return mProjectPanel;
+            }
+            set
+            {
+                mProjectPanel = value;
+            }
+        }
+
+        #endregion
+
+        #region instantiators
         public StripManagerPanel()
         {
             InitializeComponent();
             mSectionNodeMap = new Dictionary<CoreNode, SectionStrip>();
             mSelectedSection = null;
             mPhraseNodeMap = new Dictionary<CoreNode, AudioBlock>();
-            mSelectedPhrase = null;            
+            mSelectedPhrase = null;
         }
+        #endregion
 
         /// <summary>
         /// Synchronize the strips view with the core tree.
@@ -305,6 +360,22 @@ namespace Obi.UserControls
             }
         }
 
+        /// <summary>
+        /// If a node is selected, set focus on that node in the TreeView.
+        /// If the selected node is not a section node, move back to the
+        /// section before commiting the select
+        /// </summary>
+        //  mg20060804
+        internal void showInTOCViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mSelectedSection!=null)
+            {
+                ParentControl.TOCPanel.SetSelectedSection(mSelectedSection);
+                //since the tree can be hidden:
+                if (ParentControl.TOCPanel.Visible == true)
+                    ParentControl.TOCPanel.Focus();
+            }
+        }
 
         #endregion
 
@@ -490,5 +561,6 @@ namespace Obi.UserControls
             }
 
         }
+
     }
 }
