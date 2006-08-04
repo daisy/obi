@@ -196,7 +196,7 @@ namespace Obi.UserControls
         {
             if (e.Node != null)
             {
-                DescendantsVisitor visitor = new DescendantsVisitor();
+                Visitors.DescendantsVisitor visitor = new Visitors.DescendantsVisitor();
                 e.Node.acceptDepthFirst(visitor);
                 foreach (CoreNode node in visitor.Nodes)
                 {

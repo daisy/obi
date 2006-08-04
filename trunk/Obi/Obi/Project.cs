@@ -17,8 +17,6 @@ namespace Obi
     ///   2. a text channel for table of contents items (which will become NCX label in DTB)
     ///   3. an annotation channel for text annotation of other items in the book (e.g. phrases.)
     /// So we keep a handy pointer to those.
-    /// TODO: we should subclass the nodes, so that our tree has a root (CoreNode), section nodes
-    /// and phrase nodes.
     /// </summary>
     public class Project : urakawa.project.Project
     {
@@ -41,15 +39,14 @@ namespace Obi
         public event Events.Project.StateChangedHandler StateChanged;       // the state of the project changed (modified, saved...)
         public event Events.Project.CommandCreatedHandler CommandCreated;   // a new command must be added to the command manager
 
-        public event Events.Node.AddedSectionNodeHandler AddedSectionNode;  // a section node was added to the TOC
-        public event Events.Node.DeletedNodeHandler DeletedNode;            // a node was deleted from the presentation
-        public event Events.Node.RenamedNodeHandler RenamedNode;            // a node was renamed in the presentation
-        public event Events.Node.MovedNodeHandler MovedNode;            // a node was moved in the presentation
-        public event Events.Node.DecreasedNodeLevelHandler DecreasedNodeLevel; //a node's level was decreased in the presentation
-        public event Events.Node.ImportedAssetHandler ImportedAsset;  // an asset was imported into the project
-        public event Events.Node.MovedNodeHandler UndidMoveNode;    //a node was restored to its previous location
-
-        public event Events.Node.MediaSetHandler MediaSet;  // a media object was set on a node
+        public event Events.Node.AddedSectionNodeHandler AddedSectionNode;      // a section node was added to the TOC
+        public event Events.Node.DeletedNodeHandler DeletedNode;                // a node was deleted from the presentation
+        public event Events.Node.RenamedNodeHandler RenamedNode;                // a node was renamed in the presentation
+        public event Events.Node.MovedNodeHandler MovedNode;                    // a node was moved in the presentation
+        public event Events.Node.DecreasedNodeLevelHandler DecreasedNodeLevel;  // a node's level was decreased in the presentation
+        public event Events.Node.ImportedAssetHandler ImportedAsset;            // an asset was imported into the project
+        public event Events.Node.MovedNodeHandler UndidMoveNode;                // a node was restored to its previous location
+        public event Events.Node.MediaSetHandler MediaSet;                      // a media object was set on a node
         
         /// <summary>
         /// This flag is set to true if the project contains modifications that have not been saved.
@@ -133,13 +130,14 @@ namespace Obi
         /// <param name="createTitle">Create a title section.</param>
         public void Create(string xukPath, string title, string id, UserProfile userProfile, bool createTitle)
         {
+            // The asset manager path is made relative to the XUK file's path; but we still use the absolute value that we
+            // get from GetAssetDirectory to create/initialize the path of the asset manager.
             mXUKPath = xukPath;
             mAssPath = GetAssetDirectory(xukPath);
             mAssManager = new Assets.AssetManager(mAssPath);
-
-            // now make the ass path relative to the xuk path (JQ)
             mAssPath = (new Uri(xukPath)).MakeRelativeUri(new Uri(mAssPath)).ToString();
 
+            // Create metadata and channels
             mMetadata = CreateMetadata(title, id, userProfile);
             mAudioChannel = getPresentation().getChannelFactory().createChannel(AudioChannel);
             getPresentation().getChannelsManager().addChannel(mAudioChannel);
@@ -187,7 +185,6 @@ namespace Obi
         {
             if (openXUK(new Uri(xukPath)))
             {
-                Directory.SetCurrentDirectory(Path.GetDirectoryName(xukPath));
                 mUnsaved = false;
                 mXUKPath = xukPath;
                 mAudioChannel = FindChannel(AudioChannel);
@@ -225,7 +222,12 @@ namespace Obi
                 Uri absoluteAssPath = new Uri(new Uri(xukPath), mAssPath); 
                 mAssManager = new Assets.AssetManager(absoluteAssPath.AbsolutePath);
                 // Recreate the assets from the phrase nodes
-                getPresentation().getRootNode().acceptDepthFirst(new Visitors.AssetVisitor(mAssManager));
+                string errMessages = ""; 
+                Visitors.AssetVisitor visitor = new Visitors.AssetVisitor(mAssManager,
+                    delegate(string message) { errMessages += message + "\n"; });
+                getPresentation().getRootNode().acceptDepthFirst(visitor);
+                if (errMessages != "")
+                    throw new Exception(String.Format(Localizer.Message("open_project_error_text") + "\n" + errMessages, xukPath)); 
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
             }
             else
@@ -399,7 +401,7 @@ namespace Obi
             {
                 parent.insert(sibling, parent.indexOf(contextNode) + 1);
             }
-            NodePositionVisitor visitor = new NodePositionVisitor(sibling);
+            Visitors.NodePositionVisitor visitor = new Visitors.NodePositionVisitor(sibling);
             getPresentation().getRootNode().acceptDepthFirst(visitor);
             AddedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs(origin, sibling, parent.indexOf(sibling),
                 visitor.Position));
@@ -424,7 +426,7 @@ namespace Obi
             CoreNode child = CreateSectionNode();
             if (parent == null) parent = getPresentation().getRootNode();
             parent.appendChild(child);
-            NodePositionVisitor visitor = new NodePositionVisitor(child);
+            Visitors.NodePositionVisitor visitor = new Visitors.NodePositionVisitor(child);
             getPresentation().getRootNode().acceptDepthFirst(visitor);
             AddedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs(origin, child, parent.indexOf(child), visitor.Position));
             mUnsaved = true;
@@ -480,7 +482,7 @@ namespace Obi
                 if (origin != this)
                 {
                     CoreNode parent = (CoreNode)node.getParent();
-                    NodePositionVisitor visitor = new NodePositionVisitor(node);
+                    Visitors.NodePositionVisitor visitor = new Visitors.NodePositionVisitor(node);
                     getPresentation().getRootNode().acceptDepthFirst(visitor);
                     command = new Commands.TOC.DeleteSection(this, node, parent, parent.indexOf(node), visitor.Position);
                 }
@@ -507,7 +509,7 @@ namespace Obi
             if (origin != this)
             {
                 CoreNode parent = (CoreNode)node.getParent();
-                NodePositionVisitor visitor = new NodePositionVisitor(node);
+                Visitors.NodePositionVisitor visitor = new Visitors.NodePositionVisitor(node);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
                 //we need to save the state of the node before it is moved
                 command = new Commands.TOC.MoveSectionUp
@@ -520,7 +522,7 @@ namespace Obi
             {
                 CoreNode newParent = (CoreNode)node.getParent();
 
-                NodePositionVisitor visitor = new NodePositionVisitor(node);
+                Visitors.NodePositionVisitor visitor = new Visitors.NodePositionVisitor(node);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
 
                 MovedNode(this, new Events.Node.MovedNodeEventArgs
@@ -621,7 +623,7 @@ namespace Obi
             if (origin != this)
             {
                 CoreNode parent = (CoreNode)node.getParent();
-                NodePositionVisitor visitor = new NodePositionVisitor(node);
+                Visitors.NodePositionVisitor visitor = new Visitors.NodePositionVisitor(node);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
                 //we need to save the state of the node before it is moved
                 command = new Commands.TOC.MoveSectionDown
@@ -634,7 +636,7 @@ namespace Obi
             {
                 CoreNode newParent = (CoreNode)node.getParent();
 
-                NodePositionVisitor visitor = new NodePositionVisitor(node);
+                Visitors.NodePositionVisitor visitor = new Visitors.NodePositionVisitor(node);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
 
                 MovedNode(this, new Events.Node.MovedNodeEventArgs
@@ -701,7 +703,7 @@ namespace Obi
             if (origin != this)
             {
                 CoreNode parent = (CoreNode)node.getParent();
-                NodePositionVisitor visitor = new NodePositionVisitor(node);
+                Visitors.NodePositionVisitor visitor = new Visitors.NodePositionVisitor(node);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
                 //we need to save the state of the node before it is altered
                 command = new Commands.TOC.IncreaseSectionLevel
@@ -714,7 +716,7 @@ namespace Obi
             {
                 CoreNode newParent = (CoreNode)node.getParent();
 
-                NodePositionVisitor visitor = new NodePositionVisitor(node);
+                Visitors.NodePositionVisitor visitor = new Visitors.NodePositionVisitor(node);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
 
                 //IncreasedNodeLevel(this, new Events.Node.NodeEventArgs(origin, node));

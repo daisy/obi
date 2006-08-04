@@ -4,7 +4,7 @@ using System.Text;
 
 using urakawa.core;
 
-namespace Obi
+namespace Obi.Visitors
 {
     /// <summary>
     /// Find the position of a node in the TOC tree, as seen in a flat list.

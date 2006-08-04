@@ -86,7 +86,6 @@
     <Compile Include="Commands\TOC\MoveSectionUp.cs" />
     <Compile Include="Commands\TOC\Rename.cs" />
     <Compile Include="CustomProperties.cs" />
-    <Compile Include="DescendantsVisitor.cs" />
     <Compile Include="Dialogs\EditSimpleMetadata.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,7 +153,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>messages.resx</DependentUpon>
     </Compile>
-    <Compile Include="NodePositionVisitor.cs" />
     <Compile Include="ObiForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -280,6 +278,8 @@
     </Compile>
     <Compile Include="UserProfile.cs" />
     <Compile Include="Visitors\AssetVisitor.cs" />
+    <Compile Include="Visitors\DescendantsVisitor.cs" />
+    <Compile Include="Visitors\NodePositionVisitor.cs" />
     <Compile Include="Visitors\PhraseEnumerator.cs" />
     <Compile Include="Visitors\UndeleteSubtree.cs" />
   </ItemGroup>
