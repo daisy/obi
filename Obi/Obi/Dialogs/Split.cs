@@ -56,6 +56,10 @@ namespace Obi.Dialogs
         private void btnPreview_Click(object sender, EventArgs e)
         {
             CheckSplitTime();
+
+            if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
+                Audio.AudioPlayer.Instance.Stop();
+
             if (ob_AudioAsset.AudioLengthInBytes > m_dSplitTime &&
                 Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped)
             {
@@ -69,8 +73,9 @@ namespace Obi.Dialogs
                 else
                 Audio.AudioPlayer.Instance.Play(ob_AudioAsset.GetChunk(m_dSplitTime, ob_AudioAsset.LengthInMilliseconds-100 ));
                 PreviewEnabled = true;
-                tmCount = 0;
+                btnPause.Text = "&Back";
                 tmUpdateTimePosition.Enabled = true;
+                btnPause.Enabled = false;
             }
         }
 
@@ -275,13 +280,17 @@ namespace Obi.Dialogs
         {
             if (InvokeRequired)
             {
-                Invoke(new CloseCallback(EndFileOperations));
+                Invoke(new CloseCallback( EndAssetOperations));
             }
         }
 
-        void EndFileOperations()
+        void EndAssetOperations()
         {
             btnPause.Text = "&Play";
+            btnPreview.Text = "Pre&view";
+            btnPause.Enabled = true;
+            btnPreview.Enabled = true;
+               txtDisplayTime.Text = ChangeTimeToDisplay (m_dSplitTime);
         }
          //Convoluted way to close necessary for debugging (JQ)
         private delegate void CloseCallback();
