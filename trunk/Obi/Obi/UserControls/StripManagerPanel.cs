@@ -301,9 +301,17 @@ namespace Obi.UserControls
 
         #region Menu items
 
+        /// <summary>
+        /// TODO:
+        /// Adding a strip from the strip manager adds a new sibling strip right after the selected strip
+        /// and reattaches the selected strip's children to the new strip. In effet, the new strip appears
+        /// just below the selected strip.
+        /// When no strip is selected, just add a new strip at the top of the tree.
+        /// </summary>
         internal void addStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddSiblingSection(this, new Events.Node.NodeEventArgs(this, mSelectedSection));
+            // InsertSiblingSection(this, new Events.Node.NodeEventArgs(this, mSelectedSection));
         }
 
         internal void renameStripToolStripMenuItem_Click(object sender, EventArgs e)

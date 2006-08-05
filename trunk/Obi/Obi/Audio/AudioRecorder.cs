@@ -150,7 +150,7 @@ namespace Obi.Audio
 			mAsset = new Assets.AudioMediaAsset(m_Channels, m_bitDepth, m_SampleRate);
 			mAsset = asset.Copy() as Assets.AudioMediaAsset;
 			Assets.AssetManager manager = asset.Manager as Assets.AssetManager;
-			sProjectDirectory= manager.DirPath ;
+			sProjectDirectory= manager.AssetsDirectory ;
 			InputFormat = GetInputFormat();
 			m_sFileName = sProjectDirectory+"\\"+"Listen.wav";
 			BinaryWriter ListenWriter  = new BinaryWriter(File.Create(m_sFileName));
@@ -172,7 +172,7 @@ namespace Obi.Audio
 			mAsset = new Assets.AudioMediaAsset(m_Channels, m_bitDepth, m_SampleRate);
 			mAsset = asset.Copy() as Assets.AudioMediaAsset;
 			Assets.AssetManager manager = mAsset.Manager as Assets.AssetManager;
-			sProjectDirectory= manager.DirPath ;
+			sProjectDirectory= manager.AssetsDirectory ;
 			InputFormat = GetInputFormat();
             if (File.Exists(sProjectDirectory+"\\"+"Listen.wav"))
                 File.Delete(sProjectDirectory+"\\"+"Listen.wav");

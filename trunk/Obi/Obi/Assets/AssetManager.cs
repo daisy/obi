@@ -1,287 +1,88 @@
 using System;
 using System.Windows.Forms;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Obi.Assets
 {
+    /// <summary>
+    /// The asset manager currently manages audio assets only.
+    /// </summary>
 	public class AssetManager
-	{
-		// member variables
-		// hold path of project directory
-		
-		private string m_sDirPath;
-
-		internal string DirPath
-		{
-			get
-			{
-				return m_sDirPath ;
-			}
-		}
-
+	{		
+		private string mAssetsDirectory;
         private Uri mBaseURI;
+
+        /// <summary>
+        /// Absolute path to the project directory.
+        /// </summary>
+		internal string AssetsDirectory
+		{
+			get { return mAssetsDirectory; }
+		}
 
         /// <summary>
         /// Base URI of the asset manager directory.
         /// </summary>
         public Uri BaseURI
         {
-            get
-            {
-                return mBaseURI;
-            }
+            get { return mBaseURI; }
         }
-		
-		//hash table to hold paths of assets being managed
-		private Hashtable m_htAssetList = new Hashtable();
 
+        private Dictionary<string, MediaAsset> mAssets;  // the assets being managed indexed by their name
+        private int mAssNameCounter;                     // counter for unique asset names
+        private int mFileNameCounter;                    // counter for unique file names
 
-		// hash table to contain list of all existing assets
-		public Hashtable m_htExists  = new Hashtable ();
-
-		// object for catch class
-		//CatchEvents ob_Catch = new CatchEvents();
-
-		/// <summary>
-		/// Create the asset manager taking as argument the project directory where the data should live.
-		/// The directory is created if it didn't exist; an exception is raised if a problem occurs.
-		/// </summary>
-		public AssetManager(string projectDirectory)
-		{
+        /// <summary>
+        /// Create the asset manager taking as argument the project directory where the data should live.
+        /// The directory is created if it didn't exist; an exception is raised if a problem occurs.
+        /// </summary>
+        /// <param name="assetsDirectory">Absolute path to the assets directory.</param>
+        public AssetManager(string assetsDirectory)
+        {
             UriBuilder builder = new UriBuilder();
             builder.Scheme = "file";
-            builder.Path = projectDirectory + @"\";
+            builder.Path = assetsDirectory + @"\";
             mBaseURI = builder.Uri;
-            m_sDirPath = System.Text.RegularExpressions.Regex.Replace(mBaseURI.LocalPath, @"^\\\\localhost\\", "");
-			if (!Directory.Exists(m_sDirPath))
-			{
-				try
-				{
-					Directory.CreateDirectory(m_sDirPath);
-				}
-				catch (Exception e)
-				{
-					throw new Exception(String.Format("Could not create project directory {0}", m_sDirPath), e);
-				}
-			}
-		}
+            mAssetsDirectory = System.Text.RegularExpressions.Regex.Replace(mBaseURI.LocalPath, @"^\\\\localhost\\", "");
+            mAssets = new Dictionary<string, MediaAsset>();
+            mAssNameCounter = 0;
+            mFileNameCounter = 0;
+            if (!Directory.Exists(mAssetsDirectory))
+            {
+                try
+                {
+                    Directory.CreateDirectory(mAssetsDirectory);
+                }
+                catch (Exception e)
+                {
+                    throw new Exception(String.Format(Localizer.Message("project_directory_creation_error"), mAssetsDirectory), e);
+                }
+            }
+        }
 
-		/// <summary>
-		/// Create a new empty AudioMediaAsset object with the given parameters and add it to the list of managed assets.
-		/// </summary>
-		/// <param name="channels">Number of channels</param>
-		/// <param name="bitDepth">Bit depth</param>
-		/// <param name="sampleRate">Sample rate</param>
-		/// <returns>The newly created asset.</returns>
-		public AudioMediaAsset NewAudioMediaAsset(int channels, int bitDepth, int sampleRate)
-		{
-			AudioMediaAsset ob_AudioMediaAsset = new AudioMediaAsset (channels , bitDepth , sampleRate) ;
-			ob_AudioMediaAsset.Name = NewMediaAssetName () ;
-			ob_AudioMediaAsset.m_AssetManager = this ;
-			m_htAssetList.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;
-			m_htExists.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;   
-			return ob_AudioMediaAsset ;
-		}
+        /// <summary>
+        /// Create a new empty AudioMediaAsset object with the given parameters and add it to the list of managed assets.
+        /// </summary>
+        /// <param name="channels">Number of channels</param>
+        /// <param name="bitDepth">Bit depth</param>
+        /// <param name="sampleRate">Sample rate</param>
+        /// <returns>The newly created asset.</returns>
+        public AudioMediaAsset NewAudioMediaAsset(int channels, int bitDepth, int sampleRate)
+        {
+            return (AudioMediaAsset)NameAddAsset(new AudioMediaAsset(channels, bitDepth, sampleRate));
+        }
 
-		/// <summary>
-		/// Create a new AudioMediaAsset object from a list of clips and add it to the list of managed assets.
-		/// </summary>
-		/// <param name="clips">The array of <see cref="AudioClip"/>s.</param>
-		/// <returns>The newly created asset.</returns>
-		public AudioMediaAsset NewAudioMediaAsset(ArrayList clips)
-		{
-			
-			AudioMediaAsset ob_AudioMediaAsset = new AudioMediaAsset (clips) ;
-
-			ob_AudioMediaAsset.Name = NewMediaAssetName () ;
-			ob_AudioMediaAsset.m_AssetManager = this ;
-			m_htAssetList.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;
-			m_htExists.Add (ob_AudioMediaAsset.Name, ob_AudioMediaAsset) ;   
-			return ob_AudioMediaAsset ;
-			
-
-		}
-
-		/// <summary>
-		/// Produce a unique name for IMediaAsset
-		/// </summary>
-		public string NewMediaAssetName()
-		{
-
-			long i = 0 ;
-
-			string sTemp ;
-
-			sTemp = "amMediaAsset" ;
-			string sTempName ;
-			sTempName = sTemp + i.ToString () ;
-
-			while ( m_htExists.ContainsKey (sTempName)  && i<9000000)
-			{
-
-				i++;
-				sTempName = sTemp + i.ToString () ;
-				
-
-			}
-
-
-			if (i<9000000)
-
-			{
-			
-				return sTempName ;
-
-			}
-			else
-			{
-				return null ;
-			}
-		}
-		
-			
-		
-
-		#region IAssetManager Members
-
-		public Hashtable Assets
-		{
-			get
-			{
-				return m_htAssetList ;
-			}
-		}
-
-		public void AddAsset(Assets.MediaAsset asset)
-		{
-			if (asset.Type== MediaType.Audio)
-			{
-				AudioMediaAsset Asset  = asset as AudioMediaAsset;
-				if (Asset.Name == null )
-				{
-					Asset.Name = NewMediaAssetName () ;
-				}
-				Asset.m_AssetManager = this ;
-
-				m_htAssetList.Add (Asset.Name, asset) ;
-				m_htExists.Add (Asset.Name, asset) ;
-			}
-		}
-
-		public Hashtable GetAssets(Assets.MediaType assetType)
-		{
-
-			IDictionaryEnumerator en = m_htAssetList.GetEnumerator();
-			
-			Hashtable htTemp = new Hashtable () ;
-
-			MediaAsset m ;
-			//find the asset from hash table using key 
-			while (en.MoveNext() )
-			{
-				m =en.Value as MediaAsset ;
-
-				if (m.Type.Equals (assetType)) 
-				{
-					htTemp.Add ( en.Key , en.Value) ; 
-				}
-			}		
-
-			return htTemp ;
-		}
-	
-
-		public Assets.MediaAsset GetAsset(string assetName)
-		{
-			if (m_htAssetList.ContainsKey (assetName))
-			{
-				return m_htAssetList [assetName] as MediaAsset;
-			}
-			else
-				throw new Exception ("Asset not found in Hashtable") ;
-						
-						
-		}
-
-		public Assets.MediaAsset NewAsset(Assets.MediaType assetType)
-		{
-			return null;
-		}
-
-		public void DeleteAsset(Assets.MediaAsset assetToDelete)
-		{
-		
-			if (  m_htAssetList.ContainsKey(assetToDelete.Name) )
-			{
-				m_htAssetList.Remove(assetToDelete.Name) ;
-				m_htExists.Remove(assetToDelete.Name) ;
-				assetToDelete = null ;
-			}
-			else
-			{
-
-				throw new Exception ("Asset could not be deleted : not in hashtable") ;
-			}
-
-		}
-
-		public void RemoveAsset(Assets.MediaAsset assetToRemove)
-		{
-			MediaAsset MediaAssetToRemove = assetToRemove as MediaAsset ;
-			if (  m_htAssetList.ContainsKey(MediaAssetToRemove.Name) )
-			{
-				m_htAssetList.Remove(MediaAssetToRemove.Name) ;
-				MediaAssetToRemove.m_AssetManager = null ;
-
-			}
-			else
-				throw new Exception ("Asset could not be removed : not in hashtable") ;
-			
-		}
-
-		public Assets.MediaAsset CopyAsset(Assets.MediaAsset asset)
-		{
-			if (m_htAssetList.ContainsKey (asset.Name)  )
-			{
-				MediaAsset ob_MediaAsset = asset.Copy()  as MediaAsset;
-				ob_MediaAsset.Name = NewMediaAssetName () ;
-				m_htAssetList.Add (ob_MediaAsset.Name, ob_MediaAsset) ;
-				m_htExists.Add (ob_MediaAsset.Name, ob_MediaAsset) ;
-				return ob_MediaAsset ;
-			}
-			else
-			{
-				throw new Exception ("Asset not found in Hashtable") ;
-
-			}
-
-		}
-
-
-		public string RenameAsset(Assets.MediaAsset asset, String newName)
-		{
-			string OldName = asset.Name;
-			bool boolRenamed = false ;
-			IDictionaryEnumerator enRemove = m_htAssetList.GetEnumerator();
-			while(enRemove.MoveNext())
-			{
-
-				if(enRemove.Key.ToString() == asset.Name)
-				{
-					m_htAssetList.Remove(OldName );
-					m_htExists.Remove(OldName );
-					asset.Name = newName;
-					m_htAssetList.Add(asset.Name, asset);
-					m_htExists.Add(asset.Name, asset);
-					boolRenamed = true ;
-					break ;
-				}
-			}
-			if (boolRenamed == false)
-				throw new Exception ("Asset cannot be renamed : not in hashtable") ;
-			return OldName;
-		}
+        /// <summary>
+        /// Create a new AudioMediaAsset object from a list of clips and add it to the list of managed assets.
+        /// </summary>
+        /// <param name="clips">The array of <see cref="AudioClip"/>s.</param>
+        /// <returns>The newly created asset.</returns>
+        public AudioMediaAsset NewAudioMediaAsset(ArrayList clips)
+        {
+            return (AudioMediaAsset)NameAddAsset(new AudioMediaAsset(clips));
+        }
 
         /// <summary>
         /// Create an asset directly from a file and add it into the manager.
@@ -295,10 +96,152 @@ namespace Obi.Assets
             clips.Add(AudioClip.ImportClip(path, this));
             return NewAudioMediaAsset(clips);
         }
+
+        /// <summary>
+        /// Try to add an existing asset.
+        /// Throw an exception if it was already managed.
+        /// </summary>
+        /// <param name="asset">The asset to add.</param>
+        /// <returns>True if the asset could be added.</returns>
+        public bool AddAsset(MediaAsset asset)
+		{
+            if (asset.Manager != null)
+            {
+                throw new Exception(String.Format("Asset {0} is already managed.", asset.Name));
+            }
+            if (!mAssets.ContainsKey(asset.Name))
+            {
+                mAssets.Add(asset.Name, asset);
+                asset.Manager = this;
+                return true;
+            }
+            return false;
+		}
+
+        /// <summary>
+        /// Get a dictionary of all managed assets of a given type.
+        /// Currenty, only audio assets are managed.
+        /// </summary>
+        public Dictionary<string, MediaAsset> GetAssets(MediaType type)
+        {
+            return type == MediaType.Audio ? mAssets : new  Dictionary<string, MediaAsset>();
+        }
+
+        /// <summary>
+        /// Get a managed asset given its name.
+        /// Return null if no such asset is found.
+        /// </summary>
+		public Assets.MediaAsset GetAsset(string name)
+        {
+            return mAssets.ContainsKey(name) ? mAssets[name] : null;
+        }
+
+        /// <summary>
+        /// Remove a managed asset.
+        /// Throw an exception if the asset was not managed in the first place.
+        /// </summary>
+        public void RemoveAsset(MediaAsset asset)
+		{
+            if (!mAssets.ContainsKey(asset.Name))
+            {
+                throw new Exception(String.Format("Asset {0} is not managed, cannot remove.", asset.Name));
+            }
+            mAssets.Remove(asset.Name);
+            asset.Manager = null;
+		}
+
+        /// <summary>
+        /// Delete a managed asset (remove first, then actually delete.)
+        /// Throw an exception if the asset was not managed in the first place.
+        /// </summary>
+        /// <param name="assetToDelete"></param>
+		public void DeleteAsset(Assets.MediaAsset asset)
+		{
+            RemoveAsset(asset);
+            asset.Delete();
+		}
+
+        /// <summary>
+        /// Copy a managed asset and add the (renamed) copy to the manager.
+        /// Throw an exception if the asset was not managed in the first place.
+        /// </summary>
+        /// <returns>The copy.</returns>
+		public MediaAsset CopyAsset(MediaAsset asset)
+		{
+            if (!mAssets.ContainsKey(asset.Name))
+            {
+                throw new Exception(String.Format("Asset {0} is not managed, will not copy.", asset.Name));
+            }
+            return NameAddAsset(asset.Copy());
+		}
+
+        /// <summary>
+        /// Try to rename an asset handled by the asset manager.
+        /// If the new name is taken, no change occurs.
+        /// Throw an exception if the asset could not be found in the table.
+        /// </summary>
+        /// <returns>The old name before the change.</returns>
+		public string RenameAsset(MediaAsset asset, String newName)
+        {
+            if (!mAssets.ContainsKey(asset.Name))
+            {
+                throw new Exception(String.Format("Asset {0} is not managed, will not copy.", asset.Name));
+            }
+            string oldName = asset.Name;
+            if (!mAssets.ContainsKey(newName))
+            {
+                mAssets.Remove(asset.Name);
+                asset.Name = newName;
+                mAssets.Add(asset.Name, asset);
+            }
+            return oldName;
+        }
+
+        /// <summary>
+        /// Name and add an asset to the manager.
+        /// </summary>
+        /// <param name="asset">The (unnamed) asset to add.</param>
+        /// <returns>The same asset with a new name and now managed.</returns>
+        private MediaAsset NameAddAsset(MediaAsset asset)
+        {
+            asset.Name = UniqueName();
+            asset.Manager = this;
+            mAssets.Add(asset.Name, asset);
+            return asset;
+        }
+
+        /// <summary>
+        /// Generate a unique name for an asset.
+        /// </summary>
+        /// <returns>The generated name.</returns>
+        public string UniqueName()
+        {
+            string name;
+            do
+            {
+                name = String.Format(Localizer.Message("asset_name"), mAssNameCounter.ToString("00000"));
+                ++mAssNameCounter;
+            }
+            while(mAssets.ContainsKey(name));
+            return name;
+        }
+
+        /// <summary>
+        /// Generate a unique file name for a clip.
+        /// </summary>
+        /// <param name="ext">The file extension (including leading dot, allows for no extension.)</param>
+        public string UniqueFileName(string ext)
+        {
+            string name;
+            do
+            {
+                name = String.Format("{0}clip_{1}{2}", mAssetsDirectory, mFileNameCounter.ToString("00000"), ext);
+                ++mFileNameCounter;
+            }
+            while(File.Exists(name));
+            return name;
+        }
+
 	}
-
-	#endregion
-
-
 }
 

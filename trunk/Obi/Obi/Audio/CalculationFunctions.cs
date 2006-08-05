@@ -48,64 +48,7 @@ namespace Obi.Audio
 			return Convert.ToDouble (lTemp) ;
 		}
 
-
-		internal static string GenerateNewAssetName (Assets.MediaAsset Asset)
-		{
-			
-			long i = 0 ;
-
-			string sTemp ;
-
-			sTemp = "MediaAsset" ;
-			string sTempName ;
-			sTempName = sTemp + i.ToString () ;
-            Assets.AssetManager manager = Asset.Manager as Assets.AssetManager ;
-			while ( manager.m_htExists.ContainsKey (sTempName)  && i<9000000)
-			{
-
-				i++;
-				sTempName = sTemp + i.ToString () ;
-				
-			}
-
-			if (i<9000000)
-			{
-manager.m_htExists.Add (sTempName , Asset) ;
-				return sTempName ;
-			}
-			else
-			{
-				return null ;
-			}
-		}
-		
-			
-		internal static string GenerateFileName (string ext, string sDir)
-		{
-			int i = 0 ;
-			string sTemp ;
-			sTemp = sDir + "\\" + i.ToString() + ext ;
-			//FileInfo file = new FileInfo(sTemp) ;
-
-			while (File.Exists(sTemp) && i<90000)
-			{
-				i++;
-				sTemp = sDir + "\\" + i.ToString() + ext ;
-
-			}
-
-			if (i<90000)
-			{
-				return sTemp ;
-			}
-			else
-			{
-				return null ;
-			}
-		}
-
-
-		// end of cal function
+        // end of cal function
 	}
 	// end of namespace
 }

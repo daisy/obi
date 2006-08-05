@@ -291,4 +291,11 @@ Do you want to replace the project contained in this file?</value>
   <data name="add_phrase_command_label" xml:space="preserve">
     <value>Add audio block</value>
   </data>
+  <data name="project_directory_creation_error" xml:space="preserve">
+    <value>Could not create project directory {0}.</value>
+  </data>
+  <data name="asset_name" xml:space="preserve">
+    <value>asset_{0}</value>
+    <comment>name template for media assets (JQ)</comment>
+  </data>
 </root>

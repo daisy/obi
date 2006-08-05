@@ -35,8 +35,8 @@ namespace Obi.Visitors
             {
                 mProject.AddExistingSection((CoreNode)node, mParent, mIndex, mPosition, null);
                 mIndex = 0;
+                ++mPosition;
             }
-            ++mPosition;
             return true;
         }
 

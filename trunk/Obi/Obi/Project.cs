@@ -473,7 +473,7 @@ namespace Obi
         }
 
         /// <summary>
-        /// Remove a node from the core tree (simply detach it, and synchronize the views.)
+        /// Remove a node from the core tree. It is detached from the tree and the
         /// </summary>
         public void RemoveNode(object origin, CoreNode node)
         {

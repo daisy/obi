@@ -79,6 +79,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to asset_{0}.
+        /// </summary>
+        internal static string asset_name {
+            get {
+                return ResourceManager.GetString("asset_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancelled.
         /// </summary>
         internal static string cancelled {
@@ -404,6 +413,15 @@ namespace Obi {
         internal static string play {
             get {
                 return ResourceManager.GetString("play", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not create project directory {0}..
+        /// </summary>
+        internal static string project_directory_creation_error {
+            get {
+                return ResourceManager.GetString("project_directory_creation_error", resourceCulture);
             }
         }
         

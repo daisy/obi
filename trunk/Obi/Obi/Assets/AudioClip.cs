@@ -787,7 +787,7 @@ namespace Obi.Assets
 
         public static AudioClip ImportClip(string Path, AssetManager manager)
         {
-            string sNewFilePath = Audio.CalculationFunctions.GenerateFileName(".wav", manager.DirPath);
+            string sNewFilePath = manager.UniqueFileName(".wav");
             FileInfo ob_FileInfo = new FileInfo(Path);
             try
             {

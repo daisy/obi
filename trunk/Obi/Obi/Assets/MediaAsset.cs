@@ -10,80 +10,65 @@ namespace Obi.Assets
     public enum MediaType { Audio, Other };
 
     /// <summary>
-    /// Virtual edits implementation of IMediaAsset.
+    /// Base class for media assets.
     /// </summary>
     public abstract class MediaAsset
     {
-        // member variables of class
-        protected string m_sName;
-        protected MediaType m_eMediaType;
+        protected string mName;
+        protected MediaType mMediaType;
+        protected long mSizeInBytes;
+        internal AssetManager mAssManager;
 
-        protected long m_lSizeInBytes;
-        internal AssetManager m_AssetManager;
-
-
+        /// <summary>
+        /// Name of the asset. Unique in the manager.
+        /// </summary>
         public string Name
         {
-            get
-            {
-                return m_sName;
-            }
-            set
-            {
-                m_sName = value;
-            }
+            get { return mName; }
+            set { mName = value; }
         }
 
+        /// <summary>
+        /// Type of the asset.
+        /// </summary>
         public MediaType Type
         {
-            get
-            {
-                return m_eMediaType;
-            }
+            get { return mMediaType; }
         }
 
+        /// <summary>
+        /// Total size in bytes of the asset.
+        /// </summary>
         public long SizeInBytes
         {
-            get
-            {
-                return m_lSizeInBytes;
-            }
-            set
-            {
-                m_lSizeInBytes = value;
-            }
+            get { return mSizeInBytes; }
+            set { mSizeInBytes = value; }
         }
 
-        public Assets.AssetManager Manager
+        /// <summary>
+        /// Manager for this asset.
+        /// </summary>
+        public AssetManager Manager
         {
-            get
-            {
-                return m_AssetManager;
-            }
+            get { return mAssManager; }
+            set { mAssManager = value; }
         }
 
-        public void Add(Assets.AssetManager manager)
-        {
-            manager.Assets.Add(m_sName, this);
-            m_AssetManager = manager as AssetManager;
-        }
+        /// <summary>
+        /// Copy the asset.
+        /// </summary>
+        /// <returns>The copy</returns>
+        public abstract MediaAsset Copy();
 
-        public void Remove()
-        {
-            if (m_AssetManager.Assets.ContainsKey(this.Name))
-            {
-                m_AssetManager.Assets.Remove(this.Name);
-                m_AssetManager = null;
-            }
-            else
-                MessageBox.Show("MediaAsset can not be removed from AssetManager");
-        }
-
-        public abstract Assets.MediaAsset Copy();
-
+        /// <summary>
+        /// Delete the asset.
+        /// </summary>
         public abstract void Delete();
 
-        public abstract void MergeWith(Assets.MediaAsset next);
-
+        /// <summary>
+        /// Merge with another asset (normally, the next one in sequence.)
+        /// </summary>
+        /// <param name="next">The asset to merge with.</param>
+        public abstract void MergeWith(MediaAsset next);
     }
 }
