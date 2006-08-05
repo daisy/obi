@@ -1,4 +1,4 @@
-Obi façade API for iteration 2
+﻿Obi façade API for iteration 2
 $Id$
 
 
@@ -102,3 +102,9 @@ properties on the factory before calling create(), or, when a certain attribute
 of the returned object is required, provide a (non-overloaded) create() method 
 that takes the required attribute as params. This makes the use less errorprone, 
 and the usage code less verbose.
+
+16. MD: Functions to move a section node: Up, Down, In, Out.  
+
+17. MD: Clipboard feature 
+
+18. MD: For 16, 17: adjustments are made automatically wrt DTBOOK (adjust heading levels, page numbers)
