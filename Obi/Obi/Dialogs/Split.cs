@@ -48,7 +48,7 @@ namespace Obi.Dialogs
         Assets.AudioMediaAsset ob_AudioAsset;
         double m_dSplitTime;
         int m_Step=10000;
-        int m_FineStep = 2000;
+        int m_FineStep = 500;
         bool PreviewEnabled = false;
 
         
