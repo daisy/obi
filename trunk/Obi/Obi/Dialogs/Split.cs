@@ -68,14 +68,14 @@ namespace Obi.Dialogs
                 ob_VuMeter.UpperThreshold = 300;
                 ob_VuMeter.SampleTimeLength = 1000;
                 Audio.AudioPlayer.Instance.VuMeterObject = ob_VuMeter;
-                if (ob_AudioAsset.LengthInMilliseconds - m_dSplitTime >= 4) 
+                if (ob_AudioAsset.LengthInMilliseconds - m_dSplitTime > 4000 )
                 Audio.AudioPlayer.Instance.Play(ob_AudioAsset.GetChunk(m_dSplitTime, m_dSplitTime + 4000));
                 else
                 Audio.AudioPlayer.Instance.Play(ob_AudioAsset.GetChunk(m_dSplitTime, ob_AudioAsset.LengthInMilliseconds-100 ));
                 PreviewEnabled = true;
                 btnPreview.Text = "&Back";
                 tmUpdateTimePosition.Enabled = true;
-                btnPause.Enabled = false;
+                btnPause.Text = "&Pause";
             }
         }
 
@@ -115,8 +115,8 @@ namespace Obi.Dialogs
         void FastRewind ()
         {
             CheckSplitTime();
+
             
-            btnPause.Text = "&Play";
             if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
             {
                 double dCurrentPlayPosition = Audio.AudioPlayer.Instance.CurrentTimePosition;
@@ -125,6 +125,7 @@ namespace Obi.Dialogs
             }
             else
             {
+                //btnPause.Text = "&Play";
                 m_dSplitTime = m_dSplitTime - m_Step;
                 if (m_dSplitTime < 0)
                     m_dSplitTime = 0;
@@ -145,13 +146,13 @@ namespace Obi.Dialogs
             {
                 
                 double dCurrentPlayPosition = Audio.AudioPlayer.Instance.CurrentTimePosition;
-                if (dCurrentPlayPosition + m_Step < ob_AudioAsset.LengthInMilliseconds)
+                if (dCurrentPlayPosition + m_Step < ob_AudioAsset.LengthInMilliseconds  - m_FineStep )
                     Audio.AudioPlayer.Instance.CurrentTimePosition = dCurrentPlayPosition + m_Step;
             }
             else
             {
                 m_dSplitTime = m_dSplitTime + m_Step;
-                if (m_dSplitTime > ob_AudioAsset.LengthInMilliseconds)
+                if (m_dSplitTime > ob_AudioAsset.LengthInMilliseconds - m_FineStep)
                     m_dSplitTime = ob_AudioAsset.LengthInMilliseconds;
                 UpdateSplitTime();
                 txtDisplayTime.Text = ChangeTimeToDisplay(m_dSplitTime);
@@ -171,7 +172,7 @@ namespace Obi.Dialogs
             {
                 double dCurrentPlayPosition = Audio.AudioPlayer.Instance.CurrentTimePosition;
                 if (dCurrentPlayPosition - m_FineStep > 0)
-                    Audio.AudioPlayer.Instance.CurrentTimePosition = dCurrentPlayPosition - m_FineStep;
+                    Audio.AudioPlayer.Instance.CurrentTimePosition = dCurrentPlayPosition - (m_FineStep * 2);
             }
             else
             {
@@ -194,13 +195,13 @@ namespace Obi.Dialogs
             if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
             {
                 double dCurrentPlayPosition = Audio.AudioPlayer.Instance.CurrentTimePosition;
-                if (dCurrentPlayPosition + m_FineStep < ob_AudioAsset.LengthInMilliseconds)
+                if (dCurrentPlayPosition + m_FineStep < ob_AudioAsset.LengthInMilliseconds - m_FineStep )
                     Audio.AudioPlayer.Instance.CurrentTimePosition = dCurrentPlayPosition + m_FineStep;
             }
             else
             {
                 m_dSplitTime = m_dSplitTime + m_FineStep;
-                if (m_dSplitTime > ob_AudioAsset.LengthInMilliseconds)
+                if (m_dSplitTime > ob_AudioAsset.LengthInMilliseconds- m_FineStep)
                     m_dSplitTime = ob_AudioAsset.LengthInMilliseconds;
                 UpdateSplitTime();
                 txtDisplayTime.Text = m_dSplitTime.ToString(); txtDisplayTime.Text = ChangeTimeToDisplay(m_dSplitTime);
@@ -254,14 +255,20 @@ namespace Obi.Dialogs
             btnSplit.Enabled = true;
             if(Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
             {
+                if (PreviewEnabled == false)
                 m_dSplitTime = Audio.AudioPlayer.Instance.CurrentTimePosition;
+                else
+                m_dSplitTime = m_dSplitTime  + Audio.AudioPlayer.Instance.CurrentTimePosition;
+
                 Audio.AudioPlayer.Instance.Stop();
             tmUpdateTimePosition.Enabled = false;
                 btnPause.Text = "&Play";
                 btnPreview.Enabled= true;
+                btnPreview.Text = "Pre&view";
+                PreviewEnabled = false;
                 UpdateSplitTime();
             }
-            else if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped)
+            else if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped && m_dSplitTime != ob_AudioAsset.LengthInMilliseconds)
             {
                 CheckSplitTime();
                 //MessageBox.Show(m_dSplitTime.ToString());
@@ -303,6 +310,9 @@ namespace Obi.Dialogs
             {
                 Invoke(new CloseCallback( EndAssetOperations));
             }
+                else
+                EndAssetOperations() ;
+            
         }
 
         void EndAssetOperations()
