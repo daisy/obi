@@ -73,7 +73,7 @@ namespace Obi.Dialogs
                 else
                 Audio.AudioPlayer.Instance.Play(ob_AudioAsset.GetChunk(m_dSplitTime, ob_AudioAsset.LengthInMilliseconds-100 ));
                 PreviewEnabled = true;
-                btnPause.Text = "&Back";
+                btnPreview.Text = "&Back";
                 tmUpdateTimePosition.Enabled = true;
                 btnPause.Enabled = false;
             }
@@ -108,6 +108,12 @@ namespace Obi.Dialogs
 
         private void btnFastRewind_Click(object sender, EventArgs e)
         {
+            FastRewind () ;
+        }
+        
+
+        void FastRewind ()
+        {
             CheckSplitTime();
             
             btnPause.Text = "&Play";
@@ -129,6 +135,11 @@ namespace Obi.Dialogs
 
         private void btnFastForward_Click(object sender, EventArgs e)
         {
+            FastForward();
+        }
+
+        void FastForward ()
+        {
             CheckSplitTime();
             if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
             {
@@ -149,6 +160,11 @@ namespace Obi.Dialogs
 
         private void btnFineRewind_Click(object sender, EventArgs e)
         {
+            FineRewind();
+        }
+
+        void FineRewind ()
+        {
             CheckSplitTime();
             btnPause.Text = "&Play";
             if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
@@ -168,6 +184,11 @@ namespace Obi.Dialogs
         }
 
         private void btnFineForward_Click(object sender, EventArgs e)
+        {
+            FineForward() ;
+        }
+
+        void FineForward ()
         {
             CheckSplitTime();
             if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
@@ -366,7 +387,31 @@ namespace Obi.Dialogs
             }
         }
 
-        
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            
+            switch (keyData)
+            {
+                case Keys.Control | Keys.Up:
+                    FastRewind();
+                    break;
+                
+                case Keys.Control | Keys.Down:
+                    FastForward();
+                    break;
+                case Keys.Control | Keys.Left:
+                    FineRewind();
+                    break;
+                case Keys.Control | Keys.Right:
+                    FineForward();
+                    break;
+                        
+            }
+            
+            return base.ProcessDialogKey(keyData);
+
+        }
+       
 
 
         
