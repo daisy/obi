@@ -220,110 +220,117 @@ namespace Obi.Audio
 
 		void InitPlay(long lStartPosition, long lEndPosition)
 		{
-			// Adjust the start and end position according to frame size
-			lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, m_Asset.FrameSize) ;
-			lEndPosition = CalculationFunctions.AdaptToFrame(lEndPosition, m_Asset.FrameSize) ;
-			m_SamplingRate = m_Asset.SampleRate ;
-				
-			// lEndPosition = 0 means that file is played to end
-			if (lEndPosition != 0)
-			{
-				m_lLength = (lEndPosition )- lStartPosition;
-			}
-			else
-			{
-				// folowing one line is modified on 2 Aug 2006
-				//m_lLength = (m_Asset .SizeInBytes  - lStartPosition ) ;
-				m_lLength = (m_Asset .SizeInBytes  ) ;
-			}
+            if (m_State == AudioPlayerState.Stopped || m_State == AudioPlayerState.NotReady)
+            {
+                // Adjust the start and end position according to frame size
+                lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, m_Asset.FrameSize);
+                lEndPosition = CalculationFunctions.AdaptToFrame(lEndPosition, m_Asset.FrameSize);
+                m_SamplingRate = m_Asset.SampleRate;
 
-			WaveFormat newFormat = new WaveFormat () ;				
-			BufferDesc = new BufferDescription();
+                // lEndPosition = 0 means that file is played to end
+                if (lEndPosition != 0)
+                {
+                    m_lLength = (lEndPosition) - lStartPosition;
+                }
+                else
+                {
+                    // folowing one line is modified on 2 Aug 2006
+                    //m_lLength = (m_Asset .SizeInBytes  - lStartPosition ) ;
+                    m_lLength = (m_Asset.SizeInBytes);
+                }
 
-			// retrieve format from file
-			m_FrameSize = m_Asset.FrameSize ;
-			m_Channels = m_Asset.Channels ;
-			newFormat.AverageBytesPerSecond = m_Asset .SampleRate * m_Asset .FrameSize ;
-			newFormat.BitsPerSample = Convert.ToInt16(m_Asset .BitDepth) ;
-			newFormat.BlockAlign = Convert.ToInt16(m_Asset .FrameSize );
-			newFormat.Channels  = Convert.ToInt16(m_Asset .Channels );
+                WaveFormat newFormat = new WaveFormat();
+                BufferDesc = new BufferDescription();
 
-			newFormat.FormatTag = WaveFormatTag.Pcm ;
+                // retrieve format from file
+                m_FrameSize = m_Asset.FrameSize;
+                m_Channels = m_Asset.Channels;
+                newFormat.AverageBytesPerSecond = m_Asset.SampleRate * m_Asset.FrameSize;
+                newFormat.BitsPerSample = Convert.ToInt16(m_Asset.BitDepth);
+                newFormat.BlockAlign = Convert.ToInt16(m_Asset.FrameSize);
+                newFormat.Channels = Convert.ToInt16(m_Asset.Channels);
 
-			newFormat.SamplesPerSecond = m_Asset .SampleRate ;
+                newFormat.FormatTag = WaveFormatTag.Pcm;
 
-			// loads  format to buffer description
-			BufferDesc.Format = newFormat ;
+                newFormat.SamplesPerSecond = m_Asset.SampleRate;
 
-			// calculate size of buffer so as to contain 1 second of audio
-			m_SizeBuffer = m_Asset .SampleRate *  m_Asset .FrameSize ;
-			if (m_SizeBuffer > m_lLength )
-				m_SizeBuffer = Convert.ToInt32 (m_lLength );
+                // loads  format to buffer description
+                BufferDesc.Format = newFormat;
 
-			m_RefreshLength = (m_Asset .SampleRate / 2 ) * m_Asset .FrameSize ;
-			// calculate the size of VuMeter Update array length
-			m_UpdateVMArrayLength = m_SizeBuffer  / 20 ;
-			m_UpdateVMArrayLength = Convert.ToInt32 (CalculationFunctions.AdaptToFrame ( Convert.ToInt32 ( m_UpdateVMArrayLength ),  m_FrameSize)  );
-			arUpdateVM = new byte [ m_UpdateVMArrayLength ] ;
-			// reset the VuMeter (if set)
-			if (ob_VuMeter != null) ob_VuMeter.Reset () ;
+                // calculate size of buffer so as to contain 1 second of audio
+                m_SizeBuffer = m_Asset.SampleRate * m_Asset.FrameSize;
+                m_RefreshLength = (m_Asset.SampleRate / 2) * m_Asset.FrameSize;
 
-			// sets the calculated size of buffer
-			BufferDesc.BufferBytes = m_SizeBuffer ;
+                if (m_SizeBuffer > m_lLength - lStartPosition)
+                {
+                    m_SizeBuffer = Convert.ToInt32(m_lLength - lStartPosition);
+                    m_RefreshLength = m_SizeBuffer / 2;
+                    m_RefreshLength = ( m_RefreshLength / m_FrameSize ) * m_FrameSize ;
+                }
 
-			// Global focus is set to true so that the sound can be played in background also
-			BufferDesc.GlobalFocus = true ;
+                // calculate the size of VuMeter Update array length
+                m_UpdateVMArrayLength = m_SizeBuffer / 20;
+                m_UpdateVMArrayLength = Convert.ToInt32(CalculationFunctions.AdaptToFrame(Convert.ToInt32(m_UpdateVMArrayLength), m_FrameSize));
+                arUpdateVM = new byte[m_UpdateVMArrayLength];
+                // reset the VuMeter (if set)
+                if (ob_VuMeter != null) ob_VuMeter.Reset();
 
-			// initialising secondary buffer
-			SoundBuffer = new SecondaryBuffer(BufferDesc, SndDevice);
+                // sets the calculated size of buffer
+                BufferDesc.BufferBytes = m_SizeBuffer;
 
-			// Compensate played length due to the skip of frames during compression
-			if (m_Step != 1)
-			{
-				m_CompAddition = (m_RefreshLength * 2) / m_Step ;
-				m_CompAddition = Convert.ToInt32 (CalculationFunctions.AdaptToFrame (m_CompAddition , m_FrameSize) );
-			}
+                // Global focus is set to true so that the sound can be played in background also
+                BufferDesc.GlobalFocus = true;
 
-			// Load from file to memory
-			LoadStream (true) ;
-				
-			// check for fast play
-			int reduction = 0 ;
-			if (m_FastPlay == false)
-			{
-				SoundBuffer.Write (0 , m_MemoryStream, m_SizeBuffer, 0) ;
-			}
-			else
-			{
-				// for fast play buffer is filled in parts with new part overlapping previous part
-				for (int i = 0 ; i< m_SizeBuffer ; i = i + (m_Step * m_FrameSize))
-				{
-					SoundBuffer.Write (i , m_MemoryStream , m_Step * m_FrameSize, 0) ;
-					i = i - (2*m_FrameSize) ;
-					// compute the difference in bytes skipped
-					reduction = reduction + (2*m_FrameSize) ;
-				}
+                // initialising secondary buffer
+                SoundBuffer = new SecondaryBuffer(BufferDesc, SndDevice);
 
-			}
-			// Adds the length (count) of file played into a variable
-			// Folowing one line was modified on 2 Aug 2006 i.e lStartPosition is added
-			m_lPlayed = m_SizeBuffer + reduction+ (2 * m_CompAddition) + lStartPosition;
+                // Compensate played length due to the skip of frames during compression
+                if (m_Step != 1)
+                {
+                    m_CompAddition = (m_RefreshLength * 2) / m_Step;
+                    m_CompAddition = Convert.ToInt32(CalculationFunctions.AdaptToFrame(m_CompAddition, m_FrameSize));
+                }
+
+                // Load from file to memory
+                LoadStream(true);
+
+                // check for fast play
+                int reduction = 0;
+                if (m_FastPlay == false)
+                {
+                    SoundBuffer.Write(0, m_MemoryStream, m_SizeBuffer, 0);
+                }
+                else
+                {
+                    // for fast play buffer is filled in parts with new part overlapping previous part
+                    for (int i = 0; i < m_SizeBuffer; i = i + (m_Step * m_FrameSize))
+                    {
+                        SoundBuffer.Write(i, m_MemoryStream, m_Step * m_FrameSize, 0);
+                        i = i - (2 * m_FrameSize);
+                        // compute the difference in bytes skipped
+                        reduction = reduction + (2 * m_FrameSize);
+                    }
+
+                }
+                // Adds the length (count) of file played into a variable
+                // Folowing one line was modified on 2 Aug 2006 i.e lStartPosition is added
+                m_lPlayed = m_SizeBuffer + reduction + (2 * m_CompAddition) + lStartPosition;
 
 
-			m_PlayFile = true ;
+                m_PlayFile = true;
 
-			// trigger  events (modified JQ)
-			Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
-			m_State  = AudioPlayerState.Playing ;
-			StateChanged(this, e);
-			// starts playing
-			SoundBuffer.Play(0, BufferPlayFlags.Looping);
-			m_BufferCheck = 1 ;
+                // trigger  events (modified JQ)
+                Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
+                m_State = AudioPlayerState.Playing;
+                StateChanged(this, e);
+                // starts playing
+                SoundBuffer.Play(0, BufferPlayFlags.Looping);
+                m_BufferCheck = 1;
 
-			//initialise and start thread for refreshing buffer
-			RefreshThread = new Thread(new ThreadStart (RefreshBuffer));
-			RefreshThread.Start() ;
-
+                //initialise and start thread for refreshing buffer
+                RefreshThread = new Thread(new ThreadStart(RefreshBuffer));
+                RefreshThread.Start();
+            }// end of state check
 			// end of function
 		}
 
@@ -620,13 +627,16 @@ namespace Obi.Audio
                 lPositionInClip = CalculationFunctions.AdaptToFrame(lPositionInClip, m_FrameSize);
                 m_br.BaseStream.Position = lPositionInClip  ;
                 m_lClipByteCount = lPositionInClip - ob_Clip.BeginByte ;
-				for (long l = 0 ; l < ob_Clip.LengthInBytes && l < 2* (m_RefreshLength ); l=l+m_FrameSize) 
-				{
-					SkipFrames () ;
-					m_MemoryStream.Write (m_br.ReadBytes(m_FrameSize), 0 , m_FrameSize) ;
-					m_lClipByteCount = m_lClipByteCount + m_FrameSize ;
-					ReadNextClip () ;
-				}
+                for (long l = 0; l < ob_Clip.LengthInBytes && l < 2 * (m_RefreshLength); l = l + m_FrameSize)
+                {
+                    SkipFrames();
+                    m_MemoryStream.Write(m_br.ReadBytes(m_FrameSize), 0, m_FrameSize);
+                    m_lClipByteCount = m_lClipByteCount + m_FrameSize;
+                    ReadNextClip();
+
+                    if ( m_lClipByteCount >=ob_Clip.LengthInBytes  && m_ClipIndex == m_Asset.Clips.Count - 1)
+                    break;
+                }   
 			}
 			else
 			{
