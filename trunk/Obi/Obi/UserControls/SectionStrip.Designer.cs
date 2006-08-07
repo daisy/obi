@@ -49,7 +49,7 @@ namespace Obi.UserControls
             // 
             this.mTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.mTextBox.BackColor = System.Drawing.Color.LemonChiffon;
+            this.mTextBox.BackColor = System.Drawing.Color.PaleGreen;
             this.mTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.mTextBox.Location = new System.Drawing.Point(3, 0);

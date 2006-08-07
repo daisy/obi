@@ -423,7 +423,6 @@ namespace Obi
 
         public void CreateSiblingSectionRequested(object sender, Events.Node.NodeEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("create sibling request from " + sender.ToString() + " with hash: " + sender.GetHashCode());
             CreateSiblingSection(sender, e.Node);
         }
 
@@ -958,16 +957,21 @@ namespace Obi
             SetMedia(sender, e.Node, e.Channel, e.Media);
         }
 
+        #endregion
+
+        #region Strip event handlers
+
         /// <summary>
         /// Create a new phrase node and add it to the section node.
+        /// The phrase is named after the imported file name.
         /// </summary>
         /// <remarks>JQ</remarks>
         public void ImportPhraseRequested(object sender, Events.Strip.ImportAssetEventArgs e)
         {
             Assets.AudioMediaAsset asset = mAssManager.ImportAudioMediaAsset(e.AssetPath);
+            mAssManager.InsureRename(asset, Path.GetFileNameWithoutExtension(e.AssetPath));
             CoreNode node = CreatePhraseNode(asset);
             e.SectionNode.appendChild(node);
-
             ImportedAsset(this, new Events.Node.NodeEventArgs(sender, node));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -977,7 +981,7 @@ namespace Obi
 
         /// <summary>
         /// Create a new section node with a default text label. The node is not attached to anything.
-        /// TODO: this should be a constructor/factory method for our derived node class.
+        /// Add a node information custom property as well.
         /// </summary>
         /// <returns>The created node.</returns>
         private CoreNode CreateSectionNode()
@@ -998,8 +1002,9 @@ namespace Obi
 
         /// <summary>
         /// Create a new phrase node from an asset.
-        /// Add a default annotation with the name of the file (should be the original name, not the internal one.)
+        /// Add a default annotation with the name of the asset.
         /// Add a seq media object with the clips of the audio asset. Do not forget to set begin/end time explicitely.
+        /// Add a node information custom property as well.
         /// </summary>
         /// <param name="asset">The asset for the phrase.</param>
         /// <returns>The created node.</returns>
@@ -1013,9 +1018,6 @@ namespace Obi
             SequenceMedia seq =
                 (SequenceMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.EMPTY_SEQUENCE);
             AudioMedia audio = (AudioMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.AUDIO);
-            //for (int i = 0; i < asset.m_alClipList.Count; ++i)
-            //{
-                //Assets.AudioClip clip = asset.GetClip(i);
             foreach (Assets.AudioClip clip in asset.Clips)
             {
                 UriBuilder builder = new UriBuilder();

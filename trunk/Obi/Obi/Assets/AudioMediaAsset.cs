@@ -708,6 +708,5 @@ namespace Obi.Assets
                 asset2.SampleRate == asset2.SampleRate &&
                 asset1.BitDepth == asset2.BitDepth;
         }
-
     }// end of class
 }

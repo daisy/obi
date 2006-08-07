@@ -142,6 +142,7 @@
     <Compile Include="Events\Node\NodeEventArgs.cs" />
     <Compile Include="Events\Node\RenameNodeEventArgs.cs" />
     <Compile Include="Events\Node\MovedNodeEventArgs.cs" />
+    <Compile Include="Events\Node\SelectedEventArgs.cs" />
     <Compile Include="Events\Node\SetMediaEventArgs.cs" />
     <Compile Include="Events\Project\CommandCreatedEventArgs.cs" />
     <Compile Include="Events\Project\StateChangedEventArgs.cs" />
