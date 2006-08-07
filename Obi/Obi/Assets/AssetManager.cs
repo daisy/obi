@@ -8,6 +8,7 @@ namespace Obi.Assets
 {
     /// <summary>
     /// The asset manager currently manages audio assets only.
+    /// Keep track of audio files used by clips as well.
     /// </summary>
 	public class AssetManager
 	{		
@@ -30,9 +31,20 @@ namespace Obi.Assets
             get { return mBaseURI; }
         }
 
-        private Dictionary<string, MediaAsset> mAssets;  // the assets being managed indexed by their name
-        private int mAssNameCounter;                     // counter for unique asset names
-        private int mFileNameCounter;                    // counter for unique file names
+        private Dictionary<string, MediaAsset> mAssets;      // the assets being managed indexed by their name
+        private int mAssNameCounter;                         // counter for unique asset names
+        private Dictionary<string, List<AudioClip>> mFiles;  // audio files and the list of assets referring to them
+        private int mFileNameCounter;                        // counter for unique file names
+
+        /// <summary>
+        /// List of files in use and which clips use them.
+        /// When an asset is removed, the clips are removed from this list but not the files.
+        /// Files that have an empty list of clips can then be removed safely.
+        /// </summary>
+        internal Dictionary<string, List<AudioClip>> Files
+        {
+            get { return mFiles; }
+        }
 
         /// <summary>
         /// Create the asset manager taking as argument the project directory where the data should live.
@@ -48,6 +60,7 @@ namespace Obi.Assets
             mAssetsDirectory = System.Text.RegularExpressions.Regex.Replace(mBaseURI.LocalPath, @"^\\\\localhost\\", "");
             mAssets = new Dictionary<string, MediaAsset>();
             mAssNameCounter = 0;
+            mFiles = new Dictionary<string, List<AudioClip>>();
             mFileNameCounter = 0;
             if (!Directory.Exists(mAssetsDirectory))
             {
@@ -79,9 +92,19 @@ namespace Obi.Assets
         /// </summary>
         /// <param name="clips">The array of <see cref="AudioClip"/>s.</param>
         /// <returns>The newly created asset.</returns>
-        public AudioMediaAsset NewAudioMediaAsset(ArrayList clips)
+        //public AudioMediaAsset NewAudioMediaAsset(ArrayList clips)
+        public AudioMediaAsset NewAudioMediaAsset(List<AudioClip> clips)
         {
-            return (AudioMediaAsset)NameAddAsset(new AudioMediaAsset(clips));
+            AudioMediaAsset asset = (AudioMediaAsset)NameAddAsset(new AudioMediaAsset(clips));
+            //for (int i = 0; i < asset.m_alClipList.Count; ++i)
+            //{
+            //    AudioClip clip = asset.m_alClipList[i] as AudioClip;
+            foreach (AudioClip clip in asset.Clips)
+            {
+                if (!mFiles.ContainsKey(clip.Path)) mFiles[clip.Path] = new List<AudioClip>();
+                mFiles[clip.Path].Add(clip);
+            }
+            return asset;
         }
 
         /// <summary>
@@ -92,9 +115,13 @@ namespace Obi.Assets
         /// <returns>The asset created.</returns>
         public AudioMediaAsset ImportAudioMediaAsset(string path)
         {
-            ArrayList clips = new ArrayList(1);
-            clips.Add(AudioClip.ImportClip(path, this));
-            return NewAudioMediaAsset(clips);
+            List<AudioClip> clips = new List<AudioClip>(1);
+            AudioClip clip = AudioClip.ImportClip(path, this);
+            clips.Add(clip);
+            AudioMediaAsset asset = NewAudioMediaAsset(clips);
+            if (!mFiles.ContainsKey(clip.Path)) mFiles[clip.Path] = new List<AudioClip>();
+            mFiles[clip.Path].Add(clip);
+            return asset;
         }
 
         /// <summary>
@@ -113,6 +140,17 @@ namespace Obi.Assets
             {
                 mAssets.Add(asset.Name, asset);
                 asset.Manager = this;
+                if (asset.Type == MediaType.Audio)
+                {
+                    //for (int i = 0; i < ((AudioMediaAsset)asset).m_alClipList.Count; ++i)
+                    //{
+                    //    AudioClip clip = ((AudioMediaAsset)asset).m_alClipList[i] as AudioClip;
+                    foreach (AudioClip clip in ((AudioMediaAsset)asset).Clips)
+                    {
+                        if (!mFiles.ContainsKey(clip.Path)) mFiles[clip.Path] = new List<AudioClip>();
+                        mFiles[clip.Path].Add(clip);
+                    }
+                }
                 return true;
             }
             return false;
@@ -145,6 +183,16 @@ namespace Obi.Assets
             if (!mAssets.ContainsKey(asset.Name))
             {
                 throw new Exception(String.Format("Asset {0} is not managed, cannot remove.", asset.Name));
+            }
+            if (asset.Type == MediaType.Audio)
+            {
+                //for (int i = 0; i < ((AudioMediaAsset)asset).m_alClipList.Count; ++i)
+                //{
+                //    AudioClip clip = ((AudioMediaAsset)asset).m_alClipList[i] as AudioClip;
+                foreach (AudioClip clip in ((AudioMediaAsset)asset).Clips)
+                {
+                    mFiles[clip.Path].RemoveAt(mFiles[clip.Path].IndexOf(clip));
+                }
             }
             mAssets.Remove(asset.Name);
             asset.Manager = null;
@@ -241,7 +289,5 @@ namespace Obi.Assets
             while(File.Exists(name));
             return name;
         }
-
 	}
 }
-

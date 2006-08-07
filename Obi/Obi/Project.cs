@@ -32,6 +32,7 @@ namespace Obi
         private string mLastPath;            // last path to which the project was saved (see save as)
         private SimpleMetadata mMetadata;    // metadata for this project
 
+        public static readonly string XUKVersion = "obi-xuk-001";            // version of the Obi/XUK file
         public static readonly string AudioChannel = "obi.audio";            // canonical name of the audio channel
         public static readonly string TextChannel = "obi.text";              // canonical name of the text channel
         public static readonly string AnnotationChannel = "obi.annotation";  // canonical name of the annotation channel
@@ -192,6 +193,7 @@ namespace Obi
                 mTextChannel = FindChannel(TextChannel);
                 mAnnotationChannel = FindChannel(AnnotationChannel);
                 mMetadata = new SimpleMetadata();
+                string xukversion = "none";
                 foreach (object o in getMetadataList())
                 {
                     urakawa.project.Metadata meta = (urakawa.project.Metadata)o;
@@ -215,10 +217,15 @@ namespace Obi
                         case "obi:assetsdir":
                             mAssPath = meta.getContent();
                             break;
+                        case "obi:xukversion":
+                            xukversion = meta.getContent();
+                            break;
                         default:
                             break;
                     }
                 }
+                if (xukversion != Project.XUKVersion)
+                    throw new Exception(String.Format(Localizer.Message("xuk_version_mismatch"), Project.XUKVersion, xukversion));
                 if (mAssPath == null) throw new Exception(Localizer.Message("missing_asset_path"));
                 Uri absoluteAssPath = new Uri(new Uri(xukPath), mAssPath); 
                 mAssManager = new Assets.AssetManager(absoluteAssPath.AbsolutePath);
@@ -270,6 +277,7 @@ namespace Obi
             if (metaDate != null) metaDate.setScheme("YYYY-MM-DD");
             AddMetadata("xuk:generator", "Obi+Urakawa toolkit");
             AddMetadata("obi:assetsdir", mAssPath);
+            AddMetadata("obi:xukversion", Project.XUKVersion);
             return metadata;
         }
 
@@ -1005,9 +1013,11 @@ namespace Obi
             SequenceMedia seq =
                 (SequenceMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.EMPTY_SEQUENCE);
             AudioMedia audio = (AudioMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.AUDIO);
-            for (int i = 0; i < asset.m_alClipList.Count; ++i)
+            //for (int i = 0; i < asset.m_alClipList.Count; ++i)
+            //{
+                //Assets.AudioClip clip = asset.GetClip(i);
+            foreach (Assets.AudioClip clip in asset.Clips)
             {
-                Assets.AudioClip clip = asset.GetClip(i);
                 UriBuilder builder = new UriBuilder();
                 builder.Scheme = "file";
                 builder.Path = clip.Path;

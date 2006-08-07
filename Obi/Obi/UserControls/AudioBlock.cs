@@ -152,8 +152,21 @@ namespace Obi.UserControls
             mRenameBox.Visible = false;
             if (mRenameBox.Text != "")
             {
-                mAnnotationLabel.Text = mRenameBox.Text;
-                mManager.RenamedAudioBlock(this);
+                Assets.AudioMediaAsset asset = Project.GetAudioMediaAsset(mNode);
+                if (asset.Name != mRenameBox.Text)
+                {
+                    string old = asset.Manager.RenameAsset(asset, mRenameBox.Text);
+                    if (asset.Name != old)
+                    {
+                        mAnnotationLabel.Text = asset.Name;
+                        ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).setText(asset.Name);
+                        mManager.RenamedAudioBlock(this);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Name already exists", "Name already exists", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
             }
             else
             {
