@@ -28,7 +28,8 @@ namespace Obi.UserControls
         public event Events.Node.RequestToMoveNodeUpHandler RequestToMoveSectionUp;
         public event Events.Node.RequestToRenameNodeHandler RequestToRenameSection;
         public event Events.Node.RequestToDeleteNodeHandler RequestToDeleteSection;
-       
+        public event Events.Node.SelectedHandler SelectedTreeNode;  // raised when selection changes (JQ)
+
         #region properties
         /// <summary>
         /// Test whether a node is currently selected or not.
@@ -37,21 +38,10 @@ namespace Obi.UserControls
         {
             get
             {
-                return tocTree.SelectedNode != null;
+                return mTocTree.SelectedNode != null;
             }
         }
 
-        /// <summary>
-        /// Get the context menu strip of the tree view so that we can replicate it in the form.
-        /// </summary>
-        public ContextMenuStrip TocTreeContextMenuStrip
-        {
-            get
-            {
-                return tocTree.ContextMenuStrip;
-            }
-        }
-        
         /// <summary>
         /// Get and set the parent ProjectPanel control 
         /// </summary>
@@ -71,10 +61,13 @@ namespace Obi.UserControls
         #endregion
 
         #region instantiators
+
         public TOCPanel()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            SelectedTreeNode += new Obi.Events.Node.SelectedHandler(TOCPanel_SelectedTreeNode);
         }
+
         #endregion
 
         /// <summary>
@@ -84,8 +77,8 @@ namespace Obi.UserControls
         /// </summary>
         public void SynchronizeWithCoreTree(urakawa.core.CoreNode root)
         {
-            tocTree.Nodes.Clear();
-            tocTree.SelectedNode = null;
+            mTocTree.Nodes.Clear();
+            mTocTree.SelectedNode = null;
             root.acceptDepthFirst(this);
         }
         
@@ -120,7 +113,7 @@ namespace Obi.UserControls
                 else
                 {
                     // top-level nodes
-                    newTreeNode = tocTree.Nodes.Add(node.GetHashCode().ToString(), label);
+                    newTreeNode = mTocTree.Nodes.Add(node.GetHashCode().ToString(), label);
                 }
                 newTreeNode.Tag = node;
                 newTreeNode.ExpandAll();
@@ -142,7 +135,7 @@ namespace Obi.UserControls
         /// </summary>
         public void ExpandViewToShowAllSections()
         {
-            tocTree.ExpandAll();
+            mTocTree.ExpandAll();
         }
 
         /// <summary>
@@ -151,7 +144,7 @@ namespace Obi.UserControls
         /// <returns>The selected section, or null if no section is selected.</returns>
         public urakawa.core.CoreNode GetSelectedSection()
         {
-            TreeNode selected = this.tocTree.SelectedNode;
+            TreeNode selected = this.mTocTree.SelectedNode;
             return selected == null ? null : (urakawa.core.CoreNode)selected.Tag;
         }
 
@@ -163,14 +156,17 @@ namespace Obi.UserControls
         public bool SetSelectedSection(urakawa.core.CoreNode node)
         {
             TreeNode sel = FindTreeNodeFromCoreNode(node);
-
             if (sel != null)
             {
-                tocTree.SelectedNode = sel;
+                mTocTree.SelectedNode = sel;
+                // set can move up, down, etc.
+                Obi.Events.Node.SelectedEventArgs e = new Obi.Events.Node.SelectedEventArgs(true);
+                SelectedTreeNode(this, e);
                 return true;
             }
             else
             {
+                SelectedTreeNode(this, new Obi.Events.Node.SelectedEventArgs(false));
                 return false;
             }
         }
@@ -187,7 +183,7 @@ namespace Obi.UserControls
         /// <summary>
         /// Triggered by the "add sibling section" menu item.
         /// </summary>
-        internal void addSectionAtSameLevelToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RequestToAddSiblingSection(this,
                 new Events.Node.NodeEventArgs(this, GetSelectedSection()));
@@ -196,7 +192,7 @@ namespace Obi.UserControls
         /// <summary>
         /// Triggered by the "add sub-section" menu item.
         /// </summary>
-        internal void addSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void mAddSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RequestToAddChildSection(this,
                 new Events.Node.NodeEventArgs(this, GetSelectedSection()));
@@ -205,7 +201,7 @@ namespace Obi.UserControls
         /// <summary>
         /// Triggered by the "move section up" menu item.
         /// </summary>
-        internal void moveUpToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void mMoveUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RequestToMoveSectionUp(this, 
                 new Events.Node.NodeEventArgs(this, GetSelectedSection()));
@@ -214,18 +210,18 @@ namespace Obi.UserControls
         /// <summary>
         /// Triggered by the "delete section" menu item.
         /// </summary>
-        internal void deleteSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void mDeleteSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RequestToDeleteSection(this, new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
 
-        internal void editLabelToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void mRenameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TreeNode sel = this.tocTree.SelectedNode;
+            TreeNode sel = this.mTocTree.SelectedNode;
             sel.BeginEdit();
         }
 
-        internal void moveDownToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void mMoveDownToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RequestToMoveSectionDown(this,
                 new Events.Node.NodeEventArgs(this, GetSelectedSection()));
@@ -253,7 +249,7 @@ namespace Obi.UserControls
         /// If a node is selected, set focus on that node in the Strip view.
         /// </summary>
         //  mg20060804
-        internal void showInStripViewToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void mShowInStripViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //mg 20060804
             if (GetSelectedSection() != null)
@@ -272,7 +268,7 @@ namespace Obi.UserControls
         //mg
         private void tocTree_BeforeSelect(object sender, TreeViewCancelEventArgs e)
         {
-            this.showInStripViewToolStripMenuItem.Enabled = true;
+            this.mShowInStripViewToolStripMenuItem.Enabled = true;
         }
 
         ////mg xxx
@@ -349,12 +345,12 @@ namespace Obi.UserControls
             }
             else
             {
-                newTreeNode = tocTree.Nodes.Insert(e.Index, e.Node.GetHashCode().ToString(), label);
+                newTreeNode = mTocTree.Nodes.Insert(e.Index, e.Node.GetHashCode().ToString(), label);
             }
             newTreeNode.Tag = e.Node;
             newTreeNode.ExpandAll();
             newTreeNode.EnsureVisible();
-            tocTree.SelectedNode = newTreeNode;
+            mTocTree.SelectedNode = newTreeNode;
             //start editing if the request to add a node happened in the tree view
             if (e.Origin.Equals(this))
             {
@@ -418,7 +414,7 @@ namespace Obi.UserControls
             //make the currently selected node something reasonable
             if (newSelection != null)
             {
-                tocTree.SelectedNode = newSelection;
+                mTocTree.SelectedNode = newSelection;
             }
 
         }
@@ -440,7 +436,7 @@ namespace Obi.UserControls
             TreeNodeCollection siblings = null;
             if (parent == null)
             {
-                siblings = tocTree.Nodes;
+                siblings = mTocTree.Nodes;
             }
             else
             {
@@ -450,7 +446,7 @@ namespace Obi.UserControls
             siblings.Insert(e.Index, clone);
             clone.ExpandAll();
             clone.EnsureVisible();
-            tocTree.SelectedNode = clone;
+            mTocTree.SelectedNode = clone;
         }
  
         /// <summary>
@@ -500,7 +496,7 @@ namespace Obi.UserControls
             }
             else
             {
-                siblingCollection = tocTree.Nodes;
+                siblingCollection = mTocTree.Nodes;
             }
 
             int newIndex = selectedNode.Parent.Index + 1;
@@ -517,7 +513,7 @@ namespace Obi.UserControls
 
             clone.ExpandAll();
             clone.EnsureVisible();
-            tocTree.SelectedNode = clone;
+            mTocTree.SelectedNode = clone;
         }
 
         #endregion
@@ -579,7 +575,7 @@ namespace Obi.UserControls
         {
             TreeNode foundNode = null;
             TreeNode[] treeNodes
-                = tocTree.Nodes.Find(node.GetHashCode().ToString(), true);
+                = mTocTree.Nodes.Find(node.GetHashCode().ToString(), true);
           
             //since a key isn't unique and we get a list back from Nodes.Find,
             //try to be as sure as possible that it's the same node
@@ -604,9 +600,9 @@ namespace Obi.UserControls
         }
         #endregion
 
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        /*private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
-            if (tocTree.Nodes.Count == 0)
+            if (mTocTree.Nodes.Count == 0)
             {
                 this.addSubSectionToolStripMenuItem.Enabled = false;
             }
@@ -614,6 +610,19 @@ namespace Obi.UserControls
             {
                 this.addSubSectionToolStripMenuItem.Enabled = true;
             }
+        }*/
+
+        private void TOCPanel_SelectedTreeNode(object sender, Events.Node.SelectedEventArgs e)
+        {
+            mAddSubSectionToolStripMenuItem.Enabled = e.Selected;
+            mDeleteSectionToolStripMenuItem.Enabled = e.Selected;
+            mEditLabelToolStripMenuItem.Enabled = e.Selected;
+            mMoveToolStripMenuItem.Enabled = e.CanMoveUp || e.CanMoveDown || e.CanMoveIn || e.CanMoveOut;
+            mMoveUpToolStripMenuItem.Enabled = e.CanMoveUp;
+            mMoveDownToolStripMenuItem.Enabled = e.CanMoveDown;
+            mMoveInToolStripMenuItem.Enabled = e.CanMoveIn;
+            mMoveOutToolStripMenuItem.Enabled = e.CanMoveOut;
+            mShowInStripViewToolStripMenuItem.Enabled = e.Selected;
         }
 
         /// <summary>
@@ -623,7 +632,7 @@ namespace Obi.UserControls
         /// <param name="e"></param>
         private void tocTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            tocTree.SelectedNode = e.Node;
+            mTocTree.SelectedNode = e.Node;
             
         }
 
@@ -637,7 +646,7 @@ namespace Obi.UserControls
         //marisa added this 4 aug 06
         private void tocTree_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            this.showInStripViewToolStripMenuItem_Click(this, null);
+            this.mShowInStripViewToolStripMenuItem_Click(this, null);
         }
 
         /// <summary>
@@ -650,13 +659,32 @@ namespace Obi.UserControls
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (tocTree.SelectedNode != null)
+                if (mTocTree.SelectedNode != null)
                 {
-                    this.showInStripViewToolStripMenuItem_Click(this, null);
+                    this.mShowInStripViewToolStripMenuItem_Click(this, null);
                 }
             }
                 
         }
 
+        /// <summary>
+        /// A new selection is made so the context menu is updated.
+        /// </summary>
+        private void mTocTree_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            Events.Node.SelectedEventArgs _event = new Events.Node.SelectedEventArgs(true);
+            // should set CanMoveUp, etc. here
+            SelectedTreeNode(this, _event);
+        }
+
+        /// <summary>
+        /// When leaving the TOC tree, there is no selection anymore.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mTocTree_Leave(object sender, EventArgs e)
+        {
+            SelectedTreeNode(this, new Events.Node.SelectedEventArgs(false));
+        }
     }
 }

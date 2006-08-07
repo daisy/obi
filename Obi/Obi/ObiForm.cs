@@ -342,39 +342,85 @@ namespace Obi
         /// </summary>
         private void ObiForm_Load(object sender, EventArgs e)
         {
-            mAddSectionAtSameLevelToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.TOCPanel.addSectionAtSameLevelToolStripMenuItem_Click);
-            mAddsubsectionToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.TOCPanel.addSubSectionToolStripMenuItem_Click);
-            mRenameSectionToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.TOCPanel.editLabelToolStripMenuItem_Click);
+            // The TOC menu behaves like the context menu in the TOC view.
+            mProjectPanel.TOCPanel.SelectedTreeNode += new Events.Node.SelectedHandler(TOCPanel_SelectedTreeNode);
+            mAddSectionToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.TOCPanel.mAddSectionToolStripMenuItem_Click);
+            mAddSubSectionToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.TOCPanel.mAddSubSectionToolStripMenuItem_Click);
             mDeleteSectionToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.TOCPanel.deleteSectionToolStripMenuItem_Click);
-            mMoveSectionUpToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.TOCPanel.moveUpToolStripMenuItem_Click);
-            
-            //marisa added these event hooks 01 aug 06
-            moveSectionDownToolStripMenuItem.Click += 
-                new EventHandler(mProjectPanel.TOCPanel.moveDownToolStripMenuItem_Click);
-            increaseSectionDepthToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.TOCPanel.mDeleteSectionToolStripMenuItem_Click);
+            mRenameSectionToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.TOCPanel.mRenameToolStripMenuItem_Click);
+            mMoveUpToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.TOCPanel.mMoveUpToolStripMenuItem_Click);
+            mMoveDownToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.TOCPanel.mMoveDownToolStripMenuItem_Click);
+            mMoveInToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.TOCPanel.increaseLevelToolStripMenuItem_Click);
-            decreaseSectionLevelToolStripMenuItem.Click +=
+            mMoveOutToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.TOCPanel.decreaseLevelToolStripMenuItem_Click);
-            //end marisa work
+            mShowInStripviewToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.TOCPanel.mShowInStripViewToolStripMenuItem_Click);
 
-            mProjectPanel.StripManager.SelectedStrip += new Events.Strip.SelectedHandler(StripManager_Selected);
+            // The strip menu behaves like the context menu in the strip view.
+            mProjectPanel.StripManager.SelectedStrip += new Events.Strip.SelectedHandler(StripManagerPanel_SelectedStrip);
+            mProjectPanel.StripManager.SelectedAudioBlock += new Events.Strip.SelectedHandler(StripManagerPanel_SelectedAudioBlock);
             mAddStripToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.StripManager.addStripToolStripMenuItem_Click);
-            renameStripToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.StripManager.renameStripToolStripMenuItem_Click);
-            importAssetToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.StripManager.importAssetToolStripMenuItem_Click);
+                new EventHandler(mProjectPanel.StripManager.mAddStripToolStripMenuItem_Click);
+            mRenameStripToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.StripManager.mRenameStripToolStripMenuItem_Click);
+            mImportAudioFileToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.StripManager.mImportAssetToolStripMenuItem_Click);
+            mPlayAudioBlockToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.StripManager.mPlayAudioBlockToolStripMenuItem_Click);
+            mSplitAudioBlockToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.StripManager.mSplitAudioBlockToolStripMenuItem_Click);
+            mRenameAudioBlockToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.StripManager.mRenameAudioBlockToolStripMenuItem_Click);
+            mShowInTOCViewToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.StripManager.mShowInTOCViewToolStripMenuItem_Click);
+
+            mProjectPanel.TOCPanel.VisibleChanged +=
+                new EventHandler(delegate(object _sender, EventArgs _e) { FormUpdateShowHideTOC(); });
         }
 
-        private void StripManager_Selected(object sender, Events.Strip.SelectedEventArgs e)
+        /// <summary>
+        /// Update the TOC menu when a tree node is (de)selected.
+        /// </summary>
+        private void TOCPanel_SelectedTreeNode(object sender, Events.Node.SelectedEventArgs e)
         {
-            renameStripToolStripMenuItem.Enabled = e.Selected;
-            importAssetToolStripMenuItem.Enabled = e.Selected;
+            mAddSubSectionToolStripMenuItem.Enabled = e.Selected;
+            mDeleteSectionToolStripMenuItem.Enabled = e.Selected;
+            mRenameSectionToolStripMenuItem.Enabled = e.Selected;
+            mMoveSectionToolStripMenuItem.Enabled = e.CanMoveUp || e.CanMoveDown || e.CanMoveIn || e.CanMoveOut;
+            mMoveUpToolStripMenuItem.Enabled = e.CanMoveUp;
+            mMoveDownToolStripMenuItem.Enabled = e.CanMoveDown;
+            mMoveInToolStripMenuItem.Enabled = e.CanMoveIn;
+            mMoveOutToolStripMenuItem.Enabled = e.CanMoveOut;
+            mShowInStripviewToolStripMenuItem.Enabled = e.Selected;
+        }
+
+        /// <summary>
+        /// Update the strip menu when a strip is (de)selected.
+        /// Affects "rename strip", "import audio file", "show in TOC view".
+        /// </summary>
+        private void StripManagerPanel_SelectedStrip(object sender, Events.Strip.SelectedEventArgs e)
+        {
+            mRenameStripToolStripMenuItem.Enabled = e.Selected;
+            mImportAudioFileToolStripMenuItem.Enabled = e.Selected;
+            mShowInTOCViewToolStripMenuItem.Enabled = e.Selected;
+        }
+
+        /// <summary>
+        /// Update the strip menu when a block is (de)selected.
+        /// Affects "play audio block", "split audio block", "rename audio block"
+        /// </summary>
+        private void StripManagerPanel_SelectedAudioBlock(object sender, Events.Strip.SelectedEventArgs e)
+        {
+            mPlayAudioBlockToolStripMenuItem.Enabled = e.Selected;
+            mSplitAudioBlockToolStripMenuItem.Enabled = e.Selected;
+            mRenameAudioBlockToolStripMenuItem.Enabled = e.Selected;
         }
 
         #endregion
@@ -598,6 +644,9 @@ namespace Obi
 
         /// <summary>
         /// Change the label of th Show/Hide TOC menu item depending on the visibility of the NCX panel.
+        /// When the TOC panel is hidden, the only enabled item in the TOC panel is "show TOC".
+        /// When the TOC panel is shown, menu items (except "show TOC" and "add section") are enabled only if there is
+        /// a currently selected node in the tree.
         /// </summary>
         private void FormUpdateShowHideTOC()
         {
@@ -605,9 +654,12 @@ namespace Obi
                 Localizer.Message(mProjectPanel.TOCPanelVisible ? "hide_toc_label" : "show_toc_label");
             foreach (ToolStripItem item in mTocToolStripMenuItem.DropDownItems)
             {
-                item.Enabled = mProjectPanel.TOCPanelVisible;
+                // this is incorrect--we need the same parameters as the selected event from the TOC tree.
+                // need to save the last event somewhere maybe?
+                item.Enabled = mProjectPanel.TOCPanelVisible && mProjectPanel.TOCPanel.Selected;
             }
             mShowhideTableOfCOntentsToolStripMenuItem.Enabled = true;
+            mAddSectionToolStripMenuItem.Enabled = mProjectPanel.TOCPanelVisible;
         }
 
         private void FormUpdateUndoRedoLabels()

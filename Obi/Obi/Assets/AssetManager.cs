@@ -231,10 +231,7 @@ namespace Obi.Assets
         /// <returns>The old name before the change.</returns>
 		public string RenameAsset(MediaAsset asset, String newName)
         {
-            if (!mAssets.ContainsKey(asset.Name))
-            {
-                throw new Exception(String.Format("Asset {0} is not managed, will not copy.", asset.Name));
-            }
+            AssertAssetIsManaged(asset);
             string oldName = asset.Name;
             if (!mAssets.ContainsKey(newName))
             {
@@ -288,6 +285,45 @@ namespace Obi.Assets
             }
             while(File.Exists(name));
             return name;
+        }
+
+        /// <summary>
+        /// Rename the asset with the given name and insure that rename takes place.
+        /// If the name is not available, generate a new name using the given name as a basis (e.g. "Foo*" if "Foo" is taken.)
+        /// </summary>
+        /// <param name="asset">The asset to rename; must be managed.</param>
+        /// <param name="name">The new name for the asset.</param>
+        /// <exception cref="Exception"/>
+        public void InsureRename(MediaAsset asset, string name)
+        {
+            AssertAssetIsManaged(asset);
+            while (mAssets.ContainsKey(name)) name += "*";
+            mAssets.Remove(asset.Name);
+            asset.Name = name;
+            mAssets.Add(asset.Name, asset);
+        }
+
+        /// <summary>
+        /// Assert that an asset is managed, i.e. there is an asset with the name in the manager and it is this one.
+        /// </summary>
+        /// <param name="asset">The asset to check.</param>
+        /// <exception cref="Exception"/>
+        private void AssertAssetIsManaged(MediaAsset asset)
+        {
+            if (!mAssets.ContainsKey(asset.Name))
+            {
+                throw new Exception(String.Format("No asset named `{0}' in the manager", asset.Name));
+            }
+            if (asset != mAssets[asset.Name])
+            {
+                throw new Exception(String.Format("Asset named `{0}' differs from asset with the same name in the manager.",
+                    asset.Name));
+            }
+            if (asset.Manager != this)
+            {
+                throw new Exception(String.Format("Asset named `{0}' does not think it is managed by the current asset manager.",
+                    asset.Name));
+            }
         }
 	}
 }

@@ -29,9 +29,17 @@ namespace Obi.UserControls
         public event Events.Node.SetMediaHandler SetMedia;
         public event Events.Strip.RequestToImportAssetHandler ImportPhrase;
         public event Events.Strip.SelectedHandler SelectedStrip;
+        public event Events.Strip.SelectedHandler SelectedAudioBlock;
 
         #region properties
 
+        /// <summary>
+        /// Get or set the currently selected section node.
+        /// A null value means that no node is selected.
+        /// When the new selection is set, the previous one (if any) is desselected.
+        /// If there is a new selection, the node gets selected and the context menu is updated.
+        /// An event informs listeners (e.g. this panel and the main form) about the current selection status.
+        /// </summary>
         public CoreNode SelectedSectionNode
         {
             get
@@ -45,21 +53,23 @@ namespace Obi.UserControls
                 if (mSelectedSection != null)
                 {
                     mSectionNodeMap[mSelectedSection].MarkSelected();
-                    renameStripToolStripMenuItem.Enabled = true;
-                    importAssetToolStripMenuItem.Enabled = true;
-                    showInTOCViewToolStripMenuItem.Enabled = true;
                     SelectedStrip(this, new Events.Strip.SelectedEventArgs(true));
                 }
                 else
                 {
-                    renameStripToolStripMenuItem.Enabled = false;
-                    importAssetToolStripMenuItem.Enabled = false;
-                    showInTOCViewToolStripMenuItem.Enabled = false;
                     SelectedStrip(this, new Events.Strip.SelectedEventArgs(false));
                 }
             }
         }
 
+        /// <summary>
+        /// Get or set the currently selected phrase node.
+        /// A null value means that no node is selected.
+        /// When the new selection is set, the previous one (if any) is desselected.
+        /// If there is a new selection, the node gets selected and the context menu is updated.
+        /// The parent section node is selected as well.
+        /// An event informs listeners (e.g. this panel and the main form) about the current selection status.
+        /// </summary>
         public CoreNode SelectedPhraseNode
         {
             get
@@ -73,16 +83,11 @@ namespace Obi.UserControls
                 if (mSelectedPhrase != null)
                 {
                     SelectedSectionNode = (CoreNode)mSelectedPhrase.getParent();
-                    mPhraseNodeMap[mSelectedPhrase].MarkSelected();
-                    playAssetToolStripMenuItem.Enabled = true;
-                    splitAudioBlockToolStripMenuItem.Enabled = true;
-                    renameAssetToolStripMenuItem.Enabled = true;
+                    SelectedAudioBlock(this, new Events.Strip.SelectedEventArgs(true));
                 }
                 else
                 {
-                    playAssetToolStripMenuItem.Enabled = false;
-                    splitAudioBlockToolStripMenuItem.Enabled = false;
-                    renameAssetToolStripMenuItem.Enabled = false;
+                    SelectedAudioBlock(this, new Events.Strip.SelectedEventArgs(false));
                 }
             }
         }
@@ -146,15 +151,46 @@ namespace Obi.UserControls
         #endregion
 
         #region instantiators
+
+        /// <summary>
+        /// Create a new manager panel. At first the panel is empty and nothing is selected.
+        /// </summary>
         public StripManagerPanel()
         {
             InitializeComponent();
+            // Listen to selected events to update the context menu.
+            SelectedStrip += new Events.Strip.SelectedHandler(StripManagerPanel_SelectedStrip);
+            SelectedAudioBlock += new Events.Strip.SelectedHandler(StripManagerPanel_SelectedAudioBlock);
+            // The panel is empty and nothing is selected.
             mSectionNodeMap = new Dictionary<CoreNode, SectionStrip>();
             mSelectedSection = null;
             mPhraseNodeMap = new Dictionary<CoreNode, AudioBlock>();
             mSelectedPhrase = null;
         }
+
         #endregion
+
+        /// <summary>
+        /// Update the menus when a strip is selected.
+        /// Affects "rename strip", "import audio file", "show in TOC view".
+        /// </summary>
+        private void StripManagerPanel_SelectedStrip(object sender, Events.Strip.SelectedEventArgs e)
+        {
+            mRenameStripToolStripMenuItem.Enabled = e.Selected;
+            mImportAudioFileToolStripMenuItem.Enabled = e.Selected;
+            mShowInTOCViewToolStripMenuItem.Enabled = e.Selected;
+        }
+
+        /// <summary>
+        /// Update the menus when a block is selected.
+        /// Affects "play audio block", "split audio block", "rename audio block"
+        /// </summary>
+        private void StripManagerPanel_SelectedAudioBlock(object sender, Events.Strip.SelectedEventArgs e)
+        {
+            mPlayAudioBlockToolStripMenuItem.Enabled = e.Selected;
+            mSplitAudioBlockToolStripMenuItem.Enabled = e.Selected;
+            mRenameAudioBlockToolStripMenuItem.Enabled = e.Selected;
+        }
 
         /// <summary>
         /// Synchronize the strips view with the core tree.
@@ -235,8 +271,11 @@ namespace Obi.UserControls
             mSectionNodeMap[node] = strip;
             mFlowLayoutPanel.Controls.Add(strip);
             mFlowLayoutPanel.Controls.SetChildIndex(strip, position);
-            SelectedSectionNode = node;
-            if (rename) strip.StartRenaming();
+            if (rename)
+            {
+                SelectedSectionNode = node;
+                strip.StartRenaming();
+            }
         }
 
         internal void SyncRenamedNode(object sender, Events.Node.RenameNodeEventArgs e)
@@ -308,13 +347,13 @@ namespace Obi.UserControls
         /// just below the selected strip.
         /// When no strip is selected, just add a new strip at the top of the tree.
         /// </summary>
-        internal void addStripToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void mAddStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddSiblingSection(this, new Events.Node.NodeEventArgs(this, mSelectedSection));
             // InsertSiblingSection(this, new Events.Node.NodeEventArgs(this, mSelectedSection));
         }
 
-        internal void renameStripToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void mRenameStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mSelectedSection != null)
             {
@@ -322,7 +361,7 @@ namespace Obi.UserControls
             }
         }
 
-        internal void importAssetToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void mImportAssetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (SelectedSectionNode != null)
             {
@@ -339,7 +378,7 @@ namespace Obi.UserControls
         /// Play the currently selected audio block.
         /// </summary>
         /// <remarks>JQ</remarks>
-        private void playAssetToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void mPlayAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mSelectedPhrase != null)
             {
@@ -352,7 +391,7 @@ namespace Obi.UserControls
         /// Split the currently selected audio block.
         /// </summary>
         /// <remarks>JQ</remarks>
-        private void splitAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void mSplitAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mSelectedPhrase != null)
             {
@@ -364,7 +403,7 @@ namespace Obi.UserControls
         /// <summary>
         /// Rename the currently selected audio block (JQ)
         /// </summary>
-        private void renameAssetToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void mRenameAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mSelectedPhrase != null)
             {
@@ -378,14 +417,14 @@ namespace Obi.UserControls
         /// section before commiting the select
         /// </summary>
         //  mg20060804
-        internal void showInTOCViewToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void mShowInTOCViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mSelectedSection!=null)
+            if (mSelectedSection != null)
             {
                 ProjectPanel.TOCPanel.SetSelectedSection(mSelectedSection);
                 //since the tree can be hidden:
-                if (ProjectPanel.TOCPanel.Visible == true)
-                    ProjectPanel.TOCPanel.Focus();
+                mProjectPanel.ShowTOCPanel();
+                ProjectPanel.TOCPanel.Focus();
             }
         }
 

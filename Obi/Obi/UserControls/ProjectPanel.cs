@@ -116,26 +116,17 @@ namespace Obi.UserControls
 
         public Boolean TOCPanelVisible
         {
-            get
-            {
-                return mProject != null && !mSplitContainer.Panel1Collapsed;
-            }
+            get { return mProject != null && !mSplitContainer.Panel1Collapsed; }
         }
 
         public StripManagerPanel StripManager
         {
-            get
-            {
-                return mStripManagerPanel;
-            }
+            get { return mStripManagerPanel; }
         }
 
         public TOCPanel TOCPanel
         {
-            get
-            {
-                return mTOCPanel;
-            }
+            get { return mTOCPanel; }
         }
 
         /// <summary>

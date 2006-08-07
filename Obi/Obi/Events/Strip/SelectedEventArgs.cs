@@ -7,7 +7,7 @@ namespace Obi.Events.Strip
     public delegate void SelectedHandler(object sender, SelectedEventArgs e);
 
     /// <summary>
-    /// A strip was selected (Selected = true) or unselected (Selected = false)
+    /// An element from the strip manager (a strip or a block) was selected (Selected = true) or unselected (Selected = false).
     /// </summary>
     public class SelectedEventArgs: EventArgs
     {
