@@ -612,7 +612,8 @@ namespace Obi.Audio
 				double dStartPosition = CalculationFunctions.ConvertByteToTime (m_StartPosition , m_SamplingRate , m_FrameSize) ;
 				ArrayList alInfo = new ArrayList (m_Asset.FindClipToProcess(dStartPosition)) ;
 				m_ClipIndex = Convert.ToInt32 (alInfo [0] );
-				ob_Clip = m_Asset.m_alClipList [m_ClipIndex] as Assets.AudioClip;
+				//ob_Clip = m_Asset.m_alClipList [m_ClipIndex] as Assets.AudioClip;
+                ob_Clip = m_Asset.Clips[m_ClipIndex];
 				double dPositionInClip = Convert.ToDouble (alInfo [1]) + ob_Clip.BeginTime ;
 				m_br =new BinaryReader (File.OpenRead(ob_Clip.Path)) ;
 				long lPositionInClip = CalculationFunctions.ConvertTimeToByte (dPositionInClip , m_SamplingRate , m_FrameSize) + 44;
@@ -645,11 +646,12 @@ namespace Obi.Audio
 		{
 			if ( m_lClipByteCount >= ob_Clip.LengthInBytes)
 			{
-				if (m_ClipIndex <m_Asset.m_alClipList.Count - 1)
+				//if (m_ClipIndex <m_Asset.m_alClipList.Count - 1)
+                if (m_ClipIndex < m_Asset.Clips.Count - 1)
 				{
 					m_ClipIndex++ ;
-					ob_Clip = m_Asset.m_alClipList [m_ClipIndex] as Assets.AudioClip;
-						
+					//ob_Clip = m_Asset.m_alClipList [m_ClipIndex] as Assets.AudioClip;
+                    ob_Clip = m_Asset.Clips[m_ClipIndex];	
 					m_br =new BinaryReader (File.OpenRead(ob_Clip.Path)) ;
 					m_br.BaseStream.Position = ob_Clip.BeginByte + 44;
 					m_lClipByteCount = 0 ;

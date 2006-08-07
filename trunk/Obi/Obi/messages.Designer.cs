@@ -562,5 +562,14 @@ namespace Obi {
                 return ResourceManager.GetString("undo_label", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version of XUK file is not the current version (expected {0} but got {1} instead.).
+        /// </summary>
+        internal static string xuk_version_mismatch {
+            get {
+                return ResourceManager.GetString("xuk_version_mismatch", resourceCulture);
+            }
+        }
     }
 }

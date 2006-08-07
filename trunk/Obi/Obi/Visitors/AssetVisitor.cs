@@ -1,5 +1,5 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 
 using urakawa.core;
@@ -43,7 +43,7 @@ namespace Obi.Visitors
             if (Project.GetNodeType((CoreNode)node) == NodeType.Phrase)
             {
                 SequenceMedia media = (SequenceMedia)Project.GetMediaForChannel((CoreNode)node, Project.AudioChannel);
-                ArrayList clips = new ArrayList(media.getCount());
+                List<Assets.AudioClip> clips = new List<Assets.AudioClip>(media.getCount());
                 for (int i = 0; i < media.getCount(); ++i)
                 {
                     AudioMedia audio = (AudioMedia)media.getItem(i);
