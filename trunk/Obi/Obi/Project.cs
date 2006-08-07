@@ -871,7 +871,7 @@ namespace Obi
             ArrayList nonOriginalChildren = new ArrayList();
             int totalNumChildren = node.getChildCount();
 
-            for (int i = totalNumChildren - 1; i >=originalChildCount - 1; i--)
+            for (int i = totalNumChildren - 1; i >= originalChildCount; i--)
             {
                 CoreNode child = (CoreNode)node.getChild(i);
                 if (child != null)
@@ -880,6 +880,9 @@ namespace Obi
                     child.detach();
                 }
             }
+
+            //this array was built backwards, so reverse it
+            nonOriginalChildren.Reverse();
 
             //insert the node back in its old location
             node.detach();
