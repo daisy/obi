@@ -310,6 +310,9 @@ namespace Obi
                     case "dc:Date":
                         meta.setContent(DateTime.Today.ToString("yyyy-MM-dd"));
                         break;
+                    case "obi:assetsdir":
+                        meta.setContent(mAssPath);
+                        break;
                     default:
                         break;
                 }
@@ -339,18 +342,37 @@ namespace Obi
         }
 
         /// <summary>
-        /// Save the project to a XUK file.
+        /// Save the project to its XUK file.
+        /// </summary>
+        internal void Save()
+        {
+            UpdateMetadata();
+            saveXUK(new Uri(mXUKPath));
+            mUnsaved = false;
+            mLastPath = mXUKPath;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Saved));
+        }
+
+        /// <summary>
+        /// Save the project to a different name/XUK file.
         /// </summary>
         /// <remarks>
         /// We probably need to catch exceptions here.
         /// </remarks>
         public void SaveAs(string path)
         {
+            string oldAssPath = mAssPath;
+            mAssPath = GetAssetDirectory(path);
+            Directory.CreateDirectory(mAssPath);
+            foreach (string assetPath in mAssManager.Files.Keys)
+            {
+                File.Copy(assetPath, mAssPath + @"\" + Path.GetFileName(assetPath));
+            }
+            mAssPath = (new Uri(path)).MakeRelativeUri(new Uri(mAssPath)).ToString();
             UpdateMetadata();
             saveXUK(new Uri(path));
-            mUnsaved = false;
             mLastPath = path;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Saved));
+            mAssPath = oldAssPath;
         }
 
         /// <summary>
