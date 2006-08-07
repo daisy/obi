@@ -48,16 +48,19 @@ namespace Obi.UserControls
             }
             set
             {
-                if (mSelectedSection != null) mSectionNodeMap[mSelectedSection].MarkDeselected();
-                mSelectedSection = value;
-                if (mSelectedSection != null)
+                if (mSelectedSection != value)
                 {
-                    mSectionNodeMap[mSelectedSection].MarkSelected();
-                    SelectedStrip(this, new Events.Strip.SelectedEventArgs(true));
-                }
-                else
-                {
-                    SelectedStrip(this, new Events.Strip.SelectedEventArgs(false));
+                    if (mSelectedSection != null) mSectionNodeMap[mSelectedSection].MarkDeselected();
+                    mSelectedSection = value;
+                    if (mSelectedSection != null)
+                    {
+                        mSectionNodeMap[mSelectedSection].MarkSelected();
+                        SelectedStrip(this, new Events.Strip.SelectedEventArgs(true));
+                    }
+                    else
+                    {
+                        SelectedStrip(this, new Events.Strip.SelectedEventArgs(false));
+                    }
                 }
             }
         }
@@ -78,16 +81,19 @@ namespace Obi.UserControls
             }
             set
             {
-                if (mSelectedPhrase != null) mPhraseNodeMap[mSelectedPhrase].MarkDeselected();
-                mSelectedPhrase = value;
-                if (mSelectedPhrase != null)
+                if (mSelectedPhrase != value)
                 {
-                    SelectedSectionNode = (CoreNode)mSelectedPhrase.getParent();
-                    SelectedAudioBlock(this, new Events.Strip.SelectedEventArgs(true));
-                }
-                else
-                {
-                    SelectedAudioBlock(this, new Events.Strip.SelectedEventArgs(false));
+                    if (mSelectedPhrase != null) mPhraseNodeMap[mSelectedPhrase].MarkDeselected();
+                    mSelectedPhrase = value;
+                    if (mSelectedPhrase != null)
+                    {
+                        SelectedSectionNode = (CoreNode)mSelectedPhrase.getParent();
+                        SelectedAudioBlock(this, new Events.Strip.SelectedEventArgs(true));
+                    }
+                    else
+                    {
+                        SelectedAudioBlock(this, new Events.Strip.SelectedEventArgs(false));
+                    }
                 }
             }
         }

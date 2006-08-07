@@ -119,7 +119,7 @@ namespace Obi
         {
             if (mProject.Unsaved)
             {
-                mProject.SaveAs(mProject.XUKPath);
+                mProject.Save();
                 mCmdMngr.Clear();
             }
             else

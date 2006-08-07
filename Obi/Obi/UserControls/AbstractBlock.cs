@@ -10,7 +10,8 @@ namespace Obi.UserControls
     /// Type agnostic abstract base for all blocks occuring in strips
     /// </summary>
     /// //added my mg 20060804
-    public abstract class AbstractBlock : UserControl
+    /// // made unabastract as this fucks up the designer :( JQ
+    public /* abstract */ class AbstractBlock: UserControl
     {
         protected CoreNode mNode;                 // the node for this block
         protected SectionStrip mSectionStrip;     // the SectionStrip that contains this block
