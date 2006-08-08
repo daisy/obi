@@ -48,6 +48,7 @@ namespace Obi
         public event Events.Node.ImportedAssetHandler ImportedAsset;            // an asset was imported into the project
         public event Events.Node.MovedNodeHandler UndidMoveNode;                // a node was restored to its previous location
         public event Events.Node.MediaSetHandler MediaSet;                      // a media object was set on a node
+        public event Events.Node.DeletedNodeHandler DeletedPhraseNode;          // deleted a phrase node 
         
         /// <summary>
         /// This flag is set to true if the project contains modifications that have not been saved.
@@ -1010,7 +1011,21 @@ namespace Obi
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
-        
+
+        /// <summary>
+        /// Delete a phrase node from the tree.
+        /// Remove its asset from the asset manager.
+        /// </summary>
+        public void DeletePhraseNodeRequested(object sender, Events.Node.NodeEventArgs e)
+        {
+            Assets.AudioMediaAsset asset = GetAudioMediaAsset(e.Node);
+            mAssManager.RemoveAsset(asset);
+            DeletedPhraseNode(this, new Events.Node.NodeEventArgs(e.Origin, e.Node));
+            e.Node.detach();
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+
         #endregion
 
         /// <summary>

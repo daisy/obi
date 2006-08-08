@@ -66,6 +66,9 @@ namespace Obi.UserControls
                     mStripManagerPanel.SetMedia -= new Events.Node.SetMediaHandler(mProject.SetMediaRequested);
                     mProject.MediaSet -= new Events.Node.MediaSetHandler(mStripManagerPanel.SyncMediaSet);
 
+                    mStripManagerPanel.DeleteBlock -=
+                        new Events.Node.RequestToDeleteBlockHandler(mProject.DeletePhraseNodeRequested);
+                    mProject.DeletedPhraseNode -= new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeletedPhraseNode);
                 }
                 // Set up the handlers for the new project
                 if (value != null)
@@ -86,10 +89,12 @@ namespace Obi.UserControls
                     value.UndidMoveNode += new Events.Node.MovedNodeHandler(mTOCPanel.SyncMovedNode);
                     value.UndidMoveNode += new Events.Node.MovedNodeHandler(mStripManagerPanel.SyncMovedNode);
 
-                    mTOCPanel.RequestToIncreaseSectionLevel += new Events.Node.RequestToIncreaseNodeLevelHandler(value.IncreaseNodeLevelRequested);
+                    mTOCPanel.RequestToIncreaseSectionLevel +=
+                        new Events.Node.RequestToIncreaseNodeLevelHandler(value.IncreaseNodeLevelRequested);
                     //marisa: the former "mProject.IncreasedSectionLevel" event is now handled by MovedNode
 
-                    mTOCPanel.RequestToDecreaseSectionLevel += new Events.Node.RequestToDecreaseNodeLevelHandler(value.DecreaseNodeLevelRequested);
+                    mTOCPanel.RequestToDecreaseSectionLevel +=
+                        new Events.Node.RequestToDecreaseNodeLevelHandler(value.DecreaseNodeLevelRequested);
                     value.DecreasedNodeLevel += new Events.Node.DecreasedNodeLevelHandler(mTOCPanel.SyncDecreasedNodeLevel);
 
                     mTOCPanel.RequestToRenameSection += new Events.Node.RequestToRenameNodeHandler(value.RenameNodeRequested);
@@ -107,6 +112,8 @@ namespace Obi.UserControls
                     mStripManagerPanel.SetMedia += new Events.Node.SetMediaHandler(value.SetMediaRequested);
                     value.MediaSet += new Events.Node.MediaSetHandler(mStripManagerPanel.SyncMediaSet);
 
+                    mStripManagerPanel.DeleteBlock += new Events.Node.RequestToDeleteBlockHandler(value.DeletePhraseNodeRequested);
+                    value.DeletedPhraseNode += new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeletedPhraseNode);
                 } 
                 mProject = value;
                 mSplitContainer.Visible = mProject != null;

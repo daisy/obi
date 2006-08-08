@@ -373,6 +373,8 @@ namespace Obi
                 new EventHandler(mProjectPanel.StripManager.mPlayAudioBlockToolStripMenuItem_Click);
             mSplitAudioBlockToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mSplitAudioBlockToolStripMenuItem_Click);
+            mDeleteAudioBlockToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.StripManager.mDeleteAudioBlockToolStripMenuItem_Click);
             mRenameAudioBlockToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mRenameAudioBlockToolStripMenuItem_Click);
             mShowInTOCViewToolStripMenuItem.Click +=
@@ -417,6 +419,7 @@ namespace Obi
         {
             mPlayAudioBlockToolStripMenuItem.Enabled = e.Selected;
             mSplitAudioBlockToolStripMenuItem.Enabled = e.Selected;
+            mDeleteAudioBlockToolStripMenuItem.Enabled = e.Selected;
             mRenameAudioBlockToolStripMenuItem.Enabled = e.Selected;
         }
 

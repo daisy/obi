@@ -13,12 +13,14 @@ namespace Obi.Events.Node
     public delegate void RequestToDeleteNodeHandler(object sender, NodeEventArgs e);
     public delegate void RequestToMoveNodeUpHandler(object sender, NodeEventArgs e);
     public delegate void RequestToMoveNodeDownHandler(object sender, NodeEventArgs e);
+    public delegate void RequestToDeleteBlockHandler(object sender, NodeEventArgs e);
   
     public delegate void DecreasedNodeLevelHandler(object sender, NodeEventArgs e);
     public delegate void DeletedNodeHandler(object sender, NodeEventArgs e);
     public delegate void ShallowDeletedNodeHandler(object sender, NodeEventArgs e);
     
     public delegate void ImportedAssetHandler(object sender, NodeEventArgs e);
+    public delegate void DeletedBlock(object sender, NodeEventArgs e);
 
     public class NodeEventArgs : EventArgs
     {
