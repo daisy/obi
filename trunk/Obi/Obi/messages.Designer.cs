@@ -455,9 +455,9 @@ namespace Obi {
         /// <summary>
         ///   Looks up a localized string similar to &amp;Record.
         /// </summary>
-        internal static string Record {
+        internal static string record {
             get {
-                return ResourceManager.GetString("Record", resourceCulture);
+                return ResourceManager.GetString("record", resourceCulture);
             }
         }
         

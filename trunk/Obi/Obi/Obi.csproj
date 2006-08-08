@@ -147,6 +147,7 @@
     <Compile Include="Events\Project\CommandCreatedEventArgs.cs" />
     <Compile Include="Events\Project\StateChangedEventArgs.cs" />
     <Compile Include="Events\Strip\ImportAssetEventArgs.cs" />
+    <Compile Include="Events\Audio\Recorder\PhraseEventArgs.cs" />
     <Compile Include="Events\Strip\SelectedEventArgs.cs" />
     <Compile Include="Events\Node\AddedSectionNodeEventArgs.cs" />
     <Compile Include="IOUtils.cs" />
