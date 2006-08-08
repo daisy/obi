@@ -423,6 +423,25 @@ namespace Obi
             mRenameAudioBlockToolStripMenuItem.Enabled = e.Selected;
         }
 
+        /// <summary>
+        /// Show the HTML help page.
+        /// </summary>
+        private void mHelpToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Dialogs.Help help = new Dialogs.Help();
+            // TODO: Make sure the file corresponds to the current language
+            help.WebBrowser.DocumentStream = GetType().Assembly.GetManifestResourceStream("Obi.help_en.html");
+            help.ShowDialog();
+        }
+
+        /// <summary>
+        /// Show the help dialog.
+        /// </summary>
+        private void aboutObiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new Dialogs.About()).ShowDialog();
+        }
+
         #endregion
 
         /// <summary>
