@@ -258,6 +258,13 @@ namespace Obi.UserControls
             mFlowLayoutPanel.Controls.Add(block);
         }
 
+        public void RemoveAudioBlock(AudioBlock block)
+        {
+            int index = mFlowLayoutPanel.Controls.IndexOf(block);
+            mFlowLayoutPanel.Controls.RemoveAt(index);
+            ReflowTabOrder(index);
+        }
+
         /// <summary>
         /// Clicking in the audio strip (i.e. the flow layout) selects the strip but unselects the audio block.
         /// </summary>

@@ -27,6 +27,7 @@ namespace Obi.UserControls
         public event Events.Node.RequestToAddSiblingNodeHandler AddSiblingSection;
         public event Events.Node.RequestToRenameNodeHandler RenameSection;
         public event Events.Node.SetMediaHandler SetMedia;
+        public event Events.Node.RequestToDeleteBlockHandler DeleteBlock;
         public event Events.Strip.RequestToImportAssetHandler ImportPhrase;
         public event Events.Strip.SelectedHandler SelectedStrip;
         public event Events.Strip.SelectedHandler SelectedAudioBlock;
@@ -196,6 +197,7 @@ namespace Obi.UserControls
             mPlayAudioBlockToolStripMenuItem.Enabled = e.Selected;
             mSplitAudioBlockToolStripMenuItem.Enabled = e.Selected;
             mRenameAudioBlockToolStripMenuItem.Enabled = e.Selected;
+            mDeleteAudioBlockToolStripMenuItem.Enabled = e.Selected;
         }
 
         /// <summary>
@@ -330,6 +332,14 @@ namespace Obi.UserControls
             }
         }
 
+        internal void SyncDeletedPhraseNode(object sender, Events.Node.NodeEventArgs e)
+        {
+            SectionStrip strip = mSectionNodeMap[(CoreNode)e.Node.getParent()];
+            SelectedPhraseNode = null;
+            strip.RemoveAudioBlock(mPhraseNodeMap[e.Node]);
+            mPhraseNodeMap.Remove(e.Node);
+        }
+
         internal void SyncMovedNode(object sender, Events.Node.MovedNodeEventArgs e)
         {
             SectionStrip strip = mSectionNodeMap[e.Node];
@@ -414,6 +424,17 @@ namespace Obi.UserControls
             if (mSelectedPhrase != null)
             {
                 mPhraseNodeMap[mSelectedPhrase].StartRenaming();
+            }
+        }
+
+        /// <summary>
+        /// Delete the currently selected audio block (JQ)
+        /// </summary>
+        internal void mDeleteAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mSelectedPhrase != null)
+            {
+                DeleteBlock(this, new Events.Node.NodeEventArgs(this, mSelectedPhrase));
             }
         }
 
@@ -634,6 +655,5 @@ namespace Obi.UserControls
             }
 
         }
-
     }
 }
