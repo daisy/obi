@@ -280,6 +280,38 @@ SKYPE CALLS
   second week: monday 14th,  wednesday 16th.
 
 
+SKYPE CALL AUGUST 8TH
+
+These have been done:
+
+  Backend:
+
+	AssetManager/File management
+    A lot of cleanup was done.
+    Tracking of files moved into the asset manager.
+
+	Record Dialog Events
+    Added new events (Events.Audio.Recorder.PhraseEventArgs): new phrase,
+    continuing phrase (update the time), end of phrase.
+
+  Split Dialog
+    Mostly done, more testing needed.
+
+  Record Dialog
+    Mostly done, more testing needed.
+
+  Frontend:
+
+  Fix XUK Open problem
+    Added versioning to XUK files.
+  
+  AudioStrip
+    Renaming and Deleting done.
+
+  Manual
+    Added Help menu and help page stub (help_en.html) to edited by Markus.
+
+
 REMAINING ITEMS AND WORK DISTRIBUTION FOR ITERATION ONE
 
   Backend:
@@ -287,25 +319,15 @@ REMAINING ITEMS AND WORK DISTRIBUTION FOR ITERATION ONE
 	AudioDevice object
 	  @Suman
 	  @Julien (add few things in API, then Suman finishes)
-	        
-	AssetManager Saving and cleaning up files when commits are made
-	  @Julien (finds the problem)
-	  @Avneesh (fixes the problem)
-	            
-	Split Dialog
-	  @Avneesh (fix issues reported)
-	  @Julien layout
-	  
-	Record Dialog General
-	  @Julien (finds the problem)
-	  @Julien layout, depends on depends on @Suman.VolumeControl and @Suman.PhraseMarker
-	  @Suman (fixes the problem)
 
-	Record Dialog Events  
-	  @Julien
-	  	    
+	Split Dialog
+	  @Julien layout
+
+	Record Dialog General
+	  @Julien layout, depends on depends on @Suman.VolumeControl and @Suman.PhraseMarker
+
 	Record Dialog PhraseMarker	
-	    @Suman, fallback Avneesh, depends on @Julien.Events
+	  @Suman, fallback Avneesh, depends on @Julien.Events
 	
 	Record Dialog VolumeControl [iter2]	    
 	    	 	    
@@ -317,9 +339,6 @@ REMAINING ITEMS AND WORK DISTRIBUTION FOR ITERATION ONE
 	  @Suman
     
   Frontend:
-    
-    Fix XUK Open problem (wrong parent for phrases)
-      @Julien
 
     AudioStrip
       split merge move cut copy paste
