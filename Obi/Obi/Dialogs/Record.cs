@@ -27,6 +27,10 @@ namespace Obi.Dialogs
 
         private List<Assets.AudioMediaAsset> mAssets;  // the list of assets created while recording
 
+        public event Events.Audio.Recorder.StartingPhraseHandler StartingPhrase;
+        public event Events.Audio.Recorder.ContinuingPhraseHandler ContinuingPhrase;
+        public event Events.Audio.Recorder.FinishingPhraseHandler FinishingPhrase;
+
         /// <summary>
         /// The list of assets created.
         /// </summary>
@@ -68,38 +72,40 @@ namespace Obi.Dialogs
             //phrase marker and volume control are incomplete
             ArrayList arDevices = new ArrayList();
             arDevices = Audio.AudioRecorder.Instance.GetInputDevices();
-            
-              Audio.AudioRecorder.Instance.InitDirectSound(1);
-              mRecordButton.Text = Localizer.Message("&Recorde");
-//              mRecordButton.Text = "&Pause";
-                ob_VuMeter.ScaleFactor = 2;
-                ob_VuMeter.SampleTimeLength = 2000;
-                ob_VuMeter.UpperThreshold = 150;
-                ob_VuMeter.LowerThreshold = 100;
-                Audio.AudioRecorder.Instance.VuMeterObject = ob_VuMeter;
-                ob_VuMeter.ShowForm();
-                Assets.AudioMediaAsset mAudioAsset = new Assets.AudioMediaAsset(mChannels, mBitDepth, mSampleRate);
-                mAssManager.AddAsset(mAudioAsset);    
+
+            Audio.AudioRecorder.Instance.InitDirectSound(1);
+            mRecordButton.Text = Localizer.Message("record");
+            //              mRecordButton.Text = "&Pause";
+            ob_VuMeter.ScaleFactor = 2;
+            ob_VuMeter.SampleTimeLength = 2000;
+            ob_VuMeter.UpperThreshold = 150;
+            ob_VuMeter.LowerThreshold = 100;
+            Audio.AudioRecorder.Instance.VuMeterObject = ob_VuMeter;
+            ob_VuMeter.ShowForm();
+            // Assets.AudioMediaAsset mAudioAsset = new Assets.AudioMediaAsset(mChannels, mBitDepth, mSampleRate);
+            // mAssManager.AddAsset(mAudioAsset);
+            Assets.AudioMediaAsset mAudioAsset = mAssManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
             Audio.AudioRecorder.Instance.StartListening(mAudioAsset);
-                timer1.Enabled = true;
-            }
+            timer1.Enabled = true;
+        }
 
 
         private void btnRecordAndPause_Click(object sender, EventArgs e)
-        {   
+        {
             // AudioRecorder.Instance.InitDirectSound(mIndex);
-            Assets.AudioMediaAsset mRecordAsset = new Assets.AudioMediaAsset(mChannels, mBitDepth, mSampleRate);
-            mAssManager.AddAsset(mRecordAsset);
+            // Assets.AudioMediaAsset mRecordAsset = new Assets.AudioMediaAsset(mChannels, mBitDepth, mSampleRate);
+            // mAssManager.AddAsset(mRecordAsset);
+            Assets.AudioMediaAsset mRecordAsset = mAssManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
             Audio.AudioRecorder.Instance.StopRecording();
             timer1.Enabled = false;
-            //mRecordButton.Text = Localizer.Message("&Record");
+            mRecordButton.Text = Localizer.Message("record");
 
             if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Idle))
             {
                 timer1.Enabled = true;
-                mRecordButton.Text = Localizer.Message("&Pause");
+                mRecordButton.Text = Localizer.Message("pause");
                 Audio.AudioRecorder.Instance.StartRecording(mRecordAsset);
-            } 
+            }
         }
 
         private void btnStop_Click(object sender, EventArgs e)
@@ -114,9 +120,9 @@ namespace Obi.Dialogs
             this.Close();
         }
 
-        
 
-        
+
+
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -146,8 +152,8 @@ namespace Obi.Dialogs
 
 
             string sDisplayTime = sHours + ":" + sMinutes + ":" + sSeconds;
-            mTimeTextBox.Text = sDisplayTime;            
-                
+            mTimeTextBox.Text = sDisplayTime;
+
         }
     }
 }

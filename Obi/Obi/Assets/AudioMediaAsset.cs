@@ -93,6 +93,7 @@ namespace Obi.Assets
                 m_SamplingRate = sampleRate;
                 m_FrameSize = (m_BitDepth / 8) * m_Channels;
                 mMediaType = MediaType.Audio;
+                mClips = new List<AudioClip>();
             }
             else
                 throw new Exception("Audio media of this format is not supported");
