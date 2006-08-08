@@ -88,11 +88,23 @@
     <Compile Include="Commands\TOC\MoveSectionUp.cs" />
     <Compile Include="Commands\TOC\Rename.cs" />
     <Compile Include="CustomProperties.cs" />
+    <Compile Include="Dialogs\About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\EditSimpleMetadata.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialogs\EditSimpleMetadata.Designer.cs">
       <DependentUpon>EditSimpleMetadata.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Help.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Help.Designer.cs">
+      <DependentUpon>Help.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\NewProject.cs">
       <SubType>Form</SubType>
@@ -296,6 +308,19 @@
       <ProductName>.NET Framework 2.0</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Dialogs\About.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Help.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Help.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="help_en.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
