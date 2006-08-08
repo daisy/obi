@@ -302,4 +302,16 @@ Do you want to replace the project contained in this file?</value>
     <value>Version of XUK file is not the current version (expected {0} but got {1} instead.)</value>
     <comment>Opening an old XUK file (JQ)</comment>
   </data>
+  <data name="name_already_exists_caption" xml:space="preserve">
+    <value>Name already exists</value>
+    <comment>JQ</comment>
+  </data>
+  <data name="name_already_exists_text" xml:space="preserve">
+    <value>Could not rename item `{0}' as this name is already in use in the project.</value>
+    <comment>JQ</comment>
+  </data>
+  <data name="xuk_filter" xml:space="preserve">
+    <value>Obi project file (*.xuk)|*.xuk|Any file|*.*</value>
+    <comment>Filter for opening XUK files (JQ)</comment>
+  </data>
 </root>

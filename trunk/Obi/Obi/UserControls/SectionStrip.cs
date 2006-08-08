@@ -86,7 +86,6 @@ namespace Obi.UserControls
         /// </summary>
         private void mTextBox_Leave(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.Print("Leaving the text box...");
             mTextBox.ReadOnly = true;
         }
 

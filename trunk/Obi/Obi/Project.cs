@@ -951,8 +951,9 @@ namespace Obi
         }
 
         // Find the channel and set the media object.
+        // As this may fail, return true if the change was really made or false otherwise.
         // Throw an exception if the channel could not be found (JQ)
-        private void SetMedia(object origin, CoreNode node, string channel, IMedia media)
+        private bool DidSetMedia(object origin, CoreNode node, string channel, IMedia media)
         {
             ChannelsProperty channelsProp = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
             IList channelsList = channelsProp.getListOfUsedChannels();
@@ -961,12 +962,19 @@ namespace Obi
                 IChannel ch = (IChannel)channelsList[i];
                 if (ch.getName() == channel)
                 {
+                    if (GetNodeType(node) == NodeType.Phrase && channel == AnnotationChannel)
+                    {
+                        // we are renaming a phrase node
+                        Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);
+                        string old = mAssManager.RenameAsset(asset, ((TextMedia)media).getText());
+                        if (old == asset.Name) return false;
+                    }
                     channelsProp.setMedia(ch, media);
                     MediaSet(this, new Events.Node.SetMediaEventArgs(origin, node, channel, media));
                     mUnsaved = true;
                     StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
                     // make a command here
-                    return;
+                    return true;
                 }
             }
             // the channel was not found when it should have been...
@@ -975,11 +983,12 @@ namespace Obi
 
         /// <summary>
         /// Set the media on a given channel of a node.
+        /// Cancel the event the change could not be made (e.g. renaming a block.)
         /// </summary>
         /// <remarks>JQ</remarks>
         public void SetMediaRequested(object sender, Events.Node.SetMediaEventArgs e)
         {
-            SetMedia(sender, e.Node, e.Channel, e.Media);
+            if (!DidSetMedia(sender, e.Node, e.Channel, e.Media)) e.Cancel = true;
         }
 
         #endregion

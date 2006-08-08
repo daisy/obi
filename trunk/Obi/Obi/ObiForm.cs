@@ -25,9 +25,6 @@ namespace Obi
         private Settings mSettings;                // application settings
         private Commands.CommandManager mCmdMngr;  // the undo stack for this project (should it belong to the project?)
 
-        // filter for opening/saving XUK files
-        public static readonly string XUKFilter = "Obi project file (*.xuk)|*.xuk|Any file|*.*";
-
         /// <summary>
         /// Initialize a new form. No project is opened at creation time.
         /// </summary>
@@ -83,12 +80,12 @@ namespace Obi
             if (ClosedProject())
             {
                 OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = XUKFilter;
+                dialog.Filter = Localizer.Message("xuk_filter");
                 dialog.InitialDirectory = mSettings.DefaultPath;
                 DialogResult result = dialog.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    OpenProject(dialog.FileName);
+                    TryOpenProject(dialog.FileName);
                 }
                 else
                 {
@@ -134,7 +131,7 @@ namespace Obi
         private void mSaveProjectasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = XUKFilter;
+            dialog.Filter = Localizer.Message("xuk_filter");
             DialogResult result = dialog.ShowDialog();
             if (result == DialogResult.OK)
             {
@@ -158,7 +155,7 @@ namespace Obi
                     Localizer.Message("discard_changes_caption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (discard == DialogResult.Yes)
                 {
-                    ForceOpenProject(mProject.XUKPath);
+                    DoOpenProject(mProject.XUKPath);
                 }
                 else
                 {
@@ -426,14 +423,15 @@ namespace Obi
         #endregion
 
         /// <summary>
-        /// Open a project from a XUK file.
+        /// Try to open a project from a XUK file.
+        /// Actually open it only if a possible current project could be closed properly.
         /// </summary>
         /// <param name="path">The path of the XUK file to open.</param>
-        private void OpenProject(string path)
+        private void TryOpenProject(string path)
         {
             if (ClosedProject())
             {
-                ForceOpenProject(path);
+                DoOpenProject(path);
             }
             else
             {
@@ -445,7 +443,7 @@ namespace Obi
         /// Open a project without asking anything (using for reverting, for instance.)
         /// </summary>
         /// <param name="path">The path of the project to open.</param>
-        private void ForceOpenProject(string path)
+        private void DoOpenProject(string path)
         {
             try
             {
@@ -546,7 +544,7 @@ namespace Obi
             {
                 ToolStripMenuItem item = new ToolStripMenuItem();
                 item.Text = Path.GetFileName(path);
-                item.Click += new System.EventHandler(delegate(object sender, EventArgs e) { OpenProject(path); });
+                item.Click += new System.EventHandler(delegate(object sender, EventArgs e) { TryOpenProject(path); });
                 mOpenRecentProjectToolStripMenuItem.DropDownItems.Insert(0, item);
                 return true;
             }

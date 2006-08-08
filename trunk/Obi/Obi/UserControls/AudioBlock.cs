@@ -17,6 +17,7 @@ namespace Obi.UserControls
         //private CoreNode mNode;              // the phrase node for this block
 
         #region properties
+
         //public StripManagerPanel Manager
         //{
         //    set
@@ -56,7 +57,8 @@ namespace Obi.UserControls
                 mTimeLabel.Text = value;
             }
         }
-#endregion
+
+        #endregion
         
         #region instantiators
         public AudioBlock() : base()
@@ -144,29 +146,17 @@ namespace Obi.UserControls
 
         /// <summary>
         /// Upate the text label from the text box input.
-        /// If the input is empty, then do not change the text and warn the user.
+        /// If the input is empty then do not change the text and warn the user.
+        /// If the input text is the same as the original text, don't do anything.
         /// The manager is then asked to send a rename event.
+        /// The rename event may not happen if there is already an audio block with the same name in the project.
         /// </summary>
         private void UpdateText()
         {
             mRenameBox.Visible = false;
-            if (mRenameBox.Text != "")
+            if (mRenameBox.Text != "" && mRenameBox.Text != mAnnotationLabel.Text)
             {
-                Assets.AudioMediaAsset asset = Project.GetAudioMediaAsset(mNode);
-                if (asset.Name != mRenameBox.Text)
-                {
-                    string old = asset.Manager.RenameAsset(asset, mRenameBox.Text);
-                    if (asset.Name != old)
-                    {
-                        mAnnotationLabel.Text = asset.Name;
-                        ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).setText(asset.Name);
-                        mManager.RenamedAudioBlock(this);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Name already exists", "Name already exists", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                }
+                mManager.RenamedAudioBlock(this, mRenameBox.Text);
             }
             else
             {
