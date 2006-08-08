@@ -281,6 +281,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name already exists.
+        /// </summary>
+        internal static string name_already_exists_caption {
+            get {
+                return ResourceManager.GetString("name_already_exists_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not rename item `{0}&apos; as this name is already in use in the project..
+        /// </summary>
+        internal static string name_already_exists_text {
+            get {
+                return ResourceManager.GetString("name_already_exists_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New project.
         /// </summary>
         internal static string new_project {
@@ -560,6 +578,15 @@ namespace Obi {
         internal static string undo_label {
             get {
                 return ResourceManager.GetString("undo_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obi project file (*.xuk)|*.xuk|Any file|*.*.
+        /// </summary>
+        internal static string xuk_filter {
+            get {
+                return ResourceManager.GetString("xuk_filter", resourceCulture);
             }
         }
         

@@ -14,6 +14,7 @@ namespace Obi.Events.Node
     {
         private string mChannel;  // the channel on which to set
         private IMedia mMedia;    // the media object
+        private bool mCancel;     // can be cancelled
 
         public string Channel
         {
@@ -31,11 +32,18 @@ namespace Obi.Events.Node
             }
         }
 
+        public bool Cancel
+        {
+            get { return mCancel; }
+            set { mCancel = value; }
+        }
+
         public SetMediaEventArgs(object origin, CoreNode node, string channel, IMedia media): 
             base(origin, node)
         {
             mChannel = channel;
             mMedia = media;
+            mCancel = false;
         }
     }
 }

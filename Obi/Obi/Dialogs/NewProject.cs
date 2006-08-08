@@ -79,7 +79,7 @@ namespace Obi.Dialogs
         {
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.InitialDirectory = System.IO.Path.GetDirectoryName(mFileBox.Text);
-            dialog.Filter = ObiForm.XUKFilter;
+            dialog.Filter = Localizer.Message("xuk_filter");
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 mFileBox.Text = dialog.FileName;
