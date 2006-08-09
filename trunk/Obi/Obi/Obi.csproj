@@ -80,6 +80,8 @@
     <Compile Include="Commands\CommandManager.cs" />
     <Compile Include="Commands\ConsCommand.cs" />
     <Compile Include="Commands\Strips\AddPhrase.cs" />
+    <Compile Include="Commands\Strips\DeletePhrase.cs" />
+    <Compile Include="Commands\Strips\RenamePhrase.cs" />
     <Compile Include="Commands\TOC\AddSection.cs" />
     <Compile Include="Commands\TOC\DecreaseSectionLevel.cs" />
     <Compile Include="Commands\TOC\DeleteSection.cs" />

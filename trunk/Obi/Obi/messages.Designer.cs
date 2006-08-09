@@ -198,6 +198,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to delete audio block.
+        /// </summary>
+        internal static string delete_phrase_command_label {
+            get {
+                return ResourceManager.GetString("delete_phrase_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to delete section.
         /// </summary>
         internal static string delete_section_command_label {
@@ -485,6 +494,15 @@ namespace Obi {
         internal static string rename_command_label {
             get {
                 return ResourceManager.GetString("rename_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to rename audio block.
+        /// </summary>
+        internal static string rename_phrase_command_label {
+            get {
+                return ResourceManager.GetString("rename_phrase_command_label", resourceCulture);
             }
         }
         

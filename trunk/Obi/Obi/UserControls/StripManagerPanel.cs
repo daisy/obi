@@ -377,6 +377,8 @@ namespace Obi.UserControls
 
         internal void SyncMediaSet(object sender, Events.Node.SetMediaEventArgs e)
         {
+            SectionStrip strip = mSectionNodeMap[(CoreNode)e.Node.getParent()];
+            strip.RenameAudioBlock(mPhraseNodeMap[e.Node], ((TextMedia)e.Media).getText());
         }
 
         #endregion

@@ -338,5 +338,11 @@ namespace Obi.Assets
             }
             return unused;
         }
-	}
+
+        public AudioMediaAsset SplitAudioMediaAsset(AudioMediaAsset asset, double time)
+        {
+            // do something for undo here
+            return (AudioMediaAsset)NameAddAsset(asset.Split(time));
+        }
+    }
 }

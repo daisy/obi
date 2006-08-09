@@ -986,7 +986,7 @@ namespace Obi
         // Find the channel and set the media object.
         // As this may fail, return true if the change was really made or false otherwise.
         // Throw an exception if the channel could not be found (JQ)
-        private bool DidSetMedia(object origin, CoreNode node, string channel, IMedia media)
+        internal bool DidSetMedia(object origin, CoreNode node, string channel, IMedia media)
         {
             ChannelsProperty channelsProp = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
             IList channelsList = channelsProp.getListOfUsedChannels();
@@ -995,15 +995,18 @@ namespace Obi
                 IChannel ch = (IChannel)channelsList[i];
                 if (ch.getName() == channel)
                 {
+                    Commands.Command command = null;
                     if (GetNodeType(node) == NodeType.Phrase && channel == AnnotationChannel)
                     {
                         // we are renaming a phrase node
                         Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);
                         string old = mAssManager.RenameAsset(asset, ((TextMedia)media).getText());
                         if (old == asset.Name) return false;
+                        command = new Commands.Strips.RenamePhrase(this, node);
                     }
                     channelsProp.setMedia(ch, media);
                     MediaSet(this, new Events.Node.SetMediaEventArgs(origin, node, channel, media));
+                    if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
                     mUnsaved = true;
                     StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
                     // make a command here
@@ -1022,6 +1025,17 @@ namespace Obi
         public void SetMediaRequested(object sender, Events.Node.SetMediaEventArgs e)
         {
             if (!DidSetMedia(sender, e.Node, e.Channel, e.Media)) e.Cancel = true;
+        }
+
+        internal void RenameBlock(CoreNode node, string name)
+        {
+            TextMedia media = (TextMedia)GetMediaForChannel(node, AnnotationChannel);
+            Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);
+            mAssManager.RenameAsset(asset, name);
+            media.setText(asset.Name);
+            MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, AnnotationChannel, media));
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
 
         #endregion
@@ -1049,9 +1063,10 @@ namespace Obi
         /// <summary>
         /// Add an already existing phrase node.
         /// </summary>
-        public void AddExistingPhrase(CoreNode node, CoreNode parent, int index, string annotation)
+        public void AddExistingPhrase(CoreNode node, CoreNode parent, int index)
         {
-            ((TextMedia)GetMediaForChannel(node, AnnotationChannel)).setText(annotation);
+            Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);
+            mAssManager.AddAsset(asset);
             parent.insert(node, index);
             AddedPhraseNode(this, new Events.Node.AddedPhraseNodeEventArgs(this, node, index));
             mUnsaved = true;
@@ -1067,7 +1082,11 @@ namespace Obi
             Assets.AudioMediaAsset asset = GetAudioMediaAsset(e.Node);
             mAssManager.RemoveAsset(asset);
             DeletedPhraseNode(this, new Events.Node.NodeEventArgs(e.Origin, e.Node));
+            CoreNode parent = (CoreNode)e.Node.getParent();
+            int index = parent.indexOf(e.Node);
             e.Node.detach();
+            Commands.Strips.DeletePhrase command = new Commands.Strips.DeletePhrase(this, e.Node, parent, index);
+            CommandCreated(this, new Obi.Events.Project.CommandCreatedEventArgs(command));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
