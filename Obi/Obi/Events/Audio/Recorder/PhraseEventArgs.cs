@@ -3,7 +3,7 @@ using System;
 namespace Obi.Events.Audio.Recorder
 {
     /// <summary>
-    /// A new phrase is being recorded. Time myst be 0.
+    /// A new phrase is being recorded. Time must be 0.
     /// </summary>
     public delegate void StartingPhraseHandler(object sender, PhraseEventArgs e);
 

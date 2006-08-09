@@ -10,6 +10,13 @@ using urakawa.media;
 namespace Obi
 {
     /// <summary>
+    /// Error handler for cleaning up files (happens when a file cannot be deleted.)
+    /// </summary>
+    /// <param name="path">Path to the file that caused the error.</param>
+    /// <param name="message">Error message.</param>
+    public delegate void DeletingFileErrorHandler(string path, string message);
+
+    /// <summary>
     /// An Obi project is an Urakawa project (core tree and metadata)
     /// It also knows where to save itself and has a simpler set of metadata.
     /// The core tree uses three channels:
@@ -118,6 +125,7 @@ namespace Obi
             mAssManager = null;
             mUnsaved = false;
             mXUKPath = null;
+            // Use our own property factory so that we can create custom properties
             getPresentation().setPropertyFactory(new ObiPropertyFactory(getPresentation()));
         }
 
@@ -232,7 +240,7 @@ namespace Obi
                 mAssManager = new Assets.AssetManager(absoluteAssPath.AbsolutePath);
                 // Recreate the assets from the phrase nodes
                 string errMessages = ""; 
-                Visitors.AssetVisitor visitor = new Visitors.AssetVisitor(mAssManager,
+                Visitors.AssetCreator visitor = new Visitors.AssetCreator(mAssManager,
                     delegate(string message) { errMessages += message + "\n"; });
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
                 if (errMessages != "")
@@ -377,7 +385,30 @@ namespace Obi
         }
 
         /// <summary>
-        /// Close the project. This doesn't do much except generate a Closed event.
+        /// Delets files that are not in use anymore.
+        /// </summary>
+        /// <param name="report">Report errors that occur while deleting files.</param>
+        public void DeleteUnusedFiles(DeletingFileErrorHandler report)
+        {
+            foreach (string path in mAssManager.UnusedFilePaths())
+            {
+                System.Diagnostics.Debug.Print("Deleting unused file: {0}", path);
+                if (File.Exists(path))
+                {
+                    try
+                    {
+                        File.Delete(path);
+                    }
+                    catch (Exception e)
+                    {
+                        report(path, e.Message);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Close the project.
         /// </summary>
         public void Close()
         {

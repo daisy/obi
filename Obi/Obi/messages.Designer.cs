@@ -489,6 +489,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error deleting file {0}. ({1}).
+        /// </summary>
+        internal static string report_delete_error {
+            get {
+                return ResourceManager.GetString("report_delete_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to resize strip.
         /// </summary>
         internal static string resize_strip {

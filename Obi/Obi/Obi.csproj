@@ -296,7 +296,7 @@
       <DependentUpon>TOCPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="UserProfile.cs" />
-    <Compile Include="Visitors\AssetVisitor.cs" />
+    <Compile Include="Visitors\AssetCreator.cs" />
     <Compile Include="Visitors\DescendantsVisitor.cs" />
     <Compile Include="Visitors\PhraseEnumerator.cs" />
     <Compile Include="Visitors\SectionNodePosition.cs" />
