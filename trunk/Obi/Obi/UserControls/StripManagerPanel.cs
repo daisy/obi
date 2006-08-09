@@ -219,12 +219,15 @@ namespace Obi.UserControls
 
         #region Synchronization visitor
 
+        private CoreNode parentSection;
+
         /// <summary>
-        /// Do nothing.
+        /// Update the parent section to attach phrase nodes to.
         /// </summary>
         /// <param name="node">The node to do nothing with.</param>
         public void postVisit(ICoreNode node)
         {
+            parentSection = (CoreNode)node.getParent();
         }
 
         /// <summary>
@@ -235,28 +238,34 @@ namespace Obi.UserControls
         /// <returns>True.</returns>
         public bool preVisit(ICoreNode node)
         {
-            if (Project.GetNodeType((CoreNode)node) == NodeType.Section)
+            SectionStrip strip = null;
+            switch (Project.GetNodeType((CoreNode)node))
             {
-                SectionStrip strip = new SectionStrip();
-                strip.Label = Project.GetTextMedia((CoreNode)node).getText();
-                strip.Manager = this;
-                strip.Node = (CoreNode)node;
-                mSectionNodeMap[(CoreNode)node] = strip;
-                mFlowLayoutPanel.Controls.Add(strip);
-                SelectedSectionNode = strip.Node;
-            }
-            else if (Project.GetNodeType((CoreNode)node) == NodeType.Phrase)
-            {
-                SectionStrip strip = mSectionNodeMap[mSelectedSection];
-                AudioBlock block = new AudioBlock();
-                block.Manager = this;
-                block.Node = (CoreNode)node;
-                mPhraseNodeMap[(CoreNode)node] = block;
-                TextMedia annotation = (TextMedia)Project.GetMediaForChannel((CoreNode)node, Project.AnnotationChannel);
-                block.Label = annotation.getText();
-                block.Time = (Math.Round(Project.GetAudioMediaAsset((CoreNode)node).LengthInMilliseconds / 1000)).ToString() + "s";
-                strip.AppendAudioBlock(block);
-                SelectedPhraseNode = block.Node;
+                case NodeType.Root:
+                    parentSection = null;
+                    break;
+                case NodeType.Section:
+                    strip = new SectionStrip();
+                    strip.Label = Project.GetTextMedia((CoreNode)node).getText();
+                    strip.Manager = this;
+                    strip.Node = (CoreNode)node;
+                    mSectionNodeMap[(CoreNode)node] = strip;
+                    mFlowLayoutPanel.Controls.Add(strip);
+                    parentSection = ((CoreNode)node);
+                    break;
+                case NodeType.Phrase:
+                    strip = mSectionNodeMap[parentSection];
+                    AudioBlock block = new AudioBlock();
+                    block.Manager = this;
+                    block.Node = (CoreNode)node;
+                    mPhraseNodeMap[(CoreNode)node] = block;
+                    TextMedia annotation = (TextMedia)Project.GetMediaForChannel((CoreNode)node, Project.AnnotationChannel);
+                    block.Label = annotation.getText();
+                    block.Time = (Math.Round(Project.GetAudioMediaAsset((CoreNode)node).LengthInMilliseconds / 1000)).ToString() + "s";
+                    strip.AppendAudioBlock(block);
+                    break;
+                default:
+                    break;
             }
             return true;
         }
