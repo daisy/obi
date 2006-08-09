@@ -298,6 +298,7 @@
     <Compile Include="UserProfile.cs" />
     <Compile Include="Visitors\AssetCreator.cs" />
     <Compile Include="Visitors\DescendantsVisitor.cs" />
+    <Compile Include="Visitors\DumpTree.cs" />
     <Compile Include="Visitors\PhraseEnumerator.cs" />
     <Compile Include="Visitors\SectionNodePosition.cs" />
     <Compile Include="Visitors\UndeleteSubtree.cs" />

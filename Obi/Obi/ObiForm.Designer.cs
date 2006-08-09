@@ -82,12 +82,14 @@ namespace Obi
             this.userSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.audioPreferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.mProjectPanel = new Obi.UserControls.ProjectPanel();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutObiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.mProjectPanel = new Obi.UserControls.ProjectPanel();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.dumpTreeDEBUGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -221,7 +223,7 @@ namespace Obi
             // 
             this.mUndoToolStripMenuItem.Name = "mUndoToolStripMenuItem";
             this.mUndoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.mUndoToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.mUndoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.mUndoToolStripMenuItem.Text = "&Undo";
             this.mUndoToolStripMenuItem.Click += new System.EventHandler(this.mUndoToolStripMenuItem_Click);
             // 
@@ -229,26 +231,26 @@ namespace Obi
             // 
             this.mRedoToolStripMenuItem.Name = "mRedoToolStripMenuItem";
             this.mRedoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.mRedoToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.mRedoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.mRedoToolStripMenuItem.Text = "&Redo";
             this.mRedoToolStripMenuItem.Click += new System.EventHandler(this.mRedoToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(137, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(149, 6);
             // 
             // metadataToolStripMenuItem
             // 
             this.metadataToolStripMenuItem.Name = "metadataToolStripMenuItem";
-            this.metadataToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.metadataToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.metadataToolStripMenuItem.Text = "&Metadata";
             this.metadataToolStripMenuItem.Click += new System.EventHandler(this.metadataToolStripMenuItem_Click);
             // 
             // touchProjectToolStripMenuItem
             // 
             this.touchProjectToolStripMenuItem.Name = "touchProjectToolStripMenuItem";
-            this.touchProjectToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.touchProjectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.touchProjectToolStripMenuItem.Text = "&Touch project";
             this.touchProjectToolStripMenuItem.Click += new System.EventHandler(this.touchProjectToolStripMenuItem_Click);
             // 
@@ -375,7 +377,7 @@ namespace Obi
             this.startRecordingToolStripMenuItem});
             this.mStripsToolStripMenuItem.Name = "mStripsToolStripMenuItem";
             this.mStripsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
-            this.mStripsToolStripMenuItem.Text = "Strips";
+            this.mStripsToolStripMenuItem.Text = "&Strips";
             // 
             // mAddStripToolStripMenuItem
             // 
@@ -466,7 +468,9 @@ namespace Obi
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.userSettingsToolStripMenuItem,
             this.preferencesToolStripMenuItem,
-            this.audioPreferencesToolStripMenuItem});
+            this.audioPreferencesToolStripMenuItem,
+            this.toolStripSeparator10,
+            this.dumpTreeDEBUGToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
@@ -474,23 +478,47 @@ namespace Obi
             // userSettingsToolStripMenuItem
             // 
             this.userSettingsToolStripMenuItem.Name = "userSettingsToolStripMenuItem";
-            this.userSettingsToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.userSettingsToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.userSettingsToolStripMenuItem.Text = "&User profile";
             this.userSettingsToolStripMenuItem.Click += new System.EventHandler(this.userSettingsToolStripMenuItem_Click);
             // 
             // preferencesToolStripMenuItem
             // 
             this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.preferencesToolStripMenuItem.Text = "&Project preferences";
             this.preferencesToolStripMenuItem.Click += new System.EventHandler(this.preferencesToolStripMenuItem_Click);
             // 
             // audioPreferencesToolStripMenuItem
             // 
             this.audioPreferencesToolStripMenuItem.Name = "audioPreferencesToolStripMenuItem";
-            this.audioPreferencesToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.audioPreferencesToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.audioPreferencesToolStripMenuItem.Text = "&Audio preferences";
             this.audioPreferencesToolStripMenuItem.Click += new System.EventHandler(this.audioPreferencesToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mHelpToolStripMenuItem1,
+            this.aboutObiToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.helpToolStripMenuItem.Text = "&Help";
+            // 
+            // mHelpToolStripMenuItem1
+            // 
+            this.mHelpToolStripMenuItem1.Name = "mHelpToolStripMenuItem1";
+            this.mHelpToolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this.mHelpToolStripMenuItem1.Size = new System.Drawing.Size(121, 22);
+            this.mHelpToolStripMenuItem1.Text = "&Help";
+            this.mHelpToolStripMenuItem1.Click += new System.EventHandler(this.mHelpToolStripMenuItem1_Click);
+            // 
+            // aboutObiToolStripMenuItem
+            // 
+            this.aboutObiToolStripMenuItem.Name = "aboutObiToolStripMenuItem";
+            this.aboutObiToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.aboutObiToolStripMenuItem.Text = "&About Obi";
+            this.aboutObiToolStripMenuItem.Click += new System.EventHandler(this.aboutObiToolStripMenuItem_Click);
             // 
             // statusStrip1
             // 
@@ -521,29 +549,17 @@ namespace Obi
             this.mProjectPanel.Size = new System.Drawing.Size(767, 450);
             this.mProjectPanel.TabIndex = 4;
             // 
-            // helpToolStripMenuItem
+            // toolStripSeparator10
             // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mHelpToolStripMenuItem1,
-            this.aboutObiToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
-            this.helpToolStripMenuItem.Text = "&Help";
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(171, 6);
             // 
-            // mHelpToolStripMenuItem1
+            // dumpTreeDEBUGToolStripMenuItem
             // 
-            this.mHelpToolStripMenuItem1.Name = "mHelpToolStripMenuItem1";
-            this.mHelpToolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.mHelpToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.mHelpToolStripMenuItem1.Text = "&Help";
-            this.mHelpToolStripMenuItem1.Click += new System.EventHandler(this.mHelpToolStripMenuItem1_Click);
-            // 
-            // aboutObiToolStripMenuItem
-            // 
-            this.aboutObiToolStripMenuItem.Name = "aboutObiToolStripMenuItem";
-            this.aboutObiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.aboutObiToolStripMenuItem.Text = "&About Obi";
-            this.aboutObiToolStripMenuItem.Click += new System.EventHandler(this.aboutObiToolStripMenuItem_Click);
+            this.dumpTreeDEBUGToolStripMenuItem.Name = "dumpTreeDEBUGToolStripMenuItem";
+            this.dumpTreeDEBUGToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.dumpTreeDEBUGToolStripMenuItem.Text = "&Dump tree (DEBUG)";
+            this.dumpTreeDEBUGToolStripMenuItem.Click += new System.EventHandler(this.dumpTreeDEBUGToolStripMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -630,6 +646,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mHelpToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem aboutObiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.ToolStripMenuItem dumpTreeDEBUGToolStripMenuItem;
 
 
     }

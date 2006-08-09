@@ -844,5 +844,10 @@ namespace Obi
         {
             mProject.StartRecording(mSettings);
         }
+
+        private void dumpTreeDEBUGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProject.RootNode.acceptDepthFirst(new Visitors.DumpTree());
+        }
     }
 }

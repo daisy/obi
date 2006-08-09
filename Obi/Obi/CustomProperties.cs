@@ -54,6 +54,8 @@ namespace Obi
                     case "info":
                     case "NodeInformationProperty":
                         return new NodeInformationProperty();
+                    case "PositionProperty":
+                        return new PositionProperty();
                     default:
                         throw new Exception(String.Format("Cannot create property named `{0}'", localName));
                 }
@@ -198,6 +200,24 @@ namespace Obi
             AssetProperty copy = new AssetProperty();
             copy.setOwner(mOwner);
             copy.Asset = mAsset;
+            return copy;
+        }
+    }
+
+    public class PositionProperty : ObiProperty
+    {
+        public int Position;  // position of the node in the strip view (section) or its strip (block)
+
+        internal PositionProperty()
+            : base()
+        {
+            Position = 0;
+        }
+
+        public override IProperty copy()
+        {
+            PositionProperty copy = new PositionProperty();
+            copy.Position = this.Position;
             return copy;
         }
     }
