@@ -21,9 +21,9 @@ namespace Obi
     /// </summary>
     public partial class ObiForm : Form
     {
-        private Project mProject;                  // the project currently being authored
-        private Settings mSettings;                // application settings
-        private Commands.CommandManager mCmdMngr;  // the undo stack for this project (should it belong to the project?)
+        private Project mProject;                         // the project currently being authored
+        private Settings mSettings;                       // application settings
+        private Commands.CommandManager mCommandManager;  // the undo stack for this project (should it belong to the project?)
 
         /// <summary>
         /// Initialize a new form. No project is opened at creation time.
@@ -33,7 +33,7 @@ namespace Obi
             InitializeComponent();
             mProject = null;
             mSettings = null;
-            mCmdMngr = new Commands.CommandManager();
+            mCommandManager = new Commands.CommandManager();
             InitializeSettings();
             mOpenRecentProjectToolStripMenuItem.Enabled = mSettings.RecentProjects.Count > 0;
             FormUpdateClosedProject();  // no project opened, same as if we closed a project.
@@ -117,7 +117,7 @@ namespace Obi
             if (mProject.Unsaved)
             {
                 mProject.Save();
-                mCmdMngr.Clear();
+                mCommandManager.Clear();
             }
             else
             {
@@ -169,16 +169,24 @@ namespace Obi
         }
 
         /// <summary>
-        /// Close the current project.
+        /// Close and clean up the current project.
         /// </summary>
         private void mCloseProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (ClosedProject())
             {
-                mProject.Close();
                 mProject = null;
-                mCmdMngr.Clear();
+                mCommandManager.Clear();
             }
+        }
+
+        /// <summary>
+        /// Handle errors when closing a project.
+        /// </summary>
+        /// <param name="message">The error message.</param>
+        private void ReportDeleteError(string path, string message)
+        {
+            MessageBox.Show(String.Format(Localizer.Message("report_delete_error"), path, message));
         }
 
         /// <summary>
@@ -319,7 +327,7 @@ namespace Obi
                 case Obi.Events.Project.StateChange.Opened:
                     mProjectPanel.Project = mProject;
                     FormUpdateOpenedProject();
-                    mCmdMngr.Clear();
+                    mCommandManager.Clear();
                     mProjectPanel.SynchronizeWithCoreTree(mProject.getPresentation().getRootNode());
                     break;
                 case Obi.Events.Project.StateChange.Saved:
@@ -330,7 +338,7 @@ namespace Obi
 
         private void mProject_CommandCreated(object sender, Events.Project.CommandCreatedEventArgs e)
         {
-            mCmdMngr.Add(e.Command);
+            mCommandManager.Add(e.Command);
             FormUpdateUndoRedoLabels();
         }
 
@@ -684,22 +692,22 @@ namespace Obi
 
         private void FormUpdateUndoRedoLabels()
         {
-            if (mCmdMngr.HasUndo)
+            if (mCommandManager.HasUndo)
             {
                 mUndoToolStripMenuItem.Enabled = true;
                 mUndoToolStripMenuItem.Text = String.Format(Localizer.Message("undo_label"), Localizer.Message("undo"),
-                    mCmdMngr.UndoLabel);
+                    mCommandManager.UndoLabel);
             }
             else
             {
                 mUndoToolStripMenuItem.Enabled = false;
                 mUndoToolStripMenuItem.Text = Localizer.Message("undo");
             }
-            if (mCmdMngr.HasRedo)
+            if (mCommandManager.HasRedo)
             {
                 mRedoToolStripMenuItem.Enabled = true;
                 mRedoToolStripMenuItem.Text = String.Format(Localizer.Message("redo_label"), Localizer.Message("redo"),
-                    mCmdMngr.RedoLabel);
+                    mCommandManager.RedoLabel);
             }
             else
             {
@@ -710,6 +718,7 @@ namespace Obi
 
         /// <summary>
         /// Check whether a project is currently open and not saved; prompt the user about what to do.
+        /// Close the project if that is what the user wants to do.
         /// </summary>
         /// <returns>True if there is no open project or the currently open project could be closed.</returns>
         private bool ClosedProject()
@@ -722,12 +731,12 @@ namespace Obi
                 {
                     case DialogResult.Yes:
                         mProject.SaveAs(mProject.XUKPath);
-                        mProject.Close();
+                        DoClose();
                         return true;
                     case DialogResult.Cancel:
                         return false;
                     case DialogResult.No:
-                        mProject.Close();
+                        DoClose();
                         return true;
                     default:
                         return false;
@@ -735,9 +744,30 @@ namespace Obi
             }
             else
             {
-                if (mProject != null) mProject.Close();
+                if (mProject != null) DoClose();
                 return true;
             }
+        }
+
+        /// <summary>
+        /// Clean up and close the project.
+        /// Cleaning up only occurs when the project is closed.
+        /// </summary>
+        private void DoClose()
+        {
+            if (mProject.Unsaved)
+            {
+                // A bit kldugy but an easy way to rebuild the list of used files when discarding changes.
+                string path = mProject.XUKPath;
+                mProject = new Project();
+                mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(
+                    delegate(object sender, Obi.Events.Project.StateChangedEventArgs e) { }
+                );    
+                mProject.Open(path);
+                mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
+            }
+            mProject.DeleteUnusedFiles(ReportDeleteError);
+            mProject.Close();
         }
 
         /// <summary>
@@ -755,9 +785,9 @@ namespace Obi
         /// </summary>
         private void mUndoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mCmdMngr.HasUndo)
+            if (mCommandManager.HasUndo)
             {
-                mCmdMngr.Undo();
+                mCommandManager.Undo();
                 FormUpdateUndoRedoLabels();
             }
         }
@@ -769,9 +799,9 @@ namespace Obi
         /// </summary>
         private void mRedoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mCmdMngr.HasRedo)
+            if (mCommandManager.HasRedo)
             {
-                mCmdMngr.Redo();
+                mCommandManager.Redo();
                 FormUpdateUndoRedoLabels();
             }
         }

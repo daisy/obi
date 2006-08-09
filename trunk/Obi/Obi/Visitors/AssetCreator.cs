@@ -12,7 +12,7 @@ namespace Obi.Visitors
     /// <summary>
     /// Visitor to recreate assets from media objects in the tree.
     /// </summary>
-    class AssetVisitor: ICoreNodeVisitor
+    class AssetCreator: ICoreNodeVisitor
     {
         private Assets.AssetManager mAssManager;  // the asset manager which handles the assets
         private ErrorHandler mErrorHandler;       // error handler called when an asset cannot be created.
@@ -20,7 +20,7 @@ namespace Obi.Visitors
         /// <summary>
         /// Create a new asset visitor for a given asset manager.
         /// </summary>
-        public AssetVisitor(Assets.AssetManager assManager, ErrorHandler errorHandler)
+        public AssetCreator(Assets.AssetManager assManager, ErrorHandler errorHandler)
         {
             mAssManager = assManager;
             mErrorHandler = errorHandler;

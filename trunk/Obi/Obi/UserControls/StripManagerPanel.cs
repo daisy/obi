@@ -209,8 +209,8 @@ namespace Obi.UserControls
         {
             mSectionNodeMap.Clear();
             mFlowLayoutPanel.Controls.Clear();
-            SelectedSectionNode = null;
-            SelectedPhraseNode = null;
+            mSelectedSection = null;
+            mSelectedPhrase = null;
             root.acceptDepthFirst(this);
             if (mFlowLayoutPanel.Controls.Count > 0) this.ReflowTabOrder(mFlowLayoutPanel.Controls[0]);  // mg
             SelectedSectionNode = null;

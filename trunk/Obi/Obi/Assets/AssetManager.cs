@@ -325,5 +325,18 @@ namespace Obi.Assets
                     asset.Name));
             }
         }
+
+        /// <summary>
+        /// Get a list of all unsued file paths in the asset directory.
+        /// </summary>
+        public List<string> UnusedFilePaths()
+        {
+            List<string> unused = new List<string>();
+            foreach (string path in Directory.GetFiles(mAssetsDirectory))
+            {
+                if (!mFiles.ContainsKey(path)) unused.Add(path);
+            }
+            return unused;
+        }
 	}
 }
