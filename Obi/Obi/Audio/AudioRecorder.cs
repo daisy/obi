@@ -28,6 +28,9 @@ namespace Obi.Audio
 		//the variables for current position and current time for VuMeter
 		long CurrentPositionInByte ;
 		private double dCurrentTime;
+        private double mTime;
+
+        
 
 		public double CurrentTime
 		{
@@ -86,8 +89,9 @@ namespace Obi.Audio
 
 		// constructor, made private by JQ 
 		private AudioRecorder()
-		{			
-			ob_VuMeter = null;
+		{
+            mState = AudioRecorderState.Idle;
+            ob_VuMeter = null;
 		}
 
 		public int SampleRate
@@ -401,10 +405,9 @@ namespace Obi.Audio
 			int CapturePos ;
 			int LockSize ;
 			applicationBuffer.GetCurrentPosition(out CapturePos, out ReadPos);
-			long CurrentPosition = (long) CapturePos;
-			CurrentPositionInByte = CurrentPosition +SampleCount;
-
-			dCurrentTime = CalculationFunctions.ConvertByteToTime(CurrentPosition, m_SampleRate, m_FrameSize);
+                        long mPosition = (long)CapturePos;
+            CurrentPositionInByte = SampleCount + mPosition;
+            	dCurrentTime = CalculationFunctions.ConvertByteToTime(CurrentPositionInByte, m_SampleRate, m_FrameSize);
 			m_UpdateVMArrayLength = m_iCaptureBufferSize/ 50 ;
 			m_UpdateVMArrayLength = Convert.ToInt32 (CalculationFunctions.AdaptToFrame ( Convert.ToInt32 ( m_UpdateVMArrayLength ),  m_FrameSize)  );
 
@@ -441,7 +444,9 @@ namespace Obi.Audio
 			// Move the capture offset along
 			NextCaptureOffset+= CaptureData.Length ; 
 			NextCaptureOffset %= m_iCaptureBufferSize; // Circular buffer
-		}
+            long mLength = (long)fi.Length;
+            mTime = Audio.CalculationFunctions.ConvertByteToTime(mLength, m_SampleRate, mAsset.FrameSize);
+}
 
 		internal long GetCurrentPositioninBytes
 		{
@@ -466,6 +471,18 @@ namespace Obi.Audio
 				dCurrentTime = value;
 			}
 		}
+
+        public double TimeOfAsset
+        {
+            get
+            {
+            return mTime;
+            }
+            set{
+                mTime = value;
+            }
+        }
+
 
 
 
@@ -510,9 +527,13 @@ namespace Obi.Audio
 				Audiolength = 0;
 				Assets.AudioClip NewRecordedClip = new Assets.AudioClip(m_sFileName);
 				mAsset.AddClip(NewRecordedClip);
-				//NotifyThread = null;	
 			}
 		}
+
+
+
+
+        
 
 
 		public void SetInputDeviceForRecording(Control FormHandle, int Index)

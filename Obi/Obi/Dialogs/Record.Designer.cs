@@ -33,7 +33,7 @@ namespace Obi.Dialogs
             this.mDisplayTimeLable = new System.Windows.Forms.Label();
             this.mTimeTextBox = new System.Windows.Forms.TextBox();
             this.mStopButton = new System.Windows.Forms.Button();
-            this.mPhraseMarkerBuutton = new System.Windows.Forms.Button();
+            this.mPhraseMarkerButton = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.mVolumeTrackBar = new System.Windows.Forms.TrackBar();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
@@ -77,14 +77,15 @@ namespace Obi.Dialogs
             this.mStopButton.UseVisualStyleBackColor = true;
             this.mStopButton.Click += new System.EventHandler(this.btnStop_Click);
             // 
-            // mPhraseMarkerBuutton
+            // mPhraseMarkerButton
             // 
-            this.mPhraseMarkerBuutton.Location = new System.Drawing.Point(221, 67);
-            this.mPhraseMarkerBuutton.Name = "mPhraseMarkerBuutton";
-            this.mPhraseMarkerBuutton.Size = new System.Drawing.Size(75, 23);
-            this.mPhraseMarkerBuutton.TabIndex = 4;
-            this.mPhraseMarkerBuutton.Text = "Phrase &Marker";
-            this.mPhraseMarkerBuutton.UseVisualStyleBackColor = true;
+            this.mPhraseMarkerButton.Location = new System.Drawing.Point(221, 66);
+            this.mPhraseMarkerButton.Name = "mPhraseMarkerButton";
+            this.mPhraseMarkerButton.Size = new System.Drawing.Size(75, 23);
+            this.mPhraseMarkerButton.TabIndex = 4;
+            this.mPhraseMarkerButton.Text = "Phrase &Marker";
+            this.mPhraseMarkerButton.UseVisualStyleBackColor = true;
+            this.mPhraseMarkerButton.Click += new System.EventHandler(this.mPhraseMarkerButton_Click_1);
             // 
             // timer1
             // 
@@ -103,7 +104,7 @@ namespace Obi.Dialogs
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(302, 183);
             this.Controls.Add(this.mVolumeTrackBar);
-            this.Controls.Add(this.mPhraseMarkerBuutton);
+            this.Controls.Add(this.mPhraseMarkerButton);
             this.Controls.Add(this.mStopButton);
             this.Controls.Add(this.mTimeTextBox);
             this.Controls.Add(this.mDisplayTimeLable);
@@ -123,7 +124,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label mDisplayTimeLable;
         private System.Windows.Forms.TextBox mTimeTextBox;
         private System.Windows.Forms.Button mStopButton;
-        private System.Windows.Forms.Button mPhraseMarkerBuutton;
+        private System.Windows.Forms.Button mPhraseMarkerButton;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TrackBar mVolumeTrackBar;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
