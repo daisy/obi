@@ -341,6 +341,24 @@ namespace Obi.UserControls
             }
         }
 
+        internal void SyncAddedPhraseNode(object sender, Events.Node.AddedPhraseNodeEventArgs e)
+        {
+            if (e.Node != null)
+            {
+                SectionStrip strip = mSectionNodeMap[(CoreNode)e.Node.getParent()];
+                AudioBlock block = new AudioBlock();
+                block.Manager = this;
+                block.Node = e.Node;
+                mPhraseNodeMap[e.Node] = block;
+                TextMedia annotation = (TextMedia)Project.GetMediaForChannel(e.Node, Project.AnnotationChannel);
+                block.Label = annotation.getText();
+                block.Time = (Math.Round(Project.GetAudioMediaAsset(e.Node).LengthInMilliseconds / 1000)).ToString() + "s";
+                strip.InsertAudioBlock(block, e.Index);
+                //mg:
+                this.ReflowTabOrder(block);
+            }
+        }
+
         internal void SyncDeletedPhraseNode(object sender, Events.Node.NodeEventArgs e)
         {
             SectionStrip strip = mSectionNodeMap[(CoreNode)e.Node.getParent()];

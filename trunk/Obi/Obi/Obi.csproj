@@ -151,6 +151,7 @@
     <Compile Include="Events\Audio\VuMeter\PeakOverloadEventArgs.cs" />
     <Compile Include="Events\Audio\VuMeter\ResetEventArgs.cs" />
     <Compile Include="Events\Audio\VuMeter\UpdateFormsEventArgs.cs" />
+    <Compile Include="Events\Node\AddedPhraseNodeEventArgs.cs" />
     <Compile Include="Events\Node\NodeEventArgs.cs" />
     <Compile Include="Events\Node\RenameNodeEventArgs.cs" />
     <Compile Include="Events\Node\MovedNodeEventArgs.cs" />

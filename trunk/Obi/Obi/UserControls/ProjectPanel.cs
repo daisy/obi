@@ -60,8 +60,9 @@ namespace Obi.UserControls
                     mProject.DeletedNode -= new Events.Node.DeletedNodeHandler(mTOCPanel.SyncDeletedNode);
                     mProject.DeletedNode -= new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeletedNode);
 
-                    mStripManagerPanel.ImportPhrase -= new Events.Strip.RequestToImportAssetHandler(mProject.ImportPhraseRequested);
+                    mStripManagerPanel.ImportPhrase -= new Events.Strip.RequestToImportAssetHandler(mProject.ImportAssetRequested);
                     mProject.ImportedAsset -= new Events.Node.ImportedAssetHandler(mStripManagerPanel.SyncImportedAsset);
+                    mProject.AddedPhraseNode -= new Events.Node.AddedPhraseNodeHandler(mStripManagerPanel.SyncAddedPhraseNode);
 
                     mStripManagerPanel.SetMedia -= new Events.Node.SetMediaHandler(mProject.SetMediaRequested);
                     mProject.MediaSet -= new Events.Node.MediaSetHandler(mStripManagerPanel.SyncMediaSet);
@@ -106,8 +107,9 @@ namespace Obi.UserControls
                     value.DeletedNode += new Events.Node.DeletedNodeHandler(mTOCPanel.SyncDeletedNode);
                     value.DeletedNode += new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeletedNode);
 
-                    mStripManagerPanel.ImportPhrase += new Events.Strip.RequestToImportAssetHandler(value.ImportPhraseRequested);
+                    mStripManagerPanel.ImportPhrase += new Events.Strip.RequestToImportAssetHandler(value.ImportAssetRequested);
                     value.ImportedAsset += new Events.Node.ImportedAssetHandler(mStripManagerPanel.SyncImportedAsset);
+                    value.AddedPhraseNode += new Events.Node.AddedPhraseNodeHandler(mStripManagerPanel.SyncAddedPhraseNode);
 
                     mStripManagerPanel.SetMedia += new Events.Node.SetMediaHandler(value.SetMediaRequested);
                     value.MediaSet += new Events.Node.MediaSetHandler(mStripManagerPanel.SyncMediaSet);

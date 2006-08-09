@@ -258,6 +258,12 @@ namespace Obi.UserControls
             mFlowLayoutPanel.Controls.Add(block);
         }
 
+        public void InsertAudioBlock(AudioBlock block, int index)
+        {
+            mFlowLayoutPanel.Controls.Add(block);
+            mFlowLayoutPanel.Controls.SetChildIndex(block, index);
+        }
+
         public void RemoveAudioBlock(AudioBlock block)
         {
             int index = mFlowLayoutPanel.Controls.IndexOf(block);
