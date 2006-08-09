@@ -2,27 +2,31 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+using urakawa.core;
+using urakawa.media;
+
 namespace Obi.Commands.Strips
 {
     class AddPhrase: Command
     {
-        /*private Project mProject;
-        private CoreNode mNode;
-        private CoreNode mParent;
-        private int mIndex;
-        private int mPosition;
-        private string mOriginalLabel;*/
+        private Obi.Project mProject;  // the current project
+        private CoreNode mNode;        // the phrase node to add/remove
+        private CoreNode mParent;      // the section node to add to
+        private int mIndex;            // position within the parent
+        private string mAnnotation;    // original annotation
 
         public override string Label
         {
-            get
-            {
-                return Localizer.Message("add_phrase_command_label");
-            }
+            get { return Localizer.Message("add_phrase_command_label"); }
         }
 
-        public AddPhrase()
+        public AddPhrase(Obi.Project project, CoreNode node)
         {
+            mProject = project;
+            mNode = node;
+            mParent = (CoreNode)mNode.getParent();
+            mIndex = mParent.indexOf(mNode);
+            mAnnotation = ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).getText(); 
         }
 
         /// <summary>
@@ -31,7 +35,7 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Do()
         {
-            //mProject.AddExistingSection(mNode, mParent, mIndex, mPosition, mOriginalLabel);
+            mProject.AddExistingPhrase(mNode, mParent, mIndex, mAnnotation);
         }
 
         /// <summary>
@@ -40,7 +44,7 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Undo()
         {
-            //mProject.RemoveNode(mProject, mNode);
+            mProject.DeletePhraseNode(mNode);
         }
     }
 }

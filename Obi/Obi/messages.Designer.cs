@@ -61,7 +61,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add audio block.
+        ///   Looks up a localized string similar to add audio block.
         /// </summary>
         internal static string add_phrase_command_label {
             get {

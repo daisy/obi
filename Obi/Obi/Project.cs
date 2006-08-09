@@ -48,6 +48,7 @@ namespace Obi
         public event Events.Project.CommandCreatedHandler CommandCreated;   // a new command must be added to the command manager
 
         public event Events.Node.AddedSectionNodeHandler AddedSectionNode;      // a section node was added to the TOC
+        public event Events.Node.AddedPhraseNodeHandler AddedPhraseNode;        // a phrase node was added to a strip
         public event Events.Node.DeletedNodeHandler DeletedNode;                // a node was deleted from the presentation
         public event Events.Node.RenamedNodeHandler RenamedNode;                // a node was renamed in the presentation
         public event Events.Node.MovedNodeHandler MovedNode;                    // a node was moved in the presentation
@@ -1032,13 +1033,27 @@ namespace Obi
         /// The phrase is named after the imported file name.
         /// </summary>
         /// <remarks>JQ</remarks>
-        public void ImportPhraseRequested(object sender, Events.Strip.ImportAssetEventArgs e)
+        public void ImportAssetRequested(object sender, Events.Strip.ImportAssetEventArgs e)
         {
             Assets.AudioMediaAsset asset = mAssManager.ImportAudioMediaAsset(e.AssetPath);
             mAssManager.InsureRename(asset, Path.GetFileNameWithoutExtension(e.AssetPath));
             CoreNode node = CreatePhraseNode(asset);
             e.SectionNode.appendChild(node);
             ImportedAsset(this, new Events.Node.NodeEventArgs(sender, node));
+            Commands.Strips.AddPhrase command = new Commands.Strips.AddPhrase(this, node);
+            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+
+        /// <summary>
+        /// Add an already existing phrase node.
+        /// </summary>
+        public void AddExistingPhrase(CoreNode node, CoreNode parent, int index, string annotation)
+        {
+            ((TextMedia)GetMediaForChannel(node, AnnotationChannel)).setText(annotation);
+            parent.insert(node, index);
+            AddedPhraseNode(this, new Events.Node.AddedPhraseNodeEventArgs(this, node, index));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
@@ -1053,6 +1068,16 @@ namespace Obi
             mAssManager.RemoveAsset(asset);
             DeletedPhraseNode(this, new Events.Node.NodeEventArgs(e.Origin, e.Node));
             e.Node.detach();
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+
+        public void DeletePhraseNode(CoreNode node)
+        {
+            Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);
+            mAssManager.RemoveAsset(asset);
+            DeletedPhraseNode(this, new Events.Node.NodeEventArgs(this, node));
+            node.detach();
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
