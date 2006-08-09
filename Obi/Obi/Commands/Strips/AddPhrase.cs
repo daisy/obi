@@ -13,7 +13,6 @@ namespace Obi.Commands.Strips
         private CoreNode mNode;        // the phrase node to add/remove
         private CoreNode mParent;      // the section node to add to
         private int mIndex;            // position within the parent
-        private string mAnnotation;    // original annotation
 
         public override string Label
         {
@@ -26,7 +25,6 @@ namespace Obi.Commands.Strips
             mNode = node;
             mParent = (CoreNode)mNode.getParent();
             mIndex = mParent.indexOf(mNode);
-            mAnnotation = ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).getText(); 
         }
 
         /// <summary>
@@ -35,7 +33,7 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Do()
         {
-            mProject.AddExistingPhrase(mNode, mParent, mIndex, mAnnotation);
+            mProject.AddExistingPhrase(mNode, mParent, mIndex);
         }
 
         /// <summary>

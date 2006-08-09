@@ -271,6 +271,11 @@ namespace Obi.UserControls
             ReflowTabOrder(index);
         }
 
+        public void RenameAudioBlock(AudioBlock block, string name)
+        {
+            block.Label = name;
+        }
+
         /// <summary>
         /// Clicking in the audio strip (i.e. the flow layout) selects the strip but unselects the audio block.
         /// </summary>
