@@ -57,7 +57,8 @@ namespace Obi
         public event Events.Node.MovedNodeHandler UndidMoveNode;                // a node was restored to its previous location
         public event Events.Node.MediaSetHandler MediaSet;                      // a media object was set on a node
         public event Events.Node.DeletedNodeHandler DeletedPhraseNode;          // deleted a phrase node 
-        
+        public event Events.Node.BlockChangedTimeHandler BlockChangedTime;      // a block's time has changed        
+
         /// <summary>
         /// This flag is set to true if the project contains modifications that have not been saved.
         /// </summary>
@@ -1038,6 +1039,41 @@ namespace Obi
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
 
+        /// <summary>
+        /// Handle a request to split an asset. The event contains the original node that was split and the new asset
+        /// created from the split. A new sibling to the original node is to be added.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void SplitAssetRequested(object sender, Events.Node.SplitNodeEventArgs e)
+        {
+            CoreNode newNode = CreatePhraseNode(e.NewAsset);
+            CoreNode parent = (CoreNode)e.Node.getParent();
+            int index = parent.indexOf(e.Node) + 1;
+            parent.insert(newNode, index);
+            UpdateSeq(e.Node);
+            BlockChangedTime(this, new Events.Node.NodeEventArgs(e.Origin, e.Node));
+            AddedPhraseNode(this, new Events.Node.AddedPhraseNodeEventArgs(e.Origin, newNode, index));
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+
+        /// <summary>
+        /// Merge two nodes.
+        /// </summary>
+        public void MergeNodesRequested(object sender, Events.Node.MergeNodesEventArgs e)
+        {
+            Assets.AudioMediaAsset asset = GetAudioMediaAsset(e.Node);
+            Assets.AudioMediaAsset next = GetAudioMediaAsset(e.Next);
+            mAssManager.MergeAudioMediaAssets(asset, next);
+            UpdateSeq(e.Node);
+            BlockChangedTime(this, new Events.Node.NodeEventArgs(e.Origin, e.Node));
+            DeletedPhraseNode(this, new Events.Node.NodeEventArgs(e.Origin, e.Next));
+            e.Next.detach();
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+
         #endregion
 
         #region Strip event handlers
@@ -1139,6 +1175,28 @@ namespace Obi
             TextMedia annotation = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
             annotation.setText(asset.Name);
             prop.setMedia(mAnnotationChannel, annotation);
+            AssetProperty assProp = (AssetProperty)getPresentation().getPropertyFactory().createProperty("AssetProperty",
+                ObiPropertyFactory.ObiNS);
+            assProp.Asset = asset;
+            node.setProperty(assProp);
+            NodeInformationProperty typeProp =
+                (NodeInformationProperty)getPresentation().getPropertyFactory().createProperty("NodeInformationProperty",
+                ObiPropertyFactory.ObiNS);
+            typeProp.NodeType = NodeType.Phrase;
+            typeProp.NodeStatus = NodeStatus.Used;
+            node.setProperty(typeProp);
+            UpdateSeq(node);
+            return node;
+        }
+
+        /// <summary>
+        /// Make a new sequence media object for the asset of this node.
+        /// The sequence media object is simply a translation of the list of clips.
+        /// </summary>
+        private void UpdateSeq(CoreNode node)
+        {
+            Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);
+            ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
             SequenceMedia seq =
                 (SequenceMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.EMPTY_SEQUENCE);
             AudioMedia audio = (AudioMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.AUDIO);
@@ -1154,17 +1212,6 @@ namespace Obi
                 seq.appendItem(audio);
             }
             prop.setMedia(mAudioChannel, seq);
-            AssetProperty assProp = (AssetProperty)getPresentation().getPropertyFactory().createProperty("AssetProperty",
-                ObiPropertyFactory.ObiNS);
-            assProp.Asset = asset;
-            node.setProperty(assProp);
-            NodeInformationProperty typeProp =
-                (NodeInformationProperty)getPresentation().getPropertyFactory().createProperty("NodeInformationProperty",
-                ObiPropertyFactory.ObiNS);
-            typeProp.NodeType = NodeType.Phrase;
-            typeProp.NodeStatus = NodeStatus.Used;
-            node.setProperty(typeProp);
-            return node;
         }
 
         /// <summary>

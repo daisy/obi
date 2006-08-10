@@ -20,7 +20,9 @@ namespace Obi.Events.Node
     public delegate void ShallowDeletedNodeHandler(object sender, NodeEventArgs e);
     
     public delegate void ImportedAssetHandler(object sender, NodeEventArgs e);
-    public delegate void DeletedBlock(object sender, NodeEventArgs e);
+    public delegate void DeletedBlockHandler(object sender, NodeEventArgs e);
+
+    public delegate void BlockChangedTimeHandler(object sender, NodeEventArgs e);
 
     public class NodeEventArgs : EventArgs
     {

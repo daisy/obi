@@ -28,6 +28,8 @@ namespace Obi.UserControls
         public event Events.Node.RequestToRenameNodeHandler RenameSection;
         public event Events.Node.SetMediaHandler SetMedia;
         public event Events.Node.RequestToDeleteBlockHandler DeleteBlock;
+        public event Events.Node.SplitNodeHandler SplitNode;
+        public event Events.Node.MergeNodesHandler MergeNodes;
         public event Events.Strip.RequestToImportAssetHandler ImportPhrase;
         public event Events.Strip.SelectedHandler SelectedStrip;
         public event Events.Strip.SelectedHandler SelectedAudioBlock;
@@ -381,6 +383,12 @@ namespace Obi.UserControls
             strip.RenameAudioBlock(mPhraseNodeMap[e.Node], ((TextMedia)e.Media).getText());
         }
 
+        internal void SyncBlockChangedTime(object sender, Events.Node.NodeEventArgs e)
+        {
+            AudioBlock block = mPhraseNodeMap[e.Node];
+            block.Time = (Math.Round(Project.GetAudioMediaAsset(e.Node).LengthInMilliseconds / 1000)).ToString() + "s";
+        }
+
         #endregion
 
         #region Menu items
@@ -441,7 +449,29 @@ namespace Obi.UserControls
             if (mSelectedPhrase != null)
             {
                 Dialogs.Split dialog = new Dialogs.Split(mSelectedPhrase, 0.0);
-                dialog.ShowDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    SplitNode(this, new Events.Node.SplitNodeEventArgs(this, mSelectedPhrase, dialog.ResultAsset));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Merge the currently selected block with the following one (if there is such a block.)
+        /// </summary>
+        private void mMergeWithNextAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mSelectedPhrase != null)
+            {
+                CoreNode parent = (CoreNode)mSelectedPhrase.getParent();
+                for (int i = parent.indexOf(mSelectedPhrase) + 1; i < parent.getChildCount(); ++i)
+                {
+                    if (Project.GetNodeType(parent.getChild(i)) == NodeType.Phrase)
+                    {
+                        MergeNodes(this, new Events.Node.MergeNodesEventArgs(this, mSelectedPhrase, parent.getChild(i)));
+                        break;
+                    }
+                }
             }
         }
 

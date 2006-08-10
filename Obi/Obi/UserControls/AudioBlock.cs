@@ -167,7 +167,5 @@ namespace Obi.UserControls
         }
 
         #endregion
-        
-
     }
 }

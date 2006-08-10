@@ -67,6 +67,10 @@ namespace Obi.UserControls
                     mStripManagerPanel.SetMedia -= new Events.Node.SetMediaHandler(mProject.SetMediaRequested);
                     mProject.MediaSet -= new Events.Node.MediaSetHandler(mStripManagerPanel.SyncMediaSet);
 
+                    mStripManagerPanel.SplitNode -= new Events.Node.SplitNodeHandler(mProject.SplitAssetRequested);
+                    mStripManagerPanel.MergeNodes -= new Events.Node.MergeNodesHandler(mProject.MergeNodesRequested);
+                    mProject.BlockChangedTime -= new Events.Node.BlockChangedTimeHandler(mStripManagerPanel.SyncBlockChangedTime);
+
                     mStripManagerPanel.DeleteBlock -=
                         new Events.Node.RequestToDeleteBlockHandler(mProject.DeletePhraseNodeRequested);
                     mProject.DeletedPhraseNode -= new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeletedPhraseNode);
@@ -113,6 +117,10 @@ namespace Obi.UserControls
 
                     mStripManagerPanel.SetMedia += new Events.Node.SetMediaHandler(value.SetMediaRequested);
                     value.MediaSet += new Events.Node.MediaSetHandler(mStripManagerPanel.SyncMediaSet);
+
+                    mStripManagerPanel.SplitNode += new Events.Node.SplitNodeHandler(value.SplitAssetRequested);
+                    mStripManagerPanel.MergeNodes += new Events.Node.MergeNodesHandler(value.MergeNodesRequested);
+                    value.BlockChangedTime += new Events.Node.BlockChangedTimeHandler(mStripManagerPanel.SyncBlockChangedTime);
 
                     mStripManagerPanel.DeleteBlock += new Events.Node.RequestToDeleteBlockHandler(value.DeletePhraseNodeRequested);
                     value.DeletedPhraseNode += new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeletedPhraseNode);

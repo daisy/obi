@@ -154,11 +154,13 @@
     <Compile Include="Events\Audio\VuMeter\ResetEventArgs.cs" />
     <Compile Include="Events\Audio\VuMeter\UpdateFormsEventArgs.cs" />
     <Compile Include="Events\Node\AddedPhraseNodeEventArgs.cs" />
+    <Compile Include="Events\Node\MergeNodesEventArgs.cs" />
     <Compile Include="Events\Node\NodeEventArgs.cs" />
     <Compile Include="Events\Node\RenameNodeEventArgs.cs" />
     <Compile Include="Events\Node\MovedNodeEventArgs.cs" />
     <Compile Include="Events\Node\SelectedEventArgs.cs" />
     <Compile Include="Events\Node\SetMediaEventArgs.cs" />
+    <Compile Include="Events\Node\SplitNodeEventArgs.cs" />
     <Compile Include="Events\Project\CommandCreatedEventArgs.cs" />
     <Compile Include="Events\Project\StateChangedEventArgs.cs" />
     <Compile Include="Events\Strip\ImportAssetEventArgs.cs" />
