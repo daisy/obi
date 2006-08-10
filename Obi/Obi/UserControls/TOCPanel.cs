@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -422,7 +422,9 @@ namespace Obi.UserControls
         internal void SyncMovedNode(object sender, Events.Node.MovedNodeEventArgs e)
         {
             TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
+
             TreeNode parent = Project.GetNodeType(e.Parent) == NodeType.Section ? FindTreeNodeFromCoreNode(e.Parent) : null;
+
 
             if (selected == null)
             {
