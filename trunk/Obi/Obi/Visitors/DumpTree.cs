@@ -28,6 +28,11 @@ namespace Obi.Visitors
                     break;
                 case NodeType.Phrase:
                     info += " " + ((TextMedia)Project.GetMediaForChannel(n, Project.AnnotationChannel)).getText();
+                    Assets.AudioMediaAsset asset = Project.GetAudioMediaAsset(n);
+                    foreach (Assets.AudioClip clip in asset.Clips)
+                    {
+                        info += String.Format("\n  {0}{1} {2}-{3}", indent, clip.Path, clip.BeginTime, clip.EndTime);
+                    }
                     break;
                 default:
                     break;

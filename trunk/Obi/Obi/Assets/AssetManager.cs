@@ -339,10 +339,24 @@ namespace Obi.Assets
             return unused;
         }
 
+        /// <summary>
+        /// Split an audio asset at a given time and add the result to the manager with a correct name.
+        /// </summary>
+        /// <returns>The new asset.</returns>
         public AudioMediaAsset SplitAudioMediaAsset(AudioMediaAsset asset, double time)
         {
-            // do something for undo here
             return (AudioMediaAsset)NameAddAsset(asset.Split(time));
+        }
+
+        /// <summary>
+        /// Merge two audio assets. The first one is modified in place.
+        /// The second one is not managed any more, but its files are still there so there is no change.
+        /// </summary>
+        internal void MergeAudioMediaAssets(AudioMediaAsset asset, AudioMediaAsset next)
+        {
+            asset.MergeWith(next);
+            mAssets.Remove(next.Name);
+            next.Manager = null;
         }
     }
 }

@@ -45,9 +45,9 @@ namespace Obi.Dialogs
             // 
             // btnPreview
             // 
-            this.btnPreview.Location = new System.Drawing.Point(30, 28);
+            this.btnPreview.Location = new System.Drawing.Point(30, 26);
             this.btnPreview.Name = "btnPreview";
-            this.btnPreview.Size = new System.Drawing.Size(75, 23);
+            this.btnPreview.Size = new System.Drawing.Size(75, 21);
             this.btnPreview.TabIndex = 0;
             this.btnPreview.Text = "Pre&view";
             this.btnPreview.UseVisualStyleBackColor = true;
@@ -58,15 +58,15 @@ namespace Obi.Dialogs
             this.txtDisplayAsset.Location = new System.Drawing.Point(30, 0);
             this.txtDisplayAsset.Name = "txtDisplayAsset";
             this.txtDisplayAsset.ReadOnly = true;
-            this.txtDisplayAsset.Size = new System.Drawing.Size(100, 20);
+            this.txtDisplayAsset.Size = new System.Drawing.Size(100, 19);
             this.txtDisplayAsset.TabIndex = 1;
             // 
             // txtDisplayTime
             // 
-            this.txtDisplayTime.Location = new System.Drawing.Point(30, 60);
+            this.txtDisplayTime.Location = new System.Drawing.Point(30, 55);
             this.txtDisplayTime.Name = "txtDisplayTime";
             this.txtDisplayTime.ReadOnly = true;
-            this.txtDisplayTime.Size = new System.Drawing.Size(100, 20);
+            this.txtDisplayTime.Size = new System.Drawing.Size(100, 19);
             this.txtDisplayTime.TabIndex = 2;
             // 
             // tmUpdateTimePosition
@@ -77,9 +77,9 @@ namespace Obi.Dialogs
             // 
             // btnFastRewind
             // 
-            this.btnFastRewind.Location = new System.Drawing.Point(30, 90);
+            this.btnFastRewind.Location = new System.Drawing.Point(30, 83);
             this.btnFastRewind.Name = "btnFastRewind";
-            this.btnFastRewind.Size = new System.Drawing.Size(75, 23);
+            this.btnFastRewind.Size = new System.Drawing.Size(75, 21);
             this.btnFastRewind.TabIndex = 3;
             this.btnFastRewind.Text = "Fast Rewind";
             this.btnFastRewind.UseVisualStyleBackColor = true;
@@ -87,9 +87,9 @@ namespace Obi.Dialogs
             // 
             // btnFastForward
             // 
-            this.btnFastForward.Location = new System.Drawing.Point(120, 90);
+            this.btnFastForward.Location = new System.Drawing.Point(120, 83);
             this.btnFastForward.Name = "btnFastForward";
-            this.btnFastForward.Size = new System.Drawing.Size(75, 23);
+            this.btnFastForward.Size = new System.Drawing.Size(75, 21);
             this.btnFastForward.TabIndex = 4;
             this.btnFastForward.Text = "Fast Forward";
             this.btnFastForward.UseVisualStyleBackColor = true;
@@ -97,9 +97,9 @@ namespace Obi.Dialogs
             // 
             // btnFineRewind
             // 
-            this.btnFineRewind.Location = new System.Drawing.Point(30, 150);
+            this.btnFineRewind.Location = new System.Drawing.Point(30, 138);
             this.btnFineRewind.Name = "btnFineRewind";
-            this.btnFineRewind.Size = new System.Drawing.Size(75, 23);
+            this.btnFineRewind.Size = new System.Drawing.Size(75, 21);
             this.btnFineRewind.TabIndex = 5;
             this.btnFineRewind.Text = "Fine Rewind";
             this.btnFineRewind.UseVisualStyleBackColor = true;
@@ -107,9 +107,9 @@ namespace Obi.Dialogs
             // 
             // btnFineForward
             // 
-            this.btnFineForward.Location = new System.Drawing.Point(120, 150);
+            this.btnFineForward.Location = new System.Drawing.Point(120, 138);
             this.btnFineForward.Name = "btnFineForward";
-            this.btnFineForward.Size = new System.Drawing.Size(75, 23);
+            this.btnFineForward.Size = new System.Drawing.Size(75, 21);
             this.btnFineForward.TabIndex = 6;
             this.btnFineForward.Text = "Fine Forward";
             this.btnFineForward.UseVisualStyleBackColor = true;
@@ -117,9 +117,10 @@ namespace Obi.Dialogs
             // 
             // btnSplit
             // 
-            this.btnSplit.Location = new System.Drawing.Point(30, 180);
+            this.btnSplit.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnSplit.Location = new System.Drawing.Point(30, 166);
             this.btnSplit.Name = "btnSplit";
-            this.btnSplit.Size = new System.Drawing.Size(75, 23);
+            this.btnSplit.Size = new System.Drawing.Size(75, 21);
             this.btnSplit.TabIndex = 7;
             this.btnSplit.Text = "Split";
             this.btnSplit.UseVisualStyleBackColor = true;
@@ -128,9 +129,9 @@ namespace Obi.Dialogs
             // btnStop
             // 
             this.btnStop.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnStop.Location = new System.Drawing.Point(120, 180);
+            this.btnStop.Location = new System.Drawing.Point(120, 166);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(75, 23);
+            this.btnStop.Size = new System.Drawing.Size(75, 21);
             this.btnStop.TabIndex = 8;
             this.btnStop.Text = "Stop";
             this.btnStop.UseVisualStyleBackColor = true;
@@ -138,9 +139,9 @@ namespace Obi.Dialogs
             // 
             // btnPause
             // 
-            this.btnPause.Location = new System.Drawing.Point(150, 30);
+            this.btnPause.Location = new System.Drawing.Point(150, 28);
             this.btnPause.Name = "btnPause";
-            this.btnPause.Size = new System.Drawing.Size(75, 23);
+            this.btnPause.Size = new System.Drawing.Size(75, 21);
             this.btnPause.TabIndex = 0;
             this.btnPause.Text = "Pause";
             this.btnPause.UseVisualStyleBackColor = true;
@@ -148,18 +149,18 @@ namespace Obi.Dialogs
             // 
             // txtSplitTime
             // 
-            this.txtSplitTime.Location = new System.Drawing.Point(200, 250);
+            this.txtSplitTime.Location = new System.Drawing.Point(200, 231);
             this.txtSplitTime.Name = "txtSplitTime";
-            this.txtSplitTime.Size = new System.Drawing.Size(100, 20);
+            this.txtSplitTime.Size = new System.Drawing.Size(100, 19);
             this.txtSplitTime.TabIndex = 9;
             // 
             // Split
             // 
             this.AcceptButton = this.btnSplit;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnStop;
-            this.ClientSize = new System.Drawing.Size(292, 273);
+            this.ClientSize = new System.Drawing.Size(292, 252);
             this.Controls.Add(this.txtSplitTime);
             this.Controls.Add(this.btnPause);
             this.Controls.Add(this.btnStop);
