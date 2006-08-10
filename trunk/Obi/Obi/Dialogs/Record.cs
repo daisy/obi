@@ -86,7 +86,6 @@ namespace Obi.Dialogs
         private void Record_Load(object sender, EventArgs e)
         {
             //suman
-//on selecting the record button the text changes to Pause, but does not change back to record.            
 //on closing the record form the recording does not stop
             ArrayList arDevices = new ArrayList();
             arDevices = Audio.AudioRecorder.Instance.GetInputDevices();
@@ -112,24 +111,26 @@ namespace Obi.Dialogs
         {
             
 Assets.AudioMediaAsset mRecordAsset = mAssManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
-            if(Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Listening) )
+            if(Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Listening))
             {
             Audio.AudioRecorder.Instance.StopRecording();
             timer1.Enabled = false;
-            mRecordButton.Text = Localizer.Message("record");
+            //mRecordButton.Text = Localizer.Message("record");
             }                   
             if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Idle))
             {
                 Audio.AudioRecorder.Instance.StartRecording(mRecordAsset);
                 mRecordButton.Text = Localizer.Message("pause");
                 timer1.Enabled = true;
+                mPhraseMarkerButton.Enabled = false;
             }
         
-        else if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Recording) && mRecordButton.Text.Contains("Pause"))
+        else if(Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Recording) && mRecordButton.Text.Contains("Pause"))
             {
                 Audio.AudioRecorder.Instance.StopRecording();
-                mRecordButton.Text = Localizer.Message("&Record");
+                mRecordButton.Text = Localizer.Message("record");
                 timer1.Enabled = false;
+                mPhraseMarkerButton.Enabled = true;
                 
             }
         }
@@ -168,6 +169,7 @@ private void timer1_Tick(object sender, EventArgs e)
             if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Listening))
             {
                 Audio.AudioRecorder.Instance.StopRecording();
+                timer1.Enabled = false;
             }
                 if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Recording))
                 {
@@ -175,17 +177,18 @@ private void timer1_Tick(object sender, EventArgs e)
                     EndTime = CurrentTime;
                     Obi.Events.Audio.Recorder.PhraseEventArgs mEnd = new Obi.Events.Audio.Recorder.PhraseEventArgs(1);
                     FinishPhrase(this, mEnd);
-                    newPhrase = mPhraseMarkerAsset.GetChunk(BeginTime, EndTime);
-                    BeginTime = EndTime;
+                    timer1.Enabled = false;
                 }
                 if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Idle))
                 {
                     Obi.Events.Audio.Recorder.PhraseEventArgs mStart = new Obi.Events.Audio.Recorder.PhraseEventArgs(BeginTime);
                     StartPhrase(this, mStart);
                     Audio.AudioRecorder.Instance.StartRecording(mPhraseMarkerAsset);
-                    CurrentTime = Audio.AudioRecorder.Instance.GetTime;
+                    CurrentTime = Audio.AudioRecorder.Instance.TimeOfAsset;
                     Obi.Events.Audio.Recorder.PhraseEventArgs mContinue = new Obi.Events.Audio.Recorder.PhraseEventArgs(CurrentTime);
                     ContinuePhrase(this, mContinue);
+                    timer1.Enabled = true;
+                    mRecordButton.Enabled = false;
                 }
             }
         }

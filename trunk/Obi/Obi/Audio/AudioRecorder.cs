@@ -91,6 +91,7 @@ namespace Obi.Audio
 		private AudioRecorder()
 		{
             mState = AudioRecorderState.Idle;
+            Capturing = false;
             ob_VuMeter = null;
 		}
 
