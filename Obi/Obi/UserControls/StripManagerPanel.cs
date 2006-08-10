@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using System.Collections;
 
 using urakawa.core;
 using urakawa.media;
@@ -371,10 +372,51 @@ namespace Obi.UserControls
 
         internal void SyncMovedNode(object sender, Events.Node.MovedNodeEventArgs e)
         {
-            SectionStrip strip = mSectionNodeMap[e.Node];
-            mFlowLayoutPanel.Controls.SetChildIndex(strip, e.Position);
+            //md:
+            ArrayList stripsToMove = new ArrayList();
+            MakeFlatListOfStrips(e.Node, stripsToMove);
+
+            SectionStrip parentNodeStrip = mSectionNodeMap[e.Node];
+            int currentPosition = mFlowLayoutPanel.Controls.GetChildIndex(parentNodeStrip);
+
+            //if we are moving down
+            if (currentPosition < e.Position)
+            {
+                //reverse the order, because we want to move the last strip first
+                //otherwise the operation doesn't work correctly because strips
+                //get swapped, and a sequence of moves will not preserve
+                //every move that has happened in that sequence
+             
+                for (int i = stripsToMove.Count - 1; i >= 0; i-- )
+                {
+                    mFlowLayoutPanel.Controls.SetChildIndex
+                        ((SectionStrip)stripsToMove[i], e.Position + i);
+                }
+            }
+            else
+            {
+
+                for (int i = 0; i < stripsToMove.Count; i++)
+                {
+                    mFlowLayoutPanel.Controls.SetChildIndex
+                        ((SectionStrip)stripsToMove[i], e.Position + i);
+                }
+            }
+            
             //mg:
-            this.ReflowTabOrder(strip);
+            this.ReflowTabOrder(parentNodeStrip);
+        }
+
+        //md: recursive function to enumerate the strips under a node (including the strip for the node itself)
+        private void MakeFlatListOfStrips(CoreNode node, ArrayList strips)
+        {
+            SectionStrip strip = mSectionNodeMap[node];
+            strips.Add(strip);
+
+            for (int i = 0; i < node.getChildCount(); i++)
+            {
+                MakeFlatListOfStrips(node.getChild(i), strips);
+            }
         }
 
         internal void SyncMediaSet(object sender, Events.Node.SetMediaEventArgs e)
