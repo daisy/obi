@@ -35,14 +35,12 @@ namespace Obi.Dialogs
             this.mStopButton = new System.Windows.Forms.Button();
             this.mPhraseMarkerButton = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.mVolumeTrackBar = new System.Windows.Forms.TrackBar();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            ((System.ComponentModel.ISupportInitialize)(this.mVolumeTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // mRecordButton
             // 
-            this.mRecordButton.Location = new System.Drawing.Point(30, 65);
+            this.mRecordButton.Location = new System.Drawing.Point(24, 131);
             this.mRecordButton.Name = "mRecordButton";
             this.mRecordButton.Size = new System.Drawing.Size(75, 25);
             this.mRecordButton.TabIndex = 0;
@@ -53,7 +51,7 @@ namespace Obi.Dialogs
             // mDisplayTimeLable
             // 
             this.mDisplayTimeLable.AutoSize = true;
-            this.mDisplayTimeLable.Location = new System.Drawing.Point(37, 9);
+            this.mDisplayTimeLable.Location = new System.Drawing.Point(145, 25);
             this.mDisplayTimeLable.Name = "mDisplayTimeLable";
             this.mDisplayTimeLable.Size = new System.Drawing.Size(73, 13);
             this.mDisplayTimeLable.TabIndex = 1;
@@ -61,7 +59,7 @@ namespace Obi.Dialogs
             // 
             // mTimeTextBox
             // 
-            this.mTimeTextBox.Location = new System.Drawing.Point(39, 30);
+            this.mTimeTextBox.Location = new System.Drawing.Point(132, 41);
             this.mTimeTextBox.Name = "mTimeTextBox";
             this.mTimeTextBox.ReadOnly = true;
             this.mTimeTextBox.Size = new System.Drawing.Size(100, 20);
@@ -69,7 +67,7 @@ namespace Obi.Dialogs
             // 
             // mStopButton
             // 
-            this.mStopButton.Location = new System.Drawing.Point(123, 67);
+            this.mStopButton.Location = new System.Drawing.Point(123, 131);
             this.mStopButton.Name = "mStopButton";
             this.mStopButton.Size = new System.Drawing.Size(75, 23);
             this.mStopButton.TabIndex = 3;
@@ -79,9 +77,9 @@ namespace Obi.Dialogs
             // 
             // mPhraseMarkerButton
             // 
-            this.mPhraseMarkerButton.Location = new System.Drawing.Point(221, 66);
+            this.mPhraseMarkerButton.Location = new System.Drawing.Point(238, 132);
             this.mPhraseMarkerButton.Name = "mPhraseMarkerButton";
-            this.mPhraseMarkerButton.Size = new System.Drawing.Size(75, 23);
+            this.mPhraseMarkerButton.Size = new System.Drawing.Size(88, 23);
             this.mPhraseMarkerButton.TabIndex = 4;
             this.mPhraseMarkerButton.Text = "Phrase &Marker";
             this.mPhraseMarkerButton.UseVisualStyleBackColor = true;
@@ -91,19 +89,11 @@ namespace Obi.Dialogs
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // mVolumeTrackBar
-            // 
-            this.mVolumeTrackBar.Location = new System.Drawing.Point(4, 121);
-            this.mVolumeTrackBar.Name = "mVolumeTrackBar";
-            this.mVolumeTrackBar.Size = new System.Drawing.Size(290, 48);
-            this.mVolumeTrackBar.TabIndex = 5;
-            // 
             // Record
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(302, 183);
-            this.Controls.Add(this.mVolumeTrackBar);
+            this.ClientSize = new System.Drawing.Size(367, 183);
             this.Controls.Add(this.mPhraseMarkerButton);
             this.Controls.Add(this.mStopButton);
             this.Controls.Add(this.mTimeTextBox);
@@ -112,7 +102,6 @@ namespace Obi.Dialogs
             this.Name = "Record";
             this.Text = "Record";
             this.Load += new System.EventHandler(this.Record_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.mVolumeTrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,7 +115,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button mStopButton;
         private System.Windows.Forms.Button mPhraseMarkerButton;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.TrackBar mVolumeTrackBar;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
