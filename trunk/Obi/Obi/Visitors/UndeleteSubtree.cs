@@ -33,7 +33,7 @@ namespace Obi.Visitors
         {
             if (Project.GetNodeType((CoreNode)node) == NodeType.Section)
             {
-                mProject.AddExistingSection((CoreNode)node, mParent, mIndex, mPosition, null);
+                mProject.AddExistingSectionNode((CoreNode)node, mParent, mIndex, mPosition, null);
                 mIndex = 0;
                 ++mPosition;
             }

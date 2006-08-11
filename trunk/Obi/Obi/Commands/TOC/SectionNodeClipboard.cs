@@ -36,7 +36,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            mProject.DoCutTOCNode(mProject, mNode);
+            mProject.DoCutSectionNode(mProject, mNode);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mProject.UndoCutNode(mNode, mParent, mIndex, mPosition);
+            mProject.UndoCutSectionNode(mNode, mParent, mIndex, mPosition);
         }
     }
 
@@ -72,7 +72,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            mProject.CopyTOCNode(mProject, mNode);
+            mProject.CopySectionNode(mProject, mNode);
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mProject.UndoCopyTOCNode(mNode);
+            mProject.UndoCopySectionNode(mNode);
         }
     }
     class PasteSectionNode : Command
@@ -107,7 +107,7 @@ namespace Obi.Commands.TOC
 
         public override void Do()
         {
-            mProject.PasteTOCNode(mProject, mParent);
+            mProject.PasteSectionNode(mProject, mParent);
         }
 
         public override void Undo()
