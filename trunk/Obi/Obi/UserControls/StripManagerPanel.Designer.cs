@@ -36,17 +36,17 @@ namespace Obi.UserControls
             this.mRenameStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mImportAudioFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mDeleteAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.moveAudioBlockforwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.moveAudioBlockbackwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.recordAudioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlayAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSplitAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMergeWithNextAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mDeleteAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mRenameAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mEditAudioBlockLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mShowInTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.moveAudioBlockforwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.moveAudioBlockbackwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,12 +85,12 @@ namespace Obi.UserControls
             this.mDeleteAudioBlockToolStripMenuItem,
             this.moveAudioBlockforwardToolStripMenuItem,
             this.moveAudioBlockbackwardToolStripMenuItem,
+            this.mEditAudioBlockLabelToolStripMenuItem,
             this.toolStripSeparator3,
             this.recordAudioToolStripMenuItem,
             this.mPlayAudioBlockToolStripMenuItem,
             this.mSplitAudioBlockToolStripMenuItem,
             this.mMergeWithNextAudioBlockToolStripMenuItem,
-            this.mRenameAudioBlockToolStripMenuItem,
             this.toolStripSeparator2,
             this.mShowInTOCViewToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
@@ -123,6 +123,32 @@ namespace Obi.UserControls
             this.mImportAudioFileToolStripMenuItem.Text = "&Import audio";
             this.mImportAudioFileToolStripMenuItem.Click += new System.EventHandler(this.mImportAudioToolStripMenuItem_Click);
             // 
+            // mDeleteAudioBlockToolStripMenuItem
+            // 
+            this.mDeleteAudioBlockToolStripMenuItem.Name = "mDeleteAudioBlockToolStripMenuItem";
+            this.mDeleteAudioBlockToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.mDeleteAudioBlockToolStripMenuItem.Text = "&Delete audio block";
+            this.mDeleteAudioBlockToolStripMenuItem.Click += new System.EventHandler(this.mDeleteAudioBlockToolStripMenuItem_Click);
+            // 
+            // moveAudioBlockforwardToolStripMenuItem
+            // 
+            this.moveAudioBlockforwardToolStripMenuItem.Name = "moveAudioBlockforwardToolStripMenuItem";
+            this.moveAudioBlockforwardToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.moveAudioBlockforwardToolStripMenuItem.Text = "Move audio block &forward";
+            this.moveAudioBlockforwardToolStripMenuItem.Click += new System.EventHandler(this.mMoveAudioBlockforwardToolStripMenuItem_Click);
+            // 
+            // moveAudioBlockbackwardToolStripMenuItem
+            // 
+            this.moveAudioBlockbackwardToolStripMenuItem.Name = "moveAudioBlockbackwardToolStripMenuItem";
+            this.moveAudioBlockbackwardToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.moveAudioBlockbackwardToolStripMenuItem.Text = "Move audio block &backward";
+            this.moveAudioBlockbackwardToolStripMenuItem.Click += new System.EventHandler(this.mMoveAudioBlockbackwardToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(186, 6);
+            // 
             // recordAudioToolStripMenuItem
             // 
             this.recordAudioToolStripMenuItem.Name = "recordAudioToolStripMenuItem";
@@ -150,19 +176,12 @@ namespace Obi.UserControls
             this.mMergeWithNextAudioBlockToolStripMenuItem.Text = "&Merge with next audio block";
             this.mMergeWithNextAudioBlockToolStripMenuItem.Click += new System.EventHandler(this.mMergeWithNextAudioBlockToolStripMenuItem_Click);
             // 
-            // mDeleteAudioBlockToolStripMenuItem
+            // mEditAudioBlockLabelToolStripMenuItem
             // 
-            this.mDeleteAudioBlockToolStripMenuItem.Name = "mDeleteAudioBlockToolStripMenuItem";
-            this.mDeleteAudioBlockToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.mDeleteAudioBlockToolStripMenuItem.Text = "&Delete audio block";
-            this.mDeleteAudioBlockToolStripMenuItem.Click += new System.EventHandler(this.mDeleteAudioBlockToolStripMenuItem_Click);
-            // 
-            // mRenameAudioBlockToolStripMenuItem
-            // 
-            this.mRenameAudioBlockToolStripMenuItem.Name = "mRenameAudioBlockToolStripMenuItem";
-            this.mRenameAudioBlockToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.mRenameAudioBlockToolStripMenuItem.Text = "Re&name audio block";
-            this.mRenameAudioBlockToolStripMenuItem.Click += new System.EventHandler(this.mRenameAudioBlockToolStripMenuItem_Click);
+            this.mEditAudioBlockLabelToolStripMenuItem.Name = "mEditAudioBlockLabelToolStripMenuItem";
+            this.mEditAudioBlockLabelToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.mEditAudioBlockLabelToolStripMenuItem.Text = "&Edit audio block label";
+            this.mEditAudioBlockLabelToolStripMenuItem.Click += new System.EventHandler(this.mEditAudioBlockLabelToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -175,25 +194,6 @@ namespace Obi.UserControls
             this.mShowInTOCViewToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.mShowInTOCViewToolStripMenuItem.Text = "Show in &TOC view";
             this.mShowInTOCViewToolStripMenuItem.Click += new System.EventHandler(this.mShowInTOCViewToolStripMenuItem_Click);
-            // 
-            // moveAudioBlockforwardToolStripMenuItem
-            // 
-            this.moveAudioBlockforwardToolStripMenuItem.Name = "moveAudioBlockforwardToolStripMenuItem";
-            this.moveAudioBlockforwardToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.moveAudioBlockforwardToolStripMenuItem.Text = "Move audio block &forward";
-            this.moveAudioBlockforwardToolStripMenuItem.Click += new System.EventHandler(this.mMoveAudioBlockforwardToolStripMenuItem_Click);
-            // 
-            // moveAudioBlockbackwardToolStripMenuItem
-            // 
-            this.moveAudioBlockbackwardToolStripMenuItem.Name = "moveAudioBlockbackwardToolStripMenuItem";
-            this.moveAudioBlockbackwardToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.moveAudioBlockbackwardToolStripMenuItem.Text = "Move audio block &backward";
-            this.moveAudioBlockbackwardToolStripMenuItem.Click += new System.EventHandler(this.mMoveAudioBlockbackwardToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(186, 6);
             // 
             // StripManagerPanel
             // 
@@ -219,7 +219,7 @@ namespace Obi.UserControls
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem mImportAudioFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPlayAudioBlockToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mRenameAudioBlockToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mEditAudioBlockLabelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mSplitAudioBlockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mShowInTOCViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;

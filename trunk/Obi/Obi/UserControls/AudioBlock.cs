@@ -97,23 +97,28 @@ namespace Obi.UserControls
         {
             mManager.SelectedPhraseNode = mNode;
             System.Diagnostics.Debug.Print("Audioblock:tabindex:" + this.TabIndex.ToString());
-            MarkSelected();
+            // MarkSelected();
         }
 
         //mg: for tab navigation et al
         private void AudioBlock_leave(object sender, EventArgs e)
         {
-            MarkDeselected();
+            // Removed by JQ--marking an item as selected/deselected is done through properties in the manager panel.
+            //MarkDeselected();
         }
 #endregion
 
         #region Rename Box
 
+        /// <summary>
+        /// Bring up the editable text box.
+        /// TODO: maybe the labels should be replaced by non-editable text boxes.
+        /// </summary>
         internal void StartRenaming()
         {
             mRenameBox.BackColor = BackColor;
             mRenameBox.Text = "";
-            mRenameBox.SelectedText = ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).getText();
+            mRenameBox.SelectedText = mAnnotationLabel.Text;
             mRenameBox.Visible = true;
             mRenameBox.Focus();
         }
@@ -156,7 +161,7 @@ namespace Obi.UserControls
             mRenameBox.Visible = false;
             if (mRenameBox.Text != "" && mRenameBox.Text != mAnnotationLabel.Text)
             {
-                mManager.RenamedAudioBlock(this, mRenameBox.Text);
+                mManager.EditedAudioBlockLabel(this, mRenameBox.Text);
             }
             else
             {

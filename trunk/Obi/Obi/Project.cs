@@ -55,7 +55,6 @@ namespace Obi
         public event Events.Node.RenamedNodeHandler RenamedNode;                // a node was renamed in the presentation
         public event Events.Node.MovedNodeHandler MovedNode;                    // a node was moved in the presentation
         public event Events.Node.DecreasedNodeLevelHandler DecreasedNodeLevel;  // a node's level was decreased in the presentation
-        public event Events.Node.ImportedAssetHandler ImportedAsset;            // an asset was imported into the project
         public event Events.Node.MovedNodeHandler UndidMoveNode;                // a node was restored to its previous location
         public event Events.Node.MediaSetHandler MediaSet;                      // a media object was set on a node
         public event Events.Node.DeletedNodeHandler DeletedPhraseNode;          // deleted a phrase node 
@@ -1131,61 +1130,6 @@ namespace Obi
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         
-        }
-
-        // Find the channel and set the media object.
-        // As this may fail, return true if the change was really made or false otherwise.
-        // Throw an exception if the channel could not be found (JQ)
-        internal bool DidSetMedia(object origin, CoreNode node, string channel, IMedia media)
-        {
-            ChannelsProperty channelsProp = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
-            IList channelsList = channelsProp.getListOfUsedChannels();
-            for (int i = 0; i < channelsList.Count; i++)
-            {
-                IChannel ch = (IChannel)channelsList[i];
-                if (ch.getName() == channel)
-                {
-                    Commands.Command command = null;
-                    if (GetNodeType(node) == NodeType.Phrase && channel == AnnotationChannel)
-                    {
-                        // we are renaming a phrase node
-                        Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);
-                        string old = mAssManager.RenameAsset(asset, ((TextMedia)media).getText());
-                        if (old == asset.Name) return false;
-                        command = new Commands.Strips.RenamePhrase(this, node);
-                    }
-                    channelsProp.setMedia(ch, media);
-                    MediaSet(this, new Events.Node.SetMediaEventArgs(origin, node, channel, media));
-                    if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-                    mUnsaved = true;
-                    StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-                    // make a command here
-                    return true;
-                }
-            }
-            // the channel was not found when it should have been...
-            throw new Exception(String.Format(Localizer.Message("channel_not_found"), channel));
-        }
-
-        /// <summary>
-        /// Set the media on a given channel of a node.
-        /// Cancel the event the change could not be made (e.g. renaming a block.)
-        /// </summary>
-        /// <remarks>JQ</remarks>
-        public void SetMediaRequested(object sender, Events.Node.SetMediaEventArgs e)
-        {
-            if (!DidSetMedia(sender, e.Node, e.Channel, e.Media)) e.Cancel = true;
-        }
-
-        internal void RenameBlock(CoreNode node, string name)
-        {
-            TextMedia media = (TextMedia)GetMediaForChannel(node, AnnotationChannel);
-            Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);
-            mAssManager.RenameAsset(asset, name);
-            media.setText(asset.Name);
-            MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, AnnotationChannel, media));
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
 
         /// <summary>
