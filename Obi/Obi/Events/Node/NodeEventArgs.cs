@@ -14,6 +14,7 @@ namespace Obi.Events.Node
     public delegate void RequestToMoveNodeUpHandler(object sender, NodeEventArgs e);
     public delegate void RequestToMoveNodeDownHandler(object sender, NodeEventArgs e);
     public delegate void RequestToDeleteBlockHandler(object sender, NodeEventArgs e);
+    public delegate void RequestToMoveBlockHandler(object sender, NodeEventArgs e);
     public delegate void RequestToCutNodeHandler(object sender, NodeEventArgs e);
     public delegate void RequestToCopyNodeHandler(object sender, NodeEventArgs e);
     public delegate void RequestToPasteNodeHandler(object sender, NodeEventArgs e);

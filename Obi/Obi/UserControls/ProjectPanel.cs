@@ -130,6 +130,10 @@ namespace Obi.UserControls
                         new Events.Strip.RequestToImportAssetHandler(value.ImportAssetRequested);
                     mStripManagerPanel.DeleteBlockRequested +=
                         new Events.Node.RequestToDeleteBlockHandler(value.DeletePhraseNodeRequested);
+                    mStripManagerPanel.MoveAudioBlockForwardRequested +=
+                        new Events.Node.RequestToMoveBlockHandler(value.MovePhraseNodeForwardRequested);
+                    mStripManagerPanel.MoveAudioBlockBackwardRequested +=
+                        new Events.Node.RequestToMoveBlockHandler(value.MovePhraseNodeBackwardRequested);
 
                     value.ImportedAsset +=
                         new Events.Node.ImportedAssetHandler(mStripManagerPanel.SyncCreateNewAudioBlock);

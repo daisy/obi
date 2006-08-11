@@ -44,6 +44,9 @@ namespace Obi.UserControls
             this.mRenameAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mShowInTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.moveAudioBlockforwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.moveAudioBlockbackwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,6 +83,9 @@ namespace Obi.UserControls
             this.toolStripSeparator1,
             this.mImportAudioFileToolStripMenuItem,
             this.mDeleteAudioBlockToolStripMenuItem,
+            this.moveAudioBlockforwardToolStripMenuItem,
+            this.moveAudioBlockbackwardToolStripMenuItem,
+            this.toolStripSeparator3,
             this.recordAudioToolStripMenuItem,
             this.mPlayAudioBlockToolStripMenuItem,
             this.mSplitAudioBlockToolStripMenuItem,
@@ -89,8 +95,7 @@ namespace Obi.UserControls
             this.mShowInTOCViewToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(190, 258);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(190, 308);
             // 
             // mAddStripToolStripMenuItem
             // 
@@ -171,6 +176,25 @@ namespace Obi.UserControls
             this.mShowInTOCViewToolStripMenuItem.Text = "Show in &TOC view";
             this.mShowInTOCViewToolStripMenuItem.Click += new System.EventHandler(this.mShowInTOCViewToolStripMenuItem_Click);
             // 
+            // moveAudioBlockforwardToolStripMenuItem
+            // 
+            this.moveAudioBlockforwardToolStripMenuItem.Name = "moveAudioBlockforwardToolStripMenuItem";
+            this.moveAudioBlockforwardToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.moveAudioBlockforwardToolStripMenuItem.Text = "Move audio block &forward";
+            this.moveAudioBlockforwardToolStripMenuItem.Click += new System.EventHandler(this.mMoveAudioBlockforwardToolStripMenuItem_Click);
+            // 
+            // moveAudioBlockbackwardToolStripMenuItem
+            // 
+            this.moveAudioBlockbackwardToolStripMenuItem.Name = "moveAudioBlockbackwardToolStripMenuItem";
+            this.moveAudioBlockbackwardToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.moveAudioBlockbackwardToolStripMenuItem.Text = "Move audio block &backward";
+            this.moveAudioBlockbackwardToolStripMenuItem.Click += new System.EventHandler(this.mMoveAudioBlockbackwardToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(186, 6);
+            // 
             // StripManagerPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -202,5 +226,8 @@ namespace Obi.UserControls
         private System.Windows.Forms.ToolStripMenuItem mDeleteAudioBlockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMergeWithNextAudioBlockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem recordAudioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem moveAudioBlockforwardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem moveAudioBlockbackwardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }

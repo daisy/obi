@@ -308,6 +308,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to move audio block.
+        /// </summary>
+        internal static string move_phrase_command_label {
+            get {
+                return ResourceManager.GetString("move_phrase_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name already exists.
         /// </summary>
         internal static string name_already_exists_caption {

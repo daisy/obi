@@ -336,4 +336,7 @@ Do you want to replace the project contained in this file?</value>
     <value>WAVE file (*.wav)|*.wav|Any file|*.*</value>
     <comment>Filter for opening audio files</comment>
   </data>
+  <data name="move_phrase_command_label" xml:space="preserve">
+    <value>move audio block</value>
+  </data>
 </root>
