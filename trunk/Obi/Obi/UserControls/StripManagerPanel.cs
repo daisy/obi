@@ -28,10 +28,12 @@ namespace Obi.UserControls
         public event Events.Node.RequestToAddSiblingNodeHandler AddSiblingSection;
         public event Events.Node.RequestToRenameNodeHandler RenameSection;
         public event Events.Node.SetMediaHandler SetMedia;
+        public event Events.Strip.RequestToImportAssetHandler ImportAudioAssetRequested;
         public event Events.Node.RequestToDeleteBlockHandler DeleteBlockRequested;
+        public event Events.Node.RequestToMoveBlockHandler MoveAudioBlockForwardRequested;
+        public event Events.Node.RequestToMoveBlockHandler MoveAudioBlockBackwardRequested;
         public event Events.Node.SplitNodeHandler SplitNode;
         public event Events.Node.MergeNodesHandler MergeNodes;
-        public event Events.Strip.RequestToImportAssetHandler ImportAudioAssetRequested;
         public event Events.Strip.SelectedHandler SelectedStrip;
         public event Events.Strip.SelectedHandler SelectedAudioBlock;
 
@@ -101,7 +103,7 @@ namespace Obi.UserControls
                 }
             }
         }
-        
+
         /// <summary>
         /// Get the SectionStrip that is currently seleced, or null if no current selection exists.
         /// </summary>
@@ -110,7 +112,7 @@ namespace Obi.UserControls
         {
             get
             {
-                if(mSelectedSection!=null)
+                if (mSelectedSection != null)
                     return mSectionNodeMap[mSelectedSection];
                 return null;
             }
@@ -148,7 +150,7 @@ namespace Obi.UserControls
         // mg 20060804
         internal ProjectPanel ProjectPanel
         {
-            get 
+            get
             {
                 return mProjectPanel;
             }
@@ -360,8 +362,8 @@ namespace Obi.UserControls
                 //otherwise the operation doesn't work correctly because strips
                 //get swapped, and a sequence of moves will not preserve
                 //every move that has happened in that sequence
-             
-                for (int i = stripsToMove.Count - 1; i >= 0; i-- )
+
+                for (int i = stripsToMove.Count - 1; i >= 0; i--)
                 {
                     mFlowLayoutPanel.Controls.SetChildIndex
                         ((SectionStrip)stripsToMove[i], e.Position + i);
@@ -376,7 +378,7 @@ namespace Obi.UserControls
                         ((SectionStrip)stripsToMove[i], e.Position + i);
                 }
             }
-            
+
             //mg:
             this.ReflowTabOrder(parentNodeStrip);
         }
@@ -524,6 +526,30 @@ namespace Obi.UserControls
                 DeleteBlockRequested(this, new Events.Node.NodeEventArgs(this, mSelectedPhrase));
             }
         }
+
+        /// <summary>
+        /// Move a block forward one spot in the strip, if it is not the last one.
+        /// </summary>
+        private void mMoveAudioBlockforwardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mSelectedPhrase != null)
+            {
+                MoveAudioBlockForwardRequested(this, new Events.Node.NodeEventArgs(this, mSelectedPhrase));
+            }
+        }
+
+        /// <summary>
+        /// Move a block backward one spot in the strip, if it is not the first one.
+        /// </summary>
+        private void mMoveAudioBlockbackwardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mSelectedPhrase != null)
+            {
+                MoveAudioBlockBackwardRequested(this, new Events.Node.NodeEventArgs(this, mSelectedPhrase));
+            }
+        }
+
+
 
         /// <summary>
         /// If a node is selected, set focus on that node in the TreeView.

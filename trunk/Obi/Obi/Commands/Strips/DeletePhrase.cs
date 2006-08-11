@@ -28,7 +28,7 @@ namespace Obi.Commands.Strips
         
         public override void Do()
         {
-            mProject.DeletePhraseNode(mNode);
+            mProject.DeletePhraseNodeAndAsset(mNode);
         }
 
         public override void Undo()

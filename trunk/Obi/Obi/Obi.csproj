@@ -82,6 +82,7 @@
     <Compile Include="Commands\Strips\AddPhrase.cs" />
     <Compile Include="Commands\Strips\MergePhrases.cs" />
     <Compile Include="Commands\Strips\DeletePhrase.cs" />
+    <Compile Include="Commands\Strips\MovePhrase.cs" />
     <Compile Include="Commands\Strips\RenamePhrase.cs" />
     <Compile Include="Commands\Strips\SplitPhrase.cs" />
     <Compile Include="Commands\TOC\AddSection.cs" />
