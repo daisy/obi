@@ -7,24 +7,24 @@ using urakawa.core;
 namespace Obi.Events.Node
 {
     public delegate void RequestToAddSiblingNodeHandler(object sender, NodeEventArgs e);
-    public delegate void RequestToAddChildNodeHandler(object sender, NodeEventArgs e);
-    public delegate void RequestToIncreaseNodeLevelHandler(object sender, NodeEventArgs e);
-    public delegate void RequestToDecreaseNodeLevelHandler(object sender, NodeEventArgs e);
+    public delegate void RequestToAddChildSectionNodeHandler(object sender, NodeEventArgs e);
+    public delegate void RequestToIncreaseSectionNodeLevelHandler(object sender, NodeEventArgs e);
+    public delegate void RequestToDecreaseSectionNodeLevelHandler(object sender, NodeEventArgs e);
     public delegate void RequestToDeleteNodeHandler(object sender, NodeEventArgs e);
-    public delegate void RequestToMoveNodeUpHandler(object sender, NodeEventArgs e);
-    public delegate void RequestToMoveNodeDownHandler(object sender, NodeEventArgs e);
+    public delegate void RequestToMoveSectionNodeUpHandler(object sender, NodeEventArgs e);
+    public delegate void RequestToMoveSectionNodeDownHandler(object sender, NodeEventArgs e);
     public delegate void RequestToDeleteBlockHandler(object sender, NodeEventArgs e);
     public delegate void RequestToMoveBlockHandler(object sender, NodeEventArgs e);
-    public delegate void RequestToCutNodeHandler(object sender, NodeEventArgs e);
-    public delegate void RequestToCopyNodeHandler(object sender, NodeEventArgs e);
-    public delegate void RequestToPasteNodeHandler(object sender, NodeEventArgs e);
-  
-    public delegate void DecreasedNodeLevelHandler(object sender, NodeEventArgs e);
+    public delegate void RequestToCutSectionNodeHandler(object sender, NodeEventArgs e);
+    public delegate void RequestToCopySectionNodeHandler(object sender, NodeEventArgs e);
+    public delegate void RequestToPasteSectionNodeHandler(object sender, NodeEventArgs e);
+
+    public delegate void DecreasedSectionNodeLevelHandler(object sender, NodeEventArgs e);
     public delegate void DeletedNodeHandler(object sender, NodeEventArgs e);
     public delegate void ShallowDeletedNodeHandler(object sender, NodeEventArgs e);
-    public delegate void CutNodeHandler(object sender, NodeEventArgs e);
-    public delegate void CopiedNodeHandler(object sender, NodeEventArgs e);
-    public delegate void UndidPasteNodeHandler(object sender, NodeEventArgs e);
+    public delegate void CutSectionNodeHandler(object sender, NodeEventArgs e);
+    public delegate void CopiedSectionNodeHandler(object sender, NodeEventArgs e);
+    public delegate void UndidPasteSectionNodeHandler(object sender, NodeEventArgs e);
     
     public delegate void ImportedAssetHandler(object sender, NodeEventArgs e);
     public delegate void DeletedBlockHandler(object sender, NodeEventArgs e);
