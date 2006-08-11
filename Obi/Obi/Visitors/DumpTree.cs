@@ -20,7 +20,7 @@ namespace Obi.Visitors
         {
             CoreNode n = (CoreNode)node;
             NodeInformationProperty p = (NodeInformationProperty)n.getProperty(typeof(NodeInformationProperty));
-            string info = String.Format("{0}{1}[{2}]", indent, p.NodeType, p.Id);
+            string info = String.Format("{0}{1}[{2}] {3}", indent, p.NodeType, p.Id, n.GetHashCode());
             switch (p.NodeType)
             {
                 case NodeType.Section:
