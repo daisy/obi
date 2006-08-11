@@ -46,29 +46,48 @@ namespace Obi.UserControls
 
         internal void SyncAddedSectionNode(object sender, Events.Node.AddedSectionNodeEventArgs e)
         {
-            TreeNode newTreeNode;
-            string label = Project.GetTextMedia(e.Node).getText();
-            if (e.Node.getParent().getParent() != null)
-            {
-                TreeNode relTreeNode = FindTreeNodeFromCoreNode((urakawa.core.CoreNode)e.Node.getParent());
-                newTreeNode = relTreeNode.Nodes.Insert(e.Index, e.Node.GetHashCode().ToString(), label);
-            }
-            else
-            {
-                newTreeNode = mTocTree.Nodes.Insert(e.Index, e.Node.GetHashCode().ToString(), label);
-            }
-            newTreeNode.Tag = e.Node;
-            newTreeNode.ExpandAll();
-            newTreeNode.EnsureVisible();
-            mTocTree.SelectedNode = newTreeNode;
+            TreeNode newTreeNode = AddSingleSectionNode(e.Node, e.Index);
+
             //start editing if the request to add a node happened in the tree view
             if (e.Origin.Equals(this))
             {
                 newTreeNode.BeginEdit();
             }
+
+            newTreeNode.ExpandAll();
+            newTreeNode.EnsureVisible();
+            mTocTree.SelectedNode = newTreeNode;
         }
 
+        private TreeNode AddSingleSectionNode(urakawa.core.CoreNode node, int index)
+        {
+            TreeNode newTreeNode;
+            string label = Project.GetTextMedia(node).getText();
+            if (node.getParent().getParent() != null)
+            {
+                TreeNode relTreeNode = FindTreeNodeFromCoreNode((urakawa.core.CoreNode)node.getParent());
+                newTreeNode = relTreeNode.Nodes.Insert(index, node.GetHashCode().ToString(), label);
+            }
+            else
+            {
+                newTreeNode = mTocTree.Nodes.Insert(index, node.GetHashCode().ToString(), label);
+            }
+            newTreeNode.Tag = node;
 
+            return newTreeNode;
+        }
+
+        private TreeNode AddSectionNode(urakawa.core.CoreNode node, int index)
+        {
+            TreeNode addedNode = AddSingleSectionNode(node, index);
+
+            for (int i = 0; i < node.getChildCount(); i++)
+            {
+                AddSectionNode(node.getChild(i), i);
+            }
+
+            return addedNode;
+        }
 
         /// <summary>
         /// Remove a node from the tree view.
@@ -214,82 +233,42 @@ namespace Obi.UserControls
         //md 20060810
         internal void SyncCutSectionNode(object sender, Events.Node.NodeEventArgs e)
         {
-            TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
-            if (selected != null)
-            {
-                mClipboard = (TreeNode)selected.Clone();
-                selected.Remove();
-            }
+            SyncDeletedSectionNode(sender, e);
         }
 
         //md 20060810
-        internal void SyncUndidCutSectionNode(object sender, Events.Node.MovedNodeEventArgs e)
+        internal void SyncUndidCutSectionNode(object sender, Events.Node.AddedSectionNodeEventArgs e)
         {
-            if (mClipboard == null) return;
+            TreeNode uncutNode = AddSectionNode(e.Node, e.Index);
 
-            TreeNode parent = Project.GetNodeType(e.Parent) == NodeType.Section ? FindTreeNodeFromCoreNode(e.Parent) : null;
-
-            TreeNodeCollection siblings = null;
-            if (parent == null)
-            {
-                siblings = mTocTree.Nodes;
-            }
-            else
-            {
-                siblings = parent.Nodes;
-            }
-
-            TreeNode uncutNode = mClipboard;
-
-            siblings.Insert(e.Index, uncutNode);
             uncutNode.ExpandAll();
             uncutNode.EnsureVisible();
             mTocTree.SelectedNode = uncutNode;
 
-            mClipboard = null;
-        }
+         }
 
         //md 20060810
+        //does nothing; just a placeholder
         internal void SyncCopiedSectionNode(object sender, Events.Node.NodeEventArgs e)
-        {
-            TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
-
-            if (selected != null)
-            {
-                mClipboard = (TreeNode)selected.Clone();
-            }
+        {    
         }
 
         //md 20060810
+        //does nothing; just a placeholder
         internal void SyncUndidCopySectionNode(object sender, Events.Node.NodeEventArgs e)
         {
-            mClipboard = null;
         }
 
         //md 20060810
         //e.Node is what was just pasted in
         internal void SyncPastedSectionNode(object sender, Events.Node.AddedSectionNodeEventArgs e)
         {
-            if (mClipboard == null) return;
+           //add a subtree
+            TreeNode uncutNode = AddSectionNode(e.Node, e.Index);
 
-            urakawa.core.CoreNode nodeParent = (urakawa.core.CoreNode)e.Node.getParent();
-
-            TreeNode parent = Project.GetNodeType(nodeParent) == NodeType.Section ? FindTreeNodeFromCoreNode(nodeParent) : null;
-            string label = Project.GetTextMedia(e.Node).getText();
-
-            TreeNodeCollection siblings = null;
-            if (parent == null)
-            {
-                siblings = mTocTree.Nodes;
-            }
-            else
-            {
-                siblings = parent.Nodes;
-            }
-
-            siblings.Insert(e.Index, mClipboard);
-
-            //don't clear the clipboard, we can use it again
+            uncutNode.ExpandAll();
+            uncutNode.EnsureVisible();
+            mTocTree.SelectedNode = uncutNode;
         }
 
         internal void SyncUndidPasteSectionNode(object sender, Events.Node.NodeEventArgs e)
@@ -298,8 +277,6 @@ namespace Obi.UserControls
 
             if (pastedNode != null)
             {
-                //put it back on the clipboard
-                mClipboard = (TreeNode)pastedNode.Clone();
                 pastedNode.Remove();
             }
 

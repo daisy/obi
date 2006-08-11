@@ -295,11 +295,17 @@
     <Compile Include="UserControls\StripManagerPanel.Blocks.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UserControls\StripManagerPanel.ContextMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UserControls\StripManagerPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\StripManagerPanel.Designer.cs">
       <DependentUpon>StripManagerPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\StripManagerPanel.SectionNodeSyncCallbacks.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\TOCPanel.ContextMenu.cs">
       <SubType>UserControl</SubType>
