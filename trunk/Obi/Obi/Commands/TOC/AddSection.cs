@@ -6,7 +6,7 @@ using urakawa.core;
 
 namespace Obi.Commands.TOC
 {
-    class AddSection: Command
+    class AddSectionNode: Command
     {
         private Project mProject;
         private CoreNode mNode;
@@ -23,7 +23,7 @@ namespace Obi.Commands.TOC
             }
         }
 
-        public AddSection(Project project, CoreNode node, CoreNode parent, int index, int position)
+        public AddSectionNode(Project project, CoreNode node, CoreNode parent, int index, int position)
         {
             mProject = project;
             mNode = node;

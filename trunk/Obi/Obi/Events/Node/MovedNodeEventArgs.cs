@@ -6,6 +6,9 @@ using urakawa.core;
 
 namespace Obi.Events.Node
 {
+    //md:
+    //I don't think this is necessarily specific to SectionNodes (although
+    //it's definitely used in that case), so I haven't renamed it "xxxSectionNodexxx"  
     public delegate void MovedNodeHandler(object sender, MovedNodeEventArgs e);
  
     class MovedNodeEventArgs : AddedSectionNodeEventArgs

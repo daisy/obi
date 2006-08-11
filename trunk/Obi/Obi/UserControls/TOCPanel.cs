@@ -22,19 +22,19 @@ namespace Obi.UserControls
         private TreeNode mClipboard; //md: the clipboard itself
 
         public event Events.Node.RequestToAddSiblingNodeHandler RequestToAddSiblingSection;
-        public event Events.Node.RequestToAddChildNodeHandler RequestToAddChildSection;
-        public event Events.Node.RequestToDecreaseNodeLevelHandler RequestToDecreaseSectionLevel;
-        public event Events.Node.RequestToIncreaseNodeLevelHandler RequestToIncreaseSectionLevel;
-        public event Events.Node.RequestToMoveNodeDownHandler RequestToMoveSectionDown;
-        public event Events.Node.RequestToMoveNodeUpHandler RequestToMoveSectionUp;
+        public event Events.Node.RequestToAddChildSectionNodeHandler RequestToAddChildSection;
+        public event Events.Node.RequestToDecreaseSectionNodeLevelHandler RequestToDecreaseSectionLevel;
+        public event Events.Node.RequestToIncreaseSectionNodeLevelHandler RequestToIncreaseSectionLevel;
+        public event Events.Node.RequestToMoveSectionNodeDownHandler RequestToMoveSectionDown;
+        public event Events.Node.RequestToMoveSectionNodeUpHandler RequestToMoveSectionUp;
         public event Events.Node.RequestToRenameNodeHandler RequestToRenameSection;
         public event Events.Node.RequestToDeleteNodeHandler RequestToDeleteSection;
         public event Events.Node.SelectedHandler SelectedTreeNode;  // raised when selection changes (JQ)
 
         //md: clipboard events
-        public event Events.Node.RequestToCutNodeHandler RequestToCutNode;
-        public event Events.Node.RequestToCopyNodeHandler RequestToCopyNode;
-        public event Events.Node.RequestToPasteNodeHandler RequestToPasteNode;
+        public event Events.Node.RequestToCutSectionNodeHandler RequestToCutNode;
+        public event Events.Node.RequestToCopySectionNodeHandler RequestToCopyNode;
+        public event Events.Node.RequestToPasteSectionNodeHandler RequestToPasteNode;
 
         #region properties
         /// <summary>
