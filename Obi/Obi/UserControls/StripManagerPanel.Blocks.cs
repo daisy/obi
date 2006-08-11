@@ -1,4 +1,5 @@
 using System;
+using System.Windows.Forms;
 
 using urakawa.core;
 using urakawa.media;
@@ -8,22 +9,48 @@ namespace Obi.UserControls
     public partial class StripManagerPanel
     {
         /// <summary>
-        /// Add a new block for a phrase node that was just created.
+        /// The user has modified the label of an audio block, so the change has to be made in the project and shown on the block.
+        /// However, if the name change could not be made, the event is cancelled and the block's label is left unchanged.
         /// </summary>
-        /// <param name="e">The node event with a pointer to the new phrase node.</param>
-        internal void SyncCreateNewAudioBlock(object sender, Events.Node.NodeEventArgs e)
+        /// <param name="block">The block (with its old label.)</param>
+        /// <param name="newName">The new label for the block.</param>
+        internal void EditedAudioBlockLabel(AudioBlock block, string newName)
         {
-            CoreNode parent = (CoreNode)e.Node.getParent();
-            SectionStrip strip = mSectionNodeMap[parent];
-            AudioBlock block = new AudioBlock();
-            block.Manager = this;
-            block.Node = e.Node;
-            mPhraseNodeMap[e.Node] = block;
-            block.Label = ((TextMedia)Project.GetMediaForChannel(e.Node, Project.AnnotationChannel)).getText();
-            block.Time = Project.GetAudioMediaAsset(block.Node).LengthInSeconds;
-            strip.InsertAudioBlock(block, Project.GetPhraseIndex(block.Node));
-            // SelectedPhraseNode = block.Node;
-            this.ReflowTabOrder(block);  // mg
+            TextMedia media = (TextMedia)block.Node.getPresentation().getMediaFactory().createMedia(MediaType.TEXT);
+            media.setText(newName);
+            Events.Node.SetMediaEventArgs e =
+                new Events.Node.SetMediaEventArgs(this, block.Node, Project.AnnotationChannel, media);
+            SetMediaRequested(this, e);
+            if (e.Cancel)
+            {
+                MessageBox.Show(String.Format(Localizer.Message("name_already_exists_text"), newName),
+                    Localizer.Message("name_already_exists_caption"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                block.Label = newName;
+            }
+        }
+
+        /// <summary>
+        /// Add a new block from a phrase node and select it.
+        /// </summary>
+        internal void SyncAddedPhraseNode(object sender, Events.Node.AddedPhraseNodeEventArgs e)
+        {
+            if (e.Node != null)
+            {
+                SectionStrip strip = mSectionNodeMap[(CoreNode)e.Node.getParent()];
+                AudioBlock block = new AudioBlock();
+                block.Manager = this;
+                block.Node = e.Node;
+                mPhraseNodeMap[e.Node] = block;
+                TextMedia annotation = (TextMedia)Project.GetMediaForChannel(e.Node, Project.AnnotationChannel);
+                block.Label = annotation.getText();
+                block.Time = Project.GetAudioMediaAsset(e.Node).LengthInSeconds;
+                strip.InsertAudioBlock(block, e.Index);
+                this.ReflowTabOrder(block);  // MG
+                SelectedPhraseNode = block.Node;
+            }
         }
 
         /// <summary>
@@ -37,6 +64,15 @@ namespace Obi.UserControls
             strip.RemoveAudioBlock(mPhraseNodeMap[e.Node]);
             mPhraseNodeMap.Remove(e.Node);
             // reflow?
+        }
+
+        /// <summary>
+        /// Changed a media object on a node.
+        /// </summary>
+        internal void SyncMediaSet(object sender, Events.Node.SetMediaEventArgs e)
+        {
+            SectionStrip strip = mSectionNodeMap[(CoreNode)e.Node.getParent()];
+            strip.RenameAudioBlock(mPhraseNodeMap[e.Node], ((TextMedia)e.Media).getText());
         }
     }
 }

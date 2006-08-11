@@ -384,7 +384,7 @@ namespace Obi
             mDeleteAudioBlockToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mDeleteAudioBlockToolStripMenuItem_Click);
             mRenameAudioBlockToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.StripManager.mRenameAudioBlockToolStripMenuItem_Click);
+                new EventHandler(mProjectPanel.StripManager.mEditAudioBlockLabelToolStripMenuItem_Click);
             mShowInTOCViewToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mShowInTOCViewToolStripMenuItem_Click);
 

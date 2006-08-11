@@ -61,10 +61,10 @@ namespace Obi.UserControls
                     mProject.DeletedNode -= new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeletedNode);
 
                     mStripManagerPanel.ImportAudioAssetRequested -= new Events.Strip.RequestToImportAssetHandler(mProject.ImportAssetRequested);
-                    mProject.ImportedAsset -= new Events.Node.ImportedAssetHandler(mStripManagerPanel.SyncCreateNewAudioBlock);
+                    //mProject.ImportedAsset -= new Events.Node.ImportedAssetHandler(mStripManagerPanel.SyncCreateNewAudioBlock);
                     mProject.AddedPhraseNode -= new Events.Node.AddedPhraseNodeHandler(mStripManagerPanel.SyncAddedPhraseNode);
 
-                    mStripManagerPanel.SetMedia -= new Events.Node.SetMediaHandler(mProject.SetMediaRequested);
+                    mStripManagerPanel.SetMediaRequested -= new Events.Node.SetMediaHandler(mProject.SetMediaRequested);
                     mProject.MediaSet -= new Events.Node.MediaSetHandler(mStripManagerPanel.SyncMediaSet);
 
                     mStripManagerPanel.SplitNode -= new Events.Node.SplitNodeHandler(mProject.SplitAssetRequested);
@@ -134,18 +134,17 @@ namespace Obi.UserControls
                         new Events.Node.RequestToMoveBlockHandler(value.MovePhraseNodeForwardRequested);
                     mStripManagerPanel.MoveAudioBlockBackwardRequested +=
                         new Events.Node.RequestToMoveBlockHandler(value.MovePhraseNodeBackwardRequested);
+                    mStripManagerPanel.SetMediaRequested += new Events.Node.SetMediaHandler(value.SetMediaRequested);
 
-                    value.ImportedAsset +=
-                        new Events.Node.ImportedAssetHandler(mStripManagerPanel.SyncCreateNewAudioBlock);
+                    value.AddedPhraseNode +=
+                        new Events.Node.AddedPhraseNodeHandler(mStripManagerPanel.SyncAddedPhraseNode);
                     value.DeletedPhraseNode +=
                         new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeleteAudioBlock);
-
-
-
-                    value.AddedPhraseNode += new Events.Node.AddedPhraseNodeHandler(mStripManagerPanel.SyncAddedPhraseNode);
-
-                    mStripManagerPanel.SetMedia += new Events.Node.SetMediaHandler(value.SetMediaRequested);
                     value.MediaSet += new Events.Node.MediaSetHandler(mStripManagerPanel.SyncMediaSet);
+
+
+
+
 
                     mStripManagerPanel.SplitNode += new Events.Node.SplitNodeHandler(value.SplitAssetRequested);
                     mStripManagerPanel.MergeNodes += new Events.Node.MergeNodesHandler(value.MergeNodesRequested);

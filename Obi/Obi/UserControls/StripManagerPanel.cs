@@ -27,7 +27,7 @@ namespace Obi.UserControls
 
         public event Events.Node.RequestToAddSiblingNodeHandler AddSiblingSection;
         public event Events.Node.RequestToRenameNodeHandler RenameSection;
-        public event Events.Node.SetMediaHandler SetMedia;
+        public event Events.Node.SetMediaHandler SetMediaRequested;
         public event Events.Strip.RequestToImportAssetHandler ImportAudioAssetRequested;
         public event Events.Node.RequestToDeleteBlockHandler DeleteBlockRequested;
         public event Events.Node.RequestToMoveBlockHandler MoveAudioBlockForwardRequested;
@@ -95,6 +95,7 @@ namespace Obi.UserControls
                     {
                         SelectedSectionNode = (CoreNode)mSelectedPhrase.getParent();
                         SelectedAudioBlock(this, new Events.Strip.SelectedEventArgs(true));
+                        mPhraseNodeMap[mSelectedPhrase].MarkSelected();
                     }
                     else
                     {
@@ -201,7 +202,7 @@ namespace Obi.UserControls
         {
             mPlayAudioBlockToolStripMenuItem.Enabled = e.Selected;
             mSplitAudioBlockToolStripMenuItem.Enabled = e.Selected;
-            mRenameAudioBlockToolStripMenuItem.Enabled = e.Selected;
+            mEditAudioBlockLabelToolStripMenuItem.Enabled = e.Selected;
             mDeleteAudioBlockToolStripMenuItem.Enabled = e.Selected;
         }
 
@@ -328,24 +329,6 @@ namespace Obi.UserControls
             }
         }
 
-        internal void SyncAddedPhraseNode(object sender, Events.Node.AddedPhraseNodeEventArgs e)
-        {
-            if (e.Node != null)
-            {
-                SectionStrip strip = mSectionNodeMap[(CoreNode)e.Node.getParent()];
-                AudioBlock block = new AudioBlock();
-                block.Manager = this;
-                block.Node = e.Node;
-                mPhraseNodeMap[e.Node] = block;
-                TextMedia annotation = (TextMedia)Project.GetMediaForChannel(e.Node, Project.AnnotationChannel);
-                block.Label = annotation.getText();
-                block.Time = (Math.Round(Project.GetAudioMediaAsset(e.Node).LengthInMilliseconds / 1000)).ToString() + "s";
-                strip.InsertAudioBlock(block, e.Index);
-                //mg:
-                this.ReflowTabOrder(block);
-            }
-        }
-
         internal void SyncMovedNode(object sender, Events.Node.MovedNodeEventArgs e)
         {
             //md:
@@ -393,12 +376,6 @@ namespace Obi.UserControls
             {
                 MakeFlatListOfStrips(node.getChild(i), strips);
             }
-        }
-
-        internal void SyncMediaSet(object sender, Events.Node.SetMediaEventArgs e)
-        {
-            SectionStrip strip = mSectionNodeMap[(CoreNode)e.Node.getParent()];
-            strip.RenameAudioBlock(mPhraseNodeMap[e.Node], ((TextMedia)e.Media).getText());
         }
 
         internal void SyncBlockChangedTime(object sender, Events.Node.NodeEventArgs e)
@@ -508,7 +485,7 @@ namespace Obi.UserControls
         /// <summary>
         /// Rename the currently selected audio block (JQ)
         /// </summary>
-        internal void mRenameAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void mEditAudioBlockLabelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mSelectedPhrase != null)
             {
@@ -578,29 +555,6 @@ namespace Obi.UserControls
         internal void RenamedSectionStrip(SectionStrip strip)
         {
             RenameSection(this, new Events.Node.RenameNodeEventArgs(this, strip.Node, strip.Label));
-        }
-
-        /// <summary>
-        /// The user has modified the name of an audio block, so the change has to be made in the project and shown on the block.
-        /// However, if the name change could not be made, the event is cancelled and the block's label is left unchanged.
-        /// </summary>
-        /// <param name="block">The renamed block (with its old label.)</param>
-        /// <param name="newName">The new label for the block.</param>
-        internal void RenamedAudioBlock(AudioBlock block, string newName)
-        {
-            TextMedia media = (TextMedia)block.Node.getPresentation().getMediaFactory().createMedia(MediaType.TEXT);
-            media.setText(newName);
-            Events.Node.SetMediaEventArgs e = new Events.Node.SetMediaEventArgs(this, block.Node, Project.AnnotationChannel, media);
-            SetMedia(this, e);
-            if (e.Cancel)
-            {
-                MessageBox.Show(String.Format(Localizer.Message("name_already_exists_text"), newName),
-                    Localizer.Message("name_already_exists_caption"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else
-            {
-                block.Label = newName;
-            }
         }
 
         private void mFlowLayoutPanel_Click(object sender, EventArgs e)
