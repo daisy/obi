@@ -183,6 +183,9 @@ namespace Obi.UserControls
         /// </summary>
         private void tocTree_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
         {
+            System.Diagnostics.Trace.WriteLine(
+                string.Format("TOCPanel.AfterLabelEdit for {0}", e.Node.Tag.GetHashCode()));
+
             if (e.Label != null)
             {
                 if (e.Label == "")

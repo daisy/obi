@@ -582,6 +582,9 @@ namespace Obi
         /// </summary>
         public void RenameSectionNode(object origin, CoreNode node, string label)
         {
+            System.Diagnostics.Trace.WriteLine(
+                string.Format("TOCPanel.RenameSectionNode for {0}", node.GetHashCode()));
+
             TextMedia text = GetTextMedia(node);
             Commands.TOC.Rename command = origin == this ? null : new Commands.TOC.Rename(this, node, text.getText(), label);
             GetTextMedia(node).setText(label);
@@ -593,6 +596,9 @@ namespace Obi
 
         public void RenameSectionNodeRequested(object sender, Events.Node.RenameNodeEventArgs e)
         {
+            System.Diagnostics.Trace.WriteLine(
+                string.Format("Project.RenameSectionNodeRequested for {0}", e.Node.GetHashCode()));
+            
             RenameSectionNode(sender, e.Node, e.Label);
         }
 
@@ -622,8 +628,7 @@ namespace Obi
             mClipboard = node;
             node.detach();
 
-         //   DeletedNode(this, new Events.Node.NodeEventArgs(origin, node));
-            CutSectionNode(this, new Events.Node.NodeEventArgs(origin, node));
+           CutSectionNode(this, new Events.Node.NodeEventArgs(origin, node));
 
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -664,9 +669,8 @@ namespace Obi
             //the actual copy operation
             mClipboard = node.copy(true);
 
-            CopiedSectionNode(this, new Events.Node.NodeEventArgs(origin, node));
+            CopiedSectionNode(this, new Events.Node.NodeEventArgs(origin, mClipboard));
 
-            
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
             if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
