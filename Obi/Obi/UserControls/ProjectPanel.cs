@@ -75,18 +75,23 @@ namespace Obi.UserControls
                         new Events.Node.RequestToDeleteBlockHandler(mProject.DeletePhraseNodeRequested);
                     mProject.DeletedPhraseNode -= new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeleteAudioBlock);
 
-                    //md: toc clipboard features
                     mTOCPanel.RequestToCutSectionNode -= new Events.Node.RequestToCutSectionNodeHandler(mProject.CutSectionNodeRequested);
                     mProject.CutSectionNode -= new Events.Node.CutSectionNodeHandler(mTOCPanel.SyncCutSectionNode);
+                    mProject.CutSectionNode -= new Events.Node.CutSectionNodeHandler(mStripManagerPanel.SyncCutSectionNode);
                     mProject.UndidCutSectionNode -= new Events.Node.MovedNodeHandler(mTOCPanel.SyncUndidCutSectionNode);
+                    mProject.UndidCutSectionNode -= new Events.Node.MovedNodeHandler(mStripManagerPanel.SyncUndidCopySectionNode);
 
                     mTOCPanel.RequestToCopySectionNode -= new Events.Node.RequestToCopySectionNodeHandler(mProject.CopySectionNodeRequested);
                     mProject.CopiedSectionNode -= new Events.Node.CopiedSectionNodeHandler(mTOCPanel.SyncCopiedSectionNode);
+                    mProject.CopiedSectionNode -= new Events.Node.CopiedSectionNodeHandler(mStripManagerPanel.SyncCopiedSectionNode);
                     mProject.UndidCopySectionNode -= new Events.Node.CopiedSectionNodeHandler(mTOCPanel.SyncUndidCopySectionNode);
+                    mProject.UndidCopySectionNode -= new Events.Node.CopiedSectionNodeHandler(mStripManagerPanel.SyncUndidCopySectionNode);
 
                     mTOCPanel.RequestToPasteSectionNode -= new Events.Node.RequestToPasteSectionNodeHandler(mProject.PasteSectionNodeRequested);
                     mProject.PastedSectionNode -= new Events.Node.PastedSectionNodeHandler(mTOCPanel.SyncPastedSectionNode);
+                    mProject.PastedSectionNode -= new Events.Node.PastedSectionNodeHandler(mStripManagerPanel.SyncPastedSectionNode);
                     mProject.UndidPasteSectionNode -= new Events.Node.UndidPasteSectionNodeHandler(mTOCPanel.SyncUndidPasteSectionNode);
+                    mProject.UndidPasteSectionNode -= new Events.Node.UndidPasteSectionNodeHandler(mStripManagerPanel.SyncUndidPasteSectionNode);
                 }
                 // Set up the handlers for the new project
                 if (value != null)
@@ -154,15 +159,21 @@ namespace Obi.UserControls
                     //md: clipboard in the TOC
                     mTOCPanel.RequestToCutSectionNode += new Events.Node.RequestToCutSectionNodeHandler(value.CutSectionNodeRequested);
                     value.CutSectionNode += new Events.Node.CutSectionNodeHandler(mTOCPanel.SyncCutSectionNode);
+                    value.CutSectionNode += new Events.Node.CutSectionNodeHandler(mStripManagerPanel.SyncCutSectionNode);
                     value.UndidCutSectionNode += new Events.Node.MovedNodeHandler(mTOCPanel.SyncUndidCutSectionNode);
+                    value.UndidCutSectionNode += new Events.Node.MovedNodeHandler(mStripManagerPanel.SyncUndidCopySectionNode);
 
                     mTOCPanel.RequestToCopySectionNode += new Events.Node.RequestToCopySectionNodeHandler(value.CopySectionNodeRequested);
                     value.CopiedSectionNode += new Events.Node.CopiedSectionNodeHandler(mTOCPanel.SyncCopiedSectionNode);
+                    value.CopiedSectionNode += new Events.Node.CopiedSectionNodeHandler(mStripManagerPanel.SyncCopiedSectionNode);
                     value.UndidCopySectionNode += new Events.Node.CopiedSectionNodeHandler(mTOCPanel.SyncUndidCopySectionNode);
+                    value.UndidCopySectionNode += new Events.Node.CopiedSectionNodeHandler(mStripManagerPanel.SyncUndidCopySectionNode);
 
                     mTOCPanel.RequestToPasteSectionNode += new Events.Node.RequestToPasteSectionNodeHandler(value.PasteSectionNodeRequested);
                     value.PastedSectionNode += new Events.Node.PastedSectionNodeHandler(mTOCPanel.SyncPastedSectionNode);
+                    value.PastedSectionNode += new Events.Node.PastedSectionNodeHandler(mStripManagerPanel.SyncPastedSectionNode);
                     value.UndidPasteSectionNode += new Events.Node.UndidPasteSectionNodeHandler(mTOCPanel.SyncUndidPasteSectionNode);
+                    value.UndidPasteSectionNode += new Events.Node.UndidPasteSectionNodeHandler(mStripManagerPanel.SyncUndidPasteSectionNode);
 
                 } 
                 mProject = value;

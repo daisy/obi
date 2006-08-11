@@ -19,9 +19,8 @@ namespace Obi.UserControls
     public partial class TOCPanel : UserControl, urakawa.core.ICoreNodeVisitor
     {
         private ProjectPanel mProjectPanel; //the parent of this control
-        private TreeNode mClipboard; //md: the clipboard itself
 
-       public event Events.Node.SelectedHandler SelectedTreeNode;  // raised when selection changes (JQ)
+        public event Events.Node.SelectedHandler SelectedTreeNode;  // raised when selection changes (JQ)
 
        
         #region properties
@@ -367,7 +366,7 @@ namespace Obi.UserControls
             mShowInStripViewToolStripMenuItem.Enabled = e.Selected;
             mCutSectionToolStripMenuItem.Enabled = e.Selected;
             mCopySectionToolStripMenuItem.Enabled = e.Selected;
-            mPasteSectionToolStripMenuItem.Enabled = e.Selected && (mClipboard != null);
+            mPasteSectionToolStripMenuItem.Enabled = e.Selected && (mProjectPanel.Project.Clipboard != null);
         }
 
     }

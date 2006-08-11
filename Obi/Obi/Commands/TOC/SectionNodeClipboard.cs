@@ -112,7 +112,7 @@ namespace Obi.Commands.TOC
 
         public override void Undo()
         {
-            mProject.RemoveNode(mProject, mNode);
+            mProject.UndoPasteSectionNode(mNode);
         }
     }
 }
