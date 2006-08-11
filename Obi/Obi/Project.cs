@@ -39,6 +39,8 @@ namespace Obi
         private string mLastPath;            // last path to which the project was saved (see save as)
         private SimpleMetadata mMetadata;    // metadata for this project
 
+        private CoreNode mClipboard;        //clipboard for cut-copy-paste
+
         public static readonly string XUKVersion = "obi-xuk-001";            // version of the Obi/XUK file
         public static readonly string AudioChannel = "obi.audio";            // canonical name of the audio channel
         public static readonly string TextChannel = "obi.text";              // canonical name of the text channel
@@ -58,6 +60,15 @@ namespace Obi
         public event Events.Node.MediaSetHandler MediaSet;                      // a media object was set on a node
         public event Events.Node.DeletedNodeHandler DeletedPhraseNode;          // deleted a phrase node 
         public event Events.Node.BlockChangedTimeHandler BlockChangedTime;      // a block's time has changed        
+
+        //md: toc clipboard stuff
+        public event Events.Node.CutNodeHandler CutTOCNode;
+        public event Events.Node.MovedNodeHandler UndidCutTOCNode;
+        public event Events.Node.CopiedNodeHandler CopiedTOCNode;
+        public event Events.Node.CopiedNodeHandler UndidCopyTOCNode;
+        public event Events.Node.PastedSectionNodeHandler PastedTOCNode;
+        public event Events.Node.UndidPasteNodeHandler UndidPasteTOCNode;
+      
 
         /// <summary>
         /// This flag is set to true if the project contains modifications that have not been saved.
@@ -127,6 +138,10 @@ namespace Obi
             mAssManager = null;
             mUnsaved = false;
             mXUKPath = null;
+
+            //md:
+            mClipboard = null;
+
             // Use our own property factory so that we can create custom properties
             getPresentation().setPropertyFactory(new ObiPropertyFactory(getPresentation()));
         }
@@ -982,6 +997,140 @@ namespace Obi
         public void RenameNodeRequested(object sender, Events.Node.RenameNodeEventArgs e)
         {
             RenameNode(sender, e.Node, e.Label);
+        }
+
+        //md 20060810
+        public void CutTOCNodeRequested(object sender, Events.Node.NodeEventArgs e)
+        {
+            DoCutTOCNode(sender, e.Node);
+        }
+
+        //md 20060810
+        public void DoCutTOCNode(object origin, CoreNode node)
+        {
+            if (node == null) return;
+           
+            CoreNode parent = (CoreNode)node.getParent();
+            Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
+            getPresentation().getRootNode().acceptDepthFirst(visitor);
+            //we need to save the state of the node before it is altered
+            Commands.TOC.CutSection command = null;
+
+            if (origin != this)
+            {
+                command = new Commands.TOC.CutSection
+                 (this, node, parent, parent.indexOf(node), visitor.Position);
+            }
+
+            mClipboard = node;
+            node.detach();
+
+            CutTOCNode(this, new Events.Node.NodeEventArgs(origin, node));
+
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));  
+        }
+
+        //md 20060810
+        public void UndoCutNode(CoreNode node, CoreNode parent, int index, int position)
+        {
+            if (node.getParent() != null) node.detach();
+            parent.insert(node, index);
+
+            UndidCutTOCNode(this, new Events.Node.MovedNodeEventArgs(this, node, parent, index, position));
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+
+        //md 20060810
+        public void CopyTOCNodeRequested(object sender, Events.Node.NodeEventArgs e)
+        {
+            CopyTOCNode(sender, e.Node);
+        }
+
+        //md 20060810
+        public void CopyTOCNode(object origin, CoreNode node)
+        {
+            if (node == null) return;
+
+            Commands.TOC.CopySection command = null;
+
+            if (origin != this)
+            {
+                command = new Commands.TOC.CopySection(this, node);
+            }
+
+            //the actual copy operation
+            mClipboard = node.copy(true);
+
+            CopiedTOCNode(this, new Events.Node.NodeEventArgs(origin, node));
+
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));  
+        }
+
+        //md 20060810
+        public void UndoCopyTOCNode(CoreNode node)
+        {
+            mClipboard = null;
+
+            UndidCopyTOCNode(this, new Events.Node.NodeEventArgs(this, node));
+
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+
+        //md 20060810
+        public void PasteTOCNodeRequested(object sender, Events.Node.NodeEventArgs e)
+        {
+            PasteTOCNode(sender, e.Node);
+        }
+
+        //md 20060810
+        //"paste" will paste the clipboard contents as the first child of the given node
+        public void PasteTOCNode(object origin, CoreNode parent)
+        {
+            if (parent == null) return;
+
+            Commands.TOC.PasteSection command = null;
+            
+            CoreNode pastedSection = mClipboard;
+
+            //don't clear the clipboard, we can use it again
+
+            if (origin != this)
+            {
+                command = new Commands.TOC.PasteSection(this, pastedSection, parent);
+            }
+
+            //the actual paste operation
+            parent.insert(pastedSection, 0);
+
+            Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(pastedSection);
+            getPresentation().getRootNode().acceptDepthFirst(visitor);
+
+            PastedTOCNode(this, new Events.Node.AddedSectionNodeEventArgs
+                (origin, pastedSection, parent.indexOf(pastedSection), visitor.Position));
+
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));  
+        }
+
+        //md 20060810
+        public void UndoPasteTOCNode(CoreNode node)
+        {
+            mClipboard = node.copy(true);
+
+            node.detach();
+
+            UndidPasteTOCNode(this, new Events.Node.NodeEventArgs(this, mClipboard));
+
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        
         }
 
         // Find the channel and set the media object.

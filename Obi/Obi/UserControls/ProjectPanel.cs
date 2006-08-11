@@ -74,6 +74,19 @@ namespace Obi.UserControls
                     mStripManagerPanel.DeleteBlock -=
                         new Events.Node.RequestToDeleteBlockHandler(mProject.DeletePhraseNodeRequested);
                     mProject.DeletedPhraseNode -= new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeletedPhraseNode);
+
+                    //md: toc clipboard features
+                    mTOCPanel.RequestToCutNode -= new Events.Node.RequestToCutNodeHandler(mProject.CutTOCNodeRequested);
+                    mProject.CutTOCNode -= new Events.Node.CutNodeHandler(mTOCPanel.SyncCutNode);
+                    mProject.UndidCutTOCNode -= new Events.Node.MovedNodeHandler(mTOCPanel.SyncUndidCutNode);
+
+                    mTOCPanel.RequestToCopyNode -= new Events.Node.RequestToCopyNodeHandler(mProject.CopyTOCNodeRequested);
+                    mProject.CopiedTOCNode -= new Events.Node.CopiedNodeHandler(mTOCPanel.SyncCopiedNode);
+                    mProject.UndidCopyTOCNode -= new Events.Node.CopiedNodeHandler(mTOCPanel.SyncUndidCopyNode);
+
+                    mTOCPanel.RequestToPasteNode -= new Events.Node.RequestToPasteNodeHandler(mProject.PasteTOCNodeRequested);
+                    mProject.PastedTOCNode -= new Events.Node.PastedSectionNodeHandler(mTOCPanel.SyncPastedNode);
+                    mProject.UndidPasteTOCNode -= new Events.Node.UndidPasteNodeHandler(mTOCPanel.SyncUndidPasteNode);
                 }
                 // Set up the handlers for the new project
                 if (value != null)
@@ -124,6 +137,20 @@ namespace Obi.UserControls
 
                     mStripManagerPanel.DeleteBlock += new Events.Node.RequestToDeleteBlockHandler(value.DeletePhraseNodeRequested);
                     value.DeletedPhraseNode += new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeletedPhraseNode);
+
+                    //md: clipboard in the TOC
+                    mTOCPanel.RequestToCutNode += new Events.Node.RequestToCutNodeHandler(value.CutTOCNodeRequested);
+                    value.CutTOCNode += new Events.Node.CutNodeHandler(mTOCPanel.SyncCutNode);
+                    value.UndidCutTOCNode += new Events.Node.MovedNodeHandler(mTOCPanel.SyncUndidCutNode);
+
+                    mTOCPanel.RequestToCopyNode += new Events.Node.RequestToCopyNodeHandler(value.CopyTOCNodeRequested);
+                    value.CopiedTOCNode += new Events.Node.CopiedNodeHandler(mTOCPanel.SyncCopiedNode);
+                    value.UndidCopyTOCNode += new Events.Node.CopiedNodeHandler(mTOCPanel.SyncUndidCopyNode);
+
+                    mTOCPanel.RequestToPasteNode += new Events.Node.RequestToPasteNodeHandler(value.PasteTOCNodeRequested);
+                    value.PastedTOCNode += new Events.Node.PastedSectionNodeHandler(mTOCPanel.SyncPastedNode);
+                    value.UndidPasteTOCNode += new Events.Node.UndidPasteNodeHandler(mTOCPanel.SyncUndidPasteNode);
+
                 } 
                 mProject = value;
                 mSplitContainer.Visible = mProject != null;

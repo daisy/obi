@@ -19,6 +19,7 @@ namespace Obi.UserControls
     public partial class TOCPanel : UserControl, urakawa.core.ICoreNodeVisitor
     {
         private ProjectPanel mProjectPanel; //the parent of this control
+        private TreeNode mClipboard; //md: the clipboard itself
 
         public event Events.Node.RequestToAddSiblingNodeHandler RequestToAddSiblingSection;
         public event Events.Node.RequestToAddChildNodeHandler RequestToAddChildSection;
@@ -29,6 +30,11 @@ namespace Obi.UserControls
         public event Events.Node.RequestToRenameNodeHandler RequestToRenameSection;
         public event Events.Node.RequestToDeleteNodeHandler RequestToDeleteSection;
         public event Events.Node.SelectedHandler SelectedTreeNode;  // raised when selection changes (JQ)
+
+        //md: clipboard events
+        public event Events.Node.RequestToCutNodeHandler RequestToCutNode;
+        public event Events.Node.RequestToCopyNodeHandler RequestToCopyNode;
+        public event Events.Node.RequestToPasteNodeHandler RequestToPasteNode;
 
         #region properties
         /// <summary>
@@ -126,6 +132,7 @@ namespace Obi.UserControls
 
 
 
+        //md: do we still want this function?
         public void LimitViewToDepthOfCurrentSection()
         {
         }
@@ -133,6 +140,7 @@ namespace Obi.UserControls
         /// <summary>
         /// Show all the sections in the tree view.
         /// </summary>
+        //md: there is no end-user command which exposes this feature
         public void ExpandViewToShowAllSections()
         {
             mTocTree.ExpandAll();
@@ -239,11 +247,12 @@ namespace Obi.UserControls
                 new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
 
-        private void testShallowDeleteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tESTShallowDeleteToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            SyncShallowDeletedNode(this, 
-                new Events.Node.NodeEventArgs(this, GetSelectedSection()));
+            SyncShallowDeletedNode(this,
+                           new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
+      
 
         /// <summary>
         /// If a node is selected, set focus on that node in the Strip view.
@@ -260,8 +269,28 @@ namespace Obi.UserControls
             }
         }
 
+        //md 20060810
+        internal void cutSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RequestToCutNode(this, new Events.Node.NodeEventArgs(this, GetSelectedSection()));
+        }
+
+        //md 20060810
+        internal void copySectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RequestToCopyNode(this, new Events.Node.NodeEventArgs(this, GetSelectedSection()));
+        }
+
+        internal void mPasteSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RequestToPasteNode(this, new Events.Node.NodeEventArgs(this, GetSelectedSection()));
+        }
+
+     
+
         #endregion
 
+        #region toc tree event handlers
         /// <summary>
         /// Using this event to assure that a node is selected. 
         /// </summary>
@@ -315,6 +344,69 @@ namespace Obi.UserControls
             }
         }
 
+        /// <summary>
+        /// select a node upon receiving a mouse-click (including right-clicks)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tocTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            mTocTree.SelectedNode = e.Node;
+
+        }
+
+        /// <summary>
+        /// synchronize the highlight with the strip view on double-click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <remarks>todo: this should override the default behavior (expand/collapse), 
+        /// and, it's a bit weird to have the strip node rename-able upon select</remarks>
+        //marisa added this 4 aug 06
+        private void tocTree_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            this.mShowInStripViewToolStripMenuItem_Click(this, null);
+        }
+
+        /// <summary>
+        /// synchronize the highlight with the strip view upon pressing enter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        //marisa added this 4 aug 06
+        private void tocTree_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (mTocTree.SelectedNode != null)
+                {
+                    this.mShowInStripViewToolStripMenuItem_Click(this, null);
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// A new selection is made so the context menu is updated.
+        /// </summary>
+        private void mTocTree_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            Events.Node.SelectedEventArgs _event = new Events.Node.SelectedEventArgs(true);
+            // should set CanMoveUp, etc. here
+            SelectedTreeNode(this, _event);
+        }
+
+        /// <summary>
+        /// When leaving the TOC tree, there is no selection anymore.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mTocTree_Leave(object sender, EventArgs e)
+        {
+            SelectedTreeNode(this, new Events.Node.SelectedEventArgs(false));
+        }
+
+#endregion
        
 
         #region Sync event handlers
@@ -425,12 +517,8 @@ namespace Obi.UserControls
 
             TreeNode parent = Project.GetNodeType(e.Parent) == NodeType.Section ? FindTreeNodeFromCoreNode(e.Parent) : null;
 
-
-            if (selected == null)
-            {
-                return;
-            }
-
+            if (selected == null) return;
+            
             TreeNode clone = (TreeNode)selected.Clone();
 
             selected.Remove();
@@ -516,6 +604,100 @@ namespace Obi.UserControls
             clone.ExpandAll();
             clone.EnsureVisible();
             mTocTree.SelectedNode = clone;
+        }
+
+        //md 20060810
+        internal void SyncCutNode(object sender, Events.Node.NodeEventArgs e)
+        {
+            TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
+            if (selected != null)
+            {
+                mClipboard = (TreeNode)selected.Clone();
+                selected.Remove();
+            }
+        }
+
+        //md 20060810
+        internal void SyncUndidCutNode(object sender, Events.Node.MovedNodeEventArgs e)
+        {
+            if (mClipboard == null) return;
+
+            TreeNode parent = Project.GetNodeType(e.Parent) == NodeType.Section ? FindTreeNodeFromCoreNode(e.Parent) : null;
+
+            TreeNodeCollection siblings = null;
+            if (parent == null)
+            {
+                siblings = mTocTree.Nodes;
+            }
+            else
+            {
+                siblings = parent.Nodes;
+            }
+
+            TreeNode uncutNode = mClipboard;
+            
+            siblings.Insert(e.Index, uncutNode);
+            uncutNode.ExpandAll();
+            uncutNode.EnsureVisible();
+            mTocTree.SelectedNode = uncutNode;
+
+            mClipboard = null;
+        }
+
+        //md 20060810
+        internal void SyncCopiedNode(object sender, Events.Node.NodeEventArgs e)
+        {
+            TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
+
+            if (selected != null)
+            {
+                mClipboard = (TreeNode)selected.Clone();
+            }
+        }
+
+        //md 20060810
+        internal void SyncUndidCopyNode(object sender, Events.Node.NodeEventArgs e)
+        {
+            mClipboard = null;
+        }
+
+        //md 20060810
+        //e.Node is what was just pasted in
+        internal void SyncPastedNode(object sender, Events.Node.AddedSectionNodeEventArgs e)
+        {
+            if (mClipboard == null) return;
+
+            urakawa.core.CoreNode nodeParent = (urakawa.core.CoreNode)e.Node.getParent();
+
+            TreeNode parent = Project.GetNodeType(nodeParent) == NodeType.Section ? FindTreeNodeFromCoreNode(nodeParent) : null;
+            string label = Project.GetTextMedia(e.Node).getText();
+
+            TreeNodeCollection siblings = null;
+            if (parent == null)
+            {
+                siblings = mTocTree.Nodes;
+            }
+            else
+            {
+                siblings = parent.Nodes;
+            }
+
+            siblings.Insert(e.Index, mClipboard);
+
+            //don't clear the clipboard, we can use it again
+        }
+
+        internal void SyncUndidPasteNode(object sender, Events.Node.NodeEventArgs e)
+        {
+            TreeNode pastedNode = FindTreeNodeFromCoreNode(e.Node);
+
+            if (pastedNode != null)
+            {
+                //put it back on the clipboard
+                mClipboard = (TreeNode)pastedNode.Clone();
+                pastedNode.Remove();
+            }
+
         }
 
         #endregion
@@ -619,74 +801,19 @@ namespace Obi.UserControls
             mAddSubSectionToolStripMenuItem.Enabled = e.Selected;
             mDeleteSectionToolStripMenuItem.Enabled = e.Selected;
             mEditLabelToolStripMenuItem.Enabled = e.Selected;
+
+            //md: logic for these "canMove's" needs to come from Obi.Project
             mMoveToolStripMenuItem.Enabled = e.CanMoveUp || e.CanMoveDown || e.CanMoveIn || e.CanMoveOut;
             mMoveUpToolStripMenuItem.Enabled = e.CanMoveUp;
             mMoveDownToolStripMenuItem.Enabled = e.CanMoveDown;
             mMoveInToolStripMenuItem.Enabled = e.CanMoveIn;
             mMoveOutToolStripMenuItem.Enabled = e.CanMoveOut;
+
             mShowInStripViewToolStripMenuItem.Enabled = e.Selected;
+            mCutSectionToolStripMenuItem.Enabled = e.Selected;
+            mCopySectionToolStripMenuItem.Enabled = e.Selected;
+            mPasteSectionToolStripMenuItem.Enabled = e.Selected && (mClipboard != null);
         }
 
-        /// <summary>
-        /// select a node upon receiving a mouse-click (including right-clicks)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tocTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            mTocTree.SelectedNode = e.Node;
-            
-        }
-
-        /// <summary>
-        /// synchronize the highlight with the strip view on double-click
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <remarks>todo: this should override the default behavior (expand/collapse), 
-        /// and, it's a bit weird to have the strip node rename-able upon select</remarks>
-        //marisa added this 4 aug 06
-        private void tocTree_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            this.mShowInStripViewToolStripMenuItem_Click(this, null);
-        }
-
-        /// <summary>
-        /// synchronize the highlight with the strip view upon pressing enter
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //marisa added this 4 aug 06
-        private void tocTree_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (mTocTree.SelectedNode != null)
-                {
-                    this.mShowInStripViewToolStripMenuItem_Click(this, null);
-                }
-            }
-                
-        }
-
-        /// <summary>
-        /// A new selection is made so the context menu is updated.
-        /// </summary>
-        private void mTocTree_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            Events.Node.SelectedEventArgs _event = new Events.Node.SelectedEventArgs(true);
-            // should set CanMoveUp, etc. here
-            SelectedTreeNode(this, _event);
-        }
-
-        /// <summary>
-        /// When leaving the TOC tree, there is no selection anymore.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void mTocTree_Leave(object sender, EventArgs e)
-        {
-            SelectedTreeNode(this, new Events.Node.SelectedEventArgs(false));
-        }
     }
 }
