@@ -301,11 +301,17 @@
     <Compile Include="UserControls\StripManagerPanel.Designer.cs">
       <DependentUpon>StripManagerPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TOCPanel.ContextMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UserControls\TOCPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\TOCPanel.Designer.cs">
       <DependentUpon>TOCPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TOCPanel.SyncCallbacks.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserProfile.cs" />
     <Compile Include="Visitors\AssetCreator.cs" />

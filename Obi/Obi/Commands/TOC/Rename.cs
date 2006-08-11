@@ -31,12 +31,12 @@ namespace Obi.Commands.TOC
 
         public override void Do()
         {
-            mProject.RenameNode(mProject, mNode, mNewName);
+            mProject.RenameSectionNode(mProject, mNode, mNewName);
         }
 
         public override void Undo()
         {
-            mProject.RenameNode(mProject, mNode, mOldName);
+            mProject.RenameSectionNode(mProject, mNode, mOldName);
         }
     }
 }

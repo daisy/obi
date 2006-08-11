@@ -36,7 +36,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            mProject.MoveNodeDown(mProject, mNode);
+            mProject.MoveSectionNodeDown(mProject, mNode);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mProject.UndoMoveNode(mNode, mParent, mIndex, mPosition);
+            mProject.UndoMoveSectionNode(mNode, mParent, mIndex, mPosition);
         }
     }
 
@@ -78,7 +78,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            mProject.MoveNodeUp(mProject, mNode);
+            mProject.MoveSectionNodeUp(mProject, mNode);
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mProject.UndoMoveNode(mNode, mParent, mIndex, mPosition);
+            mProject.UndoMoveSectionNode(mNode, mParent, mIndex, mPosition);
         }
     }
 }

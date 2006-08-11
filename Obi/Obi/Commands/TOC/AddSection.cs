@@ -39,7 +39,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            mProject.AddExistingSection(mNode, mParent, mIndex, mPosition, mOriginalLabel);
+            mProject.AddExistingSectionNode(mNode, mParent, mIndex, mPosition, mOriginalLabel);
         }
 
         /// <summary>
