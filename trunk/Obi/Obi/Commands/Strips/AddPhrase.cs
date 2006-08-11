@@ -33,7 +33,7 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Do()
         {
-            mProject.AddExistingPhrase(mNode, mParent, mIndex);
+            mProject.AddPhraseNodeAndAsset(mNode, mParent, mIndex);
         }
 
         /// <summary>

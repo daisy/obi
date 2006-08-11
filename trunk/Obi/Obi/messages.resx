@@ -326,4 +326,14 @@ Do you want to replace the project contained in this file?</value>
     <value>rename audio block</value>
     <comment>JQ</comment>
   </data>
+  <data name="merge_phrases_command_label" xml:space="preserve">
+    <value>merge blocks</value>
+  </data>
+  <data name="split_phrase_command_label" xml:space="preserve">
+    <value>split block</value>
+  </data>
+  <data name="audio_file_filter" xml:space="preserve">
+    <value>WAVE file (*.wav)|*.wav|Any file|*.*</value>
+    <comment>Filter for opening audio files</comment>
+  </data>
 </root>

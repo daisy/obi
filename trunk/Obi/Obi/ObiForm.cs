@@ -376,7 +376,7 @@ namespace Obi
             mRenameStripToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mRenameStripToolStripMenuItem_Click);
             mImportAudioFileToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.StripManager.mImportAssetToolStripMenuItem_Click);
+                new EventHandler(mProjectPanel.StripManager.mImportAudioToolStripMenuItem_Click);
             mPlayAudioBlockToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mPlayAudioBlockToolStripMenuItem_Click);
             mSplitAudioBlockToolStripMenuItem.Click +=
@@ -848,6 +848,7 @@ namespace Obi
         private void dumpTreeDEBUGToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProject.RootNode.acceptDepthFirst(new Visitors.DumpTree());
+            mProject.DumpAssManager();
         }
     }
 }

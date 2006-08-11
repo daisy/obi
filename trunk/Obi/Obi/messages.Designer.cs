@@ -88,6 +88,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to WAVE file (*.wav)|*.wav|Any file|*.*.
+        /// </summary>
+        internal static string audio_file_filter {
+            get {
+                return ResourceManager.GetString("audio_file_filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancelled.
         /// </summary>
         internal static string cancelled {
@@ -268,6 +277,15 @@ namespace Obi {
         internal static string hide_toc_label {
             get {
                 return ResourceManager.GetString("hide_toc_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to merge blocks.
+        /// </summary>
+        internal static string merge_phrases_command_label {
+            get {
+                return ResourceManager.GetString("merge_phrases_command_label", resourceCulture);
             }
         }
         
@@ -560,6 +578,15 @@ namespace Obi {
         internal static string show_toc_label {
             get {
                 return ResourceManager.GetString("show_toc_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to split block.
+        /// </summary>
+        internal static string split_phrase_command_label {
+            get {
+                return ResourceManager.GetString("split_phrase_command_label", resourceCulture);
             }
         }
         

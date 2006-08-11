@@ -60,8 +60,8 @@ namespace Obi.UserControls
                     mProject.DeletedNode -= new Events.Node.DeletedNodeHandler(mTOCPanel.SyncDeletedNode);
                     mProject.DeletedNode -= new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeletedNode);
 
-                    mStripManagerPanel.ImportPhrase -= new Events.Strip.RequestToImportAssetHandler(mProject.ImportAssetRequested);
-                    mProject.ImportedAsset -= new Events.Node.ImportedAssetHandler(mStripManagerPanel.SyncImportedAsset);
+                    mStripManagerPanel.ImportAudioAssetRequested -= new Events.Strip.RequestToImportAssetHandler(mProject.ImportAssetRequested);
+                    mProject.ImportedAsset -= new Events.Node.ImportedAssetHandler(mStripManagerPanel.SyncCreateNewAudioBlock);
                     mProject.AddedPhraseNode -= new Events.Node.AddedPhraseNodeHandler(mStripManagerPanel.SyncAddedPhraseNode);
 
                     mStripManagerPanel.SetMedia -= new Events.Node.SetMediaHandler(mProject.SetMediaRequested);
@@ -71,9 +71,9 @@ namespace Obi.UserControls
                     mStripManagerPanel.MergeNodes -= new Events.Node.MergeNodesHandler(mProject.MergeNodesRequested);
                     mProject.BlockChangedTime -= new Events.Node.BlockChangedTimeHandler(mStripManagerPanel.SyncBlockChangedTime);
 
-                    mStripManagerPanel.DeleteBlock -=
+                    mStripManagerPanel.DeleteBlockRequested -=
                         new Events.Node.RequestToDeleteBlockHandler(mProject.DeletePhraseNodeRequested);
-                    mProject.DeletedPhraseNode -= new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeletedPhraseNode);
+                    mProject.DeletedPhraseNode -= new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeleteAudioBlock);
 
                     //md: toc clipboard features
                     mTOCPanel.RequestToCutNode -= new Events.Node.RequestToCutNodeHandler(mProject.CutTOCNodeRequested);
@@ -124,8 +124,20 @@ namespace Obi.UserControls
                     value.DeletedNode += new Events.Node.DeletedNodeHandler(mTOCPanel.SyncDeletedNode);
                     value.DeletedNode += new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeletedNode);
 
-                    mStripManagerPanel.ImportPhrase += new Events.Strip.RequestToImportAssetHandler(value.ImportAssetRequested);
-                    value.ImportedAsset += new Events.Node.ImportedAssetHandler(mStripManagerPanel.SyncImportedAsset);
+                    // Block events
+                    
+                    mStripManagerPanel.ImportAudioAssetRequested +=
+                        new Events.Strip.RequestToImportAssetHandler(value.ImportAssetRequested);
+                    mStripManagerPanel.DeleteBlockRequested +=
+                        new Events.Node.RequestToDeleteBlockHandler(value.DeletePhraseNodeRequested);
+
+                    value.ImportedAsset +=
+                        new Events.Node.ImportedAssetHandler(mStripManagerPanel.SyncCreateNewAudioBlock);
+                    value.DeletedPhraseNode +=
+                        new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeleteAudioBlock);
+
+
+
                     value.AddedPhraseNode += new Events.Node.AddedPhraseNodeHandler(mStripManagerPanel.SyncAddedPhraseNode);
 
                     mStripManagerPanel.SetMedia += new Events.Node.SetMediaHandler(value.SetMediaRequested);
@@ -135,8 +147,6 @@ namespace Obi.UserControls
                     mStripManagerPanel.MergeNodes += new Events.Node.MergeNodesHandler(value.MergeNodesRequested);
                     value.BlockChangedTime += new Events.Node.BlockChangedTimeHandler(mStripManagerPanel.SyncBlockChangedTime);
 
-                    mStripManagerPanel.DeleteBlock += new Events.Node.RequestToDeleteBlockHandler(value.DeletePhraseNodeRequested);
-                    value.DeletedPhraseNode += new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeletedPhraseNode);
 
                     //md: clipboard in the TOC
                     mTOCPanel.RequestToCutNode += new Events.Node.RequestToCutNodeHandler(value.CutTOCNodeRequested);

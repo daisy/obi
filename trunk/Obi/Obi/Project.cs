@@ -25,7 +25,7 @@ namespace Obi
     ///   3. an annotation channel for text annotation of other items in the book (e.g. phrases.)
     /// So we keep a handy pointer to those.
     /// </summary>
-    public class Project : urakawa.project.Project
+    public partial class Project : urakawa.project.Project
     {
         private Channel mAudioChannel;       // handy pointer to the audio channel
         private Channel mTextChannel;        // handy pointer to the text channel 
@@ -1203,6 +1203,8 @@ namespace Obi
             UpdateSeq(e.Node);
             BlockChangedTime(this, new Events.Node.NodeEventArgs(e.Origin, e.Node));
             AddedPhraseNode(this, new Events.Node.AddedPhraseNodeEventArgs(e.Origin, newNode, index));
+            Commands.Strips.SplitPhrase command = new Commands.Strips.SplitPhrase(this, e.Node, newNode);
+            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
@@ -1214,74 +1216,13 @@ namespace Obi
         {
             Assets.AudioMediaAsset asset = GetAudioMediaAsset(e.Node);
             Assets.AudioMediaAsset next = GetAudioMediaAsset(e.Next);
+            Commands.Strips.MergePhrases command = new Commands.Strips.MergePhrases(this, e.Node, e.Next);
             mAssManager.MergeAudioMediaAssets(asset, next);
             UpdateSeq(e.Node);
             BlockChangedTime(this, new Events.Node.NodeEventArgs(e.Origin, e.Node));
             DeletedPhraseNode(this, new Events.Node.NodeEventArgs(e.Origin, e.Next));
             e.Next.detach();
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-        }
-
-        #endregion
-
-        #region Strip event handlers
-
-        /// <summary>
-        /// Create a new phrase node and add it to the section node.
-        /// The phrase is named after the imported file name.
-        /// </summary>
-        /// <remarks>JQ</remarks>
-        public void ImportAssetRequested(object sender, Events.Strip.ImportAssetEventArgs e)
-        {
-            Assets.AudioMediaAsset asset = mAssManager.ImportAudioMediaAsset(e.AssetPath);
-            mAssManager.InsureRename(asset, Path.GetFileNameWithoutExtension(e.AssetPath));
-            CoreNode node = CreatePhraseNode(asset);
-            e.SectionNode.appendChild(node);
-            ImportedAsset(this, new Events.Node.NodeEventArgs(sender, node));
-            Commands.Strips.AddPhrase command = new Commands.Strips.AddPhrase(this, node);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-        }
-
-        /// <summary>
-        /// Add an already existing phrase node.
-        /// </summary>
-        public void AddExistingPhrase(CoreNode node, CoreNode parent, int index)
-        {
-            Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);
-            mAssManager.AddAsset(asset);
-            parent.insert(node, index);
-            AddedPhraseNode(this, new Events.Node.AddedPhraseNodeEventArgs(this, node, index));
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-        }
-
-        /// <summary>
-        /// Delete a phrase node from the tree.
-        /// Remove its asset from the asset manager.
-        /// </summary>
-        public void DeletePhraseNodeRequested(object sender, Events.Node.NodeEventArgs e)
-        {
-            Assets.AudioMediaAsset asset = GetAudioMediaAsset(e.Node);
-            mAssManager.RemoveAsset(asset);
-            DeletedPhraseNode(this, new Events.Node.NodeEventArgs(e.Origin, e.Node));
-            CoreNode parent = (CoreNode)e.Node.getParent();
-            int index = parent.indexOf(e.Node);
-            e.Node.detach();
-            Commands.Strips.DeletePhrase command = new Commands.Strips.DeletePhrase(this, e.Node, parent, index);
-            CommandCreated(this, new Obi.Events.Project.CommandCreatedEventArgs(command));
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-        }
-
-        public void DeletePhraseNode(CoreNode node)
-        {
-            Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);
-            mAssManager.RemoveAsset(asset);
-            DeletedPhraseNode(this, new Events.Node.NodeEventArgs(this, node));
-            node.detach();
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
@@ -1348,9 +1289,9 @@ namespace Obi
             ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
             SequenceMedia seq =
                 (SequenceMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.EMPTY_SEQUENCE);
-            AudioMedia audio = (AudioMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.AUDIO);
             foreach (Assets.AudioClip clip in asset.Clips)
             {
+                AudioMedia audio = (AudioMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.AUDIO);
                 UriBuilder builder = new UriBuilder();
                 builder.Scheme = "file";
                 builder.Path = clip.Path;
@@ -1460,6 +1401,18 @@ namespace Obi
         {
             Dialogs.Record dialog = new Dialogs.Record(settings.AudioChannels, settings.SampleRate, settings.BitDepth, mAssManager);
             dialog.ShowDialog();
+        }
+
+        /// <summary>
+        /// Dump the asset manager to check what's going on.
+        /// </summary>
+        internal void DumpAssManager()
+        {
+            System.Diagnostics.Debug.Print("Managed assets:");
+            foreach (string name in mAssManager.GetAssets(Assets.MediaType.Audio).Keys)
+            {
+                System.Diagnostics.Debug.Print("* {0}", name);
+            }
         }
     }
 }

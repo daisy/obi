@@ -21,50 +21,37 @@ namespace Obi.Assets
 
         public int SampleRate
         {
-            get
-            {
-                return m_SamplingRate;
-            }
+            get { return m_SamplingRate; }
         }
 
         public int Channels
         {
-            get
-            {
-                return m_Channels;
-            }
+            get { return m_Channels; }
         }
 
         public int BitDepth
         {
-            get
-            {
-                return m_BitDepth;
-            }
+            get { return m_BitDepth; }
         }
 
         internal int FrameSize
         {
-            get
-            {
-                return m_FrameSize;
-            }
+            get { return m_FrameSize; }
         }
 
         public double LengthInMilliseconds
         {
-            get
-            {
-                return m_dAudioLengthInTime;
-            }
+            get { return m_dAudioLengthInTime; }
+        }
+
+        public string LengthInSeconds
+        {
+            get { return (Math.Round(m_dAudioLengthInTime / 1000.0)).ToString() + "s"; }
         }
 
         public long AudioLengthInBytes
         {
-            get
-            {
-                return m_lAudioLengthInBytes;
-            }
+            get { return m_lAudioLengthInBytes; }
         }
 
         private List<AudioClip> mClips;
