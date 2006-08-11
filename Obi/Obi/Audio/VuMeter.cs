@@ -8,7 +8,7 @@ namespace Obi.Audio
 {
 	public class VuMeter
 	{
-		public event Events.Audio.VuMeter.LevelTooLowHandler LevelTooLow;
+		// public event Events.Audio.VuMeter.LevelTooLowHandler LevelTooLow;
 		public event Events.Audio.VuMeter.PeakOverloadHandler PeakOverload;
 		public event Events.Audio.VuMeter.ResetHandler ResetEvent;
 		public event Events.Audio.VuMeter.UpdateFormsHandler UpdateForms;

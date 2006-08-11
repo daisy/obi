@@ -28,10 +28,10 @@ namespace Obi.UserControls
         public event Events.Node.RequestToAddSiblingNodeHandler AddSiblingSection;
         public event Events.Node.RequestToRenameNodeHandler RenameSection;
         public event Events.Node.SetMediaHandler SetMedia;
-        public event Events.Node.RequestToDeleteBlockHandler DeleteBlock;
+        public event Events.Node.RequestToDeleteBlockHandler DeleteBlockRequested;
         public event Events.Node.SplitNodeHandler SplitNode;
         public event Events.Node.MergeNodesHandler MergeNodes;
-        public event Events.Strip.RequestToImportAssetHandler ImportPhrase;
+        public event Events.Strip.RequestToImportAssetHandler ImportAudioAssetRequested;
         public event Events.Strip.SelectedHandler SelectedStrip;
         public event Events.Strip.SelectedHandler SelectedAudioBlock;
 
@@ -326,24 +326,6 @@ namespace Obi.UserControls
             }
         }
 
-        internal void SyncImportedAsset(object sender, Events.Node.NodeEventArgs e)
-        {
-            if (e.Node != null && mSelectedSection != null)
-            {
-                SectionStrip strip = mSectionNodeMap[mSelectedSection];
-                AudioBlock block = new AudioBlock();
-                block.Manager = this;
-                block.Node = e.Node;
-                mPhraseNodeMap[e.Node] = block;
-                TextMedia annotation = (TextMedia)Project.GetMediaForChannel(e.Node, Project.AnnotationChannel);
-                block.Label = annotation.getText();
-                block.Time = (Math.Round(Project.GetAudioMediaAsset(e.Node).LengthInMilliseconds / 1000)).ToString() + "s";
-                strip.AppendAudioBlock(block);
-                //mg:
-                this.ReflowTabOrder(block);
-            }
-        }
-
         internal void SyncAddedPhraseNode(object sender, Events.Node.AddedPhraseNodeEventArgs e)
         {
             if (e.Node != null)
@@ -360,14 +342,6 @@ namespace Obi.UserControls
                 //mg:
                 this.ReflowTabOrder(block);
             }
-        }
-
-        internal void SyncDeletedPhraseNode(object sender, Events.Node.NodeEventArgs e)
-        {
-            SectionStrip strip = mSectionNodeMap[(CoreNode)e.Node.getParent()];
-            SelectedPhraseNode = null;
-            strip.RemoveAudioBlock(mPhraseNodeMap[e.Node]);
-            mPhraseNodeMap.Remove(e.Node);
         }
 
         internal void SyncMovedNode(object sender, Events.Node.MovedNodeEventArgs e)
@@ -456,15 +430,27 @@ namespace Obi.UserControls
             }
         }
 
-        internal void mImportAssetToolStripMenuItem_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Brings up a file dialog and import one or more audio assets from selected files.
+        /// The project is requested to create new blocks in the selected section, after the
+        /// currently selected block (or at the end if no block is selected.)
+        /// </summary>
+        internal void mImportAudioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedSectionNode != null)
+            if (mSelectedSection != null)
             {
                 OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = "WAVE file (*.wav)|*.wav|Any file|*.*";
+                dialog.Multiselect = true;
+                dialog.Filter = Localizer.Message("audio_file_filter");
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    ImportPhrase(this, new Events.Strip.ImportAssetEventArgs(mSelectedSection, dialog.FileName));
+                    int index = mSelectedPhrase == null ?
+                        Project.GetPhrasesCount(mSelectedSection) : mSelectedSection.indexOf(mSelectedPhrase) + 1;
+                    foreach (string path in dialog.FileNames)
+                    {
+                        ImportAudioAssetRequested(this, new Events.Strip.ImportAssetEventArgs(mSelectedSection, path, index));
+                        ++index;
+                    }
                 }
             }
         }
@@ -529,13 +515,13 @@ namespace Obi.UserControls
         }
 
         /// <summary>
-        /// Delete the currently selected audio block (JQ)
+        /// Delete the currently selected audio block.
         /// </summary>
         internal void mDeleteAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mSelectedPhrase != null)
             {
-                DeleteBlock(this, new Events.Node.NodeEventArgs(this, mSelectedPhrase));
+                DeleteBlockRequested(this, new Events.Node.NodeEventArgs(this, mSelectedPhrase));
             }
         }
 
@@ -754,6 +740,11 @@ namespace Obi.UserControls
             {
                 return this.mSectionNodeMap[previous];
             }
+
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
 
         }
     }

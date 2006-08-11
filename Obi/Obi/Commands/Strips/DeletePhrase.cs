@@ -33,7 +33,7 @@ namespace Obi.Commands.Strips
 
         public override void Undo()
         {
-            mProject.AddExistingPhrase(mNode, mParent, mIndex);
+            mProject.AddPhraseNodeAndAsset(mNode, mParent, mIndex);
         }
     }
 }

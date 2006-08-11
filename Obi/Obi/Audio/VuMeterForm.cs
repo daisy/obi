@@ -192,7 +192,7 @@ namespace Obi.Audio
 		internal int BackGroundWidth = 0 ;
 		internal int BackGroundTop = 0 ;
 		internal int BackGroundBottom = 0 ;
-		internal int BackGroundX ;
+		internal int BackGroundX = 0;
 
 		internal int EraserLeft = 0 ;
 		internal int EraserRight = 0 ;

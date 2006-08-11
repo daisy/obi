@@ -34,9 +34,9 @@ namespace Obi.Dialogs
 
         private List<Assets.AudioMediaAsset> mAssets;  // the list of assets created while recording
 
-        public event Events.Audio.Recorder.StartingPhraseHandler StartingPhrase;
-        public event Events.Audio.Recorder.ContinuingPhraseHandler ContinuingPhrase;
-        public event Events.Audio.Recorder.FinishingPhraseHandler FinishingPhrase;
+        // public event Events.Audio.Recorder.StartingPhraseHandler StartingPhrase;
+        // public event Events.Audio.Recorder.ContinuingPhraseHandler ContinuingPhrase;
+        // public event Events.Audio.Recorder.FinishingPhraseHandler FinishingPhrase;
 
         /// <summary>
         /// The list of assets created.

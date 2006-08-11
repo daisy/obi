@@ -22,7 +22,6 @@ namespace Obi.Audio
 	{
 		// Events of the audio player (JQ)
 		public event Events.Audio.Player.EndOfAudioAssetHandler EndOfAudioAsset;
-		public event Events.Audio.Player.EndOfAudioBufferHandler EndOfAudioBuffer;
 		public event Events.Audio.Player.StateChangedHandler StateChanged;
 		public event Events.Audio.Player.UpdateVuMeterHandler UpdateVuMeter;
 

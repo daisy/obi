@@ -21,7 +21,6 @@ namespace Obi.Dialogs
             mNode = node;
             Audio.AudioPlayer.Instance.StateChanged += new Events.Audio.Player.StateChangedHandler(AudioPlayer_StateChanged);
             Audio.AudioPlayer.Instance.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler(AudioPlayer_EndOfAudioAsset);
-            Audio.AudioPlayer.Instance.EndOfAudioBuffer += new Events.Audio.Player.EndOfAudioBufferHandler(AudioPlayer_EndOfAudioBuffer);
             Audio.AudioPlayer.Instance.UpdateVuMeter += new Events.Audio.Player.UpdateVuMeterHandler(AudioPlayer_UpdateVuMeter);
         }
 
@@ -46,10 +45,6 @@ namespace Obi.Dialogs
             {
                 base.Close();
             }
-        }
-
-        private void AudioPlayer_EndOfAudioBuffer(object sender, Events.Audio.Player.EndOfAudioBufferEventArgs e)
-        {
         }
 
         private void AudioPlayer_UpdateVuMeter(object sender, Events.Audio.Player.UpdateVuMeterEventArgs e)

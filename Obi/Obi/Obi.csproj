@@ -80,8 +80,10 @@
     <Compile Include="Commands\CommandManager.cs" />
     <Compile Include="Commands\ConsCommand.cs" />
     <Compile Include="Commands\Strips\AddPhrase.cs" />
+    <Compile Include="Commands\Strips\MergePhrases.cs" />
     <Compile Include="Commands\Strips\DeletePhrase.cs" />
     <Compile Include="Commands\Strips\RenamePhrase.cs" />
+    <Compile Include="Commands\Strips\SplitPhrase.cs" />
     <Compile Include="Commands\TOC\AddSection.cs" />
     <Compile Include="Commands\TOC\CopySection.cs" />
     <Compile Include="Commands\TOC\CutSection.cs" />
@@ -184,6 +186,7 @@
       <DependentUpon>ObiForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="Project.Blocks.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Audio\VuMeterForm.resx">
@@ -290,6 +293,9 @@
     </Compile>
     <Compile Include="UserControls\SectionStrip.Designer.cs">
       <DependentUpon>SectionStrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\StripManagerPanel.Blocks.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\StripManagerPanel.cs">
       <SubType>UserControl</SubType>
