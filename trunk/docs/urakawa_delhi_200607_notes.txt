@@ -316,18 +316,15 @@ REMAINING ITEMS AND WORK DISTRIBUTION FOR ITERATION ONE
 
   Backend:
 		    
-	AudioDevice object
-	  @Suman
-	  @Julien (add few things in API, then Suman finishes)
-
 	Split Dialog
 	  @Julien layout
 
 	Record Dialog General
-	  @Julien layout, depends on depends on @Suman.VolumeControl and @Suman.PhraseMarker
+	  @Julien layout, @Suman.PhraseMarker
 
-	Record Dialog PhraseMarker	
-	  @Suman, fallback Avneesh, depends on @Julien.Events
+	AudioDevice object
+	  @Suman
+	  @Julien (add few things in API, then Suman finishes)
 	
 	Record Dialog VolumeControl [iter2]	    
 	    	 	    
@@ -357,13 +354,18 @@ REMAINING ITEMS AND WORK DISTRIBUTION FOR ITERATION ONE
       (one key shortcuts?)
              
     TOCPanel finishing
-    	@marisa
+      Clip board mostly done
+      Add CanMove, etc. properties, enabling of menu items
+      @marisa
     	
     StripManagerPanel
-      add move delete cut copy paste
+      moving strips up and down
+      cut copy paste should be similar to TOC view
+      delete, paste, etc. must handle blocks
       @marisa, julien for fallback
-            
+
     Manual
+      Beware of image files
       @markus
     
     Webpage
@@ -379,6 +381,9 @@ REMAINING ITEMS AND WORK DISTRIBUTION FOR ITERATION ONE
       @Suman
       @Dipendra find NAB resource to test installer during monday 14
         @Julien needs to provide list of things that need to installed
+
+    Prepare a demo script for september
+      to be thought of after August 18th.
 
         
 OVERARCHING TIMELINE AND VERSION STRATEGY NOW UNTIL VERSION 1.0
