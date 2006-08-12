@@ -11,7 +11,9 @@ namespace Obi.Commands.Strips
         private Project mProject;
         private CoreNode mNode;
         private CoreNode mNext;
-        // private CoreNode mMerged;
+        private Assets.AudioMediaAsset mAsset;
+        private Assets.AudioMediaAsset mMergedAsset;
+        private int mNextIndex;
 
         public override string Label
         {
@@ -23,21 +25,22 @@ namespace Obi.Commands.Strips
             mProject = project;
             mNode = node;
             mNext = next;
-            // mMerged = null;
+            mMergedAsset = Project.GetAudioMediaAsset(mNode);
+            mAsset = (Assets.AudioMediaAsset)mMergedAsset.Copy();
+            mNextIndex = ((CoreNode)mNext.getParent()).indexOf(mNext);
         }
     
         public override void  Do()
         {
-            mProject.MergeNodesRequested(this, new Events.Node.MergeNodesEventArgs(this, mNode, mNext));
+            mProject.SetAudioMediaAsset(mNode, mMergedAsset);
+            mProject.DeletePhraseNodeAndAsset(mNext);
         }
 
         public override void Undo()
         {
-            /*Assets.AudioMediaAsset asset = Project.GetAudioMediaAsset(mNode);
-            Assets.AudioMediaAsset mResultAsset =
-                asset.Manager.SplitAudioMediaAsset(Project.GetAudioMediaAsset(mNode), mSplitTime);
-            mProject.SplitAssetRequested(this, new Events.Node.SplitNodeEventArgs(this, mNode, mResultAsset));*/
-            throw new Exception("CANNOT UNDO");
+            mProject.SetAudioMediaAsset(mNode, mAsset);
+            mProject.AddPhraseNodeAndAsset(mNext, (CoreNode)mNode.getParent(), mNextIndex);
+            mProject.TouchNode(mNode);
         }
     }
 }

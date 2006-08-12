@@ -14,8 +14,6 @@ namespace Obi.UserControls
 {
     public partial class StripManagerPanel
     {
-        #region Menu items
-
         /// <summary>
         /// TODO:
         /// Adding a strip from the strip manager adds a new sibling strip right after the selected strip
@@ -86,7 +84,6 @@ namespace Obi.UserControls
                 Dialogs.Split dialog = new Dialogs.Split(mSelectedPhrase, 0.0);
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    // SplitNode(this, new Events.Node.SplitNodeEventArgs(this, mSelectedPhrase, dialog.ResultAsset));
                     SplitAudioBlockRequested(this, new Events.Node.SplitNodeEventArgs(this, mSelectedPhrase, dialog.ResultAsset));
                 }
             }
@@ -97,17 +94,10 @@ namespace Obi.UserControls
         /// </summary>
         private void mMergeWithNextAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mSelectedPhrase != null)
+            CoreNode next = Project.GetNextPhrase(mSelectedPhrase);
+            if (next != null)
             {
-                CoreNode parent = (CoreNode)mSelectedPhrase.getParent();
-                for (int i = parent.indexOf(mSelectedPhrase) + 1; i < parent.getChildCount(); ++i)
-                {
-                    if (Project.GetNodeType(parent.getChild(i)) == NodeType.Phrase)
-                    {
-                        MergeNodes(this, new Events.Node.MergeNodesEventArgs(this, mSelectedPhrase, parent.getChild(i)));
-                        break;
-                    }
-                }
+                MergeNodes(this, new Events.Node.MergeNodesEventArgs(this, mSelectedPhrase, next));
             }
         }
 
@@ -173,7 +163,5 @@ namespace Obi.UserControls
                 ProjectPanel.TOCPanel.Focus();
             }
         }
-
-        #endregion
     }
 }

@@ -96,14 +96,6 @@ namespace Obi.Assets
         public AudioMediaAsset NewAudioMediaAsset(List<AudioClip> clips)
         {
             AudioMediaAsset asset = (AudioMediaAsset)NameAddAsset(new AudioMediaAsset(clips));
-            //for (int i = 0; i < asset.m_alClipList.Count; ++i)
-            //{
-            //    AudioClip clip = asset.m_alClipList[i] as AudioClip;
-            foreach (AudioClip clip in asset.Clips)
-            {
-                if (!mFiles.ContainsKey(clip.Path)) mFiles[clip.Path] = new List<AudioClip>();
-                mFiles[clip.Path].Add(clip);
-            }
             return asset;
         }
 
@@ -142,9 +134,6 @@ namespace Obi.Assets
                 asset.Manager = this;
                 if (asset.Type == MediaType.Audio)
                 {
-                    //for (int i = 0; i < ((AudioMediaAsset)asset).m_alClipList.Count; ++i)
-                    //{
-                    //    AudioClip clip = ((AudioMediaAsset)asset).m_alClipList[i] as AudioClip;
                     foreach (AudioClip clip in ((AudioMediaAsset)asset).Clips)
                     {
                         if (!mFiles.ContainsKey(clip.Path)) mFiles[clip.Path] = new List<AudioClip>();
@@ -186,9 +175,6 @@ namespace Obi.Assets
             }
             if (asset.Type == MediaType.Audio)
             {
-                //for (int i = 0; i < ((AudioMediaAsset)asset).m_alClipList.Count; ++i)
-                //{
-                //    AudioClip clip = ((AudioMediaAsset)asset).m_alClipList[i] as AudioClip;
                 foreach (AudioClip clip in ((AudioMediaAsset)asset).Clips)
                 {
                     mFiles[clip.Path].RemoveAt(mFiles[clip.Path].IndexOf(clip));
@@ -252,6 +238,14 @@ namespace Obi.Assets
             asset.Name = UniqueName();
             asset.Manager = this;
             mAssets.Add(asset.Name, asset);
+            if (asset.Type == MediaType.Audio)
+            {
+                foreach (AudioClip clip in ((AudioMediaAsset)asset).Clips)
+                {
+                    if (!mFiles.ContainsKey(clip.Path)) mFiles[clip.Path] = new List<AudioClip>();
+                    mFiles[clip.Path].Add(clip);
+                }
+            }
             return asset;
         }
 
@@ -345,6 +339,14 @@ namespace Obi.Assets
         /// <returns>The new asset.</returns>
         public AudioMediaAsset SplitAudioMediaAsset(AudioMediaAsset asset, double time)
         {
+            /*if (asset.Type == MediaType.Audio)
+            {
+                foreach (AudioClip clip in ((AudioMediaAsset)asset).Clips)
+                {
+                    if (!mFiles.ContainsKey(clip.Path)) mFiles[clip.Path] = new List<AudioClip>();
+                    mFiles[clip.Path].Add(clip);
+                }
+            }*/
             return (AudioMediaAsset)NameAddAsset(asset.Split(time));
         }
 

@@ -60,7 +60,7 @@ namespace Obi.UserControls
         internal void SyncDeleteAudioBlock(object sender, Events.Node.NodeEventArgs e)
         {
             SectionStrip strip = mSectionNodeMap[(CoreNode)e.Node.getParent()];
-            SelectedPhraseNode = null;
+            if (SelectedPhraseNode == e.Node) SelectedPhraseNode = null;
             strip.RemoveAudioBlock(mPhraseNodeMap[e.Node]);
             mPhraseNodeMap.Remove(e.Node);
             // reflow?
@@ -84,6 +84,24 @@ namespace Obi.UserControls
                     // the audio asset of an audio block has changed
                     strip.UpdateAssetAudioBlock(mPhraseNodeMap[e.Node]);  
                 }
+            }
+        }
+
+        /// <summary>
+        /// The node was modified so we need to make sure that it gets selected.
+        /// </summary>
+        internal void SyncTouchedNode(object sender, Events.Node.NodeEventArgs e)
+        {
+            switch (Project.GetNodeType(e.Node))
+            {
+                case NodeType.Phrase:
+                    SelectedPhraseNode = e.Node;
+                    break;
+                case NodeType.Section:
+                    SelectedSectionNode = e.Node;
+                    break;
+                default:
+                    break;
             }
         }
     }
