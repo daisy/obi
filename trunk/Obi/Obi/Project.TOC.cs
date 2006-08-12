@@ -557,7 +557,7 @@ namespace Obi
             parent.insert(node, index);
 
             MovedNode(this, new Events.Node.MovedNodeEventArgs(this, node, parent, index, position));
-
+ 
             Visitors.SectionNodePosition visitor = null;
 
             //reattach the children
@@ -567,7 +567,7 @@ namespace Obi
                 //find the position for the first one
                 if (i == 0)
                 {
-                    visitor = new Visitors.SectionNodePosition(node);
+                    visitor = new Visitors.SectionNodePosition((CoreNode)nonOriginalChildren[i]);
                     getPresentation().getRootNode().acceptDepthFirst(visitor);
                 }
 
@@ -582,9 +582,7 @@ namespace Obi
         /// </summary>
         public void RenameSectionNode(object origin, CoreNode node, string label)
         {
-            System.Diagnostics.Trace.WriteLine(
-                string.Format("TOCPanel.RenameSectionNode for {0}", node.GetHashCode()));
-
+            
             TextMedia text = GetTextMedia(node);
             Commands.TOC.Rename command = origin == this ? null : new Commands.TOC.Rename(this, node, text.getText(), label);
             GetTextMedia(node).setText(label);
@@ -596,9 +594,6 @@ namespace Obi
 
         public void RenameSectionNodeRequested(object sender, Events.Node.RenameNodeEventArgs e)
         {
-            System.Diagnostics.Trace.WriteLine(
-                string.Format("Project.RenameSectionNodeRequested for {0}", e.Node.GetHashCode()));
-            
             RenameSectionNode(sender, e.Node, e.Label);
         }
 
