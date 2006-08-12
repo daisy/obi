@@ -564,16 +564,13 @@ namespace Obi
             for (int i = 0; i < nonOriginalChildren.Count; i++)
             {
                 parent.appendChild((CoreNode)nonOriginalChildren[i]);
-                //find the position for the first one
-                if (i == 0)
-                {
-                    visitor = new Visitors.SectionNodePosition((CoreNode)nonOriginalChildren[i]);
-                    getPresentation().getRootNode().acceptDepthFirst(visitor);
-                }
-
+               
+                visitor = new Visitors.SectionNodePosition((CoreNode)nonOriginalChildren[i]);
+                getPresentation().getRootNode().acceptDepthFirst(visitor);
+                
                 MovedNode(this, new Events.Node.MovedNodeEventArgs
                     (this, (CoreNode)nonOriginalChildren[i], parent,
-                    parent.getChildCount() - 1, visitor.Position + i));
+                    parent.getChildCount() - 1, visitor.Position));
             }
         }
 
