@@ -61,6 +61,44 @@ namespace Obi.UserControls
         }
 
         /// <summary>
+        /// Bring up the record dialog.
+        /// </summary>
+        private void mRecordAudioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mSelectedSection != null)
+            {
+                Settings settings = ((ObiForm)ParentForm).Settings;
+                Dialogs.Record dialog = new Dialogs.Record(settings.AudioChannels, settings.SampleRate, settings.BitDepth,
+                    mProjectPanel.Project.AssetManager);
+                dialog.StartingPhrase += new Events.Audio.Recorder.StartingPhraseHandler(Record_StartingPhrase);
+                dialog.ContinuingPhrase += new Events.Audio.Recorder.ContinuingPhraseHandler(Record_ContinuingPhrase);
+                dialog.FinishingPhrase += new Events.Audio.Recorder.FinishingPhraseHandler(Record_FinishingPhrase);
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    int index = mSelectedPhrase == null ?
+                        Project.GetPhrasesCount(mSelectedSection) : mSelectedSection.indexOf(mSelectedPhrase) + 1;
+                    foreach (Assets.AudioMediaAsset asset in dialog.Assets)
+                    {
+                        
+                        ++index;
+                    }
+                }
+            }
+        }
+
+        private void Record_StartingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e)
+        {
+        }
+
+        private void Record_ContinuingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e)
+        {
+        }
+
+        private void Record_FinishingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e)
+        {
+        }
+
+        /// <summary>
         /// Play the currently selected audio block.
         /// </summary>
         /// <remarks>JQ</remarks>

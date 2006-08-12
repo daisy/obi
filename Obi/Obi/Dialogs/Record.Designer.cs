@@ -40,9 +40,9 @@ namespace Obi.Dialogs
             // 
             // mRecordButton
             // 
-            this.mRecordButton.Location = new System.Drawing.Point(24, 131);
+            this.mRecordButton.Location = new System.Drawing.Point(24, 121);
             this.mRecordButton.Name = "mRecordButton";
-            this.mRecordButton.Size = new System.Drawing.Size(75, 25);
+            this.mRecordButton.Size = new System.Drawing.Size(75, 23);
             this.mRecordButton.TabIndex = 0;
             this.mRecordButton.Text = "&Record";
             this.mRecordButton.UseVisualStyleBackColor = true;
@@ -51,25 +51,26 @@ namespace Obi.Dialogs
             // mDisplayTimeLable
             // 
             this.mDisplayTimeLable.AutoSize = true;
-            this.mDisplayTimeLable.Location = new System.Drawing.Point(145, 25);
+            this.mDisplayTimeLable.Location = new System.Drawing.Point(145, 23);
             this.mDisplayTimeLable.Name = "mDisplayTimeLable";
-            this.mDisplayTimeLable.Size = new System.Drawing.Size(73, 13);
+            this.mDisplayTimeLable.Size = new System.Drawing.Size(75, 12);
             this.mDisplayTimeLable.TabIndex = 1;
             this.mDisplayTimeLable.Text = "Running &Time";
             // 
             // mTimeTextBox
             // 
-            this.mTimeTextBox.Location = new System.Drawing.Point(132, 41);
+            this.mTimeTextBox.Location = new System.Drawing.Point(132, 38);
             this.mTimeTextBox.Name = "mTimeTextBox";
             this.mTimeTextBox.ReadOnly = true;
-            this.mTimeTextBox.Size = new System.Drawing.Size(100, 20);
+            this.mTimeTextBox.Size = new System.Drawing.Size(100, 19);
             this.mTimeTextBox.TabIndex = 2;
             // 
             // mStopButton
             // 
-            this.mStopButton.Location = new System.Drawing.Point(123, 131);
+            this.mStopButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.mStopButton.Location = new System.Drawing.Point(123, 121);
             this.mStopButton.Name = "mStopButton";
-            this.mStopButton.Size = new System.Drawing.Size(75, 23);
+            this.mStopButton.Size = new System.Drawing.Size(75, 21);
             this.mStopButton.TabIndex = 3;
             this.mStopButton.Text = "&Stop";
             this.mStopButton.UseVisualStyleBackColor = true;
@@ -77,9 +78,9 @@ namespace Obi.Dialogs
             // 
             // mPhraseMarkerButton
             // 
-            this.mPhraseMarkerButton.Location = new System.Drawing.Point(238, 132);
+            this.mPhraseMarkerButton.Location = new System.Drawing.Point(238, 122);
             this.mPhraseMarkerButton.Name = "mPhraseMarkerButton";
-            this.mPhraseMarkerButton.Size = new System.Drawing.Size(88, 23);
+            this.mPhraseMarkerButton.Size = new System.Drawing.Size(88, 21);
             this.mPhraseMarkerButton.TabIndex = 4;
             this.mPhraseMarkerButton.Text = "Phrase &Marker";
             this.mPhraseMarkerButton.UseVisualStyleBackColor = true;
@@ -91,9 +92,10 @@ namespace Obi.Dialogs
             // 
             // Record
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AcceptButton = this.mStopButton;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(367, 183);
+            this.ClientSize = new System.Drawing.Size(367, 169);
             this.Controls.Add(this.mPhraseMarkerButton);
             this.Controls.Add(this.mStopButton);
             this.Controls.Add(this.mTimeTextBox);

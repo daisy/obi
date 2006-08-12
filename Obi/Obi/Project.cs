@@ -111,6 +111,11 @@ namespace Obi
             }
         }
 
+        internal Assets.AssetManager AssetManager
+        {
+            get { return mAssManager; }
+        }
+
         /// <summary>
         /// Create an empty project. And I mean empty.
         /// </summary>

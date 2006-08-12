@@ -24,9 +24,6 @@ namespace Obi.Dialogs
         private int mBitDepth;                  // required bit depth
         private Assets.AssetManager mAssManager;       // the asset manager (for creating new assets)
         private Audio.VuMeter ob_VuMeter = new Audio.VuMeter();
-        private event Events.Audio.Recorder.StartingPhraseHandler StartPhrase;
-        private event Events.Audio.Recorder.ContinuingPhraseHandler ContinuePhrase;
-        private event Events.Audio.Recorder.FinishingPhraseHandler FinishPhrase;
         double BeginTime = 0;
         double CurrentTime ;//time while the phrase is recorded
         double EndTime;//the end time when finish phrase event is triggered
@@ -34,9 +31,9 @@ namespace Obi.Dialogs
 
         private List<Assets.AudioMediaAsset> mAssets;  // the list of assets created while recording
 
-        // public event Events.Audio.Recorder.StartingPhraseHandler StartingPhrase;
-        // public event Events.Audio.Recorder.ContinuingPhraseHandler ContinuingPhrase;
-        // public event Events.Audio.Recorder.FinishingPhraseHandler FinishingPhrase;
+        public event Events.Audio.Recorder.StartingPhraseHandler StartingPhrase;
+        public event Events.Audio.Recorder.ContinuingPhraseHandler ContinuingPhrase;
+        public event Events.Audio.Recorder.FinishingPhraseHandler FinishingPhrase;
 
         /// <summary>
         /// The list of assets created.
@@ -60,9 +57,6 @@ namespace Obi.Dialogs
             Audio.AudioRecorder.Instance.StateChanged += new Events.Audio.Recorder.StateChangedHandler(AudioRecorder_StateChanged);
             Audio.AudioRecorder.Instance.UpdateVuMeterFromRecorder +=
                 new Events.Audio.Recorder.UpdateVuMeterHandler(AudioRecorder_UpdateVuMeter);
-            StartPhrase += new Obi.Events.Audio.Recorder.StartingPhraseHandler(Start_Phrase);
-            ContinuePhrase += new Obi.Events.Audio.Recorder.ContinuingPhraseHandler(Continue_Phrase);
-            FinishPhrase += new Events.Audio.Recorder.FinishingPhraseHandler(Finish_Phrase);
         }
 
         private void AudioRecorder_StateChanged(object sender, Events.Audio.Recorder.StateChangedEventArgs state)
@@ -70,16 +64,6 @@ namespace Obi.Dialogs
         }
 
         private void AudioRecorder_UpdateVuMeter(Object sender, Events.Audio.Recorder.UpdateVuMeterEventArgs update)
-        {
-        }
-        private void Finish_Phrase(object sender, Events.Audio.Recorder.PhraseEventArgs Finish)
-        {
-}
-        private void Continue_Phrase(object sender, Events.Audio.Recorder.PhraseEventArgs contine)
-        {
-}
-        
-        private void Start_Phrase(object sender, Events.Audio.Recorder.PhraseEventArgs start)
         {
         }
 
@@ -176,17 +160,17 @@ private void timer1_Tick(object sender, EventArgs e)
                     Audio.AudioRecorder.Instance.StopRecording();
                     EndTime = CurrentTime;
                     Obi.Events.Audio.Recorder.PhraseEventArgs mEnd = new Obi.Events.Audio.Recorder.PhraseEventArgs(1);
-                    FinishPhrase(this, mEnd);
+                    FinishingPhrase(this, mEnd);
                     timer1.Enabled = false;
                 }
                 if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Idle))
                 {
                     Obi.Events.Audio.Recorder.PhraseEventArgs mStart = new Obi.Events.Audio.Recorder.PhraseEventArgs(BeginTime);
-                    StartPhrase(this, mStart);
+                    StartingPhrase(this, mStart);
                     Audio.AudioRecorder.Instance.StartRecording(mPhraseMarkerAsset);
                     CurrentTime = Audio.AudioRecorder.Instance.TimeOfAsset;
                     Obi.Events.Audio.Recorder.PhraseEventArgs mContinue = new Obi.Events.Audio.Recorder.PhraseEventArgs(CurrentTime);
-                    ContinuePhrase(this, mContinue);
+                    ContinuingPhrase(this, mContinue);
                     timer1.Enabled = true;
                     mRecordButton.Enabled = false;
                 }
