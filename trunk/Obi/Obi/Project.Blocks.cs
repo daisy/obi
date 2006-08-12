@@ -39,6 +39,28 @@ namespace Obi
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
+        /// <summary>
+        /// Merge two adjacent phrase nodes: merge their assets into the first node's asset and remove the second node.
+        /// </summary>
+        public void MergeNodesRequested(object sender, Events.Node.MergeNodesEventArgs e)
+        {
+            Assets.AudioMediaAsset asset = GetAudioMediaAsset(e.Node);
+            Assets.AudioMediaAsset next = GetAudioMediaAsset(e.Next);
+            // the command is created while the assets are not changed; there is time to copy the original asset before the
+            // merge is done.
+            Commands.Strips.MergePhrases command = new Commands.Strips.MergePhrases(this, e.Node, e.Next);
+            mAssManager.MergeAudioMediaAssets(asset, next);
+            UpdateSeq(e.Node);
+            MediaSet(this, new Events.Node.SetMediaEventArgs(e.Origin, e.Node, Project.AudioChannel,
+                GetMediaForChannel(e.Node, Project.AudioChannel)));
+            DeletedPhraseNode(this, new Events.Node.NodeEventArgs(e.Origin, e.Next));
+            e.Next.detach();
+            TouchedNode(this, new Events.Node.NodeEventArgs(e.Origin, e.Node));
+            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+
         public enum Direction { Forward, Backward };
 
         /// <summary>
@@ -125,7 +147,6 @@ namespace Obi
             int index = parent.indexOf(e.Node) + 1;
             parent.insert(newNode, index);
             UpdateSeq(e.Node);
-            // BlockChangedTime(this, new Events.Node.NodeEventArgs(e.Origin, e.Node));
             MediaSet(this, new Events.Node.SetMediaEventArgs(e.Origin, e.Node, AudioChannel,
                 GetMediaForChannel(e.Node, AudioChannel)));
             AddedPhraseNode(this, new Events.Node.AddedPhraseNodeEventArgs(e.Origin, newNode, index));
@@ -192,6 +213,23 @@ namespace Obi
         }
 
         /// <summary>
+        /// Get the next phrase in the section. If this is the last phrase, then return null. If the original node is null,
+        /// return null as well.
+        /// </summary>
+        public static CoreNode GetNextPhrase(CoreNode node)
+        {
+            if (node != null)
+            {
+                CoreNode parent = (CoreNode)node.getParent();
+                for (int i = parent.indexOf(node) + 1; i < parent.getChildCount(); ++i)
+                {
+                    if (Project.GetNodeType(parent.getChild(i)) == NodeType.Phrase) return parent.getChild(i);
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Get the position of the phrase in the list of phrases for the section, i.e. not counting the other section nodes.
         /// </summary>
         // should be part of NodeInformationProperty
@@ -247,6 +285,73 @@ namespace Obi
             MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, AnnotationChannel, media));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+
+        /// <summary>
+        /// Get the actual audio media object for a phrase node.
+        /// </summary>
+        /// <param name="node">The node for which we want the asset.</param>
+        /// <returns>The asset or null if it could not be found.</returns>
+        public static AudioMediaAsset GetAudioMediaAsset(CoreNode node)
+        {
+            AssetProperty prop = (AssetProperty)node.getProperty(typeof(AssetProperty));
+            if (prop != null)
+            {
+                return prop.Asset;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        internal void SetAudioMediaAsset(CoreNode node, AudioMediaAsset asset)
+        {
+            AssetProperty prop = (AssetProperty)node.getProperty(typeof(AssetProperty));
+            if (prop != null)
+            {
+                prop.Asset = asset;
+                UpdateSeq(node);
+                MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, AudioChannel,
+                    GetMediaForChannel(node, AudioChannel)));
+            }
+            else
+            {
+                throw new Exception("Cannot set an asset on a node lacking an asset property.");
+            }
+        }
+
+        /// <summary>
+        /// Make a new sequence media object for the asset of this node.
+        /// The sequence media object is simply a translation of the list of clips.
+        /// </summary>
+        private void UpdateSeq(CoreNode node)
+        {
+            Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);
+            ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
+            SequenceMedia seq =
+                (SequenceMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.EMPTY_SEQUENCE);
+            foreach (Assets.AudioClip clip in asset.Clips)
+            {
+                AudioMedia audio = (AudioMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.AUDIO);
+                UriBuilder builder = new UriBuilder();
+                builder.Scheme = "file";
+                builder.Path = clip.Path;
+                Uri relUri = mAssManager.BaseURI.MakeRelativeUri(builder.Uri);
+                audio.setLocation(new MediaLocation(relUri.ToString()));
+                audio.setClipBegin(new Time((long)Math.Round(clip.BeginTime)));
+                audio.setClipEnd(new Time((long)Math.Round(clip.EndTime)));
+                seq.appendItem(audio);
+            }
+            prop.setMedia(mAudioChannel, seq);
+        }
+
+        /// <summary>
+        /// Send a TouchedNode event.
+        /// </summary>
+        internal void TouchNode(CoreNode node)
+        {
+            TouchedNode(this, new Events.Node.NodeEventArgs(this, node));
         }
 
         #endregion

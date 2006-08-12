@@ -69,7 +69,6 @@ namespace Obi.UserControls
 
                     mStripManagerPanel.SplitAudioBlockRequested -= new Events.Node.SplitNodeHandler(mProject.SplitAudioBlockRequested);
                     mStripManagerPanel.MergeNodes -= new Events.Node.MergeNodesHandler(mProject.MergeNodesRequested);
-                    mProject.BlockChangedTime -= new Events.Node.BlockChangedTimeHandler(mStripManagerPanel.SyncBlockChangedTime);
 
                     mStripManagerPanel.DeleteBlockRequested -=
                         new Events.Node.RequestToDeleteBlockHandler(mProject.DeletePhraseNodeRequested);
@@ -92,6 +91,9 @@ namespace Obi.UserControls
                     mProject.PastedSectionNode -= new Events.Node.PastedSectionNodeHandler(mStripManagerPanel.SyncPastedSectionNode);
                     mProject.UndidPasteSectionNode -= new Events.Node.UndidPasteSectionNodeHandler(mTOCPanel.SyncUndidPasteSectionNode);
                     mProject.UndidPasteSectionNode -= new Events.Node.UndidPasteSectionNodeHandler(mStripManagerPanel.SyncUndidPasteSectionNode);
+
+                    mProject.TouchedNode += new Events.Node.TouchedNodeHandler(mStripManagerPanel.SyncTouchedNode);
+
                 }
                 // Set up the handlers for the new project
                 if (value != null)
@@ -148,13 +150,12 @@ namespace Obi.UserControls
                     value.DeletedPhraseNode +=
                         new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeleteAudioBlock);
                     value.MediaSet += new Events.Node.MediaSetHandler(mStripManagerPanel.SyncMediaSet);
-
+                    value.TouchedNode += new Events.Node.TouchedNodeHandler(mStripManagerPanel.SyncTouchedNode);
 
 
 
 
                     mStripManagerPanel.MergeNodes += new Events.Node.MergeNodesHandler(value.MergeNodesRequested);
-                    value.BlockChangedTime += new Events.Node.BlockChangedTimeHandler(mStripManagerPanel.SyncBlockChangedTime);
 
 
                     //md: clipboard in the TOC

@@ -292,7 +292,9 @@ namespace Obi.UserControls
         /// <param name="audioBlock">The block for which the asset has changed.</param>
         internal void UpdateAssetAudioBlock(AudioBlock audioBlock)
         {
-
+            Assets.AudioMediaAsset asset = Project.GetAudioMediaAsset(audioBlock.Node);
+            audioBlock.Label = asset.Name;
+            audioBlock.Time = asset.LengthInSeconds;
         }
     }
 }

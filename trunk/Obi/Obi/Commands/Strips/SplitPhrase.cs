@@ -8,10 +8,12 @@ namespace Obi.Commands.Strips
 {
     public class SplitPhrase : Command
     {
-        private Project mProject;
-        private CoreNode mNode;
-        private CoreNode mNewNode;
-        private Assets.AudioMediaAsset mAsset;  // save the asset from the next phrase
+        private Project mProject;                       // the current project
+        private CoreNode mNode;                         // the node that is split
+        private CoreNode mNewNode;                      // the new node that was created
+        private Assets.AudioMediaAsset mSplitAsset;     // the first part of the split asset
+        private Assets.AudioMediaAsset mOriginalAsset;  // the original asset before the split
+        private int mNewIndex;                          // index of the new node
 
         public override string Label
         {
@@ -23,18 +25,23 @@ namespace Obi.Commands.Strips
             mProject = project;
             mNode = node;
             mNewNode = newNode;
-            mAsset = Project.GetAudioMediaAsset(mNewNode);
+            mSplitAsset = Project.GetAudioMediaAsset(mNode);
+            mOriginalAsset = (Assets.AudioMediaAsset)mSplitAsset.Copy();
+            mOriginalAsset.MergeWith(Project.GetAudioMediaAsset(mNewNode));
+            mNewIndex = ((CoreNode)mNewNode.getParent()).indexOf(mNewNode);
         }
     
         public override void  Do()
         {
-            mProject.SplitAudioBlockRequested(this, new Events.Node.SplitNodeEventArgs(this, mNode,
-                Project.GetAudioMediaAsset(mNewNode)));
+            mProject.SetAudioMediaAsset(mNode, mSplitAsset);
+            mProject.AddPhraseNodeAndAsset(mNewNode, (CoreNode)mNode.getParent(), mNewIndex);
         }
 
         public override void Undo()
         {
-            mProject.MergeNodesRequested(this, new Events.Node.MergeNodesEventArgs(this, mNode, mNewNode));
+            mProject.SetAudioMediaAsset(mNode, mOriginalAsset);
+            mProject.DeletePhraseNodeAndAsset(mNewNode);
+            mProject.TouchNode(mNode);
         }
     }
 }

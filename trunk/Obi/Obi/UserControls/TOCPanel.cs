@@ -369,7 +369,11 @@ namespace Obi.UserControls
             mShowInStripViewToolStripMenuItem.Enabled = e.Selected;
             mCutSectionToolStripMenuItem.Enabled = e.Selected;
             mCopySectionToolStripMenuItem.Enabled = e.Selected;
-            mPasteSectionToolStripMenuItem.Enabled = e.Selected && (mProjectPanel.Project.Clipboard != null);
+            // when closing, the project can be null but an event may still be generated
+            // so be careful of checking the the project is not null in order to check
+            // for its clipboard. (JQ)
+            mPasteSectionToolStripMenuItem.Enabled = e.Selected &&
+                (mProjectPanel.Project != null) && (mProjectPanel.Project.Clipboard != null);
         }
 
     }
