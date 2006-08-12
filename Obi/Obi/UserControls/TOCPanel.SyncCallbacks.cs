@@ -21,9 +21,6 @@ namespace Obi.UserControls
         /// <param name="e"><see cref="e.Node"/> is the tree node being renamed.</param>
         internal void SyncRenamedSectionNode(object sender, Events.Node.RenameNodeEventArgs e)
         {
-            System.Diagnostics.Trace.WriteLine(
-                string.Format("TOCPanel.SyncRenamedSectionNode for {0}", e.Node.GetHashCode()));
-
             if (e.Origin != this)
             {
                 TreeNode treeNode = FindTreeNodeWithoutLabel(e.Node);
