@@ -113,9 +113,12 @@ namespace Obi.UserControls
         /// <summary>
         /// Bring up the editable text box.
         /// TODO: maybe the labels should be replaced by non-editable text boxes.
+        /// There is also a bug that occurs when editing for the second time, when
+        /// no text is selected... strange.
         /// </summary>
         internal void StartRenaming()
         {
+            mRenameBox.Size = mAnnotationLabel.Size;
             mRenameBox.BackColor = BackColor;
             mRenameBox.Text = "";
             mRenameBox.SelectedText = mAnnotationLabel.Text;

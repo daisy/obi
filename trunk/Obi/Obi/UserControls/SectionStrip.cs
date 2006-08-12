@@ -286,5 +286,13 @@ namespace Obi.UserControls
         }
         #endregion
 
+        /// <summary>
+        /// The asset for an audio has been modified, so update it (and its node?)
+        /// </summary>
+        /// <param name="audioBlock">The block for which the asset has changed.</param>
+        internal void UpdateAssetAudioBlock(AudioBlock audioBlock)
+        {
+
+        }
     }
 }

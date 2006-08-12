@@ -71,8 +71,20 @@ namespace Obi.UserControls
         /// </summary>
         internal void SyncMediaSet(object sender, Events.Node.SetMediaEventArgs e)
         {
-            SectionStrip strip = mSectionNodeMap[(CoreNode)e.Node.getParent()];
-            strip.RenameAudioBlock(mPhraseNodeMap[e.Node], ((TextMedia)e.Media).getText());
+            if (Project.GetNodeType(e.Node) == NodeType.Phrase)
+            {
+                SectionStrip strip = mSectionNodeMap[(CoreNode)e.Node.getParent()];
+                if (e.Channel == Project.AnnotationChannel)
+                {
+                    // the label of an audio block has changed
+                    strip.RenameAudioBlock(mPhraseNodeMap[e.Node], ((TextMedia)e.Media).getText());
+                }
+                else if (e.Channel == Project.AudioChannel)
+                {
+                    // the audio asset of an audio block has changed
+                    strip.UpdateAssetAudioBlock(mPhraseNodeMap[e.Node]);  
+                }
+            }
         }
     }
 }

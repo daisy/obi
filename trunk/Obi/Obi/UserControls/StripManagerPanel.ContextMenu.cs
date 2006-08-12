@@ -86,7 +86,8 @@ namespace Obi.UserControls
                 Dialogs.Split dialog = new Dialogs.Split(mSelectedPhrase, 0.0);
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    SplitNode(this, new Events.Node.SplitNodeEventArgs(this, mSelectedPhrase, dialog.ResultAsset));
+                    // SplitNode(this, new Events.Node.SplitNodeEventArgs(this, mSelectedPhrase, dialog.ResultAsset));
+                    SplitAudioBlockRequested(this, new Events.Node.SplitNodeEventArgs(this, mSelectedPhrase, dialog.ResultAsset));
                 }
             }
         }

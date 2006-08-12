@@ -33,12 +33,12 @@ namespace Obi.Commands.Strips
 
         public override void Do()
         {
-            mProject.RenamePhraseNode(mNode, mNewName);
+            mProject.EditAnnotationPhraseNode(mNode, mNewName);
         }
 
         public override void Undo()
         {
-            mProject.RenamePhraseNode(mNode, mOldName);
+            mProject.EditAnnotationPhraseNode(mNode, mOldName);
         }
     }
 }

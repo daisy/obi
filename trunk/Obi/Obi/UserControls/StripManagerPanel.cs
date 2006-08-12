@@ -32,7 +32,7 @@ namespace Obi.UserControls
         public event Events.Node.RequestToDeleteBlockHandler DeleteBlockRequested;
         public event Events.Node.RequestToMoveBlockHandler MoveAudioBlockForwardRequested;
         public event Events.Node.RequestToMoveBlockHandler MoveAudioBlockBackwardRequested;
-        public event Events.Node.SplitNodeHandler SplitNode;
+        public event Events.Node.SplitNodeHandler SplitAudioBlockRequested;
         public event Events.Node.MergeNodesHandler MergeNodes;
         public event Events.Strip.SelectedHandler SelectedStrip;
         public event Events.Strip.SelectedHandler SelectedAudioBlock;
