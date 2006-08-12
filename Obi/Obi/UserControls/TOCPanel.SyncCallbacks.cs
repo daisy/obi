@@ -189,18 +189,18 @@ namespace Obi.UserControls
 
             ArrayList futureChildren = new ArrayList();
 
-            int idx = 0;
-            //make copies of our future children, and remove them from the tree
-            foreach (TreeNode node in selectedNode.Parent.Nodes)
+           //make copies of our future children, and remove them from the tree
+            for (int i = selectedNode.Parent.Nodes.Count - 1; i > selectedNode.Index; i--)
             {
-                if (node.Index > selectedNode.Index)
-                {
-                    futureChildren.Add(node.Clone());
-                    node.Remove();
-                    idx++;
-                }
+                TreeNode node = selectedNode.Parent.Nodes[i];
+                futureChildren.Add(node.Clone());
+                MessageBox.Show(String.Format("About to remove {0}", node.Text));
+                node.Remove();
             }
 
+            //we collected the nodes in reverse-order, so switch them around
+            futureChildren.Reverse();
+         
             TreeNodeCollection siblingCollection = null;
 
             //move it out a level
