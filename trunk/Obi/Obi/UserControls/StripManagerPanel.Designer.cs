@@ -35,14 +35,14 @@ namespace Obi.UserControls
             this.mAddStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRenameStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mPlayAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recordAudioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mImportAudioFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mDeleteAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moveAudioBlockforwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moveAudioBlockbackwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mEditAudioBlockLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSplitAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.recordAudioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mPlayAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMergeWithNextAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mShowInTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -93,7 +93,7 @@ namespace Obi.UserControls
             this.mShowInTOCViewToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(190, 280);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(190, 302);
             // 
             // mAddStripToolStripMenuItem
             // 
@@ -113,6 +113,20 @@ namespace Obi.UserControls
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(186, 6);
+            // 
+            // mPlayAudioBlockToolStripMenuItem
+            // 
+            this.mPlayAudioBlockToolStripMenuItem.Name = "mPlayAudioBlockToolStripMenuItem";
+            this.mPlayAudioBlockToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.mPlayAudioBlockToolStripMenuItem.Text = "&Play audio block";
+            this.mPlayAudioBlockToolStripMenuItem.Click += new System.EventHandler(this.mPlayAudioBlockToolStripMenuItem_Click);
+            // 
+            // recordAudioToolStripMenuItem
+            // 
+            this.recordAudioToolStripMenuItem.Name = "recordAudioToolStripMenuItem";
+            this.recordAudioToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.recordAudioToolStripMenuItem.Text = "Re&cord audio";
+            this.recordAudioToolStripMenuItem.Click += new System.EventHandler(this.mRecordAudioToolStripMenuItem_Click);
             // 
             // mImportAudioFileToolStripMenuItem
             // 
@@ -155,19 +169,6 @@ namespace Obi.UserControls
             this.mSplitAudioBlockToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.mSplitAudioBlockToolStripMenuItem.Text = "&Split audio block";
             this.mSplitAudioBlockToolStripMenuItem.Click += new System.EventHandler(this.mSplitAudioBlockToolStripMenuItem_Click);
-            // 
-            // recordAudioToolStripMenuItem
-            // 
-            this.recordAudioToolStripMenuItem.Name = "recordAudioToolStripMenuItem";
-            this.recordAudioToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.recordAudioToolStripMenuItem.Text = "Re&cord audio";
-            // 
-            // mPlayAudioBlockToolStripMenuItem
-            // 
-            this.mPlayAudioBlockToolStripMenuItem.Name = "mPlayAudioBlockToolStripMenuItem";
-            this.mPlayAudioBlockToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.mPlayAudioBlockToolStripMenuItem.Text = "&Play audio block";
-            this.mPlayAudioBlockToolStripMenuItem.Click += new System.EventHandler(this.mPlayAudioBlockToolStripMenuItem_Click);
             // 
             // mMergeWithNextAudioBlockToolStripMenuItem
             // 

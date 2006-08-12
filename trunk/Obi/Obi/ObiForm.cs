@@ -25,6 +25,11 @@ namespace Obi
         private Settings mSettings;                       // application settings
         private Commands.CommandManager mCommandManager;  // the undo stack for this project (should it belong to the project?)
 
+        internal Settings Settings
+        {
+            get { return mSettings; }
+        }
+
         /// <summary>
         /// Initialize a new form. No project is opened at creation time.
         /// </summary>
