@@ -444,27 +444,6 @@ namespace Obi
 
       
         /// <summary>
-        /// Handle a request to split an asset. The event contains the original node that was split and the new asset
-        /// created from the split. A new sibling to the original node is to be added.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public void SplitAssetRequested(object sender, Events.Node.SplitNodeEventArgs e)
-        {
-            CoreNode newNode = CreatePhraseNode(e.NewAsset);
-            CoreNode parent = (CoreNode)e.Node.getParent();
-            int index = parent.indexOf(e.Node) + 1;
-            parent.insert(newNode, index);
-            UpdateSeq(e.Node);
-            BlockChangedTime(this, new Events.Node.NodeEventArgs(e.Origin, e.Node));
-            AddedPhraseNode(this, new Events.Node.AddedPhraseNodeEventArgs(e.Origin, newNode, index));
-            Commands.Strips.SplitPhrase command = new Commands.Strips.SplitPhrase(this, e.Node, newNode);
-            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-        }
-
-        /// <summary>
         /// Merge two nodes.
         /// </summary>
         public void MergeNodesRequested(object sender, Events.Node.MergeNodesEventArgs e)

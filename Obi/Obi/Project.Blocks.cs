@@ -78,6 +78,63 @@ namespace Obi
             if (!DidSetMedia(sender, e.Node, e.Channel, e.Media)) e.Cancel = true;
         }
 
+        /// <summary>
+        /// Find the channel and set the media object.
+        /// As this may fail, return true if the change was really made or false otherwise.
+        /// Throw an exception if the channel could not be found.
+        /// </summary>
+        internal bool DidSetMedia(object origin, CoreNode node, string channel, IMedia media)
+        {
+            ChannelsProperty channelsProp = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
+            IList channelsList = channelsProp.getListOfUsedChannels();
+            for (int i = 0; i < channelsList.Count; i++)
+            {
+                IChannel ch = (IChannel)channelsList[i];
+                if (ch.getName() == channel)
+                {
+                    Commands.Command command = null;
+                    if (GetNodeType(node) == NodeType.Phrase && channel == AnnotationChannel)
+                    {
+                        // we are renaming a phrase node
+                        Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);
+                        string old = mAssManager.RenameAsset(asset, ((TextMedia)media).getText());
+                        if (old == asset.Name) return false;
+                        command = new Commands.Strips.RenamePhrase(this, node);
+                    }
+                    channelsProp.setMedia(ch, media);
+                    MediaSet(this, new Events.Node.SetMediaEventArgs(origin, node, channel, media));
+                    if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+                    mUnsaved = true;
+                    StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+                    // make a command here
+                    return true;
+                }
+            }
+            // the channel was not found when it should have been...
+            throw new Exception(String.Format(Localizer.Message("channel_not_found"), channel));
+        }
+
+        /// <summary>
+        /// Handle a request to split an audio block. The event contains the original node that was split and the new asset
+        /// created from the split. A new sibling to the original node is to be added.
+        /// </summary>
+        public void SplitAudioBlockRequested(object sender, Events.Node.SplitNodeEventArgs e)
+        {
+            CoreNode newNode = CreatePhraseNode(e.NewAsset);
+            CoreNode parent = (CoreNode)e.Node.getParent();
+            int index = parent.indexOf(e.Node) + 1;
+            parent.insert(newNode, index);
+            UpdateSeq(e.Node);
+            // BlockChangedTime(this, new Events.Node.NodeEventArgs(e.Origin, e.Node));
+            MediaSet(this, new Events.Node.SetMediaEventArgs(e.Origin, e.Node, AudioChannel,
+                GetMediaForChannel(e.Node, AudioChannel)));
+            AddedPhraseNode(this, new Events.Node.AddedPhraseNodeEventArgs(e.Origin, newNode, index));
+            Commands.Strips.SplitPhrase command = new Commands.Strips.SplitPhrase(this, e.Node, newNode);
+            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+
         #endregion
 
         #region backend functions
@@ -122,42 +179,6 @@ namespace Obi
             node.detach();
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-        }
-
-        /// <summary>
-        /// Find the channel and set the media object.
-        /// As this may fail, return true if the change was really made or false otherwise.
-        /// Throw an exception if the channel could not be found.
-        /// </summary>
-        internal bool DidSetMedia(object origin, CoreNode node, string channel, IMedia media)
-        {
-            ChannelsProperty channelsProp = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
-            IList channelsList = channelsProp.getListOfUsedChannels();
-            for (int i = 0; i < channelsList.Count; i++)
-            {
-                IChannel ch = (IChannel)channelsList[i];
-                if (ch.getName() == channel)
-                {
-                    Commands.Command command = null;
-                    if (GetNodeType(node) == NodeType.Phrase && channel == AnnotationChannel)
-                    {
-                        // we are renaming a phrase node
-                        Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);
-                        string old = mAssManager.RenameAsset(asset, ((TextMedia)media).getText());
-                        if (old == asset.Name) return false;
-                        command = new Commands.Strips.RenamePhrase(this, node);
-                    }
-                    channelsProp.setMedia(ch, media);
-                    MediaSet(this, new Events.Node.SetMediaEventArgs(origin, node, channel, media));
-                    if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-                    mUnsaved = true;
-                    StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-                    // make a command here
-                    return true;
-                }
-            }
-            // the channel was not found when it should have been...
-            throw new Exception(String.Format(Localizer.Message("channel_not_found"), channel));
         }
 
         /// <summary>
@@ -214,7 +235,10 @@ namespace Obi
             AddPhraseNode(node, parent, dir == Direction.Forward ? index + 1 : index - 1);
         }
 
-        internal void RenamePhraseNode(CoreNode node, string name)
+        /// <summary>
+        /// Edit the annotation (i.e. label) of a phrase node.
+        /// </summary>
+        internal void EditAnnotationPhraseNode(CoreNode node, string name)
         {
             TextMedia media = (TextMedia)GetMediaForChannel(node, AnnotationChannel);
             Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);

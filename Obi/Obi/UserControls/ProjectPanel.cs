@@ -67,7 +67,7 @@ namespace Obi.UserControls
                     mStripManagerPanel.SetMediaRequested -= new Events.Node.SetMediaHandler(mProject.SetMediaRequested);
                     mProject.MediaSet -= new Events.Node.MediaSetHandler(mStripManagerPanel.SyncMediaSet);
 
-                    mStripManagerPanel.SplitNode -= new Events.Node.SplitNodeHandler(mProject.SplitAssetRequested);
+                    mStripManagerPanel.SplitAudioBlockRequested -= new Events.Node.SplitNodeHandler(mProject.SplitAudioBlockRequested);
                     mStripManagerPanel.MergeNodes -= new Events.Node.MergeNodesHandler(mProject.MergeNodesRequested);
                     mProject.BlockChangedTime -= new Events.Node.BlockChangedTimeHandler(mStripManagerPanel.SyncBlockChangedTime);
 
@@ -140,6 +140,8 @@ namespace Obi.UserControls
                     mStripManagerPanel.MoveAudioBlockBackwardRequested +=
                         new Events.Node.RequestToMoveBlockHandler(value.MovePhraseNodeBackwardRequested);
                     mStripManagerPanel.SetMediaRequested += new Events.Node.SetMediaHandler(value.SetMediaRequested);
+                    mStripManagerPanel.SplitAudioBlockRequested +=
+                        new Events.Node.SplitNodeHandler(value.SplitAudioBlockRequested);
 
                     value.AddedPhraseNode +=
                         new Events.Node.AddedPhraseNodeHandler(mStripManagerPanel.SyncAddedPhraseNode);
@@ -151,7 +153,6 @@ namespace Obi.UserControls
 
 
 
-                    mStripManagerPanel.SplitNode += new Events.Node.SplitNodeHandler(value.SplitAssetRequested);
                     mStripManagerPanel.MergeNodes += new Events.Node.MergeNodesHandler(value.MergeNodesRequested);
                     value.BlockChangedTime += new Events.Node.BlockChangedTimeHandler(mStripManagerPanel.SyncBlockChangedTime);
 

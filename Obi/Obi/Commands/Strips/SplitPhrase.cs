@@ -28,7 +28,7 @@ namespace Obi.Commands.Strips
     
         public override void  Do()
         {
-            mProject.SplitAssetRequested(this, new Events.Node.SplitNodeEventArgs(this, mNode,
+            mProject.SplitAudioBlockRequested(this, new Events.Node.SplitNodeEventArgs(this, mNode,
                 Project.GetAudioMediaAsset(mNewNode)));
         }
 
