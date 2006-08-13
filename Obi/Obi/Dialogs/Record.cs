@@ -171,6 +171,7 @@ namespace Obi.Dialogs
 
         private void Record_FormClosing(object sender, FormClosingEventArgs e)
         {
+            mTimer.Enabled = false;
             Audio.AudioRecorder.Instance.StopRecording();
             // Audio.AudioRecorder.Instance.VuMeterObject.CloseVuMeterForm();
         }

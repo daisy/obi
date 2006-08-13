@@ -174,8 +174,8 @@ namespace Obi.Audio
 			m_Channels = asset.Channels;
 			m_SampleRate = asset.SampleRate;
 			m_bitDepth = asset.BitDepth;
-			// mAsset = new Assets.AudioMediaAsset(m_Channels, m_bitDepth, m_SampleRate);
-			// mAsset = asset.Copy() as Assets.AudioMediaAsset;
+			mAsset = new Assets.AudioMediaAsset(m_Channels, m_bitDepth, m_SampleRate);  // why create a new asset here?
+			mAsset = asset.Copy() as Assets.AudioMediaAsset;
 			// Assets.AssetManager manager = mAsset.Manager as Assets.AssetManager;
 			sProjectDirectory= asset.Manager.AssetsDirectory ;
 		    InputFormat = GetInputFormat();

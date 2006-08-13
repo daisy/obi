@@ -115,15 +115,6 @@ namespace Obi.UserControls
             System.Diagnostics.Debug.Print("REC#{0} continuing {1}", index, e.Asset.Name);
         }
 
-        /// <summary>
-        /// The recorder is finishing to record a phrase at some index. The timinig of the audio block is updated,
-        /// and the index is incremented.
-        /// </summary>
-        private void Record_FinishingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e, int index)
-        {
-            System.Diagnostics.Debug.Print("REC#{0} finishing {1}", index, e.Asset.Name);
-        }
-
         #endregion
     }
 }
