@@ -94,10 +94,8 @@ namespace Obi.Commands.TOC
     {
         private Project mProject;
         private CoreNode mNode;
-        private CoreNode mParent;
-        private int mIndex;
-        private int mPosition;
-
+        private CoreNode mSwapNode;
+      
         public override string Label
         {
             get
@@ -106,13 +104,11 @@ namespace Obi.Commands.TOC
             }
         }
 
-        public MoveSectionNodeDownLinear(Project project, CoreNode node, CoreNode parent, int index, int position)
+        public MoveSectionNodeDownLinear(Project project, CoreNode node, CoreNode swapNode)
         {
             mProject = project;
             mNode = node;
-            mParent = parent;
-            mIndex = index;
-            mPosition = position;
+            mSwapNode = swapNode;
         }
 
         /// <summary>
@@ -128,7 +124,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mProject.UndoMoveSectionNode(mNode, mParent, mIndex, mPosition);
+            mProject.ShallowSwapNodes(mNode, mSwapNode);
         }
     }
 
@@ -136,9 +132,7 @@ namespace Obi.Commands.TOC
     {
         private Project mProject;
         private CoreNode mNode;
-        private CoreNode mParent;
-        private int mIndex;
-        private int mPosition;
+        private CoreNode mSwapNode;
 
         public override string Label
         {
@@ -148,13 +142,11 @@ namespace Obi.Commands.TOC
             }
         }
 
-        public MoveSectionNodeUpLinear(Project project, CoreNode node, CoreNode parent, int index, int position)
+        public MoveSectionNodeUpLinear(Project project, CoreNode node, CoreNode swapNode)
         {
             mProject = project;
             mNode = node;
-            mParent = parent;
-            mIndex = index;
-            mPosition = position;
+            mSwapNode = swapNode;
         }
 
         /// <summary>
@@ -170,7 +162,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mProject.UndoMoveSectionNode(mNode, mParent, mIndex, mPosition);
+            mProject.ShallowSwapNodes(mNode, mSwapNode);
         }
     }
 }

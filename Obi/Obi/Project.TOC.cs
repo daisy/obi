@@ -24,6 +24,9 @@ namespace Obi
         public event Events.Node.PastedSectionNodeHandler PastedSectionNode;
         public event Events.Node.UndidPasteSectionNodeHandler UndidPasteSectionNode;
 
+        //md: shallow-swapped event for move up/down linear
+        public event Events.Node.ShallowSwappedNodesHandler ShallowSwappedNodes;
+
         private CoreNode mClipboard;        //clipboard for cut-copy-paste
 
         public CoreNode Clipboard
@@ -965,7 +968,38 @@ namespace Obi
         //md 20060812
         public void MoveSectionNodeDownLinear(object origin, CoreNode node)
         {
-           //TODO
+            Commands.TOC.MoveSectionNodeDownLinear command = null;
+
+            CoreNode nodeToSwapWith = GetNextSectionNode(node, 0);
+
+            if (nodeToSwapWith != null)
+            {
+                System.Windows.Forms.MessageBox.Show(string.Format("Should be swapped with {0}", GetTextMedia(nodeToSwapWith).getText()));
+            
+                if (origin != this)
+                {
+                    command = new Commands.TOC.MoveSectionNodeDownLinear(this, node, nodeToSwapWith);
+                }
+                Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
+                getPresentation().getRootNode().acceptDepthFirst(visitor);
+
+                int nodePos = visitor.Position;
+
+                visitor = new Visitors.SectionNodePosition(nodeToSwapWith);
+                getPresentation().getRootNode().acceptDepthFirst(visitor);
+
+                int swappedNodePos = visitor.Position;
+
+                ShallowSwapNodes(node, nodeToSwapWith);
+
+                 //raise the event that the action was completed
+                ShallowSwappedNodes(this, new Obi.Events.Node.ShallowSwappedNodesEventArgs(this, node, nodeToSwapWith, nodePos, swappedNodePos));
+           
+            }
+
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));      
         }
 
         //md 20060812
@@ -977,9 +1011,236 @@ namespace Obi
         //md 20060812
         public void MoveSectionNodeUpLinear(object origin, CoreNode node)
         {
-            //TODO
-        }
-        
+            Commands.TOC.MoveSectionNodeUpLinear command = null;
 
+            if (node.getParent() == null) return;
+            int idx = ((CoreNode)node.getParent()).indexOf(node);
+
+            CoreNode nodeToSwapWith = GetPreviousSectionNode(node, idx - 1);
+
+            if (nodeToSwapWith != null)
+            {
+                System.Windows.Forms.MessageBox.Show(string.Format("Should be swapped with {0}", GetTextMedia(nodeToSwapWith).getText()));
+                if (origin != this)
+                {
+                    command = new Commands.TOC.MoveSectionNodeUpLinear(this, node, nodeToSwapWith);
+                }
+
+                Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
+                getPresentation().getRootNode().acceptDepthFirst(visitor);
+
+                int nodePos = visitor.Position;
+
+                visitor = new Visitors.SectionNodePosition(nodeToSwapWith);
+                getPresentation().getRootNode().acceptDepthFirst(visitor);
+
+                int swappedNodePos = visitor.Position;
+
+                ShallowSwapNodes(node, nodeToSwapWith);
+
+                //raise the event that the action was completed
+                ShallowSwappedNodes(this, new Obi.Events.Node.ShallowSwappedNodesEventArgs(this, node, nodeToSwapWith, nodePos, swappedNodePos));
+            }
+            
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+        }
+
+        internal void ShallowSwapNodesA(CoreNode firstNode, CoreNode secondNode)
+        {
+            CoreNode firstNodeClone = firstNode.copy(false);
+            CoreNode secondNodeClone = secondNode.copy(false);
+
+            ((CoreNode)firstNode.getParent()).insertBefore(secondNodeClone, firstNode);
+            
+            int idx = ((CoreNode)secondNodeClone.getParent()).indexOf(secondNodeClone);
+            Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(secondNodeClone);
+                getPresentation().getRootNode().acceptDepthFirst(visitor);
+
+            //raise an event
+            AddedSectionNode(this, new Obi.Events.Node.AddedSectionNodeEventArgs
+                (this, secondNodeClone, idx, visitor.Position));
+
+            ((CoreNode)secondNode.getParent()).insertBefore(firstNodeClone, secondNode);
+            idx = ((CoreNode)firstNodeClone.getParent()).indexOf(firstNodeClone);
+            visitor = new Visitors.SectionNodePosition(firstNodeClone);
+            getPresentation().getRootNode().acceptDepthFirst(visitor);
+
+            //raise an event
+            AddedSectionNode(this, new Obi.Events.Node.AddedSectionNodeEventArgs
+                (this, firstNodeClone, idx, visitor.Position));
+
+            //ShallowDeleteSectionNode(
+
+        }
+
+        /// <summary>
+        /// Swap nodes but not their section-subtrees.  Each node retains its own phrases.
+        /// </summary>
+        /// <param name="firstNode"></param>
+        /// <param name="secondNode"></param>
+        //md 20060813
+        internal void ShallowSwapNodes(CoreNode firstNode, CoreNode secondNode)
+        {
+            ArrayList firstNodeSubSections = new ArrayList();
+            ArrayList secondNodeSubSections = new ArrayList();
+
+            CoreNode firstNodeParent = (CoreNode)firstNode.getParent();
+            CoreNode secondNodeParent = (CoreNode)secondNode.getParent();
+
+            int firstNodeIndex = firstNodeParent.indexOf(firstNode);
+            int secondNodeIndex = secondNodeParent.indexOf(secondNode);
+
+            //remove all the subsections for the first node
+            for (int i = 0; i < firstNode.getChildCount(); i++)
+            {
+                if (GetNodeType(firstNode.getChild(i)) == NodeType.Section)
+                {
+                    firstNodeSubSections.Add(firstNode.getChild(i));
+
+                    //make sure they're not nested
+                    if (firstNode.getChild(i) != secondNode)
+                    {
+                        firstNode.getChild(i).detach();
+                    }
+                }
+                
+            }
+
+            //remove all the subsections for the second node
+            for (int i = 0; i < secondNode.getChildCount(); i++)
+            {
+                if (GetNodeType(secondNode.getChild(i)) == NodeType.Section)
+                {
+                    secondNodeSubSections.Add(secondNode.getChild(i));
+                    //make sure they're not nested
+                    if (secondNode.getChild(i) != firstNode)
+                    {
+                        secondNode.getChild(i).detach();
+                    }
+                }
+            }
+
+            //detach the nodes
+            firstNode.detach();
+            secondNode.detach();
+
+            //put the second node's former subsections onto the first node
+            for (int i = 0; i < secondNodeSubSections.Count; i++)
+            {
+                if (((CoreNode)secondNodeSubSections[i]) == firstNode)
+                {
+                    firstNode.appendChild(secondNode);
+                }
+                else
+                {
+                    firstNode.appendChild((CoreNode)secondNodeSubSections[i]);
+                }
+            }
+
+            //put the first node's former subsections on the second node
+            for (int i = 0; i < firstNodeSubSections.Count; i++)
+            {
+                if (((CoreNode)firstNodeSubSections[i]) == secondNode)
+                {
+                    secondNode.appendChild(firstNode);
+                }
+                else
+                {
+                    secondNode.appendChild((CoreNode)firstNodeSubSections[i]);
+                }
+            }
+
+            if (firstNodeParent != secondNode)
+            {
+                if (firstNodeIndex < 0) 
+                    firstNodeIndex = 0;
+                else if (firstNodeIndex > firstNodeParent.getChildCount()) 
+                    firstNodeIndex = firstNodeParent.getChildCount();
+
+                firstNodeParent.insert(secondNode, firstNodeIndex);
+            }
+            if (secondNodeParent != firstNode)
+            {
+                if (secondNodeIndex < 0) 
+                    secondNodeIndex = 0;
+                else if (secondNodeIndex > secondNodeParent.getChildCount()) 
+                    secondNodeIndex = secondNodeParent.getChildCount();
+
+                secondNodeParent.insert(firstNode, secondNodeIndex);
+            }
+            
+        }
+
+        //would have used a visitor for the next two functions (Get Next/Prev Section Node)
+        //but it's not as efficient to start at the root, and besides, visitors don't go in the prev. direction.
+        //md 20060813
+        private CoreNode GetNextSectionNode(CoreNode node, int startIdx)
+        {
+            //look at our children
+            for (int i = startIdx; i < node.getChildCount(); i++)
+            {
+                if (GetNodeType(node.getChild(i)) == NodeType.Section)
+                {
+                    return node.getChild(i);
+                }
+            }
+
+            if (node.getParent() == null) return null;
+            
+            //look at our siblings
+            CoreNode parent = (CoreNode)node.getParent();
+            return GetNextSectionNode(parent, parent.indexOf(node) + 1);
+        }
+
+        //md 20060813
+        private CoreNode GetPreviousSectionNode(CoreNode node, int startIdx)
+        {
+            if (node.getParent() == null) return null;
+
+            //look at our siblings
+            CoreNode parent = (CoreNode)node.getParent();
+
+            for (int i = startIdx; i >= 0; i-- )
+            {
+                CoreNode sibling = parent.getChild(i);
+
+                bool hasSubSections = HasSubSections(sibling);
+
+                if (GetNodeType(sibling) == NodeType.Section &&
+                    hasSubSections == false)
+                {
+                    return sibling;
+                }
+                else if (hasSubSections == true)
+                {
+                    CoreNode siblingsChild = sibling.getChild(sibling.getChildCount() - 1);
+                    return GetPreviousSectionNode(siblingsChild, sibling.getChildCount() - 1);
+                }
+                //else it's not the right type of node and we won't consider it
+                
+            }
+            
+            //if we can't go up any more levels, return null
+            if (GetNodeType(parent) == NodeType.Root) return null;
+
+            return parent;
+        }
+       
+        //md 20060813
+        //helper function
+        private bool HasSubSections(CoreNode node)
+        {
+            for (int i = 0; i < node.getChildCount(); i++)
+            {
+                if (GetNodeType(node.getChild(i)) == NodeType.Section)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }
