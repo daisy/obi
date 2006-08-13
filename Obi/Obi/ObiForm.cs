@@ -390,6 +390,18 @@ namespace Obi
                 new EventHandler(mProjectPanel.StripManager.mDeleteAudioBlockToolStripMenuItem_Click);
             mRenameAudioBlockToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mEditAudioBlockLabelToolStripMenuItem_Click);
+            //mg 20060813:
+            mDeleteStripToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.StripManager.deleteStripToolStripMenuItem_Click);
+            mMoveStripDownToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.StripManager.downToolStripMenuItem_Click);
+            mMoveStripUpToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.StripManager.upToolStripMenuItem_Click);
+            mMoveAudioBlockForwardToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.StripManager.mMoveAudioBlockforwardToolStripMenuItem_Click); 
+            mMoveAudioBlockBackwardToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.StripManager.mMoveAudioBlockbackwardToolStripMenuItem_Click); 
+            //end mg 20060813    
             mShowInTOCViewToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mShowInTOCViewToolStripMenuItem_Click);
 
