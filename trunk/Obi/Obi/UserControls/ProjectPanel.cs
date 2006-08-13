@@ -78,7 +78,7 @@ namespace Obi.UserControls
                     mProject.CutSectionNode -= new Events.Node.CutSectionNodeHandler(mTOCPanel.SyncCutSectionNode);
                     mProject.CutSectionNode -= new Events.Node.CutSectionNodeHandler(mStripManagerPanel.SyncCutSectionNode);
                     mProject.UndidCutSectionNode -= new Events.Node.MovedNodeHandler(mTOCPanel.SyncUndidCutSectionNode);
-                    mProject.UndidCutSectionNode -= new Events.Node.MovedNodeHandler(mStripManagerPanel.SyncUndidCopySectionNode);
+                    mProject.UndidCutSectionNode -= new Events.Node.MovedNodeHandler(mStripManagerPanel.SyncUndidCutSectionNode);
 
                     mTOCPanel.RequestToCopySectionNode -= new Events.Node.RequestToCopySectionNodeHandler(mProject.CopySectionNodeRequested);
                     mProject.CopiedSectionNode -= new Events.Node.CopiedSectionNodeHandler(mTOCPanel.SyncCopiedSectionNode);
@@ -163,7 +163,7 @@ namespace Obi.UserControls
                     value.CutSectionNode += new Events.Node.CutSectionNodeHandler(mTOCPanel.SyncCutSectionNode);
                     value.CutSectionNode += new Events.Node.CutSectionNodeHandler(mStripManagerPanel.SyncCutSectionNode);
                     value.UndidCutSectionNode += new Events.Node.MovedNodeHandler(mTOCPanel.SyncUndidCutSectionNode);
-                    value.UndidCutSectionNode += new Events.Node.MovedNodeHandler(mStripManagerPanel.SyncUndidCopySectionNode);
+                    value.UndidCutSectionNode += new Events.Node.MovedNodeHandler(mStripManagerPanel.SyncUndidCutSectionNode);
 
                     mTOCPanel.RequestToCopySectionNode += new Events.Node.RequestToCopySectionNodeHandler(value.CopySectionNodeRequested);
                     value.CopiedSectionNode += new Events.Node.CopiedSectionNodeHandler(mTOCPanel.SyncCopiedSectionNode);

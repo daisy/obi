@@ -33,18 +33,24 @@ namespace Obi.UserControls
                 SelectedSectionNode = node;
                 strip.StartRenaming();
             }
-        }
+         }
 
         //md 20060811
         //recursive function to add strips for a node and its subtree
-        private void AddStripsFromNodeSubtree(CoreNode node, int position)
+        //returns the position marker after the operation is completed
+        private int AddStripsFromNodeSubtree(CoreNode node, int position)
         {
             AddStripFromNode(node, position, false);
-
-            for (int i = 0; i < node.getChildCount(); i++)
+            
+            for (int i = 1; i <= node.getChildCount(); i++)
             {
-                AddStripsFromNodeSubtree(node.getChild(i), position + i + 1);
+                //increment locally
+                position++;
+                //then increment based on how many children were added
+                position = AddStripsFromNodeSubtree(node.getChild(i-1), position);
             }
+
+            return position;
         }
 
         internal void SyncRenamedNode(object sender, Events.Node.RenameNodeEventArgs e)
