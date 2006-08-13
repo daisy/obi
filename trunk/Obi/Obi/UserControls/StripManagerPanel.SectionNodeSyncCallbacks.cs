@@ -157,8 +157,12 @@ namespace Obi.UserControls
         //md: recursive function to enumerate the strips under a node (including the strip for the node itself)
         private void MakeFlatListOfStrips(CoreNode node, ArrayList strips)
         {
-            SectionStrip strip = mSectionNodeMap[node];
-            strips.Add(strip);
+            if (Project.GetNodeType(node) == NodeType.Section)
+            {
+                SectionStrip strip = mSectionNodeMap[node];
+
+                strips.Add(strip);
+            }
 
             for (int i = 0; i < node.getChildCount(); i++)
             {
