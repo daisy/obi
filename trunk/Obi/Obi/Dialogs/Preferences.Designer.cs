@@ -28,6 +28,7 @@ namespace Obi.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Preferences));
             this.label1 = new System.Windows.Forms.Label();
             this.mTemplateBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -250,6 +251,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.mTab);
             this.Controls.Add(this.mCancelButton);
             this.Controls.Add(this.mOKButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(8, 162);
             this.Name = "Preferences";
             this.Text = "Edit preferences";

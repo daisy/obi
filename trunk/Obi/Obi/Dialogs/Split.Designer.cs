@@ -29,6 +29,7 @@ namespace Obi.Dialogs
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Split));
             this.btnPreview = new System.Windows.Forms.Button();
             this.txtDisplayAsset = new System.Windows.Forms.TextBox();
             this.txtDisplayTime = new System.Windows.Forms.TextBox();
@@ -172,6 +173,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.txtDisplayTime);
             this.Controls.Add(this.txtDisplayAsset);
             this.Controls.Add(this.btnPreview);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Split";
             this.Text = "Split";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Split_FormClosing);

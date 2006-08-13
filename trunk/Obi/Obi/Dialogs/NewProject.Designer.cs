@@ -28,6 +28,7 @@ namespace Obi.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewProject));
             this.label1 = new System.Windows.Forms.Label();
             this.mTitleBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -134,6 +135,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.label2);
             this.Controls.Add(this.mTitleBox);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(8, 162);
             this.Name = "NewProject";
             this.Text = "Create a new project";

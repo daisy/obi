@@ -466,5 +466,13 @@ namespace Obi.UserControls
             }
 
         }
+
+        /// <summary>
+        /// Enable/disable items depending on what is currently available.
+        /// </summary>
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+            mShowInTOCViewToolStripMenuItem.Enabled = mSelectedSection != null;
+        }
     }
 }
