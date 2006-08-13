@@ -14,6 +14,9 @@ namespace Obi.UserControls
 {
     public partial class StripManagerPanel
     {
+        //md
+        public event Events.Node.RequestToShallowDeleteSectionNodeHandler RequestToShallowDeleteSectionNode;
+
         /// <summary>
         /// TODO:
         /// Adding a strip from the strip manager adds a new sibling strip right after the selected strip
@@ -200,6 +203,13 @@ namespace Obi.UserControls
                 mProjectPanel.ShowTOCPanel();
                 ProjectPanel.TOCPanel.Focus();
             }
+        }
+
+        //md 20060812
+        //shallow-delete a section node
+        private void deleteStripToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RequestToShallowDeleteSectionNode(this, new Events.Node.NodeEventArgs(this, this.mSelectedSection));
         }
     }
 }

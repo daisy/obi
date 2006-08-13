@@ -94,6 +94,9 @@ namespace Obi.UserControls
 
                     mProject.TouchedNode += new Events.Node.TouchedNodeHandler(mStripManagerPanel.SyncTouchedNode);
 
+                    //md 20060812
+                    mStripManagerPanel.RequestToShallowDeleteSectionNode -= new Events.Node.RequestToShallowDeleteSectionNodeHandler(mProject.ShallowDeleteSectionNodeRequested);
+
                 }
                 // Set up the handlers for the new project
                 if (value != null)
@@ -176,6 +179,10 @@ namespace Obi.UserControls
                     value.PastedSectionNode += new Events.Node.PastedSectionNodeHandler(mStripManagerPanel.SyncPastedSectionNode);
                     value.UndidPasteSectionNode += new Events.Node.UndidPasteSectionNodeHandler(mTOCPanel.SyncUndidPasteSectionNode);
                     value.UndidPasteSectionNode += new Events.Node.UndidPasteSectionNodeHandler(mStripManagerPanel.SyncUndidPasteSectionNode);
+
+                
+                    //md 20060812
+                    mStripManagerPanel.RequestToShallowDeleteSectionNode += new Events.Node.RequestToShallowDeleteSectionNodeHandler(value.ShallowDeleteSectionNodeRequested);
 
                 } 
                 mProject = value;
