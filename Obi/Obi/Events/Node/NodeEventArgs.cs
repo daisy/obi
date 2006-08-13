@@ -11,6 +11,7 @@ namespace Obi.Events.Node
     public delegate void RequestToIncreaseSectionNodeLevelHandler(object sender, NodeEventArgs e);
     public delegate void RequestToDecreaseSectionNodeLevelHandler(object sender, NodeEventArgs e);
     public delegate void RequestToDeleteNodeHandler(object sender, NodeEventArgs e);
+    public delegate void RequestToShallowDeleteSectionNodeHandler(object sender, NodeEventArgs e);
     public delegate void RequestToMoveSectionNodeUpHandler(object sender, NodeEventArgs e);
     public delegate void RequestToMoveSectionNodeDownHandler(object sender, NodeEventArgs e);
     public delegate void RequestToDeleteBlockHandler(object sender, NodeEventArgs e);
@@ -21,7 +22,7 @@ namespace Obi.Events.Node
 
     public delegate void DecreasedSectionNodeLevelHandler(object sender, NodeEventArgs e);
     public delegate void DeletedNodeHandler(object sender, NodeEventArgs e);
-    public delegate void ShallowDeletedNodeHandler(object sender, NodeEventArgs e);
+    public delegate void ShallowDeletedSectionNodeHandler(object sender, NodeEventArgs e);
     public delegate void CutSectionNodeHandler(object sender, NodeEventArgs e);
     public delegate void CopiedSectionNodeHandler(object sender, NodeEventArgs e);
     public delegate void UndidPasteSectionNodeHandler(object sender, NodeEventArgs e);

@@ -109,9 +109,9 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        internal void SyncShallowDeletedSectionNode(object sender, Events.Node.NodeEventArgs e)
+         /*internal void SyncShallowDeletedSectionNode(object sender, Events.Node.NodeEventArgs e)
         {
-            System.Windows.Forms.TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
+           System.Windows.Forms.TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
             TreeNode newSelection = null;
 
             //save the first child as our new selection (for the end of this function)
@@ -133,7 +133,7 @@ namespace Obi.UserControls
                 mTocTree.SelectedNode = newSelection;
             }
 
-        }
+        }*/
 
         internal void SyncMovedSectionNode(object sender, Events.Node.MovedNodeEventArgs e)
         {

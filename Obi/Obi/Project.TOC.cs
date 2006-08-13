@@ -150,24 +150,32 @@ namespace Obi
         /// <summary>
         /// Remove a node from the core tree. It is detached from the tree and the
         /// </summary>
-        public void RemoveNode(object origin, CoreNode node)
+        //md
+        //the command value is returned so it can be used in UndoShallowDelete's undo list
+        public Commands.Command RemoveNode(object origin, CoreNode node)
         {
+            Commands.TOC.DeleteSectionNode command = null;
             if (node != null)
             {
-                Commands.TOC.DeleteSectionNode command = null;
-                if (origin != this)
-                {
+                //md: need this particular command to be created even if origin = this
+                //because its undo fn is required by UndoShallowDelete
+                //if (origin != this)
+               // {
                     CoreNode parent = (CoreNode)node.getParent();
                     Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
                     getPresentation().getRootNode().acceptDepthFirst(visitor);
                     command = new Commands.TOC.DeleteSectionNode(this, node, parent, parent.indexOf(node), visitor.Position);
-                }
+              //  }
                 node.detach();
                 DeletedNode(this, new Events.Node.NodeEventArgs(origin, node));
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-                if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+
+                //md: added condition "origin != this" to accomodate the change made above
+                if (command != null && origin != this) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             }
+
+            return command;
         }
 
         public void RemoveNodeRequested(object sender, Events.Node.NodeEventArgs e)
@@ -435,19 +443,23 @@ namespace Obi
             IncreaseSectionNodeLevel(sender, e.Node);
         }
 
-        public void DecreaseSectionNodeLevel(object origin, CoreNode node)
+       //md
+       //the command value is returned so it can be used in UndoShallowDelete's undo list
+       public Commands.Command DecreaseSectionNodeLevel(object origin, CoreNode node)
         {
             Commands.TOC.DecreaseSectionNodeLevel command = null;
 
-            if (origin != this)
-            {
+            //md: need this particular command to be created even if origin = this
+            //because its undo fn is required by UndoShallowDelete
+            //if (origin != this)
+            //{
                 CoreNode parent = (CoreNode)node.getParent();
-                Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
-                getPresentation().getRootNode().acceptDepthFirst(visitor);
+                Visitors.SectionNodePosition nodeVisitor = new Visitors.SectionNodePosition(node);
+                getPresentation().getRootNode().acceptDepthFirst(nodeVisitor);
                 //we need to save the state of the node before it is altered
                 command = new Commands.TOC.DecreaseSectionNodeLevel
-                    (this, node, parent, parent.indexOf(node), visitor.Position, node.getChildCount());
-            }
+                    (this, node, parent, parent.indexOf(node), nodeVisitor.Position, node.getChildCount());
+            //}
 
             bool succeeded = ExecuteDecreaseSectionNodeLevel(node);
             if (succeeded)
@@ -461,8 +473,11 @@ namespace Obi
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
 
-                if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+                //md: added condition "origin != this" to accomodate the change made above
+                if (command != null && origin != this) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             }
+
+            return command;
         }
 
         /// <summary>
@@ -719,8 +734,6 @@ namespace Obi
         //md 20060810
         public void UndoPasteSectionNode(CoreNode node)
         {
-           // mClipboard = node.copy(true);
-
             node.detach();
 
             UndidPasteSectionNode(this, new Events.Node.NodeEventArgs(this, node));
@@ -729,6 +742,45 @@ namespace Obi
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
 
         }
+
+        //md 20060812
+        internal void ShallowDeleteSectionNodeRequested(object sender, Events.Node.NodeEventArgs e)
+        {
+            ShallowDeleteSectionNode(sender, e.Node);
+        }
+
+        //md 20060812
+        internal void ShallowDeleteSectionNode(object origin, CoreNode node)
+        {
+            Commands.TOC.ShallowDeleteSectionNode command = null;
+
+            if (origin != this)
+            {
+                CoreNode parent = (CoreNode)node.getParent();
+                Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
+                getPresentation().getRootNode().acceptDepthFirst(visitor);
+
+                command = new Commands.TOC.ShallowDeleteSectionNode
+                    (this, node, parent, parent.indexOf(node), visitor.Position, node.getChildCount());
+             }
+
+            int numChildren = node.getChildCount();
+
+            for (int i = numChildren - 1; i >= 0; i-- )
+            {
+                Commands.Command cmdDecrease = this.DecreaseSectionNodeLevel(this, node.getChild(i));
+                if (command != null) command.addSubCommand(cmdDecrease);
+            }
+
+            Commands.Command cmdRemove = this.RemoveNode(this, node);
+            if (command != null) command.addSubCommand(cmdRemove);
+
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+        }
+
+        
 
     }
 }

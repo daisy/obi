@@ -94,11 +94,11 @@ namespace Obi.UserControls
                 new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
 
-        private void tESTShallowDeleteToolStripMenuItem_Click_1(object sender, EventArgs e)
+      /*  private void tESTShallowDeleteToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             SyncShallowDeletedSectionNode(this,
                            new Events.Node.NodeEventArgs(this, GetSelectedSection()));
-        }
+        }*/
 
 
         /// <summary>
