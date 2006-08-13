@@ -72,7 +72,6 @@ namespace Obi.Assets
         /// <param name="sampleRate">Sample rate in Hz.</param>
         public AudioMediaAsset(int channels, int bitDepth, int sampleRate)
         {
-            //MessageBox.Show (channels.ToString () + "-" + bitDepth.ToString () + "-" + sampleRate.ToString ()) ;
             if (channels >= 1 && channels <= 2 && bitDepth >= 8 && bitDepth <= 16 && sampleRate >= 8000)
             {
                 m_Channels = channels;

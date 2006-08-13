@@ -93,13 +93,13 @@ namespace Obi.Dialogs
             mTimeDisplay.Text = "00:00:00";
             if (Audio.AudioPlayer.Instance.State.Equals(Audio.AudioPlayerState.Stopped))
             {
-                Audio.VuMeter ob_VuMeter = new Audio.VuMeter();
-                ob_VuMeter.ScaleFactor = 2;
-                ob_VuMeter.LowerThreshold = 70;
-                ob_VuMeter.UpperThreshold = 150;
-                ob_VuMeter.SampleTimeLength = 1000;
-                ob_VuMeter.ShowForm();
-                Audio.AudioPlayer.Instance.VuMeterObject = ob_VuMeter;
+                // Audio.VuMeter ob_VuMeter = new Audio.VuMeter();
+                // ob_VuMeter.ScaleFactor = 2;
+                // ob_VuMeter.LowerThreshold = 70;
+                // ob_VuMeter.UpperThreshold = 150;
+                // ob_VuMeter.SampleTimeLength = 1000;
+                // ob_VuMeter.ShowForm();
+                // Audio.AudioPlayer.Instance.VuMeterObject = ob_VuMeter;
                 Audio.AudioPlayer.Instance.Play(Project.GetAudioMediaAsset(mNode));
                 mPlayButton.Text = Localizer.Message("pause");
                 tmUpdateCurrentTime.Enabled = true;
@@ -109,7 +109,7 @@ namespace Obi.Dialogs
         private void Play_FormClosing(object sender, FormClosingEventArgs e)
         {
             Audio.AudioPlayer.Instance.Stop();
-            Audio.AudioPlayer.Instance.VuMeterObject.CloseVuMeterForm();
+            // Audio.AudioPlayer.Instance.VuMeterObject.CloseVuMeterForm();
         }
     }
 }

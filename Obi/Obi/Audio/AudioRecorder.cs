@@ -174,14 +174,15 @@ namespace Obi.Audio
 			m_Channels = asset.Channels;
 			m_SampleRate = asset.SampleRate;
 			m_bitDepth = asset.BitDepth;
-			mAsset = new Assets.AudioMediaAsset(m_Channels, m_bitDepth, m_SampleRate);
-			mAsset = asset.Copy() as Assets.AudioMediaAsset;
-			Assets.AssetManager manager = mAsset.Manager as Assets.AssetManager;
-			sProjectDirectory= manager.AssetsDirectory ;
-			InputFormat = GetInputFormat();
+			// mAsset = new Assets.AudioMediaAsset(m_Channels, m_bitDepth, m_SampleRate);
+			// mAsset = asset.Copy() as Assets.AudioMediaAsset;
+			// Assets.AssetManager manager = mAsset.Manager as Assets.AssetManager;
+			sProjectDirectory= asset.Manager.AssetsDirectory ;
+		    InputFormat = GetInputFormat();
             if (File.Exists(sProjectDirectory+"\\"+"Listen.wav"))
                 File.Delete(sProjectDirectory+"\\"+"Listen.wav");
-            m_sFileName = GetFileName();
+            // m_sFileName = GetFileName();
+            m_sFileName = asset.Manager.UniqueFileName(".wav");
 			BinaryWriter bw = new BinaryWriter(File.Create(m_sFileName));
 			CreateRIFF(bw);
 			CreateCaptureBuffer();
@@ -190,26 +191,29 @@ namespace Obi.Audio
 
 		// this is to stop the recording
 		// desc:  this will first check the condition and stops the recording and then capture any left  overs recorded data which is not saved
-		public void StopRecording()
-		{   
-        Events.Audio.Recorder.StateChangedEventArgs e = new Events.Audio.Recorder.StateChangedEventArgs(mState);
-			mState = AudioRecorderState.Idle;
-			StateChanged(this, e);
-            if (null != NotificationEvent)
-			{
-				Capturing = false;
-				NotificationEvent.Set();
-			}
-			if(null != applicationBuffer)
-				if(applicationBuffer.Capturing)
-					InitRecording(false);
-            FileInfo fi = new FileInfo(m_sFileName);
-            if (File.Exists(sProjectDirectory + "\\" + "Listen.wav"))
-                File.Delete(sProjectDirectory + "\\" + "Listen.wav");
-            if(File.Exists(m_sFileName))
-			    if(fi.Length == 44)
-				File.Delete(m_sFileName);
-		}			
+        public void StopRecording()
+        {
+            if (mState != AudioRecorderState.Recording)
+            {
+                Events.Audio.Recorder.StateChangedEventArgs e = new Events.Audio.Recorder.StateChangedEventArgs(mState);
+                mState = AudioRecorderState.Idle;
+                StateChanged(this, e);
+                if (null != NotificationEvent)
+                {
+                    Capturing = false;
+                    NotificationEvent.Set();
+                }
+                if (null != applicationBuffer)
+                    if (applicationBuffer.Capturing)
+                        InitRecording(false);
+                FileInfo fi = new FileInfo(m_sFileName);
+                if (File.Exists(sProjectDirectory + "\\" + "Listen.wav"))
+                    File.Delete(sProjectDirectory + "\\" + "Listen.wav");
+                if (File.Exists(m_sFileName))
+                    if (fi.Length == 44)
+                        File.Delete(m_sFileName);
+            }
+        }		
 		
 
 		public Capture InitDirectSound(int Index)

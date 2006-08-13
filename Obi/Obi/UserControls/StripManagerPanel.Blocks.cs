@@ -104,5 +104,26 @@ namespace Obi.UserControls
                     break;
             }
         }
+
+        #region recording
+
+        /// <summary>
+        /// The recorder is continuing to record a phrase at some index. The timing of the audio block is updated.
+        /// </summary>
+        private void Record_ContinuingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e, int index)
+        {
+            System.Diagnostics.Debug.Print("REC#{0} continuing {1}", index, e.Asset.Name);
+        }
+
+        /// <summary>
+        /// The recorder is finishing to record a phrase at some index. The timinig of the audio block is updated,
+        /// and the index is incremented.
+        /// </summary>
+        private void Record_FinishingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e, int index)
+        {
+            System.Diagnostics.Debug.Print("REC#{0} finishing {1}", index, e.Asset.Name);
+        }
+
+        #endregion
     }
 }

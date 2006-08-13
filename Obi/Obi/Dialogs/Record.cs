@@ -19,21 +19,20 @@ namespace Obi.Dialogs
     /// <remarks>JQ</remarks>
     public partial class Record : Form
     {
-        private int mChannels;                  // required number of channels
-        private int mSampleRate;                // required sample rate
-        private int mBitDepth;                  // required bit depth
-        private Assets.AssetManager mAssManager;       // the asset manager (for creating new assets)
-        private Audio.VuMeter ob_VuMeter = new Audio.VuMeter();
-        double BeginTime = 0;
-        double CurrentTime ;//time while the phrase is recorded
-        double EndTime;//the end time when finish phrase event is triggered
-
-
-        private List<Assets.AudioMediaAsset> mAssets;  // the list of assets created while recording
+        private int mChannels;                    // required number of channels
+        private int mSampleRate;                  // required sample rate
+        private int mBitDepth;                    // required bit depth
+        private Assets.AssetManager mAssManager;  // the asset manager (for creating new assets)
+        // private Audio.VuMeter mVuMeter;           // the VU meter is disabled for iteration 1
+        
+        double CurrentTime;                       //time while the phrase is recorded
+        double EndTime;                           //the end time when finish phrase event is triggered
 
         public event Events.Audio.Recorder.StartingPhraseHandler StartingPhrase;
         public event Events.Audio.Recorder.ContinuingPhraseHandler ContinuingPhrase;
         public event Events.Audio.Recorder.FinishingPhraseHandler FinishingPhrase;
+
+        private List<Assets.AudioMediaAsset> mAssets;  // the list of assets created while recording
 
         /// <summary>
         /// The list of assets created.
@@ -53,6 +52,7 @@ namespace Obi.Dialogs
             mSampleRate = sampleRate;
             mBitDepth = bitDepth;
             mAssManager = assManager;
+            // mVuMeter = new Audio.VuMeter();
             mAssets = new List<Assets.AudioMediaAsset>();
             Audio.AudioRecorder.Instance.StateChanged += new Events.Audio.Recorder.StateChangedHandler(AudioRecorder_StateChanged);
             Audio.AudioRecorder.Instance.UpdateVuMeterFromRecorder +=
@@ -69,69 +69,64 @@ namespace Obi.Dialogs
 
         private void Record_Load(object sender, EventArgs e)
         {
-            //suman
-//on closing the record form the recording does not stop
+            // to be replaced by the actual device in use.
             ArrayList arDevices = new ArrayList();
             arDevices = Audio.AudioRecorder.Instance.GetInputDevices();
             Audio.AudioRecorder.Instance.InitDirectSound(1);
             
-            if(Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Idle))
+            if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Idle))
             {
-            ob_VuMeter.ScaleFactor = 2;
-            ob_VuMeter.SampleTimeLength = 2000;
-            ob_VuMeter.UpperThreshold = 50;
-            ob_VuMeter.LowerThreshold = 10;
-            Audio.AudioRecorder.Instance.VuMeterObject = ob_VuMeter;
-            ob_VuMeter.ShowForm();
-            Assets.AudioMediaAsset mAudioAsset = mAssManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
-            Audio.AudioRecorder.Instance.StartListening(mAudioAsset);
-            mRecordButton.Text = Localizer.Message("record");}
-            timer1.Enabled = true;
+                // mVuMeter.ScaleFactor = 2;
+                // mVuMeter.SampleTimeLength = 2000;
+                // mVuMeter.UpperThreshold = 50;
+                // mVuMeter.LowerThreshold = 10;
+                // Audio.AudioRecorder.Instance.VuMeterObject = mVuMeter;
+                // mVuMeter.ShowForm();
+                Assets.AudioMediaAsset mAudioAsset = mAssManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
+                Audio.AudioRecorder.Instance.StartListening(mAudioAsset);
+                mRecordButton.Text = Localizer.Message("record");
+            }
+            // timer1.Enabled = true;
         }
-
-
 
         private void btnRecordAndPause_Click(object sender, EventArgs e)
         {
-            
-Assets.AudioMediaAsset mRecordAsset = mAssManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
-            if(Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Listening))
-            {
-            Audio.AudioRecorder.Instance.StopRecording();
-            timer1.Enabled = false;
-            //mRecordButton.Text = Localizer.Message("record");
-            }                   
-            if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Idle))
-            {
-                Audio.AudioRecorder.Instance.StartRecording(mRecordAsset);
-                mRecordButton.Text = Localizer.Message("pause");
-                timer1.Enabled = true;
-                mPhraseMarkerButton.Enabled = false;
-            }
-        
-        else if(Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Recording) && mRecordButton.Text.Contains("Pause"))
+            if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Listening))
             {
                 Audio.AudioRecorder.Instance.StopRecording();
+                mTimer.Enabled = false;
+            }
+            if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Idle))
+            {
+                Assets.AudioMediaAsset asset = mAssManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
+                mAssets.Add(asset);
+                Audio.AudioRecorder.Instance.StartRecording(asset);
+                StartingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(asset));
+                mRecordButton.Text = Localizer.Message("pause");
+                mTimer.Enabled = true;
+                mPhraseMarkerButton.Enabled = false;
+            }
+            else if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Recording))
+            {
+                Audio.AudioRecorder.Instance.StopRecording();
+                FinishingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(mAssets[mAssets.Count - 1]));
                 mRecordButton.Text = Localizer.Message("record");
-                timer1.Enabled = false;
+                mTimer.Enabled = false;
                 mPhraseMarkerButton.Enabled = true;
-                
             }
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            if (Audio.AudioRecorder.Instance.State == Audio.AudioRecorderState.Recording ||
-                Audio.AudioRecorder.Instance.State == Audio.AudioRecorderState.Listening)
+            if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Recording))
             {
                 Audio.AudioRecorder.Instance.StopRecording();
+                FinishingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(mAssets[mAssets.Count - 1]));
             }
-            Audio.AudioRecorder.Instance.VuMeterObject.CloseVuMeterForm();
-            timer1.Enabled = false;
             this.Close();
         }
 
-private void timer1_Tick(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
             double dMiliSeconds = Audio.AudioRecorder.Instance.TimeOfAsset;
             int Seconds = Convert.ToInt32(dMiliSeconds / 1000);
@@ -144,8 +139,6 @@ private void timer1_Tick(object sender, EventArgs e)
             //mTimeTextBox.Text = Audio.AudioRecorder.Instance.GetTime.ToString();
         }
 
-        
-
         private void mPhraseMarkerButton_Click_1(object sender, EventArgs e)
         {
             Assets.AudioMediaAsset mPhraseMarkerAsset = mAssManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
@@ -153,27 +146,33 @@ private void timer1_Tick(object sender, EventArgs e)
             if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Listening))
             {
                 Audio.AudioRecorder.Instance.StopRecording();
-                timer1.Enabled = false;
+                mTimer.Enabled = false;
             }
-                if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Recording))
-                {
-                    Audio.AudioRecorder.Instance.StopRecording();
-                    EndTime = CurrentTime;
-                    Obi.Events.Audio.Recorder.PhraseEventArgs mEnd = new Obi.Events.Audio.Recorder.PhraseEventArgs(1);
-                    FinishingPhrase(this, mEnd);
-                    timer1.Enabled = false;
-                }
-                if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Idle))
-                {
-                    Obi.Events.Audio.Recorder.PhraseEventArgs mStart = new Obi.Events.Audio.Recorder.PhraseEventArgs(BeginTime);
-                    StartingPhrase(this, mStart);
-                    Audio.AudioRecorder.Instance.StartRecording(mPhraseMarkerAsset);
-                    CurrentTime = Audio.AudioRecorder.Instance.TimeOfAsset;
-                    Obi.Events.Audio.Recorder.PhraseEventArgs mContinue = new Obi.Events.Audio.Recorder.PhraseEventArgs(CurrentTime);
-                    ContinuingPhrase(this, mContinue);
-                    timer1.Enabled = true;
-                    mRecordButton.Enabled = false;
-                }
+            if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Recording))
+            {
+                Audio.AudioRecorder.Instance.StopRecording();
+                EndTime = CurrentTime;
+                Obi.Events.Audio.Recorder.PhraseEventArgs mEnd = new Obi.Events.Audio.Recorder.PhraseEventArgs(mPhraseMarkerAsset);
+                FinishingPhrase(this, mEnd);
+                mTimer.Enabled = false;
+            }
+            if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Idle))
+            {
+                Obi.Events.Audio.Recorder.PhraseEventArgs mStart = new Obi.Events.Audio.Recorder.PhraseEventArgs(newPhrase);
+                StartingPhrase(this, mStart);
+                Audio.AudioRecorder.Instance.StartRecording(mPhraseMarkerAsset);
+                CurrentTime = Audio.AudioRecorder.Instance.TimeOfAsset;
+                Obi.Events.Audio.Recorder.PhraseEventArgs mContinue = new Obi.Events.Audio.Recorder.PhraseEventArgs(newPhrase);
+                ContinuingPhrase(this, mContinue);
+                mTimer.Enabled = true;
+                mRecordButton.Enabled = false;
             }
         }
+
+        private void Record_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Audio.AudioRecorder.Instance.StopRecording();
+            // Audio.AudioRecorder.Instance.VuMeterObject.CloseVuMeterForm();
+        }
     }
+}

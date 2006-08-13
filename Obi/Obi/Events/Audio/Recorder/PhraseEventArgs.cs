@@ -1,37 +1,36 @@
 using System;
 
+using Obi.Assets;
+
 namespace Obi.Events.Audio.Recorder
 {
     /// <summary>
-    /// A new phrase is being recorded. Time must be 0.
+    /// A new phrase is being recorded.
     /// </summary>
     public delegate void StartingPhraseHandler(object sender, PhraseEventArgs e);
 
     /// <summary>
-    /// The latest phrase being recorded is updated. Time is the current length of the phrase.
+    /// The latest phrase being recorded is updated.
     /// </summary>
     public delegate void ContinuingPhraseHandler(object sender, PhraseEventArgs e);
 
     /// <summary>
-    /// The latest phrase is done. Time is the total length of the phrase.
+    /// The latest phrase is done.
     /// </summary>
     public delegate void FinishingPhraseHandler(object sender, PhraseEventArgs e);
  
-    /// <summary>
-    /// A new phrase to be created.
-    /// </summary>
     class PhraseEventArgs: EventArgs
     {
-        private double mTime;  // time of the asset so far
+        private AudioMediaAsset mAsset;
 
-        public double Time
+        public AudioMediaAsset Asset
         {
-            get { return mTime; }
+            get { return mAsset; }
         }
 
-        public PhraseEventArgs(double time)
+        public PhraseEventArgs(AudioMediaAsset asset)
         {
-            mTime = time;
+            mAsset = asset;
         }
     }
 }

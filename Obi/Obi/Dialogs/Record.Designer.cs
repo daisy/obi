@@ -34,7 +34,7 @@ namespace Obi.Dialogs
             this.mTimeTextBox = new System.Windows.Forms.TextBox();
             this.mStopButton = new System.Windows.Forms.Button();
             this.mPhraseMarkerButton = new System.Windows.Forms.Button();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.mTimer = new System.Windows.Forms.Timer(this.components);
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.SuspendLayout();
             // 
@@ -88,7 +88,7 @@ namespace Obi.Dialogs
             // 
             // timer1
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.mTimer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Record
             // 
@@ -103,6 +103,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.mRecordButton);
             this.Name = "Record";
             this.Text = "Record";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Record_FormClosing);
             this.Load += new System.EventHandler(this.Record_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -116,7 +117,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.TextBox mTimeTextBox;
         private System.Windows.Forms.Button mStopButton;
         private System.Windows.Forms.Button mPhraseMarkerButton;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer mTimer;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }

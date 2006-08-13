@@ -75,32 +75,30 @@ namespace Obi.UserControls
                 Settings settings = ((ObiForm)ParentForm).Settings;
                 Dialogs.Record dialog = new Dialogs.Record(settings.AudioChannels, settings.SampleRate, settings.BitDepth,
                     mProjectPanel.Project.AssetManager);
-                dialog.StartingPhrase += new Events.Audio.Recorder.StartingPhraseHandler(Record_StartingPhrase);
-                dialog.ContinuingPhrase += new Events.Audio.Recorder.ContinuingPhraseHandler(Record_ContinuingPhrase);
-                dialog.FinishingPhrase += new Events.Audio.Recorder.FinishingPhraseHandler(Record_FinishingPhrase);
+                int index = mSelectedPhrase == null ?
+                    Project.GetPhrasesCount(mSelectedSection) : mSelectedSection.indexOf(mSelectedPhrase) + 1;
+                dialog.StartingPhrase += new Events.Audio.Recorder.StartingPhraseHandler(
+                    delegate(object _sender, Events.Audio.Recorder.PhraseEventArgs _e)
+                    {
+                        mProjectPanel.Project.StartRecordingPhrase(_sender, _e, mSelectedSection, index);
+                    });
+                dialog.ContinuingPhrase += new Events.Audio.Recorder.ContinuingPhraseHandler(
+                    delegate(object _sender, Events.Audio.Recorder.PhraseEventArgs _e)
+                    {
+                        Record_ContinuingPhrase(_sender, _e, index);
+                    });
+                dialog.FinishingPhrase += new Events.Audio.Recorder.FinishingPhraseHandler(
+                    delegate(object _sender, Events.Audio.Recorder.PhraseEventArgs _e)
+                    {
+                        Record_FinishingPhrase(_sender, _e, index);
+                    });
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    int index = mSelectedPhrase == null ?
-                        Project.GetPhrasesCount(mSelectedSection) : mSelectedSection.indexOf(mSelectedPhrase) + 1;
                     foreach (Assets.AudioMediaAsset asset in dialog.Assets)
                     {
-                        
-                        ++index;
                     }
                 }
             }
-        }
-
-        private void Record_StartingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e)
-        {
-        }
-
-        private void Record_ContinuingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e)
-        {
-        }
-
-        private void Record_FinishingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e)
-        {
         }
 
         /// <summary>
