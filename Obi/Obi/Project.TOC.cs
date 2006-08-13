@@ -504,15 +504,9 @@ namespace Obi
         /// <remarks>a facade API function could do this for us</remarks>
         private bool ExecuteIncreaseSectionNodeLevel(CoreNode node)
         {
-            int nodeIndex = ((CoreNode)node.getParent()).indexOf(node);
+            CoreNode newParent = GetPreviousSectionNodeSibling(node);
 
-            //the node's level can be increased if it has an older sibling
-            if (nodeIndex == 0)
-            {
-                return false;
-            }
-
-            CoreNode newParent = ((CoreNode)node.getParent()).getChild(nodeIndex - 1);
+            //CoreNode newParent = ((CoreNode)node.getParent()).getChild(nodeIndex - 1);
 
             if (newParent != null)
             {
@@ -524,6 +518,28 @@ namespace Obi
             {
                 return false;
             }
+        }
+
+        //md 20060813
+        //helper function
+        private CoreNode GetPreviousSectionNodeSibling(CoreNode node)
+        {
+            CoreNode parent = (CoreNode)node.getParent();
+
+            int idx = parent.indexOf(node);
+
+            if (idx == 0)
+                return null;
+
+            for (int i = idx - 1; i >= 0; i--)
+            {
+                if (GetNodeType(parent.getChild(i)) == NodeType.Section)
+                {
+                    return parent.getChild(i);
+                }
+            }
+
+            return null;
         }
 
         public void IncreaseSectionNodeLevelRequested(object sender, Events.Node.NodeEventArgs e)
@@ -1238,6 +1254,71 @@ namespace Obi
             }
 
             return false;
+        }
+
+        //md 20060813
+        internal bool canMoveSectionNodeUp(CoreNode node)
+        {
+            if (this.getPresentation().getRootNode().getChildCount() == 0)
+            {
+                return false;
+            }
+
+            //the only reason a node couldn't be moved down is if it is the first 
+            //child of the root
+        
+            CoreNode firstRootChild = this.getPresentation().getRootNode().getChild(0);
+            if (node == firstRootChild)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        //md 20060813
+        internal bool canMoveSectionNodeDown(CoreNode node)
+        {
+            if (this.getPresentation().getRootNode().getChildCount() == 0)
+            {
+                return false;
+            }
+            //the only reason a node couldn't be moved down is if it is the last 
+            //child of the root
+
+            int numRootChildren = this.getPresentation().getRootNode().getChildCount();
+            CoreNode lastRootChild = this.getPresentation().getRootNode().getChild(numRootChildren - 1);
+            if (node == lastRootChild)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        //md 20060813
+        internal bool canMoveSectionNodeIn(CoreNode node)
+        {
+            CoreNode newParent = GetPreviousSectionNodeSibling(node);
+
+            if (newParent == null)
+                return false;
+            else
+                return true;
+        }
+
+        //md 20060813
+        internal bool canMoveSectionNodeOut(CoreNode node)
+        {
+            //the only reason we can't decrease the level is if the node is already 
+            //at the outermost level
+            if (node.getParent() == null ||
+                node.getParent().Equals(node.getPresentation().getRootNode()))
+            {
+                return false;
+            }
+           
+            return true;
         }
     }
 }

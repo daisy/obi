@@ -250,6 +250,9 @@ namespace Obi.UserControls
         /// </summary>
         private void mTocTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            //mdXXX
+            return;
+
             Events.Node.SelectedEventArgs _event = new Events.Node.SelectedEventArgs(true);
             // should set CanMoveUp, etc. here
             SelectedTreeNode(this, _event);
@@ -262,6 +265,9 @@ namespace Obi.UserControls
         /// <param name="e"></param>
         private void mTocTree_Leave(object sender, EventArgs e)
         {
+            //mdXXX
+            return;
+
             SelectedTreeNode(this, new Events.Node.SelectedEventArgs(false));
         }
 
@@ -372,6 +378,8 @@ namespace Obi.UserControls
             mPasteSectionToolStripMenuItem.Enabled = e.Selected &&
                 (mProjectPanel.Project != null) && (mProjectPanel.Project.Clipboard != null);
         }
+
+       
 
     }
 }

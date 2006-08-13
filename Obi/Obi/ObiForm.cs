@@ -872,5 +872,10 @@ namespace Obi
         {
             mShowInStripviewToolStripMenuItem.Enabled = mProjectPanel.StripManager.SelectedSectionNode != null;
         }
+
+        private void mTocToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
