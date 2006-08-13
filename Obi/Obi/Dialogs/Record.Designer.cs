@@ -29,6 +29,7 @@ namespace Obi.Dialogs
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Record));
             this.mRecordButton = new System.Windows.Forms.Button();
             this.mDisplayTimeLable = new System.Windows.Forms.Label();
             this.mTimeTextBox = new System.Windows.Forms.TextBox();
@@ -86,7 +87,7 @@ namespace Obi.Dialogs
             this.mPhraseMarkerButton.UseVisualStyleBackColor = true;
             this.mPhraseMarkerButton.Click += new System.EventHandler(this.mPhraseMarkerButton_Click_1);
             // 
-            // timer1
+            // mTimer
             // 
             this.mTimer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
@@ -101,6 +102,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.mTimeTextBox);
             this.Controls.Add(this.mDisplayTimeLable);
             this.Controls.Add(this.mRecordButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Record";
             this.Text = "Record";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Record_FormClosing);

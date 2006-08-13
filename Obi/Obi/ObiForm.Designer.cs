@@ -463,6 +463,7 @@ namespace Obi
             this.mStripsToolStripMenuItem.Name = "mStripsToolStripMenuItem";
             this.mStripsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.mStripsToolStripMenuItem.Text = "&Strips";
+            this.mStripsToolStripMenuItem.Click += new System.EventHandler(this.mStripsToolStripMenuItem_Click);
             // 
             // mAddStripToolStripMenuItem
             // 
@@ -679,14 +680,14 @@ namespace Obi
             // 
             this.mHelpToolStripMenuItem1.Name = "mHelpToolStripMenuItem1";
             this.mHelpToolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.mHelpToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.mHelpToolStripMenuItem1.Size = new System.Drawing.Size(134, 22);
             this.mHelpToolStripMenuItem1.Text = "&Contents";
             this.mHelpToolStripMenuItem1.Click += new System.EventHandler(this.mHelpToolStripMenuItem1_Click);
             // 
             // aboutObiToolStripMenuItem
             // 
             this.aboutObiToolStripMenuItem.Name = "aboutObiToolStripMenuItem";
-            this.aboutObiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutObiToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.aboutObiToolStripMenuItem.Text = "&About Obi";
             this.aboutObiToolStripMenuItem.Click += new System.EventHandler(this.aboutObiToolStripMenuItem_Click);
             // 
@@ -728,6 +729,7 @@ namespace Obi
             this.Controls.Add(this.mProjectPanel);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "ObiForm";
             this.Text = "Obi";

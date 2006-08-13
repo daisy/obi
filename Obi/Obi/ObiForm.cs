@@ -867,5 +867,10 @@ namespace Obi
             mProject.RootNode.acceptDepthFirst(new Visitors.DumpTree());
             mProject.DumpAssManager();
         }
+
+        private void mStripsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mShowInStripviewToolStripMenuItem.Enabled = mProjectPanel.StripManager.SelectedSectionNode != null;
+        }
     }
 }

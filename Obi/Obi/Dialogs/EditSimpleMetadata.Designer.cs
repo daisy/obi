@@ -28,6 +28,7 @@ namespace Obi.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditSimpleMetadata));
             this.mOKButton = new System.Windows.Forms.Button();
             this.mCancelButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -179,6 +180,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.label1);
             this.Controls.Add(this.mCancelButton);
             this.Controls.Add(this.mOKButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(8, 240);
             this.Name = "EditSimpleMetadata";
             this.Text = "Edit project metadata";

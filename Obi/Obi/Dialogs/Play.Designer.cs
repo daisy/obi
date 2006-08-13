@@ -29,6 +29,7 @@ namespace Obi.Dialogs
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Play));
             this.mNameDisplay = new System.Windows.Forms.TextBox();
             this.mTimeDisplay = new System.Windows.Forms.TextBox();
             this.mPlayButton = new System.Windows.Forms.Button();
@@ -111,6 +112,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.mPlayButton);
             this.Controls.Add(this.mTimeDisplay);
             this.Controls.Add(this.mNameDisplay);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Play";
             this.Text = "Play audio block";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Play_FormClosing);
