@@ -163,6 +163,7 @@
     <Compile Include="Events\Node\MovedNodeEventArgs.cs" />
     <Compile Include="Events\Node\SelectedEventArgs.cs" />
     <Compile Include="Events\Node\SetMediaEventArgs.cs" />
+    <Compile Include="Events\Node\ShallowSwappedNodesEventArgs.cs" />
     <Compile Include="Events\Node\SplitNodeEventArgs.cs" />
     <Compile Include="Events\Project\CommandCreatedEventArgs.cs" />
     <Compile Include="Events\Project\StateChangedEventArgs.cs" />

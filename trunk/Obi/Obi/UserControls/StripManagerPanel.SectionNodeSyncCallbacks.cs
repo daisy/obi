@@ -170,7 +170,21 @@ namespace Obi.UserControls
             }
         }
 
-        
+        //md 20060813
+        internal void SyncShallowSwapNodes(object sender, Events.Node.ShallowSwappedNodesEventArgs e)
+        {
+            SectionStrip strip1 = mSectionNodeMap[e.Node];
+            SectionStrip strip2 = mSectionNodeMap[e.SwappedNode];
+
+            mFlowLayoutPanel.Controls.SetChildIndex(strip1, e.SwappedNodePosition);
+            mFlowLayoutPanel.Controls.SetChildIndex(strip2, e.NodePosition);
+
+            if (e.SwappedNodePosition < e.NodePosition)
+                this.ReflowTabOrder(strip1);
+            else
+                this.ReflowTabOrder(strip2);
+
+        }
 
     }
 }
