@@ -90,14 +90,9 @@ namespace Obi.UserControls
                 dialog.FinishingPhrase += new Events.Audio.Recorder.FinishingPhraseHandler(
                     delegate(object _sender, Events.Audio.Recorder.PhraseEventArgs _e)
                     {
-                        Record_FinishingPhrase(_sender, _e, index);
+                        mProjectPanel.Project.FinishRecordingPhrase(_sender, _e, mSelectedSection, index);
                     });
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    foreach (Assets.AudioMediaAsset asset in dialog.Assets)
-                    {
-                    }
-                }
+                dialog.ShowDialog();
             }
         }
 

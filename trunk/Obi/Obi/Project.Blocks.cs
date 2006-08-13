@@ -168,6 +168,11 @@ namespace Obi
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
 
+        internal void FinishRecordingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e, CoreNode parent, int index)
+        {
+            UpdateSeq(parent.getChild(index));
+        }
+
         #endregion
 
         #region backend functions
