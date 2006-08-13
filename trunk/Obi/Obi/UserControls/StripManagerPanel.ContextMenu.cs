@@ -16,6 +16,8 @@ namespace Obi.UserControls
     {
         //md
         public event Events.Node.RequestToShallowDeleteSectionNodeHandler RequestToShallowDeleteSectionNode;
+        public event Events.Node.RequestToMoveSectionNodeDownLinearHandler RequestToMoveSectionNodeDownLinear;
+        public event Events.Node.RequestToMoveSectionNodeUpLinearHandler RequestToMoveSectionNodeUpLinear;
 
         /// <summary>
         /// TODO:
@@ -211,5 +213,19 @@ namespace Obi.UserControls
         {
             RequestToShallowDeleteSectionNode(this, new Events.Node.NodeEventArgs(this, this.mSelectedSection));
         }
+
+        //md 20060812
+        private void upToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RequestToMoveSectionNodeUpLinear(this, new Events.Node.NodeEventArgs(this, this.mSelectedSection));
+        }
+
+        //md 20060812
+        private void downToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RequestToMoveSectionNodeDownLinear(this, new Events.Node.NodeEventArgs(this, this.mSelectedSection));
+        }
+
+      
     }
 }

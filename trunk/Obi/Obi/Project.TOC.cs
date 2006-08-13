@@ -744,13 +744,15 @@ namespace Obi
         }
 
         //md 20060812
-        internal void ShallowDeleteSectionNodeRequested(object sender, Events.Node.NodeEventArgs e)
+        public void ShallowDeleteSectionNodeRequested(object sender, Events.Node.NodeEventArgs e)
         {
             ShallowDeleteSectionNode(sender, e.Node);
         }
 
         //md 20060812
-        internal void ShallowDeleteSectionNode(object origin, CoreNode node)
+        //shallow delete a section node
+        //see Commands.TOC.ShallowDeleteSectionNode if you're wondering how the "undo" works
+        public void ShallowDeleteSectionNode(object origin, CoreNode node)
         {
             Commands.TOC.ShallowDeleteSectionNode command = null;
 
@@ -780,6 +782,29 @@ namespace Obi
             if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
+        //md 20060812
+        public void MoveSectionNodeDownLinearRequested(object sender, Events.Node.NodeEventArgs e)
+        {
+            MoveSectionNodeDownLinear(sender, e.Node);
+        }
+
+        //md 20060812
+        public void MoveSectionNodeDownLinear(object origin, CoreNode node)
+        {
+           //TODO
+        }
+
+        //md 20060812
+        public void MoveSectionNodeUpLinearRequested(object sender, Events.Node.NodeEventArgs e)
+        {
+            MoveSectionNodeUpLinear(sender, e.Node);
+        }
+
+        //md 20060812
+        public void MoveSectionNodeUpLinear(object origin, CoreNode node)
+        {
+            //TODO
+        }
         
 
     }

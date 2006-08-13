@@ -80,8 +80,7 @@ namespace Obi.Commands
         {
             mUndo.Push(command);
             mRedo.Clear();
-            System.Windows.Forms.MessageBox.Show(string.Format("added {0}", command.ToString()));
-        }
+       }
 
         /// <summary>
         /// Undo the last command and push it on the redo stack. There is no effect if the undo stack is empty.
