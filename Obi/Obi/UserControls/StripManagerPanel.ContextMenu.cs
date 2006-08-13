@@ -169,7 +169,8 @@ namespace Obi.UserControls
         /// <summary>
         /// Move a block forward one spot in the strip, if it is not the last one.
         /// </summary>
-        private void mMoveAudioBlockforwardToolStripMenuItem_Click(object sender, EventArgs e)
+        //mg 20060813: made internal to allow obiform menu sync access 
+        internal void mMoveAudioBlockforwardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mSelectedPhrase != null)
             {
@@ -180,7 +181,8 @@ namespace Obi.UserControls
         /// <summary>
         /// Move a block backward one spot in the strip, if it is not the first one.
         /// </summary>
-        private void mMoveAudioBlockbackwardToolStripMenuItem_Click(object sender, EventArgs e)
+        //mg 20060813: made internal to allow obiform menu sync access
+        internal void mMoveAudioBlockbackwardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mSelectedPhrase != null)
             {
@@ -209,19 +211,22 @@ namespace Obi.UserControls
 
         //md 20060812
         //shallow-delete a section node
-        private void deleteStripToolStripMenuItem_Click(object sender, EventArgs e)
+        //mg 20060813: made internal to allow obiform menu sync access
+        internal void deleteStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RequestToShallowDeleteSectionNode(this, new Events.Node.NodeEventArgs(this, this.mSelectedSection));
         }
 
         //md 20060812
-        private void upToolStripMenuItem_Click(object sender, EventArgs e)
+        //mg 20060813: made internal to allow obiform menu sync access
+        internal void upToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RequestToMoveSectionNodeUpLinear(this, new Events.Node.NodeEventArgs(this, this.mSelectedSection));
         }
 
         //md 20060812
-        private void downToolStripMenuItem_Click(object sender, EventArgs e)
+        //mg 20060813: made internal to allow obiform menu sync access
+        internal void downToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RequestToMoveSectionNodeDownLinear(this, new Events.Node.NodeEventArgs(this, this.mSelectedSection));
         }
