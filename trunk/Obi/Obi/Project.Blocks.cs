@@ -156,6 +156,18 @@ namespace Obi
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
 
+        internal void StartRecordingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e, CoreNode parent, int index)
+        {
+            CoreNode phrase = CreatePhraseNode(e.Asset);
+            parent.insert(phrase, index);
+            UpdateSeq(phrase);
+            // MediaSet(this, new Events.Node.SetMediaEventArgs(this, phrase, AudioChannel,
+            //    GetMediaForChannel(phrase, AudioChannel)));
+            AddedPhraseNode(this, new Events.Node.AddedPhraseNodeEventArgs(this, phrase, index));
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+
         #endregion
 
         #region backend functions
