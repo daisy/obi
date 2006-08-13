@@ -194,7 +194,7 @@ namespace Obi.UserControls
             {
                 TreeNode node = selectedNode.Parent.Nodes[i];
                 futureChildren.Add(node.Clone());
-                MessageBox.Show(String.Format("About to remove {0}", node.Text));
+                //MessageBox.Show(String.Format("About to remove {0}", node.Text));
                 node.Remove();
             }
 

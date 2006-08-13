@@ -124,7 +124,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mProject.ShallowSwapNodes(mNode, mSwapNode);
+            mProject.UndoShallowSwapNodes(mSwapNode, mNode);
         }
     }
 
@@ -162,7 +162,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mProject.ShallowSwapNodes(mNode, mSwapNode);
+            mProject.UndoShallowSwapNodes(mSwapNode, mNode);
         }
     }
 }

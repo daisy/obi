@@ -72,11 +72,14 @@ namespace Obi
         public void CreateSiblingSectionNode(object origin, CoreNode contextNode)
         {
             //mdXXX
-            NodeType nodeType;
-            nodeType = Project.GetNodeType(contextNode);
-            if (nodeType != NodeType.Section)
+            if (contextNode != null)
             {
-                throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
+                NodeType nodeType;
+                nodeType = Project.GetNodeType(contextNode);
+                if (nodeType != NodeType.Section)
+                {
+                    throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
+                }
             }
             //end mdXXX
 
@@ -974,7 +977,7 @@ namespace Obi
 
             if (nodeToSwapWith != null)
             {
-                System.Windows.Forms.MessageBox.Show(string.Format("Should be swapped with {0}", GetTextMedia(nodeToSwapWith).getText()));
+             //   System.Windows.Forms.MessageBox.Show(string.Format("Should be swapped with {0}", GetTextMedia(nodeToSwapWith).getText()));
             
                 if (origin != this)
                 {
@@ -1020,7 +1023,7 @@ namespace Obi
 
             if (nodeToSwapWith != null)
             {
-                System.Windows.Forms.MessageBox.Show(string.Format("Should be swapped with {0}", GetTextMedia(nodeToSwapWith).getText()));
+              //  System.Windows.Forms.MessageBox.Show(string.Format("Should be swapped with {0}", GetTextMedia(nodeToSwapWith).getText()));
                 if (origin != this)
                 {
                     command = new Commands.TOC.MoveSectionNodeUpLinear(this, node, nodeToSwapWith);
@@ -1047,39 +1050,14 @@ namespace Obi
             if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
-        internal void ShallowSwapNodesA(CoreNode firstNode, CoreNode secondNode)
-        {
-            CoreNode firstNodeClone = firstNode.copy(false);
-            CoreNode secondNodeClone = secondNode.copy(false);
-
-            ((CoreNode)firstNode.getParent()).insertBefore(secondNodeClone, firstNode);
-            
-            int idx = ((CoreNode)secondNodeClone.getParent()).indexOf(secondNodeClone);
-            Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(secondNodeClone);
-                getPresentation().getRootNode().acceptDepthFirst(visitor);
-
-            //raise an event
-            AddedSectionNode(this, new Obi.Events.Node.AddedSectionNodeEventArgs
-                (this, secondNodeClone, idx, visitor.Position));
-
-            ((CoreNode)secondNode.getParent()).insertBefore(firstNodeClone, secondNode);
-            idx = ((CoreNode)firstNodeClone.getParent()).indexOf(firstNodeClone);
-            visitor = new Visitors.SectionNodePosition(firstNodeClone);
-            getPresentation().getRootNode().acceptDepthFirst(visitor);
-
-            //raise an event
-            AddedSectionNode(this, new Obi.Events.Node.AddedSectionNodeEventArgs
-                (this, firstNodeClone, idx, visitor.Position));
-
-            //ShallowDeleteSectionNode(
-
-        }
+      
 
         /// <summary>
         /// Swap nodes but not their section-subtrees.  Each node retains its own phrases.
         /// </summary>
         /// <param name="firstNode"></param>
         /// <param name="secondNode"></param>
+        /// <remarks>this could be cleaner.  one thing that would help is better shallow-operation support in the API.</remarks>
         //md 20060813
         internal void ShallowSwapNodes(CoreNode firstNode, CoreNode secondNode)
         {
@@ -1170,6 +1148,25 @@ namespace Obi
 
                 secondNodeParent.insert(firstNode, secondNodeIndex);
             }
+            
+        }
+
+        internal void UndoShallowSwapNodes(CoreNode firstNode, CoreNode secondNode)
+        {
+            Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(firstNode);
+            getPresentation().getRootNode().acceptDepthFirst(visitor);
+
+            int node1Pos = visitor.Position;
+
+            visitor = new Visitors.SectionNodePosition(secondNode);
+            getPresentation().getRootNode().acceptDepthFirst(visitor);
+
+            int node2Pos = visitor.Position;
+
+            ShallowSwapNodes(firstNode, secondNode);
+
+            //raise the event that the action was completed
+            ShallowSwappedNodes(this, new Obi.Events.Node.ShallowSwappedNodesEventArgs(this, firstNode, secondNode, node1Pos, node2Pos));
             
         }
 
