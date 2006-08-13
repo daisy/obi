@@ -94,13 +94,7 @@ namespace Obi.UserControls
                 new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
 
-      /*  private void tESTShallowDeleteToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            SyncShallowDeletedSectionNode(this,
-                           new Events.Node.NodeEventArgs(this, GetSelectedSection()));
-        }*/
-
-
+     
         /// <summary>
         /// If a node is selected, set focus on that node in the Strip view.
         /// </summary>
@@ -131,6 +125,45 @@ namespace Obi.UserControls
         internal void mPasteSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RequestToPasteSectionNode(this, new Events.Node.NodeEventArgs(this, GetSelectedSection()));
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+            bool isNodeSelected = false;
+            bool canMoveUp = false;
+            bool canMoveDown = false;
+            bool canMoveIn = false;
+            bool canMoveOut = false;
+
+            if (mTocTree.SelectedNode != null) isNodeSelected = true;
+
+            mAddSubSectionToolStripMenuItem.Enabled = isNodeSelected;
+            mDeleteSectionToolStripMenuItem.Enabled = isNodeSelected;
+            mEditLabelToolStripMenuItem.Enabled = isNodeSelected;
+
+            if (isNodeSelected == true)
+            {
+                canMoveUp = mProjectPanel.Project.canMoveSectionNodeUp(GetSelectedSection());
+                canMoveDown = mProjectPanel.Project.canMoveSectionNodeDown(GetSelectedSection());
+                canMoveIn = mProjectPanel.Project.canMoveSectionNodeIn(GetSelectedSection());
+                canMoveOut = mProjectPanel.Project.canMoveSectionNodeOut(GetSelectedSection());
+            }
+            
+            mMoveToolStripMenuItem.Enabled = canMoveUp || canMoveDown || canMoveIn || canMoveOut;
+            mMoveUpToolStripMenuItem.Enabled = canMoveUp;
+            mMoveDownToolStripMenuItem.Enabled = canMoveDown;
+            mMoveInToolStripMenuItem.Enabled = canMoveIn;
+            mMoveOutToolStripMenuItem.Enabled = canMoveOut;
+
+            mShowInStripViewToolStripMenuItem.Enabled = isNodeSelected;
+            mCutSectionToolStripMenuItem.Enabled = isNodeSelected;
+            mCopySectionToolStripMenuItem.Enabled = isNodeSelected;
+
+            // when closing, the project can be null but an event may still be generated
+            // so be careful of checking the the project is not null in order to check
+            // for its clipboard. (JQ)
+            mPasteSectionToolStripMenuItem.Enabled = isNodeSelected &&
+                (mProjectPanel.Project != null) && (mProjectPanel.Project.Clipboard != null);
         }
     }
 }
