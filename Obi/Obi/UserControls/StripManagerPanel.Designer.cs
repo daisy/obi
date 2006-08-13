@@ -33,7 +33,11 @@ namespace Obi.UserControls
             this.mFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mAddStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.moveStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.upToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.downToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRenameStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mPlayAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recordAudioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,10 +50,6 @@ namespace Obi.UserControls
             this.mMergeWithNextAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mShowInTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.moveStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.upToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.downToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -108,12 +108,42 @@ namespace Obi.UserControls
             this.mAddStripToolStripMenuItem.Text = "&Add strip";
             this.mAddStripToolStripMenuItem.Click += new System.EventHandler(this.mAddStripToolStripMenuItem_Click);
             // 
+            // moveStripToolStripMenuItem
+            // 
+            this.moveStripToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.upToolStripMenuItem,
+            this.downToolStripMenuItem});
+            this.moveStripToolStripMenuItem.Name = "moveStripToolStripMenuItem";
+            this.moveStripToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.moveStripToolStripMenuItem.Text = "&Move strip...";
+            // 
+            // upToolStripMenuItem
+            // 
+            this.upToolStripMenuItem.Name = "upToolStripMenuItem";
+            this.upToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.upToolStripMenuItem.Text = "&Up";
+            this.upToolStripMenuItem.Click += new System.EventHandler(this.upToolStripMenuItem_Click);
+            // 
+            // downToolStripMenuItem
+            // 
+            this.downToolStripMenuItem.Name = "downToolStripMenuItem";
+            this.downToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.downToolStripMenuItem.Text = "&Down";
+            this.downToolStripMenuItem.Click += new System.EventHandler(this.downToolStripMenuItem_Click);
+            // 
             // mRenameStripToolStripMenuItem
             // 
             this.mRenameStripToolStripMenuItem.Name = "mRenameStripToolStripMenuItem";
             this.mRenameStripToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.mRenameStripToolStripMenuItem.Text = "&Rename strip";
             this.mRenameStripToolStripMenuItem.Click += new System.EventHandler(this.mRenameStripToolStripMenuItem_Click);
+            // 
+            // deleteStripToolStripMenuItem
+            // 
+            this.deleteStripToolStripMenuItem.Name = "deleteStripToolStripMenuItem";
+            this.deleteStripToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.deleteStripToolStripMenuItem.Text = "Delete strip";
+            this.deleteStripToolStripMenuItem.Click += new System.EventHandler(this.deleteStripToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -194,34 +224,6 @@ namespace Obi.UserControls
             this.mShowInTOCViewToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.mShowInTOCViewToolStripMenuItem.Text = "Show in &TOC view";
             this.mShowInTOCViewToolStripMenuItem.Click += new System.EventHandler(this.mShowInTOCViewToolStripMenuItem_Click);
-            // 
-            // moveStripToolStripMenuItem
-            // 
-            this.moveStripToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.upToolStripMenuItem,
-            this.downToolStripMenuItem});
-            this.moveStripToolStripMenuItem.Name = "moveStripToolStripMenuItem";
-            this.moveStripToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.moveStripToolStripMenuItem.Text = "&Move strip...";
-            // 
-            // upToolStripMenuItem
-            // 
-            this.upToolStripMenuItem.Name = "upToolStripMenuItem";
-            this.upToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.upToolStripMenuItem.Text = "&Up";
-            // 
-            // downToolStripMenuItem
-            // 
-            this.downToolStripMenuItem.Name = "downToolStripMenuItem";
-            this.downToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.downToolStripMenuItem.Text = "&Down";
-            // 
-            // deleteStripToolStripMenuItem
-            // 
-            this.deleteStripToolStripMenuItem.Name = "deleteStripToolStripMenuItem";
-            this.deleteStripToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.deleteStripToolStripMenuItem.Text = "Delete strip";
-            this.deleteStripToolStripMenuItem.Click += new System.EventHandler(this.deleteStripToolStripMenuItem_Click);
             // 
             // StripManagerPanel
             // 
