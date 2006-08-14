@@ -339,4 +339,8 @@ Do you want to replace the project contained in this file?</value>
   <data name="move_phrase_command_label" xml:space="preserve">
     <value>move audio block</value>
   </data>
+  <data name="listening" xml:space="preserve">
+    <value>Listening...</value>
+    <comment>Record dialog is listening</comment>
+  </data>
 </root>

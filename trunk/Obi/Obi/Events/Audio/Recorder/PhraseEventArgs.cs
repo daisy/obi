@@ -22,15 +22,22 @@ namespace Obi.Events.Audio.Recorder
     class PhraseEventArgs: EventArgs
     {
         private AudioMediaAsset mAsset;
+        private int mPhraseIndex;
 
         public AudioMediaAsset Asset
         {
             get { return mAsset; }
         }
 
-        public PhraseEventArgs(AudioMediaAsset asset)
+        public int PhraseIndex
+        {
+            get { return mPhraseIndex; }
+        }
+
+        public PhraseEventArgs(AudioMediaAsset asset, int index)
         {
             mAsset = asset;
+            mPhraseIndex = index;
         }
     }
 }
