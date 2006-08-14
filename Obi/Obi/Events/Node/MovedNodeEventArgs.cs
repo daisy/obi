@@ -23,8 +23,8 @@ namespace Obi.Events.Node
             }
         }
 
-        public MovedNodeEventArgs(object origin, CoreNode node, CoreNode parent, int index, int position) : 
-            base(origin, node, index, position)
+        public MovedNodeEventArgs(object origin, CoreNode node, CoreNode parent, int index, int position, int sectionNodeIndex) : 
+            base(origin, node, index, position, sectionNodeIndex)
         {
             mParent = parent;
         }

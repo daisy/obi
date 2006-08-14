@@ -17,12 +17,21 @@ namespace Obi.Events.Node
     {
         private int mPosition;   // the position in the flat list of nodes
         private int mIndex;      // the index of the node in the parent's list of children
+        private int mSectionNodeIndex; //the index relative to just the parent's other section node children
 
         public int Index
         {
             get
             {
                 return mIndex;
+            }
+        }
+
+        public int SectionNodeIndex
+        {
+            get
+            {
+                return mSectionNodeIndex;
             }
         }
 
@@ -34,12 +43,13 @@ namespace Obi.Events.Node
             }
 		}
 
-        public AddedSectionNodeEventArgs(object origin, CoreNode node, int index, int position) : 
+        public AddedSectionNodeEventArgs(object origin, CoreNode node, int index, int position, int sectionNodeIndex) : 
             base(origin, node)
         {
             
             mIndex = index;
             mPosition = position;
+            mSectionNodeIndex = SectionNodeIndex;
         }
     }
 }

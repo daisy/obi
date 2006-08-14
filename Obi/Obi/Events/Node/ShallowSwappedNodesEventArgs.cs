@@ -6,13 +6,15 @@ using urakawa.core;
 
 namespace Obi.Events.Node
 {
-    public delegate void ShallowSwappedNodesHandler(object sender, ShallowSwappedNodesEventArgs e);
+    public delegate void ShallowSwappedSectionNodesHandler(object sender, ShallowSwappedSectionNodesEventArgs e);
 
-    class ShallowSwappedNodesEventArgs : NodeEventArgs
+    class ShallowSwappedSectionNodesEventArgs : NodeEventArgs
     {
         private CoreNode mSwappedNode;
         private int mNodePos;
         private int mSwappedNodePos;
+        private int mNodeSectionIndex;
+        private int mSwappedNodeSectionIndex;
 
         public CoreNode SwappedNode
         {
@@ -44,13 +46,37 @@ namespace Obi.Events.Node
             }
         }
 
-        public ShallowSwappedNodesEventArgs(object origin, CoreNode node, CoreNode swappedNode, int nodePos, int swappedNodePos)
+        /// <summary>
+        /// the position, wrt section nodes, of <see cref="mNode"/> before the swap
+        /// </summary>
+        public int SectionNodeIndex
+        {
+            get
+            {
+                return mNodeSectionIndex;
+            }
+        }
+
+        /// <summary>
+        /// the position, wrt section nodes, of <see cref="mSwappedNode"/> before the swap
+        /// </summary>
+        public int SwappedSectionNodeIndex
+        {
+            get
+            {
+                return mSwappedNodeSectionIndex;
+            }
+        }
+
+        public ShallowSwappedSectionNodesEventArgs(object origin, CoreNode node, CoreNode swappedNode, int nodePos, int swappedNodePos, int sectionNodeIndex, int swappedSectionNodeIndex)
             :
             base(origin, node)
         {
             mSwappedNode = swappedNode;
             mNodePos = nodePos;
             mSwappedNodePos = swappedNodePos;
+            mNodeSectionIndex = sectionNodeIndex;
+            mSwappedNodeSectionIndex = swappedSectionNodeIndex;
         }
 
     }
