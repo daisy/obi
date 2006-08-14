@@ -228,9 +228,13 @@ namespace Obi
         /// <summary>
         /// Touch the project so that it seems that it was modified.
         /// </summary>
-        private void touchProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mTouchProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProject.Touch();
+            if (mProject != null)
+            {
+                mProject.Touch();
+                mProjectPanel.SynchronizeWithCoreTree(mProject.RootNode);
+            }
         }
 
         /// <summary>
@@ -241,14 +245,10 @@ namespace Obi
             if (mProjectPanel.TOCPanelVisible)
             {
                 mProjectPanel.HideTOCPanel();
-                toolStripStatusLabel1.Text = Localizer.Message("status_toc_hidden");
-                FormUpdateShowHideTOC();
             }
             else
             {
                 mProjectPanel.ShowTOCPanel();
-                toolStripStatusLabel1.Text = Localizer.Message("status_toc_shown");
-                FormUpdateShowHideTOC();
             }
         }
 
@@ -374,8 +374,6 @@ namespace Obi
                 new EventHandler(mProjectPanel.TOCPanel.mShowInStripViewToolStripMenuItem_Click);
 
             // The strip menu behaves like the context menu in the strip view.
-            mProjectPanel.StripManager.SelectedStrip += new Events.Strip.SelectedHandler(StripManagerPanel_SelectedStrip);
-            mProjectPanel.StripManager.SelectedAudioBlock += new Events.Strip.SelectedHandler(StripManagerPanel_SelectedAudioBlock);
             mAddStripToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mAddStripToolStripMenuItem_Click);
             mRenameStripToolStripMenuItem.Click +=
@@ -404,9 +402,6 @@ namespace Obi
             //end mg 20060813    
             mShowInTOCViewToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mShowInTOCViewToolStripMenuItem_Click);
-
-            mProjectPanel.TOCPanel.VisibleChanged +=
-                new EventHandler(delegate(object _sender, EventArgs _e) { FormUpdateShowHideTOC(); });
         }
 
         /// <summary>
@@ -423,29 +418,6 @@ namespace Obi
             mMoveInToolStripMenuItem.Enabled = e.CanMoveIn;
             mMoveOutToolStripMenuItem.Enabled = e.CanMoveOut;
             mShowInStripviewToolStripMenuItem.Enabled = e.Selected;
-        }
-
-        /// <summary>
-        /// Update the strip menu when a strip is (de)selected.
-        /// Affects "rename strip", "import audio file", "show in TOC view".
-        /// </summary>
-        private void StripManagerPanel_SelectedStrip(object sender, Events.Strip.SelectedEventArgs e)
-        {
-            mRenameStripToolStripMenuItem.Enabled = e.Selected;
-            mImportAudioFileToolStripMenuItem.Enabled = e.Selected;
-            mShowInTOCViewToolStripMenuItem.Enabled = e.Selected;
-        }
-
-        /// <summary>
-        /// Update the strip menu when a block is (de)selected.
-        /// Affects "play audio block", "split audio block", "rename audio block"
-        /// </summary>
-        private void StripManagerPanel_SelectedAudioBlock(object sender, Events.Strip.SelectedEventArgs e)
-        {
-            mPlayAudioBlockToolStripMenuItem.Enabled = e.Selected;
-            mSplitAudioBlockToolStripMenuItem.Enabled = e.Selected;
-            mDeleteAudioBlockToolStripMenuItem.Enabled = e.Selected;
-            mEditAudioBlockLabelToolStripMenuItem.Enabled = e.Selected;
         }
 
         /// <summary>
@@ -602,36 +574,19 @@ namespace Obi
         }
 
         /// <summary>
-        /// Update the form to reflect enabled/disabled actions when no project is opened.
+        /// Update the title and status bar when the project is closed.
         /// </summary>
         private void FormUpdateClosedProject()
         {
             this.Text = Localizer.Message("obi");
-            mSaveProjectToolStripMenuItem.Enabled = false;                        // cannot save
-            mSaveProjectasToolStripMenuItem.Enabled = false;                      // cannot save as
-            mDiscardChangesToolStripMenuItem.Enabled = false;                     // cannot discard changes
-            mCloseProjectToolStripMenuItem.Enabled = false;                       // cannot close
-            foreach (ToolStripItem item in mEditToolStripMenuItem.DropDownItems)   // cannot do any edit
-            {
-                item.Enabled = false;
-            }
-            FormUpdateUndoRedoLabels();
-            foreach (ToolStripItem item in mTocToolStripMenuItem.DropDownItems)    // cannot modify the TOC
-            {
-                item.Enabled = false;
-            }
-            foreach (ToolStripItem item in mStripsToolStripMenuItem.DropDownItems)  // cannot modify the strips
-            {
-                item.Enabled = false;
-            }
-            mProjectPanel.Project = null;
             if (mProject == null)
             {
                 Ready();
             }
             else
             {
-                toolStripStatusLabel1.Text = String.Format(Localizer.Message("closed_project"), mProject.Metadata.Title);
+                mToolStripStatutsLabel.Text = String.Format(Localizer.Message("closed_project"), mProject.Metadata.Title);
+                mProjectPanel.Project = null;
             }
         }
 
@@ -641,25 +596,7 @@ namespace Obi
         private void FormUpdateOpenedProject()
         {
             this.Text = String.Format("{0} - {1}", mProject.Metadata.Title, Localizer.Message("obi"));
-            mSaveProjectToolStripMenuItem.Enabled = false;
-            mSaveProjectasToolStripMenuItem.Enabled = true;
-            mDiscardChangesToolStripMenuItem.Enabled = false;
-            mCloseProjectToolStripMenuItem.Enabled = true;
-            foreach (ToolStripItem item in mEditToolStripMenuItem.DropDownItems)     // can do edits
-            {
-                item.Enabled = true;
-            }
-            FormUpdateUndoRedoLabels();
-            foreach (ToolStripItem item in mTocToolStripMenuItem.DropDownItems)     // can modify the TOC
-            {
-                item.Enabled = true;
-            }
-            foreach (ToolStripItem item in mStripsToolStripMenuItem.DropDownItems)  // can modify the strips
-            {
-                item.Enabled = true;
-            }
-            FormUpdateShowHideTOC();
-            toolStripStatusLabel1.Text = String.Format(Localizer.Message("opened_project"), mProject.XUKPath);
+            mToolStripStatutsLabel.Text = String.Format(Localizer.Message("opened_project"), mProject.XUKPath);
         }
 
         /// <summary>
@@ -668,10 +605,7 @@ namespace Obi
         private void FormUpdateSavedProject()
         {
             this.Text = String.Format("{0} - {1}", mProject.Metadata.Title, Localizer.Message("obi"));
-            mSaveProjectToolStripMenuItem.Enabled = false;
-            mDiscardChangesToolStripMenuItem.Enabled = false;
-            FormUpdateUndoRedoLabels();
-            toolStripStatusLabel1.Text = String.Format(Localizer.Message("saved_project"), mProject.LastPath);
+            mToolStripStatutsLabel.Text = String.Format(Localizer.Message("saved_project"), mProject.LastPath);
         }
 
         /// <summary>
@@ -680,57 +614,7 @@ namespace Obi
         private void FormUpdateModifiedProject()
         {
             this.Text = String.Format("{0}* - {1}", mProject.Metadata.Title, Localizer.Message("obi"));
-            mSaveProjectToolStripMenuItem.Enabled = true;
-            mSaveProjectasToolStripMenuItem.Enabled = true;
-            mDiscardChangesToolStripMenuItem.Enabled = true;
-            mCloseProjectToolStripMenuItem.Enabled = true;
             Ready();
-        }
-
-        /// <summary>
-        /// Change the label of th Show/Hide TOC menu item depending on the visibility of the NCX panel.
-        /// When the TOC panel is hidden, the only enabled item in the TOC panel is "show TOC".
-        /// When the TOC panel is shown, menu items (except "show TOC" and "add section") are enabled only if there is
-        /// a currently selected node in the tree.
-        /// </summary>
-        private void FormUpdateShowHideTOC()
-        {
-            mShowhideTableOfCOntentsToolStripMenuItem.Text =
-                Localizer.Message(mProjectPanel.TOCPanelVisible ? "hide_toc_label" : "show_toc_label");
-            foreach (ToolStripItem item in mTocToolStripMenuItem.DropDownItems)
-            {
-                // this is incorrect--we need the same parameters as the selected event from the TOC tree.
-                // need to save the last event somewhere maybe?
-                item.Enabled = mProjectPanel.TOCPanelVisible && mProjectPanel.TOCPanel.Selected;
-            }
-            mShowhideTableOfCOntentsToolStripMenuItem.Enabled = true;
-            mAddSectionToolStripMenuItem.Enabled = mProjectPanel.TOCPanelVisible;
-        }
-
-        private void FormUpdateUndoRedoLabels()
-        {
-            if (mCommandManager.HasUndo)
-            {
-                mUndoToolStripMenuItem.Enabled = true;
-                mUndoToolStripMenuItem.Text = String.Format(Localizer.Message("undo_label"), Localizer.Message("undo"),
-                    mCommandManager.UndoLabel);
-            }
-            else
-            {
-                mUndoToolStripMenuItem.Enabled = false;
-                mUndoToolStripMenuItem.Text = Localizer.Message("undo");
-            }
-            if (mCommandManager.HasRedo)
-            {
-                mRedoToolStripMenuItem.Enabled = true;
-                mRedoToolStripMenuItem.Text = String.Format(Localizer.Message("redo_label"), Localizer.Message("redo"),
-                    mCommandManager.RedoLabel);
-            }
-            else
-            {
-                mRedoToolStripMenuItem.Enabled = false;
-                mRedoToolStripMenuItem.Text = Localizer.Message("redo");
-            }
         }
 
         /// <summary>
@@ -792,7 +676,7 @@ namespace Obi
         /// </summary>
         private void Ready()
         {
-            toolStripStatusLabel1.Text = Localizer.Message("ready");
+            mToolStripStatutsLabel.Text = Localizer.Message("ready");
         }
 
         /// <summary>
@@ -879,8 +763,9 @@ namespace Obi
             bool isProjectModified = isProjectOpen && mProject.Unsaved;
             mOpenRecentProjectToolStripMenuItem.Enabled = mSettings.RecentProjects.Count > 0;
             mSaveProjectToolStripMenuItem.Enabled = isProjectModified;
+            mSaveProjectasToolStripMenuItem.Enabled = isProjectOpen;
             mDiscardChangesToolStripMenuItem.Enabled = isProjectModified;
-            mCloseProjectToolStripMenuItem.Enabled = mProject != null;
+            mCloseProjectToolStripMenuItem.Enabled = isProjectOpen;
         }
 
         /// <summary>
@@ -888,8 +773,7 @@ namespace Obi
         /// </summary>
         private void mEditToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
-            mUndoToolStripMenuItem.Enabled = mCommandManager.HasUndo;
-            mRedoToolStripMenuItem.Enabled = mCommandManager.HasRedo;
+            FormUpdateUndoRedoLabels();                // take care of undo and redo
             mCutToolStripMenuItem.Enabled = false;     // not implemented yet!
             mCopyToolStripMenuItem.Enabled = false;    // not implemented yet!
             mPasteToolStripMenuItem.Enabled = false;   // not implemented yet!
@@ -898,42 +782,84 @@ namespace Obi
             mTouchProjectToolStripMenuItem.Enabled = mProject != null;
         }
 
+        /// <summary>
+        /// Update the label for undo and redo (and their availability) depending on what is in the command manager.
+        /// </summary>
+        private void FormUpdateUndoRedoLabels()
+        {
+            if (mCommandManager.HasUndo)
+            {
+                mUndoToolStripMenuItem.Enabled = true;
+                mUndoToolStripMenuItem.Text = String.Format(Localizer.Message("undo_label"), Localizer.Message("undo"),
+                    mCommandManager.UndoLabel);
+            }
+            else
+            {
+                mUndoToolStripMenuItem.Enabled = false;
+                mUndoToolStripMenuItem.Text = Localizer.Message("undo");
+            }
+            if (mCommandManager.HasRedo)
+            {
+                mRedoToolStripMenuItem.Enabled = true;
+                mRedoToolStripMenuItem.Text = String.Format(Localizer.Message("redo_label"), Localizer.Message("redo"),
+                    mCommandManager.RedoLabel);
+            }
+            else
+            {
+                mRedoToolStripMenuItem.Enabled = false;
+                mRedoToolStripMenuItem.Text = Localizer.Message("redo");
+            }
+        }
+
+        /// <summary>
+        /// The TOC menu is enabled only if the TOC view is visible.
+        /// </summary>
         private void mTocToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
-            bool isNodeSelected = false;
-            bool canMoveUp = false;
-            bool canMoveDown = false;
-            bool canMoveIn = false;
-            bool canMoveOut = false;
-
-            urakawa.core.CoreNode selectedSection = null;
-            if (mProjectPanel.TOCPanel.GetSelectedSection() != null)
+            if (mProjectPanel.TOCPanelVisible)
             {
-                isNodeSelected = true;
-                selectedSection = this.mProjectPanel.TOCPanel.GetSelectedSection();
+                bool isNodeSelected = false;
+                bool canMoveUp = false;
+                bool canMoveDown = false;
+                bool canMoveIn = false;
+                bool canMoveOut = false;
+
+                urakawa.core.CoreNode selectedSection = null;
+                if (mProjectPanel.TOCPanel.GetSelectedSection() != null)
+                {
+                    isNodeSelected = true;
+                    selectedSection = this.mProjectPanel.TOCPanel.GetSelectedSection();
+                }
+
+                mAddSectionToolStripMenuItem.Enabled = mProject != null;
+                mAddSubSectionToolStripMenuItem.Enabled = isNodeSelected;
+                mDeleteSectionToolStripMenuItem.Enabled = isNodeSelected;
+                mRenameSectionToolStripMenuItem.Enabled = isNodeSelected;
+
+                if (isNodeSelected == true)
+                {
+                    canMoveUp = mProjectPanel.Project.canMoveSectionNodeUp(selectedSection);
+                    canMoveDown = mProjectPanel.Project.canMoveSectionNodeDown(selectedSection);
+                    canMoveIn = mProjectPanel.Project.canMoveSectionNodeIn(selectedSection);
+                    canMoveOut = mProjectPanel.Project.canMoveSectionNodeOut(selectedSection);
+                }
+
+                mMoveSectionToolStripMenuItem.Enabled = canMoveUp || canMoveDown || canMoveIn || canMoveOut;
+                mMoveUpToolStripMenuItem.Enabled = canMoveUp;
+                mMoveDownToolStripMenuItem.Enabled = canMoveDown;
+                mMoveInToolStripMenuItem.Enabled = canMoveIn;
+                mMoveOutToolStripMenuItem.Enabled = canMoveOut;
+
+                mShowInStripviewToolStripMenuItem.Enabled = isNodeSelected;
             }
-
-
-            mAddSubSectionToolStripMenuItem.Enabled = isNodeSelected;
-            mDeleteSectionToolStripMenuItem.Enabled = isNodeSelected;
-            mRenameSectionToolStripMenuItem.Enabled = isNodeSelected;
-
-            if (isNodeSelected == true)
+            else
             {
-                canMoveUp = mProjectPanel.Project.canMoveSectionNodeUp(selectedSection);
-                canMoveDown = mProjectPanel.Project.canMoveSectionNodeDown(selectedSection);
-                canMoveIn = mProjectPanel.Project.canMoveSectionNodeIn(selectedSection);
-                canMoveOut = mProjectPanel.Project.canMoveSectionNodeOut(selectedSection);
+                foreach (ToolStripItem item in mTocToolStripMenuItem.DropDownItems) item.Enabled = false;
             }
-
-            
-            mMoveSectionToolStripMenuItem.Enabled = canMoveUp || canMoveDown || canMoveIn || canMoveOut;
-            mMoveUpToolStripMenuItem.Enabled = canMoveUp;
-            mMoveDownToolStripMenuItem.Enabled = canMoveDown;
-            mMoveInToolStripMenuItem.Enabled = canMoveIn;
-            mMoveOutToolStripMenuItem.Enabled = canMoveOut;
-
-            mShowInStripviewToolStripMenuItem.Enabled = isNodeSelected;
+            // Show/hide table of contents
+            mShowhideTableOfCOntentsToolStripMenuItem.Text =
+                Localizer.Message(mProjectPanel.TOCPanelVisible ? "hide_toc_label" : "show_toc_label");
+            mShowhideTableOfCOntentsToolStripMenuItem.Enabled = mProject != null;
         }
 
         /// <summary>
@@ -954,7 +880,7 @@ namespace Obi
 
             mAddStripToolStripMenuItem.Enabled = isProjectOpen;
             mRenameStripToolStripMenuItem.Enabled = isStripSelected;
-            mDeleteSectionToolStripMenuItem.Enabled = isStripSelected;
+            mDeleteStripToolStripMenuItem.Enabled = isStripSelected;
             mMoveStripUpToolStripMenuItem.Enabled = canMoveUp;
             mMoveStripDownToolStripMenuItem.Enabled = canMoveDown;
             mMoveStripToolStripMenuItem.Enabled = canMoveUp || canMoveDown;
@@ -970,7 +896,7 @@ namespace Obi
             mMoveAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && (!isAudioBlockFirst || !isAudioBlockLast);
 
             mPlayAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mShowInStripviewToolStripMenuItem.Enabled = isStripSelected;
+            mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;
         }
 
         /// <summary>
