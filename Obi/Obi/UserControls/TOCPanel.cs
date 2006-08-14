@@ -245,17 +245,19 @@ namespace Obi.UserControls
 
         }
 
+        // Added comments to remove warnings, should go away completely
+
         /// <summary>
         /// A new selection is made so the context menu is updated.
         /// </summary>
         private void mTocTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
             //mdXXX
-            return;
+            //return;
 
-            Events.Node.SelectedEventArgs _event = new Events.Node.SelectedEventArgs(true);
+            //Events.Node.SelectedEventArgs _event = new Events.Node.SelectedEventArgs(true);
             // should set CanMoveUp, etc. here
-            SelectedTreeNode(this, _event);
+            //SelectedTreeNode(this, _event);
         }
 
         /// <summary>
@@ -266,9 +268,9 @@ namespace Obi.UserControls
         private void mTocTree_Leave(object sender, EventArgs e)
         {
             //mdXXX
-            return;
+            //return;
 
-            SelectedTreeNode(this, new Events.Node.SelectedEventArgs(false));
+            //SelectedTreeNode(this, new Events.Node.SelectedEventArgs(false));
         }
 
 #endregion

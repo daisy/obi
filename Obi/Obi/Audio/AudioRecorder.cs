@@ -146,7 +146,7 @@ namespace Obi.Audio
 
 		public void StartListening(Assets.AudioMediaAsset asset)
 		{
-        Events.Audio.Recorder.StateChangedEventArgs e = new Events.Audio.Recorder.StateChangedEventArgs(mState);
+            Events.Audio.Recorder.StateChangedEventArgs e = new Events.Audio.Recorder.StateChangedEventArgs(mState);
 			mState = AudioRecorderState.Listening;
 			StateChanged(this, e);
 			m_Channels = asset.Channels;
@@ -174,9 +174,10 @@ namespace Obi.Audio
 			m_Channels = asset.Channels;
 			m_SampleRate = asset.SampleRate;
 			m_bitDepth = asset.BitDepth;
-			mAsset = new Assets.AudioMediaAsset(m_Channels, m_bitDepth, m_SampleRate);  // why create a new asset here?
-			mAsset = asset.Copy() as Assets.AudioMediaAsset;
+			// mAsset = new Assets.AudioMediaAsset(m_Channels, m_bitDepth, m_SampleRate);  // why create a new asset here?
+			// mAsset = asset.Copy() as Assets.AudioMediaAsset;
 			// Assets.AssetManager manager = mAsset.Manager as Assets.AssetManager;
+            mAsset = asset;
 			sProjectDirectory= asset.Manager.AssetsDirectory ;
 		    InputFormat = GetInputFormat();
             if (File.Exists(sProjectDirectory+"\\"+"Listen.wav"))
@@ -193,7 +194,7 @@ namespace Obi.Audio
 		// desc:  this will first check the condition and stops the recording and then capture any left  overs recorded data which is not saved
         public void StopRecording()
         {
-            if (mState != AudioRecorderState.Recording)
+            if (mState == AudioRecorderState.Recording || mState == AudioRecorderState.Listening)
             {
                 Events.Audio.Recorder.StateChangedEventArgs e = new Events.Audio.Recorder.StateChangedEventArgs(mState);
                 mState = AudioRecorderState.Idle;

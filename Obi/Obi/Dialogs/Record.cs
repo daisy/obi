@@ -14,9 +14,7 @@ namespace Obi.Dialogs
     /// <summary>
     /// The record dialog.
     /// Start listening as soon as it is open.
-    /// 
     /// </summary>
-    /// <remarks>JQ</remarks>
     public partial class Record : Form
     {
         private int mChannels;                    // required number of channels
@@ -82,11 +80,16 @@ namespace Obi.Dialogs
                 // mVuMeter.LowerThreshold = 10;
                 // Audio.AudioRecorder.Instance.VuMeterObject = mVuMeter;
                 // mVuMeter.ShowForm();
-                Assets.AudioMediaAsset mAudioAsset = mAssManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
-                Audio.AudioRecorder.Instance.StartListening(mAudioAsset);
-                mRecordButton.Text = Localizer.Message("record");
+                StartListening();
             }
             // timer1.Enabled = true;
+        }
+
+        private void StartListening()
+        {
+            Assets.AudioMediaAsset mAudioAsset = mAssManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
+            Audio.AudioRecorder.Instance.StartListening(mAudioAsset);
+            mRecordButton.Text = Localizer.Message("record");
         }
 
         private void btnRecordAndPause_Click(object sender, EventArgs e)
@@ -94,10 +97,6 @@ namespace Obi.Dialogs
             if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Listening))
             {
                 Audio.AudioRecorder.Instance.StopRecording();
-                mTimer.Enabled = false;
-            }
-            if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Idle))
-            {
                 Assets.AudioMediaAsset asset = mAssManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
                 mAssets.Add(asset);
                 Audio.AudioRecorder.Instance.StartRecording(asset);
@@ -111,6 +110,7 @@ namespace Obi.Dialogs
                 Audio.AudioRecorder.Instance.StopRecording();
                 FinishingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(mAssets[mAssets.Count - 1]));
                 mRecordButton.Text = Localizer.Message("record");
+                StartListening();
                 mTimer.Enabled = false;
                 mPhraseMarkerButton.Enabled = true;
             }
