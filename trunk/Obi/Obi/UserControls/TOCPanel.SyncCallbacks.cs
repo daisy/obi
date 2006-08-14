@@ -83,7 +83,8 @@ namespace Obi.UserControls
 
             for (int i = 0; i < node.getChildCount(); i++)
             {
-                AddSectionNode(node.getChild(i), i);
+                if (Project.GetNodeType(node.getChild(i)) == NodeType.Section)
+                    AddSectionNode(node.getChild(i), i);
             }
 
             return addedNode;

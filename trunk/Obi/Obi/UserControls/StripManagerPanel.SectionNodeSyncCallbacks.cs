@@ -21,6 +21,9 @@ namespace Obi.UserControls
 
         private void AddStripFromNode(CoreNode node, int position, bool rename)
         {
+            if (Project.GetNodeType(node) != NodeType.Section)
+                return;
+
             SectionStrip strip = new SectionStrip();
             strip.Label = Project.GetTextMedia(node).getText();
             strip.Manager = this;
@@ -42,12 +45,15 @@ namespace Obi.UserControls
         {
             AddStripFromNode(node, position, false);
             
-            for (int i = 1; i <= node.getChildCount(); i++)
+            for (int i = 1; i < node.getChildCount(); i++)
             {
-                //increment locally
-                position++;
-                //then increment based on how many children were added
-                position = AddStripsFromNodeSubtree(node.getChild(i-1), position);
+                if (Project.GetNodeType(node.getChild(i)) == NodeType.Section)
+                {
+                    //increment locally
+                    position++;
+                    //then increment based on how many children were added
+                    position = AddStripsFromNodeSubtree(node.getChild(i - 1), position);
+                }
             }
 
             return position;
