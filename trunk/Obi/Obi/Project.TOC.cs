@@ -25,7 +25,7 @@ namespace Obi
         public event Events.Node.UndidPasteSectionNodeHandler UndidPasteSectionNode;
 
         //md: shallow-swapped event for move up/down linear
-        public event Events.Node.ShallowSwappedNodesHandler ShallowSwappedNodes;
+        public event Events.Node.ShallowSwappedSectionNodesHandler ShallowSwappedNodes;
 
         private CoreNode mClipboard;        //clipboard for cut-copy-paste
 
@@ -95,8 +95,12 @@ namespace Obi
             }
             Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(sibling);
             getPresentation().getRootNode().acceptDepthFirst(visitor);
+
+            int sectionIdx = GetSectionNodeIndex(sibling);
+
             AddedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs(origin, sibling, parent.indexOf(sibling),
-                visitor.Position));
+                visitor.Position, sectionIdx));
+
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
             Commands.TOC.AddSectionNode command = new Commands.TOC.AddSectionNode(this, sibling, parent, parent.indexOf(sibling),
@@ -128,7 +132,10 @@ namespace Obi
             parent.appendChild(child);
             Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(child);
             getPresentation().getRootNode().acceptDepthFirst(visitor);
-            AddedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs(origin, child, parent.indexOf(child), visitor.Position));
+
+            int sectionIdx = GetSectionNodeIndex(child);
+
+            AddedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs(origin, child, parent.indexOf(child), visitor.Position, sectionIdx));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
             Commands.TOC.AddSectionNode command = new Commands.TOC.AddSectionNode(this, child, parent, parent.indexOf(child),
@@ -162,7 +169,10 @@ namespace Obi
 
             if (node.getParent() == null) parent.insert(node, index);
             if (originalLabel != null) Project.GetTextMedia(node).setText(originalLabel);
-            AddedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs(this, node, index, position));
+
+            int sectionIdx = GetSectionNodeIndex(node);
+
+            AddedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs(this, node, index, position, sectionIdx));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
@@ -269,8 +279,10 @@ namespace Obi
                 Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
 
+                int sectionIdx = GetSectionNodeIndex(node);
+
                 MovedNode(this, new Events.Node.MovedNodeEventArgs
-                    (this, node, newParent, newParent.indexOf(node), visitor.Position));
+                    (this, node, newParent, newParent.indexOf(node), visitor.Position, sectionIdx));
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
                 if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
@@ -348,8 +360,9 @@ namespace Obi
 
             if (node.getParent() != null) node.detach();
             parent.insert(node, index);
+            int sectionIdx = GetSectionNodeIndex(node);
 
-            UndidMoveNode(this, new Events.Node.MovedNodeEventArgs(this, node, parent, index, position));
+            UndidMoveNode(this, new Events.Node.MovedNodeEventArgs(this, node, parent, index, position, sectionIdx));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
@@ -396,8 +409,10 @@ namespace Obi
                 Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
 
+                int sectionIdx = GetSectionNodeIndex(node);
+
                 MovedNode(this, new Events.Node.MovedNodeEventArgs
-                    (this, node, newParent, newParent.indexOf(node), visitor.Position));
+                    (this, node, newParent, newParent.indexOf(node), visitor.Position, sectionIdx));
 
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -485,9 +500,11 @@ namespace Obi
                 Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
 
+                int sectionIdx = GetSectionNodeIndex(node);
+
                 //IncreasedNodeLevel(this, new Events.Node.NodeEventArgs(origin, node));
                 MovedNode(this, new Events.Node.MovedNodeEventArgs
-                    (origin, node, newParent, newParent.indexOf(node), visitor.Position));
+                    (origin, node, newParent, newParent.indexOf(node), visitor.Position, sectionIdx));
 
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -693,21 +710,28 @@ namespace Obi
             node.detach();
             parent.insert(node, index);
 
-            MovedNode(this, new Events.Node.MovedNodeEventArgs(this, node, parent, index, position));
+            int sectionIdx = GetSectionNodeIndex(node);
+
+            MovedNode(this, new Events.Node.MovedNodeEventArgs(this, node, parent, index, position, sectionIdx));
  
             Visitors.SectionNodePosition visitor = null;
 
             //reattach the children
             for (int i = 0; i < nonOriginalChildren.Count; i++)
             {
-                parent.appendChild((CoreNode)nonOriginalChildren[i]);
-               
-                visitor = new Visitors.SectionNodePosition((CoreNode)nonOriginalChildren[i]);
-                getPresentation().getRootNode().acceptDepthFirst(visitor);
-                
-                MovedNode(this, new Events.Node.MovedNodeEventArgs
-                    (this, (CoreNode)nonOriginalChildren[i], parent,
-                    parent.getChildCount() - 1, visitor.Position));
+                if (GetNodeType((CoreNode)nonOriginalChildren[i]) == NodeType.Section)
+                {
+                    parent.appendChild((CoreNode)nonOriginalChildren[i]);
+
+                    visitor = new Visitors.SectionNodePosition((CoreNode)nonOriginalChildren[i]);
+                    getPresentation().getRootNode().acceptDepthFirst(visitor);
+
+                    int childSectionIdx = GetSectionNodeIndex(node);
+
+                    MovedNode(this, new Events.Node.MovedNodeEventArgs
+                        (this, (CoreNode)nonOriginalChildren[i], parent,
+                        parent.getChildCount() - 1, visitor.Position, childSectionIdx));
+                }
             }
         }
 
@@ -796,7 +820,9 @@ namespace Obi
             if (node.getParent() != null) node.detach();
             parent.insert(node, index);
 
-            UndidCutSectionNode(this, new Events.Node.MovedNodeEventArgs(this, node, parent, index, position));
+            int sectionIdx = GetSectionNodeIndex(node);
+
+            UndidCutSectionNode(this, new Events.Node.MovedNodeEventArgs(this, node, parent, index, position, sectionIdx));
             mClipboard = null;
             
             mUnsaved = true;
@@ -898,8 +924,10 @@ namespace Obi
             Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(pastedSection);
             getPresentation().getRootNode().acceptDepthFirst(visitor);
 
+            int sectionIdx = GetSectionNodeIndex(pastedSection);
+
             PastedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs
-                (origin, pastedSection, parent.indexOf(pastedSection), visitor.Position));
+                (origin, pastedSection, parent.indexOf(pastedSection), visitor.Position, sectionIdx));
 
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -1008,11 +1036,13 @@ namespace Obi
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
 
                 int swappedNodePos = visitor.Position;
+                int nodeSectionIdx = GetSectionNodeIndex(node);
+                int swapSectionIdx = GetSectionNodeIndex(nodeToSwapWith);
 
                 ShallowSwapNodes(node, nodeToSwapWith);
 
                  //raise the event that the action was completed
-                ShallowSwappedNodes(this, new Obi.Events.Node.ShallowSwappedNodesEventArgs(this, node, nodeToSwapWith, nodePos, swappedNodePos));
+                ShallowSwappedNodes(this, new Obi.Events.Node.ShallowSwappedSectionNodesEventArgs(this, node, nodeToSwapWith, nodePos, swappedNodePos, nodeSectionIdx, swapSectionIdx));
            
             }
 
@@ -1054,11 +1084,15 @@ namespace Obi
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
 
                 int swappedNodePos = visitor.Position;
+                int nodeSectionIdx = GetSectionNodeIndex(node);
+                int swapSectionIdx = GetSectionNodeIndex(nodeToSwapWith);
 
                 ShallowSwapNodes(node, nodeToSwapWith);
 
+                
                 //raise the event that the action was completed
-                ShallowSwappedNodes(this, new Obi.Events.Node.ShallowSwappedNodesEventArgs(this, node, nodeToSwapWith, nodePos, swappedNodePos));
+                ShallowSwappedNodes(this, new Obi.Events.Node.ShallowSwappedSectionNodesEventArgs
+                    (this, node, nodeToSwapWith, nodePos, swappedNodePos, nodeSectionIdx, swapSectionIdx));
             }
             
             mUnsaved = true;
@@ -1178,11 +1212,13 @@ namespace Obi
             getPresentation().getRootNode().acceptDepthFirst(visitor);
 
             int node2Pos = visitor.Position;
+            int nodeSectionIdx = GetSectionNodeIndex(firstNode);
+            int swapSectionIdx = GetSectionNodeIndex(secondNode);
 
             ShallowSwapNodes(firstNode, secondNode);
 
             //raise the event that the action was completed
-            ShallowSwappedNodes(this, new Obi.Events.Node.ShallowSwappedNodesEventArgs(this, firstNode, secondNode, node1Pos, node2Pos));
+            ShallowSwappedNodes(this, new Obi.Events.Node.ShallowSwappedSectionNodesEventArgs(this, firstNode, secondNode, node1Pos, node2Pos, nodeSectionIdx, swapSectionIdx));
             
         }
 
@@ -1319,6 +1355,27 @@ namespace Obi
             }
            
             return true;
+        }
+
+        //md 20060813
+        public static int GetSectionNodeIndex(CoreNode node)
+        {
+            int numSections = 0;
+            CoreNode parent = (CoreNode)node.getParent();
+
+            for (int i = 0; i < parent.getChildCount(); i++)
+            {
+                if (GetNodeType(parent.getChild(i)) == NodeType.Section)
+                {
+                    numSections++;
+                }
+                if (parent.getChild(i) == node)
+                {
+                    break;
+                }
+            }
+
+            return numSections - 1;
         }
     }
 }

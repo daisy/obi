@@ -177,7 +177,7 @@ namespace Obi.UserControls
         }
 
         //md 20060813
-        internal void SyncShallowSwapNodes(object sender, Events.Node.ShallowSwappedNodesEventArgs e)
+        internal void SyncShallowSwapNodes(object sender, Events.Node.ShallowSwappedSectionNodesEventArgs e)
         {
             SectionStrip strip1 = mSectionNodeMap[e.Node];
             SectionStrip strip2 = mSectionNodeMap[e.SwappedNode];

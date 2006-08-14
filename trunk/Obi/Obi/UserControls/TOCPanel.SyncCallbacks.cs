@@ -46,7 +46,7 @@ namespace Obi.UserControls
 
         internal void SyncAddedSectionNode(object sender, Events.Node.AddedSectionNodeEventArgs e)
         {
-            TreeNode newTreeNode = AddSingleSectionNode(e.Node, e.Index);
+            TreeNode newTreeNode = AddSingleSectionNode(e.Node, e.SectionNodeIndex);
 
             //start editing if the request to add a node happened in the tree view
             if (e.Origin.Equals(this))
@@ -59,32 +59,37 @@ namespace Obi.UserControls
             mTocTree.SelectedNode = newTreeNode;
         }
 
-        private TreeNode AddSingleSectionNode(urakawa.core.CoreNode node, int index)
+        private TreeNode AddSingleSectionNode(urakawa.core.CoreNode node, int sectionIndex)
         {
             TreeNode newTreeNode;
             string label = Project.GetTextMedia(node).getText();
             if (node.getParent().getParent() != null)
             {
                 TreeNode relTreeNode = FindTreeNodeFromCoreNode((urakawa.core.CoreNode)node.getParent());
-                newTreeNode = relTreeNode.Nodes.Insert(index, node.GetHashCode().ToString(), label);
+                newTreeNode = relTreeNode.Nodes.Insert(sectionIndex, node.GetHashCode().ToString(), label);
             }
             else
             {
-                newTreeNode = mTocTree.Nodes.Insert(index, node.GetHashCode().ToString(), label);
+                newTreeNode = mTocTree.Nodes.Insert(sectionIndex, node.GetHashCode().ToString(), label);
             }
             newTreeNode.Tag = node;
 
             return newTreeNode;
         }
 
-        private TreeNode AddSectionNode(urakawa.core.CoreNode node, int index)
+        private TreeNode AddSectionNode(urakawa.core.CoreNode node, int sectionIndex)
         {
-            TreeNode addedNode = AddSingleSectionNode(node, index);
+            TreeNode addedNode = AddSingleSectionNode(node, sectionIndex);
+
+            int localSectionIdx = 0;
 
             for (int i = 0; i < node.getChildCount(); i++)
             {
                 if (Project.GetNodeType(node.getChild(i)) == NodeType.Section)
-                    AddSectionNode(node.getChild(i), i);
+                {
+                    AddSectionNode(node.getChild(i), localSectionIdx);
+                    localSectionIdx++;
+                }
             }
 
             return addedNode;
@@ -105,36 +110,6 @@ namespace Obi.UserControls
             }
         }
 
-        /// <summary>
-        /// This function deletes a node and promotes its children to be one level shallower
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-         /*internal void SyncShallowDeletedSectionNode(object sender, Events.Node.NodeEventArgs e)
-        {
-           System.Windows.Forms.TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
-            TreeNode newSelection = null;
-
-            //save the first child as our new selection (for the end of this function)
-            if (selected.Nodes.Count > 0)
-            {
-                newSelection = selected.Nodes[0];
-            }
-
-            foreach (TreeNode childnode in selected.Nodes)
-            {
-                ExecuteDecreaseNodeLevel(childnode);
-            }
-
-            selected.Remove();
-
-            //make the currently selected node something reasonable
-            if (newSelection != null)
-            {
-                mTocTree.SelectedNode = newSelection;
-            }
-
-        }*/
 
         internal void SyncMovedSectionNode(object sender, Events.Node.MovedNodeEventArgs e)
         {
@@ -158,7 +133,7 @@ namespace Obi.UserControls
                 siblings = parent.Nodes;
             }
 
-            siblings.Insert(e.Index, clone);
+            siblings.Insert(e.SectionNodeIndex, clone);
             clone.ExpandAll();
             clone.EnsureVisible();
             mTocTree.SelectedNode = clone;
@@ -240,7 +215,7 @@ namespace Obi.UserControls
         //md 20060810
         internal void SyncUndidCutSectionNode(object sender, Events.Node.AddedSectionNodeEventArgs e)
         {
-            TreeNode uncutNode = AddSectionNode(e.Node, e.Index);
+            TreeNode uncutNode = AddSectionNode(e.Node, e.SectionNodeIndex);
 
             uncutNode.ExpandAll();
             uncutNode.EnsureVisible();
@@ -265,7 +240,7 @@ namespace Obi.UserControls
         internal void SyncPastedSectionNode(object sender, Events.Node.AddedSectionNodeEventArgs e)
         {
            //add a subtree
-            TreeNode uncutNode = AddSectionNode(e.Node, e.Index);
+            TreeNode uncutNode = AddSectionNode(e.Node, e.SectionNodeIndex);
 
             uncutNode.ExpandAll();
             uncutNode.EnsureVisible();
@@ -287,7 +262,7 @@ namespace Obi.UserControls
         //this is pretty lazy, but the alternative was pretty ugly and unstable
         //when there is better support for shallow operations in the core tree, we can 
         //use them in Project.ShallowSwap..() and synchronize the toc view at each step
-        internal void SyncShallowSwapNodes(object sender, Events.Node.ShallowSwappedNodesEventArgs e)
+        internal void SyncShallowSwapNodes(object sender, Events.Node.ShallowSwappedSectionNodesEventArgs e)
         {
             mTocTree.Nodes.Clear();
 
