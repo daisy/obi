@@ -875,7 +875,40 @@ namespace Obi
 
         private void mTocToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
+            bool isNodeSelected = false;
+            bool canMoveUp = false;
+            bool canMoveDown = false;
+            bool canMoveIn = false;
+            bool canMoveOut = false;
+
+            urakawa.core.CoreNode selectedSection = null;
+            if (mProjectPanel.TOCPanel.GetSelectedSection() != null)
+            {
+                isNodeSelected = true;
+                selectedSection = this.mProjectPanel.TOCPanel.GetSelectedSection();
+            }
+
+
+            mAddSubSectionToolStripMenuItem.Enabled = isNodeSelected;
+            mDeleteSectionToolStripMenuItem.Enabled = isNodeSelected;
+            mRenameSectionToolStripMenuItem.Enabled = isNodeSelected;
+
+            if (isNodeSelected == true)
+            {
+                canMoveUp = mProjectPanel.Project.canMoveSectionNodeUp(selectedSection);
+                canMoveDown = mProjectPanel.Project.canMoveSectionNodeDown(selectedSection);
+                canMoveIn = mProjectPanel.Project.canMoveSectionNodeIn(selectedSection);
+                canMoveOut = mProjectPanel.Project.canMoveSectionNodeOut(selectedSection);
+            }
+
             
+            mMoveSectionToolStripMenuItem.Enabled = canMoveUp || canMoveDown || canMoveIn || canMoveOut;
+            mMoveUpToolStripMenuItem.Enabled = canMoveUp;
+            mMoveDownToolStripMenuItem.Enabled = canMoveDown;
+            mMoveInToolStripMenuItem.Enabled = canMoveIn;
+            mMoveOutToolStripMenuItem.Enabled = canMoveOut;
+
+            mShowInStripviewToolStripMenuItem.Enabled = isNodeSelected;
         }
     }
 }

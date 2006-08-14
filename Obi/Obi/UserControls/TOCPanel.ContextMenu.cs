@@ -135,7 +135,13 @@ namespace Obi.UserControls
             bool canMoveIn = false;
             bool canMoveOut = false;
 
-            if (mTocTree.SelectedNode != null) isNodeSelected = true;
+            urakawa.core.CoreNode selectedSection = null;
+            if (mTocTree.SelectedNode != null)
+            {
+                isNodeSelected = true;
+                selectedSection = GetSelectedSection();
+            }
+
 
             mAddSubSectionToolStripMenuItem.Enabled = isNodeSelected;
             mDeleteSectionToolStripMenuItem.Enabled = isNodeSelected;
@@ -143,10 +149,10 @@ namespace Obi.UserControls
 
             if (isNodeSelected == true)
             {
-                canMoveUp = mProjectPanel.Project.canMoveSectionNodeUp(GetSelectedSection());
-                canMoveDown = mProjectPanel.Project.canMoveSectionNodeDown(GetSelectedSection());
-                canMoveIn = mProjectPanel.Project.canMoveSectionNodeIn(GetSelectedSection());
-                canMoveOut = mProjectPanel.Project.canMoveSectionNodeOut(GetSelectedSection());
+                canMoveUp = mProjectPanel.Project.canMoveSectionNodeUp(selectedSection);
+                canMoveDown = mProjectPanel.Project.canMoveSectionNodeDown(selectedSection);
+                canMoveIn = mProjectPanel.Project.canMoveSectionNodeIn(selectedSection);
+                canMoveOut = mProjectPanel.Project.canMoveSectionNodeOut(selectedSection);
             }
             
             mMoveToolStripMenuItem.Enabled = canMoveUp || canMoveDown || canMoveIn || canMoveOut;
