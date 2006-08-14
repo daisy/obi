@@ -56,7 +56,9 @@ Project modification invocations by default use the CTRL modkey
 (unless there is a preferred Windows standard heritage key, for example F2 = rename, DEL = delete).
 View modifications (that change the GUI but not the project itself) by default use the ALT modkey
 -->
-<table>
+<!-- JQ changed to pre so that we have a sort-of table layout (spacing is wrong though) and updated some shortcuts -->
+<!-- JQ would like that this table is always kept up-to-date when changes to shortcut keys/menu items are made -->
+<pre>
   File Menu				ALT+F
   Edit Menu				ALT+E
   TOC Menu				ALT+C
@@ -77,6 +79,7 @@ View modifications (that change the GUI but not the project itself) by default u
   Copy 					CTRL+C
   Paste					CTRL+V
   Delete				Del
+  Touch Project         CTRL+T (we should keep it in the final version, this is useful.) 
    
   Hide TOC View				ALT+T
   Show TOC View				ALT+T
@@ -85,10 +88,10 @@ View modifications (that change the GUI but not the project itself) by default u
   Add subsection			CTRL+B
   Delete section			DEL
   Rename section			F2
-  Move Section Up			CTRL+UP
-  Move Section Down			CTRL+DOWN
-  Move Section In			CTRL+RIGHT
-  Move Section Out			CTRL+LEFT
+  Move Section Up			CTRL+SHIFT+UP (otherwise this conflicts with blocks.)
+  Move Section Down			CTRL+SHIFT+DOWN
+  Move Section In			CTRL+SHIFT+RIGHT
+  Move Section Out			CTRL+SHIFT+LEFT
 
   Show in Strip View			ALT+V
   Show in TOC View			ALT+V
@@ -120,7 +123,7 @@ View modifications (that change the GUI but not the project itself) by default u
   
   Open User Profile Dialog		ALT+U
   
-</table>  
+</pre>  
   
 
 </body>

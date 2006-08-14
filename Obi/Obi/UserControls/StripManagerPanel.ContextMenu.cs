@@ -163,7 +163,7 @@ namespace Obi.UserControls
         /// Move a block forward one spot in the strip, if it is not the last one.
         /// </summary>
         //mg 20060813: made internal to allow obiform menu sync access 
-        internal void mMoveAudioBlockforwardToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void mMoveAudioBlockForwardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mSelectedPhrase != null)
             {
@@ -175,7 +175,7 @@ namespace Obi.UserControls
         /// Move a block backward one spot in the strip, if it is not the first one.
         /// </summary>
         //mg 20060813: made internal to allow obiform menu sync access
-        internal void mMoveAudioBlockbackwardToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void mMoveAudioBlockBackwardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mSelectedPhrase != null)
             {
