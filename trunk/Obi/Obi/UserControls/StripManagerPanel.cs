@@ -58,14 +58,15 @@ namespace Obi.UserControls
                 {
                     if (mSelectedSection != null) mSectionNodeMap[mSelectedSection].MarkDeselected();
                     mSelectedSection = value;
+                    SelectedPhraseNode = null;
                     if (mSelectedSection != null)
                     {
                         mSectionNodeMap[mSelectedSection].MarkSelected();
-                        SelectedStrip(this, new Events.Strip.SelectedEventArgs(true));
+                        // SelectedStrip(this, new Events.Strip.SelectedEventArgs(true));
                     }
                     else
                     {
-                        SelectedStrip(this, new Events.Strip.SelectedEventArgs(false));
+                        // SelectedStrip(this, new Events.Strip.SelectedEventArgs(false));
                     }
                 }
             }
@@ -94,12 +95,12 @@ namespace Obi.UserControls
                     if (mSelectedPhrase != null)
                     {
                         SelectedSectionNode = (CoreNode)mSelectedPhrase.getParent();
-                        SelectedAudioBlock(this, new Events.Strip.SelectedEventArgs(true));
+                        // SelectedAudioBlock(this, new Events.Strip.SelectedEventArgs(true));
                         mPhraseNodeMap[mSelectedPhrase].MarkSelected();
                     }
                     else
                     {
-                        SelectedAudioBlock(this, new Events.Strip.SelectedEventArgs(false));
+                        // SelectedAudioBlock(this, new Events.Strip.SelectedEventArgs(false));
                     }
                 }
             }
@@ -472,7 +473,33 @@ namespace Obi.UserControls
         /// </summary>
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
-            mShowInTOCViewToolStripMenuItem.Enabled = mSelectedSection != null;
+            bool isStripSelected = mSelectedSection != null;
+            bool canMoveUp = isStripSelected && mProjectPanel.Project.canMoveSectionNodeUp(mSelectedSection);
+            bool canMoveDown = isStripSelected && mProjectPanel.Project.canMoveSectionNodeDown(mSelectedSection);
+            bool isAudioBlockSelected = mSelectedPhrase != null;
+            bool isAudioBlockLast = isAudioBlockSelected &&
+                Project.GetPhraseIndex(mSelectedPhrase) == Project.GetPhrasesCount(mSelectedSection) - 1;
+            bool isAudioBlockFirst = isAudioBlockSelected && Project.GetPhraseIndex(mSelectedPhrase) == 0;
+
+            mAddStripToolStripMenuItem.Enabled = true;
+            mRenameStripToolStripMenuItem.Enabled = isStripSelected;
+            mDeleteStripToolStripMenuItem.Enabled = isStripSelected;
+            mMoveStripUpToolStripMenuItem.Enabled = canMoveUp;
+            mMoveStripDownToolStripMenuItem.Enabled = canMoveDown;
+            mMoveStripToolStripMenuItem.Enabled = canMoveUp || canMoveDown;
+
+            mRecordAudioToolStripMenuItem.Enabled = isStripSelected;
+            mImportAudioFileToolStripMenuItem.Enabled = isStripSelected;
+            mEditAudioBlockLabelToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mMergeWithNextAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
+            mDeleteAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mMoveAudioBlockForwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
+            mMoveAudioBlockBackwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockFirst;
+            mMoveAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && (!isAudioBlockFirst || !isAudioBlockLast);
+
+            mPlayAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;            
         }
     }
 }

@@ -388,7 +388,7 @@ namespace Obi
                 new EventHandler(mProjectPanel.StripManager.mSplitAudioBlockToolStripMenuItem_Click);
             mDeleteAudioBlockToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mDeleteAudioBlockToolStripMenuItem_Click);
-            mRenameAudioBlockToolStripMenuItem.Click +=
+            mEditAudioBlockLabelToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mEditAudioBlockLabelToolStripMenuItem_Click);
             //mg 20060813:
             mDeleteStripToolStripMenuItem.Click +=
@@ -398,9 +398,9 @@ namespace Obi
             mMoveStripUpToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.upToolStripMenuItem_Click);
             mMoveAudioBlockForwardToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.StripManager.mMoveAudioBlockforwardToolStripMenuItem_Click); 
+                new EventHandler(mProjectPanel.StripManager.mMoveAudioBlockForwardToolStripMenuItem_Click); 
             mMoveAudioBlockBackwardToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.StripManager.mMoveAudioBlockbackwardToolStripMenuItem_Click); 
+                new EventHandler(mProjectPanel.StripManager.mMoveAudioBlockBackwardToolStripMenuItem_Click); 
             //end mg 20060813    
             mShowInTOCViewToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mShowInTOCViewToolStripMenuItem_Click);
@@ -445,7 +445,7 @@ namespace Obi
             mPlayAudioBlockToolStripMenuItem.Enabled = e.Selected;
             mSplitAudioBlockToolStripMenuItem.Enabled = e.Selected;
             mDeleteAudioBlockToolStripMenuItem.Enabled = e.Selected;
-            mRenameAudioBlockToolStripMenuItem.Enabled = e.Selected;
+            mEditAudioBlockLabelToolStripMenuItem.Enabled = e.Selected;
         }
 
         /// <summary>
@@ -611,7 +611,7 @@ namespace Obi
             mSaveProjectasToolStripMenuItem.Enabled = false;                      // cannot save as
             mDiscardChangesToolStripMenuItem.Enabled = false;                     // cannot discard changes
             mCloseProjectToolStripMenuItem.Enabled = false;                       // cannot close
-            foreach (ToolStripItem item in editToolStripMenuItem.DropDownItems)   // cannot do any edit
+            foreach (ToolStripItem item in mEditToolStripMenuItem.DropDownItems)   // cannot do any edit
             {
                 item.Enabled = false;
             }
@@ -645,7 +645,7 @@ namespace Obi
             mSaveProjectasToolStripMenuItem.Enabled = true;
             mDiscardChangesToolStripMenuItem.Enabled = false;
             mCloseProjectToolStripMenuItem.Enabled = true;
-            foreach (ToolStripItem item in editToolStripMenuItem.DropDownItems)     // can do edits
+            foreach (ToolStripItem item in mEditToolStripMenuItem.DropDownItems)     // can do edits
             {
                 item.Enabled = true;
             }
@@ -868,9 +868,34 @@ namespace Obi
             mProject.DumpAssManager();
         }
 
-        private void mStripsToolStripMenuItem_Click(object sender, EventArgs e)
+        #region enabling/disabling of main menu items
+
+        /// <summary>
+        /// When the File menu opens, enable and disable its items according to the state of the project.
+        /// </summary>
+        private void mFileToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
-            mShowInStripviewToolStripMenuItem.Enabled = mProjectPanel.StripManager.SelectedSectionNode != null;
+            bool isProjectOpen = mProject != null;
+            bool isProjectModified = isProjectOpen && mProject.Unsaved;
+            mOpenRecentProjectToolStripMenuItem.Enabled = mSettings.RecentProjects.Count > 0;
+            mSaveProjectToolStripMenuItem.Enabled = isProjectModified;
+            mDiscardChangesToolStripMenuItem.Enabled = isProjectModified;
+            mCloseProjectToolStripMenuItem.Enabled = mProject != null;
+        }
+
+        /// <summary>
+        /// When the Edit menu opens, enable and disable its items according to what is selected.
+        /// </summary>
+        private void mEditToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            mUndoToolStripMenuItem.Enabled = mCommandManager.HasUndo;
+            mRedoToolStripMenuItem.Enabled = mCommandManager.HasRedo;
+            mCutToolStripMenuItem.Enabled = false;     // not implemented yet!
+            mCopyToolStripMenuItem.Enabled = false;    // not implemented yet!
+            mPasteToolStripMenuItem.Enabled = false;   // not implemented yet!
+            mDeleteToolStripMenuItem.Enabled = false;  // not implemented yet!
+            mMetadataToolStripMenuItem.Enabled = mProject != null;
+            mTouchProjectToolStripMenuItem.Enabled = mProject != null;
         }
 
         private void mTocToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
@@ -910,5 +935,60 @@ namespace Obi
 
             mShowInStripviewToolStripMenuItem.Enabled = isNodeSelected;
         }
+
+        /// <summary>
+        /// When the Strips menu opens, enable and disable its items according to what is selected.
+        /// </summary>
+        private void mStripsToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            bool isProjectOpen = mProject != null;
+            bool isStripSelected = isProjectOpen && mProjectPanel.StripManager.SelectedSectionNode != null;
+            bool canMoveUp = isStripSelected && mProject.canMoveSectionNodeUp(mProjectPanel.StripManager.SelectedSectionNode);
+            bool canMoveDown = isStripSelected && mProject.canMoveSectionNodeDown(mProjectPanel.StripManager.SelectedSectionNode);
+            bool isAudioBlockSelected = isProjectOpen && mProjectPanel.StripManager.SelectedPhraseNode != null;
+            bool isAudioBlockLast = isAudioBlockSelected &&
+                Project.GetPhraseIndex(mProjectPanel.StripManager.SelectedPhraseNode) ==
+                Project.GetPhrasesCount(mProjectPanel.StripManager.SelectedSectionNode) - 1;
+            bool isAudioBlockFirst = isAudioBlockSelected &&
+                Project.GetPhraseIndex(mProjectPanel.StripManager.SelectedPhraseNode) == 0;
+
+            mAddStripToolStripMenuItem.Enabled = isProjectOpen;
+            mRenameStripToolStripMenuItem.Enabled = isStripSelected;
+            mDeleteSectionToolStripMenuItem.Enabled = isStripSelected;
+            mMoveStripUpToolStripMenuItem.Enabled = canMoveUp;
+            mMoveStripDownToolStripMenuItem.Enabled = canMoveDown;
+            mMoveStripToolStripMenuItem.Enabled = canMoveUp || canMoveDown;
+
+            mRecordAudioToolStripMenuItem.Enabled = isStripSelected;
+            mImportAudioFileToolStripMenuItem.Enabled = isStripSelected;
+            mEditAudioBlockLabelToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mMergeWithNextAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
+            mDeleteAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mMoveAudioBlockForwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
+            mMoveAudioBlockBackwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockFirst;
+            mMoveAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && (!isAudioBlockFirst || !isAudioBlockLast);
+
+            mPlayAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mShowInStripviewToolStripMenuItem.Enabled = isStripSelected;
+        }
+
+        /// <summary>
+        /// Tools item are always enabled (except for the debug stuff.)
+        /// </summary>
+        private void mToolsToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            mDumpTreeDEBUGToolStripMenuItem.Enabled = mProject != null;
+        }
+
+        /// <summary>
+        /// Help items are always enabled, but we may do some fancy contextual stuff later so here it is for the sake
+        /// of completeness.
+        /// </summary>
+        private void mHelpToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+        }
+
+        #endregion
     }
 }
