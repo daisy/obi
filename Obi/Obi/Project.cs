@@ -510,6 +510,8 @@ namespace Obi
             return null;
         }
 
+        
+
         /// <summary>
         /// Get the media object of a node for the first channel found wit the given name,
         /// or null if no such channel is found.
