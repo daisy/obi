@@ -34,8 +34,6 @@ namespace Obi.UserControls
         public event Events.Node.RequestToMoveBlockHandler MoveAudioBlockBackwardRequested;
         public event Events.Node.SplitNodeHandler SplitAudioBlockRequested;
         public event Events.Node.MergeNodesHandler MergeNodes;
-        public event Events.Strip.SelectedHandler SelectedStrip;
-        public event Events.Strip.SelectedHandler SelectedAudioBlock;
       
         #region properties
 
@@ -56,18 +54,17 @@ namespace Obi.UserControls
             {
                 if (mSelectedSection != value)
                 {
-                    if (mSelectedSection != null) mSectionNodeMap[mSelectedSection].MarkDeselected();
-                    mSelectedSection = value;
-                    SelectedPhraseNode = null;
                     if (mSelectedSection != null)
                     {
-                        mSectionNodeMap[mSelectedSection].MarkSelected();
-                        // SelectedStrip(this, new Events.Strip.SelectedEventArgs(true));
+                        mSectionNodeMap[mSelectedSection].MarkDeselected();
+                        if (mSelectedPhrase != null)
+                        {
+                            mPhraseNodeMap[mSelectedPhrase].MarkDeselected();
+                            mSelectedPhrase = null;
+                        }
                     }
-                    else
-                    {
-                        // SelectedStrip(this, new Events.Strip.SelectedEventArgs(false));
-                    }
+                    mSelectedSection = value;
+                    if (mSelectedSection != null) mSectionNodeMap[mSelectedSection].MarkSelected();
                 }
             }
         }
@@ -91,17 +88,12 @@ namespace Obi.UserControls
                 if (mSelectedPhrase != value)
                 {
                     if (mSelectedPhrase != null) mPhraseNodeMap[mSelectedPhrase].MarkDeselected();
-                    mSelectedPhrase = value;
-                    if (mSelectedPhrase != null)
+                    if (value != null)
                     {
-                        SelectedSectionNode = (CoreNode)mSelectedPhrase.getParent();
-                        // SelectedAudioBlock(this, new Events.Strip.SelectedEventArgs(true));
-                        mPhraseNodeMap[mSelectedPhrase].MarkSelected();
+                        SelectedSectionNode = (CoreNode)value.getParent();
+                        mPhraseNodeMap[value].MarkSelected();
                     }
-                    else
-                    {
-                        // SelectedAudioBlock(this, new Events.Strip.SelectedEventArgs(false));
-                    }
+                    mSelectedPhrase = value;    
                 }
             }
         }
@@ -172,9 +164,6 @@ namespace Obi.UserControls
         public StripManagerPanel()
         {
             InitializeComponent();
-            // Listen to selected events to update the context menu.
-            SelectedStrip += new Events.Strip.SelectedHandler(StripManagerPanel_SelectedStrip);
-            SelectedAudioBlock += new Events.Strip.SelectedHandler(StripManagerPanel_SelectedAudioBlock);
             // The panel is empty and nothing is selected.
             mSectionNodeMap = new Dictionary<CoreNode, SectionStrip>();
             mSelectedSection = null;
@@ -183,29 +172,6 @@ namespace Obi.UserControls
         }
 
         #endregion
-
-        /// <summary>
-        /// Update the menus when a strip is selected.
-        /// Affects "rename strip", "import audio file", "show in TOC view".
-        /// </summary>
-        private void StripManagerPanel_SelectedStrip(object sender, Events.Strip.SelectedEventArgs e)
-        {
-            mRenameStripToolStripMenuItem.Enabled = e.Selected;
-            mImportAudioFileToolStripMenuItem.Enabled = e.Selected;
-            mShowInTOCViewToolStripMenuItem.Enabled = e.Selected;
-        }
-
-        /// <summary>
-        /// Update the menus when a block is selected.
-        /// Affects "play audio block", "split audio block", "rename audio block"
-        /// </summary>
-        private void StripManagerPanel_SelectedAudioBlock(object sender, Events.Strip.SelectedEventArgs e)
-        {
-            mPlayAudioBlockToolStripMenuItem.Enabled = e.Selected;
-            mSplitAudioBlockToolStripMenuItem.Enabled = e.Selected;
-            mEditAudioBlockLabelToolStripMenuItem.Enabled = e.Selected;
-            mDeleteAudioBlockToolStripMenuItem.Enabled = e.Selected;
-        }
 
         /// <summary>
         /// Synchronize the strips view with the core tree.
@@ -220,13 +186,11 @@ namespace Obi.UserControls
             mSelectedPhrase = null;
             root.acceptDepthFirst(this);
             if (mFlowLayoutPanel.Controls.Count > 0) this.ReflowTabOrder(mFlowLayoutPanel.Controls[0]);  // mg
-            SelectedSectionNode = null;
-            SelectedPhraseNode = null;
         }
 
         #region Synchronization visitor
 
-        private CoreNode parentSection;
+        private CoreNode parentSection;  // the current parent section to add phrases to
 
         /// <summary>
         /// Update the parent section to attach phrase nodes to.
@@ -268,7 +232,7 @@ namespace Obi.UserControls
                     mPhraseNodeMap[(CoreNode)node] = block;
                     TextMedia annotation = (TextMedia)Project.GetMediaForChannel((CoreNode)node, Project.AnnotationChannel);
                     block.Label = annotation.getText();
-                    block.Time = (Math.Round(Project.GetAudioMediaAsset((CoreNode)node).LengthInMilliseconds / 1000)).ToString() + "s";
+                    block.Time = Project.GetAudioMediaAsset((CoreNode)node).LengthInSeconds;
                     strip.AppendAudioBlock(block);
                     break;
                 default:
@@ -278,19 +242,6 @@ namespace Obi.UserControls
         }
 
         #endregion
-
-        #region Sync event handlers
-
-        
-        internal void SyncBlockChangedTime(object sender, Events.Node.NodeEventArgs e)
-        {
-            AudioBlock block = mPhraseNodeMap[e.Node];
-            block.Time = (Math.Round(Project.GetAudioMediaAsset(e.Node).LengthInMilliseconds / 1000)).ToString() + "s";
-        }
-
-        #endregion
-
-       
 
         /// <summary>
         /// Convenience method to send the event that a strip was renamed, so that we don't have to track down
@@ -302,16 +253,21 @@ namespace Obi.UserControls
             RenameSection(this, new Events.Node.RenameNodeEventArgs(this, strip.Node, strip.Label));
         }
 
+        /// <summary>
+        /// Clicking outside of a strip deselects any selected strip and block.
+        /// </summary>
         private void mFlowLayoutPanel_Click(object sender, EventArgs e)
         {
             SelectedSectionNode = null;
-            SelectedPhraseNode = null;
         }
 
+        /// <summary>
+        /// Leaving the strip means deselection as well.
+        /// I'm not so sure about this one actually.
+        /// </summary>
         private void mFlowLayoutPanel_Leave(object sender, EventArgs e)
         {
             SelectedSectionNode = null;
-            SelectedPhraseNode = null;
         }
 
         /// <summary>
