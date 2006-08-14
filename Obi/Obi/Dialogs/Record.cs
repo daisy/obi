@@ -90,6 +90,7 @@ namespace Obi.Dialogs
             Assets.AudioMediaAsset mAudioAsset = mAssManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
             Audio.AudioRecorder.Instance.StartListening(mAudioAsset);
             mRecordButton.Text = Localizer.Message("record");
+            mTimeTextBox.Text = Localizer.Message("listening");
         }
 
         private void btnRecordAndPause_Click(object sender, EventArgs e)
@@ -100,7 +101,7 @@ namespace Obi.Dialogs
                 Assets.AudioMediaAsset asset = mAssManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
                 mAssets.Add(asset);
                 Audio.AudioRecorder.Instance.StartRecording(asset);
-                StartingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(asset));
+                StartingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(asset, mAssets.Count - 1));
                 mRecordButton.Text = Localizer.Message("pause");
                 mTimer.Enabled = true;
                 mPhraseMarkerButton.Enabled = false;
@@ -108,7 +109,7 @@ namespace Obi.Dialogs
             else if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Recording))
             {
                 Audio.AudioRecorder.Instance.StopRecording();
-                FinishingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(mAssets[mAssets.Count - 1]));
+                FinishingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(mAssets[mAssets.Count - 1], mAssets.Count - 1));
                 mRecordButton.Text = Localizer.Message("record");
                 StartListening();
                 mTimer.Enabled = false;
@@ -121,7 +122,11 @@ namespace Obi.Dialogs
             if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Recording))
             {
                 Audio.AudioRecorder.Instance.StopRecording();
-                FinishingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(mAssets[mAssets.Count - 1]));
+                FinishingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(mAssets[mAssets.Count - 1], mAssets.Count - 1));
+            }
+            else
+            {
+                Audio.AudioRecorder.Instance.StopRecording();
             }
             this.Close();
         }
@@ -136,11 +141,12 @@ namespace Obi.Dialogs
             int Hours = Minutes / 60;
             string sHours = Hours.ToString("00");
             mTimeTextBox.Text = sHours + ":" + sMinutes + ":" + sSeconds;
+            ContinuingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(mAssets[mAssets.Count - 1], mAssets.Count - 1));
             //mTimeTextBox.Text = Audio.AudioRecorder.Instance.GetTime.ToString();
         }
 
         private void mPhraseMarkerButton_Click_1(object sender, EventArgs e)
-        {
+        {/*
             Assets.AudioMediaAsset mPhraseMarkerAsset = mAssManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
             Obi.Assets.AudioMediaAsset newPhrase = mAssManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
             if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Listening))
@@ -166,7 +172,7 @@ namespace Obi.Dialogs
                 ContinuingPhrase(this, mContinue);
                 mTimer.Enabled = true;
                 mRecordButton.Enabled = false;
-            }
+           } */
         }
 
         private void Record_FormClosing(object sender, FormClosingEventArgs e)

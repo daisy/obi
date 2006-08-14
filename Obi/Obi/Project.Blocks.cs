@@ -163,14 +163,25 @@ namespace Obi
             UpdateSeq(phrase);
             // MediaSet(this, new Events.Node.SetMediaEventArgs(this, phrase, AudioChannel,
             //    GetMediaForChannel(phrase, AudioChannel)));
-            AddedPhraseNode(this, new Events.Node.AddedPhraseNodeEventArgs(this, phrase, index));
+            AddedPhraseNode(this, new Events.Node.AddedPhraseNodeEventArgs(this, phrase, index + e.PhraseIndex));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
 
+        internal void ContinuingRecordingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e, CoreNode parent, int index)
+        {
+            System.Diagnostics.Debug.Print("BING");
+            CoreNode phrase = parent.getChild(index + e.PhraseIndex);
+            MediaSet(this, new Events.Node.SetMediaEventArgs(this, phrase, AudioChannel,
+                GetMediaForChannel(phrase, AudioChannel)));
+        }
+
         internal void FinishRecordingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e, CoreNode parent, int index)
         {
-            UpdateSeq(parent.getChild(index));
+            CoreNode phrase = parent.getChild(index + e.PhraseIndex);
+            UpdateSeq(phrase);
+            MediaSet(this, new Events.Node.SetMediaEventArgs(this, phrase, AudioChannel,
+                GetMediaForChannel(phrase, AudioChannel)));
         }
 
         #endregion

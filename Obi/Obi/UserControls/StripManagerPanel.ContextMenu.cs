@@ -85,7 +85,7 @@ namespace Obi.UserControls
                 dialog.ContinuingPhrase += new Events.Audio.Recorder.ContinuingPhraseHandler(
                     delegate(object _sender, Events.Audio.Recorder.PhraseEventArgs _e)
                     {
-                        Record_ContinuingPhrase(_sender, _e, index);
+                        mProjectPanel.Project.ContinuingRecordingPhrase(_sender, _e, mSelectedSection, index);
                     });
                 dialog.FinishingPhrase += new Events.Audio.Recorder.FinishingPhraseHandler(
                     delegate(object _sender, Events.Audio.Recorder.PhraseEventArgs _e)

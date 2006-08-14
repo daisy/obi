@@ -281,6 +281,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Listening....
+        /// </summary>
+        internal static string listening {
+            get {
+                return ResourceManager.GetString("listening", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to merge blocks.
         /// </summary>
         internal static string merge_phrases_command_label {
