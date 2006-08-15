@@ -19,6 +19,44 @@ namespace Obi.UserControls
         public event Events.Node.RequestToMoveSectionNodeDownLinearHandler RequestToMoveSectionNodeDownLinear;
         public event Events.Node.RequestToMoveSectionNodeUpLinearHandler RequestToMoveSectionNodeUpLinear;
 
+        public event Events.Node.RequestToCutPhraseNodeHandler RequestToCutPhraseNode;
+
+        /// <summary>
+        /// Enable/disable items depending on what is currently available.
+        /// </summary>
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+            bool isStripSelected = mSelectedSection != null;
+            bool canMoveUp = isStripSelected && mProjectPanel.Project.CanMoveSectionNodeUp(mSelectedSection);
+            bool canMoveDown = isStripSelected && mProjectPanel.Project.CanMoveSectionNodeDown(mSelectedSection);
+            bool isAudioBlockSelected = mSelectedPhrase != null;
+            bool isAudioBlockLast = isAudioBlockSelected &&
+                Project.GetPhraseIndex(mSelectedPhrase) == Project.GetPhrasesCount(mSelectedSection) - 1;
+            bool isAudioBlockFirst = isAudioBlockSelected && Project.GetPhraseIndex(mSelectedPhrase) == 0;
+
+            mAddStripToolStripMenuItem.Enabled = true;
+            mRenameStripToolStripMenuItem.Enabled = isStripSelected;
+            mDeleteStripToolStripMenuItem.Enabled = isStripSelected;
+            mMoveStripUpToolStripMenuItem.Enabled = canMoveUp;
+            mMoveStripDownToolStripMenuItem.Enabled = canMoveDown;
+            mMoveStripToolStripMenuItem.Enabled = canMoveUp || canMoveDown;
+
+            mRecordAudioToolStripMenuItem.Enabled = isStripSelected;
+            mImportAudioFileToolStripMenuItem.Enabled = isStripSelected;
+            mEditAudioBlockLabelToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mMergeWithNextAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
+            mDeleteAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mMoveAudioBlockForwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
+            mMoveAudioBlockBackwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockFirst;
+            mMoveAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && (!isAudioBlockFirst || !isAudioBlockLast);
+
+            mPlayAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;
+
+            mCutBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+        }
+
         /// <summary>
         /// TODO:
         /// Adding a strip from the strip manager adds a new sibling strip right after the selected strip
@@ -179,8 +217,6 @@ namespace Obi.UserControls
             }
         }
 
-
-
         /// <summary>
         /// If a node is selected, set focus on that node in the TreeView.
         /// If the selected node is not a section node, move back to the
@@ -220,6 +256,17 @@ namespace Obi.UserControls
             RequestToMoveSectionNodeDownLinear(this, new Events.Node.NodeEventArgs(this, this.mSelectedSection));
         }
 
-      
+
+        /// <summary>
+        /// Cut the selected block and store it in the block clip board.
+        /// </summary>
+        //JQ 20060815
+        internal void mCutBlockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mSelectedPhrase != null)
+            {
+                RequestToCutPhraseNode(this, new Events.Node.NodeEventArgs(this, mSelectedPhrase));
+            }
+        }
     }
 }

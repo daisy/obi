@@ -25,6 +25,11 @@ namespace Obi.Events.Node
     public delegate void RequestToCopySectionNodeHandler(object sender, NodeEventArgs e);
     public delegate void RequestToPasteSectionNodeHandler(object sender, NodeEventArgs e);
 
+    // phrase node clipboard requests (JQ 20060816)
+    public delegate void RequestToCutPhraseNodeHandler(object sender, NodeEventArgs e);
+    public delegate void RequestToCopyPhraseNodeHandler(object sender, NodeEventArgs e);
+    public delegate void RequestToPastePhraseNodeHandler(object sender, NodeEventArgs e);
+
     public delegate void RequestToDeleteBlockHandler(object sender, NodeEventArgs e);
     public delegate void RequestToMoveBlockHandler(object sender, NodeEventArgs e);
     

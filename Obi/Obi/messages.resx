@@ -254,7 +254,7 @@ Do you want to replace the project contained in this file?</value>
   <data name="error" xml:space="preserve">
     <value>Error</value>
   </data>
-  <data name="channe_not_found" xml:space="preserve">
+  <data name="channel_not_found" xml:space="preserve">
     <value>Could not find channel named "{0}".</value>
     <comment>Channel not found exception (JQ)</comment>
   </data>
@@ -346,5 +346,9 @@ Do you want to replace the project contained in this file?</value>
   <data name="playing_on_device" xml:space="preserve">
     <value>Playing on device {0}</value>
     <comment>Playing on an output device (JQ)</comment>
+  </data>
+  <data name="cut_phrase_command_label" xml:space="preserve">
+    <value>cut audio block</value>
+    <comment>Undo/redo cut phrase (JQ)</comment>
   </data>
 </root>

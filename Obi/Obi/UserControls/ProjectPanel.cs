@@ -102,6 +102,9 @@ namespace Obi.UserControls
                     //md 20060812
                     mStripManagerPanel.RequestToShallowDeleteSectionNode -= new Events.Node.RequestToShallowDeleteSectionNodeHandler(mProject.ShallowDeleteSectionNodeRequested);
 
+                    mStripManagerPanel.RequestToCutPhraseNode +=
+                        new Events.Node.RequestToCutPhraseNodeHandler(mProject.CutPhraseNode);
+
                 }
                 // Set up the handlers for the new project
                 if (value != null)
@@ -144,7 +147,10 @@ namespace Obi.UserControls
                     value.DeletedNode += new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeletedNode);
 
                     // Block events
-                    
+
+                    mStripManagerPanel.RequestToCutPhraseNode +=
+                        new Events.Node.RequestToCutPhraseNodeHandler(value.CutPhraseNode);
+
                     mStripManagerPanel.ImportAudioAssetRequested +=
                         new Events.Strip.RequestToImportAssetHandler(value.ImportAssetRequested);
                     mStripManagerPanel.DeleteBlockRequested +=

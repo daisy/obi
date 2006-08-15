@@ -8,10 +8,10 @@ namespace Obi.Commands.Strips
 {
     class DeletePhrase: Command
     {
-        private Obi.Project mProject;  // the current project
-        private CoreNode mNode;        // the phrase node to add/remove
-        private CoreNode mParent;      // the section node to add to
-        private int mIndex;            // position within the parent
+        protected Obi.Project mProject;  // the current project
+        protected CoreNode mNode;        // the phrase node to add/remove
+        private CoreNode mParent;        // the section node to add to
+        private int mIndex;              // position within the parent
 
         public override string Label
         {
@@ -34,6 +34,34 @@ namespace Obi.Commands.Strips
         public override void Undo()
         {
             mProject.AddPhraseNodeAndAsset(mNode, mParent, mIndex);
+        }
+    }
+
+    class CutPhrase : DeletePhrase
+    {
+        private CoreNode mPrevClipBoard;  // previous clip board block
+
+        public override string Label
+        {
+            get { return Localizer.Message("cut_phrase_command_label"); }
+        }
+
+        public CutPhrase(Project project, CoreNode node, CoreNode parent, int index)
+            : base(project, node, parent, index)
+        {
+            mPrevClipBoard = project.BlockClipBoard;
+        }
+
+        public override void Do()
+        {
+            base.Do();
+            mProject.BlockClipBoard = mNode;
+        }
+
+        public override void Undo()
+        {
+            base.Undo();
+            mProject.BlockClipBoard = mPrevClipBoard;
         }
     }
 }
