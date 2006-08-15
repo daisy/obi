@@ -49,7 +49,7 @@ namespace Obi.Events.Node
             
             mIndex = index;
             mPosition = position;
-            mSectionNodeIndex = SectionNodeIndex;
+            mSectionNodeIndex = sectionNodeIndex;
         }
     }
 }
