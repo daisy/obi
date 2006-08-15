@@ -347,6 +347,41 @@ Do you want to replace the project contained in this file?</value>
     <value>Playing on device {0}</value>
     <comment>Playing on an output device (JQ)</comment>
   </data>
+  <data name="copy_section_command_label" xml:space="preserve">
+    <value>copy section</value>
+  </data>
+  <data name="cut_section_command_label" xml:space="preserve">
+    <value>cut section</value>
+  </data>
+  <data name="decrease_section_level_command_label" xml:space="preserve">
+    <value>move section out</value>
+    <comment>"out" is the wording used in menus (MD)</comment>
+  </data>
+  <data name="increase_section_level_command_label" xml:space="preserve">
+    <value>move section in</value>
+    <comment>"in" is the wording used in menus (MD)</comment>
+  </data>
+  <data name="move_section_down_command_label" xml:space="preserve">
+    <value>move section down</value>
+  </data>
+  <data name="move_section_down_linear_command_label" xml:space="preserve">
+    <value>move strip down</value>
+    <comment>You move sections linearly by moving strips (MD)</comment>
+  </data>
+  <data name="move_section_up_command_label" xml:space="preserve">
+    <value>move section up</value>
+  </data>
+  <data name="move_section_up_linear_command_label" xml:space="preserve">
+    <value>move strip up</value>
+    <comment>You move sections linearly by moving strips (MD)</comment>
+  </data>
+  <data name="paste_section_command_label" xml:space="preserve">
+    <value>paste section</value>
+  </data>
+  <data name="shallow_delete_section_command_label" xml:space="preserve">
+    <value>delete strip</value>
+    <comment>Shallow deletion of sections is done by deleting a strip (MD)</comment>
+  </data>
   <data name="cut_phrase_command_label" xml:space="preserve">
     <value>cut audio block</value>
     <comment>Undo/redo cut phrase (JQ)</comment>
