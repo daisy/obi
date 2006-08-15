@@ -162,6 +162,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to copy section.
+        /// </summary>
+        internal static string copy_section_command_label {
+            get {
+                return ResourceManager.GetString("copy_section_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Directory.
         /// </summary>
         internal static string create_directory_caption {
@@ -185,6 +194,24 @@ namespace Obi {
         internal static string create_directory_query {
             get {
                 return ResourceManager.GetString("create_directory_query", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to cut section.
+        /// </summary>
+        internal static string cut_section_command_label {
+            get {
+                return ResourceManager.GetString("cut_section_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to move section out.
+        /// </summary>
+        internal static string decrease_section_level_command_label {
+            get {
+                return ResourceManager.GetString("decrease_section_level_command_label", resourceCulture);
             }
         }
         
@@ -290,6 +317,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to move section in.
+        /// </summary>
+        internal static string increase_section_level_command_label {
+            get {
+                return ResourceManager.GetString("increase_section_level_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Listening....
         /// </summary>
         internal static string listening {
@@ -331,6 +367,42 @@ namespace Obi {
         internal static string move_phrase_command_label {
             get {
                 return ResourceManager.GetString("move_phrase_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to move section down.
+        /// </summary>
+        internal static string move_section_down_command_label {
+            get {
+                return ResourceManager.GetString("move_section_down_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to move strip down.
+        /// </summary>
+        internal static string move_section_down_linear_command_label {
+            get {
+                return ResourceManager.GetString("move_section_down_linear_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to move section up.
+        /// </summary>
+        internal static string move_section_up_command_label {
+            get {
+                return ResourceManager.GetString("move_section_up_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to move strip up.
+        /// </summary>
+        internal static string move_section_up_linear_command_label {
+            get {
+                return ResourceManager.GetString("move_section_up_linear_command_label", resourceCulture);
             }
         }
         
@@ -471,6 +543,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to paste section.
+        /// </summary>
+        internal static string paste_section_command_label {
+            get {
+                return ResourceManager.GetString("paste_section_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Pause.
         /// </summary>
         internal static string pause {
@@ -605,6 +686,15 @@ namespace Obi {
         internal static string saved_project {
             get {
                 return ResourceManager.GetString("saved_project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to delete strip.
+        /// </summary>
+        internal static string shallow_delete_section_command_label {
+            get {
+                return ResourceManager.GetString("shallow_delete_section_command_label", resourceCulture);
             }
         }
         
