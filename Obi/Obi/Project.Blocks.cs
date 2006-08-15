@@ -10,6 +10,8 @@ namespace Obi
 {
     public partial class Project
     {
+        public Events.Strip.UpdateTimeHandler UpdateTime;
+
         #region event handlers
 
         /// <summary>
@@ -159,21 +161,19 @@ namespace Obi
         internal void StartRecordingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e, CoreNode parent, int index)
         {
             CoreNode phrase = CreatePhraseNode(e.Asset);
-            parent.insert(phrase, index);
+            parent.insert(phrase, index + e.PhraseIndex);
             UpdateSeq(phrase);
-            // MediaSet(this, new Events.Node.SetMediaEventArgs(this, phrase, AudioChannel,
-            //    GetMediaForChannel(phrase, AudioChannel)));
             AddedPhraseNode(this, new Events.Node.AddedPhraseNodeEventArgs(this, phrase, index + e.PhraseIndex));
+            Commands.Strips.AddPhrase command = new Commands.Strips.AddPhrase(this, phrase);
+            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
 
         internal void ContinuingRecordingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e, CoreNode parent, int index)
         {
-            System.Diagnostics.Debug.Print("BING");
             CoreNode phrase = parent.getChild(index + e.PhraseIndex);
-            MediaSet(this, new Events.Node.SetMediaEventArgs(this, phrase, AudioChannel,
-                GetMediaForChannel(phrase, AudioChannel)));
+            UpdateTime(this, new Events.Strip.UpdateTimeEventArgs(phrase, e.Time));            
         }
 
         internal void FinishRecordingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e, CoreNode parent, int index)
@@ -243,9 +243,16 @@ namespace Obi
             //for shallow-delete's undo
             //but note that it hasn't gone to the command queue; that is only done
             //during DeletePhraseNodeRequested
-            int index = ((CoreNode)node.getParent()).indexOf(node);
-            Commands.Strips.DeletePhrase command = new Commands.Strips.DeletePhrase(this, node, (CoreNode)node.getParent(), index);
-            return command;
+            if (node.getParent() != null)
+            {
+                int index = ((CoreNode)node.getParent()).indexOf(node);
+                Commands.Strips.DeletePhrase command = new Commands.Strips.DeletePhrase(this, node, (CoreNode)node.getParent(), index);
+                return command;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         /// <summary>

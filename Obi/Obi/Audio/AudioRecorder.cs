@@ -533,6 +533,7 @@ namespace Obi.Audio
 				Audiolength = 0;
 				Assets.AudioClip NewRecordedClip = new Assets.AudioClip(m_sFileName);
 				mAsset.AddClip(NewRecordedClip);
+                mAsset.Manager.AddedClip(NewRecordedClip);
 			}
 		}
 

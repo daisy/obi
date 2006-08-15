@@ -47,11 +47,6 @@ namespace Obi
             this.mUndoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRedoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
-            this.mCutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mCopyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mPasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mDeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.mMetadataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTouchProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -237,11 +232,6 @@ namespace Obi
             this.mUndoToolStripMenuItem,
             this.mRedoToolStripMenuItem,
             this.toolStripSeparator11,
-            this.mCutToolStripMenuItem,
-            this.mCopyToolStripMenuItem,
-            this.mPasteToolStripMenuItem,
-            this.mDeleteToolStripMenuItem,
-            this.toolStripSeparator4,
             this.mMetadataToolStripMenuItem,
             this.mTouchProjectToolStripMenuItem});
             this.mEditToolStripMenuItem.Name = "mEditToolStripMenuItem";
@@ -269,45 +259,6 @@ namespace Obi
             // 
             this.toolStripSeparator11.Name = "toolStripSeparator11";
             this.toolStripSeparator11.Size = new System.Drawing.Size(174, 6);
-            // 
-            // mCutToolStripMenuItem
-            // 
-            this.mCutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("mCutToolStripMenuItem.Image")));
-            this.mCutToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.mCutToolStripMenuItem.Name = "mCutToolStripMenuItem";
-            this.mCutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.mCutToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.mCutToolStripMenuItem.Text = "&Cut";
-            // 
-            // mCopyToolStripMenuItem
-            // 
-            this.mCopyToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("mCopyToolStripMenuItem.Image")));
-            this.mCopyToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.mCopyToolStripMenuItem.Name = "mCopyToolStripMenuItem";
-            this.mCopyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.mCopyToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.mCopyToolStripMenuItem.Text = "Cop&y";
-            // 
-            // mPasteToolStripMenuItem
-            // 
-            this.mPasteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("mPasteToolStripMenuItem.Image")));
-            this.mPasteToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.mPasteToolStripMenuItem.Name = "mPasteToolStripMenuItem";
-            this.mPasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.mPasteToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.mPasteToolStripMenuItem.Text = "&Paste";
-            // 
-            // mDeleteToolStripMenuItem
-            // 
-            this.mDeleteToolStripMenuItem.Name = "mDeleteToolStripMenuItem";
-            this.mDeleteToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.mDeleteToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.mDeleteToolStripMenuItem.Text = "&Delete";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(174, 6);
             // 
             // mMetadataToolStripMenuItem
             // 
@@ -687,10 +638,10 @@ namespace Obi
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel1
+            // mToolStripStatutsLabel
             // 
             this.mToolStripStatutsLabel.BackColor = System.Drawing.Color.Transparent;
-            this.mToolStripStatutsLabel.Name = "toolStripStatusLabel1";
+            this.mToolStripStatutsLabel.Name = "mToolStripStatutsLabel";
             this.mToolStripStatutsLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // mProjectPanel
@@ -766,7 +717,6 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mRenameStripToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mUndoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mRedoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem mImportAudioFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem audioPreferencesToolStripMenuItem;
@@ -790,11 +740,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
         private System.Windows.Forms.ToolStripMenuItem mDumpTreeDEBUGToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMergeWithNextAudioBlockToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mCutToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
-        private System.Windows.Forms.ToolStripMenuItem mCopyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mPasteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mDeleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mDeleteStripToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMoveStripToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMoveStripUpToolStripMenuItem;
