@@ -24,7 +24,7 @@ namespace Obi
 
         /// <summary>
         /// Cut a phrase node: delete it and store it in the clipboard.
-        /// Issue a command an modify the project.
+        /// Issue a command and modify the project.
         /// </summary>
         internal void CutPhraseNode(object sender, Events.Node.NodeEventArgs e)
         {
@@ -34,6 +34,35 @@ namespace Obi
             mBlockClipBoard = e.Node;
             DeletePhraseNodeAndAsset(e.Node);
             BlockClipBoard = e.Node;
+            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+
+        /// <summary>
+        /// Paste a copy of the node in the clipboard after the given phrase node, or as the last phrase of the section node.
+        /// The clipboard is unmodified.
+        /// Issue a command and modify the project.
+        /// </summary>
+        internal void PastePhraseNode(object sender, Events.Node.NodeEventArgs e)
+        {
+            CoreNode copy = mBlockClipBoard.copy(true);
+            CoreNode parent;
+            int index;
+            if (GetNodeType(e.Node) == NodeType.Section)
+            {
+                parent = e.Node;
+                index = GetPhrasesCount(e.Node);
+            }
+            else
+            {
+                parent = (CoreNode)e.Node.getParent();
+                index = GetPhraseIndex(e.Node) + 1;
+            }
+            AddPhraseNodeAndAsset(copy, parent, index);
+            AudioMediaAsset asset = (AudioMediaAsset)GetAudioMediaAsset(e.Node).Copy();
+            SetAudioMediaAsset(copy, asset);
+            Commands.Strips.PastePhrase command = new Commands.Strips.PastePhrase(this, copy);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -381,6 +410,10 @@ namespace Obi
             }
         }
 
+        /// <summary>
+        /// Set the audio media asset for a phrase node.
+        /// The Sequence media object is updated as well.
+        /// </summary>
         internal void SetAudioMediaAsset(CoreNode node, AudioMediaAsset asset)
         {
             AssetProperty prop = (AssetProperty)node.getProperty(typeof(AssetProperty));

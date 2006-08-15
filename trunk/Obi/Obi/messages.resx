@@ -384,6 +384,10 @@ Do you want to replace the project contained in this file?</value>
   </data>
   <data name="cut_phrase_command_label" xml:space="preserve">
     <value>cut audio block</value>
-    <comment>Undo/redo cut phrase (JQ)</comment>
+    <comment>Undo/redo paste phrase (JQ)</comment>
+  </data>
+  <data name="paste_phrase_command_label" xml:space="preserve">
+    <value>paste audio block</value>
+    <comment>Undo/redo paste audio block (JQ)</comment>
   </data>
 </root>
