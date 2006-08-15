@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Obi")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyDescription("DAISY/NISO Digital Talking Book Production Tool")]
+[assembly: AssemblyConfiguration("Iteration 1 Pre Release")]
+[assembly: AssemblyCompany("The Urakawa Project (DAISY Consortium, CWI, INRIA, NRCD)")]
 [assembly: AssemblyProduct("Obi")]
 [assembly: AssemblyCopyright("Copyright ©  2006")]
 [assembly: AssemblyTrademark("")]
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("0.4.1.881")]
+[assembly: AssemblyFileVersion("0.4.1.881")]

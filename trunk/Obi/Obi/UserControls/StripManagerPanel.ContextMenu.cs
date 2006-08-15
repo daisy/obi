@@ -102,11 +102,7 @@ namespace Obi.UserControls
         /// <remarks>JQ</remarks>
         internal void mPlayAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mSelectedPhrase != null)
-            {
-                Dialogs.Play dialog = new Dialogs.Play(mSelectedPhrase);
-                dialog.ShowDialog();
-            }
+            if (mSelectedPhrase != null) ((ObiForm)ParentForm).Play(mSelectedPhrase);
         }
 
         /// <summary>

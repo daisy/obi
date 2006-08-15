@@ -197,7 +197,7 @@ namespace Obi
         /// <summary>
         /// Exit if and only if the currently open project was saved correctly.
         /// </summary>
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (ClosedProject())
             {
@@ -293,10 +293,14 @@ namespace Obi
         {
             if (dialog.IdTemplate.Contains("#")) mSettings.IdTemplate = dialog.IdTemplate;
             if (Directory.Exists(dialog.DefaultDir)) mSettings.DefaultPath = dialog.DefaultDir;
-            mSettings.LastOutputDevice = dialog.OutputDevice;
-            Audio.AudioPlayer.Instance.SetDevice(this, dialog.OutputDeviceIndex);
-            mSettings.LastInputDevice = dialog.InputDevice;
-            Audio.AudioRecorder.Instance.SetInputDeviceForRecording(this, dialog.InputDeviceIndex);
+            // mSettings.LastOutputDevice = dialog.OutputDevice;
+            // Audio.AudioPlayer.Instance.SetDevice(this, dialog.OutputDeviceIndex);
+            mSettings.LastOutputDevice = dialog.OutputDevice.Name;
+            Audio.AudioPlayer.Instance.SetDevice(this, dialog.OutputDevice);
+            // mSettings.LastInputDevice = dialog.InputDevice;
+            // Audio.AudioRecorder.Instance.SetInputDeviceForRecording(this, dialog.InputDeviceIndex);
+            mSettings.LastInputDevice = dialog.InputDevice.Name;
+            Audio.AudioRecorder.Instance.InputDevice = dialog.InputDevice;
             mSettings.AudioChannels = dialog.AudioChannels;
             mSettings.SampleRate = dialog.SampleRate;
             mSettings.BitDepth = dialog.BitDepth;
@@ -436,7 +440,7 @@ namespace Obi
         /// <summary>
         /// Show the help dialog.
         /// </summary>
-        private void aboutObiToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mAboutObiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             (new Dialogs.About()).ShowDialog();
         }
@@ -499,22 +503,45 @@ namespace Obi
                 }
             }
             // Try to use the last input and output devices
-            ArrayList devices = Audio.AudioPlayer.Instance.GetOutputDevices();
+            /*ArrayList devices = Audio.AudioPlayer.Instance.GetOutputDevices();
             if (devices.Count == 0)
             {
                 MessageBox.Show(Localizer.Message("no_output_device_text"), Localizer.Message("no_output_device_caption"),
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
-            Audio.AudioPlayer.Instance.SetDevice(this, mSettings.LastOutputDevice);
-            devices = Audio.AudioRecorder.Instance.GetInputDevices();
+            Audio.AudioPlayer.Instance.SetDevice(this, mSettings.LastOutputDevice);*/
+
+            try
+            {
+                Audio.AudioPlayer.Instance.SetDevice(this, mSettings.LastOutputDevice);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Localizer.Message("no_output_device_text"), Localizer.Message("no_output_device_caption"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
+
+            /*ArrayList devices = Audio.AudioRecorder.Instance.GetInputDevices();
             if (devices.Count == 0)
             {
                 MessageBox.Show(Localizer.Message("no_input_device_text"), Localizer.Message("no_input_device_caption"),
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
-            Audio.AudioRecorder.Instance.SetInputDeviceForRecording(this, mSettings.LastInputDevice);
+            Audio.AudioRecorder.Instance.SetInputDeviceForRecording(this, mSettings.LastInputDevice);*/
+
+            try
+            {
+                Audio.AudioRecorder.Instance.SetDevice(this, mSettings.LastInputDevice);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Localizer.Message("no_input_device_text"), Localizer.Message("no_input_device_caption"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
         }
 
         /// <summary>
@@ -587,7 +614,7 @@ namespace Obi
             }
             else
             {
-                mToolStripStatutsLabel.Text = String.Format(Localizer.Message("closed_project"), mProject.Metadata.Title);
+                mToolStripStatusLabel.Text = String.Format(Localizer.Message("closed_project"), mProject.Metadata.Title);
                 mProjectPanel.Project = null;
             }
         }
@@ -598,7 +625,7 @@ namespace Obi
         private void FormUpdateOpenedProject()
         {
             this.Text = String.Format("{0} - {1}", mProject.Metadata.Title, Localizer.Message("obi"));
-            mToolStripStatutsLabel.Text = String.Format(Localizer.Message("opened_project"), mProject.XUKPath);
+            mToolStripStatusLabel.Text = String.Format(Localizer.Message("opened_project"), mProject.XUKPath);
         }
 
         /// <summary>
@@ -607,7 +634,7 @@ namespace Obi
         private void FormUpdateSavedProject()
         {
             this.Text = String.Format("{0} - {1}", mProject.Metadata.Title, Localizer.Message("obi"));
-            mToolStripStatutsLabel.Text = String.Format(Localizer.Message("saved_project"), mProject.LastPath);
+            mToolStripStatusLabel.Text = String.Format(Localizer.Message("saved_project"), mProject.LastPath);
         }
 
         /// <summary>
@@ -633,7 +660,7 @@ namespace Obi
                 switch (result)
                 {
                     case DialogResult.Yes:
-                        mProject.SaveAs(mProject.XUKPath);
+                        mProject.Save();
                         DoClose();
                         return true;
                     case DialogResult.Cancel:
@@ -678,7 +705,7 @@ namespace Obi
         /// </summary>
         private void Ready()
         {
-            mToolStripStatutsLabel.Text = Localizer.Message("ready");
+            mToolStripStatusLabel.Text = Localizer.Message("ready");
         }
 
         /// <summary>
@@ -707,45 +734,6 @@ namespace Obi
                 mCommandManager.Redo();
                 FormUpdateUndoRedoLabels();
             }
-        }
-
-        /// <summary>
-        /// Find the first phrase in the book and play it.
-        /// For debugging purposes only!
-        /// </summary>
-        private void playFirstPhraseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Visitors.PhraseEnumerator enumerator = new Visitors.PhraseEnumerator();
-            mProject.RootNode.acceptDepthFirst(enumerator);
-            if (enumerator.Phrases.Count > 0)
-            {
-                Dialogs.Play dialog = new Dialogs.Play(enumerator.Phrases[0]);
-                dialog.ShowDialog();
-            }
-        }
-
-        /// <summary>
-        /// Find the first phrase in the book and split it.
-        /// For debugging purposes only!
-        /// </summary>
-        private void splitFirstAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Visitors.PhraseEnumerator enumerator = new Visitors.PhraseEnumerator();
-            mProject.RootNode.acceptDepthFirst(enumerator);
-            if (enumerator.Phrases.Count > 0)
-            {
-                Dialogs.Split dialog = new Dialogs.Split(enumerator.Phrases[0], 0.0);
-                dialog.ShowDialog();
-            }
-        }
-
-        /// <summary>
-        /// Quick test for recording dialog
-        /// For debugging purposes only!
-        /// </summary>
-        private void startRecordingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProject.StartRecording(mSettings);
         }
 
         private void dumpTreeDEBUGToolStripMenuItem_Click(object sender, EventArgs e)
@@ -914,5 +902,17 @@ namespace Obi
         }
 
         #endregion
+
+        /// <summary>
+        /// Play a node and update the status bar.
+        /// </summary>
+        internal void Play(urakawa.core.CoreNode node)
+        {
+            mToolStripStatusLabel.Text = String.Format(Localizer.Message("playing_on_device"),
+                Audio.AudioPlayer.Instance.OutputDevice.Name);
+            Dialogs.Play dialog = new Dialogs.Play(node);
+            dialog.ShowDialog();
+            Ready();
+        }
     }
 }

@@ -71,7 +71,6 @@ namespace Obi.Dialogs
                 mPlayButton.Text = Localizer.Message("pause");
                 tmUpdateCurrentTime.Enabled = true;
             }
-
         }
 
         private void tmUpdateCurrentTime_Tick(object sender, EventArgs e)
@@ -100,6 +99,7 @@ namespace Obi.Dialogs
                 // ob_VuMeter.SampleTimeLength = 1000;
                 // ob_VuMeter.ShowForm();
                 // Audio.AudioPlayer.Instance.VuMeterObject = ob_VuMeter;
+                Audio.AudioPlayer.Instance.VuMeterObject = null;
                 Audio.AudioPlayer.Instance.Play(Project.GetAudioMediaAsset(mNode));
                 mPlayButton.Text = Localizer.Message("pause");
                 tmUpdateCurrentTime.Enabled = true;

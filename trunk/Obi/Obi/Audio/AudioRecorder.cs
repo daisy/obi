@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using Microsoft.DirectX;
@@ -48,9 +49,10 @@ namespace Obi.Audio
 		//  state of AudioRecorder
 		AudioRecorderState mState;
 		//variables from DirectX.DirectSound
-		Microsoft.DirectX.DirectSound.Device m_InputDevice;
+		// Microsoft.DirectX.DirectSound.Device m_InputDevice;
+        InputDevice mDevice;
 		private bool Capturing;
-		private Capture m_cApplicationDevice;
+		// private Capture m_cApplicationDevice;
 		private int m_iNotifySize;
 		private int m_iCaptureBufferSize;
 		private const int NumberRecordNotifications = 16;
@@ -130,7 +132,7 @@ namespace Obi.Audio
 		}
 
 		// returns a list of input devices
-		public ArrayList GetInputDevices()
+		/*public ArrayList GetInputDevices()
 		{
 			// gathers the available capture devices
 			CaptureDevicesCollection devices = new CaptureDevicesCollection();  
@@ -142,7 +144,26 @@ namespace Obi.Audio
 				m_devicesList.Add(info.Description);
 			}
 			return m_devicesList;
-		}
+		}*/
+
+        private List<InputDevice> mInputDevicesList = null;
+
+        public List<InputDevice> InputDevices
+        {
+            get
+            {
+                if (mInputDevicesList == null)
+                {
+                    CaptureDevicesCollection devices = new CaptureDevicesCollection();
+                    mInputDevicesList = new List<InputDevice>(devices.Count);
+                    foreach (DeviceInformation info in devices)
+                    {
+                        mInputDevicesList.Add(new InputDevice(info.Description, new Capture(info.DriverGuid)));
+                    }
+                }
+                return mInputDevicesList;
+            }
+        }
 
 		public void StartListening(Assets.AudioMediaAsset asset)
 		{
@@ -217,14 +238,14 @@ namespace Obi.Audio
         }		
 		
 
-		public Capture InitDirectSound(int Index)
+		/*public Capture InitDirectSound(int Index)
 		{
 			CaptureDevicesCollection devices = new CaptureDevicesCollection();
 			Guid mGuid  = Guid.Empty;
 			mGuid = devices[Index].DriverGuid;
 			m_cApplicationDevice = new Capture(mGuid);
 			return m_cApplicationDevice;
-		}	
+		}*/	
 
 		
 
@@ -358,8 +379,9 @@ namespace Obi.Audio
 			InputFormat.FormatTag = WaveFormatTag.Pcm;
 			// Set the format during creatation
 			dsc.Format = InputFormat; 
-			applicationBuffer = new CaptureBuffer(dsc, this.m_cApplicationDevice);
-			NextCaptureOffset = 0;
+			// applicationBuffer = new CaptureBuffer(dsc, this.m_cApplicationDevice);
+            applicationBuffer = new CaptureBuffer(dsc, mDevice.Capture);
+            NextCaptureOffset = 0;
 			InitNotifications();	
 		}	
 			
@@ -498,8 +520,8 @@ namespace Obi.Audio
 		public void InitRecording(bool SRecording)
 		{	
 			//if no device is set then it is informed then no device is set
-			if(null == m_cApplicationDevice)
-				throw new Exception("no device is set for recording");
+			//if(null == m_cApplicationDevice)
+			if (mDevice.Capture == null) throw new Exception("no device is set for recording");
 			//format of the capture buffer and the input format is compared
 			//if not same then it is informed that formats do not match
 			if(applicationBuffer.Format.ToString() != InputFormat.ToString())
@@ -537,13 +559,7 @@ namespace Obi.Audio
 			}
 		}
 
-
-
-
-        
-
-
-		public void SetInputDeviceForRecording(Control FormHandle, int Index)
+		/*public void SetInputDeviceForRecording(Control FormHandle, int Index)
 		{
 			CaptureDevicesCollection devices  = new CaptureDevicesCollection();
 			Microsoft.DirectX.DirectSound.Device mDevice = new  Microsoft.DirectX.DirectSound.Device ( devices[Index].DriverGuid);
@@ -554,9 +570,33 @@ namespace Obi.Audio
 		public void SetInputDeviceForRecording(Control FormHandle, string name)
 		{
 			SetInputDeviceForRecording(FormHandle, 0);
-		}
+		}*/
 
-		public Device InputDevice
+        /*public void SetDevice(Control handle, InputDevice device)
+        {
+            mDevice = device;
+            //mDevice.Capture.SetCooperativeLevel(handle, CooperativeLevel.Priority);
+        }*/
+
+        public void SetDevice(Control handle, string name)
+        {
+            List<InputDevice> devices = InputDevices;
+            InputDevice found = devices.Find(delegate(InputDevice d) { return d.Name == name; });
+            if (found != null)
+            {
+                mDevice = found;
+            }
+            else if (devices.Count > 0)
+            {
+                mDevice = devices[0];
+            }
+            else
+            {
+                throw new Exception("No input device available.");
+            }
+        }
+
+		/*public Device InputDevice
 		{
 			get
 			{
@@ -566,7 +606,13 @@ namespace Obi.Audio
 			{
 				m_InputDevice = value;
 			}
-		}
+		}*/
+
+        public InputDevice InputDevice
+        {
+            get { return mDevice; }
+            set { mDevice = value; }
+        }
 	
 			
 	}//end of AudioRecorder Class
