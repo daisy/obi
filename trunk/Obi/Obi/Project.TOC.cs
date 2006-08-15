@@ -1310,7 +1310,7 @@ namespace Obi
         }
 
         //md 20060813
-        internal bool canMoveSectionNodeUp(CoreNode node)
+        internal bool CanMoveSectionNodeUp(CoreNode node)
         {
             if (this.getPresentation().getRootNode().getChildCount() == 0)
             {
@@ -1330,13 +1330,14 @@ namespace Obi
         }
 
         //md 20060813
-        internal bool canMoveSectionNodeDown(CoreNode node)
+        internal bool CanMoveSectionNodeDown(CoreNode node)
         {
+
             if (this.getPresentation().getRootNode().getChildCount() == 0)
             {
                 return false;
             }
-            //the only reason a node couldn't be moved down is if it is the last 
+            //the only reason a node couldn't be moved down is if it is the last
             //child of the root
 
             int numRootChildren = this.getPresentation().getRootNode().getChildCount();
@@ -1347,10 +1348,46 @@ namespace Obi
             }
 
             return true;
+            
+        }
+
+        //md 20060814
+        //helper function
+        private CoreNode GetLastSectionNodeInSubtree(CoreNode node)
+        {
+            CoreNode lastSectionNodeChild = GetLastSectionNodeChild(node);
+
+            if (GetLastSectionNodeChild(node) == null)
+            {
+                //make sure it's a section node (and not the root)
+                if (GetNodeType(node) == NodeType.Section)
+                    return node;
+                else
+                    return null;
+            }
+            else
+            {
+                return GetLastSectionNodeInSubtree(lastSectionNodeChild);
+            }
+        }
+        
+        //md 20060814
+        //helper function
+        private CoreNode GetLastSectionNodeChild(CoreNode node)
+        {
+            for (int i = node.getChildCount() - 1; i>=0; i--)
+            {
+                if (GetNodeType(node.getChild(i)) == NodeType.Section)
+                {
+                    return node.getChild(i);
+                }
+            }
+
+            return null;
         }
 
         //md 20060813
-        internal bool canMoveSectionNodeIn(CoreNode node)
+        internal bool CanMoveSectionNodeIn(CoreNode node)
         {
             CoreNode newParent = GetPreviousSectionNodeSibling(node);
 
@@ -1361,7 +1398,7 @@ namespace Obi
         }
 
         //md 20060813
-        internal bool canMoveSectionNodeOut(CoreNode node)
+        internal bool CanMoveSectionNodeOut(CoreNode node)
         {
             //the only reason we can't decrease the level is if the node is already 
             //at the outermost level

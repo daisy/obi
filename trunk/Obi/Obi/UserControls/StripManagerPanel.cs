@@ -430,8 +430,8 @@ namespace Obi.UserControls
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
             bool isStripSelected = mSelectedSection != null;
-            bool canMoveUp = isStripSelected && mProjectPanel.Project.canMoveSectionNodeUp(mSelectedSection);
-            bool canMoveDown = isStripSelected && mProjectPanel.Project.canMoveSectionNodeDown(mSelectedSection);
+            bool canMoveUp = isStripSelected && mProjectPanel.Project.CanMoveSectionNodeUp(mSelectedSection);
+            bool canMoveDown = isStripSelected && mProjectPanel.Project.CanMoveSectionNodeDown(mSelectedSection);
             bool isAudioBlockSelected = mSelectedPhrase != null;
             bool isAudioBlockLast = isAudioBlockSelected &&
                 Project.GetPhraseIndex(mSelectedPhrase) == Project.GetPhrasesCount(mSelectedSection) - 1;

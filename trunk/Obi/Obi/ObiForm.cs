@@ -838,10 +838,10 @@ namespace Obi
 
                 if (isNodeSelected == true)
                 {
-                    canMoveUp = mProjectPanel.Project.canMoveSectionNodeUp(selectedSection);
-                    canMoveDown = mProjectPanel.Project.canMoveSectionNodeDown(selectedSection);
-                    canMoveIn = mProjectPanel.Project.canMoveSectionNodeIn(selectedSection);
-                    canMoveOut = mProjectPanel.Project.canMoveSectionNodeOut(selectedSection);
+                    canMoveUp = mProjectPanel.Project.CanMoveSectionNodeUp(selectedSection);
+                    canMoveDown = mProjectPanel.Project.CanMoveSectionNodeDown(selectedSection);
+                    canMoveIn = mProjectPanel.Project.CanMoveSectionNodeIn(selectedSection);
+                    canMoveOut = mProjectPanel.Project.CanMoveSectionNodeOut(selectedSection);
                 }
 
                 mMoveSectionToolStripMenuItem.Enabled = canMoveUp || canMoveDown || canMoveIn || canMoveOut;
@@ -869,8 +869,8 @@ namespace Obi
         {
             bool isProjectOpen = mProject != null;
             bool isStripSelected = isProjectOpen && mProjectPanel.StripManager.SelectedSectionNode != null;
-            bool canMoveUp = isStripSelected && mProject.canMoveSectionNodeUp(mProjectPanel.StripManager.SelectedSectionNode);
-            bool canMoveDown = isStripSelected && mProject.canMoveSectionNodeDown(mProjectPanel.StripManager.SelectedSectionNode);
+            bool canMoveUp = isStripSelected && mProject.CanMoveSectionNodeUp(mProjectPanel.StripManager.SelectedSectionNode);
+            bool canMoveDown = isStripSelected && mProject.CanMoveSectionNodeDown(mProjectPanel.StripManager.SelectedSectionNode);
             bool isAudioBlockSelected = isProjectOpen && mProjectPanel.StripManager.SelectedPhraseNode != null;
             bool isAudioBlockLast = isAudioBlockSelected &&
                 Project.GetPhraseIndex(mProjectPanel.StripManager.SelectedPhraseNode) ==
