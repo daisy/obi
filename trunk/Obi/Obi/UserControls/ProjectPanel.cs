@@ -96,7 +96,8 @@ namespace Obi.UserControls
                     mProject.UndidPasteSectionNode -= new Events.Node.UndidPasteSectionNodeHandler(mTOCPanel.SyncUndidPasteSectionNode);
                     mProject.UndidPasteSectionNode -= new Events.Node.UndidPasteSectionNodeHandler(mStripManagerPanel.SyncUndidPasteSectionNode);
 
-                    mProject.TouchedNode += new Events.Node.TouchedNodeHandler(mStripManagerPanel.SyncTouchedNode);
+                    mProject.TouchedNode -= new Events.Node.TouchedNodeHandler(mStripManagerPanel.SyncTouchedNode);
+                    mProject.UpdateTime -= new Events.Strip.UpdateTimeHandler(mStripManagerPanel.SyncUpdateAudioBlockTime);
 
                     //md 20060812
                     mStripManagerPanel.RequestToShallowDeleteSectionNode -= new Events.Node.RequestToShallowDeleteSectionNodeHandler(mProject.ShallowDeleteSectionNodeRequested);
@@ -162,7 +163,7 @@ namespace Obi.UserControls
                         new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeleteAudioBlock);
                     value.MediaSet += new Events.Node.MediaSetHandler(mStripManagerPanel.SyncMediaSet);
                     value.TouchedNode += new Events.Node.TouchedNodeHandler(mStripManagerPanel.SyncTouchedNode);
-
+                    value.UpdateTime += new Events.Strip.UpdateTimeHandler(mStripManagerPanel.SyncUpdateAudioBlockTime);
 
 
 

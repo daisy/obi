@@ -180,7 +180,7 @@ namespace Obi
                 getPresentation().getRootNode().appendChild(node);
             }
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
-            SaveAs(mXUKPath);
+            Save();
         }
 
         /// <summary>

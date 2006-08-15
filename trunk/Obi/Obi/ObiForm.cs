@@ -378,6 +378,8 @@ namespace Obi
                 new EventHandler(mProjectPanel.StripManager.mAddStripToolStripMenuItem_Click);
             mRenameStripToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mRenameStripToolStripMenuItem_Click);
+            mRecordAudioToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.StripManager.mRecordAudioToolStripMenuItem_Click);
             mImportAudioFileToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mImportAudioToolStripMenuItem_Click);
             mPlayAudioBlockToolStripMenuItem.Click +=
@@ -774,10 +776,6 @@ namespace Obi
         private void mEditToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
             FormUpdateUndoRedoLabels();                // take care of undo and redo
-            mCutToolStripMenuItem.Enabled = false;     // not implemented yet!
-            mCopyToolStripMenuItem.Enabled = false;    // not implemented yet!
-            mPasteToolStripMenuItem.Enabled = false;   // not implemented yet!
-            mDeleteToolStripMenuItem.Enabled = false;  // not implemented yet!
             mMetadataToolStripMenuItem.Enabled = mProject != null;
             mTouchProjectToolStripMenuItem.Enabled = mProject != null;
         }

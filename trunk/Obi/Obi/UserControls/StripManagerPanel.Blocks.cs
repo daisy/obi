@@ -105,16 +105,9 @@ namespace Obi.UserControls
             }
         }
 
-        #region recording
-
-        /// <summary>
-        /// The recorder is continuing to record a phrase at some index. The timing of the audio block is updated.
-        /// </summary>
-        private void Record_ContinuingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e, int index)
+        internal void SyncUpdateAudioBlockTime(object sender, Events.Strip.UpdateTimeEventArgs e)
         {
-            System.Diagnostics.Debug.Print("REC#{0} continuing {1}", index, e.Asset.Name);
+            mPhraseNodeMap[e.Node].Time = Math.Round(e.Time / 1000).ToString() + "s";
         }
-
-        #endregion
     }
 }

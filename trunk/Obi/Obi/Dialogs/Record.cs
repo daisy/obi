@@ -22,9 +22,6 @@ namespace Obi.Dialogs
         private int mBitDepth;                    // required bit depth
         private Assets.AssetManager mAssManager;  // the asset manager (for creating new assets)
         // private Audio.VuMeter mVuMeter;           // the VU meter is disabled for iteration 1
-        
-        double CurrentTime;                       //time while the phrase is recorded
-        double EndTime;                           //the end time when finish phrase event is triggered
 
         public event Events.Audio.Recorder.StartingPhraseHandler StartingPhrase;
         public event Events.Audio.Recorder.ContinuingPhraseHandler ContinuingPhrase;
@@ -101,7 +98,7 @@ namespace Obi.Dialogs
                 Assets.AudioMediaAsset asset = mAssManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
                 mAssets.Add(asset);
                 Audio.AudioRecorder.Instance.StartRecording(asset);
-                StartingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(asset, mAssets.Count - 1));
+                StartingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(asset, mAssets.Count - 1, 0));
                 mRecordButton.Text = Localizer.Message("pause");
                 mTimer.Enabled = true;
                 mPhraseMarkerButton.Enabled = false;
@@ -109,7 +106,8 @@ namespace Obi.Dialogs
             else if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Recording))
             {
                 Audio.AudioRecorder.Instance.StopRecording();
-                FinishingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(mAssets[mAssets.Count - 1], mAssets.Count - 1));
+                FinishingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(mAssets[mAssets.Count - 1], mAssets.Count - 1,
+                    Audio.AudioRecorder.Instance.TimeOfAsset));
                 mRecordButton.Text = Localizer.Message("record");
                 StartListening();
                 mTimer.Enabled = false;
@@ -122,7 +120,8 @@ namespace Obi.Dialogs
             if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Recording))
             {
                 Audio.AudioRecorder.Instance.StopRecording();
-                FinishingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(mAssets[mAssets.Count - 1], mAssets.Count - 1));
+                FinishingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(mAssets[mAssets.Count - 1], mAssets.Count - 1,
+                    Audio.AudioRecorder.Instance.TimeOfAsset));
             }
             else
             {
@@ -141,8 +140,8 @@ namespace Obi.Dialogs
             int Hours = Minutes / 60;
             string sHours = Hours.ToString("00");
             mTimeTextBox.Text = sHours + ":" + sMinutes + ":" + sSeconds;
-            ContinuingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(mAssets[mAssets.Count - 1], mAssets.Count - 1));
-            //mTimeTextBox.Text = Audio.AudioRecorder.Instance.GetTime.ToString();
+            ContinuingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(mAssets[mAssets.Count - 1], mAssets.Count - 1,
+                Audio.AudioRecorder.Instance.TimeOfAsset));
         }
 
         private void mPhraseMarkerButton_Click_1(object sender, EventArgs e)

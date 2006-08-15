@@ -360,5 +360,14 @@ namespace Obi.Assets
             mAssets.Remove(next.Name);
             next.Manager = null;
         }
+
+        /// <summary>
+        /// A clip was added to a managed asset.
+        /// </summary>
+        internal void AddedClip(AudioClip clip)
+        {
+            if (!mFiles.ContainsKey(clip.Path)) mFiles[clip.Path] = new List<AudioClip>();
+            mFiles[clip.Path].Add(clip);
+        }
     }
 }

@@ -68,7 +68,7 @@ namespace Obi.UserControls
         /// <summary>
         /// Bring up the record dialog.
         /// </summary>
-        private void mRecordAudioToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void mRecordAudioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mSelectedSection != null)
             {

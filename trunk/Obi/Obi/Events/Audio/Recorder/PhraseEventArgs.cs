@@ -23,6 +23,7 @@ namespace Obi.Events.Audio.Recorder
     {
         private AudioMediaAsset mAsset;
         private int mPhraseIndex;
+        private double mTime;
 
         public AudioMediaAsset Asset
         {
@@ -34,10 +35,16 @@ namespace Obi.Events.Audio.Recorder
             get { return mPhraseIndex; }
         }
 
-        public PhraseEventArgs(AudioMediaAsset asset, int index)
+        public double Time
+        {
+            get { return mTime; }
+        }
+
+        public PhraseEventArgs(AudioMediaAsset asset, int index, double time)
         {
             mAsset = asset;
             mPhraseIndex = index;
+            mTime = time;
         }
     }
 }
