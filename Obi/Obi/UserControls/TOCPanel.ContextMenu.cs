@@ -149,10 +149,10 @@ namespace Obi.UserControls
 
             if (isNodeSelected == true)
             {
-                canMoveUp = mProjectPanel.Project.canMoveSectionNodeUp(selectedSection);
-                canMoveDown = mProjectPanel.Project.canMoveSectionNodeDown(selectedSection);
-                canMoveIn = mProjectPanel.Project.canMoveSectionNodeIn(selectedSection);
-                canMoveOut = mProjectPanel.Project.canMoveSectionNodeOut(selectedSection);
+                canMoveUp = mProjectPanel.Project.CanMoveSectionNodeUp(selectedSection);
+                canMoveDown = mProjectPanel.Project.CanMoveSectionNodeDown(selectedSection);
+                canMoveIn = mProjectPanel.Project.CanMoveSectionNodeIn(selectedSection);
+                canMoveOut = mProjectPanel.Project.CanMoveSectionNodeOut(selectedSection);
             }
             
             mMoveToolStripMenuItem.Enabled = canMoveUp || canMoveDown || canMoveIn || canMoveOut;
