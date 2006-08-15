@@ -20,6 +20,7 @@ namespace Obi.UserControls
         public event Events.Node.RequestToMoveSectionNodeUpLinearHandler RequestToMoveSectionNodeUpLinear;
 
         public event Events.Node.RequestToCutPhraseNodeHandler RequestToCutPhraseNode;
+        public event Events.Node.RequestToPastePhraseNodeHandler RequestToPastePhraseNode;
 
         /// <summary>
         /// Enable/disable items depending on what is currently available.
@@ -265,7 +266,22 @@ namespace Obi.UserControls
         {
             if (mSelectedPhrase != null)
             {
-                RequestToCutPhraseNode(this, new Events.Node.NodeEventArgs(this, mSelectedPhrase));
+                RequestToCutPhraseNode(this, new Events.Node.NodeEventArgs(sender, mSelectedPhrase));
+            }
+        }
+
+        /// <summary>
+        /// Paste the audio block in the clip board.
+        /// </summary>
+        // JQ 20060815
+        private void mPasteAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectPanel.Project.BlockClipBoard != null && mSelectedSection != null)
+            {
+                // Paste after the currently selected block, or at the end of the
+                // currently selected section if no block is selected.
+                RequestToPastePhraseNode(this, new Events.Node.NodeEventArgs(sender,
+                    mSelectedPhrase == null ? mSelectedSection : mSelectedPhrase));
             }
         }
     }

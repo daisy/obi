@@ -7,7 +7,7 @@ using urakawa.media;
 
 namespace Obi.Commands.Strips
 {
-    class AddPhrase: Command
+    public class AddPhrase: Command
     {
         private Obi.Project mProject;  // the current project
         private CoreNode mNode;        // the phrase node to add/remove
@@ -43,6 +43,19 @@ namespace Obi.Commands.Strips
         public override void Undo()
         {
             mProject.DeletePhraseNodeAndAsset(mNode);
+        }
+    }
+
+    public class PastePhrase : AddPhrase
+    {
+        public override string Label
+        {
+            get { return Localizer.Message("paste_phrase_command_label");  }
+        }
+
+        public PastePhrase(Obi.Project project, CoreNode node)
+            : base(project, node)
+        {
         }
     }
 }

@@ -865,6 +865,7 @@ namespace Obi
                 Project.GetPhrasesCount(mProjectPanel.StripManager.SelectedSectionNode) - 1;
             bool isAudioBlockFirst = isAudioBlockSelected &&
                 Project.GetPhraseIndex(mProjectPanel.StripManager.SelectedPhraseNode) == 0;
+            bool isBlockClipBoardSet = isProjectOpen && mProject.BlockClipBoard != null;
 
             mAddStripToolStripMenuItem.Enabled = isProjectOpen;
             mRenameStripToolStripMenuItem.Enabled = isStripSelected;
@@ -887,6 +888,7 @@ namespace Obi
             mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;
 
             mCutAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mPasteAudioBlockToolStripMenuItem.Enabled = isBlockClipBoardSet;
         }
 
         /// <summary>

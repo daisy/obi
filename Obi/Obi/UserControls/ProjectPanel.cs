@@ -102,8 +102,10 @@ namespace Obi.UserControls
                     //md 20060812
                     mStripManagerPanel.RequestToShallowDeleteSectionNode -= new Events.Node.RequestToShallowDeleteSectionNodeHandler(mProject.ShallowDeleteSectionNodeRequested);
 
-                    mStripManagerPanel.RequestToCutPhraseNode +=
+                    mStripManagerPanel.RequestToCutPhraseNode -=
                         new Events.Node.RequestToCutPhraseNodeHandler(mProject.CutPhraseNode);
+                    mStripManagerPanel.RequestToPastePhraseNode -=
+                        new Events.Node.RequestToPastePhraseNodeHandler(mProject.PastePhraseNode);
 
                 }
                 // Set up the handlers for the new project
@@ -197,7 +199,10 @@ namespace Obi.UserControls
 
                 
                     //md 20060812
-                    mStripManagerPanel.RequestToShallowDeleteSectionNode += new Events.Node.RequestToShallowDeleteSectionNodeHandler(value.ShallowDeleteSectionNodeRequested);
+                    mStripManagerPanel.RequestToShallowDeleteSectionNode +=
+                        new Events.Node.RequestToShallowDeleteSectionNodeHandler(value.ShallowDeleteSectionNodeRequested);
+                    mStripManagerPanel.RequestToPastePhraseNode +=
+                        new Events.Node.RequestToPastePhraseNodeHandler(value.PastePhraseNode);
 
                 } 
                 mProject = value;
