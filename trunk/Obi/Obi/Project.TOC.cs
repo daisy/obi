@@ -300,11 +300,12 @@ namespace Obi
             CoreNode newParent = null;
             int newIndex = 0;
 
-            int currentIndex = GetSectionNodeIndex(node);// ((CoreNode)node.getParent()).indexOf(node);
+            int currentIndex = ((CoreNode)node.getParent()).indexOf(node);
+            int currentSectionIndex = GetSectionNodeIndex(node);
 
             //if it is the first node in its list
             //change its level and move it to be the previous sibling of its parent
-            if (currentIndex == 0)
+            if (currentSectionIndex == 0)
             {
                 //it will be a sibling of its parent (soon to be former parent)
                 if (node.getParent().getParent() != null)
@@ -319,7 +320,8 @@ namespace Obi
             {
                 //keep our current parent
                 newParent = (CoreNode)node.getParent();
-                newIndex = currentIndex - 1;
+                CoreNode switchWithNode = GetPreviousSectionNodeSibling(node);
+                newIndex = newParent.indexOf(switchWithNode);
             }
 
            
@@ -434,10 +436,13 @@ namespace Obi
             int newIndex = 0;
 
             int currentIndex = ((CoreNode)node.getParent()).indexOf(node);
+           
+            int currentSectionIndex = GetSectionNodeIndex(node);
+            
+            CoreNode lastSectionNode = GetLastSectionNodeChild((CoreNode)node.getParent());
 
-            //if it is the last node in its list
-            //change its level and move it to be the next sibling of its parent
-            if (currentIndex == node.getParent().getChildCount() - 1)
+            //if it is the last node in its list, change its level
+            if (lastSectionNode == node)
             {
                 //it will be a sibling of its parent (soon to be former parent)
                 if (node.getParent().getParent() != null)
