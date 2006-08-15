@@ -423,39 +423,5 @@ namespace Obi.UserControls
             }
 
         }
-
-        /// <summary>
-        /// Enable/disable items depending on what is currently available.
-        /// </summary>
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
-        {
-            bool isStripSelected = mSelectedSection != null;
-            bool canMoveUp = isStripSelected && mProjectPanel.Project.CanMoveSectionNodeUp(mSelectedSection);
-            bool canMoveDown = isStripSelected && mProjectPanel.Project.CanMoveSectionNodeDown(mSelectedSection);
-            bool isAudioBlockSelected = mSelectedPhrase != null;
-            bool isAudioBlockLast = isAudioBlockSelected &&
-                Project.GetPhraseIndex(mSelectedPhrase) == Project.GetPhrasesCount(mSelectedSection) - 1;
-            bool isAudioBlockFirst = isAudioBlockSelected && Project.GetPhraseIndex(mSelectedPhrase) == 0;
-
-            mAddStripToolStripMenuItem.Enabled = true;
-            mRenameStripToolStripMenuItem.Enabled = isStripSelected;
-            mDeleteStripToolStripMenuItem.Enabled = isStripSelected;
-            mMoveStripUpToolStripMenuItem.Enabled = canMoveUp;
-            mMoveStripDownToolStripMenuItem.Enabled = canMoveDown;
-            mMoveStripToolStripMenuItem.Enabled = canMoveUp || canMoveDown;
-
-            mRecordAudioToolStripMenuItem.Enabled = isStripSelected;
-            mImportAudioFileToolStripMenuItem.Enabled = isStripSelected;
-            mEditAudioBlockLabelToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mMergeWithNextAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
-            mDeleteAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mMoveAudioBlockForwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
-            mMoveAudioBlockBackwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockFirst;
-            mMoveAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && (!isAudioBlockFirst || !isAudioBlockLast);
-
-            mPlayAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;            
-        }
     }
 }

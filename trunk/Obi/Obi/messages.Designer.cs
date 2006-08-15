@@ -108,9 +108,9 @@ namespace Obi {
         /// <summary>
         ///   Looks up a localized string similar to Could not find channel named &quot;{0}&quot;..
         /// </summary>
-        internal static string channe_not_found {
+        internal static string channel_not_found {
             get {
-                return ResourceManager.GetString("channe_not_found", resourceCulture);
+                return ResourceManager.GetString("channel_not_found", resourceCulture);
             }
         }
         
@@ -185,6 +185,15 @@ namespace Obi {
         internal static string create_directory_query {
             get {
                 return ResourceManager.GetString("create_directory_query", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to cut audio block.
+        /// </summary>
+        internal static string cut_phrase_command_label {
+            get {
+                return ResourceManager.GetString("cut_phrase_command_label", resourceCulture);
             }
         }
         

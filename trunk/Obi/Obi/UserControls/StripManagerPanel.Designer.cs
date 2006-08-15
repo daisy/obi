@@ -51,6 +51,8 @@ namespace Obi.UserControls
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mPlayAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowInTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.mCutBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,10 +98,12 @@ namespace Obi.UserControls
             this.mMoveAudioBlockToolStripMenuItem,
             this.toolStripSeparator2,
             this.mPlayAudioBlockToolStripMenuItem,
-            this.mShowInTOCViewToolStripMenuItem});
+            this.mShowInTOCViewToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.mCutBlockToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(229, 324);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(229, 352);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // mAddStripToolStripMenuItem
@@ -252,6 +256,19 @@ namespace Obi.UserControls
             this.mShowInTOCViewToolStripMenuItem.Text = "Show in &TOC view";
             this.mShowInTOCViewToolStripMenuItem.Click += new System.EventHandler(this.mShowInTOCViewToolStripMenuItem_Click);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(225, 6);
+            // 
+            // mCutBlockToolStripMenuItem
+            // 
+            this.mCutBlockToolStripMenuItem.Name = "mCutBlockToolStripMenuItem";
+            this.mCutBlockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.mCutBlockToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.mCutBlockToolStripMenuItem.Text = "C&ut block";
+            this.mCutBlockToolStripMenuItem.Click += new System.EventHandler(this.mCutBlockToolStripMenuItem_Click);
+            // 
             // StripManagerPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -290,5 +307,7 @@ namespace Obi.UserControls
         private System.Windows.Forms.ToolStripMenuItem mMoveAudioBlockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMoveAudioBlockForwardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMoveAudioBlockBackwardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem mCutBlockToolStripMenuItem;
     }
 }

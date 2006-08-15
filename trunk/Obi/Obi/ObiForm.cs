@@ -408,6 +408,8 @@ namespace Obi
             //end mg 20060813    
             mShowInTOCViewToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mShowInTOCViewToolStripMenuItem_Click);
+            mCutAudioBlockToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.StripManager.mCutBlockToolStripMenuItem_Click);
         }
 
         /// <summary>
@@ -883,6 +885,8 @@ namespace Obi
 
             mPlayAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
             mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;
+
+            mCutAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
         }
 
         /// <summary>

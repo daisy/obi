@@ -12,6 +12,35 @@ namespace Obi
     {
         public Events.Strip.UpdateTimeHandler UpdateTime;
 
+        #region clip board
+
+        private CoreNode mBlockClipBoard;  // clip board for block nodes (phrases or pages)
+
+        internal CoreNode BlockClipBoard
+        {
+            get { return mBlockClipBoard; }
+            set { mBlockClipBoard = value; }
+        }
+
+        /// <summary>
+        /// Cut a phrase node: delete it and store it in the clipboard.
+        /// Issue a command an modify the project.
+        /// </summary>
+        internal void CutPhraseNode(object sender, Events.Node.NodeEventArgs e)
+        {
+            // create the command before storing the node in the clip board, otherwise the previous value is lost
+            Commands.Strips.CutPhrase command = new Commands.Strips.CutPhrase(this, e.Node, (CoreNode)e.Node.getParent(),
+                GetPhraseIndex(e.Node));
+            mBlockClipBoard = e.Node;
+            DeletePhraseNodeAndAsset(e.Node);
+            BlockClipBoard = e.Node;
+            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+
+        #endregion
+
         #region event handlers
 
         /// <summary>
@@ -25,6 +54,8 @@ namespace Obi
             Commands.Strips.DeletePhrase command = new Commands.Strips.DeletePhrase(this, e.Node, parent, index);
             CommandCreated(this, new Obi.Events.Project.CommandCreatedEventArgs(command));
             DeletePhraseNodeAndAsset(e.Node);
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
 
         /// <summary>
@@ -39,6 +70,8 @@ namespace Obi
             AddPhraseNode(node, e.SectionNode, e.Index);
             Commands.Strips.AddPhrase command = new Commands.Strips.AddPhrase(this, node);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
 
         /// <summary>
@@ -398,10 +431,5 @@ namespace Obi
         }
 
         #endregion
-
-
-
-
-        
     }
 }
