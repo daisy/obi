@@ -88,8 +88,7 @@ namespace Obi.UserControls
         private void AudioBlock_DoubleClick(object sender, EventArgs e)
         {
             mManager.SelectedPhraseNode = mNode;
-            Dialogs.Play dialog = new Dialogs.Play(mNode);
-            dialog.ShowDialog();
+            ((ObiForm)ParentForm).Play(mNode);
         }
 
         //mg: for tab navigation et al

@@ -480,6 +480,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Playing on device {0}.
+        /// </summary>
+        internal static string playing_on_device {
+            get {
+                return ResourceManager.GetString("playing_on_device", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not create project directory {0}..
         /// </summary>
         internal static string project_directory_creation_error {

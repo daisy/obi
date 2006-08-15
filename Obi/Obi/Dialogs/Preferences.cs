@@ -7,6 +7,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.Collections;
 
+using Obi.Audio;
+
 namespace Obi.Dialogs
 {
     public partial class Preferences : Form
@@ -30,15 +32,18 @@ namespace Obi.Dialogs
             }
         }
 
-        private string mOutputDevice;    // preferred output device
-        private int mOutputDeviceIndex;  // index of the output device
-        private string mInputDevice;     // preferred input device
-        private int mInputDeviceIndex;   // index of the input device
-        private int mAudioChannels;      // preferred number of audio channels
-        private int mSampleRate;         // preferred sample rate
-        private int mBitDepth;           // preferred bit depth
+        // private string mOutputDevice;    // preferred output device
+        // private int mOutputDeviceIndex;  // index of the output device
+        // private string mInputDevice;         // preferred input device
+        // private int mInputDeviceIndex;       // index of the input device
 
-        public string OutputDevice
+        private InputDevice mInputDevice;    // preferred input device
+        private OutputDevice mOutputDevice;  // preferred output device
+        private int mAudioChannels;          // preferred number of audio channels
+        private int mSampleRate;             // preferred sample rate
+        private int mBitDepth;               // preferred bit depth
+
+        /*public string OutputDevice
         {
             get
             {
@@ -52,9 +57,14 @@ namespace Obi.Dialogs
             {
                 return mOutputDeviceIndex;
             }
+        }*/
+
+        public OutputDevice OutputDevice
+        {
+            get { return mOutputDevice; }
         }
 
-        public string InputDevice
+        /* public string InputDevice
         {
             get
             {
@@ -68,6 +78,11 @@ namespace Obi.Dialogs
             {
                 return mInputDeviceIndex;
             }
+        } */
+
+        public InputDevice InputDevice
+        {
+            get { return mInputDevice; }
         }
 
         public int AudioChannels
@@ -94,10 +109,10 @@ namespace Obi.Dialogs
             }
         }
 
-        ArrayList m_InDevicesList = new ArrayList();
-        ArrayList m_OutDevicesList = new ArrayList();
-        Audio.AudioRecorder ob_AudioRecorder = Audio.AudioRecorder.Instance;
-        Audio.AudioPlayer ob_AudioPlayer = Audio.AudioPlayer.Instance;
+        // ArrayList m_InDevicesList = new ArrayList();
+        // ArrayList m_OutDevicesList = new ArrayList();
+        // Audio.AudioRecorder ob_AudioRecorder = Audio.AudioRecorder.Instance;
+        // Audio.AudioPlayer ob_AudioPlayer = Audio.AudioPlayer.Instance;
 
         /// <summary>
         /// Initialize the preferences with the user settings.
@@ -109,15 +124,20 @@ namespace Obi.Dialogs
             mTemplateBox.Text = mIdTemplate;
             mDefaultDir = settings.DefaultPath;
             mDirectoryBox.Text = mDefaultDir;
-            mInputDevice = settings.LastInputDevice;
-            mOutputDevice = settings.LastOutputDevice;
+            // mInputDevice = settings.LastInputDevice;
+            // mOutputDevice = settings.LastOutputDevice;
+            mInputDevice = AudioRecorder.Instance.InputDevice;
+            mOutputDevice = AudioPlayer.Instance.OutputDevice;
             mSampleRate = settings.SampleRate;
             mSampleRate = settings.SampleRate;
             mAudioChannels = settings.AudioChannels;
             mBitDepth = settings.BitDepth;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Browse for a project directory.
+        /// </summary>
+        private void mBrowseButton_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
             dialog.SelectedPath = mDefaultDir;
@@ -128,6 +148,9 @@ namespace Obi.Dialogs
             }
         }
 
+        /// <summary>
+        /// Validate the changes.
+        /// </summary>
         private void mOKButton_Click(object sender, EventArgs e)
         {
             mIdTemplate = mTemplateBox.Text;
@@ -141,10 +164,12 @@ namespace Obi.Dialogs
                     mDefaultDir = mDirectoryBox.Text;                
             }
             
-            mInputDevice = comboInputDevice.SelectedItem.ToString();
-            mInputDeviceIndex = comboInputDevice.SelectedIndex;
-            mOutputDevice = comboOutputDevice.SelectedItem.ToString();
-            mOutputDeviceIndex = comboOutputDevice.SelectedIndex;
+            //mOutputDevice = comboOutputDevice.SelectedItem.ToString();
+            //mOutputDeviceIndex = comboOutputDevice.SelectedIndex;
+            //mInputDevice = comboInputDevice.SelectedItem.ToString();
+            //mInputDeviceIndex = comboInputDevice.SelectedIndex;
+            mInputDevice = (InputDevice)comboInputDevice.SelectedItem;
+            mOutputDevice = (OutputDevice)comboOutputDevice.SelectedItem;
             if (comboChannels.SelectedItem.ToString() == "Mono")
                 mAudioChannels = 1;
             else
@@ -155,13 +180,18 @@ namespace Obi.Dialogs
 
         private void Preferences_Load(object sender, EventArgs e)
         {
-            m_InDevicesList = ob_AudioRecorder.GetInputDevices();
-            m_OutDevicesList = ob_AudioPlayer.GetOutputDevices();
-            comboInputDevice.DataSource = m_InDevicesList;
-            comboInputDevice.SelectedIndex = m_InDevicesList.IndexOf(mInputDevice);
-            comboOutputDevice.DataSource = m_OutDevicesList;
-            comboOutputDevice.SelectedIndex = m_OutDevicesList.IndexOf(mOutputDevice);
+            // m_InDevicesList = ob_AudioRecorder.GetInputDevices();
+            // m_OutDevicesList = ob_AudioPlayer.GetOutputDevices();
+            // comboInputDevice.DataSource = m_InDevicesList;
+            // comboInputDevice.SelectedIndex = m_InDevicesList.IndexOf(mInputDevice);
+            // comboOutputDevice.DataSource = m_OutDevicesList;
+            // comboOutputDevice.SelectedIndex = m_OutDevicesList.IndexOf(mOutputDevice);
+            comboInputDevice.DataSource = AudioRecorder.Instance.InputDevices;
+            comboInputDevice.SelectedIndex = AudioRecorder.Instance.InputDevices.IndexOf(mInputDevice);
+            comboOutputDevice.DataSource = AudioPlayer.Instance.OutputDevices;
+            comboOutputDevice.SelectedIndex = AudioPlayer.Instance.OutputDevices.IndexOf(mOutputDevice);
             ArrayList mSample = new ArrayList();
+            // TODO: replace this with a list obtained from the player or the device
             mSample.Add("11025");
             mSample.Add("22050");
             mSample.Add("44100");

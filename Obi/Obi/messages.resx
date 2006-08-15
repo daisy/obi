@@ -343,4 +343,8 @@ Do you want to replace the project contained in this file?</value>
     <value>Listening...</value>
     <comment>Record dialog is listening</comment>
   </data>
+  <data name="playing_on_device" xml:space="preserve">
+    <value>Playing on device {0}</value>
+    <comment>Playing on an output device (JQ)</comment>
+  </data>
 </root>

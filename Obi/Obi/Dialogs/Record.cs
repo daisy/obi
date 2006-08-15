@@ -65,9 +65,9 @@ namespace Obi.Dialogs
         private void Record_Load(object sender, EventArgs e)
         {
             // to be replaced by the actual device in use.
-            ArrayList arDevices = new ArrayList();
-            arDevices = Audio.AudioRecorder.Instance.GetInputDevices();
-            Audio.AudioRecorder.Instance.InitDirectSound(1);
+            //ArrayList arDevices = new ArrayList();
+            //arDevices = Audio.AudioRecorder.Instance.GetInputDevices();
+            //Audio.AudioRecorder.Instance.InitDirectSound(1);
             
             if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Idle))
             {

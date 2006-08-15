@@ -97,7 +97,7 @@ namespace Obi.Dialogs
             this.mBrowseButton.TabIndex = 4;
             this.mBrowseButton.Text = "&Browse";
             this.mBrowseButton.UseVisualStyleBackColor = true;
-            this.mBrowseButton.Click += new System.EventHandler(this.button1_Click);
+            this.mBrowseButton.Click += new System.EventHandler(this.mBrowseButton_Click);
             // 
             // mOKButton
             // 

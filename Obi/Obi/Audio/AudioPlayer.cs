@@ -3,9 +3,9 @@ using System.IO;
 using System.Windows.Forms;
 using System.Threading;
 using System.Collections;
+using System.Collections.Generic;
 using Microsoft.DirectX;
 using Microsoft.DirectX.DirectSound;
-using Microsoft.DirectX.DirectInput;
 
 namespace Obi.Audio
 {
@@ -28,7 +28,8 @@ namespace Obi.Audio
 		// declare member variables
 		private Assets.AudioMediaAsset m_Asset ;
 		private SecondaryBuffer SoundBuffer;
-		private Microsoft.DirectX.DirectSound.Device SndDevice = null;
+        private OutputDevice mDevice;
+		// private Microsoft.DirectX.DirectSound.Device SndDevice = null;
 		private BufferDescription BufferDesc = null;	
 		private int m_BufferCheck ;
 		private int m_SizeBuffer ;
@@ -52,10 +53,7 @@ namespace Obi.Audio
 
 		public static AudioPlayer Instance
 		{
-			get
-			{
-				return mInstance;
-			}
+			get { return mInstance; }
 		}
 
 		// JQ changed constructor to be private (singleton)
@@ -101,7 +99,7 @@ namespace Obi.Audio
 		}
 		
 		// Output  device object
-		public Microsoft.DirectX.DirectSound.Device OutputDevice
+		/*public Microsoft.DirectX.DirectSound.Device OutputDevice
 		{
 			get
 			{
@@ -111,7 +109,12 @@ namespace Obi.Audio
 			{
 				SndDevice = value ;
 			}
-		}
+		}*/
+
+        public OutputDevice OutputDevice
+        {
+            get { return mDevice; }
+        }
 
 		public Assets.AudioMediaAsset CurrentAsset
 		{
@@ -176,7 +179,7 @@ namespace Obi.Audio
 			}
 		}
 
-		public ArrayList GetOutputDevices()
+		/*public ArrayList GetOutputDevices()
 		{
 			CollectOutputDevices() ;
 			ArrayList OutputDevices = new ArrayList();
@@ -185,29 +188,71 @@ namespace Obi.Audio
 				OutputDevices.Add(devList[i].Description);
 			}
 			return OutputDevices ;
-		}
+		}*/
 
-		public void SetDevice (Control FormHandle, int Index)
-		{
-			Microsoft.DirectX.DirectSound.Device dSound = new  Microsoft.DirectX.DirectSound.Device(devList[Index].DriverGuid);
-			dSound.SetCooperativeLevel(FormHandle, CooperativeLevel.Priority);
-			SndDevice  = dSound ;
-		}
+        private List<OutputDevice> mOutputDevicesList = null;
+
+        public List<OutputDevice> OutputDevices
+        {
+            get
+            {
+                if (mOutputDevicesList == null)
+                {
+                    DevicesCollection devices = new DevicesCollection();
+                    mOutputDevicesList = new List<OutputDevice>(devices.Count);
+                    foreach (DeviceInformation info in devices)
+                    {
+                        mOutputDevicesList.Add(new OutputDevice(info.Description, new Device(info.DriverGuid)));
+                    }
+                }
+                return mOutputDevicesList;
+            }
+        }
+
+            /*public void SetDevice (Control FormHandle, int Index)
+            {
+                Microsoft.DirectX.DirectSound.Device dSound = new  Microsoft.DirectX.DirectSound.Device(devList[Index].DriverGuid);
+                dSound.SetCooperativeLevel(FormHandle, CooperativeLevel.Priority);
+                SndDevice  = dSound ;
+            }*/
+
+        /// <summary>
+        /// Set the device to be used by the player.
+        /// </summary>
+        public void SetDevice(Control handle, OutputDevice device)
+        {
+            mDevice = device;
+            mDevice.Device.SetCooperativeLevel(handle, CooperativeLevel.Priority);
+        }
 
 		/// <summary>
-		/// Find the device that matches this name; if it could not be found, default to 0.
+		/// Set the device that matches this name; if it could not be found, default to the first one.
+        /// Throw an exception if no devices were found.
 		/// </summary>
-		public void SetDevice (Control FormHandle, string name)
+		public void SetDevice(Control FormHandle, string name)
 		{
-			SetDevice(FormHandle, 0);
-		}
+            List<OutputDevice> devices = OutputDevices;
+            OutputDevice found = devices.Find(delegate(OutputDevice d) { return d.Name == name; });
+            if (found != null)
+            {
+                SetDevice(FormHandle, found);
+            }
+            else if (devices.Count > 0)
+            {
+                SetDevice(FormHandle, devices[0]);
+            }
+            else
+            {
+                throw new Exception("No output device available.");
+            }
+        }
 
-		DevicesCollection devList ;
+		/*DevicesCollection devList ;
 		DevicesCollection  CollectOutputDevices()
 		{
 			devList = new DevicesCollection();
 			return devList  ;
-		}
+		}*/
 
 		public void Play(Assets.AudioMediaAsset asset )
 		{
@@ -281,7 +326,8 @@ namespace Obi.Audio
                 BufferDesc.GlobalFocus = true;
 
                 // initialising secondary buffer
-                SoundBuffer = new SecondaryBuffer(BufferDesc, SndDevice);
+                // SoundBuffer = new SecondaryBuffer(BufferDesc, SndDevice);
+                SoundBuffer = new SecondaryBuffer(BufferDesc, mDevice.Device);
 
                 // Compensate played length due to the skip of frames during compression
                 if (m_Step != 1)

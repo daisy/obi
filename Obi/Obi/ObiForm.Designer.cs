@@ -94,7 +94,7 @@ namespace Obi
             this.mHelpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutObiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.mToolStripStatutsLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectPanel = new Obi.UserControls.ProjectPanel();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -224,7 +224,7 @@ namespace Obi
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.mExitToolStripMenuItem_Click);
             // 
             // mEditToolStripMenuItem
             // 
@@ -625,12 +625,12 @@ namespace Obi
             this.aboutObiToolStripMenuItem.Name = "aboutObiToolStripMenuItem";
             this.aboutObiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutObiToolStripMenuItem.Text = "&About Obi";
-            this.aboutObiToolStripMenuItem.Click += new System.EventHandler(this.aboutObiToolStripMenuItem_Click);
+            this.aboutObiToolStripMenuItem.Click += new System.EventHandler(this.mAboutObiToolStripMenuItem_Click);
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mToolStripStatutsLabel});
+            this.mToolStripStatusLabel});
             this.statusStrip1.Location = new System.Drawing.Point(0, 480);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
@@ -640,9 +640,9 @@ namespace Obi
             // 
             // mToolStripStatutsLabel
             // 
-            this.mToolStripStatutsLabel.BackColor = System.Drawing.Color.Transparent;
-            this.mToolStripStatutsLabel.Name = "mToolStripStatutsLabel";
-            this.mToolStripStatutsLabel.Size = new System.Drawing.Size(0, 17);
+            this.mToolStripStatusLabel.BackColor = System.Drawing.Color.Transparent;
+            this.mToolStripStatusLabel.Name = "mToolStripStatutsLabel";
+            this.mToolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // mProjectPanel
             // 
@@ -687,7 +687,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mEditToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel mToolStripStatutsLabel;
+        private System.Windows.Forms.ToolStripStatusLabel mToolStripStatusLabel;
         private System.Windows.Forms.ToolStripMenuItem mNewProjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mOpenProjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mSaveProjectToolStripMenuItem;
