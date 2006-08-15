@@ -40,14 +40,14 @@ namespace Obi.UserControls
                     //these are all events related to moving nodes up and down
                     mTOCPanel.RequestToMoveSectionNodeUp -= new Events.Node.RequestToMoveSectionNodeUpHandler(mProject.MoveSectionNodeUpRequested);
                     mTOCPanel.RequestToMoveSectionNodeDown -= new Events.Node.RequestToMoveSectionNodeDownHandler(mProject.MoveSectionNodeDownRequested);
-                    mProject.MovedNode -= new Events.Node.MovedNodeHandler(mTOCPanel.SyncMovedSectionNode);
-                    mProject.MovedNode -= new Events.Node.MovedNodeHandler(mStripManagerPanel.SyncMovedNode);
+                    mProject.MovedSectionNode -= new Events.Node.MovedNodeHandler(mTOCPanel.SyncMovedSectionNode);
+                    mProject.MovedSectionNode -= new Events.Node.MovedNodeHandler(mStripManagerPanel.SyncMovedNode);
                     mProject.UndidMoveNode -= new Events.Node.MovedNodeHandler(mTOCPanel.SyncMovedSectionNode);
                     mProject.UndidMoveNode -= new Events.Node.MovedNodeHandler(mStripManagerPanel.SyncMovedNode);
                     mStripManagerPanel.RequestToMoveSectionNodeDownLinear -= new Events.Node.RequestToMoveSectionNodeDownLinearHandler(mProject.MoveSectionNodeDownLinearRequested);
                     mStripManagerPanel.RequestToMoveSectionNodeUpLinear -= new Events.Node.RequestToMoveSectionNodeUpLinearHandler(mProject.MoveSectionNodeUpLinearRequested);
-                    mProject.ShallowSwappedNodes -= new Events.Node.ShallowSwappedSectionNodesHandler(mTOCPanel.SyncShallowSwapNodes);
-                    mProject.ShallowSwappedNodes -= new Events.Node.ShallowSwappedSectionNodesHandler(mStripManagerPanel.SyncShallowSwapNodes);
+                    mProject.ShallowSwappedSectionNodes -= new Events.Node.ShallowSwappedSectionNodesHandler(mTOCPanel.SyncShallowSwapNodes);
+                    mProject.ShallowSwappedSectionNodes -= new Events.Node.ShallowSwappedSectionNodesHandler(mStripManagerPanel.SyncShallowSwapNodes);
 
                     mTOCPanel.RequestToIncreaseSectionNodeLevel -= new Events.Node.RequestToIncreaseSectionNodeLevelHandler(mProject.IncreaseSectionNodeLevelRequested);
                     //marisa: the former "mProject.IncreasedSectionLevel" event is now handled by MovedNode
@@ -116,14 +116,14 @@ namespace Obi.UserControls
                     //these all relate to moving nodes up and down
                     mTOCPanel.RequestToMoveSectionNodeUp += new Events.Node.RequestToMoveSectionNodeUpHandler(value.MoveSectionNodeUpRequested);
                     mTOCPanel.RequestToMoveSectionNodeDown += new Events.Node.RequestToMoveSectionNodeDownHandler(value.MoveSectionNodeDownRequested);
-                    value.MovedNode += new Events.Node.MovedNodeHandler(mTOCPanel.SyncMovedSectionNode);
-                    value.MovedNode += new Events.Node.MovedNodeHandler(mStripManagerPanel.SyncMovedNode);
+                    value.MovedSectionNode += new Events.Node.MovedNodeHandler(mTOCPanel.SyncMovedSectionNode);
+                    value.MovedSectionNode += new Events.Node.MovedNodeHandler(mStripManagerPanel.SyncMovedNode);
                     value.UndidMoveNode += new Events.Node.MovedNodeHandler(mTOCPanel.SyncMovedSectionNode);
                     value.UndidMoveNode += new Events.Node.MovedNodeHandler(mStripManagerPanel.SyncMovedNode);
                     mStripManagerPanel.RequestToMoveSectionNodeDownLinear += new Events.Node.RequestToMoveSectionNodeDownLinearHandler(value.MoveSectionNodeDownLinearRequested);
                     mStripManagerPanel.RequestToMoveSectionNodeUpLinear += new Events.Node.RequestToMoveSectionNodeUpLinearHandler(value.MoveSectionNodeUpLinearRequested);
-                    value.ShallowSwappedNodes += new Events.Node.ShallowSwappedSectionNodesHandler(mTOCPanel.SyncShallowSwapNodes);
-                    value.ShallowSwappedNodes += new Events.Node.ShallowSwappedSectionNodesHandler(mStripManagerPanel.SyncShallowSwapNodes);
+                    value.ShallowSwappedSectionNodes += new Events.Node.ShallowSwappedSectionNodesHandler(mTOCPanel.SyncShallowSwapNodes);
+                    value.ShallowSwappedSectionNodes += new Events.Node.ShallowSwappedSectionNodesHandler(mStripManagerPanel.SyncShallowSwapNodes);
 
                     mTOCPanel.RequestToIncreaseSectionNodeLevel +=
                         new Events.Node.RequestToIncreaseSectionNodeLevelHandler(value.IncreaseSectionNodeLevelRequested);

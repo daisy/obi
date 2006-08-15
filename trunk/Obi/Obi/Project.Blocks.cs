@@ -233,11 +233,19 @@ namespace Obi
         /// <summary>
         /// Delete a phrase node from the tree and remove its asset from the asset manager.
         /// </summary>
-        public void DeletePhraseNodeAndAsset(CoreNode node)
+        public Commands.Command DeletePhraseNodeAndAsset(CoreNode node)
         {
             Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);
             mAssManager.RemoveAsset(asset);
             DeletePhraseNode(node);
+
+            //md 20060814 added this command here so we have a record of it
+            //for shallow-delete's undo
+            //but note that it hasn't gone to the command queue; that is only done
+            //during DeletePhraseNodeRequested
+            int index = ((CoreNode)node.getParent()).indexOf(node);
+            Commands.Strips.DeletePhrase command = new Commands.Strips.DeletePhrase(this, node, (CoreNode)node.getParent(), index);
+            return command;
         }
 
         /// <summary>

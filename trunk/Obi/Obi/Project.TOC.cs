@@ -12,7 +12,7 @@ namespace Obi
     {
         public event Events.Node.AddedSectionNodeHandler AddedSectionNode;      // a section node was added to the TOC
         public event Events.Node.RenamedNodeHandler RenamedNode;                // a node was renamed in the presentation
-        public event Events.Node.MovedNodeHandler MovedNode;                    // a node was moved in the presentation
+        public event Events.Node.MovedNodeHandler MovedSectionNode;                    // a node was moved in the presentation
         public event Events.Node.DecreasedSectionNodeLevelHandler DecreasedSectionNodeLevel;  // a node's level was decreased in the presentation
         public event Events.Node.MovedNodeHandler UndidMoveNode;                // a node was restored to its previous location
         public event Events.Node.DeletedNodeHandler DeletedNode;                // a node was deleted from the presentation
@@ -25,7 +25,7 @@ namespace Obi
         public event Events.Node.UndidPasteSectionNodeHandler UndidPasteSectionNode;
 
         //md: shallow-swapped event for move up/down linear
-        public event Events.Node.ShallowSwappedSectionNodesHandler ShallowSwappedNodes;
+        public event Events.Node.ShallowSwappedSectionNodesHandler ShallowSwappedSectionNodes;
 
         private CoreNode mClipboard;        //clipboard for cut-copy-paste
 
@@ -91,7 +91,7 @@ namespace Obi
             }
             else
             {
-                parent.insert(sibling, parent.indexOf(contextNode) + 1);
+                parent.insertAfter(sibling, contextNode);
             }
             Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(sibling);
             getPresentation().getRootNode().acceptDepthFirst(visitor);
@@ -281,7 +281,7 @@ namespace Obi
 
                 int sectionIdx = GetSectionNodeIndex(node);
 
-                MovedNode(this, new Events.Node.MovedNodeEventArgs
+                MovedSectionNode(this, new Events.Node.MovedNodeEventArgs
                     (this, node, newParent, newParent.indexOf(node), visitor.Position, sectionIdx));
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -300,7 +300,7 @@ namespace Obi
             CoreNode newParent = null;
             int newIndex = 0;
 
-            int currentIndex = ((CoreNode)node.getParent()).indexOf(node);
+            int currentIndex = GetSectionNodeIndex(node);// ((CoreNode)node.getParent()).indexOf(node);
 
             //if it is the first node in its list
             //change its level and move it to be the previous sibling of its parent
@@ -322,6 +322,7 @@ namespace Obi
                 newIndex = currentIndex - 1;
             }
 
+           
             if (newParent != null)
             {
                 CoreNode movedNode = (CoreNode)node.detach();
@@ -411,7 +412,7 @@ namespace Obi
 
                 int sectionIdx = GetSectionNodeIndex(node);
 
-                MovedNode(this, new Events.Node.MovedNodeEventArgs
+                MovedSectionNode(this, new Events.Node.MovedNodeEventArgs
                     (this, node, newParent, newParent.indexOf(node), visitor.Position, sectionIdx));
 
                 mUnsaved = true;
@@ -503,7 +504,7 @@ namespace Obi
                 int sectionIdx = GetSectionNodeIndex(node);
 
                 //IncreasedNodeLevel(this, new Events.Node.NodeEventArgs(origin, node));
-                MovedNode(this, new Events.Node.MovedNodeEventArgs
+                MovedSectionNode(this, new Events.Node.MovedNodeEventArgs
                     (origin, node, newParent, newParent.indexOf(node), visitor.Position, sectionIdx));
 
                 mUnsaved = true;
@@ -710,25 +711,27 @@ namespace Obi
             node.detach();
             parent.insert(node, index);
 
-            int sectionIdx = GetSectionNodeIndex(node);
+            if (GetNodeType(node) == NodeType.Section)
+            {
+                int sectionIdx = GetSectionNodeIndex(node);
+                MovedSectionNode(this, new Events.Node.MovedNodeEventArgs(this, node, parent, index, position, sectionIdx));
+            }
 
-            MovedNode(this, new Events.Node.MovedNodeEventArgs(this, node, parent, index, position, sectionIdx));
- 
             Visitors.SectionNodePosition visitor = null;
 
             //reattach the children
             for (int i = 0; i < nonOriginalChildren.Count; i++)
             {
-                if (GetNodeType((CoreNode)nonOriginalChildren[i]) == NodeType.Section)
-                {
-                    parent.appendChild((CoreNode)nonOriginalChildren[i]);
+                parent.appendChild((CoreNode)nonOriginalChildren[i]);
 
+                if (GetNodeType((CoreNode)nonOriginalChildren[i]) == NodeType.Section)
+                {                    
                     visitor = new Visitors.SectionNodePosition((CoreNode)nonOriginalChildren[i]);
                     getPresentation().getRootNode().acceptDepthFirst(visitor);
 
-                    int childSectionIdx = GetSectionNodeIndex(node);
+                    int childSectionIdx = GetSectionNodeIndex((CoreNode)nonOriginalChildren[i]);
 
-                    MovedNode(this, new Events.Node.MovedNodeEventArgs
+                    MovedSectionNode(this, new Events.Node.MovedNodeEventArgs
                         (this, (CoreNode)nonOriginalChildren[i], parent,
                         parent.getChildCount() - 1, visitor.Position, childSectionIdx));
                 }
@@ -996,6 +999,12 @@ namespace Obi
                     Commands.Command cmdDecrease = this.DecreaseSectionNodeLevel(this, node.getChild(i));
                     if (command != null) command.addSubCommand(cmdDecrease);
                 }
+                //phrase nodes should be removed
+                else if (Project.GetNodeType(node.getChild(i)) == NodeType.Phrase)
+                {
+                    Commands.Command cmdDeletePhrase = DeletePhraseNodeAndAsset(node.getChild(i));
+                    if (command != null) command.addSubCommand(cmdDeletePhrase);
+                }
             }
 
             Commands.Command cmdRemove = this.RemoveNode(this, node);
@@ -1021,7 +1030,7 @@ namespace Obi
 
             if (nodeToSwapWith != null)
             {
-             //   System.Windows.Forms.MessageBox.Show(string.Format("Should be swapped with {0}", GetTextMedia(nodeToSwapWith).getText()));
+                //System.Windows.Forms.MessageBox.Show(string.Format("Should be swapped with {0}", GetTextMedia(nodeToSwapWith).getText()));
             
                 if (origin != this)
                 {
@@ -1042,7 +1051,7 @@ namespace Obi
                 ShallowSwapNodes(node, nodeToSwapWith);
 
                  //raise the event that the action was completed
-                ShallowSwappedNodes(this, new Obi.Events.Node.ShallowSwappedSectionNodesEventArgs(this, node, nodeToSwapWith, nodePos, swappedNodePos, nodeSectionIdx, swapSectionIdx));
+                ShallowSwappedSectionNodes(this, new Obi.Events.Node.ShallowSwappedSectionNodesEventArgs(this, node, nodeToSwapWith, nodePos, swappedNodePos, nodeSectionIdx, swapSectionIdx));
            
             }
 
@@ -1069,7 +1078,7 @@ namespace Obi
 
             if (nodeToSwapWith != null)
             {
-              //  System.Windows.Forms.MessageBox.Show(string.Format("Should be swapped with {0}", GetTextMedia(nodeToSwapWith).getText()));
+             //   System.Windows.Forms.MessageBox.Show(string.Format("Should be swapped with {0}", GetTextMedia(nodeToSwapWith).getText()));
                 if (origin != this)
                 {
                     command = new Commands.TOC.MoveSectionNodeUpLinear(this, node, nodeToSwapWith);
@@ -1091,7 +1100,7 @@ namespace Obi
 
                 
                 //raise the event that the action was completed
-                ShallowSwappedNodes(this, new Obi.Events.Node.ShallowSwappedSectionNodesEventArgs
+                ShallowSwappedSectionNodes(this, new Obi.Events.Node.ShallowSwappedSectionNodesEventArgs
                     (this, node, nodeToSwapWith, nodePos, swappedNodePos, nodeSectionIdx, swapSectionIdx));
             }
             
@@ -1107,6 +1116,7 @@ namespace Obi
         /// </summary>
         /// <param name="firstNode"></param>
         /// <param name="secondNode"></param>
+        /// <param name="dir">1: down; -1: up</param>
         /// <remarks>this could be cleaner.  one thing that would help is better shallow-operation support in the API.</remarks>
         //md 20060813
         internal void ShallowSwapNodes(CoreNode firstNode, CoreNode secondNode)
@@ -1121,7 +1131,7 @@ namespace Obi
             int secondNodeIndex = secondNodeParent.indexOf(secondNode);
 
             //remove all the subsections for the first node
-            for (int i = 0; i < firstNode.getChildCount(); i++)
+            for (int i = firstNode.getChildCount() - 1; i >=0; i--)
             {
                 if (GetNodeType(firstNode.getChild(i)) == NodeType.Section)
                 {
@@ -1137,7 +1147,7 @@ namespace Obi
             }
 
             //remove all the subsections for the second node
-            for (int i = 0; i < secondNode.getChildCount(); i++)
+            for (int i = secondNode.getChildCount() - 1; i >= 0; i--)
             {
                 if (GetNodeType(secondNode.getChild(i)) == NodeType.Section)
                 {
@@ -1149,6 +1159,10 @@ namespace Obi
                     }
                 }
             }
+
+            //reverse the arrays (they were collected backwards)
+            firstNodeSubSections.Reverse();
+            secondNodeSubSections.Reverse();
 
             //detach the nodes
             firstNode.detach();
@@ -1179,6 +1193,9 @@ namespace Obi
                     secondNode.appendChild((CoreNode)firstNodeSubSections[i]);
                 }
             }
+
+        
+
 
             if (firstNodeParent != secondNode)
             {
@@ -1218,7 +1235,7 @@ namespace Obi
             ShallowSwapNodes(firstNode, secondNode);
 
             //raise the event that the action was completed
-            ShallowSwappedNodes(this, new Obi.Events.Node.ShallowSwappedSectionNodesEventArgs(this, firstNode, secondNode, node1Pos, node2Pos, nodeSectionIdx, swapSectionIdx));
+            ShallowSwappedSectionNodes(this, new Obi.Events.Node.ShallowSwappedSectionNodesEventArgs(this, firstNode, secondNode, node1Pos, node2Pos, nodeSectionIdx, swapSectionIdx));
             
         }
 
