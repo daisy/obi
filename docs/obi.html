@@ -1,10 +1,11 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
   <head>
     <title>Obi: the Urakawa Project DAISY/NISO Digital Talking Book Production
       Tool</title>
+    <meta http-equiv="Content-Type" content="text/xml+xhtml;charset=utf-8"/>
     <style type="text/css">
       body { color: black; background-color: white; font-family: serif;
         margin: 2em; text-align: justify }
@@ -12,6 +13,7 @@
         #00bff3; }
       h1, h2 { text-align: center; }
       img { border: 0px }
+      abbr { font-weight: bold; }
       p.in { text-indent: 2em; }
       p.lg { font-size: smaller; font-style: italic }
       p.download { background-color: #00bff3; color: white; padding: 1em }
@@ -47,9 +49,11 @@
     <a href="#release">Release notes</a>
     &bull;
     <a href="#roadmap">Roadmap</a>
+    &bull;
+    <a href="#credits">Credits</a>
     </p>
 
-    <p><abbr title="Obi Backwards is Ibo">Obi</abbr>
+    <p><abbr title="Obi Backwards is Ibo; it is also 帯 in Japanese">Obi</abbr>
     is a DAISY/NISO Digital Talking Book production tool. Obi was created
     to demonstrate the capabilities of the Urakawa toolkit as well as to
     provide an easy to use, accessible and internationalized DAISY production
@@ -57,6 +61,9 @@
     its source code is available for anyone to run, modify and redistribute. 
     Obi is released under the [insert actual licence here.]
     </p>
+    <p class="in">The intended audience of Obi is the individual DAISY reader
+    who wants to create her own DAISY contents. This includes, but is not
+    restricted to, print-disabled users.</p>
 
     <h3 id="features">Features</h3>
     <p>Obi is by design a simple tool with a small feature set:</p>
@@ -86,8 +93,8 @@
     navigation units in the book. As an atomic element, a phrase is represented
     by a <strong>block</strong> in the Obi workspace.
     </p>
-    <p class="in">DAISY books have a structure which is called ``table of
-    contents'' (or <strong>TOC</strong>) in Obi. The TOC is hierarchical and
+    <p class="in">DAISY books have a structure which is called &ldquo;table of
+    contents&rdquo; (or <strong>TOC</strong>) in Obi. The TOC is hierarchical and
     is represented as a tree view on the left side of the workspace. A node
     in this tree is a <strong>section</strong>. New sections and subsections
     can be added and moved around in the tree view.</p>
@@ -97,6 +104,12 @@
     side of the workspace. Blocks in strips can be moved, copied, split
     and merged. New audio content is added either by importing existing
     audio files, or recording new audio directly from Obi.</p>
+    <p class="in">Obi uses its own format to store projects (the format is
+    XML based and called <abbr title="XML for Urakawa">XUK</abbr>.) This means
+    that Obi projects cannot be opened directly in a DAISY player, and
+    conversely, Obi cannot open a random DAISY book for editing. This problem
+    will be addressed by <a href="http://daisymfc.sf.net/">DMFC</a>, which will
+    allow conversion to and from XUK, DAISY 2 and DAISY 3.</p>
     <p class="in">A complete manual is distributed with Obi and is accessible
     in the application through the Help menu, or by pressing F1 at any
     time.</p>
@@ -119,8 +132,9 @@
     <p>You can also download the source code for Obi and the Urakawa toolkit
     (which is used extensively by Obi) at the Urakawa project <a
       href="http://sourceforge.net/projects/urakawa">project page on
-      Sourceforge</a> by using Subversion. More stable versions of Obi will
-    have a source tarball distribution as well.</p>
+      Sourceforge</a> by using Subversion. Both are written entirely in C#.
+    More stable versions of Obi will have a source tarball distribution as
+    well.</p>
 
     <h3 id="release">Release notes</h3>
     <p>Known problems, bugs and features (or lack thereof) in version 0.5
@@ -130,19 +144,48 @@
       will use arrow keys instead.</li>
       <li>Some shortcuts are not working in some situation, or are wrong. Be
       careful with the delete key <code>:(</code></li>
-      <li>No export to DAISY yet. Obi uses the Urakawa toolkit XUK format (XML
-      for Urakawa) which can then be transformed to DAISY 2 or 3. Obi 1.0 will
-      feature native DAISY 3 export.</li>
-      <li>No QA player. Only single audio blocks can be played back.</li>
-      <li>No transport bar either yet.</li>
+      <li>Only single audio blocks can be played back; no transport bar.</li>
+      <li>No display of waveforms for audio blocks. The abstract representation
+      of sound is actually a feature, as it allows for a simpler and more
+      accessible interface. However, waveform audio editing (<em>e.g.</em>,
+      selecting a chunk of audio with a mouse) is planned for version 1.0 of
+      Obi, but will be an optional feature.</li>
       <li>No VU meter for playing and recording. This will be added in version
       1.0, along with the ability to change the recording volume.</li>
       <li>The application itself is English-only, but there is of course no
       restriction to the language of the audio. Unicode text is OK, but
       there is no right-to-left support yet.</li>
+      <li>Accessibility support is still minimal. Users of screen-readers,
+      braille displays and alternative input devices are welcome to send their
+      feedback.</li>
+      <li>The Obi manual is currently in XHTML format; although we are trying
+      to make it as accessible as possible, it is still text-only. In the
+      future, the manual will be in DAISY format (and editable by Obi, of
+      course.) It will also be more complete.</li>
     </ul>
-    <p>Missing features listed here are currently planned for inclusion by
-    version 1.0, unless otherwise noted.</p>
+    <p>Version 1.0 of Obi will include the following features:</p>
+    <ul>
+      <li>More DAISY metadata: currently there is only a very simple
+      and incomplete subset (see the Edit metadata menu in Obi.)</li>
+      <li>Indenting strips to reflect the structure in the strips view,
+      and collapsing strips to hide their contents in order to clear up the
+      strip view.</li>
+      <li>Search function: all text contents (section labels, annotations of
+      audio blocks, metadata) will be searchable.</li>
+      <li>Autonumbering of pages.</li>
+      <li>Dropping page markers on the fly while recording.</li>
+      <li>QA playing: more support for audio playing inside Obi, and
+      interfacing with <a href="http://amis.sf.net/">AMIS</a> for playback
+      of books.</li>
+      <li>Toolbar with buttons for most actions.</li>
+      <li>Native DAISY 3 export.</li>
+      <li>Support for invalid assets: when reading a project, if an asset file
+      cannot be found, the project cannot be open. A better behavior is to
+      create an invalid block, that has limited operations, so that the user
+      can set a correct asset again and carry on with editing the book.</li>
+      <li>Opening large projects should bring up a progress bar and hide the
+      project panel until it is ready to be shown.</li>
+    </ul>
 
     <h3 id="roadmap">Roadmap</h3>
     <p>The next three releases of Obi are: a more stable alpha version (0.6) in
@@ -150,8 +193,22 @@
     early 2007. Version 1.0 should be available in other languages than
     English. Future versions will include more media support (text and
     images), DAISY features (skippable and escapable structures, resources,
-    etc.) and internationalization features (right-to-left language support,
-    more translations.)</p>
+    etc.) and better internationalization (right-to-left language support,
+    more translations.) We encourage the suggestion of additional features
+    for post-1.0 versions of Obi, but we intend to keep it as simple as
+    possible.</p>
+    <p class="in">Although the Urakawa toolkit is designed to be portable, Obi
+    is unfortunately Windows-only at the moment and will stay so for the
+    foreseeable future. We hope that Obi will inspire the development of
+    other DAISY production tools for other platforms, and that the Urakawa
+    toolkit will make such development easier.</p>
+
+    <h3 id="credits">Credits</h3>
+    <p>The following people are directly participating in the development of
+    Obi: Marisa DeMeglio, Markus Gylling, Dipendra Manocha, Julien Quint,
+    Suman Sharma and Avneesh Singh; with support from the members of the
+    Urakawa Project, the DAISY Consortium, NRCD, CWI and INRIA. Project hosting
+    by Sourceforge.</p>
 
   </body>
 </html>
