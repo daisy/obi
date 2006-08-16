@@ -20,6 +20,7 @@ namespace Obi.UserControls
         public event Events.Node.RequestToMoveSectionNodeUpLinearHandler RequestToMoveSectionNodeUpLinear;
 
         public event Events.Node.RequestToCutPhraseNodeHandler RequestToCutPhraseNode;
+        public event Events.Node.RequestToCopyPhraseNodeHandler RequestToCopyPhraseNode;
         public event Events.Node.RequestToPastePhraseNodeHandler RequestToPastePhraseNode;
 
         /// <summary>
@@ -34,6 +35,7 @@ namespace Obi.UserControls
             bool isAudioBlockLast = isAudioBlockSelected &&
                 Project.GetPhraseIndex(mSelectedPhrase) == Project.GetPhrasesCount(mSelectedSection) - 1;
             bool isAudioBlockFirst = isAudioBlockSelected && Project.GetPhraseIndex(mSelectedPhrase) == 0;
+            bool isBlockClipBoardSet = mProjectPanel.Project.BlockClipBoard != null;
 
             mAddStripToolStripMenuItem.Enabled = true;
             mRenameStripToolStripMenuItem.Enabled = isStripSelected;
@@ -55,7 +57,9 @@ namespace Obi.UserControls
             mPlayAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
             mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;
 
-            mCutBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mCutAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mCopyAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mPasteAudioBlockToolStripMenuItem.Enabled = isBlockClipBoardSet && isStripSelected;
         }
 
         /// <summary>
@@ -271,10 +275,23 @@ namespace Obi.UserControls
         }
 
         /// <summary>
+        /// Copy the selected blockand store it in the block clip board.
+        /// Actually nothing changes, but a command is still issued to undo (and retrieve the last value in the clipboard.)
+        /// </summary>
+        // JQ 20060816
+        internal void mCopyAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mSelectedPhrase != null)
+            {
+                RequestToCopyPhraseNode(this, new Events.Node.NodeEventArgs(sender, mSelectedPhrase));
+            }
+        }
+
+        /// <summary>
         /// Paste the audio block in the clip board.
         /// </summary>
         // JQ 20060815
-        private void mPasteAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void mPasteAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mProjectPanel.Project.BlockClipBoard != null && mSelectedSection != null)
             {

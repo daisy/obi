@@ -80,6 +80,7 @@
     <Compile Include="Commands\CommandManager.cs" />
     <Compile Include="Commands\ConsCommand.cs" />
     <Compile Include="Commands\Strips\AddPhrase.cs" />
+    <Compile Include="Commands\Strips\CopyPhrase.cs" />
     <Compile Include="Commands\Strips\MergePhrases.cs" />
     <Compile Include="Commands\Strips\DeletePhrase.cs" />
     <Compile Include="Commands\Strips\MovePhrase.cs" />

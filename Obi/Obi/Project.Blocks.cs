@@ -33,10 +33,24 @@ namespace Obi
                 GetPhraseIndex(e.Node));
             mBlockClipBoard = e.Node;
             DeletePhraseNodeAndAsset(e.Node);
-            BlockClipBoard = e.Node;
+            // BlockClipBoard = e.Node;
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+
+        /// <summary>
+        /// Copy a phrase node: simply store it in the clipboard (paste will do the actual copying.)
+        /// Issue a command.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        internal void CopyPhraseNode(object sender, Events.Node.NodeEventArgs e)
+        {
+            Commands.Strips.CopyPhrase command = new Commands.Strips.CopyPhrase(this, e.Node);
+            mBlockClipBoard = e.Node;
+            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            // state does not change--the project itself was not modified.
         }
 
         /// <summary>
