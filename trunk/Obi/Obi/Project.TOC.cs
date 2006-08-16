@@ -1126,6 +1126,7 @@ namespace Obi
         //md 20060813
         internal void ShallowSwapNodes(CoreNode firstNode, CoreNode secondNode)
         {
+            System.Diagnostics.Trace.WriteLine(string.Format("Swapping {0} with {1}", GetTextMedia(firstNode).getText(), GetTextMedia(secondNode).getText()));
             ArrayList firstNodeSubSections = new ArrayList();
             ArrayList secondNodeSubSections = new ArrayList();
 
@@ -1135,32 +1136,38 @@ namespace Obi
             int firstNodeIndex = firstNodeParent.indexOf(firstNode);
             int secondNodeIndex = secondNodeParent.indexOf(secondNode);
 
-            //remove all the subsections for the first node
-            for (int i = firstNode.getChildCount() - 1; i >=0; i--)
+            if (HasSubSections(firstNode))
             {
-                if (GetNodeType(firstNode.getChild(i)) == NodeType.Section)
+                //remove all the subsections for the first node
+                for (int i = firstNode.getChildCount() - 1; i >= 0; i--)
                 {
-                    firstNodeSubSections.Add(firstNode.getChild(i));
-
-                    //make sure they're not nested
-                    if (firstNode.getChild(i) != secondNode)
+                    if (GetNodeType(firstNode.getChild(i)) == NodeType.Section)
                     {
-                        firstNode.getChild(i).detach();
+                        firstNodeSubSections.Add(firstNode.getChild(i));
+
+                        //make sure they're not nested
+                        if (firstNode.getChild(i) != secondNode)
+                        {
+                            firstNode.getChild(i).detach();
+                        }
                     }
+
                 }
-                
             }
 
-            //remove all the subsections for the second node
-            for (int i = secondNode.getChildCount() - 1; i >= 0; i--)
+            if (HasSubSections(secondNode))
             {
-                if (GetNodeType(secondNode.getChild(i)) == NodeType.Section)
+                //remove all the subsections for the second node
+                for (int i = secondNode.getChildCount() - 1; i >= 0; i--)
                 {
-                    secondNodeSubSections.Add(secondNode.getChild(i));
-                    //make sure they're not nested
-                    if (secondNode.getChild(i) != firstNode)
+                    if (GetNodeType(secondNode.getChild(i)) == NodeType.Section)
                     {
-                        secondNode.getChild(i).detach();
+                        secondNodeSubSections.Add(secondNode.getChild(i));
+                        //make sure they're not nested
+                        if (secondNode.getChild(i) != firstNode)
+                        {
+                            secondNode.getChild(i).detach();
+                        }
                     }
                 }
             }
@@ -1200,27 +1207,61 @@ namespace Obi
             }
 
         
-
-
-            if (firstNodeParent != secondNode)
+            //check if the two nodes were siblings
+            if (secondNodeParent == firstNodeParent)
             {
-                if (firstNodeIndex < 0) 
-                    firstNodeIndex = 0;
-                else if (firstNodeIndex > firstNodeParent.getChildCount()) 
-                    firstNodeIndex = firstNodeParent.getChildCount();
+                //add the lower index first, because otherwise the order is wrong in the end
+                if (firstNodeIndex < secondNodeIndex)
+                {
+                    //adjust the index to make sure it's in range
+                    if (firstNodeIndex < 0) firstNodeIndex = 0;
+                    else if (firstNodeIndex > firstNodeParent.getChildCount()) firstNodeIndex = firstNodeParent.getChildCount();
 
-                firstNodeParent.insert(secondNode, firstNodeIndex);
-            }
-            if (secondNodeParent != firstNode)
+                    firstNodeParent.insert(secondNode, firstNodeIndex);
+
+                    //adjust the index to make sure it's in range
+                    if (secondNodeIndex < 0) secondNodeIndex = 0;
+                    else if (secondNodeIndex > secondNodeParent.getChildCount()) secondNodeIndex = secondNodeParent.getChildCount();
+
+                    firstNodeParent.insert(firstNode, secondNodeIndex);
+                }
+                else
+                {
+                    //adjust the index to make sure it's in range
+                    if (secondNodeIndex < 0) secondNodeIndex = 0;
+                    else if (secondNodeIndex > secondNodeParent.getChildCount()) secondNodeIndex = secondNodeParent.getChildCount();
+
+                    firstNodeParent.insert(firstNode, secondNodeIndex);
+
+                    //adjust the index to make sure it's in range
+                    if (firstNodeIndex < 0) firstNodeIndex = 0;
+                    else if (firstNodeIndex > firstNodeParent.getChildCount()) firstNodeIndex = firstNodeParent.getChildCount();
+
+                    firstNodeParent.insert(secondNode, firstNodeIndex);
+                }
+            }//end if the nodes were siblings
+            else //they were either nested or in different subtrees
             {
-                if (secondNodeIndex < 0) 
-                    secondNodeIndex = 0;
-                else if (secondNodeIndex > secondNodeParent.getChildCount()) 
-                    secondNodeIndex = secondNodeParent.getChildCount();
+                //check if the second node was nested under the first node
+                if (firstNodeParent != secondNode)
+                {
+                    //adjust the index to make sure it's in range
+                    if (firstNodeIndex < 0) firstNodeIndex = 0;
+                    else if (firstNodeIndex > firstNodeParent.getChildCount()) firstNodeIndex = firstNodeParent.getChildCount();
 
-                secondNodeParent.insert(firstNode, secondNodeIndex);
+
+                    firstNodeParent.insert(secondNode, firstNodeIndex);
+                }
+                //check if the first node was nested under the second node
+                if (secondNodeParent != firstNode)
+                {
+                    //adjust the index to make sure it's in range
+                    if (secondNodeIndex < 0) secondNodeIndex = 0;
+                    else if (secondNodeIndex > secondNodeParent.getChildCount()) secondNodeIndex = secondNodeParent.getChildCount();
+
+                    secondNodeParent.insert(firstNode, secondNodeIndex);
+                }
             }
-            
         }
 
         internal void UndoShallowSwapNodes(CoreNode firstNode, CoreNode secondNode)
