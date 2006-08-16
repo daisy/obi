@@ -131,10 +131,13 @@ namespace Obi.Assets
         {
             AudioMediaAsset ob_AudioMediaAsset = new AudioMediaAsset(this.Channels, this.BitDepth, this.SampleRate);
             ob_AudioMediaAsset.mMediaType = mMediaType;
-            ob_AudioMediaAsset.mAssManager = mAssManager;
             //if (this.Name != null) 
-            ob_AudioMediaAsset.Name = mName;
 
+            // The copy is not managed yet. It keeps the same name as the original and has no assigned manager.
+            // JQ 20060816
+            ob_AudioMediaAsset.Name = mName;
+            ob_AudioMediaAsset.mAssManager = null;
+            //ob_AudioMediaAsset.mAssManager = mAssManager;
 
             // Add clips to clip list of new asset
             //for (int i = 0; i < this.m_alClipList.Count; i++)

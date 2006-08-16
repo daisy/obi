@@ -196,18 +196,27 @@ namespace Obi.Assets
 		}
 
         /// <summary>
-        /// Copy a managed asset and add the (renamed) copy to the manager.
-        /// Throw an exception if the asset was not managed in the first place.
+        /// Copy a(n un)managed asset and add the (renamed) copy to the manager.
         /// </summary>
         /// <returns>The copy.</returns>
 		public MediaAsset CopyAsset(MediaAsset asset)
 		{
-            if (!mAssets.ContainsKey(asset.Name))
-            {
-                throw new Exception(String.Format("Asset {0} is not managed, will not copy.", asset.Name));
-            }
-            return NameAddAsset(asset.Copy());
+            MediaAsset copy = asset.Copy();
+            RenameCopy(copy);
+            AddAsset(copy);
+            return copy;
 		}
+
+        /// <summary>
+        /// Rename the copy of an asset, keeping a name as close to the original asset as possible.
+        /// </summary>
+        private void RenameCopy(MediaAsset asset)
+        {
+            while (mAssets.ContainsKey(asset.Name))
+            {
+                asset.Name += "*";
+            }
+        }
 
         /// <summary>
         /// Try to rename an asset handled by the asset manager.
@@ -236,7 +245,9 @@ namespace Obi.Assets
         private MediaAsset NameAddAsset(MediaAsset asset)
         {
             asset.Name = UniqueName();
-            asset.Manager = this;
+            AddAsset(asset);
+            return asset;
+            /*asset.Manager = this;
             mAssets.Add(asset.Name, asset);
             if (asset.Type == MediaType.Audio)
             {
@@ -246,7 +257,7 @@ namespace Obi.Assets
                     mFiles[clip.Path].Add(clip);
                 }
             }
-            return asset;
+            return asset;*/
         }
 
         /// <summary>

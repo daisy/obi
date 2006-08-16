@@ -59,8 +59,8 @@ namespace Obi
                 parent = (CoreNode)e.Node.getParent();
                 index = GetPhraseIndex(e.Node) + 1;
             }
-            AddPhraseNodeAndAsset(copy, parent, index);
-            AudioMediaAsset asset = (AudioMediaAsset)GetAudioMediaAsset(e.Node).Copy();
+            AddPhraseNode(copy, parent, index);
+            AudioMediaAsset asset = (AudioMediaAsset)mAssManager.CopyAsset(GetAudioMediaAsset(mBlockClipBoard));
             SetAudioMediaAsset(copy, asset);
             Commands.Strips.PastePhrase command = new Commands.Strips.PastePhrase(this, copy);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
@@ -423,6 +423,7 @@ namespace Obi
                 UpdateSeq(node);
                 MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, AudioChannel,
                     GetMediaForChannel(node, AudioChannel)));
+                ((TextMedia)GetMediaForChannel(node, AnnotationChannel)).setText(asset.Name);
             }
             else
             {
