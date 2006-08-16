@@ -9,10 +9,10 @@ namespace Obi.Commands.Strips
 {
     public class AddPhrase: Command
     {
-        private Obi.Project mProject;  // the current project
-        private CoreNode mNode;        // the phrase node to add/remove
-        private CoreNode mParent;      // the section node to add to
-        private int mIndex;            // position within the parent
+        protected Obi.Project mProject;  // the current project
+        protected CoreNode mNode;        // the phrase node to add/remove
+        private CoreNode mParent;        // the section node to add to
+        private int mIndex;              // position within the parent
 
         public override string Label
         {
@@ -56,6 +56,12 @@ namespace Obi.Commands.Strips
         public PastePhrase(Obi.Project project, CoreNode node)
             : base(project, node)
         {
+        }
+
+        public override void Do()
+        {
+            base.Do();
+            mProject.SetAudioMediaAsset(mNode, Project.GetAudioMediaAsset(mNode));
         }
     }
 }
