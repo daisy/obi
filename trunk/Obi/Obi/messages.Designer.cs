@@ -162,6 +162,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to copy audio block.
+        /// </summary>
+        internal static string copy_phrase_command_label {
+            get {
+                return ResourceManager.GetString("copy_phrase_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to copy section.
         /// </summary>
         internal static string copy_section_command_label {
@@ -198,6 +207,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to cut audio block.
+        /// </summary>
+        internal static string cut_phrase_command_label {
+            get {
+                return ResourceManager.GetString("cut_phrase_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to cut section.
         /// </summary>
         internal static string cut_section_command_label {
@@ -212,15 +230,6 @@ namespace Obi {
         internal static string decrease_section_level_command_label {
             get {
                 return ResourceManager.GetString("decrease_section_level_command_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to cut audio block.
-        /// </summary>
-        internal static string cut_phrase_command_label {
-            get {
-                return ResourceManager.GetString("cut_phrase_command_label", resourceCulture);
             }
         }
         

@@ -104,6 +104,8 @@ namespace Obi.UserControls
 
                     mStripManagerPanel.RequestToCutPhraseNode -=
                         new Events.Node.RequestToCutPhraseNodeHandler(mProject.CutPhraseNode);
+                    mStripManagerPanel.RequestToCopyPhraseNode -=
+                        new Events.Node.RequestToCopyPhraseNodeHandler(mProject.CopyPhraseNode);
                     mStripManagerPanel.RequestToPastePhraseNode -=
                         new Events.Node.RequestToPastePhraseNodeHandler(mProject.PastePhraseNode);
 
@@ -152,6 +154,10 @@ namespace Obi.UserControls
 
                     mStripManagerPanel.RequestToCutPhraseNode +=
                         new Events.Node.RequestToCutPhraseNodeHandler(value.CutPhraseNode);
+                    mStripManagerPanel.RequestToCopyPhraseNode +=
+                        new Events.Node.RequestToCopyPhraseNodeHandler(value.CopyPhraseNode);
+                    mStripManagerPanel.RequestToPastePhraseNode +=
+                        new Events.Node.RequestToPastePhraseNodeHandler(value.PastePhraseNode);
 
                     mStripManagerPanel.ImportAudioAssetRequested +=
                         new Events.Strip.RequestToImportAssetHandler(value.ImportAssetRequested);
@@ -201,8 +207,6 @@ namespace Obi.UserControls
                     //md 20060812
                     mStripManagerPanel.RequestToShallowDeleteSectionNode +=
                         new Events.Node.RequestToShallowDeleteSectionNodeHandler(value.ShallowDeleteSectionNodeRequested);
-                    mStripManagerPanel.RequestToPastePhraseNode +=
-                        new Events.Node.RequestToPastePhraseNodeHandler(value.PastePhraseNode);
 
                 } 
                 mProject = value;

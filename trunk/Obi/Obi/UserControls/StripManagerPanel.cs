@@ -421,7 +421,6 @@ namespace Obi.UserControls
             {
                 return this.mSectionNodeMap[previous];
             }
-
         }
     }
 }
