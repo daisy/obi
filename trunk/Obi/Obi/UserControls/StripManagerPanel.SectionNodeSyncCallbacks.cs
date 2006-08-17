@@ -44,6 +44,9 @@ namespace Obi.UserControls
         private int AddStripsFromNodeSubtree(CoreNode node, int position)
         {
             AddStripFromNode(node, position, false);
+
+
+           
             
             for (int i = 1; i < node.getChildCount(); i++)
             {
