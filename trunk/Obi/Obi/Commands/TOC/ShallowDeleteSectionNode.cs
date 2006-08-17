@@ -52,7 +52,8 @@ namespace Obi.Commands.TOC
         {
             for (int i = mSubCommands.Count-1; i >=0; i--)
             {
-                ((Command)mSubCommands[i]).Undo();
+                if (mSubCommands[i] != null)
+                    ((Command)mSubCommands[i]).Undo();
             }
         }
 
