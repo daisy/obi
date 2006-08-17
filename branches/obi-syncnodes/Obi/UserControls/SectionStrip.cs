@@ -156,6 +156,7 @@ namespace Obi.UserControls
                 //mg: changed renaming to not be 
                 //default state at focus:
                 //StartRenaming();
+                mManager.SelectedPhraseNode = null;
             }
             else
             {
@@ -174,19 +175,19 @@ namespace Obi.UserControls
         {
             //System.Diagnostics.Debug.Print("SectionStrip:tabindex:" + this.TabIndex.ToString());
             mManager.SelectedSectionNode = mNode;            
-            this.MarkSelected();
+            //this.MarkSelected();
         }
 
         public void MarkSelected()
         {
-            BackColor = Color.Gold;
-            mTextBox.BackColor = Color.Gold;
+            BackColor = Color.Orange;
+            mTextBox.BackColor = BackColor;
         }
 
         public void MarkDeselected()
         {
-            BackColor = Color.PaleGreen;
-            mTextBox.BackColor = Color.PaleGreen;
+            BackColor = Color.Gold;
+            mTextBox.BackColor = BackColor;
         }
 
         /// <summary>
@@ -262,7 +263,7 @@ namespace Obi.UserControls
         public void InsertAudioBlock(AudioBlock block, int index)
         {
             AppendAudioBlock(block);
-            mStructureLayoutPanel.Controls.Add(block.StructureBlock);
+            mAudioLayoutPanel.Controls.SetChildIndex(block, index);
             mStructureLayoutPanel.Controls.SetChildIndex(block.StructureBlock, index);
         }
 

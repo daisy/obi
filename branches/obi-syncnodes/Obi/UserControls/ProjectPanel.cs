@@ -108,10 +108,11 @@ namespace Obi.UserControls
                         new Events.Node.RequestToCopyPhraseNodeHandler(mProject.CopyPhraseNode);
                     mStripManagerPanel.RequestToPastePhraseNode -=
                         new Events.Node.RequestToPastePhraseNodeHandler(mProject.PastePhraseNode);
-                    mStripManagerPanel.RequestToSetPageLabel -= new Events.Node.RequestToSetPageLabelHandler(mProject.SetPage);
+                    mStripManagerPanel.RequestToSetPageLabel -= new Events.Node.RequestToSetPageLabelHandler(mProject.SetPageRequested);
                     mStripManagerPanel.RequestToRemovePageLabel -=
-                        new Events.Node.RequestToRemovePageLabelHandler(mProject.RemovePage);
+                        new Events.Node.RequestToRemovePageLabelHandler(mProject.RemovePageRequested);
                     mProject.RemovedPageLabel -= new Events.Node.RemovedPageLabelHandler(mStripManagerPanel.SyncRemovedPageLabel);
+                    mProject.SetPageLabel -= new Events.Node.SetPageLabelHandler(mStripManagerPanel.SyncSetPageLabel);
                 }
                 // Set up the handlers for the new project
                 if (value != null)
@@ -211,10 +212,11 @@ namespace Obi.UserControls
                     mStripManagerPanel.RequestToShallowDeleteSectionNode +=
                         new Events.Node.RequestToShallowDeleteSectionNodeHandler(value.ShallowDeleteSectionNodeRequested);
 
-                    mStripManagerPanel.RequestToSetPageLabel += new Events.Node.RequestToSetPageLabelHandler(value.SetPage);
+                    mStripManagerPanel.RequestToSetPageLabel += new Events.Node.RequestToSetPageLabelHandler(value.SetPageRequested);
                     mStripManagerPanel.RequestToRemovePageLabel +=
-                        new Events.Node.RequestToRemovePageLabelHandler(value.RemovePage);
+                        new Events.Node.RequestToRemovePageLabelHandler(value.RemovePageRequested);
                     value.RemovedPageLabel += new Events.Node.RemovedPageLabelHandler(mStripManagerPanel.SyncRemovedPageLabel);
+                    value.SetPageLabel += new Events.Node.SetPageLabelHandler(mStripManagerPanel.SyncSetPageLabel);
                 } 
                 mProject = value;
                 mSplitContainer.Visible = mProject != null;

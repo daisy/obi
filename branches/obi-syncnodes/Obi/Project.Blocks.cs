@@ -12,6 +12,7 @@ namespace Obi
     {
         public Events.Strip.UpdateTimeHandler UpdateTime;
         public Events.Node.RemovedPageLabelHandler RemovedPageLabel;
+        public Events.Node.SetPageLabelHandler SetPageLabel;
 
         #region clip board
 
@@ -494,22 +495,26 @@ namespace Obi
         /// <summary>
         /// Set the page for a phrase node. Create a new node if it did not exist before, otherwise update the label.
         /// </summary>
-        internal void SetPage(object sender, Events.Node.SetPageEventArgs e)
+        internal void SetPageRequested(object sender, Events.Node.SetPageEventArgs e)
         {
             CoreNode pageNode = GetStructureNode(e.Node);
+            Commands.Strips.SetNewPageLabel command = null;
             if (pageNode == null)
             {
                 pageNode = CreatePageNode(e.Label);
                 e.Node.appendChild(pageNode);
+                command = new Commands.Strips.SetNewPageLabel(this, e.Node);
             }
             else
             {
                 if (GetNodeType(pageNode) == NodeType.Page)
                 {
                     TextMedia pageText = GetTextMedia(pageNode);
-                    if (e.Label != pageText.getText())
+                    string prev = pageText.getText();
+                    if (e.Label != prev)
                     {
                         pageText.setText(e.Label);
+                        command = new Commands.Strips.SetPageLabel(this, e.Node, prev);
                     }
                     else
                     {
@@ -521,7 +526,7 @@ namespace Obi
                     throw new Exception("Expected page node, but got " + GetNodeType(pageNode));
                 }
             }
-            // create a command
+            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));            
         }
@@ -529,15 +534,27 @@ namespace Obi
         /// <summary>
         /// Remove a page for a phrase node.
         /// </summary>
-        internal void RemovePage(object sender, Events.Node.NodeEventArgs e)
+        internal void RemovePageRequested(object sender, Events.Node.NodeEventArgs e)
+        {
+            Commands.Strips.RemovePageLabel command = new Commands.Strips.RemovePageLabel(this, e.Node);
+            RemovePage(e.Origin, e.Node);
+            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+        }
+
+        /// <summary>
+        /// Remove a page label from a phrase node (actually remove the node.)
+        /// </summary>
+        internal void RemovePage(object origin, CoreNode node)
         {
             int index;
-            for (index = 0; index < e.Node.getChildCount(); ++index)
+            for (index = 0; index < node.getChildCount(); ++index)
             {
-                if (GetNodeType(e.Node.getChild(index)) == NodeType.Page)
+                if (GetNodeType(node.getChild(index)) == NodeType.Page)
                 {
-                    e.Node.removeChild(index);
-                    RemovedPageLabel(this, new Events.Node.NodeEventArgs(e.Origin, e.Node));                    
+                    node.removeChild(index);
+                    RemovedPageLabel(this, new Events.Node.NodeEventArgs(origin, node));
+                    mUnsaved = true;
+                    StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));            
                 }
             }
         }

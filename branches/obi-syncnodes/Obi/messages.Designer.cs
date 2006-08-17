@@ -497,6 +497,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to page ....
+        /// </summary>
+        internal static string no_page_label {
+            get {
+                return ResourceManager.GetString("no_page_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Obi.
         /// </summary>
         internal static string obi {
@@ -642,6 +651,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to remove page label.
+        /// </summary>
+        internal static string remove_page_command_label {
+            get {
+                return ResourceManager.GetString("remove_page_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to rename node.
         /// </summary>
         internal static string rename_command_label {
@@ -704,6 +722,15 @@ namespace Obi {
         internal static string saved_project {
             get {
                 return ResourceManager.GetString("saved_project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to set page label.
+        /// </summary>
+        internal static string set_page_command_label {
+            get {
+                return ResourceManager.GetString("set_page_command_label", resourceCulture);
             }
         }
         

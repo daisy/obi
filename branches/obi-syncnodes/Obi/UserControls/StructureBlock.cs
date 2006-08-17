@@ -25,13 +25,13 @@ namespace Obi.UserControls
 
         public string Label
         {
-            get { return mLabelBox.Text; }
-            set { mLabelBox.Text = value; }
+            get { return mLabel.Text; }
+            set { mLabel.Text = value; }
         }
 
         public int _Width
         {
-            set { mLabelBox.Size = new Size(value - mLabelBox.Margin.Left - mLabelBox.Margin.Right, mLabelBox.Size.Height); }
+            set { Size = new Size(value, Size.Height); }
         }
 
         public StructureBlock()
@@ -66,18 +66,22 @@ namespace Obi.UserControls
             mAudioBlock.Manager.SelectedPhraseNode = mAudioBlock.Node;
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+            mAudioBlock.Manager.SelectedPhraseNode = mAudioBlock.Node;
+        }
+
         /// <summary>
         /// Start editing the page label.
         /// When pressing return, or leaving the control, the change will be made.
         /// </summary>
         internal void StartEditingPageLabel()
         {
-            string text = mLabelBox.Text;
-            mLabelBox.Tag = text;  // quick hack to keep the previous value of the text
+            mLabelBox.Size = Size;
+            mLabelBox.BackColor = BackColor;
             mLabelBox.Text = "";
-            mLabelBox.SelectedText = text;
-            mLabelBox.Cursor = Cursors.IBeam;
-            mLabelBox.ReadOnly = false;
+            mLabelBox.SelectedText = mLabel.Text == "" ? Localizer.Message("no_page_label") : mLabel.Text;
+            mLabelBox.Visible = true;
             mLabelBox.Focus();
         }
 
@@ -86,8 +90,7 @@ namespace Obi.UserControls
         /// </summary>
         private void StopEditingPageLabel()
         {
-            mLabelBox.Cursor = Cursors.Default;
-            mLabelBox.ReadOnly = true;
+            mLabelBox.Visible = false;
         }
 
         /// <summary>
@@ -101,12 +104,16 @@ namespace Obi.UserControls
                     UpdateText();
                     break;
                 case Keys.Escape:
-                    mLabelBox.Text = (string)mLabelBox.Tag;
                     StopEditingPageLabel(); 
                     break;
                 default:
                     break;
             }
+        }
+
+        private void mLabelBox_Leave(object sender, EventArgs e)
+        {
+            StopEditingPageLabel();
         }
 
         /// <summary>
@@ -118,11 +125,12 @@ namespace Obi.UserControls
             StopEditingPageLabel();
             if (mLabelBox.Text == null || mLabelBox.Text == "")
             {
-                mLabelBox.Text = (string)mLabelBox.Tag;
+                mLabelBox.Text = mLabel.Text;
             }
             else
             {
-                mManager.RequestToSetPageLabel(this, new Events.Node.SetPageEventArgs(this, mAudioBlock.Node, mLabelBox.Text));
+                mLabel.Text = mLabelBox.Text;
+                mManager.RequestToSetPageLabel(this, new Events.Node.SetPageEventArgs(this, mAudioBlock.Node, mLabel.Text));
             }
         }
     }

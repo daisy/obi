@@ -71,8 +71,8 @@ namespace Obi.UserControls
             mPlayAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
             mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;
 
-            mSetPageToolStripMenuItem.Enabled = canSetPage;
-            mRemovePageToolStripMenuItem.Enabled = canRemovePage;
+            mSetPageLabelToolStripMenuItem.Enabled = canSetPage;
+            mRemovePageLabelToolStripMenuItem.Enabled = canRemovePage;
         }
 
         /// <summary>
@@ -148,7 +148,12 @@ namespace Obi.UserControls
                     {
                         mProjectPanel.Project.FinishRecordingPhrase(_sender, _e, mSelectedSection, index);
                     });
-                dialog.ShowDialog();
+                if (dialog.ShowDialog() == DialogResult.Cancel)
+                {
+                    ((ObiForm)ParentForm).UndoLast();
+                    mProjectPanel.Project.Save();
+                    Application.Exit();
+                }
             }
         }
 
@@ -320,7 +325,7 @@ namespace Obi.UserControls
         /// If there is already a page here, ask the user if she wants to replace it.
         /// </summary>
         // JQ 20060817
-        private void mSetPageToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void mSetPageLabelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mSelectedPhrase != null)
             {
@@ -332,7 +337,7 @@ namespace Obi.UserControls
         /// <summary>
         /// Remove a page number.
         /// </summary>
-        private void mRemovePageToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void mRemovePageLabelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mSelectedPhrase != null)
             {

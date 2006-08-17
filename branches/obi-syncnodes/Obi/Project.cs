@@ -549,17 +549,6 @@ namespace Obi
             }
         }
 
-
-        /// <summary>
-        /// Debug function for easy recording
-        /// </summary>
-        /// <param name="settings">Settings for recording</param>
-        internal void StartRecording(Settings settings)
-        {
-            Dialogs.Record dialog = new Dialogs.Record(settings.AudioChannels, settings.SampleRate, settings.BitDepth, mAssManager);
-            dialog.ShowDialog();
-        }
-
         /// <summary>
         /// Dump the asset manager to check what's going on.
         /// </summary>

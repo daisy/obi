@@ -51,7 +51,7 @@ namespace Obi.UserControls
             // 
             this.mTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.mTextBox.BackColor = System.Drawing.Color.PaleGreen;
+            this.mTextBox.BackColor = System.Drawing.Color.Gold;
             this.mTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.mTextBox.Location = new System.Drawing.Point(3, 0);
@@ -79,7 +79,7 @@ namespace Obi.UserControls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.Color.PaleGreen;
+            this.BackColor = System.Drawing.Color.Gold;
             this.Controls.Add(this.mStructureLayoutPanel);
             this.Controls.Add(this.mTextBox);
             this.Controls.Add(this.mAudioLayoutPanel);
