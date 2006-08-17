@@ -42,13 +42,19 @@ namespace Obi.Dialogs
             this.btnStop = new System.Windows.Forms.Button();
             this.btnPause = new System.Windows.Forms.Button();
             this.txtSplitTime = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.labelAssetName = new System.Windows.Forms.Label();
+            this.labelTime = new System.Windows.Forms.Label();
+            this.labelSplitTime = new System.Windows.Forms.Label();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnPreview
             // 
-            this.btnPreview.Location = new System.Drawing.Point(30, 26);
+            this.btnPreview.Location = new System.Drawing.Point(12, 43);
             this.btnPreview.Name = "btnPreview";
-            this.btnPreview.Size = new System.Drawing.Size(75, 21);
+            this.btnPreview.Size = new System.Drawing.Size(118, 23);
             this.btnPreview.TabIndex = 0;
             this.btnPreview.Text = "Pre&view";
             this.btnPreview.UseVisualStyleBackColor = true;
@@ -56,18 +62,18 @@ namespace Obi.Dialogs
             // 
             // txtDisplayAsset
             // 
-            this.txtDisplayAsset.Location = new System.Drawing.Point(30, 0);
+            this.txtDisplayAsset.Location = new System.Drawing.Point(136, 12);
             this.txtDisplayAsset.Name = "txtDisplayAsset";
             this.txtDisplayAsset.ReadOnly = true;
-            this.txtDisplayAsset.Size = new System.Drawing.Size(100, 19);
+            this.txtDisplayAsset.Size = new System.Drawing.Size(127, 20);
             this.txtDisplayAsset.TabIndex = 1;
             // 
             // txtDisplayTime
             // 
-            this.txtDisplayTime.Location = new System.Drawing.Point(30, 55);
+            this.txtDisplayTime.Location = new System.Drawing.Point(136, 72);
             this.txtDisplayTime.Name = "txtDisplayTime";
             this.txtDisplayTime.ReadOnly = true;
-            this.txtDisplayTime.Size = new System.Drawing.Size(100, 19);
+            this.txtDisplayTime.Size = new System.Drawing.Size(127, 20);
             this.txtDisplayTime.TabIndex = 2;
             // 
             // tmUpdateTimePosition
@@ -78,9 +84,9 @@ namespace Obi.Dialogs
             // 
             // btnFastRewind
             // 
-            this.btnFastRewind.Location = new System.Drawing.Point(30, 83);
+            this.btnFastRewind.Location = new System.Drawing.Point(18, 17);
             this.btnFastRewind.Name = "btnFastRewind";
-            this.btnFastRewind.Size = new System.Drawing.Size(75, 21);
+            this.btnFastRewind.Size = new System.Drawing.Size(100, 23);
             this.btnFastRewind.TabIndex = 3;
             this.btnFastRewind.Text = "Fast Rewind";
             this.btnFastRewind.UseVisualStyleBackColor = true;
@@ -88,9 +94,9 @@ namespace Obi.Dialogs
             // 
             // btnFastForward
             // 
-            this.btnFastForward.Location = new System.Drawing.Point(120, 83);
+            this.btnFastForward.Location = new System.Drawing.Point(124, 17);
             this.btnFastForward.Name = "btnFastForward";
-            this.btnFastForward.Size = new System.Drawing.Size(75, 21);
+            this.btnFastForward.Size = new System.Drawing.Size(105, 23);
             this.btnFastForward.TabIndex = 4;
             this.btnFastForward.Text = "Fast Forward";
             this.btnFastForward.UseVisualStyleBackColor = true;
@@ -98,9 +104,9 @@ namespace Obi.Dialogs
             // 
             // btnFineRewind
             // 
-            this.btnFineRewind.Location = new System.Drawing.Point(30, 138);
+            this.btnFineRewind.Location = new System.Drawing.Point(18, 46);
             this.btnFineRewind.Name = "btnFineRewind";
-            this.btnFineRewind.Size = new System.Drawing.Size(75, 21);
+            this.btnFineRewind.Size = new System.Drawing.Size(100, 23);
             this.btnFineRewind.TabIndex = 5;
             this.btnFineRewind.Text = "Fine Rewind";
             this.btnFineRewind.UseVisualStyleBackColor = true;
@@ -108,9 +114,9 @@ namespace Obi.Dialogs
             // 
             // btnFineForward
             // 
-            this.btnFineForward.Location = new System.Drawing.Point(120, 138);
+            this.btnFineForward.Location = new System.Drawing.Point(124, 46);
             this.btnFineForward.Name = "btnFineForward";
-            this.btnFineForward.Size = new System.Drawing.Size(75, 21);
+            this.btnFineForward.Size = new System.Drawing.Size(105, 23);
             this.btnFineForward.TabIndex = 6;
             this.btnFineForward.Text = "Fine Forward";
             this.btnFineForward.UseVisualStyleBackColor = true;
@@ -119,9 +125,9 @@ namespace Obi.Dialogs
             // btnSplit
             // 
             this.btnSplit.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSplit.Location = new System.Drawing.Point(30, 166);
+            this.btnSplit.Location = new System.Drawing.Point(12, 213);
             this.btnSplit.Name = "btnSplit";
-            this.btnSplit.Size = new System.Drawing.Size(75, 21);
+            this.btnSplit.Size = new System.Drawing.Size(118, 23);
             this.btnSplit.TabIndex = 7;
             this.btnSplit.Text = "Split";
             this.btnSplit.UseVisualStyleBackColor = true;
@@ -130,9 +136,9 @@ namespace Obi.Dialogs
             // btnStop
             // 
             this.btnStop.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnStop.Location = new System.Drawing.Point(120, 166);
+            this.btnStop.Location = new System.Drawing.Point(136, 213);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(75, 21);
+            this.btnStop.Size = new System.Drawing.Size(127, 23);
             this.btnStop.TabIndex = 8;
             this.btnStop.Text = "Stop";
             this.btnStop.UseVisualStyleBackColor = true;
@@ -140,9 +146,9 @@ namespace Obi.Dialogs
             // 
             // btnPause
             // 
-            this.btnPause.Location = new System.Drawing.Point(150, 28);
+            this.btnPause.Location = new System.Drawing.Point(136, 43);
             this.btnPause.Name = "btnPause";
-            this.btnPause.Size = new System.Drawing.Size(75, 21);
+            this.btnPause.Size = new System.Drawing.Size(127, 23);
             this.btnPause.TabIndex = 0;
             this.btnPause.Text = "Pause";
             this.btnPause.UseVisualStyleBackColor = true;
@@ -150,26 +156,77 @@ namespace Obi.Dialogs
             // 
             // txtSplitTime
             // 
-            this.txtSplitTime.Location = new System.Drawing.Point(200, 231);
+            this.txtSplitTime.Location = new System.Drawing.Point(136, 97);
             this.txtSplitTime.Name = "txtSplitTime";
-            this.txtSplitTime.Size = new System.Drawing.Size(100, 19);
+            this.txtSplitTime.Size = new System.Drawing.Size(127, 20);
             this.txtSplitTime.TabIndex = 9;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnFineRewind);
+            this.groupBox1.Controls.Add(this.btnFineForward);
+            this.groupBox1.Controls.Add(this.btnFastRewind);
+            this.groupBox1.Controls.Add(this.btnFastForward);
+            this.groupBox1.Location = new System.Drawing.Point(12, 123);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(251, 84);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "navigate";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(18, 46);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Fine Rewind";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnFineRewind_Click);
+            // 
+            // labelAssetName
+            // 
+            this.labelAssetName.AutoSize = true;
+            this.labelAssetName.Location = new System.Drawing.Point(68, 12);
+            this.labelAssetName.Name = "labelAssetName";
+            this.labelAssetName.Size = new System.Drawing.Size(62, 13);
+            this.labelAssetName.TabIndex = 11;
+            this.labelAssetName.Text = "Asset name";
+            // 
+            // labelTime
+            // 
+            this.labelTime.AutoSize = true;
+            this.labelTime.Location = new System.Drawing.Point(83, 75);
+            this.labelTime.Name = "labelTime";
+            this.labelTime.Size = new System.Drawing.Size(48, 13);
+            this.labelTime.TabIndex = 12;
+            this.labelTime.Text = "play time";
+            // 
+            // labelSplitTime
+            // 
+            this.labelSplitTime.AutoSize = true;
+            this.labelSplitTime.Location = new System.Drawing.Point(83, 97);
+            this.labelSplitTime.Name = "labelSplitTime";
+            this.labelSplitTime.Size = new System.Drawing.Size(47, 13);
+            this.labelSplitTime.TabIndex = 13;
+            this.labelSplitTime.Text = "split time";
             // 
             // Split
             // 
             this.AcceptButton = this.btnSplit;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnStop;
-            this.ClientSize = new System.Drawing.Size(292, 252);
+            this.ClientSize = new System.Drawing.Size(275, 250);
+            this.Controls.Add(this.labelSplitTime);
+            this.Controls.Add(this.labelTime);
+            this.Controls.Add(this.labelAssetName);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtSplitTime);
             this.Controls.Add(this.btnPause);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnSplit);
-            this.Controls.Add(this.btnFineForward);
-            this.Controls.Add(this.btnFineRewind);
-            this.Controls.Add(this.btnFastForward);
-            this.Controls.Add(this.btnFastRewind);
             this.Controls.Add(this.txtDisplayTime);
             this.Controls.Add(this.txtDisplayAsset);
             this.Controls.Add(this.btnPreview);
@@ -178,6 +235,7 @@ namespace Obi.Dialogs
             this.Text = "Split";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Split_FormClosing);
             this.Load += new System.EventHandler(this.Split_Load);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -197,5 +255,10 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.TextBox txtSplitTime;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label labelAssetName;
+        private System.Windows.Forms.Label labelTime;
+        private System.Windows.Forms.Label labelSplitTime;
     }
 }
