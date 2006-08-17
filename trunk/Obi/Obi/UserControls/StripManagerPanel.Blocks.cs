@@ -109,5 +109,10 @@ namespace Obi.UserControls
         {
             mPhraseNodeMap[e.Node].Time = Math.Round(e.Time / 1000).ToString() + "s";
         }
+
+        internal void InterceptKeyDownFromChildControl(KeyEventArgs e)
+        {
+            OnKeyDown(e);
+        }
     }
 }
