@@ -447,10 +447,6 @@ namespace Obi
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
 
-      
-
-       
-
         /// <summary>
         /// Create a new phrase node from an asset.
         /// Add a default annotation with the name of the asset.

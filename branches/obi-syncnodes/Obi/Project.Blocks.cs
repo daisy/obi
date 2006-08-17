@@ -490,6 +490,85 @@ namespace Obi
             TouchedNode(this, new Events.Node.NodeEventArgs(this, node));
         }
 
+        /// <summary>
+        /// Set the page for a phrase node. Create a new node if it did not exist before, otherwise update the label.
+        /// </summary>
+        internal void SetPage(object sender, Events.Node.SetPageEventArgs e)
+        {
+            CoreNode pageNode = GetStructureNode(e.Node);
+            if (pageNode == null)
+            {
+                pageNode = CreatePageNode(e.Label);
+                e.Node.appendChild(pageNode);
+            }
+            else
+            {
+                if (GetNodeType(pageNode) == NodeType.Page)
+                {
+                    TextMedia pageText = GetTextMedia(pageNode);
+                    if (e.Label != pageText.getText())
+                    {
+                        pageText.setText(e.Label);
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    throw new Exception("Expected page node, but got " + GetNodeType(pageNode));
+                }
+            }
+            // create a command
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));            
+        }
+
+        /// <summary>
+        /// Create a new page node from a page label (any string, really.)
+        /// The page label is set on the text channel.
+        /// </summary>
+        private CoreNode CreatePageNode(string pageLabel)
+        {
+            CoreNode node = getPresentation().getCoreNodeFactory().createNode();
+            ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
+            TextMedia text = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
+            text.setText(pageLabel);
+            prop.setMedia(mTextChannel, text);
+            NodeInformationProperty typeProp =
+                (NodeInformationProperty)getPresentation().getPropertyFactory().createProperty("NodeInformationProperty",
+                ObiPropertyFactory.ObiNS);
+            typeProp.NodeType = NodeType.Page;
+            typeProp.NodeStatus = NodeStatus.NA;
+            node.setProperty(typeProp);
+            return node;
+        }
+
+        /// <summary>
+        /// Get the structure child node of a phrase node. If the phrase has no such child, return null.
+        /// </summary>
+        internal static CoreNode GetStructureNode(CoreNode node)
+        {
+            if (GetNodeType(node) == NodeType.Phrase)
+            {
+                if (node.getChildCount() > 0)
+                {
+                    for (int i = 0; i < node.getChildCount(); ++i)
+                    {
+                        CoreNode child = node.getChild(i);
+                        NodeType type = GetNodeType(child);
+                        if (type == NodeType.Page || type == NodeType.Heading) return child; 
+                    }
+                }
+                return null;
+            }
+            else
+            {
+                throw new Exception("Cannot get the structure node for a node of type " + GetNodeType(node));
+            }
+        }
+
         #endregion
     }
 }

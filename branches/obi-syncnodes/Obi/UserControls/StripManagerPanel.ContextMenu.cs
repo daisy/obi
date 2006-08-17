@@ -23,6 +23,9 @@ namespace Obi.UserControls
         public event Events.Node.RequestToCopyPhraseNodeHandler RequestToCopyPhraseNode;
         public event Events.Node.RequestToPastePhraseNodeHandler RequestToPastePhraseNode;
 
+        public Events.Node.RequestToSetPageLabelHandler RequestToSetPageLabel;
+        
+
         /// <summary>
         /// Enable/disable items depending on what is currently available.
         /// </summary>
@@ -36,6 +39,7 @@ namespace Obi.UserControls
                 Project.GetPhraseIndex(mSelectedPhrase) == Project.GetPhrasesCount(mSelectedSection) - 1;
             bool isAudioBlockFirst = isAudioBlockSelected && Project.GetPhraseIndex(mSelectedPhrase) == 0;
             bool isBlockClipBoardSet = mProjectPanel.Project.BlockClipBoard != null;
+            bool canSetPage = isAudioBlockSelected;  // an audio block must be selected and a heading must not be set.
 
             mAddStripToolStripMenuItem.Enabled = true;
             mRenameStripToolStripMenuItem.Enabled = isStripSelected;
@@ -49,6 +53,9 @@ namespace Obi.UserControls
             mEditAudioBlockLabelToolStripMenuItem.Enabled = isAudioBlockSelected;
             mSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
             mMergeWithNextAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
+            mCutAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mCopyAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mPasteAudioBlockToolStripMenuItem.Enabled = isBlockClipBoardSet && isStripSelected;
             mDeleteAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
             mMoveAudioBlockForwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
             mMoveAudioBlockBackwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockFirst;
@@ -57,9 +64,7 @@ namespace Obi.UserControls
             mPlayAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
             mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;
 
-            mCutAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mCopyAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mPasteAudioBlockToolStripMenuItem.Enabled = isBlockClipBoardSet && isStripSelected;
+            mSddPageToolStripMenuItem.Enabled = canSetPage;
         }
 
         /// <summary>
@@ -299,6 +304,29 @@ namespace Obi.UserControls
                 // currently selected section if no block is selected.
                 RequestToPastePhraseNode(this, new Events.Node.NodeEventArgs(sender,
                     mSelectedPhrase == null ? mSelectedSection : mSelectedPhrase));
+            }
+        }
+
+        /// <summary>
+        /// Add a page number to the synchronization strip.
+        /// If there is already a page here, ask the user if she wants to replace it.
+        /// </summary>
+        // JQ 20060817
+        private void mSetPageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mSelectedPhrase != null)
+            {
+                CoreNode pageNode = Project.GetStructureNode(mSelectedPhrase);
+                if (pageNode != null)
+                {
+                    if (Project.GetNodeType(pageNode) == NodeType.Page)
+                    {
+                    }
+                    else if (Project.GetNodeType(pageNode) == NodeType.Heading)
+                    {
+                    }
+                }
+                mPhraseNodeMap[mSelectedPhrase].StartEditingPageLabel();
             }
         }
     }

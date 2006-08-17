@@ -42,6 +42,9 @@ namespace Obi.UserControls
             this.mRecordAudioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mImportAudioFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mEditAudioBlockLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mCutAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mCopyAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPasteAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mDeleteAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSplitAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMergeWithNextAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,9 +55,7 @@ namespace Obi.UserControls
             this.mPlayAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowInTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.mCutAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mPasteAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mCopyAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSddPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,6 +95,9 @@ namespace Obi.UserControls
             this.mRecordAudioToolStripMenuItem,
             this.mImportAudioFileToolStripMenuItem,
             this.mEditAudioBlockLabelToolStripMenuItem,
+            this.mCutAudioBlockToolStripMenuItem,
+            this.mCopyAudioBlockToolStripMenuItem,
+            this.mPasteAudioBlockToolStripMenuItem,
             this.mDeleteAudioBlockToolStripMenuItem,
             this.mSplitAudioBlockToolStripMenuItem,
             this.mMergeWithNextAudioBlockToolStripMenuItem,
@@ -102,12 +106,10 @@ namespace Obi.UserControls
             this.mPlayAudioBlockToolStripMenuItem,
             this.mShowInTOCViewToolStripMenuItem,
             this.toolStripSeparator3,
-            this.mCutAudioBlockToolStripMenuItem,
-            this.mCopyAudioBlockToolStripMenuItem,
-            this.mPasteAudioBlockToolStripMenuItem});
+            this.mSddPageToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(229, 396);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(229, 418);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // mAddStripToolStripMenuItem
@@ -190,6 +192,30 @@ namespace Obi.UserControls
             this.mEditAudioBlockLabelToolStripMenuItem.Text = "&Edit audio block label";
             this.mEditAudioBlockLabelToolStripMenuItem.Click += new System.EventHandler(this.mEditAudioBlockLabelToolStripMenuItem_Click);
             // 
+            // mCutAudioBlockToolStripMenuItem
+            // 
+            this.mCutAudioBlockToolStripMenuItem.Name = "mCutAudioBlockToolStripMenuItem";
+            this.mCutAudioBlockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.mCutAudioBlockToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.mCutAudioBlockToolStripMenuItem.Text = "C&ut audio block";
+            this.mCutAudioBlockToolStripMenuItem.Click += new System.EventHandler(this.mCutBlockToolStripMenuItem_Click);
+            // 
+            // mCopyAudioBlockToolStripMenuItem
+            // 
+            this.mCopyAudioBlockToolStripMenuItem.Name = "mCopyAudioBlockToolStripMenuItem";
+            this.mCopyAudioBlockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.mCopyAudioBlockToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.mCopyAudioBlockToolStripMenuItem.Text = "Cop&y audio block";
+            this.mCopyAudioBlockToolStripMenuItem.Click += new System.EventHandler(this.mCopyAudioBlockToolStripMenuItem_Click);
+            // 
+            // mPasteAudioBlockToolStripMenuItem
+            // 
+            this.mPasteAudioBlockToolStripMenuItem.Name = "mPasteAudioBlockToolStripMenuItem";
+            this.mPasteAudioBlockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.mPasteAudioBlockToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.mPasteAudioBlockToolStripMenuItem.Text = "Past&e audio block";
+            this.mPasteAudioBlockToolStripMenuItem.Click += new System.EventHandler(this.mPasteAudioBlockToolStripMenuItem_Click);
+            // 
             // mDeleteAudioBlockToolStripMenuItem
             // 
             this.mDeleteAudioBlockToolStripMenuItem.Name = "mDeleteAudioBlockToolStripMenuItem";
@@ -257,7 +283,7 @@ namespace Obi.UserControls
             this.mShowInTOCViewToolStripMenuItem.Name = "mShowInTOCViewToolStripMenuItem";
             this.mShowInTOCViewToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.V)));
             this.mShowInTOCViewToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.mShowInTOCViewToolStripMenuItem.Text = "Show in &TOC view";
+            this.mShowInTOCViewToolStripMenuItem.Text = "Show in TOC vie&w";
             this.mShowInTOCViewToolStripMenuItem.Click += new System.EventHandler(this.mShowInTOCViewToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
@@ -265,29 +291,13 @@ namespace Obi.UserControls
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(225, 6);
             // 
-            // mCutBlockToolStripMenuItem
+            // mSddPageToolStripMenuItem
             // 
-            this.mCutAudioBlockToolStripMenuItem.Name = "mCutBlockToolStripMenuItem";
-            this.mCutAudioBlockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.mCutAudioBlockToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.mCutAudioBlockToolStripMenuItem.Text = "C&ut audio block";
-            this.mCutAudioBlockToolStripMenuItem.Click += new System.EventHandler(this.mCutBlockToolStripMenuItem_Click);
-            // 
-            // mPasteAudioBlockToolStripMenuItem
-            // 
-            this.mPasteAudioBlockToolStripMenuItem.Name = "mPasteAudioBlockToolStripMenuItem";
-            this.mPasteAudioBlockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.mPasteAudioBlockToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.mPasteAudioBlockToolStripMenuItem.Text = "Past&e audio block";
-            this.mPasteAudioBlockToolStripMenuItem.Click += new System.EventHandler(this.mPasteAudioBlockToolStripMenuItem_Click);
-            // 
-            // mCopyAudioBlockToolStripMenuItem
-            // 
-            this.mCopyAudioBlockToolStripMenuItem.Name = "mCopyAudioBlockToolStripMenuItem";
-            this.mCopyAudioBlockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.mCopyAudioBlockToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.mCopyAudioBlockToolStripMenuItem.Text = "Cop&y audio block";
-            this.mCopyAudioBlockToolStripMenuItem.Click += new System.EventHandler(this.mCopyAudioBlockToolStripMenuItem_Click);
+            this.mSddPageToolStripMenuItem.Name = "mSddPageToolStripMenuItem";
+            this.mSddPageToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
+            this.mSddPageToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.mSddPageToolStripMenuItem.Text = "Se&t page";
+            this.mSddPageToolStripMenuItem.Click += new System.EventHandler(this.mSetPageToolStripMenuItem_Click);
             // 
             // StripManagerPanel
             // 
@@ -331,5 +341,6 @@ namespace Obi.UserControls
         private System.Windows.Forms.ToolStripMenuItem mCutAudioBlockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPasteAudioBlockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mCopyAudioBlockToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSddPageToolStripMenuItem;
     }
 }
