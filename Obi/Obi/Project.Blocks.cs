@@ -286,6 +286,21 @@ namespace Obi
         }
 
         /// <summary>
+        /// This function is called when undeleting a subtree
+        /// the phrase nodes already exist under the section node, so they can't be re-added
+        /// they just need to be rebuilt in the views
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="index"></param>
+        //md 20060813
+        public void ReconstructPhraseNodeInView(CoreNode node, int index)
+        {
+            //we might consider using a different event for this
+            //i don't know who else will be listening in the future (more than only viewports?)
+            AddedPhraseNode(this, new Events.Node.AddedPhraseNodeEventArgs(this, node, index));
+        }
+
+        /// <summary>
         /// Determine whether a node can be moved forward or backward in the list of phrase nodes.
         /// </summary>
         private bool CanMovePhraseNode(CoreNode node, Direction dir)
@@ -311,24 +326,21 @@ namespace Obi
         /// </summary>
         public Commands.Command DeletePhraseNodeAndAsset(CoreNode node)
         {
+            //md 20060814 added this command return value here so we have a record of it
+            //for shallow-delete's undo
+            //but note that it hasn't gone to the main command queue
+            Commands.Strips.DeletePhrase command= null;
+            if (node.getParent() != null)
+            {
+                int index = ((CoreNode)node.getParent()).indexOf(node);
+                command = new Commands.Strips.DeletePhrase(this, node, (CoreNode)node.getParent(), index);
+            }
+
             Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);
             mAssManager.RemoveAsset(asset);
             DeletePhraseNode(node);
 
-            //md 20060814 added this command here so we have a record of it
-            //for shallow-delete's undo
-            //but note that it hasn't gone to the command queue; that is only done
-            //during DeletePhraseNodeRequested
-            if (node.getParent() != null)
-            {
-                int index = ((CoreNode)node.getParent()).indexOf(node);
-                Commands.Strips.DeletePhrase command = new Commands.Strips.DeletePhrase(this, node, (CoreNode)node.getParent(), index);
-                return command;
-            }
-            else
-            {
-                return null;
-            }
+            return command;
         }
 
         /// <summary>

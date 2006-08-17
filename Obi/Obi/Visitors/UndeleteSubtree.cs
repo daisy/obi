@@ -37,6 +37,13 @@ namespace Obi.Visitors
                 mIndex = 0;
                 ++mPosition;
             }
+            //md 20060816
+            //the phrase node already has a parent "node", so we can't re-add it
+            //just give an event to notify the displays that they should update
+            else if (Project.GetNodeType((CoreNode)node) == NodeType.Phrase)
+            {
+                mProject.ReconstructPhraseNodeInView((CoreNode)node, mIndex);
+            }
             return true;
         }
 
