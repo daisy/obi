@@ -55,7 +55,8 @@ namespace Obi.UserControls
             this.mPlayAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowInTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.mSddPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSetPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mRemovePageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -106,10 +107,11 @@ namespace Obi.UserControls
             this.mPlayAudioBlockToolStripMenuItem,
             this.mShowInTOCViewToolStripMenuItem,
             this.toolStripSeparator3,
-            this.mSddPageToolStripMenuItem});
+            this.mSetPageToolStripMenuItem,
+            this.mRemovePageToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(229, 418);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(229, 440);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // mAddStripToolStripMenuItem
@@ -125,7 +127,7 @@ namespace Obi.UserControls
             this.mRenameStripToolStripMenuItem.Name = "mRenameStripToolStripMenuItem";
             this.mRenameStripToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.F2)));
             this.mRenameStripToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.mRenameStripToolStripMenuItem.Text = "&Rename strip";
+            this.mRenameStripToolStripMenuItem.Text = "Re&name strip";
             this.mRenameStripToolStripMenuItem.Click += new System.EventHandler(this.mRenameStripToolStripMenuItem_Click);
             // 
             // mDeleteStripToolStripMenuItem
@@ -293,11 +295,19 @@ namespace Obi.UserControls
             // 
             // mSddPageToolStripMenuItem
             // 
-            this.mSddPageToolStripMenuItem.Name = "mSddPageToolStripMenuItem";
-            this.mSddPageToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
-            this.mSddPageToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.mSddPageToolStripMenuItem.Text = "Se&t page";
-            this.mSddPageToolStripMenuItem.Click += new System.EventHandler(this.mSetPageToolStripMenuItem_Click);
+            this.mSetPageToolStripMenuItem.Name = "mSddPageToolStripMenuItem";
+            this.mSetPageToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F2)));
+            this.mSetPageToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.mSetPageToolStripMenuItem.Text = "Se&t page";
+            this.mSetPageToolStripMenuItem.Click += new System.EventHandler(this.mSetPageToolStripMenuItem_Click);
+            // 
+            // mRemovePageToolStripMenuItem
+            // 
+            this.mRemovePageToolStripMenuItem.Name = "mRemovePageToolStripMenuItem";
+            this.mRemovePageToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Delete)));
+            this.mRemovePageToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.mRemovePageToolStripMenuItem.Text = "&Remove page";
+            this.mRemovePageToolStripMenuItem.Click += new System.EventHandler(this.mRemovePageToolStripMenuItem_Click);
             // 
             // StripManagerPanel
             // 
@@ -341,6 +351,7 @@ namespace Obi.UserControls
         private System.Windows.Forms.ToolStripMenuItem mCutAudioBlockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPasteAudioBlockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mCopyAudioBlockToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mSddPageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSetPageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mRemovePageToolStripMenuItem;
     }
 }

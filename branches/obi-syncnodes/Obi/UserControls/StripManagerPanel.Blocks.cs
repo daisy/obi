@@ -50,6 +50,11 @@ namespace Obi.UserControls
                 strip.InsertAudioBlock(block, e.Index);
                 this.ReflowTabOrder(block);  // MG
                 SelectedPhraseNode = block.Node;
+                CoreNode pageNode = Project.GetStructureNode(e.Node);
+                if (pageNode != null && Project.GetNodeType(pageNode) == NodeType.Page)
+                {
+                    block.StructureBlock.Label = Project.GetTextMedia(pageNode).getText();
+                }
             }
         }
 
@@ -105,9 +110,32 @@ namespace Obi.UserControls
             }
         }
 
+        /// <summary>
+        /// The time of the asset for a phrase has changed.
+        /// </summary>
         internal void SyncUpdateAudioBlockTime(object sender, Events.Strip.UpdateTimeEventArgs e)
         {
             mPhraseNodeMap[e.Node].Time = Math.Round(e.Time / 1000).ToString() + "s";
+        }
+
+        /// <summary>
+        /// The page label has changed.
+        /// </summary>
+        internal void SyncSetPageLabel(object sender, Events.Node.NodeEventArgs e)
+        {
+            CoreNode pageNode = Project.GetStructureNode(e.Node);
+            if (pageNode != null && Project.GetNodeType(pageNode) == NodeType.Page)
+            {
+                mPhraseNodeMap[e.Node].StructureBlock.Label = Project.GetTextMedia(pageNode).getText();
+            }
+        }
+
+        /// <summary>
+        /// The page label was removed.
+        /// </summary>
+        internal void SyncRemovedPageLabel(object sender, Events.Node.NodeEventArgs e)
+        {
+            mPhraseNodeMap[e.Node].StructureBlock.Label = "";
         }
     }
 }

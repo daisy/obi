@@ -109,6 +109,9 @@ namespace Obi.UserControls
                     mStripManagerPanel.RequestToPastePhraseNode -=
                         new Events.Node.RequestToPastePhraseNodeHandler(mProject.PastePhraseNode);
                     mStripManagerPanel.RequestToSetPageLabel -= new Events.Node.RequestToSetPageLabelHandler(mProject.SetPage);
+                    mStripManagerPanel.RequestToRemovePageLabel -=
+                        new Events.Node.RequestToRemovePageLabelHandler(mProject.RemovePage);
+                    mProject.RemovedPageLabel -= new Events.Node.RemovedPageLabelHandler(mStripManagerPanel.SyncRemovedPageLabel);
                 }
                 // Set up the handlers for the new project
                 if (value != null)
@@ -209,6 +212,9 @@ namespace Obi.UserControls
                         new Events.Node.RequestToShallowDeleteSectionNodeHandler(value.ShallowDeleteSectionNodeRequested);
 
                     mStripManagerPanel.RequestToSetPageLabel += new Events.Node.RequestToSetPageLabelHandler(value.SetPage);
+                    mStripManagerPanel.RequestToRemovePageLabel +=
+                        new Events.Node.RequestToRemovePageLabelHandler(value.RemovePage);
+                    value.RemovedPageLabel += new Events.Node.RemovedPageLabelHandler(mStripManagerPanel.SyncRemovedPageLabel);
                 } 
                 mProject = value;
                 mSplitContainer.Visible = mProject != null;

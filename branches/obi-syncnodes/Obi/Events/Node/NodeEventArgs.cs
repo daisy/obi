@@ -47,6 +47,8 @@ namespace Obi.Events.Node
 
     public delegate void TouchedNodeHandler(object sender, NodeEventArgs e);
 
+    public delegate void RequestToRemovePageLabelHandler(object sender, NodeEventArgs e);
+    public delegate void RemovedPageLabelHandler(object sender, NodeEventArgs e);
 
     public class NodeEventArgs : EventArgs
     {

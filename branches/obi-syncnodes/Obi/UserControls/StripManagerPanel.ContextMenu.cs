@@ -24,8 +24,8 @@ namespace Obi.UserControls
         public event Events.Node.RequestToPastePhraseNodeHandler RequestToPastePhraseNode;
 
         public Events.Node.RequestToSetPageLabelHandler RequestToSetPageLabel;
+        public Events.Node.RequestToRemovePageLabelHandler RequestToRemovePageLabel;
         
-
         /// <summary>
         /// Enable/disable items depending on what is currently available.
         /// </summary>
@@ -39,7 +39,14 @@ namespace Obi.UserControls
                 Project.GetPhraseIndex(mSelectedPhrase) == Project.GetPhrasesCount(mSelectedSection) - 1;
             bool isAudioBlockFirst = isAudioBlockSelected && Project.GetPhraseIndex(mSelectedPhrase) == 0;
             bool isBlockClipBoardSet = mProjectPanel.Project.BlockClipBoard != null;
+            
             bool canSetPage = isAudioBlockSelected;  // an audio block must be selected and a heading must not be set.
+            bool canRemovePage = isAudioBlockSelected;
+            if (isAudioBlockSelected)
+            {
+                CoreNode page = Project.GetStructureNode(mSelectedPhrase);
+                canRemovePage = page != null && Project.GetNodeType(page) == NodeType.Page;
+            }
 
             mAddStripToolStripMenuItem.Enabled = true;
             mRenameStripToolStripMenuItem.Enabled = isStripSelected;
@@ -64,7 +71,8 @@ namespace Obi.UserControls
             mPlayAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
             mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;
 
-            mSddPageToolStripMenuItem.Enabled = canSetPage;
+            mSetPageToolStripMenuItem.Enabled = canSetPage;
+            mRemovePageToolStripMenuItem.Enabled = canRemovePage;
         }
 
         /// <summary>
@@ -316,17 +324,23 @@ namespace Obi.UserControls
         {
             if (mSelectedPhrase != null)
             {
-                CoreNode pageNode = Project.GetStructureNode(mSelectedPhrase);
-                if (pageNode != null)
-                {
-                    if (Project.GetNodeType(pageNode) == NodeType.Page)
-                    {
-                    }
-                    else if (Project.GetNodeType(pageNode) == NodeType.Heading)
-                    {
-                    }
-                }
                 mPhraseNodeMap[mSelectedPhrase].StartEditingPageLabel();
+            }
+        }
+
+
+        /// <summary>
+        /// Remove a page number.
+        /// </summary>
+        private void mRemovePageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mSelectedPhrase != null)
+            {
+                CoreNode pageNode = Project.GetStructureNode(mSelectedPhrase);
+                if (pageNode != null && Project.GetNodeType(pageNode) == NodeType.Page)
+                {
+                    RequestToRemovePageLabel(this, new Events.Node.NodeEventArgs(sender, mSelectedPhrase));
+                }
             }
         }
     }

@@ -11,6 +11,7 @@ namespace Obi
     public partial class Project
     {
         public Events.Strip.UpdateTimeHandler UpdateTime;
+        public Events.Node.RemovedPageLabelHandler RemovedPageLabel;
 
         #region clip board
 
@@ -523,6 +524,22 @@ namespace Obi
             // create a command
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));            
+        }
+
+        /// <summary>
+        /// Remove a page for a phrase node.
+        /// </summary>
+        internal void RemovePage(object sender, Events.Node.NodeEventArgs e)
+        {
+            int index;
+            for (index = 0; index < e.Node.getChildCount(); ++index)
+            {
+                if (GetNodeType(e.Node.getChild(index)) == NodeType.Page)
+                {
+                    e.Node.removeChild(index);
+                    RemovedPageLabel(this, new Events.Node.NodeEventArgs(e.Origin, e.Node));                    
+                }
+            }
         }
 
         /// <summary>
