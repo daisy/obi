@@ -13,7 +13,7 @@
         #00bff3; }
       h1, h2 { text-align: center; }
       img { border: 0px }
-      abbr { font-weight: bold; }
+      acronym { border: solid thin #00bff3; }
       p.in { text-indent: 2em; }
       p.lg { font-size: smaller; font-style: italic }
       p.download { background-color: #00bff3; color: white; padding: 1em }
@@ -24,13 +24,13 @@
     </style>
   </head>
   <body>
-    <h1>
-      <span style="display:none">Obi</span>
-      <img style="width:128px;height:128px" alt=""
+    <p style="text-align:center">
+      <img style="width:128px;height:128px" alt="&ldquo;Obi&rdquo;"
         src="../images/oballoon_blue_256.png"/>
-      <img style="width:128px;height:128px" alt=""
+      <img style="width:128px;height:128px" alt="says Obird"
         src="../images/obird256.png"/>
-    </h1>
+    </p>
+    <h1>Obi</h1>
     <h2>The Urakawa Project DAISY/NISO Digital Talking Book Production
       Tool</h2>
 
@@ -53,7 +53,8 @@
     <a href="#credits">Credits</a>
     </p>
 
-    <p><abbr title="Obi Backwards is Ibo; it is also 帯 in Japanese">Obi</abbr>
+    <p><acronym
+      title="Obi stands for &ldquo;Obi Backwards is Ibo;&rdquo; it is also 帯 in Japanese">Obi</acronym>
     is a DAISY/NISO Digital Talking Book production tool. Obi was created
     to demonstrate the capabilities of the Urakawa toolkit as well as to
     provide an easy to use, accessible and internationalized DAISY production
@@ -83,8 +84,8 @@
       </a>
       </p>
       <p class="lg">Editing a book in Obi. On the right the table of contents;
-      on the left the four sections with their audio strips. The last section
-      and its last audio block are currently selected.</p>
+      on the left the four sections with their audio and structure strips. Page
+      1 is currently selected.</p>
     </div>
     <p>
     This screenshot (click on the image to enlarge) shows the
@@ -105,7 +106,8 @@
     and merged. New audio content is added either by importing existing
     audio files, or recording new audio directly from Obi.</p>
     <p class="in">Obi uses its own format to store projects (the format is
-    XML based and called <abbr title="XML for Urakawa">XUK</abbr>.) This means
+    XML based and called <acronym
+      title="XML for Urakawa">XUK</acronym>.) This means
     that Obi projects cannot be opened directly in a DAISY player, and
     conversely, Obi cannot open a random DAISY book for editing. This problem
     will be addressed by <a href="http://daisymfc.sf.net/">DMFC</a>, which will
@@ -162,6 +164,8 @@
       to make it as accessible as possible, it is still text-only. In the
       future, the manual will be in DAISY format (and editable by Obi, of
       course.) It will also be more complete.</li>
+      <li>The only structure items are page numbers. The first phrase of every
+      section is understood to be the heading for the section.</li>
     </ul>
     <p>Version 1.0 of Obi will include the following features:</p>
     <ul>
@@ -185,13 +189,17 @@
       can set a correct asset again and carry on with editing the book.</li>
       <li>Opening large projects should bring up a progress bar and hide the
       project panel until it is ready to be shown.</li>
+      <li>Enabling and disabling phrases and section: a phrase or section
+      can be marked as enabled or disabled. Disabled sections will not be
+      exported or played back in normal QA playing mode, but the data is
+      still available while authoring.</li>
+      <li>Translation to other languages than English.</li>
     </ul>
 
     <h3 id="roadmap">Roadmap</h3>
     <p>The next three releases of Obi are: a more stable alpha version (0.6) in
     late September, a beta version (0.9) in January 2007, with version 1.0 in
-    early 2007. Version 1.0 should be available in other languages than
-    English. Future versions will include more media support (text and
+    early 2007. Future versions will include more media support (text and
     images), DAISY features (skippable and escapable structures, resources,
     etc.) and better internationalization (right-to-left language support,
     more translations.) We encourage the suggestion of additional features
