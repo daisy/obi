@@ -4,20 +4,57 @@
 <head>
 <title>Obi Manual</title>
 <style type="text/css">
+  body { color: black; background-color: white; font-family: arial, sans-serif; margin: 3em; text-align: justify;}
+  
+  ul.toc {margin-left: 0em; padding-left:0em;}
+  ul.toc li { list-style-type: none}
+  
+    
+  .infobox { border: 1px solid rgb(25,100,25); background-color: rgb(210,250,210); padding: 1em 1em 1em 1em; margin: 1em 0em 1em 0em; }
+  .infobox .hd { font-weight: bold; margin-bottom: 0.5em }
 
+  .obirdbox { border: 1px solid rgb(25,100,25); background-color: rgb(190,255,190); padding: 1em 1em 1em 1em; margin: 1em 0em 1em 0em; background-image: url("../../images/obird32.png"); background-repeat: no-repeat; }
+  
+  .obirdbox .hd, h1.title .hd { display:none;  }
+    
+  td { border: 1px solid gray; }
+  tr.hd td {font-weight: bold;}
+  
+  dt { font-weight: bold;}
+    
+  h1,h2,h3,h4,h5,h6 {color:rgb(5,80,5);} 
+  h2,h3{border-bottom: 1px rgb(25,100,25) dotted;}  
+  h1,h2 {margin-top: 3em}
+  h3,h4 {margin-top: 2em}
+  h5,h6 {margin-top: 1em}
+    
 </style>
 </head>
 
 <body>
-<h1>Obi Manual</h1>
 
-<h2 id="toc">Table of Contents</h2>
+<h1 class="title">
+      <span class="hd">Obi 	Manual</span>
+      <img style="width:128px;height:128px" alt="" src="../../images/oballoon_blue_256.png"/>
+      <img style="width:128px;height:128px" alt="" src="../../images/obird256.png"/>
+</h1>
+    
+<h2 id="toc">Obi Manual - Table of Contents</h2>
+<ul class="toc">
+<li><a href="#getstart">Getting started</a></li>
+<li><a href="#ctrls">Obi Windows - details</a></li>
+<li><a href="#gloss">Glossary of terms</a></li>
+<li><a href="#kbd">Keyboard shortcut table</a></li>
+</ul>
 
 <h2 id="intro">Obi - DAISY/NISO DTB Production Tool</h2>
   <h3>What is Obi?</h3>
+  
+  
   <h3>Obi Online - Community Help and Support</h3>
+  <p>For further help and support on using Obi, please visit <a href="">Obi online</a>.</p>
 
-<h2>Getting Started</h2>
+<h2 id="getstart">Getting Started</h2>
   <h3>Main Window Overview</h3>
     <h4>The TOC View</h4>
     <h4>The Strip View</h4>
@@ -25,32 +62,164 @@
   <h3>Create a New Project</h3>
   <h3>Record and Edit the Project</h3>
   <h3>Save the Project</h3>
-  <h3>Please enjoy the DAISY/NIDO DTB</h3>
+  <h3>Please enjoy the DAISY/NISO DTB</h3>
     
-<h2>Obi Windows - details</h2>
-  <h3>Main Window</h3>
-    <h4>TOC View</h4>
-    <h4>Strip View</h4>
-    <h4>Record Dialog</h4>
-    <h4>Play Dialog</h4>
-    <h4>Split Dialog</h4>
+<h2 id="ctrls">Obi Windows - details</h2>
+  <h3 id="ctrl_main">Main Window</h3>
+    <h4 id="ctrl_tocview">TOC View</h4>
+    <h4 id="ctrl_stripview">Strip View</h4>
+    <h4 id="ctrl_record">Record Dialog</h4>
+    <h4 id="ctrl_play">Play Dialog</h4>
+    <h4 id="ctrl_split">Split Dialog</h4>
 
-  <h3>Metadata Dialog</h3>
+  <h3 id="ctrl_metadata">Metadata Dialog</h3>
+  <p>The metadata dialog allows editing of bibliographic metadata to be associated with the project.<br/> 
+  It is strongly suggested that you take time to fill these fields in properly.</p>
+  
+  <h4>Metadata Dialog fields</h4>  
+  <dl>
+  <dt>Title</dt>
+  <dd>A name given to the resource. Typically, Title will be a name by which the resource is formally known.</dd>
+  <dt>Author</dt>
+  <dd>An entity primarily responsible for making the content of the resource. Examples of Creator include a person, an organization, or a service. Typically, the name of a Creator should be used to indicate the entity.</dd>
+  <dt>Publisher</dt>
+  <dd>An entity responsible for making the resource available. Examples of Publisher include a person, an organization, or a service. Typically, the name of a Publisher should be used to indicate the entity.</dd>
+  <dt>Identifier</dt>
+  <dd>An unambiguous reference to the resource within a given context.</dd>
+  <dt>Language</dt>
+  <dd>A language of the intellectual content of the resource.</dd> 
+  </dl>
+  
+  <img src="../../images/manual_metadata.png" alt="screenshot of the metadata dialog"/>
+  <div class="obirdbox">
+  <div class="hd">Obird suggestion</div>  
+  <p>
+    DAISY DTB metadata uses the Dublin Core metadata standard.<br/> 
+    <a href="http://www.daisy.org/dkn">Learn more about Dublin Core at the DAISY Knowledge Network</a>.<br/>
+    <a href="http://dublincore.org/documents/dces/">Learn more about Dublin Core at the Dublin Core Metadata Initiative</a>.
+  </p>
+</div>
+  
+  	
+  <h3 id="ctrl_preferences">Preferences Dialog</h3>
+  <p>The preferences dialog contains various settings relating to the project and the system. Obi will remember these settings between session, in other words, when you restart Obi or your computer, these settings will remain as you left them.</p>  
+  </p>
+  <h3 id="ctrl_preferences_audio">Audio Preferences</h3>
+  <p>The audio preferences tab allows to view and modify settings relating to audio recording and audio playback.</p>
+  <h4>Audio Preferences fields</h4>
+  <dl>
+  <dt>Input device name</dt>
+  <dd>Set the audio device to use for recording. This is the same as selecting a <em>soundcard input port</em></dd>
+  <dt>Output device name</dt>
+  <dd>Set the audio device to use for playback. This is the same as selecting a <em>soundcard output port</em></dd>
+  <dt>Default sample rate</dt>
+  <dd>Select the sample rate to use for recording. This field defaults to <code>44100</code>, and normally, you can leave it at that. Under some circumstances (such as a very large book being recorded) you may want to change this setting to <code>22050</code>.</dd>
+  <dt>Default channels</dt>
+  <dd>Select whether you want to record in <code>mono</code> (one channel of audio) or <code>stereo</code> (two channels of audio). Normally, DAISY DTBs are recorded in mono.</dd>
+  </dl>
+  <img src="../../images/manual_preferences_audio.png" alt="screenshot of the audio tab in the preferences dialog"/>
+  <div class="obirdbox">
+  <div class="hd">Obird suggestion</div>  
+  <p>
+    Changing sample rate and number of channels in the middle of a project is not a very good idea!<br/> 
+    Try to make your choice <em>before you start recording</em> in the project! Then try to stick to your choice!
+  </p>
+  </div>
+     
+  <h3 id="ctrl_preferences_project">Project Preferences</h3>
+  <p>The project preferences tab allows to view and modify settings relating to an Obi project.</p>
+  <h4>Project preferences fields</h4>
+  <dl>
+  <dt>Project identifier template</dt>
+  <dd>Obi can autogenerate an [href]identifier for your project. In this field, you can determine how the identifier should be generated.
+  You can add any characters that will occur everytime an identifier is generated, and combine these with a number of hash characters (#) that Obi will replace with numerals. <br/>For example, if this field is set to <code>obi_####</code>, Obi will generate an identifier such as <code>obi_9682</code>.
+  </dd>
+  <dt>Default projects directory</dt>
+  <dd>Select a directory on your computers harddrive that Obi will suggest as a project directory when you start a new project.</dd>
+  </dl>
+  <img src="../../images/manual_preferences_project.png" alt="screenshot of the project tab in the preferences dialog"/>
 
-  <h3>Preferences Dialog</h3>
-
-  <h3>User Profile Dialog</h3>
+  <h3 id="ctrl_userprofile">User Profile Dialog</h3>  
+  <h4>User profile fields</h4>
+  <dl>
+  <dt>Full name</dt>
+  <dd>Name of user</dd>
+  <dt>Organisation</dt>
+  <dd>Organisation of the user</dd>
+  <dt>Language</dt>
+  <dd>The language of the user (which is not necessarily the same as the [href]language of the DTB being recorded!).
+  </dl>
+  <img src="../../images/manual_userprofile.png" alt="screenshot of the user profile dialog"/>
 
 <h2 id="gloss">Glossary of Terms</h2>
+<div class="obirdbox">
+  <div class="hd">Obird suggestion</div>  
+  <p>If the word you are looking for does not exist in this glossary, I suggest that you have a look in the <a href="http://www.daisy.org/dkn">DAISY Knowledge Network</a>.</p>
+</div>
+
 <dl>
-  Block  
-  Phrase
-  Section  
-  Strip
-  XUK File Format
+  <dt id="gls_audioblock">Audio Block</dt>
+  <dd>
+  A term used in Obi to describe segments of audio. See also [href]Block and [href]Phrase.
+  </dd>
+  
+  <dt id="gls_block">Block</dt>
+  <dd>
+  A term used in Obi to describe the smallest content unit of the [href]DTB being produced.<br/> 
+  A block can for example be an [href]Audio Block, in which case it is equivalent to a [href]phrase.<br/>
+  Blocks are organised in [href]Strips.  
+  </dd>
+  
+  <dt>DAISY</dt>
+  <dd>
+  An acronym that stands for Digital Accessible Information SYstem.<br/> 
+  Read more at the <a href="http://www.daisy.org/about_us/">daisy.org introduction area</a>.
+  </dd>
+  
+  <dt>DAISY/NISO</dt>
+  <dd>
+  A name used to describe the <em>type</em> of [href]DTB produced by Obi, in other words, the particular standard specification used.<br/> 
+  Read more at <a href="http://www.daisy.org/z3986/">daisy.org standards area</a> and the <a href="http://www.daisy.org/about_us/">daisy.org introduction area</a>.
+  </dd>
+  
+  <dt id="gls_dtb">DTB</dt>
+  <dd>
+  An acronym that stands for Digital Talking Book. 
+  Read more at the <a href="http://www.daisy.org/about_us/">daisy.org introduction area</a>.
+  </dd>
+  
+  <dt>Phrase</dt>
+  <dd>
+  A term used to describe a small segment of audio within a DAISY DTB.<br/> 
+  A phrase is typically equivalent to a spoken sentence, or a part of a spoken sentence.<br/> 
+  In Obi, a phrase is equivalent to an [href]Audio Block.
+  </dd>
+  
+  <dt id="gls_section">Section</dt>
+  <dd>
+  A structural unit in the DTB being produced.<br/> 
+  A section typically corresponds to a book <em>chapter</em>.<br/> 
+  In Obi, sections are displayed and edited in the [href]TOC View and in the [href]Strip View.</dd>
+  
+  <dt id="gls_strip">Strip</dt>
+  <dd>A concept used in Obi to display the contents of a DTB [href]section. Strips occur in the [href]Strip View of the Obi main window.</dd>
+  
+  <dt id="gls_xuk">XUK File Format</dt>
+  <dd>XUK is an acronym that stands for XML for Urakawa. This is a file format used while the [href]DTB is under production. When you save the project, by default a XUK file is created. Once the DTB is ready for publishing, the XUK file format is converted into a DTB.</dd>
 </dl>
 
 <h2 id="kbd">Keyboard Shortcut Table</h2>
+<div class="infobox">
+<div class="hd">How keyboard shortcut syntax works</div>
+<p>In the table below, all keyboard shortcuts of Obi are described using a standard syntax. 
+<br/>The key components of this syntax are:</p>
+<dl>
+<dt>Sequences of keys to be pressed are described using the comma sign</dt>
+<dd>For example, <kbd>ALT,F</kbd> means: <em>First press and release the <kbd>ALT</kbd> key, then press and release the <kbd>F</kbd> key.</em>
+<dt>Key combinations (i.e. keys to be pressed simultaneously) are described using the plus sign</dt>
+<dd>For example, <kbd>ALT+F</kbd> means: <em>Press the <kbd>ALT</kbd> and <kbd>F</kbd> key simultaneously, and then release them.</em>
+</dl>
+</div>
 <!--
 Project modification invocations by default use the CTRL modkey 
 (unless there is a preferred Windows standard heritage key, for example F2 = rename, DEL = delete).
@@ -58,73 +227,80 @@ View modifications (that change the GUI but not the project itself) by default u
 -->
 <!-- JQ changed to pre so that we have a sort-of table layout (spacing is wrong though) and updated some shortcuts -->
 <!-- JQ would like that this table is always kept up-to-date when changes to shortcut keys/menu items are made -->
-<pre>
-  File Menu				ALT+F
-  Edit Menu				ALT+E
-  TOC Menu				ALT+C
-  Strips Menu				ALT+S
-  Tools Menu				ALT+T
-  Help Menu				ALT+H
+<table width="75%">
+  <tr class="hd"><td colspan="2">Obi Main Menu</td></tr>
+  <tr><td>File Menu</td>			<td><kbd>ALT,F</kbd></td></tr>
+  <tr><td>Edit Menu</td>			<td><kbd>ALT,E</kbd></td></tr>
+  <tr><td>TOC Menu</td>				<td><kbd>ALT,C</kbd></td></tr>
+  <tr><td>Strips Menu</td>			<td><kbd>ALT,S</kbd></td></tr>
+  <tr><td>Tools Menu</td>			<td><kbd>ALT,T</kbd></td></tr>
+  <tr><td>Help Menu</td>			<td><kbd>ALT,H</kbd></td></tr>
 
-  New Project				CTRL+N
-  Open Project				CTRL+O
-  Save Project				CTRL+S
-  Save Project as			CTRL+SHIFT+S
-  Close Project				CTRL+W
-  Exit					ALT+F4
+  <tr class="hd"><td colspan="2">File Menu</td></tr>
+  <tr><td>New Project</td>			<td><kbd>CTRL+N</kbd></td></tr>
+  <tr><td>Open Project</td>			<td><kbd>CTRL+O</kbd></td></tr>
+  <tr><td>Save Project</td>			<td><kbd>CTRL+S</kbd></td></tr>
+  <tr><td>Save Project as</td>			<td><kbd>CTRL+SHIFT+S</kbd></td></tr>
+  <tr><td>Close Project</td>			<td><kbd>CTRL+W</kbd></td></tr>
+  <tr><td>Exit</td>				<td><kbd>ALT+F4</kbd></td></tr>
+  
+  <tr class="hd"><td colspan="2">Dialogs and Windows</td></tr>
+  <tr><td>Open Record Dialog</td>		<td><kbd>ALT+R</kbd></td></tr> 
+  <tr><td>Open Help</td>			<td><kbd>F1</kbd></td></tr>
+  <tr><td>Open Metadata dialog</td>		<td><kbd>ALT+M</kbd></td></tr>
+  <tr><td>Open Audio Preferences</td>		<td><kbd>ALT+A</kbd></td></tr>   
+  <tr><td>Open Project Preferences</td>		<td><kbd>ALT+P</kbd></td></tr>
+  <tr><td>Open User Profile Dialog</td>		<td><kbd>ALT+U</kbd></td></tr>
+  
+  <tr class="hd"><td colspan="2">General editing operations</td></tr>
+  <tr><td>Undo</td>				<td><kbd>CTRL+Z</kbd></td></tr>
+  <tr><td>Redo</td>				<td><kbd>CTRL+Y</kbd></td></tr>
+  <tr><td>Touch project</td>			<td><kbd>CTRL+T</kbd></td></tr> <!-- (we should keep it in the final version, this is useful.) -->
+   
+  
+  <tr class="hd"><td colspan="2">Main view</td></tr>
+  <tr><td>Hide TOC View</td>			<td><kbd>ALT+T</kbd></td></tr>
+  <tr><td>Show TOC View</td>			<td><kbd>ALT+T</kbd></td></tr>
+  <tr><td>Show in Strip View</td>		<td><kbd>ALT+V</kbd></td></tr>
+  <tr><td>Show in TOC View</td>			<td><kbd>ALT+V</kbd></td></tr>
+    
+  <tr class="hd"><td colspan="2">Section Editing</td></tr>
+  <tr><td>Add section</td>			<td><kbd>CTRL+A</kbd></td></tr>
+  <tr><td>Add subsection</td>			<td><kbd>CTRL+B</kbd></td></tr>
+  <tr><td>Delete section</td>			<td><kbd>DEL</kbd></td></tr>
+  <tr><td>Rename section</td>			<td><kbd>F2</kbd></td></tr>
+  <tr><td>Move Section Up</td>			<td><kbd>CTRL+SHIFT+UP</kbd></td></tr> <!-- (otherwise this conflicts with blocks.) -->
+  <tr><td>Move Section Down</td>		<td><kbd>CTRL+SHIFT+DOWN</kbd></td></tr>
+  <tr><td>Move Section In</td>			<td><kbd>CTRL+SHIFT+RIGHT</kbd></td></tr>
+  <tr><td>Move Section Out</td>			<td><kbd>CTRL+SHIFT+LEFT</kbd></td></tr>
+  
+  <tr class="hd"><td colspan="2">Strip Editing</td></tr>
+  <tr><td>Add strip</td>			<td><kbd>CTRL+A</kbd></td></tr>
+  <tr><td>Rename strip</td>			<td><kbd>SHIFT+F2</kbd></td></tr> <!-- (because of selection ambivalence in strips) -->
+  <tr><td>Delete strip</td>			<td><kbd>SHIFT+Del</kbd></td></tr>
+  <tr><td>Move strip up</td>			<td><kbd>CTRL+SHIFT+Up</kbd></td></tr>
+  <tr><td>Move strip down</td>			<td><kbd>CTRL+SHIFT+Down</kbd></td></tr>
+    
+  <tr class="hd"><td colspan="2">Audio Editing</td></tr>
+  <tr><td>Play audio block</td>			<td><kbd>ALT+Space</kbd></td></tr> <!-- (should be space alone) -->
+  <tr><td>Cut audio block</td>			<td><kbd>CTRL+X</kbd></td></tr>
+  <tr><td>Copy audio block</td>			<td><kbd>CTRL+C</kbd></td></tr>
+  <tr><td>Split audio block</td>		<td><kbd>CTRL+P</kbd></td></tr>
+  <tr><td>Merge with next audio block</td>	<td><kbd>CTRL+M</kbd></td></tr>
+  <tr><td>Delete audio block</td>		<td><kbd>DEL</kbd></td></tr>
+  <tr><td>Edit audio block label</td>		<td><kbd>F2</kbd></td></tr>
+  <tr><td>Move audio block forward</td>		<td><kbd>CTRL+RIGHT</kbd></td></tr>
+  <tr><td>Move audio block backward</td>	<td><kbd>CTRL+LEFT</kbd></td></tr>
+  <tr><td>Import audio file</td>		<td><kbd>CTRL+I</kbd></td></tr>    
+  
+</table>  
 
-  Undo					CTRL+Z
-  Redo					CTRL+Y
+<!--
   Cut					CTRL+X
   Copy 					CTRL+C
   Paste					CTRL+V
   Delete				Del
-  Touch Project         CTRL+T (we should keep it in the final version, this is useful.) 
-   
-  Hide TOC View				ALT+T
-  Show TOC View				ALT+T
-  
-  Add section				CTRL+A
-  Add subsection			CTRL+B
-  Delete section			DEL
-  Rename section			F2
-  Move Section Up			CTRL+SHIFT+UP (otherwise this conflicts with blocks.)
-  Move Section Down			CTRL+SHIFT+DOWN
-  Move Section In			CTRL+SHIFT+RIGHT
-  Move Section Out			CTRL+SHIFT+LEFT
-
-  Show in Strip View			ALT+V
-  Show in TOC View			ALT+V
-  
-  Add strip				CTRL+A
-  Rename strip				SHIFT+F2 (because of selection ambivalence in strips)
-  Delete strip				SHIFT+Del
-  Move strip up				CTRL+SHIFT+Up
-  Move strip down			CTRL+SHIFT+Down
-    
-  Import audio file    			CTRL+I
-  Play audio block			ALT+Space (should be space alone)
-  Split audio block			CTRL+P
-  Merge with next audio block		CTRL+M
-  Delete audio block			DEL
-  Rename audio block			F2
-  Move audio block forward		CTRL+RIGHT
-  Move audio block backward		CTRL+LEFT
-      
-  Open Record Dialog			ALT+R
-  
-  Open Help				F1
-  
-  Open Metadata dialog			ALT+M
-  
-  Open Audio Preferences		ALT+A
-   
-  Open Project Preferences		ALT+P
-  
-  Open User Profile Dialog		ALT+U
-  
-</pre>  
-  
+-->
 
 </body>
 </html>
