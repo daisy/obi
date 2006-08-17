@@ -934,6 +934,10 @@ namespace Obi
             //the actual paste operation
             parent.insert(pastedSection, 0);
 
+            //reconstruct the assets
+            Obi.Visitors.CopyPhraseAssets assVisitor = new Obi.Visitors.CopyPhraseAssets(mAssManager, this);
+            pastedSection.acceptDepthFirst(assVisitor);
+
             Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(pastedSection);
             getPresentation().getRootNode().acceptDepthFirst(visitor);
 
