@@ -14,5 +14,6 @@ namespace Obi.Dialogs
         {
             InitializeComponent();
         }
+
     }
 }
