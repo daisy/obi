@@ -199,14 +199,15 @@ namespace Obi
         /// </summary>
         private void mExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (ClosedProject())
+            /*if (ClosedProject())
             {
                 Application.Exit();
             }
             else
             {
                 Ready();
-            }
+            }*/
+            Close();
         }
 
         /// <summary>
@@ -312,14 +313,23 @@ namespace Obi
         /// </summary>
         private void ObiForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            try
+            if (ClosedProject())
             {
-                mSettings.SaveSettings();
+                try
+                {
+                    mSettings.SaveSettings();
+                }
+                catch (Exception x)
+                {
+                    MessageBox.Show(String.Format(Localizer.Message("save_settings_error_text"), x.Message),
+                        Localizer.Message("save_settings_error_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                Application.Exit();
             }
-            catch (Exception x)
+            else
             {
-                MessageBox.Show(String.Format(Localizer.Message("save_settings_error_text"), x.Message),
-                    Localizer.Message("save_settings_error_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                e.Cancel = true;
+                Ready();
             }
         }
 
