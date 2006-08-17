@@ -21,9 +21,6 @@ namespace Obi.UserControls
 
         private void AddStripFromNode(CoreNode node, int position, bool rename)
         {
-            if (Project.GetNodeType(node) != NodeType.Section)
-                return;
-
             SectionStrip strip = new SectionStrip();
             strip.Label = Project.GetTextMedia(node).getText();
             strip.Manager = this;
@@ -41,18 +38,29 @@ namespace Obi.UserControls
         //md 20060811
         //recursive function to add strips for a node and its subtree
         //returns the position marker after the operation is completed
+        //todo: this should probably be a visitor
         private int AddStripsFromNodeSubtree(CoreNode node, int position)
         {
-            AddStripFromNode(node, position, false);
-
-            for (int i = 1; i < node.getChildCount(); i++)
+           
+            if (Project.GetNodeType(node) == NodeType.Section)
+            {
+                AddStripFromNode(node, position, false);
+                position++;
+            }
+            for (int i = 0; i < node.getChildCount(); i++)
             {
                 if (Project.GetNodeType(node.getChild(i)) == NodeType.Section)
                 {
-                    //increment locally
-                    position++;
                     //then increment based on how many children were added
-                    position = AddStripsFromNodeSubtree(node.getChild(i - 1), position);
+                    position = AddStripsFromNodeSubtree(node.getChild(i), position);
+                }
+                else if (Project.GetNodeType(node.getChild(i)) == NodeType.Phrase)
+                {
+                    //todo: replace this with something cleaner ?  we are kind of falsely invoking an event handler
+                    SyncAddedPhraseNode
+                        (this, new Obi.Events.Node.AddedPhraseNodeEventArgs
+                    (this, node.getChild(i), Project.GetPhraseIndex(node.getChild(i))));
+                    
                 }
             }
 

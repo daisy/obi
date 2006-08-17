@@ -39,9 +39,9 @@ namespace Obi.Visitors
 
 
                 //mostly copied from Project.SetAudioMediaAsset(...)
-                //which couldn't be used directly because it also updates the views
-                //at this point, the subtree-to-be-pasted isn't in the tree yet, so
-                //no view will want anything to do with it
+                //which for some reason couldn't be used directly;
+                //i suspect because it also updates the views
+                
                 AssetProperty prop = (AssetProperty)node.getProperty(typeof(AssetProperty));
                 if (prop != null)
                 {

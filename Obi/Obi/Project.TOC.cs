@@ -937,7 +937,7 @@ namespace Obi
             //reconstruct the assets
             Obi.Visitors.CopyPhraseAssets assVisitor = new Obi.Visitors.CopyPhraseAssets(mAssManager, this);
             pastedSection.acceptDepthFirst(assVisitor);
-
+           
             Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(pastedSection);
             getPresentation().getRootNode().acceptDepthFirst(visitor);
 
@@ -964,9 +964,8 @@ namespace Obi
             //end mdXXX
 
             node.detach();
-
+           
             UndidPasteSectionNode(this, new Events.Node.NodeEventArgs(this, node));
-
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
 

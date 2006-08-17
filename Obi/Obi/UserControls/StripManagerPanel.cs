@@ -56,15 +56,26 @@ namespace Obi.UserControls
                 {
                     if (mSelectedSection != null)
                     {
-                        mSectionNodeMap[mSelectedSection].MarkDeselected();
+                        //md added try-catch because it tends to crash here
+                        try {mSectionNodeMap[mSelectedSection].MarkDeselected();}
+                        catch (Exception e) {}
+
                         if (mSelectedPhrase != null)
                         {
-                            mPhraseNodeMap[mSelectedPhrase].MarkDeselected();
+                            //md added try-catch because it tended to crash above and maybe it would here too
+                            try {mPhraseNodeMap[mSelectedPhrase].MarkDeselected();}
+                            catch (Exception e) {}
+
                             mSelectedPhrase = null;
                         }
                     }
                     mSelectedSection = value;
-                    if (mSelectedSection != null) mSectionNodeMap[mSelectedSection].MarkSelected();
+                    if (mSelectedSection != null)
+                    {
+                        //md added try-catch because it tended to crash above and maybe it would here too
+                        try {mSectionNodeMap[mSelectedSection].MarkSelected();}
+                        catch (Exception e) {}
+                    }
                 }
             }
         }
