@@ -40,7 +40,7 @@ namespace Obi
         private SimpleMetadata mMetadata;    // metadata for this project
 
     
-        public static readonly string XUKVersion = "obi-xuk-001";            // version of the Obi/XUK file
+        public static readonly string XUKVersion = "obi-xuk-002";            // version of the Obi/XUK file
         public static readonly string AudioChannel = "obi.audio";            // canonical name of the audio channel
         public static readonly string TextChannel = "obi.text";              // canonical name of the text channel
         public static readonly string AnnotationChannel = "obi.annotation";  // canonical name of the annotation channel
