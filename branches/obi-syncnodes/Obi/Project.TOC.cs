@@ -57,12 +57,12 @@ namespace Obi
             node.setProperty(typeProp);
             return node;
         }
+
         // Here are the event handlers for request sent by the GUI when editing the TOC.
         // Every request is passed to a method that uses mostly the same arguments,
         // which can also be called directly by a command for undo/redo purposes.
         // When we are done, a synchronization event is sent back.
         // (As well as a state change event.)
-
 
         /// <summary>
         /// Create a sibling section for a given section.

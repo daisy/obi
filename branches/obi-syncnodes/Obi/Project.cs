@@ -169,7 +169,7 @@ namespace Obi
                 (NodeInformationProperty)getPresentation().getPropertyFactory().createProperty("NodeInformationProperty",
                 ObiPropertyFactory.ObiNS);
             typeProp.NodeType = NodeType.Root;
-            typeProp.NodeStatus = NodeStatus.Used;
+            typeProp.NodeStatus = NodeStatus.NA;
             getPresentation().getRootNode().setProperty(typeProp);
             NodeInformationProperty rootType = (NodeInformationProperty)getPresentation().getRootNode().getProperty(typeof(NodeInformationProperty));
 

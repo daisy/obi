@@ -69,20 +69,21 @@ namespace Obi
     ///   * Root is the root of the tree;
     ///   * Section is a section node in the tree;
     ///   * Phrase is a phrase in the tree;
-    ///   * Page is a page node in the tree;
+    ///   * Page is a page node in the tree--it can appear as the only child node of a phrase.
+    ///   * Heading is a heagind node in the tree--it can appear as the only child node of a phrase.
     ///   * Vanilla is a vanilla core node (should not occur in the tree.)
     /// </summary>
-    public enum NodeType { Root, Section, Phrase, Page, Vanilla };
+    public enum NodeType { Root, Section, Phrase, Page, Heading, Vanilla };
 
     /// <summary>
-    /// Possible status of a node in the tree:
+    /// Possible status of a phrase node in the tree:
     ///   * Used: a regular node, it is currently used.
-    ///   * Synchronized: synchronized with another node (or other nodes in the future.)
     ///   * Unused: kept in the project but let's pretend it's not here.
     ///   * Invalid: the node has invalid asset (for instance.)
+    /// For other nodes, we just use:
     ///   * NA: not applicable.
     /// </summary>
-    public enum NodeStatus { Used, Synchronized, Unused, Invalid, NA };
+    public enum NodeStatus { Used, Unused, Invalid, NA };
 
     /// <summary>
     /// Information about a node: id, type, status.
@@ -144,10 +145,10 @@ namespace Obi
                 mNodeType = type == "Root" ? NodeType.Root :
                     type == "Section" ? NodeType.Section :
                     type == "Phrase" ? NodeType.Phrase :
-                    type == "Page" ? NodeType.Page : NodeType.Vanilla;
+                    type == "Page" ? NodeType.Page : 
+                    type == "Heading" ? NodeType.Heading : NodeType.Vanilla;
                 string status = source.GetAttribute("status");
                 mNodeStatus = status == "Used" ? NodeStatus.Used :
-                    status == "Synchronized" ? NodeStatus.Synchronized :
                     status == "Unused" ? NodeStatus.Unused :
                     status == "Invalid" ? NodeStatus.Invalid : NodeStatus.NA;
                 if (source.IsEmptyElement) return true;
