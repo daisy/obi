@@ -816,15 +816,19 @@ namespace Obi
         //md 20060810
         public void UndoCutSectionNode(CoreNode node, CoreNode parent, int index, int position)
         {
+            UndeleteSectionNode(node, parent, index, position);
+            mClipboard = null;
+           
             //mdXXX
-            NodeType nodeType;
+        /*    NodeType nodeType;
             nodeType = Project.GetNodeType(node);
             if (nodeType != NodeType.Section)
             {
                 throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
-            }
+            }*/
             //end mdXXX
 
+            /*
             if (node.getParent() != null) node.detach();
             parent.insert(node, index);
 
@@ -835,6 +839,7 @@ namespace Obi
             
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+             */
         }
 
         //md 20060810
@@ -1286,7 +1291,7 @@ namespace Obi
         }
 
         //would have used a visitor for the next two functions (Get Next/Prev Section Node)
-        //but it's not as efficient to start at the root, and besides, visitors don't go in the prev. direction.
+        //but visitors don't go in the prev. direction.
         //md 20060813
         private CoreNode GetNextSectionNode(CoreNode node, int startIdx)
         {
