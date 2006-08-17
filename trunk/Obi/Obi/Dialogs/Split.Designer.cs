@@ -55,7 +55,7 @@ namespace Obi.Dialogs
             this.btnPreview.Location = new System.Drawing.Point(12, 43);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(118, 23);
-            this.btnPreview.TabIndex = 0;
+            this.btnPreview.TabIndex = 2;
             this.btnPreview.Text = "Pre&view";
             this.btnPreview.UseVisualStyleBackColor = true;
             this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
@@ -74,7 +74,7 @@ namespace Obi.Dialogs
             this.txtDisplayTime.Name = "txtDisplayTime";
             this.txtDisplayTime.ReadOnly = true;
             this.txtDisplayTime.Size = new System.Drawing.Size(127, 20);
-            this.txtDisplayTime.TabIndex = 2;
+            this.txtDisplayTime.TabIndex = 4;
             // 
             // tmUpdateTimePosition
             // 
@@ -87,7 +87,7 @@ namespace Obi.Dialogs
             this.btnFastRewind.Location = new System.Drawing.Point(18, 17);
             this.btnFastRewind.Name = "btnFastRewind";
             this.btnFastRewind.Size = new System.Drawing.Size(100, 23);
-            this.btnFastRewind.TabIndex = 3;
+            this.btnFastRewind.TabIndex = 6;
             this.btnFastRewind.Text = "Fast Rewind";
             this.btnFastRewind.UseVisualStyleBackColor = true;
             this.btnFastRewind.Click += new System.EventHandler(this.btnFastRewind_Click);
@@ -97,7 +97,7 @@ namespace Obi.Dialogs
             this.btnFastForward.Location = new System.Drawing.Point(124, 17);
             this.btnFastForward.Name = "btnFastForward";
             this.btnFastForward.Size = new System.Drawing.Size(105, 23);
-            this.btnFastForward.TabIndex = 4;
+            this.btnFastForward.TabIndex = 7;
             this.btnFastForward.Text = "Fast Forward";
             this.btnFastForward.UseVisualStyleBackColor = true;
             this.btnFastForward.Click += new System.EventHandler(this.btnFastForward_Click);
@@ -117,7 +117,7 @@ namespace Obi.Dialogs
             this.btnFineForward.Location = new System.Drawing.Point(124, 46);
             this.btnFineForward.Name = "btnFineForward";
             this.btnFineForward.Size = new System.Drawing.Size(105, 23);
-            this.btnFineForward.TabIndex = 6;
+            this.btnFineForward.TabIndex = 9;
             this.btnFineForward.Text = "Fine Forward";
             this.btnFineForward.UseVisualStyleBackColor = true;
             this.btnFineForward.Click += new System.EventHandler(this.btnFineForward_Click);
@@ -128,7 +128,7 @@ namespace Obi.Dialogs
             this.btnSplit.Location = new System.Drawing.Point(12, 213);
             this.btnSplit.Name = "btnSplit";
             this.btnSplit.Size = new System.Drawing.Size(118, 23);
-            this.btnSplit.TabIndex = 7;
+            this.btnSplit.TabIndex = 10;
             this.btnSplit.Text = "Split";
             this.btnSplit.UseVisualStyleBackColor = true;
             this.btnSplit.Click += new System.EventHandler(this.btnSplit_Click);
@@ -139,7 +139,7 @@ namespace Obi.Dialogs
             this.btnStop.Location = new System.Drawing.Point(136, 213);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(127, 23);
-            this.btnStop.TabIndex = 8;
+            this.btnStop.TabIndex = 11;
             this.btnStop.Text = "Stop";
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
@@ -149,7 +149,7 @@ namespace Obi.Dialogs
             this.btnPause.Location = new System.Drawing.Point(136, 43);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(127, 23);
-            this.btnPause.TabIndex = 0;
+            this.btnPause.TabIndex = 3;
             this.btnPause.Text = "Pause";
             this.btnPause.UseVisualStyleBackColor = true;
             this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
@@ -159,7 +159,7 @@ namespace Obi.Dialogs
             this.txtSplitTime.Location = new System.Drawing.Point(136, 97);
             this.txtSplitTime.Name = "txtSplitTime";
             this.txtSplitTime.Size = new System.Drawing.Size(127, 20);
-            this.txtSplitTime.TabIndex = 9;
+            this.txtSplitTime.TabIndex = 5;
             // 
             // groupBox1
             // 
@@ -180,7 +180,7 @@ namespace Obi.Dialogs
             this.button1.Location = new System.Drawing.Point(18, 46);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 23);
-            this.button1.TabIndex = 5;
+            this.button1.TabIndex = 8;
             this.button1.Text = "Fine Rewind";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.btnFineRewind_Click);
