@@ -45,9 +45,6 @@ namespace Obi.UserControls
         {
             AddStripFromNode(node, position, false);
 
-
-           
-            
             for (int i = 1; i < node.getChildCount(); i++)
             {
                 if (Project.GetNodeType(node.getChild(i)) == NodeType.Section)
@@ -155,6 +152,7 @@ namespace Obi.UserControls
         internal void SyncPastedSectionNode(object sender, Events.Node.AddedSectionNodeEventArgs e)
         {
             AddStripsFromNodeSubtree(e.Node, e.Position);
+            
         }
 
         //md 20060811

@@ -461,7 +461,8 @@ namespace Obi
         /// Make a new sequence media object for the asset of this node.
         /// The sequence media object is simply a translation of the list of clips.
         /// </summary>
-        private void UpdateSeq(CoreNode node)
+        //md change from private to internal so it could be used by CopyPhraseAssets
+        internal void UpdateSeq(CoreNode node)
         {
             Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);
             ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
