@@ -114,7 +114,7 @@ namespace Obi.Dialogs
             this.labelObiVersion.Name = "labelObiVersion";
             this.labelObiVersion.Size = new System.Drawing.Size(74, 12);
             this.labelObiVersion.TabIndex = 0;
-            this.labelObiVersion.Text = "Obi v0.5.4.927";
+            this.labelObiVersion.Text = "Obi v0.5.5.929";
             // 
             // groupBox2
             // 
