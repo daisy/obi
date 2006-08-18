@@ -107,8 +107,10 @@ namespace Obi.UserControls
             {
                 TreeNode treeNode = FindTreeNodeFromCoreNode(e.Node);
                 mTocTree.SelectedNode = treeNode.PrevVisibleNode;
-                mTocTree.SelectedNode.EnsureVisible();
-
+                if (mTocTree.SelectedNode != null)
+                {
+                    mTocTree.SelectedNode.EnsureVisible();
+                }
                 treeNode.Remove();
             }
         }
@@ -139,7 +141,10 @@ namespace Obi.UserControls
             siblings.Insert(e.SectionNodeIndex, clone);
             clone.ExpandAll();
             clone.EnsureVisible();
-            mTocTree.SelectedNode = clone;
+            if (mTocTree.SelectedNode != null)
+            {
+                mTocTree.SelectedNode = clone;
+            }
         }
 
         /// <summary>
@@ -255,10 +260,12 @@ namespace Obi.UserControls
             TreeNode pastedNode = FindTreeNodeFromCoreNode(e.Node);
 
             //focus on the previous node
-            mTocTree.SelectedNode = pastedNode.PrevVisibleNode; 
-            mTocTree.SelectedNode.ExpandAll();
-            mTocTree.SelectedNode.EnsureVisible();
-
+            mTocTree.SelectedNode = pastedNode.PrevVisibleNode;
+            if (mTocTree.SelectedNode != null)
+            {
+                mTocTree.SelectedNode.ExpandAll();
+                mTocTree.SelectedNode.EnsureVisible();
+            }
             if (pastedNode != null)
             {
                 pastedNode.Remove();
@@ -278,8 +285,11 @@ namespace Obi.UserControls
         
             //focus on the first swapped node
             mTocTree.SelectedNode = FindTreeNodeFromCoreNode(e.Node);
-            mTocTree.SelectedNode.ExpandAll();
-            mTocTree.SelectedNode.EnsureVisible();
+            if (mTocTree.SelectedNode != null)
+            {
+                mTocTree.SelectedNode.ExpandAll();
+                mTocTree.SelectedNode.EnsureVisible();
+            }
         }
     }
 }
