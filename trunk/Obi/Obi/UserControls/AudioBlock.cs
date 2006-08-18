@@ -13,71 +13,87 @@ namespace Obi.UserControls
 {
     public partial class AudioBlock : AbstractBlock 
     {
-        //private StripManagerPanel mManager;  // the manager for this block
-        //private CoreNode mNode;              // the phrase node for this block
+        private StructureBlock mStructureBlock;  // corresponding structure block
 
         #region properties
 
-        //public StripManagerPanel Manager
-        //{
-        //    set
-        //    {
-        //        mManager = value;
-        //    }
-        //}
-
-        //public CoreNode Node
-        //{
-        //    get
-        //    {
-        //        return mNode;
-        //    }
-        //    set
-        //    {
-        //        mNode = value;
-        //    }
-        //}
-
-        public string Label
+        public override CoreNode Node
         {
             get
             {
-                return mAnnotationLabel.Text;
+                return mNode;
             }
             set
             {
-                mAnnotationLabel.Text = value;
+                mNode = value;
+                CoreNode structureNode = Project.GetStructureNode(mNode);
+                if (structureNode == null) mStructureBlock.Node = value;
             }
+        }
+
+        public override StripManagerPanel Manager
+        {
+            get
+            {
+                return mManager;
+            }
+            set
+            {
+                mManager = value;
+                mStructureBlock.Manager = value;
+            }
+        }
+
+        public StructureBlock StructureBlock
+        {
+            get
+            {
+                return mStructureBlock;
+            }
+            set
+            {
+                mStructureBlock = value;
+                mStructureBlock.AudioBlock = this;
+            }
+        }
+
+        public string Label
+        {
+            get { return mAnnotationLabel.Text; }
+            set { mAnnotationLabel.Text = value; }
         }
 
         public string Time
         {
-            set
-            {
-                mTimeLabel.Text = value;
-            }
+            set { mTimeLabel.Text = value; }
         }
 
         #endregion
         
         #region instantiators
+
         public AudioBlock() : base()
         {
-            //mg:
-            this.TabStop = true;  
             InitializeComponent();
+            this.TabStop = true;  // mg (moved by JQ 20060817)
+            mStructureBlock = new StructureBlock();
+            mStructureBlock.AudioBlock = this;
         }
+
         #endregion
 
         #region AudioBlock (this)
-        internal void MarkDeselected()
+
+        internal override void MarkDeselected()
         {
             BackColor = Color.MistyRose;
+            mStructureBlock.MarkDeselected();
         }
 
-        internal void MarkSelected()
+        internal override void MarkSelected()
         {
             BackColor = Color.LightPink;
+            mStructureBlock.MarkSelected();
         }
 
         private void AudioBlock_Click(object sender, EventArgs e)
@@ -105,7 +121,8 @@ namespace Obi.UserControls
             // Removed by JQ--marking an item as selected/deselected is done through properties in the manager panel.
             //MarkDeselected();
         }
-#endregion
+
+        #endregion
 
         #region Rename Box
 
@@ -174,5 +191,21 @@ namespace Obi.UserControls
         }
 
         #endregion
+
+        /// <summary>
+        /// Update the size of the structure block when the size changes.
+        /// </summary>
+        private void AudioBlock_SizeChanged(object sender, EventArgs e)
+        {
+            mStructureBlock._Width = Width;
+        }
+
+        /// <summary>
+        /// Edit the page label for the structure block linked to this audio block.
+        /// </summary>
+        internal void StartEditingPageLabel()
+        {
+            mStructureBlock.StartEditingPageLabel();
+        }
     }
 }

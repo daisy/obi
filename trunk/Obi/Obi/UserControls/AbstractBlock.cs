@@ -11,7 +11,7 @@ namespace Obi.UserControls
     /// </summary>
     /// //added my mg 20060804
     /// // made unabastract as this fucks up the designer :( JQ
-    public /* abstract */ class AbstractBlock: UserControl
+    public /*abstract*/ class AbstractBlock: UserControl
     {
         protected CoreNode mNode;                 // the node for this block
         protected SectionStrip mSectionStrip;     // the SectionStrip that contains this block
@@ -19,46 +19,41 @@ namespace Obi.UserControls
 
         #region properties
 
-        public CoreNode Node
+        public virtual CoreNode Node
         {
-            get
-            {
-                return mNode;
-            }
-            set
-            {
-                mNode = value;
-            }
+            get { return mNode; }
+            set { mNode = value; }
         }
 
         public SectionStrip SectionStrip
         {
-            get
-            {
-                return mSectionStrip;
-            }
-            set
-            {
-                mSectionStrip = value;
-            }
+            get { return mSectionStrip; }
+            set { mSectionStrip = value; }
         }
 
-        public StripManagerPanel Manager
+        public virtual StripManagerPanel Manager
         {
-            set
-            {
-                mManager = value;
-            }
+            get { return mManager; }
+            set { mManager = value; }
         }
 
         #endregion
 
         #region instantiators
+        
         public AbstractBlock()
         {
-
         }
+
         #endregion
-    
+
+        internal virtual void MarkSelected()
+        {
+        }
+
+        internal virtual void MarkDeselected()
+        {
+        }
+
     }
 }

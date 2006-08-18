@@ -40,7 +40,7 @@ namespace Obi
         private SimpleMetadata mMetadata;    // metadata for this project
 
     
-        public static readonly string XUKVersion = "obi-xuk-001";            // version of the Obi/XUK file
+        public static readonly string XUKVersion = "obi-xuk-002";            // version of the Obi/XUK file
         public static readonly string AudioChannel = "obi.audio";            // canonical name of the audio channel
         public static readonly string TextChannel = "obi.text";              // canonical name of the text channel
         public static readonly string AnnotationChannel = "obi.annotation";  // canonical name of the annotation channel
@@ -169,7 +169,7 @@ namespace Obi
                 (NodeInformationProperty)getPresentation().getPropertyFactory().createProperty("NodeInformationProperty",
                 ObiPropertyFactory.ObiNS);
             typeProp.NodeType = NodeType.Root;
-            typeProp.NodeStatus = NodeStatus.Used;
+            typeProp.NodeStatus = NodeStatus.NA;
             getPresentation().getRootNode().setProperty(typeProp);
             NodeInformationProperty rootType = (NodeInformationProperty)getPresentation().getRootNode().getProperty(typeof(NodeInformationProperty));
 
@@ -447,10 +447,6 @@ namespace Obi
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
 
-      
-
-       
-
         /// <summary>
         /// Create a new phrase node from an asset.
         /// Add a default annotation with the name of the asset.
@@ -551,17 +547,6 @@ namespace Obi
             {
                 return NodeType.Vanilla;
             }
-        }
-
-
-        /// <summary>
-        /// Debug function for easy recording
-        /// </summary>
-        /// <param name="settings">Settings for recording</param>
-        internal void StartRecording(Settings settings)
-        {
-            Dialogs.Record dialog = new Dialogs.Record(settings.AudioChannels, settings.SampleRate, settings.BitDepth, mAssManager);
-            dialog.ShowDialog();
         }
 
         /// <summary>

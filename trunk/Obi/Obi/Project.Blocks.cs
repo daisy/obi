@@ -11,6 +11,8 @@ namespace Obi
     public partial class Project
     {
         public Events.Strip.UpdateTimeHandler UpdateTime;
+        public Events.Node.RemovedPageLabelHandler RemovedPageLabel;
+        public Events.Node.SetPageLabelHandler SetPageLabel;
 
         #region clip board
 
@@ -489,6 +491,117 @@ namespace Obi
         internal void TouchNode(CoreNode node)
         {
             TouchedNode(this, new Events.Node.NodeEventArgs(this, node));
+        }
+
+        /// <summary>
+        /// Set the page for a phrase node. Create a new node if it did not exist before, otherwise update the label.
+        /// </summary>
+        internal void SetPageRequested(object sender, Events.Node.SetPageEventArgs e)
+        {
+            CoreNode pageNode = GetStructureNode(e.Node);
+            Commands.Strips.SetNewPageLabel command = null;
+            if (pageNode == null)
+            {
+                pageNode = CreatePageNode(e.Label);
+                e.Node.appendChild(pageNode);
+                command = new Commands.Strips.SetNewPageLabel(this, e.Node);
+            }
+            else
+            {
+                if (GetNodeType(pageNode) == NodeType.Page)
+                {
+                    TextMedia pageText = GetTextMedia(pageNode);
+                    string prev = pageText.getText();
+                    if (e.Label != prev)
+                    {
+                        pageText.setText(e.Label);
+                        command = new Commands.Strips.SetPageLabel(this, e.Node, prev);
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    throw new Exception("Expected page node, but got " + GetNodeType(pageNode));
+                }
+            }
+            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));            
+        }
+
+        /// <summary>
+        /// Remove a page for a phrase node.
+        /// </summary>
+        internal void RemovePageRequested(object sender, Events.Node.NodeEventArgs e)
+        {
+            Commands.Strips.RemovePageLabel command = new Commands.Strips.RemovePageLabel(this, e.Node);
+            RemovePage(e.Origin, e.Node);
+            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+        }
+
+        /// <summary>
+        /// Remove a page label from a phrase node (actually remove the node.)
+        /// </summary>
+        internal void RemovePage(object origin, CoreNode node)
+        {
+            int index;
+            for (index = 0; index < node.getChildCount(); ++index)
+            {
+                if (GetNodeType(node.getChild(index)) == NodeType.Page)
+                {
+                    node.removeChild(index);
+                    RemovedPageLabel(this, new Events.Node.NodeEventArgs(origin, node));
+                    mUnsaved = true;
+                    StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));            
+                }
+            }
+        }
+
+        /// <summary>
+        /// Create a new page node from a page label (any string, really.)
+        /// The page label is set on the text channel.
+        /// </summary>
+        private CoreNode CreatePageNode(string pageLabel)
+        {
+            CoreNode node = getPresentation().getCoreNodeFactory().createNode();
+            ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
+            TextMedia text = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
+            text.setText(pageLabel);
+            prop.setMedia(mTextChannel, text);
+            NodeInformationProperty typeProp =
+                (NodeInformationProperty)getPresentation().getPropertyFactory().createProperty("NodeInformationProperty",
+                ObiPropertyFactory.ObiNS);
+            typeProp.NodeType = NodeType.Page;
+            typeProp.NodeStatus = NodeStatus.NA;
+            node.setProperty(typeProp);
+            return node;
+        }
+
+        /// <summary>
+        /// Get the structure child node of a phrase node. If the phrase has no such child, return null.
+        /// </summary>
+        internal static CoreNode GetStructureNode(CoreNode node)
+        {
+            if (GetNodeType(node) == NodeType.Phrase)
+            {
+                if (node.getChildCount() > 0)
+                {
+                    for (int i = 0; i < node.getChildCount(); ++i)
+                    {
+                        CoreNode child = node.getChild(i);
+                        NodeType type = GetNodeType(child);
+                        if (type == NodeType.Page || type == NodeType.Heading) return child; 
+                    }
+                }
+                return null;
+            }
+            else
+            {
+                throw new Exception("Cannot get the structure node for a node of type " + GetNodeType(node));
+            }
         }
 
         #endregion

@@ -28,29 +28,31 @@ namespace Obi.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            this.mFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.mAudioLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.mTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.mStructureLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
-            // mFlowLayoutPanel
+            // mAudioLayoutPanel
             // 
-            this.mFlowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.mAudioLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.mFlowLayoutPanel.AutoSize = true;
-            this.mFlowLayoutPanel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.mFlowLayoutPanel.Location = new System.Drawing.Point(2, 27);
-            this.mFlowLayoutPanel.Name = "mFlowLayoutPanel";
-            this.mFlowLayoutPanel.Size = new System.Drawing.Size(237, 0);
-            this.mFlowLayoutPanel.TabIndex = 2;
-            this.mFlowLayoutPanel.WrapContents = false;
-            this.mFlowLayoutPanel.Click += new System.EventHandler(this.mFlowLayoutPanel_Click);
+            this.mAudioLayoutPanel.AutoSize = true;
+            this.mAudioLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.mAudioLayoutPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.mAudioLayoutPanel.Location = new System.Drawing.Point(3, 49);
+            this.mAudioLayoutPanel.Name = "mAudioLayoutPanel";
+            this.mAudioLayoutPanel.Size = new System.Drawing.Size(0, 0);
+            this.mAudioLayoutPanel.TabIndex = 2;
+            this.mAudioLayoutPanel.WrapContents = false;
+            this.mAudioLayoutPanel.Click += new System.EventHandler(this.mAudioLayoutPanel_Click);
             // 
             // mTextBox
             // 
             this.mTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.mTextBox.BackColor = System.Drawing.Color.PaleGreen;
+            this.mTextBox.BackColor = System.Drawing.Color.Gold;
             this.mTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mTextBox.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.mTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
@@ -75,18 +77,30 @@ namespace Obi.UserControls
             this.label1.TabIndex = 3;
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // mStructureLayoutPanel
+            // 
+            this.mStructureLayoutPanel.AutoSize = true;
+            this.mStructureLayoutPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.mStructureLayoutPanel.Location = new System.Drawing.Point(3, 25);
+            this.mStructureLayoutPanel.Name = "mStructureLayoutPanel";
+            this.mStructureLayoutPanel.Size = new System.Drawing.Size(0, 18);
+            this.mStructureLayoutPanel.TabIndex = 3;
+            this.mStructureLayoutPanel.Click += new System.EventHandler(this.mStructureLayoutPanel_Click);
+            // 
             // SectionStrip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.PaleGreen;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackColor = System.Drawing.Color.Gold;
+            this.Controls.Add(this.mStructureLayoutPanel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.mTextBox);
-            this.Controls.Add(this.mFlowLayoutPanel);
+            this.Controls.Add(this.mAudioLayoutPanel);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.Name = "SectionStrip";
-            this.Size = new System.Drawing.Size(241, 33);
+            this.Size = new System.Drawing.Size(241, 52);
             this.Enter += new System.EventHandler(this.SectionStrip_enter);
             this.Click += new System.EventHandler(this.SectionStrip_Click);
             this.Leave += new System.EventHandler(this.SectionStrip_leave);
@@ -97,8 +111,9 @@ namespace Obi.UserControls
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel mFlowLayoutPanel;
+        private System.Windows.Forms.FlowLayoutPanel mAudioLayoutPanel;
         private System.Windows.Forms.TextBox mTextBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.FlowLayoutPanel mStructureLayoutPanel;
     }
 }

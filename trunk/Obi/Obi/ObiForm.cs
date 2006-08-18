@@ -8,8 +8,8 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
-using Microsoft.DirectX.DirectSound;
-
+//using Microsoft.DirectX.DirectSound;
+using urakawa.core;
 using Obi.Dialogs;
 
 namespace Obi
@@ -425,6 +425,10 @@ namespace Obi
                 new EventHandler(mProjectPanel.StripManager.mCopyAudioBlockToolStripMenuItem_Click);
             mPasteAudioBlockToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mPasteAudioBlockToolStripMenuItem_Click);
+            mSetPageLabelToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.StripManager.mSetPageLabelToolStripMenuItem_Click);
+            mRemovePageLabelToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.StripManager.mRemovePageLabelToolStripMenuItem_Click);
         }
 
         /// <summary>
@@ -881,6 +885,13 @@ namespace Obi
             bool isAudioBlockFirst = isAudioBlockSelected &&
                 Project.GetPhraseIndex(mProjectPanel.StripManager.SelectedPhraseNode) == 0;
             bool isBlockClipBoardSet = isProjectOpen && mProject.BlockClipBoard != null;
+            bool canSetPage = isAudioBlockSelected;  // an audio block must be selected and a heading must not be set.
+            bool canRemovePage = isAudioBlockSelected;
+            if (isAudioBlockSelected)
+            {
+                CoreNode page = Project.GetStructureNode(mProjectPanel.StripManager.SelectedPhraseNode);
+                canRemovePage = page != null && Project.GetNodeType(page) == NodeType.Page;
+            }
 
             mAddStripToolStripMenuItem.Enabled = isProjectOpen;
             mRenameStripToolStripMenuItem.Enabled = isStripSelected;
@@ -894,6 +905,9 @@ namespace Obi
             mEditAudioBlockLabelToolStripMenuItem.Enabled = isAudioBlockSelected;
             mSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
             mMergeWithNextAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
+            mCutAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mCopyAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mPasteAudioBlockToolStripMenuItem.Enabled = isBlockClipBoardSet && isStripSelected;
             mDeleteAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
             mMoveAudioBlockForwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
             mMoveAudioBlockBackwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockFirst;
@@ -902,9 +916,8 @@ namespace Obi
             mPlayAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
             mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;
 
-            mCutAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mCopyAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mPasteAudioBlockToolStripMenuItem.Enabled = isBlockClipBoardSet && isStripSelected;
+            mSetPageLabelToolStripMenuItem.Enabled = canSetPage;
+            mRemovePageLabelToolStripMenuItem.Enabled = canRemovePage;
         }
 
         /// <summary>
@@ -935,6 +948,15 @@ namespace Obi
             Dialogs.Play dialog = new Dialogs.Play(node);
             dialog.ShowDialog();
             Ready();
+        }
+
+        internal void UndoLast()
+        {
+            if (mCommandManager.HasUndo)
+            {
+                mCommandManager.Undo();
+                FormUpdateUndoRedoLabels();
+            }
         }
     }
 }
