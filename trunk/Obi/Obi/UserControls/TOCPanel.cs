@@ -73,6 +73,13 @@ namespace Obi.UserControls
             mTocTree.Nodes.Clear();
             mTocTree.SelectedNode = null;
             root.acceptDepthFirst(this);
+
+            //select the first node
+            if (mTocTree.Nodes.Count > 0)
+            {
+                mTocTree.SelectedNode = mTocTree.Nodes[0];
+                mTocTree.SelectedNode.EnsureVisible();
+            }
         }
         
         #region Synchronization visitor
