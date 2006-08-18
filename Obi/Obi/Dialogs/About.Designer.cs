@@ -50,9 +50,9 @@ namespace Obi.Dialogs
             // mOKButton
             // 
             this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.mOKButton.Location = new System.Drawing.Point(205, 302);
+            this.mOKButton.Location = new System.Drawing.Point(205, 279);
             this.mOKButton.Name = "mOKButton";
-            this.mOKButton.Size = new System.Drawing.Size(75, 25);
+            this.mOKButton.Size = new System.Drawing.Size(75, 23);
             this.mOKButton.TabIndex = 0;
             this.mOKButton.Text = "&OK";
             this.mOKButton.UseVisualStyleBackColor = true;
@@ -60,7 +60,7 @@ namespace Obi.Dialogs
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 13);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(32, 32);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -71,7 +71,7 @@ namespace Obi.Dialogs
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(50, 22);
+            this.label1.Location = new System.Drawing.Point(50, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 29);
             this.label1.TabIndex = 2;
@@ -82,9 +82,9 @@ namespace Obi.Dialogs
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.labelUkawaToolkit);
             this.groupBox1.Controls.Add(this.labelObiVersion);
-            this.groupBox1.Location = new System.Drawing.Point(12, 63);
+            this.groupBox1.Location = new System.Drawing.Point(12, 58);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(268, 89);
+            this.groupBox1.Size = new System.Drawing.Size(268, 82);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Version";
@@ -92,37 +92,37 @@ namespace Obi.Dialogs
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 61);
+            this.label2.Location = new System.Drawing.Point(6, 56);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(130, 13);
+            this.label2.Size = new System.Drawing.Size(138, 12);
             this.label2.TabIndex = 5;
             this.label2.Text = "Release date: 2006-08-18";
             // 
             // labelUkawaToolkit
             // 
             this.labelUkawaToolkit.AutoSize = true;
-            this.labelUkawaToolkit.Location = new System.Drawing.Point(6, 38);
+            this.labelUkawaToolkit.Location = new System.Drawing.Point(6, 35);
             this.labelUkawaToolkit.Name = "labelUkawaToolkit";
-            this.labelUkawaToolkit.Size = new System.Drawing.Size(109, 13);
+            this.labelUkawaToolkit.Size = new System.Drawing.Size(112, 12);
             this.labelUkawaToolkit.TabIndex = 1;
             this.labelUkawaToolkit.Text = "Urakawa Toolkit v0.5";
             // 
             // labelObiVersion
             // 
             this.labelObiVersion.AutoSize = true;
-            this.labelObiVersion.Location = new System.Drawing.Point(6, 16);
+            this.labelObiVersion.Location = new System.Drawing.Point(6, 15);
             this.labelObiVersion.Name = "labelObiVersion";
-            this.labelObiVersion.Size = new System.Drawing.Size(47, 13);
+            this.labelObiVersion.Size = new System.Drawing.Size(74, 12);
             this.labelObiVersion.TabIndex = 0;
-            this.labelObiVersion.Text = "Obi v0.5";
+            this.labelObiVersion.Text = "Obi v0.5.4.927";
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.labelLicense);
             this.groupBox2.Controls.Add(this.labelCopyright);
-            this.groupBox2.Location = new System.Drawing.Point(12, 158);
+            this.groupBox2.Location = new System.Drawing.Point(12, 146);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(268, 73);
+            this.groupBox2.Size = new System.Drawing.Size(268, 67);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "License";
@@ -130,27 +130,27 @@ namespace Obi.Dialogs
             // labelLicense
             // 
             this.labelLicense.AutoSize = true;
-            this.labelLicense.Location = new System.Drawing.Point(6, 39);
+            this.labelLicense.Location = new System.Drawing.Point(6, 36);
             this.labelLicense.Name = "labelLicense";
-            this.labelLicense.Size = new System.Drawing.Size(72, 13);
+            this.labelLicense.Size = new System.Drawing.Size(73, 12);
             this.labelLicense.TabIndex = 5;
             this.labelLicense.Text = "License: TBD";
             // 
             // labelCopyright
             // 
             this.labelCopyright.AutoSize = true;
-            this.labelCopyright.Location = new System.Drawing.Point(6, 16);
+            this.labelCopyright.Location = new System.Drawing.Point(6, 15);
             this.labelCopyright.Name = "labelCopyright";
-            this.labelCopyright.Size = new System.Drawing.Size(202, 13);
+            this.labelCopyright.Size = new System.Drawing.Size(210, 12);
             this.labelCopyright.TabIndex = 5;
             this.labelCopyright.Text = "Copyright © 2005, 2006 Urakawa Project";
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.linkLabel1);
-            this.groupBox3.Location = new System.Drawing.Point(12, 237);
+            this.groupBox3.Location = new System.Drawing.Point(12, 219);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(268, 42);
+            this.groupBox3.Size = new System.Drawing.Size(268, 39);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Obi Online";
@@ -158,9 +158,9 @@ namespace Obi.Dialogs
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(3, 16);
+            this.linkLabel1.Location = new System.Drawing.Point(3, 15);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(156, 13);
+            this.linkLabel1.Size = new System.Drawing.Size(161, 12);
             this.linkLabel1.TabIndex = 0;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "http://urakawa.sourceforge.net";
@@ -168,9 +168,9 @@ namespace Obi.Dialogs
             // About
             // 
             this.AcceptButton = this.mOKButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 339);
+            this.ClientSize = new System.Drawing.Size(292, 313);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
