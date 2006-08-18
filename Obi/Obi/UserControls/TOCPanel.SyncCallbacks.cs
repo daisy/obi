@@ -221,17 +221,6 @@ namespace Obi.UserControls
         }
 
         //md 20060810
-        internal void SyncUndidCutSectionNode(object sender, Events.Node.AddedSectionNodeEventArgs e)
-        {
-            TreeNode uncutNode = AddSectionNode(e.Node, e.SectionNodeIndex);
-
-            uncutNode.ExpandAll();
-            uncutNode.EnsureVisible();
-            mTocTree.SelectedNode = uncutNode;
-          
-         }
-
-        //md 20060810
         //does nothing; just a placeholder
         internal void SyncCopiedSectionNode(object sender, Events.Node.NodeEventArgs e)
         {    

@@ -30,7 +30,7 @@ namespace Obi.UserControls
         {
             this.mAudioLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.mTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.mLabel = new System.Windows.Forms.Label();
             this.mStructureLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
@@ -41,7 +41,7 @@ namespace Obi.UserControls
             this.mAudioLayoutPanel.AutoSize = true;
             this.mAudioLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.mAudioLayoutPanel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.mAudioLayoutPanel.Location = new System.Drawing.Point(3, 49);
+            this.mAudioLayoutPanel.Location = new System.Drawing.Point(3, 45);
             this.mAudioLayoutPanel.Name = "mAudioLayoutPanel";
             this.mAudioLayoutPanel.Size = new System.Drawing.Size(0, 0);
             this.mAudioLayoutPanel.TabIndex = 2;
@@ -56,51 +56,53 @@ namespace Obi.UserControls
             this.mTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mTextBox.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.mTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.mTextBox.Location = new System.Drawing.Point(0, 0);
+            this.mTextBox.Location = new System.Drawing.Point(3, 0);
+            this.mTextBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.mTextBox.Name = "mTextBox";
             this.mTextBox.ReadOnly = true;
             this.mTextBox.ShortcutsEnabled = false;
-            this.mTextBox.Size = new System.Drawing.Size(235, 19);
+            this.mTextBox.Size = new System.Drawing.Size(243, 19);
             this.mTextBox.TabIndex = 1;
             this.mTextBox.Visible = false;
             this.mTextBox.Click += new System.EventHandler(this.SectionStrip_Click);
             this.mTextBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mTextBox_MouseDown);
             this.mTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mTextBox_KeyDown);
             // 
-            // label1
+            // mLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 20);
-            this.label1.TabIndex = 3;
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.mLabel.AutoSize = true;
+            this.mLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mLabel.Location = new System.Drawing.Point(3, 0);
+            this.mLabel.Name = "mLabel";
+            this.mLabel.Size = new System.Drawing.Size(0, 20);
+            this.mLabel.TabIndex = 3;
+            this.mLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.mLabel.Click += new System.EventHandler(this.SectionStrip_Click);
             // 
             // mStructureLayoutPanel
             // 
             this.mStructureLayoutPanel.AutoSize = true;
             this.mStructureLayoutPanel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.mStructureLayoutPanel.Location = new System.Drawing.Point(3, 25);
+            this.mStructureLayoutPanel.Location = new System.Drawing.Point(3, 23);
             this.mStructureLayoutPanel.Name = "mStructureLayoutPanel";
-            this.mStructureLayoutPanel.Size = new System.Drawing.Size(0, 18);
+            this.mStructureLayoutPanel.Size = new System.Drawing.Size(0, 17);
             this.mStructureLayoutPanel.TabIndex = 3;
             this.mStructureLayoutPanel.Click += new System.EventHandler(this.mStructureLayoutPanel_Click);
             // 
             // SectionStrip
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Gold;
             this.Controls.Add(this.mStructureLayoutPanel);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.mLabel);
             this.Controls.Add(this.mTextBox);
             this.Controls.Add(this.mAudioLayoutPanel);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.Name = "SectionStrip";
-            this.Size = new System.Drawing.Size(241, 52);
+            this.Size = new System.Drawing.Size(249, 48);
             this.Enter += new System.EventHandler(this.SectionStrip_enter);
             this.Click += new System.EventHandler(this.SectionStrip_Click);
             this.Leave += new System.EventHandler(this.SectionStrip_leave);
@@ -113,7 +115,7 @@ namespace Obi.UserControls
 
         private System.Windows.Forms.FlowLayoutPanel mAudioLayoutPanel;
         private System.Windows.Forms.TextBox mTextBox;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label mLabel;
         private System.Windows.Forms.FlowLayoutPanel mStructureLayoutPanel;
     }
 }

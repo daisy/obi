@@ -174,7 +174,8 @@ namespace Obi.UserControls
             // when closing, the project can be null but an event may still be generated
             // so be careful of checking the the project is not null in order to check
             // for its clipboard. (JQ)
-            mPasteSectionToolStripMenuItem.Enabled = isNodeSelected &&
+            // also, it doesn't matter if a node is selected since we can paste under the root node.
+            mPasteSectionToolStripMenuItem.Enabled =
                 (mProjectPanel.Project != null) && (mProjectPanel.Project.Clipboard != null);
         }
     }

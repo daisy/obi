@@ -10,7 +10,7 @@
   ul.toc li, ul.toc li ul li { list-style-type: none}      
   .infobox { border: 1px solid rgb(25,100,25); background-color: rgb(210,250,210); padding: 1em 1em 1em 1em; margin: 1em 0em 1em 0em; }
   .infobox .hd { font-weight: bold; margin-bottom: 0.5em }
-  .obirdbox { border: 1px solid rgb(25,100,25); background-color: rgb(190,255,190); padding: 1em 1em 1em 1em; margin: 1em 0em 1em 0em; background-image: url("../../images/obird32.png"); background-repeat: no-repeat; }  
+  .obirdbox { border: 1px solid rgb(25,100,25); background-color: rgb(190,255,190); padding: 1em 1em 1em 1em; margin: 1em 0em 1em 0em; background-image: url("images/obird32.png"); background-repeat: no-repeat; }  
   .obirdbox .hd, h1.title .hd { display:none;  }    
   td { border: 1px solid gray; }
   tr.hd td {font-weight: bold;}  
@@ -19,7 +19,8 @@
   h2,h3{border-bottom: 1px rgb(25,100,25) dotted;}  
   h1,h2 {margin-top: 3em}
   h3,h4 {margin-top: 2em}
-  h5,h6 {margin-top: 1em}    
+  h5,h6 {margin-top: 1em}
+  img { border: 0 }    
 </style>
 </head>
 
@@ -27,8 +28,8 @@
 
 <h1 class="title">
       <span class="hd">Obi 	Manual</span>
-      <img style="width:128px;height:128px" alt="" src="../../images/oballoon_blue_256.png"/>
-      <img style="width:128px;height:128px" alt="" src="../../images/obird256.png"/>
+      <img style="width:128px;height:128px" alt="" src="images/oballoon_blue_256.png"/>
+      <img style="width:128px;height:128px" alt="" src="images/obird256.png"/>
 </h1>
     
 <p>This is the manual for Obi v0.5 (18th August 2005.)</p>
@@ -86,7 +87,7 @@
       <br/>Before we start our project, let's try to understand what these views have in common, and where they differ.
       <br/><br/>    
     </p>
-    <p><img src="../../images/manual_mainwindow.png" alt="the main window, with the TOC tree view at the left, and the strip view at the right" /></p>
+    <p><img src="images/manual_mainwindow.png" alt="the main window, with the TOC tree view at the left, and the strip view at the right" /></p>
    
     <h4 id="ovw_toc">The TOC View</h4>
     <p>The TOC View can be understood as a Table of Contents for the project being recorded.</p>
@@ -113,7 +114,7 @@
   <p>A dialog will appear that asks you to set the title of the project, 
   and where on your computer's hard drive to store project data.  
   </p>
-  <p><img src="../../images/manual_newproject.png" alt="the new project dialog" /></p>
+  <p><img src="images/manual_newproject.png" alt="the new project dialog" /></p>
   
           
   <div class="obirdbox">
@@ -138,7 +139,7 @@
     <h4 id="ovw_importaudio">Importing audio</h4>
     <p>Besides recording live audio from your audio input device, you can also import existing audio files into a strip. Select the <code>import audio file</code> menu item in the Strip menu.    
     </p>
-    <p><img src="../../images/manual_importaudio.png" alt="the import audio item invoked while in the strip view" /></p>
+    <p><img src="images/manual_importaudio.png" alt="the import audio item invoked while in the strip view" /></p>
     
     
     <h4 id="ovw_sectionedit">Section editing</h4>
@@ -146,7 +147,7 @@
       Using either the TOC View or the Strip View, you can perform section level editing operations, such as add, cut, copy, delete, rename and move.
     </p>
     <p>Read more about <a href="#ctrl_tocview">section editing in the details section</a>.</p>
-    <p><img src="../../images/manual_toceditoptions.png" alt="the TOC context menu, showing editing operations such as add, cut, copy, delete, rename and move " /></p>
+    <p><img src="images/manual_toceditoptions.png" alt="the TOC context menu, showing editing operations such as add, cut, copy, delete, rename and move " /></p>
     
     
     
@@ -155,7 +156,7 @@
     Audio block editing is typically done after you have recorded some audio for a section. As an example, there may be a slight noise in the recording that you want to remove. 
     Or there may be an audio block that you want to split, or merge. Read more about <a href="#ctrl_stripview">audio block editing in the details section</a>.    
     </p>
-    <p><img src="../../images/manual_audioblockeditoptions.png" alt="the audio block context menu, showing editing operations such as add, cut, copy, delete, rename and move " /></p>
+    <p><img src="images/manual_audioblockeditoptions.png" alt="the audio block context menu, showing editing operations such as add, cut, copy, delete, rename and move " /></p>
     
     
     
@@ -282,7 +283,7 @@
     
     <h3 id="ctrl_split">Split Dialog</h3>
     <p>The split dialog is used to split one audio block into two.</p>
-    <p><img src="../../images/manual_splitdialog.png" alt="the new project dialog" /></p>
+    <p><img src="images/manual_splitdialog.png" alt="the new project dialog" /></p>
     
     <dl>
     <dt>preview</dt>
@@ -326,7 +327,7 @@
   <dt>Language</dt>
   <dd>A language of the intellectual content of the resource.</dd> 
   </dl>
-  <p><img src="../../images/manual_metadata.png" alt="screenshot of the metadata dialog"/></p>
+  <p><img src="images/manual_metadata.png" alt="screenshot of the metadata dialog"/></p>
   <div class="obirdbox">
   <div class="hd">Obird suggestion</div>  
   <p>
@@ -352,7 +353,7 @@
   <dt>Default channels</dt>
   <dd>Select whether you want to record in <code>mono</code> (one channel of audio) or <code>stereo</code> (two channels of audio). Normally, DAISY DTBs are recorded in mono.</dd>
   </dl>
-  <p><img src="../../images/manual_preferences_audio.png" alt="screenshot of the audio tab in the preferences dialog"/></p>
+  <p><img src="images/manual_preferences_audio.png" alt="screenshot of the audio tab in the preferences dialog"/></p>
   <div class="obirdbox">
   <div class="hd">Obird suggestion</div>  
   <p>
@@ -372,7 +373,7 @@
   <dt>Default projects directory</dt>
   <dd>Select a directory on your computers harddrive that Obi will suggest as a project directory when you start a new project.</dd>
   </dl>
-  <p><img src="../../images/manual_preferences_project.png" alt="screenshot of the project tab in the preferences dialog"/></p>
+  <p><img src="images/manual_preferences_project.png" alt="screenshot of the project tab in the preferences dialog"/></p>
 
   <h3 id="ctrl_userprofile">User Profile Dialog</h3>  
   <h4>User profile fields</h4>
@@ -384,7 +385,7 @@
   <dt>Language</dt>
   <dd>The language of the user (which is not necessarily the same as the <a href='#ctrl_metadata'>language of the DTB being recorded</a>!)</dd>
   </dl>
-  <p><img src="../../images/manual_userprofile.png" alt="screenshot of the user profile dialog"/></p>
+  <p><img src="images/manual_userprofile.png" alt="screenshot of the user profile dialog"/></p>
 
 <h2 id="gloss">Glossary of Terms</h2>
 <div class="obirdbox">
@@ -423,7 +424,7 @@
   Read more at the <a href="http://www.daisy.org/about_us/">daisy.org introduction area</a>.
   </dd>
   
-  <dt>Obird <img src="../../images/obird.ico" alt="obird logo"/> </dt>
+  <dt>Obird <img src="obird.ico" alt="obird logo"/> </dt>
   <dd>Obird is the Obi mascot. The Obird logo consists of a picture of Obirds green head, where she is wearing a headset with a microphone. Although Obird is a Parakeet, she can narrate very well.</dd>
     
   <dt>Phrase</dt>

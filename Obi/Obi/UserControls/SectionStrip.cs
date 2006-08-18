@@ -21,13 +21,13 @@ namespace Obi.UserControls
         {
             get
             {
-                return label1.Text;
+                return mLabel.Text;
                 //return mTextBox.Text;
             }
             set
             {
                 mTextBox.Text = value;
-                label1.Text = value;
+                mLabel.Text = value;
             }
         }
 
@@ -77,9 +77,8 @@ namespace Obi.UserControls
         public void StartRenaming()
         {
             //md xxx
-            label1.Visible = false;
+            mLabel.Visible = false;
             mTextBox.Visible = true;
-
             mTextBox.ReadOnly = false;
             mTextBox.BackColor = BackColor;
             mTextBox.SelectAll();
@@ -95,8 +94,8 @@ namespace Obi.UserControls
             mTextBox.ReadOnly = true;
 
             //md xxx
-            label1.Text = mTextBox.Text;
-            label1.Visible = true;
+            mLabel.Text = mTextBox.Text;
+            mLabel.Visible = true;
             mTextBox.Visible = false;
         }
 
@@ -121,8 +120,8 @@ namespace Obi.UserControls
                 case Keys.Return:
                     mTextBox.ReadOnly = true;
                     //md xxx
-                    label1.Text = mTextBox.Text;
-                    label1.Visible = true;
+                    mLabel.Text = mTextBox.Text;
+                    mLabel.Visible = true;
                     mTextBox.Visible = false;
 
                     UpdateText();
@@ -131,8 +130,8 @@ namespace Obi.UserControls
                     mTextBox.Text = Project.GetTextMedia(this.Node).getText();
                     mTextBox.ReadOnly = true;
                     //md xxx
-                    label1.Text = mTextBox.Text;
-                    label1.Visible = true;
+                    mLabel.Text = mTextBox.Text;
+                    mLabel.Visible = true;
                     mTextBox.Visible = false;
 
                     break;
