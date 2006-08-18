@@ -61,8 +61,8 @@ namespace Obi.UserControls
         #region instantiators
         public SectionStrip()
         {
-            this.TabStop = true; //mg: not in designer for some reason            
             InitializeComponent();
+            this.TabStop = true; //mg: not in designer for some reason
         }
         #endregion
 
@@ -83,7 +83,7 @@ namespace Obi.UserControls
             mTextBox.ReadOnly = false;
             mTextBox.BackColor = BackColor;
             mTextBox.SelectAll();
-            mFlowLayoutPanel.Focus();
+            mAudioLayoutPanel.Focus();
             mTextBox.Focus();
         }
 
@@ -177,6 +177,7 @@ namespace Obi.UserControls
                 //mg: changed renaming to not be 
                 //default state at focus:
                 //StartRenaming();
+                mManager.SelectedPhraseNode = null;
             }
             else
             {
@@ -195,19 +196,19 @@ namespace Obi.UserControls
         {
             //System.Diagnostics.Debug.Print("SectionStrip:tabindex:" + this.TabIndex.ToString());
             mManager.SelectedSectionNode = mNode;            
-            this.MarkSelected();
+            //this.MarkSelected();
         }
 
         public void MarkSelected()
         {
-            BackColor = Color.Gold;
-            mTextBox.BackColor = Color.Gold;
+            BackColor = Color.Orange;
+            mTextBox.BackColor = BackColor;
         }
 
         public void MarkDeselected()
         {
-            BackColor = Color.PaleGreen;
-            mTextBox.BackColor = Color.PaleGreen;
+            BackColor = Color.Gold;
+            mTextBox.BackColor = BackColor;
         }
 
         /// <summary>
@@ -225,9 +226,9 @@ namespace Obi.UserControls
         {
             try
             {
-                for (int i = mFlowLayoutPanel.Controls.GetChildIndex(startBlock); i < this.mFlowLayoutPanel.Controls.Count; i++)
+                for (int i = mAudioLayoutPanel.Controls.GetChildIndex(startBlock); i < this.mAudioLayoutPanel.Controls.Count; i++)
                 {
-                    Control c = this.mFlowLayoutPanel.Controls[i];
+                    Control c = this.mAudioLayoutPanel.Controls[i];
                     if (c is AudioBlock) //note: needs to be changed as block types are added
                     {
                         c.TabIndex = ++prevIndex;
@@ -264,9 +265,9 @@ namespace Obi.UserControls
         //   added by mg 20060803
         internal int ReflowTabOrder(int prevIndex)
         {
-            if (mFlowLayoutPanel.Controls.Count > 0)
+            if (mAudioLayoutPanel.Controls.Count > 0)
             {
-                return this.ReflowTabOrder(mFlowLayoutPanel.Controls[0], prevIndex);
+                return this.ReflowTabOrder(mAudioLayoutPanel.Controls[0], prevIndex);
             }
             return prevIndex;
         }
@@ -276,19 +277,22 @@ namespace Obi.UserControls
 
         public void AppendAudioBlock(AudioBlock block)
         {
-            mFlowLayoutPanel.Controls.Add(block);
+            mAudioLayoutPanel.Controls.Add(block);
+            mStructureLayoutPanel.Controls.Add(block.StructureBlock);
         }
 
         public void InsertAudioBlock(AudioBlock block, int index)
         {
-            mFlowLayoutPanel.Controls.Add(block);
-            mFlowLayoutPanel.Controls.SetChildIndex(block, index);
+            AppendAudioBlock(block);
+            mAudioLayoutPanel.Controls.SetChildIndex(block, index);
+            mStructureLayoutPanel.Controls.SetChildIndex(block.StructureBlock, index);
         }
 
         public void RemoveAudioBlock(AudioBlock block)
         {
-            int index = mFlowLayoutPanel.Controls.IndexOf(block);
-            mFlowLayoutPanel.Controls.RemoveAt(index);
+            int index = mAudioLayoutPanel.Controls.IndexOf(block);
+            mAudioLayoutPanel.Controls.RemoveAt(index);
+            mStructureLayoutPanel.Controls.RemoveAt(index);
             ReflowTabOrder(index);
         }
 
@@ -298,13 +302,23 @@ namespace Obi.UserControls
         }
 
         /// <summary>
-        /// Clicking in the audio strip (i.e. the flow layout) selects the strip but unselects the audio block.
+        /// Clicking in the audio strip selects the strip but unselects the audio block.
         /// </summary>
-        private void mFlowLayoutPanel_Click(object sender, EventArgs e)
+        private void mAudioLayoutPanel_Click(object sender, EventArgs e)
         {
             mManager.SelectedSectionNode = mNode;
             mManager.SelectedPhraseNode = null;
         }
+
+        /// <summary>
+        /// Clicking in the structure strip selects the strip but unselects the phrase.
+        /// </summary>
+        private void mStructureLayoutPanel_Click(object sender, EventArgs e)
+        {
+            mManager.SelectedSectionNode = mNode;
+            mManager.SelectedPhraseNode = null;
+        }
+
         #endregion
 
         /// <summary>

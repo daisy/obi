@@ -394,4 +394,13 @@ Do you want to replace the project contained in this file?</value>
     <value>copy audio block</value>
     <comment>Copy a phrase node (JQ)</comment>
   </data>
+  <data name="no_page_label" xml:space="preserve">
+    <value>page ...</value>
+  </data>
+  <data name="remove_page_command_label" xml:space="preserve">
+    <value>remove page label</value>
+  </data>
+  <data name="set_page_command_label" xml:space="preserve">
+    <value>set page label</value>
+  </data>
 </root>

@@ -23,6 +23,9 @@ namespace Obi.UserControls
         public event Events.Node.RequestToCopyPhraseNodeHandler RequestToCopyPhraseNode;
         public event Events.Node.RequestToPastePhraseNodeHandler RequestToPastePhraseNode;
 
+        public Events.Node.RequestToSetPageLabelHandler RequestToSetPageLabel;
+        public Events.Node.RequestToRemovePageLabelHandler RequestToRemovePageLabel;
+        
         /// <summary>
         /// Enable/disable items depending on what is currently available.
         /// </summary>
@@ -36,6 +39,14 @@ namespace Obi.UserControls
                 Project.GetPhraseIndex(mSelectedPhrase) == Project.GetPhrasesCount(mSelectedSection) - 1;
             bool isAudioBlockFirst = isAudioBlockSelected && Project.GetPhraseIndex(mSelectedPhrase) == 0;
             bool isBlockClipBoardSet = mProjectPanel.Project.BlockClipBoard != null;
+            
+            bool canSetPage = isAudioBlockSelected;  // an audio block must be selected and a heading must not be set.
+            bool canRemovePage = isAudioBlockSelected;
+            if (isAudioBlockSelected)
+            {
+                CoreNode page = Project.GetStructureNode(mSelectedPhrase);
+                canRemovePage = page != null && Project.GetNodeType(page) == NodeType.Page;
+            }
 
             mAddStripToolStripMenuItem.Enabled = true;
             mRenameStripToolStripMenuItem.Enabled = isStripSelected;
@@ -49,6 +60,9 @@ namespace Obi.UserControls
             mEditAudioBlockLabelToolStripMenuItem.Enabled = isAudioBlockSelected;
             mSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
             mMergeWithNextAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
+            mCutAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mCopyAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mPasteAudioBlockToolStripMenuItem.Enabled = isBlockClipBoardSet && isStripSelected;
             mDeleteAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
             mMoveAudioBlockForwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
             mMoveAudioBlockBackwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockFirst;
@@ -57,9 +71,8 @@ namespace Obi.UserControls
             mPlayAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
             mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;
 
-            mCutAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mCopyAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mPasteAudioBlockToolStripMenuItem.Enabled = isBlockClipBoardSet && isStripSelected;
+            mSetPageLabelToolStripMenuItem.Enabled = canSetPage;
+            mRemovePageLabelToolStripMenuItem.Enabled = canRemovePage;
         }
 
         /// <summary>
@@ -135,7 +148,12 @@ namespace Obi.UserControls
                     {
                         mProjectPanel.Project.FinishRecordingPhrase(_sender, _e, mSelectedSection, index);
                     });
-                dialog.ShowDialog();
+                if (dialog.ShowDialog() == DialogResult.Cancel)
+                {
+                    ((ObiForm)ParentForm).UndoLast();
+                    mProjectPanel.Project.Save();
+                    Application.Exit();
+                }
             }
         }
 
@@ -299,6 +317,35 @@ namespace Obi.UserControls
                 // currently selected section if no block is selected.
                 RequestToPastePhraseNode(this, new Events.Node.NodeEventArgs(sender,
                     mSelectedPhrase == null ? mSelectedSection : mSelectedPhrase));
+            }
+        }
+
+        /// <summary>
+        /// Add a page number to the synchronization strip.
+        /// If there is already a page here, ask the user if she wants to replace it.
+        /// </summary>
+        // JQ 20060817
+        internal void mSetPageLabelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mSelectedPhrase != null)
+            {
+                mPhraseNodeMap[mSelectedPhrase].StartEditingPageLabel();
+            }
+        }
+
+
+        /// <summary>
+        /// Remove a page number.
+        /// </summary>
+        internal void mRemovePageLabelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mSelectedPhrase != null)
+            {
+                CoreNode pageNode = Project.GetStructureNode(mSelectedPhrase);
+                if (pageNode != null && Project.GetNodeType(pageNode) == NodeType.Page)
+                {
+                    RequestToRemovePageLabel(this, new Events.Node.NodeEventArgs(sender, mSelectedPhrase));
+                }
             }
         }
     }

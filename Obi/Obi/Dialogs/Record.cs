@@ -94,7 +94,7 @@ namespace Obi.Dialogs
         {
             if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Listening))
             {
-                Audio.AudioRecorder.Instance.StopRecording();
+                StopRecording();
                 Assets.AudioMediaAsset asset = mAssManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
                 mAssets.Add(asset);
                 Audio.AudioRecorder.Instance.StartRecording(asset);
@@ -105,7 +105,7 @@ namespace Obi.Dialogs
             }
             else if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Recording))
             {
-                Audio.AudioRecorder.Instance.StopRecording();
+                StopRecording();
                 FinishingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(mAssets[mAssets.Count - 1], mAssets.Count - 1,
                     Audio.AudioRecorder.Instance.TimeOfAsset));
                 mRecordButton.Text = Localizer.Message("record");
@@ -119,15 +119,32 @@ namespace Obi.Dialogs
         {
             if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Recording))
             {
-                Audio.AudioRecorder.Instance.StopRecording();
+                StopRecording();
                 FinishingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(mAssets[mAssets.Count - 1], mAssets.Count - 1,
                     Audio.AudioRecorder.Instance.TimeOfAsset));
             }
             else
             {
-                Audio.AudioRecorder.Instance.StopRecording();
+                StopRecording();
             }
             this.Close();
+        }
+
+        /// <summary>
+        /// Stop recording. If this generates an exception, catch it and return Cancel.
+        /// </summary>
+        private void StopRecording()
+        {
+            try
+            {
+                Audio.AudioRecorder.Instance.StopRecording();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Oops!");
+                DialogResult = DialogResult.Cancel;
+                Close();
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)

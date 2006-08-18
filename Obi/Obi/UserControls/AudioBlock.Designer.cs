@@ -85,6 +85,7 @@ namespace Obi.UserControls
             this.DoubleClick += new System.EventHandler(this.AudioBlock_DoubleClick);
             this.Click += new System.EventHandler(this.AudioBlock_Click);
             this.Leave += new System.EventHandler(this.AudioBlock_leave);
+            this.SizeChanged += new System.EventHandler(this.AudioBlock_SizeChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -86,6 +86,7 @@ namespace Obi
             this.mShowInTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.mCutAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mCopyAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPasteAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,7 +100,8 @@ namespace Obi
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectPanel = new Obi.UserControls.ProjectPanel();
-            this.mCopyAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSetPageLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mRemovePageLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -410,6 +412,9 @@ namespace Obi
             this.mRecordAudioToolStripMenuItem,
             this.mImportAudioFileToolStripMenuItem,
             this.mEditAudioBlockLabelToolStripMenuItem,
+            this.mCutAudioBlockToolStripMenuItem,
+            this.mCopyAudioBlockToolStripMenuItem,
+            this.mPasteAudioBlockToolStripMenuItem,
             this.mDeleteAudioBlockToolStripMenuItem,
             this.mSplitAudioBlockToolStripMenuItem,
             this.mMergeWithNextAudioBlockToolStripMenuItem,
@@ -418,9 +423,8 @@ namespace Obi
             this.mPlayAudioBlockToolStripMenuItem,
             this.mShowInTOCViewToolStripMenuItem,
             this.toolStripSeparator4,
-            this.mCutAudioBlockToolStripMenuItem,
-            this.mCopyAudioBlockToolStripMenuItem,
-            this.mPasteAudioBlockToolStripMenuItem});
+            this.mSetPageLabelToolStripMenuItem,
+            this.mRemovePageLabelToolStripMenuItem});
             this.mStripsToolStripMenuItem.Name = "mStripsToolStripMenuItem";
             this.mStripsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.mStripsToolStripMenuItem.Text = "&Strips";
@@ -559,7 +563,7 @@ namespace Obi
             this.mShowInTOCViewToolStripMenuItem.Name = "mShowInTOCViewToolStripMenuItem";
             this.mShowInTOCViewToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.V)));
             this.mShowInTOCViewToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
-            this.mShowInTOCViewToolStripMenuItem.Text = "Show in &TOC view";
+            this.mShowInTOCViewToolStripMenuItem.Text = "Show in TOC vie&w";
             // 
             // toolStripSeparator4
             // 
@@ -571,7 +575,14 @@ namespace Obi
             this.mCutAudioBlockToolStripMenuItem.Name = "mCutAudioBlockToolStripMenuItem";
             this.mCutAudioBlockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
             this.mCutAudioBlockToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
-            this.mCutAudioBlockToolStripMenuItem.Text = "Cu&t audio block";
+            this.mCutAudioBlockToolStripMenuItem.Text = "C&ut audio block";
+            // 
+            // mCopyAudioBlockToolStripMenuItem
+            // 
+            this.mCopyAudioBlockToolStripMenuItem.Name = "mCopyAudioBlockToolStripMenuItem";
+            this.mCopyAudioBlockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.mCopyAudioBlockToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.mCopyAudioBlockToolStripMenuItem.Text = "Cop&y audio block";
             // 
             // mPasteAudioBlockToolStripMenuItem
             // 
@@ -643,14 +654,14 @@ namespace Obi
             // 
             this.mHelpToolStripMenuItem1.Name = "mHelpToolStripMenuItem1";
             this.mHelpToolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.mHelpToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.mHelpToolStripMenuItem1.Size = new System.Drawing.Size(134, 22);
             this.mHelpToolStripMenuItem1.Text = "&Contents";
             this.mHelpToolStripMenuItem1.Click += new System.EventHandler(this.mHelpToolStripMenuItem1_Click);
             // 
             // aboutObiToolStripMenuItem
             // 
             this.aboutObiToolStripMenuItem.Name = "aboutObiToolStripMenuItem";
-            this.aboutObiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutObiToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.aboutObiToolStripMenuItem.Text = "&About Obi";
             this.aboutObiToolStripMenuItem.Click += new System.EventHandler(this.mAboutObiToolStripMenuItem_Click);
             // 
@@ -683,12 +694,19 @@ namespace Obi
             this.mProjectPanel.Size = new System.Drawing.Size(767, 450);
             this.mProjectPanel.TabIndex = 4;
             // 
-            // mCopyAudioBlockToolStripMenuItem
+            // mSetPageLabelToolStripMenuItem
             // 
-            this.mCopyAudioBlockToolStripMenuItem.Name = "mCopyAudioBlockToolStripMenuItem";
-            this.mCopyAudioBlockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.mCopyAudioBlockToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
-            this.mCopyAudioBlockToolStripMenuItem.Text = "Cop&y audio block";
+            this.mSetPageLabelToolStripMenuItem.Name = "mSetPageLabelToolStripMenuItem";
+            this.mSetPageLabelToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F2)));
+            this.mSetPageLabelToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.mSetPageLabelToolStripMenuItem.Text = "Se&t page label";
+            // 
+            // mRemovePageLabelToolStripMenuItem
+            // 
+            this.mRemovePageLabelToolStripMenuItem.Name = "mRemovePageLabelToolStripMenuItem";
+            this.mRemovePageLabelToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Delete)));
+            this.mRemovePageLabelToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.mRemovePageLabelToolStripMenuItem.Text = "&Remove page label";
             // 
             // ObiForm
             // 
@@ -787,6 +805,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mCutAudioBlockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPasteAudioBlockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mCopyAudioBlockToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSetPageLabelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mRemovePageLabelToolStripMenuItem;
 
 
     }

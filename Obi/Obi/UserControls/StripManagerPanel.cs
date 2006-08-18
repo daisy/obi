@@ -58,13 +58,13 @@ namespace Obi.UserControls
                     {
                         //md added try-catch because it tends to crash here
                         try {mSectionNodeMap[mSelectedSection].MarkDeselected();}
-                        catch (Exception e) {}
+                        catch (Exception) {}
 
                         if (mSelectedPhrase != null)
                         {
                             //md added try-catch because it tended to crash above and maybe it would here too
                             try {mPhraseNodeMap[mSelectedPhrase].MarkDeselected();}
-                            catch (Exception e) {}
+                            catch (Exception) {}
 
                             mSelectedPhrase = null;
                         }
@@ -74,7 +74,7 @@ namespace Obi.UserControls
                     {
                         //md added try-catch because it tended to crash above and maybe it would here too
                         try {mSectionNodeMap[mSelectedSection].MarkSelected();}
-                        catch (Exception e) {}
+                        catch (Exception) {}
                     }
                 }
             }
@@ -202,6 +202,7 @@ namespace Obi.UserControls
         #region Synchronization visitor
 
         private CoreNode parentSection;  // the current parent section to add phrases to
+        private CoreNode parentPhrase;   // the current phrase node to add structure nodes to
 
         /// <summary>
         /// Update the parent section to attach phrase nodes to.
@@ -245,6 +246,10 @@ namespace Obi.UserControls
                     block.Label = annotation.getText();
                     block.Time = Project.GetAudioMediaAsset((CoreNode)node).LengthInSeconds;
                     strip.AppendAudioBlock(block);
+                    parentPhrase = (CoreNode)node;
+                    break;
+                case NodeType.Page:
+                    mPhraseNodeMap[parentPhrase].StructureBlock.Label = Project.GetTextMedia((CoreNode)node).getText();
                     break;
                 default:
                     break;
