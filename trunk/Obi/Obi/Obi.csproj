@@ -16,6 +16,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetZone>LocalIntranet</TargetZone>
     <SignAssembly>false</SignAssembly>
+    <ApplicationIcon>obird.ico</ApplicationIcon>
     <PublishUrl>C:\Documents and Settings\Julien Quint\My Documents\Urakawa\trunk\urakawa\application\dist\v05\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,7 +27,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationVersion>0.5.2.926</ApplicationVersion>
+    <ApplicationVersion>0.5.4.927</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -356,9 +357,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>Help.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="help_en.html">
+    <Content Include="help_en.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
     <EmbeddedResource Include="UserControls\StructureBlock.resx">
       <SubType>Designer</SubType>
       <DependentUpon>StructureBlock.cs</DependentUpon>
