@@ -106,6 +106,9 @@ namespace Obi.UserControls
             if (e.Node != null)
             {
                 TreeNode treeNode = FindTreeNodeFromCoreNode(e.Node);
+                mTocTree.SelectedNode = treeNode.PrevNode;
+                mTocTree.SelectedNode.EnsureVisible();
+
                 treeNode.Remove();
             }
         }
@@ -220,7 +223,7 @@ namespace Obi.UserControls
             uncutNode.ExpandAll();
             uncutNode.EnsureVisible();
             mTocTree.SelectedNode = uncutNode;
-
+          
          }
 
         //md 20060810
@@ -251,6 +254,11 @@ namespace Obi.UserControls
         {
             TreeNode pastedNode = FindTreeNodeFromCoreNode(e.Node);
 
+            //focus on the previous node
+            mTocTree.SelectedNode = pastedNode.PrevNode;
+            mTocTree.SelectedNode.ExpandAll();
+            mTocTree.SelectedNode.EnsureVisible();
+
             if (pastedNode != null)
             {
                 pastedNode.Remove();
@@ -267,6 +275,11 @@ namespace Obi.UserControls
             mTocTree.Nodes.Clear();
 
             SynchronizeWithCoreTree((urakawa.core.CoreNode)e.Node.getPresentation().getRootNode());
+        
+            //focus on the first swapped node
+            mTocTree.SelectedNode = FindTreeNodeFromCoreNode(e.Node);
+            mTocTree.SelectedNode.ExpandAll();
+            mTocTree.SelectedNode.EnsureVisible();
         }
     }
 }
