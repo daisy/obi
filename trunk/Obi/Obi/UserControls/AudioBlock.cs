@@ -197,7 +197,8 @@ namespace Obi.UserControls
         /// </summary>
         private void AudioBlock_SizeChanged(object sender, EventArgs e)
         {
-            mStructureBlock._Width = Width;
+            if (mStructureBlock != null)
+                mStructureBlock._Width = Width;
         }
 
         /// <summary>
