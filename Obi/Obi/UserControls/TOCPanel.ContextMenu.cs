@@ -40,8 +40,10 @@ namespace Obi.UserControls
         /// </summary>
         internal void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             RequestToAddSiblingSection(this,
                 new Events.Node.NodeEventArgs(this, GetSelectedSection()));
+            
         }
 
         /// <summary>
@@ -49,8 +51,10 @@ namespace Obi.UserControls
         /// </summary>
         internal void mAddSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             RequestToAddChildSectionNode(this,
                 new Events.Node.NodeEventArgs(this, GetSelectedSection()));
+           
         }
 
         /// <summary>
@@ -58,8 +62,10 @@ namespace Obi.UserControls
         /// </summary>
         internal void mMoveUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             RequestToMoveSectionNodeUp(this,
                 new Events.Node.NodeEventArgs(this, GetSelectedSection()));
+            
         }
 
         /// <summary>
@@ -92,7 +98,7 @@ namespace Obi.UserControls
         {
             RequestToDecreaseSectionNodeLevel(this,
                 new Events.Node.NodeEventArgs(this, GetSelectedSection()));
-        }
+       }
 
      
         /// <summary>

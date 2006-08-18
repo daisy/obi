@@ -106,7 +106,7 @@ namespace Obi.UserControls
             if (e.Node != null)
             {
                 TreeNode treeNode = FindTreeNodeFromCoreNode(e.Node);
-                mTocTree.SelectedNode = treeNode.PrevNode;
+                mTocTree.SelectedNode = treeNode.PrevVisibleNode;
                 mTocTree.SelectedNode.EnsureVisible();
 
                 treeNode.Remove();
@@ -255,7 +255,7 @@ namespace Obi.UserControls
             TreeNode pastedNode = FindTreeNodeFromCoreNode(e.Node);
 
             //focus on the previous node
-            mTocTree.SelectedNode = pastedNode.PrevNode;
+            mTocTree.SelectedNode = pastedNode.PrevVisibleNode; 
             mTocTree.SelectedNode.ExpandAll();
             mTocTree.SelectedNode.EnsureVisible();
 

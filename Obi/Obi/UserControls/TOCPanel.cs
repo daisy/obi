@@ -70,6 +70,8 @@ namespace Obi.UserControls
         /// </summary>
         public void SynchronizeWithCoreTree(urakawa.core.CoreNode root)
         {
+            this.Cursor = Cursors.WaitCursor;
+
             mTocTree.Nodes.Clear();
             mTocTree.SelectedNode = null;
             root.acceptDepthFirst(this);
@@ -80,6 +82,8 @@ namespace Obi.UserControls
                 mTocTree.SelectedNode = mTocTree.Nodes[0];
                 mTocTree.SelectedNode.EnsureVisible();
             }
+
+            this.Cursor = Cursors.Default;
         }
         
         #region Synchronization visitor

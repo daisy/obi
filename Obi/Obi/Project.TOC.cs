@@ -186,6 +186,7 @@ namespace Obi
         /// <param name="position"></param>
         public void UndeleteSectionNode(CoreNode node, CoreNode parent, int index, int position)
         {
+           
             //mdXXX
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
