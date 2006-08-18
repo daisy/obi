@@ -372,6 +372,12 @@ namespace Obi
                 new EventHandler(mProjectPanel.TOCPanel.mAddSectionToolStripMenuItem_Click);
             mAddSubSectionToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.TOCPanel.mAddSubSectionToolStripMenuItem_Click);
+            mCutSectionToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.TOCPanel.cutSectionToolStripMenuItem_Click);
+            mCopySectionToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.TOCPanel.copySectionToolStripMenuItem_Click);
+            mPasteSectionToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.TOCPanel.mPasteSectionToolStripMenuItem_Click);
             mDeleteSectionToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.TOCPanel.mDeleteSectionToolStripMenuItem_Click);
             mRenameSectionToolStripMenuItem.Click +=
@@ -454,7 +460,8 @@ namespace Obi
         {
             Dialogs.Help help = new Dialogs.Help();
             // TODO: Make sure the file corresponds to the current language
-            help.WebBrowser.DocumentStream = GetType().Assembly.GetManifestResourceStream("Obi.help_en.html");
+            // help.WebBrowser.DocumentStream = GetType().Assembly.GetManifestResourceStream("Obi.help_en.html");
+            help.WebBrowser.Url = new Uri(Directory.GetCurrentDirectory() + "\\help_en.html");
             help.ShowDialog();
         }
 
@@ -496,8 +503,10 @@ namespace Obi
                 mProject = new Project();
                 mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
                 mProject.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
+                this.Cursor = Cursors.WaitCursor;
                 mProject.Open(path);
                 AddRecentProject(path);
+                this.Cursor = Cursors.Default;
             }
             catch (Exception e)
             {
@@ -844,6 +853,13 @@ namespace Obi
 
                 mAddSectionToolStripMenuItem.Enabled = mProject != null;
                 mAddSubSectionToolStripMenuItem.Enabled = isNodeSelected;
+
+                // JQ 20060818
+                // be careful that project is not null when opening the menu...
+                mCutSectionToolStripMenuItem.Enabled = isNodeSelected;
+                mCopySectionToolStripMenuItem.Enabled = isNodeSelected;
+                mPasteSectionToolStripMenuItem.Enabled = mProject != null && mProject.Clipboard != null;
+
                 mDeleteSectionToolStripMenuItem.Enabled = isNodeSelected;
                 mRenameSectionToolStripMenuItem.Enabled = isNodeSelected;
 

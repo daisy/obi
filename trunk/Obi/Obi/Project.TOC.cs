@@ -18,7 +18,6 @@ namespace Obi
         public event Events.Node.DeletedNodeHandler DeletedNode;                // a node was deleted from the presentation
         //md: toc clipboard stuff
         public event Events.Node.CutSectionNodeHandler CutSectionNode;
-        public event Events.Node.MovedNodeHandler UndidCutSectionNode;
         public event Events.Node.CopiedSectionNodeHandler CopiedSectionNode;
         public event Events.Node.CopiedSectionNodeHandler UndidCopySectionNode;
         public event Events.Node.PastedSectionNodeHandler PastedSectionNode;
@@ -901,21 +900,31 @@ namespace Obi
         }
 
         //md 20060810
+        // modified by JQ 20060818: can paste under the root node if we have deleted the first and only heading.
         public void PasteSectionNodeRequested(object sender, Events.Node.NodeEventArgs e)
         {
-            PasteSectionNode(sender, e.Node);
+            if (e.Node != null)
+            {
+                PasteSectionNode(sender, e.Node);
+            }
+            else
+            {
+                PasteSectionNode(sender, getPresentation().getRootNode());
+            }
         }
 
         //md 20060810
         //"paste" will paste the clipboard contents as the first child of the given node
+        // modified by JQ 20060818: can paste under the root node if we have deleted the first and only heading.
         public void PasteSectionNode(object origin, CoreNode parent)
         {
             //mdXXX
             NodeType nodeType;
             nodeType = Project.GetNodeType(parent);
-            if (nodeType != NodeType.Section)
+            if (nodeType != NodeType.Section && nodeType != NodeType.Root)
             {
-                throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
+                throw new Exception(string.Format("Expected a Section or Root node; got a {0} node instead.",
+                    nodeType.ToString()));
             }
             //end mdXXX
 

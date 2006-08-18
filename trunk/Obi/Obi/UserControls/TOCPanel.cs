@@ -391,8 +391,5 @@ namespace Obi.UserControls
             mPasteSectionToolStripMenuItem.Enabled = e.Selected &&
                 (mProjectPanel.Project != null) && (mProjectPanel.Project.Clipboard != null);
         }
-
-       
-
     }
 }

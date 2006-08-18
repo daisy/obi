@@ -7,10 +7,10 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("Obi")]
 [assembly: AssemblyDescription("DAISY/NISO Digital Talking Book Production Tool")]
-[assembly: AssemblyConfiguration("Iteration 1 Pre Release")]
+[assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("The Urakawa Project (DAISY Consortium, CWI, INRIA, NRCD)")]
 [assembly: AssemblyProduct("Obi")]
-[assembly: AssemblyCopyright("Copyright ©  2006")]
+[assembly: AssemblyCopyright("Copyright © 2005, 2006 The Urakawa Project")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("0.4.1.881")]
-[assembly: AssemblyFileVersion("0.4.1.881")]
+[assembly: AssemblyVersion("0.5.1.917")]
+[assembly: AssemblyFileVersion("0.5.1.917")]
