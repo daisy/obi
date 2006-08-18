@@ -237,8 +237,36 @@ namespace Obi.Audio
                     if (fi.Length == 44)
                         File.Delete(m_sFileName);
             }
-        }		
-		
+        }
+
+        /// <summary>
+        /// Stop recording when something went wrong.
+        /// </summary>
+        internal void EmergencyStop()
+        {
+            Events.Audio.Recorder.StateChangedEventArgs e = new Events.Audio.Recorder.StateChangedEventArgs(mState);
+            mState = AudioRecorderState.Idle;
+            StateChanged(this, e);
+            if (null != NotificationEvent)
+            {
+                Capturing = false;
+                NotificationEvent.Set();
+            }
+            if (null != applicationBuffer)
+            {
+                if (applicationBuffer.Capturing)
+                {
+                    applicationBuffer.Stop();
+                }
+            }
+            FileInfo fi = new FileInfo(m_sFileName);
+            if (File.Exists(sProjectDirectory + "\\" + "Listen.wav"))
+                File.Delete(sProjectDirectory + "\\" + "Listen.wav");
+            if (File.Exists(m_sFileName))
+                if (fi.Length == 44)
+                    File.Delete(m_sFileName);
+        }
+
 
 		/*public Capture InitDirectSound(int Index)
 		{
@@ -615,7 +643,5 @@ namespace Obi.Audio
             get { return mDevice; }
             set { mDevice = value; }
         }
-	
-			
-	}//end of AudioRecorder Class
+    }//end of AudioRecorder Class
 }//end

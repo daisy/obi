@@ -101,7 +101,7 @@ namespace Obi.Dialogs
                 StartingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(asset, mAssets.Count - 1, 0));
                 mRecordButton.Text = Localizer.Message("pause");
                 mTimer.Enabled = true;
-                mPhraseMarkerButton.Enabled = false;
+                // mPhraseMarkerButton.Enabled = false;
             }
             else if (Audio.AudioRecorder.Instance.State.Equals(Audio.AudioRecorderState.Recording))
             {
@@ -111,7 +111,7 @@ namespace Obi.Dialogs
                 mRecordButton.Text = Localizer.Message("record");
                 StartListening();
                 mTimer.Enabled = false;
-                mPhraseMarkerButton.Enabled = true;
+                // mPhraseMarkerButton.Enabled = true;
             }
         }
 
@@ -141,7 +141,8 @@ namespace Obi.Dialogs
             }
             catch (Exception)
             {
-                MessageBox.Show("Oops!");
+                MessageBox.Show(Localizer.Message("recorder_error_text"),Å@Localizer.Message("recorder_error_caption"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 DialogResult = DialogResult.Cancel;
                 Close();
             }

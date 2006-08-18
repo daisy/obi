@@ -79,6 +79,7 @@ namespace Obi.Dialogs
             // 
             // mPhraseMarkerButton
             // 
+            this.mPhraseMarkerButton.Enabled = false;
             this.mPhraseMarkerButton.Location = new System.Drawing.Point(238, 122);
             this.mPhraseMarkerButton.Name = "mPhraseMarkerButton";
             this.mPhraseMarkerButton.Size = new System.Drawing.Size(88, 21);
