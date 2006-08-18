@@ -736,11 +736,13 @@ namespace Obi
         /// </summary>
         private void mUndoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             if (mCommandManager.HasUndo)
             {
                 mCommandManager.Undo();
                 FormUpdateUndoRedoLabels();
             }
+            
         }
 
         /// <summary>
@@ -750,11 +752,13 @@ namespace Obi
         /// </summary>
         private void mRedoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             if (mCommandManager.HasRedo)
             {
                 mCommandManager.Redo();
                 FormUpdateUndoRedoLabels();
             }
+            
         }
 
         private void dumpTreeDEBUGToolStripMenuItem_Click(object sender, EventArgs e)
