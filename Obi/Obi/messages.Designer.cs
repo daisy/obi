@@ -633,6 +633,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recording error.
+        /// </summary>
+        internal static string recorder_error_caption {
+            get {
+                return ResourceManager.GetString("recorder_error_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred while recording. Sorry :(.
+        /// </summary>
+        internal static string recorder_error_text {
+            get {
+                return ResourceManager.GetString("recorder_error_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Redo.
         /// </summary>
         internal static string redo {

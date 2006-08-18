@@ -151,8 +151,7 @@ namespace Obi.UserControls
                 if (dialog.ShowDialog() == DialogResult.Cancel)
                 {
                     ((ObiForm)ParentForm).UndoLast();
-                    mProjectPanel.Project.Save();
-                    Application.Exit();
+                    Audio.AudioRecorder.Instance.EmergencyStop();
                 }
             }
         }

@@ -403,4 +403,10 @@ Do you want to replace the project contained in this file?</value>
   <data name="set_page_command_label" xml:space="preserve">
     <value>set page label</value>
   </data>
+  <data name="recorder_error_caption" xml:space="preserve">
+    <value>Recording error</value>
+  </data>
+  <data name="recorder_error_text" xml:space="preserve">
+    <value>An error occurred while recording. Sorry :(</value>
+  </data>
 </root>
