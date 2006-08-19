@@ -77,11 +77,23 @@ namespace Obi.Dialogs
         {
             double dMiliSeconds = Audio.AudioPlayer.Instance.CurrentTimePosition;
             int Seconds = Convert.ToInt32 (dMiliSeconds / 1000);
-            string sSeconds = Seconds.ToString("00");
+            int DisplaySeconds = Seconds;
+            if (DisplaySeconds > 59)
+                DisplaySeconds = DisplaySeconds  - ( 60 * ( DisplaySeconds / 60 ));
+
+            string sSeconds = DisplaySeconds.ToString("00");
             int Minutes = Convert.ToInt32(Seconds / 60);
-            string sMinutes = Minutes.ToString("00");
+            int DisplayMinutes = Minutes;
+            if (DisplayMinutes > 59 )
+                DisplayMinutes = DisplayMinutes  - ( 60 * ( DisplayMinutes / 60 ) );
+
+            string sMinutes = DisplayMinutes.ToString("00");
             int Hours = Minutes / 60;
-            string sHours = Hours.ToString("00");
+            int DisplayHours = Hours;
+            if (DisplayHours > 23)
+                DisplayHours = DisplayHours  - 60;
+
+            string sHours = DisplayHours.ToString("00");
             mTimeDisplay.Text = sHours + ":" + sMinutes + ":" + sSeconds;
         }
 
