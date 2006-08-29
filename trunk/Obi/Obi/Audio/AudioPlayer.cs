@@ -32,13 +32,23 @@ namespace Obi.Audio
 		// private Microsoft.DirectX.DirectSound.Device SndDevice = null;
 		private BufferDescription BufferDesc = null;	
 		private int m_BufferCheck ;
+
+        // Size of buffer created for playing
 		private int m_SizeBuffer ;
+
+        // length of buffer to be refreshed during playing
 		private int m_RefreshLength ;
+
+        // Total length of audio asset being played
 		private long m_lLength;
+
+        // Length of audio asset in bytes which had been played
 		private long m_lPlayed ;
 		private Thread RefreshThread;
 		private bool m_PlayFile;
 		private bool m_FastPlay = false;
+
+        // step count to be used for compressing in fast play
 		private int m_Step = 1;
 		internal int m_FrameSize ;
 		internal int m_Channels ;
