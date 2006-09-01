@@ -349,27 +349,11 @@ namespace Obi.Audio
                 // Load from file to memory
                 LoadStream(true);
 
-                // check for fast play
-                int reduction = 0;
-                if (m_FastPlay == false)
-                {
                     SoundBuffer.Write(0, m_MemoryStream, m_SizeBuffer, 0);
-                }
-                else
-                {
-                    // for fast play buffer is filled in parts with new part overlapping previous part
-                    for (int i = 0; i < m_SizeBuffer; i = i + (m_Step * m_FrameSize))
-                    {
-                        SoundBuffer.Write(i, m_MemoryStream, m_Step * m_FrameSize, 0);
-                        i = i - (2 * m_FrameSize);
-                        // compute the difference in bytes skipped
-                        reduction = reduction + (2 * m_FrameSize);
-                    }
-
-                }
+                
                 // Adds the length (count) of file played into a variable
                 // Folowing one line was modified on 2 Aug 2006 i.e lStartPosition is added
-                m_lPlayed = m_SizeBuffer + reduction + (2 * m_CompAddition) + lStartPosition;
+                m_lPlayed = m_SizeBuffer + (2 * m_CompAddition) + lStartPosition;
 
 
                 m_PlayFile = true;
@@ -396,13 +380,13 @@ namespace Obi.Audio
 		
 			int ReadPosition;
 			// variable to count byte difference in compressed and non compressed data of audio file
-			int reduction = 0 ;
+			
 			while (m_lPlayed < m_lLength)
 			{//1
 				if (SoundBuffer.Status.BufferLost  )
 					SoundBuffer.Restore () ;
 
-				reduction = 0 ;
+				
 				Thread.Sleep (50) ;
 				ReadPosition = SoundBuffer.PlayPosition  ;
 
@@ -416,62 +400,19 @@ namespace Obi.Audio
 				// check if play cursor is in second half , then refresh first half else second
 				if ((m_BufferCheck% 2) == 1 &&  SoundBuffer.PlayPosition > m_RefreshLength) 
 				{//2
-					// Checks if file is played or byteBuffer is played
-					if (m_PlayFile == true)
-					{//3
 						LoadStream (false) ;
-						// check for normal or fast play
-						if (m_FastPlay == false)
-						{//4
 							SoundBuffer.Write (0 , m_MemoryStream, m_RefreshLength, 0) ;
-						}//-4
-						else
-						{//4
-							for (int i = 0 ; i< m_RefreshLength; i=i+(m_Step*m_FrameSize))
-							{
-								SoundBuffer.Write ( i, m_MemoryStream , m_Step*m_FrameSize, 0) ;
-								i = i-(2*m_FrameSize );
-								reduction = reduction + (2* m_FrameSize);
-							}//-4
-
-						}//-3
-					}//-2
-
-					m_lPlayed = m_lPlayed + m_RefreshLength+ reduction+ m_CompAddition;
-
+					m_lPlayed = m_lPlayed + m_RefreshLength+ m_CompAddition;
 					m_BufferCheck++ ;
 				}//-1
 				else if ((m_BufferCheck % 2 == 0) &&  SoundBuffer.PlayPosition < m_RefreshLength)
 				{//1
-					if (m_PlayFile == true)
-					{//2
 						LoadStream (false) ;
-						if (m_FastPlay == false)
-						{//3
 							SoundBuffer.Write (m_RefreshLength, m_MemoryStream, m_RefreshLength, 0)  ;
-						}//-3
-						else
-						{//3
-							for (int i = 0 ; i< m_RefreshLength; i=i+(m_Step*m_FrameSize))
-							{//4
-								SoundBuffer.Write ( i+ m_RefreshLength, m_MemoryStream, m_Step*m_FrameSize, 0) ;
-								i = i-(2*m_FrameSize) ;
-								reduction = reduction + (2* m_FrameSize);
-								
-							}						//-4
-							
-							// end of FastPlay check
-						}//-3
-					}//-2
-					
-
-					m_lPlayed = m_lPlayed + m_RefreshLength+ reduction+m_CompAddition ;
-
+					m_lPlayed = m_lPlayed + m_RefreshLength+m_CompAddition ;
 					m_BufferCheck++ ;
-
 					// end of even/ odd part of buffer;
 				}//-1
-				
 					
 				// end of while
 			}
