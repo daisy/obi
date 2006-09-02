@@ -314,14 +314,14 @@ namespace Obi.Audio
                 // calculate size of buffer so as to contain 1 second of audio
                 m_SizeBuffer = m_Asset.SampleRate * m_Asset.FrameSize;
                 m_RefreshLength = (m_Asset.SampleRate / 2) * m_Asset.FrameSize;
-
+                /*
                 if (m_SizeBuffer > m_lLength - lStartPosition)
                 {
                     m_SizeBuffer = Convert.ToInt32(m_lLength - lStartPosition);
                     m_RefreshLength = m_SizeBuffer / 2;
                     m_RefreshLength = ( m_RefreshLength / m_FrameSize ) * m_FrameSize ;
                 }
-
+                */
                 // calculate the size of VuMeter Update array length
                 m_UpdateVMArrayLength = m_SizeBuffer / 20;
                 m_UpdateVMArrayLength = Convert.ToInt32(CalculationFunctions.AdaptToFrame(Convert.ToInt32(m_UpdateVMArrayLength), m_FrameSize));
@@ -398,6 +398,7 @@ namespace Obi.Audio
 					UpdateVuMeter(this, new Events.Audio.Player.UpdateVuMeterEventArgs());  // JQ
 				}
 				// check if play cursor is in second half , then refresh first half else second
+                // refresh front part for odd count
 				if ((m_BufferCheck% 2) == 1 &&  SoundBuffer.PlayPosition > m_RefreshLength) 
 				{//2
 						LoadStream (false) ;
@@ -405,6 +406,7 @@ namespace Obi.Audio
 					m_lPlayed = m_lPlayed + m_RefreshLength+ m_CompAddition;
 					m_BufferCheck++ ;
 				}//-1
+                    // refresh Rear half of buffer for even count
 				else if ((m_BufferCheck % 2 == 0) &&  SoundBuffer.PlayPosition < m_RefreshLength)
 				{//1
 						LoadStream (false) ;
@@ -416,6 +418,35 @@ namespace Obi.Audio
 					
 				// end of while
 			}
+            int BufferStopPosition= 0 ;
+            if (m_BufferCheck == 1 )
+            {
+                BufferStopPosition = Convert.ToInt32(m_MemoryStreamPosition);
+            }
+
+            // if last refresh is to Front, BufferCheck is even and stop position is at front of buffer.
+            else if ((m_BufferCheck % 2) == 0)
+            {
+                BufferStopPosition = Convert.ToInt32 (m_MemoryStreamPosition);
+            }
+            // if last refresh is at Rear half part then stop position is more than refresh length
+            else if ((m_BufferCheck % 2) == 1 )
+            {
+                BufferStopPosition = Convert.ToInt32 (m_MemoryStreamPosition+ m_RefreshLength);
+            }
+
+            int CurrentPlayPosition;
+            CurrentPlayPosition = SoundBuffer.PlayPosition;
+            int StopMargin = Convert.ToInt32 (CalculationFunctions.ConvertTimeToByte( 70 , m_SamplingRate, m_FrameSize));
+
+             while (CurrentPlayPosition < (BufferStopPosition - StopMargin) || CurrentPlayPosition > (BufferStopPosition ))
+                //while (CurrentPlayPosition < m_RefreshLength)
+                {
+                    Thread.Sleep(50);
+                    CurrentPlayPosition = SoundBuffer.PlayPosition;
+                }
+
+            /*
 			// calculate time to stop according to remaining data
 			int time ;
 			long lRemaining = (m_lPlayed - m_lLength);
@@ -428,7 +459,7 @@ namespace Obi.Audio
 			//time = (time-250) * (1- (2/m_Step));
 
 			Thread.Sleep (time) ;
-			
+			*/
 			// Stopping process begins
 			SoundBuffer.Stop () ;
 			if (ob_VuMeter != null) ob_VuMeter.Reset () ;
@@ -645,9 +676,10 @@ namespace Obi.Audio
 					ReadNextClip () ;
 				}
 			}
+            m_MemoryStreamPosition = m_MemoryStream.Position;
 			m_MemoryStream.Position = 0 ;
 		}
-
+        long m_MemoryStreamPosition = 0;
 		void ReadNextClip ()
 		{
 			if ( m_lClipByteCount >= ob_Clip.LengthInBytes)
