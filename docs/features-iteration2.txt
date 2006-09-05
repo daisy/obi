@@ -1,6 +1,6 @@
 Obi feature list for iteration 2
 Julien Quint (ed.), Marisa de Meglio, Markus Gylling
-$Id: features.txt 671 2006-07-28 10:01:14Z julienq $
+$Id$
 
 
 This is the new list of features with a timeline for iteration 2, spanning
@@ -24,9 +24,9 @@ Iteration 2 features
   
   * Transport bar for audio playing. Ability to move in time inside blocks
   and strips, from block to block, from strip to strip. Play a block, a
-  strip or the whole book. Record and split from the transport bar instead
-  of dedicated dialogs. Mark phrases/pages while recording (two transport
-  bar buttons.) Mark sections as well?
+  strip or the whole book. Play, record and split from the transport bar
+  instead of dedicated dialogs. Mark phrases/pages while recording (two
+  transport bar buttons.) Mark sections as well?
 
   * Toolbar with buttons for common operations?
 
