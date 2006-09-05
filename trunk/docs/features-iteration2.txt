@@ -1,0 +1,91 @@
+Obi feature list for iteration 2
+Julien Quint (ed.), Marisa de Meglio, Markus Gylling
+$Id: features.txt 671 2006-07-28 10:01:14Z julienq $
+
+
+This is the new list of features with a timeline for iteration 2, spanning
+four months (early september 2006 to early january 2007) and leading to the
+pre-release of version 1.0 of Obi.
+
+
+Iteration 1 bugs and missing features
+
+  * Keyboard navigation with tab key is insufficient and broken.
+  * Some shortcuts do not work properly.
+  * Audio stuttering after a while.
+  * VU meter is not available.
+  * Simple metadata only.
+  
+
+Iteration 2 features
+
+  * Arrow navigation in the strip view similar to the tree view. Tab to move
+  only inside the project view?
+  
+  * Transport bar for audio playing. Ability to move in time inside blocks
+  and strips, from block to block, from strip to strip. Play a block, a
+  strip or the whole book. Record and split from the transport bar instead
+  of dedicated dialogs. Mark phrases/pages while recording (two transport
+  bar buttons.) Mark sections as well?
+
+  * Toolbar with buttons for common operations?
+
+  * Display of wave forms inside blocks. The size of a block is then
+  relative to its length. A zoom factor (per strip and per book) can be set.
+  Wave display can be turned on and off (but the size of strips is still
+  relative to the audio length, not label length any more.) Mouse operations
+  are available when wave display is on.
+
+  * Used and unused blocks: a block can be marked as unused and will be
+  skipped when playing, and not exported when making a book. Cleaning up of
+  unused block is also possible (all unused audio data will be deleted.)
+
+  * Invalid assets: audio blocks with assets that cannot be read are kepts
+  but are marked as invalid (same as unused) until a correct asset is
+  recorded or added. (Can be done by selecting after and merging?)
+  
+  * Heading blocks: one block per strip is designated as the heading block.
+  This is the first block that plays for this strip, so all blocks before
+  this one are marked as unused.
+
+  * Full DAISY metadata: only simple metadata at the moment, add a new tab
+  to the metadata dialog to edit actual, full DAISY metadata.
+
+  * Native DAISY 3 DTB export: produce a complete DTB fileset from within
+  Obi (using only used blocks.)
+
+  * Search function: all text (metadata, block labels, page labels, heading
+  titles) is searchable. How to display the results though?
+
+  * Show a progress bar for long operations (e.g. opening a book.)
+
+  * Color and font schemes, hopefully customizable?
+
+
+Releases
+
+  * 0.6 (late September)
+    + fix keyboard navigation and shortcuts
+    + architecture review (tree, events, recording.)
+
+  * 0.7 (late October/early November)
+    + wave display
+    + transport bar
+    + VU meter
+
+  * 0.8 (late November/early December)
+    + used/unused blocks and invalid assets
+    + header block
+    + full DAISY metadata
+    + search feature
+    + page autonumbering
+
+  * 0.9 (late December/early January)
+    + localizations (French, Japanese, Thai?)
+    + Daisy 3 native export
+    + progress bar for long operations
+    + friendlier installer (can choose where to install for instance.)
+    + color/font scheme
+
+  * 1.0 (February)
+    + fix stuff so that it looks like a version 1.0
