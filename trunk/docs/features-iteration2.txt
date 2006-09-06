@@ -73,6 +73,8 @@ Iteration 2 features
 
   * Color and font schemes, hopefully customizable?
 
+  * Contextual help (to be specified.)
+
 
 Releases
 
@@ -99,6 +101,7 @@ Releases
     + progress bar for long operations
     + friendlier installer (can choose where to install for instance.)
     + color/font scheme
+    + contextual help
 
   * 1.0 (February)
     + fix stuff so that it looks like a version 1.0
