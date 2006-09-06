@@ -69,6 +69,9 @@ Iteration 2 features
   * Search function: all text (metadata, block labels, page labels, heading
   titles) is searchable. How to display the results though?
 
+  * Cut/copy/paste in the edit menu works for text stuff (labels, titles,
+  etc.)
+
   * Show a progress bar for long operations (e.g. opening a book.)
 
   * Color and font schemes, hopefully customizable?
@@ -93,6 +96,7 @@ Releases
     + header block
     + full DAISY metadata
     + search feature
+    + cut/copy/paste for text
     + page autonumbering
 
   * 0.9 (late December/early January): polishing
