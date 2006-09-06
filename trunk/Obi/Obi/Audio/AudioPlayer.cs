@@ -28,8 +28,8 @@ namespace Obi.Audio
 		// declare member variables
 		private Assets.AudioMediaAsset m_Asset ;
 		private SecondaryBuffer SoundBuffer;
-        private OutputDevice mDevice;
-		// private Microsoft.DirectX.DirectSound.Device SndDevice = null;
+  private OutputDevice mDevice;
+		
 		private BufferDescription BufferDesc = null;	
 		private int m_BufferCheck ;
 
@@ -45,8 +45,6 @@ namespace Obi.Audio
         // Length of audio asset in bytes which had been played
 		private long m_lPlayed ;
 		private Thread RefreshThread;
-		private bool m_PlayFile;
-		private bool m_FastPlay = false;
 
         // step count to be used for compressing in fast play
 		private int m_Step = 1;
@@ -69,8 +67,7 @@ namespace Obi.Audio
 		// JQ changed constructor to be private (singleton)
 		private AudioPlayer()
 		{
-			m_PlayFile = true ;
-			m_FastPlay = false ;
+
 			m_State = AudioPlayerState.Stopped;
 			ob_VuMeter = null;  // JQ
 		}
@@ -189,17 +186,6 @@ namespace Obi.Audio
 			}
 		}
 
-		/*public ArrayList GetOutputDevices()
-		{
-			CollectOutputDevices() ;
-			ArrayList OutputDevices = new ArrayList();
-			for (int i = 0; i < devList.Count; i++) 
-			{
-				OutputDevices.Add(devList[i].Description);
-			}
-			return OutputDevices ;
-		}*/
-
         private List<OutputDevice> mOutputDevicesList = null;
 
         public List<OutputDevice> OutputDevices
@@ -219,12 +205,6 @@ namespace Obi.Audio
             }
         }
 
-            /*public void SetDevice (Control FormHandle, int Index)
-            {
-                Microsoft.DirectX.DirectSound.Device dSound = new  Microsoft.DirectX.DirectSound.Device(devList[Index].DriverGuid);
-                dSound.SetCooperativeLevel(FormHandle, CooperativeLevel.Priority);
-                SndDevice  = dSound ;
-            }*/
 
         /// <summary>
         /// Set the device to be used by the player.
@@ -257,12 +237,7 @@ namespace Obi.Audio
             }
         }
 
-		/*DevicesCollection devList ;
-		DevicesCollection  CollectOutputDevices()
-		{
-			devList = new DevicesCollection();
-			return devList  ;
-		}*/
+		
 
 		public void Play(Assets.AudioMediaAsset asset )
 		{
@@ -356,8 +331,6 @@ namespace Obi.Audio
                 m_lPlayed = m_SizeBuffer + (2 * m_CompAddition) + lStartPosition;
 
 
-                m_PlayFile = true;
-
                 // trigger  events (modified JQ)
                 Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
                 m_State = AudioPlayerState.Playing;
@@ -388,15 +361,19 @@ namespace Obi.Audio
 
 				
 				Thread.Sleep (50) ;
-				ReadPosition = SoundBuffer.PlayPosition  ;
 
-				if (ReadPosition < ((m_SizeBuffer)- m_UpdateVMArrayLength  ) )
-				{
-					Array.Copy ( SoundBuffer.Read (ReadPosition , typeof (byte) , LockFlag.None , m_UpdateVMArrayLength  ) , arUpdateVM , m_UpdateVMArrayLength  ) ;				
-					//if ( m_EventsEnabled == true)
-					//ob_UpdateVuMeter.NotifyUpdateVuMeter ( this, ob_UpdateVuMeter ) ;
-					UpdateVuMeter(this, new Events.Audio.Player.UpdateVuMeterEventArgs());  // JQ
-				}
+                if (ob_VuMeter != null)
+                {
+                    ReadPosition = SoundBuffer.PlayPosition;
+
+                    if (ReadPosition < ((m_SizeBuffer) - m_UpdateVMArrayLength))
+                    {
+                        Array.Copy(SoundBuffer.Read(ReadPosition, typeof(byte), LockFlag.None, m_UpdateVMArrayLength), arUpdateVM, m_UpdateVMArrayLength);
+                        //if ( m_EventsEnabled == true)
+                        //ob_UpdateVuMeter.NotifyUpdateVuMeter ( this, ob_UpdateVuMeter ) ;
+                        UpdateVuMeter(this, new Events.Audio.Player.UpdateVuMeterEventArgs());  // JQ
+                    }
+                }
 				// check if play cursor is in second half , then refresh first half else second
                 // refresh front part for odd count
 				if ((m_BufferCheck% 2) == 1 &&  SoundBuffer.PlayPosition > m_RefreshLength) 
@@ -463,14 +440,10 @@ namespace Obi.Audio
 			// Stopping process begins
 			SoundBuffer.Stop () ;
 			if (ob_VuMeter != null) ob_VuMeter.Reset () ;
-			if (m_PlayFile == true)
-			{
+
 				m_br.Close();
 				//ob_EndOfAudioAsset.NotifyEndOfAudioAsset ( this , ob_EndOfAudioAsset) ;
-			}
-			
 
-			//Stop () ;
 			// changes the state and trigger events
 			//ob_StateChanged = new StateChanged (m_State) ;
 
@@ -550,7 +523,8 @@ namespace Obi.Audio
 				SoundBuffer.Stop();
 				RefreshThread.Abort();
 				if (ob_VuMeter != null) ob_VuMeter.Reset();			
-				if (m_PlayFile) m_br.Close();
+				
+                    m_br.Close();
 			}
 			Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
 			m_State = AudioPlayerState.Stopped;
@@ -594,21 +568,17 @@ namespace Obi.Audio
 
 			if (SoundBuffer.Status.Looping)
 			{
-				if ( m_PlayFile== true)
-				{
 
 					Stop();
 					Thread.Sleep (30) ;
 					m_StartPosition = localPosition ;
 					InitPlay(localPosition , 0);
-				}
 				
 			}		
 			
 			else if(m_State.Equals (AudioPlayerState .Paused ) )
 			{
-				if (m_PlayFile == true)
-				{
+
 					Stop();
 					m_StartPosition = localPosition ;
 					Thread.Sleep (20) ;
@@ -617,7 +587,7 @@ namespace Obi.Audio
 					SoundBuffer.Stop () ;
 					// Stop () also change the m_Stateto stopped so change it to paused
 					m_State=AudioPlayerState .Paused;
-				}
+				
 				
 			}
 			m_EventsEnabled = true ;
