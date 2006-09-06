@@ -115,6 +115,8 @@ and the usage code less verbose.
 
 19. I would like to get the position of a node relative to its sibling
 directly without having to call getParent().indexOf(), for instance
-node.position().
+node.position(). Reason: getParent() returns a basic tree node, which
+doesn't know about the indices of its positions...
 
-20. Do we really need the supertypes of CoreNode? And the interfaces?
+20. Do we really need the supertypes of CoreNode? And the interfaces? (See
+above.)
