@@ -108,3 +108,13 @@ and the usage code less verbose.
 17. MD: Clipboard feature 
 
 18. MD: For 16, 17: adjustments are made automatically wrt DTBOOK (adjust heading levels, page numbers)
+
+
+---
+
+
+19. I would like to get the position of a node relative to its sibling
+directly without having to call getParent().indexOf(), for instance
+node.position().
+
+20. Do we really need the supertypes of CoreNode? And the interfaces?
