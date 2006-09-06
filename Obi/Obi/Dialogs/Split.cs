@@ -69,7 +69,7 @@ namespace Obi.Dialogs
                 ob_VuMeter.LowerThreshold = 50;
                 ob_VuMeter.UpperThreshold = 300;
                 ob_VuMeter.SampleTimeLength = 1000;
-                Audio.AudioPlayer.Instance.VuMeterObject = ob_VuMeter;
+                //Audio.AudioPlayer.Instance.VuMeterObject = ob_VuMeter;
 
                 // check if sufficient time is left after split time to use GetChunk if not use Audio lengthin ms as second parameter
                 if (mSourceAsset.LengthInMilliseconds - mSplitTime > 4000 )
@@ -235,7 +235,7 @@ namespace Obi.Dialogs
             if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing )
             Audio.AudioPlayer.Instance.Stop();
 
-            Audio.AudioPlayer.Instance.VuMeterObject.CloseVuMeterForm();
+            //Audio.AudioPlayer.Instance.VuMeterObject.CloseVuMeterForm();
             this.Close();
         }
 
@@ -251,7 +251,7 @@ namespace Obi.Dialogs
             ob_VuMeter.LowerThreshold = 50;
             ob_VuMeter.UpperThreshold = 300;
             ob_VuMeter.SampleTimeLength = 1000;
-            Audio.AudioPlayer.Instance.VuMeterObject = ob_VuMeter;
+            //Audio.AudioPlayer.Instance.VuMeterObject = ob_VuMeter;
             Audio.AudioPlayer.Instance.Play(mSourceAsset);
             btnPreview.Enabled = false;
             btnSplit.Enabled = false;
@@ -354,7 +354,7 @@ namespace Obi.Dialogs
         {
             if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
                 Audio.AudioPlayer.Instance.Stop();
-            Audio.AudioPlayer.Instance.VuMeterObject.CloseVuMeterForm();
+            //Audio.AudioPlayer.Instance.VuMeterObject.CloseVuMeterForm();
         }
         
         // change time in double to formatted time i.e. hh:mm:ss format
