@@ -3,6 +3,8 @@ using System.IO;
 using System.Windows.Forms;
 using System.Collections;
 
+using Obi.Audio;
+
 namespace Obi.Assets
 {
     /// <summary>
@@ -242,6 +244,10 @@ namespace Obi.Assets
             m_dEndTime = time;
             m_dLengthInTime = m_dEndTime - m_dBeginTime;
 
+            // end byte and length in byte of original clip is modified
+            m_lEndByte = CalculationFunctions.ConvertTimeToByte(m_dEndTime , m_ClipSamplingRate , m_ClipFrameSize );
+            m_lLengthInBytes = CalculationFunctions.ConvertTimeToByte(m_dLengthInTime , m_ClipSamplingRate , m_ClipFrameSize );
+
             return ob_AudioClip;
         }
 
@@ -255,7 +261,9 @@ namespace Obi.Assets
             if (m_sPath == next.Path && m_ClipChannels == next.Channels && m_ClipBitDepth == next.BitDepth && m_ClipSamplingRate == next.SampleRate && m_dEndTime <= next.BeginTime)
             {
                 m_dEndTime = next.EndTime;
+                m_lEndByte = next.m_lEndByte;
                 m_dLengthInTime = m_dEndTime - m_dBeginTime;
+                m_lLengthInBytes = m_lEndByte - m_lBeginByte;
             }
             else
                 throw new Exception("Clips of different formats cannot be merged");
