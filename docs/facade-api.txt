@@ -1,4 +1,4 @@
-﻿Obi façade API for iteration 2
+﻿Obi facade API for iteration 2
 $Id$
 
 
@@ -10,7 +10,7 @@ some points more easily.
 
 
 1. Currently, the asset manager uses double for time whereas the toolkit
-uses long. We need to make them agree.
+uses long. We need to make them agree. (I vote for double and keep ms.)
 
 
 2. Have a hash function for nodes that returns an unique value.
@@ -55,6 +55,19 @@ BTW, I am not necessarily saying the we should get rid of the visitor
 interface, but in many cases I would rather use the delegates than a visitor
 class.
 
+One thing that is also problematic with visitors is how to handle errors. For
+instance, when loading a document the tree obtained from the toolkit must be
+visited to recreate the assets for the nodes that need them, but there might
+be errors (missing assets.) This can be solved by added error handlers but
+maybe (I am not sure) this could be easier if the visitors were delegate
+methods that could directly access their class data.
+
+Another issue with serialization: how to export a different view of the tree?
+I have created some nodes in memory but to save space I would prefer to remove
+them from the saved file, and recreate them when reloading. Also the semantics
+of adding/removing nodes while visiting a tree may need to be clearly defined
+(or I haven't looked hard enough.)
+
 
 7. Have metadata be accessible as a hash, with the name of the metadata
 property as key, and a list of values as value (we may have several metadata
@@ -69,13 +82,19 @@ DAISY 3.)
 node lists would be List<CoreNode> instead of ArrayList), delegates (see
 visitors), etc.
 
+Issue: when the toolkit is written in C++, what becomes of the C# toolkit?
+What is the future Obi? Should the application team maintain the C# toolkit
+(especially once it's thoroughly sharpified) if Obi is developed further?
+
 
 10. Allow to change the NodeFactory of a presentation. I want to subclass
-CoreNode, but not Presentation.
+CoreNode, but not Presentation. In general, make subclassing nodes and other
+objects nicer.
 
 
 11. Project.openXUK() should return a meaningful error message when failing
-to read in a XUK file.
+to read in a XUK file. (Implementation issue probably) and maybe a fallback
+mechanism.
 
 
 12. Commands: so far in the application, we only create a new command if its
@@ -84,7 +103,9 @@ undo or redo a method. The invariant of the command manager is that when a
 command is undone, we go back to a state where redoing must succeed just
 like it did when we issued the command. Same for redo.
 
+
 ---
+
 
 13. Custom property factories: the new scheme for creating properties with
 local name/namespace is better, but it may be hard to mix the usage of
@@ -94,18 +115,23 @@ dispatch property creation based on a namespace? An application could then
 have several factories that would not need to know about each other.
 
 
-14. There is no function to get the previous and next sibling of a node.
+14. There is no function to get the previous and next sibling of a node. It
+is also necessary to access some nodes in document order rather than in
+hierarchical order.
 
 
 15. MG: Toolkit factories should provide the facility of ascertaining required
 properties on the factory before calling create(), or, when a certain attribute
 of the returned object is required, provide a (non-overloaded) create() method 
-that takes the required attribute as params. This makes the use less errorprone, 
-and the usage code less verbose.
+that takes the required attribute as params. This makes the use less
+errorprone, and the usage code less verbose.
 
-16. MD: Functions to move a section node: Up, Down, In, Out.  
 
-17. MD: Clipboard feature 
+16. MD: Functions to move a section node: Up, Down, In, Out.
+
+
+17. MD: Clipboard feature.
+
 
 18. MD: For 16, 17: adjustments are made automatically wrt DTBOOK (adjust heading levels, page numbers)
 
@@ -114,9 +140,11 @@ and the usage code less verbose.
 
 
 19. I would like to get the position of a node relative to its sibling
-directly without having to call getParent().indexOf(), for instance
-node.position(). Reason: getParent() returns a basic tree node, which
-doesn't know about the indices of its children...
+directly without having to call node.getParent().indexOf(node), for instance
+node.index(). Reason: getParent() returns a basic tree node, which
+doesn't know about the indices of its children. And I'm too lazy to type
+"node" twice.
+
 
 20. Do we really need the supertypes of CoreNode? And the interfaces? (See
 above.)
