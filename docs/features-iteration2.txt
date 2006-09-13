@@ -48,6 +48,9 @@ Iteration 2 features
   relative to the audio length, not label length any more.) Mouse operations
   are available when wave display is on.
 
+  * Audio scratchpad: a special kind of strip where new audio blocks can be
+  imported or (usually) recorded before being moved to an actual strip.
+
   * Used and unused blocks: a block can be marked as unused and will be
   skipped when playing, and not exported when making a book. Cleaning up of
   unused block is also possible (all unused audio data will be deleted.)
@@ -85,11 +88,13 @@ Releases
     + fix keyboard navigation and shortcuts
     + architecture review (tree, simplify events?, recording without
     temporary file.)
+    + split/merge sections
 
   * 0.7 (late October/early November): audio
     + wave display
     + transport bar
     + VU meter
+    + audio scratchpad
 
   * 0.8 (late November/early December): DAISY
     + used/unused blocks and invalid assets
@@ -109,3 +114,19 @@ Releases
 
   * 1.0 (February)
     + fix stuff so that it looks like a version 1.0
+
+
+Future features (post-1.0)
+
+  * Text: every phrase block may have a text block. The text is unformatted
+  (although we may consider SMIL Text, depending on how it goes?) Text nodes
+  are children of phrase nodes (phrase is master.)
+
+  * Images: every phrase block may have an image block. TOC items may have
+  images too if the associated phrase has an image. Image nodes are children
+  of phrase nodes (phrase is master)
+
+  * Select more than one item at once: span of phrases; chunk of TOC; etc.
+
+  * Drag/drop stuff: drag blocks to move them inside and between strips;
+  sections inside the toc or the strip view.
