@@ -133,7 +133,8 @@ errorprone, and the usage code less verbose.
 17. MD: Clipboard feature.
 
 
-18. MD: For 16, 17: adjustments are made automatically wrt DTBOOK (adjust heading levels, page numbers)
+18. MD: For 16, 17: adjustments are made automatically wrt DTBOOK (adjust
+heading levels, page numbers)
 
 
 ---
@@ -148,3 +149,12 @@ doesn't know about the indices of its children. And I'm too lazy to type
 
 20. Do we really need the supertypes of CoreNode? And the interfaces? (See
 above.)
+
+
+21. Is a function such as getAncestor(n) where we get the nth ancestor of a
+node something we would like? It helps if the structure gets quite deep and
+skips lots of tests for null along the way.
+
+
+22. Relatedly, (bool) node.isRoot() would be nicer than
+node.getParent() == null.
