@@ -114,6 +114,9 @@ inheritance pattern. Maybe we could associate a factory with a namespace and
 dispatch property creation based on a namespace? An application could then
 have several factories that would not need to know about each other.
 
+Relatedly, we have some memory-only properties that are not saved to the XUK
+file so we could implement them in a more simple class.
+
 
 14. There is no function to get the previous and next sibling of a node. It
 is also necessary to access some nodes in document order rather than in
