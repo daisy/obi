@@ -16,6 +16,7 @@ Iteration 1 bugs and missing features
   * VU meter is not available.
   * Simple metadata only.
   * Single command for add section/rename if done in one go (tricky.)
+  * Update the cons command (see shallow delete)
   
 
 Iteration 2 features
@@ -147,3 +148,8 @@ Future features (post-1.0)
 
   * Resources and resource manager, or at least taking resources from one
   project to another -> copy/paste between projects.
+
+  * Navlists.
+
+  * Skippable and escapable structures; probably need a new container
+  element (like a div.)
