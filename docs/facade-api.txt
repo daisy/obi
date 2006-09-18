@@ -130,7 +130,8 @@ that takes the required attribute as params. This makes the use less
 errorprone, and the usage code less verbose.
 
 
-16. MD: Functions to move a section node: Up, Down, In, Out.
+16. MD: Functions to move a section node: Up, Down, In, Out. JQ: how about
+shallow cut? (Cut a node but reattach its descendants somehow.)
 
 
 17. MD: Clipboard feature.
@@ -161,3 +162,7 @@ skips lots of tests for null along the way.
 
 22. Relatedly, (bool) node.isRoot() would be nicer than
 node.getParent() == null.
+
+23. A node knows about its presentation but not about its project. We should
+be able to do node.getProject(). (Same for presentations actually, and maybe
+metadata?)

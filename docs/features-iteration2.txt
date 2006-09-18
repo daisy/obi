@@ -15,6 +15,7 @@ Iteration 1 bugs and missing features
   * Audio stuttering after a while.
   * VU meter is not available.
   * Simple metadata only.
+  * Single command for add section/rename if done in one go (tricky.)
   
 
 Iteration 2 features
@@ -50,6 +51,15 @@ Iteration 2 features
 
   * Audio scratchpad: a special kind of strip where new audio blocks can be
   imported or (usually) recorded before being moved to an actual strip.
+
+  * Phrase detection: this is available in the audio backend but we need to
+  define a simple enough interface for the user. The problem is that the
+  parameters for silence detection are not easy to set directly, use by example
+  is better. One simple possibility is to use the beginning/ending of assets
+  which probably have silence, and instruct the user to leave a few seconds
+  of leading and trailing silence when recording; maybe with a flag that tells
+  the user when to start/stop? This should be less intrusive than the dreaded
+  calibration process.
 
   * Used and unused blocks: a block can be marked as unused and will be
   skipped when playing, and not exported when making a book. Cleaning up of
@@ -103,6 +113,7 @@ Releases
     + search feature
     + cut/copy/paste for text
     + page autonumbering
+    + phrase detection
 
   * 0.9 (late December/early January): polishing
     + localizations (French, Japanese, Thai?)
@@ -126,7 +137,13 @@ Future features (post-1.0)
   images too if the associated phrase has an image. Image nodes are children
   of phrase nodes (phrase is master)
 
+  * (Synchronize the above points with AMIS to make sure that the created
+  content can be played correctly.)
+
   * Select more than one item at once: span of phrases; chunk of TOC; etc.
 
   * Drag/drop stuff: drag blocks to move them inside and between strips;
   sections inside the toc or the strip view.
+
+  * Resources and resource manager, or at least taking resources from one
+  project to another -> copy/paste between projects.
