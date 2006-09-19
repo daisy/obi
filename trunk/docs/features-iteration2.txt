@@ -100,12 +100,15 @@ Releases
     + architecture review (tree, simplify events?, recording without
     temporary file.)
     + split/merge sections
+    + strip information field
+    + remove move up/down; review paste
 
   * 0.7 (late October/early November): audio
     + wave display
     + transport bar
     + VU meter
     + audio scratchpad
+    + live phrase marking
 
   * 0.8 (late November/early December): DAISY
     + used/unused blocks and invalid assets
@@ -113,7 +116,8 @@ Releases
     + full DAISY metadata
     + search feature
     + cut/copy/paste for text
-    + page autonumbering
+    + page autonumbering and live page marking [fix pages]
+    + go to page
     + phrase detection
 
   * 0.9 (late December/early January): polishing

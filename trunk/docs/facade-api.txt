@@ -163,6 +163,90 @@ skips lots of tests for null along the way.
 22. Relatedly, (bool) node.isRoot() would be nicer than
 node.getParent() == null.
 
+
 23. A node knows about its presentation but not about its project. We should
 be able to do node.getProject(). (Same for presentations actually, and maybe
 metadata?)
+
+
+24. More DOM stuff, especially when we have structured text.
+
+
+25. User-visible commands: flag commands to tell easily whether it should go
+into the undo stack or just part of composite command. Review the
+ConsCommand object (list of commands rather than a pair)?
+
+
+26. Generic info field for nodes, kept in memory only (recreated when
+reading the XUK file; not saved.)
+
+
+---
+
+
+Items for discussion
+
+Main idea: most of the backend of Obi could be part of the toolkit, then Obi
+would mostly be a GUI over the toolkit. Because Obi is very DAISY-specific,
+some features are not covered (timing) and some is too DAISY-centric the
+toolkit could be broken down into modules (e.g. structure, assets,
+timing...) and profiles (Digital Talking Book: don't care about timing, more
+specific tree structure and nodes.)
+
+Main categories below with (1) stuff we've done in Obi that can be ported
+back to the toolkit, (2) stuff we would like to be done and (3) stuff we
+will have to do eventually if Obi development continues.
+
+
+0. Events
+
+The toolkit needs to provide events for most operations that it does. For
+portability, this could be specified as a more generic callback mechanism
+and implemented with whatever framework the platform makes available.
+
+
+1. Asset manager (1, 2, 17, 25)
+
+  * Done: everything that's in Obi right now.
+  * Todo: generalize to assets beside audio (text, images, video, etc.)
+  Merge media object and asset object?
+
+  
+2. Channels and media (3, 4, 5)
+
+  * Done: shortcut functions (3, 4)
+  * Todo: 1, 5. See above for assets merging.
+
+
+3. Core tree (2, 6, 10, 11, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24)
+
+  * Done: all the stuff in project; moving nodes around (up, down, in, out,
+  shallow delete.) Nodes that have assets. Visitors for subtrees. Clipboard
+  stuff.
+  * Todo: position stuff; previous/next sibling. More kinds of media,
+  navlists, skippable/escapable structures.
+
+
+4. Commands
+
+  * Done: commands for all core tree operations (undo and redo)
+  * Todo: commands and events share a lot of information, try to make that
+  nicer.
+
+
+5. Metadata/misc. (7, 8, 9)
+
+
+---
+
+
+Another way to look at it: let's keep the toolkit as simple as possible.
+Here is what we want for such a toolkit:
+
+* Fleshed-out Project
+* CoreNode and CoreNodeWithAsset only; no BasicTreeNode or interfaces.
+* Predefined visitors (add subtree, XUKin, XUKout)
+* Asset manager and better integration of Media objects
+* Better channel interface. Check for channels.
+* Subclassing nodes vs. properties.
+* Position and node moving; flat view (document order) as well as tree view.
