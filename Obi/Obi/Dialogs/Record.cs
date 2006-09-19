@@ -141,7 +141,7 @@ namespace Obi.Dialogs
             }
             catch (Exception)
             {
-                MessageBox.Show(Localizer.Message("recorder_error_text"),Å@Localizer.Message("recorder_error_caption"),
+                MessageBox.Show(Localizer.Message("recorder_error_text"),@Localizer.Message("recorder_error_caption"),
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 DialogResult = DialogResult.Cancel;
                 Close();
