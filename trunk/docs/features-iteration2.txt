@@ -8,6 +8,135 @@ four months (early september 2006 to early january 2007) and leading to the
 pre-release of version 1.0 of Obi.
 
 
+Version 0.6 -- various fixes -- mid-October 2006
+
+[ ] Fix keyboard navigation (tabbing between views, arrows inside views.)
+
+[ ] Fix channels creation when reading in XUK file.
+
+[ ] Strip information field.
+
+[ ] Replace phrase annotations with annotation strip. Make phrase size
+function of audio length.
+
+[ ] Remove move section up/down (use cut/paste instead.)
+
+[ ] Update commands (user visible flag; composite commands.) Fix the add
+section/rename command?
+
+[ ] Fix page to be numbers; use property instead of child node.
+
+[ ] Subclass core nodes (ObiNode > { SectionNode, PhraseNode }) -- depends
+on CoreNodeFactory, due October 9th.
+
+[ ] Simple read-only views for positioning, navigation...
+
+[ ] Sync helpfile with version published on the website.
+
+
+Version 0.7 -- audio work -- early November 2006
+
+[ ] Transport bar: cursor; play one block/play continuously; move in time
+and in structure. Pause, stop, record. Rwd/Fwd get faster.
+
+[ ] Time display when playing and paused (in book/in block.)
+
+[ ] VU Meter.
+
+[ ] Phrase detection (and trim?)
+
+[ ] Live phrase creation.
+
+[ ] Live page marking: same as phrase except also creates a page item (one
+plus number of previous page.)
+
+[ ] Audio scratchpad.
+
+
+Version 0.8 -- DAISY features -- early December 2006
+
+[ ] Used/unused blocks and blocks missing asset. (Unplayable)
+
+[ ] Header block (in the structure strip, can be anywhere but not a page.)
+
+[ ] Full DAISY metadata.
+
+[ ] Cut/copy/paste moves to Edit menu; interface Windows clipboard with Obi
+clipboard. Maintain a clipboard for blocks, sections and text; use depending
+on context.
+
+[ ] Search text feature (in sections, in annotations, in metadata?)
+
+[ ] Go to page and page autonumbering.
+
+[ ] Split and merge sections.
+
+[ ] Zed native export.
+
+
+Version 0.9 -- polishing -- early January 2007
+
+[ ] Localizations: Japanese locally; organize Thai localization after Delhi
+meeting or before Phuket?
+
+[ ] Progress bar for long operations.
+
+[ ] Strip collapsing. (Automatically?)
+
+[ ] Better installer, choose location of install.
+
+[ ] Customizable fonts, size and family.
+
+[ ] Review color scheme.
+
+[ ] Contextual help.
+
+[ ] Templates (read-only files for starting projects.)
+
+
+---
+
+
+Version 1.0 -- late March 2007 (iteration 3)
+
+[ ] Split backend into a DLL.
+
+[ ] Synchronize with toolkit.
+
+[ ] Fix and cleanup everything.
+
+
+---
+
+
+Future features
+
+[ ] Images in an image strip (notably for NCX images.)
+
+[ ] Full-text with external text editing.
+
+[ ] Multiple selections.
+
+[ ] Wave display and visual audio editing.
+
+[ ] Drag and drop items.
+
+[ ] Resources and resource manager; multi-project editing; cut/copy/paste
+between projects (nodes *and* assets.)
+
+[ ] Podcast export and podcast-friendly features.
+
+[ ] Navlists.
+
+[ ] Skippable and escapable structures.
+
+
+
+---
+
+
+Obsolete list for reference:
+
 Iteration 1 bugs and missing features
 
   * Keyboard navigation with tab key is insufficient and broken.
