@@ -8,7 +8,7 @@ four months (early september 2006 to early january 2007) and leading to the
 pre-release of version 1.0 of Obi.
 
 
-Version 0.6 -- various fixes -- mid-October 2006
+Version 0.6 -- various fixes -- mid-October 2006 (Friday Oct 13th)
 
 [ ] Sync helpfile with version published on the website. Daniel made a
 proposal. Julien and Markus will look at it.
@@ -40,7 +40,7 @@ function of audio length. [Julien or Marisa]
 [Julien or Marisa]
 
 
-Version 0.7 -- audio work -- early November 2006
+Version 0.7 -- audio work -- early November 2006 (Friday November 3rd)
 
 [ ] Transport bar: cursor; play one block/play continuously; move in time
 and in structure. Pause, stop, record. Rwd/Fwd get faster.
