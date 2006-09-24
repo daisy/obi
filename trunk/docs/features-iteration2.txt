@@ -1,5 +1,5 @@
 Obi feature list for iteration 2
-Julien Quint (ed.), Marisa de Meglio, Markus Gylling
+Julien Quint (ed.), Marisa DeMeglio, Markus Gylling
 $Id$
 
 
@@ -233,7 +233,6 @@ Releases
     + remove move up/down; review paste
 
   * 0.7 (late October/early November): audio
-    + wave display
     + transport bar
     + VU meter
     + audio scratchpad
