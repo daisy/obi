@@ -10,28 +10,34 @@ pre-release of version 1.0 of Obi.
 
 Version 0.6 -- various fixes -- mid-October 2006
 
-[ ] Fix keyboard navigation (tabbing between views, arrows inside views.)
+[ ] Sync helpfile with version published on the website. Daniel made a
+proposal. Julien and Markus will look at it.
 
-[ ] Fix channels creation when reading in XUK file.
+[ ] Fix channels creation when reading in XUK file. [Julien]
 
-[ ] Strip information field.
+[ ] Strip information field; maybe change font sizes for strip names?
+[Marisa]
 
-[ ] Replace phrase annotations with annotation strip. Make phrase size
-function of audio length.
-
-[ ] Remove move section up/down (use cut/paste instead.)
+[ ] Remove move section up/down (use cut/paste instead.) [Marisa]
 
 [ ] Update commands (user visible flag; composite commands.) Fix the add
-section/rename command?
+section/rename command? [Julien and Marisa]
 
-[ ] Fix page to be numbers; use property instead of child node.
+[ ] Fix pages to be numbers; use property instead of child node. [Julien]
 
 [ ] Subclass core nodes (ObiNode > { SectionNode, PhraseNode }) -- depends
 on CoreNodeFactory, due October 9th.
+Julien creates a branch and the base classes; then Marisa and Julien update
+the code to reflect the change. Decide on the order of child nodes of
+sections.
 
-[ ] Simple read-only views for positioning, navigation...
+[ ] Simple read-only views for positioning, navigation... [Julien]
 
-[ ] Sync helpfile with version published on the website.
+[ ] Replace phrase annotations with annotation strip. Make phrase size
+function of audio length. [Julien or Marisa]
+
+[ ] Fix keyboard navigation (tabbing between views, arrows inside views.)
+[Julien or Marisa]
 
 
 Version 0.7 -- audio work -- early November 2006
