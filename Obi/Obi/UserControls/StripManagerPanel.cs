@@ -246,10 +246,9 @@ namespace Obi.UserControls
                     block.Label = annotation.getText();
                     block.Time = Project.GetAudioMediaAsset((CoreNode)node).LengthInSeconds;
                     strip.AppendAudioBlock(block);
+                    PageProperty pageProp = ((CoreNode)node).getProperty(typeof(PageProperty)) as PageProperty;
+                    if (pageProp != null) block.StructureBlock.Label = pageProp.PageNumber.ToString();
                     parentPhrase = (CoreNode)node;
-                    break;
-                case NodeType.Page:
-                    mPhraseNodeMap[parentPhrase].StructureBlock.Label = Project.GetTextMedia((CoreNode)node).getText();
                     break;
                 default:
                     break;

@@ -39,8 +39,9 @@ namespace Obi
         private string mLastPath;            // last path to which the project was saved (see save as)
         private SimpleMetadata mMetadata;    // metadata for this project
 
-    
-        public static readonly string XUKVersion = "obi-xuk-002";            // version of the Obi/XUK file
+        private int mLastPage;               // last page number in the project
+
+        public static readonly string XUKVersion = "obi-xuk-007";            // version of the Obi/XUK file
         public static readonly string AudioChannel = "obi.audio";            // canonical name of the audio channel
         public static readonly string TextChannel = "obi.text";              // canonical name of the text channel
         public static readonly string AnnotationChannel = "obi.annotation";  // canonical name of the annotation channel
@@ -134,7 +135,7 @@ namespace Obi
             mClipboard = null;
 
             // Use our own property factory so that we can create custom properties
-            getPresentation().setPropertyFactory(new ObiPropertyFactory(getPresentation()));
+            getPresentation().setPropertyFactory(new ObiPropertyFactory());
         }
 
         /// <summary>
@@ -458,7 +459,9 @@ namespace Obi
         private CoreNode CreatePhraseNode(Assets.AudioMediaAsset asset)
         {
             CoreNode node = getPresentation().getCoreNodeFactory().createNode();
-            ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
+            // ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
+            ChannelsProperty prop = getPresentation().getPropertyFactory().createChannelsProperty();
+            node.setProperty(prop);
             TextMedia annotation = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
             annotation.setText(asset.Name);
             prop.setMedia(mAnnotationChannel, annotation);

@@ -55,8 +55,8 @@ namespace Obi.UserControls
             this.mPlayAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowInTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.mSetPageLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mRemovePageLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSetPageNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mRemovePageNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -107,8 +107,8 @@ namespace Obi.UserControls
             this.mPlayAudioBlockToolStripMenuItem,
             this.mShowInTOCViewToolStripMenuItem,
             this.toolStripSeparator3,
-            this.mSetPageLabelToolStripMenuItem,
-            this.mRemovePageLabelToolStripMenuItem});
+            this.mSetPageNumberToolStripMenuItem,
+            this.mRemovePageNumberToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
             this.contextMenuStrip1.Size = new System.Drawing.Size(229, 440);
@@ -293,21 +293,21 @@ namespace Obi.UserControls
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(225, 6);
             // 
-            // mSetPageLabelToolStripMenuItem
+            // mSetPageNumberToolStripMenuItem
             // 
-            this.mSetPageLabelToolStripMenuItem.Name = "mSetPageLabelToolStripMenuItem";
-            this.mSetPageLabelToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F2)));
-            this.mSetPageLabelToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.mSetPageLabelToolStripMenuItem.Text = "Se&t page label";
-            this.mSetPageLabelToolStripMenuItem.Click += new System.EventHandler(this.mSetPageLabelToolStripMenuItem_Click);
+            this.mSetPageNumberToolStripMenuItem.Name = "mSetPageNumberToolStripMenuItem";
+            this.mSetPageNumberToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F2)));
+            this.mSetPageNumberToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.mSetPageNumberToolStripMenuItem.Text = "Se&t page number";
+            this.mSetPageNumberToolStripMenuItem.Click += new System.EventHandler(this.mSetPageNumberToolStripMenuItem_Click);
             // 
-            // mRemovePageLabelToolStripMenuItem
+            // mRemovePageNumberToolStripMenuItem
             // 
-            this.mRemovePageLabelToolStripMenuItem.Name = "mRemovePageLabelToolStripMenuItem";
-            this.mRemovePageLabelToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Delete)));
-            this.mRemovePageLabelToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.mRemovePageLabelToolStripMenuItem.Text = "&Remove page label";
-            this.mRemovePageLabelToolStripMenuItem.Click += new System.EventHandler(this.mRemovePageLabelToolStripMenuItem_Click);
+            this.mRemovePageNumberToolStripMenuItem.Name = "mRemovePageNumberToolStripMenuItem";
+            this.mRemovePageNumberToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Delete)));
+            this.mRemovePageNumberToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.mRemovePageNumberToolStripMenuItem.Text = "&Remove page number";
+            this.mRemovePageNumberToolStripMenuItem.Click += new System.EventHandler(this.mRemovePageNumberToolStripMenuItem_Click);
             // 
             // StripManagerPanel
             // 
@@ -351,7 +351,7 @@ namespace Obi.UserControls
         private System.Windows.Forms.ToolStripMenuItem mCutAudioBlockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPasteAudioBlockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mCopyAudioBlockToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mSetPageLabelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mRemovePageLabelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSetPageNumberToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mRemovePageNumberToolStripMenuItem;
     }
 }

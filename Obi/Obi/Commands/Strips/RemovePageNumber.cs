@@ -6,22 +6,22 @@ using urakawa.core;
 
 namespace Obi.Commands.Strips
 {
-    public class RemovePageLabel: Command
+    public class RemovePageNumber: Command
     {
-        protected Obi.Project mProject;  // the current project
-        protected CoreNode mNode;        // the phrase node
-        protected CoreNode mPageNode;    // page node
+        protected Obi.Project mProject;    // the current project
+        protected CoreNode mNode;          // the phrase node
+        protected PageProperty mPageProp;  // the removed page property
         
         public override string Label
         {
             get { return Localizer.Message("remove_page_command_label"); }
         }
 
-        public RemovePageLabel(Obi.Project project, CoreNode node)
+        public RemovePageNumber(Obi.Project project, CoreNode node)
         {
             mProject = project;
             mNode = node;
-            mPageNode = Project.GetStructureNode(node);
+            mPageProp = (PageProperty)mNode.getProperty(typeof(PageProperty));
         }
 
         public override void Do()
@@ -31,8 +31,8 @@ namespace Obi.Commands.Strips
 
         public override void Undo()
         {
-            mNode.appendChild(mPageNode);
-            mProject.SetPageLabel(this, new Events.Node.NodeEventArgs(this, mNode));
+            mNode.setProperty(mPageProp);
+            mProject.SetPageNumber(this, new Events.Node.NodeEventArgs(this, mNode));
         }
     }
 }

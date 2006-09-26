@@ -39,7 +39,7 @@ namespace Obi
     {
         public static readonly string ObiNS = "http://www.daisy.org/urakawa/obi/0.5";  // NS for Obi XUK
 
-        public ObiPropertyFactory(Presentation presentation) : base(presentation)
+        public ObiPropertyFactory() : base()
 		{
 		}
 
@@ -54,8 +54,9 @@ namespace Obi
                     case "info":
                     case "NodeInformationProperty":
                         return new NodeInformationProperty();
-                    case "PositionProperty":
-                        return new PositionProperty();
+                    case "page":
+                    case "PageProperty":
+                        return new PageProperty();
                     default:
                         throw new Exception(String.Format("Cannot create property named `{0}'", localName));
                 }
@@ -69,11 +70,9 @@ namespace Obi
     ///   * Root is the root of the tree;
     ///   * Section is a section node in the tree;
     ///   * Phrase is a phrase in the tree;
-    ///   * Page is a page node in the tree--it can appear as the only child node of a phrase.
-    ///   * Heading is a heagind node in the tree--it can appear as the only child node of a phrase.
     ///   * Vanilla is a vanilla core node (should not occur in the tree.)
     /// </summary>
-    public enum NodeType { Root, Section, Phrase, Page, Heading, Vanilla };
+    public enum NodeType { Root, Section, Phrase, Vanilla };
 
     /// <summary>
     /// Possible status of a phrase node in the tree:
@@ -144,9 +143,7 @@ namespace Obi
                 string type = source.GetAttribute("type");
                 mNodeType = type == "Root" ? NodeType.Root :
                     type == "Section" ? NodeType.Section :
-                    type == "Phrase" ? NodeType.Phrase :
-                    type == "Page" ? NodeType.Page : 
-                    type == "Heading" ? NodeType.Heading : NodeType.Vanilla;
+                    type == "Phrase" ? NodeType.Phrase : NodeType.Vanilla;
                 string status = source.GetAttribute("status");
                 mNodeStatus = status == "Used" ? NodeStatus.Used :
                     status == "Unused" ? NodeStatus.Unused :
@@ -205,21 +202,52 @@ namespace Obi
         }
     }
 
-    public class PositionProperty : ObiProperty
+    public class PageProperty : ObiProperty
     {
-        public int Position;  // position of the node in the strip view (section) or its strip (block)
+        private int mPageNumber;                          // page number (non-negative integer)
+        public static readonly string NodeName = "page";  // the XML element name for XUK in/out
 
-        internal PositionProperty()
+        public int PageNumber
+        {
+            get { return mPageNumber; }
+            set { if (value >= 0) mPageNumber = value; }
+        }
+
+        internal PageProperty()
             : base()
         {
-            Position = 0;
+            mPageNumber = 0;
         }
 
         public override IProperty copy()
         {
-            PositionProperty copy = new PositionProperty();
-            copy.Position = this.Position;
-            return copy;
+            throw new Exception("The method or operation is not implemented.");
+        }
+
+        public override bool XUKIn(System.Xml.XmlReader source)
+        {
+            if (source == null) throw new urakawa.exception.MethodParameterIsNullException("Xml Reader is null");
+            if (source.LocalName == NodeName &&
+                source.NamespaceURI == ObiPropertyFactory.ObiNS &&
+                source.NodeType == System.Xml.XmlNodeType.Element)
+            {
+                string page = source.GetAttribute("num");
+                mPageNumber = Int32.Parse(page);
+                if (source.IsEmptyElement) return true;
+            }
+            return false;
+        }
+
+        public override bool XUKOut(System.Xml.XmlWriter destination)
+        {
+            if (destination == null) throw new urakawa.exception.MethodParameterIsNullException("Xml Writer is null");
+            if (getOwner() != null)
+            {
+                destination.WriteStartElement(NodeName, ObiPropertyFactory.ObiNS);
+                destination.WriteAttributeString("num", mPageNumber.ToString());
+                destination.WriteEndElement();
+            }
+            return true;
         }
     }
 }
