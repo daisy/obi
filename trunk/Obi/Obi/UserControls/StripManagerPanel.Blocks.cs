@@ -50,10 +50,10 @@ namespace Obi.UserControls
                 strip.InsertAudioBlock(block, e.Index);
                 this.ReflowTabOrder(block);  // MG
                 SelectedPhraseNode = block.Node;
-                CoreNode pageNode = Project.GetStructureNode(e.Node);
-                if (pageNode != null && Project.GetNodeType(pageNode) == NodeType.Page)
+                PageProperty pageProp = e.Node.getProperty(typeof(PageProperty)) as PageProperty;
+                if (pageProp != null && pageProp.getOwner() != null)
                 {
-                    block.StructureBlock.Label = Project.GetTextMedia(pageNode).getText();
+                    block.StructureBlock.Label = pageProp.PageNumber.ToString();
                 }
             }
         }
@@ -126,19 +126,19 @@ namespace Obi.UserControls
         /// <summary>
         /// The page label has changed.
         /// </summary>
-        internal void SyncSetPageLabel(object sender, Events.Node.NodeEventArgs e)
+        internal void SyncSetPageNumber(object sender, Events.Node.NodeEventArgs e)
         {
-            CoreNode pageNode = Project.GetStructureNode(e.Node);
-            if (pageNode != null && Project.GetNodeType(pageNode) == NodeType.Page)
+            PageProperty pageProp = e.Node.getProperty(typeof(PageProperty)) as PageProperty;
+            if (pageProp != null && pageProp.getOwner() != null)
             {
-                mPhraseNodeMap[e.Node].StructureBlock.Label = Project.GetTextMedia(pageNode).getText();
+                mPhraseNodeMap[e.Node].StructureBlock.Label = pageProp.PageNumber.ToString();
             }
         }
 
         /// <summary>
         /// The page label was removed.
         /// </summary>
-        internal void SyncRemovedPageLabel(object sender, Events.Node.NodeEventArgs e)
+        internal void SyncRemovedPageNumber(object sender, Events.Node.NodeEventArgs e)
         {
             mPhraseNodeMap[e.Node].StructureBlock.Label = "";
         }

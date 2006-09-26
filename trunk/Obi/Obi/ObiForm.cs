@@ -431,10 +431,10 @@ namespace Obi
                 new EventHandler(mProjectPanel.StripManager.mCopyAudioBlockToolStripMenuItem_Click);
             mPasteAudioBlockToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mPasteAudioBlockToolStripMenuItem_Click);
-            mSetPageLabelToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.StripManager.mSetPageLabelToolStripMenuItem_Click);
-            mRemovePageLabelToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.StripManager.mRemovePageLabelToolStripMenuItem_Click);
+            mSetPageNumberToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.StripManager.mSetPageNumberToolStripMenuItem_Click);
+            mRemovePageNumberToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.StripManager.mRemovePageNumberToolStripMenuItem_Click);
         }
 
         /// <summary>
@@ -907,10 +907,11 @@ namespace Obi
             bool isBlockClipBoardSet = isProjectOpen && mProject.BlockClipBoard != null;
             bool canSetPage = isAudioBlockSelected;  // an audio block must be selected and a heading must not be set.
             bool canRemovePage = isAudioBlockSelected;
-            if (isAudioBlockSelected)
+            if (canRemovePage)
             {
-                CoreNode page = Project.GetStructureNode(mProjectPanel.StripManager.SelectedPhraseNode);
-                canRemovePage = page != null && Project.GetNodeType(page) == NodeType.Page;
+                PageProperty pageProp = mProjectPanel.StripManager.SelectedPhraseNode.getProperty(typeof(PageProperty))
+                    as PageProperty;
+                canRemovePage = pageProp != null && pageProp.getOwner() != null;
             }
 
             mAddStripToolStripMenuItem.Enabled = isProjectOpen;
@@ -936,8 +937,8 @@ namespace Obi
             mPlayAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
             mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;
 
-            mSetPageLabelToolStripMenuItem.Enabled = canSetPage;
-            mRemovePageLabelToolStripMenuItem.Enabled = canRemovePage;
+            mSetPageNumberToolStripMenuItem.Enabled = canSetPage;
+            mRemovePageNumberToolStripMenuItem.Enabled = canRemovePage;
         }
 
         /// <summary>

@@ -44,7 +44,9 @@ namespace Obi
         private CoreNode CreateSectionNode()
         {
             CoreNode node = getPresentation().getCoreNodeFactory().createNode();
-            ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
+            // ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
+            ChannelsProperty prop = getPresentation().getPropertyFactory().createChannelsProperty();
+            node.setProperty(prop);
             TextMedia text = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
             text.setText(Localizer.Message("default_section_label"));
             prop.setMedia(mTextChannel, text);

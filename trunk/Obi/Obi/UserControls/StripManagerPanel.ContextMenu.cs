@@ -23,8 +23,8 @@ namespace Obi.UserControls
         public event Events.Node.RequestToCopyPhraseNodeHandler RequestToCopyPhraseNode;
         public event Events.Node.RequestToPastePhraseNodeHandler RequestToPastePhraseNode;
 
-        public Events.Node.RequestToSetPageLabelHandler RequestToSetPageLabel;
-        public Events.Node.RequestToRemovePageLabelHandler RequestToRemovePageLabel;
+        public Events.Node.RequestToSetPageNumberHandler RequestToSetPageNumber;
+        public Events.Node.RequestToRemovePageNumberHandler RequestToRemovePageNumber;
         
         /// <summary>
         /// Enable/disable items depending on what is currently available.
@@ -42,11 +42,12 @@ namespace Obi.UserControls
             
             bool canSetPage = isAudioBlockSelected;  // an audio block must be selected and a heading must not be set.
             bool canRemovePage = isAudioBlockSelected;
-            if (isAudioBlockSelected)
+            if (canRemovePage)
             {
-                CoreNode page = Project.GetStructureNode(mSelectedPhrase);
-                canRemovePage = page != null && Project.GetNodeType(page) == NodeType.Page;
+                PageProperty pageProp = mSelectedPhrase.getProperty(typeof(PageProperty)) as PageProperty;
+                canRemovePage = pageProp != null && pageProp.getOwner() != null;
             }
+
 
             mAddStripToolStripMenuItem.Enabled = true;
             mRenameStripToolStripMenuItem.Enabled = isStripSelected;
@@ -71,8 +72,8 @@ namespace Obi.UserControls
             mPlayAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
             mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;
 
-            mSetPageLabelToolStripMenuItem.Enabled = canSetPage;
-            mRemovePageLabelToolStripMenuItem.Enabled = canRemovePage;
+            mSetPageNumberToolStripMenuItem.Enabled = canSetPage;
+            mRemovePageNumberToolStripMenuItem.Enabled = canRemovePage;
         }
 
         /// <summary>
@@ -324,11 +325,11 @@ namespace Obi.UserControls
         /// If there is already a page here, ask the user if she wants to replace it.
         /// </summary>
         // JQ 20060817
-        internal void mSetPageLabelToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void mSetPageNumberToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mSelectedPhrase != null)
             {
-                mPhraseNodeMap[mSelectedPhrase].StartEditingPageLabel();
+                mPhraseNodeMap[mSelectedPhrase].StartEditingPageNumber();
             }
         }
 
@@ -336,14 +337,14 @@ namespace Obi.UserControls
         /// <summary>
         /// Remove a page number.
         /// </summary>
-        internal void mRemovePageLabelToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void mRemovePageNumberToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mSelectedPhrase != null)
             {
-                CoreNode pageNode = Project.GetStructureNode(mSelectedPhrase);
-                if (pageNode != null && Project.GetNodeType(pageNode) == NodeType.Page)
+                PageProperty pageProp = mSelectedPhrase.getProperty(typeof(PageProperty)) as PageProperty;
+                if (pageProp != null && pageProp.getOwner() != null)
                 {
-                    RequestToRemovePageLabel(this, new Events.Node.NodeEventArgs(sender, mSelectedPhrase));
+                    RequestToRemovePageNumber(this, new Events.Node.NodeEventArgs(sender, mSelectedPhrase));
                 }
             }
         }

@@ -26,8 +26,6 @@ namespace Obi.UserControls
             set
             {
                 mNode = value;
-                CoreNode structureNode = Project.GetStructureNode(mNode);
-                if (structureNode == null) mStructureBlock.Node = value;
             }
         }
 
@@ -204,9 +202,9 @@ namespace Obi.UserControls
         /// <summary>
         /// Edit the page label for the structure block linked to this audio block.
         /// </summary>
-        internal void StartEditingPageLabel()
+        internal void StartEditingPageNumber()
         {
-            mStructureBlock.StartEditingPageLabel();
+            mStructureBlock.StartEditingPageNumber();
         }
     }
 }

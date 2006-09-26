@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 using urakawa.core;
 
@@ -75,7 +76,7 @@ namespace Obi.UserControls
         /// Start editing the page label.
         /// When pressing return, or leaving the control, the change will be made.
         /// </summary>
-        internal void StartEditingPageLabel()
+        internal void StartEditingPageNumber()
         {
             mLabelBox.Size = Size;
             mLabelBox.BackColor = BackColor;
@@ -88,7 +89,7 @@ namespace Obi.UserControls
         /// <summary>
         /// Return the label box to read only.
         /// </summary>
-        private void StopEditingPageLabel()
+        private void StopEditingPageNumber()
         {
             mLabelBox.Visible = false;
         }
@@ -101,10 +102,10 @@ namespace Obi.UserControls
             switch (e.KeyCode)
             {
                 case Keys.Return:
-                    UpdateText();
+                    UpdatePageNumber();
                     break;
                 case Keys.Escape:
-                    StopEditingPageLabel(); 
+                    StopEditingPageNumber(); 
                     break;
                 default:
                     break;
@@ -113,24 +114,30 @@ namespace Obi.UserControls
 
         private void mLabelBox_Leave(object sender, EventArgs e)
         {
-            StopEditingPageLabel();
+            StopEditingPageNumber();
         }
 
         /// <summary>
         /// Set the page node from the label text.
         /// An empty string will have no effect.
         /// </summary>
-        private void UpdateText()
+        private void UpdatePageNumber()
         {
-            StopEditingPageLabel();
+            StopEditingPageNumber();
             if (mLabelBox.Text == null || mLabelBox.Text == "")
             {
                 mLabelBox.Text = mLabel.Text;
             }
             else
             {
-                mLabel.Text = mLabelBox.Text;
-                mManager.RequestToSetPageLabel(this, new Events.Node.SetPageEventArgs(this, mAudioBlock.Node, mLabel.Text));
+                // try to get a number out of this text
+                Match m = System.Text.RegularExpressions.Regex.Match(mLabelBox.Text, "\\d+");
+                if (m.Success)
+                {
+                    int pageNumber = Int32.Parse(m.Value);
+                    mLabel.Text = pageNumber.ToString();
+                    mManager.RequestToSetPageNumber(this, new Events.Node.SetPageEventArgs(this, mAudioBlock.Node, pageNumber));
+                }
             }
         }
     }
