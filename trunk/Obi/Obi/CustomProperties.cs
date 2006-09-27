@@ -241,12 +241,12 @@ namespace Obi
         public override bool XUKOut(System.Xml.XmlWriter destination)
         {
             if (destination == null) throw new urakawa.exception.MethodParameterIsNullException("Xml Writer is null");
-            if (getOwner() != null)
-            {
+            //if (getOwner() != null)
+            //{
                 destination.WriteStartElement(NodeName, ObiPropertyFactory.ObiNS);
                 destination.WriteAttributeString("num", mPageNumber.ToString());
                 destination.WriteEndElement();
-            }
+            //}
             return true;
         }
     }

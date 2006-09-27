@@ -906,13 +906,15 @@ namespace Obi
                 Project.GetPhraseIndex(mProjectPanel.StripManager.SelectedPhraseNode) == 0;
             bool isBlockClipBoardSet = isProjectOpen && mProject.BlockClipBoard != null;
             bool canSetPage = isAudioBlockSelected;  // an audio block must be selected and a heading must not be set.
-            bool canRemovePage = isAudioBlockSelected;
+            bool canRemovePage = isAudioBlockSelected &&
+                mProjectPanel.StripManager.SelectedPhraseNode.getProperty(typeof(PageProperty)) != null;
+            /* bool canRemovePage = isAudioBlockSelected;
             if (canRemovePage)
             {
                 PageProperty pageProp = mProjectPanel.StripManager.SelectedPhraseNode.getProperty(typeof(PageProperty))
                     as PageProperty;
                 canRemovePage = pageProp != null && pageProp.getOwner() != null;
-            }
+            } */
 
             mAddStripToolStripMenuItem.Enabled = isProjectOpen;
             mRenameStripToolStripMenuItem.Enabled = isStripSelected;

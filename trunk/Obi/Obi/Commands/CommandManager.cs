@@ -14,10 +14,7 @@ namespace Obi.Commands
         /// </summary>
         public string UndoLabel
         {
-            get
-            {
-                return mUndo.Count == 0 ? null : mUndo.Peek().Label;
-            }
+            get { return mUndo.Count == 0 ? null : mUndo.Peek().Label; }
         }
 
         /// <summary>
@@ -25,10 +22,7 @@ namespace Obi.Commands
         /// </summary>
         public string RedoLabel
         {
-            get
-            {
-                return mRedo.Count == 0 ? null : mRedo.Peek().Label;
-            }
+            get { return mRedo.Count == 0 ? null : mRedo.Peek().Label; }
         }
 
         /// <summary>
@@ -36,10 +30,7 @@ namespace Obi.Commands
         /// </summary>
         public bool HasUndo
         {
-            get
-            {
-                return mUndo.Count > 0;
-            }
+            get { return mUndo.Count > 0; }
         }
 
         /// <summary>
@@ -47,10 +38,7 @@ namespace Obi.Commands
         /// </summary>
         public bool HasRedo
         {
-            get
-            {
-                return mRedo.Count > 0;
-            }
+            get { return mRedo.Count > 0; }
         }
 
         /// <summary>
@@ -74,6 +62,7 @@ namespace Obi.Commands
         /// <summary>
         /// Push a new command to the undo stack and clear the redo stack.
         /// It is assumed that the command just has, or will immediatly be executed.
+        /// 
         /// </summary>
         /// <param name="command">The latest command.</param>
         public void Add(Command command)
