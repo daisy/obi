@@ -51,10 +51,8 @@ namespace Obi.UserControls
                 this.ReflowTabOrder(block);  // MG
                 SelectedPhraseNode = block.Node;
                 PageProperty pageProp = e.Node.getProperty(typeof(PageProperty)) as PageProperty;
-                if (pageProp != null && pageProp.getOwner() != null)
-                {
-                    block.StructureBlock.Label = pageProp.PageNumber.ToString();
-                }
+                //if (pageProp != null && pageProp.getOwner() != null)
+                if (pageProp != null) block.StructureBlock.Label = pageProp.PageNumber.ToString();
             }
         }
 
@@ -129,10 +127,8 @@ namespace Obi.UserControls
         internal void SyncSetPageNumber(object sender, Events.Node.NodeEventArgs e)
         {
             PageProperty pageProp = e.Node.getProperty(typeof(PageProperty)) as PageProperty;
-            if (pageProp != null && pageProp.getOwner() != null)
-            {
-                mPhraseNodeMap[e.Node].StructureBlock.Label = pageProp.PageNumber.ToString();
-            }
+            //if (pageProp != null && pageProp.getOwner() != null)
+            if (pageProp != null) mPhraseNodeMap[e.Node].StructureBlock.Label = pageProp.PageNumber.ToString();
         }
 
         /// <summary>

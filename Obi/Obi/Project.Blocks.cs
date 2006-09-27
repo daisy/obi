@@ -500,7 +500,8 @@ namespace Obi
         {
             PageProperty pageProp = e.Node.getProperty(typeof(PageProperty)) as PageProperty;
             Commands.Strips.SetNewPageNumber command = null;
-            if (pageProp == null || pageProp.getOwner() == null)
+            // if (pageProp == null || pageProp.getOwner() == null)
+            if (pageProp == null)
             {
                 pageProp = (PageProperty)getPresentation().getPropertyFactory().createProperty(PageProperty.NodeName,
                     ObiPropertyFactory.ObiNS);
