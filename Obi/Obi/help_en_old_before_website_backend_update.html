@@ -26,83 +26,51 @@
 
 <body>
 
-<div id="www_version" style="display: none;">
-
-	<div style="float: right;">
-		<img src="__$strRootHttpDir__images/ObiLogo.png" alt="The Obi logo"/>
-	</div>
-
-	<p>This is the user manual for <strong>Obi v0.5 (18th August 2006)</strong></p>
-
-</div>
-
 <h1 class="title">
       <span class="hd">Obi 	Manual</span>
       <img style="width:128px;height:128px" alt="" src="images/oballoon_blue_256.png"/>
       <img style="width:128px;height:128px" alt="" src="images/obird256.png"/>
 </h1>
-
-<p>This is the manual for Obi v0.5 (18th August 2006.)</p>
-
+    
+<p>This is the manual for Obi v0.5 (18th August 2005.)</p>
 
 <h2 id="toc">Obi Manual - Table of Contents</h2>
-
-<div id="www_table-of-contents">
-	<ul class="toc">
-	<li><a href="#getting-started">Getting started</a>
-	<ul>
-	<li><a href="#ovw_main">Main Window Overview</a>
-		<ul>
-			<li><a href="#ovw_toc">The TOC View</a></li>
-			<li><a href="#ovw_strip">The Strip View</a></li>
-		</ul>
-		</li>
-	<li><a href="#ovw_prefs">Setting Preferences</a></li>
-	<li><a href="#ovw_new">Create a New Project</a></li>
-	<li><a href="#ovw_recedit">Record and Edit the Project</a>
-		<ul>
-			<li><a href="#ovw_rec">Recording</a></li>
-			<li><a href="#ovw_importaudio">Importing audio</a></li>
-			<li><a href="#ovw_sectionedit">Section editing</a></li>
-			<li><a href="#ovw_audioblockedit">Audio Block editing</a></li>
-		</ul>
-		</li>
-	<li><a href="#ovw_save">Save the Project</a></li>
-	</ul>  
-	</li>
-	<li><a href="#dialog-details">Dialog Details</a>
-	<ul>
-	<li><a href="#ctrl_tocview">Main Window - TOC View</a>
-
-		<ul>
-	<li><a href="#ctrl_sectionediting">Section editing</a></li>
-		</ul>
-		</li>
-
-	<li><a href="#ctrl_stripview">Main Window - Strip View</a>
-
-
-		<ul>
-			<li><a href="#ctrl_stripediting">Strip editing</a></li>
-			<li><a href="#ctrl_blockediting">Block editing</a></li>
-		</ul>
-
-		</li>
-
-	<li><a href="#ctrl_record">Record Dialog</a></li>
-	<li><a href="#ctrl_play">Play Dialog</a></li>
-	<li><a href="#ctrl_split">Split Dialog</a></li>
-	<li><a href="#ctrl_metadata">Metadata Dialog</a></li>
-	<li><a href="#ctrl_preferences">Preferences Dialog</a></li>
-	<li><a href="#ctrl_preferences_audio">Audio Preferences</a></li>
-	<li><a href="#ctrl_preferences_project">Project Preferences</a></li>
-	<li><a href="#ctrl_userprofile">User Profile Dialog</a></li>
-	</ul>
-	</li>
-	<li><a href="#glossary-of-terms">Glossary of terms</a></li>
-	<li><a href="#keyboard-shortcuts">Keyboard shortcut table</a></li>
-	</ul>
-</div>
+<ul class="toc">
+<li><a href="#getstart">Getting started</a>
+<ul>
+  <li><a href="#ovw_main">Main Window Overview</a></li>
+  <li><a href="#ovw_toc">The TOC View</a></li>
+  <li><a href="#ovw_strip">The Strip View</a></li>
+  <li><a href="#ovw_prefs">Setting Preferences</a></li>
+  <li><a href="#ovw_new">Create a New Project</a></li>
+  <li><a href="#ovw_recedit">Record and Edit the Project</a></li>
+  <li><a href="#ovw_rec">Recording</a></li>
+  <li><a href="#ovw_importaudio">Importing audio</a></li>
+  <li><a href="#ovw_sectionedit">Section editing</a></li>
+  <li><a href="#ovw_audioblockedit">Audio Block editing</a></li>
+  <li><a href="#ovw_save">Save the Project</a></li>
+</ul>  
+</li>
+<li><a href="#ctrls">Obi Windows - details</a>
+<ul>
+<li><a href="#ctrl_tocview">Main Window - TOC View</a></li>
+<li><a href="#ctrl_sectionediting">Section editing</a></li>
+<li><a href="#ctrl_stripview">Main Window - Strip View</a></li>
+<li><a href="#ctrl_stripediting">Strip editing</a></li>
+<li><a href="#ctrl_blockediting">Block editing</a></li>
+<li><a href="#ctrl_record">Record Dialog</a></li>
+<li><a href="#ctrl_play">Play Dialog</a></li>
+<li><a href="#ctrl_split">Split Dialog</a></li>
+<li><a href="#ctrl_metadata">Metadata Dialog</a></li>
+<li><a href="#ctrl_preferences">Preferences Dialog</a></li>
+<li><a href="#ctrl_preferences_audio">Audio Preferences</a></li>
+<li><a href="#ctrl_preferences_project">Project Preferences</a></li>
+<li><a href="#ctrl_userprofile">User Profile Dialog</a></li>
+</ul>
+</li>
+<li><a href="#gloss">Glossary of terms</a></li>
+<li><a href="#kbd">Keyboard shortcut table</a></li>
+</ul>
 
 <h2 id="intro">Obi - DAISY/NISO DTB Production Tool</h2>
   <!-- <h3>What is Obi?</h3> -->
@@ -111,9 +79,6 @@
   <p>For further help and support on using Obi, please visit <a href="http://urakawa.sourceforge.net/obi">Obi online</a> and the <a href="http://urakawa.sourceforge.net">Urakawa project</a> web site.</p>
 
 <h2 id="getstart">Getting Started</h2>
-
-<div id="www_getting-started">
-
   <p>This section of the Obi manual contains a quicktrack introduction on how to use Obi. A more detailed description of Obi features and functions is available in the <a href="#ctrls">details section</a>.</p>
   
   <h3 id="ovw_main">Main Window Overview</h3>
@@ -122,9 +87,7 @@
       <br/>Before we start our project, let's try to understand what these views have in common, and where they differ.
       <br/><br/>    
     </p>
-
-    <p><a href="images/manual_mainwindow.png" title="full-size screenshot" rel="external"><img style="width:400px;height:200px;" src="images/manual_mainwindow.png" alt="the main window, with the TOC tree view at the left, and the strip view at the right" /></a></p>
-
+    <p><img src="images/manual_mainwindow.png" alt="the main window, with the TOC tree view at the left, and the strip view at the right" /></p>
    
     <h4 id="ovw_toc">The TOC View</h4>
     <p>The TOC View can be understood as a Table of Contents for the project being recorded.</p>
@@ -151,9 +114,7 @@
   <p>A dialog will appear that asks you to set the title of the project, 
   and where on your computer's hard drive to store project data.  
   </p>
-  <p>
-	<a rel="external" href="images/manual_newproject.png" title="full-size screenshot"><img style="width:400px;height:160px;" src="images/manual_newproject.png" alt="the new project dialog" /></a>
-	</p>
+  <p><img src="images/manual_newproject.png" alt="the new project dialog" /></p>
   
           
   <div class="obirdbox">
@@ -178,10 +139,7 @@
     <h4 id="ovw_importaudio">Importing audio</h4>
     <p>Besides recording live audio from your audio input device, you can also import existing audio files into a strip. Select the <code>import audio file</code> menu item in the Strip menu.    
     </p>
-
-  <p>
-	<a rel="external" href="images/manual_importaudio.png" title="full-size screenshot"><img style="width:400px;height:200px;" src="images/manual_importaudio.png" alt="the import audio item invoked while in the strip view" /></a>
-	</p>
+    <p><img src="images/manual_importaudio.png" alt="the import audio item invoked while in the strip view" /></p>
     
     
     <h4 id="ovw_sectionedit">Section editing</h4>
@@ -189,11 +147,8 @@
       Using either the TOC View or the Strip View, you can perform section level editing operations, such as add, cut, copy, delete, rename and move.
     </p>
     <p>Read more about <a href="#ctrl_tocview">section editing in the details section</a>.</p>
-
-
-  <p>
-	<a rel="external" href="images/manual_toceditoptions.png" title="full-size screenshot"><img style="width:400px;height:200px;" src="images/manual_toceditoptions.png" alt="the TOC context menu, showing editing operations such as add, cut, copy, delete, rename and move" /></a>
-	</p>    
+    <p><img src="images/manual_toceditoptions.png" alt="the TOC context menu, showing editing operations such as add, cut, copy, delete, rename and move " /></p>
+    
     
     
     <h4 id="ovw_audioblockedit">Audio Block editing</h4>
@@ -201,11 +156,9 @@
     Audio block editing is typically done after you have recorded some audio for a section. As an example, there may be a slight noise in the recording that you want to remove. 
     Or there may be an audio block that you want to split, or merge. Read more about <a href="#ctrl_stripview">audio block editing in the details section</a>.    
     </p>
-
-  <p>
-	<a rel="external" href="images/manual_audioblockeditoptions.png" title="full-size screenshot"><img style="width:400px;height:200px;" src="images/manual_audioblockeditoptions.png" alt="the audio block context menu, showing editing operations such as add, cut, copy, delete, rename and move" /></a>
-	</p>    
-
+    <p><img src="images/manual_audioblockeditoptions.png" alt="the audio block context menu, showing editing operations such as add, cut, copy, delete, rename and move " /></p>
+    
+    
     
   <h3 id="ovw_save">Save the Project</h3>
   <p>Once the recording session has finished, select the <code>save project</code> menu item from the file menu.</p>
@@ -219,16 +172,13 @@
     under a different name, but you are still editing the same project. You
     may think of this as a backup command.</p>
 
-</div>
   
   <!-- <h3>Please enjoy the DAISY/NISO DTB</h3> 
   <p>Or evacuate for a while.</p>
   -->
       
 <h2 id="ctrls">Obi Windows - details</h2>
-
-<div id="www_dialog-details">
-
+  
   <h3 id="ctrl_tocview">Main Window - TOC View</h3>
     
     <h4 id="ctrl_sectionediting">Section editing</h4>
@@ -377,12 +327,7 @@
   <dt>Language</dt>
   <dd>A language of the intellectual content of the resource.</dd> 
   </dl>
-
-
-  <p>
-	<a rel="external" href="images/manual_metadata.png" title="full-size screenshot"><img style="width:400px;height:200px;" src="images/manual_metadata.png" alt="screenshot of the metadata dialog" /></a>
-	</p>
-
+  <p><img src="images/manual_metadata.png" alt="screenshot of the metadata dialog"/></p>
   <div class="obirdbox">
   <div class="hd">Obird suggestion</div>  
   <p>
@@ -408,12 +353,7 @@
   <dt>Default channels</dt>
   <dd>Select whether you want to record in <code>mono</code> (one channel of audio) or <code>stereo</code> (two channels of audio). Normally, DAISY DTBs are recorded in mono.</dd>
   </dl>
-
-
-  <p>
-	<a rel="external" href="images/manual_preferences_audio.png" title="full-size screenshot"><img style="width:400px;height:140px;" src="images/manual_preferences_audio.png" alt="screenshot of the audio tab in the preferences dialog" /></a>
-	</p>
-
+  <p><img src="images/manual_preferences_audio.png" alt="screenshot of the audio tab in the preferences dialog"/></p>
   <div class="obirdbox">
   <div class="hd">Obird suggestion</div>  
   <p>
@@ -433,12 +373,7 @@
   <dt>Default projects directory</dt>
   <dd>Select a directory on your computers harddrive that Obi will suggest as a project directory when you start a new project.</dd>
   </dl>
-
-
-  <p>
-	<a rel="external" href="images/manual_preferences_project.png" title="full-size screenshot"><img style="width:400px;height:120px;" src="images/manual_preferences_project.png" alt="screenshot of the project tab in the preferences dialog" /></a>
-	</p>
-
+  <p><img src="images/manual_preferences_project.png" alt="screenshot of the project tab in the preferences dialog"/></p>
 
   <h3 id="ctrl_userprofile">User Profile Dialog</h3>  
   <h4>User profile fields</h4>
@@ -452,12 +387,7 @@
   </dl>
   <p><img src="images/manual_userprofile.png" alt="screenshot of the user profile dialog"/></p>
 
-</div>
-
 <h2 id="gloss">Glossary of Terms</h2>
-
-<div id="www_glossary-of-terms">
-
 <div class="obirdbox">
   <div class="hd">Obird suggestion</div>  
   <p>If the word you are looking for does not exist in this glossary, I suggest that you have a look in the <a href="http://www.daisy.org/dkn">DAISY Knowledge Network</a>.</p>
@@ -517,12 +447,7 @@
   <dd>XUK is an acronym that stands for XML for Urakawa. This is a file format used while the <a href='#gls_dtb'>DTB</a> is under production. When you save the project, by default a XUK file is created. Once the DTB is ready for publishing, the XUK file format is converted into a DTB.</dd>
 </dl>
 
-</div>
-
 <h2 id="kbd">Keyboard Shortcut Table</h2>
-
-<div id="www_keyboard-shortcuts">
-
 <div class="infobox">
 <div class="hd">How keyboard shortcut syntax works</div>
 <p>In the table below, all keyboard shortcuts of Obi are described using a standard syntax. 
@@ -617,8 +542,6 @@ Obi.</p>
   <tr><td>Remove page label</td>		<td><kbd>CTRL+DEL</kbd></td></tr>
 
 </table>  
-
-</div>
 
   <p>
     <a href="http://validator.w3.org/check?uri=referer"><img
