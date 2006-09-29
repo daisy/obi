@@ -376,7 +376,7 @@ namespace Obi.Dialogs
             int Hours = Minutes / 60;
             int DisplayHours = Hours;
             if (DisplayHours > 23)
-                DisplayHours = DisplayHours  - 60;
+                DisplayHours = DisplayHours  - 24;
 
             string sHours = DisplayHours.ToString("00");
             return sHours + ":" + sMinutes + ":" + sSeconds;
