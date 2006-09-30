@@ -21,6 +21,8 @@
   h3,h4 {margin-top: 2em}
   h5,h6 {margin-top: 1em}
   img { border: 0 }    
+obivisible {}
+wwwvisible {display: none;}
 </style>
 </head>
 
@@ -123,8 +125,9 @@
       <br/><br/>    
     </p>
 
-    <p><a href="images/manual_mainwindow.png" title="full-size screenshot" rel="external"><img style="width:400px;height:200px;" src="images/manual_mainwindow.png" alt="the main window, with the TOC tree view at the left, and the strip view at the right" /></a></p>
+    <p class="obivisible"><img src="images/manual_mainwindow.png" alt="the main window, with the TOC tree view at the left, and the strip view at the right" /></p>
 
+    <p class="wwwvisible"><a href="images/manual_mainwindow.png" title="full-size screenshot" rel="external"><img style="width:400px;height:200px;" src="images/manual_mainwindow.png" alt="the main window, with the TOC tree view at the left, and the strip view at the right" /></a></p>
    
     <h4 id="ovw_toc">The TOC View</h4>
     <p>The TOC View can be understood as a Table of Contents for the project being recorded.</p>
@@ -151,8 +154,12 @@
   <p>A dialog will appear that asks you to set the title of the project, 
   and where on your computer's hard drive to store project data.  
   </p>
-  <p>
+  <p class="wwwvisible">
 	<a rel="external" href="images/manual_newproject.png" title="full-size screenshot"><img style="width:400px;height:160px;" src="images/manual_newproject.png" alt="the new project dialog" /></a>
+	</p>
+	
+  <p class="obivisible">
+<img src="images/manual_newproject.png" alt="the new project dialog" />
 	</p>
   
           
@@ -179,10 +186,14 @@
     <p>Besides recording live audio from your audio input device, you can also import existing audio files into a strip. Select the <code>import audio file</code> menu item in the Strip menu.    
     </p>
 
-  <p>
+  <p class="obivisible">
+<img src="images/manual_importaudio.png" alt="the import audio item invoked while in the strip view" />
+	</p>
+
+  <p class="wwwvisible">
 	<a rel="external" href="images/manual_importaudio.png" title="full-size screenshot"><img style="width:400px;height:200px;" src="images/manual_importaudio.png" alt="the import audio item invoked while in the strip view" /></a>
 	</p>
-    
+
     
     <h4 id="ovw_sectionedit">Section editing</h4>
     <p>
@@ -191,9 +202,12 @@
     <p>Read more about <a href="#ctrl_tocview">section editing in the details section</a>.</p>
 
 
-  <p>
+  <p class="wwwvisible">
 	<a rel="external" href="images/manual_toceditoptions.png" title="full-size screenshot"><img style="width:400px;height:200px;" src="images/manual_toceditoptions.png" alt="the TOC context menu, showing editing operations such as add, cut, copy, delete, rename and move" /></a>
-	</p>    
+	</p>
+  <p class="obivisible">
+<img src="images/manual_toceditoptions.png" alt="the TOC context menu, showing editing operations such as add, cut, copy, delete, rename and move" />
+	</p>
     
     
     <h4 id="ovw_audioblockedit">Audio Block editing</h4>
@@ -202,9 +216,12 @@
     Or there may be an audio block that you want to split, or merge. Read more about <a href="#ctrl_stripview">audio block editing in the details section</a>.    
     </p>
 
-  <p>
+  <p class="obivisible">
+<img src="images/manual_audioblockeditoptions.png" alt="the audio block context menu, showing editing operations such as add, cut, copy, delete, rename and move" />
+	</p>
+  <p class="wwwvisible">
 	<a rel="external" href="images/manual_audioblockeditoptions.png" title="full-size screenshot"><img style="width:400px;height:200px;" src="images/manual_audioblockeditoptions.png" alt="the audio block context menu, showing editing operations such as add, cut, copy, delete, rename and move" /></a>
-	</p>    
+	</p>
 
     
   <h3 id="ovw_save">Save the Project</h3>
@@ -379,8 +396,11 @@
   </dl>
 
 
-  <p>
+  <p class="wwwvisible">
 	<a rel="external" href="images/manual_metadata.png" title="full-size screenshot"><img style="width:400px;height:200px;" src="images/manual_metadata.png" alt="screenshot of the metadata dialog" /></a>
+	</p>
+  <p class="obivisible">
+<img src="images/manual_metadata.png" alt="screenshot of the metadata dialog" />
 	</p>
 
   <div class="obirdbox">
@@ -410,7 +430,10 @@
   </dl>
 
 
-  <p>
+  <p class="obivisible">
+<img src="images/manual_preferences_audio.png" alt="screenshot of the audio tab in the preferences dialog" />
+	</p>
+  <p class="wwwvisible">
 	<a rel="external" href="images/manual_preferences_audio.png" title="full-size screenshot"><img style="width:400px;height:140px;" src="images/manual_preferences_audio.png" alt="screenshot of the audio tab in the preferences dialog" /></a>
 	</p>
 
@@ -435,8 +458,11 @@
   </dl>
 
 
-  <p>
+  <p class="wwwvisible">
 	<a rel="external" href="images/manual_preferences_project.png" title="full-size screenshot"><img style="width:400px;height:120px;" src="images/manual_preferences_project.png" alt="screenshot of the project tab in the preferences dialog" /></a>
+	</p>
+  <p class="obivisible">
+<img src="images/manual_preferences_project.png" alt="screenshot of the project tab in the preferences dialog" />
 	</p>
 
 
