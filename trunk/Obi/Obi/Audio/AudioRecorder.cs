@@ -435,7 +435,7 @@ namespace Obi.Audio
 			for (int i = 0; i < NumberRecordNotifications; i++)
 			{
 				PositionNotify[i].Offset = (m_iNotifySize * i) + m_iNotifySize - 1;
-				PositionNotify[i].EventNotifyHandle = NotificationEvent.Handle;
+                PositionNotify[i].EventNotifyHandle = NotificationEvent.SafeWaitHandle.DangerousGetHandle();
 			}
 			applicationNotify = new Notify(applicationBuffer);
 			// Tell DirectSound when to notify the app. The notification will come in the from 
