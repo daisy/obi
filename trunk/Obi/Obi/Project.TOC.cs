@@ -994,6 +994,26 @@ namespace Obi
         //see Commands.TOC.ShallowDeleteSectionNode if you're wondering how the "undo" works
         public void ShallowDeleteSectionNode(object origin, CoreNode node)
         {
+            List<Commands.Command> commands = new List<Commands.Command>();
+
+            //we have to gather this data here, because it might be different at the end
+            //however, we can't create the command here, because its data isn't ready yet
+            //these lines only need to be executed if origin != this
+            CoreNode parent = null;
+            Visitors.SectionNodePosition visitor = null;
+            int nodeIndex = 0;
+            int nodeChildCount = 0;
+            if (origin != this)
+            {
+                parent = (CoreNode)node.getParent();
+                visitor = new Visitors.SectionNodePosition(node);
+                getPresentation().getRootNode().acceptDepthFirst(visitor);
+
+                nodeIndex = parent.indexOf(node);
+                nodeChildCount = node.getChildCount();
+            }
+            
+
             //mdXXX
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
@@ -1004,17 +1024,7 @@ namespace Obi
             //end mdXXX
 
             Commands.TOC.ShallowDeleteSectionNode command = null;
-
-            if (origin != this)
-            {
-                CoreNode parent = (CoreNode)node.getParent();
-                Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
-                getPresentation().getRootNode().acceptDepthFirst(visitor);
-
-                command = new Commands.TOC.ShallowDeleteSectionNode
-                    (this, node, parent, parent.indexOf(node), visitor.Position, node.getChildCount());
-             }
-
+           
             int numChildren = node.getChildCount();
 
             for (int i = numChildren - 1; i >= 0; i-- )
@@ -1022,18 +1032,27 @@ namespace Obi
                 if (Project.GetNodeType(node.getChild(i)) == NodeType.Section)
                 {
                     Commands.Command cmdDecrease = this.DecreaseSectionNodeLevel(this, node.getChild(i));
-                    if (command != null) command.addSubCommand(cmdDecrease);
+                    commands.Add(cmdDecrease);
                 }
                 //phrase nodes should be removed
                 else if (Project.GetNodeType(node.getChild(i)) == NodeType.Phrase)
                 {
                     Commands.Command cmdDeletePhrase = DeletePhraseNodeAndAsset(node.getChild(i));
-                    if (command != null) command.addSubCommand(cmdDeletePhrase);
+                    commands.Add(cmdDeletePhrase);
                 }
             }
 
             Commands.Command cmdRemove = this.RemoveNode(this, node);
-            if (command != null) command.addSubCommand(cmdRemove);
+            commands.Add(cmdRemove);
+
+            //additional "null" tests added for completeness, since the logic was
+            //separated out into this piece and the parent- and visitor-setting code above
+            if (origin != this && parent != null && visitor != null)
+            {
+                command = new Commands.TOC.ShallowDeleteSectionNode
+                    (this, node, parent, nodeIndex, 
+                    visitor.Position, nodeChildCount, commands);
+            }
 
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));

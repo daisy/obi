@@ -6,13 +6,8 @@ using urakawa.core;
 
 namespace Obi.Commands.TOC
 {
-    class AddSectionNode: Command
+    class AddSectionNode: SectionNodeCommand
     {
-        private Project mProject;
-        private CoreNode mNode;
-        private CoreNode mParent;
-        private int mIndex;
-        private int mPosition;
         private string mOriginalLabel;
 
         public override string Label
@@ -24,12 +19,8 @@ namespace Obi.Commands.TOC
         }
 
         public AddSectionNode(Project project, CoreNode node, CoreNode parent, int index, int position)
+        : base(project, node, parent, index, position)
         {
-            mProject = project;
-            mNode = node;
-            mParent = parent;
-            mIndex = index;
-            mPosition = position;
             mOriginalLabel = Project.GetTextMedia(node).getText();
         }
 
@@ -39,7 +30,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            mProject.AddExistingSectionNode(mNode, mParent, mIndex, mPosition, mOriginalLabel);
+            Project.AddExistingSectionNode(Node, Parent, Index, Position, mOriginalLabel);
         }
 
         /// <summary>
@@ -48,7 +39,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mProject.RemoveNode(mProject, mNode);
+            Project.RemoveNode(Project, Node);
         }
     }
 }
