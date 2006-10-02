@@ -6,14 +6,8 @@ using urakawa.core;
 
 namespace Obi.Commands.TOC
 {
-    class MoveSectionNodeDown : Command
+    class MoveSectionNodeDown : SectionNodeCommand
     {
-        private Project mProject;
-        private CoreNode mNode;
-        private CoreNode mParent;
-        private int mIndex;
-        private int mPosition;
-
         public override string Label
         {
             get
@@ -23,12 +17,9 @@ namespace Obi.Commands.TOC
         }
 
         public MoveSectionNodeDown(Project project, CoreNode node, CoreNode parent, int index, int position)
+            : base(project, node, parent, index, position)
         {
-            mProject = project;
-            mNode = node;
-            mParent = parent;
-            mIndex = index;
-            mPosition = position;
+           
         }
 
         /// <summary>
@@ -36,7 +27,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            mProject.MoveSectionNodeDown(mProject, mNode);
+            Project.MoveSectionNodeDown(Project, Node);
         }
 
         /// <summary>
@@ -44,18 +35,12 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mProject.UndoMoveSectionNode(mNode, mParent, mIndex, mPosition);
+            Project.UndoMoveSectionNode(Node, Parent, Index, Position);
         }
     }
 
-    class MoveSectionNodeUp : Command
+    class MoveSectionNodeUp : SectionNodeCommand
     {
-        private Project mProject;
-        private CoreNode mNode;
-        private CoreNode mParent;
-        private int mIndex;
-        private int mPosition;
-
         public override string Label
         {
             get
@@ -65,12 +50,8 @@ namespace Obi.Commands.TOC
         }
 
         public MoveSectionNodeUp(Project project, CoreNode node, CoreNode parent, int index, int position)
+            : base(project, node, parent, index, position)
         {
-            mProject = project;
-            mNode = node;
-            mParent = parent;
-            mIndex = index;
-            mPosition = position;
         }
 
         /// <summary>
@@ -78,7 +59,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            mProject.MoveSectionNodeUp(mProject, mNode);
+            Project.MoveSectionNodeUp(Project, Node);
         }
 
         /// <summary>
@@ -86,7 +67,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mProject.UndoMoveSectionNode(mNode, mParent, mIndex, mPosition);
+            Project.UndoMoveSectionNode(Node, Parent, Index, Position);
         }
     }
 

@@ -6,14 +6,8 @@ using urakawa.core;
 
 namespace Obi.Commands.TOC
 {
-    class CutSectionNode : Command
+    class CutSectionNode : SectionNodeCommand
     {
-        private Project mProject;
-        private CoreNode mNode;
-        private CoreNode mParent;
-        private int mIndex;
-        private int mPosition;
-
         public override string Label
         {
             get
@@ -23,12 +17,8 @@ namespace Obi.Commands.TOC
         }
 
         public CutSectionNode(Project project, CoreNode node, CoreNode parent, int index, int position)
+            : base(project, node, parent, index, position)
         {
-            mProject = project;
-            mNode = node;
-            mParent = parent;
-            mIndex = index;
-            mPosition = position;
         }
 
         /// <summary>
@@ -36,7 +26,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            mProject.DoCutSectionNode(mProject, mNode);
+            Project.DoCutSectionNode(Project, Node);
         }
 
         /// <summary>
@@ -44,7 +34,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mProject.UndoCutSectionNode(mNode, mParent, mIndex, mPosition);
+            Project.UndoCutSectionNode(Node, Parent, Index, Position);
         }
     }
 

@@ -95,6 +95,8 @@
     <Compile Include="Commands\TOC\MoveSectionNode.cs" />
     <Compile Include="Commands\TOC\Rename.cs" />
     <Compile Include="Commands\TOC\SectionNodeClipboard.cs" />
+    <Compile Include="Commands\TOC\SectionNodeCommand.cs" />
+    <Compile Include="Commands\TOC\SectionNodeListCommand.cs" />
     <Compile Include="Commands\TOC\ShallowDeleteSectionNode.cs" />
     <Compile Include="CustomProperties.cs" />
     <Compile Include="Dialogs\About.cs">
