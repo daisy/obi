@@ -41,7 +41,7 @@ namespace Obi.UserControls
             this.mAudioLayoutPanel.AutoSize = true;
             this.mAudioLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.mAudioLayoutPanel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.mAudioLayoutPanel.Location = new System.Drawing.Point(3, 45);
+            this.mAudioLayoutPanel.Location = new System.Drawing.Point(3, 49);
             this.mAudioLayoutPanel.Name = "mAudioLayoutPanel";
             this.mAudioLayoutPanel.Size = new System.Drawing.Size(0, 0);
             this.mAudioLayoutPanel.TabIndex = 2;
@@ -83,15 +83,15 @@ namespace Obi.UserControls
             // 
             this.mStructureLayoutPanel.AutoSize = true;
             this.mStructureLayoutPanel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.mStructureLayoutPanel.Location = new System.Drawing.Point(3, 23);
+            this.mStructureLayoutPanel.Location = new System.Drawing.Point(3, 25);
             this.mStructureLayoutPanel.Name = "mStructureLayoutPanel";
-            this.mStructureLayoutPanel.Size = new System.Drawing.Size(0, 17);
+            this.mStructureLayoutPanel.Size = new System.Drawing.Size(0, 18);
             this.mStructureLayoutPanel.TabIndex = 3;
             this.mStructureLayoutPanel.Click += new System.EventHandler(this.mStructureLayoutPanel_Click);
             // 
             // SectionStrip
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -102,7 +102,7 @@ namespace Obi.UserControls
             this.Controls.Add(this.mAudioLayoutPanel);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.Name = "SectionStrip";
-            this.Size = new System.Drawing.Size(249, 48);
+            this.Size = new System.Drawing.Size(249, 52);
             this.Enter += new System.EventHandler(this.SectionStrip_enter);
             this.Click += new System.EventHandler(this.SectionStrip_Click);
             this.Leave += new System.EventHandler(this.SectionStrip_leave);

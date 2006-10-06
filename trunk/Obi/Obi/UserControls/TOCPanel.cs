@@ -376,9 +376,9 @@ namespace Obi.UserControls
             mEditLabelToolStripMenuItem.Enabled = e.Selected;
 
             //md: logic for these "canMove's" needs to come from Obi.Project
-            mMoveToolStripMenuItem.Enabled = e.CanMoveUp || e.CanMoveDown || e.CanMoveIn || e.CanMoveOut;
-            mMoveUpToolStripMenuItem.Enabled = e.CanMoveUp;
-            mMoveDownToolStripMenuItem.Enabled = e.CanMoveDown;
+            //mMoveToolStripMenuItem.Enabled = e.CanMoveUp || e.CanMoveDown || e.CanMoveIn || e.CanMoveOut;
+           // mMoveUpToolStripMenuItem.Enabled = e.CanMoveUp;
+           // mMoveDownToolStripMenuItem.Enabled = e.CanMoveDown;
             mMoveInToolStripMenuItem.Enabled = e.CanMoveIn;
             mMoveOutToolStripMenuItem.Enabled = e.CanMoveOut;
 

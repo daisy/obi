@@ -330,5 +330,20 @@ namespace Obi.UserControls
             audioBlock.Label = asset.Name;
             audioBlock.Time = asset.LengthInSeconds;
         }
+
+        /// <summary>
+        /// set the font size for the title font
+        /// </summary>
+        public void SetTitleFontSize(float sz)
+        {
+            Font newfont = new Font(mTextBox.Font.FontFamily, sz);
+            mTextBox.Font = newfont;
+        }
+
+        public float GetTitleFontSize()
+        {
+            return mTextBox.Font.Size;
+        }
+
     }
 }
