@@ -563,5 +563,24 @@ namespace Obi
                 System.Diagnostics.Debug.Print("* {0}", name);
             }
         }
+
+        /// <summary>
+        /// Return the node's level
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        // md 20061005.  expect to replace soon with a toolkit or extension function.
+        public int getNodeLevel(CoreNode node)
+        {
+            //if we are the root node
+            if (node.getParent() == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return getNodeLevel((CoreNode)node.getParent()) + 1;
+            }
+        }
     }
 }

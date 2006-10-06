@@ -382,10 +382,6 @@ namespace Obi
                 new EventHandler(mProjectPanel.TOCPanel.mDeleteSectionToolStripMenuItem_Click);
             mRenameSectionToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.TOCPanel.mRenameToolStripMenuItem_Click);
-            mMoveUpToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.TOCPanel.mMoveUpToolStripMenuItem_Click);
-            mMoveDownToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.TOCPanel.mMoveDownToolStripMenuItem_Click);
             mMoveInToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.TOCPanel.increaseLevelToolStripMenuItem_Click);
             mMoveOutToolStripMenuItem.Click +=
@@ -445,9 +441,6 @@ namespace Obi
             mAddSubSectionToolStripMenuItem.Enabled = e.Selected;
             mDeleteSectionToolStripMenuItem.Enabled = e.Selected;
             mRenameSectionToolStripMenuItem.Enabled = e.Selected;
-            mMoveSectionToolStripMenuItem.Enabled = e.CanMoveUp || e.CanMoveDown || e.CanMoveIn || e.CanMoveOut;
-            mMoveUpToolStripMenuItem.Enabled = e.CanMoveUp;
-            mMoveDownToolStripMenuItem.Enabled = e.CanMoveDown;
             mMoveInToolStripMenuItem.Enabled = e.CanMoveIn;
             mMoveOutToolStripMenuItem.Enabled = e.CanMoveOut;
             mShowInStripviewToolStripMenuItem.Enabled = e.Selected;
@@ -871,9 +864,6 @@ namespace Obi
                     canMoveOut = mProjectPanel.Project.CanMoveSectionNodeOut(selectedSection);
                 }
 
-                mMoveSectionToolStripMenuItem.Enabled = canMoveUp || canMoveDown || canMoveIn || canMoveOut;
-                mMoveUpToolStripMenuItem.Enabled = canMoveUp;
-                mMoveDownToolStripMenuItem.Enabled = canMoveDown;
                 mMoveInToolStripMenuItem.Enabled = canMoveIn;
                 mMoveOutToolStripMenuItem.Enabled = canMoveOut;
 

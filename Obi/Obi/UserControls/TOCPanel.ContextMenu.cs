@@ -161,9 +161,9 @@ namespace Obi.UserControls
                 canMoveOut = mProjectPanel.Project.CanMoveSectionNodeOut(selectedSection);
             }
             
-            mMoveToolStripMenuItem.Enabled = canMoveUp || canMoveDown || canMoveIn || canMoveOut;
-            mMoveUpToolStripMenuItem.Enabled = canMoveUp;
-            mMoveDownToolStripMenuItem.Enabled = canMoveDown;
+           // mMoveToolStripMenuItem.Enabled = canMoveUp || canMoveDown || canMoveIn || canMoveOut;
+           // mMoveUpToolStripMenuItem.Enabled = canMoveUp;
+           // mMoveDownToolStripMenuItem.Enabled = canMoveDown;
             mMoveInToolStripMenuItem.Enabled = canMoveIn;
             mMoveOutToolStripMenuItem.Enabled = canMoveOut;
 
