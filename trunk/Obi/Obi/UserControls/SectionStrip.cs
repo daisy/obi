@@ -338,6 +338,8 @@ namespace Obi.UserControls
         {
             Font newfont = new Font(mTextBox.Font.FontFamily, sz);
             mTextBox.Font = newfont;
+            mLabel.Font = newfont;
+         
         }
 
         public float GetTitleFontSize()
