@@ -38,6 +38,7 @@ namespace Obi.UserControls
         public StructureBlock()
         {
             InitializeComponent();
+            InitializeToolTips();
         }
 
         internal override void MarkDeselected()
@@ -105,7 +106,7 @@ namespace Obi.UserControls
                     UpdatePageNumber();
                     break;
                 case Keys.Escape:
-                    StopEditingPageNumber(); 
+                    StopEditingPageNumber();
                     break;
                 default:
                     break;
@@ -139,6 +140,15 @@ namespace Obi.UserControls
                     mManager.RequestToSetPageNumber(this, new Events.Node.SetPageEventArgs(this, mAudioBlock.Node, pageNumber));
                 }
             }
+        }
+
+        //md 20061009
+        //todo: replace with resource strings
+        private void InitializeToolTips()
+        {
+            this.mToolTip.SetToolTip(this, "For showing a page number.");
+            this.mToolTip.SetToolTip(this.mLabel, "For showing a page number.");
+            this.mToolTip.SetToolTip(this.mLabelBox, "For showing a page number.");
         }
     }
 }

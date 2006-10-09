@@ -38,13 +38,14 @@ namespace Obi.UserControls
             this.mCopySectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPasteSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.mDeleteSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMoveOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMoveInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.mDeleteSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mEditLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.mShowInStripViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.mToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,7 +86,7 @@ namespace Obi.UserControls
             this.toolStripSeparator3,
             this.mShowInStripViewToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(207, 270);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(207, 248);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // mAddSectionAtSameLevelToolStripMenuItem
@@ -141,14 +142,6 @@ namespace Obi.UserControls
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(203, 6);
             // 
-            // mDeleteSectionToolStripMenuItem
-            // 
-            this.mDeleteSectionToolStripMenuItem.Name = "mDeleteSectionToolStripMenuItem";
-            this.mDeleteSectionToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.mDeleteSectionToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.mDeleteSectionToolStripMenuItem.Text = "&Delete section";
-            this.mDeleteSectionToolStripMenuItem.Click += new System.EventHandler(this.mDeleteSectionToolStripMenuItem_Click);
-            // 
             // mMoveOutToolStripMenuItem
             // 
             this.mMoveOutToolStripMenuItem.Name = "mMoveOutToolStripMenuItem";
@@ -166,6 +159,19 @@ namespace Obi.UserControls
             this.mMoveInToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.mMoveInToolStripMenuItem.Text = "Move &in";
             this.mMoveInToolStripMenuItem.Click += new System.EventHandler(this.increaseLevelToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(203, 6);
+            // 
+            // mDeleteSectionToolStripMenuItem
+            // 
+            this.mDeleteSectionToolStripMenuItem.Name = "mDeleteSectionToolStripMenuItem";
+            this.mDeleteSectionToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.mDeleteSectionToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.mDeleteSectionToolStripMenuItem.Text = "&Delete section";
+            this.mDeleteSectionToolStripMenuItem.Click += new System.EventHandler(this.mDeleteSectionToolStripMenuItem_Click);
             // 
             // mEditLabelToolStripMenuItem
             // 
@@ -188,10 +194,11 @@ namespace Obi.UserControls
             this.mShowInStripViewToolStripMenuItem.Text = "Show in strip &view";
             this.mShowInStripViewToolStripMenuItem.Click += new System.EventHandler(this.mShowInStripViewToolStripMenuItem_Click);
             // 
-            // toolStripSeparator4
+            // mToolTip
             // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(203, 6);
+            this.mToolTip.AutomaticDelay = 1000;
+            this.mToolTip.IsBalloon = true;
+            this.mToolTip.ToolTipTitle = "Table of Contents View";
             // 
             // TOCPanel
             // 
@@ -223,5 +230,6 @@ namespace Obi.UserControls
         private System.Windows.Forms.ToolStripMenuItem mMoveInToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMoveOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolTip mToolTip;
     }
 }

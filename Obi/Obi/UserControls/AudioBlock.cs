@@ -76,6 +76,7 @@ namespace Obi.UserControls
             this.TabStop = true;  // mg (moved by JQ 20060817)
             mStructureBlock = new StructureBlock();
             mStructureBlock.AudioBlock = this;
+            InitializeToolTips();
         }
 
         #endregion
@@ -205,6 +206,17 @@ namespace Obi.UserControls
         internal void StartEditingPageNumber()
         {
             mStructureBlock.StartEditingPageNumber();
+        }
+
+        //md 20061009
+        //todo: replace with resource strings
+        private void InitializeToolTips()
+        {
+            this.mToolTip.SetToolTip(this, "This block is a chunk of audio.");
+            this.mToolTip.SetToolTip(this.mAnnotationLabel, "This annotation is useful during production, but it does not appear in the exported presentation.");
+            this.mToolTip.SetToolTip(this.mRenameBox, "This annotation is useful during production, but it does not appear in the exported presentation.");
+            this.mToolTip.SetToolTip(this.mTimeLabel, "The duration of this audio segment");
+
         }
     }
 }

@@ -63,6 +63,7 @@ namespace Obi.UserControls
         {
             InitializeComponent();
             this.TabStop = true; //mg: not in designer for some reason
+            InitializeToolTips(); 
         }
         #endregion
 
@@ -345,6 +346,16 @@ namespace Obi.UserControls
         public float GetTitleFontSize()
         {
             return mTextBox.Font.Size;
+        }
+
+        //md 20061009
+        //todo: replace with resource strings
+        private void InitializeToolTips()
+        {
+            this.mToolTip.SetToolTip(this, "This is a strip, which represents a single section.\nRecorded audio will appear within a strip. \nRight-click for more options.");
+            this.mToolTip.SetToolTip(this.mTextBox, "This is the section's name");
+            this.mToolTip.SetToolTip(this.mLabel, "This is the section's name");
+           
         }
 
     }

@@ -28,10 +28,12 @@ namespace Obi.UserControls
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.mAudioLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.mTextBox = new System.Windows.Forms.TextBox();
             this.mLabel = new System.Windows.Forms.Label();
             this.mStructureLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.mToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // mAudioLayoutPanel
@@ -89,6 +91,13 @@ namespace Obi.UserControls
             this.mStructureLayoutPanel.TabIndex = 3;
             this.mStructureLayoutPanel.Click += new System.EventHandler(this.mStructureLayoutPanel_Click);
             // 
+            // mToolTip
+            // 
+            this.mToolTip.AutomaticDelay = 1000;
+            this.mToolTip.IsBalloon = true;
+            this.mToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.mToolTip.ToolTipTitle = "Section Strip";
+            // 
             // SectionStrip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -117,5 +126,6 @@ namespace Obi.UserControls
         private System.Windows.Forms.TextBox mTextBox;
         private System.Windows.Forms.Label mLabel;
         private System.Windows.Forms.FlowLayoutPanel mStructureLayoutPanel;
+        private System.Windows.Forms.ToolTip mToolTip;
     }
 }
