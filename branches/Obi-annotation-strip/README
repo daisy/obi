@@ -1,0 +1,35 @@
+$Id$
+
+Obi is now a self-contained application; the asset manager and audio backend
+have been included in the same project. The Obi project can then be opened
+in Visual Studio 2005 and compiled/run from there. There are still some
+prerequisites:
+
+Prerequisites:
+1. You will need to install Direct X .Net SDK first.
+2. You also need to compile the Urakawa toolkit from the implementation
+   directory.
+3. Once you have DirectX and the toolkit, you can compile Obi.  You *may*
+   need to specify the location of the DLLs again in the References
+   section of the Solution Explorer; they can be found in the bin/ directory
+   of all projects. (Sometimes, just looking at the properties of a "missing"
+   reference does the trick.) 
+
+What's where:
+
++ Obi
+  A 2005 project for the application. This is the main project.
+
++ docs
+  Mostly outdated, features.txt contains the rough feature list of version
+  0.5/1.0/future of the application. Also some notes from the application
+  team meeting in Delhi in August 2006 and initial comments for the façade
+  API (facade-api.txt)
+
++ prototype
+  Contains the two prototypes/mockups that were delivered in April. Protobi
+  is more interactive, UrakawaPrototype shows more features. The application
+  will still look quite different. Both are 2005 projects.
+
++ misc
+  Stuff, including old 2003 projects.
