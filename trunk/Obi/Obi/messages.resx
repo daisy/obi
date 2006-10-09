@@ -409,4 +409,25 @@ Do you want to replace the project contained in this file?</value>
   <data name="recorder_error_text" xml:space="preserve">
     <value>An error occurred while recording. Sorry :(</value>
   </data>
+  <data name="audio_block_duration_tooltip" xml:space="preserve">
+    <value>The duration of this audio segment</value>
+  </data>
+  <data name="audio_block_tooltip" xml:space="preserve">
+    <value>A segment of audio.</value>
+  </data>
+  <data name="section_strip_annotation_tooltip" xml:space="preserve">
+    <value>This annotation is useful during production, but it does not appear in the exported presentation.</value>
+  </data>
+  <data name="section_strip_name_tooltip" xml:space="preserve">
+    <value>This is the section's name</value>
+  </data>
+  <data name="section_strip_tooltip" xml:space="preserve">
+    <value>This strip represents a single section. Audio phrases are shown inside a strip. Right-click for more options.</value>
+  </data>
+  <data name="structure_block_tooltip" xml:space="preserve">
+    <value>For showing a page number</value>
+  </data>
+  <data name="toc_view_tooltip" xml:space="preserve">
+    <value>Section names are shown nested in this view.  You can rename and reorder sections. Right-click for more options.</value>
+  </data>
 </root>

@@ -143,12 +143,11 @@ namespace Obi.UserControls
         }
 
         //md 20061009
-        //todo: replace with resource strings
         private void InitializeToolTips()
         {
-            this.mToolTip.SetToolTip(this, "For showing a page number.");
-            this.mToolTip.SetToolTip(this.mLabel, "For showing a page number.");
-            this.mToolTip.SetToolTip(this.mLabelBox, "For showing a page number.");
+            this.mToolTip.SetToolTip(this, Localizer.Message("structure_block_tooltip"));
+            this.mToolTip.SetToolTip(this.mLabel, Localizer.Message("structure_block_tooltip"));
+            this.mToolTip.SetToolTip(this.mLabelBox, Localizer.Message("structure_block_tooltip"));
         }
     }
 }

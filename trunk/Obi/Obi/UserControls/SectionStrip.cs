@@ -349,12 +349,11 @@ namespace Obi.UserControls
         }
 
         //md 20061009
-        //todo: replace with resource strings
         private void InitializeToolTips()
         {
-            this.mToolTip.SetToolTip(this, "This is a strip, which represents a single section.\nRecorded audio will appear within a strip. \nRight-click for more options.");
-            this.mToolTip.SetToolTip(this.mTextBox, "This is the section's name");
-            this.mToolTip.SetToolTip(this.mLabel, "This is the section's name");
+            this.mToolTip.SetToolTip(this, Localizer.Message("section_strip_tooltip"));
+            this.mToolTip.SetToolTip(this.mTextBox, Localizer.Message("section_strip_name_tooltip"));
+            this.mToolTip.SetToolTip(this.mLabel, Localizer.Message("section_strip_name_tooltip"));
            
         }
 
