@@ -15,13 +15,14 @@ proposal. Julien and Markus will look at it.
 
 [ ] Fix channels creation when reading in XUK file. [Julien]
 
-[ ] Strip information field; maybe change font sizes for strip names?
+[X] Strip information field; maybe change font sizes for strip names?
 [Marisa]
 
-[ ] Remove move section up/down (use cut/paste instead.) [Marisa]
+[X] Remove move section up/down (use cut/paste instead.) [Marisa]
 
-[ ] Update commands (user visible flag; composite commands.) Fix the add
+[partial] Update commands (user visible flag; composite commands.) Fix the add
 section/rename command? [Julien and Marisa]
+Comment (MD): redid the shallow-delete section command as a ListCommand
 
 [ ] Fix pages to be numbers; use property instead of child node. [Julien]
 
@@ -33,8 +34,9 @@ sections.
 
 [ ] Simple read-only views for positioning, navigation... [Julien]
 
-[ ] Replace phrase annotations with annotation strip. Make phrase size
+[started] Replace phrase annotations with annotation strip. Make phrase size
 function of audio length. [Julien or Marisa]
+Comment (MD): There is a branch for annotation strips, called Obi-annotation-strip
 
 [ ] Fix keyboard navigation (tabbing between views, arrows inside views.)
 [Julien or Marisa]
