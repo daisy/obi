@@ -59,6 +59,7 @@ namespace Obi.UserControls
         {
             InitializeComponent();
             SelectedTreeNode += new Obi.Events.Node.SelectedHandler(TOCPanel_SelectedTreeNode);
+            InitializeToolTips();
         }
 
         #endregion
@@ -390,6 +391,14 @@ namespace Obi.UserControls
             // for its clipboard. (JQ)
             mPasteSectionToolStripMenuItem.Enabled = e.Selected &&
                 (mProjectPanel.Project != null) && (mProjectPanel.Project.Clipboard != null);
+        }
+
+        //md 20061009
+        //todo: replace with resource strings
+        private void InitializeToolTips()
+        {
+            this.mToolTip.SetToolTip(this, "The names of sections in the presentation are shown hierarchically in this view.  \nYou can rename and reorder sections. \nRight-click for more options.");
+            this.mToolTip.SetToolTip(this.mTocTree, "The names of sections in the presentation are shown hierarchically in this view.  \nYou can rename and reorder sections. \nRight-click for more options.");
         }
     }
 }
