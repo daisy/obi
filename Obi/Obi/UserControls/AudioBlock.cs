@@ -209,13 +209,12 @@ namespace Obi.UserControls
         }
 
         //md 20061009
-        //todo: replace with resource strings
         private void InitializeToolTips()
         {
-            this.mToolTip.SetToolTip(this, "This block is a chunk of audio.");
-            this.mToolTip.SetToolTip(this.mAnnotationLabel, "This annotation is useful during production, but it does not appear in the exported presentation.");
-            this.mToolTip.SetToolTip(this.mRenameBox, "This annotation is useful during production, but it does not appear in the exported presentation.");
-            this.mToolTip.SetToolTip(this.mTimeLabel, "The duration of this audio segment");
+            this.mToolTip.SetToolTip(this, Localizer.Message("audio_block_tooltip"));
+            this.mToolTip.SetToolTip(this.mAnnotationLabel, Localizer.Message("section_strip_annotation_tooltip"));
+            this.mToolTip.SetToolTip(this.mRenameBox, Localizer.Message("section_strip_annotation_tooltip"));
+            this.mToolTip.SetToolTip(this.mTimeLabel, Localizer.Message("audio_block_duration_tooltip"));
 
         }
     }

@@ -394,11 +394,10 @@ namespace Obi.UserControls
         }
 
         //md 20061009
-        //todo: replace with resource strings
         private void InitializeToolTips()
         {
-            this.mToolTip.SetToolTip(this, "The names of sections in the presentation are shown hierarchically in this view.  \nYou can rename and reorder sections. \nRight-click for more options.");
-            this.mToolTip.SetToolTip(this.mTocTree, "The names of sections in the presentation are shown hierarchically in this view.  \nYou can rename and reorder sections. \nRight-click for more options.");
+            this.mToolTip.SetToolTip(this, Localizer.Message("toc_view_tooltip"));
+            this.mToolTip.SetToolTip(this.mTocTree, Localizer.Message("toc_view_tooltip"));
         }
     }
 }

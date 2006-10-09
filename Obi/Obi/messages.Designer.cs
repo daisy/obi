@@ -88,6 +88,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The duration of this audio segment.
+        /// </summary>
+        internal static string audio_block_duration_tooltip {
+            get {
+                return ResourceManager.GetString("audio_block_duration_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A segment of audio..
+        /// </summary>
+        internal static string audio_block_tooltip {
+            get {
+                return ResourceManager.GetString("audio_block_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to WAVE file (*.wav)|*.wav|Any file|*.*.
         /// </summary>
         internal static string audio_file_filter {
@@ -744,6 +762,33 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This annotation is useful during production, but it does not appear in the exported presentation..
+        /// </summary>
+        internal static string section_strip_annotation_tooltip {
+            get {
+                return ResourceManager.GetString("section_strip_annotation_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is the section&apos;s name.
+        /// </summary>
+        internal static string section_strip_name_tooltip {
+            get {
+                return ResourceManager.GetString("section_strip_name_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This strip represents a single section. Audio phrases are shown inside a strip. Right-click for more options..
+        /// </summary>
+        internal static string section_strip_tooltip {
+            get {
+                return ResourceManager.GetString("section_strip_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to set page label.
         /// </summary>
         internal static string set_page_command_label {
@@ -803,6 +848,24 @@ namespace Obi {
         internal static string stereo {
             get {
                 return ResourceManager.GetString("stereo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For showing a page number.
+        /// </summary>
+        internal static string structure_block_tooltip {
+            get {
+                return ResourceManager.GetString("structure_block_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Section names are shown nested in this view.  You can rename and reorder sections. Right-click for more options..
+        /// </summary>
+        internal static string toc_view_tooltip {
+            get {
+                return ResourceManager.GetString("toc_view_tooltip", resourceCulture);
             }
         }
         
