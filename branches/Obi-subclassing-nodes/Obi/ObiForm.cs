@@ -8,7 +8,6 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
-//using Microsoft.DirectX.DirectSound;
 using urakawa.core;
 using Obi.Dialogs;
 
@@ -57,7 +56,7 @@ namespace Obi
             {
                 if (ClosedProject())
                 {
-                    mProject = new Project();
+                    mProject = Project.BlankProject();
                     mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
                     mProject.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
                     mProject.Create(dialog.Path, dialog.Title, mSettings.IdTemplate, mSettings.UserProfile,
@@ -500,7 +499,7 @@ namespace Obi
         {
             try
             {
-                mProject = new Project();
+                mProject = Project.BlankProject();  // new Project();
                 mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
                 mProject.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
                 this.Cursor = Cursors.WaitCursor;
@@ -719,7 +718,7 @@ namespace Obi
             {
                 // A bit kldugy but an easy way to rebuild the list of used files when discarding changes.
                 string path = mProject.XUKPath;
-                mProject = new Project();
+                mProject = Project.BlankProject();  // new Project();
                 mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(
                     delegate(object sender, Obi.Events.Project.StateChangedEventArgs e) { }
                 );    

@@ -190,6 +190,9 @@
     <Compile Include="ObiForm.Designer.cs">
       <DependentUpon>ObiForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ObiNode.cs" />
+    <Compile Include="ObiNodeFactory.cs" />
+    <Compile Include="PhraseNode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Project.Blocks.cs" />
     <Compile Include="Project.cs" />
@@ -277,6 +280,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="SectionNode.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="SimpleMetadata.cs" />
     <Compile Include="UserControls\AbstractBlock.cs">

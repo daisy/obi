@@ -18,6 +18,7 @@ namespace Obi.Visitors
 
         public bool preVisit(ICoreNode node)
         {
+            /*
             CoreNode n = (CoreNode)node;
             NodeInformationProperty p = (NodeInformationProperty)n.getProperty(typeof(NodeInformationProperty));
             string info = String.Format("{0}{1}[{2}]", indent, p.NodeType, p.Id);
@@ -37,6 +38,9 @@ namespace Obi.Visitors
                 default:
                     break;
             }
+            */
+            string info = String.Format("{0}{1}", indent, node.GetType());
+            if (node is ObiNode) info += String.Format(" <{0}>", ((ObiNode)node).Id);
             System.Diagnostics.Debug.Print(info);
             indent = "  " + indent;
             return true;

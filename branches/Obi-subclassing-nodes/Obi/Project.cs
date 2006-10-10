@@ -31,6 +31,11 @@ namespace Obi
         private Channel mTextChannel;        // handy pointer to the text channel 
         private Channel mAnnotationChannel;  // handy pointer to the annotation channel
 
+        internal Channel _TextChannel
+        {
+            get { return mTextChannel; }
+        }
+
         private Assets.AssetManager mAssManager;  // the asset manager
         private string mAssPath;                  // the path to the asset manager directory
 
@@ -41,7 +46,7 @@ namespace Obi
 
         private int mLastPage;               // last page number in the project
 
-        public static readonly string XUKVersion = "obi-xuk-007";            // version of the Obi/XUK file
+        public static readonly string XUKVersion = "obi-xuk-008";            // version of the Obi/XUK file
         public static readonly string AudioChannel = "obi.audio";            // canonical name of the audio channel
         public static readonly string TextChannel = "obi.text";              // canonical name of the text channel
         public static readonly string AnnotationChannel = "obi.annotation";  // canonical name of the annotation channel
@@ -55,17 +60,12 @@ namespace Obi
 
         public event Events.Node.TouchedNodeHandler TouchedNode;  // this node was somehow modified
        
-      
-
         /// <summary>
         /// This flag is set to true if the project contains modifications that have not been saved.
         /// </summary>
         public bool Unsaved
         {
-            get
-            {
-                return mUnsaved;
-            }
+            get { return mUnsaved; }
         }
 
         /// <summary>
@@ -73,10 +73,7 @@ namespace Obi
         /// </summary>
         public SimpleMetadata Metadata
         {
-            get
-            {
-                return mMetadata;
-            }
+            get { return mMetadata; }
         }
 
         /// <summary>
@@ -84,10 +81,7 @@ namespace Obi
         /// </summary>
         public string XUKPath
         {
-            get
-            {
-                return mXUKPath;
-            }
+            get { return mXUKPath; }
         }
 
         /// <summary>
@@ -95,10 +89,7 @@ namespace Obi
         /// </summary>
         public CoreNode RootNode
         {
-            get
-            {
-                return (CoreNode)getPresentation().getRootNode();
-            }
+            get { return (CoreNode)getPresentation().getRootNode(); }
         }
 
         /// <summary>
@@ -106,10 +97,7 @@ namespace Obi
         /// </summary>
         public string LastPath
         {
-            get
-            {
-                return mLastPath;
-            }
+            get { return mLastPath; }
         }
 
         internal Assets.AssetManager AssetManager
@@ -118,24 +106,27 @@ namespace Obi
         }
 
         /// <summary>
-        /// Create an empty project. And I mean empty.
+        /// Convenience method for creating a new blank project. Actually create a presentation first so that we can use our own
+        /// core node factory and custom property factory.
         /// </summary>
-        /// <remarks>
-        /// This is necessary because we need an instance of a project to set the event handler for the project state
-        /// changes, which happen as soon as the project is created or opened.
-        /// </remarks>
-        public Project()
-            : base()
+        public static Project BlankProject()
+        {
+            ObiNodeFactory nodeFactory = new ObiNodeFactory();
+            Presentation presentation = new Presentation(nodeFactory, null, null, new ObiPropertyFactory(), null);
+            Project project = new Project(presentation);
+            nodeFactory.Project = project;
+            return project;
+        }
+
+        /// <summary>
+        /// Create a blank project from a seed presentation and using the default metadata factory.
+        /// </summary>
+        private Project(Presentation presentation)
+            : base(presentation, null)
         {
             mAssManager = null;
             mUnsaved = false;
             mXUKPath = null;
-
-            //md:
-            mClipboard = null;
-
-            // Use our own property factory so that we can create custom properties
-            getPresentation().setPropertyFactory(new ObiPropertyFactory());
         }
 
         /// <summary>
@@ -165,21 +156,18 @@ namespace Obi
             mAnnotationChannel = getPresentation().getChannelFactory().createChannel(AnnotationChannel);
             getPresentation().getChannelsManager().addChannel(mAnnotationChannel);
 
-            // Give a custom property to the root node to make it a Root node.
-            NodeInformationProperty typeProp =
-                (NodeInformationProperty)getPresentation().getPropertyFactory().createProperty("NodeInformationProperty",
-                ObiPropertyFactory.ObiNS);
-            typeProp.NodeType = NodeType.Root;
-            typeProp.NodeStatus = NodeStatus.NA;
-            getPresentation().getRootNode().setProperty(typeProp);
-            NodeInformationProperty rootType = (NodeInformationProperty)getPresentation().getRootNode().getProperty(typeof(NodeInformationProperty));
+            // Clear the clipboard
+            mClipboard = null;
 
+            // Create a title section if necessary
             if (createTitle)
             {
-                CoreNode node = CreateSectionNode();
-                GetTextMedia(node).setText(title);
+                SectionNode node = (SectionNode)
+                    getPresentation().getCoreNodeFactory().createNode(SectionNode.Name, ObiPropertyFactory.ObiNS);
+                node.Label = title;
                 getPresentation().getRootNode().appendChild(node);
             }
+
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
             Save();
         }
