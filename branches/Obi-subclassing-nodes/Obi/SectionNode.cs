@@ -1,4 +1,5 @@
 using urakawa.core;
+using urakawa.exception;
 using urakawa.media;
 
 namespace Obi
