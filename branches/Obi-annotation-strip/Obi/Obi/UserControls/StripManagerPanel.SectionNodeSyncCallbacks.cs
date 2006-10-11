@@ -31,13 +31,11 @@ namespace Obi.UserControls
 
             //md 20061005
             //make the font bigger
-            //for some reason, this seems to have no effect
             int nodeLevel = this.mProjectPanel.Project.getNodeLevel(node);
             float currentSize = strip.GetTitleFontSize();
             if (nodeLevel == 1) strip.SetTitleFontSize(currentSize + 3);
             else if (nodeLevel == 2) strip.SetTitleFontSize(currentSize + 2);
             else if (nodeLevel == 3) strip.SetTitleFontSize(currentSize + 1);
-
 
             if (rename)
             {

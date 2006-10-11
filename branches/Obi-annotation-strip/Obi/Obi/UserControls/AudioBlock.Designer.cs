@@ -47,15 +47,18 @@ namespace Obi.UserControls
             // 
             // mToolTip
             // 
-            this.mToolTip.AutomaticDelay = 1000;
+            this.mToolTip.AutomaticDelay = 3000;
+            this.mToolTip.AutoPopDelay = 4000;
+            this.mToolTip.InitialDelay = 3000;
             this.mToolTip.IsBalloon = true;
+            this.mToolTip.ReshowDelay = 600;
             this.mToolTip.ToolTipTitle = "Audio Block";
             // 
             // AudioBlock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.MistyRose;
             this.Controls.Add(this.mTimeLabel);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);

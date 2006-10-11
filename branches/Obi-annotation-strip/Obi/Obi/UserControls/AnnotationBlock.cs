@@ -18,18 +18,10 @@ namespace Obi.UserControls
             set { mAudioBlock = value; }
         }
 
-       
-
         public string Label
         {
             get { return mLabel.Text; }
             set { mLabel.Text = value; }
-        }
-
-        //md temp
-        public void SetLabel(string label)
-        {
-            mLabel.Text = label;
         }
 
         public int _Width
@@ -73,7 +65,7 @@ namespace Obi.UserControls
                     UpdateText();
                     break;
                 case Keys.Escape:
-                    mRenameBox.Visible = false;
+                    mRenameBox.Visible = false; 
                     break;
                 default:
                     break;
@@ -82,11 +74,12 @@ namespace Obi.UserControls
 
         private void AnnotationBlock_Click(object sender, EventArgs e)
         {
-
+            mAudioBlock.Manager.SelectedPhraseNode = mAudioBlock.Node;
         }
 
         public void StartRenaming()
         {
+            mLabel.Visible = false;
             mRenameBox.Size = mLabel.Size;
             mRenameBox.BackColor = BackColor;
             mRenameBox.Text = "";
@@ -104,22 +97,25 @@ namespace Obi.UserControls
         /// </summary>
         public void UpdateText()
         {
-            mRenameBox.Visible = false;
             if (mRenameBox.Text != "" && mRenameBox.Text != mLabel.Text)
             {
                 mManager.EditedAudioBlockLabel(this.mAudioBlock, mRenameBox.Text);
             }
-            else
+            //md20061011 added condition
+            else if (mRenameBox.Text == "")
             {
                 MessageBox.Show(Localizer.Message("empty_label_warning_text"),
                     Localizer.Message("empty_label_warning_caption"),
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+
+            mRenameBox.Visible = false;
+            mLabel.Visible = true;
         }
 
         private void mRenameBox_Leave(object sender, EventArgs e)
         {
-            mRenameBox.Visible = false;
+            UpdateText();
         }
 
         //md 20061009
@@ -129,6 +125,17 @@ namespace Obi.UserControls
             this.mToolTip.SetToolTip(this.mRenameBox, Localizer.Message("annotation_tooltip"));
             this.mToolTip.SetToolTip(this.mLabel, Localizer.Message("annotation_tooltip"));
 
+        }
+
+        private void AnnotationBlock_SizeChanged(object sender, EventArgs e)
+        {
+            //todo:
+            //enfore a minimum-width guideline
+            if (mAudioBlock != null && mAudioBlock.StructureBlock != null)
+            {
+               mAudioBlock.StructureBlock._Width = Width;
+               mAudioBlock._Width = Width;
+            }
         }
 
     }

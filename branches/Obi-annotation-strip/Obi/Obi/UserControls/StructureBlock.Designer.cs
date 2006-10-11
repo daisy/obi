@@ -61,8 +61,11 @@ namespace Obi.UserControls
             // 
             // mToolTip
             // 
-            this.mToolTip.AutomaticDelay = 1000;
+            this.mToolTip.AutomaticDelay = 3000;
+            this.mToolTip.AutoPopDelay = 4000;
+            this.mToolTip.InitialDelay = 3000;
             this.mToolTip.IsBalloon = true;
+            this.mToolTip.ReshowDelay = 600;
             this.mToolTip.ToolTipTitle = "Structure Block";
             // 
             // StructureBlock

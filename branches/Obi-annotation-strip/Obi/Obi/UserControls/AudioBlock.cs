@@ -76,6 +76,12 @@ namespace Obi.UserControls
             set { mTimeLabel.Text = value; }
         }
 
+        //md20061011
+        public int _Width
+        {
+            set { Size = new Size(value, Size.Height); }
+        }
+
         #endregion
         
         #region instantiators
@@ -99,12 +105,14 @@ namespace Obi.UserControls
         {
             BackColor = Color.MistyRose;
             mStructureBlock.MarkDeselected();
+            mAnnotationBlock.MarkDeselected();
         }
 
         internal override void MarkSelected()
         {
             BackColor = Color.LightPink;
             mStructureBlock.MarkSelected();
+            mAnnotationBlock.MarkSelected();
         }
 
         private void AudioBlock_Click(object sender, EventArgs e)
@@ -155,11 +163,15 @@ namespace Obi.UserControls
         /// </summary>
         private void AudioBlock_SizeChanged(object sender, EventArgs e)
         {
-            if (mStructureBlock != null)
+         //md testing
+         //resizing is now done by the annotation block
+         /*
+            if (mStructureBlock != null && mAnnotationBlock != null)
             {
                 mStructureBlock._Width = Width;
                 mAnnotationBlock._Width = Width;
             }
+          */
         }
 
         /// <summary>
