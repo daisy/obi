@@ -8,9 +8,9 @@ four months (early september 2006 to early january 2007) and leading to the
 pre-release of version 1.0 of Obi.
 
 
-Version 0.6 -- various fixes -- mid-October 2006 (Friday Oct 13th)
+Version 0.6 -- various fixes -- mid-October 2006 (Friday Oct 20th)
 
-[ ] Sync helpfile with version published on the website. Daniel made a
+[/] Sync helpfile with version published on the website. Daniel made a
 proposal. Julien and Markus will look at it.
 
 [ ] Fix channels creation when reading in XUK file. [Julien]
@@ -24,7 +24,7 @@ proposal. Julien and Markus will look at it.
 section/rename command? [Julien and Marisa]
 Comment (MD): redid the shallow-delete section command as a ListCommand
 
-[ ] Fix pages to be numbers; use property instead of child node. [Julien]
+[x] Fix pages to be numbers; use property instead of child node. [Julien]
 
 [ ] Subclass core nodes (ObiNode > { SectionNode, PhraseNode }) -- depends
 on CoreNodeFactory, due October 9th.
@@ -32,24 +32,27 @@ Julien creates a branch and the base classes; then Marisa and Julien update
 the code to reflect the change. Decide on the order of child nodes of
 sections.
 
-[ ] Simple read-only views for positioning, navigation... [Julien]
-
 [started] Replace phrase annotations with annotation strip. Make phrase size
 function of audio length. [Julien or Marisa]
-Comment (MD): There is a branch for annotation strips, called Obi-annotation-strip
+Comment (MD): There is a branch for annotation strips, called
+Obi-annotation-strip
 
-[ ] Fix keyboard navigation (tabbing between views, arrows inside views.)
-[Julien or Marisa]
+---
+
+[ ] Simple read-only views for positioning, navigation... [Julien] (may be
+moved to 0.8) only prototyping so far
 
 
 Version 0.7 -- audio work -- early November 2006 (Friday November 3rd)
 
 [ ] Transport bar: cursor; play one block/play continuously; move in time
-and in structure. Pause, stop, record. Rwd/Fwd get faster.
+and in structure. Pause, stop, record. Rwd/Fwd get faster. 
+[Julien to edit spec by Monday 16th October; first draft Friday 13th]
 
 [ ] Time display when playing and paused (in book/in block.)
+[Julien to edit spec by Monday 16th October; first draft Friday 13th]
 
-[ ] VU Meter.
+[ ] VU Meter. Make animation smoother?
 
 [ ] Phrase detection (and trim?)
 
@@ -58,10 +61,18 @@ and in structure. Pause, stop, record. Rwd/Fwd get faster.
 [ ] Live page marking: same as phrase except also creates a page item (one
 plus number of previous page.)
 
+---
+
 [ ] Audio scratchpad.
+
+[ ] Setting input and output volume. Easy for playing, hard for recording.
 
 
 Version 0.8 -- DAISY features -- early December 2006
+
+[ ] Fix keyboard navigation (tabbing between views, arrows inside views.)
+[Julien or Marisa] with feedback for accessibility. Fix control for blocks,
+make sure not to use too new controls (delay for screen readers.)
 
 [ ] Used/unused blocks and blocks missing asset. (Unplayable)
 

@@ -1,0 +1,3 @@
+Obi Transport bar specification
+Julien Quint (ed.), Marisa DeMeglio, Avneesh Singh
+$Id$
