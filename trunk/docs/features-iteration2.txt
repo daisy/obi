@@ -15,10 +15,10 @@ proposal. Julien and Markus will look at it.
 
 [ ] Fix channels creation when reading in XUK file. [Julien]
 
-[X] Strip information field; maybe change font sizes for strip names?
+[done] Strip information field; maybe change font sizes for strip names?
 [Marisa]
 
-[X] Remove move section up/down (use cut/paste instead.) [Marisa]
+[done] Remove move section up/down (use cut/paste instead.) [Marisa]
 
 [partial] Update commands (user visible flag; composite commands.) Fix the add
 section/rename command? [Julien and Marisa]
@@ -34,8 +34,7 @@ sections.
 
 [started] Replace phrase annotations with annotation strip. Make phrase size
 function of audio length. [Julien or Marisa]
-Comment (MD): There is a branch for annotation strips, called
-Obi-annotation-strip
+Comment (MD): There is a branch for annotation strips, called Obi-annotation-strip.  Phrase size will be either the minimum size or as long as the annotation text.
 
 ---
 
