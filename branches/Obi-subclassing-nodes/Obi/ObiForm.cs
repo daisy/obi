@@ -505,13 +505,16 @@ namespace Obi
                 this.Cursor = Cursors.WaitCursor;
                 mProject.Open(path);
                 AddRecentProject(path);
-                this.Cursor = Cursors.Default;
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, Localizer.Message("open_project_error_caption"),
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 mProject = null;
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
             }
         }
 

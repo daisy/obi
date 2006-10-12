@@ -37,20 +37,9 @@ namespace Obi
             mUsed = true;
         }
 
-        // for some reason this doesn't get called?!
-        public new bool XUKOut(System.Xml.XmlWriter destination)
+        protected override string getNamespaceURI()
         {
-            if (destination == null)
-            {
-                throw new MethodParameterIsNullException("Xml Writer is null");
-            }
-            destination.WriteStartElement(this.GetType().Name, urakawa.ToolkitSettings.XUK_NS);
-            for (int i = 0; i < this.getChildCount(); i++)
-            {
-                if (!getChild(i).XUKOut(destination)) return false;
-            }
-            destination.WriteEndElement();
-            return true;
+            return ObiPropertyFactory.ObiNS;
         }
     }
 }

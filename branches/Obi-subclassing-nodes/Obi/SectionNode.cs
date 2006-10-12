@@ -31,5 +31,10 @@ namespace Obi
             mMedia = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
             Label = Localizer.Message("default_section_label");
         }
+
+        protected override string getLocalName()
+        {
+            return "section";
+        }
     }
 }

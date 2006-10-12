@@ -10,5 +10,10 @@ namespace Obi
             : base(project, id)
         {
         }
+
+        protected override string getLocalName()
+        {
+            return "phrase";
+        }
     }
 }
