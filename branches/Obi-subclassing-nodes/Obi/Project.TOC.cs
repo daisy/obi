@@ -26,14 +26,11 @@ namespace Obi
         //md: shallow-swapped event for move up/down linear
         public event Events.Node.ShallowSwappedSectionNodesHandler ShallowSwappedSectionNodes;
 
-        private CoreNode mClipboard;        //clipboard for cut-copy-paste
+        private CoreNode mTOCClipboard;        //clipboard for cut-copy-paste
 
-        public CoreNode Clipboard
+        public CoreNode TOCClipboard
         {
-            get
-            {
-                return mClipboard;
-            }
+            get { return mTOCClipboard; }
         }
       
         /// <summary>
@@ -805,7 +802,7 @@ namespace Obi
                  (this, node, parent, parent.indexOf(node), visitor.Position);
             }
 
-            mClipboard = node;
+            mTOCClipboard = node;
             node.detach();
 
            CutSectionNode(this, new Events.Node.NodeEventArgs(origin, node));
@@ -819,7 +816,7 @@ namespace Obi
         public void UndoCutSectionNode(CoreNode node, CoreNode parent, int index, int position)
         {
             UndeleteSectionNode(node, parent, index, position);
-            mClipboard = null;
+            mTOCClipboard = null;
            
             //mdXXX
         /*    NodeType nodeType;
@@ -872,9 +869,9 @@ namespace Obi
             }
 
             //the actual copy operation
-            mClipboard = node.copy(true);
+            mTOCClipboard = node.copy(true);
 
-            CopiedSectionNode(this, new Events.Node.NodeEventArgs(origin, mClipboard));
+            CopiedSectionNode(this, new Events.Node.NodeEventArgs(origin, mTOCClipboard));
 
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -893,7 +890,7 @@ namespace Obi
             }
             //end mdXXX
 
-            mClipboard = null;
+            mTOCClipboard = null;
 
            UndidCopySectionNode(this, new Events.Node.NodeEventArgs(this, node));
 
@@ -934,7 +931,7 @@ namespace Obi
 
             Commands.TOC.PasteSectionNode command = null;
 
-            CoreNode pastedSection = mClipboard.copy(true);
+            CoreNode pastedSection = mTOCClipboard.copy(true);
 
             //don't clear the clipboard, we can use it again
 

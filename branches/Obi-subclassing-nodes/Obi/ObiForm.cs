@@ -860,7 +860,7 @@ namespace Obi
                 // be careful that project is not null when opening the menu...
                 mCutSectionToolStripMenuItem.Enabled = isNodeSelected;
                 mCopySectionToolStripMenuItem.Enabled = isNodeSelected;
-                mPasteSectionToolStripMenuItem.Enabled = mProject != null && mProject.Clipboard != null;
+                mPasteSectionToolStripMenuItem.Enabled = mProject != null && mProject.TOCClipboard != null;
 
                 mDeleteSectionToolStripMenuItem.Enabled = isNodeSelected;
                 mRenameSectionToolStripMenuItem.Enabled = isNodeSelected;

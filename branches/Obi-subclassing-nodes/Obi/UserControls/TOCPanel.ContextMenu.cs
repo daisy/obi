@@ -176,7 +176,7 @@ namespace Obi.UserControls
             // for its clipboard. (JQ)
             // also, it doesn't matter if a node is selected since we can paste under the root node.
             mPasteSectionToolStripMenuItem.Enabled =
-                (mProjectPanel.Project != null) && (mProjectPanel.Project.Clipboard != null);
+                (mProjectPanel.Project != null) && (mProjectPanel.Project.TOCClipboard != null);
         }
     }
 }

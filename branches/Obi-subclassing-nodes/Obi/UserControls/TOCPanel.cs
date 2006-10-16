@@ -5,8 +5,9 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using urakawa.media;
 using System.Collections;
+
+using urakawa.media;
 
 namespace Obi.UserControls
 {
@@ -14,9 +15,8 @@ namespace Obi.UserControls
     /// The TOCPanel is a view of the tree that displays the table of contents of the book as a tree widget.
     /// The user can easily see the structure of the book and edit the table of contents (add, remove, move,
     /// change the label, etc. of headings.)
-    /// This control implements the CoreTreeView interface so that it can be synchronized with the core tree.
     /// </summary>
-    public partial class TOCPanel : UserControl, urakawa.core.ICoreNodeVisitor
+    public partial class TOCPanel : UserControl
     {
         private ProjectPanel mProjectPanel; //the parent of this control
 
@@ -74,8 +74,8 @@ namespace Obi.UserControls
 
             mTocTree.Nodes.Clear();
             mTocTree.SelectedNode = null;
-            root.acceptDepthFirst(this);
-
+            root.visitDepthFirst(MakeTreeNodeFromSectionNode, delegate(urakawa.core.ICoreNode n) {});
+            
             //select the first node
             if (mTocTree.Nodes.Count > 0)
             {
@@ -85,39 +85,27 @@ namespace Obi.UserControls
 
             this.Cursor = Cursors.Default;
         }
-        
-        #region Synchronization visitor
 
         /// <summary>
-        /// Do nothing.
+        /// Create a new tree node for every section node. Children of the root are created as "root nodes",
+        /// other section nodes are attached to their parent widget node.
         /// </summary>
-        /// <param name="node">The node to do nothing with.</param>
-        public void postVisit(urakawa.core.ICoreNode node)
+        public bool MakeTreeNodeFromSectionNode(urakawa.core.ICoreNode node)
         {
-        }
-
-        /// <summary>
-        /// Create a new tree node for every core node. Skip the root node, and attach the children of the root directly to the
-        /// tree; the other children are attached to their parent node.
-        /// Skip the phrase nodes as well (they do not have a text channel.)
-        /// </summary>
-        /// <param name="node">The node to add to the tree.</param>
-        /// <returns>True </returns>
-        public bool preVisit(urakawa.core.ICoreNode node)
-        {
-            if (Project.GetNodeType((urakawa.core.CoreNode)node) == NodeType.Section)
+            if (node.GetType() == typeof(SectionNode))
             {
-                string label = Project.GetTextMedia((urakawa.core.CoreNode)node).getText();
+                SectionNode _node = (SectionNode)node;
                 TreeNode newTreeNode;
                 if (node.getParent().getParent() != null)
                 {
-                    TreeNode parentTreeNode = FindTreeNodeFromCoreNode((urakawa.core.CoreNode)node.getParent());
-                    newTreeNode = parentTreeNode.Nodes.Add(node.GetHashCode().ToString(), label);
+                    // not a child of the root, i.e. has a TreeNode parent
+                    TreeNode parentTreeNode = FindTreeNodeFromSectionNode((SectionNode)node.getParent());
+                    newTreeNode = parentTreeNode.Nodes.Add(_node.Id.ToString(), _node.Label);
                 }
                 else
                 {
-                    // top-level nodes
-                    newTreeNode = mTocTree.Nodes.Add(node.GetHashCode().ToString(), label);
+                    // root node (in the sense of widget tree nodes)
+                    newTreeNode = mTocTree.Nodes.Add(_node.Id.ToString(), _node.Label);
                 }
                 newTreeNode.Tag = node;
                 newTreeNode.ExpandAll();
@@ -126,13 +114,36 @@ namespace Obi.UserControls
             return true;
         }
 
-        #endregion
-
-
-
-        //md: do we still want this function?
-        public void LimitViewToDepthOfCurrentSection()
+        /// <summary>
+        /// Find a tree node from a section node.
+        /// </summary>
+        private TreeNode FindTreeNodeFromSectionNode(SectionNode node)
         {
+            TreeNode foundNode = FindTreeNodeWithoutLabel(node);
+            if (foundNode.Text != node.Label)
+            {
+                throw new Exception(String.Format(
+                    "Found tree node matching section node #{0} but labels mismatch (wanted \"{1}\" but got \"{2}\" instead.)",
+                    node.Id, node.Label, foundNode.Text));
+            }
+            return foundNode;
+        }
+
+        /// <summary>
+        /// Find a tree node for a section node, regardless of its label.
+        /// </summary>
+        private TreeNode FindTreeNodeWithoutLabel(SectionNode node)
+        {
+            TreeNode[] treeNodes = mTocTree.Nodes.Find(node.Id.ToString(), true);
+            if (treeNodes.Length == 1)
+            {
+                return treeNodes[0];
+            }
+            else
+            {
+                throw new Exception(String.Format("Could not find tree node matching sectoin node #{0} with label \"{1}\".",
+                    node.Id.ToString(), node.Label));
+            }
         }
 
         /// <summary>
@@ -389,7 +400,7 @@ namespace Obi.UserControls
             // so be careful of checking the the project is not null in order to check
             // for its clipboard. (JQ)
             mPasteSectionToolStripMenuItem.Enabled = e.Selected &&
-                (mProjectPanel.Project != null) && (mProjectPanel.Project.Clipboard != null);
+                (mProjectPanel.Project != null) && (mProjectPanel.Project.TOCClipboard != null);
         }
     }
 }

@@ -140,6 +140,8 @@ namespace Obi
         /// <param name="createTitle">Create a title section.</param>
         public void Create(string xukPath, string title, string id, UserProfile userProfile, bool createTitle)
         {
+            Presentation presentation = getPresentation();
+
             // The asset manager path is made relative to the XUK file's path; but we still use the absolute value that we
             // get from GetAssetDirectory to create/initialize the path of the asset manager.
             mXUKPath = xukPath;
@@ -148,24 +150,26 @@ namespace Obi
             mAssPath = (new Uri(xukPath)).MakeRelativeUri(new Uri(mAssPath)).ToString();
 
             // Create metadata and channels
+            ChannelFactory factory = presentation.getChannelFactory();
+            ChannelsManager manager = presentation.getChannelsManager();
             mMetadata = CreateMetadata(title, id, userProfile);
-            mAudioChannel = getPresentation().getChannelFactory().createChannel(AudioChannel);
-            getPresentation().getChannelsManager().addChannel(mAudioChannel);
-            mTextChannel = getPresentation().getChannelFactory().createChannel(TextChannel);
-            getPresentation().getChannelsManager().addChannel(mTextChannel);
-            mAnnotationChannel = getPresentation().getChannelFactory().createChannel(AnnotationChannel);
-            getPresentation().getChannelsManager().addChannel(mAnnotationChannel);
+            mAudioChannel = factory.createChannel(AudioChannel);
+            manager.addChannel(mAudioChannel);
+            mTextChannel = factory.createChannel(TextChannel);
+            manager.addChannel(mTextChannel);
+            mAnnotationChannel = factory.createChannel(AnnotationChannel);
+            manager.addChannel(mAnnotationChannel);
 
             // Clear the clipboard
-            mClipboard = null;
+            mTOCClipboard = null;
 
             // Create a title section if necessary
             if (createTitle)
             {
                 SectionNode node = (SectionNode)
-                    getPresentation().getCoreNodeFactory().createNode(SectionNode.Name, ObiPropertyFactory.ObiNS);
+                    presentation.getCoreNodeFactory().createNode(SectionNode.Name, ObiPropertyFactory.ObiNS);
                 node.Label = title;
-                getPresentation().getRootNode().appendChild(node);
+                presentation.getRootNode().appendChild(node);
             }
 
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
