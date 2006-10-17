@@ -32,9 +32,9 @@ Julien creates a branch and the base classes; then Marisa and Julien update
 the code to reflect the change. Decide on the order of child nodes of
 sections.
 
-[started] Replace phrase annotations with annotation strip. Make phrase size
+[done] Replace phrase annotations with annotation strip. Make phrase size
 function of audio length. [Julien or Marisa]
-Comment (MD): There is a branch for annotation strips, called Obi-annotation-strip.  Phrase size will be either the minimum size or as long as the annotation text.
+Comment (MD): There is a branch for annotation strips, called Obi-annotation-strip.  Phrase size will be either the minimum size or as long as the annotation text.  The minimum size is set to 50 pixels.
 
 ---
 
