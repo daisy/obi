@@ -14,6 +14,8 @@ namespace Obi.UserControls
     public partial class AudioBlock : AbstractBlock 
     {
         private StructureBlock mStructureBlock;  // corresponding structure block
+        //md 20061009 - added annotation blocks to replace annotation text field on audio blocks
+        private AnnotationBlock mAnnotationBlock;
 
         #region properties
 
@@ -39,6 +41,7 @@ namespace Obi.UserControls
             {
                 mManager = value;
                 mStructureBlock.Manager = value;
+                mAnnotationBlock.Manager = value;
             }
         }
 
@@ -55,15 +58,28 @@ namespace Obi.UserControls
             }
         }
 
-        public string Label
+        public AnnotationBlock AnnotationBlock
         {
-            get { return mAnnotationLabel.Text; }
-            set { mAnnotationLabel.Text = value; }
+            get
+            {
+                return mAnnotationBlock;
+            }
+            set
+            {
+                mAnnotationBlock = value;
+                mAnnotationBlock.AudioBlock = this;
+            }
         }
 
         public string Time
         {
             set { mTimeLabel.Text = value; }
+        }
+
+        //md20061011
+        public int _Width
+        {
+            set { Size = new Size(value, Size.Height); }
         }
 
         #endregion
@@ -77,6 +93,8 @@ namespace Obi.UserControls
             mStructureBlock = new StructureBlock();
             mStructureBlock.AudioBlock = this;
             InitializeToolTips();
+            mAnnotationBlock = new AnnotationBlock();
+            mAnnotationBlock.AudioBlock = this;
         }
 
         #endregion
@@ -87,12 +105,14 @@ namespace Obi.UserControls
         {
             BackColor = Color.MistyRose;
             mStructureBlock.MarkDeselected();
+            mAnnotationBlock.MarkDeselected();
         }
 
         internal override void MarkSelected()
         {
             BackColor = Color.LightPink;
             mStructureBlock.MarkSelected();
+            mAnnotationBlock.MarkSelected();
         }
 
         private void AudioBlock_Click(object sender, EventArgs e)
@@ -133,60 +153,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void StartRenaming()
         {
-            mRenameBox.Size = mAnnotationLabel.Size;
-            mRenameBox.BackColor = BackColor;
-            mRenameBox.Text = "";
-            mRenameBox.SelectedText = mAnnotationLabel.Text;
-            mRenameBox.Visible = true;
-            mRenameBox.Focus();
-        }
-
-        /// <summary>
-        /// Leaving the text box updates the text property.
-        /// </summary>
-        private void mRenameBox_Leave(object sender, EventArgs e)
-        {
-            mRenameBox.Visible = false;
-        }
-
-        /// <summary>
-        /// Typing return updates the text property; escape cancels the edit.
-        /// </summary>
-        private void mRenameBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.Return:
-                    UpdateText();
-                    break;
-                case Keys.Escape:
-                    mRenameBox.Visible = false;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        /// <summary>
-        /// Upate the text label from the text box input.
-        /// If the input is empty then do not change the text and warn the user.
-        /// If the input text is the same as the original text, don't do anything.
-        /// The manager is then asked to send a rename event.
-        /// The rename event may not happen if there is already an audio block with the same name in the project.
-        /// </summary>
-        private void UpdateText()
-        {
-            mRenameBox.Visible = false;
-            if (mRenameBox.Text != "" && mRenameBox.Text != mAnnotationLabel.Text)
-            {
-                mManager.EditedAudioBlockLabel(this, mRenameBox.Text);
-            }
-            else
-            {
-                MessageBox.Show(Localizer.Message("empty_label_warning_text"),
-                    Localizer.Message("empty_label_warning_caption"),
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
+            mAnnotationBlock.StartRenaming();
         }
 
         #endregion
@@ -196,8 +163,15 @@ namespace Obi.UserControls
         /// </summary>
         private void AudioBlock_SizeChanged(object sender, EventArgs e)
         {
-            if (mStructureBlock != null)
+         //md testing
+         //resizing is now done by the annotation block
+         /*
+            if (mStructureBlock != null && mAnnotationBlock != null)
+            {
                 mStructureBlock._Width = Width;
+                mAnnotationBlock._Width = Width;
+            }
+          */
         }
 
         /// <summary>
@@ -212,10 +186,7 @@ namespace Obi.UserControls
         private void InitializeToolTips()
         {
             this.mToolTip.SetToolTip(this, Localizer.Message("audio_block_tooltip"));
-            this.mToolTip.SetToolTip(this.mAnnotationLabel, Localizer.Message("section_strip_annotation_tooltip"));
-            this.mToolTip.SetToolTip(this.mRenameBox, Localizer.Message("section_strip_annotation_tooltip"));
             this.mToolTip.SetToolTip(this.mTimeLabel, Localizer.Message("audio_block_duration_tooltip"));
-
         }
     }
 }

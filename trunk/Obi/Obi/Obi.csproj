@@ -58,9 +58,9 @@
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="urakawa, Version=1.0.2393.35010, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="urakawa, Version=0.5.2481.25819, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\implementation\UrakawaToolkit\bin\Debug\urakawa.dll</HintPath>
+      <HintPath>..\..\..\..\implementation\UrakawaToolkit\bin\Debug\urakawa.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -284,6 +284,12 @@
     <Compile Include="UserControls\AbstractBlock.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UserControls\AnnotationBlock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\AnnotationBlock.Designer.cs">
+      <DependentUpon>AnnotationBlock.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\AudioBlock.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -363,6 +369,10 @@
     <Content Include="help_en.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="UserControls\AnnotationBlock.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AnnotationBlock.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\StructureBlock.resx">
       <SubType>Designer</SubType>
       <DependentUpon>StructureBlock.cs</DependentUpon>

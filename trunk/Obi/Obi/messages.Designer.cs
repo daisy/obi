@@ -79,6 +79,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This annotation is useful during production, but it does not appear in the exported presentation..
+        /// </summary>
+        internal static string annotation_tooltip {
+            get {
+                return ResourceManager.GetString("annotation_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to asset_{0}.
         /// </summary>
         internal static string asset_name {
@@ -758,15 +767,6 @@ namespace Obi {
         internal static string saved_project {
             get {
                 return ResourceManager.GetString("saved_project", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This annotation is useful during production, but it does not appear in the exported presentation..
-        /// </summary>
-        internal static string section_strip_annotation_tooltip {
-            get {
-                return ResourceManager.GetString("section_strip_annotation_tooltip", resourceCulture);
             }
         }
         

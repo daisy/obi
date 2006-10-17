@@ -237,7 +237,6 @@ namespace Obi.UserControls
                     parentSection = ((CoreNode)node);
                     //md 20061005
                     //make the font bigger
-                    //for some reason, this seems to have no effect
                     int nodeLevel = this.mProjectPanel.Project.getNodeLevel((CoreNode)node);
                     float currentSize = strip.GetTitleFontSize();
                     if (nodeLevel == 1) strip.SetTitleFontSize(currentSize + 3);
@@ -251,7 +250,7 @@ namespace Obi.UserControls
                     block.Node = (CoreNode)node;
                     mPhraseNodeMap[(CoreNode)node] = block;
                     TextMedia annotation = (TextMedia)Project.GetMediaForChannel((CoreNode)node, Project.AnnotationChannel);
-                    block.Label = annotation.getText();
+                    block.AnnotationBlock.Label = annotation.getText();
                     block.Time = Project.GetAudioMediaAsset((CoreNode)node).LengthInSeconds;
                     strip.AppendAudioBlock(block);
                     PageProperty pageProp = ((CoreNode)node).getProperty(typeof(PageProperty)) as PageProperty;

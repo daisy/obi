@@ -26,7 +26,7 @@ namespace Obi.UserControls
             }
             set
             {
-                mTextBox.Text = value;
+                mRenameBox.Text = value;
                 mLabel.Text = value;
             }
         }
@@ -77,14 +77,13 @@ namespace Obi.UserControls
         /// </summary>
         public void StartRenaming()
         {
-            //md xxx
             mLabel.Visible = false;
-            mTextBox.Visible = true;
-            mTextBox.ReadOnly = false;
-            mTextBox.BackColor = BackColor;
-            mTextBox.SelectAll();
+            mRenameBox.Visible = true;
+            mRenameBox.ReadOnly = false;
+            mRenameBox.BackColor = BackColor;
+            mRenameBox.SelectAll();
             mAudioLayoutPanel.Focus();
-            mTextBox.Focus();
+            mRenameBox.Focus();
         }
 
         /// <summary>
@@ -92,12 +91,11 @@ namespace Obi.UserControls
         /// </summary>
         private void mTextBox_Leave(object sender, EventArgs e)
         {
-            mTextBox.ReadOnly = true;
+            mRenameBox.ReadOnly = true;
 
-            //md xxx
-            mLabel.Text = mTextBox.Text;
+            mLabel.Text = mRenameBox.Text;
             mLabel.Visible = true;
-            mTextBox.Visible = false;
+            mRenameBox.Visible = false;
         }
 
         /// <summary>
@@ -108,7 +106,7 @@ namespace Obi.UserControls
         ///(windows does the redraw before the event).</remarks>
         private void mTextBox_MouseDown(object sender, MouseEventArgs e)
         {
-            this.mTextBox.ContextMenuStrip = this.Manager.PanelContextMenuStrip;
+            this.mRenameBox.ContextMenuStrip = this.Manager.PanelContextMenuStrip;
         }
 
         /// <summary>
@@ -119,25 +117,22 @@ namespace Obi.UserControls
             switch (e.KeyCode)
             {
                 case Keys.Return:
-                    mTextBox.ReadOnly = true;
-                    //md xxx
-                    mLabel.Text = mTextBox.Text;
+                    mRenameBox.ReadOnly = true;
+                    mLabel.Text = mRenameBox.Text;
                     mLabel.Visible = true;
-                    mTextBox.Visible = false;
-
+                    mRenameBox.Visible = false;
                     UpdateText();
                     break;
                 case Keys.Escape:
-                    mTextBox.Text = Project.GetTextMedia(this.Node).getText();
-                    mTextBox.ReadOnly = true;
-                    //md xxx
-                    mLabel.Text = mTextBox.Text;
+                    mRenameBox.Text = Project.GetTextMedia(this.Node).getText();
+                    mRenameBox.ReadOnly = true;
+                    mLabel.Text = mRenameBox.Text;
                     mLabel.Visible = true;
-                    mTextBox.Visible = false;
+                    mRenameBox.Visible = false;
 
                     break;
                 case Keys.F2:
-                    if (mTextBox.ReadOnly)
+                    if (mRenameBox.ReadOnly)
                     {
                         this.StartRenaming();
                     }
@@ -154,7 +149,7 @@ namespace Obi.UserControls
         /// </summary>
         private void UpdateText()
         {
-            if (mTextBox.Text != "")
+            if (mRenameBox.Text != "")
             {
                 mManager.RenamedSectionStrip(this);
             }
@@ -202,13 +197,13 @@ namespace Obi.UserControls
         public void MarkSelected()
         {
             BackColor = Color.Orange;
-            mTextBox.BackColor = BackColor;
+            mRenameBox.BackColor = BackColor;
         }
 
         public void MarkDeselected()
         {
             BackColor = Color.Gold;
-            mTextBox.BackColor = BackColor;
+            mRenameBox.BackColor = BackColor;
         }
 
         /// <summary>
@@ -279,6 +274,7 @@ namespace Obi.UserControls
         {
             mAudioLayoutPanel.Controls.Add(block);
             mStructureLayoutPanel.Controls.Add(block.StructureBlock);
+            mAnnotationLayoutPanel.Controls.Add(block.AnnotationBlock);
         }
 
         public void InsertAudioBlock(AudioBlock block, int index)
@@ -286,6 +282,7 @@ namespace Obi.UserControls
             AppendAudioBlock(block);
             mAudioLayoutPanel.Controls.SetChildIndex(block, index);
             mStructureLayoutPanel.Controls.SetChildIndex(block.StructureBlock, index);
+            mAnnotationLayoutPanel.Controls.SetChildIndex(block.AnnotationBlock, index);
         }
 
         public void RemoveAudioBlock(AudioBlock block)
@@ -293,12 +290,13 @@ namespace Obi.UserControls
             int index = mAudioLayoutPanel.Controls.IndexOf(block);
             mAudioLayoutPanel.Controls.RemoveAt(index);
             mStructureLayoutPanel.Controls.RemoveAt(index);
+            mAnnotationLayoutPanel.Controls.RemoveAt(index);
             ReflowTabOrder(index);
         }
 
         public void RenameAudioBlock(AudioBlock block, string name)
         {
-            block.Label = name;
+            block.AnnotationBlock.Label = name;
         }
 
         /// <summary>
@@ -319,6 +317,16 @@ namespace Obi.UserControls
             mManager.SelectedPhraseNode = null;
         }
 
+        /// <summary>
+        /// Clicking in the annotation strip selects the strip but unselects the phrase.
+        /// </summary>
+        private void mAnnotationLayoutPanel_Click(object sender, EventArgs e)
+        {
+            mManager.SelectedSectionNode = mNode;
+            mManager.SelectedPhraseNode = null;
+        }
+
+
         #endregion
 
         /// <summary>
@@ -328,7 +336,7 @@ namespace Obi.UserControls
         internal void UpdateAssetAudioBlock(AudioBlock audioBlock)
         {
             Assets.AudioMediaAsset asset = Project.GetAudioMediaAsset(audioBlock.Node);
-            audioBlock.Label = asset.Name;
+            audioBlock.AnnotationBlock.Label = asset.Name;
             audioBlock.Time = asset.LengthInSeconds;
         }
 
@@ -337,25 +345,24 @@ namespace Obi.UserControls
         /// </summary>
         public void SetTitleFontSize(float sz)
         {
-            Font newfont = new Font(mTextBox.Font.FontFamily, sz);
-            mTextBox.Font = newfont;
+            Font newfont = new Font(mRenameBox.Font.FontFamily, sz);
+            mRenameBox.Font = newfont;
             mLabel.Font = newfont;
          
         }
 
         public float GetTitleFontSize()
         {
-            return mTextBox.Font.Size;
+            return mRenameBox.Font.Size;
         }
 
         //md 20061009
         private void InitializeToolTips()
         {
             this.mToolTip.SetToolTip(this, Localizer.Message("section_strip_tooltip"));
-            this.mToolTip.SetToolTip(this.mTextBox, Localizer.Message("section_strip_name_tooltip"));
+            this.mToolTip.SetToolTip(this.mRenameBox, Localizer.Message("section_strip_name_tooltip"));
             this.mToolTip.SetToolTip(this.mLabel, Localizer.Message("section_strip_name_tooltip"));
            
         }
-
     }
 }
