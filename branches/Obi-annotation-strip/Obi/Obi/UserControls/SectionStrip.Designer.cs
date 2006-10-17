@@ -110,6 +110,7 @@ namespace Obi.UserControls
             this.mAnnotationLayoutPanel.Name = "mAnnotationLayoutPanel";
             this.mAnnotationLayoutPanel.Size = new System.Drawing.Size(0, 0);
             this.mAnnotationLayoutPanel.TabIndex = 4;
+            this.mAnnotationLayoutPanel.WrapContents = false;
             this.mAnnotationLayoutPanel.Click += new System.EventHandler(this.mAnnotationLayoutPanel_Click);
             // 
             // SectionStrip

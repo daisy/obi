@@ -63,7 +63,7 @@ namespace Obi.UserControls
             this.Controls.Add(this.mTimeLabel);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
             this.Name = "AudioBlock";
-            this.Size = new System.Drawing.Size(206, 115);
+            this.Size = new System.Drawing.Size(38, 19);
             this.Enter += new System.EventHandler(this.AudioBlock_enter);
             this.DoubleClick += new System.EventHandler(this.AudioBlock_DoubleClick);
             this.Click += new System.EventHandler(this.AudioBlock_Click);

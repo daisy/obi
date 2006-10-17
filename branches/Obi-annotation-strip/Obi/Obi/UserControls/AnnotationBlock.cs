@@ -11,6 +11,7 @@ namespace Obi.UserControls
     public partial class AnnotationBlock : AbstractBlock
     {
         private AudioBlock mAudioBlock;  // the corresponding audio block
+        private static int mMinWidth = 50;
 
         public AudioBlock AudioBlock
         {
@@ -21,7 +22,7 @@ namespace Obi.UserControls
         public string Label
         {
             get { return mLabel.Text; }
-            set { mLabel.Text = value; }
+            set { mLabel.Text = value;}
         }
 
         public int _Width
@@ -128,11 +129,11 @@ namespace Obi.UserControls
         }
 
         private void AnnotationBlock_SizeChanged(object sender, EventArgs e)
-        {
-            //todo:
-            //enfore a minimum-width guideline
+        {   
             if (mAudioBlock != null && mAudioBlock.StructureBlock != null)
             {
+                if (Width < mMinWidth)
+                    this.Width = mMinWidth;
                mAudioBlock.StructureBlock._Width = Width;
                mAudioBlock._Width = Width;
             }

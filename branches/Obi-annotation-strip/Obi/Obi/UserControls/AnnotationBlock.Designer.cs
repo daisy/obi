@@ -74,12 +74,14 @@ namespace Obi.UserControls
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.LightYellow;
             this.Controls.Add(this.mLabel);
             this.Controls.Add(this.mRenameBox);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
+            this.MinimumSize = new System.Drawing.Size(50, 0);
             this.Name = "AnnotationBlock";
-            this.Size = new System.Drawing.Size(126, 16);
+            this.Size = new System.Drawing.Size(69, 16);
             this.Click += new System.EventHandler(this.AnnotationBlock_Click);
             this.SizeChanged += new System.EventHandler(this.AnnotationBlock_SizeChanged);
             this.ResumeLayout(false);
