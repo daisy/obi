@@ -79,6 +79,5 @@ namespace Obi.UserControls
 
         private System.Windows.Forms.Label mTimeLabel;
         private System.Windows.Forms.ToolTip mToolTip;
-        private System.Windows.Forms.ToolTip mToolTip;
     }
 }
