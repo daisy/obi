@@ -28,7 +28,7 @@ namespace Obi.UserControls
             }
             else
             {
-                block.Label = newName;
+                block.AnnotationBlock.Label = newName;
             }
         }
 
@@ -45,7 +45,7 @@ namespace Obi.UserControls
                 block.Node = e.Node;
                 mPhraseNodeMap[e.Node] = block;
                 TextMedia annotation = (TextMedia)Project.GetMediaForChannel(e.Node, Project.AnnotationChannel);
-                block.Label = annotation.getText();
+                block.AnnotationBlock.Label = annotation.getText();
                 block.Time = Project.GetAudioMediaAsset(e.Node).LengthInSeconds;
                 strip.InsertAudioBlock(block, e.Index);
                 this.ReflowTabOrder(block);  // MG

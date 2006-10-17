@@ -415,7 +415,7 @@ Do you want to replace the project contained in this file?</value>
   <data name="audio_block_tooltip" xml:space="preserve">
     <value>A segment of audio.</value>
   </data>
-  <data name="section_strip_annotation_tooltip" xml:space="preserve">
+  <data name="annotation_tooltip" xml:space="preserve">
     <value>This annotation is useful during production, but it does not appear in the exported presentation.</value>
   </data>
   <data name="section_strip_name_tooltip" xml:space="preserve">

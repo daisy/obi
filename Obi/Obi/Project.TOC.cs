@@ -72,7 +72,6 @@ namespace Obi
         /// </summary>
         public void CreateSiblingSectionNode(object origin, CoreNode contextNode)
         {
-            //mdXXX
             if (contextNode != null)
             {
                 NodeType nodeType;
@@ -82,7 +81,6 @@ namespace Obi
                     throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
                 }
             }
-            //end mdXXX
 
             CoreNode parent = (CoreNode)(contextNode == null ? getPresentation().getRootNode() : contextNode.getParent());
             CoreNode sibling = CreateSectionNode();
@@ -119,14 +117,12 @@ namespace Obi
         /// </summary>
         public void CreateChildSectionNode(object origin, CoreNode parent)
         {
-            //mdXXX
             NodeType nodeType;
             nodeType = Project.GetNodeType(parent);
             if (nodeType != NodeType.Section)
             {
                 throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
             }
-            //end mdXXX
 
             CoreNode child = CreateSectionNode();
             if (parent == null) parent = getPresentation().getRootNode();
@@ -159,14 +155,12 @@ namespace Obi
         /// <param name="originalLabel"></param>
         public void AddExistingSectionNode(CoreNode node, CoreNode parent, int index, int position, string originalLabel)
         {
-            //mdXXX
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
             if (nodeType != NodeType.Section)
             {
                 throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
             }
-            //end mdXXX
 
             if (node.getParent() == null) parent.insert(node, index);
             if (originalLabel != null) Project.GetTextMedia(node).setText(originalLabel);
@@ -187,15 +181,12 @@ namespace Obi
         /// <param name="position"></param>
         public void UndeleteSectionNode(CoreNode node, CoreNode parent, int index, int position)
         {
-           
-            //mdXXX
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
             if (nodeType != NodeType.Section)
             {
                 throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
             }
-            //end mdXXX
 
             Visitors.UndeleteSubtree visitor = new Visitors.UndeleteSubtree(this, parent, index, position);
             node.acceptDepthFirst(visitor);
@@ -208,14 +199,12 @@ namespace Obi
         //the command value is returned so it can be used in UndoShallowDelete's undo list
         public Commands.Command RemoveNode(object origin, CoreNode node)
         {
-            //mdXXX
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
             if (nodeType != NodeType.Section)
             {
                 throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
             }
-            //end mdXXX
 
             Commands.TOC.DeleteSectionNode command = null;
             if (node != null)
@@ -251,14 +240,12 @@ namespace Obi
         /// </summary>
         public void MoveSectionNodeUp(object origin, CoreNode node)
         {
-            //mdXXX
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
             if (nodeType != NodeType.Section)
             {
                 throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
             }
-            //end mdXXX
 
             Commands.TOC.MoveSectionNodeUp command = null;
 
@@ -353,15 +340,12 @@ namespace Obi
         /// <param name="position"></param>
         public void UndoMoveSectionNode(CoreNode node, CoreNode parent, int index, int position)
         {
-            //mdXXX
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
             if (nodeType != NodeType.Section)
             {
                 throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
             }
-            //end mdXXX
-
 
             if (node.getParent() != null) node.detach();
             parent.insert(node, index);
@@ -385,14 +369,12 @@ namespace Obi
 
         public void MoveSectionNodeDown(object origin, CoreNode node)
         {
-            //mdXXX
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
             if (nodeType != NodeType.Section)
             {
                 throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
             }
-            //end mdXXX
 
             Commands.TOC.MoveSectionNodeDown command = null;
 
@@ -479,14 +461,12 @@ namespace Obi
 
         public void IncreaseSectionNodeLevel(object origin, CoreNode node)
         {
-            //mdXXX
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
             if (nodeType != NodeType.Section)
             {
                 throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
             }
-            //end mdXXX
 
             Commands.TOC.IncreaseSectionNodeLevel command = null;
 
@@ -576,14 +556,12 @@ namespace Obi
        //the command value is returned so it can be used in UndoShallowDelete's undo list
        public Commands.Command DecreaseSectionNodeLevel(object origin, CoreNode node)
         {
-            //mdXXX
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
             if (nodeType != NodeType.Section)
             {
                 throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
             }
-            //end mdXXX
 
             Commands.TOC.DecreaseSectionNodeLevel command = null;
 
@@ -680,14 +658,12 @@ namespace Obi
         //added by marisa
         public void UndoDecreaseSectionNodeLevel(CoreNode node, CoreNode parent, int index, int position, int originalChildCount)
         {
-            //mdXXX
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
             if (nodeType != NodeType.Section)
             {
                 throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
             }
-            //end mdXXX
 
             //error-checking
             if (node.getChildCount() < originalChildCount)
@@ -750,14 +726,12 @@ namespace Obi
         /// </summary>
         public void RenameSectionNode(object origin, CoreNode node, string label)
         {
-            //mdXXX
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
             if (nodeType != NodeType.Section)
             {
                 throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
             }
-            //end mdXXX
 
             TextMedia text = GetTextMedia(node);
             Commands.TOC.Rename command = origin == this ? null : new Commands.TOC.Rename(this, node, text.getText(), label);
@@ -782,14 +756,12 @@ namespace Obi
         //md 20060810
         public void DoCutSectionNode(object origin, CoreNode node)
         {
-            //mdXXX
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
             if (nodeType != NodeType.Section)
             {
                 throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
             }
-            //end mdXXX
 
             if (node == null) return;
 
@@ -820,28 +792,6 @@ namespace Obi
         {
             UndeleteSectionNode(node, parent, index, position);
             mClipboard = null;
-           
-            //mdXXX
-        /*    NodeType nodeType;
-            nodeType = Project.GetNodeType(node);
-            if (nodeType != NodeType.Section)
-            {
-                throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
-            }*/
-            //end mdXXX
-
-            /*
-            if (node.getParent() != null) node.detach();
-            parent.insert(node, index);
-
-            int sectionIdx = GetSectionNodeIndex(node);
-
-            UndidCutSectionNode(this, new Events.Node.MovedNodeEventArgs(this, node, parent, index, position, sectionIdx));
-            mClipboard = null;
-            
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-             */
         }
 
         //md 20060810
@@ -853,14 +803,12 @@ namespace Obi
         //md 20060810
         public void CopySectionNode(object origin, CoreNode node)
         {
-            //mdXXX
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
             if (nodeType != NodeType.Section)
             {
                 throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
             }
-            //end mdXXX
 
             if (node == null) return;
 
@@ -884,14 +832,12 @@ namespace Obi
         //md 20060810
         public void UndoCopySectionNode(CoreNode node)
         {
-            //mdXXX
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
             if (nodeType != NodeType.Section)
             {
                 throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
             }
-            //end mdXXX
 
             mClipboard = null;
 
@@ -920,7 +866,6 @@ namespace Obi
         // modified by JQ 20060818: can paste under the root node if we have deleted the first and only heading.
         public void PasteSectionNode(object origin, CoreNode parent)
         {
-            //mdXXX
             NodeType nodeType;
             nodeType = Project.GetNodeType(parent);
             if (nodeType != NodeType.Section && nodeType != NodeType.Root)
@@ -928,7 +873,6 @@ namespace Obi
                 throw new Exception(string.Format("Expected a Section or Root node; got a {0} node instead.",
                     nodeType.ToString()));
             }
-            //end mdXXX
 
             if (parent == null) return;
 
@@ -966,14 +910,12 @@ namespace Obi
         //md 20060810
         public void UndoPasteSectionNode(CoreNode node)
         {
-            //mdXXX
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
             if (nodeType != NodeType.Section)
             {
                 throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
             }
-            //end mdXXX
 
             node.detach();
            
@@ -1013,15 +955,12 @@ namespace Obi
                 nodeChildCount = node.getChildCount();
             }
             
-
-            //mdXXX
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
             if (nodeType != NodeType.Section)
             {
                 throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
             }
-            //end mdXXX
 
             Commands.TOC.ShallowDeleteSectionNode command = null;
            

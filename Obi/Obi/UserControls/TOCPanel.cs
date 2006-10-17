@@ -264,7 +264,6 @@ namespace Obi.UserControls
         /// </summary>
         private void mTocTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            //mdXXX
             //return;
 
             //Events.Node.SelectedEventArgs _event = new Events.Node.SelectedEventArgs(true);
@@ -279,7 +278,6 @@ namespace Obi.UserControls
         /// <param name="e"></param>
         private void mTocTree_Leave(object sender, EventArgs e)
         {
-            //mdXXX
             //return;
 
             //SelectedTreeNode(this, new Events.Node.SelectedEventArgs(false));

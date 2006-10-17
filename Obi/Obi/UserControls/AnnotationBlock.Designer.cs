@@ -1,6 +1,6 @@
 namespace Obi.UserControls
 {
-    partial class StructureBlock
+    partial class AnnotationBlock
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,35 +29,37 @@ namespace Obi.UserControls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.mLabelBox = new System.Windows.Forms.TextBox();
+            this.mRenameBox = new System.Windows.Forms.TextBox();
             this.mLabel = new System.Windows.Forms.Label();
             this.mToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
-            // mLabelBox
+            // mRenameBox
             // 
-            this.mLabelBox.BackColor = System.Drawing.Color.PowderBlue;
-            this.mLabelBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.mLabelBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.mLabelBox.Location = new System.Drawing.Point(3, 3);
-            this.mLabelBox.Name = "mLabelBox";
-            this.mLabelBox.Size = new System.Drawing.Size(144, 13);
-            this.mLabelBox.TabIndex = 0;
-            this.mLabelBox.TabStop = false;
-            this.mLabelBox.Visible = false;
-            this.mLabelBox.Click += new System.EventHandler(this.mLabelBox_Click);
-            this.mLabelBox.Leave += new System.EventHandler(this.mLabelBox_Leave);
-            this.mLabelBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mLabelBox_KeyDown);
+            this.mRenameBox.BackColor = System.Drawing.Color.LightYellow;
+            this.mRenameBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.mRenameBox.Location = new System.Drawing.Point(0, 0);
+            this.mRenameBox.Margin = new System.Windows.Forms.Padding(0);
+            this.mRenameBox.Name = "mRenameBox";
+            this.mRenameBox.Size = new System.Drawing.Size(66, 13);
+            this.mRenameBox.TabIndex = 3;
+            this.mRenameBox.TabStop = false;
+            this.mRenameBox.Visible = false;
+            this.mRenameBox.Click += new System.EventHandler(this.AnnotationBlock_Click);
+            this.mRenameBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mRenameBox_MouseDown);
+            this.mRenameBox.Leave += new System.EventHandler(this.mRenameBox_Leave);
+            this.mRenameBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mRenameBox_KeyDown);
             // 
             // mLabel
             // 
             this.mLabel.AutoSize = true;
-            this.mLabel.Location = new System.Drawing.Point(3, 3);
+            this.mLabel.Location = new System.Drawing.Point(3, 0);
             this.mLabel.Margin = new System.Windows.Forms.Padding(3);
             this.mLabel.Name = "mLabel";
-            this.mLabel.Size = new System.Drawing.Size(0, 13);
-            this.mLabel.TabIndex = 1;
-            this.mLabel.Click += new System.EventHandler(this.label1_Click);
+            this.mLabel.Size = new System.Drawing.Size(63, 13);
+            this.mLabel.TabIndex = 4;
+            this.mLabel.Text = "(annotation)";
+            this.mLabel.Click += new System.EventHandler(this.AnnotationBlock_Click);
             // 
             // mToolTip
             // 
@@ -66,20 +68,22 @@ namespace Obi.UserControls
             this.mToolTip.InitialDelay = 3000;
             this.mToolTip.IsBalloon = true;
             this.mToolTip.ReshowDelay = 600;
-            this.mToolTip.ToolTipTitle = "Structure Block";
             // 
-            // StructureBlock
+            // AnnotationBlock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.Color.PowderBlue;
-            this.Controls.Add(this.mLabelBox);
+            this.BackColor = System.Drawing.Color.LightYellow;
             this.Controls.Add(this.mLabel);
+            this.Controls.Add(this.mRenameBox);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
-            this.Name = "StructureBlock";
-            this.Size = new System.Drawing.Size(150, 20);
-            this.Click += new System.EventHandler(this.StructureBlock_Click);
+            this.MinimumSize = new System.Drawing.Size(50, 0);
+            this.Name = "AnnotationBlock";
+            this.Size = new System.Drawing.Size(69, 16);
+            this.Click += new System.EventHandler(this.AnnotationBlock_Click);
+            this.SizeChanged += new System.EventHandler(this.AnnotationBlock_SizeChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -87,9 +91,8 @@ namespace Obi.UserControls
 
         #endregion
 
-        private System.Windows.Forms.TextBox mLabelBox;
+        private System.Windows.Forms.TextBox mRenameBox;
         private System.Windows.Forms.Label mLabel;
         private System.Windows.Forms.ToolTip mToolTip;
-
     }
 }

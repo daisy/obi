@@ -30,10 +30,12 @@ namespace Obi.UserControls
         {
             this.components = new System.ComponentModel.Container();
             this.mAudioLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.mTextBox = new System.Windows.Forms.TextBox();
+            this.mRenameBox = new System.Windows.Forms.TextBox();
             this.mLabel = new System.Windows.Forms.Label();
             this.mStructureLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.mToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.mAnnotationLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+
             this.SuspendLayout();
             // 
             // mAudioLayoutPanel
@@ -43,32 +45,32 @@ namespace Obi.UserControls
             this.mAudioLayoutPanel.AutoSize = true;
             this.mAudioLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.mAudioLayoutPanel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.mAudioLayoutPanel.Location = new System.Drawing.Point(3, 49);
+            this.mAudioLayoutPanel.Location = new System.Drawing.Point(3, 62);
             this.mAudioLayoutPanel.Name = "mAudioLayoutPanel";
             this.mAudioLayoutPanel.Size = new System.Drawing.Size(0, 0);
             this.mAudioLayoutPanel.TabIndex = 2;
             this.mAudioLayoutPanel.WrapContents = false;
             this.mAudioLayoutPanel.Click += new System.EventHandler(this.mAudioLayoutPanel_Click);
             // 
-            // mTextBox
+            // mRenameBox
             // 
-            this.mTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.mRenameBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.mTextBox.BackColor = System.Drawing.Color.Gold;
-            this.mTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.mTextBox.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.mTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.mTextBox.Location = new System.Drawing.Point(3, 0);
-            this.mTextBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.mTextBox.Name = "mTextBox";
-            this.mTextBox.ReadOnly = true;
-            this.mTextBox.ShortcutsEnabled = false;
-            this.mTextBox.Size = new System.Drawing.Size(243, 19);
-            this.mTextBox.TabIndex = 1;
-            this.mTextBox.Visible = false;
-            this.mTextBox.Click += new System.EventHandler(this.SectionStrip_Click);
-            this.mTextBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mTextBox_MouseDown);
-            this.mTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mTextBox_KeyDown);
+            this.mRenameBox.BackColor = System.Drawing.Color.Gold;
+            this.mRenameBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.mRenameBox.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.mRenameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.mRenameBox.Location = new System.Drawing.Point(3, 0);
+            this.mRenameBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.mRenameBox.Name = "mRenameBox";
+            this.mRenameBox.ReadOnly = true;
+            this.mRenameBox.ShortcutsEnabled = false;
+            this.mRenameBox.Size = new System.Drawing.Size(243, 19);
+            this.mRenameBox.TabIndex = 1;
+            this.mRenameBox.Visible = false;
+            this.mRenameBox.Click += new System.EventHandler(this.SectionStrip_Click);
+            this.mRenameBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mTextBox_MouseDown);
+            this.mRenameBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mTextBox_KeyDown);
             // 
             // mLabel
             // 
@@ -85,7 +87,7 @@ namespace Obi.UserControls
             // 
             this.mStructureLayoutPanel.AutoSize = true;
             this.mStructureLayoutPanel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.mStructureLayoutPanel.Location = new System.Drawing.Point(3, 25);
+            this.mStructureLayoutPanel.Location = new System.Drawing.Point(3, 22);
             this.mStructureLayoutPanel.Name = "mStructureLayoutPanel";
             this.mStructureLayoutPanel.Size = new System.Drawing.Size(0, 18);
             this.mStructureLayoutPanel.TabIndex = 3;
@@ -93,10 +95,24 @@ namespace Obi.UserControls
             // 
             // mToolTip
             // 
-            this.mToolTip.AutomaticDelay = 1000;
+            this.mToolTip.AutomaticDelay = 3000;
+            this.mToolTip.AutoPopDelay = 4000;
+            this.mToolTip.InitialDelay = 3000;
             this.mToolTip.IsBalloon = true;
-            this.mToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.mToolTip.ReshowDelay = 600;
             this.mToolTip.ToolTipTitle = "Section Strip";
+            // 
+            // mAnnotationLayoutPanel
+            // 
+            this.mAnnotationLayoutPanel.AutoSize = true;
+            this.mAnnotationLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.mAnnotationLayoutPanel.BackColor = System.Drawing.Color.LightYellow;
+            this.mAnnotationLayoutPanel.Location = new System.Drawing.Point(3, 44);
+            this.mAnnotationLayoutPanel.Name = "mAnnotationLayoutPanel";
+            this.mAnnotationLayoutPanel.Size = new System.Drawing.Size(0, 0);
+            this.mAnnotationLayoutPanel.TabIndex = 4;
+            this.mAnnotationLayoutPanel.WrapContents = false;
+            this.mAnnotationLayoutPanel.Click += new System.EventHandler(this.mAnnotationLayoutPanel_Click);
             // 
             // SectionStrip
             // 
@@ -105,13 +121,14 @@ namespace Obi.UserControls
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Gold;
+            this.Controls.Add(this.mAnnotationLayoutPanel);
             this.Controls.Add(this.mStructureLayoutPanel);
             this.Controls.Add(this.mLabel);
-            this.Controls.Add(this.mTextBox);
+            this.Controls.Add(this.mRenameBox);
             this.Controls.Add(this.mAudioLayoutPanel);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.Name = "SectionStrip";
-            this.Size = new System.Drawing.Size(249, 52);
+            this.Size = new System.Drawing.Size(249, 65);
             this.Enter += new System.EventHandler(this.SectionStrip_enter);
             this.Click += new System.EventHandler(this.SectionStrip_Click);
             this.Leave += new System.EventHandler(this.SectionStrip_leave);
@@ -123,9 +140,10 @@ namespace Obi.UserControls
         #endregion
 
         private System.Windows.Forms.FlowLayoutPanel mAudioLayoutPanel;
-        private System.Windows.Forms.TextBox mTextBox;
+        private System.Windows.Forms.TextBox mRenameBox;
         private System.Windows.Forms.Label mLabel;
         private System.Windows.Forms.FlowLayoutPanel mStructureLayoutPanel;
         private System.Windows.Forms.ToolTip mToolTip;
+        private System.Windows.Forms.FlowLayoutPanel mAnnotationLayoutPanel;
     }
 }
