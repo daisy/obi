@@ -60,7 +60,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="urakawa, Version=0.5.2481.25819, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\implementation\UrakawaToolkit\bin\Debug\urakawa.dll</HintPath>
+      <HintPath>..\..\..\implementation\UrakawaToolkit\bin\Debug\urakawa.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
