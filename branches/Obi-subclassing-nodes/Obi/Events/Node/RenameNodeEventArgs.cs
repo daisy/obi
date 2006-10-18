@@ -6,7 +6,7 @@ using urakawa.core;
 
 namespace Obi.Events.Node
 {
-    public delegate void RequestToRenameNodeHandler(object sender, RenameNodeEventArgs e);
+    // public delegate void RequestToRenameNodeHandler(object sender, RenameNodeEventArgs e);
     public delegate void RenamedNodeHandler(object sender, RenameNodeEventArgs e);
     public delegate void RequestToSetPageNumberHandler(object sender, SetPageEventArgs e);
 
@@ -19,10 +19,7 @@ namespace Obi.Events.Node
 
         public string Label
         {
-            get
-            {
-                return mLabel;
-            }
+            get { return mLabel; }
         }
 
         public RenameNodeEventArgs(object origin, CoreNode node, string label) : 

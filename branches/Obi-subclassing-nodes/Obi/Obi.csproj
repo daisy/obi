@@ -165,6 +165,9 @@
     <Compile Include="Events\Node\NodeEventArgs.cs" />
     <Compile Include="Events\Node\RenameNodeEventArgs.cs" />
     <Compile Include="Events\Node\MovedNodeEventArgs.cs" />
+    <Compile Include="Events\Node\Section\AddedEventArgs.cs" />
+    <Compile Include="Events\Node\Section\EventArgs.cs" />
+    <Compile Include="Events\Node\Section\RenameEventArgs.cs" />
     <Compile Include="Events\Node\SelectedEventArgs.cs" />
     <Compile Include="Events\Node\SetMediaEventArgs.cs" />
     <Compile Include="Events\Node\SetPageEventArgs.cs" />

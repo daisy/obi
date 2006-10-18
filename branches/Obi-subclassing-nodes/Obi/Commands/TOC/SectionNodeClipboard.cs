@@ -8,27 +8,20 @@ namespace Obi.Commands.TOC
 {
     class CutSectionNode : Command
     {
-        private Project mProject;
-        private CoreNode mNode;
+        private SectionNode mNode;
         private CoreNode mParent;
         private int mIndex;
-        private int mPosition;
-
+        
         public override string Label
         {
-            get
-            {
-                return Localizer.Message("cut_section_command_label");
-            }
+            get { return Localizer.Message("cut_section_command_label"); }
         }
 
-        public CutSectionNode(Project project, CoreNode node, CoreNode parent, int index, int position)
+        public CutSectionNode(SectionNode node, CoreNode parent, int index)
         {
-            mProject = project;
             mNode = node;
             mParent = parent;
             mIndex = index;
-            mPosition = position;
         }
 
         /// <summary>
@@ -36,7 +29,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            mProject.DoCutSectionNode(mProject, mNode);
+            mNode.Project.DoCutSectionNode(mNode.Project, mNode);
         }
 
         /// <summary>
@@ -44,7 +37,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mProject.UndoCutSectionNode(mNode, mParent, mIndex, mPosition);
+            mNode.Project.UndoCutSectionNode(mNode, mParent, mIndex);
         }
     }
 

@@ -8,29 +8,24 @@ namespace Obi.Commands.TOC
 {
     class AddSectionNode: Command
     {
-        private Project mProject;
-        private CoreNode mNode;
-        private CoreNode mParent;
-        private int mIndex;
-        private int mPosition;
-        private string mOriginalLabel;
+        private SectionNode mNode;  // the newly added section node
+        private CoreNode mParent;   // the parent to which it was added
+        private int mIndex;         // the index at which it was added
 
         public override string Label
         {
-            get
-            {
-                return Localizer.Message("add_section_command_label");
-            }
+            get { return Localizer.Message("add_section_command_label"); }
         }
 
-        public AddSectionNode(Project project, CoreNode node, CoreNode parent, int index, int position)
+        /// <summary>
+        /// Create a new "add section" command from the new section node, the parent node and the index of the new section.
+        /// The command is created once the section has actually been added.
+        /// </summary>
+        public AddSectionNode(SectionNode node, CoreNode parent, int index)
         {
-            mProject = project;
             mNode = node;
             mParent = parent;
             mIndex = index;
-            mPosition = position;
-            mOriginalLabel = Project.GetTextMedia(node).getText();
         }
 
         /// <summary>
@@ -39,7 +34,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            mProject.AddExistingSectionNode(mNode, mParent, mIndex, mPosition, mOriginalLabel);
+            mNode.Project.AddExistingSectionNode(mNode, mParent, mIndex);
         }
 
         /// <summary>
@@ -48,7 +43,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mProject.RemoveNode(mProject, mNode);
+            mNode.Project.RemoveNode(mNode.Project, mNode);
         }
     }
 }

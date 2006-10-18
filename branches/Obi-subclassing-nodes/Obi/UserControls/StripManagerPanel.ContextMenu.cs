@@ -85,8 +85,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void mAddStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddSiblingSection(this, new Events.Node.NodeEventArgs(this, mSelectedSection));
-            // InsertSiblingSection(this, new Events.Node.NodeEventArgs(this, mSelectedSection));
+            AddSiblingSection(this, new Events.Node.Section.EventArgs(this, mSelectedSection));
         }
 
         internal void mRenameStripToolStripMenuItem_Click(object sender, EventArgs e)

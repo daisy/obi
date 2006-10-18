@@ -13,17 +13,13 @@ namespace Obi.UserControls
     public partial class SectionStrip : UserControl
     {
         private StripManagerPanel mManager;  // the manager for this strip
-        private CoreNode mNode;              // the core node for this strip
+        private SectionNode mNode;           // the section node for this strip
 
         #region properties
 
         public string Label
         {
-            get
-            {
-                return mLabel.Text;
-                //return mTextBox.Text;
-            }
+            get { return mLabel.Text; }
             set
             {
                 mTextBox.Text = value;
@@ -33,38 +29,26 @@ namespace Obi.UserControls
 
         public StripManagerPanel Manager
         {
-            set
-            {
-                mManager = value;
-            }
-            //mg
-            get 
-            {
-                return mManager;
-            }
+            get { return mManager; }
+            set { mManager = value; }
         }
 
-        public CoreNode Node
+        public SectionNode Node
         {
-            get
-            {
-                return mNode;
-            }
-            set
-            {
-                mNode = value;
-            }
+            get { return mNode; }
+            set { mNode = value; }
         }
 
         #endregion
 
-        #region instantiators
+        /// <summary>
+        /// Create a new, empty section strip.
+        /// </summary>
         public SectionStrip()
         {
             InitializeComponent();
             this.TabStop = true; //mg: not in designer for some reason
         }
-        #endregion
 
         #region TextBox (the label strip)
 
@@ -92,7 +76,6 @@ namespace Obi.UserControls
         private void mTextBox_Leave(object sender, EventArgs e)
         {
             mTextBox.ReadOnly = true;
-
             //md xxx
             mLabel.Text = mTextBox.Text;
             mLabel.Visible = true;
@@ -123,7 +106,6 @@ namespace Obi.UserControls
                     mLabel.Text = mTextBox.Text;
                     mLabel.Visible = true;
                     mTextBox.Visible = false;
-
                     UpdateText();
                     break;
                 case Keys.Escape:
@@ -133,7 +115,6 @@ namespace Obi.UserControls
                     mLabel.Text = mTextBox.Text;
                     mLabel.Visible = true;
                     mTextBox.Visible = false;
-
                     break;
                 case Keys.F2:
                     if (mTextBox.ReadOnly)

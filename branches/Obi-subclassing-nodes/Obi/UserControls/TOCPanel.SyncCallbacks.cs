@@ -5,9 +5,9 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using urakawa.media;
 using System.Collections;
 
+using urakawa.media;
 
 namespace Obi.UserControls
 {
@@ -19,15 +19,14 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="sender">The sender of this event notification</param>
         /// <param name="e"><see cref="e.Node"/> is the tree node being renamed.</param>
-        internal void SyncRenamedSectionNode(object sender, Events.Node.RenameNodeEventArgs e)
+        internal void SyncRenamedSectionNode(object sender, Events.Node.Section.RenameEventArgs e)
         {
             if (e.Origin != this)
             {
                 TreeNode treeNode = FindTreeNodeWithoutLabel(e.Node);
-                treeNode.Text = e.Label;
+                treeNode.Text = e.NewLabel;
             }
         }
-
 
         /// <summary>
         /// Add a section to the tree view. If we were the ones to request its addition, 
@@ -43,56 +42,55 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="sender">The sender of this event notification</param>
         /// <param name="e"><see cref="e.Node"/> is the new heading to add to the tree</param>
-
-        internal void SyncAddedSectionNode(object sender, Events.Node.AddedSectionNodeEventArgs e)
+        internal void SyncAddedSectionNode(object sender, Events.Node.Section.AddedEventArgs e)
         {
-            TreeNode newTreeNode = AddSingleSectionNode(e.Node, e.SectionNodeIndex);
-
+            TreeNode newTreeNode = ShallowAddSectionNode(e.Node, e.Index);
             //start editing if the request to add a node happened in the tree view
             if (e.Origin.Equals(this))
             {
                 newTreeNode.BeginEdit();
             }
-
             newTreeNode.ExpandAll();
             newTreeNode.EnsureVisible();
             mTocTree.SelectedNode = newTreeNode;
         }
 
-        private TreeNode AddSingleSectionNode(urakawa.core.CoreNode node, int sectionIndex)
+        /// <summary>
+        /// Add a new tree node for a section node. The operation is shallow, that is it adds only this node.
+        /// </summary>
+        /// <param name="node">The section node to add. It must not have children.</param>
+        /// <param name="index">The index in the parent.</param>
+        /// <returns>The created tree node.</returns>
+        private TreeNode ShallowAddSectionNode(SectionNode node, int index)
         {
             TreeNode newTreeNode;
-            string label = Project.GetTextMedia(node).getText();
             if (node.getParent().getParent() != null)
             {
-                TreeNode relTreeNode = FindTreeNodeFromCoreNode((urakawa.core.CoreNode)node.getParent());
-                newTreeNode = relTreeNode.Nodes.Insert(sectionIndex, node.GetHashCode().ToString(), label);
+                TreeNode relTreeNode = FindTreeNodeFromSectionNode((SectionNode)node.getParent());
+                newTreeNode = relTreeNode.Nodes.Insert(index, node.Id.ToString(), node.Label);
             }
             else
             {
-                newTreeNode = mTocTree.Nodes.Insert(sectionIndex, node.GetHashCode().ToString(), label);
+                newTreeNode = mTocTree.Nodes.Insert(index, node.Id.ToString(), node.Label);
             }
             newTreeNode.Tag = node;
-
             return newTreeNode;
         }
 
-        private TreeNode AddSectionNode(urakawa.core.CoreNode node, int sectionIndex)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="sectionIndex"></param>
+        /// <returns></returns>
+        private TreeNode DeepAddSectionNode(SectionNode node, int sectionIndex)
         {
-            TreeNode addedNode = AddSingleSectionNode(node, sectionIndex);
-
-            int localSectionIdx = 0;
-
-            for (int i = 0; i < node.getChildCount(); i++)
+            TreeNode newTreeNode = ShallowAddSectionNode(node, sectionIndex);
+            for (int i = 0; i < node.SectionChildCount; i++)
             {
-                if (Project.GetNodeType(node.getChild(i)) == NodeType.Section)
-                {
-                    AddSectionNode(node.getChild(i), localSectionIdx);
-                    localSectionIdx++;
-                }
+                DeepAddSectionNode(node.SectionChild(i), i);
             }
-
-            return addedNode;
+            return newTreeNode;
         }
 
         /// <summary>
@@ -101,11 +99,11 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="sender">The sender of this event notification</param>
         /// <param name="e"><see cref="e.Node"/> is the node to be removed.</param>
-        internal void SyncDeletedSectionNode(object sender, Events.Node.NodeEventArgs e)
+        internal void SyncDeletedSectionNode(object sender, Events.Node.Section.EventArgs e)
         {
             if (e.Node != null)
             {
-                TreeNode treeNode = FindTreeNodeFromCoreNode(e.Node);
+                TreeNode treeNode = FindTreeNodeFromSectionNode(e.Node);
                 mTocTree.SelectedNode = treeNode.PrevVisibleNode;
                 if (mTocTree.SelectedNode != null)
                 {
@@ -118,9 +116,9 @@ namespace Obi.UserControls
 
         internal void SyncMovedSectionNode(object sender, Events.Node.MovedNodeEventArgs e)
         {
-            TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
+            TreeNode selected = FindTreeNodeFromSectionNode((SectionNode)e.Node);
 
-            TreeNode parent = Project.GetNodeType(e.Parent) == NodeType.Section ? FindTreeNodeFromCoreNode(e.Parent) : null;
+            TreeNode parent = Project.GetNodeType(e.Parent) == NodeType.Section ? FindTreeNodeFromSectionNode((SectionNode)e.Parent) : null;
 
             if (selected == null) return;
 
@@ -156,7 +154,7 @@ namespace Obi.UserControls
         /// <param name="e"></param>
         internal void SyncDecreasedSectionNodeLevel(object sender, Events.Node.NodeEventArgs e)
         {
-            TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
+            TreeNode selected = FindTreeNodeFromSectionNode((SectionNode)e.Node);
             ExecuteDecreaseNodeLevel(selected);
         }
 
@@ -215,7 +213,7 @@ namespace Obi.UserControls
         }
 
         //md 20060810
-        internal void SyncCutSectionNode(object sender, Events.Node.NodeEventArgs e)
+        internal void SyncCutSectionNode(object sender, Events.Node.Section.EventArgs e)
         {
             SyncDeletedSectionNode(sender, e);
         }
@@ -237,16 +235,16 @@ namespace Obi.UserControls
         internal void SyncPastedSectionNode(object sender, Events.Node.AddedSectionNodeEventArgs e)
         {
            //add a subtree
-            TreeNode uncutNode = AddSectionNode(e.Node, e.SectionNodeIndex);
+            TreeNode uncutNode = DeepAddSectionNode((SectionNode)e.Node, e.SectionNodeIndex);
 
             uncutNode.ExpandAll();
             uncutNode.EnsureVisible();
             mTocTree.SelectedNode = uncutNode;
         }
 
-        internal void SyncUndidPasteSectionNode(object sender, Events.Node.NodeEventArgs e)
+        internal void SyncUndidPasteSectionNode(object sender, Events.Node.Section.EventArgs e)
         {
-            TreeNode pastedNode = FindTreeNodeFromCoreNode(e.Node);
+            TreeNode pastedNode = FindTreeNodeFromSectionNode(e.Node);
 
             //focus on the previous node
             mTocTree.SelectedNode = pastedNode.PrevVisibleNode;
@@ -273,7 +271,7 @@ namespace Obi.UserControls
             SynchronizeWithCoreTree((urakawa.core.CoreNode)e.Node.getPresentation().getRootNode());
         
             //focus on the first swapped node
-            mTocTree.SelectedNode = FindTreeNodeFromCoreNode(e.Node);
+            mTocTree.SelectedNode = FindTreeNodeFromSectionNode((SectionNode)e.Node);
             if (mTocTree.SelectedNode != null)
             {
                 mTocTree.SelectedNode.ExpandAll();

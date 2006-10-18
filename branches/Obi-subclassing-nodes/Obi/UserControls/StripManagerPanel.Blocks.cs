@@ -95,16 +95,13 @@ namespace Obi.UserControls
         /// </summary>
         internal void SyncTouchedNode(object sender, Events.Node.NodeEventArgs e)
         {
-            switch (Project.GetNodeType(e.Node))
+            if (e.Node.GetType() == typeof(SectionNode))
             {
-                case NodeType.Phrase:
-                    SelectedPhraseNode = e.Node;
-                    break;
-                case NodeType.Section:
-                    SelectedSectionNode = e.Node;
-                    break;
-                default:
-                    break;
+                SelectedSectionNode = (SectionNode)e.Node;
+            }
+            else
+            {
+                SelectedPhraseNode = e.Node;
             }
         }
 

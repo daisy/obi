@@ -13,17 +13,17 @@ namespace Obi.UserControls
 {
     public partial class TOCPanel
     {
-        public event Events.Node.RequestToAddSiblingNodeHandler RequestToAddSiblingSection;
-        public event Events.Node.RequestToAddChildSectionNodeHandler RequestToAddChildSectionNode;
+        public event Events.Node.Section.RequestToAddSiblingSectionNodeHandler RequestToAddSiblingSection;
+        public event Events.Node.Section.RequestToAddChildSectionNodeHandler RequestToAddChildSectionNode;
+        public event Events.Node.Section.RequestToCutSectionNodeHandler RequestToCutSectionNode;
+        public event Events.Node.Section.RequestToDeleteSectionNodeHandler RequestToDeleteSectionNode;
+        public event Events.Node.Section.RequestToRenameSectionNodeHandler RequestToRenameSectionNode;
+        
         public event Events.Node.RequestToDecreaseSectionNodeLevelHandler RequestToDecreaseSectionNodeLevel;
         public event Events.Node.RequestToIncreaseSectionNodeLevelHandler RequestToIncreaseSectionNodeLevel;
         public event Events.Node.RequestToMoveSectionNodeDownHandler RequestToMoveSectionNodeDown;
         public event Events.Node.RequestToMoveSectionNodeUpHandler RequestToMoveSectionNodeUp;
-        public event Events.Node.RequestToRenameNodeHandler RequestToRenameSectionNode;
-        public event Events.Node.RequestToDeleteNodeHandler RequestToDeleteSectionNode;
-
         //md: clipboard events
-        public event Events.Node.RequestToCutSectionNodeHandler RequestToCutSectionNode;
         public event Events.Node.RequestToCopySectionNodeHandler RequestToCopySectionNode;
         public event Events.Node.RequestToPasteSectionNodeHandler RequestToPasteSectionNode;
 
@@ -40,10 +40,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-            RequestToAddSiblingSection(this,
-                new Events.Node.NodeEventArgs(this, GetSelectedSection()));
-            
+            RequestToAddSiblingSection(this,new Events.Node.Section.EventArgs(this, GetSelectedSection()));
         }
 
         /// <summary>
@@ -51,10 +48,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void mAddSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-            RequestToAddChildSectionNode(this,
-                new Events.Node.NodeEventArgs(this, GetSelectedSection()));
-           
+            RequestToAddChildSectionNode(this, new Events.Node.Section.EventArgs(this, GetSelectedSection()));
         }
 
         /// <summary>
@@ -73,7 +67,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void mDeleteSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToDeleteSectionNode(this, new Events.Node.NodeEventArgs(this, GetSelectedSection()));
+            RequestToDeleteSectionNode(this, new Events.Node.Section.EventArgs(this, GetSelectedSection()));
         }
 
         internal void mRenameToolStripMenuItem_Click(object sender, EventArgs e)
@@ -119,7 +113,7 @@ namespace Obi.UserControls
         //md 20060810
         internal void cutSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToCutSectionNode(this, new Events.Node.NodeEventArgs(this, GetSelectedSection()));
+            RequestToCutSectionNode(this, new Events.Node.Section.EventArgs(this, GetSelectedSection()));
         }
 
         //md 20060810

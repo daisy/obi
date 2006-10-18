@@ -4,6 +4,9 @@ using urakawa.media;
 
 namespace Obi
 {
+    /// <summary>
+    /// Children of a SectionNode are PhraseNodes or other SectionNodes. PhraseNodes appear first in the list.
+    /// </summary>
     public class SectionNode : ObiNode
     {
         public static readonly string Name = "section";
@@ -11,6 +14,8 @@ namespace Obi
         private ChannelsProperty mChannel;  // quick reference to the channel property
         private TextMedia mMedia;           // quick reference to the text media object
         private string mLabel;              // string version of the text
+        private int mSectionOffset;         // index of the first section child
+        private int mSpan;                  // span of this section: 1 + sum of the span of each child section.
 
         /// <summary>
         /// Get/set the label of the node as a simple string.
@@ -27,6 +32,86 @@ namespace Obi
         }
 
         /// <summary>
+        /// Index of this section relative to the other sections.
+        /// </summary>
+        public int SectionIndex
+        {
+            get
+            {
+                CoreNode parent = (CoreNode)getParent();
+                int index = parent.indexOf(this);
+                return index - mSectionOffset;
+            }
+        }
+
+        public int SectionChildCount
+        {
+            get { return getChildCount() - mSectionOffset; }
+        }
+
+        /// <summary>
+        /// Return the parent as a section node. If the parent is really the root of the tree, return null.
+        /// </summary>
+        public SectionNode ParentSection
+        {
+            get
+            {
+                IBasicTreeNode parent = getParent();
+                return parent.GetType() == typeof(SectionNode) ? (SectionNode)parent : null;
+            }
+        }
+
+        /// <summary>
+        /// Return the previous section sibling node, or null if this is the first. 
+        /// </summary>
+        public SectionNode PreviousSibling
+        {
+            get
+            {
+                CoreNode parent = (CoreNode)getParent();
+                int index = parent.indexOf(this);
+                if (parent.GetType() == typeof(SectionNode))
+                {
+                    return index == ((SectionNode)parent).mSectionOffset ? null : (SectionNode)parent.getChild(index - 1);
+                }
+                else
+                {
+                    return index == 0 ? null : (SectionNode)parent.getChild(index - 1);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Position of this section in the "flat list" of sections. If the section is the first child,
+        /// then it is simply the position of its parent + 1. Otherwise, it is the position of its previous
+        /// sibling + the span of the previous sibling.
+        /// </summary>
+        public int Position
+        {
+            get
+            {
+                SectionNode sibling = PreviousSibling;
+                if (sibling == null)
+                {
+                    SectionNode parent = ParentSection;
+                    return parent == null ? 0 : 1 + parent.Position;
+                }
+                else
+                {
+                    return sibling.mSpan + sibling.Position;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get the child section at an index relative to sections only.
+        /// </summary>
+        public SectionNode SectionChild(int index)
+        {
+            return (SectionNode)getChild(index + mSectionOffset);
+        }
+
+        /// <summary>
         /// Create a new section node with the default label.
         /// </summary>
         internal SectionNode(Project project, int id)
@@ -36,6 +121,8 @@ namespace Obi
             this.setProperty(mChannel);
             mMedia = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
             Label = Localizer.Message("default_section_label");
+            mSectionOffset = 0;
+            mSpan = 1;
         }
 
         /// <summary>
@@ -43,7 +130,64 @@ namespace Obi
         /// </summary>
         protected override string getLocalName()
         {
-            return "section";
+            return Name;
+        }
+
+        /// <summary>
+        /// Add a child section at the given index. The span of this section, plus that of parent sections, is increased accordingly.
+        /// </summary>
+        public void AddChildSection(SectionNode node, int index)
+        {
+            insert(node, index + mSectionOffset);
+            UpdateSpan(node.mSpan);
+        }
+
+        /// <summary>
+        /// Add a new child section right after the context seciont section.
+        /// </summary>
+        public void AddChildSectionAfter(SectionNode node, SectionNode anchorNode)
+        {
+            insertAfter(node, anchorNode);
+            UpdateSpan(node.mSpan);
+        }
+
+        /// <summary>
+        /// Append a child section.
+        /// </summary>
+        public void AppendChildSection(SectionNode node)
+        {
+            appendChild(node);
+            UpdateSpan(node.mSpan);
+        }
+
+        /// <summary>
+        /// Update span of current and ancestor sections.
+        /// </summary>
+        /// <param name="span">The span change (can be negative if nodes are removed.)</param>
+        private void UpdateSpan(int span)
+        {
+            for (IBasicTreeNode parent = this; parent.GetType() == typeof(SectionNode); parent = parent.getParent())
+            {
+                ((SectionNode)parent).mSpan += span;
+            }
+        }
+
+        /// <summary>
+        /// Add a child phrase at the given index.
+        /// </summary>
+        public void AddChildPhrase(PhraseNode node, int index)
+        {
+            insert(node, index);
+            ++mSectionOffset;
+        }
+
+        /// <summary>
+        /// Detach this node section from its parent and update the span.
+        /// </summary>
+        internal void DetachFromParent()
+        {
+            if (ParentSection != null) ParentSection.UpdateSpan(-mSpan);
+            this.detach();
         }
     }
 }

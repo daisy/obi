@@ -11,14 +11,12 @@ namespace Obi.Visitors
         private Project mProject;  // the project in which the nodes belong
         private CoreNode mParent;  // parent of the node to readd
         private int mIndex;        // index of the node to readd
-        private int mPosition;     // position in the list
 
-        public UndeleteSubtree(Project project, CoreNode parent, int index, int position)
+        public UndeleteSubtree(Project project, CoreNode parent, int index)
         {
             mProject = project;
             mParent = parent;
             mIndex = index;
-            mPosition = position;
         }
 
         #region ICoreNodeVisitor Members
@@ -31,18 +29,17 @@ namespace Obi.Visitors
 
         public bool preVisit(ICoreNode node)
         {
-            if (Project.GetNodeType((CoreNode)node) == NodeType.Section)
+            if (node.GetType() == typeof(SectionNode))
             {
-                mProject.AddExistingSectionNode((CoreNode)node, mParent, mIndex, mPosition, null);
+                mProject.AddExistingSectionNode((SectionNode)node, mParent, mIndex);
                 mIndex = 0;
-                ++mPosition;
             }
             //md 20060816
             //the phrase node already has a parent "node", so we can't re-add it
             //just give an event to notify the displays that they should update
-            else if (Project.GetNodeType((CoreNode)node) == NodeType.Phrase)
+            else
             {
-                mProject.ReconstructPhraseNodeInView((CoreNode)node, mIndex);
+                mProject.ReconstructPhraseNodeInView((PhraseNode)node, mIndex);
             }
             return true;
         }

@@ -8,27 +8,20 @@ namespace Obi.Commands.TOC
 {
     class DeleteSectionNode : Command
     {
-        private Project mProject;
-        private CoreNode mNode;
-        private CoreNode mParent;
-        private int mIndex;
-        private int mPosition;
+        private SectionNode mNode;  // the deleted node
+        private CoreNode mParent;   // parent of the deleted node
+        private int mIndex;         // index of the deleted node
 
         public override string Label
         {
-            get
-            {
-                return Localizer.Message("delete_section_command_label");
-            }
+            get { return Localizer.Message("delete_section_command_label"); }
         }
 
-        public DeleteSectionNode(Project project, CoreNode node, CoreNode parent, int index, int position)
+        public DeleteSectionNode(SectionNode node, CoreNode parent, int index)
         {
-            mProject = project;
             mNode = node;
             mParent = parent;
             mIndex = index;
-            mPosition = position;
         }
 
         /// <summary>
@@ -36,7 +29,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            mProject.RemoveNode(mProject, mNode);
+            mNode.Project.RemoveNode(mNode.Project, mNode);
         }
 
         /// <summary>
@@ -44,7 +37,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mProject.UndeleteSectionNode(mNode, mParent, mIndex, mPosition);
+            mNode.Project.UndeleteSectionNode(mNode, mParent, mIndex);
         }
     }
 }

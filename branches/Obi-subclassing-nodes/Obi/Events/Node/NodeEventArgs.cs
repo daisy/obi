@@ -58,18 +58,12 @@ namespace Obi.Events.Node
 
         public CoreNode Node
         {
-            get
-            {
-                return mNode;
-            }
+            get { return mNode; }
         }
 
         public object Origin
         {
-            get
-            {
-                return mOrigin;
-            }
+            get { return mOrigin; }
         }
 
         public NodeEventArgs(object origin, CoreNode node)

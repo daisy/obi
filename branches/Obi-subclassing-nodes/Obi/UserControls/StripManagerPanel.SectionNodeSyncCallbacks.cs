@@ -14,9 +14,9 @@ namespace Obi.UserControls
 {
     public partial class StripManagerPanel
     {
-        internal void SyncAddedSectionNode(object sender, Events.Node.AddedSectionNodeEventArgs e)
+        internal void SyncAddedSectionNode(object sender, Events.Node.Section.AddedEventArgs e)
         {
-            AddStripFromNode(e.Node, e.Position, e.Origin == this);
+            AddStripFromNode(e.Node, e.Node.Position, e.Origin == this);
         }
 
         private void AddStripFromNode(CoreNode node, int position, bool rename)
@@ -24,13 +24,13 @@ namespace Obi.UserControls
             SectionStrip strip = new SectionStrip();
             strip.Label = Project.GetTextMedia(node).getText();
             strip.Manager = this;
-            strip.Node = node;
+            strip.Node = (SectionNode)node;
             mSectionNodeMap[node] = strip;
             mFlowLayoutPanel.Controls.Add(strip);
             mFlowLayoutPanel.Controls.SetChildIndex(strip, position);
             if (rename)
             {
-                SelectedSectionNode = node;
+                SelectedSectionNode = (SectionNode)node;
                 strip.StartRenaming();
             }
          }
@@ -67,16 +67,16 @@ namespace Obi.UserControls
             return position;
         }
 
-        internal void SyncRenamedNode(object sender, Events.Node.RenameNodeEventArgs e)
+        internal void SyncRenamedSectionNode(object sender, Events.Node.Section.RenameEventArgs e)
         {
             SectionStrip strip = mSectionNodeMap[e.Node];
-            strip.Label = e.Label;
+            strip.Label = e.NewLabel;
         }
 
         /// <summary>
         /// When deleting a node from the tree, all descendants are deleted as well.
         /// </summary>
-        internal void SyncDeletedNode(object sender, Events.Node.NodeEventArgs e)
+        internal void SyncDeletedNode(object sender, Events.Node.Section.EventArgs e)
         {
             if (e.Node != null)
             {
@@ -133,7 +133,7 @@ namespace Obi.UserControls
         }
 
         //md 20060811
-        internal void SyncCutSectionNode(object sender, Events.Node.NodeEventArgs e)
+        internal void SyncCutSectionNode(object sender, Events.Node.Section.EventArgs e)
         {
             SyncDeletedNode(sender, e);
         }
@@ -164,7 +164,7 @@ namespace Obi.UserControls
         }
 
         //md 20060811
-        internal void SyncUndidPasteSectionNode(object sender, Events.Node.NodeEventArgs e)
+        internal void SyncUndidPasteSectionNode(object sender, Events.Node.Section.EventArgs e)
         {
             SyncDeletedNode(sender, e);
         }
