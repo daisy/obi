@@ -232,11 +232,10 @@ namespace Obi.UserControls
 
         //md 20060810
         //e.Node is what was just pasted in
-        internal void SyncPastedSectionNode(object sender, Events.Node.AddedSectionNodeEventArgs e)
+        internal void SyncPastedSectionNode(object sender, Events.Node.Section.AddedEventArgs e)
         {
            //add a subtree
-            TreeNode uncutNode = DeepAddSectionNode((SectionNode)e.Node, e.SectionNodeIndex);
-
+            TreeNode uncutNode = DeepAddSectionNode(e.Node, e.Node.SectionIndex);
             uncutNode.ExpandAll();
             uncutNode.EnsureVisible();
             mTocTree.SelectedNode = uncutNode;

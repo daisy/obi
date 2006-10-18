@@ -39,7 +39,7 @@ namespace Obi.UserControls
         {
             if (e.Node != null)
             {
-                SectionStrip strip = mSectionNodeMap[(CoreNode)e.Node.getParent()];
+                SectionStrip strip = mSectionNodeMap[(SectionNode)e.Node.getParent()];
                 AudioBlock block = new AudioBlock();
                 block.Manager = this;
                 block.Node = e.Node;
@@ -62,7 +62,7 @@ namespace Obi.UserControls
         /// <param name="e">The node event with a pointer to the deleted phrase node.</param>
         internal void SyncDeleteAudioBlock(object sender, Events.Node.NodeEventArgs e)
         {
-            SectionStrip strip = mSectionNodeMap[(CoreNode)e.Node.getParent()];
+            SectionStrip strip = mSectionNodeMap[(SectionNode)e.Node.getParent()];
             if (SelectedPhraseNode == e.Node) SelectedPhraseNode = null;
             strip.RemoveAudioBlock(mPhraseNodeMap[e.Node]);
             mPhraseNodeMap.Remove(e.Node);
@@ -76,7 +76,7 @@ namespace Obi.UserControls
         {
             if (Project.GetNodeType(e.Node) == NodeType.Phrase)
             {
-                SectionStrip strip = mSectionNodeMap[(CoreNode)e.Node.getParent()];
+                SectionStrip strip = mSectionNodeMap[(SectionNode)e.Node.getParent()];
                 if (e.Channel == Project.AnnotationChannel)
                 {
                     // the label of an audio block has changed

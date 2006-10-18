@@ -15,19 +15,17 @@ namespace Obi.UserControls
     /// <summary>
     /// This control is a view of all the contents of a project
     /// </summary>
-    public partial class StripManagerPanel : UserControl, ICoreNodeVisitor
+    public partial class StripManagerPanel : UserControl
     {
-        private Dictionary<CoreNode, SectionStrip> mSectionNodeMap;  // find a section strip for a given node
-        private SectionNode mSelectedSection;                        // the selected node
-
-        private Dictionary<CoreNode, AudioBlock> mPhraseNodeMap;     // find an audio block for a given phrase node
-        private CoreNode mSelectedPhrase;                            // the selected audio block
-
-        private ProjectPanel mProjectPanel; //the parent of this control
+        private Dictionary<SectionNode, SectionStrip> mSectionNodeMap;  // find a section strip for a given node
+        private SectionNode mSelectedSection;                           // the selected node
+        private Dictionary<CoreNode, AudioBlock> mPhraseNodeMap;        // find an audio block for a given phrase node
+        private CoreNode mSelectedPhrase;                               // the selected audio block
+        private ProjectPanel mProjectPanel;                             //the parent of this control
 
         public event Events.Node.Section.RequestToAddSiblingSectionNodeHandler AddSiblingSection;
-
         public event Events.Node.Section.RequestToRenameSectionNodeHandler RenameSection;
+
         public event Events.Node.SetMediaHandler SetMediaRequested;
         public event Events.Strip.RequestToImportAssetHandler ImportAudioAssetRequested;
         public event Events.Node.RequestToDeleteBlockHandler DeleteBlockRequested;
@@ -55,15 +53,19 @@ namespace Obi.UserControls
                     if (mSelectedSection != null)
                     {
                         //md added try-catch because it tends to crash here
-                        try {mSectionNodeMap[mSelectedSection].MarkDeselected();}
+                        try
+                        {
+                            mSectionNodeMap[mSelectedSection].MarkDeselected();
+                        }
                         catch (Exception) {}
-
                         if (mSelectedPhrase != null)
                         {
                             //md added try-catch because it tended to crash above and maybe it would here too
-                            try {mPhraseNodeMap[mSelectedPhrase].MarkDeselected();}
+                            try
+                            {
+                                mPhraseNodeMap[mSelectedPhrase].MarkDeselected();
+                            }
                             catch (Exception) {}
-
                             mSelectedPhrase = null;
                         }
                     }
@@ -71,7 +73,10 @@ namespace Obi.UserControls
                     if (mSelectedSection != null)
                     {
                         //md added try-catch because it tended to crash above and maybe it would here too
-                        try {mSectionNodeMap[mSelectedSection].MarkSelected();}
+                        try
+                        {
+                            mSectionNodeMap[mSelectedSection].MarkSelected();
+                        }
                         catch (Exception) {}
                     }
                 }
@@ -105,17 +110,12 @@ namespace Obi.UserControls
         }
 
         /// <summary>
-        /// Get the SectionStrip that is currently seleced, or null if no current selection exists.
+        /// Get the SectionStrip that is currently selected, or null if no current selection exists.
         /// </summary>
         // mg20060804
         internal SectionStrip SelectedSectionStrip
         {
-            get
-            {
-                if (mSelectedSection != null)
-                    return mSectionNodeMap[mSelectedSection];
-                return null;
-            }
+            get { return mSelectedSection == null ? null : mSectionNodeMap[mSelectedSection]; }
         }
 
         /// <summary>
@@ -124,12 +124,7 @@ namespace Obi.UserControls
         // mg20060804
         internal AbstractBlock SelectedBlock
         {
-            get
-            {
-                if (this.mSelectedPhrase != null)
-                    return this.mPhraseNodeMap[mSelectedPhrase];
-                return null;
-            }
+            get { return mSelectedPhrase == null ? null : mPhraseNodeMap[mSelectedPhrase]; }
         }
 
         /// <summary>
@@ -138,10 +133,7 @@ namespace Obi.UserControls
         /// <remarks>mg: for access by sectionstrip that needs to override the textbox menu</remarks> 
         internal ContextMenuStrip PanelContextMenuStrip
         {
-            get
-            {
-                return this.contextMenuStrip1;
-            }
+            get { return this.contextMenuStrip1; }
         }
 
         /// <summary>
@@ -150,19 +142,11 @@ namespace Obi.UserControls
         // mg 20060804
         internal ProjectPanel ProjectPanel
         {
-            get
-            {
-                return mProjectPanel;
-            }
-            set
-            {
-                mProjectPanel = value;
-            }
+            get { return mProjectPanel; }
+            set { mProjectPanel = value; }
         }
 
         #endregion
-
-        #region instantiators
 
         /// <summary>
         /// Create a new manager panel. At first the panel is empty and nothing is selected.
@@ -171,13 +155,11 @@ namespace Obi.UserControls
         {
             InitializeComponent();
             // The panel is empty and nothing is selected.
-            mSectionNodeMap = new Dictionary<CoreNode, SectionStrip>();
+            mSectionNodeMap = new Dictionary<SectionNode, SectionStrip>();
             mSelectedSection = null;
             mPhraseNodeMap = new Dictionary<CoreNode, AudioBlock>();
             mSelectedPhrase = null;
         }
-
-        #endregion
 
         /// <summary>
         /// Synchronize the strips view with the core tree.
@@ -190,22 +172,20 @@ namespace Obi.UserControls
             mFlowLayoutPanel.Controls.Clear();
             mSelectedSection = null;
             mSelectedPhrase = null;
-            root.acceptDepthFirst(this);
+            root.visitDepthFirst(SynchronizePre, SynchronizePost);
             if (mFlowLayoutPanel.Controls.Count > 0) this.ReflowTabOrder(mFlowLayoutPanel.Controls[0]);  // mg
         }
 
-        #region Synchronization visitor
-
-        private CoreNode parentSection;  // the current parent section to add phrases to
-        private CoreNode parentPhrase;   // the current phrase node to add structure nodes to
+        private SectionNode parentSection;  // the current parent section to add phrases to
+        private CoreNode parentPhrase;      // the current phrase node to add structure nodes to
 
         /// <summary>
         /// Update the parent section to attach phrase nodes to.
         /// </summary>
-        /// <param name="node">The node to do nothing with.</param>
-        public void postVisit(ICoreNode node)
+        private void SynchronizePost(ICoreNode node)
         {
-            parentSection = (CoreNode)node.getParent();
+            IBasicTreeNode _parent = node.getParent();
+            parentSection = _parent != null && _parent.GetType() == typeof(SectionNode) ? (SectionNode)_parent : null;
         }
 
         /// <summary>
@@ -214,24 +194,22 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="node">The node to add to the tree.</param>
         /// <returns>True.</returns>
-        public bool preVisit(ICoreNode node)
+        private bool SynchronizePre(ICoreNode node)
         {
             SectionStrip strip = null;
-            switch (Project.GetNodeType((CoreNode)node))
+            if (node.GetType() == typeof(CoreNode))
             {
-                case NodeType.Root:
-                    parentSection = null;
-                    break;
-                case NodeType.Section:
-                    strip = new SectionStrip();
-                    strip.Label = Project.GetTextMedia((CoreNode)node).getText();
-                    strip.Manager = this;
-                    strip.Node = (SectionNode)node;
-                    mSectionNodeMap[(CoreNode)node] = strip;
-                    mFlowLayoutPanel.Controls.Add(strip);
-                    parentSection = ((CoreNode)node);
-                    break;
-                case NodeType.Phrase:
+                // root node has no parent of course.
+                parentSection = null;
+            }
+            else if (node.GetType() == typeof(SectionNode))
+            {
+                // make a new strip for this section
+                ShallowAddStripFromSectionNode((SectionNode)node, false);
+                parentSection = (SectionNode)node;
+            }
+            else if (node.GetType() == typeof(PhraseNode))
+            {
                     strip = mSectionNodeMap[parentSection];
                     AudioBlock block = new AudioBlock();
                     block.Manager = this;
@@ -244,14 +222,9 @@ namespace Obi.UserControls
                     PageProperty pageProp = ((CoreNode)node).getProperty(typeof(PageProperty)) as PageProperty;
                     if (pageProp != null) block.StructureBlock.Label = pageProp.PageNumber.ToString();
                     parentPhrase = (CoreNode)node;
-                    break;
-                default:
-                    break;
             }
             return true;
         }
-
-        #endregion
 
         /// <summary>
         /// Convenience method to send the event that a strip was renamed, so that we don't have to track down
@@ -308,8 +281,7 @@ namespace Obi.UserControls
             SectionStrip startStrip;
             if (startFrom is AudioBlock)
             {
-                startStrip = mSectionNodeMap
-                    [(CoreNode)((AudioBlock)startFrom).Node.getParent()];
+                startStrip = mSectionNodeMap[(SectionNode)((AudioBlock)startFrom).Node.getParent()];
             }
             else
             {
@@ -429,7 +401,7 @@ namespace Obi.UserControls
             }
             else
             {
-                return this.mSectionNodeMap[previous];
+                return this.mSectionNodeMap[(SectionNode)previous];
             }
         }
     }

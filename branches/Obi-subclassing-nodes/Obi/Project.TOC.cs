@@ -13,6 +13,7 @@ namespace Obi
         public event Events.Node.Section.AddedSectionNodeHandler AddedSectionNode;            // a section node was added to the TOC
         public event Events.Node.Section.CutSectionNodeHandler CutSectionNode;                // a section node was cut
         public event Events.Node.Section.DeletedSectionNodeHandler DeletedSectionNode;        // a section node was deleted
+        public event Events.Node.Section.PastedSectionNodeHandler PastedSectionNode;          // a section node was pasted
         public event Events.Node.Section.RenamedSectionNodeHandler RenamedSectionNode;        // a section node was renamed
         public event Events.Node.Section.UndidPasteSectionNodeHandler UndidPasteSectionNode;  // paste section was undone
 
@@ -22,7 +23,6 @@ namespace Obi
         //md: toc clipboard stuff
         public event Events.Node.CopiedSectionNodeHandler CopiedSectionNode;
         public event Events.Node.CopiedSectionNodeHandler UndidCopySectionNode;
-        public event Events.Node.PastedSectionNodeHandler PastedSectionNode;
 
         //md: shallow-swapped event for move up/down linear
         public event Events.Node.ShallowSwappedSectionNodesHandler ShallowSwappedSectionNodes;
@@ -776,29 +776,14 @@ namespace Obi
         // modified by JQ 20060818: can paste under the root node if we have deleted the first and only heading.
         public void PasteSectionNode(object origin, CoreNode parent)
         {
-            //mdXXX
-            NodeType nodeType;
-            nodeType = Project.GetNodeType(parent);
-            if (nodeType != NodeType.Section && nodeType != NodeType.Root)
-            {
-                throw new Exception(string.Format("Expected a Section or Root node; got a {0} node instead.",
-                    nodeType.ToString()));
-            }
-            //end mdXXX
-
             if (parent == null) return;
-
             Commands.TOC.PasteSectionNode command = null;
-
-            CoreNode pastedSection = mTOCClipboard.copy(true);
-
+            SectionNode pastedSection = (SectionNode)mTOCClipboard.copy(true);
             //don't clear the clipboard, we can use it again
-
             if (origin != this)
             {
                 command = new Commands.TOC.PasteSectionNode(this, pastedSection, parent);
             }
-
             //the actual paste operation
             parent.insert(pastedSection, 0);
 
@@ -811,8 +796,7 @@ namespace Obi
 
             int sectionIdx = GetSectionNodeIndex(pastedSection);
 
-            PastedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs
-                (origin, pastedSection, parent.indexOf(pastedSection), visitor.Position, sectionIdx));
+            PastedSectionNode(this, new Events.Node.Section.AddedEventArgs(origin, pastedSection, pastedSection.SectionIndex));
 
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));

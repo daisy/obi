@@ -37,6 +37,10 @@ namespace Obi.UserControls
                         new Events.Node.Section.DeletedSectionNodeHandler(mStripManagerPanel.SyncDeletedNode);
                     mProject.DeletedSectionNode -=
                         new Events.Node.Section.DeletedSectionNodeHandler(mTOCPanel.SyncDeletedSectionNode);
+                    mProject.PastedSectionNode -=
+                        new Events.Node.Section.PastedSectionNodeHandler(mTOCPanel.SyncPastedSectionNode);
+                    mProject.PastedSectionNode -=
+                        new Events.Node.Section.PastedSectionNodeHandler(mStripManagerPanel.SyncPastedSectionNode);
                     mTOCPanel.RequestToAddChildSectionNode -=
                         new Events.Node.Section.RequestToAddChildSectionNodeHandler(mProject.CreateChildSectionNodeRequested);
                     mTOCPanel.RequestToAddSiblingSection -=
@@ -102,9 +106,7 @@ namespace Obi.UserControls
                     mProject.UndidCopySectionNode -= new Events.Node.CopiedSectionNodeHandler(mStripManagerPanel.SyncUndidCopySectionNode);
 
                     mTOCPanel.RequestToPasteSectionNode -= new Events.Node.RequestToPasteSectionNodeHandler(mProject.PasteSectionNodeRequested);
-                    mProject.PastedSectionNode -= new Events.Node.PastedSectionNodeHandler(mTOCPanel.SyncPastedSectionNode);
-                    mProject.PastedSectionNode -= new Events.Node.PastedSectionNodeHandler(mStripManagerPanel.SyncPastedSectionNode);
-
+                    
                     mProject.TouchedNode -= new Events.Node.TouchedNodeHandler(mStripManagerPanel.SyncTouchedNode);
                     mProject.UpdateTime -= new Events.Strip.UpdateTimeHandler(mStripManagerPanel.SyncUpdateAudioBlockTime);
 
@@ -138,6 +140,10 @@ namespace Obi.UserControls
                         new Events.Node.Section.DeletedSectionNodeHandler(mTOCPanel.SyncDeletedSectionNode);
                     value.DeletedSectionNode +=
                         new Events.Node.Section.DeletedSectionNodeHandler(mStripManagerPanel.SyncDeletedNode);
+                    value.PastedSectionNode +=
+                        new Events.Node.Section.PastedSectionNodeHandler(mTOCPanel.SyncPastedSectionNode);
+                    value.PastedSectionNode +=
+                        new Events.Node.Section.PastedSectionNodeHandler(mStripManagerPanel.SyncPastedSectionNode);
                     mTOCPanel.RequestToAddChildSectionNode +=
                         new Events.Node.Section.RequestToAddChildSectionNodeHandler(value.CreateChildSectionNodeRequested);
                     mTOCPanel.RequestToAddSiblingSection +=
@@ -230,8 +236,6 @@ namespace Obi.UserControls
                     value.UndidCopySectionNode += new Events.Node.CopiedSectionNodeHandler(mStripManagerPanel.SyncUndidCopySectionNode);
 
                     mTOCPanel.RequestToPasteSectionNode += new Events.Node.RequestToPasteSectionNodeHandler(value.PasteSectionNodeRequested);
-                    value.PastedSectionNode += new Events.Node.PastedSectionNodeHandler(mTOCPanel.SyncPastedSectionNode);
-                    value.PastedSectionNode += new Events.Node.PastedSectionNodeHandler(mStripManagerPanel.SyncPastedSectionNode);
 
                 
                     //md 20060812
