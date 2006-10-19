@@ -131,8 +131,8 @@ namespace Obi
             Commands.Strips.MergePhrases command = new Commands.Strips.MergePhrases(this, e.Node, e.Next);
             mAssManager.MergeAudioMediaAssets(asset, next);
             UpdateSeq(e.Node);
-            MediaSet(this, new Events.Node.SetMediaEventArgs(e.Origin, e.Node, Project.AudioChannel,
-                GetMediaForChannel(e.Node, Project.AudioChannel)));
+            MediaSet(this, new Events.Node.SetMediaEventArgs(e.Origin, e.Node, Project.AudioChannelName,
+                GetMediaForChannel(e.Node, Project.AudioChannelName)));
             DeletedPhraseNode(this, new Events.Node.NodeEventArgs(e.Origin, e.Next));
             e.Next.detach();
             TouchedNode(this, new Events.Node.NodeEventArgs(e.Origin, e.Node));
@@ -195,7 +195,7 @@ namespace Obi
                 if (ch.getName() == channel)
                 {
                     Commands.Command command = null;
-                    if (GetNodeType(node) == NodeType.Phrase && channel == AnnotationChannel)
+                    if (GetNodeType(node) == NodeType.Phrase && channel == AnnotationChannelName)
                     {
                         // we are renaming a phrase node
                         Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);
@@ -227,8 +227,8 @@ namespace Obi
             int index = parent.indexOf(e.Node) + 1;
             parent.insert(newNode, index);
             UpdateSeq(e.Node);
-            MediaSet(this, new Events.Node.SetMediaEventArgs(e.Origin, e.Node, AudioChannel,
-                GetMediaForChannel(e.Node, AudioChannel)));
+            MediaSet(this, new Events.Node.SetMediaEventArgs(e.Origin, e.Node, AudioChannelName,
+                GetMediaForChannel(e.Node, AudioChannelName)));
             AddedPhraseNode(this, new Events.Node.AddedPhraseNodeEventArgs(e.Origin, newNode, index));
             Commands.Strips.SplitPhrase command = new Commands.Strips.SplitPhrase(this, e.Node, newNode);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
@@ -258,8 +258,8 @@ namespace Obi
         {
             CoreNode phrase = parent.getChild(index + e.PhraseIndex);
             UpdateSeq(phrase);
-            MediaSet(this, new Events.Node.SetMediaEventArgs(this, phrase, AudioChannel,
-                GetMediaForChannel(phrase, AudioChannel)));
+            MediaSet(this, new Events.Node.SetMediaEventArgs(this, phrase, AudioChannelName,
+                GetMediaForChannel(phrase, AudioChannelName)));
         }
 
         #endregion
@@ -411,11 +411,11 @@ namespace Obi
         /// </summary>
         internal void EditAnnotationPhraseNode(CoreNode node, string name)
         {
-            TextMedia media = (TextMedia)GetMediaForChannel(node, AnnotationChannel);
+            TextMedia media = (TextMedia)GetMediaForChannel(node, AnnotationChannelName);
             Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);
             mAssManager.RenameAsset(asset, name);
             media.setText(asset.Name);
-            MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, AnnotationChannel, media));
+            MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, AnnotationChannelName, media));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
@@ -449,9 +449,9 @@ namespace Obi
             {
                 prop.Asset = asset;
                 UpdateSeq(node);
-                MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, AudioChannel,
-                    GetMediaForChannel(node, AudioChannel)));
-                ((TextMedia)GetMediaForChannel(node, AnnotationChannel)).setText(asset.Name);
+                MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, AudioChannelName,
+                    GetMediaForChannel(node, AudioChannelName)));
+                ((TextMedia)GetMediaForChannel(node, AnnotationChannelName)).setText(asset.Name);
             }
             else
             {

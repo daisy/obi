@@ -215,7 +215,7 @@ namespace Obi.UserControls
                     block.Manager = this;
                     block.Node = (CoreNode)node;
                     mPhraseNodeMap[(CoreNode)node] = block;
-                    TextMedia annotation = (TextMedia)Project.GetMediaForChannel((CoreNode)node, Project.AnnotationChannel);
+                    TextMedia annotation = (TextMedia)Project.GetMediaForChannel((CoreNode)node, Project.AnnotationChannelName);
                     block.Label = annotation.getText();
                     block.Time = Project.GetAudioMediaAsset((CoreNode)node).LengthInSeconds;
                     strip.AppendAudioBlock(block);
@@ -252,6 +252,10 @@ namespace Obi.UserControls
         {
             SelectedSectionNode = null;
         }
+
+
+
+
 
         /// <summary>
         /// Reflow the tab order (tabindex property)

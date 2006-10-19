@@ -27,7 +27,7 @@ namespace Obi
             {
                 mLabel = value;
                 mMedia.setText(value);
-                mChannel.setMedia(mProject._TextChannel, mMedia);
+                mChannel.setMedia(mProject.TextChannel, mMedia);
             }
         }
 

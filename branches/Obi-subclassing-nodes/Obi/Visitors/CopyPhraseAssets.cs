@@ -47,7 +47,7 @@ namespace Obi.Visitors
                 {
                     prop.Asset = asset;
                     mProject.UpdateSeq((CoreNode)node);
-                    ((TextMedia)Project.GetMediaForChannel((CoreNode)node, Project.AnnotationChannel)).setText(asset.Name);
+                    ((TextMedia)Project.GetMediaForChannel((CoreNode)node, Project.AnnotationChannelName)).setText(asset.Name);
                 }
                 else
                 {

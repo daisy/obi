@@ -31,9 +31,31 @@ namespace Obi
         private Channel mTextChannel;        // handy pointer to the text channel 
         private Channel mAnnotationChannel;  // handy pointer to the annotation channel
 
-        internal Channel _TextChannel
+        internal Channel AudioChannel
         {
-            get { return mTextChannel; }
+            get
+            {
+                if (mAudioChannel == null) mAudioChannel = FindChannel(AudioChannelName);
+                return mAudioChannel; 
+            }
+        }
+
+        internal Channel TextChannel
+        {
+            get
+            {
+                if (mTextChannel == null) mTextChannel = FindChannel(TextChannelName);
+                return mTextChannel;
+            }
+        }
+
+        internal Channel AnnotationChannel
+        {
+            get
+            {
+                if (mAnnotationChannel == null) mAnnotationChannel = FindChannel(AnnotationChannelName);
+                return mAnnotationChannel;
+            }
         }
 
         private Assets.AssetManager mAssManager;  // the asset manager
@@ -46,10 +68,10 @@ namespace Obi
 
         private int mLastPage;               // last page number in the project
 
-        public static readonly string XUKVersion = "obi-xuk-008";            // version of the Obi/XUK file
-        public static readonly string AudioChannel = "obi.audio";            // canonical name of the audio channel
-        public static readonly string TextChannel = "obi.text";              // canonical name of the text channel
-        public static readonly string AnnotationChannel = "obi.annotation";  // canonical name of the annotation channel
+        public static readonly string XUKVersion = "obi-xuk-008";                // version of the Obi/XUK file
+        public static readonly string AudioChannelName = "obi.audio";            // canonical name of the audio channel
+        public static readonly string TextChannelName = "obi.text";              // canonical name of the text channel
+        public static readonly string AnnotationChannelName = "obi.annotation";  // canonical name of the annotation channel
 
         public event Events.Project.StateChangedHandler StateChanged;       // the state of the project changed (modified, saved...)
         public event Events.Project.CommandCreatedHandler CommandCreated;   // a new command must be added to the command manager
@@ -127,6 +149,9 @@ namespace Obi
             mAssManager = null;
             mUnsaved = false;
             mXUKPath = null;
+            mAudioChannel = null;
+            mTextChannel = null;
+            mAnnotationChannel = null;
         }
 
         /// <summary>
@@ -153,11 +178,11 @@ namespace Obi
             ChannelFactory factory = presentation.getChannelFactory();
             ChannelsManager manager = presentation.getChannelsManager();
             mMetadata = CreateMetadata(title, id, userProfile);
-            mAudioChannel = factory.createChannel(AudioChannel);
+            mAudioChannel = factory.createChannel(AudioChannelName);
             manager.addChannel(mAudioChannel);
-            mTextChannel = factory.createChannel(TextChannel);
+            mTextChannel = factory.createChannel(TextChannelName);
             manager.addChannel(mTextChannel);
-            mAnnotationChannel = factory.createChannel(AnnotationChannel);
+            mAnnotationChannel = factory.createChannel(AnnotationChannelName);
             manager.addChannel(mAnnotationChannel);
 
             // Clear the clipboard
@@ -199,9 +224,9 @@ namespace Obi
             {
                 mUnsaved = false;
                 mXUKPath = xukPath;
-                mAudioChannel = FindChannel(AudioChannel);
-                mTextChannel = FindChannel(TextChannel);
-                mAnnotationChannel = FindChannel(AnnotationChannel);
+                mAudioChannel = FindChannel(AudioChannelName);
+                mTextChannel = FindChannel(TextChannelName);
+                mAnnotationChannel = FindChannel(AnnotationChannelName);
                 mMetadata = new SimpleMetadata();
                 string xukversion = "none";
                 foreach (object o in getMetadataList())
@@ -235,7 +260,9 @@ namespace Obi
                     }
                 }
                 if (xukversion != Project.XUKVersion)
+                {
                     throw new Exception(String.Format(Localizer.Message("xuk_version_mismatch"), Project.XUKVersion, xukversion));
+                }
                 if (mAssPath == null) throw new Exception(Localizer.Message("missing_asset_path"));
                 Uri absoluteAssPath = new Uri(new Uri(xukPath), mAssPath); 
                 mAssManager = new Assets.AssetManager(absoluteAssPath.AbsolutePath);
@@ -245,7 +272,9 @@ namespace Obi
                     delegate(string message) { errMessages += message + "\n"; });
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
                 if (errMessages != "")
-                    throw new Exception(String.Format(Localizer.Message("open_project_error_text") + "\n" + errMessages, xukPath)); 
+                {
+                    throw new Exception(String.Format(Localizer.Message("open_project_error_text") + "\n" + errMessages, xukPath));
+                }
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
             }
             else
@@ -492,7 +521,7 @@ namespace Obi
             for (int i = 0; i < channelsList.Count; i++)
             {
                 string channelName = ((IChannel)channelsList[i]).getName();
-                if (channelName == Project.TextChannel)
+                if (channelName == Project.TextChannelName)
                 {
                     textChannel = (Channel)channelsList[i];
                     return (TextMedia)channelsProp.getMedia(textChannel);

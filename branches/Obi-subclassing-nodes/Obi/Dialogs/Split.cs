@@ -242,7 +242,7 @@ namespace Obi.Dialogs
         private void Split_Load(object sender, EventArgs e)
         {
             
-            txtDisplayAsset.Text = ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).getText();
+            txtDisplayAsset.Text = ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannelName)).getText();
             txtDisplayTime.Text = "00:00:00";
             txtSplitTime.Text = "0";
 

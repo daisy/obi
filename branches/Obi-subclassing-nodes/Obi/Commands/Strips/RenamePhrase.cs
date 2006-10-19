@@ -27,7 +27,7 @@ namespace Obi.Commands.Strips
         {
             mProject = project;
             mNode = node;
-            mOldName = ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).getText();
+            mOldName = ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannelName)).getText();
             mNewName = Project.GetAudioMediaAsset(mNode).Name;
         }
 
