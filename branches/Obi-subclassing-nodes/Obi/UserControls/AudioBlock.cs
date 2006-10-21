@@ -19,22 +19,13 @@ namespace Obi.UserControls
 
         public override CoreNode Node
         {
-            get
-            {
-                return mNode;
-            }
-            set
-            {
-                mNode = value;
-            }
+            get { return mNode; }
+            set { mNode = value; }
         }
 
         public override StripManagerPanel Manager
         {
-            get
-            {
-                return mManager;
-            }
+            get { return mManager; }
             set
             {
                 mManager = value;
@@ -44,10 +35,7 @@ namespace Obi.UserControls
 
         public StructureBlock StructureBlock
         {
-            get
-            {
-                return mStructureBlock;
-            }
+            get { return mStructureBlock; }
             set
             {
                 mStructureBlock = value;
@@ -67,8 +55,6 @@ namespace Obi.UserControls
         }
 
         #endregion
-        
-        #region instantiators
 
         public AudioBlock() : base()
         {
@@ -77,8 +63,6 @@ namespace Obi.UserControls
             mStructureBlock = new StructureBlock();
             mStructureBlock.AudioBlock = this;
         }
-
-        #endregion
 
         #region AudioBlock (this)
 
@@ -96,19 +80,19 @@ namespace Obi.UserControls
 
         private void AudioBlock_Click(object sender, EventArgs e)
         {
-            mManager.SelectedPhraseNode = mNode; 
+            mManager.SelectedPhraseNode = (PhraseNode)mNode;
         }
 
         private void AudioBlock_DoubleClick(object sender, EventArgs e)
         {
-            mManager.SelectedPhraseNode = mNode;
+            mManager.SelectedPhraseNode = (PhraseNode)mNode;
             ((ObiForm)ParentForm).Play(mNode);
         }
 
         //mg: for tab navigation et al
         private void AudioBlock_enter(object sender, EventArgs e)
         {
-            mManager.SelectedPhraseNode = mNode;
+            mManager.SelectedPhraseNode = (PhraseNode)mNode;
             System.Diagnostics.Debug.Print("Audioblock:tabindex:" + this.TabIndex.ToString());
             // MarkSelected();
         }

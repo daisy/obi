@@ -1,21 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-using urakawa.core;
 using urakawa.media;
 
-namespace Obi.Events.Node
+namespace Obi.Events.Node.Phrase
 {
     public delegate void SetMediaHandler(object sender, SetMediaEventArgs e);
-    public delegate void PhraseAudioSetHandler(object sender, PhraseNode node, SetMediaEventArgs e);
+    public delegate void MediaSetHandler(object sender, SetMediaEventArgs e);
 
-    /// <summary>
-    /// This event is fired when a media object has been set on a node.
-    /// The node is passed as another argument of the handler.
-    /// This event is cancellable (use the Cancel property.)
-    /// </summary>
-    public class SetMediaEventArgs
+    public class SetMediaEventArgs : EventArgs
     {
         private string mChannel;  // the channel on which to set
         private IMedia mMedia;    // the media object
@@ -37,7 +27,8 @@ namespace Obi.Events.Node
             set { mCancel = value; }
         }
 
-        public SetMediaEventArgs(string channel, IMedia media)
+        public SetMediaEventArgs(object origin, PhraseNode node, string channel, IMedia media)
+            : base(origin, node)
         {
             mChannel = channel;
             mMedia = media;

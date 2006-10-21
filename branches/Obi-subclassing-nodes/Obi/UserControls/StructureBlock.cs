@@ -55,21 +55,19 @@ namespace Obi.UserControls
         /// <summary>
         /// Clicking on the block selects the current phrase
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void mLabelBox_Click(object sender, EventArgs e)
         {
-            mAudioBlock.Manager.SelectedPhraseNode = mAudioBlock.Node;
+            mAudioBlock.Manager.SelectedPhraseNode = (PhraseNode)mAudioBlock.Node;
         }
 
         private void StructureBlock_Click(object sender, EventArgs e)
         {
-            mAudioBlock.Manager.SelectedPhraseNode = mAudioBlock.Node;
+            mAudioBlock.Manager.SelectedPhraseNode = (PhraseNode)mAudioBlock.Node;
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-            mAudioBlock.Manager.SelectedPhraseNode = mAudioBlock.Node;
+            mAudioBlock.Manager.SelectedPhraseNode = (PhraseNode)mAudioBlock.Node;
         }
 
         /// <summary>

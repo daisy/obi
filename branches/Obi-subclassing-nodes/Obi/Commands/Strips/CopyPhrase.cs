@@ -8,30 +8,28 @@ namespace Obi.Commands.Strips
 {
     class CopyPhrase: Command
     {
-        private Project mProject;    // current project
-        private CoreNode mNode;      // current node
-        private CoreNode mPrevNode;  // previous node in the clipboard
+        private PhraseNode mNode;      // current node
+        private PhraseNode mPrevNode;  // previous node in the clipboard
 
         public override string Label
         {
             get { return Localizer.Message("copy_phrase_command_label"); }
         }
 
-        public CopyPhrase(Project project, CoreNode node)
+        public CopyPhrase(PhraseNode node)
         {
-            mProject = project;
             mNode = node;
-            mPrevNode = mProject.BlockClipBoard;
+            mPrevNode = mNode.Project.BlockClipBoard;
         }
 
         public override void Do()
         {
-            mProject.BlockClipBoard = mNode;
+            mNode.Project.BlockClipBoard = mNode;
         }
 
         public override void Undo()
         {
-            mProject.BlockClipBoard = mPrevNode;
+            mNode.Project.BlockClipBoard = mPrevNode;
         }
     }
 }

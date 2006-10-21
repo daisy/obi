@@ -160,9 +160,16 @@
     <Compile Include="Events\Audio\VuMeter\PeakOverloadEventArgs.cs" />
     <Compile Include="Events\Audio\VuMeter\ResetEventArgs.cs" />
     <Compile Include="Events\Audio\VuMeter\UpdateFormsEventArgs.cs" />
+    <Compile Include="Events\NodeEventHandlers.cs" />
     <Compile Include="Events\Node\AddedPhraseNodeEventArgs.cs" />
+    <Compile Include="Events\Node\EventArgs.cs" />
+    <Compile Include="Events\Node\IndexEventArgs.cs" />
     <Compile Include="Events\Node\MergeNodesEventArgs.cs" />
     <Compile Include="Events\Node\NodeEventArgs.cs" />
+    <Compile Include="Events\Node\Phrase\AddedEventArgs.cs" />
+    <Compile Include="Events\Node\Phrase\EventArgs.cs" />
+    <Compile Include="Events\Node\Phrase\SetMediaEventArgs.cs" />
+    <Compile Include="Events\Node\Phrase\UpdateTimeEventArgs.cs" />
     <Compile Include="Events\Node\RenameNodeEventArgs.cs" />
     <Compile Include="Events\Node\MovedNodeEventArgs.cs" />
     <Compile Include="Events\Node\Section\AddedEventArgs.cs" />

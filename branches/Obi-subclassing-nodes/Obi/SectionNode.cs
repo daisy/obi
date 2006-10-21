@@ -1,3 +1,5 @@
+using System.Xml;
+
 using urakawa.core;
 using urakawa.exception;
 using urakawa.media;
@@ -42,6 +44,11 @@ namespace Obi
                 int index = parent.indexOf(this);
                 return index - mSectionOffset;
             }
+        }
+
+        public int PhraseChildCount
+        {
+            get { return mSectionOffset; }
         }
 
         public int SectionChildCount
@@ -112,6 +119,14 @@ namespace Obi
         }
 
         /// <summary>
+        /// Get the child phrase at an index relative to phrases only.
+        /// </summary>
+        public PhraseNode PhraseChild(int index)
+        {
+            return (PhraseNode)getChild(index);
+        }
+
+        /// <summary>
         /// Create a new section node with the default label.
         /// </summary>
         internal SectionNode(Project project, int id)
@@ -131,6 +146,23 @@ namespace Obi
         protected override string getLocalName()
         {
             return Name;
+        }
+
+        /// <summary>
+        /// When the section is read, update its label with the actual text media data.
+        /// </summary>
+        public override bool XUKIn(XmlReader source)
+        {
+            if (base.XUKIn(source))
+            {
+                ChannelsProperty prop = (ChannelsProperty)getProperty(typeof(ChannelsProperty));
+                Label = ((TextMedia)prop.getMedia(mProject.TextChannel)).getText();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -179,6 +211,16 @@ namespace Obi
         {
             insert(node, index);
             ++mSectionOffset;
+        }
+
+        /// <summary>
+        /// Remove a child phrase.
+        /// </summary>
+        /// <param name="node"></param>
+        public void RemoveChildPhrase(PhraseNode node)
+        {
+            node.detach();
+            --mSectionOffset;
         }
 
         /// <summary>

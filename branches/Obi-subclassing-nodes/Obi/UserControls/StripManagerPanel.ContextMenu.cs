@@ -189,7 +189,7 @@ namespace Obi.UserControls
             CoreNode next = Project.GetNextPhrase(mSelectedPhrase);
             if (next != null)
             {
-                MergeNodes(this, new Events.Node.MergeNodesEventArgs(this, mSelectedPhrase, next));
+                MergePhraseNodes(this, new Events.Node.MergeNodesEventArgs(this, mSelectedPhrase, next));
             }
         }
 
@@ -314,8 +314,11 @@ namespace Obi.UserControls
             {
                 // Paste after the currently selected block, or at the end of the
                 // currently selected section if no block is selected.
-                RequestToPastePhraseNode(this, new Events.Node.NodeEventArgs(sender,
-                    mSelectedPhrase == null ? mSelectedSection : mSelectedPhrase));
+                // (A bit verbose, but the compiler chokes on:
+                // mSelectedPhrase == null ? mSelectedSection : mSelectedPhrase)
+                CoreNode sectionOrPhrase = mSelectedSection;
+                if (mSelectedPhrase != null) sectionOrPhrase = mSelectedPhrase;
+                RequestToPastePhraseNode(this, new Events.Node.NodeEventArgs(sender, sectionOrPhrase));
             }
         }
 

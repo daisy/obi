@@ -73,15 +73,13 @@ namespace Obi
         public static readonly string TextChannelName = "obi.text";              // canonical name of the text channel
         public static readonly string AnnotationChannelName = "obi.annotation";  // canonical name of the annotation channel
 
-        public event Events.Project.StateChangedHandler StateChanged;       // the state of the project changed (modified, saved...)
-        public event Events.Project.CommandCreatedHandler CommandCreated;   // a new command must be added to the command manager
-
-        public event Events.Node.AddedPhraseNodeHandler AddedPhraseNode;        // a phrase node was added to a strip
-        public event Events.Node.MediaSetHandler MediaSet;                      // a media object was set on a node
-        public event Events.Node.DeletedNodeHandler DeletedPhraseNode;          // deleted a phrase node 
-
-        public event Events.Node.TouchedNodeHandler TouchedNode;  // this node was somehow modified
-       
+        public event Events.PhraseNodeHandler AddedPhraseNode;             // a phrase node was added to a strip
+        public event Events.PhraseNodeHandler PhraseAudioSet;              // audio on a phrase was set
+        public event Events.PhraseNodeHandler DeletedPhraseNode;           // a phrase node was deleted
+        public event Events.PhraseNodeHandler TouchedPhraseNode;           // this node was somehow modified
+        public event Events.Project.StateChangedHandler StateChanged;      // the state of the project changed (modified, saved)
+        public event Events.Project.CommandCreatedHandler CommandCreated;  // a new command must be added to the command manager       
+        
         /// <summary>
         /// This flag is set to true if the project contains modifications that have not been saved.
         /// </summary>
@@ -467,37 +465,6 @@ namespace Obi
         {
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-        }
-
-        /// <summary>
-        /// Create a new phrase node from an asset.
-        /// Add a default annotation with the name of the asset.
-        /// Add a seq media object with the clips of the audio asset. Do not forget to set begin/end time explicitely.
-        /// Add a node information custom property as well.
-        /// </summary>
-        /// <param name="asset">The asset for the phrase.</param>
-        /// <returns>The created node.</returns>
-        private CoreNode CreatePhraseNode(Assets.AudioMediaAsset asset)
-        {
-            CoreNode node = getPresentation().getCoreNodeFactory().createNode();
-            // ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
-            ChannelsProperty prop = getPresentation().getPropertyFactory().createChannelsProperty();
-            node.setProperty(prop);
-            TextMedia annotation = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
-            annotation.setText(asset.Name);
-            prop.setMedia(mAnnotationChannel, annotation);
-            AssetProperty assProp = (AssetProperty)getPresentation().getPropertyFactory().createProperty("AssetProperty",
-                ObiPropertyFactory.ObiNS);
-            assProp.Asset = asset;
-            node.setProperty(assProp);
-            NodeInformationProperty typeProp =
-                (NodeInformationProperty)getPresentation().getPropertyFactory().createProperty("NodeInformationProperty",
-                ObiPropertyFactory.ObiNS);
-            typeProp.NodeType = NodeType.Phrase;
-            typeProp.NodeStatus = NodeStatus.Used;
-            node.setProperty(typeProp);
-            UpdateSeq(node);
-            return node;
         }
 
         /// <summary>

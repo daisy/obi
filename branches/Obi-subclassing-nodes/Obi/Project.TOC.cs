@@ -10,7 +10,8 @@ namespace Obi
 {
     public partial class Project
     {
-        public event Events.Node.Section.AddedSectionNodeHandler AddedSectionNode;            // a section node was added to the TOC
+        public event Events.SectionNodeHandler AddedSectionNode;  // a section node was added to the TOC
+        
         public event Events.Node.Section.CutSectionNodeHandler CutSectionNode;                // a section node was cut
         public event Events.Node.Section.DeletedSectionNodeHandler DeletedSectionNode;        // a section node was deleted
         public event Events.Node.Section.PastedSectionNodeHandler PastedSectionNode;          // a section node was pasted
@@ -61,7 +62,7 @@ namespace Obi
             {
                 ((SectionNode)parent).AddChildSectionAfter(sibling, contextNode);
             }
-            AddedSectionNode(this, new Events.Node.Section.AddedEventArgs(origin, sibling, sibling.SectionIndex));
+            AddedSectionNode(origin, new Events.Node.IndexEventArgs<SectionNode>(sibling, sibling.SectionIndex));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
             Commands.TOC.AddSectionNode command = new Commands.TOC.AddSectionNode(sibling, parent, sibling.SectionIndex);
@@ -88,7 +89,7 @@ namespace Obi
             {
                 parent.AppendChildSection(child);
             }
-            AddedSectionNode(this, new Events.Node.Section.AddedEventArgs(origin, child, child.SectionIndex));
+            AddedSectionNode(origin, new Events.Node.IndexEventArgs<SectionNode>(child, child.SectionIndex));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
             Commands.TOC.AddSectionNode command = new Commands.TOC.AddSectionNode(child, parent, child.SectionIndex);
@@ -116,7 +117,7 @@ namespace Obi
                     parent.insert(node, index);
                 }
             }
-            AddedSectionNode(this, new Events.Node.Section.AddedEventArgs(this, node, index));
+            AddedSectionNode(this, new Events.Node.IndexEventArgs<SectionNode>(node, index));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }

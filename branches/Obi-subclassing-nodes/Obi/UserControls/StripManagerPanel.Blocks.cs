@@ -18,9 +18,8 @@ namespace Obi.UserControls
         {
             TextMedia media = (TextMedia)block.Node.getPresentation().getMediaFactory().createMedia(MediaType.TEXT);
             media.setText(newName);
-            Events.Node.SetMediaEventArgs e =
-                new Events.Node.SetMediaEventArgs(this, block.Node, Project.AnnotationChannelName, media);
-            SetMediaRequested(this, e);
+            Events.Node.SetMediaEventArgs e = new Events.Node.SetMediaEventArgs(Project.AnnotationChannelName, media);
+            SetMediaRequested(this, (PhraseNode)block.Node, e);
             if (e.Cancel)
             {
                 MessageBox.Show(String.Format(Localizer.Message("name_already_exists_text"), newName),
@@ -35,22 +34,22 @@ namespace Obi.UserControls
         /// <summary>
         /// Add a new block from a phrase node and select it.
         /// </summary>
-        internal void SyncAddedPhraseNode(object sender, Events.Node.AddedPhraseNodeEventArgs e)
+        internal void SyncAddedPhraseNode(object sender, PhraseNode node)
         {
-            if (e.Node != null)
+            if (node != null)
             {
-                SectionStrip strip = mSectionNodeMap[(SectionNode)e.Node.getParent()];
+                SectionStrip strip = mSectionNodeMap[node.ParentSection];
                 AudioBlock block = new AudioBlock();
                 block.Manager = this;
-                block.Node = e.Node;
-                mPhraseNodeMap[e.Node] = block;
-                TextMedia annotation = (TextMedia)Project.GetMediaForChannel(e.Node, Project.AnnotationChannelName);
+                block.Node = node;
+                mPhraseNodeMap[node] = block;
+                TextMedia annotation = (TextMedia)Project.GetMediaForChannel(node, Project.AnnotationChannelName);
                 block.Label = annotation.getText();
-                block.Time = Project.GetAudioMediaAsset(e.Node).LengthInSeconds;
-                strip.InsertAudioBlock(block, e.Index);
+                block.Time = Project.GetAudioMediaAsset(node).LengthInSeconds;
+                strip.InsertAudioBlock(block, node.PhraseIndex);
                 this.ReflowTabOrder(block);  // MG
-                SelectedPhraseNode = block.Node;
-                PageProperty pageProp = e.Node.getProperty(typeof(PageProperty)) as PageProperty;
+                SelectedPhraseNode = node;
+                PageProperty pageProp = node.getProperty(typeof(PageProperty)) as PageProperty;
                 //if (pageProp != null && pageProp.getOwner() != null)
                 if (pageProp != null) block.StructureBlock.Label = pageProp.PageNumber.ToString();
             }
@@ -60,7 +59,7 @@ namespace Obi.UserControls
         /// Delete the block of a phrase node.
         /// </summary>
         /// <param name="e">The node event with a pointer to the deleted phrase node.</param>
-        internal void SyncDeleteAudioBlock(object sender, Events.Node.NodeEventArgs e)
+        internal void SyncDeleteAudioBlock(object sender, Events.Node.Phrase.EventArgs e)
         {
             SectionStrip strip = mSectionNodeMap[(SectionNode)e.Node.getParent()];
             if (SelectedPhraseNode == e.Node) SelectedPhraseNode = null;
@@ -72,7 +71,7 @@ namespace Obi.UserControls
         /// <summary>
         /// Changed a media object on a node.
         /// </summary>
-        internal void SyncMediaSet(object sender, Events.Node.SetMediaEventArgs e)
+        internal void SyncMediaSet(object sender, Events.Node.Phrase.SetMediaEventArgs e)
         {
             if (Project.GetNodeType(e.Node) == NodeType.Phrase)
             {
@@ -101,14 +100,14 @@ namespace Obi.UserControls
             }
             else
             {
-                SelectedPhraseNode = e.Node;
+                SelectedPhraseNode = (PhraseNode)e.Node;
             }
         }
 
         /// <summary>
         /// The time of the asset for a phrase has changed.
         /// </summary>
-        internal void SyncUpdateAudioBlockTime(object sender, Events.Strip.UpdateTimeEventArgs e)
+        internal void SyncUpdateAudioBlockTime(object sender, Events.Node.Phrase.UpdateTimeEventArgs e)
         {
             mPhraseNodeMap[e.Node].Time = Math.Round(e.Time / 1000).ToString() + "s";
         }
@@ -121,7 +120,7 @@ namespace Obi.UserControls
         /// <summary>
         /// The page label has changed.
         /// </summary>
-        internal void SyncSetPageNumber(object sender, Events.Node.NodeEventArgs e)
+        internal void SyncSetPageNumber(object sender, Events.Node.Phrase.EventArgs e)
         {
             PageProperty pageProp = e.Node.getProperty(typeof(PageProperty)) as PageProperty;
             //if (pageProp != null && pageProp.getOwner() != null)
@@ -131,7 +130,7 @@ namespace Obi.UserControls
         /// <summary>
         /// The page label was removed.
         /// </summary>
-        internal void SyncRemovedPageNumber(object sender, Events.Node.NodeEventArgs e)
+        internal void SyncRemovedPageNumber(object sender, Events.Node.Phrase.EventArgs e)
         {
             mPhraseNodeMap[e.Node].StructureBlock.Label = "";
         }

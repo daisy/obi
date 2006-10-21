@@ -14,9 +14,12 @@ namespace Obi.UserControls
 {
     public partial class StripManagerPanel
     {
-        internal void SyncAddedSectionNode(object sender, Events.Node.Section.AddedEventArgs e)
+        /// <summary>
+        /// Add a new empty strip.
+        /// </summary>
+        internal void SyncAddedEmptySectionNode(object sender, SectionNode node)
         {
-            ShallowAddStripFromSectionNode(e.Node, e.Origin == this);
+            AddEmptyStripFromSectionNode(node, sender == this);
         }
 
         /// <summary>
@@ -24,7 +27,7 @@ namespace Obi.UserControls
         /// The strip is added at the correct position since the node knows its position.
         /// If the rename parameter is true, also start renaming the strip right away.
         /// </summary>
-        private void ShallowAddStripFromSectionNode(SectionNode node, bool rename)
+        private void AddEmptyStripFromSectionNode(SectionNode node, bool rename)
         {
             SectionStrip strip = new SectionStrip();
             strip.Label = node.Label;
@@ -44,20 +47,19 @@ namespace Obi.UserControls
         //recursive function to add strips for a node and its subtree
         //returns the position marker after the operation is completed
         //todo: this should probably be a visitor
-        private void DeepAddStripsFromSectionNode(SectionNode node)
+        private void AddStripsFromSectionNode(SectionNode node)
         {
-            ShallowAddStripFromSectionNode(node, false);
+            AddEmptyStripFromSectionNode(node, false);
             for (int i = 0; i < node.getChildCount(); i++)
             {
                 if (node.getChild(i).GetType() == typeof(SectionNode))
                 {
-                    DeepAddStripsFromSectionNode((SectionNode)node.getChild(i));
+                    AddStripsFromSectionNode(node.SectionChild(i));
                 }
                 else
                 {
                     //todo: replace this with something cleaner ?  we are kind of falsely invoking an event handler
-                    SyncAddedPhraseNode(this,
-                        new Obi.Events.Node.AddedPhraseNodeEventArgs(this, node.getChild(i), Project.GetPhraseIndex(node.getChild(i))));
+                    SyncAddedPhraseNode(this, node.PhraseChild(i));
                 }
             }
         }
@@ -136,7 +138,7 @@ namespace Obi.UserControls
         //md 20060811
         internal void SyncUndidCutSectionNode(object sender, Events.Node.Section.AddedEventArgs e)
         {
-            DeepAddStripsFromSectionNode(e.Node);
+            AddStripsFromSectionNode(e.Node);
         }
 
         //md 20060811
@@ -154,7 +156,7 @@ namespace Obi.UserControls
         //md 20060811
         internal void SyncPastedSectionNode(object sender, Events.Node.Section.AddedEventArgs e)
         {
-            DeepAddStripsFromSectionNode(e.Node);
+            AddStripsFromSectionNode(e.Node);
             
         }
 

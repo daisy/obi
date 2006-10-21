@@ -42,11 +42,11 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="sender">The sender of this event notification</param>
         /// <param name="e"><see cref="e.Node"/> is the new heading to add to the tree</param>
-        internal void SyncAddedSectionNode(object sender, Events.Node.Section.AddedEventArgs e)
+        internal void SyncAddedSectionNode(object sender, SectionNode node)
         {
-            TreeNode newTreeNode = ShallowAddSectionNode(e.Node, e.Index);
+            TreeNode newTreeNode = AddEmptySectionNode(node);
             //start editing if the request to add a node happened in the tree view
-            if (e.Origin.Equals(this))
+            if (sender == this)
             {
                 newTreeNode.BeginEdit();
             }
@@ -56,39 +56,33 @@ namespace Obi.UserControls
         }
 
         /// <summary>
-        /// Add a new tree node for a section node. The operation is shallow, that is it adds only this node.
+        /// Add a new tree node for a new, empty section node.
         /// </summary>
         /// <param name="node">The section node to add. It must not have children.</param>
         /// <param name="index">The index in the parent.</param>
         /// <returns>The created tree node.</returns>
-        private TreeNode ShallowAddSectionNode(SectionNode node, int index)
+        private TreeNode AddEmptySectionNode(SectionNode node)
         {
             TreeNode newTreeNode;
-            if (node.getParent().getParent() != null)
+            if (node.ParentSection != null)
             {
-                TreeNode relTreeNode = FindTreeNodeFromSectionNode((SectionNode)node.getParent());
-                newTreeNode = relTreeNode.Nodes.Insert(index, node.Id.ToString(), node.Label);
+                TreeNode relTreeNode = FindTreeNodeFromSectionNode(node.ParentSection);
+                newTreeNode = relTreeNode.Nodes.Insert(node.SectionIndex, node.Id.ToString(), node.Label);
             }
             else
             {
-                newTreeNode = mTocTree.Nodes.Insert(index, node.Id.ToString(), node.Label);
+                newTreeNode = mTocTree.Nodes.Insert(node.SectionIndex, node.Id.ToString(), node.Label);
             }
             newTreeNode.Tag = node;
             return newTreeNode;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="node"></param>
-        /// <param name="sectionIndex"></param>
-        /// <returns></returns>
-        private TreeNode DeepAddSectionNode(SectionNode node, int sectionIndex)
+        private TreeNode AddSectionNode(SectionNode node)
         {
-            TreeNode newTreeNode = ShallowAddSectionNode(node, sectionIndex);
+            TreeNode newTreeNode = AddEmptySectionNode(node);
             for (int i = 0; i < node.SectionChildCount; i++)
             {
-                DeepAddSectionNode(node.SectionChild(i), i);
+                AddSectionNode(node.SectionChild(i));
             }
             return newTreeNode;
         }
@@ -235,7 +229,7 @@ namespace Obi.UserControls
         internal void SyncPastedSectionNode(object sender, Events.Node.Section.AddedEventArgs e)
         {
            //add a subtree
-            TreeNode uncutNode = DeepAddSectionNode(e.Node, e.Node.SectionIndex);
+            TreeNode uncutNode = AddSectionNode(e.Node);
             uncutNode.ExpandAll();
             uncutNode.EnsureVisible();
             mTocTree.SelectedNode = uncutNode;
