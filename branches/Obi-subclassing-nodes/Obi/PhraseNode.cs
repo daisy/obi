@@ -56,11 +56,24 @@ namespace Obi
         }
 
         /// <summary>
-        /// Parent section of this phrase.
+        /// Parent section of this phrase. Null if the phrase has no parent.
         /// </summary>
         public SectionNode ParentSection
         {
             get { return getParent() as SectionNode; }
+        }
+
+        /// <summary>
+        /// Next phrase for this phrase. Null if this phrase is the last one.
+        /// </summary>
+        public PhraseNode NextPhrase
+        {
+            get
+            {
+                SectionNode parent = (SectionNode)getParent();
+                int index = PhraseIndex;
+                return index < parent.PhraseChildCount - 1 ? parent.PhraseChild(index + 1) : null;
+            }
         }
 
         /// <summary>

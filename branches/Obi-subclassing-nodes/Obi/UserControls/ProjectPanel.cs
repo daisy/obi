@@ -57,7 +57,8 @@ namespace Obi.UserControls
                 new Events.PhraseNodeHandler(project.MovePhraseNodeForwardRequested);
             mStripManagerPanel.SetMediaRequested +=
                 new Events.PhraseNodeSetMediaHandler(project.SetMediaRequested);
-            
+            mStripManagerPanel.SplitAudioBlockRequested +=
+                new Events.SplitPhraseNodeHandler(project.SplitAudioBlockRequested);
             
 
             
@@ -131,8 +132,6 @@ namespace Obi.UserControls
             mStripManagerPanel.RequestToPastePhraseNode +=
                 new Events.Node.RequestToPastePhraseNodeHandler(project.PastePhraseNode);
 
-            mStripManagerPanel.SplitAudioBlockRequested +=
-                new Events.Node.SplitNodeHandler(project.SplitAudioBlockRequested);
 
             project.DeletedPhraseNode +=
                 new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeleteAudioBlock);
@@ -183,6 +182,8 @@ namespace Obi.UserControls
                 new Events.MergePhraseNodesHandler(mProject.MergePhraseNodesRequested);
             mStripManagerPanel.SetMediaRequested -=
                 new Events.PhraseNodeSetMediaHandler(mProject.SetMediaRequested);
+            mStripManagerPanel.SplitAudioBlockRequested -=
+                new Events.SplitPhraseNodeHandler(mProject.SplitAudioBlockRequested);
             
 
 
@@ -247,8 +248,6 @@ namespace Obi.UserControls
 
             mStripManagerPanel.SetMediaRequested -= new Events.Node.SetMediaHandler(mProject.SetMediaRequested);
             mProject.MediaSet -= new Events.Node.MediaSetHandler(mStripManagerPanel.SyncMediaSet);
-
-            mStripManagerPanel.SplitAudioBlockRequested -= new Events.Node.SplitNodeHandler(mProject.SplitAudioBlockRequested);
 
             mProject.DeletedPhraseNode -= new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeleteAudioBlock);
 

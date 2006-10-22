@@ -19,45 +19,9 @@ namespace Obi
     /// <summary>
     /// An Obi project is an Urakawa project (core tree and metadata)
     /// It also knows where to save itself and has a simpler set of metadata.
-    /// The core tree uses three channels:
-    ///   1. an audio channel for audio media
-    ///   2. a text channel for table of contents items (which will become NCX label in DTB)
-    ///   3. an annotation channel for text annotation of other items in the book (e.g. phrases.)
-    /// So we keep a handy pointer to those.
     /// </summary>
     public partial class Project : urakawa.project.Project
     {
-        private Channel mAudioChannel;       // handy pointer to the audio channel
-        private Channel mTextChannel;        // handy pointer to the text channel 
-        private Channel mAnnotationChannel;  // handy pointer to the annotation channel
-
-        internal Channel AudioChannel
-        {
-            get
-            {
-                if (mAudioChannel == null) mAudioChannel = FindChannel(AudioChannelName);
-                return mAudioChannel; 
-            }
-        }
-
-        internal Channel TextChannel
-        {
-            get
-            {
-                if (mTextChannel == null) mTextChannel = FindChannel(TextChannelName);
-                return mTextChannel;
-            }
-        }
-
-        internal Channel AnnotationChannel
-        {
-            get
-            {
-                if (mAnnotationChannel == null) mAnnotationChannel = FindChannel(AnnotationChannelName);
-                return mAnnotationChannel;
-            }
-        }
-
         private Assets.AssetManager mAssManager;  // the asset manager
         private string mAssPath;                  // the path to the asset manager directory
 
@@ -72,6 +36,9 @@ namespace Obi
         public static readonly string AudioChannelName = "obi.audio";            // canonical name of the audio channel
         public static readonly string TextChannelName = "obi.text";              // canonical name of the text channel
         public static readonly string AnnotationChannelName = "obi.annotation";  // canonical name of the annotation channel
+        private Channel mAudioChannel;                                           // handy pointer to the audio channel
+        private Channel mTextChannel;                                            // handy pointer to the text channel 
+        private Channel mAnnotationChannel;                                      // handy pointer to the annotation channel
 
         public event Events.PhraseNodeHandler AddedPhraseNode;             // a phrase node was added to a strip
         public event Events.PhraseNodeHandler PhraseAudioSet;              // audio on a phrase was set
@@ -123,6 +90,42 @@ namespace Obi
         internal Assets.AssetManager AssetManager
         {
             get { return mAssManager; }
+        }
+
+        /// <summary>
+        /// The audio channel for phrase nodes.
+        /// </summary>
+        internal Channel AudioChannel
+        {
+            get
+            {
+                if (mAudioChannel == null) mAudioChannel = FindChannel(AudioChannelName);
+                return mAudioChannel;
+            }
+        }
+
+        /// <summary>
+        /// The text channel for section nodes.
+        /// </summary>
+        internal Channel TextChannel
+        {
+            get
+            {
+                if (mTextChannel == null) mTextChannel = FindChannel(TextChannelName);
+                return mTextChannel;
+            }
+        }
+
+        /// <summary>
+        /// The annotation channel for phrase nodes.
+        /// </summary>
+        internal Channel AnnotationChannel
+        {
+            get
+            {
+                if (mAnnotationChannel == null) mAnnotationChannel = FindChannel(AnnotationChannelName);
+                return mAnnotationChannel;
+            }
         }
 
         /// <summary>

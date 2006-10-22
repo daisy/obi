@@ -176,7 +176,7 @@ namespace Obi.UserControls
                 Dialogs.Split dialog = new Dialogs.Split(mSelectedPhrase, 0.0);
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    SplitAudioBlockRequested(this, new Events.Node.SplitNodeEventArgs(this, mSelectedPhrase, dialog.ResultAsset));
+                    SplitAudioBlockRequested(this, mSelectedPhrase, dialog.ResultAsset);
                 }
             }
         }
@@ -186,10 +186,10 @@ namespace Obi.UserControls
         /// </summary>
         private void mMergeWithNextAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CoreNode next = Project.GetNextPhrase(mSelectedPhrase);
-            if (next != null)
+            if (mSelectedPhrase != null)
             {
-                MergePhraseNodes(this, new Events.Node.MergeNodesEventArgs(this, mSelectedPhrase, next));
+                PhraseNode next = mSelectedPhrase.NextPhrase;
+                if (next != null) MergePhraseNodes(this, mSelectedPhrase, next);
             }
         }
 
@@ -209,10 +209,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void mDeleteAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mSelectedPhrase != null)
-            {
-                DeleteBlockRequested(this, new Events.Node.NodeEventArgs(this, mSelectedPhrase));
-            }
+            if (mSelectedPhrase != null) DeleteBlockRequested(this, mSelectedPhrase);
         }
 
         /// <summary>
@@ -221,10 +218,7 @@ namespace Obi.UserControls
         //mg 20060813: made internal to allow obiform menu sync access 
         internal void mMoveAudioBlockForwardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mSelectedPhrase != null)
-            {
-                MoveAudioBlockForwardRequested(this, new Events.Node.NodeEventArgs(this, mSelectedPhrase));
-            }
+            if (mSelectedPhrase != null) MoveAudioBlockForwardRequested(this, mSelectedPhrase);
         }
 
         /// <summary>
@@ -233,10 +227,7 @@ namespace Obi.UserControls
         //mg 20060813: made internal to allow obiform menu sync access
         internal void mMoveAudioBlockBackwardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mSelectedPhrase != null)
-            {
-                MoveAudioBlockBackwardRequested(this, new Events.Node.NodeEventArgs(this, mSelectedPhrase));
-            }
+            if (mSelectedPhrase != null) MoveAudioBlockBackwardRequested(this, mSelectedPhrase);
         }
 
         /// <summary>

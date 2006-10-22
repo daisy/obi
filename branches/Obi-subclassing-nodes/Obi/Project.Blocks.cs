@@ -14,6 +14,12 @@ namespace Obi
         public Events.PhraseNodeHandler SetPageNumber;         // page number was set
         public Events.PhraseNodeUpdateTimeHandler UpdateTime;  // time of the audio of a phrase node changed
 
+        /// <summary>
+        /// Directions in which a phrase node can be moved.
+        /// (Should be moved to phrase node actually.)
+        /// </summary>
+        public enum Direction { Forward, Backward };
+
         #region clip board
 
         private PhraseNode mBlockClipBoard;
@@ -136,8 +142,6 @@ namespace Obi
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
 
-        public enum Direction { Forward, Backward };
-
         /// <summary>
         /// Move a phrase node in either direction. May not succeed if there is nowhere to move in that direction.
         /// </summary>
@@ -146,7 +150,7 @@ namespace Obi
             if (CanMovePhraseNode(node, dir))
             {
                 MovePhraseNode(node, dir);
-                Commands.Strips.MovePhrase command = new Commands.Strips.MovePhrase(this, node, dir);
+                Commands.Strips.MovePhrase command = new Commands.Strips.MovePhrase(node, dir);
                 CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             }
         }
@@ -182,6 +186,8 @@ namespace Obi
         /// </summary>
         internal bool DidSetMedia(object origin, CoreNode node, string channel, IMedia media)
         {
+            return false;
+            /*
             ChannelsProperty channelsProp = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
             IList channelsList = channelsProp.getListOfUsedChannels();
             for (int i = 0; i < channelsList.Count; i++)
@@ -199,35 +205,34 @@ namespace Obi
                         command = new Commands.Strips.RenamePhrase(this, node);
                     }
                     channelsProp.setMedia(ch, media);
+                    PhraseAudioSet(origin, node);
                     MediaSet(this, new Events.Node.SetMediaEventArgs(origin, node, channel, media));
                     if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
                     mUnsaved = true;
                     StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-                    // make a command here
                     return true;
                 }
             }
             // the channel was not found when it should have been...
             throw new Exception(String.Format(Localizer.Message("channel_not_found"), channel));
+        
+             */
         }
 
         /// <summary>
         /// Handle a request to split an audio block. The event contains the original node that was split and the new asset
         /// created from the split. A new sibling to the original node is to be added.
         /// </summary>
-        public void SplitAudioBlockRequested(object sender, Events.Node.SplitNodeEventArgs e)
+        public void SplitAudioBlockRequested(object sender, PhraseNode node, Assets.AudioMediaAsset asset)
         {
             PhraseNode newNode = (PhraseNode)
                 getPresentation().getCoreNodeFactory().createNode(PhraseNode.Name, ObiPropertyFactory.ObiNS);
-            newNode.Asset = e.NewAsset;
-            CoreNode parent = (CoreNode)e.Node.getParent();
-            int index = parent.indexOf(e.Node) + 1;
-            parent.insert(newNode, index);
-            UpdateSeq(e.Node);
-            MediaSet(this, new Events.Node.SetMediaEventArgs(e.Origin, e.Node, AudioChannelName,
-                GetMediaForChannel(e.Node, AudioChannelName)));
+            newNode.Asset = asset;
+            node.ParentSection.AddChildPhraseAfter(node, newNode);
+            node.UpdateSeq();
+            PhraseAudioSet(sender, node);
             AddedPhraseNode(sender, newNode);
-            Commands.Strips.SplitPhrase command = new Commands.Strips.SplitPhrase(this, e.Node, newNode);
+            Commands.Strips.SplitPhrase command = new Commands.Strips.SplitPhrase(this, node, newNode);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -249,16 +254,15 @@ namespace Obi
 
         internal void ContinuingRecordingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e, CoreNode parent, int index)
         {
-            CoreNode phrase = parent.getChild(index + e.PhraseIndex);
-            UpdateTime(this, new Events.Strip.UpdateTimeEventArgs(phrase, e.Time));            
+            PhraseNode phrase = ((SectionNode)parent).PhraseChild(index);
+            UpdateTime(this, phrase, e.Time);
         }
 
-        internal void FinishRecordingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e, CoreNode parent, int index)
+        internal void FinishRecordingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e, SectionNode parent, int index)
         {
-            CoreNode phrase = parent.getChild(index + e.PhraseIndex);
-            UpdateSeq(phrase);
-            MediaSet(this, new Events.Node.SetMediaEventArgs(this, phrase, AudioChannelName,
-                GetMediaForChannel(phrase, AudioChannelName)));
+            PhraseNode phrase = parent.PhraseChild(index + e.PhraseIndex);
+            phrase.UpdateSeq();
+            PhraseAudioSet(this, phrase);
         }
 
         #endregion
@@ -320,16 +324,15 @@ namespace Obi
         /// <summary>
         /// Delete a phrase node from the tree and remove its asset from the asset manager.
         /// </summary>
-        public Commands.Command DeletePhraseNodeAndAsset(PhraseNode node)
+        /// <param name="node">The phrase node to delete.</param>
+        /// <returns>The delete command created by the deletion.</returns>
+        public Commands.Strips.DeletePhrase DeletePhraseNodeAndAsset(PhraseNode node)
         {
             //md 20060814 added this command return value here so we have a record of it
             //for shallow-delete's undo
             //but note that it hasn't gone to the main command queue
             Commands.Strips.DeletePhrase command = null;
-            if (node.getParent() != null)
-            {
-                command = new Commands.Strips.DeletePhrase(this, node, node.ParentSection, node.PhraseIndex);
-            }
+            if (node.getParent() != null) command = new Commands.Strips.DeletePhrase(node);
             mAssManager.RemoveAsset(node.Asset);
             DeletePhraseNode(node);
             return command;
@@ -381,10 +384,10 @@ namespace Obi
         /// <summary>
         /// Move a phrase node in the given direction.
         /// </summary>
-        public void MovePhraseNode(CoreNode node, Direction dir)
+        public void MovePhraseNode(PhraseNode node, Direction dir)
         {
-            int index = GetPhraseIndex(node);
-            CoreNode parent = (CoreNode)node.getParent();
+            int index = node.PhraseIndex;
+            SectionNode parent = node.ParentSection;
             DeletePhraseNode(node);
             AddPhraseNode(node, parent, dir == Direction.Forward ? index + 1 : index - 1);
         }

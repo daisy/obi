@@ -17,26 +17,40 @@ namespace Obi.Events.Node
     /// </summary>
     public class SetMediaEventArgs
     {
-        private string mChannel;  // the channel on which to set
-        private IMedia mMedia;    // the media object
-        private bool mCancel;     // can be cancelled
+        private string mChannel;
+        private IMedia mMedia;
+        private bool mCancel;
 
+        /// <summary>
+        /// The channel on which the media is to be set.
+        /// </summary>
         public string Channel
         {
             get { return mChannel; }
         }
 
+        /// <summary>
+        /// The media object to set.
+        /// </summary>
         public IMedia Media
         {
             get { return mMedia; }
         }
 
+        /// <summary>
+        /// If this flag is true, the event is cancelled.
+        /// </summary>
         public bool Cancel
         {
             get { return mCancel; }
             set { mCancel = value; }
         }
 
+        /// <summary>
+        /// Create a new event.
+        /// </summary>
+        /// <param name="channel">The channel on which to set a media object.</param>
+        /// <param name="media">The media object to set on this channel.</param>
         public SetMediaEventArgs(string channel, IMedia media)
         {
             mChannel = channel;

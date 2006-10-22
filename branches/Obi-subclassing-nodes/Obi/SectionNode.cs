@@ -214,6 +214,17 @@ namespace Obi
         }
 
         /// <summary>
+        /// Add a new child phrase after an existing child phrase.
+        /// </summary>
+        /// <param name="node">The existing child phrase after which to add.</param>
+        /// <param name="newNode">The new child phrase to add.</param>
+        internal void AddChildPhraseAfter(PhraseNode node, PhraseNode newNode)
+        {
+            insertAfter(node, newNode);
+            ++mSectionOffset;
+        }
+
+        /// <summary>
         /// Remove a child phrase.
         /// </summary>
         /// <param name="node"></param>
