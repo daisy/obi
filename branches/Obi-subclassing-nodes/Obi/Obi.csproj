@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Assets\AssetManager.cs" />
     <Compile Include="Assets\AudioClip.cs" />
+    <Compile Include="Assets\Exceptions.cs" />
     <Compile Include="Audio\AudioDevice.cs" />
     <Compile Include="Assets\AudioMediaAsset.cs" />
     <Compile Include="Audio\AudioPlayer.cs" />

@@ -5,17 +5,11 @@ using System.IO;
 namespace Obi.Assets
 {
     /// <summary>
-    /// Only Audio is known at the moment. Anything else is "other" and out of scope.
-    /// </summary>
-    public enum MediaType { Audio, Other };
-
-    /// <summary>
     /// Base class for media assets.
     /// </summary>
     public abstract class MediaAsset
     {
         protected string mName;
-        protected MediaType mMediaType;
         protected long mSizeInBytes;
         internal AssetManager mAssManager;
 
@@ -26,14 +20,6 @@ namespace Obi.Assets
         {
             get { return mName; }
             set { mName = value; }
-        }
-
-        /// <summary>
-        /// Type of the asset.
-        /// </summary>
-        public MediaType Type
-        {
-            get { return mMediaType; }
         }
 
         /// <summary>
@@ -57,7 +43,7 @@ namespace Obi.Assets
         /// <summary>
         /// Copy the asset.
         /// </summary>
-        /// <returns>The copy</returns>
+        /// <returns>The copy.</returns>
         public abstract MediaAsset Copy();
 
         /// <summary>
@@ -67,6 +53,7 @@ namespace Obi.Assets
 
         /// <summary>
         /// Merge with another asset (normally, the next one in sequence.)
+        /// The asset is modified in place.
         /// </summary>
         /// <param name="next">The asset to merge with.</param>
         public abstract void MergeWith(MediaAsset next);

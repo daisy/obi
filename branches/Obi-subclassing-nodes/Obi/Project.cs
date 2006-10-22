@@ -546,7 +546,7 @@ namespace Obi
         internal void DumpAssManager()
         {
             System.Diagnostics.Debug.Print("Managed assets:");
-            foreach (string name in mAssManager.GetAssets(Assets.MediaType.Audio).Keys)
+            foreach (string name in mAssManager.GetAssets(typeof(Assets.AudioMediaAsset)).Keys)
             {
                 System.Diagnostics.Debug.Print("* {0}", name);
             }

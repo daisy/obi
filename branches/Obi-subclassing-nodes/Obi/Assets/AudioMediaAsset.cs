@@ -6,12 +6,9 @@ using System.Collections.Generic;
 
 namespace Obi.Assets
 {
+    // ***NEEDS REVIEW***
     public class AudioMediaAsset : MediaAsset
     {
-        // member variables
-        //ArrayList is to be finally changed to internal
-        // changed to mClips--see below (JQ)
-        //public ArrayList m_alClipList = new ArrayList();
         private int m_Channels;
         private int m_BitDepth;
         private int m_SamplingRate;
@@ -78,7 +75,6 @@ namespace Obi.Assets
                 m_BitDepth = bitDepth;
                 m_SamplingRate = sampleRate;
                 m_FrameSize = (m_BitDepth / 8) * m_Channels;
-                mMediaType = MediaType.Audio;
                 mClips = new List<AudioClip>();
             }
             else
@@ -94,7 +90,6 @@ namespace Obi.Assets
         {
             if (clips != null)
             {
-                mMediaType = MediaType.Audio;
                 AudioClip ob_AudioClip = clips[0] as AudioClip;
                 m_Channels = ob_AudioClip.Channels;
                 m_BitDepth = ob_AudioClip.BitDepth;
@@ -130,7 +125,6 @@ namespace Obi.Assets
         public override Assets.MediaAsset Copy()
         {
             AudioMediaAsset ob_AudioMediaAsset = new AudioMediaAsset(this.Channels, this.BitDepth, this.SampleRate);
-            ob_AudioMediaAsset.mMediaType = mMediaType;
             //if (this.Name != null) 
 
             // The copy is not managed yet. It keeps the same name as the original and has no assigned manager.

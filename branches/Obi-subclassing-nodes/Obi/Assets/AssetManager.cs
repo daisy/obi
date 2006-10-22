@@ -1,6 +1,4 @@
 using System;
-using System.Windows.Forms;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
@@ -51,6 +49,7 @@ namespace Obi.Assets
         /// The directory is created if it didn't exist; an exception is raised if a problem occurs.
         /// </summary>
         /// <param name="assetsDirectory">Absolute path to the assets directory.</param>
+        /// <exception cref="CannotCreateDirectoryException"/>
         public AssetManager(string assetsDirectory)
         {
             UriBuilder builder = new UriBuilder();
@@ -70,7 +69,7 @@ namespace Obi.Assets
                 }
                 catch (Exception e)
                 {
-                    throw new Exception(String.Format(Localizer.Message("project_directory_creation_error"), mAssetsDirectory), e);
+                    throw new CannotCreateDirectoryException(mAssetsDirectory, e);
                 }
             }
         }
@@ -78,10 +77,10 @@ namespace Obi.Assets
         /// <summary>
         /// Create a new empty AudioMediaAsset object with the given parameters and add it to the list of managed assets.
         /// </summary>
-        /// <param name="channels">Number of channels</param>
-        /// <param name="bitDepth">Bit depth</param>
-        /// <param name="sampleRate">Sample rate</param>
-        /// <returns>The newly created asset.</returns>
+        /// <param name="channels">Number of channels (1 or 2.)</param>
+        /// <param name="bitDepth">Bit depth (8 or 16.)</param>
+        /// <param name="sampleRate">Sample rate in Hertz (up to 48000)</param>
+        /// <returns>The named and managed asset.</returns>
         public AudioMediaAsset NewAudioMediaAsset(int channels, int bitDepth, int sampleRate)
         {
             return (AudioMediaAsset)NameAddAsset(new AudioMediaAsset(channels, bitDepth, sampleRate));
@@ -90,9 +89,8 @@ namespace Obi.Assets
         /// <summary>
         /// Create a new AudioMediaAsset object from a list of clips and add it to the list of managed assets.
         /// </summary>
-        /// <param name="clips">The array of <see cref="AudioClip"/>s.</param>
-        /// <returns>The newly created asset.</returns>
-        //public AudioMediaAsset NewAudioMediaAsset(ArrayList clips)
+        /// <param name="clips">The list of <see cref="AudioClip"/>s.</param>
+        /// <returns>The named and managed asset.</returns>
         public AudioMediaAsset NewAudioMediaAsset(List<AudioClip> clips)
         {
             AudioMediaAsset asset = (AudioMediaAsset)NameAddAsset(new AudioMediaAsset(clips));
@@ -104,35 +102,34 @@ namespace Obi.Assets
         /// Its file is copied to the asset manager directory.
         /// </summary>
         /// <param name="path">The path of the file to import.</param>
-        /// <returns>The asset created.</returns>
+        /// <returns>The named and managed asset.</returns>
         public AudioMediaAsset ImportAudioMediaAsset(string path)
         {
             List<AudioClip> clips = new List<AudioClip>(1);
             AudioClip clip = AudioClip.ImportClip(path, this);
             clips.Add(clip);
             AudioMediaAsset asset = NewAudioMediaAsset(clips);
-            if (!mFiles.ContainsKey(clip.Path)) mFiles[clip.Path] = new List<AudioClip>();
-            mFiles[clip.Path].Add(clip);
+            AddClip(clip);
             return asset;
         }
 
         /// <summary>
         /// Try to add an existing asset.
-        /// Throw an exception if it was already managed.
         /// </summary>
         /// <param name="asset">The asset to add.</param>
-        /// <returns>True if the asset could be added.</returns>
+        /// <returns>True if the asset could be added; normally it shouldn't return false.</returns>
+        /// <exception cref="AlreadyManagedAssetException"/>
         public bool AddAsset(MediaAsset asset)
 		{
             if (asset.Manager != null)
             {
-                throw new Exception(String.Format("Asset {0} is already managed.", asset.Name));
+                throw new AlreadyManagedAssetException(asset);
             }
             if (!mAssets.ContainsKey(asset.Name))
             {
                 mAssets.Add(asset.Name, asset);
                 asset.Manager = this;
-                if (asset.Type == MediaType.Audio)
+                if (asset.GetType() == typeof(AudioMediaAsset))
                 {
                     foreach (AudioClip clip in ((AudioMediaAsset)asset).Clips)
                     {
@@ -149,15 +146,26 @@ namespace Obi.Assets
         /// Get a dictionary of all managed assets of a given type.
         /// Currenty, only audio assets are managed.
         /// </summary>
-        public Dictionary<string, MediaAsset> GetAssets(MediaType type)
+        /// <param name="type">The required media asset type.</param>
+        /// <returns>A dictionary of assets.</returns>
+        /// <exception cref="UnsupportedMediaTypeException"/>
+        public Dictionary<string, MediaAsset> GetAssets(Type type)
         {
-            return type == MediaType.Audio ? mAssets : new  Dictionary<string, MediaAsset>();
+            if (type == typeof(AudioMediaAsset))
+            {
+                return mAssets;
+            }
+            else
+            {
+                throw new UnsupportedMediaTypeException(type);
+            }
         }
 
         /// <summary>
         /// Get a managed asset given its name.
-        /// Return null if no such asset is found.
         /// </summary>
+        /// <param name="name">Name of the requested asset.</param>
+        /// <returns>The managed asset with this name, or null if none is found.</returns>
 		public Assets.MediaAsset GetAsset(string name)
         {
             return mAssets.ContainsKey(name) ? mAssets[name] : null;
@@ -165,15 +173,17 @@ namespace Obi.Assets
 
         /// <summary>
         /// Remove a managed asset.
-        /// Throw an exception if the asset was not managed in the first place.
+        /// When an audio asset is removed, its clip files are removed as well.
         /// </summary>
+        /// <param name="asset">The asset to remove.</param>
+        /// <exception cref="UnmanagedAssetException"/>
         public void RemoveAsset(MediaAsset asset)
 		{
             if (!mAssets.ContainsKey(asset.Name))
             {
-                throw new Exception(String.Format("Asset {0} is not managed, cannot remove.", asset.Name));
+                throw new UnmanagedAssetException(asset);
             }
-            if (asset.Type == MediaType.Audio)
+            if (asset.GetType() == typeof(AudioMediaAsset))
             {
                 foreach (AudioClip clip in ((AudioMediaAsset)asset).Clips)
                 {
@@ -185,11 +195,11 @@ namespace Obi.Assets
 		}
 
         /// <summary>
-        /// Delete a managed asset (remove first, then actually delete.)
-        /// Throw an exception if the asset was not managed in the first place.
+        /// Delete a managed asset. The asset is removed from the manager, then actually deleted.
         /// </summary>
-        /// <param name="assetToDelete"></param>
-		public void DeleteAsset(Assets.MediaAsset asset)
+        /// <param name="asset">The asset to delete.</param>
+        /// <exception cref="UnmanagedAssetException"/>
+        public void DeleteAsset(Assets.MediaAsset asset)
 		{
             RemoveAsset(asset);
             asset.Delete();
@@ -198,7 +208,8 @@ namespace Obi.Assets
         /// <summary>
         /// Copy a(n un)managed asset and add the (renamed) copy to the manager.
         /// </summary>
-        /// <returns>The copy.</returns>
+        /// <param name="asset">The asset to copy.</param>
+        /// <returns>The renamed and managed copy.</returns>
 		public MediaAsset CopyAsset(MediaAsset asset)
 		{
             MediaAsset copy = asset.Copy();
@@ -208,8 +219,10 @@ namespace Obi.Assets
 		}
 
         /// <summary>
-        /// Rename the copy of an asset, keeping a name as close to the original asset as possible.
+        /// Since the name of an asset must be unique in the manager, this function renames
+        /// the copy of an asset so that there is no confusion between original and copy.
         /// </summary>
+        /// <param name="asset">The asset to rename.</param>
         private void RenameCopy(MediaAsset asset)
         {
             while (mAssets.ContainsKey(asset.Name))
@@ -219,12 +232,15 @@ namespace Obi.Assets
         }
 
         /// <summary>
-        /// Try to rename an asset handled by the asset manager.
-        /// If the new name is taken, no change occurs.
-        /// Throw an exception if the asset could not be found in the table.
+        /// When we want to rename an asset, we have to make sure that there doesn't already
+        /// exist another asset with the same name in the manager. If the new name is taken,
+        /// no change occurs.
         /// </summary>
-        /// <returns>The old name before the change.</returns>
-		public string RenameAsset(MediaAsset asset, String newName)
+        /// <param name="asset">The asset to rename (which still has its old name.)</param>
+        /// <param name="newName">The requested new name.</param>
+        /// <returns>The name before the possible change.</returns>
+        /// <exception cref="UnmanagedAssetException"/>
+        public string RenameAsset(MediaAsset asset, String newName)
         {
             AssertAssetIsManaged(asset);
             string oldName = asset.Name;
@@ -238,26 +254,16 @@ namespace Obi.Assets
         }
 
         /// <summary>
-        /// Name and add an asset to the manager.
+        /// Add an asset to the manager and give it a unique name.
         /// </summary>
         /// <param name="asset">The (unnamed) asset to add.</param>
         /// <returns>The same asset with a new name and now managed.</returns>
+        /// <exception cref="AlreadyManagedAssetException"/>
         private MediaAsset NameAddAsset(MediaAsset asset)
         {
             asset.Name = UniqueName();
             AddAsset(asset);
             return asset;
-            /*asset.Manager = this;
-            mAssets.Add(asset.Name, asset);
-            if (asset.Type == MediaType.Audio)
-            {
-                foreach (AudioClip clip in ((AudioMediaAsset)asset).Clips)
-                {
-                    if (!mFiles.ContainsKey(clip.Path)) mFiles[clip.Path] = new List<AudioClip>();
-                    mFiles[clip.Path].Add(clip);
-                }
-            }
-            return asset;*/
         }
 
         /// <summary>
@@ -280,6 +286,7 @@ namespace Obi.Assets
         /// Generate a unique file name for a clip.
         /// </summary>
         /// <param name="ext">The file extension (including leading dot, allows for no extension.)</param>
+        /// <returns>The generated name.</returns>
         public string UniqueFileName(string ext)
         {
             string name;
@@ -293,12 +300,12 @@ namespace Obi.Assets
         }
 
         /// <summary>
-        /// Rename the asset with the given name and insure that rename takes place.
-        /// If the name is not available, generate a new name using the given name as a basis (e.g. "Foo*" if "Foo" is taken.)
+        /// Rename the asset with the given name and insure that renaming takes place.
+        /// If the name is not available, generate a new name using the given name as a basis.
         /// </summary>
         /// <param name="asset">The asset to rename; must be managed.</param>
         /// <param name="name">The new name for the asset.</param>
-        /// <exception cref="Exception"/>
+        /// <exception cref="UnmanagedAssetException"/>
         public void InsureRename(MediaAsset asset, string name)
         {
             AssertAssetIsManaged(asset);
@@ -312,28 +319,31 @@ namespace Obi.Assets
         /// Assert that an asset is managed, i.e. there is an asset with the name in the manager and it is this one.
         /// </summary>
         /// <param name="asset">The asset to check.</param>
-        /// <exception cref="Exception"/>
+        /// <exception cref="UnmanagedAssetException"/>
         private void AssertAssetIsManaged(MediaAsset asset)
         {
             if (!mAssets.ContainsKey(asset.Name))
             {
-                throw new Exception(String.Format("No asset named `{0}' in the manager", asset.Name));
+                throw new UnmanagedAssetException(asset);
             }
             if (asset != mAssets[asset.Name])
             {
-                throw new Exception(String.Format("Asset named `{0}' differs from asset with the same name in the manager.",
-                    asset.Name));
+                throw new UnmanagedAssetException(asset,
+                    String.Format("Asset named `{0}' differs from asset with the same name in the manager.", asset.Name));
             }
             if (asset.Manager != this)
             {
-                throw new Exception(String.Format("Asset named `{0}' does not think it is managed by the current asset manager.",
-                    asset.Name));
+                throw new UnmanagedAssetException(asset,
+                    String.Format("Asset named `{0}' does not think it is managed by the current asset manager.", asset.Name));
             }
         }
 
         /// <summary>
         /// Get a list of all unsued file paths in the asset directory.
+        /// All clips that were backed by these files have been deleted
+        /// so the files themselves can be safely deleted. 
         /// </summary>
+        /// <returns>The list of file paths.</returns>
         public List<string> UnusedFilePaths()
         {
             List<string> unused = new List<string>();
@@ -345,28 +355,29 @@ namespace Obi.Assets
         }
 
         /// <summary>
-        /// Split an audio asset at a given time and add the result to the manager with a correct name.
+        /// Split an audio asset at a given time and add the result to the manager with a unique name.
         /// </summary>
+        /// <param name="asset">The asset to split.</param>
+        /// <param name="time">The time in milliseconds when the split occurs.</param>
         /// <returns>The new asset.</returns>
+        /// <exception cref="AlreadyManagedAssetException"/>
         public AudioMediaAsset SplitAudioMediaAsset(AudioMediaAsset asset, double time)
         {
-            /*if (asset.Type == MediaType.Audio)
-            {
-                foreach (AudioClip clip in ((AudioMediaAsset)asset).Clips)
-                {
-                    if (!mFiles.ContainsKey(clip.Path)) mFiles[clip.Path] = new List<AudioClip>();
-                    mFiles[clip.Path].Add(clip);
-                }
-            }*/
             return (AudioMediaAsset)NameAddAsset(asset.Split(time));
         }
 
         /// <summary>
         /// Merge two audio assets. The first one is modified in place.
-        /// The second one is not managed any more, but its files are still there so there is no change.
+        /// The second one is not managed any more, but its files are still
+        /// there so there is no change as far as clips are concerned.
         /// </summary>
+        /// <param name="asset">The asset to modify.</param>
+        /// <param name="next">The asset that it merges with.</param>
+        /// <exception cref="UnmanagedAssertException"/>
         internal void MergeAudioMediaAssets(AudioMediaAsset asset, AudioMediaAsset next)
         {
+            AssertAssetIsManaged(asset);
+            AssertAssetIsManaged(next);
             asset.MergeWith(next);
             mAssets.Remove(next.Name);
             next.Manager = null;
@@ -375,7 +386,8 @@ namespace Obi.Assets
         /// <summary>
         /// A clip was added to a managed asset.
         /// </summary>
-        internal void AddedClip(AudioClip clip)
+        /// <param name="clip">The added clip.</param>
+        internal void AddClip(AudioClip clip)
         {
             if (!mFiles.ContainsKey(clip.Path)) mFiles[clip.Path] = new List<AudioClip>();
             mFiles[clip.Path].Add(clip);
