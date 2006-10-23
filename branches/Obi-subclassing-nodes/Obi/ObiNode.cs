@@ -54,7 +54,7 @@ namespace Obi
         /// </summary>
         protected override bool XUKOutAttributes(System.Xml.XmlWriter wr)
         {
-            wr.WriteAttributeString("id", "n_" + mId.ToString());
+            if (!mUsed) wr.WriteAttributeString("used", "no");
             return base.XUKOutAttributes(wr);
         }
 
@@ -63,8 +63,8 @@ namespace Obi
         /// </summary>
         protected override bool XUKInAttributes(System.Xml.XmlReader source)
         {
-            string id = source.GetAttribute("id");
-            mId = System.Int32.Parse(id.Substring(2));  // the id is of the form "n_xxx"
+            string used = source.GetAttribute("used");
+            if (used != null && used == "no") mUsed = false;
             return base.XUKInAttributes(source);
         }
 

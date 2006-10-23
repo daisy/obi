@@ -45,27 +45,35 @@ namespace Obi
         // (As well as a state change event.)
 
         /// <summary>
-        /// Create a sibling section for a given section.
-        /// The context node may be null if this is the first node that is added, in which case
-        /// we add a new child to the root (and not a sibling.)
+        /// Create a new sibling section.
         /// </summary>
-        public void CreateSiblingSectionNode(object origin, SectionNode contextNode)
+        /// <param name="sender">Sender of the original event; passed down to further events.</param>
+        /// <param name="contextNode">Context node for the creating of the sibling.
+        /// If null, the new section is created as first child of the root.</param>
+        public void CreateSiblingSectionNode(object sender, SectionNode contextNode)
         {
             CoreNode parent = (CoreNode)(contextNode == null ? getPresentation().getRootNode() : contextNode.getParent());
             SectionNode sibling = (SectionNode)
                 getPresentation().getCoreNodeFactory().createNode(SectionNode.Name, ObiPropertyFactory.ObiNS);
             if (contextNode == null)
             {
+                // first node ever
                 parent.appendChild(sibling);
+            }
+            else if (parent.GetType() == typeof(CoreNode))
+            {
+                // direct child of the root
+                parent.insertAfter(sibling, contextNode);
             }
             else
             {
+                // child of another section
                 ((SectionNode)parent).AddChildSectionAfter(sibling, contextNode);
             }
-            AddedSectionNode(origin, sibling);
+            AddedSectionNode(sender, sibling);
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-            Commands.TOC.AddSectionNode command = new Commands.TOC.AddSectionNode(sibling, parent, sibling.SectionIndex);
+            Commands.TOC.AddSectionNode command = new Commands.TOC.AddSectionNode(sibling);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
@@ -92,7 +100,7 @@ namespace Obi
             AddedSectionNode(origin, child);
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-            Commands.TOC.AddSectionNode command = new Commands.TOC.AddSectionNode(child, parent, child.SectionIndex);
+            Commands.TOC.AddSectionNode command = new Commands.TOC.AddSectionNode(child);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
@@ -135,7 +143,7 @@ namespace Obi
         /// </summary>
         //md
         //the command value is returned so it can be used in UndoShallowDelete's undo list
-        public Commands.Command RemoveNode(object origin, SectionNode node)
+        public Commands.Command RemoveNode(object sender, SectionNode node)
         {
             Commands.TOC.DeleteSectionNode command = null;
             if (node != null)
@@ -144,11 +152,11 @@ namespace Obi
                 //because its undo fn is required by UndoShallowDelete
                 command = new Commands.TOC.DeleteSectionNode(node);
                 node.DetachFromParent();
-                DeletedSectionNode(this, new Events.Node.Section.EventArgs(origin, node));
+                DeletedSectionNode(this, new Events.Node.Section.EventArgs(sender, node));
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
                 //md: added condition "origin != this" to accomodate the change made above
-                if (command != null && origin != this) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+                if (command != null && sender != this) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             }
             return command;
         }

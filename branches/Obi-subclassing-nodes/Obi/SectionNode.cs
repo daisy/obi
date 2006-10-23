@@ -46,11 +46,17 @@ namespace Obi
             }
         }
 
+        /// <summary>
+        /// Number of phrase children.
+        /// </summary>
         public int PhraseChildCount
         {
             get { return mSectionOffset; }
         }
 
+        /// <summary>
+        /// Number of section children.
+        /// </summary>
         public int SectionChildCount
         {
             get { return getChildCount() - mSectionOffset; }

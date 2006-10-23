@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 using urakawa.core;
 using urakawa.media;
+
+using Obi.Assets;
 
 namespace Obi
 {
@@ -22,8 +22,8 @@ namespace Obi
     /// </summary>
     public partial class Project : urakawa.project.Project
     {
-        private Assets.AssetManager mAssManager;  // the asset manager
-        private string mAssPath;                  // the path to the asset manager directory
+        private AssetManager mAssManager;  // the asset manager
+        private string mAssPath;           // the path to the asset manager directory
 
         private bool mUnsaved;               // saved flag
         private string mXUKPath;             // path to the project XUK file
@@ -39,12 +39,12 @@ namespace Obi
         private Channel mAnnotationChannel;                                      // handy pointer to the annotation channel
 
         public event Events.PhraseNodeHandler AddedPhraseNode;             // a phrase node was added to a strip
-        public event Events.PhraseNodeHandler PhraseAudioSet;              // audio on a phrase node was set
-        public event Events.PhraseNodeHandler PhraseAnnotationSet;         // annotation on a phrase node was set (will disappear)
-        public event Events.PhraseNodeHandler DeletedPhraseNode;           // a phrase node was deleted
-        public event Events.PhraseNodeHandler TouchedPhraseNode;           // this node was somehow modified
-        public event Events.Project.StateChangedHandler StateChanged;      // the state of the project changed (modified, saved)
         public event Events.Project.CommandCreatedHandler CommandCreated;  // a new command must be added to the command manager       
+        public event Events.PhraseNodeHandler DeletedPhraseNode;           // a phrase node was deleted
+        public event Events.PhraseNodeHandler PhraseAnnotationSet;         // annotation on a phrase node was set (will disappear)
+        public event Events.PhraseNodeHandler PhraseAudioSet;              // audio on a phrase node was set
+        public event Events.Project.StateChangedHandler StateChanged;      // the state of the project changed (modified, saved)
+        public event Events.PhraseNodeHandler TouchedPhraseNode;           // this node was somehow modified
         
         /// <summary>
         /// This flag is set to true if the project contains modifications that have not been saved.
@@ -71,7 +71,7 @@ namespace Obi
         }
 
         /// <summary>
-        /// For debug purposes--should go away.
+        /// Convenience property to get the root of the presentation of this project.
         /// </summary>
         public CoreNode RootNode
         {
@@ -79,14 +79,17 @@ namespace Obi
         }
 
         /// <summary>
-        /// Last path under which the project was saved (different from the normal path when we save as)
+        /// Last path under which the project was saved (different from the normal path when we save as.)
         /// </summary>
         public string LastPath
         {
             get { return mLastPath; }
         }
 
-        internal Assets.AssetManager AssetManager
+        /// <summary>
+        /// Asset manager for this project.
+        /// </summary>
+        internal AssetManager AssetManager
         {
             get { return mAssManager; }
         }
@@ -131,6 +134,7 @@ namespace Obi
         /// Convenience method for creating a new blank project. Actually create a presentation first so that we can use our own
         /// core node factory and custom property factory.
         /// </summary>
+        /// <returns>The newly created, blank project.</returns>
         public static Project BlankProject()
         {
             ObiNodeFactory nodeFactory = new ObiNodeFactory();
@@ -143,6 +147,7 @@ namespace Obi
         /// <summary>
         /// Create a blank project from a seed presentation and using the default metadata factory.
         /// </summary>
+        /// <param name="presentation">The presentation for this project.</param>
         private Project(Presentation presentation)
             : base(presentation, null)
         {
@@ -172,7 +177,7 @@ namespace Obi
             mXUKPath = xukPath;
             mAssPath = GetAssetDirectory(xukPath);
             mAssManager = new Assets.AssetManager(mAssPath);
-            mAssPath = (new Uri(xukPath)).MakeRelativeUri(new Uri(mAssPath)).ToString();
+            mAssPath = (new Uri(xukPath)).MakeRelativeUri(new Uri(mAssPath)).ToString();  // kludgy? maybe
 
             // Create metadata and channels
             ChannelFactory factory = presentation.getChannelFactory();
@@ -185,8 +190,9 @@ namespace Obi
             mAnnotationChannel = factory.createChannel(AnnotationChannelName);
             manager.addChannel(mAnnotationChannel);
 
-            // Clear the clipboard
+            // Clear the clipboards
             mTOCClipboard = null;
+            mBlockClipBoard = null;
 
             // Create a title section if necessary
             if (createTitle)

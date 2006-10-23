@@ -21,11 +21,11 @@ namespace Obi.Commands.TOC
         /// Create a new "add section" command from the new section node, the parent node and the index of the new section.
         /// The command is created once the section has actually been added.
         /// </summary>
-        public AddSectionNode(SectionNode node, CoreNode parent, int index)
+        public AddSectionNode(SectionNode node)
         {
             mNode = node;
-            mParent = parent;
-            mIndex = index;
+            mParent = (CoreNode)node.getParent();
+            mIndex = node.SectionIndex;
         }
 
         /// <summary>
