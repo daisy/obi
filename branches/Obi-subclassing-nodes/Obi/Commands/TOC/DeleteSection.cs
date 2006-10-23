@@ -8,20 +8,20 @@ namespace Obi.Commands.TOC
 {
     class DeleteSectionNode : Command
     {
-        private SectionNode mNode;  // the deleted node
-        private CoreNode mParent;   // parent of the deleted node
-        private int mIndex;         // index of the deleted node
+        protected SectionNode mNode;    // the deleted section node
+        protected SectionNode mParent;  // parent of the deleted node
+        protected int mIndex;           // index of the deleted node
 
         public override string Label
         {
             get { return Localizer.Message("delete_section_command_label"); }
         }
 
-        public DeleteSectionNode(SectionNode node, CoreNode parent, int index)
+        public DeleteSectionNode(SectionNode node)
         {
             mNode = node;
-            mParent = parent;
-            mIndex = index;
+            mParent = node.ParentSection;
+            mIndex = node.SectionIndex;
         }
 
         /// <summary>

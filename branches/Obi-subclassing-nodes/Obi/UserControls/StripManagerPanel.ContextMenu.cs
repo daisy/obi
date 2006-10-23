@@ -14,17 +14,19 @@ namespace Obi.UserControls
 {
     public partial class StripManagerPanel
     {
+        public event Events.PhraseNodeHandler RequestToCopyPhraseNode;
+        public event Events.PhraseNodeHandler RequestToCutPhraseNode;
+        public event Events.ObiNodeHandler RequestToPastePhraseNode;
+        public event Events.PhraseNodeHandler RequestToRemovePageNumber;
+        public event Events.SetPageNumberHandler RequestToSetPageNumber;
+        public event Events.SectionNodeHandler RequestToShallowDeleteSectionNode;
+
+
         //md
-        public event Events.Node.RequestToShallowDeleteSectionNodeHandler RequestToShallowDeleteSectionNode;
         public event Events.Node.RequestToMoveSectionNodeDownLinearHandler RequestToMoveSectionNodeDownLinear;
         public event Events.Node.RequestToMoveSectionNodeUpLinearHandler RequestToMoveSectionNodeUpLinear;
 
-        public event Events.Node.RequestToCutPhraseNodeHandler RequestToCutPhraseNode;
-        public event Events.Node.RequestToCopyPhraseNodeHandler RequestToCopyPhraseNode;
-        public event Events.Node.RequestToPastePhraseNodeHandler RequestToPastePhraseNode;
 
-        public Events.Node.RequestToSetPageNumberHandler RequestToSetPageNumber;
-        public Events.Node.RequestToRemovePageNumberHandler RequestToRemovePageNumber;
         
         /// <summary>
         /// Enable/disable items depending on what is currently available.
@@ -252,7 +254,7 @@ namespace Obi.UserControls
         //mg 20060813: made internal to allow obiform menu sync access
         internal void deleteStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToShallowDeleteSectionNode(this, new Events.Node.NodeEventArgs(this, this.mSelectedSection));
+            RequestToShallowDeleteSectionNode(sender, mSelectedSection);
         }
 
         //md 20060812
@@ -278,7 +280,7 @@ namespace Obi.UserControls
         {
             if (mSelectedPhrase != null)
             {
-                RequestToCutPhraseNode(this, new Events.Node.NodeEventArgs(sender, mSelectedPhrase));
+                RequestToCutPhraseNode(sender, mSelectedPhrase);
             }
         }
 
@@ -291,7 +293,7 @@ namespace Obi.UserControls
         {
             if (mSelectedPhrase != null)
             {
-                RequestToCopyPhraseNode(this, new Events.Node.NodeEventArgs(sender, mSelectedPhrase));
+                RequestToCopyPhraseNode(sender, mSelectedPhrase);
             }
         }
 
@@ -307,9 +309,9 @@ namespace Obi.UserControls
                 // currently selected section if no block is selected.
                 // (A bit verbose, but the compiler chokes on:
                 // mSelectedPhrase == null ? mSelectedSection : mSelectedPhrase)
-                CoreNode sectionOrPhrase = mSelectedSection;
+                ObiNode sectionOrPhrase = mSelectedSection;
                 if (mSelectedPhrase != null) sectionOrPhrase = mSelectedPhrase;
-                RequestToPastePhraseNode(this, new Events.Node.NodeEventArgs(sender, sectionOrPhrase));
+                RequestToPastePhraseNode(sender, sectionOrPhrase);
             }
         }
 
@@ -337,7 +339,7 @@ namespace Obi.UserControls
                 PageProperty pageProp = mSelectedPhrase.getProperty(typeof(PageProperty)) as PageProperty;
                 if (pageProp != null && pageProp.getOwner() != null)
                 {
-                    RequestToRemovePageNumber(this, new Events.Node.NodeEventArgs(sender, mSelectedPhrase));
+                    RequestToRemovePageNumber(sender, mSelectedPhrase);
                 }
             }
         }

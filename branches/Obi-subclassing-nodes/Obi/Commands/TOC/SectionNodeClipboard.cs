@@ -6,22 +6,16 @@ using urakawa.core;
 
 namespace Obi.Commands.TOC
 {
-    class CutSectionNode : Command
+    class CutSectionNode : DeleteSectionNode
     {
-        private SectionNode mNode;
-        private CoreNode mParent;
-        private int mIndex;
-        
         public override string Label
         {
             get { return Localizer.Message("cut_section_command_label"); }
         }
 
-        public CutSectionNode(SectionNode node, CoreNode parent, int index)
+        public CutSectionNode(SectionNode node)
+            : base(node)
         {
-            mNode = node;
-            mParent = parent;
-            mIndex = index;
         }
 
         /// <summary>

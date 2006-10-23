@@ -1,47 +1,58 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 using urakawa.core;
+using Obi.Assets;
 
 namespace Obi.Commands.Strips
 {
+    /// <summary>
+    /// Command to split a phrase node. The new node has already been created and the audio asset was already split.
+    /// </summary>
     public class SplitPhrase : Command
     {
-        private Project mProject;                       // the current project
-        private CoreNode mNode;                         // the node that is split
-        private CoreNode mNewNode;                      // the new node that was created
-        private Assets.AudioMediaAsset mSplitAsset;     // the first part of the split asset
-        private Assets.AudioMediaAsset mOriginalAsset;  // the original asset before the split
-        private int mNewIndex;                          // index of the new node
-
+        private PhraseNode mNode;                // the phrase node that is split
+        private PhraseNode mNewNode;             // the new phrase node that was created
+        private AudioMediaAsset mSplitAsset;     // the first part of the split asset
+        private AudioMediaAsset mOriginalAsset;  // the original asset before the split
+        
+        /// <summary>
+        /// Label for the undo menu item.
+        /// </summary>
         public override string Label
         {
             get { return Localizer.Message("split_phrase_command_label"); }
         }
 
-        public SplitPhrase(Project project, CoreNode node, CoreNode newNode)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="node">The phrase node that was split.</param>
+        /// <param name="newNode">The new phrase node resulting from the split.</param>
+        public SplitPhrase(PhraseNode node, PhraseNode newNode)
         {
-            mProject = project;
             mNode = node;
             mNewNode = newNode;
-            mSplitAsset = Project.GetAudioMediaAsset(mNode);
-            mOriginalAsset = (Assets.AudioMediaAsset)mSplitAsset.Copy();
-            mOriginalAsset.MergeWith(Project.GetAudioMediaAsset(mNewNode));
-            mNewIndex = ((CoreNode)mNewNode.getParent()).indexOf(mNewNode);
-        }
-    
-        public override void  Do()
-        {
-            mProject.SetAudioMediaAsset(mNode, mSplitAsset);
-            mProject.AddPhraseNodeAndAsset(mNewNode, (CoreNode)mNode.getParent(), mNewIndex);
+            mSplitAsset = node.Asset;
+            // reconstruct the original asset by merging.
+            mOriginalAsset = (AudioMediaAsset)newNode.Asset.Copy();
+            mOriginalAsset.MergeWith(newNode.Asset);
         }
 
+        /// <summary>
+        /// Do: restore the split asset on the split node, and readd the new node.
+        /// </summary>
+        public override void  Do()
+        {
+            mNode.Asset = mSplitAsset;
+            mNode.Project.AddPhraseNodeAndAsset(mNewNode, mNewNode.ParentSection, mNewNode.PhraseIndex);
+        }
+
+        /// <summary>
+        /// Undo: restore the unsplit asset on the split node, and remove the new node.
+        /// </summary>
         public override void Undo()
         {
-            mProject.SetAudioMediaAsset(mNode, mOriginalAsset);
-            mProject.DeletePhraseNodeAndAsset(mNewNode);
-            mProject.TouchNode(mNode);
+            mNode.Project.SetAudioMediaAsset(mNode, mOriginalAsset);
+            mNode.Project.DeletePhraseNodeAndAsset(mNewNode);
+            mNode.Project.TouchPhraseNode(mNode);      
         }
     }
 }

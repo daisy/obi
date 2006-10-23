@@ -62,7 +62,7 @@ namespace Obi
             {
                 ((SectionNode)parent).AddChildSectionAfter(sibling, contextNode);
             }
-            AddedSectionNode(origin, new Events.Node.IndexEventArgs<SectionNode>(sibling, sibling.SectionIndex));
+            AddedSectionNode(origin, sibling);
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
             Commands.TOC.AddSectionNode command = new Commands.TOC.AddSectionNode(sibling, parent, sibling.SectionIndex);
@@ -89,7 +89,7 @@ namespace Obi
             {
                 parent.AppendChildSection(child);
             }
-            AddedSectionNode(origin, new Events.Node.IndexEventArgs<SectionNode>(child, child.SectionIndex));
+            AddedSectionNode(origin, child);
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
             Commands.TOC.AddSectionNode command = new Commands.TOC.AddSectionNode(child, parent, child.SectionIndex);
@@ -117,7 +117,7 @@ namespace Obi
                     parent.insert(node, index);
                 }
             }
-            AddedSectionNode(this, new Events.Node.IndexEventArgs<SectionNode>(node, index));
+            AddedSectionNode(this, node);
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
@@ -125,9 +125,9 @@ namespace Obi
         /// <summary>
         /// Readd a section node that was previously delete and restore all its contents.
         /// </summary>
-        public void UndeleteSectionNode(SectionNode node, CoreNode parent, int index)
+        public void UndeleteSectionNode(SectionNode node, SectionNode parent, int index)
         {
-            node.acceptDepthFirst(new Visitors.UndeleteSubtree(this, parent, index));
+            node.acceptDepthFirst(new Visitors.UndeleteSubtree(parent, index));
         }
 
         /// <summary>
@@ -142,8 +142,7 @@ namespace Obi
             {
                 //md: need this particular command to be created even if origin = this
                 //because its undo fn is required by UndoShallowDelete
-                CoreNode parent = (CoreNode)node.getParent();
-                command = new Commands.TOC.DeleteSectionNode(node, parent, node.SectionIndex);
+                command = new Commands.TOC.DeleteSectionNode(node);
                 node.DetachFromParent();
                 DeletedSectionNode(this, new Events.Node.Section.EventArgs(origin, node));
                 mUnsaved = true;
@@ -684,7 +683,7 @@ namespace Obi
             Commands.TOC.CutSectionNode command = null;
             if (origin != this)
             {
-                command = new Commands.TOC.CutSectionNode(node, parent, node.SectionIndex);
+                command = new Commands.TOC.CutSectionNode(node);
             }
             mTOCClipboard = node;
             node.DetachFromParent();
@@ -695,7 +694,7 @@ namespace Obi
         }
 
         //md 20060810
-        public void UndoCutSectionNode(SectionNode node, CoreNode parent, int index)
+        public void UndoCutSectionNode(SectionNode node, SectionNode parent, int index)
         {
             UndeleteSectionNode(node, parent, index);
             mTOCClipboard = null;
@@ -824,61 +823,39 @@ namespace Obi
 
         }
 
-        //md 20060812
-        public void ShallowDeleteSectionNodeRequested(object sender, Events.Node.NodeEventArgs e)
+        public void ShallowDeleteSectionNodeRequested(object sender, SectionNode node)
         {
-            ShallowDeleteSectionNode(sender, e.Node);
+            ShallowDeleteSectionNode(sender, node);
         }
 
-        //md 20060812
-        //shallow delete a section node
-        //see Commands.TOC.ShallowDeleteSectionNode if you're wondering how the "undo" works
-        public void ShallowDeleteSectionNode(object origin, CoreNode node)
+        /// <summary>
+        /// Shallow delete a section node: only this section node is deleted; its descendents are moved up one section
+        /// in the tree.
+        /// </summary>
+        /// <param name="sender">Sender of the event.</param>
+        /// <param name="node">The section node to delete.</param>
+        public void ShallowDeleteSectionNode(object sender, SectionNode node)
         {
-            //mdXXX
-            NodeType nodeType;
-            nodeType = Project.GetNodeType(node);
-            if (nodeType != NodeType.Section)
+            // create a new command if the sender is not a command object itself (i.e. not called from undo)
+            Commands.TOC.ShallowDeleteSectionNode command = new Commands.TOC.ShallowDeleteSectionNode(node);
+            // remove all phrases
+            for (int i = node.PhraseChildCount - 1; i >= 0; --i)
             {
-                throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
+                command.AddCommand(DeletePhraseNodeAndAsset(node.PhraseChild(i)));
             }
-            //end mdXXX
-
-            Commands.TOC.ShallowDeleteSectionNode command = null;
-
-            if (origin != this)
+            // move up all subsections
+            for (int i = node.SectionChildCount - 1; i >= 0; --i)
             {
-                CoreNode parent = (CoreNode)node.getParent();
-                Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
-                getPresentation().getRootNode().acceptDepthFirst(visitor);
-
-                command = new Commands.TOC.ShallowDeleteSectionNode
-                    (this, node, parent, parent.indexOf(node), visitor.Position, node.getChildCount());
-             }
-
-            int numChildren = node.getChildCount();
-
-            for (int i = numChildren - 1; i >= 0; i-- )
-            {
-                if (Project.GetNodeType(node.getChild(i)) == NodeType.Section)
-                {
-                    Commands.Command cmdDecrease = this.DecreaseSectionNodeLevel(this, node.getChild(i));
-                    if (command != null) command.addSubCommand(cmdDecrease);
-                }
-                //phrase nodes should be removed
-                else if (Project.GetNodeType(node.getChild(i)) == NodeType.Phrase)
-                {
-                    Commands.Command cmdDeletePhrase = DeletePhraseNodeAndAsset(node.getChild(i));
-                    if (command != null) command.addSubCommand(cmdDeletePhrase);
-                }
+                command.AddCommand(DecreaseSectionNodeLevel(sender, node.SectionChild(i)));
             }
-
-            Commands.Command cmdRemove = this.RemoveNode(this, (SectionNode)node);
-            if (command != null) command.addSubCommand(cmdRemove);
-
+            // remove self
+            command.AddCommand(RemoveNode(sender, node));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-            if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            if (sender.GetType() != typeof(Commands.TOC.ShallowDeleteSectionNode))
+            {
+                CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            }
         }
 
         //md 20060812

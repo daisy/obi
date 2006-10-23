@@ -328,7 +328,6 @@
       <DependentUpon>StripManagerPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\StripManagerPanel.SectionNodeSyncCallbacks.cs">
-      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\StructureBlock.cs">
       <SubType>UserControl</SubType>

@@ -58,13 +58,12 @@ namespace Obi.UserControls
         /// <summary>
         /// Delete the block of a phrase node.
         /// </summary>
-        /// <param name="e">The node event with a pointer to the deleted phrase node.</param>
-        internal void SyncDeleteAudioBlock(object sender, Events.Node.Phrase.EventArgs e)
+        internal void SyncDeleteAudioBlock(object sender, PhraseNode node)
         {
-            SectionStrip strip = mSectionNodeMap[(SectionNode)e.Node.getParent()];
-            if (SelectedPhraseNode == e.Node) SelectedPhraseNode = null;
-            strip.RemoveAudioBlock(mPhraseNodeMap[e.Node]);
-            mPhraseNodeMap.Remove(e.Node);
+            SectionStrip strip = mSectionNodeMap[node.ParentSection];
+            if (SelectedPhraseNode == node) SelectedPhraseNode = null;
+            strip.RemoveAudioBlock(mPhraseNodeMap[node]);
+            mPhraseNodeMap.Remove(node);
             // reflow?
         }
 
@@ -92,24 +91,18 @@ namespace Obi.UserControls
         /// <summary>
         /// The node was modified so we need to make sure that it gets selected.
         /// </summary>
-        internal void SyncTouchedNode(object sender, Events.Node.NodeEventArgs e)
+        internal void SyncTouchedPhraseNode(object sender, PhraseNode node)
         {
-            if (e.Node.GetType() == typeof(SectionNode))
-            {
-                SelectedSectionNode = (SectionNode)e.Node;
-            }
-            else
-            {
-                SelectedPhraseNode = (PhraseNode)e.Node;
-            }
+            // update the node somehow?
+            SelectedPhraseNode = node;
         }
 
         /// <summary>
         /// The time of the asset for a phrase has changed.
         /// </summary>
-        internal void SyncUpdateAudioBlockTime(object sender, Events.Node.Phrase.UpdateTimeEventArgs e)
+        internal void SyncUpdateAudioBlockTime(object sender, PhraseNode node, double time)
         {
-            mPhraseNodeMap[e.Node].Time = Math.Round(e.Time / 1000).ToString() + "s";
+            mPhraseNodeMap[node].Time = Math.Round(time / 1000).ToString() + "s";
         }
 
         internal void InterceptKeyDownFromChildControl(KeyEventArgs e)
@@ -120,19 +113,25 @@ namespace Obi.UserControls
         /// <summary>
         /// The page label has changed.
         /// </summary>
-        internal void SyncSetPageNumber(object sender, Events.Node.Phrase.EventArgs e)
+        internal void SyncSetPageNumber(object sender, PhraseNode node)
         {
-            PageProperty pageProp = e.Node.getProperty(typeof(PageProperty)) as PageProperty;
-            //if (pageProp != null && pageProp.getOwner() != null)
-            if (pageProp != null) mPhraseNodeMap[e.Node].StructureBlock.Label = pageProp.PageNumber.ToString();
+            if (node.PageProperty != null)
+            {
+                mPhraseNodeMap[node].StructureBlock.Label = node.PageProperty.PageNumber.ToString();
+            }
         }
 
         /// <summary>
         /// The page label was removed.
         /// </summary>
-        internal void SyncRemovedPageNumber(object sender, Events.Node.Phrase.EventArgs e)
+        internal void SyncRemovedPageNumber(object sender, PhraseNode node)
         {
-            mPhraseNodeMap[e.Node].StructureBlock.Label = "";
+            mPhraseNodeMap[node].StructureBlock.Label = "";
+        }
+
+        internal void SendRequestToSetPageNumber(StructureBlock structureBlock, PhraseNode phraseNode, int pageNumber)
+        {
+            RequestToSetPageNumber(structureBlock, phraseNode, pageNumber);
         }
     }
 }

@@ -9,8 +9,7 @@ namespace Obi.Commands.Strips
 {
     class RenamePhrase: Command
     {
-        private Project mProject;
-        private CoreNode mNode;
+        private PhraseNode mNode;
         private string mOldName;
         private string mNewName;
 
@@ -23,22 +22,21 @@ namespace Obi.Commands.Strips
         /// The command is created before the media was updated, but after the asset was renamed.
         /// This does not look good...
         /// </summary>
-        public RenamePhrase(Project project, CoreNode node)
+        public RenamePhrase(PhraseNode node)
         {
-            mProject = project;
             mNode = node;
-            mOldName = ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannelName)).getText();
-            mNewName = Project.GetAudioMediaAsset(mNode).Name;
+            mOldName = node.Annotation;
+            mNewName = node.Asset.Name;
         }
 
         public override void Do()
         {
-            mProject.EditAnnotationPhraseNode(mNode, mNewName);
+            mNode.Project.EditAnnotationPhraseNode(mNode, mNewName);
         }
 
         public override void Undo()
         {
-            mProject.EditAnnotationPhraseNode(mNode, mOldName);
+            mNode.Project.EditAnnotationPhraseNode(mNode, mOldName);
         }
     }
 }

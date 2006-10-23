@@ -1,46 +1,39 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 using urakawa.core;
+using Obi.Assets;
 
 namespace Obi.Commands.Strips
 {
     public class MergePhrases : Command
     {
-        private Project mProject;
-        private CoreNode mNode;
-        private CoreNode mNext;
-        private Assets.AudioMediaAsset mAsset;
-        private Assets.AudioMediaAsset mMergedAsset;
-        private int mNextIndex;
+        private PhraseNode mNode;
+        private PhraseNode mNext;
+        private AudioMediaAsset mAsset;
+        private AudioMediaAsset mMergedAsset;
 
         public override string Label
         {
             get { return Localizer.Message("merge_phrases_command_label"); }
         }
 
-        public MergePhrases(Project project, CoreNode node, CoreNode next)
+        public MergePhrases(PhraseNode node, PhraseNode next)
         {
-            mProject = project;
             mNode = node;
             mNext = next;
-            mMergedAsset = Project.GetAudioMediaAsset(mNode);
-            mAsset = (Assets.AudioMediaAsset)mMergedAsset.Copy();
-            mNextIndex = ((CoreNode)mNext.getParent()).indexOf(mNext);
+            mMergedAsset = mNode.Asset;
+            mAsset = (AudioMediaAsset)mMergedAsset.Copy();
         }
     
         public override void  Do()
         {
-            mProject.SetAudioMediaAsset(mNode, mMergedAsset);
-            mProject.DeletePhraseNodeAndAsset(mNext);
+            mNode.Project.SetAudioMediaAsset(mNode, mMergedAsset);
+            mNode.Project.DeletePhraseNodeAndAsset(mNext);
         }
 
         public override void Undo()
         {
-            mProject.SetAudioMediaAsset(mNode, mAsset);
-            mProject.AddPhraseNodeAndAsset(mNext, (CoreNode)mNode.getParent(), mNextIndex);
-            mProject.TouchNode(mNode);
+            mNode.Project.SetAudioMediaAsset(mNode, mAsset);
+            mNode.Project.AddPhraseNodeAndAsset(mNext, mNode.ParentSection, mNode.PhraseIndex + 1);
+            mNode.Project.TouchPhraseNode(mNode);
         }
     }
 }

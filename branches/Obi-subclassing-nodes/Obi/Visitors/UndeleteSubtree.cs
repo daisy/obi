@@ -8,13 +8,11 @@ namespace Obi.Visitors
 {
     class UndeleteSubtree: ICoreNodeVisitor
     {
-        private Project mProject;  // the project in which the nodes belong
-        private CoreNode mParent;  // parent of the node to readd
-        private int mIndex;        // index of the node to readd
+        private SectionNode mParent;  // parent of the node to readd
+        private int mIndex;           // index of the node to readd
 
-        public UndeleteSubtree(Project project, CoreNode parent, int index)
+        public UndeleteSubtree(SectionNode parent, int index)
         {
-            mProject = project;
             mParent = parent;
             mIndex = index;
         }
@@ -23,7 +21,7 @@ namespace Obi.Visitors
 
         public void postVisit(ICoreNode node)
         {
-            mParent = (CoreNode)node.getParent();
+            mParent = (SectionNode)node.getParent();
             mIndex = mParent.indexOf(node) + 1;
         }
 
@@ -31,15 +29,15 @@ namespace Obi.Visitors
         {
             if (node.GetType() == typeof(SectionNode))
             {
-                mProject.AddExistingSectionNode((SectionNode)node, mParent, mIndex);
+                ((SectionNode)node).Project.AddExistingSectionNode((SectionNode)node, mParent, mIndex);
                 mIndex = 0;
             }
             //md 20060816
             //the phrase node already has a parent "node", so we can't re-add it
             //just give an event to notify the displays that they should update
-            else
+            else if (node.GetType() == typeof(PhraseNode))
             {
-                mProject.ReconstructPhraseNodeInView((PhraseNode)node, mIndex);
+                ((PhraseNode)node).Project.ReconstructPhraseNodeInView((PhraseNode)node);
             }
             return true;
         }

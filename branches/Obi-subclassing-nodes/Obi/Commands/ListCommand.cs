@@ -7,7 +7,10 @@ namespace Obi.Commands
         private string mLabel;            // the label that will be shown in the end
         private List<Command> mCommands;  // list of actual commands
 
-        public override string Label { get { return mLabel; } }
+        public override string Label
+        {
+            get { return mLabel; }
+        }
 
         /// <summary>
         /// Create a list of commands from, well, a list of commands.
@@ -17,6 +20,15 @@ namespace Obi.Commands
         {
             mLabel = label + "*";  // just for debugging
             mCommands = commands;
+        }
+
+        /// <summary>
+        /// Create an empty list command.
+        /// </summary>
+        public ListCommand()
+        {
+            mLabel = "";
+            mCommands = new List<Command>();
         }
 
         /// <summary>
@@ -35,6 +47,24 @@ namespace Obi.Commands
             mCommands.Reverse();
             foreach (Command c in mCommands) c.Undo();
             mCommands.Reverse();
+        }
+
+        /// <summary>
+        /// Append a new command to the list.
+        /// </summary>
+        /// <param name="cmd">The command to append</param>
+        public void AddCommand(Command cmd)
+        {
+            mCommands.Add(cmd);
+        }
+
+        /// <summary>
+        /// Set the label for this command.
+        /// </summary>
+        /// <param name="label">New label for the command.</param>
+        public void SetLabel(string label)
+        {
+            mLabel = label;
         }
     }
 }

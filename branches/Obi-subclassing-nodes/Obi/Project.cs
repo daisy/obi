@@ -30,8 +30,6 @@ namespace Obi
         private string mLastPath;            // last path to which the project was saved (see save as)
         private SimpleMetadata mMetadata;    // metadata for this project
 
-        private int mLastPage;               // last page number in the project
-
         public static readonly string XUKVersion = "obi-xuk-008";                // version of the Obi/XUK file
         public static readonly string AudioChannelName = "obi.audio";            // canonical name of the audio channel
         public static readonly string TextChannelName = "obi.text";              // canonical name of the text channel
@@ -41,7 +39,8 @@ namespace Obi
         private Channel mAnnotationChannel;                                      // handy pointer to the annotation channel
 
         public event Events.PhraseNodeHandler AddedPhraseNode;             // a phrase node was added to a strip
-        public event Events.PhraseNodeHandler PhraseAudioSet;              // audio on a phrase was set
+        public event Events.PhraseNodeHandler PhraseAudioSet;              // audio on a phrase node was set
+        public event Events.PhraseNodeHandler PhraseAnnotationSet;         // annotation on a phrase node was set (will disappear)
         public event Events.PhraseNodeHandler DeletedPhraseNode;           // a phrase node was deleted
         public event Events.PhraseNodeHandler TouchedPhraseNode;           // this node was somehow modified
         public event Events.Project.StateChangedHandler StateChanged;      // the state of the project changed (modified, saved)

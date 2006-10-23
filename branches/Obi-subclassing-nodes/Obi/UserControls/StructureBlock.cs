@@ -134,7 +134,7 @@ namespace Obi.UserControls
                 {
                     int pageNumber = Int32.Parse(m.Value);
                     mLabel.Text = pageNumber.ToString();
-                    mManager.RequestToSetPageNumber(this, new Events.Node.SetPageEventArgs(this, mAudioBlock.Node, pageNumber));
+                    mManager.SendRequestToSetPageNumber(this, (PhraseNode)mAudioBlock.Node, pageNumber);
                 }
             }
         }

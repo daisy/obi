@@ -9,32 +9,18 @@ namespace Obi.Commands.TOC
 {
     class ShallowDeleteSectionNode : Command
     {
-        private Project mProject;
-        private CoreNode mNode;
-        private CoreNode mParent;
-        private int mIndex;
-        private int mPosition;
-        private int mChildCount;
-        private ArrayList mSubCommands;
-       
+        private SectionNode mNode;         // the node being deleted
+        private ListCommand mSubCommands;  // successive commands for redo
+
         public override string Label
         {
-            get
-            {
-                return Localizer.Message("shallow_delete_section_command_label");
-            }
+            get { return Localizer.Message("shallow_delete_section_command_label"); }
         }
 
-        public ShallowDeleteSectionNode(Project project, CoreNode node, CoreNode parent, int index, int position, int numChildren)
+        public ShallowDeleteSectionNode(SectionNode node)
         {
-            mProject = project;
             mNode = node;
-            mParent = parent;
-            mIndex = index;
-            mPosition = position;
-            mChildCount = numChildren;
-
-            mSubCommands = new ArrayList();
+            mSubCommands = new ListCommand();
         }
 
         /// <summary>
@@ -42,7 +28,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            mProject.ShallowDeleteSectionNode(mProject, mNode);
+            mNode.Project.ShallowDeleteSectionNode(this, mNode);
         }
 
         /// <summary>
@@ -50,22 +36,14 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            for (int i = mSubCommands.Count-1; i >=0; i--)
-            {
-                if (mSubCommands[i] != null)
-                    ((Command)mSubCommands[i]).Undo();
-            }
+            mSubCommands.Undo();
         }
 
         //md
         //needed to add this to make it easier to keep track of composite actions
-        public void addSubCommand(Command cmd)
+        public void AddCommand(Command cmd)
         {
-            mSubCommands.Add(cmd);
+            mSubCommands.AddCommand(cmd);
         }
-
-       /* public ArrayList getSubCommands()
-        {
-        }*/
     }
 }

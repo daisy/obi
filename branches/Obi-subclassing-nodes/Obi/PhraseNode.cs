@@ -14,7 +14,6 @@ namespace Obi
         private Assets.AudioMediaAsset mAsset;  // the audio asset for this phrase
         private AssetProperty mAssProperty;     // asset property for the XUK input/output
 
-
         /// <summary>
         /// The annotation for this node. At the moment this is the name of the asset.
         /// </summary>
@@ -81,7 +80,7 @@ namespace Obi
         /// </summary>
         public PageProperty PageProperty
         {
-            get { return getProperty(typeof(PageProperty)) as PageProperty; }
+            get { return getProperty(typeof(PageProperty)) as PageProperty; }  // may be null
             set { setProperty(value); }
         }
 
@@ -89,13 +88,13 @@ namespace Obi
         /// Create a new phrase node inside the given project with an id.
         /// Don't forget to set the asset afterwards!
         /// </summary>
-        internal PhraseNode(Project project, int id, Assets.AudioMediaAsset asset)
+        internal PhraseNode(Project project, int id)
             : base(project, id)
         {
             mChannel = getPresentation().getPropertyFactory().createChannelsProperty();
             this.setProperty(mChannel);
             mMedia = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
-            Annotation = asset.Name;
+            Annotation = "No annotation :(";
             mAssProperty = (AssetProperty)getPresentation().getPropertyFactory().createProperty("AssetProperty",
                 ObiPropertyFactory.ObiNS);
             mAsset = null;
@@ -158,7 +157,7 @@ namespace Obi
         /// </summary>
         internal void DetachFromParent()
         {
-            ParentNode.RemovePhrase(this);
+            ParentSection.RemoveChildPhrase(this);
         }
     }
 }

@@ -38,28 +38,29 @@ namespace Obi.UserControls
         /// <param name="value">The project for which we are setting handlers.</param>
         private void SetEventHandlers(Project project)
         {
-            project.AddedPhraseNode +=
-                new Events.PhraseNodeHandler(mStripManagerPanel.SyncAddedPhraseNode);
-            project.AddedSectionNode +=
-                new Events.SectionNodeHandler(mStripManagerPanel.SyncAddedEmptySectionNode);
-            project.AddedSectionNode +=
-                new Events.SectionNodeHandler(mTOCPanel.SyncAddedSectionNode);
-
-            mStripManagerPanel.DeleteBlockRequested +=
-                new Events.PhraseNodeHandler(project.DeletePhraseNodeRequested);
-            mStripManagerPanel.ImportAudioAssetRequested +=
-                new Events.Strip.RequestToImportAssetHandler(project.ImportAssetRequested);
-            mStripManagerPanel.MergePhraseNodes +=
-                new Events.MergePhraseNodesHandler(project.MergePhraseNodesRequested);
-            mStripManagerPanel.MoveAudioBlockBackwardRequested +=
-                new Events.PhraseNodeHandler(project.MovePhraseNodeBackwardRequested);
-            mStripManagerPanel.MoveAudioBlockForwardRequested +=
-                new Events.PhraseNodeHandler(project.MovePhraseNodeForwardRequested);
-            mStripManagerPanel.SetMediaRequested +=
-                new Events.PhraseNodeSetMediaHandler(project.SetMediaRequested);
-            mStripManagerPanel.SplitAudioBlockRequested +=
-                new Events.SplitPhraseNodeHandler(project.SplitAudioBlockRequested);
+            project.AddedPhraseNode += new Events.PhraseNodeHandler(mStripManagerPanel.SyncAddedPhraseNode);
+            project.AddedSectionNode += new Events.SectionNodeHandler(mStripManagerPanel.SyncAddedEmptySectionNode);
+            project.AddedSectionNode += new Events.SectionNodeHandler(mTOCPanel.SyncAddedSectionNode);
+            project.DeletedPhraseNode += new Events.PhraseNodeHandler(mStripManagerPanel.SyncDeleteAudioBlock);
+            project.RemovedPageNumber += new Events.PhraseNodeHandler(mStripManagerPanel.SyncRemovedPageNumber);
+            project.SetPageNumber += new Events.PhraseNodeHandler(mStripManagerPanel.SyncSetPageNumber);
+            project.TouchedPhraseNode += new Events.PhraseNodeHandler(mStripManagerPanel.SyncTouchedPhraseNode);
+            project.UpdateTime += new Events.PhraseNodeUpdateTimeHandler(mStripManagerPanel.SyncUpdateAudioBlockTime);
             
+            mStripManagerPanel.DeleteBlockRequested += new Events.PhraseNodeHandler(project.DeletePhraseNodeRequested);
+            mStripManagerPanel.ImportAudioAssetRequested += new Events.Strip.RequestToImportAssetHandler(project.ImportAssetRequested);
+            mStripManagerPanel.MergePhraseNodes += new Events.MergePhraseNodesHandler(project.MergePhraseNodesRequested);
+            mStripManagerPanel.MoveAudioBlockBackwardRequested += new Events.PhraseNodeHandler(project.MovePhraseNodeBackwardRequested);
+            mStripManagerPanel.MoveAudioBlockForwardRequested += new Events.PhraseNodeHandler(project.MovePhraseNodeForwardRequested);
+            mStripManagerPanel.SetMediaRequested += new Events.PhraseNodeSetMediaHandler(project.SetMediaRequested);
+            mStripManagerPanel.RequestToCopyPhraseNode += new Events.PhraseNodeHandler(project.CopyPhraseNode);
+            mStripManagerPanel.RequestToCutPhraseNode += new Events.PhraseNodeHandler(project.CutPhraseNode);
+            mStripManagerPanel.RequestToPastePhraseNode += new Events.ObiNodeHandler(project.PastePhraseNode);
+            mStripManagerPanel.RequestToRemovePageNumber += new Events.PhraseNodeHandler(project.RemovePageRequested);
+            mStripManagerPanel.RequestToSetPageNumber += new Events.SetPageNumberHandler(project.SetPageRequested);
+            mStripManagerPanel.RequestToShallowDeleteSectionNode += new Events.SectionNodeHandler(project.ShallowDeleteSectionNodeRequested);
+            mStripManagerPanel.SplitAudioBlockRequested += new Events.SplitPhraseNodeHandler(project.SplitAudioBlockRequested);
+
 
             
             project.CutSectionNode +=
@@ -125,19 +126,9 @@ namespace Obi.UserControls
 
             // Block events
 
-            mStripManagerPanel.RequestToCutPhraseNode +=
-                new Events.Node.RequestToCutPhraseNodeHandler(project.CutPhraseNode);
-            mStripManagerPanel.RequestToCopyPhraseNode +=
-                new Events.Node.RequestToCopyPhraseNodeHandler(project.CopyPhraseNode);
-            mStripManagerPanel.RequestToPastePhraseNode +=
-                new Events.Node.RequestToPastePhraseNodeHandler(project.PastePhraseNode);
 
 
-            project.DeletedPhraseNode +=
-                new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeleteAudioBlock);
-            project.MediaSet += new Events.Node.MediaSetHandler(mStripManagerPanel.SyncMediaSet);
-            project.TouchedPhraseNode += new Events.Node.TouchedNodeHandler(mStripManagerPanel.SyncTouchedNode);
-            project.UpdateTime += new Events.Strip.UpdateTimeHandler(mStripManagerPanel.SyncUpdateAudioBlockTime);
+            // project.MediaSet += new Events.Node.MediaSetHandler(mStripManagerPanel.SyncMediaSet);
 
 
 
@@ -154,41 +145,34 @@ namespace Obi.UserControls
             mTOCPanel.RequestToPasteSectionNode += new Events.Node.RequestToPasteSectionNodeHandler(project.PasteSectionNodeRequested);
 
 
-            //md 20060812
-            mStripManagerPanel.RequestToShallowDeleteSectionNode +=
-                new Events.Node.RequestToShallowDeleteSectionNodeHandler(project.ShallowDeleteSectionNodeRequested);
 
-            mStripManagerPanel.RequestToSetPageNumber += new Events.Node.RequestToSetPageNumberHandler(project.SetPageRequested);
-            mStripManagerPanel.RequestToRemovePageNumber +=
-                new Events.Node.RequestToRemovePageNumberHandler(project.RemovePageRequested);
-            project.RemovedPageNumber += new Events.Node.RemovedPageNumberHandler(mStripManagerPanel.SyncRemovedPageNumber);
-            project.SetPageNumber += new Events.Node.SetPageNumberHandler(mStripManagerPanel.SyncSetPageNumber);
         }
 
         private void ResetEventHandlers()
         {
-            mProject.AddedPhraseNode -=
-                new Events.PhraseNodeHandler(mStripManagerPanel.SyncAddedPhraseNode);
-            mProject.AddedSectionNode -=
-                new Events.SectionNodeHandler(mStripManagerPanel.SyncAddedEmptySectionNode);
-            mProject.AddedSectionNode -=
-                new Events.SectionNodeHandler(mTOCPanel.SyncAddedSectionNode);
+            mProject.AddedPhraseNode -= new Events.PhraseNodeHandler(mStripManagerPanel.SyncAddedPhraseNode);
+            mProject.AddedSectionNode -= new Events.SectionNodeHandler(mStripManagerPanel.SyncAddedEmptySectionNode);
+            mProject.AddedSectionNode -= new Events.SectionNodeHandler(mTOCPanel.SyncAddedSectionNode);
+            mProject.DeletedPhraseNode -= new Events.PhraseNodeHandler(mStripManagerPanel.SyncDeleteAudioBlock);
+            mProject.RemovedPageNumber -= new Events.PhraseNodeHandler(mStripManagerPanel.SyncRemovedPageNumber);
+            mProject.SetPageNumber -= new Events.PhraseNodeHandler(mStripManagerPanel.SyncSetPageNumber);
+            mProject.TouchedPhraseNode -= new Events.PhraseNodeHandler(mStripManagerPanel.SyncTouchedPhraseNode);
+            mProject.UpdateTime -= new Events.PhraseNodeUpdateTimeHandler(mStripManagerPanel.SyncUpdateAudioBlockTime);
 
-            mStripManagerPanel.DeleteBlockRequested -=
-                new Events.PhraseNodeHandler(mProject.DeletePhraseNodeRequested);
-            mStripManagerPanel.ImportAudioAssetRequested -=
-                new Events.Strip.RequestToImportAssetHandler(mProject.ImportAssetRequested);
-            mStripManagerPanel.MergePhraseNodes -=
-                new Events.MergePhraseNodesHandler(mProject.MergePhraseNodesRequested);
-            mStripManagerPanel.SetMediaRequested -=
-                new Events.PhraseNodeSetMediaHandler(mProject.SetMediaRequested);
-            mStripManagerPanel.SplitAudioBlockRequested -=
-                new Events.SplitPhraseNodeHandler(mProject.SplitAudioBlockRequested);
+            mStripManagerPanel.DeleteBlockRequested -= new Events.PhraseNodeHandler(mProject.DeletePhraseNodeRequested);
+            mStripManagerPanel.ImportAudioAssetRequested -= new Events.Strip.RequestToImportAssetHandler(mProject.ImportAssetRequested);
+            mStripManagerPanel.MergePhraseNodes -= new Events.MergePhraseNodesHandler(mProject.MergePhraseNodesRequested);
+            mStripManagerPanel.SetMediaRequested -= new Events.PhraseNodeSetMediaHandler(mProject.SetMediaRequested);
+            mStripManagerPanel.RequestToCopyPhraseNode -= new Events.PhraseNodeHandler(mProject.CopyPhraseNode);
+            mStripManagerPanel.RequestToCutPhraseNode -= new Events.PhraseNodeHandler(mProject.CutPhraseNode);
+            mStripManagerPanel.RequestToPastePhraseNode -= new Events.ObiNodeHandler(mProject.PastePhraseNode);
+            mStripManagerPanel.RequestToRemovePageNumber -= new Events.PhraseNodeHandler(mProject.RemovePageRequested);
+            mStripManagerPanel.RequestToSetPageNumber -= new Events.SetPageNumberHandler(mProject.SetPageRequested);
+            mStripManagerPanel.RequestToShallowDeleteSectionNode -= new Events.SectionNodeHandler(mProject.ShallowDeleteSectionNodeRequested);
+            mStripManagerPanel.SplitAudioBlockRequested -= new Events.SplitPhraseNodeHandler(mProject.SplitAudioBlockRequested);
             
 
 
-            mProject.AddedPhraseNode -=
-                new Events.Node.Phrase.AddedPhraseNodeHandler(mStripManagerPanel.SyncAddedPhraseNode);
             mProject.CutSectionNode -=
                 new Events.Node.Section.CutSectionNodeHandler(mTOCPanel.SyncCutSectionNode);
             mProject.CutSectionNode -=
@@ -244,13 +228,9 @@ namespace Obi.UserControls
 
 
 
-            //mProject.ImportedAsset -= new Events.Node.ImportedAssetHandler(mStripManagerPanel.SyncCreateNewAudioBlock);
+            // mProject.MediaSet -= new Events.Node.MediaSetHandler(mStripManagerPanel.SyncMediaSet);
 
-            mStripManagerPanel.SetMediaRequested -= new Events.Node.SetMediaHandler(mProject.SetMediaRequested);
-            mProject.MediaSet -= new Events.Node.MediaSetHandler(mStripManagerPanel.SyncMediaSet);
-
-            mProject.DeletedPhraseNode -= new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeleteAudioBlock);
-
+            
 
             mTOCPanel.RequestToCopySectionNode -= new Events.Node.RequestToCopySectionNodeHandler(mProject.CopySectionNodeRequested);
             mProject.CopiedSectionNode -= new Events.Node.CopiedSectionNodeHandler(mTOCPanel.SyncCopiedSectionNode);
@@ -260,23 +240,8 @@ namespace Obi.UserControls
 
             mTOCPanel.RequestToPasteSectionNode -= new Events.Node.RequestToPasteSectionNodeHandler(mProject.PasteSectionNodeRequested);
 
-            mProject.TouchedPhraseNode -= new Events.Node.TouchedNodeHandler(mStripManagerPanel.SyncTouchedNode);
-            mProject.UpdateTime -= new Events.Strip.UpdateTimeHandler(mStripManagerPanel.SyncUpdateAudioBlockTime);
 
-            //md 20060812
-            mStripManagerPanel.RequestToShallowDeleteSectionNode -= new Events.Node.RequestToShallowDeleteSectionNodeHandler(mProject.ShallowDeleteSectionNodeRequested);
 
-            mStripManagerPanel.RequestToCutPhraseNode -=
-                new Events.Node.RequestToCutPhraseNodeHandler(mProject.CutPhraseNode);
-            mStripManagerPanel.RequestToCopyPhraseNode -=
-                new Events.Node.RequestToCopyPhraseNodeHandler(mProject.CopyPhraseNode);
-            mStripManagerPanel.RequestToPastePhraseNode -=
-                new Events.Node.RequestToPastePhraseNodeHandler(mProject.PastePhraseNode);
-            mStripManagerPanel.RequestToSetPageNumber -= new Events.Node.RequestToSetPageNumberHandler(mProject.SetPageRequested);
-            mStripManagerPanel.RequestToRemovePageNumber -=
-                new Events.Node.RequestToRemovePageNumberHandler(mProject.RemovePageRequested);
-            mProject.RemovedPageNumber -= new Events.Node.RemovedPageNumberHandler(mStripManagerPanel.SyncRemovedPageNumber);
-            mProject.SetPageNumber -= new Events.Node.SetPageNumberHandler(mStripManagerPanel.SyncSetPageNumber);
         }
 
         #endregion
