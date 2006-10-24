@@ -275,6 +275,8 @@ namespace Obi.UserControls
             mAudioLayoutPanel.Controls.Add(block);
             mStructureLayoutPanel.Controls.Add(block.StructureBlock);
             mAnnotationLayoutPanel.Controls.Add(block.AnnotationBlock);
+            //md 20061024 force resizing
+            block._Width = block.AnnotationBlock.Width;
         }
 
         public void InsertAudioBlock(AudioBlock block, int index)
@@ -336,7 +338,7 @@ namespace Obi.UserControls
         internal void UpdateAssetAudioBlock(AudioBlock audioBlock)
         {
             Assets.AudioMediaAsset asset = Project.GetAudioMediaAsset(audioBlock.Node);
-            audioBlock.AnnotationBlock.Label = asset.Name;
+            audioBlock.AssetName = asset.Name;
             audioBlock.Time = asset.LengthInSeconds;
         }
 

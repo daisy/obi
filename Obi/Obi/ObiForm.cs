@@ -506,6 +506,7 @@ namespace Obi
                 MessageBox.Show(e.Message, Localizer.Message("open_project_error_caption"),
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 mProject = null;
+                this.Cursor = Cursors.Default;
             }
         }
 

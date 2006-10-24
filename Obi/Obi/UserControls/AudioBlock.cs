@@ -76,6 +76,11 @@ namespace Obi.UserControls
             set { mTimeLabel.Text = value; }
         }
 
+        public string AssetName
+        {
+            set { mAssetName.Text = value; }
+        }
+
         //md20061011
         public int _Width
         {
@@ -188,5 +193,6 @@ namespace Obi.UserControls
             this.mToolTip.SetToolTip(this, Localizer.Message("audio_block_tooltip"));
             this.mToolTip.SetToolTip(this.mTimeLabel, Localizer.Message("audio_block_duration_tooltip"));
         }
+
     }
 }

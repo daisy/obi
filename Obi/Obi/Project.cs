@@ -463,8 +463,13 @@ namespace Obi
             ChannelsProperty prop = getPresentation().getPropertyFactory().createChannelsProperty();
             node.setProperty(prop);
             TextMedia annotation = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
-            annotation.setText(asset.Name);
-            prop.setMedia(mAnnotationChannel, annotation);
+            try
+            {
+                annotation.setText("");
+                prop.setMedia(mAnnotationChannel, annotation);
+            }
+            catch (urakawa.exception.MethodParameterIsEmptyStringException e) { }
+
             AssetProperty assProp = (AssetProperty)getPresentation().getPropertyFactory().createProperty("AssetProperty",
                 ObiPropertyFactory.ObiNS);
             assProp.Asset = asset;

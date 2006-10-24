@@ -78,7 +78,7 @@ namespace Obi.UserControls
             this.Controls.Add(this.mLabel);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
             this.Name = "StructureBlock";
-            this.Size = new System.Drawing.Size(150, 20);
+            this.Size = new System.Drawing.Size(70, 20);
             this.Click += new System.EventHandler(this.StructureBlock_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
