@@ -40,7 +40,7 @@ namespace Obi.UserControls
             bool isAudioBlockLast = isAudioBlockSelected &&
                 Project.GetPhraseIndex(mSelectedPhrase) == Project.GetPhrasesCount(mSelectedSection) - 1;
             bool isAudioBlockFirst = isAudioBlockSelected && Project.GetPhraseIndex(mSelectedPhrase) == 0;
-            bool isBlockClipBoardSet = mProjectPanel.Project.BlockClipBoard != null;
+            bool isBlockClipBoardSet = mProjectPanel.Project.PhraseClipBoard != null;
             
             bool canSetPage = isAudioBlockSelected;  // an audio block must be selected and a heading must not be set.
             bool canRemovePage = isAudioBlockSelected;
@@ -303,7 +303,7 @@ namespace Obi.UserControls
         // JQ 20060815
         internal void mPasteAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProjectPanel.Project.BlockClipBoard != null && mSelectedSection != null)
+            if (mProjectPanel.Project.PhraseClipBoard != null && mSelectedSection != null)
             {
                 // Paste after the currently selected block, or at the end of the
                 // currently selected section if no block is selected.

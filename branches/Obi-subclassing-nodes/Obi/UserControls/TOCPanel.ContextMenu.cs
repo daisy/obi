@@ -13,19 +13,19 @@ namespace Obi.UserControls
 {
     public partial class TOCPanel
     {
+        public event Events.SectionNodeHandler RequestToPasteSectionNode;
+        
         public event Events.Node.Section.RequestToAddSiblingSectionNodeHandler RequestToAddSiblingSection;
         public event Events.Node.Section.RequestToAddChildSectionNodeHandler RequestToAddChildSectionNode;
         public event Events.Node.Section.RequestToCutSectionNodeHandler RequestToCutSectionNode;
         public event Events.Node.Section.RequestToDeleteSectionNodeHandler RequestToDeleteSectionNode;
         public event Events.Node.Section.RequestToRenameSectionNodeHandler RequestToRenameSectionNode;
-        
         public event Events.Node.RequestToDecreaseSectionNodeLevelHandler RequestToDecreaseSectionNodeLevel;
         public event Events.Node.RequestToIncreaseSectionNodeLevelHandler RequestToIncreaseSectionNodeLevel;
         public event Events.Node.RequestToMoveSectionNodeDownHandler RequestToMoveSectionNodeDown;
         public event Events.Node.RequestToMoveSectionNodeUpHandler RequestToMoveSectionNodeUp;
         //md: clipboard events
         public event Events.Node.RequestToCopySectionNodeHandler RequestToCopySectionNode;
-        public event Events.Node.RequestToPasteSectionNodeHandler RequestToPasteSectionNode;
 
         /*
          * ***************************************
@@ -124,7 +124,7 @@ namespace Obi.UserControls
 
         internal void mPasteSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToPasteSectionNode(this, new Events.Node.NodeEventArgs(this, GetSelectedSection()));
+            RequestToPasteSectionNode(this, GetSelectedSection());
         }
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)

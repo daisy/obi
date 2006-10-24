@@ -70,36 +70,31 @@ namespace Obi.Commands.TOC
             mProject.UndoCopySectionNode(mNode);
         }
     }
+
     class PasteSectionNode : Command
     {
-        private Project mProject;
         private CoreNode mParent;
-        private CoreNode mNode;
+        private SectionNode mNode;
 
         public override string Label
         {
-            get
-            {
-                return Localizer.Message("paste_section_command_label");
-            }
+            get { return Localizer.Message("paste_section_command_label"); }
         }
 
-        public PasteSectionNode(Project project, CoreNode node, CoreNode parent)
+        public PasteSectionNode(CoreNode parent, SectionNode node)
         {
-            mProject = project;
             mParent = parent;
             mNode = node;
         }
 
-
         public override void Do()
         {
-            mProject.PasteSectionNode(mProject, mParent);
+            mNode.Project.PasteSectionNode(mNode.Project, mParent);
         }
 
         public override void Undo()
         {
-            mProject.UndoPasteSectionNode(mNode);
+            mNode.Project.UndoPasteSectionNode(mNode);
         }
     }
 }

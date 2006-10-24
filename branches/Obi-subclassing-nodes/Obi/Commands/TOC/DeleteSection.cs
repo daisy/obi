@@ -8,9 +8,9 @@ namespace Obi.Commands.TOC
 {
     class DeleteSectionNode : Command
     {
-        protected SectionNode mNode;    // the deleted section node
-        protected SectionNode mParent;  // parent of the deleted node
-        protected int mIndex;           // index of the deleted node
+        protected SectionNode mNode;  // the deleted section node
+        protected CoreNode mParent;   // parent of the deleted node (root or section node)
+        protected int mIndex;         // index of the deleted node
 
         public override string Label
         {
@@ -20,8 +20,8 @@ namespace Obi.Commands.TOC
         public DeleteSectionNode(SectionNode node)
         {
             mNode = node;
-            mParent = node.ParentSection;
-            mIndex = node.SectionIndex;
+            mParent = (CoreNode)node.getParent();
+            mIndex = node.Index;
         }
 
         /// <summary>

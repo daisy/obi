@@ -1,3 +1,4 @@
+using Obi.Assets;
 using System;
 using urakawa.core;
 using urakawa.media;
@@ -6,16 +7,21 @@ namespace Obi
 {
     public class PhraseNode : ObiNode
     {
-        public static readonly string Name = "phrase";
+        public static readonly string Name = "phrase";  // name of the element in the XUK file
 
-        private ChannelsProperty mChannel;      // quick reference to the channel property
-        private TextMedia mMedia;               // quick reference to the text media object
-        private string mAnnotation;             // the annotation for this phrase
-        private Assets.AudioMediaAsset mAsset;  // the audio asset for this phrase
-        private AssetProperty mAssProperty;     // asset property for the XUK input/output
+        private ChannelsProperty mChannel;   // quick reference to the channel property
+        private TextMedia mMedia;            // quick reference to the text media object
+        private string mAnnotation;          // the annotation for this phrase
+        private AudioMediaAsset mAsset;      // the audio asset for this phrase
+        private AssetProperty mAssProperty;  // asset property for the XUK input/output
 
         /// <summary>
-        /// The annotation for this node. At the moment this is the name of the asset.
+        /// Directions in which a phrase node can be moved.
+        /// </summary>
+        public enum Direction { Forward, Backward };
+
+        /// <summary>
+        /// The annotation for this node; normally the name of the asset.
         /// </summary>
         public string Annotation
         {
@@ -31,7 +37,7 @@ namespace Obi
         /// <summary>
         /// The asset for this node.
         /// </summary>
-        public Assets.AudioMediaAsset Asset
+        public AudioMediaAsset Asset
         {
             get { return mAsset; }
             set
@@ -45,7 +51,7 @@ namespace Obi
         /// <summary>
         /// Index of this node relative to the other phrases.
         /// </summary>
-        public int PhraseIndex
+        public override int Index
         {
             get
             {
@@ -70,7 +76,7 @@ namespace Obi
             get
             {
                 SectionNode parent = (SectionNode)getParent();
-                int index = PhraseIndex;
+                int index = Index;
                 return index < parent.PhraseChildCount - 1 ? parent.PhraseChild(index + 1) : null;
             }
         }
@@ -107,7 +113,7 @@ namespace Obi
         {
             SequenceMedia seq =
                 (SequenceMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.EMPTY_SEQUENCE);
-            foreach (Assets.AudioClip clip in mAsset.Clips)
+            foreach (AudioClip clip in mAsset.Clips)
             {
                 AudioMedia audio = (AudioMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.AUDIO);
                 UriBuilder builder = new UriBuilder();
@@ -133,22 +139,13 @@ namespace Obi
         /// <summary>
         /// Make a copy of a phrase node and of its asset (copy it in the asset manager as well.)
         /// </summary>
+        /// <param name="deep">Ignored; the node is shallow.</param>
         public new PhraseNode copy(bool deep)
         {
-            PhraseNode copy = getPresentation().getCoreNodeFactory().createNode(Name, ObiPropertyFactory.ObiNS) as PhraseNode;
-            if (copy == null)
-            {
-                throw new urakawa.exception.FactoryCanNotCreateTypeException(
-                    String.Format("The CoreNode factory of the Presentation can not create an {0}:{1}",
-                    ObiPropertyFactory.ObiNS, Name));
-            }
-            copy.Asset = mAsset.Manager.CopyAsset(mAsset) as Assets.AudioMediaAsset;
+            PhraseNode copy = (PhraseNode) getPresentation().getCoreNodeFactory().createNode(Name, ObiPropertyFactory.ObiNS);
+            copy.Asset = (AudioMediaAsset)mAsset.Manager.CopyAsset(mAsset);
             copy.Annotation = copy.Asset.Name;
             copyProperties(copy);
-            if (deep)
-            {
-                copyChildren(copy);
-            }
             return copy;
         }
 

@@ -25,7 +25,7 @@ namespace Obi.Commands.TOC
         {
             mNode = node;
             mParent = (CoreNode)node.getParent();
-            mIndex = node.SectionIndex;
+            mIndex = node.Index;
         }
 
         /// <summary>

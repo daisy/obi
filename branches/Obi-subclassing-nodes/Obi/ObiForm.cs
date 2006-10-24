@@ -906,7 +906,7 @@ namespace Obi
                 Project.GetPhrasesCount(mProjectPanel.StripManager.SelectedSectionNode) - 1;
             bool isAudioBlockFirst = isAudioBlockSelected &&
                 Project.GetPhraseIndex(mProjectPanel.StripManager.SelectedPhraseNode) == 0;
-            bool isBlockClipBoardSet = isProjectOpen && mProject.BlockClipBoard != null;
+            bool isBlockClipBoardSet = isProjectOpen && mProject.PhraseClipBoard != null;
             bool canSetPage = isAudioBlockSelected;  // an audio block must be selected and a heading must not be set.
             bool canRemovePage = isAudioBlockSelected &&
                 mProjectPanel.StripManager.SelectedPhraseNode.getProperty(typeof(PageProperty)) != null;

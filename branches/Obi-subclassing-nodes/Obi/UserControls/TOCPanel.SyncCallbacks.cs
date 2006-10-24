@@ -1,16 +1,10 @@
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
-using System.Collections;
-
 using urakawa.media;
 
 namespace Obi.UserControls
 {
+    // Callbacks for the TOCPanel
     public partial class TOCPanel
     {
         /// <summary>
@@ -67,11 +61,11 @@ namespace Obi.UserControls
             if (node.ParentSection != null)
             {
                 TreeNode relTreeNode = FindTreeNodeFromSectionNode(node.ParentSection);
-                newTreeNode = relTreeNode.Nodes.Insert(node.SectionIndex, node.Id.ToString(), node.Label);
+                newTreeNode = relTreeNode.Nodes.Insert(node.Index, node.Id.ToString(), node.Label);
             }
             else
             {
-                newTreeNode = mTocTree.Nodes.Insert(node.SectionIndex, node.Id.ToString(), node.Label);
+                newTreeNode = mTocTree.Nodes.Insert(node.Index, node.Id.ToString(), node.Label);
             }
             newTreeNode.Tag = node;
             return newTreeNode;
@@ -92,12 +86,12 @@ namespace Obi.UserControls
         /// This will remove the whole subtree.
         /// </summary>
         /// <param name="sender">The sender of this event notification</param>
-        /// <param name="e"><see cref="e.Node"/> is the node to be removed.</param>
-        internal void SyncDeletedSectionNode(object sender, Events.Node.Section.EventArgs e)
+        /// <param name="node">The root section to remove.</param>
+        internal void SyncDeletedSectionNode(object sender, SectionNode node)
         {
-            if (e.Node != null)
+            if (node != null)
             {
-                TreeNode treeNode = FindTreeNodeFromSectionNode(e.Node);
+                TreeNode treeNode = FindTreeNodeFromSectionNode(node);
                 mTocTree.SelectedNode = treeNode.PrevVisibleNode;
                 if (mTocTree.SelectedNode != null)
                 {
@@ -163,13 +157,13 @@ namespace Obi.UserControls
                 return;
             }
 
-            ArrayList futureChildren = new ArrayList();
+            List<TreeNode> futureChildren = new List<TreeNode>();
 
            //make copies of our future children, and remove them from the tree
             for (int i = selectedNode.Parent.Nodes.Count - 1; i > selectedNode.Index; i--)
             {
                 TreeNode node = selectedNode.Parent.Nodes[i];
-                futureChildren.Add(node.Clone());
+                futureChildren.Add((TreeNode)node.Clone());
                 //MessageBox.Show(String.Format("About to remove {0}", node.Text));
                 node.Remove();
             }
@@ -207,9 +201,9 @@ namespace Obi.UserControls
         }
 
         //md 20060810
-        internal void SyncCutSectionNode(object sender, Events.Node.Section.EventArgs e)
+        internal void SyncCutSectionNode(object sender, SectionNode node)
         {
-            SyncDeletedSectionNode(sender, e);
+            SyncDeletedSectionNode(sender, node);
         }
 
         //md 20060810
@@ -224,12 +218,10 @@ namespace Obi.UserControls
         {
         }
 
-        //md 20060810
-        //e.Node is what was just pasted in
-        internal void SyncPastedSectionNode(object sender, Events.Node.Section.AddedEventArgs e)
+        internal void SyncPastedSectionNode(object sender, SectionNode node)
         {
            //add a subtree
-            TreeNode uncutNode = AddSectionNode(e.Node);
+            TreeNode uncutNode = AddSectionNode(node);
             uncutNode.ExpandAll();
             uncutNode.EnsureVisible();
             mTocTree.SelectedNode = uncutNode;

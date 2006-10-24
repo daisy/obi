@@ -30,7 +30,7 @@ namespace Obi.Commands.Strips
         {
             mNode = node;
             mParent = node.ParentSection;
-            mIndex = node.PhraseIndex;
+            mIndex = node.Index;
         }
         
         public override void Do()
@@ -60,19 +60,19 @@ namespace Obi.Commands.Strips
         public CutPhrase(PhraseNode node)
             : base(node)
         {
-            mPrevBlockClipBoard = Node.Project.BlockClipBoard;
+            mPrevBlockClipBoard = Node.Project.PhraseClipBoard;
         }
 
         public override void Do()
         {
             base.Do();
-            Node.Project.BlockClipBoard = Node;
+            Node.Project.PhraseClipBoard = Node;
         }
 
         public override void Undo()
         {
             base.Undo();
-            Node.Project.BlockClipBoard = mPrevBlockClipBoard;
+            Node.Project.PhraseClipBoard = mPrevBlockClipBoard;
         }
     }
 }

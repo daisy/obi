@@ -11,13 +11,10 @@ namespace Obi.Commands.Strips
     /// </summary>
     class MovePhrase: Command
     {
-        private PhraseNode mNode;                   // the phrase node to move
-        private Project.Direction mDirection;       // the direction in which to move it
-        private Project.Direction mOtherDirection;  // the other direction (for undo)
+        private PhraseNode mNode;                      // the phrase node to move
+        private PhraseNode.Direction mDirection;       // the direction in which to move it
+        private PhraseNode.Direction mOtherDirection;  // the other direction (for undo)
 
-        /// <summary>
-        /// The label of this command for the undo menu.
-        /// </summary>
         public override string Label
         {
             get { return Localizer.Message("move_phrase_command_label"); }
@@ -28,11 +25,12 @@ namespace Obi.Commands.Strips
         /// </summary>
         /// <param name="node">The phrase node to move.</param>
         /// <param name="direction">The direction in which to move it.</param>
-        public MovePhrase(PhraseNode node, Project.Direction direction)
+        public MovePhrase(PhraseNode node, PhraseNode.Direction direction)
         {
             mNode = node;
             mDirection = direction;
-            mOtherDirection = direction == Project.Direction.Backward ? Project.Direction.Forward : Project.Direction.Backward;
+            mOtherDirection = direction == PhraseNode.Direction.Backward ?
+                PhraseNode.Direction.Forward : PhraseNode.Direction.Backward;
         }
 
         /// <summary>

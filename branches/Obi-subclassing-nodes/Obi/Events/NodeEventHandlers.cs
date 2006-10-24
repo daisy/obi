@@ -1,8 +1,10 @@
 using Obi.Assets;
+using urakawa.core;
 
 namespace Obi.Events
 {
-    // Generic handlers for Obi nodes
+    // Generic handlers for Core nodes and Obi nodes
+    public delegate void CoreNodeHandler(object sender, CoreNode node);
     public delegate void ObiNodeHandler(object sender, ObiNode node);
     public delegate void PhraseNodeHandler(object sender, PhraseNode node);
     public delegate void SectionNodeHandler(object sender, SectionNode node);

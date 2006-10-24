@@ -19,17 +19,17 @@ namespace Obi.Commands.Strips
         public CopyPhrase(PhraseNode node)
         {
             mNode = node;
-            mPrevNode = mNode.Project.BlockClipBoard;
+            mPrevNode = mNode.Project.PhraseClipBoard;
         }
 
         public override void Do()
         {
-            mNode.Project.BlockClipBoard = mNode;
+            mNode.Project.PhraseClipBoard = mNode;
         }
 
         public override void Undo()
         {
-            mNode.Project.BlockClipBoard = mPrevNode;
+            mNode.Project.PhraseClipBoard = mPrevNode;
         }
     }
 }

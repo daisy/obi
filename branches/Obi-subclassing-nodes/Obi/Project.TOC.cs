@@ -10,11 +10,11 @@ namespace Obi
 {
     public partial class Project
     {
-        public event Events.SectionNodeHandler AddedSectionNode;  // a section node was added to the TOC
+        public event Events.SectionNodeHandler AddedSectionNode;    // a section node was added to the TOC
+        public event Events.SectionNodeHandler CutSectionNode;      // a section node was cut
+        public event Events.SectionNodeHandler DeletedSectionNode;  // a section node was deleted
+        public event Events.SectionNodeHandler PastedSectionNode;   // a section node was pasted
         
-        public event Events.Node.Section.CutSectionNodeHandler CutSectionNode;                // a section node was cut
-        public event Events.Node.Section.DeletedSectionNodeHandler DeletedSectionNode;        // a section node was deleted
-        public event Events.Node.Section.PastedSectionNodeHandler PastedSectionNode;          // a section node was pasted
         public event Events.Node.Section.RenamedSectionNodeHandler RenamedSectionNode;        // a section node was renamed
         public event Events.Node.Section.UndidPasteSectionNodeHandler UndidPasteSectionNode;  // paste section was undone
 
@@ -116,7 +116,7 @@ namespace Obi
         {
             if (node.getParent() == null)
             {
-                if (parent.GetType() == typeof(SectionNode))
+                if (parent is SectionNode)
                 {
                     ((SectionNode)parent).AddChildSection(node, index);
                 }
@@ -133,7 +133,7 @@ namespace Obi
         /// <summary>
         /// Readd a section node that was previously delete and restore all its contents.
         /// </summary>
-        public void UndeleteSectionNode(SectionNode node, SectionNode parent, int index)
+        public void UndeleteSectionNode(SectionNode node, CoreNode parent, int index)
         {
             node.acceptDepthFirst(new Visitors.UndeleteSubtree(parent, index));
         }
@@ -152,7 +152,7 @@ namespace Obi
                 //because its undo fn is required by UndoShallowDelete
                 command = new Commands.TOC.DeleteSectionNode(node);
                 node.DetachFromParent();
-                DeletedSectionNode(this, new Events.Node.Section.EventArgs(sender, node));
+                DeletedSectionNode(sender, node);
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
                 //md: added condition "origin != this" to accomodate the change made above
@@ -683,26 +683,24 @@ namespace Obi
         }
 
         //md 20060810
-        public void DoCutSectionNode(object origin, SectionNode node)
+        public void DoCutSectionNode(object sender, SectionNode node)
         {
-            if (node == null) return;
-            CoreNode parent = (CoreNode)node.getParent();
-            //we need to save the state of the node before it is altered
-            Commands.TOC.CutSectionNode command = null;
-            if (origin != this)
+            if (node != null)
             {
-                command = new Commands.TOC.CutSectionNode(node);
+                CoreNode parent = (CoreNode)node.getParent();
+                //we need to save the state of the node before it is altered
+                Commands.TOC.CutSectionNode command = sender == this ? null : new Commands.TOC.CutSectionNode(node);
+                mTOCClipboard = node;
+                node.DetachFromParent();
+                CutSectionNode(sender, node);
+                mUnsaved = true;
+                StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+                if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             }
-            mTOCClipboard = node;
-            node.DetachFromParent();
-            CutSectionNode(this, new Events.Node.Section.EventArgs(origin, (SectionNode)node));
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-            if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
         //md 20060810
-        public void UndoCutSectionNode(SectionNode node, SectionNode parent, int index)
+        public void UndoCutSectionNode(SectionNode node, CoreNode parent, int index)
         {
             UndeleteSectionNode(node, parent, index);
             mTOCClipboard = null;
@@ -765,50 +763,45 @@ namespace Obi
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
 
-        //md 20060810
-        // modified by JQ 20060818: can paste under the root node if we have deleted the first and only heading.
-        public void PasteSectionNodeRequested(object sender, Events.Node.NodeEventArgs e)
+        /// <summary>
+        /// Request to paste the section node on the clipboard under a given node.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="node">The node under which the section will be pasted. If null, paste under the root node.</param>
+        public void PasteSectionNodeRequested(object sender, SectionNode node)
         {
-            if (e.Node != null)
-            {
-                PasteSectionNode(sender, e.Node);
-            }
-            else
-            {
-                PasteSectionNode(sender, getPresentation().getRootNode());
-            }
+            PasteSectionNode(sender, node == null ? RootNode : node);
         }
 
-        //md 20060810
-        //"paste" will paste the clipboard contents as the first child of the given node
-        // modified by JQ 20060818: can paste under the root node if we have deleted the first and only heading.
-        public void PasteSectionNode(object origin, CoreNode parent)
+        /// <summary>
+        /// Paste a copy of the section node in the clipboard.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="parent">The parent node (root or section) under which to paste.</param>
+        public void PasteSectionNode(object sender, CoreNode parent)
         {
-            if (parent == null) return;
-            Commands.TOC.PasteSectionNode command = null;
-            SectionNode pastedSection = (SectionNode)mTOCClipboard.copy(true);
-            //don't clear the clipboard, we can use it again
-            if (origin != this)
+            if (parent != null)
             {
-                command = new Commands.TOC.PasteSectionNode(this, pastedSection, parent);
+                SectionNode pastedSection = (SectionNode)mTOCClipboard.copy(true);
+                Commands.TOC.PasteSectionNode command = sender == this ?
+                    null : new Commands.TOC.PasteSectionNode(parent, pastedSection);
+                //don't clear the clipboard, we can use it again
+                if (parent is CoreNode)
+                {
+                    parent.appendChild(pastedSection);
+                }
+                else if (parent is SectionNode)
+                {
+                    ((SectionNode)parent).AppendChildSection(pastedSection);
+                }
+                //reconstruct the assets
+                Obi.Visitors.CopyPhraseAssets assVisitor = new Obi.Visitors.CopyPhraseAssets(mAssManager, this);
+                pastedSection.acceptDepthFirst(assVisitor);
+                PastedSectionNode(this, pastedSection);
+                mUnsaved = true;
+                StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+                if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             }
-            //the actual paste operation
-            parent.insert(pastedSection, 0);
-
-            //reconstruct the assets
-            Obi.Visitors.CopyPhraseAssets assVisitor = new Obi.Visitors.CopyPhraseAssets(mAssManager, this);
-            pastedSection.acceptDepthFirst(assVisitor);
-           
-            Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(pastedSection);
-            getPresentation().getRootNode().acceptDepthFirst(visitor);
-
-            int sectionIdx = GetSectionNodeIndex(pastedSection);
-
-            PastedSectionNode(this, new Events.Node.Section.AddedEventArgs(origin, pastedSection, pastedSection.SectionIndex));
-
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-            if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
         //md 20060810

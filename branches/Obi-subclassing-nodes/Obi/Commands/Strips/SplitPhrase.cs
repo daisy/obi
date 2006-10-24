@@ -42,7 +42,7 @@ namespace Obi.Commands.Strips
         public override void  Do()
         {
             mNode.Asset = mSplitAsset;
-            mNode.Project.AddPhraseNodeAndAsset(mNewNode, mNewNode.ParentSection, mNewNode.PhraseIndex);
+            mNode.Project.AddPhraseNodeAndAsset(mNewNode, mNewNode.ParentSection, mNewNode.Index);
         }
 
         /// <summary>

@@ -1,22 +1,17 @@
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Windows.Forms;
-using System.Collections;
-
 using urakawa.core;
 using urakawa.media;
 
 namespace Obi.UserControls
 {
+    // Strip manager panel methods relating to callbacks for section strips
     public partial class StripManagerPanel
     {
         /// <summary>
         /// Add a new empty strip.
         /// </summary>
+        /// <param name="sender">Sender of the event.</param>
+        /// <param name="node">The section node for which to add a strip.</param>
         internal void SyncAddedEmptySectionNode(object sender, SectionNode node)
         {
             AddEmptyStripFromSectionNode(node, sender == this);
@@ -24,9 +19,9 @@ namespace Obi.UserControls
 
         /// <summary>
         /// Add a single strip for a section node (which should not have any children.)
-        /// The strip is added at the correct position since the node knows its position.
-        /// If the rename parameter is true, also start renaming the strip right away.
         /// </summary>
+        /// <param name="node">The section node for which to add a strip.</param>
+        /// <param name="rename">If true, start renaming the strip.</param>
         private void AddEmptyStripFromSectionNode(SectionNode node, bool rename)
         {
             SectionStrip strip = new SectionStrip();
@@ -36,6 +31,7 @@ namespace Obi.UserControls
             mSectionNodeMap[node] = strip;
             mFlowLayoutPanel.Controls.Add(strip);
             mFlowLayoutPanel.Controls.SetChildIndex(strip, node.Position);
+            System.Diagnostics.Debug.Print("+++ adding empty strip at position {0}.", node.Position);
             if (rename)
             {
                 SelectedSectionNode = node;
@@ -43,25 +39,29 @@ namespace Obi.UserControls
             }
         }
 
-        //md 20060811
-        //recursive function to add strips for a node and its subtree
-        //returns the position marker after the operation is completed
-        //todo: this should probably be a visitor
+        /// <summary>
+        /// Add strips for a section node and all of its descendants.
+        /// </summary>
+        /// <param name="node">The section node (may have children) to add from.</param>
         private void AddStripsFromSectionNode(SectionNode node)
         {
-            AddEmptyStripFromSectionNode(node, false);
-            for (int i = 0; i < node.getChildCount(); i++)
-            {
-                if (node.getChild(i).GetType() == typeof(SectionNode))
+            node.visitDepthFirst
+            (
+                delegate(ICoreNode n)
                 {
-                    AddStripsFromSectionNode(node.SectionChild(i));
-                }
-                else
-                {
-                    //todo: replace this with something cleaner ?  we are kind of falsely invoking an event handler
-                    SyncAddedPhraseNode(this, node.PhraseChild(i));
-                }
-            }
+                    if (n is SectionNode)
+                    {
+                        AddEmptyStripFromSectionNode((SectionNode)n, false);
+                    }
+                    else if (n is PhraseNode)
+                    {
+                        //todo: replace this with something cleaner ?  we are kind of falsely invoking an event handler
+                        SyncAddedPhraseNode(this, (PhraseNode)n);
+                    }
+                    return true;
+                },
+                delegate(ICoreNode n) {}
+            );
         }
 
         internal void SyncRenamedSectionNode(object sender, Events.Node.Section.RenameEventArgs e)
@@ -73,29 +73,25 @@ namespace Obi.UserControls
         /// <summary>
         /// When deleting a node from the tree, all descendants are deleted as well.
         /// </summary>
-        internal void SyncDeletedNode(object sender, Events.Node.Section.EventArgs e)
+        internal void SyncDeletedNode(object sender, SectionNode node)
         {
-            if (e.Node != null)
+            if (node != null)
             {
-                Visitors.DescendantsVisitor visitor = new Visitors.DescendantsVisitor();
-                e.Node.acceptDepthFirst(visitor);
-                foreach (CoreNode node in visitor.Nodes)
-                {
-                    if (node.GetType() == typeof(SectionNode))
+                node.visitDepthFirst
+                (
+                    delegate(ICoreNode n)
                     {
-                        SectionStrip strip = mSectionNodeMap[(SectionNode)node];
-                        mFlowLayoutPanel.Controls.Remove(strip);
-                    }
-                }
-                //mg:
-                //this.ReflowTabOrder(mSectionNodeMap[e.Node]);
+                        if (n is SectionNode) mFlowLayoutPanel.Controls.Remove(mSectionNodeMap[(SectionNode)n]);
+                        return true;
+                    },
+                    delegate(ICoreNode n) {}
+                );
             }
         }
 
         internal void SyncMovedNode(object sender, Events.Node.MovedNodeEventArgs e)
         {
-            //md:
-            ArrayList stripsToMove = new ArrayList();
+            List<SectionStrip> stripsToMove = new List<SectionStrip>();
             MakeFlatListOfStrips(e.Node, stripsToMove);
 
             SectionStrip parentNodeStrip = mSectionNodeMap[(SectionNode)e.Node];
@@ -130,9 +126,9 @@ namespace Obi.UserControls
         }
 
         //md 20060811
-        internal void SyncCutSectionNode(object sender, Events.Node.Section.EventArgs e)
+        internal void SyncCutSectionNode(object sender, SectionNode node)
         {
-            SyncDeletedNode(sender, e);
+            SyncDeletedNode(sender, node);
         }
 
         //md 20060811
@@ -153,23 +149,22 @@ namespace Obi.UserControls
         {
         }
 
-        //md 20060811
-        internal void SyncPastedSectionNode(object sender, Events.Node.Section.AddedEventArgs e)
+        internal void SyncPastedSectionNode(object sender, SectionNode node)
         {
-            AddStripsFromSectionNode(e.Node);
+            AddStripsFromSectionNode(node);
             
         }
 
         //md 20060811
         internal void SyncUndidPasteSectionNode(object sender, Events.Node.Section.EventArgs e)
         {
-            SyncDeletedNode(sender, e);
+            SyncDeletedNode(sender, e.Node);
         }
 
         //md: recursive function to enumerate the strips under a node (including the strip for the node itself)
-        private void MakeFlatListOfStrips(CoreNode node, ArrayList strips)
+        private void MakeFlatListOfStrips(CoreNode node, List<SectionStrip> strips)
         {
-            if (node.GetType() == typeof(SectionNode))
+            if (node is SectionNode)
             {
                 SectionStrip strip = mSectionNodeMap[(SectionNode)node];
                 strips.Add(strip);

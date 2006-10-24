@@ -19,6 +19,11 @@ namespace Obi
         private int mSectionOffset;         // index of the first section child
         private int mSpan;                  // span of this section: 1 + sum of the span of each child section.
 
+        public override string InfoString
+        {
+            get { return string.Format("{0} #{1}@{2} `{3}'", base.InfoString, Index, Position, mLabel); }
+        }
+
         /// <summary>
         /// Get/set the label of the node as a simple string.
         /// </summary>
@@ -36,13 +41,13 @@ namespace Obi
         /// <summary>
         /// Index of this section relative to the other sections.
         /// </summary>
-        public int SectionIndex
+        public override int Index
         {
             get
             {
                 CoreNode parent = (CoreNode)getParent();
                 int index = parent.indexOf(this);
-                return index - mSectionOffset;
+                return index - (parent is SectionNode ? ((SectionNode)parent).mSectionOffset : 0);
             }
         }
 
@@ -70,7 +75,7 @@ namespace Obi
             get
             {
                 IBasicTreeNode parent = getParent();
-                return parent.GetType() == typeof(SectionNode) ? (SectionNode)parent : null;
+                return parent is SectionNode ? (SectionNode)parent : null;
             }
         }
 
@@ -83,7 +88,7 @@ namespace Obi
             {
                 CoreNode parent = (CoreNode)getParent();
                 int index = parent.indexOf(this);
-                if (parent.GetType() == typeof(SectionNode))
+                if (parent is SectionNode)
                 {
                     return index == ((SectionNode)parent).mSectionOffset ? null : (SectionNode)parent.getChild(index - 1);
                 }
@@ -204,7 +209,7 @@ namespace Obi
         /// <param name="span">The span change (can be negative if nodes are removed.)</param>
         private void UpdateSpan(int span)
         {
-            for (IBasicTreeNode parent = this; parent.GetType() == typeof(SectionNode); parent = parent.getParent())
+            for (IBasicTreeNode parent = this; parent is SectionNode; parent = parent.getParent())
             {
                 ((SectionNode)parent).mSpan += span;
             }
@@ -247,6 +252,22 @@ namespace Obi
         {
             if (ParentSection != null) ParentSection.UpdateSpan(-mSpan);
             this.detach();
+        }
+
+        /// <summary>
+        /// Copy a section node.
+        /// </summary>
+        /// <param name="deep">Flag telling whether to copy descendants as well.</param>
+        /// <returns>The copied section node.</returns>
+        public new SectionNode copy(bool deep)
+        {
+            SectionNode copy = (SectionNode)
+                getPresentation().getCoreNodeFactory().createNode(Name, ObiPropertyFactory.ObiNS);
+            copy.Label = Label;
+            copy.Used = Used;
+            copyProperties(copy);
+            if (deep) copyChildren(copy);
+            return copy;
         }
     }
 }

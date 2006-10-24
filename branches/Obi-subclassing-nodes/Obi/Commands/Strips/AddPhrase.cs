@@ -18,7 +18,7 @@ namespace Obi.Commands.Strips
         {
             mNode = node;
             mParent = mNode.ParentSection;
-            mIndex = mNode.PhraseIndex;
+            mIndex = mNode.Index;
         }
 
         /// <summary>

@@ -1,3 +1,4 @@
+using System;
 using urakawa.core;
 using urakawa.exception;
 
@@ -36,6 +37,22 @@ namespace Obi
         {
             get { return mUsed; }
             set { mUsed = value; }
+        }
+
+        /// <summary>
+        /// Index of this node in its parent's list of children.
+        /// </summary>
+        public abstract int Index
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Information string for dumping the core tree to a console.
+        /// </summary>
+        public virtual string InfoString
+        {
+            get { return String.Format(" <{0}>", mId); }
         }
 
         /// <summary>

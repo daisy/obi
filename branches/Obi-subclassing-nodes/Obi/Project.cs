@@ -1,11 +1,9 @@
+using Obi.Assets;
 using System;
 using System.Collections;
 using System.IO;
-
 using urakawa.core;
 using urakawa.media;
-
-using Obi.Assets;
 
 namespace Obi
 {
@@ -176,7 +174,7 @@ namespace Obi
             // get from GetAssetDirectory to create/initialize the path of the asset manager.
             mXUKPath = xukPath;
             mAssPath = GetAssetDirectory(xukPath);
-            mAssManager = new Assets.AssetManager(mAssPath);
+            mAssManager = new AssetManager(mAssPath);
             mAssPath = (new Uri(xukPath)).MakeRelativeUri(new Uri(mAssPath)).ToString();  // kludgy? maybe
 
             // Create metadata and channels
@@ -192,7 +190,7 @@ namespace Obi
 
             // Clear the clipboards
             mTOCClipboard = null;
-            mBlockClipBoard = null;
+            mPhraseClipBoard = null;
 
             // Create a title section if necessary
             if (createTitle)
@@ -271,7 +269,7 @@ namespace Obi
                 }
                 if (mAssPath == null) throw new Exception(Localizer.Message("missing_asset_path"));
                 Uri absoluteAssPath = new Uri(new Uri(xukPath), mAssPath); 
-                mAssManager = new Assets.AssetManager(absoluteAssPath.AbsolutePath);
+                mAssManager = new AssetManager(absoluteAssPath.AbsolutePath);
                 // Recreate the assets from the phrase nodes
                 string errMessages = ""; 
                 Visitors.AssetCreator visitor = new Visitors.AssetCreator(mAssManager,
@@ -554,7 +552,7 @@ namespace Obi
         internal void DumpAssManager()
         {
             System.Diagnostics.Debug.Print("Managed assets:");
-            foreach (string name in mAssManager.GetAssets(typeof(Assets.AudioMediaAsset)).Keys)
+            foreach (string name in mAssManager.GetAssets(typeof(AudioMediaAsset)).Keys)
             {
                 System.Diagnostics.Debug.Print("* {0}", name);
             }

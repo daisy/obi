@@ -32,7 +32,7 @@ namespace Obi.Commands.Strips
         public override void Undo()
         {
             mNode.Project.SetAudioMediaAsset(mNode, mAsset);
-            mNode.Project.AddPhraseNodeAndAsset(mNext, mNode.ParentSection, mNode.PhraseIndex + 1);
+            mNode.Project.AddPhraseNodeAndAsset(mNext, mNode.ParentSection, mNode.Index + 1);
             mNode.Project.TouchPhraseNode(mNode);
         }
     }

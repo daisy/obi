@@ -46,7 +46,7 @@ namespace Obi.UserControls
                 TextMedia annotation = (TextMedia)Project.GetMediaForChannel(node, Project.AnnotationChannelName);
                 block.Label = annotation.getText();
                 block.Time = Project.GetAudioMediaAsset(node).LengthInSeconds;
-                strip.InsertAudioBlock(block, node.PhraseIndex);
+                strip.InsertAudioBlock(block, node.Index);
                 this.ReflowTabOrder(block);  // MG
                 SelectedPhraseNode = node;
                 PageProperty pageProp = node.getProperty(typeof(PageProperty)) as PageProperty;

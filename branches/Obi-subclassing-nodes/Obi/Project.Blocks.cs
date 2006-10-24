@@ -14,23 +14,18 @@ namespace Obi
         public Events.PhraseNodeHandler SetPageNumber;         // page number was set
         public Events.PhraseNodeUpdateTimeHandler UpdateTime;  // time of the audio of a phrase node changed
 
-        /// <summary>
-        /// Directions in which a phrase node can be moved.
-        /// (Should be moved to phrase node actually.)
-        /// </summary>
-        public enum Direction { Forward, Backward };
-
         #region clip board
 
-        private PhraseNode mBlockClipBoard;
+        private PhraseNode mPhraseClipBoard;
 
         /// <summary>
-        /// Clip board that can store a block (actually, a phrase node)
+        /// Clip board that can store a phrase node.
         /// </summary>
-        internal PhraseNode BlockClipBoard
+        /// <remarks>In the future, this should become a list of phrase nodes (multiple selection.)</remarks>
+        internal PhraseNode PhraseClipBoard
         {
-            get { return mBlockClipBoard; }
-            set { mBlockClipBoard = value; }
+            get { return mPhraseClipBoard; }
+            set { mPhraseClipBoard = value; }
         }
 
         /// <summary>
@@ -41,7 +36,7 @@ namespace Obi
         {
             // create the command before storing the node in the clip board, otherwise the previous value is lost
             Commands.Strips.CutPhrase command = new Commands.Strips.CutPhrase(node);
-            mBlockClipBoard = node;
+            mPhraseClipBoard = node;
             DeletePhraseNodeAndAsset(node);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             mUnsaved = true;
@@ -55,7 +50,7 @@ namespace Obi
         internal void CopyPhraseNode(object sender, PhraseNode node)
         {
             Commands.Strips.CopyPhrase command = new Commands.Strips.CopyPhrase(node);
-            mBlockClipBoard = node;
+            mPhraseClipBoard = node;
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
@@ -66,9 +61,9 @@ namespace Obi
         /// </summary>
         internal void PastePhraseNode(object sender, ObiNode contextNode)
         {
-            if (mBlockClipBoard != null)
+            if (mPhraseClipBoard != null)
             {
-                PhraseNode copy = (PhraseNode)mBlockClipBoard.copy(true);
+                PhraseNode copy = (PhraseNode)mPhraseClipBoard.copy(true);
                 SectionNode parent;
                 int index;
                 if (contextNode.GetType() == typeof(SectionNode))
@@ -80,7 +75,7 @@ namespace Obi
                 {
                     PhraseNode _contextNode = (PhraseNode)contextNode;
                     parent = _contextNode.ParentSection;
-                    index = _contextNode.PhraseIndex + 1;
+                    index = _contextNode.Index + 1;
                 }
                 AddPhraseNode(copy, parent, index);
                 Commands.Strips.PastePhrase command = new Commands.Strips.PastePhrase(copy);
@@ -148,7 +143,7 @@ namespace Obi
         /// <summary>
         /// Move a phrase node in either direction. May not succeed if there is nowhere to move in that direction.
         /// </summary>
-        private void MovePhraseNodeRequested(object sender, PhraseNode node, Direction dir)
+        private void MovePhraseNodeRequested(object sender, PhraseNode node, PhraseNode.Direction dir)
         {
             if (CanMovePhraseNode(node, dir))
             {
@@ -162,7 +157,7 @@ namespace Obi
         /// </summary>
         public void MovePhraseNodeForwardRequested(object sender, PhraseNode node)
         {
-            MovePhraseNodeRequested(sender, node, Direction.Forward);
+            MovePhraseNodeRequested(sender, node, PhraseNode.Direction.Forward);
         }
 
         /// <summary>
@@ -170,7 +165,7 @@ namespace Obi
         /// </summary>
         public void MovePhraseNodeBackwardRequested(object sender, PhraseNode node)
         {
-            MovePhraseNodeRequested(sender, node, Direction.Backward);
+            MovePhraseNodeRequested(sender, node, PhraseNode.Direction.Backward);
         }
 
         /// <summary>
@@ -307,10 +302,10 @@ namespace Obi
         /// <summary>
         /// Determine whether a node can be moved forward or backward in the list of phrase nodes.
         /// </summary>
-        private bool CanMovePhraseNode(PhraseNode node, Direction dir)
+        private bool CanMovePhraseNode(PhraseNode node, PhraseNode.Direction dir)
         {
-            return dir == Direction.Forward ?
-                node.PhraseIndex < node.ParentSection.PhraseChildCount - 1 : node.PhraseIndex > 0;
+            return dir == PhraseNode.Direction.Forward ?
+                node.Index < node.ParentSection.PhraseChildCount - 1 : node.Index > 0;
         }
 
         /// <summary>
@@ -347,8 +342,8 @@ namespace Obi
         /// </summary>
         public static PhraseNode GetNextPhrase(PhraseNode node)
         {
-            return node != null && node.PhraseIndex < node.ParentSection.PhraseChildCount - 1 ?
-                node.ParentSection.PhraseChild(node.PhraseIndex + 1) : null;
+            return node != null && node.Index < node.ParentSection.PhraseChildCount - 1 ?
+                node.ParentSection.PhraseChild(node.Index + 1) : null;
         }
 
         /// <summary>
@@ -387,12 +382,12 @@ namespace Obi
         /// <summary>
         /// Move a phrase node in the given direction.
         /// </summary>
-        public void MovePhraseNode(PhraseNode node, Direction dir)
+        public void MovePhraseNode(PhraseNode node, PhraseNode.Direction dir)
         {
-            int index = node.PhraseIndex;
+            int index = node.Index;
             SectionNode parent = node.ParentSection;
             DeletePhraseNode(node);
-            AddPhraseNode(node, parent, dir == Direction.Forward ? index + 1 : index - 1);
+            AddPhraseNode(node, parent, index + dir == PhraseNode.Direction.Forward ? 1 : -1);
         }
 
         /// <summary>

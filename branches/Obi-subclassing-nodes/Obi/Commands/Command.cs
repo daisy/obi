@@ -7,25 +7,22 @@ namespace Obi.Commands
 	/// </summary>
 	public abstract class Command
 	{
-        /*
-        private bool mUserVisible;                            // is this command visible to the user, or part of a complex command?
-
-        public static readonly bool Visible = true;
-        public static readonly bool Hidden = false;
-
-        public bool UserVisible
+        /// <summary>
+        /// The label of this command for the undo menu.
+        /// </summary>
+        public abstract string Label
         {
-            get { return mUserVisible; }
+            get;
         }
 
-        internal Command(bool visible)
-        {
-            mUserVisible = visible;
-        }
-        */
-
-		public virtual string Label { get { return null; } }  // get the label (for user interaction purposes)
-		public abstract void Do();                            // actually perform the action
-		public abstract void Undo();                          // go back to the state before the action was performed
+        /// <summary>
+        /// Do, or rather redo, the command from the initial state.
+        /// </summary>
+		public abstract void Do();
+        
+        /// <summary>
+        /// Undo the command and bring everything back to the initial state.
+        /// </summary>
+        public abstract void Undo();
 	}
 }
