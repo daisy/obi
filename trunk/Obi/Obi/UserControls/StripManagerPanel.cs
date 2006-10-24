@@ -249,12 +249,22 @@ namespace Obi.UserControls
                     block.Manager = this;
                     block.Node = (CoreNode)node;
                     mPhraseNodeMap[(CoreNode)node] = block;
+
+                    //set the annotation block's text
                     TextMedia annotation = (TextMedia)Project.GetMediaForChannel((CoreNode)node, Project.AnnotationChannel);
-                    block.AnnotationBlock.Label = annotation.getText();
+                    if (annotation != null) block.AnnotationBlock.Label = annotation.getText();
+
+                    //set the asset name on the audio block
+                    Assets.AudioMediaAsset asset = Project.GetAudioMediaAsset(block.Node);
+                    block.AssetName = asset.Name;
+
+                    //set the time label on the audio block
                     block.Time = Project.GetAudioMediaAsset((CoreNode)node).LengthInSeconds;
                     strip.AppendAudioBlock(block);
+
                     PageProperty pageProp = ((CoreNode)node).getProperty(typeof(PageProperty)) as PageProperty;
                     if (pageProp != null) block.StructureBlock.Label = pageProp.PageNumber.ToString();
+                    
                     parentPhrase = (CoreNode)node;
                     break;
                 default:

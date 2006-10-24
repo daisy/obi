@@ -63,8 +63,8 @@ namespace Obi.Visitors
                 if (clips.Count == media.getCount())
                 {
                     Assets.AudioMediaAsset asset = mAssManager.NewAudioMediaAsset(clips);
-                    mAssManager.RenameAsset(asset,
-                        ((TextMedia)Project.GetMediaForChannel((CoreNode)node, Project.AnnotationChannel)).getText());
+                    //mAssManager.RenameAsset(asset,
+                    //    ((TextMedia)Project.GetMediaForChannel((CoreNode)node, Project.AnnotationChannel)).getText());
                     AssetProperty assProp =
                         (AssetProperty)node.getPresentation().getPropertyFactory().createProperty("AssetProperty",
                         ObiPropertyFactory.ObiNS);
