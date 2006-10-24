@@ -51,6 +51,7 @@ namespace Obi.Audio
 		internal int m_FrameSize ;
 		internal int m_Channels ;
 		private int m_SamplingRate ;
+        private int m_VolumeLevel ;
 		private AudioPlayerState  m_State;
 		private int m_CompAddition = 0 ;
 		private long m_lClipByteCount ;
@@ -131,6 +132,18 @@ namespace Obi.Audio
 			}
 		}
 
+        public int OutputVolume
+        {
+            get
+            {
+                return m_VolumeLevel;
+            }
+            set
+            {
+                SetVolumeLevel(value);
+            }
+        }
+
 		public int CompFactor
 		{
 			get
@@ -166,6 +179,17 @@ namespace Obi.Audio
 				SetCurrentTimePosition (value) ;
 			}
 		}
+
+        // Sets the output volume
+        void SetVolumeLevel(int VolLevel)
+        {
+            m_VolumeLevel = VolLevel;
+
+            if (SoundBuffer != null)
+                SoundBuffer.Volume = m_VolumeLevel;
+
+        }
+
 
 		// checks the input value of compression factor and sets it for fast play
 		// Default value  is 10 i.e. 80% time compression
@@ -270,6 +294,7 @@ namespace Obi.Audio
 
                 WaveFormat newFormat = new WaveFormat();
                 BufferDesc = new BufferDescription();
+                BufferDesc.ControlVolume = true;
 
                 // retrieve format from file
                 m_FrameSize = m_Asset.FrameSize;
