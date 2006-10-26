@@ -101,35 +101,19 @@ namespace Obi.UserControls
             }
         }
 
-
-        internal void SyncMovedSectionNode(object sender, Events.Node.MovedNodeEventArgs e)
+        internal void SyncMovedSectionNode(object sender, SectionNode node, urakawa.core.CoreNode parentNode)
         {
-            TreeNode selected = FindTreeNodeFromSectionNode((SectionNode)e.Node);
-
-            TreeNode parent = Project.GetNodeType(e.Parent) == NodeType.Section ? FindTreeNodeFromSectionNode((SectionNode)e.Parent) : null;
-
-            if (selected == null) return;
-
-            TreeNode clone = (TreeNode)selected.Clone();
-
-            selected.Remove();
-
-            TreeNodeCollection siblings = null;
-            if (parent == null)
+            TreeNode selected = FindTreeNodeFromSectionNode(node);
+            if (selected != null)
             {
-                siblings = mTocTree.Nodes;
-            }
-            else
-            {
-                siblings = parent.Nodes;
-            }
-
-            siblings.Insert(e.SectionNodeIndex, clone);
-            clone.ExpandAll();
-            clone.EnsureVisible();
-            if (mTocTree.SelectedNode != null)
-            {
-                mTocTree.SelectedNode = clone;
+                TreeNode parent = parentNode is SectionNode ? FindTreeNodeFromSectionNode((SectionNode)parentNode) : null;
+                TreeNode clone = (TreeNode)selected.Clone();
+                selected.Remove();
+                TreeNodeCollection siblings = parent == null ? mTocTree.Nodes : parent.Nodes;
+                siblings.Insert(node.Index, clone);
+                clone.ExpandAll();
+                clone.EnsureVisible();
+                if (mTocTree.SelectedNode != null) mTocTree.SelectedNode = clone;
             }
         }
 
@@ -214,7 +198,7 @@ namespace Obi.UserControls
 
         //md 20060810
         //does nothing; just a placeholder
-        internal void SyncUndidCopySectionNode(object sender, Events.Node.NodeEventArgs e)
+        internal void SyncUndidCopySectionNode(object sender, SectionNode node)
         {
         }
 
@@ -227,10 +211,9 @@ namespace Obi.UserControls
             mTocTree.SelectedNode = uncutNode;
         }
 
-        internal void SyncUndidPasteSectionNode(object sender, Events.Node.Section.EventArgs e)
+        internal void SyncUndidPasteSectionNode(object sender, SectionNode node)
         {
-            TreeNode pastedNode = FindTreeNodeFromSectionNode(e.Node);
-
+            TreeNode pastedNode = FindTreeNodeFromSectionNode(node);
             //focus on the previous node
             mTocTree.SelectedNode = pastedNode.PrevVisibleNode;
             if (mTocTree.SelectedNode != null)
@@ -242,7 +225,6 @@ namespace Obi.UserControls
             {
                 pastedNode.Remove();
             }
-
         }
 
         //md 2006 08 13

@@ -13,19 +13,19 @@ namespace Obi.UserControls
 {
     public partial class TOCPanel
     {
+        public event Events.SectionNodeHandler RequestToAddChildSectionNode;
+        public event Events.SectionNodeHandler RequestToAddSiblingSection;
+        public event Events.SectionNodeHandler RequestToCopySectionNode;
+        public event Events.SectionNodeHandler RequestToCutSectionNode;
+        public event Events.SectionNodeHandler RequestToDeleteSectionNode;
+        public event Events.SectionNodeHandler RequestToMoveSectionNodeDown;
+        public event Events.SectionNodeHandler RequestToMoveSectionNodeUp;
+        public event Events.RenameSectionNodeHandler RequestToRenameSectionNode;
         public event Events.SectionNodeHandler RequestToPasteSectionNode;
         
-        public event Events.Node.Section.RequestToAddSiblingSectionNodeHandler RequestToAddSiblingSection;
-        public event Events.Node.Section.RequestToAddChildSectionNodeHandler RequestToAddChildSectionNode;
-        public event Events.Node.Section.RequestToCutSectionNodeHandler RequestToCutSectionNode;
-        public event Events.Node.Section.RequestToDeleteSectionNodeHandler RequestToDeleteSectionNode;
-        public event Events.Node.Section.RequestToRenameSectionNodeHandler RequestToRenameSectionNode;
         public event Events.Node.RequestToDecreaseSectionNodeLevelHandler RequestToDecreaseSectionNodeLevel;
         public event Events.Node.RequestToIncreaseSectionNodeLevelHandler RequestToIncreaseSectionNodeLevel;
-        public event Events.Node.RequestToMoveSectionNodeDownHandler RequestToMoveSectionNodeDown;
-        public event Events.Node.RequestToMoveSectionNodeUpHandler RequestToMoveSectionNodeUp;
         //md: clipboard events
-        public event Events.Node.RequestToCopySectionNodeHandler RequestToCopySectionNode;
 
         /*
          * ***************************************
@@ -40,7 +40,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToAddSiblingSection(this,new Events.Node.Section.EventArgs(this, GetSelectedSection()));
+            RequestToAddSiblingSection(this, GetSelectedSection());
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void mAddSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToAddChildSectionNode(this, new Events.Node.Section.EventArgs(this, GetSelectedSection()));
+            RequestToAddChildSectionNode(this, GetSelectedSection());
         }
 
         /// <summary>
@@ -56,10 +56,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void mMoveUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-            RequestToMoveSectionNodeUp(this,
-                new Events.Node.NodeEventArgs(this, GetSelectedSection()));
-            
+            RequestToMoveSectionNodeUp(this, GetSelectedSection());            
         }
 
         /// <summary>
@@ -67,7 +64,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void mDeleteSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToDeleteSectionNode(this, new Events.Node.Section.EventArgs(this, GetSelectedSection()));
+            RequestToDeleteSectionNode(this, GetSelectedSection());
         }
 
         internal void mRenameToolStripMenuItem_Click(object sender, EventArgs e)
@@ -78,8 +75,7 @@ namespace Obi.UserControls
 
         internal void mMoveDownToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToMoveSectionNodeDown(this,
-                new Events.Node.NodeEventArgs(this, GetSelectedSection()));
+            RequestToMoveSectionNodeDown(this, GetSelectedSection());
         }
 
         internal void increaseLevelToolStripMenuItem_Click(object sender, EventArgs e)
@@ -113,13 +109,13 @@ namespace Obi.UserControls
         //md 20060810
         internal void cutSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToCutSectionNode(this, new Events.Node.Section.EventArgs(this, GetSelectedSection()));
+            RequestToCutSectionNode(this, GetSelectedSection());
         }
 
         //md 20060810
         internal void copySectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToCopySectionNode(this, new Events.Node.NodeEventArgs(this, GetSelectedSection()));
+            RequestToCopySectionNode(this, GetSelectedSection());
         }
 
         internal void mPasteSectionToolStripMenuItem_Click(object sender, EventArgs e)

@@ -37,20 +37,15 @@ namespace Obi.Commands.TOC
 
     class CopySectionNode : Command
     {
-        private Project mProject;
-        private CoreNode mNode;
+        private SectionNode mNode;
 
         public override string Label
         {
-            get
-            {
-                return Localizer.Message("copy_section_command_label");
-            }
+            get { return Localizer.Message("copy_section_command_label"); }
         }
 
-        public CopySectionNode(Project project, CoreNode node)
+        public CopySectionNode(SectionNode node)
         {
-            mProject = project;
             mNode = node;
         }
 
@@ -59,7 +54,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            mProject.CopySectionNode(mProject, mNode);
+            mNode.Project.CopySectionNode(mNode.Project, mNode);
         }
 
         /// <summary>
@@ -67,7 +62,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mProject.UndoCopySectionNode(mNode);
+            mNode.Project.UndoCopySectionNode(mNode);
         }
     }
 

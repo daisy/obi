@@ -89,16 +89,14 @@ namespace Obi.UserControls
             }
         }
 
-        internal void SyncMovedNode(object sender, Events.Node.MovedNodeEventArgs e)
+        internal void SyncMovedNode(object sender, SectionNode node, CoreNode parent)
         {
             List<SectionStrip> stripsToMove = new List<SectionStrip>();
-            MakeFlatListOfStrips(e.Node, stripsToMove);
-
-            SectionStrip parentNodeStrip = mSectionNodeMap[(SectionNode)e.Node];
+            MakeFlatListOfStrips(node, stripsToMove);
+            SectionStrip parentNodeStrip = mSectionNodeMap[(SectionNode)node];
             int currentPosition = mFlowLayoutPanel.Controls.GetChildIndex(parentNodeStrip);
-
             //if we are moving down
-            if (currentPosition < e.Position)
+            if (currentPosition < node.Position)
             {
                 //reverse the order, because we want to move the last strip first
                 //otherwise the operation doesn't work correctly because strips
@@ -108,7 +106,7 @@ namespace Obi.UserControls
                 for (int i = stripsToMove.Count - 1; i >= 0; i--)
                 {
                     mFlowLayoutPanel.Controls.SetChildIndex
-                        ((SectionStrip)stripsToMove[i], e.Position + i);
+                        ((SectionStrip)stripsToMove[i], node.Position + i);
                 }
             }
             else
@@ -117,7 +115,7 @@ namespace Obi.UserControls
                 for (int i = 0; i < stripsToMove.Count; i++)
                 {
                     mFlowLayoutPanel.Controls.SetChildIndex
-                        ((SectionStrip)stripsToMove[i], e.Position + i);
+                        ((SectionStrip)stripsToMove[i], node.Position + i);
                 }
             }
 
@@ -145,7 +143,7 @@ namespace Obi.UserControls
 
         //md 20060811
         //does nothing; just a placeholder
-        internal void SyncUndidCopySectionNode(object sender, Events.Node.NodeEventArgs e)
+        internal void SyncUndidCopySectionNode(object sender, SectionNode node)
         {
         }
 
@@ -156,9 +154,9 @@ namespace Obi.UserControls
         }
 
         //md 20060811
-        internal void SyncUndidPasteSectionNode(object sender, Events.Node.Section.EventArgs e)
+        internal void SyncUndidPasteSectionNode(object sender, SectionNode node)
         {
-            SyncDeletedNode(sender, e.Node);
+            SyncDeletedNode(sender, node);
         }
 
         //md: recursive function to enumerate the strips under a node (including the strip for the node itself)

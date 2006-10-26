@@ -23,16 +23,15 @@ namespace Obi.UserControls
         private PhraseNode mSelectedPhrase;                             // the selected audio block
         private ProjectPanel mProjectPanel;                             //the parent of this control
 
+        public event Events.SectionNodeHandler AddSiblingSection;
         public event Events.PhraseNodeHandler DeleteBlockRequested;
         public event Events.Strip.RequestToImportAssetHandler ImportAudioAssetRequested;
         public event Events.MergePhraseNodesHandler MergePhraseNodes;
         public event Events.PhraseNodeHandler MoveAudioBlockBackwardRequested;
         public event Events.PhraseNodeHandler MoveAudioBlockForwardRequested;
         public event Events.PhraseNodeSetMediaHandler SetMediaRequested;
+        public event Events.RenameSectionNodeHandler RenameSection;
         public event Events.SplitPhraseNodeHandler SplitAudioBlockRequested;
-
-        public event Events.Node.Section.RequestToAddSiblingSectionNodeHandler AddSiblingSection;
-        public event Events.Node.Section.RequestToRenameSectionNodeHandler RenameSection;
         
         #region properties
 
@@ -219,7 +218,7 @@ namespace Obi.UserControls
         /// <param name="strip">The renamed strip (with its new name as a label.)</param>
         internal void RenamedSectionStrip(SectionStrip strip)
         {
-            RenameSection(this, new Events.Node.Section.RenameEventArgs(this, strip.Node, strip.Label));
+            RenameSection(this, (SectionNode)strip.Node, strip.Label);
         }
 
         /// <summary>

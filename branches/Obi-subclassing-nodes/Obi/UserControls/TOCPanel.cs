@@ -227,7 +227,7 @@ namespace Obi.UserControls
                     SectionNode node = (SectionNode)e.Node.Tag;
                     if (e.Label != node.Label)
                     {
-                        RequestToRenameSectionNode(this, new Events.Node.Section.RenameEventArgs(this, node, e.Label));
+                        RequestToRenameSectionNode(this, node, e.Label);
                     }
                 }
             }

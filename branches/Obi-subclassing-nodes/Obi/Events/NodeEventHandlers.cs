@@ -12,8 +12,10 @@ namespace Obi.Events
     // More specific handlers for events requiring more arguments
     public delegate void MergePhraseNodesHandler(object sender, PhraseNode n1, PhraseNode n2);
     public delegate void MergeSectionNodesHandler(object sender, SectionNode n1, SectionNode n2);  // coming soon!
+    public delegate void MovedSectionNodeHandler(object sender, SectionNode node, CoreNode parent);
     public delegate void PhraseNodeSetMediaHandler(object sender, PhraseNode node, Node.SetMediaEventArgs e);
     public delegate void PhraseNodeUpdateTimeHandler(object sender, PhraseNode node, double time);
+    public delegate void RenameSectionNodeHandler(object sender, SectionNode node, string name);
     public delegate void SetPageNumberHandler(object sender, PhraseNode node, int number);
     public delegate void SplitPhraseNodeHandler(object sender, PhraseNode node, AudioMediaAsset asset);
 }
