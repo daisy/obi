@@ -58,9 +58,9 @@
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="urakawa, Version=0.5.2481.25819, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="urakawa, Version=0.5.2493.23904, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\implementation\UrakawaToolkit\bin\Debug\urakawa.dll</HintPath>
+      <HintPath>..\..\..\..\..\trunk\urakawa\implementation\UrakawaToolkit\bin\Debug\urakawa.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
