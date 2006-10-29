@@ -99,7 +99,9 @@ namespace Obi.Dialogs
 
         private void Play_Load(object sender, EventArgs e)
         {
-            mNameDisplay.Text = ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).getText();
+            Assets.AudioMediaAsset asset = Project.GetAudioMediaAsset(mNode);
+            if (asset != null)
+                mNameDisplay.Text = Project.GetAudioMediaAsset(mNode).Name;
             mNameDisplay.SelectionStart = mNameDisplay.Text.Length;
             mTimeDisplay.Text = "00:00:00";
             if (Audio.AudioPlayer.Instance.State.Equals(Audio.AudioPlayerState.Stopped))
