@@ -101,11 +101,11 @@ namespace Obi
             get
             {
                 System.Diagnostics.Debug.Assert(mWholeBook);
-                CoreNode current = CurrentSection;
-                int i = mCurrentPhrase - 1;
-                for (; i < mPhraseList.Count && mPhraseList[i].getParent() == current; ++i) { }
-                return i < mPhraseList.Count ? mPhraseList[i] : null;
-                
+                // TODO
+                // if the current elapsed time in this section is less than the initial threshold,
+                // return the first phrase of the previous section; otherwise, the first phrase of
+                // the current section. See above for finding sections.
+                return null;
             }
         }
 
@@ -123,6 +123,7 @@ namespace Obi
             }
             set
             {
+                // TODO
                 // check that the time is within bounds
                 // find which phrase it happens in
                 // if playing, resume to this position
@@ -147,6 +148,7 @@ namespace Obi
             get { return mTotalTime - CurrentTime; }
             set
             {
+                // TODO
                 // same as setting current time, but from the end!
             }
         }
@@ -181,16 +183,16 @@ namespace Obi
         /// <param name="project">The project for this playlist.</param>
         /// <param name="player">The audio player for this playlist.</param>
         /// <param name="node">The node from which to initialize the playlist.</param>
-        /// <param name="canSkipSections">Flag for allowing or disallowing skipping sections.</param>
-        private void InitPlaylist(Project project, AudioPlayer player, CoreNode node, bool canSkipSections)
+        /// <param name="wholeBook">Flag telling whether we are playing the whole book.</param>
+        private void InitPlaylist(Project project, AudioPlayer player, CoreNode node, bool wholeBook)
         {
             mProject = project;
             mPlayer = player;
             mPhraseList = new List<CoreNode>();
-            mCurrentPhrase = -1;
+            mCurrentPhrase = 0;
             mElapsedTime = 0.0;
             mTotalTime = 0.0;
-            mWholeBook = canSkipSections;
+            mWholeBook = wholeBook;
             node.visitDepthFirst
             (
                 // Add all phrase nodes underneath (and including) the starting node.
@@ -286,14 +288,16 @@ namespace Obi
             }
         }
 
+        // Navigation functions. The following applies to all functions:
+        // If the player is playing, keep playing.
+        // If the player is paused, stay paused.
+        // If the player is stopped, start playing from the beginning of the next asset.
+
         /// <summary>
         /// Move to the next phrase.
-        /// If the player is playing, keep playing.
-        /// If the player is paused, stay paused.
-        /// If the player is stopped, start playing from the beginning of the next asset.
-        /// But if there is no next phrase, immediatly stop.
+        /// If there is no next phrase, immediatly stop.
         /// </summary>
-        public void PhraseForward()
+        public void NavigateNextPhrase()
         {
             System.Diagnostics.Debug.Assert(mPlayer.State != AudioPlayerState.NotReady, "Player is not ready!");
             if (NextPhrase != null)
@@ -314,6 +318,35 @@ namespace Obi
             {
                 Stop();
             }
+        }
+
+        /// <summary>
+        /// Move backward one phrase.
+        /// If the current position is past the initial threshold, move back to the beginning of the current phrase.
+        /// When there is no previous phrase, move to the beginning of the current phrase.
+        /// </summary>
+        public void NavigatePreviousPhrase()
+        {
+            // TODO
+        }
+
+        /// <summary>
+        /// Move to the first phrase of the next section.
+        /// Stop if there is no next section.
+        /// This is only possible when playing the whole book (i.e. the control is grayed out when playing a selection.)
+        /// </summary>
+        public void NavigateNextSection()
+        {
+            System.Diagnostics.Debug.Assert(mWholeBook);
+        }
+
+        /// <summary>
+        /// Move to the first phrase of the previous section, or of this section if we are not yet past the initial threshold.
+        /// This is only possible when playing the whole book.
+        /// </summary>
+        public void NavigatePreviousSection()
+        {
+            System.Diagnostics.Debug.Assert(mWholeBook);
         }
     }
 }
