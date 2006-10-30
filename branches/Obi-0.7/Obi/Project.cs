@@ -468,7 +468,7 @@ namespace Obi
                 annotation.setText("");
                 prop.setMedia(mAnnotationChannel, annotation);
             }
-            catch (urakawa.exception.MethodParameterIsEmptyStringException e) { }
+            catch (urakawa.exception.MethodParameterIsEmptyStringException) { }
 
             AssetProperty assProp = (AssetProperty)getPresentation().getPropertyFactory().createProperty("AssetProperty",
                 ObiPropertyFactory.ObiNS);

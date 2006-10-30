@@ -192,6 +192,7 @@
     <Compile Include="ObiForm.Designer.cs">
       <DependentUpon>ObiForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Playlist.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Project.Blocks.cs" />
     <Compile Include="Project.cs" />
