@@ -588,6 +588,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to page {0}.
+        /// </summary>
+        internal static string page_number {
+            get {
+                return ResourceManager.GetString("page_number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to paste audio block.
         /// </summary>
         internal static string paste_phrase_command_label {

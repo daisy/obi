@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
 using urakawa.core;
 
 namespace Obi.Commands.Strips
