@@ -28,7 +28,7 @@ namespace Obi.Audio
 		// declare member variables
 		private Assets.AudioMediaAsset m_Asset ;
 		private SecondaryBuffer SoundBuffer;
-        private OutputDevice mDevice;
+  private OutputDevice mDevice;
 		
 		private BufferDescription BufferDesc = null;	
 		private int m_BufferCheck ;
@@ -105,6 +105,19 @@ namespace Obi.Audio
 				return m_State ;
 			}
 		}
+		
+		// Output  device object
+		/*public Microsoft.DirectX.DirectSound.Device OutputDevice
+		{
+			get
+			{
+				return SndDevice ;
+			}
+			set
+			{
+				SndDevice = value ;
+			}
+		}*/
 
         public OutputDevice OutputDevice
         {
@@ -155,13 +168,16 @@ namespace Obi.Audio
 			}
 		}
 
-        /// <summary>
-        /// Current time position, in milliseconds.
-        /// </summary>
 		public double CurrentTimePosition
 		{
-			get { return GetCurrentTimePosition(); }
-			set { SetCurrentTimePosition(value); }
+			get
+			{
+				return GetCurrentTimePosition () ;
+			}
+			set
+			{
+				SetCurrentTimePosition (value) ;
+			}
 		}
 
         // Sets the output volume
@@ -557,10 +573,6 @@ namespace Obi.Audio
 			return lCurrentPosition ;
 		}
 
-        /// <summary>
-        /// Get the current time position from the byte position and the file format.
-        /// </summary>
-        /// <returns>Current time position in milliseconds.</returns>
 		internal double GetCurrentTimePosition()
 		{	
 			return CalculationFunctions.ConvertByteToTime (GetCurrentBytePosition() , m_SamplingRate , m_FrameSize);

@@ -58,6 +58,9 @@ namespace Obi
             this.mCutSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mCopySectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPasteSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.mMoveOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mMoveInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.mDeleteSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRenameSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -101,9 +104,6 @@ namespace Obi
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectPanel = new Obi.UserControls.ProjectPanel();
-            this.mMoveInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mMoveOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -364,6 +364,27 @@ namespace Obi
                         | System.Windows.Forms.Keys.V)));
             this.mPasteSectionToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.mPasteSectionToolStripMenuItem.Text = "&Paste section";
+            // 
+            // toolStripSeparator12
+            // 
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            this.toolStripSeparator12.Size = new System.Drawing.Size(219, 6);
+            // 
+            // mMoveOutToolStripMenuItem
+            // 
+            this.mMoveOutToolStripMenuItem.Name = "mMoveOutToolStripMenuItem";
+            this.mMoveOutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.Left)));
+            this.mMoveOutToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.mMoveOutToolStripMenuItem.Text = "Move &out";
+            // 
+            // mMoveInToolStripMenuItem
+            // 
+            this.mMoveInToolStripMenuItem.Name = "mMoveInToolStripMenuItem";
+            this.mMoveInToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.Right)));
+            this.mMoveInToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.mMoveInToolStripMenuItem.Text = "Move &in";
             // 
             // toolStripSeparator9
             // 
@@ -678,7 +699,7 @@ namespace Obi
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mToolStripStatusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 522);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 480);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
             this.statusStrip1.Size = new System.Drawing.Size(775, 22);
@@ -697,39 +718,18 @@ namespace Obi
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mProjectPanel.BackColor = System.Drawing.Color.White;
-            this.mProjectPanel.Location = new System.Drawing.Point(4, 29);
+            this.mProjectPanel.Location = new System.Drawing.Point(4, 27);
             this.mProjectPanel.Name = "mProjectPanel";
             this.mProjectPanel.Project = null;
-            this.mProjectPanel.Size = new System.Drawing.Size(767, 488);
+            this.mProjectPanel.Size = new System.Drawing.Size(767, 450);
             this.mProjectPanel.TabIndex = 4;
-            // 
-            // mMoveInToolStripMenuItem
-            // 
-            this.mMoveInToolStripMenuItem.Name = "mMoveInToolStripMenuItem";
-            this.mMoveInToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
-                        | System.Windows.Forms.Keys.Right)));
-            this.mMoveInToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.mMoveInToolStripMenuItem.Text = "Move &in";
-            // 
-            // mMoveOutToolStripMenuItem
-            // 
-            this.mMoveOutToolStripMenuItem.Name = "mMoveOutToolStripMenuItem";
-            this.mMoveOutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
-                        | System.Windows.Forms.Keys.Left)));
-            this.mMoveOutToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.mMoveOutToolStripMenuItem.Text = "Move &out";
-            // 
-            // toolStripSeparator12
-            // 
-            this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(219, 6);
             // 
             // ObiForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(775, 544);
+            this.ClientSize = new System.Drawing.Size(775, 502);
             this.Controls.Add(this.mProjectPanel);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);

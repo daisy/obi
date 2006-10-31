@@ -430,4 +430,8 @@ Do you want to replace the project contained in this file?</value>
   <data name="toc_view_tooltip" xml:space="preserve">
     <value>Section names are shown nested in this view.  You can rename and reorder sections. Right-click for more options.</value>
   </data>
+  <data name="page_number" xml:space="preserve">
+    <value>page {0}</value>
+    <comment>Page number in audio blocks (JQ)</comment>
+  </data>
 </root>

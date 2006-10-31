@@ -273,7 +273,6 @@ namespace Obi.UserControls
         public void AppendAudioBlock(AudioBlock block)
         {
             mAudioLayoutPanel.Controls.Add(block);
-            mStructureLayoutPanel.Controls.Add(block.StructureBlock);
             mAnnotationLayoutPanel.Controls.Add(block.AnnotationBlock);
             //md 20061024 force resizing
             block._Width = block.AnnotationBlock.Width;
@@ -283,7 +282,6 @@ namespace Obi.UserControls
         {
             AppendAudioBlock(block);
             mAudioLayoutPanel.Controls.SetChildIndex(block, index);
-            mStructureLayoutPanel.Controls.SetChildIndex(block.StructureBlock, index);
             mAnnotationLayoutPanel.Controls.SetChildIndex(block.AnnotationBlock, index);
         }
 

@@ -327,10 +327,7 @@ namespace Obi.UserControls
         // JQ 20060817
         internal void mSetPageNumberToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mSelectedPhrase != null)
-            {
-                mPhraseNodeMap[mSelectedPhrase].StartEditingPageNumber();
-            }
+            if (mSelectedPhrase != null) mPhraseNodeMap[mSelectedPhrase].StartEditingPageNumber();
         }
 
 
@@ -342,7 +339,7 @@ namespace Obi.UserControls
             if (mSelectedPhrase != null)
             {
                 PageProperty pageProp = mSelectedPhrase.getProperty(typeof(PageProperty)) as PageProperty;
-                if (pageProp != null && pageProp.getOwner() != null)
+                if (pageProp != null)
                 {
                     RequestToRemovePageNumber(this, new Events.Node.NodeEventArgs(sender, mSelectedPhrase));
                 }

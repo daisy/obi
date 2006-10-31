@@ -1,6 +1,5 @@
 using System;
 using System.Windows.Forms;
-
 using urakawa.core;
 using urakawa.media;
 
@@ -37,23 +36,33 @@ namespace Obi.UserControls
         /// </summary>
         internal void SyncAddedPhraseNode(object sender, Events.Node.AddedPhraseNodeEventArgs e)
         {
-            if (e.Node != null)
-            {
-                SectionStrip strip = mSectionNodeMap[(CoreNode)e.Node.getParent()];
-                AudioBlock block = new AudioBlock();
-                block.Manager = this;
-                block.Node = e.Node;
-                mPhraseNodeMap[e.Node] = block;
-                TextMedia annotation = (TextMedia)Project.GetMediaForChannel(e.Node, Project.AnnotationChannel);
-                if (annotation != null) block.AnnotationBlock.Label = annotation.getText();
-                block.Time = Project.GetAudioMediaAsset(e.Node).LengthInSeconds;
-                strip.InsertAudioBlock(block, e.Index);
-                this.ReflowTabOrder(block);  // MG
-                SelectedPhraseNode = block.Node;
-                PageProperty pageProp = e.Node.getProperty(typeof(PageProperty)) as PageProperty;
-                //if (pageProp != null && pageProp.getOwner() != null)
-                if (pageProp != null) block.StructureBlock.Label = pageProp.PageNumber.ToString();
-            }
+            System.Diagnostics.Debug.Assert(e.Node != null);
+            SectionStrip strip = mSectionNodeMap[(CoreNode)e.Node.getParent()];
+            AudioBlock block = SetupAudioBlockFromPhraseNode(e.Node);
+            strip.InsertAudioBlock(block, e.Index);
+            this.ReflowTabOrder(block);
+            SelectedPhraseNode = e.Node;
+        }
+
+        /// <summary>
+        /// Setup a new audio block from a phrase node.
+        /// </summary>
+        /// <param name="node">The phrase node.</param>
+        /// <returns>The new audio block.</returns>
+        private AudioBlock SetupAudioBlockFromPhraseNode(CoreNode node)
+        {
+            AudioBlock block = new AudioBlock();
+            block.Manager = this;
+            block.Node = node;
+            mPhraseNodeMap[node] = block;
+            // TextMedia annotation = (TextMedia)Project.GetMediaForChannel(e.Node, Project.AnnotationChannel);
+            // if (annotation != null) block.AnnotationBlock.Label = annotation.getText();
+            Assets.AudioMediaAsset asset = Project.GetAudioMediaAsset(node);
+            block.Label = asset.Name;
+            PageProperty pageProp = node.getProperty(typeof(PageProperty)) as PageProperty;
+            block.Page = pageProp == null ? "" : pageProp.PageNumber.ToString();
+            block.Time = asset.LengthInSeconds;
+            return block;
         }
 
         /// <summary>
@@ -126,9 +135,8 @@ namespace Obi.UserControls
         /// </summary>
         internal void SyncSetPageNumber(object sender, Events.Node.NodeEventArgs e)
         {
-            PageProperty pageProp = e.Node.getProperty(typeof(PageProperty)) as PageProperty;
-            //if (pageProp != null && pageProp.getOwner() != null)
-            if (pageProp != null) mPhraseNodeMap[e.Node].StructureBlock.Label = pageProp.PageNumber.ToString();
+            PageProperty pageProp = (PageProperty)e.Node.getProperty(typeof(PageProperty));
+            mPhraseNodeMap[e.Node].Page = pageProp.PageNumber.ToString();
         }
 
         /// <summary>
@@ -136,7 +144,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void SyncRemovedPageNumber(object sender, Events.Node.NodeEventArgs e)
         {
-            mPhraseNodeMap[e.Node].StructureBlock.Label = "";
+            mPhraseNodeMap[e.Node].Page = "";
         }
     }
 }
