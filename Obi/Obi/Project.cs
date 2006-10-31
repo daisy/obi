@@ -461,13 +461,11 @@ namespace Obi
             ChannelsProperty prop = getPresentation().getPropertyFactory().createChannelsProperty();
             node.setProperty(prop);
             TextMedia annotation = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
-            try
-            {
-                annotation.setText("");
-                prop.setMedia(mAnnotationChannel, annotation);
-            }
-            catch (urakawa.exception.MethodParameterIsEmptyStringException e) { }
-
+            
+            //md i would rather set this to "" but the toolkit doesn't allow it
+            annotation.setText("-");
+            prop.setMedia(mAnnotationChannel, annotation);
+           
             AssetProperty assProp = (AssetProperty)getPresentation().getPropertyFactory().createProperty("AssetProperty",
                 ObiPropertyFactory.ObiNS);
             assProp.Asset = asset;
