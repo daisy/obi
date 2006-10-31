@@ -323,12 +323,6 @@
     <Compile Include="UserControls\StripManagerPanel.SectionNodeSyncCallbacks.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\StructureBlock.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\StructureBlock.Designer.cs">
-      <DependentUpon>StructureBlock.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\TOCPanel.ContextMenu.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -372,10 +366,6 @@
     <EmbeddedResource Include="UserControls\AnnotationBlock.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AnnotationBlock.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\StructureBlock.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>StructureBlock.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

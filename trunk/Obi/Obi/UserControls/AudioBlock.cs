@@ -1,69 +1,48 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
-
 using urakawa.core;
 using urakawa.media;
 
 namespace Obi.UserControls
 {
+    /// <summary>
+    /// The audio block is used to display a phrase.
+    /// </summary>
     public partial class AudioBlock : AbstractBlock 
     {
-        private StructureBlock mStructureBlock;  // corresponding structure block
-        //md 20061009 - added annotation blocks to replace annotation text field on audio blocks
-        private AnnotationBlock mAnnotationBlock;
+        private AnnotationBlock mAnnotationBlock;  // the annotation is taken out of the block
 
         #region properties
 
+        /// <summary>
+        /// Phrase node for this block.
+        /// </summary>
         public override CoreNode Node
         {
-            get
-            {
-                return mNode;
-            }
-            set
-            {
-                mNode = value;
-            }
+            get { return mNode; }
+            set { mNode = value; }
         }
 
+        /// <summary>
+        /// Strip manager panel in which this block is displayed.
+        /// </summary>
         public override StripManagerPanel Manager
         {
-            get
-            {
-                return mManager;
-            }
+            get { return mManager; }
             set
             {
                 mManager = value;
-                mStructureBlock.Manager = value;
                 mAnnotationBlock.Manager = value;
             }
         }
 
-        public StructureBlock StructureBlock
-        {
-            get
-            {
-                return mStructureBlock;
-            }
-            set
-            {
-                mStructureBlock = value;
-                mStructureBlock.AudioBlock = this;
-            }
-        }
-
+        /// <summary>
+        /// Annotation corresponding to this block.
+        /// </summary>
         public AnnotationBlock AnnotationBlock
         {
-            get
-            {
-                return mAnnotationBlock;
-            }
+            get { return mAnnotationBlock; }
             set
             {
                 mAnnotationBlock = value;
@@ -71,16 +50,56 @@ namespace Obi.UserControls
             }
         }
 
+        /// <summary>
+        /// Set the label (i.e. asset name) of this block
+        /// </summary>
+        public string Label
+        {
+            set { mLabel.Text = value; }
+        }
+
+        /// <summary>
+        /// Set the page number associated with the block (empty string or page number)
+        /// </summary>
+        public string Page
+        {
+            set
+            {
+                mPage.ReadOnly = true;
+                mPage.Text = value;
+                mPage.Visible = value != "";
+            }
+        }
+
+        /// <summary>
+        /// Make sure that the page box is visible, with the correct color and size.
+        /// </summary>
+        private void ShowPageBox()
+        {
+            mPage.Visible = true;
+            mPage.BackColor = BackColor;
+            mPage.Size = new Size(Width, mPage.Height);
+        }
+
+        /// <summary>
+        /// Total time display (string form.)
+        /// </summary>
         public string Time
         {
             set { mTimeLabel.Text = value; }
         }
 
+        /// <summary>
+        /// Name of the audio asset (shown in the block.)
+        /// </summary>
         public string AssetName
         {
-            set { mAssetName.Text = value; }
+            set { mLabel.Text = value; }
         }
 
+        /// <summary>
+        /// Update the width of the control.
+        /// </summary>
         //md20061011
         public int _Width
         {
@@ -94,12 +113,10 @@ namespace Obi.UserControls
         public AudioBlock() : base()
         {
             InitializeComponent();
-            this.TabStop = true;  // mg (moved by JQ 20060817)
-            mStructureBlock = new StructureBlock();
-            mStructureBlock.AudioBlock = this;
-            InitializeToolTips();
+            this.TabStop = true;
             mAnnotationBlock = new AnnotationBlock();
             mAnnotationBlock.AudioBlock = this;
+            InitializeToolTips();
         }
 
         #endregion
@@ -109,14 +126,16 @@ namespace Obi.UserControls
         internal override void MarkDeselected()
         {
             BackColor = Color.MistyRose;
-            mStructureBlock.MarkDeselected();
+            mPage.BackColor = BackColor;
             mAnnotationBlock.MarkDeselected();
+            // if we are editing but selected a different block, stop editing.
+            StopEditingPageNumber();
         }
 
         internal override void MarkSelected()
         {
             BackColor = Color.LightPink;
-            mStructureBlock.MarkSelected();
+            mPage.BackColor = BackColor;
             mAnnotationBlock.MarkSelected();
         }
 
@@ -137,13 +156,6 @@ namespace Obi.UserControls
             mManager.SelectedPhraseNode = mNode;
             System.Diagnostics.Debug.Print("Audioblock:tabindex:" + this.TabIndex.ToString());
             // MarkSelected();
-        }
-
-        //mg: for tab navigation et al
-        private void AudioBlock_leave(object sender, EventArgs e)
-        {
-            // Removed by JQ--marking an item as selected/deselected is done through properties in the manager panel.
-            //MarkDeselected();
         }
 
         #endregion
@@ -184,7 +196,63 @@ namespace Obi.UserControls
         /// </summary>
         internal void StartEditingPageNumber()
         {
-            mStructureBlock.StartEditingPageNumber();
+            ShowPageBox();
+            mPage.ReadOnly = false;
+            mPage.Tag = mPage.Text;
+            mPage.Text = "";
+            mPage.SelectedText = Localizer.Message("no_page_label");
+            mPage.Focus();
+        }
+
+        /// <summary>
+        /// Stop the editing of the page number.
+        /// </summary>
+        private void StopEditingPageNumber()
+        {
+            if (!mPage.ReadOnly) Page = (string)mPage.Tag;
+        }
+
+        /// <summary>
+        /// Catch enter and escape to update or cancel the page number.
+        /// </summary>
+        private void mPage_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                UpdatePageNumber();
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                StopEditingPageNumber();
+            }
+        }
+
+        /// <summary>
+        /// Leaving the page box without validating cancels.
+        /// </summary>
+        private void mPage_Leave(object sender, EventArgs e)
+        {
+            StopEditingPageNumber();
+        }
+
+        /// <summary>
+        /// Set the page node from the label text.
+        /// An empty string will have no effect.
+        /// </summary>
+        private void UpdatePageNumber()
+        {
+            System.Text.RegularExpressions.Match m = System.Text.RegularExpressions.Regex.Match(mPage.Text, "\\d+");
+            if (m.Success)
+            {
+                int pageNumber = Int32.Parse(m.Value);
+                mManager.RequestToSetPageNumber(this, new Events.Node.SetPageEventArgs(this, mNode, pageNumber));
+                mPage.ReadOnly = true;
+                Page = m.Value; 
+            }
+            else
+            {
+                StopEditingPageNumber();
+            }
         }
 
         //md 20061009
@@ -193,6 +261,5 @@ namespace Obi.UserControls
             this.mToolTip.SetToolTip(this, Localizer.Message("audio_block_tooltip"));
             this.mToolTip.SetToolTip(this.mTimeLabel, Localizer.Message("audio_block_duration_tooltip"));
         }
-
     }
 }

@@ -450,7 +450,6 @@ namespace Obi
 
         /// <summary>
         /// Create a new phrase node from an asset.
-        /// Add a default annotation with the name of the asset.
         /// Add a seq media object with the clips of the audio asset. Do not forget to set begin/end time explicitely.
         /// Add a node information custom property as well.
         /// </summary>
@@ -459,7 +458,6 @@ namespace Obi
         private CoreNode CreatePhraseNode(Assets.AudioMediaAsset asset)
         {
             CoreNode node = getPresentation().getCoreNodeFactory().createNode();
-            // ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
             ChannelsProperty prop = getPresentation().getPropertyFactory().createChannelsProperty();
             node.setProperty(prop);
             TextMedia annotation = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);

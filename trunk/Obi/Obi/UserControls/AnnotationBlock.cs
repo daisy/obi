@@ -130,14 +130,11 @@ namespace Obi.UserControls
 
         private void AnnotationBlock_SizeChanged(object sender, EventArgs e)
         {   
-            if (mAudioBlock != null && mAudioBlock.StructureBlock != null)
+            if (mAudioBlock != null)
             {
-                if (Width < mMinWidth)
-                    this.Width = mMinWidth;
-               mAudioBlock.StructureBlock._Width = Width;
+                if (Width < mMinWidth) this.Width = mMinWidth;
                mAudioBlock._Width = Width;
             }
         }
-
     }
 }
