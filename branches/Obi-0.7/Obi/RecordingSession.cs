@@ -1,6 +1,8 @@
 using Obi.Audio;
 using Obi.Assets;
 using urakawa.core;
+using System.Collections.Generic ;
+using System;
 
 namespace Obi
 {
@@ -17,6 +19,35 @@ namespace Obi
         private int mBitDepth;            // bit depth of audio to record
         private CoreNode mCurrentPhrase;  // phrase currently being recorded
         private CoreNode mFirstPhrase;    // first phrase being recorded
+
+        private AudioMediaAsset m_asset;
+        private List<double> m_PhraseMarks= new List<double> () ;
+        private List<AudioMediaAsset> m_AssetList = new List<AudioMediaAsset>();
+        
+        //list of audio assets corressponging to phrases created during recording
+        public List<AudioMediaAsset> AssetsList
+        {
+            get
+            {
+                return m_AssetList;
+            }
+        }
+
+
+        // Record session events
+        //public event Events.Audio.Recorder.StartingPhraseHandler StartingPhrase;
+        //public event Events.Audio.Recorder.ContinuingPhraseHandler ContinuingPhrase;
+        //public event Events.Audio.Recorder.FinishingPhraseHandler FinishingPhrase;
+
+        // events handler functions for AudioRecorder class
+        private void AudioRecorder_StateChanged(object sender, Events.Audio.Recorder.StateChangedEventArgs state)
+        {
+        }
+
+        private void AudioRecorder_UpdateVuMeter(Object sender, Events.Audio.Recorder.UpdateVuMeterEventArgs update)
+        {
+        }
+
 
         /// <summary>
         /// Create a recording session for a project starting from a given node.
@@ -40,6 +71,10 @@ namespace Obi
             mCurrentPhrase = null;
             mFirstPhrase = null;
             // set up event handlers
+            Audio.AudioRecorder.Instance.StateChanged += new Events.Audio.Recorder.StateChangedHandler(AudioRecorder_StateChanged);
+
+            Audio.AudioRecorder.Instance.UpdateVuMeterFromRecorder +=
+                new Events.Audio.Recorder.UpdateVuMeterHandler(AudioRecorder_UpdateVuMeter);
         }
 
         /// <summary>
@@ -48,8 +83,11 @@ namespace Obi
         /// </summary>
         public void Listen()
         {
-            AudioMediaAsset asset = mProject.AssetManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
-            mRecorder.StartListening(asset);
+            if (mRecorder.State == AudioRecorderState.Idle)
+            {
+                AudioMediaAsset asset = mProject.AssetManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
+                mRecorder.StartListening(asset);
+            }
         }
 
         /// <summary>
@@ -57,8 +95,11 @@ namespace Obi
         /// </summary>
         public void Record()
         {
-            AudioMediaAsset asset = Project.GetAudioMediaAsset(mCurrentPhrase);
-            mRecorder.StartRecording(asset);
+            if (mRecorder.State == AudioRecorderState.Idle)
+            {
+                m_asset = Project.GetAudioMediaAsset(mCurrentPhrase);
+                mRecorder.StartRecording(m_asset);
+            }
         }
 
         /// <summary>
@@ -70,7 +111,41 @@ namespace Obi
         /// <returns>The first node that was recorded, or null if nothing was recorded.</returns>
         public CoreNode Stop()
         {
-            mRecorder.StopRecording();
+
+            if (mRecorder.State != AudioRecorderState.Idle)
+            {
+
+                bool Recording = false;
+                if (mRecorder.State == AudioRecorderState.Recording)
+                    Recording = true;
+
+                mRecorder.StopRecording();
+
+
+                if (Recording == true)
+                {
+                    if (m_PhraseMarks.Count != 0)
+                    {
+                        
+                        AudioMediaAsset asset;
+                        for (int i = 0; i < m_PhraseMarks.Count - 1; i++)
+                        {
+                            
+                            asset = m_asset.GetChunk(m_PhraseMarks[i], m_PhraseMarks[i + 1]);
+                            mProject.AssetManager.AddAsset( asset);
+                            m_AssetList.Add ( asset ) ;
+                        }
+                        asset =  m_asset.GetChunk(m_PhraseMarks[m_PhraseMarks.Count - 1], m_asset.LengthInMilliseconds  ) ;
+                        mProject.AssetManager.AddAsset(asset);
+                        m_AssetList.Add(asset);
+                    }
+                    else
+                    {
+                        m_AssetList.Add(m_asset);
+                    }
+                    
+                }
+            }
             return mFirstPhrase;
         }
 
@@ -79,6 +154,8 @@ namespace Obi
         /// </summary>
         public void NextPhrase()
         {
+            if ( mRecorder.State == AudioRecorderState.Recording )
+                m_PhraseMarks.Add (  mRecorder.CurrentTime) ;
         }
 
         /// <summary>
