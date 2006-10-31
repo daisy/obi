@@ -198,10 +198,11 @@ namespace Obi
                     if (GetNodeType(node) == NodeType.Phrase && channel == AnnotationChannel)
                     {
                         // we are renaming a phrase node
-                        Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);
+                        //md no longer allowed to rename assets
+                      /*  Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);
                         string old = mAssManager.RenameAsset(asset, ((TextMedia)media).getText());
                         if (old == asset.Name) return false;
-                        command = new Commands.Strips.RenamePhrase(this, node);
+                        command = new Commands.Strips.RenamePhrase(this, node);*/
                     }
                     channelsProp.setMedia(ch, media);
                     MediaSet(this, new Events.Node.SetMediaEventArgs(origin, node, channel, media));
@@ -451,7 +452,7 @@ namespace Obi
                 UpdateSeq(node);
                 MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, AudioChannel,
                     GetMediaForChannel(node, AudioChannel)));
-                ((TextMedia)GetMediaForChannel(node, AnnotationChannel)).setText(asset.Name);
+                //md testing ((TextMedia)GetMediaForChannel(node, AnnotationChannel)).setText(asset.Name);
             }
             else
             {

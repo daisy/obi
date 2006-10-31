@@ -416,7 +416,7 @@ m_Manager.AddAsset (m_Asset) ;
 		{
 			mAsset = asset;
 			mName = name;
-m_sOldName = asset.Name ;
+            m_sOldName = asset.Name ;
 		}
 
 		/// <summary>
