@@ -22,6 +22,8 @@ namespace Obi
 
         private AudioMediaAsset m_asset;
         private List<double> m_PhraseMarks= new List<double> () ;
+        private List <int> m_SectionMarks = new List<int>();
+        private List <int> m_PageMarks = new List<int> () ;
         private List<AudioMediaAsset> m_AssetList = new List<AudioMediaAsset>();
         
         //list of audio assets corressponging to phrases created during recording
@@ -146,6 +148,11 @@ namespace Obi
                     
                 }
             }
+            // here for loop is used to trigger events to make appropriate phrases, sections , pages which may be caught in project class
+            // phrases, sections and page numbers were marked during recording session.
+
+
+            mProject.SetAudioMediaAsset( mFirstPhrase , m_AssetList[0]);
             return mFirstPhrase;
         }
 
@@ -165,6 +172,8 @@ namespace Obi
         /// or we may skip the end of the current section.</remarks>
         public void NextSection()
         {
+            if (mRecorder.State == AudioRecorderState.Recording)
+                m_SectionMarks.Add( m_PhraseMarks.Count - 1 );
         }
 
         /// <summary>
@@ -173,6 +182,8 @@ namespace Obi
         /// </summary>
         public void MarkPage()
         {
+            if (mRecorder.State == AudioRecorderState.Recording)
+                m_PageMarks.Add(m_PhraseMarks.Count - 1);
             // somewhere we'll have something like:
             // mProject.AssignNumber(phrase)
         }
