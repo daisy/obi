@@ -17,8 +17,6 @@ namespace Obi
         private int mChannels;            // number of channels of audio to record
         private int mSampleRate;          // sample rate of audio to record
         private int mBitDepth;            // bit depth of audio to record
-        private CoreNode mCurrentPhrase;  // phrase currently being recorded
-        private CoreNode mFirstPhrase;    // first phrase being recorded
 
         private AudioMediaAsset m_asset;
         private List<double> m_PhraseMarks= new List<double> () ;
@@ -70,8 +68,6 @@ namespace Obi
             // and use it for the recording session
             mSampleRate = sampleRate;
             mBitDepth = bitDepth;
-            mCurrentPhrase = null;
-            mFirstPhrase = null;
             // set up event handlers
             Audio.AudioRecorder.Instance.StateChanged += new Events.Audio.Recorder.StateChangedHandler(AudioRecorder_StateChanged);
 
@@ -99,19 +95,16 @@ namespace Obi
         {
             if (mRecorder.State == AudioRecorderState.Idle)
             {
-                m_asset = Project.GetAudioMediaAsset(mCurrentPhrase);
+                //m_asset = Project.GetAudioMediaAsset(mCurrentPhrase);
+                m_asset = null;  // create a new asset here
                 mRecorder.StartRecording(m_asset);
             }
         }
 
         /// <summary>
         /// Stop recording altogether.
-        /// When the recording session ends, we will select the first asset recorded so that the user can check
-        /// what was recorded. In the future, when multiple selection is implemented we will select all of the
-        /// newly recorded phrases.
         /// </summary>
-        /// <returns>The first node that was recorded, or null if nothing was recorded.</returns>
-        public CoreNode Stop()
+        public void Stop()
         {
 
             if (mRecorder.State != AudioRecorderState.Idle)
@@ -150,10 +143,6 @@ namespace Obi
             }
             // here for loop is used to trigger events to make appropriate phrases, sections , pages which may be caught in project class
             // phrases, sections and page numbers were marked during recording session.
-
-
-            mProject.SetAudioMediaAsset( mFirstPhrase , m_AssetList[0]);
-            return mFirstPhrase;
         }
 
         /// <summary>
