@@ -178,8 +178,12 @@ namespace Obi
             if (mRecorder.State == AudioRecorderState.Recording)
             {
                 mPhraseMarks.Add(mRecorder.CurrentTime);
-                
-                double mAssetLengthInMs = mPhraseMarks[mPhraseMarks.Count - 1] - mPhraseMarks[mPhraseMarks.Count - 2];
+                double mAssetLengthInMs  ;
+                if ( mPhraseMarks.Count > 1 )
+                mAssetLengthInMs = mPhraseMarks[mPhraseMarks.Count - 1] - mPhraseMarks[mPhraseMarks.Count - 2];
+                else
+                    mAssetLengthInMs  = mPhraseMarks [ 0 ] ;
+
                 mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count - 1, mAssetLengthInMs);
 
                 mAssetList.Add(mAsset);
@@ -203,7 +207,13 @@ namespace Obi
             if (mRecorder.State == AudioRecorderState.Recording)
             {
                 mPhraseMarks.Add(mRecorder.CurrentTime);
-                double mAssetLengthInMs = mPhraseMarks[mPhraseMarks.Count - 1] - mPhraseMarks[mPhraseMarks.Count - 2];
+
+                double mAssetLengthInMs  ;
+                if ( mPhraseMarks.Count > 1 )
+                mAssetLengthInMs = mPhraseMarks[mPhraseMarks.Count - 1] - mPhraseMarks[mPhraseMarks.Count - 2];
+            else
+                    mAssetLengthInMs = mPhraseMarks[0];
+
                 mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count - 1, mAssetLengthInMs );
                 mAssetList.Add(mAsset);
                 FinishingPhrase(this, mPhraseEventsArgs);
@@ -227,7 +237,13 @@ namespace Obi
             if (mRecorder.State == AudioRecorderState.Recording)
             {
                 mPhraseMarks.Add(mRecorder.CurrentTime);
-                double mAssetLengthInMs = mPhraseMarks[mPhraseMarks.Count - 1] - mPhraseMarks[mPhraseMarks.Count - 2];
+
+                double mAssetLengthInMs  ;
+                if ( mPhraseMarks.Count > 1 )
+                mAssetLengthInMs = mPhraseMarks[mPhraseMarks.Count - 1] - mPhraseMarks[mPhraseMarks.Count - 2];
+            else
+                    mAssetLengthInMs = mPhraseMarks[0];
+
                 mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count - 1, mAssetLengthInMs);
                 mAssetList.Add(mAsset);
                 FinishingPhrase(this, mPhraseEventsArgs);
