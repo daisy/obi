@@ -18,26 +18,24 @@ namespace Obi
         private int mSampleRate;          // sample rate of audio to record
         private int mBitDepth;            // bit depth of audio to record
 
-        private AudioMediaAsset m_asset;
-        private List<double> m_PhraseMarks= new List<double> () ;
-        private List <int> m_SectionMarks = new List<int>();
-        private List <int> m_PageMarks = new List<int> () ;
-        private List<AudioMediaAsset> m_AssetList = new List<AudioMediaAsset>();
-        
+        private AudioMediaAsset mAsset;
+        private List<double> mPhraseMarks= new List<double> () ;
+        private List <int> mSectionMarks = new List<int>();
+        private List <int> mPageMarks = new List<int> () ;
+        private List<AudioMediaAsset> mAssetList = new List<AudioMediaAsset>();
+
+        // Record session events
+        public event Events.Audio.Recorder.StartingPhraseHandler StartingPhrase;
+        public event Events.Audio.Recorder.ContinuingPhraseHandler ContinuingPhrase;
+        public event Events.Audio.Recorder.FinishingPhraseHandler FinishingPhrase;
+        public event Events.Audio.Recorder.FinishingPageHandler FinishingPage;
+        public event Events.Audio.Recorder.StartingSectionHandler StartingSection;
+
         //list of audio assets corressponging to phrases created during recording
         public List<AudioMediaAsset> AssetsList
         {
-            get
-            {
-                return m_AssetList;
-            }
+            get { return mAssetList; }
         }
-
-
-        // Record session events
-        //public event Events.Audio.Recorder.StartingPhraseHandler StartingPhrase;
-        //public event Events.Audio.Recorder.ContinuingPhraseHandler ContinuingPhrase;
-        //public event Events.Audio.Recorder.FinishingPhraseHandler FinishingPhrase;
 
         // events handler functions for AudioRecorder class
         private void AudioRecorder_StateChanged(object sender, Events.Audio.Recorder.StateChangedEventArgs state)
@@ -96,8 +94,10 @@ namespace Obi
             if (mRecorder.State == AudioRecorderState.Idle)
             {
                 //m_asset = Project.GetAudioMediaAsset(mCurrentPhrase);
-                m_asset = null;  // create a new asset here
-                mRecorder.StartRecording(m_asset);
+                mAsset = null;  // create a new asset here
+                mRecorder.StartRecording(mAsset);
+                // please check the parameters for the event here...
+                StartingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(mAsset, 0, 0.0));
             }
         }
 
@@ -116,27 +116,31 @@ namespace Obi
 
                 mRecorder.StopRecording();
 
+                // check location/values of this:
+                FinishingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count - 1,
+                    mAsset.LengthInMilliseconds));
+
 
                 if (Recording == true)
                 {
-                    if (m_PhraseMarks.Count != 0)
+                    if (mPhraseMarks.Count != 0)
                     {
                         
                         AudioMediaAsset asset;
-                        for (int i = 0; i < m_PhraseMarks.Count - 1; i++)
+                        for (int i = 0; i < mPhraseMarks.Count - 1; i++)
                         {
                             
-                            asset = m_asset.GetChunk(m_PhraseMarks[i], m_PhraseMarks[i + 1]);
+                            asset = mAsset.GetChunk(mPhraseMarks[i], mPhraseMarks[i + 1]);
                             mProject.AssetManager.AddAsset( asset);
-                            m_AssetList.Add ( asset ) ;
+                            mAssetList.Add ( asset ) ;
                         }
-                        asset =  m_asset.GetChunk(m_PhraseMarks[m_PhraseMarks.Count - 1], m_asset.LengthInMilliseconds  ) ;
+                        asset =  mAsset.GetChunk(mPhraseMarks[mPhraseMarks.Count - 1], mAsset.LengthInMilliseconds  ) ;
                         mProject.AssetManager.AddAsset(asset);
-                        m_AssetList.Add(asset);
+                        mAssetList.Add(asset);
                     }
                     else
                     {
-                        m_AssetList.Add(m_asset);
+                        mAssetList.Add(mAsset);
                     }
                     
                 }
@@ -150,19 +154,32 @@ namespace Obi
         /// </summary>
         public void NextPhrase()
         {
-            if ( mRecorder.State == AudioRecorderState.Recording )
-                m_PhraseMarks.Add (  mRecorder.CurrentTime) ;
+            if (mRecorder.State == AudioRecorderState.Recording)
+            {
+                mPhraseMarks.Add(mRecorder.CurrentTime);
+                // check these:
+                FinishingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count - 1,
+                    mAsset.LengthInMilliseconds));
+                StartingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count, 0.0));
+            }
         }
 
         /// <summary>
         /// Finish the currently recording phrase and continue recording into a new phrase in a new section.
         /// </summary>
         /// <remarks>Because splitting sections is not implemented yet, this is only possible if appending to a section,
-        /// or we may skip the end of the current section.</remarks>
+        /// or we may skip the end of the current section. But the recorder doesn't need to be aware of that, so it will
+        /// happily send an event no matter what.</remarks>
         public void NextSection()
         {
             if (mRecorder.State == AudioRecorderState.Recording)
-                m_SectionMarks.Add( m_PhraseMarks.Count - 1 );
+            {
+                mSectionMarks.Add(mPhraseMarks.Count - 1);
+                // check these:
+                FinishingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count - 1,
+                    mAsset.LengthInMilliseconds));
+                StartingSection(this, new Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count, 0.0));
+            }
         }
 
         /// <summary>
@@ -172,9 +189,13 @@ namespace Obi
         public void MarkPage()
         {
             if (mRecorder.State == AudioRecorderState.Recording)
-                m_PageMarks.Add(m_PhraseMarks.Count - 1);
-            // somewhere we'll have something like:
-            // mProject.AssignNumber(phrase)
+            {
+                mPageMarks.Add(mPhraseMarks.Count - 1);
+                // check these:
+                FinishingPage(this, new Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count - 1,
+                    mAsset.LengthInMilliseconds));
+                StartingPhrase(this, new Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count, 0.0));
+            }
         }
     }
 }
