@@ -551,8 +551,9 @@ namespace Obi.Audio
 				
                     m_br.Close();
 			}
+            m_State = AudioPlayerState.Stopped;
 			Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
-			m_State = AudioPlayerState.Stopped;
+			
 			TriggerStateChangedEvent(e);
 		}
 
