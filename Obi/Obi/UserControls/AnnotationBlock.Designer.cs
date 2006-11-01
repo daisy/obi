@@ -41,7 +41,7 @@ namespace Obi.UserControls
             this.mRenameBox.Location = new System.Drawing.Point(3, 3);
             this.mRenameBox.Margin = new System.Windows.Forms.Padding(0);
             this.mRenameBox.Name = "mRenameBox";
-            this.mRenameBox.Size = new System.Drawing.Size(66, 12);
+            this.mRenameBox.Size = new System.Drawing.Size(66, 13);
             this.mRenameBox.TabIndex = 3;
             this.mRenameBox.TabStop = false;
             this.mRenameBox.Visible = false;
@@ -55,7 +55,7 @@ namespace Obi.UserControls
             this.mLabel.Location = new System.Drawing.Point(3, 3);
             this.mLabel.Margin = new System.Windows.Forms.Padding(3);
             this.mLabel.Name = "mLabel";
-            this.mLabel.Size = new System.Drawing.Size(66, 12);
+            this.mLabel.Size = new System.Drawing.Size(63, 13);
             this.mLabel.TabIndex = 4;
             this.mLabel.Text = "(annotation)";
             this.mLabel.Click += new System.EventHandler(this.AnnotationBlock_Click);
@@ -70,7 +70,7 @@ namespace Obi.UserControls
             // 
             // AnnotationBlock
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -80,8 +80,9 @@ namespace Obi.UserControls
             this.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
             this.MinimumSize = new System.Drawing.Size(50, 0);
             this.Name = "AnnotationBlock";
-            this.Size = new System.Drawing.Size(72, 18);
+            this.Size = new System.Drawing.Size(69, 19);
             this.Click += new System.EventHandler(this.AnnotationBlock_Click);
+            this.SizeChanged += new System.EventHandler(this.AnnotationBlock_SizeChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 
