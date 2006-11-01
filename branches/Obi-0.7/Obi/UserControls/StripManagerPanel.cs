@@ -246,6 +246,7 @@ namespace Obi.UserControls
                 case NodeType.Phrase:
                     strip = mSectionNodeMap[parentSection];
                     AudioBlock block = SetupAudioBlockFromPhraseNode((CoreNode)node);
+                    strip.AppendAudioBlock(block);
                     parentPhrase = (CoreNode)node;
                     break;
                 default:

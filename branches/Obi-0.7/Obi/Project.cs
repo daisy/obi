@@ -39,8 +39,6 @@ namespace Obi
         private string mLastPath;            // last path to which the project was saved (see save as)
         private SimpleMetadata mMetadata;    // metadata for this project
 
-        private int mLastPage;               // last page number in the project
-
         public static readonly string XUKVersion = "obi-xuk-007";            // version of the Obi/XUK file
         public static readonly string AudioChannel = "obi.audio";            // canonical name of the audio channel
         public static readonly string TextChannel = "obi.text";              // canonical name of the text channel
@@ -48,14 +46,10 @@ namespace Obi
 
         public event Events.Project.StateChangedHandler StateChanged;       // the state of the project changed (modified, saved...)
         public event Events.Project.CommandCreatedHandler CommandCreated;   // a new command must be added to the command manager
-
         public event Events.Node.AddedPhraseNodeHandler AddedPhraseNode;        // a phrase node was added to a strip
         public event Events.Node.MediaSetHandler MediaSet;                      // a media object was set on a node
         public event Events.Node.DeletedNodeHandler DeletedPhraseNode;          // deleted a phrase node 
-
         public event Events.Node.TouchedNodeHandler TouchedNode;  // this node was somehow modified
-       
-      
 
         /// <summary>
         /// This flag is set to true if the project contains modifications that have not been saved.

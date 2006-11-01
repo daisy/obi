@@ -935,6 +935,19 @@ namespace Obi
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        private void mTransportToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            bool isProjectOpen = mProject != null;
+            mPlayAllToolStripMenuItem.Enabled = isProjectOpen;
+            mPlaySelectionToolStripMenuItem.Enabled = isProjectOpen &&
+                (mProjectPanel.StripManager.SelectedSectionNode != null ||
+                mProjectPanel.StripManager.SelectedPhraseNode != null);
+            mRecordToolStripMenuItem.Enabled = isProjectOpen;
+        }
+
+        /// <summary>
         /// Tools item are always enabled (except for the debug stuff.)
         /// </summary>
         private void mToolsToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
@@ -972,5 +985,65 @@ namespace Obi
                 FormUpdateUndoRedoLabels();
             }
         }
+
+        // Transport bar stuff
+        // Right now implemented only through menu/dialogs
+
+        #region transport bar
+
+        /// <summary>
+        /// Play the whole book.
+        /// </summary>
+        private void mPlayAllToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (mProject != null)
+            {
+                Playlist playlist = new Playlist(mProject, Audio.AudioPlayer.Instance);
+                new Dialogs.TransportPlay(playlist).ShowDialog();
+                Ready();
+            }
+        }
+
+        /// <summary>
+        /// Play the current selection (phrase or section.)
+        /// </summary>
+        private void mPlaySelectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProject != null)
+            {
+                CoreNode selected =
+                    mProjectPanel.StripManager.SelectedPhraseNode != null ?
+                        mProjectPanel.StripManager.SelectedPhraseNode :
+                    mProjectPanel.StripManager.SelectedSectionNode != null ?
+                        mProjectPanel.StripManager.SelectedSectionNode :
+                        null;
+                System.Diagnostics.Debug.Assert(selected != null, "No selection to play.");
+                Playlist playlist = new Playlist(mProject, Audio.AudioPlayer.Instance, selected);
+                new Dialogs.TransportPlay(playlist).ShowDialog();
+                Ready();
+            }
+        }
+
+        /// <summary>
+        /// Record new assets.
+        /// </summary>
+        private void mRecordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProject != null)
+            {
+                CoreNode selected =
+                    mProjectPanel.StripManager.SelectedPhraseNode != null ?
+                        mProjectPanel.StripManager.SelectedPhraseNode :
+                    mProjectPanel.StripManager.SelectedSectionNode != null ?
+                        mProjectPanel.StripManager.SelectedSectionNode :
+                        null;
+                RecordingSession session = new RecordingSession(mProject, Audio.AudioRecorder.Instance, selected,
+                    mSettings.AudioChannels, mSettings.SampleRate, mSettings.BitDepth);
+                new Dialogs.TransportRecord(session).ShowDialog();
+                Ready();
+            }
+        }
+
+        #endregion
     }
 }

@@ -1,10 +1,12 @@
 using Obi.Assets;
 using Obi.Audio;
+using System;
 using System.Collections.Generic;
 using urakawa.core;
 
 namespace Obi
 {
+
     /// <summary>
     /// The playlist is the list of phrases to be played. They are either the ones that were selected by the
     /// user, or just the list of phrases. The playlist knows how to play itself thanks to the application's
@@ -13,24 +15,24 @@ namespace Obi
     /// </summary>
     public class Playlist
     {
-        private Project mProject;            // project in which we are playing
-        private AudioPlayer mPlayer;         // audio player for actually playing
-        private List<CoreNode> mPhraseList;  // list of phrase nodes (from which we get the assets)
-        private int mCurrentPhrase;          // index of the phrase currently playing
-        private double mTotalTime;           // total time of this playlist
-        private double mElapsedTime;         // elapsed time *before* the beginning of the current asset
-        private bool mWholeBook;             // flag for playing whole book or just a selection
+        private Project mProject;         // project in which we are playing
+        private AudioPlayer mPlayer;      // audio player for actually playing
+        private List<CoreNode> mPhrases;  // list of phrase nodes (from which we get the assets)
+        private int mCurrentPhraseIndex;  // index of the phrase currently playing
+        private double mTotalTime;        // total time of this playlist
+        private double mElapsedTime;      // elapsed time *before* the beginning of the current asset
+        private bool mWholeBook;          // flag for playing whole book or just a selection
 
         // Amount of time after which "previous phrase" goes to the beginning of the phrase
         // rather than the actual previous phrase. In milliseconds.
         private static readonly double InitialThreshold = 2500.0;
 
         /// <summary>
-        /// Get the phrase currently playing.
+        /// Get the audio player for the playlist. Useful for setting up event listeners.
         /// </summary>
-        public CoreNode CurrentPhrase
+        public AudioPlayer Audioplayer
         {
-            get { return mPhraseList[mCurrentPhrase]; }
+            get { return mPlayer; }
         }
 
         /// <summary>
@@ -38,32 +40,32 @@ namespace Obi
         /// </summary>
         public CoreNode NextPhrase
         {
-            get { return mCurrentPhrase < mPhraseList.Count - 1 ? mPhraseList[mCurrentPhrase + 1] : null; }
+            get { return mCurrentPhraseIndex < mPhrases.Count - 1 ? mPhrases[mCurrentPhraseIndex + 1] : null; }
         }
 
         /// <summary>
-        /// Get the previous phrase in play order. Return null if this is the first phrase,
-        /// and same phrase if we are past the initial threshold.
+        /// Get the previous phrase in play order. Return the same phrase if this is the first phrase,
+        /// or if we are past the initial threshold.
         /// </summary>
         public CoreNode PreviousPhrase
         {
             get
             {
-                if (mCurrentPhrase > 0)
+                if (mCurrentPhraseIndex > 0)
                 {
                     AudioMediaAsset current = mPlayer.CurrentAsset;
-                    if (current == null) current = Project.GetAudioMediaAsset(mPhraseList[mCurrentPhrase]);
+                    if (current == null) current = Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]);
                     // adapt the initial threshold to the length of the asset
                     double threshold = InitialThreshold > current.LengthInMilliseconds / 2.0 ?
                         InitialThreshold : current.LengthInMilliseconds / 2.0;
                     System.Diagnostics.Debug.Assert(mPlayer.State != AudioPlayerState.NotReady);
                     // really go back only if stopped or if before the end of the initial threshold
                     bool goback = mPlayer.State == AudioPlayerState.Stopped || mPlayer.CurrentTimePosition <= threshold;
-                    return mPhraseList[mCurrentPhrase - (goback ? 1 : 0)];
+                    return mPhrases[mCurrentPhraseIndex - (goback ? 1 : 0)];
                 }
                 else
                 {
-                    return null;
+                    return mPhrases[0];
                 }
             }
         }
@@ -73,7 +75,7 @@ namespace Obi
         /// </summary>
         public CoreNode CurrentSection
         {
-            get { return (CoreNode)CurrentPhrase.getParent(); }
+            get { return (CoreNode)mPhrases[mCurrentPhraseIndex].getParent(); }
         }
 
         /// <summary>
@@ -86,9 +88,9 @@ namespace Obi
                 System.Diagnostics.Debug.Assert(mWholeBook);
                 // instead of looking through the tree, just look at the playlist
                 CoreNode current = CurrentSection;
-                int i = mCurrentPhrase + 1;
-                for (; i < mPhraseList.Count && mPhraseList[i].getParent() == current; ++i) { }
-                return i < mPhraseList.Count ? mPhraseList[i] : null;
+                int i = mCurrentPhraseIndex + 1;
+                for (; i < mPhrases.Count && mPhrases[i].getParent() == current; ++i) { }
+                return i < mPhrases.Count ? mPhrases[i] : null;
             }
         }
 
@@ -188,8 +190,8 @@ namespace Obi
         {
             mProject = project;
             mPlayer = player;
-            mPhraseList = new List<CoreNode>();
-            mCurrentPhrase = 0;
+            mPhrases = new List<CoreNode>();
+            mCurrentPhraseIndex = 0;
             mElapsedTime = 0.0;
             mTotalTime = 0.0;
             mWholeBook = wholeBook;
@@ -200,14 +202,16 @@ namespace Obi
                 {
                     if (Project.GetNodeType((CoreNode)n) == NodeType.Phrase)
                     {
-                        mPhraseList.Add(node);
-                        mTotalTime += Project.GetAudioMediaAsset(node).LengthInMilliseconds;
+                        mPhrases.Add((CoreNode)n);
+                        mTotalTime += Project.GetAudioMediaAsset((CoreNode)n).LengthInMilliseconds;
                     }
                     return true;
                 },
                 // nothing to do in post-visit
                 delegate(ICoreNode n) { }
             );
+            System.Diagnostics.Debug.Print("Initialized playlist with {0} asset{1}; total time {0}ms.", mPhrases.Count,
+                mPhrases.Count > 1 ? "s" : "", mTotalTime);
         }
 
         /// <summary>
@@ -215,32 +219,45 @@ namespace Obi
         /// </summary>
         public void Play()
         {
-            System.Diagnostics.Debug.Assert(mPhraseList.Count > 0, "Phrase list is empty.");
-            if (mCurrentPhrase == -1)
+            if (mPhrases.Count > 0)
             {
-                System.Diagnostics.Debug.Assert(mPlayer.State == AudioPlayerState.Stopped, "Player should be stopped.");
-                // stopped, so start from the beginning
-                mCurrentPhrase = 0;
-                mElapsedTime = 0.0;
-                // setup the event handler for the end of an asset (so that we can move to the next one.)
-                mPlayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler(EndOfAudioAsset);
+                if (mPlayer.State == AudioPlayerState.Paused)
+                {
+                    // resume
+                    System.Diagnostics.Debug.Print("Resume.");
+                    mPlayer.Resume();
+                }
+                else if (mPlayer.State == AudioPlayerState.Stopped)
+                {
+                    // start from the beginning
+                    System.Diagnostics.Debug.Print("Play.");
+                    mCurrentPhraseIndex = 0;
+                    mElapsedTime = 0.0;
+                    // setup the event handler for the end of an asset (so that we can move to the next one.)
+                    mPlayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler(MoveToNextPhrase);
+                    mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]));
+                }
+                else
+                {
+                    throw new Exception(string.Format("Player should be paused or stopped, but is {0}.", mPlayer.State));
+                }
             }
             else
             {
-                System.Diagnostics.Debug.Assert(mPlayer.State == AudioPlayerState.Paused, "Player should be paused.");
-                mPlayer.Resume();
+                // nothing to play so just stop.
+                System.Diagnostics.Debug.Print("Nothing to play, will stop.");
+                Stop();
             }
         }
 
         /// <summary>
-        /// Catch the end of an asset from the audio player.
+        /// Catch the end of an asset from the audio player and move to the next phrase.
         /// </summary>
         /// <param name="sender">Sender of the event (i.e. the audio player.)</param>
         /// <param name="e">The arguments sent by the player.</param>
-        private void EndOfAudioAsset(object sender, Events.Audio.Player.EndOfAudioAssetEventArgs e)
+        private void MoveToNextPhrase(object sender, Events.Audio.Player.EndOfAudioAssetEventArgs e)
         {
-            // needs to stop here?
-            // add an option to have a pause between assets
+            // add an option to have a beep between assets
             if (NextPhrase != null)
             {
                 PlayNextPhrase();
@@ -251,16 +268,23 @@ namespace Obi
             }
         }
 
+        /// <summary>
+        /// Play the next phrase in the list.
+        /// </summary>
         private void PlayNextPhrase()
         {
             MoveToNextPhrase();
-            mPlayer.Play(Project.GetAudioMediaAsset(mPhraseList[mCurrentPhrase]));
+            mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]));
         }
 
+        /// <summary>
+        /// Move to the next phrase in the list.
+        /// </summary>
         private void MoveToNextPhrase()
         {
             mElapsedTime += mPlayer.CurrentAsset.LengthInMilliseconds;
-            ++mCurrentPhrase;
+            ++mCurrentPhraseIndex;
+            // notify Obi
         }
 
         /// <summary>
@@ -268,8 +292,7 @@ namespace Obi
         /// </summary>
         public void Pause()
         {
-            System.Diagnostics.Debug.Assert(mCurrentPhrase >= 0, "Nothing currently playing.");
-            System.Diagnostics.Debug.Assert(mPlayer.State == AudioPlayerState.Playing, "Player is not playing.");
+            System.Diagnostics.Debug.Print("Pause.");
             mPlayer.Pause();
         }
 
@@ -278,14 +301,9 @@ namespace Obi
         /// </summary>
         public void Stop()
         {
-            if (mPlayer.State != AudioPlayerState.Stopped)
-            {
-                System.Diagnostics.Debug.Assert(mCurrentPhrase >= 0, "Nothing currently playing.");
-                System.Diagnostics.Debug.Assert(mPlayer.State == AudioPlayerState.NotReady, "Player is not ready.");
-                mPlayer.Stop();
-                mPlayer.EndOfAudioAsset -= new Events.Audio.Player.EndOfAudioAssetHandler(EndOfAudioAsset);
-                mCurrentPhrase = -1;
-            }
+            System.Diagnostics.Debug.Print("Stop.");
+            if (mPlayer.State != AudioPlayerState.Stopped) mPlayer.Stop();
+            mPlayer.EndOfAudioAsset -= new Events.Audio.Player.EndOfAudioAssetHandler(MoveToNextPhrase);
         }
 
         // Navigation functions. The following applies to all functions:

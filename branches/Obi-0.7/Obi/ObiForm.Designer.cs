@@ -92,6 +92,10 @@ namespace Obi
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.mSetPageNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRemovePageNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mTransportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPlayAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPlaySelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -115,6 +119,7 @@ namespace Obi
             this.mEditToolStripMenuItem,
             this.mTocToolStripMenuItem,
             this.mStripsToolStripMenuItem,
+            this.mTransportToolStripMenuItem,
             this.mToolsToolStripMenuItem,
             this.mHelpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -621,6 +626,38 @@ namespace Obi
             this.mRemovePageNumberToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
             this.mRemovePageNumberToolStripMenuItem.Text = "&Remove page number";
             // 
+            // mTransportToolStripMenuItem
+            // 
+            this.mTransportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mPlayAllToolStripMenuItem,
+            this.mPlaySelectionToolStripMenuItem,
+            this.mRecordToolStripMenuItem});
+            this.mTransportToolStripMenuItem.Name = "mTransportToolStripMenuItem";
+            this.mTransportToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.mTransportToolStripMenuItem.Text = "T&ransport";
+            this.mTransportToolStripMenuItem.DropDownOpening += new System.EventHandler(this.mTransportToolStripMenuItem_DropDownOpening);
+            // 
+            // mPlayAllToolStripMenuItem
+            // 
+            this.mPlayAllToolStripMenuItem.Name = "mPlayAllToolStripMenuItem";
+            this.mPlayAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mPlayAllToolStripMenuItem.Text = "Play &all";
+            this.mPlayAllToolStripMenuItem.Click += new System.EventHandler(this.mPlayAllToolStripMenuItem1_Click);
+            // 
+            // mPlaySelectionToolStripMenuItem
+            // 
+            this.mPlaySelectionToolStripMenuItem.Name = "mPlaySelectionToolStripMenuItem";
+            this.mPlaySelectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mPlaySelectionToolStripMenuItem.Text = "&Play selection";
+            this.mPlaySelectionToolStripMenuItem.Click += new System.EventHandler(this.mPlaySelectionToolStripMenuItem_Click);
+            // 
+            // mRecordToolStripMenuItem
+            // 
+            this.mRecordToolStripMenuItem.Name = "mRecordToolStripMenuItem";
+            this.mRecordToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mRecordToolStripMenuItem.Text = "&Record";
+            this.mRecordToolStripMenuItem.Click += new System.EventHandler(this.mRecordToolStripMenuItem_Click);
+            // 
             // mToolsToolStripMenuItem
             // 
             this.mToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -684,14 +721,14 @@ namespace Obi
             // 
             this.mHelpToolStripMenuItem1.Name = "mHelpToolStripMenuItem1";
             this.mHelpToolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.mHelpToolStripMenuItem1.Size = new System.Drawing.Size(137, 22);
+            this.mHelpToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.mHelpToolStripMenuItem1.Text = "&Contents";
             this.mHelpToolStripMenuItem1.Click += new System.EventHandler(this.mHelpToolStripMenuItem1_Click);
             // 
             // aboutObiToolStripMenuItem
             // 
             this.aboutObiToolStripMenuItem.Name = "aboutObiToolStripMenuItem";
-            this.aboutObiToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.aboutObiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutObiToolStripMenuItem.Text = "&About Obi";
             this.aboutObiToolStripMenuItem.Click += new System.EventHandler(this.mAboutObiToolStripMenuItem_Click);
             // 
@@ -825,6 +862,10 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mMoveInToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMoveOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
+        private System.Windows.Forms.ToolStripMenuItem mTransportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mPlaySelectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mRecordToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mPlayAllToolStripMenuItem;
 
 
     }

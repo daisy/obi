@@ -147,6 +147,18 @@
     <Compile Include="Dialogs\Split.Designer.cs">
       <DependentUpon>Split.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\TransportPlay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\TransportPlay.Designer.cs">
+      <DependentUpon>TransportPlay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TransportRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\TransportRecord.Designer.cs">
+      <DependentUpon>TransportRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\UserProfile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -365,6 +377,14 @@
     <Content Include="help_en.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Dialogs\TransportPlay.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TransportPlay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TransportRecord.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TransportRecord.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\AnnotationBlock.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AnnotationBlock.cs</DependentUpon>

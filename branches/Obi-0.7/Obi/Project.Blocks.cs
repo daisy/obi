@@ -428,6 +428,7 @@ namespace Obi
         /// <returns>The asset or null if it could not be found.</returns>
         public static AudioMediaAsset GetAudioMediaAsset(CoreNode node)
         {
+            System.Diagnostics.Debug.Assert(GetNodeType(node) == NodeType.Phrase);
             AssetProperty prop = (AssetProperty)node.getProperty(typeof(AssetProperty));
             if (prop != null)
             {
@@ -501,7 +502,6 @@ namespace Obi
         {
             PageProperty pageProp = e.Node.getProperty(typeof(PageProperty)) as PageProperty;
             Commands.Strips.SetNewPageNumber command = null;
-            // if (pageProp == null || pageProp.getOwner() == null)
             if (pageProp == null)
             {
                 pageProp = (PageProperty)getPresentation().getPropertyFactory().createProperty(PageProperty.NodeName,
@@ -523,7 +523,6 @@ namespace Obi
                     return;
                 }
             }
-            if (e.PageNumber > mLastPage) mLastPage = e.PageNumber;
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
