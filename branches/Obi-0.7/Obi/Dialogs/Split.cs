@@ -241,8 +241,12 @@ namespace Obi.Dialogs
 
         private void Split_Load(object sender, EventArgs e)
         {
-            
-            txtDisplayAsset.Text = ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).getText();
+
+            //md annotation are not asset names anymore
+            //md removed: ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).getText();
+            //md added:
+            txtDisplayAsset.Text = Project.GetAudioMediaAsset(mNode).Name;
+
             txtDisplayTime.Text = "00:00:00";
             txtSplitTime.Text = "0";
 

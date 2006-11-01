@@ -78,6 +78,7 @@ namespace Obi.UserControls
         public void StartRenaming()
         {
             mLabel.Visible = false;
+            mRenameBox.Size = new Size(Width, mRenameBox.Height);
             mRenameBox.Visible = true;
             mRenameBox.ReadOnly = false;
             mRenameBox.BackColor = BackColor;
@@ -270,14 +271,29 @@ namespace Obi.UserControls
 
         #region audio strip
 
+        /// <summary>
+        /// Append an audio block to the strip. This also appends the corresponding annotation block.
+        /// </summary>
+        /// <param name="block">The audio block to append.</param>
         public void AppendAudioBlock(AudioBlock block)
         {
             mAudioLayoutPanel.Controls.Add(block);
             mAnnotationLayoutPanel.Controls.Add(block.AnnotationBlock);
             //md 20061024 force resizing
             block._Width = block.AnnotationBlock.Width;
+            // fix the layout so that the two layout panels are correctly placed.
+            if (mAudioLayoutPanel.Controls.Count == 1)
+            {
+                mAudioLayoutPanel.Location = new Point(mAudioLayoutPanel.Location.X,
+                    mAnnotationLayoutPanel.Location.Y + mAnnotationLayoutPanel.Height + mAnnotationLayoutPanel.Margin.Bottom); 
+            }
         }
 
+        /// <summary>
+        /// Insert an audio block in the strip, along with its annotation block.
+        /// </summary>
+        /// <param name="block">The block to insert.</param>
+        /// <param name="index">The insertion position.</param>
         public void InsertAudioBlock(AudioBlock block, int index)
         {
             AppendAudioBlock(block);
@@ -285,33 +301,34 @@ namespace Obi.UserControls
             mAnnotationLayoutPanel.Controls.SetChildIndex(block.AnnotationBlock, index);
         }
 
+        /// <summary>
+        /// Remove an audio block from the strip. Its annotation block is removed as well.
+        /// </summary>
+        /// <param name="block">The block to remove.</param>
         public void RemoveAudioBlock(AudioBlock block)
         {
             int index = mAudioLayoutPanel.Controls.IndexOf(block);
             mAudioLayoutPanel.Controls.RemoveAt(index);
-            mStructureLayoutPanel.Controls.RemoveAt(index);
             mAnnotationLayoutPanel.Controls.RemoveAt(index);
             ReflowTabOrder(index);
+            // fix the layout again if the strip becomes empty.
+            if (mAudioLayoutPanel.Controls.Count == 0) mAudioLayoutPanel.Location = mAnnotationLayoutPanel.Location;
         }
 
-        public void RenameAudioBlock(AudioBlock block, string name)
+        /// <summary>
+        /// Set the annotation block of an audio block.
+        /// </summary>
+        /// <param name="block">The audio block to set the annotation for.</param>
+        /// <param name="annotation">The annotation for this block.</param>
+        public void SetAnnotationBlock(AudioBlock block, string annotation)
         {
-            block.AnnotationBlock.Label = name;
+            block.AnnotationBlock.Label = annotation;
         }
 
         /// <summary>
         /// Clicking in the audio strip selects the strip but unselects the audio block.
         /// </summary>
         private void mAudioLayoutPanel_Click(object sender, EventArgs e)
-        {
-            mManager.SelectedSectionNode = mNode;
-            mManager.SelectedPhraseNode = null;
-        }
-
-        /// <summary>
-        /// Clicking in the structure strip selects the strip but unselects the phrase.
-        /// </summary>
-        private void mStructureLayoutPanel_Click(object sender, EventArgs e)
         {
             mManager.SelectedSectionNode = mNode;
             mManager.SelectedPhraseNode = null;
@@ -325,7 +342,6 @@ namespace Obi.UserControls
             mManager.SelectedSectionNode = mNode;
             mManager.SelectedPhraseNode = null;
         }
-
 
         #endregion
 
@@ -362,7 +378,6 @@ namespace Obi.UserControls
             this.mToolTip.SetToolTip(this, Localizer.Message("section_strip_tooltip"));
             this.mToolTip.SetToolTip(this.mRenameBox, Localizer.Message("section_strip_name_tooltip"));
             this.mToolTip.SetToolTip(this.mLabel, Localizer.Message("section_strip_name_tooltip"));
-           
         }
     }
 }

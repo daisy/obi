@@ -19,10 +19,7 @@ namespace Obi.UserControls
 
         public Project Project
         {
-            get
-            {
-                return mProject;
-            }
+            get { return mProject; }
             set
             {
                 // Reset the handlers from the previous project
@@ -217,6 +214,7 @@ namespace Obi.UserControls
                 mProject = value;
                 mSplitContainer.Visible = mProject != null;
                 mSplitContainer.Panel1Collapsed = false;
+                mNoProjectLabel.Text = mProject == null ? Localizer.Message("no_project") : "";
             }
         }
 
@@ -257,12 +255,6 @@ namespace Obi.UserControls
         {
             mSplitContainer.Panel1Collapsed = false;
         }
-
-
-        /*public void Clear()
-        {
-            mTOCPanel.Clear();
-        }*/
 
         /// <summary>
         /// Synchronize the project views with the core tree. Used when opening a XUK file.

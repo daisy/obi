@@ -28,7 +28,7 @@ namespace Obi.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.mNoProjectLabel = new System.Windows.Forms.Label();
             this.mSplitContainer = new System.Windows.Forms.SplitContainer();
             this.mTOCPanel = new Obi.UserControls.TOCPanel();
             this.mStripManagerPanel = new Obi.UserControls.StripManagerPanel();
@@ -37,20 +37,21 @@ namespace Obi.UserControls
             this.mSplitContainer.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // mNoProjectLabel
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label1.Location = new System.Drawing.Point(285, 159);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "(No project)";
+            this.mNoProjectLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.mNoProjectLabel.AutoSize = true;
+            this.mNoProjectLabel.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.mNoProjectLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.mNoProjectLabel.Location = new System.Drawing.Point(285, 159);
+            this.mNoProjectLabel.Name = "mNoProjectLabel";
+            this.mNoProjectLabel.Size = new System.Drawing.Size(66, 12);
+            this.mNoProjectLabel.TabIndex = 0;
+            this.mNoProjectLabel.Text = "(No project)";
             // 
             // mSplitContainer
             // 
+            this.mSplitContainer.AccessibleDescription = "";
             this.mSplitContainer.BackColor = System.Drawing.Color.Transparent;
             this.mSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mSplitContainer.Location = new System.Drawing.Point(0, 0);
@@ -83,6 +84,8 @@ namespace Obi.UserControls
             this.mStripManagerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mStripManagerPanel.Location = new System.Drawing.Point(0, 0);
             this.mStripManagerPanel.Name = "mStripManagerPanel";
+            this.mStripManagerPanel.SelectedPhraseNode = null;
+            this.mStripManagerPanel.SelectedSectionNode = null;
             this.mStripManagerPanel.Size = new System.Drawing.Size(417, 330);
             this.mStripManagerPanel.TabIndex = 0;
             // 
@@ -92,7 +95,7 @@ namespace Obi.UserControls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.mSplitContainer);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.mNoProjectLabel);
             this.Name = "ProjectPanel";
             this.Size = new System.Drawing.Size(631, 330);
             this.mSplitContainer.Panel1.ResumeLayout(false);
@@ -105,7 +108,7 @@ namespace Obi.UserControls
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label mNoProjectLabel;
         private System.Windows.Forms.SplitContainer mSplitContainer;
         private StripManagerPanel mStripManagerPanel;
         private TOCPanel mTOCPanel;
