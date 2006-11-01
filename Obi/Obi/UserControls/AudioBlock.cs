@@ -199,8 +199,8 @@ namespace Obi.UserControls
             ShowPageBox();
             mPage.ReadOnly = false;
             mPage.Tag = mPage.Text;
-            mPage.Text = "";
-            mPage.SelectedText = Localizer.Message("no_page_label");
+            if (mPage.Text == "") mPage.Text = Localizer.Message("no_page_label");
+            mPage.SelectAll();
             mPage.Focus();
         }
 
@@ -244,10 +244,18 @@ namespace Obi.UserControls
             System.Text.RegularExpressions.Match m = System.Text.RegularExpressions.Regex.Match(mPage.Text, "\\d+");
             if (m.Success)
             {
-                int pageNumber = Int32.Parse(m.Value);
-                mManager.RequestToSetPageNumber(this, new Events.Node.SetPageEventArgs(this, mNode, pageNumber));
-                mPage.ReadOnly = true;
-                Page = m.Value; 
+                try
+                {
+                    // the number may be too big
+                    int pageNumber = Int32.Parse(m.Value);
+                    mManager.RequestToSetPageNumber(this, new Events.Node.SetPageEventArgs(this, mNode, pageNumber));
+                    mPage.ReadOnly = true;
+                    Page = m.Value;
+                }
+                catch (Exception)
+                {
+                    StopEditingPageNumber();
+                }
             }
             else
             {

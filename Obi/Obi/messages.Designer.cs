@@ -533,6 +533,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No project..
+        /// </summary>
+        internal static string no_project {
+            get {
+                return ResourceManager.GetString("no_project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Obi.
         /// </summary>
         internal static string obi {
