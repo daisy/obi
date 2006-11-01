@@ -45,9 +45,11 @@ namespace Obi
         public event Events.Audio.Recorder.StartingPhraseHandler StartingPhrase;
         public event Events.Audio.Recorder.ContinuingPhraseHandler ContinuingPhrase;
         public event Events.Audio.Recorder.FinishingPhraseHandler FinishingPhrase;
-        Obi.Events.Audio.Recorder.PhraseEventArgs mPhraseEventsArgs;
+        
         public event Events.Audio.Recorder.FinishingPageHandler FinishingPage;
         public event Events.Audio.Recorder.StartingSectionHandler StartingSection;
+
+        Obi.Events.Audio.Recorder.PhraseEventArgs mPhraseEventsArgs;
 
         // events handler functions for AudioRecorder class
         private void AudioRecorder_StateChanged(object sender, Events.Audio.Recorder.StateChangedEventArgs state)
@@ -83,7 +85,15 @@ namespace Obi
 
             Audio.AudioRecorder.Instance.UpdateVuMeterFromRecorder +=
                 new Events.Audio.Recorder.UpdateVuMeterHandler(AudioRecorder_UpdateVuMeter);
+
+            StartingPhrase += new Obi.Events.Audio.Recorder.StartingPhraseHandler(CatchEvents);
+            ContinuingPhrase += new Obi.Events.Audio.Recorder.ContinuingPhraseHandler(CatchEvents);
+            FinishingPhrase += new Obi.Events.Audio.Recorder.FinishingPhraseHandler(CatchEvents);
+            StartingSection += new Obi.Events.Audio.Recorder.StartingSectionHandler(CatchEvents);
+            FinishingPage += new Obi.Events.Audio.Recorder.FinishingPageHandler(CatchEvents);
+            
         }
+
 
         /// <summary>
         /// Listen. This may happen at the start of the seession, or after pause was pressed when we were recording.
@@ -107,12 +117,14 @@ namespace Obi
             {
                 //mAsset = Project.GetAudioMediaAsset(mCurrentPhrase);
 
-                mRecordingAsset = new AudioMediaAsset(mChannels, mBitDepth, mSampleRate);
+                mRecordingAsset = mProject.AssetManager.NewAudioMediaAsset  (mChannels, mBitDepth, mSampleRate);
                 mRecorder.StartRecording(mRecordingAsset);
 
                 mAsset = new AudioMediaAsset(mChannels, mBitDepth, mSampleRate);
+
                 mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, 0, 0.0);
-                StartingPhrase(this, mPhraseEventsArgs);
+
+                StartingPhrase( this , mPhraseEventsArgs);
 
                 UpdateDisplayThread = new Thread ( new ThreadStart ( UpdateDisplayPeriodically )) ;
             }
@@ -138,15 +150,17 @@ namespace Obi
                     mPhraseMarks.Add( mRecordingAsset.LengthInMilliseconds );
                     mAssetList.Add(mAsset);
                     
-                    double mAssetLengthInMs = mPhraseMarks[mPhraseMarks.Count - 1] - mPhraseMarks[mPhraseMarks.Count - 2];
+                    double mAssetLengthInMs = mPhraseMarks [ 0 ] ;
                     mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count - 1, mAssetLengthInMs);
-                    FinishingPhrase(this, mPhraseEventsArgs);
 
-                        AudioClip Clip = new AudioClip(mProject.AssetManager.AssetsDirectory, 0.0, mPhraseMarks[0]);
+//                    FinishingPhrase(this, mPhraseEventsArgs);
+
+                    AudioClip Clip = new AudioClip(mRecordingAsset.Clips[0].Path, 0.0, mPhraseMarks[0]);
+                    
                         mAssetList[0].AddClip(Clip);
                         for (int i = 0; i < mPhraseMarks.Count - 1; i++)
                         {
-                            Clip = new AudioClip(mProject.AssetManager.AssetsDirectory, mPhraseMarks [ i ] , mPhraseMarks[i + 1]);
+                            Clip = new AudioClip(mRecordingAsset.Clips[0].Path , mPhraseMarks[i], mPhraseMarks[i + 1]);
                             mAssetList[i + 1 ].AddClip(Clip);
                     }
                 }
@@ -233,6 +247,7 @@ namespace Obi
         private void UpdateDisplayPeriodically ()
         {
             Thread.Sleep(1000);
+            mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count, mRecorder.CurrentTime);
             ContinuingPhrase(this, mPhraseEventsArgs);
         }
 
@@ -249,6 +264,10 @@ namespace Obi
             }
         }
 
+        void CatchEvents(object sender, EventArgs  e)
+        {
+
+        }
 
     } // end of class
 }
