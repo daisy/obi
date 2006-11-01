@@ -55,8 +55,8 @@ namespace Obi.UserControls
             block.Manager = this;
             block.Node = node;
             mPhraseNodeMap[node] = block;
-            // TextMedia annotation = (TextMedia)Project.GetMediaForChannel(e.Node, Project.AnnotationChannel);
-            // if (annotation != null) block.AnnotationBlock.Label = annotation.getText();
+            TextMedia annotation = (TextMedia)Project.GetMediaForChannel(node, Project.AnnotationChannel);
+            if (annotation != null) block.AnnotationBlock.Label = annotation.getText();
             Assets.AudioMediaAsset asset = Project.GetAudioMediaAsset(node);
             block.Label = asset.Name;
             PageProperty pageProp = node.getProperty(typeof(PageProperty)) as PageProperty;
@@ -89,7 +89,7 @@ namespace Obi.UserControls
                 if (e.Channel == Project.AnnotationChannel)
                 {
                     // the label of an audio block has changed
-                    strip.RenameAudioBlock(mPhraseNodeMap[e.Node], ((TextMedia)e.Media).getText());
+                    strip.SetAnnotationBlock(mPhraseNodeMap[e.Node], ((TextMedia)e.Media).getText());
                 }
                 else if (e.Channel == Project.AudioChannel)
                 {

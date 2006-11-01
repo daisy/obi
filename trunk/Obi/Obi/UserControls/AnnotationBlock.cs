@@ -22,7 +22,7 @@ namespace Obi.UserControls
         public string Label
         {
             get { return mLabel.Text; }
-            set { mLabel.Text = value;}
+            set { mLabel.Text = value; }
         }
 
         public int _Width
@@ -38,24 +38,19 @@ namespace Obi.UserControls
 
         internal override void MarkDeselected()
         {
-            BackColor = Color.LightYellow;
+            BackColor = Color.PowderBlue;
             mLabel.BackColor = BackColor;
         }
 
         internal override void MarkSelected()
         {
-            BackColor = Color.Yellow;
+            BackColor = Color.DeepSkyBlue;
             mLabel.BackColor = BackColor;
         }
 
         private void mLabel_Click(object sender, EventArgs e)
         {
             mAudioBlock.Manager.SelectedPhraseNode = mAudioBlock.Node;
-        }
-
-        private void mRenameBox_MouseDown(object sender, MouseEventArgs e)
-        {
-
         }
 
         private void mRenameBox_KeyDown(object sender, KeyEventArgs e)
@@ -66,7 +61,7 @@ namespace Obi.UserControls
                     UpdateText();
                     break;
                 case Keys.Escape:
-                    mRenameBox.Visible = false; 
+                    mRenameBox.Visible = false;
                     break;
                 default:
                     break;
@@ -81,10 +76,10 @@ namespace Obi.UserControls
         public void StartRenaming()
         {
             mLabel.Visible = false;
-            mRenameBox.Size = mLabel.Size;
+            mRenameBox.Size = new Size(Width - mRenameBox.Location.X - mRenameBox.Margin.Right, mRenameBox.Height);
             mRenameBox.BackColor = BackColor;
-            mRenameBox.Text = "";
-            mRenameBox.SelectedText = mLabel.Text;
+            mRenameBox.Text = mLabel.Text;
+            mRenameBox.SelectAll();
             mRenameBox.Visible = true;
             mRenameBox.Focus();
         }
@@ -109,7 +104,6 @@ namespace Obi.UserControls
                     Localizer.Message("empty_label_warning_caption"),
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-
             mRenameBox.Visible = false;
             mLabel.Visible = true;
         }

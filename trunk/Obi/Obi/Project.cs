@@ -62,10 +62,7 @@ namespace Obi
         /// </summary>
         public bool Unsaved
         {
-            get
-            {
-                return mUnsaved;
-            }
+            get { return mUnsaved; }
         }
 
         /// <summary>
@@ -73,10 +70,7 @@ namespace Obi
         /// </summary>
         public SimpleMetadata Metadata
         {
-            get
-            {
-                return mMetadata;
-            }
+            get { return mMetadata; }
         }
 
         /// <summary>
@@ -84,21 +78,15 @@ namespace Obi
         /// </summary>
         public string XUKPath
         {
-            get
-            {
-                return mXUKPath;
-            }
+            get { return mXUKPath; }
         }
 
         /// <summary>
-        /// For debug purposes--should go away.
+        /// Get the root node of the presentation as a CoreNode.
         /// </summary>
         public CoreNode RootNode
         {
-            get
-            {
-                return (CoreNode)getPresentation().getRootNode();
-            }
+            get { return (CoreNode)getPresentation().getRootNode(); }
         }
 
         /// <summary>
@@ -106,12 +94,12 @@ namespace Obi
         /// </summary>
         public string LastPath
         {
-            get
-            {
-                return mLastPath;
-            }
+            get { return mLastPath; }
         }
 
+        /// <summary>
+        /// Get the asset manager for this project.
+        /// </summary>
         internal Assets.AssetManager AssetManager
         {
             get { return mAssManager; }
@@ -130,10 +118,8 @@ namespace Obi
             mAssManager = null;
             mUnsaved = false;
             mXUKPath = null;
-
-            //md:
+            mBlockClipBoard = null;
             mClipboard = null;
-
             // Use our own property factory so that we can create custom properties
             getPresentation().setPropertyFactory(new ObiPropertyFactory());
         }
