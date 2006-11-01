@@ -21,32 +21,44 @@ namespace Obi.Dialogs
         {
             InitializeComponent();
             mPlaylist = playlist;
-            mPlaylist.Audioplayer.StateChanged += new Obi.Events.Audio.Player.StateChangedHandler(PlayerStateChanged);
+            mPlaylist.Audioplayer.StateChanged += new Obi.Events.Audio.Player.StateChangedHandler(
+                delegate(object sender, Obi.Events.Audio.Player.StateChangedEventArgs e) { PlayerStateChanged(); }
+            );
             mPlaylist.Play();
         }
 
-        private void PlayerStateChanged(object sender, Events.Audio.Player.StateChangedEventArgs e)
+        delegate void PlayerStateChangedCallback();
+
+        private void PlayerStateChanged()
         {
-            if (mPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Stopped)
+            if (InvokeRequired)
             {
-                mPauseButton.Visible = false;
-                mPlayButton.Visible = true;
-                mStopButton.Visible = false;
-                mCloseButton.Visible = true;
+                Invoke(new PlayerStateChangedCallback(PlayerStateChanged));
             }
-            else if (mPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Paused)
+            else
             {
-                mPauseButton.Visible = false;
-                mPlayButton.Visible = true;
-                mStopButton.Visible = true;
-                mCloseButton.Visible = false;
-            }
-            else if (mPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Playing)
-            {
-                mPauseButton.Visible = true;
-                mPlayButton.Visible = false;
-                mStopButton.Visible = true;
-                mCloseButton.Visible = false;
+                System.Diagnostics.Debug.Print("NEW STATE = {0}", mPlaylist.Audioplayer.State);
+                if (mPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Stopped)
+                {
+                    mPauseButton.Visible = false;
+                    mPlayButton.Visible = true;
+                    mStopButton.Visible = false;
+                    mCloseButton.Visible = true;
+                }
+                else if (mPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Paused)
+                {
+                    mPauseButton.Visible = false;
+                    mPlayButton.Visible = true;
+                    mStopButton.Visible = true;
+                    mCloseButton.Visible = false;
+                }
+                else if (mPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Playing)
+                {
+                    mPauseButton.Visible = true;
+                    mPlayButton.Visible = false;
+                    mStopButton.Visible = true;
+                    mCloseButton.Visible = false;
+                }
             }
         }
 

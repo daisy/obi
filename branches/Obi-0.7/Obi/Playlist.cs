@@ -284,6 +284,7 @@ namespace Obi
         {
             mElapsedTime += mPlayer.CurrentAsset.LengthInMilliseconds;
             ++mCurrentPhraseIndex;
+            System.Diagnostics.Debug.Print("Moved to phrase #{0}, elapsed time = {1}", mCurrentPhraseIndex, mElapsedTime);
             // notify Obi
         }
 
