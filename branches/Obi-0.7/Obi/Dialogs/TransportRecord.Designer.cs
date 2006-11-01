@@ -31,13 +31,16 @@ namespace Obi.Dialogs
             this.mRecordButton = new System.Windows.Forms.Button();
             this.mPauseButton = new System.Windows.Forms.Button();
             this.mStopButton = new System.Windows.Forms.Button();
+            this.btnPhraseMark = new System.Windows.Forms.Button();
+            this.btnBeginSection = new System.Windows.Forms.Button();
+            this.btnPageMark = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // mRecordButton
             // 
-            this.mRecordButton.Location = new System.Drawing.Point(12, 12);
+            this.mRecordButton.Location = new System.Drawing.Point(12, 13);
             this.mRecordButton.Name = "mRecordButton";
-            this.mRecordButton.Size = new System.Drawing.Size(75, 23);
+            this.mRecordButton.Size = new System.Drawing.Size(75, 25);
             this.mRecordButton.TabIndex = 0;
             this.mRecordButton.Text = "&Record";
             this.mRecordButton.UseVisualStyleBackColor = true;
@@ -45,9 +48,9 @@ namespace Obi.Dialogs
             // 
             // mPauseButton
             // 
-            this.mPauseButton.Location = new System.Drawing.Point(12, 12);
+            this.mPauseButton.Location = new System.Drawing.Point(93, 13);
             this.mPauseButton.Name = "mPauseButton";
-            this.mPauseButton.Size = new System.Drawing.Size(75, 23);
+            this.mPauseButton.Size = new System.Drawing.Size(75, 25);
             this.mPauseButton.TabIndex = 1;
             this.mPauseButton.Text = "&Pause";
             this.mPauseButton.UseVisualStyleBackColor = true;
@@ -56,19 +59,52 @@ namespace Obi.Dialogs
             // mStopButton
             // 
             this.mStopButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.mStopButton.Location = new System.Drawing.Point(93, 12);
+            this.mStopButton.Location = new System.Drawing.Point(174, 13);
             this.mStopButton.Name = "mStopButton";
-            this.mStopButton.Size = new System.Drawing.Size(75, 23);
+            this.mStopButton.Size = new System.Drawing.Size(75, 25);
             this.mStopButton.TabIndex = 3;
             this.mStopButton.Text = "&Stop";
             this.mStopButton.UseVisualStyleBackColor = true;
             this.mStopButton.Click += new System.EventHandler(this.mStopButton_Click);
             // 
+            // btnPhraseMark
+            // 
+            this.btnPhraseMark.Location = new System.Drawing.Point(12, 44);
+            this.btnPhraseMark.Name = "btnPhraseMark";
+            this.btnPhraseMark.Size = new System.Drawing.Size(75, 23);
+            this.btnPhraseMark.TabIndex = 4;
+            this.btnPhraseMark.Text = "Phrase &mark";
+            this.btnPhraseMark.UseVisualStyleBackColor = true;
+            this.btnPhraseMark.Click += new System.EventHandler(this.btnPhraseMark_Click);
+            // 
+            // btnBeginSection
+            // 
+            this.btnBeginSection.Location = new System.Drawing.Point(93, 44);
+            this.btnBeginSection.Name = "btnBeginSection";
+            this.btnBeginSection.Size = new System.Drawing.Size(75, 23);
+            this.btnBeginSection.TabIndex = 5;
+            this.btnBeginSection.Text = "Begin Se&ction";
+            this.btnBeginSection.UseVisualStyleBackColor = true;
+            this.btnBeginSection.Click += new System.EventHandler(this.btnBeginSection_Click);
+            // 
+            // btnPageMark
+            // 
+            this.btnPageMark.Location = new System.Drawing.Point(174, 44);
+            this.btnPageMark.Name = "btnPageMark";
+            this.btnPageMark.Size = new System.Drawing.Size(75, 23);
+            this.btnPageMark.TabIndex = 6;
+            this.btnPageMark.Text = "P&age Mark";
+            this.btnPageMark.UseVisualStyleBackColor = true;
+            this.btnPageMark.Click += new System.EventHandler(this.btnPageMark_Click);
+            // 
             // TransportRecord
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 273);
+            this.ClientSize = new System.Drawing.Size(292, 296);
+            this.Controls.Add(this.btnPageMark);
+            this.Controls.Add(this.btnBeginSection);
+            this.Controls.Add(this.btnPhraseMark);
             this.Controls.Add(this.mStopButton);
             this.Controls.Add(this.mPauseButton);
             this.Controls.Add(this.mRecordButton);
@@ -83,5 +119,8 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button mRecordButton;
         private System.Windows.Forms.Button mPauseButton;
         private System.Windows.Forms.Button mStopButton;
+        private System.Windows.Forms.Button btnPhraseMark;
+        private System.Windows.Forms.Button btnBeginSection;
+        private System.Windows.Forms.Button btnPageMark;
     }
 }

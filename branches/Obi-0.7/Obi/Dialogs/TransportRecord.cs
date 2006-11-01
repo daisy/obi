@@ -30,12 +30,27 @@ namespace Obi.Dialogs
 
         private void mPauseButton_Click(object sender, EventArgs e)
         {
-            mRecordingSession.Listen();
+//            mRecordingSession.Listen();
         }
 
         private void mRecordButton_Click(object sender, EventArgs e)
         {
             mRecordingSession.Record();
+        }
+
+        private void btnPageMark_Click(object sender, EventArgs e)
+        {
+            mRecordingSession.MarkPage();
+        }
+
+        private void btnBeginSection_Click(object sender, EventArgs e)
+        {
+            mRecordingSession.NextSection();
+        }
+
+        private void btnPhraseMark_Click(object sender, EventArgs e)
+        {
+            mRecordingSession.NextPhrase();
         }
     }
 }
