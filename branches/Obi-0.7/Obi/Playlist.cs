@@ -27,8 +27,6 @@ namespace Obi
         // rather than the actual previous phrase. In milliseconds.
         private static readonly double InitialThreshold = 2500.0;
 
-
-
         /// <summary>
         /// Get the audio player for the playlist. Useful for setting up event listeners.
         /// </summary>
@@ -267,8 +265,7 @@ namespace Obi
             }
             else
             {
-                System.Diagnostics.Debug.Print("Playlist.MoveToNextPhrase(): at the end of the playlist, stop.");
-                Stop();
+                System.Diagnostics.Debug.Print("Playlist.MoveToNextPhrase(): at the end of the playlist, wait and see.");
             }
         }
 

@@ -76,8 +76,9 @@ namespace Obi.UserControls
             this.mLabel.Location = new System.Drawing.Point(3, 0);
             this.mLabel.Margin = new System.Windows.Forms.Padding(3);
             this.mLabel.Name = "mLabel";
-            this.mLabel.Size = new System.Drawing.Size(0, 20);
+            this.mLabel.Size = new System.Drawing.Size(131, 20);
             this.mLabel.TabIndex = 3;
+            this.mLabel.Text = "(Section name)";
             this.mLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.mLabel.Click += new System.EventHandler(this.SectionStrip_Click);
             // 

@@ -192,9 +192,7 @@ namespace Obi.UserControls
         //mg: for tab navigation et al
         private void SectionStrip_enter(object sender, EventArgs e)
         {
-            //System.Diagnostics.Debug.Print("SectionStrip:tabindex:" + this.TabIndex.ToString());
             mManager.SelectedSectionNode = mNode;            
-            //this.MarkSelected();
         }
 
         public void MarkSelected()

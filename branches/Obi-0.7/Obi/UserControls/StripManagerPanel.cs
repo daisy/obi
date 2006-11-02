@@ -56,26 +56,15 @@ namespace Obi.UserControls
                 {
                     if (mSelectedSection != null)
                     {
-                        //md added try-catch because it tends to crash here
-                        try {mSectionNodeMap[mSelectedSection].MarkDeselected();}
-                        catch (Exception) {}
-
+                        mSectionNodeMap[mSelectedSection].MarkDeselected();
                         if (mSelectedPhrase != null)
                         {
-                            //md added try-catch because it tended to crash above and maybe it would here too
-                            try {mPhraseNodeMap[mSelectedPhrase].MarkDeselected();}
-                            catch (Exception) {}
-
+                            mPhraseNodeMap[mSelectedPhrase].MarkDeselected();
                             mSelectedPhrase = null;
                         }
                     }
                     mSelectedSection = value;
-                    if (mSelectedSection != null)
-                    {
-                        //md added try-catch because it tended to crash above and maybe it would here too
-                        try {mSectionNodeMap[mSelectedSection].MarkSelected();}
-                        catch (Exception) {}
-                    }
+                    if (mSelectedSection != null) mSectionNodeMap[mSelectedSection].MarkSelected();
                 }
             }
         }
@@ -90,10 +79,7 @@ namespace Obi.UserControls
         /// </summary>
         public CoreNode SelectedPhraseNode
         {
-            get
-            {
-                return mSelectedPhrase;
-            }
+            get { return mSelectedPhrase; }
             set
             {
                 if (mSelectedPhrase != value)
@@ -115,12 +101,7 @@ namespace Obi.UserControls
         // mg20060804
         internal SectionStrip SelectedSectionStrip
         {
-            get
-            {
-                if (mSelectedSection != null)
-                    return mSectionNodeMap[mSelectedSection];
-                return null;
-            }
+            get { return mSelectedSection == null ? null : mSectionNodeMap[mSelectedSection]; }
         }
 
         /// <summary>
@@ -191,8 +172,8 @@ namespace Obi.UserControls
         /// </summary>
         public void SynchronizeWithCoreTree(CoreNode root)
         {
-            mSectionNodeMap.Clear();
             mFlowLayoutPanel.Controls.Clear();
+            mSectionNodeMap.Clear();
             mSelectedSection = null;
             mSelectedPhrase = null;
             root.acceptDepthFirst(this);
