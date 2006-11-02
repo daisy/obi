@@ -15,6 +15,8 @@ namespace Obi.UserControls
         private StripManagerPanel mManager;  // the manager for this strip
         private CoreNode mNode;              // the core node for this strip
 
+        public delegate void ChangedMinimumSizeHandler(object sender, EventArgs e);
+
         #region properties
 
         public string Label
@@ -279,10 +281,10 @@ namespace Obi.UserControls
         {
             mAnnotationLayoutPanel.Controls.Add(block.AnnotationBlock);
             mAudioLayoutPanel.Controls.Add(block);
+            block.AnnotationBlock.ChangedMinimumSize += new SectionStrip.ChangedMinimumSizeHandler(
+                delegate(object sender, EventArgs e) { ManageAudioBlockWidth(block); }
+            );
             ManageAudioBlockWidth(block);
-            block.SizeChanged += new EventHandler(delegate(object sender, EventArgs e) { ManageAudioBlockWidth(block); });
-            block.AnnotationBlock.SizeChanged +=
-                new EventHandler(delegate(object sender, EventArgs e) { ManageAudioBlockWidth(block); });
             if (mAudioLayoutPanel.Controls.Count == 1)
             {
                 mAudioLayoutPanel.Location = new Point(mAudioLayoutPanel.Location.X,
@@ -290,20 +292,12 @@ namespace Obi.UserControls
             }
         }
 
-        /// <summary>
-        /// Make sure that blocks in all strip have the same width.
-        /// </summary>
-        /// <param name="block"></param>
-        private void ManageAudioBlockWidth(AudioBlock block)
+        public void ManageAudioBlockWidth(AudioBlock block)
         {
-            if (block.Width > block.AnnotationBlock.Width)
-            {
-                block.AnnotationBlock.Width = block.Width;
-            }
-            else
-            {
-                block.Width = block.AnnotationBlock.Width;
-            }
+            int widest = block.AnnotationBlock.MinimumSize.Width > block.MinimumSize.Width ?
+            block.AnnotationBlock.MinimumSize.Width : block.MinimumSize.Width;
+            if (block.AnnotationBlock.Width != widest) block.AnnotationBlock.Width = widest;
+            if (block.Width != widest) block.Width = widest;
         }
 
         /// <summary>

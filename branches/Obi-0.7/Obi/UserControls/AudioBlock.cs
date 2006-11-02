@@ -13,6 +13,8 @@ namespace Obi.UserControls
     {
         private AnnotationBlock mAnnotationBlock;  // the annotation is taken out of the block
 
+        public event SectionStrip.ChangedMinimumSizeHandler ChangedMinimumSize;
+
         #region properties
 
         /// <summary>
@@ -243,6 +245,18 @@ namespace Obi.UserControls
         {
             this.mToolTip.SetToolTip(this, Localizer.Message("audio_block_tooltip"));
             this.mToolTip.SetToolTip(this.mTimeLabel, Localizer.Message("audio_block_duration_tooltip"));
+        }
+
+        /// <summary>
+        /// Contents size changed, so update the minimum width.
+        /// </summary>
+        private void ContentsSizeChanged(object sender, EventArgs e)
+        {
+            int wlabel = mLabel.Width + mLabel.Location.X + mLabel.Margin.Right;
+            int wtime = mTimeLabel.Width + mTimeLabel.Location.X + mTimeLabel.Margin.Right;
+            int widest = wlabel > wtime ? wlabel : wtime;
+            MinimumSize = new Size(widest, Height);
+            if (ChangedMinimumSize != null) ChangedMinimumSize(this, new EventArgs());
         }
     }
 }

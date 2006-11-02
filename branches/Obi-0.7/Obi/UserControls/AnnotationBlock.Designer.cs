@@ -78,7 +78,6 @@ namespace Obi.UserControls
             this.Controls.Add(this.mLabel);
             this.Controls.Add(this.mRenameBox);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
-            this.MinimumSize = new System.Drawing.Size(50, 0);
             this.Name = "AnnotationBlock";
             this.Size = new System.Drawing.Size(72, 18);
             this.Click += new System.EventHandler(this.AnnotationBlock_Click);

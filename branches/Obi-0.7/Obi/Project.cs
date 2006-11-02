@@ -443,7 +443,8 @@ namespace Obi
             TextMedia annotation = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
             
             //md i would rather set this to "" but the toolkit doesn't allow it
-            annotation.setText("-");
+            //annotation.setText("-");
+            //JQ I guess we'll just set it to nothing and be done with it
             prop.setMedia(mAnnotationChannel, annotation);
            
             AssetProperty assProp = (AssetProperty)getPresentation().getPropertyFactory().createProperty("AssetProperty",
