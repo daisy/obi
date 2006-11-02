@@ -33,11 +33,14 @@ namespace Obi.Dialogs
         {
             if (InvokeRequired)
             {
+                System.Diagnostics.Debug.Print("TransportPlay.PlayerStateChanged(): Invoke required...",
+                    mPlaylist.Audioplayer.State);
                 Invoke(new PlayerStateChangedCallback(PlayerStateChanged));
             }
             else
             {
-                System.Diagnostics.Debug.Print("NEW STATE = {0}", mPlaylist.Audioplayer.State);
+                System.Diagnostics.Debug.Print("TransportPlay.PlayerStateChanged(): new state = {0}",
+                    mPlaylist.Audioplayer.State);
                 if (mPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Stopped)
                 {
                     mPauseButton.Visible = false;
@@ -78,6 +81,11 @@ namespace Obi.Dialogs
         private void mPlayButton_Click(object sender, EventArgs e)
         {
             mPlaylist.Play();
+        }
+
+        private void TransportPlay_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            mPlaylist.Stop();
         }
     }
 }

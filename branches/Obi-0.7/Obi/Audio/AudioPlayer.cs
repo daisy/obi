@@ -546,14 +546,12 @@ namespace Obi.Audio
 			if (!m_State.Equals(AudioPlayerState .Stopped))			
 			{
 				SoundBuffer.Stop();
-				RefreshThread.Abort();
+                RefreshThread.Abort();
 				if (ob_VuMeter != null) ob_VuMeter.Reset();			
-				
-                    m_br.Close();
+				m_br.Close();
 			}
             m_State = AudioPlayerState.Stopped;
 			Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
-			
 			TriggerStateChangedEvent(e);
 		}
 

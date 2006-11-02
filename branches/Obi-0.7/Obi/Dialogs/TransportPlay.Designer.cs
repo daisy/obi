@@ -85,6 +85,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.mPlayButton);
             this.Name = "TransportPlay";
             this.Text = "TransportPlay";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TransportPlay_FormClosing);
             this.ResumeLayout(false);
 
         }

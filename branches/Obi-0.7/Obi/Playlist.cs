@@ -27,6 +27,8 @@ namespace Obi
         // rather than the actual previous phrase. In milliseconds.
         private static readonly double InitialThreshold = 2500.0;
 
+
+
         /// <summary>
         /// Get the audio player for the playlist. Useful for setting up event listeners.
         /// </summary>
@@ -210,7 +212,7 @@ namespace Obi
                 // nothing to do in post-visit
                 delegate(ICoreNode n) { }
             );
-            System.Diagnostics.Debug.Print("Initialized playlist with {0} asset{1}; total time {0}ms.", mPhrases.Count,
+            System.Diagnostics.Debug.Print("Initialized playlist with {0} asset{1}; total time {2}ms.", mPhrases.Count,
                 mPhrases.Count > 1 ? "s" : "", mTotalTime);
         }
 
@@ -224,13 +226,13 @@ namespace Obi
                 if (mPlayer.State == AudioPlayerState.Paused)
                 {
                     // resume
-                    System.Diagnostics.Debug.Print("Resume.");
+                    System.Diagnostics.Debug.Print("Playlist.Play(): Resume.");
                     mPlayer.Resume();
                 }
                 else if (mPlayer.State == AudioPlayerState.Stopped)
                 {
                     // start from the beginning
-                    System.Diagnostics.Debug.Print("Play.");
+                    System.Diagnostics.Debug.Print("Playlist.Play(): Play.");
                     mCurrentPhraseIndex = 0;
                     mElapsedTime = 0.0;
                     // setup the event handler for the end of an asset (so that we can move to the next one.)
@@ -245,7 +247,7 @@ namespace Obi
             else
             {
                 // nothing to play so just stop.
-                System.Diagnostics.Debug.Print("Nothing to play, will stop.");
+                System.Diagnostics.Debug.Print("Playlist.Play(): Nothing to play, will stop.");
                 Stop();
             }
         }
@@ -258,12 +260,14 @@ namespace Obi
         private void MoveToNextPhrase(object sender, Events.Audio.Player.EndOfAudioAssetEventArgs e)
         {
             // add an option to have a beep between assets
-            if (NextPhrase != null)
+            if (mCurrentPhraseIndex < mPhrases.Count - 1)
             {
+                System.Diagnostics.Debug.Print("Playlist.MoveToNextPhrase(): skip to next phrase."); 
                 PlayNextPhrase();
             }
             else
             {
+                System.Diagnostics.Debug.Print("Playlist.MoveToNextPhrase(): at the end of the playlist, stop.");
                 Stop();
             }
         }
@@ -273,18 +277,19 @@ namespace Obi
         /// </summary>
         private void PlayNextPhrase()
         {
-            MoveToNextPhrase();
+            SkipToNextPhrase();
             mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]));
         }
 
         /// <summary>
         /// Move to the next phrase in the list.
         /// </summary>
-        private void MoveToNextPhrase()
+        private void SkipToNextPhrase()
         {
             mElapsedTime += mPlayer.CurrentAsset.LengthInMilliseconds;
             ++mCurrentPhraseIndex;
-            System.Diagnostics.Debug.Print("Moved to phrase #{0}, elapsed time = {1}", mCurrentPhraseIndex, mElapsedTime);
+            System.Diagnostics.Debug.Print("Playlist.SkipToNextPhrase(): skipped to #{0}, elapsed time = {1}",
+                mCurrentPhraseIndex, mElapsedTime);
             // notify Obi
         }
 
@@ -293,7 +298,7 @@ namespace Obi
         /// </summary>
         public void Pause()
         {
-            System.Diagnostics.Debug.Print("Pause.");
+            System.Diagnostics.Debug.Print("Playlist.Pause(): Pause.");
             mPlayer.Pause();
         }
 
@@ -302,8 +307,9 @@ namespace Obi
         /// </summary>
         public void Stop()
         {
-            System.Diagnostics.Debug.Print("Stop.");
-            if (mPlayer.State != AudioPlayerState.Stopped) mPlayer.Stop();
+            System.Diagnostics.Debug.Print("Playlist.Stop(): Player state before stopping = {0}.", mPlayer.State);
+            mPlayer.Stop();
+            System.Diagnostics.Debug.Print("Playlist.Stop(): Player state after stopping = {0}.", mPlayer.State);
             mPlayer.EndOfAudioAsset -= new Events.Audio.Player.EndOfAudioAssetHandler(MoveToNextPhrase);
         }
 
@@ -327,7 +333,7 @@ namespace Obi
                 }
                 else if (mPlayer.State == AudioPlayerState.Paused)
                 {
-                    MoveToNextPhrase();
+                    SkipToNextPhrase();
                 }
                 else if (mPlayer.State == AudioPlayerState.Stopped)
                 {
