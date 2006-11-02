@@ -315,7 +315,15 @@ namespace Obi.Dialogs
             PreviewEnabled = false;
             // for safe threading following function is called through delegate using invoke required
             CallEndAssetOperations();
+
+            // following one line added for serial playing experiment
+            CanPlay = true;
         }
+
+        // following one line added for serial playing experiment
+        bool CanPlay = false; 
+
+
             void CallEndAssetOperations()
         {
             if (InvokeRequired)
@@ -443,6 +451,18 @@ namespace Obi.Dialogs
             }
             
             return base.ProcessDialogKey(keyData);
+
+        }
+
+        // experiment for serial  playing of assets start line
+        private void tmMonitorEnd_Tick(object sender, EventArgs e)
+        {
+            if (CanPlay == true)
+            {
+                Audio.AudioPlayer.Instance.Play(mSourceAsset);
+                CanPlay = false;
+            }
+            // experiment for serial  playing of assets end line
 
         }
        
