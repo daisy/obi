@@ -59,6 +59,7 @@ namespace Obi.UserControls
             this.mLabel.TabIndex = 4;
             this.mLabel.Text = "(annotation)";
             this.mLabel.Click += new System.EventHandler(this.AnnotationBlock_Click);
+            this.mLabel.SizeChanged += new System.EventHandler(this.mLabel_SizeChanged);
             // 
             // mToolTip
             // 
@@ -72,9 +73,8 @@ namespace Obi.UserControls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.Color.LightYellow;
+            this.BackColor = System.Drawing.Color.PowderBlue;
             this.Controls.Add(this.mLabel);
             this.Controls.Add(this.mRenameBox);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);

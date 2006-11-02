@@ -97,15 +97,6 @@ namespace Obi.UserControls
             set { mLabel.Text = value; }
         }
 
-        /// <summary>
-        /// Update the width of the control.
-        /// </summary>
-        //md20061011
-        public int _Width
-        {
-            set { Size = new Size(value, Size.Height); }
-        }
-
         #endregion
         
         #region instantiators
@@ -174,22 +165,6 @@ namespace Obi.UserControls
         }
 
         #endregion
-
-        /// <summary>
-        /// Update the size of the structure block when the size changes.
-        /// </summary>
-        private void AudioBlock_SizeChanged(object sender, EventArgs e)
-        {
-         //md testing
-         //resizing is now done by the annotation block
-         /*
-            if (mStructureBlock != null && mAnnotationBlock != null)
-            {
-                mStructureBlock._Width = Width;
-                mAnnotationBlock._Width = Width;
-            }
-          */
-        }
 
         /// <summary>
         /// Edit the page label for the structure block linked to this audio block.

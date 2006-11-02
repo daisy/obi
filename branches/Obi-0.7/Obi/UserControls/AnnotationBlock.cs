@@ -11,7 +11,6 @@ namespace Obi.UserControls
     public partial class AnnotationBlock : AbstractBlock
     {
         private AudioBlock mAudioBlock;  // the corresponding audio block
-        private static int mMinWidth = 50;
 
         public AudioBlock AudioBlock
         {
@@ -23,11 +22,6 @@ namespace Obi.UserControls
         {
             get { return mLabel.Text; }
             set { mLabel.Text = value; }
-        }
-
-        public int _Width
-        {
-            set { Size = new Size(value, Size.Height); }
         }
 
         public AnnotationBlock()
@@ -75,12 +69,12 @@ namespace Obi.UserControls
 
         public void StartRenaming()
         {
-            mLabel.Visible = false;
-            mRenameBox.Size = new Size(Width - mRenameBox.Location.X - mRenameBox.Margin.Right, mRenameBox.Height);
+            mRenameBox.Width = Width - mRenameBox.Location.X - mRenameBox.Margin.Right;
             mRenameBox.BackColor = BackColor;
             mRenameBox.Text = mLabel.Text;
             mRenameBox.SelectAll();
             mRenameBox.Visible = true;
+            mLabel.Visible = false;
             mRenameBox.Focus();
         }
 
@@ -122,13 +116,13 @@ namespace Obi.UserControls
 
         }
 
-        private void AnnotationBlock_SizeChanged(object sender, EventArgs e)
-        {   
-            if (mAudioBlock != null)
-            {
-                if (Width < mMinWidth) this.Width = mMinWidth;
-               mAudioBlock._Width = Width;
-            }
+        /// <summary>
+        /// Our own implementation of auto-sizing...
+        /// </summary>
+        private void mLabel_SizeChanged(object sender, EventArgs e)
+        {
+            Width = mLabel.Width + mLabel.Location.X + mLabel.Margin.Right;
         }
+
     }
 }

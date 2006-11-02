@@ -74,7 +74,7 @@ namespace Obi.UserControls
             this.mPage.Location = new System.Drawing.Point(5, 39);
             this.mPage.Name = "mPage";
             this.mPage.ReadOnly = true;
-            this.mPage.Size = new System.Drawing.Size(100, 12);
+            this.mPage.Size = new System.Drawing.Size(72, 12);
             this.mPage.TabIndex = 4;
             this.mPage.Text = "(page)";
             this.mPage.Visible = false;
@@ -92,11 +92,10 @@ namespace Obi.UserControls
             this.Controls.Add(this.mTimeLabel);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
             this.Name = "AudioBlock";
-            this.Size = new System.Drawing.Size(116, 54);
+            this.Size = new System.Drawing.Size(80, 54);
             this.Enter += new System.EventHandler(this.AudioBlock_enter);
             this.DoubleClick += new System.EventHandler(this.AudioBlock_DoubleClick);
             this.Click += new System.EventHandler(this.AudioBlock_Click);
-            this.SizeChanged += new System.EventHandler(this.AudioBlock_SizeChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 

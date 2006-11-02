@@ -277,15 +277,32 @@ namespace Obi.UserControls
         /// <param name="block">The audio block to append.</param>
         public void AppendAudioBlock(AudioBlock block)
         {
-            mAudioLayoutPanel.Controls.Add(block);
             mAnnotationLayoutPanel.Controls.Add(block.AnnotationBlock);
-            //md 20061024 force resizing
-            block._Width = block.AnnotationBlock.Width;
-            // fix the layout so that the two layout panels are correctly placed.
+            mAudioLayoutPanel.Controls.Add(block);
+            ManageAudioBlockWidth(block);
+            block.SizeChanged += new EventHandler(delegate(object sender, EventArgs e) { ManageAudioBlockWidth(block); });
+            block.AnnotationBlock.SizeChanged +=
+                new EventHandler(delegate(object sender, EventArgs e) { ManageAudioBlockWidth(block); });
             if (mAudioLayoutPanel.Controls.Count == 1)
             {
                 mAudioLayoutPanel.Location = new Point(mAudioLayoutPanel.Location.X,
                     mAnnotationLayoutPanel.Location.Y + mAnnotationLayoutPanel.Height + mAnnotationLayoutPanel.Margin.Bottom); 
+            }
+        }
+
+        /// <summary>
+        /// Make sure that blocks in all strip have the same width.
+        /// </summary>
+        /// <param name="block"></param>
+        private void ManageAudioBlockWidth(AudioBlock block)
+        {
+            if (block.Width > block.AnnotationBlock.Width)
+            {
+                block.AnnotationBlock.Width = block.Width;
+            }
+            else
+            {
+                block.Width = block.AnnotationBlock.Width;
             }
         }
 
