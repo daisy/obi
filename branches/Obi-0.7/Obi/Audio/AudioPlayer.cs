@@ -465,7 +465,7 @@ namespace Obi.Audio
 			// Stopping process begins
 			SoundBuffer.Stop () ;
 			if (ob_VuMeter != null) ob_VuMeter.Reset () ;
-
+            //SoundBuffer = null;
 				m_br.Close();
 				//ob_EndOfAudioAsset.NotifyEndOfAudioAsset ( this , ob_EndOfAudioAsset) ;
 
@@ -474,9 +474,9 @@ namespace Obi.Audio
 
 			EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());  // JQ
 
-
-			Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
+			
 			m_State= AudioPlayerState.Stopped;
+            Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
 			TriggerStateChangedEvent(e);
 
 			// RefreshBuffer ends
@@ -548,8 +548,9 @@ namespace Obi.Audio
 				SoundBuffer.Stop();
                 RefreshThread.Abort();
 				if (ob_VuMeter != null) ob_VuMeter.Reset();			
-				m_br.Close();
+
 			}
+            m_br.Close();
             m_State = AudioPlayerState.Stopped;
 			Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
 			TriggerStateChangedEvent(e);
