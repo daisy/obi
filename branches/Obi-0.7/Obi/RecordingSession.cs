@@ -26,10 +26,11 @@ namespace Obi
         private Thread UpdateDisplayThread;
 
         private AudioMediaAsset mAsset;
-        private List<double> mPhraseMarks= new List<double> () ;
-        private List <int> mSectionMarks = new List<int>();
-        private List <int> mPageMarks = new List<int> () ;
-        private List<AudioMediaAsset> mAssetList = new List<AudioMediaAsset>();
+        private List<double> mPhraseMarks ;
+        private List<int> mSectionMarks;
+        private List<int> mPageMarks;
+        private List<AudioMediaAsset> mAssetList;
+        private double mSecondsCount;
         
         //list of audio assets corressponging to phrases created during recording
         public List<AudioMediaAsset> AssetsList
@@ -116,11 +117,18 @@ namespace Obi
             if (mRecorder.State == AudioRecorderState.Idle)
             {
                 //mAsset = Project.GetAudioMediaAsset(mCurrentPhrase);
+                // initialise lists
+                mPhraseMarks= new List<double> () ;
+        mSectionMarks = new List<int>();
+        mPageMarks = new List<int> () ;
+        mAssetList = new List<AudioMediaAsset>();
+        mSecondsCount = 0;
+
 
                 mRecordingAsset = mProject.AssetManager.NewAudioMediaAsset  (mChannels, mBitDepth, mSampleRate);
                 mRecorder.StartRecording(mRecordingAsset);
 
-                mAsset = new AudioMediaAsset(mChannels, mBitDepth, mSampleRate);
+                mAsset = mProject.AssetManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
 
                 mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, 0, 0.0);
 
@@ -143,31 +151,40 @@ namespace Obi
                 if (mRecorder.State == AudioRecorderState.Recording)
                     Recording = true;
 
+
                 StopRecording();
 
                 if (Recording == true)
                 {
-                    mPhraseMarks.Add( mRecordingAsset.LengthInMilliseconds );
+                    mPhraseMarks.Add(mRecordingAsset.LengthInMilliseconds);
                     mAssetList.Add(mAsset);
-                    
-                    double mAssetLengthInMs = mPhraseMarks [ 0 ] ;
+
+                    double mAssetLengthInMs = mPhraseMarks[0];
                     mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count - 1, mAssetLengthInMs);
 
-//                    FinishingPhrase(this, mPhraseEventsArgs);
+                    //                    FinishingPhrase(this, mPhraseEventsArgs);
 
                     AudioClip Clip = new AudioClip(mRecordingAsset.Clips[0].Path, 0.0, mPhraseMarks[0]);
-                    
-                        mAssetList[0].AddClip(Clip);
-                        for (int i = 0; i < mPhraseMarks.Count - 1; i++)
-                        {
-                            Clip = new AudioClip(mRecordingAsset.Clips[0].Path , mPhraseMarks[i], mPhraseMarks[i + 1]);
-                            mAssetList[i + 1 ].AddClip(Clip);
+
+                    mAssetList[0].AddClip(Clip);
+                    for (int i = 0; i < mPhraseMarks.Count - 1; i++)
+                    {
+                        Clip = new AudioClip(mRecordingAsset.Clips[0].Path, mPhraseMarks[i], mPhraseMarks[i + 1]);
+                        mAssetList[i + 1].AddClip(Clip);
                     }
+
+
+
+                    // here for loop is used to trigger events to make appropriate phrases, sections , pages which may be caught in project class
+                    // phrases, sections and page numbers were marked during recording session.
+
+                    // clear all the lists and assets
+                    mPhraseMarks = null;
+                    mPageMarks = mSectionMarks = null;
+                    mAsset = mRecordingAsset = null;
+                    UpdateDisplayThread.Abort();
                 }
-                    }
-             
-            // here for loop is used to trigger events to make appropriate phrases, sections , pages which may be caught in project class
-            // phrases, sections and page numbers were marked during recording session.
+            }
         }
 
         /// <summary>
@@ -190,7 +207,7 @@ namespace Obi
                 FinishingPhrase(this, mPhraseEventsArgs);
                 
 
-                mAsset = new AudioMediaAsset ( mChannels , mBitDepth,  mSampleRate ) ;
+                mAsset = mProject.AssetManager.NewAudioMediaAsset ( mChannels , mBitDepth,  mSampleRate ) ;
                 mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count ,  0.0)  ;
                 StartingPhrase ( this , mPhraseEventsArgs ) ;
 
@@ -218,7 +235,7 @@ namespace Obi
                 mAssetList.Add(mAsset);
                 FinishingPhrase(this, mPhraseEventsArgs);
 
-                mAsset = new AudioMediaAsset(mChannels, mBitDepth, mSampleRate);
+                mAsset = mProject.AssetManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
                 mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count , 0.0);
                 
                 StartingSection(this,mPhraseEventsArgs  );
@@ -251,7 +268,7 @@ namespace Obi
                 FinishingPage(this, mPhraseEventsArgs);
                 mPageMarks.Add(mPhraseMarks.Count - 1);
 
-                mAsset = new AudioMediaAsset(mChannels, mBitDepth, mSampleRate);
+                mAsset = mProject.AssetManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
                 mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count , 0.0);
                 StartingPhrase(this, mPhraseEventsArgs);
 
@@ -263,8 +280,10 @@ namespace Obi
         private void UpdateDisplayPeriodically ()
         {
             Thread.Sleep(1000);
+            mSecondsCount++;
             mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count, mRecorder.CurrentTime);
             ContinuingPhrase(this, mPhraseEventsArgs);
+
         }
 
         private void StopRecording()
@@ -279,6 +298,8 @@ namespace Obi
                 
             }
         }
+
+        
 
         void CatchEvents(object sender, EventArgs  e)
         {
