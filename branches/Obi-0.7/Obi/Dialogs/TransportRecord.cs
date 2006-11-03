@@ -25,6 +25,7 @@ namespace Obi.Dialogs
 
         private void mStopButton_Click(object sender, EventArgs e)
         {
+            TmCommit.Enabled = false;
             mRecordingSession.Stop();
         }
 
@@ -35,7 +36,18 @@ namespace Obi.Dialogs
 
         private void mRecordButton_Click(object sender, EventArgs e)
         {
-            mRecordingSession.Record();
+            if (combRecordingSelect.SelectedIndex == 1)
+            {
+                
+                mRecordingSession.Listen();
+            }
+            else if (combRecordingSelect.SelectedIndex == 0)
+            {
+                mRecordingSession.Record();
+
+                TmCommit.Interval = Convert.ToInt32(txtCommitInterval.Text) * 1000;
+                TmCommit.Enabled = true;
+            }
         }
 
         private void btnPageMark_Click(object sender, EventArgs e)
@@ -51,6 +63,19 @@ namespace Obi.Dialogs
         private void btnPhraseMark_Click(object sender, EventArgs e)
         {
             mRecordingSession.NextPhrase();
+        }
+
+        private void TransportRecord_Load(object sender, EventArgs e)
+        {
+            combRecordingSelect.Items.Add("Record");
+            combRecordingSelect.Items.Add("Listen");
+            combRecordingSelect.SelectedIndex = 0 ;
+        }
+
+        private void TmCommit_Tick(object sender, EventArgs e)
+        {
+            mRecordingSession.Stop();
+            mRecordingSession.Record();
         }
     }
 }

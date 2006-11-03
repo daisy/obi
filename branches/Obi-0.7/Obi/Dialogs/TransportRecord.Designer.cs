@@ -28,17 +28,22 @@ namespace Obi.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.mRecordButton = new System.Windows.Forms.Button();
             this.mPauseButton = new System.Windows.Forms.Button();
             this.mStopButton = new System.Windows.Forms.Button();
             this.btnPhraseMark = new System.Windows.Forms.Button();
             this.btnBeginSection = new System.Windows.Forms.Button();
             this.btnPageMark = new System.Windows.Forms.Button();
+            this.combRecordingSelect = new System.Windows.Forms.ComboBox();
+            this.txtCommitInterval = new System.Windows.Forms.TextBox();
+            this.TmCommit = new System.Windows.Forms.Timer(this.components);
+            this.lblCommitInterval = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // mRecordButton
             // 
-            this.mRecordButton.Location = new System.Drawing.Point(12, 13);
+            this.mRecordButton.Location = new System.Drawing.Point(93, 13);
             this.mRecordButton.Name = "mRecordButton";
             this.mRecordButton.Size = new System.Drawing.Size(75, 25);
             this.mRecordButton.TabIndex = 0;
@@ -48,7 +53,7 @@ namespace Obi.Dialogs
             // 
             // mPauseButton
             // 
-            this.mPauseButton.Location = new System.Drawing.Point(93, 13);
+            this.mPauseButton.Location = new System.Drawing.Point(174, 13);
             this.mPauseButton.Name = "mPauseButton";
             this.mPauseButton.Size = new System.Drawing.Size(75, 25);
             this.mPauseButton.TabIndex = 1;
@@ -59,7 +64,7 @@ namespace Obi.Dialogs
             // mStopButton
             // 
             this.mStopButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.mStopButton.Location = new System.Drawing.Point(174, 13);
+            this.mStopButton.Location = new System.Drawing.Point(205, 13);
             this.mStopButton.Name = "mStopButton";
             this.mStopButton.Size = new System.Drawing.Size(75, 25);
             this.mStopButton.TabIndex = 3;
@@ -69,7 +74,7 @@ namespace Obi.Dialogs
             // 
             // btnPhraseMark
             // 
-            this.btnPhraseMark.Location = new System.Drawing.Point(12, 44);
+            this.btnPhraseMark.Location = new System.Drawing.Point(93, 44);
             this.btnPhraseMark.Name = "btnPhraseMark";
             this.btnPhraseMark.Size = new System.Drawing.Size(75, 23);
             this.btnPhraseMark.TabIndex = 4;
@@ -79,7 +84,7 @@ namespace Obi.Dialogs
             // 
             // btnBeginSection
             // 
-            this.btnBeginSection.Location = new System.Drawing.Point(93, 44);
+            this.btnBeginSection.Location = new System.Drawing.Point(174, 44);
             this.btnBeginSection.Name = "btnBeginSection";
             this.btnBeginSection.Size = new System.Drawing.Size(75, 23);
             this.btnBeginSection.TabIndex = 5;
@@ -89,7 +94,7 @@ namespace Obi.Dialogs
             // 
             // btnPageMark
             // 
-            this.btnPageMark.Location = new System.Drawing.Point(174, 44);
+            this.btnPageMark.Location = new System.Drawing.Point(205, 44);
             this.btnPageMark.Name = "btnPageMark";
             this.btnPageMark.Size = new System.Drawing.Size(75, 23);
             this.btnPageMark.TabIndex = 6;
@@ -97,11 +102,45 @@ namespace Obi.Dialogs
             this.btnPageMark.UseVisualStyleBackColor = true;
             this.btnPageMark.Click += new System.EventHandler(this.btnPageMark_Click);
             // 
+            // combRecordingSelect
+            // 
+            this.combRecordingSelect.FormattingEnabled = true;
+            this.combRecordingSelect.Location = new System.Drawing.Point(12, 15);
+            this.combRecordingSelect.Name = "combRecordingSelect";
+            this.combRecordingSelect.Size = new System.Drawing.Size(121, 21);
+            this.combRecordingSelect.TabIndex = 0;
+            // 
+            // txtCommitInterval
+            // 
+            this.txtCommitInterval.AccessibleName = "Commit interval in Seconds";
+            this.txtCommitInterval.Location = new System.Drawing.Point(93, 74);
+            this.txtCommitInterval.Name = "txtCommitInterval";
+            this.txtCommitInterval.Size = new System.Drawing.Size(100, 20);
+            this.txtCommitInterval.TabIndex = 7;
+            this.txtCommitInterval.Text = "300";
+            // 
+            // TmCommit
+            // 
+            this.TmCommit.Interval = 120000;
+            this.TmCommit.Tick += new System.EventHandler(this.TmCommit_Tick);
+            // 
+            // lblCommitInterval
+            // 
+            this.lblCommitInterval.AutoSize = true;
+            this.lblCommitInterval.Location = new System.Drawing.Point(12, 74);
+            this.lblCommitInterval.Name = "lblCommitInterval";
+            this.lblCommitInterval.Size = new System.Drawing.Size(110, 13);
+            this.lblCommitInterval.TabIndex = 7;
+            this.lblCommitInterval.Text = "Commit &Interval in sec";
+            // 
             // TransportRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 296);
+            this.Controls.Add(this.lblCommitInterval);
+            this.Controls.Add(this.txtCommitInterval);
+            this.Controls.Add(this.combRecordingSelect);
             this.Controls.Add(this.btnPageMark);
             this.Controls.Add(this.btnBeginSection);
             this.Controls.Add(this.btnPhraseMark);
@@ -110,7 +149,9 @@ namespace Obi.Dialogs
             this.Controls.Add(this.mRecordButton);
             this.Name = "TransportRecord";
             this.Text = "TransportRecord";
+            this.Load += new System.EventHandler(this.TransportRecord_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -122,5 +163,9 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button btnPhraseMark;
         private System.Windows.Forms.Button btnBeginSection;
         private System.Windows.Forms.Button btnPageMark;
+        private System.Windows.Forms.ComboBox combRecordingSelect;
+        private System.Windows.Forms.TextBox txtCommitInterval;
+        private System.Windows.Forms.Timer TmCommit;
+        private System.Windows.Forms.Label lblCommitInterval;
     }
 }
