@@ -58,6 +58,8 @@ namespace Obi.Audio
 
 		private VuMeter ob_VuMeter;
 
+        private System.Windows.Forms.Timer MoniteringTimer = new System.Windows.Forms.Timer();
+
 		private static readonly AudioPlayer mInstance = new AudioPlayer();
 
 		public static AudioPlayer Instance
@@ -71,6 +73,11 @@ namespace Obi.Audio
 
 			m_State = AudioPlayerState.Stopped;
 			ob_VuMeter = null;  // JQ
+
+            MoniteringTimer.Tick += new System.EventHandler(this.MoniteringTimer_Tick);
+            MoniteringTimer.Interval = 200;
+            
+            
 		}
 
 		// bool variable to enable or disable event
@@ -267,6 +274,7 @@ namespace Obi.Audio
 		{
 			m_StartPosition   = 0 ;
 			m_State  = AudioPlayerState.NotReady ;
+            
 			m_Asset = asset as Assets.AudioMediaAsset;
 			InitPlay(0, 0);
 		}
@@ -360,6 +368,7 @@ namespace Obi.Audio
                 Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
                 m_State = AudioPlayerState.Playing;
                 StateChanged(this, e);
+                MoniteringTimer.Enabled = true;
                 // starts playing
                 SoundBuffer.Play(0, BufferPlayFlags.Looping);
                 m_BufferCheck = 1;
@@ -420,6 +429,8 @@ namespace Obi.Audio
 					
 				// end of while
 			}
+
+
             int BufferStopPosition= 0 ;
             if (m_BufferCheck == 1 )
             {
@@ -472,7 +483,7 @@ namespace Obi.Audio
 			// changes the state and trigger events
 			//ob_StateChanged = new StateChanged (m_State) ;
 
-			EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());  // JQ
+			//EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());  // JQ
 
 			
 			m_State= AudioPlayerState.Stopped;
@@ -704,6 +715,16 @@ namespace Obi.Audio
 				}
 			}
 		}
+
+        private void MoniteringTimer_Tick(object sender, EventArgs e)
+        {
+            if (m_State == AudioPlayerState.Stopped)
+            {
+                EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());
+                MoniteringTimer.Enabled = false;
+            }
+
+        }
 
 		// End Class
 	}
