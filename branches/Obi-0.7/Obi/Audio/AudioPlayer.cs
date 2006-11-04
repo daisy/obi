@@ -281,7 +281,8 @@ namespace Obi.Audio
 
 		void InitPlay(long lStartPosition, long lEndPosition)
 		{
-            if (m_State == AudioPlayerState.Stopped || m_State == AudioPlayerState.NotReady)
+            //if (m_State == AudioPlayerState.Stopped || m_State == AudioPlayerState.NotReady)
+                if (m_State != AudioPlayerState.Playing )
             {
                 // Adjust the start and end position according to frame size
                 lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, m_Asset.FrameSize);
@@ -486,8 +487,9 @@ namespace Obi.Audio
 			//EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());  // JQ
 
 			
-			m_State= AudioPlayerState.Stopped;
+			
             Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
+            m_State = AudioPlayerState.Stopped;
 			TriggerStateChangedEvent(e);
 
 			// RefreshBuffer ends
@@ -528,16 +530,23 @@ namespace Obi.Audio
 				MessageBox.Show("Arguments out of range") ;
 			}
 		}
-
+        private double m_dPausePosition;
 		public void Pause()
 		{
 			if (m_State.Equals(AudioPlayerState .Playing))
 			{
-				SoundBuffer.Stop () ;
+                m_dPausePosition = GetCurrentTimePosition();
+                m_EventsEnabled = false;
+                Stop();
+                m_EventsEnabled = true;
+
+//				SoundBuffer.Stop () ;
 				// Change the state and trigger event
+                
 				Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State) ;
-				m_State= AudioPlayerState .Paused;
+                m_State = AudioPlayerState.Paused;
 				TriggerStateChangedEvent(e);
+                
 			}
 		}
 
@@ -545,10 +554,15 @@ namespace Obi.Audio
 		{
 			if (m_State.Equals(AudioPlayerState.Paused))
 			{
-				Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
-				m_State= AudioPlayerState .Playing ;
-				TriggerStateChangedEvent(e) ;
-				SoundBuffer.Play(0, BufferPlayFlags.Looping);
+
+
+                Play(m_Asset, m_dPausePosition);
+
+                // comment following three state change event lines as it is set to playing by init play
+                //m_State = AudioPlayerState.Playing;
+				//Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
+				//TriggerStateChangedEvent(e) ;
+				
 			}			
 		}
 
@@ -562,8 +576,9 @@ namespace Obi.Audio
 
 			}
             m_br.Close();
-            m_State = AudioPlayerState.Stopped;
+            
 			Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
+            m_State = AudioPlayerState.Stopped;
 			TriggerStateChangedEvent(e);
 		}
 
@@ -615,14 +630,15 @@ namespace Obi.Audio
 			else if(m_State.Equals (AudioPlayerState .Paused ) )
 			{
 
-					Stop();
+					//Stop();
 					m_StartPosition = localPosition ;
-					Thread.Sleep (20) ;
-					InitPlay(localPosition , 0);
-					Thread.Sleep(30) ;
-					SoundBuffer.Stop () ;
+                    m_dPausePosition = CalculationFunctions.ConvertByteToTime ( localPosition, m_SamplingRate , m_FrameSize ) ;
+					//Thread.Sleep (20) ;
+					//InitPlay(localPosition , 0);
+					//Thread.Sleep(30) ;
+					//SoundBuffer.Stop () ;
 					// Stop () also change the m_Stateto stopped so change it to paused
-					m_State=AudioPlayerState .Paused;
+					//m_State=AudioPlayerState .Paused;
 				
 				
 			}
