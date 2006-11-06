@@ -58,7 +58,12 @@ namespace Obi.Audio
 
 		private VuMeter ob_VuMeter;
 
+        // monitoring timer to trigger events independent of refresh thread
         private System.Windows.Forms.Timer MoniteringTimer = new System.Windows.Forms.Timer();
+
+        // Flag to trigger end of asset events, flag is set for a moment and again reset
+        private bool m_IsEndOfAsset = false ;
+
 
 		private static readonly AudioPlayer mInstance = new AudioPlayer();
 
@@ -485,13 +490,11 @@ namespace Obi.Audio
 			//ob_StateChanged = new StateChanged (m_State) ;
 
 			//EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());  // JQ
-
-			
-			
+                
             Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
             m_State = AudioPlayerState.Stopped;
 			TriggerStateChangedEvent(e);
-
+            m_IsEndOfAsset = true;
 			// RefreshBuffer ends
 		}
 		
@@ -734,10 +737,12 @@ namespace Obi.Audio
 
         private void MoniteringTimer_Tick(object sender, EventArgs e)
         {
-            if (m_State == AudioPlayerState.Stopped)
+            if ( m_IsEndOfAsset == true)
             {
-                EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());
+                m_IsEndOfAsset = false;
                 MoniteringTimer.Enabled = false;
+                EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());
+                
             }
 
         }
