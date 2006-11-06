@@ -34,7 +34,7 @@ namespace Obi.UserControls
         public event Events.Node.RequestToMoveBlockHandler MoveAudioBlockBackwardRequested;
         public event Events.Node.SplitNodeHandler SplitAudioBlockRequested;
         public event Events.Node.MergeNodesHandler MergeNodes;
-      
+
         #region properties
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace Obi.UserControls
                         SelectedSectionNode = (CoreNode)value.getParent();
                         mPhraseNodeMap[value].MarkSelected();
                     }
-                    mSelectedPhrase = value;    
+                    mSelectedPhrase = value;
                 }
             }
         }
@@ -418,5 +418,4 @@ namespace Obi.UserControls
             }
         }
     }
-
 }

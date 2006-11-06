@@ -424,8 +424,18 @@ namespace Obi
         /// </summary>
         public void Touch()
         {
+            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(new Commands.Touch(this)));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+
+        /// <summary>
+        /// Project has reverted to its initial state (e.g. after all commands have been undone.)
+        /// </summary>
+        internal void Reverted()
+        {
+            mUnsaved = false;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Saved));
         }
 
         /// <summary>

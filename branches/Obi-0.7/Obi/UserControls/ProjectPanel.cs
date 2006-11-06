@@ -97,6 +97,8 @@ namespace Obi.UserControls
                     //md 20060812
                     mStripManagerPanel.RequestToShallowDeleteSectionNode -= new Events.Node.RequestToShallowDeleteSectionNodeHandler(mProject.ShallowDeleteSectionNodeRequested);
 
+                    mStripManagerPanel.RequestToCutSectionNode -=
+                        new Events.Node.RequestToCutSectionNodeHandler(mProject.CutSectionNodeRequested);
                     mStripManagerPanel.RequestToCutPhraseNode -=
                         new Events.Node.RequestToCutPhraseNodeHandler(mProject.CutPhraseNode);
                     mStripManagerPanel.RequestToCopyPhraseNode -=
@@ -151,6 +153,8 @@ namespace Obi.UserControls
 
                     // Block events
 
+                    mStripManagerPanel.RequestToCutSectionNode +=
+                        new Events.Node.RequestToCutSectionNodeHandler(value.CutSectionNodeRequested);
                     mStripManagerPanel.RequestToCutPhraseNode +=
                         new Events.Node.RequestToCutPhraseNodeHandler(value.CutPhraseNode);
                     mStripManagerPanel.RequestToCopyPhraseNode +=

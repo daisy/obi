@@ -438,4 +438,32 @@ Do you want to replace the project contained in this file?</value>
     <value>No project.</value>
     <comment>No open project (JQ)</comment>
   </data>
+  <data name="touch_command_label" xml:space="preserve">
+    <value>touch project</value>
+    <comment>Touch (JQ)</comment>
+  </data>
+  <data name="copy_menu_label" xml:space="preserve">
+    <value>Cop&amp;y{0}</value>
+    <comment>copy {section/phrase} (JQ)</comment>
+  </data>
+  <data name="cut_menu_label" xml:space="preserve">
+    <value>&amp;Cut{0}</value>
+    <comment>cut {section/phrase} (JQ)</comment>
+  </data>
+  <data name="delete_menu_label" xml:space="preserve">
+    <value>&amp;Delete{0}</value>
+    <comment>delete {section/phrase} (JQ)</comment>
+  </data>
+  <data name="paste_menu_label" xml:space="preserve">
+    <value>&amp;Paste{0}</value>
+    <comment>paste {section/phrase} (JQ)</comment>
+  </data>
+  <data name="phrase" xml:space="preserve">
+    <value> phrase</value>
+    <comment>phrase name for cut/copy/paste/delete commands; note the leading space (JQ)</comment>
+  </data>
+  <data name="section" xml:space="preserve">
+    <value> section</value>
+    <comment>section name for cut/copy/paste/delete commands; note the leading space (JQ)</comment>
+  </data>
 </root>

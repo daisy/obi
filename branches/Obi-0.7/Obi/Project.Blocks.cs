@@ -35,7 +35,6 @@ namespace Obi
                 GetPhraseIndex(e.Node));
             mBlockClipBoard = e.Node;
             DeletePhraseNodeAndAsset(e.Node);
-            // BlockClipBoard = e.Node;
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));

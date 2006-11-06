@@ -71,7 +71,12 @@ namespace Obi.UserControls
         /// <summary>
         /// Triggered by the "delete section" menu item.
         /// </summary>
-        internal void mDeleteSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mDeleteSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeleteSelectedSection();
+        }
+
+        public void DeleteSelectedSection()
         {
             RequestToDeleteSectionNode(this, new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
@@ -116,14 +121,26 @@ namespace Obi.UserControls
             }
         }
 
-        //md 20060810
-        internal void cutSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mCutSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CutSelectedSection();
+        }
+
+        /// <summary>
+        /// Cut the selected section node.
+        /// </summary>
+        public void CutSelectedSection()
         {
             RequestToCutSectionNode(this, new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }
 
         //md 20060810
-        internal void copySectionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void copySectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CopySelectedSection();
+        }
+
+        public void CopySelectedSection()
         {
             RequestToCopySectionNode(this, new Events.Node.NodeEventArgs(this, GetSelectedSection()));
         }

@@ -98,6 +98,7 @@
     <Compile Include="Commands\TOC\SectionNodeCommand.cs" />
     <Compile Include="Commands\TOC\SectionNodeListCommand.cs" />
     <Compile Include="Commands\TOC\ShallowDeleteSectionNode.cs" />
+    <Compile Include="Commands\Touch.cs" />
     <Compile Include="CustomProperties.cs" />
     <Compile Include="Dialogs\About.cs">
       <SubType>Form</SubType>
