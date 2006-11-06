@@ -31,7 +31,21 @@ namespace Obi
         private List<int> mPageMarks;
         private List<AudioMediaAsset> mAssetList;
         private double mSecondsCount;
+        private System.Windows.Forms.Timer  tmCommitTimer = new System.Windows.Forms.Timer () ;
         
+        // Property to set Autocommit interval time in seconds
+        public int CommitIntervalSeconds
+        {
+            get
+            {
+                return tmCommitTimer.Interval/ 1000 ;
+            }
+            set
+            {
+                tmCommitTimer.Interval = value * 1000;
+            }
+        }
+
         //list of audio assets corressponging to phrases created during recording
         public List<AudioMediaAsset> AssetsList
         {
@@ -93,6 +107,11 @@ namespace Obi
             StartingSection += new Obi.Events.Audio.Recorder.StartingSectionHandler(CatchEvents);
             FinishingPage += new Obi.Events.Audio.Recorder.FinishingPageHandler(CatchEvents);
             
+
+            // initialise commit timer
+            tmCommitTimer.Tick += new System.EventHandler( tmCommitTimer_tick );
+            tmCommitTimer.Interval = 300000;
+            
         }
 
 
@@ -114,6 +133,13 @@ namespace Obi
         /// </summary>
         public void Record()
         {
+        RecordFunction  () ;
+            tmCommitTimer.Enabled = true;
+        }
+
+
+        private void RecordFunction ()
+    {
             if (mRecorder.State == AudioRecorderState.Idle)
             {
                 //mAsset = Project.GetAudioMediaAsset(mCurrentPhrase);
@@ -143,7 +169,12 @@ namespace Obi
         /// </summary>
         public void Stop()
         {
+            tmCommitTimer.Enabled = false;
+            StopFunction();
+        }
 
+        private void StopFunction ()
+    {
             if (mRecorder.State != AudioRecorderState.Idle)
             {
 
@@ -156,6 +187,7 @@ namespace Obi
 
                 if (Recording == true)
                 {
+
                     mPhraseMarks.Add(mRecordingAsset.LengthInMilliseconds);
                     mAssetList.Add(mAsset);
 
@@ -172,7 +204,8 @@ namespace Obi
                         Clip = new AudioClip(mRecordingAsset.Clips[0].Path, mPhraseMarks[i], mPhraseMarks[i + 1]);
                         mAssetList[i + 1].AddClip(Clip);
                     }
-
+                }
+            }
 
 
                     // here for loop is used to trigger events to make appropriate phrases, sections , pages which may be caught in project class
@@ -183,9 +216,9 @@ namespace Obi
                     mPageMarks = mSectionMarks = null;
                     mAsset = mRecordingAsset = null;
                     UpdateDisplayThread.Abort();
-                }
-            }
+            
         }
+
 
         /// <summary>
         /// Finish the currently recording phrase and continue recording into a new phrase.
@@ -284,6 +317,12 @@ namespace Obi
             mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count, mRecorder.CurrentTime);
             ContinuingPhrase(this, mPhraseEventsArgs);
 
+        }
+
+        private void tmCommitTimer_tick ( object sender , EventArgs e )
+        {
+            Stop();
+            Record();
         }
 
         private void StopRecording()
