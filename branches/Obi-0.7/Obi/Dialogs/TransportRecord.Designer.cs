@@ -28,7 +28,6 @@ namespace Obi.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.mRecordButton = new System.Windows.Forms.Button();
             this.mPauseButton = new System.Windows.Forms.Button();
             this.mStopButton = new System.Windows.Forms.Button();
@@ -37,7 +36,6 @@ namespace Obi.Dialogs
             this.btnPageMark = new System.Windows.Forms.Button();
             this.combRecordingSelect = new System.Windows.Forms.ComboBox();
             this.txtCommitInterval = new System.Windows.Forms.TextBox();
-            this.TmCommit = new System.Windows.Forms.Timer(this.components);
             this.lblCommitInterval = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -119,11 +117,6 @@ namespace Obi.Dialogs
             this.txtCommitInterval.TabIndex = 7;
             this.txtCommitInterval.Text = "300";
             // 
-            // TmCommit
-            // 
-            this.TmCommit.Interval = 120000;
-            this.TmCommit.Tick += new System.EventHandler(this.TmCommit_Tick);
-            // 
             // lblCommitInterval
             // 
             this.lblCommitInterval.AutoSize = true;
@@ -165,7 +158,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button btnPageMark;
         private System.Windows.Forms.ComboBox combRecordingSelect;
         private System.Windows.Forms.TextBox txtCommitInterval;
-        private System.Windows.Forms.Timer TmCommit;
         private System.Windows.Forms.Label lblCommitInterval;
     }
 }

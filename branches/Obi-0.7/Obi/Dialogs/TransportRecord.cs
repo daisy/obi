@@ -25,7 +25,7 @@ namespace Obi.Dialogs
 
         private void mStopButton_Click(object sender, EventArgs e)
         {
-            TmCommit.Enabled = false;
+            
             mRecordingSession.Stop();
         }
 
@@ -43,10 +43,12 @@ namespace Obi.Dialogs
             }
             else if (combRecordingSelect.SelectedIndex == 0)
             {
+                mRecordingSession.CommitIntervalSeconds = Convert.ToInt32(txtCommitInterval.Text);
+                
                 mRecordingSession.Record();
 
-                TmCommit.Interval = Convert.ToInt32(txtCommitInterval.Text) * 1000;
-                TmCommit.Enabled = true;
+
+                
             }
         }
 
@@ -74,8 +76,8 @@ namespace Obi.Dialogs
 
         private void TmCommit_Tick(object sender, EventArgs e)
         {
-            mRecordingSession.Stop();
-            mRecordingSession.Record();
+//            mRecordingSession.Stop();
+            //mRecordingSession.Record();
         }
     }
 }
