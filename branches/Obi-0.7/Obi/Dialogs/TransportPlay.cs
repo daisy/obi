@@ -21,9 +21,15 @@ namespace Obi.Dialogs
         {
             InitializeComponent();
             mPlaylist = playlist;
-            mPlaylist.Audioplayer.StateChanged += new Obi.Events.Audio.Player.StateChangedHandler(
+            mPlaylist.StateChanged += new Obi.Events.Audio.Player.StateChangedHandler
+            (
                 delegate(object sender, Obi.Events.Audio.Player.StateChangedEventArgs e) { PlayerStateChanged(); }
             );
+            mPlaylist.EndOfPlaylist += new Playlist.EndOfPlaylistHandler
+            (
+                delegate(object sender, EventArgs e) { PlayerStopped(); }
+            );
+            mPlaylist.MovedToPhrase += new Playlist.MovedToPhraseHandler(MovedToPhrase);
             mPlaylist.Play();
         }
 
@@ -33,20 +39,13 @@ namespace Obi.Dialogs
         {
             if (InvokeRequired)
             {
-                System.Diagnostics.Debug.Print("TransportPlay.PlayerStateChanged(): Invoke required...",
-                    mPlaylist.Audioplayer.State);
                 Invoke(new PlayerStateChangedCallback(PlayerStateChanged));
             }
             else
             {
-                System.Diagnostics.Debug.Print("TransportPlay.PlayerStateChanged(): new state = {0}",
-                    mPlaylist.Audioplayer.State);
                 if (mPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Stopped)
                 {
-                    mPauseButton.Visible = false;
-                    mPlayButton.Visible = true;
-                    mStopButton.Visible = false;
-                    mCloseButton.Visible = true;
+                    PlayerStopped();
                 }
                 else if (mPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Paused)
                 {
@@ -63,6 +62,19 @@ namespace Obi.Dialogs
                     mCloseButton.Visible = false;
                 }
             }
+        }
+
+        private void PlayerStopped()
+        {
+            mPauseButton.Visible = false;
+            mPlayButton.Visible = true;
+            mStopButton.Visible = false;
+            mCloseButton.Visible = true;
+        }
+
+        private void MovedToPhrase(object sender, Events.Node.NodeEventArgs e)
+        {
+            System.Diagnostics.Debug.Print(">>> Moved to phrase {0}", Project.GetAudioMediaAsset(e.Node).Name);
         }
 
         /// <summary>
