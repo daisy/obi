@@ -3,6 +3,7 @@ using Obi.Audio;
 using System;
 using System.Collections.Generic;
 using urakawa.core;
+using System.Windows.Forms;
 
 namespace Obi
 {
@@ -23,7 +24,6 @@ namespace Obi
         private double mElapsedTime;      // elapsed time *before* the beginning of the current asset
         private bool mWholeBook;          // flag for playing whole book or just a selection
         private double mPausePosition= 0 ;
-        private int mPausedPhraseIndex = 0;
         private PlayListState mPlayListState;
 
         // Amount of time after which "previous phrase" goes to the beginning of the phrase
@@ -136,7 +136,7 @@ namespace Obi
         {
             get
             {
-                System.Diagnostics.Debug.Assert(mPlayer.State == AudioPlayerState.Paused ||
+                    System.Diagnostics.Debug.Assert(mPlayer.State == AudioPlayerState.Paused ||
                     mPlayer.State == AudioPlayerState.Playing);
                 return mElapsedTime + mPlayer.GetCurrentTimePosition();
             }
@@ -148,6 +148,7 @@ namespace Obi
                 // if playing, resume to this position
                 // if stopped, start playing from that position
                 // if paused, move to that position but stay paused
+                SetTimeInPlayList( value ) ;
             }
         }
 
@@ -251,23 +252,26 @@ namespace Obi
         {
             if (mPhrases.Count > 0)
             {
-                if ( mPausePosition != 0  || mPausedPhraseIndex != 0 )
+                //if ( mPausePosition != 0  || mPausedPhraseIndex != 0 )
+                if ( mPlayListState == PlayListState.Paused )
                 {
                     // Resume by using play from function
-                    mCurrentPhraseIndex = mPausedPhraseIndex;
                     mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]) , mPausePosition );
+                    mPlayListState = PlayListState.Playing;
                     //mPlayer.Resume();
                     if (StateChanged != null)
                     {
                         StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Paused));
                     }
                 }
-                else if ( mPausePosition == 0 && mPausedPhraseIndex == 0 )   
+                //else if ( mPausePosition == 0 && mPausedPhraseIndex == 0 )   
+                else if ( mPlayListState == PlayListState.Stopped ) 
                 {
                     // start from the beginning
                     mCurrentPhraseIndex = 0;
                     mElapsedTime = 0.0;
                     mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]));
+                    mPlayListState = PlayListState.Playing;
                     if (StateChanged != null)
                     {
                         StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Stopped));
@@ -303,6 +307,7 @@ namespace Obi
             }
             else if (EndOfPlaylist != null)
             {
+                mPlayListState = PlayListState.Stopped;
                 EndOfPlaylist(this, new EventArgs());
             }
         }
@@ -361,8 +366,8 @@ namespace Obi
         {
             System.Diagnostics.Debug.Assert(mPlayer.State == AudioPlayerState.Playing, "Can only pause while playing.");
             mPausePosition = mPlayer.CurrentTimePosition;
-            mPausedPhraseIndex = mCurrentPhraseIndex;
             mPlayer.Stop();
+            mPlayListState = PlayListState.Paused;
             if (StateChanged != null)
             {
                 StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Playing));
@@ -376,8 +381,8 @@ namespace Obi
         {
             Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs(mPlayer.State);
             mPausePosition = 0;
-            mPausedPhraseIndex = 0;
             mPlayer.Stop();
+            mPlayListState = PlayListState.Stopped;
             if (StateChanged != null) StateChanged(this, evargs);
         }
 
@@ -394,25 +399,28 @@ namespace Obi
         {
             
             System.Diagnostics.Debug.Assert(mPlayer.State != AudioPlayerState.NotReady, "Player is not ready!");
-            if (NextPhrase != null)
+            if (NextPhrase != null)  // current phrase is not last phrase
             {
-                if (mPlayer.State == AudioPlayerState.Playing)
+                //if (mPlayer.State == AudioPlayerState.Playing)
+                if ( mPlayListState == PlayListState.Playing )
                 {
                     mPausePosition = 0;
                     mPlayer.Stop();
                     PlayNextPhrase();
                 }
-                else if (mPlayer.State == AudioPlayerState.Stopped )
+                //else if (mPlayer.State == AudioPlayerState.Stopped )
+                else if ( mPlayListState == PlayListState.Paused )
                 {
                     SkipToNextPhrase();
-                    mPausedPhraseIndex = mCurrentPhraseIndex; // if paused, pause index of phrase is also updated
                     mPausePosition = 0;
                 }
                 //else if (mPlayer.State == AudioPlayerState.Stopped)
-                //{
-                //}
+                else if ( mPlayListState == PlayListState.Stopped )
+                {
+                    PlayNextPhrase();
+                }
             }
-            else
+            else    // current phrase is last phrase
             {
                 Stop();
             }
@@ -443,11 +451,11 @@ namespace Obi
                         mPlayer.Stop();
                         PlayPreviousPhrase();
                     }
-                    else if (mPlayer.State == AudioPlayerState.Stopped)
+                    //else if (mPlayer.State == AudioPlayerState.Stopped)
+                    else if ( mPlayListState == PlayListState.Paused )
                     {
                         SkipToPreviousPhrase();
                         mPausePosition = 0;
-                        mPausedPhraseIndex = mCurrentPhraseIndex;
                     }
 
                 }
@@ -470,7 +478,8 @@ namespace Obi
                 mPlayer.Stop();
                 mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]));
             }
-            else
+            //else
+            else if ( mPlayListState == PlayListState.Paused )
             {
                 mPausePosition = 0;
             }
@@ -494,5 +503,42 @@ namespace Obi
         {
             System.Diagnostics.Debug.Assert(mWholeBook);
         }
-    }
+
+        private void SetTimeInPlayList(double time)
+        {
+            if (time >= 0 && time < this.mTotalTime)    // time is within bounds of PlayList
+            {
+                int PhraseIndex = 0 ;
+                double TimeSum = 0 ;
+
+                while (time > TimeSum)
+                {
+                    TimeSum =  TimeSum + Project.GetAudioMediaAsset ( mPhrases [ PhraseIndex ]).LengthInMilliseconds;
+                    PhraseIndex++;
+                }
+                mCurrentPhraseIndex = PhraseIndex  - 1;
+                mElapsedTime =  TimeSum - Project.GetAudioMediaAsset ( mPhrases [ mCurrentPhraseIndex ]).LengthInMilliseconds;
+                mPausePosition = time - mElapsedTime;
+                
+                //MessageBox.Show("Index" + mCurrentPhraseIndex.ToString());
+                //MessageBox.Show( "Pause" + mPausePosition.ToString());
+
+                if (mPlayListState == PlayListState.Playing)
+                {
+                    mPlayer.Stop();    
+//                    System.Threading.Thread.Sleep(100);
+                    mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]) , mPausePosition );
+                }
+                else if (mPlayListState == PlayListState.Stopped)
+                {
+                    
+                    mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex] ) , mPausePosition );
+                    mPlayListState = PlayListState.Playing;
+                }
+            }       // End Of  of bound check
+            
+
+        }
+
+    }   // end of class
 }
