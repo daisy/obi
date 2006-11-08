@@ -6,7 +6,7 @@ using urakawa.core;
 
 namespace Obi
 {
-
+    public enum PlayListState { Stopped, Playing, Paused };
     /// <summary>
     /// The playlist is the list of phrases to be played. They are either the ones that were selected by the
     /// user, or just the list of phrases. The playlist knows how to play itself thanks to the application's
@@ -22,6 +22,9 @@ namespace Obi
         private double mTotalTime;        // total time of this playlist
         private double mElapsedTime;      // elapsed time *before* the beginning of the current asset
         private bool mWholeBook;          // flag for playing whole book or just a selection
+        private double mPausePosition= 0 ;
+        private int mPausedPhraseIndex = 0;
+        private PlayListState mPlayListState;
 
         // Amount of time after which "previous phrase" goes to the beginning of the phrase
         // rather than the actual previous phrase. In milliseconds.
@@ -248,16 +251,18 @@ namespace Obi
         {
             if (mPhrases.Count > 0)
             {
-                if (mPlayer.State == AudioPlayerState.Paused)
+                if ( mPausePosition != 0  || mPausedPhraseIndex != 0 )
                 {
-                    // resume
-                    mPlayer.Resume();
+                    // Resume by using play from function
+                    mCurrentPhraseIndex = mPausedPhraseIndex;
+                    mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]) , mPausePosition );
+                    //mPlayer.Resume();
                     if (StateChanged != null)
                     {
                         StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Paused));
                     }
                 }
-                else if (mPlayer.State == AudioPlayerState.Stopped)
+                else if ( mPausePosition == 0 && mPausedPhraseIndex == 0 )   
                 {
                     // start from the beginning
                     mCurrentPhraseIndex = 0;
@@ -321,11 +326,33 @@ namespace Obi
         {
             mElapsedTime += mPlayer.CurrentAsset.LengthInMilliseconds;
             ++mCurrentPhraseIndex;
+            
             if (MovedToPhrase != null)
             {
                 MovedToPhrase(this, new Events.Node.NodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
             }
         }
+
+        private void PlayPreviousPhrase()
+        {
+            SkipToPreviousPhrase();
+            Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs(mPlayer.State);
+            mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]));
+            // send the state change event if the state actually changed
+            if (StateChanged != null && mPlayer.State != evargs.OldState) StateChanged(this, evargs);
+        }
+
+
+        private void SkipToPreviousPhrase()
+        {
+            mElapsedTime -= mPlayer.CurrentAsset.LengthInMilliseconds;
+            --mCurrentPhraseIndex;
+            if (MovedToPhrase != null)
+            {
+                MovedToPhrase(this, new Events.Node.NodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
+            }
+        }
+
 
         /// <summary>
         /// Pause.
@@ -333,7 +360,9 @@ namespace Obi
         public void Pause()
         {
             System.Diagnostics.Debug.Assert(mPlayer.State == AudioPlayerState.Playing, "Can only pause while playing.");
-            mPlayer.Pause();
+            mPausePosition = mPlayer.CurrentTimePosition;
+            mPausedPhraseIndex = mCurrentPhraseIndex;
+            mPlayer.Stop();
             if (StateChanged != null)
             {
                 StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Playing));
@@ -346,6 +375,8 @@ namespace Obi
         public void Stop()
         {
             Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs(mPlayer.State);
+            mPausePosition = 0;
+            mPausedPhraseIndex = 0;
             mPlayer.Stop();
             if (StateChanged != null) StateChanged(this, evargs);
         }
@@ -361,20 +392,25 @@ namespace Obi
         /// </summary>
         public void NavigateNextPhrase()
         {
+            
             System.Diagnostics.Debug.Assert(mPlayer.State != AudioPlayerState.NotReady, "Player is not ready!");
             if (NextPhrase != null)
             {
                 if (mPlayer.State == AudioPlayerState.Playing)
                 {
+                    mPausePosition = 0;
+                    mPlayer.Stop();
                     PlayNextPhrase();
                 }
-                else if (mPlayer.State == AudioPlayerState.Paused)
+                else if (mPlayer.State == AudioPlayerState.Stopped )
                 {
                     SkipToNextPhrase();
+                    mPausedPhraseIndex = mCurrentPhraseIndex; // if paused, pause index of phrase is also updated
+                    mPausePosition = 0;
                 }
-                else if (mPlayer.State == AudioPlayerState.Stopped)
-                {
-                }
+                //else if (mPlayer.State == AudioPlayerState.Stopped)
+                //{
+                //}
             }
             else
             {
@@ -390,6 +426,54 @@ namespace Obi
         public void NavigatePreviousPhrase()
         {
             // TODO
+            if (mPlayer.CurrentTimePosition > InitialThreshold) 
+            {
+                // move play cursor to starting point of current phrase
+                PlayFromStartOfPhrase();
+            }
+            else
+            {
+                // move play cursor to previous phrase
+                System.Diagnostics.Debug.Assert(mPlayer.State != AudioPlayerState.NotReady, "Player is not ready!");
+                if (mCurrentPhraseIndex != 0) // current phrase is not first phrase
+                {
+                    if (mPlayer.State == AudioPlayerState.Playing)
+                    {
+                        mPausePosition = 0;
+                        mPlayer.Stop();
+                        PlayPreviousPhrase();
+                    }
+                    else if (mPlayer.State == AudioPlayerState.Stopped)
+                    {
+                        SkipToPreviousPhrase();
+                        mPausePosition = 0;
+                        mPausedPhraseIndex = mCurrentPhraseIndex;
+                    }
+
+                }
+                else // current phrase is first phrase
+                {
+                    // no previous phrase so place play cursor to start of current phrase
+                    PlayFromStartOfPhrase();
+                }
+            } // threshold if ends
+
+        }
+
+
+        // moves play cursor to starting of current phrase
+        private void PlayFromStartOfPhrase()
+        {
+            if (mPlayer.State == AudioPlayerState.Playing)
+            {
+                mPausePosition = 0;
+                mPlayer.Stop();
+                mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]));
+            }
+            else
+            {
+                mPausePosition = 0;
+            }
         }
 
         /// <summary>
