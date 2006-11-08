@@ -109,5 +109,17 @@ namespace Obi.Dialogs
         {
             mPlaylist.NavigatePreviousPhrase();
         }
+
+        private void btnRewind_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show(mPlaylist.CurrentTime.ToString());
+            mPlaylist.CurrentTime = mPlaylist.CurrentTime - 10000;
+        }
+
+        private void btnForward_Click(object sender, EventArgs e)
+        {
+//            MessageBox.Show(mPlaylist.CurrentTime.ToString());
+            mPlaylist.CurrentTime = mPlaylist.CurrentTime  + 10000;
+        }
     }
 }

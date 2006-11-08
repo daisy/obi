@@ -34,6 +34,8 @@ namespace Obi.Dialogs
             this.mCloseButton = new System.Windows.Forms.Button();
             this.btnNextPhrase = new System.Windows.Forms.Button();
             this.btnPreviousPhrase = new System.Windows.Forms.Button();
+            this.btnRewind = new System.Windows.Forms.Button();
+            this.btnForward = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // mPlayButton
@@ -96,11 +98,33 @@ namespace Obi.Dialogs
             this.btnPreviousPhrase.UseVisualStyleBackColor = true;
             this.btnPreviousPhrase.Click += new System.EventHandler(this.btnPreviousPhrase_Click);
             // 
+            // btnRewind
+            // 
+            this.btnRewind.Location = new System.Drawing.Point(12, 80);
+            this.btnRewind.Name = "btnRewind";
+            this.btnRewind.Size = new System.Drawing.Size(75, 23);
+            this.btnRewind.TabIndex = 6;
+            this.btnRewind.Text = "R&ewind";
+            this.btnRewind.UseVisualStyleBackColor = true;
+            this.btnRewind.Click += new System.EventHandler(this.btnRewind_Click);
+            // 
+            // btnForward
+            // 
+            this.btnForward.Location = new System.Drawing.Point(93, 80);
+            this.btnForward.Name = "btnForward";
+            this.btnForward.Size = new System.Drawing.Size(75, 23);
+            this.btnForward.TabIndex = 7;
+            this.btnForward.Text = "&Forward";
+            this.btnForward.UseVisualStyleBackColor = true;
+            this.btnForward.Click += new System.EventHandler(this.btnForward_Click);
+            // 
             // TransportPlay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 296);
+            this.Controls.Add(this.btnForward);
+            this.Controls.Add(this.btnRewind);
             this.Controls.Add(this.btnPreviousPhrase);
             this.Controls.Add(this.btnNextPhrase);
             this.Controls.Add(this.mCloseButton);
@@ -122,5 +146,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button mCloseButton;
         private System.Windows.Forms.Button btnNextPhrase;
         private System.Windows.Forms.Button btnPreviousPhrase;
+        private System.Windows.Forms.Button btnRewind;
+        private System.Windows.Forms.Button btnForward;
     }
 }
