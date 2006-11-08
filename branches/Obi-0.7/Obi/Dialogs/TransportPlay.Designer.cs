@@ -32,13 +32,15 @@ namespace Obi.Dialogs
             this.mStopButton = new System.Windows.Forms.Button();
             this.mPauseButton = new System.Windows.Forms.Button();
             this.mCloseButton = new System.Windows.Forms.Button();
+            this.btnNextPhrase = new System.Windows.Forms.Button();
+            this.btnPreviousPhrase = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // mPlayButton
             // 
-            this.mPlayButton.Location = new System.Drawing.Point(12, 12);
+            this.mPlayButton.Location = new System.Drawing.Point(12, 13);
             this.mPlayButton.Name = "mPlayButton";
-            this.mPlayButton.Size = new System.Drawing.Size(75, 23);
+            this.mPlayButton.Size = new System.Drawing.Size(75, 25);
             this.mPlayButton.TabIndex = 0;
             this.mPlayButton.Text = "&Play";
             this.mPlayButton.UseVisualStyleBackColor = true;
@@ -46,9 +48,9 @@ namespace Obi.Dialogs
             // 
             // mStopButton
             // 
-            this.mStopButton.Location = new System.Drawing.Point(93, 12);
+            this.mStopButton.Location = new System.Drawing.Point(93, 13);
             this.mStopButton.Name = "mStopButton";
-            this.mStopButton.Size = new System.Drawing.Size(75, 23);
+            this.mStopButton.Size = new System.Drawing.Size(75, 25);
             this.mStopButton.TabIndex = 1;
             this.mStopButton.Text = "&Stop";
             this.mStopButton.UseVisualStyleBackColor = true;
@@ -56,9 +58,9 @@ namespace Obi.Dialogs
             // 
             // mPauseButton
             // 
-            this.mPauseButton.Location = new System.Drawing.Point(12, 12);
+            this.mPauseButton.Location = new System.Drawing.Point(12, 13);
             this.mPauseButton.Name = "mPauseButton";
-            this.mPauseButton.Size = new System.Drawing.Size(75, 23);
+            this.mPauseButton.Size = new System.Drawing.Size(75, 25);
             this.mPauseButton.TabIndex = 2;
             this.mPauseButton.Text = "&Pause";
             this.mPauseButton.UseVisualStyleBackColor = true;
@@ -67,18 +69,40 @@ namespace Obi.Dialogs
             // mCloseButton
             // 
             this.mCloseButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.mCloseButton.Location = new System.Drawing.Point(93, 12);
+            this.mCloseButton.Location = new System.Drawing.Point(93, 13);
             this.mCloseButton.Name = "mCloseButton";
-            this.mCloseButton.Size = new System.Drawing.Size(75, 23);
+            this.mCloseButton.Size = new System.Drawing.Size(75, 25);
             this.mCloseButton.TabIndex = 3;
             this.mCloseButton.Text = "&Close";
             this.mCloseButton.UseVisualStyleBackColor = true;
             // 
+            // btnNextPhrase
+            // 
+            this.btnNextPhrase.Location = new System.Drawing.Point(12, 44);
+            this.btnNextPhrase.Name = "btnNextPhrase";
+            this.btnNextPhrase.Size = new System.Drawing.Size(75, 23);
+            this.btnNextPhrase.TabIndex = 4;
+            this.btnNextPhrase.Text = "&Next Phrase";
+            this.btnNextPhrase.UseVisualStyleBackColor = true;
+            this.btnNextPhrase.Click += new System.EventHandler(this.btnNextPhrase_Click);
+            // 
+            // btnPreviousPhrase
+            // 
+            this.btnPreviousPhrase.Location = new System.Drawing.Point(93, 44);
+            this.btnPreviousPhrase.Name = "btnPreviousPhrase";
+            this.btnPreviousPhrase.Size = new System.Drawing.Size(75, 23);
+            this.btnPreviousPhrase.TabIndex = 5;
+            this.btnPreviousPhrase.Text = "P&revious Phrase";
+            this.btnPreviousPhrase.UseVisualStyleBackColor = true;
+            this.btnPreviousPhrase.Click += new System.EventHandler(this.btnPreviousPhrase_Click);
+            // 
             // TransportPlay
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 273);
+            this.ClientSize = new System.Drawing.Size(292, 296);
+            this.Controls.Add(this.btnPreviousPhrase);
+            this.Controls.Add(this.btnNextPhrase);
             this.Controls.Add(this.mCloseButton);
             this.Controls.Add(this.mPauseButton);
             this.Controls.Add(this.mStopButton);
@@ -96,5 +120,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button mStopButton;
         private System.Windows.Forms.Button mPauseButton;
         private System.Windows.Forms.Button mCloseButton;
+        private System.Windows.Forms.Button btnNextPhrase;
+        private System.Windows.Forms.Button btnPreviousPhrase;
     }
 }

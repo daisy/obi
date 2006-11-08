@@ -99,5 +99,15 @@ namespace Obi.Dialogs
         {
             mPlaylist.Stop();
         }
+
+        private void btnNextPhrase_Click(object sender, EventArgs e)
+        {
+            mPlaylist.NavigateNextPhrase();
+        }
+
+        private void btnPreviousPhrase_Click(object sender, EventArgs e)
+        {
+            mPlaylist.NavigatePreviousPhrase();
+        }
     }
 }
