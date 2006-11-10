@@ -39,6 +39,8 @@ namespace Obi
         private string mLastPath;            // last path to which the project was saved (see save as)
         private SimpleMetadata mMetadata;    // metadata for this project
 
+        private Clipboard mClipboard;        // project-wide clipboard.
+
         public static readonly string XUKVersion = "obi-xuk-007";            // version of the Obi/XUK file
         public static readonly string AudioChannel = "obi.audio";            // canonical name of the audio channel
         public static readonly string TextChannel = "obi.text";              // canonical name of the text channel
@@ -100,6 +102,14 @@ namespace Obi
         }
 
         /// <summary>
+        /// The project-wide clipboard.
+        /// </summary>
+        public Clipboard Clipboard
+        {
+            get { return mClipboard; }
+        }
+
+        /// <summary>
         /// Create an empty project. And I mean empty.
         /// </summary>
         /// <remarks>
@@ -112,8 +122,7 @@ namespace Obi
             mAssManager = null;
             mUnsaved = false;
             mXUKPath = null;
-            mBlockClipBoard = null;
-            mClipboard = null;
+            mClipboard = new Clipboard();
             // Use our own property factory so that we can create custom properties
             getPresentation().setPropertyFactory(new ObiPropertyFactory());
         }

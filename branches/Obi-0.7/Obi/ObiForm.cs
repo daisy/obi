@@ -346,7 +346,6 @@ namespace Obi
         private void ObiForm_Load(object sender, EventArgs e)
         {
             // The TOC menu behaves like the context menu in the TOC view.
-            mProjectPanel.TOCPanel.SelectedTreeNode += new Events.Node.SelectedHandler(TOCPanel_SelectedTreeNode);
             mAddSectionToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.TOCPanel.mAddSectionToolStripMenuItem_Click);
             mAddSubSectionToolStripMenuItem.Click +=
@@ -732,9 +731,9 @@ namespace Obi
                     Localizer.Message("section") :
                     "";
             string pasteLabel =
-                isProjectOpen && mProject.BlockClipBoard != null ?
+                isProjectOpen && mProject.Clipboard.Phrase != null ?
                     Localizer.Message("phrase") :
-                isProjectOpen && mProject.Clipboard != null ?
+                isProjectOpen && mProject.Clipboard.Section != null ?
                     Localizer.Message("section") :
                     "";
 
@@ -807,9 +806,7 @@ namespace Obi
         {
             if (mProject != null)
             {
-                if (mProject.BlockClipBoard != null)
-                {
-                }
+
             }
         }
 
@@ -878,10 +875,10 @@ namespace Obi
                 bool canMoveOut = false;
 
                 urakawa.core.CoreNode selectedSection = null;
-                if (mProjectPanel.TOCPanel.GetSelectedSection() != null)
+                if (mProjectPanel.TOCPanel.Selected)
                 {
                     isNodeSelected = true;
-                    selectedSection = this.mProjectPanel.TOCPanel.GetSelectedSection();
+                    selectedSection = this.mProjectPanel.TOCPanel.SelectedSection;
                 }
 
                 mAddSectionToolStripMenuItem.Enabled = mProject != null;
@@ -929,7 +926,7 @@ namespace Obi
                 Project.GetPhrasesCount(mProjectPanel.StripManager.SelectedSectionNode) - 1;
             bool isAudioBlockFirst = isAudioBlockSelected &&
                 Project.GetPhraseIndex(mProjectPanel.StripManager.SelectedPhraseNode) == 0;
-            bool isBlockClipBoardSet = isProjectOpen && mProject.BlockClipBoard != null;
+            bool isBlockClipBoardSet = isProjectOpen && mProject.Clipboard.Phrase != null;
             bool canSetPage = isAudioBlockSelected;  // an audio block must be selected and a heading must not be set.
             bool canRemovePage = isAudioBlockSelected &&
                 mProjectPanel.StripManager.SelectedPhraseNode.getProperty(typeof(PageProperty)) != null;

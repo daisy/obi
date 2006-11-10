@@ -16,14 +16,6 @@ namespace Obi
 
         #region clip board
 
-        private CoreNode mBlockClipBoard;  // clip board for block nodes (phrases or pages)
-
-        internal CoreNode BlockClipBoard
-        {
-            get { return mBlockClipBoard; }
-            set { mBlockClipBoard = value; }
-        }
-
         /// <summary>
         /// Cut a phrase node: delete it and store it in the clipboard.
         /// Issue a command and modify the project.
@@ -33,7 +25,7 @@ namespace Obi
             // create the command before storing the node in the clip board, otherwise the previous value is lost
             Commands.Strips.CutPhrase command = new Commands.Strips.CutPhrase(this, e.Node, (CoreNode)e.Node.getParent(),
                 GetPhraseIndex(e.Node));
-            mBlockClipBoard = e.Node;
+            mClipboard.Phrase = e.Node;
             DeletePhraseNodeAndAsset(e.Node);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             mUnsaved = true;
@@ -49,7 +41,7 @@ namespace Obi
         internal void CopyPhraseNode(object sender, Events.Node.NodeEventArgs e)
         {
             Commands.Strips.CopyPhrase command = new Commands.Strips.CopyPhrase(this, e.Node);
-            mBlockClipBoard = e.Node;
+            mClipboard.Phrase = e.Node;
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             // state does not change--the project itself was not modified.
         }
@@ -61,7 +53,8 @@ namespace Obi
         /// </summary>
         internal void PastePhraseNode(object sender, Events.Node.NodeEventArgs e)
         {
-            CoreNode copy = mBlockClipBoard.copy(true);
+            System.Diagnostics.Debug.Assert(mClipboard.Phrase != null, "Cannot paste without a phrase node on the clipboard.");
+            CoreNode copy = mClipboard.Phrase.copy(true);
             CoreNode parent;
             int index;
             if (GetNodeType(e.Node) == NodeType.Section)
@@ -75,7 +68,7 @@ namespace Obi
                 index = GetPhraseIndex(e.Node) + 1;
             }
             AddPhraseNode(copy, parent, index);
-            AudioMediaAsset asset = (AudioMediaAsset)mAssManager.CopyAsset(GetAudioMediaAsset(mBlockClipBoard));
+            AudioMediaAsset asset = (AudioMediaAsset)mAssManager.CopyAsset(GetAudioMediaAsset(mClipboard.Phrase));
             SetAudioMediaAsset(copy, asset);
             Commands.Strips.PastePhrase command = new Commands.Strips.PastePhrase(this, copy);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));

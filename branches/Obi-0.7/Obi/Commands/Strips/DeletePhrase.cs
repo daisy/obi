@@ -39,7 +39,7 @@ namespace Obi.Commands.Strips
 
     class CutPhrase : DeletePhrase
     {
-        private CoreNode mPrevClipBoard;  // previous clip board block
+        private object mPrevData;  // previous clip board data
 
         public override string Label
         {
@@ -49,19 +49,19 @@ namespace Obi.Commands.Strips
         public CutPhrase(Project project, CoreNode node, CoreNode parent, int index)
             : base(project, node, parent, index)
         {
-            mPrevClipBoard = project.BlockClipBoard;
+            mPrevData = mProject.Clipboard.Data;
         }
 
         public override void Do()
         {
             base.Do();
-            mProject.BlockClipBoard = mNode;
+            mProject.Clipboard.Phrase = mNode;
         }
 
         public override void Undo()
         {
             base.Undo();
-            mProject.BlockClipBoard = mPrevClipBoard;
+            mProject.Clipboard.Data = mPrevData;
         }
     }
 }

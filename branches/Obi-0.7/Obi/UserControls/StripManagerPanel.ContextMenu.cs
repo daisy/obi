@@ -41,7 +41,7 @@ namespace Obi.UserControls
             bool isAudioBlockLast = isAudioBlockSelected &&
                 Project.GetPhraseIndex(mSelectedPhrase) == Project.GetPhrasesCount(mSelectedSection) - 1;
             bool isAudioBlockFirst = isAudioBlockSelected && Project.GetPhraseIndex(mSelectedPhrase) == 0;
-            bool isBlockClipBoardSet = mProjectPanel.Project.BlockClipBoard != null;
+            bool isBlockClipBoardSet = mProjectPanel.Project.Clipboard.Data != null;
             
             bool canSetPage = isAudioBlockSelected;  // an audio block must be selected and a heading must not be set.
             bool canRemovePage = isAudioBlockSelected;
@@ -211,7 +211,7 @@ namespace Obi.UserControls
         {
             if (mSelectedSection != null)
             {
-                ProjectPanel.TOCPanel.SetSelectedSection(mSelectedSection);
+                ProjectPanel.TOCPanel.SelectedSection = mSelectedSection;
                 //since the tree can be hidden:
                 mProjectPanel.ShowTOCPanel();
                 ProjectPanel.TOCPanel.Focus();
@@ -303,7 +303,7 @@ namespace Obi.UserControls
         // JQ 20060815
         private void mPasteAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProjectPanel.Project.BlockClipBoard != null && mSelectedSection != null)
+            if (mProjectPanel.Project.Clipboard.Phrase != null && mSelectedSection != null)
             {
                 PastePhraseNode();
             }
