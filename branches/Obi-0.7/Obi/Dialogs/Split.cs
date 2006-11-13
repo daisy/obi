@@ -45,6 +45,8 @@ namespace Obi.Dialogs
             Audio.AudioPlayer.Instance.UpdateVuMeter += new Events.Audio.Player.UpdateVuMeterHandler(AudioPlayer_UpdateVuMeter);
             // enable timer for displaying formatted time in HH:mm:ss
             tmUpdateTimePosition.Enabled = true;
+
+            AudioTrackBar.Maximum = Convert.ToInt32 ( mSourceAsset.LengthInMilliseconds/100  ) ;
         }
         
         //member variables
@@ -95,8 +97,13 @@ namespace Obi.Dialogs
 
                 // else display normal play time 
             else
-                txtDisplayTime.Text = ChangeTimeToDisplay(Audio.AudioPlayer.Instance.CurrentTimePosition);
-
+            {
+                double temptime;
+                temptime = Audio.AudioPlayer.Instance.CurrentTimePosition;
+                txtDisplayTime.Text = ChangeTimeToDisplay( temptime );
+                //AudioTrackBar.Value = Convert.ToInt32( temptime / 100) ; 
+ 
+            }
 
         }
 
@@ -263,7 +270,7 @@ namespace Obi.Dialogs
 
         private void btnPause_Click(object sender, EventArgs e)
         {
-
+            
             btnSplit.Enabled = true;
             if(Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
             {
@@ -275,6 +282,7 @@ namespace Obi.Dialogs
                 mSplitTime = mSplitTime  + Audio.AudioPlayer.Instance.CurrentTimePosition;
 
                 Audio.AudioPlayer.Instance.Stop();
+                AudioTrackBar.Value = Convert.ToInt32( mSplitTime / 100); 
             tmUpdateTimePosition.Enabled = false;
                 btnPause.Text = "&Play";
                 btnPreview.Enabled= true;
@@ -317,11 +325,11 @@ namespace Obi.Dialogs
             CallEndAssetOperations();
 
             // following one line added for serial playing experiment
-            CanPlay = true;
+            //CanPlay = true;
         }
 
         // following one line added for serial playing experiment
-        bool CanPlay = false; 
+        //bool CanPlay = false; 
 
 
             void CallEndAssetOperations()
@@ -457,13 +465,28 @@ namespace Obi.Dialogs
         // experiment for serial  playing of assets start line
         private void tmMonitorEnd_Tick(object sender, EventArgs e)
         {
-            if (CanPlay == true)
-            {
-                Audio.AudioPlayer.Instance.Play(mSourceAsset);
-                CanPlay = false;
-            }
+            //if (CanPlay == true)
+            //{
+                //Audio.AudioPlayer.Instance.Play(mSourceAsset);
+                //CanPlay = false;
+            //}
             // experiment for serial  playing of assets end line
 
+        }
+
+        private void AudioTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
+            {
+                Audio.AudioPlayer.Instance.Stop();
+                Audio.AudioPlayer.Instance.Play(mSourceAsset, AudioTrackBar.Value * 100);
+            }
+            else if ( Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped  )
+            {
+                mSplitTime = AudioTrackBar.Value * 100;
+                UpdateSplitTime();
+                txtDisplayTime.Text = ChangeTimeToDisplay(mSplitTime);
+            }
         }
        
 

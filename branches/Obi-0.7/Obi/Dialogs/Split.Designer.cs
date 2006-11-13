@@ -47,7 +47,9 @@ namespace Obi.Dialogs
             this.labelAssetName = new System.Windows.Forms.Label();
             this.labelTime = new System.Windows.Forms.Label();
             this.labelSplitTime = new System.Windows.Forms.Label();
+            this.AudioTrackBar = new System.Windows.Forms.TrackBar();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AudioTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // btnPreview
@@ -212,13 +214,26 @@ namespace Obi.Dialogs
             this.labelSplitTime.TabIndex = 13;
             this.labelSplitTime.Text = "split time";
             // 
+            // AudioTrackBar
+            // 
+            this.AudioTrackBar.AccessibleName = "Audio Slider";
+            this.AudioTrackBar.LargeChange = 80;
+            this.AudioTrackBar.Location = new System.Drawing.Point(12, 242);
+            this.AudioTrackBar.Maximum = 20000;
+            this.AudioTrackBar.Name = "AudioTrackBar";
+            this.AudioTrackBar.Size = new System.Drawing.Size(104, 42);
+            this.AudioTrackBar.SmallChange = 5;
+            this.AudioTrackBar.TabIndex = 14;
+            this.AudioTrackBar.ValueChanged += new System.EventHandler(this.AudioTrackBar_ValueChanged);
+            // 
             // Split
             // 
             this.AcceptButton = this.btnSplit;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnStop;
-            this.ClientSize = new System.Drawing.Size(275, 250);
+            this.ClientSize = new System.Drawing.Size(275, 273);
+            this.Controls.Add(this.AudioTrackBar);
             this.Controls.Add(this.labelSplitTime);
             this.Controls.Add(this.labelTime);
             this.Controls.Add(this.labelAssetName);
@@ -236,6 +251,7 @@ namespace Obi.Dialogs
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Split_FormClosing);
             this.Load += new System.EventHandler(this.Split_Load);
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.AudioTrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,5 +276,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label labelAssetName;
         private System.Windows.Forms.Label labelTime;
         private System.Windows.Forms.Label labelSplitTime;
+        private System.Windows.Forms.TrackBar AudioTrackBar;
     }
 }
