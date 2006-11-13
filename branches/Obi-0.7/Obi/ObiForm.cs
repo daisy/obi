@@ -1017,10 +1017,23 @@ namespace Obi
         {
             if (mProject != null)
             {
+                CoreNode selected = mProjectPanel.SelectedNode;
                 Playlist playlist = new Playlist(mProject, Audio.AudioPlayer.Instance);
+                playlist.MovedToPhrase += new Playlist.MovedToPhraseHandler(PlayAll_MovedToPhrase);
                 new Dialogs.TransportPlay(playlist).ShowDialog();
+                // restore the selection, possibly moving focus to the strip panel
+                // TODO: keep focus in the TOC panel if that's where the selection was?
+                mProjectPanel.StripManager.SelectedNode = selected;
                 Ready();
             }
+        }
+
+        /// <summary>
+        /// Highlight (i.e. select) the phrase currently playing.
+        /// </summary>
+        private void PlayAll_MovedToPhrase(object sender, Events.Node.NodeEventArgs e)
+        {
+            mProjectPanel.StripManager.SelectedPhraseNode = e.Node;
         }
 
         /// <summary>

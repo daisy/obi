@@ -38,6 +38,33 @@ namespace Obi.UserControls
         #region properties
 
         /// <summary>
+        /// Selected node (phrase or section.)
+        /// </summary>
+        public CoreNode SelectedNode
+        {
+            get { return mSelectedPhrase == null ? mSelectedSection : mSelectedPhrase; }
+            set
+            {
+                if (value != null)
+                {
+                    if (Project.GetNodeType(value) == NodeType.Phrase)
+                    {
+                        SelectedPhraseNode = value;
+                    }
+                    else if (Project.GetNodeType(value) == NodeType.Section)
+                    {
+                        SelectedSectionNode = value;
+                    }
+                }
+                else
+                {
+                    SelectedPhraseNode = null;
+                    SelectedSectionNode = null;
+                }
+            }
+        }
+
+        /// <summary>
         /// Get or set the currently selected section node.
         /// A null value means that no node is selected.
         /// When the new selection is set, the previous one (if any) is desselected.

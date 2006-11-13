@@ -238,6 +238,20 @@ namespace Obi.UserControls
         }
 
         /// <summary>
+        /// Return the node that is selected in either view, if any.
+        /// </summary>
+        public CoreNode SelectedNode
+        {
+            get
+            {
+                return mStripManagerPanel.SelectedNode != null ?
+                        mStripManagerPanel.SelectedNode :
+                    mTOCPanel.Selected ?
+                        mTOCPanel.SelectedSection : null;
+            }
+        }
+
+        /// <summary>
         /// Create a new project panel with currently no project.
         /// </summary>
         public ProjectPanel()
