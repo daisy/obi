@@ -41,19 +41,20 @@ namespace Obi.Dialogs
             // mOKButton
             // 
             this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.mOKButton.Location = new System.Drawing.Point(124, 238);
+            this.mOKButton.Location = new System.Drawing.Point(124, 257);
             this.mOKButton.Name = "mOKButton";
-            this.mOKButton.Size = new System.Drawing.Size(75, 23);
+            this.mOKButton.Size = new System.Drawing.Size(75, 25);
             this.mOKButton.TabIndex = 0;
             this.mOKButton.Text = "&OK";
             this.mOKButton.UseVisualStyleBackColor = true;
+            this.mOKButton.Click += new System.EventHandler(this.mOKButton_Click);
             // 
             // mCancelButton
             // 
             this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.mCancelButton.Location = new System.Drawing.Point(205, 238);
+            this.mCancelButton.Location = new System.Drawing.Point(205, 258);
             this.mCancelButton.Name = "mCancelButton";
-            this.mCancelButton.Size = new System.Drawing.Size(75, 23);
+            this.mCancelButton.Size = new System.Drawing.Size(75, 25);
             this.mCancelButton.TabIndex = 1;
             this.mCancelButton.Text = "&Cancel";
             this.mCancelButton.UseVisualStyleBackColor = true;
@@ -61,58 +62,58 @@ namespace Obi.Dialogs
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(46, 9);
+            this.label1.Location = new System.Drawing.Point(46, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 12);
+            this.label1.Size = new System.Drawing.Size(91, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "&Silence threshold:";
             // 
             // mThresholdBox
             // 
-            this.mThresholdBox.Location = new System.Drawing.Point(147, 6);
+            this.mThresholdBox.Location = new System.Drawing.Point(147, 7);
             this.mThresholdBox.Name = "mThresholdBox";
-            this.mThresholdBox.Size = new System.Drawing.Size(100, 19);
+            this.mThresholdBox.Size = new System.Drawing.Size(100, 20);
             this.mThresholdBox.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 34);
+            this.label2.Location = new System.Drawing.Point(12, 37);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(129, 12);
+            this.label2.Size = new System.Drawing.Size(126, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "&Gap between sentences:";
             // 
             // mGapBox
             // 
-            this.mGapBox.Location = new System.Drawing.Point(147, 31);
+            this.mGapBox.Location = new System.Drawing.Point(147, 34);
             this.mGapBox.Name = "mGapBox";
-            this.mGapBox.Size = new System.Drawing.Size(100, 19);
+            this.mGapBox.Size = new System.Drawing.Size(100, 20);
             this.mGapBox.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(55, 59);
+            this.label3.Location = new System.Drawing.Point(55, 64);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 12);
+            this.label3.Size = new System.Drawing.Size(84, 13);
             this.label3.TabIndex = 6;
             this.label3.Text = "&Leading silence:";
             // 
             // mLeadingSilenceBox
             // 
-            this.mLeadingSilenceBox.Location = new System.Drawing.Point(147, 56);
+            this.mLeadingSilenceBox.Location = new System.Drawing.Point(147, 61);
             this.mLeadingSilenceBox.Name = "mLeadingSilenceBox";
-            this.mLeadingSilenceBox.Size = new System.Drawing.Size(100, 19);
+            this.mLeadingSilenceBox.Size = new System.Drawing.Size(100, 20);
             this.mLeadingSilenceBox.TabIndex = 7;
             // 
             // SentenceDetection
             // 
             this.AcceptButton = this.mOKButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
-            this.ClientSize = new System.Drawing.Size(292, 273);
+            this.ClientSize = new System.Drawing.Size(292, 296);
             this.Controls.Add(this.mLeadingSilenceBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.mGapBox);
@@ -123,6 +124,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.mOKButton);
             this.Name = "SentenceDetection";
             this.Text = "SentenceDetection";
+            this.Load += new System.EventHandler(this.SentenceDetection_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

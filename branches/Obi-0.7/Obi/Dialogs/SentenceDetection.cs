@@ -1,4 +1,6 @@
 using System;
+using System.Collections ;
+using System.Collections.Generic ;
 using System.Windows.Forms;
 using urakawa.core;
 
@@ -12,6 +14,11 @@ namespace Obi.Dialogs
         private long mThreshold;
         private double mGap;
         private double mLeadingSilence;
+
+        private Assets.AudioMediaAsset mSilenceAsset;
+        private Assets.AudioMediaAsset mPhraseAsset;
+        private List<Assets.AudioMediaAsset> mPhraseList;
+
 
         public long Threshold
         {
@@ -28,6 +35,14 @@ namespace Obi.Dialogs
             get { return mLeadingSilence; }
         }
 
+        public List<Assets.AudioMediaAsset> PhraseList
+        {
+            get
+            {
+                return mPhraseList;
+            }
+        }
+
         public SentenceDetection()
         {
             InitializeComponent();
@@ -41,9 +56,37 @@ namespace Obi.Dialogs
         public SentenceDetection(CoreNode silence, CoreNode phrase)
         {
             InitializeComponent();
-            // mThreshold = get threshold from silence node
-            // mGap = get default value (e.g. 1000.0ms?)
-            // mLeadingSilence = get default value (e.g. 100.0ms?)
+
+            mSilenceAsset = Project.GetAudioMediaAsset ( silence );
+            mPhraseAsset = Project.GetAudioMediaAsset( phrase );
+
+
+
+            mGap = 700;
+            mLeadingSilence = 100;
+        }
+
+        private void SentenceDetection_Load(object sender, EventArgs e)
+        {
+            mThreshold = mSilenceAsset.GetSilenceAmplitude(mSilenceAsset);
+            mThresholdBox.Text = mThreshold.ToString();
+            mGapBox.Text = mGap.ToString();
+            mLeadingSilenceBox.Text = mLeadingSilence.ToString();
+        }
+
+        private void mOKButton_Click(object sender, EventArgs e)
+        {
+            mThreshold = Convert.ToInt64 ( mThresholdBox.Text ) ;
+            mGap = Convert.ToDouble(mGapBox.Text);
+            mLeadingSilence = Convert.ToDouble ( mLeadingSilenceBox.Text ) ;
+
+            ArrayList Phrases = new ArrayList();           
+            Phrases =  mPhraseAsset.ApplyPhraseDetection(mThreshold, mGap, mLeadingSilence)  ;
+            Assets.AudioMediaAsset FirstAsset = Phrases[ 4 ] as Assets.AudioMediaAsset;
+
+            MessageBox.Show( "Phrase count" +  Phrases .Count.ToString());
+            //MessageBox.Show(FirstAsset.LengthInMilliseconds.ToString());
+            //Audio.AudioPlayer.Instance.Play ( FirstAsset );
         }
     }
 }
