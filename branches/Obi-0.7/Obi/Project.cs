@@ -40,6 +40,7 @@ namespace Obi
         private SimpleMetadata mMetadata;    // metadata for this project
 
         private Clipboard mClipboard;        // project-wide clipboard.
+        private CoreNode mSilencePhrase;     // silence phrase used for phrase detection
 
         public static readonly string XUKVersion = "obi-xuk-007";            // version of the Obi/XUK file
         public static readonly string AudioChannel = "obi.audio";            // canonical name of the audio channel
@@ -123,6 +124,7 @@ namespace Obi
             mUnsaved = false;
             mXUKPath = null;
             mClipboard = new Clipboard();
+            mSilencePhrase = null;
             // Use our own property factory so that we can create custom properties
             getPresentation().setPropertyFactory(new ObiPropertyFactory());
         }
@@ -582,6 +584,26 @@ namespace Obi
             {
                 return getNodeLevel((CoreNode)node.getParent()) + 1;
             }
+        }
+
+        /// <summary>
+        /// Temporary convenience for finding the first phrase, i.e. the silence phrase (so far.)
+        /// </summary>
+        /// <returns>The first phrase node or null.</returns>
+        internal CoreNode FindFirstPhrase()
+        {
+            CoreNode first = null;
+            getPresentation().getRootNode().visitDepthFirst
+            (
+                delegate(ICoreNode n)
+                {
+                    if (first != null) return false;
+                    if (GetNodeType((CoreNode)n) == NodeType.Phrase) { first = (CoreNode)n; System.Diagnostics.Debug.Print("bing!"); }
+                    return true;
+                },
+                delegate(ICoreNode n) {}
+            );
+            return first;
         }
     }
 }

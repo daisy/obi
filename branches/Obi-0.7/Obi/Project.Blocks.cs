@@ -229,6 +229,11 @@ namespace Obi
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
 
+        public void ApplyPhraseDetection(object sender, Events.Node.PhraseDetectionEventArgs e)
+        {
+            // TODO, see above
+        }
+
         internal void StartRecordingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e, CoreNode parent, int index)
         {
             CoreNode phrase = CreatePhraseNode(e.Asset);

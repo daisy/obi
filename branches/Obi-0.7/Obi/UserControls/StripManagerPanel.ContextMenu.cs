@@ -28,7 +28,9 @@ namespace Obi.UserControls
 
         public Events.Node.RequestToSetPageNumberHandler RequestToSetPageNumber;
         public Events.Node.RequestToRemovePageNumberHandler RequestToRemovePageNumber;
-        
+
+        public Events.Node.RequestToApplyPhraseDetectionHandler RequestToApplyPhraseDetection;
+
         /// <summary>
         /// Enable/disable items depending on what is currently available.
         /// </summary>
@@ -61,6 +63,7 @@ namespace Obi.UserControls
 
             mImportAudioFileToolStripMenuItem.Enabled = isStripSelected;
             mSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mApplySentenceDetectionToolStripMenuItem.Enabled = isAudioBlockSelected;
             mMergeWithNextAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
             mCutAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
             mCopyAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
@@ -137,6 +140,26 @@ namespace Obi.UserControls
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     SplitAudioBlockRequested(this, new Events.Node.SplitNodeEventArgs(this, mSelectedPhrase, dialog.ResultAsset));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Apply sentence detection on the currently selected phrase (unless it is the silence phrase.)
+        /// </summary>
+        internal void mApplySentenceDetectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mSelectedPhrase != null)
+            {
+                CoreNode silence = mProjectPanel.Project.FindFirstPhrase();
+                if (mSelectedPhrase != silence)
+                {
+                    Dialogs.SentenceDetection dialog = new Dialogs.SentenceDetection(silence, mSelectedPhrase);
+                    if (dialog.ShowDialog() == DialogResult.OK)
+                    {
+                        RequestToApplyPhraseDetection(this, new Events.Node.PhraseDetectionEventArgs(this, mSelectedPhrase,
+                            dialog.Threshold, dialog.Gap, dialog.LeadingSilence));
+                    }
                 }
             }
         }

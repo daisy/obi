@@ -143,6 +143,12 @@
     <Compile Include="Dialogs\Record.Designer.cs">
       <DependentUpon>Record.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\SentenceDetection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SentenceDetection.Designer.cs">
+      <DependentUpon>SentenceDetection.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\Split.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +185,7 @@
     <Compile Include="Events\Node\AddedPhraseNodeEventArgs.cs" />
     <Compile Include="Events\Node\MergeNodesEventArgs.cs" />
     <Compile Include="Events\Node\NodeEventArgs.cs" />
+    <Compile Include="Events\Node\PhraseDetectionEventArgs.cs" />
     <Compile Include="Events\Node\RenameNodeEventArgs.cs" />
     <Compile Include="Events\Node\MovedNodeEventArgs.cs" />
     <Compile Include="Events\Node\SelectedEventArgs.cs" />
@@ -379,6 +386,10 @@
     <Content Include="help_en.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Dialogs\SentenceDetection.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SentenceDetection.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\TransportPlay.resx">
       <SubType>Designer</SubType>
       <DependentUpon>TransportPlay.cs</DependentUpon>
