@@ -488,6 +488,22 @@ namespace Obi.Dialogs
                 txtDisplayTime.Text = ChangeTimeToDisplay(mSplitTime);
             }
         }
+
+        private void AudioTrackBar_Enter(object sender, EventArgs e)
+        {
+            if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
+            AudioTrackBar.Value = Convert.ToInt32(Audio.AudioPlayer.Instance.CurrentTimePosition  / 100); 
+            else if             (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped )
+            AudioTrackBar.Value = Convert.ToInt32( mSplitTime / 100); 
+        }
+
+        private void AudioTrackBar_MouseEnter(object sender, EventArgs e)
+        {
+            if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
+                AudioTrackBar.Value = Convert.ToInt32(Audio.AudioPlayer.Instance.CurrentTimePosition / 100);
+            else if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped)
+                AudioTrackBar.Value = Convert.ToInt32(mSplitTime / 100); 
+        }
        
 
 

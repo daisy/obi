@@ -224,7 +224,9 @@ namespace Obi.Dialogs
             this.AudioTrackBar.Size = new System.Drawing.Size(104, 42);
             this.AudioTrackBar.SmallChange = 5;
             this.AudioTrackBar.TabIndex = 14;
+            this.AudioTrackBar.Enter += new System.EventHandler(this.AudioTrackBar_Enter);
             this.AudioTrackBar.ValueChanged += new System.EventHandler(this.AudioTrackBar_ValueChanged);
+            this.AudioTrackBar.MouseEnter += new System.EventHandler(this.AudioTrackBar_MouseEnter);
             // 
             // Split
             // 
