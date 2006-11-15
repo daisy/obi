@@ -404,11 +404,11 @@ namespace Obi.Assets
             // determine the Block  size
             if (this.SampleRate > 22500)
             {
-                Block = 96;
+                Block = 192;
             }
             else
             {
-                Block = 48;
+                Block = 96 ;
             }
 
 
@@ -425,7 +425,7 @@ namespace Obi.Assets
             br.BaseStream.Position = 44 + this.BeginByte;
 
             // count chunck of silence which trigger phrase detection
-            long lCountSilGap = PhraseLength / Block;
+            long lCountSilGap = ( 2 * PhraseLength ) / Block; // multiplied by two because j counter is incremented by 2
             long lSum = 0;
             ArrayList alPhrases = new ArrayList();
             long lCheck = 0;
@@ -438,7 +438,7 @@ namespace Obi.Assets
             bool boolBeginPhraseDetected = false;
 
             // scanning of file starts
-            for (long j = this.BeginByte / Block; j < (lSize / Block); j++)
+            for (long j = this.BeginByte / Block; j < (lSize / Block); j=j+2 )
             {
                 // decodes audio chunck inside block
                 lSum = BlockSum(br, (j * Block) + 44, Block, this.FrameSize, this.Channels);
@@ -528,11 +528,11 @@ namespace Obi.Assets
             // determine the Block  size
             if (this.SampleRate > 22500)
             {
-                Block = 96;
+                Block = 192 ;
             }
             else
             {
-                Block = 48;
+                Block = 96 ;
             }
 
             //set reading position after the header
@@ -545,7 +545,7 @@ namespace Obi.Assets
 
             // loop to end of file reading collective value of  samples in Block and determine highest value denoted by lLargest
             // Step size is the Block size
-            for (long j = 44 + this.BeginByte; j < (lSize); j = j + Block)
+            for (long j = 44 + this.BeginByte; j < (lSize); j = j + Block )
             {
                 //  BlockSum is function to retrieve average amplitude in  Block
                 lBlockSum = BlockSum(brRef, j, Block, this.FrameSize, this.Channels);
