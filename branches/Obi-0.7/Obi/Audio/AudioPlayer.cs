@@ -81,7 +81,10 @@ namespace Obi.Audio
 
             MoniteringTimer.Tick += new System.EventHandler(this.MoniteringTimer_Tick);
             MoniteringTimer.Interval = 200;
-            
+
+            // events associated with local function so as to avoid null exceptions            
+            StateChanged += new Obi.Events.Audio.Player.StateChangedHandler(CatchEvents);
+            EndOfAudioAsset += new Obi.Events.Audio.Player.EndOfAudioAssetHandler(CatchEvents);
             
 		}
 
@@ -765,6 +768,13 @@ namespace Obi.Audio
             }
 
         }
+
+
+        // function to catch events so as to avoid null  reference exceptions
+        private void CatchEvents(object sender, EventArgs e)
+        {
+        }
+
 
 		// End Class
 	}
