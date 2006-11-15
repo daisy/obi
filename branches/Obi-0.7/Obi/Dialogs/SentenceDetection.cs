@@ -80,11 +80,11 @@ namespace Obi.Dialogs
             mGap = Convert.ToDouble(mGapBox.Text);
             mLeadingSilence = Convert.ToDouble ( mLeadingSilenceBox.Text ) ;
 
-            ArrayList Phrases = new ArrayList();           
-            Phrases =  mPhraseAsset.ApplyPhraseDetection(mThreshold, mGap, mLeadingSilence)  ;
-            Assets.AudioMediaAsset FirstAsset = Phrases[ 4 ] as Assets.AudioMediaAsset;
+            
+            mPhraseList =  mPhraseAsset.ApplyPhraseDetection(mThreshold, mGap, mLeadingSilence)  ;
+            Assets.AudioMediaAsset FirstAsset = mPhraseList[ 4 ] as Assets.AudioMediaAsset;
 
-            MessageBox.Show( "Phrase count" +  Phrases .Count.ToString());
+            MessageBox.Show("Phrase count" + mPhraseList.Count.ToString());
             //MessageBox.Show(FirstAsset.LengthInMilliseconds.ToString());
             //Audio.AudioPlayer.Instance.Play ( FirstAsset );
         }

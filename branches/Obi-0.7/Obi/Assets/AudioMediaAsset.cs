@@ -521,7 +521,7 @@ namespace Obi.Assets
 
         }
 
-        public ArrayList ApplyPhraseDetection(long threshold, long length, long before)
+        public List <AudioMediaAsset>  ApplyPhraseDetection(long threshold, long length, long before)
         {
             double dLength = Audio.CalculationFunctions.ConvertByteToTime(length, m_SamplingRate, m_FrameSize);
             double dBefore = Audio.CalculationFunctions.ConvertByteToTime(before, m_SamplingRate, m_FrameSize);
@@ -529,7 +529,7 @@ namespace Obi.Assets
             return ApplyPhraseDetection(threshold, dLength, dBefore);
         }
 
-        public ArrayList ApplyPhraseDetection(long threshold, double length, double before)
+        public List <AudioMediaAsset>  ApplyPhraseDetection(long threshold, double length, double before)
         {
             //			 convert input parameters from time to byte
             long lLength = Audio.CalculationFunctions.ConvertTimeToByte(length, m_SamplingRate, m_FrameSize);
@@ -603,7 +603,15 @@ namespace Obi.Assets
             }
 
 
-            return alAssetList;
+            //return alAssetList;
+            List<AudioMediaAsset> RetList = new List<AudioMediaAsset>();
+
+            for ( int n = 0 ; n < alAssetList.Count ; n++ )
+            {
+                RetList.Add(alAssetList[n] as AudioMediaAsset);
+            }
+            return RetList;
+
 
         }
 
