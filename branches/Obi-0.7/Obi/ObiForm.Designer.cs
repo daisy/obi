@@ -101,6 +101,7 @@ namespace Obi
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectPanel = new Obi.UserControls.ProjectPanel();
+            this.mApplyPhraseDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -413,6 +414,7 @@ namespace Obi
             this.toolStripSeparator5,
             this.mImportAudioFileToolStripMenuItem,
             this.mSplitAudioBlockToolStripMenuItem,
+            this.mApplyPhraseDetectionToolStripMenuItem,
             this.mMergeWithNextAudioBlockToolStripMenuItem,
             this.mMoveAudioBlockToolStripMenuItem,
             this.toolStripSeparator8,
@@ -579,21 +581,21 @@ namespace Obi
             // mPlayAllToolStripMenuItem
             // 
             this.mPlayAllToolStripMenuItem.Name = "mPlayAllToolStripMenuItem";
-            this.mPlayAllToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.mPlayAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.mPlayAllToolStripMenuItem.Text = "Play &all";
             this.mPlayAllToolStripMenuItem.Click += new System.EventHandler(this.mPlayAllToolStripMenuItem1_Click);
             // 
             // mPlaySelectionToolStripMenuItem
             // 
             this.mPlaySelectionToolStripMenuItem.Name = "mPlaySelectionToolStripMenuItem";
-            this.mPlaySelectionToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.mPlaySelectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.mPlaySelectionToolStripMenuItem.Text = "&Play selection";
             this.mPlaySelectionToolStripMenuItem.Click += new System.EventHandler(this.mPlaySelectionToolStripMenuItem_Click);
             // 
             // mRecordToolStripMenuItem
             // 
             this.mRecordToolStripMenuItem.Name = "mRecordToolStripMenuItem";
-            this.mRecordToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.mRecordToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.mRecordToolStripMenuItem.Text = "&Record";
             this.mRecordToolStripMenuItem.Click += new System.EventHandler(this.mRecordToolStripMenuItem_Click);
             // 
@@ -660,14 +662,14 @@ namespace Obi
             // 
             this.mHelpToolStripMenuItem1.Name = "mHelpToolStripMenuItem1";
             this.mHelpToolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.mHelpToolStripMenuItem1.Size = new System.Drawing.Size(137, 22);
+            this.mHelpToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.mHelpToolStripMenuItem1.Text = "&Contents";
             this.mHelpToolStripMenuItem1.Click += new System.EventHandler(this.mHelpToolStripMenuItem1_Click);
             // 
             // aboutObiToolStripMenuItem
             // 
             this.aboutObiToolStripMenuItem.Name = "aboutObiToolStripMenuItem";
-            this.aboutObiToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.aboutObiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutObiToolStripMenuItem.Text = "&About Obi";
             this.aboutObiToolStripMenuItem.Click += new System.EventHandler(this.mAboutObiToolStripMenuItem_Click);
             // 
@@ -699,6 +701,13 @@ namespace Obi
             this.mProjectPanel.Project = null;
             this.mProjectPanel.Size = new System.Drawing.Size(767, 450);
             this.mProjectPanel.TabIndex = 4;
+            // 
+            // mApplyPhraseDetectionToolStripMenuItem
+            // 
+            this.mApplyPhraseDetectionToolStripMenuItem.Name = "mApplyPhraseDetectionToolStripMenuItem";
+            this.mApplyPhraseDetectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
+            this.mApplyPhraseDetectionToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
+            this.mApplyPhraseDetectionToolStripMenuItem.Text = "Apply p&hrase detection";
             // 
             // ObiForm
             // 
@@ -798,6 +807,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mPasteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mDeleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem mApplyPhraseDetectionToolStripMenuItem;
 
 
     }

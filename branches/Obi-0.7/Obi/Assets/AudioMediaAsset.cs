@@ -8,6 +8,9 @@ namespace Obi.Assets
 {
     public class AudioMediaAsset : MediaAsset
     {
+        public static readonly double DefaultGap = 700.0;             // default gap for phrase detection
+        public static readonly double DefaultLeadingSilence = 100.0;  // default leading silence
+
         // member variables
         //ArrayList is to be finally changed to internal
         // changed to mClips--see below (JQ)

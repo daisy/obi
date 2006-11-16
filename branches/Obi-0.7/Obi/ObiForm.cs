@@ -368,6 +368,8 @@ namespace Obi
                 new EventHandler(mProjectPanel.StripManager.mImportAudioToolStripMenuItem_Click);
             mSplitAudioBlockToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mSplitAudioBlockToolStripMenuItem_Click);
+            mApplyPhraseDetectionToolStripMenuItem.Click +=
+                new EventHandler(mProjectPanel.StripManager.mApplyPhraseDetectionToolStripMenuItem_Click);
             mEditAnnotationToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mEditAudioBlockLabelToolStripMenuItem_Click);
             //mg 20060813:
@@ -939,6 +941,7 @@ namespace Obi
 
             mImportAudioFileToolStripMenuItem.Enabled = isStripSelected;
             mSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mApplyPhraseDetectionToolStripMenuItem.Enabled = isAudioBlockSelected;
             mMergeWithNextAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
             mMoveAudioBlockForwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
             mMoveAudioBlockBackwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockFirst;

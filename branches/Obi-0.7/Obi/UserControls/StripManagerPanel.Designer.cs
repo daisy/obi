@@ -45,7 +45,7 @@ namespace Obi.UserControls
             this.mPasteAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mDeleteAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSplitAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mApplySentenceDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mApplyPhraseDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMergeWithNextAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMoveAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMoveAudioBlockForwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,7 +100,7 @@ namespace Obi.UserControls
             this.mPasteAudioBlockToolStripMenuItem,
             this.mDeleteAudioBlockToolStripMenuItem,
             this.mSplitAudioBlockToolStripMenuItem,
-            this.mApplySentenceDetectionToolStripMenuItem,
+            this.mApplyPhraseDetectionToolStripMenuItem,
             this.mMergeWithNextAudioBlockToolStripMenuItem,
             this.mMoveAudioBlockToolStripMenuItem,
             this.toolStripSeparator3,
@@ -220,12 +220,13 @@ namespace Obi.UserControls
             this.mSplitAudioBlockToolStripMenuItem.Text = "&Split audio block";
             this.mSplitAudioBlockToolStripMenuItem.Click += new System.EventHandler(this.mSplitAudioBlockToolStripMenuItem_Click);
             // 
-            // mApplySentenceDetectionToolStripMenuItem
+            // mApplyPhraseDetectionToolStripMenuItem
             // 
-            this.mApplySentenceDetectionToolStripMenuItem.Name = "mApplySentenceDetectionToolStripMenuItem";
-            this.mApplySentenceDetectionToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.mApplySentenceDetectionToolStripMenuItem.Text = "Apply sen&tence detection";
-            this.mApplySentenceDetectionToolStripMenuItem.Click += new System.EventHandler(this.mApplySentenceDetectionToolStripMenuItem_Click);
+            this.mApplyPhraseDetectionToolStripMenuItem.Name = "mApplyPhraseDetectionToolStripMenuItem";
+            this.mApplyPhraseDetectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
+            this.mApplyPhraseDetectionToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.mApplyPhraseDetectionToolStripMenuItem.Text = "Apply p&hrase detection";
+            this.mApplyPhraseDetectionToolStripMenuItem.Click += new System.EventHandler(this.mApplyPhraseDetectionToolStripMenuItem_Click);
             // 
             // mMergeWithNextAudioBlockToolStripMenuItem
             // 
@@ -357,6 +358,6 @@ namespace Obi.UserControls
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem mRemoveAnnotationToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripMenuItem mApplySentenceDetectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mApplyPhraseDetectionToolStripMenuItem;
     }
 }

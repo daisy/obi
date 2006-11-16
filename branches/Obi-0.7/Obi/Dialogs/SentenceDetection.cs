@@ -37,10 +37,7 @@ namespace Obi.Dialogs
 
         public List<Assets.AudioMediaAsset> PhraseList
         {
-            get
-            {
-                return mPhraseList;
-            }
+            get { return mPhraseList; }
         }
 
         public SentenceDetection()
@@ -56,14 +53,10 @@ namespace Obi.Dialogs
         public SentenceDetection(CoreNode silence, CoreNode phrase)
         {
             InitializeComponent();
-
-            mSilenceAsset = Project.GetAudioMediaAsset ( silence );
-            mPhraseAsset = Project.GetAudioMediaAsset( phrase );
-
-
-
-            mGap = 700;
-            mLeadingSilence = 100;
+            mSilenceAsset = Project.GetAudioMediaAsset(silence);
+            mPhraseAsset = Project.GetAudioMediaAsset(phrase);
+            mGap = Assets.AudioMediaAsset.DefaultGap;
+            mLeadingSilence = Assets.AudioMediaAsset.DefaultLeadingSilence;
         }
 
         private void SentenceDetection_Load(object sender, EventArgs e)
@@ -76,17 +69,17 @@ namespace Obi.Dialogs
 
         private void mOKButton_Click(object sender, EventArgs e)
         {
-            mThreshold = Convert.ToInt64 ( mThresholdBox.Text ) ;
+            Cursor c = this.Cursor;
+            this.Cursor = Cursors.WaitCursor;
+            mThreshold = Convert.ToInt64(mThresholdBox.Text);
             mGap = Convert.ToDouble(mGapBox.Text);
-            mLeadingSilence = Convert.ToDouble ( mLeadingSilenceBox.Text ) ;
-
-            
+            mLeadingSilence = Convert.ToDouble(mLeadingSilenceBox.Text);
             mPhraseList =  mPhraseAsset.ApplyPhraseDetection(mThreshold, mGap, mLeadingSilence)  ;
             Assets.AudioMediaAsset FirstAsset = mPhraseList[ 4 ] as Assets.AudioMediaAsset;
-
             MessageBox.Show("Phrase count" + mPhraseList.Count.ToString());
             //MessageBox.Show(FirstAsset.LengthInMilliseconds.ToString());
             //Audio.AudioPlayer.Instance.Play ( FirstAsset );
+            this.Cursor = c;
         }
     }
 }

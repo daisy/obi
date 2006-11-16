@@ -63,7 +63,7 @@ namespace Obi.UserControls
 
             mImportAudioFileToolStripMenuItem.Enabled = isStripSelected;
             mSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mApplySentenceDetectionToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mApplyPhraseDetectionToolStripMenuItem.Enabled = isAudioBlockSelected;
             mMergeWithNextAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
             mCutAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
             mCopyAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
@@ -147,7 +147,7 @@ namespace Obi.UserControls
         /// <summary>
         /// Apply sentence detection on the currently selected phrase (unless it is the silence phrase.)
         /// </summary>
-        internal void mApplySentenceDetectionToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void mApplyPhraseDetectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mSelectedPhrase != null)
             {
