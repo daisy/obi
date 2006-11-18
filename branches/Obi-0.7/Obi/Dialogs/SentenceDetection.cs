@@ -11,33 +11,19 @@ namespace Obi.Dialogs
     /// </summary>
     public partial class SentenceDetection : Form
     {
-        private long mThreshold;
-        private double mGap;
-        private double mLeadingSilence;
-
-        private Assets.AudioMediaAsset mSilenceAsset;
-        private Assets.AudioMediaAsset mPhraseAsset;
-        private List<Assets.AudioMediaAsset> mPhraseList;
-
-
         public long Threshold
         {
-            get { return mThreshold; }
+            get { return Convert.ToInt64(mThresholdBox.Text); }
         }
 
         public double Gap
         {
-            get { return mGap; }
+            get { return Convert.ToDouble(mGapBox.Text); }
         }
 
         public double LeadingSilence
         {
-            get { return mLeadingSilence; }
-        }
-
-        public List<Assets.AudioMediaAsset> PhraseList
-        {
-            get { return mPhraseList; }
+            get { return Convert.ToDouble(mLeadingSilenceBox.Text); }
         }
 
         public SentenceDetection()
@@ -49,37 +35,13 @@ namespace Obi.Dialogs
         /// Instantiate the dialog.
         /// </summary>
         /// <param name="silence">The silence phrase.</param>
-        /// <param name="phrase">The phrase to split into sentences.</param>
-        public SentenceDetection(CoreNode silence, CoreNode phrase)
+        public SentenceDetection(CoreNode silence)
         {
             InitializeComponent();
-            mSilenceAsset = Project.GetAudioMediaAsset(silence);
-            mPhraseAsset = Project.GetAudioMediaAsset(phrase);
-            mGap = Assets.AudioMediaAsset.DefaultGap;
-            mLeadingSilence = Assets.AudioMediaAsset.DefaultLeadingSilence;
-        }
-
-        private void SentenceDetection_Load(object sender, EventArgs e)
-        {
-            mThreshold = mSilenceAsset.GetSilenceAmplitude(mSilenceAsset);
-            mThresholdBox.Text = mThreshold.ToString();
-            mGapBox.Text = mGap.ToString();
-            mLeadingSilenceBox.Text = mLeadingSilence.ToString();
-        }
-
-        private void mOKButton_Click(object sender, EventArgs e)
-        {
-            Cursor c = this.Cursor;
-            this.Cursor = Cursors.WaitCursor;
-            mThreshold = Convert.ToInt64(mThresholdBox.Text);
-            mGap = Convert.ToDouble(mGapBox.Text);
-            mLeadingSilence = Convert.ToDouble(mLeadingSilenceBox.Text);
-            mPhraseList =  mPhraseAsset.ApplyPhraseDetection(mThreshold, mGap, mLeadingSilence)  ;
-            Assets.AudioMediaAsset FirstAsset = mPhraseList[ 4 ] as Assets.AudioMediaAsset;
-            MessageBox.Show("Phrase count" + mPhraseList.Count.ToString());
-            //MessageBox.Show(FirstAsset.LengthInMilliseconds.ToString());
-            //Audio.AudioPlayer.Instance.Play ( FirstAsset );
-            this.Cursor = c;
+            Assets.AudioMediaAsset silenceAsset = Project.GetAudioMediaAsset(silence);
+            mThresholdBox.Text = silenceAsset.GetSilenceAmplitude().ToString();
+            mGapBox.Text = Assets.AudioMediaAsset.DefaultGap.ToString();
+            mLeadingSilenceBox.Text = Assets.AudioMediaAsset.DefaultLeadingSilence.ToString();
         }
     }
 }

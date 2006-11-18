@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 
 using urakawa.core;
@@ -229,9 +230,60 @@ namespace Obi
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
 
+        /// <summary>
+        /// Handle a request to apply phrase detection to a phrase.
+        /// </summary>
         public void ApplyPhraseDetection(object sender, Events.Node.PhraseDetectionEventArgs e)
         {
-            // TODO, see above
+            AudioMediaAsset originalPhrase = Project.GetAudioMediaAsset(e.Node);
+            List<AudioMediaAsset> phrases = originalPhrase.ApplyPhraseDetection(e.Threshold, e.Gap, e.LeadingSilence);
+            if (phrases.Count > 1)
+            {
+                List<CoreNode> nodes = new List<CoreNode>(phrases.Count);
+                foreach (AudioMediaAsset phrase in phrases) nodes.Add(CreatePhraseNode(phrase));
+                ReplaceNodeWithNodes(e.Node, nodes);
+                Commands.Strips.ApplyPhraseDetection command = new Commands.Strips.ApplyPhraseDetection(this, e.Node, nodes);
+                CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            }
+        }
+
+        /// <summary>
+        /// Replace a node with a list of nodes.
+        /// </summary>
+        /// <param name="mNode">The node to remove.</param>
+        /// <param name="mPhraseNodes">The nodes to add instead.</param>
+        internal void ReplaceNodeWithNodes(CoreNode node, List<CoreNode> nodes)
+        {
+            CoreNode parent = (CoreNode)node.getParent();
+            int index = parent.indexOf(node);
+            DeletedPhraseNode(this, new Events.Node.NodeEventArgs(this, node));
+            node.detach();
+            foreach (CoreNode n in nodes)
+            {
+                parent.insert(n, index);
+                AddedPhraseNode(this, new Events.Node.AddedPhraseNodeEventArgs(this, n, index));
+                ++index;
+            }
+            Modified();
+        }
+
+        /// <summary>
+        /// Replace a list of contiguous nodes with a single one.
+        /// </summary>
+        /// <param name="mPhraseNodes">The nodes to remove.</param>
+        /// <param name="mNode">The node to add instead.</param>
+        internal void ReplaceNodesWithNode(List<CoreNode> nodes, CoreNode node)
+        {
+            CoreNode parent = (CoreNode)nodes[0].getParent();
+            int index = parent.indexOf(nodes[0]);
+            foreach (CoreNode n in nodes)
+            {
+                DeletedPhraseNode(this, new Events.Node.NodeEventArgs(this, n));
+                n.detach();
+            }
+            parent.insert(node, index);
+            AddedPhraseNode(this, new Events.Node.AddedPhraseNodeEventArgs(this, node, index));
+            Modified();
         }
 
         internal void StartRecordingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e, CoreNode parent, int index)

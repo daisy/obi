@@ -82,6 +82,7 @@
     <Compile Include="Commands\CommandManager.cs" />
     <Compile Include="Commands\ListCommand.cs" />
     <Compile Include="Commands\Strips\AddPhrase.cs" />
+    <Compile Include="Commands\Strips\ApplyPhraseDetection.cs" />
     <Compile Include="Commands\Strips\CopyPhrase.cs" />
     <Compile Include="Commands\Strips\MergePhrases.cs" />
     <Compile Include="Commands\Strips\DeletePhrase.cs" />

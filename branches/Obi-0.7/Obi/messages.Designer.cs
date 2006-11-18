@@ -88,6 +88,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to apply phrase detection.
+        /// </summary>
+        internal static string apply_phrase_detection_command_label {
+            get {
+                return ResourceManager.GetString("apply_phrase_detection_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to asset_{0}.
         /// </summary>
         internal static string asset_name {

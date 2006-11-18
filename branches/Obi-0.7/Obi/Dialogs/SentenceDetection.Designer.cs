@@ -47,7 +47,6 @@ namespace Obi.Dialogs
             this.mOKButton.TabIndex = 0;
             this.mOKButton.Text = "&OK";
             this.mOKButton.UseVisualStyleBackColor = true;
-            this.mOKButton.Click += new System.EventHandler(this.mOKButton_Click);
             // 
             // mCancelButton
             // 
@@ -124,7 +123,6 @@ namespace Obi.Dialogs
             this.Controls.Add(this.mOKButton);
             this.Name = "SentenceDetection";
             this.Text = "Apply phrase detection";
-            this.Load += new System.EventHandler(this.SentenceDetection_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

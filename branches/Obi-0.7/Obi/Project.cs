@@ -351,15 +351,32 @@ namespace Obi
         }
 
         /// <summary>
+        /// Project was modified.
+        /// </summary>
+        private void Modified()
+        {
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+
+        /// <summary>
+        /// Project was saved
+        /// </summary>
+        private void Saved()
+        {
+            mUnsaved = false;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Saved));            
+        }
+
+        /// <summary>
         /// Save the project to its XUK file.
         /// </summary>
         internal void Save()
         {
             UpdateMetadata();
             saveXUK(new Uri(mXUKPath));
-            mUnsaved = false;
             mLastPath = mXUKPath;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Saved));
+            Saved();
         }
 
         /// <summary>
@@ -436,8 +453,7 @@ namespace Obi
         public void Touch()
         {
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(new Commands.Touch(this)));
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            Modified();
         }
 
         /// <summary>
@@ -445,8 +461,7 @@ namespace Obi
         /// </summary>
         internal void Reverted()
         {
-            mUnsaved = false;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Saved));
+            Saved();
         }
 
         /// <summary>

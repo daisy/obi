@@ -154,7 +154,7 @@ namespace Obi.UserControls
                 CoreNode silence = mProjectPanel.Project.FindFirstPhrase();
                 if (mSelectedPhrase != silence)
                 {
-                    Dialogs.SentenceDetection dialog = new Dialogs.SentenceDetection(silence, mSelectedPhrase);
+                    Dialogs.SentenceDetection dialog = new Dialogs.SentenceDetection(silence);
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
                         RequestToApplyPhraseDetection(this, new Events.Node.PhraseDetectionEventArgs(this, mSelectedPhrase,
