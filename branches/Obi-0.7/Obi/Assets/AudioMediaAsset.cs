@@ -8,7 +8,7 @@ namespace Obi.Assets
 {
     public class AudioMediaAsset : MediaAsset
     {
-        public static readonly double DefaultGap = 700.0;             // default gap for phrase detection
+        public static readonly double DefaultGap = 500.0;             // default gap for phrase detection
         public static readonly double DefaultLeadingSilence = 100.0;  // default leading silence
 
         // member variables
@@ -527,6 +527,7 @@ namespace Obi.Assets
                 long amplitude = clip.GetClipSilenceAmplitude();
                 if (amplitude > max) max = amplitude;
             }
+            max = max + 10 ;
             return max;
         }
 
