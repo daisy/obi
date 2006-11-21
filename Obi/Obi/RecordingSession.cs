@@ -19,11 +19,12 @@ namespace Obi
     {
         private Project mProject;         // project in which we are recording
         private AudioRecorder mRecorder;  // the actual recorder
+        private VuMeter mVuMeter = new VuMeter();
         private AudioMediaAsset mRecordingAsset ;
         private int mChannels;            // number of channels of audio to record
         private int mSampleRate;          // sample rate of audio to record
         private int mBitDepth;            // bit depth of audio to record
-        private Thread UpdateDisplayThread;
+        private Thread UpdateDisplayThread ;
 
         private AudioMediaAsset mAsset;
         private List<double> mPhraseMarks ;
@@ -90,6 +91,7 @@ namespace Obi
         {
             mProject = project;
             mRecorder = recorder;
+            mRecorder.VuMeterObject = mVuMeter;
             mChannels = channels;
             // note: should add a convenience method to asset manager to get preferred audio format
             // and use it for the recording session
@@ -111,7 +113,8 @@ namespace Obi
             // initialise commit timer
             tmCommitTimer.Tick += new System.EventHandler( tmCommitTimer_tick );
             tmCommitTimer.Interval = 300000;
-            
+
+            mVuMeter.ShowForm();
         }
 
 
@@ -161,6 +164,7 @@ namespace Obi
                 StartingPhrase( this , mPhraseEventsArgs);
 
                 UpdateDisplayThread = new Thread ( new ThreadStart ( UpdateDisplayPeriodically )) ;
+                
             }
         }
 
@@ -171,6 +175,7 @@ namespace Obi
         {
             tmCommitTimer.Enabled = false;
             StopFunction();
+            mVuMeter.CloseVuMeterForm();
         }
 
         private void StopFunction ()
@@ -215,8 +220,13 @@ namespace Obi
                     mPhraseMarks = null;
                     mPageMarks = mSectionMarks = null;
                     mAsset = mRecordingAsset = null;
-                    UpdateDisplayThread.Abort();
-            
+
+                    if (UpdateDisplayThread != null)
+                    {
+                        if (UpdateDisplayThread.IsAlive)
+                            UpdateDisplayThread.Abort();
+                    }
+
         }
 
 
