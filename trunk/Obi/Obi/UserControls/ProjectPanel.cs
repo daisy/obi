@@ -69,6 +69,9 @@ namespace Obi.UserControls
                     mProject.MediaSet -= new Events.Node.MediaSetHandler(mStripManagerPanel.SyncMediaSet);
 
                     mStripManagerPanel.SplitAudioBlockRequested -= new Events.Node.SplitNodeHandler(mProject.SplitAudioBlockRequested);
+                    mStripManagerPanel.RequestToApplyPhraseDetection -=
+                        new Events.Node.RequestToApplyPhraseDetectionHandler(mProject.ApplyPhraseDetection);
+
                     mStripManagerPanel.MergeNodes -= new Events.Node.MergeNodesHandler(mProject.MergeNodesRequested);
 
                     mStripManagerPanel.DeleteBlockRequested -=
@@ -97,6 +100,8 @@ namespace Obi.UserControls
                     //md 20060812
                     mStripManagerPanel.RequestToShallowDeleteSectionNode -= new Events.Node.RequestToShallowDeleteSectionNodeHandler(mProject.ShallowDeleteSectionNodeRequested);
 
+                    mStripManagerPanel.RequestToCutSectionNode -=
+                        new Events.Node.RequestToCutSectionNodeHandler(mProject.CutSectionNodeRequested);
                     mStripManagerPanel.RequestToCutPhraseNode -=
                         new Events.Node.RequestToCutPhraseNodeHandler(mProject.CutPhraseNode);
                     mStripManagerPanel.RequestToCopyPhraseNode -=
@@ -151,6 +156,8 @@ namespace Obi.UserControls
 
                     // Block events
 
+                    mStripManagerPanel.RequestToCutSectionNode +=
+                        new Events.Node.RequestToCutSectionNodeHandler(value.CutSectionNodeRequested);
                     mStripManagerPanel.RequestToCutPhraseNode +=
                         new Events.Node.RequestToCutPhraseNodeHandler(value.CutPhraseNode);
                     mStripManagerPanel.RequestToCopyPhraseNode +=
@@ -169,6 +176,8 @@ namespace Obi.UserControls
                     mStripManagerPanel.SetMediaRequested += new Events.Node.SetMediaHandler(value.SetMediaRequested);
                     mStripManagerPanel.SplitAudioBlockRequested +=
                         new Events.Node.SplitNodeHandler(value.SplitAudioBlockRequested);
+                    mStripManagerPanel.RequestToApplyPhraseDetection +=
+                        new Events.Node.RequestToApplyPhraseDetectionHandler(value.ApplyPhraseDetection);
 
                     value.AddedPhraseNode +=
                         new Events.Node.AddedPhraseNodeHandler(mStripManagerPanel.SyncAddedPhraseNode);
@@ -231,6 +240,20 @@ namespace Obi.UserControls
         public TOCPanel TOCPanel
         {
             get { return mTOCPanel; }
+        }
+
+        /// <summary>
+        /// Return the node that is selected in either view, if any.
+        /// </summary>
+        public CoreNode SelectedNode
+        {
+            get
+            {
+                return mStripManagerPanel.SelectedNode != null ?
+                        mStripManagerPanel.SelectedNode :
+                    mTOCPanel.Selected ?
+                        mTOCPanel.SelectedSection : null;
+            }
         }
 
         /// <summary>

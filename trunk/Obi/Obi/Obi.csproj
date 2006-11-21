@@ -27,7 +27,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationVersion>0.6.1.1128</ApplicationVersion>
+    <ApplicationVersion>0.7.0.%2a</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -77,10 +77,12 @@
     <Compile Include="Audio\VuMeterForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Clipboard.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\CommandManager.cs" />
     <Compile Include="Commands\ListCommand.cs" />
     <Compile Include="Commands\Strips\AddPhrase.cs" />
+    <Compile Include="Commands\Strips\ApplyPhraseDetection.cs" />
     <Compile Include="Commands\Strips\CopyPhrase.cs" />
     <Compile Include="Commands\Strips\MergePhrases.cs" />
     <Compile Include="Commands\Strips\DeletePhrase.cs" />
@@ -98,6 +100,7 @@
     <Compile Include="Commands\TOC\SectionNodeCommand.cs" />
     <Compile Include="Commands\TOC\SectionNodeListCommand.cs" />
     <Compile Include="Commands\TOC\ShallowDeleteSectionNode.cs" />
+    <Compile Include="Commands\Touch.cs" />
     <Compile Include="CustomProperties.cs" />
     <Compile Include="Dialogs\About.cs">
       <SubType>Form</SubType>
@@ -141,11 +144,29 @@
     <Compile Include="Dialogs\Record.Designer.cs">
       <DependentUpon>Record.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\SentenceDetection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SentenceDetection.Designer.cs">
+      <DependentUpon>SentenceDetection.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\Split.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialogs\Split.Designer.cs">
       <DependentUpon>Split.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TransportPlay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\TransportPlay.Designer.cs">
+      <DependentUpon>TransportPlay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TransportRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\TransportRecord.Designer.cs">
+      <DependentUpon>TransportRecord.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\UserProfile.cs">
       <SubType>Form</SubType>
@@ -165,6 +186,7 @@
     <Compile Include="Events\Node\AddedPhraseNodeEventArgs.cs" />
     <Compile Include="Events\Node\MergeNodesEventArgs.cs" />
     <Compile Include="Events\Node\NodeEventArgs.cs" />
+    <Compile Include="Events\Node\PhraseDetectionEventArgs.cs" />
     <Compile Include="Events\Node\RenameNodeEventArgs.cs" />
     <Compile Include="Events\Node\MovedNodeEventArgs.cs" />
     <Compile Include="Events\Node\SelectedEventArgs.cs" />
@@ -192,6 +214,7 @@
     <Compile Include="ObiForm.Designer.cs">
       <DependentUpon>ObiForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Playlist.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Project.Blocks.cs" />
     <Compile Include="Project.cs" />
@@ -279,6 +302,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="RecordingSession.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="SimpleMetadata.cs" />
     <Compile Include="UserControls\AbstractBlock.cs">
@@ -363,6 +387,18 @@
     <Content Include="help_en.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Dialogs\SentenceDetection.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SentenceDetection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TransportPlay.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TransportPlay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TransportRecord.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TransportRecord.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\AnnotationBlock.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AnnotationBlock.cs</DependentUpon>

@@ -34,8 +34,35 @@ namespace Obi.UserControls
         public event Events.Node.RequestToMoveBlockHandler MoveAudioBlockBackwardRequested;
         public event Events.Node.SplitNodeHandler SplitAudioBlockRequested;
         public event Events.Node.MergeNodesHandler MergeNodes;
-      
+
         #region properties
+
+        /// <summary>
+        /// Selected node (phrase or section.)
+        /// </summary>
+        public CoreNode SelectedNode
+        {
+            get { return mSelectedPhrase == null ? mSelectedSection : mSelectedPhrase; }
+            set
+            {
+                if (value != null)
+                {
+                    if (Project.GetNodeType(value) == NodeType.Phrase)
+                    {
+                        SelectedPhraseNode = value;
+                    }
+                    else if (Project.GetNodeType(value) == NodeType.Section)
+                    {
+                        SelectedSectionNode = value;
+                    }
+                }
+                else
+                {
+                    SelectedPhraseNode = null;
+                    SelectedSectionNode = null;
+                }
+            }
+        }
 
         /// <summary>
         /// Get or set the currently selected section node.
@@ -56,26 +83,15 @@ namespace Obi.UserControls
                 {
                     if (mSelectedSection != null)
                     {
-                        //md added try-catch because it tends to crash here
-                        try {mSectionNodeMap[mSelectedSection].MarkDeselected();}
-                        catch (Exception) {}
-
+                        mSectionNodeMap[mSelectedSection].MarkDeselected();
                         if (mSelectedPhrase != null)
                         {
-                            //md added try-catch because it tended to crash above and maybe it would here too
-                            try {mPhraseNodeMap[mSelectedPhrase].MarkDeselected();}
-                            catch (Exception) {}
-
+                            mPhraseNodeMap[mSelectedPhrase].MarkDeselected();
                             mSelectedPhrase = null;
                         }
                     }
                     mSelectedSection = value;
-                    if (mSelectedSection != null)
-                    {
-                        //md added try-catch because it tended to crash above and maybe it would here too
-                        try {mSectionNodeMap[mSelectedSection].MarkSelected();}
-                        catch (Exception) {}
-                    }
+                    if (mSelectedSection != null) mSectionNodeMap[mSelectedSection].MarkSelected();
                 }
             }
         }
@@ -90,10 +106,7 @@ namespace Obi.UserControls
         /// </summary>
         public CoreNode SelectedPhraseNode
         {
-            get
-            {
-                return mSelectedPhrase;
-            }
+            get { return mSelectedPhrase; }
             set
             {
                 if (mSelectedPhrase != value)
@@ -104,7 +117,7 @@ namespace Obi.UserControls
                         SelectedSectionNode = (CoreNode)value.getParent();
                         mPhraseNodeMap[value].MarkSelected();
                     }
-                    mSelectedPhrase = value;    
+                    mSelectedPhrase = value;
                 }
             }
         }
@@ -115,12 +128,7 @@ namespace Obi.UserControls
         // mg20060804
         internal SectionStrip SelectedSectionStrip
         {
-            get
-            {
-                if (mSelectedSection != null)
-                    return mSectionNodeMap[mSelectedSection];
-                return null;
-            }
+            get { return mSelectedSection == null ? null : mSectionNodeMap[mSelectedSection]; }
         }
 
         /// <summary>
@@ -191,8 +199,8 @@ namespace Obi.UserControls
         /// </summary>
         public void SynchronizeWithCoreTree(CoreNode root)
         {
-            mSectionNodeMap.Clear();
             mFlowLayoutPanel.Controls.Clear();
+            mSectionNodeMap.Clear();
             mSelectedSection = null;
             mSelectedPhrase = null;
             root.acceptDepthFirst(this);
@@ -246,6 +254,7 @@ namespace Obi.UserControls
                 case NodeType.Phrase:
                     strip = mSectionNodeMap[parentSection];
                     AudioBlock block = SetupAudioBlockFromPhraseNode((CoreNode)node);
+                    strip.AppendAudioBlock(block);
                     parentPhrase = (CoreNode)node;
                     break;
                 default:
@@ -436,5 +445,4 @@ namespace Obi.UserControls
             }
         }
     }
-
 }

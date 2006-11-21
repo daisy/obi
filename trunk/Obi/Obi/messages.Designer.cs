@@ -88,6 +88,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to apply phrase detection.
+        /// </summary>
+        internal static string apply_phrase_detection_command_label {
+            get {
+                return ResourceManager.GetString("apply_phrase_detection_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to asset_{0}.
         /// </summary>
         internal static string asset_name {
@@ -189,6 +198,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cop&amp;y{0}.
+        /// </summary>
+        internal static string copy_menu_label {
+            get {
+                return ResourceManager.GetString("copy_menu_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to copy audio block.
         /// </summary>
         internal static string copy_phrase_command_label {
@@ -234,6 +252,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Cut{0}.
+        /// </summary>
+        internal static string cut_menu_label {
+            get {
+                return ResourceManager.GetString("cut_menu_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to cut audio block.
         /// </summary>
         internal static string cut_phrase_command_label {
@@ -275,6 +302,15 @@ namespace Obi {
         internal static string default_section_label {
             get {
                 return ResourceManager.GetString("default_section_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Delete{0}.
+        /// </summary>
+        internal static string delete_menu_label {
+            get {
+                return ResourceManager.GetString("delete_menu_label", resourceCulture);
             }
         }
         
@@ -606,6 +642,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Paste{0}.
+        /// </summary>
+        internal static string paste_menu_label {
+            get {
+                return ResourceManager.GetString("paste_menu_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to paste audio block.
         /// </summary>
         internal static string paste_phrase_command_label {
@@ -629,6 +674,15 @@ namespace Obi {
         internal static string pause {
             get {
                 return ResourceManager.GetString("pause", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  phrase.
+        /// </summary>
+        internal static string phrase {
+            get {
+                return ResourceManager.GetString("phrase", resourceCulture);
             }
         }
         
@@ -789,6 +843,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  section.
+        /// </summary>
+        internal static string section {
+            get {
+                return ResourceManager.GetString("section", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is the section&apos;s name.
         /// </summary>
         internal static string section_strip_name_tooltip {
@@ -884,6 +947,15 @@ namespace Obi {
         internal static string toc_view_tooltip {
             get {
                 return ResourceManager.GetString("toc_view_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to touch project.
+        /// </summary>
+        internal static string touch_command_label {
+            get {
+                return ResourceManager.GetString("touch_command_label", resourceCulture);
             }
         }
         

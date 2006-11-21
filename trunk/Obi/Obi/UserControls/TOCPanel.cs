@@ -16,22 +16,29 @@ namespace Obi.UserControls
     /// change the label, etc. of headings.)
     /// This control implements the CoreTreeView interface so that it can be synchronized with the core tree.
     /// </summary>
-    public partial class TOCPanel : UserControl, urakawa.core.ICoreNodeVisitor
+    public partial class TOCPanel : UserControl
     {
         private ProjectPanel mProjectPanel; //the parent of this control
 
-        public event Events.Node.SelectedHandler SelectedTreeNode;  // raised when selection changes (JQ)
-
-       
-        #region properties
         /// <summary>
-        /// Test whether a node is currently selected or not.
+        /// Test whether a node is currently selected or not, *and* under user focus.
         /// </summary>
         public bool Selected
         {
-            get
+            get { return mTocTree.Focused && mTocTree.SelectedNode != null; }
+        }
+
+        /// <summary>
+        /// The selected node as a core node.
+        /// </summary>
+        public urakawa.core.CoreNode SelectedSection
+        {
+            get { return mTocTree.SelectedNode == null ? null : (urakawa.core.CoreNode)mTocTree.SelectedNode.Tag; }
+            set
             {
-                return mTocTree.SelectedNode != null;
+                TreeNode sel = FindTreeNodeFromCoreNode(value);
+                System.Diagnostics.Debug.Assert(sel != null, "Cannot find selected section node in TOC tree.");
+                mTocTree.SelectedNode = sel;
             }
         }
 
@@ -41,28 +48,15 @@ namespace Obi.UserControls
         // mg 20060804
         internal ProjectPanel ProjectPanel
         {
-            get
-            {
-                return mProjectPanel;
-            }
-            set
-            {
-                mProjectPanel = value;
-            }
+            get { return mProjectPanel; }
+            set { mProjectPanel = value; }
         }
-
-        #endregion
-
-        #region instantiators
 
         public TOCPanel()
         {
             InitializeComponent();
-            SelectedTreeNode += new Obi.Events.Node.SelectedHandler(TOCPanel_SelectedTreeNode);
             InitializeToolTips();
         }
-
-        #endregion
 
         /// <summary>
         /// Synchronize the tree view with the core tree.
@@ -72,29 +66,18 @@ namespace Obi.UserControls
         public void SynchronizeWithCoreTree(urakawa.core.CoreNode root)
         {
             this.Cursor = Cursors.WaitCursor;
-
             mTocTree.Nodes.Clear();
             mTocTree.SelectedNode = null;
-            root.acceptDepthFirst(this);
-
+            root.visitDepthFirst(SectionNodeVisitor, delegate(urakawa.core.ICoreNode node) { });
             //select the first node
+            /*
             if (mTocTree.Nodes.Count > 0)
             {
                 mTocTree.SelectedNode = mTocTree.Nodes[0];
                 mTocTree.SelectedNode.EnsureVisible();
             }
-
+            */
             this.Cursor = Cursors.Default;
-        }
-        
-        #region Synchronization visitor
-
-        /// <summary>
-        /// Do nothing.
-        /// </summary>
-        /// <param name="node">The node to do nothing with.</param>
-        public void postVisit(urakawa.core.ICoreNode node)
-        {
         }
 
         /// <summary>
@@ -104,91 +87,31 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="node">The node to add to the tree.</param>
         /// <returns>True </returns>
-        public bool preVisit(urakawa.core.ICoreNode node)
+        public bool SectionNodeVisitor(urakawa.core.ICoreNode node)
         {
-            if (Project.GetNodeType((urakawa.core.CoreNode)node) == NodeType.Section)
+            urakawa.core.CoreNode _node = (urakawa.core.CoreNode)node;
+            if (Project.GetNodeType(_node) == NodeType.Section)
             {
-                string label = Project.GetTextMedia((urakawa.core.CoreNode)node).getText();
+                string label = Project.GetTextMedia(_node).getText();
                 TreeNode newTreeNode;
-                if (node.getParent().getParent() != null)
+                if (_node.getParent().getParent() != null)
                 {
-                    TreeNode parentTreeNode = FindTreeNodeFromCoreNode((urakawa.core.CoreNode)node.getParent());
-                    newTreeNode = parentTreeNode.Nodes.Add(node.GetHashCode().ToString(), label);
+                    TreeNode parentTreeNode = FindTreeNodeFromCoreNode((urakawa.core.CoreNode)_node.getParent());
+                    newTreeNode = parentTreeNode.Nodes.Add(_node.GetHashCode().ToString(), label);
                 }
                 else
                 {
                     // top-level nodes
-                    newTreeNode = mTocTree.Nodes.Add(node.GetHashCode().ToString(), label);
+                    newTreeNode = mTocTree.Nodes.Add(_node.GetHashCode().ToString(), label);
                 }
-                newTreeNode.Tag = node;
+                newTreeNode.Tag = _node;
                 newTreeNode.ExpandAll();
                 newTreeNode.EnsureVisible();
             }
             return true;
         }
 
-        #endregion
-
-
-
-        //md: do we still want this function?
-        public void LimitViewToDepthOfCurrentSection()
-        {
-        }
-
-        /// <summary>
-        /// Show all the sections in the tree view.
-        /// </summary>
-        //md: there is no end-user command which exposes this feature
-        public void ExpandViewToShowAllSections()
-        {
-            mTocTree.ExpandAll();
-        }
-
-        /// <summary>
-        /// Return the core node version of the selected tree node.
-        /// </summary>
-        /// <returns>The selected section, or null if no section is selected.</returns>
-        public urakawa.core.CoreNode GetSelectedSection()
-        {
-            TreeNode selected = this.mTocTree.SelectedNode;
-            return selected == null ? null : (urakawa.core.CoreNode)selected.Tag;
-        }
-
-        /// <summary>
-        /// Selects a node in the tree view.
-        /// </summary>
-        /// <param name="node">The core node version of the node to select.</param>
-        /// <returns>true or false, depending on if the selection was successful</returns>
-        public bool SetSelectedSection(urakawa.core.CoreNode node)
-        {
-            TreeNode sel = FindTreeNodeFromCoreNode(node);
-            if (sel != null)
-            {
-                mTocTree.SelectedNode = sel;
-                // set can move up, down, etc.
-                Obi.Events.Node.SelectedEventArgs e = new Obi.Events.Node.SelectedEventArgs(true);
-                SelectedTreeNode(this, e);
-                return true;
-            }
-            else
-            {
-                SelectedTreeNode(this, new Obi.Events.Node.SelectedEventArgs(false));
-                return false;
-            }
-        }
-
-    
-
         #region toc tree event handlers
-        /// <summary>
-        /// Using this event to assure that a node is selected. 
-        /// </summary>
-        //mg
-        private void tocTree_BeforeSelect(object sender, TreeViewCancelEventArgs e)
-        {
-            this.mShowInStripViewToolStripMenuItem.Enabled = true;
-        }
 
         /// <summary>
         /// The user has edited a label in the tree, so an event is raised to rename the node.
@@ -255,32 +178,6 @@ namespace Obi.UserControls
                 }
             }
 
-        }
-
-        // Added comments to remove warnings, should go away completely
-
-        /// <summary>
-        /// A new selection is made so the context menu is updated.
-        /// </summary>
-        private void mTocTree_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            //return;
-
-            //Events.Node.SelectedEventArgs _event = new Events.Node.SelectedEventArgs(true);
-            // should set CanMoveUp, etc. here
-            //SelectedTreeNode(this, _event);
-        }
-
-        /// <summary>
-        /// When leaving the TOC tree, there is no selection anymore.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void mTocTree_Leave(object sender, EventArgs e)
-        {
-            //return;
-
-            //SelectedTreeNode(this, new Events.Node.SelectedEventArgs(false));
         }
 
 #endregion
@@ -367,29 +264,6 @@ namespace Obi.UserControls
             return foundNode;
         }
         #endregion
-
-        private void TOCPanel_SelectedTreeNode(object sender, Events.Node.SelectedEventArgs e)
-        {
-            mAddSubSectionToolStripMenuItem.Enabled = e.Selected;
-            mDeleteSectionToolStripMenuItem.Enabled = e.Selected;
-            mEditLabelToolStripMenuItem.Enabled = e.Selected;
-
-            //md: logic for these "canMove's" needs to come from Obi.Project
-            //mMoveToolStripMenuItem.Enabled = e.CanMoveUp || e.CanMoveDown || e.CanMoveIn || e.CanMoveOut;
-           // mMoveUpToolStripMenuItem.Enabled = e.CanMoveUp;
-           // mMoveDownToolStripMenuItem.Enabled = e.CanMoveDown;
-            mMoveInToolStripMenuItem.Enabled = e.CanMoveIn;
-            mMoveOutToolStripMenuItem.Enabled = e.CanMoveOut;
-
-            mShowInStripViewToolStripMenuItem.Enabled = e.Selected;
-            mCutSectionToolStripMenuItem.Enabled = e.Selected;
-            mCopySectionToolStripMenuItem.Enabled = e.Selected;
-            // when closing, the project can be null but an event may still be generated
-            // so be careful of checking the the project is not null in order to check
-            // for its clipboard. (JQ)
-            mPasteSectionToolStripMenuItem.Enabled = e.Selected &&
-                (mProjectPanel.Project != null) && (mProjectPanel.Project.Clipboard != null);
-        }
 
         //md 20061009
         private void InitializeToolTips()

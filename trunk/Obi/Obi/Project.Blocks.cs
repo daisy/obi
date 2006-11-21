@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 
 using urakawa.core;
@@ -16,14 +17,6 @@ namespace Obi
 
         #region clip board
 
-        private CoreNode mBlockClipBoard;  // clip board for block nodes (phrases or pages)
-
-        internal CoreNode BlockClipBoard
-        {
-            get { return mBlockClipBoard; }
-            set { mBlockClipBoard = value; }
-        }
-
         /// <summary>
         /// Cut a phrase node: delete it and store it in the clipboard.
         /// Issue a command and modify the project.
@@ -33,9 +26,8 @@ namespace Obi
             // create the command before storing the node in the clip board, otherwise the previous value is lost
             Commands.Strips.CutPhrase command = new Commands.Strips.CutPhrase(this, e.Node, (CoreNode)e.Node.getParent(),
                 GetPhraseIndex(e.Node));
-            mBlockClipBoard = e.Node;
+            mClipboard.Phrase = e.Node;
             DeletePhraseNodeAndAsset(e.Node);
-            // BlockClipBoard = e.Node;
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -50,7 +42,7 @@ namespace Obi
         internal void CopyPhraseNode(object sender, Events.Node.NodeEventArgs e)
         {
             Commands.Strips.CopyPhrase command = new Commands.Strips.CopyPhrase(this, e.Node);
-            mBlockClipBoard = e.Node;
+            mClipboard.Phrase = e.Node;
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             // state does not change--the project itself was not modified.
         }
@@ -62,7 +54,8 @@ namespace Obi
         /// </summary>
         internal void PastePhraseNode(object sender, Events.Node.NodeEventArgs e)
         {
-            CoreNode copy = mBlockClipBoard.copy(true);
+            System.Diagnostics.Debug.Assert(mClipboard.Phrase != null, "Cannot paste without a phrase node on the clipboard.");
+            CoreNode copy = mClipboard.Phrase.copy(true);
             CoreNode parent;
             int index;
             if (GetNodeType(e.Node) == NodeType.Section)
@@ -76,7 +69,7 @@ namespace Obi
                 index = GetPhraseIndex(e.Node) + 1;
             }
             AddPhraseNode(copy, parent, index);
-            AudioMediaAsset asset = (AudioMediaAsset)mAssManager.CopyAsset(GetAudioMediaAsset(mBlockClipBoard));
+            AudioMediaAsset asset = (AudioMediaAsset)mAssManager.CopyAsset(GetAudioMediaAsset(mClipboard.Phrase));
             SetAudioMediaAsset(copy, asset);
             Commands.Strips.PastePhrase command = new Commands.Strips.PastePhrase(this, copy);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
@@ -235,6 +228,62 @@ namespace Obi
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+
+        /// <summary>
+        /// Handle a request to apply phrase detection to a phrase.
+        /// </summary>
+        public void ApplyPhraseDetection(object sender, Events.Node.PhraseDetectionEventArgs e)
+        {
+            AudioMediaAsset originalPhrase = Project.GetAudioMediaAsset(e.Node);
+            List<AudioMediaAsset> phrases = originalPhrase.ApplyPhraseDetection(e.Threshold, e.Gap, e.LeadingSilence);
+            if (phrases.Count > 1)
+            {
+                List<CoreNode> nodes = new List<CoreNode>(phrases.Count);
+                foreach (AudioMediaAsset phrase in phrases) nodes.Add(CreatePhraseNode(phrase));
+                ReplaceNodeWithNodes(e.Node, nodes);
+                Commands.Strips.ApplyPhraseDetection command = new Commands.Strips.ApplyPhraseDetection(this, e.Node, nodes);
+                CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            }
+        }
+
+        /// <summary>
+        /// Replace a node with a list of nodes.
+        /// </summary>
+        /// <param name="mNode">The node to remove.</param>
+        /// <param name="mPhraseNodes">The nodes to add instead.</param>
+        internal void ReplaceNodeWithNodes(CoreNode node, List<CoreNode> nodes)
+        {
+            CoreNode parent = (CoreNode)node.getParent();
+            int index = parent.indexOf(node);
+            DeletedPhraseNode(this, new Events.Node.NodeEventArgs(this, node));
+            node.detach();
+            foreach (CoreNode n in nodes)
+            {
+                parent.insert(n, index);
+                AddedPhraseNode(this, new Events.Node.AddedPhraseNodeEventArgs(this, n, index));
+                ++index;
+            }
+            Modified();
+        }
+
+        /// <summary>
+        /// Replace a list of contiguous nodes with a single one.
+        /// </summary>
+        /// <param name="mPhraseNodes">The nodes to remove.</param>
+        /// <param name="mNode">The node to add instead.</param>
+        internal void ReplaceNodesWithNode(List<CoreNode> nodes, CoreNode node)
+        {
+            CoreNode parent = (CoreNode)nodes[0].getParent();
+            int index = parent.indexOf(nodes[0]);
+            foreach (CoreNode n in nodes)
+            {
+                DeletedPhraseNode(this, new Events.Node.NodeEventArgs(this, n));
+                n.detach();
+            }
+            parent.insert(node, index);
+            AddedPhraseNode(this, new Events.Node.AddedPhraseNodeEventArgs(this, node, index));
+            Modified();
         }
 
         internal void StartRecordingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e, CoreNode parent, int index)
@@ -428,6 +477,7 @@ namespace Obi
         /// <returns>The asset or null if it could not be found.</returns>
         public static AudioMediaAsset GetAudioMediaAsset(CoreNode node)
         {
+            System.Diagnostics.Debug.Assert(GetNodeType(node) == NodeType.Phrase);
             AssetProperty prop = (AssetProperty)node.getProperty(typeof(AssetProperty));
             if (prop != null)
             {
@@ -501,7 +551,6 @@ namespace Obi
         {
             PageProperty pageProp = e.Node.getProperty(typeof(PageProperty)) as PageProperty;
             Commands.Strips.SetNewPageNumber command = null;
-            // if (pageProp == null || pageProp.getOwner() == null)
             if (pageProp == null)
             {
                 pageProp = (PageProperty)getPresentation().getPropertyFactory().createProperty(PageProperty.NodeName,
@@ -523,7 +572,6 @@ namespace Obi
                     return;
                 }
             }
-            if (e.PageNumber > mLastPage) mLastPage = e.PageNumber;
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));

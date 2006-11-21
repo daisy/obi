@@ -25,16 +25,6 @@ namespace Obi
 
         //md: shallow-swapped event for move up/down linear
         public event Events.Node.ShallowSwappedSectionNodesHandler ShallowSwappedSectionNodes;
-
-        private CoreNode mClipboard;        //clipboard for cut-copy-paste
-
-        public CoreNode Clipboard
-        {
-            get
-            {
-                return mClipboard;
-            }
-        }
       
         /// <summary>
         /// Create a new section node with a default text label. The node is not attached to anything.
@@ -777,10 +767,10 @@ namespace Obi
                  (this, node, parent, parent.indexOf(node), visitor.Position);
             }
 
-            mClipboard = node;
+            mClipboard.Section = node;
             node.detach();
 
-           CutSectionNode(this, new Events.Node.NodeEventArgs(origin, node));
+            CutSectionNode(this, new Events.Node.NodeEventArgs(origin, node));
 
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -791,7 +781,7 @@ namespace Obi
         public void UndoCutSectionNode(CoreNode node, CoreNode parent, int index, int position)
         {
             UndeleteSectionNode(node, parent, index, position);
-            mClipboard = null;
+            mClipboard.Section = null;
         }
 
         //md 20060810
@@ -820,9 +810,9 @@ namespace Obi
             }
 
             //the actual copy operation
-            mClipboard = node.copy(true);
+            mClipboard.Section = node.copy(true);
 
-            CopiedSectionNode(this, new Events.Node.NodeEventArgs(origin, mClipboard));
+            CopiedSectionNode(this, new Events.Node.NodeEventArgs(origin, mClipboard.Section));
 
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -839,7 +829,7 @@ namespace Obi
                 throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
             }
 
-            mClipboard = null;
+            mClipboard.Section = null;
 
            UndidCopySectionNode(this, new Events.Node.NodeEventArgs(this, node));
 
@@ -878,7 +868,7 @@ namespace Obi
 
             Commands.TOC.PasteSectionNode command = null;
 
-            CoreNode pastedSection = mClipboard.copy(true);
+            CoreNode pastedSection = mClipboard.Section.copy(true);
 
             //don't clear the clipboard, we can use it again
 
