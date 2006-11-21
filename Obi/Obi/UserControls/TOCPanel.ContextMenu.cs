@@ -40,10 +40,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-            RequestToAddSiblingSection(this,
-                new Events.Node.NodeEventArgs(this, GetSelectedSection()));
-            
+            RequestToAddSiblingSection(this, new Events.Node.NodeEventArgs(this, SelectedSection));
         }
 
         /// <summary>
@@ -51,10 +48,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void mAddSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-            RequestToAddChildSectionNode(this,
-                new Events.Node.NodeEventArgs(this, GetSelectedSection()));
-           
+            RequestToAddChildSectionNode(this, new Events.Node.NodeEventArgs(this, SelectedSection));  
         }
 
         /// <summary>
@@ -62,18 +56,20 @@ namespace Obi.UserControls
         /// </summary>
         internal void mMoveUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-            RequestToMoveSectionNodeUp(this,
-                new Events.Node.NodeEventArgs(this, GetSelectedSection()));
-            
+            RequestToMoveSectionNodeUp(this, new Events.Node.NodeEventArgs(this, SelectedSection));
         }
 
         /// <summary>
         /// Triggered by the "delete section" menu item.
         /// </summary>
-        internal void mDeleteSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mDeleteSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToDeleteSectionNode(this, new Events.Node.NodeEventArgs(this, GetSelectedSection()));
+            DeleteSelectedSection();
+        }
+
+        public void DeleteSelectedSection()
+        {
+            RequestToDeleteSectionNode(this, new Events.Node.NodeEventArgs(this, SelectedSection));
         }
 
         internal void mRenameToolStripMenuItem_Click(object sender, EventArgs e)
@@ -84,20 +80,17 @@ namespace Obi.UserControls
 
         internal void mMoveDownToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToMoveSectionNodeDown(this,
-                new Events.Node.NodeEventArgs(this, GetSelectedSection()));
+            RequestToMoveSectionNodeDown(this, new Events.Node.NodeEventArgs(this, SelectedSection));
         }
 
         internal void increaseLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToIncreaseSectionNodeLevel(this,
-                new Events.Node.NodeEventArgs(this, GetSelectedSection()));
+            RequestToIncreaseSectionNodeLevel(this, new Events.Node.NodeEventArgs(this, SelectedSection));
         }
 
         internal void decreaseLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToDecreaseSectionNodeLevel(this,
-                new Events.Node.NodeEventArgs(this, GetSelectedSection()));
+            RequestToDecreaseSectionNodeLevel(this, new Events.Node.NodeEventArgs(this, SelectedSection));
        }
 
      
@@ -108,29 +101,41 @@ namespace Obi.UserControls
         internal void mShowInStripViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //mg 20060804
-            if (GetSelectedSection() != null)
+            if (Selected)
             {
-                ProjectPanel.StripManager.SelectedSectionNode = GetSelectedSection();
+                ProjectPanel.StripManager.SelectedSectionNode = SelectedSection;
                 if (ProjectPanel.StripManager.SelectedSectionNode != null)
                     ProjectPanel.StripManager.SelectedSectionStrip.Focus();
             }
         }
 
-        //md 20060810
-        internal void cutSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mCutSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToCutSectionNode(this, new Events.Node.NodeEventArgs(this, GetSelectedSection()));
+            CutSelectedSection();
+        }
+
+        /// <summary>
+        /// Cut the selected section node.
+        /// </summary>
+        public void CutSelectedSection()
+        {
+            RequestToCutSectionNode(this, new Events.Node.NodeEventArgs(this, SelectedSection));
         }
 
         //md 20060810
-        internal void copySectionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void copySectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToCopySectionNode(this, new Events.Node.NodeEventArgs(this, GetSelectedSection()));
+            CopySelectedSection();
+        }
+
+        public void CopySelectedSection()
+        {
+            RequestToCopySectionNode(this, new Events.Node.NodeEventArgs(this, SelectedSection));
         }
 
         internal void mPasteSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToPasteSectionNode(this, new Events.Node.NodeEventArgs(this, GetSelectedSection()));
+            RequestToPasteSectionNode(this, new Events.Node.NodeEventArgs(this, SelectedSection));
         }
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
@@ -145,7 +150,7 @@ namespace Obi.UserControls
             if (mTocTree.SelectedNode != null)
             {
                 isNodeSelected = true;
-                selectedSection = GetSelectedSection();
+                selectedSection = SelectedSection;
             }
 
 
@@ -176,7 +181,7 @@ namespace Obi.UserControls
             // for its clipboard. (JQ)
             // also, it doesn't matter if a node is selected since we can paste under the root node.
             mPasteSectionToolStripMenuItem.Enabled =
-                (mProjectPanel.Project != null) && (mProjectPanel.Project.Clipboard != null);
+                (mProjectPanel.Project != null) && (mProjectPanel.Project.Clipboard.Section != null);
         }
     }
 }

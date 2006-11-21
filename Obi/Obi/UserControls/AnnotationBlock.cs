@@ -11,23 +11,25 @@ namespace Obi.UserControls
     public partial class AnnotationBlock : AbstractBlock
     {
         private AudioBlock mAudioBlock;  // the corresponding audio block
-        private static int mMinWidth = 50;
 
+        public event SectionStrip.ChangedMinimumSizeHandler ChangedMinimumSize;
+
+        /// <summary>
+        /// Audio block with which this annotation is synchronized.
+        /// </summary>
         public AudioBlock AudioBlock
         {
             get { return mAudioBlock; }
             set { mAudioBlock = value; }
         }
 
+        /// <summary>
+        /// The annotation (on a label)
+        /// </summary>
         public string Label
         {
             get { return mLabel.Text; }
             set { mLabel.Text = value; }
-        }
-
-        public int _Width
-        {
-            set { Size = new Size(value, Size.Height); }
         }
 
         public AnnotationBlock()
@@ -75,12 +77,18 @@ namespace Obi.UserControls
 
         public void StartRenaming()
         {
+/*med 20061120 svn merge: commenting out old code from the trunk (0.6)
             mLabel.Visible = false;
             mRenameBox.Size = new Size(Width - mRenameBox.Location.X - mRenameBox.Margin.Right, mRenameBox.Height);
+*/
+/*med 20061120 svn merge: probably will be replaced with this*/
+            mRenameBox.Width = Width - mRenameBox.Location.X - mRenameBox.Margin.Right;
+            
             mRenameBox.BackColor = BackColor;
             mRenameBox.Text = mLabel.Text;
             mRenameBox.SelectAll();
             mRenameBox.Visible = true;
+            mLabel.Visible = false;
             mRenameBox.Focus();
         }
 
@@ -104,8 +112,9 @@ namespace Obi.UserControls
                     Localizer.Message("empty_label_warning_caption"),
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            mRenameBox.Visible = false;
+
             mLabel.Visible = true;
+            mRenameBox.Visible = false;
         }
 
         private void mRenameBox_Leave(object sender, EventArgs e)
@@ -119,16 +128,15 @@ namespace Obi.UserControls
             this.mToolTip.SetToolTip(this, Localizer.Message("annotation_tooltip"));
             this.mToolTip.SetToolTip(this.mRenameBox, Localizer.Message("annotation_tooltip"));
             this.mToolTip.SetToolTip(this.mLabel, Localizer.Message("annotation_tooltip"));
-
         }
 
-        private void AnnotationBlock_SizeChanged(object sender, EventArgs e)
-        {   
-            if (mAudioBlock != null)
-            {
-                if (Width < mMinWidth) this.Width = mMinWidth;
-               mAudioBlock._Width = Width;
-            }
+        /// <summary>
+        /// Our own implementation of auto-sizing...
+        /// </summary>
+        private void mLabel_SizeChanged(object sender, EventArgs e)
+        {
+            MinimumSize = new Size(mLabel.Width + mLabel.Location.X + mLabel.Margin.Right, Height);
+            if (ChangedMinimumSize != null) ChangedMinimumSize(this, new EventArgs());
         }
     }
 }

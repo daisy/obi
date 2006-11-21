@@ -15,6 +15,8 @@ namespace Obi.UserControls
         private StripManagerPanel mManager;  // the manager for this strip
         private CoreNode mNode;              // the core node for this strip
 
+        public delegate void ChangedMinimumSizeHandler(object sender, EventArgs e);
+
         #region properties
 
         public string Label
@@ -190,9 +192,7 @@ namespace Obi.UserControls
         //mg: for tab navigation et al
         private void SectionStrip_enter(object sender, EventArgs e)
         {
-            //System.Diagnostics.Debug.Print("SectionStrip:tabindex:" + this.TabIndex.ToString());
             mManager.SelectedSectionNode = mNode;            
-            //this.MarkSelected();
         }
 
         public void MarkSelected()
@@ -277,16 +277,35 @@ namespace Obi.UserControls
         /// <param name="block">The audio block to append.</param>
         public void AppendAudioBlock(AudioBlock block)
         {
+            mAnnotationLayoutPanel.Controls.Add(block.AnnotationBlock);
             mAudioLayoutPanel.Controls.Add(block);
+/*med 20061120 svn merge: i think this is old code
             mAnnotationLayoutPanel.Controls.Add(block.AnnotationBlock);
             //md 20061024 force resizing
-            block._Width = block.AnnotationBlock.Width;
+            block._Width = block.AnnotationBlock.Width;*/
+            block.AnnotationBlock.ChangedMinimumSize += new SectionStrip.ChangedMinimumSizeHandler(
+                delegate(object sender, EventArgs e) { ManageAudioBlockWidth(block); }
+            );
+            ManageAudioBlockWidth(block);
+            if (mAudioLayoutPanel.Controls.Count == 1)
+            {
+                mAudioLayoutPanel.Location = new Point(mAudioLayoutPanel.Location.X,
+                    mAnnotationLayoutPanel.Location.Y + mAnnotationLayoutPanel.Height + mAnnotationLayoutPanel.Margin.Bottom); 
+            }
             // fix the layout so that the two layout panels are correctly placed.
             if (mAudioLayoutPanel.Controls.Count == 1)
             {
                 mAudioLayoutPanel.Location = new Point(mAudioLayoutPanel.Location.X,
                     mAnnotationLayoutPanel.Location.Y + mAnnotationLayoutPanel.Height + mAnnotationLayoutPanel.Margin.Bottom); 
             }
+        }
+
+        public void ManageAudioBlockWidth(AudioBlock block)
+        {
+            int widest = block.AnnotationBlock.MinimumSize.Width > block.MinimumSize.Width ?
+            block.AnnotationBlock.MinimumSize.Width : block.MinimumSize.Width;
+            if (block.AnnotationBlock.Width != widest) block.AnnotationBlock.Width = widest;
+            if (block.Width != widest) block.Width = widest;
         }
 
         /// <summary>

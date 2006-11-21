@@ -58,6 +58,13 @@ namespace Obi.Audio
 
 		private VuMeter ob_VuMeter;
 
+        // monitoring timer to trigger events independent of refresh thread
+        private System.Windows.Forms.Timer MoniteringTimer = new System.Windows.Forms.Timer();
+
+        // Flag to trigger end of asset events, flag is set for a moment and again reset
+        private bool m_IsEndOfAsset = false ;
+
+
 		private static readonly AudioPlayer mInstance = new AudioPlayer();
 
 		public static AudioPlayer Instance
@@ -71,6 +78,14 @@ namespace Obi.Audio
 
 			m_State = AudioPlayerState.Stopped;
 			ob_VuMeter = null;  // JQ
+
+            MoniteringTimer.Tick += new System.EventHandler(this.MoniteringTimer_Tick);
+            MoniteringTimer.Interval = 200;
+
+            // events associated with local function so as to avoid null exceptions            
+            StateChanged += new Obi.Events.Audio.Player.StateChangedHandler(CatchEvents);
+            EndOfAudioAsset += new Obi.Events.Audio.Player.EndOfAudioAssetHandler(CatchEvents);
+            
 		}
 
 		// bool variable to enable or disable event
@@ -267,13 +282,15 @@ namespace Obi.Audio
 		{
 			m_StartPosition   = 0 ;
 			m_State  = AudioPlayerState.NotReady ;
+            
 			m_Asset = asset as Assets.AudioMediaAsset;
 			InitPlay(0, 0);
 		}
 
 		void InitPlay(long lStartPosition, long lEndPosition)
 		{
-            if (m_State == AudioPlayerState.Stopped || m_State == AudioPlayerState.NotReady)
+            //if (m_State == AudioPlayerState.Stopped || m_State == AudioPlayerState.NotReady)
+                if (m_State != AudioPlayerState.Playing )
             {
                 // Adjust the start and end position according to frame size
                 lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, m_Asset.FrameSize);
@@ -360,6 +377,7 @@ namespace Obi.Audio
                 Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
                 m_State = AudioPlayerState.Playing;
                 StateChanged(this, e);
+                MoniteringTimer.Enabled = true;
                 // starts playing
                 SoundBuffer.Play(0, BufferPlayFlags.Looping);
                 m_BufferCheck = 1;
@@ -420,6 +438,8 @@ namespace Obi.Audio
 					
 				// end of while
 			}
+
+
             int BufferStopPosition= 0 ;
             if (m_BufferCheck == 1 )
             {
@@ -465,20 +485,19 @@ namespace Obi.Audio
 			// Stopping process begins
 			SoundBuffer.Stop () ;
 			if (ob_VuMeter != null) ob_VuMeter.Reset () ;
-
+            //SoundBuffer = null;
 				m_br.Close();
 				//ob_EndOfAudioAsset.NotifyEndOfAudioAsset ( this , ob_EndOfAudioAsset) ;
 
 			// changes the state and trigger events
 			//ob_StateChanged = new StateChanged (m_State) ;
 
-			EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());  // JQ
-
-
-			Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
-			m_State= AudioPlayerState.Stopped;
+			//EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());  // JQ
+                
+            Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
+            m_State = AudioPlayerState.Stopped;
 			TriggerStateChangedEvent(e);
-
+            m_IsEndOfAsset = true;
 			// RefreshBuffer ends
 		}
 		
@@ -517,16 +536,21 @@ namespace Obi.Audio
 				MessageBox.Show("Arguments out of range") ;
 			}
 		}
-
+        private long m_lPausePosition ;
 		public void Pause()
 		{
 			if (m_State.Equals(AudioPlayerState .Playing))
 			{
-				SoundBuffer.Stop () ;
+                m_lPausePosition = GetCurrentBytePosition ();
+                StopFunction();
+
+//				SoundBuffer.Stop () ;
 				// Change the state and trigger event
+                
 				Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State) ;
-				m_State= AudioPlayerState .Paused;
+                m_State = AudioPlayerState.Paused;
 				TriggerStateChangedEvent(e);
+                
 			}
 		}
 
@@ -534,10 +558,23 @@ namespace Obi.Audio
 		{
 			if (m_State.Equals(AudioPlayerState.Paused))
 			{
-				Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
-				m_State= AudioPlayerState .Playing ;
-				TriggerStateChangedEvent(e) ;
-				SoundBuffer.Play(0, BufferPlayFlags.Looping);
+                
+                long lPosition = CalculationFunctions.AdaptToFrame( m_lPausePosition , m_Asset.FrameSize);
+                if (lPosition >= 0 && lPosition < m_Asset.AudioLengthInBytes)
+                {
+                    m_StartPosition = lPosition;
+                    InitPlay(lPosition, 0);
+                }
+                else
+                    throw new Exception("Start Position is out of bounds of Audio Asset");
+
+                //Play(m_Asset, m_dPausePosition);
+
+                // comment following three state change event lines because  event  is set to playing by init play
+                //m_State = AudioPlayerState.Playing;
+				//Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
+				//TriggerStateChangedEvent(e) ;
+				
 			}			
 		}
 
@@ -545,16 +582,30 @@ namespace Obi.Audio
 		{
 			if (!m_State.Equals(AudioPlayerState .Stopped))			
 			{
-				SoundBuffer.Stop();
-				RefreshThread.Abort();
-				if (ob_VuMeter != null) ob_VuMeter.Reset();			
-				
-                    m_br.Close();
+				//SoundBuffer.Stop();
+                //RefreshThread.Abort();
+				//if (ob_VuMeter != null) ob_VuMeter.Reset();			
+                StopFunction();
 			}
+            if ( m_br != null )
+            m_br.Close();
+            
 			Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
-			m_State = AudioPlayerState.Stopped;
+            m_State = AudioPlayerState.Stopped;
 			TriggerStateChangedEvent(e);
 		}
+
+        private void StopFunction ()
+        {
+            SoundBuffer.Stop();
+
+            if ( RefreshThread.IsAlive )
+                RefreshThread.Abort();
+
+				if (ob_VuMeter != null) ob_VuMeter.Reset();			
+
+            m_br.Close();
+        }
 
 		internal long GetCurrentBytePosition()
 		{
@@ -568,7 +619,7 @@ namespace Obi.Audio
 			}
 			else
 			{
-				lCurrentPosition = m_lPlayed - (3 * m_RefreshLength) + PlayPosition ;
+                lCurrentPosition = m_lPlayed - (3 * m_RefreshLength) + PlayPosition;
 			}
 			return lCurrentPosition ;
 		}
@@ -604,14 +655,15 @@ namespace Obi.Audio
 			else if(m_State.Equals (AudioPlayerState .Paused ) )
 			{
 
-					Stop();
+					//Stop();
 					m_StartPosition = localPosition ;
-					Thread.Sleep (20) ;
-					InitPlay(localPosition , 0);
-					Thread.Sleep(30) ;
-					SoundBuffer.Stop () ;
+                    m_lPausePosition = localPosition;
+					//Thread.Sleep (20) ;
+					//InitPlay(localPosition , 0);
+					//Thread.Sleep(30) ;
+					//SoundBuffer.Stop () ;
 					// Stop () also change the m_Stateto stopped so change it to paused
-					m_State=AudioPlayerState .Paused;
+					//m_State=AudioPlayerState .Paused;
 				
 				
 			}
@@ -704,6 +756,25 @@ namespace Obi.Audio
 				}
 			}
 		}
+
+        private void MoniteringTimer_Tick(object sender, EventArgs e)
+        {
+            if ( m_IsEndOfAsset == true)
+            {
+                m_IsEndOfAsset = false;
+                MoniteringTimer.Enabled = false;
+                EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());
+                
+            }
+
+        }
+
+
+        // function to catch events so as to avoid null  reference exceptions
+        private void CatchEvents(object sender, EventArgs e)
+        {
+        }
+
 
 		// End Class
 	}

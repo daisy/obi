@@ -46,6 +46,7 @@ namespace Obi.UserControls
             this.mTimeLabel.Text = "(time)";
             this.mTimeLabel.DoubleClick += new System.EventHandler(this.AudioBlock_DoubleClick);
             this.mTimeLabel.Click += new System.EventHandler(this.AudioBlock_Click);
+            this.mTimeLabel.SizeChanged += new System.EventHandler(this.ContentsSizeChanged);
             // 
             // mToolTip
             // 
@@ -67,6 +68,7 @@ namespace Obi.UserControls
             this.mLabel.Text = "(label)";
             this.mLabel.DoubleClick += new System.EventHandler(this.AudioBlock_DoubleClick);
             this.mLabel.Click += new System.EventHandler(this.AudioBlock_Click);
+            this.mLabel.SizeChanged += new System.EventHandler(this.ContentsSizeChanged);
             // 
             // mPage
             // 
@@ -74,7 +76,8 @@ namespace Obi.UserControls
             this.mPage.Location = new System.Drawing.Point(5, 39);
             this.mPage.Name = "mPage";
             this.mPage.ReadOnly = true;
-            this.mPage.Size = new System.Drawing.Size(100, 12);
+						//med 20061120 svn merge: old size? this.mPage.Size = new System.Drawing.Size(100, 12);
+            this.mPage.Size = new System.Drawing.Size(53, 12);
             this.mPage.TabIndex = 4;
             this.mPage.Text = "(page)";
             this.mPage.Visible = false;
@@ -92,11 +95,12 @@ namespace Obi.UserControls
             this.Controls.Add(this.mTimeLabel);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
             this.Name = "AudioBlock";
-            this.Size = new System.Drawing.Size(116, 54);
+						//med 20061120 svn merge: old size? this.Size = new System.Drawing.Size(116, 54);
+            this.Size = new System.Drawing.Size(61, 54);
             this.Enter += new System.EventHandler(this.AudioBlock_enter);
             this.DoubleClick += new System.EventHandler(this.AudioBlock_DoubleClick);
             this.Click += new System.EventHandler(this.AudioBlock_Click);
-            this.SizeChanged += new System.EventHandler(this.AudioBlock_SizeChanged);
+            //med 20061120 svn merge: suspect this event was deleted in the latest code this.SizeChanged += new System.EventHandler(this.AudioBlock_SizeChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 

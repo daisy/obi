@@ -39,7 +39,8 @@ namespace Obi
         private string mLastPath;            // last path to which the project was saved (see save as)
         private SimpleMetadata mMetadata;    // metadata for this project
 
-        private int mLastPage;               // last page number in the project
+        private Clipboard mClipboard;        // project-wide clipboard.
+        private CoreNode mSilencePhrase;     // silence phrase used for phrase detection
 
         public static readonly string XUKVersion = "obi-xuk-007";            // version of the Obi/XUK file
         public static readonly string AudioChannel = "obi.audio";            // canonical name of the audio channel
@@ -48,14 +49,10 @@ namespace Obi
 
         public event Events.Project.StateChangedHandler StateChanged;       // the state of the project changed (modified, saved...)
         public event Events.Project.CommandCreatedHandler CommandCreated;   // a new command must be added to the command manager
-
         public event Events.Node.AddedPhraseNodeHandler AddedPhraseNode;        // a phrase node was added to a strip
         public event Events.Node.MediaSetHandler MediaSet;                      // a media object was set on a node
         public event Events.Node.DeletedNodeHandler DeletedPhraseNode;          // deleted a phrase node 
-
         public event Events.Node.TouchedNodeHandler TouchedNode;  // this node was somehow modified
-       
-      
 
         /// <summary>
         /// This flag is set to true if the project contains modifications that have not been saved.
@@ -106,6 +103,14 @@ namespace Obi
         }
 
         /// <summary>
+        /// The project-wide clipboard.
+        /// </summary>
+        public Clipboard Clipboard
+        {
+            get { return mClipboard; }
+        }
+
+        /// <summary>
         /// Create an empty project. And I mean empty.
         /// </summary>
         /// <remarks>
@@ -118,8 +123,13 @@ namespace Obi
             mAssManager = null;
             mUnsaved = false;
             mXUKPath = null;
+						/*med 20061120 svn merge: i don't think we need this (was from 0.6 trunk)
             mBlockClipBoard = null;
-            mClipboard = null;
+            mClipboard = null;*/
+            /*med 20061120 svn merge: this should be the newer version of the above commented-out code*/
+            mClipboard = new Clipboard();
+            mSilencePhrase = null;
+
             // Use our own property factory so that we can create custom properties
             getPresentation().setPropertyFactory(new ObiPropertyFactory());
         }
@@ -346,15 +356,32 @@ namespace Obi
         }
 
         /// <summary>
+        /// Project was modified.
+        /// </summary>
+        private void Modified()
+        {
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+
+        /// <summary>
+        /// Project was saved
+        /// </summary>
+        private void Saved()
+        {
+            mUnsaved = false;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Saved));            
+        }
+
+        /// <summary>
         /// Save the project to its XUK file.
         /// </summary>
         internal void Save()
         {
             UpdateMetadata();
             saveXUK(new Uri(mXUKPath));
-            mUnsaved = false;
             mLastPath = mXUKPath;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Saved));
+            Saved();
         }
 
         /// <summary>
@@ -430,8 +457,16 @@ namespace Obi
         /// </summary>
         public void Touch()
         {
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(new Commands.Touch(this)));
+            Modified();
+        }
+
+        /// <summary>
+        /// Project has reverted to its initial state (e.g. after all commands have been undone.)
+        /// </summary>
+        internal void Reverted()
+        {
+            Saved();
         }
 
         /// <summary>
@@ -447,9 +482,10 @@ namespace Obi
             ChannelsProperty prop = getPresentation().getPropertyFactory().createChannelsProperty();
             node.setProperty(prop);
             TextMedia annotation = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
-            
+
             //md i would rather set this to "" but the toolkit doesn't allow it
-            annotation.setText("-");
+            //annotation.setText("-");
+            //JQ I guess we'll just set it to nothing and be done with it
             prop.setMedia(mAnnotationChannel, annotation);
            
             AssetProperty assProp = (AssetProperty)getPresentation().getPropertyFactory().createProperty("AssetProperty",
@@ -568,6 +604,26 @@ namespace Obi
             {
                 return getNodeLevel((CoreNode)node.getParent()) + 1;
             }
+        }
+
+        /// <summary>
+        /// Temporary convenience for finding the first phrase, i.e. the silence phrase (so far.)
+        /// </summary>
+        /// <returns>The first phrase node or null.</returns>
+        internal CoreNode FindFirstPhrase()
+        {
+            CoreNode first = null;
+            getPresentation().getRootNode().visitDepthFirst
+            (
+                delegate(ICoreNode n)
+                {
+                    if (first != null) return false;
+                    if (GetNodeType((CoreNode)n) == NodeType.Phrase) { first = (CoreNode)n; System.Diagnostics.Debug.Print("bing!"); }
+                    return true;
+                },
+                delegate(ICoreNode n) {}
+            );
+            return first;
         }
     }
 }

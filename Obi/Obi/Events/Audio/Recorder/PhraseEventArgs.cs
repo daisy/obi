@@ -18,7 +18,17 @@ namespace Obi.Events.Audio.Recorder
     /// The latest phrase is done.
     /// </summary>
     public delegate void FinishingPhraseHandler(object sender, PhraseEventArgs e);
- 
+
+    /// <summary>
+    /// Same as finishing a phrase, but this one will be marked as a page.
+    /// </summary>
+    public delegate void FinishingPageHandler(object sender, PhraseEventArgs e);
+
+    /// <summary>
+    /// Same as starting a phrase, but a new section is created first.
+    /// </summary>
+    public delegate void StartingSectionHandler(object sender, EventArgs e);
+
     class PhraseEventArgs: EventArgs
     {
         private AudioMediaAsset mAsset;

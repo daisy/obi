@@ -78,11 +78,12 @@ namespace Obi
     /// Possible status of a phrase node in the tree:
     ///   * Used: a regular node, it is currently used.
     ///   * Unused: kept in the project but let's pretend it's not here.
-    ///   * Invalid: the node has invalid asset (for instance.)
+    ///   * Silence: marked as silence for sentence detection (is also unused.)
+    ///   * Empty: has no audio yet (is also unused.)
     /// For other nodes, we just use:
     ///   * NA: not applicable.
     /// </summary>
-    public enum NodeStatus { Used, Unused, Invalid, NA };
+    public enum NodeStatus { Used, Unused, Silence, Empty, NA };
 
     /// <summary>
     /// Information about a node: id, type, status.
@@ -147,7 +148,8 @@ namespace Obi
                 string status = source.GetAttribute("status");
                 mNodeStatus = status == "Used" ? NodeStatus.Used :
                     status == "Unused" ? NodeStatus.Unused :
-                    status == "Invalid" ? NodeStatus.Invalid : NodeStatus.NA;
+                    status == "Silence" ? NodeStatus.Silence :
+                    status == "Empty" ? NodeStatus.Empty : NodeStatus.NA;
                 if (source.IsEmptyElement) return true;
                 while (source.Read())
                 {

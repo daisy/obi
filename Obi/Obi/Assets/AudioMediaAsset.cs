@@ -8,6 +8,9 @@ namespace Obi.Assets
 {
     public class AudioMediaAsset : MediaAsset
     {
+        public static readonly double DefaultGap = 500.0;             // default gap for phrase detection
+        public static readonly double DefaultLeadingSilence = 100.0;  // default leading silence
+
         // member variables
         //ArrayList is to be finally changed to internal
         // changed to mClips--see below (JQ)
@@ -512,30 +515,31 @@ namespace Obi.Assets
                 throw new Exception("Cannot split: parameter value out of bound of asset");
         }
 
-        public long GetSilenceAmplitude(Assets.AudioMediaAsset silenceRef)
+        /// <summary>
+        /// Get the maximum amplitude of silence in a given "silent" asset.
+        /// </summary>
+        /// <returns>The amplitude.</returns>
+        public long GetSilenceAmplitude()
         {
-            AudioMediaAsset ob_AudioMediaSilenceRef = silenceRef as AudioMediaAsset;
-            //AudioClip Ref = ob_AudioMediaSilenceRef.m_alClipList[0] as AudioClip;
-            AudioClip Ref = ob_AudioMediaSilenceRef.Clips[0];
-            return Ref.GetClipSilenceAmplitude();
-
+            long max = 0;
+            foreach (AudioClip clip in mClips)
+            {
+                long amplitude = clip.GetClipSilenceAmplitude();
+                if (amplitude > max) max = amplitude;
+            }
+            max = max + 10 ;
+            return max;
         }
 
-        public ArrayList ApplyPhraseDetection(long threshold, long length, long before)
+        /// <summary>
+        /// Apply phrase detection to a phrase.
+        /// </summary>
+        /// <param name="threshold">Silence threshold.</param>
+        /// <param name="length">Minimum silence gap between phrases (in bytes).</param>
+        /// <param name="before">Maximum leading silence before a phrase (in bytes).</param>
+        /// <returns>The list of detected phrases.</returns>
+        public List <AudioMediaAsset> ApplyPhraseDetection(long threshold, long length, long before)
         {
-            double dLength = Audio.CalculationFunctions.ConvertByteToTime(length, m_SamplingRate, m_FrameSize);
-            double dBefore = Audio.CalculationFunctions.ConvertByteToTime(before, m_SamplingRate, m_FrameSize);
-
-            return ApplyPhraseDetection(threshold, dLength, dBefore);
-        }
-
-        public ArrayList ApplyPhraseDetection(long threshold, double length, double before)
-        {
-            //			 convert input parameters from time to byte
-            long lLength = Audio.CalculationFunctions.ConvertTimeToByte(length, m_SamplingRate, m_FrameSize);
-            long lBefore = Audio.CalculationFunctions.ConvertTimeToByte(before, m_SamplingRate, m_FrameSize);
-
-
             AudioClip ob_Clip;
             // AssetList is list of assets returned by phrase detector
             ArrayList alAssetList = new ArrayList();
@@ -543,68 +547,65 @@ namespace Obi.Assets
             ArrayList alClipList;
             AudioMediaAsset ob_Asset = new AudioMediaAsset(m_Channels, m_BitDepth, m_SamplingRate);
 
-
             // apply phrase detection on each clip in clip list of this asset
-            //for (int i = 0; i < m_alClipList.Count; i++)
-            //{
-            //    ob_Clip = m_alClipList[i] as AudioClip;
             for (int i = 0; i < mClips.Count; ++i)
             {
                 ob_Clip = mClips[i];
-                alClipList = ob_Clip.DetectPhrases(threshold, lLength, lBefore);
-                //MessageBox.Show (alClipList.Count.ToString () + "Clip Count") ;
+                alClipList = ob_Clip.DetectPhrases(threshold, length, before);
                 if (Convert.ToBoolean(alClipList[0]) == false)
                 {
-
-                    //MessageBox.Show ("bool is False") ;
                     ob_Asset.AddClip(alClipList[1] as AudioClip);
-
-                    // if (i == m_alClipList.Count - 1 && ob_Asset.m_alClipList != null)
                     if (i == mClips.Count - 1 && ob_Asset.Clips != null)
                     {
                         alAssetList.Add(ob_Asset);
-                        //MessageBox.Show ("last Asset added") ;
                     }
                 }
                 else
                 {
-                    //MessageBox.Show ("bool is true") ;
                     if (ob_Clip.BeginTime + 3000 < (alClipList[1] as AudioClip).BeginTime)
                     {
                         ob_Asset.AddClip(ob_Clip.CopyClipPart(0, (alClipList[1] as AudioClip).BeginTime - ob_Clip.BeginTime));
                         if (i == 0)
                             alAssetList.Add(ob_Asset);
                     }
-                    //ob_Asset.AddClip (alClipList [1] as AudioClip) ;
                     if (i != 0)
                         alAssetList.Add(ob_Asset);
-                    //MessageBox.Show ("Asset Added before loop") ;
-
                     for (int j = 1; j < alClipList.Count - 1; j++)
                     {
                         ob_Asset = new AudioMediaAsset(m_Channels, m_BitDepth, m_SamplingRate);
                         ob_Asset.AddClip(alClipList[j] as AudioClip);
                         alAssetList.Add(ob_Asset);
-                        //MessageBox.Show ("Asset added inside loop") ;
                     }
                     ob_Asset = new AudioMediaAsset(m_Channels, m_BitDepth, m_SamplingRate);
-
                     if (alClipList.Count > 2)
                         ob_Asset.AddClip(alClipList[alClipList.Count - 1] as AudioClip);
-
-                    // if (i == m_alClipList.Count - 1 && ob_Asset.m_alClipList != null)
                     if (i == mClips.Count - 1 && ob_Asset.Clips != null)
                     {
                         alAssetList.Add(ob_Asset);
-                        //MessageBox.Show ("last Asset added") ;
                     }
-                } // bool if ends
-
+                }
             }
+            List<AudioMediaAsset> RetList = new List<AudioMediaAsset>();
+            for (int n = 0; n < alAssetList.Count; n++)
+            {
+                RetList.Add(alAssetList[n] as AudioMediaAsset);
+            }
+            return RetList;
+        }
 
-
-            return alAssetList;
-
+        /// <summary>
+        /// Apply phrase detection to a phrase.
+        /// </summary>
+        /// <param name="threshold">Silence threshold.</param>
+        /// <param name="length">Minimum silence gap between phrases (in milliseconds).</param>
+        /// <param name="before">Maximum leading silence before a phrase (in milliseconds).</param>
+        /// <returns>The list of detected phrases.</returns>
+        public List<AudioMediaAsset> ApplyPhraseDetection(long threshold, double length, double before)
+        {
+            // convert input parameters from time to byte
+            long lLength = Audio.CalculationFunctions.ConvertTimeToByte(length, m_SamplingRate, m_FrameSize);
+            long lBefore = Audio.CalculationFunctions.ConvertTimeToByte(before, m_SamplingRate, m_FrameSize);
+            return ApplyPhraseDetection(threshold, lLength, lBefore);
         }
 
         // function to compute the amplitude of a small chunck of samples
