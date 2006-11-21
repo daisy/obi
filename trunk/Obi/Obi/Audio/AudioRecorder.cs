@@ -466,7 +466,7 @@ namespace Obi.Audio
                         long mPosition = (long)CapturePos;
             CurrentPositionInByte = SampleCount + mPosition;
             	dCurrentTime = CalculationFunctions.ConvertByteToTime(CurrentPositionInByte, m_SampleRate, m_FrameSize);
-			m_UpdateVMArrayLength = m_iCaptureBufferSize/ 50 ;
+			m_UpdateVMArrayLength = m_iCaptureBufferSize/ 20 ;
 			m_UpdateVMArrayLength = Convert.ToInt32 (CalculationFunctions.AdaptToFrame ( Convert.ToInt32 ( m_UpdateVMArrayLength ),  m_FrameSize)  );
 
 			arUpdateVM = new byte [ m_UpdateVMArrayLength ] ;
