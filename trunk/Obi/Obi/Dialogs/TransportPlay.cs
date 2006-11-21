@@ -12,6 +12,7 @@ namespace Obi.Dialogs
     public partial class TransportPlay : Form
     {
         private Playlist mPlaylist;
+        
 
         public TransportPlay()
         {
@@ -32,6 +33,8 @@ namespace Obi.Dialogs
             );
             mPlaylist.MovedToPhrase += new Playlist.MovedToPhraseHandler(MovedToPhrase);
             mPlaylist.Play();
+
+           mPlaylist.Audioplayer.VuMeterObject.PeakOverload += new Events.Audio.VuMeter.PeakOverloadHandler(CatchPeakOverloadEvent);
         }
 
         delegate void PlayerStateChangedCallback();
@@ -83,17 +86,20 @@ namespace Obi.Dialogs
         /// </summary>
         private void mStopButton_Click(object sender, EventArgs e)
         {
+            tmUpdateAmplitudeText.Enabled = false;
             mPlaylist.Stop();
         }
 
         private void mPauseButton_Click(object sender, EventArgs e)
         {
+            tmUpdateAmplitudeText.Enabled = false;
             mPlaylist.Pause();
         }
 
         private void mPlayButton_Click(object sender, EventArgs e)
         {
             mPlaylist.Play();
+            tmUpdateAmplitudeText.Enabled = true ;
         }
 
         private void TransportPlay_FormClosing(object sender, FormClosingEventArgs e)
@@ -122,5 +128,42 @@ namespace Obi.Dialogs
 //            MessageBox.Show(mPlaylist.CurrentTime.ToString());
             mPlaylist.CurrentTime = mPlaylist.CurrentTime  + 10000;
         }
+
+        // catch the peak overload event triggered by VuMeter
+        public void CatchPeakOverloadEvent(object sender, Events.Audio.VuMeter.PeakOverloadEventArgs ob_PeakOverload)
+        {
+            Audio.VuMeter ob_VuMeter = sender as Audio.VuMeter;
+            if (ob_PeakOverload.Channel == 1)
+            {
+                				SetTextBoxText(txtOverloadLeft, ob_VuMeter.m_MeanValueLeft.ToString());  
+            }
+
+            if (ob_PeakOverload.Channel == 2)
+            {
+                SetTextBoxText(txtOverloadRight, ob_VuMeter.m_MeanValueRight.ToString());
+            }
+        }
+
+        private delegate void SetTextBoxTextCallback(TextBox box, string text);
+
+        private void SetTextBoxText(TextBox box, string text)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new SetTextBoxTextCallback(SetTextBoxText), new object[] { box, text });
+            }
+            else
+            {
+                box.Text = text;
+            }
+        }
+
+        private void tmUpdateAmplitudeText_Tick(object sender, EventArgs e)
+        {
+            txtAmplitudeLeft.Text = mPlaylist.Audioplayer.VuMeterObject.m_MeanValueLeft.ToString () ;
+            txtAmplitudeRight.Text = mPlaylist.Audioplayer.VuMeterObject.m_MeanValueRight.ToString();
+        }
+
+
     }
 }

@@ -25,6 +25,7 @@ namespace Obi
         private bool mWholeBook;          // flag for playing whole book or just a selection
         private double mPausePosition= 0 ;
         private AudioPlayerState mPlayListState= AudioPlayerState.Stopped ;
+        private VuMeter ob_VuMeter = new VuMeter();
 
         // Amount of time after which "previous phrase" goes to the beginning of the phrase
         // rather than the actual previous phrase. In milliseconds.
@@ -184,6 +185,8 @@ namespace Obi
         public Playlist(Project project, AudioPlayer player)
         {
             InitPlaylist(project, player, project.RootNode, true);
+            mPlayer.VuMeterObject = ob_VuMeter;
+            
         }
 
         /// <summary>
@@ -197,6 +200,7 @@ namespace Obi
         public Playlist(Project project, AudioPlayer player, CoreNode node)
         {
             InitPlaylist(project, player, node, false);
+            mPlayer.VuMeterObject = ob_VuMeter;
         }
 
         /// <summary>
@@ -267,13 +271,14 @@ namespace Obi
                     }
                 }
                 //else if ( mPausePosition == 0 && mPausedPhraseIndex == 0 )   
-                else if (mPlayListState == AudioPlayerState.Stopped) 
+                else if (mPlayListState == AudioPlayerState.Stopped)
                 {
                     // start from the beginning
                     mCurrentPhraseIndex = 0;
                     mElapsedTime = 0.0;
                     mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]));
                     mPlayListState = AudioPlayerState.Playing;
+                    ob_VuMeter.ShowForm();
                     if (StateChanged != null)
                     {
                         StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Stopped));
@@ -312,6 +317,7 @@ namespace Obi
             else if (EndOfPlaylist != null)
             {
                 mPlayListState = AudioPlayerState.Stopped;
+                ob_VuMeter.CloseVuMeterForm();
                 EndOfPlaylist(this, new EventArgs());
             }
         }
