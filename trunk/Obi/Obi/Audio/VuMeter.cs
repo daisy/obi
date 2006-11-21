@@ -30,10 +30,10 @@ namespace Obi.Audio
 
 		//Member variable used in properties
 		private int m_Channels =2 ;
-		private double m_ScaleFactor = 1 ;
-		private double m_SampleTimeLength = 2000 ;
+		private double m_ScaleFactor = 2 ;
+		private double m_SampleTimeLength = 1000 ;
 		internal bool m_bOverload = false ;
-		private int m_UpperThreshold = 85 ;
+		private int m_UpperThreshold = 115 ;
 		private int m_LowerThreshold = 50;
 		private int [] arPeakOverloadValue = new int [2] ;
 		private bool [] arPeakOverloadFlag = new bool [2] ;
@@ -416,10 +416,10 @@ namespace Obi.Audio
 			Graph.LowBottom = OriginY + Convert.ToInt32 (m_ScaleFactor * 254) ;
 
 			Graph.LeftGraphX = OriginX ;
-			Graph.RightGraphX = OriginX +Convert.ToInt32 (m_ScaleFactor * 90) ;
+			Graph.RightGraphX = OriginX +Convert.ToInt32 (m_ScaleFactor * 60) ;
 
-			Graph.PeakOverloadLightX = 350 ;
-			Graph.PeakOverloadLightY = 50 ;
+			Graph.PeakOverloadLightX = 240 ;
+			Graph.PeakOverloadLightY = 30 ;
 		}
 		/*
 				internal class Threshold
