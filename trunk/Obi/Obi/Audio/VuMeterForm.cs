@@ -232,6 +232,42 @@ namespace Obi.Audio
 			Pen PenVackground = new Pen(Color.White);
 			PenVackground.Width = LineWidth ;
 
+
+            // For left channel painting
+            if (EraserLeft < LowBottom && EraserLeft > LowTop)
+            {
+                objGraphics.DrawLine(PenLow, LeftGraphX, EraserLeft , LeftGraphX, LowBottom);	
+            }
+            else if( EraserLeft > NormalTop  &&  EraserLeft <= LowTop )
+            {
+                objGraphics.DrawLine(PenLow, LeftGraphX, LowTop, LeftGraphX, LowBottom);	
+                objGraphics.DrawLine(PenNormal, LeftGraphX, EraserLeft , LeftGraphX, NormalBottom);	
+            }
+            else if ( EraserLeft > HighTop  &&  EraserLeft <= NormalTop )
+            {
+                objGraphics.DrawLine(PenLow, LeftGraphX, LowTop, LeftGraphX, LowBottom);
+                objGraphics.DrawLine(PenNormal, LeftGraphX, NormalTop, LeftGraphX, NormalBottom);
+                objGraphics.DrawLine(PenHigh, LeftGraphX, EraserLeft , LeftGraphX, HighBottom);		
+            }
+
+            // for painting right channel
+            if ( EraserRight < LowBottom && EraserRight > LowTop)
+            {
+                objGraphics.DrawLine(PenLow, RightGraphX, EraserRight , RightGraphX, LowBottom);	
+            }
+            else if (EraserRight > NormalTop  &&  EraserRight <= LowTop )
+            {
+                objGraphics.DrawLine(PenLow, RightGraphX, LowTop, RightGraphX, LowBottom);	
+                objGraphics.DrawLine(PenNormal, RightGraphX, EraserRight , RightGraphX, NormalBottom);	
+            }
+            else if (EraserRight > HighTop &&  EraserRight <= NormalTop )
+            {
+                objGraphics.DrawLine(PenLow, RightGraphX, LowTop, RightGraphX, LowBottom);	
+                objGraphics.DrawLine(PenNormal, RightGraphX, NormalTop, RightGraphX, NormalBottom);	
+                objGraphics.DrawLine(PenHigh, RightGraphX, EraserRight , RightGraphX, HighBottom);		
+            }
+
+            /*
 			objGraphics.DrawLine(PenHigh, LeftGraphX, HighTop , LeftGraphX, HighBottom);		
 			objGraphics.DrawLine(PenHigh, RightGraphX, HighTop , RightGraphX, HighBottom);		
 
@@ -240,7 +276,7 @@ namespace Obi.Audio
 
 			objGraphics.DrawLine(PenLow, LeftGraphX, LowTop, LeftGraphX, LowBottom);	
 			objGraphics.DrawLine(PenLow, RightGraphX, LowTop, RightGraphX, LowBottom);	
-
+            */
 	
 			// Erase the unwanted line starting from top according to amplitude of each channel
 			objGraphics.DrawLine(PenVackground , LeftGraphX, HighTop , LeftGraphX, EraserLeft );	
@@ -257,8 +293,8 @@ namespace Obi.Audio
 			}
 			else  // Paint the light red for warning
 			{
-				objGraphics.DrawLine(PenHigh, PeakOverloadLightX+ LineWidth , PeakOverloadLightY, PeakOverloadLightX , PeakOverloadLightY + LineWidth + LineWidth);	
-				objGraphics.DrawLine(PenHigh, PeakOverloadLightX, PeakOverloadLightY, PeakOverloadLightX + LineWidth , PeakOverloadLightY + LineWidth + LineWidth);	
+				objGraphics.DrawLine(PenHigh, PeakOverloadLightX , PeakOverloadLightY, PeakOverloadLightX , PeakOverloadLightY + LineWidth + LineWidth);
+                objGraphics.DrawLine(PenHigh, PeakOverloadLightX + LineWidth , PeakOverloadLightY, PeakOverloadLightX + LineWidth, PeakOverloadLightY + LineWidth + LineWidth);	
 			}
 			
 		}
@@ -299,24 +335,17 @@ namespace Obi.Audio
 				//SetTextBoxText(txtOverloadRight, ob_VuMeter.m_MeanValueRight.ToString());
 			}
 
-			//BeepEnabled =true  ;
-			BeepEnabled = false;  // don't beep (JQ)
+			BeepEnabled =true  ;
+//			BeepEnabled = false;  // don't beep (JQ)
 		}	
 
 		// repeats the LoadBeep function to repeat beeps while there is overload
 		private void tmBeep_Tick(object sender, System.EventArgs e)
 		{
 			if (BeepEnabled == true)
-				LoadBeep () ;
+				//LoadBeep () ;
 
 			BeepEnabled = false ;
-		}
-
-		// Updates the amplitude of channels at regular intervals
-		private void tmRefreshText_Tick(object sender, System.EventArgs e)
-		{
-			//txtAmplitudeLeft.Text = AmplitudeLeft.ToString () ;
-			//txtAmplitudeRight.Text = AmplitudeRight.ToString () ;
 		}
 
 		private void btnClose_Click(object sender, System.EventArgs e)
