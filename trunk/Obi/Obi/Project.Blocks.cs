@@ -286,7 +286,13 @@ namespace Obi
             Modified();
         }
 
-        internal void StartRecordingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e, CoreNode parent, int index)
+        /// <summary>
+        /// A new phrase being recorded.
+        /// </summary>
+        /// <param name="e">The phrase event originally sent by the recording session.</param>
+        /// <param name="parent">Parent core node for the new phrase.</param>
+        /// <param name="index">Base index in the parent for new phrases.</param>
+        internal void StartRecordingPhrase(Events.Audio.Recorder.PhraseEventArgs e, CoreNode parent, int index)
         {
             CoreNode phrase = CreatePhraseNode(e.Asset);
             parent.insert(phrase, index + e.PhraseIndex);
@@ -298,13 +304,25 @@ namespace Obi
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
 
-        internal void ContinuingRecordingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e, CoreNode parent, int index)
+        /// <summary>
+        /// Update the time information of a phrase being recorded.
+        /// </summary>
+        /// <param name="e">The phrase event originally sent by the recording session.</param>
+        /// <param name="parent">Parent core node for the new phrase.</param>
+        /// <param name="index">Base index in the parent for new phrases.</param>
+        internal void ContinuingRecordingPhrase(Events.Audio.Recorder.PhraseEventArgs e, CoreNode parent, int index)
         {
             CoreNode phrase = parent.getChild(index + e.PhraseIndex);
             UpdateTime(this, new Events.Strip.UpdateTimeEventArgs(phrase, e.Time));            
         }
 
-        internal void FinishRecordingPhrase(object sender, Events.Audio.Recorder.PhraseEventArgs e, CoreNode parent, int index)
+        /// <summary>
+        /// When a phrase has finished recording, update its media object.
+        /// </summary>
+        /// <param name="e">The phrase event originally sent by the recording session.</param>
+        /// <param name="parent">Parent core node for the new phrase.</param>
+        /// <param name="index">Base index in the parent for new phrases.</param>
+        internal void FinishRecordingPhrase(Events.Audio.Recorder.PhraseEventArgs e, CoreNode parent, int index)
         {
             CoreNode phrase = parent.getChild(index + e.PhraseIndex);
             UpdateSeq(phrase);

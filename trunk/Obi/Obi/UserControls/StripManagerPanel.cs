@@ -439,9 +439,13 @@ namespace Obi.UserControls
             {
                 return this.mPhraseNodeMap[previous];
             }
-            else
+            else if (mSectionNodeMap.ContainsKey(previous))
             {
                 return this.mSectionNodeMap[previous];
+            }
+            else
+            {
+                return null;
             }
         }
     }
