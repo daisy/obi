@@ -103,8 +103,8 @@ namespace Obi
             Audio.AudioRecorder.Instance.UpdateVuMeterFromRecorder +=
                 new Events.Audio.Recorder.UpdateVuMeterHandler(AudioRecorder_UpdateVuMeter);
 
-            StartingPhrase += new Obi.Events.Audio.Recorder.StartingPhraseHandler(CatchEvents);
-            ContinuingPhrase += new Obi.Events.Audio.Recorder.ContinuingPhraseHandler(CatchEvents);
+            // StartingPhrase += new Obi.Events.Audio.Recorder.StartingPhraseHandler(CatchEvents);
+            // ContinuingPhrase += new Obi.Events.Audio.Recorder.ContinuingPhraseHandler(CatchEvents);
             FinishingPhrase += new Obi.Events.Audio.Recorder.FinishingPhraseHandler(CatchEvents);
             StartingSection += new Obi.Events.Audio.Recorder.StartingSectionHandler(CatchEvents);
             FinishingPage += new Obi.Events.Audio.Recorder.FinishingPageHandler(CatchEvents);
@@ -136,35 +136,22 @@ namespace Obi
         /// </summary>
         public void Record()
         {
-        RecordFunction  () ;
-            tmCommitTimer.Enabled = true;
-        }
-
-
-        private void RecordFunction ()
-    {
             if (mRecorder.State == AudioRecorderState.Idle)
             {
                 //mAsset = Project.GetAudioMediaAsset(mCurrentPhrase);
                 // initialise lists
-                mPhraseMarks= new List<double> () ;
-        mSectionMarks = new List<int>();
-        mPageMarks = new List<int> () ;
-        mAssetList = new List<AudioMediaAsset>();
-        mSecondsCount = 0;
-
-
-                mRecordingAsset = mProject.AssetManager.NewAudioMediaAsset  (mChannels, mBitDepth, mSampleRate);
+                mPhraseMarks = new List<double>();
+                mSectionMarks = new List<int>();
+                mPageMarks = new List<int>();
+                mAssetList = new List<AudioMediaAsset>();
+                mSecondsCount = 0;
+                mRecordingAsset = mProject.AssetManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
                 mRecorder.StartRecording(mRecordingAsset);
-
                 mAsset = mProject.AssetManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
-
                 mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, 0, 0.0);
-
-                StartingPhrase( this , mPhraseEventsArgs);
-
-                UpdateDisplayThread = new Thread ( new ThreadStart ( UpdateDisplayPeriodically )) ;
-                
+                StartingPhrase(this, mPhraseEventsArgs);
+                UpdateDisplayThread = new Thread(new ThreadStart(UpdateDisplayPeriodically));
+                tmCommitTimer.Enabled = true;
             }
         }
 
@@ -174,36 +161,43 @@ namespace Obi
         public void Stop()
         {
             tmCommitTimer.Enabled = false;
-            StopFunction();
+            Obi.Events.Audio.Recorder.PhraseEventArgs e = StoppedRecording();
+            if (e != null) FinishingPhrase(this, e);
             mVuMeter.CloseVuMeterForm();
         }
 
-        private void StopFunction ()
-    {
+        /// <summary>
+        /// When committin, do not send an event.
+        /// </summary>
+        private void StopForCommit()
+        {
+            tmCommitTimer.Enabled = false;
+            StoppedRecording();
+            mVuMeter.CloseVuMeterForm();
+        }
+
+        /// <summary>
+        /// Convenience function to stop recording.
+        /// </summary>
+        /// <returns>True if we were indeed recording.</returns>
+        /// <remarks>May throw an exception.</remarks>
+        private Obi.Events.Audio.Recorder.PhraseEventArgs StoppedRecording()
+        {
+            Obi.Events.Audio.Recorder.PhraseEventArgs e = null;
             if (mRecorder.State != AudioRecorderState.Idle)
             {
-
-                bool Recording = false;
-                if (mRecorder.State == AudioRecorderState.Recording)
-                    Recording = true;
-
-
-                StopRecording();
-
-                if (Recording == true)
+                bool Recording = mRecorder.State == AudioRecorderState.Recording;
+                mRecorder.StopRecording();
+                if (Recording)
                 {
-
                     mPhraseMarks.Add(mRecordingAsset.LengthInMilliseconds);
                     mAssetList.Add(mAsset);
-
                     double mAssetLengthInMs = mPhraseMarks[0];
-                    mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count - 1, mAssetLengthInMs);
-
-                    //                    FinishingPhrase(this, mPhraseEventsArgs);
-
+                    e = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count - 1, mAssetLengthInMs);
                     AudioClip Clip = new AudioClip(mRecordingAsset.Clips[0].Path, 0.0, mPhraseMarks[0]);
-
                     mAssetList[0].AddClip(Clip);
+                    // here for loop is used to trigger events to make appropriate phrases, sections , pages which may be caught in
+                    // project class phrases, sections and page numbers were marked during recording session.
                     for (int i = 0; i < mPhraseMarks.Count - 1; i++)
                     {
                         Clip = new AudioClip(mRecordingAsset.Clips[0].Path, mPhraseMarks[i], mPhraseMarks[i + 1]);
@@ -211,24 +205,13 @@ namespace Obi
                     }
                 }
             }
-
-
-                    // here for loop is used to trigger events to make appropriate phrases, sections , pages which may be caught in project class
-                    // phrases, sections and page numbers were marked during recording session.
-
-                    // clear all the lists and assets
-                    mPhraseMarks = null;
-                    mPageMarks = mSectionMarks = null;
-                    mAsset = mRecordingAsset = null;
-
-                    if (UpdateDisplayThread != null)
-                    {
-                        if (UpdateDisplayThread.IsAlive)
-                            UpdateDisplayThread.Abort();
-                    }
-
+            // clear all the lists and assets
+            mPhraseMarks = null;
+            mPageMarks = mSectionMarks = null;
+            mAsset = mRecordingAsset = null;
+            if (UpdateDisplayThread != null && UpdateDisplayThread.IsAlive) UpdateDisplayThread.Abort();
+            return e;
         }
-
 
         /// <summary>
         /// Finish the currently recording phrase and continue recording into a new phrase.
@@ -320,35 +303,22 @@ namespace Obi
             // mProject.AssignNumber(phrase)
         }
 
-        private void UpdateDisplayPeriodically ()
+        /// <summary>
+        /// Throw a continuing phrase event every second.
+        /// </summary>
+        private void UpdateDisplayPeriodically()
         {
             Thread.Sleep(1000);
             mSecondsCount++;
             mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count, mRecorder.CurrentTime);
             ContinuingPhrase(this, mPhraseEventsArgs);
-
         }
 
         private void tmCommitTimer_tick ( object sender , EventArgs e )
         {
-            Stop();
+            StopForCommit();
             Record();
         }
-
-        private void StopRecording()
-        {
-            try
-            {
-                mRecorder.StopRecording();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show(Localizer.Message("recorder_error_text"), @Localizer.Message("recorder_error_caption" ))  ;
-                
-            }
-        }
-
-        
 
         void CatchEvents(object sender, EventArgs  e)
         {
