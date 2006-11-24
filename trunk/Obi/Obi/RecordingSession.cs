@@ -33,7 +33,9 @@ namespace Obi
         private List<AudioMediaAsset> mAssetList;
         private double mSecondsCount;
         private System.Windows.Forms.Timer  tmCommitTimer = new System.Windows.Forms.Timer () ;
+        private System.Windows.Forms.Timer tmUpdateDisplay = new System.Windows.Forms.Timer();
         
+
         // Property to set Autocommit interval time in seconds
         public int CommitIntervalSeconds
         {
@@ -113,6 +115,8 @@ namespace Obi
             // initialise commit timer
             tmCommitTimer.Tick += new System.EventHandler( tmCommitTimer_tick );
             tmCommitTimer.Interval = 300000;
+            tmUpdateDisplay.Tick += new System.EventHandler ( tmUpdateDisplay_tick );
+            tmUpdateDisplay.Interval = 1000 ;
 
             mVuMeter.ShowForm();
         }
@@ -150,8 +154,10 @@ namespace Obi
                 mAsset = mProject.AssetManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
                 mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, 0, 0.0);
                 StartingPhrase(this, mPhraseEventsArgs);
-                UpdateDisplayThread = new Thread(new ThreadStart(UpdateDisplayPeriodically));
+                //UpdateDisplayThread = new Thread(new ThreadStart(UpdateDisplayPeriodically));
+                //System.Media.SystemSounds.Exclamation.Play();
                 tmCommitTimer.Enabled = true;
+                tmUpdateDisplay.Enabled = true;
             }
         }
 
@@ -161,6 +167,7 @@ namespace Obi
         public void Stop()
         {
             tmCommitTimer.Enabled = false;
+            tmUpdateDisplay.Enabled = false;
             Obi.Events.Audio.Recorder.PhraseEventArgs e = StoppedRecording();
             if (e != null) FinishingPhrase(this, e);
             mVuMeter.CloseVuMeterForm();
@@ -171,9 +178,9 @@ namespace Obi
         /// </summary>
         private void StopForCommit()
         {
-            tmCommitTimer.Enabled = false;
+            //tmCommitTimer.Enabled = false;    // Avneesh : Should not be disabled as further commits will be disabled
             StoppedRecording();
-            mVuMeter.CloseVuMeterForm();
+            //mVuMeter.CloseVuMeterForm();  // Avneesh : Should not be closed to keep recording session smooth for user inspite of internal commits
         }
 
         /// <summary>
@@ -310,6 +317,13 @@ namespace Obi
         {
             Thread.Sleep(1000);
             mSecondsCount++;
+            mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count, mRecorder.CurrentTime);
+            ContinuingPhrase(this, mPhraseEventsArgs);
+        }
+
+        private void tmUpdateDisplay_tick(object sender, EventArgs e)
+        {
+//            System.Media.SystemSounds.Exclamation.Play();
             mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count, mRecorder.CurrentTime);
             ContinuingPhrase(this, mPhraseEventsArgs);
         }
