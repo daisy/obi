@@ -47,6 +47,7 @@ namespace Obi.Dialogs
             tmUpdateTimePosition.Enabled = true;
 
             AudioTrackBar.Maximum = Convert.ToInt32 ( mSourceAsset.LengthInMilliseconds/100  ) ;
+            //trackCentre.Maximum = Convert.ToInt32(mSourceAsset.LengthInMilliseconds / 100) ;
         }
         
         //member variables
@@ -248,7 +249,7 @@ namespace Obi.Dialogs
 
         private void Split_Load(object sender, EventArgs e)
         {
-
+            tmSlider.Enabled = false;
             //md annotation are not asset names anymore
             //md removed: ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).getText();
             //md added:
@@ -503,6 +504,55 @@ namespace Obi.Dialogs
                 AudioTrackBar.Value = Convert.ToInt32(Audio.AudioPlayer.Instance.CurrentTimePosition / 100);
             else if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped)
                 AudioTrackBar.Value = Convert.ToInt32(mSplitTime / 100); 
+        }
+
+    
+        private void tmSlider_Tick(object sender, EventArgs e)
+        {
+            tmSlider.Enabled = false;
+
+            mCentreSliderEventEffect = false;
+            trackCentre.Value = 400;
+            mCentreSliderEventEffect = true;
+
+            if (mCentreSliderValue < 0)
+                mCentreSliderValue = 0;
+
+            if (mCentreSliderValue > mSourceAsset.LengthInMilliseconds)
+                mCentreSliderValue = mSourceAsset.LengthInMilliseconds;
+
+            if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
+            {
+                Audio.AudioPlayer.Instance.Stop();
+                Audio.AudioPlayer.Instance.Play(mSourceAsset, mCentreSliderValue );
+            }
+            else if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped)
+            {
+                mSplitTime = mCentreSliderValue ;
+                UpdateSplitTime();
+                txtDisplayTime.Text = ChangeTimeToDisplay(mSplitTime);
+            }
+        }
+
+        private double mCentreSliderValue = 0;
+        private bool mCentreSliderEventEffect = true;
+        private void trackCentre_ValueChanged(object sender, EventArgs e)
+        {
+            if (mCentreSliderEventEffect == true)
+            {
+                tmSlider.Enabled = false;
+                if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
+                {
+                    mCentreSliderValue = Audio.AudioPlayer.Instance.CurrentTimePosition;
+                }
+                else
+                {
+                    mCentreSliderValue = mSplitTime;
+                }
+                //MessageBox.Show(trackCentre.Value.ToString());
+                mCentreSliderValue = mCentreSliderValue + ((trackCentre.Value - 400) * 100);
+                tmSlider.Start();
+            }
         }
        
 
