@@ -48,8 +48,11 @@ namespace Obi.Dialogs
             this.labelTime = new System.Windows.Forms.Label();
             this.labelSplitTime = new System.Windows.Forms.Label();
             this.AudioTrackBar = new System.Windows.Forms.TrackBar();
+            this.trackCentre = new System.Windows.Forms.TrackBar();
+            this.tmSlider = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AudioTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackCentre)).BeginInit();
             this.SuspendLayout();
             // 
             // btnPreview
@@ -228,13 +231,33 @@ namespace Obi.Dialogs
             this.AudioTrackBar.ValueChanged += new System.EventHandler(this.AudioTrackBar_ValueChanged);
             this.AudioTrackBar.MouseEnter += new System.EventHandler(this.AudioTrackBar_MouseEnter);
             // 
+            // trackCentre
+            // 
+            this.trackCentre.AccessibleName = "Centre Slider";
+            this.trackCentre.LargeChange = 80;
+            this.trackCentre.Location = new System.Drawing.Point(0, 300);
+            this.trackCentre.Maximum = 800;
+            this.trackCentre.Name = "trackCentre";
+            this.trackCentre.Size = new System.Drawing.Size(104, 42);
+            this.trackCentre.SmallChange = 5;
+            this.trackCentre.TabIndex = 15;
+            this.trackCentre.Value = 400;
+            this.trackCentre.ValueChanged += new System.EventHandler(this.trackCentre_ValueChanged);
+            // 
+            // tmSlider
+            // 
+            this.tmSlider.Enabled = true;
+            this.tmSlider.Interval = 300;
+            this.tmSlider.Tick += new System.EventHandler(this.tmSlider_Tick);
+            // 
             // Split
             // 
             this.AcceptButton = this.btnSplit;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnStop;
-            this.ClientSize = new System.Drawing.Size(275, 273);
+            this.ClientSize = new System.Drawing.Size(275, 333);
+            this.Controls.Add(this.trackCentre);
             this.Controls.Add(this.AudioTrackBar);
             this.Controls.Add(this.labelSplitTime);
             this.Controls.Add(this.labelTime);
@@ -254,6 +277,7 @@ namespace Obi.Dialogs
             this.Load += new System.EventHandler(this.Split_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.AudioTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackCentre)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -279,5 +303,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label labelTime;
         private System.Windows.Forms.Label labelSplitTime;
         private System.Windows.Forms.TrackBar AudioTrackBar;
+        private System.Windows.Forms.TrackBar trackCentre;
+        private System.Windows.Forms.Timer tmSlider;
     }
 }
