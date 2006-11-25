@@ -31,6 +31,8 @@ namespace Obi.Audio
 		private double dCurrentTime;
         private double mTime;
 
+        private System.Windows.Forms.Timer tmUpdateVuMeter = new System.Windows.Forms.Timer();
+
         
 
 		public double CurrentTime
@@ -95,6 +97,10 @@ namespace Obi.Audio
             mState = AudioRecorderState.Idle;
             Capturing = false;
             ob_VuMeter = null;
+
+            tmUpdateVuMeter.Tick += new EventHandler ( tmUpdateVuMeter_Tick );
+            tmUpdateVuMeter.Interval = 50;
+
 		}
 
 		public int SampleRate
@@ -466,10 +472,16 @@ namespace Obi.Audio
                         long mPosition = (long)CapturePos;
             CurrentPositionInByte = SampleCount + mPosition;
             	dCurrentTime = CalculationFunctions.ConvertByteToTime(CurrentPositionInByte, m_SampleRate, m_FrameSize);
+
+            // Commented by Avn for shifting following lines to InitRecording function
+            /*
 			m_UpdateVMArrayLength = m_iCaptureBufferSize/ 20 ;
 			m_UpdateVMArrayLength = Convert.ToInt32 (CalculationFunctions.AdaptToFrame ( Convert.ToInt32 ( m_UpdateVMArrayLength ),  m_FrameSize)  );
-
 			arUpdateVM = new byte [ m_UpdateVMArrayLength ] ;
+             */
+
+            // following lines are shifted to tmUpdateVuMeter_tick function
+            /*
 			ReadPos = CapturePos;
 
 			if (ReadPos < ((m_iCaptureBufferSize)- m_UpdateVMArrayLength  ) )
@@ -478,6 +490,7 @@ namespace Obi.Audio
 				//ob_UpdateVuMeter.NotifyUpdateVuMeter ( this, ob_UpdateVuMeter ) ;
 				UpdateVuMeterFromRecorder(this, new Events.Audio.Recorder.UpdateVuMeterEventArgs());
 			}
+             */
 			LockSize = ReadPos - NextCaptureOffset;
 			if (LockSize < 0)
 				LockSize += m_iCaptureBufferSize;
@@ -553,7 +566,7 @@ namespace Obi.Audio
 			//if(null == m_cApplicationDevice)
 			if (mDevice.Capture == null) throw new Exception("no device is set for recording");
 			//format of the capture buffer and the input format is compared
-			//if not same then it is informed that formats do not match
+			//if not sam2e then it is informed that formats do not match
 			if(applicationBuffer.Format.ToString() != InputFormat.ToString())
 				throw new Exception("formats do not match");
 
@@ -561,9 +574,16 @@ namespace Obi.Audio
 			{	
 				CreateCaptureBuffer();
 				applicationBuffer.Start(true);//it will set the looping till the stop is used
+
+                // following lines added to initialise and set array length forupdating VuMeter
+                m_UpdateVMArrayLength = m_iCaptureBufferSize / 20;
+                m_UpdateVMArrayLength = Convert.ToInt32(CalculationFunctions.AdaptToFrame(Convert.ToInt32(m_UpdateVMArrayLength), m_FrameSize));
+                arUpdateVM = new byte[m_UpdateVMArrayLength];
+                tmUpdateVuMeter.Enabled = true;
 			}
 			else
-			{	
+			{
+                tmUpdateVuMeter.Enabled = false;    
 				applicationBuffer.Stop();
 				RecordCapturedData();
 				BinaryWriter Writer = new BinaryWriter(File.OpenWrite(m_sFileName));
@@ -588,6 +608,22 @@ namespace Obi.Audio
                 mAsset.Manager.AddedClip(NewRecordedClip);
 			}
 		}
+
+        private void tmUpdateVuMeter_Tick(object sender, EventArgs e)
+        {
+            //System.Media.SystemSounds.Exclamation.Play();
+            int ReadPos;
+            int CapturePos;
+            applicationBuffer.GetCurrentPosition(out CapturePos, out ReadPos);
+            ReadPos = CapturePos;            
+
+            if (ReadPos >  m_UpdateVMArrayLength )
+            {
+                Array.Copy(applicationBuffer.Read(ReadPos - m_UpdateVMArrayLength, typeof(byte), LockFlag.None, m_UpdateVMArrayLength ), arUpdateVM, m_UpdateVMArrayLength);
+                //ob_UpdateVuMeter.NotifyUpdateVuMeter ( this, ob_UpdateVuMeter ) ;
+                UpdateVuMeterFromRecorder(this, new Events.Audio.Recorder.UpdateVuMeterEventArgs());
+            }
+        }
 
 		/*public void SetInputDeviceForRecording(Control FormHandle, int Index)
 		{
