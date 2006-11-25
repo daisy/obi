@@ -242,6 +242,13 @@ namespace Obi.UserControls
             get { return mTOCPanel; }
         }
 
+        private ObiForm mParentObiForm;
+
+        public ObiForm ParentObiForm
+        {
+            set { mParentObiForm = value; }
+        }
+
         /// <summary>
         /// Return the node that is selected in either view, if any.
         /// </summary>
@@ -267,6 +274,7 @@ namespace Obi.UserControls
             mStripManagerPanel.ProjectPanel = this;
             //end mg
             Project = null;
+            mParentObiForm = null;
         }
 
         public void HideTOCPanel()
@@ -286,6 +294,85 @@ namespace Obi.UserControls
         {
             mTOCPanel.SynchronizeWithCoreTree(root);
             mStripManagerPanel.SynchronizeWithCoreTree(root);
+        }
+
+        // The transport bar
+        // TODO: give it its own class?
+
+        private Playlist mPlaylist;
+
+        /// <summary>
+        /// The play button.
+        /// </summary>
+        private void mPlayButton_Click(object sender, EventArgs e)
+        {
+            // mParentObiForm.PlayAll();
+            if (mProject != null)
+            {
+                CoreNode selected = SelectedNode;
+                mPlaylist = new Playlist(mProject, Audio.AudioPlayer.Instance);
+                mPlaylist.MovedToPhrase += new Playlist.MovedToPhraseHandler(Play_MovedToPhrase);
+                mPlaylist.StateChanged += new Events.Audio.Player.StateChangedHandler(Play_PlayerStateChanged);
+                mPlaylist.EndOfPlaylist += new Playlist.EndOfPlaylistHandler(Play_PlayerStopped);
+                mPlaylist.Play();
+                // restore the selection, possibly moving focus to the strip panel
+                // TODO: keep focus in the TOC panel if that's where the selection was?
+                StripManager.SelectedNode = selected;
+            }
+        }
+
+        /// <summary>
+        /// The pause button.
+        /// </summary>
+        private void mPauseButton_Click(object sender, EventArgs e)
+        {
+            mPlaylist.Pause();
+        }
+
+        /// <summary>
+        /// The stop button
+        /// </summary>
+        private void mStopButton_Click(object sender, EventArgs e)
+        {
+            mPlaylist.Stop();
+        }
+
+        /// <summary>
+        /// Update the transport bar according to the player state.
+        /// </summary>
+        private void Play_PlayerStateChanged(object sender, Obi.Events.Audio.Player.StateChangedEventArgs e)
+        {
+            if (mPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Stopped)
+            {
+                Play_PlayerStopped(this, null);
+            }
+            else if (mPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Paused)
+            {
+                mPauseButton.Visible = false;
+                mPlayButton.Visible = true;
+            }
+            else if (mPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Playing)
+            {
+                mPauseButton.Visible = true;
+                mPlayButton.Visible = false;
+            }
+        }
+
+        /// <summary>
+        /// Update the transport bar once the player has stopped.
+        /// </summary>
+        private void Play_PlayerStopped(object sender, EventArgs e)
+        {
+            mPauseButton.Visible = false;
+            mPlayButton.Visible = true;
+        }
+
+        /// <summary>
+        /// Highlight (i.e. select) the phrase currently playing.
+        /// </summary>
+        internal void Play_MovedToPhrase(object sender, Events.Node.NodeEventArgs e)
+        {
+            mStripManagerPanel.SelectedPhraseNode = e.Node;
         }
     }
 }

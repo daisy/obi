@@ -36,9 +36,12 @@ namespace Obi.UserControls
             get { return mTocTree.SelectedNode == null ? null : (urakawa.core.CoreNode)mTocTree.SelectedNode.Tag; }
             set
             {
-                TreeNode sel = FindTreeNodeFromCoreNode(value);
-                System.Diagnostics.Debug.Assert(sel != null, "Cannot find selected section node in TOC tree.");
-                mTocTree.SelectedNode = sel;
+                if (value != null)
+                {
+                    TreeNode sel = FindTreeNodeFromCoreNode(value);
+                    System.Diagnostics.Debug.Assert(sel != null, "Cannot find selected section node in TOC tree.");
+                    mTocTree.SelectedNode = sel;
+                }
             }
         }
 

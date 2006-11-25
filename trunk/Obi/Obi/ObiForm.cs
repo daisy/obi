@@ -25,6 +25,7 @@ namespace Obi
         public ObiForm()
         {
             InitializeComponent();
+            mProjectPanel.ParentObiForm = this;
             mProject = null;
             mSettings = null;
             mCommandManager = new CommandManager();
@@ -1018,25 +1019,25 @@ namespace Obi
         /// </summary>
         private void mPlayAllToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            PlayAll();
+        }
+
+        /// <summary>
+        /// Play all nodes from the selected node; or from the start of the book.
+        /// </summary>
+        internal void PlayAll()
+        {
             if (mProject != null)
             {
                 CoreNode selected = mProjectPanel.SelectedNode;
                 Playlist playlist = new Playlist(mProject, Audio.AudioPlayer.Instance);
-                playlist.MovedToPhrase += new Playlist.MovedToPhraseHandler(PlayAll_MovedToPhrase);
+                playlist.MovedToPhrase += new Playlist.MovedToPhraseHandler(mProjectPanel.Play_MovedToPhrase);
                 new Dialogs.TransportPlay(playlist).ShowDialog();
                 // restore the selection, possibly moving focus to the strip panel
                 // TODO: keep focus in the TOC panel if that's where the selection was?
                 mProjectPanel.StripManager.SelectedNode = selected;
                 Ready();
             }
-        }
-
-        /// <summary>
-        /// Highlight (i.e. select) the phrase currently playing.
-        /// </summary>
-        private void PlayAll_MovedToPhrase(object sender, Events.Node.NodeEventArgs e)
-        {
-            mProjectPanel.StripManager.SelectedPhraseNode = e.Node;
         }
 
         /// <summary>
