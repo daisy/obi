@@ -83,14 +83,26 @@ namespace Obi.Audio
             this.ClientSize = new System.Drawing.Size(332, 566);
             this.Controls.Add(this.btnClose);
             this.DoubleBuffered = true;
+            this.Location = new System.Drawing.Point(600, 100);
+            this.MaximizeBox = false;
             this.Name = "VuMeterForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "VuMeter";
             this.Load += new System.EventHandler(this.VuMeterForm_Load);
             this.ResumeLayout(false);
 
 		}
 		#endregion
+
+        // override property to show without focus
+        private bool ShowWithoutFocusFlag  = true ;
+        protected override bool ShowWithoutActivation
+        {
+            get
+            {
+                return ShowWithoutFocusFlag;
+            }
+        }
 
 		internal int HighTop =0 ;
 		internal int HighBottom = 0 ;
