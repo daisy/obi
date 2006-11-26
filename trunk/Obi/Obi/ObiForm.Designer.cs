@@ -559,21 +559,25 @@ namespace Obi
             // mPlayAllToolStripMenuItem
             // 
             this.mPlayAllToolStripMenuItem.Name = "mPlayAllToolStripMenuItem";
-            this.mPlayAllToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.mPlayAllToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Space)));
+            this.mPlayAllToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
             this.mPlayAllToolStripMenuItem.Text = "Play &all";
             this.mPlayAllToolStripMenuItem.Click += new System.EventHandler(this.mPlayAllToolStripMenuItem1_Click);
             // 
             // mPlaySelectionToolStripMenuItem
             // 
             this.mPlaySelectionToolStripMenuItem.Name = "mPlaySelectionToolStripMenuItem";
-            this.mPlaySelectionToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.mPlaySelectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.Space)));
+            this.mPlaySelectionToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
             this.mPlaySelectionToolStripMenuItem.Text = "&Play selection";
             this.mPlaySelectionToolStripMenuItem.Click += new System.EventHandler(this.mPlaySelectionToolStripMenuItem_Click);
             // 
             // mRecordToolStripMenuItem
             // 
             this.mRecordToolStripMenuItem.Name = "mRecordToolStripMenuItem";
-            this.mRecordToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.mRecordToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this.mRecordToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
             this.mRecordToolStripMenuItem.Text = "&Record";
             this.mRecordToolStripMenuItem.Click += new System.EventHandler(this.mRecordToolStripMenuItem_Click);
             // 

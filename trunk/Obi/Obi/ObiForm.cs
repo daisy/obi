@@ -996,15 +996,15 @@ namespace Obi
         #endregion
 
         /// <summary>
-        /// Play a node and update the status bar.
+        /// Play a single phrase node using the transport bar.
         /// </summary>
         internal void Play(urakawa.core.CoreNode node)
         {
-            mToolStripStatusLabel.Text = String.Format(Localizer.Message("playing_on_device"),
-                Audio.AudioPlayer.Instance.OutputDevice.Name);
-            Dialogs.Play dialog = new Dialogs.Play(node);
-            dialog.ShowDialog();
-            Ready();
+            if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped)
+            {
+                mProjectPanel.TransportBar.Playlist = new Playlist(mProject, Audio.AudioPlayer.Instance, node);
+                mProjectPanel.TransportBar.Play();
+            }
         }
 
         internal void UndoLast()
@@ -1026,24 +1026,10 @@ namespace Obi
         /// </summary>
         private void mPlayAllToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            PlayAll();
-        }
-
-        /// <summary>
-        /// Play all nodes from the selected node; or from the start of the book.
-        /// </summary>
-        internal void PlayAll()
-        {
-            if (mProject != null)
+            if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped && mProject != null)
             {
-                CoreNode selected = mProjectPanel.SelectedNode;
-                Playlist playlist = new Playlist(mProject, Audio.AudioPlayer.Instance);
-                //playlist.MovedToPhrase += new Playlist.MovedToPhraseHandler(mProjectPanel.Play_MovedToPhrase);
-                new Dialogs.TransportPlay(playlist).ShowDialog();
-                // restore the selection, possibly moving focus to the strip panel
-                // TODO: keep focus in the TOC panel if that's where the selection was?
-                mProjectPanel.StripManager.SelectedNode = selected;
-                Ready();
+                mProjectPanel.TransportBar.Playlist = new Playlist(mProject, Audio.AudioPlayer.Instance);
+                mProjectPanel.TransportBar.Play();
             }
         }
 
@@ -1052,18 +1038,10 @@ namespace Obi
         /// </summary>
         private void mPlaySelectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProject != null)
+            if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped && mProject != null &&
+                mProjectPanel.SelectedNode != null)
             {
-                CoreNode selected =
-                    mProjectPanel.StripManager.SelectedPhraseNode != null ?
-                        mProjectPanel.StripManager.SelectedPhraseNode :
-                    mProjectPanel.StripManager.SelectedSectionNode != null ?
-                        mProjectPanel.StripManager.SelectedSectionNode :
-                        null;
-                System.Diagnostics.Debug.Assert(selected != null, "No selection to play.");
-                Playlist playlist = new Playlist(mProject, Audio.AudioPlayer.Instance, selected);
-                new Dialogs.TransportPlay(playlist).ShowDialog();
-                Ready();
+                Play(mProjectPanel.StripManager.SelectedNode);
             }
         }
 
