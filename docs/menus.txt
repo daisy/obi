@@ -50,9 +50,9 @@ Main form
     + [W] Show in TOC view .............. Alt+V
 
   + [R] Transport
-    + [A] Play all ...................... Missing
-    + [P] Play selection ................ Missing
-    + [R] Record ........................ Missing
+    + [A] Play all ...................... Ctrl+Space
+    + [P] Play selection ................ Ctrl+Shift+Space
+    + [R] Record ........................ Ctrl+R
 
   + [T] Tools
     + [U] User profile .................. Alt+U
@@ -129,6 +129,8 @@ Index of shortcuts
   Ctrl+Right ......... [Strip Manager Panel] Move audio block > Forward
   Ctrl+Shift+Right ... TOC > Move in
   Ctrl+Shift+Right ... [TOC Panel] > Move in
+  Ctrl+Space ......... Transport > Play all
+  Ctrl+Shift+Space ... Transport > Play selection
 
   Alt+A .............. Tools > Audio preferences
   Ctrl+A* ............ TOC > Add section
@@ -160,7 +162,7 @@ Index of shortcuts
   Ctrl+P ............. Strips > Split audio block
   Ctrl+P ............. [Strip Manager Panel] Split Audio Block
   Ctrl+Q ............. FREE
-  Ctrl+R ............. FREE
+  Ctrl+R ............. Transport > Record
   Ctrl+S ............. File > Save project
   Ctrl+Shift+S ....... File > Save project as
   Alt+T .............. TOC > Show table of contents
@@ -182,9 +184,6 @@ Index of shortcuts
 
   Missing ............ Strips > Remove annotation
   Missing ............ [Strip Manager Panel] Remove annotation
-  Missing ............ Transport > Play all
-  Missing ............ Transport > Play selection
-  Missing ............ Transport > Record
   Missing ............ Help > About Obi
 
   Debug .............. Tools > Dump tree
