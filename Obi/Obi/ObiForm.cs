@@ -1031,7 +1031,7 @@ namespace Obi
             {
                 CoreNode selected = mProjectPanel.SelectedNode;
                 Playlist playlist = new Playlist(mProject, Audio.AudioPlayer.Instance);
-                playlist.MovedToPhrase += new Playlist.MovedToPhraseHandler(mProjectPanel.Play_MovedToPhrase);
+                //playlist.MovedToPhrase += new Playlist.MovedToPhraseHandler(mProjectPanel.Play_MovedToPhrase);
                 new Dialogs.TransportPlay(playlist).ShowDialog();
                 // restore the selection, possibly moving focus to the strip panel
                 // TODO: keep focus in the TOC panel if that's where the selection was?
