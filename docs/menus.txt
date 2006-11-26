@@ -1,0 +1,190 @@
+List of menu items in Obi
+$Id$
+
+
+Main form
+
+  + [F] File
+    + [N] New project ................... Ctrl+N
+    + [O] Open project .................. Ctrl+O
+    + [R] Open recent project ........... None
+    + [S] Save project .................. Ctrl+S
+    + [A] Save project as ............... Ctrl+Shift+S
+    + [D] Discard changes ............... Ctrl+D
+    + [C] Close project ................. Ctrl+W
+    + [X] Exit .......................... Alt+F4
+
+  + [E] Edit
+    + [U] Undo .......................... Ctrl+Z
+    + [R] Redo .......................... Ctrl+Y
+    + [C] Cut ........................... Ctrl+X
+    + [Y] Copy .......................... Ctrl+C
+    + [P] Paste ......................... Ctrl+V
+    + [D] Delete ........................ Del
+    + [M] Metadata ...................... Alt+M
+    + [T] Touch project ................. F5
+
+  + [C] TOC
+    + [T] Show table ofcontents ......... Alt+T
+    + [A] Add section ................... Ctrl+A
+    + [S] Add sub-section ............... Ctrl+B
+    + [N] Rename section ................ F2
+    + [O] Move out ...................... Ctrl+Shift+Left
+    + [I] Move in ....................... Ctrl+Shift+Right
+    + [V] Show in strip view ............ Alt+V
+
+  + [S] Strips
+    + [A] Add strip ..................... Ctrl+A
+    + [R] Rename strip .................. Shift+F2
+    + [I] Import audio file ............. Ctrl+I
+    + [S] Split audio block ............. Ctrl+P
+    + [H] Apply phrase detection ........ Ctrl+H
+    + [G] Merge with next audio block ... Ctrl+M
+    + [V] Move audio block... ........... None
+      + [F] Forward ..................... Ctrl+Right
+      + [B] Backward .................... Ctrl+Left
+    + [E] Edit annotation ............... F2
+    + [O] Remove annotation ............. Missing
+    + [T] Set page number ............... Ctrl+F2
+    + [N] Remove page number ............ Ctrl+Del
+    + [W] Show in TOC view .............. Alt+V
+
+  + [R] Transport
+    + [A] Play all ...................... Missing
+    + [P] Play selection ................ Missing
+    + [R] Record ........................ Missing
+
+  + [T] Tools
+    + [U] User profile .................. Alt+U
+    + [P] Project preferences ........... Alt+P
+    + [A] Audio preferences ............. Alt+A
+    + [D] Dump tree (DEBUG) ............. Debug
+
+  + [H] Help
+    + [C] Contents ...................... F1
+    + [A] About Obi ..................... Missing
+
+
+TOC Panel's context menu
+
+  + [A] Add section ..................... Ctrl+A
+  + [S] Add sub-section ................. Ctrl+B
+  + [N] Rename section .................. F2
+  + [O] Move out ........................ Ctrl+Shift+Left
+  + [I] Move in ......................... Ctrl+Shift+Right
+  + [T] Cut section ..................... Ctrl+Shift+X
+  + [C] Copy section .................... Ctrl+Shift+C
+  + [P] Paste section ................... Ctrl+Shift+V
+  + [D] Delete section .................. Del
+  + [V] Show in strip view .............. Alt+V
+
+
+Strip Manager Panel's context menu
+
+  + [A] Add strip ....................... Ctrl+A
+  + [N] Rename strip .................... Shift+F2
+  + [D] Delete strip .................... Shift+Del
+  + [I] Import audio .................... Ctrl+I
+  + [C] Cut phrase ...................... Ctrl+X
+  + [Y] Copy phrase ..................... Ctrl+C
+  + [E] Paste phrase .................... Ctrl+V
+  + [L] Delete phrase ................... Del
+  + [S] Split audio block ............... Ctrl+P
+  + [H] Apply phrase detection .......... Ctrl+H
+  + [G] Merge with next audio block ..... Ctrl+M
+  + [V] Move audio block... ............. None
+    + [F] Forward ....................... Ctrl+Right
+    + [B] Backward ...................... Ctrl+Left
+  + [O] Edit annotation ................. F2
+  + [M] Remove annotation ............... Missing
+  + [T] Set page number ................. Ctrl+F2
+  + [R] Remove page number .............. Ctrl+Del
+  + [W] Show in TOC view ................ Alt+V
+
+
+Index of shortcuts
+
+  Del* ............... Edit > Delete
+  Del* ............... [TOC Panel] Delete section
+  Del* ............... [Strip Manager Panel] Delete phrase
+  Ctrl+Del ........... Strips > Remove page number
+  Ctrl+Del ........... [Strip Manager Panel] Remove page number
+  Shift+Del .......... [Strip Manager Panel] Delete strip
+  F1 ................. Help > Contents
+  F2* ................ TOC > Rename section
+  F2* ................ Strips > Edit annotation
+  F2* ................ [TOC Panel] Rename section
+  F2* ................ [Strip Manager Panel] Edit annotation
+  Ctrl+F2 ............ Strips > Set page number
+  Ctrl+F2 ............ [Strip Manager Panel] Set page number
+  Shift+F2 ........... Strips > Rename strip
+  Shift+F2 ........... [Strip Manager Panel] Rename strip
+  Alt+F4 ............. File > Exit
+  F5 ................. Edit > Touch project
+  Ctrl+Left .......... Strips > Move audio block > Backward
+  Ctrl+Left .......... [Strip Manager Panel] Move audio block > Backward
+  Ctrl+Shift+Left .... TOC > Move out
+  Ctrl+Shift+Left .... [TOC Panel] Move out
+  Ctrl+Right ......... Strips > Move audio block > Forward
+  Ctrl+Right ......... [Strip Manager Panel] Move audio block > Forward
+  Ctrl+Shift+Right ... TOC > Move in
+  Ctrl+Shift+Right ... [TOC Panel] > Move in
+
+  Alt+A .............. Tools > Audio preferences
+  Ctrl+A* ............ TOC > Add section
+  Ctrl+A* ............ Strips > Add strip
+  Ctrl+A* ............ [TOC Panel] Add section
+  Ctrl+A* ............ [Strip Manager Panel] Add strip
+  Ctrl+B ............. TOC > Add subsection
+  Ctrl+B ............. [TOC Panel] Add sub-section
+  Ctrl+C* ............ File > Copy
+  Ctrl+C* ............ [Strip Manager Panel] Copy phrase
+  Ctrl+Shift+C ....... [TOC Panel] Copy section
+  Ctrl+D ............. File > Discard changes
+  Ctrl+E ............. FREE
+  Ctrl+F ............. FREE
+  Ctrl+G ............. FREE
+  Ctrl+H ............. Strips > Apply phrase detection
+  Ctrl+H ............. [Strip Manager Panel] Apply phrase detection
+  Ctrl+I ............. Strips > Import audio file
+  Ctrl+I ............. [Strip Manager Panel] Import audio
+  Ctrl+J ............. FREE
+  Ctrl+K ............. FREE
+  Ctrl+L ............. FREE
+  Alt+M .............. Edit > Metadata
+  Ctrl+M ............. Strips > Merge with next audio block
+  Ctrl+M ............. [Strip Manager Panel] Merge with next audio block
+  Ctrl+N ............. File > New project
+  Ctrl+O ............. File > Open project
+  Alt+P .............. Tools > Project preferences
+  Ctrl+P ............. Strips > Split audio block
+  Ctrl+P ............. [Strip Manager Panel] Split Audio Block
+  Ctrl+Q ............. FREE
+  Ctrl+R ............. FREE
+  Ctrl+S ............. File > Save project
+  Ctrl+Shift+S ....... File > Save project as
+  Alt+T .............. TOC > Show table of contents
+  Ctrl+T ............. FREE
+  Alt+U .............. Tools > User profile
+  Alt+V* ............. TOC > Show in strip view
+  Alt+V* ............. Strips > Show in TOC view
+  Alt+V* ............. [TOC Panel] Show in strip view
+  Alt+V* ............. [Strip Manager Panel] Show in TOC view
+  Ctrl+V* ............ Edit > Paste
+  Ctrl+V ............. [Strip Manager Panel] Paste phrase
+  Ctrl+Shift+V ....... [TOC Panel] Paste section
+  Ctrl+W ............. File > Close project
+  Ctrl+X* ............ Edit > Cut
+  Ctrl+X* ............ [Strip Manager Panel] > Cut phrase
+  Ctrl+Shift+X ....... [TOC Panel] Cut section
+  Ctrl+Y ............. Edit > Redo
+  Ctrl+Z ............. Edit > Undo
+
+  Missing ............ Strips > Remove annotation
+  Missing ............ [Strip Manager Panel] Remove annotation
+  Missing ............ Transport > Play all
+  Missing ............ Transport > Play selection
+  Missing ............ Transport > Record
+  Missing ............ Help > About Obi
+
+  Debug .............. Tools > Dump tree

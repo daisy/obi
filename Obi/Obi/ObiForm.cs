@@ -25,7 +25,6 @@ namespace Obi
         public ObiForm()
         {
             InitializeComponent();
-            mProjectPanel.ParentObiForm = this;
             mProject = null;
             mSettings = null;
             mCommandManager = new CommandManager();
@@ -374,10 +373,6 @@ namespace Obi
             mEditAnnotationToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mEditAudioBlockLabelToolStripMenuItem_Click);
             //mg 20060813:
-            mMoveStripDownToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.StripManager.downToolStripMenuItem_Click);
-            mMoveStripUpToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.StripManager.upToolStripMenuItem_Click);
             mMoveAudioBlockForwardToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mMoveAudioBlockForwardToolStripMenuItem_Click); 
             mMoveAudioBlockBackwardToolStripMenuItem.Click +=
@@ -706,9 +701,26 @@ namespace Obi
         #region enabling/disabling of main menu items
 
         /// <summary>
+        /// Update the enabled items for all menus.
+        /// </summary>
+        /// <remarks>This is necessary to make sure that keyboard shortcuts work correctly.</remarks>
+        private void UpdateEnabledItems()
+        {
+            UpdateEnabledItemsForFileMenu();
+        }
+
+        /// <summary>
         /// When the File menu opens, enable and disable its items according to the state of the project.
         /// </summary>
         private void mFileToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            UpdateEnabledItemsForFileMenu();
+        }
+
+        /// <summary>
+        /// Update the enabled items of the File menu.
+        /// </summary>
+        private void UpdateEnabledItemsForFileMenu()
         {
             bool isProjectOpen = mProject != null;
             bool isProjectModified = isProjectOpen && mProject.Unsaved;
@@ -921,8 +933,6 @@ namespace Obi
         {
             bool isProjectOpen = mProject != null;
             bool isStripSelected = isProjectOpen && mProjectPanel.StripManager.SelectedSectionNode != null;
-            bool canMoveUp = isStripSelected && mProject.CanMoveSectionNodeUp(mProjectPanel.StripManager.SelectedSectionNode);
-            bool canMoveDown = isStripSelected && mProject.CanMoveSectionNodeDown(mProjectPanel.StripManager.SelectedSectionNode);
             bool isAudioBlockSelected = isProjectOpen && mProjectPanel.StripManager.SelectedPhraseNode != null;
             bool isAudioBlockLast = isAudioBlockSelected &&
                 Project.GetPhraseIndex(mProjectPanel.StripManager.SelectedPhraseNode) ==
@@ -936,9 +946,6 @@ namespace Obi
 
             mAddStripToolStripMenuItem.Enabled = isProjectOpen;
             mRenameStripToolStripMenuItem.Enabled = isStripSelected;
-            mMoveStripUpToolStripMenuItem.Enabled = canMoveUp;
-            mMoveStripDownToolStripMenuItem.Enabled = canMoveDown;
-            mMoveStripToolStripMenuItem.Enabled = canMoveUp || canMoveDown;
 
             mImportAudioFileToolStripMenuItem.Enabled = isStripSelected;
             mSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;

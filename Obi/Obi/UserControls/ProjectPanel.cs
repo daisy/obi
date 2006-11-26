@@ -250,13 +250,6 @@ namespace Obi.UserControls
             get { return mTransportBar; }
         }
 
-        private ObiForm mParentObiForm;
-
-        public ObiForm ParentObiForm
-        {
-            set { mParentObiForm = value; }
-        }
-
         /// <summary>
         /// Return the node that is selected in either view, if any.
         /// </summary>
@@ -277,12 +270,9 @@ namespace Obi.UserControls
         public ProjectPanel()
         {
             InitializeComponent();
-            //mg 20060804: set two convenince attrs on the toc and tree views
             mTOCPanel.ProjectPanel = this;
             mStripManagerPanel.ProjectPanel = this;
-            //end mg
             Project = null;
-            mParentObiForm = null;
         }
 
         public void HideTOCPanel()
