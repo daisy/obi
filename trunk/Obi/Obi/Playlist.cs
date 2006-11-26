@@ -29,7 +29,7 @@ namespace Obi
 
         // Amount of time after which "previous phrase" goes to the beginning of the phrase
         // rather than the actual previous phrase. In milliseconds.
-        private static readonly double InitialThreshold = 2500.0;
+        private static readonly double InitialThreshold = 1500.0;
 
         // The playlist sends its own version of the state changed event in order to ignore spurrious
         // stop/start events sent by the audio player when moving between assets.

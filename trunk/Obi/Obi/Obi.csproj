@@ -359,6 +359,12 @@
     <Compile Include="UserControls\TOCPanel.SyncCallbacks.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UserControls\TransportBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\TransportBar.Designer.cs">
+      <DependentUpon>TransportBar.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserProfile.cs" />
     <Compile Include="Visitors\AssetCreator.cs" />
     <Compile Include="Visitors\DescendantsVisitor.cs" />
@@ -402,6 +408,10 @@
     <EmbeddedResource Include="UserControls\AnnotationBlock.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AnnotationBlock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TransportBar.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TransportBar.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
