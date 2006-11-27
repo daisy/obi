@@ -214,6 +214,7 @@
     <Compile Include="ObiForm.Designer.cs">
       <DependentUpon>ObiForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PhraseNode.cs" />
     <Compile Include="Playlist.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Project.Blocks.cs" />
@@ -303,6 +304,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="RecordingSession.cs" />
+    <Compile Include="SectionNode.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="SimpleMetadata.cs" />
     <Compile Include="UserControls\AbstractBlock.cs">
