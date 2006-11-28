@@ -34,7 +34,7 @@ namespace Obi.Dialogs
             mPlaylist.MovedToPhrase += new Playlist.MovedToPhraseHandler(MovedToPhrase);
             mPlaylist.Play();
 
-           mPlaylist.Audioplayer.VuMeterObject.PeakOverload += new Events.Audio.VuMeter.PeakOverloadHandler(CatchPeakOverloadEvent);
+           mPlaylist.Audioplayer.VuMeter.PeakOverload += new Events.Audio.VuMeter.PeakOverloadHandler(CatchPeakOverloadEvent);
         }
 
         delegate void PlayerStateChangedCallback();
@@ -160,8 +160,8 @@ namespace Obi.Dialogs
 
         private void tmUpdateAmplitudeText_Tick(object sender, EventArgs e)
         {
-            txtAmplitudeLeft.Text = mPlaylist.Audioplayer.VuMeterObject.m_MeanValueLeft.ToString () ;
-            txtAmplitudeRight.Text = mPlaylist.Audioplayer.VuMeterObject.m_MeanValueRight.ToString();
+            txtAmplitudeLeft.Text = mPlaylist.Audioplayer.VuMeter.m_MeanValueLeft.ToString () ;
+            txtAmplitudeRight.Text = mPlaylist.Audioplayer.VuMeter.m_MeanValueRight.ToString();
         }
 
 

@@ -84,6 +84,8 @@ namespace Obi
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.mShowInTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTransportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mShowHideVUMeterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.mPlayAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlaySelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -548,6 +550,8 @@ namespace Obi
             // mTransportToolStripMenuItem
             // 
             this.mTransportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mShowHideVUMeterToolStripMenuItem,
+            this.toolStripSeparator7,
             this.mPlayAllToolStripMenuItem,
             this.mPlaySelectionToolStripMenuItem,
             this.mRecordToolStripMenuItem});
@@ -555,6 +559,19 @@ namespace Obi
             this.mTransportToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.mTransportToolStripMenuItem.Text = "T&ransport";
             this.mTransportToolStripMenuItem.DropDownOpening += new System.EventHandler(this.mTransportToolStripMenuItem_DropDownOpening);
+            // 
+            // mShowHideVUMeterToolStripMenuItem
+            // 
+            this.mShowHideVUMeterToolStripMenuItem.Name = "mShowHideVUMeterToolStripMenuItem";
+            this.mShowHideVUMeterToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
+            this.mShowHideVUMeterToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            this.mShowHideVUMeterToolStripMenuItem.Text = "Show &VU meter";
+            this.mShowHideVUMeterToolStripMenuItem.Click += new System.EventHandler(this.mShowHideVUMeterToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(227, 6);
             // 
             // mPlayAllToolStripMenuItem
             // 
@@ -780,6 +797,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mDeleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem mApplyPhraseDetectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mShowHideVUMeterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
 
 
     }

@@ -50,6 +50,7 @@ Main form
     + [W] Show in TOC view .............. Alt+V
 
   + [R] Transport
+    + [V] Show/hide VU meter ............ Ctrl+U
     + [A] Play all ...................... Ctrl+Space
     + [P] Play selection ................ Ctrl+Shift+Space
     + [R] Record ........................ Ctrl+R
@@ -168,6 +169,7 @@ Index of shortcuts
   Alt+T .............. TOC > Show table of contents
   Ctrl+T ............. FREE
   Alt+U .............. Tools > User profile
+  Ctrl+U ............. Transport > Show/hide VU meter
   Alt+V* ............. TOC > Show in strip view
   Alt+V* ............. Strips > Show in TOC view
   Alt+V* ............. [TOC Panel] Show in strip view

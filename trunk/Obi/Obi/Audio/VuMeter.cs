@@ -13,20 +13,19 @@ namespace Obi.Audio
 		public event Events.Audio.VuMeter.ResetHandler ResetEvent;
 		public event Events.Audio.VuMeter.UpdateFormsHandler UpdateForms;
 
-		private VuMeterForm ob_VuMeterForm;
-
 		public VuMeter  ()
 		{
 			SetSampleCount(m_SampleTimeLength);
 			m_SampleArrayPosition = 0;
-			// Moved from AudioPlayer class (JQ)
-			AudioPlayer.Instance.UpdateVuMeter +=
-				new Events.Audio.Player.UpdateVuMeterHandler(CatchUpdateVuMeterEvent);
-			AudioRecorder.Instance.UpdateVuMeterFromRecorder +=
-				new Events.Audio.Recorder.UpdateVuMeterHandler(CatchUpdateVuMeterEvent);
-			// creates object of VuMeter form to comunicate with it
-			ob_VuMeterForm = new VuMeterForm(this);
 		}
+
+        public void SetEventHandlers()
+        {
+            AudioPlayer.Instance.UpdateVuMeter +=
+                new Events.Audio.Player.UpdateVuMeterHandler(CatchUpdateVuMeterEvent);
+            AudioRecorder.Instance.UpdateVuMeterFromRecorder +=
+                new Events.Audio.Recorder.UpdateVuMeterHandler(CatchUpdateVuMeterEvent);
+        }
 
 		//Member variable used in properties
 		private int m_Channels =2 ;
@@ -382,12 +381,6 @@ namespace Obi.Audio
 
 			return arSum ;
 		}
-		
-
-		public void ShowForm ()
-		{
-			ob_VuMeterForm.Show () ;
-		}
 
 		// calculates the values of graph cordinates with respect to position and scale factor
 		public GraphPts Graph = new GraphPts() ;
@@ -457,11 +450,6 @@ namespace Obi.Audio
 			public int PeakOverloadLightX ;
 			public int PeakOverloadLightY ;
 		}
-		public void CloseVuMeterForm()
-		{
-			ob_VuMeterForm.Close();
-		}
-
 		// end of class
 	}
 

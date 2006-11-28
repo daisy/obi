@@ -25,7 +25,6 @@ namespace Obi
         private bool mWholeBook;          // flag for playing whole book or just a selection
         private double mPausePosition= 0 ;
         private AudioPlayerState mPlayListState= AudioPlayerState.Stopped ;
-        private VuMeter ob_VuMeter = new VuMeter();
 
         // Amount of time after which "previous phrase" goes to the beginning of the phrase
         // rather than the actual previous phrase. In milliseconds.
@@ -51,6 +50,14 @@ namespace Obi
         public AudioPlayer Audioplayer
         {
             get { return mPlayer; }
+        }
+
+        /// <summary>
+        /// The state of the playlist, as opposed to that of the underlying player.
+        /// </summary>
+        public AudioPlayerState State
+        {
+            get { return mPlayListState; }
         }
 
         /// <summary>
@@ -185,7 +192,7 @@ namespace Obi
         public Playlist(Project project, AudioPlayer player)
         {
             InitPlaylist(project, player, project.RootNode, true);
-            mPlayer.VuMeterObject = ob_VuMeter;
+            //mPlayer.VuMeterObject = ob_VuMeter;
             
         }
 
@@ -200,7 +207,7 @@ namespace Obi
         public Playlist(Project project, AudioPlayer player, CoreNode node)
         {
             InitPlaylist(project, player, node, false);
-            mPlayer.VuMeterObject = ob_VuMeter;
+            //mPlayer.VuMeterObject = ob_VuMeter;
         }
 
         /// <summary>
@@ -278,7 +285,6 @@ namespace Obi
                     mElapsedTime = 0.0;
                     mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]));
                     mPlayListState = AudioPlayerState.Playing;
-                    ob_VuMeter.ShowForm();
                     if (StateChanged != null)
                     {
                         StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Stopped));
@@ -317,7 +323,6 @@ namespace Obi
             else if (EndOfPlaylist != null)
             {
                 mPlayListState = AudioPlayerState.Stopped;
-                ob_VuMeter.CloseVuMeterForm();
                 EndOfPlaylist(this, new EventArgs());
             }
         }
@@ -369,7 +374,6 @@ namespace Obi
                 MovedToPhrase(this, new Events.Node.NodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
             }
         }
-
 
         /// <summary>
         /// Pause.

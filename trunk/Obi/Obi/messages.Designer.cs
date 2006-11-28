@@ -389,6 +389,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hide &amp;VU meter.
+        /// </summary>
+        internal static string hide_vu_meter {
+            get {
+                return ResourceManager.GetString("hide_vu_meter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to move section in.
         /// </summary>
         internal static string increase_section_level_command_label {
@@ -893,6 +902,15 @@ namespace Obi {
         internal static string show_toc_label {
             get {
                 return ResourceManager.GetString("show_toc_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show &amp;VU meter.
+        /// </summary>
+        internal static string show_vu_meter {
+            get {
+                return ResourceManager.GetString("show_vu_meter", resourceCulture);
             }
         }
         

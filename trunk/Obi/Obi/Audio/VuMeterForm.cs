@@ -15,7 +15,15 @@ namespace Obi.Audio
 	{
 		private VuMeter mVuMeter;  // the vu meter model for this form
 
-		private System.ComponentModel.IContainer components;
+        /// <summary>
+        /// Return the VU meter object that it represents.
+        /// </summary>
+        public VuMeter VuMeter
+        {
+            get { return mVuMeter; }
+        }
+        
+        private System.ComponentModel.IContainer components;
 
 		public VuMeterForm(VuMeter vuMeter)
 		{
@@ -67,16 +75,16 @@ namespace Obi.Audio
             // btnClose
             // 
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(270, 523);
+            this.btnClose.Location = new System.Drawing.Point(270, 483);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(60, 24);
+            this.btnClose.Size = new System.Drawing.Size(60, 22);
             this.btnClose.TabIndex = 0;
             this.btnClose.Text = "&Close";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // VuMeterForm
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 12);
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.CancelButton = this.btnClose;
