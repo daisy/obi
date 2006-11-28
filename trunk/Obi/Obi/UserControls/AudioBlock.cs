@@ -99,17 +99,6 @@ namespace Obi.UserControls
             set { mLabel.Text = value; }
         }
 
-/*med 20061120 svn merge: i think this function was removed for 0.7
-
-        /// <summary>
-        /// Update the width of the control.
-        /// </summary>
-        //md20061011
-        public int _Width
-        {
-            set { Size = new Size(value, Size.Height); }
-        }
-*/
         #endregion
         
         #region instantiators
@@ -151,7 +140,7 @@ namespace Obi.UserControls
         private void AudioBlock_DoubleClick(object sender, EventArgs e)
         {
             mManager.SelectedPhraseNode = mNode;
-            ((ObiForm)ParentForm).Play(mNode);
+            ((ObiForm)mManager.ParentForm).Play(mNode);
         }
 
         //mg: for tab navigation et al

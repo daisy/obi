@@ -34,7 +34,9 @@ namespace Obi
             mProject = null;
             mSettings = null;
             mCommandManager = new CommandManager();
-            mVuMeter = null;
+            mVuMeter = new Audio.VuMeterForm(Audio.AudioPlayer.Instance.VuMeter);
+            mVuMeter.VuMeter.SetEventHandlers();
+            mVuMeter.Visible = false;
             InitializeSettings();
             StatusUpdateClosedProject();  // no project opened, same as if we closed a project.
         }
@@ -977,13 +979,12 @@ namespace Obi
         private void mTransportToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
             bool isProjectOpen = mProject != null;
-            mShowHideVUMeterToolStripMenuItem.Text =
-                Localizer.Message(mVuMeter != null && mVuMeter.Visible ? "hide_vu_meter" : "show_vu_meter");
-            mPlayAllToolStripMenuItem.Enabled = isProjectOpen;
-            mPlaySelectionToolStripMenuItem.Enabled = isProjectOpen &&
+            mShowHideVUMeterToolStripMenuItem.Text = Localizer.Message(mVuMeter.Visible ? "hide_vu_meter" : "show_vu_meter");
+            mPlayAllToolStripMenuItem.Enabled = mProjectPanel.TransportBar.CanPlay;
+            mPlaySelectionToolStripMenuItem.Enabled = mPlayAllToolStripMenuItem.Enabled &&
                 (mProjectPanel.StripManager.SelectedSectionNode != null ||
                 mProjectPanel.StripManager.SelectedPhraseNode != null);
-            mRecordToolStripMenuItem.Enabled = isProjectOpen;
+            mRecordToolStripMenuItem.Enabled = mProjectPanel.TransportBar.CanRecord;
         }
 
         /// <summary>
@@ -1003,18 +1004,6 @@ namespace Obi
         }
 
         #endregion
-
-        /// <summary>
-        /// Play a single phrase node using the transport bar.
-        /// </summary>
-        internal void Play(urakawa.core.CoreNode node)
-        {
-            if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped)
-            {
-                mProjectPanel.TransportBar.Playlist = new Playlist(mProject, Audio.AudioPlayer.Instance, node);
-                mProjectPanel.TransportBar.Play();
-            }
-        }
 
         internal void UndoLast()
         {
@@ -1040,11 +1029,6 @@ namespace Obi
             }
             else
             {
-                if (mVuMeter == null)
-                {
-                    mVuMeter = new Audio.VuMeterForm(Audio.AudioPlayer.Instance.VuMeter);
-                    mVuMeter.VuMeter.SetEventHandlers();
-                }
                 mVuMeter.Show();
             }
         }
@@ -1054,11 +1038,7 @@ namespace Obi
         /// </summary>
         private void mPlayAllToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped && mProject != null)
-            {
-                mProjectPanel.TransportBar.Playlist = new Playlist(mProject, Audio.AudioPlayer.Instance);
-                mProjectPanel.TransportBar.Play();
-            }
+            mProjectPanel.TransportBar.Play();
         }
 
         /// <summary>
@@ -1066,11 +1046,15 @@ namespace Obi
         /// </summary>
         private void mPlaySelectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped && mProject != null &&
-                mProjectPanel.SelectedNode != null)
-            {
-                Play(mProjectPanel.StripManager.SelectedNode);
-            }
+            Play(mProjectPanel.StripManager.SelectedNode);
+        }
+
+        /// <summary>
+        /// Play a single phrase node using the transport bar.
+        /// </summary>
+        internal void Play(urakawa.core.CoreNode node)
+        {
+            mProjectPanel.TransportBar.Play(node);
         }
 
         /// <summary>

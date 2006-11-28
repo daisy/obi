@@ -12,6 +12,27 @@ namespace Obi.UserControls
         private RecordingSession mRecordingSession;
 
         /// <summary>
+        /// Predicate telling if play is possible.
+        /// </summary>
+        public bool CanPlay
+        {
+            get
+            {
+                return mPlaylist == null ||
+                    mPlaylist.State == Obi.Audio.AudioPlayerState.Stopped ||
+                    mPlaylist.State == Obi.Audio.AudioPlayerState.Paused;
+            }
+        }
+
+        /// <summary>
+        /// Predicate telling if recording is possible.
+        /// </summary>
+        public bool CanRecord
+        {
+            get { return false; }
+        }
+
+        /// <summary>
         /// Set the playlist to be handled by the transport bar.
         /// </summary>
         public Playlist Playlist
@@ -80,12 +101,27 @@ namespace Obi.UserControls
         /// <remarks>Create a new playlist everytime we start playing. We could be smarter about this.</remarks>
         public void Play()
         {
-            if (((ProjectPanel)Parent).Project != null &&
-                (mPlaylist == null || mPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)) 
+            if (CanPlay)
             {
-                Playlist = new Playlist(((ProjectPanel)Parent).Project, Audio.AudioPlayer.Instance);
+                if (((ProjectPanel)Parent).Project != null &&
+                    (mPlaylist == null || mPlaylist.State == Obi.Audio.AudioPlayerState.Stopped))
+                {
+                    Playlist = new Playlist(((ProjectPanel)Parent).Project, Audio.AudioPlayer.Instance);
+                }
+                mPlaylist.Play();
             }
-            if (mPlaylist != null) mPlaylist.Play();
+        }
+
+        /// <summary>
+        /// Play a single node (phrase or section).
+        /// </summary>
+        public void Play(urakawa.core.CoreNode node)
+        {
+            if (CanPlay)
+            {
+                Playlist = new Playlist(((ProjectPanel)Parent).Project, Audio.AudioPlayer.Instance, node);
+                mPlaylist.Play();
+            }
         }
 
         private void mPauseButton_Click(object sender, EventArgs e)
