@@ -117,8 +117,6 @@ namespace Obi
             tmCommitTimer.Interval = 300000;
             tmUpdateDisplay.Tick += new System.EventHandler ( tmUpdateDisplay_tick );
             tmUpdateDisplay.Interval = 1000 ;
-
-            mVuMeter.ShowForm();
         }
 
 
@@ -170,7 +168,6 @@ namespace Obi
             tmUpdateDisplay.Enabled = false;
             Obi.Events.Audio.Recorder.PhraseEventArgs e = StoppedRecording();
             if (e != null) FinishingPhrase(this, e);
-            mVuMeter.CloseVuMeterForm();
         }
 
         /// <summary>

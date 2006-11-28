@@ -75,32 +75,24 @@ namespace Obi.Audio
 		// JQ changed constructor to be private (singleton)
 		private AudioPlayer()
 		{
-
 			m_State = AudioPlayerState.Stopped;
-			ob_VuMeter = null;  // JQ
-
+            ob_VuMeter = new VuMeter();
             MoniteringTimer.Tick += new System.EventHandler(this.MoniteringTimer_Tick);
             MoniteringTimer.Interval = 200;
-
             // events associated with local function so as to avoid null exceptions            
             StateChanged += new Obi.Events.Audio.Player.StateChangedHandler(CatchEvents);
             EndOfAudioAsset += new Obi.Events.Audio.Player.EndOfAudioAssetHandler(CatchEvents);
-            
 		}
 
 		// bool variable to enable or disable event
 		bool m_EventsEnabled = true ;
 
-		public VuMeter VuMeterObject
+        /// <summary>
+        /// The Vu meter associated with the player.
+        /// </summary>
+		public VuMeter VuMeter
 		{
-			get
-			{
-				return ob_VuMeter;
-			}
-			set
-			{
-				ob_VuMeter = value;  // the vu meter should then be told to listen to this audio player
-			}
+			get { return ob_VuMeter; }
 		}
 
 		void TriggerStateChangedEvent(Events.Audio.Player.StateChangedEventArgs e)
@@ -120,19 +112,6 @@ namespace Obi.Audio
 				return m_State ;
 			}
 		}
-		
-		// Output  device object
-		/*public Microsoft.DirectX.DirectSound.Device OutputDevice
-		{
-			get
-			{
-				return SndDevice ;
-			}
-			set
-			{
-				SndDevice = value ;
-			}
-		}*/
 
         public OutputDevice OutputDevice
         {
@@ -282,7 +261,6 @@ namespace Obi.Audio
 		{
 			m_StartPosition   = 0 ;
 			m_State  = AudioPlayerState.NotReady ;
-            
 			m_Asset = asset as Assets.AudioMediaAsset;
 			InitPlay(0, 0);
 		}

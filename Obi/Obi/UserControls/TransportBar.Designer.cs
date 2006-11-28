@@ -28,6 +28,7 @@ namespace Obi.UserControls
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransportBar));
             this.mPlayButton = new System.Windows.Forms.Button();
             this.mPauseButton = new System.Windows.Forms.Button();
@@ -39,6 +40,7 @@ namespace Obi.UserControls
             this.mRecordButton = new System.Windows.Forms.Button();
             this.mScrubTrackBar = new System.Windows.Forms.TrackBar();
             this.mTimeDisplayBox = new System.Windows.Forms.TextBox();
+            this.mTransportBarTooltip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.mScrubTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,6 +54,7 @@ namespace Obi.UserControls
             this.mPlayButton.Name = "mPlayButton";
             this.mPlayButton.Size = new System.Drawing.Size(32, 32);
             this.mPlayButton.TabIndex = 0;
+            this.mTransportBarTooltip.SetToolTip(this.mPlayButton, "Start or resume audio playback.");
             this.mPlayButton.UseVisualStyleBackColor = true;
             this.mPlayButton.Click += new System.EventHandler(this.mPlayButton_Click);
             // 
@@ -150,6 +153,7 @@ namespace Obi.UserControls
             // 
             // mScrubTrackBar
             // 
+            this.mScrubTrackBar.BackColor = System.Drawing.Color.White;
             this.mScrubTrackBar.Location = new System.Drawing.Point(266, 0);
             this.mScrubTrackBar.Name = "mScrubTrackBar";
             this.mScrubTrackBar.Size = new System.Drawing.Size(104, 42);
@@ -167,11 +171,16 @@ namespace Obi.UserControls
             this.mTimeDisplayBox.Text = "00:00:00";
             this.mTimeDisplayBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // mTransportBarTooltip
+            // 
+            this.mTransportBarTooltip.IsBalloon = true;
+            this.mTransportBarTooltip.ToolTipTitle = "Transport bar";
+            // 
             // TransportBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.mTimeDisplayBox);
             this.Controls.Add(this.mScrubTrackBar);
             this.Controls.Add(this.mRecordButton);
@@ -202,5 +211,6 @@ namespace Obi.UserControls
         private System.Windows.Forms.Button mRecordButton;
         private System.Windows.Forms.TrackBar mScrubTrackBar;
         private System.Windows.Forms.TextBox mTimeDisplayBox;
+        private System.Windows.Forms.ToolTip mTransportBarTooltip;
     }
 }

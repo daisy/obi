@@ -77,9 +77,11 @@ namespace Obi.UserControls
         /// <summary>
         /// Play or resume.
         /// </summary>
+        /// <remarks>Create a new playlist everytime we start playing. We could be smarter about this.</remarks>
         public void Play()
         {
-            if (mPlaylist == null && ((ProjectPanel)Parent).Project != null)
+            if (((ProjectPanel)Parent).Project != null &&
+                (mPlaylist == null || mPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)) 
             {
                 Playlist = new Playlist(((ProjectPanel)Parent).Project, Audio.AudioPlayer.Instance);
             }
@@ -101,7 +103,14 @@ namespace Obi.UserControls
 
         private void mRecordButton_Click(object sender, EventArgs e)
         {
+            Record();
+        }
 
+        /// <summary>
+        /// Start listening/recording.
+        /// </summary>
+        public void Record()
+        {
         }
 
         private void mStopButton_Click(object sender, EventArgs e)

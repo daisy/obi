@@ -17,6 +17,12 @@ namespace Obi
         private Project mProject;                // the project currently being authored
         private Settings mSettings;              // application settings
         private CommandManager mCommandManager;  // the undo stack for this project (should it belong to the project?)
+        private Audio.VuMeterForm mVuMeter;      // keep track of a single Vu meter form
+
+        public Audio.VuMeterForm VuMeterForm
+        {
+            get { return mVuMeter; }
+        }
 
         /// <summary>
         /// Initialize a new form. No project is opened at creation time.
@@ -28,6 +34,7 @@ namespace Obi
             mProject = null;
             mSettings = null;
             mCommandManager = new CommandManager();
+            mVuMeter = null;
             InitializeSettings();
             StatusUpdateClosedProject();  // no project opened, same as if we closed a project.
         }
@@ -965,11 +972,13 @@ namespace Obi
         }
 
         /// <summary>
-        /// 
+        /// Update the visibility and actual label of transport items.
         /// </summary>
         private void mTransportToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
             bool isProjectOpen = mProject != null;
+            mShowHideVUMeterToolStripMenuItem.Text =
+                Localizer.Message(mVuMeter != null && mVuMeter.Visible ? "hide_vu_meter" : "show_vu_meter");
             mPlayAllToolStripMenuItem.Enabled = isProjectOpen;
             mPlaySelectionToolStripMenuItem.Enabled = isProjectOpen &&
                 (mProjectPanel.StripManager.SelectedSectionNode != null ||
@@ -1017,9 +1026,28 @@ namespace Obi
         }
 
         // Transport bar stuff
-        // Right now implemented only through menu/dialogs
 
         #region transport bar
+
+        /// <summary>
+        /// Show the VU meter form (creating it if necessary) or hide it.
+        /// </summary>
+        private void mShowHideVUMeterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mVuMeter != null && mVuMeter.Visible)
+            {
+                mVuMeter.Hide();
+            }
+            else
+            {
+                if (mVuMeter == null)
+                {
+                    mVuMeter = new Audio.VuMeterForm(Audio.AudioPlayer.Instance.VuMeter);
+                    mVuMeter.VuMeter.SetEventHandlers();
+                }
+                mVuMeter.Show();
+            }
+        }
 
         /// <summary>
         /// Play the whole book.

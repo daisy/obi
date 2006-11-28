@@ -113,7 +113,7 @@ namespace Obi.Dialogs
                 // ob_VuMeter.SampleTimeLength = 1000;
                 // ob_VuMeter.ShowForm();
                 // Audio.AudioPlayer.Instance.VuMeterObject = ob_VuMeter;
-                Audio.AudioPlayer.Instance.VuMeterObject = null;
+                // Audio.AudioPlayer.Instance.VuMeterObject = null;
                 Audio.AudioPlayer.Instance.Play(Project.GetAudioMediaAsset(mNode));
                 mPlayButton.Text = Localizer.Message("pause");
                 tmUpdateCurrentTime.Enabled = true;
