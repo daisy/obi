@@ -74,7 +74,8 @@ namespace Obi.Audio
 
 		// JQ changed constructor to be private (singleton)
 		private AudioPlayer()
-		{
+        {
+
 			m_State = AudioPlayerState.Stopped;
             ob_VuMeter = new VuMeter();
             MoniteringTimer.Tick += new System.EventHandler(this.MoniteringTimer_Tick);
@@ -373,9 +374,12 @@ namespace Obi.Audio
 		{
 		
 			int ReadPosition;
-			// variable to count byte difference in compressed and non compressed data of audio file
 			
-			while (m_lPlayed < m_lLength)
+			// variable to prevent least count errors in clip end time
+            long SafeMargin = CalculationFunctions.ConvertTimeToByte(1, m_SamplingRate, m_FrameSize);
+
+
+			while (m_lPlayed < m_lLength - SafeMargin )
 			{//1
 				if (SoundBuffer.Status.BufferLost  )
 					SoundBuffer.Restore () ;
@@ -439,8 +443,10 @@ namespace Obi.Audio
             CurrentPlayPosition = SoundBuffer.PlayPosition;
             int StopMargin = Convert.ToInt32 (CalculationFunctions.ConvertTimeToByte( 70 , m_SamplingRate, m_FrameSize));
 
-             while (CurrentPlayPosition < (BufferStopPosition - StopMargin) || CurrentPlayPosition > (BufferStopPosition ))
-                //while (CurrentPlayPosition < m_RefreshLength)
+            if (BufferStopPosition < StopMargin)
+                BufferStopPosition = StopMargin; 
+
+             while (CurrentPlayPosition < (BufferStopPosition - StopMargin) || CurrentPlayPosition > ( BufferStopPosition ))
                 {
                     Thread.Sleep(50);
                     CurrentPlayPosition = SoundBuffer.PlayPosition;
