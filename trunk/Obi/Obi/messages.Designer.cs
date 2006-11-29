@@ -687,6 +687,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to P&amp;ause.
+        /// </summary>
+        internal static string pause_all {
+            get {
+                return ResourceManager.GetString("pause_all", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  phrase.
         /// </summary>
         internal static string phrase {
@@ -701,6 +710,24 @@ namespace Obi {
         internal static string play {
             get {
                 return ResourceManager.GetString("play", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Play &amp;all.
+        /// </summary>
+        internal static string play_all {
+            get {
+                return ResourceManager.GetString("play_all", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Play &amp;selection.
+        /// </summary>
+        internal static string play_selection {
+            get {
+                return ResourceManager.GetString("play_selection", resourceCulture);
             }
         }
         

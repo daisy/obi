@@ -89,6 +89,7 @@ namespace Obi
             this.mPlayAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlaySelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mStopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -554,7 +555,8 @@ namespace Obi
             this.toolStripSeparator7,
             this.mPlayAllToolStripMenuItem,
             this.mPlaySelectionToolStripMenuItem,
-            this.mRecordToolStripMenuItem});
+            this.mRecordToolStripMenuItem,
+            this.mStopToolStripMenuItem});
             this.mTransportToolStripMenuItem.Name = "mTransportToolStripMenuItem";
             this.mTransportToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.mTransportToolStripMenuItem.Text = "T&ransport";
@@ -597,6 +599,14 @@ namespace Obi
             this.mRecordToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
             this.mRecordToolStripMenuItem.Text = "&Record";
             this.mRecordToolStripMenuItem.Click += new System.EventHandler(this.mRecordToolStripMenuItem_Click);
+            // 
+            // mStopToolStripMenuItem
+            // 
+            this.mStopToolStripMenuItem.Name = "mStopToolStripMenuItem";
+            this.mStopToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
+            this.mStopToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            this.mStopToolStripMenuItem.Text = "&Stop";
+            this.mStopToolStripMenuItem.Click += new System.EventHandler(this.mStopToolStripMenuItem_Click);
             // 
             // mToolsToolStripMenuItem
             // 
@@ -799,6 +809,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mApplyPhraseDetectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mShowHideVUMeterToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripMenuItem mStopToolStripMenuItem;
 
 
     }

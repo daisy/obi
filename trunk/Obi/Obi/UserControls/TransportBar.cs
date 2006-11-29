@@ -12,24 +12,28 @@ namespace Obi.UserControls
         private RecordingSession mRecordingSession;
 
         /// <summary>
+        /// Everything can be solved by adding a new layer of indirection. So here it is.
+        /// </summary>
+        public Audio.AudioPlayerState State
+        {
+            get
+            {
+                return mPlaylist == null ? Audio.AudioPlayerState.Stopped : mPlaylist.State;
+            }
+        }
+
+        /// <summary>
         /// Predicate telling if play is possible.
         /// </summary>
         public bool CanPlay
         {
             get
             {
-                return mPlaylist == null ||
+                return ((ProjectPanel)Parent).Project != null &&
+                    (mPlaylist == null ||
                     mPlaylist.State == Obi.Audio.AudioPlayerState.Stopped ||
-                    mPlaylist.State == Obi.Audio.AudioPlayerState.Paused;
+                    mPlaylist.State == Obi.Audio.AudioPlayerState.Paused);
             }
-        }
-
-        /// <summary>
-        /// Predicate telling if recording is possible.
-        /// </summary>
-        public bool CanRecord
-        {
-            get { return false; }
         }
 
         /// <summary>
@@ -37,6 +41,7 @@ namespace Obi.UserControls
         /// </summary>
         public Playlist Playlist
         {
+            get { return mPlaylist; }
             set
             {
                 mPlaylist = value;

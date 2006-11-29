@@ -478,4 +478,16 @@ Do you want to replace the project contained in this file?</value>
     <value>Show &amp;VU meter</value>
     <comment>Show/hide VU meter label (JQ)</comment>
   </data>
+  <data name="pause_all" xml:space="preserve">
+    <value>P&amp;ause</value>
+    <comment>Pause menu item (JQ)</comment>
+  </data>
+  <data name="play_all" xml:space="preserve">
+    <value>Play &amp;all</value>
+    <comment>Play all menu item (JQ)</comment>
+  </data>
+  <data name="play_selection" xml:space="preserve">
+    <value>Play &amp;selection</value>
+    <comment>Play selection menu item (JQ)</comment>
+  </data>
 </root>

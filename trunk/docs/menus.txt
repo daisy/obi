@@ -51,9 +51,10 @@ Main form
 
   + [R] Transport
     + [V] Show/hide VU meter ............ Ctrl+U
-    + [A] Play all ...................... Ctrl+Space
-    + [P] Play selection ................ Ctrl+Shift+Space
+    + [A] Play all/pause ................ Ctrl+Space
+    + [P] Play selection/pause .......... Ctrl+Shift+Space
     + [R] Record ........................ Ctrl+R
+    + [S] Stop .......................... Ctrl+T
 
   + [T] Tools
     + [U] User profile .................. Alt+U
@@ -130,8 +131,8 @@ Index of shortcuts
   Ctrl+Right ......... [Strip Manager Panel] Move audio block > Forward
   Ctrl+Shift+Right ... TOC > Move in
   Ctrl+Shift+Right ... [TOC Panel] > Move in
-  Ctrl+Space ......... Transport > Play all
-  Ctrl+Shift+Space ... Transport > Play selection
+  Ctrl+Space ......... Transport > Play all/pause
+  Ctrl+Shift+Space ... Transport > Play selection/pause
 
   Alt+A .............. Tools > Audio preferences
   Ctrl+A* ............ TOC > Add section
@@ -167,7 +168,7 @@ Index of shortcuts
   Ctrl+S ............. File > Save project
   Ctrl+Shift+S ....... File > Save project as
   Alt+T .............. TOC > Show table of contents
-  Ctrl+T ............. FREE
+  Ctrl+T ............. Transport > Stop
   Alt+U .............. Tools > User profile
   Ctrl+U ............. Transport > Show/hide VU meter
   Alt+V* ............. TOC > Show in strip view
