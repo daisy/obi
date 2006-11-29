@@ -6,8 +6,7 @@ using urakawa.core;
 
 namespace Obi.Events.Strip
 {
-    public delegate void UpdateTimeHandler(object sender, UpdateTimeEventArgs e);
-
+  
     class UpdateTimeEventArgs: EventArgs
     {
         private CoreNode mNode;

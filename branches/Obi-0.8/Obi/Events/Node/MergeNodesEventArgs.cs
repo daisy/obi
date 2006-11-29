@@ -6,8 +6,6 @@ using urakawa.core;
 
 namespace Obi.Events.Node
 {
-    public delegate void MergeNodesHandler(object sender, MergeNodesEventArgs e);
-
     public class MergeNodesEventArgs: NodeEventArgs
     {
         private CoreNode mNext;

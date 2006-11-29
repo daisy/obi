@@ -3,8 +3,7 @@ using urakawa.core;
 
 namespace Obi.Events.Node
 {
-    public delegate void RequestToApplyPhraseDetectionHandler(object sender, PhraseDetectionEventArgs e);
- 
+   
     public class PhraseDetectionEventArgs: NodeEventArgs
     {
         private long mThreshold;
@@ -26,7 +25,7 @@ namespace Obi.Events.Node
             get { return mLeadingSilence; }
         }
 
-        public PhraseDetectionEventArgs(object origin, CoreNode node, long threshold, double gap, double leading)
+        public PhraseDetectionEventArgs(object origin, PhraseNode node, long threshold, double gap, double leading)
             : base(origin, node)
         {
             mThreshold = threshold;

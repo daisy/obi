@@ -75,7 +75,7 @@ namespace Obi.UserControls
             return position;
         }
 
-        internal void SyncRenamedNode(object sender, Events.Node.RenameNodeEventArgs e)
+        internal void SyncRenamedNode(object sender, Events.Node.RenameSectionNodeEventArgs e)
         {
             SectionStrip strip = mSectionNodeMap[e.Node];
             strip.Label = e.Label;
@@ -103,7 +103,7 @@ namespace Obi.UserControls
             }
         }
 
-        internal void SyncMovedNode(object sender, Events.Node.MovedNodeEventArgs e)
+        internal void SyncMovedNode(object sender, Events.Node.MovedSectionNodeEventArgs e)
         {
             //md:
             ArrayList stripsToMove = new ArrayList();

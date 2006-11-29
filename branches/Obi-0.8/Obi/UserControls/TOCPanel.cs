@@ -136,7 +136,7 @@ namespace Obi.UserControls
                 }
                 else if (e.Label != Project.GetTextMedia((urakawa.core.CoreNode)e.Node.Tag).getText())
                 {
-                    RequestToRenameSectionNode(this, new Events.Node.RenameNodeEventArgs(this, (urakawa.core.CoreNode)e.Node.Tag, e.Label));
+                    RequestToRenameSectionNode(this, new Events.Node.RenameSectionNodeEventArgs(this, (urakawa.core.CoreNode)e.Node.Tag, e.Label));
                 }
             }
         }

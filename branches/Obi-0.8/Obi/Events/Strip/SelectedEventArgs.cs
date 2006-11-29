@@ -4,8 +4,7 @@ using System.Text;
 
 namespace Obi.Events.Strip
 {
-    public delegate void SelectedHandler(object sender, SelectedEventArgs e);
-
+  
     /// <summary>
     /// An element from the strip manager (a strip or a block) was selected (Selected = true) or unselected (Selected = false).
     /// </summary>

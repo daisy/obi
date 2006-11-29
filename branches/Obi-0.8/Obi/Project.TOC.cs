@@ -169,14 +169,14 @@ namespace Obi
         /// <param name="parent"></param>
         /// <param name="index"></param>
         /// <param name="position"></param>
-        public void UndeleteSectionNode(CoreNode node, CoreNode parent, int index, int position)
+        public void UndeleteSectionNode(SectionNode node, CoreNode parent, int index, int position)
         {
-            NodeType nodeType;
+            /*NodeType nodeType;
             nodeType = Project.GetNodeType(node);
             if (nodeType != NodeType.Section)
             {
                 throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
-            }
+            }*/
 
             Visitors.UndeleteSubtree visitor = new Visitors.UndeleteSubtree(this, parent, index, position);
             node.acceptDepthFirst(visitor);
@@ -260,7 +260,7 @@ namespace Obi
 
                 int sectionIdx = GetSectionNodeIndex(node);
 
-                MovedSectionNode(this, new Events.Node.MovedNodeEventArgs
+                MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs
                     (this, node, newParent, newParent.indexOf(node), visitor.Position, sectionIdx));
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -341,7 +341,7 @@ namespace Obi
             parent.insert(node, index);
             int sectionIdx = GetSectionNodeIndex(node);
 
-            UndidMoveNode(this, new Events.Node.MovedNodeEventArgs(this, node, parent, index, position, sectionIdx));
+            UndidMoveNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, parent, index, position, sectionIdx));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
@@ -388,7 +388,7 @@ namespace Obi
 
                 int sectionIdx = GetSectionNodeIndex(node);
 
-                MovedSectionNode(this, new Events.Node.MovedNodeEventArgs
+                MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs
                     (this, node, newParent, newParent.indexOf(node), visitor.Position, sectionIdx));
 
                 mUnsaved = true;
@@ -481,7 +481,7 @@ namespace Obi
                 int sectionIdx = GetSectionNodeIndex(node);
 
                 //IncreasedNodeLevel(this, new Events.Node.NodeEventArgs(origin, node));
-                MovedSectionNode(this, new Events.Node.MovedNodeEventArgs
+                MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs
                     (origin, node, newParent, newParent.indexOf(node), visitor.Position, sectionIdx));
 
                 mUnsaved = true;
@@ -687,7 +687,7 @@ namespace Obi
             if (GetNodeType(node) == NodeType.Section)
             {
                 int sectionIdx = GetSectionNodeIndex(node);
-                MovedSectionNode(this, new Events.Node.MovedNodeEventArgs(this, node, parent, index, position, sectionIdx));
+                MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, parent, index, position, sectionIdx));
             }
 
             Visitors.SectionNodePosition visitor = null;
@@ -704,7 +704,7 @@ namespace Obi
 
                     int childSectionIdx = GetSectionNodeIndex((CoreNode)nonOriginalChildren[i]);
 
-                    MovedSectionNode(this, new Events.Node.MovedNodeEventArgs
+                    MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs
                         (this, (CoreNode)nonOriginalChildren[i], parent,
                         parent.getChildCount() - 1, visitor.Position, childSectionIdx));
                 }
@@ -726,13 +726,13 @@ namespace Obi
             TextMedia text = GetTextMedia(node);
             Commands.TOC.Rename command = origin == this ? null : new Commands.TOC.Rename(this, node, text.getText(), label);
             GetTextMedia(node).setText(label);
-            RenamedNode(this, new Events.Node.RenameNodeEventArgs(origin, node, label));
+            RenamedNode(this, new Events.Node.RenameSectionNodeEventArgs(origin, node, label));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
             if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
-        public void RenameSectionNodeRequested(object sender, Events.Node.RenameNodeEventArgs e)
+        public void RenameSectionNodeRequested(object sender, Events.Node.RenameSectionNodeEventArgs e)
         {
             RenameSectionNode(sender, e.Node, e.Label);
         }

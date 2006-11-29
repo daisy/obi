@@ -4,8 +4,6 @@ using System.Text;
 
 namespace Obi.Events.Node
 {
-    public delegate void SelectedHandler(object sender, SelectedEventArgs e);
-
     class SelectedEventArgs: EventArgs
     {
         private bool mSelected;

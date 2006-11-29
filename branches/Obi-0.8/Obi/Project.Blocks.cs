@@ -214,7 +214,7 @@ namespace Obi
         /// Handle a request to split an audio block. The event contains the original node that was split and the new asset
         /// created from the split. A new sibling to the original node is to be added.
         /// </summary>
-        public void SplitAudioBlockRequested(object sender, Events.Node.SplitNodeEventArgs e)
+        public void SplitAudioBlockRequested(object sender, Events.Node.SplitPhraseNodeEventArgs e)
         {
             CoreNode newNode = CreatePhraseNode(e.NewAsset);
             CoreNode parent = (CoreNode)e.Node.getParent();
@@ -272,7 +272,7 @@ namespace Obi
         /// </summary>
         /// <param name="mPhraseNodes">The nodes to remove.</param>
         /// <param name="mNode">The node to add instead.</param>
-        internal void ReplaceNodesWithNode(List<CoreNode> nodes, CoreNode node)
+        internal void ReplaceNodesWithNode(List<PhraseNode> nodes, PhraseNode node)
         {
             CoreNode parent = (CoreNode)nodes[0].getParent();
             int index = parent.indexOf(nodes[0]);
@@ -383,7 +383,7 @@ namespace Obi
         /// <summary>
         /// Delete a phrase node from the tree.
         /// </summary>
-        public void DeletePhraseNode(CoreNode node)
+        public void DeletePhraseNode(PhraseNode node)
         {
             DeletedPhraseNode(this, new Events.Node.NodeEventArgs(this, node));
             node.detach();
@@ -466,7 +466,7 @@ namespace Obi
         /// <summary>
         /// Move a phrase node in the given direction.
         /// </summary>
-        public void MovePhraseNode(CoreNode node, Direction dir)
+        public void MovePhraseNode(PhraseNode node, PhraseNode.Direction dir)
         {
             int index = GetPhraseIndex(node);
             CoreNode parent = (CoreNode)node.getParent();

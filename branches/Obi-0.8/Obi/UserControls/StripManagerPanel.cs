@@ -272,7 +272,7 @@ namespace Obi.UserControls
         /// <param name="strip">The renamed strip (with its new name as a label.)</param>
         internal void RenamedSectionStrip(SectionStrip strip)
         {
-            RenameSection(this, new Events.Node.RenameNodeEventArgs(this, strip.Node, strip.Label));
+            RenameSection(this, new Events.Node.RenameSectionNodeEventArgs(this, strip.Node, strip.Label));
         }
 
         /// <summary>

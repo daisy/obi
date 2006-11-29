@@ -19,7 +19,7 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="sender">The sender of this event notification</param>
         /// <param name="e"><see cref="e.Node"/> is the tree node being renamed.</param>
-        internal void SyncRenamedSectionNode(object sender, Events.Node.RenameNodeEventArgs e)
+        internal void SyncRenamedSectionNode(object sender, Events.Node.RenameSectionNodeEventArgs e)
         {
             if (e.Origin != this)
             {
@@ -116,7 +116,7 @@ namespace Obi.UserControls
         }
 
 
-        internal void SyncMovedSectionNode(object sender, Events.Node.MovedNodeEventArgs e)
+        internal void SyncMovedSectionNode(object sender, Events.Node.MovedSectionNodeEventArgs e)
         {
             TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
 
