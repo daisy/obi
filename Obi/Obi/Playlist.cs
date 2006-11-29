@@ -6,8 +6,7 @@ using urakawa.core;
 using System.Windows.Forms;
 
 namespace Obi
-{
-    
+{    
     /// <summary>
     /// The playlist is the list of phrases to be played. They are either the ones that were selected by the
     /// user, or just the list of phrases. The playlist knows how to play itself thanks to the application's
@@ -180,6 +179,13 @@ namespace Obi
             }
         }
 
+        /// <summary>
+        /// Playing the whole book or just a selection.
+        /// </summary>
+        public bool WholeBook
+        {
+            get { return mWholeBook; }
+        }
 
         // functions start from here on
 
@@ -192,8 +198,6 @@ namespace Obi
         public Playlist(Project project, AudioPlayer player)
         {
             InitPlaylist(project, player, project.RootNode, true);
-            //mPlayer.VuMeterObject = ob_VuMeter;
-            
         }
 
         /// <summary>
@@ -207,7 +211,6 @@ namespace Obi
         public Playlist(Project project, AudioPlayer player, CoreNode node)
         {
             InitPlaylist(project, player, node, false);
-            //mPlayer.VuMeterObject = ob_VuMeter;
         }
 
         /// <summary>
@@ -241,7 +244,7 @@ namespace Obi
                 // nothing to do in post-visit
                 delegate(ICoreNode n) { }
             );
-            mPlayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler(MoveToNextPhrase);
+            // mPlayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
             mPlayer.StateChanged += new Events.Audio.Player.StateChangedHandler
             (
                 // Intercept state change events from the player, and only pass along those that
@@ -270,8 +273,7 @@ namespace Obi
                 {
                     // Resume by using play from function
                     mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]) , mPausePosition );
-                    mPlayListState = AudioPlayerState.Playing;
-                    
+                    mPlayListState = AudioPlayerState.Playing;                    
                     if (StateChanged != null)
                     {
                         StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Paused));
@@ -283,6 +285,7 @@ namespace Obi
                     // start from the beginning
                     mCurrentPhraseIndex = 0;
                     mElapsedTime = 0.0;
+                    mPlayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
                     mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]));
                     mPlayListState = AudioPlayerState.Playing;
                     if (StateChanged != null)
@@ -311,11 +314,10 @@ namespace Obi
         /// </summary>
         /// <param name="sender">Sender of the event (i.e. the audio player.)</param>
         /// <param name="e">The arguments sent by the player.</param>
-        private void MoveToNextPhrase(object sender, Events.Audio.Player.EndOfAudioAssetEventArgs e)
+        private void Playlist_MoveToNextPhrase(object sender, Events.Audio.Player.EndOfAudioAssetEventArgs e)
         {
             // add an option to have a beep between assets
-            System.Media.SystemSounds.Exclamation.Play();
-
+            // System.Media.SystemSounds.Exclamation.Play();
             if (mCurrentPhraseIndex < mPhrases.Count - 1)
             {
                 PlayNextPhrase();
@@ -347,7 +349,6 @@ namespace Obi
         {
             mElapsedTime += mPlayer.CurrentAsset.LengthInMilliseconds;
             ++mCurrentPhraseIndex;
-            
             if (MovedToPhrase != null)
             {
                 MovedToPhrase(this, new Events.Node.NodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
@@ -405,6 +406,7 @@ namespace Obi
                 mPlayer.Stop();
                 mPlayListState = AudioPlayerState.Stopped;
                 if (StateChanged != null) StateChanged(this, evargs);
+                mPlayer.EndOfAudioAsset -= new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);                
             }
         }
 
@@ -418,8 +420,7 @@ namespace Obi
         /// If there is no next phrase, immediatly stop.
         /// </summary>
         public void NavigateNextPhrase()
-        {
-            
+        {            
             System.Diagnostics.Debug.Assert(mPlayer.State != AudioPlayerState.NotReady, "Player is not ready!");
             if (NextPhrase != null)  // current phrase is not last phrase
             {
