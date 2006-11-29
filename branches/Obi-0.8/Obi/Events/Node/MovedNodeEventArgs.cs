@@ -6,16 +6,11 @@ using urakawa.core;
 
 namespace Obi.Events.Node
 {
-    //md:
-    //I don't think this is necessarily specific to SectionNodes (although
-    //it's definitely used in that case), so I haven't renamed it "xxxSectionNodexxx"  
-    public delegate void MovedNodeHandler(object sender, MovedNodeEventArgs e);
- 
-    class MovedNodeEventArgs : AddedSectionNodeEventArgs
+    class MovedSectionNodeEventArgs : NodeEventArgs
     {
-        private CoreNode mParent;
+        private SectionNode mParent;
 
-        public CoreNode Parent
+        public SectionNode Parent
         {
             get
             {
@@ -23,8 +18,8 @@ namespace Obi.Events.Node
             }
         }
 
-        public MovedNodeEventArgs(object origin, CoreNode node, CoreNode parent, int index, int position, int sectionNodeIndex) : 
-            base(origin, node, index, position, sectionNodeIndex)
+        public MovedSectionNodeEventArgs(object origin, SectionNode node, SectionNode parent) : 
+            base(origin, node)
         {
             mParent = parent;
         }
