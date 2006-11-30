@@ -289,7 +289,7 @@ namespace Obi.UserControls
         /// </summary>
         private void mFlowLayoutPanel_Leave(object sender, EventArgs e)
         {
-            SelectedSectionNode = null;
+            // SelectedSectionNode = null;
         }
 
         /// <summary>

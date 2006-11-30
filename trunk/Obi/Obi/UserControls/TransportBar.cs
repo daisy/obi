@@ -11,6 +11,8 @@ namespace Obi.UserControls
         private Playlist mPlaylist;
         private RecordingSession mRecordingSession;
 
+        private urakawa.core.CoreNode mPreviousSelection;  // selection before playback started
+
         /// <summary>
         /// Everything can be solved by adding a new layer of indirection. So here it is.
         /// </summary>
@@ -48,6 +50,7 @@ namespace Obi.UserControls
                 mPlaylist.MovedToPhrase += new Playlist.MovedToPhraseHandler(Play_MovedToPhrase);
                 mPlaylist.StateChanged += new Events.Audio.Player.StateChangedHandler(Play_PlayerStateChanged);
                 mPlaylist.EndOfPlaylist += new Playlist.EndOfPlaylistHandler(Play_PlayerStopped);
+                mPreviousSelection = ((ProjectPanel)Parent).SelectedNode;
             }
         }
 
@@ -113,7 +116,15 @@ namespace Obi.UserControls
                 {
                     Playlist = new Playlist(((ProjectPanel)Parent).Project, Audio.AudioPlayer.Instance);
                 }
-                mPlaylist.Play();
+                if (((ProjectPanel)Parent).SelectedNode != null)
+                {
+                    mPlaylist.CurrentPhrase = ((ProjectPanel)Parent).SelectedNode;
+                    mPlaylist.Play(false);
+                }
+                else
+                {
+                    mPlaylist.Play();
+                }
             }
         }
 
@@ -221,6 +232,7 @@ namespace Obi.UserControls
         {
             mPauseButton.Visible = false;
             mPlayButton.Visible = true;
+            ((ProjectPanel)Parent).StripManager.SelectedNode = mPreviousSelection;
         }
 
         /// <summary>

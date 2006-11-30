@@ -86,10 +86,14 @@ namespace Obi
             this.mTransportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowHideVUMeterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.mPreviousSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPreviousPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlayAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlaySelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mNextPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mNextSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -553,10 +557,14 @@ namespace Obi
             this.mTransportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mShowHideVUMeterToolStripMenuItem,
             this.toolStripSeparator7,
+            this.mPreviousSectionToolStripMenuItem,
+            this.mPreviousPhraseToolStripMenuItem,
             this.mPlayAllToolStripMenuItem,
             this.mPlaySelectionToolStripMenuItem,
             this.mRecordToolStripMenuItem,
-            this.mStopToolStripMenuItem});
+            this.mStopToolStripMenuItem,
+            this.mNextPhraseToolStripMenuItem,
+            this.mNextSectionToolStripMenuItem});
             this.mTransportToolStripMenuItem.Name = "mTransportToolStripMenuItem";
             this.mTransportToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.mTransportToolStripMenuItem.Text = "T&ransport";
@@ -567,13 +575,28 @@ namespace Obi
             this.mShowHideVUMeterToolStripMenuItem.Name = "mShowHideVUMeterToolStripMenuItem";
             this.mShowHideVUMeterToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
             this.mShowHideVUMeterToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
-            this.mShowHideVUMeterToolStripMenuItem.Text = "Show &VU meter";
+            this.mShowHideVUMeterToolStripMenuItem.Text = "Show V&U meter";
             this.mShowHideVUMeterToolStripMenuItem.Click += new System.EventHandler(this.mShowHideVUMeterToolStripMenuItem_Click);
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             this.toolStripSeparator7.Size = new System.Drawing.Size(227, 6);
+            // 
+            // mPreviousSectionToolStripMenuItem
+            // 
+            this.mPreviousSectionToolStripMenuItem.Name = "mPreviousSectionToolStripMenuItem";
+            this.mPreviousSectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Up)));
+            this.mPreviousSectionToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            this.mPreviousSectionToolStripMenuItem.Text = "Pr&evious section";
+            // 
+            // mPreviousPhraseToolStripMenuItem
+            // 
+            this.mPreviousPhraseToolStripMenuItem.Name = "mPreviousPhraseToolStripMenuItem";
+            this.mPreviousPhraseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Left)));
+            this.mPreviousPhraseToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            this.mPreviousPhraseToolStripMenuItem.Text = "Pre&vious phrase";
+            this.mPreviousPhraseToolStripMenuItem.Click += new System.EventHandler(this.mPreviousPhraseToolStripMenuItem_Click);
             // 
             // mPlayAllToolStripMenuItem
             // 
@@ -607,6 +630,21 @@ namespace Obi
             this.mStopToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
             this.mStopToolStripMenuItem.Text = "&Stop";
             this.mStopToolStripMenuItem.Click += new System.EventHandler(this.mStopToolStripMenuItem_Click);
+            // 
+            // mNextPhraseToolStripMenuItem
+            // 
+            this.mNextPhraseToolStripMenuItem.Name = "mNextPhraseToolStripMenuItem";
+            this.mNextPhraseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Right)));
+            this.mNextPhraseToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            this.mNextPhraseToolStripMenuItem.Text = "&Next phrase";
+            this.mNextPhraseToolStripMenuItem.Click += new System.EventHandler(this.mNextPhraseToolStripMenuItem_Click);
+            // 
+            // mNextSectionToolStripMenuItem
+            // 
+            this.mNextSectionToolStripMenuItem.Name = "mNextSectionToolStripMenuItem";
+            this.mNextSectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Down)));
+            this.mNextSectionToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            this.mNextSectionToolStripMenuItem.Text = "Ne&xt section";
             // 
             // mToolsToolStripMenuItem
             // 
@@ -810,6 +848,10 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mShowHideVUMeterToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripMenuItem mStopToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mPreviousSectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mPreviousPhraseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mNextPhraseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mNextSectionToolStripMenuItem;
 
 
     }
