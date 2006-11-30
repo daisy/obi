@@ -10,21 +10,21 @@ namespace Obi
 {
     public partial class Project
     {
-        public event Events.Node.AddedSectionNodeHandler AddedSectionNode;      // a section node was added to the TOC
-        public event Events.Node.RenamedNodeHandler RenamedNode;                // a node was renamed in the presentation
-        public event Events.Node.MovedNodeHandler MovedSectionNode;                    // a node was moved in the presentation
-        public event Events.Node.DecreasedSectionNodeLevelHandler DecreasedSectionNodeLevel;  // a node's level was decreased in the presentation
-        public event Events.Node.MovedNodeHandler UndidMoveNode;                // a node was restored to its previous location
-        public event Events.Node.DeletedNodeHandler DeletedNode;                // a node was deleted from the presentation
+        public event Events.SectionNodeHandler AddedSectionNode;      // a section node was added to the TOC
+        public event Events.RenameSectionNodeHandler RenamedNode;                // a node was renamed in the presentation
+        public event Events.MovedSectionNodeHandler MovedSectionNode;                    // a node was moved in the presentation
+        public event Events.SectionNodeHandler DecreasedSectionNodeLevel;  // a node's level was decreased in the presentation
+        public event Events.MovedSectionNodeHandler UndidMoveNode;                // a node was restored to its previous location
+        public event Events.SectionNodeHandler DeletedNode;                // a node was deleted from the presentation
         //md: toc clipboard stuff
-        public event Events.Node.CutSectionNodeHandler CutSectionNode;
-        public event Events.Node.CopiedSectionNodeHandler CopiedSectionNode;
-        public event Events.Node.CopiedSectionNodeHandler UndidCopySectionNode;
-        public event Events.Node.PastedSectionNodeHandler PastedSectionNode;
-        public event Events.Node.UndidPasteSectionNodeHandler UndidPasteSectionNode;
+        public event Events.SectionNodeHandler CutSectionNode;
+        public event Events.SectionNodeHandler CopiedSectionNode;
+        public event Events.SectionNodeHandler UndidCopySectionNode;
+        public event Events.SectionNodeHandler PastedSectionNode;
+        public event Events.SectionNodeHandler UndidPasteSectionNode;
 
         //md: shallow-swapped event for move up/down linear
-        public event Events.Node.ShallowSwappedSectionNodesHandler ShallowSwappedSectionNodes;
+        public event Events.ShallowSwappedSectionNodesHandler ShallowSwappedSectionNodes;
       
         /// <summary>
         /// Create a new section node with a default text label. The node is not attached to anything.
@@ -87,7 +87,7 @@ namespace Obi
 
             int sectionIdx = GetSectionNodeIndex(sibling);
 
-            AddedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs(origin, sibling, parent.indexOf(sibling),
+            AddedSectionNode(this, new Events.Node.SectionNodeEventArgs(origin, sibling, parent.indexOf(sibling),
                 visitor.Position, sectionIdx));
 
             mUnsaved = true;
@@ -122,7 +122,7 @@ namespace Obi
 
             int sectionIdx = GetSectionNodeIndex(child);
 
-            AddedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs(origin, child, parent.indexOf(child), visitor.Position, sectionIdx));
+            AddedSectionNode(this, new Events.Node.SectionNodeEventArgs(origin, child, parent.indexOf(child), visitor.Position, sectionIdx));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
             Commands.TOC.AddSectionNode command = new Commands.TOC.AddSectionNode(this, child, parent, parent.indexOf(child),
@@ -157,7 +157,7 @@ namespace Obi
 
             int sectionIdx = GetSectionNodeIndex(node);
 
-            AddedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs(this, node, index, position, sectionIdx));
+            AddedSectionNode(this, new Events.Node.SectionNodeEventArgs(this, node, index, position, sectionIdx));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
@@ -889,7 +889,7 @@ namespace Obi
 
             int sectionIdx = GetSectionNodeIndex(pastedSection);
 
-            PastedSectionNode(this, new Events.Node.AddedSectionNodeEventArgs
+            PastedSectionNode(this, new Events.Node.SectionNodeEventArgs
                 (origin, pastedSection, parent.indexOf(pastedSection), visitor.Position, sectionIdx));
 
             mUnsaved = true;

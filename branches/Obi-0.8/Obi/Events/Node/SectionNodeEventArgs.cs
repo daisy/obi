@@ -8,11 +8,11 @@ namespace Obi.Events.Node
 {
    
     /// <summary>
-    /// A section node was added.
+    /// Communicate events about section nodes
     /// </summary>
-    class AddedSectionNodeEventArgs: NodeEventArgs
+    public class SectionNodeEventArgs: NodeEventArgs
     {
-       public AddedSectionNodeEventArgs(object origin, SectionNode node) : 
+       public SectionNodeEventArgs(object origin, SectionNode node) : 
             base(origin, node)
         {
         }

@@ -8,24 +8,26 @@ using System.Windows.Forms;
 using urakawa.media;
 using System.Collections;
 
+using Obi.Events.Node;
+
 
 namespace Obi.UserControls
 {
     public partial class TOCPanel
     {
-        public event Events.Node.RequestToAddSiblingNodeHandler RequestToAddSiblingSection;
-        public event Events.Node.RequestToAddChildSectionNodeHandler RequestToAddChildSectionNode;
-        public event Events.Node.RequestToDecreaseSectionNodeLevelHandler RequestToDecreaseSectionNodeLevel;
-        public event Events.Node.RequestToIncreaseSectionNodeLevelHandler RequestToIncreaseSectionNodeLevel;
-        public event Events.Node.RequestToMoveSectionNodeDownHandler RequestToMoveSectionNodeDown;
-        public event Events.Node.RequestToMoveSectionNodeUpHandler RequestToMoveSectionNodeUp;
-        public event Events.Node.RequestToRenameNodeHandler RequestToRenameSectionNode;
-        public event Events.Node.RequestToDeleteNodeHandler RequestToDeleteSectionNode;
+        public event Events.SectionNodeHandler AddSiblingSectionRequested;
+        public event Events.SectionNodeHandler AddChildSectionNodeRequested;
+        public event Events.SectionNodeHandler DecreaseSectionNodeLevelRequested;
+        public event Events.SectionNodeHandler IncreaseSectionNodeLevelRequested;
+        /*md 20061130 removing this stuff...
+        public event Events.Node.RequestToMoveSectionNodeDownHandler MoveSectionNodeDownRequested;
+        public event Events.Node.RequestToMoveSectionNodeUpHandler MoveSectionNodeUpRequested;*/
 
-        //md: clipboard events
-        public event Events.Node.RequestToCutSectionNodeHandler RequestToCutSectionNode;
-        public event Events.Node.RequestToCopySectionNodeHandler RequestToCopySectionNode;
-        public event Events.Node.RequestToPasteSectionNodeHandler RequestToPasteSectionNode;
+        public event Events.RenameSectionNodeHandler RenameSectionNodeRequested;
+        public event Events.SectionNodeHandler DeleteSectionNodeRequested;
+        public event Events.SectionNodeHandler CutSectionNodeRequested;
+        public event Events.SectionNodeHandler CopySectionNodeRequested;
+        public event Events.SectionNodeHandler PasteSectionNodeRequested;
 
         /*
          * ***************************************
@@ -40,7 +42,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToAddSiblingSection(this, new Events.Node.NodeEventArgs(this, SelectedSection));
+            AddSiblingSectionRequested(this, new SectionNodeEventArgs(this, SelectedSection));
         }
 
         /// <summary>
@@ -48,16 +50,16 @@ namespace Obi.UserControls
         /// </summary>
         internal void mAddSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToAddChildSectionNode(this, new Events.Node.NodeEventArgs(this, SelectedSection));  
+            AddChildSectionNodeRequested(this, new SectionNodeEventArgs(this, SelectedSection));  
         }
 
         /// <summary>
         /// Triggered by the "move section up" menu item.
         /// </summary>
-        internal void mMoveUpToolStripMenuItem_Click(object sender, EventArgs e)
+     /*  internal void mMoveUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToMoveSectionNodeUp(this, new Events.Node.NodeEventArgs(this, SelectedSection));
-        }
+            RequestToMoveSectionNodeUp(this, new SectionNodeEventArgs(this, SelectedSection));
+        }*/
 
         /// <summary>
         /// Triggered by the "delete section" menu item.
@@ -69,7 +71,7 @@ namespace Obi.UserControls
 
         public void DeleteSelectedSection()
         {
-            RequestToDeleteSectionNode(this, new Events.Node.NodeEventArgs(this, SelectedSection));
+            DeleteSectionNodeRequested(this, new SectionNodeEventArgs(this, SelectedSection));
         }
 
         internal void mRenameToolStripMenuItem_Click(object sender, EventArgs e)
@@ -78,19 +80,19 @@ namespace Obi.UserControls
             sel.BeginEdit();
         }
 
-        internal void mMoveDownToolStripMenuItem_Click(object sender, EventArgs e)
+        /*internal void mMoveDownToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RequestToMoveSectionNodeDown(this, new Events.Node.NodeEventArgs(this, SelectedSection));
-        }
+        }*/
 
         internal void increaseLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToIncreaseSectionNodeLevel(this, new Events.Node.NodeEventArgs(this, SelectedSection));
+            IncreaseSectionNodeLevelRequested(this, new SectionNodeEventArgs(this, SelectedSection));
         }
 
         internal void decreaseLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToDecreaseSectionNodeLevel(this, new Events.Node.NodeEventArgs(this, SelectedSection));
+            DecreaseSectionNodeLevelRequested(this, new SectionNodeEventArgs(this, SelectedSection));
        }
 
      
@@ -119,7 +121,7 @@ namespace Obi.UserControls
         /// </summary>
         public void CutSelectedSection()
         {
-            RequestToCutSectionNode(this, new Events.Node.NodeEventArgs(this, SelectedSection));
+            CutSectionNodeRequested(this, new SectionNodeEventArgs(this, SelectedSection));
         }
 
         //md 20060810
@@ -130,12 +132,12 @@ namespace Obi.UserControls
 
         public void CopySelectedSection()
         {
-            RequestToCopySectionNode(this, new Events.Node.NodeEventArgs(this, SelectedSection));
+            CopySectionNodeRequested(this, new SectionNodeEventArgs(this, SelectedSection));
         }
 
         internal void mPasteSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToPasteSectionNode(this, new Events.Node.NodeEventArgs(this, SelectedSection));
+            PasteSectionNodeRequested(this, new SectionNodeEventArgs(this, SelectedSection));
         }
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
@@ -166,9 +168,6 @@ namespace Obi.UserControls
                 canMoveOut = mProjectPanel.Project.CanMoveSectionNodeOut(selectedSection);
             }
             
-           // mMoveToolStripMenuItem.Enabled = canMoveUp || canMoveDown || canMoveIn || canMoveOut;
-           // mMoveUpToolStripMenuItem.Enabled = canMoveUp;
-           // mMoveDownToolStripMenuItem.Enabled = canMoveDown;
             mMoveInToolStripMenuItem.Enabled = canMoveIn;
             mMoveOutToolStripMenuItem.Enabled = canMoveOut;
 

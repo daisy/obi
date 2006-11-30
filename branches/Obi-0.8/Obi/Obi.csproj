@@ -182,7 +182,8 @@
     <Compile Include="Events\Audio\VuMeter\ResetEventArgs.cs" />
     <Compile Include="Events\Audio\VuMeter\UpdateFormsEventArgs.cs" />
     <Compile Include="Events\NodeEventHandlers.cs" />
-    <Compile Include="Events\Node\AddedPhraseNodeEventArgs.cs" />
+    <Compile Include="Events\Node\PhraseNodeEventArgs.cs" />
+    <Compile Include="Events\Node\SectionNodeEventArgs.cs" />
     <Compile Include="Events\Node\MergeNodesEventArgs.cs" />
     <Compile Include="Events\Node\NodeEventArgs.cs" />
     <Compile Include="Events\Node\PhraseDetectionEventArgs.cs" />
@@ -198,7 +199,6 @@
     <Compile Include="Events\Strip\ImportAssetEventArgs.cs" />
     <Compile Include="Events\Audio\Recorder\PhraseEventArgs.cs" />
     <Compile Include="Events\Strip\SelectedEventArgs.cs" />
-    <Compile Include="Events\Node\AddedSectionNodeEventArgs.cs" />
     <Compile Include="Events\Strip\UpdateTimeEventArgs.cs" />
     <Compile Include="IOUtils.cs" />
     <Compile Include="Localizer.cs" />

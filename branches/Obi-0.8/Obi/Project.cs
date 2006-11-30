@@ -49,10 +49,10 @@ namespace Obi
 
         public event Events.Project.StateChangedHandler StateChanged;       // the state of the project changed (modified, saved...)
         public event Events.Project.CommandCreatedHandler CommandCreated;   // a new command must be added to the command manager
-        public event Events.Node.AddedPhraseNodeHandler AddedPhraseNode;        // a phrase node was added to a strip
-        public event Events.Node.MediaSetHandler MediaSet;                      // a media object was set on a node
-        public event Events.Node.DeletedNodeHandler DeletedPhraseNode;          // deleted a phrase node 
-        public event Events.Node.TouchedNodeHandler TouchedNode;  // this node was somehow modified
+        public event Events.PhraseNodeHandler AddedPhraseNode;        // a phrase node was added to a strip
+        public event Events.MediaSetHandler MediaSet;                      // a media object was set on a node
+        public event Events.PhraseNodeHandler DeletedPhraseNode;          // deleted a phrase node 
+        public event Events.TouchedNodeHandler TouchedNode;  // this node was somehow modified
 
         /// <summary>
         /// This flag is set to true if the project contains modifications that have not been saved.

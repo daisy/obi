@@ -10,7 +10,7 @@ namespace Obi.Events.Node
     /// <summary>
     /// This event is fired when a view wants to rename a section.
     /// </summary>
-    public class RenameSectionNodeEventArgs : NodeEventArgs
+    public class RenameSectionNodeEventArgs : SectionNodeEventArgs
     {
         private string mLabel;    // the new text label of the node
 

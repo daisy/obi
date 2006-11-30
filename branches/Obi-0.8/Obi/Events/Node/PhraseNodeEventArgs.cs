@@ -6,9 +6,9 @@ using urakawa.core;
 
 namespace Obi.Events.Node
 {
-    class AddedPhraseNodeEventArgs: NodeEventArgs
+    class PhraseNodeEventArgs: NodeEventArgs
     {
-        public AddedPhraseNodeEventArgs(object origin, PhraseNode node)
+        public PhraseNodeEventArgs(object origin, PhraseNode node)
             :base(origin, node)
         {}
     }

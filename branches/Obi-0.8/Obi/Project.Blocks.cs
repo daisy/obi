@@ -11,9 +11,9 @@ namespace Obi
 {
     public partial class Project
     {
-        public Events.Strip.UpdateTimeHandler UpdateTime;
-        public Events.Node.RemovedPageNumberHandler RemovedPageNumber;
-        public Events.Node.SetPageNumberHandler SetPageNumber;
+        public Events.UpdateTimeHandler UpdateTime;
+        public Events.RemovedPageNumberHandler RemovedPageNumber;
+        public Events.SetPageNumberHandler SetPageNumber;
 
         #region clip board
 
@@ -223,7 +223,7 @@ namespace Obi
             UpdateSeq(e.Node);
             MediaSet(this, new Events.Node.SetMediaEventArgs(e.Origin, e.Node, AudioChannel,
                 GetMediaForChannel(e.Node, AudioChannel)));
-            AddedPhraseNode(this, new Events.Node.AddedPhraseNodeEventArgs(e.Origin, newNode, index));
+            AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(e.Origin, newNode, index));
             Commands.Strips.SplitPhrase command = new Commands.Strips.SplitPhrase(this, e.Node, newNode);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             mUnsaved = true;
@@ -261,7 +261,7 @@ namespace Obi
             foreach (CoreNode n in nodes)
             {
                 parent.insert(n, index);
-                AddedPhraseNode(this, new Events.Node.AddedPhraseNodeEventArgs(this, n, index));
+                AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, n, index));
                 ++index;
             }
             Modified();
@@ -282,7 +282,7 @@ namespace Obi
                 n.detach();
             }
             parent.insert(node, index);
-            AddedPhraseNode(this, new Events.Node.AddedPhraseNodeEventArgs(this, node, index));
+            AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, node, index));
             Modified();
         }
 
@@ -297,7 +297,7 @@ namespace Obi
             CoreNode phrase = CreatePhraseNode(e.Asset);
             parent.insert(phrase, index + e.PhraseIndex);
             UpdateSeq(phrase);
-            AddedPhraseNode(this, new Events.Node.AddedPhraseNodeEventArgs(this, phrase, index + e.PhraseIndex));
+            AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, phrase, index + e.PhraseIndex));
             Commands.Strips.AddPhrase command = new Commands.Strips.AddPhrase(this, phrase);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             mUnsaved = true;
@@ -340,7 +340,7 @@ namespace Obi
         public void AddPhraseNode(CoreNode node, CoreNode parent, int index)
         {
             parent.insert(node, index);
-            AddedPhraseNode(this, new Events.Node.AddedPhraseNodeEventArgs(this, node, index));
+            AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, node, index));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
@@ -367,7 +367,7 @@ namespace Obi
         {
             //we might consider using a different event for this
             //i don't know who else will be listening in the future (more than only viewports?)
-            AddedPhraseNode(this, new Events.Node.AddedPhraseNodeEventArgs(this, node, index));
+            AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, node, index));
         }
 
         /// <summary>

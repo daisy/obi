@@ -10,26 +10,28 @@ using System.Collections;
 using urakawa.core;
 using urakawa.media;
 
+using Obi.Events.Node;
+
 namespace Obi.UserControls
 {
     public partial class StripManagerPanel
     {
         //md
-        public event Events.Node.RequestToShallowDeleteSectionNodeHandler RequestToShallowDeleteSectionNode;
-        public event Events.Node.RequestToMoveSectionNodeDownLinearHandler RequestToMoveSectionNodeDownLinear;
-        public event Events.Node.RequestToMoveSectionNodeUpLinearHandler RequestToMoveSectionNodeUpLinear;
+        public event Events.SectionNodeHandler RequestToShallowDeleteSectionNode;
+        public event Events.SectionNodeHandler RequestToMoveSectionNodeDownLinear;
+        public event Events.SectionNodeHandler RequestToMoveSectionNodeUpLinear;
 
-        public event Events.Node.RequestToCutSectionNodeHandler RequestToCutSectionNode;
-        public event Events.Node.RequestToCutPhraseNodeHandler RequestToCutPhraseNode;
-        public event Events.Node.RequestToCopySectionNodeHandler RequestToCopySectionNode;
-        public event Events.Node.RequestToCopyPhraseNodeHandler RequestToCopyPhraseNode;
-        public event Events.Node.RequestToPasteSectionNodeHandler RequestToPasteSectionNode;
-        public event Events.Node.RequestToPastePhraseNodeHandler RequestToPastePhraseNode;
+        public event Events.SectionNodeHandler RequestToCutSectionNode;
+        public event Events.PhraseNodeHandler RequestToCutPhraseNode;
+        public event Events.SectionNodeHandler RequestToCopySectionNode;
+        public event Events.PhraseNodeHandler RequestToCopyPhraseNode;
+        public event Events.SectionNodeHandler RequestToPasteSectionNode;
+        public event Events.PhraseNodeHandler RequestToPastePhraseNode;
 
-        public Events.Node.RequestToSetPageNumberHandler RequestToSetPageNumber;
-        public Events.Node.RequestToRemovePageNumberHandler RequestToRemovePageNumber;
+        public Events.RequestToSetPageNumberHandler RequestToSetPageNumber;
+        public Events.RequestToRemovePageNumberHandler RequestToRemovePageNumber;
 
-        public Events.Node.RequestToApplyPhraseDetectionHandler RequestToApplyPhraseDetection;
+        public Events.RequestToApplyPhraseDetectionHandler RequestToApplyPhraseDetection;
 
         /// <summary>
         /// Enable/disable items depending on what is currently available.
@@ -86,9 +88,8 @@ namespace Obi.UserControls
         /// </summary>
         internal void mAddStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddSiblingSection(this, new Events.Node.NodeEventArgs(this, mSelectedSection));
-            // InsertSiblingSection(this, new Events.Node.NodeEventArgs(this, mSelectedSection));
-        }
+            AddSiblingSectionRequested(this, new SectionNodeEventArgs(this, mSelectedSection));
+         }
 
         internal void mRenameStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -246,21 +247,21 @@ namespace Obi.UserControls
 
         public void DeleteSelectedSection()
         {
-            RequestToShallowDeleteSectionNode(this, new Events.Node.NodeEventArgs(this, this.mSelectedSection));
+            RequestToShallowDeleteSectionNode(this, new SectionNodeEventArgs(this, this.mSelectedSection));
         }
 
         //md 20060812
         //mg 20060813: made internal to allow obiform menu sync access
         internal void upToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToMoveSectionNodeUpLinear(this, new Events.Node.NodeEventArgs(this, this.mSelectedSection));
+            RequestToMoveSectionNodeUpLinear(this, new SectionNodeEventArgs(this, this.mSelectedSection));
         }
 
         //md 20060812
         //mg 20060813: made internal to allow obiform menu sync access
         internal void downToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToMoveSectionNodeDownLinear(this, new Events.Node.NodeEventArgs(this, this.mSelectedSection));
+            RequestToMoveSectionNodeDownLinear(this, new SectionNodeEventArgs(this, this.mSelectedSection));
         }
 
 
@@ -278,7 +279,7 @@ namespace Obi.UserControls
         /// </summary>
         public void CutSelectedPhrase()
         {
-            RequestToCutPhraseNode(this, new Events.Node.NodeEventArgs(this, mSelectedPhrase));
+            RequestToCutPhraseNode(this, new PhraseNodeEventArgs(this, mSelectedPhrase));
         }
 
         /// <summary>
@@ -286,7 +287,7 @@ namespace Obi.UserControls
         /// </summary>
         public void CutSelectedSection()
         {
-            RequestToCutSectionNode(this, new Events.Node.NodeEventArgs(this, mSelectedSection));
+            RequestToCutSectionNode(this, new SectionNodeEventArgs(this, mSelectedSection));
         }
 
         /// <summary>
@@ -304,7 +305,7 @@ namespace Obi.UserControls
         /// </summary>
         public void CopySelectedPhrase()
         {
-            RequestToCopyPhraseNode(this, new Events.Node.NodeEventArgs(this, mSelectedPhrase));
+            RequestToCopyPhraseNode(this, new PhraseNodeEventArgs(this, mSelectedPhrase));
         }
 
         /// <summary>
@@ -312,7 +313,7 @@ namespace Obi.UserControls
         /// </summary>
         public void CopySelectedSection()
         {
-            RequestToCopySectionNode(this, new Events.Node.NodeEventArgs(this, mSelectedSection));
+            RequestToCopySectionNode(this, new SectionNodeEventArgs(this, mSelectedSection));
         }
 
         /// <summary>
@@ -333,7 +334,7 @@ namespace Obi.UserControls
         /// </summary>
         public void PastePhraseNode()
         {
-            RequestToPastePhraseNode(this, new Events.Node.NodeEventArgs(this,
+            RequestToPastePhraseNode(this, new PhraseNodeEventArgs(this,
                 mSelectedPhrase == null ? mSelectedSection : mSelectedPhrase));
         }
 
@@ -343,9 +344,9 @@ namespace Obi.UserControls
         /// <remarks>TODO: find the right context node when none is selected.</remarks>
         public void PasteSectionNode()
         {
-            CoreNode contextNode = mSelectedSection;
+            SectionNode contextNode = mSelectedSection;
             // if contextNode == null...
-            RequestToPasteSectionNode(this, new Events.Node.NodeEventArgs(this, contextNode));
+            RequestToPasteSectionNode(this, new SectionNodeEventArgs(this, contextNode));
         }
 
         /// <summary>

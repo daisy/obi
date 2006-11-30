@@ -34,7 +34,7 @@ namespace Obi.UserControls
         /// <summary>
         /// Add a new block from a phrase node and select it.
         /// </summary>
-        internal void SyncAddedPhraseNode(object sender, Events.Node.AddedPhraseNodeEventArgs e)
+        internal void SyncAddedPhraseNode(object sender, Events.Node.PhraseNodeEventArgs e)
         {
             System.Diagnostics.Debug.Assert(e.Node != null);
             SectionStrip strip = mSectionNodeMap[(CoreNode)e.Node.getParent()];

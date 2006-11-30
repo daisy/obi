@@ -17,23 +17,23 @@ namespace Obi.UserControls
     /// </summary>
     public partial class StripManagerPanel : UserControl, ICoreNodeVisitor
     {
-        private Dictionary<CoreNode, SectionStrip> mSectionNodeMap;  // find a section strip for a given node
-        private CoreNode mSelectedSection;                           // the selected node
+        private Dictionary<SectionNode, SectionStrip> mSectionNodeMap;  // find a section strip for a given node
+        private SectionNode mSelectedSection;                           // the selected node
 
-        private Dictionary<CoreNode, AudioBlock> mPhraseNodeMap;     // find an audio block for a given phrase node
-        private CoreNode mSelectedPhrase;                            // the selected audio block
+        private Dictionary<PhraseNode, AudioBlock> mPhraseNodeMap;     // find an audio block for a given phrase node
+        private PhraseNode mSelectedPhrase;                            // the selected audio block
 
         private ProjectPanel mProjectPanel; //the parent of this control
 
-        public event Events.Node.RequestToAddSiblingNodeHandler AddSiblingSection;
-        public event Events.Node.RequestToRenameNodeHandler RenameSection;
-        public event Events.Node.SetMediaHandler SetMediaRequested;
-        public event Events.Strip.RequestToImportAssetHandler ImportAudioAssetRequested;
-        public event Events.Node.RequestToDeleteBlockHandler DeleteBlockRequested;
-        public event Events.Node.RequestToMoveBlockHandler MoveAudioBlockForwardRequested;
-        public event Events.Node.RequestToMoveBlockHandler MoveAudioBlockBackwardRequested;
-        public event Events.Node.SplitNodeHandler SplitAudioBlockRequested;
-        public event Events.Node.MergeNodesHandler MergeNodes;
+        public event Events.SectionNodeHandler AddSiblingSectionRequested;
+        public event Events.RenameSectionNodeHandler RenameSectionRequested;
+        public event Events.SetMediaHandler SetMediaRequested;
+        public event Events.RequestToImportAssetHandler ImportAudioAssetRequested;
+        public event Events.RequestToDeleteBlockHandler DeleteBlockRequested;
+        public event Events.RequestToMoveBlockHandler MoveAudioBlockForwardRequested;
+        public event Events.RequestToMoveBlockHandler MoveAudioBlockBackwardRequested;
+        public event Events.SplitPhraseNodeHandler SplitAudioBlockRequested;
+        public event Events.MergeNodesHandler MergeNodes;
 
         #region properties
 
@@ -272,7 +272,7 @@ namespace Obi.UserControls
         /// <param name="strip">The renamed strip (with its new name as a label.)</param>
         internal void RenamedSectionStrip(SectionStrip strip)
         {
-            RenameSection(this, new Events.Node.RenameSectionNodeEventArgs(this, strip.Node, strip.Label));
+            RenameSectionRequested(this, new Events.Node.RenameSectionNodeEventArgs(this, strip.Node, strip.Label));
         }
 
         /// <summary>

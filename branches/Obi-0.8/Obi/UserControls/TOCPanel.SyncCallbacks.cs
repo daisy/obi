@@ -44,7 +44,7 @@ namespace Obi.UserControls
         /// <param name="sender">The sender of this event notification</param>
         /// <param name="e"><see cref="e.Node"/> is the new heading to add to the tree</param>
 
-        internal void SyncAddedSectionNode(object sender, Events.Node.AddedSectionNodeEventArgs e)
+        internal void SyncAddedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
         {
             TreeNode newTreeNode = AddSingleSectionNode(e.Node, e.SectionNodeIndex);
 
@@ -234,7 +234,7 @@ namespace Obi.UserControls
 
         //md 20060810
         //e.Node is what was just pasted in
-        internal void SyncPastedSectionNode(object sender, Events.Node.AddedSectionNodeEventArgs e)
+        internal void SyncPastedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
         {
            //add a subtree
             TreeNode uncutNode = AddSectionNode(e.Node, e.SectionNodeIndex);

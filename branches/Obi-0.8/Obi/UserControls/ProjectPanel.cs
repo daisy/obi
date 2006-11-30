@@ -25,14 +25,14 @@ namespace Obi.UserControls
                 // Reset the handlers from the previous project
                 if (mProject != null)
                 {
-                    mTOCPanel.RequestToAddSiblingSection -= new Events.Node.RequestToAddSiblingNodeHandler(mProject.CreateSiblingSectionNodeRequested);
-                    mStripManagerPanel.AddSiblingSection -=
+                    mTOCPanel.AddSiblingSectionRequested -= new Events.Node.RequestToAddSiblingNodeHandler(mProject.CreateSiblingSectionNodeRequested);
+                    mStripManagerPanel.AddSiblingSectionRequested -=
                         new Events.Node.RequestToAddSiblingNodeHandler(mProject.CreateSiblingSectionNodeRequested);
 
                     mProject.AddedSectionNode -= new Events.Node.AddedSectionNodeHandler(mTOCPanel.SyncAddedSectionNode);
                     mProject.AddedSectionNode -= new Events.Node.AddedSectionNodeHandler(mStripManagerPanel.SyncAddedSectionNode);
 
-                    mTOCPanel.RequestToAddChildSectionNode -= new Events.Node.RequestToAddChildSectionNodeHandler(mProject.CreateChildSectionNodeRequested);
+                    mTOCPanel.AddChildSectionNodeRequested -= new Events.Node.RequestToAddChildSectionNodeHandler(mProject.CreateChildSectionNodeRequested);
 
                     //these are all events related to moving nodes up and down
                     mTOCPanel.RequestToMoveSectionNodeUp -= new Events.Node.RequestToMoveSectionNodeUpHandler(mProject.MoveSectionNodeUpRequested);
@@ -46,14 +46,14 @@ namespace Obi.UserControls
                     mProject.ShallowSwappedSectionNodes -= new Events.Node.ShallowSwappedSectionNodesHandler(mTOCPanel.SyncShallowSwapNodes);
                     mProject.ShallowSwappedSectionNodes -= new Events.Node.ShallowSwappedSectionNodesHandler(mStripManagerPanel.SyncShallowSwapNodes);
 
-                    mTOCPanel.RequestToIncreaseSectionNodeLevel -= new Events.Node.RequestToIncreaseSectionNodeLevelHandler(mProject.IncreaseSectionNodeLevelRequested);
+                    mTOCPanel.IncreaseSectionNodeLevelRequested -= new Events.Node.RequestToIncreaseSectionNodeLevelHandler(mProject.IncreaseSectionNodeLevelRequested);
                     //marisa: the former "mProject.IncreasedSectionLevel" event is now handled by MovedNode
 
-                    mTOCPanel.RequestToDecreaseSectionNodeLevel -= new Events.Node.RequestToDecreaseSectionNodeLevelHandler(mProject.DecreaseSectionNodeLevelRequested);
+                    mTOCPanel.DecreaseSectionNodeLevelRequested -= new Events.Node.RequestToDecreaseSectionNodeLevelHandler(mProject.DecreaseSectionNodeLevelRequested);
                     mProject.DecreasedSectionNodeLevel -= new Events.Node.DecreasedSectionNodeLevelHandler(mTOCPanel.SyncDecreasedSectionNodeLevel);
 
                     mTOCPanel.RequestToRenameSectionNode -= new Events.Node.RequestToRenameNodeHandler(mProject.RenameSectionNodeRequested);
-                    mStripManagerPanel.RenameSection -= new Events.Node.RequestToRenameNodeHandler(mProject.RenameSectionNodeRequested);
+                    mStripManagerPanel.RenameSectionRequested -= new Events.Node.RequestToRenameNodeHandler(mProject.RenameSectionNodeRequested);
                     mProject.RenamedNode -= new Events.Node.RenamedNodeHandler(mTOCPanel.SyncRenamedSectionNode);
                     mProject.RenamedNode -= new Events.Node.RenamedNodeHandler(mStripManagerPanel.SyncRenamedNode);
 
@@ -78,17 +78,17 @@ namespace Obi.UserControls
                         new Events.Node.RequestToDeleteBlockHandler(mProject.DeletePhraseNodeRequested);
                     mProject.DeletedPhraseNode -= new Events.Node.DeletedNodeHandler(mStripManagerPanel.SyncDeleteAudioBlock);
 
-                    mTOCPanel.RequestToCutSectionNode -= new Events.Node.RequestToCutSectionNodeHandler(mProject.CutSectionNodeRequested);
+                    mTOCPanel.CutSectionNodeRequested -= new Events.Node.RequestToCutSectionNodeHandler(mProject.CutSectionNodeRequested);
                     mProject.CutSectionNode -= new Events.Node.CutSectionNodeHandler(mTOCPanel.SyncCutSectionNode);
                     mProject.CutSectionNode -= new Events.Node.CutSectionNodeHandler(mStripManagerPanel.SyncCutSectionNode);
 
-                    mTOCPanel.RequestToCopySectionNode -= new Events.Node.RequestToCopySectionNodeHandler(mProject.CopySectionNodeRequested);
+                    mTOCPanel.CopySectionNodeRequested -= new Events.Node.RequestToCopySectionNodeHandler(mProject.CopySectionNodeRequested);
                     mProject.CopiedSectionNode -= new Events.Node.CopiedSectionNodeHandler(mTOCPanel.SyncCopiedSectionNode);
                     mProject.CopiedSectionNode -= new Events.Node.CopiedSectionNodeHandler(mStripManagerPanel.SyncCopiedSectionNode);
                     mProject.UndidCopySectionNode -= new Events.Node.CopiedSectionNodeHandler(mTOCPanel.SyncUndidCopySectionNode);
                     mProject.UndidCopySectionNode -= new Events.Node.CopiedSectionNodeHandler(mStripManagerPanel.SyncUndidCopySectionNode);
 
-                    mTOCPanel.RequestToPasteSectionNode -= new Events.Node.RequestToPasteSectionNodeHandler(mProject.PasteSectionNodeRequested);
+                    mTOCPanel.PasteSectionNodeRequested -= new Events.Node.RequestToPasteSectionNodeHandler(mProject.PasteSectionNodeRequested);
                     mProject.PastedSectionNode -= new Events.Node.PastedSectionNodeHandler(mTOCPanel.SyncPastedSectionNode);
                     mProject.PastedSectionNode -= new Events.Node.PastedSectionNodeHandler(mStripManagerPanel.SyncPastedSectionNode);
                     mProject.UndidPasteSectionNode -= new Events.Node.UndidPasteSectionNodeHandler(mTOCPanel.SyncUndidPasteSectionNode);
@@ -117,13 +117,13 @@ namespace Obi.UserControls
                 // Set up the handlers for the new project
                 if (value != null)
                 {
-                    mTOCPanel.RequestToAddSiblingSection += new Events.Node.RequestToAddSiblingNodeHandler(value.CreateSiblingSectionNodeRequested);
-                    mStripManagerPanel.AddSiblingSection +=
+                    mTOCPanel.AddSiblingSectionRequested += new Events.Node.RequestToAddSiblingNodeHandler(value.CreateSiblingSectionNodeRequested);
+                    mStripManagerPanel.AddSiblingSectionRequested +=
                         new Events.Node.RequestToAddSiblingNodeHandler(value.CreateSiblingSectionNodeRequested);
                     value.AddedSectionNode += new Events.Node.AddedSectionNodeHandler(mTOCPanel.SyncAddedSectionNode);
                     value.AddedSectionNode += new Events.Node.AddedSectionNodeHandler(mStripManagerPanel.SyncAddedSectionNode);
 
-                    mTOCPanel.RequestToAddChildSectionNode += new Events.Node.RequestToAddChildSectionNodeHandler(value.CreateChildSectionNodeRequested);
+                    mTOCPanel.AddChildSectionNodeRequested += new Events.Node.RequestToAddChildSectionNodeHandler(value.CreateChildSectionNodeRequested);
 
                     //these all relate to moving nodes up and down
                     mTOCPanel.RequestToMoveSectionNodeUp += new Events.Node.RequestToMoveSectionNodeUpHandler(value.MoveSectionNodeUpRequested);
@@ -137,16 +137,16 @@ namespace Obi.UserControls
                     value.ShallowSwappedSectionNodes += new Events.Node.ShallowSwappedSectionNodesHandler(mTOCPanel.SyncShallowSwapNodes);
                     value.ShallowSwappedSectionNodes += new Events.Node.ShallowSwappedSectionNodesHandler(mStripManagerPanel.SyncShallowSwapNodes);
 
-                    mTOCPanel.RequestToIncreaseSectionNodeLevel +=
+                    mTOCPanel.IncreaseSectionNodeLevelRequested +=
                         new Events.Node.RequestToIncreaseSectionNodeLevelHandler(value.IncreaseSectionNodeLevelRequested);
                     //marisa: the former "mProject.IncreasedSectionLevel" event is now handled by MovedNode
 
-                    mTOCPanel.RequestToDecreaseSectionNodeLevel +=
+                    mTOCPanel.DecreaseSectionNodeLevelRequested +=
                         new Events.Node.RequestToDecreaseSectionNodeLevelHandler(value.DecreaseSectionNodeLevelRequested);
                     value.DecreasedSectionNodeLevel += new Events.Node.DecreasedSectionNodeLevelHandler(mTOCPanel.SyncDecreasedSectionNodeLevel);
 
                     mTOCPanel.RequestToRenameSectionNode += new Events.Node.RequestToRenameNodeHandler(value.RenameSectionNodeRequested);
-                    mStripManagerPanel.RenameSection += new Events.Node.RequestToRenameNodeHandler(value.RenameSectionNodeRequested);
+                    mStripManagerPanel.RenameSectionRequested += new Events.Node.RequestToRenameNodeHandler(value.RenameSectionNodeRequested);
                     value.RenamedNode += new Events.Node.RenamedNodeHandler(mTOCPanel.SyncRenamedSectionNode);
                     value.RenamedNode += new Events.Node.RenamedNodeHandler(mStripManagerPanel.SyncRenamedNode);
 
@@ -193,17 +193,17 @@ namespace Obi.UserControls
 
 
                     //md: clipboard in the TOC
-                    mTOCPanel.RequestToCutSectionNode += new Events.Node.RequestToCutSectionNodeHandler(value.CutSectionNodeRequested);
+                    mTOCPanel.CutSectionNodeRequested += new Events.Node.RequestToCutSectionNodeHandler(value.CutSectionNodeRequested);
                     value.CutSectionNode += new Events.Node.CutSectionNodeHandler(mTOCPanel.SyncCutSectionNode);
                     value.CutSectionNode += new Events.Node.CutSectionNodeHandler(mStripManagerPanel.SyncCutSectionNode);
 
-                    mTOCPanel.RequestToCopySectionNode += new Events.Node.RequestToCopySectionNodeHandler(value.CopySectionNodeRequested);
+                    mTOCPanel.CopySectionNodeRequested += new Events.Node.RequestToCopySectionNodeHandler(value.CopySectionNodeRequested);
                     value.CopiedSectionNode += new Events.Node.CopiedSectionNodeHandler(mTOCPanel.SyncCopiedSectionNode);
                     value.CopiedSectionNode += new Events.Node.CopiedSectionNodeHandler(mStripManagerPanel.SyncCopiedSectionNode);
                     value.UndidCopySectionNode += new Events.Node.CopiedSectionNodeHandler(mTOCPanel.SyncUndidCopySectionNode);
                     value.UndidCopySectionNode += new Events.Node.CopiedSectionNodeHandler(mStripManagerPanel.SyncUndidCopySectionNode);
 
-                    mTOCPanel.RequestToPasteSectionNode += new Events.Node.RequestToPasteSectionNodeHandler(value.PasteSectionNodeRequested);
+                    mTOCPanel.PasteSectionNodeRequested += new Events.Node.RequestToPasteSectionNodeHandler(value.PasteSectionNodeRequested);
                     value.PastedSectionNode += new Events.Node.PastedSectionNodeHandler(mTOCPanel.SyncPastedSectionNode);
                     value.PastedSectionNode += new Events.Node.PastedSectionNodeHandler(mStripManagerPanel.SyncPastedSectionNode);
                     value.UndidPasteSectionNode += new Events.Node.UndidPasteSectionNodeHandler(mTOCPanel.SyncUndidPasteSectionNode);

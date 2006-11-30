@@ -14,12 +14,12 @@ namespace Obi.UserControls
 {
     public partial class StripManagerPanel
     {
-        internal void SyncAddedSectionNode(object sender, Events.Node.AddedSectionNodeEventArgs e)
+        internal void SyncAddedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
         {
-            AddStripFromNode(e.Node, e.Position, e.Origin == this);
+            AddStripFromNode((e.Node, e.Origin == this);
         }
 
-        private void AddStripFromNode(CoreNode node, int position, bool rename)
+        private void AddStripFromNode(SectionNode node, bool rename)
         {
             SectionStrip strip = new SectionStrip();
             strip.Label = Project.GetTextMedia(node).getText();
@@ -27,7 +27,7 @@ namespace Obi.UserControls
             strip.Node = node;
             mSectionNodeMap[node] = strip;
             mFlowLayoutPanel.Controls.Add(strip);
-            mFlowLayoutPanel.Controls.SetChildIndex(strip, position);
+            mFlowLayoutPanel.Controls.SetChildIndex(strip, node.Position);
             //md 20061005
             //make the font bigger
             int nodeLevel = this.mProjectPanel.Project.getNodeLevel(node);
@@ -47,31 +47,24 @@ namespace Obi.UserControls
         //recursive function to add strips for a node and its subtree
         //returns the position marker after the operation is completed
         //todo: this should probably be a visitor
-        private int AddStripsFromNodeSubtree(CoreNode node, int position)
-        {
-           
-            if (Project.GetNodeType(node) == NodeType.Section)
+        //todo: probably don't need position anymore
+        private int AddStripsFromNodeSubtree(SectionNode node, int position)
+        {      
+            AddStripFromNode(node, position, false);
+            position++;
+
+            for (int i = 0; i < node.PhraseChildCount; i++)
             {
-                AddStripFromNode(node, position, false);
-                position++;
-            }
-            for (int i = 0; i < node.getChildCount(); i++)
-            {
-                if (Project.GetNodeType(node.getChild(i)) == NodeType.Section)
-                {
-                    //then increment based on how many children were added
-                    position = AddStripsFromNodeSubtree(node.getChild(i), position);
-                }
-                else if (Project.GetNodeType(node.getChild(i)) == NodeType.Phrase)
-                {
-                    //todo: replace this with something cleaner ?  we are kind of falsely invoking an event handler
-                    SyncAddedPhraseNode
-                        (this, new Obi.Events.Node.AddedPhraseNodeEventArgs
-                    (this, node.getChild(i), Project.GetPhraseIndex(node.getChild(i))));
-                    
-                }
+                //todo: replace this with something cleaner ?  we are kind of falsely invoking an event handler
+                SyncAddedPhraseNode(this, new Obi.Events.Node.PhraseNodeEventArgs(this, node.PhraseChild(i)));
             }
 
+            for (int i = 0; i < node.SectionChildCount; i++)
+            {
+                //then increment based on how many children were added
+                position = AddStripsFromNodeSubtree(node.SectionChild(i), position);
+            }
+              
             return position;
         }
 
@@ -147,7 +140,7 @@ namespace Obi.UserControls
         }
 
         //md 20060811
-        internal void SyncUndidCutSectionNode(object sender, Events.Node.AddedSectionNodeEventArgs e)
+        internal void SyncUndidCutSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
         {
             AddStripsFromNodeSubtree(e.Node, e.Position);
         }
@@ -165,7 +158,7 @@ namespace Obi.UserControls
         }
 
         //md 20060811
-        internal void SyncPastedSectionNode(object sender, Events.Node.AddedSectionNodeEventArgs e)
+        internal void SyncPastedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
         {
             AddStripsFromNodeSubtree(e.Node, e.Position);
             
