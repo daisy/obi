@@ -94,6 +94,24 @@ namespace Obi
             }
         }
 
+
+        /// <summary>
+        /// Set the currently playing node directly.
+        /// </summary>
+        public CoreNode CurrentPhrase
+        {
+            set
+            {
+                int i;
+                for (i = 0; i < mPhrases.Count && mPhrases[i] != value; ++i) { }
+                System.Diagnostics.Debug.Print("Current selection is at index {0}/{1}", i, mPhrases.Count);
+                if (i < mPhrases.Count)
+                {
+                    mCurrentPhraseIndex = i;
+                }
+            }
+        }
+
         /// <summary>
         /// The section in which the currently playing phrase is.
         /// </summary>
@@ -266,6 +284,15 @@ namespace Obi
         /// </summary>
         public void Play()
         {
+            Play(false);
+        }
+
+        /// <summary>
+        /// Play, setting the index or not.
+        /// </summary>
+        /// <param name="setIndex"></param>
+        public void Play(bool setIndex)
+        {
             if (mPhrases.Count > 0)
             {
                 //if ( mPausePosition != 0  || mPausedPhraseIndex != 0 )
@@ -283,7 +310,7 @@ namespace Obi
                 else if (mPlayListState == AudioPlayerState.Stopped)
                 {
                     // start from the beginning
-                    mCurrentPhraseIndex = 0;
+                    if (setIndex) mCurrentPhraseIndex = 0;
                     mElapsedTime = 0.0;
                     mPlayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
                     mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]));

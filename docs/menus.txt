@@ -50,11 +50,15 @@ Main form
     + [W] Show in TOC view .............. Alt+V
 
   + [R] Transport
-    + [V] Show/hide VU meter ............ Ctrl+U
+    + [U] Show/hide VU meter ............ Ctrl+U
+    + [E] Previous section .............. Alt+Up
+    + [V] Previous phrase ............... Alt+Left
     + [A] Play all/pause ................ Ctrl+Space
     + [P] Play selection/pause .......... Ctrl+Shift+Space
     + [R] Record ........................ Ctrl+R
     + [S] Stop .......................... Ctrl+T
+    + [N] Next phrase ................... Alt+Right
+    + [X] Next section .................. Alt+Down
 
   + [T] Tools
     + [U] User profile .................. Alt+U
@@ -123,16 +127,20 @@ Index of shortcuts
   Shift+F2 ........... [Strip Manager Panel] Rename strip
   Alt+F4 ............. File > Exit
   F5 ................. Edit > Touch project
+  Alt+Down ........... Transport > Next section
+  Alt+Left ........... Transport > Previous phrase
   Ctrl+Left .......... Strips > Move audio block > Backward
   Ctrl+Left .......... [Strip Manager Panel] Move audio block > Backward
   Ctrl+Shift+Left .... TOC > Move out
   Ctrl+Shift+Left .... [TOC Panel] Move out
+  Alt+Right .......... Transport > Next phrase
   Ctrl+Right ......... Strips > Move audio block > Forward
   Ctrl+Right ......... [Strip Manager Panel] Move audio block > Forward
   Ctrl+Shift+Right ... TOC > Move in
   Ctrl+Shift+Right ... [TOC Panel] > Move in
   Ctrl+Space ......... Transport > Play all/pause
   Ctrl+Shift+Space ... Transport > Play selection/pause
+  Alt+Up ............. Transport > Previous section
 
   Alt+A .............. Tools > Audio preferences
   Ctrl+A* ............ TOC > Add section

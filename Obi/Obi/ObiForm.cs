@@ -19,6 +19,9 @@ namespace Obi
         private CommandManager mCommandManager;  // the undo stack for this project (should it belong to the project?)
         private Audio.VuMeterForm mVuMeter;      // keep track of a single Vu meter form
 
+        /// <summary>
+        /// The VU meter form owned by the main form can be shown and hidden from a menu.
+        /// </summary>
         public Audio.VuMeterForm VuMeterForm
         {
             get { return mVuMeter; }
@@ -1062,7 +1065,8 @@ namespace Obi
         }
 
         /// <summary>
-        /// Play the whole book.
+        /// Play the whole book from the selected node, or from the beginning.
+        /// If already playing, pause.
         /// </summary>
         private void mPlayAllToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -1162,5 +1166,27 @@ namespace Obi
         }
 
         #endregion
+
+        private void mPreviousPhraseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Stopped)
+            {
+            }
+            else
+            {
+                mProjectPanel.TransportBar.PrevPhrase();
+            }
+        }
+
+        private void mNextPhraseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Stopped)
+            {
+            }
+            else
+            {
+                mProjectPanel.TransportBar.NextPhrase();
+            }
+        }
     }
 }
