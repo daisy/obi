@@ -64,7 +64,6 @@ namespace Obi.UserControls
         public SectionStrip()
         {
             InitializeComponent();
-            this.TabStop = true; //mg: not in designer for some reason
             InitializeToolTips(); 
         }
         #endregion
@@ -182,18 +181,24 @@ namespace Obi.UserControls
                 mManager.SelectedSectionNode = mNode;
             }
         }
+
+        /*
+        //JQ: removed
         //mg: for tab navigation et al
-        
         private void SectionStrip_leave(object sender, EventArgs e)
         {
             this.MarkDeselected();
         }
+        */
 
+        /*
+        //JQ: removed 
         //mg: for tab navigation et al
         private void SectionStrip_enter(object sender, EventArgs e)
         {
             mManager.SelectedSectionNode = mNode;            
         }
+        */
 
         public void MarkSelected()
         {
@@ -207,6 +212,7 @@ namespace Obi.UserControls
             mRenameBox.BackColor = BackColor;
         }
 
+        /*
         /// <summary>
         /// Reflows the tab order (tabindex property)
         /// of blocks in this SectionStrip starting from the
@@ -267,6 +273,8 @@ namespace Obi.UserControls
             }
             return prevIndex;
         }
+        */
+
         #endregion
 
         #region audio strip
@@ -329,7 +337,7 @@ namespace Obi.UserControls
             int index = mAudioLayoutPanel.Controls.IndexOf(block);
             mAudioLayoutPanel.Controls.RemoveAt(index);
             mAnnotationLayoutPanel.Controls.RemoveAt(index);
-            ReflowTabOrder(index);
+            //ReflowTabOrder(index);
             // fix the layout again if the strip becomes empty.
             if (mAudioLayoutPanel.Controls.Count == 0) mAudioLayoutPanel.Location = mAnnotationLayoutPanel.Location;
         }

@@ -204,7 +204,7 @@ namespace Obi.UserControls
             mSelectedSection = null;
             mSelectedPhrase = null;
             root.acceptDepthFirst(this);
-            if (mFlowLayoutPanel.Controls.Count > 0) this.ReflowTabOrder(mFlowLayoutPanel.Controls[0]);  // mg
+            //if (mFlowLayoutPanel.Controls.Count > 0) this.ReflowTabOrder(mFlowLayoutPanel.Controls[0]);  // mg
         }
 
         #region Synchronization visitor
@@ -283,15 +283,18 @@ namespace Obi.UserControls
             SelectedSectionNode = null;
         }
 
+        /*
         /// <summary>
         /// Leaving the strip means deselection as well.
         /// I'm not so sure about this one actually.
         /// </summary>
         private void mFlowLayoutPanel_Leave(object sender, EventArgs e)
         {
-            // SelectedSectionNode = null;
+            SelectedSectionNode = null;
         }
+        */
 
+        /*
         /// <summary>
         /// Reflow the tab order (tabindex property)
         /// of strips and blocks in this StripManagerPanel
@@ -448,5 +451,6 @@ namespace Obi.UserControls
                 return null;
             }
         }
+        */ 
     }
 }

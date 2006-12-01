@@ -137,7 +137,7 @@ namespace Obi.UserControls
             }
 
             //mg:
-            this.ReflowTabOrder(parentNodeStrip);
+            //this.ReflowTabOrder(parentNodeStrip);
         }
 
         //md 20060811
@@ -202,10 +202,10 @@ namespace Obi.UserControls
             mFlowLayoutPanel.Controls.SetChildIndex(strip1, e.SwappedNodePosition);
             mFlowLayoutPanel.Controls.SetChildIndex(strip2, e.NodePosition);
 
-            if (e.SwappedNodePosition < e.NodePosition)
-                this.ReflowTabOrder(strip1);
-            else
-                this.ReflowTabOrder(strip2);
+            //if (e.SwappedNodePosition < e.NodePosition)
+            //    this.ReflowTabOrder(strip1);
+            //else
+            //    this.ReflowTabOrder(strip2);
 
         }
 

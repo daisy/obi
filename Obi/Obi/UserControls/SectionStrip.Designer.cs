@@ -117,9 +117,7 @@ namespace Obi.UserControls
             this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.Name = "SectionStrip";
             this.Size = new System.Drawing.Size(322, 32);
-            this.Enter += new System.EventHandler(this.SectionStrip_enter);
             this.Click += new System.EventHandler(this.SectionStrip_Click);
-            this.Leave += new System.EventHandler(this.SectionStrip_leave);
             this.ResumeLayout(false);
             this.PerformLayout();
 
