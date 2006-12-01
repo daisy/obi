@@ -33,7 +33,9 @@ namespace Obi.Commands.Strips
         {
             mNode.Project.SetAudioMediaAsset(mNode, mAsset);
             mNode.Project.AddPhraseNodeAndAsset(mNext, mNode.ParentSection, mNode.Index + 1);
-            mNode.Project.TouchPhraseNode(mNode);
+            //md 20061130 - this used to be .TouchPhraseNode(mNode), which is now unavailable
+            //hope i've picked the right replacement
+            mNode.Project.TouchNode(mNode);
         }
     }
 }

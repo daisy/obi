@@ -18,6 +18,7 @@ namespace Obi.Events
     //added, request anything
     public delegate void PhraseNodeHandler(object sender, PhraseNodeEventArgs e);
     public delegate void SplitPhraseNodeHandler(object sender, SplitPhraseNodeEventArgs e);
+    public delegate void PastePhraseNodeHandler(object sender, NodeEventArgs e);
 
     //Other
     public delegate void MergeNodesHandler(object sender, MergeNodesEventArgs e);

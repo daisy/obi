@@ -3,28 +3,23 @@ using System.Collections.Generic;
 using System.Text;
 
 using urakawa.core;
+using Obi.Events.Node;
 
 namespace Obi.Events.Strip
 {
   
-    class UpdateTimeEventArgs: EventArgs
+    class UpdateTimeEventArgs: PhraseNodeEventArgs
     {
-        private CoreNode mNode;
         private double mTime;
-
-        public CoreNode Node
-        {
-            get { return mNode; }
-        }
 
         public double Time
         {
             get { return mTime; }
         }
 
-        public UpdateTimeEventArgs(CoreNode node, double time)
+        public UpdateTimeEventArgs(Object origin, PhraseNode node, double time) : 
+            base(origin, node)
         {
-            mNode = node;
             mTime = time;
         }
     }

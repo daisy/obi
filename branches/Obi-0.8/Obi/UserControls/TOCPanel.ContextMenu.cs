@@ -148,7 +148,7 @@ namespace Obi.UserControls
             bool canMoveIn = false;
             bool canMoveOut = false;
 
-            urakawa.core.CoreNode selectedSection = null;
+            SectionNode selectedSection = null;
             if (mTocTree.SelectedNode != null)
             {
                 isNodeSelected = true;

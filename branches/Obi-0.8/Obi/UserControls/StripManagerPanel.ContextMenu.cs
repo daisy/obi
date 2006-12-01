@@ -26,7 +26,7 @@ namespace Obi.UserControls
         public event Events.SectionNodeHandler RequestToCopySectionNode;
         public event Events.PhraseNodeHandler RequestToCopyPhraseNode;
         public event Events.SectionNodeHandler RequestToPasteSectionNode;
-        public event Events.PhraseNodeHandler RequestToPastePhraseNode;
+        public event Events.PastePhraseNodeHandler RequestToPastePhraseNode;
 
         public Events.RequestToSetPageNumberHandler RequestToSetPageNumber;
         public Events.RequestToRemovePageNumberHandler RequestToRemovePageNumber;
@@ -334,8 +334,8 @@ namespace Obi.UserControls
         /// </summary>
         public void PastePhraseNode()
         {
-            RequestToPastePhraseNode(this, new PhraseNodeEventArgs(this,
-                mSelectedPhrase == null ? mSelectedSection : mSelectedPhrase));
+            RequestToPastePhraseNode(this, new NodeEventArgs(this,
+                mSelectedPhrase == null ? (CoreNode)mSelectedSection : (CoreNode)mSelectedPhrase));
         }
 
         /// <summary>

@@ -29,7 +29,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            mNode.Project.RemoveNode(mNode.Project, mNode);
+            mNode.Project.RemoveSectionNode(mNode.Project, mNode);
         }
 
         /// <summary>

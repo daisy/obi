@@ -13,7 +13,7 @@ namespace Obi.UserControls
     public partial class SectionStrip : UserControl
     {
         private StripManagerPanel mManager;  // the manager for this strip
-        private CoreNode mNode;              // the core node for this strip
+        private SectionNode mNode;              // the core node for this strip
 
         public delegate void ChangedMinimumSizeHandler(object sender, EventArgs e);
 
@@ -46,7 +46,7 @@ namespace Obi.UserControls
             }
         }
 
-        public CoreNode Node
+        public SectionNode Node
         {
             get
             {

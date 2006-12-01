@@ -7,7 +7,7 @@ using urakawa.media;
 
 namespace Obi.Events.Node
 {
-    public class SetMediaEventArgs: NodeEventArgs
+    public class SetMediaEventArgs: PhraseNodeEventArgs
     {
         private string mChannel;  // the channel on which to set
         private IMedia mMedia;    // the media object

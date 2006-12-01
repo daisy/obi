@@ -43,7 +43,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mNode.Project.RemoveNode(mNode.Project, mNode);
+            mNode.Project.RemoveSectionNode(mNode.Project, mNode);
         }
     }
 }

@@ -97,7 +97,7 @@ namespace Obi
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
-        public void CreateSiblingSectionNodeRequested(object sender, Events.Node.NodeEventArgs e)
+        public void CreateSiblingSectionNodeRequested(object sender, Events.Node.SectionNodeEventArgs e)
         {
             CreateSiblingSectionNode(sender, e.Node);
         }
@@ -130,7 +130,7 @@ namespace Obi
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
-        public void CreateChildSectionNodeRequested(object sender, Events.Node.NodeEventArgs e)
+        public void CreateChildSectionNodeRequested(object sender, Events.Node.SectionNodeEventArgs e)
         {
             CreateChildSectionNode(sender, e.Node);
         }
@@ -187,7 +187,7 @@ namespace Obi
         /// </summary>
         //md
         //the command value is returned so it can be used in UndoShallowDelete's undo list
-        public Commands.Command RemoveNode(object origin, CoreNode node)
+        public Commands.Command RemoveSectionNode(object origin, SectionNode node)
         {
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
@@ -220,15 +220,15 @@ namespace Obi
             return command;
         }
 
-        public void RemoveNodeRequested(object sender, Events.Node.NodeEventArgs e)
+        public void RemoveSectionNodeRequested(object sender, Events.Node.SectionNodeEventArgs e)
         {
-            RemoveNode(sender, e.Node);
+            RemoveSectionNode(sender, e.Node);
         }
 
         /// <summary>
         /// Move a node up in the TOC.
         /// </summary>
-        public void MoveSectionNodeUp(object origin, CoreNode node)
+        public void MoveSectionNodeUp(object origin, SectionNode node)
         {
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
@@ -274,7 +274,7 @@ namespace Obi
         /// <param name="node"></param>
         /// <returns></returns>
         /// <remarks>a facade API function could do this for us</remarks>
-        private bool ExecuteMoveSectionNodeUp(CoreNode node)
+        private bool ExecuteMoveSectionNodeUp(SectionNode node)
         {
             CoreNode newParent = null;
             int newIndex = 0;
@@ -316,7 +316,7 @@ namespace Obi
             }
         }
 
-        public void MoveSectionNodeUpRequested(object sender, Events.Node.NodeEventArgs e)
+        public void MoveSectionNodeUpRequested(object sender, Events.Node.SectionNodeEventArgs e)
         {
             MoveSectionNodeUp(sender, e.Node);
         }
@@ -328,7 +328,7 @@ namespace Obi
         /// <param name="parent"></param>
         /// <param name="index"></param>
         /// <param name="position"></param>
-        public void UndoMoveSectionNode(CoreNode node, CoreNode parent, int index, int position)
+        public void UndoMoveSectionNode(SectionNode node, SectionNode parent, int index, int position)
         {
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
@@ -352,12 +352,12 @@ namespace Obi
         /// <param name="origin"></param>
         /// <param name="node"></param>
         //added by marisa 01 aug 06
-        public void UndoIncreaseSectionNodeLevel(CoreNode node, CoreNode parent, int index, int position)
+        public void UndoIncreaseSectionNodeLevel(SectionNode node, SectionNode parent, int index, int position)
         {
             UndoMoveSectionNode(node, parent, index, position);
         }
 
-        public void MoveSectionNodeDown(object origin, CoreNode node)
+        public void MoveSectionNodeDown(object origin, SectionNode node)
         {
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
@@ -537,14 +537,14 @@ namespace Obi
             return null;
         }
 
-        public void IncreaseSectionNodeLevelRequested(object sender, Events.Node.NodeEventArgs e)
+        public void IncreaseSectionNodeLevelRequested(object sender, Events.Node.SectionNodeEventArgs e)
         {
             IncreaseSectionNodeLevel(sender, e.Node);
         }
 
        //md
        //the command value is returned so it can be used in UndoShallowDelete's undo list
-       public Commands.Command DecreaseSectionNodeLevel(object origin, CoreNode node)
+       public Commands.Command DecreaseSectionNodeLevel(object origin, SectionNode node)
         {
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
@@ -592,7 +592,7 @@ namespace Obi
         /// <param name="node"></param>
         /// <returns></returns>
         ///<remarks>a facade API function could do this for us</remarks>
-        private bool ExecuteDecreaseSectionNodeLevel(CoreNode node)
+        private bool ExecuteDecreaseSectionNodeLevel(SectionNode node)
         {
             //the only reason we can't decrease the level is if the node is already 
             //at the outermost level
@@ -631,7 +631,7 @@ namespace Obi
 
         }
 
-        public void DecreaseSectionNodeLevelRequested(object sender, Events.Node.NodeEventArgs e)
+        public void DecreaseSectionNodeLevelRequested(object sender, Events.Node.SectionNodeEventArgs e)
         {
             DecreaseSectionNodeLevel(sender, e.Node);
         }
@@ -646,7 +646,7 @@ namespace Obi
         /// <param name="position"></param>
         /// <param name="childCount">number of children this node used to have before the decrease level action happened</param>
         //added by marisa
-        public void UndoDecreaseSectionNodeLevel(CoreNode node, CoreNode parent, int index, int position, int originalChildCount)
+        public void UndoDecreaseSectionNodeLevel(CoreNode node, SectionNode parent, int index, int position, int originalChildCount)
         {
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
@@ -714,7 +714,7 @@ namespace Obi
         /// <summary>
         /// Change the text label of a node.
         /// </summary>
-        public void RenameSectionNode(object origin, CoreNode node, string label)
+        public void RenameSectionNode(object origin, SectionNode node, string label)
         {
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
@@ -738,13 +738,13 @@ namespace Obi
         }
 
         //md 20060810
-        public void CutSectionNodeRequested(object sender, Events.Node.NodeEventArgs e)
+        public void CutSectionNodeRequested(object sender, Events.Node.SectionNodeEventArgs e)
         {
             DoCutSectionNode(sender, e.Node);
         }
 
         //md 20060810
-        public void DoCutSectionNode(object origin, CoreNode node)
+        public void DoCutSectionNode(object origin, SectionNode node)
         {
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
@@ -778,20 +778,20 @@ namespace Obi
         }
 
         //md 20060810
-        public void UndoCutSectionNode(CoreNode node, CoreNode parent, int index, int position)
+        public void UndoCutSectionNode(SectionNode node, CoreNode parent, int index, int position)
         {
             UndeleteSectionNode(node, parent, index, position);
             mClipboard.Section = null;
         }
 
         //md 20060810
-        public void CopySectionNodeRequested(object sender, Events.Node.NodeEventArgs e)
+        public void CopySectionNodeRequested(object sender, Events.Node.SectionNodeEventArgs e)
         {
             CopySectionNode(sender, e.Node);
         }
 
         //md 20060810
-        public void CopySectionNode(object origin, CoreNode node)
+        public void CopySectionNode(object origin, SectionNode node)
         {
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
@@ -820,7 +820,7 @@ namespace Obi
         }
 
         //md 20060810
-        public void UndoCopySectionNode(CoreNode node)
+        public void UndoCopySectionNode(SectionNode node)
         {
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
@@ -839,7 +839,7 @@ namespace Obi
 
         //md 20060810
         // modified by JQ 20060818: can paste under the root node if we have deleted the first and only heading.
-        public void PasteSectionNodeRequested(object sender, Events.Node.NodeEventArgs e)
+        public void PasteSectionNodeRequested(object sender, Events.Node.SectionNodeEventArgs e)
         {
             if (e.Node != null)
             {
@@ -898,7 +898,7 @@ namespace Obi
         }
 
         //md 20060810
-        public void UndoPasteSectionNode(CoreNode node)
+        public void UndoPasteSectionNode(SectionNode node)
         {
             NodeType nodeType;
             nodeType = Project.GetNodeType(node);
@@ -916,7 +916,7 @@ namespace Obi
         }
 
         //md 20060812
-        public void ShallowDeleteSectionNodeRequested(object sender, Events.Node.NodeEventArgs e)
+        public void ShallowDeleteSectionNodeRequested(object sender, Events.Node.SectionNodeEventArgs e)
         {
             ShallowDeleteSectionNode(sender, e.Node);
         }
@@ -924,7 +924,7 @@ namespace Obi
         //md 20060812
         //shallow delete a section node
         //see Commands.TOC.ShallowDeleteSectionNode if you're wondering how the "undo" works
-        public void ShallowDeleteSectionNode(object origin, CoreNode node)
+        public void ShallowDeleteSectionNode(object origin, SectionNode node)
         {
             List<Commands.Command> commands = new List<Commands.Command>();
 
@@ -971,7 +971,7 @@ namespace Obi
                 }
             }
 
-            Commands.Command cmdRemove = this.RemoveNode(this, node);
+            Commands.Command cmdRemove = this.RemoveSectionNode(this, node);
             commands.Add(cmdRemove);
 
             //additional "null" tests added for completeness, since the logic was
@@ -989,13 +989,13 @@ namespace Obi
         }
 
         //md 20060812
-        public void MoveSectionNodeDownLinearRequested(object sender, Events.Node.NodeEventArgs e)
+        public void MoveSectionNodeDownLinearRequested(object sender, Events.Node.SectionNodeEventArgs e)
         {
             MoveSectionNodeDownLinear(sender, e.Node);
         }
 
         //md 20060812
-        public void MoveSectionNodeDownLinear(object origin, CoreNode node)
+        public void MoveSectionNodeDownLinear(object origin, SectionNode node)
         {
             Commands.TOC.MoveSectionNodeDownLinear command = null;
 
@@ -1034,13 +1034,13 @@ namespace Obi
         }
 
         //md 20060812
-        public void MoveSectionNodeUpLinearRequested(object sender, Events.Node.NodeEventArgs e)
+        public void MoveSectionNodeUpLinearRequested(object sender, Events.Node.SectionNodeEventArgs e)
         {
             MoveSectionNodeUpLinear(sender, e.Node);
         }
 
         //md 20060812
-        public void MoveSectionNodeUpLinear(object origin, CoreNode node)
+        public void MoveSectionNodeUpLinear(object origin, SectionNode node)
         {
             Commands.TOC.MoveSectionNodeUpLinear command = null;
 
@@ -1092,7 +1092,7 @@ namespace Obi
         /// <param name="dir">1: down; -1: up</param>
         /// <remarks>this could be cleaner.  one thing that would help is better shallow-operation support in the API.</remarks>
         //md 20060813
-        internal void ShallowSwapNodes(CoreNode firstNode, CoreNode secondNode)
+        internal void ShallowSwapNodes(SectionNode firstNode, SectionNode secondNode)
         {
             System.Diagnostics.Trace.WriteLine(string.Format("Swapping {0} with {1}", GetTextMedia(firstNode).getText(), GetTextMedia(secondNode).getText()));
             ArrayList firstNodeSubSections = new ArrayList();
@@ -1232,7 +1232,7 @@ namespace Obi
             }
         }
 
-        internal void UndoShallowSwapNodes(CoreNode firstNode, CoreNode secondNode)
+        internal void UndoShallowSwapNodes(SectionNode firstNode, SectionNode secondNode)
         {
             Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(firstNode);
             getPresentation().getRootNode().acceptDepthFirst(visitor);
@@ -1256,7 +1256,7 @@ namespace Obi
         //would have used a visitor for the next two functions (Get Next/Prev Section Node)
         //but visitors don't go in the prev. direction.
         //md 20060813
-        private CoreNode GetNextSectionNode(CoreNode node, int startIdx)
+        private CoreNode GetNextSectionNode(SectionNode node, int startIdx)
         {
             //look at our children
             for (int i = startIdx; i < node.getChildCount(); i++)
@@ -1275,7 +1275,7 @@ namespace Obi
         }
 
         //md 20060813
-        private CoreNode GetPreviousSectionNode(CoreNode node, int startIdx)
+        private CoreNode GetPreviousSectionNode(SectionNode node, int startIdx)
         {
             if (node.getParent() == null) return null;
 
@@ -1310,7 +1310,7 @@ namespace Obi
        
         //md 20060813
         //helper function
-        private bool HasSubSections(CoreNode node)
+        private bool HasSubSections(SectionNode node)
         {
             for (int i = 0; i < node.getChildCount(); i++)
             {
@@ -1324,7 +1324,7 @@ namespace Obi
         }
 
         //md 20060813
-        internal bool CanMoveSectionNodeUp(CoreNode node)
+        internal bool CanMoveSectionNodeUp(SectionNode node)
         {
             if (this.getPresentation().getRootNode().getChildCount() == 0)
             {
@@ -1344,7 +1344,7 @@ namespace Obi
         }
 
         //md 20060813
-        internal bool CanMoveSectionNodeDown(CoreNode node)
+        internal bool CanMoveSectionNodeDown(SectionNode node)
         {
 
             if (this.getPresentation().getRootNode().getChildCount() == 0)
@@ -1367,7 +1367,7 @@ namespace Obi
 
         //md 20060814
         //helper function
-        private CoreNode GetLastSectionNodeInSubtree(CoreNode node)
+        private CoreNode GetLastSectionNodeInSubtree(SectionNode node)
         {
             CoreNode lastSectionNodeChild = GetLastSectionNodeChild(node);
 
@@ -1387,7 +1387,7 @@ namespace Obi
         
         //md 20060814
         //helper function
-        private CoreNode GetLastSectionNodeChild(CoreNode node)
+        private CoreNode GetLastSectionNodeChild(SectionNode node)
         {
             for (int i = node.getChildCount() - 1; i>=0; i--)
             {
@@ -1401,7 +1401,7 @@ namespace Obi
         }
 
         //md 20060813
-        internal bool CanMoveSectionNodeIn(CoreNode node)
+        internal bool CanMoveSectionNodeIn(SectionNode node)
         {
             CoreNode newParent = GetPreviousSectionNodeSibling(node);
 
@@ -1412,7 +1412,7 @@ namespace Obi
         }
 
         //md 20060813
-        internal bool CanMoveSectionNodeOut(CoreNode node)
+        internal bool CanMoveSectionNodeOut(SectionNode node)
         {
             //the only reason we can't decrease the level is if the node is already 
             //at the outermost level
@@ -1426,7 +1426,7 @@ namespace Obi
         }
 
         //md 20060813
-        public static int GetSectionNodeIndex(CoreNode node)
+        public static int GetSectionNodeIndex(SectionNode node)
         {
             int numSections = 0;
             CoreNode parent = (CoreNode)node.getParent();

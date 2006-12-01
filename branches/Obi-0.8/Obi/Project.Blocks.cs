@@ -21,7 +21,7 @@ namespace Obi
         /// Cut a phrase node: delete it and store it in the clipboard.
         /// Issue a command and modify the project.
         /// </summary>
-        internal void CutPhraseNode(object sender, Events.Node.NodeEventArgs e)
+        internal void CutPhraseNode(object sender, Events.Node.PhraseNodeEventArgs e)
         {
             // create the command before storing the node in the clip board, otherwise the previous value is lost
             Commands.Strips.CutPhrase command = new Commands.Strips.CutPhrase(this, e.Node, (CoreNode)e.Node.getParent(),
@@ -39,7 +39,7 @@ namespace Obi
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        internal void CopyPhraseNode(object sender, Events.Node.NodeEventArgs e)
+        internal void CopyPhraseNode(object sender, Events.Node.PhraseNodeEventArgs e)
         {
             Commands.Strips.CopyPhrase command = new Commands.Strips.CopyPhrase(this, e.Node);
             mClipboard.Phrase = e.Node;
@@ -52,7 +52,7 @@ namespace Obi
         /// The clipboard is unmodified.
         /// Issue a command and modify the project.
         /// </summary>
-        internal void PastePhraseNode(object sender, Events.Node.NodeEventArgs e)
+        internal void PastePhraseNode(object sender, Events.Node.PhraseNodeEventArgs e)
         {
             System.Diagnostics.Debug.Assert(mClipboard.Phrase != null, "Cannot paste without a phrase node on the clipboard.");
             CoreNode copy = mClipboard.Phrase.copy(true);
@@ -85,7 +85,7 @@ namespace Obi
         /// Delete a phrase node from the tree and remove its asset from the asset manager.
         /// Create a command object.
         /// </summary>
-        public void DeletePhraseNodeRequested(object sender, Events.Node.NodeEventArgs e)
+        public void DeletePhraseNodeRequested(object sender, Events.Node.PhraseNodeEventArgs e)
         {
             CoreNode parent = (CoreNode)e.Node.getParent();
             int index = parent.indexOf(e.Node);
@@ -139,7 +139,7 @@ namespace Obi
         /// <summary>
         /// Move a phrase node in either direction. May not succeed if there is nowhere to move in that direction.
         /// </summary>
-        private void MovePhraseNodeRequested(object sender, Events.Node.NodeEventArgs e, Direction dir)
+        private void MovePhraseNodeRequested(object sender, Events.Node.PhraseNodeEventArgs e, Direction dir)
         {
             if (CanMovePhraseNode(e.Node, dir))
             {
@@ -151,7 +151,7 @@ namespace Obi
         /// <summary>
         /// Move a phrase node forward. May not succeed if the node is last of its kind.
         /// </summary>
-        public void MovePhraseNodeForwardRequested(object sender, Events.Node.NodeEventArgs e)
+        public void MovePhraseNodeForwardRequested(object sender, Events.Node.PhraseNodeEventArgs e)
         {
             MovePhraseNodeRequested(sender, e, Direction.Forward);
         }
@@ -159,7 +159,7 @@ namespace Obi
         /// <summary>
         /// Move a phrase node forward.
         /// </summary>
-        public void MovePhraseNodeBackwardRequested(object sender, Events.Node.NodeEventArgs e)
+        public void MovePhraseNodeBackwardRequested(object sender, Events.Node.PhraseNodeEventArgs e)
         {
             MovePhraseNodeRequested(sender, e, Direction.Backward);
         }
@@ -178,7 +178,7 @@ namespace Obi
         /// As this may fail, return true if the change was really made or false otherwise.
         /// Throw an exception if the channel could not be found.
         /// </summary>
-        internal bool DidSetMedia(object origin, CoreNode node, string channel, IMedia media)
+        internal bool DidSetMedia(object origin, PhraseNode node, string channel, IMedia media)
         {
             ChannelsProperty channelsProp = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
             IList channelsList = channelsProp.getListOfUsedChannels();
@@ -252,11 +252,11 @@ namespace Obi
         /// </summary>
         /// <param name="mNode">The node to remove.</param>
         /// <param name="mPhraseNodes">The nodes to add instead.</param>
-        internal void ReplaceNodeWithNodes(CoreNode node, List<CoreNode> nodes)
+        internal void ReplaceNodeWithNodes(PhraseNode node, List<PhraseNode> nodes)
         {
             CoreNode parent = (CoreNode)node.getParent();
             int index = parent.indexOf(node);
-            DeletedPhraseNode(this, new Events.Node.NodeEventArgs(this, node));
+            DeletedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, node));
             node.detach();
             foreach (CoreNode n in nodes)
             {

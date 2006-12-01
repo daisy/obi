@@ -46,7 +46,7 @@ namespace Obi.UserControls
 
         internal void SyncAddedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
         {
-            TreeNode newTreeNode = AddSingleSectionNode(e.Node, e.SectionNodeIndex);
+            TreeNode newTreeNode = AddSingleSectionNode(e.Node);
 
             //start editing if the request to add a node happened in the tree view
             if (e.Origin.Equals(this))
@@ -59,37 +59,31 @@ namespace Obi.UserControls
             mTocTree.SelectedNode = newTreeNode;
         }
 
-        private TreeNode AddSingleSectionNode(urakawa.core.CoreNode node, int sectionIndex)
+        private TreeNode AddSingleSectionNode(SectionNode node)
         {
             TreeNode newTreeNode;
             string label = Project.GetTextMedia(node).getText();
             if (node.getParent().getParent() != null)
             {
-                TreeNode relTreeNode = FindTreeNodeFromCoreNode((urakawa.core.CoreNode)node.getParent());
-                newTreeNode = relTreeNode.Nodes.Insert(sectionIndex, node.GetHashCode().ToString(), label);
+                TreeNode relTreeNode = FindTreeNodeFromSectionNode((SectionNode)node.getParent());
+                newTreeNode = relTreeNode.Nodes.Insert(node.Index, node.GetHashCode().ToString(), label);
             }
             else
             {
-                newTreeNode = mTocTree.Nodes.Insert(sectionIndex, node.GetHashCode().ToString(), label);
+                newTreeNode = mTocTree.Nodes.Insert(node.Index, node.GetHashCode().ToString(), label);
             }
             newTreeNode.Tag = node;
 
             return newTreeNode;
         }
 
-        private TreeNode AddSectionNode(urakawa.core.CoreNode node, int sectionIndex)
+        private TreeNode AddSectionNode(SectionNode node)
         {
-            TreeNode addedNode = AddSingleSectionNode(node, sectionIndex);
+            TreeNode addedNode = AddSingleSectionNode(node);
 
-            int localSectionIdx = 0;
-
-            for (int i = 0; i < node.getChildCount(); i++)
+            for (int i = 0; i < node.SectionChildCount; i++)
             {
-                if (Project.GetNodeType(node.getChild(i)) == NodeType.Section)
-                {
-                    AddSectionNode(node.getChild(i), localSectionIdx);
-                    localSectionIdx++;
-                }
+                AddSectionNode(node.SectionChild(i));
             }
 
             return addedNode;
@@ -101,11 +95,11 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="sender">The sender of this event notification</param>
         /// <param name="e"><see cref="e.Node"/> is the node to be removed.</param>
-        internal void SyncDeletedSectionNode(object sender, Events.Node.NodeEventArgs e)
+        internal void SyncDeletedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
         {
             if (e.Node != null)
             {
-                TreeNode treeNode = FindTreeNodeFromCoreNode(e.Node);
+                TreeNode treeNode = FindTreeNodeFromSectionNode(e.Node);
                 mTocTree.SelectedNode = treeNode.PrevVisibleNode;
                 if (mTocTree.SelectedNode != null)
                 {
@@ -118,9 +112,9 @@ namespace Obi.UserControls
 
         internal void SyncMovedSectionNode(object sender, Events.Node.MovedSectionNodeEventArgs e)
         {
-            TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
+            TreeNode selected = FindTreeNodeFromSectionNode(e.Node);
 
-            TreeNode parent = Project.GetNodeType(e.Parent) == NodeType.Section ? FindTreeNodeFromCoreNode(e.Parent) : null;
+            TreeNode parent = Project.GetNodeType(e.Parent) == NodeType.Section ? FindTreeNodeFromSectionNode(e.Parent) : null;
 
             if (selected == null) return;
 
@@ -138,7 +132,7 @@ namespace Obi.UserControls
                 siblings = parent.Nodes;
             }
 
-            siblings.Insert(e.SectionNodeIndex, clone);
+            siblings.Insert(e.Node.Index, clone);
             clone.ExpandAll();
             clone.EnsureVisible();
             if (mTocTree.SelectedNode != null)
@@ -154,9 +148,9 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        internal void SyncDecreasedSectionNodeLevel(object sender, Events.Node.NodeEventArgs e)
+        internal void SyncDecreasedSectionNodeLevel(object sender, Events.Node.SectionNodeEventArgs e)
         {
-            TreeNode selected = FindTreeNodeFromCoreNode(e.Node);
+            TreeNode selected = FindTreeNodeFromSectionNode(e.Node);
             ExecuteDecreaseNodeLevel(selected);
         }
 
@@ -215,20 +209,20 @@ namespace Obi.UserControls
         }
 
         //md 20060810
-        internal void SyncCutSectionNode(object sender, Events.Node.NodeEventArgs e)
+        internal void SyncCutSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
         {
             SyncDeletedSectionNode(sender, e);
         }
 
         //md 20060810
         //does nothing; just a placeholder
-        internal void SyncCopiedSectionNode(object sender, Events.Node.NodeEventArgs e)
+        internal void SyncCopiedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
         {    
         }
 
         //md 20060810
         //does nothing; just a placeholder
-        internal void SyncUndidCopySectionNode(object sender, Events.Node.NodeEventArgs e)
+        internal void SyncUndidCopySectionNode(object sender, Events.Node.SectionNodeEventArgs e)
         {
         }
 
@@ -237,16 +231,16 @@ namespace Obi.UserControls
         internal void SyncPastedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
         {
            //add a subtree
-            TreeNode uncutNode = AddSectionNode(e.Node, e.SectionNodeIndex);
+            TreeNode uncutNode = AddSectionNode(e.Node);
 
             uncutNode.ExpandAll();
             uncutNode.EnsureVisible();
             mTocTree.SelectedNode = uncutNode;
         }
 
-        internal void SyncUndidPasteSectionNode(object sender, Events.Node.NodeEventArgs e)
+        internal void SyncUndidPasteSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
         {
-            TreeNode pastedNode = FindTreeNodeFromCoreNode(e.Node);
+            TreeNode pastedNode = FindTreeNodeFromSectionNode(e.Node);
 
             //focus on the previous node
             mTocTree.SelectedNode = pastedNode.PrevVisibleNode;
@@ -273,7 +267,7 @@ namespace Obi.UserControls
             SynchronizeWithCoreTree((urakawa.core.CoreNode)e.Node.getPresentation().getRootNode());
         
             //focus on the first swapped node
-            mTocTree.SelectedNode = FindTreeNodeFromCoreNode(e.Node);
+            mTocTree.SelectedNode = FindTreeNodeFromSectionNode(e.Node);
             if (mTocTree.SelectedNode != null)
             {
                 mTocTree.SelectedNode.ExpandAll();

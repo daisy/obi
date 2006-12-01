@@ -60,19 +60,19 @@ namespace Obi.Commands.Strips
         public CutPhrase(PhraseNode node)
             : base(node)
         {
-            mPrevBlockClipBoard = Node.Project.PhraseClipBoard;
+            mPrevBlockClipBoard = Node.Project.Clipboard.Phrase;
         }
 
         public override void Do()
         {
             base.Do();
-            Node.Project.PhraseClipBoard = Node;
+            Node.Project.Clipboard.Phrase = Node;
         }
 
         public override void Undo()
         {
             base.Undo();
-            Node.Project.PhraseClipBoard = mPrevBlockClipBoard;
+            Node.Project.Clipboard.Phrase = mPrevBlockClipBoard;
         }
     }
 }
