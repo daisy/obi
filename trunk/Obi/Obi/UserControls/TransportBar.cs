@@ -47,10 +47,13 @@ namespace Obi.UserControls
             set
             {
                 mPlaylist = value;
-                mPlaylist.MovedToPhrase += new Playlist.MovedToPhraseHandler(Play_MovedToPhrase);
-                mPlaylist.StateChanged += new Events.Audio.Player.StateChangedHandler(Play_PlayerStateChanged);
-                mPlaylist.EndOfPlaylist += new Playlist.EndOfPlaylistHandler(Play_PlayerStopped);
-                mPreviousSelection = ((ProjectPanel)Parent).SelectedNode;
+                if (value != null)
+                {
+                    mPlaylist.MovedToPhrase += new Playlist.MovedToPhraseHandler(Play_MovedToPhrase);
+                    mPlaylist.StateChanged += new Events.Audio.Player.StateChangedHandler(Play_PlayerStateChanged);
+                    mPlaylist.EndOfPlaylist += new Playlist.EndOfPlaylistHandler(Play_PlayerStopped);
+                    mPreviousSelection = ((ProjectPanel)Parent).SelectedNode;
+                }
             }
         }
 
@@ -171,11 +174,18 @@ namespace Obi.UserControls
         }
 
         /// <summary>
-        /// The stop button
+        /// The stop button. Stopping twice deselects.
         /// </summary>
         public void Stop()
         {
-            if (mPlaylist != null) mPlaylist.Stop();
+            if (State == Obi.Audio.AudioPlayerState.Stopped)
+            {
+                ((ProjectPanel)Parent).StripManager.SelectedNode = null;
+            }
+            else if (mPlaylist != null)
+            {
+                mPlaylist.Stop();
+            }
         }
 
         private void mNextPhrase_Click(object sender, EventArgs e)

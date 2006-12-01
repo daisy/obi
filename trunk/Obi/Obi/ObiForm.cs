@@ -982,14 +982,15 @@ namespace Obi
         private void mTransportToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
             bool isProjectOpen = mProject != null;
+            bool isNodeSelected = isProjectOpen && mProjectPanel.SelectedNode != null;
             mShowHideVUMeterToolStripMenuItem.Text = Localizer.Message(mVuMeter.Visible ? "hide_vu_meter" : "show_vu_meter");
             if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Stopped)
             {
-                mPlayAllToolStripMenuItem.Enabled = mProject != null;
+                mPlayAllToolStripMenuItem.Enabled = isProjectOpen;
                 mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
-                mPlaySelectionToolStripMenuItem.Enabled = mProject != null && mProjectPanel.SelectedNode != null;
+                mPlaySelectionToolStripMenuItem.Enabled = isNodeSelected;
                 mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
-                mStopToolStripMenuItem.Enabled = false;
+                mStopToolStripMenuItem.Enabled = isNodeSelected;
             }
             else if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.NotReady)
             {
@@ -1110,11 +1111,7 @@ namespace Obi
         /// </summary>
         private void mStopToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing ||
-                mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Paused)
-            {
-                mProjectPanel.TransportBar.Stop();
-            }
+            mProjectPanel.TransportBar.Stop();
         }
 
         /// <summary>

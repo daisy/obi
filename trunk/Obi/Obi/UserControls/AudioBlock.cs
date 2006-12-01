@@ -106,7 +106,6 @@ namespace Obi.UserControls
         public AudioBlock() : base()
         {
             InitializeComponent();
-            this.TabStop = true;
             mAnnotationBlock = new AnnotationBlock();
             mAnnotationBlock.AudioBlock = this;
             InitializeToolTips();
@@ -143,6 +142,8 @@ namespace Obi.UserControls
             ((ObiForm)mManager.ParentForm).Play(mNode);
         }
 
+        /*
+        //JQ: removed to be replaced by transport bar navigation.
         //mg: for tab navigation et al
         private void AudioBlock_enter(object sender, EventArgs e)
         {
@@ -150,6 +151,7 @@ namespace Obi.UserControls
             System.Diagnostics.Debug.Print("Audioblock:tabindex:" + this.TabIndex.ToString());
             // MarkSelected();
         }
+        */
 
         #endregion
 

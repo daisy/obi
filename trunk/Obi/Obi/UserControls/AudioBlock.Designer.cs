@@ -97,7 +97,6 @@ namespace Obi.UserControls
             this.Name = "AudioBlock";
 						//med 20061120 svn merge: old size? this.Size = new System.Drawing.Size(116, 54);
             this.Size = new System.Drawing.Size(61, 54);
-            this.Enter += new System.EventHandler(this.AudioBlock_enter);
             this.DoubleClick += new System.EventHandler(this.AudioBlock_DoubleClick);
             this.Click += new System.EventHandler(this.AudioBlock_Click);
             //med 20061120 svn merge: suspect this event was deleted in the latest code this.SizeChanged += new System.EventHandler(this.AudioBlock_SizeChanged);
