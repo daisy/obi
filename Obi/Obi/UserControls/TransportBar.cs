@@ -221,10 +221,13 @@ namespace Obi.UserControls
         {
             if (mPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Stopped)
             {
+                mDisplayTimer.Stop();
+                mTimeDisplayBox.Text = "00:00:00";
                 Play_PlayerStopped(this, null);
             }
             else if (mPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Paused)
             {
+                mDisplayTimer.Stop();
                 mPauseButton.Visible = false;
                 mPlayButton.Visible = true;
             }
@@ -232,6 +235,7 @@ namespace Obi.UserControls
             {
                 mPauseButton.Visible = true;
                 mPlayButton.Visible = false;
+                mDisplayTimer.Start();
             }
         }
 
@@ -251,6 +255,19 @@ namespace Obi.UserControls
         private void Play_MovedToPhrase(object sender, Events.Node.NodeEventArgs e)
         {
             ((ProjectPanel)Parent).StripManager.SelectedPhraseNode = e.Node;
+        }
+
+        private void mDisplayTimer_Tick(object sender, EventArgs e)
+        {
+            if (mPlaylist != null)
+            {
+                int s = Convert.ToInt32(mPlaylist.CurrentTime / 1000.0);
+                string str = s.ToString("00");
+                int m = Convert.ToInt32(s / 60);
+                str = m.ToString("00") + ":" + str;
+                int h = m / 60;
+                mTimeDisplayBox.Text = h.ToString("00") + ":" + str;
+            }
         }
     }
 }

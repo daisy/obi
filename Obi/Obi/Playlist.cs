@@ -107,7 +107,9 @@ namespace Obi
                 System.Diagnostics.Debug.Print("Current selection is at index {0}/{1}", i, mPhrases.Count);
                 if (i < mPhrases.Count)
                 {
+                    // set the current phrase index to the asset, and reset the pause position
                     mCurrentPhraseIndex = i;
+                    mPausePosition = 0;
                 }
             }
         }
@@ -295,18 +297,16 @@ namespace Obi
         {
             if (mPhrases.Count > 0)
             {
-                //if ( mPausePosition != 0  || mPausedPhraseIndex != 0 )
                 if (mPlayListState == AudioPlayerState.Paused)
                 {
                     // Resume by using play from function
-                    mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]) , mPausePosition );
+                    mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]), mPausePosition);
                     mPlayListState = AudioPlayerState.Playing;                    
                     if (StateChanged != null)
                     {
                         StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Paused));
                     }
                 }
-                //else if ( mPausePosition == 0 && mPausedPhraseIndex == 0 )   
                 else if (mPlayListState == AudioPlayerState.Stopped)
                 {
                     // start from the beginning
