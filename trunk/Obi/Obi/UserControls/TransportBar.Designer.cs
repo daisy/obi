@@ -41,6 +41,8 @@ namespace Obi.UserControls
             this.mScrubTrackBar = new System.Windows.Forms.TrackBar();
             this.mTimeDisplayBox = new System.Windows.Forms.TextBox();
             this.mTransportBarTooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.mDisplayTimer = new System.Windows.Forms.Timer(this.components);
+            this.mDisplayButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mScrubTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -184,11 +186,28 @@ namespace Obi.UserControls
             this.mTransportBarTooltip.IsBalloon = true;
             this.mTransportBarTooltip.ToolTipTitle = "Transport bar";
             // 
+            // mDisplayTimer
+            // 
+            this.mDisplayTimer.Tick += new System.EventHandler(this.mDisplayTimer_Tick);
+            // 
+            // mDisplayButton
+            // 
+            this.mDisplayButton.AutoSize = true;
+            this.mDisplayButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.mDisplayButton.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.mDisplayButton.Location = new System.Drawing.Point(511, 5);
+            this.mDisplayButton.Name = "mDisplayButton";
+            this.mDisplayButton.Size = new System.Drawing.Size(53, 22);
+            this.mDisplayButton.TabIndex = 10;
+            this.mDisplayButton.Text = "&Display";
+            this.mDisplayButton.UseVisualStyleBackColor = false;
+            // 
             // TransportBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.mDisplayButton);
             this.Controls.Add(this.mTimeDisplayBox);
             this.Controls.Add(this.mScrubTrackBar);
             this.Controls.Add(this.mRecordButton);
@@ -200,7 +219,7 @@ namespace Obi.UserControls
             this.Controls.Add(this.mPauseButton);
             this.Controls.Add(this.mPlayButton);
             this.Name = "TransportBar";
-            this.Size = new System.Drawing.Size(511, 32);
+            this.Size = new System.Drawing.Size(702, 32);
             ((System.ComponentModel.ISupportInitialize)(this.mScrubTrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -220,5 +239,7 @@ namespace Obi.UserControls
         private System.Windows.Forms.TrackBar mScrubTrackBar;
         private System.Windows.Forms.TextBox mTimeDisplayBox;
         private System.Windows.Forms.ToolTip mTransportBarTooltip;
+        private System.Windows.Forms.Timer mDisplayTimer;
+        private System.Windows.Forms.Button mDisplayButton;
     }
 }
