@@ -36,20 +36,9 @@ namespace Obi.Dialogs
 
         private void mRecordButton_Click(object sender, EventArgs e)
         {
-            if (combRecordingSelect.SelectedIndex == 1)
-            {
-                
-                mRecordingSession.Listen();
-            }
-            else if (combRecordingSelect.SelectedIndex == 0)
-            {
-                mRecordingSession.CommitIntervalSeconds = Convert.ToInt32(txtCommitInterval.Text);
-                
+            mRecordingSession.Stop();
                 mRecordingSession.Record();
-
-
-                
-            }
+   
         }
 
         private void btnPageMark_Click(object sender, EventArgs e)
@@ -69,15 +58,10 @@ namespace Obi.Dialogs
 
         private void TransportRecord_Load(object sender, EventArgs e)
         {
-            combRecordingSelect.Items.Add("Record");
-            combRecordingSelect.Items.Add("Listen");
-            combRecordingSelect.SelectedIndex = 0 ;
+            mRecordingSession.Listen();
+
+            
         }
 
-        private void TmCommit_Tick(object sender, EventArgs e)
-        {
-//            mRecordingSession.Stop();
-            //mRecordingSession.Record();
-        }
     }
 }
