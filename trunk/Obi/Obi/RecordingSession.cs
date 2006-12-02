@@ -113,8 +113,8 @@ namespace Obi
             
 
             // initialise commit timer
-            tmCommitTimer.Tick += new System.EventHandler( tmCommitTimer_tick );
-            tmCommitTimer.Interval = 300000;
+            //tmCommitTimer.Tick += new System.EventHandler( tmCommitTimer_tick );  //  Avn : Disabled on 2 Dec 2006
+            //tmCommitTimer.Interval = 300000;    //  Avn : Disabled on 2 Dec 2006
             tmUpdateDisplay.Tick += new System.EventHandler ( tmUpdateDisplay_tick );
             tmUpdateDisplay.Interval = 1000 ;
         }
@@ -154,7 +154,7 @@ namespace Obi
                 StartingPhrase(this, mPhraseEventsArgs);
                 //UpdateDisplayThread = new Thread(new ThreadStart(UpdateDisplayPeriodically));
                 //System.Media.SystemSounds.Exclamation.Play();
-                tmCommitTimer.Enabled = true;
+                //tmCommitTimer.Enabled = true;  // avn: Disabled on 2 Dec 2006
                 tmUpdateDisplay.Enabled = true;
             }
         }
@@ -164,7 +164,7 @@ namespace Obi
         /// </summary>
         public void Stop()
         {
-            tmCommitTimer.Enabled = false;
+            //tmCommitTimer.Enabled = false;    // avn: Disabled on 2 Dec 2006
             tmUpdateDisplay.Enabled = false;
             Obi.Events.Audio.Recorder.PhraseEventArgs e = StoppedRecording();
             if (e != null) FinishingPhrase(this, e);
