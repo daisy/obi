@@ -166,6 +166,12 @@ namespace Obi.UserControls
         /// </summary>
         public void Record()
         {
+            Settings CurrentSettings = Settings.GetSettings();
+            urakawa.core.CoreNode node= null ; // Blank node for now, to be replaced by actual node  
+            mRecordingSession = new RecordingSession ( ( ( ProjectPanel ) Parent ).Project , Audio.AudioRecorder.Instance  , node , CurrentSettings.AudioChannels , CurrentSettings.SampleRate , CurrentSettings.BitDepth ) ;
+            Dialogs.TransportRecord TransportRecordDialog = new Obi.Dialogs.TransportRecord ( mRecordingSession ) ;
+            TransportRecordDialog.Show ()  ;
+
         }
 
         private void mStopButton_Click(object sender, EventArgs e)
