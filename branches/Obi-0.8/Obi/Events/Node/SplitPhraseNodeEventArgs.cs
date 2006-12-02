@@ -8,7 +8,7 @@ using Obi.Assets;
 namespace Obi.Events.Node
 {
   
-    public class SplitPhraseNodeEventArgs: NodeEventArgs
+    public class SplitPhraseNodeEventArgs: PhraseNodeEventArgs
     {
         private AudioMediaAsset mNewAsset;  // the new asset created from the split
 

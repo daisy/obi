@@ -26,10 +26,10 @@ namespace Obi.UserControls
         public event Events.SectionNodeHandler RequestToCopySectionNode;
         public event Events.PhraseNodeHandler RequestToCopyPhraseNode;
         public event Events.SectionNodeHandler RequestToPasteSectionNode;
-        public event Events.PastePhraseNodeHandler RequestToPastePhraseNode;
+        public event Events.RequestToPastePhraseHandler RequestToPastePhraseNode;
 
         public Events.RequestToSetPageNumberHandler RequestToSetPageNumber;
-        public Events.RequestToRemovePageNumberHandler RequestToRemovePageNumber;
+        public Events.PhraseNodeHandler RequestToRemovePageNumber;
 
         public Events.RequestToApplyPhraseDetectionHandler RequestToApplyPhraseDetection;
 
@@ -165,7 +165,7 @@ namespace Obi.UserControls
         /// </summary>
         private void mMergeWithNextAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CoreNode next = Project.GetNextPhrase(mSelectedPhrase);
+            PhraseNode next = Project.GetNextPhrase(mSelectedPhrase);
             if (next != null)
             {
                 MergeNodes(this, new Events.Node.MergeNodesEventArgs(this, mSelectedPhrase, next));
@@ -193,7 +193,7 @@ namespace Obi.UserControls
 
         public void DeleteSelectedPhrase()
         {
-            DeleteBlockRequested(this, new Events.Node.NodeEventArgs(this, mSelectedPhrase));
+            DeleteBlockRequested(this, new Events.Node.PhraseNodeEventArgs(this, mSelectedPhrase));
         }
 
         /// <summary>
@@ -204,7 +204,7 @@ namespace Obi.UserControls
         {
             if (mSelectedPhrase != null)
             {
-                MoveAudioBlockForwardRequested(this, new Events.Node.NodeEventArgs(this, mSelectedPhrase));
+                MoveAudioBlockForwardRequested(this, new Events.Node.PhraseNodeEventArgs(this, mSelectedPhrase));
             }
         }
 
@@ -216,7 +216,7 @@ namespace Obi.UserControls
         {
             if (mSelectedPhrase != null)
             {
-                MoveAudioBlockBackwardRequested(this, new Events.Node.NodeEventArgs(this, mSelectedPhrase));
+                MoveAudioBlockBackwardRequested(this, new Events.Node.PhraseNodeEventArgs(this, mSelectedPhrase));
             }
         }
 
@@ -370,7 +370,7 @@ namespace Obi.UserControls
                 PageProperty pageProp = mSelectedPhrase.getProperty(typeof(PageProperty)) as PageProperty;
                 if (pageProp != null)
                 {
-                    RequestToRemovePageNumber(this, new Events.Node.NodeEventArgs(sender, mSelectedPhrase));
+                    RequestToRemovePageNumber(this, new Events.Node.PhraseNodeEventArgs(sender, mSelectedPhrase));
                 }
             }
         }

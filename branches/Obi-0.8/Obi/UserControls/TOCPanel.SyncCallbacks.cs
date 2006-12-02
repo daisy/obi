@@ -113,9 +113,12 @@ namespace Obi.UserControls
         internal void SyncMovedSectionNode(object sender, Events.Node.MovedSectionNodeEventArgs e)
         {
             TreeNode selected = FindTreeNodeFromSectionNode(e.Node);
-
-            TreeNode parent = Project.GetNodeType(e.Parent) == NodeType.Section ? FindTreeNodeFromSectionNode(e.Parent) : null;
-
+            TreeNode parent = null;
+            if (e.Parent.GetType() == Type.GetType("Obi.SectionNode"))
+            {
+                parent = FindTreeNodeFromSectionNode((SectionNode)e.Parent);
+            }
+        
             if (selected == null) return;
 
             TreeNode clone = (TreeNode)selected.Clone();

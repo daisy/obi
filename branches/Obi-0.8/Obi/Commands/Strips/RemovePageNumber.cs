@@ -30,7 +30,7 @@ namespace Obi.Commands.Strips
         public override void Undo()
         {
             mNode.setProperty(mPageProp);
-            mNode.Project.SetPageNumber(this, mNode);
+            mNode.Project.SetPageNumber(this, new Obi.Events.Node.PhraseNodeEventArgs(this, mNode));
         }
     }
 }

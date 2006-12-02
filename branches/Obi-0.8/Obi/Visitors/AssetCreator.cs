@@ -42,7 +42,7 @@ namespace Obi.Visitors
         {
             if (Project.GetNodeType((CoreNode)node) == NodeType.Phrase)
             {
-                SequenceMedia media = (SequenceMedia)Project.GetMediaForChannel((CoreNode)node, Project.AudioChannel);
+                SequenceMedia media = (SequenceMedia)Project.GetMediaForChannel((CoreNode)node, Project.AudioChannelName);
                 List<Assets.AudioClip> clips = new List<Assets.AudioClip>(media.getCount());
                 for (int i = 0; i < media.getCount(); ++i)
                 {

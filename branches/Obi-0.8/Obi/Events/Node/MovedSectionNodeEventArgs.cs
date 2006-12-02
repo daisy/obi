@@ -8,9 +8,9 @@ namespace Obi.Events.Node
 {
     class MovedSectionNodeEventArgs : SectionNodeEventArgs
     {
-        private SectionNode mParent;
+        private CoreNode mParent;
 
-        public SectionNode Parent
+        public CoreNode Parent
         {
             get
             {
@@ -18,7 +18,7 @@ namespace Obi.Events.Node
             }
         }
 
-        public MovedSectionNodeEventArgs(object origin, SectionNode node, SectionNode parent) : 
+        public MovedSectionNodeEventArgs(object origin, SectionNode node, CoreNode parent) : 
             base(origin, node)
         {
             mParent = parent;

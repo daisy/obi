@@ -52,7 +52,7 @@ namespace Obi.Commands.Strips
         {
             mNode.Project.SetAudioMediaAsset(mNode, mOriginalAsset);
             mNode.Project.DeletePhraseNodeAndAsset(mNewNode);
-            mNode.Project.TouchPhraseNode(mNode);      
+            mNode.Project.TouchNode(mNode);// TouchPhraseNode(mNode);      
         }
     }
 }

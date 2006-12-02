@@ -35,7 +35,7 @@ namespace Obi.Events.Node
             set { mCancel = value; }
         }
 
-        public SetMediaEventArgs(object origin, CoreNode node, string channel, IMedia media): 
+        public SetMediaEventArgs(object origin, PhraseNode node, string channel, IMedia media): 
             base(origin, node)
         {
             mChannel = channel;

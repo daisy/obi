@@ -11,14 +11,12 @@ namespace Obi.Commands.TOC
         protected SectionNode mNode;
         protected CoreNode mParent;
         protected int mIndex;
-        protected int mPosition;
 
         public MoveSectionNode(SectionNode node, CoreNode parent)
         {
             mNode = node;
             mParent = parent;
             mIndex = node.Index;
-            mPosition = node.Position;
         }
 
         /// <summary>
@@ -26,7 +24,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mNode.Project.UndoMoveSectionNode(mNode, mParent, mIndex, mPosition);
+            mNode.Project.UndoMoveSectionNode(mNode, mParent, mIndex);
         }
     }
 
@@ -40,6 +38,7 @@ namespace Obi.Commands.TOC
         public MoveSectionNodeDown(SectionNode node, CoreNode parent)
             : base(node, parent)
         {
+            
         }
 
         /// <summary>
@@ -75,8 +74,8 @@ namespace Obi.Commands.TOC
     class MoveSectionNodeDownLinear : Command
     {
         private Project mProject;
-        private CoreNode mNode;
-        private CoreNode mSwapNode;
+        private SectionNode mNode;
+        private SectionNode mSwapNode;
       
         public override string Label
         {
@@ -86,7 +85,7 @@ namespace Obi.Commands.TOC
             }
         }
 
-        public MoveSectionNodeDownLinear(Project project, CoreNode node, CoreNode swapNode)
+        public MoveSectionNodeDownLinear(Project project, SectionNode node, SectionNode swapNode)
         {
             mProject = project;
             mNode = node;
@@ -113,8 +112,8 @@ namespace Obi.Commands.TOC
     class MoveSectionNodeUpLinear : Command
     {
         private Project mProject;
-        private CoreNode mNode;
-        private CoreNode mSwapNode;
+        private SectionNode mNode;
+        private SectionNode mSwapNode;
 
         public override string Label
         {
@@ -124,7 +123,7 @@ namespace Obi.Commands.TOC
             }
         }
 
-        public MoveSectionNodeUpLinear(Project project, CoreNode node, CoreNode swapNode)
+        public MoveSectionNodeUpLinear(Project project, SectionNode node, SectionNode swapNode)
         {
             mProject = project;
             mNode = node;

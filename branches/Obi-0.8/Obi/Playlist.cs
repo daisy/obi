@@ -18,7 +18,7 @@ namespace Obi
     {
         private Project mProject;         // project in which we are playing
         private AudioPlayer mPlayer;      // audio player for actually playing
-        private List<CoreNode> mPhrases;  // list of phrase nodes (from which we get the assets)
+        private List<PhraseNode> mPhrases;  // list of phrase nodes (from which we get the assets)
         private int mCurrentPhraseIndex;  // index of the phrase currently playing
         private double mTotalTime;        // total time of this playlist
         private double mElapsedTime;      // elapsed time *before* the beginning of the current asset
@@ -42,7 +42,7 @@ namespace Obi
 
         // Moved to a new phrase (while playing, or paused.)
         // this is to notify Obi to highlight the current phrase.
-        public delegate void MovedToPhraseHandler(object sender, Events.Node.NodeEventArgs e);
+        public delegate void MovedToPhraseHandler(object sender, Events.Node.PhraseNodeEventArgs e);
         public event MovedToPhraseHandler MovedToPhrase;
 
         /// <summary>
@@ -214,7 +214,7 @@ namespace Obi
         {
             mProject = project;
             mPlayer = player;
-            mPhrases = new List<CoreNode>();
+            mPhrases = new List<PhraseNode>();
             mCurrentPhraseIndex = 0;
             mElapsedTime = 0.0;
             mTotalTime = 0.0;
@@ -226,7 +226,7 @@ namespace Obi
                 {
                     if (Project.GetNodeType((CoreNode)n) == NodeType.Phrase)
                     {
-                        mPhrases.Add((CoreNode)n);
+                        mPhrases.Add((PhraseNode)n);
                         mTotalTime += Project.GetAudioMediaAsset((CoreNode)n).LengthInMilliseconds;
                     }
                     return true;
@@ -285,7 +285,7 @@ namespace Obi
                     }
                     if (MovedToPhrase != null)
                     {
-                        MovedToPhrase(this, new Events.Node.NodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
+                        MovedToPhrase(this, new Events.Node.PhraseNodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
                     }
                 }
                 else
@@ -345,7 +345,7 @@ namespace Obi
             
             if (MovedToPhrase != null)
             {
-                MovedToPhrase(this, new Events.Node.NodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
+                MovedToPhrase(this, new Events.Node.PhraseNodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
             }
         }
 
@@ -366,7 +366,7 @@ namespace Obi
             --mCurrentPhraseIndex;
             if (MovedToPhrase != null)
             {
-                MovedToPhrase(this, new Events.Node.NodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
+                MovedToPhrase(this, new Events.Node.PhraseNodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
             }
         }
 

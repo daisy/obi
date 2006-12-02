@@ -31,7 +31,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mNode.Project.UndoCutSectionNode(mNode, mParent, mIndex);
+            mNode.Project.UndoCutSectionNode(mNode, mParent);
         }
     }
 

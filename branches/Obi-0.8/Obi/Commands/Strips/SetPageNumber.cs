@@ -25,7 +25,7 @@ namespace Obi.Commands.Strips
         public override void Do()
         {
             mNode.PageProperty = mPageProp;
-            mNode.Project.SetPageNumber(this, mNode);
+            mNode.Project.SetPageNumber(this, new Events.Node.PhraseNodeEventArgs(this, mNode));
         }
 
         public override void Undo()
@@ -49,13 +49,13 @@ namespace Obi.Commands.Strips
         public override void Do()
         {
             mPageProp.PageNumber = mPageNumber;
-            mNode.Project.SetPageNumber(this, mNode);
+            mNode.Project.SetPageNumber(this, new Events.Node.PhraseNodeEventArgs(this, mNode));
         }
 
         public override void Undo()
         {
             mPageProp.PageNumber = mPrevPageNumber;
-            mNode.Project.SetPageNumber(this, mNode);
+            mNode.Project.SetPageNumber(this, new Events.Node.PhraseNodeEventArgs(this, mNode));
         }
     }
 }

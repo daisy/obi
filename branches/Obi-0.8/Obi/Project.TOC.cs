@@ -11,11 +11,11 @@ namespace Obi
     public partial class Project
     {
         public event Events.SectionNodeHandler AddedSectionNode;      // a section node was added to the TOC
-        public event Events.RenameSectionNodeHandler RenamedNode;                // a node was renamed in the presentation
+        public event Events.RenameSectionNodeHandler RenamedSectionNode;                // a node was renamed in the presentation
         public event Events.MovedSectionNodeHandler MovedSectionNode;                    // a node was moved in the presentation
         public event Events.SectionNodeHandler DecreasedSectionNodeLevel;  // a node's level was decreased in the presentation
-        public event Events.MovedSectionNodeHandler UndidMoveNode;                // a node was restored to its previous location
-        public event Events.SectionNodeHandler DeletedNode;                // a node was deleted from the presentation
+        public event Events.MovedSectionNodeHandler UndidMoveSectionNode;                // a node was restored to its previous location
+        public event Events.SectionNodeHandler DeletedSectionNode;                // a node was deleted from the presentation
         //md: toc clipboard stuff
         public event Events.SectionNodeHandler CutSectionNode;
         public event Events.SectionNodeHandler CopiedSectionNode;
@@ -31,9 +31,9 @@ namespace Obi
         /// Add a node information custom property as well.
         /// </summary>
         /// <returns>The created node.</returns>
-        private CoreNode CreateSectionNode()
+        private SectionNode CreateSectionNode()
         {
-            CoreNode node = getPresentation().getCoreNodeFactory().createNode();
+           /* CoreNode node = getPresentation().getCoreNodeFactory().createNode();
             // ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
             ChannelsProperty prop = getPresentation().getPropertyFactory().createChannelsProperty();
             node.setProperty(prop);
@@ -46,7 +46,12 @@ namespace Obi
             typeProp.NodeType = NodeType.Section;
             typeProp.NodeStatus = NodeStatus.Used;
             node.setProperty(typeProp);
-            return node;
+            return node;*/
+
+            //TODO: give it a real ID
+            SectionNode newSection = new SectionNode(this, 0);
+            return newSection;
+
         }
 
         // Here are the event handlers for request sent by the GUI when editing the TOC.
@@ -60,40 +65,26 @@ namespace Obi
         /// The context node may be null if this is the first node that is added, in which case
         /// we add a new child to the root (and not a sibling.)
         /// </summary>
-        public void CreateSiblingSectionNode(object origin, CoreNode contextNode)
+        public void CreateSiblingSectionNode(object origin, SectionNode contextNode)
         {
-            if (contextNode != null)
-            {
-                NodeType nodeType;
-                nodeType = Project.GetNodeType(contextNode);
-                if (nodeType != NodeType.Section)
-                {
-                    throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
-                }
-            }
-
             CoreNode parent = (CoreNode)(contextNode == null ? getPresentation().getRootNode() : contextNode.getParent());
-            CoreNode sibling = CreateSectionNode();
+            SectionNode sibling = CreateSectionNode();
             if (contextNode == null)
             {
                 parent.appendChild(sibling);
             }
             else
             {
-                parent.insertAfter(sibling, contextNode);
+                ((SectionNode)parent).AddChildSectionAfter(sibling, contextNode);
             }
             Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(sibling);
             getPresentation().getRootNode().acceptDepthFirst(visitor);
 
-            int sectionIdx = GetSectionNodeIndex(sibling);
-
-            AddedSectionNode(this, new Events.Node.SectionNodeEventArgs(origin, sibling, parent.indexOf(sibling),
-                visitor.Position, sectionIdx));
+           AddedSectionNode(this, new Events.Node.SectionNodeEventArgs(origin, sibling));
 
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-            Commands.TOC.AddSectionNode command = new Commands.TOC.AddSectionNode(this, sibling, parent, parent.indexOf(sibling),
-                visitor.Position);
+            Commands.TOC.AddSectionNode command = new Commands.TOC.AddSectionNode(sibling);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
@@ -107,26 +98,24 @@ namespace Obi
         /// </summary>
         public void CreateChildSectionNode(object origin, CoreNode parent)
         {
-            NodeType nodeType;
-            nodeType = Project.GetNodeType(parent);
-            if (nodeType != NodeType.Section)
+            SectionNode child = CreateSectionNode();
+            if (parent == null)
             {
-                throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
+                parent = getPresentation().getRootNode();
+                parent.appendChild(child);
             }
-
-            CoreNode child = CreateSectionNode();
-            if (parent == null) parent = getPresentation().getRootNode();
-            parent.appendChild(child);
+            else
+            {
+                ((SectionNode)parent).AppendChildSection(child);
+            }
             Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(child);
             getPresentation().getRootNode().acceptDepthFirst(visitor);
 
-            int sectionIdx = GetSectionNodeIndex(child);
-
-            AddedSectionNode(this, new Events.Node.SectionNodeEventArgs(origin, child, parent.indexOf(child), visitor.Position, sectionIdx));
+           
+            AddedSectionNode(this, new Events.Node.SectionNodeEventArgs(origin, child));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-            Commands.TOC.AddSectionNode command = new Commands.TOC.AddSectionNode(this, child, parent, parent.indexOf(child),
-                visitor.Position);
+            Commands.TOC.AddSectionNode command = new Commands.TOC.AddSectionNode(child);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
@@ -143,21 +132,22 @@ namespace Obi
         /// <param name="index"></param>
         /// <param name="position"></param>
         /// <param name="originalLabel"></param>
-        public void AddExistingSectionNode(CoreNode node, CoreNode parent, int index, int position, string originalLabel)
+        public void AddExistingSectionNode(SectionNode node, CoreNode parent, string originalLabel)
         {
-            NodeType nodeType;
-            nodeType = Project.GetNodeType(node);
-            if (nodeType != NodeType.Section)
+           //shouldn't need to test for this: the toolkit does already if (node.getParent() == null) 
+            if (parent.GetType() == Type.GetType("Obi.SectionNode"))
             {
-                throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
+                int index = ((SectionNode)parent).PhraseChildCount + node.Index;
+                ((SectionNode)parent).AddChildSection(node, index);
             }
-
-            if (node.getParent() == null) parent.insert(node, index);
+            else
+            {
+                //TODO!
+                //will this case come up?
+            }
             if (originalLabel != null) Project.GetTextMedia(node).setText(originalLabel);
-
-            int sectionIdx = GetSectionNodeIndex(node);
-
-            AddedSectionNode(this, new Events.Node.SectionNodeEventArgs(this, node, index, position, sectionIdx));
+ 
+            AddedSectionNode(this, new Events.Node.SectionNodeEventArgs(this, node));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
@@ -169,16 +159,9 @@ namespace Obi
         /// <param name="parent"></param>
         /// <param name="index"></param>
         /// <param name="position"></param>
-        public void UndeleteSectionNode(SectionNode node, CoreNode parent, int index, int position)
+        public void UndeleteSectionNode(SectionNode node, CoreNode parent)
         {
-            /*NodeType nodeType;
-            nodeType = Project.GetNodeType(node);
-            if (nodeType != NodeType.Section)
-            {
-                throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
-            }*/
-
-            Visitors.UndeleteSubtree visitor = new Visitors.UndeleteSubtree(this, parent, index, position);
+            Visitors.UndeleteSubtree visitor = new Visitors.UndeleteSubtree(this, parent);
             node.acceptDepthFirst(visitor);
         }
 
@@ -206,10 +189,10 @@ namespace Obi
                     CoreNode parent = (CoreNode)node.getParent();
                     Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
                     getPresentation().getRootNode().acceptDepthFirst(visitor);
-                    command = new Commands.TOC.DeleteSectionNode(this, node, parent, parent.indexOf(node), visitor.Position);
+                    command = new Commands.TOC.DeleteSectionNode(node);
               //  }
                 node.detach();
-                DeletedNode(this, new Events.Node.NodeEventArgs(origin, node));
+                DeletedSectionNode(this, new Events.Node.SectionNodeEventArgs(origin, node));
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
 
@@ -245,8 +228,7 @@ namespace Obi
                 Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
                 //we need to save the state of the node before it is moved
-                command = new Commands.TOC.MoveSectionNodeUp
-                    (this, node, parent, parent.indexOf(node), visitor.Position);
+                command = new Commands.TOC.MoveSectionNodeUp(node, parent);
             }
 
             bool succeeded = ExecuteMoveSectionNodeUp(node);
@@ -258,10 +240,8 @@ namespace Obi
                 Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
 
-                int sectionIdx = GetSectionNodeIndex(node);
-
-                MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs
-                    (this, node, newParent, newParent.indexOf(node), visitor.Position, sectionIdx));
+             
+                MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, newParent));
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
                 if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
@@ -276,6 +256,9 @@ namespace Obi
         /// <remarks>a facade API function could do this for us</remarks>
         private bool ExecuteMoveSectionNodeUp(SectionNode node)
         {
+            //TODO: update this
+            return false;
+            /*
             CoreNode newParent = null;
             int newIndex = 0;
 
@@ -314,6 +297,7 @@ namespace Obi
             {
                 return false;
             }
+             */
         }
 
         public void MoveSectionNodeUpRequested(object sender, Events.Node.SectionNodeEventArgs e)
@@ -328,20 +312,13 @@ namespace Obi
         /// <param name="parent"></param>
         /// <param name="index"></param>
         /// <param name="position"></param>
-        public void UndoMoveSectionNode(SectionNode node, SectionNode parent, int index, int position)
+        public void UndoMoveSectionNode(SectionNode node, CoreNode parent, int index)
         {
-            NodeType nodeType;
-            nodeType = Project.GetNodeType(node);
-            if (nodeType != NodeType.Section)
-            {
-                throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
-            }
-
+            
             if (node.getParent() != null) node.detach();
             parent.insert(node, index);
-            int sectionIdx = GetSectionNodeIndex(node);
-
-            UndidMoveNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, parent, index, position, sectionIdx));
+           
+            UndidMoveSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, parent));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
@@ -352,9 +329,9 @@ namespace Obi
         /// <param name="origin"></param>
         /// <param name="node"></param>
         //added by marisa 01 aug 06
-        public void UndoIncreaseSectionNodeLevel(SectionNode node, SectionNode parent, int index, int position)
+        public void UndoIncreaseSectionNodeLevel(SectionNode node, CoreNode parent, int index)
         {
-            UndoMoveSectionNode(node, parent, index, position);
+            UndoMoveSectionNode(node, parent, index);
         }
 
         public void MoveSectionNodeDown(object origin, SectionNode node)
@@ -374,8 +351,7 @@ namespace Obi
                 Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
                 //we need to save the state of the node before it is moved
-                command = new Commands.TOC.MoveSectionNodeDown
-                    (this, node, parent, parent.indexOf(node), visitor.Position);
+                command = new Commands.TOC.MoveSectionNodeDown(node, parent);
             }
 
             bool succeeded = ExecuteMoveSectionNodeDown(node);
@@ -386,10 +362,7 @@ namespace Obi
                 Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
 
-                int sectionIdx = GetSectionNodeIndex(node);
-
-                MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs
-                    (this, node, newParent, newParent.indexOf(node), visitor.Position, sectionIdx));
+                MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, newParent));
 
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -404,16 +377,29 @@ namespace Obi
         /// <param name="node"></param>
         /// <returns></returns>
         ///<remarks>a facade API function could do this for us</remarks>
-        private bool ExecuteMoveSectionNodeDown(CoreNode node)
+        private bool ExecuteMoveSectionNodeDown(SectionNode node)
         {
+            return false;
+            //TODO: re write this -- if we're actually using it anywhere
+            /*
             CoreNode newParent = null;
-            int newIndex = 0;
 
-            int currentIndex = ((CoreNode)node.getParent()).indexOf(node);
-           
-            int currentSectionIndex = GetSectionNodeIndex(node);
-            
-            CoreNode lastSectionNode = GetLastSectionNodeChild((CoreNode)node.getParent());
+            int currentSectionIndex = node.Index;
+            SectionNode lastSectionNode;
+
+            if (node.getParent() == getPresentation().getRootNode())
+            {
+                //here we are assuming that the root only has sections under it
+                int idx = node.getParent().getChildCount() - 1;
+                lastSectionNode = (SectionNode)node.getParent().getChild(idx);
+            }
+            else
+            {
+                int idx = ((SectionNode)node.getParent()).SectionChildCount - 1;
+                lastSectionNode = ((SectionNode)node.getParent()).SectionChild(idx);
+            }
+
+            int newIndex;
 
             //if it is the last node in its list, change its level
             if (lastSectionNode == node)
@@ -441,33 +427,24 @@ namespace Obi
             else
             {
                 return false;
-            }
+            }*/
         }
 
-        public void MoveSectionNodeDownRequested(object sender, Events.Node.NodeEventArgs e)
+        public void MoveSectionNodeDownRequested(object sender, Events.Node.SectionNodeEventArgs e)
         {
             MoveSectionNodeDown(sender, e.Node);
         }
 
-        public void IncreaseSectionNodeLevel(object origin, CoreNode node)
+        public void IncreaseSectionNodeLevel(object origin, SectionNode node)
         {
-            NodeType nodeType;
-            nodeType = Project.GetNodeType(node);
-            if (nodeType != NodeType.Section)
-            {
-                throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
-            }
 
             Commands.TOC.IncreaseSectionNodeLevel command = null;
 
             if (origin != this)
             {
                 CoreNode parent = (CoreNode)node.getParent();
-                Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
-                getPresentation().getRootNode().acceptDepthFirst(visitor);
                 //we need to save the state of the node before it is altered
-                command = new Commands.TOC.IncreaseSectionNodeLevel
-                    (this, node, parent, parent.indexOf(node), visitor.Position);
+                command = new Commands.TOC.IncreaseSectionNodeLevel(node, parent);
             }
 
             bool succeeded = ExecuteIncreaseSectionNodeLevel(node);
@@ -475,14 +452,10 @@ namespace Obi
             {
                 CoreNode newParent = (CoreNode)node.getParent();
 
-                Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
-                getPresentation().getRootNode().acceptDepthFirst(visitor);
-
-                int sectionIdx = GetSectionNodeIndex(node);
+                int sectionIdx = node.Index;
 
                 //IncreasedNodeLevel(this, new Events.Node.NodeEventArgs(origin, node));
-                MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs
-                    (origin, node, newParent, newParent.indexOf(node), visitor.Position, sectionIdx));
+                MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, newParent));
 
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -500,8 +473,6 @@ namespace Obi
         private bool ExecuteIncreaseSectionNodeLevel(CoreNode node)
         {
             CoreNode newParent = GetPreviousSectionNodeSibling(node);
-
-            //CoreNode newParent = ((CoreNode)node.getParent()).getChild(nodeIndex - 1);
 
             if (newParent != null)
             {
@@ -563,8 +534,8 @@ namespace Obi
                 Visitors.SectionNodePosition nodeVisitor = new Visitors.SectionNodePosition(node);
                 getPresentation().getRootNode().acceptDepthFirst(nodeVisitor);
                 //we need to save the state of the node before it is altered
-                command = new Commands.TOC.DecreaseSectionNodeLevel
-                    (this, node, parent, parent.indexOf(node), nodeVisitor.Position, node.getChildCount());
+                command = new Commands.TOC.DecreaseSectionNodeLevel(node, parent);
+                    
             //}
 
             bool succeeded = ExecuteDecreaseSectionNodeLevel(node);
@@ -575,7 +546,7 @@ namespace Obi
                 Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
 
-                DecreasedSectionNodeLevel(this, new Events.Node.NodeEventArgs(origin, node));
+                DecreasedSectionNodeLevel(this, new Events.Node.SectionNodeEventArgs(origin, node));
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
 
@@ -646,15 +617,10 @@ namespace Obi
         /// <param name="position"></param>
         /// <param name="childCount">number of children this node used to have before the decrease level action happened</param>
         //added by marisa
-        public void UndoDecreaseSectionNodeLevel(CoreNode node, SectionNode parent, int index, int position, int originalChildCount)
+        public void UndoDecreaseSectionNodeLevel(SectionNode node, CoreNode parent, int originalChildCount)
         {
-            NodeType nodeType;
-            nodeType = Project.GetNodeType(node);
-            if (nodeType != NodeType.Section)
-            {
-                throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
-            }
-
+            //TODO: rewrite this!!!
+           /*
             //error-checking
             if (node.getChildCount() < originalChildCount)
             {
@@ -684,11 +650,7 @@ namespace Obi
             node.detach();
             parent.insert(node, index);
 
-            if (GetNodeType(node) == NodeType.Section)
-            {
-                int sectionIdx = GetSectionNodeIndex(node);
-                MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, parent, index, position, sectionIdx));
-            }
+            MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, parent));
 
             Visitors.SectionNodePosition visitor = null;
 
@@ -709,6 +671,7 @@ namespace Obi
                         parent.getChildCount() - 1, visitor.Position, childSectionIdx));
                 }
             }
+            */
         }
 
         /// <summary>
@@ -716,17 +679,11 @@ namespace Obi
         /// </summary>
         public void RenameSectionNode(object origin, SectionNode node, string label)
         {
-            NodeType nodeType;
-            nodeType = Project.GetNodeType(node);
-            if (nodeType != NodeType.Section)
-            {
-                throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
-            }
-
+         
             TextMedia text = GetTextMedia(node);
             Commands.TOC.Rename command = origin == this ? null : new Commands.TOC.Rename(this, node, text.getText(), label);
             GetTextMedia(node).setText(label);
-            RenamedNode(this, new Events.Node.RenameSectionNodeEventArgs(origin, node, label));
+            RenamedSectionNode(this, new Events.Node.RenameSectionNodeEventArgs(origin, node, label));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
             if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
@@ -763,14 +720,13 @@ namespace Obi
 
             if (origin != this)
             {
-                command = new Commands.TOC.CutSectionNode
-                 (this, node, parent, parent.indexOf(node), visitor.Position);
+                command = new Commands.TOC.CutSectionNode(node);
             }
 
             mClipboard.Section = node;
             node.detach();
 
-            CutSectionNode(this, new Events.Node.NodeEventArgs(origin, node));
+            CutSectionNode(this, new Events.Node.SectionNodeEventArgs(origin, node));
 
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -778,9 +734,9 @@ namespace Obi
         }
 
         //md 20060810
-        public void UndoCutSectionNode(SectionNode node, CoreNode parent, int index, int position)
+        public void UndoCutSectionNode(SectionNode node, CoreNode parent)
         {
-            UndeleteSectionNode(node, parent, index, position);
+            UndeleteSectionNode(node, parent);
             mClipboard.Section = null;
         }
 
@@ -806,13 +762,13 @@ namespace Obi
 
             if (origin != this)
             {
-                command = new Commands.TOC.CopySectionNode(this, node);
+                command = new Commands.TOC.CopySectionNode(node);
             }
 
             //the actual copy operation
             mClipboard.Section = node.copy(true);
 
-            CopiedSectionNode(this, new Events.Node.NodeEventArgs(origin, mClipboard.Section));
+            CopiedSectionNode(this, new Events.Node.SectionNodeEventArgs(origin, mClipboard.Section));
 
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -831,7 +787,7 @@ namespace Obi
 
             mClipboard.Section = null;
 
-           UndidCopySectionNode(this, new Events.Node.NodeEventArgs(this, node));
+           UndidCopySectionNode(this, new Events.Node.SectionNodeEventArgs(this, node));
 
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -868,13 +824,13 @@ namespace Obi
 
             Commands.TOC.PasteSectionNode command = null;
 
-            CoreNode pastedSection = mClipboard.Section.copy(true);
+            SectionNode pastedSection = mClipboard.Section.copy(true);
 
             //don't clear the clipboard, we can use it again
 
             if (origin != this)
             {
-                command = new Commands.TOC.PasteSectionNode(this, pastedSection, parent);
+                command = new Commands.TOC.PasteSectionNode(parent, pastedSection);
             }
 
             //the actual paste operation
@@ -887,10 +843,8 @@ namespace Obi
             Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(pastedSection);
             getPresentation().getRootNode().acceptDepthFirst(visitor);
 
-            int sectionIdx = GetSectionNodeIndex(pastedSection);
-
-            PastedSectionNode(this, new Events.Node.SectionNodeEventArgs
-                (origin, pastedSection, parent.indexOf(pastedSection), visitor.Position, sectionIdx));
+            
+            PastedSectionNode(this, new Events.Node.SectionNodeEventArgs(origin, pastedSection));
 
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -909,7 +863,7 @@ namespace Obi
 
             node.detach();
            
-            UndidPasteSectionNode(this, new Events.Node.NodeEventArgs(this, node));
+            UndidPasteSectionNode(this, new Events.Node.SectionNodeEventArgs(this, node));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
 
@@ -926,6 +880,8 @@ namespace Obi
         //see Commands.TOC.ShallowDeleteSectionNode if you're wondering how the "undo" works
         public void ShallowDeleteSectionNode(object origin, SectionNode node)
         {
+            //TODO: update this
+            /*
             List<Commands.Command> commands = new List<Commands.Command>();
 
             //we have to gather this data here, because it might be different at the end
@@ -986,6 +942,7 @@ namespace Obi
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
             if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+             */
         }
 
         //md 20060812
@@ -997,6 +954,8 @@ namespace Obi
         //md 20060812
         public void MoveSectionNodeDownLinear(object origin, SectionNode node)
         {
+            //TODO: update
+            /*
             Commands.TOC.MoveSectionNodeDownLinear command = null;
 
             CoreNode nodeToSwapWith = GetNextSectionNode(node, 0);
@@ -1025,12 +984,14 @@ namespace Obi
 
                  //raise the event that the action was completed
                 ShallowSwappedSectionNodes(this, new Obi.Events.Node.ShallowSwappedSectionNodesEventArgs(this, node, nodeToSwapWith, nodePos, swappedNodePos, nodeSectionIdx, swapSectionIdx));
+            
            
             }
 
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
             if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));      
+             */
         }
 
         //md 20060812
@@ -1042,6 +1003,8 @@ namespace Obi
         //md 20060812
         public void MoveSectionNodeUpLinear(object origin, SectionNode node)
         {
+            //TODO: update
+            /*
             Commands.TOC.MoveSectionNodeUpLinear command = null;
 
             if (node.getParent() == null) return;
@@ -1080,7 +1043,8 @@ namespace Obi
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
             if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-        }
+        */
+       }
 
       
 
@@ -1094,6 +1058,8 @@ namespace Obi
         //md 20060813
         internal void ShallowSwapNodes(SectionNode firstNode, SectionNode secondNode)
         {
+            //TODO: update this
+            /*
             System.Diagnostics.Trace.WriteLine(string.Format("Swapping {0} with {1}", GetTextMedia(firstNode).getText(), GetTextMedia(secondNode).getText()));
             ArrayList firstNodeSubSections = new ArrayList();
             ArrayList secondNodeSubSections = new ArrayList();
@@ -1230,10 +1196,13 @@ namespace Obi
                     secondNodeParent.insert(firstNode, secondNodeIndex);
                 }
             }
+             */
         }
 
         internal void UndoShallowSwapNodes(SectionNode firstNode, SectionNode secondNode)
         {
+            //TODO: update this
+            /*
             Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(firstNode);
             getPresentation().getRootNode().acceptDepthFirst(visitor);
 
@@ -1250,13 +1219,14 @@ namespace Obi
 
             //raise the event that the action was completed
             ShallowSwappedSectionNodes(this, new Obi.Events.Node.ShallowSwappedSectionNodesEventArgs(this, firstNode, secondNode, node1Pos, node2Pos, nodeSectionIdx, swapSectionIdx));
-            
+            */
         }
 
         //would have used a visitor for the next two functions (Get Next/Prev Section Node)
         //but visitors don't go in the prev. direction.
         //md 20060813
-        private CoreNode GetNextSectionNode(SectionNode node, int startIdx)
+        //TODO: remove this?  or modify to fit SectionNodes
+        /*private CoreNode GetNextSectionNode(SectionNode node, int startIdx)
         {
             //look at our children
             for (int i = startIdx; i < node.getChildCount(); i++)
@@ -1306,11 +1276,11 @@ namespace Obi
             if (GetNodeType(parent) == NodeType.Root) return null;
 
             return parent;
-        }
+        }*/
        
         //md 20060813
         //helper function
-        private bool HasSubSections(SectionNode node)
+       /* private bool HasSubSections(SectionNode node)
         {
             for (int i = 0; i < node.getChildCount(); i++)
             {
@@ -1322,7 +1292,7 @@ namespace Obi
 
             return false;
         }
-
+        */
         //md 20060813
         internal bool CanMoveSectionNodeUp(SectionNode node)
         {
@@ -1367,17 +1337,13 @@ namespace Obi
 
         //md 20060814
         //helper function
-        private CoreNode GetLastSectionNodeInSubtree(SectionNode node)
+        private SectionNode GetLastSectionNodeInSubtree(SectionNode node)
         {
-            CoreNode lastSectionNodeChild = GetLastSectionNodeChild(node);
+            SectionNode lastSectionNodeChild = node.SectionChild(node.SectionChildCount - 1);
 
-            if (GetLastSectionNodeChild(node) == null)
+            if (lastSectionNodeChild == null)
             {
-                //make sure it's a section node (and not the root)
-                if (GetNodeType(node) == NodeType.Section)
-                    return node;
-                else
-                    return null;
+                return node;
             }
             else
             {
@@ -1387,7 +1353,7 @@ namespace Obi
         
         //md 20060814
         //helper function
-        private CoreNode GetLastSectionNodeChild(SectionNode node)
+       /* private CoreNode GetLastSectionNodeChild(SectionNode node)
         {
             for (int i = node.getChildCount() - 1; i>=0; i--)
             {
@@ -1398,7 +1364,7 @@ namespace Obi
             }
 
             return null;
-        }
+        }*/
 
         //md 20060813
         internal bool CanMoveSectionNodeIn(SectionNode node)
@@ -1426,7 +1392,7 @@ namespace Obi
         }
 
         //md 20060813
-        public static int GetSectionNodeIndex(SectionNode node)
+      /*  public static int GetSectionNodeIndex(SectionNode node)
         {
             int numSections = 0;
             CoreNode parent = (CoreNode)node.getParent();
@@ -1444,6 +1410,6 @@ namespace Obi
             }
 
             return numSections - 1;
-        }
+        }*/
     }
 }

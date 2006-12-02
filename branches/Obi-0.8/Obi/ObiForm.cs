@@ -889,7 +889,7 @@ namespace Obi
                 bool canMoveIn = false;
                 bool canMoveOut = false;
 
-                urakawa.core.CoreNode selectedSection = null;
+                SectionNode selectedSection = null;
                 if (mProjectPanel.TOCPanel.Selected)
                 {
                     isNodeSelected = true;
@@ -1054,20 +1054,29 @@ namespace Obi
             {
                 CoreNode selected =
                     mProjectPanel.StripManager.SelectedPhraseNode != null ?
-                        mProjectPanel.StripManager.SelectedPhraseNode :
+                        (CoreNode)mProjectPanel.StripManager.SelectedPhraseNode :
                     mProjectPanel.StripManager.SelectedSectionNode != null ?
-                        mProjectPanel.StripManager.SelectedSectionNode :
+                        (CoreNode)mProjectPanel.StripManager.SelectedSectionNode :
                         null;
                 if (selected != null)
                 {
-                    // section in which we are recording
-                    CoreNode section = Project.GetNodeType(selected) == NodeType.Section ?
-                        selected :
-                        (CoreNode)selected.getParent();
-                    // index from which we add new phrases in the aforementioned section
-                    int index = selected == section ? section.getChildCount() : section.indexOf(selected);
-                    RecordingSession session = new RecordingSession(mProject, Audio.AudioRecorder.Instance, selected,
-                        mSettings.AudioChannels, mSettings.SampleRate, mSettings.BitDepth);
+                    SectionNode section; // section in which we are recording
+                    int index;   // index from which we add new phrases in the aforementioned section
+                   
+                    if (Project.GetNodeType(selected) == NodeType.Section)
+                    {
+                        section = (SectionNode)selected;
+                        index = section.PhraseChildCount;
+                    }
+                    else
+                    {
+                        section = (SectionNode)selected.getParent();
+                        index = ((PhraseNode)selected).Index;
+                    }
+                    
+                  
+                    RecordingSession session = new RecordingSession(mProject, Audio.AudioRecorder.Instance, 
+                        selected,mSettings.AudioChannels, mSettings.SampleRate, mSettings.BitDepth);
                     // the following closures handle the various events sent during the recording session
                     session.StartingPhrase += new Events.Audio.Recorder.StartingPhraseHandler(
                         delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)

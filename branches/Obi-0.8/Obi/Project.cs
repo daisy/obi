@@ -27,9 +27,10 @@ namespace Obi
     /// </summary>
     public partial class Project : urakawa.project.Project
     {
-        private Channel mAudioChannel;       // handy pointer to the audio channel
-        private Channel mTextChannel;        // handy pointer to the text channel 
-        private Channel mAnnotationChannel;  // handy pointer to the annotation channel
+        //TODO: should these be public or internal?  as mentioned below, they are handy.
+        public Channel mAudioChannel;       // handy pointer to the audio channel
+        public Channel mTextChannel;        // handy pointer to the text channel 
+        public Channel mAnnotationChannel;  // handy pointer to the annotation channel
 
         private Assets.AssetManager mAssManager;  // the asset manager
         private string mAssPath;                  // the path to the asset manager directory
@@ -43,9 +44,9 @@ namespace Obi
         private PhraseNode mSilencePhrase;     // silence phrase used for phrase detection
 
         public static readonly string XUKVersion = "obi-xuk-007";            // version of the Obi/XUK file
-        public static readonly string AudioChannel = "obi.audio";            // canonical name of the audio channel
-        public static readonly string TextChannel = "obi.text";              // canonical name of the text channel
-        public static readonly string AnnotationChannel = "obi.annotation";  // canonical name of the annotation channel
+        public static readonly string AudioChannelName = "obi.audio";            // canonical name of the audio channel
+        public static readonly string TextChannelName = "obi.text";              // canonical name of the text channel
+        public static readonly string AnnotationChannelName = "obi.annotation";  // canonical name of the annotation channel
 
         public event Events.Project.StateChangedHandler StateChanged;       // the state of the project changed (modified, saved...)
         public event Events.Project.CommandCreatedHandler CommandCreated;   // a new command must be added to the command manager
@@ -154,11 +155,11 @@ namespace Obi
 
             // Create metadata and channels
             mMetadata = CreateMetadata(title, id, userProfile);
-            mAudioChannel = getPresentation().getChannelFactory().createChannel(AudioChannel);
+            mAudioChannel = getPresentation().getChannelFactory().createChannel(AudioChannelName);
             getPresentation().getChannelsManager().addChannel(mAudioChannel);
-            mTextChannel = getPresentation().getChannelFactory().createChannel(TextChannel);
+            mTextChannel = getPresentation().getChannelFactory().createChannel(TextChannelName);
             getPresentation().getChannelsManager().addChannel(mTextChannel);
-            mAnnotationChannel = getPresentation().getChannelFactory().createChannel(AnnotationChannel);
+            mAnnotationChannel = getPresentation().getChannelFactory().createChannel(AnnotationChannelName);
             getPresentation().getChannelsManager().addChannel(mAnnotationChannel);
 
             // Give a custom property to the root node to make it a Root node.
@@ -203,9 +204,9 @@ namespace Obi
             {
                 mUnsaved = false;
                 mXUKPath = xukPath;
-                mAudioChannel = FindChannel(AudioChannel);
-                mTextChannel = FindChannel(TextChannel);
-                mAnnotationChannel = FindChannel(AnnotationChannel);
+                mAudioChannel = FindChannel(AudioChannelName);
+                mTextChannel = FindChannel(TextChannelName);
+                mAnnotationChannel = FindChannel(AnnotationChannelName);
                 mMetadata = new SimpleMetadata();
                 string xukversion = "none";
                 foreach (object o in getMetadataList())
@@ -476,9 +477,9 @@ namespace Obi
         /// </summary>
         /// <param name="asset">The asset for the phrase.</param>
         /// <returns>The created node.</returns>
-        private CoreNode CreatePhraseNode(Assets.AudioMediaAsset asset)
+        private PhraseNode CreatePhraseNode(Assets.AudioMediaAsset asset)
         {
-            CoreNode node = getPresentation().getCoreNodeFactory().createNode();
+            /*CoreNode node = getPresentation().getCoreNodeFactory().createNode();
             ChannelsProperty prop = getPresentation().getPropertyFactory().createChannelsProperty();
             node.setProperty(prop);
             TextMedia annotation = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
@@ -499,7 +500,11 @@ namespace Obi
             typeProp.NodeStatus = NodeStatus.Used;
             node.setProperty(typeProp);
             UpdateSeq(node);
-            return node;
+            return node;*/
+
+            //TODO: give it a real ID
+            PhraseNode newPhrase = new PhraseNode(this, 0);
+            return newPhrase;
         }
 
         /// <summary>
@@ -523,7 +528,7 @@ namespace Obi
             for (int i = 0; i < channelsList.Count; i++)
             {
                 string channelName = ((IChannel)channelsList[i]).getName();
-                if (channelName == Project.TextChannel)
+                if (channelName == Project.TextChannelName)
                 {
                     textChannel = (Channel)channelsList[i];
                     return (TextMedia)channelsProp.getMedia(textChannel);

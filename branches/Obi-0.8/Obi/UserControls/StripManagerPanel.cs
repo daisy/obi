@@ -29,11 +29,11 @@ namespace Obi.UserControls
         public event Events.RenameSectionNodeHandler RenameSectionRequested;
         public event Events.SetMediaHandler SetMediaRequested;
         public event Events.RequestToImportAssetHandler ImportAudioAssetRequested;
-        public event Events.RequestToDeleteBlockHandler DeleteBlockRequested;
-        public event Events.RequestToMoveBlockHandler MoveAudioBlockForwardRequested;
-        public event Events.RequestToMoveBlockHandler MoveAudioBlockBackwardRequested;
+        public event Events.PhraseNodeHandler DeleteBlockRequested;
+        public event Events.PhraseNodeHandler MoveAudioBlockForwardRequested;
+        public event Events.PhraseNodeHandler MoveAudioBlockBackwardRequested;
         public event Events.SplitPhraseNodeHandler SplitAudioBlockRequested;
-        public event Events.MergeNodesHandler MergeNodes;
+        public event Events.MergePhraseNodesHandler MergeNodes;
 
         #region properties
 

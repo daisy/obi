@@ -18,7 +18,7 @@ namespace Obi.UserControls
             TextMedia media = (TextMedia)block.Node.getPresentation().getMediaFactory().createMedia(MediaType.TEXT);
             media.setText(newName);
             Events.Node.SetMediaEventArgs e =
-                new Events.Node.SetMediaEventArgs(this, block.Node, Project.AnnotationChannel, media);
+                new Events.Node.SetMediaEventArgs(this, block.Node, Project.AnnotationChannelName, media);
             SetMediaRequested(this, e);
             if (e.Cancel)
             {
@@ -58,7 +58,7 @@ namespace Obi.UserControls
             block.Manager = this;
             block.Node = node;
             mPhraseNodeMap[node] = block;
-            TextMedia annotation = (TextMedia)Project.GetMediaForChannel(node, Project.AnnotationChannel);
+            TextMedia annotation = (TextMedia)Project.GetMediaForChannel(node, Project.AnnotationChannelName);
             if (annotation != null) block.AnnotationBlock.Label = annotation.getText();
             Assets.AudioMediaAsset asset = Project.GetAudioMediaAsset(node);
             block.Label = asset.Name;
@@ -92,12 +92,12 @@ namespace Obi.UserControls
             if (e.Node.getParent().GetType() == System.Type.GetType("Obi.SectionNode"))
             {
                 SectionStrip strip = mSectionNodeMap[(SectionNode)e.Node.getParent()];
-                if (e.Channel == Project.AnnotationChannel)
+                if (e.Channel == Project.AnnotationChannelName)
                 {
                     // the label of an audio block has changed
                     strip.SetAnnotationBlock(mPhraseNodeMap[e.Node], ((TextMedia)e.Media).getText());
                 }
-                else if (e.Channel == Project.AudioChannel)
+                else if (e.Channel == Project.AudioChannelName)
                 {
                     // the audio asset of an audio block has changed
                     strip.UpdateAssetAudioBlock(mPhraseNodeMap[e.Node]);

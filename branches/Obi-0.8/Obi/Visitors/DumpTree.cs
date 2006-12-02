@@ -27,7 +27,7 @@ namespace Obi.Visitors
                     info += " " + Project.GetTextMedia(n).getText();
                     break;
                 case NodeType.Phrase:
-                    info += " " + ((TextMedia)Project.GetMediaForChannel(n, Project.AnnotationChannel)).getText();
+                    info += " " + ((TextMedia)Project.GetMediaForChannel(n, Project.AnnotationChannelName)).getText();
                     Assets.AudioMediaAsset asset = Project.GetAudioMediaAsset(n);
                     foreach (Assets.AudioClip clip in asset.Clips)
                     {

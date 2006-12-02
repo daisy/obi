@@ -176,7 +176,7 @@ namespace Obi.UserControls
         /// <summary>
         /// Highlight (i.e. select) the phrase currently playing.
         /// </summary>
-        private void Play_MovedToPhrase(object sender, Events.Node.NodeEventArgs e)
+        private void Play_MovedToPhrase(object sender, Events.Node.PhraseNodeEventArgs e)
         {
             ((ProjectPanel)Parent).StripManager.SelectedPhraseNode = e.Node;
         }

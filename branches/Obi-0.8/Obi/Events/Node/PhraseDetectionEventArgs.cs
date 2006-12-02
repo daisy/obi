@@ -4,7 +4,7 @@ using urakawa.core;
 namespace Obi.Events.Node
 {
    
-    public class PhraseDetectionEventArgs: NodeEventArgs
+    public class PhraseDetectionEventArgs: PhraseNodeEventArgs
     {
         private long mThreshold;
         private double mGap;

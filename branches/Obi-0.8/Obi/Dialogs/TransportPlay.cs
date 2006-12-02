@@ -76,7 +76,7 @@ namespace Obi.Dialogs
             mCloseButton.Visible = true;
         }
 
-        private void MovedToPhrase(object sender, Events.Node.NodeEventArgs e)
+        private void MovedToPhrase(object sender, Events.Node.PhraseNodeEventArgs e)
         {
             System.Diagnostics.Debug.Print(">>> Moved to phrase {0}", Project.GetAudioMediaAsset(e.Node).Name);
         }
