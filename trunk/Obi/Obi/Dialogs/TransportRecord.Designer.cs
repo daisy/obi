@@ -34,6 +34,7 @@ namespace Obi.Dialogs
             this.btnPhraseMark = new System.Windows.Forms.Button();
             this.btnBeginSection = new System.Windows.Forms.Button();
             this.btnPageMark = new System.Windows.Forms.Button();
+            this.mTextVuMeter = new Obi.UserControls.TextVUMeterPanel();
             this.SuspendLayout();
             // 
             // mRecordButton
@@ -97,11 +98,22 @@ namespace Obi.Dialogs
             this.btnPageMark.UseVisualStyleBackColor = true;
             this.btnPageMark.Click += new System.EventHandler(this.btnPageMark_Click);
             // 
+            // mTextVuMeter
+            // 
+            this.mTextVuMeter.BackColor = System.Drawing.Color.Transparent;
+            this.mTextVuMeter.Location = new System.Drawing.Point(0, 92);
+            this.mTextVuMeter.Name = "mTextVuMeter";
+            this.mTextVuMeter.PlayListObj = null;
+            this.mTextVuMeter.RecordingSessionObj = null;
+            this.mTextVuMeter.Size = new System.Drawing.Size(220, 44);
+            this.mTextVuMeter.TabIndex = 7;
+            // 
             // TransportRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 296);
+            this.Controls.Add(this.mTextVuMeter);
             this.Controls.Add(this.btnPageMark);
             this.Controls.Add(this.btnBeginSection);
             this.Controls.Add(this.btnPhraseMark);
@@ -124,5 +136,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button btnPhraseMark;
         private System.Windows.Forms.Button btnBeginSection;
         private System.Windows.Forms.Button btnPageMark;
+        private Obi.UserControls.TextVUMeterPanel mTextVuMeter;
     }
 }

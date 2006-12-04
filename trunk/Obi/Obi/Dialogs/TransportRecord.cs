@@ -67,7 +67,8 @@ namespace Obi.Dialogs
         {
             mPauseButton.Visible = false;
             mRecordingSession.Listen();
-
+            mTextVuMeter.Enable = true;
+            mTextVuMeter.RecordingSessionObj = mRecordingSession;
         }
 
         private void TransportRecord_FormClosing(object sender, FormClosingEventArgs e)
