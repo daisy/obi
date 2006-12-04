@@ -14,18 +14,14 @@ namespace Obi
         public event Events.RenameSectionNodeHandler RenamedSectionNode;                // a node was renamed in the presentation
         public event Events.MovedSectionNodeHandler MovedSectionNode;                    // a node was moved in the presentation
         public event Events.SectionNodeHandler DecreasedSectionNodeLevel;  // a node's level was decreased in the presentation
-       public event Events.MovedSectionNodeHandler UndidMoveSectionNode;                // a node was restored to its previous location
+        public event Events.MovedSectionNodeHandler UndidMoveSectionNode;                // a node was restored to its previous location
         public event Events.SectionNodeHandler DeletedSectionNode;                // a node was deleted from the presentation
-        //md: toc clipboard stuff
         public event Events.SectionNodeHandler CutSectionNode;
         public event Events.SectionNodeHandler CopiedSectionNode;
         public event Events.SectionNodeHandler UndidCopySectionNode;
         public event Events.SectionNodeHandler PastedSectionNode;
         public event Events.SectionNodeHandler UndidPasteSectionNode;
 
-        //md: shallow-swapped event for move up/down linear
-       // public event Events.ShallowSwappedSectionNodesHandler ShallowSwappedSectionNodes;
-      
         
         // Here are the event handlers for request sent by the GUI when editing the TOC.
         // Every request is passed to a method that uses mostly the same arguments,
@@ -48,16 +44,11 @@ namespace Obi
                 // first node ever
                 parent.appendChild(sibling);
             }
-            else if (parent.GetType() == typeof(CoreNode))
-            {
-                // direct child of the root
-                parent.insertAfter(sibling, contextNode);
-            }
             else
             {
-                // child of another section
-                ((SectionNode)parent).AddChildSectionAfter(sibling, contextNode);
+                AddChildSectionAfter(sibling, contextNode, parent);
             }
+           
             AddedSectionNode(origin, new Events.Node.SectionNodeEventArgs(origin, sibling));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -77,13 +68,14 @@ namespace Obi
         {
             SectionNode child = (SectionNode)
                 getPresentation().getCoreNodeFactory().createNode(SectionNode.Name, ObiPropertyFactory.ObiNS);
-            if (parent == null || parent == getPresentation().getRootNode())
+            
+            if (parent == null)
             {
                 getPresentation().getRootNode().appendChild(child);
             }
             else
             {
-                ((SectionNode)parent).AppendChildSection(child);
+                AppendChildSection(child, parent);
             }
             AddedSectionNode(origin, new Events.Node.SectionNodeEventArgs(origin, child));
             mUnsaved = true;
@@ -109,17 +101,9 @@ namespace Obi
         /// <param name="originalLabel"></param>
         public void AddExistingSectionNode(SectionNode node, CoreNode parent, string originalLabel)
         {
-           //shouldn't need to test for this: the toolkit does already if (node.getParent() == null) 
-            if (parent.GetType() == Type.GetType("Obi.SectionNode"))
-            {
-                int index = ((SectionNode)parent).PhraseChildCount + node.Index;
-                ((SectionNode)parent).AddChildSection(node, index);
-            }
-            else
-            {
-                //TODO!
-                //will this case come up?
-            }
+            //TODO: is this the right index value?
+            AddChildSection(node, parent, node.Index);
+
             if (originalLabel != null) Project.GetTextMedia(node).setText(originalLabel);
  
             AddedSectionNode(this, new Events.Node.SectionNodeEventArgs(this, node));
@@ -155,8 +139,8 @@ namespace Obi
                 //if (origin != this)
                // {
                     CoreNode parent = (CoreNode)node.getParent();
-                    Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
-                    getPresentation().getRootNode().acceptDepthFirst(visitor);
+                 //   Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
+                  //  getPresentation().getRootNode().acceptDepthFirst(visitor);
                     command = new Commands.TOC.DeleteSectionNode(node);
               //  }
                 node.detach();
@@ -186,7 +170,7 @@ namespace Obi
         public void UndoMoveSectionNode(SectionNode node, CoreNode parent, int index)
         {
             if (node.getParent() != null) node.detach();
-            parent.insert(node, index);
+            AddChildSection(node, parent, index);
            
             UndidMoveSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, parent));
             mUnsaved = true;
@@ -204,11 +188,8 @@ namespace Obi
             UndoMoveSectionNode(node, parent, index);
         }
 
-        
-
         public void IncreaseSectionNodeLevel(object origin, SectionNode node)
         {
-
             Commands.TOC.IncreaseSectionNodeLevel command = null;
 
             if (origin != this)
@@ -222,10 +203,6 @@ namespace Obi
             if (succeeded)
             {
                 CoreNode newParent = (CoreNode)node.getParent();
-
-                int sectionIdx = node.Index;
-
-                //IncreasedNodeLevel(this, new Events.Node.NodeEventArgs(origin, node));
                 MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, newParent));
 
                 mUnsaved = true;
@@ -250,23 +227,21 @@ namespace Obi
             }
             else
             {
-                CoreNode newParent; 
+                CoreNode newParent;
+                SectionNode movedNode;
                 //assumption: the root only has section node children, so we can do this
-                if (node.getParent() == getPresentation().getRootNode())
+                if (node.getParent().Equals(getPresentation().getRootNode()))
                 {
                     newParent = ((CoreNode)node.getParent()).getChild(node.Index - 1);
-                    SectionNode movedNode = (SectionNode)node.detach();
-                    newParent.appendChild(movedNode);
+                    movedNode = (SectionNode)node.detach();
                 }
                 //else the node's parent is an ordinary section node
                 else
                 {
                     newParent = ((SectionNode)node).SectionChild(node.Index - 1);
-                    SectionNode movedNode = (SectionNode)node.detach();
-                    ((SectionNode)newParent).AppendChildSection(movedNode);
+                    movedNode = (SectionNode)node.detach();
                 }
-
-                
+                AppendChildSection(movedNode, newParent);                
                 return true;
             }
         }
@@ -288,8 +263,8 @@ namespace Obi
             //if (origin != this)
             //{
                 CoreNode parent = (CoreNode)node.getParent();
-                Visitors.SectionNodePosition nodeVisitor = new Visitors.SectionNodePosition(node);
-                getPresentation().getRootNode().acceptDepthFirst(nodeVisitor);
+              //  Visitors.SectionNodePosition nodeVisitor = new Visitors.SectionNodePosition(node);
+              //  getPresentation().getRootNode().acceptDepthFirst(nodeVisitor);
                 //we need to save the state of the node before it is altered
                 command = new Commands.TOC.DecreaseSectionNodeLevel(node, parent);
                     
@@ -300,8 +275,8 @@ namespace Obi
             {
                 CoreNode newParent = (CoreNode)node.getParent();
 
-                Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
-                getPresentation().getRootNode().acceptDepthFirst(visitor);
+                //Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
+                //getPresentation().getRootNode().acceptDepthFirst(visitor);
 
                 DecreasedSectionNodeLevel(this, new Events.Node.SectionNodeEventArgs(origin, node));
                 mUnsaved = true;
@@ -319,7 +294,6 @@ namespace Obi
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
-        ///<remarks>a facade API function could do this for us</remarks>
         private bool ExecuteDecreaseSectionNodeLevel(SectionNode node)
         {
             //the only reason we can't decrease the level is if the node is already 
@@ -330,7 +304,7 @@ namespace Obi
                 return false;
             }
 
-            ArrayList futureChildren = new ArrayList();
+            List<SectionNode> futureChildren = new List<SectionNode>();
             int nodeIndex = ((CoreNode)node.getParent()).indexOf(node);
 
             int numChildren = node.getParent().getChildCount();
@@ -344,20 +318,25 @@ namespace Obi
             futureChildren.Reverse();
 
             CoreNode newParent = (CoreNode)node.getParent().getParent();
-            int newIndex = newParent.indexOf((CoreNode)node.getParent()) + 1;
+            //int newIndex = newParent.indexOf((CoreNode)node.getParent()) + 1;
+            //the index is relative to sections
+            int newIndex = ((SectionNode)node.getParent()).Index + 1;
 
-            CoreNode clone = (CoreNode)node.detach();
+            SectionNode clone = (SectionNode)node.detach();
 
-            newParent.insert(clone, newIndex);
+            AddChildSection(clone, newParent, newIndex);
 
-            foreach (object childnode in futureChildren)
+            foreach (SectionNode childnode in futureChildren)
             {
-                clone.appendChild((CoreNode)childnode);
+                AppendChildSection(childnode, clone);
             }
 
             return true;
 
         }
+
+        //md LEFT OFF HERE 20061204
+        //was: replacing section addition with the wrapper functions here and in SectionNode
 
         public void DecreaseSectionNodeLevelRequested(object sender, Events.Node.SectionNodeEventArgs e)
         {
@@ -373,11 +352,8 @@ namespace Obi
         /// <param name="index"></param>
         /// <param name="position"></param>
         /// <param name="childCount">number of children this node used to have before the decrease level action happened</param>
-        //added by marisa
         public void UndoDecreaseSectionNodeLevel(SectionNode node, CoreNode parent, int originalChildCount)
         {
-            //TODO: rewrite this!!!
-           /*
             //error-checking
             if (node.getChildCount() < originalChildCount)
             {
@@ -405,7 +381,14 @@ namespace Obi
 
             //insert the node back in its old location
             node.detach();
-            parent.insert(node, index);
+            if (parent.Equals(getPresentation().getRootNode()))
+            {
+                parent.insert(node, index);
+            }
+            else
+            {
+                ((SectionNode)parent).AddChildSection(node, index);
+            }
 
             MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, parent));
 
@@ -428,7 +411,7 @@ namespace Obi
                         parent.getChildCount() - 1, visitor.Position, childSectionIdx));
                 }
             }
-            */
+            
         }
 
         /// <summary>
@@ -666,281 +649,14 @@ namespace Obi
              */
         }
 
-
-      
-
-        /// <summary>
-        /// Swap nodes but not their section-subtrees.  Each node retains its own phrases.
-        /// </summary>
-        /// <param name="firstNode"></param>
-        /// <param name="secondNode"></param>
-        /// <param name="dir">1: down; -1: up</param>
-        /// <remarks>this could be cleaner.  one thing that would help is better shallow-operation support in the API.</remarks>
-        //md 20060813
-        internal void ShallowSwapNodes(SectionNode firstNode, SectionNode secondNode)
-        {
-            //TODO: update this
-            //TODO: do we need it since section up/down movement is gone?
-            /*
-            System.Diagnostics.Trace.WriteLine(string.Format("Swapping {0} with {1}", GetTextMedia(firstNode).getText(), GetTextMedia(secondNode).getText()));
-            ArrayList firstNodeSubSections = new ArrayList();
-            ArrayList secondNodeSubSections = new ArrayList();
-
-            CoreNode firstNodeParent = (CoreNode)firstNode.getParent();
-            CoreNode secondNodeParent = (CoreNode)secondNode.getParent();
-
-            int firstNodeIndex = firstNodeParent.indexOf(firstNode);
-            int secondNodeIndex = secondNodeParent.indexOf(secondNode);
-
-            if (HasSubSections(firstNode))
-            {
-                //remove all the subsections for the first node
-                for (int i = firstNode.getChildCount() - 1; i >= 0; i--)
-                {
-                    if (GetNodeType(firstNode.getChild(i)) == NodeType.Section)
-                    {
-                        firstNodeSubSections.Add(firstNode.getChild(i));
-
-                        //make sure they're not nested
-                        if (firstNode.getChild(i) != secondNode)
-                        {
-                            firstNode.getChild(i).detach();
-                        }
-                    }
-
-                }
-            }
-
-            if (HasSubSections(secondNode))
-            {
-                //remove all the subsections for the second node
-                for (int i = secondNode.getChildCount() - 1; i >= 0; i--)
-                {
-                    if (GetNodeType(secondNode.getChild(i)) == NodeType.Section)
-                    {
-                        secondNodeSubSections.Add(secondNode.getChild(i));
-                        //make sure they're not nested
-                        if (secondNode.getChild(i) != firstNode)
-                        {
-                            secondNode.getChild(i).detach();
-                        }
-                    }
-                }
-            }
-
-            //reverse the arrays (they were collected backwards)
-            firstNodeSubSections.Reverse();
-            secondNodeSubSections.Reverse();
-
-            //detach the nodes
-            firstNode.detach();
-            secondNode.detach();
-
-            //put the second node's former subsections onto the first node
-            for (int i = 0; i < secondNodeSubSections.Count; i++)
-            {
-                if (((CoreNode)secondNodeSubSections[i]) == firstNode)
-                {
-                    firstNode.appendChild(secondNode);
-                }
-                else
-                {
-                    firstNode.appendChild((CoreNode)secondNodeSubSections[i]);
-                }
-            }
-
-            //put the first node's former subsections on the second node
-            for (int i = 0; i < firstNodeSubSections.Count; i++)
-            {
-                if (((CoreNode)firstNodeSubSections[i]) == secondNode)
-                {
-                    secondNode.appendChild(firstNode);
-                }
-                else
-                {
-                    secondNode.appendChild((CoreNode)firstNodeSubSections[i]);
-                }
-            }
-
-        
-            //check if the two nodes were siblings
-            if (secondNodeParent == firstNodeParent)
-            {
-                //add the lower index first, because otherwise the order is wrong in the end
-                if (firstNodeIndex < secondNodeIndex)
-                {
-                    //adjust the index to make sure it's in range
-                    if (firstNodeIndex < 0) firstNodeIndex = 0;
-                    else if (firstNodeIndex > firstNodeParent.getChildCount()) firstNodeIndex = firstNodeParent.getChildCount();
-
-                    firstNodeParent.insert(secondNode, firstNodeIndex);
-
-                    //adjust the index to make sure it's in range
-                    if (secondNodeIndex < 0) secondNodeIndex = 0;
-                    else if (secondNodeIndex > secondNodeParent.getChildCount()) secondNodeIndex = secondNodeParent.getChildCount();
-
-                    firstNodeParent.insert(firstNode, secondNodeIndex);
-                }
-                else
-                {
-                    //adjust the index to make sure it's in range
-                    if (secondNodeIndex < 0) secondNodeIndex = 0;
-                    else if (secondNodeIndex > secondNodeParent.getChildCount()) secondNodeIndex = secondNodeParent.getChildCount();
-
-                    firstNodeParent.insert(firstNode, secondNodeIndex);
-
-                    //adjust the index to make sure it's in range
-                    if (firstNodeIndex < 0) firstNodeIndex = 0;
-                    else if (firstNodeIndex > firstNodeParent.getChildCount()) firstNodeIndex = firstNodeParent.getChildCount();
-
-                    firstNodeParent.insert(secondNode, firstNodeIndex);
-                }
-            }//end if the nodes were siblings
-            else //they were either nested or in different subtrees
-            {
-                //check if the second node was nested under the first node
-                if (firstNodeParent != secondNode)
-                {
-                    //adjust the index to make sure it's in range
-                    if (firstNodeIndex < 0) firstNodeIndex = 0;
-                    else if (firstNodeIndex > firstNodeParent.getChildCount()) firstNodeIndex = firstNodeParent.getChildCount();
-
-
-                    firstNodeParent.insert(secondNode, firstNodeIndex);
-                }
-                //check if the first node was nested under the second node
-                if (secondNodeParent != firstNode)
-                {
-                    //adjust the index to make sure it's in range
-                    if (secondNodeIndex < 0) secondNodeIndex = 0;
-                    else if (secondNodeIndex > secondNodeParent.getChildCount()) secondNodeIndex = secondNodeParent.getChildCount();
-
-                    secondNodeParent.insert(firstNode, secondNodeIndex);
-                }
-            }
-             */
-        }
-
-        internal void UndoShallowSwapNodes(SectionNode firstNode, SectionNode secondNode)
-        {
-            //TODO: update this
-            /*
-            Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(firstNode);
-            getPresentation().getRootNode().acceptDepthFirst(visitor);
-
-            int node1Pos = visitor.Position;
-
-            visitor = new Visitors.SectionNodePosition(secondNode);
-            getPresentation().getRootNode().acceptDepthFirst(visitor);
-
-            int node2Pos = visitor.Position;
-            int nodeSectionIdx = GetSectionNodeIndex(firstNode);
-            int swapSectionIdx = GetSectionNodeIndex(secondNode);
-
-            ShallowSwapNodes(firstNode, secondNode);
-
-            //raise the event that the action was completed
-            ShallowSwappedSectionNodes(this, new Obi.Events.Node.ShallowSwappedSectionNodesEventArgs(this, firstNode, secondNode, node1Pos, node2Pos, nodeSectionIdx, swapSectionIdx));
-            */
-        }
-
-        //would have used a visitor for the next two functions (Get Next/Prev Section Node)
-        //but visitors don't go in the prev. direction.
-        //md 20060813
-        //TODO: remove this?  or modify to fit SectionNodes
-        /*private CoreNode GetNextSectionNode(SectionNode node, int startIdx)
-        {
-            //look at our children
-            for (int i = startIdx; i < node.getChildCount(); i++)
-            {
-                if (GetNodeType(node.getChild(i)) == NodeType.Section)
-                {
-                    return node.getChild(i);
-                }
-            }
-
-            if (node.getParent() == null) return null;
-            
-            //look at our siblings
-            CoreNode parent = (CoreNode)node.getParent();
-            return GetNextSectionNode(parent, parent.indexOf(node) + 1);
-        }
-
-        //md 20060813
-        private CoreNode GetPreviousSectionNode(SectionNode node, int startIdx)
-        {
-            if (node.getParent() == null) return null;
-
-            //look at our siblings
-            CoreNode parent = (CoreNode)node.getParent();
-
-            for (int i = startIdx; i >= 0; i-- )
-            {
-                CoreNode sibling = parent.getChild(i);
-
-                bool hasSubSections = HasSubSections(sibling);
-
-                if (GetNodeType(sibling) == NodeType.Section &&
-                    hasSubSections == false)
-                {
-                    return sibling;
-                }
-                else if (hasSubSections == true)
-                {
-                    CoreNode siblingsChild = sibling.getChild(sibling.getChildCount() - 1);
-                    return GetPreviousSectionNode(siblingsChild, sibling.getChildCount() - 1);
-                }
-                //else it's not the right type of node and we won't consider it
-                
-            }
-            
-            //if we can't go up any more levels, return null
-            if (GetNodeType(parent) == NodeType.Root) return null;
-
-            return parent;
-        }*/
-       
-        //md 20060813
-        //helper function
-       /* private bool HasSubSections(SectionNode node)
-        {
-            for (int i = 0; i < node.getChildCount(); i++)
-            {
-                if (GetNodeType(node.getChild(i)) == NodeType.Section)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-        */
-      
-
-        //md 20060814
-        //helper function
-        private SectionNode GetLastSectionNodeInSubtree(SectionNode node)
-        {
-            SectionNode lastSectionNodeChild = node.SectionChild(node.SectionChildCount - 1);
-
-            if (lastSectionNodeChild == null)
-            {
-                return node;
-            }
-            else
-            {
-                return GetLastSectionNodeInSubtree(lastSectionNodeChild);
-            }
-        }
-
         //md 20060813
         internal bool CanMoveSectionNodeIn(SectionNode node)
         {
             //if it's not the first section
             if (node.Index > 0)
-                return false;
-            else
                 return true;
+            else
+                return false;
         }
 
         //md 20060813
@@ -955,6 +671,48 @@ namespace Obi
             }
            
             return true;
+        }
+
+        //helper function which tests for parent being root
+        //md 20061204
+        internal void AddChildSection(SectionNode node, CoreNode parent, int index)
+        {
+            if (parent.Equals(getPresentation().getRootNode()))
+            {
+                parent.insert(node, index);
+            }
+            else if (parent.GetType() == Type.GetType("Obi.SectionNode"))
+            {
+                ((SectionNode)parent).AddChildSection(node, index);
+            }          
+        }
+
+        //helper function which tests for parent being root
+        //md 20061204
+        internal void AppendChildSection(CoreNode node, CoreNode parent)
+        {
+            if (parent.Equals(getPresentation().getRootNode()))
+            {
+                parent.appendChild(node);
+            }
+            else if (parent.GetType() == Type.GetType("Obi.SectionNode"))
+            {
+                ((SectionNode)parent).AppendChildSection(node);
+            }         
+        }
+
+        //helper function which tests for parent being root
+        //md 20061204
+        internal void AddChildSectionAfter(SectionNode node, SectionNode contextNode, CoreNode parent)
+        {
+            if (parent.Equals(getPresentation().getRootNode()))
+            {
+                parent.insertAfter(node, contextNode);
+            }
+            else if (parent.GetType() == Type.GetType("Obi.SectionNode"))
+            {
+                ((SectionNode)parent).AddChildSectionAfter(node, contextNode);
+            }         
         }
     }
 }
