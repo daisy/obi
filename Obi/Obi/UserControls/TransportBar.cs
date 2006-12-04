@@ -105,6 +105,7 @@ namespace Obi.UserControls
         private void mPlayButton_Click(object sender, EventArgs e)
         {
             Play();
+            
         }
 
         /// <summary>
@@ -119,6 +120,7 @@ namespace Obi.UserControls
                     (mPlaylist == null || mPlaylist.State == Obi.Audio.AudioPlayerState.Stopped))
                 {
                     Playlist = new Playlist(((ProjectPanel)Parent).Project, Audio.AudioPlayer.Instance);
+                    mVUMeterPanel.PlayListObj = mPlaylist;
                 }
                 if (((ProjectPanel)Parent).SelectedNode != null)
                 {
@@ -141,6 +143,7 @@ namespace Obi.UserControls
             {
                 Playlist = new Playlist(((ProjectPanel)Parent).Project, Audio.AudioPlayer.Instance, node);
                 mPlaylist.Play();
+                mVUMeterPanel.PlayListObj = mPlaylist;
             }
         }
 
