@@ -122,7 +122,7 @@ namespace Obi
             this.mHelpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(775, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(857, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -724,10 +724,10 @@ namespace Obi
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mToolStripStatusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 480);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 521);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
-            this.statusStrip1.Size = new System.Drawing.Size(775, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(857, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -746,7 +746,7 @@ namespace Obi
             this.mProjectPanel.Location = new System.Drawing.Point(4, 27);
             this.mProjectPanel.Name = "mProjectPanel";
             this.mProjectPanel.Project = null;
-            this.mProjectPanel.Size = new System.Drawing.Size(767, 450);
+            this.mProjectPanel.Size = new System.Drawing.Size(849, 491);
             this.mProjectPanel.TabIndex = 4;
             // 
             // ObiForm
@@ -754,7 +754,7 @@ namespace Obi
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(775, 502);
+            this.ClientSize = new System.Drawing.Size(857, 543);
             this.Controls.Add(this.mProjectPanel);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);

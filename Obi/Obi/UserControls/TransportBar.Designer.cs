@@ -42,19 +42,21 @@ namespace Obi.UserControls
             this.mTimeDisplayBox = new System.Windows.Forms.TextBox();
             this.mTransportBarTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.mDisplayTimer = new System.Windows.Forms.Timer(this.components);
-            this.mDisplayButton = new System.Windows.Forms.Button();
+            this.mDisplayBox = new System.Windows.Forms.ComboBox();
+            this.mVUMeterPanel = new Obi.UserControls.TextVUMeterPanel();
             ((System.ComponentModel.ISupportInitialize)(this.mScrubTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // mPlayButton
             // 
+            this.mPlayButton.AccessibleName = "Play";
             this.mPlayButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.mPlayButton.FlatAppearance.BorderSize = 0;
             this.mPlayButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mPlayButton.Image = ((System.Drawing.Image)(resources.GetObject("mPlayButton.Image")));
             this.mPlayButton.Location = new System.Drawing.Point(76, 0);
             this.mPlayButton.Name = "mPlayButton";
-            this.mPlayButton.Size = new System.Drawing.Size(32, 35);
+            this.mPlayButton.Size = new System.Drawing.Size(32, 32);
             this.mPlayButton.TabIndex = 0;
             this.mTransportBarTooltip.SetToolTip(this.mPlayButton, "Start or resume audio playback or recording.");
             this.mPlayButton.UseVisualStyleBackColor = true;
@@ -62,13 +64,14 @@ namespace Obi.UserControls
             // 
             // mPauseButton
             // 
+            this.mPauseButton.AccessibleName = "Pause";
             this.mPauseButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.mPauseButton.FlatAppearance.BorderSize = 0;
             this.mPauseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mPauseButton.Image = ((System.Drawing.Image)(resources.GetObject("mPauseButton.Image")));
             this.mPauseButton.Location = new System.Drawing.Point(76, 0);
             this.mPauseButton.Name = "mPauseButton";
-            this.mPauseButton.Size = new System.Drawing.Size(32, 35);
+            this.mPauseButton.Size = new System.Drawing.Size(32, 32);
             this.mPauseButton.TabIndex = 1;
             this.mTransportBarTooltip.SetToolTip(this.mPauseButton, "Pause audio playback or recording.");
             this.mPauseButton.UseVisualStyleBackColor = true;
@@ -77,13 +80,14 @@ namespace Obi.UserControls
             // 
             // mStopButton
             // 
+            this.mStopButton.AccessibleName = "Stop";
             this.mStopButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.mStopButton.FlatAppearance.BorderSize = 0;
             this.mStopButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mStopButton.Image = ((System.Drawing.Image)(resources.GetObject("mStopButton.Image")));
             this.mStopButton.Location = new System.Drawing.Point(152, 0);
             this.mStopButton.Name = "mStopButton";
-            this.mStopButton.Size = new System.Drawing.Size(32, 35);
+            this.mStopButton.Size = new System.Drawing.Size(32, 32);
             this.mStopButton.TabIndex = 2;
             this.mTransportBarTooltip.SetToolTip(this.mStopButton, "Stop audio playback or recording.");
             this.mStopButton.UseVisualStyleBackColor = true;
@@ -91,13 +95,14 @@ namespace Obi.UserControls
             // 
             // mNextPhrase
             // 
+            this.mNextPhrase.AccessibleName = "Next phrase";
             this.mNextPhrase.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.mNextPhrase.FlatAppearance.BorderSize = 0;
             this.mNextPhrase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mNextPhrase.Image = ((System.Drawing.Image)(resources.GetObject("mNextPhrase.Image")));
             this.mNextPhrase.Location = new System.Drawing.Point(190, 0);
             this.mNextPhrase.Name = "mNextPhrase";
-            this.mNextPhrase.Size = new System.Drawing.Size(32, 35);
+            this.mNextPhrase.Size = new System.Drawing.Size(32, 32);
             this.mNextPhrase.TabIndex = 3;
             this.mTransportBarTooltip.SetToolTip(this.mNextPhrase, "Move to the next phrase.");
             this.mNextPhrase.UseVisualStyleBackColor = true;
@@ -105,13 +110,14 @@ namespace Obi.UserControls
             // 
             // mPrevPhraseButton
             // 
+            this.mPrevPhraseButton.AccessibleName = "Previous phrase";
             this.mPrevPhraseButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.mPrevPhraseButton.FlatAppearance.BorderSize = 0;
             this.mPrevPhraseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mPrevPhraseButton.Image = ((System.Drawing.Image)(resources.GetObject("mPrevPhraseButton.Image")));
             this.mPrevPhraseButton.Location = new System.Drawing.Point(38, 0);
             this.mPrevPhraseButton.Name = "mPrevPhraseButton";
-            this.mPrevPhraseButton.Size = new System.Drawing.Size(32, 35);
+            this.mPrevPhraseButton.Size = new System.Drawing.Size(32, 32);
             this.mPrevPhraseButton.TabIndex = 4;
             this.mTransportBarTooltip.SetToolTip(this.mPrevPhraseButton, "Move to the previous phrase.");
             this.mPrevPhraseButton.UseVisualStyleBackColor = true;
@@ -119,13 +125,14 @@ namespace Obi.UserControls
             // 
             // mNextSectionButton
             // 
+            this.mNextSectionButton.AccessibleName = "Next section";
             this.mNextSectionButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.mNextSectionButton.FlatAppearance.BorderSize = 0;
             this.mNextSectionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mNextSectionButton.Image = ((System.Drawing.Image)(resources.GetObject("mNextSectionButton.Image")));
             this.mNextSectionButton.Location = new System.Drawing.Point(228, 0);
             this.mNextSectionButton.Name = "mNextSectionButton";
-            this.mNextSectionButton.Size = new System.Drawing.Size(32, 35);
+            this.mNextSectionButton.Size = new System.Drawing.Size(32, 32);
             this.mNextSectionButton.TabIndex = 5;
             this.mTransportBarTooltip.SetToolTip(this.mNextSectionButton, "Move to the next section.");
             this.mNextSectionButton.UseVisualStyleBackColor = true;
@@ -133,13 +140,14 @@ namespace Obi.UserControls
             // 
             // mPrevSectionButton
             // 
+            this.mPrevSectionButton.AccessibleName = "Previous section";
             this.mPrevSectionButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.mPrevSectionButton.FlatAppearance.BorderSize = 0;
             this.mPrevSectionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mPrevSectionButton.Image = ((System.Drawing.Image)(resources.GetObject("mPrevSectionButton.Image")));
             this.mPrevSectionButton.Location = new System.Drawing.Point(0, 0);
             this.mPrevSectionButton.Name = "mPrevSectionButton";
-            this.mPrevSectionButton.Size = new System.Drawing.Size(32, 35);
+            this.mPrevSectionButton.Size = new System.Drawing.Size(32, 32);
             this.mPrevSectionButton.TabIndex = 6;
             this.mTransportBarTooltip.SetToolTip(this.mPrevSectionButton, "Move to the previous section.");
             this.mPrevSectionButton.UseVisualStyleBackColor = true;
@@ -155,7 +163,7 @@ namespace Obi.UserControls
             this.mRecordButton.Image = ((System.Drawing.Image)(resources.GetObject("mRecordButton.Image")));
             this.mRecordButton.Location = new System.Drawing.Point(114, 0);
             this.mRecordButton.Name = "mRecordButton";
-            this.mRecordButton.Size = new System.Drawing.Size(32, 35);
+            this.mRecordButton.Size = new System.Drawing.Size(32, 32);
             this.mRecordButton.TabIndex = 7;
             this.mTransportBarTooltip.SetToolTip(this.mRecordButton, "Start listening or recording.");
             this.mRecordButton.UseVisualStyleBackColor = true;
@@ -191,24 +199,37 @@ namespace Obi.UserControls
             // 
             this.mDisplayTimer.Tick += new System.EventHandler(this.mDisplayTimer_Tick);
             // 
-            // mDisplayButton
+            // mDisplayBox
             // 
-            this.mDisplayButton.AutoSize = true;
-            this.mDisplayButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.mDisplayButton.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.mDisplayButton.Location = new System.Drawing.Point(511, 5);
-            this.mDisplayButton.Name = "mDisplayButton";
-            this.mDisplayButton.Size = new System.Drawing.Size(51, 23);
-            this.mDisplayButton.TabIndex = 10;
-            this.mDisplayButton.Text = "&Display";
-            this.mDisplayButton.UseVisualStyleBackColor = false;
+            this.mDisplayBox.AllowDrop = true;
+            this.mDisplayBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.mDisplayBox.FormattingEnabled = true;
+            this.mDisplayBox.Items.AddRange(new object[] {
+            "Elapsed time",
+            "Total elapsed time",
+            "Remaining time",
+            "Total remaining time"});
+            this.mDisplayBox.Location = new System.Drawing.Point(511, 7);
+            this.mDisplayBox.Name = "mDisplayBox";
+            this.mDisplayBox.Size = new System.Drawing.Size(130, 20);
+            this.mDisplayBox.TabIndex = 10;
+            this.mDisplayBox.SelectedIndexChanged += new System.EventHandler(this.mDisplayBox_SelectedIndexChanged);
+            // 
+            // mVUMeterPanel
+            // 
+            this.mVUMeterPanel.BackColor = System.Drawing.Color.Transparent;
+            this.mVUMeterPanel.Location = new System.Drawing.Point(647, 3);
+            this.mVUMeterPanel.Name = "mVUMeterPanel";
+            this.mVUMeterPanel.Size = new System.Drawing.Size(220, 41);
+            this.mVUMeterPanel.TabIndex = 11;
             // 
             // TransportBar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.mDisplayButton);
+            this.Controls.Add(this.mVUMeterPanel);
+            this.Controls.Add(this.mDisplayBox);
             this.Controls.Add(this.mTimeDisplayBox);
             this.Controls.Add(this.mScrubTrackBar);
             this.Controls.Add(this.mRecordButton);
@@ -220,7 +241,7 @@ namespace Obi.UserControls
             this.Controls.Add(this.mPauseButton);
             this.Controls.Add(this.mPlayButton);
             this.Name = "TransportBar";
-            this.Size = new System.Drawing.Size(702, 35);
+            this.Size = new System.Drawing.Size(854, 32);
             ((System.ComponentModel.ISupportInitialize)(this.mScrubTrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -241,6 +262,7 @@ namespace Obi.UserControls
         private System.Windows.Forms.TextBox mTimeDisplayBox;
         private System.Windows.Forms.ToolTip mTransportBarTooltip;
         private System.Windows.Forms.Timer mDisplayTimer;
-        private System.Windows.Forms.Button mDisplayButton;
+        private System.Windows.Forms.ComboBox mDisplayBox;
+        private TextVUMeterPanel mVUMeterPanel;
     }
 }

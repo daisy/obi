@@ -73,6 +73,7 @@ namespace Obi.UserControls
             InitializeComponent();
             mPlaylist = null;
             mRecordingSession = null;
+            mDisplayBox.SelectedIndex = 0;
         }
 
         private void mPrevSectionButton_Click(object sender, EventArgs e)
@@ -267,13 +268,19 @@ namespace Obi.UserControls
         {
             if (mPlaylist != null)
             {
-                int s = Convert.ToInt32(mPlaylist.CurrentTime / 1000.0);
-                string str = s.ToString("00");
-                int m = Convert.ToInt32(s / 60);
-                str = m.ToString("00") + ":" + str;
-                int h = m / 60;
-                mTimeDisplayBox.Text = h.ToString("00") + ":" + str;
+                //int s = Convert.ToInt32(mPlaylist.CurrentTime / 1000.0);
+                //string str = s.ToString("00");
+                //int m = Convert.ToInt32(s / 60);
+                //str = m.ToString("00") + ":" + str;
+                //int h = m / 60;
+                //mTimeDisplayBox.Text = h.ToString("00") + ":" + str;
+                mTimeDisplayBox.Text = mPlaylist.CurrentTime.ToString();
             }
+        }
+
+        private void mDisplayBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
