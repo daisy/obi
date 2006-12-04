@@ -8,20 +8,21 @@ namespace Obi.UserControls
     /// </summary>
     public partial class TransportBar : UserControl
     {
-        private Playlist mPlaylist;
-        private RecordingSession mRecordingSession;
-
+        private Playlist mPlaylist;                        // current playlist (may be null)
         private urakawa.core.CoreNode mPreviousSelection;  // selection before playback started
+
+        // constants from the display combo box
+        private static readonly int Elapsed = 0;
+        private static readonly int ElapsedTotal = 1;
+        private static readonly int Remain = 2;
+        // private static readonly int RemainTotal = 3;
 
         /// <summary>
         /// Everything can be solved by adding a new layer of indirection. So here it is.
         /// </summary>
         public Audio.AudioPlayerState State
         {
-            get
-            {
-                return mPlaylist == null ? Audio.AudioPlayerState.Stopped : mPlaylist.State;
-            }
+            get { return mPlaylist == null ? Audio.AudioPlayerState.Stopped : mPlaylist.State; }
         }
 
         /// <summary>
@@ -53,16 +54,9 @@ namespace Obi.UserControls
                     mPlaylist.StateChanged += new Events.Audio.Player.StateChangedHandler(Play_PlayerStateChanged);
                     mPlaylist.EndOfPlaylist += new Playlist.EndOfPlaylistHandler(Play_PlayerStopped);
                     mPreviousSelection = ((ProjectPanel)Parent).SelectedNode;
+                    mDisplayBox.SelectedIndex = mPlaylist.WholeBook ? ElapsedTotal : Elapsed;
                 }
             }
-        }
-
-        /// <summary>
-        /// Set the recording session to be handled by the transport bar.
-        /// </summary>
-        public RecordingSession RecordingSession
-        {
-            set { mRecordingSession = value; }
         }
 
         /// <summary>
@@ -72,8 +66,7 @@ namespace Obi.UserControls
         {
             InitializeComponent();
             mPlaylist = null;
-            mRecordingSession = null;
-            mDisplayBox.SelectedIndex = 0;
+            mDisplayBox.SelectedIndex = ElapsedTotal;
         }
 
         private void mPrevSectionButton_Click(object sender, EventArgs e)
@@ -172,10 +165,10 @@ namespace Obi.UserControls
         {
             Settings CurrentSettings = Settings.GetSettings();
             urakawa.core.CoreNode node= null ; // Blank node for now, to be replaced by actual node  
-            mRecordingSession = new RecordingSession ( ( ( ProjectPanel ) Parent ).Project , Audio.AudioRecorder.Instance  , node , CurrentSettings.AudioChannels , CurrentSettings.SampleRate , CurrentSettings.BitDepth ) ;
-            Dialogs.TransportRecord TransportRecordDialog = new Obi.Dialogs.TransportRecord ( mRecordingSession ) ;
-            TransportRecordDialog.Show ()  ;
-
+            RecordingSession session = new RecordingSession(((ProjectPanel)Parent).Project, Audio.AudioRecorder.Instance, node,
+                CurrentSettings.AudioChannels , CurrentSettings.SampleRate , CurrentSettings.BitDepth) ;
+            Dialogs.TransportRecord TransportRecordDialog = new Obi.Dialogs.TransportRecord (session);
+            TransportRecordDialog.Show();
         }
 
         private void mStopButton_Click(object sender, EventArgs e)
@@ -229,24 +222,24 @@ namespace Obi.UserControls
         /// </summary>
         private void Play_PlayerStateChanged(object sender, Obi.Events.Audio.Player.StateChangedEventArgs e)
         {
-            if (mPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Stopped)
+            if (mPlaylist.State == Audio.AudioPlayerState.Stopped)
             {
                 mDisplayTimer.Stop();
-                mTimeDisplayBox.Text = "00:00:00";
                 Play_PlayerStopped(this, null);
             }
-            else if (mPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Paused)
+            else if (mPlaylist.State == Audio.AudioPlayerState.Paused)
             {
                 mDisplayTimer.Stop();
                 mPauseButton.Visible = false;
                 mPlayButton.Visible = true;
             }
-            else if (mPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Playing)
+            else if (mPlaylist.Audioplayer.State == Audio.AudioPlayerState.Playing)
             {
                 mPauseButton.Visible = true;
                 mPlayButton.Visible = false;
                 mDisplayTimer.Start();
             }
+            UpdateTimeDisplay();
         }
 
         /// <summary>
@@ -267,23 +260,57 @@ namespace Obi.UserControls
             ((ProjectPanel)Parent).StripManager.SelectedPhraseNode = e.Node;
         }
 
+        /// <summary>
+        /// Periodically update the time display.
+        /// </summary>
         private void mDisplayTimer_Tick(object sender, EventArgs e)
         {
-            if (mPlaylist != null)
+            UpdateTimeDisplay();
+        }
+
+        /// <summary>
+        /// Update the time display to show current time. Depends on the what kind of timing is selected.
+        /// </summary>
+        public void UpdateTimeDisplay()
+        {
+            if (mPlaylist != null && mPlaylist.State != Obi.Audio.AudioPlayerState.Stopped)
             {
-                //int s = Convert.ToInt32(mPlaylist.CurrentTime / 1000.0);
-                //string str = s.ToString("00");
-                //int m = Convert.ToInt32(s / 60);
-                //str = m.ToString("00") + ":" + str;
-                //int h = m / 60;
-                //mTimeDisplayBox.Text = h.ToString("00") + ":" + str;
-                mTimeDisplayBox.Text = mPlaylist.CurrentTime.ToString();
+                mTimeDisplayBox.Text =
+                    mDisplayBox.SelectedIndex == Elapsed ?
+                        FormatTime(mPlaylist.CurrentTimeInAsset) :
+                    mDisplayBox.SelectedIndex == ElapsedTotal ?
+                        FormatTime(mPlaylist.CurrentTime) :
+                    mDisplayBox.SelectedIndex == Remain ?
+                        "-" + FormatTime(mPlaylist.RemainingTimeInAsset) :
+                        "-" + FormatTime(mPlaylist.RemainingTime);
+            }
+            else
+            {
+                mTimeDisplayBox.Text = FormatTime(0.0);
             }
         }
 
-        private void mDisplayBox_SelectedIndexChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Format the time string for friendlier display.
+        /// </summary>
+        /// <param name="time">The time in milliseconds.</param>
+        /// <returns>The time in hh:mm:ss format (fractions of seconds are discarded.)</returns>
+        private string FormatTime(double time)
         {
+            int s = Convert.ToInt32(time / 1000.0);
+            string str = (s % 60).ToString("00");
+            int m = Convert.ToInt32(s / 60);
+            str = (m % 60).ToString("00") + ":" + str;
+            int h = m / 60;
+            return h.ToString("00") + ":" + str;
+        }
 
+        /// <summary>
+        /// Update the time display immediatly when the display mode changes.
+        /// </summary>
+        private void mDisplayBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            UpdateTimeDisplay();
         }
     }
 }
