@@ -34,7 +34,7 @@ namespace Obi.Visitors
 
         public bool preVisit(ICoreNode node)
         {
-            if (Project.GetNodeType((CoreNode)node) == NodeType.Phrase)
+            if (node.GetType() == System.Type.GetType("Obi.PhraseNode"))
             {
                 mPhrases.Add((CoreNode)node);
             }

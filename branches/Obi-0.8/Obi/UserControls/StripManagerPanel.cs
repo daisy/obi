@@ -230,35 +230,35 @@ namespace Obi.UserControls
         public bool preVisit(ICoreNode node)
         {
             SectionStrip strip = null;
-            switch (Project.GetNodeType((CoreNode)node))
+           
+            //if node is root
+            if (node.GetType() == Type.GetType("urakawa.core.CoreNode"))
+            { 
+                parentSection = null;
+            }
+            else if (node.GetType() == Type.GetType("Obi.SectionNode"))
             {
-                case NodeType.Root:
-                    parentSection = null;
-                    break;
-                case NodeType.Section:
-                    strip = new SectionStrip();
-                    strip.Label = Project.GetTextMedia((CoreNode)node).getText();
-                    strip.Manager = this;
-                    strip.Node = (SectionNode)node;
-                    mSectionNodeMap[(SectionNode)node] = strip;
-                    mFlowLayoutPanel.Controls.Add(strip);
-                    parentSection = ((SectionNode)node);
-                    //md 20061005
-                    //make the font bigger
-                    int nodeLevel = this.mProjectPanel.Project.getNodeLevel((SectionNode)node);
-                    float currentSize = strip.GetTitleFontSize();
-                    if (nodeLevel == 1) strip.SetTitleFontSize(currentSize + 3);
-                    else if (nodeLevel == 2) strip.SetTitleFontSize(currentSize + 2);
-                    else if (nodeLevel == 3) strip.SetTitleFontSize(currentSize + 1);
-                    break;
-                case NodeType.Phrase:
-                    strip = mSectionNodeMap[(SectionNode)parentSection];
-                    AudioBlock block = SetupAudioBlockFromPhraseNode((PhraseNode)node);
-                    strip.AppendAudioBlock(block);
-                    parentPhrase = (PhraseNode)node;
-                    break;
-                default:
-                    break;
+                strip = new SectionStrip();
+                strip.Label = Project.GetTextMedia((CoreNode)node).getText();
+                strip.Manager = this;
+                strip.Node = (SectionNode)node;
+                mSectionNodeMap[(SectionNode)node] = strip;
+                mFlowLayoutPanel.Controls.Add(strip);
+                parentSection = ((SectionNode)node);
+                //md 20061005
+                //make the font bigger
+                int nodeLevel = this.mProjectPanel.Project.getNodeLevel((SectionNode)node);
+                float currentSize = strip.GetTitleFontSize();
+                if (nodeLevel == 1) strip.SetTitleFontSize(currentSize + 3);
+                else if (nodeLevel == 2) strip.SetTitleFontSize(currentSize + 2);
+                else if (nodeLevel == 3) strip.SetTitleFontSize(currentSize + 1);
+            }
+            else if (node.GetType() == Type.GetType("Obi.PhraseNode"))
+            {
+                strip = mSectionNodeMap[(SectionNode)parentSection];
+                AudioBlock block = SetupAudioBlockFromPhraseNode((PhraseNode)node);
+                strip.AppendAudioBlock(block);
+                parentPhrase = (PhraseNode)node;
             }
             return true;
         }

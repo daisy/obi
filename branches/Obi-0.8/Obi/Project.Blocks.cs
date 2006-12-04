@@ -57,7 +57,7 @@ namespace Obi
             PhraseNode copy = mClipboard.Phrase.copy(true);
             SectionNode parent;
             int index;
-            if (GetNodeType(e.Node) == NodeType.Section)
+            if (e.Node.GetType() == System.Type.GetType("Obi.SectionNode"))
             {
                 parent = (SectionNode)e.Node;
                 index = GetPhrasesCount(e.Node);
@@ -103,7 +103,12 @@ namespace Obi
         {
             AudioMediaAsset asset = mAssManager.ImportAudioMediaAsset(e.AssetPath);
             mAssManager.InsureRename(asset, Path.GetFileNameWithoutExtension(e.AssetPath));
-            PhraseNode node = CreatePhraseNode(asset);
+            
+            //create a phrase node and assign it an asset
+            PhraseNode node = getPresentation().getCoreNodeFactory().createNode(PhraseNode.Name, ObiPropertyFactory.ObiNS)
+                 as PhraseNode;
+            node.Asset = asset;
+
             AddPhraseNode(node, e.SectionNode, e.Index);
             Commands.Strips.AddPhrase command = new Commands.Strips.AddPhrase(node);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
@@ -187,7 +192,7 @@ namespace Obi
                 if (ch.getName() == channel)
                 {
                     Commands.Command command = null;
-                    if (GetNodeType(node) == NodeType.Phrase && channel == Project.AnnotationChannelName)
+                   /* if (GetNodeType(node) == NodeType.Phrase && channel == Project.AnnotationChannelName)
                     {
                         // we are renaming a phrase node
                         //md no longer allowed to rename assets
@@ -195,7 +200,8 @@ namespace Obi
                         string old = mAssManager.RenameAsset(asset, ((TextMedia)media).getText());
                         if (old == asset.Name) return false;
                         command = new Commands.Strips.RenamePhrase(this, node);*/
-                    }
+                  //  }
+
                     channelsProp.setMedia(ch, media);
                     MediaSet(this, new Events.Node.SetMediaEventArgs(origin, node, channel, media));
                     if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
@@ -460,7 +466,7 @@ namespace Obi
             int index = 0;
             for (int i = 0; i < parent.getChildCount(); ++i)
             {
-                if (GetNodeType(parent.getChild(i)) == NodeType.Phrase)
+                if (parent.getChild(i).GetType() == System.Type.GetType("Obi.PhraseNode"))
                 {
                     if (parent.getChild(i) == node) return index;
                     ++index;
@@ -478,7 +484,7 @@ namespace Obi
             int count = 0;
             for (int i = 0; i < node.getChildCount(); ++i)
             {
-                if (GetNodeType(node.getChild(i)) == NodeType.Phrase) ++count;
+                if (node.getChild(i).GetType() == System.Type.GetType("Obi.PhraseNode")) ++count;
             }
             return count;
         }
@@ -515,7 +521,7 @@ namespace Obi
         /// <returns>The asset or null if it could not be found.</returns>
         public static AudioMediaAsset GetAudioMediaAsset(CoreNode node)
         {
-            System.Diagnostics.Debug.Assert(GetNodeType(node) == NodeType.Phrase);
+            System.Diagnostics.Debug.Assert(node.GetType() == System.Type.GetType("Obi.PhraseNode"));
             AssetProperty prop = (AssetProperty)node.getProperty(typeof(AssetProperty));
             if (prop != null)
             {

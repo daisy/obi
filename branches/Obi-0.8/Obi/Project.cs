@@ -51,9 +51,9 @@ namespace Obi
         public event Events.Project.StateChangedHandler StateChanged;       // the state of the project changed (modified, saved...)
         public event Events.Project.CommandCreatedHandler CommandCreated;   // a new command must be added to the command manager
         public event Events.PhraseNodeHandler AddedPhraseNode;        // a phrase node was added to a strip
-        public event Events.MediaSetHandler MediaSet;                      // a media object was set on a node
+        public event Events.SetMediaHandler MediaSet;                      // a media object was set on a node
         public event Events.PhraseNodeHandler DeletedPhraseNode;          // deleted a phrase node 
-        public event Events.TouchedNodeHandler TouchedNode;  // this node was somehow modified
+        public event Events.NodeEventHandler TouchedNode;  // this node was somehow modified
 
         /// <summary>
         /// This flag is set to true if the project contains modifications that have not been saved.
@@ -112,27 +112,35 @@ namespace Obi
         }
 
         /// <summary>
-        /// Create an empty project. And I mean empty.
+        /// Create a blank project from a seed presentation and using the default metadata factory.
         /// </summary>
-        /// <remarks>
-        /// This is necessary because we need an instance of a project to set the event handler for the project state
-        /// changes, which happen as soon as the project is created or opened.
-        /// </remarks>
-        public Project()
-            : base()
+        /// <param name="presentation">The presentation for this project.</param>
+        private Project(Presentation presentation)
+            : base(presentation, null)
         {
             mAssManager = null;
             mUnsaved = false;
             mXUKPath = null;
-						/*med 20061120 svn merge: i don't think we need this (was from 0.6 trunk)
-            mBlockClipBoard = null;
-            mClipboard = null;*/
-            /*med 20061120 svn merge: this should be the newer version of the above commented-out code*/
-            mClipboard = new Clipboard();
-            mSilencePhrase = null;
+            mAudioChannel = null;
+            mTextChannel = null;
+            mAnnotationChannel = null;
 
-            // Use our own property factory so that we can create custom properties
-            getPresentation().setPropertyFactory(new ObiPropertyFactory());
+            mClipboard = new Clipboard();
+        }
+
+
+        /// <summary>
+        /// Convenience method for creating a new blank project. Actually create a presentation first so that we can use our own
+        /// core node factory and custom property factory.
+        /// </summary>
+        /// <returns>The newly created, blank project.</returns>
+        public static Project BlankProject()
+        {
+            ObiNodeFactory nodeFactory = new ObiNodeFactory();
+            Presentation presentation = new Presentation(nodeFactory, null, null, new ObiPropertyFactory(), null);
+            Project project = new Project(presentation);
+            nodeFactory.Project = project;
+            return project;
         }
 
         /// <summary>
@@ -146,6 +154,8 @@ namespace Obi
         /// <param name="createTitle">Create a title section.</param>
         public void Create(string xukPath, string title, string id, UserProfile userProfile, bool createTitle)
         {
+            Presentation presentation = getPresentation();
+
             // The asset manager path is made relative to the XUK file's path; but we still use the absolute value that we
             // get from GetAssetDirectory to create/initialize the path of the asset manager.
             mXUKPath = xukPath;
@@ -154,29 +164,25 @@ namespace Obi
             mAssPath = (new Uri(xukPath)).MakeRelativeUri(new Uri(mAssPath)).ToString();
 
             // Create metadata and channels
+            ChannelFactory factory = presentation.getChannelFactory();
+            ChannelsManager manager = presentation.getChannelsManager();
             mMetadata = CreateMetadata(title, id, userProfile);
-            mAudioChannel = getPresentation().getChannelFactory().createChannel(AudioChannelName);
-            getPresentation().getChannelsManager().addChannel(mAudioChannel);
-            mTextChannel = getPresentation().getChannelFactory().createChannel(TextChannelName);
-            getPresentation().getChannelsManager().addChannel(mTextChannel);
-            mAnnotationChannel = getPresentation().getChannelFactory().createChannel(AnnotationChannelName);
-            getPresentation().getChannelsManager().addChannel(mAnnotationChannel);
+            mAudioChannel = factory.createChannel(AudioChannelName);
+            manager.addChannel(mAudioChannel);
+            mTextChannel = factory.createChannel(TextChannelName);
+            manager.addChannel(mTextChannel);
+            mAnnotationChannel = factory.createChannel(AnnotationChannelName);
+            manager.addChannel(mAnnotationChannel);
 
-            // Give a custom property to the root node to make it a Root node.
-            NodeInformationProperty typeProp =
-                (NodeInformationProperty)getPresentation().getPropertyFactory().createProperty("NodeInformationProperty",
-                ObiPropertyFactory.ObiNS);
-            typeProp.NodeType = NodeType.Root;
-            typeProp.NodeStatus = NodeStatus.NA;
-            getPresentation().getRootNode().setProperty(typeProp);
-            NodeInformationProperty rootType = (NodeInformationProperty)getPresentation().getRootNode().getProperty(typeof(NodeInformationProperty));
-
+            // Create a title section if necessary
             if (createTitle)
             {
-                CoreNode node = CreateSectionNode();
-                GetTextMedia(node).setText(title);
-                getPresentation().getRootNode().appendChild(node);
+                SectionNode node = (SectionNode)
+                    presentation.getCoreNodeFactory().createNode(SectionNode.Name, ObiPropertyFactory.ObiNS);
+                node.Label = title;
+                presentation.getRootNode().appendChild(node);
             }
+
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
             Save();
         }
@@ -479,32 +485,11 @@ namespace Obi
         /// <returns>The created node.</returns>
         private PhraseNode CreatePhraseNode(Assets.AudioMediaAsset asset)
         {
-            /*CoreNode node = getPresentation().getCoreNodeFactory().createNode();
-            ChannelsProperty prop = getPresentation().getPropertyFactory().createChannelsProperty();
-            node.setProperty(prop);
-            TextMedia annotation = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
+            PhraseNode node = getPresentation().getCoreNodeFactory().createNode(PhraseNode.Name, ObiPropertyFactory.ObiNS)
+                 as PhraseNode;
+            node.Asset = asset;
 
-            //md i would rather set this to "" but the toolkit doesn't allow it
-            //annotation.setText("-");
-            //JQ I guess we'll just set it to nothing and be done with it
-            prop.setMedia(mAnnotationChannel, annotation);
-           
-            AssetProperty assProp = (AssetProperty)getPresentation().getPropertyFactory().createProperty("AssetProperty",
-                ObiPropertyFactory.ObiNS);
-            assProp.Asset = asset;
-            node.setProperty(assProp);
-            NodeInformationProperty typeProp =
-                (NodeInformationProperty)getPresentation().getPropertyFactory().createProperty("NodeInformationProperty",
-                ObiPropertyFactory.ObiNS);
-            typeProp.NodeType = NodeType.Phrase;
-            typeProp.NodeStatus = NodeStatus.Used;
-            node.setProperty(typeProp);
-            UpdateSeq(node);
-            return node;*/
-
-            //TODO: give it a real ID
-            PhraseNode newPhrase = new PhraseNode(this, 0);
-            return newPhrase;
+            return node;
         }
 
         /// <summary>
@@ -563,22 +548,7 @@ namespace Obi
             return null;
         }
 
-        /// <summary>
-        /// Get the type of a node depending on its position in the tree or its channels.
-        /// </summary>
-        /// <param name="node">The node for which we want the type.</param>
-        public static NodeType GetNodeType(CoreNode node)
-        {
-            NodeInformationProperty prop = (NodeInformationProperty)node.getProperty(typeof(NodeInformationProperty));
-            if (prop != null)
-            {
-                return prop.NodeType;
-            }
-            else
-            {
-                return NodeType.Vanilla;
-            }
-        }
+        
 
         /// <summary>
         /// Dump the asset manager to check what's going on.
@@ -623,7 +593,7 @@ namespace Obi
                 delegate(ICoreNode n)
                 {
                     if (first != null) return false;
-                    if (GetNodeType((CoreNode)n) == NodeType.Phrase) { first = (CoreNode)n; System.Diagnostics.Debug.Print("bing!"); }
+                    if (n.GetType() == System.Type.GetType("Obi.PhraseNode")) { first = (CoreNode)n; System.Diagnostics.Debug.Print("bing!"); }
                     return true;
                 },
                 delegate(ICoreNode n) {}

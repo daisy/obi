@@ -26,14 +26,14 @@ namespace Obi.Visitors
 
         public bool preVisit(ICoreNode node)
         {
-            if (Project.GetNodeType((CoreNode)node) == NodeType.Section)
+            if (node.GetType() == System.Type.GetType("Obi.SectionNode"))
             {
                 mProject.AddExistingSectionNode((SectionNode)node, mParent, null);
             }
             //md 20060816
             //the phrase node already has a parent "node", so we can't re-add it
             //just give an event to notify the displays that they should update
-            else if (Project.GetNodeType((CoreNode)node) == NodeType.Phrase)
+            else if (node.GetType() == System.Type.GetType("Obi.PhraseNode"))
             {
                 mProject.ReconstructPhraseNodeInView((PhraseNode)node);
             }

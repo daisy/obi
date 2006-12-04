@@ -224,7 +224,7 @@ namespace Obi
                 // Add all phrase nodes underneath (and including) the starting node.
                 delegate(ICoreNode n)
                 {
-                    if (Project.GetNodeType((CoreNode)n) == NodeType.Phrase)
+                    if (n.GetType() == System.Type.GetType("Obi.PhraseNode"))
                     {
                         mPhrases.Add((PhraseNode)n);
                         mTotalTime += Project.GetAudioMediaAsset((CoreNode)n).LengthInMilliseconds;

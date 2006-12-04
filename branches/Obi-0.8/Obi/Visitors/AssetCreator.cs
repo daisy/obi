@@ -40,7 +40,7 @@ namespace Obi.Visitors
         /// </summary>
         public bool preVisit(ICoreNode node)
         {
-            if (Project.GetNodeType((CoreNode)node) == NodeType.Phrase)
+            if (node.GetType() == System.Type.GetType("Obi.PhraseNode"))
             {
                 SequenceMedia media = (SequenceMedia)Project.GetMediaForChannel((CoreNode)node, Project.AudioChannelName);
                 List<Assets.AudioClip> clips = new List<Assets.AudioClip>(media.getCount());

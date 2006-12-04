@@ -143,8 +143,6 @@ namespace Obi.UserControls
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
             bool isNodeSelected = false;
-            bool canMoveUp = false;
-            bool canMoveDown = false;
             bool canMoveIn = false;
             bool canMoveOut = false;
 
@@ -162,8 +160,6 @@ namespace Obi.UserControls
 
             if (isNodeSelected == true)
             {
-                canMoveUp = mProjectPanel.Project.CanMoveSectionNodeUp(selectedSection);
-                canMoveDown = mProjectPanel.Project.CanMoveSectionNodeDown(selectedSection);
                 canMoveIn = mProjectPanel.Project.CanMoveSectionNodeIn(selectedSection);
                 canMoveOut = mProjectPanel.Project.CanMoveSectionNodeOut(selectedSection);
             }

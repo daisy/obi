@@ -22,11 +22,11 @@ namespace Obi
             {
                 Clear();
                 CoreNode node = value as CoreNode;
-                if (Project.GetNodeType(node) == NodeType.Section)
+                if (node.GetType() == System.Type.GetType("Obi.SectionNode"))
                 {
                     Section = (SectionNode)node;
                 }
-                else if (Project.GetNodeType(node) == NodeType.Phrase)
+                else if (node.GetType() == System.Type.GetType("Obi.PhraseNode"))
                 {
                     Phrase = (PhraseNode)node;
                 }

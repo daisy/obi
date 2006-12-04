@@ -93,7 +93,7 @@ namespace Obi.UserControls
         public bool SectionNodeVisitor(urakawa.core.ICoreNode node)
         {
             urakawa.core.CoreNode _node = (urakawa.core.CoreNode)node;
-            if (Project.GetNodeType(_node) == NodeType.Section)
+            if (_node.GetType() == System.Type.GetType("Obi.SectionNode"))
             {
                 string label = Project.GetTextMedia(_node).getText();
                 TreeNode newTreeNode;

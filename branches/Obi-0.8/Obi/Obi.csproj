@@ -214,6 +214,7 @@
       <DependentUpon>ObiForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ObiNode.cs" />
+    <Compile Include="ObiNodeFactory.cs" />
     <Compile Include="PhraseNode.cs" />
     <Compile Include="Playlist.cs" />
     <Compile Include="Program.cs" />

@@ -24,12 +24,8 @@ namespace Obi.Events
     public delegate void RequestToSetPageNumberHandler(object sender, SetPageEventArgs e);
     public delegate void SelectedHandler(object sender, Obi.Events.Node.SelectedEventArgs e);
     public delegate void SetMediaHandler(object sender, SetMediaEventArgs e);
-    public delegate void MediaSetHandler(object sender, SetMediaEventArgs e);
     public delegate void RequestToImportAssetHandler(object sender, ImportAssetEventArgs e);
     public delegate void UpdateTimeHandler(object sender, UpdateTimeEventArgs e);
 
-    public delegate void ImportedAssetHandler(object sender, NodeEventArgs e);
-    public delegate void DeletedBlockHandler(object sender, NodeEventArgs e);
-    public delegate void TouchedNodeHandler(object sender, NodeEventArgs e);
-    public delegate void RequestToPastePhraseHandler(object sender, NodeEventArgs e);
+    public delegate void NodeEventHandler(object sender, NodeEventArgs e);
 }

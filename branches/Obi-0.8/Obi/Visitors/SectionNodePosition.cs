@@ -38,7 +38,7 @@ namespace Obi.Visitors
 
         public bool preVisit(ICoreNode node)
         {
-            if (Project.GetNodeType((CoreNode)node) == NodeType.Section)
+            if (node.GetType() == System.Type.GetType("Obi.SectionNode"))
             {
                 if (node == mTarget) mPosition = mCounter;
                 ++mCounter;

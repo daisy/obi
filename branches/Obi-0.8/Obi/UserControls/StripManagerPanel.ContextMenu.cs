@@ -26,7 +26,7 @@ namespace Obi.UserControls
         public event Events.SectionNodeHandler RequestToCopySectionNode;
         public event Events.PhraseNodeHandler RequestToCopyPhraseNode;
         public event Events.SectionNodeHandler RequestToPasteSectionNode;
-        public event Events.RequestToPastePhraseHandler RequestToPastePhraseNode;
+        public event Events.NodeEventHandler RequestToPastePhraseNode;
 
         public Events.RequestToSetPageNumberHandler RequestToSetPageNumber;
         public Events.PhraseNodeHandler RequestToRemovePageNumber;
