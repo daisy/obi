@@ -34,7 +34,15 @@ namespace Obi
         private double mSecondsCount;
         private System.Windows.Forms.Timer  tmCommitTimer = new System.Windows.Forms.Timer () ;
         private System.Windows.Forms.Timer tmUpdateDisplay = new System.Windows.Forms.Timer();
-        
+
+        public Audio.AudioRecorder AudioRecorderObj
+        {
+            get
+            {
+                return mRecorder;
+            }
+        }
+
 
         // Property to set Autocommit interval time in seconds
         public int CommitIntervalSeconds
