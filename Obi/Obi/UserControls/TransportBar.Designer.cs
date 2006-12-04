@@ -197,6 +197,7 @@ namespace Obi.UserControls
             // 
             // mDisplayTimer
             // 
+            this.mDisplayTimer.Interval = 333;
             this.mDisplayTimer.Tick += new System.EventHandler(this.mDisplayTimer_Tick);
             // 
             // mDisplayBox
@@ -205,22 +206,24 @@ namespace Obi.UserControls
             this.mDisplayBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.mDisplayBox.FormattingEnabled = true;
             this.mDisplayBox.Items.AddRange(new object[] {
-            "Elapsed time",
-            "Total elapsed time",
-            "Remaining time",
-            "Total remaining time"});
+            "elapsed",
+            "elapsed (total)",
+            "remaining",
+            "remaining (total)"});
             this.mDisplayBox.Location = new System.Drawing.Point(511, 7);
             this.mDisplayBox.Name = "mDisplayBox";
-            this.mDisplayBox.Size = new System.Drawing.Size(130, 20);
+            this.mDisplayBox.Size = new System.Drawing.Size(108, 20);
             this.mDisplayBox.TabIndex = 10;
-            this.mDisplayBox.SelectedIndexChanged += new System.EventHandler(this.mDisplayBox_SelectedIndexChanged);
+            this.mDisplayBox.SelectionChangeCommitted += new System.EventHandler(this.mDisplayBox_SelectionChangeCommitted);
             // 
             // mVUMeterPanel
             // 
             this.mVUMeterPanel.BackColor = System.Drawing.Color.Transparent;
-            this.mVUMeterPanel.Location = new System.Drawing.Point(647, 3);
+            this.mVUMeterPanel.Location = new System.Drawing.Point(625, 1);
             this.mVUMeterPanel.Name = "mVUMeterPanel";
-            this.mVUMeterPanel.Size = new System.Drawing.Size(220, 41);
+            this.mVUMeterPanel.PlayListObj = null;
+            this.mVUMeterPanel.RecordingSessionObj = null;
+            this.mVUMeterPanel.Size = new System.Drawing.Size(204, 41);
             this.mVUMeterPanel.TabIndex = 11;
             // 
             // TransportBar
