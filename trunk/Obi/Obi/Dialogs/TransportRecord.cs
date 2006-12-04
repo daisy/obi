@@ -27,18 +27,25 @@ namespace Obi.Dialogs
         {
             
             mRecordingSession.Stop();
+            Close();
         }
 
         private void mPauseButton_Click(object sender, EventArgs e)
         {
-//            mRecordingSession.Listen();
+            mRecordingSession.Stop();
+            mRecordingSession.Listen();
+            mPauseButton.Visible = false ;
+            mRecordButton.Visible = true;
+            mRecordButton.Focus();
         }
 
         private void mRecordButton_Click(object sender, EventArgs e)
         {
             mRecordingSession.Stop();
                 mRecordingSession.Record();
-   
+                mPauseButton.Visible = true;
+                mRecordButton.Visible = false;
+                mPauseButton.Focus();
         }
 
         private void btnPageMark_Click(object sender, EventArgs e)
@@ -58,9 +65,14 @@ namespace Obi.Dialogs
 
         private void TransportRecord_Load(object sender, EventArgs e)
         {
+            mPauseButton.Visible = false;
             mRecordingSession.Listen();
 
-            
+        }
+
+        private void TransportRecord_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            mRecordingSession.Stop();
         }
 
     }
