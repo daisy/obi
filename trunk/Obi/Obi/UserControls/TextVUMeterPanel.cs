@@ -13,6 +13,7 @@ namespace Obi.UserControls
         private bool IsPlay ;
         private Playlist mPlaylist = null;
         private RecordingSession mRecordingSession = null;
+        public bool Enable = false;
 
         public TextVUMeterPanel( )
         {
@@ -29,7 +30,9 @@ namespace Obi.UserControls
         }
         set
         {
+            if ( Enable )
             SetPlayer(value);
+
         }
     }
 
@@ -41,21 +44,28 @@ namespace Obi.UserControls
             }
             set
             {
+                if (Enable)
                 SetRecorder(value);
+
             }
         }
 
 
         private void SetPlayer( Playlist PlayListArg )
         {
+            
             mPlaylist = PlayListArg ;
             mRecordingSession = null;
             IsPlay = true;
 
             // Associate events
-            //mPlaylist.Audioplayer.VuMeter.PeakOverload += new Obi.Events.Audio.VuMeter.PeakOverloadHandler( CatchPeakOverloadEvent  );
-//            mPlaylist.Audioplayer.StateChanged += new Obi.Events.Audio.Player.StateChangedHandler( CatchStateChangedEvent );
+            mPlaylist.Audioplayer.VuMeter.PeakOverload += new Obi.Events.Audio.VuMeter.PeakOverloadHandler( CatchPeakOverloadEvent  );
+            mPlaylist.Audioplayer.StateChanged += new Obi.Events.Audio.Player.StateChangedHandler( CatchStateChangedEvent );
+
+
+            Enable = false;
         }
+
 
         private void SetRecorder(RecordingSession RecordingSessionArg)
         {
@@ -64,8 +74,10 @@ namespace Obi.UserControls
             IsPlay = false;
 
             // Associate events
-//            mRecordingSession.AudioRecorderObj.VuMeterObject.PeakOverload += new Obi.Events.Audio.VuMeter.PeakOverloadHandler ( CatchPeakOverloadEvent ) ; 
-            //mRecordingSession.AudioRecorderObj.StateChanged += new Obi.Events.Audio.Recorder.StateChangedHandler ( CatchStateChangedEvent );
+            mRecordingSession.AudioRecorderObj.VuMeterObject.PeakOverload += new Obi.Events.Audio.VuMeter.PeakOverloadHandler ( CatchPeakOverloadEvent ) ; 
+            mRecordingSession.AudioRecorderObj.StateChanged += new Obi.Events.Audio.Recorder.StateChangedHandler ( CatchStateChangedEvent );
+
+            Enable = false;
         }   
 
 
@@ -81,7 +93,7 @@ namespace Obi.UserControls
             }
             else if (IsPlay == false && mRecordingSession != null )
             {
-                if (mRecordingSession.AudioRecorderObj.State == Audio.AudioRecorderState.Recording || mRecordingSession.AudioRecorderObj.State == Obi.Audio.AudioRecorderState.Listening )
+                if ( mRecordingSession.AudioRecorderObj.State == Audio.AudioRecorderState.Recording || mRecordingSession.AudioRecorderObj.State == Obi.Audio.AudioRecorderState.Listening )
                 {
                     mLeftBox.Text = mRecordingSession.AudioRecorderObj.VuMeterObject.m_MeanValueLeft.ToString();
                     mRightBox.Text = mRecordingSession.AudioRecorderObj.VuMeterObject.m_MeanValueRight.ToString();
@@ -145,6 +157,14 @@ namespace Obi.UserControls
         private void mResetButton_Click(object sender, EventArgs e)
         {
             mResetButton.Enabled = false;
+            if (IsPlay)
+            {
+                mPlaylist.Audioplayer.VuMeter.Reset();
+            }
+            else if (IsPlay == false)
+            {
+                mRecordingSession.AudioRecorderObj.VuMeterObject.Reset();
+            }
         }
 
     }
