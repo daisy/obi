@@ -347,6 +347,12 @@
     <Compile Include="UserControls\StripManagerPanel.SectionNodeSyncCallbacks.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UserControls\TextVUMeterPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\TextVUMeterPanel.Designer.cs">
+      <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\TOCPanel.ContextMenu.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -408,6 +414,10 @@
     <EmbeddedResource Include="UserControls\AnnotationBlock.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AnnotationBlock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TextVUMeterPanel.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TransportBar.resx">
       <SubType>Designer</SubType>
