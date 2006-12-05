@@ -34,6 +34,7 @@ namespace Obi
         public ObiForm()
         {
             InitializeComponent();
+            DoubleBuffered = true;
             mProject = null;
             mSettings = null;
             mCommandManager = new CommandManager();
