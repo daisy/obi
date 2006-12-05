@@ -80,7 +80,6 @@ namespace Obi
                 {
                     AudioMediaAsset current = mPlayer.CurrentAsset;
                     if (current == null) current = Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]);
-                    System.Diagnostics.Debug.Assert(mPlayer.State != AudioPlayerState.NotReady);
                     // really go back only if stopped or if before the end of the initial threshold
                     bool goback = mPlayer.State == AudioPlayerState.Stopped || mPlayer.CurrentTimePosition <= InitialThreshold;
                     return mPhrases[mCurrentPhraseIndex - (goback ? 1 : 0)];
@@ -153,6 +152,15 @@ namespace Obi
         }
 
         /// <summary>
+        /// First phrase of the current section (if this is not the first phrase of the section),
+        /// or of the previous section.
+        /// </summary>
+        public CoreNode PreviousSection
+        {
+            get { return mPhrases[PreviousSectionIndex]; }
+        }
+
+        /// <summary>
         /// Index of the first phrase of the previous section, or of the first phrase of the current section if we are
         /// past the initial threshold.
         /// </summary>
@@ -177,23 +185,6 @@ namespace Obi
                     for (; previous >= 0 && mPhrases[previous].getParent() == previousSection; --previous) { }
                     return previous + 1;
                 }
-            }
-        }
-
-        /// <summary>
-        /// First phrase of the current section (if this is not the first phrase of the section),
-        /// or of the previous section (
-        /// </summary>
-        public CoreNode PreviousSection
-        {
-            get
-            {
-                System.Diagnostics.Debug.Assert(mWholeBook);
-                // TODO
-                // if the current elapsed time in this section is less than the initial threshold,
-                // return the first phrase of the previous section; otherwise, the first phrase of
-                // the current section. See above for finding sections.
-                return null;
             }
         }
 
@@ -415,62 +406,12 @@ namespace Obi
             // System.Media.SystemSounds.Exclamation.Play();
             if (mCurrentPhraseIndex < mPhrases.Count - 1)
             {
-                PlayNextPhrase();
+                PlayPhrase(mCurrentPhraseIndex + 1);
             }
             else if (EndOfPlaylist != null)
             {
                 mPlaylistState = AudioPlayerState.Stopped;
                 EndOfPlaylist(this, new EventArgs());
-            }
-        }
-
-        /// <summary>
-        /// Play the next phrase in the list.
-        /// </summary>
-        private void PlayNextPhrase()
-        {
-            SkipToNextPhrase();
-            Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs(mPlayer.State);
-            mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]));
-            mPlaylistState = AudioPlayerState.Playing;
-            // send the state change event if the state actually changed
-            if (StateChanged != null && mPlayer.State != evargs.OldState) StateChanged(this, evargs);
-        }
-
-        /// <summary>
-        /// Move to the next phrase in the list. Do nothing if we are at the end.
-        /// </summary>
-        private void SkipToNextPhrase()
-        {
-            if (mCurrentPhraseIndex < mPhrases.Count - 1)
-            {
-                ++mCurrentPhraseIndex;
-                mElapsedTime = mStartTimes[mCurrentPhraseIndex];
-                if (MovedToPhrase != null)
-                {
-                    MovedToPhrase(this, new Events.Node.NodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
-                }
-            }
-        }
-
-        private void PlayPreviousPhrase()
-        {
-            SkipToPreviousPhrase();
-            Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs(mPlayer.State);
-            mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]));
-            mPlaylistState = AudioPlayerState.Playing;
-            // send the state change event if the state actually changed
-            if (StateChanged != null && mPlayer.State != evargs.OldState) StateChanged(this, evargs);
-        }
-
-
-        private void SkipToPreviousPhrase()
-        {
-            --mCurrentPhraseIndex;
-            mElapsedTime = mStartTimes[mCurrentPhraseIndex];
-            if (MovedToPhrase != null)
-            {
-                MovedToPhrase(this, new Events.Node.NodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
             }
         }
 
@@ -504,31 +445,6 @@ namespace Obi
                 mPlaylistState = AudioPlayerState.Stopped;
                 if (StateChanged != null) StateChanged(this, evargs);
                 mPlayer.EndOfAudioAsset -= new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
-            }
-        }
-
-        // Navigation functions. The following applies to all functions:
-        // If the player is playing, keep playing.
-        // If the player is paused, stay paused.
-        // If the player is stopped, start playing from the beginning of the next asset.
-
-        // moves play cursor to starting of current phrase
-        private void PlayFromStartOfPhrase()
-        {
-            if (mPlayer.State == AudioPlayerState.Playing)
-            {
-                mPausePosition = 0;
-                mPlayer.Stop();
-                mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]));
-            }
-            //else
-            else if (mPlaylistState == AudioPlayerState.Paused)
-            {
-                mPausePosition = 0;
-            }
-            else if (mPlaylistState == AudioPlayerState.Stopped)
-            {
-                mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]));
             }
         }
 
