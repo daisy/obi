@@ -58,7 +58,7 @@
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="urakawa, Version=0.5.2481.25819, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="urakawa, Version=0.5.2530.27014, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\implementation\UrakawaToolkit\bin\Debug\urakawa.dll</HintPath>
     </Reference>
@@ -155,12 +155,6 @@
     </Compile>
     <Compile Include="Dialogs\Split.Designer.cs">
       <DependentUpon>Split.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\TransportPlay.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\TransportPlay.Designer.cs">
-      <DependentUpon>TransportPlay.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\TransportRecord.cs">
       <SubType>Form</SubType>
@@ -402,10 +396,6 @@
     <EmbeddedResource Include="Dialogs\SentenceDetection.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SentenceDetection.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\TransportPlay.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>TransportPlay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\TransportRecord.resx">
       <SubType>Designer</SubType>

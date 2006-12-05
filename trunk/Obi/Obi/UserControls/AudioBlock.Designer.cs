@@ -72,11 +72,11 @@ namespace Obi.UserControls
             // 
             // mPage
             // 
+            this.mPage.BackColor = System.Drawing.Color.MistyRose;
             this.mPage.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mPage.Location = new System.Drawing.Point(5, 39);
             this.mPage.Name = "mPage";
             this.mPage.ReadOnly = true;
-						//med 20061120 svn merge: old size? this.mPage.Size = new System.Drawing.Size(100, 12);
             this.mPage.Size = new System.Drawing.Size(53, 12);
             this.mPage.TabIndex = 4;
             this.mPage.Text = "(page)";
@@ -95,11 +95,9 @@ namespace Obi.UserControls
             this.Controls.Add(this.mTimeLabel);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
             this.Name = "AudioBlock";
-						//med 20061120 svn merge: old size? this.Size = new System.Drawing.Size(116, 54);
             this.Size = new System.Drawing.Size(61, 54);
             this.DoubleClick += new System.EventHandler(this.AudioBlock_DoubleClick);
             this.Click += new System.EventHandler(this.AudioBlock_Click);
-            //med 20061120 svn merge: suspect this event was deleted in the latest code this.SizeChanged += new System.EventHandler(this.AudioBlock_SizeChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 

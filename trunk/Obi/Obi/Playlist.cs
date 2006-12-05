@@ -61,37 +61,6 @@ namespace Obi
         }
 
         /// <summary>
-        /// Get the next phrase in play order, or same if this is the last one.
-        /// </summary>
-        public CoreNode NextPhrase
-        {
-            get { return mPhrases[mCurrentPhraseIndex + mCurrentPhraseIndex < mPhrases.Count - 1 ? 1 : 0]; }
-        }
-
-        /// <summary>
-        /// Get the previous phrase in play order. Return the same phrase if this is the first phrase,
-        /// or if we are past the initial threshold.
-        /// </summary>
-        public CoreNode PreviousPhrase
-        {
-            get
-            {
-                if (mCurrentPhraseIndex > 0)
-                {
-                    AudioMediaAsset current = mPlayer.CurrentAsset;
-                    if (current == null) current = Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]);
-                    // really go back only if stopped or if before the end of the initial threshold
-                    bool goback = mPlayer.State == AudioPlayerState.Stopped || mPlayer.CurrentTimePosition <= InitialThreshold;
-                    return mPhrases[mCurrentPhraseIndex - (goback ? 1 : 0)];
-                }
-                else
-                {
-                    return mPhrases[0];
-                }
-            }
-        }
-
-        /// <summary>
         /// Set the currently playing node directly.
         /// </summary>
         public CoreNode CurrentPhrase
@@ -101,13 +70,7 @@ namespace Obi
                 int i;
                 for (i = 0; i < mPhrases.Count && mPhrases[i] != value; ++i) { }
                 System.Diagnostics.Debug.Print("Current selection is at index {0}/{1}", i, mPhrases.Count);
-                if (i < mPhrases.Count)
-                {
-                    // set the current phrase index to the asset and the total elapsed time and reset the pause position
-                    mCurrentPhraseIndex = i;
-                    mElapsedTime = mStartTimes[i];
-                    mPausePosition = 0.0;
-                }
+                if (i < mPhrases.Count) SkipToPhrase(i);
             }
         }
 
@@ -117,25 +80,6 @@ namespace Obi
         public CoreNode CurrentSection
         {
             get { return (CoreNode)mPhrases[mCurrentPhraseIndex].getParent(); }
-        }
-
-        /// <summary>
-        /// First phrase of the next section (if any.) Defined only if the whole book is playing.
-        /// </summary>
-        public CoreNode NextSection
-        {
-            get
-            {
-                if (mWholeBook)
-                {
-                    int i = NextSectionIndex;
-                    return i < mPhrases.Count ? mPhrases[i] : null;
-                }
-                else
-                {
-                    return null;
-                }
-            }
         }
 
         /// <summary>
@@ -149,15 +93,6 @@ namespace Obi
                 for (; i < mPhrases.Count && mPhrases[i].getParent() == CurrentSection; ++i) { }
                 return i;
             }
-        }
-
-        /// <summary>
-        /// First phrase of the current section (if this is not the first phrase of the section),
-        /// or of the previous section.
-        /// </summary>
-        public CoreNode PreviousSection
-        {
-            get { return mPhrases[PreviousSectionIndex]; }
         }
 
         /// <summary>
@@ -197,13 +132,13 @@ namespace Obi
             get { return mElapsedTime + CurrentTimeInAsset; }
             set
             {
-                // TODO
-                // check that the time is within bounds
-                // find which phrase it happens in
-                // if playing, resume to this position
-                // if stopped, start playing from that position
-                // if paused, move to that position but stay paused
-                SetTimeInPlayList(value);
+                if (value >= 0 && value <= mTotalTime)
+                {
+                    int i;
+                    for (i = 0; i < mPhrases.Count && mStartTimes[i] <= value; ++i) { }
+                    if (i > 0) --i;
+                    NavigateToPhrase(i);
+                }
             }
         }
 
