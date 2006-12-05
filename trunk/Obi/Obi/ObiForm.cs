@@ -222,7 +222,7 @@ namespace Obi
             if (mProject != null)
             {
                 if (!mCommandManager.HasUndo) mProject.Touch();
-                mProjectPanel.SynchronizeWithCoreTree(mProject.RootNode);
+                mProjectPanel.SynchronizeWithCoreTree();
             }
         }
 
@@ -335,7 +335,7 @@ namespace Obi
                     mProjectPanel.Project = mProject;
                     FormUpdateOpenedProject();
                     mCommandManager.Clear();
-                    mProjectPanel.SynchronizeWithCoreTree(mProject.getPresentation().getRootNode());
+                    mProjectPanel.SynchronizeWithCoreTree();
                     break;
                 case Obi.Events.Project.StateChange.Saved:
                     FormUpdateSavedProject();

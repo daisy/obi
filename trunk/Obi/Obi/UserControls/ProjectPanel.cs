@@ -17,6 +17,9 @@ namespace Obi.UserControls
     {
         private Project mProject;  // the project to display
 
+        /// <summary>
+        /// Set the project for the panel, as well as all the correct handlers.
+        /// </summary>
         public Project Project
         {
             get { return mProject; }
@@ -224,19 +227,29 @@ namespace Obi.UserControls
                 mSplitContainer.Visible = mProject != null;
                 mSplitContainer.Panel1Collapsed = false;
                 mNoProjectLabel.Text = mProject == null ? Localizer.Message("no_project") : "";
+                mTransportBar.Visible = mProject != null;
             }
         }
 
+        /// <summary>
+        /// TOC panel can be visible (true) or hidden (false).
+        /// </summary>
         public Boolean TOCPanelVisible
         {
             get { return mProject != null && !mSplitContainer.Panel1Collapsed; }
         }
 
+        /// <summary>
+        /// The strip manager for this project.
+        /// </summary>
         public StripManagerPanel StripManager
         {
             get { return mStripManagerPanel; }
         }
 
+        /// <summary>
+        /// The TOC panel for this project.
+        /// </summary>
         public TOCPanel TOCPanel
         {
             get { return mTOCPanel; }
@@ -275,23 +288,31 @@ namespace Obi.UserControls
             Project = null;
         }
 
+        /// <summary>
+        /// Hide the TOC panel.
+        /// </summary>
         public void HideTOCPanel()
         {
             mSplitContainer.Panel1Collapsed = true;
         }
 
+        /// <summary>
+        /// Show the TOC panel.
+        /// </summary>
         public void ShowTOCPanel()
         {
             mSplitContainer.Panel1Collapsed = false;
         }
 
         /// <summary>
-        /// Synchronize the project views with the core tree. Used when opening a XUK file.
+        /// Synchronize the project views with the core tree and initialize the playlist for the transport bar.
+        /// Used when opening a XUK file or touching the project.
         /// </summary>
-        public void SynchronizeWithCoreTree(CoreNode root)
+        public void SynchronizeWithCoreTree()
         {
-            mTOCPanel.SynchronizeWithCoreTree(root);
-            mStripManagerPanel.SynchronizeWithCoreTree(root);
+            mTOCPanel.SynchronizeWithCoreTree(mProject.RootNode);
+            mStripManagerPanel.SynchronizeWithCoreTree(mProject.RootNode);
+            mTransportBar.Playlist = new Playlist(mProject, Audio.AudioPlayer.Instance);
         }
     }
 }

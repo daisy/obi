@@ -44,7 +44,7 @@ namespace Obi.UserControls
             this.mNoProjectLabel.AutoSize = true;
             this.mNoProjectLabel.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.mNoProjectLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.mNoProjectLabel.Location = new System.Drawing.Point(285, 159);
+            this.mNoProjectLabel.Location = new System.Drawing.Point(384, 217);
             this.mNoProjectLabel.Name = "mNoProjectLabel";
             this.mNoProjectLabel.Size = new System.Drawing.Size(66, 12);
             this.mNoProjectLabel.TabIndex = 0;
@@ -69,8 +69,8 @@ namespace Obi.UserControls
             // 
             this.mSplitContainer.Panel2.BackColor = System.Drawing.Color.Transparent;
             this.mSplitContainer.Panel2.Controls.Add(this.mStripManagerPanel);
-            this.mSplitContainer.Size = new System.Drawing.Size(631, 292);
-            this.mSplitContainer.SplitterDistance = 210;
+            this.mSplitContainer.Size = new System.Drawing.Size(829, 409);
+            this.mSplitContainer.SplitterDistance = 275;
             this.mSplitContainer.TabIndex = 1;
             // 
             // mTOCPanel
@@ -79,7 +79,7 @@ namespace Obi.UserControls
             this.mTOCPanel.Location = new System.Drawing.Point(0, 0);
             this.mTOCPanel.Name = "mTOCPanel";
             this.mTOCPanel.SelectedSection = null;
-            this.mTOCPanel.Size = new System.Drawing.Size(210, 292);
+            this.mTOCPanel.Size = new System.Drawing.Size(275, 409);
             this.mTOCPanel.TabIndex = 0;
             // 
             // mStripManagerPanel
@@ -91,7 +91,7 @@ namespace Obi.UserControls
             this.mStripManagerPanel.SelectedNode = null;
             this.mStripManagerPanel.SelectedPhraseNode = null;
             this.mStripManagerPanel.SelectedSectionNode = null;
-            this.mStripManagerPanel.Size = new System.Drawing.Size(417, 292);
+            this.mStripManagerPanel.Size = new System.Drawing.Size(550, 409);
             this.mStripManagerPanel.TabIndex = 0;
             // 
             // mTransportBar
@@ -99,11 +99,11 @@ namespace Obi.UserControls
             this.mTransportBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mTransportBar.BackColor = System.Drawing.Color.White;
-            this.mTransportBar.Location = new System.Drawing.Point(0, 298);
+            this.mTransportBar.Location = new System.Drawing.Point(0, 415);
             this.mTransportBar.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.mTransportBar.Name = "mTransportBar";
             this.mTransportBar.Playlist = null;
-            this.mTransportBar.Size = new System.Drawing.Size(631, 32);
+            this.mTransportBar.Size = new System.Drawing.Size(829, 32);
             this.mTransportBar.TabIndex = 2;
             // 
             // ProjectPanel
@@ -115,7 +115,7 @@ namespace Obi.UserControls
             this.Controls.Add(this.mSplitContainer);
             this.Controls.Add(this.mNoProjectLabel);
             this.Name = "ProjectPanel";
-            this.Size = new System.Drawing.Size(631, 330);
+            this.Size = new System.Drawing.Size(829, 447);
             this.mSplitContainer.Panel1.ResumeLayout(false);
             this.mSplitContainer.Panel2.ResumeLayout(false);
             this.mSplitContainer.ResumeLayout(false);

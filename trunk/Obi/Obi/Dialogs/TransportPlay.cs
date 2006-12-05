@@ -109,12 +109,12 @@ namespace Obi.Dialogs
 
         private void btnNextPhrase_Click(object sender, EventArgs e)
         {
-            mPlaylist.NavigateNextPhrase();
+            mPlaylist.NavigateToNextPhrase();
         }
 
         private void btnPreviousPhrase_Click(object sender, EventArgs e)
         {
-            mPlaylist.NavigatePreviousPhrase();
+            mPlaylist.NavigateToPreviousPhrase();
         }
 
         private void btnRewind_Click(object sender, EventArgs e)
