@@ -251,7 +251,7 @@ namespace Obi.UserControls
                 mPauseButton.Visible = false;
                 mPlayButton.Visible = true;
             }
-            else if (mPlaylist.Audioplayer.State == Audio.AudioPlayerState.Playing)
+            else if (mPlaylist.State == Audio.AudioPlayerState.Playing)
             {
                 mPauseButton.Visible = true;
                 mPlayButton.Visible = false;
