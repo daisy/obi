@@ -44,7 +44,14 @@ namespace Obi.UserControls
         /// </summary>
         public Playlist Playlist
         {
-            get { return mPlaylist; }
+            get
+            {
+                if (mPlaylist == null)
+                {
+                    Playlist = new Playlist(((ProjectPanel)Parent).Project, Audio.AudioPlayer.Instance);
+                }
+                return mPlaylist;
+            }
             set
             {
                 mPlaylist = value;
@@ -79,7 +86,7 @@ namespace Obi.UserControls
         /// </summary>
         private void PrevSection()
         {
-            if (mPlaylist != null) mPlaylist.NavigatePreviousSection();
+            if (mPlaylist != null) mPlaylist.NavigateToPreviousSection();
         }
 
         private void mPrevPhraseButton_Click(object sender, EventArgs e)
@@ -88,17 +95,16 @@ namespace Obi.UserControls
         }
 
         /// <summary>
-        /// Play the previous phrase.
+        /// Move to or play the previous phrase.
         /// </summary>
         public void PrevPhrase()
         {
-            if (mPlaylist != null) mPlaylist.NavigatePreviousPhrase();
+            Playlist.NavigateToPreviousPhrase();
         }
 
         private void mPlayButton_Click(object sender, EventArgs e)
         {
-            Play();
-            
+            Play();            
         }
 
         /// <summary>
@@ -205,7 +211,7 @@ namespace Obi.UserControls
         /// </summary>
         public void NextPhrase()
         {
-            if (mPlaylist != null) mPlaylist.NavigateNextPhrase();
+            if (mPlaylist != null) mPlaylist.NavigateToNextPhrase();
         }
 
         private void mNextSectionButton_Click(object sender, EventArgs e)
@@ -218,7 +224,7 @@ namespace Obi.UserControls
         /// </summary>
         public void NextSection()
         {
-            if (mPlaylist != null) mPlaylist.NavigateNextSection();
+            if (mPlaylist != null) mPlaylist.NavigateToNextSection();
         }
 
         /// <summary>
