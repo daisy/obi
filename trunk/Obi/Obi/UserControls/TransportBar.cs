@@ -119,6 +119,10 @@ namespace Obi.UserControls
                     (mPlaylist == null || mPlaylist.State == Obi.Audio.AudioPlayerState.Stopped))
                 {
                     Playlist = new Playlist(((ProjectPanel)Parent).Project, Audio.AudioPlayer.Instance);
+                    mScrubTrackBar.Maximum = Convert.ToInt32(mPlaylist.TotalTime / 50);
+                    mScrubTrackBar.Value = Convert.ToInt32(mPlaylist.TotalTime / 100);
+                    mCentreSliderEventEffect = true;
+
                     mVUMeterPanel.Enable = true;
                     mVUMeterPanel.PlayListObj = mPlaylist;
                 }
@@ -142,6 +146,10 @@ namespace Obi.UserControls
             if (CanPlay)
             {
                 Playlist = new Playlist(((ProjectPanel)Parent).Project, Audio.AudioPlayer.Instance, node);
+                mScrubTrackBar.Maximum = Convert.ToInt32(mPlaylist.TotalTime / 50);
+                mScrubTrackBar.Value = Convert.ToInt32(mPlaylist.TotalTime / 100);
+                mCentreSliderEventEffect = true;
+
                 mPlaylist.Play();
 
                 mVUMeterPanel.Enable = true;
@@ -321,6 +329,42 @@ namespace Obi.UserControls
         private void mDisplayBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
             UpdateTimeDisplay();
+        }
+
+
+        private void tmTrackBar_Tick(object sender, EventArgs e)
+        {
+            tmTrackBar.Enabled = false;
+
+            mCentreSliderEventEffect = false;
+            mScrubTrackBar.Value = Convert.ToInt32(mPlaylist.TotalTime / 100);
+            mCentreSliderEventEffect = true;
+
+            if ( mTrackBarTimeValue  < 0)
+                mTrackBarTimeValue = 0;
+
+            if ( mTrackBarTimeValue > mPlaylist.TotalTime )
+                mTrackBarTimeValue =  mPlaylist.TotalTime ;
+
+            mPlaylist.CurrentTime = mTrackBarTimeValue;
+        }
+
+        private bool mCentreSliderEventEffect = false ;
+        private double mTrackBarTimeValue;
+
+        private void mScrubTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            if (mCentreSliderEventEffect == true)
+            {
+                tmTrackBar.Enabled = false;
+
+                mTrackBarTimeValue = mPlaylist.CurrentTime;
+
+                mTrackBarTimeValue = mTrackBarTimeValue + (( mScrubTrackBar.Value - ( Playlist.TotalTime / 100 ) ) * 100 );
+                tmTrackBar.Start();
+            }
+
+
         }
     }
 }
