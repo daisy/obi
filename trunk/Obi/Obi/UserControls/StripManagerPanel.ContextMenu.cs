@@ -131,8 +131,12 @@ namespace Obi.UserControls
         {
             if (mSelectedPhrase != null)
             {
+                Audio.AudioPlayerState State = this.mProjectPanel.TransportBar.Playlist.State;
+                double time = this.mProjectPanel.TransportBar.Playlist.CurrentTimeInAsset ;
+                this.mProjectPanel.TransportBar.Playlist.Stop();
+
                 CoreNode phrase = mSelectedPhrase;
-                Dialogs.Split dialog = new Dialogs.Split(phrase, 0.0);
+                Dialogs.Split dialog = new Dialogs.Split(phrase, time , State );
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     SplitAudioBlockRequested(this, new Events.Node.SplitNodeEventArgs(this, phrase, dialog.ResultAsset));
