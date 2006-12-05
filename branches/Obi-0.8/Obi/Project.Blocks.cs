@@ -131,7 +131,7 @@ namespace Obi
             MediaSet(this, new Events.Node.SetMediaEventArgs(e.Origin, e.Node, Project.AudioChannelName,
                 GetMediaForChannel(e.Node, Project.AudioChannelName)));
             DeletedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(e.Origin, e.Next));
-            e.Next.detach();
+            e.Next.DetachFromParent();
             TouchedNode(this, new Events.Node.NodeEventArgs(e.Origin, e.Node));
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             mUnsaved = true;
@@ -264,7 +264,7 @@ namespace Obi
                 SectionNode parent = (SectionNode)node.getParent();
                 int index = parent.indexOf(node);
                 DeletedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, node));
-                node.detach();
+                node.DetachFromParent();
 
                 foreach (PhraseNode n in nodes)
                 {
@@ -293,7 +293,7 @@ namespace Obi
                 foreach (PhraseNode n in nodes)
                 {
                     DeletedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, n));
-                    n.detach();
+                    n.DetachFromParent();
                 }
                 parent.AddChildPhrase(node, index);
                 AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, node));
@@ -409,7 +409,7 @@ namespace Obi
         public void DeletePhraseNode(PhraseNode node)
         {
             DeletedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, node));
-            node.detach();
+            node.DetachFromParent();
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }

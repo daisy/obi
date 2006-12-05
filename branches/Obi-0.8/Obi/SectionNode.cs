@@ -126,7 +126,9 @@ namespace Obi
         /// </summary>
         public SectionNode SectionChild(int index)
         {
-            return (SectionNode)getChild(index + mSectionOffset);
+            CoreNode test = getChild(index + mSectionOffset);
+            return (SectionNode)test;
+           // return (SectionNode)getChild(index + mSectionOffset);
         }
 
         /// <summary>
@@ -241,7 +243,7 @@ namespace Obi
         /// <param name="node"></param>
         public void RemoveChildPhrase(PhraseNode node)
         {
-            node.detach();
+            node.DetachFromParent();
             --mSectionOffset;
         }
 
@@ -269,5 +271,22 @@ namespace Obi
             if (deep) copyChildren(copy);
             return copy;
         }
+        protected void copyChildren(SectionNode destinationNode)
+        {
+            for (int i = 0; i < this.getChildCount(); i++)
+            {
+                if (getChild(i).GetType() == System.Type.GetType("Obi.SectionNode"))
+                {
+                    SectionNode copy = ((SectionNode)getChild(i)).copy(true);
+                    destinationNode.AppendChildSection(copy);
+                }
+                else if (getChild(i).GetType() == System.Type.GetType("Obi.PhraseNode"))
+                {
+                    PhraseNode copy = ((PhraseNode)getChild(i)).copy(true);
+                    destinationNode.AddChildPhrase(copy, i);
+                }
+            }
+        }
+
     }
 }

@@ -20,7 +20,7 @@ namespace Obi.Visitors
         {
             CoreNode n = (CoreNode)node;
            
-            string info = String.Format("{0}{1}", indent, n.GetType());
+            string info = String.Format("{0}{1}{2}", indent, n.GetType(), ((CoreNode)n).GetHashCode().ToString());
            
             if (node.GetType() == Type.GetType("Obi.SectionNode"))
             {

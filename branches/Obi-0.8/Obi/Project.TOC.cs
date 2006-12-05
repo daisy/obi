@@ -143,7 +143,7 @@ namespace Obi
                   //  getPresentation().getRootNode().acceptDepthFirst(visitor);
                     command = new Commands.TOC.DeleteSectionNode(node);
               //  }
-                node.detach();
+                node.DetachFromParent();
                 DeletedSectionNode(this, new Events.Node.SectionNodeEventArgs(origin, node));
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -169,7 +169,7 @@ namespace Obi
         /// <param name="position"></param>
         public void UndoMoveSectionNode(SectionNode node, CoreNode parent, int index)
         {
-            if (node.getParent() != null) node.detach();
+            if (node.getParent() != null) node.DetachFromParent();
             AddChildSection(node, parent, index);
            
             UndidMoveSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, parent));
@@ -233,13 +233,13 @@ namespace Obi
                 if (node.getParent().Equals(getPresentation().getRootNode()))
                 {
                     newParent = ((CoreNode)node.getParent()).getChild(node.Index - 1);
-                    movedNode = (SectionNode)node.detach();
+                    movedNode = (SectionNode)node.DetachFromParent();
                 }
                 //else the node's parent is an ordinary section node
                 else
                 {
                     newParent = ((SectionNode)node).SectionChild(node.Index - 1);
-                    movedNode = (SectionNode)node.detach();
+                    movedNode = (SectionNode)node.DetachFromParent();
                 }
                 AppendChildSection(movedNode, newParent);                
                 return true;
@@ -436,7 +436,7 @@ namespace Obi
             }
 
             mClipboard.Section = node;
-            node.detach();
+            node.DetachFromParent();
 
             CutSectionNode(this, new Events.Node.SectionNodeEventArgs(origin, node));
 
@@ -471,7 +471,7 @@ namespace Obi
             }
 
             //the actual copy operation
-            mClipboard.Section = node.copy(true);
+            mClipboard.Section = node;
 
             CopiedSectionNode(this, new Events.Node.SectionNodeEventArgs(origin, mClipboard.Section));
 
@@ -540,7 +540,7 @@ namespace Obi
         //md 20060810
         public void UndoPasteSectionNode(SectionNode node)
         {
-            node.detach();
+            node.DetachFromParent();
            
             UndidPasteSectionNode(this, new Events.Node.SectionNodeEventArgs(this, node));
             mUnsaved = true;
