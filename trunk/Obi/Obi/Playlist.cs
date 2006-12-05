@@ -132,12 +132,13 @@ namespace Obi
             get { return mElapsedTime + CurrentTimeInAsset; }
             set
             {
-                if (value >= 0 && value <= mTotalTime)
+                if (value >= 0 && value < mTotalTime)
                 {
                     int i;
                     for (i = 0; i < mPhrases.Count && mStartTimes[i] <= value; ++i) { }
                     if (i > 0) --i;
                     NavigateToPhrase(i);
+                    CurrentTimeInAsset = value - mStartTimes[i];
                 }
             }
         }
@@ -148,6 +149,20 @@ namespace Obi
         public double CurrentTimeInAsset
         {
             get { return mPlaylistState == AudioPlayerState.Playing ? mPlayer.GetCurrentTimePosition() : mPausePosition; }
+            set
+            {
+                if (value >= 0 && value < Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]).LengthInMilliseconds)
+                {
+                    if (mPlaylistState == AudioPlayerState.Playing)
+                    {
+                        mPlayer.CurrentTimePosition = value;
+                    }
+                    else
+                    {
+                        mPausePosition = value;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -164,11 +179,7 @@ namespace Obi
         public double RemainingTime
         {
             get { return mTotalTime - CurrentTime; }
-            set
-            {
-                // TODO
-                // same as setting current time, but from the end!
-            }
+            set { CurrentTime = mTotalTime - value; }
         }
 
         /// <summary>
@@ -181,6 +192,10 @@ namespace Obi
                 return Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]).LengthInMilliseconds -
                     (mPlaylistState == AudioPlayerState.Playing ? mPlayer.GetCurrentTimePosition() : mPausePosition);
             }
+            set
+            {
+                CurrentTimeInAsset = Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]).LengthInMilliseconds - value;
+            }
         }
 
         /// <summary>
@@ -190,8 +205,6 @@ namespace Obi
         {
             get { return mWholeBook; }
         }
-
-        // functions start from here on
 
         /// <summary>
         /// Create a playlist for the whole project.
