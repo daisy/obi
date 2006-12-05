@@ -11,6 +11,7 @@
     <Metadata name="dc:Language" content="en" scheme=""/>
     <Metadata name="dc:Publisher" content="Urakawa Project" scheme=""/>
     <Metadata name="dc:Date" content="2006-11-29" scheme="YYYY-MM-DD"/>
+    <Metadata name="dtb:depth" content="1" scheme=""/>
     <Metadata name="obi:assetsdir" content="tsunamis_assets" scheme=""/>
     <Metadata name="obi:xukversion" content="obi-xuk-008" scheme=""/>
   </ProjectMetadata>

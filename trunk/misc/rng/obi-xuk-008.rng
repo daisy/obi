@@ -4,7 +4,7 @@
 <!-- $Id$ -->
 
 <grammar xmlns="http://relaxng.org/ns/structure/1.0"
-  xmlns:obi="http://www.daisy.org/urakawa/xuk"
+  xmlns:obi="http://www.daisy.org/urakawa/obi"
   ns="http://www.daisy.org/urakawa/xuk/0.5">
 
   <start>
@@ -27,23 +27,30 @@
   <define name="metadata">
     <element name="ProjectMetadata">
       <oneOrMore>
-        <ref name="dc-metadata"/>
+        <ref name="dc-or-dtb-metadata"/>
       </oneOrMore>
       <ref name="obi-metadata-assetsdir"/>
       <ref name="obi-metadata-xukversion"/>
     </element>
   </define>
 
-  <!-- For simplicity, dc-metadata allows anything. We could be more strict
-  here in the future. These elements are used in the same way than in DAISY
-  so they can be translated without any problem. -->
-  <define name="dc-metadata">
+  <!-- For simplicity, dc-or-dtb-metadata allows anything prefixed by dc: or
+  dtb:. We could be more strict here in the future. These elements are used in
+  the same way than in DAISY so they can be translated without any problem. -->
+  <!-- Note: we do not really export dtb: metadata yet but we might. -->
+  <define name="dc-or-dtb-metadata">
     <element name="Metadata">
       <attribute name="name">
-        <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
-          type="string">
-          <param name="pattern">dc:.*</param>
-        </data>
+        <choice>
+          <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+            type="string">
+            <param name="pattern">dc:.*</param>
+          </data>
+          <data datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+            type="string">
+            <param name="pattern">dtb:.*</param>
+          </data>
+        </choice>
       </attribute>
       <attribute name="content"/>
       <attribute name="scheme"/>
@@ -51,6 +58,9 @@
     </element>
   </define>
 
+  <!-- The directory in which the assets (audio clip files) can be found. All
+  clip references are relative to this path, which is relative to the XUK file
+  location. -->
   <define name="obi-metadata-assetsdir">
     <element name="Metadata">
       <attribute name="name">
@@ -141,12 +151,14 @@
     a section should have at least a phrase child (the first phrase being the
     section title) but Obi will happily save XUK files with empty sections,
     or sections with no phrases. -->
+    <!-- We assume that the audio for the section in the navmap is the first
+    clip of the first used phrase. Obi will try to make sure that it makes
+    sense. -->
     <define name="section-node">
       <element name="section">
         <ref name="used-attr"/>
         <ref name="section-properties"/>
         <ref name="section-children"/>
-
       </element>
     </define>
 
