@@ -570,7 +570,7 @@ namespace Obi
         // md 20061005.  expect to replace soon with a toolkit or extension function.
         public int getNodeLevel(CoreNode node)
         {
-            //if we are the root node
+            //if we are root
             if (node.getParent() == null)
             {
                 return 0;

@@ -245,13 +245,6 @@ namespace Obi.UserControls
                 mSectionNodeMap[(SectionNode)node] = strip;
                 mFlowLayoutPanel.Controls.Add(strip);
                 parentSection = ((SectionNode)node);
-                //md 20061005
-                //make the font bigger
-                int nodeLevel = this.mProjectPanel.Project.getNodeLevel((SectionNode)node);
-                float currentSize = strip.GetTitleFontSize();
-                if (nodeLevel == 1) strip.SetTitleFontSize(currentSize + 3);
-                else if (nodeLevel == 2) strip.SetTitleFontSize(currentSize + 2);
-                else if (nodeLevel == 3) strip.SetTitleFontSize(currentSize + 1);
             }
             else if (node.GetType() == Type.GetType("Obi.PhraseNode"))
             {
@@ -405,7 +398,7 @@ namespace Obi.UserControls
 
             CoreNode previous = null;
             CoreNode cur = null;
-            CoreNode parent = (SectionNode)node.getParent();
+            CoreNode parent = (CoreNode)node.getParent();
 
             if (parent != null && parent.getChildCount() > 0)
             {

@@ -35,19 +35,17 @@ namespace Obi.UserControls
                     mTOCPanel.AddChildSectionNodeRequested -= new Events.SectionNodeHandler(mProject.CreateChildSectionNodeRequested);
 
                     //these are all events related to moving nodes up and down
-                   /*mProject.MovedSectionNode -= new Events.MovedSectionNodeHandler(mTOCPanel.SyncMovedSectionNode);
+                    mProject.MovedSectionNode -= new Events.MovedSectionNodeHandler(mTOCPanel.SyncMovedSectionNode);
                     mProject.MovedSectionNode -= new Events.MovedSectionNodeHandler(mStripManagerPanel.SyncMovedSectionNode);
                     mProject.UndidMoveSectionNode -= new Events.MovedSectionNodeHandler(mTOCPanel.SyncMovedSectionNode);
                     mProject.UndidMoveSectionNode -= new Events.MovedSectionNodeHandler(mStripManagerPanel.SyncMovedSectionNode);
-                 
-                    mProject.ShallowSwappedSectionNodes -= new Events.ShallowSwappedSectionNodesHandler(mTOCPanel.SyncShallowSwapNodes);
-                    mProject.ShallowSwappedSectionNodes -= new Events.ShallowSwappedSectionNodesHandler(mStripManagerPanel.SyncShallowSwapNodes);
-                    */
+                
                     mTOCPanel.IncreaseSectionNodeLevelRequested -= new Events.SectionNodeHandler(mProject.IncreaseSectionNodeLevelRequested);
                     //marisa: the former "mProject.IncreasedSectionLevel" event is now handled by MovedNode
 
                     mTOCPanel.DecreaseSectionNodeLevelRequested -= new Events.SectionNodeHandler(mProject.DecreaseSectionNodeLevelRequested);
                     mProject.DecreasedSectionNodeLevel -= new Events.SectionNodeHandler(mTOCPanel.SyncDecreasedSectionNodeLevel);
+                    mProject.DecreasedSectionNodeLevel -= new Events.SectionNodeHandler(mStripManagerPanel.SyncDecreaseSectionNodeLevel);
 
                     mTOCPanel.RenameSectionNodeRequested -= new Events.RenameSectionNodeHandler(mProject.RenameSectionNodeRequested);
                     mStripManagerPanel.RenameSectionRequested -= new Events.RenameSectionNodeHandler(mProject.RenameSectionNodeRequested);
@@ -123,25 +121,20 @@ namespace Obi.UserControls
                     mTOCPanel.AddChildSectionNodeRequested += new Events.SectionNodeHandler(value.CreateChildSectionNodeRequested);
 
                     //these all relate to moving nodes up and down
-                    //md 20061130: removing these features (section up/down from TOC)
-                    /*mTOCPanel.RequestToMoveSectionNodeUp += new Events.SectionNodeHandler(value.MoveSectionNodeUpRequested);
-                    mTOCPanel.RequestToMoveSectionNodeDown += new Events.SectionNodeHandler(value.MoveSectionNodeDownRequested);
+                  
                     value.MovedSectionNode += new Events.MovedSectionNodeHandler(mTOCPanel.SyncMovedSectionNode);
                     value.MovedSectionNode += new Events.MovedSectionNodeHandler(mStripManagerPanel.SyncMovedSectionNode);
+                    
                     value.UndidMoveSectionNode += new Events.MovedSectionNodeHandler(mTOCPanel.SyncMovedSectionNode);
                     value.UndidMoveSectionNode += new Events.MovedSectionNodeHandler(mStripManagerPanel.SyncMovedSectionNode);
-                    mStripManagerPanel.RequestToMoveSectionNodeDownLinear += new Events.SectionNodeHandler(value.MoveSectionNodeDownLinearRequested);
-                    mStripManagerPanel.RequestToMoveSectionNodeUpLinear += new Events.SectionNodeHandler(value.MoveSectionNodeUpLinearRequested);
-                    value.ShallowSwappedSectionNodes += new Events.ShallowSwappedSectionNodesHandler(mTOCPanel.SyncShallowSwapNodes);
-                    value.ShallowSwappedSectionNodes += new Events.ShallowSwappedSectionNodesHandler(mStripManagerPanel.SyncShallowSwapNodes);
-                    */
-                    mTOCPanel.IncreaseSectionNodeLevelRequested +=
-                        new Events.SectionNodeHandler(value.IncreaseSectionNodeLevelRequested);
+                    
+                    mTOCPanel.IncreaseSectionNodeLevelRequested += new Events.SectionNodeHandler(value.IncreaseSectionNodeLevelRequested);
                     //marisa: the former "mProject.IncreasedSectionLevel" event is now handled by MovedNode
 
                     mTOCPanel.DecreaseSectionNodeLevelRequested +=
                         new Events.SectionNodeHandler(value.DecreaseSectionNodeLevelRequested);
                     value.DecreasedSectionNodeLevel += new Events.SectionNodeHandler(mTOCPanel.SyncDecreasedSectionNodeLevel);
+                    value.DecreasedSectionNodeLevel += new Events.SectionNodeHandler(mStripManagerPanel.SyncDecreaseSectionNodeLevel);
 
                     mTOCPanel.RenameSectionNodeRequested += new Events.RenameSectionNodeHandler(value.RenameSectionNodeRequested);
                     mStripManagerPanel.RenameSectionRequested += new Events.RenameSectionNodeHandler(value.RenameSectionNodeRequested);

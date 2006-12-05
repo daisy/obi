@@ -263,8 +263,7 @@ namespace Obi
             //if (origin != this)
             //{
                 CoreNode parent = (CoreNode)node.getParent();
-              //  Visitors.SectionNodePosition nodeVisitor = new Visitors.SectionNodePosition(node);
-              //  getPresentation().getRootNode().acceptDepthFirst(nodeVisitor);
+              
                 //we need to save the state of the node before it is altered
                 command = new Commands.TOC.DecreaseSectionNodeLevel(node, parent);
                     
@@ -274,10 +273,6 @@ namespace Obi
             if (succeeded)
             {
                 CoreNode newParent = (CoreNode)node.getParent();
-
-                //Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
-                //getPresentation().getRootNode().acceptDepthFirst(visitor);
-
                 DecreasedSectionNodeLevel(this, new Events.Node.SectionNodeEventArgs(origin, node));
                 mUnsaved = true;
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -305,24 +300,26 @@ namespace Obi
             }
 
             List<SectionNode> futureChildren = new List<SectionNode>();
-            int nodeIndex = ((CoreNode)node.getParent()).indexOf(node);
+            int nodeIndex = node.Index;
 
-            int numChildren = node.getParent().getChildCount();
+            int numSectionChildren = ((SectionNode)node.getParent()).SectionChildCount;
 
             //make copies of our future children, and remove them from the tree
-            for (int i = numChildren - 1; i > nodeIndex; i--)
+            for (int i = numSectionChildren - 1; i > nodeIndex; i--)
             {
-                futureChildren.Add(node.getParent().getChild(i).detach());
+                SectionNode sectionChild;
+                sectionChild = (SectionNode)((SectionNode)node.getParent()).SectionChild(i).DetachFromParent();
+                futureChildren.Add(sectionChild);
             }
             //since the list was built in backwards order, rearrange it
             futureChildren.Reverse();
 
             CoreNode newParent = (CoreNode)node.getParent().getParent();
-            //int newIndex = newParent.indexOf((CoreNode)node.getParent()) + 1;
+            
             //the index is relative to sections
             int newIndex = ((SectionNode)node.getParent()).Index + 1;
 
-            SectionNode clone = (SectionNode)node.detach();
+            SectionNode clone = (SectionNode)node.DetachFromParent();
 
             AddChildSection(clone, newParent, newIndex);
 
@@ -334,9 +331,6 @@ namespace Obi
             return true;
 
         }
-
-        //md LEFT OFF HERE 20061204
-        //was: replacing section addition with the wrapper functions here and in SectionNode
 
         public void DecreaseSectionNodeLevelRequested(object sender, Events.Node.SectionNodeEventArgs e)
         {
@@ -363,16 +357,19 @@ namespace Obi
             }
 
             //detach the non-original children (child nodes originalChildCount...n-1)
-            ArrayList nonOriginalChildren = new ArrayList();
+            List<SectionNode> nonOriginalChildren = new List<SectionNode>();
             int totalNumChildren = node.getChildCount();
 
             for (int i = totalNumChildren - 1; i >= originalChildCount; i--)
             {
-                CoreNode child = (CoreNode)node.getChild(i);
-                if (child != null)
+                if (node.getChild(i).GetType() == Type.GetType("Obi.SectionNode"))
                 {
-                    nonOriginalChildren.Add(child);
-                    child.detach();
+                    SectionNode child = (SectionNode)node.getChild(i);
+                    if (child != null)
+                    {
+                        nonOriginalChildren.Add(child);
+                        child.DetachFromParent();
+                    }
                 }
             }
 
@@ -380,36 +377,19 @@ namespace Obi
             nonOriginalChildren.Reverse();
 
             //insert the node back in its old location
-            node.detach();
-            if (parent.Equals(getPresentation().getRootNode()))
-            {
-                parent.insert(node, index);
-            }
-            else
-            {
-                ((SectionNode)parent).AddChildSection(node, index);
-            }
+            node.DetachFromParent();
+           
+            AppendChildSection(node, parent);
 
             MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, parent));
 
-            Visitors.SectionNodePosition visitor = null;
-
+      
             //reattach the children
             for (int i = 0; i < nonOriginalChildren.Count; i++)
             {
-                parent.appendChild((CoreNode)nonOriginalChildren[i]);
-
-                if (GetNodeType((CoreNode)nonOriginalChildren[i]) == NodeType.Section)
-                {                    
-                    visitor = new Visitors.SectionNodePosition((CoreNode)nonOriginalChildren[i]);
-                    getPresentation().getRootNode().acceptDepthFirst(visitor);
-
-                    int childSectionIdx = GetSectionNodeIndex((CoreNode)nonOriginalChildren[i]);
-
-                    MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs
-                        (this, (CoreNode)nonOriginalChildren[i], parent,
-                        parent.getChildCount() - 1, visitor.Position, childSectionIdx));
-                }
+                AppendChildSection(nonOriginalChildren[i], parent);
+                MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs
+                    (this, nonOriginalChildren[i], parent));
             }
             
         }
@@ -446,8 +426,7 @@ namespace Obi
             if (node == null) return;
 
             CoreNode parent = (CoreNode)node.getParent();
-            Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
-            getPresentation().getRootNode().acceptDepthFirst(visitor);
+          
             //we need to save the state of the node before it is altered
             Commands.TOC.CutSectionNode command = null;
 
@@ -545,16 +524,12 @@ namespace Obi
             }
 
             //the actual paste operation
-            parent.insert(pastedSection, 0);
+            AppendChildSection(pastedSection, parent);
 
             //reconstruct the assets
             Obi.Visitors.CopyPhraseAssets assVisitor = new Obi.Visitors.CopyPhraseAssets(mAssManager, this);
             pastedSection.acceptDepthFirst(assVisitor);
-           
-            Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(pastedSection);
-            getPresentation().getRootNode().acceptDepthFirst(visitor);
-
-            
+        
             PastedSectionNode(this, new Events.Node.SectionNodeEventArgs(origin, pastedSection));
 
             mUnsaved = true;
@@ -592,7 +567,7 @@ namespace Obi
             //however, we can't create the command here, because its data isn't ready yet
             //these lines only need to be executed if origin != this
             CoreNode parent = null;
-            Visitors.SectionNodePosition visitor = null;
+            
             int nodeIndex = 0;
             int nodeChildCount = 0;
             if (origin != this)
@@ -689,7 +664,7 @@ namespace Obi
 
         //helper function which tests for parent being root
         //md 20061204
-        internal void AppendChildSection(CoreNode node, CoreNode parent)
+        internal void AppendChildSection(SectionNode node, CoreNode parent)
         {
             if (parent.Equals(getPresentation().getRootNode()))
             {

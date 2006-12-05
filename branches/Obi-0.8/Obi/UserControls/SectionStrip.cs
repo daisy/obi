@@ -14,6 +14,7 @@ namespace Obi.UserControls
     {
         private StripManagerPanel mManager;  // the manager for this strip
         private SectionNode mNode;              // the core node for this strip
+        private static float mDefaultFontSize = 12;
 
         public delegate void ChangedMinimumSizeHandler(object sender, EventArgs e);
 
@@ -55,6 +56,7 @@ namespace Obi.UserControls
             set
             {
                 mNode = value;
+                SetStripFontSize();
             }
         }
 
@@ -267,6 +269,20 @@ namespace Obi.UserControls
             }
             return prevIndex;
         }
+
+        internal void SetStripFontSize()
+        {
+            if (mNode != null)
+            {
+                int nodeLevel = this.mNode.Project.getNodeLevel(mNode);
+                //float currentSize = GetTitleFontSize();
+                if (nodeLevel == 1) SetTitleFontSize(mDefaultFontSize + 3);
+                else if (nodeLevel == 2) SetTitleFontSize(mDefaultFontSize + 2);
+                else if (nodeLevel == 3) SetTitleFontSize(mDefaultFontSize + 1);
+                else SetTitleFontSize(mDefaultFontSize);
+            }
+        }
+
         #endregion
 
         #region audio strip
@@ -279,10 +295,6 @@ namespace Obi.UserControls
         {
             mAnnotationLayoutPanel.Controls.Add(block.AnnotationBlock);
             mAudioLayoutPanel.Controls.Add(block);
-/*med 20061120 svn merge: i think this is old code
-            mAnnotationLayoutPanel.Controls.Add(block.AnnotationBlock);
-            //md 20061024 force resizing
-            block._Width = block.AnnotationBlock.Width;*/
             block.AnnotationBlock.ChangedMinimumSize += new SectionStrip.ChangedMinimumSizeHandler(
                 delegate(object sender, EventArgs e) { ManageAudioBlockWidth(block); }
             );
@@ -378,7 +390,7 @@ namespace Obi.UserControls
         /// <summary>
         /// set the font size for the title font
         /// </summary>
-        public void SetTitleFontSize(float sz)
+        private void SetTitleFontSize(float sz)
         {
             Font newfont = new Font(mRenameBox.Font.FontFamily, sz);
             mRenameBox.Font = newfont;

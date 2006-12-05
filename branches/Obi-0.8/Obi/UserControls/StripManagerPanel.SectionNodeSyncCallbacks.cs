@@ -28,13 +28,6 @@ namespace Obi.UserControls
             mSectionNodeMap[node] = strip;
             mFlowLayoutPanel.Controls.Add(strip);
             mFlowLayoutPanel.Controls.SetChildIndex(strip, node.Position);
-            //md 20061005
-            //make the font bigger
-            int nodeLevel = this.mProjectPanel.Project.getNodeLevel(node);
-            float currentSize = strip.GetTitleFontSize();
-            if (nodeLevel == 1) strip.SetTitleFontSize(currentSize + 3);
-            else if (nodeLevel == 2) strip.SetTitleFontSize(currentSize + 2);
-            else if (nodeLevel == 3) strip.SetTitleFontSize(currentSize + 1);
 
             if (rename)
             {
@@ -93,8 +86,8 @@ namespace Obi.UserControls
         internal void SyncMovedSectionNode(object sender, Events.Node.MovedSectionNodeEventArgs e)
         {
             //md:
-            ArrayList stripsToMove = new ArrayList();
-            MakeFlatListOfStrips(e.Node, stripsToMove);
+            List<SectionStrip> stripsToMove = new List<SectionStrip>();
+            stripsToMove = MakeFlatListOfStrips(e.Node);
 
             SectionStrip parentNodeStrip = mSectionNodeMap[e.Node];
             int currentPosition = mFlowLayoutPanel.Controls.GetChildIndex(parentNodeStrip);
@@ -125,6 +118,20 @@ namespace Obi.UserControls
 
             //mg:
             this.ReflowTabOrder(parentNodeStrip);
+            //md 20061205
+            SetStripsFontSizes(parentNodeStrip);
+        }
+
+        //md 20061205
+        //recursively set the font size on the given strip and its node's children
+        private void SetStripsFontSizes(SectionStrip parentNodeStrip)
+        {
+            List<SectionStrip> strips = MakeFlatListOfStrips(parentNodeStrip.Node);
+
+            foreach (SectionStrip strip in strips)
+            {
+                strip.SetStripFontSize();
+            }
         }
 
         //md 20060811
@@ -164,33 +171,31 @@ namespace Obi.UserControls
             SyncDeletedSectionNode(sender, e);
         }
 
-        //md: recursive function to enumerate the strips under a node (including the strip for the node itself)
-        private void MakeFlatListOfStrips(SectionNode node, ArrayList strips)
+        //md 20061205
+        internal void SyncDecreaseSectionNodeLevel(object sender, Events.Node.SectionNodeEventArgs e)
         {
+            //adjust the fontsize when the section changes its level
+            //note that the "increase section level" event is handled by MovedSectionNode
+            SectionStrip strip = this.mSectionNodeMap[e.Node];
+            SetStripsFontSizes(strip);
+            
+        }
+        //md: recursive function to enumerate the strips under a node (including the strip for the node itself)
+        private List<SectionStrip> MakeFlatListOfStrips(SectionNode node)
+        {
+            List<SectionStrip> strips = new List<SectionStrip>();
             SectionStrip strip = mSectionNodeMap[node];
             strips.Add(strip);
 
             for (int i = 0; i < node.SectionChildCount; i++)
             {
-                MakeFlatListOfStrips(node.SectionChild(i), strips);
+                strips.AddRange(MakeFlatListOfStrips(node.SectionChild(i)));
             }
+
+            return strips;
         }
 
-        //md 20060813
-        internal void SyncShallowSwapNodes(object sender, Events.Node.ShallowSwappedSectionNodesEventArgs e)
-        {
-            SectionStrip strip1 = mSectionNodeMap[e.Node];
-            SectionStrip strip2 = mSectionNodeMap[e.SwappedNode];
-
-            mFlowLayoutPanel.Controls.SetChildIndex(strip1, e.SwappedNode.Position);
-            mFlowLayoutPanel.Controls.SetChildIndex(strip2, e.Node.Position);
-
-            if (e.SwappedNode.Position < e.Node.Position)
-                this.ReflowTabOrder(strip1);
-            else
-                this.ReflowTabOrder(strip2);
-
-        }
+        
 
     }
 }

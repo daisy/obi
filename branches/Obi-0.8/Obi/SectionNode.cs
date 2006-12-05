@@ -248,10 +248,10 @@ namespace Obi
         /// <summary>
         /// Detach this node section from its parent and update the span.
         /// </summary>
-        internal void DetachFromParent()
+        internal SectionNode DetachFromParent()
         {
             if (ParentSection != null) ParentSection.UpdateSpan(-mSpan);
-            this.detach();
+            return (SectionNode)this.detach();
         }
 
         /// <summary>
