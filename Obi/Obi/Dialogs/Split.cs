@@ -16,6 +16,8 @@ namespace Obi.Dialogs
         private Assets.AudioMediaAsset mSourceAsset;  // the source asset
         private Assets.AudioMediaAsset mResultAsset;  // the new asset created by the split
         private double mSplitTime;                    // time at which the split should occur
+        private Audio.AudioPlayerState mSplitState;
+        private double mDialogLoadTime ;
 
         public Assets.AudioMediaAsset ResultAsset
         {
@@ -33,12 +35,16 @@ namespace Obi.Dialogs
             }
         }
 
-        public Split(CoreNode node, double splitTime)
+        public Split(CoreNode node, double Time , Audio.AudioPlayerState StateArg )
         {
+            
             InitializeComponent();
             mNode = node;
-            mSplitTime = splitTime;
+            mDialogLoadTime = Time;
+            mSplitState = StateArg;
+            
             mSourceAsset = Project.GetAudioMediaAsset(node);
+            
             mResultAsset = null;
             Audio.AudioPlayer.Instance.StateChanged += new Events.Audio.Player.StateChangedHandler(AudioPlayer_StateChanged);
             Audio.AudioPlayer.Instance.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler(AudioPlayer_EndOfAudioAsset);
@@ -249,6 +255,7 @@ namespace Obi.Dialogs
 
         private void Split_Load(object sender, EventArgs e)
         {
+            
             tmSlider.Enabled = false;
             //md annotation are not asset names anymore
             //md removed: ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).getText();
@@ -257,16 +264,36 @@ namespace Obi.Dialogs
 
             txtDisplayTime.Text = "00:00:00";
             txtSplitTime.Text = "0";
-
+            
             // start playing as soon as dialog is invoked
             Audio.VuMeter ob_VuMeter = new Audio.VuMeter();
             ob_VuMeter.LowerThreshold = 50;
             ob_VuMeter.UpperThreshold = 300;
             ob_VuMeter.SampleTimeLength = 1000;
             //Audio.AudioPlayer.Instance.VuMeterObject = ob_VuMeter;
-            Audio.AudioPlayer.Instance.Play(mSourceAsset);
-            btnPreview.Enabled = false;
-            btnSplit.Enabled = false;
+
+            if (mSplitState == Audio.AudioPlayerState.Stopped)
+            {
+                Audio.AudioPlayer.Instance.Play(mSourceAsset);
+                btnPreview.Enabled = false;
+                btnSplit.Enabled = false;
+            }
+            else if (mSplitState == Audio.AudioPlayerState.Playing)
+            {
+                Audio.AudioPlayer.Instance.Play(mSourceAsset , mDialogLoadTime );
+                btnPreview.Enabled = false;
+                btnSplit.Enabled = false;
+            }
+            else if (mSplitState == Audio.AudioPlayerState.Paused)
+            {
+                mSplitTime = mDialogLoadTime;
+                AudioTrackBar.Value = Convert.ToInt32(mSplitTime / 100);
+                tmUpdateTimePosition.Enabled = false;
+                btnPause.Text = "&Play";
+                btnPreview.Enabled = true;
+                UpdateSplitTime();
+            }
+
         }
 
         private void btnPause_Click(object sender, EventArgs e)
