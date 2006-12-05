@@ -258,24 +258,5 @@ namespace Obi.UserControls
             }
 
         }
-
-        //md 2006 08 13
-        //this is pretty lazy, but the alternative was pretty ugly and unstable
-        //when there is better support for shallow operations in the core tree, we can 
-        //use them in Project.ShallowSwap..() and synchronize the toc view at each step
-        internal void SyncShallowSwapNodes(object sender, Events.Node.ShallowSwappedSectionNodesEventArgs e)
-        {
-            mTocTree.Nodes.Clear();
-
-            SynchronizeWithCoreTree((urakawa.core.CoreNode)e.Node.getPresentation().getRootNode());
-        
-            //focus on the first swapped node
-            mTocTree.SelectedNode = FindTreeNodeFromSectionNode(e.Node);
-            if (mTocTree.SelectedNode != null)
-            {
-                mTocTree.SelectedNode.ExpandAll();
-                mTocTree.SelectedNode.EnsureVisible();
-            }
-        }
     }
 }

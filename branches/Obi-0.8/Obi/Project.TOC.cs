@@ -97,12 +97,10 @@ namespace Obi
         /// <param name="node"></param>
         /// <param name="parent"></param>
         /// <param name="index"></param>
-        /// <param name="position"></param>
         /// <param name="originalLabel"></param>
-        public void AddExistingSectionNode(SectionNode node, CoreNode parent, string originalLabel)
+        public void AddExistingSectionNode(SectionNode node, CoreNode parent, int index, string originalLabel)
         {
-            //TODO: is this the right index value?
-            AddChildSection(node, parent, node.Index);
+            AddChildSection(node, parent, index);
 
             if (originalLabel != null) Project.GetTextMedia(node).setText(originalLabel);
  
@@ -117,10 +115,9 @@ namespace Obi
         /// <param name="node"></param>
         /// <param name="parent"></param>
         /// <param name="index"></param>
-        /// <param name="position"></param>
-        public void UndeleteSectionNode(SectionNode node, CoreNode parent)
+        public void UndeleteSectionNode(SectionNode node, CoreNode parent, int index)
         {
-            Visitors.UndeleteSubtree visitor = new Visitors.UndeleteSubtree(this, parent);
+            Visitors.UndeleteSubtree visitor = new Visitors.UndeleteSubtree(this, parent, index);
             node.acceptDepthFirst(visitor);
         }
 
@@ -446,9 +443,9 @@ namespace Obi
         }
 
         //md 20060810
-        public void UndoCutSectionNode(SectionNode node, CoreNode parent)
+        public void UndoCutSectionNode(SectionNode node, CoreNode parent, int index)
         {
-            UndeleteSectionNode(node, parent);
+            UndeleteSectionNode(node, parent, index);
             mClipboard.Section = null;
         }
 
@@ -559,69 +556,39 @@ namespace Obi
         //see Commands.TOC.ShallowDeleteSectionNode if you're wondering how the "undo" works
         public void ShallowDeleteSectionNode(object origin, SectionNode node)
         {
-            //TODO: update this
-            /*
-            List<Commands.Command> commands = new List<Commands.Command>();
-
             //we have to gather this data here, because it might be different at the end
             //however, we can't create the command here, because its data isn't ready yet
             //these lines only need to be executed if origin != this
-            CoreNode parent = null;
-            
-            int nodeIndex = 0;
-            int nodeChildCount = 0;
-            if (origin != this)
-            {
-                parent = (CoreNode)node.getParent();
-                visitor = new Visitors.SectionNodePosition(node);
-                getPresentation().getRootNode().acceptDepthFirst(visitor);
-
-                nodeIndex = parent.indexOf(node);
-                nodeChildCount = node.getChildCount();
-            }
-            
-            NodeType nodeType;
-            nodeType = Project.GetNodeType(node);
-            if (nodeType != NodeType.Section)
-            {
-                throw new Exception(string.Format("Expected a SectionNode; got a {0}", nodeType.ToString()));
-            }
-
+       
             Commands.TOC.ShallowDeleteSectionNode command = null;
-           
-            int numChildren = node.getChildCount();
-
-            for (int i = numChildren - 1; i >= 0; i-- )
+        
+            if (origin != this)
+            {  
+                command = new Commands.TOC.ShallowDeleteSectionNode(node);
+            }
+               
+            int numChildren = node.SectionChildCount;
+            for (int i = numChildren - 1; i>=0; i--)
             {
-                if (Project.GetNodeType(node.getChild(i)) == NodeType.Section)
-                {
-                    Commands.Command cmdDecrease = this.DecreaseSectionNodeLevel(this, node.getChild(i));
-                    commands.Add(cmdDecrease);
-                }
-                //phrase nodes should be removed
-                else if (Project.GetNodeType(node.getChild(i)) == NodeType.Phrase)
-                {
-                    Commands.Command cmdDeletePhrase = DeletePhraseNodeAndAsset(node.getChild(i));
-                    commands.Add(cmdDeletePhrase);
-                }
+                Commands.Command cmdDecrease = this.DecreaseSectionNodeLevel(this, node.SectionChild(i));
+                command.AddCommand(cmdDecrease);
+            }
+
+            numChildren = node.PhraseChildCount;
+            for (int i = numChildren - 1; i>=0; i--)
+            {
+                Commands.Command cmdDeletePhrase = DeletePhraseNodeAndAsset(node.PhraseChild(i));
+                command.AddCommand(cmdDeletePhrase);
             }
 
             Commands.Command cmdRemove = this.RemoveSectionNode(this, node);
-            commands.Add(cmdRemove);
+            command.AddCommand(cmdRemove);
 
-            //additional "null" tests added for completeness, since the logic was
-            //separated out into this piece and the parent- and visitor-setting code above
-            if (origin != this && parent != null && visitor != null)
-            {
-                command = new Commands.TOC.ShallowDeleteSectionNode
-                    (this, node, parent, nodeIndex, 
-                    visitor.Position, nodeChildCount, commands);
-            }
-
+          
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
             if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-             */
+             
         }
 
         //md 20060813
