@@ -83,7 +83,7 @@ namespace Obi.UserControls
 
         private void tmUpdateText_Tick(object sender, EventArgs e)
         {
-            /*if (IsPlay == true && mPlaylist != null )
+            if (IsPlay == true && mPlaylist != null )
             {
                 if (mPlaylist.Audioplayer.State == Audio.AudioPlayerState.Playing)
                 {
@@ -98,7 +98,7 @@ namespace Obi.UserControls
                     mLeftBox.Text = mRecordingSession.AudioRecorderObj.VuMeterObject.m_MeanValueLeft.ToString();
                     mRightBox.Text = mRecordingSession.AudioRecorderObj.VuMeterObject.m_MeanValueRight.ToString();
                 }
-            }*/
+            }
 
         }
 
