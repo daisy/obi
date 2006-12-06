@@ -183,6 +183,18 @@ namespace Obi
         }
 
         /// <summary>
+        /// Get the total time for the current asset in milliseconds. 
+        /// </summary>
+        public double TotalAssetTime
+        {
+            get
+            {
+                return mCurrentPhraseIndex >= 0 && mCurrentPhraseIndex < mPhrases.Count ?
+                    Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]).LengthInMilliseconds : 0.0;
+            }
+        }
+
+        /// <summary>
         /// Remaining time in the playlist in milliseconds.
         /// </summary>
         public double RemainingTime
