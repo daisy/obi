@@ -81,7 +81,6 @@ namespace Obi.UserControls
             this.mFlowLayoutPanel.TabIndex = 1;
             this.mFlowLayoutPanel.WrapContents = false;
             this.mFlowLayoutPanel.Click += new System.EventHandler(this.mFlowLayoutPanel_Click);
-            this.mFlowLayoutPanel.Leave += new System.EventHandler(this.mFlowLayoutPanel_Leave);
             // 
             // contextMenuStrip1
             // 

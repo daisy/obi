@@ -41,8 +41,8 @@ namespace Obi.UserControls
             bool isStripSelected = mSelectedSection != null;
             bool isAudioBlockSelected = mSelectedPhrase != null;
             bool isAudioBlockLast = isAudioBlockSelected &&
-                Project.GetPhraseIndex(mSelectedPhrase) == Project.GetPhrasesCount(mSelectedSection) - 1;
-            bool isAudioBlockFirst = isAudioBlockSelected && Project.GetPhraseIndex(mSelectedPhrase) == 0;
+                mSelectedPhrase.Index == mSelectedSection.PhraseChildCount - 1;
+            bool isAudioBlockFirst = isAudioBlockSelected && mSelectedPhrase.Index == 0;
             bool isBlockClipBoardSet = mProjectPanel.Project.Clipboard.Data != null;
             
             bool canSetPage = isAudioBlockSelected;  // an audio block must be selected and a heading must not be set.
@@ -114,7 +114,7 @@ namespace Obi.UserControls
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     int index = mSelectedPhrase == null ?
-                        Project.GetPhrasesCount(mSelectedSection) : mSelectedSection.indexOf(mSelectedPhrase) + 1;
+                        mSelectedSection.PhraseChildCount : mSelectedSection.indexOf(mSelectedPhrase) + 1;
                     foreach (string path in dialog.FileNames)
                     {
                         ImportAudioAssetRequested(this, new Events.Strip.ImportAssetEventArgs(mSelectedSection, path, index));
@@ -132,10 +132,15 @@ namespace Obi.UserControls
         {
             if (mSelectedPhrase != null)
             {
-                Dialogs.Split dialog = new Dialogs.Split(mSelectedPhrase, 0.0);
+                Audio.AudioPlayerState State = this.mProjectPanel.TransportBar.Playlist.State;
+                double time = this.mProjectPanel.TransportBar.Playlist.CurrentTimeInAsset ;
+                this.mProjectPanel.TransportBar.Playlist.Stop();
+
+                PhraseNode phrase = mSelectedPhrase;
+                Dialogs.Split dialog = new Dialogs.Split(phrase, time , State );
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    SplitAudioBlockRequested(this, new Events.Node.SplitPhraseNodeEventArgs(this, mSelectedPhrase, dialog.ResultAsset));
+									SplitAudioBlockRequested(this, new Events.Node.SplitPhraseNodeEventArgs(this, phrase, dialog.ResultAsset));
                 }
             }
         }
@@ -147,7 +152,7 @@ namespace Obi.UserControls
         {
             if (mSelectedPhrase != null)
             {
-                CoreNode silence = mProjectPanel.Project.FindFirstPhrase();
+                PhraseNode silence = mProjectPanel.Project.FindFirstPhrase();
                 if (mSelectedPhrase != silence)
                 {
                     Dialogs.SentenceDetection dialog = new Dialogs.SentenceDetection(silence);

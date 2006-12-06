@@ -99,17 +99,6 @@ namespace Obi.UserControls
             set { mLabel.Text = value; }
         }
 
-/*med 20061120 svn merge: i think this function was removed for 0.7
-
-        /// <summary>
-        /// Update the width of the control.
-        /// </summary>
-        //md20061011
-        public int _Width
-        {
-            set { Size = new Size(value, Size.Height); }
-        }
-*/
         #endregion
         
         #region instantiators
@@ -117,10 +106,10 @@ namespace Obi.UserControls
         public AudioBlock() : base()
         {
             InitializeComponent();
-            this.TabStop = true;
             mAnnotationBlock = new AnnotationBlock();
             mAnnotationBlock.AudioBlock = this;
-            InitializeToolTips();
+            this.mToolTip.SetToolTip(this, Localizer.Message("audio_block_tooltip"));
+            this.mToolTip.SetToolTip(this.mTimeLabel, Localizer.Message("audio_block_duration_tooltip"));
         }
 
         #endregion
@@ -151,15 +140,7 @@ namespace Obi.UserControls
         private void AudioBlock_DoubleClick(object sender, EventArgs e)
         {
             mManager.SelectedPhraseNode = mNode;
-            ((ObiForm)ParentForm).Play(mNode);
-        }
-
-        //mg: for tab navigation et al
-        private void AudioBlock_enter(object sender, EventArgs e)
-        {
-            mManager.SelectedPhraseNode = mNode;
-            System.Diagnostics.Debug.Print("Audioblock:tabindex:" + this.TabIndex.ToString());
-            // MarkSelected();
+            ((ObiForm)mManager.ParentForm).Play(mNode);
         }
 
         #endregion
@@ -220,46 +201,6 @@ namespace Obi.UserControls
         /// </summary>
         private void mPage_Leave(object sender, EventArgs e)
         {
-/*med 20061120 svn merge: this looks like it was replaced with StopEditingPageNumber()
-            ShowPageBox();
-            mPage.ReadOnly = false;
-            mPage.Tag = mPage.Text;
-            if (mPage.Text == "") mPage.Text = Localizer.Message("no_page_label");
-            mPage.SelectAll();
-            mPage.Focus();
-*/
-            StopEditingPageNumber();
-        }
-
-/*med 20061120 svn merge: i think this is old code
-        /// <summary>
-        /// Stop the editing of the page number.
-        /// </summary>
-        private void StopEditingPageNumber()
-        {
-            if (!mPage.ReadOnly) Page = (string)mPage.Tag;
-        }
-
-        /// <summary>
-        /// Catch enter and escape to update or cancel the page number.
-        /// </summary>
-        private void mPage_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-                UpdatePageNumber();
-            }
-            else if (e.KeyCode == Keys.Escape)
-            {
-                StopEditingPageNumber();
-            }
-        }
-
-        /// <summary>
-        /// Leaving the page box without validating cancels.
-        /// </summary>
-        private void mPage_Leave(object sender, EventArgs e)
-        {
             StopEditingPageNumber();
         }
 
@@ -291,42 +232,6 @@ namespace Obi.UserControls
             }
         }
 
-*/
-        /// <summary>
-        /// Set the page node from the label text.
-        /// An empty string will have no effect.
-        /// </summary>
-        private void UpdatePageNumber()
-        {
-            System.Text.RegularExpressions.Match m = System.Text.RegularExpressions.Regex.Match(mPage.Text, "\\d+");
-            if (m.Success)
-            {
-                try
-                {
-                    // the number may be too big
-                    int pageNumber = Int32.Parse(m.Value);
-                    mManager.RequestToSetPageNumber(this, new Events.Node.SetPageEventArgs(this, mNode, pageNumber));
-                    mPage.ReadOnly = true;
-                    Page = m.Value;
-                }
-                catch (Exception)
-                {
-                    StopEditingPageNumber();
-                }
-            }
-            else
-            {
-                StopEditingPageNumber();
-            }
-        }
-
-
-        //md 20061009
-        private void InitializeToolTips()
-        {
-            this.mToolTip.SetToolTip(this, Localizer.Message("audio_block_tooltip"));
-            this.mToolTip.SetToolTip(this.mTimeLabel, Localizer.Message("audio_block_duration_tooltip"));
-        }
         /// <summary>
         /// Contents size changed, so update the minimum width.
         /// </summary>

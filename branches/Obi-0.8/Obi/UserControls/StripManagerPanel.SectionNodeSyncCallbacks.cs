@@ -117,7 +117,7 @@ namespace Obi.UserControls
             }
 
             //mg:
-            this.ReflowTabOrder(parentNodeStrip);
+            //this.ReflowTabOrder(parentNodeStrip);
             //md 20061205
             SetStripsFontSizes(parentNodeStrip);
         }

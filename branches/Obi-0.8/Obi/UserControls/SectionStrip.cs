@@ -66,7 +66,6 @@ namespace Obi.UserControls
         public SectionStrip()
         {
             InitializeComponent();
-            this.TabStop = true; //mg: not in designer for some reason
             InitializeToolTips(); 
         }
         #endregion
@@ -184,18 +183,24 @@ namespace Obi.UserControls
                 mManager.SelectedSectionNode = mNode;
             }
         }
+
+        /*
+        //JQ: removed
         //mg: for tab navigation et al
-        
         private void SectionStrip_leave(object sender, EventArgs e)
         {
             this.MarkDeselected();
         }
+        */
 
+        /*
+        //JQ: removed 
         //mg: for tab navigation et al
         private void SectionStrip_enter(object sender, EventArgs e)
         {
             mManager.SelectedSectionNode = mNode;            
         }
+        */
 
         public void MarkSelected()
         {
@@ -209,6 +214,7 @@ namespace Obi.UserControls
             mRenameBox.BackColor = BackColor;
         }
 
+        /*
         /// <summary>
         /// Reflows the tab order (tabindex property)
         /// of blocks in this SectionStrip starting from the
@@ -251,7 +257,7 @@ namespace Obi.UserControls
                 return -1;
             }
             return prevIndex;
-        }
+        }*/
 
         /// <summary>
         /// Reflows the tab order (tabindex property)
@@ -261,14 +267,14 @@ namespace Obi.UserControls
         /// <returns>The last (highest) tabindex added, if no blocks are in strip, returns the inparam value</returns>
         /// <remarks>Use this to reflow the taborder of an entire strip</remarks>
         //   added by mg 20060803
-        internal int ReflowTabOrder(int prevIndex)
+       /* internal int ReflowTabOrder(int prevIndex)
         {
             if (mAudioLayoutPanel.Controls.Count > 0)
             {
                 return this.ReflowTabOrder(mAudioLayoutPanel.Controls[0], prevIndex);
             }
             return prevIndex;
-        }
+        }*/
 
         internal void SetStripFontSize()
         {
@@ -341,7 +347,7 @@ namespace Obi.UserControls
             int index = mAudioLayoutPanel.Controls.IndexOf(block);
             mAudioLayoutPanel.Controls.RemoveAt(index);
             mAnnotationLayoutPanel.Controls.RemoveAt(index);
-            ReflowTabOrder(index);
+            //ReflowTabOrder(index);
             // fix the layout again if the strip becomes empty.
             if (mAudioLayoutPanel.Controls.Count == 0) mAudioLayoutPanel.Location = mAnnotationLayoutPanel.Location;
         }
@@ -382,7 +388,7 @@ namespace Obi.UserControls
         /// <param name="audioBlock">The block for which the asset has changed.</param>
         internal void UpdateAssetAudioBlock(AudioBlock audioBlock)
         {
-            Assets.AudioMediaAsset asset = Project.GetAudioMediaAsset(audioBlock.Node);
+            Assets.AudioMediaAsset asset = audioBlock.Node.Asset;
             audioBlock.AssetName = asset.Name;
             audioBlock.Time = asset.LengthInSeconds;
         }

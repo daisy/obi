@@ -34,6 +34,7 @@ namespace Obi.UserControls
         public event Events.PhraseNodeHandler MoveAudioBlockBackwardRequested;
         public event Events.SplitPhraseNodeHandler SplitAudioBlockRequested;
         public event Events.MergePhraseNodesHandler MergeNodes;
+        public event Events.SelectedHandler Selected;
 
         #region properties
 
@@ -73,10 +74,7 @@ namespace Obi.UserControls
         /// </summary>
         public SectionNode SelectedSectionNode
         {
-            get
-            {
-                return mSelectedSection;
-            }
+            get { return mSelectedSection; }
             set
             {
                 if (mSelectedSection != value)
@@ -84,14 +82,20 @@ namespace Obi.UserControls
                     if (mSelectedSection != null)
                     {
                         mSectionNodeMap[mSelectedSection].MarkDeselected();
+                        Selected(mSelectedSection, new Events.Node.SelectedEventArgs(false));
                         if (mSelectedPhrase != null)
                         {
                             mPhraseNodeMap[mSelectedPhrase].MarkDeselected();
+                            Selected(mSelectedPhrase, new Events.Node.SelectedEventArgs(false));
                             mSelectedPhrase = null;
                         }
                     }
                     mSelectedSection = value;
-                    if (mSelectedSection != null) mSectionNodeMap[mSelectedSection].MarkSelected();
+                    if (mSelectedSection != null)
+                    {
+                        mSectionNodeMap[mSelectedSection].MarkSelected();
+                        Selected(mSelectedSection, new Events.Node.SelectedEventArgs(true));
+                    }
                 }
             }
         }
@@ -116,6 +120,7 @@ namespace Obi.UserControls
                     {
                         SelectedSectionNode = (SectionNode)value.getParent();
                         mPhraseNodeMap[value].MarkSelected();
+                        Selected(value, new Events.Node.SelectedEventArgs(true));
                     }
                     mSelectedPhrase = value;
                 }
@@ -204,7 +209,7 @@ namespace Obi.UserControls
             mSelectedSection = null;
             mSelectedPhrase = null;
             root.acceptDepthFirst(this);
-            if (mFlowLayoutPanel.Controls.Count > 0) this.ReflowTabOrder(mFlowLayoutPanel.Controls[0]);  // mg
+            //if (mFlowLayoutPanel.Controls.Count > 0) this.ReflowTabOrder(mFlowLayoutPanel.Controls[0]);  // mg
         }
 
         #region Synchronization visitor
@@ -276,6 +281,7 @@ namespace Obi.UserControls
             SelectedSectionNode = null;
         }
 
+        /*
         /// <summary>
         /// Leaving the strip means deselection as well.
         /// I'm not so sure about this one actually.
@@ -284,7 +290,9 @@ namespace Obi.UserControls
         {
             SelectedSectionNode = null;
         }
+        */
 
+        /*
         /// <summary>
         /// Reflow the tab order (tabindex property)
         /// of strips and blocks in this StripManagerPanel
@@ -443,5 +451,6 @@ namespace Obi.UserControls
                 return null;
             }
         }
+        */ 
     }
 }
