@@ -13,12 +13,12 @@ namespace Obi.Events.Strip
     {
         private bool mSelected;
 
+        /// <summary>
+        /// True if selected, false if deselected.
+        /// </summary>
         public bool Selected
         {
-            get
-            {
-                return mSelected;
-            }
+            get { return mSelected; }
         }
 
         public SelectedEventArgs(bool selected)

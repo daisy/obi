@@ -1,5 +1,6 @@
 using System;
 using System.Windows.Forms;
+using urakawa.core;
 
 namespace Obi.UserControls
 {
@@ -8,8 +9,8 @@ namespace Obi.UserControls
     /// </summary>
     public partial class TransportBar : UserControl
     {
-        private Playlist mPlaylist;                        // current playlist (may be null)
-        private urakawa.core.CoreNode mPreviousSelection;  // selection before playback started
+        private Playlist mPlaylist;           // current playlist (may be null)
+        private CoreNode mPreviousSelection;  // selection before playback started
 
         // constants from the display combo box
         private static readonly int Elapsed = 0;
@@ -77,6 +78,18 @@ namespace Obi.UserControls
 
         }
 
+        /// <summary>
+        /// Handles selection of phrases in the strip manager; i.e. move to the selected phrase.
+        /// </summary>
+        void StripManager_Selected(object sender, Obi.Events.Strip.SelectedEventArgs e)
+        {
+            CoreNode phrase = (CoreNode)sender;
+            if (Project.GetNodeType(phrase) == NodeType.Phrase && e.Selected)
+            {
+                Playlist.CurrentPhrase = phrase;
+            }
+        }
+
         private void mPrevSectionButton_Click(object sender, EventArgs e)
         {
             PrevSection();
@@ -116,29 +129,19 @@ namespace Obi.UserControls
         {
             if (CanPlay)
             {
-                if (((ProjectPanel)Parent).Project != null &&
-                    (mPlaylist == null || mPlaylist.State == Obi.Audio.AudioPlayerState.Stopped))
+                CoreNode phrase = Playlist.CurrentPhrase;
+                if (mPlaylist == null || mPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
                 {
                     
                     Playlist = new Playlist(((ProjectPanel)Parent).Project, Audio.AudioPlayer.Instance);
+                    Playlist.CurrentPhrase = phrase;
                     mScrubTrackBar.Maximum = Convert.ToInt32(mPlaylist.TotalTime / 50);
                     mScrubTrackBar.Value = Convert.ToInt32(mPlaylist.TotalTime / 100);
                     mCentreSliderEventEffect = true;
-
                     mVUMeterPanel.Enable = true;
                     mVUMeterPanel.PlayListObj = mPlaylist;
                 }
-                if (((ProjectPanel)Parent).SelectedNode != null)
-                {
-                    
-                    mPlaylist.CurrentPhrase = ((ProjectPanel)Parent).SelectedNode;
-                    mPlaylist.Play(false);
-                }
-                else
-                {
-                    
-                    mPlaylist.Play();
-                }
+                mPlaylist.Play();
             }
         }
 
@@ -369,6 +372,14 @@ namespace Obi.UserControls
             }
 
 
+        }
+
+        private void TransportBar_ParentChanged(object sender, EventArgs e)
+        {
+            if (Parent != null)
+            {
+                ((ProjectPanel)Parent).StripManager.Selected += new Obi.Events.Strip.SelectedHandler(StripManager_Selected);
+            }
         }
 
         private void TransportBar_Load(object sender, EventArgs e)

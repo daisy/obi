@@ -65,12 +65,18 @@ namespace Obi
         /// </summary>
         public CoreNode CurrentPhrase
         {
+            get { return mPhrases.Count > 0 ? mPhrases[mCurrentPhraseIndex] : null; }
             set
             {
                 int i;
                 for (i = 0; i < mPhrases.Count && mPhrases[i] != value; ++i) { }
                 System.Diagnostics.Debug.Print("Current selection is at index {0}/{1}", i, mPhrases.Count);
-                if (i < mPhrases.Count) SkipToPhrase(i);
+                if (i < mPhrases.Count)
+                {
+                    mCurrentPhraseIndex = i;
+                    mPausePosition = 0.0;
+                    mElapsedTime = mStartTimes[mCurrentPhraseIndex];
+                }
             }
         }
 
@@ -280,23 +286,12 @@ namespace Obi
                     }
                 }
             );
-            System.Diagnostics.Debug.Print("Initialized playlist with {0} asset{1}; total time {2}ms.", mPhrases.Count,
-                mPhrases.Count > 1 ? "s" : "", mTotalTime);
         }
 
         /// <summary>
-        /// Start playing or resume playing after pausing.
+        /// Play.
         /// </summary>
         public void Play()
-        {
-            Play(false);
-        }
-
-        /// <summary>
-        /// Play, setting the index or not.
-        /// </summary>
-        /// <param name="setIndex"></param>
-        public void Play(bool setIndex)
         {
             if (mPhrases.Count > 0)
             {
@@ -309,16 +304,13 @@ namespace Obi
                     {
                         StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Paused));
                     }
+                    if (MovedToPhrase != null)
+                    {
+                        MovedToPhrase(this, new Events.Node.NodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
+                    }
                 }
                 else if (mPlaylistState == AudioPlayerState.Stopped)
                 {
-                    // start from the beginning
-                    if (setIndex)
-                    {
-                        mCurrentPhraseIndex = 0;
-                        mElapsedTime = 0.0;
-                    }
-                    mPausePosition = 0.0;
                     mPlayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
                     mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]));
                     mPlaylistState = AudioPlayerState.Playing;
@@ -395,43 +387,6 @@ namespace Obi
                 mPlayer.EndOfAudioAsset -= new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
             }
         }
-
-        private void SetTimeInPlayList(double time)
-        {
-            if (time >= 0 && time < this.mTotalTime)    // time is within bounds of PlayList
-            {
-                int PhraseIndex = 0;
-                double TimeSum = 0;
-
-                while (time > TimeSum)
-                {
-                    TimeSum = TimeSum + Project.GetAudioMediaAsset(mPhrases[PhraseIndex]).LengthInMilliseconds;
-                    PhraseIndex++;
-                }
-                mCurrentPhraseIndex = PhraseIndex - 1;
-                mElapsedTime = TimeSum - Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]).LengthInMilliseconds;
-                mPausePosition = time - mElapsedTime;
-
-                //MessageBox.Show("Index" + mCurrentPhraseIndex.ToString());
-                //MessageBox.Show( "Pause" + mPausePosition.ToString());
-
-                if (mPlaylistState == AudioPlayerState.Playing)
-                {
-                    mPlayer.Stop();
-                    //                    System.Threading.Thread.Sleep(100);
-                    mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]), mPausePosition);
-                }
-                else if (mPlaylistState == AudioPlayerState.Stopped)
-                {
-
-                    mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]), mPausePosition);
-                    mPlaylistState = AudioPlayerState.Playing;
-                }
-            }       // End Of  of bound check
-        }
-
-
-
 
         /// <summary>
         /// Move to the first phrase of the previous section, or of this section if we are not yet past the initial threshold.
@@ -517,10 +472,7 @@ namespace Obi
             mCurrentPhraseIndex = index;
             mPausePosition = 0.0;
             mElapsedTime = mStartTimes[mCurrentPhraseIndex];
-            if (MovedToPhrase != null)
-            {
-                MovedToPhrase(this, new Events.Node.NodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
-            }
+            if (MovedToPhrase != null) MovedToPhrase(this, new Events.Node.NodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
         }
     }
 }
