@@ -30,7 +30,9 @@ namespace Obi
             {
                 mAnnotation = value;
                 mMedia.setText(value);
-                mChannel.setMedia(Project.mAnnotationChannel, mMedia);
+               // mChannel.setMedia(Project.mAnnotationChannel, mMedia);
+                Channel channel = Project.FindChannel(Project.AnnotationChannelName);
+                if (channel != null) mChannel.setMedia(channel, mMedia);
             }
         }
 
@@ -125,7 +127,9 @@ namespace Obi
                 audio.setClipEnd(new Time((long)Math.Round(clip.EndTime)));
                 seq.appendItem(audio);
             }
-            mChannel.setMedia(Project.mAudioChannel, seq);
+            //mChannel.setMedia(Project.mAudioChannel, seq);
+            Channel channel = Project.FindChannel(Project.AudioChannelName);
+            if (channel != null) mChannel.setMedia(channel, mMedia);
         }
 
         /// <summary>

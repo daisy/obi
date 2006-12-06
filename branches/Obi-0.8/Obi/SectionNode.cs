@@ -34,7 +34,9 @@ namespace Obi
             {
                 mLabel = value;
                 mMedia.setText(value);
-                mChannel.setMedia(Project.mTextChannel, mMedia);
+                //mChannel.setMedia(Project.mTextChannel, mMedia);
+                Channel channel = Project.FindChannel(Project.TextChannelName);
+                if (channel != null) mChannel.setMedia(channel, mMedia);
             }
         }
 
@@ -169,7 +171,8 @@ namespace Obi
             if (base.XUKIn(source))
             {
                 ChannelsProperty prop = (ChannelsProperty)getProperty(typeof(ChannelsProperty));
-                Label = ((TextMedia)prop.getMedia(Project.mTextChannel)).getText();
+                //Label = ((TextMedia)prop.getMedia(Project.mTextChannel)).getText();
+                Label = ((TextMedia)prop.getMedia(Project.FindChannel(Project.TextChannelName))).getText();
                 return true;
             }
             else

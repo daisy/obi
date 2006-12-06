@@ -37,7 +37,7 @@ namespace Obi
 
     public class ObiPropertyFactory : PropertyFactory
     {
-        public static readonly string ObiNS = "http://www.daisy.org/urakawa/obi/0.5";  // NS for Obi XUK
+        public static readonly string ObiNS = "http://www.daisy.org/urakawa/obi";  // NS for Obi XUK
 
         public ObiPropertyFactory() : base()
 		{

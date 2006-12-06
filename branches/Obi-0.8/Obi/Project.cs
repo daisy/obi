@@ -27,10 +27,9 @@ namespace Obi
     /// </summary>
     public partial class Project : urakawa.project.Project
     {
-        //TODO: should these be public or internal?  as mentioned below, they are handy.
-        public Channel mAudioChannel;       // handy pointer to the audio channel
-        public Channel mTextChannel;        // handy pointer to the text channel 
-        public Channel mAnnotationChannel;  // handy pointer to the annotation channel
+        private Channel mAudioChannel;       // handy pointer to the audio channel
+        private Channel mTextChannel;        // handy pointer to the text channel 
+        private Channel mAnnotationChannel;  // handy pointer to the annotation channel
 
         private Assets.AssetManager mAssManager;  // the asset manager
         private string mAssPath;                  // the path to the asset manager directory
@@ -43,7 +42,7 @@ namespace Obi
         private Clipboard mClipboard;        // project-wide clipboard.
         private PhraseNode mSilencePhrase;     // silence phrase used for phrase detection
 
-        public static readonly string XUKVersion = "obi-xuk-007";            // version of the Obi/XUK file
+        public static readonly string XUKVersion = "obi-xuk-008";            // version of the Obi/XUK file
         public static readonly string AudioChannelName = "obi.audio";            // canonical name of the audio channel
         public static readonly string TextChannelName = "obi.text";              // canonical name of the text channel
         public static readonly string AnnotationChannelName = "obi.annotation";  // canonical name of the annotation channel
@@ -139,6 +138,12 @@ namespace Obi
             ObiNodeFactory nodeFactory = new ObiNodeFactory();
             Presentation presentation = new Presentation(nodeFactory, null, null, new ObiPropertyFactory(), null);
             Project project = new Project(presentation);
+
+            // Create metadata and channels factories
+            ChannelFactory factory = presentation.getChannelFactory();
+            ChannelsManager manager = presentation.getChannelsManager();
+        
+
             nodeFactory.Project = project;
             return project;
         }
@@ -163,16 +168,17 @@ namespace Obi
             mAssManager = new Assets.AssetManager(mAssPath);
             mAssPath = (new Uri(xukPath)).MakeRelativeUri(new Uri(mAssPath)).ToString();
 
-            // Create metadata and channels
+            // Create metadata and channels factories
             ChannelFactory factory = presentation.getChannelFactory();
             ChannelsManager manager = presentation.getChannelsManager();
-            mMetadata = CreateMetadata(title, id, userProfile);
+            //create three channels
             mAudioChannel = factory.createChannel(AudioChannelName);
             manager.addChannel(mAudioChannel);
             mTextChannel = factory.createChannel(TextChannelName);
             manager.addChannel(mTextChannel);
             mAnnotationChannel = factory.createChannel(AnnotationChannelName);
             manager.addChannel(mAnnotationChannel);
+            mMetadata = CreateMetadata(title, id, userProfile);
 
             // Create a title section if necessary
             if (createTitle)
@@ -271,7 +277,7 @@ namespace Obi
         /// <remarks>This is a convenience method because the toolkit returns an array of channels.</remarks>
         /// <param name="name">Name of the channel that we are looking for.</param>
         /// <returns>The channel found.</returns>
-        private Channel FindChannel(string name)
+        internal Channel FindChannel(string name)
         {
             IChannel[] channels = getPresentation().getChannelsManager().getChannelByName(name);
             if (channels.Length != 1)
@@ -600,5 +606,7 @@ namespace Obi
             );
             return first;
         }
+
+      
     }
 }
