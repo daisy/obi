@@ -34,6 +34,7 @@ namespace Obi.UserControls
         public event Events.Node.RequestToMoveBlockHandler MoveAudioBlockBackwardRequested;
         public event Events.Node.SplitNodeHandler SplitAudioBlockRequested;
         public event Events.Node.MergeNodesHandler MergeNodes;
+        public event Events.Strip.SelectedHandler Selected;
 
         #region properties
 
@@ -73,10 +74,7 @@ namespace Obi.UserControls
         /// </summary>
         public CoreNode SelectedSectionNode
         {
-            get
-            {
-                return mSelectedSection;
-            }
+            get { return mSelectedSection; }
             set
             {
                 if (mSelectedSection != value)
@@ -84,14 +82,20 @@ namespace Obi.UserControls
                     if (mSelectedSection != null)
                     {
                         mSectionNodeMap[mSelectedSection].MarkDeselected();
+                        Selected(mSelectedSection, new Events.Strip.SelectedEventArgs(false));
                         if (mSelectedPhrase != null)
                         {
                             mPhraseNodeMap[mSelectedPhrase].MarkDeselected();
+                            Selected(mSelectedPhrase, new Events.Strip.SelectedEventArgs(false));
                             mSelectedPhrase = null;
                         }
                     }
                     mSelectedSection = value;
-                    if (mSelectedSection != null) mSectionNodeMap[mSelectedSection].MarkSelected();
+                    if (mSelectedSection != null)
+                    {
+                        mSectionNodeMap[mSelectedSection].MarkSelected();
+                        Selected(mSelectedSection, new Events.Strip.SelectedEventArgs(true));
+                    }
                 }
             }
         }
@@ -116,6 +120,7 @@ namespace Obi.UserControls
                     {
                         SelectedSectionNode = (CoreNode)value.getParent();
                         mPhraseNodeMap[value].MarkSelected();
+                        Selected(value, new Events.Strip.SelectedEventArgs(true));
                     }
                     mSelectedPhrase = value;
                 }
