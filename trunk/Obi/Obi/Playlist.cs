@@ -71,12 +71,15 @@ namespace Obi
                 int i;
                 for (i = 0; i < mPhrases.Count && mPhrases[i] != value; ++i) { }
                 System.Diagnostics.Debug.Print("Current selection is at index {0}/{1}", i, mPhrases.Count);
+                bool playing = mPlaylistState == AudioPlayerState.Playing;
+                if (playing) Stop();
                 if (i < mPhrases.Count)
                 {
                     mCurrentPhraseIndex = i;
                     mPausePosition = 0.0;
                     mElapsedTime = mStartTimes[mCurrentPhraseIndex];
                 }
+                if (playing) Play();
             }
         }
 
@@ -455,6 +458,12 @@ namespace Obi
         private void PlayPhrase(int index)
         {
             SkipToPhrase(index);
+            PlayCurrentPhrase();
+        }
+
+        private void PlayCurrentPhrase()
+        {
+            System.Diagnostics.Debug.Print("Play current phrase #{0}", mCurrentPhraseIndex);
             Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs(mPlayer.State);
             mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]));
             mPlaylistState = AudioPlayerState.Playing;

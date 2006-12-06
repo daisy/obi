@@ -86,7 +86,7 @@ namespace Obi.UserControls
             CoreNode phrase = (CoreNode)sender;
             if (Project.GetNodeType(phrase) == NodeType.Phrase && e.Selected)
             {
-                Playlist.CurrentPhrase = phrase;
+                if (Playlist.CurrentPhrase != phrase) Playlist.CurrentPhrase = phrase;
             }
         }
 
