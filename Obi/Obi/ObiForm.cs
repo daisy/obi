@@ -314,6 +314,7 @@ namespace Obi
                     MessageBox.Show(String.Format(Localizer.Message("save_settings_error_text"), x.Message),
                         Localizer.Message("save_settings_error_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                mProjectPanel.TransportBar.Stop();
                 Application.Exit();
             }
             else
