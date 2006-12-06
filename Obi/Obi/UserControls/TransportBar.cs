@@ -283,6 +283,10 @@ namespace Obi.UserControls
         private void Play_MovedToPhrase(object sender, Events.Node.NodeEventArgs e)
         {
             ((ProjectPanel)Parent).StripManager.SelectedPhraseNode = e.Node;
+            mCentreSliderEventEffect = false;
+            mScrubTrackBar.Maximum = Convert.ToInt32(mPlaylist.TotalAssetTime / 50);
+            mScrubTrackBar.Value = mScrubTrackBar.Maximum / 2;
+            mCentreSliderEventEffect = true;
         }
 
         /// <summary>
