@@ -135,8 +135,8 @@ namespace Obi.UserControls
                     
                     Playlist = new Playlist(((ProjectPanel)Parent).Project, Audio.AudioPlayer.Instance);
                     Playlist.CurrentPhrase = phrase;
-                    mScrubTrackBar.Maximum = Convert.ToInt32(mPlaylist.TotalTime / 50);
-                    mScrubTrackBar.Value = Convert.ToInt32(mPlaylist.TotalTime / 100);
+                    mScrubTrackBar.Maximum = Convert.ToInt32(mPlaylist.TotalAssetTime / 50);
+                    mScrubTrackBar.Value = mScrubTrackBar.Maximum / 2;
                     mCentreSliderEventEffect = true;
                     mVUMeterPanel.Enable = true;
                     mVUMeterPanel.PlayListObj = mPlaylist;
@@ -153,8 +153,8 @@ namespace Obi.UserControls
             if (CanPlay)
             {
                 Playlist = new Playlist(((ProjectPanel)Parent).Project, Audio.AudioPlayer.Instance, node);
-                mScrubTrackBar.Maximum = Convert.ToInt32(mPlaylist.TotalTime / 50);
-                mScrubTrackBar.Value = Convert.ToInt32(mPlaylist.TotalTime / 100);
+                mScrubTrackBar.Maximum = Convert.ToInt32(mPlaylist.TotalAssetTime / 50);
+                mScrubTrackBar.Value = mScrubTrackBar.Maximum / 2;
                 mCentreSliderEventEffect = true;
 
                 mPlaylist.Play();
@@ -344,16 +344,17 @@ namespace Obi.UserControls
             tmTrackBar.Enabled = false;
 
             mCentreSliderEventEffect = false;
-            mScrubTrackBar.Value = Convert.ToInt32(mPlaylist.TotalTime / 100);
+            mScrubTrackBar.Value = mScrubTrackBar.Maximum / 2;
             mCentreSliderEventEffect = true;
-
+            
             if ( mTrackBarTimeValue  < 0)
                 mTrackBarTimeValue = 0;
 
-            if ( mTrackBarTimeValue > mPlaylist.TotalTime )
-                mTrackBarTimeValue =  mPlaylist.TotalTime ;
+            if ( mTrackBarTimeValue > mPlaylist.TotalAssetTime )
+                mTrackBarTimeValue =  mPlaylist.TotalAssetTime ;
 
-            mPlaylist.CurrentTime = mTrackBarTimeValue;
+            mPlaylist.CurrentTimeInAsset = mTrackBarTimeValue;
+            UpdateTimeDisplay();
         }
 
         private bool mCentreSliderEventEffect = false ;
@@ -365,9 +366,9 @@ namespace Obi.UserControls
             {
                 tmTrackBar.Enabled = false;
 
-                mTrackBarTimeValue = mPlaylist.CurrentTime;
+                mTrackBarTimeValue = mPlaylist.CurrentTimeInAsset ;
 
-                mTrackBarTimeValue = mTrackBarTimeValue + (( mScrubTrackBar.Value - ( Playlist.TotalTime / 100 ) ) * 100 );
+                mTrackBarTimeValue = mTrackBarTimeValue + (( mScrubTrackBar.Value -( mScrubTrackBar.Maximum / 2 )  ) * 100 );
                 tmTrackBar.Start();
             }
 
