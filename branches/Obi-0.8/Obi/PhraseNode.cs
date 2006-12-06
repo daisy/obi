@@ -144,7 +144,16 @@ namespace Obi
         public new PhraseNode copy(bool deep)
         {
             PhraseNode copy = (PhraseNode) getPresentation().getCoreNodeFactory().createNode(Name, ObiPropertyFactory.ObiNS);
-            copy.Asset = (AudioMediaAsset)mAsset.Manager.CopyAsset(mAsset);
+            //the manager might be null if we are doing a cut/paste
+            if (mAsset.Manager == null)
+            {
+                Project.AssetManager.AddAsset(mAsset);
+                copy.Asset = mAsset;
+            }
+            else
+            {
+                copy.Asset = (AudioMediaAsset)mAsset.Manager.CopyAsset(mAsset);
+            }
             copy.Annotation = copy.Asset.Name;
             copyProperties(copy);
             return copy;

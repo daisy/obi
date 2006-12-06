@@ -261,7 +261,7 @@ namespace Obi
         /// <param name="node"></param>
         public void RemoveChildPhrase(PhraseNode node)
         {
-            node.DetachFromParent();
+            node.detach();
             --mSectionOffset;
         }
 

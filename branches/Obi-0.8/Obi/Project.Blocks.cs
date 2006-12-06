@@ -54,7 +54,9 @@ namespace Obi
         internal void PastePhraseNode(object sender, Events.Node.NodeEventArgs e)
         {
             System.Diagnostics.Debug.Assert(mClipboard.Phrase != null, "Cannot paste without a phrase node on the clipboard.");
+            
             PhraseNode copy = mClipboard.Phrase.copy(true);
+
             SectionNode parent = null;
             int index = 0;
             if (e.Node.GetType() == System.Type.GetType("Obi.SectionNode"))
@@ -481,25 +483,6 @@ namespace Obi
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
-
-        /// <summary>
-        /// Get the actual audio media object for a phrase node.
-        /// </summary>
-        /// <param name="node">The node for which we want the asset.</param>
-        /// <returns>The asset or null if it could not be found.</returns>
-        /*public static AudioMediaAsset GetAudioMediaAsset(CoreNode node)
-        {
-            System.Diagnostics.Debug.Assert(node.GetType() == System.Type.GetType("Obi.PhraseNode"));
-            AssetProperty prop = (AssetProperty)node.getProperty(typeof(AssetProperty));
-            if (prop != null)
-            {
-                return prop.Asset;
-            }
-            else
-            {
-                return null;
-            }
-        }*/
 
         /// <summary>
         /// Set the audio media asset for a phrase node.
