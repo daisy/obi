@@ -44,7 +44,7 @@ Main form
       + [F] Forward ..................... Ctrl+Right
       + [B] Backward .................... Ctrl+Left
     + [E] Edit annotation ............... F2
-    + [O] Remove annotation ............. Missing
+    + [O] Remove annotation ............. Shift+Ctrl+Del
     + [T] Set page number ............... Ctrl+F2
     + [N] Remove page number ............ Ctrl+Del
     + [W] Show in TOC view .............. Alt+V
@@ -102,7 +102,7 @@ Strip Manager Panel's context menu
     + [F] Forward ....................... Ctrl+Right
     + [B] Backward ...................... Ctrl+Left
   + [O] Edit annotation ................. F2
-  + [M] Remove annotation ............... Missing
+  + [M] Remove annotation ............... Shift+Ctrl+Del
   + [T] Set page number ................. Ctrl+F2
   + [R] Remove page number .............. Ctrl+Del
   + [W] Show in TOC view ................ Alt+V
@@ -116,6 +116,8 @@ Index of shortcuts
   Ctrl+Del ........... Strips > Remove page number
   Ctrl+Del ........... [Strip Manager Panel] Remove page number
   Shift+Del .......... [Strip Manager Panel] Delete strip
+  Shift+Ctrl+Del ..... Strips > Remove annotation
+  Shift+Ctrl+Del ..... [Strip Manager Panel] Remove annotation
   F1 ................. Help > Contents
   F2* ................ TOC > Rename section
   F2* ................ Strips > Edit annotation

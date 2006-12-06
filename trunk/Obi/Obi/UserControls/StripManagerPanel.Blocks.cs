@@ -32,6 +32,19 @@ namespace Obi.UserControls
         }
 
         /// <summary>
+        /// Remove the annotation on an audio block.
+        /// </summary>
+        /// <param name="block">The block to remove the annotation on.</param>
+        internal void RemovedAnnotation(AudioBlock block)
+        {
+            TextMedia media = (TextMedia)block.Node.getPresentation().getMediaFactory().createMedia(MediaType.TEXT);
+            Events.Node.SetMediaEventArgs e =
+                new Events.Node.SetMediaEventArgs(this, block.Node, Project.AnnotationChannel, media);
+            SetMediaRequested(this, e);
+            block.AnnotationBlock.Label = "";
+        }
+
+        /// <summary>
         /// Add a new block from a phrase node and select it.
         /// </summary>
         internal void SyncAddedPhraseNode(object sender, Events.Node.AddedPhraseNodeEventArgs e)
