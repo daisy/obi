@@ -74,6 +74,7 @@ namespace Obi.UserControls
             InitializeComponent();
             mPlaylist = null;
             mDisplayBox.SelectedIndex = ElapsedTotal;
+
         }
 
         private void mPrevSectionButton_Click(object sender, EventArgs e)
@@ -118,6 +119,7 @@ namespace Obi.UserControls
                 if (((ProjectPanel)Parent).Project != null &&
                     (mPlaylist == null || mPlaylist.State == Obi.Audio.AudioPlayerState.Stopped))
                 {
+                    
                     Playlist = new Playlist(((ProjectPanel)Parent).Project, Audio.AudioPlayer.Instance);
                     mScrubTrackBar.Maximum = Convert.ToInt32(mPlaylist.TotalTime / 50);
                     mScrubTrackBar.Value = Convert.ToInt32(mPlaylist.TotalTime / 100);
@@ -128,11 +130,13 @@ namespace Obi.UserControls
                 }
                 if (((ProjectPanel)Parent).SelectedNode != null)
                 {
+                    
                     mPlaylist.CurrentPhrase = ((ProjectPanel)Parent).SelectedNode;
                     mPlaylist.Play(false);
                 }
                 else
                 {
+                    
                     mPlaylist.Play();
                 }
             }
@@ -365,6 +369,11 @@ namespace Obi.UserControls
             }
 
 
+        }
+
+        private void TransportBar_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }
