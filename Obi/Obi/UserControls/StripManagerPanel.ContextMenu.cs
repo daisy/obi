@@ -131,11 +131,10 @@ namespace Obi.UserControls
         {
             if (mSelectedPhrase != null)
             {
+                CoreNode phrase = mSelectedPhrase;
                 Audio.AudioPlayerState State = this.mProjectPanel.TransportBar.Playlist.State;
                 double time = this.mProjectPanel.TransportBar.Playlist.CurrentTimeInAsset ;
                 this.mProjectPanel.TransportBar.Playlist.Stop();
-
-                CoreNode phrase = mSelectedPhrase;
                 Dialogs.Split dialog = new Dialogs.Split(phrase, time , State );
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {

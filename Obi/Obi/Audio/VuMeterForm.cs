@@ -96,6 +96,7 @@ namespace Obi.Audio
             this.Name = "VuMeterForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "VuMeter";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.VuMeterForm_FormClosing);
             this.Load += new System.EventHandler(this.VuMeterForm_Load);
             this.ResumeLayout(false);
 
@@ -371,7 +372,6 @@ namespace Obi.Audio
 		private void btnClose_Click(object sender, System.EventArgs e)
 		{
 			this.Visible = false  ;
-			//this.Close () ;
 		}
 
 		internal void CatchResetEvent ( object sender , Events.Audio.VuMeter.ResetEventArgs ob_VuMeterEvent)
@@ -411,20 +411,11 @@ namespace Obi.Audio
 			//SetTextBoxText(txtOverloadRight, " ");  // JQ
 		}
 
-		// Added to avoid race condition - JQ
-		private delegate void CloseCallback();
-
-		public new void Close()
-		{
-			if (InvokeRequired)
-			{
-				Invoke(new CloseCallback(Close));
-			}
-			else
-			{
-				base.Close();
-			}
-		}
+        private void VuMeterForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Visible = false;
+            e.Cancel = true;
+        }
 
 		// end of class
 	}
