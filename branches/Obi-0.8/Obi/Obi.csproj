@@ -124,12 +124,6 @@
     <Compile Include="Dialogs\NewProject.Designer.cs">
       <DependentUpon>NewProject.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\Play.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\Play.Designer.cs">
-      <DependentUpon>Play.cs</DependentUpon>
-    </Compile>
     <Compile Include="Dialogs\Preferences.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,12 +147,6 @@
     </Compile>
     <Compile Include="Dialogs\Split.Designer.cs">
       <DependentUpon>Split.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\TransportPlay.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\TransportPlay.Designer.cs">
-      <DependentUpon>TransportPlay.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\TransportRecord.cs">
       <SubType>Form</SubType>
@@ -198,7 +186,6 @@
     <Compile Include="Events\Project\StateChangedEventArgs.cs" />
     <Compile Include="Events\Strip\ImportAssetEventArgs.cs" />
     <Compile Include="Events\Audio\Recorder\PhraseEventArgs.cs" />
-    <Compile Include="Events\Strip\SelectedEventArgs.cs" />
     <Compile Include="Events\Strip\UpdateTimeEventArgs.cs" />
     <Compile Include="IOUtils.cs" />
     <Compile Include="Localizer.cs" />
@@ -233,10 +220,6 @@
     <EmbeddedResource Include="Dialogs\NewProject.resx">
       <SubType>Designer</SubType>
       <DependentUpon>NewProject.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\Play.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>Play.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Preferences.resx">
       <SubType>Designer</SubType>
@@ -350,6 +333,12 @@
     <Compile Include="UserControls\StripManagerPanel.SectionNodeSyncCallbacks.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UserControls\TextVUMeterPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\TextVUMeterPanel.Designer.cs">
+      <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\TOCPanel.ContextMenu.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -399,10 +388,6 @@
       <SubType>Designer</SubType>
       <DependentUpon>SentenceDetection.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\TransportPlay.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>TransportPlay.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\TransportRecord.resx">
       <SubType>Designer</SubType>
       <DependentUpon>TransportRecord.cs</DependentUpon>
@@ -410,6 +395,10 @@
     <EmbeddedResource Include="UserControls\AnnotationBlock.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AnnotationBlock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TextVUMeterPanel.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TransportBar.resx">
       <SubType>Designer</SubType>

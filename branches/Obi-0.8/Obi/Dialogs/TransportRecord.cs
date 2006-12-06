@@ -27,29 +27,25 @@ namespace Obi.Dialogs
         {
             
             mRecordingSession.Stop();
+            Close();
         }
 
         private void mPauseButton_Click(object sender, EventArgs e)
         {
-//            mRecordingSession.Listen();
+            mRecordingSession.Stop();
+            mRecordingSession.Listen();
+            mPauseButton.Visible = false ;
+            mRecordButton.Visible = true;
+            mRecordButton.Focus();
         }
 
         private void mRecordButton_Click(object sender, EventArgs e)
         {
-            if (combRecordingSelect.SelectedIndex == 1)
-            {
-                
-                mRecordingSession.Listen();
-            }
-            else if (combRecordingSelect.SelectedIndex == 0)
-            {
-                mRecordingSession.CommitIntervalSeconds = Convert.ToInt32(txtCommitInterval.Text);
-                
+            mRecordingSession.Stop();
                 mRecordingSession.Record();
-
-
-                
-            }
+                mPauseButton.Visible = true;
+                mRecordButton.Visible = false;
+                mPauseButton.Focus();
         }
 
         private void btnPageMark_Click(object sender, EventArgs e)
@@ -69,15 +65,16 @@ namespace Obi.Dialogs
 
         private void TransportRecord_Load(object sender, EventArgs e)
         {
-            combRecordingSelect.Items.Add("Record");
-            combRecordingSelect.Items.Add("Listen");
-            combRecordingSelect.SelectedIndex = 0 ;
+            mPauseButton.Visible = false;
+            mRecordingSession.Listen();
+            mTextVuMeter.Enable = true;
+            mTextVuMeter.RecordingSessionObj = mRecordingSession;
         }
 
-        private void TmCommit_Tick(object sender, EventArgs e)
+        private void TransportRecord_FormClosing(object sender, FormClosingEventArgs e)
         {
-//            mRecordingSession.Stop();
-            //mRecordingSession.Record();
+            mRecordingSession.Stop();
         }
+
     }
 }

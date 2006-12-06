@@ -42,6 +42,7 @@ namespace Obi.Visitors
         {
             if (node.GetType() == System.Type.GetType("Obi.PhraseNode"))
             {
+               
                 SequenceMedia media = (SequenceMedia)Project.GetMediaForChannel((CoreNode)node, Project.AudioChannelName);
                 List<Assets.AudioClip> clips = new List<Assets.AudioClip>(media.getCount());
                 for (int i = 0; i < media.getCount(); ++i)
@@ -63,13 +64,7 @@ namespace Obi.Visitors
                 if (clips.Count == media.getCount())
                 {
                     Assets.AudioMediaAsset asset = mAssManager.NewAudioMediaAsset(clips);
-                    //mAssManager.RenameAsset(asset,
-                    //    ((TextMedia)Project.GetMediaForChannel((CoreNode)node, Project.AnnotationChannel)).getText());
-                    AssetProperty assProp =
-                        (AssetProperty)node.getPresentation().getPropertyFactory().createProperty("AssetProperty",
-                        ObiPropertyFactory.ObiNS);
-                    assProp.Asset = asset;
-                    node.setProperty(assProp);
+                    ((PhraseNode)node).Asset = asset;
                 }
                 // else
                 // {

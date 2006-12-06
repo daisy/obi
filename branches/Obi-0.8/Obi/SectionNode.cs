@@ -34,7 +34,6 @@ namespace Obi
             {
                 mLabel = value;
                 mMedia.setText(value);
-                //mChannel.setMedia(Project.mTextChannel, mMedia);
                 Channel channel = Project.FindChannel(Project.TextChannelName);
                 if (channel != null) mChannel.setMedia(channel, mMedia);
             }
@@ -92,7 +91,8 @@ namespace Obi
                 int index = parent.indexOf(this);
                 if (parent is SectionNode)
                 {
-                    return index == ((SectionNode)parent).mSectionOffset ? null : (SectionNode)parent.getChild(index - 1);
+                    if (index == ((SectionNode)parent).mSectionOffset) return null;
+                    else return ((SectionNode)parent).SectionChild(index - 1);
                 }
                 else
                 {
@@ -128,9 +128,7 @@ namespace Obi
         /// </summary>
         public SectionNode SectionChild(int index)
         {
-            CoreNode test = getChild(index + mSectionOffset);
-            return (SectionNode)test;
-           // return (SectionNode)getChild(index + mSectionOffset);
+            return (SectionNode)getChild(index + mSectionOffset);
         }
 
         /// <summary>
@@ -171,7 +169,6 @@ namespace Obi
             if (base.XUKIn(source))
             {
                 ChannelsProperty prop = (ChannelsProperty)getProperty(typeof(ChannelsProperty));
-                //Label = ((TextMedia)prop.getMedia(Project.mTextChannel)).getText();
                 Label = ((TextMedia)prop.getMedia(Project.FindChannel(Project.TextChannelName))).getText();
                 return true;
             }
@@ -204,8 +201,20 @@ namespace Obi
         /// </summary>
         public void AppendChildSection(SectionNode node)
         {
-            appendChild(node);
+            base.appendChild(node);
             UpdateSpan(node.mSpan);
+        }
+
+        public override void  appendChild(ITreeNode node)
+        {
+            if (node.GetType() == System.Type.GetType("Obi.SectionNode"))
+            {
+                AppendChildSection((SectionNode)node);
+            }
+            else if (node.GetType() == System.Type.GetType("Obi.PhraseNode"))
+            {
+                AppendChildPhrase((PhraseNode)node);
+            }
         }
 
         /// <summary>
@@ -226,6 +235,12 @@ namespace Obi
         public void AddChildPhrase(PhraseNode node, int index)
         {
             insert(node, index);
+            ++mSectionOffset;
+        }
+
+        public void AppendChildPhrase(PhraseNode node)
+        {
+            base.appendChild(node);
             ++mSectionOffset;
         }
 

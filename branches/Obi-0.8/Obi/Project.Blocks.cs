@@ -55,20 +55,20 @@ namespace Obi
         {
             System.Diagnostics.Debug.Assert(mClipboard.Phrase != null, "Cannot paste without a phrase node on the clipboard.");
             PhraseNode copy = mClipboard.Phrase.copy(true);
-            SectionNode parent;
-            int index;
+            SectionNode parent = null;
+            int index = 0;
             if (e.Node.GetType() == System.Type.GetType("Obi.SectionNode"))
             {
                 parent = (SectionNode)e.Node;
-                index = GetPhrasesCount(e.Node);
+                index = ((SectionNode)e.Node).PhraseChildCount;
             }
-            else
+            else if (e.Node.GetType() == System.Type.GetType("Obi.PhraseNode"))
             {
                 parent = (SectionNode)e.Node.getParent();
-                index = GetPhraseIndex(e.Node) + 1;
+                index = ((PhraseNode)e.Node).Index + 1;
             }
             AddPhraseNode(copy, parent, index);
-            AudioMediaAsset asset = (AudioMediaAsset)mAssManager.CopyAsset(GetAudioMediaAsset(mClipboard.Phrase));
+            AudioMediaAsset asset = (AudioMediaAsset)mAssManager.CopyAsset(mClipboard.Phrase.Asset);
             SetAudioMediaAsset(copy, asset);
             Commands.Strips.PastePhrase command = new Commands.Strips.PastePhrase(copy);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
@@ -86,7 +86,8 @@ namespace Obi
         /// </summary>
         public void DeletePhraseNodeRequested(object sender, Events.Node.PhraseNodeEventArgs e)
         {
-            CoreNode parent = (CoreNode)e.Node.getParent();
+            //the parent of a phrase is always a section
+            SectionNode parent = (SectionNode)e.Node.getParent();
             int index = parent.indexOf(e.Node);
             Commands.Strips.DeletePhrase command = new Commands.Strips.DeletePhrase(e.Node);
             CommandCreated(this, new Obi.Events.Project.CommandCreatedEventArgs(command));
@@ -121,8 +122,8 @@ namespace Obi
         /// </summary>
         public void MergeNodesRequested(object sender, Events.Node.MergeNodesEventArgs e)
         {
-            Assets.AudioMediaAsset asset = GetAudioMediaAsset(e.Node);
-            Assets.AudioMediaAsset next = GetAudioMediaAsset(e.Next);
+            Assets.AudioMediaAsset asset = e.Node.Asset;
+            Assets.AudioMediaAsset next = e.Next.Asset;
             // the command is created while the assets are not changed; there is time to copy the original asset before the
             // merge is done.
             Commands.Strips.MergePhrases command = new Commands.Strips.MergePhrases(e.Node, e.Next);
@@ -222,7 +223,7 @@ namespace Obi
         public void SplitAudioBlockRequested(object sender, Events.Node.SplitPhraseNodeEventArgs e)
         {
             PhraseNode newNode = CreatePhraseNode(e.NewAsset);
-            CoreNode parent = (CoreNode)e.Node.getParent();
+            SectionNode parent = (SectionNode)e.Node.getParent();
             int index = parent.indexOf(e.Node) + 1;
             parent.insert(newNode, index);
             UpdateSeq(e.Node);
@@ -240,7 +241,7 @@ namespace Obi
         /// </summary>
         public void ApplyPhraseDetection(object sender, Events.Node.PhraseDetectionEventArgs e)
         {
-            AudioMediaAsset originalPhrase = Project.GetAudioMediaAsset(e.Node);
+            AudioMediaAsset originalPhrase = e.Node.Asset;
             List<AudioMediaAsset> phrases = originalPhrase.ApplyPhraseDetection(e.Threshold, e.Gap, e.LeadingSilence);
             if (phrases.Count > 1)
             {
@@ -340,9 +341,9 @@ namespace Obi
         /// <param name="e">The phrase event originally sent by the recording session.</param>
         /// <param name="parent">Parent core node for the new phrase.</param>
         /// <param name="index">Base index in the parent for new phrases.</param>
-        internal void FinishRecordingPhrase(Events.Audio.Recorder.PhraseEventArgs e, CoreNode parent, int index)
+        internal void FinishRecordingPhrase(Events.Audio.Recorder.PhraseEventArgs e, SectionNode parent, int index)
         {
-            PhraseNode phrase = ((SectionNode)parent).PhraseChild(index + e.PhraseIndex);
+            PhraseNode phrase = parent.PhraseChild(index + e.PhraseIndex);
             UpdateSeq(phrase);
             MediaSet(this, new Events.Node.SetMediaEventArgs(this, phrase, Project.AudioChannelName,
                 GetMediaForChannel(phrase, Project.AudioChannelName)));
@@ -368,7 +369,7 @@ namespace Obi
         /// </summary>
         public void AddPhraseNodeAndAsset(PhraseNode node, SectionNode parent, int index)
         {
-            Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);
+            Assets.AudioMediaAsset asset = node.Asset;
             mAssManager.AddAsset(asset);
             AddPhraseNode(node, parent, index);    
         }
@@ -428,7 +429,7 @@ namespace Obi
                 command = new Commands.Strips.DeletePhrase(node);
             }
 
-            Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);
+            Assets.AudioMediaAsset asset = node.Asset;
             mAssManager.RemoveAsset(asset);
             DeletePhraseNode(node);
 
@@ -457,39 +458,6 @@ namespace Obi
         }
 
         /// <summary>
-        /// Get the position of the phrase in the list of phrases for the section, i.e. not counting the other section nodes.
-        /// </summary>
-        // should be part of NodeInformationProperty
-        public static int GetPhraseIndex(CoreNode node)
-        {
-            CoreNode parent = (CoreNode)node.getParent();
-            int index = 0;
-            for (int i = 0; i < parent.getChildCount(); ++i)
-            {
-                if (parent.getChild(i).GetType() == System.Type.GetType("Obi.PhraseNode"))
-                {
-                    if (parent.getChild(i) == node) return index;
-                    ++index;
-                }
-            }
-            throw new Exception("Not a child of its parent?!");
-        }
-
-        /// <summary>
-        /// Get the number of child phrases for a node.
-        /// </summary>
-        // should be part of NodeInformationProperty
-        public static int GetPhrasesCount(CoreNode node)
-        {
-            int count = 0;
-            for (int i = 0; i < node.getChildCount(); ++i)
-            {
-                if (node.getChild(i).GetType() == System.Type.GetType("Obi.PhraseNode")) ++count;
-            }
-            return count;
-        }
-
-        /// <summary>
         /// Move a phrase node in the given direction.
         /// </summary>
         public void MovePhraseNode(PhraseNode node, PhraseNode.Direction dir)
@@ -506,7 +474,7 @@ namespace Obi
         internal void EditAnnotationPhraseNode(PhraseNode node, string name)
         {
             TextMedia media = (TextMedia)GetMediaForChannel(node, Project.AnnotationChannelName);
-            Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);
+            Assets.AudioMediaAsset asset = node.Asset;
             mAssManager.RenameAsset(asset, name);
             media.setText(asset.Name);
             MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, Project.AnnotationChannelName, media));
@@ -519,7 +487,7 @@ namespace Obi
         /// </summary>
         /// <param name="node">The node for which we want the asset.</param>
         /// <returns>The asset or null if it could not be found.</returns>
-        public static AudioMediaAsset GetAudioMediaAsset(CoreNode node)
+        /*public static AudioMediaAsset GetAudioMediaAsset(CoreNode node)
         {
             System.Diagnostics.Debug.Assert(node.GetType() == System.Type.GetType("Obi.PhraseNode"));
             AssetProperty prop = (AssetProperty)node.getProperty(typeof(AssetProperty));
@@ -531,7 +499,7 @@ namespace Obi
             {
                 return null;
             }
-        }
+        }*/
 
         /// <summary>
         /// Set the audio media asset for a phrase node.
@@ -539,19 +507,8 @@ namespace Obi
         /// </summary>
         internal void SetAudioMediaAsset(PhraseNode node, AudioMediaAsset asset)
         {
-            AssetProperty prop = (AssetProperty)node.getProperty(typeof(AssetProperty));
-            if (prop != null)
-            {
-                prop.Asset = asset;
-                UpdateSeq(node);
-                MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, Project.AudioChannelName,
-                    GetMediaForChannel(node, Project.AudioChannelName)));
-                //md testing ((TextMedia)GetMediaForChannel(node, AnnotationChannel)).setText(asset.Name);
-            }
-            else
-            {
-                throw new Exception("Cannot set an asset on a node lacking an asset property.");
-            }
+            node.Asset = asset;
+            UpdateSeq(node);
         }
 
         /// <summary>
@@ -559,9 +516,9 @@ namespace Obi
         /// The sequence media object is simply a translation of the list of clips.
         /// </summary>
         //md change from private to internal so it could be used by CopyPhraseAssets
-        internal void UpdateSeq(CoreNode node)
+        internal void UpdateSeq(PhraseNode node)
         {
-            Assets.AudioMediaAsset asset = GetAudioMediaAsset(node);
+            Assets.AudioMediaAsset asset = node.Asset;
             ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
             SequenceMedia seq =
                 (SequenceMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.EMPTY_SEQUENCE);

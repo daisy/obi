@@ -49,9 +49,6 @@ namespace Obi
             {
                 switch (localName)
                 {
-                    case "AssetProperty":
-                        return new AssetProperty();
-                   
                     case "page":
                     case "PageProperty":
                         return new PageProperty();
@@ -60,30 +57,6 @@ namespace Obi
                 }
             }
             return base.createProperty(localName, namespaceUri);
-        }
-    }
-
-    public class AssetProperty: ObiProperty
-    {
-        private Assets.AudioMediaAsset mAsset;  // the asset for this node
-
-        public Assets.AudioMediaAsset Asset
-        {
-            get { return mAsset; }
-            set { mAsset = value; }
-        }
-
-        internal AssetProperty(): base()
-        {
-            mAsset = null;
-        }
-
-        public override IProperty copy()
-        {
-            AssetProperty copy = new AssetProperty();
-            copy.setOwner(mOwner);
-            copy.Asset = mAsset;
-            return copy;
         }
     }
 

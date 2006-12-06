@@ -29,7 +29,7 @@ namespace Obi.Visitors
             else if (node.GetType() == Type.GetType("Obi.PhraseNode"))
             {
                 info += " " + ((TextMedia)Project.GetMediaForChannel(n, Project.AnnotationChannelName)).getText();
-                Assets.AudioMediaAsset asset = Project.GetAudioMediaAsset(n);
+                Assets.AudioMediaAsset asset = ((PhraseNode)n).Asset;
                 foreach (Assets.AudioClip clip in asset.Clips)
                 {
                     info += String.Format("\n  {0}{1} {2}-{3}", indent, clip.Path, clip.BeginTime, clip.EndTime);

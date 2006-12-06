@@ -7,8 +7,6 @@ namespace Obi.Events.Node
     class SelectedEventArgs: EventArgs
     {
         private bool mSelected;
-        private bool mCanMoveUp;
-        private bool mCanMoveDown;
         private bool mCanMoveIn;
         private bool mCanMoveOut;
 
@@ -18,24 +16,6 @@ namespace Obi.Events.Node
         public bool Selected
         {
             get { return mSelected; }
-        }
-
-        /// <summary>
-        /// Whether the selected node can move up.
-        /// </summary>
-        public bool CanMoveUp
-        {
-            get { return mCanMoveUp; }
-            set { mCanMoveUp = value; }
-        }
-
-        /// <summary>
-        /// Whether the selected node can move down.
-        /// </summary>
-        public bool CanMoveDown
-        {
-            get { return mCanMoveDown; }
-            set { mCanMoveDown = value; }
         }
 
         /// <summary>
@@ -58,7 +38,7 @@ namespace Obi.Events.Node
 
         public SelectedEventArgs(bool selected)
         {
-            mCanMoveUp = mCanMoveDown = mCanMoveIn = mCanMoveOut = mSelected = selected;
+            mCanMoveIn = mCanMoveOut = mSelected = selected;
         }
     }
 }

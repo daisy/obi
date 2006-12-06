@@ -35,10 +35,10 @@ namespace Obi.Dialogs
         /// Instantiate the dialog.
         /// </summary>
         /// <param name="silence">The silence phrase.</param>
-        public SentenceDetection(CoreNode silence)
+        public SentenceDetection(PhraseNode silence)
         {
             InitializeComponent();
-            Assets.AudioMediaAsset silenceAsset = Project.GetAudioMediaAsset(silence);
+            Assets.AudioMediaAsset silenceAsset = silence.Asset;
             mThresholdBox.Text = silenceAsset.GetSilenceAmplitude().ToString();
             mGapBox.Text = Assets.AudioMediaAsset.DefaultGap.ToString();
             mLeadingSilenceBox.Text = Assets.AudioMediaAsset.DefaultLeadingSilence.ToString();

@@ -34,9 +34,7 @@ namespace Obi.Dialogs
             this.btnPhraseMark = new System.Windows.Forms.Button();
             this.btnBeginSection = new System.Windows.Forms.Button();
             this.btnPageMark = new System.Windows.Forms.Button();
-            this.combRecordingSelect = new System.Windows.Forms.ComboBox();
-            this.txtCommitInterval = new System.Windows.Forms.TextBox();
-            this.lblCommitInterval = new System.Windows.Forms.Label();
+            this.mTextVuMeter = new Obi.UserControls.TextVUMeterPanel();
             this.SuspendLayout();
             // 
             // mRecordButton
@@ -100,40 +98,22 @@ namespace Obi.Dialogs
             this.btnPageMark.UseVisualStyleBackColor = true;
             this.btnPageMark.Click += new System.EventHandler(this.btnPageMark_Click);
             // 
-            // combRecordingSelect
+            // mTextVuMeter
             // 
-            this.combRecordingSelect.FormattingEnabled = true;
-            this.combRecordingSelect.Location = new System.Drawing.Point(12, 15);
-            this.combRecordingSelect.Name = "combRecordingSelect";
-            this.combRecordingSelect.Size = new System.Drawing.Size(121, 21);
-            this.combRecordingSelect.TabIndex = 0;
-            // 
-            // txtCommitInterval
-            // 
-            this.txtCommitInterval.AccessibleName = "Commit interval in Seconds";
-            this.txtCommitInterval.Location = new System.Drawing.Point(22, 191);
-            this.txtCommitInterval.Name = "txtCommitInterval";
-            this.txtCommitInterval.Size = new System.Drawing.Size(100, 20);
-            this.txtCommitInterval.TabIndex = 7;
-            this.txtCommitInterval.Text = "300";
-            // 
-            // lblCommitInterval
-            // 
-            this.lblCommitInterval.AutoSize = true;
-            this.lblCommitInterval.Location = new System.Drawing.Point(19, 157);
-            this.lblCommitInterval.Name = "lblCommitInterval";
-            this.lblCommitInterval.Size = new System.Drawing.Size(110, 13);
-            this.lblCommitInterval.TabIndex = 7;
-            this.lblCommitInterval.Text = "Commit &Interval in sec";
+            this.mTextVuMeter.BackColor = System.Drawing.Color.Transparent;
+            this.mTextVuMeter.Location = new System.Drawing.Point(0, 92);
+            this.mTextVuMeter.Name = "mTextVuMeter";
+            this.mTextVuMeter.PlayListObj = null;
+            this.mTextVuMeter.RecordingSessionObj = null;
+            this.mTextVuMeter.Size = new System.Drawing.Size(220, 44);
+            this.mTextVuMeter.TabIndex = 7;
             // 
             // TransportRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 296);
-            this.Controls.Add(this.lblCommitInterval);
-            this.Controls.Add(this.txtCommitInterval);
-            this.Controls.Add(this.combRecordingSelect);
+            this.Controls.Add(this.mTextVuMeter);
             this.Controls.Add(this.btnPageMark);
             this.Controls.Add(this.btnBeginSection);
             this.Controls.Add(this.btnPhraseMark);
@@ -142,9 +122,9 @@ namespace Obi.Dialogs
             this.Controls.Add(this.mRecordButton);
             this.Name = "TransportRecord";
             this.Text = "TransportRecord";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TransportRecord_FormClosing);
             this.Load += new System.EventHandler(this.TransportRecord_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -156,8 +136,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button btnPhraseMark;
         private System.Windows.Forms.Button btnBeginSection;
         private System.Windows.Forms.Button btnPageMark;
-        private System.Windows.Forms.ComboBox combRecordingSelect;
-        private System.Windows.Forms.TextBox txtCommitInterval;
-        private System.Windows.Forms.Label lblCommitInterval;
+        private Obi.UserControls.TextVUMeterPanel mTextVuMeter;
     }
 }

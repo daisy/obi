@@ -389,6 +389,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hide &amp;VU meter.
+        /// </summary>
+        internal static string hide_vu_meter {
+            get {
+                return ResourceManager.GetString("hide_vu_meter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to move section in.
         /// </summary>
         internal static string increase_section_level_command_label {
@@ -678,6 +687,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to P&amp;ause.
+        /// </summary>
+        internal static string pause_all {
+            get {
+                return ResourceManager.GetString("pause_all", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  phrase.
         /// </summary>
         internal static string phrase {
@@ -692,6 +710,24 @@ namespace Obi {
         internal static string play {
             get {
                 return ResourceManager.GetString("play", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Play &amp;all.
+        /// </summary>
+        internal static string play_all {
+            get {
+                return ResourceManager.GetString("play_all", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Play &amp;selection.
+        /// </summary>
+        internal static string play_selection {
+            get {
+                return ResourceManager.GetString("play_selection", resourceCulture);
             }
         }
         
@@ -893,6 +929,15 @@ namespace Obi {
         internal static string show_toc_label {
             get {
                 return ResourceManager.GetString("show_toc_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show &amp;VU meter.
+        /// </summary>
+        internal static string show_vu_meter {
+            get {
+                return ResourceManager.GetString("show_vu_meter", resourceCulture);
             }
         }
         

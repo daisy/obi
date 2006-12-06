@@ -28,4 +28,4 @@ namespace Obi.Events
     public delegate void UpdateTimeHandler(object sender, UpdateTimeEventArgs e);
 
     public delegate void NodeEventHandler(object sender, NodeEventArgs e);
-}
+ }

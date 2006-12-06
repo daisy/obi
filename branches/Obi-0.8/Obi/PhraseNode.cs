@@ -13,8 +13,7 @@ namespace Obi
         private TextMedia mMedia;            // quick reference to the text media object
         private string mAnnotation;          // the annotation for this phrase
         private AudioMediaAsset mAsset;      // the audio asset for this phrase
-        private AssetProperty mAssProperty;  // asset property for the XUK input/output
-
+    
         /// <summary>
         /// Directions in which a phrase node can be moved.
         /// </summary>
@@ -30,7 +29,6 @@ namespace Obi
             {
                 mAnnotation = value;
                 mMedia.setText(value);
-               // mChannel.setMedia(Project.mAnnotationChannel, mMedia);
                 Channel channel = Project.FindChannel(Project.AnnotationChannelName);
                 if (channel != null) mChannel.setMedia(channel, mMedia);
             }
@@ -44,8 +42,7 @@ namespace Obi
             get { return mAsset; }
             set
             {
-                mAssProperty.Asset = value;
-                setProperty(mAssProperty);
+                mAsset = value;
                 UpdateSeq();
             }
         }
@@ -103,8 +100,8 @@ namespace Obi
             this.setProperty(mChannel);
             mMedia = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
             Annotation = "No annotation :(";
-            mAssProperty = (AssetProperty)getPresentation().getPropertyFactory().createProperty("AssetProperty",
-                ObiPropertyFactory.ObiNS);
+            //mAssProperty = (AssetProperty)getPresentation().getPropertyFactory().createProperty("AssetProperty",
+            //    ObiPropertyFactory.ObiNS);
             mAsset = null;
         }
 
@@ -127,9 +124,9 @@ namespace Obi
                 audio.setClipEnd(new Time((long)Math.Round(clip.EndTime)));
                 seq.appendItem(audio);
             }
-            //mChannel.setMedia(Project.mAudioChannel, seq);
+          
             Channel channel = Project.FindChannel(Project.AudioChannelName);
-            if (channel != null) mChannel.setMedia(channel, mMedia);
+            if (channel != null) mChannel.setMedia(channel, seq);
         }
 
         /// <summary>

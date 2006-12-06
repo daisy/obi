@@ -591,15 +591,15 @@ namespace Obi
         /// Temporary convenience for finding the first phrase, i.e. the silence phrase (so far.)
         /// </summary>
         /// <returns>The first phrase node or null.</returns>
-        internal CoreNode FindFirstPhrase()
+        internal PhraseNode FindFirstPhrase()
         {
-            CoreNode first = null;
+            PhraseNode first = null;
             getPresentation().getRootNode().visitDepthFirst
             (
                 delegate(ICoreNode n)
                 {
                     if (first != null) return false;
-                    if (n.GetType() == System.Type.GetType("Obi.PhraseNode")) { first = (CoreNode)n; System.Diagnostics.Debug.Print("bing!"); }
+                    if (n.GetType() == System.Type.GetType("Obi.PhraseNode")) { first = (PhraseNode)n; System.Diagnostics.Debug.Print("bing!"); }
                     return true;
                 },
                 delegate(ICoreNode n) {}

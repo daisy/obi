@@ -17,6 +17,15 @@ namespace Obi
         private Project mProject;                // the project currently being authored
         private Settings mSettings;              // application settings
         private CommandManager mCommandManager;  // the undo stack for this project (should it belong to the project?)
+        private Audio.VuMeterForm mVuMeter;      // keep track of a single Vu meter form
+
+        /// <summary>
+        /// The VU meter form owned by the main form can be shown and hidden from a menu.
+        /// </summary>
+        public Audio.VuMeterForm VuMeterForm
+        {
+            get { return mVuMeter; }
+        }
 
         /// <summary>
         /// Initialize a new form. No project is opened at creation time.
@@ -25,9 +34,13 @@ namespace Obi
         public ObiForm()
         {
             InitializeComponent();
+            DoubleBuffered = true;
             mProject = null;
             mSettings = null;
             mCommandManager = new CommandManager();
+            mVuMeter = new Audio.VuMeterForm(Audio.AudioPlayer.Instance.VuMeter);
+            mVuMeter.VuMeter.SetEventHandlers();
+            mVuMeter.Visible = false;
             InitializeSettings();
             StatusUpdateClosedProject();  // no project opened, same as if we closed a project.
         }
@@ -207,7 +220,7 @@ namespace Obi
             if (mProject != null)
             {
                 if (!mCommandManager.HasUndo) mProject.Touch();
-                mProjectPanel.SynchronizeWithCoreTree(mProject.RootNode);
+                mProjectPanel.SynchronizeWithCoreTree();
             }
         }
 
@@ -320,7 +333,7 @@ namespace Obi
                     mProjectPanel.Project = mProject;
                     FormUpdateOpenedProject();
                     mCommandManager.Clear();
-                    mProjectPanel.SynchronizeWithCoreTree(mProject.getPresentation().getRootNode());
+                    mProjectPanel.SynchronizeWithCoreTree();
                     break;
                 case Obi.Events.Project.StateChange.Saved:
                     FormUpdateSavedProject();
@@ -930,10 +943,10 @@ namespace Obi
             bool isStripSelected = isProjectOpen && mProjectPanel.StripManager.SelectedSectionNode != null;
             bool isAudioBlockSelected = isProjectOpen && mProjectPanel.StripManager.SelectedPhraseNode != null;
             bool isAudioBlockLast = isAudioBlockSelected &&
-                Project.GetPhraseIndex(mProjectPanel.StripManager.SelectedPhraseNode) ==
-                Project.GetPhrasesCount(mProjectPanel.StripManager.SelectedSectionNode) - 1;
+                mProjectPanel.StripManager.SelectedPhraseNode.Index ==
+                mProjectPanel.StripManager.SelectedSectionNode.PhraseChildCount - 1;
             bool isAudioBlockFirst = isAudioBlockSelected &&
-                Project.GetPhraseIndex(mProjectPanel.StripManager.SelectedPhraseNode) == 0;
+                mProjectPanel.StripManager.SelectedPhraseNode.Index == 0;
             bool isBlockClipBoardSet = isProjectOpen && mProject.Clipboard.Phrase != null;
             bool canSetPage = isAudioBlockSelected;  // an audio block must be selected and a heading must not be set.
             bool canRemovePage = isAudioBlockSelected &&
@@ -960,16 +973,46 @@ namespace Obi
         }
 
         /// <summary>
-        /// 
+        /// Update the visibility and actual label of transport items.
         /// </summary>
         private void mTransportToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
             bool isProjectOpen = mProject != null;
-            mPlayAllToolStripMenuItem.Enabled = isProjectOpen;
-            mPlaySelectionToolStripMenuItem.Enabled = isProjectOpen &&
-                (mProjectPanel.StripManager.SelectedSectionNode != null ||
-                mProjectPanel.StripManager.SelectedPhraseNode != null);
-            mRecordToolStripMenuItem.Enabled = isProjectOpen;
+            bool isNodeSelected = isProjectOpen && mProjectPanel.SelectedNode != null;
+            mShowHideVUMeterToolStripMenuItem.Text = Localizer.Message(mVuMeter.Visible ? "hide_vu_meter" : "show_vu_meter");
+            if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Stopped)
+            {
+                mPlayAllToolStripMenuItem.Enabled = isProjectOpen;
+                mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
+                mPlaySelectionToolStripMenuItem.Enabled = isNodeSelected;
+                mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
+                mStopToolStripMenuItem.Enabled = isNodeSelected;
+            }
+            else if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.NotReady)
+            {
+                mPlayAllToolStripMenuItem.Enabled = false;
+                mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
+                mPlaySelectionToolStripMenuItem.Enabled = false;
+                mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
+                mStopToolStripMenuItem.Enabled = false;
+            }
+            else if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Paused)
+            {
+                mPlayAllToolStripMenuItem.Enabled = mProjectPanel.TransportBar.Playlist.WholeBook;
+                mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
+                mPlaySelectionToolStripMenuItem.Enabled = !mProjectPanel.TransportBar.Playlist.WholeBook;
+                mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
+                mStopToolStripMenuItem.Enabled = true;
+            }
+            else // playing
+            {
+                mPlayAllToolStripMenuItem.Enabled = mProjectPanel.TransportBar.Playlist.WholeBook;
+                mPlayAllToolStripMenuItem.Text = Localizer.Message("pause_all");
+                mPlaySelectionToolStripMenuItem.Enabled = !mProjectPanel.TransportBar.Playlist.WholeBook;
+                mPlaySelectionToolStripMenuItem.Text = Localizer.Message("pause");
+                mStopToolStripMenuItem.Enabled = true;
+            }
+            mRecordToolStripMenuItem.Enabled = false;
         }
 
         /// <summary>
@@ -990,18 +1033,6 @@ namespace Obi
 
         #endregion
 
-        /// <summary>
-        /// Play a single phrase node using the transport bar.
-        /// </summary>
-        internal void Play(urakawa.core.CoreNode node)
-        {
-            if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped)
-            {
-                mProjectPanel.TransportBar.Playlist = new Playlist(mProject, Audio.AudioPlayer.Instance, node);
-                mProjectPanel.TransportBar.Play();
-            }
-        }
-
         internal void UndoLast()
         {
             if (mCommandManager.HasUndo)
@@ -1012,18 +1043,37 @@ namespace Obi
         }
 
         // Transport bar stuff
-        // Right now implemented only through menu/dialogs
 
         #region transport bar
 
         /// <summary>
-        /// Play the whole book.
+        /// Show the VU meter form (creating it if necessary) or hide it.
+        /// </summary>
+        private void mShowHideVUMeterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mVuMeter != null && mVuMeter.Visible)
+            {
+                mVuMeter.Hide();
+            }
+            else
+            {
+                mVuMeter.Show();
+            }
+        }
+
+        /// <summary>
+        /// Play the whole book from the selected node, or from the beginning.
+        /// If already playing, pause.
         /// </summary>
         private void mPlayAllToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped && mProject != null)
+            if (mProjectPanel.TransportBar.Playlist != null &&
+                mProjectPanel.TransportBar.Playlist.State == Audio.AudioPlayerState.Playing)
             {
-                mProjectPanel.TransportBar.Playlist = new Playlist(mProject, Audio.AudioPlayer.Instance);
+                mProjectPanel.TransportBar.Pause();
+            }
+            else
+            {
                 mProjectPanel.TransportBar.Play();
             }
         }
@@ -1033,11 +1083,31 @@ namespace Obi
         /// </summary>
         private void mPlaySelectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped && mProject != null &&
-                mProjectPanel.SelectedNode != null)
+            if (mProjectPanel.TransportBar.Playlist != null && 
+                mProjectPanel.TransportBar.Playlist.State == Audio.AudioPlayerState.Playing)
+            {
+                mProjectPanel.TransportBar.Pause();
+            }
+            else
             {
                 Play(mProjectPanel.StripManager.SelectedNode);
             }
+        }
+
+        /// <summary>
+        /// Play a single phrase node using the transport bar.
+        /// </summary>
+        internal void Play(CoreNode node)
+        {
+            mProjectPanel.TransportBar.Play(node);
+        }
+
+        /// <summary>
+        /// Stop playback.
+        /// </summary>
+        private void mStopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.TransportBar.Stop();
         }
 
         /// <summary>
@@ -1098,5 +1168,27 @@ namespace Obi
         }
 
         #endregion
+
+        private void mPreviousPhraseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Stopped)
+            {
+            }
+            else
+            {
+                mProjectPanel.TransportBar.PrevPhrase();
+            }
+        }
+
+        private void mNextPhraseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Stopped)
+            {
+            }
+            else
+            {
+                mProjectPanel.TransportBar.NextPhrase();
+            }
+        }
     }
 }
