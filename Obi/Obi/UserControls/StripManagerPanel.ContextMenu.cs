@@ -187,6 +187,17 @@ namespace Obi.UserControls
         }
 
         /// <summary>
+        /// Remove the annotation on a block.
+        /// </summary>
+        private void mRemoveAnnotationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mSelectedPhrase != null)
+            {
+                RemovedAnnotation(mPhraseNodeMap[mSelectedPhrase]);
+            }
+        }
+
+        /// <summary>
         /// Delete the currently selected audio block.
         /// </summary>
         private void mDeleteAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
