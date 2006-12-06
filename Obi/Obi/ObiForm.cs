@@ -40,6 +40,7 @@ namespace Obi
             mCommandManager = new CommandManager();
             mVuMeter = new Audio.VuMeterForm(Audio.AudioPlayer.Instance.VuMeter);
             mVuMeter.VuMeter.SetEventHandlers();
+            mVuMeter.Show();
             mVuMeter.Visible = false;
             InitializeSettings();
             StatusUpdateClosedProject();  // no project opened, same as if we closed a project.
