@@ -302,7 +302,6 @@ namespace Obi
             AddMetadata("dc:Publisher", metadata.Publisher);
             urakawa.project.Metadata metaDate = AddMetadata("dc:Date", DateTime.Today.ToString("yyyy-MM-dd"));
             if (metaDate != null) metaDate.setScheme("YYYY-MM-DD");
-            AddMetadata("xuk:generator", "Obi+Urakawa toolkit");
             AddMetadata("obi:assetsdir", mAssPath);
             AddMetadata("obi:xukversion", Project.XUKVersion);
             return metadata;
@@ -554,8 +553,6 @@ namespace Obi
             return null;
         }
 
-        
-
         /// <summary>
         /// Dump the asset manager to check what's going on.
         /// </summary>
@@ -606,7 +603,5 @@ namespace Obi
             );
             return first;
         }
-
-      
     }
 }

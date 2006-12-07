@@ -106,6 +106,7 @@ namespace Obi
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectPanel = new Obi.UserControls.ProjectPanel();
+            this.mExportAssetDEBUGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -655,7 +656,8 @@ namespace Obi
             this.preferencesToolStripMenuItem,
             this.audioPreferencesToolStripMenuItem,
             this.toolStripSeparator10,
-            this.mDumpTreeDEBUGToolStripMenuItem});
+            this.mDumpTreeDEBUGToolStripMenuItem,
+            this.mExportAssetDEBUGToolStripMenuItem});
             this.mToolsToolStripMenuItem.Name = "mToolsToolStripMenuItem";
             this.mToolsToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
             this.mToolsToolStripMenuItem.Text = "&Tools";
@@ -750,6 +752,13 @@ namespace Obi
             this.mProjectPanel.Project = null;
             this.mProjectPanel.Size = new System.Drawing.Size(849, 491);
             this.mProjectPanel.TabIndex = 4;
+            // 
+            // mExportAssetDEBUGToolStripMenuItem
+            // 
+            this.mExportAssetDEBUGToolStripMenuItem.Name = "mExportAssetDEBUGToolStripMenuItem";
+            this.mExportAssetDEBUGToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.mExportAssetDEBUGToolStripMenuItem.Text = "E&xport asset (DEBUG)";
+            this.mExportAssetDEBUGToolStripMenuItem.Click += new System.EventHandler(this.mExportAssetDEBUGToolStripMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -854,6 +863,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mPreviousPhraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mNextPhraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mNextSectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mExportAssetDEBUGToolStripMenuItem;
 
 
     }
