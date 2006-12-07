@@ -11,10 +11,6 @@ namespace Obi.Assets
         public static readonly double DefaultGap = 500.0;             // default gap for phrase detection
         public static readonly double DefaultLeadingSilence = 100.0;  // default leading silence
 
-        // member variables
-        //ArrayList is to be finally changed to internal
-        // changed to mClips--see below (JQ)
-        //public ArrayList m_alClipList = new ArrayList();
         private int m_Channels;
         private int m_BitDepth;
         private int m_SamplingRate;
@@ -698,6 +694,14 @@ namespace Obi.Assets
             return asset1.Channels == asset2.Channels &&
                 asset2.SampleRate == asset2.SampleRate &&
                 asset1.BitDepth == asset2.BitDepth;
+        }
+
+        /// <summary>
+        /// Save the asset into a single file.
+        /// </summary>
+        /// <param name="path">Path of the file to save.</param>
+        public void Export(string path)
+        {
         }
     }// end of class
 }

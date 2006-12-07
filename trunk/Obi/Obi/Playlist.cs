@@ -17,7 +17,7 @@ namespace Obi
     {
         private Project mProject;                 // project in which we are playing
         private AudioPlayer mPlayer;              // audio player for actually playing
-        private List<PhraseNode> mPhrases;          // list of phrase nodes (from which we get the assets)
+        private List<PhraseNode> mPhrases;        // list of phrase nodes (from which we get the assets)
         private List<double> mStartTimes;         // start time of every phrase
         private int mCurrentPhraseIndex;          // index of the phrase currently playing
         private double mTotalTime;                // total time of this playlist
@@ -303,39 +303,25 @@ namespace Obi
         }
 
         /// <summary>
-        /// Play.
+        /// Play from stopped state.
         /// </summary>
         public void Play()
         {
-            if (mPhrases.Count > 0)
+            System.Diagnostics.Debug.Assert(mPlaylistState == AudioPlayerState.Stopped, "Only play from stopped state.");
+            PlayPhrase(mCurrentPhraseIndex);
+        }
+
+        /// <summary>
+        /// Resume playing from current point.
+        /// </summary>
+        public void Resume()
+        {
+            System.Diagnostics.Debug.Assert(mPlaylistState == AudioPlayerState.Paused, "Only resume from paused state.");
+            mPlayer.Play(mPhrases[mCurrentPhraseIndex].Asset, mPausePosition);
+            mPlaylistState = AudioPlayerState.Playing;
+            if (StateChanged != null)
             {
-                if (mPlaylistState == AudioPlayerState.Paused)
-                {
-                    // Resume by using play from function
-                    mPlayer.Play(mPhrases[mCurrentPhraseIndex].Asset, mPausePosition);
-                    mPlaylistState = AudioPlayerState.Playing;
-                    if (StateChanged != null)
-                    {
-                        StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Paused));
-                    }
-                    if (MovedToPhrase != null)
-                    {
-                        MovedToPhrase(this, new Events.Node.PhraseNodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
-                    }
-                }
-                else if (mPlaylistState == AudioPlayerState.Stopped)
-                {
-                    PlayPhrase(mCurrentPhraseIndex);
-                }
-                else
-                {
-                    throw new Exception(string.Format("Player should be paused or stopped, but is {0}.", mPlayer.State));
-                }
-            }
-            else
-            {
-                // nothing to play so just stop.
-                Stop();
+                StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Paused));
             }
         }
 

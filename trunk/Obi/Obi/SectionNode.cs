@@ -81,7 +81,7 @@ namespace Obi
         }
 
         /// <summary>
-        /// Return the previous section sibling node, or null if this is the first. 
+        /// Return the previous section sibling node, or null if this is the first child.
         /// </summary>
         public SectionNode PreviousSibling
         {
@@ -91,8 +91,7 @@ namespace Obi
                 int index = parent.indexOf(this);
                 if (parent is SectionNode)
                 {
-                    if (index == ((SectionNode)parent).mSectionOffset) return null;
-                    else return ((SectionNode)parent).SectionChild(index - 1);
+                    return index == ((SectionNode)parent).mSectionOffset ? null : (SectionNode)parent.getChild(index - 1);
                 }
                 else
                 {
