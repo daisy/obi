@@ -20,10 +20,12 @@ namespace Obi.UserControls
     {
         private ProjectPanel mProjectPanel; //the parent of this control
 
+        public event Events.SelectedHandler Selected;
+
         /// <summary>
         /// Test whether a node is currently selected or not, *and* under user focus.
         /// </summary>
-        public bool Selected
+        public bool IsNodeSelected
         {
             get { return mTocTree.Focused && mTocTree.SelectedNode != null; }
         }
@@ -41,6 +43,8 @@ namespace Obi.UserControls
                     TreeNode sel = FindTreeNodeFromSectionNode(value);
                     System.Diagnostics.Debug.Assert(sel != null, "Cannot find selected section node in TOC tree.");
                     mTocTree.SelectedNode = sel;
+
+                    Selected(value, new Obi.Events.Node.SelectedEventArgs(true));
                 }
             }
         }
@@ -72,14 +76,6 @@ namespace Obi.UserControls
             mTocTree.Nodes.Clear();
             mTocTree.SelectedNode = null;
             root.visitDepthFirst(SectionNodeVisitor, delegate(urakawa.core.ICoreNode node) { });
-            //select the first node
-            /*
-            if (mTocTree.Nodes.Count > 0)
-            {
-                mTocTree.SelectedNode = mTocTree.Nodes[0];
-                mTocTree.SelectedNode.EnsureVisible();
-            }
-            */
             this.Cursor = Cursors.Default;
         }
 

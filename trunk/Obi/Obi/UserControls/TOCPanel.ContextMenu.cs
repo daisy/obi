@@ -19,21 +19,12 @@ namespace Obi.UserControls
         public event Events.SectionNodeHandler AddChildSectionNodeRequested;
         public event Events.SectionNodeHandler DecreaseSectionNodeLevelRequested;
         public event Events.SectionNodeHandler IncreaseSectionNodeLevelRequested;
-        /*md 20061130 removing this stuff...
-        public event Events.Node.RequestToMoveSectionNodeDownHandler MoveSectionNodeDownRequested;
-        public event Events.Node.RequestToMoveSectionNodeUpHandler MoveSectionNodeUpRequested;*/
-
+      
         public event Events.RenameSectionNodeHandler RenameSectionNodeRequested;
         public event Events.SectionNodeHandler DeleteSectionNodeRequested;
         public event Events.SectionNodeHandler CutSectionNodeRequested;
         public event Events.SectionNodeHandler CopySectionNodeRequested;
         public event Events.SectionNodeHandler PasteSectionNodeRequested;
-
-        /*
-         * ***************************************
-         * These functions "...ToolStripMenuItem_Click" are triggered
-         * by the TOC panel's context menu
-         */
 
         // These are internal so that the main menu can also link to them once the project is open.
 
@@ -54,14 +45,6 @@ namespace Obi.UserControls
         }
 
         /// <summary>
-        /// Triggered by the "move section up" menu item.
-        /// </summary>
-     /*  internal void mMoveUpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            RequestToMoveSectionNodeUp(this, new SectionNodeEventArgs(this, SelectedSection));
-        }*/
-
-        /// <summary>
         /// Triggered by the "delete section" menu item.
         /// </summary>
         private void mDeleteSectionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -79,11 +62,6 @@ namespace Obi.UserControls
             TreeNode sel = this.mTocTree.SelectedNode;
             sel.BeginEdit();
         }
-
-        /*internal void mMoveDownToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            RequestToMoveSectionNodeDown(this, new Events.Node.NodeEventArgs(this, SelectedSection));
-        }*/
 
         internal void increaseLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -103,7 +81,7 @@ namespace Obi.UserControls
         internal void mShowInStripViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //mg 20060804
-            if (Selected)
+            if (IsNodeSelected)
             {
                 ProjectPanel.StripManager.SelectedSectionNode = SelectedSection;
                 if (ProjectPanel.StripManager.SelectedSectionNode != null)
@@ -152,7 +130,6 @@ namespace Obi.UserControls
                 isNodeSelected = true;
                 selectedSection = SelectedSection;
             }
-
 
             mAddSubSectionToolStripMenuItem.Enabled = isNodeSelected;
             mDeleteSectionToolStripMenuItem.Enabled = isNodeSelected;

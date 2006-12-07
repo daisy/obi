@@ -136,8 +136,6 @@ namespace Obi
                 //if (origin != this)
                // {
                     CoreNode parent = (CoreNode)node.getParent();
-                 //   Visitors.SectionNodePosition visitor = new Visitors.SectionNodePosition(node);
-                  //  getPresentation().getRootNode().acceptDepthFirst(visitor);
                     command = new Commands.TOC.DeleteSectionNode(node);
               //  }
                 node.DetachFromParent();
