@@ -719,7 +719,7 @@ namespace Obi.Assets
                 for (int i = 0; i < this.mClips.Count; i++)
                 {
                     br = new BinaryReader(File.OpenRead(mClips[i].Path));
-
+                    br.BaseStream.Position = mClips[i].BeginByte;
                     for (long l = mClips[i].BeginByte; l < mClips[i].EndByte; l++)
                     {
                         bw.Write(br.ReadByte());
