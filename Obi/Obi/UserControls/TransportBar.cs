@@ -34,9 +34,7 @@ namespace Obi.UserControls
             get
             {
                 return ((ProjectPanel)Parent).Project != null &&
-                    (mPlaylist == null ||
-                    mPlaylist.State == Obi.Audio.AudioPlayerState.Stopped ||
-                    mPlaylist.State == Obi.Audio.AudioPlayerState.Paused);
+                    (Playlist.State == Obi.Audio.AudioPlayerState.Stopped || Playlist.State == Obi.Audio.AudioPlayerState.Stopped);
             }
         }
 
@@ -75,7 +73,6 @@ namespace Obi.UserControls
             InitializeComponent();
             mPlaylist = null;
             mDisplayBox.SelectedIndex = ElapsedTotal;
-
         }
 
         /// <summary>
@@ -129,10 +126,9 @@ namespace Obi.UserControls
         {
             if (CanPlay)
             {
-                CoreNode phrase = Playlist.CurrentPhrase;
                 if (mPlaylist == null || mPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
                 {
-                    
+                    CoreNode phrase = Playlist.CurrentPhrase;
                     Playlist = new Playlist(((ProjectPanel)Parent).Project, Audio.AudioPlayer.Instance);
                     Playlist.CurrentPhrase = phrase;
                     mScrubTrackBar.Maximum = Convert.ToInt32(mPlaylist.TotalAssetTime / 50);
@@ -152,16 +148,13 @@ namespace Obi.UserControls
         {
             if (CanPlay)
             {
-                Playlist = new Playlist(((ProjectPanel)Parent).Project, Audio.AudioPlayer.Instance, node);
+                Playlist = new Playlist(Audio.AudioPlayer.Instance, node);
                 mScrubTrackBar.Maximum = Convert.ToInt32(mPlaylist.TotalAssetTime / 50);
                 mScrubTrackBar.Value = mScrubTrackBar.Maximum / 2;
                 mCentreSliderEventEffect = true;
-
                 mPlaylist.Play();
-
                 mVUMeterPanel.Enable = true;
                 mVUMeterPanel.PlayListObj = mPlaylist;
-                
             }
         }
 
@@ -226,7 +219,7 @@ namespace Obi.UserControls
         /// </summary>
         public void NextPhrase()
         {
-            if (mPlaylist != null) mPlaylist.NavigateToNextPhrase();
+            Playlist.NavigateToNextPhrase();
         }
 
         private void mNextSectionButton_Click(object sender, EventArgs e)
