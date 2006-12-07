@@ -209,9 +209,9 @@ namespace Obi.Audio
 			m_arUpdatedVM  = new int  [m_UpdateVMArrayLength ] ;
 
 			Array.Copy ( ob_AudioPlayer.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
-			//Thread UpdateVMForm = new Thread(new ThreadStart (AnimationComputation  ));
-			//UpdateVMForm.Start()  ;
-            AnimationComputation();
+			Thread UpdateVMForm = new Thread(new ThreadStart (AnimationComputation  ));
+            UpdateVMForm.IsBackground = true ;
+			UpdateVMForm.Start()  ;
 		}
 
 		// handles update event from audio recorder
@@ -224,9 +224,10 @@ namespace Obi.Audio
 			m_UpdateVMArrayLength = Recorder.m_UpdateVMArrayLength ;
 			m_arUpdatedVM  = new int  [m_UpdateVMArrayLength ] ;
 			Array.Copy ( Recorder.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
-			//Thread UpdateVMForm = new Thread(new ThreadStart (AnimationComputation  ));
-			//UpdateVMForm.Start()  ;
-            AnimationComputation();
+			Thread UpdateVMForm = new Thread(new ThreadStart (AnimationComputation  ));
+            UpdateVMForm.IsBackground = true;
+			UpdateVMForm.Start()  ;
+
 		}
 			
 
