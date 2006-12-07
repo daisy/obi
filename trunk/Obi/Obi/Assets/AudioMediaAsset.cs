@@ -702,6 +702,64 @@ namespace Obi.Assets
         /// <param name="path">Path of the file to save.</param>
         public void Export(string path)
         {
+            if (mClips.Count != 0)
+            {
+                BinaryWriter bw = new BinaryWriter(File.Create(path));
+                BinaryReader br;
+                br = new BinaryReader(File.OpenRead(mClips[0].Path));
+
+                for (int i = 0; i < 44; i++)
+                {
+                    bw.Write(br.ReadByte());
+                }
+
+                bw.BaseStream.Position = 44;
+
+                long ByteLengthCount = 0;
+                for (int i = 0; i < this.mClips.Count; i++)
+                {
+                    br = new BinaryReader(File.OpenRead(mClips[i].Path));
+
+                    for (long l = mClips[i].BeginByte; l < mClips[i].EndByte; l++)
+                    {
+                        bw.Write(br.ReadByte());
+                        ByteLengthCount++;
+                    }
+                }
+                UpdateLengthHeader(ByteLengthCount, bw);
+                bw.Close();
+                br.Close();
+            }
+            else
+            {
+                
+                throw new Exception("No Clip in Asset");
+            }
+
         }
+
+        private void UpdateLengthHeader(long Length, BinaryWriter bw)
+        {
+            long  AudioLengthBytes = Length - 44;
+            
+            // update length field (4 to 7 )in header
+            for (int i = 0; i < 4; i++)
+            {
+                bw.BaseStream.Position = i + 4;
+                bw.Write(Convert.ToByte(Audio.CalculationFunctions.ConvertFromDecimal(Length)[i]));
+
+            }
+            long TempLength = AudioLengthBytes;
+            for (int i = 0; i < 4; i++)
+            {
+                bw.BaseStream.Position = i + 40;
+                bw.Write( Convert.ToByte( Audio.CalculationFunctions.ConvertFromDecimal(TempLength)[i]));
+                
+            }
+
+        }
+
+
+
     }// end of class
 }
