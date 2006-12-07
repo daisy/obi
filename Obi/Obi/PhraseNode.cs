@@ -99,7 +99,7 @@ namespace Obi
             mChannel = getPresentation().getPropertyFactory().createChannelsProperty();
             this.setProperty(mChannel);
             mMedia = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
-            Annotation = "No annotation :(";
+            Annotation = "";
             mAsset = null;
         }
 
