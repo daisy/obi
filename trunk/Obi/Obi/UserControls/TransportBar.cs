@@ -144,9 +144,9 @@ namespace Obi.UserControls
             {
                 if (mPlaylist == null || mPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
                 {
-                    CoreNode phrase = Playlist.CurrentPhrase;
+                    PhraseNode phrase = Playlist.CurrentPhrase;
                     Playlist = new Playlist(((ProjectPanel)Parent).Project, Audio.AudioPlayer.Instance);
-                    Playlist.CurrentPhrase = (PhraseNode)phrase;
+                    Playlist.CurrentPhrase = phrase;
                     mScrubTrackBar.Maximum = Convert.ToInt32(mPlaylist.TotalAssetTime / 50);
                     mScrubTrackBar.Value = mScrubTrackBar.Maximum / 2;
                     mCentreSliderEventEffect = true;

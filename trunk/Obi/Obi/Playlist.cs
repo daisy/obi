@@ -340,6 +340,7 @@ namespace Obi
             else if (EndOfPlaylist != null)
             {
                 mPlaylistState = AudioPlayerState.Stopped;
+                Stop();
                 EndOfPlaylist(this, new EventArgs());
             }
         }
