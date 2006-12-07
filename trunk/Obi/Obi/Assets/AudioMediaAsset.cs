@@ -704,6 +704,8 @@ namespace Obi.Assets
         {
             if (mClips.Count != 0)
             {
+                MessageBox.Show ("Clip Count"  + mClips.Count.ToString());
+
                 BinaryWriter bw = new BinaryWriter(File.Create(path));
                 BinaryReader br;
                 br = new BinaryReader(File.OpenRead(mClips[0].Path));
@@ -719,7 +721,7 @@ namespace Obi.Assets
                 for (int i = 0; i < this.mClips.Count; i++)
                 {
                     br = new BinaryReader(File.OpenRead(mClips[i].Path));
-                    br.BaseStream.Position = mClips[i].BeginByte;
+                    br.BaseStream.Position = mClips[i].BeginByte + 44 ;
                     for (long l = mClips[i].BeginByte; l < mClips[i].EndByte; l++)
                     {
                         bw.Write(br.ReadByte());
