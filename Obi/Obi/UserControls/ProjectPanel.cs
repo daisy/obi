@@ -28,6 +28,10 @@ namespace Obi.UserControls
                 // Reset the handlers from the previous project
                 if (mProject != null)
                 {
+                    //md test 20061207
+                    mStripManagerPanel.Selected -= new Events.SelectedHandler(mProject.test_StripManagerSelect);
+                    mTOCPanel.Selected -= new Events.SelectedHandler(mProject.test_TOCSelect);
+
                     mTOCPanel.AddSiblingSectionRequested -= new Events.SectionNodeHandler(mProject.CreateSiblingSectionNodeRequested);
                     mStripManagerPanel.AddSiblingSectionRequested -=
                         new Events.SectionNodeHandler(mProject.CreateSiblingSectionNodeRequested);
@@ -37,7 +41,6 @@ namespace Obi.UserControls
 
                     mTOCPanel.AddChildSectionNodeRequested -= new Events.SectionNodeHandler(mProject.CreateChildSectionNodeRequested);
 
-                    //these are all events related to moving nodes up and down
                     mProject.MovedSectionNode -= new Events.MovedSectionNodeHandler(mTOCPanel.SyncMovedSectionNode);
                     mProject.MovedSectionNode -= new Events.MovedSectionNodeHandler(mStripManagerPanel.SyncMovedSectionNode);
                     mProject.UndidMoveSectionNode -= new Events.MovedSectionNodeHandler(mTOCPanel.SyncMovedSectionNode);
@@ -115,16 +118,17 @@ namespace Obi.UserControls
                 // Set up the handlers for the new project
                 if (value != null)
                 {
+                    //md test 20061207
+                    mStripManagerPanel.Selected += new Events.SelectedHandler(value.test_StripManagerSelect);
+                    mTOCPanel.Selected += new Events.SelectedHandler(value.test_TOCSelect);
+
                     mTOCPanel.AddSiblingSectionRequested += new Events.SectionNodeHandler(value.CreateSiblingSectionNodeRequested);
-                    mStripManagerPanel.AddSiblingSectionRequested +=
-                        new Events.SectionNodeHandler(value.CreateSiblingSectionNodeRequested);
+                    mStripManagerPanel.AddSiblingSectionRequested += new Events.SectionNodeHandler(value.CreateSiblingSectionNodeRequested);
                     value.AddedSectionNode += new Events.SectionNodeHandler(mTOCPanel.SyncAddedSectionNode);
                     value.AddedSectionNode += new Events.SectionNodeHandler(mStripManagerPanel.SyncAddedSectionNode);
 
                     mTOCPanel.AddChildSectionNodeRequested += new Events.SectionNodeHandler(value.CreateChildSectionNodeRequested);
-
-                    //these all relate to moving nodes up and down
-                  
+  
                     value.MovedSectionNode += new Events.MovedSectionNodeHandler(mTOCPanel.SyncMovedSectionNode);
                     value.MovedSectionNode += new Events.MovedSectionNodeHandler(mStripManagerPanel.SyncMovedSectionNode);
                     
@@ -134,8 +138,7 @@ namespace Obi.UserControls
                     mTOCPanel.IncreaseSectionNodeLevelRequested += new Events.SectionNodeHandler(value.IncreaseSectionNodeLevelRequested);
                     //marisa: the former "mProject.IncreasedSectionLevel" event is now handled by MovedNode
 
-                    mTOCPanel.DecreaseSectionNodeLevelRequested +=
-                        new Events.SectionNodeHandler(value.DecreaseSectionNodeLevelRequested);
+                    mTOCPanel.DecreaseSectionNodeLevelRequested += new Events.SectionNodeHandler(value.DecreaseSectionNodeLevelRequested);
                     value.DecreasedSectionNodeLevel += new Events.SectionNodeHandler(mTOCPanel.SyncDecreasedSectionNodeLevel);
                     value.DecreasedSectionNodeLevel += new Events.SectionNodeHandler(mStripManagerPanel.SyncDecreaseSectionNodeLevel);
 
@@ -150,41 +153,26 @@ namespace Obi.UserControls
 
                     // Block events
 
-                    mStripManagerPanel.RequestToCutSectionNode +=
-                        new Events.SectionNodeHandler(value.CutSectionNodeRequested);
-                    mStripManagerPanel.RequestToCutPhraseNode +=
-                        new Events.PhraseNodeHandler(value.CutPhraseNode);
-                    mStripManagerPanel.RequestToCopyPhraseNode +=
-                        new Events.PhraseNodeHandler(value.CopyPhraseNode);
-                    mStripManagerPanel.RequestToPastePhraseNode +=
-                        new Events.NodeEventHandler(value.PastePhraseNode);
+                    mStripManagerPanel.RequestToCutSectionNode += new Events.SectionNodeHandler(value.CutSectionNodeRequested);
+                    mStripManagerPanel.RequestToCutPhraseNode += new Events.PhraseNodeHandler(value.CutPhraseNode);
+                    mStripManagerPanel.RequestToCopyPhraseNode += new Events.PhraseNodeHandler(value.CopyPhraseNode);
+                    mStripManagerPanel.RequestToPastePhraseNode += new Events.NodeEventHandler(value.PastePhraseNode);
 
-                    mStripManagerPanel.ImportAudioAssetRequested +=
-                        new Events.RequestToImportAssetHandler(value.ImportAssetRequested);
-                    mStripManagerPanel.DeleteBlockRequested +=
-                        new Events.PhraseNodeHandler(value.DeletePhraseNodeRequested);
-                    mStripManagerPanel.MoveAudioBlockForwardRequested +=
-                        new Events.PhraseNodeHandler(value.MovePhraseNodeForwardRequested);
-                    mStripManagerPanel.MoveAudioBlockBackwardRequested +=
-                        new Events.PhraseNodeHandler(value.MovePhraseNodeBackwardRequested);
+                    mStripManagerPanel.ImportAudioAssetRequested += new Events.RequestToImportAssetHandler(value.ImportAssetRequested);
+                    mStripManagerPanel.DeleteBlockRequested += new Events.PhraseNodeHandler(value.DeletePhraseNodeRequested);
+                    mStripManagerPanel.MoveAudioBlockForwardRequested += new Events.PhraseNodeHandler(value.MovePhraseNodeForwardRequested);
+                    mStripManagerPanel.MoveAudioBlockBackwardRequested += new Events.PhraseNodeHandler(value.MovePhraseNodeBackwardRequested);
                     mStripManagerPanel.SetMediaRequested += new Events.SetMediaHandler(value.SetMediaRequested);
-                    mStripManagerPanel.SplitAudioBlockRequested +=
-                        new Events.SplitPhraseNodeHandler(value.SplitAudioBlockRequested);
-                    mStripManagerPanel.RequestToApplyPhraseDetection +=
-                        new Events.RequestToApplyPhraseDetectionHandler(value.ApplyPhraseDetection);
+                    mStripManagerPanel.SplitAudioBlockRequested += new Events.SplitPhraseNodeHandler(value.SplitAudioBlockRequested);
+                    mStripManagerPanel.RequestToApplyPhraseDetection += new Events.RequestToApplyPhraseDetectionHandler(value.ApplyPhraseDetection);
 
-                    value.AddedPhraseNode +=
-                        new Events.PhraseNodeHandler(mStripManagerPanel.SyncAddedPhraseNode);
-                    value.DeletedPhraseNode +=
-                        new Events.PhraseNodeHandler(mStripManagerPanel.SyncDeleteAudioBlock);
+                    value.AddedPhraseNode += new Events.PhraseNodeHandler(mStripManagerPanel.SyncAddedPhraseNode);
+                    value.DeletedPhraseNode += new Events.PhraseNodeHandler(mStripManagerPanel.SyncDeleteAudioBlock);
                     value.MediaSet += new Events.SetMediaHandler(mStripManagerPanel.SyncMediaSet);
                     value.TouchedNode += new Events.NodeEventHandler(mStripManagerPanel.SyncTouchedNode);
                     value.UpdateTime += new Events.UpdateTimeHandler(mStripManagerPanel.SyncUpdateAudioBlockTime);
 
-
-
                     mStripManagerPanel.MergeNodes += new Events.MergePhraseNodesHandler(value.MergeNodesRequested);
-
 
                     //md: clipboard in the TOC
                     mTOCPanel.CutSectionNodeRequested += new Events.SectionNodeHandler(value.CutSectionNodeRequested);
@@ -205,12 +193,10 @@ namespace Obi.UserControls
 
 
                     //md 20060812
-                    mStripManagerPanel.RequestToShallowDeleteSectionNode +=
-                        new Events.SectionNodeHandler(value.ShallowDeleteSectionNodeRequested);
+                    mStripManagerPanel.RequestToShallowDeleteSectionNode += new Events.SectionNodeHandler(value.ShallowDeleteSectionNodeRequested);
 
                     mStripManagerPanel.RequestToSetPageNumber += new Events.RequestToSetPageNumberHandler(value.SetPageRequested);
-                    mStripManagerPanel.RequestToRemovePageNumber +=
-                        new Events.PhraseNodeHandler(value.RemovePageRequested);
+                    mStripManagerPanel.RequestToRemovePageNumber += new Events.PhraseNodeHandler(value.RemovePageRequested);
                     value.RemovedPageNumber += new Events.PhraseNodeHandler(mStripManagerPanel.SyncRemovedPageNumber);
                     value.SetPageNumber += new Events.PhraseNodeHandler(mStripManagerPanel.SyncSetPageNumber);
                 }
@@ -263,7 +249,7 @@ namespace Obi.UserControls
             {
                 return mStripManagerPanel.SelectedNode != null ?
                         mStripManagerPanel.SelectedNode :
-                    mTOCPanel.Selected ?
+                    mTOCPanel.IsNodeSelected ?
                         mTOCPanel.SelectedSection : null;
             }
         }

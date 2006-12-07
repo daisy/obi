@@ -406,9 +406,8 @@ namespace Obi
         {
             mAddSubSectionToolStripMenuItem.Enabled = e.Selected;
             mRenameSectionToolStripMenuItem.Enabled = e.Selected;
-            mMoveInToolStripMenuItem.Enabled = e.CanMoveIn;
-            mMoveOutToolStripMenuItem.Enabled = e.CanMoveOut;
             mShowInStripviewToolStripMenuItem.Enabled = e.Selected;
+
         }
 
         /// <summary>
@@ -756,7 +755,7 @@ namespace Obi
             string phraseSectionLabel =
                 isProjectOpen && mProjectPanel.StripManager.SelectedPhraseNode != null ?
                     Localizer.Message("phrase") :
-                isProjectOpen && (mProjectPanel.StripManager.SelectedSectionNode != null || mProjectPanel.TOCPanel.Selected) ?
+                isProjectOpen && (mProjectPanel.StripManager.SelectedSectionNode != null || mProjectPanel.TOCPanel.IsNodeSelected) ?
                     Localizer.Message("section") :
                     "";
             string pasteLabel =
@@ -794,7 +793,7 @@ namespace Obi
                 {
                     mProjectPanel.StripManager.CutSelectedSection();
                 }
-                else if (mProjectPanel.TOCPanel.Selected)
+                else if (mProjectPanel.TOCPanel.IsNodeSelected)
                 {
                     // check that there is actually something that looks selected
                     // from the user POV.
@@ -818,7 +817,7 @@ namespace Obi
                 {
                     mProjectPanel.StripManager.CopySelectedSection();
                 }
-                else if (mProjectPanel.TOCPanel.Selected)
+                else if (mProjectPanel.TOCPanel.IsNodeSelected)
                 {
                     // check that there is actually something that looks selected
                     // from the user POV.
@@ -851,7 +850,7 @@ namespace Obi
                 {
                     mProjectPanel.StripManager.DeleteSelectedSection();
                 }
-                else if (mProjectPanel.TOCPanel.Selected)
+                else if (mProjectPanel.TOCPanel.IsNodeSelected)
                 {
                     // check that there is actually something that looks selected
                     // from the user POV.
@@ -902,7 +901,7 @@ namespace Obi
                 bool canMoveOut = false;
 
                 SectionNode selectedSection = null;
-                if (mProjectPanel.TOCPanel.Selected)
+                if (mProjectPanel.TOCPanel.IsNodeSelected)
                 {
                     isNodeSelected = true;
                     selectedSection = this.mProjectPanel.TOCPanel.SelectedSection;
