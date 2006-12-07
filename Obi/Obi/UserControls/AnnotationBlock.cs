@@ -138,5 +138,10 @@ namespace Obi.UserControls
             MinimumSize = new Size(mLabel.Width + mLabel.Location.X + mLabel.Margin.Right, Height);
             if (ChangedMinimumSize != null) ChangedMinimumSize(this, new EventArgs());
         }
+
+        private void AnnotationBlock_Load(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.Print("Hi, my name is annotation block and my size is {0}.", Size);
+        }
     }
 }

@@ -15,7 +15,6 @@ namespace Obi
     /// </summary>
     public class Playlist
     {
-        private Project mProject;                 // project in which we are playing
         private AudioPlayer mPlayer;              // audio player for actually playing
         private List<PhraseNode> mPhrases;        // list of phrase nodes (from which we get the assets)
         private List<double> mStartTimes;         // start time of every phrase
@@ -308,7 +307,7 @@ namespace Obi
         public void Play()
         {
             System.Diagnostics.Debug.Assert(mPlaylistState == AudioPlayerState.Stopped, "Only play from stopped state.");
-            PlayPhrase(mCurrentPhraseIndex);
+            if (mCurrentPhraseIndex < mPhrases.Count) PlayPhrase(mCurrentPhraseIndex);
         }
 
         /// <summary>
@@ -317,8 +316,8 @@ namespace Obi
         public void Resume()
         {
             System.Diagnostics.Debug.Assert(mPlaylistState == AudioPlayerState.Paused, "Only resume from paused state.");
-            mPlayer.Play(mPhrases[mCurrentPhraseIndex].Asset, mPausePosition);
             mPlaylistState = AudioPlayerState.Playing;
+            mPlayer.Play(mPhrases[mCurrentPhraseIndex].Asset, mPausePosition);
             if (StateChanged != null)
             {
                 StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Paused));
@@ -353,8 +352,8 @@ namespace Obi
             if (mPlaylistState == AudioPlayerState.Playing)
             {
                 mPausePosition = mPlayer.CurrentTimePosition;
-                mPlayer.Stop();
                 mPlaylistState = AudioPlayerState.Paused;
+                mPlayer.Stop();
                 if (StateChanged != null)
                 {
                     StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Playing));
@@ -367,14 +366,16 @@ namespace Obi
         /// </summary>
         public void Stop()
         {
-            if (mPlaylistState != AudioPlayerState.Stopped)
+            if (mPlaylistState == AudioPlayerState.Playing || mPlaylistState == AudioPlayerState.Paused)
             {
-                mElapsedTime = 0.0;
                 Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs(mPlayer.State);
                 mPlayer.Stop();
                 mPlaylistState = AudioPlayerState.Stopped;
                 if (StateChanged != null) StateChanged(this, evargs);
-                System.Diagnostics.Debug.Print("--- EndOfAudioAssetHandler");
+                mCurrentPhraseIndex = 0;
+                mPausePosition = 0.0;
+                mElapsedTime = 0.0;
+                System.Diagnostics.Debug.Print("--- end of audio asset handler unset");
                 mPlayer.EndOfAudioAsset -= new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
             }
         }
@@ -458,10 +459,11 @@ namespace Obi
             Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs(mPlayer.State);
             if (mPlaylistState == AudioPlayerState.Stopped)
             {
+                System.Diagnostics.Debug.Print("+++ end of audio asset handler set");
                 mPlayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
             }
-            mPlayer.Play(mPhrases[mCurrentPhraseIndex].Asset);
             mPlaylistState = AudioPlayerState.Playing;
+            mPlayer.Play(mPhrases[mCurrentPhraseIndex].Asset);
             // send the state change event if the state actually changed
             if (StateChanged != null && mPlayer.State != evargs.OldState) StateChanged(this, evargs);
         }
@@ -476,6 +478,7 @@ namespace Obi
             mCurrentPhraseIndex = index;
             mPausePosition = 0.0;
             mElapsedTime = mStartTimes[mCurrentPhraseIndex];
+            System.Diagnostics.Debug.Print(">>> Moved to phrase {0}", index);
             if (MovedToPhrase != null) MovedToPhrase(this, new Events.Node.PhraseNodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
         }
     }

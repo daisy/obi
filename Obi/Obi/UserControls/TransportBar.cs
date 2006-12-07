@@ -33,8 +33,18 @@ namespace Obi.UserControls
         {
             get
             {
-                return ((ProjectPanel)Parent).Project != null &&
-                    (Playlist.State == Obi.Audio.AudioPlayerState.Stopped || Playlist.State == Obi.Audio.AudioPlayerState.Stopped);
+                return ((ProjectPanel)Parent).Project != null && Playlist.State == Audio.AudioPlayerState.Stopped;
+            }
+        }
+
+        /// <summary>
+        /// Predicate telling if resume is possible.
+        /// </summary>
+        public bool CanResume
+        {
+            get
+            {
+                return Playlist.State == Audio.AudioPlayerState.Paused;
             }
         }
 
@@ -80,10 +90,16 @@ namespace Obi.UserControls
         /// </summary>
         void StripManager_Selected(object sender, Obi.Events.Node.SelectedEventArgs e)
         {
-            CoreNode phrase = (CoreNode)sender;
-            if (phrase.GetType() == Type.GetType("Obi.PhraseNode") && e.Selected)
+            // CoreNode phrase = (CoreNode)sender;
+            // if (phrase.GetType() == Type.GetType("Obi.PhraseNode") && e.Selected)
+            if (e.Selected)
             {
-                if (Playlist.CurrentPhrase != phrase) Playlist.CurrentPhrase = (PhraseNode)phrase;
+                PhraseNode phrase = sender as PhraseNode;
+                if (phrase != null)
+                {
+                    System.Diagnostics.Debug.Print("!!! Selected phrase caught ({0})", Playlist.CurrentPhrase == phrase ? "same" : "new");
+                    if (Playlist.CurrentPhrase != phrase) Playlist.CurrentPhrase = (PhraseNode)phrase;
+                }
             }
         }
 
@@ -139,6 +155,10 @@ namespace Obi.UserControls
                 }
                 mPlaylist.Play();
             }
+            else if (CanResume)
+            {
+                mPlaylist.Resume();
+            }
         }
 
         /// <summary>
@@ -156,6 +176,10 @@ namespace Obi.UserControls
                 mVUMeterPanel.Enable = true;
                 mVUMeterPanel.PlayListObj = mPlaylist;
             }
+            else if (CanResume)
+            {
+                mPlaylist.Resume();
+            }
         }
 
         private void mPauseButton_Click(object sender, EventArgs e)
@@ -168,7 +192,7 @@ namespace Obi.UserControls
         /// </summary>
         public void Pause()
         {
-            if (mPlaylist != null) mPlaylist.Pause();
+            Playlist.Pause();
         }
 
         private void mRecordButton_Click(object sender, EventArgs e)
@@ -201,6 +225,7 @@ namespace Obi.UserControls
         {
             if (State == Obi.Audio.AudioPlayerState.Stopped)
             {
+                System.Diagnostics.Debug.Print("!!! Stopping again, unselect all.");
                 ((ProjectPanel)Parent).StripManager.SelectedNode = null;
             }
             else if (mPlaylist != null)
