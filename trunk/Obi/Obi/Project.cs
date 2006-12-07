@@ -606,7 +606,7 @@ namespace Obi
         
         internal void test_StripManagerSelect(object sender, Obi.Events.Node.SelectedEventArgs e)
         {
-            System.Diagnostics.Debug.Write("StripManager\n");
+            System.Diagnostics.Debug.Write("StripManager - ");
             System.Diagnostics.Debug.Write(sender.GetType().ToString() + ": ");
             string text = "";
             if (sender is SectionNode) text = GetTextMedia((CoreNode)sender).getText();
@@ -618,7 +618,7 @@ namespace Obi
 
         internal void test_TOCSelect(object sender, Obi.Events.Node.SelectedEventArgs e)
         {
-            System.Diagnostics.Debug.Write("TOCPanel\n");
+            System.Diagnostics.Debug.Write("TOCPanel - ");
             System.Diagnostics.Debug.Write(sender.GetType().ToString() + ": ");
             string text = "";
             if (sender is SectionNode) text = GetTextMedia((CoreNode)sender).getText();

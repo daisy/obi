@@ -42,8 +42,12 @@ namespace Obi.UserControls
                 {
                     TreeNode sel = FindTreeNodeFromSectionNode(value);
                     System.Diagnostics.Debug.Assert(sel != null, "Cannot find selected section node in TOC tree.");
-                    mTocTree.SelectedNode = sel;
 
+                    //deselect the last node
+                    if (mTocTree.SelectedNode != null) Selected((SectionNode)mTocTree.SelectedNode.Tag, new Obi.Events.Node.SelectedEventArgs(false));
+                    
+                    //select the new node
+                    mTocTree.SelectedNode = sel;
                     Selected(value, new Obi.Events.Node.SelectedEventArgs(true));
                 }
             }
@@ -144,7 +148,8 @@ namespace Obi.UserControls
         /// <param name="e"></param>
         private void tocTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            mTocTree.SelectedNode = e.Node;
+            //mTocTree.SelectedNode = e.Node;
+            SelectedSection = (SectionNode)e.Node.Tag;
 
         }
 
