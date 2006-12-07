@@ -6,22 +6,19 @@ using urakawa.core;
 
 namespace Obi.Commands.TOC
 {
-    class DecreaseSectionNodeLevel : SectionNodeCommand
+    public class DecreaseSectionNodeLevel : MoveSectionNode
     {
-        private int mChildCount;
+        private int mNumChildren;
 
         public override string Label
         {
-            get
-            {
-                return Localizer.Message("decrease_section_level_command_label");
-            }
+            get { return Localizer.Message("decrease_section_level_command_label"); }
         }
 
-        public DecreaseSectionNodeLevel(Project project, CoreNode node, CoreNode parent, int index, int position, int numChildren)
-            : base(project, node, parent, index, position)
+        public DecreaseSectionNodeLevel(SectionNode node, CoreNode parent)
+            : base(node, parent)
         {
-            mChildCount = numChildren;
+            mNumChildren = node.SectionChildCount;
         }
 
         /// <summary>
@@ -29,7 +26,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            Project.DecreaseSectionNodeLevel(Project, Node);
+            mNode.Project.DecreaseSectionNodeLevel(mNode.Project, mNode);
         }
 
         /// <summary>
@@ -37,22 +34,19 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            Project.UndoDecreaseSectionNodeLevel(Node, Parent, Index, Position, mChildCount);
+            mNode.Project.UndoDecreaseSectionNodeLevel(mNode, mParent, mNumChildren);
         }
     }
 
-    class IncreaseSectionNodeLevel : SectionNodeCommand
+    public class IncreaseSectionNodeLevel : MoveSectionNode
     {
         public override string Label
         {
-            get
-            {
-                return Localizer.Message("increase_section_level_command_label");
-            }
+            get { return Localizer.Message("increase_section_level_command_label"); }
         }
 
-        public IncreaseSectionNodeLevel(Project project, CoreNode node, CoreNode parent, int index, int position)
-        : base(project, node, parent, index, position)
+        public IncreaseSectionNodeLevel(SectionNode node, CoreNode parent)
+            : base(node, parent)
         {
         }
 
@@ -61,7 +55,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            Project.IncreaseSectionNodeLevel(Project, Node);
+            mNode.Project.IncreaseSectionNodeLevel(mNode.Project, mNode);
         }
 
         /// <summary>
@@ -69,7 +63,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            Project.UndoIncreaseSectionNodeLevel(Node, Parent, Index, Position);
+            mNode.Project.UndoIncreaseSectionNodeLevel(mNode, mParent, mIndex);
         }
     }
 }

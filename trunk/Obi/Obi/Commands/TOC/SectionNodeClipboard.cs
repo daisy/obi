@@ -6,18 +6,15 @@ using urakawa.core;
 
 namespace Obi.Commands.TOC
 {
-    class CutSectionNode : SectionNodeCommand
+    class CutSectionNode : DeleteSectionNode
     {
         public override string Label
         {
-            get
-            {
-                return Localizer.Message("cut_section_command_label");
-            }
+            get { return Localizer.Message("cut_section_command_label"); }
         }
 
-        public CutSectionNode(Project project, CoreNode node, CoreNode parent, int index, int position)
-            : base(project, node, parent, index, position)
+        public CutSectionNode(SectionNode node)
+            : base(node)
         {
         }
 
@@ -26,7 +23,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            Project.DoCutSectionNode(Project, Node);
+            mNode.Project.DoCutSectionNode(mNode.Project, mNode);
         }
 
         /// <summary>
@@ -34,26 +31,21 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            Project.UndoCutSectionNode(Node, Parent, Index, Position);
+            mNode.Project.UndoCutSectionNode(mNode, mParent, mIndex);
         }
     }
 
     class CopySectionNode : Command
     {
-        private Project mProject;
-        private CoreNode mNode;
+        private SectionNode mNode;
 
         public override string Label
         {
-            get
-            {
-                return Localizer.Message("copy_section_command_label");
-            }
+            get { return Localizer.Message("copy_section_command_label"); }
         }
 
-        public CopySectionNode(Project project, CoreNode node)
+        public CopySectionNode(SectionNode node)
         {
-            mProject = project;
             mNode = node;
         }
 
@@ -62,7 +54,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            mProject.CopySectionNode(mProject, mNode);
+            mNode.Project.CopySectionNode(mNode.Project, mNode);
         }
 
         /// <summary>
@@ -70,39 +62,34 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mProject.UndoCopySectionNode(mNode);
+            mNode.Project.UndoCopySectionNode(mNode);
         }
     }
+
     class PasteSectionNode : Command
     {
-        private Project mProject;
         private CoreNode mParent;
-        private CoreNode mNode;
+        private SectionNode mNode;
 
         public override string Label
         {
-            get
-            {
-                return Localizer.Message("paste_section_command_label");
-            }
+            get { return Localizer.Message("paste_section_command_label"); }
         }
 
-        public PasteSectionNode(Project project, CoreNode node, CoreNode parent)
+        public PasteSectionNode(CoreNode parent, SectionNode node)
         {
-            mProject = project;
             mParent = parent;
             mNode = node;
         }
 
-
         public override void Do()
         {
-            mProject.PasteSectionNode(mProject, mParent);
+            mNode.Project.PasteSectionNode(mNode.Project, mParent);
         }
 
         public override void Undo()
         {
-            mProject.UndoPasteSectionNode(mNode);
+            mNode.Project.UndoPasteSectionNode(mNode);
         }
     }
 }

@@ -15,11 +15,11 @@ namespace Obi
     /// </summary>
     public class Playlist
     {
+        private Project mProject;                 // project in which we are playing
         private AudioPlayer mPlayer;              // audio player for actually playing
-        private List<CoreNode> mPhrases;          // list of phrase nodes (from which we get the assets)
+        private List<PhraseNode> mPhrases;          // list of phrase nodes (from which we get the assets)
         private List<double> mStartTimes;         // start time of every phrase
         private int mCurrentPhraseIndex;          // index of the phrase currently playing
-        private bool mCurrentPhraseSet;           // whether the above value actually means anything
         private double mTotalTime;                // total time of this playlist
         private double mElapsedTime;              // elapsed time *before* the beginning of the current asset
         private bool mWholeBook;                  // flag for playing whole book or just a selection
@@ -41,7 +41,7 @@ namespace Obi
 
         // Moved to a new phrase (while playing, or paused.)
         // this is to notify Obi to highlight the current phrase.
-        public delegate void MovedToPhraseHandler(object sender, Events.Node.NodeEventArgs e);
+        public delegate void MovedToPhraseHandler(object sender, Events.Node.PhraseNodeEventArgs e);
         public event MovedToPhraseHandler MovedToPhrase;
 
         /// <summary>
@@ -64,9 +64,9 @@ namespace Obi
         /// Set the currently playing node directly.
         /// If the phrase is not in the playlist, nothing happens.
         /// </summary>
-        public CoreNode CurrentPhrase
+        public PhraseNode CurrentPhrase
         {
-            get { return mCurrentPhraseSet ? mPhrases[mCurrentPhraseIndex] : null; }
+            get { return mPhrases.Count > 0 ? mPhrases[mCurrentPhraseIndex] : null; }
             set
             {
                 int i;
@@ -76,7 +76,6 @@ namespace Obi
                     bool playing = mPlaylistState == AudioPlayerState.Playing;
                     if (playing) Stop();
                     mCurrentPhraseIndex = i;
-                    mCurrentPhraseSet = true;
                     mPausePosition = 0.0;
                     mElapsedTime = mStartTimes[mCurrentPhraseIndex];
                     if (playing) Play();
@@ -87,9 +86,10 @@ namespace Obi
         /// <summary>
         /// The section in which the currently playing phrase is.
         /// </summary>
-        public CoreNode CurrentSection
+        public SectionNode CurrentSection
         {
-            get { return (CoreNode)mPhrases[mCurrentPhraseIndex].getParent(); }
+            //the parent of a phrase is always a section
+            get { return (SectionNode)mPhrases[mCurrentPhraseIndex].getParent(); }
         }
 
         /// <summary>
@@ -126,7 +126,8 @@ namespace Obi
                 {
                     // find the first of the previous section 
                     int previous = first - 1;
-                    CoreNode previousSection = (CoreNode)mPhrases[previous].getParent();
+                    //the parent of a phrase is always a section
+                    SectionNode previousSection = (SectionNode)mPhrases[previous].getParent();
                     for (; previous >= 0 && mPhrases[previous].getParent() == previousSection; --previous) { }
                     return previous + 1;
                 }
@@ -161,7 +162,7 @@ namespace Obi
             get { return mPlaylistState == AudioPlayerState.Playing ? mPlayer.GetCurrentTimePosition() : mPausePosition; }
             set
             {
-                if (value >= 0 && value < Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]).LengthInMilliseconds)
+                if (value >= 0 && value < mPhrases[mCurrentPhraseIndex].Asset.LengthInMilliseconds)
                 {
                     if (mPlaylistState == AudioPlayerState.Playing)
                     {
@@ -191,7 +192,7 @@ namespace Obi
             get
             {
                 return mCurrentPhraseIndex >= 0 && mCurrentPhraseIndex < mPhrases.Count ?
-                    Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]).LengthInMilliseconds : 0.0;
+                    mPhrases[mCurrentPhraseIndex].Asset.LengthInMilliseconds : 0.0;
             }
         }
 
@@ -211,12 +212,12 @@ namespace Obi
         {
             get
             {
-                return Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]).LengthInMilliseconds -
+                return mPhrases[mCurrentPhraseIndex].Asset.LengthInMilliseconds -
                     (mPlaylistState == AudioPlayerState.Playing ? mPlayer.GetCurrentTimePosition() : mPausePosition);
             }
             set
             {
-                CurrentTimeInAsset = Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]).LengthInMilliseconds - value;
+                CurrentTimeInAsset = mPhrases[mCurrentPhraseIndex].Asset.LengthInMilliseconds - value;
             }
         }
 
@@ -259,10 +260,10 @@ namespace Obi
         private void InitPlaylist(AudioPlayer player, CoreNode node, bool wholeBook)
         {
             mPlayer = player;
-            mPhrases = new List<CoreNode>();
+            mPhrases = new List<PhraseNode>();
+            mStartTimes = new List<double>();
             mStartTimes = new List<double>();
             mCurrentPhraseIndex = 0;
-            mCurrentPhraseSet = false;
             mElapsedTime = 0.0;
             mTotalTime = 0.0;
             mWholeBook = wholeBook;
@@ -275,11 +276,11 @@ namespace Obi
                 // Add all phrase nodes underneath (and including) the starting node.
                 delegate(ICoreNode n)
                 {
-                    if (Project.GetNodeType((CoreNode)n) == NodeType.Phrase)
+                    if (n.GetType() == Type.GetType("Obi.PhraseNode"))
                     {
-                        mPhrases.Add((CoreNode)n);
+                        mPhrases.Add((PhraseNode)n);
                         mStartTimes.Add(mTotalTime);
-                        mTotalTime += Project.GetAudioMediaAsset((CoreNode)n).LengthInMilliseconds;
+                        mTotalTime += ((PhraseNode)n).Asset.LengthInMilliseconds;
                     }
                     return true;
                 },
@@ -311,7 +312,7 @@ namespace Obi
                 if (mPlaylistState == AudioPlayerState.Paused)
                 {
                     // Resume by using play from function
-                    mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]), mPausePosition);
+                    mPlayer.Play(mPhrases[mCurrentPhraseIndex].Asset, mPausePosition);
                     mPlaylistState = AudioPlayerState.Playing;
                     if (StateChanged != null)
                     {
@@ -319,7 +320,7 @@ namespace Obi
                     }
                     if (MovedToPhrase != null)
                     {
-                        MovedToPhrase(this, new Events.Node.NodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
+                        MovedToPhrase(this, new Events.Node.PhraseNodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
                     }
                 }
                 else if (mPlaylistState == AudioPlayerState.Stopped)
@@ -473,7 +474,7 @@ namespace Obi
             {
                 mPlayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
             }
-            mPlayer.Play(Project.GetAudioMediaAsset(mPhrases[mCurrentPhraseIndex]));
+            mPlayer.Play(mPhrases[mCurrentPhraseIndex].Asset);
             mPlaylistState = AudioPlayerState.Playing;
             // send the state change event if the state actually changed
             if (StateChanged != null && mPlayer.State != evargs.OldState) StateChanged(this, evargs);
@@ -487,10 +488,9 @@ namespace Obi
         {
             System.Diagnostics.Debug.Assert(index >= 0 && index < mPhrases.Count, "Phrase index out of range!");
             mCurrentPhraseIndex = index;
-            mCurrentPhraseSet = true;
             mPausePosition = 0.0;
             mElapsedTime = mStartTimes[mCurrentPhraseIndex];
-            if (MovedToPhrase != null) MovedToPhrase(this, new Events.Node.NodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
+            if (MovedToPhrase != null) MovedToPhrase(this, new Events.Node.PhraseNodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
         }
     }
 }

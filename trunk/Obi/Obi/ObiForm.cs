@@ -55,30 +55,27 @@ namespace Obi
         {
             Dialogs.NewProject dialog = new Dialogs.NewProject(mSettings.DefaultPath);
             dialog.CreateTitleSection = mSettings.CreateTitleSection;
-            if (dialog.ShowDialog() == DialogResult.OK && ClosedProject())
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
-                mProject = InitProject();
-                mProject.Create(dialog.Path, dialog.Title, mSettings.IdTemplate, mSettings.UserProfile,
-                    dialog.CreateTitleSection);
-                mSettings.CreateTitleSection = dialog.CreateTitleSection;
-                AddRecentProject(mProject.XUKPath);
+                if (ClosedProject())
+                {
+                    mProject = Project.BlankProject();
+                    mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
+                    mProject.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
+                    mProject.Create(dialog.Path, dialog.Title, mSettings.IdTemplate, mSettings.UserProfile,
+                        dialog.CreateTitleSection);
+                    mSettings.CreateTitleSection = dialog.CreateTitleSection;
+                    AddRecentProject(mProject.XUKPath);
+                }
+                else
+                {
+                    Ready();
+                }
             }
             else
             {
                 Ready();
             }
-        }
-
-        /// <summary>
-        /// Initialize a blank project and set some event handlers.
-        /// </summary>
-        /// <returns>The blank project thus initialized.</returns>
-        private Project InitProject()
-        {
-            Project project = new Project();
-            project.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
-            project.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
-            return project;
         }
 
         /// <summary>
@@ -460,10 +457,12 @@ namespace Obi
         /// <remarks>TODO: have a progress bar, and hide the panel while opening.</remarks>
         private void DoOpenProject(string path)
         {
-            mProject = InitProject();
-            this.Cursor = Cursors.WaitCursor;
             try
             {
+                mProject = Project.BlankProject();  // new Project();
+                mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
+                mProject.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
+                this.Cursor = Cursors.WaitCursor;
                 mProject.Open(path);
                 AddRecentProject(path);
             }
@@ -657,10 +656,10 @@ namespace Obi
             {
                 // A bit kldugy but an easy way to rebuild the list of used files when discarding changes.
                 string path = mProject.XUKPath;
-                mProject = new Project();
+                mProject = Project.BlankProject();  // new Project();
                 mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(
                     delegate(object sender, Obi.Events.Project.StateChangedEventArgs e) { }
-                );    
+                );
                 mProject.Open(path);
                 mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
             }
@@ -899,12 +898,10 @@ namespace Obi
             if (mProjectPanel.TOCPanelVisible)
             {
                 bool isNodeSelected = false;
-                bool canMoveUp = false;
-                bool canMoveDown = false;
                 bool canMoveIn = false;
                 bool canMoveOut = false;
 
-                urakawa.core.CoreNode selectedSection = null;
+                SectionNode selectedSection = null;
                 if (mProjectPanel.TOCPanel.Selected)
                 {
                     isNodeSelected = true;
@@ -920,8 +917,6 @@ namespace Obi
 
                 if (isNodeSelected == true)
                 {
-                    canMoveUp = mProjectPanel.Project.CanMoveSectionNodeUp(selectedSection);
-                    canMoveDown = mProjectPanel.Project.CanMoveSectionNodeDown(selectedSection);
                     canMoveIn = mProjectPanel.Project.CanMoveSectionNodeIn(selectedSection);
                     canMoveOut = mProjectPanel.Project.CanMoveSectionNodeOut(selectedSection);
                 }
@@ -950,10 +945,10 @@ namespace Obi
             bool isStripSelected = isProjectOpen && mProjectPanel.StripManager.SelectedSectionNode != null;
             bool isAudioBlockSelected = isProjectOpen && mProjectPanel.StripManager.SelectedPhraseNode != null;
             bool isAudioBlockLast = isAudioBlockSelected &&
-                Project.GetPhraseIndex(mProjectPanel.StripManager.SelectedPhraseNode) ==
-                Project.GetPhrasesCount(mProjectPanel.StripManager.SelectedSectionNode) - 1;
+                mProjectPanel.StripManager.SelectedPhraseNode.Index ==
+                mProjectPanel.StripManager.SelectedSectionNode.PhraseChildCount - 1;
             bool isAudioBlockFirst = isAudioBlockSelected &&
-                Project.GetPhraseIndex(mProjectPanel.StripManager.SelectedPhraseNode) == 0;
+                mProjectPanel.StripManager.SelectedPhraseNode.Index == 0;
             bool isBlockClipBoardSet = isProjectOpen && mProject.Clipboard.Phrase != null;
             bool canSetPage = isAudioBlockSelected;  // an audio block must be selected and a heading must not be set.
             bool canRemovePage = isAudioBlockSelected &&
@@ -1126,20 +1121,29 @@ namespace Obi
             {
                 CoreNode selected =
                     mProjectPanel.StripManager.SelectedPhraseNode != null ?
-                        mProjectPanel.StripManager.SelectedPhraseNode :
+                        (CoreNode)mProjectPanel.StripManager.SelectedPhraseNode :
                     mProjectPanel.StripManager.SelectedSectionNode != null ?
-                        mProjectPanel.StripManager.SelectedSectionNode :
+                        (CoreNode)mProjectPanel.StripManager.SelectedSectionNode :
                         null;
                 if (selected != null)
                 {
-                    // section in which we are recording
-                    CoreNode section = Project.GetNodeType(selected) == NodeType.Section ?
-                        selected :
-                        (CoreNode)selected.getParent();
-                    // index from which we add new phrases in the aforementioned section
-                    int index = selected == section ? section.getChildCount() : section.indexOf(selected);
-                    RecordingSession session = new RecordingSession(mProject, Audio.AudioRecorder.Instance, selected,
-                        mSettings.AudioChannels, mSettings.SampleRate, mSettings.BitDepth);
+                    SectionNode section; // section in which we are recording
+                    int index;   // index from which we add new phrases in the aforementioned section
+                   
+                    if (selected.GetType() == System.Type.GetType("Obi.SectionNode"))
+                    {
+                        section = (SectionNode)selected;
+                        index = section.PhraseChildCount;
+                    }
+                    else
+                    {
+                        section = (SectionNode)selected.getParent();
+                        index = ((PhraseNode)selected).Index;
+                    }
+                    
+                  
+                    RecordingSession session = new RecordingSession(mProject, Audio.AudioRecorder.Instance, 
+                        selected,mSettings.AudioChannels, mSettings.SampleRate, mSettings.BitDepth);
                     // the following closures handle the various events sent during the recording session
                     session.StartingPhrase += new Events.Audio.Recorder.StartingPhraseHandler(
                         delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)

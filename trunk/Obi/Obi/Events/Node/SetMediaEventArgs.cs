@@ -7,10 +7,7 @@ using urakawa.media;
 
 namespace Obi.Events.Node
 {
-    public delegate void SetMediaHandler(object sender, SetMediaEventArgs e);
-    public delegate void MediaSetHandler(object sender, SetMediaEventArgs e);
-
-    public class SetMediaEventArgs: NodeEventArgs
+    public class SetMediaEventArgs: PhraseNodeEventArgs
     {
         private string mChannel;  // the channel on which to set
         private IMedia mMedia;    // the media object
@@ -38,7 +35,7 @@ namespace Obi.Events.Node
             set { mCancel = value; }
         }
 
-        public SetMediaEventArgs(object origin, CoreNode node, string channel, IMedia media): 
+        public SetMediaEventArgs(object origin, PhraseNode node, string channel, IMedia media): 
             base(origin, node)
         {
             mChannel = channel;

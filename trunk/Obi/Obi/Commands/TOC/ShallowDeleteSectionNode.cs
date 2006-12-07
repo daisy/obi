@@ -7,25 +7,20 @@ using urakawa.core;
 
 namespace Obi.Commands.TOC
 {
-    class ShallowDeleteSectionNode : SectionNodeListCommand
+    class ShallowDeleteSectionNode : Command
     {
-        private int mChildCount;
-        //private ArrayList mSubCommands;
-       
+        private SectionNode mNode;         // the node being deleted
+        private ListCommand mSubCommands;  // successive commands for redo
+
         public override string Label
         {
-            get
-            {
-                return Localizer.Message("shallow_delete_section_command_label");
-            }
+            get { return Localizer.Message("shallow_delete_section_command_label"); }
         }
 
-        public ShallowDeleteSectionNode(Project project, CoreNode node, CoreNode parent, int index, int position, int numChildren, List<Command> commands)
-        : base(project, node, parent, index, position, commands)
+        public ShallowDeleteSectionNode(SectionNode node)
         {
-            mChildCount = numChildren;
-
-            //mSubCommands = new ArrayList();
+            mNode = node;
+            mSubCommands = new ListCommand();
         }
 
         /// <summary>
@@ -33,30 +28,22 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            Project.ShallowDeleteSectionNode(Project, Node);
+            mNode.Project.ShallowDeleteSectionNode(this, mNode);
         }
 
         /// <summary>
         /// Undo: restore the node and its descendants.
         /// </summary>
-    /*   public override void Undo()
+        public override void Undo()
         {
-            for (int i = mSubCommands.Count-1; i >=0; i--)
-            {
-                if (mSubCommands[i] != null)
-                    ((Command)mSubCommands[i]).Undo();
-            }
-        }*/
+            mSubCommands.Undo();
+        }
 
         //md
         //needed to add this to make it easier to keep track of composite actions
-       /* public void addSubCommand(Command cmd)
+        public void AddCommand(Command cmd)
         {
-            mSubCommands.Add(cmd);
-        }*/
-
-       /* public ArrayList getSubCommands()
-        {
-        }*/
+            mSubCommands.AddCommand(cmd);
+        }
     }
 }

@@ -10,26 +10,28 @@ using System.Collections;
 using urakawa.core;
 using urakawa.media;
 
+using Obi.Events.Node;
+
 namespace Obi.UserControls
 {
     public partial class StripManagerPanel
     {
         //md
-        public event Events.Node.RequestToShallowDeleteSectionNodeHandler RequestToShallowDeleteSectionNode;
-        public event Events.Node.RequestToMoveSectionNodeDownLinearHandler RequestToMoveSectionNodeDownLinear;
-        public event Events.Node.RequestToMoveSectionNodeUpLinearHandler RequestToMoveSectionNodeUpLinear;
+        public event Events.SectionNodeHandler RequestToShallowDeleteSectionNode;
+        public event Events.SectionNodeHandler RequestToMoveSectionNodeDownLinear;
+        public event Events.SectionNodeHandler RequestToMoveSectionNodeUpLinear;
 
-        public event Events.Node.RequestToCutSectionNodeHandler RequestToCutSectionNode;
-        public event Events.Node.RequestToCutPhraseNodeHandler RequestToCutPhraseNode;
-        public event Events.Node.RequestToCopySectionNodeHandler RequestToCopySectionNode;
-        public event Events.Node.RequestToCopyPhraseNodeHandler RequestToCopyPhraseNode;
-        public event Events.Node.RequestToPasteSectionNodeHandler RequestToPasteSectionNode;
-        public event Events.Node.RequestToPastePhraseNodeHandler RequestToPastePhraseNode;
+        public event Events.SectionNodeHandler RequestToCutSectionNode;
+        public event Events.PhraseNodeHandler RequestToCutPhraseNode;
+        public event Events.SectionNodeHandler RequestToCopySectionNode;
+        public event Events.PhraseNodeHandler RequestToCopyPhraseNode;
+        public event Events.SectionNodeHandler RequestToPasteSectionNode;
+        public event Events.NodeEventHandler RequestToPastePhraseNode;
 
-        public Events.Node.RequestToSetPageNumberHandler RequestToSetPageNumber;
-        public Events.Node.RequestToRemovePageNumberHandler RequestToRemovePageNumber;
+        public Events.RequestToSetPageNumberHandler RequestToSetPageNumber;
+        public Events.PhraseNodeHandler RequestToRemovePageNumber;
 
-        public Events.Node.RequestToApplyPhraseDetectionHandler RequestToApplyPhraseDetection;
+        public Events.RequestToApplyPhraseDetectionHandler RequestToApplyPhraseDetection;
 
         /// <summary>
         /// Enable/disable items depending on what is currently available.
@@ -39,8 +41,8 @@ namespace Obi.UserControls
             bool isStripSelected = mSelectedSection != null;
             bool isAudioBlockSelected = mSelectedPhrase != null;
             bool isAudioBlockLast = isAudioBlockSelected &&
-                Project.GetPhraseIndex(mSelectedPhrase) == Project.GetPhrasesCount(mSelectedSection) - 1;
-            bool isAudioBlockFirst = isAudioBlockSelected && Project.GetPhraseIndex(mSelectedPhrase) == 0;
+                mSelectedPhrase.Index == mSelectedSection.PhraseChildCount - 1;
+            bool isAudioBlockFirst = isAudioBlockSelected && mSelectedPhrase.Index == 0;
             bool isBlockClipBoardSet = mProjectPanel.Project.Clipboard.Data != null;
             
             bool canSetPage = isAudioBlockSelected;  // an audio block must be selected and a heading must not be set.
@@ -86,9 +88,8 @@ namespace Obi.UserControls
         /// </summary>
         internal void mAddStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddSiblingSection(this, new Events.Node.NodeEventArgs(this, mSelectedSection));
-            // InsertSiblingSection(this, new Events.Node.NodeEventArgs(this, mSelectedSection));
-        }
+            AddSiblingSectionRequested(this, new SectionNodeEventArgs(this, mSelectedSection));
+         }
 
         internal void mRenameStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -113,7 +114,7 @@ namespace Obi.UserControls
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     int index = mSelectedPhrase == null ?
-                        Project.GetPhrasesCount(mSelectedSection) : mSelectedSection.indexOf(mSelectedPhrase) + 1;
+                        mSelectedSection.PhraseChildCount : mSelectedSection.indexOf(mSelectedPhrase) + 1;
                     foreach (string path in dialog.FileNames)
                     {
                         ImportAudioAssetRequested(this, new Events.Strip.ImportAssetEventArgs(mSelectedSection, path, index));
@@ -131,14 +132,16 @@ namespace Obi.UserControls
         {
             if (mSelectedPhrase != null)
             {
-                CoreNode phrase = mSelectedPhrase;
                 Audio.AudioPlayerState State = this.mProjectPanel.TransportBar.Playlist.State;
                 double time = this.mProjectPanel.TransportBar.Playlist.CurrentTimeInAsset ;
                 this.mProjectPanel.TransportBar.Playlist.Stop();
+
+                PhraseNode phrase = mSelectedPhrase;
                 Dialogs.Split dialog = new Dialogs.Split(phrase, time , State );
+
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    SplitAudioBlockRequested(this, new Events.Node.SplitNodeEventArgs(this, phrase, dialog.ResultAsset));
+									SplitAudioBlockRequested(this, new Events.Node.SplitPhraseNodeEventArgs(this, phrase, dialog.ResultAsset));
                 }
             }
         }
@@ -150,7 +153,7 @@ namespace Obi.UserControls
         {
             if (mSelectedPhrase != null)
             {
-                CoreNode silence = mProjectPanel.Project.FindFirstPhrase();
+                PhraseNode silence = mProjectPanel.Project.FindFirstPhrase();
                 if (mSelectedPhrase != silence)
                 {
                     Dialogs.SentenceDetection dialog = new Dialogs.SentenceDetection(silence);
@@ -168,7 +171,7 @@ namespace Obi.UserControls
         /// </summary>
         private void mMergeWithNextAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CoreNode next = Project.GetNextPhrase(mSelectedPhrase);
+            PhraseNode next = Project.GetNextPhrase(mSelectedPhrase);
             if (next != null)
             {
                 MergeNodes(this, new Events.Node.MergeNodesEventArgs(this, mSelectedPhrase, next));
@@ -207,7 +210,7 @@ namespace Obi.UserControls
 
         public void DeleteSelectedPhrase()
         {
-            DeleteBlockRequested(this, new Events.Node.NodeEventArgs(this, mSelectedPhrase));
+            DeleteBlockRequested(this, new Events.Node.PhraseNodeEventArgs(this, mSelectedPhrase));
         }
 
         /// <summary>
@@ -218,7 +221,7 @@ namespace Obi.UserControls
         {
             if (mSelectedPhrase != null)
             {
-                MoveAudioBlockForwardRequested(this, new Events.Node.NodeEventArgs(this, mSelectedPhrase));
+                MoveAudioBlockForwardRequested(this, new Events.Node.PhraseNodeEventArgs(this, mSelectedPhrase));
             }
         }
 
@@ -230,7 +233,7 @@ namespace Obi.UserControls
         {
             if (mSelectedPhrase != null)
             {
-                MoveAudioBlockBackwardRequested(this, new Events.Node.NodeEventArgs(this, mSelectedPhrase));
+                MoveAudioBlockBackwardRequested(this, new Events.Node.PhraseNodeEventArgs(this, mSelectedPhrase));
             }
         }
 
@@ -261,21 +264,21 @@ namespace Obi.UserControls
 
         public void DeleteSelectedSection()
         {
-            RequestToShallowDeleteSectionNode(this, new Events.Node.NodeEventArgs(this, this.mSelectedSection));
+            RequestToShallowDeleteSectionNode(this, new SectionNodeEventArgs(this, this.mSelectedSection));
         }
 
         //md 20060812
         //mg 20060813: made internal to allow obiform menu sync access
         internal void upToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToMoveSectionNodeUpLinear(this, new Events.Node.NodeEventArgs(this, this.mSelectedSection));
+            RequestToMoveSectionNodeUpLinear(this, new SectionNodeEventArgs(this, this.mSelectedSection));
         }
 
         //md 20060812
         //mg 20060813: made internal to allow obiform menu sync access
         internal void downToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RequestToMoveSectionNodeDownLinear(this, new Events.Node.NodeEventArgs(this, this.mSelectedSection));
+            RequestToMoveSectionNodeDownLinear(this, new SectionNodeEventArgs(this, this.mSelectedSection));
         }
 
 
@@ -293,7 +296,7 @@ namespace Obi.UserControls
         /// </summary>
         public void CutSelectedPhrase()
         {
-            RequestToCutPhraseNode(this, new Events.Node.NodeEventArgs(this, mSelectedPhrase));
+            RequestToCutPhraseNode(this, new PhraseNodeEventArgs(this, mSelectedPhrase));
         }
 
         /// <summary>
@@ -301,7 +304,7 @@ namespace Obi.UserControls
         /// </summary>
         public void CutSelectedSection()
         {
-            RequestToCutSectionNode(this, new Events.Node.NodeEventArgs(this, mSelectedSection));
+            RequestToCutSectionNode(this, new SectionNodeEventArgs(this, mSelectedSection));
         }
 
         /// <summary>
@@ -319,7 +322,7 @@ namespace Obi.UserControls
         /// </summary>
         public void CopySelectedPhrase()
         {
-            RequestToCopyPhraseNode(this, new Events.Node.NodeEventArgs(this, mSelectedPhrase));
+            RequestToCopyPhraseNode(this, new PhraseNodeEventArgs(this, mSelectedPhrase));
         }
 
         /// <summary>
@@ -327,7 +330,7 @@ namespace Obi.UserControls
         /// </summary>
         public void CopySelectedSection()
         {
-            RequestToCopySectionNode(this, new Events.Node.NodeEventArgs(this, mSelectedSection));
+            RequestToCopySectionNode(this, new SectionNodeEventArgs(this, mSelectedSection));
         }
 
         /// <summary>
@@ -348,8 +351,8 @@ namespace Obi.UserControls
         /// </summary>
         public void PastePhraseNode()
         {
-            RequestToPastePhraseNode(this, new Events.Node.NodeEventArgs(this,
-                mSelectedPhrase == null ? mSelectedSection : mSelectedPhrase));
+            RequestToPastePhraseNode(this, new NodeEventArgs(this,
+                mSelectedPhrase == null ? (CoreNode)mSelectedSection : (CoreNode)mSelectedPhrase));
         }
 
         /// <summary>
@@ -358,9 +361,9 @@ namespace Obi.UserControls
         /// <remarks>TODO: find the right context node when none is selected.</remarks>
         public void PasteSectionNode()
         {
-            CoreNode contextNode = mSelectedSection;
+            SectionNode contextNode = mSelectedSection;
             // if contextNode == null...
-            RequestToPasteSectionNode(this, new Events.Node.NodeEventArgs(this, contextNode));
+            RequestToPasteSectionNode(this, new SectionNodeEventArgs(this, contextNode));
         }
 
         /// <summary>
@@ -384,7 +387,7 @@ namespace Obi.UserControls
                 PageProperty pageProp = mSelectedPhrase.getProperty(typeof(PageProperty)) as PageProperty;
                 if (pageProp != null)
                 {
-                    RequestToRemovePageNumber(this, new Events.Node.NodeEventArgs(sender, mSelectedPhrase));
+                    RequestToRemovePageNumber(this, new Events.Node.PhraseNodeEventArgs(sender, mSelectedPhrase));
                 }
             }
         }

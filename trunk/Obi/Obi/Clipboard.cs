@@ -9,26 +9,26 @@ namespace Obi
     /// </summary>
     public class Clipboard
     {
-        private CoreNode mSection;
-        private CoreNode mPhrase;
+        private SectionNode mSection;
+        private PhraseNode mPhrase;
 
         /// <summary>
         /// Anything that the clipboard can contain. 
         /// </summary>
         public object Data
         {
-            get { return mSection != null ? mSection : mPhrase != null ? mPhrase : null; }
+            get { return mSection != null ? (CoreNode)mSection : mPhrase != null ? (CoreNode)mPhrase : null; }
             set
             {
                 Clear();
                 CoreNode node = value as CoreNode;
-                if (Project.GetNodeType(node) == NodeType.Section)
+                if (node.GetType() == System.Type.GetType("Obi.SectionNode"))
                 {
-                    Section = node;
+                    Section = (SectionNode)node;
                 }
-                else if (Project.GetNodeType(node) == NodeType.Phrase)
+                else if (node.GetType() == System.Type.GetType("Obi.PhraseNode"))
                 {
-                    Phrase = node;
+                    Phrase = (PhraseNode)node;
                 }
             }
         }
@@ -36,7 +36,7 @@ namespace Obi
         /// <summary>
         /// The section node in the clipboard.
         /// </summary>
-        public CoreNode Section
+        public SectionNode Section
         {
             get { return mSection; }
             set
@@ -49,7 +49,7 @@ namespace Obi
         /// <summary>
         /// The phrase node in the clipboard.
         /// </summary>
-        public CoreNode Phrase
+        public PhraseNode Phrase
         {
             get { return mPhrase; }
             set

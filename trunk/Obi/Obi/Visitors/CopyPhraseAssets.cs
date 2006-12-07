@@ -32,30 +32,19 @@ namespace Obi.Visitors
 
         public bool preVisit(ICoreNode node)
         {
-            if (Project.GetNodeType((CoreNode)node) == NodeType.Phrase)
+            if (node.GetType() == System.Type.GetType("Obi.PhraseNode"))
             {
                 AudioMediaAsset asset = (AudioMediaAsset)mAssManager.CopyAsset
-                    (Project.GetAudioMediaAsset((CoreNode)node));
+                    (((PhraseNode)node).Asset);
 
 
                 //mostly copied from Project.SetAudioMediaAsset(...)
                 //which for some reason couldn't be used directly;
                 //i suspect because it also updates the views
-                
-                AssetProperty prop = (AssetProperty)node.getProperty(typeof(AssetProperty));
-                if (prop != null)
-                {
-                    prop.Asset = asset;
-                    mProject.UpdateSeq((CoreNode)node);
-                   //md annotation are not asset names anymore
-                   //((TextMedia)Project.GetMediaForChannel((CoreNode)node, Project.AnnotationChannel)).setText(asset.Name);
-                }
-                else
-                {
-                    throw new Exception("Cannot set an asset on a node lacking an asset property.");
-                }
 
-              
+                 ((PhraseNode)node).Asset = asset;
+                 mProject.UpdateSeq((PhraseNode)node);
+                 
             }
 
             return true;

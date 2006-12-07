@@ -31,14 +31,14 @@ namespace Obi.UserControls
         /// <summary>
         /// The selected node as a core node.
         /// </summary>
-        public urakawa.core.CoreNode SelectedSection
+        public SectionNode SelectedSection
         {
-            get { return mTocTree.SelectedNode == null ? null : (urakawa.core.CoreNode)mTocTree.SelectedNode.Tag; }
+            get { return mTocTree.SelectedNode == null ? null : (SectionNode)mTocTree.SelectedNode.Tag; }
             set
             {
                 if (value != null)
                 {
-                    TreeNode sel = FindTreeNodeFromCoreNode(value);
+                    TreeNode sel = FindTreeNodeFromSectionNode(value);
                     System.Diagnostics.Debug.Assert(sel != null, "Cannot find selected section node in TOC tree.");
                     mTocTree.SelectedNode = sel;
                 }
@@ -93,13 +93,13 @@ namespace Obi.UserControls
         public bool SectionNodeVisitor(urakawa.core.ICoreNode node)
         {
             urakawa.core.CoreNode _node = (urakawa.core.CoreNode)node;
-            if (Project.GetNodeType(_node) == NodeType.Section)
+            if (_node.GetType() == System.Type.GetType("Obi.SectionNode"))
             {
                 string label = Project.GetTextMedia(_node).getText();
                 TreeNode newTreeNode;
                 if (_node.getParent().getParent() != null)
                 {
-                    TreeNode parentTreeNode = FindTreeNodeFromCoreNode((urakawa.core.CoreNode)_node.getParent());
+                    TreeNode parentTreeNode = FindTreeNodeFromSectionNode((SectionNode)_node.getParent());
                     newTreeNode = parentTreeNode.Nodes.Add(_node.GetHashCode().ToString(), label);
                 }
                 else
@@ -134,9 +134,9 @@ namespace Obi.UserControls
                         Localizer.Message("empty_label_warning_caption"),
                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-                else if (e.Label != Project.GetTextMedia((urakawa.core.CoreNode)e.Node.Tag).getText())
+                else if (e.Label != Project.GetTextMedia((SectionNode)e.Node.Tag).getText())
                 {
-                    RequestToRenameSectionNode(this, new Events.Node.RenameNodeEventArgs(this, (urakawa.core.CoreNode)e.Node.Tag, e.Label));
+                    RenameSectionNodeRequested(this, new Events.Node.RenameSectionNodeEventArgs(this, (SectionNode)e.Node.Tag, e.Label));
                 }
             }
         }
@@ -215,15 +215,15 @@ namespace Obi.UserControls
 
         /// <summary>
         /// A helper function to get the <see cref="System.Windows.Forms.TreeNode"/>, given a 
-        /// <see cref="CoreNode"/>.  
-        /// The <see cref="TOCPanel"/> puts the value of <see cref="CoreNode.GetHashCode()"/> 
+        /// <see cref="SectionNode"/>.  
+        /// The <see cref="TOCPanel"/> puts the value of <see cref="SectionNode.GetHashCode()"/> 
         /// into the <see cref="System.Windows.Forms.TreeNode"/> as a key value when it adds a 
         /// new node to the tree.  This function searches the tree view based on key values, and
-        /// assumes that when they were generated, they came from <see cref="CoreNode.GetHashCode()"/>.
+        /// assumes that when they were generated, they came from <see cref="SectionNode.GetHashCode()"/>.
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
-        private TreeNode FindTreeNodeFromCoreNode(urakawa.core.CoreNode node)
+        private TreeNode FindTreeNodeFromSectionNode(SectionNode node)
         {
             TreeNode foundNode = FindTreeNodeWithoutLabel(node);
             if (foundNode.Text != Project.GetTextMedia(node).getText())
@@ -239,7 +239,7 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="node">The node to find.</param>
         /// <returns>The corresponding tree node.</returns>
-        private TreeNode FindTreeNodeWithoutLabel(urakawa.core.CoreNode node)
+        private TreeNode FindTreeNodeWithoutLabel(SectionNode node)
         {
             TreeNode foundNode = null;
             TreeNode[] treeNodes

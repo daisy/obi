@@ -18,7 +18,7 @@ namespace Obi.UserControls
             TextMedia media = (TextMedia)block.Node.getPresentation().getMediaFactory().createMedia(MediaType.TEXT);
             media.setText(newName);
             Events.Node.SetMediaEventArgs e =
-                new Events.Node.SetMediaEventArgs(this, block.Node, Project.AnnotationChannel, media);
+                new Events.Node.SetMediaEventArgs(this, block.Node, Project.AnnotationChannelName, media);
             SetMediaRequested(this, e);
             if (e.Cancel)
             {
@@ -39,7 +39,7 @@ namespace Obi.UserControls
         {
             TextMedia media = (TextMedia)block.Node.getPresentation().getMediaFactory().createMedia(MediaType.TEXT);
             Events.Node.SetMediaEventArgs e =
-                new Events.Node.SetMediaEventArgs(this, block.Node, Project.AnnotationChannel, media);
+                new Events.Node.SetMediaEventArgs(this, block.Node, Project.AnnotationChannelName, media);
             SetMediaRequested(this, e);
             block.AnnotationBlock.Label = "";
         }
@@ -47,14 +47,17 @@ namespace Obi.UserControls
         /// <summary>
         /// Add a new block from a phrase node and select it.
         /// </summary>
-        internal void SyncAddedPhraseNode(object sender, Events.Node.AddedPhraseNodeEventArgs e)
+        internal void SyncAddedPhraseNode(object sender, Events.Node.PhraseNodeEventArgs e)
         {
             System.Diagnostics.Debug.Assert(e.Node != null);
-            SectionStrip strip = mSectionNodeMap[(CoreNode)e.Node.getParent()];
-            AudioBlock block = SetupAudioBlockFromPhraseNode(e.Node);
-            strip.InsertAudioBlock(block, e.Index);
-            // this.ReflowTabOrder(block);
-            SelectedPhraseNode = e.Node;
+            if (e.Node.getParent().GetType() == System.Type.GetType("Obi.SectionNode"))
+            {
+                SectionStrip strip = mSectionNodeMap[(SectionNode)e.Node.getParent()];
+                AudioBlock block = SetupAudioBlockFromPhraseNode(e.Node);
+                strip.InsertAudioBlock(block, e.Node.Index);
+                // this.ReflowTabOrder(block);
+                SelectedPhraseNode = e.Node;
+            }
         }
 
         /// <summary>
@@ -62,15 +65,15 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="node">The phrase node.</param>
         /// <returns>The new audio block.</returns>
-        private AudioBlock SetupAudioBlockFromPhraseNode(CoreNode node)
+        private AudioBlock SetupAudioBlockFromPhraseNode(PhraseNode node)
         {
             AudioBlock block = new AudioBlock();
             block.Manager = this;
             block.Node = node;
             mPhraseNodeMap[node] = block;
-            TextMedia annotation = (TextMedia)Project.GetMediaForChannel(node, Project.AnnotationChannel);
+            TextMedia annotation = (TextMedia)Project.GetMediaForChannel(node, Project.AnnotationChannelName);
             if (annotation != null) block.AnnotationBlock.Label = annotation.getText();
-            Assets.AudioMediaAsset asset = Project.GetAudioMediaAsset(node);
+            Assets.AudioMediaAsset asset = node.Asset;// Project.GetAudioMediaAsset(node);
             block.Label = asset.Name;
             PageProperty pageProp = node.getProperty(typeof(PageProperty)) as PageProperty;
             block.Page = pageProp == null ? "" : pageProp.PageNumber.ToString();
@@ -82,13 +85,16 @@ namespace Obi.UserControls
         /// Delete the block of a phrase node.
         /// </summary>
         /// <param name="e">The node event with a pointer to the deleted phrase node.</param>
-        internal void SyncDeleteAudioBlock(object sender, Events.Node.NodeEventArgs e)
+        internal void SyncDeleteAudioBlock(object sender, Events.Node.PhraseNodeEventArgs e)
         {
-            SectionStrip strip = mSectionNodeMap[(CoreNode)e.Node.getParent()];
-            if (SelectedPhraseNode == e.Node) SelectedPhraseNode = null;
-            strip.RemoveAudioBlock(mPhraseNodeMap[e.Node]);
-            mPhraseNodeMap.Remove(e.Node);
-            // reflow?
+            if (e.Node.getParent().GetType() == System.Type.GetType("Obi.SectionNode"))
+            {
+                SectionStrip strip = mSectionNodeMap[(SectionNode)e.Node.getParent()];
+                if (SelectedPhraseNode == e.Node) SelectedPhraseNode = null;
+                strip.RemoveAudioBlock(mPhraseNodeMap[e.Node]);
+                mPhraseNodeMap.Remove(e.Node);
+                // reflow?
+            }
         }
 
         /// <summary>
@@ -96,18 +102,18 @@ namespace Obi.UserControls
         /// </summary>
         internal void SyncMediaSet(object sender, Events.Node.SetMediaEventArgs e)
         {
-            if (Project.GetNodeType(e.Node) == NodeType.Phrase)
+            if (e.Node.getParent().GetType() == System.Type.GetType("Obi.SectionNode"))
             {
-                SectionStrip strip = mSectionNodeMap[(CoreNode)e.Node.getParent()];
-                if (e.Channel == Project.AnnotationChannel)
+                SectionStrip strip = mSectionNodeMap[(SectionNode)e.Node.getParent()];
+                if (e.Channel == Project.AnnotationChannelName)
                 {
                     // the label of an audio block has changed
                     strip.SetAnnotationBlock(mPhraseNodeMap[e.Node], ((TextMedia)e.Media).getText());
                 }
-                else if (e.Channel == Project.AudioChannel)
+                else if (e.Channel == Project.AudioChannelName)
                 {
                     // the audio asset of an audio block has changed
-                    strip.UpdateAssetAudioBlock(mPhraseNodeMap[e.Node]);  
+                    strip.UpdateAssetAudioBlock(mPhraseNodeMap[e.Node]);
                 }
             }
         }
@@ -117,16 +123,13 @@ namespace Obi.UserControls
         /// </summary>
         internal void SyncTouchedNode(object sender, Events.Node.NodeEventArgs e)
         {
-            switch (Project.GetNodeType(e.Node))
+            if (e.Node.GetType() == Type.GetType("Obi.SectionNode"))
             {
-                case NodeType.Phrase:
-                    SelectedPhraseNode = e.Node;
-                    break;
-                case NodeType.Section:
-                    SelectedSectionNode = e.Node;
-                    break;
-                default:
-                    break;
+                SelectedSectionNode = (SectionNode)e.Node;
+            }
+            else if (e.Node.GetType() == Type.GetType("Obi.PhraseNode"))
+            {
+                SelectedPhraseNode = (PhraseNode)e.Node;
             }
         }
 
@@ -146,7 +149,7 @@ namespace Obi.UserControls
         /// <summary>
         /// The page label has changed.
         /// </summary>
-        internal void SyncSetPageNumber(object sender, Events.Node.NodeEventArgs e)
+        internal void SyncSetPageNumber(object sender, Events.Node.PhraseNodeEventArgs e)
         {
             PageProperty pageProp = (PageProperty)e.Node.getProperty(typeof(PageProperty));
             mPhraseNodeMap[e.Node].Page = pageProp.PageNumber.ToString();
@@ -155,7 +158,7 @@ namespace Obi.UserControls
         /// <summary>
         /// The page label was removed.
         /// </summary>
-        internal void SyncRemovedPageNumber(object sender, Events.Node.NodeEventArgs e)
+        internal void SyncRemovedPageNumber(object sender, Events.Node.PhraseNodeEventArgs e)
         {
             mPhraseNodeMap[e.Node].Page = "";
         }

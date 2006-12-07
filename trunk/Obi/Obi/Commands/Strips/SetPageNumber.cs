@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+
 using urakawa.core;
 
 namespace Obi.Commands.Strips
 {
     public class SetNewPageNumber: Command
     {
-        protected Obi.Project mProject;    // the current project
-        protected CoreNode mNode;          // the phrase node
+        protected PhraseNode mNode;      // the phrase node
         protected PageProperty mPageProp;  // the page property
 
         public override string Label
@@ -16,22 +16,21 @@ namespace Obi.Commands.Strips
             get { return Localizer.Message("set_page_command_label"); }
         }
 
-        public SetNewPageNumber(Obi.Project project, CoreNode node)
+        public SetNewPageNumber(PhraseNode node)
         {
-            mProject = project;
             mNode = node;
-            mPageProp = (PageProperty)mNode.getProperty(typeof(PageProperty));
+            mPageProp = node.PageProperty;
         }
 
         public override void Do()
         {
-            mNode.setProperty(mPageProp);
-            mProject.SetPageNumber(this, new Events.Node.NodeEventArgs(this, mNode));
+            mNode.PageProperty = mPageProp;
+            mNode.Project.SetPageNumber(this, new Events.Node.PhraseNodeEventArgs(this, mNode));
         }
 
         public override void Undo()
         {
-            mProject.RemovePage(this, mNode);
+            mNode.Project.RemovePage(this, mNode);
         }
     }
 
@@ -40,8 +39,8 @@ namespace Obi.Commands.Strips
         private int mPrevPageNumber;  // previous page number
         private int mPageNumber;      // current page number
 
-        public SetPageNumber(Obi.Project project, CoreNode node, int prev)
-            : base(project, node)
+        public SetPageNumber(PhraseNode node, int prev)
+            : base(node)
         {
             mPrevPageNumber = prev;
             mPageNumber = mPageProp.PageNumber;
@@ -50,13 +49,13 @@ namespace Obi.Commands.Strips
         public override void Do()
         {
             mPageProp.PageNumber = mPageNumber;
-            mProject.SetPageNumber(this, new Events.Node.NodeEventArgs(this, mNode));
+            mNode.Project.SetPageNumber(this, new Events.Node.PhraseNodeEventArgs(this, mNode));
         }
 
         public override void Undo()
         {
             mPageProp.PageNumber = mPrevPageNumber;
-            mProject.SetPageNumber(this, new Events.Node.NodeEventArgs(this, mNode));
+            mNode.Project.SetPageNumber(this, new Events.Node.PhraseNodeEventArgs(this, mNode));
         }
     }
 }

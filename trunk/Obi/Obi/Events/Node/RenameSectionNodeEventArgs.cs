@@ -6,14 +6,11 @@ using urakawa.core;
 
 namespace Obi.Events.Node
 {
-    public delegate void RequestToRenameNodeHandler(object sender, RenameNodeEventArgs e);
-    public delegate void RenamedNodeHandler(object sender, RenameNodeEventArgs e);
-    public delegate void RequestToSetPageNumberHandler(object sender, SetPageEventArgs e);
-
+    
     /// <summary>
     /// This event is fired when a view wants to rename a section.
     /// </summary>
-    public class RenameNodeEventArgs : NodeEventArgs
+    public class RenameSectionNodeEventArgs : SectionNodeEventArgs
     {
         private string mLabel;    // the new text label of the node
 
@@ -25,7 +22,7 @@ namespace Obi.Events.Node
             }
         }
 
-        public RenameNodeEventArgs(object origin, CoreNode node, string label) : 
+        public RenameSectionNodeEventArgs(object origin, SectionNode node, string label) : 
             base(origin, node)
         {
             mLabel = label;

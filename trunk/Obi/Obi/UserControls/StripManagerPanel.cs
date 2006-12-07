@@ -17,24 +17,24 @@ namespace Obi.UserControls
     /// </summary>
     public partial class StripManagerPanel : UserControl, ICoreNodeVisitor
     {
-        private Dictionary<CoreNode, SectionStrip> mSectionNodeMap;  // find a section strip for a given node
-        private CoreNode mSelectedSection;                           // the selected node
+        private Dictionary<SectionNode, SectionStrip> mSectionNodeMap;  // find a section strip for a given node
+        private SectionNode mSelectedSection;                           // the selected node
 
-        private Dictionary<CoreNode, AudioBlock> mPhraseNodeMap;     // find an audio block for a given phrase node
-        private CoreNode mSelectedPhrase;                            // the selected audio block
+        private Dictionary<PhraseNode, AudioBlock> mPhraseNodeMap;     // find an audio block for a given phrase node
+        private PhraseNode mSelectedPhrase;                            // the selected audio block
 
         private ProjectPanel mProjectPanel; //the parent of this control
 
-        public event Events.Node.RequestToAddSiblingNodeHandler AddSiblingSection;
-        public event Events.Node.RequestToRenameNodeHandler RenameSection;
-        public event Events.Node.SetMediaHandler SetMediaRequested;
-        public event Events.Strip.RequestToImportAssetHandler ImportAudioAssetRequested;
-        public event Events.Node.RequestToDeleteBlockHandler DeleteBlockRequested;
-        public event Events.Node.RequestToMoveBlockHandler MoveAudioBlockForwardRequested;
-        public event Events.Node.RequestToMoveBlockHandler MoveAudioBlockBackwardRequested;
-        public event Events.Node.SplitNodeHandler SplitAudioBlockRequested;
-        public event Events.Node.MergeNodesHandler MergeNodes;
-        public event Events.Strip.SelectedHandler Selected;
+        public event Events.SectionNodeHandler AddSiblingSectionRequested;
+        public event Events.RenameSectionNodeHandler RenameSectionRequested;
+        public event Events.SetMediaHandler SetMediaRequested;
+        public event Events.RequestToImportAssetHandler ImportAudioAssetRequested;
+        public event Events.PhraseNodeHandler DeleteBlockRequested;
+        public event Events.PhraseNodeHandler MoveAudioBlockForwardRequested;
+        public event Events.PhraseNodeHandler MoveAudioBlockBackwardRequested;
+        public event Events.SplitPhraseNodeHandler SplitAudioBlockRequested;
+        public event Events.MergePhraseNodesHandler MergeNodes;
+        public event Events.SelectedHandler Selected;
 
         #region properties
 
@@ -43,18 +43,18 @@ namespace Obi.UserControls
         /// </summary>
         public CoreNode SelectedNode
         {
-            get { return mSelectedPhrase == null ? mSelectedSection : mSelectedPhrase; }
+            get { return mSelectedPhrase == null ? (CoreNode)mSelectedSection : (CoreNode)mSelectedPhrase; }
             set
             {
                 if (value != null)
                 {
-                    if (Project.GetNodeType(value) == NodeType.Phrase)
+                    if (value.GetType() == Type.GetType("Obi.SectionNode"))
                     {
-                        SelectedPhraseNode = value;
+                        SelectedSectionNode = (SectionNode)value;
                     }
-                    else if (Project.GetNodeType(value) == NodeType.Section)
+                    else if (value.GetType() == Type.GetType("Obi.PhraseNode"))
                     {
-                        SelectedSectionNode = value;
+                        SelectedPhraseNode = (PhraseNode)value;
                     }
                 }
                 else
@@ -72,7 +72,7 @@ namespace Obi.UserControls
         /// If there is a new selection, the node gets selected and the context menu is updated.
         /// An event informs listeners (e.g. this panel and the main form) about the current selection status.
         /// </summary>
-        public CoreNode SelectedSectionNode
+        public SectionNode SelectedSectionNode
         {
             get { return mSelectedSection; }
             set
@@ -82,11 +82,11 @@ namespace Obi.UserControls
                     if (mSelectedSection != null)
                     {
                         mSectionNodeMap[mSelectedSection].MarkDeselected();
-                        Selected(mSelectedSection, new Events.Strip.SelectedEventArgs(false));
+                        Selected(mSelectedSection, new Events.Node.SelectedEventArgs(false));
                         if (mSelectedPhrase != null)
                         {
                             mPhraseNodeMap[mSelectedPhrase].MarkDeselected();
-                            Selected(mSelectedPhrase, new Events.Strip.SelectedEventArgs(false));
+                            Selected(mSelectedPhrase, new Events.Node.SelectedEventArgs(false));
                             mSelectedPhrase = null;
                         }
                     }
@@ -94,7 +94,7 @@ namespace Obi.UserControls
                     if (mSelectedSection != null)
                     {
                         mSectionNodeMap[mSelectedSection].MarkSelected();
-                        Selected(mSelectedSection, new Events.Strip.SelectedEventArgs(true));
+                        Selected(mSelectedSection, new Events.Node.SelectedEventArgs(true));
                     }
                 }
             }
@@ -108,7 +108,7 @@ namespace Obi.UserControls
         /// The parent section node is selected as well.
         /// An event informs listeners (e.g. this panel and the main form) about the current selection status.
         /// </summary>
-        public CoreNode SelectedPhraseNode
+        public PhraseNode SelectedPhraseNode
         {
             get { return mSelectedPhrase; }
             set
@@ -118,9 +118,9 @@ namespace Obi.UserControls
                     if (mSelectedPhrase != null) mPhraseNodeMap[mSelectedPhrase].MarkDeselected();
                     if (value != null)
                     {
-                        SelectedSectionNode = (CoreNode)value.getParent();
+                        SelectedSectionNode = (SectionNode)value.getParent();
                         mPhraseNodeMap[value].MarkSelected();
-                        Selected(value, new Events.Strip.SelectedEventArgs(true));
+                        Selected(value, new Events.Node.SelectedEventArgs(true));
                     }
                     mSelectedPhrase = value;
                 }
@@ -189,9 +189,9 @@ namespace Obi.UserControls
         {
             InitializeComponent();
             // The panel is empty and nothing is selected.
-            mSectionNodeMap = new Dictionary<CoreNode, SectionStrip>();
+            mSectionNodeMap = new Dictionary<SectionNode, SectionStrip>();
             mSelectedSection = null;
-            mPhraseNodeMap = new Dictionary<CoreNode, AudioBlock>();
+            mPhraseNodeMap = new Dictionary<PhraseNode, AudioBlock>();
             mSelectedPhrase = null;
         }
 
@@ -235,35 +235,28 @@ namespace Obi.UserControls
         public bool preVisit(ICoreNode node)
         {
             SectionStrip strip = null;
-            switch (Project.GetNodeType((CoreNode)node))
+           
+            //if node is root
+            if (node.GetType() == Type.GetType("urakawa.core.CoreNode"))
+            { 
+                parentSection = null;
+            }
+            else if (node.GetType() == Type.GetType("Obi.SectionNode"))
             {
-                case NodeType.Root:
-                    parentSection = null;
-                    break;
-                case NodeType.Section:
-                    strip = new SectionStrip();
-                    strip.Label = Project.GetTextMedia((CoreNode)node).getText();
-                    strip.Manager = this;
-                    strip.Node = (CoreNode)node;
-                    mSectionNodeMap[(CoreNode)node] = strip;
-                    mFlowLayoutPanel.Controls.Add(strip);
-                    parentSection = ((CoreNode)node);
-                    //md 20061005
-                    //make the font bigger
-                    int nodeLevel = this.mProjectPanel.Project.getNodeLevel((CoreNode)node);
-                    float currentSize = strip.GetTitleFontSize();
-                    if (nodeLevel == 1) strip.SetTitleFontSize(currentSize + 3);
-                    else if (nodeLevel == 2) strip.SetTitleFontSize(currentSize + 2);
-                    else if (nodeLevel == 3) strip.SetTitleFontSize(currentSize + 1);
-                    break;
-                case NodeType.Phrase:
-                    strip = mSectionNodeMap[parentSection];
-                    AudioBlock block = SetupAudioBlockFromPhraseNode((CoreNode)node);
-                    strip.AppendAudioBlock(block);
-                    parentPhrase = (CoreNode)node;
-                    break;
-                default:
-                    break;
+                strip = new SectionStrip();
+                strip.Label = Project.GetTextMedia((CoreNode)node).getText();
+                strip.Manager = this;
+                strip.Node = (SectionNode)node;
+                mSectionNodeMap[(SectionNode)node] = strip;
+                mFlowLayoutPanel.Controls.Add(strip);
+                parentSection = ((SectionNode)node);
+            }
+            else if (node.GetType() == Type.GetType("Obi.PhraseNode"))
+            {
+                strip = mSectionNodeMap[(SectionNode)parentSection];
+                AudioBlock block = SetupAudioBlockFromPhraseNode((PhraseNode)node);
+                strip.AppendAudioBlock(block);
+                parentPhrase = (PhraseNode)node;
             }
             return true;
         }
@@ -277,7 +270,7 @@ namespace Obi.UserControls
         /// <param name="strip">The renamed strip (with its new name as a label.)</param>
         internal void RenamedSectionStrip(SectionStrip strip)
         {
-            RenameSection(this, new Events.Node.RenameNodeEventArgs(this, strip.Node, strip.Label));
+            RenameSectionRequested(this, new Events.Node.RenameSectionNodeEventArgs(this, strip.Node, strip.Label));
         }
 
         /// <summary>
@@ -329,7 +322,7 @@ namespace Obi.UserControls
             if (startFrom is AudioBlock)
             {
                 startStrip = mSectionNodeMap
-                    [(CoreNode)((AudioBlock)startFrom).Node.getParent()];
+                    [(SectionNode)((AudioBlock)startFrom).Node.getParent()];
             }
             else
             {
@@ -443,13 +436,15 @@ namespace Obi.UserControls
             }
 
             //now we have the prev node
-            if (mPhraseNodeMap.ContainsKey(previous))
+            if (previous.GetType() == Type.GetType("Obi.PhraseNode") && 
+                mPhraseNodeMap.ContainsKey((PhraseNode)previous))
             {
-                return this.mPhraseNodeMap[previous];
+                return this.mPhraseNodeMap[(PhraseNode)previous];
             }
-            else if (mSectionNodeMap.ContainsKey(previous))
+            else if (previous.GetType() == Type.GetType("Obi.SectionNode") && 
+                mSectionNodeMap.ContainsKey((SectionNode)previous))
             {
-                return this.mSectionNodeMap[previous];
+                return this.mSectionNodeMap[(SectionNode)previous];
             }
             else
             {

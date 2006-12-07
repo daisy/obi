@@ -19,23 +19,21 @@ namespace Obi.Visitors
         public bool preVisit(ICoreNode node)
         {
             CoreNode n = (CoreNode)node;
-            NodeInformationProperty p = (NodeInformationProperty)n.getProperty(typeof(NodeInformationProperty));
-            string info = String.Format("{0}{1}[{2}]", indent, p.NodeType, p.Id);
-            switch (p.NodeType)
+           
+            string info = String.Format("{0}{1}{2}", indent, n.GetType(), ((CoreNode)n).GetHashCode().ToString());
+           
+            if (node.GetType() == Type.GetType("Obi.SectionNode"))
             {
-                case NodeType.Section:
-                    info += " " + Project.GetTextMedia(n).getText();
-                    break;
-                case NodeType.Phrase:
-                    info += " " + ((TextMedia)Project.GetMediaForChannel(n, Project.AnnotationChannel)).getText();
-                    Assets.AudioMediaAsset asset = Project.GetAudioMediaAsset(n);
-                    foreach (Assets.AudioClip clip in asset.Clips)
-                    {
-                        info += String.Format("\n  {0}{1} {2}-{3}", indent, clip.Path, clip.BeginTime, clip.EndTime);
-                    }
-                    break;
-                default:
-                    break;
+                info += " " + Project.GetTextMedia(n).getText();
+            }
+            else if (node.GetType() == Type.GetType("Obi.PhraseNode"))
+            {
+                info += " " + ((TextMedia)Project.GetMediaForChannel(n, Project.AnnotationChannelName)).getText();
+                Assets.AudioMediaAsset asset = ((PhraseNode)n).Asset;
+                foreach (Assets.AudioClip clip in asset.Clips)
+                {
+                    info += String.Format("\n  {0}{1} {2}-{3}", indent, clip.Path, clip.BeginTime, clip.EndTime);
+                }
             }
             System.Diagnostics.Debug.Print(info);
             indent = "  " + indent;

@@ -7,12 +7,15 @@ using urakawa.core;
 namespace Obi.Events.Node
 {
    
-    public class NodeEventArgs : EventArgs
+    /// <summary>
+    /// Communicate events about section nodes
+    /// </summary>
+    public class SectionNodeEventArgs
     {
-        private CoreNode mNode;  // the node on which the operation is performed
+       private SectionNode mNode;  // the node on which the operation is performed
         private object mOrigin;  // the origin of the event (initial requester)
 
-        public CoreNode Node
+        public SectionNode Node
         {
             get
             {
@@ -28,7 +31,7 @@ namespace Obi.Events.Node
             }
         }
 
-        public NodeEventArgs(object origin, CoreNode node)
+        public SectionNodeEventArgs(object origin, SectionNode node)
         {
             mOrigin = origin;
             mNode = node;
