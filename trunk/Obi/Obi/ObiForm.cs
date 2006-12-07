@@ -1023,6 +1023,7 @@ namespace Obi
         private void mToolsToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
             mDumpTreeDEBUGToolStripMenuItem.Enabled = mProject != null;
+            mExportAssetDEBUGToolStripMenuItem.Enabled = mProjectPanel.StripManager.SelectedPhraseNode != null;
         }
 
         /// <summary>
@@ -1190,6 +1191,27 @@ namespace Obi
             else
             {
                 mProjectPanel.TransportBar.NextPhrase();
+            }
+        }
+
+        /// <summary>
+        /// Test the export asset function.
+        /// </summary>
+        private void mExportAssetDEBUGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectPanel.StripManager.SelectedPhraseNode != null)
+            {
+                SaveFileDialog dialog = new SaveFileDialog();
+                dialog.Filter = Localizer.Message("audio_file_filter");
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    mProjectPanel.StripManager.SelectedPhraseNode.Asset.Export(dialog.FileName);
+                }
+                else
+                {
+                    Ready();
+                }
+
             }
         }
     }
