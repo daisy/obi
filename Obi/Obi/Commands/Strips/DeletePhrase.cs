@@ -6,62 +6,73 @@ using urakawa.core;
 
 namespace Obi.Commands.Strips
 {
-    class DeletePhrase: Command
+    /// <summary>
+    /// Command to delete a phrase. Undo restores the phrase in its place.
+    /// The command must be created before the node is actually deleted.
+    /// </summary>
+    public class DeletePhrase: Command
     {
-        protected Obi.Project mProject;  // the current project
-        protected CoreNode mNode;        // the phrase node to add/remove
-        private CoreNode mParent;        // the section node to add to
-        private int mIndex;              // position within the parent
+        private PhraseNode mNode;     // the phrase node to add/remove
+        private SectionNode mParent;  // the section node to add to
+        private int mIndex;           // original index of the phrase
+
+        protected PhraseNode Node
+        {
+            get { return mNode; }
+        }
 
         public override string Label
         {
             get { return Localizer.Message("delete_phrase_command_label"); }
         }
 
-        public DeletePhrase(Project project, CoreNode node, CoreNode parent, int index)
+        public DeletePhrase(PhraseNode node)
         {
-            mProject = project;
             mNode = node;
-            mParent = parent;
-            mIndex = index;
+            mParent = node.ParentSection;
+            mIndex = node.Index;
         }
         
         public override void Do()
         {
-            mProject.DeletePhraseNodeAndAsset(mNode);
+            mNode.Project.DeletePhraseNodeAndAsset(mNode);
         }
 
         public override void Undo()
         {
-            mProject.AddPhraseNodeAndAsset(mNode, mParent, mIndex);
+            mNode.Project.AddPhraseNodeAndAsset(mNode, mParent, mIndex);
         }
     }
 
+    /// <summary>
+    /// Cut is like delete except that the deleted node is stored in the clipboard.
+    /// Previous values are saved so that undo restores the previous clipboard value.
+    /// </summary>
     class CutPhrase : DeletePhrase
     {
-        private object mPrevData;  // previous clip board data
+        private PhraseNode mPrevBlockClipBoard;  // previous clip board block
 
         public override string Label
         {
             get { return Localizer.Message("cut_phrase_command_label"); }
         }
 
-        public CutPhrase(Project project, CoreNode node, CoreNode parent, int index)
-            : base(project, node, parent, index)
+        public CutPhrase(PhraseNode node)
+            : base(node)
         {
-            mPrevData = mProject.Clipboard.Data;
+            mPrevBlockClipBoard = Node.Project.Clipboard.Phrase;
         }
 
         public override void Do()
         {
             base.Do();
-            mProject.Clipboard.Phrase = mNode;
+            Node.Project.Clipboard.Phrase = Node;
         }
 
         public override void Undo()
         {
             base.Undo();
-            mProject.Clipboard.Data = mPrevData;
+            Node.Project.Clipboard.Phrase = mPrevBlockClipBoard;
         }
     }
 }

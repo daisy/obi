@@ -78,12 +78,12 @@ namespace Obi.UserControls
         /// <summary>
         /// Handles selection of phrases in the strip manager; i.e. move to the selected phrase.
         /// </summary>
-        void StripManager_Selected(object sender, Obi.Events.Strip.SelectedEventArgs e)
+        void StripManager_Selected(object sender, Obi.Events.Node.SelectedEventArgs e)
         {
             CoreNode phrase = (CoreNode)sender;
-            if (Project.GetNodeType(phrase) == NodeType.Phrase && e.Selected)
+            if (phrase.GetType() == Type.GetType("Obi.PhraseNode") && e.Selected)
             {
-                if (Playlist.CurrentPhrase != phrase) Playlist.CurrentPhrase = phrase;
+                if (Playlist.CurrentPhrase != phrase) Playlist.CurrentPhrase = (PhraseNode)phrase;
             }
         }
 
@@ -130,7 +130,7 @@ namespace Obi.UserControls
                 {
                     CoreNode phrase = Playlist.CurrentPhrase;
                     Playlist = new Playlist(((ProjectPanel)Parent).Project, Audio.AudioPlayer.Instance);
-                    Playlist.CurrentPhrase = phrase;
+                    Playlist.CurrentPhrase = (PhraseNode)phrase;
                     mScrubTrackBar.Maximum = Convert.ToInt32(mPlaylist.TotalAssetTime / 50);
                     mScrubTrackBar.Value = mScrubTrackBar.Maximum / 2;
                     mCentreSliderEventEffect = true;
@@ -273,7 +273,7 @@ namespace Obi.UserControls
         /// <summary>
         /// Highlight (i.e. select) the phrase currently playing.
         /// </summary>
-        private void Play_MovedToPhrase(object sender, Events.Node.NodeEventArgs e)
+        private void Play_MovedToPhrase(object sender, Events.Node.PhraseNodeEventArgs e)
         {
             ((ProjectPanel)Parent).StripManager.SelectedPhraseNode = e.Node;
             mCentreSliderEventEffect = false;
@@ -376,7 +376,7 @@ namespace Obi.UserControls
         {
             if (Parent != null)
             {
-                ((ProjectPanel)Parent).StripManager.Selected += new Obi.Events.Strip.SelectedHandler(StripManager_Selected);
+                ((ProjectPanel)Parent).StripManager.Selected += new Obi.Events.SelectedHandler(StripManager_Selected);
             }
         }
 

@@ -13,13 +13,14 @@ namespace Obi.UserControls
     /// // made unabastract as this fucks up the designer :( JQ
     public /*abstract*/ class AbstractBlock: UserControl
     {
-        protected CoreNode mNode;                 // the node for this block
+        protected PhraseNode mNode;                 // the node for this block
         protected SectionStrip mSectionStrip;     // the SectionStrip that contains this block
         protected StripManagerPanel mManager;     // the manager for this block
 
         #region properties
 
-        public virtual CoreNode Node
+        //md 20061201 i think it's safe to change this from corenode to phrasenode
+        public virtual PhraseNode Node
         {
             get { return mNode; }
             set { mNode = value; }

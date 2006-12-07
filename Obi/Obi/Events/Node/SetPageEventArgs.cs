@@ -2,7 +2,7 @@ using urakawa.core;
 
 namespace Obi.Events.Node
 {
-    class SetPageEventArgs : NodeEventArgs
+    class SetPageEventArgs : PhraseNodeEventArgs
     {
         private int mPageNumber;  // new page number
 
@@ -11,7 +11,7 @@ namespace Obi.Events.Node
             get { return mPageNumber; }
         }
 
-        public SetPageEventArgs(object origin, CoreNode node, int pageNumber)
+        public SetPageEventArgs(object origin, PhraseNode node, int pageNumber)
             : base(origin, node)
         {
             mPageNumber = pageNumber;

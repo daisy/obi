@@ -8,15 +8,15 @@ namespace Obi.Commands.Strips
     public class ApplyPhraseDetection: Command
     {
         private Obi.Project mProject;
-        private CoreNode mNode;
-        private List<CoreNode> mPhraseNodes;
+        private PhraseNode mNode;
+        private List<PhraseNode> mPhraseNodes;
 
         public override string Label
         {
             get { return Localizer.Message("apply_phrase_detection_command_label"); }
         }
 
-        public ApplyPhraseDetection(Obi.Project project, CoreNode node, List<CoreNode> phraseNodes)
+        public ApplyPhraseDetection(Obi.Project project, PhraseNode node, List<PhraseNode> phraseNodes)
         {
             mProject = project;
             mNode = node;

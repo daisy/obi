@@ -13,7 +13,8 @@ namespace Obi.UserControls
     public partial class SectionStrip : UserControl
     {
         private StripManagerPanel mManager;  // the manager for this strip
-        private CoreNode mNode;              // the core node for this strip
+        private SectionNode mNode;              // the core node for this strip
+        private static float mDefaultFontSize = 12;
 
         public delegate void ChangedMinimumSizeHandler(object sender, EventArgs e);
 
@@ -46,7 +47,7 @@ namespace Obi.UserControls
             }
         }
 
-        public CoreNode Node
+        public SectionNode Node
         {
             get
             {
@@ -55,6 +56,7 @@ namespace Obi.UserControls
             set
             {
                 mNode = value;
+                SetStripFontSize();
             }
         }
 
@@ -255,7 +257,7 @@ namespace Obi.UserControls
                 return -1;
             }
             return prevIndex;
-        }
+        }*/
 
         /// <summary>
         /// Reflows the tab order (tabindex property)
@@ -265,15 +267,27 @@ namespace Obi.UserControls
         /// <returns>The last (highest) tabindex added, if no blocks are in strip, returns the inparam value</returns>
         /// <remarks>Use this to reflow the taborder of an entire strip</remarks>
         //   added by mg 20060803
-        internal int ReflowTabOrder(int prevIndex)
+       /* internal int ReflowTabOrder(int prevIndex)
         {
             if (mAudioLayoutPanel.Controls.Count > 0)
             {
                 return this.ReflowTabOrder(mAudioLayoutPanel.Controls[0], prevIndex);
             }
             return prevIndex;
+        }*/
+
+        internal void SetStripFontSize()
+        {
+            if (mNode != null)
+            {
+                int nodeLevel = this.mNode.Project.getNodeLevel(mNode);
+                //float currentSize = GetTitleFontSize();
+                if (nodeLevel == 1) SetTitleFontSize(mDefaultFontSize + 3);
+                else if (nodeLevel == 2) SetTitleFontSize(mDefaultFontSize + 2);
+                else if (nodeLevel == 3) SetTitleFontSize(mDefaultFontSize + 1);
+                else SetTitleFontSize(mDefaultFontSize);
+            }
         }
-        */
 
         #endregion
 
@@ -287,10 +301,6 @@ namespace Obi.UserControls
         {
             mAnnotationLayoutPanel.Controls.Add(block.AnnotationBlock);
             mAudioLayoutPanel.Controls.Add(block);
-/*med 20061120 svn merge: i think this is old code
-            mAnnotationLayoutPanel.Controls.Add(block.AnnotationBlock);
-            //md 20061024 force resizing
-            block._Width = block.AnnotationBlock.Width;*/
             block.AnnotationBlock.ChangedMinimumSize += new SectionStrip.ChangedMinimumSizeHandler(
                 delegate(object sender, EventArgs e) { ManageAudioBlockWidth(block); }
             );
@@ -378,7 +388,7 @@ namespace Obi.UserControls
         /// <param name="audioBlock">The block for which the asset has changed.</param>
         internal void UpdateAssetAudioBlock(AudioBlock audioBlock)
         {
-            Assets.AudioMediaAsset asset = Project.GetAudioMediaAsset(audioBlock.Node);
+            Assets.AudioMediaAsset asset = audioBlock.Node.Asset;
             audioBlock.AssetName = asset.Name;
             audioBlock.Time = asset.LengthInSeconds;
         }
@@ -386,7 +396,7 @@ namespace Obi.UserControls
         /// <summary>
         /// set the font size for the title font
         /// </summary>
-        public void SetTitleFontSize(float sz)
+        private void SetTitleFontSize(float sz)
         {
             Font newfont = new Font(mRenameBox.Font.FontFamily, sz);
             mRenameBox.Font = newfont;

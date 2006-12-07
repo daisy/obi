@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 using urakawa.core;
 using urakawa.media;
 
@@ -9,22 +5,20 @@ namespace Obi.Commands.Strips
 {
     public class AddPhrase: Command
     {
-        protected Obi.Project mProject;  // the current project
-        protected CoreNode mNode;        // the phrase node to add/remove
-        private CoreNode mParent;        // the section node to add to
-        private int mIndex;              // position within the parent
+        protected PhraseNode mNode;   // the phrase node to add/remove
+        private SectionNode mParent;  // the section node to add to
+        private int mIndex;           // position within the parent
 
         public override string Label
         {
             get { return Localizer.Message("add_phrase_command_label"); }
         }
 
-        public AddPhrase(Obi.Project project, CoreNode node)
+        public AddPhrase(PhraseNode node)
         {
-            mProject = project;
             mNode = node;
-            mParent = (CoreNode)mNode.getParent();
-            mIndex = mParent.indexOf(mNode);
+            mParent = mNode.ParentSection;
+            mIndex = mNode.Index;
         }
 
         /// <summary>
@@ -33,7 +27,7 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Do()
         {
-            mProject.AddPhraseNodeAndAsset(mNode, mParent, mIndex);
+            mNode.Project.AddPhraseNodeAndAsset(mNode, mParent, mIndex);
         }
 
         /// <summary>
@@ -42,7 +36,7 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Undo()
         {
-            mProject.DeletePhraseNodeAndAsset(mNode);
+            mNode.Project.DeletePhraseNodeAndAsset(mNode);
         }
     }
 
@@ -53,15 +47,15 @@ namespace Obi.Commands.Strips
             get { return Localizer.Message("paste_phrase_command_label");  }
         }
 
-        public PastePhrase(Obi.Project project, CoreNode node)
-            : base(project, node)
+        public PastePhrase(PhraseNode node)
+            : base(node)
         {
         }
 
         public override void Do()
         {
             base.Do();
-            mProject.SetAudioMediaAsset(mNode, Project.GetAudioMediaAsset(mNode));
+            mNode.Project.SetAudioMediaAsset(mNode, mNode.Asset);
         }
     }
 }

@@ -9,19 +9,16 @@ namespace Obi.Commands.TOC
     class Rename: Command
     {
         private Project mProject;
-        private CoreNode mNode;
+        private SectionNode mNode;
         private string mOldName;
         private string mNewName;
 
         public override string Label
         {
-            get
-            {
-                return Localizer.Message("rename_command_label");
-            }
+            get { return Localizer.Message("rename_command_label"); }
         }
 
-        public Rename(Project project, CoreNode node, string oldName, string newName)
+        public Rename(Project project, SectionNode node, string oldName, string newName)
         {
             mProject = project;
             mNode = node;

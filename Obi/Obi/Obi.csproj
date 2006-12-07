@@ -58,9 +58,9 @@
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="urakawa, Version=0.5.2530.27014, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="urakawa, Version=0.5.2532.20596, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\implementation\UrakawaToolkit\bin\Debug\urakawa.dll</HintPath>
+      <HintPath>..\..\..\..\..\branches\toolkit-more-virtual-methods\bin\Debug\urakawa.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -97,8 +97,6 @@
     <Compile Include="Commands\TOC\MoveSectionNode.cs" />
     <Compile Include="Commands\TOC\Rename.cs" />
     <Compile Include="Commands\TOC\SectionNodeClipboard.cs" />
-    <Compile Include="Commands\TOC\SectionNodeCommand.cs" />
-    <Compile Include="Commands\TOC\SectionNodeListCommand.cs" />
     <Compile Include="Commands\TOC\ShallowDeleteSectionNode.cs" />
     <Compile Include="Commands\Touch.cs" />
     <Compile Include="CustomProperties.cs" />
@@ -171,23 +169,23 @@
     <Compile Include="Events\Audio\VuMeter\PeakOverloadEventArgs.cs" />
     <Compile Include="Events\Audio\VuMeter\ResetEventArgs.cs" />
     <Compile Include="Events\Audio\VuMeter\UpdateFormsEventArgs.cs" />
-    <Compile Include="Events\Node\AddedPhraseNodeEventArgs.cs" />
+    <Compile Include="Events\NodeEventHandlers.cs" />
+    <Compile Include="Events\Node\PhraseNodeEventArgs.cs" />
+    <Compile Include="Events\Node\SectionNodeEventArgs.cs" />
     <Compile Include="Events\Node\MergeNodesEventArgs.cs" />
     <Compile Include="Events\Node\NodeEventArgs.cs" />
     <Compile Include="Events\Node\PhraseDetectionEventArgs.cs" />
-    <Compile Include="Events\Node\RenameNodeEventArgs.cs" />
-    <Compile Include="Events\Node\MovedNodeEventArgs.cs" />
+    <Compile Include="Events\Node\RenameSectionNodeEventArgs.cs" />
+    <Compile Include="Events\Node\MovedSectionNodeEventArgs.cs" />
     <Compile Include="Events\Node\SelectedEventArgs.cs" />
     <Compile Include="Events\Node\SetMediaEventArgs.cs" />
     <Compile Include="Events\Node\SetPageEventArgs.cs" />
     <Compile Include="Events\Node\ShallowSwappedNodesEventArgs.cs" />
-    <Compile Include="Events\Node\SplitNodeEventArgs.cs" />
+    <Compile Include="Events\Node\SplitPhraseNodeEventArgs.cs" />
     <Compile Include="Events\Project\CommandCreatedEventArgs.cs" />
     <Compile Include="Events\Project\StateChangedEventArgs.cs" />
     <Compile Include="Events\Strip\ImportAssetEventArgs.cs" />
     <Compile Include="Events\Audio\Recorder\PhraseEventArgs.cs" />
-    <Compile Include="Events\Strip\SelectedEventArgs.cs" />
-    <Compile Include="Events\Node\AddedSectionNodeEventArgs.cs" />
     <Compile Include="Events\Strip\UpdateTimeEventArgs.cs" />
     <Compile Include="IOUtils.cs" />
     <Compile Include="Localizer.cs" />
@@ -202,6 +200,9 @@
     <Compile Include="ObiForm.Designer.cs">
       <DependentUpon>ObiForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ObiNode.cs" />
+    <Compile Include="ObiNodeFactory.cs" />
+    <Compile Include="PhraseNode.cs" />
     <Compile Include="Playlist.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Project.Blocks.cs" />
@@ -287,6 +288,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="RecordingSession.cs" />
+    <Compile Include="SectionNode.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="SimpleMetadata.cs" />
     <Compile Include="UserControls\AbstractBlock.cs">
@@ -361,7 +363,6 @@
     <Compile Include="Visitors\DumpTree.cs" />
     <Compile Include="Visitors\PhraseEnumerator.cs" />
     <Compile Include="Visitors\CopyPhraseAssets.cs" />
-    <Compile Include="Visitors\SectionNodePosition.cs" />
     <Compile Include="Visitors\UndeleteSubtree.cs" />
   </ItemGroup>
   <ItemGroup>

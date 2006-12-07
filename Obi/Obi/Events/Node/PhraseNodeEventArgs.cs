@@ -6,13 +6,12 @@ using urakawa.core;
 
 namespace Obi.Events.Node
 {
-   
-    public class NodeEventArgs : EventArgs
+    public class PhraseNodeEventArgs
     {
-        private CoreNode mNode;  // the node on which the operation is performed
+        private PhraseNode mNode;  // the node on which the operation is performed
         private object mOrigin;  // the origin of the event (initial requester)
 
-        public CoreNode Node
+        public PhraseNode Node
         {
             get
             {
@@ -28,7 +27,7 @@ namespace Obi.Events.Node
             }
         }
 
-        public NodeEventArgs(object origin, CoreNode node)
+        public PhraseNodeEventArgs(object origin, PhraseNode node)
         {
             mOrigin = origin;
             mNode = node;

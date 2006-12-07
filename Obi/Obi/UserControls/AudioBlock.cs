@@ -20,7 +20,7 @@ namespace Obi.UserControls
         /// <summary>
         /// Phrase node for this block.
         /// </summary>
-        public override CoreNode Node
+        public override PhraseNode Node
         {
             get { return mNode; }
             set { mNode = value; }

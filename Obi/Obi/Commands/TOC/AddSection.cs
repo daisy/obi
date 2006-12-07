@@ -6,22 +6,24 @@ using urakawa.core;
 
 namespace Obi.Commands.TOC
 {
-    class AddSectionNode: SectionNodeCommand
+    class AddSectionNode: Command
     {
-        private string mOriginalLabel;
-
+        private SectionNode mNode;  // the newly added section node
+        private CoreNode mParent;   // the parent to which it was added
+    
         public override string Label
         {
-            get
-            {
-                return Localizer.Message("add_section_command_label");
-            }
+            get { return Localizer.Message("add_section_command_label"); }
         }
 
-        public AddSectionNode(Project project, CoreNode node, CoreNode parent, int index, int position)
-        : base(project, node, parent, index, position)
+        /// <summary>
+        /// Create a new "add section" command from the new section node, the parent node and the index of the new section.
+        /// The command is created once the section has actually been added.
+        /// </summary>
+        public AddSectionNode(SectionNode node)
         {
-            mOriginalLabel = Project.GetTextMedia(node).getText();
+            mNode = node;
+            mParent = (CoreNode)node.getParent();
         }
 
         /// <summary>
@@ -30,7 +32,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            Project.AddExistingSectionNode(Node, Parent, Index, Position, mOriginalLabel);
+            mNode.Project.AddExistingSectionNode(mNode, mParent, mNode.Index, this.Label);
         }
 
         /// <summary>
@@ -39,7 +41,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            Project.RemoveNode(Project, Node);
+            mNode.Project.RemoveSectionNode(mNode.Project, mNode);
         }
     }
 }
