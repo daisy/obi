@@ -171,6 +171,7 @@ namespace Obi.UserControls
         
         private void SectionStrip_Click(object sender, EventArgs e)
         {
+            /* md - removed for testing
             if (mManager.SelectedSectionNode == mNode)
             {
                 //mg: changed renaming to not be 
@@ -181,26 +182,10 @@ namespace Obi.UserControls
             else
             {
                 mManager.SelectedSectionNode = mNode;
-            }
+            }*/
+          
+            mManager.SelectedSectionNode = mNode;
         }
-
-        /*
-        //JQ: removed
-        //mg: for tab navigation et al
-        private void SectionStrip_leave(object sender, EventArgs e)
-        {
-            this.MarkDeselected();
-        }
-        */
-
-        /*
-        //JQ: removed 
-        //mg: for tab navigation et al
-        private void SectionStrip_enter(object sender, EventArgs e)
-        {
-            mManager.SelectedSectionNode = mNode;            
-        }
-        */
 
         public void MarkSelected()
         {
@@ -213,68 +198,6 @@ namespace Obi.UserControls
             BackColor = Color.Gold;
             mRenameBox.BackColor = BackColor;
         }
-
-        /*
-        /// <summary>
-        /// Reflows the tab order (tabindex property)
-        /// of blocks in this SectionStrip starting from the
-        /// inparam block, continuing to the end of the strip.
-        /// </summary>
-        /// <param name="startBlock">The block to start from</param>
-        /// <param name="prevIndex">The tabindex value to preemptively increase before setting on the first Block in this strip</param>
-        /// <returns>The last (highest) tabindex added, if startBlock is not in strip, returns -1</returns>
-        /// <remarks>Use this to reflow the taborder of a partial strip</remarks>
-        //   added by mg 20060803
-
-        internal int ReflowTabOrder(Control startBlock, int prevIndex)
-        {
-            try
-            {
-                for (int i = mAudioLayoutPanel.Controls.GetChildIndex(startBlock); i < this.mAudioLayoutPanel.Controls.Count; i++)
-                {
-                    Control c = this.mAudioLayoutPanel.Controls[i];
-                    if (c is AudioBlock) //note: needs to be changed as block types are added
-                    {
-                        c.TabIndex = ++prevIndex;
-                    }
-                    else
-                    {
-                        try
-                        {
-                            c.TabStop = false;
-                        }
-                        catch (Exception)
-                        {
-                            //instead of reflection
-                        }
-                    }
-                }//for
-            }
-            catch (Exception x)
-            {
-                //if startBlock was not in ControlCollection
-                System.Diagnostics.Debug.Print("SectionStrip.ReflowTabOrder exception: " + x.Message);
-                return -1;
-            }
-            return prevIndex;
-        }*/
-
-        /// <summary>
-        /// Reflows the tab order (tabindex property)
-        /// of all blocks in this SectionStrip.
-        /// </summary>
-        /// <param name="prevIndex">The tabindex value to preemptively increase before setting on the first Block in this strip</param>
-        /// <returns>The last (highest) tabindex added, if no blocks are in strip, returns the inparam value</returns>
-        /// <remarks>Use this to reflow the taborder of an entire strip</remarks>
-        //   added by mg 20060803
-       /* internal int ReflowTabOrder(int prevIndex)
-        {
-            if (mAudioLayoutPanel.Controls.Count > 0)
-            {
-                return this.ReflowTabOrder(mAudioLayoutPanel.Controls[0], prevIndex);
-            }
-            return prevIndex;
-        }*/
 
         internal void SetStripFontSize()
         {

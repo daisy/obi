@@ -446,7 +446,7 @@ namespace Obi.UserControls
         {
             if (Parent != null)
             {
-                ((ProjectPanel)Parent).StripManager.Selected += new Obi.Events.SelectedHandler(StripManager_Selected);
+                ((ProjectPanel)Parent).StripManager.SelectionChanged += new Obi.Events.SelectedHandler(StripManager_Selected);
             }
         }
 
