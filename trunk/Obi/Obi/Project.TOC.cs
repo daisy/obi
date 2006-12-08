@@ -34,7 +34,7 @@ namespace Obi
         /// The context node may be null if this is the first node that is added, in which case
         /// we add a new child to the root (and not a sibling.)
         /// </summary>
-        public void CreateSiblingSectionNode(object origin, SectionNode contextNode)
+        public SectionNode CreateSiblingSectionNode(object origin, SectionNode contextNode)
         {
             CoreNode parent = (CoreNode)(contextNode == null ? getPresentation().getRootNode() : contextNode.getParent());
             SectionNode sibling = (SectionNode)
@@ -48,12 +48,12 @@ namespace Obi
             {
                 AddChildSectionAfter(sibling, contextNode, parent);
             }
-           
             AddedSectionNode(origin, new Events.Node.SectionNodeEventArgs(origin, sibling));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
             Commands.TOC.AddSectionNode command = new Commands.TOC.AddSectionNode(sibling);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            return sibling;
         }
 
         public void CreateSiblingSectionNodeRequested(object sender, Events.Node.SectionNodeEventArgs e)
