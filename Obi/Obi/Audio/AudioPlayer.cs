@@ -260,16 +260,20 @@ namespace Obi.Audio
 
 		public void Play(Assets.AudioMediaAsset asset )
 		{
-			m_StartPosition   = 0 ;
-			m_State  = AudioPlayerState.NotReady ;
-			m_Asset = asset as Assets.AudioMediaAsset;
-			InitPlay(0, 0);
+            if (m_State == AudioPlayerState.Stopped)
+            {
+                m_StartPosition = 0;
+                m_State = AudioPlayerState.NotReady;
+                m_Asset = asset as Assets.AudioMediaAsset;
+                InitPlay(0, 0);
+
+            }
 		}
 
 		void InitPlay(long lStartPosition, long lEndPosition)
 		{
             //if (m_State == AudioPlayerState.Stopped || m_State == AudioPlayerState.NotReady)
-                if (m_State != AudioPlayerState.Playing )
+                if (m_State == AudioPlayerState.NotReady  )
             {
                 // Adjust the start and end position according to frame size
                 lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, m_Asset.FrameSize);
@@ -487,18 +491,22 @@ namespace Obi.Audio
 		
 		public void Play(Assets.AudioMediaAsset  asset, double timeFrom)
 		{
-			m_Asset = asset as Assets.AudioMediaAsset;
-			long lPosition = CalculationFunctions.ConvertTimeToByte (timeFrom, m_Asset .SampleRate, m_Asset .FrameSize) ;
-			lPosition = CalculationFunctions.AdaptToFrame(lPosition, m_Asset .FrameSize) ;
-			if(lPosition>=0   && lPosition < m_Asset.AudioLengthInBytes)
-			{
-							m_StartPosition   =  lPosition ;
-				InitPlay ( lPosition, 0 );
-			}
-			else
-			throw new Exception ("Start Position is out of bounds of Audio Asset") ;
-				
-			
+            if (m_State == AudioPlayerState.Stopped)
+            {
+                m_State = AudioPlayerState.NotReady;
+                m_Asset = asset as Assets.AudioMediaAsset;
+                long lPosition = CalculationFunctions.ConvertTimeToByte(timeFrom, m_Asset.SampleRate, m_Asset.FrameSize);
+                lPosition = CalculationFunctions.AdaptToFrame(lPosition, m_Asset.FrameSize);
+                if (lPosition >= 0 && lPosition < m_Asset.AudioLengthInBytes)
+                {
+                    m_StartPosition = lPosition;
+                    InitPlay(lPosition, 0);
+                }
+
+                else
+                    throw new Exception("Start Position is out of bounds of Audio Asset");
+
+            }
 		}
 
 		// contains the end position  to play to be used in starting playing  after seeking
