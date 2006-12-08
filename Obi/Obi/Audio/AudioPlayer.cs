@@ -555,6 +555,7 @@ namespace Obi.Audio
                 if (lPosition >= 0 && lPosition < m_Asset.AudioLengthInBytes)
                 {
                     m_StartPosition = lPosition;
+                    m_State = AudioPlayerState.NotReady;
                     InitPlay(lPosition, 0);
                 }
                 else
@@ -640,6 +641,7 @@ namespace Obi.Audio
 					Stop();
 					Thread.Sleep (30) ;
 					m_StartPosition = localPosition ;
+                    m_State = AudioPlayerState.NotReady;
 					InitPlay(localPosition , 0);
 				
 			}		
