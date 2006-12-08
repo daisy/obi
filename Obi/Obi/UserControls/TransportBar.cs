@@ -52,8 +52,8 @@ namespace Obi.UserControls
         {
             get
             {
-                return (mPlaylist == null || mPlaylist.State == Audio.AudioPlayerState.Stopped) &&
-                    ((ProjectPanel)Parent).SelectedNode != null;
+                return ((ProjectPanel)Parent).Project != null &&
+                    (mPlaylist == null || mPlaylist.State == Audio.AudioPlayerState.Stopped);
             }
         }
 
@@ -99,8 +99,6 @@ namespace Obi.UserControls
         /// </summary>
         void StripManager_Selected(object sender, Obi.Events.Node.SelectedEventArgs e)
         {
-            // CoreNode phrase = (CoreNode)sender;
-            // if (phrase.GetType() == Type.GetType("Obi.PhraseNode") && e.Selected)
             if (e.Selected)
             {
                 PhraseNode phrase = sender as PhraseNode;
@@ -219,7 +217,12 @@ namespace Obi.UserControls
                 ObiNode selected = ((ProjectPanel)Parent).StripManager.SelectedNode;
                 SectionNode section; // section in which we are recording
                 int index;           // index from which we add new phrases in the aforementioned section
-                if (selected is SectionNode)
+                if (selected == null)
+                {
+                    section = ((ProjectPanel)Parent).Project.CreateSiblingSectionNode(this, null);
+                    index = 0;
+                }
+                else if (selected is SectionNode)
                 {
                     section = (SectionNode)selected;
                     index = section.PhraseChildCount;
