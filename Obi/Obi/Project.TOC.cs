@@ -34,6 +34,7 @@ namespace Obi
         /// The context node may be null if this is the first node that is added, in which case
         /// we add a new child to the root (and not a sibling.)
         /// </summary>
+        /// <returns>The new section node.</returns>
         public SectionNode CreateSiblingSectionNode(object origin, SectionNode contextNode)
         {
             CoreNode parent = (CoreNode)(contextNode == null ? getPresentation().getRootNode() : contextNode.getParent());
