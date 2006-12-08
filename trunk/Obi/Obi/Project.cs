@@ -40,7 +40,7 @@ namespace Obi
         private SimpleMetadata mMetadata;    // metadata for this project
 
         private Clipboard mClipboard;        // project-wide clipboard.
-        private PhraseNode mSilencePhrase;     // silence phrase used for phrase detection
+        //private PhraseNode mSilencePhrase;     // silence phrase used for phrase detection
 
         public static readonly string XUKVersion = "obi-xuk-008";            // version of the Obi/XUK file
         public static readonly string AudioChannelName = "obi.audio";            // canonical name of the audio channel

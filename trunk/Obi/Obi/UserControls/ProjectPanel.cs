@@ -243,7 +243,7 @@ namespace Obi.UserControls
         /// <summary>
         /// Return the node that is selected in either view, if any.
         /// </summary>
-        public CoreNode SelectedNode
+        public ObiNode SelectedNode
         {
             get
             {

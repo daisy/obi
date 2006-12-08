@@ -41,9 +41,9 @@ namespace Obi.UserControls
         /// <summary>
         /// Selected node (phrase or section.)
         /// </summary>
-        public CoreNode SelectedNode
+        public ObiNode SelectedNode
         {
-            get { return mSelectedPhrase == null ? (CoreNode)mSelectedSection : (CoreNode)mSelectedPhrase; }
+            get { return mSelectedPhrase == null ? (ObiNode)mSelectedSection : (ObiNode)mSelectedPhrase; }
             set
             {
                 if (value != null)
