@@ -100,13 +100,13 @@ namespace Obi
             this.audioPreferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.mDumpTreeDEBUGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mExportAssetDEBUGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutObiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectPanel = new Obi.UserControls.ProjectPanel();
-            this.mExportAssetDEBUGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -699,6 +699,13 @@ namespace Obi
             this.mDumpTreeDEBUGToolStripMenuItem.Text = "&Dump tree (DEBUG)";
             this.mDumpTreeDEBUGToolStripMenuItem.Click += new System.EventHandler(this.dumpTreeDEBUGToolStripMenuItem_Click);
             // 
+            // mExportAssetDEBUGToolStripMenuItem
+            // 
+            this.mExportAssetDEBUGToolStripMenuItem.Name = "mExportAssetDEBUGToolStripMenuItem";
+            this.mExportAssetDEBUGToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.mExportAssetDEBUGToolStripMenuItem.Text = "E&xport asset (DEBUG)";
+            this.mExportAssetDEBUGToolStripMenuItem.Click += new System.EventHandler(this.mExportAssetDEBUGToolStripMenuItem_Click);
+            // 
             // mHelpToolStripMenuItem
             // 
             this.mHelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -707,7 +714,6 @@ namespace Obi
             this.mHelpToolStripMenuItem.Name = "mHelpToolStripMenuItem";
             this.mHelpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
             this.mHelpToolStripMenuItem.Text = "&Help";
-            this.mHelpToolStripMenuItem.DropDownOpening += new System.EventHandler(this.mHelpToolStripMenuItem_DropDownOpening);
             // 
             // mHelpToolStripMenuItem1
             // 
@@ -752,13 +758,6 @@ namespace Obi
             this.mProjectPanel.Project = null;
             this.mProjectPanel.Size = new System.Drawing.Size(849, 491);
             this.mProjectPanel.TabIndex = 4;
-            // 
-            // mExportAssetDEBUGToolStripMenuItem
-            // 
-            this.mExportAssetDEBUGToolStripMenuItem.Name = "mExportAssetDEBUGToolStripMenuItem";
-            this.mExportAssetDEBUGToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.mExportAssetDEBUGToolStripMenuItem.Text = "E&xport asset (DEBUG)";
-            this.mExportAssetDEBUGToolStripMenuItem.Click += new System.EventHandler(this.mExportAssetDEBUGToolStripMenuItem_Click);
             // 
             // ObiForm
             // 

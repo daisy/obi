@@ -728,6 +728,11 @@ namespace Obi
         private void UpdateEnabledItems()
         {
             UpdateEnabledItemsForFileMenu();
+            UpdateEnabledItemsForEditMenu();
+            UpdateEnabledItemsForTOCMenu();
+            UpdateEnabledItemsForStripsMenu();
+            UpdateEnabledItemsForTransportMenu();
+            UpdateEnabledItemsForToolsMenu();
         }
 
         /// <summary>
@@ -756,6 +761,11 @@ namespace Obi
         /// When the Edit menu opens, enable and disable its items according to what is selected.
         /// </summary>
         private void mEditToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            UpdateEnabledItemsForEditMenu();
+        }
+
+        private void UpdateEnabledItemsForEditMenu()
         {
             FormUpdateUndoRedoLabels();                // take care of undo and redo
 
@@ -902,6 +912,11 @@ namespace Obi
         /// </summary>
         private void mTocToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
+            UpdateEnabledItemsForTOCMenu();
+        }
+
+        private void UpdateEnabledItemsForTOCMenu()
+        {
             if (mProjectPanel.TOCPanelVisible)
             {
                 bool isNodeSelected = false;
@@ -948,6 +963,11 @@ namespace Obi
         /// </summary>
         private void mStripsToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
+            UpdateEnabledItemsForStripsMenu();
+        }
+
+        private void UpdateEnabledItemsForStripsMenu()
+        {
             bool isProjectOpen = mProject != null;
             bool isStripSelected = isProjectOpen && mProjectPanel.StripManager.SelectedSectionNode != null;
             bool isAudioBlockSelected = isProjectOpen && mProjectPanel.StripManager.SelectedPhraseNode != null;
@@ -985,6 +1005,11 @@ namespace Obi
         /// Update the visibility and actual label of transport items.
         /// </summary>
         private void mTransportToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            UpdateEnabledItemsForTransportMenu();
+        }
+
+        private void UpdateEnabledItemsForTransportMenu()
         {
             bool isProjectOpen = mProject != null;
             bool isNodeSelected = isProjectOpen && mProjectPanel.SelectedNode != null;
@@ -1029,16 +1054,13 @@ namespace Obi
         /// </summary>
         private void mToolsToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
-            mDumpTreeDEBUGToolStripMenuItem.Enabled = mProject != null;
-            mExportAssetDEBUGToolStripMenuItem.Enabled = mProjectPanel.StripManager.SelectedPhraseNode != null;
+            UpdateEnabledItemsForToolsMenu();
         }
 
-        /// <summary>
-        /// Help items are always enabled, but we may do some fancy contextual stuff later so here it is for the sake
-        /// of completeness.
-        /// </summary>
-        private void mHelpToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        private void UpdateEnabledItemsForToolsMenu()
         {
+            mDumpTreeDEBUGToolStripMenuItem.Enabled = mProject != null;
+            mExportAssetDEBUGToolStripMenuItem.Enabled = mProjectPanel.StripManager.SelectedPhraseNode != null;
         }
 
         #endregion
@@ -1171,6 +1193,21 @@ namespace Obi
                 }
 
             }
+        }
+
+        /// <summary>
+        /// Keys for the transport bar and stuff.
+        /// </summary>
+        protected override bool ProcessDialogKey(Keys key)
+        {
+            UpdateEnabledItems();
+            switch (key)
+            {
+                case Keys.Space:
+                    mProjectPanel.TransportBar.Play();
+                    break;
+            }
+            return base.ProcessDialogKey(key);
         }
     }
 }
