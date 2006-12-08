@@ -74,8 +74,8 @@ namespace Obi.UserControls
             IsPlay = false;
 
             // Associate events
-            mRecordingSession.AudioRecorderObj.VuMeterObject.PeakOverload += new Obi.Events.Audio.VuMeter.PeakOverloadHandler ( CatchPeakOverloadEvent ) ; 
-            mRecordingSession.AudioRecorderObj.StateChanged += new Obi.Events.Audio.Recorder.StateChangedHandler ( CatchStateChangedEvent );
+            mRecordingSession.AudioRecorder.VuMeterObject.PeakOverload += new Obi.Events.Audio.VuMeter.PeakOverloadHandler ( CatchPeakOverloadEvent ) ; 
+            mRecordingSession.AudioRecorder.StateChanged += new Obi.Events.Audio.Recorder.StateChangedHandler ( CatchStateChangedEvent );
 
             Enable = false;
         }   
@@ -93,10 +93,10 @@ namespace Obi.UserControls
             }
             else if (IsPlay == false && mRecordingSession != null )
             {
-                if ( mRecordingSession.AudioRecorderObj.State == Audio.AudioRecorderState.Recording || mRecordingSession.AudioRecorderObj.State == Obi.Audio.AudioRecorderState.Listening )
+                if ( mRecordingSession.AudioRecorder.State == Audio.AudioRecorderState.Recording || mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Listening )
                 {
-                    mLeftBox.Text = mRecordingSession.AudioRecorderObj.VuMeterObject.m_MeanValueLeft.ToString();
-                    mRightBox.Text = mRecordingSession.AudioRecorderObj.VuMeterObject.m_MeanValueRight.ToString();
+                    mLeftBox.Text = mRecordingSession.AudioRecorder.VuMeterObject.m_MeanValueLeft.ToString();
+                    mRightBox.Text = mRecordingSession.AudioRecorder.VuMeterObject.m_MeanValueRight.ToString();
                 }
             }
 
@@ -163,7 +163,7 @@ namespace Obi.UserControls
             }
             else if (IsPlay == false)
             {
-                mRecordingSession.AudioRecorderObj.VuMeterObject.Reset();
+                mRecordingSession.AudioRecorder.VuMeterObject.Reset();
             }
         }
 

@@ -9,8 +9,8 @@ namespace Obi.UserControls
     /// </summary>
     public partial class TransportBar : UserControl
     {
-        private Playlist mPlaylist;           // current playlist (may be null)
-        private CoreNode mPreviousSelection;  // selection before playback started
+        private Playlist mPlaylist;          // current playlist (may be null)
+        private ObiNode mPreviousSelection;  // selection before playback started
 
         // constants from the display combo box
         private static readonly int Elapsed = 0;
@@ -42,9 +42,18 @@ namespace Obi.UserControls
         /// </summary>
         public bool CanResume
         {
+            get { return Playlist.State == Audio.AudioPlayerState.Paused; }
+        }
+
+        /// <summary>
+        /// Whether recording is currently possible.
+        /// </summary>
+        public bool CanRecord
+        {
             get
             {
-                return Playlist.State == Audio.AudioPlayerState.Paused;
+                return (mPlaylist == null || mPlaylist.State == Audio.AudioPlayerState.Stopped) &&
+                    ((ProjectPanel)Parent).SelectedNode != null;
             }
         }
 
@@ -205,12 +214,45 @@ namespace Obi.UserControls
         /// </summary>
         public void Record()
         {
-            Settings CurrentSettings = Settings.GetSettings();
-            urakawa.core.CoreNode node= null ; // Blank node for now, to be replaced by actual node  
-            RecordingSession session = new RecordingSession(((ProjectPanel)Parent).Project, Audio.AudioRecorder.Instance, node,
-                CurrentSettings.AudioChannels , CurrentSettings.SampleRate , CurrentSettings.BitDepth) ;
-            Dialogs.TransportRecord TransportRecordDialog = new Obi.Dialogs.TransportRecord (session);
-            TransportRecordDialog.Show();
+            if (CanRecord)
+            {
+                ObiNode selected = ((ProjectPanel)Parent).StripManager.SelectedNode;
+                SectionNode section; // section in which we are recording
+                int index;           // index from which we add new phrases in the aforementioned section
+                if (selected is SectionNode)
+                {
+                    section = (SectionNode)selected;
+                    index = section.PhraseChildCount;
+                }
+                else
+                {
+                    section = ((PhraseNode)selected).ParentSection;
+                    index = ((PhraseNode)selected).Index;
+                }
+                Settings settings = ((ObiForm)ParentForm).Settings;
+                RecordingSession session = new RecordingSession(((ProjectPanel)Parent).Project, Audio.AudioRecorder.Instance,
+                    selected, settings.AudioChannels, settings.SampleRate, settings.BitDepth);
+                // the following closures handle the various events sent during the recording session
+                session.StartingPhrase += new Events.Audio.Recorder.StartingPhraseHandler(
+                    delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
+                    {
+                        ((ProjectPanel)Parent).Project.StartRecordingPhrase(_e, section, index);
+                    }
+                );
+                session.ContinuingPhrase += new Events.Audio.Recorder.ContinuingPhraseHandler(
+                    delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
+                    {
+                        ((ProjectPanel)Parent).Project.ContinuingRecordingPhrase(_e, section, index);
+                    }
+                );
+                session.FinishingPhrase += new Events.Audio.Recorder.FinishingPhraseHandler(
+                    delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
+                    {
+                        ((ProjectPanel)Parent).Project.FinishRecordingPhrase(_e, section, index);
+                    }
+                );
+                new Dialogs.TransportRecord(session).ShowDialog();
+            }
         }
 
         private void mStopButton_Click(object sender, EventArgs e)

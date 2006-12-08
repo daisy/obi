@@ -25,7 +25,6 @@ namespace Obi.Dialogs
 
         private void mStopButton_Click(object sender, EventArgs e)
         {
-            
             mRecordingSession.Stop();
             Close();
         }
@@ -42,10 +41,10 @@ namespace Obi.Dialogs
         private void mRecordButton_Click(object sender, EventArgs e)
         {
             mRecordingSession.Stop();
-                mRecordingSession.Record();
-                mPauseButton.Visible = true;
-                mRecordButton.Visible = false;
-                mPauseButton.Focus();
+            mRecordingSession.Record();
+            mPauseButton.Visible = true;
+            mRecordButton.Visible = false;
+            mPauseButton.Focus();
         }
 
         private void btnPageMark_Click(object sender, EventArgs e)

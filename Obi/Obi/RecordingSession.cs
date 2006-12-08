@@ -1,13 +1,9 @@
+using Obi.Audio;
+using Obi.Assets;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Threading;
-
-using Obi.Audio;
-using Obi.Assets;
-using urakawa.core;
-
-
 
 namespace Obi
 {
@@ -24,7 +20,7 @@ namespace Obi
         private int mChannels;            // number of channels of audio to record
         private int mSampleRate;          // sample rate of audio to record
         private int mBitDepth;            // bit depth of audio to record
-        private Thread UpdateDisplayThread ;
+        //private Thread UpdateDisplayThread ;
 
         private AudioMediaAsset mAsset;
         private List<double> mPhraseMarks ;
@@ -35,57 +31,45 @@ namespace Obi
         private System.Windows.Forms.Timer  tmCommitTimer = new System.Windows.Forms.Timer () ;
         private System.Windows.Forms.Timer tmUpdateDisplay = new System.Windows.Forms.Timer();
 
-        public Audio.AudioRecorder AudioRecorderObj
+        /// <summary>
+        /// The audio recorder used by the recording session.
+        /// </summary>
+        public Audio.AudioRecorder AudioRecorder
         {
-            get
-            {
-                return mRecorder;
-            }
+            get { return mRecorder; }
         }
 
-
+        /*
         // Property to set Autocommit interval time in seconds
         public int CommitIntervalSeconds
         {
-            get
-            {
-                return tmCommitTimer.Interval/ 1000 ;
-            }
-            set
-            {
-                tmCommitTimer.Interval = value * 1000;
-            }
+            get { return tmCommitTimer.Interval/ 1000 ; }
+            set { tmCommitTimer.Interval = value * 1000; }
         }
-
-        //list of audio assets corressponging to phrases created during recording
-        public List<AudioMediaAsset> AssetsList
-        {
-            get
-            {
-                return mAssetList;
-            }
-        }
-
+        */
 
         // Record session events
         public event Events.Audio.Recorder.StartingPhraseHandler StartingPhrase;
         public event Events.Audio.Recorder.ContinuingPhraseHandler ContinuingPhrase;
         public event Events.Audio.Recorder.FinishingPhraseHandler FinishingPhrase;
-        
         public event Events.Audio.Recorder.FinishingPageHandler FinishingPage;
         public event Events.Audio.Recorder.StartingSectionHandler StartingSection;
 
-        Obi.Events.Audio.Recorder.PhraseEventArgs mPhraseEventsArgs;
+        Obi.Events.Audio.Recorder.PhraseEventArgs mPhraseEventsArgs;  // JQ: should not be a class variable
 
-        // events handler functions for AudioRecorder class
+        /// <summary>
+        /// React to state change events from the recorder.
+        /// </summary>
         private void AudioRecorder_StateChanged(object sender, Events.Audio.Recorder.StateChangedEventArgs state)
         {
         }
 
+        /// <summary>
+        /// React to update events from the VU meter.
+        /// </summary>
         private void AudioRecorder_UpdateVuMeter(Object sender, Events.Audio.Recorder.UpdateVuMeterEventArgs update)
         {
         }
-
 
         /// <summary>
         /// Create a recording session for a project starting from a given node.
@@ -97,7 +81,7 @@ namespace Obi
         /// <param name="channels">Number of channels of audio to record.</param>
         /// <param name="sampleRate">Sample rate of audio to record.</param>
         /// <param name="bitDepth">Bit depth of audio to record.</param>
-        public RecordingSession(Project project, AudioRecorder recorder, CoreNode node, int channels, int sampleRate, int bitDepth)
+        public RecordingSession(Project project, AudioRecorder recorder, ObiNode node, int channels, int sampleRate, int bitDepth)
         {
             mProject = project;
             mRecorder = recorder;
@@ -221,7 +205,7 @@ namespace Obi
             mPhraseMarks = null;
             mPageMarks = mSectionMarks = null;
             mAsset = mRecordingAsset = null;
-            if (UpdateDisplayThread != null && UpdateDisplayThread.IsAlive) UpdateDisplayThread.Abort();
+            //if (UpdateDisplayThread != null && UpdateDisplayThread.IsAlive) UpdateDisplayThread.Abort();
             return e;
         }
 

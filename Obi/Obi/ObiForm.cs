@@ -20,6 +20,14 @@ namespace Obi
         private Audio.VuMeterForm mVuMeter;      // keep track of a single Vu meter form
 
         /// <summary>
+        /// Application settings.
+        /// </summary>
+        public Settings Settings
+        {
+            get { return mSettings; }
+        }
+
+        /// <summary>
         /// The VU meter form owned by the main form can be shown and hidden from a menu.
         /// </summary>
         public Audio.VuMeterForm VuMeterForm
@@ -1013,7 +1021,7 @@ namespace Obi
                 mPlaySelectionToolStripMenuItem.Text = Localizer.Message("pause");
                 mStopToolStripMenuItem.Enabled = true;
             }
-            mRecordToolStripMenuItem.Enabled = false;
+            mRecordToolStripMenuItem.Enabled = mProjectPanel.TransportBar.CanRecord;
         }
 
         /// <summary>
@@ -1117,56 +1125,7 @@ namespace Obi
         /// </summary>
         private void mRecordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProject != null)
-            {
-                CoreNode selected =
-                    mProjectPanel.StripManager.SelectedPhraseNode != null ?
-                        (CoreNode)mProjectPanel.StripManager.SelectedPhraseNode :
-                    mProjectPanel.StripManager.SelectedSectionNode != null ?
-                        (CoreNode)mProjectPanel.StripManager.SelectedSectionNode :
-                        null;
-                if (selected != null)
-                {
-                    SectionNode section; // section in which we are recording
-                    int index;   // index from which we add new phrases in the aforementioned section
-                   
-                    if (selected.GetType() == System.Type.GetType("Obi.SectionNode"))
-                    {
-                        section = (SectionNode)selected;
-                        index = section.PhraseChildCount;
-                    }
-                    else
-                    {
-                        section = (SectionNode)selected.getParent();
-                        index = ((PhraseNode)selected).Index;
-                    }
-                    
-                  
-                    RecordingSession session = new RecordingSession(mProject, Audio.AudioRecorder.Instance, 
-                        selected,mSettings.AudioChannels, mSettings.SampleRate, mSettings.BitDepth);
-                    // the following closures handle the various events sent during the recording session
-                    session.StartingPhrase += new Events.Audio.Recorder.StartingPhraseHandler(
-                        delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
-                        {
-                            mProject.StartRecordingPhrase(_e, section, index);
-                        }
-                    );
-                    session.ContinuingPhrase += new Events.Audio.Recorder.ContinuingPhraseHandler(
-                        delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
-                        {
-                            mProject.ContinuingRecordingPhrase(_e, section, index);
-                        }
-                    );
-                    session.FinishingPhrase += new Events.Audio.Recorder.FinishingPhraseHandler(
-                        delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
-                        {
-                            mProject.FinishRecordingPhrase(_e, section, index);
-                        }
-                    );
-                    new Dialogs.TransportRecord(session).ShowDialog();
-                }
-            }
-            Ready();
+            mProjectPanel.TransportBar.Record();
         }
 
         #endregion
