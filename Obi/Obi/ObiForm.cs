@@ -973,7 +973,7 @@ namespace Obi
             bool isAudioBlockSelected = isProjectOpen && mProjectPanel.StripManager.SelectedPhraseNode != null;
             bool isAudioBlockLast = isAudioBlockSelected &&
                 mProjectPanel.StripManager.SelectedPhraseNode.Index ==
-                mProjectPanel.StripManager.SelectedSectionNode.PhraseChildCount - 1;
+                mProjectPanel.StripManager.SelectedPhraseNode.ParentSection.PhraseChildCount - 1;
             bool isAudioBlockFirst = isAudioBlockSelected &&
                 mProjectPanel.StripManager.SelectedPhraseNode.Index == 0;
             bool isBlockClipBoardSet = isProjectOpen && mProject.Clipboard.Phrase != null;
