@@ -29,8 +29,8 @@ namespace Obi.UserControls
                 if (mProject != null)
                 {
                     //md test 20061207
-                    mStripManagerPanel.Selected -= new Events.SelectedHandler(mProject.test_StripManagerSelect);
-                    mTOCPanel.Selected -= new Events.SelectedHandler(mProject.test_TOCSelect);
+                    mStripManagerPanel.SelectionChanged -= new Events.SelectedHandler(this.test_WidgetSelect);
+                    mTOCPanel.SelectionChanged -= new Events.SelectedHandler(this.test_WidgetSelect);
 
                     mTOCPanel.AddSiblingSectionRequested -= new Events.SectionNodeHandler(mProject.CreateSiblingSectionNodeRequested);
                     mStripManagerPanel.AddSiblingSectionRequested -=
@@ -119,8 +119,8 @@ namespace Obi.UserControls
                 if (value != null)
                 {
                     //md test 20061207
-                    mStripManagerPanel.Selected += new Events.SelectedHandler(value.test_StripManagerSelect);
-                    mTOCPanel.Selected += new Events.SelectedHandler(value.test_TOCSelect);
+                    mStripManagerPanel.SelectionChanged += new Events.SelectedHandler(this.test_WidgetSelect);
+                    mTOCPanel.SelectionChanged += new Events.SelectedHandler(this.test_WidgetSelect);
 
                     mTOCPanel.AddSiblingSectionRequested += new Events.SectionNodeHandler(value.CreateSiblingSectionNodeRequested);
                     mStripManagerPanel.AddSiblingSectionRequested += new Events.SectionNodeHandler(value.CreateSiblingSectionNodeRequested);
@@ -290,6 +290,54 @@ namespace Obi.UserControls
             mTOCPanel.SynchronizeWithCoreTree(mProject.RootNode);
             mStripManagerPanel.SynchronizeWithCoreTree(mProject.RootNode);
             mTransportBar.Playlist = new Playlist(mProject, Audio.AudioPlayer.Instance);
+        }
+
+        //things to deselect:
+        /*StripManagerPanel.mPhraseNodeMap[mSelectedPhrase] (audio blocks)
+	    StripManagerPanel.mSectionNodeMap[mSelectedSection] (section strip)
+	    annotation block (future)
+	    page block (future)
+	    TOC panel node	*/
+        //IMPORTANT! don't raise anything like "SelectionChanged" events
+        internal void DeselectEverything()
+        {
+            mTOCPanel.SelectedSection = null;
+            mStripManagerPanel.SelectedPhraseNode = null;// SelectedBlock = null;
+            mStripManagerPanel.SelectedSectionNode = null;// SelectedSectionStrip = null;
+        }
+        
+        internal void test_WidgetSelect(object sender, Obi.Events.Node.SelectedEventArgs e)
+        {
+            CoreNode target = null;
+
+            if (e.Widget is Obi.UserControls.SectionStrip)
+            {
+                System.Diagnostics.Debug.Write("SectionStrip - ");
+                Obi.UserControls.SectionStrip strip = (Obi.UserControls.SectionStrip)e.Widget;
+                target = strip.Node;
+            }
+            else if (e.Widget is Obi.UserControls.AudioBlock)
+            {
+                System.Diagnostics.Debug.Write("AudioBlock - ");
+                Obi.UserControls.AudioBlock block = (Obi.UserControls.AudioBlock)e.Widget;
+                target = block.Node;
+            }
+            else if (e.Widget is System.Windows.Forms.TreeNode)
+            {
+                System.Diagnostics.Debug.Write("TOC.TreeNode - ");
+                System.Windows.Forms.TreeNode treenode = (System.Windows.Forms.TreeNode)e.Widget;
+                target = this.mTOCPanel.SelectedSection;
+            }
+
+            if (target != null) System.Diagnostics.Debug.Write(target.GetType().ToString() + ": ");
+            else System.Diagnostics.Debug.Write("!target node is null");
+
+            string text = "";
+            if (target is SectionNode) text = Project.GetTextMedia((CoreNode)target).getText();
+            if (target is PhraseNode) text = ((urakawa.media.TextMedia)Project.GetMediaForChannel((CoreNode)target, Project.AnnotationChannelName)).getText();
+            System.Diagnostics.Debug.Write("\"" + text + "\"");
+            if (e.Selected) System.Diagnostics.Debug.Write(" is selected\n");
+            else System.Diagnostics.Debug.Write(" is deselected\n");
         }
     }
 }

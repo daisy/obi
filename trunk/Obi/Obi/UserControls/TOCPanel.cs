@@ -20,7 +20,7 @@ namespace Obi.UserControls
     {
         private ProjectPanel mProjectPanel; //the parent of this control
 
-        public event Events.SelectedHandler Selected;
+        public event Events.SelectedHandler SelectionChanged;
 
         /// <summary>
         /// Test whether a node is currently selected or not, *and* under user focus.
@@ -38,18 +38,27 @@ namespace Obi.UserControls
             get { return mTocTree.SelectedNode == null ? null : (SectionNode)mTocTree.SelectedNode.Tag; }
             set
             {
-                if (value != null)
-                {
-                    TreeNode sel = FindTreeNodeFromSectionNode(value);
-                    System.Diagnostics.Debug.Assert(sel != null, "Cannot find selected section node in TOC tree.");
+                //make the new selection
+                if (value != null)// && (SectionNode)mTocTree.SelectedNode.Tag != value)
+                { 
+                    //deselect everything will actually call this function and set the value to null
+                    //therefore deselecting whatever is currently selected
+                    mProjectPanel.DeselectEverything();
 
-                    //deselect the last node
-                    if (mTocTree.SelectedNode != null) Selected((SectionNode)mTocTree.SelectedNode.Tag, new Obi.Events.Node.SelectedEventArgs(false));
+                    //this is sometimes redundant
+                    mTocTree.SelectedNode = FindTreeNodeFromSectionNode(value);
                     
-                    //select the new node
-                    mTocTree.SelectedNode = sel;
-                    Selected(value, new Obi.Events.Node.SelectedEventArgs(true));
+                    SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(true, mTocTree.SelectedNode));
                 }
+                //or deselect the old selection
+              /*  else// if (value == null)
+                {
+                    if (mTocTree.SelectedNode != null)
+                    {
+                        mTocTree.SelectedNode = value;
+                        SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(false, mTocTree.SelectedNode));
+                    }
+                }*/
             }
         }
 
@@ -142,18 +151,6 @@ namespace Obi.UserControls
         }
 
         /// <summary>
-        /// select a node upon receiving a mouse-click (including right-clicks)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tocTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            //mTocTree.SelectedNode = e.Node;
-            SelectedSection = (SectionNode)e.Node.Tag;
-
-        }
-
-        /// <summary>
         /// synchronize the highlight with the strip view on double-click
         /// </summary>
         /// <param name="sender"></param>
@@ -182,7 +179,27 @@ namespace Obi.UserControls
                 }
             }
 
+            
+
         }
+
+        /// <summary>
+        /// Catch selection event on a node
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mTocTree_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            SelectedSection = (SectionNode)e.Node.Tag;
+        }
+
+        private void mTocTree_BeforeSelect(object sender, TreeViewCancelEventArgs e)
+        {
+            //deselect
+            SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(false, mTocTree.SelectedNode));
+            mTocTree.SelectedNode = null;
+        }
+
 
 #endregion
        
@@ -275,5 +292,25 @@ namespace Obi.UserControls
             this.mToolTip.SetToolTip(this, Localizer.Message("toc_view_tooltip"));
             this.mToolTip.SetToolTip(this.mTocTree, Localizer.Message("toc_view_tooltip"));
         }
+
+        /// <summary>
+        /// Deselect the current section when focus leaves the window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mTocTree_Leave(object sender, EventArgs e)
+        {
+            //as the project is closing, the event listeners have already been disassociated, so SelectionChanged is null
+            try
+            {
+                SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(false, mTocTree.SelectedNode));
+            }
+            catch (NullReferenceException exception) { }
+
+            mTocTree.SelectedNode = null;
+        }
+
+      
+      
     }
 }

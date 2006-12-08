@@ -7,6 +7,7 @@ namespace Obi.Events.Node
     class SelectedEventArgs: EventArgs
     {
         private bool mSelected;
+        private object mWidget; //the widget that was selected or deselected
 
         /// <summary>
         /// Whether a node is selected or not.
@@ -16,9 +17,16 @@ namespace Obi.Events.Node
             get { return mSelected; }
         }
 
-        public SelectedEventArgs(bool selected)
+        public object Widget
+        {
+            get { return mWidget; }
+            set { mWidget = value; }
+        }
+
+        public SelectedEventArgs(bool selected, object widget)
         {
             mSelected = selected;
+            mWidget = widget;
         }
     }
 }

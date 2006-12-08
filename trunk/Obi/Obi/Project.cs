@@ -7,6 +7,7 @@ using System.Text;
 using urakawa.core;
 using urakawa.media;
 
+
 namespace Obi
 {
     /// <summary>
@@ -603,29 +604,5 @@ namespace Obi
             );
             return first;
         }
-        
-        internal void test_StripManagerSelect(object sender, Obi.Events.Node.SelectedEventArgs e)
-        {
-            System.Diagnostics.Debug.Write("StripManager - ");
-            System.Diagnostics.Debug.Write(sender.GetType().ToString() + ": ");
-            string text = "";
-            if (sender is SectionNode) text = GetTextMedia((CoreNode)sender).getText();
-            if (sender is PhraseNode) text = ((TextMedia)GetMediaForChannel((CoreNode)sender, AnnotationChannelName)).getText();
-            System.Diagnostics.Debug.Write("\"" + text + "\"");
-            if (e.Selected) System.Diagnostics.Debug.Write(" is selected\n");
-            else System.Diagnostics.Debug.Write(" is deselected\n");
-        }
-
-        internal void test_TOCSelect(object sender, Obi.Events.Node.SelectedEventArgs e)
-        {
-            System.Diagnostics.Debug.Write("TOCPanel - ");
-            System.Diagnostics.Debug.Write(sender.GetType().ToString() + ": ");
-            string text = "";
-            if (sender is SectionNode) text = GetTextMedia((CoreNode)sender).getText();
-            System.Diagnostics.Debug.Write("\"" + text + "\"");
-            if (e.Selected) System.Diagnostics.Debug.Write(" is selected\n");
-            else System.Diagnostics.Debug.Write(" is deselected\n");
-        }
-      
     }
 }

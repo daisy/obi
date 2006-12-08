@@ -34,7 +34,7 @@ namespace Obi.UserControls
         public event Events.PhraseNodeHandler MoveAudioBlockBackwardRequested;
         public event Events.SplitPhraseNodeHandler SplitAudioBlockRequested;
         public event Events.MergePhraseNodesHandler MergeNodes;
-        public event Events.SelectedHandler Selected;
+        public event Events.SelectedHandler SelectionChanged;
 
         #region properties
 
@@ -77,24 +77,26 @@ namespace Obi.UserControls
             get { return mSelectedSection; }
             set
             {
-                if (mSelectedSection != value)
+                //make the new select
+                if (value != null && mSelectedSection != value)
+                {
+                    //deselect everything will actually call this function and set the value to null
+                    //therefore deselecting whatever is currently selected
+                    mProjectPanel.DeselectEverything();
+
+                    mSelectedSection = value;
+                    mSectionNodeMap[mSelectedSection].MarkSelected();
+                    SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(true, mSectionNodeMap[mSelectedSection]));
+                }
+                //or deselect the old selection
+                else if (value == null)
                 {
                     if (mSelectedSection != null)
                     {
-                        mSectionNodeMap[mSelectedSection].MarkDeselected();
-                        Selected(mSelectedSection, new Events.Node.SelectedEventArgs(false));
-                        if (mSelectedPhrase != null)
-                        {
-                            mPhraseNodeMap[mSelectedPhrase].MarkDeselected();
-                            Selected(mSelectedPhrase, new Events.Node.SelectedEventArgs(false));
-                            mSelectedPhrase = null;
-                        }
-                    }
-                    mSelectedSection = value;
-                    if (mSelectedSection != null)
-                    {
-                        mSectionNodeMap[mSelectedSection].MarkSelected();
-                        Selected(mSelectedSection, new Events.Node.SelectedEventArgs(true));
+                        SectionStrip strip = mSectionNodeMap[mSelectedSection];
+                        strip.MarkDeselected();
+                        mSelectedSection = value; //null
+                        SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(false, strip));
                     }
                 }
             }
@@ -113,16 +115,27 @@ namespace Obi.UserControls
             get { return mSelectedPhrase; }
             set
             {
-                if (mSelectedPhrase != value)
+               //make the new select
+                if (value != null && mSelectedPhrase != value)
                 {
-                    if (mSelectedPhrase != null) mPhraseNodeMap[mSelectedPhrase].MarkDeselected();
-                    if (value != null)
-                    {
-                        SelectedSectionNode = (SectionNode)value.getParent();
-                        mPhraseNodeMap[value].MarkSelected();
-                        Selected(value, new Events.Node.SelectedEventArgs(true));
-                    }
+                    //deselect everything will actually call this function and set the value to null
+                    //therefore deselecting whatever is currently selected
+                    mProjectPanel.DeselectEverything();
+
                     mSelectedPhrase = value;
+                    mPhraseNodeMap[mSelectedPhrase].MarkSelected();
+                    SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(true, mPhraseNodeMap[mSelectedPhrase]));
+                }
+                //or deselect the old selection
+                else if (value == null)
+                {
+                    if (mSelectedPhrase != null)
+                    {
+                        AudioBlock block = mPhraseNodeMap[mSelectedPhrase];
+                        block.MarkDeselected();
+                        mSelectedPhrase = value; //null
+                        SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(false, block));
+                    }
                 }
             }
         }
@@ -280,177 +293,5 @@ namespace Obi.UserControls
         {
             SelectedSectionNode = null;
         }
-
-        /*
-        /// <summary>
-        /// Leaving the strip means deselection as well.
-        /// I'm not so sure about this one actually.
-        /// </summary>
-        private void mFlowLayoutPanel_Leave(object sender, EventArgs e)
-        {
-            SelectedSectionNode = null;
-        }
-        */
-
-        /*
-        /// <summary>
-        /// Reflow the tab order (tabindex property)
-        /// of strips and blocks in this StripManagerPanel
-        /// starting from the inparam control,
-        /// continuing to the the last block in the last strip.
-        /// </summary>  
-        /// <param name="startFrom">Either a SectionStrip or an AudioBlock </param>
-        /// <returns>The last (highest) tabindex added</returns>
-        //   added by mg 20060803
-        internal int ReflowTabOrder(Control startFrom)
-        {
-            //get the previous tabindex, considered valid
-            Control previous = getPreviousNodesControl(startFrom);
-            int index;
-            if (previous == startFrom)
-            {
-                index = -1;
-            }
-            else
-            {
-                index = previous.TabIndex;
-            }
-            System.Diagnostics.Debug.Print("Reflowing taborder from index " + index);
-
-            //find out what strip to start from
-            SectionStrip startStrip;
-            if (startFrom is AudioBlock)
-            {
-                startStrip = mSectionNodeMap
-                    [(SectionNode)((AudioBlock)startFrom).Node.getParent()];
-            }
-            else
-            {
-                startStrip = (SectionStrip)startFrom;
-            }
-
-            //proceed with the reflowing            
-            bool firstIter = true;
-            for (int i = 0; i < this.mFlowLayoutPanel.Controls.Count; i++)
-            {
-                Control c = this.mFlowLayoutPanel.Controls[i];
-                if (c == startStrip || (!firstIter))
-                {
-                    if (c is SectionStrip)
-                    {
-                        SectionStrip ss = c as SectionStrip;
-                        if (firstIter)
-                        {
-                            if (startFrom is SectionStrip)
-                            {
-                                ss.TabIndex = ++index;
-                                index = ss.ReflowTabOrder(index);
-                            }
-                            else
-                            {
-                                index = ss.ReflowTabOrder(startFrom, index);
-                            }
-                            firstIter = false;
-                        }
-                        else
-                        {
-                            ss.TabIndex = ++index;
-                            index = ss.ReflowTabOrder(index);
-                        }
-                    } //if (c is SectionStrip)
-                    else
-                    {
-                        try
-                        {
-                            c.TabStop = false;
-                        }
-                        catch (Exception)
-                        {
-                            //instead of reflection
-                        }
-                    }
-                }
-            }
-
-            return index;
-        }
-
-        /// <summary>
-        /// Get the StripManagerPanel control corresponding to the previous Urakawa node
-        /// </summary>  
-        /// <returns>The control corresponding to the previous node in the tree,
-        /// or the inparam control if no previous node exists</returns>
-        // mg 20060803
-        private Control getPreviousNodesControl(Control ctrl)
-        {
-            //we use the ukawa tree because it gets less messy than 
-            //the windows.forms control hierarchy
-
-            CoreNode node = null;
-
-            if (ctrl is SectionStrip)
-            {
-                node = ((SectionStrip)ctrl).Node;
-            }
-            else if (ctrl is AudioBlock)
-            {
-                node = ((AudioBlock)ctrl).Node;
-            }
-            else
-            {
-                //TODO, when new types are added
-                return ctrl;
-            }
-
-            if (ctrl.Controls.Count == 0) return ctrl;
-
-            CoreNode previous = null;
-            CoreNode cur = null;
-            CoreNode parent = (CoreNode)node.getParent();
-
-            if (parent != null && parent.getChildCount() > 0)
-            {
-                CoreNode prev = null;
-                for (int i = 0; i < parent.getChildCount(); i++)
-                {
-                    cur = parent.getChild(i);
-                    if (cur == node)
-                    {
-                        if (prev != null)
-                        {
-                            previous = prev;
-                        }
-                        else
-                        {
-                            previous = cur;
-                        }
-                        break;
-                    }
-                    prev = cur;
-                }
-
-            }
-            else
-            {
-                previous = parent;
-            }
-
-            //now we have the prev node
-            if (previous.GetType() == Type.GetType("Obi.PhraseNode") && 
-                mPhraseNodeMap.ContainsKey((PhraseNode)previous))
-            {
-                return this.mPhraseNodeMap[(PhraseNode)previous];
-            }
-            else if (previous.GetType() == Type.GetType("Obi.SectionNode") && 
-                mSectionNodeMap.ContainsKey((SectionNode)previous))
-            {
-                return this.mSectionNodeMap[(SectionNode)previous];
-            }
-            else
-            {
-                return null;
-            }
-        }
-        */ 
     }
 }
