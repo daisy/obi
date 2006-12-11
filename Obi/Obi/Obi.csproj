@@ -17,7 +17,7 @@
     <TargetZone>LocalIntranet</TargetZone>
     <SignAssembly>false</SignAssembly>
     <ApplicationIcon>obird.ico</ApplicationIcon>
-    <PublishUrl>C:\Documents and Settings\Julien Quint\My Documents\Urakawa\trunk\urakawa\application\dist\v05\</PublishUrl>
+    <PublishUrl>C:\Documents and Settings\Julien Quint\My Documents\Urakawa\trunk\urakawa\application\dist\weekly\20061211\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
