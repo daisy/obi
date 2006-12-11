@@ -260,20 +260,16 @@ namespace Obi.Audio
 
 		public void Play(Assets.AudioMediaAsset asset )
 		{
-            if (m_State == AudioPlayerState.Stopped)
-            {
-                m_StartPosition = 0;
-                m_State = AudioPlayerState.NotReady;
-                m_Asset = asset as Assets.AudioMediaAsset;
-                InitPlay(0, 0);
-
-            }
+			m_StartPosition   = 0 ;
+			m_State  = AudioPlayerState.NotReady ;
+			m_Asset = asset as Assets.AudioMediaAsset;
+			InitPlay(0, 0);
 		}
 
 		void InitPlay(long lStartPosition, long lEndPosition)
 		{
             //if (m_State == AudioPlayerState.Stopped || m_State == AudioPlayerState.NotReady)
-                if (m_State == AudioPlayerState.NotReady  )
+                if (m_State != AudioPlayerState.Playing )
             {
                 // Adjust the start and end position according to frame size
                 lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, m_Asset.FrameSize);
@@ -397,10 +393,10 @@ namespace Obi.Audio
 
                     if (ReadPosition < ((m_SizeBuffer) - m_UpdateVMArrayLength))
                     {
-                        //Array.Copy(SoundBuffer.Read(ReadPosition, typeof(byte), LockFlag.None, m_UpdateVMArrayLength), arUpdateVM, m_UpdateVMArrayLength);
+                        Array.Copy(SoundBuffer.Read(ReadPosition, typeof(byte), LockFlag.None, m_UpdateVMArrayLength), arUpdateVM, m_UpdateVMArrayLength);
                         //if ( m_EventsEnabled == true)
                         //ob_UpdateVuMeter.NotifyUpdateVuMeter ( this, ob_UpdateVuMeter ) ;
-                        //UpdateVuMeter(this, new Events.Audio.Player.UpdateVuMeterEventArgs());  // JQ
+                        UpdateVuMeter(this, new Events.Audio.Player.UpdateVuMeterEventArgs());  // JQ
                     }
                 }
 				// check if play cursor is in second half , then refresh first half else second
@@ -491,22 +487,18 @@ namespace Obi.Audio
 		
 		public void Play(Assets.AudioMediaAsset  asset, double timeFrom)
 		{
-            if (m_State == AudioPlayerState.Stopped)
-            {
-                m_State = AudioPlayerState.NotReady;
-                m_Asset = asset as Assets.AudioMediaAsset;
-                long lPosition = CalculationFunctions.ConvertTimeToByte(timeFrom, m_Asset.SampleRate, m_Asset.FrameSize);
-                lPosition = CalculationFunctions.AdaptToFrame(lPosition, m_Asset.FrameSize);
-                if (lPosition >= 0 && lPosition < m_Asset.AudioLengthInBytes)
-                {
-                    m_StartPosition = lPosition;
-                    InitPlay(lPosition, 0);
-                }
-
-                else
-                    throw new Exception("Start Position is out of bounds of Audio Asset");
-
-            }
+			m_Asset = asset as Assets.AudioMediaAsset;
+			long lPosition = CalculationFunctions.ConvertTimeToByte (timeFrom, m_Asset .SampleRate, m_Asset .FrameSize) ;
+			lPosition = CalculationFunctions.AdaptToFrame(lPosition, m_Asset .FrameSize) ;
+			if(lPosition>=0   && lPosition < m_Asset.AudioLengthInBytes)
+			{
+							m_StartPosition   =  lPosition ;
+				InitPlay ( lPosition, 0 );
+			}
+			else
+			throw new Exception ("Start Position is out of bounds of Audio Asset") ;
+				
+			
 		}
 
 		// contains the end position  to play to be used in starting playing  after seeking
@@ -555,7 +547,6 @@ namespace Obi.Audio
                 if (lPosition >= 0 && lPosition < m_Asset.AudioLengthInBytes)
                 {
                     m_StartPosition = lPosition;
-                    m_State = AudioPlayerState.NotReady;
                     InitPlay(lPosition, 0);
                 }
                 else
@@ -641,7 +632,6 @@ namespace Obi.Audio
 					Stop();
 					Thread.Sleep (30) ;
 					m_StartPosition = localPosition ;
-                    m_State = AudioPlayerState.NotReady;
 					InitPlay(localPosition , 0);
 				
 			}		
