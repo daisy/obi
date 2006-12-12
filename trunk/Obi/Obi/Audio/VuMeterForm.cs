@@ -13,7 +13,7 @@ namespace Obi.Audio
 	/// </summary>
 	public class VuMeterForm : System.Windows.Forms.Form
 	{
-		private VuMeter mVuMeter;  // the vu meter model for this form
+        private VuMeter mVuMeter;  // the vu meter model for this form
 
         /// <summary>
         /// Return the VU meter object that it represents.
@@ -32,6 +32,8 @@ namespace Obi.Audio
 			mVuMeter.PeakOverload += new Events.Audio.VuMeter.PeakOverloadHandler(CatchPeakOverloadEvent);
 			mVuMeter.UpdateForms += new Events.Audio.VuMeter.UpdateFormsHandler(CatchUpdateForms);
 			mVuMeter.ResetEvent += new Events.Audio.VuMeter.ResetHandler(CatchResetEvent);
+            setScaleFactor();
+            //tmRefresh.Enabled = false;
 		}
 
 		/// <summary>
@@ -64,6 +66,7 @@ namespace Obi.Audio
             // 
             // tmRefresh
             // 
+            this.tmRefresh.Enabled = true;
             this.tmRefresh.Tick += new System.EventHandler(this.tmRefresh_Tick);
             // 
             // tmBeep
@@ -75,16 +78,16 @@ namespace Obi.Audio
             // btnClose
             // 
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(270, 483);
+            this.btnClose.Location = new System.Drawing.Point(0, 10);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(60, 22);
+            this.btnClose.Size = new System.Drawing.Size(60, 24);
             this.btnClose.TabIndex = 0;
             this.btnClose.Text = "&Close";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // VuMeterForm
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 12);
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.CancelButton = this.btnClose;
@@ -113,20 +116,23 @@ namespace Obi.Audio
             }
         }
 
-		internal int HighTop =0 ;
-		internal int HighBottom = 0 ;
 
-		internal int NormalTop = 0 ;
-		internal int NormalBottom = 0 ;
+		internal int HighTop =100 ;
+		internal int HighBottom = 160 ;
 
-		internal int LowTop = 0 ;
-		internal int LowBottom = 0 ;
+		internal int NormalTop = 165 ;
+		internal int NormalBottom = 285 ;
 
-		internal int LineWidth = 0 ;
+		internal int LowTop = 290 ;
+		internal int LowBottom = 350 ;
 
-		internal int ScaleFactor = 1 ;
-		internal int LeftGraphX = 0 ;
-		internal int RightGraphX = 0 ;
+		internal int LineWidth = 30 ;
+
+		internal double ScaleFactor = 1 ;
+		internal int LeftGraphX = 20  ;
+		internal int RightGraphX = 75 ;
+
+        private int GraphOriginX  = 100;
 
 		internal int BackGroundWidth = 0 ;
 		internal int BackGroundTop = 0 ;
@@ -138,7 +144,8 @@ namespace Obi.Audio
 
 		internal int PeakOverloadLightX  =0 ;
 		internal int PeakOverloadLightY  =0 ;
-		
+
+        private int PeakOverloadLightWidth = 45;
 
 		private int AmplitudeLeft = 0 ;
 		private int AmplitudeRight = 0 ;
@@ -151,6 +158,19 @@ namespace Obi.Audio
         private System.Windows.Forms.Button btnClose;
 		private System.Windows.Forms.Timer tmBeep;
 		
+        public double MagnificationFactor
+        {
+            get
+            {
+                return ScaleFactor;
+            }
+            set
+            {
+                ScaleFactor = value;
+                setScaleFactor();
+            }
+    }
+
 
 		// initialise the form and frame for graph display
 		private void VuMeterForm_Load(object sender, System.EventArgs e)
@@ -159,9 +179,9 @@ namespace Obi.Audio
 			objGraphics = this.CreateGraphics();		
 
 			Pen PenWhite = new Pen(Color.White );
-			PenWhite.Width = BackGroundWidth;
-			objGraphics.DrawLine(PenWhite , BackGroundX , BackGroundTop , BackGroundX, BackGroundBottom ) ;		
-
+			PenWhite.Width = 300 ;
+			objGraphics.DrawLine(PenWhite , 0, 0, 0, 600 ) ;
+            this.BackColor = Color.White;
 			// enables the refresh timer for repainting graph at regular interval
 			tmRefresh.Enabled = true ;
 			
@@ -193,27 +213,10 @@ namespace Obi.Audio
 			VuMeter ob_VuMeterArg  = sender as VuMeter ;
 			ob_VuMeter = ob_VuMeterArg ;
 
+
 			// Update cordinates
-			HighTop =ob_VuMeter.Graph.HighTop ;
-			HighBottom = ob_VuMeter.Graph.HighBottom ;
-
-			NormalTop = ob_VuMeter.Graph.NormalTop ;
-			NormalBottom = ob_VuMeter.Graph.NormalBottom ;
-
-			LowTop = ob_VuMeter.Graph.LowTop ;
-			LowBottom = ob_VuMeter.Graph.LowBottom ;
-
-			LineWidth = ob_VuMeter.Graph.LineWidth ;
-
-			LeftGraphX = ob_VuMeter.Graph.LeftGraphX ;
-			RightGraphX = ob_VuMeter.Graph.RightGraphX ;
-
-			BackGroundWidth = ob_VuMeter.Graph.BackGroundWidth ;
-			BackGroundTop = ob_VuMeter.Graph.BackGroundTop ;
-			BackGroundBottom = ob_VuMeter.Graph.BackGroundBottom ;
-
-			EraserLeft = ob_VuMeter.Graph.EraserLeft ;
-			EraserRight = ob_VuMeter.Graph.EraserRight ;
+            /*
+			
 
 			PeakOverloadLightX =   ob_VuMeter.Graph.PeakOverloadLightX ;
 			PeakOverloadLightY =   ob_VuMeter.Graph.PeakOverloadLightY ;
@@ -221,15 +224,27 @@ namespace Obi.Audio
 
 			AmplitudeLeft = ob_VuMeter.m_MeanValueLeft ;
 			AmplitudeRight = ob_VuMeter.m_MeanValueRight ;
+            
+            */
+            int ThresholdFactor = 12500 / (mVuMeter.UpperThreshold - mVuMeter.LowerThreshold);
+            int DisplayAmpLeft = (mVuMeter.m_MeanValueLeft * ThresholdFactor) / 100;
+            int DisplayAmpRight = (mVuMeter.m_MeanValueRight * ThresholdFactor) / 100;
+            int Offset = 65 - ((mVuMeter.LowerThreshold * ThresholdFactor) / 100);
+            DisplayAmpLeft = DisplayAmpLeft + Offset;
+            DisplayAmpRight = DisplayAmpRight + Offset;
 
+            EraserLeft =  Convert.ToInt32(   LowBottom - ( ScaleFactor *  DisplayAmpLeft ));
+            EraserRight = Convert.ToInt32(LowBottom - (ScaleFactor * DisplayAmpRight ));
+            //EraserLeft = 100+  mVuMeter.m_MeanValueLeft;
 
-			tmRefresh.Enabled = true ;
-			
+			tmRefresh.Start ()  ;
+            //MessageBox.Show(EraserLeft.ToString());
 		}
-
+        int BackPaintCount = 0;
 		private void tmRefresh_Tick(object sender, System.EventArgs e)
 		{
-
+            //System.Media.SystemS2ounds.Asterisk.Play();
+            
 			// paint form
 			System.Drawing.Graphics objGraphics;
 			objGraphics = this.CreateGraphics();		
@@ -238,8 +253,15 @@ namespace Obi.Audio
 			Pen PenVackPaint= new Pen(Color.White);
 			PenVackPaint.Width = 700 ;
 
-			objGraphics.DrawLine(PenVackPaint , 0, 0, 0, 600);		
+            BackPaintCount++;
+            if ( BackPaintCount == 30 )
+            {
+                
 
+                    objGraphics.DrawLine(PenVackPaint, 0, 0, 0, 600);
+                    BackPaintCount = 0;
+                
+            }
 			// Paint two vertical graphs
 			Pen PenHigh  = new Pen(Color.Red );
 			PenHigh.Width = LineWidth ;
@@ -253,7 +275,21 @@ namespace Obi.Audio
 			Pen PenVackground = new Pen(Color.White);
 			PenVackground.Width = LineWidth ;
 
+            Pen PenBackLight = new Pen(Color.White);
+            PenBackLight.Width = PeakOverloadLightWidth;
+            Pen PenOverloadLight = new Pen(Color.Red);
+            PenOverloadLight.Width = PeakOverloadLightWidth;
 
+            if ( EraserLeft < HighTop )
+            {
+                EraserLeft = HighTop;
+            }
+
+            if (EraserRight < HighTop)
+            {
+                EraserRight = HighTop;
+            }
+            
             // For left channel painting
             if (EraserLeft < LowBottom && EraserLeft > LowTop)
             {
@@ -264,7 +300,7 @@ namespace Obi.Audio
                 objGraphics.DrawLine(PenLow, LeftGraphX, LowTop, LeftGraphX, LowBottom);	
                 objGraphics.DrawLine(PenNormal, LeftGraphX, EraserLeft , LeftGraphX, NormalBottom);	
             }
-            else if ( EraserLeft > HighTop  &&  EraserLeft <= NormalTop )
+            else if ( EraserLeft >= HighTop  &&  EraserLeft <= NormalTop )
             {
                 objGraphics.DrawLine(PenLow, LeftGraphX, LowTop, LeftGraphX, LowBottom);
                 objGraphics.DrawLine(PenNormal, LeftGraphX, NormalTop, LeftGraphX, NormalBottom);
@@ -281,41 +317,33 @@ namespace Obi.Audio
                 objGraphics.DrawLine(PenLow, RightGraphX, LowTop, RightGraphX, LowBottom);	
                 objGraphics.DrawLine(PenNormal, RightGraphX, EraserRight , RightGraphX, NormalBottom);	
             }
-            else if (EraserRight > HighTop &&  EraserRight <= NormalTop )
+            else if (EraserRight >= HighTop &&  EraserRight <= NormalTop )
             {
                 objGraphics.DrawLine(PenLow, RightGraphX, LowTop, RightGraphX, LowBottom);	
                 objGraphics.DrawLine(PenNormal, RightGraphX, NormalTop, RightGraphX, NormalBottom);	
                 objGraphics.DrawLine(PenHigh, RightGraphX, EraserRight , RightGraphX, HighBottom);		
             }
 
-            /*
-			objGraphics.DrawLine(PenHigh, LeftGraphX, HighTop , LeftGraphX, HighBottom);		
-			objGraphics.DrawLine(PenHigh, RightGraphX, HighTop , RightGraphX, HighBottom);		
-
-			objGraphics.DrawLine(PenNormal, LeftGraphX, NormalTop, LeftGraphX, NormalBottom);	
-			objGraphics.DrawLine(PenNormal, RightGraphX, NormalTop, RightGraphX, NormalBottom);	
-
-			objGraphics.DrawLine(PenLow, LeftGraphX, LowTop, LeftGraphX, LowBottom);	
-			objGraphics.DrawLine(PenLow, RightGraphX, LowTop, RightGraphX, LowBottom);	
-            */
 	
 			// Erase the unwanted line starting from top according to amplitude of each channel
 			objGraphics.DrawLine(PenVackground , LeftGraphX, HighTop , LeftGraphX, EraserLeft );	
-			objGraphics.DrawLine(PenVackground , RightGraphX, HighTop , RightGraphX, EraserRight );	
-						
-				
+			objGraphics.DrawLine(PenVackground , RightGraphX, HighTop , RightGraphX, EraserRight );
+
+            EraserLeft = LowBottom;
+            EraserRight = LowBottom ;
+
 			// paint the peak overload light
 			
 			if ( BeepEnabled == false)
 			{
-				objGraphics.DrawLine(PenVackground , PeakOverloadLightX, PeakOverloadLightY, PeakOverloadLightX , PeakOverloadLightY + LineWidth + LineWidth);	
-				objGraphics.DrawLine(PenVackground , PeakOverloadLightX + LineWidth, PeakOverloadLightY, PeakOverloadLightX + LineWidth , PeakOverloadLightY + LineWidth + LineWidth);	
+				objGraphics.DrawLine(PenBackLight , PeakOverloadLightX, PeakOverloadLightY, PeakOverloadLightX , PeakOverloadLightY  + PeakOverloadLightWidth );	
+				
                 
 			}
 			else  // Paint the light red for warning
 			{
-				objGraphics.DrawLine(PenHigh, PeakOverloadLightX , PeakOverloadLightY, PeakOverloadLightX , PeakOverloadLightY + LineWidth + LineWidth);
-                objGraphics.DrawLine(PenHigh, PeakOverloadLightX + LineWidth , PeakOverloadLightY, PeakOverloadLightX + LineWidth, PeakOverloadLightY + LineWidth + LineWidth);	
+				objGraphics.DrawLine( PenOverloadLight , PeakOverloadLightX , PeakOverloadLightY, PeakOverloadLightX , PeakOverloadLightY  + PeakOverloadLightWidth );
+                
 			}
 			
 		}
@@ -376,12 +404,10 @@ namespace Obi.Audio
 
 		internal void CatchResetEvent ( object sender , Events.Audio.VuMeter.ResetEventArgs ob_VuMeterEvent)
 		{
+            
 			System.Drawing.Graphics objGraphics;
 			objGraphics = this.CreateGraphics();		
 
-			
-
-			
 			Pen PenVackPaint= new Pen(Color.White);
 			PenVackPaint.Width = 300 ;
 
@@ -392,16 +418,16 @@ namespace Obi.Audio
 			objGraphics.DrawLine(PenVackground , PeakOverloadLightX, PeakOverloadLightY, PeakOverloadLightX , PeakOverloadLightY + LineWidth + LineWidth);	
 			objGraphics.DrawLine(PenVackground , PeakOverloadLightX + LineWidth, PeakOverloadLightY, PeakOverloadLightX + LineWidth , PeakOverloadLightY + LineWidth + LineWidth);	
 
-			HighTop =0 ;
-			HighBottom = 0 ;
+			//HighTop =0 ;
+			//HighBottom = 0 ;
 
-			NormalTop = 0 ;
-			NormalBottom = 0 ;
+			//NormalTop = 0 ;
+			//NormalBottom = 0 ;
 
-			LowTop = 0 ;
-			LowBottom = 0 ;
+			//LowTop = 0 ;
+			//LowBottom = 0 ;
 
-			LineWidth = 0 ;
+//			LineWidth = 0 ;
 			AmplitudeLeft = 0 ;
 			AmplitudeRight = 0 ;
 
@@ -409,12 +435,44 @@ namespace Obi.Audio
 			//txtOverloadRight.Text = " " ;
 			//SetTextBoxText(txtOverloadLeft, " ");   // avoid race condition - JQ
 			//SetTextBoxText(txtOverloadRight, " ");  // JQ
+            setScaleFactor();
+            
 		}
 
         private void VuMeterForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Visible = false;
             e.Cancel = true;
+        }
+private void setScaleFactor()
+        {
+            ScaleFactor = 2 ;
+            GraphOriginX = Convert.ToInt32(100 * ScaleFactor);
+
+            HighTop = GraphOriginX  ; 
+        HighBottom = HighTop  + Convert.ToInt32 (  60 * ScaleFactor  ) ;
+
+        NormalTop = HighBottom  + Convert.ToInt32 (   5 * ScaleFactor  ) ;
+        NormalBottom = NormalTop + Convert.ToInt32 (  120 * ScaleFactor  ) ;
+
+        LowTop = NormalBottom + Convert.ToInt32 (  5 * ScaleFactor  ) ;
+        LowBottom = LowTop + Convert.ToInt32 ( 60 * ScaleFactor  ) ;
+
+        LineWidth = Convert.ToInt32 (  30* ScaleFactor  ) ;
+
+        LeftGraphX = Convert.ToInt32 ( 25 * ScaleFactor   ) ;
+        RightGraphX = Convert.ToInt32 (  75    * ScaleFactor  ) ;
+
+        PeakOverloadLightX = Convert.ToInt32 ( 65 * ScaleFactor);
+    PeakOverloadLightY =  10 ;
+    PeakOverloadLightWidth = Convert.ToInt32(45 * ScaleFactor);
+
+
+        int width  = Convert.ToInt32 (  110 * ScaleFactor ) ;
+        int height  = Convert.ToInt32 (   ( LowBottom + 20 )  ) ;
+        this.Size = new Size( width , height );
+        
+    
         }
 
 		// end of class
