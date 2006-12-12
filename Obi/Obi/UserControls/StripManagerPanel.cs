@@ -287,11 +287,12 @@ namespace Obi.UserControls
         }
 
         /// <summary>
-        /// Clicking outside of a strip deselects any selected strip and block.
+        /// Clicking outside of a strip deselects any selected strip or block.
         /// </summary>
         private void mFlowLayoutPanel_Click(object sender, EventArgs e)
         {
             SelectedSectionNode = null;
+            SelectedPhraseNode = null;
         }
     }
 }
