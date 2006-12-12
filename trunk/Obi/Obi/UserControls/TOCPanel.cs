@@ -288,21 +288,14 @@ namespace Obi.UserControls
         /// <summary>
         /// Deselect the current section when focus leaves the window
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void mTocTree_Leave(object sender, EventArgs e)
         {
             //as the project is closing, the event listeners have already been disassociated, so SelectionChanged is null
-            try
+            if (SelectionChanged != null)
             {
                 SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(false, mTocTree.SelectedNode));
             }
-            catch (NullReferenceException exception) { }
-
             mTocTree.SelectedNode = null;
-        }
-
-      
-      
+        }      
     }
 }

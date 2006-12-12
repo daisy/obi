@@ -1196,17 +1196,19 @@ namespace Obi
         }
 
         /// <summary>
-        /// Keys for the transport bar and stuff.
+        /// Keys for the whole application.
         /// </summary>
         protected override bool ProcessDialogKey(Keys key)
         {
+            // Make sure that the correct menu items are enabled for the keyboard shortcuts to work.
             UpdateEnabledItems();
-            switch (key)
-            {
-                case Keys.Space:
-                    mProjectPanel.TransportBar.Play();
-                    break;
-            }
+            // disabled for the time being.
+            // switch (key)
+            // {
+            //    case Keys.Space:
+            //        mProjectPanel.TransportBar.Play();
+            //        break;
+            // }
             return base.ProcessDialogKey(key);
         }
     }

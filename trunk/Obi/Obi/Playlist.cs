@@ -60,7 +60,7 @@ namespace Obi
         }
 
         /// <summary>
-        /// Set the currently playing node directly.
+        /// Set the currently playing node directly (when not playing.)
         /// If the phrase is not in the playlist, nothing happens.
         /// </summary>
         public PhraseNode CurrentPhrase
@@ -68,17 +68,25 @@ namespace Obi
             get { return mPhrases.Count > 0 ? mPhrases[mCurrentPhraseIndex] : null; }
             set
             {
-                int i;
-                for (i = 0; i < mPhrases.Count && mPhrases[i] != value; ++i) { }
-                if (i < mPhrases.Count)
+                if (mPlaylistState != AudioPlayerState.Playing)
                 {
-                    bool playing = mPlaylistState == AudioPlayerState.Playing;
-                    if (playing) Stop();
-                    mCurrentPhraseIndex = i;
-                    mPausePosition = 0.0;
-                    mElapsedTime = mStartTimes[mCurrentPhraseIndex];
-                    if (playing) Play();
+                    int i;
+                    for (i = 0; i < mPhrases.Count && mPhrases[i] != value; ++i) { }
+                    if (i < mPhrases.Count) CurrentIndexStart = i;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Set the current index at the start of a given index.
+        /// </summary>
+        private int CurrentIndexStart
+        {
+            set
+            {
+                mCurrentPhraseIndex = value;
+                mPausePosition = 0.0;
+                mElapsedTime = mStartTimes[mCurrentPhraseIndex];
             }
         }
 
@@ -87,8 +95,7 @@ namespace Obi
         /// </summary>
         public SectionNode CurrentSection
         {
-            //the parent of a phrase is always a section
-            get { return (SectionNode)mPhrases[mCurrentPhraseIndex].getParent(); }
+            get { return mPhrases[mCurrentPhraseIndex].ParentSection; }
         }
 
         /// <summary>
@@ -99,7 +106,7 @@ namespace Obi
             get
             {
                 int i = mCurrentPhraseIndex + 1;
-                for (; i < mPhrases.Count && mPhrases[i].getParent() == CurrentSection; ++i) { }
+                for (; i < mPhrases.Count && mPhrases[i].ParentSection == CurrentSection; ++i) { }
                 return i;
             }
         }
@@ -114,7 +121,7 @@ namespace Obi
             {
                 // find the first phrase of the current section
                 int first = mCurrentPhraseIndex;
-                for (; first >= 0 && mPhrases[first].getParent() == CurrentSection; --first) { }
+                for (; first >= 0 && mPhrases[first].ParentSection == CurrentSection; --first) { }
                 ++first;
                 if ((first == 0) || (CurrentTime - mStartTimes[first] > InitialThreshold))
                 {
@@ -125,9 +132,10 @@ namespace Obi
                 {
                     // find the first of the previous section 
                     int previous = first - 1;
-                    //the parent of a phrase is always a section
-                    SectionNode previousSection = (SectionNode)mPhrases[previous].getParent();
-                    for (; previous >= 0 && mPhrases[previous].getParent() == previousSection; --previous) { }
+                    SectionNode previousSection = mPhrases[previous].ParentSection;
+                    // go back while we are in the previous section
+                    for (; previous >= 0 && mPhrases[previous].ParentSection == previousSection; --previous) { }
+                    // we went back one too many
                     return previous + 1;
                 }
             }
@@ -266,7 +274,7 @@ namespace Obi
             mElapsedTime = 0.0;
             mTotalTime = 0.0;
             mWholeBook = wholeBook;
-            mPausePosition = 0;
+            mPausePosition = 0.0;
             mPlaylistState = mPlayer.State;
             System.Diagnostics.Debug.Assert(mPlaylistState == AudioPlayerState.Stopped,
                 "Audio player and playlist should be stopped.");

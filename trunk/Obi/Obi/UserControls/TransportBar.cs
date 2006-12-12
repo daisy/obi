@@ -99,14 +99,11 @@ namespace Obi.UserControls
         /// </summary>
         void StripManager_Selected(object sender, Obi.Events.Node.SelectedEventArgs e)
         {
-            if (e.Selected)
+            if (e.Selected && e.Widget is AudioBlock)
             {
-                PhraseNode phrase = sender as PhraseNode;
-                if (phrase != null)
-                {
-                    System.Diagnostics.Debug.Print("!!! Selected phrase caught ({0})", Playlist.CurrentPhrase == phrase ? "same" : "new");
-                    if (Playlist.CurrentPhrase != phrase) Playlist.CurrentPhrase = (PhraseNode)phrase;
-                }
+                PhraseNode phrase = ((AudioBlock)e.Widget).Node;
+                System.Diagnostics.Debug.Print("!!! Selected phrase caught ({0})", Playlist.CurrentPhrase == phrase ? "same" : "new");
+                if (Playlist.CurrentPhrase != phrase) Playlist.CurrentPhrase = (PhraseNode)phrase;
             }
         }
 
