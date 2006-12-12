@@ -47,18 +47,10 @@ namespace Obi.UserControls
 
                     //this is sometimes redundant
                     mTocTree.SelectedNode = FindTreeNodeFromSectionNode(value);
-                    
                     SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(true, mTocTree.SelectedNode));
                 }
-                //or deselect the old selection
-              /*  else// if (value == null)
-                {
-                    if (mTocTree.SelectedNode != null)
-                    {
-                        mTocTree.SelectedNode = value;
-                        SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(false, mTocTree.SelectedNode));
-                    }
-                }*/
+                //note: deselection doesn't happen here as it is done automatically
+                //by the widget itself.  trust me.
             }
         }
 

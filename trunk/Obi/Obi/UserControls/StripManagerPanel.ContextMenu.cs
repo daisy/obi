@@ -41,7 +41,7 @@ namespace Obi.UserControls
             bool isStripSelected = mSelectedSection != null;
             bool isAudioBlockSelected = mSelectedPhrase != null;
             bool isAudioBlockLast = isAudioBlockSelected &&
-                mSelectedPhrase.Index == mSelectedSection.PhraseChildCount - 1;
+                mSelectedPhrase.Index == mSelectedPhrase.ParentSection.PhraseChildCount - 1;
             bool isAudioBlockFirst = isAudioBlockSelected && mSelectedPhrase.Index == 0;
             bool isBlockClipBoardSet = mProjectPanel.Project.Clipboard.Data != null;
             
