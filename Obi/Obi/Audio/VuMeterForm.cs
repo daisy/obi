@@ -147,9 +147,6 @@ namespace Obi.Audio
 
         private int PeakOverloadLightWidth = 45;
 
-		private int AmplitudeLeft = 0 ;
-		private int AmplitudeRight = 0 ;
-
 		VuMeter ob_VuMeter ;
 
 
@@ -190,21 +187,6 @@ namespace Obi.Audio
 		// load the beep file and plays it once
 		void LoadBeep ()
 		{
-			Device BeepDevice  = new Device() ;
-			BeepDevice.SetCooperativeLevel(this, CooperativeLevel.Normal );
-			SecondaryBuffer BeepBuffer   ;
-			try
-			{
-				BeepBuffer  =  new SecondaryBuffer("c:\\beep.wav", BeepDevice );
-				BeepBuffer.Play(0, BufferPlayFlags.Default );		
-			}		
-			catch (Exception Ex)
-			{
-				MessageBox.Show (Ex.ToString ()) ;
-			}
-
-
-			
 		}
 
 		// function to catch the update event from VuMeter class to update graph cordinates
@@ -213,19 +195,7 @@ namespace Obi.Audio
 			VuMeter ob_VuMeterArg  = sender as VuMeter ;
 			ob_VuMeter = ob_VuMeterArg ;
 
-
-			// Update cordinates
-            /*
-			
-
-			PeakOverloadLightX =   ob_VuMeter.Graph.PeakOverloadLightX ;
-			PeakOverloadLightY =   ob_VuMeter.Graph.PeakOverloadLightY ;
-
-
-			AmplitudeLeft = ob_VuMeter.m_MeanValueLeft ;
-			AmplitudeRight = ob_VuMeter.m_MeanValueRight ;
-            
-            */
+// Update erase left and erase right cordinates
             int ThresholdFactor = 12500 / (mVuMeter.UpperThreshold - mVuMeter.LowerThreshold);
             int DisplayAmpLeft = (mVuMeter.m_MeanValueLeft * ThresholdFactor) / 100;
             int DisplayAmpRight = (mVuMeter.m_MeanValueRight * ThresholdFactor) / 100;
@@ -373,27 +343,18 @@ namespace Obi.Audio
 			VuMeter ob_VuMeter  = sender as VuMeter ;
 			if (ob_PeakOverload .Channel == 1)
 			{
-				//txtOverloadLeft.Text	 = ob_VuMeter.m_MeanValueLeft.ToString () ;
-//				SetTextBoxText(txtOverloadLeft, ob_VuMeter.m_MeanValueLeft.ToString());  // JQ -- avoid race condition
-
 			}
-			
 			if (ob_PeakOverload .Channel== 2)
 			{
-				//txtOverloadRight.Text = ob_VuMeter.m_MeanValueRight.ToString ()  ;
-				//SetTextBoxText(txtOverloadRight, ob_VuMeter.m_MeanValueRight.ToString());
 			}
 
 			BeepEnabled =true  ;
-//			BeepEnabled = false;  // don't beep (JQ)
 		}	
 
 		// repeats the LoadBeep function to repeat beeps while there is overload
 		private void tmBeep_Tick(object sender, System.EventArgs e)
 		{
 			if (BeepEnabled == true)
-				//LoadBeep () ;
-
 			BeepEnabled = false ;
 		}
 
@@ -418,21 +379,6 @@ namespace Obi.Audio
 			objGraphics.DrawLine(PenVackground , PeakOverloadLightX, PeakOverloadLightY, PeakOverloadLightX , PeakOverloadLightY + LineWidth + LineWidth);	
 			objGraphics.DrawLine(PenVackground , PeakOverloadLightX + LineWidth, PeakOverloadLightY, PeakOverloadLightX + LineWidth , PeakOverloadLightY + LineWidth + LineWidth);	
 
-			//HighTop =0 ;
-			//HighBottom = 0 ;
-
-			//NormalTop = 0 ;
-			//NormalBottom = 0 ;
-
-			//LowTop = 0 ;
-			//LowBottom = 0 ;
-
-//			LineWidth = 0 ;
-			AmplitudeLeft = 0 ;
-			AmplitudeRight = 0 ;
-
-			//txtOverloadLeft.Text = " " ;
-			//txtOverloadRight.Text = " " ;
 			//SetTextBoxText(txtOverloadLeft, " ");   // avoid race condition - JQ
 			//SetTextBoxText(txtOverloadRight, " ");  // JQ
             setScaleFactor();
@@ -446,7 +392,7 @@ namespace Obi.Audio
         }
 private void setScaleFactor()
         {
-            ScaleFactor = 2 ;
+            //ScaleFactor = 2 ;
             GraphOriginX = Convert.ToInt32(100 * ScaleFactor);
 
             HighTop = GraphOriginX  ; 

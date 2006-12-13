@@ -77,7 +77,7 @@ namespace Obi.Audio
         {
 
 			m_State = AudioPlayerState.Stopped;
-            ob_VuMeter = new VuMeter();
+            ob_VuMeter = null;
             MoniteringTimer.Tick += new System.EventHandler(this.MoniteringTimer_Tick);
             MoniteringTimer.Interval = 200;
             // events associated with local function so as to avoid null exceptions            
@@ -94,6 +94,10 @@ namespace Obi.Audio
 		public VuMeter VuMeter
 		{
 			get { return ob_VuMeter; }
+            set
+            {
+                ob_VuMeter = value;
+            }
 		}
 
 		void TriggerStateChangedEvent(Events.Audio.Player.StateChangedEventArgs e)
