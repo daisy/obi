@@ -15,7 +15,7 @@ namespace Obi
     {
         private Project mProject;         // project in which we are recording
         private AudioRecorder mRecorder;  // the actual recorder
-        private VuMeter mVuMeter = new VuMeter();
+        
         private AudioMediaAsset mRecordingAsset ;
         private int mChannels;            // number of channels of audio to record
         private int mSampleRate;          // sample rate of audio to record
@@ -85,7 +85,7 @@ namespace Obi
         {
             mProject = project;
             mRecorder = recorder;
-            mRecorder.VuMeterObject = mVuMeter;
+            
             mChannels = channels;
             // note: should add a convenience method to asset manager to get preferred audio format
             // and use it for the recording session
