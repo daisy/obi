@@ -53,10 +53,12 @@ Main form
     + [U] Show/hide VU meter ............ Ctrl+U
     + [E] Previous section .............. Alt+Up
     + [V] Previous phrase ............... Alt+Left
+    + [W] Rewind ........................ Alt+Shift+Left
     + [A] Play all/pause ................ Ctrl+Space
     + [P] Play selection/pause .......... Ctrl+Shift+Space
     + [R] Record ........................ Ctrl+R
     + [S] Stop .......................... Ctrl+T
+    + [F] Fast forward .................. Alt+Shift+Right
     + [N] Next phrase ................... Alt+Right
     + [X] Next section .................. Alt+Down
 
@@ -131,11 +133,13 @@ Index of shortcuts
   F5 ................. Edit > Touch project
   Alt+Down ........... Transport > Next section
   Alt+Left ........... Transport > Previous phrase
+  Alt+Shift+Left ..... Transport > Rewind
   Ctrl+Left .......... Strips > Move audio block > Backward
   Ctrl+Left .......... [Strip Manager Panel] Move audio block > Backward
   Ctrl+Shift+Left .... TOC > Move out
   Ctrl+Shift+Left .... [TOC Panel] Move out
   Alt+Right .......... Transport > Next phrase
+  Alt+Shift+Right .... Transport > Fast forward
   Ctrl+Right ......... Strips > Move audio block > Forward
   Ctrl+Right ......... [Strip Manager Panel] Move audio block > Forward
   Ctrl+Shift+Right ... TOC > Move in

@@ -25,6 +25,9 @@ namespace Obi
         private double mPausePosition;            // position in the asset where we  paused
         private AudioPlayerState mPlaylistState;  // playlist state is not always the same as the player state
 
+        private int mPlaybackRate;
+        private static readonly int[] PlaybackRates = { 1, 2, 4, 8 };
+
         // Amount of time after which "previous phrase" goes to the beginning of the phrase
         // rather than the actual previous phrase. In milliseconds.
         private static readonly double InitialThreshold = 1500.0;
@@ -275,6 +278,7 @@ namespace Obi
             mTotalTime = 0.0;
             mWholeBook = wholeBook;
             mPausePosition = 0.0;
+            mPlaybackRate = 0;
             mPlaylistState = mPlayer.State;
             System.Diagnostics.Debug.Assert(mPlaylistState == AudioPlayerState.Stopped,
                 "Audio player and playlist should be stopped.");
@@ -363,6 +367,7 @@ namespace Obi
                 mPausePosition = mPlayer.CurrentTimePosition;
                 mPlaylistState = AudioPlayerState.Paused;
                 mPlayer.Stop();
+                mPlaybackRate = 0;
                 if (StateChanged != null)
                 {
                     StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Playing));
@@ -379,6 +384,7 @@ namespace Obi
             {
                 Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs(mPlayer.State);
                 mPlayer.Stop();
+                mPlaybackRate = 0;
                 mPlaylistState = AudioPlayerState.Stopped;
                 if (StateChanged != null) StateChanged(this, evargs);
                 mCurrentPhraseIndex = 0;
@@ -387,6 +393,30 @@ namespace Obi
                 System.Diagnostics.Debug.Print("--- end of audio asset handler unset");
                 mPlayer.EndOfAudioAsset -= new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
             }
+        }
+
+        /// <summary>
+        /// Start or resume playing backward at a faster rate.
+        /// </summary>
+        public void Rewind()
+        {
+            IncreasePlaybackRate();
+            // let's play backward!
+        }
+
+        public void FastForward()
+        {
+            IncreasePlaybackRate();
+            // let's play forward!
+        }
+
+        /// <summary>
+        /// Increase the playback rate, if we're at the max go back to the first notch above 1.
+        /// </summary>
+        private void IncreasePlaybackRate()
+        {
+            ++mPlaybackRate;
+            if (mPlaybackRate == PlaybackRates.Length) mPlaybackRate = 1;
         }
 
         /// <summary>
