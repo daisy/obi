@@ -18,6 +18,7 @@ namespace Obi
         private Settings mSettings;              // application settings
         private CommandManager mCommandManager;  // the undo stack for this project (should it belong to the project?)
         private Audio.VuMeterForm mVuMeter;      // keep track of a single Vu meter form
+        private Audio.VuMeter mVuMeterInstance = new Obi.Audio.VuMeter(); // Avn: Better to use only one VuMeter instance for both player and recorder
 
         /// <summary>
         /// Application settings.
@@ -46,8 +47,11 @@ namespace Obi
             mProject = null;
             mSettings = null;
             mCommandManager = new CommandManager();
+            Audio.AudioPlayer.Instance.VuMeter = mVuMeterInstance;
+            Audio.AudioRecorder.Instance.VuMeterObject = mVuMeterInstance;
+            mVuMeterInstance.SetEventHandlers();
             mVuMeter = new Audio.VuMeterForm(Audio.AudioPlayer.Instance.VuMeter);
-            mVuMeter.VuMeter.SetEventHandlers();
+            mVuMeter.MagnificationFactor = 1.5 ;
             mVuMeter.Show();
             mVuMeter.Visible = false;
             InitializeSettings();
@@ -1151,16 +1155,6 @@ namespace Obi
         }
 
         #endregion
-
-        private void mRewindToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectPanel.TransportBar.Rewind();
-        }
-
-        private void mFastForwardToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectPanel.TransportBar.FastForward();
-        }
 
         private void mPreviousPhraseToolStripMenuItem_Click(object sender, EventArgs e)
         {
