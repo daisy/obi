@@ -1152,6 +1152,16 @@ namespace Obi
 
         #endregion
 
+        private void mRewindToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.TransportBar.Rewind();
+        }
+
+        private void mFastForwardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.TransportBar.FastForward();
+        }
+
         private void mPreviousPhraseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Stopped)

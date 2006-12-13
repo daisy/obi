@@ -107,6 +107,8 @@ namespace Obi
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectPanel = new Obi.UserControls.ProjectPanel();
+            this.mRewindToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mFastForwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -562,10 +564,12 @@ namespace Obi
             this.toolStripSeparator7,
             this.mPreviousSectionToolStripMenuItem,
             this.mPreviousPhraseToolStripMenuItem,
+            this.mRewindToolStripMenuItem,
             this.mPlayAllToolStripMenuItem,
             this.mPlaySelectionToolStripMenuItem,
             this.mRecordToolStripMenuItem,
             this.mStopToolStripMenuItem,
+            this.mFastForwardToolStripMenuItem,
             this.mNextPhraseToolStripMenuItem,
             this.mNextSectionToolStripMenuItem});
             this.mTransportToolStripMenuItem.Name = "mTransportToolStripMenuItem";
@@ -759,6 +763,24 @@ namespace Obi
             this.mProjectPanel.Size = new System.Drawing.Size(849, 491);
             this.mProjectPanel.TabIndex = 4;
             // 
+            // mRewindToolStripMenuItem
+            // 
+            this.mRewindToolStripMenuItem.Name = "mRewindToolStripMenuItem";
+            this.mRewindToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.Left)));
+            this.mRewindToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.mRewindToolStripMenuItem.Text = "Re&wind";
+            this.mRewindToolStripMenuItem.Click += new System.EventHandler(this.mRewindToolStripMenuItem_Click);
+            // 
+            // mFastForwardToolStripMenuItem
+            // 
+            this.mFastForwardToolStripMenuItem.Name = "mFastForwardToolStripMenuItem";
+            this.mFastForwardToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.Right)));
+            this.mFastForwardToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.mFastForwardToolStripMenuItem.Text = "&Fast forward";
+            this.mFastForwardToolStripMenuItem.Click += new System.EventHandler(this.mFastForwardToolStripMenuItem_Click);
+            // 
             // ObiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -863,6 +885,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mNextPhraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mNextSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mExportAssetDEBUGToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mRewindToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mFastForwardToolStripMenuItem;
 
 
     }

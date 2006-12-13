@@ -133,6 +133,19 @@ namespace Obi.UserControls
             Playlist.NavigateToPreviousPhrase();
         }
 
+        private void mRewindButton_Click(object sender, EventArgs e)
+        {
+            Rewind();
+        }
+
+        /// <summary>
+        /// Rewind (i.e. play faster backward)
+        /// </summary>
+        public void Rewind()
+        {
+            Playlist.Rewind();
+        }
+
         private void mPlayButton_Click(object sender, EventArgs e)
         {
             Play();            
@@ -151,9 +164,6 @@ namespace Obi.UserControls
                     PhraseNode phrase = Playlist.CurrentPhrase;
                     Playlist = new Playlist(((ProjectPanel)Parent).Project, Audio.AudioPlayer.Instance);
                     Playlist.CurrentPhrase = phrase;
-                    mScrubTrackBar.Maximum = Convert.ToInt32(mPlaylist.TotalAssetTime / 50);
-                    mScrubTrackBar.Value = mScrubTrackBar.Maximum / 2;
-                    mCentreSliderEventEffect = true;
                     mVUMeterPanel.Enable = true;
                     mVUMeterPanel.PlayListObj = mPlaylist;
                 }
@@ -173,9 +183,6 @@ namespace Obi.UserControls
             if (CanPlay)
             {
                 Playlist = new Playlist(Audio.AudioPlayer.Instance, node);
-                mScrubTrackBar.Maximum = Convert.ToInt32(mPlaylist.TotalAssetTime / 50);
-                mScrubTrackBar.Value = mScrubTrackBar.Maximum / 2;
-                mCentreSliderEventEffect = true;
                 mPlaylist.Play();
                 mVUMeterPanel.Enable = true;
                 mVUMeterPanel.PlayListObj = mPlaylist;
@@ -276,6 +283,19 @@ namespace Obi.UserControls
             }
         }
 
+        private void mFastForwardButton_Click(object sender, EventArgs e)
+        {
+            FastForward();
+        }
+
+        /// <summary>
+        /// Play faster.
+        /// </summary>
+        public void FastForward()
+        {
+            Playlist.FastForward();
+        }
+
         private void mNextPhrase_Click(object sender, EventArgs e)
         {
             NextPhrase();
@@ -343,10 +363,6 @@ namespace Obi.UserControls
         private void Play_MovedToPhrase(object sender, Events.Node.PhraseNodeEventArgs e)
         {
             ((ProjectPanel)Parent).StripManager.SelectedPhraseNode = e.Node;
-            mCentreSliderEventEffect = false;
-            mScrubTrackBar.Maximum = Convert.ToInt32(mPlaylist.TotalAssetTime / 50);
-            mScrubTrackBar.Value = mScrubTrackBar.Maximum / 2;
-            mCentreSliderEventEffect = true;
         }
 
         /// <summary>
@@ -366,32 +382,17 @@ namespace Obi.UserControls
             {
                 mTimeDisplayBox.Text =
                     mDisplayBox.SelectedIndex == Elapsed ?
-                        FormatTime(mPlaylist.CurrentTimeInAsset) :
+                        Assets.MediaAsset.FormatTime_hh_mm_ss(mPlaylist.CurrentTimeInAsset) :
                     mDisplayBox.SelectedIndex == ElapsedTotal ?
-                        FormatTime(mPlaylist.CurrentTime) :
+                        Assets.MediaAsset.FormatTime_hh_mm_ss(mPlaylist.CurrentTime) :
                     mDisplayBox.SelectedIndex == Remain ?
-                        "-" + FormatTime(mPlaylist.RemainingTimeInAsset) :
-                        "-" + FormatTime(mPlaylist.RemainingTime);
+                        Assets.MediaAsset.FormatTime_hh_mm_ss(mPlaylist.RemainingTimeInAsset) :
+                        Assets.MediaAsset.FormatTime_hh_mm_ss(mPlaylist.RemainingTime);
             }
             else
             {
-                mTimeDisplayBox.Text = FormatTime(0.0);
+                mTimeDisplayBox.Text = Assets.MediaAsset.FormatTime_hh_mm_ss(0.0);
             }
-        }
-
-        /// <summary>
-        /// Format the time string for friendlier display.
-        /// </summary>
-        /// <param name="time">The time in milliseconds.</param>
-        /// <returns>The time in hh:mm:ss format (fractions of seconds are discarded.)</returns>
-        private string FormatTime(double time)
-        {
-            int s = Convert.ToInt32(time / 1000.0);
-            string str = (s % 60).ToString("00");
-            int m = Convert.ToInt32(s / 60);
-            str = (m % 60).ToString("00") + ":" + str;
-            int h = m / 60;
-            return h.ToString("00") + ":" + str;
         }
 
         /// <summary>
@@ -402,43 +403,9 @@ namespace Obi.UserControls
             UpdateTimeDisplay();
         }
 
-
-        private void tmTrackBar_Tick(object sender, EventArgs e)
-        {
-            tmTrackBar.Enabled = false;
-
-            mCentreSliderEventEffect = false;
-            mScrubTrackBar.Value = mScrubTrackBar.Maximum / 2;
-            mCentreSliderEventEffect = true;
-            
-            if ( mTrackBarTimeValue  < 0)
-                mTrackBarTimeValue = 0;
-
-            if ( mTrackBarTimeValue > mPlaylist.TotalAssetTime )
-                mTrackBarTimeValue =  mPlaylist.TotalAssetTime ;
-
-            mPlaylist.CurrentTimeInAsset = mTrackBarTimeValue;
-            UpdateTimeDisplay();
-        }
-
-        private bool mCentreSliderEventEffect = false ;
-        private double mTrackBarTimeValue;
-
-        private void mScrubTrackBar_ValueChanged(object sender, EventArgs e)
-        {
-            if (mCentreSliderEventEffect == true)
-            {
-                tmTrackBar.Enabled = false;
-
-                mTrackBarTimeValue = mPlaylist.CurrentTimeInAsset ;
-
-                mTrackBarTimeValue = mTrackBarTimeValue + (( mScrubTrackBar.Value -( mScrubTrackBar.Maximum / 2 )  ) * 100 );
-                tmTrackBar.Start();
-            }
-
-
-        }
-
+        /// <summary>
+        /// Set up the event handler for strip manager selection when the parent is actually not null.
+        /// </summary>
         private void TransportBar_ParentChanged(object sender, EventArgs e)
         {
             if (Parent != null)
@@ -447,9 +414,5 @@ namespace Obi.UserControls
             }
         }
 
-        private void TransportBar_Load(object sender, EventArgs e)
-        {
-            
-        }
     }
 }
