@@ -258,5 +258,11 @@ namespace Obi.UserControls
             }
 
         }
+
+        internal void ToggledSectionUsedState(object sender, Events.Node.SectionNodeEventArgs e)
+        {
+            TreeNode treeNode = FindTreeNodeFromSectionNode(e.Node);
+            treeNode.ForeColor = e.Node.Used ? UsedColor : UnusedColor;
+        }
     }
 }

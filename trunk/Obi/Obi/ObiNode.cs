@@ -71,7 +71,7 @@ namespace Obi
         /// </summary>
         protected override bool XUKOutAttributes(System.Xml.XmlWriter wr)
         {
-            if (!mUsed) wr.WriteAttributeString("used", "no");
+            if (!mUsed) wr.WriteAttributeString("used", "False");
             return base.XUKOutAttributes(wr);
         }
 
@@ -81,7 +81,7 @@ namespace Obi
         protected override bool XUKInAttributes(System.Xml.XmlReader source)
         {
             string used = source.GetAttribute("used");
-            if (used != null && used == "no") mUsed = false;
+            if (used != null && used == "False") mUsed = false;
             return base.XUKInAttributes(source);
         }
 

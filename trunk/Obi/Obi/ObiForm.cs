@@ -951,11 +951,17 @@ namespace Obi
                 mMoveInToolStripMenuItem.Enabled = canMoveIn;
                 mMoveOutToolStripMenuItem.Enabled = canMoveOut;
 
+                // Mark section used/unused (by default, i.e. if disabled, "unused")
+                mMarkSectionAsUnusedToolStripMenuItem.Enabled = isNodeSelected;
+                mMarkSectionAsUnusedToolStripMenuItem.Text = String.Format(Localizer.Message("mark_section_as_used_or_unused"),
+                    Localizer.Message(isNodeSelected && !selectedSection.Used ? "used" : "unused"));
                 mShowInStripviewToolStripMenuItem.Enabled = isNodeSelected;
             }
             else
             {
                 foreach (ToolStripItem item in mTocToolStripMenuItem.DropDownItems) item.Enabled = false;
+                mMarkSectionAsUnusedToolStripMenuItem.Text = String.Format(Localizer.Message("mark_section_as_used_or_unused"),
+                    Localizer.Message("unused"));
             }
             // Show/hide table of contents
             mShowhideTableOfCOntentsToolStripMenuItem.Text =
@@ -1225,6 +1231,14 @@ namespace Obi
             //        break;
             // }
             return base.ProcessDialogKey(key);
+        }
+
+        /// <summary>
+        /// Toggle section used/unsed.
+        /// </summary>
+        private void mMarkSectionAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.TOCPanel.ToggleSectionUsed();
         }
     }
 }
