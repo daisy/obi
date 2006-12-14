@@ -21,7 +21,7 @@ namespace Obi
         public event Events.SectionNodeHandler UndidCopySectionNode;
         public event Events.SectionNodeHandler PastedSectionNode;
         public event Events.SectionNodeHandler UndidPasteSectionNode;
-
+        public event Events.SectionNodeHandler ToggledSectionUsedState;
         
         // Here are the event handlers for request sent by the GUI when editing the TOC.
         // Every request is passed to a method that uses mostly the same arguments,
@@ -654,6 +654,22 @@ namespace Obi
             {
                 ((SectionNode)parent).AddChildSectionAfter(node, contextNode);
             }         
+        }
+
+        /// <summary>
+        /// Toggle used flag for a section.
+        /// </summary>
+        internal void ToggleSectionUsedStateRequested(object sender, Events.Node.SectionNodeEventArgs e)
+        {
+            ToggleSectionUsedState(e);
+            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(new Commands.TOC.ToggleUsed(e.Node)));
+            Modified();
+        }
+
+        internal void ToggleSectionUsedState(Events.Node.SectionNodeEventArgs e)
+        {
+            e.Node.Used = !e.Node.Used;
+            ToggledSectionUsedState(this, e);
         }
     }
 }

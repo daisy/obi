@@ -133,6 +133,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to block.
+        /// </summary>
+        internal static string block {
+            get {
+                return ResourceManager.GetString("block", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancelled.
         /// </summary>
         internal static string cancelled {
@@ -412,6 +421,24 @@ namespace Obi {
         internal static string listening {
             get {
                 return ResourceManager.GetString("listening", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mar&amp;k section as {0}.
+        /// </summary>
+        internal static string mark_section_as_used_or_unused {
+            get {
+                return ResourceManager.GetString("mark_section_as_used_or_unused", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mar&amp;k {0} as {1}.
+        /// </summary>
+        internal static string mark_strip_or_section_as_used_or_unused {
+            get {
+                return ResourceManager.GetString("mark_strip_or_section_as_used_or_unused", resourceCulture);
             }
         }
         
@@ -879,7 +906,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  section.
+        ///   Looks up a localized string similar to section.
         /// </summary>
         internal static string section {
             get {
@@ -978,6 +1005,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to strip.
+        /// </summary>
+        internal static string strip {
+            get {
+                return ResourceManager.GetString("strip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to For showing a page number.
         /// </summary>
         internal static string structure_block_tooltip {
@@ -992,6 +1028,15 @@ namespace Obi {
         internal static string toc_view_tooltip {
             get {
                 return ResourceManager.GetString("toc_view_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mark {0} as {1}.
+        /// </summary>
+        internal static string toggle_used_command_label {
+            get {
+                return ResourceManager.GetString("toggle_used_command_label", resourceCulture);
             }
         }
         
@@ -1019,6 +1064,24 @@ namespace Obi {
         internal static string undo_label {
             get {
                 return ResourceManager.GetString("undo_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to unused.
+        /// </summary>
+        internal static string unused {
+            get {
+                return ResourceManager.GetString("unused", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to used.
+        /// </summary>
+        internal static string used {
+            get {
+                return ResourceManager.GetString("used", resourceCulture);
             }
         }
         

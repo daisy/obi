@@ -463,7 +463,7 @@ Do you want to replace the project contained in this file?</value>
     <comment>phrase name for cut/copy/paste/delete commands; note the leading space (JQ)</comment>
   </data>
   <data name="section" xml:space="preserve">
-    <value> section</value>
+    <value>section</value>
     <comment>section name for cut/copy/paste/delete commands; note the leading space (JQ)</comment>
   </data>
   <data name="apply_phrase_detection_command_label" xml:space="preserve">
@@ -489,5 +489,26 @@ Do you want to replace the project contained in this file?</value>
   <data name="play_selection" xml:space="preserve">
     <value>Play &amp;selection</value>
     <comment>Play selection menu item (JQ)</comment>
+  </data>
+  <data name="block" xml:space="preserve">
+    <value>block</value>
+  </data>
+  <data name="mark_section_as_used_or_unused" xml:space="preserve">
+    <value>Mar&amp;k section as {0}</value>
+  </data>
+  <data name="mark_strip_or_section_as_used_or_unused" xml:space="preserve">
+    <value>Mar&amp;k {0} as {1}</value>
+  </data>
+  <data name="strip" xml:space="preserve">
+    <value>strip</value>
+  </data>
+  <data name="unused" xml:space="preserve">
+    <value>unused</value>
+  </data>
+  <data name="used" xml:space="preserve">
+    <value>used</value>
+  </data>
+  <data name="toggle_used_command_label" xml:space="preserve">
+    <value>mark {0} as {1}</value>
   </data>
 </root>

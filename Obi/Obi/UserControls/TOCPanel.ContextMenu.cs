@@ -19,6 +19,7 @@ namespace Obi.UserControls
         public event Events.SectionNodeHandler AddChildSectionNodeRequested;
         public event Events.SectionNodeHandler DecreaseSectionNodeLevelRequested;
         public event Events.SectionNodeHandler IncreaseSectionNodeLevelRequested;
+        public event Events.SectionNodeHandler ToggleSectionNodeUsedRequested;
       
         public event Events.RenameSectionNodeHandler RenameSectionNodeRequested;
         public event Events.SectionNodeHandler DeleteSectionNodeRequested;
@@ -42,6 +43,25 @@ namespace Obi.UserControls
         internal void mAddSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddChildSectionNodeRequested(this, new SectionNodeEventArgs(this, SelectedSection));  
+        }
+
+        /// <summary>
+        /// Triggered by the "mark section as used/unused" menu item.
+        /// </summary>
+        private void mMarkSectionAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToggleSectionUsed();
+        }
+
+        /// <summary>
+        /// Toggle the used property of the selected section.
+        /// </summary>
+        public void ToggleSectionUsed()
+        {
+            if (SelectedSection != null)
+            {
+                ToggleSectionNodeUsedRequested(this, new SectionNodeEventArgs(this, SelectedSection));
+            }
         }
 
         /// <summary>
@@ -154,6 +174,11 @@ namespace Obi.UserControls
             // also, it doesn't matter if a node is selected since we can paste under the root node.
             mPasteSectionToolStripMenuItem.Enabled =
                 (mProjectPanel.Project != null) && (mProjectPanel.Project.Clipboard.Section != null);
+
+            // Mark section used/unused (by default, i.e. if disabled, "unused")
+            mMarkSectionAsUnusedToolStripMenuItem.Enabled = isNodeSelected;
+            mMarkSectionAsUnusedToolStripMenuItem.Text = String.Format(Localizer.Message("mark_section_as_used_or_unused"),
+                Localizer.Message(isNodeSelected && !selectedSection.Used ? "used" : "unused"));
         }
     }
 }
