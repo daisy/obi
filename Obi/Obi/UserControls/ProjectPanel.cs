@@ -123,8 +123,8 @@ namespace Obi.UserControls
             project.RemovedPageNumber += new Events.PhraseNodeHandler(mStripManagerPanel.SyncRemovedPageNumber);
             project.SetPageNumber += new Events.PhraseNodeHandler(mStripManagerPanel.SyncSetPageNumber);
 
-            mTOCPanel.ToggleSectionNodeUsedRequested += new Obi.Events.SectionNodeHandler(project.ToggleSectionUsedStateRequested);
-            project.ToggledSectionUsedState += new Obi.Events.SectionNodeHandler(mTOCPanel.ToggledSectionUsedState);
+            project.ToggledNodeUsedState += new Obi.Events.ObiNodeHandler(mStripManagerPanel.ToggledNodeUsedState);
+            project.ToggledNodeUsedState += new Obi.Events.ObiNodeHandler(mTOCPanel.ToggledNodeUsedState);
         }
 
         /// <summary>
@@ -219,8 +219,8 @@ namespace Obi.UserControls
             mProject.RemovedPageNumber -= new Events.PhraseNodeHandler(mStripManagerPanel.SyncRemovedPageNumber);
             mProject.SetPageNumber -= new Events.PhraseNodeHandler(mStripManagerPanel.SyncSetPageNumber);
 
-            mTOCPanel.ToggleSectionNodeUsedRequested -= new Obi.Events.SectionNodeHandler(mProject.ToggleSectionUsedStateRequested);
-            mProject.ToggledSectionUsedState -= new Obi.Events.SectionNodeHandler(mTOCPanel.ToggledSectionUsedState);
+            mProject.ToggledNodeUsedState -= new Obi.Events.ObiNodeHandler(mStripManagerPanel.ToggledNodeUsedState);
+            mProject.ToggledNodeUsedState -= new Obi.Events.ObiNodeHandler(mTOCPanel.ToggledNodeUsedState);
         }
 
         /// <summary>

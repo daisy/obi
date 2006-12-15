@@ -56,6 +56,7 @@ namespace Obi.UserControls
             set
             {
                 mNode = value;
+                MarkDeselected();
                 SetStripFontSize();
             }
         }
@@ -66,7 +67,7 @@ namespace Obi.UserControls
         public SectionStrip()
         {
             InitializeComponent();
-            InitializeToolTips(); 
+            InitializeToolTips();
         }
         #endregion
 
@@ -171,31 +172,20 @@ namespace Obi.UserControls
         
         private void SectionStrip_Click(object sender, EventArgs e)
         {
-            /* md - removed for testing
-            if (mManager.SelectedSectionNode == mNode)
-            {
-                //mg: changed renaming to not be 
-                //default state at focus:
-                //StartRenaming();
-                mManager.SelectedPhraseNode = null;
-            }
-            else
-            {
-                mManager.SelectedSectionNode = mNode;
-            }*/
-          
             mManager.SelectedSectionNode = mNode;
         }
 
         public void MarkSelected()
         {
-            BackColor = Color.Orange;
+            // BackColor = Color.Orange;
+            BackColor = mNode.Used ? Colors.StripUsedSelected : Colors.StripUnusedSelected;
             mRenameBox.BackColor = BackColor;
         }
 
         public void MarkDeselected()
         {
-            BackColor = Color.Gold;
+            // BackColor = Color.Gold;
+            BackColor = mNode.Used ? Colors.StripUsedUnselected : Colors.StripUnusedUnselected;
             mRenameBox.BackColor = BackColor;
         }
 
@@ -203,7 +193,7 @@ namespace Obi.UserControls
         {
             if (mNode != null)
             {
-                int nodeLevel = this.mNode.Project.getNodeLevel(mNode);
+                int nodeLevel = mNode.Depth;
                 //float currentSize = GetTitleFontSize();
                 if (nodeLevel == 1) SetTitleFontSize(mDefaultFontSize + 3);
                 else if (nodeLevel == 2) SetTitleFontSize(mDefaultFontSize + 2);

@@ -2,23 +2,24 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Obi.Commands.TOC
+namespace Obi.Commands.Node
 {
     public class ToggleUsed : Command
     {
-        private SectionNode mNode;
+        private ObiNode mNode;
         private bool mNowUsed;
 
         public override string Label
         {
             get
             {
-                return String.Format(Localizer.Message("toggle_used_command_label"), Localizer.Message("section"),
+                return String.Format(Localizer.Message("toggle_used_command_label"),
+                    Localizer.Message(mNode is SectionNode ? "section" : "phrase"),
                     Localizer.Message(mNowUsed ? "used" : "unused"));
             }
         }
 
-        public ToggleUsed(SectionNode node)
+        public ToggleUsed(ObiNode node)
         {
             mNode = node;
             mNowUsed = node.Used;
@@ -26,12 +27,12 @@ namespace Obi.Commands.TOC
 
         public override void Do()
         {
-            mNode.Project.ToggleSectionUsedState(new Events.Node.SectionNodeEventArgs(this, mNode));
+            mNode.Project.ToggleNodeUsed(mNode, this);
         }
 
         public override void Undo()
         {
-            mNode.Project.ToggleSectionUsedState(new Events.Node.SectionNodeEventArgs(this, mNode));
+            mNode.Project.ToggleNodeUsed(mNode, this);
         }
     }
 }

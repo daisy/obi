@@ -64,7 +64,7 @@ namespace Obi.UserControls
         {
             get
             {
-                if (mPlaylist == null)
+                if (mPlaylist == null && Parent is ProjectPanel && ((ProjectPanel)Parent).Project != null)
                 {
                     Playlist = new Playlist(((ProjectPanel)Parent).Project, Audio.AudioPlayer.Instance);
                 }
@@ -427,7 +427,7 @@ namespace Obi.UserControls
         /// </summary>
         private void TransportBar_ParentChanged(object sender, EventArgs e)
         {
-            if (Parent != null)
+            if (Parent != null && Parent is ProjectPanel)
             {
                 ((ProjectPanel)Parent).StripManager.SelectionChanged += new Obi.Events.SelectedHandler(StripManager_Selected);
             }

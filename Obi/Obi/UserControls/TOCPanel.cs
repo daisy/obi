@@ -22,9 +22,6 @@ namespace Obi.UserControls
 
         public event Events.SelectedHandler SelectionChanged;
 
-        private static readonly Color UsedColor = Color.SteelBlue;
-        private static readonly Color UnusedColor = Color.Crimson;
-
         /// <summary>
         /// Test whether a node is currently selected or not, *and* under user focus.
         /// </summary>
@@ -112,7 +109,7 @@ namespace Obi.UserControls
                     newTreeNode = mTocTree.Nodes.Add(_node.GetHashCode().ToString(), label);
                 }
                 newTreeNode.Tag = _node;
-                newTreeNode.ForeColor = ((SectionNode)node).Used ? UsedColor : UnusedColor;
+                newTreeNode.ForeColor = ((SectionNode)node).Used ? Colors.SectionUsed : Colors.SectionUnused;
                 newTreeNode.ExpandAll();
                 newTreeNode.EnsureVisible();
             }

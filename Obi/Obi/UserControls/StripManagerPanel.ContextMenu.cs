@@ -77,6 +77,11 @@ namespace Obi.UserControls
             mRemovePageNumberToolStripMenuItem.Enabled = canRemoveAnnotation;
 
             mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;
+
+            // Mark section used/unused (by default, i.e. if disabled, "unused")
+            mMarkStripAsUnusedToolStripMenuItem.Enabled = isStripSelected;
+            mMarkStripAsUnusedToolStripMenuItem.Text = String.Format(Localizer.Message("mark_section_as_used_or_unused"),
+                Localizer.Message(isStripSelected && !SelectedNode.Used ? "used" : "unused"));
         }
 
         /// <summary>
@@ -132,16 +137,15 @@ namespace Obi.UserControls
         {
             if (mSelectedPhrase != null)
             {
+                // save the phrase at it gets lost when we stop (?)
+                PhraseNode phrase = mSelectedPhrase;
                 Audio.AudioPlayerState State = this.mProjectPanel.TransportBar.Playlist.State;
                 double time = this.mProjectPanel.TransportBar.Playlist.CurrentTimeInAsset ;
                 this.mProjectPanel.TransportBar.Playlist.Stop();
-
-                PhraseNode phrase = mSelectedPhrase;
                 Dialogs.Split dialog = new Dialogs.Split(phrase, time , State );
-
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-									SplitAudioBlockRequested(this, new Events.Node.SplitPhraseNodeEventArgs(this, phrase, dialog.ResultAsset));
+					SplitAudioBlockRequested(this, new Events.Node.SplitPhraseNodeEventArgs(this, phrase, dialog.ResultAsset));
                 }
             }
         }
@@ -390,6 +394,23 @@ namespace Obi.UserControls
                     RequestToRemovePageNumber(this, new Events.Node.PhraseNodeEventArgs(sender, mSelectedPhrase));
                 }
             }
+        }
+
+        /// <summary>
+        /// Toggle the "used" status of the selected strip.
+        /// Do nothing if no strip is selected.
+        /// </summary>
+        internal void ToggleSelectedStripUsed()
+        {
+            if (mSelectedSection != null)
+            {
+                mSelectedSection.Project.ToggleNodeUsed(mSelectedSection, this);
+            }
+        }
+
+        private void mMarkStripAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToggleSelectedStripUsed();
         }
     }
 }

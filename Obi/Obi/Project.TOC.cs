@@ -656,16 +656,6 @@ namespace Obi
             }         
         }
 
-        /// <summary>
-        /// Toggle used flag for a section.
-        /// </summary>
-        internal void ToggleSectionUsedStateRequested(object sender, Events.Node.SectionNodeEventArgs e)
-        {
-            ToggleSectionUsedState(e);
-            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(new Commands.TOC.ToggleUsed(e.Node)));
-            Modified();
-        }
-
         internal void ToggleSectionUsedState(Events.Node.SectionNodeEventArgs e)
         {
             e.Node.Used = !e.Node.Used;
