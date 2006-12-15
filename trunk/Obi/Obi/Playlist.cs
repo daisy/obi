@@ -24,7 +24,10 @@ namespace Obi
         private bool mWholeBook;                  // flag for playing whole book or just a selection
         private double mPausePosition;            // position in the asset where we  paused
         private AudioPlayerState mPlaylistState;  // playlist state is not always the same as the player state
-
+        private System.Windows.Forms.Timer PreviewTimer = new Timer();
+private enum PlayBackState { Normal , Forward , Rewind } ;
+        private PlayBackState mPlayBackState ;
+            
         private int mPlaybackRate;
         private static readonly int[] PlaybackRates = { 1, 2, 4, 8 };
 
@@ -311,6 +314,13 @@ namespace Obi
                     }
                 }
             );
+
+            mPlayBackState = PlayBackState.Normal;
+            // associate preview timer
+            PreviewTimer.Tick += new System.EventHandler(PreviewTimer_Tick);
+            PreviewTimer.Enabled = false;
+            PreviewTimer.Interval = 200;
+
         }
 
         /// <summary>
@@ -319,6 +329,9 @@ namespace Obi
         public void Play()
         {
             System.Diagnostics.Debug.Assert(mPlaylistState == AudioPlayerState.Stopped, "Only play from stopped state.");
+            // stop Fwd/Rwd if going on
+            StopForwardRewind();
+
             if (mCurrentPhraseIndex < mPhrases.Count) PlayPhrase(mCurrentPhraseIndex);
         }
 
@@ -328,6 +341,9 @@ namespace Obi
         public void Resume()
         {
             System.Diagnostics.Debug.Assert(mPlaylistState == AudioPlayerState.Paused, "Only resume from paused state.");
+            // Stop Preview Fwd/Rwd if going on
+            StopForwardRewind();
+
             mPlaylistState = AudioPlayerState.Playing;
             mPlayer.Play(mPhrases[mCurrentPhraseIndex].Asset, mPausePosition);
             if (StateChanged != null)
@@ -362,12 +378,15 @@ namespace Obi
         /// </summary>
         public void Pause()
         {
+            // stop Fwd/Rwd if it is boing on
+            StopForwardRewind();
+
             if (mPlaylistState == AudioPlayerState.Playing)
             {
                 mPausePosition = mPlayer.CurrentTimePosition;
                 mPlaylistState = AudioPlayerState.Paused;
                 mPlayer.Stop();
-                mPlaybackRate = 0;
+                mPlaybackRate = 0; // Avn: Temporarily disabled
                 if (StateChanged != null)
                 {
                     StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Playing));
@@ -380,6 +399,9 @@ namespace Obi
         /// </summary>
         public void Stop()
         {
+            // stop fwd/rwd if it is going on
+            StopForwardRewind();
+
             if (mPlaylistState == AudioPlayerState.Playing || mPlaylistState == AudioPlayerState.Paused)
             {
                 Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs(mPlayer.State);
@@ -402,12 +424,34 @@ namespace Obi
         {
             IncreasePlaybackRate();
             // let's play backward!
-        }
+            if (mPlayBackState == PlayBackState.Normal)
+            {
+                m_CurrentAudioAsset = mPhrases[mCurrentPhraseIndex].Asset;
+                mPlayBackState = PlayBackState.Rewind ;
+                mPlayer.m_EventsEnabled = false;
+                mPlayer.Stop();
+                PreviewTimer.Interval = 500;
+                PreviewTimer.Start();
+                
 
+            }
+        }
+        Assets.AudioMediaAsset m_CurrentAudioAsset;
         public void FastForward()
         {
             IncreasePlaybackRate();
             // let's play forward!
+            if (mPlayBackState == PlayBackState.Normal)
+            {
+                m_CurrentAudioAsset = mPhrases[mCurrentPhraseIndex].Asset;
+                mPlayBackState = PlayBackState.Forward;
+                mPlayer.m_EventsEnabled = false;
+                mPlayer.Stop();
+                PreviewTimer.Interval = 500;
+                PreviewTimer.Start();
+                
+
+            }
         }
 
         /// <summary>
@@ -417,6 +461,55 @@ namespace Obi
         {
             ++mPlaybackRate;
             if (mPlaybackRate == PlaybackRates.Length) mPlaybackRate = 1;
+        }
+
+       ///Preview timer tick function
+        private void PreviewTimer_Tick(object sender, EventArgs e)
+        {
+            
+            if (mPlayBackState == PlayBackState.Forward)
+            {
+                if (( m_CurrentAudioAsset.LengthInMilliseconds - mPausePosition) > ( ( 6000 * mPlaybackRate ) + 1400 ))
+                {
+
+                    mPausePosition = mPausePosition + ( 6000 * mPlaybackRate );
+
+                    mPlayer.Play( m_CurrentAudioAsset.GetChunk (  mPausePosition , mPausePosition + 1200 ) );
+                }
+                else
+                {
+                    StopForwardRewind();                    
+                }
+            }
+else if ( mPlayBackState == PlayBackState.Rewind )
+{
+    if (mPausePosition > (6000 * mPlaybackRate))
+    {
+
+        mPausePosition = mPausePosition - (6000 * mPlaybackRate);
+
+        mPlayer.Play(m_CurrentAudioAsset.GetChunk(mPausePosition, mPausePosition + 1200));
+    }
+    else
+    {
+        StopForwardRewind();
+    }
+            }
+            PreviewTimer.Interval = 1400;
+        }
+
+        /// <summary>
+        /// function to stop Fast Forward / Rewind and also stop preview timer
+        /// </summary>
+        private void StopForwardRewind()
+        {
+            if ( mPlayBackState != PlayBackState.Normal     ||  PreviewTimer.Enabled == true )
+            {
+                PreviewTimer.Enabled = false;
+                mPlayBackState = PlayBackState.Normal;
+                mPlayer.Stop();
+                mPlayer.m_EventsEnabled = true;
+            }   
         }
 
         /// <summary>
