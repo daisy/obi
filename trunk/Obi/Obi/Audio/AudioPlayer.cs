@@ -86,7 +86,7 @@ namespace Obi.Audio
 		}
 
 		// bool variable to enable or disable event
-		bool m_EventsEnabled = true ;
+		public bool m_EventsEnabled = true ;
 
         /// <summary>
         /// The Vu meter associated with the player.
@@ -359,7 +359,8 @@ namespace Obi.Audio
                 // trigger  events (modified JQ)
                 Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
                 m_State = AudioPlayerState.Playing;
-                StateChanged(this, e);
+            TriggerStateChangedEvent(e);
+                    
                 MoniteringTimer.Enabled = true;
                 // starts playing
                 SoundBuffer.Play(0, BufferPlayFlags.Looping);
@@ -568,7 +569,7 @@ namespace Obi.Audio
 
 		public void Stop()
 		{
-			if (!m_State.Equals(AudioPlayerState .Stopped))			
+			if (m_State != AudioPlayerState.Stopped   )			
 			{
 				//SoundBuffer.Stop();
                 //RefreshThread.Abort();
@@ -751,7 +752,10 @@ namespace Obi.Audio
             {
                 m_IsEndOfAsset = false;
                 MoniteringTimer.Enabled = false;
+
+                if (m_EventsEnabled == true) 
                 EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());
+
                 
             }
 
@@ -761,6 +765,7 @@ namespace Obi.Audio
         // function to catch events so as to avoid null  reference exceptions
         private void CatchEvents(object sender, EventArgs e)
         {
+            //System.Media.SystemSounds.Asterisk.Play();
         }
 
 
