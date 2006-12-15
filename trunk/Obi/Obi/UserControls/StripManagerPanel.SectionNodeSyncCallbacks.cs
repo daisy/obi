@@ -192,7 +192,32 @@ namespace Obi.UserControls
             return strips;
         }
 
-        
-
+        internal void ToggledNodeUsedState(object sender, Events.Node.ObiNodeEventArgs e)
+        {
+            if (e.Node is SectionNode)
+            {
+                SectionStrip strip = mSectionNodeMap[(SectionNode)e.Node];
+                if (mSelectedSection == (SectionNode)e.Node)
+                {
+                    strip.MarkSelected();
+                }
+                else
+                {
+                    strip.MarkDeselected();
+                }
+            }
+            else if (e.Node is PhraseNode)
+            {
+                AudioBlock block = mPhraseNodeMap[(PhraseNode)e.Node];
+                if (mSelectedPhrase == (PhraseNode)e.Node)
+                {
+                    block.MarkSelected();
+                }
+                else
+                {
+                    block.MarkDeselected();
+                }
+            }
+        }
     }
 }

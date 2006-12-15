@@ -19,7 +19,6 @@ namespace Obi.UserControls
         public event Events.SectionNodeHandler AddChildSectionNodeRequested;
         public event Events.SectionNodeHandler DecreaseSectionNodeLevelRequested;
         public event Events.SectionNodeHandler IncreaseSectionNodeLevelRequested;
-        public event Events.SectionNodeHandler ToggleSectionNodeUsedRequested;
       
         public event Events.RenameSectionNodeHandler RenameSectionNodeRequested;
         public event Events.SectionNodeHandler DeleteSectionNodeRequested;
@@ -60,7 +59,7 @@ namespace Obi.UserControls
         {
             if (SelectedSection != null)
             {
-                ToggleSectionNodeUsedRequested(this, new SectionNodeEventArgs(this, SelectedSection));
+                SelectedSection.Project.ToggleNodeUsed(SelectedSection, this);
             }
         }
 

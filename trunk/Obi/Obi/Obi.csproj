@@ -81,6 +81,7 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\CommandManager.cs" />
     <Compile Include="Commands\ListCommand.cs" />
+    <Compile Include="Commands\Node\ToggleUsed.cs" />
     <Compile Include="Commands\Strips\AddPhrase.cs" />
     <Compile Include="Commands\Strips\ApplyPhraseDetection.cs" />
     <Compile Include="Commands\Strips\CopyPhrase.cs" />
@@ -98,7 +99,6 @@
     <Compile Include="Commands\TOC\Rename.cs" />
     <Compile Include="Commands\TOC\SectionNodeClipboard.cs" />
     <Compile Include="Commands\TOC\ShallowDeleteSectionNode.cs" />
-    <Compile Include="Commands\TOC\ToggleUsed.cs" />
     <Compile Include="Commands\Touch.cs" />
     <Compile Include="CustomProperties.cs" />
     <Compile Include="Dialogs\About.cs">
@@ -171,6 +171,7 @@
     <Compile Include="Events\Audio\VuMeter\ResetEventArgs.cs" />
     <Compile Include="Events\Audio\VuMeter\UpdateFormsEventArgs.cs" />
     <Compile Include="Events\NodeEventHandlers.cs" />
+    <Compile Include="Events\Node\ObiNodeEventArgs.cs" />
     <Compile Include="Events\Node\PhraseNodeEventArgs.cs" />
     <Compile Include="Events\Node\SectionNodeEventArgs.cs" />
     <Compile Include="Events\Node\MergeNodesEventArgs.cs" />
@@ -307,6 +308,7 @@
     <Compile Include="UserControls\AudioBlock.Designer.cs">
       <DependentUpon>AudioBlock.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Colors.cs" />
     <Compile Include="UserControls\ProjectPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>

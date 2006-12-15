@@ -3,10 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-
 using urakawa.core;
 using urakawa.media;
-
 
 namespace Obi
 {
@@ -54,6 +52,7 @@ namespace Obi
         public event Events.SetMediaHandler MediaSet;                      // a media object was set on a node
         public event Events.PhraseNodeHandler DeletedPhraseNode;          // deleted a phrase node 
         public event Events.NodeEventHandler TouchedNode;  // this node was somehow modified
+        public event Events.ObiNodeHandler ToggledNodeUsedState;  // the used state of a node was toggled.
 
         /// <summary>
         /// This flag is set to true if the project contains modifications that have not been saved.
@@ -567,25 +566,6 @@ namespace Obi
         }
 
         /// <summary>
-        /// Return the node's level
-        /// </summary>
-        /// <param name="node"></param>
-        /// <returns></returns>
-        // md 20061005.  expect to replace soon with a toolkit or extension function.
-        public int getNodeLevel(CoreNode node)
-        {
-            //if we are root
-            if (node.getParent() == null)
-            {
-                return 0;
-            }
-            else
-            {
-                return getNodeLevel((CoreNode)node.getParent()) + 1;
-            }
-        }
-
-        /// <summary>
         /// Temporary convenience for finding the first phrase, i.e. the silence phrase (so far.)
         /// </summary>
         /// <returns>The first phrase node or null.</returns>
@@ -603,6 +583,22 @@ namespace Obi
                 delegate(ICoreNode n) {}
             );
             return first;
+        }
+
+        /// <summary>
+        /// Toggle the "used" state of a node on behalf of a given view.
+        /// </summary>
+        /// <param name="node">The node to modify.</param>
+        /// <param name="origin">The originating view or command.</param>
+        internal void ToggleNodeUsed(ObiNode node, object origin)
+        {
+            node.Used = !node.Used;
+            if (!(origin is Commands.Command))
+            {
+                CommandCreated(this, new Events.Project.CommandCreatedEventArgs(new Commands.Node.ToggleUsed(node)));
+            }
+            Modified();
+            ToggledNodeUsedState(origin, new Events.Node.ObiNodeEventArgs(node));
         }
     }
 }

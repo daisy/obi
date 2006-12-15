@@ -5,6 +5,9 @@ using Obi.Events.Strip;
 
 namespace Obi.Events
 {
+    // Applies to all kinds of Obi nodes
+    public delegate void ObiNodeHandler(object sender, ObiNodeEventArgs e);
+
     //Sections
     //added, pasted, request anything on a section, decreased level, undid paste, shallow-deleted, cut/copied,
     //deleted

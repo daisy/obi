@@ -1238,7 +1238,6 @@ namespace Obi
         /// </summary>
         private void mMarkSectionAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.TOCPanel.ToggleSectionUsed();
         }
     }
 }

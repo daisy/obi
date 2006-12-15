@@ -40,6 +40,18 @@ namespace Obi
         }
 
         /// <summary>
+        /// Depth of the node in the tree. It is assumed that the root is a CoreNode with a depth of 0.
+        /// </summary>
+        public int Depth
+        {
+            get
+            {
+                IBasicTreeNode parent = getParent();
+                return parent is CoreNode ? 1 : ((ObiNode)parent).Depth;
+            }
+        }
+
+        /// <summary>
         /// Index of this node in its parent's list of children.
         /// </summary>
         public abstract int Index

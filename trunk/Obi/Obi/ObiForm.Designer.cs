@@ -62,9 +62,9 @@ namespace Obi
             this.mRenameSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMoveOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMoveInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mMarkSectionAsUnusedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.mShowInStripviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mMarkSectionAsUnusedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStripsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRenameStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -110,6 +110,7 @@ namespace Obi
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectPanel = new Obi.UserControls.ProjectPanel();
+            this.mMarkStripAsUnusedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -402,6 +403,14 @@ namespace Obi
             this.mMoveInToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.mMoveInToolStripMenuItem.Text = "Move &in";
             // 
+            // mMarkSectionAsUnusedToolStripMenuItem
+            // 
+            this.mMarkSectionAsUnusedToolStripMenuItem.Name = "mMarkSectionAsUnusedToolStripMenuItem";
+            this.mMarkSectionAsUnusedToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.K)));
+            this.mMarkSectionAsUnusedToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.mMarkSectionAsUnusedToolStripMenuItem.Text = "Mar&k section as unused";
+            this.mMarkSectionAsUnusedToolStripMenuItem.Click += new System.EventHandler(this.mMarkSectionAsUnusedToolStripMenuItem_Click);
+            // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
@@ -414,19 +423,12 @@ namespace Obi
             this.mShowInStripviewToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.mShowInStripviewToolStripMenuItem.Text = "Show in strip &view";
             // 
-            // mMarkSectionAsUnusedToolStripMenuItem
-            // 
-            this.mMarkSectionAsUnusedToolStripMenuItem.Name = "mMarkSectionAsUnusedToolStripMenuItem";
-            this.mMarkSectionAsUnusedToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.K)));
-            this.mMarkSectionAsUnusedToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
-            this.mMarkSectionAsUnusedToolStripMenuItem.Text = "Mar&k section as unused";
-            this.mMarkSectionAsUnusedToolStripMenuItem.Click += new System.EventHandler(this.mMarkSectionAsUnusedToolStripMenuItem_Click);
-            // 
             // mStripsToolStripMenuItem
             // 
             this.mStripsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mAddStripToolStripMenuItem,
             this.mRenameStripToolStripMenuItem,
+            this.mMarkStripAsUnusedToolStripMenuItem,
             this.toolStripSeparator5,
             this.mImportAudioFileToolStripMenuItem,
             this.mSplitAudioBlockToolStripMenuItem,
@@ -791,6 +793,13 @@ namespace Obi
             this.mProjectPanel.Size = new System.Drawing.Size(849, 491);
             this.mProjectPanel.TabIndex = 4;
             // 
+            // mMarkStripAsUnusedToolStripMenuItem
+            // 
+            this.mMarkStripAsUnusedToolStripMenuItem.Name = "mMarkStripAsUnusedToolStripMenuItem";
+            this.mMarkStripAsUnusedToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.K)));
+            this.mMarkStripAsUnusedToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.mMarkStripAsUnusedToolStripMenuItem.Text = "Mar&k strip as unused";
+            // 
             // ObiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -898,6 +907,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mRewindToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mFastForwardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMarkSectionAsUnusedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mMarkStripAsUnusedToolStripMenuItem;
 
 
     }

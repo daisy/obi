@@ -259,10 +259,13 @@ namespace Obi.UserControls
 
         }
 
-        internal void ToggledSectionUsedState(object sender, Events.Node.SectionNodeEventArgs e)
+        internal void ToggledNodeUsedState(object sender, Events.Node.ObiNodeEventArgs e)
         {
-            TreeNode treeNode = FindTreeNodeFromSectionNode(e.Node);
-            treeNode.ForeColor = e.Node.Used ? UsedColor : UnusedColor;
+            if (e.Node is SectionNode)
+            {
+                TreeNode treeNode = FindTreeNodeFromSectionNode((SectionNode)e.Node);
+                treeNode.ForeColor = e.Node.Used ? Colors.SectionUsed : Colors.SectionUnused;
+            }
         }
     }
 }
