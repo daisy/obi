@@ -60,7 +60,7 @@ namespace Obi.UserControls
             this.lblRight.Name = "lblRight";
             this.lblRight.Size = new System.Drawing.Size(35, 13);
             this.lblRight.TabIndex = 2;
-            this.lblRight.Text = "&Right:";
+            this.lblRight.Text = "R&ight:";
             // 
             // mRightBox
             // 

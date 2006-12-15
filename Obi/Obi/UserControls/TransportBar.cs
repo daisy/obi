@@ -143,7 +143,16 @@ namespace Obi.UserControls
         /// </summary>
         public void Rewind()
         {
-            Playlist.Rewind();
+            if (Playlist.State == Obi.Audio.AudioPlayerState.Playing)
+            {
+                Pause();
+                Playlist.Rewind();
+            }
+            else if (Playlist.State == Obi.Audio.AudioPlayerState.Paused)
+            {
+                Playlist.Rewind();
+            }
+
         }
 
         private void mPlayButton_Click(object sender, EventArgs e)
@@ -285,6 +294,7 @@ namespace Obi.UserControls
 
         private void mFastForwardButton_Click(object sender, EventArgs e)
         {
+            
             FastForward();
         }
 
@@ -293,7 +303,16 @@ namespace Obi.UserControls
         /// </summary>
         public void FastForward()
         {
-            Playlist.FastForward();
+            if (Playlist.State == Obi.Audio.AudioPlayerState.Playing)
+            {
+                Pause();
+                Playlist.FastForward();
+            }
+            else if (Playlist.State == Obi.Audio.AudioPlayerState.Paused)
+            {
+                Playlist.FastForward();
+            }
+
         }
 
         private void mNextPhrase_Click(object sender, EventArgs e)
