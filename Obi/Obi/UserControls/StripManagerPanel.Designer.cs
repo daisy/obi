@@ -34,6 +34,7 @@ namespace Obi.UserControls
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mAddStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRenameStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mMarkStripAsUnusedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mDeleteStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mImportAudioFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,7 +56,7 @@ namespace Obi.UserControls
             this.mRemovePageNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mShowInTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mMarkStripAsUnusedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mMarkPhraseAsUnusedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,14 +89,15 @@ namespace Obi.UserControls
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mAddStripToolStripMenuItem,
             this.mRenameStripToolStripMenuItem,
-            this.mMarkStripAsUnusedToolStripMenuItem,
             this.mDeleteStripToolStripMenuItem,
+            this.mMarkStripAsUnusedToolStripMenuItem,
             this.toolStripSeparator1,
             this.mImportAudioFileToolStripMenuItem,
             this.mCutAudioBlockToolStripMenuItem,
             this.mCopyAudioBlockToolStripMenuItem,
             this.mPasteAudioBlockToolStripMenuItem,
             this.mDeleteAudioBlockToolStripMenuItem,
+            this.mMarkPhraseAsUnusedToolStripMenuItem,
             this.mSplitAudioBlockToolStripMenuItem,
             this.mApplyPhraseDetectionToolStripMenuItem,
             this.mMergeWithNextAudioBlockToolStripMenuItem,
@@ -110,7 +112,7 @@ namespace Obi.UserControls
             this.mShowInTOCViewToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(229, 446);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(229, 468);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // mAddStripToolStripMenuItem
@@ -128,6 +130,14 @@ namespace Obi.UserControls
             this.mRenameStripToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
             this.mRenameStripToolStripMenuItem.Text = "Re&name strip";
             this.mRenameStripToolStripMenuItem.Click += new System.EventHandler(this.mRenameStripToolStripMenuItem_Click);
+            // 
+            // mMarkStripAsUnusedToolStripMenuItem
+            // 
+            this.mMarkStripAsUnusedToolStripMenuItem.Name = "mMarkStripAsUnusedToolStripMenuItem";
+            this.mMarkStripAsUnusedToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.K)));
+            this.mMarkStripAsUnusedToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.mMarkStripAsUnusedToolStripMenuItem.Text = "Mar&k strip as unused";
+            this.mMarkStripAsUnusedToolStripMenuItem.Click += new System.EventHandler(this.mMarkStripAsUnusedToolStripMenuItem_Click);
             // 
             // mDeleteStripToolStripMenuItem
             // 
@@ -287,13 +297,13 @@ namespace Obi.UserControls
             this.mShowInTOCViewToolStripMenuItem.Text = "Show in TOC vie&w";
             this.mShowInTOCViewToolStripMenuItem.Click += new System.EventHandler(this.mShowInTOCViewToolStripMenuItem_Click);
             // 
-            // mMarkStripAsUnusedToolStripMenuItem
+            // mMarkPhraseAsUnusedToolStripMenuItem
             // 
-            this.mMarkStripAsUnusedToolStripMenuItem.Name = "mMarkStripAsUnusedToolStripMenuItem";
-            this.mMarkStripAsUnusedToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.K)));
-            this.mMarkStripAsUnusedToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.mMarkStripAsUnusedToolStripMenuItem.Text = "Mar&k strip as unused";
-            this.mMarkStripAsUnusedToolStripMenuItem.Click += new System.EventHandler(this.mMarkStripAsUnusedToolStripMenuItem_Click);
+            this.mMarkPhraseAsUnusedToolStripMenuItem.Name = "mMarkPhraseAsUnusedToolStripMenuItem";
+            this.mMarkPhraseAsUnusedToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.K)));
+            this.mMarkPhraseAsUnusedToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.mMarkPhraseAsUnusedToolStripMenuItem.Text = "Mar&k phrase as unused";
+            this.mMarkPhraseAsUnusedToolStripMenuItem.Click += new System.EventHandler(this.mMarkPhraseAsUnusedToolStripMenuItem_Click);
             // 
             // StripManagerPanel
             // 
@@ -338,5 +348,6 @@ namespace Obi.UserControls
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem mApplyPhraseDetectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMarkStripAsUnusedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mMarkPhraseAsUnusedToolStripMenuItem;
     }
 }

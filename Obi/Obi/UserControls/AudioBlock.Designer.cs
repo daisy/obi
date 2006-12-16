@@ -72,7 +72,7 @@ namespace Obi.UserControls
             // 
             // mPage
             // 
-            this.mPage.BackColor = System.Drawing.Color.MistyRose;
+            this.mPage.BackColor = System.Drawing.Color.Pink;
             this.mPage.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mPage.Location = new System.Drawing.Point(5, 39);
             this.mPage.Name = "mPage";
@@ -89,7 +89,7 @@ namespace Obi.UserControls
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.Color.MistyRose;
+            this.BackColor = System.Drawing.Color.Pink;
             this.Controls.Add(this.mPage);
             this.Controls.Add(this.mLabel);
             this.Controls.Add(this.mTimeLabel);

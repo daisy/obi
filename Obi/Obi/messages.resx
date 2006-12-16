@@ -459,7 +459,7 @@ Do you want to replace the project contained in this file?</value>
     <comment>paste {section/phrase} (JQ)</comment>
   </data>
   <data name="phrase" xml:space="preserve">
-    <value> phrase</value>
+    <value>phrase</value>
     <comment>phrase name for cut/copy/paste/delete commands; note the leading space (JQ)</comment>
   </data>
   <data name="section" xml:space="preserve">
@@ -496,8 +496,9 @@ Do you want to replace the project contained in this file?</value>
   <data name="mark_section_as_used_or_unused" xml:space="preserve">
     <value>Mar&amp;k section as {0}</value>
   </data>
-  <data name="mark_strip_or_section_as_used_or_unused" xml:space="preserve">
+  <data name="mark_x_as_y" xml:space="preserve">
     <value>Mar&amp;k {0} as {1}</value>
+    <comment>Mark &lt;whatever&gt; as &lt;used/unused&gt;</comment>
   </data>
   <data name="strip" xml:space="preserve">
     <value>strip</value>
@@ -510,5 +511,8 @@ Do you want to replace the project contained in this file?</value>
   </data>
   <data name="toggle_used_command_label" xml:space="preserve">
     <value>mark {0} as {1}</value>
+  </data>
+  <data name="all_phrases" xml:space="preserve">
+    <value>all phrases</value>
   </data>
 </root>

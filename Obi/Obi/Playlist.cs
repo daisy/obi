@@ -25,7 +25,7 @@ namespace Obi
         private double mPausePosition;            // position in the asset where we  paused
         private AudioPlayerState mPlaylistState;  // playlist state is not always the same as the player state
         private System.Windows.Forms.Timer PreviewTimer = new Timer();
-private enum PlayBackState { Normal , Forward , Rewind } ;
+        private enum PlayBackState { Normal , Forward , Rewind } ;
         private PlayBackState mPlayBackState ;
             
         private int mPlaybackRate;
@@ -288,9 +288,11 @@ private enum PlayBackState { Normal , Forward , Rewind } ;
             node.visitDepthFirst
             (
                 // Add all phrase nodes underneath (and including) the starting node.
+                // A phrase is excluded if it is marked as unused and the whole book
+                // is playing.
                 delegate(ICoreNode n)
                 {
-                    if (n.GetType() == Type.GetType("Obi.PhraseNode"))
+                    if (n is PhraseNode && (!mWholeBook || ((PhraseNode)n).Used))
                     {
                         mPhrases.Add((PhraseNode)n);
                         mStartTimes.Add(mTotalTime);
