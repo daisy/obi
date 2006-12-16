@@ -100,7 +100,7 @@ namespace Obi.Audio
 
             tmUpdateVuMeter.Tick += new EventHandler ( tmUpdateVuMeter_Tick );
             tmUpdateVuMeter.Interval = 50;
-
+            tmUpdateVuMeter.Enabled = false;
 		}
 
 		public int SampleRate
@@ -473,24 +473,7 @@ namespace Obi.Audio
             CurrentPositionInByte = SampleCount + mPosition;
             	dCurrentTime = CalculationFunctions.ConvertByteToTime(CurrentPositionInByte, m_SampleRate, m_FrameSize);
 
-            // Commented by Avn for shifting following lines to InitRecording function
-            /*
-			m_UpdateVMArrayLength = m_iCaptureBufferSize/ 20 ;
-			m_UpdateVMArrayLength = Convert.ToInt32 (CalculationFunctions.AdaptToFrame ( Convert.ToInt32 ( m_UpdateVMArrayLength ),  m_FrameSize)  );
-			arUpdateVM = new byte [ m_UpdateVMArrayLength ] ;
-             */
-
-            // following lines are shifted to tmUpdateVuMeter_tick function
-            /*
-			ReadPos = CapturePos;
-
-			if (ReadPos < ((m_iCaptureBufferSize)- m_UpdateVMArrayLength  ) )
-			{
-				Array.Copy ( applicationBuffer.Read(ReadPos , typeof (byte) , LockFlag.None , m_UpdateVMArrayLength  ) , arUpdateVM , m_UpdateVMArrayLength  ) ;				
-				//ob_UpdateVuMeter.NotifyUpdateVuMeter ( this, ob_UpdateVuMeter ) ;
-				UpdateVuMeterFromRecorder(this, new Events.Audio.Recorder.UpdateVuMeterEventArgs());
-			}
-             */
+            
 			LockSize = ReadPos - NextCaptureOffset;
 			if (LockSize < 0)
 				LockSize += m_iCaptureBufferSize;
@@ -498,8 +481,23 @@ namespace Obi.Audio
 			LockSize -= (LockSize % m_iNotifySize);
 			if (0 == LockSize)
 				return;
+
+            CaptureData = new byte [ LockSize ] ;
+
 			// Read the capture buffer.
-			CaptureData = (byte[])applicationBuffer.Read(NextCaptureOffset, typeof(byte), LockFlag.None, LockSize);
+            //try
+            //{
+                CaptureData = (byte[]) applicationBuffer.Read ( NextCaptureOffset , typeof(byte) , LockFlag.None , LockSize );
+            //}
+            //catch (System.Exception Ex)
+            //{
+                //MessageBox.Show( "Size" + ( m_iCaptureBufferSize.ToString () ) +  "Cap" + ( NextCaptureOffset.ToString () ) + "Log" + ( LockSize.ToString () ) + Ex.ToString());
+            //}
+
+            // copy Capture data to an array and update it to VuMeter
+                Array.Copy( CaptureData , arUpdateVM, m_UpdateVMArrayLength);
+                UpdateVuMeterFromRecorder(this, new Events.Audio.Recorder.UpdateVuMeterEventArgs());            
+
 			FileInfo fi = new FileInfo(m_sFileName);
 			BinaryWriter Writer = new BinaryWriter(File.OpenWrite(m_sFileName));
 			// Write the data into the wav file");	   
@@ -579,7 +577,7 @@ namespace Obi.Audio
                 m_UpdateVMArrayLength = m_iCaptureBufferSize / 20;
                 m_UpdateVMArrayLength = Convert.ToInt32(CalculationFunctions.AdaptToFrame(Convert.ToInt32(m_UpdateVMArrayLength), m_FrameSize));
                 arUpdateVM = new byte[m_UpdateVMArrayLength];
-                tmUpdateVuMeter.Enabled = true;
+                //tmUpdateVuMeter.Enabled = true;   // Avn: Currently timer is disabled , may not require if CaptureData works
 			}
 			else
 			{
@@ -617,11 +615,10 @@ namespace Obi.Audio
             applicationBuffer.GetCurrentPosition(out CapturePos, out ReadPos);
             ReadPos = CapturePos;            
 
-            if (ReadPos >  m_UpdateVMArrayLength )
+            if ( ReadPos >  m_UpdateVMArrayLength    &&     ReadPos < ( m_iCaptureBufferSize - m_UpdateVMArrayLength  )   )
             {
-                Array.Copy(applicationBuffer.Read(ReadPos - m_UpdateVMArrayLength, typeof(byte), LockFlag.None, m_UpdateVMArrayLength ), arUpdateVM, m_UpdateVMArrayLength);
-                //ob_UpdateVuMeter.NotifyUpdateVuMeter ( this, ob_UpdateVuMeter ) ;
-                UpdateVuMeterFromRecorder(this, new Events.Audio.Recorder.UpdateVuMeterEventArgs());
+
+                //UpdateVuMeterFromRecorder(this, new Events.Audio.Recorder.UpdateVuMeterEventArgs());
             }
         }
 
