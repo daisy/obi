@@ -80,8 +80,11 @@ namespace Obi.UserControls
 
             // Mark section used/unused (by default, i.e. if disabled, "unused")
             mMarkStripAsUnusedToolStripMenuItem.Enabled = isStripSelected;
-            mMarkStripAsUnusedToolStripMenuItem.Text = String.Format(Localizer.Message("mark_section_as_used_or_unused"),
-                Localizer.Message(isStripSelected && !SelectedNode.Used ? "used" : "unused"));
+            mMarkStripAsUnusedToolStripMenuItem.Text = String.Format(Localizer.Message("mark_x_as_y"),
+                Localizer.Message("all_phrases"), Localizer.Message(isStripSelected && !SelectedNode.Used ? "used" : "unused"));
+            mMarkPhraseAsUnusedToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mMarkPhraseAsUnusedToolStripMenuItem.Text = String.Format(Localizer.Message("mark_x_as_y"),
+                Localizer.Message("phrase"), Localizer.Message(isAudioBlockSelected && !SelectedNode.Used ? "used" : "unused"));
         }
 
         /// <summary>
@@ -411,6 +414,23 @@ namespace Obi.UserControls
         private void mMarkStripAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ToggleSelectedStripUsed();
+        }
+
+        /// <summary>
+        /// Toggle the "used" status of the selected phrase.
+        /// Do nothing if no phrase is selected.
+        /// </summary>
+        internal void ToggleSelectedPhraseUsed()
+        {
+            if (mSelectedPhrase != null)
+            {
+                mSelectedPhrase.Project.ToggleNodeUsed(mSelectedPhrase, this);
+            }
+        }
+
+        private void mMarkPhraseAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToggleSelectedPhraseUsed();
         }
     }
 }

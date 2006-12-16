@@ -79,6 +79,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to all phrases.
+        /// </summary>
+        internal static string all_phrases {
+            get {
+                return ResourceManager.GetString("all_phrases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This annotation is useful during production, but it does not appear in the exported presentation..
         /// </summary>
         internal static string annotation_tooltip {
@@ -436,9 +445,9 @@ namespace Obi {
         /// <summary>
         ///   Looks up a localized string similar to Mar&amp;k {0} as {1}.
         /// </summary>
-        internal static string mark_strip_or_section_as_used_or_unused {
+        internal static string mark_x_as_y {
             get {
-                return ResourceManager.GetString("mark_strip_or_section_as_used_or_unused", resourceCulture);
+                return ResourceManager.GetString("mark_x_as_y", resourceCulture);
             }
         }
         
@@ -723,7 +732,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  phrase.
+        ///   Looks up a localized string similar to phrase.
         /// </summary>
         internal static string phrase {
             get {

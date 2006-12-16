@@ -23,7 +23,14 @@ namespace Obi.UserControls
         public override PhraseNode Node
         {
             get { return mNode; }
-            set { mNode = value; }
+            set
+            {
+                mNode = value;
+                if (mNode != null)
+                {
+                    BackColor = mNode.Used ? Colors.PhraseUsedUnselected : Colors.PhraseUnusedUnselected;
+                }
+            }
         }
 
         /// <summary>
@@ -118,7 +125,8 @@ namespace Obi.UserControls
 
         internal override void MarkDeselected()
         {
-            BackColor = Color.MistyRose;
+            base.MarkDeselected();
+            BackColor = mNode.Used ? Colors.PhraseUsedUnselected : Colors.PhraseUnusedUnselected;
             mPage.BackColor = BackColor;
             mAnnotationBlock.MarkDeselected();
             // if we are editing but selected a different block, stop editing.
@@ -127,7 +135,8 @@ namespace Obi.UserControls
 
         internal override void MarkSelected()
         {
-            BackColor = Color.LightPink;
+            base.MarkSelected();
+            BackColor = mNode.Used ? Colors.PhraseUsedSelected : Colors.PhraseUnusedSelected;
             mPage.BackColor = BackColor;
             mAnnotationBlock.MarkSelected();
         }

@@ -10,51 +10,72 @@ namespace Obi.UserControls
     /// Type agnostic abstract base for all blocks occuring in strips
     /// </summary>
     /// //added my mg 20060804
-    /// // made unabastract as this fucks up the designer :( JQ
+    /// // made unabstract as this fucks up the designer :( JQ
     public /*abstract*/ class AbstractBlock: UserControl
     {
-        protected PhraseNode mNode;                 // the node for this block
-        protected SectionStrip mSectionStrip;     // the SectionStrip that contains this block
-        protected StripManagerPanel mManager;     // the manager for this block
+        protected PhraseNode mNode;            // the node for this block
+        protected SectionStrip mSectionStrip;  // the SectionStrip that contains this block
+        protected StripManagerPanel mManager;  // the manager for this block
+        protected bool mSelected;              // true if the block is selected
 
-        #region properties
-
-        //md 20061201 i think it's safe to change this from corenode to phrasenode
+        /// <summary>
+        /// The node for this block.
+        /// </summary>
         public virtual PhraseNode Node
         {
             get { return mNode; }
             set { mNode = value; }
         }
 
+        /// <summary>
+        /// The section strip in which the block appears.
+        /// </summary>
         public SectionStrip SectionStrip
         {
             get { return mSectionStrip; }
             set { mSectionStrip = value; }
         }
 
+        /// <summary>
+        /// The strip manager.
+        /// </summary>
         public virtual StripManagerPanel Manager
         {
             get { return mManager; }
             set { mManager = value; }
         }
 
-        #endregion
+        /// <summary>
+        /// True if the block is currently selected.
+        /// </summary>
+        public bool Selected
+        {
+            get { return mSelected; }
+            set
+            {
+                mSelected = value;
+                if (mNode != null) if (mSelected) MarkSelected(); else MarkDeselected();
+            }
+        }
 
-        #region instantiators
-        
         public AbstractBlock()
         {
         }
 
-        #endregion
-
+        /// <summary>
+        /// Mark the block as being selected.
+        /// </summary>
         internal virtual void MarkSelected()
         {
+            mSelected = true;
         }
 
+        /// <summary>
+        /// Mark the block as being deselected.
+        /// </summary>
         internal virtual void MarkDeselected()
         {
+            mSelected = false;
         }
-
     }
 }

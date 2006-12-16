@@ -12,5 +12,10 @@ namespace Obi.UserControls
 
         public static Color SectionUsed = Color.SteelBlue;
         public static Color SectionUnused = Color.Silver;
+
+        public static Color PhraseUsedUnselected = Color.Pink;
+        public static Color PhraseUsedSelected = Color.HotPink;
+        public static Color PhraseUnusedUnselected = Color.Silver;
+        public static Color PhraseUnusedSelected = Color.Gray;
     }
 }
