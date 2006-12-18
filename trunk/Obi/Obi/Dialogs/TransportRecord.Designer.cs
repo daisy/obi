@@ -121,7 +121,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.mPauseButton);
             this.Controls.Add(this.mRecordButton);
             this.Name = "TransportRecord";
-            this.Text = "TransportRecord";
+            this.Text = "Record";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TransportRecord_FormClosing);
             this.Load += new System.EventHandler(this.TransportRecord_Load);
             this.ResumeLayout(false);
