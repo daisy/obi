@@ -31,33 +31,86 @@ namespace Obi.Dialogs
 
         private void mPauseButton_Click(object sender, EventArgs e)
         {
-            mRecordingSession.Stop();
-            mRecordingSession.Listen();
-            mPauseButton.Visible = false ;
-            mRecordButton.Visible = true;
-            mRecordButton.Focus();
+            Pause();
         }
+
+/// <summary>
+///  Pauses and commits recording if it is going on
+/// <summary>
+/// </summary>
+/// </summary>
+        private void Pause()
+        {
+            if (mPauseButton.Visible == true)
+            {
+                mRecordingSession.Stop();
+                mRecordingSession.Listen();
+                bool PauseFocussed = mPauseButton.Focused;
+                mRecordButton.Visible = true;
+                mPauseButton.Visible = false;
+                this.Text = "Recording Paused";
+
+                if ( PauseFocussed == true )
+                mRecordButton.Focus();
+
+            }
+        }
+
 
         private void mRecordButton_Click(object sender, EventArgs e)
         {
-            mRecordingSession.Stop();
-            mRecordingSession.Record();
-            mPauseButton.Visible = true;
-            mRecordButton.Visible = false;
-            mPauseButton.Focus();
+            StartRecording();
         }
 
+
+        /// <summary>
+        ///  Starts Recording if paused or initialised
+        /// <summary></summary>
+        /// </summary>
+        private void StartRecording ()
+        {
+            if (mRecordButton.Visible == true)
+            {
+                mRecordingSession.Stop();
+                mRecordingSession.Record();
+                bool RecordFocussed = mRecordButton.Focused;
+                mPauseButton.Visible = true;
+                mRecordButton.Visible = false;
+                this.Text = "Recording";
+
+                if ( RecordFocussed == true )
+                mPauseButton.Focus();
+
+            }
+        }
+
+
         private void btnPageMark_Click(object sender, EventArgs e)
+        {
+            PageMark();
+        }
+
+        private void PageMark()
         {
             mRecordingSession.MarkPage();
         }
 
         private void btnBeginSection_Click(object sender, EventArgs e)
         {
+            NextSection();
+        }
+
+        private void NextSection()
+        {
             mRecordingSession.NextSection();
         }
 
         private void btnPhraseMark_Click(object sender, EventArgs e)
+        {
+            PhraseMark();
+        }
+
+        private void PhraseMark ()
         {
             mRecordingSession.NextPhrase();
         }
@@ -74,6 +127,38 @@ namespace Obi.Dialogs
         {
             mRecordingSession.Stop();
         }
+
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+
+            switch (keyData)
+            {
+                case Keys.Control | Keys.Space :
+                    if (mRecordButton.Visible == true)
+                        StartRecording();
+                    else if (mPauseButton.Visible == true)
+                        Pause();
+                    break;
+
+                case Keys.H :
+                    NextSection();
+                    break;
+
+                case Keys.J :
+                    PhraseMark();
+                    break;
+
+                case Keys.K :
+                    PageMark();
+                    break;
+
+
+            }
+
+            return base.ProcessDialogKey(keyData);
+
+        }
+
 
     }
 }
