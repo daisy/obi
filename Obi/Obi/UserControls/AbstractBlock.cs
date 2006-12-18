@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
@@ -9,19 +10,17 @@ namespace Obi.UserControls
     /// <summary>
     /// Type agnostic abstract base for all blocks occuring in strips
     /// </summary>
-    /// //added my mg 20060804
-    /// // made unabstract as this fucks up the designer :( JQ
     public /*abstract*/ class AbstractBlock: UserControl
     {
-        protected PhraseNode mNode;            // the node for this block
+        protected PhraseNode mNode;            // should be more generic
         protected SectionStrip mSectionStrip;  // the SectionStrip that contains this block
         protected StripManagerPanel mManager;  // the manager for this block
         protected bool mSelected;              // true if the block is selected
 
         /// <summary>
-        /// The node for this block.
+        /// The node associated with the block.
         /// </summary>
-        public virtual PhraseNode Node
+        public /*abstract*/ virtual PhraseNode Node
         {
             get { return mNode; }
             set { mNode = value; }
@@ -48,14 +47,19 @@ namespace Obi.UserControls
         /// <summary>
         /// True if the block is currently selected.
         /// </summary>
-        public bool Selected
+        public virtual bool Selected
         {
             get { return mSelected; }
-            set
-            {
-                mSelected = value;
-                if (mNode != null) if (mSelected) MarkSelected(); else MarkDeselected();
-            }
+            set { mSelected = value; }
+        }
+
+        /// <summary>
+        /// True if the block (or rather its node) is used.
+        /// Update the widget to reflect the change.
+        /// </summary>
+        public virtual /*abstract*/ bool Used
+        {
+            set { }
         }
 
         public AbstractBlock()
@@ -63,19 +67,21 @@ namespace Obi.UserControls
         }
 
         /// <summary>
-        /// Mark the block as being selected.
+        /// A corresponding block was selected.
         /// </summary>
-        internal virtual void MarkSelected()
+        internal virtual void AlignSelected()
         {
-            mSelected = true;
+            Size = new Size(Width + Colors.AbstractBlockSelectionWidth * 2, Height);
+            Padding = new Padding(Colors.AbstractBlockSelectionWidth);
         }
 
         /// <summary>
-        /// Mark the block as being deselected.
+        /// A corresponding block was deselected.
         /// </summary>
-        internal virtual void MarkDeselected()
+        internal virtual void AlignDeselected()
         {
-            mSelected = false;
+            Size = new Size(Width - Colors.AbstractBlockSelectionWidth * 2, Height);
+            Padding = new Padding(0);
         }
     }
 }

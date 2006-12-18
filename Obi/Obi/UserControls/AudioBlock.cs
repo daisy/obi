@@ -28,8 +28,54 @@ namespace Obi.UserControls
                 mNode = value;
                 if (mNode != null)
                 {
-                    BackColor = mNode.Used ? Colors.PhraseUsedUnselected : Colors.PhraseUnusedUnselected;
+                    // set the correct background color depending on the used status of the node.
+                    BackColor = mNode.Used ? Colors.AudioBlockUsed : Colors.AudioBlockUnused;
                 }
+                if (mAnnotationBlock != null)
+                {
+                    mAnnotationBlock.Used = mNode != null ? mNode.Used : false;
+                }
+            }
+        }
+
+        public override bool Selected
+        {
+            get { return base.Selected; }
+            set
+            {
+                if (mSelected != value)
+                {
+                    mSelected = value;
+                    StopEditingPageNumber();
+                    if (mSelected)
+                    {
+                        Size = new Size(Width + Colors.AbstractBlockSelectionWidth * 2,
+                            Height + Colors.AbstractBlockSelectionWidth * 2);
+                        Padding = new Padding(Colors.AbstractBlockSelectionWidth);
+                        mAnnotationBlock.AlignSelected();
+                    }
+                    else
+                    {
+                        Size = new Size(Width - Colors.AbstractBlockSelectionWidth * 2,
+                            Height - Colors.AbstractBlockSelectionWidth * 2);
+                        Padding = new Padding(0);
+                        mAnnotationBlock.AlignDeselected();
+                    }
+                    // force painting (calling the overridden OnPaint)
+                    Invalidate();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Used in the project or excluded from it.
+        /// </summary>
+        public override bool Used
+        {
+            set
+            {
+                BackColor = value ? Colors.AudioBlockUsed : Colors.AudioBlockUnused;
+                mLabel.BackColor = BackColor;
             }
         }
 
@@ -122,24 +168,6 @@ namespace Obi.UserControls
         #endregion
 
         #region AudioBlock (this)
-
-        internal override void MarkDeselected()
-        {
-            base.MarkDeselected();
-            BackColor = mNode.Used ? Colors.PhraseUsedUnselected : Colors.PhraseUnusedUnselected;
-            mPage.BackColor = BackColor;
-            mAnnotationBlock.MarkDeselected();
-            // if we are editing but selected a different block, stop editing.
-            StopEditingPageNumber();
-        }
-
-        internal override void MarkSelected()
-        {
-            base.MarkSelected();
-            BackColor = mNode.Used ? Colors.PhraseUsedSelected : Colors.PhraseUnusedSelected;
-            mPage.BackColor = BackColor;
-            mAnnotationBlock.MarkSelected();
-        }
 
         private void AudioBlock_Click(object sender, EventArgs e)
         {
@@ -251,6 +279,23 @@ namespace Obi.UserControls
             int widest = wlabel > wtime ? wlabel : wtime;
             MinimumSize = new Size(widest, Height);
             if (ChangedMinimumSize != null) ChangedMinimumSize(this, new EventArgs());
+        }
+
+        /// <summary>
+        /// Paint borders on the block if selected. In thick red pen, no less.
+        /// </summary>
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            if (mSelected)
+            {
+                Pen pen = new Pen(Colors.AbstractBlockSelectionColor, Colors.AbstractBlockSelectionWidth);
+                e.Graphics.DrawRectangle(pen, new Rectangle(Colors.AbstractBlockSelectionWidth / 2,
+                    Colors.AbstractBlockSelectionWidth / 2,
+                    Width - Colors.AbstractBlockSelectionWidth,
+                    Height - Colors.AbstractBlockSelectionWidth));
+                pen.Dispose();
+            }
         }
     }
 }

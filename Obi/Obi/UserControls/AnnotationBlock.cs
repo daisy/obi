@@ -15,12 +15,50 @@ namespace Obi.UserControls
         public event SectionStrip.ChangedMinimumSizeHandler ChangedMinimumSize;
 
         /// <summary>
+        /// Do not use Node on an annotation block.
+        /// </summary>
+        public override PhraseNode Node
+        {
+            get { return mAudioBlock == null ? null : mAudioBlock.Node; }
+            set { throw new Exception("Cannot set the node of an annotation block; set the node of its phrase block."); }
+        }
+
+        public override bool Selected
+        {
+            get { return base.Selected; }
+            set
+            {
+                mSelected = value;
+                if (mAudioBlock.Node.Annotation != "")
+                {
+                    if (mSelected) StartRenaming(); else UpdateText();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Used in the project or excluded from it.
+        /// </summary>
+        public override bool Used
+        {
+            set
+            {
+                BackColor = value ? Colors.AnnotationBlockUsed : Colors.AnnotationBlockUnused;
+                mLabel.BackColor = BackColor;
+            }
+        }
+
+        /// <summary>
         /// Audio block with which this annotation is synchronized.
         /// </summary>
         public AudioBlock AudioBlock
         {
             get { return mAudioBlock; }
-            set { mAudioBlock = value; }
+            set
+            {
+                mAudioBlock = value;
+                Used = mAudioBlock != null && mAudioBlock.Node != null ? mAudioBlock.Node.Used : false;
+            }
         }
 
         /// <summary>
@@ -36,23 +74,7 @@ namespace Obi.UserControls
         {
             InitializeComponent();
             InitializeToolTips();
-        }
-
-        internal override void MarkDeselected()
-        {
-            BackColor = Color.PowderBlue;
-            mLabel.BackColor = BackColor;
-        }
-
-        internal override void MarkSelected()
-        {
-            BackColor = Color.DeepSkyBlue;
-            mLabel.BackColor = BackColor;
-        }
-
-        private void mLabel_Click(object sender, EventArgs e)
-        {
-            mAudioBlock.Manager.SelectedPhraseNode = mAudioBlock.Node;
+            Used = false;
         }
 
         private void mRenameBox_KeyDown(object sender, KeyEventArgs e)
@@ -72,18 +94,14 @@ namespace Obi.UserControls
 
         private void AnnotationBlock_Click(object sender, EventArgs e)
         {
-            mAudioBlock.Manager.SelectedPhraseNode = mAudioBlock.Node;
+            mAudioBlock.Manager.SelectedPhraseNode = null;
+            Selected = true;
+            // mAudioBlock.Manager.SelectedPhraseNode = mAudioBlock.Node;
         }
 
         public void StartRenaming()
         {
-/*med 20061120 svn merge: commenting out old code from the trunk (0.6)
-            mLabel.Visible = false;
-            mRenameBox.Size = new Size(Width - mRenameBox.Location.X - mRenameBox.Margin.Right, mRenameBox.Height);
-*/
-/*med 20061120 svn merge: probably will be replaced with this*/
             mRenameBox.Width = Width - mRenameBox.Location.X - mRenameBox.Margin.Right;
-            
             mRenameBox.BackColor = BackColor;
             mRenameBox.Text = mLabel.Text;
             mRenameBox.SelectAll();

@@ -211,11 +211,11 @@ namespace Obi.UserControls
                 AudioBlock block = mPhraseNodeMap[(PhraseNode)e.Node];
                 if (mSelectedPhrase == (PhraseNode)e.Node)
                 {
-                    block.MarkSelected();
+                    block.Selected = true;
                 }
                 else
                 {
-                    block.MarkDeselected();
+                    block.Selected = false;
                 }
             }
         }

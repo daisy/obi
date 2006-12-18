@@ -123,7 +123,7 @@ namespace Obi.UserControls
                     mProjectPanel.DeselectEverything();
 
                     mSelectedPhrase = value;
-                    mPhraseNodeMap[mSelectedPhrase].MarkSelected();
+                    mPhraseNodeMap[mSelectedPhrase].Selected = true;
                     SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(true, mPhraseNodeMap[mSelectedPhrase]));
                 }
                 //or deselect the old selection
@@ -132,7 +132,7 @@ namespace Obi.UserControls
                     if (mSelectedPhrase != null)
                     {
                         AudioBlock block = mPhraseNodeMap[mSelectedPhrase];
-                        block.MarkDeselected();
+                        block.Selected = false;
                         mSelectedPhrase = value; //null
                         SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(false, block));
                     }
