@@ -198,6 +198,7 @@ namespace Obi.UserControls
         
         private void SectionStrip_Click(object sender, EventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("click on section strip");
             mManager.SelectedSectionNode = mNode;
         }
 

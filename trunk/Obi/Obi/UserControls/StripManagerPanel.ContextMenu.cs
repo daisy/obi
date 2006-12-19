@@ -55,6 +55,7 @@ namespace Obi.UserControls
             bool canRemoveAnnotation = isAudioBlockSelected;
 
             mAddStripToolStripMenuItem.Enabled = true;
+
             mRenameStripToolStripMenuItem.Enabled = isStripSelected;
             mDeleteStripToolStripMenuItem.Enabled = isStripSelected;
 
@@ -85,6 +86,56 @@ namespace Obi.UserControls
             mMarkPhraseAsUnusedToolStripMenuItem.Enabled = isAudioBlockSelected;
             mMarkPhraseAsUnusedToolStripMenuItem.Text = String.Format(Localizer.Message("mark_x_as_y"),
                 Localizer.Message("phrase"), Localizer.Message(isAudioBlockSelected && !SelectedNode.Used ? "used" : "unused"));
+
+            MakeEnabledMenuItemsVisible();
+        }
+
+        //md 20061219 
+        /// <summary>
+        /// make the context menu items visible based on if they are enabled or greyed-out
+        /// </summary>
+        // problems: tool strip separators still visible
+        // this is probably redundant, and could just be done instead of "enabling" things first
+        // but that is for later.  still trying things out now.
+        private void MakeEnabledMenuItemsVisible()
+        {
+            mAddStripToolStripMenuItem.Visible = mAddStripToolStripMenuItem.Enabled;
+
+            mRenameStripToolStripMenuItem.Visible = mRenameStripToolStripMenuItem.Enabled;
+            mDeleteStripToolStripMenuItem.Visible = mDeleteStripToolStripMenuItem.Enabled;
+
+            mImportAudioFileToolStripMenuItem.Visible = mImportAudioFileToolStripMenuItem.Enabled;
+            mSplitAudioBlockToolStripMenuItem.Visible = mSplitAudioBlockToolStripMenuItem.Enabled;
+            mApplyPhraseDetectionToolStripMenuItem.Visible = mApplyPhraseDetectionToolStripMenuItem.Enabled;
+            mMergeWithNextAudioBlockToolStripMenuItem.Visible = mMergeWithNextAudioBlockToolStripMenuItem.Enabled;
+            mCutAudioBlockToolStripMenuItem.Visible = mCutAudioBlockToolStripMenuItem.Enabled;
+            mCopyAudioBlockToolStripMenuItem.Visible = mCopyAudioBlockToolStripMenuItem.Enabled;
+            mPasteAudioBlockToolStripMenuItem.Visible = mPasteAudioBlockToolStripMenuItem.Enabled;
+            mDeleteAudioBlockToolStripMenuItem.Visible = mDeleteAudioBlockToolStripMenuItem.Enabled;
+            mMoveAudioBlockForwardToolStripMenuItem.Visible = mMoveAudioBlockForwardToolStripMenuItem.Enabled;
+            mMoveAudioBlockBackwardToolStripMenuItem.Visible = mMoveAudioBlockBackwardToolStripMenuItem.Enabled;
+            mMoveAudioBlockToolStripMenuItem.Visible = mMoveAudioBlockToolStripMenuItem.Enabled;
+
+            mEditAnnotationToolStripMenuItem.Visible = mEditAnnotationToolStripMenuItem.Enabled;
+            mRemoveAnnotationToolStripMenuItem.Visible = mRemoveAnnotationToolStripMenuItem.Enabled;
+
+            mSetPageNumberToolStripMenuItem.Visible = mSetPageNumberToolStripMenuItem.Enabled;
+            mRemovePageNumberToolStripMenuItem.Visible = mRemovePageNumberToolStripMenuItem.Enabled;
+
+            mShowInTOCViewToolStripMenuItem.Visible = mShowInTOCViewToolStripMenuItem.Enabled;
+
+            mMarkStripAsUnusedToolStripMenuItem.Visible = mMarkStripAsUnusedToolStripMenuItem.Enabled;
+            mMarkPhraseAsUnusedToolStripMenuItem.Visible = mMarkPhraseAsUnusedToolStripMenuItem.Enabled;
+
+            //this is the separator that appears before the audio block commands
+            toolStripSeparator1.Visible = mImportAudioFileToolStripMenuItem.Enabled || mCutAudioBlockToolStripMenuItem.Enabled;
+            //and this one comes before the annotation commands
+            toolStripSeparator3.Visible = mEditAnnotationToolStripMenuItem.Enabled;
+            //this one before the show in TOC view option
+            toolStripSeparator2.Visible = mShowInTOCViewToolStripMenuItem.Enabled;
+            //this one before the page number commands
+            toolStripSeparator4.Visible = mRemovePageNumberToolStripMenuItem.Enabled;
+
         }
 
         /// <summary>
