@@ -49,19 +49,21 @@ namespace Obi.UserControls
                     StopEditingPageNumber();
                     if (mSelected)
                     {
-                        Size = new Size(Width + Colors.AbstractBlockSelectionWidth * 2,
-                            Height + Colors.AbstractBlockSelectionWidth * 2);
-                        Padding = new Padding(Colors.AbstractBlockSelectionWidth);
+                        Size = new Size(Width + Colors.SelectionWidth * 2,
+                            Height + Colors.SelectionWidth * 2);
+                        Padding = new Padding(Colors.SelectionWidth);
+                        System.Diagnostics.Debug.Assert(mAnnotationBlock != null, "Annotation block must be set.");
                         mAnnotationBlock.AlignSelected();
                     }
                     else
                     {
-                        Size = new Size(Width - Colors.AbstractBlockSelectionWidth * 2,
-                            Height - Colors.AbstractBlockSelectionWidth * 2);
+                        Size = new Size(Width - Colors.SelectionWidth * 2,
+                            Height - Colors.SelectionWidth * 2);
                         Padding = new Padding(0);
-                        mAnnotationBlock.AlignDeselected();
+                        if (mAnnotationBlock != null) mAnnotationBlock.AlignDeselected();
                     }
                     // force painting (calling the overridden OnPaint)
+                    if (Parent != null) Parent.Invalidate();
                     Invalidate();
                 }
             }
@@ -284,16 +286,17 @@ namespace Obi.UserControls
         /// <summary>
         /// Paint borders on the block if selected. In thick red pen, no less.
         /// </summary>
+        /// <remarks>Let's look at ControlPaint for better results.</remarks>
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
             if (mSelected)
             {
-                Pen pen = new Pen(Colors.AbstractBlockSelectionColor, Colors.AbstractBlockSelectionWidth);
-                e.Graphics.DrawRectangle(pen, new Rectangle(Colors.AbstractBlockSelectionWidth / 2,
-                    Colors.AbstractBlockSelectionWidth / 2,
-                    Width - Colors.AbstractBlockSelectionWidth,
-                    Height - Colors.AbstractBlockSelectionWidth));
+                Pen pen = new Pen(Colors.SelectionColor, Colors.SelectionWidth);
+                e.Graphics.DrawRectangle(pen, new Rectangle(Colors.SelectionWidth / 2,
+                    Colors.SelectionWidth / 2,
+                    Width - Colors.SelectionWidth,
+                    Height - Colors.SelectionWidth));
                 pen.Dispose();
             }
         }

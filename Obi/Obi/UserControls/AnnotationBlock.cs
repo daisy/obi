@@ -29,7 +29,7 @@ namespace Obi.UserControls
             set
             {
                 mSelected = value;
-                if (mAudioBlock.Node.Annotation != "")
+                if (mAudioBlock != null && mAudioBlock.Node != null && mAudioBlock.Node.Annotation != "")
                 {
                     if (mSelected) StartRenaming(); else UpdateText();
                 }

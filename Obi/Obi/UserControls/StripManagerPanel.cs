@@ -85,7 +85,7 @@ namespace Obi.UserControls
                     mProjectPanel.DeselectEverything();
 
                     mSelectedSection = value;
-                    mSectionNodeMap[mSelectedSection].MarkSelected();
+                    mSectionNodeMap[mSelectedSection].Selected = true;
                     SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(true, mSectionNodeMap[mSelectedSection]));
                 }
                 //or deselect the old selection
@@ -94,7 +94,7 @@ namespace Obi.UserControls
                     if (mSelectedSection != null)
                     {
                         SectionStrip strip = mSectionNodeMap[mSelectedSection];
-                        strip.MarkDeselected();
+                        strip.Selected = false;
                         mSelectedSection = value; //null
                         SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(false, strip));
                     }

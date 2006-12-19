@@ -199,11 +199,11 @@ namespace Obi.UserControls
                 SectionStrip strip = mSectionNodeMap[(SectionNode)e.Node];
                 if (mSelectedSection == (SectionNode)e.Node)
                 {
-                    strip.MarkSelected();
+                    strip.Selected = true;
                 }
                 else
                 {
-                    strip.MarkDeselected();
+                    strip.Selected = false;
                 }
             }
             else if (e.Node is PhraseNode)

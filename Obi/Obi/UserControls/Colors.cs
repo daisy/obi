@@ -9,15 +9,12 @@ namespace Obi.UserControls
         public static Color AnnotationBlockUnused = Color.LightGray;
         public static Color AudioBlockUsed = Color.Pink;
         public static Color AudioBlockUnused = Color.LightGray;
+        public static Color SectionStripUsed = Color.Gold;  // try: Color.Wheat;
+        public static Color SectionStripUnused = Color.Gainsboro;  // lighter than light gray apparently
 
-        public static Color AbstractBlockSelectionColor = Color.Red;
-        public static int AbstractBlockSelectionWidth = 4;
+        public static Color SelectionColor = Color.Red;
+        public static int SelectionWidth = 4;
 
-        // remove those:
-        public static Color StripUsedUnselected = Color.PaleGreen;
-        public static Color StripUsedSelected = Color.Lime;
-        public static Color StripUnusedUnselected = Color.LightGray;
-        public static Color StripUnusedSelected = Color.Silver;
         public static Color SectionUsed = Color.SteelBlue;
         public static Color SectionUnused = Color.Silver;
     }

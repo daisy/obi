@@ -73,7 +73,7 @@ namespace Obi.UserControls
             this.BackColor = System.Drawing.Color.PowderBlue;
             this.Controls.Add(this.mLabel);
             this.Controls.Add(this.mRenameBox);
-            this.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
+            this.Margin = new System.Windows.Forms.Padding(0, 0, 2, 0);
             this.Name = "AnnotationBlock";
             this.Size = new System.Drawing.Size(72, 18);
             this.Load += new System.EventHandler(this.AnnotationBlock_Load);
