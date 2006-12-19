@@ -395,6 +395,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>TransportRecord.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\AbstractBlock.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AbstractBlock.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\AnnotationBlock.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AnnotationBlock.cs</DependentUpon>

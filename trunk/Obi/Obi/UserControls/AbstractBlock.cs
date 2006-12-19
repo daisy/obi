@@ -62,8 +62,15 @@ namespace Obi.UserControls
             set { }
         }
 
+        /// <summary>
+        /// Initialize the members of the block.
+        /// </summary>
         public AbstractBlock()
         {
+            mNode = null;
+            mManager = null;
+            mSectionStrip = null;
+            Selected = false;
         }
 
         /// <summary>
@@ -71,8 +78,8 @@ namespace Obi.UserControls
         /// </summary>
         internal virtual void AlignSelected()
         {
-            Size = new Size(Width + Colors.AbstractBlockSelectionWidth * 2, Height);
-            Padding = new Padding(Colors.AbstractBlockSelectionWidth);
+            Size = new Size(Width + Colors.SelectionWidth * 2, Height);
+            Padding = new Padding(Colors.SelectionWidth);
         }
 
         /// <summary>
@@ -80,8 +87,20 @@ namespace Obi.UserControls
         /// </summary>
         internal virtual void AlignDeselected()
         {
-            Size = new Size(Width - Colors.AbstractBlockSelectionWidth * 2, Height);
+            Size = new Size(Width - Colors.SelectionWidth * 2, Height);
             Padding = new Padding(0);
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // AbstractBlock
+            // 
+            this.Margin = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.Name = "AbstractBlock";
+            this.ResumeLayout(false);
+
         }
     }
 }

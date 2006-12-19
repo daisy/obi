@@ -12,9 +12,11 @@ namespace Obi.UserControls
 {
     public partial class SectionStrip : UserControl
     {
-        private StripManagerPanel mManager;  // the manager for this strip
-        private SectionNode mNode;              // the core node for this strip
-        private static float mDefaultFontSize = 12;
+        private StripManagerPanel mManager;          // the manager for this strip
+        private SectionNode mNode;                   // the core node for this strip
+        private bool mSelected;                      // currently selected
+
+        private static float mDefaultFontSize = 12;  // should move to Colors (and colors should be renamed)
 
         public delegate void ChangedMinimumSizeHandler(object sender, EventArgs e);
 
@@ -22,11 +24,7 @@ namespace Obi.UserControls
 
         public string Label
         {
-            get
-            {
-                return mLabel.Text;
-                //return mTextBox.Text;
-            }
+            get { return mLabel.Text; }
             set
             {
                 mRenameBox.Text = value;
@@ -36,40 +34,68 @@ namespace Obi.UserControls
 
         public StripManagerPanel Manager
         {
-            set
-            {
-                mManager = value;
-            }
-            //mg
-            get 
-            {
-                return mManager;
-            }
+            set { mManager = value; }
+            get { return mManager; }
         }
 
         public SectionNode Node
         {
-            get
-            {
-                return mNode;
-            }
+            get { return mNode; }
             set
             {
                 mNode = value;
-                MarkDeselected();
+                Selected = false;
                 SetStripFontSize();
             }
         }
 
+        public bool Selected
+        {
+            get { return mSelected; }
+            set
+            {
+                if (mSelected != value)
+                {
+                    mSelected = value;
+                    if (mSelected)
+                    {
+                        Size = new Size(Width + Colors.SelectionWidth * 2,
+                            Height + Colors.SelectionWidth * 2);
+                        Padding = new Padding(Colors.SelectionWidth);
+                    }
+                    else
+                    {
+                        Size = new Size(Width - Colors.SelectionWidth * 2,
+                            Height - Colors.SelectionWidth * 2);
+                        Padding = new Padding(0);
+                    }
+                    Invalidate();
+                }
+            }
+        }
+
+        public bool Used
+        {
+            get { return mNode.Used; }
+            set
+            {
+                if (mNode != null && mNode.Used != value)
+                {
+                    mNode.Used = value;
+                    BackColor = mNode.Used ? Colors.SectionStripUsed : Colors.SectionStripUnused;
+                    mLabel.BackColor = BackColor;
+                }
+            }
+        }
+
         #endregion
 
-        #region instantiators
         public SectionStrip()
         {
             InitializeComponent();
             InitializeToolTips();
+            Selected = false;
         }
-        #endregion
 
         #region TextBox (the label strip)
 
@@ -173,20 +199,6 @@ namespace Obi.UserControls
         private void SectionStrip_Click(object sender, EventArgs e)
         {
             mManager.SelectedSectionNode = mNode;
-        }
-
-        public void MarkSelected()
-        {
-            // BackColor = Color.Orange;
-            BackColor = mNode.Used ? Colors.StripUsedSelected : Colors.StripUnusedSelected;
-            mRenameBox.BackColor = BackColor;
-        }
-
-        public void MarkDeselected()
-        {
-            // BackColor = Color.Gold;
-            BackColor = mNode.Used ? Colors.StripUsedUnselected : Colors.StripUnusedUnselected;
-            mRenameBox.BackColor = BackColor;
         }
 
         internal void SetStripFontSize()
@@ -328,6 +340,24 @@ namespace Obi.UserControls
             this.mToolTip.SetToolTip(this, Localizer.Message("section_strip_tooltip"));
             this.mToolTip.SetToolTip(this.mRenameBox, Localizer.Message("section_strip_name_tooltip"));
             this.mToolTip.SetToolTip(this.mLabel, Localizer.Message("section_strip_name_tooltip"));
+        }
+
+        /// <summary>
+        /// Paint borders on the block if selected. In thick red pen, no less.
+        /// </summary>
+        /// <remarks>Let's look at ControlPaint for better results.</remarks>
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            if (mSelected)
+            {
+                Pen pen = new Pen(Colors.SelectionColor, Colors.SelectionWidth);
+                e.Graphics.DrawRectangle(pen, new Rectangle(Colors.SelectionWidth / 2,
+                    Colors.SelectionWidth / 2,
+                    Width - Colors.SelectionWidth,
+                    Height - Colors.SelectionWidth));
+                pen.Dispose();
+            }
         }
     }
 }

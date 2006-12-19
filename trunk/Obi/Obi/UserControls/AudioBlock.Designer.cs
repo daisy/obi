@@ -93,7 +93,7 @@ namespace Obi.UserControls
             this.Controls.Add(this.mPage);
             this.Controls.Add(this.mLabel);
             this.Controls.Add(this.mTimeLabel);
-            this.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
+            this.Margin = new System.Windows.Forms.Padding(0, 0, 2, 0);
             this.Name = "AudioBlock";
             this.Size = new System.Drawing.Size(61, 54);
             this.DoubleClick += new System.EventHandler(this.AudioBlock_DoubleClick);

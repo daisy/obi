@@ -42,7 +42,7 @@ namespace Obi.UserControls
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mAudioLayoutPanel.AutoSize = true;
             this.mAudioLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.mAudioLayoutPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.mAudioLayoutPanel.BackColor = System.Drawing.Color.Transparent;
             this.mAudioLayoutPanel.Location = new System.Drawing.Point(3, 26);
             this.mAudioLayoutPanel.Name = "mAudioLayoutPanel";
             this.mAudioLayoutPanel.Size = new System.Drawing.Size(0, 0);
@@ -95,7 +95,7 @@ namespace Obi.UserControls
             // 
             this.mAnnotationLayoutPanel.AutoSize = true;
             this.mAnnotationLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.mAnnotationLayoutPanel.BackColor = System.Drawing.Color.LightYellow;
+            this.mAnnotationLayoutPanel.BackColor = System.Drawing.Color.Transparent;
             this.mAnnotationLayoutPanel.Location = new System.Drawing.Point(3, 29);
             this.mAnnotationLayoutPanel.Name = "mAnnotationLayoutPanel";
             this.mAnnotationLayoutPanel.Size = new System.Drawing.Size(0, 0);
@@ -109,7 +109,7 @@ namespace Obi.UserControls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.Color.PaleGreen;
+            this.BackColor = System.Drawing.Color.Wheat;
             this.Controls.Add(this.mAnnotationLayoutPanel);
             this.Controls.Add(this.mLabel);
             this.Controls.Add(this.mRenameBox);
