@@ -119,6 +119,9 @@ namespace Obi.UserControls
         /// </summary>
         public void UpdateText()
         {
+            //md 20061219 error checking
+            if (mManager.ProjectPanel == null) return;
+
             if (mRenameBox.Text != "" && mRenameBox.Text != mLabel.Text)
             {
                 mManager.EditedAudioBlockLabel(this.mAudioBlock, mRenameBox.Text);

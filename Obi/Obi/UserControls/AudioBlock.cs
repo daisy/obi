@@ -173,6 +173,7 @@ namespace Obi.UserControls
 
         private void AudioBlock_Click(object sender, EventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("click on audio blocks");
             mManager.SelectedPhraseNode = mNode; 
         }
 
@@ -300,5 +301,6 @@ namespace Obi.UserControls
                 pen.Dispose();
             }
         }
+
     }
 }

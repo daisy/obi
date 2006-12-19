@@ -294,5 +294,6 @@ namespace Obi.UserControls
             SelectedSectionNode = null;
             SelectedPhraseNode = null;
         }
+
     }
 }
