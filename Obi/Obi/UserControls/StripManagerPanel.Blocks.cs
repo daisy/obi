@@ -15,6 +15,9 @@ namespace Obi.UserControls
         /// <param name="newName">The new label for the block.</param>
         internal void EditedAudioBlockLabel(AudioBlock block, string newName)
         {
+            //md 20061220 fixes exit crash
+            if (mProjectPanel == null) return;
+
             TextMedia media = (TextMedia)block.Node.getPresentation().getMediaFactory().createMedia(MediaType.TEXT);
             media.setText(newName);
             Events.Node.SetMediaEventArgs e =

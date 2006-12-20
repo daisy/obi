@@ -857,7 +857,17 @@ namespace Obi
         {
             if (mProject != null)
             {
+                if (mProject.Clipboard.Section != null && mProjectPanel.SelectedNode is SectionNode)
+                {
+                    mProject.PasteSectionNodeRequested(this, new Obi.Events.Node.SectionNodeEventArgs(this, (SectionNode)mProjectPanel.SelectedNode));
+                }
+                else if (mProject.Clipboard.Phrase != null)
+                {
+                    mProject.PastePhraseNode(this, new Obi.Events.Node.NodeEventArgs(this, mProjectPanel.SelectedNode));
+                }
 
+                //else, the menu item should not have been enabled
+                else throw new Exception("Nothing to paste!");
             }
         }
 

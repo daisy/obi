@@ -17,21 +17,19 @@ namespace Obi.UserControls
     public partial class StripManagerPanel
     {
         //md
-        public event Events.SectionNodeHandler RequestToShallowDeleteSectionNode;
-        public event Events.SectionNodeHandler RequestToMoveSectionNodeDownLinear;
-        public event Events.SectionNodeHandler RequestToMoveSectionNodeUpLinear;
+        public event Events.SectionNodeHandler ShallowDeleteSectionNodeRequested;
+       
+        public event Events.SectionNodeHandler CutSectionNodeRequested;
+        public event Events.PhraseNodeHandler CutPhraseNodeRequested;
+        public event Events.SectionNodeHandler ShallowCopySectionNodeRequested;
+        public event Events.PhraseNodeHandler CopyPhraseNodeRequested;
+        public event Events.SectionNodeHandler PasteSectionNodeRequested;
+        public event Events.NodeEventHandler PastePhraseNodeRequested;
 
-        public event Events.SectionNodeHandler RequestToCutSectionNode;
-        public event Events.PhraseNodeHandler RequestToCutPhraseNode;
-        public event Events.SectionNodeHandler RequestToCopySectionNode;
-        public event Events.PhraseNodeHandler RequestToCopyPhraseNode;
-        public event Events.SectionNodeHandler RequestToPasteSectionNode;
-        public event Events.NodeEventHandler RequestToPastePhraseNode;
+        public Events.RequestToSetPageNumberHandler SetPageNumberRequested;
+        public Events.PhraseNodeHandler RemovePageNumberRequested;
 
-        public Events.RequestToSetPageNumberHandler RequestToSetPageNumber;
-        public Events.PhraseNodeHandler RequestToRemovePageNumber;
-
-        public Events.RequestToApplyPhraseDetectionHandler RequestToApplyPhraseDetection;
+        public Events.RequestToApplyPhraseDetectionHandler ApplyPhraseDetectionRequested;
 
         /// <summary>
         /// Enable/disable items depending on what is currently available.
@@ -217,7 +215,7 @@ namespace Obi.UserControls
                     Dialogs.SentenceDetection dialog = new Dialogs.SentenceDetection(silence);
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
-                        RequestToApplyPhraseDetection(this, new Events.Node.PhraseDetectionEventArgs(this, mSelectedPhrase,
+                        ApplyPhraseDetectionRequested(this, new Events.Node.PhraseDetectionEventArgs(this, mSelectedPhrase,
                             dialog.Threshold, dialog.Gap, dialog.LeadingSilence));
                     }
                 }
@@ -322,23 +320,8 @@ namespace Obi.UserControls
 
         public void DeleteSelectedSection()
         {
-            RequestToShallowDeleteSectionNode(this, new SectionNodeEventArgs(this, this.mSelectedSection));
+            ShallowDeleteSectionNodeRequested(this, new SectionNodeEventArgs(this, this.mSelectedSection));
         }
-
-        //md 20060812
-        //mg 20060813: made internal to allow obiform menu sync access
-        internal void upToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            RequestToMoveSectionNodeUpLinear(this, new SectionNodeEventArgs(this, this.mSelectedSection));
-        }
-
-        //md 20060812
-        //mg 20060813: made internal to allow obiform menu sync access
-        internal void downToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            RequestToMoveSectionNodeDownLinear(this, new SectionNodeEventArgs(this, this.mSelectedSection));
-        }
-
 
         /// <summary>
         /// Cut the selected block and store it in the block clip board.
@@ -354,7 +337,7 @@ namespace Obi.UserControls
         /// </summary>
         public void CutSelectedPhrase()
         {
-            RequestToCutPhraseNode(this, new PhraseNodeEventArgs(this, mSelectedPhrase));
+            CutPhraseNodeRequested(this, new PhraseNodeEventArgs(this, mSelectedPhrase));
         }
 
         /// <summary>
@@ -362,7 +345,7 @@ namespace Obi.UserControls
         /// </summary>
         public void CutSelectedSection()
         {
-            RequestToCutSectionNode(this, new SectionNodeEventArgs(this, mSelectedSection));
+            CutSectionNodeRequested(this, new SectionNodeEventArgs(this, mSelectedSection));
         }
 
         /// <summary>
@@ -380,7 +363,7 @@ namespace Obi.UserControls
         /// </summary>
         public void CopySelectedPhrase()
         {
-            RequestToCopyPhraseNode(this, new PhraseNodeEventArgs(this, mSelectedPhrase));
+            CopyPhraseNodeRequested(this, new PhraseNodeEventArgs(this, mSelectedPhrase));
         }
 
         /// <summary>
@@ -388,7 +371,7 @@ namespace Obi.UserControls
         /// </summary>
         public void CopySelectedSection()
         {
-            RequestToCopySectionNode(this, new SectionNodeEventArgs(this, mSelectedSection));
+            ShallowCopySectionNodeRequested(this, new SectionNodeEventArgs(this, mSelectedSection));
         }
 
         /// <summary>
@@ -409,7 +392,7 @@ namespace Obi.UserControls
         /// </summary>
         public void PastePhraseNode()
         {
-            RequestToPastePhraseNode(this, new NodeEventArgs(this,
+            PastePhraseNodeRequested(this, new NodeEventArgs(this,
                 mSelectedPhrase == null ? (CoreNode)mSelectedSection : (CoreNode)mSelectedPhrase));
         }
 
@@ -421,7 +404,7 @@ namespace Obi.UserControls
         {
             SectionNode contextNode = mSelectedSection;
             // if contextNode == null...
-            RequestToPasteSectionNode(this, new SectionNodeEventArgs(this, contextNode));
+            PasteSectionNodeRequested(this, new SectionNodeEventArgs(this, contextNode));
         }
 
         /// <summary>
@@ -445,7 +428,7 @@ namespace Obi.UserControls
                 PageProperty pageProp = mSelectedPhrase.getProperty(typeof(PageProperty)) as PageProperty;
                 if (pageProp != null)
                 {
-                    RequestToRemovePageNumber(this, new Events.Node.PhraseNodeEventArgs(sender, mSelectedPhrase));
+                    RemovePageNumberRequested(this, new Events.Node.PhraseNodeEventArgs(sender, mSelectedPhrase));
                 }
             }
         }

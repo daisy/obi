@@ -22,6 +22,8 @@ namespace Obi
         public event Events.SectionNodeHandler PastedSectionNode;
         public event Events.SectionNodeHandler UndidPasteSectionNode;
         public event Events.SectionNodeHandler ToggledSectionUsedState;
+        public event Events.SectionNodeHandler ShallowCopiedSectionNode;
+        public event Events.SectionNodeHandler ShallowCutSectionNode;
         
         // Here are the event handlers for request sent by the GUI when editing the TOC.
         // Every request is passed to a method that uses mostly the same arguments,
@@ -101,7 +103,7 @@ namespace Obi
         /// <param name="originalLabel"></param>
         public void AddExistingSectionNode(SectionNode node, CoreNode parent, int index, string originalLabel)
         {
-            AddChildSection(node, parent, index);
+            if (node.getParent() == null) AddChildSection(node, parent, index);
 
             if (originalLabel != null) Project.GetTextMedia(node).setText(originalLabel);
  
@@ -416,6 +418,17 @@ namespace Obi
             DoCutSectionNode(sender, e.Node);
         }
 
+        //md 20061220
+        public void ShallowCutSectionNodeRequested(object sender, Events.Node.SectionNodeEventArgs e)
+        {
+            DoShallowCutSectionNode(sender, e.Node);
+        }
+
+        public void DoShallowCutSectionNode(object sender, SectionNode sectionNode)
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
         //md 20060810
         public void DoCutSectionNode(object origin, SectionNode node)
         {
@@ -441,6 +454,12 @@ namespace Obi
             if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
+        //md 20061220
+        public void UndoShallowCutSectionNode()
+        {
+            mClipboard.Section = null;
+        }
+
         //md 20060810
         public void UndoCutSectionNode(SectionNode node, CoreNode parent, int index)
         {
@@ -452,6 +471,40 @@ namespace Obi
         public void CopySectionNodeRequested(object sender, Events.Node.SectionNodeEventArgs e)
         {
             CopySectionNode(sender, e.Node);
+        }
+
+        //md 20061219
+        public void ShallowCopySectionNodeRequested(object sender, Events.Node.SectionNodeEventArgs e)
+        {
+            
+            ShallowCopySectionNode(sender, e.Node);
+        }
+
+        //md 20061220
+        public void ShallowCopySectionNode(object origin, SectionNode node)
+        {
+            if (node == null) return;
+
+            Commands.TOC.ShallowCopySectionNode command = null;
+
+            if (origin != this)
+            {
+                command = new Commands.TOC.ShallowCopySectionNode(node);
+            }
+
+            mClipboard.Section = node;
+
+            ShallowCopiedSectionNode(this, new Events.Node.SectionNodeEventArgs(origin, mClipboard.Section));
+
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+        }
+
+        //md 20061220
+        internal void UndoShallowCopySectionNode(SectionNode mNode)
+        {
+            throw new Exception("The method or operation is not implemented.");
         }
 
         //md 20060810
