@@ -164,5 +164,28 @@ namespace Obi.UserControls
         {
             System.Diagnostics.Debug.Print("Hi, my name is annotation block and my size is {0}.", Size);
         }
+
+        
+
+        //md 20061220 added; not working yet
+        private void mRenameBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            //catch clipboard events
+            if (e.Control == true)
+            {
+                if (e.KeyCode == Keys.X) mRenameBox.Cut();
+                else if (e.KeyCode == Keys.Z) mRenameBox.Undo();
+                else if (e.KeyCode == Keys.C) mRenameBox.Copy();
+                else if (e.KeyCode == Keys.V) mRenameBox.Paste();
+                else if (e.KeyCode == Keys.A) mRenameBox.SelectAll();
+
+                //even though this is set to true, it doesn't seem to stop the keyboard events
+                //from going through to the rest of Obi
+                e.SuppressKeyPress = true;
+
+            }
+
+            
+        }
     }
 }

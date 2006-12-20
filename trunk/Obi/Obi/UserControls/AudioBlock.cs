@@ -257,7 +257,7 @@ namespace Obi.UserControls
                 {
                     // the number may be too big
                     int pageNumber = Int32.Parse(m.Value);
-                    mManager.RequestToSetPageNumber(this, new Events.Node.SetPageEventArgs(this, mNode, pageNumber));
+                    mManager.SetPageNumberRequested(this, new Events.Node.SetPageEventArgs(this, mNode, pageNumber));
                     mPage.ReadOnly = true;
                     Page = m.Value;
                 }

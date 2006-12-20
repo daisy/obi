@@ -92,4 +92,65 @@ namespace Obi.Commands.TOC
             mNode.Project.UndoPasteSectionNode(mNode);
         }
     }
+
+    class ShallowCutSectionNode : ShallowDeleteSectionNode
+    {
+        public override string Label
+        {
+            get { return Localizer.Message("cut_strip_command_label"); }
+        }
+
+        public ShallowCutSectionNode(SectionNode node)
+            : base(node)
+        {
+        }
+
+        /// <summary>
+        /// ReDo: uncut the node
+        /// </summary>
+        public override void Do()
+        {
+            mNode.Project.DoShallowCutSectionNode(mNode.Project, mNode);
+        }
+
+        /// <summary>
+        /// Undo: restore the node and its descendants.
+        /// </summary>
+        public override void Undo()
+        {
+            mNode.Project.UndoShallowCutSectionNode();
+            base.Undo();
+        }
+    }
+
+    class ShallowCopySectionNode : Command
+    {
+        private SectionNode mNode;
+
+        public override string Label
+        {
+            get { return Localizer.Message("copy_strip_command_label"); }
+        }
+
+        public ShallowCopySectionNode(SectionNode node)
+        {
+            mNode = node;
+        }
+
+        /// <summary>
+        /// ReDo: uncut the node
+        /// </summary>
+        public override void Do()
+        {
+            mNode.Project.ShallowCopySectionNode(mNode.Project, mNode);
+        }
+
+        /// <summary>
+        /// Undo: restore the node and its descendants.
+        /// </summary>
+        public override void Undo()
+        {
+            mNode.Project.UndoShallowCopySectionNode(mNode);
+        }
+    }
 }

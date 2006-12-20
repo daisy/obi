@@ -112,7 +112,7 @@ namespace Obi.UserControls
             this.mShowInTOCViewToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(224, 446);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(224, 468);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // mAddStripToolStripMenuItem

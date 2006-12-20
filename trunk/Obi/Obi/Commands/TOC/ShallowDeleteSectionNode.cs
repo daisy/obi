@@ -9,8 +9,8 @@ namespace Obi.Commands.TOC
 {
     class ShallowDeleteSectionNode : Command
     {
-        private SectionNode mNode;         // the node being deleted
-        private ListCommand mSubCommands;  // successive commands for redo
+        protected SectionNode mNode;         // the node being deleted
+        protected ListCommand mSubCommands;  // successive commands for redo
 
         public override string Label
         {

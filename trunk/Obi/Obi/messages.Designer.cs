@@ -732,7 +732,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to phrase.
+        ///   Looks up a localized string similar to  phrase.
         /// </summary>
         internal static string phrase {
             get {
@@ -915,7 +915,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to section.
+        ///   Looks up a localized string similar to  section.
         /// </summary>
         internal static string section {
             get {
