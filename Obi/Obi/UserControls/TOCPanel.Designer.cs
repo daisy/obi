@@ -33,18 +33,18 @@ namespace Obi.UserControls
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mAddSectionAtSameLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddSubSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mEditLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mRenameSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMoveOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMoveInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mCutSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mCopySectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPasteSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mMarkSectionAsUnusedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mDeleteSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.mShowInStripViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.mMarkSectionAsUnusedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,7 +71,7 @@ namespace Obi.UserControls
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mAddSectionAtSameLevelToolStripMenuItem,
             this.mAddSubSectionToolStripMenuItem,
-            this.mEditLabelToolStripMenuItem,
+            this.mRenameSectionToolStripMenuItem,
             this.mMoveOutToolStripMenuItem,
             this.mMoveInToolStripMenuItem,
             this.toolStripSeparator1,
@@ -104,11 +104,11 @@ namespace Obi.UserControls
             // 
             // mEditLabelToolStripMenuItem
             // 
-            this.mEditLabelToolStripMenuItem.Name = "mEditLabelToolStripMenuItem";
-            this.mEditLabelToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.mEditLabelToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
-            this.mEditLabelToolStripMenuItem.Text = "Re&name section";
-            this.mEditLabelToolStripMenuItem.Click += new System.EventHandler(this.mRenameToolStripMenuItem_Click);
+            this.mRenameSectionToolStripMenuItem.Name = "mEditLabelToolStripMenuItem";
+            this.mRenameSectionToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
+            this.mRenameSectionToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.mRenameSectionToolStripMenuItem.Text = "Re&name section";
+            this.mRenameSectionToolStripMenuItem.Click += new System.EventHandler(this.mRenameToolStripMenuItem_Click);
             // 
             // mMoveOutToolStripMenuItem
             // 
@@ -160,6 +160,14 @@ namespace Obi.UserControls
             this.mPasteSectionToolStripMenuItem.Text = "&Paste section";
             this.mPasteSectionToolStripMenuItem.Click += new System.EventHandler(this.mPasteSectionToolStripMenuItem_Click);
             // 
+            // mMarkSectionAsUnusedToolStripMenuItem
+            // 
+            this.mMarkSectionAsUnusedToolStripMenuItem.Name = "mMarkSectionAsUnusedToolStripMenuItem";
+            this.mMarkSectionAsUnusedToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.K)));
+            this.mMarkSectionAsUnusedToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.mMarkSectionAsUnusedToolStripMenuItem.Text = "Mar&k section as unused";
+            this.mMarkSectionAsUnusedToolStripMenuItem.Click += new System.EventHandler(this.mMarkSectionAsUnusedToolStripMenuItem_Click);
+            // 
             // mDeleteSectionToolStripMenuItem
             // 
             this.mDeleteSectionToolStripMenuItem.Name = "mDeleteSectionToolStripMenuItem";
@@ -186,14 +194,6 @@ namespace Obi.UserControls
             this.mToolTip.IsBalloon = true;
             this.mToolTip.ToolTipTitle = "Table of Contents View";
             // 
-            // mMarkSectionAsUnusedToolStripMenuItem
-            // 
-            this.mMarkSectionAsUnusedToolStripMenuItem.Name = "mMarkSectionAsUnusedToolStripMenuItem";
-            this.mMarkSectionAsUnusedToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.K)));
-            this.mMarkSectionAsUnusedToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
-            this.mMarkSectionAsUnusedToolStripMenuItem.Text = "Mar&k section as unused";
-            this.mMarkSectionAsUnusedToolStripMenuItem.Click += new System.EventHandler(this.mMarkSectionAsUnusedToolStripMenuItem_Click);
-            // 
             // TOCPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -212,7 +212,7 @@ namespace Obi.UserControls
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem mAddSectionAtSameLevelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mAddSubSectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mEditLabelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mRenameSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mDeleteSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
