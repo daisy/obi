@@ -441,7 +441,7 @@ namespace Obi.UserControls
         {
             if (mSelectedSection != null)
             {
-                mSelectedSection.Project.ToggleNodeUsed(mSelectedSection, this);
+                mSelectedSection.Project.ToggleNodeUsed(mSelectedSection, this, false);
             }
         }
 
@@ -458,7 +458,7 @@ namespace Obi.UserControls
         {
             if (mSelectedPhrase != null)
             {
-                mSelectedPhrase.Project.ToggleNodeUsed(mSelectedPhrase, this);
+                mSelectedPhrase.Project.ToggleNodeUsed(mSelectedPhrase, this, false);
             }
         }
 

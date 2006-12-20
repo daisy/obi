@@ -590,15 +590,50 @@ namespace Obi
         /// </summary>
         /// <param name="node">The node to modify.</param>
         /// <param name="origin">The originating view or command.</param>
-        internal void ToggleNodeUsed(ObiNode node, object origin)
+        /// <param name="deep">If true, modify all descendants; otherwise, just phrase children.</param>
+        internal void ToggleNodeUsed(ObiNode node, object origin, bool deep)
         {
-            node.Used = !node.Used;
+            bool used = !node.Used;
+            if (deep)
+            {
+                // mark all nodes in the subtree.
+                node.visitDepthFirst(
+                    delegate(ICoreNode n)
+                    {
+                        ObiNode _n = (ObiNode)n;
+                        if (_n.Used != used)
+                        {
+                            _n.Used = used;
+                            ToggledNodeUsedState(origin, new Events.Node.ObiNodeEventArgs(_n));
+                        }
+                        return true;
+                    },
+                    delegate(ICoreNode n) { }
+                );
+            }
+            else
+            {
+                // mark this node and its phrases if it is a section.
+                node.Used = used;
+                ToggledNodeUsedState(origin, new Events.Node.ObiNodeEventArgs(node));
+                SectionNode _n = node as SectionNode;
+                if (_n != null)
+                {
+                    for (int i = 0; i < _n.PhraseChildCount; ++i)
+                    {
+                        if (_n.Used != used)
+                        {
+                            _n.Used = used;
+                            ToggledNodeUsedState(origin, new Events.Node.ObiNodeEventArgs(_n));
+                        }
+                    }
+                }
+            }
             if (!(origin is Commands.Command))
             {
-                CommandCreated(this, new Events.Project.CommandCreatedEventArgs(new Commands.Node.ToggleUsed(node)));
+                CommandCreated(this, new Events.Project.CommandCreatedEventArgs(new Commands.Node.ToggleUsed(node, deep)));
             }
             Modified();
-            ToggledNodeUsedState(origin, new Events.Node.ObiNodeEventArgs(node));
         }
     }
 }

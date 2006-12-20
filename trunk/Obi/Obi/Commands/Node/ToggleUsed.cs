@@ -8,6 +8,7 @@ namespace Obi.Commands.Node
     {
         private ObiNode mNode;
         private bool mNowUsed;
+        private bool mDeep;
 
         public override string Label
         {
@@ -19,20 +20,21 @@ namespace Obi.Commands.Node
             }
         }
 
-        public ToggleUsed(ObiNode node)
+        public ToggleUsed(ObiNode node, bool deep)
         {
             mNode = node;
             mNowUsed = node.Used;
+            mDeep = deep;
         }
 
         public override void Do()
         {
-            mNode.Project.ToggleNodeUsed(mNode, this);
+            mNode.Project.ToggleNodeUsed(mNode, this, mDeep);
         }
 
         public override void Undo()
         {
-            mNode.Project.ToggleNodeUsed(mNode, this);
+            mNode.Project.ToggleNodeUsed(mNode, this, mDeep);
         }
     }
 }
