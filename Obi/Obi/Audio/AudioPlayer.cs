@@ -46,6 +46,9 @@ namespace Obi.Audio
 		private long m_lPlayed ;
 		private Thread RefreshThread;
 
+        // variable to hold stop position in buffer after audio asset is about to end and all refreshing is finished
+        int m_BufferStopPosition= -1 ;
+
         // step count to be used for compressing in fast play
 		private int m_Step = 1;
 		internal int m_FrameSize ;
@@ -427,31 +430,31 @@ namespace Obi.Audio
 			}
 
 
-            int BufferStopPosition= 0 ;
+             m_BufferStopPosition= -1 ;
             if (m_BufferCheck == 1 )
             {
-                BufferStopPosition = Convert.ToInt32(m_MemoryStreamPosition);
+                m_BufferStopPosition = Convert.ToInt32(m_MemoryStreamPosition);
             }
 
             // if last refresh is to Front, BufferCheck is even and stop position is at front of buffer.
             else if ((m_BufferCheck % 2) == 0)
             {
-                BufferStopPosition = Convert.ToInt32 (m_MemoryStreamPosition);
+                m_BufferStopPosition = Convert.ToInt32 (m_MemoryStreamPosition);
             }
             // if last refresh is at Rear half part then stop position is more than refresh length
             else if ((m_BufferCheck % 2) == 1 )
             {
-                BufferStopPosition = Convert.ToInt32 (m_MemoryStreamPosition+ m_RefreshLength);
+                m_BufferStopPosition = Convert.ToInt32 (m_MemoryStreamPosition+ m_RefreshLength);
             }
 
             int CurrentPlayPosition;
             CurrentPlayPosition = SoundBuffer.PlayPosition;
             int StopMargin = Convert.ToInt32 (CalculationFunctions.ConvertTimeToByte( 70 , m_SamplingRate, m_FrameSize));
 
-            if (BufferStopPosition < StopMargin)
-                BufferStopPosition = StopMargin; 
+            if ( m_BufferStopPosition < StopMargin)
+                m_BufferStopPosition = StopMargin; 
 
-             while (CurrentPlayPosition < (BufferStopPosition - StopMargin) || CurrentPlayPosition > ( BufferStopPosition ))
+             while (CurrentPlayPosition < (m_BufferStopPosition - StopMargin) || CurrentPlayPosition > ( m_BufferStopPosition ))
                 {
                     Thread.Sleep(50);
                     CurrentPlayPosition = SoundBuffer.PlayPosition;
@@ -472,6 +475,7 @@ namespace Obi.Audio
 			Thread.Sleep (time) ;
 			*/
 			// Stopping process begins
+                m_BufferStopPosition = -1 ;
 			SoundBuffer.Stop () ;
 			if (ob_VuMeter != null) ob_VuMeter.Reset () ;
             //SoundBuffer = null;
@@ -586,6 +590,7 @@ namespace Obi.Audio
 
         private void StopFunction ()
         {
+            m_BufferStopPosition = -1;
             SoundBuffer.Stop();
 
             if ( RefreshThread.IsAlive )
@@ -601,7 +606,13 @@ namespace Obi.Audio
 			int PlayPosition  = SoundBuffer.PlayPosition;
 			
 			long lCurrentPosition ;
-			if (PlayPosition < m_RefreshLength)
+
+            if (m_BufferStopPosition != -1)
+            {
+                lCurrentPosition = m_Asset.AudioLengthInBytes  -  (m_BufferStopPosition - PlayPosition);
+            }
+            //if (PlayPosition < m_RefreshLength) // Avn: changed on19 Dec 2006 for improving get position for pause
+            else if (m_BufferCheck % 2 == 1)
 			{ 
 				// takes the lPlayed position and subtract the part of buffer played from it
 				lCurrentPosition = m_lPlayed - ( 2 * m_RefreshLength) + PlayPosition ;
@@ -610,6 +621,10 @@ namespace Obi.Audio
 			{
                 lCurrentPosition = m_lPlayed - (3 * m_RefreshLength) + PlayPosition;
 			}
+
+            if ( lCurrentPosition >= m_Asset.AudioLengthInBytes )
+                lCurrentPosition = m_Asset.AudioLengthInBytes - Convert.ToInt32(CalculationFunctions.ConvertTimeToByte(100, m_SamplingRate, m_FrameSize)); 
+
 			return lCurrentPosition ;
 		}
 
