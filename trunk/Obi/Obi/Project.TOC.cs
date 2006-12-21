@@ -17,14 +17,10 @@ namespace Obi
         public event Events.MovedSectionNodeHandler UndidMoveSectionNode;                // a node was restored to its previous location
         public event Events.SectionNodeHandler DeletedSectionNode;                // a node was deleted from the presentation
         public event Events.SectionNodeHandler CutSectionNode;
-        public event Events.SectionNodeHandler CopiedSectionNode;
-        public event Events.SectionNodeHandler UndidCopySectionNode;
         public event Events.SectionNodeHandler PastedSectionNode;
         public event Events.SectionNodeHandler UndidPasteSectionNode;
         public event Events.SectionNodeHandler ToggledSectionUsedState;
-        public event Events.SectionNodeHandler ShallowCopiedSectionNode;
-        public event Events.SectionNodeHandler ShallowCutSectionNode;
-        
+      
         // Here are the event handlers for request sent by the GUI when editing the TOC.
         // Every request is passed to a method that uses mostly the same arguments,
         // which can also be called directly by a command for undo/redo purposes.
@@ -424,9 +420,44 @@ namespace Obi
             DoShallowCutSectionNode(sender, e.Node);
         }
 
-        public void DoShallowCutSectionNode(object sender, SectionNode sectionNode)
+        //this is almost the same as ShallowDeleteSectionNode
+        public void DoShallowCutSectionNode(object origin, SectionNode node)
         {
-            throw new Exception("The method or operation is not implemented.");
+            //we have to gather this data here, because it might be different at the end
+            //however, we can't create the command here, because its data isn't ready yet
+            //these lines only need to be executed if origin != this
+
+            Commands.TOC.ShallowCutSectionNode command = null;
+
+            mClipboard.Section = node.copy(false);
+
+            if (origin != this)
+            {
+                command = new Commands.TOC.ShallowCutSectionNode(node);
+            }
+
+            int numChildren = node.SectionChildCount;
+            for (int i = numChildren - 1; i >= 0; i--)
+            {
+                Commands.Command cmdDecrease = this.DecreaseSectionNodeLevel(this, node.SectionChild(i));
+                command.AddCommand(cmdDecrease);
+            }
+
+            numChildren = node.PhraseChildCount;
+            for (int i = numChildren - 1; i >= 0; i--)
+            {
+                Commands.Command cmdDeletePhrase = DeletePhraseNodeAndAsset(node.PhraseChild(i));
+                command.AddCommand(cmdDeletePhrase);
+            }
+
+            Commands.Command cmdRemove = this.RemoveSectionNode(this, node);
+            command.AddCommand(cmdRemove);
+
+           
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+             
         }
 
         //md 20060810
@@ -458,6 +489,8 @@ namespace Obi
         public void UndoShallowCutSectionNode()
         {
             mClipboard.Section = null;
+            //the rest of the undo operations for this command are found in 
+            //Commands.TOC.ShallowCutSectionNode
         }
 
         //md 20060810
@@ -476,7 +509,6 @@ namespace Obi
         //md 20061219
         public void ShallowCopySectionNodeRequested(object sender, Events.Node.SectionNodeEventArgs e)
         {
-            
             ShallowCopySectionNode(sender, e.Node);
         }
 
@@ -492,9 +524,14 @@ namespace Obi
                 command = new Commands.TOC.ShallowCopySectionNode(node);
             }
 
-            mClipboard.Section = node;
-
-            ShallowCopiedSectionNode(this, new Events.Node.SectionNodeEventArgs(origin, mClipboard.Section));
+            mClipboard.Section = node.copy(false);
+            //now copy all the section's phrase children
+            for (int i = 0; i < node.PhraseChildCount; i++)
+            {
+                mClipboard.Section.AddChildPhrase(node.PhraseChild(i).copy(false), i);
+            }
+    
+            //no event is raised (i.e. ShallowCopiedSectionNode) because no one cares
 
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -502,9 +539,15 @@ namespace Obi
         }
 
         //md 20061220
-        internal void UndoShallowCopySectionNode(SectionNode mNode)
+        internal void UndoShallowCopySectionNode(SectionNode node)
         {
-            throw new Exception("The method or operation is not implemented.");
+            mClipboard.Section = null;
+
+            //no event is raised (i.e. UndidShallowCopySectionNode) because no one cares
+
+            mUnsaved = true;
+            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+     
         }
 
         //md 20060810
@@ -522,7 +565,7 @@ namespace Obi
             //the actual copy operation
             mClipboard.Section = node;
 
-            CopiedSectionNode(this, new Events.Node.SectionNodeEventArgs(origin, mClipboard.Section));
+            //no event is raised (i.e. CopiedSectionNode) because no one cares
 
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
@@ -534,7 +577,7 @@ namespace Obi
         {
             mClipboard.Section = null;
 
-           UndidCopySectionNode(this, new Events.Node.SectionNodeEventArgs(this, node));
+            //no event is raised (i.e. UndidCopySectionNode) because no one cares
 
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));

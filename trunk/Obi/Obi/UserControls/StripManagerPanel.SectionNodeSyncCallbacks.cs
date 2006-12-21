@@ -143,17 +143,7 @@ namespace Obi.UserControls
             AddStripsFromNodeSubtree(e.Node);
         }
 
-        //md 20060811
-        //does nothing; just a placeholder
-        internal void SyncCopiedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
-        {
-        }
-
-        //md 20060811
-        //does nothing; just a placeholder
-        internal void SyncUndidCopySectionNode(object sender, Events.Node.SectionNodeEventArgs e)
-        {
-        }
+        
 
         //md 20060811
         internal void SyncPastedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)

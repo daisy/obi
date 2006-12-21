@@ -295,5 +295,6 @@ namespace Obi.UserControls
             SelectedPhraseNode = null;
         }
 
+
     }
 }

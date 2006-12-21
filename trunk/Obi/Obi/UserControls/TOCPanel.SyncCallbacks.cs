@@ -217,17 +217,7 @@ namespace Obi.UserControls
             SyncDeletedSectionNode(sender, e);
         }
 
-        //md 20060810
-        //does nothing; just a placeholder
-        internal void SyncCopiedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
-        {    
-        }
-
-        //md 20060810
-        //does nothing; just a placeholder
-        internal void SyncUndidCopySectionNode(object sender, Events.Node.SectionNodeEventArgs e)
-        {
-        }
+       
 
         //md 20060810
         //e.Node is what was just pasted in

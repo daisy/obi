@@ -78,11 +78,11 @@ namespace Obi.UserControls
 
             // Block events
 
-            mStripManagerPanel.CutSectionNodeRequested += new Events.SectionNodeHandler(project.CutSectionNodeRequested);
+            mStripManagerPanel.CutSectionNodeRequested += new Events.SectionNodeHandler(project.ShallowCutSectionNodeRequested);
             mStripManagerPanel.CutPhraseNodeRequested += new Events.PhraseNodeHandler(project.CutPhraseNode);
             mStripManagerPanel.CopyPhraseNodeRequested += new Events.PhraseNodeHandler(project.CopyPhraseNode);
             mStripManagerPanel.PastePhraseNodeRequested += new Events.NodeEventHandler(project.PastePhraseNode);
-            mStripManagerPanel.ShallowCopySectionNodeRequested += new Events.SectionNodeHandler(project.ShallowCopySectionNodeRequested);
+            mStripManagerPanel.CopySectionNodeRequested += new Events.SectionNodeHandler(project.ShallowCopySectionNodeRequested);
 
             mStripManagerPanel.ImportAudioAssetRequested += new Events.RequestToImportAssetHandler(project.ImportAssetRequested);
             mStripManagerPanel.DeleteBlockRequested += new Events.PhraseNodeHandler(project.DeletePhraseNodeRequested);
@@ -106,11 +106,7 @@ namespace Obi.UserControls
             project.CutSectionNode += new Events.SectionNodeHandler(mStripManagerPanel.SyncCutSectionNode);
 
             mTOCPanel.CopySectionNodeRequested += new Events.SectionNodeHandler(project.CopySectionNodeRequested);
-            project.CopiedSectionNode += new Events.SectionNodeHandler(mTOCPanel.SyncCopiedSectionNode);
-            project.CopiedSectionNode += new Events.SectionNodeHandler(mStripManagerPanel.SyncCopiedSectionNode);
-            project.UndidCopySectionNode += new Events.SectionNodeHandler(mTOCPanel.SyncUndidCopySectionNode);
-            project.UndidCopySectionNode += new Events.SectionNodeHandler(mStripManagerPanel.SyncUndidCopySectionNode);
-
+          
             mTOCPanel.PasteSectionNodeRequested += new Events.SectionNodeHandler(project.PasteSectionNodeRequested);
             project.PastedSectionNode += new Events.SectionNodeHandler(mTOCPanel.SyncPastedSectionNode);
             project.PastedSectionNode += new Events.SectionNodeHandler(mStripManagerPanel.SyncPastedSectionNode);
@@ -191,11 +187,7 @@ namespace Obi.UserControls
             mProject.CutSectionNode -= new Events.SectionNodeHandler(mStripManagerPanel.SyncCutSectionNode);
 
             mTOCPanel.CopySectionNodeRequested -= new Events.SectionNodeHandler(mProject.CopySectionNodeRequested);
-            mProject.CopiedSectionNode -= new Events.SectionNodeHandler(mTOCPanel.SyncCopiedSectionNode);
-            mProject.CopiedSectionNode -= new Events.SectionNodeHandler(mStripManagerPanel.SyncCopiedSectionNode);
-            mProject.UndidCopySectionNode -= new Events.SectionNodeHandler(mTOCPanel.SyncUndidCopySectionNode);
-            mProject.UndidCopySectionNode -= new Events.SectionNodeHandler(mStripManagerPanel.SyncUndidCopySectionNode);
-
+           
             mTOCPanel.PasteSectionNodeRequested -= new Events.SectionNodeHandler(mProject.PasteSectionNodeRequested);
             mProject.PastedSectionNode -= new Events.SectionNodeHandler(mTOCPanel.SyncPastedSectionNode);
             mProject.PastedSectionNode -= new Events.SectionNodeHandler(mStripManagerPanel.SyncPastedSectionNode);
@@ -209,8 +201,8 @@ namespace Obi.UserControls
             mStripManagerPanel.ShallowDeleteSectionNodeRequested -= new Events.SectionNodeHandler(mProject.ShallowDeleteSectionNodeRequested);
 
             mStripManagerPanel.CutSectionNodeRequested -=
-                new Events.SectionNodeHandler(mProject.CutSectionNodeRequested);
-            mStripManagerPanel.ShallowCopySectionNodeRequested -= new Events.SectionNodeHandler(mProject.ShallowCopySectionNodeRequested);
+                new Events.SectionNodeHandler(mProject.ShallowCutSectionNodeRequested);
+            mStripManagerPanel.CopySectionNodeRequested -= new Events.SectionNodeHandler(mProject.ShallowCopySectionNodeRequested);
 
             mStripManagerPanel.CutPhraseNodeRequested -=
                 new Events.PhraseNodeHandler(mProject.CutPhraseNode);
