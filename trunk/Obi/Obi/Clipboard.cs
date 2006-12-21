@@ -9,11 +9,14 @@ namespace Obi
     /// </summary>
     public class Clipboard
     {
-        private SectionNode mSection;
-        private PhraseNode mPhrase;
+        private SectionNode mSection;  // a section node
+        private PhraseNode mPhrase;    // a phrase node
+        private bool mDeep;            // whether the section subtree is copied or not
 
         /// <summary>
         /// Anything that the clipboard can contain. 
+        /// When setting a section, the default is to set as "strip", so use Section.set instead
+        /// from the TOC panel.
         /// </summary>
         public object Data
         {
@@ -24,7 +27,7 @@ namespace Obi
                 CoreNode node = value as CoreNode;
                 if (node.GetType() == System.Type.GetType("Obi.SectionNode"))
                 {
-                    Section = (SectionNode)node;
+                    Strip = (SectionNode)node;
                 }
                 else if (node.GetType() == System.Type.GetType("Obi.PhraseNode"))
                 {
@@ -43,6 +46,21 @@ namespace Obi
             {
                 Clear();
                 mSection = value;
+                mDeep = true;
+            }
+        }
+
+        /// <summary>
+        /// Same as section, except that it will always be shallow pasted.
+        /// Use the Section getter if you want to look at the strip.
+        /// </summary>
+        public SectionNode Strip
+        {
+            set
+            {
+                Clear();
+                mSection = value;
+                mDeep = false;
             }
         }
 
@@ -75,7 +93,5 @@ namespace Obi
             mSection = null;
             mPhrase = null;
         }
-
-
     }
 }

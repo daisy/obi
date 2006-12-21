@@ -35,6 +35,8 @@ namespace Obi.UserControls
             }
         }
 
+        #region ugly event stuff
+
         /// <summary>
         /// Set event handlers for the new project.
         /// </summary>
@@ -226,6 +228,8 @@ namespace Obi.UserControls
             mProject.ToggledNodeUsedState -= new Obi.Events.ObiNodeHandler(mTOCPanel.ToggledNodeUsedState);
         }
 
+        #endregion
+
         /// <summary>
         /// TOC panel can be visible (true) or hidden (false).
         /// </summary>
@@ -259,7 +263,7 @@ namespace Obi.UserControls
         }
 
         /// <summary>
-        /// Return the node that is selected in either view, if any.
+        /// Return the node that is selected in either view, or null if no node is selected.
         /// </summary>
         public ObiNode SelectedNode
         {
@@ -269,6 +273,34 @@ namespace Obi.UserControls
                         mStripManagerPanel.SelectedNode :
                     mTOCPanel.IsNodeSelected ?
                         mTOCPanel.SelectedSection : null;
+            }
+        }
+
+        /// <summary>
+        /// True if there is a node currently selected and it can be cut/copied/deleted.
+        /// The selected node must be used in order to do that.
+        /// </summary>
+        public bool CanCutCopyDeleteNode
+        {
+            get
+            {
+                ObiNode selected = SelectedNode;
+                return selected != null && selected.Used;
+            }
+        }
+
+        /// <summary>
+        /// Get a label for the node currently selected, i.e. "" if nothing is seleced,
+        /// "audio block" for an audio block, "strip" for a strip and "section" for a
+        /// section.
+        /// </summary>
+        public string SelectedLabel
+        {
+            get
+            {
+                return mStripManagerPanel.SelectedPhraseNode != null ? Localizer.Message("audio_block") :
+                    mStripManagerPanel.SelectedSectionNode != null ? Localizer.Message("strip") :
+                    mTOCPanel.SelectedSection != null ? Localizer.Message("section") : "";
             }
         }
 
@@ -356,6 +388,83 @@ namespace Obi.UserControls
             System.Diagnostics.Debug.Write("\"" + text + "\"");
             if (e.Selected) System.Diagnostics.Debug.Write(" is selected\n");
             else System.Diagnostics.Debug.Write(" is deselected\n");
+        }
+
+        /// <summary>
+        /// True if the given node can be pasted. Some rules for pasting:
+        ///   (i) there must be something to paste,
+        ///   (ii) the project must be open,
+        ///   (iii) if no node is selected, the context is understood to be the context panel
+        ///     and the root node; as such, only sections can be pasted,
+        ///   (iv) a phrase node cannot be pasted in the TOC panel,
+        ///   (v) if the selected node is a phrase, only a phrase can be pasted,
+        ///   (vi) if the selected node is an unused section, then a section can be pasted only
+        ///     if the parent is the root or is used.
+        ///   (vii) if the selected node is an unused phrase, then a phrse can be pasted only
+        ///     if the parent section is used and the selected phrase is followed by a used
+        ///     phrase or is the last of its section.
+        ///   (viii) there is no viii.
+        /// </summary>
+        /// <param name="node">The node to paste (coming from the clipboard.) Null if no node is in the clipboard.</param>
+        public bool CanPaste(ObiNode node)
+        {
+            if (node == null)
+            {
+                return false;
+            }
+            else
+            {
+                ObiNode selected = SelectedNode;
+                if (selected == null)
+                {
+                    // the context is the root so only a section node can be pasted.
+                    return mProject != null && node is SectionNode;
+                }
+                else
+                {
+                    if (node is SectionNode)
+                    {
+                        // a section node can be pasted only in the context of a section node,
+                        // which parent or self must be used
+                        return (selected is SectionNode) &&
+                            (selected.Used ||
+                            ((SectionNode)selected).ParentSection != null && ((SectionNode)selected).ParentSection.Used);
+                    }
+                    else
+                    {
+                        if (selected is PhraseNode && !selected.Used)
+                        {
+                            // pasting after an unused phrase node works if its last or
+                            // followed by a used node in a used section
+                            SectionNode parent = ((PhraseNode)selected).ParentSection;
+                            return selected.Index == parent.PhraseChildCount - 1 ||
+                                parent.PhraseChild(selected.Index + 1).Used;
+                        }
+                        else
+                        {
+                            // must be in the strip manager (i.e. not in the TOC panel)
+                            return mTOCPanel.SelectedSection == null;
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get a label for the node currently in the clipboard, with regard to the
+        /// context in which it is to be pasted (i.e. show "strip" if the context is
+        /// the strip manager, which it is by default, or "section" if the context is
+        /// the TOC panel.)
+        /// </summary>
+        /// <param name="node">The node to paste (coming from the clipboard.) Null if
+        /// no node is in the clipboard.</param>
+        public string PasteLabel(ObiNode node)
+        {
+            return node == null ? "" :                                      // nothing to paste
+                Localizer.Message(node is PhraseNode ? "audio_block" :      // audio block
+                    mTOCPanel.SelectedSection != null ? "section" :         // pasting in TOC panel
+                    ((SectionNode)node).SectionChildCount > 0 ? "strips" :  // pasting several strips
+                    "strip");                                               // pasting only one strip
         }
     }
 }

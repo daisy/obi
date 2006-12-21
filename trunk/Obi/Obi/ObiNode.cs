@@ -40,14 +40,15 @@ namespace Obi
         }
 
         /// <summary>
-        /// Depth of the node in the tree. It is assumed that the root is a CoreNode with a depth of 0.
+        /// Level of the node in the tree. It is assumed that the root is a CoreNode with a level of 0.
         /// </summary>
-        public int Depth
+        /// <remarks>Used to be "depth" but "level" makes more sense. We may need "depth" in the future.</remarks>
+        public int Level
         {
             get
             {
                 IBasicTreeNode parent = getParent();
-                return parent is CoreNode ? 1 : ((ObiNode)parent).Depth;
+                return parent is CoreNode ? 1 : ((ObiNode)parent).Level;
             }
         }
 

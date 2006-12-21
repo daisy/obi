@@ -206,7 +206,7 @@ namespace Obi.UserControls
         {
             if (mNode != null)
             {
-                int nodeLevel = mNode.Depth;
+                int nodeLevel = mNode.Level;
                 //float currentSize = GetTitleFontSize();
                 if (nodeLevel == 1) SetTitleFontSize(mDefaultFontSize + 3);
                 else if (nodeLevel == 2) SetTitleFontSize(mDefaultFontSize + 2);

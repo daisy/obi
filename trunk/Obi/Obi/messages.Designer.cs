@@ -115,6 +115,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to audio block.
+        /// </summary>
+        internal static string audio_block {
+            get {
+                return ResourceManager.GetString("audio_block", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The duration of this audio segment.
         /// </summary>
         internal static string audio_block_duration_tooltip {
@@ -732,7 +741,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  phrase.
+        ///   Looks up a localized string similar to phrase.
         /// </summary>
         internal static string phrase {
             get {
@@ -915,7 +924,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  section.
+        ///   Looks up a localized string similar to section.
         /// </summary>
         internal static string section {
             get {
@@ -1019,6 +1028,15 @@ namespace Obi {
         internal static string strip {
             get {
                 return ResourceManager.GetString("strip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to strips.
+        /// </summary>
+        internal static string strips {
+            get {
+                return ResourceManager.GetString("strips", resourceCulture);
             }
         }
         
