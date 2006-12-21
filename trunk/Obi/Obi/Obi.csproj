@@ -62,6 +62,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\branches\toolkit-more-virtual-methods\bin\Debug\urakawa.dll</HintPath>
     </Reference>
+    <Reference Include="XukToZed, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\implementation\XukToZed\XukToZed\bin\Debug\XukToZed.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\AssetManager.cs" />
@@ -209,6 +213,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Project.Blocks.cs" />
     <Compile Include="Project.cs" />
+    <Compile Include="Project.ExportToZed.cs" />
     <Compile Include="Project.TOC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Audio\VuMeterForm.resx">

@@ -915,6 +915,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Saved as DAISY {0}.
+        /// </summary>
+        internal static string saved_as_daisy {
+            get {
+                return ResourceManager.GetString("saved_as_daisy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Saved XUK file {0}..
         /// </summary>
         internal static string saved_project {
