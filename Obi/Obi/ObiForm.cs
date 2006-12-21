@@ -1220,5 +1220,13 @@ namespace Obi
         private void mMarkSectionAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
         {
         }
+
+        private void mExportAsDAISYToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            mProject.ExportToZed();
+            this.Cursor = Cursors.Default;
+        }
+
     }
 }

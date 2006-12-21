@@ -522,4 +522,8 @@ Do you want to replace the project contained in this file?</value>
     <value>strips</value>
     <comment>Plural of strip</comment>
   </data>
+  <data name="saved_as_daisy" xml:space="preserve">
+    <value>Saved as DAISY {0}</value>
+    <comment>Message when export to DAISY succeeds (MD)</comment>
+  </data>
 </root>
