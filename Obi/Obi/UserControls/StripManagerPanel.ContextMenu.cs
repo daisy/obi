@@ -21,8 +21,8 @@ namespace Obi.UserControls
        
         public event Events.SectionNodeHandler CutSectionNodeRequested;
         public event Events.PhraseNodeHandler CutPhraseNodeRequested;
-        public event Events.SectionNodeHandler ShallowCopySectionNodeRequested;
         public event Events.PhraseNodeHandler CopyPhraseNodeRequested;
+        public event Events.SectionNodeHandler CopySectionNodeRequested;
         public event Events.SectionNodeHandler PasteSectionNodeRequested;
         public event Events.NodeEventHandler PastePhraseNodeRequested;
 
@@ -56,6 +56,9 @@ namespace Obi.UserControls
 
             mRenameStripToolStripMenuItem.Enabled = isStripSelected;
             mDeleteStripToolStripMenuItem.Enabled = isStripSelected;
+            mCutStripToolStripMenuItem.Enabled = isStripSelected;
+            mCopyStripToolStripMenuItem.Enabled = isStripSelected;
+            mPasteStripToolStripMenuItem.Enabled = isStripSelected;
 
             mImportAudioFileToolStripMenuItem.Enabled = isStripSelected;
             mSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
@@ -92,39 +95,15 @@ namespace Obi.UserControls
         /// <summary>
         /// make the context menu items visible based on if they are enabled or greyed-out
         /// </summary>
-        // problems: tool strip separators still visible
         // this is probably redundant, and could just be done instead of "enabling" things first
         // but that is for later.  still trying things out now.
         private void MakeEnabledMenuItemsVisible()
         {
-            mAddStripToolStripMenuItem.Visible = mAddStripToolStripMenuItem.Enabled;
-
-            mRenameStripToolStripMenuItem.Visible = mRenameStripToolStripMenuItem.Enabled;
-            mDeleteStripToolStripMenuItem.Visible = mDeleteStripToolStripMenuItem.Enabled;
-
-            mImportAudioFileToolStripMenuItem.Visible = mImportAudioFileToolStripMenuItem.Enabled;
-            mSplitAudioBlockToolStripMenuItem.Visible = mSplitAudioBlockToolStripMenuItem.Enabled;
-            mApplyPhraseDetectionToolStripMenuItem.Visible = mApplyPhraseDetectionToolStripMenuItem.Enabled;
-            mMergeWithNextAudioBlockToolStripMenuItem.Visible = mMergeWithNextAudioBlockToolStripMenuItem.Enabled;
-            mCutAudioBlockToolStripMenuItem.Visible = mCutAudioBlockToolStripMenuItem.Enabled;
-            mCopyAudioBlockToolStripMenuItem.Visible = mCopyAudioBlockToolStripMenuItem.Enabled;
-            mPasteAudioBlockToolStripMenuItem.Visible = mPasteAudioBlockToolStripMenuItem.Enabled;
-            mDeleteAudioBlockToolStripMenuItem.Visible = mDeleteAudioBlockToolStripMenuItem.Enabled;
-            mMoveAudioBlockForwardToolStripMenuItem.Visible = mMoveAudioBlockForwardToolStripMenuItem.Enabled;
-            mMoveAudioBlockBackwardToolStripMenuItem.Visible = mMoveAudioBlockBackwardToolStripMenuItem.Enabled;
-            mMoveAudioBlockToolStripMenuItem.Visible = mMoveAudioBlockToolStripMenuItem.Enabled;
-
-            mEditAnnotationToolStripMenuItem.Visible = mEditAnnotationToolStripMenuItem.Enabled;
-            mRemoveAnnotationToolStripMenuItem.Visible = mRemoveAnnotationToolStripMenuItem.Enabled;
-
-            mSetPageNumberToolStripMenuItem.Visible = mSetPageNumberToolStripMenuItem.Enabled;
-            mRemovePageNumberToolStripMenuItem.Visible = mRemovePageNumberToolStripMenuItem.Enabled;
-
-            mShowInTOCViewToolStripMenuItem.Visible = mShowInTOCViewToolStripMenuItem.Enabled;
-
-            mMarkStripAsUnusedToolStripMenuItem.Visible = mMarkStripAsUnusedToolStripMenuItem.Enabled;
-            mMarkPhraseAsUnusedToolStripMenuItem.Visible = mMarkPhraseAsUnusedToolStripMenuItem.Enabled;
-
+            foreach (ToolStripItem item in this.contextMenuStrip1.Items)
+            {
+                item.Visible = item.Enabled;
+            }
+         
             //this is the separator that appears before the audio block commands
             toolStripSeparator1.Visible = mImportAudioFileToolStripMenuItem.Enabled || mCutAudioBlockToolStripMenuItem.Enabled;
             //and this one comes before the annotation commands
@@ -371,7 +350,7 @@ namespace Obi.UserControls
         /// </summary>
         public void CopySelectedSection()
         {
-            ShallowCopySectionNodeRequested(this, new SectionNodeEventArgs(this, mSelectedSection));
+            CopySectionNodeRequested(this, new SectionNodeEventArgs(this, mSelectedSection));
         }
 
         /// <summary>
@@ -466,5 +445,24 @@ namespace Obi.UserControls
         {
             ToggleSelectedPhraseUsed();
         }
+
+        private void mCutStripToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CutSelectedSection();
+        }
+
+
+        private void mCopyStripToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CopySelectedSection();
+        }
+
+        private void mPasteStripToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PasteSectionNode();
+        }
+
+        
+
     }
 }
