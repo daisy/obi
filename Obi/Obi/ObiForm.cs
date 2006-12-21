@@ -774,31 +774,25 @@ namespace Obi
         {
             FormUpdateUndoRedoLabels();                // take care of undo and redo
 
-            bool isProjectOpen = mProject != null;
-            string phraseSectionLabel =
-                isProjectOpen && mProjectPanel.StripManager.SelectedPhraseNode != null ?
-                    Localizer.Message("phrase") :
-                isProjectOpen && (mProjectPanel.StripManager.SelectedSectionNode != null || mProjectPanel.TOCPanel.IsNodeSelected) ?
-                    Localizer.Message("section") :
-                    "";
-            string pasteLabel =
-                isProjectOpen && mProject.Clipboard.Phrase != null ?
-                    Localizer.Message("phrase") :
-                isProjectOpen && mProject.Clipboard.Section != null ?
-                    Localizer.Message("section") :
-                    "";
+            bool canCutCopyDelete = mProjectPanel.CanCutCopyDeleteNode;
+            string itemLabel = mProjectPanel.SelectedLabel;
+            if (itemLabel != "") itemLabel = " " + itemLabel;
+            ObiNode clipboardData = mProject == null ? null : mProject.Clipboard.Data as ObiNode;
+            string pasteLabel = mProjectPanel.PasteLabel(clipboardData);
+            if (pasteLabel != "") pasteLabel = " " + pasteLabel;
 
-            mCutToolStripMenuItem.Enabled = phraseSectionLabel != "";
-            mCutToolStripMenuItem.Text = String.Format(Localizer.Message("cut_menu_label"), phraseSectionLabel);
-            mCopyToolStripMenuItem.Enabled = phraseSectionLabel != "";
-            mCopyToolStripMenuItem.Text = String.Format(Localizer.Message("copy_menu_label"), phraseSectionLabel);
-            mPasteToolStripMenuItem.Enabled = pasteLabel != "";
+            mCutToolStripMenuItem.Enabled = canCutCopyDelete;
+            mCutToolStripMenuItem.Text = String.Format(Localizer.Message("cut_menu_label"), itemLabel);
+            mCopyToolStripMenuItem.Enabled = canCutCopyDelete;
+            mCopyToolStripMenuItem.Text = String.Format(Localizer.Message("copy_menu_label"), itemLabel);
+            mPasteToolStripMenuItem.Enabled = mProjectPanel.CanPaste(clipboardData);
             mPasteToolStripMenuItem.Text = String.Format(Localizer.Message("paste_menu_label"), pasteLabel);
-            mDeleteToolStripMenuItem.Enabled = phraseSectionLabel != "";
-            mDeleteToolStripMenuItem.Text = String.Format(Localizer.Message("delete_menu_label"), phraseSectionLabel);
+            mDeleteToolStripMenuItem.Enabled = canCutCopyDelete;
+            mDeleteToolStripMenuItem.Text = String.Format(Localizer.Message("delete_menu_label"), itemLabel);
 
-            mMetadataToolStripMenuItem.Enabled = mProject != null;
-            mTouchProjectToolStripMenuItem.Enabled = mProject != null;
+            bool isProjectOpen = mProject != null;
+            mMetadataToolStripMenuItem.Enabled = isProjectOpen;
+            mTouchProjectToolStripMenuItem.Enabled = isProjectOpen;
         }
 
         /// <summary>
@@ -932,51 +926,28 @@ namespace Obi
 
         private void UpdateEnabledItemsForTOCMenu()
         {
-            if (mProjectPanel.TOCPanelVisible)
-            {
-                bool isNodeSelected = false;
-                bool canMoveIn = false;
-                bool canMoveOut = false;
-
-                SectionNode selectedSection = null;
-                if (mProjectPanel.TOCPanel.IsNodeSelected)
-                {
-                    isNodeSelected = true;
-                    selectedSection = this.mProjectPanel.TOCPanel.SelectedSection;
-                }
-
-                mAddSectionToolStripMenuItem.Enabled = mProject != null;
-                mAddSubSectionToolStripMenuItem.Enabled = isNodeSelected;
-
-                // JQ 20060818
-                // be careful that project is not null when opening the menu...
-                mRenameSectionToolStripMenuItem.Enabled = isNodeSelected;
-
-                if (isNodeSelected == true)
-                {
-                    canMoveIn = mProjectPanel.Project.CanMoveSectionNodeIn(selectedSection);
-                    canMoveOut = mProjectPanel.Project.CanMoveSectionNodeOut(selectedSection);
-                }
-
-                mMoveInToolStripMenuItem.Enabled = canMoveIn;
-                mMoveOutToolStripMenuItem.Enabled = canMoveOut;
-
-                // Mark section used/unused (by default, i.e. if disabled, "unused")
-                mMarkSectionAsUnusedToolStripMenuItem.Enabled = isNodeSelected;
-                mMarkSectionAsUnusedToolStripMenuItem.Text = String.Format(Localizer.Message("mark_section_as_used_or_unused"),
-                    Localizer.Message(isNodeSelected && !selectedSection.Used ? "used" : "unused"));
-                mShowInStripviewToolStripMenuItem.Enabled = isNodeSelected;
-            }
-            else
-            {
-                foreach (ToolStripItem item in mTocToolStripMenuItem.DropDownItems) item.Enabled = false;
-                mMarkSectionAsUnusedToolStripMenuItem.Text = String.Format(Localizer.Message("mark_section_as_used_or_unused"),
-                    Localizer.Message("unused"));
-            }
             // Show/hide table of contents
             mShowhideTableOfCOntentsToolStripMenuItem.Text =
                 Localizer.Message(mProjectPanel.TOCPanelVisible ? "hide_toc_label" : "show_toc_label");
             mShowhideTableOfCOntentsToolStripMenuItem.Enabled = mProject != null;
+
+            bool isNodeSelected = mProject != null && mProjectPanel.TOCPanelVisible && mProjectPanel.TOCPanel.IsNodeSelected;
+            SectionNode selected = isNodeSelected ? mProjectPanel.TOCPanel.SelectedSection : null;
+            bool isNodeUsed = isNodeSelected && selected.Used;
+            mAddSectionToolStripMenuItem.Enabled = isNodeUsed ||
+                (mProject != null && mProjectPanel.TOCPanelVisible && !mProjectPanel.TOCPanel.IsNodeSelected) ||
+                (isNodeSelected && selected.ParentSection != null && selected.ParentSection.Used);
+            mAddSubSectionToolStripMenuItem.Enabled = isNodeUsed;
+            mRenameSectionToolStripMenuItem.Enabled = isNodeUsed;
+            mMoveInToolStripMenuItem.Enabled = isNodeUsed && mProjectPanel.Project.CanMoveSectionNodeIn(selected);
+            mMoveOutToolStripMenuItem.Enabled = isNodeUsed && mProjectPanel.Project.CanMoveSectionNodeOut(selected);
+            
+            // Mark section used/unused (by default, i.e. if disabled, "unused")
+            mMarkSectionAsUnusedToolStripMenuItem.Enabled = isNodeSelected;
+            mMarkSectionAsUnusedToolStripMenuItem.Text = String.Format(Localizer.Message("mark_x_as_y"),
+                Localizer.Message("section"),
+                Localizer.Message(!isNodeSelected || isNodeUsed ? "unused" : "used"));
+            mShowInStripviewToolStripMenuItem.Enabled = isNodeSelected;
         }
 
         /// <summary>
