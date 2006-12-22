@@ -9,7 +9,7 @@ namespace Obi.UserControls
     /// <summary>
     /// The audio block is used to display a phrase.
     /// </summary>
-    public partial class AudioBlock : AbstractBlock 
+    public partial class AudioBlock : AbstractBlock
     {
         private AnnotationBlock mAnnotationBlock;  // the annotation is taken out of the block
 
@@ -26,15 +26,11 @@ namespace Obi.UserControls
             set
             {
                 mNode = value;
-                if (mNode != null)
-                {
-                    // set the correct background color depending on the used status of the node.
-                    BackColor = mNode.Used ? Colors.AudioBlockUsed : Colors.AudioBlockUnused;
-                }
                 if (mAnnotationBlock != null)
                 {
                     mAnnotationBlock.Used = mNode != null ? mNode.Used : false;
                 }
+                RefreshUsed();
             }
         }
 
@@ -155,10 +151,11 @@ namespace Obi.UserControls
         }
 
         #endregion
-        
+
         #region instantiators
 
-        public AudioBlock() : base()
+        public AudioBlock()
+            : base()
         {
             InitializeComponent();
             mAnnotationBlock = new AnnotationBlock();
@@ -174,7 +171,7 @@ namespace Obi.UserControls
         private void AudioBlock_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("click on audio blocks");
-            mManager.SelectedPhraseNode = mNode; 
+            mManager.SelectedPhraseNode = mNode;
         }
 
         private void AudioBlock_DoubleClick(object sender, EventArgs e)
@@ -302,5 +299,17 @@ namespace Obi.UserControls
             }
         }
 
+
+        internal void RefreshUsed()
+        {
+            if (mNode != null)
+            {
+                BackColor = mNode.Used ? Colors.AudioBlockUsed : Colors.AudioBlockUnused;
+                if (mAnnotationBlock != null)
+                {
+                    mAnnotationBlock.Used = mNode.Used;
+                }
+            }
+        }
     }
 }

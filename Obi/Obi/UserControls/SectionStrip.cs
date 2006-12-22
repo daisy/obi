@@ -46,6 +46,7 @@ namespace Obi.UserControls
                 mNode = value;
                 Selected = false;
                 SetStripFontSize();
+                RefreshUsed();
             }
         }
 
@@ -358,6 +359,19 @@ namespace Obi.UserControls
                     Width - Colors.SelectionWidth,
                     Height - Colors.SelectionWidth));
                 pen.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Refresh the strip to show its used state.
+        /// </summary>
+        internal void RefreshUsed()
+        {
+            System.Diagnostics.Debug.Assert(mNode != null, "Why refresh a strip with no node?!");
+            BackColor = mNode.Used ? Colors.SectionStripUsed : Colors.SectionStripUnused;
+            foreach (Control c in mAudioLayoutPanel.Controls)
+            {
+                if (c is AudioBlock) ((AudioBlock)c).RefreshUsed();
             }
         }
     }

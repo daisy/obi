@@ -934,17 +934,18 @@ namespace Obi
 
             bool isNodeSelected = mProject != null && mProjectPanel.TOCPanelVisible && mProjectPanel.TOCPanel.IsNodeSelected;
             SectionNode selected = isNodeSelected ? mProjectPanel.TOCPanel.SelectedSection : null;
+            bool isParentUsed = isNodeSelected ? selected.ParentSection == null || selected.ParentSection.Used : false;
             bool isNodeUsed = isNodeSelected && selected.Used;
             mAddSectionToolStripMenuItem.Enabled = isNodeUsed ||
                 (mProject != null && mProjectPanel.TOCPanelVisible && !mProjectPanel.TOCPanel.IsNodeSelected) ||
-                (isNodeSelected && selected.ParentSection != null && selected.ParentSection.Used);
+                isParentUsed;
             mAddSubSectionToolStripMenuItem.Enabled = isNodeUsed;
             mRenameSectionToolStripMenuItem.Enabled = isNodeUsed;
             mMoveInToolStripMenuItem.Enabled = isNodeUsed && mProjectPanel.Project.CanMoveSectionNodeIn(selected);
             mMoveOutToolStripMenuItem.Enabled = isNodeUsed && mProjectPanel.Project.CanMoveSectionNodeOut(selected);
             
             // Mark section used/unused (by default, i.e. if disabled, "unused")
-            mMarkSectionAsUnusedToolStripMenuItem.Enabled = isNodeSelected;
+            mMarkSectionAsUnusedToolStripMenuItem.Enabled = isNodeSelected && isParentUsed;
             mMarkSectionAsUnusedToolStripMenuItem.Text = String.Format(Localizer.Message("mark_x_as_y"),
                 Localizer.Message("section"),
                 Localizer.Message(!isNodeSelected || isNodeUsed ? "unused" : "used"));
