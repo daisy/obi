@@ -759,6 +759,7 @@ namespace Obi
             mSaveProjectToolStripMenuItem.Enabled = isProjectModified;
             mSaveProjectasToolStripMenuItem.Enabled = isProjectOpen;
             mDiscardChangesToolStripMenuItem.Enabled = isProjectModified;
+            mExportAsDAISYToolStripMenuItem.Enabled = isProjectOpen;
             mCloseProjectToolStripMenuItem.Enabled = isProjectOpen;
         }
 

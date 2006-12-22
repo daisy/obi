@@ -45,21 +45,28 @@ namespace Obi
             System.Xml.XmlReaderSettings readSettings = new System.Xml.XmlReaderSettings();
             readSettings.XmlResolver = null;
 
-            System.Xml.XmlReader xukDatasource = System.Xml.XmlReader.Create(XUKPath);
-
-            x2z.WriteZed(xukDatasource);
-
-            if (!System.IO.File.Exists(x2z.OuputDir + "/" + tmpNcxName) ||
-                !System.IO.File.Exists(x2z.OuputDir + "/" + tmpPackageName))
+            try
             {
-                throw new Exception("Error saving project as DAISY");
+                System.Xml.XmlReader xukDatasource = System.Xml.XmlReader.Create(XUKPath);
+
+                x2z.WriteZed(xukDatasource);
+
+                if (!System.IO.File.Exists(x2z.OuputDir + "/" + tmpNcxName) ||
+                    !System.IO.File.Exists(x2z.OuputDir + "/" + tmpPackageName))
+                {
+                    throw new Exception("Error saving project as DAISY");
+                }
+                else
+                {
+                    string success = String.Format(Localizer.Message("saved_as_daisy"), outputFolder);
+
+                    System.Windows.Forms.MessageBox.Show(success);
+
+                }
             }
-            else
+            catch (Exception e)
             {
-                string success = String.Format(Localizer.Message("saved_as_daisy"), outputFolder);
-               
-                System.Windows.Forms.MessageBox.Show(success);
-
+                System.Diagnostics.Debug.Print("EXPORT FAILED: {0}", e.Message);
             }
         }
     }
