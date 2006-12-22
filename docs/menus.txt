@@ -12,6 +12,7 @@ Main form
     + [A] Save project as ................... Ctrl+Shift+S
     + [D] Discard changes ................... Ctrl+D
     + [C] Close project ..................... Ctrl+W
+    + [E] Export as DAISY ................... Ctrl+E
     + [X] Exit .............................. Alt+F4
 
   + [E] Edit
@@ -37,7 +38,7 @@ Main form
   + [S] Strips
     + [A] Add strip ......................... Ctrl+A
     + [R] Rename strip ...................... Shift+F2
-    + [K] Mark strip/block as used/unused ... Ctrl+K
+    + [K] Mark strip as used/unused ......... Ctrl+K
     + [I] Import audio file ................. Ctrl+I
     + [S] Split audio block ................. Ctrl+P
     + [H] Apply phrase detection ............ Ctrl+H
@@ -95,11 +96,13 @@ Strip Manager Panel's context menu
   + [A] Add strip ........................... Ctrl+A
   + [N] Rename strip ........................ Shift+F2
   + [D] Delete strip ........................ Shift+Del
+  + [K] Mark strip as used/unused ........... Ctrl+K
   + [I] Import audio ........................ Ctrl+I
   + [C] Cut phrase .......................... Ctrl+X
   + [Y] Copy phrase ......................... Ctrl+C
   + [E] Paste phrase ........................ Ctrl+V
   + [L] Delete phrase ....................... Del
+  + [K] Mark phrase as used/unused .......... Ctrl+K
   + [S] Split audio block ................... Ctrl+P
   + [H] Apply phrase detection .............. Ctrl+H
   + [G] Merge with next audio block ......... Ctrl+M
@@ -162,7 +165,7 @@ Index of shortcuts
   Ctrl+C* ............ [Strip Manager Panel] Copy phrase
   Ctrl+Shift+C ....... [TOC Panel] Copy section
   Ctrl+D ............. File > Discard changes
-  Ctrl+E ............. FREE
+  Ctrl+E ............. File > Export as DAISY
   Ctrl+F ............. FREE
   Ctrl+G ............. FREE
   Ctrl+H ............. Strips > Apply phrase detection
@@ -173,6 +176,8 @@ Index of shortcuts
   Ctrl+K ............. Strips > Mark strip/block as used/unused
   Ctrl+K ............. TOC > Mark section as used/unused
   Ctrl+K ............. [TOC Panel] Mark section as used/unused
+  Ctrl+K ............. Strips > Mark strip as used/unused
+  Ctrl+K ............. [Strip Manager Panel] Mark strip as used/unused
   Ctrl+L ............. FREE
   Alt+M .............. Edit > Metadata
   Ctrl+M ............. Strips > Merge with next audio block
