@@ -186,27 +186,11 @@ namespace Obi.UserControls
         {
             if (e.Node is SectionNode)
             {
-                SectionStrip strip = mSectionNodeMap[(SectionNode)e.Node];
-                if (mSelectedSection == (SectionNode)e.Node)
-                {
-                    strip.Selected = true;
-                }
-                else
-                {
-                    strip.Selected = false;
-                }
+                mSectionNodeMap[(SectionNode)e.Node].RefreshUsed();
             }
             else if (e.Node is PhraseNode)
             {
-                AudioBlock block = mPhraseNodeMap[(PhraseNode)e.Node];
-                if (mSelectedPhrase == (PhraseNode)e.Node)
-                {
-                    block.Selected = true;
-                }
-                else
-                {
-                    block.Selected = false;
-                }
+                mPhraseNodeMap[(PhraseNode)e.Node].RefreshUsed();
             }
         }
     }
