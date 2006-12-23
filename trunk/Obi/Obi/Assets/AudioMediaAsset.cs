@@ -11,6 +11,18 @@ namespace Obi.Assets
         public static readonly double DefaultGap = 500.0;             // default gap for phrase detection
         public static readonly double DefaultLeadingSilence = 100.0;  // default leading silence
 
+        /// <summary>
+        /// The empty audio media for phrase nodes that do not have audio.
+        /// </summary>
+        public static AudioMediaAsset Empty
+        {
+            get { return mEmptyAsset; }
+        }
+
+        // The actual asset does not really matter much
+        // Should be default project parameters though?
+        private static readonly AudioMediaAsset mEmptyAsset = new AudioMediaAsset(1, 8, 8000);
+
         private int m_Channels;
         private int m_BitDepth;
         private int m_SamplingRate;
@@ -760,8 +772,5 @@ namespace Obi.Assets
             }
 
         }
-
-
-
-    }// end of class
+    }
 }
