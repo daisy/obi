@@ -497,17 +497,17 @@ namespace Obi.Audio
 		public void Play(Assets.AudioMediaAsset  asset, double timeFrom)
 		{
 			m_Asset = asset as Assets.AudioMediaAsset;
-			long lPosition = CalculationFunctions.ConvertTimeToByte (timeFrom, m_Asset .SampleRate, m_Asset .FrameSize) ;
-			lPosition = CalculationFunctions.AdaptToFrame(lPosition, m_Asset .FrameSize) ;
-			if(lPosition>=0   && lPosition < m_Asset.AudioLengthInBytes)
-			{
-							m_StartPosition   =  lPosition ;
-				InitPlay ( lPosition, 0 );
-			}
-			else
-			throw new Exception ("Start Position is out of bounds of Audio Asset") ;
-				
-			
+            if (m_Asset.AudioLengthInBytes > 0)
+            {
+                long lPosition = CalculationFunctions.ConvertTimeToByte(timeFrom, m_Asset.SampleRate, m_Asset.FrameSize);
+                lPosition = CalculationFunctions.AdaptToFrame(lPosition, m_Asset.FrameSize);
+                if (lPosition >= 0 && lPosition <= m_Asset.AudioLengthInBytes)
+                {
+                    m_StartPosition = lPosition;
+                    InitPlay(lPosition, 0);
+                }
+                else throw new Exception("Start Position is out of bounds of Audio Asset");
+            }
 		}
 
 		// contains the end position  to play to be used in starting playing  after seeking

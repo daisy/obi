@@ -257,12 +257,14 @@ namespace Obi
                 Uri absoluteAssPath = new Uri(new Uri(xukPath), mAssPath); 
                 mAssManager = new Assets.AssetManager(absoluteAssPath.AbsolutePath);
                 // Recreate the assets from the phrase nodes
-                string errMessages = ""; 
-                Visitors.AssetCreator visitor = new Visitors.AssetCreator(mAssManager,
-                    delegate(string message) { errMessages += message + "\n"; });
+                // string errMessages = ""; 
+                Visitors.AssetCreator visitor = new Visitors.AssetCreator(mAssManager, delegate(string m) { });
+                //     delegate(string message) { errMessages += message + "\n"; });
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
-                if (errMessages != "")
-                    throw new Exception(String.Format(Localizer.Message("open_project_error_text") + "\n" + errMessages, xukPath)); 
+                // if (errMessages != "")
+                // {
+                //     throw new Exception(String.Format(Localizer.Message("open_project_error_text") + "\n" + errMessages, xukPath));
+                // }
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
             }
             else

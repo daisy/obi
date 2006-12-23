@@ -26,8 +26,6 @@ namespace Obi.Visitors
             mErrorHandler = errorHandler;
         }
 
-        #region ICoreNodeVisitor Members
-
         /// <summary>
         /// Do nothing.
         /// </summary>
@@ -42,7 +40,6 @@ namespace Obi.Visitors
         {
             if (node.GetType() == System.Type.GetType("Obi.PhraseNode"))
             {
-               
                 SequenceMedia media = (SequenceMedia)Project.GetMediaForChannel((CoreNode)node, Project.AudioChannelName);
                 List<Assets.AudioClip> clips = new List<Assets.AudioClip>(media.getCount());
                 for (int i = 0; i < media.getCount(); ++i)
@@ -66,14 +63,13 @@ namespace Obi.Visitors
                     Assets.AudioMediaAsset asset = mAssManager.NewAudioMediaAsset(clips);
                     ((PhraseNode)node).Asset = asset;
                 }
-                // else
-                // {
-                //     make an invalid object.
-                // }
+                // should let the error handler take care of that
+                else
+                {
+                    ((PhraseNode)node).Asset = Assets.AudioMediaAsset.Empty;
+                }
             }
             return true;
         }
-
-        #endregion
     }
 }

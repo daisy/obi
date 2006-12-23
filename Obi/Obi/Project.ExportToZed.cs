@@ -7,7 +7,7 @@ namespace Obi
     public partial class Project
     {
         static string mXsltFile = "XukToZed.xslt";
-        static string mDaisyOutputDirPrefix = "daisy_";
+        static string mDaisyOutputDirSuffix = "_daisy";
         public void ExportToZed()
         {
             
@@ -19,7 +19,7 @@ namespace Obi
             //then invoke the XukToZed transformation
             string outputFolder = System.IO.Path.GetDirectoryName(XUKPath);
             string xukFileName = System.IO.Path.GetFileNameWithoutExtension(XUKPath);
-            outputFolder += "\\" + mDaisyOutputDirPrefix + xukFileName;
+            outputFolder += "\\" + xukFileName + mDaisyOutputDirSuffix;
             //create the output folder if it doesn't exist
             //todo: consider asking the user if they want to choose a folder
             if (!System.IO.Directory.Exists(outputFolder)) System.IO.Directory.CreateDirectory(outputFolder);
