@@ -529,9 +529,14 @@ namespace Obi.Audio
         private void SimulateEmptyAssetPlaying()
         {
             
+            m_Channels = m_Asset.Channels;
+            m_FrameSize = m_Asset.Channels * (m_Asset.BitDepth / 8);
+            m_SamplingRate = m_Asset.SampleRate;
+
             Events.Audio.Player.StateChangedEventArgs  e = new Events.Audio.Player.StateChangedEventArgs(m_State);
             m_State = AudioPlayerState.Playing;
             TriggerStateChangedEvent(e);
+            
 
             Thread.Sleep(50);
 
@@ -542,7 +547,10 @@ namespace Obi.Audio
             // trigger end of asset event
             if (m_EventsEnabled == true)
                 EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());
+//            System.Media.SystemSounds.Asterisk.Play();
         }
+
+
 		// contains the end position  to play to be used in starting playing  after seeking
 		long lByteTo = 0 ;		
 		private void Play(Assets.AudioMediaAsset asset , double timeFrom, double timeTo)
@@ -636,28 +644,32 @@ namespace Obi.Audio
 
 		internal long GetCurrentBytePosition()
 		{
-			int PlayPosition  = SoundBuffer.PlayPosition;
-			
-			long lCurrentPosition ;
+            int PlayPosition = 0;
+            long lCurrentPosition = 0 ;
 
-            if (m_BufferStopPosition != -1)
+            if (m_Asset.AudioLengthInBytes > 0)
             {
-                lCurrentPosition = m_Asset.AudioLengthInBytes  -  (m_BufferStopPosition - PlayPosition);
+
+                PlayPosition = SoundBuffer.PlayPosition;
+
+                if (m_BufferStopPosition != -1)
+                {
+                    lCurrentPosition = m_Asset.AudioLengthInBytes - (m_BufferStopPosition - PlayPosition);
+                }
+                //if (PlayPosition < m_RefreshLength) // Avn: changed on19 Dec 2006 for improving get position for pause
+                else if (m_BufferCheck % 2 == 1)
+                {
+                    // takes the lPlayed position and subtract the part of buffer played from it
+                    lCurrentPosition = m_lPlayed - (2 * m_RefreshLength) + PlayPosition;
+                }
+                else
+                {
+                    lCurrentPosition = m_lPlayed - (3 * m_RefreshLength) + PlayPosition;
+                }
+
+                if (lCurrentPosition >= m_Asset.AudioLengthInBytes)
+                    lCurrentPosition = m_Asset.AudioLengthInBytes - Convert.ToInt32(CalculationFunctions.ConvertTimeToByte(100, m_SamplingRate, m_FrameSize));
             }
-            //if (PlayPosition < m_RefreshLength) // Avn: changed on19 Dec 2006 for improving get position for pause
-            else if (m_BufferCheck % 2 == 1)
-			{ 
-				// takes the lPlayed position and subtract the part of buffer played from it
-				lCurrentPosition = m_lPlayed - ( 2 * m_RefreshLength) + PlayPosition ;
-			}
-			else
-			{
-                lCurrentPosition = m_lPlayed - (3 * m_RefreshLength) + PlayPosition;
-			}
-
-            if ( lCurrentPosition >= m_Asset.AudioLengthInBytes )
-                lCurrentPosition = m_Asset.AudioLengthInBytes - Convert.ToInt32(CalculationFunctions.ConvertTimeToByte(100, m_SamplingRate, m_FrameSize)); 
-
 			return lCurrentPosition ;
 		}
 
