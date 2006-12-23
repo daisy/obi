@@ -50,18 +50,15 @@ namespace Obi.UserControls
         /// </summary>
         private void mMarkSectionAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ToggleSectionUsed();
+            ToggleSelectedSectionUsed();
         }
 
         /// <summary>
         /// Toggle the used property of the selected section.
         /// </summary>
-        public void ToggleSectionUsed()
+        public void ToggleSelectedSectionUsed()
         {
-            if (SelectedSection != null)
-            {
-                SelectedSection.Project.ToggleNodeUsed(SelectedSection, this, true);
-            }
+            if (mProjectPanel.CanToggleSection) SelectedSection.Project.ToggleNodeUsed(SelectedSection, this, true);
         }
 
         /// <summary>

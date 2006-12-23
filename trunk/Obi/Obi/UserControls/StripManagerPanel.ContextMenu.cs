@@ -418,10 +418,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void ToggleSelectedStripUsed()
         {
-            if (mSelectedSection != null)
-            {
-                mSelectedSection.Project.ToggleNodeUsed(mSelectedSection, this, false);
-            }
+            if (mProjectPanel.CanToggleStrip) mSelectedSection.Project.ToggleNodeUsed(mSelectedSection, this, false);
         }
 
         private void mMarkStripAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
@@ -435,10 +432,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void ToggleSelectedPhraseUsed()
         {
-            if (mSelectedPhrase != null)
-            {
-                mSelectedPhrase.Project.ToggleNodeUsed(mSelectedPhrase, this, false);
-            }
+            if (mProjectPanel.CanToggleAudioBlock) mSelectedPhrase.Project.ToggleNodeUsed(mSelectedPhrase, this, false);
         }
 
         private void mMarkPhraseAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)

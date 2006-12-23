@@ -621,10 +621,11 @@ namespace Obi
                 {
                     for (int i = 0; i < _n.PhraseChildCount; ++i)
                     {
-                        if (_n.Used != used)
+                        PhraseNode ph = _n.PhraseChild(i);
+                        if (ph.Used != used)
                         {
-                            _n.Used = used;
-                            ToggledNodeUsedState(origin, new Events.Node.ObiNodeEventArgs(_n));
+                            ph.Used = used;
+                            ToggledNodeUsedState(origin, new Events.Node.ObiNodeEventArgs(ph));
                         }
                     }
                 }

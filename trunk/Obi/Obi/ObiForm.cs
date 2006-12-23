@@ -993,6 +993,11 @@ namespace Obi
             mRemovePageNumberToolStripMenuItem.Enabled = canRemovePage;
 
             mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;
+
+            mMarkStripAsUnusedToolStripMenuItem.Enabled = mProjectPanel.CanToggleStrip;
+            mMarkStripAsUnusedToolStripMenuItem.Text = mProjectPanel.ToggleStripString;
+            mMarkAudioBlockAsUnusedToolStripMenuItem.Enabled = mProjectPanel.CanToggleAudioBlock;
+            mMarkAudioBlockAsUnusedToolStripMenuItem.Text = mProjectPanel.ToggleAudioBlockString;
         }
 
         /// <summary>
@@ -1221,6 +1226,7 @@ namespace Obi
         /// </summary>
         private void mMarkSectionAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            mProjectPanel.TOCPanel.ToggleSelectedSectionUsed();
         }
 
         private void mExportAsDAISYToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1230,5 +1236,20 @@ namespace Obi
             this.Cursor = Cursors.Default;
         }
 
+        /// <summary>
+        /// Toggle strip used/unused.
+        /// </summary>
+        private void mMarkStripAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.StripManager.ToggleSelectedStripUsed();
+        }
+
+        /// <summary>
+        /// Toggle audio block used/unused.
+        /// </summary>
+        private void mMarkAudioBlockAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.StripManager.ToggleSelectedPhraseUsed();
+        }
     }
 }
