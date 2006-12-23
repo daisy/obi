@@ -15,7 +15,7 @@ namespace Obi.Commands.Node
             get
             {
                 return String.Format(Localizer.Message("toggle_used_command_label"),
-                    Localizer.Message(mNode is SectionNode ? "section" : "phrase"),
+                    Localizer.Message(mNode is SectionNode ? mDeep ? "section" : "strip" : "audio_block"),
                     Localizer.Message(mNowUsed ? "used" : "unused"));
             }
         }

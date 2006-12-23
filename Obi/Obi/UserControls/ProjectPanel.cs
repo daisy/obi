@@ -282,6 +282,79 @@ namespace Obi.UserControls
         }
 
         /// <summary>
+        /// True if there is currently a selected section and its use status
+        /// can be toggled (i.e. its parent is used)
+        /// </summary>
+        public bool CanToggleSection
+        {
+            get
+            {
+                SectionNode selected = mTOCPanel.SelectedSection;
+                if (selected == null) return false;
+                if (selected.Used) return true;
+                SectionNode parent = selected.ParentSection;
+                return parent == null || parent.Used;
+            }
+        }
+
+        /// <summary>
+        /// True if there is currently a selected strip and its use status
+        /// can be toggled (i.e. its parent is used)
+        /// Can check for subsections as well? [optional]
+        /// </summary>
+        public bool CanToggleStrip
+        {
+            get
+            {
+                SectionNode selected = mStripManagerPanel.SelectedSectionNode;
+                if (selected == null) return false;
+                if (selected.SectionChildCount > 0) return false;  // optional
+                if (selected.Used) return true;
+                SectionNode parent = selected.ParentSection;
+                return parent == null || parent.Used;
+            }
+        }
+
+        /// <summary>
+        /// String to show in the menu: "mark audio block as used/unused"
+        /// </summary>
+        public string ToggleStripString
+        {
+            get
+            {
+                return String.Format(Localizer.Message("mark_x_as_y"), Localizer.Message("strip"),
+                    Localizer.Message(CanToggleStrip && !mStripManagerPanel.SelectedSectionNode.Used ?
+                    "used" : "unused"));
+            }
+        }
+
+        /// <summary>
+        /// True if there is currently a selected audio block and its use
+        /// status can be toggled (its parent section must be used.)
+        /// </summary>
+        public bool CanToggleAudioBlock
+        {
+            get
+            {
+                PhraseNode selected = mStripManagerPanel.SelectedPhraseNode;
+                return selected != null && selected.ParentSection.Used;
+            }
+        }
+
+        /// <summary>
+        /// String to show in the menu: "mark audio block as used/unused"
+        /// </summary>
+        public string ToggleAudioBlockString
+        {
+            get
+            {
+                return String.Format(Localizer.Message("mark_x_as_y"), Localizer.Message("audio_block"),
+                    Localizer.Message(CanToggleAudioBlock && !mStripManagerPanel.SelectedPhraseNode.Used ?
+                    "used" : "unused"));
+            }
+        }
+
+        /// <summary>
         /// Get a label for the node currently selected, i.e. "" if nothing is seleced,
         /// "audio block" for an audio block, "strip" for a strip and "section" for a
         /// section.

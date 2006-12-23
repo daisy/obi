@@ -46,6 +46,7 @@ Main form
     + [V] Move audio block................... None
       + [F] Forward ......................... Ctrl+Right
       + [B] Backward ........................ Ctrl+Left
+    + [K] Mark audio block as used/unused ... Ctrl+K
     + [E] Edit annotation ................... F2
     + [O] Remove annotation ................. Shift+Ctrl+Del
     + [T] Set page number ................... Ctrl+F2
@@ -178,6 +179,8 @@ Index of shortcuts
   Ctrl+K ............. [TOC Panel] Mark section as used/unused
   Ctrl+K ............. Strips > Mark strip as used/unused
   Ctrl+K ............. [Strip Manager Panel] Mark strip as used/unused
+  Ctrl+K ............. Strips > Mark audio block as used/unused
+  Ctrl+K ............. [Strip Manager Panel] Mark audio block as used/unused*
   Ctrl+L ............. FREE
   Alt+M .............. Edit > Metadata
   Ctrl+M ............. Strips > Merge with next audio block
