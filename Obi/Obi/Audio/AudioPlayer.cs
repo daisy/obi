@@ -267,15 +267,18 @@ namespace Obi.Audio
 
 		public void Play(Assets.AudioMediaAsset asset )
 		{
-			m_StartPosition   = 0 ;
-			m_State  = AudioPlayerState.NotReady ;
-			m_Asset = asset as Assets.AudioMediaAsset;
+            if (m_State == AudioPlayerState.Stopped || m_State == AudioPlayerState.Paused)
+            {
+                m_StartPosition = 0;
+                m_State = AudioPlayerState.NotReady;
+                m_Asset = asset as Assets.AudioMediaAsset;
 
-            if (m_Asset.AudioLengthInBytes != 0)
-                InitPlay(0, 0);
-            else
-                SimulateEmptyAssetPlaying();
+                if (m_Asset.AudioLengthInBytes != 0)
+                    InitPlay(0, 0);
+                else
+                    SimulateEmptyAssetPlaying();
 
+            }
 		}
 
 		void InitPlay(long lStartPosition, long lEndPosition)
@@ -501,24 +504,26 @@ namespace Obi.Audio
 		
 		public void Play(Assets.AudioMediaAsset  asset, double timeFrom)
 		{
-            m_State = AudioPlayerState.NotReady;
-			m_Asset = asset as Assets.AudioMediaAsset;
-            if (m_Asset.AudioLengthInBytes > 0)
+            if (m_State == AudioPlayerState.Stopped || m_State == AudioPlayerState.Paused)
             {
-                long lPosition = CalculationFunctions.ConvertTimeToByte(timeFrom, m_Asset.SampleRate, m_Asset.FrameSize);
-                lPosition = CalculationFunctions.AdaptToFrame(lPosition, m_Asset.FrameSize);
-                if (lPosition >= 0 && lPosition <= m_Asset.AudioLengthInBytes)
+                m_State = AudioPlayerState.NotReady;
+                m_Asset = asset as Assets.AudioMediaAsset;
+                if (m_Asset.AudioLengthInBytes > 0)
                 {
-                    m_StartPosition = lPosition;
-                    InitPlay(lPosition, 0);
+                    long lPosition = CalculationFunctions.ConvertTimeToByte(timeFrom, m_Asset.SampleRate, m_Asset.FrameSize);
+                    lPosition = CalculationFunctions.AdaptToFrame(lPosition, m_Asset.FrameSize);
+                    if (lPosition >= 0 && lPosition <= m_Asset.AudioLengthInBytes)
+                    {
+                        m_StartPosition = lPosition;
+                        InitPlay(lPosition, 0);
+                    }
+                    else throw new Exception("Start Position is out of bounds of Audio Asset");
                 }
-                else throw new Exception("Start Position is out of bounds of Audio Asset");
+                else    // if m_Asset.AudioLengthInBytes= 0 i.e. empty asset
+                {
+                    SimulateEmptyAssetPlaying();
+                }
             }
-            else    // if m_Asset.AudioLengthInBytes= 0 i.e. empty asset
-            {
-                SimulateEmptyAssetPlaying ();
-            }
-
 		}
 
 
