@@ -188,7 +188,13 @@ namespace Obi
                 {
                     mPhraseMarks.Add(mRecordingAsset.LengthInMilliseconds);
                     mAssetList.Add(mAsset);
-                    double mAssetLengthInMs = mPhraseMarks[0];
+                    //double mAssetLengthInMs = mPhraseMarks[0];
+                    double mAssetLengthInMs;
+                    if (mPhraseMarks.Count > 1)
+                        mAssetLengthInMs = mPhraseMarks[mPhraseMarks.Count - 1] - mPhraseMarks[mPhraseMarks.Count - 2];
+                    else
+                        mAssetLengthInMs = mPhraseMarks[0];
+
                     e = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count - 1, mAssetLengthInMs);
                     AudioClip Clip = new AudioClip(mRecordingAsset.Clips[0].Path, 0.0, mPhraseMarks[0]);
                     mAssetList[0].AddClip(Clip);
