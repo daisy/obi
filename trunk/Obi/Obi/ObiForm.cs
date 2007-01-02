@@ -1212,12 +1212,21 @@ namespace Obi
             // Make sure that the correct menu items are enabled for the keyboard shortcuts to work.
             UpdateEnabledItems();
             // disabled for the time being.
-            // switch (key)
-            // {
+             switch (key)
+             {
             //    case Keys.Space:
             //        mProjectPanel.TransportBar.Play();
             //        break;
-            // }
+
+            case Keys.Alt | Keys.Shift | Keys.Right:
+                     if ( mFastForwardToolStripMenuItem.Enabled == true )
+                         mProjectPanel.TransportBar.FastForward();
+                     break;
+                 case Keys.Alt | Keys.Shift | Keys.Left :
+                     if ( mRewindToolStripMenuItem.Enabled == true)
+                         mProjectPanel.TransportBar.Rewind ();
+                     break;
+             }
             return base.ProcessDialogKey(key);
         }
 
