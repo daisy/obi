@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Obi
@@ -15,6 +14,13 @@ namespace Obi
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new ObiForm());
+        }
+
+        /// <summary>
+        /// Convenience event handler doing nothing, useful for visitors.
+        /// </summary>
+        public static void Noop(object sender, EventArgs e)
+        {
         }
     }
 }

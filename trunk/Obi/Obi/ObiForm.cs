@@ -17,9 +17,7 @@ namespace Obi
         private Project mProject;                // the project currently being authored
         private Settings mSettings;              // application settings
         private CommandManager mCommandManager;  // the undo stack for this project (should it belong to the project?)
-        private Audio.VuMeterForm mVuMeter;      // keep track of a single Vu meter form
-        private Audio.VuMeter mVuMeterInstance = new Obi.Audio.VuMeter(); // Avn: Its better to use one instance of VuMeter class for both player and recorder
-
+        private Audio.VuMeterForm mVuMeter;      // keep track of a single VU meter form
 
         /// <summary>
         /// Application settings.
@@ -44,19 +42,28 @@ namespace Obi
         public ObiForm()
         {
             InitializeComponent();
-            DoubleBuffered = true;
             mProject = null;
             mSettings = null;
             mCommandManager = new CommandManager();
-            Audio.AudioPlayer.Instance.VuMeter = mVuMeterInstance;
-            Audio.AudioRecorder.Instance.VuMeterObject = mVuMeterInstance;
-            mVuMeterInstance.SetEventHandlers();
-            mVuMeter = new Audio.VuMeterForm(Audio.AudioPlayer.Instance.VuMeter);
-            mVuMeter.MagnificationFactor = 1.5;
-            mVuMeter.Show();
-            mVuMeter.Visible = false;
+            InitializeVuMeter();
             InitializeSettings();
             StatusUpdateClosedProject();  // no project opened, same as if we closed a project.
+        }
+
+        /// <summary>
+        /// Set up the VU meter form.
+        /// </summary>
+        private void InitializeVuMeter()
+        {
+            Audio.VuMeter vumeter = new Obi.Audio.VuMeter();
+            Audio.AudioPlayer.Instance.VuMeter = vumeter;
+            Audio.AudioRecorder.Instance.VuMeterObject = vumeter;
+            vumeter.SetEventHandlers();
+            mVuMeter = new Audio.VuMeterForm(vumeter);
+            mVuMeter.MagnificationFactor = 1.5;
+            // Kludgy
+            mVuMeter.Show();
+            mVuMeter.Visible = false;
         }
 
         #region GUI event handlers
@@ -70,15 +77,12 @@ namespace Obi
             dialog.CreateTitleSection = mSettings.CreateTitleSection;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
+                // Whether or not the project was created, the setting for
+                // automatically creating a title section is saved.
+                mSettings.CreateTitleSection = dialog.CreateTitleSection;
                 if (ClosedProject())
                 {
-                    mProject = Project.BlankProject();
-                    mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
-                    mProject.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
-                    mProject.Create(dialog.Path, dialog.Title, mSettings.IdTemplate, mSettings.UserProfile,
-                        dialog.CreateTitleSection);
-                    mSettings.CreateTitleSection = dialog.CreateTitleSection;
-                    AddRecentProject(mProject.XUKPath);
+                    CreateNewProject(dialog.Path, dialog.Title, dialog.CreateTitleSection);
                 }
                 else
                 {
@@ -89,6 +93,22 @@ namespace Obi
             {
                 Ready();
             }
+        }
+
+        /// <summary>
+        /// Create a new project. The application listens to the project's state change and
+        /// command created events.
+        /// </summary>
+        /// <param name="path">Path of the XUK file to the project.</param>
+        /// <param name="title">Title of the project.</param>
+        /// <param name="createTitleSection">If true, a title section is automatically created.</param>
+        private void CreateNewProject(string path, string title, bool createTitleSection)
+        {
+            mProject = Project.BlankProject();
+            mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
+            mProject.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
+            mProject.Create(path, title, mSettings.IdTemplate, mSettings.UserProfile, createTitleSection);
+            AddRecentProject(mProject.XUKPath);
         }
 
         /// <summary>
@@ -220,7 +240,20 @@ namespace Obi
             Dialogs.EditSimpleMetadata dialog = new Dialogs.EditSimpleMetadata(mProject.Metadata);
             if (mProject != null && dialog.ShowDialog() == DialogResult.OK)
             {
-                mProject.Touch();
+                mProject.Modified();
+            }
+            Ready();
+        }
+
+        /// <summary>
+        /// Edit the full DAISY metadata for this project.
+        /// </summary>
+        private void mFullMetadataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Dialogs.FullMetadata dialog = new Dialogs.FullMetadata(new Metadata());
+            if (mProject != null && dialog.ShowDialog() == DialogResult.OK)
+            {
+                mProject.Modified();
             }
             Ready();
         }
@@ -277,9 +310,7 @@ namespace Obi
         /// <summary>
         /// Edit the preferences, starting from the Audio tab. (JQ)
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void audioPreferencesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mAudioPreferencesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings);
             dialog.SelectAudioTab();
@@ -294,12 +325,8 @@ namespace Obi
         {
             if (dialog.IdTemplate.Contains("#")) mSettings.IdTemplate = dialog.IdTemplate;
             if (Directory.Exists(dialog.DefaultDir)) mSettings.DefaultPath = dialog.DefaultDir;
-            // mSettings.LastOutputDevice = dialog.OutputDevice;
-            // Audio.AudioPlayer.Instance.SetDevice(this, dialog.OutputDeviceIndex);
             mSettings.LastOutputDevice = dialog.OutputDevice.Name;
             Audio.AudioPlayer.Instance.SetDevice(this, dialog.OutputDevice);
-            // mSettings.LastInputDevice = dialog.InputDevice;
-            // Audio.AudioRecorder.Instance.SetInputDeviceForRecording(this, dialog.InputDeviceIndex);
             mSettings.LastInputDevice = dialog.InputDevice.Name;
             Audio.AudioRecorder.Instance.InputDevice = dialog.InputDevice;
             mSettings.AudioChannels = dialog.AudioChannels;
@@ -334,6 +361,9 @@ namespace Obi
             }
         }
 
+        /// <summary>
+        /// Handle state change events from the project (closed, modified, opened, saved.)
+        /// </summary>
         private void mProject_StateChanged(object sender, Events.Project.StateChangedEventArgs e)
         {
             switch (e.Change)
@@ -599,41 +629,43 @@ namespace Obi
         }
 
         /// <summary>
-        /// Update the form to reflect enabled/disabled actions when a project is opened.
+        /// Update the form (title and status bar) when a project is opened.
         /// </summary>
         private void FormUpdateOpenedProject()
         {
-            this.Text = String.Format("{0} - {1}", mProject.Metadata.Title, Localizer.Message("obi"));
-            mToolStripStatusLabel.Text = String.Format(Localizer.Message("opened_project"), mProject.XUKPath);
+            this.Text = String.Format(Localizer.Message("title_bar"), mProject.Metadata.Title);
+            Status(String.Format(Localizer.Message("opened_project"), mProject.XUKPath));
         }
 
         /// <summary>
-        /// Update the form to reflect enabled/disabled actions when the project is saved.
+        /// Update the form (title and status bar) when the project is saved.
         /// </summary>
         private void FormUpdateSavedProject()
         {
-            this.Text = String.Format("{0} - {1}", mProject.Metadata.Title, Localizer.Message("obi"));
-            mToolStripStatusLabel.Text = String.Format(Localizer.Message("saved_project"), mProject.LastPath);
+            this.Text = String.Format(Localizer.Message("title_bar"), mProject.Metadata.Title);
+            Status(String.Format(Localizer.Message("saved_project"), mProject.LastPath));
         }
 
         /// <summary>
-        /// Update the form to reflect enabled/disabled actions when the project is modified.
+        /// Update the form (title and status bar) when the project is modified.
         /// </summary>
         private void FormUpdateModifiedProject()
         {
-            this.Text = String.Format("{0}* - {1}", mProject.Metadata.Title, Localizer.Message("obi"));
+            this.Text = String.Format(Localizer.Message("title_bar"), mProject.Metadata.Title + "*");
             Ready();
         }
 
         /// <summary>
         /// Check whether a project is currently open and not saved; prompt the user about what to do.
-        /// Close the project if that is what the user wants to do.
+        /// Close the project if that is what the user wants to do or if it was unmodified.
         /// </summary>
         /// <returns>True if there is no open project or the currently open project could be closed.</returns>
         private bool ClosedProject()
         {
             if (mProject != null && mProject.Unsaved)
             {
+                // Unsaved project, ask the user if they want to save and close ("yes" option),
+                // close without saving ("no" option) or not close at all ("cancel" option.)
                 DialogResult result = MessageBox.Show(Localizer.Message("closed_project_text"),
                     Localizer.Message("closed_project_caption"), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 switch (result)
@@ -642,17 +674,17 @@ namespace Obi
                         mProject.Save();
                         DoClose();
                         return true;
-                    case DialogResult.Cancel:
-                        return false;
                     case DialogResult.No:
                         DoClose();
                         return true;
+                    // case DialogResult.Cancel:
                     default:
                         return false;
                 }
             }
             else
             {
+                // No project, or no changes, so just close.
                 if (mProject != null) DoClose();
                 return true;
             }
@@ -668,10 +700,8 @@ namespace Obi
             {
                 // A bit kldugy but an easy way to rebuild the list of used files when discarding changes.
                 string path = mProject.XUKPath;
-                mProject = Project.BlankProject();  // new Project();
-                mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(
-                    delegate(object sender, Obi.Events.Project.StateChangedEventArgs e) { }
-                );
+                mProject = Project.BlankProject();
+                mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(Program.Noop);
                 mProject.Open(path);
                 mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
             }
@@ -680,11 +710,20 @@ namespace Obi
         }
 
         /// <summary>
+        /// Display a message on the status bar.
+        /// </summary>
+        /// <param name="message">The message to display.</param>
+        private void Status(string message)
+        {
+            mToolStripStatusLabel.Text = message;
+        }
+
+        /// <summary>
         /// Update the status bar to say "Ready."
         /// </summary>
         private void Ready()
         {
-            mToolStripStatusLabel.Text = Localizer.Message("ready");
+            Status(Localizer.Message("ready"));
         }
 
         /// <summary>

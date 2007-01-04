@@ -41,7 +41,7 @@ namespace Obi
         private Clipboard mClipboard;        // project-wide clipboard.
         //private PhraseNode mSilencePhrase;     // silence phrase used for phrase detection
 
-        public static readonly string XUKVersion = "obi-xuk-008";            // version of the Obi/XUK file
+        public static readonly string XUKVersion = "obi-xuk-008";                // version of the Obi/XUK file
         public static readonly string AudioChannelName = "obi.audio";            // canonical name of the audio channel
         public static readonly string TextChannelName = "obi.text";              // canonical name of the text channel
         public static readonly string AnnotationChannelName = "obi.annotation";  // canonical name of the annotation channel
@@ -123,27 +123,21 @@ namespace Obi
             mAudioChannel = null;
             mTextChannel = null;
             mAnnotationChannel = null;
-
             mClipboard = new Clipboard();
         }
 
-
         /// <summary>
         /// Convenience method for creating a new blank project. Actually create a presentation first so that we can use our own
-        /// core node factory and custom property factory.
+        /// core node factory and custom property factory. Set up the channel manager as well.
         /// </summary>
         /// <returns>The newly created, blank project.</returns>
         public static Project BlankProject()
         {
             ObiNodeFactory nodeFactory = new ObiNodeFactory();
             Presentation presentation = new Presentation(nodeFactory, null, null, new ObiPropertyFactory(), null);
-            Project project = new Project(presentation);
-
-            // Create metadata and channels factories
             ChannelFactory factory = presentation.getChannelFactory();
             ChannelsManager manager = presentation.getChannelsManager();
-        
-
+            Project project = new Project(presentation);
             nodeFactory.Project = project;
             return project;
         }
@@ -372,7 +366,7 @@ namespace Obi
         /// <summary>
         /// Project was modified.
         /// </summary>
-        private void Modified()
+        public void Modified()
         {
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
