@@ -470,6 +470,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Names of primary author or creator of the intellectual content of the publication..
+        /// </summary>
+        internal static string meta_dc_creator {
+            get {
+                return ResourceManager.GetString("meta_dc_creator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The title of the DTB, including any subtitles..
+        /// </summary>
+        internal static string meta_dc_title {
+            get {
+                return ResourceManager.GetString("meta_dc_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find path to asset directory..
         /// </summary>
         internal static string missing_asset_path {
@@ -1059,6 +1077,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} - Obi.
+        /// </summary>
+        internal static string title_bar {
+            get {
+                return ResourceManager.GetString("title_bar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Section names are shown nested in this view.  You can rename and reorder sections. Right-click for more options..
         /// </summary>
         internal static string toc_view_tooltip {
@@ -1118,6 +1145,15 @@ namespace Obi {
         internal static string used {
             get {
                 return ResourceManager.GetString("used", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}{1} [{2}].
+        /// </summary>
+        internal static string user_profile_template {
+            get {
+                return ResourceManager.GetString("user_profile_template", resourceCulture);
             }
         }
         

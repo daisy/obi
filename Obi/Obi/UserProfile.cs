@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Globalization;
 
 namespace Obi
@@ -12,64 +10,28 @@ namespace Obi
     [Serializable]
     public class UserProfile
     {
-        private string mName;          // user name
-        private string mOrganization;  // user organization
-        private CultureInfo mCulture;  // user language
-
-        public string Name
-        {
-            get
-            {
-                return mName;
-            }
-            set
-            {
-                mName = value;
-            }
-        }
-
-        public string Organization
-        {
-            get
-            {
-                return mOrganization;
-            }
-            set
-            {
-                mOrganization = value;
-            }
-        }
-
-        public CultureInfo Culture
-        {
-            get
-            {
-                return mCulture;
-            }
-            set
-            {
-                mCulture = value;
-            }
-        }
+        public string Name;          // user name
+        public string Organization;  // user organization
+        public CultureInfo Culture;  // user language
 
         /// <summary>
         /// Create a new user profile from the OS settings.
         /// </summary>
         public UserProfile()
         {
-            mName = Environment.UserName;
-            mOrganization = Localizer.Message("default_organization");
-            mCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+            Name = Environment.UserName;
+            Organization = Localizer.Message("default_organization");
+            Culture = System.Threading.Thread.CurrentThread.CurrentCulture;
         }
 
         /// <summary>
-        /// Short string version of the user profile.
+        /// Short string version of the user profile,
         /// e.g. "David Brent @Wernham Hogg [en-UK]"
         /// </summary>
-        /// <returns></returns>
         public override string ToString()
         {
-            return String.Format("{0}{1} [{2}]", mName, mOrganization == null ? "" : " @" + mOrganization, mCulture);
+            return String.Format(Localizer.Message("user_profile_template"),
+                Name, Organization == null ? "" : " @" + Organization, Culture);
         }
     }
 }

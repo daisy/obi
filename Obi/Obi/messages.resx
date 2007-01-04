@@ -139,6 +139,7 @@ Do you want to save these modifications before closing the project?</value>
   </data>
   <data name="default_organization" xml:space="preserve">
     <value>N/A</value>
+    <comment>Default name for the user organization (JQ)</comment>
   </data>
   <data name="default_section_label" xml:space="preserve">
     <value>Untitled section</value>
@@ -525,5 +526,21 @@ Do you want to replace the project contained in this file?</value>
   <data name="saved_as_daisy" xml:space="preserve">
     <value>Saved as DAISY {0}</value>
     <comment>Message when export to DAISY succeeds (MD)</comment>
+  </data>
+  <data name="user_profile_template" xml:space="preserve">
+    <value>{0}{1} [{2}]</value>
+    <comment>Short string for the user profile (JQ)</comment>
+  </data>
+  <data name="title_bar" xml:space="preserve">
+    <value>{0} - Obi</value>
+    <comment>Message shown in the title bar: "Project Name - Title"</comment>
+  </data>
+  <data name="meta_dc_creator" xml:space="preserve">
+    <value>Names of primary author or creator of the intellectual content of the publication.</value>
+    <comment>Description of dc:Creator (JQ)</comment>
+  </data>
+  <data name="meta_dc_title" xml:space="preserve">
+    <value>The title of the DTB, including any subtitles.</value>
+    <comment>Description of dc:Title (JQ)</comment>
   </data>
 </root>

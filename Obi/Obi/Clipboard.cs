@@ -14,6 +14,14 @@ namespace Obi
         private bool mDeep;            // whether the section subtree is copied or not
 
         /// <summary>
+        /// Flag for deep or shallow copy of a section node.
+        /// </summary>
+        public bool Deep
+        {
+            get { return mSection != null && mDeep; }
+        }
+
+        /// <summary>
         /// Anything that the clipboard can contain. 
         /// When setting a section, the default is to set as "strip", so use Section.set instead
         /// from the TOC panel.
