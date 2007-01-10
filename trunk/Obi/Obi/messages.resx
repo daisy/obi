@@ -543,4 +543,20 @@ Do you want to replace the project contained in this file?</value>
     <value>The title of the DTB, including any subtitles.</value>
     <comment>Description of dc:Title (JQ)</comment>
   </data>
+  <data name="no" xml:space="preserve">
+    <value>no</value>
+    <comment>Oh noes :( (JQ)</comment>
+  </data>
+  <data name="yes" xml:space="preserve">
+    <value>yes</value>
+    <comment>Yes! (JQ)</comment>
+  </data>
+  <data name="really_delete_required_metadata_item_caption" xml:space="preserve">
+    <value>Delete required metadata item?</value>
+    <comment>Caption (JQ)</comment>
+  </data>
+  <data name="really_delete_required_metadata_item_text" xml:space="preserve">
+    <value>This metadata item is required. Are you sure that you want to delete it?</value>
+    <comment>Warning when deleting a required metadata item. (JQ)</comment>
+  </data>
 </root>

@@ -48,11 +48,11 @@ namespace Obi
 
         public event Events.Project.StateChangedHandler StateChanged;       // the state of the project changed (modified, saved...)
         public event Events.Project.CommandCreatedHandler CommandCreated;   // a new command must be added to the command manager
-        public event Events.PhraseNodeHandler AddedPhraseNode;        // a phrase node was added to a strip
-        public event Events.SetMediaHandler MediaSet;                      // a media object was set on a node
-        public event Events.PhraseNodeHandler DeletedPhraseNode;          // deleted a phrase node 
-        public event Events.NodeEventHandler TouchedNode;  // this node was somehow modified
-        public event Events.ObiNodeHandler ToggledNodeUsedState;  // the used state of a node was toggled.
+        public event Events.PhraseNodeHandler AddedPhraseNode;              // a phrase node was added to a strip
+        public event Events.SetMediaHandler MediaSet;                       // a media object was set on a node
+        public event Events.PhraseNodeHandler DeletedPhraseNode;            // deleted a phrase node 
+        public event Events.NodeEventHandler TouchedNode;                   // this node was somehow modified
+        public event Events.ObiNodeHandler ToggledNodeUsedState;            // the used state of a node was toggled.
 
         /// <summary>
         /// This flag is set to true if the project contains modifications that have not been saved.
@@ -218,31 +218,35 @@ namespace Obi
                 foreach (object o in getMetadataList())
                 {
                     urakawa.project.Metadata meta = (urakawa.project.Metadata)o;
-                    switch (meta.getName())
+                    if (meta.getName() == SimpleMetadata.MetaTitle)
                     {
-                        case "dc:Title":
-                            mMetadata.Title = meta.getContent();
-                            break;
-                        case "dc:Creator":
-                            mMetadata.Author = meta.getContent();
-                            break;
-                        case "dc:Identifier":
-                            mMetadata.Identifier = meta.getContent();
-                            break;
-                        case "dc:Language":
-                            mMetadata.Language = new System.Globalization.CultureInfo(meta.getContent());
-                            break;
-                        case "dc:Publisher":
-                            mMetadata.Publisher = meta.getContent();
-                            break;
-                        case "obi:assetsdir":
-                            mAssPath = meta.getContent();
-                            break;
-                        case "obi:xukversion":
-                            xukversion = meta.getContent();
-                            break;
-                        default:
-                            break;
+                        mMetadata.Title = meta.getContent();
+                    }
+                    else
+                    {
+                        switch (meta.getName())
+                        {
+                            case "dc:Creator":
+                                mMetadata.Author = meta.getContent();
+                                break;
+                            case "dc:Identifier":
+                                mMetadata.Identifier = meta.getContent();
+                                break;
+                            case "dc:Language":
+                                mMetadata.Language = new System.Globalization.CultureInfo(meta.getContent());
+                                break;
+                            case "dc:Publisher":
+                                mMetadata.Publisher = meta.getContent();
+                                break;
+                            case "obi:assetsdir":
+                                mAssPath = meta.getContent();
+                                break;
+                            case "obi:xukversion":
+                                xukversion = meta.getContent();
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
                 if (xukversion != Project.XUKVersion)
@@ -291,7 +295,7 @@ namespace Obi
         private SimpleMetadata CreateMetadata(string title, string id, UserProfile userProfile)
         {
             SimpleMetadata metadata = new SimpleMetadata(title, id, userProfile);
-            AddMetadata("dc:Title", metadata.Title);
+            AddMetadata(SimpleMetadata.MetaTitle, metadata.Title);
             AddMetadata("dc:Creator", metadata.Author);  // missing "role"
             AddMetadata("dc:Identifier", metadata.Identifier);
             AddMetadata("dc:Language", metadata.Language.ToString());
@@ -312,31 +316,35 @@ namespace Obi
             foreach (object o in getMetadataList())
             {
                 urakawa.project.Metadata meta = (urakawa.project.Metadata)o;
-                switch (meta.getName())
+                if (meta.getName() == SimpleMetadata.MetaTitle)
                 {
-                    case "dc:Title":
-                        meta.setContent(mMetadata.Title);
-                        break;
-                    case "dc:Creator":
-                        meta.setContent(mMetadata.Author);
-                        break;
-                    case "dc:Identifier":
-                        meta.setContent(mMetadata.Identifier);
-                        break;
-                    case "dc:Language":
-                        meta.setContent(mMetadata.Language.ToString());
-                        break;
-                    case "dc:Publisher":
-                        meta.setContent(mMetadata.Publisher);
-                        break;
-                    case "dc:Date":
-                        meta.setContent(DateTime.Today.ToString("yyyy-MM-dd"));
-                        break;
-                    case "obi:assetsdir":
-                        meta.setContent(mAssPath);
-                        break;
-                    default:
-                        break;
+                    meta.setContent(mMetadata.Title);
+                }
+                else
+                {
+                    switch (meta.getName())
+                    {
+                        case "dc:Creator":
+                            meta.setContent(mMetadata.Author);
+                            break;
+                        case "dc:Identifier":
+                            meta.setContent(mMetadata.Identifier);
+                            break;
+                        case "dc:Language":
+                            meta.setContent(mMetadata.Language.ToString());
+                            break;
+                        case "dc:Publisher":
+                            meta.setContent(mMetadata.Publisher);
+                            break;
+                        case "dc:Date":
+                            meta.setContent(DateTime.Today.ToString("yyyy-MM-dd"));
+                            break;
+                        case "obi:assetsdir":
+                            meta.setContent(mAssPath);
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }

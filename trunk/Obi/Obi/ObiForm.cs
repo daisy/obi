@@ -250,7 +250,7 @@ namespace Obi
         /// </summary>
         private void mFullMetadataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dialogs.FullMetadata dialog = new Dialogs.FullMetadata(new Metadata());
+            Dialogs.FullMetadata dialog = new Dialogs.FullMetadata(new Metadata(mProject, Metadata.DaisyTemplates()));
             if (mProject != null && dialog.ShowDialog() == DialogResult.OK)
             {
                 mProject.Modified();
@@ -832,6 +832,7 @@ namespace Obi
 
             bool isProjectOpen = mProject != null;
             mMetadataToolStripMenuItem.Enabled = isProjectOpen;
+            mFullMetadataToolStripMenuItem.Enabled = isProjectOpen;
             mTouchProjectToolStripMenuItem.Enabled = isProjectOpen;
         }
 

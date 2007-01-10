@@ -54,11 +54,12 @@ namespace Obi.UserControls
 
             mAddStripToolStripMenuItem.Enabled = true;
 
+            bool canCutCopyDeleteSection = isStripSelected;
             mRenameStripToolStripMenuItem.Enabled = isStripSelected;
-            mDeleteStripToolStripMenuItem.Enabled = isStripSelected;
-            mCutStripToolStripMenuItem.Enabled = isStripSelected;
-            mCopyStripToolStripMenuItem.Enabled = isStripSelected;
-            mPasteStripToolStripMenuItem.Enabled = isStripSelected;
+            mDeleteStripToolStripMenuItem.Enabled = canCutCopyDeleteSection;
+            mCutStripToolStripMenuItem.Enabled = canCutCopyDeleteSection;
+            mCopyStripToolStripMenuItem.Enabled = canCutCopyDeleteSection;
+            mPasteStripToolStripMenuItem.Enabled = mProjectPanel.CanPaste(mProjectPanel.Project.Clipboard.Section);
 
             mImportAudioFileToolStripMenuItem.Enabled = isStripSelected;
             mSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
@@ -381,9 +382,8 @@ namespace Obi.UserControls
         /// <remarks>TODO: find the right context node when none is selected.</remarks>
         public void PasteSectionNode()
         {
-            SectionNode contextNode = mSelectedSection;
-            // if contextNode == null...
-            PasteSectionNodeRequested(this, new SectionNodeEventArgs(this, contextNode));
+            // SectionNode contextNode = mSelectedSection;
+            PasteSectionNodeRequested(this, new SectionNodeEventArgs(this, mSelectedSection));
         }
 
         /// <summary>

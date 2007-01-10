@@ -1,6 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.IO;
 
 namespace Obi
 {
@@ -31,7 +30,8 @@ namespace Obi
         private void ConvertXukToZed(string safeProjectName, string outputFolder)
         {
             //assuming that the stylesheet is given as relative to the contextFolderName (set below)
-            XukToZed.XukToZed x2z = new XukToZed.XukToZed(mXsltFile);
+            string xsltPath = Path.GetDirectoryName(GetType().Assembly.Location) + @"\" + mXsltFile;
+            XukToZed.XukToZed x2z = new XukToZed.XukToZed(xsltPath);
 
             x2z.OuputDir = outputFolder;
             x2z.contextFolderName = Environment.CurrentDirectory;

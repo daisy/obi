@@ -602,7 +602,7 @@ namespace Obi
         // modified by JQ 20060818: can paste under the root node if we have deleted the first and only heading.
         public void PasteSectionNode(object origin, CoreNode parent)
         {
-            if (parent == null) return;
+            if (parent == null || mClipboard.Section == null) return;
 
             Commands.TOC.PasteSectionNode command = null;
 

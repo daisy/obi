@@ -587,6 +587,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to no.
+        /// </summary>
+        internal static string no {
+            get {
+                return ResourceManager.GetString("no", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No input device found.
         /// </summary>
         internal static string no_input_device_caption {
@@ -818,6 +827,24 @@ namespace Obi {
         internal static string ready {
             get {
                 return ResourceManager.GetString("ready", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete required metadata item?.
+        /// </summary>
+        internal static string really_delete_required_metadata_item_caption {
+            get {
+                return ResourceManager.GetString("really_delete_required_metadata_item_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This metadata item is required. Are you sure that you want to delete it?.
+        /// </summary>
+        internal static string really_delete_required_metadata_item_text {
+            get {
+                return ResourceManager.GetString("really_delete_required_metadata_item_text", resourceCulture);
             }
         }
         
@@ -1172,6 +1199,15 @@ namespace Obi {
         internal static string xuk_version_mismatch {
             get {
                 return ResourceManager.GetString("xuk_version_mismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to yes.
+        /// </summary>
+        internal static string yes {
+            get {
+                return ResourceManager.GetString("yes", resourceCulture);
             }
         }
     }
