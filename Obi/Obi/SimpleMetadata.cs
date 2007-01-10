@@ -20,6 +20,8 @@ namespace Obi
         public string Title;          // title of the project
         public CultureInfo Language;  // main language of the project
 
+        public static readonly string MetaTitle = "dc:Title";
+
         /// <summary>
         /// Create an empty metadata object that will be filled field by field.
         /// </summary>

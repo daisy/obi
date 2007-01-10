@@ -199,8 +199,13 @@ namespace Obi.UserControls
         
         private void SectionStrip_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("click on section strip");
             mManager.SelectedSectionNode = mNode;
+        }
+
+        private void SectionStrip_DoubleClick(object sender, EventArgs e)
+        {
+            mManager.SelectedSectionNode = mNode;
+            ((ObiForm)mManager.ParentForm).Play(mNode);
         }
 
         internal void SetStripFontSize()

@@ -37,6 +37,7 @@ namespace Obi.Dialogs
             this.mDescriptionBox = new System.Windows.Forms.TextBox();
             this.mMetadataGrid = new System.Windows.Forms.DataGridView();
             this.DisplayName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DisplayRepeatable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DisplayContent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mAddItemButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -74,10 +75,14 @@ namespace Obi.Dialogs
             // 
             // mContentBox
             // 
+            this.mContentBox.AcceptsReturn = true;
+            this.mContentBox.Enabled = false;
             this.mContentBox.Location = new System.Drawing.Point(54, 32);
             this.mContentBox.Name = "mContentBox";
             this.mContentBox.Size = new System.Drawing.Size(542, 19);
             this.mContentBox.TabIndex = 3;
+            this.mContentBox.Enter += new System.EventHandler(this.mContentBox_Enter);
+            this.mContentBox.Leave += new System.EventHandler(this.mContentBox_Leave);
             // 
             // mOKButton
             // 
@@ -115,19 +120,32 @@ namespace Obi.Dialogs
             this.mMetadataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.mMetadataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DisplayName,
+            this.DisplayRepeatable,
             this.DisplayContent});
             this.mMetadataGrid.Location = new System.Drawing.Point(12, 122);
             this.mMetadataGrid.Name = "mMetadataGrid";
             this.mMetadataGrid.RowTemplate.Height = 21;
             this.mMetadataGrid.Size = new System.Drawing.Size(584, 245);
             this.mMetadataGrid.TabIndex = 7;
+            this.mMetadataGrid.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.mMetadataGrid_UserDeletingRow);
+            this.mMetadataGrid.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.mMetadataGrid_UserDeletedRow);
+            this.mMetadataGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.mMetadataGrid_CellEndEdit);
             // 
             // DisplayName
             // 
-            this.DisplayName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DisplayName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.DisplayName.HeaderText = "Name";
             this.DisplayName.Name = "DisplayName";
             this.DisplayName.ReadOnly = true;
+            this.DisplayName.Width = 59;
+            // 
+            // DisplayRepeatable
+            // 
+            this.DisplayRepeatable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DisplayRepeatable.HeaderText = "Repeatable";
+            this.DisplayRepeatable.Name = "DisplayRepeatable";
+            this.DisplayRepeatable.ReadOnly = true;
+            this.DisplayRepeatable.Width = 87;
             // 
             // DisplayContent
             // 
@@ -190,9 +208,10 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button mCancelButton;
         private System.Windows.Forms.TextBox mDescriptionBox;
         private System.Windows.Forms.DataGridView mMetadataGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DisplayName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DisplayContent;
         private System.Windows.Forms.Button mAddItemButton;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DisplayName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DisplayRepeatable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DisplayContent;
     }
 }

@@ -36,7 +36,7 @@ namespace Obi.UserControls
             // 
             // mRenameBox
             // 
-            this.mRenameBox.BackColor = System.Drawing.Color.LightYellow;
+            this.mRenameBox.BackColor = System.Drawing.Color.PowderBlue;
             this.mRenameBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mRenameBox.Location = new System.Drawing.Point(3, 3);
             this.mRenameBox.Margin = new System.Windows.Forms.Padding(0);
@@ -53,12 +53,12 @@ namespace Obi.UserControls
             // mLabel
             // 
             this.mLabel.AutoSize = true;
+            this.mLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mLabel.Location = new System.Drawing.Point(3, 3);
             this.mLabel.Margin = new System.Windows.Forms.Padding(3);
             this.mLabel.Name = "mLabel";
-            this.mLabel.Size = new System.Drawing.Size(66, 12);
+            this.mLabel.Size = new System.Drawing.Size(0, 13);
             this.mLabel.TabIndex = 4;
-            this.mLabel.Text = "(annotation)";
             this.mLabel.Click += new System.EventHandler(this.AnnotationBlock_Click);
             this.mLabel.SizeChanged += new System.EventHandler(this.mLabel_SizeChanged);
             // 
