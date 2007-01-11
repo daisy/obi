@@ -41,6 +41,7 @@ Main form
     + [R] Rename strip ...................... Shift+F2
     + [K] Mark strip as used/unused ......... Ctrl+K
     + [I] Import audio file ................. Ctrl+I
+    + [B] Insert empty audio block .......... Ctrl+J
     + [S] Split audio block ................. Ctrl+P
     + [H] Apply phrase detection ............ Ctrl+H
     + [G] Merge with next audio block ....... Ctrl+M
@@ -100,6 +101,7 @@ Strip Manager Panel's context menu
   + [D] Delete strip ........................ Shift+Del
   + [K] Mark strip as used/unused ........... Ctrl+K
   + [I] Import audio ........................ Ctrl+I
+  + [B] Insert empty audio block ............ Ctrl+J
   + [C] Cut phrase .......................... Ctrl+X
   + [Y] Copy phrase ......................... Ctrl+C
   + [E] Paste phrase ........................ Ctrl+V
@@ -175,7 +177,8 @@ Index of shortcuts
   Ctrl+H ............. [Strip Manager Panel] Apply phrase detection
   Ctrl+I ............. Strips > Import audio file
   Ctrl+I ............. [Strip Manager Panel] Import audio
-  Ctrl+J ............. FREE
+  Ctrl+J ............. Insert empty audio block
+  Ctrl+J ............. [Strip Manager Panel] Insert empty audio block
   Ctrl+K ............. Strips > Mark strip/block as used/unused
   Ctrl+K ............. TOC > Mark section as used/unused
   Ctrl+K ............. [TOC Panel] Mark section as used/unused

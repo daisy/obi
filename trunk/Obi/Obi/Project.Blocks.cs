@@ -584,6 +584,21 @@ namespace Obi
 
         #endregion
 
-      
+        /// <summary>
+        /// Add an empty phrase node in a section at a given index.
+        /// The phrase node gets the empty media asset.
+        /// </summary>
+        /// <param name="section">The section node to add to.</param>
+        /// <param name="index">The index at which the new node is added.</param>
+        public void AddEmptyPhraseNode(SectionNode section, int index)
+        {
+            PhraseNode node = getPresentation().getCoreNodeFactory().createNode(PhraseNode.Name, ObiPropertyFactory.ObiNS)
+                as PhraseNode;
+            node.Asset = AudioMediaAsset.Empty;
+            AddPhraseNode(node, section, index);
+            Commands.Strips.AddPhrase command = new Commands.Strips.AddPhrase(node);
+            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            Modified();
+        }
     }
 }

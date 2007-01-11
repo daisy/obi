@@ -61,7 +61,10 @@ namespace Obi.UserControls
             mCopyStripToolStripMenuItem.Enabled = canCutCopyDeleteSection;
             mPasteStripToolStripMenuItem.Enabled = mProjectPanel.CanPaste(mProjectPanel.Project.Clipboard.Section);
 
-            mImportAudioFileToolStripMenuItem.Enabled = isStripSelected;
+            bool canInsertAudioBlock = CanInsertPhraseNode;
+            mImportAudioFileToolStripMenuItem.Enabled = canInsertAudioBlock;
+            mInsertEmptyAudioblockToolStripMenuItem.Enabled = canInsertAudioBlock;
+
             mSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
             mApplyPhraseDetectionToolStripMenuItem.Enabled = isAudioBlockSelected;
             mMergeWithNextAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;

@@ -72,7 +72,9 @@ namespace Obi.UserControls
         {
             set
             {
-                BackColor = value ? Colors.AudioBlockUsed : Colors.AudioBlockUnused;
+                BackColor = mNode != null && value ?
+                    mNode.Asset.LengthInMilliseconds == 0.0 ? Colors.AudioBlockEmpty : Colors.AudioBlockUsed :
+                    Colors.AudioBlockUnused;
                 mLabel.BackColor = BackColor;
             }
         }
@@ -304,7 +306,9 @@ namespace Obi.UserControls
         {
             if (mNode != null)
             {
-                BackColor = mNode.Used ? Colors.AudioBlockUsed : Colors.AudioBlockUnused;
+                BackColor = mNode.Used ?
+                    mNode.Asset.LengthInMilliseconds == 0.0 ? Colors.AudioBlockEmpty : Colors.AudioBlockUsed :
+                    Colors.AudioBlockUnused;
                 if (mAnnotationBlock != null)
                 {
                     mAnnotationBlock.Used = mNode.Used;

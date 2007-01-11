@@ -1015,10 +1015,13 @@ namespace Obi
             bool canRemovePage = isAudioBlockSelected &&
                 mProjectPanel.StripManager.SelectedPhraseNode.getProperty(typeof(PageProperty)) != null;
 
+            bool canInsertPhrase = isProjectOpen && mProjectPanel.StripManager.CanInsertPhraseNode;
+            mInsertEmptyAudioblockToolStripMenuItem.Enabled = canInsertPhrase;
+            mImportAudioFileToolStripMenuItem.Enabled = canInsertPhrase;
+
             mAddStripToolStripMenuItem.Enabled = isProjectOpen;
             mRenameStripToolStripMenuItem.Enabled = isStripSelected;
 
-            mImportAudioFileToolStripMenuItem.Enabled = isStripSelected;
             mSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
             mApplyPhraseDetectionToolStripMenuItem.Enabled = isAudioBlockSelected;
             mMergeWithNextAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
@@ -1299,6 +1302,11 @@ namespace Obi
         private void mMarkAudioBlockAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectPanel.StripManager.ToggleSelectedPhraseUsed();
+        }
+
+        private void mInsertEmptyAudioblockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.StripManager.InsertEmptyAudioBlock();
         }
     }
 }

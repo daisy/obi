@@ -201,11 +201,22 @@ namespace Obi.UserControls
         public StripManagerPanel()
         {
             InitializeComponent();
+            InitializeEventHandlers();
             // The panel is empty and nothing is selected.
             mSectionNodeMap = new Dictionary<SectionNode, SectionStrip>();
             mSelectedSection = null;
             mPhraseNodeMap = new Dictionary<PhraseNode, AudioBlock>();
             mSelectedPhrase = null;
+        }
+
+        /// <summary>
+        /// Initialize event handlers for the control.
+        /// </summary>
+        /// <remarks>The designer doesn't like those.</remarks>
+        private void InitializeEventHandlers()
+        {
+            mInsertEmptyAudioblockToolStripMenuItem.Click +=
+                new System.EventHandler(delegate(object _sender, System.EventArgs _e) { InsertEmptyAudioBlock(); });
         }
 
         #endregion
@@ -294,7 +305,5 @@ namespace Obi.UserControls
             SelectedSectionNode = null;
             SelectedPhraseNode = null;
         }
-
-
     }
 }
