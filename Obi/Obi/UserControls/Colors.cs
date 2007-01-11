@@ -9,6 +9,7 @@ namespace Obi.UserControls
         public static Color AnnotationBlockUnused = Color.LightGray;
         public static Color AudioBlockUsed = Color.Pink;
         public static Color AudioBlockUnused = Color.LightGray;
+        public static Color AudioBlockEmpty = Color.MediumPurple;
         public static Color SectionStripUsed = Color.Gold;  // try: Color.Wheat;
         public static Color SectionStripUnused = Color.Gainsboro;  // lighter than light gray apparently
 

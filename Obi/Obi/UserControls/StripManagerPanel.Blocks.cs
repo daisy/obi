@@ -165,5 +165,64 @@ namespace Obi.UserControls
         {
             mPhraseNodeMap[e.Node].Page = "";
         }
+
+
+
+
+
+        /// <summary>
+        /// The insert point for a phrase node inside a section.
+        /// </summary>
+        private struct InsertPoint
+        {
+            public SectionNode node;  // the section node to add in
+            public int index;         // the index at which to add
+        }
+
+        /// <summary>
+        /// Get the current insertion point.
+        /// If a section is selected, this is the end of the section.
+        /// If a phrase is selected, this is the index of the phrase
+        /// (so that insertion happens before.)
+        /// </summary>
+        private InsertPoint CurrentInsertPoint
+        {
+            get
+            {
+                InsertPoint insert = new InsertPoint();
+                if (SelectedPhraseNode != null)
+                {
+                    insert.node = SelectedPhraseNode.ParentSection;
+                    insert.index = SelectedPhraseNode.Index;
+                }
+                else if (SelectedSectionNode != null)
+                {
+                    insert.node = SelectedSectionNode;
+                    insert.index = SelectedSectionNode.PhraseChildCount;
+                }
+                else
+                {
+                    insert.node = null;
+                }
+                return insert;
+            }
+        }
+
+        /// <summary>
+        /// True if there is a currently available insertion point.
+        /// </summary>
+        public bool CanInsertPhraseNode
+        {
+            get { return SelectedNode != null; }
+        }
+
+        /// <summary>
+        /// Insert an empty audio block at the current insertion point.
+        /// </summary>
+        internal void InsertEmptyAudioBlock()
+        {
+            InsertPoint insert = this.CurrentInsertPoint;
+            if (insert.node != null) mProjectPanel.Project.AddEmptyPhraseNode(insert.node, insert.index);   
+        }
     }
 }

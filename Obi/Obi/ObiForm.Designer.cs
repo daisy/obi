@@ -115,6 +115,7 @@ namespace Obi
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectPanel = new Obi.UserControls.ProjectPanel();
+            this.mInsertEmptyAudioblockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -460,6 +461,7 @@ namespace Obi
             this.mMarkStripAsUnusedToolStripMenuItem,
             this.toolStripSeparator5,
             this.mImportAudioFileToolStripMenuItem,
+            this.mInsertEmptyAudioblockToolStripMenuItem,
             this.mSplitAudioBlockToolStripMenuItem,
             this.mApplyPhraseDetectionToolStripMenuItem,
             this.mMergeWithNextAudioBlockToolStripMenuItem,
@@ -839,6 +841,14 @@ namespace Obi
             this.mProjectPanel.Size = new System.Drawing.Size(849, 491);
             this.mProjectPanel.TabIndex = 4;
             // 
+            // mInsertEmptyAudioblockToolStripMenuItem
+            // 
+            this.mInsertEmptyAudioblockToolStripMenuItem.Name = "mInsertEmptyAudioblockToolStripMenuItem";
+            this.mInsertEmptyAudioblockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.J)));
+            this.mInsertEmptyAudioblockToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.mInsertEmptyAudioblockToolStripMenuItem.Text = "Insert empty audio &block";
+            this.mInsertEmptyAudioblockToolStripMenuItem.Click += new System.EventHandler(this.mInsertEmptyAudioblockToolStripMenuItem_Click);
+            // 
             // ObiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -951,6 +961,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mExportAsDAISYToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMarkAudioBlockAsUnusedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mFullMetadataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mInsertEmptyAudioblockToolStripMenuItem;
 
 
     }
