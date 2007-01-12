@@ -50,6 +50,7 @@ namespace Obi.UserControls
             // 
             this.mLeftBox.Location = new System.Drawing.Point(36, 5);
             this.mLeftBox.Name = "mLeftBox";
+            this.mLeftBox.ReadOnly = true;
             this.mLeftBox.Size = new System.Drawing.Size(32, 20);
             this.mLeftBox.TabIndex = 1;
             // 
@@ -66,6 +67,7 @@ namespace Obi.UserControls
             // 
             this.mRightBox.Location = new System.Drawing.Point(114, 5);
             this.mRightBox.Name = "mRightBox";
+            this.mRightBox.ReadOnly = true;
             this.mRightBox.Size = new System.Drawing.Size(32, 20);
             this.mRightBox.TabIndex = 3;
             // 
@@ -85,7 +87,7 @@ namespace Obi.UserControls
             // tmUpdateText
             // 
             this.tmUpdateText.Enabled = true;
-            this.tmUpdateText.Interval = 1500;
+            this.tmUpdateText.Interval = 700;
             this.tmUpdateText.Tick += new System.EventHandler(this.tmUpdateText_Tick);
             // 
             // TextVUMeterPanel
