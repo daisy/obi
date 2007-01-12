@@ -36,10 +36,10 @@ namespace Obi.Audio
 		//Member variable used in properties
 		private int m_Channels =2 ;
 		private double m_ScaleFactor = 2 ;
-		private double m_SampleTimeLength = 1000 ;
+		private double m_SampleTimeLength = 400 ;
 		internal bool m_bOverload = false ;
-		private int m_UpperThreshold = 115 ;
-		private int m_LowerThreshold = 50;
+		private int m_UpperThreshold = 200 ;
+		private int m_LowerThreshold = 60;
 		private int [] arPeakOverloadValue = new int [2] ;
 		private bool [] arPeakOverloadFlag = new bool [2] ;
 		
