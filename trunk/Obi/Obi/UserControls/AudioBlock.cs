@@ -43,23 +43,6 @@ namespace Obi.UserControls
                 {
                     mSelected = value;
                     StopEditingPageNumber();
-                    if (mSelected)
-                    {
-                        Size = new Size(Width + Colors.SelectionWidth * 2,
-                            Height + Colors.SelectionWidth * 2);
-                        Padding = new Padding(Colors.SelectionWidth);
-                        System.Diagnostics.Debug.Assert(mAnnotationBlock != null, "Annotation block must be set.");
-                        mAnnotationBlock.AlignSelected();
-                    }
-                    else
-                    {
-                        Size = new Size(Width - Colors.SelectionWidth * 2,
-                            Height - Colors.SelectionWidth * 2);
-                        Padding = new Padding(0);
-                        if (mAnnotationBlock != null) mAnnotationBlock.AlignDeselected();
-                    }
-                    // force painting (calling the overridden OnPaint)
-                    if (Parent != null) Parent.Invalidate();
                     Invalidate();
                 }
             }
@@ -292,27 +275,26 @@ namespace Obi.UserControls
             base.OnPaint(e);
             if (mSelected)
             {
-                Pen pen = new Pen(Colors.SelectionColor, Colors.SelectionWidth);
+                /* Pen pen = new Pen(Colors.SelectionColor, Colors.SelectionWidth);
                 e.Graphics.DrawRectangle(pen, new Rectangle(Colors.SelectionWidth / 2,
                     Colors.SelectionWidth / 2,
                     Width - Colors.SelectionWidth,
-                    Height - Colors.SelectionWidth));
+                    Height - Colors.SelectionWidth)); */
+                Pen pen = new Pen(Colors.SelectionColor, Padding.All);
+                e.Graphics.DrawRectangle(pen, new Rectangle(Padding.All / 2, Padding.All / 2,
+                    Width - Padding.All, Height - Padding.All));
                 pen.Dispose();
             }
         }
 
-
         internal void RefreshUsed()
         {
-            if (mNode != null)
+            BackColor = mNode != null && mNode.Used ?
+                mNode.Asset.LengthInMilliseconds == 0.0 ? Colors.AudioBlockEmpty : Colors.AudioBlockUsed :
+                Colors.AudioBlockUnused;
+            if (mAnnotationBlock != null)
             {
-                BackColor = mNode.Used ?
-                    mNode.Asset.LengthInMilliseconds == 0.0 ? Colors.AudioBlockEmpty : Colors.AudioBlockUsed :
-                    Colors.AudioBlockUnused;
-                if (mAnnotationBlock != null)
-                {
-                    mAnnotationBlock.Used = mNode.Used;
-                }
+                mAnnotationBlock.Used = mNode.Used;
             }
         }
     }

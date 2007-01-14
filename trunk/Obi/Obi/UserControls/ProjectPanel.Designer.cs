@@ -42,11 +42,11 @@ namespace Obi.UserControls
             // 
             this.mNoProjectLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.mNoProjectLabel.AutoSize = true;
-            this.mNoProjectLabel.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.mNoProjectLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mNoProjectLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.mNoProjectLabel.Location = new System.Drawing.Point(384, 217);
+            this.mNoProjectLabel.Location = new System.Drawing.Point(369, 213);
             this.mNoProjectLabel.Name = "mNoProjectLabel";
-            this.mNoProjectLabel.Size = new System.Drawing.Size(66, 12);
+            this.mNoProjectLabel.Size = new System.Drawing.Size(91, 20);
             this.mNoProjectLabel.TabIndex = 0;
             this.mNoProjectLabel.Text = "(No project)";
             // 

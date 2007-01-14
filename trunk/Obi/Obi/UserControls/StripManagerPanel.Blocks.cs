@@ -77,7 +77,6 @@ namespace Obi.UserControls
             TextMedia annotation = (TextMedia)Project.GetMediaForChannel(node, Project.AnnotationChannelName);
             if (annotation != null) block.AnnotationBlock.Label = annotation.getText();
             Assets.AudioMediaAsset asset = node.Asset;// Project.GetAudioMediaAsset(node);
-            block.Label = asset.Name;
             PageProperty pageProp = node.getProperty(typeof(PageProperty)) as PageProperty;
             block.Page = pageProp == null ? "" : pageProp.PageNumber.ToString();
             block.Time = asset.LengthInSeconds;

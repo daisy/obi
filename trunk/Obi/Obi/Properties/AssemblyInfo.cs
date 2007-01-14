@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("The Urakawa Project (DAISY Consortium, CWI, INRIA, NRCD)")]
 [assembly: AssemblyProduct("Obi")]
-[assembly: AssemblyCopyright("Copyright © 2005, 2006 The Urakawa Project")]
+[assembly: AssemblyCopyright("Copyright © 2005-2007 The Urakawa Project")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("0.7.2.0")]
-[assembly: AssemblyFileVersion("0.7.2.0")]
+[assembly: AssemblyVersion("0.7.3.0")]
+[assembly: AssemblyFileVersion("0.7.3.0")]

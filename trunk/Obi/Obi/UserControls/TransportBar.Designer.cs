@@ -225,15 +225,16 @@ namespace Obi.UserControls
             // 
             this.mDisplayBox.AllowDrop = true;
             this.mDisplayBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.mDisplayBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mDisplayBox.FormattingEnabled = true;
             this.mDisplayBox.Items.AddRange(new object[] {
             "elapsed",
             "elapsed (total)",
             "remaining",
             "remaining (total)"});
-            this.mDisplayBox.Location = new System.Drawing.Point(459, 7);
+            this.mDisplayBox.Location = new System.Drawing.Point(459, 4);
             this.mDisplayBox.Name = "mDisplayBox";
-            this.mDisplayBox.Size = new System.Drawing.Size(108, 20);
+            this.mDisplayBox.Size = new System.Drawing.Size(108, 23);
             this.mDisplayBox.TabIndex = 10;
             this.mDisplayBox.SelectionChangeCommitted += new System.EventHandler(this.mDisplayBox_SelectionChangeCommitted);
             // 

@@ -39,7 +39,7 @@ namespace Obi.UserControls
             // 
             this.mTimeLabel.AutoSize = true;
             this.mTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mTimeLabel.Location = new System.Drawing.Point(3, 21);
+            this.mTimeLabel.Location = new System.Drawing.Point(7, 28);
             this.mTimeLabel.Margin = new System.Windows.Forms.Padding(3);
             this.mTimeLabel.Name = "mTimeLabel";
             this.mTimeLabel.Size = new System.Drawing.Size(49, 20);
@@ -61,12 +61,13 @@ namespace Obi.UserControls
             // mLabel
             // 
             this.mLabel.AutoSize = true;
-            this.mLabel.Location = new System.Drawing.Point(3, 3);
+            this.mLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mLabel.Location = new System.Drawing.Point(7, 7);
             this.mLabel.Margin = new System.Windows.Forms.Padding(3);
             this.mLabel.Name = "mLabel";
-            this.mLabel.Size = new System.Drawing.Size(37, 12);
+            this.mLabel.Size = new System.Drawing.Size(38, 15);
             this.mLabel.TabIndex = 1;
-            this.mLabel.Text = "(label)";
+            this.mLabel.Text = "Audio";
             this.mLabel.DoubleClick += new System.EventHandler(this.AudioBlock_DoubleClick);
             this.mLabel.Click += new System.EventHandler(this.AudioBlock_Click);
             this.mLabel.SizeChanged += new System.EventHandler(this.ContentsSizeChanged);
@@ -75,15 +76,11 @@ namespace Obi.UserControls
             // 
             this.mPage.BackColor = System.Drawing.Color.Pink;
             this.mPage.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.mPage.Location = new System.Drawing.Point(5, 39);
+            this.mPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mPage.Location = new System.Drawing.Point(7, 54);
             this.mPage.Name = "mPage";
-            this.mPage.ReadOnly = true;
-            this.mPage.Size = new System.Drawing.Size(53, 12);
-            this.mPage.TabIndex = 4;
-            this.mPage.Text = "(page)";
-            this.mPage.Visible = false;
-            this.mPage.Leave += new System.EventHandler(this.mPage_Leave);
-            this.mPage.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mPage_KeyDown);
+            this.mPage.Size = new System.Drawing.Size(91, 14);
+            this.mPage.TabIndex = 3;
             // 
             // AudioBlock
             // 
@@ -95,10 +92,9 @@ namespace Obi.UserControls
             this.Controls.Add(this.mLabel);
             this.Controls.Add(this.mTimeLabel);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.MaximumSize = new System.Drawing.Size(0, 54);
-            this.MinimumSize = new System.Drawing.Size(45, 54);
             this.Name = "AudioBlock";
-            this.Size = new System.Drawing.Size(45, 54);
+            this.Padding = new System.Windows.Forms.Padding(4);
+            this.Size = new System.Drawing.Size(105, 76);
             this.DoubleClick += new System.EventHandler(this.AudioBlock_DoubleClick);
             this.Click += new System.EventHandler(this.AudioBlock_Click);
             this.ResumeLayout(false);

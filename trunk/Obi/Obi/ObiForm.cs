@@ -651,6 +651,7 @@ namespace Obi
         /// </summary>
         private void FormUpdateModifiedProject()
         {
+            mProjectPanel.TransportBar.Stop();
             this.Text = String.Format(Localizer.Message("title_bar"), mProject.Metadata.Title + "*");
             Ready();
         }
@@ -812,8 +813,9 @@ namespace Obi
 
         private void UpdateEnabledItemsForEditMenu()
         {
-            FormUpdateUndoRedoLabels();                // take care of undo and redo
-
+            bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
+            FormUpdateUndoRedoLabels();
+            
             bool canCutCopyDelete = mProjectPanel.CanCutCopyDeleteNode;
             string itemLabel = mProjectPanel.SelectedLabel;
             if (itemLabel != "") itemLabel = " " + itemLabel;
@@ -933,9 +935,10 @@ namespace Obi
         /// </summary>
         private void FormUpdateUndoRedoLabels()
         {
+            bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
             if (mCommandManager.HasUndo)
             {
-                mUndoToolStripMenuItem.Enabled = true;
+                mUndoToolStripMenuItem.Enabled = !isPlaying;
                 mUndoToolStripMenuItem.Text = String.Format(Localizer.Message("undo_label"), Localizer.Message("undo"),
                     mCommandManager.UndoLabel);
             }
@@ -946,7 +949,7 @@ namespace Obi
             }
             if (mCommandManager.HasRedo)
             {
-                mRedoToolStripMenuItem.Enabled = true;
+                mRedoToolStripMenuItem.Enabled = !isPlaying;
                 mRedoToolStripMenuItem.Text = String.Format(Localizer.Message("redo_label"), Localizer.Message("redo"),
                     mCommandManager.RedoLabel);
             }
