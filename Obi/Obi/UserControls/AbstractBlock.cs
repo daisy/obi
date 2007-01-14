@@ -78,8 +78,8 @@ namespace Obi.UserControls
         /// </summary>
         internal virtual void AlignSelected()
         {
-            Size = new Size(Width + Colors.SelectionWidth * 2, Height);
-            Padding = new Padding(Colors.SelectionWidth);
+            // Size = new Size(Width + Colors.SelectionWidth * 2, Height);
+            // Padding = new Padding(Colors.SelectionWidth);
         }
 
         /// <summary>
@@ -87,8 +87,8 @@ namespace Obi.UserControls
         /// </summary>
         internal virtual void AlignDeselected()
         {
-            Size = new Size(Width - Colors.SelectionWidth * 2, Height);
-            Padding = new Padding(0);
+            // Size = new Size(Width - Colors.SelectionWidth * 2, Height);
+            // Padding = new Padding(0);
         }
 
         private void InitializeComponent()
@@ -99,6 +99,7 @@ namespace Obi.UserControls
             // 
             this.Margin = new System.Windows.Forms.Padding(0, 0, 2, 0);
             this.Name = "AbstractBlock";
+            this.Padding = new System.Windows.Forms.Padding(4);
             this.ResumeLayout(false);
 
         }

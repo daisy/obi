@@ -39,7 +39,7 @@ namespace Obi.UserControls
             this.mRenameBox.BackColor = System.Drawing.Color.PowderBlue;
             this.mRenameBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mRenameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mRenameBox.Location = new System.Drawing.Point(3, 3);
+            this.mRenameBox.Location = new System.Drawing.Point(10, 8);
             this.mRenameBox.Margin = new System.Windows.Forms.Padding(0);
             this.mRenameBox.Name = "mRenameBox";
             this.mRenameBox.Size = new System.Drawing.Size(66, 14);
@@ -54,11 +54,11 @@ namespace Obi.UserControls
             // mLabel
             // 
             this.mLabel.AutoSize = true;
-            this.mLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mLabel.Location = new System.Drawing.Point(3, 3);
+            this.mLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mLabel.Location = new System.Drawing.Point(7, 7);
             this.mLabel.Margin = new System.Windows.Forms.Padding(3);
             this.mLabel.Name = "mLabel";
-            this.mLabel.Size = new System.Drawing.Size(0, 13);
+            this.mLabel.Size = new System.Drawing.Size(0, 15);
             this.mLabel.TabIndex = 4;
             this.mLabel.Click += new System.EventHandler(this.AnnotationBlock_Click);
             this.mLabel.SizeChanged += new System.EventHandler(this.mLabel_SizeChanged);
@@ -76,10 +76,9 @@ namespace Obi.UserControls
             this.Controls.Add(this.mLabel);
             this.Controls.Add(this.mRenameBox);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.MaximumSize = new System.Drawing.Size(0, 20);
-            this.MinimumSize = new System.Drawing.Size(45, 20);
             this.Name = "AnnotationBlock";
-            this.Size = new System.Drawing.Size(45, 20);
+            this.Padding = new System.Windows.Forms.Padding(4);
+            this.Size = new System.Drawing.Size(189, 29);
             this.Load += new System.EventHandler(this.AnnotationBlock_Load);
             this.Click += new System.EventHandler(this.AnnotationBlock_Click);
             this.ResumeLayout(false);

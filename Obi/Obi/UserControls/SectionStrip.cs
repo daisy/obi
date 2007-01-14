@@ -58,7 +58,7 @@ namespace Obi.UserControls
                 if (mSelected != value)
                 {
                     mSelected = value;
-                    if (mSelected)
+                    /*if (mSelected)
                     {
                         Size = new Size(Width + Colors.SelectionWidth * 2,
                             Height + Colors.SelectionWidth * 2);
@@ -69,7 +69,7 @@ namespace Obi.UserControls
                         Size = new Size(Width - Colors.SelectionWidth * 2,
                             Height - Colors.SelectionWidth * 2);
                         Padding = new Padding(0);
-                    }
+                    }*/
                     Invalidate();
                 }
             }
@@ -83,7 +83,8 @@ namespace Obi.UserControls
                 if (mNode != null && mNode.Used != value)
                 {
                     mNode.Used = value;
-                    BackColor = mNode.Used ? Colors.SectionStripUsed : Colors.SectionStripUnused;
+                    BackColor = mNode.Used ? Colors.SectionStripUsedBack : Colors.SectionStripUnusedBack;
+                    ForeColor = mNode.Used ? Colors.SectionStripUsedFore : Colors.SectionStripUnusedBack;
                     mLabel.BackColor = BackColor;
                 }
             }
@@ -358,11 +359,11 @@ namespace Obi.UserControls
             base.OnPaint(e);
             if (mSelected)
             {
-                Pen pen = new Pen(Colors.SelectionColor, Colors.SelectionWidth);
-                e.Graphics.DrawRectangle(pen, new Rectangle(Colors.SelectionWidth / 2,
-                    Colors.SelectionWidth / 2,
-                    Width - Colors.SelectionWidth,
-                    Height - Colors.SelectionWidth));
+                Pen pen = new Pen(Colors.SelectionColor, Padding.All);
+                e.Graphics.DrawRectangle(pen, new Rectangle(Padding.All / 2,
+                    Padding.All / 2,
+                    Width - Padding.All,
+                    Height - Padding.All));
                 pen.Dispose();
             }
         }
@@ -372,8 +373,9 @@ namespace Obi.UserControls
         /// </summary>
         internal void RefreshUsed()
         {
-            System.Diagnostics.Debug.Assert(mNode != null, "Why refresh a strip with no node?!");
-            BackColor = mNode.Used ? Colors.SectionStripUsed : Colors.SectionStripUnused;
+            System.Diagnostics.Debug.Assert(mNode != null, "Refreshing strip with no node.");
+            BackColor = mNode.Used ? Colors.SectionStripUsedBack : Colors.SectionStripUnusedBack;
+            ForeColor = mNode.Used ? Colors.SectionStripUsedFore : Colors.SectionStripUnusedFore;
             foreach (Control c in mAudioLayoutPanel.Controls)
             {
                 if (c is AudioBlock) ((AudioBlock)c).RefreshUsed();
