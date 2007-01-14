@@ -10,36 +10,53 @@ The transport bar includes three components:
   3. VU-meter
 
 Having all components in the same window helps with screen reader as focus
-does not have to move around.
+does not have to move around. One exception can be made for the VU meter:
+its graphical display is of no importance to a screen reader, so it can be
+displayed separately; however, its accessible counterpart is part of the
+transport bar (see VU-meter below.)
+
+
+0. Selection and current time highlighting
+
+The transport bar introduces the notion of current time, i.e. the position
+at which the player is, relative to the beginning of the book or the
+selection. The phrase or section in which the player currently is needs to
+be highlighted to give feedback to the user. We have to take into account
+what happens to the selection after we are done playing.
 
 
 1. Time display
 
 The three units are the book, the section and the phrase (audio block.) For
-simplification purposes, we will ignore sections at this time and focus on
-the whole book and individual audio blocks only.
+simplification purposes, we will ignore phrases and sections as such and
+make a distinction between the whole book and the current selection.
+Selecting a phrase or a section allows to play only this phrase or this
+section.
+
+This leads to the distinction of two play modes: "play continuously" and
+"play selection." In the former case, play goes through all of the phrases
+of the books and stops when the end of the last phrase of the book is
+reached. In the latter case, only selected phrases are played (in book
+order) and playback stops at the end of the last selected phrase.
 
 We need to introduce the notion of a current time position. This is either
-the current time when playing, recording, or after having paused or stopped.
-The current position is shown in a time display, as well as the section view
-or the strip view, whichever has the focus.
-
-In the section view, the section in which the current time happens is
-highlighted. In the strip view, the phrase in which the current time happens
-is highlighted. Since there is no wave display, there is no detailed display
-of the current position inside the audio block. Conversely, selecting a
-strip or an audio block places the current time at the beginning of the
-section (i.e. first audio block) or the audio block that is selected. When
-nothing is selected, the current position is assumed to be at the beginning
-of the book.
+the current time when playing, recording, or after having paused. The
+current position is shown in a time display. There is also a notion of
+current phrase, which is highlighted in the strip view if the strip view has
+the focus, or whose parent section is highlighted in the TOC view if the TOC
+view has focus. When playing continuously, the highlighting actually
+modifies the selection; the currently playing phrase is selected (and its
+parent section in the TOC view.) When playing a selection, the highlighting
+is different from the selection hightlighting as playing does not modify the
+selection (so that it is easy to play the selection again, for instance.)
 
 A simple, unsurprising time display could follow the example set by CD
 players (which most users would be familiar with): the phrase is considered
 like a "track" of a CD, then the display always shows the current time in
 the current phrase. Clicking (or using a shortcut key) the display can
-display the remaining time in the phrase, then in the book, then back to the
-regular display. Double-clicking the display could allow the user to set a
-time either in the phrase or the book.
+display the remaining time in the selection (if any), then in the book, then
+back to the regular display. Double-clicking the display could allow the user
+to set a time either in the selection or the book.
 
 
 2. Buttons and controls
@@ -54,27 +71,35 @@ List of buttons:
   * Play/pause: this is the most important button, and is actually a little
   complicated. When the player is stopped or paused, it behaves as "Play",
   when the player is playing, it behaves as "Pause." Clicking "Play" once
-  plays from the current position to the end of the book. Double-clicking
-  "Play" plays only to the end of the current phrase and stops (or more
-  acurately pauses), setting the current position to the beginning of the
-  following sentence.
+  plays from the current position to the end of the book (play
+  continuously.) Double-clicking "Play" plays only to the end of the
+  selection (if any) and pauses, setting the current position to the beginning
+  of the following phrase. We could also have a drop-down for choosing the
+  mode of playback?
   
   * Stop: immediately stop playing, move the current time position back to
   the beginning of the phrase or the beginning of the book depending on what
   was playing.
 
-  * Record: starts listening; actual recording happens once the play button
-  is pressed. When recording, play becomes pause and can be used to pause
-  and resume recording (when pausing, the recorder is in a listening state;
-  when resuming, a new phrase is created.) The stop button stops the
-  recording. Record is only available when the player is stopped, and a strip
-  or an audio block is selected.
+  * Record: starts listening or recording. If single-clicking, the recorder
+  is started in "listening mode"; actual recording happens once the play
+  button is pressed. If double-clicking, recording starts at once. (This can
+  be complemented/replaced by a drop-down menu.) When recording, play becomes
+  pause and can be used to pause and resume recording (when pausing, the
+  recorder is in a listening state; when resuming, a new phrase is created.)
+  The stop button stops the recording. Record is only available when the
+  player is stopped, and a strip or an audio block is selected. If a phrase
+  is selected, the recorded phrases are added after the selected phrase. If
+  a section is selected, the new phrases are appended to the existing
+  phrases of the section.
 
-  Marking phrases while recording: we could have two new buttons (marking a
-  new phrase, marking a new page), or use the forward button. It makes
-  sense for the "forward one phrase" button (see below); we could
-  double-click to add a new page marker; and add sections (with a default
-  title) with the "next section" button.
+  Marking phrases while recording: we can use the forward buttons. "Forward
+  one phrase" can create a new phrase; "next section" creates a new section
+  (if appending) or splits the section (if inserting; if split section is
+  not implemented yet, then creating a new section only happens when
+  appending.) A new page can automatically be added by double-clicking the
+  "Forward one phrase" button (this can be done once autonumbering is
+  implemented.)
 
   * Back one phrase: goes back one phrase. If the current position is
   further than the beginning of the phrase (meaning a small amount of time
@@ -119,6 +144,8 @@ incoming audio. It should show the highest value, with a flag when an
 overload happens; and the display for this value must be resettable.
 
 
-4. Task list
+4. Architecture notes
 
-TODO
+
+
+5. Task list

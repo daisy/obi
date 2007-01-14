@@ -55,22 +55,21 @@ Since this comes after 1 and 2, we will see who has time for these tasks.
 These can be easily reordered as they don't all depend on each other. If a
 task cannot be done in Delhi, we must assign them with owner and timeline.
 
-3.1 Used and unused blocks, with empty audio asset.
+3.1 Used and unused blocks; empty assets.
 
-3.2 Header block [depends on 3.1]
+3.2 Full DAISY metadata editing (one-by-one, different tab from simple
+metadata.)
 
-3.3 Full DAISY metadata; at least a good method for metadata input and
-checking.
+3.3 Export to DAISY; save first used asset of a section into its own file
+(not kept in the project.)
 
-3.4 Cut/copy/paste for sections, blocks, pages, annotations.
+3.4 Cut/copy/paste/delete for everything: nodes, pages, annotations, etc.
 
-3.5 Search text
+3.5 Go to page and page autonumbering.
 
-3.6 Go to page and page autonumbering.
+3.6 Search text.
 
-3.7 Split and merge sections [depends on 2]
-
-3.8 Daisy export [depends on Laust]
+3.7 Split and merge sections.
 
 
 4. Robustness and accessibility
