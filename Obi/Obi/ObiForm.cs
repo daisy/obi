@@ -1156,6 +1156,11 @@ namespace Obi
         /// </summary>
         private void mPlayAllToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            TransportBar_PlayAll();
+        }
+
+        private void TransportBar_PlayAll ()
+    {
             if (mProjectPanel.TransportBar.Playlist != null &&
                 mProjectPanel.TransportBar.Playlist.State == Audio.AudioPlayerState.Playing)
             {
@@ -1172,6 +1177,11 @@ namespace Obi
         /// </summary>
         private void mPlaySelectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            TransportBar_PlaySelection();
+        }
+
+        private void TransportBar_PlaySelection ()
+    {
             if (mProjectPanel.TransportBar.Playlist != null && 
                 mProjectPanel.TransportBar.Playlist.State == Audio.AudioPlayerState.Playing)
             {
@@ -1196,6 +1206,12 @@ namespace Obi
         /// </summary>
         private void mStopToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            TransportBar_Stop();
+        }
+
+
+        private void TransportBar_Stop ()
+    {
             mProjectPanel.TransportBar.Stop();
         }
 
@@ -1221,6 +1237,11 @@ namespace Obi
 
         private void mPreviousPhraseToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            TransportBar_PreviousPhrase();
+        }
+
+        private void TransportBar_PreviousPhrase ()
+    {
             if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Stopped)
             {
             }
@@ -1232,6 +1253,11 @@ namespace Obi
 
         private void mNextPhraseToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            TransportBar_NextPhrase();
+        }
+
+        private void TransportBar_NextPhrase ()
+    {
             if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Stopped)
             {
             }
@@ -1272,9 +1298,35 @@ namespace Obi
             // disabled for the time being.
              switch (key)
              {
-            //    case Keys.Space:
-            //        mProjectPanel.TransportBar.Play();
-            //        break;
+                case Keys.Control | Keys.Space:
+                    if (mPlayAllToolStripMenuItem.Enabled)
+                        TransportBar_PlayAll();
+                    break;
+
+                 case Keys.Control | Keys.Shift | Keys.Space :
+                     if (mPlaySelectionToolStripMenuItem.Enabled)
+                         TransportBar_PlaySelection();
+                     break;
+
+                 case Keys.Control | Keys.T :
+                     if (mStopToolStripMenuItem.Enabled)
+                         TransportBar_Stop();
+                     break;
+
+                 case Keys.Control | Keys.R :
+                     if ( mRecordToolStripMenuItem.Enabled )
+                     mProjectPanel.TransportBar.Record();
+                     break;
+
+                 case Keys.Alt | Keys.Left :
+                     if (mPreviousPhraseToolStripMenuItem.Enabled)
+                         TransportBar_PreviousPhrase();
+                     break;
+
+                 case Keys.Alt |  Keys.Right :
+                     if (mNextPhraseToolStripMenuItem.Enabled)
+                         TransportBar_NextPhrase();
+                     break;
 
             case Keys.Alt | Keys.Shift | Keys.Right:
                      if ( mFastForwardToolStripMenuItem.Enabled == true )

@@ -52,7 +52,6 @@ namespace Obi.Dialogs
 
                 if ( PauseFocussed == true )
                 mRecordButton.Focus();
-
             }
         }
 
@@ -80,7 +79,7 @@ namespace Obi.Dialogs
 
                 if ( RecordFocussed == true )
                 mPauseButton.Focus();
-
+                
             }
         }
 
@@ -138,6 +137,14 @@ namespace Obi.Dialogs
                         StartRecording();
                     else if (mPauseButton.Visible == true)
                         Pause();
+                    break;
+
+                case Keys.R :
+                    StartRecording();
+                    break;
+
+                case Keys.A :
+                    Pause();
                     break;
 
                 case Keys.H :

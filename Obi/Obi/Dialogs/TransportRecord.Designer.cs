@@ -64,7 +64,7 @@ namespace Obi.Dialogs
             this.mStopButton.Name = "mStopButton";
             this.mStopButton.Size = new System.Drawing.Size(75, 25);
             this.mStopButton.TabIndex = 3;
-            this.mStopButton.Text = "&Stop";
+            this.mStopButton.Text = "&Stop/Close";
             this.mStopButton.UseVisualStyleBackColor = true;
             this.mStopButton.Click += new System.EventHandler(this.mStopButton_Click);
             // 
