@@ -559,4 +559,16 @@ Do you want to replace the project contained in this file?</value>
     <value>This metadata item is required. Are you sure that you want to delete it?</value>
     <comment>Warning when deleting a required metadata item. (JQ)</comment>
   </data>
+  <data name="NotReady" xml:space="preserve">
+    <value>Playback is not ready.</value>
+  </data>
+  <data name="Paused" xml:space="preserve">
+    <value>Paused.</value>
+  </data>
+  <data name="Playing" xml:space="preserve">
+    <value>Playing.</value>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>Stopped.</value>
+  </data>
 </root>

@@ -659,6 +659,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Playback is not ready..
+        /// </summary>
+        internal static string NotReady {
+            get {
+                return ResourceManager.GetString("NotReady", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Obi.
         /// </summary>
         internal static string obi {
@@ -768,6 +777,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Paused..
+        /// </summary>
+        internal static string Paused {
+            get {
+                return ResourceManager.GetString("Paused", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to phrase.
         /// </summary>
         internal static string phrase {
@@ -800,6 +818,15 @@ namespace Obi {
         internal static string play_selection {
             get {
                 return ResourceManager.GetString("play_selection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Playing..
+        /// </summary>
+        internal static string Playing {
+            get {
+                return ResourceManager.GetString("Playing", resourceCulture);
             }
         }
         
@@ -1073,6 +1100,15 @@ namespace Obi {
         internal static string stereo {
             get {
                 return ResourceManager.GetString("stereo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stopped..
+        /// </summary>
+        internal static string Stopped {
+            get {
+                return ResourceManager.GetString("Stopped", resourceCulture);
             }
         }
         
