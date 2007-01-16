@@ -468,36 +468,52 @@ namespace Obi
        ///Preview timer tick function
         private void PreviewTimer_Tick(object sender, EventArgs e)
         {
-            
+            double StepInMs = 6000 * mPlaybackRate ;
+ 
             if (mPlayBackState == PlayBackState.Forward)
             {
-                if (( m_CurrentAudioAsset.LengthInMilliseconds - mPausePosition) > ( ( 6000 * mPlaybackRate ) + 1400 ))
+                if (( m_CurrentAudioAsset.LengthInMilliseconds - mPausePosition) > ( StepInMs  + 1250 ))
                 {
 
-                    mPausePosition = mPausePosition + ( 6000 * mPlaybackRate );
+                    mPausePosition = mPausePosition +  StepInMs ;
 
                     mPlayer.Play( m_CurrentAudioAsset.GetChunk (  mPausePosition , mPausePosition + 1200 ) );
                 }
                 else
                 {
+                    if (mCurrentPhraseIndex < mPhrases.Count - 1)
+                    {
+                        ++mCurrentPhraseIndex;
+                        m_CurrentAudioAsset = mPhrases[mCurrentPhraseIndex].Asset;
+                        mPausePosition = StepInMs * (-1) ;
+                    }
+                    else
                     StopForwardRewind();                    
                 }
             }
 else if ( mPlayBackState == PlayBackState.Rewind )
 {
-    if (mPausePosition > (6000 * mPlaybackRate))
+    if (mPausePosition > ( StepInMs ))
     {
 
-        mPausePosition = mPausePosition - (6000 * mPlaybackRate);
+        mPausePosition = mPausePosition -  StepInMs ;
 
         mPlayer.Play(m_CurrentAudioAsset.GetChunk(mPausePosition, mPausePosition + 1200));
     }
     else
     {
-        StopForwardRewind();
+        if (mCurrentPhraseIndex != 0 )
+        {
+            --mCurrentPhraseIndex;
+            m_CurrentAudioAsset = mPhrases[mCurrentPhraseIndex].Asset;
+            mPausePosition =  m_CurrentAudioAsset.LengthInMilliseconds - 1250 ;
+        }
+        else
+            StopForwardRewind();                    
+        
     }
             }
-            PreviewTimer.Interval = 1400;
+            PreviewTimer.Interval = 1250;
         }
 
         /// <summary>
