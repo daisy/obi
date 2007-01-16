@@ -47,6 +47,7 @@ namespace Obi
             mCommandManager = new CommandManager();
             InitializeVuMeter();
             InitializeSettings();
+            mProjectPanel.TransportBar.StateChanged += new Obi.Events.Audio.Player.StateChangedHandler(TransportBar_StateChanged);
             StatusUpdateClosedProject();  // no project opened, same as if we closed a project.
         }
 
@@ -73,6 +74,7 @@ namespace Obi
         /// </summary>
         private void mNewProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            mProjectPanel.TransportBar.Stop();
             Dialogs.NewProject dialog = new Dialogs.NewProject(mSettings.DefaultPath);
             dialog.CreateTitleSection = mSettings.CreateTitleSection;
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -154,16 +156,14 @@ namespace Obi
         /// <summary>
         /// Save the current project under its current name, or ask for one if none is defined yet.
         /// </summary>
+        /// <remarks>In the future, do not clear the command manager (only after cleanup.)</remarks>
         private void mSaveProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mProject.Unsaved)
             {
+                mProjectPanel.TransportBar.Stop();
                 mProject.Save();
                 mCommandManager.Clear();
-            }
-            else
-            {
-                Ready();
             }
         }
 
@@ -172,6 +172,7 @@ namespace Obi
         /// </summary>
         private void mSaveProjectasToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            mProjectPanel.TransportBar.Stop();
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.Filter = Localizer.Message("xuk_filter");
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -190,16 +191,15 @@ namespace Obi
         /// </summary>
         private void mDiscardChangesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProject.Unsaved &&
-                MessageBox.Show(Localizer.Message("discard_changes_text"),
+            if (mProject.Unsaved)
+            {
+                mProjectPanel.TransportBar.Stop();
+                if (MessageBox.Show(Localizer.Message("discard_changes_text"),
                     Localizer.Message("discard_changes_caption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
-                DialogResult.Yes)
-            {
-                DoOpenProject(mProject.XUKPath);
-            }
-            else
-            {
-                Ready();
+                    DialogResult.Yes)
+                {
+                    DoOpenProject(mProject.XUKPath);
+                }
             }
         }
 
@@ -336,8 +336,8 @@ namespace Obi
 
         /// <summary>
         /// Save the settings when closing.
-        /// TODO: check for closing project?
         /// </summary>
+        /// <remarks>Warn when closing while playing?</remarks>
         private void ObiForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (ClosedProject())
@@ -351,7 +351,6 @@ namespace Obi
                     MessageBox.Show(String.Format(Localizer.Message("save_settings_error_text"), x.Message),
                         Localizer.Message("save_settings_error_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                mProjectPanel.TransportBar.Stop();
                 Application.Exit();
             }
             else
@@ -663,6 +662,7 @@ namespace Obi
         /// <returns>True if there is no open project or the currently open project could be closed.</returns>
         private bool ClosedProject()
         {
+            mProjectPanel.TransportBar.Stop();
             if (mProject != null && mProject.Unsaved)
             {
                 // Unsaved project, ask the user if they want to save and close ("yes" option),
@@ -708,6 +708,14 @@ namespace Obi
             }
             mProject.DeleteUnusedFiles(ReportDeleteError);
             mProject.Close();
+        }
+
+        /// <summary>
+        /// Show the state of the transport bar in the status bar.
+        /// </summary>
+        void TransportBar_StateChanged(object sender, Obi.Events.Audio.Player.StateChangedEventArgs e)
+        {
+            Status(Localizer.Message(mProjectPanel.TransportBar.State.ToString()));
         }
 
         /// <summary>
@@ -795,12 +803,16 @@ namespace Obi
         {
             bool isProjectOpen = mProject != null;
             bool isProjectModified = isProjectOpen && mProject.Unsaved;
-            mOpenRecentProjectToolStripMenuItem.Enabled = mSettings.RecentProjects.Count > 0;
-            mSaveProjectToolStripMenuItem.Enabled = isProjectModified;
-            mSaveProjectasToolStripMenuItem.Enabled = isProjectOpen;
-            mDiscardChangesToolStripMenuItem.Enabled = isProjectModified;
-            mExportAsDAISYToolStripMenuItem.Enabled = isProjectOpen;
-            mCloseProjectToolStripMenuItem.Enabled = isProjectOpen;
+            bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
+
+            mNewProjectToolStripMenuItem.Enabled = !isPlaying;
+            mOpenProjectToolStripMenuItem.Enabled = !isPlaying;
+            mOpenRecentProjectToolStripMenuItem.Enabled = !isPlaying && mSettings.RecentProjects.Count > 0;
+            mSaveProjectToolStripMenuItem.Enabled = !isPlaying && isProjectModified;
+            mSaveProjectasToolStripMenuItem.Enabled = !isPlaying && isProjectOpen;
+            mDiscardChangesToolStripMenuItem.Enabled = !isPlaying && isProjectModified;
+            mCloseProjectToolStripMenuItem.Enabled = isProjectOpen && !isPlaying;
+            mExportAsDAISYToolStripMenuItem.Enabled = isProjectOpen && !isPlaying;
         }
 
         /// <summary>
@@ -1284,11 +1296,18 @@ namespace Obi
             mProjectPanel.TOCPanel.ToggleSelectedSectionUsed();
         }
 
+        /// <summary>
+        /// Export the project to DAISY 3.
+        /// </summary>
         private void mExportAsDAISYToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Cursor = Cursors.WaitCursor;
-            mProject.ExportToZed();
-            this.Cursor = Cursors.Default;
+            if (mProject != null)
+            {
+                mProjectPanel.TransportBar.Stop();
+                this.Cursor = Cursors.WaitCursor;
+                mProject.ExportToZed();
+                this.Cursor = Cursors.Default;
+            }
         }
 
         /// <summary>

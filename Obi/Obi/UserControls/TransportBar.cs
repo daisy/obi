@@ -18,6 +18,9 @@ namespace Obi.UserControls
         private static readonly int Remain = 2;
         // private static readonly int RemainTotal = 3;
 
+        // Pass the state change events from the playlist
+        public event Events.Audio.Player.StateChangedHandler StateChanged;
+
         /// <summary>
         /// Everything can be solved by adding a new layer of indirection. So here it is.
         /// </summary>
@@ -363,6 +366,7 @@ namespace Obi.UserControls
                 mPlayButton.Visible = false;
                 mDisplayTimer.Start();
             }
+            if (StateChanged != null) StateChanged(this, e);
             UpdateTimeDisplay();
         }
 

@@ -74,6 +74,7 @@ namespace Obi
             this.mMarkStripAsUnusedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.mImportAudioFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mInsertEmptyAudioblockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSplitAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mApplyPhraseDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMergeWithNextAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -115,7 +116,6 @@ namespace Obi
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectPanel = new Obi.UserControls.ProjectPanel();
-            this.mInsertEmptyAudioblockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -514,6 +514,14 @@ namespace Obi
             this.mImportAudioFileToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
             this.mImportAudioFileToolStripMenuItem.Text = "&Import audio file";
             // 
+            // mInsertEmptyAudioblockToolStripMenuItem
+            // 
+            this.mInsertEmptyAudioblockToolStripMenuItem.Name = "mInsertEmptyAudioblockToolStripMenuItem";
+            this.mInsertEmptyAudioblockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.J)));
+            this.mInsertEmptyAudioblockToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.mInsertEmptyAudioblockToolStripMenuItem.Text = "Insert empty audio &block";
+            this.mInsertEmptyAudioblockToolStripMenuItem.Click += new System.EventHandler(this.mInsertEmptyAudioblockToolStripMenuItem_Click);
+            // 
             // mSplitAudioBlockToolStripMenuItem
             // 
             this.mSplitAudioBlockToolStripMenuItem.Name = "mSplitAudioBlockToolStripMenuItem";
@@ -840,14 +848,6 @@ namespace Obi
             this.mProjectPanel.Project = null;
             this.mProjectPanel.Size = new System.Drawing.Size(849, 491);
             this.mProjectPanel.TabIndex = 4;
-            // 
-            // mInsertEmptyAudioblockToolStripMenuItem
-            // 
-            this.mInsertEmptyAudioblockToolStripMenuItem.Name = "mInsertEmptyAudioblockToolStripMenuItem";
-            this.mInsertEmptyAudioblockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.J)));
-            this.mInsertEmptyAudioblockToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
-            this.mInsertEmptyAudioblockToolStripMenuItem.Text = "Insert empty audio &block";
-            this.mInsertEmptyAudioblockToolStripMenuItem.Click += new System.EventHandler(this.mInsertEmptyAudioblockToolStripMenuItem_Click);
             // 
             // ObiForm
             // 
