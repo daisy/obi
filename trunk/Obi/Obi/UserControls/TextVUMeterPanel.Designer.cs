@@ -48,6 +48,7 @@ namespace Obi.UserControls
             // 
             // mLeftBox
             // 
+            this.mLeftBox.AccessibleName = "Left";
             this.mLeftBox.Location = new System.Drawing.Point(36, 5);
             this.mLeftBox.Name = "mLeftBox";
             this.mLeftBox.ReadOnly = true;
@@ -65,6 +66,7 @@ namespace Obi.UserControls
             // 
             // mRightBox
             // 
+            this.mRightBox.AccessibleName = "Right";
             this.mRightBox.Location = new System.Drawing.Point(114, 5);
             this.mRightBox.Name = "mRightBox";
             this.mRightBox.ReadOnly = true;
@@ -80,7 +82,7 @@ namespace Obi.UserControls
             this.mResetButton.Name = "mResetButton";
             this.mResetButton.Size = new System.Drawing.Size(45, 23);
             this.mResetButton.TabIndex = 4;
-            this.mResetButton.Text = "Re&set";
+            this.mResetButton.Text = "R&eset";
             this.mResetButton.UseVisualStyleBackColor = false;
             this.mResetButton.Click += new System.EventHandler(this.mResetButton_Click);
             // 
