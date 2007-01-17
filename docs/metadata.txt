@@ -5,24 +5,23 @@ $Id$
 Required publication metadata
 http://www.daisy.org/z3986/2005/z3986-2005.html#PubMed
 
-* dc:Title ................ provided by Obi
-* dc:Publisher ............ provided by Obi
+* dc:Title ................ provided by Obi as specified by the user
+* dc:Publisher ............ provided by Obi as specified by the user
 * dc:Date ................. time of last export
 * dc:Format ............... "ANSI/NISO Z39.86-2005"
-* dc:Identifier ........... provided by Obi
-* dc:Language ............. provided by Obi
+* dc:Identifier ........... provided by Obi as specified by the user
+* dc:Language ............. provided by Obi as specified by the user
 * dtb:multimediaType ...... "audioNCX"
 * dtb:multimediaContent ... "audio"
-* dtb:totalTime ........... missing ATM, should be provided by Obi.
+* dtb:totalTime ........... computed at export time
 
 
 Optional publication metadata that can be generated
 http://www.daisy.org/z3986/2005/z3986-2005.html#PubMed
 
-* dc:Creator .............. provided by Obi
 * dc:Type ................. "sound"
-* dtb:narrator ............ same as dc:Creator
-* dtb:producer ............ same as dc:Creator
+* dtb:narrator ............ provided by Obi as specified by the user
+* dtb:producer ............ same as dc:Publisher
 * dtb:producedDate ........ date of first export
 * dtb:revision ............ incremented at export time
 * dtb:revisionDate ........ date of last export
@@ -33,7 +32,7 @@ SMIL metadata (for each SMIL file)
 http://www.daisy.org/z3986/2005/z3986-2005.html#SMILMeta
 
 * dtb:generator ........... "Obi vx w/ Urakawa SDK vy (http://urakawa.sf.net)"
-* dtb:totalElapsedTime .... can be provided by Obi, set on section elements?
+* dtb:totalElapsedTime .... computed at export time
 * dtb:uid ................. same as dc:Identifer
 
 
@@ -41,7 +40,7 @@ Navigation metadata
 http://www.daisy.org/z3986/2005/z3986-2005.html#NavMeta
 
 * dtb:uid ................. same as dc:Identifier
-* dtb:depth ............... can be provided by Obi
+* dtb:depth ............... computed at export time
 * dtb:generator ........... "Obi vx w/ Urakawa SDK vy (http://urakawa.sf.net)"
-* dtb:totalPageCount ...... can be provided by Obi
-* dtb:maxPageNumber ....... can be provided by Obi
+* dtb:totalPageCount ...... value of last page (provided by Obi)
+* dtb:maxPageNumber ....... value of last page (provided by Obi)
