@@ -828,7 +828,7 @@ namespace Obi
             bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
             FormUpdateUndoRedoLabels();
             
-            bool canCutCopyDelete = mProjectPanel.CanCutCopyDeleteNode;
+            bool canCutCopyDelete = !isPlaying && mProjectPanel.CanCutCopyDeleteNode;
             string itemLabel = mProjectPanel.SelectedLabel;
             if (itemLabel != "") itemLabel = " " + itemLabel;
             ObiNode clipboardData = mProject == null ? null : mProject.Clipboard.Data as ObiNode;
@@ -839,15 +839,16 @@ namespace Obi
             mCutToolStripMenuItem.Text = String.Format(Localizer.Message("cut_menu_label"), itemLabel);
             mCopyToolStripMenuItem.Enabled = canCutCopyDelete;
             mCopyToolStripMenuItem.Text = String.Format(Localizer.Message("copy_menu_label"), itemLabel);
-            mPasteToolStripMenuItem.Enabled = mProjectPanel.CanPaste(clipboardData);
+            mPasteToolStripMenuItem.Enabled = !isPlaying && mProjectPanel.CanPaste(clipboardData);
             mPasteToolStripMenuItem.Text = String.Format(Localizer.Message("paste_menu_label"), pasteLabel);
             mDeleteToolStripMenuItem.Enabled = canCutCopyDelete;
             mDeleteToolStripMenuItem.Text = String.Format(Localizer.Message("delete_menu_label"), itemLabel);
 
             bool isProjectOpen = mProject != null;
-            mMetadataToolStripMenuItem.Enabled = isProjectOpen;
-            mFullMetadataToolStripMenuItem.Enabled = isProjectOpen;
-            mTouchProjectToolStripMenuItem.Enabled = isProjectOpen;
+            bool canTouch = !isPlaying && isProjectOpen;
+            mMetadataToolStripMenuItem.Enabled = canTouch;
+            mFullMetadataToolStripMenuItem.Enabled = canTouch;
+            mTouchProjectToolStripMenuItem.Enabled = canTouch;
         }
 
         /// <summary>

@@ -18,7 +18,7 @@ namespace Obi.Dialogs
             InitializeComponent();
             mMetadata = metadata;
             mTitleBox.Text = mMetadata.Title;
-            mAuthorBox.Text = mMetadata.Author;
+            mAuthorBox.Text = mMetadata.Narrator;
             mPublisherBox.Text = mMetadata.Publisher;
             mIdentiferBox.Text = mMetadata.Identifier;
             foreach (CultureInfo c in CultureInfo.GetCultures(CultureTypes.AllCultures))
@@ -31,7 +31,7 @@ namespace Obi.Dialogs
         private void mOKButton_Click(object sender, EventArgs e)
         {
             mMetadata.Title = mTitleBox.Text;
-            mMetadata.Author = mAuthorBox.Text;
+            mMetadata.Narrator = mAuthorBox.Text;
             mMetadata.Publisher = mPublisherBox.Text;
             mMetadata.Identifier = mIdentiferBox.Text;
             mMetadata.Language = (CultureInfo)mLanguageBox.SelectedItem;

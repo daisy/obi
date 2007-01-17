@@ -15,12 +15,22 @@ namespace Obi
     public class SimpleMetadata
     {
         public string Identifier;     // identifier of the project
-        public string Author;         // author of the project
+        public string Narrator;       // author of the project
         public string Publisher;      // publisher of the project
         public string Title;          // title of the project
         public CultureInfo Language;  // main language of the project
 
         public static readonly string MetaTitle = "dc:Title";
+        public static readonly string MetaPublisher = "dc:Publisher";
+        public static readonly string MetaIdentifier = "dc:Identifier";
+        public static readonly string MetaLanguage = "dc:Language";
+        public static readonly string MetaNarrator = "dtb:narrator";
+        public static readonly string MetaProducedDate = "dtb:producedDate";  // date of first export
+        public static readonly string MetaRevision = "dtb:revision";
+        public static readonly string MetaRevisionDate = "dtb:revisionDate";
+        public static readonly string MetaGenerator = "dtb:generator";
+        public static readonly string MetaAssetsDir = "obi:assetsdir";
+        public static readonly string MetaXUKVersion = "obi:xukversion";
 
         /// <summary>
         /// Create an empty metadata object that will be filled field by field.
@@ -38,7 +48,7 @@ namespace Obi
         public SimpleMetadata(string title, string id, UserProfile profile)
         {
             Identifier = GenerateIdFromTemplate(id);
-            Author = profile.Name;
+            Narrator = profile.Name;
             Publisher = profile.Organization;
             Title = title;
             Language = profile.Culture;
