@@ -168,6 +168,9 @@
       <element name="phrase">
         <ref name="used-attr"/>
         <ref name="phrase-properties"/>
+        <element name="mChildren" ns="http://www.daisy.org/urakawa/xuk/0.5">
+          <empty/>
+        </element>
       </element>
     </define>
 
@@ -212,16 +215,14 @@
   </define>
 
   <define name="section-children">
-    <optional>
-      <element name="mChildren">
-        <zeroOrMore>
-          <ref name="phrase-node"/>
-        </zeroOrMore>
-        <zeroOrMore>
-          <ref name="section-node"/>
-        </zeroOrMore>
-      </element>
-    </optional>
+    <element name="mChildren">
+      <zeroOrMore>
+        <ref name="phrase-node"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="section-node"/>
+      </zeroOrMore>
+    </element>
   </define>
 
   <define name="phrase-properties">
