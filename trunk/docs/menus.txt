@@ -217,6 +217,16 @@ Index of shortcuts
   Ctrl+Y ............. Edit > Redo
   Ctrl+Z ............. Edit > Undo
 
+Record Dialog shortcuts : Doc Updated by Avneesh on 17 jan 2007
+Control+Space 	Toggle Start Recording and pause recording
+Alt+S	Stop and close record dialog
+h	Mark Section
+j	 Mark Phrase
+k	 mark page
+R	Dedicated Start Recording.
+a	Dedicated pause recording
+
+
   Missing ............ Strips > Remove annotation
   Missing ............ [Strip Manager Panel] Remove annotation
   Missing ............ Help > About Obi
