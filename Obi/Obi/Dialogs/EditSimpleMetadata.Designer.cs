@@ -79,11 +79,11 @@ namespace Obi.Dialogs
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(26, 44);
+            this.label2.Location = new System.Drawing.Point(18, 44);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.Size = new System.Drawing.Size(49, 12);
             this.label2.TabIndex = 2;
-            this.label2.Text = "&Author:";
+            this.label2.Text = "&Narrator:";
             // 
             // label3
             // 
@@ -167,7 +167,7 @@ namespace Obi.Dialogs
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
-            this.ClientSize = new System.Drawing.Size(504, 206);
+            this.ClientSize = new System.Drawing.Size(504, 213);
             this.Controls.Add(this.mLanguageBox);
             this.Controls.Add(this.mIdentiferBox);
             this.Controls.Add(this.mPublisherBox);
