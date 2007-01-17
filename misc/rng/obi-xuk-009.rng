@@ -24,6 +24,19 @@
     </zeroOrMore>
   </define>
 
+  <!-- Metadata exported by Obi:
+    + dc:Title
+    + dc:Publisher
+    + dc:Identifier
+    + dc:Language
+    + dtb:narrator
+    + dtb:producedDate [after first export]
+    + dtb:revision [after first export]
+    + dtb:revisionDate [adter first export]
+    + dtb:generator
+    + obi:assetsdir [not needed for export]
+    + obi:xukversion [not needed for export]
+  -->
   <define name="metadata">
     <element name="ProjectMetadata">
       <oneOrMore>
@@ -80,7 +93,7 @@
         <value type="string">obi:xukversion</value>
       </attribute>
       <attribute name="content">
-        <value type="string">obi-xuk-008</value>
+        <value type="string">obi-xuk-009</value>
       </attribute>
       <attribute name="scheme">
         <value type="string"></value>
