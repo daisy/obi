@@ -18,6 +18,7 @@ namespace Obi.UserControls
         public TextVUMeterPanel( )
         {
             InitializeComponent();
+            
             mResetButton.Enabled = false;
 
         }
