@@ -5,15 +5,20 @@ namespace Obi
 {
     public partial class Project
     {
-        static string mXsltFile = "XukToZed.xslt";
-        static string mDaisyOutputDirSuffix = "_daisy";
+        private static string mXsltFile = "XukToZed.xslt";
+        private static string mDaisyOutputDirSuffix = "_daisy";
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public void ExportToZed()
         {
-            
-            //first, sort out the audio clips
+            UpdatePublicationMetadata();
+
+            // sort out the audio clips: create one file per section, then one clip per phrase in this section.
 
             //then save the xuk file
-            if (this.Unsaved) this.Save();
+            Save();
 
             //then invoke the XukToZed transformation
             string outputFolder = System.IO.Path.GetDirectoryName(XUKPath);
@@ -25,6 +30,56 @@ namespace Obi
             
             ConvertXukToZed(xukFileName, outputFolder);
 
+        }
+
+        /// <summary>
+        /// Update the publication metadata (produced date, revision, revision date) before exporting.
+        /// </summary>
+        private void UpdatePublicationMetadata()
+        {
+            urakawa.project.Metadata producedDate = null;
+            urakawa.project.Metadata revision = null;
+            urakawa.project.Metadata revisionDate = null;
+
+            foreach (object o in getMetadataList())
+            {
+                urakawa.project.Metadata meta = (urakawa.project.Metadata)o;
+                if (meta.getName() == SimpleMetadata.MetaProducedDate)
+                {
+                    producedDate = meta;
+                }
+                else if (meta.getName() == SimpleMetadata.MetaRevision)
+                {
+                    revision = meta;
+                }
+                else if (meta.getName() == SimpleMetadata.MetaRevisionDate)
+                {
+                    revisionDate = meta;
+                }
+            }
+
+            string date = DateTime.Today.ToString("yyyy-MM-dd");
+            if (producedDate == null)
+            {
+                System.Diagnostics.Debug.Assert(revisionDate == null && revision == null);
+                producedDate = AddMetadata(SimpleMetadata.MetaProducedDate, date);
+            }
+            else
+            {
+                if (revision != null)
+                {
+                    System.Diagnostics.Debug.Assert(revisionDate != null);
+                    int rev = Int32.Parse(revision.getContent()) + 1;
+                    revision.setContent(rev.ToString());
+                    revisionDate.setContent(date);
+                }
+                else
+                {
+                    System.Diagnostics.Debug.Assert(revisionDate == null);
+                    AddMetadata(SimpleMetadata.MetaRevision, "1");
+                    AddMetadata(SimpleMetadata.MetaRevisionDate, date);
+                }
+            }
         }
 
         private void ConvertXukToZed(string safeProjectName, string outputFolder)
