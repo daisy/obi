@@ -25,9 +25,11 @@ namespace Obi
         public static readonly string MetaIdentifier = "dc:Identifier";
         public static readonly string MetaLanguage = "dc:Language";
         public static readonly string MetaNarrator = "dtb:narrator";
+
         public static readonly string MetaProducedDate = "dtb:producedDate";  // date of first export
         public static readonly string MetaRevision = "dtb:revision";
-        public static readonly string MetaRevisionDate = "dtb:revisionDate";
+        public static readonly string MetaRevisionDate = "dtb:revisionDate";  // date of the latest revision (last export)
+        
         public static readonly string MetaGenerator = "dtb:generator";
         public static readonly string MetaAssetsDir = "obi:assetsdir";
         public static readonly string MetaXUKVersion = "obi:xukversion";

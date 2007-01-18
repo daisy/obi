@@ -1357,6 +1357,12 @@ namespace Obi
             if (mProject != null)
             {
                 mProjectPanel.TransportBar.Stop();
+                if (mProject.Unsaved)
+                {
+                    DialogResult result = MessageBox.Show(Localizer.Message("export_unsaved_text"),
+                        Localizer.Message("export_unsaved_caption"), MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Cancel) return;
+                }
                 this.Cursor = Cursors.WaitCursor;
                 mProject.ExportToZed();
                 this.Cursor = Cursors.Default;

@@ -407,6 +407,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exporting project with unsaved changes.
+        /// </summary>
+        internal static string export_unsaved_caption {
+            get {
+                return ResourceManager.GetString("export_unsaved_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are about to export a project with unsaved changes. The project will be automatically saved before export if you click OK. Press cancel to cancel export (your project will not be saved.).
+        /// </summary>
+        internal static string export_unsaved_text {
+            get {
+                return ResourceManager.GetString("export_unsaved_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hide &amp;table of contents.
         /// </summary>
         internal static string hide_toc_label {
