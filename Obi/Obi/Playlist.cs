@@ -153,7 +153,7 @@ namespace Obi
         /// </summary>
         public double CurrentTime
         {
-            get { return mElapsedTime + CurrentTimeInAsset; }
+            get { return mElapsedTime + CurrentTimeInAsset;}
             set
             {
                 if (value >= 0 && value < mTotalTime)
@@ -172,7 +172,10 @@ namespace Obi
         /// </summary>
         public double CurrentTimeInAsset
         {
-            get { return mPlaylistState == AudioPlayerState.Playing ? mPlayer.GetCurrentTimePosition() : mPausePosition; }
+            get
+            {
+                return mPlaylistState == AudioPlayerState.Playing ? mPlayer.GetCurrentTimePosition() : mPausePosition; 
+            }
             set
             {
                 if (value >= 0 && value < mPhrases[mCurrentPhraseIndex].Asset.LengthInMilliseconds)
@@ -432,7 +435,7 @@ namespace Obi
                 mPlayBackState = PlayBackState.Rewind ;
                 mPlayer.m_EventsEnabled = false;
                 mPlayer.Stop();
-                PreviewTimer.Interval = 500;
+                PreviewTimer.Interval = 100;
                 PreviewTimer.Start();
                 
 
@@ -449,7 +452,7 @@ namespace Obi
                 mPlayBackState = PlayBackState.Forward;
                 mPlayer.m_EventsEnabled = false;
                 mPlayer.Stop();
-                PreviewTimer.Interval = 500;
+                PreviewTimer.Interval = 100;
                 PreviewTimer.Start();
                 
 
@@ -469,15 +472,16 @@ namespace Obi
         private void PreviewTimer_Tick(object sender, EventArgs e)
         {
             double StepInMs = 6000 * mPlaybackRate ;
- 
+            int PlayChunkLength = 1200;
+            PreviewTimer.Interval = PlayChunkLength + 50  ;
             if (mPlayBackState == PlayBackState.Forward)
             {
-                if (( m_CurrentAudioAsset.LengthInMilliseconds - mPausePosition) > ( StepInMs  + 1250 ))
+                if (( m_CurrentAudioAsset.LengthInMilliseconds - mPausePosition) > ( StepInMs  + PreviewTimer.Interval  ))
                 {
-
+                    
                     mPausePosition = mPausePosition +  StepInMs ;
 
-                    mPlayer.Play( m_CurrentAudioAsset.GetChunk (  mPausePosition , mPausePosition + 1200 ) );
+                    mPlayer.Play( m_CurrentAudioAsset.GetChunk (  mPausePosition , mPausePosition + PlayChunkLength ) );
                 }
                 else
                 {
@@ -485,7 +489,10 @@ namespace Obi
                     {
                         ++mCurrentPhraseIndex;
                         m_CurrentAudioAsset = mPhrases[mCurrentPhraseIndex].Asset;
+                        SkipToPhrase(mCurrentPhraseIndex);
+                        
                         mPausePosition = StepInMs * (-1) ;
+                        PreviewTimer.Interval = 50;
                     }
                     else
                     StopForwardRewind();                    
@@ -498,7 +505,7 @@ else if ( mPlayBackState == PlayBackState.Rewind )
 
         mPausePosition = mPausePosition -  StepInMs ;
 
-        mPlayer.Play(m_CurrentAudioAsset.GetChunk(mPausePosition, mPausePosition + 1200));
+        mPlayer.Play(m_CurrentAudioAsset.GetChunk(mPausePosition, mPausePosition + PlayChunkLength ));
     }
     else
     {
@@ -506,14 +513,17 @@ else if ( mPlayBackState == PlayBackState.Rewind )
         {
             --mCurrentPhraseIndex;
             m_CurrentAudioAsset = mPhrases[mCurrentPhraseIndex].Asset;
-            mPausePosition =  m_CurrentAudioAsset.LengthInMilliseconds - 1250 ;
+            SkipToPhrase(mCurrentPhraseIndex);
+
+            mPausePosition =  m_CurrentAudioAsset.LengthInMilliseconds - PlayChunkLength ;
+            PreviewTimer.Interval = 50;
         }
         else
             StopForwardRewind();                    
         
     }
             }
-            PreviewTimer.Interval = 1250;
+            
         }
 
         /// <summary>

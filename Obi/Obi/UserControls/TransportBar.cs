@@ -356,7 +356,7 @@ namespace Obi.UserControls
             }
             else if (mPlaylist.State == Audio.AudioPlayerState.Paused)
             {
-                mDisplayTimer.Stop();
+                //mDisplayTimer.Stop(); // Avn: disabled because changing of pause position should be visible
                 mPauseButton.Visible = false;
                 mPlayButton.Visible = true;
             }
