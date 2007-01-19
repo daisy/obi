@@ -315,6 +315,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please choose a default project directory below..
+        /// </summary>
+        internal static string default_directory_browser {
+            get {
+                return ResourceManager.GetString("default_directory_browser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to N/A.
         /// </summary>
         internal static string default_organization {
@@ -403,6 +412,24 @@ namespace Obi {
         internal static string error {
             get {
                 return ResourceManager.GetString("error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select the folder in which to save your DAISY book..
+        /// </summary>
+        internal static string export_choose_folder {
+            get {
+                return ResourceManager.GetString("export_choose_folder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please choose a default export directory below..
+        /// </summary>
+        internal static string export_directory_browser {
+            get {
+                return ResourceManager.GetString("export_directory_browser", resourceCulture);
             }
         }
         

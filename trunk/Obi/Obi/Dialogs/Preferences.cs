@@ -13,72 +13,52 @@ namespace Obi.Dialogs
 {
     public partial class Preferences : Form
     {
-        private string mIdTemplate;  // identifier template
-        private string mDefaultDir;  // default project directory
+        private string mIdTemplate;             // identifier template
+        private string mDefaultXUKDirectory;    // default project directory
+        private string mDefaultDAISYDirectory;  // default export directory
+        private bool mOpenLastProject;          // automatically open last project
+        private InputDevice mInputDevice;       // preferred input device
+        private OutputDevice mOutputDevice;     // preferred output device
+        private int mAudioChannels;             // preferred number of audio channels
+        private int mSampleRate;                // preferred sample rate
+        private int mBitDepth;                  // preferred bit depth
 
+        /// <summary>
+        /// Identifier template for new projects
+        /// </summary>
         public string IdTemplate
         {
-            get
-            {
-                return mIdTemplate;
-            }
+            get { return mIdTemplate; }
         }
 
-        public string DefaultDir
+        /// <summary>
+        /// Default directory for new projects
+        /// </summary>
+        public string DefaultXUKDirectory
         {
-            get
-            {
-                return mDefaultDir;
-            }
+            get { return mDefaultXUKDirectory; }
         }
 
-        // private string mOutputDevice;    // preferred output device
-        // private int mOutputDeviceIndex;  // index of the output device
-        // private string mInputDevice;         // preferred input device
-        // private int mInputDeviceIndex;       // index of the input device
-
-        private InputDevice mInputDevice;    // preferred input device
-        private OutputDevice mOutputDevice;  // preferred output device
-        private int mAudioChannels;          // preferred number of audio channels
-        private int mSampleRate;             // preferred sample rate
-        private int mBitDepth;               // preferred bit depth
-
-        /*public string OutputDevice
+        /// <summary>
+        /// Default directory for exported DAISY books
+        /// </summary>
+        public string DefaultDAISYDirectory
         {
-            get
-            {
-                return mOutputDevice;
-            }
+            get { return mDefaultDAISYDirectory; }
         }
 
-        public int OutputDeviceIndex
+        /// <summary>
+        /// Automatically open last open project on startup.
+        /// </summary>
+        public bool OpenLastProject
         {
-            get
-            {
-                return mOutputDeviceIndex;
-            }
-        }*/
+            get { return mOpenLastProject; }
+        }
 
         public OutputDevice OutputDevice
         {
             get { return mOutputDevice; }
         }
-
-        /* public string InputDevice
-        {
-            get
-            {
-                return mInputDevice;
-            }
-        }
-
-        public int InputDeviceIndex
-        {
-            get
-            {
-                return mInputDeviceIndex;
-            }
-        } */
 
         public InputDevice InputDevice
         {
@@ -87,32 +67,18 @@ namespace Obi.Dialogs
 
         public int AudioChannels
         {
-            get
-            {
-                return mAudioChannels;
-            }
+            get { return mAudioChannels; }
         }
 
         public int SampleRate
         {
-            get
-            {
-                return mSampleRate;
-            }
+            get { return mSampleRate; }
         }
 
         public int BitDepth
         {
-            get
-            {
-                return mBitDepth;
-            }
+            get { return mBitDepth; }
         }
-
-        // ArrayList m_InDevicesList = new ArrayList();
-        // ArrayList m_OutDevicesList = new ArrayList();
-        // Audio.AudioRecorder ob_AudioRecorder = Audio.AudioRecorder.Instance;
-        // Audio.AudioPlayer ob_AudioPlayer = Audio.AudioPlayer.Instance;
 
         /// <summary>
         /// Initialize the preferences with the user settings.
@@ -122,10 +88,11 @@ namespace Obi.Dialogs
             InitializeComponent();
             mIdTemplate = settings.IdTemplate;
             mTemplateBox.Text = mIdTemplate;
-            mDefaultDir = settings.DefaultPath;
-            mDirectoryBox.Text = mDefaultDir;
-            // mInputDevice = settings.LastInputDevice;
-            // mOutputDevice = settings.LastOutputDevice;
+            mDefaultXUKDirectory = settings.DefaultPath;
+            mDefaultDAISYDirectory = settings.DefaultExportPath;
+            mDirectoryBox.Text = mDefaultXUKDirectory;
+            mExportBox.Text = mDefaultDAISYDirectory;
+            mLastOpenCheckBox.Checked = settings.OpenLastProject;
             mInputDevice = AudioRecorder.Instance.InputDevice;
             mOutputDevice = AudioPlayer.Instance.OutputDevice;
             mSampleRate = settings.SampleRate;
@@ -140,11 +107,27 @@ namespace Obi.Dialogs
         private void mBrowseButton_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
-            dialog.SelectedPath = mDefaultDir;
+            dialog.SelectedPath = mDefaultXUKDirectory;
+            dialog.Description = Localizer.Message("default_directory_browser");
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                mDefaultDir = dialog.SelectedPath;
-                mDirectoryBox.Text = mDefaultDir;
+                mDefaultXUKDirectory = dialog.SelectedPath;
+                mDirectoryBox.Text = mDefaultXUKDirectory;
+            }
+        }
+
+        /// <summary>
+        /// Browse for the export directory.
+        /// </summary>
+        private void mBrowseExportButton_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.SelectedPath = mDefaultXUKDirectory;
+            dialog.Description = Localizer.Message("export_directory_browser");
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                mDefaultDAISYDirectory = dialog.SelectedPath;
+                mExportBox.Text = mDefaultDAISYDirectory;
             }
         }
 
@@ -154,20 +137,20 @@ namespace Obi.Dialogs
         private void mOKButton_Click(object sender, EventArgs e)
         {
             mIdTemplate = mTemplateBox.Text;
-            //mDefaultDir = mDirectoryBox.Text;
             //mg: rewrite of the above to try to make sure dir exists
             //only if the value changed since showdialog...
-            if (!mDefaultDir.Equals(mDirectoryBox.Text))                
+            if (mDefaultXUKDirectory != mDirectoryBox.Text)                
             {
                 //...do we go through the test to avoid annyoing repeats
                 if (IOUtils.ValidateAndCreateDir(mDirectoryBox.Text))
-                    mDefaultDir = mDirectoryBox.Text;                
+                    mDefaultXUKDirectory = mDirectoryBox.Text;                
             }
-            
-            //mOutputDevice = comboOutputDevice.SelectedItem.ToString();
-            //mOutputDeviceIndex = comboOutputDevice.SelectedIndex;
-            //mInputDevice = comboInputDevice.SelectedItem.ToString();
-            //mInputDeviceIndex = comboInputDevice.SelectedIndex;
+            if (mDefaultDAISYDirectory != mExportBox.Text &&
+                IOUtils.ValidateAndCreateDir(mExportBox.Text))
+            {
+                mDefaultDAISYDirectory = mExportBox.Text;
+            }
+            mOpenLastProject = mLastOpenCheckBox.Checked;            
             mInputDevice = (InputDevice)comboInputDevice.SelectedItem;
             mOutputDevice = (OutputDevice)comboOutputDevice.SelectedItem;
             if (comboChannels.SelectedItem.ToString() == "Mono")
@@ -180,12 +163,6 @@ namespace Obi.Dialogs
 
         private void Preferences_Load(object sender, EventArgs e)
         {
-            // m_InDevicesList = ob_AudioRecorder.GetInputDevices();
-            // m_OutDevicesList = ob_AudioPlayer.GetOutputDevices();
-            // comboInputDevice.DataSource = m_InDevicesList;
-            // comboInputDevice.SelectedIndex = m_InDevicesList.IndexOf(mInputDevice);
-            // comboOutputDevice.DataSource = m_OutDevicesList;
-            // comboOutputDevice.SelectedIndex = m_OutDevicesList.IndexOf(mOutputDevice);
             comboInputDevice.DataSource = AudioRecorder.Instance.InputDevices;
             comboInputDevice.SelectedIndex = AudioRecorder.Instance.InputDevices.IndexOf(mInputDevice);
             comboOutputDevice.DataSource = AudioPlayer.Instance.OutputDevices;

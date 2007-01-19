@@ -47,6 +47,10 @@ namespace Obi.Dialogs
             this.labelChannels = new System.Windows.Forms.Label();
             this.comboSampleRate = new System.Windows.Forms.ComboBox();
             this.labelSampleRate = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.mBrowseExportButton = new System.Windows.Forms.Button();
+            this.mExportBox = new System.Windows.Forms.TextBox();
+            this.mLastOpenCheckBox = new System.Windows.Forms.CheckBox();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             this.mAudioTab.SuspendLayout();
@@ -55,7 +59,7 @@ namespace Obi.Dialogs
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 9);
+            this.label1.Location = new System.Drawing.Point(8, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(140, 12);
             this.label1.TabIndex = 0;
@@ -65,7 +69,7 @@ namespace Obi.Dialogs
             // 
             this.mTemplateBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.mTemplateBox.Location = new System.Drawing.Point(152, 6);
+            this.mTemplateBox.Location = new System.Drawing.Point(152, 8);
             this.mTemplateBox.Name = "mTemplateBox";
             this.mTemplateBox.Size = new System.Drawing.Size(453, 19);
             this.mTemplateBox.TabIndex = 1;
@@ -73,7 +77,7 @@ namespace Obi.Dialogs
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 34);
+            this.label2.Location = new System.Drawing.Point(8, 38);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(138, 12);
             this.label2.TabIndex = 2;
@@ -83,7 +87,7 @@ namespace Obi.Dialogs
             // 
             this.mDirectoryBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.mDirectoryBox.Location = new System.Drawing.Point(152, 31);
+            this.mDirectoryBox.Location = new System.Drawing.Point(152, 35);
             this.mDirectoryBox.Name = "mDirectoryBox";
             this.mDirectoryBox.Size = new System.Drawing.Size(372, 19);
             this.mDirectoryBox.TabIndex = 3;
@@ -91,7 +95,7 @@ namespace Obi.Dialogs
             // mBrowseButton
             // 
             this.mBrowseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mBrowseButton.Location = new System.Drawing.Point(530, 31);
+            this.mBrowseButton.Location = new System.Drawing.Point(530, 33);
             this.mBrowseButton.Name = "mBrowseButton";
             this.mBrowseButton.Size = new System.Drawing.Size(75, 23);
             this.mBrowseButton.TabIndex = 4;
@@ -172,6 +176,10 @@ namespace Obi.Dialogs
             // 
             // mProjectTab
             // 
+            this.mProjectTab.Controls.Add(this.mLastOpenCheckBox);
+            this.mProjectTab.Controls.Add(this.mExportBox);
+            this.mProjectTab.Controls.Add(this.mBrowseExportButton);
+            this.mProjectTab.Controls.Add(this.label3);
             this.mProjectTab.Controls.Add(this.label1);
             this.mProjectTab.Controls.Add(this.mTemplateBox);
             this.mProjectTab.Controls.Add(this.label2);
@@ -241,6 +249,45 @@ namespace Obi.Dialogs
             this.labelSampleRate.TabIndex = 13;
             this.labelSampleRate.Text = "Default &sample rate:";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(17, 67);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(129, 12);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Default e&xport directory:";
+            // 
+            // mBrowseExportButton
+            // 
+            this.mBrowseExportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mBrowseExportButton.Location = new System.Drawing.Point(530, 62);
+            this.mBrowseExportButton.Name = "mBrowseExportButton";
+            this.mBrowseExportButton.Size = new System.Drawing.Size(75, 23);
+            this.mBrowseExportButton.TabIndex = 6;
+            this.mBrowseExportButton.Text = "&Browse";
+            this.mBrowseExportButton.UseVisualStyleBackColor = true;
+            this.mBrowseExportButton.Click += new System.EventHandler(this.mBrowseExportButton_Click);
+            // 
+            // mExportBox
+            // 
+            this.mExportBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mExportBox.Location = new System.Drawing.Point(152, 64);
+            this.mExportBox.Name = "mExportBox";
+            this.mExportBox.Size = new System.Drawing.Size(372, 19);
+            this.mExportBox.TabIndex = 7;
+            // 
+            // mLastOpenCheckBox
+            // 
+            this.mLastOpenCheckBox.AutoSize = true;
+            this.mLastOpenCheckBox.Location = new System.Drawing.Point(6, 95);
+            this.mLastOpenCheckBox.Name = "mLastOpenCheckBox";
+            this.mLastOpenCheckBox.Size = new System.Drawing.Size(206, 16);
+            this.mLastOpenCheckBox.TabIndex = 8;
+            this.mLastOpenCheckBox.Text = "Open &last project when starting Obi";
+            this.mLastOpenCheckBox.UseVisualStyleBackColor = true;
+            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
@@ -285,5 +332,9 @@ namespace Obi.Dialogs
         private System.Windows.Forms.ComboBox comboSampleRate;
         private System.Windows.Forms.ComboBox comboChannels;
         private System.Windows.Forms.Label labelChannels;
+        private System.Windows.Forms.CheckBox mLastOpenCheckBox;
+        private System.Windows.Forms.TextBox mExportBox;
+        private System.Windows.Forms.Button mBrowseExportButton;
+        private System.Windows.Forms.Label label3;
     }
 }

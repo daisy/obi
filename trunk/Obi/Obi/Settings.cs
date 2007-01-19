@@ -23,7 +23,10 @@ namespace Obi
         public UserProfile UserProfile;   // the user profile
         public string IdTemplate;         // identifier template
         public string DefaultPath;        // default location
+        public string DefaultExportPath;  // default path for DAISY export
         public bool CreateTitleSection;   // defaulf for "create title section" in new project
+        public string LastOpenProject;    // path to the last open project
+        public bool OpenLastProject;      // open the last open project at startup
 
         public string LastOutputDevice;   // the name of the last output device selected by the user
         public string LastInputDevice;    // the name of the last input device selected by the user
@@ -56,6 +59,8 @@ namespace Obi
             if (settings.UserProfile == null) settings.UserProfile = new UserProfile();
             if (settings.IdTemplate == null) settings.IdTemplate = "obi_####";
             if (settings.DefaultPath == null) settings.DefaultPath = Environment.CurrentDirectory;
+            if (settings.DefaultExportPath == null) settings.DefaultExportPath = Environment.CurrentDirectory;
+            if (settings.LastOpenProject == null) settings.LastOpenProject = "";
             if (settings.LastOutputDevice == null) settings.LastOutputDevice = "";
             if (settings.LastInputDevice == null) settings.LastInputDevice = "";
             if (settings.AudioChannels == 0) settings.AudioChannels = 1;

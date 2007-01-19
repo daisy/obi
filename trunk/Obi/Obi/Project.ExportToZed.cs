@@ -5,31 +5,25 @@ namespace Obi
 {
     public partial class Project
     {
+        public static string DaisyOutputDirSuffix = "_daisy";
+        
         private static string mXsltFile = "XukToZed.xslt";
-        private static string mDaisyOutputDirSuffix = "_daisy";
         
         /// <summary>
         /// 
         /// </summary>
-        public void ExportToZed()
+        public void ExportToZed(string outputPath)
         {
             UpdatePublicationMetadata();
-
             // sort out the audio clips: create one file per section, then one clip per phrase in this section.
-
-            //then save the xuk file
+            // TODO
+            // then save the xuk file to update the date metadata.
             Save();
-
-            //then invoke the XukToZed transformation
-            string outputFolder = System.IO.Path.GetDirectoryName(XUKPath);
+            // then invoke the XukToZed transformation
             string xukFileName = System.IO.Path.GetFileNameWithoutExtension(XUKPath);
-            outputFolder += "\\" + xukFileName + mDaisyOutputDirSuffix;
-            //create the output folder if it doesn't exist
-            //todo: consider asking the user if they want to choose a folder
-            if (!System.IO.Directory.Exists(outputFolder)) System.IO.Directory.CreateDirectory(outputFolder);
-            
-            ConvertXukToZed(xukFileName, outputFolder);
-
+            // create the output folder if it doesn't exist
+            // if (!System.IO.Directory.Exists(outputPath)) System.IO.Directory.CreateDirectory(outputPath);            
+            ConvertXukToZed(xukFileName, outputPath);
         }
 
         /// <summary>
