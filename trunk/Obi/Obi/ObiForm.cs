@@ -266,6 +266,87 @@ namespace Obi
         #endregion
 
 
+        #region Edit menu
+
+        private void mEditToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            UpdateEnabledItemsForEditMenu();
+        }
+
+        /// <summary>
+        /// Handle the undo menu item.
+        /// If there is something to undo, undo it and update the labels of undo and redo
+        /// to synchronize them with the command manager.
+        /// </summary>
+        private void mUndoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mCommandManager.HasUndo)
+            {
+                mCommandManager.Undo();
+                if (!mCommandManager.HasUndo) mProject.Reverted();
+            }
+        }
+
+        /// <summary>
+        /// Handle the redo menu item.
+        /// If there is something to undo, undo it and update the labels of undo and redo
+        /// to synchronize them with the command manager.
+        /// </summary>
+        private void mRedoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mCommandManager.HasRedo) mCommandManager.Redo();
+        }
+
+        /// <summary>
+        /// Cut depends on what is selected.
+        /// </summary>
+        private void mCutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectPanel != null)
+            {
+                if (mProjectPanel.StripManager.SelectedPhraseNode != null)
+                {
+                    mProjectPanel.StripManager.CutSelectedPhrase();
+                }
+                else if (mProjectPanel.StripManager.SelectedSectionNode != null)
+                {
+                    // should be shallow, right?
+                    mProjectPanel.StripManager.CutSelectedSection();
+                }
+                else if (mProjectPanel.TOCPanel.IsNodeSelected)
+                {
+                    // check that there is actually something that looks selected
+                    // from the user POV.
+                    mProjectPanel.TOCPanel.CutSelectedSection();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Copy depends on what is selected.
+        /// </summary>
+        private void mCopyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectPanel != null)
+            {
+                if (mProjectPanel.StripManager.SelectedPhraseNode != null)
+                {
+                    mProjectPanel.StripManager.CopySelectedPhrase();
+                }
+                else if (mProjectPanel.StripManager.SelectedSectionNode != null)
+                {
+                    mProjectPanel.StripManager.CopySelectedSection();
+                }
+                else if (mProjectPanel.TOCPanel.IsNodeSelected)
+                {
+                    // check that there is actually something that looks selected
+                    // from the user POV.
+                    mProjectPanel.TOCPanel.CopySelectedSection();
+                }
+            }
+        }
+
+        #endregion
 
 
 
@@ -601,54 +682,6 @@ namespace Obi
             Ready();
         }
 
-        /// <summary>
-        /// Display a message on the status bar.
-        /// </summary>
-        /// <param name="message">The message to display.</param>
-        private void Status(string message)
-        {
-            mToolStripStatusLabel.Text = message;
-        }
-
-        /// <summary>
-        /// Update the status bar to say "Ready."
-        /// </summary>
-        private void Ready()
-        {
-            Status(Localizer.Message("ready"));
-        }
-
-        /// <summary>
-        /// Handle the undo menu item.
-        /// If there is something to undo, undo it and update the labels of undo and redo
-        /// to synchronize them with the command manager.
-        /// </summary>
-        private void mUndoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mCommandManager.HasUndo)
-            {
-                mCommandManager.Undo();
-                UpdateEnabledItemsForUndoRedo();
-                if (!mCommandManager.HasUndo) mProject.Reverted();
-            }
-        }
-
-        /// <summary>
-        /// Handle the redo menu item.
-        /// If there is something to undo, undo it and update the labels of undo and redo
-        /// to synchronize them with the command manager.
-        /// </summary>
-        private void mRedoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-            if (mCommandManager.HasRedo)
-            {
-                mCommandManager.Redo();
-                UpdateEnabledItemsForUndoRedo();
-            }
-            
-        }
-
         private void dumpTreeDEBUGToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProject.RootNode.acceptDepthFirst(new Visitors.DumpTree());
@@ -661,75 +694,7 @@ namespace Obi
         
 
 
-        #region Edit menu
 
-        private void mEditToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
-        {
-            UpdateEnabledItemsForEditMenu();
-        }
-
-        /// <summary>
-        /// Update the enabled items of the Edit menu.
-        /// </summary>
-        private void UpdateEnabledItemsForEditMenu()
-        {
-            UpdateEnabledItemsForUndoRedo();
-
-            bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
-            bool canCutCopyDelete = !isPlaying && mProjectPanel.CanCutCopyDeleteNode;
-            string itemLabel = mProjectPanel.SelectedLabel;
-            if (itemLabel != "") itemLabel = " " + itemLabel;
-            ObiNode clipboardData = mProject == null ? null : mProject.Clipboard.Data as ObiNode;
-            string pasteLabel = mProjectPanel.PasteLabel(clipboardData);
-            if (pasteLabel != "") pasteLabel = " " + pasteLabel;
-
-            mCutToolStripMenuItem.Enabled = canCutCopyDelete;
-            mCutToolStripMenuItem.Text = String.Format(Localizer.Message("cut_menu_label"), itemLabel);
-            mCopyToolStripMenuItem.Enabled = canCutCopyDelete;
-            mCopyToolStripMenuItem.Text = String.Format(Localizer.Message("copy_menu_label"), itemLabel);
-            mPasteToolStripMenuItem.Enabled = !isPlaying && mProjectPanel.CanPaste(clipboardData);
-            mPasteToolStripMenuItem.Text = String.Format(Localizer.Message("paste_menu_label"), pasteLabel);
-            mDeleteToolStripMenuItem.Enabled = canCutCopyDelete;
-            mDeleteToolStripMenuItem.Text = String.Format(Localizer.Message("delete_menu_label"), itemLabel);
-
-            bool isProjectOpen = mProject != null;
-            bool canTouch = !isPlaying && isProjectOpen;
-            mMetadataToolStripMenuItem.Enabled = canTouch;
-            mFullMetadataToolStripMenuItem.Enabled = canTouch;
-            mTouchProjectToolStripMenuItem.Enabled = canTouch;
-        }
-
-        /// <summary>
-        /// Update the label for undo and redo (and their availability) depending on what is in the command manager.
-        /// </summary>
-        private void UpdateEnabledItemsForUndoRedo()
-        {
-            bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
-            if (mCommandManager.HasUndo)
-            {
-                mUndoToolStripMenuItem.Enabled = !isPlaying;
-                mUndoToolStripMenuItem.Text = String.Format(Localizer.Message("undo_label"), Localizer.Message("undo"),
-                    mCommandManager.UndoLabel);
-            }
-            else
-            {
-                mUndoToolStripMenuItem.Enabled = false;
-                mUndoToolStripMenuItem.Text = Localizer.Message("undo");
-            }
-            if (mCommandManager.HasRedo)
-            {
-                mRedoToolStripMenuItem.Enabled = !isPlaying;
-                mRedoToolStripMenuItem.Text = String.Format(Localizer.Message("redo_label"), Localizer.Message("redo"),
-                    mCommandManager.RedoLabel);
-            }
-            else
-            {
-                mRedoToolStripMenuItem.Enabled = false;
-                mRedoToolStripMenuItem.Text = Localizer.Message("redo");
-            }
-        }
-
-        #endregion
 
         #region TOC menu
 
@@ -824,54 +789,6 @@ namespace Obi
 
 
         #endregion
-
-        /// <summary>
-        /// Cut depends on what is selected.
-        /// </summary>
-        private void mCutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProjectPanel != null)
-            {
-                if (mProjectPanel.StripManager.SelectedPhraseNode != null)
-                {
-                    mProjectPanel.StripManager.CutSelectedPhrase();
-                }
-                else if (mProjectPanel.StripManager.SelectedSectionNode != null)
-                {
-                    mProjectPanel.StripManager.CutSelectedSection();
-                }
-                else if (mProjectPanel.TOCPanel.IsNodeSelected)
-                {
-                    // check that there is actually something that looks selected
-                    // from the user POV.
-                    mProjectPanel.TOCPanel.CutSelectedSection();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Copy depends on what is selected.
-        /// </summary>
-        private void mCopyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProjectPanel != null)
-            {
-                if (mProjectPanel.StripManager.SelectedPhraseNode != null)
-                {
-                    mProjectPanel.StripManager.CopySelectedPhrase();
-                }
-                else if (mProjectPanel.StripManager.SelectedSectionNode != null)
-                {
-                    mProjectPanel.StripManager.CopySelectedSection();
-                }
-                else if (mProjectPanel.TOCPanel.IsNodeSelected)
-                {
-                    // check that there is actually something that looks selected
-                    // from the user POV.
-                    mProjectPanel.TOCPanel.CopySelectedSection();
-                }
-            }
-        }
 
         /// <summary>
         /// 
@@ -1153,6 +1070,7 @@ namespace Obi
         {
             // Make sure that the correct menu items are enabled for the keyboard shortcuts to work.
             UpdateEnabledItems();
+            mProjectPanel.StripManager.UpdateEnabledItemsForContextMenu();
             switch (key)
             {
                 case Keys.Control | Keys.Space:
@@ -1401,6 +1319,23 @@ namespace Obi
         }
 
         /// <summary>
+        /// Update the status bar to say "Ready."
+        /// </summary>
+        private void Ready()
+        {
+            Status(Localizer.Message("ready"));
+        }
+
+        /// <summary>
+        /// Display a message on the status bar.
+        /// </summary>
+        /// <param name="message">The message to display.</param>
+        private void Status(string message)
+        {
+            mToolStripStatusLabel.Text = message;
+        }
+
+        /// <summary>
         /// Try to open a project from a XUK file.
         /// Actually open it only if a possible current project could be closed properly.
         /// </summary>
@@ -1449,6 +1384,67 @@ namespace Obi
             mDiscardChangesToolStripMenuItem.Enabled = !isPlaying && isProjectModified;
             mCloseProjectToolStripMenuItem.Enabled = isProjectOpen && !isPlaying;
             mExportAsDAISYToolStripMenuItem.Enabled = isProjectOpen && !isPlaying;
+        }
+
+        /// <summary>
+        /// Update the enabled items of the Edit menu.
+        /// </summary>
+        private void UpdateEnabledItemsForEditMenu()
+        {
+            UpdateEnabledItemsForUndoRedo();
+
+            bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
+            bool canCutCopyDelete = !isPlaying && mProjectPanel.CanCutCopyDeleteNode;
+            string itemLabel = mProjectPanel.SelectedLabel;
+            if (itemLabel != "") itemLabel = " " + itemLabel;
+            ObiNode clipboardData = mProject == null ? null : mProject.Clipboard.Data as ObiNode;
+            string pasteLabel = mProjectPanel.PasteLabel(clipboardData);
+            if (pasteLabel != "") pasteLabel = " " + pasteLabel;
+
+            mCutToolStripMenuItem.Enabled = canCutCopyDelete;
+            mCutToolStripMenuItem.Text = String.Format(Localizer.Message("cut_menu_label"), itemLabel);
+            mCopyToolStripMenuItem.Enabled = canCutCopyDelete;
+            mCopyToolStripMenuItem.Text = String.Format(Localizer.Message("copy_menu_label"), itemLabel);
+            mPasteToolStripMenuItem.Enabled = !isPlaying && mProjectPanel.CanPaste(clipboardData);
+            mPasteToolStripMenuItem.Text = String.Format(Localizer.Message("paste_menu_label"), pasteLabel);
+            mDeleteToolStripMenuItem.Enabled = canCutCopyDelete;
+            mDeleteToolStripMenuItem.Text = String.Format(Localizer.Message("delete_menu_label"), itemLabel);
+
+            bool isProjectOpen = mProject != null;
+            bool canTouch = !isPlaying && isProjectOpen;
+            mMetadataToolStripMenuItem.Enabled = canTouch;
+            mFullMetadataToolStripMenuItem.Enabled = canTouch;
+            mTouchProjectToolStripMenuItem.Enabled = canTouch;
+        }
+
+        /// <summary>
+        /// Update the label for undo and redo (and their availability) depending on what is in the command manager.
+        /// </summary>
+        private void UpdateEnabledItemsForUndoRedo()
+        {
+            bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
+            if (mCommandManager.HasUndo)
+            {
+                mUndoToolStripMenuItem.Enabled = !isPlaying;
+                mUndoToolStripMenuItem.Text = String.Format(Localizer.Message("undo_label"), Localizer.Message("undo"),
+                    mCommandManager.UndoLabel);
+            }
+            else
+            {
+                mUndoToolStripMenuItem.Enabled = false;
+                mUndoToolStripMenuItem.Text = Localizer.Message("undo");
+            }
+            if (mCommandManager.HasRedo)
+            {
+                mRedoToolStripMenuItem.Enabled = !isPlaying;
+                mRedoToolStripMenuItem.Text = String.Format(Localizer.Message("redo_label"), Localizer.Message("redo"),
+                    mCommandManager.RedoLabel);
+            }
+            else
+            {
+                mRedoToolStripMenuItem.Enabled = false;
+                mRedoToolStripMenuItem.Text = Localizer.Message("redo");
+            }
         }
     }
 }
