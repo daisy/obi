@@ -38,7 +38,7 @@ namespace Obi
             this.mClearListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mSaveProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mSaveProjectasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSaveProjectAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mDiscardChangesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mCloseProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
@@ -58,7 +58,7 @@ namespace Obi
             this.mFullMetadataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTouchProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mShowhideTableOfCOntentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mShowhideTableOfContentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mAddSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddSubSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -144,7 +144,7 @@ namespace Obi
             this.mOpenRecentProjectToolStripMenuItem,
             this.toolStripSeparator2,
             this.mSaveProjectToolStripMenuItem,
-            this.mSaveProjectasToolStripMenuItem,
+            this.mSaveProjectAsToolStripMenuItem,
             this.mDiscardChangesToolStripMenuItem,
             this.mCloseProjectToolStripMenuItem,
             this.toolStripSeparator9,
@@ -214,12 +214,12 @@ namespace Obi
             // 
             // mSaveProjectasToolStripMenuItem
             // 
-            this.mSaveProjectasToolStripMenuItem.Name = "mSaveProjectasToolStripMenuItem";
-            this.mSaveProjectasToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
+            this.mSaveProjectAsToolStripMenuItem.Name = "mSaveProjectasToolStripMenuItem";
+            this.mSaveProjectAsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
                         | System.Windows.Forms.Keys.S)));
-            this.mSaveProjectasToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.mSaveProjectasToolStripMenuItem.Text = "Save project &as";
-            this.mSaveProjectasToolStripMenuItem.Click += new System.EventHandler(this.mSaveProjectasToolStripMenuItem_Click);
+            this.mSaveProjectAsToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.mSaveProjectAsToolStripMenuItem.Text = "Save project &as";
+            this.mSaveProjectAsToolStripMenuItem.Click += new System.EventHandler(this.mSaveProjectAsToolStripMenuItem_Click);
             // 
             // mDiscardChangesToolStripMenuItem
             // 
@@ -368,7 +368,7 @@ namespace Obi
             // mTocToolStripMenuItem
             // 
             this.mTocToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mShowhideTableOfCOntentsToolStripMenuItem,
+            this.mShowhideTableOfContentsToolStripMenuItem,
             this.toolStripSeparator1,
             this.mAddSectionToolStripMenuItem,
             this.mAddSubSectionToolStripMenuItem,
@@ -385,11 +385,11 @@ namespace Obi
             // 
             // mShowhideTableOfCOntentsToolStripMenuItem
             // 
-            this.mShowhideTableOfCOntentsToolStripMenuItem.Name = "mShowhideTableOfCOntentsToolStripMenuItem";
-            this.mShowhideTableOfCOntentsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.T)));
-            this.mShowhideTableOfCOntentsToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
-            this.mShowhideTableOfCOntentsToolStripMenuItem.Text = "Show &table of contents ";
-            this.mShowhideTableOfCOntentsToolStripMenuItem.Click += new System.EventHandler(this.mShowhideTableOfContentsToolStripMenuItem_Click);
+            this.mShowhideTableOfContentsToolStripMenuItem.Name = "mShowhideTableOfCOntentsToolStripMenuItem";
+            this.mShowhideTableOfContentsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.T)));
+            this.mShowhideTableOfContentsToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.mShowhideTableOfContentsToolStripMenuItem.Text = "Show &table of contents ";
+            this.mShowhideTableOfContentsToolStripMenuItem.Click += new System.EventHandler(this.mShowhideTableOfContentsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -884,7 +884,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mNewProjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mOpenProjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mSaveProjectToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mSaveProjectasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSaveProjectAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mCloseProjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mTouchProjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mOpenRecentProjectToolStripMenuItem;
@@ -901,7 +901,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mTocToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mStripsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem mShowhideTableOfCOntentsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mShowhideTableOfContentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mAddSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mAddSubSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mRenameSectionToolStripMenuItem;

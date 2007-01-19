@@ -16,8 +16,8 @@ namespace Obi
     {
         private Project mProject;                // the project currently being authored
         private Settings mSettings;              // application settings
-        private CommandManager mCommandManager;  // the undo stack for this project (should it belong to the project?)
-        private Audio.VuMeterForm mVuMeter;      // keep track of a single VU meter form
+        private CommandManager mCommandManager;  // the undo stack for this project
+        private Audio.VuMeterForm mVuMeterForm;  // keep track of a single VU meter form
 
         /// <summary>
         /// Application settings.
@@ -32,8 +32,9 @@ namespace Obi
         /// </summary>
         public Audio.VuMeterForm VuMeterForm
         {
-            get { return mVuMeter; }
+            get { return mVuMeterForm; }
         }
+
 
         /// <summary>
         /// Initialize a new form. No project is opened at creation time.
@@ -47,8 +48,18 @@ namespace Obi
             mCommandManager = new CommandManager();
             InitializeVuMeter();
             InitializeSettings();
-            mProjectPanel.TransportBar.StateChanged += new Obi.Events.Audio.Player.StateChangedHandler(TransportBar_StateChanged);
-            StatusUpdateClosedProject();  // no project opened, same as if we closed a project.
+            mProjectPanel.TransportBar.StateChanged +=
+                new Obi.Events.Audio.Player.StateChangedHandler(TransportBar_StateChanged);
+            if (mSettings.OpenLastProject && mSettings.LastOpenProject != "")
+            {
+                // open the last open project
+                DoOpenProject(mSettings.LastOpenProject);
+            }
+            else
+            {
+                // no project opened, same as if we closed a project.
+                StatusUpdateClosedProject();
+            }
         }
 
         /// <summary>
@@ -60,14 +71,28 @@ namespace Obi
             Audio.AudioPlayer.Instance.VuMeter = vumeter;
             Audio.AudioRecorder.Instance.VuMeterObject = vumeter;
             vumeter.SetEventHandlers();
-            mVuMeter = new Audio.VuMeterForm(vumeter);
-            mVuMeter.MagnificationFactor = 1.5;
+            mVuMeterForm = new Audio.VuMeterForm(vumeter);
+            mVuMeterForm.MagnificationFactor = 1.5;
             // Kludgy
-            mVuMeter.Show();
-            mVuMeter.Visible = false;
+            mVuMeterForm.Show();
+            mVuMeterForm.Visible = false;
         }
 
-        #region GUI event handlers
+        /// <summary>
+        /// Show the state of the transport bar in the status bar.
+        /// </summary>
+        void TransportBar_StateChanged(object sender, Obi.Events.Audio.Player.StateChangedEventArgs e)
+        {
+            Status(Localizer.Message(mProjectPanel.TransportBar.State.ToString()));
+        }
+
+
+        #region File menu event handlers
+
+        private void mFileToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            UpdateEnabledItemsForFileMenu();
+        }
 
         /// <summary>
         /// Create a new project if the current one was closed properly, or if none was open.
@@ -95,22 +120,6 @@ namespace Obi
             {
                 Ready();
             }
-        }
-
-        /// <summary>
-        /// Create a new project. The application listens to the project's state change and
-        /// command created events.
-        /// </summary>
-        /// <param name="path">Path of the XUK file to the project.</param>
-        /// <param name="title">Title of the project.</param>
-        /// <param name="createTitleSection">If true, a title section is automatically created.</param>
-        private void CreateNewProject(string path, string title, bool createTitleSection)
-        {
-            mProject = Project.BlankProject();
-            mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
-            mProject.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
-            mProject.Create(path, title, mSettings.IdTemplate, mSettings.UserProfile, createTitleSection);
-            AddRecentProject(mProject.XUKPath);
         }
 
         /// <summary>
@@ -144,6 +153,7 @@ namespace Obi
         /// </summary>
         private void mClearListToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            mProjectPanel.TransportBar.Stop();
             if (MessageBox.Show(Localizer.Message("clear_recent_text"),
                     Localizer.Message("clear_recent_caption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
                 DialogResult.Yes)
@@ -170,7 +180,7 @@ namespace Obi
         /// <summary>
         /// Save the project under a (presumably) different name.
         /// </summary>
-        private void mSaveProjectasToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mSaveProjectAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectPanel.TransportBar.Stop();
             SaveFileDialog dialog = new SaveFileDialog();
@@ -194,6 +204,7 @@ namespace Obi
             if (mProject.Unsaved)
             {
                 mProjectPanel.TransportBar.Stop();
+                // Ask for confirmation (yes/no question)
                 if (MessageBox.Show(Localizer.Message("discard_changes_text"),
                     Localizer.Message("discard_changes_caption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
                     DialogResult.Yes)
@@ -216,20 +227,55 @@ namespace Obi
         }
 
         /// <summary>
+        /// Export the project to DAISY 3.
+        /// </summary>
+        private void mExportAsDAISYToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProject != null)
+            {
+                mProjectPanel.TransportBar.Stop();
+                if (mProject.Unsaved)
+                {
+                    DialogResult result = MessageBox.Show(Localizer.Message("export_unsaved_text"),
+                        Localizer.Message("export_unsaved_caption"), MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Cancel) return;
+                }
+                this.Cursor = Cursors.WaitCursor;
+                // string xuk = System.IO.Path.GetFileNameWithoutExtension(mProject.XUKPath);
+                // string path = mSettings.DefaultExportPath + "\\" + xuk + Project.DaisyOutputDirSuffix;
+                FolderBrowserDialog dialog = new FolderBrowserDialog();
+                dialog.Description = Localizer.Message("export_choose_folder");
+                dialog.SelectedPath = mSettings.DefaultExportPath;
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    mProject.ExportToZed(dialog.SelectedPath);
+                }
+                else
+                {
+                    Ready();
+                }
+                this.Cursor = Cursors.Default;
+            }
+        }
+
+        private void mExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        #endregion
+
+
+
+
+
+        /// <summary>
         /// Handle errors when closing a project.
         /// </summary>
         /// <param name="message">The error message.</param>
         private void ReportDeleteError(string path, string message)
         {
             MessageBox.Show(String.Format(Localizer.Message("report_delete_error"), path, message));
-        }
-
-        /// <summary>
-        /// Exit if and only if the currently open project was saved correctly.
-        /// </summary>
-        private void mExitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Close();
         }
 
         /// <summary>
@@ -324,7 +370,9 @@ namespace Obi
         private void UpdateSettings(Dialogs.Preferences dialog)
         {
             if (dialog.IdTemplate.Contains("#")) mSettings.IdTemplate = dialog.IdTemplate;
-            if (Directory.Exists(dialog.DefaultDir)) mSettings.DefaultPath = dialog.DefaultDir;
+            if (Directory.Exists(dialog.DefaultXUKDirectory)) mSettings.DefaultPath = dialog.DefaultXUKDirectory;
+            if (Directory.Exists(dialog.DefaultDAISYDirectory)) mSettings.DefaultExportPath = dialog.DefaultDAISYDirectory;
+            mSettings.OpenLastProject = dialog.OpenLastProject;
             mSettings.LastOutputDevice = dialog.OutputDevice.Name;
             Audio.AudioPlayer.Instance.SetDevice(this, dialog.OutputDevice);
             mSettings.LastInputDevice = dialog.InputDevice.Name;
@@ -391,7 +439,7 @@ namespace Obi
         private void mProject_CommandCreated(object sender, Events.Project.CommandCreatedEventArgs e)
         {
             mCommandManager.Add(e.Command);
-            FormUpdateUndoRedoLabels();
+            UpdateEnabledItemsForUndoRedo();
         }
 
         /// <summary>
@@ -472,52 +520,7 @@ namespace Obi
             (new Dialogs.About()).ShowDialog();
         }
 
-        #endregion
 
-        /// <summary>
-        /// Try to open a project from a XUK file.
-        /// Actually open it only if a possible current project could be closed properly.
-        /// </summary>
-        /// <param name="path">The path of the XUK file to open.</param>
-        private void TryOpenProject(string path)
-        {
-            if (ClosedProject())
-            {
-                DoOpenProject(path);
-            }
-            else
-            {
-                Ready();
-            }
-        }
-
-        /// <summary>
-        /// Open a project without asking anything (using for reverting, for instance.)
-        /// </summary>
-        /// <param name="path">The path of the project to open.</param>
-        /// <remarks>TODO: have a progress bar, and hide the panel while opening.</remarks>
-        private void DoOpenProject(string path)
-        {
-            try
-            {
-                mProject = Project.BlankProject();  // new Project();
-                mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
-                mProject.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
-                this.Cursor = Cursors.WaitCursor;
-                mProject.Open(path);
-                AddRecentProject(path);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, Localizer.Message("open_project_error_caption"),
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                mProject = null;
-            }
-            finally
-            {
-                this.Cursor = Cursors.Default;
-            }
-        }
 
 
         /// <summary>
@@ -550,63 +553,6 @@ namespace Obi
                 MessageBox.Show(Localizer.Message("no_input_device_text"), Localizer.Message("no_input_device_caption"),
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
-            }
-        }
-
-        /// <summary>
-        /// Clear the list of recent projects.
-        /// </summary>
-        private void ClearRecentList()
-        {
-            while (mOpenRecentProjectToolStripMenuItem.DropDownItems.Count > 2)
-            {
-                mOpenRecentProjectToolStripMenuItem.DropDownItems.RemoveAt(0);
-            }
-            mSettings.RecentProjects.Clear();
-        }
-
-        /// <summary>
-        /// Add a project to the list of recent projects.
-        /// If the project was already in the list, promote it to the top of the list.
-        /// Update the recent menu if necessary.
-        /// </summary>
-        /// <param name="path">The path of the project to add.</param>
-        private void AddRecentProject(string path)
-        {
-            if (mSettings.RecentProjects.Count == 0)
-            {
-                mOpenRecentProjectToolStripMenuItem.Enabled = true;
-            }
-            else
-            {
-                if (mSettings.RecentProjects.Contains(path))
-                {
-                    int i = mSettings.RecentProjects.IndexOf(path);
-                    mSettings.RecentProjects.RemoveAt(i);
-                    mOpenRecentProjectToolStripMenuItem.DropDownItems.RemoveAt(i);
-                }
-            }
-            if (AddRecentProjectsItem(path)) mSettings.RecentProjects.Insert(0, path);
-        }
-
-        /// <summary>
-        /// Add an item in the recent projects list, if the file actually exists.
-        /// </summary>
-        /// <param name="path">The path of the item to add.</param>
-        /// <returns>True if the file was added.</returns>
-        private bool AddRecentProjectsItem(string path)
-        {
-            if (File.Exists(path))
-            {
-                ToolStripMenuItem item = new ToolStripMenuItem();
-                item.Text = Path.GetFileName(path);
-                item.Click += new System.EventHandler(delegate(object sender, EventArgs e) { TryOpenProject(path); });
-                mOpenRecentProjectToolStripMenuItem.DropDownItems.Insert(0, item);
-                return true;
-            }
-            else
-            {
-                return false;
             }
         }
 
@@ -656,69 +602,6 @@ namespace Obi
         }
 
         /// <summary>
-        /// Check whether a project is currently open and not saved; prompt the user about what to do.
-        /// Close the project if that is what the user wants to do or if it was unmodified.
-        /// </summary>
-        /// <returns>True if there is no open project or the currently open project could be closed.</returns>
-        private bool ClosedProject()
-        {
-            mProjectPanel.TransportBar.Stop();
-            if (mProject != null && mProject.Unsaved)
-            {
-                // Unsaved project, ask the user if they want to save and close ("yes" option),
-                // close without saving ("no" option) or not close at all ("cancel" option.)
-                DialogResult result = MessageBox.Show(Localizer.Message("closed_project_text"),
-                    Localizer.Message("closed_project_caption"), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                switch (result)
-                {
-                    case DialogResult.Yes:
-                        mProject.Save();
-                        DoClose();
-                        return true;
-                    case DialogResult.No:
-                        DoClose();
-                        return true;
-                    // case DialogResult.Cancel:
-                    default:
-                        return false;
-                }
-            }
-            else
-            {
-                // No project, or no changes, so just close.
-                if (mProject != null) DoClose();
-                return true;
-            }
-        }
-
-        /// <summary>
-        /// Clean up and close the project.
-        /// Cleaning up only occurs when the project is closed.
-        /// </summary>
-        private void DoClose()
-        {
-            if (mProject.Unsaved)
-            {
-                // A bit kldugy but an easy way to rebuild the list of used files when discarding changes.
-                string path = mProject.XUKPath;
-                mProject = Project.BlankProject();
-                mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(Program.Noop);
-                mProject.Open(path);
-                mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
-            }
-            mProject.DeleteUnusedFiles(ReportDeleteError);
-            mProject.Close();
-        }
-
-        /// <summary>
-        /// Show the state of the transport bar in the status bar.
-        /// </summary>
-        void TransportBar_StateChanged(object sender, Obi.Events.Audio.Player.StateChangedEventArgs e)
-        {
-            Status(Localizer.Message(mProjectPanel.TransportBar.State.ToString()));
-        }
-
-        /// <summary>
         /// Display a message on the status bar.
         /// </summary>
         /// <param name="message">The message to display.</param>
@@ -745,7 +628,7 @@ namespace Obi
             if (mCommandManager.HasUndo)
             {
                 mCommandManager.Undo();
-                FormUpdateUndoRedoLabels();
+                UpdateEnabledItemsForUndoRedo();
                 if (!mCommandManager.HasUndo) mProject.Reverted();
             }
         }
@@ -761,7 +644,7 @@ namespace Obi
             if (mCommandManager.HasRedo)
             {
                 mCommandManager.Redo();
-                FormUpdateUndoRedoLabels();
+                UpdateEnabledItemsForUndoRedo();
             }
             
         }
@@ -772,62 +655,27 @@ namespace Obi
             mProject.DumpAssManager();
         }
 
-        #region enabling/disabling of main menu items
 
-        /// <summary>
-        /// Update the enabled items for all menus.
-        /// </summary>
-        /// <remarks>This is necessary to make sure that keyboard shortcuts work correctly.</remarks>
-        private void UpdateEnabledItems()
-        {
-            UpdateEnabledItemsForFileMenu();
-            UpdateEnabledItemsForEditMenu();
-            UpdateEnabledItemsForTOCMenu();
-            UpdateEnabledItemsForStripsMenu();
-            UpdateEnabledItemsForTransportMenu();
-            UpdateEnabledItemsForToolsMenu();
-        }
 
-        /// <summary>
-        /// When the File menu opens, enable and disable its items according to the state of the project.
-        /// </summary>
-        private void mFileToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
-        {
-            UpdateEnabledItemsForFileMenu();
-        }
 
-        /// <summary>
-        /// Update the enabled items of the File menu.
-        /// </summary>
-        private void UpdateEnabledItemsForFileMenu()
-        {
-            bool isProjectOpen = mProject != null;
-            bool isProjectModified = isProjectOpen && mProject.Unsaved;
-            bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
+        
 
-            mNewProjectToolStripMenuItem.Enabled = !isPlaying;
-            mOpenProjectToolStripMenuItem.Enabled = !isPlaying;
-            mOpenRecentProjectToolStripMenuItem.Enabled = !isPlaying && mSettings.RecentProjects.Count > 0;
-            mSaveProjectToolStripMenuItem.Enabled = !isPlaying && isProjectModified;
-            mSaveProjectasToolStripMenuItem.Enabled = !isPlaying && isProjectOpen;
-            mDiscardChangesToolStripMenuItem.Enabled = !isPlaying && isProjectModified;
-            mCloseProjectToolStripMenuItem.Enabled = isProjectOpen && !isPlaying;
-            mExportAsDAISYToolStripMenuItem.Enabled = isProjectOpen && !isPlaying;
-        }
 
-        /// <summary>
-        /// When the Edit menu opens, enable and disable its items according to what is selected.
-        /// </summary>
+        #region Edit menu
+
         private void mEditToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
             UpdateEnabledItemsForEditMenu();
         }
 
+        /// <summary>
+        /// Update the enabled items of the Edit menu.
+        /// </summary>
         private void UpdateEnabledItemsForEditMenu()
         {
+            UpdateEnabledItemsForUndoRedo();
+
             bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
-            FormUpdateUndoRedoLabels();
-            
             bool canCutCopyDelete = !isPlaying && mProjectPanel.CanCutCopyDeleteNode;
             string itemLabel = mProjectPanel.SelectedLabel;
             if (itemLabel != "") itemLabel = " " + itemLabel;
@@ -850,6 +698,132 @@ namespace Obi
             mFullMetadataToolStripMenuItem.Enabled = canTouch;
             mTouchProjectToolStripMenuItem.Enabled = canTouch;
         }
+
+        /// <summary>
+        /// Update the label for undo and redo (and their availability) depending on what is in the command manager.
+        /// </summary>
+        private void UpdateEnabledItemsForUndoRedo()
+        {
+            bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
+            if (mCommandManager.HasUndo)
+            {
+                mUndoToolStripMenuItem.Enabled = !isPlaying;
+                mUndoToolStripMenuItem.Text = String.Format(Localizer.Message("undo_label"), Localizer.Message("undo"),
+                    mCommandManager.UndoLabel);
+            }
+            else
+            {
+                mUndoToolStripMenuItem.Enabled = false;
+                mUndoToolStripMenuItem.Text = Localizer.Message("undo");
+            }
+            if (mCommandManager.HasRedo)
+            {
+                mRedoToolStripMenuItem.Enabled = !isPlaying;
+                mRedoToolStripMenuItem.Text = String.Format(Localizer.Message("redo_label"), Localizer.Message("redo"),
+                    mCommandManager.RedoLabel);
+            }
+            else
+            {
+                mRedoToolStripMenuItem.Enabled = false;
+                mRedoToolStripMenuItem.Text = Localizer.Message("redo");
+            }
+        }
+
+        #endregion
+
+        #region TOC menu
+
+        private void mTocToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            UpdateEnabledItemsForTOCMenu();
+        }
+
+        /// <summary>
+        /// Update the enabled items of the Edit menu.
+        /// </summary>
+        private void UpdateEnabledItemsForTOCMenu()
+        {
+            mShowhideTableOfContentsToolStripMenuItem.Text =
+                Localizer.Message(mProjectPanel.TOCPanelVisible ? "hide_toc_label" : "show_toc_label");
+            mShowhideTableOfContentsToolStripMenuItem.Enabled = mProject != null;
+
+            bool isNodeSelected = mProject != null && mProjectPanel.TOCPanelVisible && mProjectPanel.TOCPanel.IsNodeSelected;
+            SectionNode selected = isNodeSelected ? mProjectPanel.TOCPanel.SelectedSection : null;
+            bool isParentUsed = isNodeSelected ? selected.ParentSection == null || selected.ParentSection.Used : false;
+            bool isNodeUsed = isNodeSelected && selected.Used;
+            bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
+
+            mAddSectionToolStripMenuItem.Enabled = !isPlaying && (isNodeUsed || isParentUsed);
+            mAddSubSectionToolStripMenuItem.Enabled = !isPlaying && isNodeUsed;
+            mRenameSectionToolStripMenuItem.Enabled = !isPlaying && isNodeUsed;
+            mMoveInToolStripMenuItem.Enabled = !isPlaying && isNodeUsed && mProjectPanel.Project.CanMoveSectionNodeIn(selected);
+            mMoveOutToolStripMenuItem.Enabled = !isPlaying && isNodeUsed && mProjectPanel.Project.CanMoveSectionNodeOut(selected);
+
+            // Mark section used/unused (by default, i.e. if disabled, "unused")
+            mMarkSectionAsUnusedToolStripMenuItem.Enabled = !isPlaying && isNodeSelected && isParentUsed;
+            mMarkSectionAsUnusedToolStripMenuItem.Text = String.Format(Localizer.Message("mark_x_as_y"),
+                Localizer.Message("section"),
+                Localizer.Message(!isNodeSelected || isNodeUsed ? "unused" : "used"));
+            mShowInStripviewToolStripMenuItem.Enabled = isNodeSelected;
+        }
+
+        #endregion
+
+        #region Strips menu
+
+        private void mStripsToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            UpdateEnabledItemsForStripsMenu();
+        }
+
+        /// <summary>
+        /// Update the enabled items of the Strips menu.
+        /// </summary>
+        private void UpdateEnabledItemsForStripsMenu()
+        {
+            bool isProjectOpen = mProject != null;
+            bool isStripSelected = isProjectOpen && mProjectPanel.StripManager.SelectedSectionNode != null;
+            bool isAudioBlockSelected = isProjectOpen && mProjectPanel.StripManager.SelectedPhraseNode != null;
+            bool isAudioBlockLast = isAudioBlockSelected &&
+                mProjectPanel.StripManager.SelectedPhraseNode.Index ==
+                mProjectPanel.StripManager.SelectedPhraseNode.ParentSection.PhraseChildCount - 1;
+            bool isAudioBlockFirst = isAudioBlockSelected &&
+                mProjectPanel.StripManager.SelectedPhraseNode.Index == 0;
+            bool isBlockClipBoardSet = isProjectOpen && mProject.Clipboard.Phrase != null;
+            bool canSetPage = isAudioBlockSelected;  // an audio block must be selected and a heading must not be set.
+            bool canRemovePage = isAudioBlockSelected &&
+                mProjectPanel.StripManager.SelectedPhraseNode.getProperty(typeof(PageProperty)) != null;
+
+            bool canInsertPhrase = isProjectOpen && mProjectPanel.StripManager.CanInsertPhraseNode;
+            mInsertEmptyAudioblockToolStripMenuItem.Enabled = canInsertPhrase;
+            mImportAudioFileToolStripMenuItem.Enabled = canInsertPhrase;
+
+            mAddStripToolStripMenuItem.Enabled = isProjectOpen;
+            mRenameStripToolStripMenuItem.Enabled = isStripSelected;
+
+            mSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mApplyPhraseDetectionToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mMergeWithNextAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
+            mMoveAudioBlockForwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
+            mMoveAudioBlockBackwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockFirst;
+            mMoveAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && (!isAudioBlockFirst || !isAudioBlockLast);
+
+            mEditAnnotationToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mRemoveAnnotationToolStripMenuItem.Enabled = isAudioBlockSelected;
+
+            mSetPageNumberToolStripMenuItem.Enabled = canSetPage;
+            mRemovePageNumberToolStripMenuItem.Enabled = canRemovePage;
+
+            mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;
+
+            mMarkStripAsUnusedToolStripMenuItem.Enabled = mProjectPanel.CanToggleStrip;
+            mMarkStripAsUnusedToolStripMenuItem.Text = mProjectPanel.ToggleStripString;
+            mMarkAudioBlockAsUnusedToolStripMenuItem.Enabled = mProjectPanel.CanToggleAudioBlock;
+            mMarkAudioBlockAsUnusedToolStripMenuItem.Text = mProjectPanel.ToggleAudioBlockString;
+        }
+
+
+        #endregion
 
         /// <summary>
         /// Cut depends on what is selected.
@@ -943,121 +917,6 @@ namespace Obi
 
         }
 
-        /// <summary>
-        /// Update the label for undo and redo (and their availability) depending on what is in the command manager.
-        /// </summary>
-        private void FormUpdateUndoRedoLabels()
-        {
-            bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
-            if (mCommandManager.HasUndo)
-            {
-                mUndoToolStripMenuItem.Enabled = !isPlaying;
-                mUndoToolStripMenuItem.Text = String.Format(Localizer.Message("undo_label"), Localizer.Message("undo"),
-                    mCommandManager.UndoLabel);
-            }
-            else
-            {
-                mUndoToolStripMenuItem.Enabled = false;
-                mUndoToolStripMenuItem.Text = Localizer.Message("undo");
-            }
-            if (mCommandManager.HasRedo)
-            {
-                mRedoToolStripMenuItem.Enabled = !isPlaying;
-                mRedoToolStripMenuItem.Text = String.Format(Localizer.Message("redo_label"), Localizer.Message("redo"),
-                    mCommandManager.RedoLabel);
-            }
-            else
-            {
-                mRedoToolStripMenuItem.Enabled = false;
-                mRedoToolStripMenuItem.Text = Localizer.Message("redo");
-            }
-        }
-
-        /// <summary>
-        /// The TOC menu is enabled only if the TOC view is visible.
-        /// </summary>
-        private void mTocToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
-        {
-            UpdateEnabledItemsForTOCMenu();
-        }
-
-        private void UpdateEnabledItemsForTOCMenu()
-        {
-            // Show/hide table of contents
-            mShowhideTableOfCOntentsToolStripMenuItem.Text =
-                Localizer.Message(mProjectPanel.TOCPanelVisible ? "hide_toc_label" : "show_toc_label");
-            mShowhideTableOfCOntentsToolStripMenuItem.Enabled = mProject != null;
-
-            bool isNodeSelected = mProject != null && mProjectPanel.TOCPanelVisible && mProjectPanel.TOCPanel.IsNodeSelected;
-            SectionNode selected = isNodeSelected ? mProjectPanel.TOCPanel.SelectedSection : null;
-            bool isParentUsed = isNodeSelected ? selected.ParentSection == null || selected.ParentSection.Used : false;
-            bool isNodeUsed = isNodeSelected && selected.Used;
-            mAddSectionToolStripMenuItem.Enabled = isNodeUsed ||
-                (mProject != null && mProjectPanel.TOCPanelVisible && !mProjectPanel.TOCPanel.IsNodeSelected) ||
-                isParentUsed;
-            mAddSubSectionToolStripMenuItem.Enabled = isNodeUsed;
-            mRenameSectionToolStripMenuItem.Enabled = isNodeUsed;
-            mMoveInToolStripMenuItem.Enabled = isNodeUsed && mProjectPanel.Project.CanMoveSectionNodeIn(selected);
-            mMoveOutToolStripMenuItem.Enabled = isNodeUsed && mProjectPanel.Project.CanMoveSectionNodeOut(selected);
-            
-            // Mark section used/unused (by default, i.e. if disabled, "unused")
-            mMarkSectionAsUnusedToolStripMenuItem.Enabled = isNodeSelected && isParentUsed;
-            mMarkSectionAsUnusedToolStripMenuItem.Text = String.Format(Localizer.Message("mark_x_as_y"),
-                Localizer.Message("section"),
-                Localizer.Message(!isNodeSelected || isNodeUsed ? "unused" : "used"));
-            mShowInStripviewToolStripMenuItem.Enabled = isNodeSelected;
-        }
-
-        /// <summary>
-        /// When the Strips menu opens, enable and disable its items according to what is selected.
-        /// </summary>
-        private void mStripsToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
-        {
-            UpdateEnabledItemsForStripsMenu();
-        }
-
-        private void UpdateEnabledItemsForStripsMenu()
-        {
-            bool isProjectOpen = mProject != null;
-            bool isStripSelected = isProjectOpen && mProjectPanel.StripManager.SelectedSectionNode != null;
-            bool isAudioBlockSelected = isProjectOpen && mProjectPanel.StripManager.SelectedPhraseNode != null;
-            bool isAudioBlockLast = isAudioBlockSelected &&
-                mProjectPanel.StripManager.SelectedPhraseNode.Index ==
-                mProjectPanel.StripManager.SelectedPhraseNode.ParentSection.PhraseChildCount - 1;
-            bool isAudioBlockFirst = isAudioBlockSelected &&
-                mProjectPanel.StripManager.SelectedPhraseNode.Index == 0;
-            bool isBlockClipBoardSet = isProjectOpen && mProject.Clipboard.Phrase != null;
-            bool canSetPage = isAudioBlockSelected;  // an audio block must be selected and a heading must not be set.
-            bool canRemovePage = isAudioBlockSelected &&
-                mProjectPanel.StripManager.SelectedPhraseNode.getProperty(typeof(PageProperty)) != null;
-
-            bool canInsertPhrase = isProjectOpen && mProjectPanel.StripManager.CanInsertPhraseNode;
-            mInsertEmptyAudioblockToolStripMenuItem.Enabled = canInsertPhrase;
-            mImportAudioFileToolStripMenuItem.Enabled = canInsertPhrase;
-
-            mAddStripToolStripMenuItem.Enabled = isProjectOpen;
-            mRenameStripToolStripMenuItem.Enabled = isStripSelected;
-
-            mSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mApplyPhraseDetectionToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mMergeWithNextAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
-            mMoveAudioBlockForwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
-            mMoveAudioBlockBackwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockFirst;
-            mMoveAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && (!isAudioBlockFirst || !isAudioBlockLast);
-
-            mEditAnnotationToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mRemoveAnnotationToolStripMenuItem.Enabled = isAudioBlockSelected;
-
-            mSetPageNumberToolStripMenuItem.Enabled = canSetPage;
-            mRemovePageNumberToolStripMenuItem.Enabled = canRemovePage;
-
-            mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;
-
-            mMarkStripAsUnusedToolStripMenuItem.Enabled = mProjectPanel.CanToggleStrip;
-            mMarkStripAsUnusedToolStripMenuItem.Text = mProjectPanel.ToggleStripString;
-            mMarkAudioBlockAsUnusedToolStripMenuItem.Enabled = mProjectPanel.CanToggleAudioBlock;
-            mMarkAudioBlockAsUnusedToolStripMenuItem.Text = mProjectPanel.ToggleAudioBlockString;
-        }
 
         /// <summary>
         /// Update the visibility and actual label of transport items.
@@ -1071,7 +930,7 @@ namespace Obi
         {
             bool isProjectOpen = mProject != null;
             bool isNodeSelected = isProjectOpen && mProjectPanel.SelectedNode != null;
-            mShowHideVUMeterToolStripMenuItem.Text = Localizer.Message(mVuMeter.Visible ? "hide_vu_meter" : "show_vu_meter");
+            mShowHideVUMeterToolStripMenuItem.Text = Localizer.Message(mVuMeterForm.Visible ? "hide_vu_meter" : "show_vu_meter");
             if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Stopped)
             {
                 mPlayAllToolStripMenuItem.Enabled = isProjectOpen;
@@ -1121,14 +980,12 @@ namespace Obi
             mExportAssetDEBUGToolStripMenuItem.Enabled = mProjectPanel.StripManager.SelectedPhraseNode != null;
         }
 
-        #endregion
-
         internal void UndoLast()
         {
             if (mCommandManager.HasUndo)
             {
                 mCommandManager.Undo();
-                FormUpdateUndoRedoLabels();
+                UpdateEnabledItemsForUndoRedo();
             }
         }
 
@@ -1141,13 +998,13 @@ namespace Obi
         /// </summary>
         private void mShowHideVUMeterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mVuMeter != null && mVuMeter.Visible)
+            if (mVuMeterForm != null && mVuMeterForm.Visible)
             {
-                mVuMeter.Hide();
+                mVuMeterForm.Hide();
             }
             else
             {
-                mVuMeter.Show();
+                mVuMeterForm.Show();
             }
         }
 
@@ -1241,8 +1098,8 @@ namespace Obi
             TransportBar_PreviousPhrase();
         }
 
-        private void TransportBar_PreviousPhrase ()
-    {
+        private void TransportBar_PreviousPhrase()
+        {
             if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Stopped)
             {
             }
@@ -1257,8 +1114,8 @@ namespace Obi
             TransportBar_NextPhrase();
         }
 
-        private void TransportBar_NextPhrase ()
-    {
+        private void TransportBar_NextPhrase()
+        {
             if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Stopped)
             {
             }
@@ -1296,48 +1153,47 @@ namespace Obi
         {
             // Make sure that the correct menu items are enabled for the keyboard shortcuts to work.
             UpdateEnabledItems();
-            // disabled for the time being.
-             switch (key)
-             {
+            switch (key)
+            {
                 case Keys.Control | Keys.Space:
                     if (mPlayAllToolStripMenuItem.Enabled)
                         TransportBar_PlayAll();
                     break;
 
-                 case Keys.Control | Keys.Shift | Keys.Space :
-                     if (mPlaySelectionToolStripMenuItem.Enabled)
-                         TransportBar_PlaySelection();
-                     break;
+                case Keys.Control | Keys.Shift | Keys.Space:
+                    if (mPlaySelectionToolStripMenuItem.Enabled)
+                        TransportBar_PlaySelection();
+                    break;
 
-                 case Keys.Control | Keys.T :
-                     if (mStopToolStripMenuItem.Enabled)
-                         TransportBar_Stop();
-                     break;
+                case Keys.Control | Keys.T:
+                    if (mStopToolStripMenuItem.Enabled)
+                        TransportBar_Stop();
+                    break;
 
-                 case Keys.Control | Keys.R :
-                     if ( mRecordToolStripMenuItem.Enabled )
-                     mProjectPanel.TransportBar.Record();
-                     break;
+                case Keys.Control | Keys.R:
+                    if (mRecordToolStripMenuItem.Enabled)
+                        mProjectPanel.TransportBar.Record();
+                    break;
 
-                 case Keys.Alt | Keys.Left :
-                     if (mPreviousPhraseToolStripMenuItem.Enabled)
-                         TransportBar_PreviousPhrase();
-                     break;
+                case Keys.Alt | Keys.Left:
+                    if (mPreviousPhraseToolStripMenuItem.Enabled)
+                        TransportBar_PreviousPhrase();
+                    break;
 
-                 case Keys.Alt |  Keys.Right :
-                     if (mNextPhraseToolStripMenuItem.Enabled)
-                         TransportBar_NextPhrase();
-                     break;
+                case Keys.Alt | Keys.Right:
+                    if (mNextPhraseToolStripMenuItem.Enabled)
+                        TransportBar_NextPhrase();
+                    break;
 
-            case Keys.Alt | Keys.Shift | Keys.Right:
-                     if ( mFastForwardToolStripMenuItem.Enabled == true )
-                         mProjectPanel.TransportBar.FastForward();
-                     break;
-                 case Keys.Alt | Keys.Shift | Keys.Left :
-                     if ( mRewindToolStripMenuItem.Enabled == true)
-                         mProjectPanel.TransportBar.Rewind ();
-                     break;
-             }
+                case Keys.Alt | Keys.Shift | Keys.Right:
+                    if (mFastForwardToolStripMenuItem.Enabled == true)
+                        mProjectPanel.TransportBar.FastForward();
+                    break;
+                case Keys.Alt | Keys.Shift | Keys.Left:
+                    if (mRewindToolStripMenuItem.Enabled == true)
+                        mProjectPanel.TransportBar.Rewind();
+                    break;
+            }
             return base.ProcessDialogKey(key);
         }
 
@@ -1347,26 +1203,6 @@ namespace Obi
         private void mMarkSectionAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectPanel.TOCPanel.ToggleSelectedSectionUsed();
-        }
-
-        /// <summary>
-        /// Export the project to DAISY 3.
-        /// </summary>
-        private void mExportAsDAISYToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProject != null)
-            {
-                mProjectPanel.TransportBar.Stop();
-                if (mProject.Unsaved)
-                {
-                    DialogResult result = MessageBox.Show(Localizer.Message("export_unsaved_text"),
-                        Localizer.Message("export_unsaved_caption"), MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                    if (result == DialogResult.Cancel) return;
-                }
-                this.Cursor = Cursors.WaitCursor;
-                mProject.ExportToZed();
-                this.Cursor = Cursors.Default;
-            }
         }
 
         /// <summary>
@@ -1388,6 +1224,213 @@ namespace Obi
         private void mInsertEmptyAudioblockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectPanel.StripManager.InsertEmptyAudioBlock();
+        }
+
+
+        // Various utility functions
+
+        /// <summary>
+        /// Add a project to the list of recent projects.
+        /// If the project was already in the list, promote it to the top of the list.
+        /// Update the recent menu if necessary.
+        /// </summary>
+        /// <param name="path">The path of the project to add.</param>
+        private void AddRecentProject(string path)
+        {
+            if (mSettings.RecentProjects.Contains(path))
+            {
+                // the item was in the list so bump it up
+                int i = mSettings.RecentProjects.IndexOf(path);
+                mSettings.RecentProjects.RemoveAt(i);
+                mOpenRecentProjectToolStripMenuItem.DropDownItems.RemoveAt(i);
+            }
+            if (AddRecentProjectsItem(path)) mSettings.RecentProjects.Insert(0, path);
+        }
+
+        /// <summary>
+        /// Add an item in the recent projects list, if the file actually exists.
+        /// </summary>
+        /// <param name="path">The path of the item to add.</param>
+        /// <returns>True if the file was added.</returns>
+        /// <remarks>The file was in the preferences but may have disappeared since.</remarks>
+        private bool AddRecentProjectsItem(string path)
+        {
+            if (File.Exists(path))
+            {
+                ToolStripMenuItem item = new ToolStripMenuItem();
+                item.Text = Path.GetFileName(path);
+                item.Click += new System.EventHandler(delegate(object sender, EventArgs e) { TryOpenProject(path); });
+                mOpenRecentProjectToolStripMenuItem.DropDownItems.Insert(0, item);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Clear the list of recent projects.
+        /// </summary>
+        private void ClearRecentList()
+        {
+            while (mOpenRecentProjectToolStripMenuItem.DropDownItems.Count > 2)
+            {
+                mOpenRecentProjectToolStripMenuItem.DropDownItems.RemoveAt(0);
+            }
+            mSettings.RecentProjects.Clear();
+        }
+
+        /// <summary>
+        /// Stop playback, then
+        /// check whether a project is currently open and not saved; prompt the user about what to do.
+        /// Close the project if that is what the user wants to do or if it was unmodified.
+        /// </summary>
+        /// <returns>True if there is no open project or the currently open project could be closed.</returns>
+        private bool ClosedProject()
+        {
+            mProjectPanel.TransportBar.Stop();
+            if (mProject != null && mProject.Unsaved)
+            {
+                // Unsaved project: ask the user if they want to save and close ("yes" option),
+                // close without saving ("no" option) or not close at all ("cancel" option.)
+                DialogResult result = MessageBox.Show(Localizer.Message("closed_project_text"),
+                    Localizer.Message("closed_project_caption"), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        mProject.Save();
+                        DoCloseProject();
+                        return true;
+                    case DialogResult.No:
+                        DoCloseProject();
+                        return true;
+                    // case DialogResult.Cancel:
+                    default:
+                        return false;
+                }
+            }
+            else
+            {
+                // No project, or no changes, so just close.
+                if (mProject != null) DoCloseProject();
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Create a new project. The application listens to the project's state change and
+        /// command created events.
+        /// </summary>
+        /// <param name="path">Path of the XUK file to the project.</param>
+        /// <param name="title">Title of the project.</param>
+        /// <param name="createTitleSection">If true, a title section is automatically created.</param>
+        private void CreateNewProject(string path, string title, bool createTitleSection)
+        {
+            mProject = Project.BlankProject();
+            mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
+            mProject.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
+            mProject.Create(path, title, mSettings.IdTemplate, mSettings.UserProfile, createTitleSection);
+            AddRecentProject(mProject.XUKPath);
+        }
+
+        /// <summary>
+        /// Clean up and close the project.
+        /// Cleaning up only occurs when the project is closed.
+        /// </summary>
+        private void DoCloseProject()
+        {
+            if (mProject.Unsaved)
+            {
+                // A bit kldugy but an easy way to rebuild the list of used files when discarding changes.
+                string path = mProject.XUKPath;
+                mProject = Project.BlankProject();
+                mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(Program.Noop);
+                mProject.Open(path);
+                mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
+            }
+            mProject.DeleteUnusedFiles(ReportDeleteError);
+            mProject.Close();
+        }
+
+        /// <summary>
+        /// Open a project without asking anything (using for reverting, for instance.)
+        /// </summary>
+        /// <param name="path">The path of the project to open.</param>
+        /// <remarks>TODO: have a progress bar, and hide the panel while opening.</remarks>
+        private void DoOpenProject(string path)
+        {
+            try
+            {
+                mProject = Project.BlankProject();  // new Project();
+                mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
+                mProject.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
+                this.Cursor = Cursors.WaitCursor;
+                mProject.Open(path);
+                AddRecentProject(path);
+                mSettings.LastOpenProject = path;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, Localizer.Message("open_project_error_caption"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mProject = null;
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
+        }
+
+        /// <summary>
+        /// Try to open a project from a XUK file.
+        /// Actually open it only if a possible current project could be closed properly.
+        /// </summary>
+        /// <param name="path">The path of the XUK file to open.</param>
+        private void TryOpenProject(string path)
+        {
+            if (ClosedProject())
+            {
+                DoOpenProject(path);
+            }
+            else
+            {
+                Ready();
+            }
+        }
+
+        /// <summary>
+        /// Update the enabled items for all menus.
+        /// </summary>
+        /// <remarks>This is necessary to make sure that keyboard shortcuts work correctly.</remarks>
+        private void UpdateEnabledItems()
+        {
+            UpdateEnabledItemsForFileMenu();
+            UpdateEnabledItemsForEditMenu();
+            UpdateEnabledItemsForTOCMenu();
+            UpdateEnabledItemsForStripsMenu();
+            UpdateEnabledItemsForTransportMenu();
+            UpdateEnabledItemsForToolsMenu();
+        }
+
+        /// <summary>
+        /// Update the enabled items of the File menu.
+        /// </summary>
+        private void UpdateEnabledItemsForFileMenu()
+        {
+            bool isProjectOpen = mProject != null;
+            bool isProjectModified = isProjectOpen && mProject.Unsaved;
+            bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
+
+            mNewProjectToolStripMenuItem.Enabled = !isPlaying;
+            mOpenProjectToolStripMenuItem.Enabled = !isPlaying;
+            mOpenRecentProjectToolStripMenuItem.Enabled = !isPlaying && mSettings.RecentProjects.Count > 0;
+            mClearListToolStripMenuItem.Enabled = !isPlaying;
+            mSaveProjectToolStripMenuItem.Enabled = !isPlaying && isProjectModified;
+            mSaveProjectAsToolStripMenuItem.Enabled = !isPlaying && isProjectOpen;
+            mDiscardChangesToolStripMenuItem.Enabled = !isPlaying && isProjectModified;
+            mCloseProjectToolStripMenuItem.Enabled = isProjectOpen && !isPlaying;
+            mExportAsDAISYToolStripMenuItem.Enabled = isProjectOpen && !isPlaying;
         }
     }
 }

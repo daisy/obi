@@ -577,4 +577,13 @@ Do you want to replace the project contained in this file?</value>
   <data name="export_unsaved_text" xml:space="preserve">
     <value>You are about to export a project with unsaved changes. The project will be automatically saved before export if you click OK. Press cancel to cancel export (your project will not be saved.)</value>
   </data>
+  <data name="export_choose_folder" xml:space="preserve">
+    <value>Please select the folder in which to save your DAISY book.</value>
+  </data>
+  <data name="default_directory_browser" xml:space="preserve">
+    <value>Please choose a default project directory below.</value>
+  </data>
+  <data name="export_directory_browser" xml:space="preserve">
+    <value>Please choose a default export directory below.</value>
+  </data>
 </root>
