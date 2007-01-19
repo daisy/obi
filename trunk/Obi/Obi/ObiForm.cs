@@ -1165,6 +1165,24 @@ namespace Obi
                         TransportBar_PlaySelection();
                     break;
 
+// shorcut local to stripmanager
+                case Keys.Space:
+                    if (mProjectPanel.StripManager.ContainsFocus)
+                    {
+                        if (mPlaySelectionToolStripMenuItem.Enabled)
+                            TransportBar_PlaySelection();
+                    }
+                    break;
+
+                // shorcut local to stripmanager
+                case Keys.Escape:
+                    if (mProjectPanel.StripManager.ContainsFocus)
+                    {
+                        if (mStopToolStripMenuItem.Enabled)
+                            TransportBar_Stop();
+                    }
+                    break;
+
                 case Keys.Control | Keys.T:
                     if (mStopToolStripMenuItem.Enabled)
                         TransportBar_Stop();
