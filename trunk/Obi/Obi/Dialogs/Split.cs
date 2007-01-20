@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 using urakawa.core;
 using urakawa.media;
@@ -18,6 +19,8 @@ namespace Obi.Dialogs
         private double mSplitTime;                    // time at which the split should occur
         private Audio.AudioPlayerState mSplitState;
         private double mDialogLoadTime ;
+        
+
 
         public Assets.AudioMediaAsset ResultAsset
         {
@@ -54,8 +57,6 @@ namespace Obi.Dialogs
             // enable timer for displaying formatted time in HH:mm:ss
             tmUpdateTimePosition.Enabled = true;
 
-            AudioTrackBar.Maximum = Convert.ToInt32 ( mSourceAsset.LengthInMilliseconds/100  ) ;
-            //trackCentre.Maximum = Convert.ToInt32(mSourceAsset.LengthInMilliseconds / 100) ;
         }
         
         //member variables
@@ -183,6 +184,7 @@ namespace Obi.Dialogs
 
         void FineRewind ()
         {
+            m_FineStep = Convert.ToInt32 ( ( double)(comboStep.SelectedItem ) * 1000 ) ;
             CheckSplitTime();
             btnPause.Text = "&Play";
             if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
@@ -208,6 +210,7 @@ namespace Obi.Dialogs
 
         void FineForward ()
         {
+            m_FineStep = Convert.ToInt32((double)(comboStep.SelectedItem) * 1000);
             CheckSplitTime();
             if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
             {
@@ -257,8 +260,18 @@ namespace Obi.Dialogs
 
         private void Split_Load(object sender, EventArgs e)
         {
+            comboStep.Items.Add(.1);
+            comboStep.Items.Add(.2);
+            comboStep.Items.Add(.3);
+            comboStep.Items.Add(.5);
+            comboStep.Items.Add(1.0);
+            comboStep.Items.Add(2.0);
+            comboStep.Items.Add(3.0);
+            comboStep.Items.Add(5.0);
+            comboStep.Items.Add(10.0);
+            comboStep.Items.Add(15.0);
+            comboStep.SelectedIndex = 3;
             
-            tmSlider.Enabled = false;
             //md annotation are not asset names anymore
             //md removed: ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).getText();
             //md added:
@@ -289,13 +302,13 @@ namespace Obi.Dialogs
             else if (mSplitState == Audio.AudioPlayerState.Paused)
             {
                 mSplitTime = mDialogLoadTime;
-                AudioTrackBar.Value = Convert.ToInt32(mSplitTime / 100);
+                
                 tmUpdateTimePosition.Enabled = false;
                 btnPause.Text = "&Play";
                 btnPreview.Enabled = true;
                 UpdateSplitTime();
             }
-
+            btnPause.Focus();
         }
 
         private void btnPause_Click(object sender, EventArgs e)
@@ -312,7 +325,7 @@ namespace Obi.Dialogs
                 mSplitTime = mSplitTime  + Audio.AudioPlayer.Instance.CurrentTimePosition;
 
                 Audio.AudioPlayer.Instance.Stop();
-                AudioTrackBar.Value = Convert.ToInt32( mSplitTime / 100); 
+                
             tmUpdateTimePosition.Enabled = false;
                 btnPause.Text = "&Play";
                 btnPreview.Enabled= true;
@@ -473,11 +486,13 @@ namespace Obi.Dialogs
             switch (keyData)
             {
                 case Keys.Control | Keys.Up:
-                    FastRewind();
+                    //FastRewind();
+                    comboStep.SelectedIndex = comboStep.SelectedIndex + 1;
                     break;
                 
                 case Keys.Control | Keys.Down:
-                    FastForward();
+                    //FastForward();
+                    comboStep.SelectedIndex = comboStep.SelectedIndex - 1;
                     break;
                 case Keys.Control | Keys.Left:
                     FineRewind();
@@ -500,94 +515,10 @@ namespace Obi.Dialogs
                 //Audio.AudioPlayer.Instance.Play(mSourceAsset);
                 //CanPlay = false;
             //}
-            // experiment for serial  playing of assets end line
-
-        }
-
-        private void AudioTrackBar_ValueChanged(object sender, EventArgs e)
-        {
-            if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
-            {
-                Audio.AudioPlayer.Instance.Stop();
-                Audio.AudioPlayer.Instance.Play(mSourceAsset, AudioTrackBar.Value * 100);
-            }
-            else if ( Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped  )
-            {
-                mSplitTime = AudioTrackBar.Value * 100;
-                UpdateSplitTime();
-                txtDisplayTime.Text = ChangeTimeToDisplay(mSplitTime);
-            }
-        }
-
-        private void AudioTrackBar_Enter(object sender, EventArgs e)
-        {
-            if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
-            AudioTrackBar.Value = Convert.ToInt32(Audio.AudioPlayer.Instance.CurrentTimePosition  / 100); 
-            else if             (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped )
-            AudioTrackBar.Value = Convert.ToInt32( mSplitTime / 100); 
-        }
-
-        private void AudioTrackBar_MouseEnter(object sender, EventArgs e)
-        {
-            if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
-                AudioTrackBar.Value = Convert.ToInt32(Audio.AudioPlayer.Instance.CurrentTimePosition / 100);
-            else if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped)
-                AudioTrackBar.Value = Convert.ToInt32(mSplitTime / 100); 
+            
         }
 
     
-        private void tmSlider_Tick(object sender, EventArgs e)
-        {
-            tmSlider.Enabled = false;
-
-            mCentreSliderEventEffect = false;
-            trackCentre.Value = 400;
-            mCentreSliderEventEffect = true;
-
-            if (mCentreSliderValue < 0)
-                mCentreSliderValue = 0;
-
-            if (mCentreSliderValue > mSourceAsset.LengthInMilliseconds)
-                mCentreSliderValue = mSourceAsset.LengthInMilliseconds;
-
-            if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
-            {
-                Audio.AudioPlayer.Instance.Stop();
-                Audio.AudioPlayer.Instance.Play(mSourceAsset, mCentreSliderValue );
-            }
-            else if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped)
-            {
-                mSplitTime = mCentreSliderValue ;
-                UpdateSplitTime();
-                txtDisplayTime.Text = ChangeTimeToDisplay(mSplitTime);
-            }
-        }
-
-        private double mCentreSliderValue = 0;
-        private bool mCentreSliderEventEffect = true;
-        private void trackCentre_ValueChanged(object sender, EventArgs e)
-        {
-            if (mCentreSliderEventEffect == true)
-            {
-                tmSlider.Enabled = false;
-                if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
-                {
-                    mCentreSliderValue = Audio.AudioPlayer.Instance.CurrentTimePosition;
-                }
-                else
-                {
-                    mCentreSliderValue = mSplitTime;
-                }
-                //MessageBox.Show(trackCentre.Value.ToString());
-                mCentreSliderValue = mCentreSliderValue + ((trackCentre.Value - 400) * 100);
-                tmSlider.Start();
-            }
-        }
-       
-
-
-        
-
 
     }// end of class
 }
