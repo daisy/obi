@@ -34,8 +34,6 @@ namespace Obi.Dialogs
             this.txtDisplayAsset = new System.Windows.Forms.TextBox();
             this.txtDisplayTime = new System.Windows.Forms.TextBox();
             this.tmUpdateTimePosition = new System.Windows.Forms.Timer(this.components);
-            this.btnFastRewind = new System.Windows.Forms.Button();
-            this.btnFastForward = new System.Windows.Forms.Button();
             this.btnFineRewind = new System.Windows.Forms.Button();
             this.btnFineForward = new System.Windows.Forms.Button();
             this.btnSplit = new System.Windows.Forms.Button();
@@ -43,21 +41,17 @@ namespace Obi.Dialogs
             this.btnPause = new System.Windows.Forms.Button();
             this.txtSplitTime = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.labelAssetName = new System.Windows.Forms.Label();
             this.labelTime = new System.Windows.Forms.Label();
             this.labelSplitTime = new System.Windows.Forms.Label();
-            this.AudioTrackBar = new System.Windows.Forms.TrackBar();
-            this.trackCentre = new System.Windows.Forms.TrackBar();
-            this.tmSlider = new System.Windows.Forms.Timer(this.components);
+            this.comboStep = new System.Windows.Forms.ComboBox();
+            this.lblStepSize = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.AudioTrackBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackCentre)).BeginInit();
             this.SuspendLayout();
             // 
             // btnPreview
             // 
-            this.btnPreview.Location = new System.Drawing.Point(12, 43);
+            this.btnPreview.Location = new System.Drawing.Point(135, 43);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(118, 23);
             this.btnPreview.TabIndex = 2;
@@ -67,7 +61,8 @@ namespace Obi.Dialogs
             // 
             // txtDisplayAsset
             // 
-            this.txtDisplayAsset.Location = new System.Drawing.Point(136, 12);
+            this.txtDisplayAsset.AccessibleName = "Asset Name";
+            this.txtDisplayAsset.Location = new System.Drawing.Point(136, 11);
             this.txtDisplayAsset.Name = "txtDisplayAsset";
             this.txtDisplayAsset.ReadOnly = true;
             this.txtDisplayAsset.Size = new System.Drawing.Size(127, 20);
@@ -75,6 +70,7 @@ namespace Obi.Dialogs
             // 
             // txtDisplayTime
             // 
+            this.txtDisplayTime.AccessibleName = "Play Time";
             this.txtDisplayTime.Location = new System.Drawing.Point(136, 72);
             this.txtDisplayTime.Name = "txtDisplayTime";
             this.txtDisplayTime.ReadOnly = true;
@@ -87,33 +83,13 @@ namespace Obi.Dialogs
             this.tmUpdateTimePosition.Interval = 1000;
             this.tmUpdateTimePosition.Tick += new System.EventHandler(this.tmUpdateTimePosition_Tick);
             // 
-            // btnFastRewind
-            // 
-            this.btnFastRewind.Location = new System.Drawing.Point(18, 17);
-            this.btnFastRewind.Name = "btnFastRewind";
-            this.btnFastRewind.Size = new System.Drawing.Size(100, 23);
-            this.btnFastRewind.TabIndex = 6;
-            this.btnFastRewind.Text = "Fast Rewind";
-            this.btnFastRewind.UseVisualStyleBackColor = true;
-            this.btnFastRewind.Click += new System.EventHandler(this.btnFastRewind_Click);
-            // 
-            // btnFastForward
-            // 
-            this.btnFastForward.Location = new System.Drawing.Point(124, 17);
-            this.btnFastForward.Name = "btnFastForward";
-            this.btnFastForward.Size = new System.Drawing.Size(105, 23);
-            this.btnFastForward.TabIndex = 7;
-            this.btnFastForward.Text = "Fast Forward";
-            this.btnFastForward.UseVisualStyleBackColor = true;
-            this.btnFastForward.Click += new System.EventHandler(this.btnFastForward_Click);
-            // 
             // btnFineRewind
             // 
             this.btnFineRewind.Location = new System.Drawing.Point(18, 46);
             this.btnFineRewind.Name = "btnFineRewind";
             this.btnFineRewind.Size = new System.Drawing.Size(100, 23);
             this.btnFineRewind.TabIndex = 5;
-            this.btnFineRewind.Text = "Fine Rewind";
+            this.btnFineRewind.Text = "Rewind";
             this.btnFineRewind.UseVisualStyleBackColor = true;
             this.btnFineRewind.Click += new System.EventHandler(this.btnFineRewind_Click);
             // 
@@ -123,17 +99,17 @@ namespace Obi.Dialogs
             this.btnFineForward.Name = "btnFineForward";
             this.btnFineForward.Size = new System.Drawing.Size(105, 23);
             this.btnFineForward.TabIndex = 9;
-            this.btnFineForward.Text = "Fine Forward";
+            this.btnFineForward.Text = "Forward";
             this.btnFineForward.UseVisualStyleBackColor = true;
             this.btnFineForward.Click += new System.EventHandler(this.btnFineForward_Click);
             // 
             // btnSplit
             // 
             this.btnSplit.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSplit.Location = new System.Drawing.Point(12, 213);
+            this.btnSplit.Location = new System.Drawing.Point(12, 240);
             this.btnSplit.Name = "btnSplit";
             this.btnSplit.Size = new System.Drawing.Size(118, 23);
-            this.btnSplit.TabIndex = 10;
+            this.btnSplit.TabIndex = 15;
             this.btnSplit.Text = "Split";
             this.btnSplit.UseVisualStyleBackColor = true;
             this.btnSplit.Click += new System.EventHandler(this.btnSplit_Click);
@@ -141,26 +117,27 @@ namespace Obi.Dialogs
             // btnStop
             // 
             this.btnStop.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnStop.Location = new System.Drawing.Point(136, 213);
+            this.btnStop.Location = new System.Drawing.Point(136, 240);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(127, 23);
-            this.btnStop.TabIndex = 11;
-            this.btnStop.Text = "Stop";
+            this.btnStop.TabIndex = 16;
+            this.btnStop.Text = "Stop/Close";
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // btnPause
             // 
-            this.btnPause.Location = new System.Drawing.Point(136, 43);
+            this.btnPause.Location = new System.Drawing.Point(12, 43);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(127, 23);
-            this.btnPause.TabIndex = 3;
+            this.btnPause.TabIndex = 2;
             this.btnPause.Text = "Pause";
             this.btnPause.UseVisualStyleBackColor = true;
             this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
             // 
             // txtSplitTime
             // 
+            this.txtSplitTime.AccessibleName = "Split time in seconds";
             this.txtSplitTime.Location = new System.Drawing.Point(136, 97);
             this.txtSplitTime.Name = "txtSplitTime";
             this.txtSplitTime.Size = new System.Drawing.Size(127, 20);
@@ -168,27 +145,14 @@ namespace Obi.Dialogs
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.btnFineRewind);
             this.groupBox1.Controls.Add(this.btnFineForward);
-            this.groupBox1.Controls.Add(this.btnFastRewind);
-            this.groupBox1.Controls.Add(this.btnFastForward);
             this.groupBox1.Location = new System.Drawing.Point(12, 123);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(251, 84);
-            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "navigate";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(18, 46);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Fine Rewind";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btnFineRewind_Click);
             // 
             // labelAssetName
             // 
@@ -196,8 +160,8 @@ namespace Obi.Dialogs
             this.labelAssetName.Location = new System.Drawing.Point(68, 12);
             this.labelAssetName.Name = "labelAssetName";
             this.labelAssetName.Size = new System.Drawing.Size(62, 13);
-            this.labelAssetName.TabIndex = 11;
-            this.labelAssetName.Text = "Asset name";
+            this.labelAssetName.TabIndex = 0;
+            this.labelAssetName.Text = "Asset n&ame";
             // 
             // labelTime
             // 
@@ -205,8 +169,8 @@ namespace Obi.Dialogs
             this.labelTime.Location = new System.Drawing.Point(83, 75);
             this.labelTime.Name = "labelTime";
             this.labelTime.Size = new System.Drawing.Size(48, 13);
-            this.labelTime.TabIndex = 12;
-            this.labelTime.Text = "play time";
+            this.labelTime.TabIndex = 4;
+            this.labelTime.Text = "play &time";
             // 
             // labelSplitTime
             // 
@@ -214,51 +178,37 @@ namespace Obi.Dialogs
             this.labelSplitTime.Location = new System.Drawing.Point(83, 97);
             this.labelSplitTime.Name = "labelSplitTime";
             this.labelSplitTime.Size = new System.Drawing.Size(47, 13);
-            this.labelSplitTime.TabIndex = 13;
-            this.labelSplitTime.Text = "split time";
+            this.labelSplitTime.TabIndex = 5;
+            this.labelSplitTime.Text = "&split time";
             // 
-            // AudioTrackBar
+            // comboStep
             // 
-            this.AudioTrackBar.AccessibleName = "Audio Slider";
-            this.AudioTrackBar.LargeChange = 80;
-            this.AudioTrackBar.Location = new System.Drawing.Point(12, 242);
-            this.AudioTrackBar.Maximum = 20000;
-            this.AudioTrackBar.Name = "AudioTrackBar";
-            this.AudioTrackBar.Size = new System.Drawing.Size(104, 42);
-            this.AudioTrackBar.SmallChange = 5;
-            this.AudioTrackBar.TabIndex = 14;
-            this.AudioTrackBar.Enter += new System.EventHandler(this.AudioTrackBar_Enter);
-            this.AudioTrackBar.ValueChanged += new System.EventHandler(this.AudioTrackBar_ValueChanged);
-            this.AudioTrackBar.MouseEnter += new System.EventHandler(this.AudioTrackBar_MouseEnter);
+            this.comboStep.AccessibleName = "Step size in seconds";
+            this.comboStep.FormattingEnabled = true;
+            this.comboStep.Location = new System.Drawing.Point(135, 210);
+            this.comboStep.Name = "comboStep";
+            this.comboStep.Size = new System.Drawing.Size(121, 21);
+            this.comboStep.TabIndex = 11;
             // 
-            // trackCentre
+            // lblStepSize
             // 
-            this.trackCentre.AccessibleName = "Centre Slider";
-            this.trackCentre.LargeChange = 80;
-            this.trackCentre.Location = new System.Drawing.Point(0, 300);
-            this.trackCentre.Maximum = 800;
-            this.trackCentre.Name = "trackCentre";
-            this.trackCentre.Size = new System.Drawing.Size(104, 42);
-            this.trackCentre.SmallChange = 5;
-            this.trackCentre.TabIndex = 15;
-            this.trackCentre.Value = 400;
-            this.trackCentre.ValueChanged += new System.EventHandler(this.trackCentre_ValueChanged);
-            // 
-            // tmSlider
-            // 
-            this.tmSlider.Enabled = true;
-            this.tmSlider.Interval = 300;
-            this.tmSlider.Tick += new System.EventHandler(this.tmSlider_Tick);
+            this.lblStepSize.AutoSize = true;
+            this.lblStepSize.Location = new System.Drawing.Point(9, 211);
+            this.lblStepSize.Name = "lblStepSize";
+            this.lblStepSize.Size = new System.Drawing.Size(88, 13);
+            this.lblStepSize.TabIndex = 10;
+            this.lblStepSize.Text = "Step s&ize in sec\'s";
             // 
             // Split
             // 
             this.AcceptButton = this.btnSplit;
+            this.AccessibleName = "Split Dialog";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnStop;
             this.ClientSize = new System.Drawing.Size(275, 333);
-            this.Controls.Add(this.trackCentre);
-            this.Controls.Add(this.AudioTrackBar);
+            this.Controls.Add(this.lblStepSize);
+            this.Controls.Add(this.comboStep);
             this.Controls.Add(this.labelSplitTime);
             this.Controls.Add(this.labelTime);
             this.Controls.Add(this.labelAssetName);
@@ -276,8 +226,6 @@ namespace Obi.Dialogs
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Split_FormClosing);
             this.Load += new System.EventHandler(this.Split_Load);
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.AudioTrackBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackCentre)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -289,8 +237,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.TextBox txtDisplayAsset;
         private System.Windows.Forms.TextBox txtDisplayTime;
         private System.Windows.Forms.Timer tmUpdateTimePosition;
-        private System.Windows.Forms.Button btnFastRewind;
-        private System.Windows.Forms.Button btnFastForward;
         private System.Windows.Forms.Button btnFineRewind;
         private System.Windows.Forms.Button btnFineForward;
         private System.Windows.Forms.Button btnSplit;
@@ -298,12 +244,10 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.TextBox txtSplitTime;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label labelAssetName;
         private System.Windows.Forms.Label labelTime;
         private System.Windows.Forms.Label labelSplitTime;
-        private System.Windows.Forms.TrackBar AudioTrackBar;
-        private System.Windows.Forms.TrackBar trackCentre;
-        private System.Windows.Forms.Timer tmSlider;
+        private System.Windows.Forms.ComboBox comboStep;
+        private System.Windows.Forms.Label lblStepSize;
     }
 }
