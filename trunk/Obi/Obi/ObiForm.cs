@@ -1072,7 +1072,7 @@ namespace Obi
         {
             // Make sure that the correct menu items are enabled for the keyboard shortcuts to work.
             UpdateEnabledItems();
-            mProjectPanel.StripManager.UpdateEnabledItemsForContextMenu();
+            if (mProject != null) mProjectPanel.StripManager.UpdateEnabledItemsForContextMenu();
             switch (key)
             {
                 case Keys.Control | Keys.Space:
