@@ -213,14 +213,14 @@ namespace Obi
         /// <returns>True on success</returns>
         private bool ExecuteIncreaseSectionNodeLevel(SectionNode node)
         {
-            //can't increase section level if the node has no "older" siblings
             if (node.Index == 0)
             {
+                //can't increase section level if the node has no "older" siblings
                 return false;
             }
             else
             {
-                SectionNode newParent;  // parent is always a section node (cannot be top-level since we're moving in)
+                SectionNode newParent;
                 SectionNode movedNode;
                 if (node.ParentSection == null)
                 {
@@ -228,9 +228,9 @@ namespace Obi
                     newParent = (SectionNode)((CoreNode)node.getParent()).getChild(node.Index - 1);
                     movedNode = (SectionNode)node.DetachFromParent();
                 }
-                //else the node's parent is an ordinary section node
                 else
                 {
+                    //else the node's parent is an ordinary section node
                     newParent = node.ParentSection.SectionChild(node.Index - 1);
                     movedNode = (SectionNode)node.DetachFromParent();
                 }

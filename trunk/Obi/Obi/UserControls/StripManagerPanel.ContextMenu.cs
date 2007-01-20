@@ -46,7 +46,7 @@ namespace Obi.UserControls
             bool isAudioBlockLast = isAudioBlockSelected &&
                 mSelectedPhrase.Index == mSelectedPhrase.ParentSection.PhraseChildCount - 1;
             bool isAudioBlockFirst = isAudioBlockSelected && mSelectedPhrase.Index == 0;
-            bool isBlockClipBoardSet = mProjectPanel.Project.Clipboard.Data != null;
+            bool isBlockClipBoardSet = mProjectPanel.Project != null && mProjectPanel.Project.Clipboard.Data != null;
 
             bool canSetPage = isAudioBlockSelected;  // an audio block must be selected and a heading must not be set.
             bool canRemovePage = isAudioBlockSelected;
