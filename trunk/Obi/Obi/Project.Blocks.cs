@@ -17,19 +17,25 @@ namespace Obi
 
         #region clip board
 
+        /*
+        internal void CutPhraseNode(object sender, Events.Node.PhraseNodeEventArgs e)
+        {
+            CutPhraseNode(e.Node);
+        }
+        */
+
         /// <summary>
         /// Cut a phrase node: delete it and store it in the clipboard.
         /// Issue a command and modify the project.
         /// </summary>
-        internal void CutPhraseNode(object sender, Events.Node.PhraseNodeEventArgs e)
+        public void CutPhraseNode(PhraseNode node)
         {
             // create the command before storing the node in the clip board, otherwise the previous value is lost
-            Commands.Strips.CutPhrase command = new Commands.Strips.CutPhrase(e.Node);
-            mClipboard.Phrase = e.Node;
-            DeletePhraseNodeAndAsset(e.Node);
+            Commands.Strips.CutPhrase command = new Commands.Strips.CutPhrase(node);
+            mClipboard.Phrase = node;
+            DeletePhraseNodeAndAsset(node);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            Modified();
         }
 
         /// <summary>
@@ -40,8 +46,13 @@ namespace Obi
         /// <param name="e"></param>
         internal void CopyPhraseNode(object sender, Events.Node.PhraseNodeEventArgs e)
         {
-            Commands.Strips.CopyPhrase command = new Commands.Strips.CopyPhrase(e.Node);
-            mClipboard.Phrase = e.Node;
+            CopyPhraseNode(e.Node);
+        }
+
+        public void CopyPhraseNode(PhraseNode node)
+        {
+            Commands.Strips.CopyPhrase command = new Commands.Strips.CopyPhrase(node);
+            mClipboard.Phrase = node;
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             // state does not change--the project itself was not modified.
         }
