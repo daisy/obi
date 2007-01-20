@@ -19,8 +19,8 @@ namespace Obi.UserControls
         //md
         public event Events.SectionNodeHandler ShallowDeleteSectionNodeRequested;
        
-        public event Events.SectionNodeHandler CutSectionNodeRequested;
-        public event Events.PhraseNodeHandler CutPhraseNodeRequested;
+        // public event Events.SectionNodeHandler CutSectionNodeRequested;
+        // public event Events.PhraseNodeHandler CutPhraseNodeRequested;
         public event Events.PhraseNodeHandler CopyPhraseNodeRequested;
         public event Events.SectionNodeHandler CopySectionNodeRequested;
         public event Events.SectionNodeHandler PasteSectionNodeRequested;
@@ -325,7 +325,8 @@ namespace Obi.UserControls
         /// </summary>
         public void CutSelectedPhrase()
         {
-            CutPhraseNodeRequested(this, new PhraseNodeEventArgs(this, mSelectedPhrase));
+            // CutPhraseNodeRequested(this, new PhraseNodeEventArgs(this, mSelectedPhrase));
+            mProjectPanel.Project.CutPhraseNode(mSelectedPhrase);
         }
 
         /// <summary>
@@ -333,7 +334,8 @@ namespace Obi.UserControls
         /// </summary>
         public void CutSelectedSection()
         {
-            CutSectionNodeRequested(this, new SectionNodeEventArgs(this, mSelectedSection));
+            // CutSectionNodeRequested(this, new SectionNodeEventArgs(this, mSelectedSection));
+            mProjectPanel.Project.ShallowCutSectionNode(mSelectedSection, true);
         }
 
         /// <summary>

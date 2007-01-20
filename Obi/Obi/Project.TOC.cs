@@ -207,11 +207,10 @@ namespace Obi
         }
 
         /// <summary>
-        /// Move the node "in"
+        /// Move the node "in", i.e. increase its level.
         /// </summary>
-        /// <param name="node"></param>
-        /// <returns></returns>
-        /// <remarks>a facade API function could do this for us</remarks>
+        /// <param name="node">The node to move in.</param>
+        /// <returns>True on success</returns>
         private bool ExecuteIncreaseSectionNodeLevel(SectionNode node)
         {
             //can't increase section level if the node has no "older" siblings
@@ -221,34 +220,33 @@ namespace Obi
             }
             else
             {
-                CoreNode newParent;
+                SectionNode newParent;  // parent is always a section node (cannot be top-level since we're moving in)
                 SectionNode movedNode;
-                //assumption: the root only has section node children, so we can do this
-                if (node.getParent().Equals(getPresentation().getRootNode()))
+                if (node.ParentSection == null)
                 {
-                    newParent = ((CoreNode)node.getParent()).getChild(node.Index - 1);
+                    //assumption: the root only has section node children, so we can do this
+                    newParent = (SectionNode)((CoreNode)node.getParent()).getChild(node.Index - 1);
                     movedNode = (SectionNode)node.DetachFromParent();
                 }
                 //else the node's parent is an ordinary section node
                 else
                 {
-                    newParent = ((SectionNode)node).SectionChild(node.Index - 1);
+                    newParent = node.ParentSection.SectionChild(node.Index - 1);
                     movedNode = (SectionNode)node.DetachFromParent();
                 }
                 AppendChildSection(movedNode, newParent);                
                 return true;
             }
         }
-
        
         public void IncreaseSectionNodeLevelRequested(object sender, Events.Node.SectionNodeEventArgs e)
         {
             IncreaseSectionNodeLevel(sender, e.Node);
         }
 
-       //md
-       //the command value is returned so it can be used in UndoShallowDelete's undo list
-       public Commands.Command DecreaseSectionNodeLevel(object origin, SectionNode node)
+        //md
+        //the command value is returned so it can be used in UndoShallowDelete's undo list
+        public Commands.Command DecreaseSectionNodeLevel(object origin, SectionNode node)
         {
             Commands.TOC.DecreaseSectionNodeLevel command = null;
 
@@ -458,6 +456,32 @@ namespace Obi
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
             if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
              
+        }
+
+        /// <summary>
+        /// Shallow cut of a section node, i.e. only the strip.
+        /// Sub-sections are moved back one level.
+        /// </summary>
+        /// <param name="node">The node to cut.</param>
+        /// <param name="createCommand">If true, create a command (if called from the UI)</param>
+        public void ShallowCutSectionNode(SectionNode node, bool createCommand)
+        {
+            Commands.TOC.ShallowCutSectionNode command = createCommand ?
+                new Commands.TOC.ShallowCutSectionNode(node) : null;
+            mClipboard.Section = node.copy(false);
+            int subsections = node.SectionChildCount;
+            for (int i = subsections - 1; i >= 0; --i)
+            {
+                command.AddCommand(DecreaseSectionNodeLevel(this, node.SectionChild(i)));
+            }
+            int phrases = node.PhraseChildCount;
+            for (int i = phrases - 1; i >= 0; --i)
+            {
+                command.AddCommand(DeletePhraseNodeAndAsset(node.PhraseChild(i)));
+            }
+            command.AddCommand(RemoveSectionNode(this, node));
+            Modified();
+            if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
         //md 20060810

@@ -306,17 +306,19 @@ namespace Obi
             {
                 if (mProjectPanel.StripManager.SelectedPhraseNode != null)
                 {
+                    StopIfPaused();
                     mProjectPanel.StripManager.CutSelectedPhrase();
                 }
                 else if (mProjectPanel.StripManager.SelectedSectionNode != null)
                 {
-                    // should be shallow, right?
+                    StopIfPaused();
                     mProjectPanel.StripManager.CutSelectedSection();
                 }
                 else if (mProjectPanel.TOCPanel.IsNodeSelected)
                 {
                     // check that there is actually something that looks selected
                     // from the user POV.
+                    StopIfPaused();
                     mProjectPanel.TOCPanel.CutSelectedSection();
                 }
             }
@@ -1333,6 +1335,15 @@ namespace Obi
         private void Status(string message)
         {
             mToolStripStatusLabel.Text = message;
+        }
+
+        /// <summary>
+        /// Stop the player if it was paused before an edit operation can be made.
+        /// </summary>
+        private void StopIfPaused()
+        {
+            if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Paused)
+                mProjectPanel.TransportBar.Stop();
         }
 
         /// <summary>
