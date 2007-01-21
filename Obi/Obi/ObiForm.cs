@@ -1131,6 +1131,11 @@ namespace Obi
                     if (mRewindToolStripMenuItem.Enabled == true)
                         mProjectPanel.TransportBar.Rewind();
                     break;
+
+                case Keys.Control | Keys.Shift | Keys.T :
+                    mProjectPanel.TransportBar.FocusTimeDisplay();
+                    break;
+
             }
             return base.ProcessDialogKey(key);
         }
