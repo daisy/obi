@@ -95,6 +95,7 @@ namespace Obi.UserControls
             InitializeComponent();
             mPlaylist = null;
             mDisplayBox.SelectedIndex = ElapsedTotal;
+            mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
         }
 
         /// <summary>
@@ -424,6 +425,7 @@ namespace Obi.UserControls
         private void mDisplayBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
             UpdateTimeDisplay();
+            mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
         }
 
         /// <summary>
@@ -435,6 +437,11 @@ namespace Obi.UserControls
             {
                 ((ProjectPanel)Parent).StripManager.SelectionChanged += new Obi.Events.SelectedHandler(StripManager_Selected);
             }
+        }
+
+        public void FocusTimeDisplay()
+        {
+            mTimeDisplayBox.Focus();
         }
 
     }
