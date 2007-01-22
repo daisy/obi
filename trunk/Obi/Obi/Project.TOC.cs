@@ -423,39 +423,25 @@ namespace Obi
         {
             //we have to gather this data here, because it might be different at the end
             //however, we can't create the command here, because its data isn't ready yet
-            //these lines only need to be executed if origin != this
-
-            Commands.TOC.ShallowCutSectionNode command = null;
-
             mClipboard.Section = node.copy(false);
-
-            if (origin != this)
-            {
-                command = new Commands.TOC.ShallowCutSectionNode(node);
-            }
-
+            Commands.TOC.ShallowCutSectionNode command = origin == this ?
+                null : new Commands.TOC.ShallowCutSectionNode(node);
             int numChildren = node.SectionChildCount;
             for (int i = numChildren - 1; i >= 0; i--)
             {
-                Commands.Command cmdDecrease = this.DecreaseSectionNodeLevel(this, node.SectionChild(i));
-                command.AddCommand(cmdDecrease);
+                Commands.Command cmdDecrease = DecreaseSectionNodeLevel(this, node.SectionChild(i));
+                if (command != null) command.AddCommand(cmdDecrease);
             }
-
             numChildren = node.PhraseChildCount;
             for (int i = numChildren - 1; i >= 0; i--)
             {
                 Commands.Command cmdDeletePhrase = DeletePhraseNodeAndAsset(node.PhraseChild(i));
-                command.AddCommand(cmdDeletePhrase);
+                if (command != null) command.AddCommand(cmdDeletePhrase);
             }
-
-            Commands.Command cmdRemove = this.RemoveSectionNode(this, node);
-            command.AddCommand(cmdRemove);
-
-           
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            Commands.Command cmdRemove = RemoveSectionNode(this, node);
+            if (command != null) command.AddCommand(cmdRemove);
+            Modified();
             if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-             
         }
 
         /// <summary>
@@ -539,27 +525,19 @@ namespace Obi
         //md 20061220
         public void ShallowCopySectionNode(object origin, SectionNode node)
         {
-            if (node == null) return;
-
-            Commands.TOC.ShallowCopySectionNode command = null;
-
-            if (origin != this)
+            if (node != null)
             {
-                command = new Commands.TOC.ShallowCopySectionNode(node);
+                mClipboard.Section = node.copy(false);
+                for (int i = 0; i < node.PhraseChildCount; i++)
+                {
+                    mClipboard.Section.AddChildPhrase(node.PhraseChild(i).copy(false), i);
+                }
+                if (origin != this)
+                {
+                    CommandCreated(this,
+                        new Events.Project.CommandCreatedEventArgs(new Commands.TOC.ShallowCopySectionNode(node)));
+                }
             }
-
-            mClipboard.Section = node.copy(false);
-            //now copy all the section's phrase children
-            for (int i = 0; i < node.PhraseChildCount; i++)
-            {
-                mClipboard.Section.AddChildPhrase(node.PhraseChild(i).copy(false), i);
-            }
-    
-            //no event is raised (i.e. ShallowCopiedSectionNode) because no one cares
-
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-            if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
         //md 20061220
@@ -574,26 +552,27 @@ namespace Obi
      
         }
 
-        //md 20060810
         public void CopySectionNode(object origin, SectionNode node)
         {
-            if (node == null) return;
+            CopySectionNode(node, origin != this);
+        }
 
-            Commands.TOC.CopySectionNode command = null;
-
-            if (origin != this)
+        /// <summary>
+        /// Copy a section node.
+        /// The project is unmodified, only the clipboard gets updated.
+        /// </summary>
+        /// <param name="origin">Originator of the request.</param>
+        /// <param name="node">The node to copy.</param>
+        public void CopySectionNode(SectionNode node, bool issueCommand)
+        {
+            if (node != null)
             {
-                command = new Commands.TOC.CopySectionNode(node);
+                mClipboard.Section = node;
+                if (issueCommand)
+                {
+                    CommandCreated(this, new Events.Project.CommandCreatedEventArgs(new Commands.TOC.CopySectionNode(node)));
+                }
             }
-
-            //the actual copy operation
-            mClipboard.Section = node;
-
-            //no event is raised (i.e. CopiedSectionNode) because no one cares
-
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-            if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
         //md 20060810
@@ -776,6 +755,9 @@ namespace Obi
             }         
         }
 
+        /// <summary>
+        /// Toggle the use state of a section node.
+        /// </summary>
         internal void ToggleSectionUsedState(Events.Node.SectionNodeEventArgs e)
         {
             e.Node.Used = !e.Node.Used;

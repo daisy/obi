@@ -325,7 +325,6 @@ namespace Obi.UserControls
         /// </summary>
         public void CutSelectedPhrase()
         {
-            // CutPhraseNodeRequested(this, new PhraseNodeEventArgs(this, mSelectedPhrase));
             mProjectPanel.Project.CutPhraseNode(mSelectedPhrase);
         }
 
@@ -334,7 +333,6 @@ namespace Obi.UserControls
         /// </summary>
         public void CutSelectedSection()
         {
-            // CutSectionNodeRequested(this, new SectionNodeEventArgs(this, mSelectedSection));
             mProjectPanel.Project.ShallowCutSectionNode(mSelectedSection, true);
         }
 

@@ -126,7 +126,7 @@ namespace Obi.UserControls
 
         public void CopySelectedSection()
         {
-            CopySectionNodeRequested(this, new SectionNodeEventArgs(this, SelectedSection));
+            mProjectPanel.Project.CopySectionNode(SelectedSection, true);
         }
 
         internal void mPasteSectionToolStripMenuItem_Click(object sender, EventArgs e)

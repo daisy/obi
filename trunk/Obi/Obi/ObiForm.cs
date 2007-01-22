@@ -316,8 +316,6 @@ namespace Obi
                 }
                 else if (mProjectPanel.TOCPanel.IsNodeSelected)
                 {
-                    // check that there is actually something that looks selected
-                    // from the user POV.
                     StopIfPaused();
                     mProjectPanel.TOCPanel.CutSelectedSection();
                 }
@@ -333,18 +331,40 @@ namespace Obi
             {
                 if (mProjectPanel.StripManager.SelectedPhraseNode != null)
                 {
+                    StopIfPaused();
                     mProjectPanel.StripManager.CopySelectedPhrase();
                 }
                 else if (mProjectPanel.StripManager.SelectedSectionNode != null)
                 {
+                    StopIfPaused();
                     mProjectPanel.StripManager.CopySelectedSection();
                 }
                 else if (mProjectPanel.TOCPanel.IsNodeSelected)
                 {
-                    // check that there is actually something that looks selected
-                    // from the user POV.
+                    StopIfPaused();
                     mProjectPanel.TOCPanel.CopySelectedSection();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Paste what's in the clipboard.
+        /// </summary>
+        private void mPasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProject != null)
+            {
+                if (mProject.Clipboard.Section != null)
+                {
+                    mProject.PasteSectionNodeRequested(this,
+                        new Obi.Events.Node.SectionNodeEventArgs(this, (SectionNode)mProjectPanel.SelectedNode));
+                }
+                else if (mProject.Clipboard.Phrase != null)
+                {
+                    mProject.PastePhraseNode(this, new Obi.Events.Node.NodeEventArgs(this, mProjectPanel.SelectedNode));
+                }
+                // else, the menu item should not have been enabled
+                else throw new Exception("Nothing to paste!");
             }
         }
 
@@ -792,28 +812,6 @@ namespace Obi
 
 
         #endregion
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>TODO: make only one clipboard visible to the user.</remarks>
-        private void mPasteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProject != null)
-            {
-                if (mProject.Clipboard.Section != null && mProjectPanel.SelectedNode is SectionNode)
-                {
-                    mProject.PasteSectionNodeRequested(this, new Obi.Events.Node.SectionNodeEventArgs(this, (SectionNode)mProjectPanel.SelectedNode));
-                }
-                else if (mProject.Clipboard.Phrase != null)
-                {
-                    mProject.PastePhraseNode(this, new Obi.Events.Node.NodeEventArgs(this, mProjectPanel.SelectedNode));
-                }
-
-                //else, the menu item should not have been enabled
-                else throw new Exception("Nothing to paste!");
-            }
-        }
 
         private void mDeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {

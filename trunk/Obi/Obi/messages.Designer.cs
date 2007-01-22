@@ -252,6 +252,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to copy strip.
+        /// </summary>
+        internal static string copy_strip_command_label {
+            get {
+                return ResourceManager.GetString("copy_strip_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Directory.
         /// </summary>
         internal static string create_directory_caption {
@@ -302,6 +311,15 @@ namespace Obi {
         internal static string cut_section_command_label {
             get {
                 return ResourceManager.GetString("cut_section_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to cut strip.
+        /// </summary>
+        internal static string cut_strip_command_label {
+            get {
+                return ResourceManager.GetString("cut_strip_command_label", resourceCulture);
             }
         }
         

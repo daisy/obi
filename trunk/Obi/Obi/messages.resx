@@ -586,4 +586,10 @@ Do you want to replace the project contained in this file?</value>
   <data name="export_directory_browser" xml:space="preserve">
     <value>Please choose a default export directory below.</value>
   </data>
+  <data name="cut_strip_command_label" xml:space="preserve">
+    <value>cut strip</value>
+  </data>
+  <data name="copy_strip_command_label" xml:space="preserve">
+    <value>copy strip</value>
+  </data>
 </root>
