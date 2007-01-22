@@ -43,7 +43,7 @@ Main form
     + [I] Import audio file ................. Ctrl+I
     + [B] Insert empty audio block .......... Ctrl+J
     + [S] Split audio block ................. Ctrl+P
-    + [Q] Quick split audio block ........... Shift+Ctrl+P
+    + [Q] Quick split audio block ........... Ctrl+Shift+P
     + [H] Apply phrase detection ............ Ctrl+H
     + [G] Merge with next audio block ....... Ctrl+M
     + [V] Move audio block................... None
@@ -196,7 +196,7 @@ Index of shortcuts
   Alt+P .............. Tools > Project preferences
   Ctrl+P ............. Strips > Split audio block
   Ctrl+P ............. [Strip Manager Panel] Split Audio Block
-  Shift+Ctrl+P ....... Strips > Quick split audio block
+  Ctrl+Shift+P ....... Strips > Quick split audio block
   Ctrl+Q ............. FREE
   Ctrl+R ............. Transport > Record
   Ctrl+S ............. File > Save project
