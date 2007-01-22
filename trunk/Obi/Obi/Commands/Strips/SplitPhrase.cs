@@ -12,7 +12,7 @@ namespace Obi.Commands.Strips
         private PhraseNode mNewNode;             // the new phrase node that was created
         private AudioMediaAsset mSplitAsset;     // the first part of the split asset
         private AudioMediaAsset mOriginalAsset;  // the original asset before the split
-        
+
         /// <summary>
         /// Label for the undo menu item.
         /// </summary>
@@ -22,7 +22,7 @@ namespace Obi.Commands.Strips
         }
 
         /// <summary>
-        /// 
+        /// Create the command once a node has been split in two from its two parts.
         /// </summary>
         /// <param name="node">The phrase node that was split.</param>
         /// <param name="newNode">The new phrase node resulting from the split.</param>
@@ -32,7 +32,7 @@ namespace Obi.Commands.Strips
             mNewNode = newNode;
             mSplitAsset = node.Asset;
             // reconstruct the original asset by merging.
-            mOriginalAsset = (AudioMediaAsset)newNode.Asset.Copy();
+            mOriginalAsset = (AudioMediaAsset)newNode.Asset.Manager.CopyAsset(newNode.Asset);
             mOriginalAsset.MergeWith(newNode.Asset);
         }
 
@@ -42,7 +42,7 @@ namespace Obi.Commands.Strips
         public override void  Do()
         {
             mNode.Asset = mSplitAsset;
-            mNode.Project.AddPhraseNodeAndAsset(mNewNode, mNewNode.ParentSection, mNewNode.Index);
+            mNode.Project.AddPhraseNodeAndAsset(mNewNode, mNode.ParentSection, mNode.Index + 1);
         }
 
         /// <summary>
@@ -50,9 +50,9 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Undo()
         {
+            mNode.Project.DeletePhraseNodeAndAsset(mNewNode);            
             mNode.Project.SetAudioMediaAsset(mNode, mOriginalAsset);
-            mNode.Project.DeletePhraseNodeAndAsset(mNewNode);
-            mNode.Project.TouchNode(mNode);// TouchPhraseNode(mNode);      
+            mNode.Project.TouchNode(mNode);
         }
     }
 }

@@ -769,6 +769,7 @@ namespace Obi
             mRenameStripToolStripMenuItem.Enabled = isStripSelected;
 
             mSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mQuickSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
             mApplyPhraseDetectionToolStripMenuItem.Enabled = isAudioBlockSelected;
             mMergeWithNextAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
             mMoveAudioBlockForwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
@@ -1461,6 +1462,11 @@ namespace Obi
                 mRedoToolStripMenuItem.Enabled = false;
                 mRedoToolStripMenuItem.Text = Localizer.Message("redo");
             }
+        }
+
+        private void mQuickSplitAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.StripManager.QuickSplit();
         }
     }
 }
