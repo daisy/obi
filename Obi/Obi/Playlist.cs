@@ -427,6 +427,13 @@ namespace Obi
         /// </summary>
         public void Rewind()
         {
+            // stop fast forward  if it is going on and reset playback rate
+            if (mPlayBackState == PlayBackState.Forward)
+            {
+                StopForwardRewind();
+                mPlaybackRate = 0;
+            }
+
             IncreasePlaybackRate();
             // let's play backward!
             if (mPlayBackState == PlayBackState.Normal)
@@ -444,6 +451,13 @@ namespace Obi
         Assets.AudioMediaAsset m_CurrentAudioAsset;
         public void FastForward()
         {
+            // stop Rewind  if it is going on and reset playback rate
+            if (mPlayBackState == PlayBackState.Rewind )
+            {
+                StopForwardRewind();
+                mPlaybackRate = 0;
+            }
+            
             IncreasePlaybackRate();
             // let's play forward!
             if (mPlayBackState == PlayBackState.Normal)
@@ -515,7 +529,7 @@ else if ( mPlayBackState == PlayBackState.Rewind )
             m_CurrentAudioAsset = mPhrases[mCurrentPhraseIndex].Asset;
             SkipToPhrase(mCurrentPhraseIndex);
 
-            mPausePosition =  m_CurrentAudioAsset.LengthInMilliseconds - PlayChunkLength ;
+            mPausePosition =  ( m_CurrentAudioAsset.LengthInMilliseconds - PlayChunkLength  ) + StepInMs ;
             PreviewTimer.Interval = 50;
         }
         else
