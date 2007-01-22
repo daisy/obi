@@ -88,16 +88,9 @@ namespace Obi
             get
             {
                 CoreNode parent = (CoreNode)getParent();
-                //if (parent == null) return null;
                 int index = parent.indexOf(this);
-                if (parent is SectionNode)
-                {
-                    return index == ((SectionNode)parent).mSectionOffset ? null : (SectionNode)parent.getChild(index - 1);
-                }
-                else
-                {
-                    return index == 0 ? null : (SectionNode)parent.getChild(index - 1);
-                }
+                int offset = parent is SectionNode ? ((SectionNode)parent).mSectionOffset : 0;
+                return index == offset ? null : (SectionNode)parent.getChild(index - 1);
             }
         }
 

@@ -23,46 +23,46 @@ namespace Obi.Assets
         // Should be default project parameters though?
         private static readonly AudioMediaAsset mEmptyAsset = new AudioMediaAsset(1, 8, 8000);
 
-        private int m_Channels;
-        private int m_BitDepth;
-        private int m_SamplingRate;
-        private int m_FrameSize;
-        private long m_lAudioLengthInBytes = 0;
-        private double m_dAudioLengthInTime = 0;
+        private int mChannels;
+        private int mBitDepth;
+        private int mSamplingRate;
+        private int mFrameSize;
+        private long mAudioLengthInBytes = 0;
+        private double mAudioLengthInTime = 0;
 
         public int SampleRate
         {
-            get { return m_SamplingRate; }
+            get { return mSamplingRate; }
         }
 
         public int Channels
         {
-            get { return m_Channels; }
+            get { return mChannels; }
         }
 
         public int BitDepth
         {
-            get { return m_BitDepth; }
+            get { return mBitDepth; }
         }
 
         internal int FrameSize
         {
-            get { return m_FrameSize; }
+            get { return mFrameSize; }
         }
 
         public double LengthInMilliseconds
         {
-            get { return m_dAudioLengthInTime; }
+            get { return mAudioLengthInTime; }
         }
 
         public string LengthInSeconds
         {
-            get { return (Math.Round(m_dAudioLengthInTime / 1000.0)).ToString() + "s"; }
+            get { return (Math.Round(mAudioLengthInTime / 1000.0)).ToString() + "s"; }
         }
 
         public long AudioLengthInBytes
         {
-            get { return m_lAudioLengthInBytes; }
+            get { return mAudioLengthInBytes; }
         }
 
         private List<AudioClip> mClips;
@@ -85,10 +85,10 @@ namespace Obi.Assets
         {
             if (channels >= 1 && channels <= 2 && bitDepth >= 8 && bitDepth <= 16 && sampleRate >= 8000)
             {
-                m_Channels = channels;
-                m_BitDepth = bitDepth;
-                m_SamplingRate = sampleRate;
-                m_FrameSize = (m_BitDepth / 8) * m_Channels;
+                mChannels = channels;
+                mBitDepth = bitDepth;
+                mSamplingRate = sampleRate;
+                mFrameSize = (mBitDepth / 8) * mChannels;
                 mMediaType = MediaType.Audio;
                 mClips = new List<AudioClip>();
             }
@@ -107,13 +107,13 @@ namespace Obi.Assets
             {
                 mMediaType = MediaType.Audio;
                 AudioClip ob_AudioClip = clips[0] as AudioClip;
-                m_Channels = ob_AudioClip.Channels;
-                m_BitDepth = ob_AudioClip.BitDepth;
-                m_SamplingRate = ob_AudioClip.SampleRate;
-                m_FrameSize = ob_AudioClip.FrameSize;
+                mChannels = ob_AudioClip.Channels;
+                mBitDepth = ob_AudioClip.BitDepth;
+                mSamplingRate = ob_AudioClip.SampleRate;
+                mFrameSize = ob_AudioClip.FrameSize;
                 //m_alClipList = clips;
                 mClips = clips;
-                m_dAudioLengthInTime = 0;
+                mAudioLengthInTime = 0;
 
                 // compute total time ofasset from clip lengths
                 for (int i = 0; i < clips.Count; i++)
@@ -121,14 +121,14 @@ namespace Obi.Assets
 
                     ob_AudioClip = clips[i] as AudioClip;
 
-                    if (m_Channels == ob_AudioClip.Channels && m_BitDepth == ob_AudioClip.BitDepth && m_SamplingRate == ob_AudioClip.SampleRate)
-                        m_dAudioLengthInTime = m_dAudioLengthInTime + ob_AudioClip.LengthInTime;
+                    if (mChannels == ob_AudioClip.Channels && mBitDepth == ob_AudioClip.BitDepth && mSamplingRate == ob_AudioClip.SampleRate)
+                        mAudioLengthInTime = mAudioLengthInTime + ob_AudioClip.LengthInTime;
                     else
                         throw new Exception("Clip format do not match Asset format");
                 }
 
-                m_lAudioLengthInBytes = Audio.CalculationFunctions.ConvertTimeToByte(m_dAudioLengthInTime, m_SamplingRate, m_FrameSize);
-                mSizeInBytes = m_lAudioLengthInBytes;
+                mAudioLengthInBytes = Audio.CalculationFunctions.ConvertTimeToByte(mAudioLengthInTime, mSamplingRate, mFrameSize);
+                mSizeInBytes = mAudioLengthInBytes;
             }
             else
                 throw new Exception("No AudioMediaAsset can be created as clip list is empty");
@@ -136,32 +136,21 @@ namespace Obi.Assets
 
         /// <summary>
         /// Make a copy of the asset, sharing the same format and data.
+        /// The copy has the same name and is not managed (yet).
         /// </summary>
         /// <returns>The new, identical asset.</returns>
         public override Assets.MediaAsset Copy()
         {
-            AudioMediaAsset ob_AudioMediaAsset = new AudioMediaAsset(this.Channels, this.BitDepth, this.SampleRate);
-            ob_AudioMediaAsset.mMediaType = mMediaType;
-            //if (this.Name != null) 
-
-            // The copy is not managed yet. It keeps the same name as the original and has no assigned manager.
-            // JQ 20060816
-            ob_AudioMediaAsset.Name = mName;
-            ob_AudioMediaAsset.mAssManager = null;
-            //ob_AudioMediaAsset.mAssManager = mAssManager;
-
-            // Add clips to clip list of new asset
-            //for (int i = 0; i < this.m_alClipList.Count; i++)
-            //    ob_AudioMediaAsset.m_alClipList.Add(this.m_alClipList[i]);
-            foreach (AudioClip clip in mClips) ob_AudioMediaAsset.mClips.Add(clip);
-
-            ob_AudioMediaAsset.m_FrameSize = m_FrameSize;
-            ob_AudioMediaAsset.m_dAudioLengthInTime = m_dAudioLengthInTime;
-            ob_AudioMediaAsset.m_lAudioLengthInBytes = m_lAudioLengthInBytes;
-            ob_AudioMediaAsset.mSizeInBytes = mSizeInBytes;
-            return ob_AudioMediaAsset;
+            AudioMediaAsset copy = new AudioMediaAsset(mChannels, mBitDepth, mSamplingRate);
+            copy.mAssManager = null;
+            copy.mAudioLengthInTime = mAudioLengthInTime;
+            copy.mAudioLengthInBytes = mAudioLengthInBytes;
+            copy.mFrameSize = mFrameSize;
+            copy.mMediaType = mMediaType;
+            copy.mName = mName;
+            foreach (AudioClip clip in mClips) copy.mClips.Add(clip);
+            return copy;
         }
-
 
         /// <summary>
         /// Remove the asset from the project, and actually delete all corresponding resources.
@@ -195,15 +184,15 @@ namespace Obi.Assets
 
         public Assets.AudioMediaAsset GetChunk(long beginPosition, long endPosition)
         {
-            double dBeginTime = Audio.CalculationFunctions.ConvertByteToTime(beginPosition, m_SamplingRate, m_FrameSize);
-            double dEndTime = Audio.CalculationFunctions.ConvertByteToTime(endPosition, m_SamplingRate, m_FrameSize);
+            double dBeginTime = Audio.CalculationFunctions.ConvertByteToTime(beginPosition, mSamplingRate, mFrameSize);
+            double dEndTime = Audio.CalculationFunctions.ConvertByteToTime(endPosition, mSamplingRate, mFrameSize);
             return GetChunk(dBeginTime, dEndTime);
         }
 
         public Assets.AudioMediaAsset GetChunk(double beginTime, double endTime)
         {
             // checks if the input parameters are in bounds of asset and in  order
-            if (beginTime >= 0 && beginTime < endTime && endTime <= m_dAudioLengthInTime)
+            if (beginTime >= 0 && beginTime < endTime && endTime <= mAudioLengthInTime)
             {
                 //ArrayList alNewClipList = new ArrayList();
                 List<AudioClip> alNewClipList = new List<AudioClip>();
@@ -282,20 +271,20 @@ namespace Obi.Assets
 
         public void InsertAsset(Assets.AudioMediaAsset chunk, long position)
         {
-            double dPosition = Audio.CalculationFunctions.ConvertByteToTime(position, m_SamplingRate, m_FrameSize);
+            double dPosition = Audio.CalculationFunctions.ConvertByteToTime(position, mSamplingRate, mFrameSize);
             InsertAsset(chunk, dPosition);
         }
 
         public void InsertAsset(Assets.AudioMediaAsset chunk, double time)
         {
             // checks if audio formats of original asset and chunk asset are of same formats
-            if (CompareAudioAssetFormat(this, chunk) == true && time <= m_dAudioLengthInTime && time >= 0)
+            if (CompareAudioAssetFormat(this, chunk) == true && time <= mAudioLengthInTime && time >= 0)
             {
                 // creates the temporary blank asset
                 AudioMediaAsset ob1 = new AudioMediaAsset(this.Channels, this.BitDepth, this.SampleRate);
 
                 // if Chunk is to be inserted somewhere in between of original asset
-                if (time > -0 && time < m_dAudioLengthInTime)
+                if (time > -0 && time < mAudioLengthInTime)
                 {
                     // copies part of original asset before insertion time to temporary ob1 asset
                     ob1 = GetChunk(0, time) as AudioMediaAsset;
@@ -323,12 +312,12 @@ namespace Obi.Assets
                 //}
                 mClips.Clear();
                 foreach (AudioClip clip in ob1.Clips) mClips.Add(clip);
-                m_dAudioLengthInTime = ob1.LengthInMilliseconds;
-                m_lAudioLengthInBytes = ob1.AudioLengthInBytes;
+                mAudioLengthInTime = ob1.LengthInMilliseconds;
+                mAudioLengthInBytes = ob1.AudioLengthInBytes;
                 mSizeInBytes = ob1.SizeInBytes;
 
                 // if Chunk is to be appended to original asset
-                if (time == m_dAudioLengthInTime)
+                if (time == mAudioLengthInTime)
                 {
                     MergeWith(chunk);
                 }
@@ -345,30 +334,30 @@ namespace Obi.Assets
 
         public Assets.AudioMediaAsset DeleteChunk(long beginPosition, long endPosition)
         {
-            double dBeginTime = Audio.CalculationFunctions.ConvertByteToTime(beginPosition, m_SamplingRate, m_FrameSize);
-            double dEndTime = Audio.CalculationFunctions.ConvertByteToTime(endPosition, m_SamplingRate, m_FrameSize);
+            double dBeginTime = Audio.CalculationFunctions.ConvertByteToTime(beginPosition, mSamplingRate, mFrameSize);
+            double dEndTime = Audio.CalculationFunctions.ConvertByteToTime(endPosition, mSamplingRate, mFrameSize);
             return DeleteChunk(dBeginTime, dEndTime);
         }
 
         public Assets.AudioMediaAsset DeleteChunk(double beginTime, double endTime)
         {
             // checks if beginTime and EndTime is within bounds of asset and are in order
-            if (beginTime >= 0 && beginTime < endTime && endTime <= m_dAudioLengthInTime)
+            if (beginTime >= 0 && beginTime < endTime && endTime <= mAudioLengthInTime)
             {
                 // create new asset from original asset from part which has to be deleted and keep for returning back
                 AudioMediaAsset ob_NewAsset = GetChunk(beginTime, endTime) as AudioMediaAsset;
 
                 // create two temp assets for holding clips in front of BeginTime and a asset to hold  Clips after endTime
-                AudioMediaAsset ob_FromtAsset = new AudioMediaAsset(m_Channels, m_BitDepth, m_SamplingRate);
-                AudioMediaAsset ob_RearAsset = new AudioMediaAsset(m_Channels, m_BitDepth, m_SamplingRate);
+                AudioMediaAsset ob_FromtAsset = new AudioMediaAsset(mChannels, mBitDepth, mSamplingRate);
+                AudioMediaAsset ob_RearAsset = new AudioMediaAsset(mChannels, mBitDepth, mSamplingRate);
 
                 // if deletion part lies somewhere in between body of asset
-                if (beginTime != 0 && endTime != m_dAudioLengthInTime)
+                if (beginTime != 0 && endTime != mAudioLengthInTime)
                 {
                     // Copy respective  clips  to Front and Rear Assets and merge them
                     ob_FromtAsset = GetChunk(0, beginTime) as AudioMediaAsset;
 
-                    ob_RearAsset = GetChunk(endTime, m_dAudioLengthInTime) as AudioMediaAsset;
+                    ob_RearAsset = GetChunk(endTime, mAudioLengthInTime) as AudioMediaAsset;
 
                     ob_FromtAsset.MergeWith(ob_RearAsset);
                 }
@@ -379,17 +368,17 @@ namespace Obi.Assets
                     ob_FromtAsset = GetChunk(0, beginTime) as AudioMediaAsset;
                 }
                 // if Deletion is in front including start
-                else if (endTime != m_dAudioLengthInTime)
+                else if (endTime != mAudioLengthInTime)
                 {
                     // copies end part of asset to front asset
-                    ob_FromtAsset = GetChunk(endTime, m_dAudioLengthInTime) as AudioMediaAsset;
+                    ob_FromtAsset = GetChunk(endTime, mAudioLengthInTime) as AudioMediaAsset;
                 }
 
                 // replaces clip list of original asset with clip list of front asset
                 // m_alClipList = ob_FromtAsset.m_alClipList;
                 mClips = ob_FromtAsset.Clips;
-                m_dAudioLengthInTime = ob_FromtAsset.LengthInMilliseconds;
-                m_lAudioLengthInBytes = ob_FromtAsset.AudioLengthInBytes;
+                mAudioLengthInTime = ob_FromtAsset.LengthInMilliseconds;
+                mAudioLengthInBytes = ob_FromtAsset.AudioLengthInBytes;
                 mSizeInBytes = ob_FromtAsset.SizeInBytes;
 
                 ob_FromtAsset = null;
@@ -405,7 +394,7 @@ namespace Obi.Assets
         internal ArrayList FindClipToProcess(double Time)
         {
             // checks if the time taken as input parameter is within bounds of Asset
-            if (Time <= m_dAudioLengthInTime && Time >= 0)
+            if (Time <= mAudioLengthInTime && Time >= 0)
             {
 
                 //AudioClip ob_AudioClip = m_alClipList[0] as AudioClip;
@@ -414,7 +403,7 @@ namespace Obi.Assets
                 // Add the length in time of each clip and add untill time parameter is close enough upto atmost one clip distance
                 double TimeSum = 0;
                 int Count = 0;
-                while (TimeSum <= Time && TimeSum < m_dAudioLengthInTime)
+                while (TimeSum <= Time && TimeSum < mAudioLengthInTime)
                 {
                     //if (Count < m_alClipList.Count)
                     //    ob_AudioClip = m_alClipList[Count] as AudioClip;
@@ -453,43 +442,40 @@ namespace Obi.Assets
 
         }
 
-
+        /// <summary>
+        /// Merge with another asset.
+        /// The asset is modified in place, the "next" asset being appended.
+        /// </summary>
+        /// <param name="next">The next asset to merge with.</param>
         public override void MergeWith(Assets.MediaAsset next)
         {
-
-            AudioMediaAsset ob_AudioMediaAsset = next as AudioMediaAsset;
+            AudioMediaAsset _next = next as AudioMediaAsset;
             // checks if the formats of both clips is same
-            if (CompareAudioAssetFormat(this, ob_AudioMediaAsset) == true)
+            if (!CompareAudioAssetFormat(this, _next))
             {
-                // append clips of next asset to clip list of original asset
-                //for (int i = 0; i < ob_AudioMediaAsset.m_alClipList.Count; i++)
-                //{
-                //    m_alClipList.Add(ob_AudioMediaAsset.m_alClipList[i]);
-                //}
-                foreach (AudioClip clip in ob_AudioMediaAsset.Clips) mClips.Add(clip);
-                m_dAudioLengthInTime = m_dAudioLengthInTime + ob_AudioMediaAsset.LengthInMilliseconds;
-                m_lAudioLengthInBytes = m_lAudioLengthInBytes + ob_AudioMediaAsset.AudioLengthInBytes;
-                mSizeInBytes = mSizeInBytes + ob_AudioMediaAsset.SizeInBytes;
-                next = null;
-            }
-            else
                 throw new Exception("Cannot merge assets: incompatible format");
+            }
+            // append clips of next asset to clip list of original asset
+            foreach (AudioClip clip in _next.Clips) mClips.Add(clip);
+            mAudioLengthInTime = mAudioLengthInTime + _next.LengthInMilliseconds;
+            mAudioLengthInBytes = mAudioLengthInBytes + _next.AudioLengthInBytes;
+            mSizeInBytes = mSizeInBytes + _next.SizeInBytes;
         }
 
         public Assets.AudioMediaAsset Split(long position)
         {
-            double dTime = Audio.CalculationFunctions.ConvertByteToTime(position, m_SamplingRate, m_FrameSize);
+            double dTime = Audio.CalculationFunctions.ConvertByteToTime(position, mSamplingRate, mFrameSize);
             return Split(dTime);
         }
 
         public Assets.AudioMediaAsset Split(double time)
         {
             // checks if time parameter is in bounds of asset
-            if (time >= 0 && time <= m_dAudioLengthInTime)
+            if (time >= 0 && time <= mAudioLengthInTime)
             {
                 // create new asset for clips after time specified in parameter
 
-                AudioMediaAsset ob_AudioMediaAsset = GetChunk(time, m_dAudioLengthInTime) as AudioMediaAsset;
+                AudioMediaAsset ob_AudioMediaAsset = GetChunk(time, mAudioLengthInTime) as AudioMediaAsset;
 
                 //// modify original asset
                 ArrayList alMarksList = new ArrayList(FindClipToProcess(time));
@@ -513,9 +499,9 @@ namespace Obi.Assets
                 //m_alClipList.RemoveRange(ClipIndex + 1, (m_alClipList.Count - ClipIndex - 1));
                 mClips.RemoveRange(ClipIndex + 1, (mClips.Count - ClipIndex - 1));
 
-                m_dAudioLengthInTime = m_dAudioLengthInTime - ob_AudioMediaAsset.LengthInMilliseconds;
-                m_lAudioLengthInBytes = m_lAudioLengthInBytes - ob_AudioMediaAsset.AudioLengthInBytes;
-                mSizeInBytes = m_lAudioLengthInBytes;
+                mAudioLengthInTime = mAudioLengthInTime - ob_AudioMediaAsset.LengthInMilliseconds;
+                mAudioLengthInBytes = mAudioLengthInBytes - ob_AudioMediaAsset.AudioLengthInBytes;
+                mSizeInBytes = mAudioLengthInBytes;
 
                 return ob_AudioMediaAsset;
             }
@@ -553,7 +539,7 @@ namespace Obi.Assets
             ArrayList alAssetList = new ArrayList();
             // clipList is clip list for each return asset
             ArrayList alClipList;
-            AudioMediaAsset ob_Asset = new AudioMediaAsset(m_Channels, m_BitDepth, m_SamplingRate);
+            AudioMediaAsset ob_Asset = new AudioMediaAsset(mChannels, mBitDepth, mSamplingRate);
 
             // apply phrase detection on each clip in clip list of this asset
             for (int i = 0; i < mClips.Count; ++i)
@@ -580,11 +566,11 @@ namespace Obi.Assets
                         alAssetList.Add(ob_Asset);
                     for (int j = 1; j < alClipList.Count - 1; j++)
                     {
-                        ob_Asset = new AudioMediaAsset(m_Channels, m_BitDepth, m_SamplingRate);
+                        ob_Asset = new AudioMediaAsset(mChannels, mBitDepth, mSamplingRate);
                         ob_Asset.AddClip(alClipList[j] as AudioClip);
                         alAssetList.Add(ob_Asset);
                     }
-                    ob_Asset = new AudioMediaAsset(m_Channels, m_BitDepth, m_SamplingRate);
+                    ob_Asset = new AudioMediaAsset(mChannels, mBitDepth, mSamplingRate);
                     if (alClipList.Count > 2)
                         ob_Asset.AddClip(alClipList[alClipList.Count - 1] as AudioClip);
                     if (i == mClips.Count - 1 && ob_Asset.Clips != null)
@@ -611,8 +597,8 @@ namespace Obi.Assets
         public List<AudioMediaAsset> ApplyPhraseDetection(long threshold, double length, double before)
         {
             // convert input parameters from time to byte
-            long lLength = Audio.CalculationFunctions.ConvertTimeToByte(length, m_SamplingRate, m_FrameSize);
-            long lBefore = Audio.CalculationFunctions.ConvertTimeToByte(before, m_SamplingRate, m_FrameSize);
+            long lLength = Audio.CalculationFunctions.ConvertTimeToByte(length, mSamplingRate, mFrameSize);
+            long lBefore = Audio.CalculationFunctions.ConvertTimeToByte(before, mSamplingRate, mFrameSize);
             return ApplyPhraseDetection(threshold, lLength, lBefore);
         }
 
@@ -689,13 +675,13 @@ namespace Obi.Assets
 
         public void AddClip(AudioClip Clip)
         {
-            if (m_Channels == Clip.Channels && m_BitDepth == Clip.BitDepth && m_SamplingRate == Clip.SampleRate)
+            if (mChannels == Clip.Channels && mBitDepth == Clip.BitDepth && mSamplingRate == Clip.SampleRate)
             {
                 // m_alClipList.Add(Clip);
                 mClips.Add(Clip);
-                m_dAudioLengthInTime = m_dAudioLengthInTime + Clip.LengthInTime;
-                m_lAudioLengthInBytes = Audio.CalculationFunctions.ConvertTimeToByte(m_dAudioLengthInTime, m_SamplingRate, m_FrameSize);
-                mSizeInBytes = m_lAudioLengthInBytes;
+                mAudioLengthInTime = mAudioLengthInTime + Clip.LengthInTime;
+                mAudioLengthInBytes = Audio.CalculationFunctions.ConvertTimeToByte(mAudioLengthInTime, mSamplingRate, mFrameSize);
+                mSizeInBytes = mAudioLengthInBytes;
             }
             else
                 throw new Exception("Clip format do not match Asset format");

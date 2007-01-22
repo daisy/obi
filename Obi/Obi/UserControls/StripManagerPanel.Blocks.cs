@@ -223,5 +223,20 @@ namespace Obi.UserControls
             InsertPoint insert = this.CurrentInsertPoint;
             if (insert.node != null) mProjectPanel.Project.AddEmptyPhraseNode(insert.node, insert.index);   
         }
+
+        internal void QuickSplit()
+        {
+            if (mSelectedPhrase != null)
+            {
+                double time = ProjectPanel.TransportBar.Playlist.CurrentTimeInAsset;
+                Assets.AudioMediaAsset asset = mSelectedPhrase.Asset;
+                if (time > 0 && time < asset.LengthInMilliseconds)
+                {
+                    ProjectPanel.TransportBar.Playlist.Stop();
+                    Assets.AudioMediaAsset result = asset.Manager.SplitAudioMediaAsset(asset, time);
+                    SplitAudioBlockRequested(this, new Events.Node.SplitPhraseNodeEventArgs(this, mSelectedPhrase, result));
+                }
+            }
+        }
     }
 }
