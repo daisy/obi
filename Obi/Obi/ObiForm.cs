@@ -348,7 +348,7 @@ namespace Obi
         }
 
         /// <summary>
-        /// Paste what's in the clipboard.
+        /// Paste what's in the clipboard and what is selected.
         /// </summary>
         private void mPasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -360,9 +360,34 @@ namespace Obi
                 }
                 else if (mProject.Clipboard.Phrase != null)
                 {
-                    mProject.PastePhraseNode(this, new Obi.Events.Node.NodeEventArgs(this, mProjectPanel.SelectedNode));
+                    StopIfPaused();
+                    mProject.PastePhraseNode(mProject.Clipboard.Phrase, mProjectPanel.SelectedNode);
                 }
             }
+        }
+
+        /// <summary>
+        /// Delete depens on what is selected.
+        /// </summary>
+        private void mDeleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectPanel != null)
+            {
+                if (mProjectPanel.StripManager.SelectedPhraseNode != null)
+                {
+                    StopIfPaused();
+                    mProject.DeletePhraseNode(mProjectPanel.StripManager.SelectedPhraseNode);
+                }
+                else if (mProjectPanel.StripManager.SelectedSectionNode != null)
+                {
+                    mProjectPanel.StripManager.DeleteSelectedSection();
+                }
+                else if (mProjectPanel.TOCPanel.IsNodeSelected)
+                {
+                    mProjectPanel.TOCPanel.DeleteSelectedSection();
+                }
+            }
+
         }
 
         #endregion
@@ -809,28 +834,6 @@ namespace Obi
 
 
         #endregion
-
-        private void mDeleteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProjectPanel != null)
-            {
-                if (mProjectPanel.StripManager.SelectedPhraseNode != null)
-                {
-                    mProjectPanel.StripManager.DeleteSelectedPhrase();
-                }
-                else if (mProjectPanel.StripManager.SelectedSectionNode != null)
-                {
-                    mProjectPanel.StripManager.DeleteSelectedSection();
-                }
-                else if (mProjectPanel.TOCPanel.IsNodeSelected)
-                {
-                    // check that there is actually something that looks selected
-                    // from the user POV.
-                    mProjectPanel.TOCPanel.DeleteSelectedSection();
-                }
-            }
-
-        }
 
 
         /// <summary>

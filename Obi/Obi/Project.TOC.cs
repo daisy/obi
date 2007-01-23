@@ -423,7 +423,7 @@ namespace Obi
             numChildren = node.PhraseChildCount;
             for (int i = numChildren - 1; i >= 0; i--)
             {
-                Commands.Command cmdDeletePhrase = DeletePhraseNodeAndAsset(node.PhraseChild(i));
+                Commands.Command cmdDeletePhrase = RemovePhraseNodeAndAsset(node.PhraseChild(i));
                 if (command != null) command.AddCommand(cmdDeletePhrase);
             }
             Commands.Command cmdRemove = RemoveSectionNode(this, node);
@@ -580,7 +580,7 @@ namespace Obi
             numChildren = node.PhraseChildCount;
             for (int i = numChildren - 1; i>=0; i--)
             {
-                Commands.Command cmdDeletePhrase = DeletePhraseNodeAndAsset(node.PhraseChild(i));
+                Commands.Command cmdDeletePhrase = RemovePhraseNodeAndAsset(node.PhraseChild(i));
                 command.AddCommand(cmdDeletePhrase);
             }
 
@@ -689,7 +689,7 @@ namespace Obi
                 }
                 for (int i = node.PhraseChildCount - 1; i >= 0; --i)
                 {
-                    command.AddCommand(DeletePhraseNodeAndAsset(node.PhraseChild(i)));
+                    command.AddCommand(RemovePhraseNodeAndAsset(node.PhraseChild(i)));
                 }
                 command.AddCommand(RemoveSectionNode(this, node));
                 Modified();

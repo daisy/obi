@@ -36,7 +36,7 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Undo()
         {
-            mNode.Project.DeletePhraseNodeAndAsset(mNode);
+            mNode.Project.RemovePhraseNodeAndAsset(mNode);
         }
     }
 
@@ -55,7 +55,7 @@ namespace Obi.Commands.Strips
         public override void Do()
         {
             base.Do();
-            mNode.Project.SetAudioMediaAsset(mNode, mNode.Asset);
+            // mNode.Project.SetAudioMediaAsset(mNode, mNode.Asset);
         }
     }
 }

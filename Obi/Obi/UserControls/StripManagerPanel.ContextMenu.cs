@@ -24,7 +24,7 @@ namespace Obi.UserControls
         // public event Events.PhraseNodeHandler CopyPhraseNodeRequested;
         // public event Events.SectionNodeHandler CopySectionNodeRequested;
         public event Events.SectionNodeHandler PasteSectionNodeRequested;
-        public event Events.NodeEventHandler PastePhraseNodeRequested;
+        // public event Events.NodeEventHandler PastePhraseNodeRequested;
 
         public Events.RequestToSetPageNumberHandler SetPageNumberRequested;
         public Events.PhraseNodeHandler RemovePageNumberRequested;
@@ -249,12 +249,7 @@ namespace Obi.UserControls
         /// </summary>
         private void mDeleteAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mSelectedPhrase != null) DeleteSelectedPhrase();
-        }
-
-        public void DeleteSelectedPhrase()
-        {
-            DeleteBlockRequested(this, new Events.Node.PhraseNodeEventArgs(this, mSelectedPhrase));
+            mProjectPanel.Project.DeletePhraseNode(mSelectedPhrase);
         }
 
         /// <summary>
@@ -333,23 +328,9 @@ namespace Obi.UserControls
         /// <summary>
         /// Paste the audio block in the clip board.
         /// </summary>
-        // JQ 20060815
         private void mPasteAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProjectPanel.Project.Clipboard.Phrase != null && mSelectedSection != null)
-            {
-                PastePhraseNode();
-            }
-        }
-
-        /// <summary>
-        /// Paste after the currently selected block, or at the end of the
-        /// currently selected section if no block is selected.
-        /// </summary>
-        public void PastePhraseNode()
-        {
-            PastePhraseNodeRequested(this, new NodeEventArgs(this,
-                mSelectedPhrase == null ? (CoreNode)mSelectedSection : (CoreNode)mSelectedPhrase));
+            mProjectPanel.Project.PastePhraseNode(mProjectPanel.Project.Clipboard.Phrase, SelectedNode);
         }
 
         /// <summary>

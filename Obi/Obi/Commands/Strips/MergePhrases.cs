@@ -26,7 +26,7 @@ namespace Obi.Commands.Strips
         public override void  Do()
         {
             mNode.Project.SetAudioMediaAsset(mNode, mMergedAsset);
-            mNode.Project.DeletePhraseNodeAndAsset(mNext);
+            mNode.Project.RemovePhraseNodeAndAsset(mNext);
         }
 
         public override void Undo()

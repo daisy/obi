@@ -30,7 +30,7 @@ namespace Obi
                 {
                     Phrase = (PhraseNode)value;
                 }
-                else
+                else if (value != null)
                 {
                     throw new Exception(string.Format("Invalid type for clipboard: {0}", value.GetType()));
                 }

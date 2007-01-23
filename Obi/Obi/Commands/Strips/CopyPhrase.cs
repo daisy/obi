@@ -16,10 +16,14 @@ namespace Obi.Commands.Strips
             get { return Localizer.Message("copy_phrase_command_label"); }
         }
 
-        public CopyPhrase(object prev, PhraseNode node)
+        /// <summary>
+        /// Create the command *before* updating the clipboard.
+        /// </summary>
+        /// <param name="node">Copy of the phrase node to be stored in the clipboard.</param>
+        public CopyPhrase(PhraseNode node)
         {
-            mPrevious = prev;
             mNode = node;
+            mPrevious = mNode.Project.Clipboard.Data;
         }
 
         /// <summary>
