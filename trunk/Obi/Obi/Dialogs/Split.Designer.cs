@@ -44,8 +44,10 @@ namespace Obi.Dialogs
             this.labelAssetName = new System.Windows.Forms.Label();
             this.labelTime = new System.Windows.Forms.Label();
             this.labelSplitTime = new System.Windows.Forms.Label();
-            this.comboStep = new System.Windows.Forms.ComboBox();
             this.lblStepSize = new System.Windows.Forms.Label();
+            this.txtStepSize = new System.Windows.Forms.TextBox();
+            this.btnStepSizeIncrement = new System.Windows.Forms.Button();
+            this.btnStepSizeDecrement = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -109,7 +111,7 @@ namespace Obi.Dialogs
             this.btnSplit.Location = new System.Drawing.Point(12, 240);
             this.btnSplit.Name = "btnSplit";
             this.btnSplit.Size = new System.Drawing.Size(118, 23);
-            this.btnSplit.TabIndex = 15;
+            this.btnSplit.TabIndex = 17;
             this.btnSplit.Text = "Split";
             this.btnSplit.UseVisualStyleBackColor = true;
             this.btnSplit.Click += new System.EventHandler(this.btnSplit_Click);
@@ -120,7 +122,7 @@ namespace Obi.Dialogs
             this.btnStop.Location = new System.Drawing.Point(136, 240);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(127, 23);
-            this.btnStop.TabIndex = 16;
+            this.btnStop.TabIndex = 18;
             this.btnStop.Text = "Stop/Close";
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
@@ -181,15 +183,6 @@ namespace Obi.Dialogs
             this.labelSplitTime.TabIndex = 5;
             this.labelSplitTime.Text = "&split time";
             // 
-            // comboStep
-            // 
-            this.comboStep.AccessibleName = "Step size in seconds";
-            this.comboStep.FormattingEnabled = true;
-            this.comboStep.Location = new System.Drawing.Point(135, 210);
-            this.comboStep.Name = "comboStep";
-            this.comboStep.Size = new System.Drawing.Size(121, 21);
-            this.comboStep.TabIndex = 11;
-            // 
             // lblStepSize
             // 
             this.lblStepSize.AutoSize = true;
@@ -199,6 +192,38 @@ namespace Obi.Dialogs
             this.lblStepSize.TabIndex = 10;
             this.lblStepSize.Text = "Step s&ize in sec\'s";
             // 
+            // txtStepSize
+            // 
+            this.txtStepSize.AccessibleName = "Step Size in Seconds";
+            this.txtStepSize.Location = new System.Drawing.Point(135, 210);
+            this.txtStepSize.Name = "txtStepSize";
+            this.txtStepSize.Size = new System.Drawing.Size(50, 20);
+            this.txtStepSize.TabIndex = 11;
+            this.txtStepSize.Text = "0.5";
+            this.txtStepSize.TextChanged += new System.EventHandler(this.txtStepSize_TextChanged);
+            // 
+            // btnStepSizeIncrement
+            // 
+            this.btnStepSizeIncrement.AccessibleName = "Step Size +";
+            this.btnStepSizeIncrement.Location = new System.Drawing.Point(190, 204);
+            this.btnStepSizeIncrement.Name = "btnStepSizeIncrement";
+            this.btnStepSizeIncrement.Size = new System.Drawing.Size(25, 15);
+            this.btnStepSizeIncrement.TabIndex = 15;
+            this.btnStepSizeIncrement.Text = "+";
+            this.btnStepSizeIncrement.UseVisualStyleBackColor = true;
+            this.btnStepSizeIncrement.Click += new System.EventHandler(this.btnStepSizeIncrement_Click);
+            // 
+            // btnStepSizeDecrement
+            // 
+            this.btnStepSizeDecrement.AccessibleName = "Step Size Minus";
+            this.btnStepSizeDecrement.Location = new System.Drawing.Point(190, 216);
+            this.btnStepSizeDecrement.Name = "btnStepSizeDecrement";
+            this.btnStepSizeDecrement.Size = new System.Drawing.Size(25, 15);
+            this.btnStepSizeDecrement.TabIndex = 16;
+            this.btnStepSizeDecrement.Text = "-";
+            this.btnStepSizeDecrement.UseVisualStyleBackColor = true;
+            this.btnStepSizeDecrement.Click += new System.EventHandler(this.btnStepSizeDecrement_Click);
+            // 
             // Split
             // 
             this.AcceptButton = this.btnSplit;
@@ -207,8 +232,10 @@ namespace Obi.Dialogs
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnStop;
             this.ClientSize = new System.Drawing.Size(275, 333);
+            this.Controls.Add(this.btnStepSizeDecrement);
+            this.Controls.Add(this.btnStepSizeIncrement);
+            this.Controls.Add(this.txtStepSize);
             this.Controls.Add(this.lblStepSize);
-            this.Controls.Add(this.comboStep);
             this.Controls.Add(this.labelSplitTime);
             this.Controls.Add(this.labelTime);
             this.Controls.Add(this.labelAssetName);
@@ -247,7 +274,9 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label labelAssetName;
         private System.Windows.Forms.Label labelTime;
         private System.Windows.Forms.Label labelSplitTime;
-        private System.Windows.Forms.ComboBox comboStep;
         private System.Windows.Forms.Label lblStepSize;
+        private System.Windows.Forms.TextBox txtStepSize;
+        private System.Windows.Forms.Button btnStepSizeIncrement;
+        private System.Windows.Forms.Button btnStepSizeDecrement;
     }
 }
