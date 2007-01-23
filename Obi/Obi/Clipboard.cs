@@ -1,3 +1,4 @@
+using System;
 using urakawa.core;
 
 namespace Obi
@@ -11,35 +12,27 @@ namespace Obi
     {
         private SectionNode mSection;  // a section node
         private PhraseNode mPhrase;    // a phrase node
-        private bool mDeep;            // whether the section subtree is copied or not
-
-        /// <summary>
-        /// Flag for deep or shallow copy of a section node.
-        /// </summary>
-        public bool Deep
-        {
-            get { return mSection != null && mDeep; }
-        }
 
         /// <summary>
         /// Anything that the clipboard can contain. 
-        /// When setting a section, the default is to set as "strip", so use Section.set instead
-        /// from the TOC panel.
         /// </summary>
         public object Data
         {
-            get { return mSection != null ? (CoreNode)mSection : mPhrase != null ? (CoreNode)mPhrase : null; }
+            get { return mSection != null ? (object)mSection : mPhrase != null ? (object)mPhrase : null; }
             set
             {
                 Clear();
-                CoreNode node = value as CoreNode;
-                if (node.GetType() == System.Type.GetType("Obi.SectionNode"))
+                if (value is SectionNode)
                 {
-                    Strip = (SectionNode)node;
+                    Section = (SectionNode)value;
                 }
-                else if (node.GetType() == System.Type.GetType("Obi.PhraseNode"))
+                else if (value is PhraseNode)
                 {
-                    Phrase = (PhraseNode)node;
+                    Phrase = (PhraseNode)value;
+                }
+                else
+                {
+                    throw new Exception(string.Format("Invalid type for clipboard: {0}", value.GetType()));
                 }
             }
         }
@@ -54,21 +47,6 @@ namespace Obi
             {
                 Clear();
                 mSection = value;
-                mDeep = true;
-            }
-        }
-
-        /// <summary>
-        /// Same as section, except that it will always be shallow pasted.
-        /// Use the Section getter if you want to look at the strip.
-        /// </summary>
-        public SectionNode Strip
-        {
-            set
-            {
-                Clear();
-                mSection = value;
-                mDeep = false;
             }
         }
 

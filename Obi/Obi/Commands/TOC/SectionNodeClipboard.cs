@@ -23,7 +23,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            mNode.Project.DoCutSectionNode(mNode.Project, mNode);
+            mNode.Project._CutSectionNode(mNode, false);
         }
 
         /// <summary>
@@ -37,24 +37,26 @@ namespace Obi.Commands.TOC
 
     class CopySectionNode : Command
     {
-        private SectionNode mNode;
+        private object mPrevious;   // previous clipboard data
+        private SectionNode mNode;  // the node to copy
 
         public override string Label
         {
             get { return Localizer.Message("copy_section_command_label"); }
         }
 
-        public CopySectionNode(SectionNode node)
+        public CopySectionNode(object prev, SectionNode node)
         {
+            mPrevious = prev;
             mNode = node;
         }
 
         /// <summary>
-        /// ReDo: uncut the node
+        /// Do: restore previous data
         /// </summary>
         public override void Do()
         {
-            mNode.Project.CopySectionNode(mNode.Project, mNode);
+            mNode.Project.Clipboard.Section = mNode;
         }
 
         /// <summary>
@@ -62,7 +64,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mNode.Project.UndoCopySectionNode(mNode);
+            mNode.Project.Clipboard.Data = mPrevious;
         }
     }
 
@@ -123,34 +125,16 @@ namespace Obi.Commands.TOC
         }
     }
 
-    class ShallowCopySectionNode : Command
+    class ShallowCopySectionNode : CopySectionNode
     {
-        private SectionNode mNode;
-
         public override string Label
         {
             get { return Localizer.Message("copy_strip_command_label"); }
         }
 
-        public ShallowCopySectionNode(SectionNode node)
+        public ShallowCopySectionNode(object prev, SectionNode node)
+            : base(prev, node)
         {
-            mNode = node;
-        }
-
-        /// <summary>
-        /// ReDo: uncut the node
-        /// </summary>
-        public override void Do()
-        {
-            mNode.Project.ShallowCopySectionNode(mNode.Project, mNode);
-        }
-
-        /// <summary>
-        /// Undo: restore the node and its descendants.
-        /// </summary>
-        public override void Undo()
-        {
-            mNode.Project.UndoShallowCopySectionNode(mNode);
         }
     }
 }

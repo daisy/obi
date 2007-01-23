@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 using urakawa.core;
 
 namespace Obi.Commands.Strips
@@ -26,18 +22,29 @@ namespace Obi.Commands.Strips
             get { return Localizer.Message("delete_phrase_command_label"); }
         }
 
+        /// <summary>
+        /// Create a new command.
+        /// Issue *before* deleting the node as we need its parent/index information.
+        /// </summary>
+        /// <param name="node">The node to be deleted.</param>
         public DeletePhrase(PhraseNode node)
         {
             mNode = node;
             mParent = node.ParentSection;
             mIndex = node.Index;
         }
-        
+
+        /// <summary>
+        /// Do: delete the node and its asset from the tree/project.
+        /// </summary>
         public override void Do()
         {
             mNode.Project.DeletePhraseNodeAndAsset(mNode);
         }
 
+        /// <summary>
+        /// Undo: readd the node and its asset in the tree/project.
+        /// </summary>
         public override void Undo()
         {
             mNode.Project.AddPhraseNodeAndAsset(mNode, mParent, mIndex);
@@ -50,29 +57,40 @@ namespace Obi.Commands.Strips
     /// </summary>
     class CutPhrase : DeletePhrase
     {
-        private PhraseNode mPrevBlockClipBoard;  // previous clip board block
+        private object mPrevious;  // previous object on the clipboard
 
         public override string Label
         {
             get { return Localizer.Message("cut_phrase_command_label"); }
         }
 
+        /// <summary>
+        /// Create a new command.
+        /// Use *before* cutting the node to retain the previous clipboard data.
+        /// </summary>
+        /// <param name="node">The node to be cut.</param>
         public CutPhrase(PhraseNode node)
             : base(node)
         {
-            mPrevBlockClipBoard = Node.Project.Clipboard.Phrase;
+            mPrevious = node.Project.Clipboard.Data;
         }
 
+        /// <summary>
+        /// Do: delete the node again and put it back in the clipboard.
+        /// </summary>
         public override void Do()
         {
             base.Do();
             Node.Project.Clipboard.Phrase = Node;
         }
 
+        /// <summary>
+        /// Undo: restore the node and the previous clipboard data.
+        /// </summary>
         public override void Undo()
         {
             base.Undo();
-            Node.Project.Clipboard.Phrase = mPrevBlockClipBoard;
+            Node.Project.Clipboard.Data = mPrevious;
         }
     }
 }

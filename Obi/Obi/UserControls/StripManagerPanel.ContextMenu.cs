@@ -21,8 +21,8 @@ namespace Obi.UserControls
        
         // public event Events.SectionNodeHandler CutSectionNodeRequested;
         // public event Events.PhraseNodeHandler CutPhraseNodeRequested;
-        public event Events.PhraseNodeHandler CopyPhraseNodeRequested;
-        public event Events.SectionNodeHandler CopySectionNodeRequested;
+        // public event Events.PhraseNodeHandler CopyPhraseNodeRequested;
+        // public event Events.SectionNodeHandler CopySectionNodeRequested;
         public event Events.SectionNodeHandler PasteSectionNodeRequested;
         public event Events.NodeEventHandler PastePhraseNodeRequested;
 
@@ -317,23 +317,7 @@ namespace Obi.UserControls
         //JQ 20060815
         private void mCutBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mSelectedPhrase != null) CutSelectedPhrase();
-        }
-
-        /// <summary>
-        /// Cut the phrase currently selected.
-        /// </summary>
-        public void CutSelectedPhrase()
-        {
             mProjectPanel.Project.CutPhraseNode(mSelectedPhrase);
-        }
-
-        /// <summary>
-        /// Cut the section currently selected.
-        /// </summary>
-        public void CutSelectedSection()
-        {
-            mProjectPanel.Project.ShallowCutSectionNode(mSelectedSection, true);
         }
 
         /// <summary>
@@ -343,23 +327,7 @@ namespace Obi.UserControls
         // JQ 20060816
         private void mCopyAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mSelectedPhrase != null) CopySelectedPhrase();
-        }
-
-        /// <summary>
-        /// Copy the phrase currently selected.
-        /// </summary>
-        public void CopySelectedPhrase()
-        {
-            CopyPhraseNodeRequested(this, new PhraseNodeEventArgs(this, mSelectedPhrase));
-        }
-
-        /// <summary>
-        /// Copy the section currently selected.
-        /// </summary>
-        public void CopySelectedSection()
-        {
-            CopySectionNodeRequested(this, new SectionNodeEventArgs(this, mSelectedSection));
+            if (mSelectedPhrase != null) mProjectPanel.Project.CopyPhraseNode(mSelectedPhrase);
         }
 
         /// <summary>
@@ -450,13 +418,13 @@ namespace Obi.UserControls
 
         private void mCutStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CutSelectedSection();
+            mProjectPanel.Project.ShallowCutSectionNode(mSelectedSection, true);
         }
 
 
         private void mCopyStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CopySelectedSection();
+            mProjectPanel.Project.ShallowCopySectionNode(mSelectedSection, true);
         }
 
         private void mPasteStripToolStripMenuItem_Click(object sender, EventArgs e)

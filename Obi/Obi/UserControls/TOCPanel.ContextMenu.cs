@@ -22,8 +22,7 @@ namespace Obi.UserControls
         public event Events.SectionNodeHandler IncreaseSectionNodeLevelRequested;
         public event Events.RenameSectionNodeHandler RenameSectionNodeRequested;
         public event Events.SectionNodeHandler DeleteSectionNodeRequested;
-        public event Events.SectionNodeHandler CutSectionNodeRequested;
-        public event Events.SectionNodeHandler CopySectionNodeRequested;
+        // public event Events.SectionNodeHandler CutSectionNodeRequested;
         public event Events.SectionNodeHandler PasteSectionNodeRequested;
 
         // These are internal so that the main menu can also link to them once the project is open.
@@ -107,15 +106,7 @@ namespace Obi.UserControls
 
         private void mCutSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CutSelectedSection();
-        }
-
-        /// <summary>
-        /// Cut the selected section node.
-        /// </summary>
-        public void CutSelectedSection()
-        {
-            CutSectionNodeRequested(this, new SectionNodeEventArgs(this, SelectedSection));
+            mProjectPanel.Project._CutSectionNode(SelectedSection, true);
         }
 
         //md 20060810

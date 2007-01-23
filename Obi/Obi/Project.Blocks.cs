@@ -15,46 +15,36 @@ namespace Obi
         public Events.PhraseNodeHandler RemovedPageNumber;
         public Events.PhraseNodeHandler SetPageNumber;
 
-        #region clip board
-
-        /*
-        internal void CutPhraseNode(object sender, Events.Node.PhraseNodeEventArgs e)
-        {
-            CutPhraseNode(e.Node);
-        }
-        */
+        #region clip board (cut/copy/paste/delete)
 
         /// <summary>
-        /// Cut a phrase node: delete it and store it in the clipboard.
+        /// Cut a phrase node: delete it and store it in the clipboard (store the original node, not a copy.)
         /// Issue a command and modify the project.
         /// </summary>
+        /// <param name="node">The phrase node to cut.</param>
         public void CutPhraseNode(PhraseNode node)
         {
-            // create the command before storing the node in the clip board, otherwise the previous value is lost
-            Commands.Strips.CutPhrase command = new Commands.Strips.CutPhrase(node);
-            mClipboard.Phrase = node;
-            DeletePhraseNodeAndAsset(node);
-            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-            Modified();
+            if (node != null)
+            {
+                Commands.Strips.CutPhrase command = new Commands.Strips.CutPhrase(node);
+                mClipboard.Phrase = node;
+                DeletePhraseNodeAndAsset(node);
+                CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+                Modified();
+            }
         }
 
         /// <summary>
-        /// Copy a phrase node: simply store it in the clipboard (paste will do the actual copying.)
-        /// Issue a command.
+        /// Copy a phrase node by storing a copy in the clipboard.
+        /// Issue a command but do not mark the project as modified.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        internal void CopyPhraseNode(object sender, Events.Node.PhraseNodeEventArgs e)
-        {
-            CopyPhraseNode(e.Node);
-        }
-
+        /// <param name="node">The node to copy.</param>
         public void CopyPhraseNode(PhraseNode node)
         {
-            Commands.Strips.CopyPhrase command = new Commands.Strips.CopyPhrase(node);
-            mClipboard.Phrase = node;
-            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-            // state does not change--the project itself was not modified.
+            object data = mClipboard.Data;
+            mClipboard.Phrase = node.copy(true);
+            CommandCreated(this,
+                new Events.Project.CommandCreatedEventArgs(new Commands.Strips.CopyPhrase(data, mClipboard.Phrase)));
         }
 
         /// <summary>
@@ -420,32 +410,24 @@ namespace Obi
         /// <summary>
         /// Delete a phrase node from the tree.
         /// </summary>
+        /// <param name="node">The phrase node to delete.</param>
         public void DeletePhraseNode(PhraseNode node)
         {
             DeletedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, node));
             node.DetachFromParent();
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            Modified();
         }
 
         /// <summary>
         /// Delete a phrase node from the tree and remove its asset from the asset manager.
         /// </summary>
-        public Commands.Command DeletePhraseNodeAndAsset(PhraseNode node)
+        /// <param name="node">The phrase node to delete.</param>
+        /// <returns>A suitable command for shallow delete.</returns>
+        public Commands.Strips.DeletePhrase DeletePhraseNodeAndAsset(PhraseNode node)
         {
-            //md 20060814 added this command return value here so we have a record of it
-            //for shallow-delete's undo
-            //but note that it hasn't gone to the main command queue
-            Commands.Strips.DeletePhrase command= null;
-            if (node.getParent() != null)
-            {
-                command = new Commands.Strips.DeletePhrase(node);
-            }
-
-            Assets.AudioMediaAsset asset = node.Asset;
-            mAssManager.RemoveAsset(asset);
+            Commands.Strips.DeletePhrase command = new Commands.Strips.DeletePhrase(node);
+            mAssManager.RemoveAsset(node.Asset);
             DeletePhraseNode(node);
-
             return command;
         }
 
