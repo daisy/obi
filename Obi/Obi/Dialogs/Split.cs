@@ -19,6 +19,9 @@ namespace Obi.Dialogs
         private double mSplitTime;                    // time at which the split should occur
         private Audio.AudioPlayerState mSplitState;
         private double mDialogLoadTime ;
+        private List<double> mStepSizeList = new List<double>();
+        private int mSelectedStepSize;
+
         
 
 
@@ -57,11 +60,15 @@ namespace Obi.Dialogs
             // enable timer for displaying formatted time in HH:mm:ss
             tmUpdateTimePosition.Enabled = true;
 
+            // initialise StepSizes
+            InitialiseStepSizeList();
+            mSelectedStepSize = 3;
+
         }
         
         //member variables
         int m_Step=10000;
-        int m_FineStep = 500;
+        double m_FineStep = 500;
         bool PreviewEnabled = false;
 
         private void btnPreview_Click(object sender, EventArgs e)
@@ -184,7 +191,7 @@ namespace Obi.Dialogs
 
         void FineRewind ()
         {
-            m_FineStep = Convert.ToInt32 ( ( double)(comboStep.SelectedItem ) * 1000 ) ;
+            m_FineStep = (  Convert.ToDouble(txtStepSize.Text ) * 1000 ) ;
             CheckSplitTime();
             btnPause.Text = "&Play";
             if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
@@ -210,7 +217,8 @@ namespace Obi.Dialogs
 
         void FineForward ()
         {
-            m_FineStep = Convert.ToInt32((double)(comboStep.SelectedItem) * 1000);
+            
+            m_FineStep = (Convert.ToDouble(txtStepSize.Text) * 1000);
             CheckSplitTime();
             if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
             {
@@ -260,17 +268,8 @@ namespace Obi.Dialogs
 
         private void Split_Load(object sender, EventArgs e)
         {
-            comboStep.Items.Add(.1);
-            comboStep.Items.Add(.2);
-            comboStep.Items.Add(.3);
-            comboStep.Items.Add(.5);
-            comboStep.Items.Add(1.0);
-            comboStep.Items.Add(2.0);
-            comboStep.Items.Add(3.0);
-            comboStep.Items.Add(5.0);
-            comboStep.Items.Add(10.0);
-            comboStep.Items.Add(15.0);
-            comboStep.SelectedIndex = 3;
+            
+
             
             //md annotation are not asset names anymore
             //md removed: ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).getText();
@@ -309,6 +308,8 @@ namespace Obi.Dialogs
                 UpdateSplitTime();
             }
             btnPause.Focus();
+
+            txtStepSize.Text = ( mStepSizeList[mSelectedStepSize]).ToString ()  ;
         }
 
         private void btnPause_Click(object sender, EventArgs e)
@@ -486,13 +487,11 @@ namespace Obi.Dialogs
             switch (keyData)
             {
                 case Keys.Control | Keys.Up:
-                    //FastRewind();
-                    comboStep.SelectedIndex = comboStep.SelectedIndex + 1;
+                    IncrementStepSize();
                     break;
                 
                 case Keys.Control | Keys.Down:
-                    //FastForward();
-                    comboStep.SelectedIndex = comboStep.SelectedIndex - 1;
+                    DecrementStepSize();
                     break;
                 case Keys.Control | Keys.Left:
                     FineRewind();
@@ -518,7 +517,54 @@ namespace Obi.Dialogs
             
         }
 
-    
 
+        private void InitialiseStepSizeList ()
+    {
+        mStepSizeList.Add (.1) ;
+        mStepSizeList.Add(.2);
+        mStepSizeList.Add(.3);
+        mStepSizeList.Add(.5);
+
+        mStepSizeList.Add(1);
+        mStepSizeList.Add(2);
+        mStepSizeList.Add(3);
+        mStepSizeList.Add(5);
+
+        mStepSizeList.Add(10);
+        mStepSizeList.Add(15);
+    }
+
+        private void btnStepSizeIncrement_Click(object sender, EventArgs e)
+        {
+            IncrementStepSize();
+        }
+
+        private void btnStepSizeDecrement_Click(object sender, EventArgs e)
+        {
+            DecrementStepSize();
+        }
+
+        private void IncrementStepSize()
+        {
+            if (mSelectedStepSize < mStepSizeList.Count - 1)
+            {
+                ++mSelectedStepSize;
+                txtStepSize.Text = (mStepSizeList[mSelectedStepSize]).ToString();
+            }
+        }
+
+        private void DecrementStepSize()
+        {
+            if (mSelectedStepSize > 0)
+            {
+                --mSelectedStepSize;
+                txtStepSize.Text = (mStepSizeList[mSelectedStepSize]).ToString();
+            }
+        }
+
+        private void txtStepSize_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }// end of class
 }
