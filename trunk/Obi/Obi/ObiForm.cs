@@ -307,17 +307,17 @@ namespace Obi
                 if (mProjectPanel.StripManager.SelectedPhraseNode != null)
                 {
                     StopIfPaused();
-                    mProjectPanel.StripManager.CutSelectedPhrase();
+                    mProject.CutPhraseNode(mProjectPanel.StripManager.SelectedPhraseNode);
                 }
                 else if (mProjectPanel.StripManager.SelectedSectionNode != null)
                 {
                     StopIfPaused();
-                    mProjectPanel.StripManager.CutSelectedSection();
+                    mProject.ShallowCutSectionNode(mProjectPanel.StripManager.SelectedSectionNode, true);
                 }
                 else if (mProjectPanel.TOCPanel.IsNodeSelected)
                 {
                     StopIfPaused();
-                    mProjectPanel.TOCPanel.CutSelectedSection();
+                    mProject._CutSectionNode(mProjectPanel.TOCPanel.SelectedSection, true);
                 }
             }
         }
@@ -332,17 +332,17 @@ namespace Obi
                 if (mProjectPanel.StripManager.SelectedPhraseNode != null)
                 {
                     StopIfPaused();
-                    mProjectPanel.StripManager.CopySelectedPhrase();
+                    mProject.CopyPhraseNode(mProjectPanel.StripManager.SelectedPhraseNode);
                 }
                 else if (mProjectPanel.StripManager.SelectedSectionNode != null)
                 {
                     StopIfPaused();
-                    mProjectPanel.StripManager.CopySelectedSection();
+                    mProject.ShallowCopySectionNode(mProjectPanel.StripManager.SelectedSectionNode, true);
                 }
                 else if (mProjectPanel.TOCPanel.IsNodeSelected)
                 {
                     StopIfPaused();
-                    mProjectPanel.TOCPanel.CopySelectedSection();
+                    mProject.CopySectionNode(mProjectPanel.TOCPanel.SelectedSection, true);
                 }
             }
         }
@@ -356,15 +356,12 @@ namespace Obi
             {
                 if (mProject.Clipboard.Section != null)
                 {
-                    mProject.PasteSectionNodeRequested(this,
-                        new Obi.Events.Node.SectionNodeEventArgs(this, (SectionNode)mProjectPanel.SelectedNode));
+                    mProject.PasteSectionNode(mProjectPanel.SelectedNode, true);
                 }
                 else if (mProject.Clipboard.Phrase != null)
                 {
                     mProject.PastePhraseNode(this, new Obi.Events.Node.NodeEventArgs(this, mProjectPanel.SelectedNode));
                 }
-                // else, the menu item should not have been enabled
-                else throw new Exception("Nothing to paste!");
             }
         }
 
