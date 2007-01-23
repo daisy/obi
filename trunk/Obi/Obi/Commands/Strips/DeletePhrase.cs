@@ -39,7 +39,7 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Do()
         {
-            mNode.Project.DeletePhraseNodeAndAsset(mNode);
+            mNode.Project.RemovePhraseNodeAndAsset(mNode);
         }
 
         /// <summary>

@@ -28,9 +28,9 @@ namespace Obi
             {
                 Commands.Strips.CutPhrase command = new Commands.Strips.CutPhrase(node);
                 mClipboard.Phrase = node;
-                DeletePhraseNodeAndAsset(node);
-                CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+                RemovePhraseNodeAndAsset(node);
                 Modified();
+                CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             }
         }
 
@@ -41,63 +41,66 @@ namespace Obi
         /// <param name="node">The node to copy.</param>
         public void CopyPhraseNode(PhraseNode node)
         {
-            object data = mClipboard.Data;
-            mClipboard.Phrase = node.copy(true);
-            CommandCreated(this,
-                new Events.Project.CommandCreatedEventArgs(new Commands.Strips.CopyPhrase(data, mClipboard.Phrase)));
+            if (node != null)
+            {
+                PhraseNode copy = node.copy(true);
+                Commands.Strips.CopyPhrase command = new Commands.Strips.CopyPhrase(copy);
+                mClipboard.Phrase = copy;
+                CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            }
         }
 
         /// <summary>
-        /// Paste a copy of the node in the clipboard after the given phrase node, or as the last phrase of the section node.
-        /// The clipboard is unmodified.
-        /// Issue a command and modify the project.
+        /// Delete a phrase node from the tree and remove its asset from the asset manager.
         /// </summary>
-        internal void PastePhraseNode(object sender, Events.Node.NodeEventArgs e)
+        public void DeletePhraseNode(PhraseNode node)
         {
-            System.Diagnostics.Debug.Assert(mClipboard.Phrase != null, "Cannot paste without a phrase node on the clipboard.");
-            
-            PhraseNode copy = mClipboard.Phrase.copy(true);
+            if (node != null)
+            {
+                Commands.Strips.DeletePhrase command = RemovePhraseNodeAndAsset(node);
+                Modified();
+                CommandCreated(this, new Obi.Events.Project.CommandCreatedEventArgs(command));
+            }
+        }
 
-            SectionNode parent = null;
-            int index = 0;
-            if (e.Node.GetType() == System.Type.GetType("Obi.SectionNode"))
+        /// <summary>
+        /// Paste *before*.
+        /// </summary>
+        /// <param name="node">The phrase node to paste.</param>
+        /// <param name="contextNode">If the context is a section, paste at the end of the section.
+        /// If it is a phrase, paste *before* this phrase.</param>
+        public void PastePhraseNode(PhraseNode node, ObiNode contextNode)
+        {
+            if (node != null && contextNode != null)
             {
-                parent = (SectionNode)e.Node;
-                index = ((SectionNode)e.Node).PhraseChildCount;
+                SectionNode parent;
+                int index;
+                if (contextNode is SectionNode)
+                {
+                    parent = (SectionNode)contextNode;
+                    index = parent.PhraseChildCount;
+                }
+                else if (contextNode is PhraseNode)
+                {
+                    parent = ((PhraseNode)contextNode).ParentSection;
+                    index = ((PhraseNode)contextNode).Index;
+                }
+                else
+                {
+                    throw new Exception(String.Format("Cannot paste with context node as {0}.", contextNode.GetType()));
+                }
+                PhraseNode copy = node.copy(true);
+                copy.Asset = (AudioMediaAsset)mAssManager.CopyAsset(node.Asset);
+                AddPhraseNode(copy, parent, index);
+                Modified();
+                Commands.Strips.PastePhrase command = new Commands.Strips.PastePhrase(copy);
+                CommandCreated(this, new Obi.Events.Project.CommandCreatedEventArgs(command));
             }
-            else if (e.Node.GetType() == System.Type.GetType("Obi.PhraseNode"))
-            {
-                parent = (SectionNode)e.Node.getParent();
-                index = ((PhraseNode)e.Node).Index + 1;
-            }
-            AddPhraseNode(copy, parent, index);
-            AudioMediaAsset asset = (AudioMediaAsset)mAssManager.CopyAsset(mClipboard.Phrase.Asset);
-            SetAudioMediaAsset(copy, asset);
-            Commands.Strips.PastePhrase command = new Commands.Strips.PastePhrase(copy);
-            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
 
         #endregion
 
         #region event handlers
-
-        /// <summary>
-        /// Delete a phrase node from the tree and remove its asset from the asset manager.
-        /// Create a command object.
-        /// </summary>
-        public void DeletePhraseNodeRequested(object sender, Events.Node.PhraseNodeEventArgs e)
-        {
-            //the parent of a phrase is always a section
-            SectionNode parent = (SectionNode)e.Node.getParent();
-            int index = parent.indexOf(e.Node);
-            Commands.Strips.DeletePhrase command = new Commands.Strips.DeletePhrase(e.Node);
-            CommandCreated(this, new Obi.Events.Project.CommandCreatedEventArgs(command));
-            DeletePhraseNodeAndAsset(e.Node);
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-        }
 
         /// <summary>
         /// Import an asset, create a node for it and add it at the given position in its section.
@@ -356,26 +359,9 @@ namespace Obi
 
         #region backend functions
 
-        /// <summary>
-        /// Add an already existing phrase node.
-        /// </summary>
-        public void AddPhraseNode(PhraseNode node, SectionNode parent, int index)
-        {
-           parent.AddChildPhrase(node, index);
-            AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, node));
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-        }
 
-        /// <summary>
-        /// Add an already existing phrase node and its asset.
-        /// </summary>
-        public void AddPhraseNodeAndAsset(PhraseNode node, SectionNode parent, int index)
-        {
-            Assets.AudioMediaAsset asset = node.Asset;
-            mAssManager.AddAsset(asset);
-            AddPhraseNode(node, parent, index);    
-        }
+
+
 
         /// <summary>
         /// This function is called when undeleting a subtree
@@ -411,7 +397,7 @@ namespace Obi
         /// Delete a phrase node from the tree.
         /// </summary>
         /// <param name="node">The phrase node to delete.</param>
-        public void DeletePhraseNode(PhraseNode node)
+        public void RemovePhraseNode(PhraseNode node)
         {
             DeletedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, node));
             node.DetachFromParent();
@@ -423,11 +409,11 @@ namespace Obi
         /// </summary>
         /// <param name="node">The phrase node to delete.</param>
         /// <returns>A suitable command for shallow delete.</returns>
-        public Commands.Strips.DeletePhrase DeletePhraseNodeAndAsset(PhraseNode node)
+        public Commands.Strips.DeletePhrase RemovePhraseNodeAndAsset(PhraseNode node)
         {
             Commands.Strips.DeletePhrase command = new Commands.Strips.DeletePhrase(node);
             mAssManager.RemoveAsset(node.Asset);
-            DeletePhraseNode(node);
+            RemovePhraseNode(node);
             return command;
         }
 
@@ -459,7 +445,7 @@ namespace Obi
         {
             int index = node.Index;
             SectionNode parent = (SectionNode)node.getParent();
-            DeletePhraseNode(node);
+            RemovePhraseNode(node);
             AddPhraseNode(node, parent, dir == PhraseNode.Direction.Forward ? index + 1 : index - 1);
         }
 
@@ -592,6 +578,32 @@ namespace Obi
             Commands.Strips.AddPhrase command = new Commands.Strips.AddPhrase(node);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             Modified();
+        }
+
+        /// <summary>
+        /// Add an already existing phrase node.
+        /// </summary>
+        /// <param name="node">The phrase node to add.</param>
+        /// <param name="parent">Its parent section.</param>
+        /// <param name="index">Its position in the parent section (with regards to other phrases.)</param>
+        public void AddPhraseNode(PhraseNode node, SectionNode parent, int index)
+        {
+            parent.AddChildPhrase(node, index);
+            AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, node));
+            Modified();
+        }
+
+        /// <summary>
+        /// Add an already existing phrase node and its asset.
+        /// </summary>
+        /// <param name="node">The phrase node to add.</param>
+        /// <param name="parent">Its parent section.</param>
+        /// <param name="index">Its position in the parent section (with regards to other phrases.)</param>
+        public void AddPhraseNodeAndAsset(PhraseNode node, SectionNode parent, int index)
+        {
+            Assets.AudioMediaAsset asset = node.Asset;
+            mAssManager.AddAsset(asset);
+            AddPhraseNode(node, parent, index);
         }
     }
 }

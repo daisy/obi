@@ -29,7 +29,6 @@ namespace Obi.UserControls
         public event Events.RenameSectionNodeHandler RenameSectionRequested;
         public event Events.SetMediaHandler SetMediaRequested;
         public event Events.RequestToImportAssetHandler ImportAudioAssetRequested;
-        public event Events.PhraseNodeHandler DeleteBlockRequested;
         public event Events.PhraseNodeHandler MoveAudioBlockForwardRequested;
         public event Events.PhraseNodeHandler MoveAudioBlockBackwardRequested;
         public event Events.SplitPhraseNodeHandler SplitAudioBlockRequested;

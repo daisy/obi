@@ -50,7 +50,7 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Undo()
         {
-            mNode.Project.DeletePhraseNodeAndAsset(mNewNode);            
+            mNode.Project.RemovePhraseNodeAndAsset(mNewNode);            
             mNode.Project.SetAudioMediaAsset(mNode, mOriginalAsset);
             mNode.Project.TouchNode(mNode);
         }
