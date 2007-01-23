@@ -145,6 +145,7 @@ namespace Obi.Assets
             copy.mAssManager = null;
             copy.mAudioLengthInTime = mAudioLengthInTime;
             copy.mAudioLengthInBytes = mAudioLengthInBytes;
+            copy.mSizeInBytes = mSizeInBytes;
             copy.mFrameSize = mFrameSize;
             copy.mMediaType = mMediaType;
             copy.mName = mName;
