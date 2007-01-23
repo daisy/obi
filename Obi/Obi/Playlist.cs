@@ -514,7 +514,7 @@ namespace Obi
             }
 else if ( mPlayBackState == PlayBackState.Rewind )
 {
-    if (mPausePosition > ( StepInMs ))
+    if (mPausePosition > ( StepInMs )   &&  PlayChunkLength <= m_CurrentAudioAsset.LengthInMilliseconds  )
     {
 
         mPausePosition = mPausePosition -  StepInMs ;
