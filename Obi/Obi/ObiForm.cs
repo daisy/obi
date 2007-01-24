@@ -35,7 +35,6 @@ namespace Obi
             get { return mVuMeterForm; }
         }
 
-
         /// <summary>
         /// Initialize a new form. No project is opened at creation time.
         /// </summary>
@@ -50,6 +49,7 @@ namespace Obi
             InitializeSettings();
             mProjectPanel.TransportBar.StateChanged +=
                 new Obi.Events.Audio.Player.StateChangedHandler(TransportBar_StateChanged);
+            mProjectPanel.TransportBar.PlaybackRateChanged += new EventHandler(TransportBar_PlaybackRateChanged);
             if (mSettings.OpenLastProject && mSettings.LastOpenProject != "")
             {
                 // open the last open project
@@ -86,6 +86,13 @@ namespace Obi
             Status(Localizer.Message(mProjectPanel.TransportBar.State.ToString()));
         }
 
+        /// <summary>
+        /// TODO.
+        /// </summary>
+        void TransportBar_PlaybackRateChanged(object sender, EventArgs e)
+        {
+            Status("PLAYBACK RATE CHANGED");
+        }
 
         #region File menu event handlers
 

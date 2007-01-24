@@ -18,8 +18,9 @@ namespace Obi.UserControls
         private static readonly int Remain = 2;
         // private static readonly int RemainTotal = 3;
 
-        // Pass the state change events from the playlist
+        // Pass the state change and playback rate change events from the playlist
         public event Events.Audio.Player.StateChangedHandler StateChanged;
+        public event EventHandler PlaybackRateChanged;
 
         /// <summary>
         /// Everything can be solved by adding a new layer of indirection. So here it is.
@@ -80,6 +81,7 @@ namespace Obi.UserControls
                 {
                     mPlaylist.MovedToPhrase += new Playlist.MovedToPhraseHandler(Play_MovedToPhrase);
                     mPlaylist.StateChanged += new Events.Audio.Player.StateChangedHandler(Play_PlayerStateChanged);
+                    mPlaylist.PlaybackRateChanged += new Playlist.PlaybackRateChangedHandler(mPlaylist_PlaybackRateChanged);
                     mPlaylist.EndOfPlaylist += new Playlist.EndOfPlaylistHandler(Play_PlayerStopped);
                     mPreviousSelection = ((ProjectPanel)Parent).SelectedNode;
                     mDisplayBox.SelectedIndex = mPlaylist.WholeBook ? ElapsedTotal : Elapsed;
@@ -368,6 +370,14 @@ namespace Obi.UserControls
             }
             if (StateChanged != null) StateChanged(this, e);
             UpdateTimeDisplay();
+        }
+
+        /// <summary>
+        /// Simply pass the playback rate chang event.
+        /// </summary>
+        private void mPlaylist_PlaybackRateChanged(object sender, EventArgs e)
+        {
+            if (PlaybackRateChanged != null) PlaybackRateChanged(sender, e);
         }
 
         /// <summary>
