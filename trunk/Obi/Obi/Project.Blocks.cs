@@ -90,7 +90,6 @@ namespace Obi
                     throw new Exception(String.Format("Cannot paste with context node as {0}.", contextNode.GetType()));
                 }
                 PhraseNode copy = node.copy(true);
-                copy.Asset = (AudioMediaAsset)mAssManager.CopyAsset(node.Asset);
                 AddPhraseNode(copy, parent, index);
                 Modified();
                 Commands.Strips.PastePhrase command = new Commands.Strips.PastePhrase(copy);

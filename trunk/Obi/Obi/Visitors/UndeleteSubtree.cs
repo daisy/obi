@@ -31,7 +31,7 @@ namespace Obi.Visitors
             if (node.GetType() == System.Type.GetType("Obi.SectionNode"))
             {
                 int index = node.getParent() == null ? mIndex : ((SectionNode)node).Index;
-                mProject.AddExistingSectionNode((SectionNode)node, mParent, index, null);
+                mProject.ReaddSectionNode((SectionNode)node, mParent, index);
             }
             //md 20060816
             //the phrase node already has a parent "node", so we can't re-add it

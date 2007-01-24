@@ -21,9 +21,9 @@ namespace Obi.UserControls
         public event Events.SectionNodeHandler DecreaseSectionNodeLevelRequested;
         public event Events.SectionNodeHandler IncreaseSectionNodeLevelRequested;
         public event Events.RenameSectionNodeHandler RenameSectionNodeRequested;
-        public event Events.SectionNodeHandler DeleteSectionNodeRequested;
+        // public event Events.SectionNodeHandler DeleteSectionNodeRequested;
         // public event Events.SectionNodeHandler CutSectionNodeRequested;
-        public event Events.SectionNodeHandler PasteSectionNodeRequested;
+        // public event Events.SectionNodeHandler PasteSectionNodeRequested;
 
         // These are internal so that the main menu can also link to them once the project is open.
         // Actual they should be private and have another functions called by the main menu.
@@ -65,12 +65,7 @@ namespace Obi.UserControls
         /// </summary>
         private void mDeleteSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DeleteSelectedSection();
-        }
-
-        public void DeleteSelectedSection()
-        {
-            DeleteSectionNodeRequested(this, new SectionNodeEventArgs(this, SelectedSection));
+            mProjectPanel.Project.DeleteSectionNode(SelectedSection);
         }
 
         internal void mRenameToolStripMenuItem_Click(object sender, EventArgs e)
@@ -106,23 +101,17 @@ namespace Obi.UserControls
 
         private void mCutSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.Project._CutSectionNode(SelectedSection, true);
+            mProjectPanel.Project.CutSectionNode(SelectedSection);
         }
 
-        //md 20060810
         private void copySectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CopySelectedSection();
-        }
-
-        public void CopySelectedSection()
-        {
-            mProjectPanel.Project.CopySectionNode(SelectedSection, true);
+            mProjectPanel.Project.CopySectionNode(SelectedSection);
         }
 
         internal void mPasteSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PasteSectionNodeRequested(this, new SectionNodeEventArgs(this, SelectedSection));
+            mProjectPanel.Project.PasteSectionNode(SelectedSection);
         }
 
         /// <summary>

@@ -97,16 +97,15 @@ namespace Obi.UserControls
         /// <param name="e"><see cref="e.Node"/> is the node to be removed.</param>
         internal void SyncDeletedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
         {
-            if (e.Node != null)
-            {
-                TreeNode treeNode = FindTreeNodeFromSectionNode(e.Node);
-                mTocTree.SelectedNode = treeNode.PrevVisibleNode;
-                if (mTocTree.SelectedNode != null)
-                {
-                    mTocTree.SelectedNode.EnsureVisible();
-                }
-                treeNode.Remove();
-            }
+            SyncRemovedSectionNode(e.Node);
+        }
+
+        private void SyncRemovedSectionNode(SectionNode node)
+        {
+            TreeNode treeNode = FindTreeNodeFromSectionNode(node);
+            mTocTree.SelectedNode = treeNode.PrevVisibleNode;
+            if (mTocTree.SelectedNode != null) mTocTree.SelectedNode.EnsureVisible();
+            treeNode.Remove();
         }
 
 
@@ -211,13 +210,10 @@ namespace Obi.UserControls
             mTocTree.SelectedNode = clone;
         }
 
-        //md 20060810
         internal void SyncCutSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
         {
-            SyncDeletedSectionNode(sender, e);
+            SyncRemovedSectionNode(e.Node);
         }
-
-       
 
         //md 20060810
         //e.Node is what was just pasted in
@@ -225,7 +221,6 @@ namespace Obi.UserControls
         {
            //add a subtree
             TreeNode uncutNode = AddSectionNode(e.Node);
-
             uncutNode.ExpandAll();
             uncutNode.EnsureVisible();
             mTocTree.SelectedNode = uncutNode;

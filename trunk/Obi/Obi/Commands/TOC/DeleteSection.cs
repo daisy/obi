@@ -6,7 +6,7 @@ using urakawa.core;
 
 namespace Obi.Commands.TOC
 {
-    class DeleteSectionNode : Command
+    public class DeleteSectionNode : ListCommand
     {
         protected SectionNode mNode;  // the deleted section node
         protected CoreNode mParent;   // parent of the deleted node (root or section node)
@@ -17,7 +17,10 @@ namespace Obi.Commands.TOC
             get { return Localizer.Message("delete_section_command_label"); }
         }
 
-        //assumption: the command is created before the node is deleted
+        /// <summary>
+        /// The command must be created *before* the section is actually deleted.
+        /// </summary>
+        /// <param name="node"></param>
         public DeleteSectionNode(SectionNode node)
         {
             mNode = node;
@@ -30,7 +33,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            mNode.Project.RemoveSectionNode(mNode.Project, mNode);
+            mNode.Project.RemoveSectionNode(mNode);
         }
 
         /// <summary>
@@ -38,7 +41,8 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mNode.Project.UndeleteSectionNode(mNode, mParent, mIndex);
+            mNode.Project.ReaddSectionNode(mNode, mParent, mIndex);
+            base.Undo();
         }
     }
 }

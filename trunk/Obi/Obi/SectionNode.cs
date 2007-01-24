@@ -279,23 +279,23 @@ namespace Obi
             copy.Label = Label;
             copy.Used = Used;
             copyProperties(copy);
-            if (deep) copyChildren(copy);
+            if (deep) CopyChildren(copy);
             return copy;
         }
-        protected void copyChildren(SectionNode destinationNode)
+
+        /// <summary>
+        /// Copy the children of a section node.
+        /// </summary>
+        /// <param name="destinationNode"></param>
+        protected void CopyChildren(SectionNode destinationNode)
         {
-            for (int i = 0; i < this.getChildCount(); i++)
+            for (int i = 0; i < PhraseChildCount; ++i)
             {
-                if (getChild(i).GetType() == System.Type.GetType("Obi.SectionNode"))
-                {
-                    SectionNode copy = ((SectionNode)getChild(i)).copy(true);
-                    destinationNode.AppendChildSection(copy);
-                }
-                else if (getChild(i).GetType() == System.Type.GetType("Obi.PhraseNode"))
-                {
-                    PhraseNode copy = ((PhraseNode)getChild(i)).copy(true);
-                    destinationNode.AddChildPhrase(copy, i);
-                }
+                destinationNode.AddChildPhrase(PhraseChild(i).copy(true), i);
+            }
+            for (int i = 0; i < SectionChildCount; ++i)
+            {
+                destinationNode.AddChildSection(SectionChild(i).copy(true), i);
             }
         }
     }
