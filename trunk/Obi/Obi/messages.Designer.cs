@@ -885,6 +885,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Playback rate x{0}.
+        /// </summary>
+        internal static string playback_rate {
+            get {
+                return ResourceManager.GetString("playback_rate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Playing..
         /// </summary>
         internal static string Playing {

@@ -347,7 +347,7 @@ namespace Obi
             this.mMetadataToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.M)));
             this.mMetadataToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.mMetadataToolStripMenuItem.Text = "&Metadata";
-            this.mMetadataToolStripMenuItem.Click += new System.EventHandler(this.metadataToolStripMenuItem_Click);
+            this.mMetadataToolStripMenuItem.Click += new System.EventHandler(this.mMetadataToolStripMenuItem_Click);
             // 
             // mFullMetadataToolStripMenuItem
             // 
