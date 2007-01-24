@@ -10,17 +10,105 @@ namespace Obi
 {
     public partial class Project
     {
-        public event Events.SectionNodeHandler AddedSectionNode;      // a section node was added to the TOC
-        public event Events.RenameSectionNodeHandler RenamedSectionNode;                // a node was renamed in the presentation
-        public event Events.MovedSectionNodeHandler MovedSectionNode;                    // a node was moved in the presentation
+        public event Events.SectionNodeHandler AddedSectionNode;           // a section node was added to the TOC
+        public event Events.RenameSectionNodeHandler RenamedSectionNode;   // a node was renamed in the presentation
+        public event Events.MovedSectionNodeHandler MovedSectionNode;      // a node was moved in the presentation
         public event Events.SectionNodeHandler DecreasedSectionNodeLevel;  // a node's level was decreased in the presentation
-        public event Events.MovedSectionNodeHandler UndidMoveSectionNode;                // a node was restored to its previous location
-        public event Events.SectionNodeHandler DeletedSectionNode;                // a node was deleted from the presentation
-        public event Events.SectionNodeHandler CutSectionNode;
+        public event Events.MovedSectionNodeHandler UndidMoveSectionNode;  // a node was restored to its previous location
+        public event Events.SectionNodeHandler DeletedSectionNode;         // a node was deleted from the presentation
         public event Events.SectionNodeHandler PastedSectionNode;
         public event Events.SectionNodeHandler UndidPasteSectionNode;
         public event Events.SectionNodeHandler ToggledSectionUsedState;
-      
+
+        /// <summary>
+        /// Cut the whole subtree for a section node.
+        /// Actually the section node is just cut off the tree,
+        /// but all phrases must be removed from the manager as
+        /// well.
+        /// </summary>
+        /// <param name="node">The node to cut.</param>
+        public void CutSectionNode(SectionNode node)
+        {
+            if (node != null)
+            {
+                SectionNode copy = node.copy(true);
+                Commands.TOC.CutSectionNode command = new Commands.TOC.CutSectionNode(copy);
+                command.AddCommand(RemoveSectionNode(node));
+                mClipboard.Section = copy;
+                Modified();
+                CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            }
+        }
+
+        /// <summary>
+        /// Copy a section node as a whole (i.e. the entire subtree.)
+        /// The project is unmodified, only the clipboard gets updated.
+        /// </summary>
+        /// <param name="node">The node to copy.</param>
+        public void CopySectionNode(SectionNode node)
+        {
+            if (node != null)
+            {
+                SectionNode copy = node.copy(true);
+                CommandCreated(this, new Events.Project.CommandCreatedEventArgs(new Commands.TOC.CopySectionNode(copy)));
+                mClipboard.Section = copy;
+            }
+        }
+
+        /// <summary>
+        /// Paste the clipboard node under the parent (or the root if no parent is given.)
+        /// </summary>
+        /// <param name="parent">Parent to paste under (root if null.)</param>
+        public void PasteSectionNode(CoreNode parent)
+        {
+            if (mClipboard.Section != null)
+            {
+                if (parent == null) parent = RootNode;
+                SectionNode pasted = PasteCopyOfSectionNode(mClipboard.Section, parent);
+                CommandCreated(this,
+                    new Events.Project.CommandCreatedEventArgs(new Commands.TOC.PasteSectionNode(pasted, parent)));
+            }
+        }
+
+        /// <summary>
+        /// Paste a copy of a section node under a parent. Both must be defined.
+        /// Project is modified but no command is issued.
+        /// </summary>
+        /// <param name="node">The node to paste.</param>
+        /// <param name="parent">The parent under which to paste (append.)</param>
+        /// <returns>The node actually pasted.</returns>
+        public SectionNode PasteCopyOfSectionNode(SectionNode node, CoreNode parent)
+        {
+            SectionNode copy = node.copy(true);
+            if (parent is SectionNode)
+            {
+                ((SectionNode)parent).AppendChildSection(copy);
+            }
+            else
+            {
+                parent.appendChild(copy);
+            }
+            PastedSectionNode(this, new Events.Node.SectionNodeEventArgs(this, copy));
+            Modified();
+            return copy;
+        }
+
+        /// <summary>
+        /// Delete a node and its whole subtree from the core tree.
+        /// </summary>
+        public void DeleteSectionNode(SectionNode node)
+        {
+            if (node != null)
+            {
+                Commands.TOC.DeleteSectionNode command = RemoveSectionNode(node);
+                Modified();
+                CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            }
+        }
+
+
+
+
         // Here are the event handlers for request sent by the GUI when editing the TOC.
         // Every request is passed to a method that uses mostly the same arguments,
         // which can also be called directly by a command for undo/redo purposes.
@@ -91,24 +179,6 @@ namespace Obi
         }
 
         /// <summary>
-        /// Add a section that had previously been added.
-        /// </summary>
-        /// <param name="node"></param>
-        /// <param name="parent"></param>
-        /// <param name="index"></param>
-        /// <param name="originalLabel"></param>
-        public void AddExistingSectionNode(SectionNode node, CoreNode parent, int index, string originalLabel)
-        {
-            if (node.getParent() == null) AddChildSection(node, parent, index);
-
-            if (originalLabel != null) Project.GetTextMedia(node).setText(originalLabel);
- 
-            AddedSectionNode(this, new Events.Node.SectionNodeEventArgs(this, node));
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-        }
-
-        /// <summary>
         /// Readd a section node that was previously delete and restore all its contents.
         /// </summary>
         /// <param name="node"></param>
@@ -118,40 +188,6 @@ namespace Obi
         {
             Visitors.UndeleteSubtree visitor = new Visitors.UndeleteSubtree(this, parent, index);
             node.acceptDepthFirst(visitor);
-        }
-
-        /// <summary>
-        /// Remove a node from the core tree. It is detached from the tree and the
-        /// </summary>
-        //md
-        //the command value is returned so it can be used in UndoShallowDelete's undo list
-        public Commands.Command RemoveSectionNode(object origin, SectionNode node)
-        {
-            Commands.TOC.DeleteSectionNode command = null;
-            if (node != null)
-            {
-                //md: need this particular command to be created even if origin = this
-                //because its undo fn is required by UndoShallowDelete
-                //if (origin != this)
-               // {
-                    CoreNode parent = (CoreNode)node.getParent();
-                    command = new Commands.TOC.DeleteSectionNode(node);
-              //  }
-                node.DetachFromParent();
-                DeletedSectionNode(this, new Events.Node.SectionNodeEventArgs(origin, node));
-                mUnsaved = true;
-                StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-
-                //md: added condition "origin != this" to accomodate the change made above
-                if (command != null && origin != this) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-            }
-
-            return command;
-        }
-
-        public void RemoveSectionNodeRequested(object sender, Events.Node.SectionNodeEventArgs e)
-        {
-            RemoveSectionNode(sender, e.Node);
         }
 
         /// <summary>
@@ -426,24 +462,10 @@ namespace Obi
                 Commands.Command cmdDeletePhrase = RemovePhraseNodeAndAsset(node.PhraseChild(i));
                 if (command != null) command.AddCommand(cmdDeletePhrase);
             }
-            Commands.Command cmdRemove = RemoveSectionNode(this, node);
+            Commands.Command cmdRemove = RemoveSectionNode(node);
             if (command != null) command.AddCommand(cmdRemove);
             Modified();
             if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-        }
-
-        public void _CutSectionNode(SectionNode node, bool issueCommand)
-        {
-            if (node != null)
-            {
-                CoreNode parent = (CoreNode)node.getParent();
-                Commands.TOC.CutSectionNode command = new Commands.TOC.CutSectionNode(node);
-                mClipboard.Section = node;
-                node.DetachFromParent();
-                CutSectionNode(this, new Events.Node.SectionNodeEventArgs(this, node));
-                Modified();
-                if (issueCommand) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-            }
         }
 
         //md 20061220
@@ -452,13 +474,6 @@ namespace Obi
             mClipboard.Section = null;
             //the rest of the undo operations for this command are found in 
             //Commands.TOC.ShallowCutSectionNode
-        }
-
-        //md 20060810
-        public void UndoCutSectionNode(SectionNode node, CoreNode parent, int index)
-        {
-            UndeleteSectionNode(node, parent, index);
-            mClipboard.Section = null;
         }
 
         //md 20061220
@@ -471,70 +486,6 @@ namespace Obi
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
      
-        }
-
-        /// <summary>
-        /// Copy a section node as a whole (i.e. the entire subtree.)
-        /// The project is unmodified, only the clipboard gets updated.
-        /// </summary>
-        /// <param name="node">The node to copy.</param>
-        /// <param name="issueCommand">Issue a command if true.</param>
-        public void CopySectionNode(SectionNode node, bool issueCommand)
-        {
-            if (node != null)
-            {
-                object data = mClipboard.Data;
-                mClipboard.Section = node.copy(true);
-                if (issueCommand)
-                {
-                    CommandCreated(this,
-                        new Events.Project.CommandCreatedEventArgs(new Commands.TOC.CopySectionNode(data, mClipboard.Section)));
-                }
-            }
-        }
-
-        //md 20060810
-        // modified by JQ 20060818: can paste under the root node if we have deleted the first and only heading.
-        public void PasteSectionNodeRequested(object sender, Events.Node.SectionNodeEventArgs e)
-        {
-            if (e.Node != null)
-            {
-                PasteSectionNode(sender, e.Node);
-            }
-            else
-            {
-                PasteSectionNode(sender, getPresentation().getRootNode());
-            }
-        }
-
-        public void PasteSectionNode(object origin, CoreNode parent)
-        {
-            PasteSectionNode(parent, origin != this);
-        }
-
-        /// <summary>
-        /// Paste the clipboard node under the parent (or the root if no parent is given.)
-        /// </summary>
-        /// <param name="parent">Parent to paste under (root if null.)</param>
-        /// <param name="issueCommand">If true, a command is issued.</param>
-        public void PasteSectionNode(CoreNode parent, bool issueCommand)
-        {
-            if (mClipboard.Section != null)
-            {
-                if (parent == null) parent = RootNode;
-                SectionNode pastedSection = mClipboard.Section;
-                mClipboard.Section = mClipboard.Section.copy(true);
-                AppendChildSection(pastedSection, parent);
-                Obi.Visitors.CopyPhraseAssets assVisitor = new Obi.Visitors.CopyPhraseAssets(mAssManager, this);
-                pastedSection.acceptDepthFirst(assVisitor);
-                PastedSectionNode(this, new Events.Node.SectionNodeEventArgs(this, pastedSection));
-                Modified();
-                if (issueCommand)
-                {
-                    CommandCreated(this,
-                        new Events.Project.CommandCreatedEventArgs(new Commands.TOC.PasteSectionNode(parent, pastedSection)));
-                }
-            }
         }
 
         //md 20060810
@@ -584,7 +535,7 @@ namespace Obi
                 command.AddCommand(cmdDeletePhrase);
             }
 
-            Commands.Command cmdRemove = this.RemoveSectionNode(this, node);
+            Commands.Command cmdRemove = this.RemoveSectionNode(node);
             command.AddCommand(cmdRemove);
 
           
@@ -669,7 +620,38 @@ namespace Obi
             ToggledSectionUsedState(this, e);
         }
 
+        /// <summary>
+        /// Add a section that had previously been added.
+        /// </summary>
+        /// <param name="node">The section node to (re)add.</param>
+        /// <param name="parent">Its parent node.</param>
+        /// <param name="index">Its index in the parent.</param>
+        public void ReaddSectionNode(SectionNode node, CoreNode parent, int index)
+        {
+            AddChildSection(node, parent, index);
+            AddedSectionNode(this, new Events.Node.SectionNodeEventArgs(this, node));
+        }
 
+        /// <summary>
+        /// Remove a section node and all of its phrases and subsections from the project.
+        /// </summary>
+        /// <param name="node">The node to remove.</param>
+        /// <returns>The corresponding delete command.</returns>
+        public Commands.TOC.DeleteSectionNode RemoveSectionNode(SectionNode node)
+        {
+            Commands.TOC.DeleteSectionNode command = new Commands.TOC.DeleteSectionNode(node);
+            for (int i = node.PhraseChildCount - 1; i >= 0; --i)
+            {
+                command.AddCommand(RemovePhraseNodeAndAsset(node.PhraseChild(i)));
+            }
+            for (int i = node.SectionChildCount - 1; i >= 0; --i)
+            {
+                command.AddCommand(RemoveSectionNode(node.SectionChild(i)));
+            }
+            DeletedSectionNode(this, new Events.Node.SectionNodeEventArgs(this, node));
+            node.DetachFromParent();
+            return command;
+        }
 
         /// <summary>
         /// Shallow cut of a section node, i.e. only the strip.
@@ -691,7 +673,7 @@ namespace Obi
                 {
                     command.AddCommand(RemovePhraseNodeAndAsset(node.PhraseChild(i)));
                 }
-                command.AddCommand(RemoveSectionNode(this, node));
+                command.AddCommand(RemoveSectionNode(node));
                 Modified();
                 if (issueCommand)
                 {
@@ -719,8 +701,8 @@ namespace Obi
                 mClipboard.Section = copy;
                 if (issueCommand)
                 {
-                    CommandCreated(this,
-                        new Events.Project.CommandCreatedEventArgs(new Commands.TOC.CopySectionNode(data, copy)));
+                    // CommandCreated(this,
+                    //    new Events.Project.CommandCreatedEventArgs(new Commands.TOC.CopySectionNode(data, copy)));
                 }
             }
         }

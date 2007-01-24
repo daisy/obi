@@ -51,11 +51,5 @@ namespace Obi.Commands.Strips
             : base(node)
         {
         }
-
-        public override void Do()
-        {
-            base.Do();
-            // mNode.Project.SetAudioMediaAsset(mNode, mNode.Asset);
-        }
     }
 }

@@ -6,24 +6,29 @@ using urakawa.core;
 
 namespace Obi.Commands.TOC
 {
-    class CutSectionNode : DeleteSectionNode
+    class CutSectionNode : ListCommand
     {
+        private object mPrevious;
+        private SectionNode mNode;
+
         public override string Label
         {
             get { return Localizer.Message("cut_section_command_label"); }
         }
 
         public CutSectionNode(SectionNode node)
-            : base(node)
         {
+            mPrevious = node.Project.Clipboard.Data;
+            mNode = node;
         }
 
         /// <summary>
-        /// ReDo: uncut the node
+        /// Redo: uncut the node
         /// </summary>
         public override void Do()
         {
-            mNode.Project._CutSectionNode(mNode, false);
+            mNode.Project.Clipboard.Section = mNode;
+            base.Do();
         }
 
         /// <summary>
@@ -31,7 +36,8 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mNode.Project.UndoCutSectionNode(mNode, mParent, mIndex);
+            mNode.Project.Clipboard.Data = mPrevious;
+            base.Undo();
         }
     }
 
@@ -45,10 +51,10 @@ namespace Obi.Commands.TOC
             get { return Localizer.Message("copy_section_command_label"); }
         }
 
-        public CopySectionNode(object prev, SectionNode node)
+        public CopySectionNode(SectionNode node)
         {
-            mPrevious = prev;
             mNode = node;
+            mPrevious = mNode.Project.Clipboard.Data;
         }
 
         /// <summary>
@@ -70,28 +76,28 @@ namespace Obi.Commands.TOC
 
     class PasteSectionNode : Command
     {
-        private CoreNode mParent;
         private SectionNode mNode;
+        private CoreNode mParent;
 
         public override string Label
         {
             get { return Localizer.Message("paste_section_command_label"); }
         }
 
-        public PasteSectionNode(CoreNode parent, SectionNode node)
+        public PasteSectionNode(SectionNode node, CoreNode parent)
         {
-            mParent = parent;
             mNode = node;
+            mParent = parent;
         }
 
         public override void Do()
         {
-            mNode.Project.PasteSectionNode(mNode.Project, mParent);
+            mNode = mNode.Project.PasteCopyOfSectionNode(mNode.Project.Clipboard.Section, mParent);
         }
 
         public override void Undo()
         {
-            mNode.Project.UndoPasteSectionNode(mNode);
+            mNode.Project.RemoveSectionNode(mNode);
         }
     }
 
@@ -132,8 +138,8 @@ namespace Obi.Commands.TOC
             get { return Localizer.Message("copy_strip_command_label"); }
         }
 
-        public ShallowCopySectionNode(object prev, SectionNode node)
-            : base(prev, node)
+        public ShallowCopySectionNode(SectionNode node)
+            : base(node)
         {
         }
     }

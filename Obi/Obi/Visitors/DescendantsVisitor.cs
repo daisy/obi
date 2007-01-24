@@ -11,33 +11,32 @@ namespace Obi.Visitors
     /// </summary>
     public class DescendantsVisitor: ICoreNodeVisitor
     {
-        private List<CoreNode> mNodes;
-        //md 20061130 extended with specific node types
-        private List<SectionNode> mSectionNodes;
-        private List<PhraseNode> mPhraseNodes;
+        private List<CoreNode> mNodes;            // flat list of all nodes
+        private List<SectionNode> mSectionNodes;  // only the section nodes
+        private List<PhraseNode> mPhraseNodes;    // only the phrase nodes
 
+        /// <summary>
+        /// List of all descendant nodes regardless of their type.
+        /// </summary>
         public List<CoreNode> Nodes
         {
-            get
-            {
-                return mNodes;
-            }
+            get { return mNodes; }
         }
 
+        /// <summary>
+        /// List of all descendant section nodes.
+        /// </summary>
         public List<SectionNode> SectionNodes
         {
-            get
-            {
-                return mSectionNodes;
-            }
+            get { return mSectionNodes; }
         }
 
+        /// <summary>
+        /// List of all descendant phrase nodes.
+        /// </summary>
         public List<PhraseNode> PhraseNodes
         {
-            get
-            {
-                return mPhraseNodes;
-            }
+            get { return mPhraseNodes; }
         }
 
         public DescendantsVisitor()
@@ -56,9 +55,8 @@ namespace Obi.Visitors
         public bool preVisit(ICoreNode node)
         {
             mNodes.Add((CoreNode)node);
-            if (node.GetType() == Type.GetType("Obi.SectionNode")) mSectionNodes.Add((SectionNode)node);
-            if (node.GetType() == Type.GetType("Obi.PhraseNode")) mPhraseNodes.Add((PhraseNode)node);
-
+            if (node is SectionNode) mSectionNodes.Add((SectionNode)node);
+            if (node is PhraseNode) mPhraseNodes.Add((PhraseNode)node);
             return true;
         }
 

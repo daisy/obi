@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Obi.Commands
 {
-    class ListCommand : Command
+    public class ListCommand : Command
     {
         private string mLabel;            // the label that will be shown in the end
         private List<Command> mCommands;  // list of actual commands

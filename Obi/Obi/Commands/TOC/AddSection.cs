@@ -32,7 +32,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            mNode.Project.AddExistingSectionNode(mNode, mParent, mNode.Index, this.Label);
+            mNode.Project.ReaddSectionNode(mNode, mParent, mNode.Index);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mNode.Project.RemoveSectionNode(mNode.Project, mNode);
+            mNode.Project.RemoveSectionNode(mNode);
         }
     }
 }

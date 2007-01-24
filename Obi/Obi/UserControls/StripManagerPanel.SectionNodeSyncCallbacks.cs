@@ -63,24 +63,11 @@ namespace Obi.UserControls
             strip.Label = e.Label;
         }
 
-        /// <summary>
-        /// When deleting a node from the tree, all descendants are deleted as well.
-        /// </summary>
         internal void SyncDeletedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
         {
-            if (e.Node != null)
-            {
-                Visitors.DescendantsVisitor visitor = new Visitors.DescendantsVisitor();
-                e.Node.acceptDepthFirst(visitor);
-
-                foreach (SectionNode node in visitor.SectionNodes)
-                {
-                   SectionStrip strip = mSectionNodeMap[node];
-                   mFlowLayoutPanel.Controls.Remove(strip);
-                }
-                //mg:
-                //this.ReflowTabOrder(mSectionNodeMap[e.Node]);
-            }
+            SectionStrip strip = mSectionNodeMap[e.Node];
+            mFlowLayoutPanel.Controls.Remove(strip);
+            mSectionNodeMap.Remove(e.Node);
         }
 
         internal void SyncMovedSectionNode(object sender, Events.Node.MovedSectionNodeEventArgs e)
@@ -134,7 +121,19 @@ namespace Obi.UserControls
         //md 20060811
         internal void SyncCutSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
         {
-            SyncDeletedSectionNode(sender, e);
+            e.Node.visitDepthFirst(
+                delegate(ICoreNode n)
+                {
+                    if (n is SectionNode)
+                    {
+                        SectionStrip strip = mSectionNodeMap[(SectionNode)n];
+                        mFlowLayoutPanel.Controls.Remove(strip);
+                        mSectionNodeMap.Remove((SectionNode)n);
+                    }
+                    return true;
+                },
+                delegate(ICoreNode n) { }
+            );
         }
 
         //md 20060811
@@ -148,8 +147,7 @@ namespace Obi.UserControls
         //md 20060811
         internal void SyncPastedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
         {
-            AddStripsFromNodeSubtree(e.Node);
-            
+            AddStripsFromNodeSubtree(e.Node);            
         }
 
         //md 20060811

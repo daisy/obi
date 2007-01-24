@@ -317,7 +317,7 @@ namespace Obi
                 else if (mProjectPanel.TOCPanel.IsNodeSelected)
                 {
                     StopIfPaused();
-                    mProject._CutSectionNode(mProjectPanel.TOCPanel.SelectedSection, true);
+                    mProject.CutSectionNode(mProjectPanel.TOCPanel.SelectedSection);
                 }
             }
         }
@@ -342,7 +342,7 @@ namespace Obi
                 else if (mProjectPanel.TOCPanel.IsNodeSelected)
                 {
                     StopIfPaused();
-                    mProject.CopySectionNode(mProjectPanel.TOCPanel.SelectedSection, true);
+                    mProject.CopySectionNode(mProjectPanel.TOCPanel.SelectedSection);
                 }
             }
         }
@@ -356,7 +356,7 @@ namespace Obi
             {
                 if (mProject.Clipboard.Section != null)
                 {
-                    mProject.PasteSectionNode(mProjectPanel.SelectedNode, true);
+                    mProject.PasteSectionNode(mProjectPanel.SelectedNode);
                 }
                 else if (mProject.Clipboard.Phrase != null)
                 {
@@ -384,7 +384,8 @@ namespace Obi
                 }
                 else if (mProjectPanel.TOCPanel.IsNodeSelected)
                 {
-                    mProjectPanel.TOCPanel.DeleteSelectedSection();
+                    StopIfPaused();
+                    mProject.DeleteSectionNode(mProjectPanel.TOCPanel.SelectedSection);
                 }
             }
 
