@@ -456,6 +456,8 @@ namespace Obi
                 
 
             }
+            if (PlaybackRateChanged != null)
+            PlaybackRateChanged(this, new EventArgs());
         }
         Assets.AudioMediaAsset m_CurrentAudioAsset;
         public void FastForward()
@@ -480,6 +482,8 @@ namespace Obi
                 
 
             }
+            if (PlaybackRateChanged != null)
+            PlaybackRateChanged(this, new EventArgs());
         }
 
         /// <summary>
@@ -560,7 +564,9 @@ else if ( mPlayBackState == PlayBackState.Rewind )
                 mPlayBackState = PlayBackState.Normal;
                 mPlayer.Stop();
                 mPlayer.m_EventsEnabled = true;
-            }   
+            }
+            if ( PlaybackRateChanged != null )
+            PlaybackRateChanged(this, new EventArgs());
         }
 
         /// <summary>
