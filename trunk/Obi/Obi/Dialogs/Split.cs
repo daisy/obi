@@ -486,17 +486,17 @@ namespace Obi.Dialogs
             
             switch (keyData)
             {
-                case Keys.Control | Keys.Up:
+                case Keys.Alt | Keys.Up:
                     IncrementStepSize();
                     break;
                 
-                case Keys.Control | Keys.Down:
+                case Keys.Alt | Keys.Down:
                     DecrementStepSize();
                     break;
-                case Keys.Control | Keys.Left:
+                case Keys.Alt | Keys.Left:
                     FineRewind();
                     break;
-                case Keys.Control | Keys.Right:
+                case Keys.Alt | Keys.Right:
                     FineForward();
                     break;
                         
