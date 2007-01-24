@@ -298,7 +298,6 @@ namespace Obi.UserControls
 
         private void mFastForwardButton_Click(object sender, EventArgs e)
         {
-            
             FastForward();
         }
 

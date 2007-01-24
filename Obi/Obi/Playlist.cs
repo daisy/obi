@@ -49,6 +49,10 @@ namespace Obi
         public delegate void MovedToPhraseHandler(object sender, Events.Node.PhraseNodeEventArgs e);
         public event MovedToPhraseHandler MovedToPhrase;
 
+        // Changed the playback rate.
+        public delegate void PlaybackRateChangedHandler(object sender, EventArgs e);
+        public event PlaybackRateChangedHandler PlaybackRateChanged;
+
         /// <summary>
         /// Get the audio player for the playlist. Useful for setting up event listeners.
         /// </summary>
@@ -243,6 +247,11 @@ namespace Obi
         public bool WholeBook
         {
             get { return mWholeBook; }
+        }
+
+        public int PlaybackRate
+        {
+            get { return mPlaybackRate; }
         }
 
         /// <summary>
