@@ -76,6 +76,7 @@ namespace Obi
             this.mImportAudioFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mInsertEmptyAudioblockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSplitAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mQuickSplitAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mApplyPhraseDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMergeWithNextAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMoveAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -116,7 +117,6 @@ namespace Obi
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectPanel = new Obi.UserControls.ProjectPanel();
-            this.mQuickSplitAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -531,6 +531,15 @@ namespace Obi
             this.mSplitAudioBlockToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
             this.mSplitAudioBlockToolStripMenuItem.Text = "&Split audio block";
             // 
+            // mQuickSplitAudioBlockToolStripMenuItem
+            // 
+            this.mQuickSplitAudioBlockToolStripMenuItem.Name = "mQuickSplitAudioBlockToolStripMenuItem";
+            this.mQuickSplitAudioBlockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.P)));
+            this.mQuickSplitAudioBlockToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
+            this.mQuickSplitAudioBlockToolStripMenuItem.Text = "&Quick split audio block";
+            this.mQuickSplitAudioBlockToolStripMenuItem.Click += new System.EventHandler(this.mQuickSplitAudioBlockToolStripMenuItem_Click);
+            // 
             // mApplyPhraseDetectionToolStripMenuItem
             // 
             this.mApplyPhraseDetectionToolStripMenuItem.Name = "mApplyPhraseDetectionToolStripMenuItem";
@@ -666,6 +675,7 @@ namespace Obi
             this.mPreviousSectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Up)));
             this.mPreviousSectionToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
             this.mPreviousSectionToolStripMenuItem.Text = "Pr&evious section";
+            this.mPreviousSectionToolStripMenuItem.Click += new System.EventHandler(this.mPreviousSectionToolStripMenuItem_Click);
             // 
             // mPreviousPhraseToolStripMenuItem
             // 
@@ -740,6 +750,7 @@ namespace Obi
             this.mNextSectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Down)));
             this.mNextSectionToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
             this.mNextSectionToolStripMenuItem.Text = "Ne&xt section";
+            this.mNextSectionToolStripMenuItem.Click += new System.EventHandler(this.mNextSectionToolStripMenuItem_Click);
             // 
             // mToolsToolStripMenuItem
             // 
@@ -850,15 +861,6 @@ namespace Obi
             this.mProjectPanel.Project = null;
             this.mProjectPanel.Size = new System.Drawing.Size(849, 491);
             this.mProjectPanel.TabIndex = 4;
-            // 
-            // mQuickSplitAudioBlockToolStripMenuItem
-            // 
-            this.mQuickSplitAudioBlockToolStripMenuItem.Name = "mQuickSplitAudioBlockToolStripMenuItem";
-            this.mQuickSplitAudioBlockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
-                        | System.Windows.Forms.Keys.P)));
-            this.mQuickSplitAudioBlockToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
-            this.mQuickSplitAudioBlockToolStripMenuItem.Text = "&Quick split audio block";
-            this.mQuickSplitAudioBlockToolStripMenuItem.Click += new System.EventHandler(this.mQuickSplitAudioBlockToolStripMenuItem_Click);
             // 
             // ObiForm
             // 

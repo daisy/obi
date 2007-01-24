@@ -121,7 +121,7 @@ namespace Obi.UserControls
         /// <summary>
         /// Move to the previous section (i.e. first phrase of the previous section.)
         /// </summary>
-        private void PrevSection()
+        public void PrevSection()
         {
             if (mPlaylist != null) mPlaylist.NavigateToPreviousSection();
         }

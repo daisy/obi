@@ -1019,6 +1019,11 @@ namespace Obi
             mProjectPanel.TransportBar.FastForward();
         }
 
+        private void mPreviousSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.TransportBar.PrevSection();
+        }
+
         private void mPreviousPhraseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TransportBar_PreviousPhrase();
@@ -1049,6 +1054,11 @@ namespace Obi
             {
                 mProjectPanel.TransportBar.NextPhrase();
             }
+        }
+
+        private void mNextSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.TransportBar.NextSection();
         }
 
         /// <summary>
