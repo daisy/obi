@@ -91,7 +91,7 @@ namespace Obi
         /// </summary>
         void TransportBar_PlaybackRateChanged(object sender, EventArgs e)
         {
-            Status("PLAYBACK RATE CHANGED");
+            Status(String.Format(Localizer.Message("playback_rate"), mProjectPanel.TransportBar.Playlist.PlaybackRate));
         }
 
         #region File menu event handlers
@@ -395,7 +395,35 @@ namespace Obi
                     mProject.DeleteSectionNode(mProjectPanel.TOCPanel.SelectedSection);
                 }
             }
+        }
 
+        /// <summary>
+        /// Edit the metadata for the project.
+        /// </summary>
+        private void mMetadataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProject != null)
+            {
+                StopIfPaused();
+                Dialogs.EditSimpleMetadata dialog = new Dialogs.EditSimpleMetadata(mProject.Metadata);
+                if (mProject != null && dialog.ShowDialog() == DialogResult.OK) mProject.Modified();
+                Ready();
+            }
+        }
+
+
+        /// <summary>
+        /// Touch the project so that it seems that it was modified.
+        /// Also refresh the display.
+        /// </summary>
+        private void mTouchProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProject != null)
+            {
+                StopIfPaused();
+                if (!mCommandManager.HasUndo) mProject.Touch();
+                mProjectPanel.SynchronizeWithCoreTree();
+            }
         }
 
         #endregion
@@ -412,19 +440,6 @@ namespace Obi
         }
 
         /// <summary>
-        /// Edit the metadata for the project.
-        /// </summary>
-        private void metadataToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Dialogs.EditSimpleMetadata dialog = new Dialogs.EditSimpleMetadata(mProject.Metadata);
-            if (mProject != null && dialog.ShowDialog() == DialogResult.OK)
-            {
-                mProject.Modified();
-            }
-            Ready();
-        }
-
-        /// <summary>
         /// Edit the full DAISY metadata for this project.
         /// </summary>
         private void mFullMetadataToolStripMenuItem_Click(object sender, EventArgs e)
@@ -435,19 +450,6 @@ namespace Obi
                 mProject.Modified();
             }
             Ready();
-        }
-
-        /// <summary>
-        /// Touch the project so that it seems that it was modified.
-        /// Also refresh the display.
-        /// </summary>
-        private void mTouchProjectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProject != null)
-            {
-                if (!mCommandManager.HasUndo) mProject.Touch();
-                mProjectPanel.SynchronizeWithCoreTree();
-            }
         }
 
         /// <summary>

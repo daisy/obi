@@ -251,7 +251,7 @@ namespace Obi
 
         public int PlaybackRate
         {
-            get { return mPlaybackRate; }
+            get { return PlaybackRates[mPlaybackRate] * (mPlayBackState == PlayBackState.Rewind ? -1 : 1); }
         }
 
         /// <summary>
