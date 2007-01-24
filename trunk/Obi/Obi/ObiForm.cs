@@ -1130,6 +1130,17 @@ namespace Obi
                         TransportBar_NextPhrase();
                     break;
 
+                case Keys.Alt | Keys.Down:
+                    if (mNextSectionToolStripMenuItem.Enabled)
+                        mProjectPanel.TransportBar.NextSection();
+                    break;
+
+                case Keys.Alt | Keys.Up:
+                    if (mPreviousSectionToolStripMenuItem.Enabled)
+                        mProjectPanel.TransportBar.PrevSection();
+                    break;
+
+
                 case Keys.Alt | Keys.Shift | Keys.Right:
                     if (mFastForwardToolStripMenuItem.Enabled == true)
                         mProjectPanel.TransportBar.FastForward();
