@@ -218,11 +218,16 @@ namespace Obi.Audio
 			CreateCaptureBuffer();
 			InitRecording(true);
 		}
-
+        bool WasListening = false;
 		// this is to stop the recording
 		// desc:  this will first check the condition and stops the recording and then capture any left  overs recorded data which is not saved
         public void StopRecording()
         {
+            if (mState == AudioRecorderState.Listening)
+                WasListening = true;
+            else
+                WasListening = false;
+
             if (mState == AudioRecorderState.Recording || mState == AudioRecorderState.Listening)
             {
                 Events.Audio.Recorder.StateChangedEventArgs e = new Events.Audio.Recorder.StateChangedEventArgs(mState);
@@ -601,9 +606,13 @@ namespace Obi.Audio
 				Writer = null;	
 				SampleCount = 0;
 				Audiolength = 0;
-				Assets.AudioClip NewRecordedClip = new Assets.AudioClip(m_sFileName);
-				mAsset.AddClip(NewRecordedClip);
-                mAsset.Manager.AddedClip(NewRecordedClip);
+
+                if (WasListening == false)
+                {
+                    Assets.AudioClip NewRecordedClip = new Assets.AudioClip(m_sFileName);
+                    mAsset.AddClip(NewRecordedClip);
+                    mAsset.Manager.AddedClip(NewRecordedClip);
+                }
 			}
 		}
 
