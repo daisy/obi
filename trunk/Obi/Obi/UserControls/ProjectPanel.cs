@@ -60,10 +60,10 @@ namespace Obi.UserControls
             project.UndidMoveSectionNode += new Events.MovedSectionNodeHandler(mTOCPanel.SyncMovedSectionNode);
             project.UndidMoveSectionNode += new Events.MovedSectionNodeHandler(mStripManagerPanel.SyncMovedSectionNode);
 
-            mTOCPanel.IncreaseSectionNodeLevelRequested += new Events.SectionNodeHandler(project.IncreaseSectionNodeLevelRequested);
+            // mTOCPanel.IncreaseSectionNodeLevelRequested += new Events.SectionNodeHandler(project.IncreaseSectionNodeLevelRequested);
             //marisa: the former "mProject.IncreasedSectionLevel" event is now handled by MovedNode
 
-            mTOCPanel.DecreaseSectionNodeLevelRequested += new Events.SectionNodeHandler(project.DecreaseSectionNodeLevelRequested);
+            // mTOCPanel.DecreaseSectionNodeLevelRequested += new Events.SectionNodeHandler(project.DecreaseSectionNodeLevelRequested);
             project.DecreasedSectionNodeLevel += new Events.SectionNodeHandler(mTOCPanel.SyncDecreasedSectionNodeLevel);
             project.DecreasedSectionNodeLevel += new Events.SectionNodeHandler(mStripManagerPanel.SyncDecreaseSectionNodeLevel);
 
@@ -144,10 +144,10 @@ namespace Obi.UserControls
             mProject.UndidMoveSectionNode -= new Events.MovedSectionNodeHandler(mTOCPanel.SyncMovedSectionNode);
             mProject.UndidMoveSectionNode -= new Events.MovedSectionNodeHandler(mStripManagerPanel.SyncMovedSectionNode);
 
-            mTOCPanel.IncreaseSectionNodeLevelRequested -= new Events.SectionNodeHandler(mProject.IncreaseSectionNodeLevelRequested);
+            // mTOCPanel.IncreaseSectionNodeLevelRequested -= new Events.SectionNodeHandler(mProject.IncreaseSectionNodeLevelRequested);
             //marisa: the former "mProject.IncreasedSectionLevel" event is now handled by MovedNode
 
-            mTOCPanel.DecreaseSectionNodeLevelRequested -= new Events.SectionNodeHandler(mProject.DecreaseSectionNodeLevelRequested);
+            // mTOCPanel.DecreaseSectionNodeLevelRequested -= new Events.SectionNodeHandler(mProject.DecreaseSectionNodeLevelRequested);
             mProject.DecreasedSectionNodeLevel -= new Events.SectionNodeHandler(mTOCPanel.SyncDecreasedSectionNodeLevel);
             mProject.DecreasedSectionNodeLevel -= new Events.SectionNodeHandler(mStripManagerPanel.SyncDecreaseSectionNodeLevel);
 

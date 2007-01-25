@@ -38,7 +38,9 @@ namespace Obi.UserControls
 
         private void mAddStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.Project.CreateSiblingSectionNode(mSelectedSection);
+            SectionNode node = mProjectPanel.Project.CreateSiblingSectionNode(mSelectedSection);
+            SelectedSectionNode = node;
+            StartRenamingSelectedStrip();
         }
 
         private void mRenameStripToolStripMenuItem_Click(object sender, EventArgs e)
@@ -71,10 +73,14 @@ namespace Obi.UserControls
 
             mAddStripToolStripMenuItem.Enabled = !isPlaying && (noSelection || isStripUsed || isParentUsed);
             mRenameStripToolStripMenuItem.Enabled = !isPlaying && isStripUsed;
-            mCutStripToolStripMenuItem.Enabled = false;
-            mCopyStripToolStripMenuItem.Enabled = false;
-            mPasteStripToolStripMenuItem.Enabled = false;
-            mDeleteStripToolStripMenuItem.Enabled = false;
+
+            bool canCutCopyDeleteSection = !isPlaying && isStripSelected && mProjectPanel.CanCutCopyDeleteNode;
+            bool canPasteSection = !isPlaying && mProjectPanel.CanPaste(mProjectPanel.Project.Clipboard.Section);
+
+            mCutStripToolStripMenuItem.Enabled = canCutCopyDeleteSection;
+            mCopyStripToolStripMenuItem.Enabled = canCutCopyDeleteSection;
+            mPasteStripToolStripMenuItem.Enabled = canPasteSection;
+            mDeleteStripToolStripMenuItem.Enabled = canCutCopyDeleteSection;
             mMarkStripAsUnusedToolStripMenuItem.Enabled = !isPlaying && isStripSelected;
             mShowInTOCViewToolStripMenuItem.Enabled = !isPlaying && isStripSelected;
             
@@ -424,7 +430,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void ToggleSelectedStripUsed()
         {
-            if (mProjectPanel.CanToggleStrip) mSelectedSection.Project.ToggleNodeUsed(mSelectedSection, this, false);
+            mProjectPanel.Project.ToggleNodeUsedWithCommand(SelectedSectionNode, false);
         }
 
         private void mMarkStripAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
@@ -438,7 +444,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void ToggleSelectedPhraseUsed()
         {
-            if (mProjectPanel.CanToggleAudioBlock) mSelectedPhrase.Project.ToggleNodeUsed(mSelectedPhrase, this, false);
+            mProjectPanel.Project.ToggleNodeUsedWithCommand(SelectedPhraseNode, false);
         }
 
         private void mMarkPhraseAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
@@ -448,9 +454,8 @@ namespace Obi.UserControls
 
         private void mCutStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.Project.ShallowCutSectionNode(mSelectedSection, true);
+            mProjectPanel.Project.ShallowCutSectionNode(mSelectedSection);
         }
-
 
         private void mCopyStripToolStripMenuItem_Click(object sender, EventArgs e)
         {

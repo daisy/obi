@@ -177,10 +177,8 @@ namespace Obi
         {
             if (node.getParent() != null) node.DetachFromParent();
             AddChildSection(node, parent, index);
-           
             UndidMoveSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, parent));
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            Modified();
         }
 
         /// <summary>
@@ -189,236 +187,99 @@ namespace Obi
         /// <param name="origin"></param>
         /// <param name="node"></param>
         //added by marisa 01 aug 06
-        public void UndoIncreaseSectionNodeLevel(SectionNode node, CoreNode parent, int index)
+        public void UnincreaseSectionNodeLevel(SectionNode node, CoreNode parent, int index)
         {
             UndoMoveSectionNode(node, parent, index);
         }
 
-        public void IncreaseSectionNodeLevel(object origin, SectionNode node)
-        {
-            Commands.TOC.IncreaseSectionNodeLevel command = null;
-
-            if (origin != this)
-            {
-                CoreNode parent = (CoreNode)node.getParent();
-                //we need to save the state of the node before it is altered
-                command = new Commands.TOC.IncreaseSectionNodeLevel(node, parent);
-            }
-
-            bool succeeded = ExecuteIncreaseSectionNodeLevel(node);
-            if (succeeded)
-            {
-                CoreNode newParent = (CoreNode)node.getParent();
-                MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, newParent));
-
-                mUnsaved = true;
-                StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-                if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));  // JQ
-            }
-
-        }
-
         /// <summary>
-        /// Move the node "in", i.e. increase its level.
+        /// Increase the level of a node.
         /// </summary>
-        /// <param name="node">The node to move in.</param>
-        /// <returns>True on success</returns>
-        private bool ExecuteIncreaseSectionNodeLevel(SectionNode node)
+        /// <param name="node">The node to increase the level of.</param>
+        /// <returns>Return an increase command (for use in shallow section commands.)</returns>
+        public Commands.TOC.IncreaseSectionNodeLevel IncreaseSectionNodeLevel(SectionNode node)
         {
-            if (node.Index == 0)
-            {
-                //can't increase section level if the node has no "older" siblings
-                return false;
-            }
-            else
-            {
-                SectionNode newParent;
-                SectionNode movedNode;
-                if (node.ParentSection == null)
-                {
-                    //assumption: the root only has section node children, so we can do this
-                    newParent = (SectionNode)((CoreNode)node.getParent()).getChild(node.Index - 1);
-                    movedNode = (SectionNode)node.DetachFromParent();
-                }
-                else
-                {
-                    //else the node's parent is an ordinary section node
-                    newParent = node.ParentSection.SectionChild(node.Index - 1);
-                    movedNode = (SectionNode)node.DetachFromParent();
-                }
-                AppendChildSection(movedNode, newParent);                
-                return true;
-            }
-        }
-       
-        public void IncreaseSectionNodeLevelRequested(object sender, Events.Node.SectionNodeEventArgs e)
-        {
-            IncreaseSectionNodeLevel(sender, e.Node);
-        }
-
-        //md
-        //the command value is returned so it can be used in UndoShallowDelete's undo list
-        public Commands.Command DecreaseSectionNodeLevel(object origin, SectionNode node)
-        {
-            Commands.TOC.DecreaseSectionNodeLevel command = null;
-
-            //md: need this particular command to be created even if origin = this
-            //because its undo fn is required by UndoShallowDelete
-            //if (origin != this)
-            //{
-                CoreNode parent = (CoreNode)node.getParent();
-              
-                //we need to save the state of the node before it is altered
-                command = new Commands.TOC.DecreaseSectionNodeLevel(node, parent);
-                    
-            //}
-
-            bool succeeded = ExecuteDecreaseSectionNodeLevel(node);
-            if (succeeded)
-            {
-                CoreNode newParent = (CoreNode)node.getParent();
-                DecreasedSectionNodeLevel(this, new Events.Node.SectionNodeEventArgs(origin, node));
-                mUnsaved = true;
-                StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-
-                //md: added condition "origin != this" to accomodate the change made above
-                if (command != null && origin != this) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-            }
-
+            Commands.TOC.IncreaseSectionNodeLevel command = new Commands.TOC.IncreaseSectionNodeLevel(node, (CoreNode)node.getParent());
+            SectionNode newParent = node.ParentSection == null ?
+                (SectionNode)((CoreNode)node.getParent()).getChild(node.Index - 1) :
+                node.ParentSection.SectionChild(node.Index - 1);
+            node.DetachFromParent();
+            AppendChildSection(node, newParent);
+            MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, newParent));
+            Modified();
             return command;
         }
 
         /// <summary>
-        /// move the node "out"
+        /// Move a section node out (decrease its level.)
         /// </summary>
-        /// <param name="node"></param>
-        /// <returns></returns>
-        private bool ExecuteDecreaseSectionNodeLevel(SectionNode node)
+        /// <param name="node">The node to move out.</param>
+        public void MoveSectionNodeOut(SectionNode node)
         {
-            //the only reason we can't decrease the level is if the node is already 
-            //at the outermost level
-            if (node.getParent() == null ||
-                node.getParent().Equals(node.getPresentation().getRootNode()))
+            if (CanMoveSectionNodeOut(node))
             {
-                return false;
+                Commands.TOC.DecreaseSectionNodeLevel command = DecreaseSectionNodeLevel(node);
+                CommandCreated(this, new Obi.Events.Project.CommandCreatedEventArgs(command));
             }
-
-            List<SectionNode> futureChildren = new List<SectionNode>();
-            int nodeIndex = node.Index;
-
-            int numSectionChildren = ((SectionNode)node.getParent()).SectionChildCount;
-
-            //make copies of our future children, and remove them from the tree
-            for (int i = numSectionChildren - 1; i > nodeIndex; i--)
-            {
-                SectionNode sectionChild;
-                sectionChild = (SectionNode)((SectionNode)node.getParent()).SectionChild(i).DetachFromParent();
-                futureChildren.Add(sectionChild);
-            }
-            //since the list was built in backwards order, rearrange it
-            futureChildren.Reverse();
-
-            CoreNode newParent = (CoreNode)node.getParent().getParent();
-            
-            //the index is relative to sections
-            int newIndex = ((SectionNode)node.getParent()).Index + 1;
-
-            SectionNode clone = (SectionNode)node.DetachFromParent();
-
-            AddChildSection(clone, newParent, newIndex);
-
-            foreach (SectionNode childnode in futureChildren)
-            {
-                AppendChildSection(childnode, clone);
-            }
-
-            return true;
-
-        }
-
-        public void DecreaseSectionNodeLevelRequested(object sender, Events.Node.SectionNodeEventArgs e)
-        {
-            DecreaseSectionNodeLevel(sender, e.Node);
         }
 
         /// <summary>
-        /// undo decrease node level is a bit tricky because we might have to move some of the node's
+        /// Decrease the level of a section node.
+        /// </summary>
+        /// <param name="node">The node getting it.</param>
+        public Commands.TOC.DecreaseSectionNodeLevel DecreaseSectionNodeLevel(SectionNode node)
+        {
+            SectionNode parent = node.ParentSection;
+            Commands.TOC.DecreaseSectionNodeLevel command = new Commands.TOC.DecreaseSectionNodeLevel(node, parent);
+            // Make a list of the following siblings which will become children of the node
+            List<SectionNode> newChildren = new List<SectionNode>();            
+            for (int i = parent.SectionChildCount - 1; i > node.Index; --i)
+            {
+                newChildren.Insert(0, parent.SectionChild(i).DetachFromParent());
+            }
+            node.DetachFromParent();
+            CoreNode newParent = (CoreNode)parent.getParent();
+            AddChildSection(node, newParent, parent.Index + 1);
+            newChildren.ForEach(delegate(SectionNode n) { AppendChildSection(n, node); });
+            DecreasedSectionNodeLevel(this, new Events.Node.SectionNodeEventArgs(this, node));
+            Modified();
+            return command;
+        }
+
+        /// <summary>
+        /// Undo decrease node level is a bit tricky because we might have to move some of the node's
         /// children out a level, but only if they were newly adopted after the decrease level action happened. 
         /// </summary>
-        /// <param name="node"></param>
-        /// <param name="parent"></param>
-        /// <param name="index"></param>
-        /// <param name="position"></param>
-        /// <param name="childCount">number of children this node used to have before the decrease level action happened</param>
-        public void UndoDecreaseSectionNodeLevel(SectionNode node, CoreNode parent, int originalChildCount)
+        /// <param name="originalChildCount">number of children this node used to have before the decrease level
+        /// action happened</param>
+        public void UndecreaseSectionNodeLevel(SectionNode node, CoreNode parent, int originalChildCount)
         {
-            //error-checking
-            if (node.getChildCount() < originalChildCount)
+            List<SectionNode> unOriginalChildren = new List<SectionNode>();
+            for (int i = node.SectionChildCount - 1; i >= originalChildCount; --i)
             {
-                //this would be a pretty strange thing to have happen.
-                //todo: throw an exception?  
-                return;
+                unOriginalChildren.Insert(0, node.SectionChild(i).DetachFromParent());
             }
-
-            //detach the non-original children (child nodes originalChildCount...n-1)
-            List<SectionNode> nonOriginalChildren = new List<SectionNode>();
-            int totalNumChildren = node.getChildCount();
-
-            for (int i = totalNumChildren - 1; i >= originalChildCount; i--)
-            {
-                if (node.getChild(i).GetType() == Type.GetType("Obi.SectionNode"))
-                {
-                    SectionNode child = (SectionNode)node.getChild(i);
-                    if (child != null)
-                    {
-                        nonOriginalChildren.Add(child);
-                        child.DetachFromParent();
-                    }
-                }
-            }
-
-            //this array was built backwards, so reverse it
-            nonOriginalChildren.Reverse();
-
-            //insert the node back in its old location
             node.DetachFromParent();
-           
             AppendChildSection(node, parent);
-
             MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, parent));
-
-      
-            //reattach the children
-            for (int i = 0; i < nonOriginalChildren.Count; i++)
+            foreach (SectionNode child in unOriginalChildren)
             {
-                AppendChildSection(nonOriginalChildren[i], parent);
-                MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs
-                    (this, nonOriginalChildren[i], parent));
+                AppendChildSection(child, parent);
+                MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, child, parent));
             }
-            
         }
 
-        /*
         /// <summary>
-        /// Change the text label of a node.
+        /// Increase the level of a section node.
         /// </summary>
-        public void RenameSectionNode(object origin, SectionNode node, string label)
+        public void MoveSectionNodeIn(SectionNode node)
         {
-         
-            TextMedia text = GetTextMedia(node);
-            Commands.TOC.Rename command = origin == this ? null : new Commands.TOC.Rename(this, node, text.getText(), label);
-            GetTextMedia(node).setText(label);
-            RenamedSectionNode(this, new Events.Node.RenameSectionNodeEventArgs(origin, node, label));
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-            if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            if (CanMoveSectionNodeIn(node))
+            {
+                Commands.TOC.IncreaseSectionNodeLevel command = IncreaseSectionNodeLevel(node);
+                CommandCreated(this, new Obi.Events.Project.CommandCreatedEventArgs(command));
+            }
         }
-
-        public void RenameSectionNodeRequested(object sender, Events.Node.RenameSectionNodeEventArgs e)
-        {
-            RenameSectionNode(sender, e.Node, e.Label);
-        }
-         * */
 
         //this is almost the same as ShallowDeleteSectionNode
         public void DoShallowCutSectionNode(object origin, SectionNode node)
@@ -431,7 +292,7 @@ namespace Obi
             int numChildren = node.SectionChildCount;
             for (int i = numChildren - 1; i >= 0; i--)
             {
-                Commands.Command cmdDecrease = DecreaseSectionNodeLevel(this, node.SectionChild(i));
+                Commands.Command cmdDecrease = DecreaseSectionNodeLevel(node.SectionChild(i));
                 if (command != null) command.AddCommand(cmdDecrease);
             }
             numChildren = node.PhraseChildCount;
@@ -502,7 +363,7 @@ namespace Obi
             int numChildren = node.SectionChildCount;
             for (int i = numChildren - 1; i>=0; i--)
             {
-                Commands.Command cmdDecrease = this.DecreaseSectionNodeLevel(this, node.SectionChild(i));
+                Commands.Command cmdDecrease = DecreaseSectionNodeLevel(node.SectionChild(i));
                 command.AddCommand(cmdDecrease);
             }
 
@@ -523,28 +384,20 @@ namespace Obi
              
         }
 
-        //md 20060813
-        internal bool CanMoveSectionNodeIn(SectionNode node)
+        /// <summary>
+        /// True if the node can be moved in.
+        /// </summary>
+        public bool CanMoveSectionNodeIn(SectionNode node)
         {
-            //if it's not the first section
-            if (node.Index > 0)
-                return true;
-            else
-                return false;
+            return node != null && node.Index > 0;
         }
 
-        //md 20060813
-        internal bool CanMoveSectionNodeOut(SectionNode node)
+        /// <summary>
+        /// True if the node can be moved out.
+        /// </summary>
+        public bool CanMoveSectionNodeOut(SectionNode node)
         {
-            //the only reason we can't decrease the level is if the node is already 
-            //at the outermost level
-            if (node.getParent() == null ||
-                node.getParent().Equals(node.getPresentation().getRootNode()))
-            {
-                return false;
-            }
-           
-            return true;
+            return node != null && node.ParentSection != null;
         }
 
         //helper function which tests for parent being root
@@ -656,7 +509,7 @@ namespace Obi
         /// </summary>
         /// <param name="node">The node to cut.</param>
         /// <param name="issueCommand">Issue a command if true.</param>
-        public void ShallowCutSectionNode(SectionNode node, bool issueCommand)
+        public void ShallowCutSectionNode(SectionNode node)
         {
             if (node != null)
             {
@@ -664,7 +517,7 @@ namespace Obi
                 mClipboard.Section = node.copy(false);
                 for (int i = node.SectionChildCount - 1; i >= 0; --i)
                 {
-                    command.AddCommand(DecreaseSectionNodeLevel(this, node.SectionChild(i)));
+                    command.AddCommand(DecreaseSectionNodeLevel(node.SectionChild(i)));
                 }
                 for (int i = node.PhraseChildCount - 1; i >= 0; --i)
                 {
@@ -672,10 +525,7 @@ namespace Obi
                 }
                 command.AddCommand(RemoveSectionNode(node));
                 Modified();
-                if (issueCommand)
-                {
-                    CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-                }
+                CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             }
         }
 

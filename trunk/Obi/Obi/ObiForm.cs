@@ -317,7 +317,7 @@ namespace Obi
                 else if (mProjectPanel.StripManager.SelectedSectionNode != null)
                 {
                     StopIfPaused();
-                    mProject.ShallowCutSectionNode(mProjectPanel.StripManager.SelectedSectionNode, true);
+                    mProject.ShallowCutSectionNode(mProjectPanel.StripManager.SelectedSectionNode);
                 }
                 else if (mProjectPanel.TOCPanel.IsNodeSelected)
                 {
@@ -449,11 +449,13 @@ namespace Obi
         private void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProject.CreateSiblingSectionNode(mProjectPanel.TOCPanel.SelectedSection);
+            mProjectPanel.TOCPanel.StartRenamingSelectedSection();
         }
 
         private void mAddSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProject.CreateChildSectionNode(mProjectPanel.TOCPanel.SelectedSection);
+            mProjectPanel.TOCPanel.StartRenamingSelectedSection();
         }
 
         private void mRenameSectionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -463,9 +465,18 @@ namespace Obi
 
         private void mMoveOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            mProject.MoveSectionNodeOut(mProjectPanel.TOCPanel.SelectedSection);
         }
 
+        private void mMoveInToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProject.MoveSectionNodeIn(mProjectPanel.TOCPanel.SelectedSection);
+        }
+
+        private void mShowInStripviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.TOCPanel.ShowSelectedSectionInStripView();
+        }
 
         #endregion
 
@@ -480,6 +491,7 @@ namespace Obi
         private void mAddStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProject.CreateSiblingSectionNode(mProjectPanel.StripManager.SelectedSectionNode);
+            mProjectPanel.StripManager.StartRenamingSelectedStrip();
         }
 
         private void mRenameStripToolStripMenuItem_Click(object sender, EventArgs e)
@@ -630,14 +642,6 @@ namespace Obi
         /// </summary>
         private void ObiForm_Load(object sender, EventArgs e)
         {
-            // The TOC menu behaves like the context menu in the TOC view.
-            mMoveInToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.TOCPanel.increaseLevelToolStripMenuItem_Click);
-            mMoveOutToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.TOCPanel.decreaseLevelToolStripMenuItem_Click);
-            mShowInStripviewToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.TOCPanel.mShowInStripViewToolStripMenuItem_Click);
-
             // The strip menu behaves like the context menu in the strip view.
             mImportAudioFileToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mImportAudioToolStripMenuItem_Click);
@@ -1176,7 +1180,7 @@ namespace Obi
         /// </summary>
         private void mMarkSectionAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.TOCPanel.ToggleSelectedSectionUsed();
+            mProject.ToggleNodeUsedWithCommand(mProjectPanel.TOCPanel.SelectedSection, true);
         }
 
         /// <summary>
@@ -1515,11 +1519,11 @@ namespace Obi
             mAddSectionToolStripMenuItem.Enabled = !isPlaying && (noNodeSelected || isSectionNodeUsed || isParentUsed);
             mAddSubSectionToolStripMenuItem.Enabled = !isPlaying && isSectionNodeUsed;
             mRenameSectionToolStripMenuItem.Enabled = !isPlaying && isSectionNodeUsed;
-            mMoveInToolStripMenuItem.Enabled = !isPlaying && isSectionNodeUsed &&
-                mProjectPanel.Project.CanMoveSectionNodeIn(mProjectPanel.SelectedSection);
             mMoveOutToolStripMenuItem.Enabled = !isPlaying && isSectionNodeUsed &&
                 mProjectPanel.Project.CanMoveSectionNodeOut(mProjectPanel.SelectedSection);
-
+            mMoveInToolStripMenuItem.Enabled = !isPlaying && isSectionNodeUsed &&
+                mProjectPanel.Project.CanMoveSectionNodeIn(mProjectPanel.SelectedSection);
+            
             // Mark section used/unused (by default, i.e. if disabled, "unused")
             mMarkSectionAsUnusedToolStripMenuItem.Enabled = !isPlaying && isSectionNodeSelected && isParentUsed;
             mMarkSectionAsUnusedToolStripMenuItem.Text = String.Format(Localizer.Message("mark_x_as_y"),
