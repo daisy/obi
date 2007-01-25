@@ -25,8 +25,8 @@ namespace Obi.UserControls
 
         private ProjectPanel mProjectPanel; //the parent of this control
 
-        public event Events.SectionNodeHandler AddSiblingSectionRequested;
-        public event Events.RenameSectionNodeHandler RenameSectionRequested;
+        // public event Events.SectionNodeHandler AddSiblingSectionRequested;
+        // public event Events.RenameSectionNodeHandler RenameSectionRequested;
         public event Events.SetMediaHandler SetMediaRequested;
         public event Events.RequestToImportAssetHandler ImportAudioAssetRequested;
         public event Events.PhraseNodeHandler MoveAudioBlockForwardRequested;
@@ -170,7 +170,7 @@ namespace Obi.UserControls
         {
             get
             {
-                return this.contextMenuStrip1;
+                return this.mContextMenuStrip;
             }
         }
 
@@ -291,9 +291,9 @@ namespace Obi.UserControls
         /// all individual strips.
         /// </summary>
         /// <param name="strip">The renamed strip (with its new name as a label.)</param>
-        internal void RenamedSectionStrip(SectionStrip strip)
+        public void RenamedSectionStrip(SectionStrip strip)
         {
-            RenameSectionRequested(this, new Events.Node.RenameSectionNodeEventArgs(this, strip.Node, strip.Label));
+            mProjectPanel.Project.RenameSectionNodeWithCommand(strip.Node, strip.Label);
         }
 
         /// <summary>

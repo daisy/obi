@@ -125,7 +125,6 @@ namespace Obi.UserControls
         private void mTextBox_Leave(object sender, EventArgs e)
         {
             mRenameBox.ReadOnly = true;
-
             mLabel.Text = mRenameBox.Text;
             mLabel.Visible = true;
             mRenameBox.Visible = false;
@@ -162,7 +161,6 @@ namespace Obi.UserControls
                     mLabel.Text = mRenameBox.Text;
                     mLabel.Visible = true;
                     mRenameBox.Visible = false;
-
                     break;
                 case Keys.F2:
                     if (mRenameBox.ReadOnly)

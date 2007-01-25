@@ -1002,7 +1002,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to rename node.
+        ///   Looks up a localized string similar to rename section.
         /// </summary>
         internal static string rename_command_label {
             get {

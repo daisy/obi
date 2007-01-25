@@ -403,6 +403,7 @@ namespace Obi
             this.mAddSectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
             this.mAddSectionToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.mAddSectionToolStripMenuItem.Text = "&Add section";
+            this.mAddSectionToolStripMenuItem.Click += new System.EventHandler(this.mAddSectionToolStripMenuItem_Click);
             // 
             // mAddSubSectionToolStripMenuItem
             // 
@@ -410,6 +411,7 @@ namespace Obi
             this.mAddSubSectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
             this.mAddSubSectionToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.mAddSubSectionToolStripMenuItem.Text = "Add &sub-section";
+            this.mAddSubSectionToolStripMenuItem.Click += new System.EventHandler(this.mAddSubSectionToolStripMenuItem_Click);
             // 
             // mRenameSectionToolStripMenuItem
             // 
@@ -417,6 +419,7 @@ namespace Obi
             this.mRenameSectionToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
             this.mRenameSectionToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.mRenameSectionToolStripMenuItem.Text = "Re&name section";
+            this.mRenameSectionToolStripMenuItem.Click += new System.EventHandler(this.mRenameSectionToolStripMenuItem_Click);
             // 
             // mMoveOutToolStripMenuItem
             // 
@@ -425,6 +428,7 @@ namespace Obi
                         | System.Windows.Forms.Keys.Left)));
             this.mMoveOutToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.mMoveOutToolStripMenuItem.Text = "Move &out";
+            this.mMoveOutToolStripMenuItem.Click += new System.EventHandler(this.mMoveOutToolStripMenuItem_Click);
             // 
             // mMoveInToolStripMenuItem
             // 
@@ -488,13 +492,15 @@ namespace Obi
             this.mAddStripToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
             this.mAddStripToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
             this.mAddStripToolStripMenuItem.Text = "&Add strip";
+            this.mAddStripToolStripMenuItem.Click += new System.EventHandler(this.mAddStripToolStripMenuItem_Click);
             // 
             // mRenameStripToolStripMenuItem
             // 
             this.mRenameStripToolStripMenuItem.Name = "mRenameStripToolStripMenuItem";
-            this.mRenameStripToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.F2)));
+            this.mRenameStripToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
             this.mRenameStripToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
             this.mRenameStripToolStripMenuItem.Text = "&Rename strip";
+            this.mRenameStripToolStripMenuItem.Click += new System.EventHandler(this.mRenameStripToolStripMenuItem_Click);
             // 
             // mMarkStripAsUnusedToolStripMenuItem
             // 

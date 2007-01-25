@@ -8,7 +8,6 @@ namespace Obi.Commands.TOC
 {
     class Rename: Command
     {
-        private Project mProject;
         private SectionNode mNode;
         private string mOldName;
         private string mNewName;
@@ -18,22 +17,30 @@ namespace Obi.Commands.TOC
             get { return Localizer.Message("rename_command_label"); }
         }
 
-        public Rename(Project project, SectionNode node, string oldName, string newName)
+        /// <summary>
+        /// Issue the command *before* renaming so that the node still has its old name.
+        /// </summary>
+        public Rename(SectionNode node, string newName)
         {
-            mProject = project;
             mNode = node;
-            mOldName = oldName;
+            mOldName = node.Label;
             mNewName = newName;
         }
 
+        /// <summary>
+        /// Do: set the new name on the node.
+        /// </summary>
         public override void Do()
         {
-            mProject.RenameSectionNode(mProject, mNode, mNewName);
+            mNode.Project.RenameSectionNode(mNode, mNewName);
         }
 
+        /// <summary>
+        /// Undo: set the old name on the node.
+        /// </summary>
         public override void Undo()
         {
-            mProject.RenameSectionNode(mProject, mNode, mOldName);
+            mNode.Project.RenameSectionNode(mNode, mOldName);
         }
     }
 }

@@ -16,33 +16,41 @@ namespace Obi.UserControls
     public partial class TOCPanel
     {
         // Should change all these to direct calls to the project
-        public event Events.SectionNodeHandler AddSiblingSectionRequested;
-        public event Events.SectionNodeHandler AddChildSectionNodeRequested;
+        // public event Events.SectionNodeHandler AddSiblingSectionRequested;
+        // public event Events.SectionNodeHandler AddChildSectionNodeRequested;
         public event Events.SectionNodeHandler DecreaseSectionNodeLevelRequested;
         public event Events.SectionNodeHandler IncreaseSectionNodeLevelRequested;
-        public event Events.RenameSectionNodeHandler RenameSectionNodeRequested;
+        // public event Events.RenameSectionNodeHandler RenameSectionNodeRequested;
         // public event Events.SectionNodeHandler DeleteSectionNodeRequested;
         // public event Events.SectionNodeHandler CutSectionNodeRequested;
         // public event Events.SectionNodeHandler PasteSectionNodeRequested;
 
-        // These are internal so that the main menu can also link to them once the project is open.
-        // Actual they should be private and have another functions called by the main menu.
-
-        /// <summary>
-        /// Triggered by the "add sibling section" menu item.
-        /// </summary>
-        internal void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mContextMenuStrip_Opening(object sender, CancelEventArgs e)
         {
-            AddSiblingSectionRequested(this, new SectionNodeEventArgs(this, SelectedSection));
+            UpdateEnabledItemsForContextMenu();
         }
 
-        /// <summary>
-        /// Triggered by the "add sub-section" menu item.
-        /// </summary>
-        internal void mAddSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddChildSectionNodeRequested(this, new SectionNodeEventArgs(this, SelectedSection));  
+            mProjectPanel.Project.CreateSiblingSectionNode(SelectedSection);
         }
+
+        private void mAddSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.Project.CreateChildSectionNode(SelectedSection);
+        }
+
+        private void mRenameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StartRenamingSelectedSection();
+        }
+
+        public void StartRenamingSelectedSection()
+        {
+            TreeNode sel = this.mTocTree.SelectedNode;
+            if (sel != null) sel.BeginEdit();
+        }
+
 
         /// <summary>
         /// Triggered by the "mark section as used/unused" menu item.
@@ -66,12 +74,6 @@ namespace Obi.UserControls
         private void mDeleteSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectPanel.Project.DeleteSectionNode(SelectedSection);
-        }
-
-        internal void mRenameToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            TreeNode sel = this.mTocTree.SelectedNode;
-            sel.BeginEdit();
         }
 
         internal void increaseLevelToolStripMenuItem_Click(object sender, EventArgs e)
@@ -114,38 +116,41 @@ namespace Obi.UserControls
             mProjectPanel.Project.PasteSectionNode(SelectedSection);
         }
 
-        /// <summary>
-        /// Mark all items in the context menu as enabled or not depending on whether there is a current node
-        /// selected, in use, etc.
-        /// </summary>
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        public void UpdateEnabledItemsForContextMenu()
         {
-            bool isNodeSelected = mTocTree.SelectedNode != null;
-            bool isNodeUsed = isNodeSelected && SelectedSection.Used;
-            // Add section (after the current section) is disallowed if this would add *inside*
-            // an unused section. So it is possible to add after an unused section, as long as
-            // its parent is used.
-            mAddSectionAtSameLevelToolStripMenuItem.Enabled = !isNodeSelected || isNodeUsed ||
-                (SelectedSection.ParentSection != null && SelectedSection.ParentSection.Used);
-            mAddSubSectionToolStripMenuItem.Enabled = isNodeUsed;
-            mRenameSectionToolStripMenuItem.Enabled = isNodeUsed;
-            mMoveInToolStripMenuItem.Enabled = isNodeUsed && mProjectPanel.Project.CanMoveSectionNodeIn(SelectedSection);
-            mMoveOutToolStripMenuItem.Enabled = isNodeUsed && mProjectPanel.Project.CanMoveSectionNodeOut(SelectedSection);
-            mCutSectionToolStripMenuItem.Enabled = isNodeUsed;
-            mCopySectionToolStripMenuItem.Enabled = isNodeUsed;
-            // When closing, the project can be null but an event may still be generated
-            // so be careful of checking the the project is not null in order to check
-            // for its clipboard. (JQ)
-            // Also, it doesn't matter if a node is selected since we can paste under the root node.
-            // But if a node is selected it must be used.
-            mPasteSectionToolStripMenuItem.Enabled = (!isNodeSelected || isNodeUsed) &&
-                (mProjectPanel.Project != null) && (mProjectPanel.Project.Clipboard.Section != null);
-            // Mark section used/unused (by default, i.e. if disabled, "unused")
-            mMarkSectionAsUnusedToolStripMenuItem.Enabled = isNodeSelected;
-            mMarkSectionAsUnusedToolStripMenuItem.Text = String.Format(Localizer.Message("mark_x_as_y"),
-                Localizer.Message("section"), Localizer.Message(!isNodeSelected || isNodeUsed ? "unused" : "used"));
-            mDeleteSectionToolStripMenuItem.Enabled = isNodeUsed;
-            mShowInStripViewToolStripMenuItem.Enabled = isNodeSelected;
+            bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
+            bool isSelected = SelectedSection != null;
+            bool isSelectedUsed = isSelected && SelectedSection.Used;
+            bool isParentUsed = isSelected ?
+                SelectedSection.ParentSection == null || SelectedSection.ParentSection.Used :
+                false;
+
+            mAddSectionToolStripMenuItem.Enabled = !isPlaying && (!isSelected || isSelectedUsed || isParentUsed);
+            mAddSubSectionToolStripMenuItem.Enabled = isSelectedUsed;
+            mRenameSectionToolStripMenuItem.Enabled = false;
+            mMoveInToolStripMenuItem.Enabled = false;
+            mMoveOutToolStripMenuItem.Enabled = false;
+
+            bool canCutCopyDelete = !isPlaying && isSelected && CanCutCopyDelete;
+            bool canPaste = !isPlaying && CanPaste;
+
+            mCutSectionToolStripMenuItem.Enabled = canCutCopyDelete;
+            mCopySectionToolStripMenuItem.Enabled = canCutCopyDelete;
+            mPasteSectionToolStripMenuItem.Enabled = canPaste;
+            mDeleteSectionToolStripMenuItem.Enabled = canCutCopyDelete;
+            mMarkSectionAsUnusedToolStripMenuItem.Enabled = false;
+
+            mShowInStripViewToolStripMenuItem.Enabled = isSelected;
+
+            UpdateVisibleItemsForContextMenu();
+        }
+
+        private void UpdateVisibleItemsForContextMenu()
+        {
+            foreach (ToolStripItem item in mContextMenuStrip.Items)
+            {
+                item.Visible = item.Enabled;
+            }
         }
     }
 }

@@ -86,13 +86,11 @@ namespace Obi
             Status(Localizer.Message(mProjectPanel.TransportBar.State.ToString()));
         }
 
-        /// <summary>
-        /// TODO.
-        /// </summary>
         void TransportBar_PlaybackRateChanged(object sender, EventArgs e)
         {
             Status(String.Format(Localizer.Message("playback_rate"), mProjectPanel.TransportBar.Playlist.PlaybackRate));
         }
+
 
         #region File menu event handlers
 
@@ -273,7 +271,7 @@ namespace Obi
         #endregion
 
 
-        #region Edit menu
+        #region Edit menu event handlers
 
         private void mEditToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
@@ -429,6 +427,71 @@ namespace Obi
         #endregion
 
 
+        #region TOC menu event handlers
+
+        private void mTocToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            UpdateEnabledItemsForTOCMenu();
+        }
+
+        private void mShowhideTableOfContentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectPanel.TOCPanelVisible)
+            {
+                mProjectPanel.HideTOCPanel();
+            }
+            else
+            {
+                mProjectPanel.ShowTOCPanel();
+            }
+        }
+
+        private void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProject.CreateSiblingSectionNode(mProjectPanel.TOCPanel.SelectedSection);
+        }
+
+        private void mAddSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProject.CreateChildSectionNode(mProjectPanel.TOCPanel.SelectedSection);
+        }
+
+        private void mRenameSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.TOCPanel.StartRenamingSelectedSection();
+        }
+
+        private void mMoveOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        #endregion
+
+
+        #region Strips menu event handlers
+
+        private void mStripsToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            UpdateEnabledItemsForStripsMenu();
+        }
+
+        private void mAddStripToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProject.CreateSiblingSectionNode(mProjectPanel.StripManager.SelectedSectionNode);
+        }
+
+        private void mRenameStripToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.StripManager.StartRenamingSelectedStrip();
+        }
+
+        #endregion
+
+
+
+
 
         /// <summary>
         /// Handle errors when closing a project.
@@ -450,21 +513,6 @@ namespace Obi
                 mProject.Modified();
             }
             Ready();
-        }
-
-        /// <summary>
-        /// Show or hide the NCX panel in the project panel.
-        /// </summary>
-        private void mShowhideTableOfContentsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProjectPanel.TOCPanelVisible)
-            {
-                mProjectPanel.HideTOCPanel();
-            }
-            else
-            {
-                mProjectPanel.ShowTOCPanel();
-            }
         }
 
         /// <summary>
@@ -583,12 +631,6 @@ namespace Obi
         private void ObiForm_Load(object sender, EventArgs e)
         {
             // The TOC menu behaves like the context menu in the TOC view.
-            mAddSectionToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.TOCPanel.mAddSectionToolStripMenuItem_Click);
-            mAddSubSectionToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.TOCPanel.mAddSubSectionToolStripMenuItem_Click);
-            mRenameSectionToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.TOCPanel.mRenameToolStripMenuItem_Click);
             mMoveInToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.TOCPanel.increaseLevelToolStripMenuItem_Click);
             mMoveOutToolStripMenuItem.Click +=
@@ -597,10 +639,6 @@ namespace Obi
                 new EventHandler(mProjectPanel.TOCPanel.mShowInStripViewToolStripMenuItem_Click);
 
             // The strip menu behaves like the context menu in the strip view.
-            mAddStripToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.StripManager.mAddStripToolStripMenuItem_Click);
-            mRenameStripToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.StripManager.mRenameStripToolStripMenuItem_Click);
             mImportAudioFileToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mImportAudioToolStripMenuItem_Click);
             mSplitAudioBlockToolStripMenuItem.Click +=
@@ -731,7 +769,7 @@ namespace Obi
         /// </summary>
         private void FormUpdateModifiedProject()
         {
-            mProjectPanel.TransportBar.Stop();
+            StopIfPaused();
             this.Text = String.Format(Localizer.Message("title_bar"), mProject.Metadata.Title + "*");
             Ready();
         }
@@ -750,50 +788,9 @@ namespace Obi
 
 
 
-        #region TOC menu
 
-        private void mTocToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
-        {
-            UpdateEnabledItemsForTOCMenu();
-        }
-
-        /// <summary>
-        /// Update the enabled items of the Edit menu.
-        /// </summary>
-        private void UpdateEnabledItemsForTOCMenu()
-        {
-            mShowhideTableOfContentsToolStripMenuItem.Text =
-                Localizer.Message(mProjectPanel.TOCPanelVisible ? "hide_toc_label" : "show_toc_label");
-            mShowhideTableOfContentsToolStripMenuItem.Enabled = mProject != null;
-
-            bool isNodeSelected = mProject != null && mProjectPanel.TOCPanelVisible && mProjectPanel.TOCPanel.IsNodeSelected;
-            SectionNode selected = isNodeSelected ? mProjectPanel.TOCPanel.SelectedSection : null;
-            bool isParentUsed = isNodeSelected ? selected.ParentSection == null || selected.ParentSection.Used : false;
-            bool isNodeUsed = isNodeSelected && selected.Used;
-            bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
-
-            mAddSectionToolStripMenuItem.Enabled = !isPlaying && (isNodeUsed || isParentUsed);
-            mAddSubSectionToolStripMenuItem.Enabled = !isPlaying && isNodeUsed;
-            mRenameSectionToolStripMenuItem.Enabled = !isPlaying && isNodeUsed;
-            mMoveInToolStripMenuItem.Enabled = !isPlaying && isNodeUsed && mProjectPanel.Project.CanMoveSectionNodeIn(selected);
-            mMoveOutToolStripMenuItem.Enabled = !isPlaying && isNodeUsed && mProjectPanel.Project.CanMoveSectionNodeOut(selected);
-
-            // Mark section used/unused (by default, i.e. if disabled, "unused")
-            mMarkSectionAsUnusedToolStripMenuItem.Enabled = !isPlaying && isNodeSelected && isParentUsed;
-            mMarkSectionAsUnusedToolStripMenuItem.Text = String.Format(Localizer.Message("mark_x_as_y"),
-                Localizer.Message("section"),
-                Localizer.Message(!isNodeSelected || isNodeUsed ? "unused" : "used"));
-            mShowInStripviewToolStripMenuItem.Enabled = isNodeSelected;
-        }
-
-        #endregion
 
         #region Strips menu
-
-        private void mStripsToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
-        {
-            UpdateEnabledItemsForStripsMenu();
-        }
 
         /// <summary>
         /// Update the enabled items of the Strips menu.
@@ -1091,7 +1088,11 @@ namespace Obi
         {
             // Make sure that the correct menu items are enabled for the keyboard shortcuts to work.
             UpdateEnabledItems();
-            if (mProject != null) mProjectPanel.StripManager.UpdateEnabledItemsForContextMenu();
+            if (mProject != null)
+            {
+                mProjectPanel.TOCPanel.UpdateEnabledItemsForContextMenu();
+                mProjectPanel.StripManager.UpdateEnabledItemsForContextMenu();
+            }
             switch (key)
             {
                 case Keys.Control | Keys.Space:
@@ -1262,7 +1263,7 @@ namespace Obi
         /// <returns>True if there is no open project or the currently open project could be closed.</returns>
         private bool ClosedProject()
         {
-            mProjectPanel.TransportBar.Stop();
+            StopIfPaused();
             if (mProject != null && mProject.Unsaved)
             {
                 // Unsaved project: ask the user if they want to save and close ("yes" option),
@@ -1491,6 +1492,40 @@ namespace Obi
                 mRedoToolStripMenuItem.Enabled = false;
                 mRedoToolStripMenuItem.Text = Localizer.Message("redo");
             }
+        }
+
+        /// <summary>
+        /// Update the enabled items of the Edit menu.
+        /// </summary>
+        private void UpdateEnabledItemsForTOCMenu()
+        {
+            mShowhideTableOfContentsToolStripMenuItem.Text =
+                Localizer.Message(mProjectPanel.TOCPanelVisible ? "hide_toc_label" : "show_toc_label");
+            mShowhideTableOfContentsToolStripMenuItem.Enabled = mProject != null;
+
+            bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
+            bool isProjectOpen = mProject != null;
+            bool noNodeSelected = isProjectOpen && mProjectPanel.SelectedNode == null;
+            bool isSectionNodeSelected = isProjectOpen && mProjectPanel.TOCPanel.SelectedSection != null;
+            bool isSectionNodeUsed = isSectionNodeSelected && mProjectPanel.TOCPanel.SelectedSection.Used;
+            bool isParentUsed = isSectionNodeSelected ?
+                mProjectPanel.TOCPanel.SelectedSection.ParentSection == null ||
+                mProjectPanel.TOCPanel.SelectedSection.ParentSection.Used : false;
+
+            mAddSectionToolStripMenuItem.Enabled = !isPlaying && (noNodeSelected || isSectionNodeUsed || isParentUsed);
+            mAddSubSectionToolStripMenuItem.Enabled = !isPlaying && isSectionNodeUsed;
+            mRenameSectionToolStripMenuItem.Enabled = !isPlaying && isSectionNodeUsed;
+            mMoveInToolStripMenuItem.Enabled = !isPlaying && isSectionNodeUsed &&
+                mProjectPanel.Project.CanMoveSectionNodeIn(mProjectPanel.SelectedSection);
+            mMoveOutToolStripMenuItem.Enabled = !isPlaying && isSectionNodeUsed &&
+                mProjectPanel.Project.CanMoveSectionNodeOut(mProjectPanel.SelectedSection);
+
+            // Mark section used/unused (by default, i.e. if disabled, "unused")
+            mMarkSectionAsUnusedToolStripMenuItem.Enabled = !isPlaying && isSectionNodeSelected && isParentUsed;
+            mMarkSectionAsUnusedToolStripMenuItem.Text = String.Format(Localizer.Message("mark_x_as_y"),
+                Localizer.Message("section"),
+                Localizer.Message(!isSectionNodeSelected || isSectionNodeUsed ? "unused" : "used"));
+            mShowInStripviewToolStripMenuItem.Enabled = isSectionNodeSelected;
         }
 
         private void mQuickSplitAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
