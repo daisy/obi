@@ -47,12 +47,12 @@ namespace Obi.UserControls
             mStripManagerPanel.SelectionChanged += new Events.SelectedHandler(this.test_WidgetSelect);
             mTOCPanel.SelectionChanged += new Events.SelectedHandler(this.test_WidgetSelect);
 
-            mTOCPanel.AddSiblingSectionRequested += new Events.SectionNodeHandler(project.CreateSiblingSectionNodeRequested);
-            mStripManagerPanel.AddSiblingSectionRequested += new Events.SectionNodeHandler(project.CreateSiblingSectionNodeRequested);
+            // mTOCPanel.AddSiblingSectionRequested += new Events.SectionNodeHandler(project.CreateSiblingSectionNodeRequested);
+            // mStripManagerPanel.AddSiblingSectionRequested += new Events.SectionNodeHandler(project.CreateSiblingSectionNodeRequested);
             project.AddedSectionNode += new Events.SectionNodeHandler(mTOCPanel.SyncAddedSectionNode);
             project.AddedSectionNode += new Events.SectionNodeHandler(mStripManagerPanel.SyncAddedSectionNode);
 
-            mTOCPanel.AddChildSectionNodeRequested += new Events.SectionNodeHandler(project.CreateChildSectionNodeRequested);
+            // mTOCPanel.AddChildSectionNodeRequested += new Events.SectionNodeHandler(project.CreateChildSectionNodeRequested);
 
             project.MovedSectionNode += new Events.MovedSectionNodeHandler(mTOCPanel.SyncMovedSectionNode);
             project.MovedSectionNode += new Events.MovedSectionNodeHandler(mStripManagerPanel.SyncMovedSectionNode);
@@ -67,8 +67,8 @@ namespace Obi.UserControls
             project.DecreasedSectionNodeLevel += new Events.SectionNodeHandler(mTOCPanel.SyncDecreasedSectionNodeLevel);
             project.DecreasedSectionNodeLevel += new Events.SectionNodeHandler(mStripManagerPanel.SyncDecreaseSectionNodeLevel);
 
-            mTOCPanel.RenameSectionNodeRequested += new Events.RenameSectionNodeHandler(project.RenameSectionNodeRequested);
-            mStripManagerPanel.RenameSectionRequested += new Events.RenameSectionNodeHandler(project.RenameSectionNodeRequested);
+            // mTOCPanel.RenameSectionNodeRequested += new Events.RenameSectionNodeHandler(project.RenameSectionNodeRequested);
+            // mStripManagerPanel.RenameSectionRequested += new Events.RenameSectionNodeHandler(project.RenameSectionNodeRequested);
             project.RenamedSectionNode += new Events.RenameSectionNodeHandler(mTOCPanel.SyncRenamedSectionNode);
             project.RenamedSectionNode += new Events.RenameSectionNodeHandler(mStripManagerPanel.SyncRenamedNode);
 
@@ -130,14 +130,14 @@ namespace Obi.UserControls
             mStripManagerPanel.SelectionChanged -= new Events.SelectedHandler(this.test_WidgetSelect);
             mTOCPanel.SelectionChanged -= new Events.SelectedHandler(this.test_WidgetSelect);
 
-            mTOCPanel.AddSiblingSectionRequested -= new Events.SectionNodeHandler(mProject.CreateSiblingSectionNodeRequested);
-            mStripManagerPanel.AddSiblingSectionRequested -=
-                new Events.SectionNodeHandler(mProject.CreateSiblingSectionNodeRequested);
+            // mTOCPanel.AddSiblingSectionRequested -= new Events.SectionNodeHandler(mProject.CreateSiblingSectionNodeRequested);
+            // mStripManagerPanel.AddSiblingSectionRequested -=
+            //    new Events.SectionNodeHandler(mProject.CreateSiblingSectionNodeRequested);
 
             mProject.AddedSectionNode -= new Events.SectionNodeHandler(mTOCPanel.SyncAddedSectionNode);
             mProject.AddedSectionNode -= new Events.SectionNodeHandler(mStripManagerPanel.SyncAddedSectionNode);
 
-            mTOCPanel.AddChildSectionNodeRequested -= new Events.SectionNodeHandler(mProject.CreateChildSectionNodeRequested);
+            // mTOCPanel.AddChildSectionNodeRequested -= new Events.SectionNodeHandler(mProject.CreateChildSectionNodeRequested);
 
             mProject.MovedSectionNode -= new Events.MovedSectionNodeHandler(mTOCPanel.SyncMovedSectionNode);
             mProject.MovedSectionNode -= new Events.MovedSectionNodeHandler(mStripManagerPanel.SyncMovedSectionNode);
@@ -151,8 +151,8 @@ namespace Obi.UserControls
             mProject.DecreasedSectionNodeLevel -= new Events.SectionNodeHandler(mTOCPanel.SyncDecreasedSectionNodeLevel);
             mProject.DecreasedSectionNodeLevel -= new Events.SectionNodeHandler(mStripManagerPanel.SyncDecreaseSectionNodeLevel);
 
-            mTOCPanel.RenameSectionNodeRequested -= new Events.RenameSectionNodeHandler(mProject.RenameSectionNodeRequested);
-            mStripManagerPanel.RenameSectionRequested -= new Events.RenameSectionNodeHandler(mProject.RenameSectionNodeRequested);
+            // mTOCPanel.RenameSectionNodeRequested -= new Events.RenameSectionNodeHandler(mProject.RenameSectionNodeRequested);
+            // mStripManagerPanel.RenameSectionRequested -= new Events.RenameSectionNodeHandler(mProject.RenameSectionNodeRequested);
             mProject.RenamedSectionNode -= new Events.RenameSectionNodeHandler(mTOCPanel.SyncRenamedSectionNode);
             mProject.RenamedSectionNode -= new Events.RenameSectionNodeHandler(mStripManagerPanel.SyncRenamedNode);
 
@@ -252,6 +252,20 @@ namespace Obi.UserControls
                         mStripManagerPanel.SelectedNode :
                     mTOCPanel.IsNodeSelected ?
                         mTOCPanel.SelectedSection : null;
+            }
+        }
+
+        /// <summary>
+        /// Return the section node currently selected, either in the strip manager or the TOC view.
+        /// If no section node is selected, return null.
+        /// </summary>
+        public SectionNode SelectedSection
+        {
+            get
+            {
+                return mStripManagerPanel.SelectedSectionNode != null ?
+                    mStripManagerPanel.SelectedSectionNode :
+                    mTOCPanel.SelectedSection;
             }
         }
 

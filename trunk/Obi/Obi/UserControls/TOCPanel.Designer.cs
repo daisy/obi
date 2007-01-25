@@ -30,27 +30,25 @@ namespace Obi.UserControls
         {
             this.components = new System.ComponentModel.Container();
             this.mTocTree = new System.Windows.Forms.TreeView();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mAddSectionAtSameLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mAddSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddSubSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRenameSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMoveOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMoveInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mCutSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mCopySectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPasteSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mMarkSectionAsUnusedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mDeleteSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.mMarkSectionAsUnusedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowInStripViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.contextMenuStrip1.SuspendLayout();
+            this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // mTocTree
             // 
-            this.mTocTree.ContextMenuStrip = this.contextMenuStrip1;
+            this.mTocTree.ContextMenuStrip = this.mContextMenuStrip;
             this.mTocTree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mTocTree.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mTocTree.ForeColor = System.Drawing.Color.SteelBlue;
@@ -60,39 +58,37 @@ namespace Obi.UserControls
             this.mTocTree.Size = new System.Drawing.Size(129, 123);
             this.mTocTree.TabIndex = 0;
             this.mTocTree.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tocTree_NodeMouseDoubleClick);
-            this.mTocTree.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.tocTree_AfterLabelEdit);
+            this.mTocTree.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.mTocTree_AfterLabelEdit);
             this.mTocTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.mTocTree_AfterSelect);
             this.mTocTree.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.mTocTree_BeforeSelect);
             this.mTocTree.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tocTree_KeyDown);
             this.mTocTree.Leave += new System.EventHandler(this.mTocTree_Leave);
             // 
-            // contextMenuStrip1
+            // mContextMenuStrip
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mAddSectionAtSameLevelToolStripMenuItem,
+            this.mContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mAddSectionToolStripMenuItem,
             this.mAddSubSectionToolStripMenuItem,
             this.mRenameSectionToolStripMenuItem,
             this.mMoveOutToolStripMenuItem,
             this.mMoveInToolStripMenuItem,
-            this.toolStripSeparator1,
             this.mCutSectionToolStripMenuItem,
             this.mCopySectionToolStripMenuItem,
             this.mPasteSectionToolStripMenuItem,
-            this.mMarkSectionAsUnusedToolStripMenuItem,
             this.mDeleteSectionToolStripMenuItem,
-            this.toolStripSeparator3,
+            this.mMarkSectionAsUnusedToolStripMenuItem,
             this.mShowInStripViewToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(230, 280);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            this.mContextMenuStrip.Name = "contextMenuStrip1";
+            this.mContextMenuStrip.Size = new System.Drawing.Size(230, 268);
+            this.mContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.mContextMenuStrip_Opening);
             // 
-            // mAddSectionAtSameLevelToolStripMenuItem
+            // mAddSectionToolStripMenuItem
             // 
-            this.mAddSectionAtSameLevelToolStripMenuItem.Name = "mAddSectionAtSameLevelToolStripMenuItem";
-            this.mAddSectionAtSameLevelToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.mAddSectionAtSameLevelToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
-            this.mAddSectionAtSameLevelToolStripMenuItem.Text = "&Add section";
-            this.mAddSectionAtSameLevelToolStripMenuItem.Click += new System.EventHandler(this.mAddSectionToolStripMenuItem_Click);
+            this.mAddSectionToolStripMenuItem.Name = "mAddSectionToolStripMenuItem";
+            this.mAddSectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
+            this.mAddSectionToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.mAddSectionToolStripMenuItem.Text = "&Add section";
+            this.mAddSectionToolStripMenuItem.Click += new System.EventHandler(this.mAddSectionToolStripMenuItem_Click);
             // 
             // mAddSubSectionToolStripMenuItem
             // 
@@ -102,9 +98,9 @@ namespace Obi.UserControls
             this.mAddSubSectionToolStripMenuItem.Text = "Add &sub-section";
             this.mAddSubSectionToolStripMenuItem.Click += new System.EventHandler(this.mAddSubSectionToolStripMenuItem_Click);
             // 
-            // mEditLabelToolStripMenuItem
+            // mRenameSectionToolStripMenuItem
             // 
-            this.mRenameSectionToolStripMenuItem.Name = "mEditLabelToolStripMenuItem";
+            this.mRenameSectionToolStripMenuItem.Name = "mRenameSectionToolStripMenuItem";
             this.mRenameSectionToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
             this.mRenameSectionToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.mRenameSectionToolStripMenuItem.Text = "Re&name section";
@@ -127,11 +123,6 @@ namespace Obi.UserControls
             this.mMoveInToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.mMoveInToolStripMenuItem.Text = "Move &in";
             this.mMoveInToolStripMenuItem.Click += new System.EventHandler(this.increaseLevelToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(226, 6);
             // 
             // mCutSectionToolStripMenuItem
             // 
@@ -160,14 +151,6 @@ namespace Obi.UserControls
             this.mPasteSectionToolStripMenuItem.Text = "&Paste section";
             this.mPasteSectionToolStripMenuItem.Click += new System.EventHandler(this.mPasteSectionToolStripMenuItem_Click);
             // 
-            // mMarkSectionAsUnusedToolStripMenuItem
-            // 
-            this.mMarkSectionAsUnusedToolStripMenuItem.Name = "mMarkSectionAsUnusedToolStripMenuItem";
-            this.mMarkSectionAsUnusedToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.K)));
-            this.mMarkSectionAsUnusedToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
-            this.mMarkSectionAsUnusedToolStripMenuItem.Text = "Mar&k section as unused";
-            this.mMarkSectionAsUnusedToolStripMenuItem.Click += new System.EventHandler(this.mMarkSectionAsUnusedToolStripMenuItem_Click);
-            // 
             // mDeleteSectionToolStripMenuItem
             // 
             this.mDeleteSectionToolStripMenuItem.Name = "mDeleteSectionToolStripMenuItem";
@@ -176,10 +159,13 @@ namespace Obi.UserControls
             this.mDeleteSectionToolStripMenuItem.Text = "&Delete section";
             this.mDeleteSectionToolStripMenuItem.Click += new System.EventHandler(this.mDeleteSectionToolStripMenuItem_Click);
             // 
-            // toolStripSeparator3
+            // mMarkSectionAsUnusedToolStripMenuItem
             // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(226, 6);
+            this.mMarkSectionAsUnusedToolStripMenuItem.Name = "mMarkSectionAsUnusedToolStripMenuItem";
+            this.mMarkSectionAsUnusedToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.K)));
+            this.mMarkSectionAsUnusedToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.mMarkSectionAsUnusedToolStripMenuItem.Text = "Mar&k section as unused";
+            this.mMarkSectionAsUnusedToolStripMenuItem.Click += new System.EventHandler(this.mMarkSectionAsUnusedToolStripMenuItem_Click);
             // 
             // mShowInStripViewToolStripMenuItem
             // 
@@ -201,7 +187,7 @@ namespace Obi.UserControls
             this.Controls.Add(this.mTocTree);
             this.Name = "TOCPanel";
             this.Size = new System.Drawing.Size(129, 123);
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.mContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -209,13 +195,11 @@ namespace Obi.UserControls
         #endregion
 
         private System.Windows.Forms.TreeView mTocTree;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem mAddSectionAtSameLevelToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip mContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem mAddSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mAddSubSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mRenameSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mDeleteSectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem mShowInStripViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mCutSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mCopySectionToolStripMenuItem;

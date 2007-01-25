@@ -31,16 +31,77 @@ namespace Obi.UserControls
 
         public Events.RequestToApplyPhraseDetectionHandler ApplyPhraseDetectionRequested;
 
-        /// <summary>
-        /// Enable/disable items depending on what is currently available.
-        /// </summary>
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        private void mContextMenuStrip_Opening(object sender, CancelEventArgs e)
         {
             UpdateEnabledItemsForContextMenu();
         }
 
+        private void mAddStripToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.Project.CreateSiblingSectionNode(mSelectedSection);
+        }
+
+        private void mRenameStripToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StartRenamingSelectedStrip();
+        }
+
+        /// <summary>
+        /// Start renaming the strip currently selected (if any.)
+        /// </summary>
+        public void StartRenamingSelectedStrip()
+        {
+            if (mSelectedSection != null)
+            {
+                mSectionNodeMap[mSelectedSection].StartRenaming();
+            }
+        }
+
+        /// <summary>
+        /// Enable/disable items depending on what is currently available.
+        /// </summary>
         public void UpdateEnabledItemsForContextMenu()
         {
+            bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
+            bool isStripSelected = SelectedSectionNode != null;
+            bool isStripUsed = isStripSelected && SelectedSectionNode.Used;
+            bool isParentUsed = isStripSelected &&
+                (SelectedSectionNode.ParentSection == null || SelectedSectionNode.ParentSection.Used);
+            bool noSelection = SelectedNode == null;
+
+            mAddStripToolStripMenuItem.Enabled = !isPlaying && (noSelection || isStripUsed || isParentUsed);
+            mRenameStripToolStripMenuItem.Enabled = !isPlaying && isStripUsed;
+            mCutStripToolStripMenuItem.Enabled = false;
+            mCopyStripToolStripMenuItem.Enabled = false;
+            mPasteStripToolStripMenuItem.Enabled = false;
+            mDeleteStripToolStripMenuItem.Enabled = false;
+            mMarkStripAsUnusedToolStripMenuItem.Enabled = !isPlaying && isStripSelected;
+            mShowInTOCViewToolStripMenuItem.Enabled = !isPlaying && isStripSelected;
+            
+            mImportAudioFileToolStripMenuItem.Enabled = false;
+            mInsertEmptyAudioblockToolStripMenuItem.Enabled = false;
+            mCutAudioBlockToolStripMenuItem.Enabled = false;
+            mCopyAudioBlockToolStripMenuItem.Enabled = false;
+            mPasteAudioBlockToolStripMenuItem.Enabled = false;
+            mDeleteAudioBlockToolStripMenuItem.Enabled = false;
+            mMarkPhraseAsUnusedToolStripMenuItem.Enabled = false;
+            mSplitAudioBlockToolStripMenuItem.Enabled = false;
+            mApplyPhraseDetectionToolStripMenuItem.Enabled = false;
+            mMergeWithNextAudioBlockToolStripMenuItem.Enabled = false;
+            mMoveAudioBlockForwardToolStripMenuItem.Enabled = false;
+            mMoveAudioBlockBackwardToolStripMenuItem.Enabled = false;
+            mMoveAudioBlockToolStripMenuItem.Enabled = mMoveAudioBlockForwardToolStripMenuItem.Enabled ||
+                mMoveAudioBlockBackwardToolStripMenuItem.Enabled;
+            
+            mEditAnnotationToolStripMenuItem.Enabled = false;
+            mRemoveAnnotationToolStripMenuItem.Enabled = false;
+            
+            mSetPageNumberToolStripMenuItem.Enabled = false;
+            mRemovePageNumberToolStripMenuItem.Enabled = false;
+
+            UpdateVisibleItemsForContextMenu();
+
+            /*
             bool isStripSelected = mSelectedSection != null;
             bool isAudioBlockSelected = mSelectedPhrase != null;
             bool isAudioBlockLast = isAudioBlockSelected &&
@@ -96,8 +157,7 @@ namespace Obi.UserControls
             mMarkPhraseAsUnusedToolStripMenuItem.Enabled = isAudioBlockSelected;
             mMarkPhraseAsUnusedToolStripMenuItem.Text = String.Format(Localizer.Message("mark_x_as_y"),
                 Localizer.Message("phrase"), Localizer.Message(isAudioBlockSelected && !SelectedNode.Used ? "used" : "unused"));
-
-            MakeEnabledMenuItemsVisible();
+            */
         }
 
         //md 20061219 
@@ -106,21 +166,21 @@ namespace Obi.UserControls
         /// </summary>
         // this is probably redundant, and could just be done instead of "enabling" things first
         // but that is for later.  still trying things out now.
-        private void MakeEnabledMenuItemsVisible()
+        private void UpdateVisibleItemsForContextMenu()
         {
-            foreach (ToolStripItem item in this.contextMenuStrip1.Items)
+            foreach (ToolStripItem item in this.mContextMenuStrip.Items)
             {
                 item.Visible = item.Enabled;
             }
          
             //this is the separator that appears before the audio block commands
-            toolStripSeparator1.Visible = mImportAudioFileToolStripMenuItem.Enabled || mCutAudioBlockToolStripMenuItem.Enabled;
+            //toolStripSeparator1.Visible = mImportAudioFileToolStripMenuItem.Enabled || mCutAudioBlockToolStripMenuItem.Enabled;
             //and this one comes before the annotation commands
-            toolStripSeparator3.Visible = mEditAnnotationToolStripMenuItem.Enabled;
+            //toolStripSeparator3.Visible = mEditAnnotationToolStripMenuItem.Enabled;
             //this one before the show in TOC view option
-            toolStripSeparator2.Visible = mShowInTOCViewToolStripMenuItem.Enabled;
+            //toolStripSeparator2.Visible = mShowInTOCViewToolStripMenuItem.Enabled;
             //this one before the page number commands
-            toolStripSeparator4.Visible = mRemovePageNumberToolStripMenuItem.Enabled;
+            //toolStripSeparator4.Visible = mRemovePageNumberToolStripMenuItem.Enabled;
 
         }
 
@@ -131,18 +191,7 @@ namespace Obi.UserControls
         /// just below the selected strip.
         /// When no strip is selected, just add a new strip at the top of the tree.
         /// </summary>
-        internal void mAddStripToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AddSiblingSectionRequested(this, new SectionNodeEventArgs(this, mSelectedSection));
-        }
 
-        internal void mRenameStripToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mSelectedSection != null)
-            {
-                mSectionNodeMap[mSelectedSection].StartRenaming();
-            }
-        }
 
         /// <summary>
         /// Brings up a file dialog and import one or more audio assets from selected files.

@@ -31,7 +31,7 @@ namespace Obi.UserControls
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.mFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mAddStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRenameStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mCutStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,8 +39,10 @@ namespace Obi.UserControls
             this.mPasteStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mDeleteStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMarkStripAsUnusedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mShowInTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mImportAudioFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mInsertEmptyAudioblockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mCutAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mCopyAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPasteAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,8 +52,8 @@ namespace Obi.UserControls
             this.mApplyPhraseDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMergeWithNextAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMoveAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mMoveAudioBlockForwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMoveAudioBlockBackwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mMoveAudioBlockForwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.mEditAnnotationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRemoveAnnotationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,9 +61,7 @@ namespace Obi.UserControls
             this.mSetPageNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRemovePageNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.mShowInTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mInsertEmptyAudioblockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1.SuspendLayout();
+            this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -78,7 +78,7 @@ namespace Obi.UserControls
             // 
             this.mFlowLayoutPanel.AutoScroll = true;
             this.mFlowLayoutPanel.BackColor = System.Drawing.Color.Transparent;
-            this.mFlowLayoutPanel.ContextMenuStrip = this.contextMenuStrip1;
+            this.mFlowLayoutPanel.ContextMenuStrip = this.mContextMenuStrip;
             this.mFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.mFlowLayoutPanel.Location = new System.Drawing.Point(0, 0);
@@ -88,9 +88,9 @@ namespace Obi.UserControls
             this.mFlowLayoutPanel.WrapContents = false;
             this.mFlowLayoutPanel.Click += new System.EventHandler(this.mFlowLayoutPanel_Click);
             // 
-            // contextMenuStrip1
+            // mContextMenuStrip
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mAddStripToolStripMenuItem,
             this.mRenameStripToolStripMenuItem,
             this.mCutStripToolStripMenuItem,
@@ -98,6 +98,7 @@ namespace Obi.UserControls
             this.mPasteStripToolStripMenuItem,
             this.mDeleteStripToolStripMenuItem,
             this.mMarkStripAsUnusedToolStripMenuItem,
+            this.mShowInTOCViewToolStripMenuItem,
             this.toolStripSeparator1,
             this.mImportAudioFileToolStripMenuItem,
             this.mInsertEmptyAudioblockToolStripMenuItem,
@@ -116,12 +117,11 @@ namespace Obi.UserControls
             this.toolStripSeparator4,
             this.mSetPageNumberToolStripMenuItem,
             this.mRemovePageNumberToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.mShowInTOCViewToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.ShowImageMargin = false;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(229, 556);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            this.toolStripSeparator2});
+            this.mContextMenuStrip.Name = "contextMenuStrip1";
+            this.mContextMenuStrip.ShowImageMargin = false;
+            this.mContextMenuStrip.Size = new System.Drawing.Size(229, 556);
+            this.mContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.mContextMenuStrip_Opening);
             // 
             // mAddStripToolStripMenuItem
             // 
@@ -134,7 +134,7 @@ namespace Obi.UserControls
             // mRenameStripToolStripMenuItem
             // 
             this.mRenameStripToolStripMenuItem.Name = "mRenameStripToolStripMenuItem";
-            this.mRenameStripToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.F2)));
+            this.mRenameStripToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
             this.mRenameStripToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
             this.mRenameStripToolStripMenuItem.Text = "Re&name strip";
             this.mRenameStripToolStripMenuItem.Click += new System.EventHandler(this.mRenameStripToolStripMenuItem_Click);
@@ -179,6 +179,14 @@ namespace Obi.UserControls
             this.mMarkStripAsUnusedToolStripMenuItem.Text = "Mar&k strip as unused";
             this.mMarkStripAsUnusedToolStripMenuItem.Click += new System.EventHandler(this.mMarkStripAsUnusedToolStripMenuItem_Click);
             // 
+            // mShowInTOCViewToolStripMenuItem
+            // 
+            this.mShowInTOCViewToolStripMenuItem.Name = "mShowInTOCViewToolStripMenuItem";
+            this.mShowInTOCViewToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.V)));
+            this.mShowInTOCViewToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.mShowInTOCViewToolStripMenuItem.Text = "Show in TOC vie&w";
+            this.mShowInTOCViewToolStripMenuItem.Click += new System.EventHandler(this.mShowInTOCViewToolStripMenuItem_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -191,6 +199,13 @@ namespace Obi.UserControls
             this.mImportAudioFileToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
             this.mImportAudioFileToolStripMenuItem.Text = "&Import audio";
             this.mImportAudioFileToolStripMenuItem.Click += new System.EventHandler(this.mImportAudioToolStripMenuItem_Click);
+            // 
+            // mInsertEmptyAudioblockToolStripMenuItem
+            // 
+            this.mInsertEmptyAudioblockToolStripMenuItem.Name = "mInsertEmptyAudioblockToolStripMenuItem";
+            this.mInsertEmptyAudioblockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.J)));
+            this.mInsertEmptyAudioblockToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.mInsertEmptyAudioblockToolStripMenuItem.Text = "Insert empty audio &block";
             // 
             // mCutAudioBlockToolStripMenuItem
             // 
@@ -259,19 +274,11 @@ namespace Obi.UserControls
             // mMoveAudioBlockToolStripMenuItem
             // 
             this.mMoveAudioBlockToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mMoveAudioBlockForwardToolStripMenuItem,
-            this.mMoveAudioBlockBackwardToolStripMenuItem});
+            this.mMoveAudioBlockBackwardToolStripMenuItem,
+            this.mMoveAudioBlockForwardToolStripMenuItem});
             this.mMoveAudioBlockToolStripMenuItem.Name = "mMoveAudioBlockToolStripMenuItem";
             this.mMoveAudioBlockToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
             this.mMoveAudioBlockToolStripMenuItem.Text = "Mo&ve audio block...";
-            // 
-            // mMoveAudioBlockForwardToolStripMenuItem
-            // 
-            this.mMoveAudioBlockForwardToolStripMenuItem.Name = "mMoveAudioBlockForwardToolStripMenuItem";
-            this.mMoveAudioBlockForwardToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Right)));
-            this.mMoveAudioBlockForwardToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.mMoveAudioBlockForwardToolStripMenuItem.Text = "&Forward";
-            this.mMoveAudioBlockForwardToolStripMenuItem.Click += new System.EventHandler(this.mMoveAudioBlockForwardToolStripMenuItem_Click);
             // 
             // mMoveAudioBlockBackwardToolStripMenuItem
             // 
@@ -280,6 +287,14 @@ namespace Obi.UserControls
             this.mMoveAudioBlockBackwardToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.mMoveAudioBlockBackwardToolStripMenuItem.Text = "&Backward";
             this.mMoveAudioBlockBackwardToolStripMenuItem.Click += new System.EventHandler(this.mMoveAudioBlockBackwardToolStripMenuItem_Click);
+            // 
+            // mMoveAudioBlockForwardToolStripMenuItem
+            // 
+            this.mMoveAudioBlockForwardToolStripMenuItem.Name = "mMoveAudioBlockForwardToolStripMenuItem";
+            this.mMoveAudioBlockForwardToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Right)));
+            this.mMoveAudioBlockForwardToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.mMoveAudioBlockForwardToolStripMenuItem.Text = "&Forward";
+            this.mMoveAudioBlockForwardToolStripMenuItem.Click += new System.EventHandler(this.mMoveAudioBlockForwardToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -329,21 +344,6 @@ namespace Obi.UserControls
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(225, 6);
             // 
-            // mShowInTOCViewToolStripMenuItem
-            // 
-            this.mShowInTOCViewToolStripMenuItem.Name = "mShowInTOCViewToolStripMenuItem";
-            this.mShowInTOCViewToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.V)));
-            this.mShowInTOCViewToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.mShowInTOCViewToolStripMenuItem.Text = "Show in TOC vie&w";
-            this.mShowInTOCViewToolStripMenuItem.Click += new System.EventHandler(this.mShowInTOCViewToolStripMenuItem_Click);
-            // 
-            // mInsertEmptyAudioblockToolStripMenuItem
-            // 
-            this.mInsertEmptyAudioblockToolStripMenuItem.Name = "mInsertEmptyAudioblockToolStripMenuItem";
-            this.mInsertEmptyAudioblockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.J)));
-            this.mInsertEmptyAudioblockToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.mInsertEmptyAudioblockToolStripMenuItem.Text = "Insert empty audio &block";
-            // 
             // StripManagerPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -352,7 +352,7 @@ namespace Obi.UserControls
             this.Controls.Add(this.mFlowLayoutPanel);
             this.Controls.Add(this.label1);
             this.Name = "StripManagerPanel";
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.mContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -362,7 +362,7 @@ namespace Obi.UserControls
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.FlowLayoutPanel mFlowLayoutPanel;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ContextMenuStrip mContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem mAddStripToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mRenameStripToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;

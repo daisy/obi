@@ -71,29 +71,6 @@ namespace Obi
         }
 
         /// <summary>
-        /// Paste a copy of a section node under a parent. Both must be defined.
-        /// Project is modified but no command is issued.
-        /// </summary>
-        /// <param name="node">The node to paste.</param>
-        /// <param name="parent">The parent under which to paste (append.)</param>
-        /// <returns>The node actually pasted.</returns>
-        public SectionNode PasteCopyOfSectionNode(SectionNode node, CoreNode parent)
-        {
-            SectionNode copy = node.copy(true);
-            if (parent is SectionNode)
-            {
-                ((SectionNode)parent).AppendChildSection(copy);
-            }
-            else
-            {
-                parent.appendChild(copy);
-            }
-            PastedSectionNode(this, new Events.Node.SectionNodeEventArgs(this, copy));
-            Modified();
-            return copy;
-        }
-
-        /// <summary>
         /// Delete a node and its whole subtree from the core tree.
         /// </summary>
         public void DeleteSectionNode(SectionNode node)
@@ -106,24 +83,16 @@ namespace Obi
             }
         }
 
-
-
-
-        // Here are the event handlers for request sent by the GUI when editing the TOC.
-        // Every request is passed to a method that uses mostly the same arguments,
-        // which can also be called directly by a command for undo/redo purposes.
-        // When we are done, a synchronization event is sent back.
-        // (As well as a state change event.)
-
         /// <summary>
         /// Create a sibling section for a given section.
         /// The context node may be null if this is the first node that is added, in which case
         /// we add a new child to the root (and not a sibling.)
         /// </summary>
+        /// <param name="contextNode">The sibling of the new node.</param>
         /// <returns>The new section node.</returns>
-        public SectionNode CreateSiblingSectionNode(object origin, SectionNode contextNode)
+        public SectionNode CreateSiblingSectionNode(SectionNode contextNode)
         {
-            CoreNode parent = (CoreNode)(contextNode == null ? getPresentation().getRootNode() : contextNode.getParent());
+            CoreNode parent = (CoreNode)(contextNode == null ? RootNode : contextNode.getParent());
             SectionNode sibling = (SectionNode)
                 getPresentation().getCoreNodeFactory().createNode(SectionNode.Name, ObiPropertyFactory.ObiNS);
             if (contextNode == null)
@@ -135,48 +104,55 @@ namespace Obi
             {
                 AddChildSectionAfter(sibling, contextNode, parent);
             }
-            AddedSectionNode(origin, new Events.Node.SectionNodeEventArgs(origin, sibling));
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-            Commands.TOC.AddSectionNode command = new Commands.TOC.AddSectionNode(sibling);
-            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            AddedSectionNode(this, new Events.Node.SectionNodeEventArgs(this, sibling));
+            Modified();
+            CommandCreated(this,
+                new Events.Project.CommandCreatedEventArgs(new Commands.TOC.AddSectionNode(sibling)));
             return sibling;
         }
 
-        public void CreateSiblingSectionNodeRequested(object sender, Events.Node.SectionNodeEventArgs e)
-        {
-            CreateSiblingSectionNode(sender, e.Node);
-        }
-
         /// <summary>
-        /// Create a new child section for a given section. If the context node is null, add to the root of the tree.
+        /// Create a new child section for a given section.
+        /// If the context node is null, add to the root of the tree.
         /// </summary>
-        public SectionNode CreateChildSectionNode(object origin, CoreNode parent)
+        /// <param name="parent">The parent section of the new section.</param>
+        /// <returns>The created section.</returns>
+        public SectionNode CreateChildSectionNode(CoreNode parent)
         {
             SectionNode child = (SectionNode)
                 getPresentation().getCoreNodeFactory().createNode(SectionNode.Name, ObiPropertyFactory.ObiNS);
-            
             if (parent == null)
             {
-                getPresentation().getRootNode().appendChild(child);
+                RootNode.appendChild(child);
             }
             else
             {
                 AppendChildSection(child, parent);
             }
-            AddedSectionNode(origin, new Events.Node.SectionNodeEventArgs(origin, child));
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-            Commands.TOC.AddSectionNode command = new Commands.TOC.AddSectionNode(child);
-            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-
+            AddedSectionNode(this, new Events.Node.SectionNodeEventArgs(this, child));
+            Modified();
+            CommandCreated(this,
+                new Events.Project.CommandCreatedEventArgs(new Commands.TOC.AddSectionNode(child)));
             return child;
         }
 
-        public void CreateChildSectionNodeRequested(object sender, Events.Node.SectionNodeEventArgs e)
+        public void RenameSectionNodeWithCommand(SectionNode node, string label)
         {
-            CreateChildSectionNode(sender, e.Node);
+            Commands.TOC.Rename command = new Commands.TOC.Rename(node, label);
+            RenameSectionNode(node, label);
+            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
+
+        public void RenameSectionNode(SectionNode node, string label)
+        {
+            node.Label = label;
+            RenamedSectionNode(this, new Obi.Events.Node.RenameSectionNodeEventArgs(this, node, label));
+            Modified();
+        }
+
+
+
+
 
         /// <summary>
         /// Readd a section node that was previously delete and restore all its contents.
@@ -422,6 +398,7 @@ namespace Obi
             
         }
 
+        /*
         /// <summary>
         /// Change the text label of a node.
         /// </summary>
@@ -441,6 +418,7 @@ namespace Obi
         {
             RenameSectionNode(sender, e.Node, e.Label);
         }
+         * */
 
         //this is almost the same as ShallowDeleteSectionNode
         public void DoShallowCutSectionNode(object origin, SectionNode node)
@@ -597,27 +575,46 @@ namespace Obi
             }         
         }
 
+
+
+
+
+
         //helper function which tests for parent being root
         //md 20061204
-        internal void AddChildSectionAfter(SectionNode node, SectionNode contextNode, CoreNode parent)
+        private void AddChildSectionAfter(SectionNode node, SectionNode contextNode, CoreNode parent)
         {
-            if (parent.Equals(getPresentation().getRootNode()))
+            if (parent is CoreNode)
             {
                 parent.insertAfter(node, contextNode);
             }
-            else if (parent.GetType() == Type.GetType("Obi.SectionNode"))
+            else if (parent is SectionNode)
             {
                 ((SectionNode)parent).AddChildSectionAfter(node, contextNode);
-            }         
+            }
         }
 
         /// <summary>
-        /// Toggle the use state of a section node.
+        /// Paste a copy of a section node under a parent. Both must be defined.
+        /// Project is modified but no command is issued.
         /// </summary>
-        internal void ToggleSectionUsedState(Events.Node.SectionNodeEventArgs e)
+        /// <param name="node">The node to paste.</param>
+        /// <param name="parent">The parent under which to paste (append.)</param>
+        /// <returns>The node actually pasted.</returns>
+        public SectionNode PasteCopyOfSectionNode(SectionNode node, CoreNode parent)
         {
-            e.Node.Used = !e.Node.Used;
-            ToggledSectionUsedState(this, e);
+            SectionNode copy = node.copy(true);
+            if (parent is SectionNode)
+            {
+                ((SectionNode)parent).AppendChildSection(copy);
+            }
+            else
+            {
+                parent.appendChild(copy);
+            }
+            PastedSectionNode(this, new Events.Node.SectionNodeEventArgs(this, copy));
+            Modified();
+            return copy;
         }
 
         /// <summary>
@@ -705,6 +702,15 @@ namespace Obi
                     //    new Events.Project.CommandCreatedEventArgs(new Commands.TOC.CopySectionNode(data, copy)));
                 }
             }
+        }
+
+        /// <summary>
+        /// Toggle the use state of a section node.
+        /// </summary>
+        internal void ToggleSectionUsedState(Events.Node.SectionNodeEventArgs e)
+        {
+            e.Node.Used = !e.Node.Used;
+            ToggledSectionUsedState(this, e);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace Obi.Commands.TOC
     {
         private SectionNode mNode;  // the newly added section node
         private CoreNode mParent;   // the parent to which it was added
+        private int mIndex;         // the index at which it was added
     
         public override string Label
         {
@@ -18,26 +19,25 @@ namespace Obi.Commands.TOC
 
         /// <summary>
         /// Create a new "add section" command from the new section node, the parent node and the index of the new section.
-        /// The command is created once the section has actually been added.
+        /// The command is created once the section has actually been added (so that its parent was set.)
         /// </summary>
         public AddSectionNode(SectionNode node)
         {
             mNode = node;
             mParent = (CoreNode)node.getParent();
+            mIndex = mNode.Index;
         }
 
         /// <summary>
-        /// Do: add the node to the project; it will send the synchronization events.
-        /// This is really redo, so the node exists and so does its parent.
+        /// Do: readd the node to the project.
         /// </summary>
         public override void Do()
         {
-            mNode.Project.ReaddSectionNode(mNode, mParent, mNode.Index);
+            mNode.Project.ReaddSectionNode(mNode, mParent, mIndex);
         }
 
         /// <summary>
-        /// Undo: remove the node from the project; it will send the synchronization events.
-        /// This node has no descendant when we undo.
+        /// Undo: remove the node from the project.
         /// </summary>
         public override void Undo()
         {

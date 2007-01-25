@@ -238,7 +238,7 @@ namespace Obi.UserControls
                 int index;           // index from which we add new phrases in the aforementioned section
                 if (selected == null)
                 {
-                    section = ((ProjectPanel)Parent).Project.CreateSiblingSectionNode(this, null);
+                    section = ((ProjectPanel)Parent).Project.CreateSiblingSectionNode(null);
                     index = 0;
                 }
                 else if (selected is SectionNode)

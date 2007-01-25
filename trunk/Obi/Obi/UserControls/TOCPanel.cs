@@ -55,6 +55,31 @@ namespace Obi.UserControls
         }
 
         /// <summary>
+        /// True if a section is selected and it can be cut, copied or deleted.
+        /// </summary>
+        public bool CanCutCopyDelete
+        {
+            get
+            {
+                SectionNode selected = SelectedSection;
+                return selected != null &&
+                    (selected.Used || (selected.ParentSection == null || selected.ParentSection.Used));
+            }
+        }
+
+        /// <summary>
+        /// True if there is a section in the clipboard that can be pasted in the selected section in the TOC panel.
+        /// </summary>
+        public bool CanPaste
+        {
+            get
+            {
+                SectionNode selected = SelectedSection;
+                return selected != null && selected.Used && mProjectPanel.Project.Clipboard.Section != null;
+            }
+        }
+
+        /// <summary>
         /// Get and set the parent ProjectPanel control 
         /// </summary>
         // mg 20060804
@@ -121,7 +146,7 @@ namespace Obi.UserControls
         /// <summary>
         /// The user has edited a label in the tree, so an event is raised to rename the node.
         /// </summary>
-        private void tocTree_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
+        private void mTocTree_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
         {
             if (e.Label != null)
             {
@@ -138,7 +163,7 @@ namespace Obi.UserControls
                 }
                 else if (e.Label != Project.GetTextMedia((SectionNode)e.Node.Tag).getText())
                 {
-                    RenameSectionNodeRequested(this, new Events.Node.RenameSectionNodeEventArgs(this, (SectionNode)e.Node.Tag, e.Label));
+                    mProjectPanel.Project.RenameSectionNodeWithCommand((SectionNode)e.Node.Tag, e.Label);
                 }
             }
         }
