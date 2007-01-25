@@ -16,10 +16,10 @@ namespace Obi.UserControls
     {
         internal void SyncAddedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
         {
-            AddStripFromNode(e.Node, e.Origin == this);
+            AddStripFromNode(e.Node);
         }
 
-        private void AddStripFromNode(SectionNode node, bool rename)
+        private void AddStripFromNode(SectionNode node)
         {
             SectionStrip strip = new SectionStrip();
             strip.Label = Project.GetTextMedia(node).getText();
@@ -28,12 +28,6 @@ namespace Obi.UserControls
             mSectionNodeMap[node] = strip;
             mFlowLayoutPanel.Controls.Add(strip);
             mFlowLayoutPanel.Controls.SetChildIndex(strip, node.Position);
-
-            if (rename)
-            {
-                SelectedSectionNode = node;
-                strip.StartRenaming();
-            }
          }
 
         //md 20060811
@@ -42,7 +36,7 @@ namespace Obi.UserControls
         //todo: this should probably be a visitor
         private void AddStripsFromNodeSubtree(SectionNode node)
         {      
-            AddStripFromNode(node, false);
+            AddStripFromNode(node);
          
             for (int i = 0; i < node.PhraseChildCount; i++)
             {

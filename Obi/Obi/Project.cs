@@ -596,12 +596,25 @@ namespace Obi
         }
 
         /// <summary>
+        /// Toggle the "used" state of a node on behalf of a given view while issuing a command.
+        /// </summary>
+        /// <param name="node">The node to modify.</param>
+        /// <param name="deep">If true, modify all descendants; otherwise, just phrase children.</param>
+        internal void ToggleNodeUsedWithCommand(ObiNode node, bool deep)
+        {
+            if (node != null)
+            {
+                ToggleNodeUsed(node, deep);
+                CommandCreated(this, new Events.Project.CommandCreatedEventArgs(new Commands.Node.ToggleUsed(node, deep)));
+            }
+        }
+
+        /// <summary>
         /// Toggle the "used" state of a node on behalf of a given view.
         /// </summary>
         /// <param name="node">The node to modify.</param>
-        /// <param name="origin">The originating view or command.</param>
         /// <param name="deep">If true, modify all descendants; otherwise, just phrase children.</param>
-        internal void ToggleNodeUsed(ObiNode node, object origin, bool deep)
+        public void ToggleNodeUsed(ObiNode node, bool deep)
         {
             bool used = !node.Used;
             if (deep)
@@ -614,7 +627,7 @@ namespace Obi
                         if (_n.Used != used)
                         {
                             _n.Used = used;
-                            ToggledNodeUsedState(origin, new Events.Node.ObiNodeEventArgs(_n));
+                            ToggledNodeUsedState(this, new Events.Node.ObiNodeEventArgs(_n));
                         }
                         return true;
                     },
@@ -625,7 +638,7 @@ namespace Obi
             {
                 // mark this node and its phrases if it is a section.
                 node.Used = used;
-                ToggledNodeUsedState(origin, new Events.Node.ObiNodeEventArgs(node));
+                ToggledNodeUsedState(this, new Events.Node.ObiNodeEventArgs(node));
                 SectionNode _n = node as SectionNode;
                 if (_n != null)
                 {
@@ -635,14 +648,10 @@ namespace Obi
                         if (ph.Used != used)
                         {
                             ph.Used = used;
-                            ToggledNodeUsedState(origin, new Events.Node.ObiNodeEventArgs(ph));
+                            ToggledNodeUsedState(this, new Events.Node.ObiNodeEventArgs(ph));
                         }
                     }
                 }
-            }
-            if (!(origin is Commands.Command))
-            {
-                CommandCreated(this, new Events.Project.CommandCreatedEventArgs(new Commands.Node.ToggleUsed(node, deep)));
             }
             Modified();
         }

@@ -113,7 +113,7 @@ namespace Obi.UserControls
                         | System.Windows.Forms.Keys.Left)));
             this.mMoveOutToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.mMoveOutToolStripMenuItem.Text = "Move &out";
-            this.mMoveOutToolStripMenuItem.Click += new System.EventHandler(this.decreaseLevelToolStripMenuItem_Click);
+            this.mMoveOutToolStripMenuItem.Click += new System.EventHandler(this.mMoveOutToolStripMenuItem_Click);
             // 
             // mMoveInToolStripMenuItem
             // 
@@ -122,7 +122,7 @@ namespace Obi.UserControls
                         | System.Windows.Forms.Keys.Right)));
             this.mMoveInToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.mMoveInToolStripMenuItem.Text = "Move &in";
-            this.mMoveInToolStripMenuItem.Click += new System.EventHandler(this.increaseLevelToolStripMenuItem_Click);
+            this.mMoveInToolStripMenuItem.Click += new System.EventHandler(this.mMoveInToolStripMenuItem_Click);
             // 
             // mCutSectionToolStripMenuItem
             // 
@@ -140,7 +140,7 @@ namespace Obi.UserControls
                         | System.Windows.Forms.Keys.C)));
             this.mCopySectionToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.mCopySectionToolStripMenuItem.Text = "&Copy section";
-            this.mCopySectionToolStripMenuItem.Click += new System.EventHandler(this.copySectionToolStripMenuItem_Click);
+            this.mCopySectionToolStripMenuItem.Click += new System.EventHandler(this.mCopySectionToolStripMenuItem_Click);
             // 
             // mPasteSectionToolStripMenuItem
             // 

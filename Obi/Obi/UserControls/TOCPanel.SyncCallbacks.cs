@@ -47,13 +47,8 @@ namespace Obi.UserControls
         internal void SyncAddedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
         {
             TreeNode newTreeNode = AddSingleSectionNode(e.Node);
-
             //start editing if the request to add a node happened in the tree view
-            if (e.Origin.Equals(this))
-            {
-                newTreeNode.BeginEdit();
-            }
-
+            if (e.Origin == this) newTreeNode.BeginEdit();
             newTreeNode.ExpandAll();
             newTreeNode.EnsureVisible();
             mTocTree.SelectedNode = newTreeNode;

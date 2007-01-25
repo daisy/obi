@@ -92,10 +92,13 @@ namespace Obi.UserControls
                 {
                     if (mSelectedSection != null)
                     {
-                        SectionStrip strip = mSectionNodeMap[mSelectedSection];
-                        strip.Selected = false;
-                        mSelectedSection = value; //null
-                        SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(false, strip));
+                        if (mSectionNodeMap.ContainsKey(mSelectedSection))
+                        {
+                            SectionStrip strip = mSectionNodeMap[mSelectedSection];
+                            strip.Selected = false;
+                            SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(false, strip));
+                        }
+                        mSelectedSection = null;
                     }
                 }
             }

@@ -26,7 +26,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            mNode.Project.DecreaseSectionNodeLevel(mNode.Project, mNode);
+            mNode.Project.DecreaseSectionNodeLevel(mNode);
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mNode.Project.UndoDecreaseSectionNodeLevel(mNode, mParent, mNumChildren);
+            mNode.Project.UndecreaseSectionNodeLevel(mNode, mParent, mNumChildren);
         }
     }
 
@@ -55,7 +55,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            mNode.Project.IncreaseSectionNodeLevel(mNode.Project, mNode);
+            mNode.Project.IncreaseSectionNodeLevel(mNode);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mNode.Project.UndoIncreaseSectionNodeLevel(mNode, mParent, mIndex);
+            mNode.Project.UnincreaseSectionNodeLevel(mNode, mParent, mIndex);
         }
     }
 }

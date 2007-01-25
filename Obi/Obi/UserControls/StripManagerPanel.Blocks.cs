@@ -58,7 +58,6 @@ namespace Obi.UserControls
                 SectionStrip strip = mSectionNodeMap[(SectionNode)e.Node.getParent()];
                 AudioBlock block = SetupAudioBlockFromPhraseNode(e.Node);
                 strip.InsertAudioBlock(block, e.Node.Index);
-                // this.ReflowTabOrder(block);
                 SelectedPhraseNode = e.Node;
             }
         }
