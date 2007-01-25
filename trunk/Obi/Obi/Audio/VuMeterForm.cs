@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
+using System.IO;
 using Microsoft.DirectX ;
 using Microsoft.DirectX.DirectSound ;
 
@@ -171,7 +172,7 @@ namespace Obi.Audio
 
 		// initialise the form and frame for graph display
 		private void VuMeterForm_Load(object sender, System.EventArgs e)
-		{
+        {
 			System.Drawing.Graphics objGraphics;
 			objGraphics = this.CreateGraphics();		
 
@@ -187,6 +188,12 @@ namespace Obi.Audio
 		// load the beep file and plays it once
 		void LoadBeep ()
 		{
+            FileInfo BeepFile = new FileInfo("Beep.wav");
+            if (BeepFile.Exists)
+            {
+                System.Media.SoundPlayer PlayBeep = new System.Media.SoundPlayer("Beep.wav");
+                PlayBeep.Play();
+            }
 		}
 
 		// function to catch the update event from VuMeter class to update graph cordinates
@@ -313,7 +320,7 @@ namespace Obi.Audio
 			else  // Paint the light red for warning
 			{
 				objGraphics.DrawLine( PenOverloadLight , PeakOverloadLightX , PeakOverloadLightY, PeakOverloadLightX , PeakOverloadLightY  + PeakOverloadLightWidth );
-                
+                LoadBeep();
 			}
 			
 		}
