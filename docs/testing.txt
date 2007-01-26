@@ -1,0 +1,130 @@
+Testing Obi
+$Id$
+
+
+* Testers are expected to test this
+# Developers are expected to test this
+
+
+Testing the manual
+[NOTE: this will apply when the manual is brought in sync with Obi.]
+
+  * Read through the manual while Obi is open. The manual can be read from
+  inside Obi (press F1 or Help > Contents), or on the web
+  (http://urakawa.sourceforge.net/obi/user-manual)
+
+    * For each heading, check that the mentioned functionality can be found in
+    Obi.
+
+    * For each image, check that the Obi GUI looks like the screendump.
+
+    * For each non-common word and/or acronym, check that it is explained in
+    the Glossary.
+
+    * For each shortcut key mentioned, assert that it performs the described
+    action (Be sensible here, e.g. do not expect the shortcut for "Redo" to do
+    anything when you have not used undo.) Check that the shortcut mention
+    in the manual matches the GUI.
+
+  * Navigate the main menu
+  
+    * For each clickable menu item, check that it can be found in the manual.
+    Fully detailed description should not be expected, but each point should
+    in some manner at least be mentioned.
+    
+    * For each disabled menu item, assert that the manual gives a plausible
+    reason why this item might be disabled.
+
+  * Test the accessibility of the manual (e.g. by reading through a screen
+  reader or text browser.)
+
+  * Report typos.
+
+  # Make sure that the manual is valid HTML, valid CSS, etc.
+
+
+Testing the app
+ 
+  * Testing the Menus
+
+    * File Menu:
+    - Create a new project.
+    - Create a project with the same name, overwriting the previous one.
+    - Create a project by typing in a path including folder names that do no
+    exist.
+    - Open a project by using "File -> Open Project"
+    - Open a project by using "File -> Open recent project"
+    - Save project
+    - Save project as...
+    - Discard changes, and assert that the result is the same as reopening the
+    last saved file.
+    - Copy something, close project, create new project, then check that
+    pasting is not possible.
+    - Edit something, then check that "File -> Exit" propts you to save before
+    exiting.
+    - Save current project, then "File -> Exit", making sure that you aren't
+    prompted for saving changes.
+
+    * Edit menu
+    - Test that undo is available after you edit anything,
+    - Test that Redo is available after undoing something.
+    - Test that Undo/Redo works for...
+      - Creating a new section/strip
+      [NOTE: when a strip or section is first created, it gets the default
+      name "Untitled section". If you create a new section and give it a
+      name, undoing will first undo the name change, then another undo will
+      remove the section.]
+      - Deleting a section/strip
+      - Renaming a section [see note above for new sections.]
+      - Moving sections in and out. Be careful that the hierarchy of
+      sections is correctly restored after undoing (especially for move out.)
+      - Importing audio in a strip
+      - Recording audio to a strip
+      - Deleting audio from a strip
+      - Adding a page number mark to a phrase
+      - Removing a pagenumber mark
+      - Cut and copy (the previous contents of the clipboard should be
+      restored after undoing cut or copy.)
+      - Test that selection makes sense after undo/redo.
+      - Test that undo/redo is disabled when audio is playing.
+      - Test that undo/redo is enabled when audio is playing but that
+      playback stops before undoing or redoing.
+    - Test that Cut/Copy/Paste/Delete works for...
+      - sections
+      - strips
+      - audio blocks
+      - annotation text
+    - Test that paste is only enabled when the clipboard contains an item,
+    and that it can be pasted in the current context. Conversely, test
+    that paste is always enabled when the clipboard contains an item that
+    can be pasted in the current context.
+    - Test that metadata can be edited, and that it persists after saving the
+    project, closing Obi, reopening Obi, reloading the project.
+    - Test that "touch project" enables the "Save command in the File menu.
+
+    * TOC menu
+    - Check again that TOC is explained in the manual.
+    - Test that TOC hide/show works, and that the contents+focus remains the
+    same.
+    - Test that no modification is enabled while the TOC does not have focus.
+    - Test that no modification is enabled in the TOC when audio is playing.
+    - Test that modification is enabled when audio is paused and that
+    playback is stopped before such modification takes place.
+    - Test that the first child of a parent can not be moved further in
+    - Test that the left-most TOC items can not be moved further out
+    - Test that used/unused works for the correct strips according to the
+    selected section node in the TOC.
+    - Test that "Show in strip view" selects the correct strip.
+
+   
+# For developers: corner cases, stress testing and regression tests.
+Example:
+
+  # Cut or delete root node, paste in empty tree.
+
+
+# Work in progress: briefly describe the expected outcome of new features or
+redesigned features. Example:
+
+  # Test that paste audio block pastes *before* a selected audio block, or
+  at the end of a selected strip. [I think this one is done actually :)]
