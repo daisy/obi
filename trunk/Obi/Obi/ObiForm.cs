@@ -1110,13 +1110,13 @@ namespace Obi
                     break;
 
 // shorcut local to stripmanager
-                case Keys.Space:
-                    if (mProjectPanel.StripManager.ContainsFocus)
-                    {
-                        if (mPlaySelectionToolStripMenuItem.Enabled)
-                            TransportBar_PlaySelection();
-                    }
-                    break;
+                //case Keys.Space:
+                    //if (mProjectPanel.StripManager.ContainsFocus)
+                    //{
+//                        if (mPlaySelectionToolStripMenuItem.Enabled)
+                            //TransportBar_PlaySelection();
+                    //}
+                    //break;
 
                 // shorcut local to stripmanager
                 case Keys.Escape:
