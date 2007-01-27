@@ -561,6 +561,7 @@ else if ( mPlayBackState == PlayBackState.Rewind )
             if ( mPlayBackState != PlayBackState.Normal     ||  PreviewTimer.Enabled == true )
             {
                 PreviewTimer.Enabled = false;
+                mPlaybackRate = 0;
                 mPlayBackState = PlayBackState.Normal;
                 mPlayer.Stop();
                 mPlayer.m_EventsEnabled = true;
