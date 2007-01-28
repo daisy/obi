@@ -1,0 +1,7 @@
+[Common Keys]
+Alt+UpArrow=AltUpHook
+Alt+DownArrow=AltDownHook
+Alt+LeftArrow=AltLeftHook
+Alt+RightArrow=AltRightHook
+Alt+Shift+RightArrow=AltShiftRightHook
+Alt+Shift+LeftArrow=AltShiftLeftHook
