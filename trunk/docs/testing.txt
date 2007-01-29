@@ -10,11 +10,11 @@ Testing the manual
 [NOTE: this will apply when the manual is brought in sync with Obi.]
 
   * Read through the manual while Obi is open. The manual can be read from
-  inside Obi (press F1 or Help > Contents), or on the web
-  (http://urakawa.sourceforge.net/obi/user-manual)
+    inside Obi (press F1 or Help > Contents), or on the web
+    (http://urakawa.sourceforge.net/obi/user-manual)
 
     * For each heading, check that the mentioned functionality can be found in
-    Obi.
+      Obi.
 
     * For each image, check that the Obi GUI looks like the screendump.
 
@@ -22,21 +22,21 @@ Testing the manual
     the Glossary.
 
     * For each shortcut key mentioned, assert that it performs the described
-    action (Be sensible here, e.g. do not expect the shortcut for "Redo" to do
-    anything when you have not used undo.) Check that the shortcut mention
-    in the manual matches the GUI.
+      action (Be sensible here, e.g. do not expect the shortcut for "Redo" to do
+      anything when you have not used undo.) Check that the shortcut mention
+      in the manual matches the GUI.
 
   * Navigate the main menu
   
     * For each clickable menu item, check that it can be found in the manual.
-    Fully detailed description should not be expected, but each point should
-    in some manner at least be mentioned.
+      Fully detailed description should not be expected, but each point should
+      in some manner at least be mentioned.
     
     * For each disabled menu item, assert that the manual gives a plausible
-    reason why this item might be disabled.
+      reason why this item might be disabled.
 
   * Test the accessibility of the manual (e.g. by reading through a screen
-  reader or text browser.)
+    reader or text browser.)
 
   * Report typos.
 
@@ -48,83 +48,133 @@ Testing the app
   * Testing the Menus
 
     * File Menu:
-    - Create a new project.
-    - Create a project with the same name, overwriting the previous one.
-    - Create a project by typing in a path including folder names that do no
-    exist.
-    - Open a project by using "File -> Open Project"
-    - Open a project by using "File -> Open recent project"
-    - Save project
-    - Save project as...
-    - Discard changes, and assert that the result is the same as reopening the
-    last saved file.
-    - Copy something, close project, create new project, then check that
-    pasting is not possible.
-    - Edit something, then check that "File -> Exit" propts you to save before
-    exiting.
-    - Save current project, then "File -> Exit", making sure that you aren't
-    prompted for saving changes.
+      * Create a new project.
+      * Create a project with the same name, overwriting the previous one.
+      * Create a project by typing in a path including folder names that do no exist.
+      * Open a project by using "File -> Open Project"
+      * Open a project by using "File -> Open recent project"
+      * Save project
+      * Save project as...
+      * Discard changes, and assert that the result is the same as reopening the last saved file.
+      * Copy something, close project, create new project, then check that pasting is not possible.
+      * Edit something, then check that "File -> Exit" propts you to save before exiting.
+      * Save current project, then "File -> Exit", making sure that you aren't prompted for saving changes.
 
     * Edit menu
-    - Test that undo is available after you edit anything,
-    - Test that Redo is available after undoing something.
-    - Test that Undo/Redo works for...
-      - Creating a new section/strip
-      [NOTE: when a strip or section is first created, it gets the default
-      name "Untitled section". If you create a new section and give it a
-      name, undoing will first undo the name change, then another undo will
-      remove the section.]
-      - Deleting a section/strip
-      - Renaming a section [see note above for new sections.]
-      - Moving sections in and out. Be careful that the hierarchy of
-      sections is correctly restored after undoing (especially for move out.)
-      - Importing audio in a strip
-      - Recording audio to a strip
-      - Deleting audio from a strip
-      - Adding a page number mark to a phrase
-      - Removing a pagenumber mark
-      - Cut and copy (the previous contents of the clipboard should be
-      restored after undoing cut or copy.)
-      - Test that selection makes sense after undo/redo.
-      - Test that undo/redo is disabled when audio is playing.
-      - Test that undo/redo is enabled when audio is playing but that
-      playback stops before undoing or redoing.
-    - Test that Cut/Copy/Paste/Delete works for...
-      - sections
-      - strips
-      - audio blocks
-      - annotation text
-    - Test that paste is only enabled when the clipboard contains an item,
-    and that it can be pasted in the current context. Conversely, test
-    that paste is always enabled when the clipboard contains an item that
-    can be pasted in the current context.
-    - Test that metadata can be edited, and that it persists after saving the
-    project, closing Obi, reopening Obi, reloading the project.
-    - Test that "touch project" enables the "Save command in the File menu.
+      * Test that undo is available after you edit anything,
+      * Test that Redo is available after undoing something.
+      * Test that Undo/Redo works for...
+        - Creating a new section/strip
+          [NOTE: when a strip or section is first created, it gets the default name "Untitled section". If you create a new section and give it a name, undoing will first undo the name change, then another undo will remove the section.]
+        - Deleting a section/strip
+        - Renaming a section [see note above for new sections.]
+        - Moving sections in and out. Be careful that the hierarchy of sections is correctly restored after undoing (especially for move out.)
+        - Importing audio in a strip
+        - Recording audio to a strip
+        - Deleting audio from a strip
+        - Adding a page number mark to a phrase
+        - Removing a pagenumber mark
+        - Cut and copy (the previous contents of the clipboard should be restored after undoing cut or copy.)
+      * Test that selection makes sense after undo/redo.
+      * Test that undo/redo is disabled when audio is playing.
+      * Test that undo/redo is enabled when audio is playing but that playback stops before undoing or redoing.
+      * Test that Cut/Copy/Paste/Delete works for...
+        - sections
+        - strips
+        - audio blocks
+        - annotation text
+      * Test that paste is only enabled when the clipboard contains an item, and that it can be pasted in the current context. Conversely, test that paste is always enabled when the clipboard contains an item that can be pasted in the current context.
+      * Test that metadata can be edited, and that it persists after saving the project, closing Obi, reopening Obi, reloading the project.
+      * Test that "touch project" enables the "Save command in the File menu.
 
     * TOC menu
-    - Check again that TOC is explained in the manual.
-    - Test that TOC hide/show works, and that the contents+focus remains the
-    same.
-    - Test that no modification is enabled while the TOC does not have focus.
-    - Test that no modification is enabled in the TOC when audio is playing.
-    - Test that modification is enabled when audio is paused and that
-    playback is stopped before such modification takes place.
-    - Test that the first child of a parent can not be moved further in
-    - Test that the left-most TOC items can not be moved further out
-    - Test that used/unused works for the correct strips according to the
-    selected section node in the TOC.
-    - Test that "Show in strip view" selects the correct strip.
+      * Check again that TOC is explained in the manual.
+      * Test that TOC hide/show works, and that the contents+focus remains the same.
+      * Test that no modification is enabled while the TOC does not have focus.
+      * Test that no modification is enabled in the TOC when audio is playing.
+      * Test that modification is enabled when audio is paused and that playback is stopped before such modification takes place.
+      * Test that the first child of a parent can not be moved further in
+      * Test that the left-most TOC items can not be moved further out
+      * Test that used/unused works for the correct strips according to the selected section node in the TOC.
+      * Test that "Show in strip view" selects the correct strip.
+
+    * Strips menu
+      * Test that "Add strip" adds a new strip before the one that has focus
+        [Note: currently the TOC view focus isn't really syncronized to the strip view. When an item in the TOC has focus, you would normally expect that adding a strip should add at that position. Solution might be to remove focus from TOC view when nothing equivalent is marked in the strip view?]
+      * Test that "Rename strip" is enabled when a strip has focus.
+        [Note: we might want to have this menu item enabled even though it's the matching section in the TOC that has focus, also because actually hitting the shortcut to the menu item (F2) performs the desired action]
+      * Test that "Rename strip" allows editing of a strip, and that the correct TOC item also changes name.
+      * Test that "Mark strip as unused"...
+        - shows the strip distictly different from a normal (/used) strip
+        - appears as "unused" to compensating programs (such as JAWS)
+        - causes the content of the strip to be excluded from the result of "File -> Export as Daisy".
+      * Test that "Import audio file" doesn't allow invalid files to be selected (at least the file name extension should be one supported by the current version of Obi)
+      * Test that "Import audion file" creates an audio block...
+        - before the currently selected audio block if an audio block is in focus
+        - at the end of the currently selected strip if a strip is in focus
+      * Test that "Import audio file" isn't enabled when neither a strip nor an audio block has focus
+      [Note: What do we need "Insert empty audio block" for?]
+      * Test that "Split audio block" is available when an audio block is selected, and only then.
+      * Test that "Split audio block" shows the split dialog, and that the audio block in focus is the one that is being split.
+      * Test that "Quick split audio block" is only available when... 
+        - an audio block has focus
+        - the playback is in "pause" mode
+        - the paused offset is greater than zero.
+      * Test that "Apply phrase detection"...
+        - is available only when an audio block has focus
+        - replaces the audio block in focus with one or more new audio blocks
+        - retains the total length of the old audio block in the new audio blocks
+        - splits the audio block in what seems like a manner that matches the specified parameters (might be a "techies only" test)
+      * Test that "Merge with next audio block"...
+        - only is enabled when there is a "next audio block" available
+        - only is enabled when an audio block has focus
+        - creates 1 audio block with a duration that matches the sum of the durations of the 2 old audio block
+        - maintains annotation, concatanating annotation from the 2 old blocks
+        - retains any pagenumbers that might be present on either audio block
+        [Note: we need to decide what happens if there is a page number on both old audio blocks]
+      * Test that "Move audio block"...
+         - is enabled when an audio block has focus, and more than one audio block exists in the current strip.
+         - moves the audio block in the expected direction
+         - is not enabled "Forwards" when the focus is on the last audio block of a strip
+         - is not enabled "Backwards" when the focus is on the last audio block of a strip
+         [NOTE: forwards/backwards looks to me like they have been reversed naming-wise, but the keys behave like I would want them to]
+      * Test that "Mark audio block as unused"
+        - is enabled when an audio block has focus.
+        - is labeled "Mark audio block as used" when an audio block that has already been marked "unused" has focus.
+        - toggles the audio block in focus between used and unused status.
+      * Test that "Edit annotation"...
+        - is enabled only when an audio block has focus
+        - allows editing of the annotation of an audio block
+        - does not allow the keys such as "delete", "insert", "backspace", "space", "enter" (or other basic text editing keys) to perform their normally assigned shortcut role while text editing is taking place
+      * Test that "Remove annotation"...
+        - is enabled only when an audio block has focus, and that audio block has an annotation
+        - removes the annotation from the selected audio block
+      * Test that "Set page number"...
+        - is enabled only when an audio block has focus
+        - allows the setting of a page number (or marks the audio block as being a page number if we only do automatic page numbering)
+      * Test that "Remove page number"...
+        - is enabled only when an audio block has focus, and that audio block has a page number
+        - removes the page number.
+      * Test that "Show in TOC view" places the focus on the section in the TOC view that best matches the current selection in the strip view.
+      
+
+  * Record Dialog
+  
+  * Split Dialog
+    * Test that the order of the audio blocks produced by the split is correct
+  
+  *TOC view
+  
+  *Strips view
 
    
 # For developers: corner cases, stress testing and regression tests.
-Example:
+  Example:
 
   # Cut or delete root node, paste in empty tree.
 
 
-# Work in progress: briefly describe the expected outcome of new features or
-redesigned features. Example:
+# Work in progress: briefly describe the expected outcome of new features or redesigned features. Example:
 
   # Test that paste audio block pastes *before* a selected audio block, or
-  at the end of a selected strip. [I think this one is done actually :)]
+    at the end of a selected strip. [I think this one is done actually :)]
