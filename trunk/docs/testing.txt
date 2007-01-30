@@ -156,12 +156,89 @@ Testing the app
         - is enabled only when an audio block has focus, and that audio block has a page number
         - removes the page number.
       * Test that "Show in TOC view" places the focus on the section in the TOC view that best matches the current selection in the strip view.
+    
+    * Transport menu
+    [Note: if the views are to be syncronised, each test needs to be done for both TOC and Strip view]
+      # Test that nothing is enabled when no project is open.
+      # Test that nothing is enabled when no sections exist
+      * Test that "Show VU meter" actually places the VU meter on top of other windows
+      [Note: This currently doesn't seem to happen when working on a dualscreen setup]
+      * Test that the text changes to "Hide VU meter" when the VU meter is shown.
+      # Verify that the VU meter provides info that seems relevant to the narrator.
+      [Note: I have one or two persons inhouse that would have some serious input on this, being audio techies themselves.]
+      * When a Section has focus...
+        - test that "Previous section"...
+          - is only enabled when a preceeding section exists.
+          - moves the focus to the preceeding section.
+        - test that "Previous phrase"...
+          - is only enabled when a previous phrase exists.
+          - selects the last phrase of the nearest preceeding section that has one or more phrases. 
+        - test that "Next phrase"...
+          - is only enabled when a following phrase exists.
+          - selects the first phrase of the section that has focus, if that section has any phrases.
+          - selects the first phrase of the nearest following section that has one or more phrases, if the current section has no phrases.
+        - test that "Next section"...
+          - is only enabled when a following section exists.
+          - moves the focus to the following section.
+      * When a Phrase has focus...
+        - test that "Previous section"...
+          - moves the focus to the parent section of the phrase.
+        - test that "Previous phrase"...
+          - is only enabled when a previous phrase exists.
+          - selects the nearest preceeding phrase, skipping to a preceeding section if needed. 
+        - test that "Next phrase"...
+          - is only enabled when a following phrase exists.
+          - selects the nearest following phrase, skipping to a following section if needed. 
+        - test that "Next section"...
+          - is only enabled when a following section exists.
+          - moves the focus to the section following the parent of the phrase.
+      * Test that "Rewind" does what it is supposed to do ;-)
+      [Note: I don't understand what "Rewind" is supposed to do, that is not accomplished by one of the other controls.]
+      * Test that "Play all"...
+        - Plays every phrase from the selected point onwards
+        - begins from the start of the presentation if nothing has been selected
+        - moves the selection while playing
+        - lets the moved focus stay where it is when "Pause" is activated.
+        - replaces the focus to the original position when "Stop" is activated.
+      * Test that "Play"... 
+      [Note: Should this be labeled "Play selection"?]
+        - is enabled when (and only when) a section or phrase has focus
+        - plays the selected phrase or section, moving focus as needed, and replaces focus when done
+      * Test that "Record" brings up the recording dialog.
+      * Test that "Stop"...
+      [Note: we might want to label this one "Stop playback" or something similar, as it doesn't/can't stop recording]
+        - is disabled when no playback is active
+        - does stop playback of "Play all"
+        - does stop playback of "Play"
+        - places focus on the section or phrase that had focus when playback was started
+      * Test that "Fast forward" does what it is supposed to do ;-)
+      [Note: I don't understand what "Fast forward" is supposed to do, that is not accomplished by one of the other controls.]
+      
+    * Tools menu
+      * Test that "User profile" brings up the User profile dialog
+      * Test that "Project preferences" brings up the preferences dialog with the "Project" tab active.
+      * Test that "Project preferences" brings up the preferences dialog with the "Audio" tab active.
+      [Note: Is there a good reason why "User profile" isn't also a tab?]
+    
+    * Help Menu
+      * Check that "Contents" bring up the help document
+      [Note: we should consider relabeling this item to "Obi manual" or similar.]
+      * Check that "About Obi" brings up the "About Obi" dialog.
+      * Verify that the version number shown on the "About Obi" dialog matches the version number given in the downloaded installer's name.
+      * Test that the link to "Obi online" works.
       
 
   * Record Dialog
+  [Note: I would expect recording to start as soon as the dialog is shown, rather than needing to click "Record"]
+  [Note: I found it frustrating that I could not navigate while recording.]
   
   * Split Dialog
     * Test that the order of the audio blocks produced by the split is correct
+    
+  * Preferences Dialog + User Profile Dialog
+      * Test that each item is editable
+      * After setting each item, restart Obi, check that the values that was set, are still shown.
+      * After setting each item, check that pressing "Cancel" discards the change, cloing the dialog.
   
   *TOC view
   
