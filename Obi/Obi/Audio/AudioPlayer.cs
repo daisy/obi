@@ -497,10 +497,20 @@ namespace Obi.Audio
                 
             Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
             m_State = AudioPlayerState.Stopped;
+
+
 			TriggerStateChangedEvent(e);
+
+            if (m_EventsEnabled)
+                m_IsEventEnabledDelayedTillTimer= true;
+            else
+                m_IsEventEnabledDelayedTillTimer= false;
+
             m_IsEndOfAsset = true;
+
 			// RefreshBuffer ends
 		}
+        private bool m_IsEventEnabledDelayedTillTimer= true ;
 		
 		public void Play(Assets.AudioMediaAsset  asset, double timeFrom)
 		{
@@ -818,10 +828,13 @@ namespace Obi.Audio
                 m_IsEndOfAsset = false;
                 MoniteringTimer.Enabled = false;
 
-                if (m_EventsEnabled == true) 
+                if ( m_IsEventEnabledDelayedTillTimer )
                 EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());
 
-                
+            if (m_EventsEnabled == true)
+                m_IsEventEnabledDelayedTillTimer= true;
+            else
+                m_IsEventEnabledDelayedTillTimer= false;
             }
 
         }
