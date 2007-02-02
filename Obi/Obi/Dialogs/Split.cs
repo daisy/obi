@@ -500,6 +500,9 @@ namespace Obi.Dialogs
                     FineForward();
                     break;
                         
+                case Keys.Control | Keys.Alt | Keys.T :
+                    txtDisplayTime.Focus();
+                    break;
             }
             
             return base.ProcessDialogKey(keyData);

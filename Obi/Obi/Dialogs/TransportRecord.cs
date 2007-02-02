@@ -25,6 +25,7 @@ namespace Obi.Dialogs
 
         private void mStopButton_Click(object sender, EventArgs e)
         {
+            tmDisplayTime.Enabled = false;
             mRecordingSession.Stop();
             Close();
         }
@@ -43,6 +44,9 @@ namespace Obi.Dialogs
         {
             if (mPauseButton.Visible == true)
             {
+                tmDisplayTime.Enabled = false;
+                txtDisplayTime.Text = "Listening";
+
                 mRecordingSession.Stop();
                 mRecordingSession.Listen();
                 bool PauseFocussed = mPauseButton.Focused;
@@ -79,7 +83,8 @@ namespace Obi.Dialogs
 
                 if ( RecordFocussed == true )
                 mPauseButton.Focus();
-                
+
+            tmDisplayTime.Start();
             }
         }
 
@@ -120,10 +125,14 @@ namespace Obi.Dialogs
             mRecordingSession.Listen();
             mTextVuMeter.Enable = true;
             mTextVuMeter.RecordingSessionObj = mRecordingSession;
+
+            tmDisplayTime.Enabled = false;
+            txtDisplayTime.Text = "Listening";
         }
 
         private void TransportRecord_FormClosing(object sender, FormClosingEventArgs e)
         {
+            tmDisplayTime.Enabled = false;
             mRecordingSession.Stop();
         }
 
@@ -160,10 +169,40 @@ namespace Obi.Dialogs
                     break;
 
 
+                case Keys.Control | Keys.Alt | Keys.T :
+                    txtDisplayTime.Focus();
+                    break;
+
             }
 
             return base.ProcessDialogKey(keyData);
 
+        }
+
+        private void tmDisplayTime_Tick(object sender, EventArgs e)
+        {
+            double dMiliSeconds = mRecordingSession.AudioRecorder.TimeOfAsset;
+
+
+            int Seconds = Convert.ToInt32(dMiliSeconds / 1000);
+            int DisplaySeconds = Seconds;
+            if (DisplaySeconds > 59)
+                DisplaySeconds = DisplaySeconds - (60 * (DisplaySeconds / 60));
+
+            string sSeconds = DisplaySeconds.ToString("00");
+            int Minutes = Convert.ToInt32(Seconds / 60);
+            int DisplayMinutes = Minutes;
+            if (DisplayMinutes > 59)
+                DisplayMinutes = DisplayMinutes - (60 * (DisplayMinutes / 60));
+
+            string sMinutes = DisplayMinutes.ToString("00");
+            int Hours = Minutes / 60;
+            int DisplayHours = Hours;
+            if (DisplayHours > 23)
+                DisplayHours = DisplayHours - 60;
+
+            string sHours = DisplayHours.ToString("00");
+           txtDisplayTime.Text = sHours + ":" + sMinutes + ":" + sSeconds;
         }
 
 

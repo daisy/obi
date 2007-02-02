@@ -28,12 +28,15 @@ namespace Obi.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.mRecordButton = new System.Windows.Forms.Button();
             this.mPauseButton = new System.Windows.Forms.Button();
             this.mStopButton = new System.Windows.Forms.Button();
             this.btnPhraseMark = new System.Windows.Forms.Button();
             this.btnBeginSection = new System.Windows.Forms.Button();
             this.btnPageMark = new System.Windows.Forms.Button();
+            this.tmDisplayTime = new System.Windows.Forms.Timer(this.components);
+            this.txtDisplayTime = new System.Windows.Forms.TextBox();
             this.mTextVuMeter = new Obi.UserControls.TextVUMeterPanel();
             this.SuspendLayout();
             // 
@@ -98,6 +101,20 @@ namespace Obi.Dialogs
             this.btnPageMark.UseVisualStyleBackColor = true;
             this.btnPageMark.Click += new System.EventHandler(this.btnPageMark_Click);
             // 
+            // tmDisplayTime
+            // 
+            this.tmDisplayTime.Interval = 333;
+            this.tmDisplayTime.Tick += new System.EventHandler(this.tmDisplayTime_Tick);
+            // 
+            // txtDisplayTime
+            // 
+            this.txtDisplayTime.AccessibleName = "Record Time:";
+            this.txtDisplayTime.Location = new System.Drawing.Point(196, 62);
+            this.txtDisplayTime.Name = "txtDisplayTime";
+            this.txtDisplayTime.ReadOnly = true;
+            this.txtDisplayTime.Size = new System.Drawing.Size(100, 20);
+            this.txtDisplayTime.TabIndex = 8;
+            // 
             // mTextVuMeter
             // 
             this.mTextVuMeter.BackColor = System.Drawing.Color.Transparent;
@@ -113,6 +130,7 @@ namespace Obi.Dialogs
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 296);
+            this.Controls.Add(this.txtDisplayTime);
             this.Controls.Add(this.mTextVuMeter);
             this.Controls.Add(this.btnPageMark);
             this.Controls.Add(this.btnBeginSection);
@@ -125,6 +143,7 @@ namespace Obi.Dialogs
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TransportRecord_FormClosing);
             this.Load += new System.EventHandler(this.TransportRecord_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -137,5 +156,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button btnBeginSection;
         private System.Windows.Forms.Button btnPageMark;
         private Obi.UserControls.TextVUMeterPanel mTextVuMeter;
+        private System.Windows.Forms.Timer tmDisplayTime;
+        private System.Windows.Forms.TextBox txtDisplayTime;
     }
 }
