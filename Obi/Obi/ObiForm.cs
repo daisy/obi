@@ -1167,7 +1167,7 @@ namespace Obi
                         mProjectPanel.TransportBar.Rewind();
                     break;
 
-                case Keys.Control | Keys.Shift | Keys.T :
+                case Keys.Control | Keys.Alt  | Keys.T :
                     mProjectPanel.TransportBar.FocusTimeDisplay();
                     break;
 
