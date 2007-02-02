@@ -186,9 +186,13 @@ namespace Obi.Audio
             mAsset = asset;
             sProjectDirectory = asset.Manager.AssetsDirectory;
 			InputFormat = GetInputFormat();
-			m_sFileName = sProjectDirectory+"\\"+"Listen.wav";
+            m_sFileName = sProjectDirectory + "\\" + "Listen.wav";
+            // Following file operations disabled to eliminate listen file on 2 Feb 2007
+            /*
+			
 			BinaryWriter ListenWriter  = new BinaryWriter(File.Create(m_sFileName));
 			CreateRIFF(ListenWriter);
+             */ 
 			CreateCaptureBuffer();
 			InitRecording(true);
 		}
@@ -209,8 +213,11 @@ namespace Obi.Audio
             mAsset = asset;
 			sProjectDirectory= asset.Manager.AssetsDirectory ;
 		    InputFormat = GetInputFormat();
+            // Below lines commented to eliminate listen file on 2 Fev 2007
+            /*
             if (File.Exists(sProjectDirectory+"\\"+"Listen.wav"))
                 File.Delete(sProjectDirectory+"\\"+"Listen.wav");
+             */ 
             // m_sFileName = GetFileName();
             m_sFileName = asset.Manager.UniqueFileName(".wav");
 			BinaryWriter bw = new BinaryWriter(File.Create(m_sFileName));
@@ -241,9 +248,14 @@ namespace Obi.Audio
                 if (null != applicationBuffer)
                     if (applicationBuffer.Capturing)
                         InitRecording(false);
+                
                 FileInfo fi = new FileInfo(m_sFileName);
+
+                // Below lines commented to eliminate listen file on 2 Fev 2007
+                /*
                 if (File.Exists(sProjectDirectory + "\\" + "Listen.wav"))
                     File.Delete(sProjectDirectory + "\\" + "Listen.wav");
+                 */ 
                 if (File.Exists(m_sFileName))
                     if (fi.Length == 44)
                         File.Delete(m_sFileName);
@@ -501,16 +513,20 @@ namespace Obi.Audio
 
             // copy Capture data to an array and update it to VuMeter
                 Array.Copy( CaptureData , arUpdateVM, m_UpdateVMArrayLength);
-                UpdateVuMeterFromRecorder(this, new Events.Audio.Recorder.UpdateVuMeterEventArgs());            
+                UpdateVuMeterFromRecorder(this, new Events.Audio.Recorder.UpdateVuMeterEventArgs());
 
-			FileInfo fi = new FileInfo(m_sFileName);
-			BinaryWriter Writer = new BinaryWriter(File.OpenWrite(m_sFileName));
-			// Write the data into the wav file");	   
-			Writer.BaseStream.Position = (long)(fi.Length);
-			//Writer.Seek(0, SeekOrigin.End);			
-			Writer.Write(CaptureData, 0, CaptureData.Length);
-			Writer.Close();
-			Writer = null;
+                if (mState != AudioRecorderState.Listening)
+                {
+                    FileInfo fi = new FileInfo(m_sFileName);
+                    BinaryWriter Writer = new BinaryWriter(File.OpenWrite(m_sFileName));
+                    // Write the data into the wav file");	   
+                    Writer.BaseStream.Position = (long)(fi.Length);
+                    //Writer.Seek(0, SeekOrigin.End);			
+                    Writer.Write(CaptureData, 0, CaptureData.Length);
+                    Writer.Close();
+                    Writer = null;
+                }
+
 			NotifyThread = null;	
 			// Update the number of samples, in bytes, of the file so far.
 			//SampleCount+= datalength;
@@ -518,7 +534,11 @@ namespace Obi.Audio
 			// Move the capture offset along
 			NextCaptureOffset+= CaptureData.Length ; 
 			NextCaptureOffset %= m_iCaptureBufferSize; // Circular buffer
-            long mLength = (long)fi.Length;
+            // Below lines commented to eliminate listen file on 2 Fev 2007
+            //long mLength = (long)fi.length ;
+            // instead of above line following line is used
+            long mLength = (long)SampleCount;
+
             mTime = Audio.CalculationFunctions.ConvertByteToTime(mLength, m_SampleRate, mAsset.FrameSize);
 }
 
@@ -589,6 +609,10 @@ namespace Obi.Audio
                 tmUpdateVuMeter.Enabled = false;    
 				applicationBuffer.Stop();
 				RecordCapturedData();
+
+                // condition for listening added to eleminate listen file on 2 Feb 2007
+                if (WasListening == false)
+                {
 				BinaryWriter Writer = new BinaryWriter(File.OpenWrite(m_sFileName));
 				long Audiolength = (long)(SampleCount+44);
 				for (int i = 0; i<4 ; i++)
@@ -603,16 +627,17 @@ namespace Obi.Audio
 				}
 				Writer.Close();	// Close the file now.
 				//Set the writer to null.
-				Writer = null;	
-				SampleCount = 0;
-				Audiolength = 0;
-
-                if (WasListening == false)
-                {
+				Writer = null;
+                Audiolength = 0;
+                ///-///
+                
                     Assets.AudioClip NewRecordedClip = new Assets.AudioClip(m_sFileName);
                     mAsset.AddClip(NewRecordedClip);
                     mAsset.Manager.AddedClip(NewRecordedClip);
                 }
+
+                SampleCount = 0;
+                
 			}
 		}
 
