@@ -88,16 +88,25 @@ namespace Obi.UserControls
             {
                 if (mPlaylist.Audioplayer.State == Audio.AudioPlayerState.Playing)
                 {
-                    mLeftBox.Text = mPlaylist.Audioplayer.VuMeter.m_MeanValueLeft.ToString();
-                    mRightBox.Text = mPlaylist.Audioplayer.VuMeter.m_MeanValueRight.ToString();
+                    double LeftDb = 20 *  Math.Log10 (  mPlaylist.Audioplayer.VuMeter.m_MeanValueLeft * 256  ) ;
+                    double RightDb = 20 * Math.Log10(mPlaylist.Audioplayer.VuMeter.m_MeanValueRight * 256);
+
+                    //double LeftDb = mPlaylist.Audioplayer.VuMeter.m_MeanValueLeft ;
+                    //double RightDb = (mPlaylist.Audioplayer.VuMeter.m_MeanValueRight );
+
+                    mLeftBox.Text = LeftDb.ToString();
+                    mRightBox.Text = RightDb.ToString();
                 }
             }
             else if (IsPlay == false && mRecordingSession != null )
             {
                 if ( mRecordingSession.AudioRecorder.State == Audio.AudioRecorderState.Recording || mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Listening )
                 {
-                    mLeftBox.Text = mRecordingSession.AudioRecorder.VuMeterObject.m_MeanValueLeft.ToString();
-                    mRightBox.Text = mRecordingSession.AudioRecorder.VuMeterObject.m_MeanValueRight.ToString();
+                    double LeftDb = 20 * Math.Log10 ( mRecordingSession.AudioRecorder.VuMeterObject.m_MeanValueLeft   * 256 ) ;
+                    double RightDb =  20 * Math.Log10(mRecordingSession.AudioRecorder.VuMeterObject.m_MeanValueRight * 256);
+
+                    mLeftBox.Text = LeftDb.ToString();
+                    mRightBox.Text = RightDb.ToString();
                 }
             }
 
