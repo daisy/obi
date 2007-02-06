@@ -42,7 +42,7 @@ namespace Obi.Dialogs
             // 
             // mRecordButton
             // 
-            this.mRecordButton.Location = new System.Drawing.Point(22, 63);
+            this.mRecordButton.Location = new System.Drawing.Point(12, 12);
             this.mRecordButton.Name = "mRecordButton";
             this.mRecordButton.Size = new System.Drawing.Size(75, 25);
             this.mRecordButton.TabIndex = 0;
@@ -52,7 +52,7 @@ namespace Obi.Dialogs
             // 
             // mPauseButton
             // 
-            this.mPauseButton.Location = new System.Drawing.Point(115, 61);
+            this.mPauseButton.Location = new System.Drawing.Point(12, 12);
             this.mPauseButton.Name = "mPauseButton";
             this.mPauseButton.Size = new System.Drawing.Size(75, 25);
             this.mPauseButton.TabIndex = 1;
@@ -63,7 +63,7 @@ namespace Obi.Dialogs
             // mStopButton
             // 
             this.mStopButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.mStopButton.Location = new System.Drawing.Point(205, 111);
+            this.mStopButton.Location = new System.Drawing.Point(195, 43);
             this.mStopButton.Name = "mStopButton";
             this.mStopButton.Size = new System.Drawing.Size(75, 25);
             this.mStopButton.TabIndex = 3;
@@ -73,7 +73,7 @@ namespace Obi.Dialogs
             // 
             // btnPhraseMark
             // 
-            this.btnPhraseMark.Location = new System.Drawing.Point(22, 111);
+            this.btnPhraseMark.Location = new System.Drawing.Point(12, 43);
             this.btnPhraseMark.Name = "btnPhraseMark";
             this.btnPhraseMark.Size = new System.Drawing.Size(75, 23);
             this.btnPhraseMark.TabIndex = 4;
@@ -83,7 +83,7 @@ namespace Obi.Dialogs
             // 
             // btnBeginSection
             // 
-            this.btnBeginSection.Location = new System.Drawing.Point(115, 111);
+            this.btnBeginSection.Location = new System.Drawing.Point(105, 43);
             this.btnBeginSection.Name = "btnBeginSection";
             this.btnBeginSection.Size = new System.Drawing.Size(75, 23);
             this.btnBeginSection.TabIndex = 5;
@@ -93,7 +93,7 @@ namespace Obi.Dialogs
             // 
             // btnPageMark
             // 
-            this.btnPageMark.Location = new System.Drawing.Point(205, 61);
+            this.btnPageMark.Location = new System.Drawing.Point(195, 12);
             this.btnPageMark.Name = "btnPageMark";
             this.btnPageMark.Size = new System.Drawing.Size(75, 23);
             this.btnPageMark.TabIndex = 6;
@@ -109,27 +109,27 @@ namespace Obi.Dialogs
             // txtDisplayTime
             // 
             this.txtDisplayTime.AccessibleName = "Record Time:";
-            this.txtDisplayTime.Location = new System.Drawing.Point(196, 62);
+            this.txtDisplayTime.Location = new System.Drawing.Point(105, 12);
             this.txtDisplayTime.Name = "txtDisplayTime";
             this.txtDisplayTime.ReadOnly = true;
-            this.txtDisplayTime.Size = new System.Drawing.Size(100, 20);
+            this.txtDisplayTime.Size = new System.Drawing.Size(75, 20);
             this.txtDisplayTime.TabIndex = 8;
             // 
             // mTextVuMeter
             // 
             this.mTextVuMeter.BackColor = System.Drawing.Color.Transparent;
-            this.mTextVuMeter.Location = new System.Drawing.Point(0, 92);
+            this.mTextVuMeter.Location = new System.Drawing.Point(12, 72);
             this.mTextVuMeter.Name = "mTextVuMeter";
             this.mTextVuMeter.PlayListObj = null;
             this.mTextVuMeter.RecordingSessionObj = null;
-            this.mTextVuMeter.Size = new System.Drawing.Size(220, 44);
+            this.mTextVuMeter.Size = new System.Drawing.Size(205, 26);
             this.mTextVuMeter.TabIndex = 7;
             // 
             // TransportRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 296);
+            this.ClientSize = new System.Drawing.Size(280, 110);
             this.Controls.Add(this.txtDisplayTime);
             this.Controls.Add(this.mTextVuMeter);
             this.Controls.Add(this.btnPageMark);
