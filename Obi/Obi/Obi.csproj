@@ -60,11 +60,11 @@
     <Reference Include="System.Xml" />
     <Reference Include="urakawa, Version=0.5.0.26982, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\branches\sdk-0-5\implementation\UrakawaToolkit\bin\Debug\urakawa.dll</HintPath>
+      <HintPath>..\..\..\..\..\Urakawa Complete\branches\sdk-0-5\implementation\UrakawaToolkit\bin\Debug\urakawa.dll</HintPath>
     </Reference>
     <Reference Include="XukToZed, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\branches\sdk-0-5\implementation\XukToZed\XukToZed\bin\Debug\XukToZed.dll</HintPath>
+      <HintPath>..\..\..\..\..\Urakawa Complete\branches\sdk-0-5\implementation\XukToZed\XukToZed\bin\Debug\XukToZed.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -321,6 +321,12 @@
       <DependentUpon>AudioBlock.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Colors.cs" />
+    <Compile Include="UserControls\GraphicalVuMeter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\GraphicalVuMeter.Designer.cs">
+      <DependentUpon>GraphicalVuMeter.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ProjectPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -417,6 +423,10 @@
     <EmbeddedResource Include="UserControls\AnnotationBlock.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AnnotationBlock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\GraphicalVuMeter.resx">
+      <DependentUpon>GraphicalVuMeter.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TextVUMeterPanel.resx">
       <SubType>Designer</SubType>
