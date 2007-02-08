@@ -41,6 +41,14 @@ Testing the manual
   * Report typos.
 
   # Make sure that the manual is valid HTML, valid CSS, etc.
+  
+Testing the installer.
+
+  # Test that the installer executes on a newly installed WinXP box.
+  # Test that the installer fails gracefully when .NET 2.0 has not been intalled.
+  # Test that the installer runs with the .NET 2.0 runtime, not the SDK version.
+  # Test that the installed Obi runs with the .NET 2.0 runtime, not the SDK version.
+  * Test that Obi can be installed and executed on a machine that has .NET 2.0 and the latest DirectX installed.
 
 
 Testing the app
@@ -53,6 +61,8 @@ Testing the app
       * Create a project by typing in a path including folder names that do no exist.
       * Open a project by using "File -> Open Project"
       * Open a project by using "File -> Open recent project"
+      * Test that "File -> Open recent project -> Clear list" actually clears the list, and that it remains clear after restarting Obi.
+      * Test that opening a project in either way fails gracefully when attempting to open a non-valid XUK file
       * Save project
       * Save project as...
       * Discard changes, and assert that the result is the same as reopening the last saved file.
@@ -100,9 +110,7 @@ Testing the app
 
     * Strips menu
       * Test that "Add strip" adds a new strip before the one that has focus
-        [Note: currently the TOC view focus isn't really syncronized to the strip view. When an item in the TOC has focus, you would normally expect that adding a strip should add at that position. Solution might be to remove focus from TOC view when nothing equivalent is marked in the strip view?]
       * Test that "Rename strip" is enabled when a strip has focus.
-        [Note: we might want to have this menu item enabled even though it's the matching section in the TOC that has focus, also because actually hitting the shortcut to the menu item (F2) performs the desired action]
       * Test that "Rename strip" allows editing of a strip, and that the correct TOC item also changes name.
       * Test that "Mark strip as unused"...
         - shows the strip distictly different from a normal (/used) strip
@@ -130,8 +138,8 @@ Testing the app
         - only is enabled when an audio block has focus
         - creates 1 audio block with a duration that matches the sum of the durations of the 2 old audio block
         - maintains annotation, concatanating annotation from the 2 old blocks
-        - retains any pagenumbers that might be present on either audio block
-        [Note: we need to decide what happens if there is a page number on both old audio blocks]
+        - retains a pagenumber that might be present on either audio block
+        - discards a second pagenumber if present
       * Test that "Move audio block"...
          - is enabled when an audio block has focus, and more than one audio block exists in the current strip.
          - moves the audio block in the expected direction
@@ -158,14 +166,12 @@ Testing the app
       * Test that "Show in TOC view" places the focus on the section in the TOC view that best matches the current selection in the strip view.
     
     * Transport menu
-    [Note: if the views are to be syncronised, each test needs to be done for both TOC and Strip view]
       # Test that nothing is enabled when no project is open.
       # Test that nothing is enabled when no sections exist
       * Test that "Show VU meter" actually places the VU meter on top of other windows
       [Note: This currently doesn't seem to happen when working on a dualscreen setup]
       * Test that the text changes to "Hide VU meter" when the VU meter is shown.
       # Verify that the VU meter provides info that seems relevant to the narrator.
-      [Note: I have one or two persons inhouse that would have some serious input on this, being audio techies themselves.]
       * When a Section has focus...
         - test that "Previous section"...
           - is only enabled when a preceeding section exists.
@@ -192,8 +198,10 @@ Testing the app
         - test that "Next section"...
           - is only enabled when a following section exists.
           - moves the focus to the section following the parent of the phrase.
-      * Test that "Rewind" does what it is supposed to do ;-)
-      [Note: I don't understand what "Rewind" is supposed to do, that is not accomplished by one of the other controls.]
+      * Test that "Rewind"...
+        - inverts the order of playback.
+        - increases the speed of playback when pressed more than one time.
+        - plays the audio content of the presentation from end to beginning, moving the cursor as it goes along.
       * Test that "Play all"...
         - Plays every phrase from the selected point onwards
         - begins from the start of the presentation if nothing has been selected
@@ -204,36 +212,60 @@ Testing the app
       [Note: Should this be labeled "Play selection"?]
         - is enabled when (and only when) a section or phrase has focus
         - plays the selected phrase or section, moving focus as needed, and replaces focus when done
+      * Test that "Pause"
+      [Note: I would prefer to have the "Pause" button visible at all times, but diabled when no playback is active]
+        - suspends playback
+        - allows playback to resume at the place it was activated
+        - is only available when playback is active
       * Test that "Record" brings up the recording dialog.
       * Test that "Stop"...
-      [Note: we might want to label this one "Stop playback" or something similar, as it doesn't/can't stop recording]
         - is disabled when no playback is active
         - does stop playback of "Play all"
         - does stop playback of "Play"
         - places focus on the section or phrase that had focus when playback was started
-      * Test that "Fast forward" does what it is supposed to do ;-)
-      [Note: I don't understand what "Fast forward" is supposed to do, that is not accomplished by one of the other controls.]
+      * Test that "Fast forward"...
+        - increases the playback rate
+        - behaves like "Play all" in it's manner of navigating the sections
+        - has several different speeds available by clicking it more than 1 time.
       
     * Tools menu
       * Test that "User profile" brings up the User profile dialog
       * Test that "Project preferences" brings up the preferences dialog with the "Project" tab active.
       * Test that "Project preferences" brings up the preferences dialog with the "Audio" tab active.
-      [Note: Is there a good reason why "User profile" isn't also a tab?]
     
     * Help Menu
       * Check that "Contents" bring up the help document
-      [Note: we should consider relabeling this item to "Obi manual" or similar.]
       * Check that "About Obi" brings up the "About Obi" dialog.
       * Verify that the version number shown on the "About Obi" dialog matches the version number given in the downloaded installer's name.
       * Test that the link to "Obi online" works.
       
 
   * Record Dialog
-  [Note: I would expect recording to start as soon as the dialog is shown, rather than needing to click "Record"]
-  [Note: I found it frustrating that I could not navigate while recording.]
+    * Test that opening the "Record" dialog, closing it again, then saving the project does not cause an exception (see bug# 1644406)
+    * Test that pressing "record" creates a new phrase...
+      - at the end of the section, when a section is selected
+      - before the selected phrase, when a phrase is selected
+      - in a new section at the end of the presentation, when nothing is selected
+    * Test that pressing stop/close ends the recording, exits the dialog, leaving focus on the phrase after the one last recorded, or on the section when no such phrase exists
   
   * Split Dialog
+  [Note: The user is informed that he is splitting a named asset, but this asset name should in theory not be available anywhere. As a minimum, I would suggest showing the annotation to the asset instead of the name of the asset. Better yet might be to skip any other description of the asset, than what is available by pressing play?]
     * Test that the order of the audio blocks produced by the split is correct
+    * Test that the 2 produced audio block play back sounding the same way as the audio block that was split.
+    * Test that "Play" button starts playback at the time indicated in the "play time" text field.
+    * While playing, test that activating "Pause" button stops playback, and updates the "split time" text field.
+    * Test that pressing "Rewind" decreases the time count in "play time" by the ammount indicated in the text field "Step size in sec's"
+    * Test that pressing "Forward" increases the time count in "play time" by the ammount indicated in the text field "Step size in sec's"
+    * Test that pressing "Forward" and "Rewind" updates both "play time" and "split time" when playback is paused.
+    * Test that the increment given in "Step size in sec's" is used by "Forward" and "Rewind" when updating "play time" and/or "split time"
+    * Test that pressing "Split"...
+      - exits the dialog
+      - replaces the selected audio block with 2 new audio blocks
+      - leaves the total content of the previous audio block in the produced block
+      - places any annotations or pagemarks that might have been present in the first of the 2 audio blocks
+    * Test that pressing Stop/Close...
+      - exits the dialog
+      - leaves the presentation untouched
     
   * Preferences Dialog + User Profile Dialog
       * Test that each item is editable
@@ -241,8 +273,15 @@ Testing the app
       * After setting each item, check that pressing "Cancel" discards the change, cloing the dialog.
   
   *TOC view
+    * Test that left-clicking a section in the TOC doews not move the focus in the strips view.
+    * Test that double-left-clicking a section in the TOC moves focus to the matching strip in the strips view
+    * Test that right-clicking the TOC provides a menu with the same options available as the TOC menu.
+    * Test that the behavior of each right-click menu option matches the behavior of the corresponding item in the TOC menu.
+    * Test that left-clicking a selected section enables editing of that section's text.
+    * While the TOC has focus, test that the shortcut keys mentioned in the right click menu performs the correct actions.
   
   *Strips view
+    * Test that the right-click context menu presents the same options as the Strips menu does.
 
    
 # For developers: corner cases, stress testing and regression tests.
