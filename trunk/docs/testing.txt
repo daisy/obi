@@ -292,5 +292,57 @@ Testing the app
 
 # Work in progress: briefly describe the expected outcome of new features or redesigned features. Example:
 
-  # Test that paste audio block pastes *before* a selected audio block, or
-    at the end of a selected strip. [I think this one is done actually :)]
+  # Test that paste audio block pastes *before* a selected audio block, or at the end of a selected strip. [I think this one is done actually :)]
+
+# Testing on the status of bugs
+
+  # Obi fails to execute for George (1653285)
+    - Get a non-developer machine where Obi has neither been installed nor built.
+    - Run the installer
+    - Assert that Obi is runnable.
+
+  # Annotations do not scale with width of audio (1653178)
+    - record an audio block
+    - test if the audio block shows up in purple. (this should not be the case, but if it is, the bug might still be present)
+    - Assert that the width of the annotation block matches the width of the audio block.
+  
+  # Edit field for annotation does not scale. (1653181)
+    - record an audio block
+    - assert that the audio block shows up in purple. 
+    - type in an annotation of 50 characters or such. 
+    - press enter
+    - assert that the text is shown. 
+    - press F2
+    - check that you get an edit field for the text that is the same width as the annotation block. 
+    
+  # Recording, hitting "Page Mark" causes inverted sequence. (1647271)
+    - Open a project.
+    - Select a section.
+    - Open record dialog
+    - press "Record"
+    - wait for 10 seconds
+    - hit page mark
+    - wait 2 seconds
+    - hit stop
+    - Assert that you now have 2 audio blocks, one containing 10 seconds, followed by one containing 2 seconds.
+    
+  # Listen.wav is included in asset manager. (1644533)
+    - Open a project
+    - Press "Record" button.
+    - Exit the record dialog, without recording anything.
+    - Select "File -> Save as" from the menu.
+    - Assert that Obi does not crash
+    - Assert that no file named "Listen.wav" is included in the saved project.
+    
+  # Asset playback is cut short after paste phrase (1642294)
+  # Export problem with dtb:totalDuration (1640131)
+  # Keyboard shortcut unworking for cut/copy/paste/delete strip (1639440)
+  # Cannot save project after export (1638348)
+    - open a project
+    - Choose "File -> Export as DAISY"
+    - Choose a folder, exiting the dialog
+    - Choose "File -> Save"
+    - Assert that Obi does not crash.
+    - Assert that the project has been saved.
+    - Assert that a book has been exported.
+  
