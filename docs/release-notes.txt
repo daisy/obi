@@ -47,6 +47,8 @@ with regard to the distributed version of Obi.
   2.3 A used section shows in blue; an unused section shows is grayed-out. An
   unused section will not be exported to a DAISY book, and will not be played
   when the whole book plays.
+  <LNN>The sections look the same in the TOC when they have focus, regardless
+  of being marked as used or not. Is this a feature or a bug?</LNN>
 
   2.4 A section can be selected in the TOC panel by clicking it. It shows in
   white with a blue background.
@@ -56,6 +58,9 @@ with regard to the distributed version of Obi.
 
   2.6 New sections can be created by adding a sibling section (section of the
   same level) or a child section (sub-section.)
+  <LNN>There is currently no way to insert a new section before the first child.
+  The dicussed "insert before selected node" has seemingly not been implemented?
+  </LNN>
 
     2.6.1 Adding a sibling section (TOC > Add section, or Ctrl+A) adds a new
     section immediately after the children of the selected section with the
@@ -93,6 +98,7 @@ with regard to the distributed version of Obi.
   the section in the clipboard can be pasted as a new child of the selected
   section (Edit > Paste section, or Ctrl+V). The clipboard is unchanged, so
   that the same section can be pasted again.
+  <LNN>Also here, paste should be "insert before selected" IMO</LNN>
 
   2.12 A selected section can be deleted (Edit > Delete section, or Del).
 
@@ -115,6 +121,8 @@ with regard to the distributed version of Obi.
 
   3.1 The strip view shows on the right-hand side of the project panel. It
   cannot be hidden but can be resized.
+  <LNN>Only in relation to the TOC-view, right? Feels more like I'm resizing the 
+  TOC than the strips, but it is OFC both...</LNN>
 
   3.2 Section strips and audio blocks
 
@@ -201,8 +209,11 @@ Appendix A - Missing features for version 1.0
   removing page numbers lead to automatic renumbering.
 
   A.3 Go to page: select the phrase with the given page number, if it exists.
+  <LNN>A "Go to next page" function would also be nice to have.</LNN>
 
   A.4 Cut/copy/paste text from annotation is not available.
+  <LNN> Sure it is, it interacts with the normal windows clipboard. Best guess 
+  is that it's a gift from the edit function being a text box widget?</LNN>
 
   A.5 Search text: select a section whose title contains this text, or a phrase
   with an annotation containing this text. May move to post-0.9.
@@ -215,3 +226,6 @@ Appendix A - Missing features for version 1.0
   A.8 Unused item behavior may be too restrictive; maybe all operations should
   be allowed in unused sections and with unused audio blocks except that they
   won't be exported or played when the whole book plays.
+  <LNN>I agree, it should be possible to do most of the normal types of work 
+  on unused blocks. Otherwise, it is merely a "not really deleted yet" 
+  functionality, and that feels more like the domain of undo/redo to me</LNN>
