@@ -282,6 +282,17 @@ Testing the app
   
   *Strips view
     * Test that the right-click context menu presents the same options as the Strips menu does.
+    * Test that keyboard navigation works...
+      - when a section has focus...
+        - right arrow moves focus to the first phrase
+        - left arrow moves focus to the last phrase of the nearest preceeding section that has phrase(s)
+        - up arrow moves focus to a preceeding sibling of the selected section, or to the parent section if no preceeding sibling exists, or is ignored if the selected section is the first section of the presentation
+        - down arrow moves focus to the first child section, or to the next section in document order if no child sections exists, or is ignored if this is the last section
+      - when a phrase has focus...
+        - right arrow moves focus to the next phrase in document order, possibly skipping to a child of another section.
+        - left arrow moves focus to the previous phrase in document order, possibly skipping to a child of another section.
+        - down arrow moves focus to the nearest following section of the parent section in document order.
+        - up arrow moves focus to the parent section
 
    
 # For developers: corner cases, stress testing and regression tests.
