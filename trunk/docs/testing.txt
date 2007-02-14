@@ -272,7 +272,7 @@ Testing the app
       * After setting each item, restart Obi, check that the values that was set, are still shown.
       * After setting each item, check that pressing "Cancel" discards the change, cloing the dialog.
   
-  *TOC view
+  * TOC view
     * Test that left-clicking a section in the TOC doews not move the focus in the strips view.
     * Test that double-left-clicking a section in the TOC moves focus to the matching strip in the strips view
     * Test that right-clicking the TOC provides a menu with the same options available as the TOC menu.
@@ -280,7 +280,7 @@ Testing the app
     * Test that left-clicking a selected section enables editing of that section's text.
     * While the TOC has focus, test that the shortcut keys mentioned in the right click menu performs the correct actions.
   
-  *Strips view
+  * Strips view
     * Test that the right-click context menu presents the same options as the Strips menu does.
     * Test that keyboard navigation works...
       - when a section has focus...
@@ -357,3 +357,5 @@ Testing the app
     - Assert that the project has been saved.
     - Assert that a book has been exported.
   
+  # Rename strip + move focus elsewhere does not finish renaming (1659850)
+  # Renaming strip collides with Delete-key (1659838)
