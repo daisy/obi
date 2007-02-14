@@ -1,0 +1,217 @@
+Obi release notes
+$Id$
+
+
+These release notes describe Obi version 0.8.0.0, released 2007-01-26.
+
+NOTE TO TESTERS: please verify that every statement in this document is true
+with regard to the distributed version of Obi.
+
+
+1 Obi projects
+
+  1.1 Obi can only open and save Obi projects, named with a .xuk extension.
+  Obi projects for this version are identified by the version string
+  "obi-xuk-009".
+
+  1.2 Obi can export projects to DAISY ANSI/NISO Z39.86-2005 format.
+
+  1.3 Only one project at a time can be open. Opening another project or
+  creating a new project closes a previously open project.
+
+  1.4 The clipboard (see below) is cleared when a project is closed, so that
+  it is not possible to cut and paste between different projects.
+
+  1.5 A project with modifications is never closed without prompting the user
+  for saving changes, discarding them, or canceling the operation leading to
+  closing the project.
+
+  1.6 The title bar shows the title of the project currently open, followed by
+  a star if it has unsaved modifications, and the name of the application. If
+  no project is open only the name of the application is shown.
+
+
+2 The TOC panel
+
+  2.1 The TOC panel shows on the left-hand side of the project panel when a
+  project is open. It can be either shown or hidden but is always shown when
+  a project is open or created.
+
+  2.2 The TOC panel shows the name of every section. The sections are organized
+  in a hierarchical way (i.e. section, sub-section, etc.) and shown using a
+  tree widget where every tree node corresponds to one section. The indenting
+  of a node shows the section level. Nodes can be collapsed and expanded. Every
+  section has a corresponding strip in the strip manager (see below) in the
+  same order than in the tree.
+
+  2.3 A used section shows in blue; an unused section shows is grayed-out. An
+  unused section will not be exported to a DAISY book, and will not be played
+  when the whole book plays.
+
+  2.4 A section can be selected in the TOC panel by clicking it. It shows in
+  white with a blue background.
+
+  2.5 Operations on a section apply to all sub-sections of this section. For
+  instance, deleting a section will delete all its sub-sections.
+
+  2.6 New sections can be created by adding a sibling section (section of the
+  same level) or a child section (sub-section.)
+
+    2.6.1 Adding a sibling section (TOC > Add section, or Ctrl+A) adds a new
+    section immediately after the children of the selected section with the
+    same level as the selected section, or appends a top-level section if no
+    section is selected.
+
+    2.6.2 Adding a child section (TOC > Add sub-section, or Ctrl+B) appends a
+    new section under the currently selected section.
+    [NOTE: there is an inconsistency between the two operations; the previous
+    should probably append just like this one.]
+
+    2.6.3 When a new section is created, it is given a default title. It is
+    also immediately selected and given the focus for retitling.
+
+  2.7 A selected section can be retitled (TOC > Rename section, or F2). The
+  name cannot be the empty string.
+
+  2.8 A selected section level can change by moving it in or out.
+
+    2.8.1 Moving a section out (TOC > Move section out, or Ctrl+Shift+Left) 
+    reduces its level by one. Instead of being a child of its parent, it
+    becomes its sibling. A top-level section cannot be moved out.
+
+    2.8.2 Moving a section in (TOC > Move section in, or Ctrl+Shift+Right)
+    increases its level by one. It becomes a child of its preceding sibling.
+    A section which is the first child of its parent cannot be moved in.
+
+  2.9 A selected section can be cut (Edit > Cut section, or Ctrl+X). It is
+  deleted from the project and placed in the clipboard for pasting.
+
+  2.10 A selected section can be copied (Edit > Copy section, or Ctrl+C). It
+  is placed on the clipboard for pasting.
+
+  2.11 When the clipboard contains a section and a section is selected, then
+  the section in the clipboard can be pasted as a new child of the selected
+  section (Edit > Paste section, or Ctrl+V). The clipboard is unchanged, so
+  that the same section can be pasted again.
+
+  2.12 A selected section can be deleted (Edit > Delete section, or Del).
+
+  2.13 A selected section can be marked as used or unused (TOC > Mark section
+  as used / TOC > Mark section as unused, or Ctrl+K). All operations on section
+  are disabled for unused sections, except marking them as used or showing them
+  in the strip manager.
+  [NOTE: this is not implemented correctly and consistently and will change
+  soon.]
+
+  2.14 A selected section can be shown in the strip manager (TOC > Show in
+  strip view, or Alt+V). The corresponding strip is selected.
+
+  2.15 Keyboard navigation is available in the TOC panel when it has focus.
+  The behavior of the keyboard in this view is the one that is implemeted by
+  the tree widget in Windows.
+
+
+3 The strip view
+
+  3.1 The strip view shows on the right-hand side of the project panel. It
+  cannot be hidden but can be resized.
+
+  3.2 Section strips and audio blocks
+
+    3.2.1 Section strips
+
+    3.2.2 Audio block
+
+    3.2.3 Annotation
+
+    3.2.4 Page number
+
+  3.3 Selection
+
+  3.4 Operations on strips
+
+    3.4.1 Add strip
+
+    3.4.2 Rename strip
+
+    3.4.3 Cut strip
+
+    3.4.4 Copy strip
+
+    3.4.5 Paste strip
+
+    3.4.6 Delete strip
+
+    3.4.7 Show in TOC view
+
+    [NOTE: Mark strip as used/unused will be removed in the next release;
+    please ignore this item.]
+
+  3.5 Operations on audio blocks
+
+    3.5.1 Import audio file
+
+    3.5.2 Insert empty audio block
+
+    3.5.3 Split audio block
+
+    3.5.4 Quick split audio block
+
+    3.5.5 Apply phrase detection
+
+    3.5.6 Merge with next audio block
+
+    3.5.7 Move audio block forward/backward
+
+    3.5.8 Cut audio block
+
+    3.5.9 Copy audio block
+
+    3.5.10 Paste audio block
+
+    3.5.11 Delete audio block
+
+    3.5.12 Mark audio block as used/unused
+
+  3.6 Operations on annotations
+
+  3.7 Pages are broken and must be fixed soon. Page numbers will be set
+  automatically; page numbering will start from 1 and increase by 1 for every
+  page.
+
+  3.8 Keyboard navigation is broken and must be fixed soon. Arrow keys will
+  allow movement between strips (up/down) and blocks (left/right.)
+
+
+4 The transport bar and VU meter; playing and recording audio
+
+
+5 User settings and help
+
+
+6 Clipboard and undo/redo
+
+
+Appendix A - Missing features for version 1.0
+
+  A.1 Keyboard navigation in the strip manager.
+
+  A.2 Page numbering: when a page number is set on a phrase, Obi automatically
+  assigns the page number (starting from 1 and counting upwards.) Adding or
+  removing page numbers lead to automatic renumbering.
+
+  A.3 Go to page: select the phrase with the given page number, if it exists.
+
+  A.4 Cut/copy/paste text from annotation is not available.
+
+  A.5 Search text: select a section whose title contains this text, or a phrase
+  with an annotation containing this text. May move to post-0.9.
+
+  A.6 "Save as" may be revised.
+
+  A.7 User profile and preferences will be merged under a single "preferences"
+  dialog.
+
+  A.8 Unused item behavior may be too restrictive; maybe all operations should
+  be allowed in unused sections and with unused audio blocks except that they
+  won't be exported or played when the whole book plays.
