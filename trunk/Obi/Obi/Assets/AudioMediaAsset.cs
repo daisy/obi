@@ -738,6 +738,23 @@ namespace Obi.Assets
             }
 
         }
+        
+        /// <summary>
+        /// Export function for converting a list of audiomedia assets to a single large AudioMediaAsset pointing to a single file
+        /// <see cref=""/>
+        /// </summary>
+        /// <param name="AssetList"></param>
+        /// <param name="FilePath"></param>
+        /// <returns>
+        /// AudioMediaAsset consisting of input Asset
+        /// </returns>
+        public static  AudioMediaAsset ExportAssets (List<AudioMediaAsset> AssetList, string FilePath)
+        {
+            
+
+            return AssetList[0];
+        }
+
 
         private void UpdateLengthHeader(long Length, BinaryWriter bw)
         {
