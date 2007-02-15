@@ -1,43 +1,46 @@
 $Id$
 
-Obi is now a self-contained application; the asset manager and audio backend
-have been included in the same project. The Obi project can then be opened
-in Visual Studio 2005 and compiled/run from there. There are still some
-prerequisites:
 
-Prerequisites:
-1. You will need to install Direct X .Net SDK first.
-2. You also need to compile the Urakawa toolkit from the implementation
-   directory.
-3. Once you have DirectX and the toolkit, you can compile Obi.  You *may*
-   need to specify the location of the DLLs again in the References
-   section of the Solution Explorer; they can be found in the bin/ directory
-   of all projects. (Sometimes, just looking at the properties of a "missing"
-   reference does the trick.) 
+About Obi
 
-What's where:
+Obi is the Urakawa Project DAISY/NISO Digital Talking production tool. It is
+a simple Windows application designed to create audio books with a table of
+contents.
 
-+ Obi
-  A 2005 project for the application. This is the main project.
+Current version of Obi is 0.8.0 (2007-01-26.) Please read the accompanying
+release notes.
 
-+ dist
-  Distribution(s) of Obi as published on the Urakawa website. Probably not
-  the right place to keep these, so this directory may disappear.
 
-+ docs
-  Mostly outdated, features.txt contains the rough feature list of version
-  0.5/1.0/future of the application. Also some notes from the application
-  team meeting in Delhi in August 2006 and initial comments for the façade
-  API (facade-api.txt) Also contains some specs, e.g. for the transport bar
-  (version 0.7)
+Installing Obi
 
-+ images
-  Images used by the application and/or the help file.
+To install Obi, you first need to install the Microsoft .NET runtime 2.0 and
+the DirectX runtime. The .NET runtime can be installed automatically by the
+Obi installer, but the DirectX runtime must be installed separately. You can
+download a web installer from Microsoft at the following URL:
 
-+ prototype
-  Contains the two prototypes/mockups that were delivered in April. Protobi
-  is more interactive, UrakawaPrototype shows more features. The application
-  will still look quite different. Both are 2005 projects.
+  http://www.microsoft.com/downloads/details.aspx?FamilyId=2DA43D38-DB71-4C1B-BC6A-9B6652CD92A3&displaylang=en
 
-+ misc
-  Stuff, including old 2003 projects.
+Once the DirectX SDK is installed, simply run the installer from this
+archive.  At this point, the installer will only install the program and its
+related files in the directory of your choice; no shortcut or desktop icon
+is created.  You can create a shortcut to Obi.exe in the installation
+directory if you like.
+
+
+Compiling Obi
+
+Obi can be compiled with Microsoft Visual Studio 2005 or Microsoft Visual C#
+2005 Express Edition. To compile Obi, you must first compile version 0.5 of
+the Urakawa SDK (urakawa.dll) as well as the XukToZed project from the
+implementation directory.
+
+
+Credits
+
+* Team leader: Julien Quint
+* Developers: Marisa DeMeglio, Markus Gylling, Laust Skat Nielsen, Avneesh
+    Singh, Suman Sharma
+* Testers: Miki Azuma, Monthian Buntan, Mayu Hamada, Jack Jansen, Sandeep
+    Kaler, George Kerscher, Lynn Leith, Deepika Sood, Prashant Ranjan Verma.
+* Team management: Dipendra Manocha
+
