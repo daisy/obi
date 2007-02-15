@@ -8,29 +8,55 @@ using urakawa.media;
 namespace Obi.Visitors
 {
     /// <summary>
-    /// Visitor to collect all the assets per section
+    /// Visitor to collect all the assets per section. 
+    /// First, call SetNewDirectory; then call the visitor functions; then call RemoveOldDirectory
     /// </summary>
-    class CollectAssetsForExport : ICoreNodeVisitor
+    class CleanupAssets : ICoreNodeVisitor
     {
         #region ICoreNodeVisitor Members
 
         private List<Assets.AudioMediaAsset> mAudioAssList;
+        private string mNewAssetDirectory;
+        private string mOldAssetDirectory;
+
+        /// <summary>
+        /// the constructor makes a new directory for the assets
+        /// </summary>
+        public void SetNewDirectory()
+        {
+            mOldAssetDirectory = ((SectionNode)node).Project.AssetManager.AssetsDirectory;
+
+            //these assets go in a new directory (old_dir_name + underscore(s))
+            mNewAssetDirectory = ((SectionNode)node).Project.AssignNewAssetDirectory();
+        }
+
+        public void RemoveOldDirectory()
+        {
+            System.IO.Directory.Delete(mOldAssetDirectory, true);
+        }
 
         public void postVisit(ICoreNode node)
         {
             if (node is Obi.SectionNode)
-            {
-                string sectionAudioPath = "";
-
-                //figure out the path to the new audio file
+            { 
+                //the name of the audio file will be the ID of the section name
+                string sectionAudioPath = mNewAssetDirectory + @"\" + ((SectionNode)node).Id + @".wav";
 
                 //call asset combining function here
-                Assets.AudioMediaAsset bigAss = Assets.AudioMediaAsset.ExportAssets
+                List<Assets.AudioMediaAsset> revisedAssList = Assets.AudioMediaAsset.ExportAssets
                     (mAudioAssList, sectionAudioPath);
 
-                //recalculate all assets; or at least the clip begin/end and filepath data
-                //in the pre-existing assets
+                if (revisedAssList.Count != ((SectionNode)node).PhraseChildCount)
+                {
+                    throw new Exception("Error during cleanup of audio assets");
+                }
 
+                //replace current assets with revised ones
+                for (int i = 0; i < ((SectionNode)node).PhraseChildCount; i++)
+                {
+                    PhraseNode phraseNode = ((SectionNode)node).PhraseChild(i);
+                    phraseNode.Asset = revisedAssList[i];
+                }
             }
         }
 
