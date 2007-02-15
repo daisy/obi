@@ -701,6 +701,7 @@ namespace Obi.Assets
         /// <param name="path">Path of the file to save.</param>
         public void Export(string path)
         {
+
             if (mClips.Count != 0)
             {
 
@@ -736,7 +737,7 @@ namespace Obi.Assets
                 
                 throw new Exception("No Clip in Asset");
             }
-
+            
         }
         
         /// <summary>
@@ -750,6 +751,56 @@ namespace Obi.Assets
         /// </returns>
         public static  List<AudioMediaAsset> ExportAssets (List<AudioMediaAsset> AssetList, string path)
         {
+            // new clip which is required to replace existing list of clips in each AudioMediaAsset
+            AudioClip ExportAudioClip;
+            
+            // binary writer for writing to export wave file
+            BinaryWriter bw = new BinaryWriter(File.Create(path));
+            BinaryReader br;
+
+            // copy header of first audio clip file to export aubio file
+            br = new BinaryReader(File.OpenRead(AssetList[0].mClips[0].Path));
+
+            for (int i = 0; i < 44; i++)
+            {
+                bw.Write(br.ReadByte());
+            }
+            bw.BaseStream.Position = 44;
+
+            // byte count variable for counting total bytes copied to export file
+            long ByteLengthCount = 0;
+
+
+            for (int AssetCount = 0; AssetCount < AssetList.Count; AssetCount++)
+            {
+
+                if (AssetList[AssetCount].mClips.Count != 0)
+                {
+                    for (int i = 0 ; i < AssetList[AssetCount].mClips.Count ; i++)
+                    {
+                        br = new BinaryReader(File.OpenRead(AssetList[AssetCount].mClips[i].Path));
+                        br.BaseStream.Position = AssetList[AssetCount].mClips[i].BeginByte + 44;
+                        for (long l = AssetList[AssetCount].mClips[i].BeginByte; l < AssetList[AssetCount].mClips[i].EndByte; l++)
+                        {
+                            bw.Write(br.ReadByte());
+                            ByteLengthCount++;
+                        }
+                    }
+                }
+
+            }
+                AssetList[0].UpdateLengthHeader(ByteLengthCount, bw);
+                bw.Close();
+                br.Close();
+                
+            for ( int ICount = 0 ; ICount  < AssetList.Count ; ICount++  )
+            {
+                //AssetList[ICount].mClips.Clear();
+                ExportAudioClip = new AudioClip( path, 0.0 , AssetList[ ICount ].LengthInMilliseconds);
+                List<AudioClip> NewList = new List<AudioClip>();
+                NewList.Add(ExportAudioClip);
+                AssetList[ICount].mClips = NewList;
+            }
             return AssetList ;
         }
 
