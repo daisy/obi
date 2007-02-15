@@ -20,7 +20,7 @@ download a web installer from Microsoft at the following URL:
 
   http://www.microsoft.com/downloads/details.aspx?FamilyId=2DA43D38-DB71-4C1B-BC6A-9B6652CD92A3&displaylang=en
 
-Once the DirectX SDK is installed, simply run the installer from this
+Once the DirectX runtime is installed, simply run the installer from this
 archive.  At this point, the installer will only install the program and its
 related files in the directory of your choice; no shortcut or desktop icon
 is created.  You can create a shortcut to Obi.exe in the installation
