@@ -16,6 +16,11 @@ namespace Obi
         {
             UpdatePublicationMetadata();
             // sort out the audio clips: create one file per section, then one clip per phrase in this section.
+            Visitors.CleanupAssets cleanAssVisitor;
+            cleanAssVisitor.SetNewDirectory();
+            this.RootNode.acceptDepthFirst(cleanAssVisitor);
+           // cleanAssVisitor.RemoveOldDirectory();
+
             // TODO
             // then save the xuk file to update the date metadata.
             Save();

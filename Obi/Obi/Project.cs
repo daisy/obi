@@ -655,5 +655,16 @@ namespace Obi
             }
             Modified();
         }
+
+        /// <summary>
+        /// Changes the asset path to the next available directory.  Also create the directory.
+        /// </summary>
+        /// <param name="path"></param>
+        public string AssignNewAssetDirectory()
+        {
+            mAssPath = GetAssetDirectory(mAssPath);
+            Directory.CreateDirectory(mAssPath);
+            return mAssPath;
+        }
     }
 }

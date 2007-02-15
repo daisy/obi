@@ -343,6 +343,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\StripManagerPanel.ContextMenu.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\StripManagerPanel.cs">
       <SubType>UserControl</SubType>
@@ -379,7 +380,7 @@
     </Compile>
     <Compile Include="UserProfile.cs" />
     <Compile Include="Visitors\AssetCreator.cs" />
-    <Compile Include="Visitors\CollectAssetsForExport.cs" />
+    <Compile Include="Visitors\CleanupAssets.cs" />
     <Compile Include="Visitors\DumpTree.cs" />
     <Compile Include="Visitors\PhraseEnumerator.cs" />
     <Compile Include="Visitors\CopyPhraseAssets.cs" />
