@@ -662,9 +662,18 @@ namespace Obi
         /// <param name="path"></param>
         public string AssignNewAssetDirectory()
         {
-            mAssPath = GetAssetDirectory(mAssPath);
-            Directory.CreateDirectory(mAssPath);
-            return mAssPath;
+            Uri absoluteAssPath = new Uri(new Uri(mXUKPath), mAssPath); 
+            string newAssPath = GetAssetDirectory(absoluteAssPath.ToString());
+
+            //make as a local path, as that's what everyone seems to want
+            newAssPath = (new Uri(newAssPath)).LocalPath;
+            
+            //save the new asset path as a relative Uri
+            mAssPath = (new Uri(mXUKPath)).MakeRelativeUri(new Uri(newAssPath)).ToString();
+            
+            //create and return the new asset path
+            Directory.CreateDirectory(newAssPath);
+            return newAssPath;
         }
     }
 }
