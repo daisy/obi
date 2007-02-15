@@ -703,7 +703,7 @@ namespace Obi.Assets
         {
             if (mClips.Count != 0)
             {
-                MessageBox.Show ("Clip Count"  + mClips.Count.ToString());
+
 
                 BinaryWriter bw = new BinaryWriter(File.Create(path));
                 BinaryReader br;
@@ -740,19 +740,17 @@ namespace Obi.Assets
         }
         
         /// <summary>
-        /// Export function for converting a list of audiomedia assets to a single large AudioMediaAsset pointing to a single file
+        /// Export function for converting a list of audiomedia assets to a list of exportable AudioMediaAsset pointing to a single file
         /// <see cref=""/>
         /// </summary>
         /// <param name="AssetList"></param>
         /// <param name="FilePath"></param>
         /// <returns>
-        /// AudioMediaAsset consisting of input Asset
+        /// list of AudioMediaAsset consisting of input Assets but changed clip list
         /// </returns>
-        public static  AudioMediaAsset ExportAssets (List<AudioMediaAsset> AssetList, string FilePath)
+        public static  List<AudioMediaAsset> ExportAssets (List<AudioMediaAsset> AssetList, string path)
         {
-            
-
-            return AssetList[0];
+            return AssetList ;
         }
 
 
