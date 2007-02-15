@@ -16,8 +16,8 @@ namespace Obi
         {
             UpdatePublicationMetadata();
             // sort out the audio clips: create one file per section, then one clip per phrase in this section.
-            Visitors.CleanupAssets cleanAssVisitor;
-            cleanAssVisitor.SetNewDirectory();
+            Visitors.CleanupAssets cleanAssVisitor = new Visitors.CleanupAssets();
+            cleanAssVisitor.SetNewDirectory(this);
             this.RootNode.acceptDepthFirst(cleanAssVisitor);
            // cleanAssVisitor.RemoveOldDirectory();
 
