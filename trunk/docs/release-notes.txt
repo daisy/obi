@@ -24,13 +24,14 @@ with regard to the distributed version of Obi.
   1.4 The clipboard (see below) is cleared when a project is closed, so that
   it is not possible to cut and paste between different projects.
 
-  1.5 A project with modifications is never closed without prompting the user
-  for saving changes, discarding them, or canceling the operation leading to
-  closing the project.
+  1.5 A project with modifications is never closed without prompting the
+  user for saving changes, discarding them, or canceling the operation
+  leading to closing the project.
 
-  1.6 The title bar shows the title of the project currently open, followed by
-  a star if it has unsaved modifications, and the name of the application. If
-  no project is open only the name of the application is shown.
+  1.6 The title bar shows the title of the project currently open, followed
+  by a star if it has unsaved modifications, and the name of the
+  application. If no project is open only the name of the application is
+  shown.
 
   1.7 Obi stores simple metadata about projects. This metadata is used to
   create DAISY metadata automatically on export. To view or modify the
@@ -67,16 +68,16 @@ with regard to the distributed version of Obi.
   project is open. It can be either shown or hidden but is always shown when
   a project is open or created.
 
-  2.2 The TOC panel shows the name of every section. The sections are organized
-  in a hierarchical way (i.e. section, sub-section, etc.) and shown using a
-  tree widget where every tree node corresponds to one section. The indenting
-  of a node shows the section level. Nodes can be collapsed and expanded. Every
-  section has a corresponding strip in the strip manager (see below) in the
-  same order than in the tree.
+  2.2 The TOC panel shows the name of every section. The sections are
+  organized in a hierarchical way (i.e. section, sub-section, etc.) and
+  shown using a tree widget where every tree node corresponds to one
+  section. The indenting of a node shows the section level. Nodes can be
+  collapsed and expanded. Every section has a corresponding strip in the
+  strip manager (see below) in the same order than in the tree.
 
-  2.3 A used section shows in blue; an unused section shows is grayed-out. An
-  unused section will not be exported to a DAISY book, and will not be played
-  when the whole book plays.
+  2.3 A used section shows in blue; an unused section shows is grayed-out.
+  An unused section will not be exported to a DAISY book, and will not be
+  played when the whole book plays.
   [NOTE: when selected, sections appear the same whether they are used or
   unused. This is a feature of the tree widget]
 
@@ -86,8 +87,8 @@ with regard to the distributed version of Obi.
   2.5 Operations on a section apply to all sub-sections of this section. For
   instance, deleting a section will delete all its sub-sections.
 
-  2.6 New sections can be created by adding a sibling section (section of the
-  same level) or a child section (sub-section.)
+  2.6 New sections can be created by adding a sibling section (section of
+  the same level) or a child section (sub-section.)
   [NOTE: this should change to insert before behavior.]
 
     2.6.1 Adding a sibling section (TOC > Add section, or Ctrl+A) adds a new
@@ -95,10 +96,10 @@ with regard to the distributed version of Obi.
     same level as the selected section, or appends a top-level section if no
     section is selected.
 
-    2.6.2 Adding a child section (TOC > Add sub-section, or Ctrl+B) appends a
-    new section under the currently selected section.
-    [NOTE: there is an inconsistency between the two operations; the previous
-    should probably append just like this one.]
+    2.6.2 Adding a child section (TOC > Add sub-section, or Ctrl+B) appends
+    a new section under the currently selected section.
+    [NOTE: there is an inconsistency between the two operations; the
+    previous should probably append just like this one.]
 
     2.6.3 When a new section is created, it is given a default title. It is
     also immediately selected and given the focus for retitling.
@@ -108,7 +109,7 @@ with regard to the distributed version of Obi.
 
   2.8 A selected section level can change by moving it in or out.
 
-    2.8.1 Moving a section out (TOC > Move section out, or Ctrl+Shift+Left) 
+    2.8.1 Moving a section out (TOC > Move section out, or Ctrl+Shift+Left)
     reduces its level by one. Instead of being a child of its parent, it
     becomes its sibling. A top-level section cannot be moved out.
 
@@ -130,10 +131,10 @@ with regard to the distributed version of Obi.
 
   2.12 A selected section can be deleted (Edit > Delete section, or Del).
 
-  2.13 A selected section can be marked as used or unused (TOC > Mark section
-  as used / TOC > Mark section as unused, or Ctrl+K). All operations on section
-  are disabled for unused sections, except marking them as used or showing them
-  in the strip manager.
+  2.13 A selected section can be marked as used or unused (TOC > Mark
+  section as used / TOC > Mark section as unused, or Ctrl+K). All operations
+  on section are disabled for unused sections, except marking them as used
+  or showing them in the strip manager.
   [NOTE: this is not implemented correctly and consistently and will change
   soon.]
 
@@ -257,9 +258,9 @@ with regard to the distributed version of Obi.
       position. The step size in seconds text box can be modified with the +
       and - buttons to change the step from a small to larger increments.
 
-      3.5.2.5 When the split time has been chosen, press "split" to
-      actually split the phrase. Pressing this button while playing will
-      split at the playing time.
+      3.5.2.5 When the split time has been chosen, press "split" to actually
+      split the phrase. Pressing this button while playing will split at the
+      playing time.
 
       3.5.2.6 Splitting can be cancelled by pressing the "stop/close"
       button.
@@ -331,8 +332,8 @@ with regard to the distributed version of Obi.
     block.
 
   3.7 Pages are broken and must be fixed soon. Page numbers will be set
-  automatically; page numbering will start from 1 and increase by 1 for every
-  page.
+  automatically; page numbering will start from 1 and increase by 1 for
+  every page.
 
   3.8 Keyboard navigation is broken and must be fixed soon. Arrow keys will
   allow movement between strips (up/down) and blocks (left/right.)
@@ -340,59 +341,137 @@ with regard to the distributed version of Obi.
 
 4 The transport bar and VU meter; playing and recording audio
 
- 4.1 The transport bar is shown in the bottom of the window when a project
- is open. It is used to play, record and navigate in the audio of the book.
+  4.1 The transport bar is shown in the bottom of the window when a project
+  is open. It is used to play, record and navigate in the audio of the book.
 
- 4.2 The transport bar has buttons controlling playback and recording.
+  4.2 The transport bar has buttons controlling playback and recording. All
+  of these buttons are also replicated in the transport menu (see below.)
+  Buttons are presented in logical order but are layed out differently in
+  the application.
+  [NOTE: selection handling in playback is currently very flimsy, and
+  playback may sometime start from an unexpected block. Please file bug
+  reports to help fix this.]
 
-   4.2.1 The previous section button
-   
-   4.2.2 The previous phrase button
+    4.2.1 The play/pause button: when playback is stopped, pressing play
+    will start playing the whole project (skipping unused blocks and
+    sections) from the selected block, or the first used block if none is
+    selected. When playing, the button changes to pause; pressing it halts
+    playback to be resumed by pressing play again. When playing and reaching
+    the end of a block, the next used block is immediately until the end of
+    the project (i.e. the last used block in the project) or user
+    interruption. When moving to a new block, the new block gets selected.
+    [NOTE: the play/pause button will be split into a play and a pause
+    button because of the problem with pausing when playing at a faster
+    rate.]
 
-   4.2.3 The rewind button
+    4.2.2 The stop button: when playing or paused, pressing the stop button
+    stops playback and revert the selection to what it was when playback
+    started. When stopped, pressing the stop button again deselects
+    everything (one use for this is to press stop twice then play to start
+    playing again from the beginning of the project.)
 
-   4.2.4 The play/pause button
+    4.2.3 The next phrase button moves the selection to the next used audio
+    block in the project (it can skip section strip boundaries) and resume
+    playing if it was. If playback was stopped, it starts just like pressing
+    the play button. There is no effect if nothing is selected.
 
-   4.2.5 The record button
+    4.2.4 The next section button moves the selection to the first used
+    audio block of the first following used section that has used phrases.
 
-   4.2.6 The stop button
+    4.2.5 The previous phrase button moves the selection to the first
+    preceding used audio block or to the beginning of the currently selected
+    block. If playback went past the very beginning of the audio for this
+    block, "previous phrase" will move back to the beginning of the block;
+    otherwise, it will move to the previous one.
 
-   4.2.7 The fast forward button
+    4.2.6 The previous section button moves to the first used phrase of the
+    current section if playback went past the very beginning of the audio
+    for this section; otherwise, to the first used phrase of the first
+    preceding section that has used phrases.
 
-   4.2.8 The next phrase button
+    4.2.7 The fast forward button changes the playback rate for the audio.
+    It also starts the playback if stopped or paused. There are several
+    playback rates (x2, x4, x8) and clicking several times on the playback
+    rate button will cycle through these rates.
+    [NOTE: unfortunately, when playing fast forward, the play button is set
+    to resume playback at the normal rate so it is not possible to pause
+    while playing faster; this will be solved soon by separating the play
+    and pause buttons.]
 
-   4.2.9 The next section button
+    4.2.8 The rewind button behaves like fast forward except that it plays
+    backward.
 
- 4.3 The transport bar displays the current time in playback. It has four
- different modes. In "elapsed" mode, the timer increases every second; in
- "remaining" modes it decreases. The value display is always positive or
- zero. The format of the display is "hh:mm:ss" (hours, minutes and seconds.)
+    4.2.9 The record button opens the record dialog and allows live audio
+    recording. See below for a description of the record dialog.
 
-   4.3.1 "elapsed" shows the elapsed time in the current phrase. Every time
-   a new phrase plays, it is reset to zero.
+  4.3 The transport bar plays the whole project; but it is also possible to
+  play only a single block (including unused blocks) or a single section by
+  double-clicking it in the strip view. There are also corresponding menu
+  options in the transport menu.
 
-   4.3.2 "elapsed (total)" shows the elapsed time in the project (not
-   including unused items) where zero is the start of the first used phrase
-   in the book.
+  4.4 The transport bar displays the current time in playback. It has four
+  different modes. In "elapsed" mode, the timer increases every second; in
+  "remaining" modes it decreases. The value display is always positive or
+  zero. The format of the display is "hh:mm:ss" (hours, minutes and
+  seconds.)
 
-   4.3.3 "remaining" shows the remaining time in the current phrase. Every
-   time a new phrase plays, it is reset to the length of the phrase.
+    4.4.1 "elapsed" shows the elapsed time in the current phrase. Every time
+    a new phrase plays, it is reset to zero.
 
-   4.3.4 "remaining (total)" shows the remaining time in the project (not
-   including unused items.)
+    4.4.2 "elapsed (total)" shows the elapsed time in the project (not
+    including unused items) where zero is the start of the first used phrase
+    in the book.
 
-  4.4 The transport bar has a text VU meter than can be captured by screen
+    4.4.3 "remaining" shows the remaining time in the current phrase. Every
+    time a new phrase plays, it is reset to the length of the phrase.
+
+    4.4.4 "remaining (total)" shows the remaining time in the project (not
+    including unused items.)
+
+  4.5 The transport bar has a text VU meter than can be captured by screen
   readers (for instance.) The "left" and "right" boxes show the current
   value of the input or output in the respective channel (only left shows a
   value when playing monophonic sound.) When a channel overloads, the value
   is "stuck" so that it can be seen that an overload occurred; the reset
   button can be used to reset the value in both channels.
 
-  4.5 The record dialog
+  4.6 The record dialog appears when the record button is pressed. To
+  record, a strip must be selected (then the recorded audio is appended to
+  the strip) or a block must be selected (then the recorded audio is
+  inserted before this block.)
 
-  4.6 The graphical VU meter
+    4.6.1 When the record button is pressed, the record dialog appears. It
+    is in listening mode so that the user can try the levels (using the
+    graphical VU meter for instance.) Obi has no facility to set the input
+    level from the input device, so an external mixer such as the default
+    one in Windows XP should be used instead.
 
-  4.7 The transport menu
+    4.6.2 The record button actually start recording. When recording start,
+    this button becomes "pause" to go back to listening mode. When
+    recording, new blocks appear and their time gets updated.
+    [NOTE: the new blocks show up in purple because they are created empty
+    (purple is the color of empty blocks.) They should become pink once they
+    actually have data. Pressing F5 solves this issue right now.]
+
+    4.6.3 The "stop/close" button stops recording or listening and closes
+    the dialog.
+
+    4.6.4 The record dialog also has a text VU meter similar to the one in
+    the transport bar.
+
+  [NOTE: the page mark button creates a new block and adds a page mark; the
+  phrase mark button creates a new block and continues recording but those
+  are not really working right now.]
+
+  4.7 The transport menu has all the options corresponding to the transport
+  bar buttons (play, next phrase, etc.) "Play all" is the equivalent of the
+  play button, with "play" the equivalent of double-clicking a block or
+  section strip.
+  [NOTE: "play all" will be renamed "play" and "play" will become "play
+  selection".]
+
+  4.8 The graphical VU meter can be shown or hidden through the transport
+  menu's "Show/hide VU meter" (Ctrl+U) item.
 
 
 5 User settings and help
@@ -417,9 +496,8 @@ with regard to the distributed version of Obi.
     creating, opening and saving projects. All these operations allow the
     user to change to a different directory.
 
-    5.3.3 The default export directory is the default location for
-    exporting projects to DAISY 3 books. This location can be changed while
-    exporting.
+    5.3.3 The default export directory is the default location for exporting
+    projects to DAISY 3 books. This location can be changed while exporting.
 
     5.3.4 The "open last project when starting Obi" option causes Obi to
     automatically open the last project that was open (if it can be found)
@@ -444,9 +522,9 @@ with regard to the distributed version of Obi.
 6 Clipboard and undo/redo
 
   6.1 The clipboard contains a single object (section, strip or block) at a
-  given time. It is the only object available for pasting. Cutting or copying
-  an object replaces the previous one in the clipboard. The previous is
-  object is restored when undoing the cut or copy operation.
+  given time. It is the only object available for pasting. Cutting or
+  copying an object replaces the previous one in the clipboard. The previous
+  is object is restored when undoing the cut or copy operation.
 
   6.2 Cut, copy and delete operations are available depending on the object
   selected. Paste is available when an object is in the clipboard and the
@@ -472,29 +550,30 @@ Appendix A - Missing features for version 1.0 (unsorted)
 
   A.1 Keyboard navigation in the strip manager.
 
-  A.2 Page numbering: when a page number is set on a phrase, Obi automatically
-  assigns the page number (starting from 1 and counting upwards.) Adding or
-  removing page numbers lead to automatic renumbering.
+  A.2 Page numbering: when a page number is set on a phrase, Obi
+  automatically assigns the page number (starting from 1 and counting
+  upwards.) Adding or removing page numbers lead to automatic renumbering.
 
-  A.3 Go to page: select the phrase with the given page number, if it exists.
-  [NOTE: A "Go to next page" function would also be nice to have.]
+  A.3 Go to page: select the phrase with the given page number, if it
+  exists. A go to next page (and previous page) function would also be nice
+  to have.
 
   A.4 Cut/copy/paste text from annotation is not available.
   [NOTE: Actually it is, it interacts with the normal windows clipboard, as
   implemented by the text box widget. A better integration with Obi's
   clipboard is necessary though.]
 
-  A.5 Search text: select a section whose title contains this text, or a phrase
-  with an annotation containing this text. May move to post-0.9.
+  A.5 Search text: select a section whose title contains this text, or a
+  phrase with an annotation containing this text. May move to post-0.9.
 
   A.6 "Save as" may be revised.
 
-  A.7 User profile and preferences will be merged under a single "preferences"
-  dialog.
+  A.7 User profile and preferences will be merged under a single
+  "preferences" dialog.
 
-  A.8 Unused item behavior may be too restrictive; maybe all operations should
-  be allowed in unused sections and with unused audio blocks except that they
-  won't be exported or played when the whole book plays.
+  A.8 Unused item behavior may be too restrictive; maybe all operations
+  should be allowed in unused sections and with unused audio blocks except
+  that they won't be exported or played when the whole book plays.
 
   A.9 The help file is badly outdated.
 
@@ -509,6 +588,10 @@ Appendix A - Missing features for version 1.0 (unsorted)
 
   A.12 The time display will allow input to directly go to a selected time
   in the book.
+
+  A.13 Add a real pause button to pause when going forward/backward.
+
+  A.14 One audio file per section
 
 
 Appendix B - Changelog
