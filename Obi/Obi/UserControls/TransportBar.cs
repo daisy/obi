@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using urakawa.core;
 
@@ -12,6 +13,9 @@ namespace Obi.UserControls
         private Playlist mPlaylist;          // current playlist (may be null)
         private ObiNode mPreviousSelection;  // selection before playback started
 
+        public delegate bool HandledShortcutKey();
+        private Dictionary<Keys, HandledShortcutKey> mShortcutKeys;
+
         // constants from the display combo box
         private static readonly int Elapsed = 0;
         private static readonly int ElapsedTotal = 1;
@@ -21,7 +25,26 @@ namespace Obi.UserControls
         // Pass the state change and playback rate change events from the playlist
         public event Events.Audio.Player.StateChangedHandler StateChanged;
         public event EventHandler PlaybackRateChanged;
-
+        
+        /// <summary>
+        /// The transport bar as a whole can be enabled/disabled when necessary.
+        /// Disabling the transport bar will also stop playback.
+        /// </summary>
+        public new bool Enabled
+        {
+            get { return base.Enabled; }
+            set
+            {
+                if (Enabled && !value &&
+                    (State == Obi.Audio.AudioPlayerState.Playing ||
+                    State == Obi.Audio.AudioPlayerState.Paused))
+                {
+                    Stop();
+                }
+                base.Enabled = value;
+            }
+        }
+        
         /// <summary>
         /// Everything can be solved by adding a new layer of indirection. So here it is.
         /// </summary>
@@ -37,7 +60,9 @@ namespace Obi.UserControls
         {
             get
             {
-                return ((ProjectPanel)Parent).Project != null && Playlist.State == Audio.AudioPlayerState.Stopped;
+                return Enabled &&
+                    ((ProjectPanel)Parent).Project != null &&
+                    Playlist.State == Audio.AudioPlayerState.Stopped;
             }
         }
 
@@ -46,7 +71,11 @@ namespace Obi.UserControls
         /// </summary>
         public bool CanResume
         {
-            get { return Playlist.State == Audio.AudioPlayerState.Paused; }
+            get
+            {
+                return Enabled &&
+                    Playlist.State == Audio.AudioPlayerState.Paused;
+            }
         }
 
         /// <summary>
@@ -56,7 +85,8 @@ namespace Obi.UserControls
         {
             get
             {
-                return ((ProjectPanel)Parent).Project != null &&
+                return Enabled &&
+                    ((ProjectPanel)Parent).Project != null &&
                     (mPlaylist == null || mPlaylist.State == Audio.AudioPlayerState.Stopped);
             }
         }
@@ -64,6 +94,7 @@ namespace Obi.UserControls
         /// <summary>
         /// Set the playlist to be handled by the transport bar.
         /// </summary>
+        /// <remarks>Setting a null playlist always disables the transport bar.</remarks>
         public Playlist Playlist
         {
             get
@@ -77,6 +108,7 @@ namespace Obi.UserControls
             set
             {
                 mPlaylist = value;
+                Enabled = value != null;
                 if (value != null)
                 {
                     mPlaylist.MovedToPhrase += new Playlist.MovedToPhraseHandler(Play_MovedToPhrase);
@@ -95,7 +127,10 @@ namespace Obi.UserControls
         public TransportBar()
         {
             InitializeComponent();
+            Enabled = false;
             mPlaylist = null;
+            mShortcutKeys = new Dictionary<Keys, HandledShortcutKey>();
+            mShortcutKeys[Keys.Space] = ShortcutKey_PlayOrPause;
             mDisplayBox.SelectedIndex = ElapsedTotal;
             mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
         }
@@ -108,7 +143,8 @@ namespace Obi.UserControls
             if (e.Selected && e.Widget is AudioBlock)
             {
                 PhraseNode phrase = ((AudioBlock)e.Widget).Node;
-                System.Diagnostics.Debug.Print("!!! Selected phrase caught ({0})", Playlist.CurrentPhrase == phrase ? "same" : "new");
+                System.Diagnostics.Debug.Print("!!! Selected phrase caught ({0})",
+                    Playlist.CurrentPhrase == phrase ? "same" : "new");
                 if (Playlist.CurrentPhrase != phrase) Playlist.CurrentPhrase = (PhraseNode)phrase;
             }
         }
@@ -123,7 +159,7 @@ namespace Obi.UserControls
         /// </summary>
         public void PrevSection()
         {
-            if (mPlaylist != null) mPlaylist.NavigateToPreviousSection();
+            if (Enabled) mPlaylist.NavigateToPreviousSection();
         }
 
         private void mPrevPhraseButton_Click(object sender, EventArgs e)
@@ -136,7 +172,7 @@ namespace Obi.UserControls
         /// </summary>
         public void PrevPhrase()
         {
-            Playlist.NavigateToPreviousPhrase();
+            if (Enabled) Playlist.NavigateToPreviousPhrase();
         }
 
         private void mRewindButton_Click(object sender, EventArgs e)
@@ -149,16 +185,18 @@ namespace Obi.UserControls
         /// </summary>
         public void Rewind()
         {
-            if (Playlist.State == Obi.Audio.AudioPlayerState.Playing)
+            if (Enabled)
             {
-                Pause();
-                Playlist.Rewind();
+                if (Playlist.State == Obi.Audio.AudioPlayerState.Playing)
+                {
+                    Pause();
+                    Playlist.Rewind();
+                }
+                else if (Playlist.State == Obi.Audio.AudioPlayerState.Paused)
+                {
+                    Playlist.Rewind();
+                }
             }
-            else if (Playlist.State == Obi.Audio.AudioPlayerState.Paused)
-            {
-                Playlist.Rewind();
-            }
-
         }
 
         private void mPlayButton_Click(object sender, EventArgs e)
@@ -218,7 +256,7 @@ namespace Obi.UserControls
         /// </summary>
         public void Pause()
         {
-            Playlist.Pause();
+            if (Enabled) Playlist.Pause();
         }
 
         private void mRecordButton_Click(object sender, EventArgs e)
@@ -283,18 +321,21 @@ namespace Obi.UserControls
         }
 
         /// <summary>
-        /// The stop button. Stopping twice deselects.
+        /// The stop button. Stopping twice deselects all.
         /// </summary>
         public void Stop()
         {
-            if (State == Obi.Audio.AudioPlayerState.Stopped)
+            if (Enabled)
             {
-                System.Diagnostics.Debug.Print("!!! Stopping again, unselect all.");
-                ((ProjectPanel)Parent).StripManager.SelectedNode = null;
-            }
-            else if (mPlaylist != null)
-            {
-                mPlaylist.Stop();
+                if (State == Obi.Audio.AudioPlayerState.Stopped)
+                {
+                    System.Diagnostics.Debug.Print("!!! Stopping again, unselect all.");
+                    ((ProjectPanel)Parent).StripManager.SelectedNode = null;
+                }
+                else if (mPlaylist != null)
+                {
+                    mPlaylist.Stop();
+                }
             }
         }
 
@@ -308,16 +349,18 @@ namespace Obi.UserControls
         /// </summary>
         public void FastForward()
         {
-            if (Playlist.State == Obi.Audio.AudioPlayerState.Playing)
+            if (Enabled)
             {
-                Pause();
-                Playlist.FastForward();
+                if (Playlist.State == Obi.Audio.AudioPlayerState.Playing)
+                {
+                    Pause();
+                    Playlist.FastForward();
+                }
+                else if (Playlist.State == Obi.Audio.AudioPlayerState.Paused)
+                {
+                    Playlist.FastForward();
+                }
             }
-            else if (Playlist.State == Obi.Audio.AudioPlayerState.Paused)
-            {
-                Playlist.FastForward();
-            }
-
         }
 
         private void mNextPhrase_Click(object sender, EventArgs e)
@@ -330,7 +373,7 @@ namespace Obi.UserControls
         /// </summary>
         public void NextPhrase()
         {
-            Playlist.NavigateToNextPhrase();
+            if (Enabled) Playlist.NavigateToNextPhrase();
         }
 
         private void mNextSectionButton_Click(object sender, EventArgs e)
@@ -343,7 +386,7 @@ namespace Obi.UserControls
         /// </summary>
         public void NextSection()
         {
-            if (mPlaylist != null) mPlaylist.NavigateToNextSection();
+            if (Enabled) mPlaylist.NavigateToNextSection();
         }
 
         /// <summary>
@@ -358,7 +401,6 @@ namespace Obi.UserControls
             }
             else if (mPlaylist.State == Audio.AudioPlayerState.Paused)
             {
-                //mDisplayTimer.Stop(); // Avn: disabled because changing of pause position should be visible
                 mPauseButton.Visible = false;
                 mPlayButton.Visible = true;
             }
@@ -453,5 +495,20 @@ namespace Obi.UserControls
             mTimeDisplayBox.Focus();
         }
 
+        public bool HandleShortcutKeys(Keys key)
+        {
+            return Enabled && mShortcutKeys.ContainsKey(key) ? mShortcutKeys[key]() : false;
+        }
+
+        private bool ShortcutKey_PlayOrPause()
+        {
+            bool handled = false;
+            if (CanPlay || CanResume)
+            {
+                Play();
+                handled = true;
+            }
+            return handled;
+        }
     }
 }

@@ -490,13 +490,56 @@ namespace Obi
 
         private void mAddStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProject.CreateSiblingSectionNode(mProjectPanel.StripManager.SelectedSectionNode);
-            mProjectPanel.StripManager.StartRenamingSelectedStrip();
+            if (mProject != null)
+            {
+                mProject.CreateSiblingSectionNode(mProjectPanel.StripManager.SelectedSectionNode);
+                mProjectPanel.StripManager.StartRenamingSelectedStrip();
+            }
         }
 
         private void mRenameStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectPanel.StripManager.StartRenamingSelectedStrip();
+        }
+
+        private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.StripManager.ImportPhrases();
+        }
+
+        private void mSplitAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.StripManager.SplitBlock();
+        }
+
+        private void mQuickSplitAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.StripManager.QuickSplitBlock();
+        }
+
+        private void mApplyPhraseDetectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.StripManager.ApplyPhraseDetection();
+        }
+
+        private void mMergeWithPreviousAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.StripManager.MergeBlocks();
+        }
+
+        private void mMoveAudioBlockForwardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.StripManager.MoveBlock(PhraseNode.Direction.Forward);
+        }
+
+        private void mMoveAudioBlockBackwardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.StripManager.MoveBlock(PhraseNode.Direction.Backward);
+        }
+
+        private void mMarkAudioBlockAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.StripManager.ToggleSelectedPhraseUsed();
         }
 
         #endregion
@@ -642,21 +685,8 @@ namespace Obi
         /// </summary>
         private void ObiForm_Load(object sender, EventArgs e)
         {
-            // The strip menu behaves like the context menu in the strip view.
-            mImportAudioFileToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.StripManager.mImportAudioToolStripMenuItem_Click);
-            mSplitAudioBlockToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.StripManager.mSplitAudioBlockToolStripMenuItem_Click);
-            mApplyPhraseDetectionToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.StripManager.mApplyPhraseDetectionToolStripMenuItem_Click);
             mEditAnnotationToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mEditAudioBlockLabelToolStripMenuItem_Click);
-            //mg 20060813:
-            mMoveAudioBlockForwardToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.StripManager.mMoveAudioBlockForwardToolStripMenuItem_Click); 
-            mMoveAudioBlockBackwardToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.StripManager.mMoveAudioBlockBackwardToolStripMenuItem_Click); 
-            //end mg 20060813    
             mShowInTOCViewToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mShowInTOCViewToolStripMenuItem_Click);
 
@@ -794,57 +824,7 @@ namespace Obi
 
 
 
-        #region Strips menu
 
-        /// <summary>
-        /// Update the enabled items of the Strips menu.
-        /// </summary>
-        private void UpdateEnabledItemsForStripsMenu()
-        {
-            bool isProjectOpen = mProject != null;
-            bool isStripSelected = isProjectOpen && mProjectPanel.StripManager.SelectedSectionNode != null;
-            bool isAudioBlockSelected = isProjectOpen && mProjectPanel.StripManager.SelectedPhraseNode != null;
-            bool isAudioBlockLast = isAudioBlockSelected &&
-                mProjectPanel.StripManager.SelectedPhraseNode.Index ==
-                mProjectPanel.StripManager.SelectedPhraseNode.ParentSection.PhraseChildCount - 1;
-            bool isAudioBlockFirst = isAudioBlockSelected &&
-                mProjectPanel.StripManager.SelectedPhraseNode.Index == 0;
-            bool isBlockClipBoardSet = isProjectOpen && mProject.Clipboard.Phrase != null;
-            bool canSetPage = isAudioBlockSelected;  // an audio block must be selected and a heading must not be set.
-            bool canRemovePage = isAudioBlockSelected &&
-                mProjectPanel.StripManager.SelectedPhraseNode.getProperty(typeof(PageProperty)) != null;
-
-            bool canInsertPhrase = isProjectOpen && mProjectPanel.StripManager.CanInsertPhraseNode;
-            mInsertEmptyAudioblockToolStripMenuItem.Enabled = canInsertPhrase;
-            mImportAudioFileToolStripMenuItem.Enabled = canInsertPhrase;
-
-            mAddStripToolStripMenuItem.Enabled = isProjectOpen;
-            mRenameStripToolStripMenuItem.Enabled = isStripSelected;
-
-            mSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mQuickSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mApplyPhraseDetectionToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mMergeWithNextAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
-            mMoveAudioBlockForwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
-            mMoveAudioBlockBackwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockFirst;
-            mMoveAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && (!isAudioBlockFirst || !isAudioBlockLast);
-
-            mEditAnnotationToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mRemoveAnnotationToolStripMenuItem.Enabled = isAudioBlockSelected;
-
-            mSetPageNumberToolStripMenuItem.Enabled = canSetPage;
-            mRemovePageNumberToolStripMenuItem.Enabled = canRemovePage;
-
-            mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;
-
-            mMarkStripAsUnusedToolStripMenuItem.Enabled = mProjectPanel.CanToggleStrip;
-            mMarkStripAsUnusedToolStripMenuItem.Text = mProjectPanel.ToggleStripString;
-            mMarkAudioBlockAsUnusedToolStripMenuItem.Enabled = mProjectPanel.CanToggleAudioBlock;
-            mMarkAudioBlockAsUnusedToolStripMenuItem.Text = mProjectPanel.ToggleAudioBlockString;
-        }
-
-
-        #endregion
 
 
         /// <summary>
@@ -1096,10 +1076,11 @@ namespace Obi
             {
                 mProjectPanel.TOCPanel.UpdateEnabledItemsForContextMenu();
                 mProjectPanel.StripManager.UpdateEnabledItemsForContextMenu();
+                mProjectPanel.HandleShortcutKeys(key);
             }
-            switch (key)
+            /*switch (key)
             {
-                case Keys.Control | Keys.Space:
+               case Keys.Control | Keys.Space:
                     if (mPlayAllToolStripMenuItem.Enabled)
                         TransportBar_PlayAll();
                     break;
@@ -1170,8 +1151,7 @@ namespace Obi
                 case Keys.Control | Keys.Alt  | Keys.T :
                     mProjectPanel.TransportBar.FocusTimeDisplay();
                     break;
-
-            }
+            } */
             return base.ProcessDialogKey(key);
         }
 
@@ -1191,14 +1171,6 @@ namespace Obi
             mProjectPanel.StripManager.ToggleSelectedStripUsed();
         }
 
-        /// <summary>
-        /// Toggle audio block used/unused.
-        /// </summary>
-        private void mMarkAudioBlockAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectPanel.StripManager.ToggleSelectedPhraseUsed();
-        }
-
         private void mInsertEmptyAudioblockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectPanel.StripManager.InsertEmptyAudioBlock();
@@ -1210,7 +1182,6 @@ namespace Obi
         /// <summary>
         /// Add a project to the list of recent projects.
         /// If the project was already in the list, promote it to the top of the list.
-        /// Update the recent menu if necessary.
         /// </summary>
         /// <param name="path">The path of the project to add.</param>
         private void AddRecentProject(string path)
@@ -1227,6 +1198,7 @@ namespace Obi
 
         /// <summary>
         /// Add an item in the recent projects list, if the file actually exists.
+        /// The path relative to the project directory is shown.
         /// </summary>
         /// <param name="path">The path of the item to add.</param>
         /// <returns>True if the file was added.</returns>
@@ -1236,7 +1208,7 @@ namespace Obi
             if (File.Exists(path))
             {
                 ToolStripMenuItem item = new ToolStripMenuItem();
-                item.Text = Path.GetFileName(path);
+                item.Text = Path.GetDirectoryName(path) == mSettings.DefaultPath ? Path.GetFileName(path) : path;
                 item.Click += new System.EventHandler(delegate(object sender, EventArgs e) { TryOpenProject(path); });
                 mOpenRecentProjectToolStripMenuItem.DropDownItems.Insert(0, item);
                 return true;
@@ -1532,9 +1504,48 @@ namespace Obi
             mShowInStripviewToolStripMenuItem.Enabled = isSectionNodeSelected;
         }
 
-        private void mQuickSplitAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
+        private void UpdateEnabledItemsForStripsMenu()
         {
-            mProjectPanel.StripManager.QuickSplit();
+            bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
+            bool isProjectOpen = mProject != null;
+            bool isStripSelected = isProjectOpen && mProjectPanel.StripManager.SelectedSectionNode != null;
+            bool isAudioBlockSelected = isProjectOpen && mProjectPanel.StripManager.SelectedPhraseNode != null;
+            bool isAudioBlockLast = isAudioBlockSelected &&
+                mProjectPanel.StripManager.SelectedPhraseNode.Index ==
+                mProjectPanel.StripManager.SelectedPhraseNode.ParentSection.PhraseChildCount - 1;
+            bool isAudioBlockFirst = isAudioBlockSelected &&
+                mProjectPanel.StripManager.SelectedPhraseNode.Index == 0;
+            bool isBlockClipBoardSet = isProjectOpen && mProject.Clipboard.Phrase != null;
+            bool canSetPage = isAudioBlockSelected;  // an audio block must be selected and a heading must not be set.
+            bool canRemovePage = isAudioBlockSelected &&
+                mProjectPanel.StripManager.SelectedPhraseNode.getProperty(typeof(PageProperty)) != null;
+            bool canMerge = isProjectOpen && mProjectPanel.StripManager.CanMerge;
+
+            bool canInsertPhrase = !isPlaying && isProjectOpen && mProjectPanel.StripManager.CanInsertPhraseNode;
+            mInsertEmptyAudioblockToolStripMenuItem.Enabled = canInsertPhrase;
+            mImportAudioFileToolStripMenuItem.Enabled = canInsertPhrase;
+
+            mAddStripToolStripMenuItem.Enabled = isProjectOpen;
+            mRenameStripToolStripMenuItem.Enabled = isStripSelected;
+
+            mSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mQuickSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mApplyPhraseDetectionToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mMergeWithPreviousAudioBlockToolStripMenuItem.Enabled = !isPlaying && canMerge;
+            mMoveAudioBlockForwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
+            mMoveAudioBlockBackwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockFirst;
+            mMoveAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && (!isAudioBlockFirst || !isAudioBlockLast);
+
+            mEditAnnotationToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mRemoveAnnotationToolStripMenuItem.Enabled = isAudioBlockSelected;
+
+            mSetPageNumberToolStripMenuItem.Enabled = canSetPage;
+            mRemovePageNumberToolStripMenuItem.Enabled = canRemovePage;
+
+            mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;
+
+            mMarkAudioBlockAsUnusedToolStripMenuItem.Enabled = mProjectPanel.CanToggleAudioBlock;
+            mMarkAudioBlockAsUnusedToolStripMenuItem.Text = mProjectPanel.ToggleAudioBlockString;
         }
     }
 }

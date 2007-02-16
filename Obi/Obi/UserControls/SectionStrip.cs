@@ -12,16 +12,22 @@ namespace Obi.UserControls
 {
     public partial class SectionStrip : UserControl
     {
-        private StripManagerPanel mManager;          // the manager for this strip
-        private SectionNode mNode;                   // the core node for this strip
-        private bool mSelected;                      // currently selected
+        private StripManagerPanel mManager;  // the manager for this strip
+        private SectionNode mNode;           // the core node for this strip
+        private bool mSelected;              // currently selected
+        private bool mRenaming;              // in the process of being renamed
 
-        private static float mDefaultFontSize = 12;  // should move to Colors (and colors should be renamed)
+        public static readonly float H1Size = 1.6f;  // relative font size of sections of level 1
+        public static readonly float H2Size = 1.4f;  // relative font size of sections of level 2
+        public static readonly float H3Size = 1.2f;  // relative font size of sections of level 3
 
         public delegate void ChangedMinimumSizeHandler(object sender, EventArgs e);
 
         #region properties
 
+        /// <summary>
+        /// The label of a strip is the title of the section it represents.
+        /// </summary>
         public string Label
         {
             get { return mLabel.Text; }
@@ -32,12 +38,18 @@ namespace Obi.UserControls
             }
         }
 
+        /// <summary>
+        /// The strip manager that manages this strip.
+        /// </summary>
         public StripManagerPanel Manager
         {
             set { mManager = value; }
             get { return mManager; }
         }
 
+        /// <summary>
+        /// The section that the strip represents to.
+        /// </summary>
         public SectionNode Node
         {
             get { return mNode; }
@@ -50,6 +62,9 @@ namespace Obi.UserControls
             }
         }
 
+        /// <summary>
+        /// True if the strip is currently selected.
+        /// </summary>
         public bool Selected
         {
             get { return mSelected; }
@@ -58,23 +73,14 @@ namespace Obi.UserControls
                 if (mSelected != value)
                 {
                     mSelected = value;
-                    /*if (mSelected)
-                    {
-                        Size = new Size(Width + Colors.SelectionWidth * 2,
-                            Height + Colors.SelectionWidth * 2);
-                        Padding = new Padding(Colors.SelectionWidth);
-                    }
-                    else
-                    {
-                        Size = new Size(Width - Colors.SelectionWidth * 2,
-                            Height - Colors.SelectionWidth * 2);
-                        Padding = new Padding(0);
-                    }*/
                     Invalidate();
                 }
             }
         }
 
+        /// <summary>
+        /// True if the strip (i.e. its section) is used.
+        /// </summary>
         public bool Used
         {
             get { return mNode.Used; }
@@ -90,44 +96,53 @@ namespace Obi.UserControls
             }
         }
 
+        /// <summary>
+        /// Disable the transport bar when renaming.
+        /// </summary>
+        public bool Renaming
+        {
+            set
+            {
+                mRenaming = value;
+                mManager.ProjectPanel.TransportBar.Enabled = !value;
+                mRenameBox.Visible = value;
+                mLabel.Visible = !value;
+                if (value)
+                {
+                    // start renaming
+                    mRenameBox.Size = new Size(Width, mRenameBox.Height);
+                    mRenameBox.Visible = true;
+                    mRenameBox.BackColor = BackColor;
+                    mRenameBox.SelectAll();
+                    mAudioLayoutPanel.Focus();
+                    mRenameBox.Focus();
+                }
+            }
+        }
+
         #endregion
 
+        /// <summary>
+        /// Create an empty section strip.
+        /// </summary>
         public SectionStrip()
         {
             InitializeComponent();
             InitializeToolTips();
+            mManager = null;
+            mNode = null;
             Selected = false;
+            mRenaming = false;            
         }
 
         #region TextBox (the label strip)
-
-        /// <summary>
-        /// The strip has a normally readonly text box at the top.
-        /// When renaming, the text box is initialized with the original label.
-        /// The whole text is selected and the text box is given the focus so that the
-        /// user can start editing right away.
-        /// </summary>
-        public void StartRenaming()
-        {
-            mLabel.Visible = false;
-            mRenameBox.Size = new Size(Width, mRenameBox.Height);
-            mRenameBox.Visible = true;
-            mRenameBox.ReadOnly = false;
-            mRenameBox.BackColor = BackColor;
-            mRenameBox.SelectAll();
-            mAudioLayoutPanel.Focus();
-            mRenameBox.Focus();
-        }
 
         /// <summary>
         /// Leaving the text box updates the text property.
         /// </summary>
         private void mTextBox_Leave(object sender, EventArgs e)
         {
-            mRenameBox.ReadOnly = true;
-            mLabel.Text = mRenameBox.Text;
-            mLabel.Visible = true;
-            mRenameBox.Visible = false;
+            Renaming = false;
         }
 
         /// <summary>
@@ -149,24 +164,13 @@ namespace Obi.UserControls
             switch (e.KeyCode)
             {
                 case Keys.Return:
-                    mRenameBox.ReadOnly = true;
+                    Renaming = false;
                     mLabel.Text = mRenameBox.Text;
-                    mLabel.Visible = true;
-                    mRenameBox.Visible = false;
                     UpdateText();
                     break;
                 case Keys.Escape:
-                    mRenameBox.Text = Project.GetTextMedia(this.Node).getText();
-                    mRenameBox.ReadOnly = true;
-                    mLabel.Text = mRenameBox.Text;
-                    mLabel.Visible = true;
-                    mRenameBox.Visible = false;
-                    break;
-                case Keys.F2:
-                    if (mRenameBox.ReadOnly)
-                    {
-                        this.StartRenaming();
-                    }
+                    Renaming = false;
+                    mRenameBox.Text = mLabel.Text;
                     break;
                 default:
                     break;
@@ -207,16 +211,15 @@ namespace Obi.UserControls
             ((ObiForm)mManager.ParentForm).Play(mNode);
         }
 
-        internal void SetStripFontSize()
+        public void SetStripFontSize()
         {
             if (mNode != null)
             {
                 int nodeLevel = mNode.Level;
-                //float currentSize = GetTitleFontSize();
-                if (nodeLevel == 1) SetTitleFontSize(mDefaultFontSize + 3);
-                else if (nodeLevel == 2) SetTitleFontSize(mDefaultFontSize + 2);
-                else if (nodeLevel == 3) SetTitleFontSize(mDefaultFontSize + 1);
-                else SetTitleFontSize(mDefaultFontSize);
+                SetTitleFontSize(((ObiForm)mManager.ParentForm).Settings.FontSize *
+                    (nodeLevel == 1 ? H1Size :
+                    nodeLevel == 2 ? H2Size :
+                    nodeLevel == 3 ? H3Size : 1.0f));
             }
         }
 
@@ -236,11 +239,6 @@ namespace Obi.UserControls
                 delegate(object sender, EventArgs e) { ManageAudioBlockWidth(block); }
             );
             ManageAudioBlockWidth(block);
-            if (mAudioLayoutPanel.Controls.Count == 1)
-            {
-                mAudioLayoutPanel.Location = new Point(mAudioLayoutPanel.Location.X,
-                    mAnnotationLayoutPanel.Location.Y + mAnnotationLayoutPanel.Height + mAnnotationLayoutPanel.Margin.Bottom); 
-            }
             // fix the layout so that the two layout panels are correctly placed.
             if (mAudioLayoutPanel.Controls.Count == 1)
             {
@@ -252,7 +250,7 @@ namespace Obi.UserControls
         public void ManageAudioBlockWidth(AudioBlock block)
         {
             int widest = block.AnnotationBlock.MinimumSize.Width > block.MinimumSize.Width ?
-            block.AnnotationBlock.MinimumSize.Width : block.MinimumSize.Width;
+                block.AnnotationBlock.MinimumSize.Width : block.MinimumSize.Width;
             if (block.AnnotationBlock.Width != widest) block.AnnotationBlock.Width = widest;
             if (block.Width != widest) block.Width = widest;
         }
@@ -321,7 +319,7 @@ namespace Obi.UserControls
         {
             Assets.AudioMediaAsset asset = audioBlock.Node.Asset;
             audioBlock.AssetName = asset.Name;
-            audioBlock.Time = asset.LengthInSeconds;
+            audioBlock.Time = Assets.MediaAsset.FormatTime(asset.LengthInMilliseconds);
         }
 
         /// <summary>

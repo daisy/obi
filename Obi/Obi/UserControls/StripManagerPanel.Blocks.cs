@@ -78,7 +78,7 @@ namespace Obi.UserControls
             Assets.AudioMediaAsset asset = node.Asset;// Project.GetAudioMediaAsset(node);
             PageProperty pageProp = node.getProperty(typeof(PageProperty)) as PageProperty;
             block.Page = pageProp == null ? "" : pageProp.PageNumber.ToString();
-            block.Time = asset.LengthInSeconds;
+            block.Time = Assets.MediaAsset.FormatTime(asset.LengthInMilliseconds);
             return block;
         }
 
@@ -94,7 +94,6 @@ namespace Obi.UserControls
                 if (SelectedPhraseNode == e.Node) SelectedPhraseNode = null;
                 strip.RemoveAudioBlock(mPhraseNodeMap[e.Node]);
                 mPhraseNodeMap.Remove(e.Node);
-                // reflow?
             }
         }
 
@@ -139,7 +138,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void SyncUpdateAudioBlockTime(object sender, Events.Strip.UpdateTimeEventArgs e)
         {
-            mPhraseNodeMap[e.Node].Time = Math.Round(e.Time / 1000).ToString() + "s";
+            mPhraseNodeMap[e.Node].Time = Assets.MediaAsset.FormatTime(e.Time);
         }
 
         internal void InterceptKeyDownFromChildControl(KeyEventArgs e)
@@ -215,27 +214,113 @@ namespace Obi.UserControls
         }
 
         /// <summary>
+        /// True if there is a selected block currently in use that is preceded by another block in use as well.
+        /// </summary>
+        public bool CanMerge
+        {
+            get
+            {
+                return mSelectedPhrase != null && mSelectedPhrase.Used &&
+                    mSelectedPhrase.PreviousPhrase != null &&
+                    mSelectedPhrase.PreviousPhrase.Used;
+            }
+        }
+
+        /// <summary>
+        /// Import phrases from sound files at the end of a selected section or before a selected phrase.
+        /// The files are chosen through a file browser. This can be cancelled through the file browser's
+        /// cancel button, in which case no change is made.
+        /// </summary>
+        /// <remarks>One "import phrase" command will be created for every phrase that is inserted.</remarks>
+        public void ImportPhrases()
+        {
+            if (CanInsertPhraseNode)
+            {
+                // we may lose the currently selected phrase when stopping
+                InsertPoint insert = CurrentInsertPoint;
+                mProjectPanel.TransportBar.Enabled = false;
+                OpenFileDialog dialog = new OpenFileDialog();
+                dialog.Multiselect = true;
+                dialog.Filter = Localizer.Message("audio_file_filter");
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    foreach (string path in dialog.FileNames)
+                    {
+                        mProjectPanel.Project.AddPhraseFromFile(path, insert.node, insert.index);
+                        ++insert.index;
+                    }
+                }
+                mProjectPanel.TransportBar.Enabled = true;
+            }
+        }
+
+        /// <summary>
+        /// Split (with preview) of the selected block.
+        /// </summary>
+        public void SplitBlock()
+        {
+            if (mSelectedPhrase != null)
+            {
+                PhraseNode phrase = mSelectedPhrase;
+                double time = mProjectPanel.TransportBar.Playlist.CurrentTimeInAsset;
+                Audio.AudioPlayerState state = mProjectPanel.TransportBar.State;
+                mProjectPanel.TransportBar.Enabled = false;
+                Dialogs.Split dialog = new Dialogs.Split(phrase, time, state);
+                if (dialog.ShowDialog() == DialogResult.OK) mProjectPanel.Project.Split(phrase, dialog.ResultAsset);
+                mProjectPanel.TransportBar.Enabled = true;
+            }
+        }
+
+        /// <summary>
+        /// Quick split (without preview) of the selected block.
+        /// </summary>
+        public void QuickSplitBlock()
+        {
+            if (mSelectedPhrase != null)
+            {
+                PhraseNode phrase = mSelectedPhrase;
+                double time = ProjectPanel.TransportBar.Playlist.CurrentTimeInAsset;
+                mProjectPanel.TransportBar.Enabled = false;
+                Assets.AudioMediaAsset asset = phrase.Asset;
+                if (time > 0 && time < asset.LengthInMilliseconds)
+                {
+                    Assets.AudioMediaAsset result = asset.Manager.SplitAudioMediaAsset(asset, time);
+                    mProjectPanel.Project.Split(phrase, result);
+                }
+                mProjectPanel.TransportBar.Enabled = true;
+            }
+        }
+
+        /// <summary>
+        /// Merge the selected block with the previous one in the strip.
+        /// </summary>
+        public void MergeBlocks()
+        {
+            if (CanMerge)
+            {
+                mProjectPanel.TransportBar.Enabled = false;
+                mProjectPanel.Project.MergeNodes__(mSelectedPhrase.PreviousPhrase, mSelectedPhrase);
+                mProjectPanel.TransportBar.Enabled = true;
+            }
+        }
+
+        /// <summary>
         /// Insert an empty audio block at the current insertion point.
         /// </summary>
-        internal void InsertEmptyAudioBlock()
+        /// <remarks>Currently disabled</remarks>
+        public void InsertEmptyAudioBlock()
         {
             InsertPoint insert = this.CurrentInsertPoint;
             if (insert.node != null) mProjectPanel.Project.AddEmptyPhraseNode(insert.node, insert.index);   
         }
 
-        internal void QuickSplit()
+        /// <summary>
+        /// Move the selected audio block, if any, in the given direction.
+        /// </summary>
+        /// <param name="direction">Move the block backward or forward.</param>
+        public void MoveBlock(PhraseNode.Direction direction)
         {
-            if (mSelectedPhrase != null)
-            {
-                double time = ProjectPanel.TransportBar.Playlist.CurrentTimeInAsset;
-                Assets.AudioMediaAsset asset = mSelectedPhrase.Asset;
-                if (time > 0 && time < asset.LengthInMilliseconds)
-                {
-                    ProjectPanel.TransportBar.Playlist.Stop();
-                    Assets.AudioMediaAsset result = asset.Manager.SplitAudioMediaAsset(asset, time);
-                    SplitAudioBlockRequested(this, new Events.Node.SplitPhraseNodeEventArgs(this, mSelectedPhrase, result));
-                }
-            }
+            if (mSelectedPhrase != null) mProjectPanel.Project.MovePhraseNode(mSelectedPhrase, direction);
         }
     }
 }

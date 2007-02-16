@@ -60,7 +60,6 @@ namespace Obi.UserControls
             this.mRenameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.mRenameBox.Location = new System.Drawing.Point(7, 4);
             this.mRenameBox.Name = "mRenameBox";
-            this.mRenameBox.ReadOnly = true;
             this.mRenameBox.ShortcutsEnabled = false;
             this.mRenameBox.Size = new System.Drawing.Size(0, 19);
             this.mRenameBox.TabIndex = 1;
@@ -117,7 +116,7 @@ namespace Obi.UserControls
             this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.Name = "SectionStrip";
             this.Padding = new System.Windows.Forms.Padding(4);
-            this.Size = new System.Drawing.Size(326, 40);
+            this.Size = new System.Drawing.Size(322, 40);
             this.DoubleClick += new System.EventHandler(this.SectionStrip_DoubleClick);
             this.Click += new System.EventHandler(this.SectionStrip_Click);
             this.ResumeLayout(false);

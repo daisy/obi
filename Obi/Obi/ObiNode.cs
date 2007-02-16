@@ -47,8 +47,8 @@ namespace Obi
         {
             get
             {
-                IBasicTreeNode parent = getParent();
-                return parent is CoreNode ? 1 : ((ObiNode)parent).Level;
+                ObiNode parent = getParent() as ObiNode;
+                return 1 + (parent == null ? 0 : parent.Level);
             }
         }
 

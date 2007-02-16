@@ -275,11 +275,6 @@ namespace Obi.UserControls
             base.OnPaint(e);
             if (mSelected)
             {
-                /* Pen pen = new Pen(Colors.SelectionColor, Colors.SelectionWidth);
-                e.Graphics.DrawRectangle(pen, new Rectangle(Colors.SelectionWidth / 2,
-                    Colors.SelectionWidth / 2,
-                    Width - Colors.SelectionWidth,
-                    Height - Colors.SelectionWidth)); */
                 Pen pen = new Pen(Colors.SelectionColor, Padding.All);
                 e.Graphics.DrawRectangle(pen, new Rectangle(Padding.All / 2, Padding.All / 2,
                     Width - Padding.All, Height - Padding.All));

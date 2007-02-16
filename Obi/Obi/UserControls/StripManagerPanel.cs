@@ -25,14 +25,7 @@ namespace Obi.UserControls
 
         private ProjectPanel mProjectPanel; //the parent of this control
 
-        // public event Events.SectionNodeHandler AddSiblingSectionRequested;
-        // public event Events.RenameSectionNodeHandler RenameSectionRequested;
         public event Events.SetMediaHandler SetMediaRequested;
-        public event Events.RequestToImportAssetHandler ImportAudioAssetRequested;
-        public event Events.PhraseNodeHandler MoveAudioBlockForwardRequested;
-        public event Events.PhraseNodeHandler MoveAudioBlockBackwardRequested;
-        public event Events.SplitPhraseNodeHandler SplitAudioBlockRequested;
-        public event Events.MergePhraseNodesHandler MergeNodes;
         public event Events.SelectedHandler SelectionChanged;
 
         #region properties

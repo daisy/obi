@@ -3,7 +3,7 @@
   "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Obi Manual</title>
+<title>Obi User Manual version 0.8.0.1</title>
 <style type="text/css">
   body { color: black; background-color: white; font-family: arial, sans-serif; margin: 3em; text-align: justify;}  
   ul.toc {margin-left: 0em; padding-left:0em;}
@@ -36,29 +36,35 @@
 		<img src="__$strRootHttpDir__images/ObiLogo.png" alt="The Obi logo"/>
 	</div>
 
-	<p>This is the user manual for <strong>Obi v0.6 (31st October 2006)</strong></p>
+	<p>This is the user manual for <strong>Obi v0.8.0.1 (29th January 2007)</strong></p>
 
 </div>
 
 <h1 class="title">
-      <span class="hd">Obi 	Manual</span>
+      <span class="hd">Obi User Manual version 0.8.0.1</span>
       <img style="width:128px;height:128px" alt="" src="images/oballoon_blue_256.png"/>
       <img style="width:128px;height:128px" alt="" src="images/obird256.png"/>
 </h1>
 
-<p>This is the manual for Obi v0.6 (31st October 2006.)</p>
+<p>This is the manual for Obi v0.8.0.1 (29th January 2007)</p>
 
+<p><strong>Note to testers:</strong> this document is currently under heavy
+editing and may be inconsistent, incomplete, and just plain wrong. Things to
+test: inconsistencies with Obi, missing items, wrong shortcuts, non-working
+links, inconsistent screen dumps, etc.</p>
 
 <h2 id="toc">Obi Manual - Table of Contents</h2>
 
 <div id="www_table-of-contents">
 	<ul class="toc">
+
 	<li><a href="#getting-started">Getting started</a>
 	<ul>
 	<li><a href="#ovw_main">Main Window Overview</a>
 		<ul>
 			<li><a href="#ovw_toc">The TOC View</a></li>
 			<li><a href="#ovw_strip">The Strip View</a></li>
+			<li>The transport bar</li>
 		</ul>
 		</li>
 	<li><a href="#ovw_prefs">Setting Preferences</a></li>
@@ -74,6 +80,15 @@
 	<li><a href="#ovw_save">Save the Project</a></li>
 	</ul>  
 	</li>
+
+	<li>OBI
+	<ul>
+		<li>The table of contents [sections]</li>
+		<li>The strip manager [strips and blocks]</li>
+		<li>The transport bar [audio]</li>
+	</ul>
+	</li>
+
 	<li><a href="#dialog-details">Dialog Details</a>
 	<ul>
 	<li><a href="#ctrl_tocview">Main Window - TOC View</a>
@@ -102,6 +117,12 @@
 	<li><a href="#ctrl_preferences_project">Project Preferences</a></li>
 	<li><a href="#ctrl_userprofile">User Profile Dialog</a></li>
 	</ul>
+	</li>
+	<li><a href="#ref_menus">Menu reference</a>
+		<ul>
+			<li><a href="#ref_menus_file">File menu</a></li>
+			<li><a href="#ref_menus_edit">Edit menu</a></li>
+		</ul>
 	</li>
 	<li><a href="#glossary-of-terms">Glossary of terms</a></li>
 	<li><a href="#keyboard-shortcuts">Keyboard shortcut table</a></li>
@@ -479,6 +500,119 @@
   <dd>The language of the user (which is not necessarily the same as the <a href='#ctrl_metadata'>language of the DTB being recorded</a>!)</dd>
   </dl>
   <p><img src="images/manual_userprofile.png" alt="screenshot of the user profile dialog"/></p>
+
+</div>
+
+<h2 id="ref_menus">Menu reference</h2>
+
+<div id="www_menu-reference">
+
+	<h3 id="ref_menus_file">File menu</h3>
+	<div id="www_file-menu">
+		<p>The file menu allows you to create, open, save, close and export
+		projects, and exit Obi.</p>
+		<dl>
+			<dt>New project (Ctrl+N)</dt>
+			<dd>Create a new project. If a project is currently open, it is closed
+			first. See <a href="#ovw_new">Create a new project</a>.</dd>
+			<dt>Open project (Ctrl+O)</dt>
+			<dd>Open a project file. If a project is currently open, it is closed
+			first. A file browser then lets you navigate your file system to find
+			the project file to open.</dd>
+			<dt>Open recent project</dt>
+			<dd>Obi will remember the location of the projects that have been
+			previously open so that you can quickly open them again. The projects
+			are listed by their filenames. If they are in your default directory,
+			then only the filename will appear; if they are somewhere else, then
+			the full path will be shown.<br/>
+			The "Clear list" option clears this list (be careful, as this cannot be
+			undone.)<br/>
+			There are no keyboard shortcuts for this item.</dd>
+			<dt>Save project (Ctrl+S)</dt>
+			<dd>Save all changes made to the project. Do this often as Obi does not
+			save your project automatically; but be careful that after saving
+			undoing previous changes becomes impossible.</dd>
+			<dt>Save project as (Ctrl+Shift+S)</dt>
+			<dd>Save a copy of the project with a different file name and continue
+			editing this file. [FIXME: not sure about this one.]</dd>
+			<dt>Discard changes (Ctrl+D)</dt>
+			<dd>Revert to the last saved version of the project. All changes made
+			are lost (this cannot be undone; alternatively, you can undo all changes
+			to go back to this version while still being able to redo some
+			operations.)</dd>
+			<dt>Close project (Ctrl+W)</dt>
+			<dd>Close the project currently open. If there are unsaved changes, you
+			will be asked whether to save these changes, close without saving, or
+			cancel (in which case the project is not closed.)</dd>
+			<dt>Export as DAISY (Ctrl+E)</dt>
+			<dd>Create a DAISY ANSI/NISO Z39.86-2005 book from your project. The
+			project must be saved before being exported. You will be asked for a
+			folder location in which to save the book. This book can then be opened
+			in a DAISY player such as <a href="http://amis.sf.net">AMIS</a>, but
+			it <strong>cannot</strong> be opened by Obi so do not delete your Obi
+			project file just yet or you won't be able to make any more changes!</dd>
+			<dt>Exit (Alt+F4)</dt>
+			<dd>Exit from Obi. If there is an open project with unsaved changes, you
+			will be given a chance to save or cancel. If you cancel, you will not
+			exit Obi. You can also exit Obi by closing the main window.</dd>
+		</dl>
+	</div>
+
+	<h3 id="ref_menus_edit">Edit menu</h3>
+	<div id="www_edit-menu">
+		<p>The edit menu allows you to make, unmake and remake general changes in
+		the project. From this menu you can undo previous changes, or redo undone
+		changes; you can also cut, copy, paste and delete items, and modify the
+		metadata of your project.</p>
+		<ul>
+			<li>Undo and redo
+		<dl>
+			<dt>Undo (Ctrl+Z)</dt>
+			<dd>This is a very important command as it allows you to undo the last
+			change that you made. When undo is enabled, the actual menu item will
+			describe exactly what is to be undone, for instance if you delete a
+			section, then the menu item will read "undo section." Undo will restore
+			your project to the same state that it was in just before you did this
+			action (in this case, the section will be undeleted and restored exactly
+			where it used to be.)<br/>
+			Obi will remember all the changes that you have made since you last
+			saved (or since you created) your project, so that undoing twice will
+			undo the last two commands, and so on. You can then undo every change
+			and your project will be restored to its unmodified state. Remember this
+			shortcut, it is very handy!
+			<dt>Redo (Ctrl+Y)</dt>
+			<dd>If you have undone a command, you can redo it. Obi will also remember
+			the commands that you have undone so that you can recreate all changes
+			that you have made. Be careful however; once you make a new change to the
+			project, all the undone commands are discarded so you won't be able to
+			redo them anymore (this is because your project is now in a different
+			state that it was before you made that change, and therefore the context
+			of undone commands may be inconsistent.)
+		</dl>
+		</li>
+		<li>Clipboard<br/>
+		You can cut and copy items (sections, strips, nodes, and text from
+		annotations)
+			<dl>
+			<dt>Cut (Ctrl+X)</dt>
+			<dd>Cut</dd>
+			<dt>Copy (Ctrl+C)</dt>
+			<dd>Copy</dd>
+			<dt>Paste (Ctrl+V)</dt>
+			<dd>Paste</dd>
+			<dt>Delete (Del)</dt>
+			<dd>Delete</dd>
+		</dl>
+		</li>
+		<li>Misc.</li>
+		<dl>
+			<dt>Metadata (Alt+M)</dt>
+			<dd>Simple metadata</dd>
+			<dt>Touch project (F5)</dt>
+			<dd>Touch (make it seem modified) and refresh display.</dd>
+		</dl>
+	</ul>
+	</div>
 
 </div>
 

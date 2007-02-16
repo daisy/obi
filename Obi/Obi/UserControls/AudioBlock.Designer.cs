@@ -38,11 +38,11 @@ namespace Obi.UserControls
             // mTimeLabel
             // 
             this.mTimeLabel.AutoSize = true;
-            this.mTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mTimeLabel.Location = new System.Drawing.Point(7, 28);
             this.mTimeLabel.Margin = new System.Windows.Forms.Padding(3);
             this.mTimeLabel.Name = "mTimeLabel";
-            this.mTimeLabel.Size = new System.Drawing.Size(49, 20);
+            this.mTimeLabel.Size = new System.Drawing.Size(41, 16);
             this.mTimeLabel.TabIndex = 2;
             this.mTimeLabel.Text = "(time)";
             this.mTimeLabel.DoubleClick += new System.EventHandler(this.AudioBlock_DoubleClick);
@@ -77,7 +77,7 @@ namespace Obi.UserControls
             this.mPage.BackColor = System.Drawing.Color.Pink;
             this.mPage.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mPage.Location = new System.Drawing.Point(7, 54);
+            this.mPage.Location = new System.Drawing.Point(7, 50);
             this.mPage.Name = "mPage";
             this.mPage.Size = new System.Drawing.Size(91, 14);
             this.mPage.TabIndex = 3;
@@ -94,7 +94,7 @@ namespace Obi.UserControls
             this.Margin = new System.Windows.Forms.Padding(0, 0, 2, 0);
             this.Name = "AudioBlock";
             this.Padding = new System.Windows.Forms.Padding(4);
-            this.Size = new System.Drawing.Size(105, 76);
+            this.Size = new System.Drawing.Size(105, 55);
             this.DoubleClick += new System.EventHandler(this.AudioBlock_DoubleClick);
             this.Click += new System.EventHandler(this.AudioBlock_Click);
             this.ResumeLayout(false);
