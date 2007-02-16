@@ -749,8 +749,9 @@ namespace Obi.Assets
         /// <returns>
         /// list of AudioMediaAsset consisting of input Assets but changed clip list
         /// </returns>
-        public static  List<AudioMediaAsset> ExportAssets (List<AudioMediaAsset> AssetList, string path)
+        public static  List<AudioMediaAsset> ExportAssets (List<AudioMediaAsset> AssetList, string path )
         {
+            
             // new clip which is required to replace existing list of clips in each AudioMediaAsset
             AudioClip ExportAudioClip;
             
@@ -784,19 +785,24 @@ namespace Obi.Assets
                         {
                             bw.Write(br.ReadByte());
                             ByteLengthCount++;
+
                         }
+                        
                     }
                 }
 
             }
-                AssetList[0].UpdateLengthHeader(ByteLengthCount, bw);
+            
+                AssetList[0].UpdateLengthHeader(ByteLengthCount + 44 , bw);
                 bw.Close();
                 br.Close();
                 
+                double OutputAssetClipStartTime = 0;
             for ( int ICount = 0 ; ICount  < AssetList.Count ; ICount++  )
             {
-                //AssetList[ICount].mClips.Clear();
-                ExportAudioClip = new AudioClip( path, 0.0 , AssetList[ ICount ].LengthInMilliseconds);
+
+                ExportAudioClip = new AudioClip( path, OutputAssetClipStartTime  , OutputAssetClipStartTime +  AssetList[ ICount ].LengthInMilliseconds);
+                OutputAssetClipStartTime = OutputAssetClipStartTime + AssetList[ICount].LengthInMilliseconds;
                 List<AudioClip> NewList = new List<AudioClip>();
                 NewList.Add(ExportAudioClip);
                 AssetList[ICount].mClips = NewList;
