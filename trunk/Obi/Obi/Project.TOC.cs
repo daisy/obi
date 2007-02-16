@@ -102,7 +102,7 @@ namespace Obi
             }
             else
             {
-                AddChildSectionAfter(sibling, contextNode, parent);
+                AddChildSectionBefore(sibling, contextNode, parent);
             }
             AddedSectionNode(this, new Events.Node.SectionNodeEventArgs(this, sibling));
             Modified();
@@ -435,15 +435,15 @@ namespace Obi
 
         //helper function which tests for parent being root
         //md 20061204
-        private void AddChildSectionAfter(SectionNode node, SectionNode contextNode, CoreNode parent)
+        private void AddChildSectionBefore(SectionNode node, SectionNode contextNode, CoreNode parent)
         {
             if (parent is CoreNode)
             {
-                parent.insertAfter(node, contextNode);
+                parent.insertBefore(node, contextNode);
             }
             else if (parent is SectionNode)
             {
-                ((SectionNode)parent).AddChildSectionAfter(node, contextNode);
+                ((SectionNode)parent).AddChildSectionBefore(node, contextNode);
             }
         }
 
