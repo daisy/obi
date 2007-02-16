@@ -181,11 +181,11 @@ namespace Obi
         }
 
         /// <summary>
-        /// Add a new child section right after the context seciont section.
+        /// Add a new child section right before the context seciont section.
         /// </summary>
-        public void AddChildSectionAfter(SectionNode node, SectionNode anchorNode)
+        public void AddChildSectionBefore(SectionNode node, SectionNode anchorNode)
         {
-            insertAfter(node, anchorNode);
+            insertBefore(node, anchorNode);
             UpdateSpan(node.mSpan);
         }
 
