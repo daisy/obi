@@ -51,7 +51,7 @@ Main form
     + [K] Mark audio block as used/unused ... Ctrl+K
     + [E] Edit annotation ................... F2
     + [O] Remove annotation ................. Shift+Ctrl+Del
-    + [T] Set page number ................... Ctrl+F2
+    + [T] Set page number ................... Ctrl+G
     + [N] Remove page number ................ Ctrl+Del
     + [W] Show in TOC view .................. Alt+V
 
@@ -115,7 +115,7 @@ Strip Manager Panel's context menu
     + [B] Backward .......................... Ctrl+Left
   + [O] Edit annotation ..................... F2
   + [M] Remove annotation ................... Shift+Ctrl+Del
-  + [T] Set page number ..................... Ctrl+F2
+  + [T] Set page number ..................... Ctrl+G
   + [R] Remove page number .................. Ctrl+Del
 
 
@@ -136,8 +136,6 @@ Index of shortcuts
   F2 ................. [Strip Manager Panel] Edit annotation
   F2 ................. Strips > Rename strip
   F2 ................. [Strip Manager Panel] Rename strip
-  Ctrl+F2 ............ Strips > Set page number
-  Ctrl+F2 ............ [Strip Manager Panel] Set page number
   Alt+F4 ............. File > Exit
   F5 ................. Edit > Touch project
   Alt+Down ........... Transport > Next section
@@ -171,7 +169,8 @@ Index of shortcuts
   Ctrl+E ............. File > Export as DAISY
   Alt+F .............. Edit > Full metadata
   Ctrl+F ............. FREE
-  Ctrl+G ............. FREE
+  Ctrl+G ............. Strips > Set page number
+  Ctrl+G ............. [Strip Manager Panel] Set page number
   Ctrl+H ............. Strips > Apply phrase detection
   Ctrl+H ............. [Strip Manager Panel] Apply phrase detection
   Ctrl+I ............. Strips > Import audio file
