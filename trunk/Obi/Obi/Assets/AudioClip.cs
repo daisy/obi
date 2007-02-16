@@ -152,6 +152,11 @@ namespace Obi.Assets
             // Read header and assign values to member variables
             Init(path);
 
+            // Adjust File time length if clip time is near
+            if (endTime > m_dFileAudioLengthInTime && endTime < m_dFileAudioLengthInTime + 50)
+                endTime = m_dFileAudioLengthInTime;
+
+            
             // check validity of input parameters 
             if (beginTime < 0 || endTime > m_dFileAudioLengthInTime)
             {
