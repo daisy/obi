@@ -41,6 +41,8 @@ namespace Obi
         private Clipboard mClipboard;        // project-wide clipboard.
         //private PhraseNode mSilencePhrase;     // silence phrase used for phrase detection
 
+        private List<PhraseNode> mPages;     // phrase nodes that have a page number
+
         public static readonly string XUKVersion = "obi-xuk-009";                // version of the Obi/XUK file
         public static readonly string AudioChannelName = "obi.audio";            // canonical name of the audio channel
         public static readonly string TextChannelName = "obi.text";              // canonical name of the text channel
@@ -137,6 +139,7 @@ namespace Obi
             mTextChannel = null;
             mAnnotationChannel = null;
             mClipboard = new Clipboard();
+            mPages = new List<PhraseNode>();
         }
 
         /// <summary>

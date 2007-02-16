@@ -12,7 +12,7 @@ namespace Obi
     /// The form consists mostly of a menu bar and a project panel.
     /// We also keep an undo stack (the command manager) and settings.
     /// </summary>
-    public partial class ObiForm : Form
+    public partial class ObiForm : Form, IMessageFilter
     {
         private Project mProject;                // the project currently being authored
         private Settings mSettings;              // application settings
@@ -542,6 +542,21 @@ namespace Obi
             mProjectPanel.StripManager.ToggleSelectedPhraseUsed();
         }
 
+        private void mEditAnnotationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.StripManager.EditAnnotationForAudioBlock();
+        }
+
+        private void mRemoveAnnotationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.StripManager.RemoveAnnotationForAudioBlock();
+        }
+
+        private void mSetPageNumberToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.StripManager.SetPageNumber();
+        }
+
         #endregion
 
 
@@ -685,13 +700,11 @@ namespace Obi
         /// </summary>
         private void ObiForm_Load(object sender, EventArgs e)
         {
-            mEditAnnotationToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.StripManager.mEditAudioBlockLabelToolStripMenuItem_Click);
+            // we don't use it at the moment
+            // Application.AddMessageFilter(this);
+
             mShowInTOCViewToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mShowInTOCViewToolStripMenuItem_Click);
-
-            mSetPageNumberToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.StripManager.mSetPageNumberToolStripMenuItem_Click);
             mRemovePageNumberToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mRemovePageNumberToolStripMenuItem_Click);
         }
@@ -1516,9 +1529,6 @@ namespace Obi
             bool isAudioBlockFirst = isAudioBlockSelected &&
                 mProjectPanel.StripManager.SelectedPhraseNode.Index == 0;
             bool isBlockClipBoardSet = isProjectOpen && mProject.Clipboard.Phrase != null;
-            bool canSetPage = isAudioBlockSelected;  // an audio block must be selected and a heading must not be set.
-            bool canRemovePage = isAudioBlockSelected &&
-                mProjectPanel.StripManager.SelectedPhraseNode.getProperty(typeof(PageProperty)) != null;
             bool canMerge = isProjectOpen && mProjectPanel.StripManager.CanMerge;
 
             bool canInsertPhrase = !isPlaying && isProjectOpen && mProjectPanel.StripManager.CanInsertPhraseNode;
@@ -1536,16 +1546,35 @@ namespace Obi
             mMoveAudioBlockBackwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockFirst;
             mMoveAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && (!isAudioBlockFirst || !isAudioBlockLast);
 
-            mEditAnnotationToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mRemoveAnnotationToolStripMenuItem.Enabled = isAudioBlockSelected;
+            bool canRemoveAnnotation = !isPlaying && isAudioBlockSelected &&
+                mProjectPanel.StripManager.SelectedPhraseNode.HasAnnotation;
+            mEditAnnotationToolStripMenuItem.Enabled = !isPlaying && isAudioBlockSelected;
+            mRemoveAnnotationToolStripMenuItem.Enabled = canRemoveAnnotation;
 
-            mSetPageNumberToolStripMenuItem.Enabled = canSetPage;
-            mRemovePageNumberToolStripMenuItem.Enabled = canRemovePage;
+            mSetPageNumberToolStripMenuItem.Enabled = !isPlaying && mProjectPanel.StripManager.CanSetPage;
+            mRemovePageNumberToolStripMenuItem.Enabled = !isPlaying && mProjectPanel.StripManager.CanRemovePage;
 
             mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;
 
             mMarkAudioBlockAsUnusedToolStripMenuItem.Enabled = mProjectPanel.CanToggleAudioBlock;
             mMarkAudioBlockAsUnusedToolStripMenuItem.Text = mProjectPanel.ToggleAudioBlockString;
         }
+
+
+        #region IMessageFilter Members
+
+        // We could use a message filter to know when to re-enable the transport bar
+        // after it's been disabled by the 
+        public bool PreFilterMessage(ref Message m)
+        {
+            /*Control sender = Control.FromHandle(m.HWnd);
+            if (sender != null)
+            {
+                System.Diagnostics.Debug.Print("Message from {0}: {1}", sender, m.Msg);
+            }*/
+            return false;  // do not filter messages
+        }
+
+        #endregion
     }
 }

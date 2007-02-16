@@ -318,7 +318,6 @@ namespace Obi.UserControls
         internal void UpdateAssetAudioBlock(AudioBlock audioBlock)
         {
             Assets.AudioMediaAsset asset = audioBlock.Node.Asset;
-            audioBlock.AssetName = asset.Name;
             audioBlock.Time = Assets.MediaAsset.FormatTime(asset.LengthInMilliseconds);
         }
 

@@ -39,7 +39,7 @@ namespace Obi.UserControls
             this.mRenameBox.BackColor = System.Drawing.Color.PowderBlue;
             this.mRenameBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mRenameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mRenameBox.Location = new System.Drawing.Point(10, 8);
+            this.mRenameBox.Location = new System.Drawing.Point(7, 3);
             this.mRenameBox.Margin = new System.Windows.Forms.Padding(0);
             this.mRenameBox.Name = "mRenameBox";
             this.mRenameBox.Size = new System.Drawing.Size(66, 14);

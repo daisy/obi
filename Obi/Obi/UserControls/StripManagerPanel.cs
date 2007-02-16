@@ -186,6 +186,22 @@ namespace Obi.UserControls
             }
         }
 
+        /// <summary>
+        /// True if there is a selected block and it has no page number set.
+        /// </summary>
+        public bool CanSetPage
+        {
+            get { return mSelectedPhrase != null && mSelectedPhrase.PageProperty == null; }
+        }
+
+        /// <summary>
+        /// True if there is a selected block and it has a page set.
+        /// </summary>
+        public bool CanRemovePage
+        {
+            get { return mSelectedPhrase != null && mSelectedPhrase.PageProperty != null; }
+        }
+
         #endregion
 
         #region instantiators
