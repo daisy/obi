@@ -34,6 +34,8 @@ namespace Obi
         public int SampleRate;            // sample rate in Hertz
         public int BitDepth;              // sample bit depth
 
+        public float FontSize;            // global font size (all font sizes must be relative to this one)
+
         public static readonly string SettingsFileName = "obi_settings.xml";  // settings file name
 
         /// <summary>
@@ -41,7 +43,19 @@ namespace Obi
         /// </summary>
         public static Settings GetSettings()
         {
-            Settings settings;
+            Settings settings = new Settings();
+            settings.RecentProjects = new ArrayList();
+            settings.UserProfile = new UserProfile();
+            settings.IdTemplate = "obi_####";
+            settings.DefaultPath = Environment.CurrentDirectory;
+            settings.DefaultExportPath = Environment.CurrentDirectory;
+            settings.LastOpenProject = "";
+            settings.LastOutputDevice = "";
+            settings.LastInputDevice = "";
+            settings.AudioChannels = 1;
+            settings.SampleRate = 44100;
+            settings.BitDepth = 16;
+            settings.FontSize = 10.0f; 
             IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
             try
             {
@@ -51,21 +65,7 @@ namespace Obi
                 settings = (Settings)soap.Deserialize(stream);
                 stream.Close();
             }
-            catch (Exception)
-            {
-                settings = new Settings();
-            }
-            if (settings.RecentProjects == null) settings.RecentProjects = new ArrayList();
-            if (settings.UserProfile == null) settings.UserProfile = new UserProfile();
-            if (settings.IdTemplate == null) settings.IdTemplate = "obi_####";
-            if (settings.DefaultPath == null) settings.DefaultPath = Environment.CurrentDirectory;
-            if (settings.DefaultExportPath == null) settings.DefaultExportPath = Environment.CurrentDirectory;
-            if (settings.LastOpenProject == null) settings.LastOpenProject = "";
-            if (settings.LastOutputDevice == null) settings.LastOutputDevice = "";
-            if (settings.LastInputDevice == null) settings.LastInputDevice = "";
-            if (settings.AudioChannels == 0) settings.AudioChannels = 1;
-            if (settings.SampleRate == 0) settings.SampleRate = 44100;
-            if (settings.BitDepth == 0) settings.BitDepth = 16;
+            catch (Exception) { }
             return settings;
         }
 

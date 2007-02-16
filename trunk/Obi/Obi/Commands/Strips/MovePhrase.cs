@@ -11,9 +11,9 @@ namespace Obi.Commands.Strips
     /// </summary>
     class MovePhrase: Command
     {
-        private PhraseNode mNode;                      // the phrase node to move
-        private PhraseNode.Direction mDirection;       // the direction in which to move it
-        private PhraseNode.Direction mOtherDirection;  // the other direction (for undo)
+        private PhraseNode mNode;      // the phrase node to move
+        private int mIndexBeforeMove;  // the original index of the node
+        private int mIndexAfterMove;   // the new index after the move
 
         public override string Label
         {
@@ -21,16 +21,15 @@ namespace Obi.Commands.Strips
         }
 
         /// <summary>
-        /// Create a new command.
+        /// Create a new command *before* the move is done.
         /// </summary>
         /// <param name="node">The phrase node to move.</param>
-        /// <param name="direction">The direction in which to move it.</param>
-        public MovePhrase(PhraseNode node, PhraseNode.Direction direction)
+        /// <param name="direction">The direction in which it was moved.</param>
+        public MovePhrase(PhraseNode node, int indexAfterMove)
         {
             mNode = node;
-            mDirection = direction;
-            mOtherDirection = direction == PhraseNode.Direction.Backward ?
-                PhraseNode.Direction.Forward : PhraseNode.Direction.Backward;
+            mIndexBeforeMove = mNode.Index;
+            mIndexAfterMove = indexAfterMove;
         }
 
         /// <summary>
@@ -38,7 +37,7 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Do()
         {
-            mNode.Project.MovePhraseNode(mNode, mDirection);
+            mNode.Project.MovePhraseNodeTo(mNode, mIndexAfterMove);
         }
 
         /// <summary>
@@ -46,7 +45,7 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Undo()
         {
-            mNode.Project.MovePhraseNode(mNode, mOtherDirection);
+            mNode.Project.MovePhraseNodeTo(mNode, mIndexBeforeMove);
         }
     }
 }

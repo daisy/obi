@@ -123,56 +123,29 @@ namespace Obi
         }
 
         /// <summary>
-        /// Merge two adjacent phrase nodes: merge their assets into the first node's asset and remove the second node.
+        /// Merge a phrase node with the next one.
         /// </summary>
-        public void MergeNodesRequested(object sender, Events.Node.MergeNodesEventArgs e)
+        /// <param name="node">The node to merge.</param>
+        /// <param name="next">The next one to merge with.</param>
+        public void MergeNodes__(PhraseNode node, PhraseNode nextNode)
         {
-            Assets.AudioMediaAsset asset = e.Node.Asset;
-            Assets.AudioMediaAsset next = e.Next.Asset;
+            Assets.AudioMediaAsset asset = node.Asset;
+            Assets.AudioMediaAsset next = nextNode.Asset;
             // the command is created while the assets are not changed; there is time to copy the original asset before the
             // merge is done.
-            Commands.Strips.MergePhrases command = new Commands.Strips.MergePhrases(e.Node, e.Next);
+            Commands.Strips.MergePhrases command = new Commands.Strips.MergePhrases(node, nextNode);
             mAssManager.MergeAudioMediaAssets(asset, next);
-            UpdateSeq(e.Node);
-            MediaSet(this, new Events.Node.SetMediaEventArgs(e.Origin, e.Node, Project.AudioChannelName,
-                GetMediaForChannel(e.Node, Project.AudioChannelName)));
-            DeletedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(e.Origin, e.Next));
-            e.Next.DetachFromParent();
-            TouchedNode(this, new Events.Node.NodeEventArgs(e.Origin, e.Node));
+            UpdateSeq(node);
+            MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, Project.AudioChannelName,
+                GetMediaForChannel(node, Project.AudioChannelName)));
+            DeletedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, nextNode));
+            nextNode.DetachFromParent();
+            TouchedNode(this, new Events.Node.NodeEventArgs(this, node));
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            Modified();
         }
 
         public enum Direction { Forward, Backward };
-
-        /// <summary>
-        /// Move a phrase node in either direction. May not succeed if there is nowhere to move in that direction.
-        /// </summary>
-        private void MovePhraseNodeRequested(object sender, Events.Node.PhraseNodeEventArgs e, PhraseNode.Direction dir)
-        {
-            if (CanMovePhraseNode(e.Node, dir))
-            {
-                MovePhraseNode(e.Node, dir);
-                Commands.Strips.MovePhrase command = new Commands.Strips.MovePhrase(e.Node, dir);
-                CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-            }
-        }
-        /// <summary>
-        /// Move a phrase node forward. May not succeed if the node is last of its kind.
-        /// </summary>
-        public void MovePhraseNodeForwardRequested(object sender, Events.Node.PhraseNodeEventArgs e)
-        {
-            MovePhraseNodeRequested(sender, e, PhraseNode.Direction.Forward);
-        }
-
-        /// <summary>
-        /// Move a phrase node forward.
-        /// </summary>
-        public void MovePhraseNodeBackwardRequested(object sender, Events.Node.PhraseNodeEventArgs e)
-        {
-            MovePhraseNodeRequested(sender, e, PhraseNode.Direction.Backward);
-        }
 
         /// <summary>
         /// Try to set the media on a given channel of a node.
@@ -222,39 +195,36 @@ namespace Obi
         }
 
         /// <summary>
-        /// Handle a request to split an audio block. The event contains the original node that was split and the new asset
-        /// created from the split. A new sibling to the original node is to be added.
+        /// Split phrase node in two.
         /// </summary>
-        public void SplitAudioBlockRequested(object sender, Events.Node.SplitPhraseNodeEventArgs e)
+        /// <param name="node">The original node that was split, with its split asset.</param>
+        /// <param name="newAsset">The new asset to create a new phrase node from.</param>
+        public void Split(PhraseNode node, Assets.AudioMediaAsset newAsset)
         {
-            PhraseNode newNode = CreatePhraseNode(e.NewAsset);
-            SectionNode parent = (SectionNode)e.Node.getParent();
-            int index = parent.indexOf(e.Node) + 1;
-            parent.insert(newNode, index);
-            UpdateSeq(e.Node);
-            MediaSet(this, new Events.Node.SetMediaEventArgs(e.Origin, e.Node, Project.AudioChannelName,
-                GetMediaForChannel(e.Node, Project.AudioChannelName)));
-            AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(e.Origin, newNode));
-            Commands.Strips.SplitPhrase command = new Commands.Strips.SplitPhrase(e.Node, newNode);
+            PhraseNode newNode = CreatePhraseNode(newAsset);
+            node.ParentSection.AddChildPhraseAfter(newNode, node);
+            UpdateSeq(node);
+            // review this
+            MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, Project.AudioChannelName,
+                GetMediaForChannel(node, Project.AudioChannelName)));
+            AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, newNode));
+            Commands.Strips.SplitPhrase command = new Commands.Strips.SplitPhrase(node, newNode);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+            Modified();
         }
 
-        /// <summary>
-        /// Handle a request to apply phrase detection to a phrase.
-        /// </summary>
-        public void ApplyPhraseDetection(object sender, Events.Node.PhraseDetectionEventArgs e)
+        public void ApplyPhraseDetection(PhraseNode node, long threshold, double length, double gap)
         {
-            AudioMediaAsset originalPhrase = e.Node.Asset;
-            List<AudioMediaAsset> phrases = originalPhrase.ApplyPhraseDetection(e.Threshold, e.Gap, e.LeadingSilence);
-            if (phrases.Count > 1)
+            AudioMediaAsset originalAsset = node.Asset;
+            List<AudioMediaAsset> assets = originalAsset.ApplyPhraseDetection(threshold, length, gap);
+            if (assets.Count > 1)
             {
-                List<PhraseNode> nodes = new List<PhraseNode>(phrases.Count);
-                foreach (AudioMediaAsset phrase in phrases) nodes.Add(CreatePhraseNode(phrase));
-                ReplaceNodeWithNodes(e.Node, nodes);
-                Commands.Strips.ApplyPhraseDetection command = new Commands.Strips.ApplyPhraseDetection(this, e.Node, nodes);
-                CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+                List<PhraseNode> nodes = new List<PhraseNode>(assets.Count);
+                assets.ForEach(delegate(AudioMediaAsset ass) { nodes.Add(CreatePhraseNode(ass)); });
+                ReplaceNodeWithNodes(node, nodes);
+                CommandCreated(this,
+                    new Events.Project.CommandCreatedEventArgs(new Commands.Strips.ApplyPhraseDetection(this, node, nodes)));
+                Modified();
             }
         }
 
@@ -378,21 +348,6 @@ namespace Obi
         }
 
         /// <summary>
-        /// Determine whether a node can be moved forward or backward in the list of phrase nodes.
-        /// </summary>
-        private bool CanMovePhraseNode(PhraseNode node, PhraseNode.Direction dir)
-        {
-            if (dir == PhraseNode.Direction.Forward)
-            {
-                return node.Index < ((SectionNode)node.getParent()).PhraseChildCount;
-            }
-            else
-            {
-                return node.Index > 0;
-            }
-        }
-
-        /// <summary>
         /// Delete a phrase node from the tree.
         /// </summary>
         /// <param name="node">The phrase node to delete.</param>
@@ -437,15 +392,38 @@ namespace Obi
             return null;
         }
 
+        public bool CanMovePhraseNode(PhraseNode node, PhraseNode.Direction dir)
+        {
+            if (node != null)
+            {
+                int index = node.Index + (dir == PhraseNode.Direction.Forward ? 1 : -1);
+                return index >= 0 && index < node.ParentSection.PhraseChildCount;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         /// <summary>
         /// Move a phrase node in the given direction.
         /// </summary>
         public void MovePhraseNode(PhraseNode node, PhraseNode.Direction dir)
         {
-            int index = node.Index;
-            SectionNode parent = (SectionNode)node.getParent();
+            int index = node.Index + (dir == PhraseNode.Direction.Forward ? 1 : -1);
+            if (index >= 0 && index < node.ParentSection.PhraseChildCount)
+            {
+                CommandCreated(this, new Events.Project.CommandCreatedEventArgs(new Commands.Strips.MovePhrase(node, index)));
+                MovePhraseNodeTo(node, index);
+                Modified();
+            }
+        }
+
+        public void MovePhraseNodeTo(PhraseNode node, int index)
+        {
+            SectionNode parent = node.ParentSection;
             RemovePhraseNode(node);
-            AddPhraseNode(node, parent, dir == PhraseNode.Direction.Forward ? index + 1 : index - 1);
+            AddPhraseNode(node, parent, index);
         }
 
         /// <summary>
@@ -603,6 +581,26 @@ namespace Obi
             Assets.AudioMediaAsset asset = node.Asset;
             mAssManager.AddAsset(asset);
             AddPhraseNode(node, parent, index);
+        }
+
+        /// <summary>
+        /// Add a new phrase with an asset created from a sound file.
+        /// This creates a command and modifies the project.
+        /// </summary>
+        /// <param name="path">The path of the sound file to create the asset from.</param>
+        /// <param name="section">The section node in which to add the phrase.</param>
+        /// <param name="index">The index at which the phrase is added.</param>
+        public void AddPhraseFromFile(string path, SectionNode section, int index)
+        {
+            AudioMediaAsset asset = mAssManager.ImportAudioMediaAsset(path);
+            mAssManager.InsureRename(asset, Path.GetFileNameWithoutExtension(path));
+            PhraseNode phrase = getPresentation().getCoreNodeFactory().createNode(PhraseNode.Name, ObiPropertyFactory.ObiNS)
+                 as PhraseNode;
+            phrase.Asset = asset;
+            AddPhraseNode(phrase, section, index);
+            Commands.Strips.AddPhrase command = new Commands.Strips.AddPhrase(phrase);
+            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            Modified();
         }
     }
 }

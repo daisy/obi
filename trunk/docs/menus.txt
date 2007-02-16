@@ -39,13 +39,12 @@ Main form
   + [S] Strips
     + [A] Add strip ......................... Ctrl+A
     + [R] Rename strip ...................... F2
-    + [K] Mark strip as used/unused ......... Ctrl+K
     + [I] Import audio file ................. Ctrl+I
     + [B] Insert empty audio block .......... Ctrl+J
     + [S] Split audio block ................. Ctrl+P
     + [Q] Quick split audio block ........... Ctrl+Shift+P
     + [H] Apply phrase detection ............ Ctrl+H
-    + [G] Merge with next audio block ....... Ctrl+M
+    + [G] Merge with previous audio block ... Ctrl+M
     + [V] Move audio block................... None
       + [F] Forward ......................... Ctrl+Right
       + [B] Backward ........................ Ctrl+Left
@@ -100,7 +99,6 @@ Strip Manager Panel's context menu
   + [A] Add strip ........................... Ctrl+A
   + [N] Rename strip ........................ Shift+F2
   + [D] Delete strip ........................ Shift+Del
-  + [K] Mark strip as used/unused ........... Ctrl+K
   + [W] Show in TOC view .................... Alt+V
   + [I] Import audio ........................ Ctrl+I
   + [B] Insert empty audio block ............ Ctrl+J
@@ -111,7 +109,7 @@ Strip Manager Panel's context menu
   + [K] Mark phrase as used/unused .......... Ctrl+K
   + [S] Split audio block ................... Ctrl+P
   + [H] Apply phrase detection .............. Ctrl+H
-  + [G] Merge with next audio block ......... Ctrl+M
+  + [G] Merge with previous audio block ..... Ctrl+M
   + [V] Move audio block... ................. None
     + [F] Forward ........................... Ctrl+Right
     + [B] Backward .......................... Ctrl+Left
@@ -123,9 +121,9 @@ Strip Manager Panel's context menu
 
 Index of shortcuts
 
-  Del* ............... Edit > Delete
-  Del* ............... [TOC Panel] Delete section
-  Del* ............... [Strip Manager Panel] Delete phrase
+  Del ................ Edit > Delete
+  Del ................ [TOC Panel] Delete section
+  Del ................ [Strip Manager Panel] Delete phrase
   Ctrl+Del ........... Strips > Remove page number
   Ctrl+Del ........... [Strip Manager Panel] Remove page number
   Shift+Del .......... [Strip Manager Panel] Delete strip
@@ -180,17 +178,14 @@ Index of shortcuts
   Ctrl+I ............. [Strip Manager Panel] Import audio
   Ctrl+J ............. Insert empty audio block
   Ctrl+J ............. [Strip Manager Panel] Insert empty audio block
-  Ctrl+K ............. Strips > Mark strip/block as used/unused
   Ctrl+K ............. TOC > Mark section as used/unused
   Ctrl+K ............. [TOC Panel] Mark section as used/unused
-  Ctrl+K ............. Strips > Mark strip as used/unused
-  Ctrl+K ............. [Strip Manager Panel] Mark strip as used/unused
   Ctrl+K ............. Strips > Mark audio block as used/unused
   Ctrl+K ............. [Strip Manager Panel] Mark audio block as used/unused*
   Ctrl+L ............. FREE
   Alt+M .............. Edit > Metadata
-  Ctrl+M ............. Strips > Merge with next audio block
-  Ctrl+M ............. [Strip Manager Panel] Merge with next audio block
+  Ctrl+M ............. Strips > Merge with previous audio block
+  Ctrl+M ............. [Strip Manager Panel] Merge with previous audio block
   Ctrl+N ............. File > New project
   Ctrl+O ............. File > Open project
   Alt+P .............. Tools > Project preferences

@@ -43,7 +43,7 @@ namespace Obi
             set
             {
                 mAsset = value;
-                UpdateSeq();
+                if (mAsset.Manager != null) UpdateSeq();
             }
         }
 
@@ -65,6 +65,19 @@ namespace Obi
         public SectionNode ParentSection
         {
             get { return getParent() as SectionNode; }
+        }
+
+        /// <summary>
+        /// Previous phrase for this phrase. Null if this phrase is the last one.
+        /// </summary>
+        public PhraseNode PreviousPhrase
+        {
+            get
+            {
+                SectionNode parent = (SectionNode)getParent();
+                int index = Index;
+                return index > 0 ? parent.PhraseChild(index - 1) : null;
+            }
         }
 
         /// <summary>

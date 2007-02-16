@@ -16,20 +16,11 @@ namespace Obi.UserControls
 {
     public partial class StripManagerPanel
     {
-        //md
         public event Events.SectionNodeHandler ShallowDeleteSectionNodeRequested;
-       
-        // public event Events.SectionNodeHandler CutSectionNodeRequested;
-        // public event Events.PhraseNodeHandler CutPhraseNodeRequested;
-        // public event Events.PhraseNodeHandler CopyPhraseNodeRequested;
-        // public event Events.SectionNodeHandler CopySectionNodeRequested;
         public event Events.SectionNodeHandler PasteSectionNodeRequested;
-        // public event Events.NodeEventHandler PastePhraseNodeRequested;
 
         public Events.RequestToSetPageNumberHandler SetPageNumberRequested;
         public Events.PhraseNodeHandler RemovePageNumberRequested;
-
-        public Events.RequestToApplyPhraseDetectionHandler ApplyPhraseDetectionRequested;
 
         private void mContextMenuStrip_Opening(object sender, CancelEventArgs e)
         {
@@ -55,7 +46,7 @@ namespace Obi.UserControls
         {
             if (mSelectedSection != null)
             {
-                mSectionNodeMap[mSelectedSection].StartRenaming();
+                mSectionNodeMap[mSelectedSection].Renaming = true;
             }
         }
 
@@ -83,19 +74,28 @@ namespace Obi.UserControls
             mDeleteStripToolStripMenuItem.Enabled = canCutCopyDeleteSection;
             mMarkStripAsUnusedToolStripMenuItem.Enabled = !isPlaying && isStripSelected;
             mShowInTOCViewToolStripMenuItem.Enabled = !isPlaying && isStripSelected;
-            
-            mImportAudioFileToolStripMenuItem.Enabled = false;
-            mInsertEmptyAudioblockToolStripMenuItem.Enabled = false;
-            mCutAudioBlockToolStripMenuItem.Enabled = false;
-            mCopyAudioBlockToolStripMenuItem.Enabled = false;
-            mPasteAudioBlockToolStripMenuItem.Enabled = false;
-            mDeleteAudioBlockToolStripMenuItem.Enabled = false;
+
+            bool isBlockSelected = SelectedPhraseNode != null;
+            bool canCutCopyDeletePhrase = !isPlaying && isBlockSelected && mProjectPanel.CanCutCopyDeleteNode;
+            bool canPastePhrase = !isPlaying && mProjectPanel.CanPaste(mProjectPanel.Project.Clipboard.Phrase);
+            bool canMoveForward = !isPlaying &&
+                mProjectPanel.Project.CanMovePhraseNode(mSelectedPhrase, PhraseNode.Direction.Forward);
+            bool canMoveBackward = !isPlaying &&
+                mProjectPanel.Project.CanMovePhraseNode(mSelectedPhrase, PhraseNode.Direction.Backward);
+
+            mImportAudioFileToolStripMenuItem.Enabled = !isPlaying && !noSelection;
+            mInsertEmptyAudioblockToolStripMenuItem.Enabled = false; // !isPlaying && !noSelection
+            mCutAudioBlockToolStripMenuItem.Enabled = canCutCopyDeletePhrase;
+            mCopyAudioBlockToolStripMenuItem.Enabled = canCutCopyDeletePhrase;
+            mPasteAudioBlockToolStripMenuItem.Enabled = canPastePhrase;
+            mDeleteAudioBlockToolStripMenuItem.Enabled = canCutCopyDeletePhrase;
             mMarkPhraseAsUnusedToolStripMenuItem.Enabled = false;
-            mSplitAudioBlockToolStripMenuItem.Enabled = false;
-            mApplyPhraseDetectionToolStripMenuItem.Enabled = false;
-            mMergeWithNextAudioBlockToolStripMenuItem.Enabled = false;
-            mMoveAudioBlockForwardToolStripMenuItem.Enabled = false;
-            mMoveAudioBlockBackwardToolStripMenuItem.Enabled = false;
+            mSplitAudioBlockToolStripMenuItem.Enabled = isBlockSelected;
+            mQuickSplitAudioBlockToolStripMenuItem.Enabled = isBlockSelected;
+            mApplyPhraseDetectionToolStripMenuItem.Enabled = !isPlaying && isBlockSelected;
+            mMergeWithPreviousAudioBlockToolStripMenuItem.Enabled = !isPlaying && CanMerge;
+            mMoveAudioBlockForwardToolStripMenuItem.Enabled = canMoveForward;
+            mMoveAudioBlockBackwardToolStripMenuItem.Enabled = canMoveBackward;
             mMoveAudioBlockToolStripMenuItem.Enabled = mMoveAudioBlockForwardToolStripMenuItem.Enabled ||
                 mMoveAudioBlockBackwardToolStripMenuItem.Enabled;
             
@@ -106,64 +106,6 @@ namespace Obi.UserControls
             mRemovePageNumberToolStripMenuItem.Enabled = false;
 
             UpdateVisibleItemsForContextMenu();
-
-            /*
-            bool isStripSelected = mSelectedSection != null;
-            bool isAudioBlockSelected = mSelectedPhrase != null;
-            bool isAudioBlockLast = isAudioBlockSelected &&
-                mSelectedPhrase.Index == mSelectedPhrase.ParentSection.PhraseChildCount - 1;
-            bool isAudioBlockFirst = isAudioBlockSelected && mSelectedPhrase.Index == 0;
-            bool isBlockClipBoardSet = mProjectPanel.Project != null && mProjectPanel.Project.Clipboard.Data != null;
-
-            bool canSetPage = isAudioBlockSelected;  // an audio block must be selected and a heading must not be set.
-            bool canRemovePage = isAudioBlockSelected;
-            if (canRemovePage)
-            {
-                PageProperty pageProp = mSelectedPhrase.getProperty(typeof(PageProperty)) as PageProperty;
-                canRemovePage = pageProp != null && pageProp.getOwner() != null;
-            }
-            bool canRemoveAnnotation = isAudioBlockSelected;
-
-            mAddStripToolStripMenuItem.Enabled = true;
-
-            bool canCutCopyDeleteSection = isStripSelected;
-            mRenameStripToolStripMenuItem.Enabled = isStripSelected;
-            mDeleteStripToolStripMenuItem.Enabled = canCutCopyDeleteSection;
-            mCutStripToolStripMenuItem.Enabled = canCutCopyDeleteSection;
-            mCopyStripToolStripMenuItem.Enabled = canCutCopyDeleteSection;
-            mPasteStripToolStripMenuItem.Enabled = mProjectPanel.CanPaste(mProjectPanel.Project.Clipboard.Section);
-
-            bool canInsertAudioBlock = CanInsertPhraseNode;
-            mImportAudioFileToolStripMenuItem.Enabled = canInsertAudioBlock;
-            mInsertEmptyAudioblockToolStripMenuItem.Enabled = canInsertAudioBlock;
-
-            mSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mApplyPhraseDetectionToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mMergeWithNextAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
-            mCutAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mCopyAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mPasteAudioBlockToolStripMenuItem.Enabled = isBlockClipBoardSet && isStripSelected;
-            mDeleteAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mMoveAudioBlockForwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
-            mMoveAudioBlockBackwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockFirst;
-            mMoveAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && (!isAudioBlockFirst || !isAudioBlockLast);
-
-            mEditAnnotationToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mRemoveAnnotationToolStripMenuItem.Enabled = isAudioBlockSelected;
-
-            mSetPageNumberToolStripMenuItem.Enabled = canSetPage;
-            mRemovePageNumberToolStripMenuItem.Enabled = canRemoveAnnotation;
-
-            mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;
-
-            // Mark section used/unused (by default, i.e. if disabled, "unused")
-            mMarkStripAsUnusedToolStripMenuItem.Enabled = isStripSelected;
-            mMarkStripAsUnusedToolStripMenuItem.Text = String.Format(Localizer.Message("mark_x_as_y"),
-                Localizer.Message("all_phrases"), Localizer.Message(isStripSelected && !SelectedNode.Used ? "used" : "unused"));
-            mMarkPhraseAsUnusedToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mMarkPhraseAsUnusedToolStripMenuItem.Text = String.Format(Localizer.Message("mark_x_as_y"),
-                Localizer.Message("phrase"), Localizer.Message(isAudioBlockSelected && !SelectedNode.Used ? "used" : "unused"));
-            */
         }
 
         //md 20061219 
@@ -190,65 +132,30 @@ namespace Obi.UserControls
 
         }
 
-        /// <summary>
-        /// TODO:
-        /// Adding a strip from the strip manager adds a new sibling strip right after the selected strip
-        /// and reattaches the selected strip's children to the new strip. In effet, the new strip appears
-        /// just below the selected strip.
-        /// When no strip is selected, just add a new strip at the top of the tree.
-        /// </summary>
-
-
-        /// <summary>
-        /// Brings up a file dialog and import one or more audio assets from selected files.
-        /// The project is requested to create new blocks in the selected section, after the
-        /// currently selected block (or at the end if no block is selected.)
-        /// </summary>
-        internal void mImportAudioToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mImportAudioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mSelectedSection != null)
-            {
-                OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Multiselect = true;
-                dialog.Filter = Localizer.Message("audio_file_filter");
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    int index = mSelectedPhrase == null ?
-                        mSelectedSection.PhraseChildCount : mSelectedSection.indexOf(mSelectedPhrase) + 1;
-                    foreach (string path in dialog.FileNames)
-                    {
-                        ImportAudioAssetRequested(this, new Events.Strip.ImportAssetEventArgs(mSelectedSection, path, index));
-                        ++index;
-                    }
-                }
-            }
+            ImportPhrases();
         }
 
-        /// <summary>
-        /// Split the currently selected audio block.
-        /// </summary>
-        /// <remarks>JQ</remarks>
-        internal void mSplitAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mSplitAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mSelectedPhrase != null)
-            {
-                // save the phrase at it gets lost when we stop (?)
-                PhraseNode phrase = mSelectedPhrase;
-                Audio.AudioPlayerState State = this.mProjectPanel.TransportBar.Playlist.State;
-                double time = this.mProjectPanel.TransportBar.Playlist.CurrentTimeInAsset ;
-                this.mProjectPanel.TransportBar.Playlist.Stop();
-                Dialogs.Split dialog = new Dialogs.Split(phrase, time , State );
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-					SplitAudioBlockRequested(this, new Events.Node.SplitPhraseNodeEventArgs(this, phrase, dialog.ResultAsset));
-                }
-            }
+            SplitBlock();
+        }
+
+        private void mQuickSplitAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            QuickSplitBlock();
         }
 
         /// <summary>
         /// Apply sentence detection on the currently selected phrase (unless it is the silence phrase.)
         /// </summary>
-        internal void mApplyPhraseDetectionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mApplyPhraseDetectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ApplyPhraseDetection();
+        }
+
+        public void ApplyPhraseDetection()
         {
             if (mSelectedPhrase != null)
             {
@@ -258,23 +165,16 @@ namespace Obi.UserControls
                     Dialogs.SentenceDetection dialog = new Dialogs.SentenceDetection(silence);
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
-                        ApplyPhraseDetectionRequested(this, new Events.Node.PhraseDetectionEventArgs(this, mSelectedPhrase,
-                            dialog.Threshold, dialog.Gap, dialog.LeadingSilence));
+                        mProjectPanel.Project.ApplyPhraseDetection(mSelectedPhrase, dialog.Threshold, dialog.Gap,
+                            dialog.LeadingSilence);
                     }
                 }
             }
         }
 
-        /// <summary>
-        /// Merge the currently selected block with the following one (if there is such a block.)
-        /// </summary>
-        private void mMergeWithNextAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mMergeWithPreviousAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PhraseNode next = Project.GetNextPhrase(mSelectedPhrase);
-            if (next != null)
-            {
-                MergeNodes(this, new Events.Node.MergeNodesEventArgs(this, mSelectedPhrase, next));
-            }
+            MergeBlocks();
         }
 
         /// <summary>
@@ -310,12 +210,11 @@ namespace Obi.UserControls
         /// <summary>
         /// Move a block forward one spot in the strip, if it is not the last one.
         /// </summary>
-        //mg 20060813: made internal to allow obiform menu sync access 
-        internal void mMoveAudioBlockForwardToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mMoveAudioBlockForwardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mSelectedPhrase != null)
+            if (mSelectedPhrase != null) 
             {
-                MoveAudioBlockForwardRequested(this, new Events.Node.PhraseNodeEventArgs(this, mSelectedPhrase));
+                mProjectPanel.Project.MovePhraseNode(mSelectedPhrase, PhraseNode.Direction.Forward);
             }
         }
 
@@ -327,7 +226,7 @@ namespace Obi.UserControls
         {
             if (mSelectedPhrase != null)
             {
-                MoveAudioBlockBackwardRequested(this, new Events.Node.PhraseNodeEventArgs(this, mSelectedPhrase));
+                mProjectPanel.Project.MovePhraseNode(mSelectedPhrase, PhraseNode.Direction.Backward);
             }
         }
 
@@ -466,8 +365,5 @@ namespace Obi.UserControls
         {
             PasteSectionNode();
         }
-
-        
-
     }
 }
