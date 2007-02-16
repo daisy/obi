@@ -601,6 +601,7 @@ namespace Obi
             this.mEditAnnotationToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
             this.mEditAnnotationToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
             this.mEditAnnotationToolStripMenuItem.Text = "&Edit annotation";
+            this.mEditAnnotationToolStripMenuItem.Click += new System.EventHandler(this.mEditAnnotationToolStripMenuItem_Click);
             // 
             // mRemoveAnnotationToolStripMenuItem
             // 
@@ -609,6 +610,7 @@ namespace Obi
                         | System.Windows.Forms.Keys.Delete)));
             this.mRemoveAnnotationToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
             this.mRemoveAnnotationToolStripMenuItem.Text = "Rem&ove annotation";
+            this.mRemoveAnnotationToolStripMenuItem.Click += new System.EventHandler(this.mRemoveAnnotationToolStripMenuItem_Click);
             // 
             // toolStripSeparator14
             // 
@@ -618,9 +620,10 @@ namespace Obi
             // mSetPageNumberToolStripMenuItem
             // 
             this.mSetPageNumberToolStripMenuItem.Name = "mSetPageNumberToolStripMenuItem";
-            this.mSetPageNumberToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F2)));
+            this.mSetPageNumberToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
             this.mSetPageNumberToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
             this.mSetPageNumberToolStripMenuItem.Text = "Se&t page number";
+            this.mSetPageNumberToolStripMenuItem.Click += new System.EventHandler(this.mSetPageNumberToolStripMenuItem_Click);
             // 
             // mRemovePageNumberToolStripMenuItem
             // 

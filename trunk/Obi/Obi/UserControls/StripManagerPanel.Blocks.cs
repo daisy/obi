@@ -77,7 +77,7 @@ namespace Obi.UserControls
             if (annotation != null) block.AnnotationBlock.Label = annotation.getText();
             Assets.AudioMediaAsset asset = node.Asset;// Project.GetAudioMediaAsset(node);
             PageProperty pageProp = node.getProperty(typeof(PageProperty)) as PageProperty;
-            block.Page = pageProp == null ? "" : pageProp.PageNumber.ToString();
+            block.Label = pageProp == null ? "(no page)" : pageProp.PageNumber.ToString();
             block.Time = Assets.MediaAsset.FormatTime(asset.LengthInMilliseconds);
             return block;
         }
@@ -151,8 +151,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void SyncSetPageNumber(object sender, Events.Node.PhraseNodeEventArgs e)
         {
-            PageProperty pageProp = (PageProperty)e.Node.getProperty(typeof(PageProperty));
-            mPhraseNodeMap[e.Node].Page = pageProp.PageNumber.ToString();
+            mPhraseNodeMap[e.Node].Page = e.Node.PageProperty.PageNumber;
         }
 
         /// <summary>
@@ -160,7 +159,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void SyncRemovedPageNumber(object sender, Events.Node.PhraseNodeEventArgs e)
         {
-            mPhraseNodeMap[e.Node].Page = "";
+            mPhraseNodeMap[e.Node].Label = "";
         }
 
 
@@ -321,6 +320,14 @@ namespace Obi.UserControls
         public void MoveBlock(PhraseNode.Direction direction)
         {
             if (mSelectedPhrase != null) mProjectPanel.Project.MovePhraseNode(mSelectedPhrase, direction);
+        }
+
+        /// <summary>
+        /// Set a page number on the selected block.
+        /// </summary>
+        public void SetPageNumber()
+        {
+            if (mSelectedPhrase != null) mProjectPanel.Project.SetPageNumberOnPhrase(mSelectedPhrase);
         }
     }
 }

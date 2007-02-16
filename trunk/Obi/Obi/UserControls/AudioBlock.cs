@@ -42,7 +42,6 @@ namespace Obi.UserControls
                 if (mSelected != value)
                 {
                     mSelected = value;
-                    StopEditingPageNumber();
                     Invalidate();
                 }
             }
@@ -89,7 +88,7 @@ namespace Obi.UserControls
         }
 
         /// <summary>
-        /// Set the label (i.e. asset name) of this block
+        /// Set the label of this block
         /// </summary>
         public string Label
         {
@@ -97,26 +96,11 @@ namespace Obi.UserControls
         }
 
         /// <summary>
-        /// Set the page number associated with the block (empty string or page number)
+        /// Set the page number on the label.
         /// </summary>
-        public string Page
+        public int Page
         {
-            set
-            {
-                mPage.ReadOnly = true;
-                mPage.Text = value;
-                mPage.Visible = value != "";
-            }
-        }
-
-        /// <summary>
-        /// Make sure that the page box is visible, with the correct color and size.
-        /// </summary>
-        private void ShowPageBox()
-        {
-            mPage.Visible = true;
-            mPage.BackColor = BackColor;
-            mPage.Size = new Size(Width, mPage.Height);
+            set { mLabel.Text = Label = String.Format(Localizer.Message("page_number"), value.ToString()); }
         }
 
         /// <summary>
@@ -125,14 +109,6 @@ namespace Obi.UserControls
         public string Time
         {
             set { mTimeLabel.Text = value; }
-        }
-
-        /// <summary>
-        /// Name of the audio asset (shown in the block.)
-        /// </summary>
-        public string AssetName
-        {
-            set { mLabel.Text = value; }
         }
 
         #endregion
@@ -175,84 +151,12 @@ namespace Obi.UserControls
         /// There is also a bug that occurs when editing for the second time, when
         /// no text is selected... strange.
         /// </summary>
-        internal void StartRenaming()
+        internal void StartEditingAnnotation()
         {
             mAnnotationBlock.StartRenaming();
         }
 
         #endregion
-
-        /// <summary>
-        /// Edit the page label for the structure block linked to this audio block.
-        /// </summary>
-        internal void StartEditingPageNumber()
-        {
-            ShowPageBox();
-            mPage.ReadOnly = false;
-            mPage.Tag = mPage.Text;
-            if (mPage.Text == "") mPage.Text = Localizer.Message("no_page_label");
-            mPage.SelectAll();
-            mPage.Focus();
-        }
-
-        /// <summary>
-        /// Stop the editing of the page number.
-        /// </summary>
-        private void StopEditingPageNumber()
-        {
-            if (!mPage.ReadOnly) Page = (string)mPage.Tag;
-        }
-
-        /// <summary>
-        /// Catch enter and escape to update or cancel the page number.
-        /// </summary>
-        private void mPage_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-                UpdatePageNumber();
-            }
-            else if (e.KeyCode == Keys.Escape)
-            {
-                StopEditingPageNumber();
-            }
-        }
-
-        /// <summary>
-        /// Leaving the page box without validating cancels.
-        /// </summary>
-        private void mPage_Leave(object sender, EventArgs e)
-        {
-            StopEditingPageNumber();
-        }
-
-        /// <summary>
-        /// Set the page node from the label text.
-        /// An empty string will have no effect.
-        /// </summary>
-        private void UpdatePageNumber()
-        {
-            System.Text.RegularExpressions.Match m = System.Text.RegularExpressions.Regex.Match(mPage.Text, "\\d+");
-            if (m.Success)
-            {
-                try
-                {
-                    // the number may be too big
-                    int pageNumber = Int32.Parse(m.Value);
-                    mManager.SetPageNumberRequested(this, new Events.Node.SetPageEventArgs(this, mNode, pageNumber));
-                    mPage.ReadOnly = true;
-                    Page = m.Value;
-                }
-                catch (Exception)
-                {
-                    StopEditingPageNumber();
-                }
-            }
-            else
-            {
-                StopEditingPageNumber();
-            }
-        }
 
         /// <summary>
         /// Contents size changed, so update the minimum width.

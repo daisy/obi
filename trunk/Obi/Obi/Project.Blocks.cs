@@ -602,5 +602,21 @@ namespace Obi
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             Modified();
         }
+
+        /// <summary>
+        /// Set a page number on the given phrase.
+        /// </summary>
+        /// <param name="node">The phrase node to set a page on.</param>
+        public void SetPageNumberOnPhrase(PhraseNode node)
+        {
+            if (node.PageProperty == null)
+            {
+                PageProperty page = new PageProperty();
+                mPages.Add(node);
+                page.PageNumber = mPages.Count;
+                node.PageProperty = page;
+                SetPageNumber(this, new Events.Node.PhraseNodeEventArgs(this, node));
+            }
+        }
     }
 }

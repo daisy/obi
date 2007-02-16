@@ -98,9 +98,10 @@ namespace Obi.UserControls
             mMoveAudioBlockBackwardToolStripMenuItem.Enabled = canMoveBackward;
             mMoveAudioBlockToolStripMenuItem.Enabled = mMoveAudioBlockForwardToolStripMenuItem.Enabled ||
                 mMoveAudioBlockBackwardToolStripMenuItem.Enabled;
-            
-            mEditAnnotationToolStripMenuItem.Enabled = false;
-            mRemoveAnnotationToolStripMenuItem.Enabled = false;
+
+            bool canRemoveAnnotation = !isPlaying && isBlockSelected && mSelectedPhrase.HasAnnotation;
+            mEditAnnotationToolStripMenuItem.Enabled = !isPlaying && isBlockSelected;
+            mRemoveAnnotationToolStripMenuItem.Enabled = canRemoveAnnotation;
             
             mSetPageNumberToolStripMenuItem.Enabled = false;
             mRemovePageNumberToolStripMenuItem.Enabled = false;
@@ -180,11 +181,16 @@ namespace Obi.UserControls
         /// <summary>
         /// Rename the currently selected audio block (JQ)
         /// </summary>
-        internal void mEditAudioBlockLabelToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mEditAudioBlockLabelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditAnnotationForAudioBlock();
+        }
+
+        public void EditAnnotationForAudioBlock()
         {
             if (mSelectedPhrase != null)
             {
-                mPhraseNodeMap[mSelectedPhrase].StartRenaming();
+                mPhraseNodeMap[mSelectedPhrase].StartEditingAnnotation();
             }
         }
 
@@ -192,6 +198,11 @@ namespace Obi.UserControls
         /// Remove the annotation on a block.
         /// </summary>
         private void mRemoveAnnotationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RemoveAnnotationForAudioBlock();
+        }
+
+        public void RemoveAnnotationForAudioBlock()
         {
             if (mSelectedPhrase != null)
             {
@@ -296,17 +307,6 @@ namespace Obi.UserControls
             // SectionNode contextNode = mSelectedSection;
             PasteSectionNodeRequested(this, new SectionNodeEventArgs(this, mSelectedSection));
         }
-
-        /// <summary>
-        /// Add a page number to the synchronization strip.
-        /// If there is already a page here, ask the user if she wants to replace it.
-        /// </summary>
-        // JQ 20060817
-        internal void mSetPageNumberToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mSelectedPhrase != null) mPhraseNodeMap[mSelectedPhrase].StartEditingPageNumber();
-        }
-
 
         /// <summary>
         /// Remove a page number.

@@ -340,7 +340,6 @@ namespace Obi.UserControls
             this.mSetPageNumberToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F2)));
             this.mSetPageNumberToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
             this.mSetPageNumberToolStripMenuItem.Text = "Se&t page number";
-            this.mSetPageNumberToolStripMenuItem.Click += new System.EventHandler(this.mSetPageNumberToolStripMenuItem_Click);
             // 
             // mRemovePageNumberToolStripMenuItem
             // 

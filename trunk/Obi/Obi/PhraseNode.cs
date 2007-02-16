@@ -20,7 +20,16 @@ namespace Obi
         public enum Direction { Forward, Backward };
 
         /// <summary>
-        /// The annotation for this node; normally the name of the asset.
+        /// True if there is an annotation on the node.
+        /// </summary>
+        /// <remarks>This has to be reviewed (along with actually setting the annotation!)</remarks>
+        public bool HasAnnotation
+        {
+            get { return true; }
+        }
+
+        /// <summary>
+        /// The annotation for this node.
         /// </summary>
         public string Annotation
         {

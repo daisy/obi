@@ -32,7 +32,6 @@ namespace Obi.UserControls
             this.mTimeLabel = new System.Windows.Forms.Label();
             this.mToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.mLabel = new System.Windows.Forms.Label();
-            this.mPage = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // mTimeLabel
@@ -72,23 +71,12 @@ namespace Obi.UserControls
             this.mLabel.Click += new System.EventHandler(this.AudioBlock_Click);
             this.mLabel.SizeChanged += new System.EventHandler(this.ContentsSizeChanged);
             // 
-            // mPage
-            // 
-            this.mPage.BackColor = System.Drawing.Color.Pink;
-            this.mPage.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.mPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mPage.Location = new System.Drawing.Point(7, 50);
-            this.mPage.Name = "mPage";
-            this.mPage.Size = new System.Drawing.Size(91, 14);
-            this.mPage.TabIndex = 3;
-            // 
             // AudioBlock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Pink;
-            this.Controls.Add(this.mPage);
             this.Controls.Add(this.mLabel);
             this.Controls.Add(this.mTimeLabel);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 2, 0);
@@ -107,6 +95,5 @@ namespace Obi.UserControls
         private System.Windows.Forms.Label mTimeLabel;
         private System.Windows.Forms.ToolTip mToolTip;
         private System.Windows.Forms.Label mLabel;
-        private System.Windows.Forms.TextBox mPage;
     }
 }
