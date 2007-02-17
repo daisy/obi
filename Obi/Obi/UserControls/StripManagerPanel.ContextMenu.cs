@@ -102,8 +102,8 @@ namespace Obi.UserControls
             bool canRemoveAnnotation = !isPlaying && isBlockSelected && mSelectedPhrase.HasAnnotation;
             mEditAnnotationToolStripMenuItem.Enabled = !isPlaying && isBlockSelected;
             mRemoveAnnotationToolStripMenuItem.Enabled = canRemoveAnnotation;
-            
-            mSetPageNumberToolStripMenuItem.Enabled = false;
+
+            mSetPageNumberToolStripMenuItem.Enabled = !isPlaying && CanSetPage;
             mRemovePageNumberToolStripMenuItem.Enabled = false;
 
             UpdateVisibleItemsForContextMenu();

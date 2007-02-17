@@ -273,6 +273,7 @@ namespace Obi
                 Visitors.AssetCreator visitor = new Visitors.AssetCreator(mAssManager, delegate(string m) { });
                 //     delegate(string message) { errMessages += message + "\n"; });
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
+                mPages = visitor.Pages;
                 // if (errMessages != "")
                 // {
                 //     throw new Exception(String.Format(Localizer.Message("open_project_error_text") + "\n" + errMessages, xukPath));

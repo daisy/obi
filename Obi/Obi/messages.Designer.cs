@@ -124,6 +124,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Audio.
+        /// </summary>
+        internal static string audio_block_default_label {
+            get {
+                return ResourceManager.GetString("audio_block_default_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The duration of this audio segment.
         /// </summary>
         internal static string audio_block_duration_tooltip {

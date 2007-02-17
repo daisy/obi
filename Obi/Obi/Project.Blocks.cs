@@ -603,6 +603,8 @@ namespace Obi
             Modified();
         }
 
+        #region page numbers
+
         /// <summary>
         /// Set a page number on the given phrase.
         /// </summary>
@@ -618,5 +620,21 @@ namespace Obi
                 SetPageNumber(this, new Events.Node.PhraseNodeEventArgs(this, node));
             }
         }
+
+        /// <summary>
+        /// Remove a page number of the given phrase.
+        /// </summary>
+        /// <param name="node">The phrase to remove the page number from.</param>
+        public void RemovePageNumberOnPhrase(PhraseNode node)
+        {
+            if (node.PageProperty != null)
+            {
+                mPages.Remove(node);
+                node.PageProperty = null;
+                RemovedPageNumber(this, new Events.Node.PhraseNodeEventArgs(this, node));
+            }
+        }
+
+        #endregion
     }
 }

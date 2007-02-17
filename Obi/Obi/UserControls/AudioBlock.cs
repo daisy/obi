@@ -30,7 +30,7 @@ namespace Obi.UserControls
                 {
                     mAnnotationBlock.Used = mNode != null ? mNode.Used : false;
                 }
-                RefreshUsed();
+                if (mNode != null) RefreshDisplay();
             }
         }
 
@@ -54,10 +54,11 @@ namespace Obi.UserControls
         {
             set
             {
-                BackColor = mNode != null && value ?
+                /*BackColor = mNode != null && value ?
                     mNode.Asset.LengthInMilliseconds == 0.0 ? Colors.AudioBlockEmpty : Colors.AudioBlockUsed :
                     Colors.AudioBlockUnused;
-                mLabel.BackColor = BackColor;
+                mLabel.BackColor = BackColor;*/
+                RefreshUsed();
             }
         }
 
@@ -85,30 +86,6 @@ namespace Obi.UserControls
                 mAnnotationBlock = value;
                 mAnnotationBlock.AudioBlock = this;
             }
-        }
-
-        /// <summary>
-        /// Set the label of this block
-        /// </summary>
-        public string Label
-        {
-            set { mLabel.Text = value; }
-        }
-
-        /// <summary>
-        /// Set the page number on the label.
-        /// </summary>
-        public int Page
-        {
-            set { mLabel.Text = Label = String.Format(Localizer.Message("page_number"), value.ToString()); }
-        }
-
-        /// <summary>
-        /// Total time display (string form.)
-        /// </summary>
-        public string Time
-        {
-            set { mTimeLabel.Text = value; }
         }
 
         #endregion
@@ -163,11 +140,7 @@ namespace Obi.UserControls
         /// </summary>
         private void ContentsSizeChanged(object sender, EventArgs e)
         {
-            int wlabel = mLabel.Width + mLabel.Location.X + mLabel.Margin.Right;
-            int wtime = mTimeLabel.Width + mTimeLabel.Location.X + mTimeLabel.Margin.Right;
-            int widest = wlabel > wtime ? wlabel : wtime;
-            MinimumSize = new Size(widest, Height);
-            if (ChangedMinimumSize != null) ChangedMinimumSize(this, new EventArgs());
+            RefreshWidth();
         }
 
         /// <summary>
@@ -186,7 +159,20 @@ namespace Obi.UserControls
             }
         }
 
-        internal void RefreshUsed()
+        /// <summary>
+        /// Refresh the display when the node underneath has been modified.
+        /// </summary>
+        public void RefreshDisplay()
+        {
+            RefreshUsed();
+            RefreshLabels();
+            RefreshWidth();
+        }
+
+        /// <summary>
+        /// Refresh the display of the block to show its used state.
+        /// </summary>
+        private void RefreshUsed()
         {
             BackColor = mNode != null && mNode.Used ?
                 mNode.Asset.LengthInMilliseconds == 0.0 ? Colors.AudioBlockEmpty : Colors.AudioBlockUsed :
@@ -195,6 +181,36 @@ namespace Obi.UserControls
             {
                 mAnnotationBlock.Used = mNode.Used;
             }
+        }
+
+        /// <summary>
+        /// Refresh the labels of the block to show its timing and page number (if any.)
+        /// </summary>
+        private void RefreshLabels()
+        {
+            // Set the label
+            if (mNode.PageProperty != null)
+            {
+                mLabel.Text = String.Format(Localizer.Message("page_number"), mNode.PageProperty.PageNumber);
+            }
+            else
+            {
+                mLabel.Text = Localizer.Message("audio_block_default_label");
+            }
+            // Set the time display
+            mTimeLabel.Text = Assets.MediaAsset.FormatTime(mNode.Asset.LengthInMilliseconds);
+        }
+
+        /// <summary>
+        /// Refresh the width of the block and its annotation.
+        /// </summary>
+        private void RefreshWidth()
+        {
+            int wlabel = mLabel.Width + mLabel.Location.X + mLabel.Margin.Right;
+            int wtime = mTimeLabel.Width + mTimeLabel.Location.X + mTimeLabel.Margin.Right;
+            int widest = wlabel > wtime ? wlabel : wtime;
+            MinimumSize = new Size(widest, Height);
+            if (ChangedMinimumSize != null) ChangedMinimumSize(this, new EventArgs());
         }
     }
 }

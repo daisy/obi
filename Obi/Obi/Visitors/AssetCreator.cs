@@ -16,6 +16,15 @@ namespace Obi.Visitors
     {
         private Assets.AssetManager mAssManager;  // the asset manager which handles the assets
         private ErrorHandler mErrorHandler;       // error handler called when an asset cannot be created.
+        private List<PhraseNode> mPages;          // pages read from the project
+
+        /// <summary>
+        /// The list of pages read from the project file.
+        /// </summary>
+        public List<PhraseNode> Pages
+        {
+            get { return mPages; }
+        }
 
         /// <summary>
         /// Create a new asset visitor for a given asset manager.
@@ -24,6 +33,7 @@ namespace Obi.Visitors
         {
             mAssManager = assManager;
             mErrorHandler = errorHandler;
+            mPages = new List<PhraseNode>();
         }
 
         /// <summary>
@@ -38,7 +48,7 @@ namespace Obi.Visitors
         /// </summary>
         public bool preVisit(ICoreNode node)
         {
-            if (node.GetType() == System.Type.GetType("Obi.PhraseNode"))
+            if (node is PhraseNode)
             {
                 SequenceMedia media = (SequenceMedia)Project.GetMediaForChannel((CoreNode)node, Project.AudioChannelName);
                 List<Assets.AudioClip> clips = new List<Assets.AudioClip>(media.getCount());
@@ -68,6 +78,7 @@ namespace Obi.Visitors
                 {
                     ((PhraseNode)node).Asset = Assets.AudioMediaAsset.Empty;
                 }
+                if (((PhraseNode)node).PageProperty != null) mPages.Add((PhraseNode)node);
             }
             return true;
         }
