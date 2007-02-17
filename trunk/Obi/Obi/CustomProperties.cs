@@ -88,12 +88,15 @@ namespace Obi
         }
 
         /// <summary>
-        /// Not implemented yet.
+        /// Copy of the page property (with the same page number and owner.)
         /// </summary>
-        /// <returns>A copy of the property (when it is implemented...)</returns>
+        /// <returns>A copy of the property.</returns>
         public override IProperty copy()
         {
-            throw new Exception("The method or operation is not implemented.");
+            PageProperty copy = new PageProperty();
+            copy.mOwner = mOwner;
+            copy.mPageNumber = mPageNumber;
+            return copy;
         }
 
         /// <summary>

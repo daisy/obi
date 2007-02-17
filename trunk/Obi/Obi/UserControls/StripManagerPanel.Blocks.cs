@@ -77,8 +77,8 @@ namespace Obi.UserControls
             if (annotation != null) block.AnnotationBlock.Label = annotation.getText();
             Assets.AudioMediaAsset asset = node.Asset;// Project.GetAudioMediaAsset(node);
             PageProperty pageProp = node.getProperty(typeof(PageProperty)) as PageProperty;
-            block.Label = pageProp == null ? "(no page)" : pageProp.PageNumber.ToString();
-            block.Time = Assets.MediaAsset.FormatTime(asset.LengthInMilliseconds);
+            // block.Label = pageProp == null ? "(no page)" : pageProp.PageNumber.ToString();
+            // block.Time = Assets.MediaAsset.FormatTime(asset.LengthInMilliseconds);
             return block;
         }
 
@@ -123,14 +123,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void SyncTouchedNode(object sender, Events.Node.NodeEventArgs e)
         {
-            if (e.Node.GetType() == Type.GetType("Obi.SectionNode"))
-            {
-                SelectedSectionNode = (SectionNode)e.Node;
-            }
-            else if (e.Node.GetType() == Type.GetType("Obi.PhraseNode"))
-            {
-                SelectedPhraseNode = (PhraseNode)e.Node;
-            }
+            SelectedNode = e.Node as ObiNode;
         }
 
         /// <summary>
@@ -138,7 +131,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void SyncUpdateAudioBlockTime(object sender, Events.Strip.UpdateTimeEventArgs e)
         {
-            mPhraseNodeMap[e.Node].Time = Assets.MediaAsset.FormatTime(e.Time);
+            mPhraseNodeMap[e.Node].RefreshDisplay();
         }
 
         internal void InterceptKeyDownFromChildControl(KeyEventArgs e)
@@ -151,7 +144,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void SyncSetPageNumber(object sender, Events.Node.PhraseNodeEventArgs e)
         {
-            mPhraseNodeMap[e.Node].Page = e.Node.PageProperty.PageNumber;
+            mPhraseNodeMap[e.Node].RefreshDisplay();
         }
 
         /// <summary>
@@ -159,7 +152,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void SyncRemovedPageNumber(object sender, Events.Node.PhraseNodeEventArgs e)
         {
-            mPhraseNodeMap[e.Node].Label = "";
+            mPhraseNodeMap[e.Node].RefreshDisplay();
         }
 
 

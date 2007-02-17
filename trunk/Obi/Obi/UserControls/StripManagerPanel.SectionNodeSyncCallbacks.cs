@@ -182,7 +182,7 @@ namespace Obi.UserControls
             }
             else if (e.Node is PhraseNode)
             {
-                mPhraseNodeMap[(PhraseNode)e.Node].RefreshUsed();
+                mPhraseNodeMap[(PhraseNode)e.Node].RefreshDisplay();
             }
         }
     }

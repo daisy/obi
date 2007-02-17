@@ -40,13 +40,18 @@ namespace Obi.UserControls
             {
                 if (value != null)
                 {
-                    if (value.GetType() == Type.GetType("Obi.SectionNode"))
+                    if (value is SectionNode)
                     {
                         SelectedSectionNode = (SectionNode)value;
                     }
-                    else if (value.GetType() == Type.GetType("Obi.PhraseNode"))
+                    else if (value is PhraseNode)
                     {
                         SelectedPhraseNode = (PhraseNode)value;
+                    }
+                    else
+                    {
+                        SelectedPhraseNode = null;
+                        SelectedSectionNode = null;
                     }
                 }
                 else
@@ -315,6 +320,11 @@ namespace Obi.UserControls
         {
             SelectedSectionNode = null;
             SelectedPhraseNode = null;
+        }
+
+        private void mSetPageNumberToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mSelectedPhrase != null) mProjectPanel.Project.SetPageNumberOnPhrase(mSelectedPhrase);
         }
     }
 }

@@ -64,9 +64,9 @@ namespace Obi.UserControls
             this.mLabel.Location = new System.Drawing.Point(7, 7);
             this.mLabel.Margin = new System.Windows.Forms.Padding(3);
             this.mLabel.Name = "mLabel";
-            this.mLabel.Size = new System.Drawing.Size(38, 15);
+            this.mLabel.Size = new System.Drawing.Size(77, 15);
             this.mLabel.TabIndex = 1;
-            this.mLabel.Text = "Audio";
+            this.mLabel.Text = "(audio/page)";
             this.mLabel.DoubleClick += new System.EventHandler(this.AudioBlock_DoubleClick);
             this.mLabel.Click += new System.EventHandler(this.AudioBlock_Click);
             this.mLabel.SizeChanged += new System.EventHandler(this.ContentsSizeChanged);

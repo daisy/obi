@@ -317,8 +317,9 @@ namespace Obi.UserControls
         /// <param name="audioBlock">The block for which the asset has changed.</param>
         internal void UpdateAssetAudioBlock(AudioBlock audioBlock)
         {
-            Assets.AudioMediaAsset asset = audioBlock.Node.Asset;
-            audioBlock.Time = Assets.MediaAsset.FormatTime(asset.LengthInMilliseconds);
+            audioBlock.RefreshDisplay();
+            // Assets.AudioMediaAsset asset = audioBlock.Node.Asset;
+            // audioBlock.Time = Assets.MediaAsset.FormatTime(asset.LengthInMilliseconds);
         }
 
         /// <summary>
@@ -373,7 +374,7 @@ namespace Obi.UserControls
             ForeColor = mNode.Used ? Colors.SectionStripUsedFore : Colors.SectionStripUnusedFore;
             foreach (Control c in mAudioLayoutPanel.Controls)
             {
-                if (c is AudioBlock) ((AudioBlock)c).RefreshUsed();
+                if (c is AudioBlock) ((AudioBlock)c).RefreshDisplay();
             }
         }
     }
