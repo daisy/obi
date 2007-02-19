@@ -228,3 +228,17 @@ a	Dedicated pause recording
   Missing ............ Help > About Obi
 
   Debug .............. Tools > Dump tree
+
+
+Transport bar shortcut keys
+
+  Space .............. Play
+  Escape ............. Stop
+  P .................. Pause
+  F .................. Next phrase (forward)
+  B .................. Previous phrase (backward)
+  U .................. Previous section (up)
+  D .................. Next section (down)
+  R .................. Record
+  Plus ............... Fast forward
+  Minus .............. Rewind
