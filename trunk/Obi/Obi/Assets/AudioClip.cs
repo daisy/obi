@@ -77,6 +77,15 @@ namespace Obi.Assets
             }
         }
 
+        public double FileAudioInMilliseconds
+        {
+            get
+            {
+                return m_dFileAudioLengthInTime;
+            }
+        }
+
+
         internal long BeginByte
         {
             get
@@ -153,7 +162,7 @@ namespace Obi.Assets
             Init(path);
 
             // Adjust File time length if clip time is near
-            if (endTime > m_dFileAudioLengthInTime && endTime < m_dFileAudioLengthInTime + 50)
+            if (endTime > m_dFileAudioLengthInTime && endTime < m_dFileAudioLengthInTime + 500)
                 endTime = m_dFileAudioLengthInTime;
 
             
