@@ -631,4 +631,8 @@ Appendix B - Known Issues
 
 Appendix C - Changelog
 
-This section will list all changes from version 0.8.0.0 on.
+  C.1 New in Obi 0.8.1.0
+
+    C.1.1 After changed to before for sections (where exactly? Marisa?)
+
+    C.1.2 Set/remove pages added, need to be written up (Julien)
