@@ -192,7 +192,7 @@ namespace Obi
         /// <summary>
         /// Detach this phrase node from its parent.
         /// </summary>
-        internal void DetachFromParent()
+        public void DetachFromParent()
         {
             ParentSection.RemoveChildPhrase(this);
         }

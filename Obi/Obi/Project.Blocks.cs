@@ -127,7 +127,7 @@ namespace Obi
         /// </summary>
         /// <param name="node">The node to merge.</param>
         /// <param name="next">The next one to merge with.</param>
-        public void MergeNodes__(PhraseNode node, PhraseNode nextNode)
+        public void MergeNodes(PhraseNode node, PhraseNode nextNode)
         {
             Assets.AudioMediaAsset asset = node.Asset;
             Assets.AudioMediaAsset next = nextNode.Asset;
@@ -621,6 +621,35 @@ namespace Obi
                     if (visited != null)
                     {
                         if (visited.PageProperty != null)
+                        {
+                            if (visited.PageProperty.PageNumber != pageNumber)
+                            {
+                                visited.PageProperty.PageNumber = pageNumber;
+                                SetPageNumber(this, new Events.Node.PhraseNodeEventArgs(this, visited));
+                            }
+                            ++pageNumber;
+                        }
+                    }
+                    return true;
+                },
+                delegate(ICoreNode n) { }
+            );
+        }
+
+        /// <summary>
+        /// Renumber pages, excluding a node which will be removed.
+        /// </summary>
+        /// <param name="excluded"></param>
+        public void RenumberPagesExcluding(PhraseNode excluded)
+        {
+            int pageNumber = 1;
+            RootNode.visitDepthFirst(
+                delegate(ICoreNode n)
+                {
+                    PhraseNode visited = n as PhraseNode;
+                    if (visited != null)
+                    {
+                        if (visited.PageProperty != null && visited != excluded)
                         {
                             if (visited.PageProperty.PageNumber != pageNumber)
                             {
