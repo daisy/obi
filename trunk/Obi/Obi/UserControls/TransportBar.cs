@@ -13,8 +13,7 @@ namespace Obi.UserControls
         private Playlist mPlaylist;          // current playlist (may be null)
         private ObiNode mPreviousSelection;  // selection before playback started
 
-        public delegate bool HandledShortcutKey();
-        private Dictionary<Keys, HandledShortcutKey> mShortcutKeys;
+        private Dictionary<Keys, ObiForm.HandledShortcutKey> mShortcutKeys;
 
         // constants from the display combo box
         private static readonly int Elapsed = 0;
@@ -129,8 +128,7 @@ namespace Obi.UserControls
             InitializeComponent();
             Enabled = false;
             mPlaylist = null;
-            mShortcutKeys = new Dictionary<Keys, HandledShortcutKey>();
-            mShortcutKeys[Keys.Space] = ShortcutKey_PlayOrPause;
+            SetShortcutKeys();
             mDisplayBox.SelectedIndex = ElapsedTotal;
             mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
         }
@@ -495,20 +493,25 @@ namespace Obi.UserControls
             mTimeDisplayBox.Focus();
         }
 
+        private void SetShortcutKeys()
+        {
+            mShortcutKeys = new Dictionary<Keys, ObiForm.HandledShortcutKey>();
+            // Shortcut keys should be configurable
+            mShortcutKeys[Keys.Space] = delegate() { Play(); return true; };
+            mShortcutKeys[Keys.Escape] = delegate() { Stop(); return true; };
+            mShortcutKeys[Keys.P] = delegate() { Pause(); return true; };
+            mShortcutKeys[Keys.F] = delegate() { PrevPhrase(); return true; };
+            mShortcutKeys[Keys.B] = delegate() { NextPhrase(); return true; };
+            mShortcutKeys[Keys.U] = delegate() { PrevSection(); return true; };
+            mShortcutKeys[Keys.D] = delegate() { NextSection(); return true; };
+            mShortcutKeys[Keys.R] = delegate() { Record(); return true; };
+            mShortcutKeys[Keys.Oemplus] = delegate() { FastForward(); return true; };
+            mShortcutKeys[Keys.OemMinus] = delegate() { Rewind(); return true; };
+        }
+
         public bool HandleShortcutKeys(Keys key)
         {
             return Enabled && mShortcutKeys.ContainsKey(key) ? mShortcutKeys[key]() : false;
-        }
-
-        private bool ShortcutKey_PlayOrPause()
-        {
-            bool handled = false;
-            if (CanPlay || CanResume)
-            {
-                Play();
-                handled = true;
-            }
-            return handled;
         }
     }
 }

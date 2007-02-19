@@ -7,6 +7,7 @@ using urakawa.core;
 
 namespace Obi
 {
+
     /// <summary>
     /// The main for of the application.
     /// The form consists mostly of a menu bar and a project panel.
@@ -18,6 +19,8 @@ namespace Obi
         private Settings mSettings;              // application settings
         private CommandManager mCommandManager;  // the undo stack for this project
         private Audio.VuMeterForm mVuMeterForm;  // keep track of a single VU meter form
+
+        public delegate bool HandledShortcutKey();  // for keyboard shortcuts all around
 
         /// <summary>
         /// Application settings.
