@@ -631,6 +631,7 @@ namespace Obi
             this.mRemovePageNumberToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Delete)));
             this.mRemovePageNumberToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
             this.mRemovePageNumberToolStripMenuItem.Text = "Remove page &number";
+            this.mRemovePageNumberToolStripMenuItem.Click += new System.EventHandler(this.mRemovePageNumberToolStripMenuItem_Click);
             // 
             // toolStripSeparator13
             // 

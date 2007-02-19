@@ -84,8 +84,6 @@ namespace Obi.UserControls
             //md 20060812
             mStripManagerPanel.ShallowDeleteSectionNodeRequested += new Events.SectionNodeHandler(project.ShallowDeleteSectionNodeRequested);
 
-            mStripManagerPanel.SetPageNumberRequested += new Events.RequestToSetPageNumberHandler(project.SetPageRequested);
-            mStripManagerPanel.RemovePageNumberRequested += new Events.PhraseNodeHandler(project.RemovePageRequested);
             project.RemovedPageNumber += new Events.PhraseNodeHandler(mStripManagerPanel.SyncRemovedPageNumber);
             project.SetPageNumber += new Events.PhraseNodeHandler(mStripManagerPanel.SyncSetPageNumber);
 
@@ -137,9 +135,6 @@ namespace Obi.UserControls
             //md 20060812
             mStripManagerPanel.ShallowDeleteSectionNodeRequested -= new Events.SectionNodeHandler(mProject.ShallowDeleteSectionNodeRequested);
 
-            mStripManagerPanel.SetPageNumberRequested -= new Events.RequestToSetPageNumberHandler(mProject.SetPageRequested);
-            mStripManagerPanel.RemovePageNumberRequested -=
-                new Events.PhraseNodeHandler(mProject.RemovePageRequested);
             mProject.RemovedPageNumber -= new Events.PhraseNodeHandler(mStripManagerPanel.SyncRemovedPageNumber);
             mProject.SetPageNumber -= new Events.PhraseNodeHandler(mStripManagerPanel.SyncSetPageNumber);
 

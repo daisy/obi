@@ -1002,7 +1002,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to remove page label.
+        ///   Looks up a localized string similar to remove page number.
         /// </summary>
         internal static string remove_page_command_label {
             get {
@@ -1113,7 +1113,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to set page label.
+        ///   Looks up a localized string similar to set page number.
         /// </summary>
         internal static string set_page_command_label {
             get {

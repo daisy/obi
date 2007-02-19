@@ -484,60 +484,6 @@ namespace Obi
             TouchedNode(this, new Events.Node.NodeEventArgs(this, node));
         }
 
-        /// <summary>
-        /// Set the page for a phrase node. Create a new node if it did not exist before, otherwise update the label.
-        /// </summary>
-        internal void SetPageRequested(object sender, Events.Node.SetPageEventArgs e)
-        {
-            PageProperty pageProp = e.Node.getProperty(typeof(PageProperty)) as PageProperty;
-            Commands.Strips.SetNewPageNumber command = null;
-            if (pageProp == null)
-            {
-                pageProp = (PageProperty)getPresentation().getPropertyFactory().createProperty(PageProperty.NodeName,
-                    ObiPropertyFactory.ObiNS);
-                pageProp.PageNumber = e.PageNumber;
-                e.Node.setProperty(pageProp);
-                command = new Commands.Strips.SetNewPageNumber(e.Node);
-            }
-            else
-            {
-                int prev = pageProp.PageNumber;
-                if (e.PageNumber != prev)
-                {
-                    pageProp.PageNumber = e.PageNumber;
-                    command = new Commands.Strips.SetPageNumber(e.Node, prev);
-                }
-                else
-                {
-                    return;
-                }
-            }
-            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-        }
-
-        /// <summary>
-        /// Remove a page for a phrase node.
-        /// </summary>
-        internal void RemovePageRequested(object sender, Events.Node.PhraseNodeEventArgs e)
-        {
-            Commands.Strips.RemovePageNumber command = new Commands.Strips.RemovePageNumber(e.Node);
-            RemovePage(e.Origin, e.Node);
-            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-        }
-
-        /// <summary>
-        /// Remove a page label from a phrase node (actually remove the property.)
-        /// </summary>
-        internal void RemovePage(object origin, PhraseNode node)
-        {
-            node.removeProperty(typeof(PageProperty));
-            RemovedPageNumber(this, new Events.Node.PhraseNodeEventArgs(origin, node));
-            mUnsaved = true;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));            
-        }
-
         #endregion
 
         /// <summary>
@@ -609,30 +555,85 @@ namespace Obi
         /// Set a page number on the given phrase.
         /// </summary>
         /// <param name="node">The phrase node to set a page on.</param>
-        public void SetPageNumberOnPhrase(PhraseNode node)
+        /// <returns>True if the operation actually was performed.</returns>
+        public bool DidSetPageNumberOnPhrase(PhraseNode node)
         {
             if (node.PageProperty == null)
             {
-                PageProperty page = new PageProperty();
-                mPages.Add(node);
-                page.PageNumber = mPages.Count;
-                node.PageProperty = page;
-                SetPageNumber(this, new Events.Node.PhraseNodeEventArgs(this, node));
+                node.PageProperty = new PageProperty();
+                node.PageProperty.PageNumber = 0;
+                RenumberPages();
+                return true;
             }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Set a page number on the given phrase and issue a command.
+        /// </summary>
+        /// <param name="node">The phrase node to set a page on.</param>
+        public void SetPageNumberOnPhraseWithUndo(PhraseNode node)
+        {
+            if (DidSetPageNumberOnPhrase(node)) Modified(new Commands.Strips.SetPageNumber(node));
         }
 
         /// <summary>
         /// Remove a page number of the given phrase.
         /// </summary>
         /// <param name="node">The phrase to remove the page number from.</param>
-        public void RemovePageNumberOnPhrase(PhraseNode node)
+        public bool DidRemovePageNumberFromPhrase(PhraseNode node)
         {
             if (node.PageProperty != null)
             {
-                mPages.Remove(node);
                 node.PageProperty = null;
                 RemovedPageNumber(this, new Events.Node.PhraseNodeEventArgs(this, node));
+                RenumberPages();
+                return true;
             }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Remove a page number from the given phrase and issue a command.
+        /// </summary>
+        /// <param name="node">The phrase to remove the page number from.</param>
+        public void RemovePageNumberFromPhraseWithUndo(PhraseNode node)
+        {
+            if (DidRemovePageNumberFromPhrase(node)) Modified(new Commands.Strips.RemovePageNumber(node));
+        }
+
+        /// <summary>
+        /// Renumber pages in the book when new pages have been added/removed.
+        /// </summary>
+        public void RenumberPages()
+        {
+            int pageNumber = 1;
+            RootNode.visitDepthFirst(
+                delegate(ICoreNode n)
+                {
+                    PhraseNode visited = n as PhraseNode;
+                    if (visited != null)
+                    {
+                        if (visited.PageProperty != null)
+                        {
+                            if (visited.PageProperty.PageNumber != pageNumber)
+                            {
+                                visited.PageProperty.PageNumber = pageNumber;
+                                SetPageNumber(this, new Events.Node.PhraseNodeEventArgs(this, visited));
+                            }
+                            ++pageNumber;
+                        }
+                    }
+                    return true;
+                },
+                delegate(ICoreNode n) { }
+            );
         }
 
         #endregion

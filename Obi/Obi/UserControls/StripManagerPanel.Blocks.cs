@@ -320,7 +320,15 @@ namespace Obi.UserControls
         /// </summary>
         public void SetPageNumber()
         {
-            if (mSelectedPhrase != null) mProjectPanel.Project.SetPageNumberOnPhrase(mSelectedPhrase);
+            if (mSelectedPhrase != null) mProjectPanel.Project.SetPageNumberOnPhraseWithUndo(mSelectedPhrase);
+        }
+
+        /// <summary>
+        /// Remove a page number on the selected block.
+        /// </summary>
+        public void RemovePageNumber()
+        {
+            if (mSelectedPhrase != null) mProjectPanel.Project.RemovePageNumberFromPhraseWithUndo(mSelectedPhrase);
         }
     }
 }

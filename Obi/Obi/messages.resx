@@ -399,10 +399,10 @@ Do you want to replace the project contained in this file?</value>
     <value>page ...</value>
   </data>
   <data name="remove_page_command_label" xml:space="preserve">
-    <value>remove page label</value>
+    <value>remove page number</value>
   </data>
   <data name="set_page_command_label" xml:space="preserve">
-    <value>set page label</value>
+    <value>set page number</value>
   </data>
   <data name="recorder_error_caption" xml:space="preserve">
     <value>Recording error</value>
