@@ -104,33 +104,37 @@ namespace Obi.UserControls
             mRemoveAnnotationToolStripMenuItem.Enabled = canRemoveAnnotation;
 
             mSetPageNumberToolStripMenuItem.Enabled = !isPlaying && CanSetPage;
-            mRemovePageNumberToolStripMenuItem.Enabled = false;
+            mRemovePageNumberToolStripMenuItem.Enabled = !isPlaying && CanRemovePage;
 
             UpdateVisibleItemsForContextMenu();
         }
 
-        //md 20061219 
         /// <summary>
-        /// make the context menu items visible based on if they are enabled or greyed-out
+        /// Make the context menu items visible only if they are enabled.
+        /// Handle separators as well.
         /// </summary>
-        // this is probably redundant, and could just be done instead of "enabling" things first
-        // but that is for later.  still trying things out now.
         private void UpdateVisibleItemsForContextMenu()
         {
             foreach (ToolStripItem item in this.mContextMenuStrip.Items)
             {
                 item.Visible = item.Enabled;
             }
-         
-            //this is the separator that appears before the audio block commands
-            //toolStripSeparator1.Visible = mImportAudioFileToolStripMenuItem.Enabled || mCutAudioBlockToolStripMenuItem.Enabled;
-            //and this one comes before the annotation commands
-            //toolStripSeparator3.Visible = mEditAnnotationToolStripMenuItem.Enabled;
-            //this one before the show in TOC view option
-            //toolStripSeparator2.Visible = mShowInTOCViewToolStripMenuItem.Enabled;
-            //this one before the page number commands
-            //toolStripSeparator4.Visible = mRemovePageNumberToolStripMenuItem.Enabled;
-
+            ToolStripItem prev = null;
+            ToolStripItem prevprev = null;
+            foreach (ToolStripItem item in mContextMenuStrip.Items)
+            {
+                if (prev is ToolStripSeparator)
+                {
+                    prev.Visible = prevprev != null && prevprev.Enabled &&
+                        !(item is ToolStripSeparator) && item.Enabled;
+                }
+                if ((!(item is ToolStripSeparator) && item.Enabled && (prev == null || prev is ToolStripSeparator)) ||
+                    (item is ToolStripSeparator && !(prev is ToolStripSeparator) && prev != null && prev.Enabled))
+                {
+                    prevprev = prev;
+                    prev = item;
+                }
+            }
         }
 
         private void mImportAudioToolStripMenuItem_Click(object sender, EventArgs e)
@@ -313,14 +317,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void mRemovePageNumberToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mSelectedPhrase != null)
-            {
-                PageProperty pageProp = mSelectedPhrase.getProperty(typeof(PageProperty)) as PageProperty;
-                if (pageProp != null)
-                {
-                    RemovePageNumberRequested(this, new Events.Node.PhraseNodeEventArgs(sender, mSelectedPhrase));
-                }
-            }
+            RemovePageNumber();
         }
 
         /// <summary>

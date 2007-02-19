@@ -8,8 +8,7 @@ namespace Obi.Commands.Strips
 {
     public class RemovePageNumber: Command
     {
-        protected PhraseNode mNode;          // the phrase node
-        protected PageProperty mPageProp;  // the removed page property
+        protected PhraseNode mNode;  // the phrase node
         
         public override string Label
         {
@@ -19,18 +18,16 @@ namespace Obi.Commands.Strips
         public RemovePageNumber(PhraseNode node)
         {
             mNode = node;
-            mPageProp = mNode.PageProperty;
         }
 
         public override void Do()
         {
-            mNode.Project.RemovePage(this, mNode);
+            mNode.Project.DidRemovePageNumberFromPhrase(mNode);
         }
 
         public override void Undo()
         {
-            mNode.setProperty(mPageProp);
-            mNode.Project.SetPageNumber(this, new Obi.Events.Node.PhraseNodeEventArgs(this, mNode));
+            mNode.Project.DidSetPageNumberOnPhrase(mNode);
         }
     }
 }

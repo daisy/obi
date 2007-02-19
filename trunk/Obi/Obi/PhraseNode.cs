@@ -108,7 +108,17 @@ namespace Obi
         public PageProperty PageProperty
         {
             get { return getProperty(typeof(PageProperty)) as PageProperty; }  // may be null
-            set { setProperty(value); }
+            set
+            {
+                if (value != null)
+                {
+                    setProperty(value);
+                }
+                else
+                {
+                    removeProperty(typeof(PageProperty));
+                }
+            }
         }
 
         /// <summary>

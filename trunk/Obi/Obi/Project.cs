@@ -41,8 +41,6 @@ namespace Obi
         private Clipboard mClipboard;        // project-wide clipboard.
         //private PhraseNode mSilencePhrase;     // silence phrase used for phrase detection
 
-        private List<PhraseNode> mPages;     // phrase nodes that have a page number
-
         public static readonly string XUKVersion = "obi-xuk-009";                // version of the Obi/XUK file
         public static readonly string AudioChannelName = "obi.audio";            // canonical name of the audio channel
         public static readonly string TextChannelName = "obi.text";              // canonical name of the text channel
@@ -139,7 +137,6 @@ namespace Obi
             mTextChannel = null;
             mAnnotationChannel = null;
             mClipboard = new Clipboard();
-            mPages = new List<PhraseNode>();
         }
 
         /// <summary>
@@ -273,7 +270,7 @@ namespace Obi
                 Visitors.AssetCreator visitor = new Visitors.AssetCreator(mAssManager, delegate(string m) { });
                 //     delegate(string message) { errMessages += message + "\n"; });
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
-                mPages = visitor.Pages;
+                // mPages = visitor.Pages;
                 // if (errMessages != "")
                 // {
                 //     throw new Exception(String.Format(Localizer.Message("open_project_error_text") + "\n" + errMessages, xukPath));
@@ -388,6 +385,16 @@ namespace Obi
         {
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
+        }
+
+        /// <summary>
+        /// Project was modified and a command is issued.
+        /// </summary>
+        /// <param name="command">The command to issue.</param>
+        public void Modified(Commands.Command command)
+        {
+            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            Modified();
         }
 
         /// <summary>

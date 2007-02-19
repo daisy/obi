@@ -557,6 +557,11 @@ namespace Obi
             mProjectPanel.StripManager.SetPageNumber();
         }
 
+        private void mRemovePageNumberToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.StripManager.RemovePageNumber();
+        }
+
         #endregion
 
 
@@ -705,8 +710,6 @@ namespace Obi
 
             mShowInTOCViewToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mShowInTOCViewToolStripMenuItem_Click);
-            mRemovePageNumberToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.StripManager.mRemovePageNumberToolStripMenuItem_Click);
         }
 
         /// <summary>
