@@ -53,11 +53,12 @@ namespace Obi.UserControls
         internal void SyncAddedPhraseNode(object sender, Events.Node.PhraseNodeEventArgs e)
         {
             System.Diagnostics.Debug.Assert(e.Node != null);
-            if (e.Node.getParent().GetType() == System.Type.GetType("Obi.SectionNode"))
+            if (e.Node.ParentSection != null)
             {
-                SectionStrip strip = mSectionNodeMap[(SectionNode)e.Node.getParent()];
+                SectionStrip strip = mSectionNodeMap[e.Node.ParentSection];
                 AudioBlock block = SetupAudioBlockFromPhraseNode(e.Node);
                 strip.InsertAudioBlock(block, e.Node.Index);
+                if (e.Node.PageProperty != null) mProjectPanel.Project.RenumberPages();
                 SelectedPhraseNode = e.Node;
             }
         }
@@ -88,12 +89,14 @@ namespace Obi.UserControls
         /// <param name="e">The node event with a pointer to the deleted phrase node.</param>
         internal void SyncDeleteAudioBlock(object sender, Events.Node.PhraseNodeEventArgs e)
         {
-            if (e.Node.getParent().GetType() == System.Type.GetType("Obi.SectionNode"))
+            System.Diagnostics.Debug.Assert(e.Node != null);
+            if (e.Node.ParentSection != null)
             {
-                SectionStrip strip = mSectionNodeMap[(SectionNode)e.Node.getParent()];
+                SectionStrip strip = mSectionNodeMap[e.Node.ParentSection];
                 if (SelectedPhraseNode == e.Node) SelectedPhraseNode = null;
                 strip.RemoveAudioBlock(mPhraseNodeMap[e.Node]);
                 mPhraseNodeMap.Remove(e.Node);
+                if (e.Node.PageProperty != null) mProjectPanel.Project.RenumberPagesExcluding(e.Node);
             }
         }
 
@@ -291,7 +294,7 @@ namespace Obi.UserControls
             if (CanMerge)
             {
                 mProjectPanel.TransportBar.Enabled = false;
-                mProjectPanel.Project.MergeNodes__(mSelectedPhrase.PreviousPhrase, mSelectedPhrase);
+                mProjectPanel.Project.MergeNodes(mSelectedPhrase.PreviousPhrase, mSelectedPhrase);
                 mProjectPanel.TransportBar.Enabled = true;
             }
         }
