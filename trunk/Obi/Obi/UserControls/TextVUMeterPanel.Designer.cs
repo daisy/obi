@@ -89,7 +89,7 @@ namespace Obi.UserControls
             // tmUpdateText
             // 
             this.tmUpdateText.Enabled = true;
-            this.tmUpdateText.Interval = 700;
+            this.tmUpdateText.Interval = 600;
             this.tmUpdateText.Tick += new System.EventHandler(this.tmUpdateText_Tick);
             // 
             // TextVUMeterPanel

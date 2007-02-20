@@ -14,12 +14,17 @@ namespace Obi.UserControls
         private Playlist mPlaylist = null;
         private RecordingSession mRecordingSession = null;
         public bool Enable = false;
+        private String m_StrLeftOverloadIndicator;
+        private String m_StrRightOverloadIndicator;
+
 
         public TextVUMeterPanel( )
         {
             InitializeComponent();
             
             mResetButton.Enabled = false;
+            m_StrLeftOverloadIndicator = "";
+            m_StrRightOverloadIndicator = "";
 
         }
         
@@ -94,8 +99,8 @@ namespace Obi.UserControls
                     //double LeftDb = mPlaylist.Audioplayer.VuMeter.m_MeanValueLeft ;
                     //double RightDb = (mPlaylist.Audioplayer.VuMeter.m_MeanValueRight );
 
-                    mLeftBox.Text = LeftDb.ToString();
-                    mRightBox.Text = RightDb.ToString();
+                    mLeftBox.Text = m_StrLeftOverloadIndicator +  LeftDb.ToString();
+                    mRightBox.Text = m_StrRightOverloadIndicator +  RightDb.ToString();
                 }
             }
             else if (IsPlay == false && mRecordingSession != null )
@@ -105,8 +110,8 @@ namespace Obi.UserControls
                     double LeftDb = 20 * Math.Log10 ( mRecordingSession.AudioRecorder.VuMeterObject.m_MeanValueLeft   * 256 ) ;
                     double RightDb =  20 * Math.Log10(mRecordingSession.AudioRecorder.VuMeterObject.m_MeanValueRight * 256);
 
-                    mLeftBox.Text = LeftDb.ToString();
-                    mRightBox.Text = RightDb.ToString();
+                    mLeftBox.Text = m_StrLeftOverloadIndicator +  LeftDb.ToString();
+                    mRightBox.Text = m_StrRightOverloadIndicator +  RightDb.ToString();
                 }
             }
 
@@ -114,6 +119,12 @@ namespace Obi.UserControls
 
         private void CatchPeakOverloadEvent(object sender, EventArgs e)
         {
+            Obi.Events.Audio.VuMeter.PeakOverloadEventArgs EventOb = e as Obi.Events.Audio.VuMeter.PeakOverloadEventArgs;
+            if (EventOb.Channel == 1)
+                m_StrLeftOverloadIndicator = "OL ";
+            else
+                m_StrRightOverloadIndicator = "OL ";
+
             Overload();
             Audio.VuMeter ob_VuMeter = sender as Audio.VuMeter;
         }
@@ -167,6 +178,9 @@ namespace Obi.UserControls
         private void mResetButton_Click(object sender, EventArgs e)
         {
             mResetButton.Enabled = false;
+            m_StrLeftOverloadIndicator = "";
+            m_StrRightOverloadIndicator = "";
+
             if (IsPlay)
             {
                 mPlaylist.Audioplayer.VuMeter.Reset();
