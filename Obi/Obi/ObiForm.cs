@@ -1,6 +1,7 @@
 using Obi.Commands;
 using Obi.Dialogs;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using urakawa.core;
@@ -20,7 +21,8 @@ namespace Obi
         private CommandManager mCommandManager;  // the undo stack for this project
         private Audio.VuMeterForm mVuMeterForm;  // keep track of a single VU meter form
 
-        public delegate bool HandledShortcutKey();  // for keyboard shortcuts all around
+        public delegate bool HandledShortcutKey();                   // for keyboard shortcuts
+        private Dictionary<Keys, HandledShortcutKey> mShortcutKeys;  // list of all shortcuts
 
         /// <summary>
         /// Application settings.
@@ -50,6 +52,7 @@ namespace Obi
             mCommandManager = new CommandManager();
             InitializeVuMeter();
             InitializeSettings();
+            SetShortcutKeys();
             mProjectPanel.TransportBar.StateChanged +=
                 new Obi.Events.Audio.Player.StateChangedHandler(TransportBar_StateChanged);
             mProjectPanel.TransportBar.PlaybackRateChanged += new EventHandler(TransportBar_PlaybackRateChanged);
@@ -241,7 +244,7 @@ namespace Obi
         {
             if (mProject != null)
             {
-                mProjectPanel.TransportBar.Stop();
+                mProjectPanel.TransportBar.Enabled = false;
                 if (mProject.Unsaved)
                 {
                     DialogResult result = MessageBox.Show(Localizer.Message("export_unsaved_text"),
@@ -249,8 +252,6 @@ namespace Obi
                     if (result == DialogResult.Cancel) return;
                 }
                 this.Cursor = Cursors.WaitCursor;
-                // string xuk = System.IO.Path.GetFileNameWithoutExtension(mProject.XUKPath);
-                // string path = mSettings.DefaultExportPath + "\\" + xuk + Project.DaisyOutputDirSuffix;
                 FolderBrowserDialog dialog = new FolderBrowserDialog();
                 dialog.Description = Localizer.Message("export_choose_folder");
                 dialog.SelectedPath = mSettings.DefaultExportPath;
@@ -263,6 +264,7 @@ namespace Obi
                     Ready();
                 }
                 this.Cursor = Cursors.Default;
+                mProjectPanel.TransportBar.Enabled = true;
             }
         }
 
@@ -660,6 +662,7 @@ namespace Obi
                     MessageBox.Show(String.Format(Localizer.Message("save_settings_error_text"), x.Message),
                         Localizer.Message("save_settings_error_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                mProjectPanel.TransportBar.Stop();
                 Application.Exit();
             }
             else
@@ -945,8 +948,8 @@ namespace Obi
             TransportBar_PlayAll();
         }
 
-        private void TransportBar_PlayAll ()
-    {
+        private void TransportBar_PlayAll()
+        {
             if (mProjectPanel.TransportBar.Playlist != null &&
                 mProjectPanel.TransportBar.Playlist.State == Audio.AudioPlayerState.Playing)
             {
@@ -1084,19 +1087,54 @@ namespace Obi
             }
         }
 
+        #region shortcut keys
+
+        private void SetShortcutKeys()
+        {
+            mShortcutKeys = new Dictionary<Keys, ObiForm.HandledShortcutKey>();
+            // Shortcut keys should be configurable
+            mShortcutKeys[Keys.Space] = delegate() { mPlayAllToolStripMenuItem1_Click(this, null); return true; };
+            mShortcutKeys[Keys.Escape] = delegate() { mStopToolStripMenuItem_Click(this, null); return true; };
+            mShortcutKeys[Keys.Left] = delegate() { System.Diagnostics.Debug.Print("LEFT"); return true; };
+
+            // mShortcutKeys[Keys.Space] = delegate() { (); return true; };
+            // mShortcutKeys[Keys.Escape] = delegate() { Stop(); return true; };
+            //mShortcutKeys[Keys.P] = delegate() { Pause(); return true; };
+            //mShortcutKeys[Keys.F] = delegate() { PrevPhrase(); return true; };
+            //mShortcutKeys[Keys.B] = delegate() { NextPhrase(); return true; };
+            //mShortcutKeys[Keys.U] = delegate() { PrevSection(); return true; };
+            //mShortcutKeys[Keys.D] = delegate() { NextSection(); return true; };
+            //mShortcutKeys[Keys.R] = delegate() { Record(); return true; };
+            //mShortcutKeys[Keys.Oemplus] = delegate() { FastForward(); return true; };
+            //mShortcutKeys[Keys.OemMinus] = delegate() { Rewind(); return true; };
+        }
+
+        private const int WM_KEYDOWN = 0x100;
+        private const int WM_SYSKEYDOWN = 0x104;
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys key)
+        {
+            if ((msg.Msg == WM_KEYDOWN) || (msg.Msg == WM_SYSKEYDOWN))
+            {
+                UpdateEnabledItems();
+                if (mProject != null)
+                {
+                    mProjectPanel.TOCPanel.UpdateEnabledItemsForContextMenu();
+                    mProjectPanel.StripManager.UpdateEnabledItemsForContextMenu();
+                }
+                if (mShortcutKeys.ContainsKey(key) && mShortcutKeys[key]()) return true;
+            }
+            return base.ProcessCmdKey(ref msg, key);
+        }
+
         /// <summary>
         /// Keys for the whole application.
         /// </summary>
-        protected override bool ProcessDialogKey(Keys key)
-        {
+        //protected override bool ProcessDialogKey(Keys key)
+        //{
             // Make sure that the correct menu items are enabled for the keyboard shortcuts to work.
-            UpdateEnabledItems();
-            if (mProject != null)
-            {
-                mProjectPanel.TOCPanel.UpdateEnabledItemsForContextMenu();
-                mProjectPanel.StripManager.UpdateEnabledItemsForContextMenu();
-                mProjectPanel.HandleShortcutKeys(key);
-            }
+            //System.Diagnostics.Debug.Print("GOT KEY {0}", key);
+            
             /*switch (key)
             {
                case Keys.Control | Keys.Space:
@@ -1171,8 +1209,10 @@ namespace Obi
                     mProjectPanel.TransportBar.FocusTimeDisplay();
                     break;
             } */
-            return base.ProcessDialogKey(key);
-        }
+            // return base.ProcessDialogKey(key);
+        //}
+
+        #endregion
 
         /// <summary>
         /// Toggle section used/unsed.

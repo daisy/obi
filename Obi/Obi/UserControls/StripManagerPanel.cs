@@ -25,8 +25,6 @@ namespace Obi.UserControls
 
         private ProjectPanel mProjectPanel; //the parent of this control
 
-        private Dictionary<Keys, ObiForm.HandledShortcutKey> mShortcutKeys;
-
         public event Events.SetMediaHandler SetMediaRequested;
         public event Events.SelectedHandler SelectionChanged;
 
@@ -225,7 +223,6 @@ namespace Obi.UserControls
             mSelectedSection = null;
             mPhraseNodeMap = new Dictionary<PhraseNode, AudioBlock>();
             mSelectedPhrase = null;
-            SetShortcutKeys();
         }
 
         /// <summary>
@@ -329,23 +326,5 @@ namespace Obi.UserControls
         {
             if (mSelectedPhrase != null) mProjectPanel.Project.SetPageNumberOnPhraseWithUndo(mSelectedPhrase);
         }
-
-        private void SetShortcutKeys()
-        {
-            mShortcutKeys = new Dictionary<Keys, ObiForm.HandledShortcutKey>();
-            // Shortcut keys should be configurable
-            mShortcutKeys[Keys.Down] = delegate() { System.Diagnostics.Debug.Print("<Next section>"); return true; };
-            mShortcutKeys[Keys.Right] = delegate() { System.Diagnostics.Debug.Print("<Next phrase>"); return true; };
-            mShortcutKeys[Keys.Up] = delegate() { System.Diagnostics.Debug.Print("<Previous section>"); return true; };
-            mShortcutKeys[Keys.Left] = delegate() { System.Diagnostics.Debug.Print("<Previous phrase>"); return true; };
-            mShortcutKeys[Keys.Tab] = delegate() { System.Diagnostics.Debug.Print("<TAB>"); return true; };
-            mShortcutKeys[Keys.Q] = delegate() { System.Diagnostics.Debug.Print("<Q>"); return true; };
-        }
-
-        public bool HandleShortcutKeys(Keys key)
-        {
-            return Enabled && mShortcutKeys.ContainsKey(key) ? mShortcutKeys[key]() : false;
-        }
-
     }
 }
