@@ -599,4 +599,8 @@ Do you want to replace the project contained in this file?</value>
     <value>Audio</value>
     <comment>Default label for audio blocks (no page)</comment>
   </data>
+  <data name="ncx_filter" xml:space="preserve">
+    <value>DAISY 3 NCX file (*.ncx)|*.ncx</value>
+    <comment>Filter for exporting DAISY books (choose the name of the NCX file)</comment>
+  </data>
 </root>

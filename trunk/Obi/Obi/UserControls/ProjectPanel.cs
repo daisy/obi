@@ -467,10 +467,5 @@ namespace Obi.UserControls
                     ((SectionNode)node).SectionChildCount > 0 ? "strips" :  // pasting several strips
                     "strip");                                               // pasting only one strip
         }
-
-        internal void HandleShortcutKeys(Keys key)
-        {
-            bool handled = mTransportBar.HandleShortcutKeys(key);
-        }
     }
 }

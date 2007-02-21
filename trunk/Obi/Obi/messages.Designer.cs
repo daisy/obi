@@ -641,6 +641,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DAISY 3 NCX file (*.ncx)|*.ncx.
+        /// </summary>
+        internal static string ncx_filter {
+            get {
+                return ResourceManager.GetString("ncx_filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New project.
         /// </summary>
         internal static string new_project {
