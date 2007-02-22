@@ -245,6 +245,7 @@ namespace Obi.UserControls
                 mAudioLayoutPanel.Location = new Point(mAudioLayoutPanel.Location.X,
                     mAnnotationLayoutPanel.Location.Y + mAnnotationLayoutPanel.Height + mAnnotationLayoutPanel.Margin.Bottom); 
             }
+            RefreshAudioBlockLabels();
         }
 
         public void ManageAudioBlockWidth(AudioBlock block)
@@ -265,6 +266,7 @@ namespace Obi.UserControls
             AppendAudioBlock(block);
             mAudioLayoutPanel.Controls.SetChildIndex(block, index);
             mAnnotationLayoutPanel.Controls.SetChildIndex(block.AnnotationBlock, index);
+            RefreshAudioBlockLabels(); // refreshed twice :(
         }
 
         /// <summary>
@@ -279,6 +281,7 @@ namespace Obi.UserControls
             //ReflowTabOrder(index);
             // fix the layout again if the strip becomes empty.
             if (mAudioLayoutPanel.Controls.Count == 0) mAudioLayoutPanel.Location = mAnnotationLayoutPanel.Location;
+            RefreshAudioBlockLabels();
         }
 
         /// <summary>
@@ -367,7 +370,7 @@ namespace Obi.UserControls
         /// <summary>
         /// Refresh the strip to show its used state.
         /// </summary>
-        internal void RefreshUsed()
+        public void RefreshUsed()
         {
             System.Diagnostics.Debug.Assert(mNode != null, "Refreshing strip with no node.");
             BackColor = mNode.Used ? Colors.SectionStripUsedBack : Colors.SectionStripUnusedBack;
@@ -375,6 +378,19 @@ namespace Obi.UserControls
             foreach (Control c in mAudioLayoutPanel.Controls)
             {
                 if (c is AudioBlock) ((AudioBlock)c).RefreshDisplay();
+            }
+        }
+
+        /// <summary>
+        /// Refresh the labels of all audio blocks when a new block is inserted or removed.
+        /// </summary>
+        private void RefreshAudioBlockLabels()
+        {
+            foreach (Control control in mAudioLayoutPanel.Controls)
+            {
+                AudioBlock block = control as AudioBlock;
+                System.Diagnostics.Debug.Assert(block != null);
+                block.RefreshLabels();
             }
         }
     }

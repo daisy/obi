@@ -68,6 +68,15 @@ namespace Obi
             }
         }
 
+        public int IndexOutOf
+        {
+            get
+            {
+                SectionNode parent = (SectionNode)getParent();
+                return parent.PhraseChildCount;
+            }
+        }
+
         /// <summary>
         /// Parent section of this phrase. Null if the phrase has no parent.
         /// </summary>
@@ -77,9 +86,9 @@ namespace Obi
         }
 
         /// <summary>
-        /// Previous phrase for this phrase. Null if this phrase is the last one.
+        /// Previous phrase for this phrase in its section. Null if this phrase is the first one.
         /// </summary>
-        public PhraseNode PreviousPhrase
+        public PhraseNode PreviousPhraseInSection
         {
             get
             {
@@ -90,9 +99,9 @@ namespace Obi
         }
 
         /// <summary>
-        /// Next phrase for this phrase. Null if this phrase is the last one.
+        /// Next phrase for this phrase in its section. Null if this phrase is the last one.
         /// </summary>
-        public PhraseNode NextPhrase
+        public PhraseNode NextPhraseInSection
         {
             get
             {

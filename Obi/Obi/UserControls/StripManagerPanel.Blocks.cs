@@ -216,8 +216,8 @@ namespace Obi.UserControls
             get
             {
                 return mSelectedPhrase != null && mSelectedPhrase.Used &&
-                    mSelectedPhrase.PreviousPhrase != null &&
-                    mSelectedPhrase.PreviousPhrase.Used;
+                    mSelectedPhrase.PreviousPhraseInSection != null &&
+                    mSelectedPhrase.PreviousPhraseInSection.Used;
             }
         }
 
@@ -294,7 +294,7 @@ namespace Obi.UserControls
             if (CanMerge)
             {
                 mProjectPanel.TransportBar.Enabled = false;
-                mProjectPanel.Project.MergeNodes(mSelectedPhrase.PreviousPhrase, mSelectedPhrase);
+                mProjectPanel.Project.MergeNodes(mSelectedPhrase.PreviousPhraseInSection, mSelectedPhrase);
                 mProjectPanel.TransportBar.Enabled = true;
             }
         }
@@ -332,6 +332,35 @@ namespace Obi.UserControls
         public void RemovePageNumber()
         {
             if (mSelectedPhrase != null) mProjectPanel.Project.RemovePageNumberFromPhraseWithUndo(mSelectedPhrase);
+        }
+
+        /// <summary>
+        /// Select the previous phrase in the strip manager.
+        /// </summary>
+        public void PreviousPhrase()
+        {
+            if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Stopped &&
+                mProjectPanel.Project != null)
+            {
+                if (mSelectedPhrase != null)
+                {
+                }
+                else if (mSelectedSection != null)
+                {
+                }
+                else
+                {
+                }
+            }
+        }
+
+        public void NextPhrase()
+        {
+            if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing ||
+                mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Paused)
+            {
+                mProjectPanel.TransportBar.NextPhrase();
+            }
         }
     }
 }

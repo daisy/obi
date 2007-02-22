@@ -596,7 +596,7 @@ Do you want to replace the project contained in this file?</value>
     <value>Playback rate x{0}</value>
   </data>
   <data name="audio_block_default_label" xml:space="preserve">
-    <value>Audio</value>
+    <value>Audio block {0} of {1}</value>
     <comment>Default label for audio blocks (no page)</comment>
   </data>
   <data name="ncx_filter" xml:space="preserve">
