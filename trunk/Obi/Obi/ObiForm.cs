@@ -1093,9 +1093,10 @@ namespace Obi
         {
             mShortcutKeys = new Dictionary<Keys, ObiForm.HandledShortcutKey>();
             // Shortcut keys should be configurable
-            mShortcutKeys[Keys.Space] = delegate() { mPlayAllToolStripMenuItem1_Click(this, null); return true; };
-            mShortcutKeys[Keys.Escape] = delegate() { mStopToolStripMenuItem_Click(this, null); return true; };
-            mShortcutKeys[Keys.Left] = delegate() { System.Diagnostics.Debug.Print("LEFT"); return true; };
+            // mShortcutKeys[Keys.Space] = delegate() { mPlayAllToolStripMenuItem1_Click(this, null); return true; };
+            mShortcutKeys[Keys.Escape] = delegate() { mProjectPanel.TransportBar.Stop(); return true; };
+            mShortcutKeys[Keys.Left] = delegate() { mProjectPanel.StripManager.PreviousPhrase(); return true; };
+            mShortcutKeys[Keys.Right] = delegate() { mProjectPanel.StripManager.NextPhrase(); return true; };
 
             // mShortcutKeys[Keys.Space] = delegate() { (); return true; };
             // mShortcutKeys[Keys.Escape] = delegate() { Stop(); return true; };

@@ -52,14 +52,7 @@ namespace Obi.UserControls
         /// </summary>
         public override bool Used
         {
-            set
-            {
-                /*BackColor = mNode != null && value ?
-                    mNode.Asset.LengthInMilliseconds == 0.0 ? Colors.AudioBlockEmpty : Colors.AudioBlockUsed :
-                    Colors.AudioBlockUnused;
-                mLabel.BackColor = BackColor;*/
-                RefreshUsed();
-            }
+            set { RefreshUsed(); }
         }
 
         /// <summary>
@@ -184,19 +177,27 @@ namespace Obi.UserControls
         }
 
         /// <summary>
-        /// Refresh the labels of the block to show its timing and page number (if any.)
+        /// Refresh the labels of the block (including accessible labels.)
         /// </summary>
-        private void RefreshLabels()
+        public void RefreshLabels()
         {
-            // Set the label
+            // Set the label and accessible description
             if (mNode.PageProperty != null)
             {
                 mLabel.Text = String.Format(Localizer.Message("page_number"), mNode.PageProperty.PageNumber);
             }
             else
             {
-                mLabel.Text = Localizer.Message("audio_block_default_label");
+                int index = 0;
+                int outof = 0;
+                if (Parent != null && Parent.Controls != null)
+                {
+                    index = Parent.Controls.IndexOf(this) + 1;
+                    outof = Parent.Controls.Count;
+                }
+                mLabel.Text = String.Format(Localizer.Message("audio_block_default_label"), index, outof);
             }
+            AccessibleDescription = mLabel.Text;
             // Set the time display
             mTimeLabel.Text = Assets.MediaAsset.FormatTime(mNode.Asset.LengthInMilliseconds);
         }

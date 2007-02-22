@@ -322,9 +322,9 @@ namespace Obi.UserControls
         {
             if (Enabled)
             {
+                // Stopping again deselects everything
                 if (State == Obi.Audio.AudioPlayerState.Stopped)
                 {
-                    System.Diagnostics.Debug.Print("!!! Stopping again, unselect all.");
                     ((ProjectPanel)Parent).StripManager.SelectedNode = null;
                 }
                 else if (mPlaylist != null)

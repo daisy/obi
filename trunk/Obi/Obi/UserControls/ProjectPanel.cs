@@ -31,7 +31,7 @@ namespace Obi.UserControls
                 mSplitContainer.Visible = mProject != null;
                 mSplitContainer.Panel1Collapsed = false;
                 mNoProjectLabel.Text = mProject == null ? Localizer.Message("no_project") : "";
-                mTransportBar.Visible = mProject != null;
+                mTransportBar.Enabled = mProject != null;
             }
         }
 

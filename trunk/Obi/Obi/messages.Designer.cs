@@ -124,7 +124,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Audio.
+        ///   Looks up a localized string similar to Audio block {0} of {1}.
         /// </summary>
         internal static string audio_block_default_label {
             get {
