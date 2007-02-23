@@ -1490,7 +1490,7 @@ namespace Obi
             mCopyToolStripMenuItem.Text = String.Format(Localizer.Message("copy_menu_label"), itemLabel);
             mPasteToolStripMenuItem.Enabled = !isPlaying && mProjectPanel.CanPaste(clipboardData);
             mPasteToolStripMenuItem.Text = String.Format(Localizer.Message("paste_menu_label"), pasteLabel);
-            mDeleteToolStripMenuItem.Enabled = canCutCopyDelete;
+            mDeleteToolStripMenuItem.Enabled = canCutCopyDelete && !mProjectPanel.RenamingSection;
             mDeleteToolStripMenuItem.Text = String.Format(Localizer.Message("delete_menu_label"), itemLabel);
 
             bool isProjectOpen = mProject != null;

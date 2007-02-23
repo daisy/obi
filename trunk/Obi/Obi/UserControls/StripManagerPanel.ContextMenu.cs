@@ -71,7 +71,7 @@ namespace Obi.UserControls
             mCutStripToolStripMenuItem.Enabled = canCutCopyDeleteSection;
             mCopyStripToolStripMenuItem.Enabled = canCutCopyDeleteSection;
             mPasteStripToolStripMenuItem.Enabled = canPasteSection;
-            mDeleteStripToolStripMenuItem.Enabled = canCutCopyDeleteSection;
+            mDeleteStripToolStripMenuItem.Enabled = canCutCopyDeleteSection && !mProjectPanel.RenamingSection;
             mMarkStripAsUnusedToolStripMenuItem.Enabled = !isPlaying && isStripSelected;
             mShowInTOCViewToolStripMenuItem.Enabled = !isPlaying && isStripSelected;
 

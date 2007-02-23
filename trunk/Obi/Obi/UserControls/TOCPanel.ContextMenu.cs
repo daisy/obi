@@ -116,7 +116,7 @@ namespace Obi.UserControls
             mCutSectionToolStripMenuItem.Enabled = canCutCopyDelete;
             mCopySectionToolStripMenuItem.Enabled = canCutCopyDelete;
             mPasteSectionToolStripMenuItem.Enabled = canPaste;
-            mDeleteSectionToolStripMenuItem.Enabled = canCutCopyDelete;
+            mDeleteSectionToolStripMenuItem.Enabled = canCutCopyDelete && !mProjectPanel.RenamingSection;
 
             // Mark section used/unused (by default, i.e. if disabled, "unused")
             mMarkSectionAsUnusedToolStripMenuItem.Enabled = !isPlaying && isParentUsed;
