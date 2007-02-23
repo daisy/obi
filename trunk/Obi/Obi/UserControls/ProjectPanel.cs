@@ -15,8 +15,8 @@ namespace Obi.UserControls
     /// </summary>
     public partial class ProjectPanel : UserControl
     {
-        private Project mProject;       // the project to display
-        private bool mRenamingSection;  // a section is being renamed (prevents "delete")
+        private Project mProject;   // the project to display
+        private bool mEditingText;  // text is being edited somewhere... (try to recapture some keyboard events.)
 
         /// <summary>
         /// Set the project for the panel, as well as all the correct handlers.
@@ -306,10 +306,10 @@ namespace Obi.UserControls
             }
         }
 
-        public bool RenamingSection
+        public bool EditingText
         {
-            get { return mRenamingSection; }
-            set { mRenamingSection = value; }
+            get { return mEditingText; }
+            set { mEditingText = value; }
         }
 
         /// <summary>
@@ -320,7 +320,7 @@ namespace Obi.UserControls
             InitializeComponent();
             mTOCPanel.ProjectPanel = this;
             mStripManagerPanel.ProjectPanel = this;
-            mRenamingSection = false;
+            mEditingText = false;
             Project = null;
         }
 

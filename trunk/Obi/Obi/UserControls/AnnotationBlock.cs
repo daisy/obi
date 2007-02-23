@@ -102,6 +102,7 @@ namespace Obi.UserControls
         public void StartRenaming()
         {
             mManager.ProjectPanel.TransportBar.Enabled = false;
+            mManager.ProjectPanel.EditingText = true;
             mRenameBox.Width = Width - mRenameBox.Location.X - mRenameBox.Margin.Right;
             mRenameBox.BackColor = BackColor;
             mRenameBox.Text = mLabel.Text;
@@ -138,6 +139,7 @@ namespace Obi.UserControls
             mLabel.Visible = true;
             mRenameBox.Visible = false;
             mManager.ProjectPanel.TransportBar.Enabled = true;
+            mManager.ProjectPanel.EditingText = false;
         }
 
         private void mRenameBox_Leave(object sender, EventArgs e)

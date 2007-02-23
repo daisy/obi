@@ -166,7 +166,7 @@ namespace Obi.UserControls
                     mProjectPanel.Project.RenameSectionNodeWithCommand((SectionNode)e.Node.Tag, e.Label);
                 }
             }
-            mProjectPanel.RenamingSection = false;
+            mProjectPanel.EditingText = false;
         }
 
         /// <summary>
@@ -327,7 +327,7 @@ namespace Obi.UserControls
 
         private void mTocTree_BeforeLabelEdit(object sender, NodeLabelEditEventArgs e)
         {
-            mProjectPanel.RenamingSection = true;
+            mProjectPanel.EditingText = true;
         }
     }
 }

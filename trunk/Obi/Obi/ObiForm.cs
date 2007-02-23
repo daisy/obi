@@ -1123,7 +1123,7 @@ namespace Obi
                     mProjectPanel.TOCPanel.UpdateEnabledItemsForContextMenu();
                     mProjectPanel.StripManager.UpdateEnabledItemsForContextMenu();
                 }
-                if (mShortcutKeys.ContainsKey(key) && mShortcutKeys[key]()) return true;
+                if (!mProjectPanel.EditingText && mShortcutKeys.ContainsKey(key) && mShortcutKeys[key]()) return true;
             }
             return base.ProcessCmdKey(ref msg, key);
         }
@@ -1490,7 +1490,7 @@ namespace Obi
             mCopyToolStripMenuItem.Text = String.Format(Localizer.Message("copy_menu_label"), itemLabel);
             mPasteToolStripMenuItem.Enabled = !isPlaying && mProjectPanel.CanPaste(clipboardData);
             mPasteToolStripMenuItem.Text = String.Format(Localizer.Message("paste_menu_label"), pasteLabel);
-            mDeleteToolStripMenuItem.Enabled = canCutCopyDelete && !mProjectPanel.RenamingSection;
+            mDeleteToolStripMenuItem.Enabled = canCutCopyDelete && !mProjectPanel.EditingText;
             mDeleteToolStripMenuItem.Text = String.Format(Localizer.Message("delete_menu_label"), itemLabel);
 
             bool isProjectOpen = mProject != null;
