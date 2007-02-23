@@ -81,6 +81,52 @@ namespace Obi
         }
 
         /// <summary>
+        /// Previous section in "flat" order. If the section is the first child, then the previous is the parent.
+        /// </summary>
+        public SectionNode PreviousSection
+        {
+            get
+            {
+                CoreNode parent = (CoreNode)getParent();
+                int index = parent.indexOf(this);
+                int offset = parent is SectionNode ? ((SectionNode)parent).mSectionOffset : 0;
+                return index == offset ? parent as SectionNode : (SectionNode)parent.getChild(index - 1);
+            }
+        }
+
+        /// <summary>
+        /// Next section in flat order: first child if there is a child, next sibling, or parent's sibling, etc.
+        /// </summary>
+        public SectionNode NextSection
+        {
+            get
+            {
+                if (SectionChildCount > 0)
+                {
+                    return SectionChild(0);
+                }
+                else
+                {
+                    SectionNode sibling = NextSibling;
+                    if (sibling != null)
+                    {
+                        return sibling;
+                    }
+                    else
+                    {
+                        SectionNode parent = ParentSection;
+                        while (parent != null && sibling == null)
+                        {
+                            sibling = parent.NextSibling;
+                            parent = parent.ParentSection;
+                        }
+                        return sibling;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Return the previous section sibling node, or null if this is the first child.
         /// </summary>
         public SectionNode PreviousSibling
@@ -91,6 +137,19 @@ namespace Obi
                 int index = parent.indexOf(this);
                 int offset = parent is SectionNode ? ((SectionNode)parent).mSectionOffset : 0;
                 return index == offset ? null : (SectionNode)parent.getChild(index - 1);
+            }
+        }
+
+        /// <summary>
+        /// Return the next section sibling node, or null if this is the last child.
+        /// </summary>
+        public SectionNode NextSibling
+        {
+            get
+            {
+                CoreNode parent = (CoreNode)getParent();
+                int index = parent.indexOf(this);
+                return index == parent.getChildCount() - 1 ? null : (SectionNode)parent.getChild(index + 1);
             }
         }
 
