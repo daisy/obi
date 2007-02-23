@@ -35,6 +35,7 @@ namespace Obi.UserControls
             {
                 mRenameBox.Text = value;
                 mLabel.Text = value;
+                AccessibleDescription = value;
             }
         }
 
@@ -105,6 +106,7 @@ namespace Obi.UserControls
             {
                 mRenaming = value;
                 mManager.ProjectPanel.TransportBar.Enabled = !value;
+                mManager.ProjectPanel.RenamingSection = value;
                 mRenameBox.Visible = value;
                 mLabel.Visible = !value;
                 if (value)

@@ -15,7 +15,8 @@ namespace Obi.UserControls
     /// </summary>
     public partial class ProjectPanel : UserControl
     {
-        private Project mProject;  // the project to display
+        private Project mProject;       // the project to display
+        private bool mRenamingSection;  // a section is being renamed (prevents "delete")
 
         /// <summary>
         /// Set the project for the panel, as well as all the correct handlers.
@@ -305,6 +306,12 @@ namespace Obi.UserControls
             }
         }
 
+        public bool RenamingSection
+        {
+            get { return mRenamingSection; }
+            set { mRenamingSection = value; }
+        }
+
         /// <summary>
         /// Create a new project panel with currently no project.
         /// </summary>
@@ -313,6 +320,7 @@ namespace Obi.UserControls
             InitializeComponent();
             mTOCPanel.ProjectPanel = this;
             mStripManagerPanel.ProjectPanel = this;
+            mRenamingSection = false;
             Project = null;
         }
 
