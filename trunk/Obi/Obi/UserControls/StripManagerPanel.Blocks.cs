@@ -339,28 +339,71 @@ namespace Obi.UserControls
         /// </summary>
         public void PreviousPhrase()
         {
-            if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Stopped &&
-                mProjectPanel.Project != null)
+            ObiNode prev = null;
+            if (mSelectedPhrase != null)
             {
-                if (mSelectedPhrase != null)
-                {
-                }
-                else if (mSelectedSection != null)
-                {
-                }
-                else
-                {
-                }
+                prev = mSelectedPhrase.PreviousPhraseInSection;
             }
+            else if (mSelectedSection != null)
+            {
+                prev = mSelectedSection.PreviousSection;
+                if (prev != null && ((SectionNode)prev).PhraseChildCount > 0)
+                    prev = ((SectionNode)prev).PhraseChild(((SectionNode)prev).PhraseChildCount - 1);
+            }
+            if (prev != null) SelectedNode = prev;
         }
 
+        /// <summary>
+        /// Select the next phrase in the strip manager.
+        /// </summary>
         public void NextPhrase()
         {
-            if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing ||
-                mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Paused)
+            ObiNode next = null;
+            if (mSelectedPhrase != null)
             {
-                mProjectPanel.TransportBar.NextPhrase();
+                next = mSelectedPhrase.NextPhraseInSection;
             }
+            else if (mSelectedSection != null)
+            {
+                next = mSelectedSection.NextSection;
+                if (next != null && ((SectionNode)next).PhraseChildCount > 0)
+                    next = ((SectionNode)next).PhraseChild(0);
+            }
+            if (next != null) SelectedNode = next;
+        }
+
+        /// <summary>
+        /// Select the previous section in the strip manager.
+        /// </summary>
+        public void PreviousSection()
+        {
+            SectionNode prev = null;
+            if (mSelectedPhrase != null)
+            {
+                prev = mSelectedPhrase.ParentSection;
+            }
+            else if (mSelectedSection != null)
+            {
+                prev = mSelectedSection.PreviousSection;
+            }
+            if (prev != null) SelectedSectionNode = prev;
+        }
+
+        /// <summary>
+        /// Select the next section in the strip manager.
+        /// </summary>
+        public void NextSection()
+        {
+            SectionNode next = null;
+            if (mSelectedPhrase != null)
+            {
+                next = mSelectedPhrase.ParentSection.NextSection;
+            }
+            else if (mSelectedSection != null)
+            {
+                next = mSelectedSection.NextSection;
+            }
+            if (next != null) SelectedSectionNode = next;
         }
     }
 }

@@ -1093,21 +1093,16 @@ namespace Obi
         {
             mShortcutKeys = new Dictionary<Keys, ObiForm.HandledShortcutKey>();
             // Shortcut keys should be configurable
+
+            // Transport bar one-key shortcuts
             // mShortcutKeys[Keys.Space] = delegate() { mPlayAllToolStripMenuItem1_Click(this, null); return true; };
             mShortcutKeys[Keys.Escape] = delegate() { mProjectPanel.TransportBar.Stop(); return true; };
+
+            // Strip manager navigation
             mShortcutKeys[Keys.Left] = delegate() { mProjectPanel.StripManager.PreviousPhrase(); return true; };
             mShortcutKeys[Keys.Right] = delegate() { mProjectPanel.StripManager.NextPhrase(); return true; };
-
-            // mShortcutKeys[Keys.Space] = delegate() { (); return true; };
-            // mShortcutKeys[Keys.Escape] = delegate() { Stop(); return true; };
-            //mShortcutKeys[Keys.P] = delegate() { Pause(); return true; };
-            //mShortcutKeys[Keys.F] = delegate() { PrevPhrase(); return true; };
-            //mShortcutKeys[Keys.B] = delegate() { NextPhrase(); return true; };
-            //mShortcutKeys[Keys.U] = delegate() { PrevSection(); return true; };
-            //mShortcutKeys[Keys.D] = delegate() { NextSection(); return true; };
-            //mShortcutKeys[Keys.R] = delegate() { Record(); return true; };
-            //mShortcutKeys[Keys.Oemplus] = delegate() { FastForward(); return true; };
-            //mShortcutKeys[Keys.OemMinus] = delegate() { Rewind(); return true; };
+            mShortcutKeys[Keys.Up] = delegate() { mProjectPanel.StripManager.PreviousSection(); return true; };
+            mShortcutKeys[Keys.Down] = delegate() { mProjectPanel.StripManager.NextSection(); return true; };
         }
 
         private const int WM_KEYDOWN = 0x100;
@@ -1123,95 +1118,11 @@ namespace Obi
                     mProjectPanel.TOCPanel.UpdateEnabledItemsForContextMenu();
                     mProjectPanel.StripManager.UpdateEnabledItemsForContextMenu();
                 }
-                if (!mProjectPanel.EditingText && mShortcutKeys.ContainsKey(key) && mShortcutKeys[key]()) return true;
+                if (!mProjectPanel.EditingText && mShortcutKeys.ContainsKey(key) && mShortcutKeys[key]())
+                    return true;
             }
             return base.ProcessCmdKey(ref msg, key);
         }
-
-        /// <summary>
-        /// Keys for the whole application.
-        /// </summary>
-        //protected override bool ProcessDialogKey(Keys key)
-        //{
-            // Make sure that the correct menu items are enabled for the keyboard shortcuts to work.
-            //System.Diagnostics.Debug.Print("GOT KEY {0}", key);
-            
-            /*switch (key)
-            {
-               case Keys.Control | Keys.Space:
-                    if (mPlayAllToolStripMenuItem.Enabled)
-                        TransportBar_PlayAll();
-                    break;
-
-                case Keys.Control | Keys.Shift | Keys.Space:
-                    if (mPlaySelectionToolStripMenuItem.Enabled)
-                        TransportBar_PlaySelection();
-                    break;
-
-// shorcut local to stripmanager
-                //case Keys.Space:
-                    //if (mProjectPanel.StripManager.ContainsFocus)
-                    //{
-//                        if (mPlaySelectionToolStripMenuItem.Enabled)
-                            //TransportBar_PlaySelection();
-                    //}
-                    //break;
-
-                // shorcut local to stripmanager
-                case Keys.Escape:
-                    if (mProjectPanel.StripManager.ContainsFocus)
-                    {
-                        if (mStopToolStripMenuItem.Enabled)
-                            TransportBar_Stop();
-                    }
-                    break;
-
-                case Keys.Control | Keys.T:
-                    if (mStopToolStripMenuItem.Enabled)
-                        TransportBar_Stop();
-                    break;
-
-                case Keys.Control | Keys.R:
-                    if (mRecordToolStripMenuItem.Enabled)
-                        mProjectPanel.TransportBar.Record();
-                    break;
-
-                case Keys.Alt | Keys.Left:
-                    if (mPreviousPhraseToolStripMenuItem.Enabled)
-                        TransportBar_PreviousPhrase();
-                    break;
-
-                case Keys.Alt | Keys.Right:
-                    if (mNextPhraseToolStripMenuItem.Enabled)
-                        TransportBar_NextPhrase();
-                    break;
-
-                case Keys.Alt | Keys.Down:
-                    if (mNextSectionToolStripMenuItem.Enabled)
-                        mProjectPanel.TransportBar.NextSection();
-                    break;
-
-                case Keys.Alt | Keys.Up:
-                    if (mPreviousSectionToolStripMenuItem.Enabled)
-                        mProjectPanel.TransportBar.PrevSection();
-                    break;
-
-
-                case Keys.Alt | Keys.Shift | Keys.Right:
-                    if (mFastForwardToolStripMenuItem.Enabled == true)
-                        mProjectPanel.TransportBar.FastForward();
-                    break;
-                case Keys.Alt | Keys.Shift | Keys.Left:
-                    if (mRewindToolStripMenuItem.Enabled == true)
-                        mProjectPanel.TransportBar.Rewind();
-                    break;
-
-                case Keys.Control | Keys.Alt  | Keys.T :
-                    mProjectPanel.TransportBar.FocusTimeDisplay();
-                    break;
-            } */
-            // return base.ProcessDialogKey(key);
-        //}
 
         #endregion
 
