@@ -1118,7 +1118,8 @@ namespace Obi
                     mProjectPanel.TOCPanel.UpdateEnabledItemsForContextMenu();
                     mProjectPanel.StripManager.UpdateEnabledItemsForContextMenu();
                 }
-                if (!mProjectPanel.EditingText && mShortcutKeys.ContainsKey(key) && mShortcutKeys[key]())
+                if (!mProjectPanel.EditingText && !mProjectPanel.TocTreeHasFocus &&
+                    mShortcutKeys.ContainsKey(key) && mShortcutKeys[key]())
                     return true;
             }
             return base.ProcessCmdKey(ref msg, key);

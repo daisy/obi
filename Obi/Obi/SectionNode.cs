@@ -87,10 +87,16 @@ namespace Obi
         {
             get
             {
-                CoreNode parent = (CoreNode)getParent();
-                int index = parent.indexOf(this);
-                int offset = parent is SectionNode ? ((SectionNode)parent).mSectionOffset : 0;
-                return index == offset ? parent as SectionNode : (SectionNode)parent.getChild(index - 1);
+                SectionNode previous = PreviousSibling;
+                if (previous == null)
+                {
+                    previous = ParentSection;
+                }
+                else
+                {
+                    while (previous.SectionChildCount > 0) previous = previous.SectionChild(-1);
+                }
+                return previous;
             }
         }
 
@@ -177,17 +183,21 @@ namespace Obi
 
         /// <summary>
         /// Get the child section at an index relative to sections only.
+        /// If the index is negative, start from the end of the list.
         /// </summary>
         public SectionNode SectionChild(int index)
         {
+            if (index < 0) index = SectionChildCount + index;
             return (SectionNode)getChild(index + mSectionOffset);
         }
 
         /// <summary>
         /// Get the child phrase at an index relative to phrases only.
+        /// If the index is negative, start from the end of the list.
         /// </summary>
         public PhraseNode PhraseChild(int index)
         {
+            if (index < 0) index = PhraseChildCount + index;
             return (PhraseNode)getChild(index);
         }
 

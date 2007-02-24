@@ -185,5 +185,52 @@ namespace Obi.UserControls
                 mPhraseNodeMap[(PhraseNode)e.Node].RefreshDisplay();
             }
         }
+
+
+        /// <summary>
+        /// Select the previous section of the selected section in the strip manager.
+        /// If a phrase is selected, select its parent strip.
+        /// If nothing is selected, select the last strip in the project.
+        /// </summary>
+        public void PreviousSection()
+        {
+            SectionNode prev = null;
+            if (mSelectedPhrase != null)
+            {
+                prev = mSelectedPhrase.ParentSection;
+            }
+            else if (mSelectedSection != null)
+            {
+                prev = mSelectedSection.PreviousSection;
+            }
+            else
+            {
+                prev = mProjectPanel.Project.LastSection;
+            }
+            if (prev != null) SelectedSectionNode = prev;
+        }
+
+        /// <summary>
+        /// Select the next section for the selected section in the strip manager.
+        /// If a phrase is selected, select the next stripfor the parent strip.
+        /// If nothing is selected, select the first strip of the project.
+        /// </summary>
+        public void NextSection()
+        {
+            SectionNode next = null;
+            if (mSelectedPhrase != null)
+            {
+                next = mSelectedPhrase.ParentSection.NextSection;
+            }
+            else if (mSelectedSection != null)
+            {
+                next = mSelectedSection.NextSection;
+            }
+            else
+            {
+                next = mProjectPanel.Project.FirstSection;
+            }
+            if (next != null) SelectedSectionNode = next;
+        }
     }
 }
