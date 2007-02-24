@@ -394,15 +394,8 @@ namespace Obi.UserControls
                 mDisplayTimer.Stop();
                 Play_PlayerStopped(this, null);
             }
-            else if (mPlaylist.State == Audio.AudioPlayerState.Paused)
-            {
-                mPauseButton.Visible = false;
-                mPlayButton.Visible = true;
-            }
             else if (mPlaylist.State == Audio.AudioPlayerState.Playing)
             {
-                mPauseButton.Visible = true;
-                mPlayButton.Visible = false;
                 mDisplayTimer.Start();
             }
             if (StateChanged != null) StateChanged(this, e);
@@ -422,8 +415,6 @@ namespace Obi.UserControls
         /// </summary>
         private void Play_PlayerStopped(object sender, EventArgs e)
         {
-            mPauseButton.Visible = false;
-            mPlayButton.Visible = true;
             ((ProjectPanel)Parent).StripManager.SelectedNode = mPreviousSelection;
         }
 

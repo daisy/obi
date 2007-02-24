@@ -115,6 +115,7 @@ namespace Obi
             this.aboutObiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.mPauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mProjectPanel = new Obi.UserControls.ProjectPanel();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -655,8 +656,9 @@ namespace Obi
             this.mRewindToolStripMenuItem,
             this.mPlayAllToolStripMenuItem,
             this.mPlaySelectionToolStripMenuItem,
-            this.mRecordToolStripMenuItem,
+            this.mPauseToolStripMenuItem,
             this.mStopToolStripMenuItem,
+            this.mRecordToolStripMenuItem,
             this.mFastForwardToolStripMenuItem,
             this.mNextPhraseToolStripMenuItem,
             this.mNextSectionToolStripMenuItem});
@@ -859,15 +861,25 @@ namespace Obi
             this.mToolStripStatusLabel.Name = "mToolStripStatusLabel";
             this.mToolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
+            // mPauseToolStripMenuItem
+            // 
+            this.mPauseToolStripMenuItem.Name = "mPauseToolStripMenuItem";
+            this.mPauseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Space)));
+            this.mPauseToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.mPauseToolStripMenuItem.Text = "Pause (&z)";
+            this.mPauseToolStripMenuItem.Click += new System.EventHandler(this.mPauseToolStripMenuItem_Click);
+            // 
             // mProjectPanel
             // 
             this.mProjectPanel.BackColor = System.Drawing.Color.White;
             this.mProjectPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mProjectPanel.EditingText = false;
             this.mProjectPanel.Location = new System.Drawing.Point(0, 24);
             this.mProjectPanel.Name = "mProjectPanel";
             this.mProjectPanel.Project = null;
             this.mProjectPanel.Size = new System.Drawing.Size(857, 497);
             this.mProjectPanel.TabIndex = 4;
+            this.mProjectPanel.TocTreeHasFocus = false;
             // 
             // ObiForm
             // 
@@ -982,6 +994,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mInsertEmptyAudioblockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mQuickSplitAudioBlockToolStripMenuItem;
         private Obi.UserControls.ProjectPanel mProjectPanel;
+        private System.Windows.Forms.ToolStripMenuItem mPauseToolStripMenuItem;
 
 
     }
