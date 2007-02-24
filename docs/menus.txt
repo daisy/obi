@@ -60,10 +60,11 @@ Main form
     + [E] Previous section .................. Alt+Up
     + [V] Previous phrase ................... Alt+Left
     + [W] Rewind ............................ Alt+Shift+Left
-    + [A] Play all/pause .................... Ctrl+Space
-    + [P] Play selection/pause .............. Ctrl+Shift+Space
-    + [R] Record ............................ Ctrl+R
+    + [A] Play all .......................... Ctrl+Space
+    + [P] Play selection .................... Ctrl+Shift+Space
+    + [Z] Pause ............................. Alt+Space
     + [S] Stop .............................. Ctrl+T
+    + [R] Record ............................ Ctrl+R
     + [F] Fast forward ...................... Alt+Shift+Right
     + [N] Next phrase ....................... Alt+Right
     + [X] Next section ...................... Alt+Down
@@ -151,8 +152,9 @@ Index of shortcuts
   Ctrl+Right ......... [Strip Manager Panel] Move audio block > Forward
   Ctrl+Shift+Right ... TOC > Move in
   Ctrl+Shift+Right ... [TOC Panel] > Move in
-  Ctrl+Space ......... Transport > Play all/pause
-  Ctrl+Shift+Space ... Transport > Play selection/pause
+  Alt+Space .......... Transport > Pause
+  Ctrl+Space ......... Transport > Play all
+  Ctrl+Shift+Space ... Transport > Play selection
   Alt+Up ............. Transport > Previous section
 
   Alt+A .............. Tools > Audio preferences
