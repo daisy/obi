@@ -335,7 +335,11 @@ namespace Obi.UserControls
         }
 
         /// <summary>
-        /// Select the previous phrase in the strip manager.
+        /// Select the previous phrase of the selected phrase in the strip manager.
+        /// If a section is selected, select the last phrase of the previous section,
+        /// or the previous section itself if it doesn't have phrases.
+        /// If nothing is selected, select the last phrase of the last section,
+        /// or the last section itself if it doesn't have phrases.
         /// </summary>
         public void PreviousPhrase()
         {
@@ -343,6 +347,12 @@ namespace Obi.UserControls
             if (mSelectedPhrase != null)
             {
                 prev = mSelectedPhrase.PreviousPhraseInSection;
+                if (prev == null)
+                {
+                    prev = mSelectedPhrase.ParentSection.PreviousSection;
+                    if (prev != null && ((SectionNode)prev).PhraseChildCount > 0)
+                        prev = ((SectionNode)prev).PhraseChild(-1);
+                }
             }
             else if (mSelectedSection != null)
             {
@@ -350,11 +360,23 @@ namespace Obi.UserControls
                 if (prev != null && ((SectionNode)prev).PhraseChildCount > 0)
                     prev = ((SectionNode)prev).PhraseChild(((SectionNode)prev).PhraseChildCount - 1);
             }
+            else
+            {
+                SectionNode last = mProjectPanel.Project.LastSection;
+                if (last != null)
+                {
+                    prev = last.PhraseChildCount > 0 ? (ObiNode)last.PhraseChild(-1) : (ObiNode)last;
+                }
+            }
             if (prev != null) SelectedNode = prev;
         }
 
         /// <summary>
-        /// Select the next phrase in the strip manager.
+        /// Select the next phrase for a selected phrase in the strip manager.
+        /// If a section is selected, then select the first phrase of the section
+        /// or the next section if it has no phrases.
+        /// If nothing is selected, select the first phrase of the first section,
+        /// or the first section itself if it has no phrases.
         /// </summary>
         public void NextPhrase()
         {
@@ -362,48 +384,27 @@ namespace Obi.UserControls
             if (mSelectedPhrase != null)
             {
                 next = mSelectedPhrase.NextPhraseInSection;
+                if (next == null)
+                {
+                    next = mSelectedPhrase.ParentSection.NextSection;
+                    if (next != null && ((SectionNode)next).PhraseChildCount > 0)
+                        next = ((SectionNode)next).PhraseChild(0);
+                }
             }
             else if (mSelectedSection != null)
             {
-                next = mSelectedSection.NextSection;
-                if (next != null && ((SectionNode)next).PhraseChildCount > 0)
-                    next = ((SectionNode)next).PhraseChild(0);
+                next = mSelectedSection.PhraseChildCount > 0 ? (ObiNode)mSelectedSection.PhraseChild(0) :
+                    mSelectedSection.NextSection;
+            }
+            else
+            {
+                SectionNode first = mProjectPanel.Project.FirstSection;
+                if (first != null)
+                {
+                    next = first.PhraseChildCount > 0 ? (ObiNode)first.PhraseChild(0) : (ObiNode)first;
+                }
             }
             if (next != null) SelectedNode = next;
-        }
-
-        /// <summary>
-        /// Select the previous section in the strip manager.
-        /// </summary>
-        public void PreviousSection()
-        {
-            SectionNode prev = null;
-            if (mSelectedPhrase != null)
-            {
-                prev = mSelectedPhrase.ParentSection;
-            }
-            else if (mSelectedSection != null)
-            {
-                prev = mSelectedSection.PreviousSection;
-            }
-            if (prev != null) SelectedSectionNode = prev;
-        }
-
-        /// <summary>
-        /// Select the next section in the strip manager.
-        /// </summary>
-        public void NextSection()
-        {
-            SectionNode next = null;
-            if (mSelectedPhrase != null)
-            {
-                next = mSelectedPhrase.ParentSection.NextSection;
-            }
-            else if (mSelectedSection != null)
-            {
-                next = mSelectedSection.NextSection;
-            }
-            if (next != null) SelectedSectionNode = next;
         }
     }
 }

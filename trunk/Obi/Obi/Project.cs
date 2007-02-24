@@ -100,6 +100,34 @@ namespace Obi
         }
 
         /// <summary>
+        /// Return the first section node in the project; or null if there are no sections.
+        /// </summary>
+        public SectionNode FirstSection
+        {
+            get
+            {
+                return RootNode.getChildCount() > 0 ? (SectionNode)RootNode.getChild(0) : null;
+            }
+        }
+
+        /// <summary>
+        /// Return the last section node in the project; or null if there are no sections.
+        /// </summary>
+        public SectionNode LastSection
+        {
+            get
+            {
+                SectionNode last = null;
+                if (RootNode.getChildCount() > 0)
+                {
+                    last = (SectionNode)RootNode.getChild(RootNode.getChildCount() - 1);
+                    while (last.SectionChildCount > 0) last = last.SectionChild(-1);
+                }
+                return last;
+            }
+        }
+
+        /// <summary>
         /// Last path under which the project was saved (different from the normal path when we save as)
         /// </summary>
         public string LastPath

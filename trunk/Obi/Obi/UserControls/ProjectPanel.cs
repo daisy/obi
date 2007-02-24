@@ -15,8 +15,9 @@ namespace Obi.UserControls
     /// </summary>
     public partial class ProjectPanel : UserControl
     {
-        private Project mProject;   // the project to display
-        private bool mEditingText;  // text is being edited somewhere... (try to recapture some keyboard events.)
+        private Project mProject;       // the project to display
+        private bool mEditingText;      // text is being edited somewhere... (try to recapture some keyboard events.)
+        private bool mTocTreeHasFocus;  // the toc tree is under focus (don't hijack its keys!)
 
         /// <summary>
         /// Set the project for the panel, as well as all the correct handlers.
@@ -310,6 +311,12 @@ namespace Obi.UserControls
         {
             get { return mEditingText; }
             set { mEditingText = value; }
+        }
+
+        public bool TocTreeHasFocus
+        {
+            get { return mTocTreeHasFocus; }
+            set { mTocTreeHasFocus = value; }
         }
 
         /// <summary>
