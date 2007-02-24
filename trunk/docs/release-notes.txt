@@ -633,3 +633,6 @@ Appendix C - Changelog
     * "TOC > Add section" changed to "TOC > Insert section".
     * Set/remove pages added, need to be written up by Julien.
     * Changed audio block display to say "Audio block 1 of 3" or "page 5".
+    * Keyboard navigation in the strip manager (relies on screen reader)
+    * Separated play and pause buttons in the transport bar, and switched
+    stop and record buttons. Modified transport menu accordingly.
