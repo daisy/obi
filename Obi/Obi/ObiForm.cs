@@ -861,37 +861,38 @@ namespace Obi
         {
             bool isProjectOpen = mProject != null;
             bool isNodeSelected = isProjectOpen && mProjectPanel.SelectedNode != null;
+
             mShowHideVUMeterToolStripMenuItem.Text = Localizer.Message(mVuMeterForm.Visible ? "hide_vu_meter" : "show_vu_meter");
             if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Stopped)
             {
                 mPlayAllToolStripMenuItem.Enabled = isProjectOpen;
-                mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
+                //mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
                 mPlaySelectionToolStripMenuItem.Enabled = isNodeSelected;
-                mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
+                //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
                 mStopToolStripMenuItem.Enabled = isNodeSelected;
             }
             else if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.NotReady)
             {
                 mPlayAllToolStripMenuItem.Enabled = false;
-                mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
+                //mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
                 mPlaySelectionToolStripMenuItem.Enabled = false;
-                mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
+                //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
                 mStopToolStripMenuItem.Enabled = false;
             }
             else if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Paused)
             {
                 mPlayAllToolStripMenuItem.Enabled = mProjectPanel.TransportBar.Playlist.WholeBook;
-                mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
+                //mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
                 mPlaySelectionToolStripMenuItem.Enabled = !mProjectPanel.TransportBar.Playlist.WholeBook;
-                mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
+                //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
                 mStopToolStripMenuItem.Enabled = true;
             }
             else // playing
             {
                 mPlayAllToolStripMenuItem.Enabled = mProjectPanel.TransportBar.Playlist.WholeBook;
-                mPlayAllToolStripMenuItem.Text = Localizer.Message("pause_all");
+                //mPlayAllToolStripMenuItem.Text = Localizer.Message("pause_all");
                 mPlaySelectionToolStripMenuItem.Enabled = !mProjectPanel.TransportBar.Playlist.WholeBook;
-                mPlaySelectionToolStripMenuItem.Text = Localizer.Message("pause");
+                //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("pause");
                 mStopToolStripMenuItem.Enabled = true;
             }
             mRecordToolStripMenuItem.Enabled = mProjectPanel.TransportBar.CanRecord;
@@ -945,20 +946,7 @@ namespace Obi
         /// </summary>
         private void mPlayAllToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            TransportBar_PlayAll();
-        }
-
-        private void TransportBar_PlayAll()
-        {
-            if (mProjectPanel.TransportBar.Playlist != null &&
-                mProjectPanel.TransportBar.Playlist.State == Audio.AudioPlayerState.Playing)
-            {
-                mProjectPanel.TransportBar.Pause();
-            }
-            else
-            {
-                mProjectPanel.TransportBar.Play();
-            }
+            mProjectPanel.TransportBar.Play();
         }
 
         /// <summary>
@@ -966,20 +954,7 @@ namespace Obi
         /// </summary>
         private void mPlaySelectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TransportBar_PlaySelection();
-        }
-
-        private void TransportBar_PlaySelection ()
-    {
-            if (mProjectPanel.TransportBar.Playlist != null && 
-                mProjectPanel.TransportBar.Playlist.State == Audio.AudioPlayerState.Playing)
-            {
-                mProjectPanel.TransportBar.Pause();
-            }
-            else
-            {
-                Play(mProjectPanel.StripManager.SelectedNode);
-            }
+            Play(mProjectPanel.StripManager.SelectedNode);
         }
 
         /// <summary>
@@ -990,6 +965,11 @@ namespace Obi
             mProjectPanel.TransportBar.Play(node);
         }
 
+        private void mPauseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.TransportBar.Pause();
+        }
+
         /// <summary>
         /// Stop playback.
         /// </summary>
@@ -998,9 +978,8 @@ namespace Obi
             TransportBar_Stop();
         }
 
-
         private void TransportBar_Stop ()
-    {
+        {
             mProjectPanel.TransportBar.Stop();
         }
 
