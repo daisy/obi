@@ -2,7 +2,7 @@ Obi release notes
 $Id$
 
 
-These release notes describe Obi version 0.8.1.0, released 2007-02-xx. The
+These release notes describe Obi version 0.8.1.0, released 2007-02-24. The
 goal of this document is to list all of the features of the latest version
 of Obi, for developers, testers and users. See appendix C for the changelog.
 
@@ -636,3 +636,4 @@ Appendix C - Changelog
     * Keyboard navigation in the strip manager (relies on screen reader)
     * Separated play and pause buttons in the transport bar, and switched
     stop and record buttons. Modified transport menu accordingly.
+    * Installer installs shortcut and desktop icon.
