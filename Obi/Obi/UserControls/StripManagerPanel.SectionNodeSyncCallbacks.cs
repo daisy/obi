@@ -195,17 +195,20 @@ namespace Obi.UserControls
         public void PreviousSection()
         {
             SectionNode prev = null;
-            if (mSelectedPhrase != null)
+            if (mProjectPanel.Project != null)
             {
-                prev = mSelectedPhrase.ParentSection;
-            }
-            else if (mSelectedSection != null)
-            {
-                prev = mSelectedSection.PreviousSection;
-            }
-            else
-            {
-                prev = mProjectPanel.Project.LastSection;
+                if (mSelectedPhrase != null)
+                {
+                    prev = mSelectedPhrase.ParentSection;
+                }
+                else if (mSelectedSection != null)
+                {
+                    prev = mSelectedSection.PreviousSection;
+                }
+                else
+                {
+                    prev = mProjectPanel.Project.LastSection;
+                }
             }
             if (prev != null) SelectedSectionNode = prev;
         }
@@ -218,17 +221,20 @@ namespace Obi.UserControls
         public void NextSection()
         {
             SectionNode next = null;
-            if (mSelectedPhrase != null)
+            if (mProjectPanel.Project != null)
             {
-                next = mSelectedPhrase.ParentSection.NextSection;
-            }
-            else if (mSelectedSection != null)
-            {
-                next = mSelectedSection.NextSection;
-            }
-            else
-            {
-                next = mProjectPanel.Project.FirstSection;
+                if (mSelectedPhrase != null)
+                {
+                    next = mSelectedPhrase.ParentSection.NextSection;
+                }
+                else if (mSelectedSection != null)
+                {
+                    next = mSelectedSection.NextSection;
+                }
+                else
+                {
+                    next = mProjectPanel.Project.FirstSection;
+                }
             }
             if (next != null) SelectedSectionNode = next;
         }

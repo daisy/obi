@@ -344,28 +344,31 @@ namespace Obi.UserControls
         public void PreviousPhrase()
         {
             ObiNode prev = null;
-            if (mSelectedPhrase != null)
+            if (mProjectPanel.Project != null)
             {
-                prev = mSelectedPhrase.PreviousPhraseInSection;
-                if (prev == null)
+                if (mSelectedPhrase != null)
                 {
-                    prev = mSelectedPhrase.ParentSection.PreviousSection;
-                    if (prev != null && ((SectionNode)prev).PhraseChildCount > 0)
-                        prev = ((SectionNode)prev).PhraseChild(-1);
+                    prev = mSelectedPhrase.PreviousPhraseInSection;
+                    if (prev == null)
+                    {
+                        prev = mSelectedPhrase.ParentSection.PreviousSection;
+                        if (prev != null && ((SectionNode)prev).PhraseChildCount > 0)
+                            prev = ((SectionNode)prev).PhraseChild(-1);
+                    }
                 }
-            }
-            else if (mSelectedSection != null)
-            {
-                prev = mSelectedSection.PreviousSection;
-                if (prev != null && ((SectionNode)prev).PhraseChildCount > 0)
-                    prev = ((SectionNode)prev).PhraseChild(((SectionNode)prev).PhraseChildCount - 1);
-            }
-            else
-            {
-                SectionNode last = mProjectPanel.Project.LastSection;
-                if (last != null)
+                else if (mSelectedSection != null)
                 {
-                    prev = last.PhraseChildCount > 0 ? (ObiNode)last.PhraseChild(-1) : (ObiNode)last;
+                    prev = mSelectedSection.PreviousSection;
+                    if (prev != null && ((SectionNode)prev).PhraseChildCount > 0)
+                        prev = ((SectionNode)prev).PhraseChild(((SectionNode)prev).PhraseChildCount - 1);
+                }
+                else
+                {
+                    SectionNode last = mProjectPanel.Project.LastSection;
+                    if (last != null)
+                    {
+                        prev = last.PhraseChildCount > 0 ? (ObiNode)last.PhraseChild(-1) : (ObiNode)last;
+                    }
                 }
             }
             if (prev != null) SelectedNode = prev;
@@ -381,27 +384,30 @@ namespace Obi.UserControls
         public void NextPhrase()
         {
             ObiNode next = null;
-            if (mSelectedPhrase != null)
+            if (mProjectPanel.Project != null)
             {
-                next = mSelectedPhrase.NextPhraseInSection;
-                if (next == null)
+                if (mSelectedPhrase != null)
                 {
-                    next = mSelectedPhrase.ParentSection.NextSection;
-                    if (next != null && ((SectionNode)next).PhraseChildCount > 0)
-                        next = ((SectionNode)next).PhraseChild(0);
+                    next = mSelectedPhrase.NextPhraseInSection;
+                    if (next == null)
+                    {
+                        next = mSelectedPhrase.ParentSection.NextSection;
+                        if (next != null && ((SectionNode)next).PhraseChildCount > 0)
+                            next = ((SectionNode)next).PhraseChild(0);
+                    }
                 }
-            }
-            else if (mSelectedSection != null)
-            {
-                next = mSelectedSection.PhraseChildCount > 0 ? (ObiNode)mSelectedSection.PhraseChild(0) :
-                    mSelectedSection.NextSection;
-            }
-            else
-            {
-                SectionNode first = mProjectPanel.Project.FirstSection;
-                if (first != null)
+                else if (mSelectedSection != null)
                 {
-                    next = first.PhraseChildCount > 0 ? (ObiNode)first.PhraseChild(0) : (ObiNode)first;
+                    next = mSelectedSection.PhraseChildCount > 0 ? (ObiNode)mSelectedSection.PhraseChild(0) :
+                        mSelectedSection.NextSection;
+                }
+                else
+                {
+                    SectionNode first = mProjectPanel.Project.FirstSection;
+                    if (first != null)
+                    {
+                        next = first.PhraseChildCount > 0 ? (ObiNode)first.PhraseChild(0) : (ObiNode)first;
+                    }
                 }
             }
             if (next != null) SelectedNode = next;
