@@ -99,6 +99,7 @@ namespace Obi.UserControls
             this.mTransportBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mTransportBar.BackColor = System.Drawing.Color.White;
+            this.mTransportBar.Enabled = false;
             this.mTransportBar.Location = new System.Drawing.Point(0, 415);
             this.mTransportBar.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.mTransportBar.Name = "mTransportBar";
