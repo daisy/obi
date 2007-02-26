@@ -60,6 +60,7 @@ namespace Obi.Audio
 		private void InitializeComponent()
 		{
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VuMeterForm));
             this.tmRefresh = new System.Windows.Forms.Timer(this.components);
             this.tmBeep = new System.Windows.Forms.Timer(this.components);
             this.btnClose = new System.Windows.Forms.Button();
@@ -79,22 +80,23 @@ namespace Obi.Audio
             // btnClose
             // 
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(0, 10);
+            this.btnClose.Location = new System.Drawing.Point(0, 9);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(60, 24);
+            this.btnClose.Size = new System.Drawing.Size(60, 22);
             this.btnClose.TabIndex = 0;
             this.btnClose.Text = "&Close";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // VuMeterForm
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 12);
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(332, 566);
             this.Controls.Add(this.btnClose);
             this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(600, 100);
             this.MaximizeBox = false;
             this.Name = "VuMeterForm";

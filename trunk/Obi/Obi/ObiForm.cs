@@ -583,19 +583,6 @@ namespace Obi
         }
 
         /// <summary>
-        /// Edit the full DAISY metadata for this project.
-        /// </summary>
-        private void mFullMetadataToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Dialogs.FullMetadata dialog = new Dialogs.FullMetadata(new Metadata(mProject, Metadata.DaisyTemplates()));
-            if (mProject != null && dialog.ShowDialog() == DialogResult.OK)
-            {
-                mProject.Modified();
-            }
-            Ready();
-        }
-
-        /// <summary>
         /// Edit the user profile through the user profile dialog.
         /// </summary>
         private void userSettingsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1386,7 +1373,6 @@ namespace Obi
             bool isProjectOpen = mProject != null;
             bool canTouch = !isPlaying && isProjectOpen;
             mMetadataToolStripMenuItem.Enabled = canTouch;
-            mFullMetadataToolStripMenuItem.Enabled = canTouch;
             mTouchProjectToolStripMenuItem.Enabled = canTouch;
         }
 

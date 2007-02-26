@@ -42,15 +42,15 @@ namespace Obi.Dialogs
             this.comboOutputDevice = new System.Windows.Forms.ComboBox();
             this.mTab = new System.Windows.Forms.TabControl();
             this.mProjectTab = new System.Windows.Forms.TabPage();
+            this.mLastOpenCheckBox = new System.Windows.Forms.CheckBox();
+            this.mExportBox = new System.Windows.Forms.TextBox();
+            this.mBrowseExportButton = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.mAudioTab = new System.Windows.Forms.TabPage();
             this.comboChannels = new System.Windows.Forms.ComboBox();
             this.labelChannels = new System.Windows.Forms.Label();
             this.comboSampleRate = new System.Windows.Forms.ComboBox();
             this.labelSampleRate = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.mBrowseExportButton = new System.Windows.Forms.Button();
-            this.mExportBox = new System.Windows.Forms.TextBox();
-            this.mLastOpenCheckBox = new System.Windows.Forms.CheckBox();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             this.mAudioTab.SuspendLayout();
@@ -193,6 +193,45 @@ namespace Obi.Dialogs
             this.mProjectTab.Text = "Project";
             this.mProjectTab.UseVisualStyleBackColor = true;
             // 
+            // mLastOpenCheckBox
+            // 
+            this.mLastOpenCheckBox.AutoSize = true;
+            this.mLastOpenCheckBox.Location = new System.Drawing.Point(6, 95);
+            this.mLastOpenCheckBox.Name = "mLastOpenCheckBox";
+            this.mLastOpenCheckBox.Size = new System.Drawing.Size(206, 16);
+            this.mLastOpenCheckBox.TabIndex = 8;
+            this.mLastOpenCheckBox.Text = "Open &last project when starting Obi";
+            this.mLastOpenCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // mExportBox
+            // 
+            this.mExportBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mExportBox.Location = new System.Drawing.Point(152, 64);
+            this.mExportBox.Name = "mExportBox";
+            this.mExportBox.Size = new System.Drawing.Size(372, 19);
+            this.mExportBox.TabIndex = 7;
+            // 
+            // mBrowseExportButton
+            // 
+            this.mBrowseExportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mBrowseExportButton.Location = new System.Drawing.Point(530, 62);
+            this.mBrowseExportButton.Name = "mBrowseExportButton";
+            this.mBrowseExportButton.Size = new System.Drawing.Size(75, 23);
+            this.mBrowseExportButton.TabIndex = 6;
+            this.mBrowseExportButton.Text = "&Browse";
+            this.mBrowseExportButton.UseVisualStyleBackColor = true;
+            this.mBrowseExportButton.Click += new System.EventHandler(this.mBrowseExportButton_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(17, 67);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(129, 12);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Default e&xport directory:";
+            // 
             // mAudioTab
             // 
             this.mAudioTab.Controls.Add(this.comboChannels);
@@ -248,45 +287,6 @@ namespace Obi.Dialogs
             this.labelSampleRate.Size = new System.Drawing.Size(108, 12);
             this.labelSampleRate.TabIndex = 13;
             this.labelSampleRate.Text = "Default &sample rate:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 67);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(129, 12);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Default e&xport directory:";
-            // 
-            // mBrowseExportButton
-            // 
-            this.mBrowseExportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mBrowseExportButton.Location = new System.Drawing.Point(530, 62);
-            this.mBrowseExportButton.Name = "mBrowseExportButton";
-            this.mBrowseExportButton.Size = new System.Drawing.Size(75, 23);
-            this.mBrowseExportButton.TabIndex = 6;
-            this.mBrowseExportButton.Text = "&Browse";
-            this.mBrowseExportButton.UseVisualStyleBackColor = true;
-            this.mBrowseExportButton.Click += new System.EventHandler(this.mBrowseExportButton_Click);
-            // 
-            // mExportBox
-            // 
-            this.mExportBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.mExportBox.Location = new System.Drawing.Point(152, 64);
-            this.mExportBox.Name = "mExportBox";
-            this.mExportBox.Size = new System.Drawing.Size(372, 19);
-            this.mExportBox.TabIndex = 7;
-            // 
-            // mLastOpenCheckBox
-            // 
-            this.mLastOpenCheckBox.AutoSize = true;
-            this.mLastOpenCheckBox.Location = new System.Drawing.Point(6, 95);
-            this.mLastOpenCheckBox.Name = "mLastOpenCheckBox";
-            this.mLastOpenCheckBox.Size = new System.Drawing.Size(206, 16);
-            this.mLastOpenCheckBox.TabIndex = 8;
-            this.mLastOpenCheckBox.Text = "Open &last project when starting Obi";
-            this.mLastOpenCheckBox.UseVisualStyleBackColor = true;
             // 
             // Preferences
             // 

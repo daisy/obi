@@ -55,7 +55,6 @@ namespace Obi
             this.mDeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.mMetadataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mFullMetadataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTouchProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowhideTableOfContentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -113,11 +112,11 @@ namespace Obi
             this.mExportAssetDEBUGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mViewHelpInExternalBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutObiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectPanel = new Obi.UserControls.ProjectPanel();
-            this.mViewHelpInExternalBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -277,7 +276,6 @@ namespace Obi
             this.mDeleteToolStripMenuItem,
             this.toolStripSeparator4,
             this.mMetadataToolStripMenuItem,
-            this.mFullMetadataToolStripMenuItem,
             this.mTouchProjectToolStripMenuItem});
             this.mEditToolStripMenuItem.Name = "mEditToolStripMenuItem";
             this.mEditToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -288,7 +286,7 @@ namespace Obi
             // 
             this.mUndoToolStripMenuItem.Name = "mUndoToolStripMenuItem";
             this.mUndoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.mUndoToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.mUndoToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.mUndoToolStripMenuItem.Text = "&Undo";
             this.mUndoToolStripMenuItem.Click += new System.EventHandler(this.mUndoToolStripMenuItem_Click);
             // 
@@ -296,20 +294,20 @@ namespace Obi
             // 
             this.mRedoToolStripMenuItem.Name = "mRedoToolStripMenuItem";
             this.mRedoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.mRedoToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.mRedoToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.mRedoToolStripMenuItem.Text = "&Redo";
             this.mRedoToolStripMenuItem.Click += new System.EventHandler(this.mRedoToolStripMenuItem_Click);
             // 
             // toolStripSeparator11
             // 
             this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(170, 6);
+            this.toolStripSeparator11.Size = new System.Drawing.Size(155, 6);
             // 
             // mCutToolStripMenuItem
             // 
             this.mCutToolStripMenuItem.Name = "mCutToolStripMenuItem";
             this.mCutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.mCutToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.mCutToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.mCutToolStripMenuItem.Text = "&Cut";
             this.mCutToolStripMenuItem.Click += new System.EventHandler(this.mCutToolStripMenuItem_Click);
             // 
@@ -317,7 +315,7 @@ namespace Obi
             // 
             this.mCopyToolStripMenuItem.Name = "mCopyToolStripMenuItem";
             this.mCopyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.mCopyToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.mCopyToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.mCopyToolStripMenuItem.Text = "Cop&y";
             this.mCopyToolStripMenuItem.Click += new System.EventHandler(this.mCopyToolStripMenuItem_Click);
             // 
@@ -325,7 +323,7 @@ namespace Obi
             // 
             this.mPasteToolStripMenuItem.Name = "mPasteToolStripMenuItem";
             this.mPasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.mPasteToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.mPasteToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.mPasteToolStripMenuItem.Text = "&Paste";
             this.mPasteToolStripMenuItem.Click += new System.EventHandler(this.mPasteToolStripMenuItem_Click);
             // 
@@ -333,37 +331,28 @@ namespace Obi
             // 
             this.mDeleteToolStripMenuItem.Name = "mDeleteToolStripMenuItem";
             this.mDeleteToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.mDeleteToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.mDeleteToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.mDeleteToolStripMenuItem.Text = "&Delete";
             this.mDeleteToolStripMenuItem.Click += new System.EventHandler(this.mDeleteToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(170, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(155, 6);
             // 
             // mMetadataToolStripMenuItem
             // 
             this.mMetadataToolStripMenuItem.Name = "mMetadataToolStripMenuItem";
             this.mMetadataToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.M)));
-            this.mMetadataToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.mMetadataToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.mMetadataToolStripMenuItem.Text = "&Metadata";
             this.mMetadataToolStripMenuItem.Click += new System.EventHandler(this.mMetadataToolStripMenuItem_Click);
-            // 
-            // mFullMetadataToolStripMenuItem
-            // 
-            this.mFullMetadataToolStripMenuItem.Name = "mFullMetadataToolStripMenuItem";
-            this.mFullMetadataToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F)));
-            this.mFullMetadataToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.mFullMetadataToolStripMenuItem.Text = "&Full metadata";
-            this.mFullMetadataToolStripMenuItem.Visible = false;
-            this.mFullMetadataToolStripMenuItem.Click += new System.EventHandler(this.mFullMetadataToolStripMenuItem_Click);
             // 
             // mTouchProjectToolStripMenuItem
             // 
             this.mTouchProjectToolStripMenuItem.Name = "mTouchProjectToolStripMenuItem";
             this.mTouchProjectToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.mTouchProjectToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.mTouchProjectToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.mTouchProjectToolStripMenuItem.Text = "&Touch project";
             this.mTouchProjectToolStripMenuItem.Click += new System.EventHandler(this.mTouchProjectToolStripMenuItem_Click);
             // 
@@ -847,6 +836,14 @@ namespace Obi
             this.mHelpToolStripMenuItem1.Text = "&Contents";
             this.mHelpToolStripMenuItem1.Click += new System.EventHandler(this.mHelpToolStripMenuItem1_Click);
             // 
+            // mViewHelpInExternalBrowserToolStripMenuItem
+            // 
+            this.mViewHelpInExternalBrowserToolStripMenuItem.Name = "mViewHelpInExternalBrowserToolStripMenuItem";
+            this.mViewHelpInExternalBrowserToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.F1)));
+            this.mViewHelpInExternalBrowserToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
+            this.mViewHelpInExternalBrowserToolStripMenuItem.Text = "&View help in external browser";
+            this.mViewHelpInExternalBrowserToolStripMenuItem.Click += new System.EventHandler(this.mViewHelpInExternalBrowserToolStripMenuItem_Click);
+            // 
             // aboutObiToolStripMenuItem
             // 
             this.aboutObiToolStripMenuItem.Name = "aboutObiToolStripMenuItem";
@@ -882,14 +879,6 @@ namespace Obi
             this.mProjectPanel.Size = new System.Drawing.Size(857, 497);
             this.mProjectPanel.TabIndex = 4;
             this.mProjectPanel.TocTreeHasFocus = false;
-            // 
-            // mViewHelpInExternalBrowserToolStripMenuItem
-            // 
-            this.mViewHelpInExternalBrowserToolStripMenuItem.Name = "mViewHelpInExternalBrowserToolStripMenuItem";
-            this.mViewHelpInExternalBrowserToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.F1)));
-            this.mViewHelpInExternalBrowserToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
-            this.mViewHelpInExternalBrowserToolStripMenuItem.Text = "&View help in external browser";
-            this.mViewHelpInExternalBrowserToolStripMenuItem.Click += new System.EventHandler(this.mViewHelpInExternalBrowserToolStripMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -1000,7 +989,6 @@ namespace Obi
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripMenuItem mExportAsDAISYToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMarkAudioBlockAsUnusedToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mFullMetadataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mInsertEmptyAudioblockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mQuickSplitAudioBlockToolStripMenuItem;
         private Obi.UserControls.ProjectPanel mProjectPanel;
