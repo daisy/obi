@@ -77,6 +77,7 @@ Main form
 
   + [H] Help
     + [C] Contents .......................... F1
+    + [V] View help in external browser ..... Shift+F1
     + [A] About Obi ......................... Missing
 
 
@@ -131,6 +132,7 @@ Index of shortcuts
   Shift+Ctrl+Del ..... Strips > Remove annotation
   Shift+Ctrl+Del ..... [Strip Manager Panel] Remove annotation
   F1 ................. Help > Contents
+  Shift+F1 ........... Help > View help in external browser
   F2 ................. TOC > Rename section
   F2 ................. Strips > Edit annotation
   F2 ................. [TOC Panel] Rename section
