@@ -88,7 +88,7 @@ namespace Obi.UserControls
             mCutAudioBlockToolStripMenuItem.Enabled = canCutCopyDeletePhrase;
             mCopyAudioBlockToolStripMenuItem.Enabled = canCutCopyDeletePhrase;
             mPasteAudioBlockToolStripMenuItem.Enabled = canPastePhrase;
-            mDeleteAudioBlockToolStripMenuItem.Enabled = canCutCopyDeletePhrase;
+            mDeleteAudioBlockToolStripMenuItem.Enabled = canCutCopyDeletePhrase && !mProjectPanel.EditingText;
             mMarkPhraseAsUnusedToolStripMenuItem.Enabled = false;
             mSplitAudioBlockToolStripMenuItem.Enabled = isBlockSelected;
             mQuickSplitAudioBlockToolStripMenuItem.Enabled = isBlockSelected;

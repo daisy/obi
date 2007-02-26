@@ -736,7 +736,6 @@ namespace Obi
         {
             Dialogs.Help help = new Dialogs.Help();
             // TODO: Make sure the file corresponds to the current language
-            // help.WebBrowser.DocumentStream = GetType().Assembly.GetManifestResourceStream("Obi.help_en.html");
             help.WebBrowser.Url = new Uri(Path.GetDirectoryName(GetType().Assembly.Location) + "\\help_en.html");
             help.ShowDialog();
         }
@@ -1514,5 +1513,11 @@ namespace Obi
         }
 
         #endregion
+
+        private void mViewHelpInExternalBrowserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Uri url = new Uri(Path.GetDirectoryName(GetType().Assembly.Location) + "\\help_en.html");
+            System.Diagnostics.Process.Start(url.ToString());
+        }
     }
 }
