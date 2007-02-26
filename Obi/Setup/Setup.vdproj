@@ -69,12 +69,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_50AC3DB15E9C4F1F9B2C84897BDF653C"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -148,6 +142,12 @@
         "Entry"
         {
         "MsmKey" = "8:_9AACA331BD8544A1BA6F614A5C2E9011"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9C20083F5AC541BB9A68D0CA14309F6D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -498,26 +498,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_50AC3DB15E9C4F1F9B2C84897BDF653C"
-            {
-            "SourcePath" = "8:..\\Obi\\obird.ico"
-            "TargetName" = "8:obird.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_60C547F2CA384057AE8BC34EF1FE878F"
             {
             "SourcePath" = "8:..\\Obi\\images\\manual_toceditoptions.png"
@@ -751,6 +731,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9C20083F5AC541BB9A68D0CA14309F6D"
+            {
+            "SourcePath" = "8:..\\..\\images\\obi.ico"
+            "TargetName" = "8:obi.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_32F80C511F4B40F1B79B5D7AFD966F83"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A4EB93BEC58F4B1A82EE9320D2BF4AAC"
             {
             "SourcePath" = "8:..\\Obi\\images\\manual_audioblockeditoptions.png"
@@ -940,7 +940,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Obi"
         "ProductCode" = "8:{B0E80692-C9F4-400A-A69F-42EB91AF64D0}"
-        "PackageCode" = "8:{526D6333-E023-4B78-8D76-22C8FFD48814}"
+        "PackageCode" = "8:{0E61795A-23D6-4B9F-9231-D3FFB55FE92E}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
@@ -956,7 +956,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:The Urakawa Project DAISY/NISO simple authoring tool"
         "ARPURLINFOABOUT" = "8:http://urakawa.sourceforge.net"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_9C20083F5AC541BB9A68D0CA14309F6D"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -1070,7 +1070,7 @@
             "Target" = "8:_5D74C0D378D74D17BD753426073D0BF5"
             "Folder" = "8:_A0FF443BF076437FA90B350077F79878"
             "WorkingFolder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Icon" = "8:_50AC3DB15E9C4F1F9B2C84897BDF653C"
+            "Icon" = "8:_9C20083F5AC541BB9A68D0CA14309F6D"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C26CA4074EF24904B9E49A74044A43B0"
@@ -1084,7 +1084,7 @@
             "Target" = "8:_5D74C0D378D74D17BD753426073D0BF5"
             "Folder" = "8:_BF79706BAEEE421381CB56E45BBD7479"
             "WorkingFolder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Icon" = "8:_50AC3DB15E9C4F1F9B2C84897BDF653C"
+            "Icon" = "8:_9C20083F5AC541BB9A68D0CA14309F6D"
             "Feature" = "8:"
             }
         }
