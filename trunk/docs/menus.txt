@@ -23,7 +23,6 @@ Main form
     + [P] Paste ............................. Ctrl+V
     + [D] Delete ............................ Del
     + [M] Metadata .......................... Alt+M
-    + [F] Full metadata ..................... Alt+F
     + [T] Touch project ..................... F5
 
   + [C] TOC
@@ -171,7 +170,6 @@ Index of shortcuts
   Ctrl+Shift+C ....... [TOC Panel] Copy section
   Ctrl+D ............. File > Discard changes
   Ctrl+E ............. File > Export as DAISY
-  Alt+F .............. Edit > Full metadata
   Ctrl+F ............. FREE
   Ctrl+G ............. Strips > Set page number
   Ctrl+G ............. [Strip Manager Panel] Set page number
