@@ -41,10 +41,34 @@ namespace Obi
         }
 
         /// <summary>
-        /// Initialize a new form. No project is opened at creation time.
+        /// Initialize a new form.
         /// </summary>
-        /// <remarks>TODO: have an option to open a project automatically when the application launches.</remarks>
         public ObiForm()
+        {
+            InitializeObi();
+            if (mSettings.OpenLastProject && mSettings.LastOpenProject != "")
+            {
+                // open the last open project
+                DoOpenProject(mSettings.LastOpenProject);
+            }
+            else
+            {
+                // no project opened, same as if we closed a project.
+                StatusUpdateClosedProject();
+            }
+        }
+
+        /// <summary>
+        /// Initialize a new form with a project given as parameter.
+        /// </summary>
+        /// <param name="path">The project to open on startup.</param>
+        public ObiForm(string path)
+        {
+            InitializeObi();
+            DoOpenProject(path);
+        }
+
+        private void InitializeObi()
         {
             InitializeComponent();
             mProject = null;
@@ -56,16 +80,6 @@ namespace Obi
             mProjectPanel.TransportBar.StateChanged +=
                 new Obi.Events.Audio.Player.StateChangedHandler(TransportBar_StateChanged);
             mProjectPanel.TransportBar.PlaybackRateChanged += new EventHandler(TransportBar_PlaybackRateChanged);
-            if (mSettings.OpenLastProject && mSettings.LastOpenProject != "")
-            {
-                // open the last open project
-                DoOpenProject(mSettings.LastOpenProject);
-            }
-            else
-            {
-                // no project opened, same as if we closed a project.
-                StatusUpdateClosedProject();
-            }
         }
 
         /// <summary>
