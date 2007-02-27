@@ -7,13 +7,21 @@ namespace Obi
     {
         /// <summary>
         /// The main entry point for the application.
+        /// Open the first file given as argument, or just start.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ObiForm());
+            if (args.Length == 0)
+            {
+                Application.Run(new ObiForm());
+            }
+            else
+            {
+                Application.Run(new ObiForm(args[0]));
+            }
         }
 
         /// <summary>

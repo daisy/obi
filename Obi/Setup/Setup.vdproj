@@ -865,6 +865,29 @@
         }
         "FileType"
         {
+            "{5EB83D71-FA18-4901-BE56-DE22E13CC478}:_380702813FFD450795B7D58B3CAB21D9"
+            {
+            "Name" = "8:Obi project file"
+            "Description" = "8:The XUK file for an Obi project"
+            "Extensions" = "8:xuk"
+            "MIME" = "8:"
+            "Icon" = "8:_9C20083F5AC541BB9A68D0CA14309F6D"
+            "IconIndex" = "3:0"
+                "Command"
+                {
+                "Command" = "8:_5D74C0D378D74D17BD753426073D0BF5"
+                }
+                "Verbs"
+                {
+                    "{95C0C507-CBF0-42B8-B119-07219E384A4A}:_9D17D95F61C5450C9D0D47C398C4C5A9"
+                    {
+                    "Command" = "8:&Open"
+                    "Verb" = "8:open"
+                    "Arguments" = "8:\"%1\""
+                    "Order" = "3:0"
+                    }
+                }
+            }
         }
         "Folder"
         {
@@ -940,7 +963,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Obi"
         "ProductCode" = "8:{B0E80692-C9F4-400A-A69F-42EB91AF64D0}"
-        "PackageCode" = "8:{0E61795A-23D6-4B9F-9231-D3FFB55FE92E}"
+        "PackageCode" = "8:{41026EC4-40A4-4339-B1F6-077D057E38EA}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
