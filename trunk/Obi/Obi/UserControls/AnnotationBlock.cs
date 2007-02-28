@@ -134,10 +134,10 @@ namespace Obi.UserControls
                     Localizer.Message("empty_label_warning_caption"),
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-
             mLabel.Visible = true;
             mRenameBox.Visible = false;
             mManager.ProjectPanel.TransportBar.Enabled = true;
+            mManager.AllowShortcuts = true;
         }
 
         private void mRenameBox_Leave(object sender, EventArgs e)
@@ -187,8 +187,11 @@ namespace Obi.UserControls
                 e.SuppressKeyPress = true;
 
             }
+        }
 
-            
+        private void mRenameBox_Enter(object sender, EventArgs e)
+        {
+            mManager.AllowShortcuts = false;
         }
     }
 }

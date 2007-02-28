@@ -46,6 +46,7 @@ namespace Obi.UserControls
             this.mRenameBox.TabIndex = 3;
             this.mRenameBox.TabStop = false;
             this.mRenameBox.Visible = false;
+            this.mRenameBox.Enter += new System.EventHandler(this.mRenameBox_Enter);
             this.mRenameBox.Click += new System.EventHandler(this.AnnotationBlock_Click);
             this.mRenameBox.Leave += new System.EventHandler(this.mRenameBox_Leave);
             this.mRenameBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.mRenameBox_KeyUp);

@@ -20,6 +20,11 @@ namespace Obi
         private CommandManager mCommandManager;  // the undo stack for this project
         private Audio.VuMeterForm mVuMeterForm;  // keep track of a single VU meter form
 
+        public bool AllowDelete
+        {
+            set { mDeleteToolStripMenuItem.Enabled = value; }
+        }
+
         /// <summary>
         /// Application settings.
         /// </summary>

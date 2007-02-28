@@ -64,6 +64,7 @@ namespace Obi.UserControls
             this.mRenameBox.Size = new System.Drawing.Size(0, 19);
             this.mRenameBox.TabIndex = 1;
             this.mRenameBox.Visible = false;
+            this.mRenameBox.Enter += new System.EventHandler(this.mRenameBox_Enter);
             this.mRenameBox.Click += new System.EventHandler(this.SectionStrip_Click);
             this.mRenameBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mTextBox_MouseDown);
             this.mRenameBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mTextBox_KeyDown);
@@ -116,7 +117,7 @@ namespace Obi.UserControls
             this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.Name = "SectionStrip";
             this.Padding = new System.Windows.Forms.Padding(4);
-            this.Size = new System.Drawing.Size(318, 40);
+            this.Size = new System.Drawing.Size(314, 40);
             this.DoubleClick += new System.EventHandler(this.SectionStrip_DoubleClick);
             this.Click += new System.EventHandler(this.SectionStrip_Click);
             this.ResumeLayout(false);

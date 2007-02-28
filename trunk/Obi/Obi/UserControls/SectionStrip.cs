@@ -195,6 +195,7 @@ namespace Obi.UserControls
                     Localizer.Message("empty_label_warning_caption"),
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+            mManager.AllowShortcuts = true;
         }
         
         #endregion
@@ -393,6 +394,11 @@ namespace Obi.UserControls
                 System.Diagnostics.Debug.Assert(block != null);
                 block.RefreshLabels();
             }
+        }
+
+        private void mRenameBox_Enter(object sender, EventArgs e)
+        {
+            mManager.AllowShortcuts = false;
         }
     }
 }

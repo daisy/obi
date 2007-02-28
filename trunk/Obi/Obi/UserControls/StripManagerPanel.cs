@@ -25,6 +25,8 @@ namespace Obi.UserControls
 
         private ProjectPanel mProjectPanel; //the parent of this control
 
+        private bool mAllowShortcuts;  // allow handling of shortcut keys
+
         public event Events.SetMediaHandler SetMediaRequested;
         public event Events.SelectedHandler SelectionChanged;
 
@@ -207,6 +209,20 @@ namespace Obi.UserControls
             get { return mSelectedPhrase != null && mSelectedPhrase.PageProperty != null; }
         }
 
+        /// <summary>
+        /// Allow handling of shortcut keys (arrows, delete, etc.)
+        /// </summary>
+        public bool AllowShortcuts
+        {
+            set
+            {
+                mAllowShortcuts = value;
+                ((ObiForm)ParentForm).AllowDelete = value;
+                mDeleteStripToolStripMenuItem.Enabled = value;
+                mDeleteAudioBlockToolStripMenuItem.Enabled = value;
+            }
+        }
+
         #endregion
 
         #region instantiators
@@ -224,6 +240,7 @@ namespace Obi.UserControls
             mSelectedSection = null;
             mPhraseNodeMap = new Dictionary<PhraseNode, AudioBlock>();
             mSelectedPhrase = null;
+            mAllowShortcuts = true;
         }
 
         /// <summary>
@@ -350,7 +367,7 @@ namespace Obi.UserControls
         {
             if ((msg.Msg == WM_KEYDOWN) || (msg.Msg == WM_SYSKEYDOWN))
             {
-                if (mShortcutKeys.ContainsKey(key) && mShortcutKeys[key]()) return true;
+                if (mAllowShortcuts && mShortcutKeys.ContainsKey(key) && mShortcutKeys[key]()) return true;
             }
             return base.ProcessCmdKey(ref msg, key);
         }

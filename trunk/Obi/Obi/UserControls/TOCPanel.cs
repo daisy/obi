@@ -80,6 +80,18 @@ namespace Obi.UserControls
         }
 
         /// <summary>
+        /// Allow delete key or not
+        /// </summary>
+        public bool AllowDelete
+        {
+            set
+            {
+                ((ObiForm)ParentForm).AllowDelete = value;
+                mDeleteSectionToolStripMenuItem.Enabled = value;
+            }
+        }
+
+        /// <summary>
         /// Get and set the parent ProjectPanel control 
         /// </summary>
         // mg 20060804
@@ -166,6 +178,7 @@ namespace Obi.UserControls
                     mProjectPanel.Project.RenameSectionNodeWithCommand((SectionNode)e.Node.Tag, e.Label);
                 }
             }
+            AllowDelete = true;
         }
 
         /// <summary>
@@ -196,9 +209,6 @@ namespace Obi.UserControls
                     this.mShowInStripViewToolStripMenuItem_Click(this, null);
                 }
             }
-
-            
-
         }
 
         /// <summary>
@@ -322,6 +332,11 @@ namespace Obi.UserControls
                 SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(false, mTocTree.SelectedNode));
             }
             mTocTree.SelectedNode = null;
+        }
+
+        private void mTocTree_BeforeLabelEdit(object sender, NodeLabelEditEventArgs e)
+        {
+            AllowDelete = false;
         }
     }
 }
