@@ -563,6 +563,7 @@ namespace Obi
                 node.PageProperty = new PageProperty();
                 node.PageProperty.PageNumber = 0;
                 RenumberPages();
+                ++mPages;
                 return true;
             }
             else
@@ -590,7 +591,8 @@ namespace Obi
             {
                 node.PageProperty = null;
                 RemovedPageNumber(this, new Events.Node.PhraseNodeEventArgs(this, node));
-                RenumberPages();
+                --mPages;
+                if (mPages > 0) RenumberPages();
                 return true;
             }
             else

@@ -581,6 +581,11 @@ namespace Obi
             mProjectPanel.StripManager.RemovePageNumber();
         }
 
+        private void mGoToPageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.StripManager.GoToPage();
+        }
+
         #endregion
 
 
@@ -1490,6 +1495,7 @@ namespace Obi
 
             mSetPageNumberToolStripMenuItem.Enabled = !isPlaying && mProjectPanel.StripManager.CanSetPage;
             mRemovePageNumberToolStripMenuItem.Enabled = !isPlaying && mProjectPanel.StripManager.CanRemovePage;
+            mGoToPageToolStripMenuItem.Enabled = !isPlaying && isProjectOpen && mProject.Pages > 0; 
 
             mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;
 

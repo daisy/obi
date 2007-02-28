@@ -412,5 +412,15 @@ namespace Obi.UserControls
             }
             if (next != null) SelectedNode = next;
         }
+
+        public void GoToPage()
+        {
+            if (mProjectPanel.Project.Pages > 0)
+            {
+                Dialogs.GoToPage dialog = new Dialogs.GoToPage(mProjectPanel.Project);
+                if (dialog.ShowDialog() == DialogResult.OK && dialog.SelectedPage != null)
+                    SelectedNode = dialog.SelectedPage;
+            }
+        }
     }
 }

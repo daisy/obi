@@ -105,6 +105,7 @@ namespace Obi.UserControls
 
             mSetPageNumberToolStripMenuItem.Enabled = !isPlaying && CanSetPage;
             mRemovePageNumberToolStripMenuItem.Enabled = !isPlaying && CanRemovePage;
+            mGoTopageToolStripMenuItem.Enabled = !isPlaying && mProjectPanel.Project.Pages > 0;
 
             UpdateVisibleItemsForContextMenu();
         }
@@ -361,6 +362,16 @@ namespace Obi.UserControls
         private void mPasteStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PasteSectionNode();
+        }
+
+        private void mSetPageNumberToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mSelectedPhrase != null) mProjectPanel.Project.SetPageNumberOnPhraseWithUndo(mSelectedPhrase);
+        }
+
+        private void mGoTopageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectPanel.Project.Pages > 0) GoToPage();
         }
     }
 }
