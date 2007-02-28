@@ -2,7 +2,7 @@ Obi release notes
 $Id$
 
 
-These release notes describe Obi version 0.8.2.0, released 2007-02-26. The
+These release notes describe Obi version 0.8.3.0, released 2007-03-xx. The
 goal of this document is to list all of the features of the latest version
 of Obi, for developers, testers and users. See appendix C for the changelog.
 
@@ -626,8 +626,20 @@ Appendix B - Known Issues
   B.1 Leaving a textbox (editing strip titles or annotations) before
   committing the change by pressing return is not always handled elegantly.
 
+  B.2 Keyboard navigation hijacks arrow keys in many places where we want
+  them.
+
+  B.3 Phrase nodes have resizing/repainting bugs.
+
+  B.4 Focus does not follow selection, so a selected item can become
+  invisible (e.g. when playing.)
+
 
 Appendix C - Changelog
+
+  * New in Obi 0.8.3.0
+    * Cleaned-up menu accelerator keys.
+    * Added "Strips > Go to page".
 
   * New in Obi 0.8.2.0
     * Fixed some keyboard navigation bugs (but splitter in project panel is
