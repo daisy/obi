@@ -874,13 +874,11 @@ namespace Obi
             // 
             this.mProjectPanel.BackColor = System.Drawing.Color.White;
             this.mProjectPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mProjectPanel.EditingText = false;
             this.mProjectPanel.Location = new System.Drawing.Point(0, 24);
             this.mProjectPanel.Name = "mProjectPanel";
             this.mProjectPanel.Project = null;
             this.mProjectPanel.Size = new System.Drawing.Size(857, 497);
             this.mProjectPanel.TabIndex = 4;
-            this.mProjectPanel.TocTreeHasFocus = false;
             // 
             // mGoToPageToolStripMenuItem
             // 

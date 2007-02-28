@@ -71,7 +71,7 @@ namespace Obi.UserControls
             mCutStripToolStripMenuItem.Enabled = canCutCopyDeleteSection;
             mCopyStripToolStripMenuItem.Enabled = canCutCopyDeleteSection;
             mPasteStripToolStripMenuItem.Enabled = canPasteSection;
-            mDeleteStripToolStripMenuItem.Enabled = canCutCopyDeleteSection && !mProjectPanel.EditingText;
+            mDeleteStripToolStripMenuItem.Enabled = canCutCopyDeleteSection;
             mMarkStripAsUnusedToolStripMenuItem.Enabled = !isPlaying && isStripSelected;
             mShowInTOCViewToolStripMenuItem.Enabled = !isPlaying && isStripSelected;
 
@@ -88,7 +88,7 @@ namespace Obi.UserControls
             mCutAudioBlockToolStripMenuItem.Enabled = canCutCopyDeletePhrase;
             mCopyAudioBlockToolStripMenuItem.Enabled = canCutCopyDeletePhrase;
             mPasteAudioBlockToolStripMenuItem.Enabled = canPastePhrase;
-            mDeleteAudioBlockToolStripMenuItem.Enabled = canCutCopyDeletePhrase && !mProjectPanel.EditingText;
+            mDeleteAudioBlockToolStripMenuItem.Enabled = canCutCopyDeletePhrase;
             mMarkPhraseAsUnusedToolStripMenuItem.Enabled = false;
             mSplitAudioBlockToolStripMenuItem.Enabled = isBlockSelected;
             mQuickSplitAudioBlockToolStripMenuItem.Enabled = isBlockSelected;

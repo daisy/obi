@@ -106,7 +106,6 @@ namespace Obi.UserControls
             {
                 mRenaming = value;
                 mManager.ProjectPanel.TransportBar.Enabled = !value;
-                mManager.ProjectPanel.EditingText = value;
                 mRenameBox.Visible = value;
                 mLabel.Visible = !value;
                 if (value)

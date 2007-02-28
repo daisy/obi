@@ -218,6 +218,7 @@ namespace Obi.UserControls
         {
             InitializeComponent();
             InitializeEventHandlers();
+            InitializeShortcutKeys();
             // The panel is empty and nothing is selected.
             mSectionNodeMap = new Dictionary<SectionNode, SectionStrip>();
             mSelectedSection = null;
@@ -322,5 +323,38 @@ namespace Obi.UserControls
             SelectedPhraseNode = null;
         }
 
+        #region shortcut keys
+
+        public delegate bool HandledShortcutKey();                   // for keyboard shortcuts
+        private Dictionary<Keys, HandledShortcutKey> mShortcutKeys;  // list of all shortcuts
+
+        private void InitializeShortcutKeys()
+        {
+            mShortcutKeys = new Dictionary<Keys, HandledShortcutKey>();
+
+            // Transport bar
+            mShortcutKeys[Keys.Space] = delegate() { mProjectPanel.TransportBar.Play(); return true; };
+            mShortcutKeys[Keys.Escape] = delegate() { mProjectPanel.TransportBar.Stop(); return true; };
+
+            // Strip manager navigation
+            mShortcutKeys[Keys.Left] = delegate() { mProjectPanel.StripManager.PreviousPhrase(); return true; };
+            mShortcutKeys[Keys.Right] = delegate() { mProjectPanel.StripManager.NextPhrase(); return true; };
+            mShortcutKeys[Keys.Up] = delegate() { mProjectPanel.StripManager.PreviousSection(); return true; };
+            mShortcutKeys[Keys.Down] = delegate() { mProjectPanel.StripManager.NextSection(); return true; };
+        }
+
+        private static readonly int WM_KEYDOWN = 0x100;
+        private static readonly int WM_SYSKEYDOWN = 0x104;
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys key)
+        {
+            if ((msg.Msg == WM_KEYDOWN) || (msg.Msg == WM_SYSKEYDOWN))
+            {
+                if (mShortcutKeys.ContainsKey(key) && mShortcutKeys[key]()) return true;
+            }
+            return base.ProcessCmdKey(ref msg, key);
+        }
+
+        #endregion
     }
 }

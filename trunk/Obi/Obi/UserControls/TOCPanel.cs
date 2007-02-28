@@ -166,7 +166,6 @@ namespace Obi.UserControls
                     mProjectPanel.Project.RenameSectionNodeWithCommand((SectionNode)e.Node.Tag, e.Label);
                 }
             }
-            mProjectPanel.EditingText = false;
         }
 
         /// <summary>
@@ -323,17 +322,6 @@ namespace Obi.UserControls
                 SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(false, mTocTree.SelectedNode));
             }
             mTocTree.SelectedNode = null;
-            mProjectPanel.TocTreeHasFocus = false;
-        }
-
-        private void mTocTree_BeforeLabelEdit(object sender, NodeLabelEditEventArgs e)
-        {
-            mProjectPanel.EditingText = true;
-        }
-
-        private void mTocTree_Enter(object sender, EventArgs e)
-        {
-            mProjectPanel.TocTreeHasFocus = true;
         }
     }
 }
