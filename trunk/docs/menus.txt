@@ -52,6 +52,7 @@ Main form
     + [O] Remove annotation ................. Shift+Ctrl+Del
     + [T] Set page number ................... Ctrl+G
     + [N] Remove page number ................ Ctrl+Del
+    + [P] Go to page ........................ Alt+G
     + [W] Show in TOC view .................. Alt+V
 
   + [R] Transport
@@ -118,6 +119,7 @@ Strip Manager Panel's context menu
   + [M] Remove annotation ................... Shift+Ctrl+Del
   + [T] Set page number ..................... Ctrl+G
   + [R] Remove page number .................. Ctrl+Del
+  + [P] Go to page .......................... Alt+G
 
 
 Index of shortcuts
@@ -173,6 +175,8 @@ Index of shortcuts
   Ctrl+F ............. FREE
   Ctrl+G ............. Strips > Set page number
   Ctrl+G ............. [Strip Manager Panel] Set page number
+  Alt+G .............. Strips > Go to page
+  Alt+G .............. [Strip Manager Panel] Go to page
   Ctrl+H ............. Strips > Apply phrase detection
   Ctrl+H ............. [Strip Manager Panel] Apply phrase detection
   Ctrl+I ............. Strips > Import audio file

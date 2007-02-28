@@ -7,7 +7,7 @@ Obi is the Urakawa Project DAISY/NISO Digital Talking production tool. It is
 a simple Windows application designed to create audio books with a table of
 contents.
 
-Current version of Obi is 0.8.2.0 (2007-02-26.) Please read the accompanying
+Current version of Obi is 0.8.3.0 (2007-03-xx.) Please read the accompanying
 release notes.
 
 
