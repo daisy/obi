@@ -322,9 +322,5 @@ namespace Obi.UserControls
             SelectedPhraseNode = null;
         }
 
-        private void mSetPageNumberToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mSelectedPhrase != null) mProjectPanel.Project.SetPageNumberOnPhraseWithUndo(mSelectedPhrase);
-        }
     }
 }

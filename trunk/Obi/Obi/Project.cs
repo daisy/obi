@@ -54,6 +54,8 @@ namespace Obi
         public event Events.NodeEventHandler TouchedNode;                   // this node was somehow modified
         public event Events.ObiNodeHandler ToggledNodeUsedState;            // the used state of a node was toggled.
 
+        private int mPages;  // count the pages in the book
+
         /// <summary>
         /// Identify self as generator for this project.
         /// </summary>
@@ -152,6 +154,14 @@ namespace Obi
         }
 
         /// <summary>
+        /// Get the number of pages in the book.
+        /// </summary>
+        public int Pages
+        {
+            get { return mPages; }
+        }
+
+        /// <summary>
         /// Create a blank project from a seed presentation and using the default metadata factory.
         /// </summary>
         /// <param name="presentation">The presentation for this project.</param>
@@ -165,6 +175,7 @@ namespace Obi
             mTextChannel = null;
             mAnnotationChannel = null;
             mClipboard = new Clipboard();
+            mPages = 0;
         }
 
         /// <summary>
@@ -298,7 +309,7 @@ namespace Obi
                 Visitors.AssetCreator visitor = new Visitors.AssetCreator(mAssManager, delegate(string m) { });
                 //     delegate(string message) { errMessages += message + "\n"; });
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
-                // mPages = visitor.Pages;
+                mPages = visitor.Pages.Count;
                 // if (errMessages != "")
                 // {
                 //     throw new Exception(String.Format(Localizer.Message("open_project_error_text") + "\n" + errMessages, xukPath));
