@@ -8,21 +8,17 @@ using urakawa.core;
 
 namespace Obi
 {
-
     /// <summary>
     /// The main for of the application.
     /// The form consists mostly of a menu bar and a project panel.
     /// We also keep an undo stack (the command manager) and settings.
     /// </summary>
-    public partial class ObiForm : Form, IMessageFilter
+    public partial class ObiForm : Form
     {
         private Project mProject;                // the project currently being authored
         private Settings mSettings;              // application settings
         private CommandManager mCommandManager;  // the undo stack for this project
         private Audio.VuMeterForm mVuMeterForm;  // keep track of a single VU meter form
-
-        public delegate bool HandledShortcutKey();                   // for keyboard shortcuts
-        private Dictionary<Keys, HandledShortcutKey> mShortcutKeys;  // list of all shortcuts
 
         /// <summary>
         /// Application settings.
@@ -76,7 +72,6 @@ namespace Obi
             mCommandManager = new CommandManager();
             InitializeVuMeter();
             InitializeSettings();
-            SetShortcutKeys();
             mProjectPanel.TransportBar.StateChanged +=
                 new Obi.Events.Audio.Player.StateChangedHandler(TransportBar_StateChanged);
             mProjectPanel.TransportBar.PlaybackRateChanged += new EventHandler(TransportBar_PlaybackRateChanged);
@@ -1071,46 +1066,6 @@ namespace Obi
             }
         }
 
-        #region shortcut keys
-
-        private void SetShortcutKeys()
-        {
-            mShortcutKeys = new Dictionary<Keys, ObiForm.HandledShortcutKey>();
-            // Shortcut keys should be configurable
-
-            // Transport bar one-key shortcuts
-            // mShortcutKeys[Keys.Space] = delegate() { mPlayAllToolStripMenuItem1_Click(this, null); return true; };
-            mShortcutKeys[Keys.Escape] = delegate() { mProjectPanel.TransportBar.Stop(); return true; };
-
-            // Strip manager navigation
-            mShortcutKeys[Keys.Left] = delegate() { mProjectPanel.StripManager.PreviousPhrase(); return true; };
-            mShortcutKeys[Keys.Right] = delegate() { mProjectPanel.StripManager.NextPhrase(); return true; };
-            mShortcutKeys[Keys.Up] = delegate() { mProjectPanel.StripManager.PreviousSection(); return true; };
-            mShortcutKeys[Keys.Down] = delegate() { mProjectPanel.StripManager.NextSection(); return true; };
-        }
-
-        private const int WM_KEYDOWN = 0x100;
-        private const int WM_SYSKEYDOWN = 0x104;
-
-        protected override bool ProcessCmdKey(ref Message msg, Keys key)
-        {
-            if ((msg.Msg == WM_KEYDOWN) || (msg.Msg == WM_SYSKEYDOWN))
-            {
-                UpdateEnabledItems();
-                if (mProject != null)
-                {
-                    mProjectPanel.TOCPanel.UpdateEnabledItemsForContextMenu();
-                    mProjectPanel.StripManager.UpdateEnabledItemsForContextMenu();
-                }
-                if (!mProjectPanel.EditingText && !mProjectPanel.TocTreeHasFocus &&
-                    mShortcutKeys.ContainsKey(key) && mShortcutKeys[key]())
-                    return true;
-            }
-            return base.ProcessCmdKey(ref msg, key);
-        }
-
-        #endregion
-
         /// <summary>
         /// Toggle section used/unsed.
         /// </summary>
@@ -1386,7 +1341,7 @@ namespace Obi
             mCopyToolStripMenuItem.Text = String.Format(Localizer.Message("copy_menu_label"), itemLabel);
             mPasteToolStripMenuItem.Enabled = !isPlaying && mProjectPanel.CanPaste(clipboardData);
             mPasteToolStripMenuItem.Text = String.Format(Localizer.Message("paste_menu_label"), pasteLabel);
-            mDeleteToolStripMenuItem.Enabled = canCutCopyDelete && !mProjectPanel.EditingText;
+            mDeleteToolStripMenuItem.Enabled = canCutCopyDelete;
             mDeleteToolStripMenuItem.Text = String.Format(Localizer.Message("delete_menu_label"), itemLabel);
 
             bool isProjectOpen = mProject != null;
@@ -1502,23 +1457,6 @@ namespace Obi
             mMarkAudioBlockAsUnusedToolStripMenuItem.Enabled = mProjectPanel.CanToggleAudioBlock;
             mMarkAudioBlockAsUnusedToolStripMenuItem.Text = mProjectPanel.ToggleAudioBlockString;
         }
-
-
-        #region IMessageFilter Members
-
-        // We could use a message filter to know when to re-enable the transport bar
-        // after it's been disabled by the 
-        public bool PreFilterMessage(ref Message m)
-        {
-            /*Control sender = Control.FromHandle(m.HWnd);
-            if (sender != null)
-            {
-                System.Diagnostics.Debug.Print("Message from {0}: {1}", sender, m.Msg);
-            }*/
-            return false;  // do not filter messages
-        }
-
-        #endregion
 
         private void mViewHelpInExternalBrowserToolStripMenuItem_Click(object sender, EventArgs e)
         {

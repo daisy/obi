@@ -58,13 +58,10 @@ namespace Obi.UserControls
             this.mTocTree.Size = new System.Drawing.Size(129, 123);
             this.mTocTree.TabIndex = 0;
             this.mTocTree.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tocTree_NodeMouseDoubleClick);
-            this.mTocTree.Enter += new System.EventHandler(this.mTocTree_Enter);
             this.mTocTree.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.mTocTree_AfterLabelEdit);
             this.mTocTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.mTocTree_AfterSelect);
-            this.mTocTree.BeforeLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.mTocTree_BeforeLabelEdit);
             this.mTocTree.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.mTocTree_BeforeSelect);
             this.mTocTree.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tocTree_KeyDown);
-            this.mTocTree.Leave += new System.EventHandler(this.mTocTree_Leave);
             // 
             // mContextMenuStrip
             // 
