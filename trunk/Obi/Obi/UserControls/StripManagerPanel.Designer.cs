@@ -61,7 +61,6 @@ namespace Obi.UserControls
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.mSetPageNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRemovePageNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mGoTopageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -120,11 +119,10 @@ namespace Obi.UserControls
             this.toolStripSeparator4,
             this.mSetPageNumberToolStripMenuItem,
             this.mRemovePageNumberToolStripMenuItem,
-            this.mGoTopageToolStripMenuItem,
-            this.toolStripSeparator2});
+            this.mGoTopageToolStripMenuItem});
             this.mContextMenuStrip.Name = "contextMenuStrip1";
             this.mContextMenuStrip.ShowImageMargin = false;
-            this.mContextMenuStrip.Size = new System.Drawing.Size(250, 600);
+            this.mContextMenuStrip.Size = new System.Drawing.Size(250, 594);
             this.mContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.mContextMenuStrip_Opening);
             // 
             // mAddStripToolStripMenuItem
@@ -352,11 +350,6 @@ namespace Obi.UserControls
             this.mRemovePageNumberToolStripMenuItem.Text = "&Remove page number";
             this.mRemovePageNumberToolStripMenuItem.Click += new System.EventHandler(this.mRemovePageNumberToolStripMenuItem_Click);
             // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(246, 6);
-            // 
             // mGoTopageToolStripMenuItem
             // 
             this.mGoTopageToolStripMenuItem.Name = "mGoTopageToolStripMenuItem";
@@ -403,7 +396,6 @@ namespace Obi.UserControls
         private System.Windows.Forms.ToolStripMenuItem mCopyAudioBlockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mSetPageNumberToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mRemovePageNumberToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem mRemoveAnnotationToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem mApplyPhraseDetectionToolStripMenuItem;
