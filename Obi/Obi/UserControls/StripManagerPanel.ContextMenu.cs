@@ -116,26 +116,18 @@ namespace Obi.UserControls
         /// </summary>
         private void UpdateVisibleItemsForContextMenu()
         {
+            ToolStripItem lastVisible = null;
             foreach (ToolStripItem item in this.mContextMenuStrip.Items)
             {
+                if (item is ToolStripSeparator)
+                {
+                    item.Enabled = lastVisible != null && !(lastVisible is ToolStripSeparator);
+                }
+                // I have no clue what's going on here... visible behaves strangely :(
                 item.Visible = item.Enabled;
+                if (item.Enabled) lastVisible = item;
             }
-            ToolStripItem prev = null;
-            ToolStripItem prevprev = null;
-            foreach (ToolStripItem item in mContextMenuStrip.Items)
-            {
-                if (prev is ToolStripSeparator)
-                {
-                    prev.Visible = prevprev != null && prevprev.Enabled &&
-                        !(item is ToolStripSeparator) && item.Enabled;
-                }
-                if ((!(item is ToolStripSeparator) && item.Enabled && (prev == null || prev is ToolStripSeparator)) ||
-                    (item is ToolStripSeparator && !(prev is ToolStripSeparator) && prev != null && prev.Enabled))
-                {
-                    prevprev = prev;
-                    prev = item;
-                }
-            }
+            if (lastVisible is ToolStripSeparator) lastVisible.Visible = false;
         }
 
         private void mImportAudioToolStripMenuItem_Click(object sender, EventArgs e)
