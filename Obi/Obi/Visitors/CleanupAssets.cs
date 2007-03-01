@@ -20,27 +20,17 @@ namespace Obi.Visitors
         //right now, it will probably happen this way, because of the way the tree is structured (a section contains
         //its phrases then its subsections), but if we ever change this, this code should remain stable.  (*should*).
         private List<List<Assets.AudioMediaAsset>> mAudioAssLists;
-        private string mNewAssetDirectory;
-        private string mOldAssetDirectory;
+        string mTempAssetDirectory;
 
         /// <summary>
-        /// the constructor makes a new directory for the assets
+        /// constructor initializes the asset list
         /// </summary>
-        public void SetNewDirectory(Project project)
+        public CleanupAssets(string temporaryAssetDirectory)
         {
-            mOldAssetDirectory = project.AssetManager.AssetsDirectory;
-
-            //these assets go in a new directory (old_dir_name + underscore(s))
-            mNewAssetDirectory = project.AssignNewAssetDirectory();
-
+            mTempAssetDirectory = temporaryAssetDirectory;
             mAudioAssLists = new List<List<Obi.Assets.AudioMediaAsset>>();
         }
-
-        public void RemoveOldDirectory()
-        {
-            System.IO.Directory.Delete(mOldAssetDirectory, true);
-        }
-
+       
         public void postVisit(ICoreNode node)
         {
             int idx = mAudioAssLists.Count - 1;
@@ -48,7 +38,7 @@ namespace Obi.Visitors
             if (node is Obi.SectionNode && mAudioAssLists.Count > 0 && mAudioAssLists[idx].Count > 0)
             { 
                 //the name of the audio file will be the ID of the section name
-                string sectionAudioPath = mNewAssetDirectory + @"\" + ((SectionNode)node).Id + @".wav";
+                string sectionAudioPath = mTempAssetDirectory + @"\" + ((SectionNode)node).Id + @".wav";
 
                 //call asset combining function here
                 List<Assets.AudioMediaAsset> revisedAssList = Assets.AudioMediaAsset.ExportAssets
