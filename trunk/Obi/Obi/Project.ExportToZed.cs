@@ -15,15 +15,31 @@ namespace Obi
         public void ExportToZed(string outputPath)
         {
             UpdatePublicationMetadata();
-            // sort out the audio clips: create one file per section, then one clip per phrase in this section.
-            Visitors.CleanupAssets cleanAssVisitor = new Visitors.CleanupAssets();
-            cleanAssVisitor.SetNewDirectory(this);
-            this.RootNode.acceptDepthFirst(cleanAssVisitor);
-           // cleanAssVisitor.RemoveOldDirectory();
+          
+            string originalAssetDirectory = this.AssetManager.AssetsDirectory;
 
-            // TODO
+            //these assets go in a new directory (old_dir_name + "_temp")
+            //the project's asset directory isn't changed because we're going to switch
+            //everything back to the original name when we're done
+            string tempAssetDirectory = Path.GetDirectoryName(this.AssetManager.AssetsDirectory);
+            tempAssetDirectory += "_temp";
+            Directory.CreateDirectory(tempAssetDirectory);
+
+            // sort out the audio clips: create one file per section, then one clip per phrase in this section.
+            Visitors.CleanupAssets cleanAssVisitor = new Visitors.CleanupAssets(tempAssetDirectory);
+   
+            //clean up the assets
+            this.RootNode.acceptDepthFirst(cleanAssVisitor);
+
+            //remove the original asset directory, since all the cleaned assets are in the temp folder
+            System.IO.Directory.Delete(originalAssetDirectory, true);
+      
+            //rename the temp folder to the original directory's name
+            System.IO.Directory.Move(tempAssetDirectory, originalAssetDirectory);
+
             // then save the xuk file to update the date metadata.
             Save();
+
             // then invoke the XukToZed transformation
             string xukFileName = System.IO.Path.GetFileNameWithoutExtension(XUKPath);
             // create the output folder if it doesn't exist
