@@ -767,6 +767,7 @@ namespace Obi.Assets
                 bw.Write(br.ReadByte());
             }
             bw.BaseStream.Position = 44;
+            br.Close();
 
             // byte count variable for counting total bytes copied to export file
             long ByteLengthCount = 0;
@@ -787,6 +788,9 @@ namespace Obi.Assets
                             ByteLengthCount++;
 
                         }
+
+                        br.Close();
+                        br = null;    
                         
                     }
                 }
@@ -795,8 +799,6 @@ namespace Obi.Assets
             
                 AssetList[0].UpdateLengthHeader(ByteLengthCount + 44 , bw);
                 bw.Close();
-                br.Close();
-                br = null;    
             bw = null;
             return AssetList ;
         }
