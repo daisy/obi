@@ -26,7 +26,7 @@ Main form
     + [T] Touch project ..................... F5
 
   + [C] TOC
-    + [T] Show table ofcontents ............. Alt+T
+    + [T] Show/hide table of contents ....... Shift+Alt+T
     + [A] Add section ....................... Ctrl+A
     + [S] Add sub-section ................... Ctrl+B
     + [N] Rename section .................... F2
@@ -201,7 +201,7 @@ Index of shortcuts
   Ctrl+R ............. Transport > Record
   Ctrl+S ............. File > Save project
   Ctrl+Shift+S ....... File > Save project as
-  Alt+T .............. TOC > Show table of contents
+  Shift+Alt+T ........ TOC > Show/hide table of contents
   Ctrl+T ............. Transport > Stop
   Alt+U .............. Tools > User profile
   Ctrl+U ............. Transport > Show/hide VU meter
