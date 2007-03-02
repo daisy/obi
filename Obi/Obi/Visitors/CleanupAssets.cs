@@ -20,15 +20,18 @@ namespace Obi.Visitors
         //right now, it will probably happen this way, because of the way the tree is structured (a section contains
         //its phrases then its subsections), but if we ever change this, this code should remain stable.  (*should*).
         private List<List<Assets.AudioMediaAsset>> mAudioAssLists;
-        string mTempAssetDirectory;
+        string mAssetDirectory;
+        bool mbFlagPostProcessOnly;
 
         /// <summary>
         /// constructor initializes the asset list
+        /// specify post-process if necessary, then the visitor will call CreateExportClips instead of ExportAssets
         /// </summary>
-        public CleanupAssets(string temporaryAssetDirectory)
+        public CleanupAssets(string assetDirectory, bool postProcessOnly)
         {
-            mTempAssetDirectory = temporaryAssetDirectory;
+            mAssetDirectory = assetDirectory;
             mAudioAssLists = new List<List<Obi.Assets.AudioMediaAsset>>();
+            mbFlagPostProcessOnly = postProcessOnly;
         }
        
         public void postVisit(ICoreNode node)
@@ -36,25 +39,34 @@ namespace Obi.Visitors
             int idx = mAudioAssLists.Count - 1;
                
             if (node is Obi.SectionNode && mAudioAssLists.Count > 0 && mAudioAssLists[idx].Count > 0)
-            { 
-                //the name of the audio file will be the ID of the section name
-                string sectionAudioPath = mTempAssetDirectory + @"\" + ((SectionNode)node).Id + @".wav";
+            {
+               //the name of the audio file will be the ID of the section name
+                string sectionAudioPath = mAssetDirectory + ((SectionNode)node).Id + @".wav";
 
-                //call asset combining function here
-                List<Assets.AudioMediaAsset> revisedAssList = Assets.AudioMediaAsset.ExportAssets
-                    (mAudioAssLists[idx], sectionAudioPath);
-
-                //make sure we have one asset per phrase
-                if (revisedAssList.Count != ((SectionNode)node).PhraseChildCount)
+                //if we are doing the first phase of the cleanup (ExportAssets)
+                if (mbFlagPostProcessOnly == false)
                 {
-                    throw new Exception("Error during cleanup of audio assets");
+                    //call asset combining function here
+                    List<Assets.AudioMediaAsset> revisedAssList = Assets.AudioMediaAsset.ExportAssets
+                        (mAudioAssLists[idx], sectionAudioPath);
+
+                    //make sure we have one asset per phrase
+                    if (revisedAssList.Count != ((SectionNode)node).PhraseChildCount)
+                    {
+                        throw new Exception("Error during cleanup of audio assets");
+                    }
+
+                    //replace current assets with revised ones
+                    for (int i = 0; i < ((SectionNode)node).PhraseChildCount; i++)
+                    {
+                        PhraseNode phraseNode = ((SectionNode)node).PhraseChild(i);
+                        phraseNode.Asset = revisedAssList[i];
+                    }
                 }
-
-                //replace current assets with revised ones
-                for (int i = 0; i < ((SectionNode)node).PhraseChildCount; i++)
+                //otherwise the visitor should call CreateExportClips (the second phrase of the cleanup)
+                else
                 {
-                    PhraseNode phraseNode = ((SectionNode)node).PhraseChild(i);
-                    phraseNode.Asset = revisedAssList[i];
+                    Assets.AudioMediaAsset.CreateExportClips(mAudioAssLists[idx], sectionAudioPath);
                 }
             }
 
