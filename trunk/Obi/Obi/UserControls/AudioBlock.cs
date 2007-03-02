@@ -215,9 +215,11 @@ namespace Obi.UserControls
             if (ChangedMinimumSize != null) ChangedMinimumSize(this, new EventArgs());
         }
 
+        /// <summary>
+        /// Select the block when it is entered.
+        /// </summary>
         private void AudioBlock_Enter(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.Print("Entering {0}", mLabel.Text);
             mManager.SelectedPhraseNode = mNode;
         }
     }
