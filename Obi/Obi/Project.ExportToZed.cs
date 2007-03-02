@@ -21,21 +21,25 @@ namespace Obi
             //these assets go in a new directory (old_dir_name + "_temp")
             //the project's asset directory isn't changed because we're going to switch
             //everything back to the original name when we're done
-            string tempAssetDirectory = Path.GetDirectoryName(this.AssetManager.AssetsDirectory);
+           /* string tempAssetDirectory = Path.GetDirectoryName(this.AssetManager.AssetsDirectory);
             tempAssetDirectory += "_temp";
-            Directory.CreateDirectory(tempAssetDirectory);
+            Directory.CreateDirectory(tempAssetDirectory);*/
+
+            //make a new asset directory
+            string newAssetDirectory = this.AssignNewAssetDirectory();
 
             // sort out the audio clips: create one file per section, then one clip per phrase in this section.
-            Visitors.CleanupAssets cleanAssVisitor = new Visitors.CleanupAssets(tempAssetDirectory);
+            Visitors.CleanupAssets cleanAssVisitor = new Visitors.CleanupAssets(newAssetDirectory);
    
             //clean up the assets
             this.RootNode.acceptDepthFirst(cleanAssVisitor);
+            cleanAssVisitor = null;
 
             //remove the original asset directory, since all the cleaned assets are in the temp folder
             System.IO.Directory.Delete(originalAssetDirectory, true);
       
             //rename the temp folder to the original directory's name
-            System.IO.Directory.Move(tempAssetDirectory, originalAssetDirectory);
+            //System.IO.Directory.Move(tempAssetDirectory, originalAssetDirectory);
 
             // then save the xuk file to update the date metadata.
             Save();
