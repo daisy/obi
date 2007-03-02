@@ -23,19 +23,6 @@ namespace Obi.UserControls
             set { throw new Exception("Cannot set the node of an annotation block; set the node of its phrase block."); }
         }
 
-        public override bool Selected
-        {
-            get { return base.Selected; }
-            set
-            {
-                mSelected = value;
-                if (mAudioBlock != null && mAudioBlock.Node != null && mAudioBlock.Node.Annotation != "")
-                {
-                    if (mSelected) StartRenaming(); else UpdateText();
-                }
-            }
-        }
-
         /// <summary>
         /// Used in the project or excluded from it.
         /// </summary>
@@ -45,6 +32,7 @@ namespace Obi.UserControls
             {
                 BackColor = value ? Colors.AnnotationBlockUsed : Colors.AnnotationBlockUnused;
                 mLabel.BackColor = BackColor;
+                mRenameBox.BackColor = BackColor;
             }
         }
 
@@ -93,16 +81,10 @@ namespace Obi.UserControls
             }
         }
 
-        private void AnnotationBlock_Click(object sender, EventArgs e)
-        {
-            mAudioBlock.Manager.SelectedPhraseNode = null;
-            Selected = true;
-            // mAudioBlock.Manager.SelectedPhraseNode = mAudioBlock.Node;
-        }
-
         public void StartRenaming()
         {
             mManager.ProjectPanel.TransportBar.Enabled = false;
+            mRenameBox.ReadOnly = false;
             mRenameBox.Width = Width - mRenameBox.Location.X - mRenameBox.Margin.Right;
             mRenameBox.BackColor = BackColor;
             mRenameBox.Text = mLabel.Text;
@@ -123,17 +105,19 @@ namespace Obi.UserControls
         {
             //md 20061219 error checking
             if (mManager.ProjectPanel == null) return;
-
-            if (mRenameBox.Text != "" && mRenameBox.Text != mLabel.Text)
+            if (!mRenameBox.ReadOnly)
             {
-                mManager.EditedAudioBlockLabel(this.mAudioBlock, mRenameBox.Text);
-            }
-            //md20061011 added condition
-            else if (mRenameBox.Text == "")
-            {
-                MessageBox.Show(Localizer.Message("empty_label_warning_text"),
-                    Localizer.Message("empty_label_warning_caption"),
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (mRenameBox.Text != "" && mRenameBox.Text != mLabel.Text)
+                {
+                    mManager.EditedAudioBlockLabel(this.mAudioBlock, mRenameBox.Text);
+                }
+                //md20061011 added condition
+                else if (mRenameBox.Text == "")
+                {
+                    MessageBox.Show(Localizer.Message("empty_label_warning_text"),
+                        Localizer.Message("empty_label_warning_caption"),
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
             mLabel.Visible = true;
             mRenameBox.Visible = false;
@@ -144,6 +128,7 @@ namespace Obi.UserControls
         private void mRenameBox_Leave(object sender, EventArgs e)
         {
             UpdateText();
+            mAudioBlock.Focus();
         }
 
         //md 20061009
@@ -163,13 +148,6 @@ namespace Obi.UserControls
             MinimumSize = new Size(mLabel.Width + mLabel.Location.X + mLabel.Margin.Right, Height);
             if (ChangedMinimumSize != null) ChangedMinimumSize(this, new EventArgs());
         }
-
-        private void AnnotationBlock_Load(object sender, EventArgs e)
-        {
-            System.Diagnostics.Debug.Print("Hi, my name is annotation block and my size is {0}.", Size);
-        }
-
-        
 
         //md 20061220 added; not working yet
         private void mRenameBox_KeyUp(object sender, KeyEventArgs e)
@@ -197,7 +175,18 @@ namespace Obi.UserControls
 
         private void AnnotationBlock_Enter(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.Print("Entering annotation for <{0}>", mAudioBlock.AccessibleDescription);
+            System.Diagnostics.Debug.Print("Entering annotation for <{0}> [TabIndex = {1}]",
+                mAudioBlock.AccessibleDescription, TabIndex);
+        }
+
+        /// <summary>
+        /// Show the text box for the annotation (read-only) and focus on it
+        /// </summary>
+        public void FocusOnAnnotation()
+        {
+            mRenameBox.ReadOnly = true;
+            mRenameBox.Visible = true;
+            mRenameBox.Focus();
         }
     }
 }

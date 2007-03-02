@@ -62,6 +62,7 @@ namespace Obi.UserControls
             this.mSetPageNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRemovePageNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mGoTopageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mFocusOnAnnotationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -116,13 +117,14 @@ namespace Obi.UserControls
             this.toolStripSeparator3,
             this.mEditAnnotationToolStripMenuItem,
             this.mRemoveAnnotationToolStripMenuItem,
+            this.mFocusOnAnnotationToolStripMenuItem,
             this.toolStripSeparator4,
             this.mSetPageNumberToolStripMenuItem,
             this.mRemovePageNumberToolStripMenuItem,
             this.mGoTopageToolStripMenuItem});
             this.mContextMenuStrip.Name = "contextMenuStrip1";
             this.mContextMenuStrip.ShowImageMargin = false;
-            this.mContextMenuStrip.Size = new System.Drawing.Size(250, 594);
+            this.mContextMenuStrip.Size = new System.Drawing.Size(250, 616);
             this.mContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.mContextMenuStrip_Opening);
             // 
             // mAddStripToolStripMenuItem
@@ -358,6 +360,15 @@ namespace Obi.UserControls
             this.mGoTopageToolStripMenuItem.Text = "Go to &page";
             this.mGoTopageToolStripMenuItem.Click += new System.EventHandler(this.mGoTopageToolStripMenuItem_Click);
             // 
+            // mFocusOnAnnotationToolStripMenuItem
+            // 
+            this.mFocusOnAnnotationToolStripMenuItem.Name = "mFocusOnAnnotationToolStripMenuItem";
+            this.mFocusOnAnnotationToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.A)));
+            this.mFocusOnAnnotationToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
+            this.mFocusOnAnnotationToolStripMenuItem.Text = "&Focus on annotation";
+            this.mFocusOnAnnotationToolStripMenuItem.Click += new System.EventHandler(this.mFocusOnAnnotationToolStripMenuItem_Click);
+            // 
             // StripManagerPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -407,5 +418,6 @@ namespace Obi.UserControls
         private System.Windows.Forms.ToolStripMenuItem mInsertEmptyAudioblockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mQuickSplitAudioBlockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mGoTopageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mFocusOnAnnotationToolStripMenuItem;
     }
 }

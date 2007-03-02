@@ -46,7 +46,7 @@ namespace Obi.UserControls
             this.mAudioLayoutPanel.Location = new System.Drawing.Point(7, 30);
             this.mAudioLayoutPanel.Name = "mAudioLayoutPanel";
             this.mAudioLayoutPanel.Size = new System.Drawing.Size(0, 0);
-            this.mAudioLayoutPanel.TabIndex = 2;
+            this.mAudioLayoutPanel.TabIndex = 3;
             this.mAudioLayoutPanel.WrapContents = false;
             this.mAudioLayoutPanel.Click += new System.EventHandler(this.mAudioLayoutPanel_Click);
             // 
@@ -77,7 +77,7 @@ namespace Obi.UserControls
             this.mLabel.Margin = new System.Windows.Forms.Padding(3);
             this.mLabel.Name = "mLabel";
             this.mLabel.Size = new System.Drawing.Size(131, 20);
-            this.mLabel.TabIndex = 3;
+            this.mLabel.TabIndex = 0;
             this.mLabel.Text = "(Section name)";
             this.mLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.mLabel.Click += new System.EventHandler(this.SectionStrip_Click);
@@ -99,7 +99,7 @@ namespace Obi.UserControls
             this.mAnnotationLayoutPanel.Location = new System.Drawing.Point(7, 33);
             this.mAnnotationLayoutPanel.Name = "mAnnotationLayoutPanel";
             this.mAnnotationLayoutPanel.Size = new System.Drawing.Size(0, 0);
-            this.mAnnotationLayoutPanel.TabIndex = 4;
+            this.mAnnotationLayoutPanel.TabIndex = 2;
             this.mAnnotationLayoutPanel.WrapContents = false;
             this.mAnnotationLayoutPanel.Click += new System.EventHandler(this.mAnnotationLayoutPanel_Click);
             // 
@@ -117,7 +117,7 @@ namespace Obi.UserControls
             this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.Name = "SectionStrip";
             this.Padding = new System.Windows.Forms.Padding(4);
-            this.Size = new System.Drawing.Size(310, 40);
+            this.Size = new System.Drawing.Size(306, 40);
             this.Enter += new System.EventHandler(this.SectionStrip_Enter);
             this.DoubleClick += new System.EventHandler(this.SectionStrip_DoubleClick);
             this.Click += new System.EventHandler(this.SectionStrip_Click);

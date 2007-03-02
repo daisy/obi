@@ -118,6 +118,7 @@ namespace Obi
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectPanel = new Obi.UserControls.ProjectPanel();
+            this.mFocusOnAnnotationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -469,6 +470,7 @@ namespace Obi
             this.toolStripSeparator8,
             this.mEditAnnotationToolStripMenuItem,
             this.mRemoveAnnotationToolStripMenuItem,
+            this.mFocusOnAnnotationToolStripMenuItem,
             this.toolStripSeparator14,
             this.mSetPageNumberToolStripMenuItem,
             this.mRemovePageNumberToolStripMenuItem,
@@ -889,6 +891,15 @@ namespace Obi
             this.mProjectPanel.Size = new System.Drawing.Size(857, 497);
             this.mProjectPanel.TabIndex = 4;
             // 
+            // mFocusOnAnnotationToolStripMenuItem
+            // 
+            this.mFocusOnAnnotationToolStripMenuItem.Name = "mFocusOnAnnotationToolStripMenuItem";
+            this.mFocusOnAnnotationToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.A)));
+            this.mFocusOnAnnotationToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
+            this.mFocusOnAnnotationToolStripMenuItem.Text = "&Focus on annotation";
+            this.mFocusOnAnnotationToolStripMenuItem.Click += new System.EventHandler(this.mFocusOnAnnotationToolStripMenuItem_Click);
+            // 
             // ObiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1004,6 +1015,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mPauseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mViewHelpInExternalBrowserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mGoToPageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mFocusOnAnnotationToolStripMenuItem;
 
 
     }
