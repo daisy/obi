@@ -796,7 +796,8 @@ namespace Obi.Assets
                 AssetList[0].UpdateLengthHeader(ByteLengthCount + 44 , bw);
                 bw.Close();
                 br.Close();
-                
+                br = null;    
+
                 double OutputAssetClipStartTime = 0;
             for ( int ICount = 0 ; ICount  < AssetList.Count ; ICount++  )
             {
@@ -807,6 +808,7 @@ namespace Obi.Assets
                 NewList.Add(ExportAudioClip);
                 AssetList[ICount].mClips = NewList;
             }
+            bw = null;
             return AssetList ;
         }
 
