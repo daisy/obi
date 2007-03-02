@@ -74,6 +74,7 @@ namespace Obi.UserControls
                 if (mSelected != value)
                 {
                     mSelected = value;
+                    if (value) Focus();
                     Invalidate();
                 }
             }
@@ -399,6 +400,11 @@ namespace Obi.UserControls
         private void mRenameBox_Enter(object sender, EventArgs e)
         {
             mManager.AllowShortcuts = false;
+        }
+
+        private void SectionStrip_Enter(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.Print("Entering section <{0}>", Label);
         }
     }
 }

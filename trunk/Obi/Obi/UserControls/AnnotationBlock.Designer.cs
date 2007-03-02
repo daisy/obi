@@ -80,6 +80,7 @@ namespace Obi.UserControls
             this.Name = "AnnotationBlock";
             this.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Size = new System.Drawing.Size(189, 21);
+            this.Enter += new System.EventHandler(this.AnnotationBlock_Enter);
             this.Load += new System.EventHandler(this.AnnotationBlock_Load);
             this.Click += new System.EventHandler(this.AnnotationBlock_Click);
             this.ResumeLayout(false);
