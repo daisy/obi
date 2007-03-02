@@ -42,6 +42,7 @@ namespace Obi.UserControls
                 if (mSelected != value)
                 {
                     mSelected = value;
+                    if (value) Focus();
                     Invalidate();
                 }
             }
@@ -212,6 +213,12 @@ namespace Obi.UserControls
             int widest = wlabel > wtime ? wlabel : wtime;
             MinimumSize = new Size(widest, Height);
             if (ChangedMinimumSize != null) ChangedMinimumSize(this, new EventArgs());
+        }
+
+        private void AudioBlock_Enter(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.Print("Entering {0}", mLabel.Text);
+            mManager.SelectedPhraseNode = mNode;
         }
     }
 }

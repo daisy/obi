@@ -75,6 +75,7 @@ namespace Obi.UserControls
             InitializeComponent();
             InitializeToolTips();
             Used = false;
+            TabStop = false;
         }
 
         private void mRenameBox_KeyDown(object sender, KeyEventArgs e)
@@ -192,6 +193,11 @@ namespace Obi.UserControls
         private void mRenameBox_Enter(object sender, EventArgs e)
         {
             mManager.AllowShortcuts = false;
+        }
+
+        private void AnnotationBlock_Enter(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.Print("Entering annotation for <{0}>", mAudioBlock.AccessibleDescription);
         }
     }
 }

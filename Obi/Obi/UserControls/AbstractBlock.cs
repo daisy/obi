@@ -73,24 +73,6 @@ namespace Obi.UserControls
             Selected = false;
         }
 
-        /// <summary>
-        /// A corresponding block was selected.
-        /// </summary>
-        internal virtual void AlignSelected()
-        {
-            // Size = new Size(Width + Colors.SelectionWidth * 2, Height);
-            // Padding = new Padding(Colors.SelectionWidth);
-        }
-
-        /// <summary>
-        /// A corresponding block was deselected.
-        /// </summary>
-        internal virtual void AlignDeselected()
-        {
-            // Size = new Size(Width - Colors.SelectionWidth * 2, Height);
-            // Padding = new Padding(0);
-        }
-
         private void InitializeComponent()
         {
             this.SuspendLayout();
@@ -101,7 +83,6 @@ namespace Obi.UserControls
             this.Name = "AbstractBlock";
             this.Padding = new System.Windows.Forms.Padding(4);
             this.ResumeLayout(false);
-
         }
     }
 }
