@@ -47,9 +47,13 @@ namespace Obi.Visitors
                 if (mbFlagPostProcessOnly == false)
                 {
                     //call asset combining function here
-                    List<Assets.AudioMediaAsset> revisedAssList = Assets.AudioMediaAsset.ExportAssets
-                        (mAudioAssLists[idx], sectionAudioPath);
+                    Assets.AudioMediaAsset.ExportAssets(mAudioAssLists[idx], sectionAudioPath);
 
+                }
+                //otherwise the visitor should call CreateExportClips (the second phrase of the cleanup)
+                else
+                {
+                    List<Assets.AudioMediaAsset> revisedAssList = Assets.AudioMediaAsset.CreateExportClips(mAudioAssLists[idx], sectionAudioPath);
                     //make sure we have one asset per phrase
                     if (revisedAssList.Count != ((SectionNode)node).PhraseChildCount)
                     {
@@ -62,11 +66,6 @@ namespace Obi.Visitors
                         PhraseNode phraseNode = ((SectionNode)node).PhraseChild(i);
                         phraseNode.Asset = revisedAssList[i];
                     }
-                }
-                //otherwise the visitor should call CreateExportClips (the second phrase of the cleanup)
-                else
-                {
-                    Assets.AudioMediaAsset.CreateExportClips(mAudioAssLists[idx], sectionAudioPath);
                 }
             }
 
