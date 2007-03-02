@@ -47,7 +47,6 @@ namespace Obi.UserControls
             this.mRenameBox.TabStop = false;
             this.mRenameBox.Visible = false;
             this.mRenameBox.Enter += new System.EventHandler(this.mRenameBox_Enter);
-            this.mRenameBox.Click += new System.EventHandler(this.AnnotationBlock_Click);
             this.mRenameBox.Leave += new System.EventHandler(this.mRenameBox_Leave);
             this.mRenameBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.mRenameBox_KeyUp);
             this.mRenameBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mRenameBox_KeyDown);
@@ -61,7 +60,6 @@ namespace Obi.UserControls
             this.mLabel.Name = "mLabel";
             this.mLabel.Size = new System.Drawing.Size(0, 15);
             this.mLabel.TabIndex = 4;
-            this.mLabel.Click += new System.EventHandler(this.AnnotationBlock_Click);
             this.mLabel.SizeChanged += new System.EventHandler(this.mLabel_SizeChanged);
             // 
             // mToolTip
@@ -81,8 +79,6 @@ namespace Obi.UserControls
             this.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Size = new System.Drawing.Size(189, 21);
             this.Enter += new System.EventHandler(this.AnnotationBlock_Enter);
-            this.Load += new System.EventHandler(this.AnnotationBlock_Load);
-            this.Click += new System.EventHandler(this.AnnotationBlock_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
 

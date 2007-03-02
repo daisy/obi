@@ -581,6 +581,11 @@ namespace Obi
             mProjectPanel.StripManager.RemovePageNumber();
         }
 
+        private void mFocusOnAnnotationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.StripManager.FocusOnAnnotation();
+        }
+
         private void mGoToPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectPanel.StripManager.GoToPage();
@@ -1452,6 +1457,7 @@ namespace Obi
                 mProjectPanel.StripManager.SelectedPhraseNode.HasAnnotation;
             mEditAnnotationToolStripMenuItem.Enabled = !isPlaying && isAudioBlockSelected;
             mRemoveAnnotationToolStripMenuItem.Enabled = canRemoveAnnotation;
+            mFocusOnAnnotationToolStripMenuItem.Enabled = canRemoveAnnotation;
 
             mSetPageNumberToolStripMenuItem.Enabled = !isPlaying && mProjectPanel.StripManager.CanSetPage;
             mRemovePageNumberToolStripMenuItem.Enabled = !isPlaying && mProjectPanel.StripManager.CanRemovePage;

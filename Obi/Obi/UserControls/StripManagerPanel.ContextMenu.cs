@@ -102,6 +102,7 @@ namespace Obi.UserControls
             bool canRemoveAnnotation = !isPlaying && isBlockSelected && mSelectedPhrase.HasAnnotation;
             mEditAnnotationToolStripMenuItem.Enabled = !isPlaying && isBlockSelected;
             mRemoveAnnotationToolStripMenuItem.Enabled = canRemoveAnnotation;
+            mFocusOnAnnotationToolStripMenuItem.Enabled = canRemoveAnnotation;
 
             mSetPageNumberToolStripMenuItem.Enabled = !isPlaying && CanSetPage;
             mRemovePageNumberToolStripMenuItem.Enabled = !isPlaying && CanRemovePage;
@@ -191,19 +192,35 @@ namespace Obi.UserControls
             }
         }
 
-        /// <summary>
-        /// Remove the annotation on a block.
-        /// </summary>
         private void mRemoveAnnotationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RemoveAnnotationForAudioBlock();
         }
 
+        /// <summary>
+        /// Remove the annotation on a block.
+        /// </summary>
         public void RemoveAnnotationForAudioBlock()
         {
             if (mSelectedPhrase != null)
             {
                 RemovedAnnotation(mPhraseNodeMap[mSelectedPhrase]);
+            }
+        }
+
+        private void mFocusOnAnnotationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FocusOnAnnotation();
+        }
+
+        /// <summary>
+        /// Focus on the (non-editable) text box of the annotation for the selected block, if it has one.
+        /// </summary>
+        public void FocusOnAnnotation()
+        {
+            if (mSelectedPhrase != null)
+            {
+                mPhraseNodeMap[mSelectedPhrase].AnnotationBlock.FocusOnAnnotation();
             }
         }
 
