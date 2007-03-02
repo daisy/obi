@@ -797,17 +797,6 @@ namespace Obi.Assets
                 bw.Close();
                 br.Close();
                 br = null;    
-
-                double OutputAssetClipStartTime = 0;
-            for ( int ICount = 0 ; ICount  < AssetList.Count ; ICount++  )
-            {
-
-                ExportAudioClip = new AudioClip( path, OutputAssetClipStartTime  , OutputAssetClipStartTime +  AssetList[ ICount ].LengthInMilliseconds);
-                OutputAssetClipStartTime = OutputAssetClipStartTime + AssetList[ICount].LengthInMilliseconds;
-                List<AudioClip> NewList = new List<AudioClip>();
-                NewList.Add(ExportAudioClip);
-                AssetList[ICount].mClips = NewList;
-            }
             bw = null;
             return AssetList ;
         }
@@ -833,5 +822,31 @@ namespace Obi.Assets
             }
 
         }
-    }
+
+        /// <summary>
+        ///  creates and replace  clips for existing assets which are to be exported
+        /// <see cref=""/>
+        /// </summary>
+        /// <param name="AssetList"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static List<AudioMediaAsset> CreateExportClips(List<AudioMediaAsset> AssetList, string path)
+        {
+            
+           AudioClip ExportAudioClip  ;
+            double OutputAssetClipStartTime = 0;
+
+            for (int ICount = 0; ICount < AssetList.Count; ICount++)
+            {
+
+                ExportAudioClip = new AudioClip(path, OutputAssetClipStartTime, OutputAssetClipStartTime + AssetList[ICount].LengthInMilliseconds);
+                OutputAssetClipStartTime = OutputAssetClipStartTime + AssetList[ICount].LengthInMilliseconds;
+                List<AudioClip> NewList = new List<AudioClip>();
+                NewList.Add(ExportAudioClip);
+                AssetList[ICount].mClips = NewList;
+            }
+            return AssetList;
+        }
+
+    }//end of class
 }
