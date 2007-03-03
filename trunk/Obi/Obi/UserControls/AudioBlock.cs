@@ -102,29 +102,14 @@ namespace Obi.UserControls
 
         private void AudioBlock_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("click on audio blocks");
             mManager.SelectedPhraseNode = mNode;
         }
 
         private void AudioBlock_DoubleClick(object sender, EventArgs e)
         {
             mManager.SelectedPhraseNode = mNode;
+            // should be handled by the project panel's transport bar
             ((ObiForm)mManager.ParentForm).Play(mNode);
-        }
-
-        #endregion
-
-        #region Rename Box
-
-        /// <summary>
-        /// Bring up the editable text box.
-        /// TODO: maybe the labels should be replaced by non-editable text boxes.
-        /// There is also a bug that occurs when editing for the second time, when
-        /// no text is selected... strange.
-        /// </summary>
-        internal void StartEditingAnnotation()
-        {
-            mAnnotationBlock.StartRenaming();
         }
 
         #endregion

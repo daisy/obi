@@ -156,7 +156,8 @@ You cannot undo this operation.</value>
     <value>Empty label</value>
   </data>
   <data name="empty_label_warning_text" xml:space="preserve">
-    <value>A section cannot have an empty label.</value>
+    <value>{0} cannot have an empty label.</value>
+    <comment>A section/An annotation...</comment>
   </data>
   <data name="hide_toc_label" xml:space="preserve">
     <value>Hide &amp;table of contents</value>
@@ -602,5 +603,11 @@ Do you want to replace the project contained in this file?</value>
   <data name="ncx_filter" xml:space="preserve">
     <value>DAISY 3 NCX file (*.ncx)|*.ncx</value>
     <comment>Filter for exporting DAISY books (choose the name of the NCX file)</comment>
+  </data>
+  <data name="a_section" xml:space="preserve">
+    <value>A section</value>
+  </data>
+  <data name="an_annotation" xml:space="preserve">
+    <value>An annotation</value>
   </data>
 </root>

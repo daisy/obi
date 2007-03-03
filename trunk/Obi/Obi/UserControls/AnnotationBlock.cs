@@ -1,16 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Obi.UserControls
 {
+    /// <summary>
+    /// Block showing the annotation for a phrase in the annotation strip.
+    /// </summary>
     public partial class AnnotationBlock : AbstractBlock
     {
-        private AudioBlock mAudioBlock;  // the corresponding audio block
+        private AudioBlock mAudioBlock;  // the corresponding block in the audio strip
 
         public event SectionStrip.ChangedMinimumSizeHandler ChangedMinimumSize;
 
@@ -58,6 +57,9 @@ namespace Obi.UserControls
             set { mLabel.Text = value; }
         }
 
+        /// <summary>
+        /// Create a new annotation block.
+        /// </summary>
         public AnnotationBlock()
         {
             InitializeComponent();
@@ -66,32 +68,42 @@ namespace Obi.UserControls
             TabStop = false;
         }
 
+        /// <summary>
+        /// Return validates the input in the rename box.
+        /// Escape cancels and restores the previous value.
+        /// </summary>
         private void mRenameBox_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (e.KeyCode)
+            if (e.KeyCode == Keys.Return)
             {
-                case Keys.Return:
-                    UpdateText();
-                    break;
-                case Keys.Escape:
-                    mRenameBox.Visible = false;
-                    break;
-                default:
-                    break;
+                UpdateText();
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                Renaming = false;
             }
         }
 
-        public void StartRenaming()
+        /// <summary>
+        /// Set the Renaming property to true to start renaming, and false to stop.
+        /// </summary>
+        public bool Renaming
         {
-            mManager.ProjectPanel.TransportBar.Enabled = false;
-            mRenameBox.ReadOnly = false;
-            mRenameBox.Width = Width - mRenameBox.Location.X - mRenameBox.Margin.Right;
-            mRenameBox.BackColor = BackColor;
-            mRenameBox.Text = mLabel.Text;
-            mRenameBox.SelectAll();
-            mRenameBox.Visible = true;
-            mLabel.Visible = false;
-            mRenameBox.Focus();
+            set
+            {
+                mManager.ProjectPanel.TransportBar.Enabled = !value;
+                mManager.AllowShortcuts = !value;
+                if (value)
+                {
+                    mRenameBox.ReadOnly = false;
+                    mRenameBox.Width = Width - mRenameBox.Location.X - mRenameBox.Margin.Right;
+                    mRenameBox.Text = mLabel.Text;
+                    mRenameBox.SelectAll();
+                }
+                mRenameBox.Visible = value;
+                mLabel.Visible = !value;
+                if (value) mRenameBox.Focus();
+            }
         }
 
         /// <summary>
@@ -103,32 +115,35 @@ namespace Obi.UserControls
         /// </summary>
         public void UpdateText()
         {
-            //md 20061219 error checking
-            if (mManager.ProjectPanel == null) return;
-            if (!mRenameBox.ReadOnly)
+            if (mRenameBox.Text != "" && mRenameBox.Text != mLabel.Text)
             {
-                if (mRenameBox.Text != "" && mRenameBox.Text != mLabel.Text)
-                {
-                    mManager.EditedAudioBlockLabel(this.mAudioBlock, mRenameBox.Text);
-                }
-                //md20061011 added condition
-                else if (mRenameBox.Text == "")
-                {
-                    MessageBox.Show(Localizer.Message("empty_label_warning_text"),
-                        Localizer.Message("empty_label_warning_caption"),
-                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
+                mLabel.Text = mRenameBox.Text;
+                mManager.EditedAudioBlockLabel(this.mAudioBlock, mRenameBox.Text);
             }
-            mLabel.Visible = true;
-            mRenameBox.Visible = false;
-            mManager.ProjectPanel.TransportBar.Enabled = true;
-            mManager.AllowShortcuts = true;
+            else if (mRenameBox.Text == "")
+            {
+                mRenameBox.Text = mLabel.Text;
+                MessageBox.Show(String.Format(Localizer.Message("empty_label_warning_text"), Localizer.Message("an_annotation")),
+                    Localizer.Message("empty_label_warning_caption"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            Renaming = false;
         }
 
+        /// <summary>
+        /// Leaving the text box updates the text (if we were updating)
+        /// or focuses back on the audio block.
+        /// </summary>
         private void mRenameBox_Leave(object sender, EventArgs e)
         {
-            UpdateText();
-            mAudioBlock.Focus();
+            if (mRenameBox.Visible && !mRenameBox.ReadOnly)
+            {
+                UpdateText();
+            }
+            else
+            {
+                mRenameBox.Visible = false;
+                mAudioBlock.Focus();
+            }
         }
 
         //md 20061009
@@ -164,7 +179,6 @@ namespace Obi.UserControls
                 //even though this is set to true, it doesn't seem to stop the keyboard events
                 //from going through to the rest of Obi
                 e.SuppressKeyPress = true;
-
             }
         }
 

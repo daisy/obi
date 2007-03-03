@@ -25,7 +25,7 @@ namespace Obi
         /// <remarks>This has to be reviewed (along with actually setting the annotation!)</remarks>
         public bool HasAnnotation
         {
-            get { return true; }
+            get { return mMedia.getText() != ""; }
         }
 
         /// <summary>
