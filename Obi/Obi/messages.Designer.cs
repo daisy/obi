@@ -61,6 +61,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A section.
+        /// </summary>
+        internal static string a_section {
+            get {
+                return ResourceManager.GetString("a_section", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to add audio block.
         /// </summary>
         internal static string add_phrase_command_label {
@@ -84,6 +93,15 @@ namespace Obi {
         internal static string all_phrases {
             get {
                 return ResourceManager.GetString("all_phrases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An annotation.
+        /// </summary>
+        internal static string an_annotation {
+            get {
+                return ResourceManager.GetString("an_annotation", resourceCulture);
             }
         }
         
@@ -425,7 +443,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A section cannot have an empty label..
+        ///   Looks up a localized string similar to {0} cannot have an empty label..
         /// </summary>
         internal static string empty_label_warning_text {
             get {

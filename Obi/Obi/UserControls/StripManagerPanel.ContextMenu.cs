@@ -188,7 +188,7 @@ namespace Obi.UserControls
         {
             if (mSelectedPhrase != null)
             {
-                mPhraseNodeMap[mSelectedPhrase].StartEditingAnnotation();
+                mPhraseNodeMap[mSelectedPhrase].AnnotationBlock.Renaming = true;
             }
         }
 

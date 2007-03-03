@@ -115,10 +115,12 @@ namespace Obi.UserControls
                     mRenameBox.Size = new Size(Width, mRenameBox.Height);
                     mRenameBox.Visible = true;
                     mRenameBox.BackColor = BackColor;
+                    mRenameBox.Text = mLabel.Text;
                     mRenameBox.SelectAll();
                     mAudioLayoutPanel.Focus();
                     mRenameBox.Focus();
                 }
+                mManager.AllowShortcuts = !value;
             }
         }
 
@@ -163,19 +165,13 @@ namespace Obi.UserControls
         /// </summary>
         private void mTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (e.KeyCode)
+            if (e.KeyCode == Keys.Return)
             {
-                case Keys.Return:
-                    Renaming = false;
-                    mLabel.Text = mRenameBox.Text;
-                    UpdateText();
-                    break;
-                case Keys.Escape:
-                    Renaming = false;
-                    mRenameBox.Text = mLabel.Text;
-                    break;
-                default:
-                    break;
+                UpdateText();
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                Renaming = false;
             }
         }
 
@@ -188,15 +184,15 @@ namespace Obi.UserControls
         {
             if (mRenameBox.Text != "")
             {
+                mLabel.Text = mRenameBox.Text;
                 mManager.RenamedSectionStrip(this);
             }
             else
             {
-                MessageBox.Show(Localizer.Message("empty_label_warning_text"),
-                    Localizer.Message("empty_label_warning_caption"),
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(String.Format(Localizer.Message("empty_label_warning_text"), Localizer.Message("a_section")),
+                    Localizer.Message("empty_label_warning_caption"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            mManager.AllowShortcuts = true;
+            Renaming = false;
         }
         
         #endregion
