@@ -741,66 +741,97 @@ namespace Obi.Assets
         }
         
         /// <summary>
-        /// Export function for converting a list of audiomedia assets to a list of exportable AudioMediaAsset pointing to a single file
+        /// Export function for creating a new audio file  from a list of audio assets
+        ///  skips silently if asset list is empty
         /// <see cref=""/>
         /// </summary>
         /// <param name="AssetList"></param>
         /// <param name="FilePath"></param>
         /// <returns>
-        /// list of AudioMediaAsset consisting of input Assets but changed clip list
+        /// void
         /// </returns>
-        public static  List<AudioMediaAsset> ExportAssets (List<AudioMediaAsset> AssetList, string path )
+        public static void ExportAssets(List<AudioMediaAsset> AssetList, string path)
         {
-            
-            // new clip which is required to replace existing list of clips in each AudioMediaAsset
-            AudioClip ExportAudioClip;
-            
-            // binary writer for writing to export wave file
-            BinaryWriter bw = new BinaryWriter(File.Create(path));
-            BinaryReader br;
 
-            // copy header of first audio clip file to export aubio file
-            br = new BinaryReader(File.OpenRead(AssetList[0].mClips[0].Path));
-
-            for (int i = 0; i < 44; i++)
+            if (AssetList.Count != 0 )
             {
-                bw.Write(br.ReadByte());
-            }
-            bw.BaseStream.Position = 44;
-            br.Close();
-
-            // byte count variable for counting total bytes copied to export file
-            long ByteLengthCount = 0;
-
-
-            for (int AssetCount = 0; AssetCount < AssetList.Count; AssetCount++)
-            {
-
-                if (AssetList[AssetCount].mClips.Count != 0)
+                if (AssetList[0].IsConsistentAssetFormats(AssetList) == true)
                 {
-                    for (int i = 0 ; i < AssetList[AssetCount].mClips.Count ; i++)
-                    {
-                        br = new BinaryReader(File.OpenRead(AssetList[AssetCount].mClips[i].Path));
-                        br.BaseStream.Position = AssetList[AssetCount].mClips[i].BeginByte + 44;
-                        for (long l = AssetList[AssetCount].mClips[i].BeginByte; l < AssetList[AssetCount].mClips[i].EndByte; l++)
-                        {
-                            bw.Write(br.ReadByte());
-                            ByteLengthCount++;
 
+                    // binary writer for writing to export wave file
+                    BinaryWriter bw = new BinaryWriter(File.Create(path));
+                    BinaryReader br;
+
+                    // copy header of first audio clip file to export aubio file
+                    br = new BinaryReader(File.OpenRead(AssetList[0].mClips[0].Path));
+
+                    for (int i = 0; i < 44; i++)
+                    {
+                        bw.Write(br.ReadByte());
+                    }
+                    bw.BaseStream.Position = 44;
+                    br.Close();
+
+                    // byte count variable for counting total bytes copied to export file
+                    long ByteLengthCount = 0;
+
+
+                    for (int AssetCount = 0; AssetCount < AssetList.Count; AssetCount++)
+                    {
+
+                        if (AssetList[AssetCount].mClips.Count != 0)
+                        {
+                            for (int i = 0; i < AssetList[AssetCount].mClips.Count; i++)
+                            {
+                                br = new BinaryReader(File.OpenRead(AssetList[AssetCount].mClips[i].Path));
+                                br.BaseStream.Position = AssetList[AssetCount].mClips[i].BeginByte + 44;
+                                for (long l = AssetList[AssetCount].mClips[i].BeginByte; l < AssetList[AssetCount].mClips[i].EndByte; l++)
+                                {
+                                    bw.Write(br.ReadByte());
+                                    ByteLengthCount++;
+
+                                }
+
+                                br.Close();
+                                br = null;
+
+                            }
                         }
 
-                        br.Close();
-                        br = null;    
-                        
                     }
-                }
 
+                    AssetList[0].UpdateLengthHeader(ByteLengthCount + 44, bw);
+                    bw.Close();
+                    bw = null;
+
+
+                }
+                else
+                    throw new System.Exception("atleast one audio asset is of inconsistent format");
             }
+        }
+
+/// <summary>
+///   function returns tru if all assets in asset list passed as parameter have same audio formats
+///  <see cref=""/>
+/// </summary>
+/// <param name="AssetsList"></param>
+/// <returns></returns>
+        private bool IsConsistentAssetFormats ( List<AudioMediaAsset> AssetsList )
+        {
             
-                AssetList[0].UpdateLengthHeader(ByteLengthCount + 44 , bw);
-                bw.Close();
-            bw = null;
-            return AssetList ;
+            for (int i = 1; i < AssetsList.Count; i++)
+            {
+                if (AssetsList[0].Channels != AssetsList[i].Channels
+  || AssetsList[0].BitDepth != AssetsList[i].BitDepth
+                    || AssetsList[0].SampleRate != AssetsList[i].SampleRate)
+                {
+                    return false;
+                }
+                
+            }
+            return true;
+
         }
 
 
@@ -831,7 +862,9 @@ namespace Obi.Assets
         /// </summary>
         /// <param name="AssetList"></param>
         /// <param name="path"></param>
-        /// <returns></returns>
+        /// <returns>
+        ///  AssetList with modified clip list pointing to new audiofiles
+        /// </returns>
         public static List<AudioMediaAsset> CreateExportClips(List<AudioMediaAsset> AssetList, string path)
         {
             
