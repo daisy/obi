@@ -115,16 +115,10 @@ namespace Obi.UserControls
         /// </summary>
         public void UpdateText()
         {
-            if (mRenameBox.Text != "" && mRenameBox.Text != mLabel.Text)
+            if (mRenameBox.Text != mLabel.Text)
             {
                 mLabel.Text = mRenameBox.Text;
-                mManager.EditedAudioBlockLabel(this.mAudioBlock, mRenameBox.Text);
-            }
-            else if (mRenameBox.Text == "")
-            {
-                mRenameBox.Text = mLabel.Text;
-                MessageBox.Show(String.Format(Localizer.Message("empty_label_warning_text"), Localizer.Message("an_annotation")),
-                    Localizer.Message("empty_label_warning_caption"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                mAudioBlock.Node.Project.EditAnnotationPhraseNode(mAudioBlock.Node, mLabel.Text);
             }
             Renaming = false;
         }

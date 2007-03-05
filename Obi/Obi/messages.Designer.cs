@@ -434,6 +434,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to edit annotation.
+        /// </summary>
+        internal static string edit_annotation_command_label {
+            get {
+                return ResourceManager.GetString("edit_annotation_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Empty label.
         /// </summary>
         internal static string empty_label_warning_caption {
@@ -1025,6 +1034,15 @@ namespace Obi {
         internal static string redo_label {
             get {
                 return ResourceManager.GetString("redo_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to remove annotation.
+        /// </summary>
+        internal static string remove_annotation_command_label {
+            get {
+                return ResourceManager.GetString("remove_annotation_command_label", resourceCulture);
             }
         }
         

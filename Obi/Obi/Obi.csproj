@@ -379,11 +379,11 @@
       <DependentUpon>TransportBar.cs</DependentUpon>
     </Compile>
     <Compile Include="UserProfile.cs" />
-    <Compile Include="Visitors\AssetCreator.cs" />
     <Compile Include="Visitors\CleanupAssets.cs" />
     <Compile Include="Visitors\DumpTree.cs" />
     <Compile Include="Visitors\PhraseEnumerator.cs" />
     <Compile Include="Visitors\CopyPhraseAssets.cs" />
+    <Compile Include="Visitors\PhraseInitializer.cs" />
     <Compile Include="Visitors\UndeleteSubtree.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
 using urakawa.core;
 using urakawa.media;
 
@@ -10,30 +9,41 @@ namespace Obi.Visitors
     public delegate void ErrorHandler(string message);
 
     /// <summary>
-    /// Visitor to recreate assets from media objects in the tree.
+    /// Visitor to initialize phrases (create assets, counts pages, sets annotations.)
     /// </summary>
-    class AssetCreator: ICoreNodeVisitor
+    /// <remarks>It reads in more stuff about phrases so the name does not really fit anymore.</remarks>
+    class PhraseInitializer: ICoreNodeVisitor
     {
         private Assets.AssetManager mAssManager;  // the asset manager which handles the assets
         private ErrorHandler mErrorHandler;       // error handler called when an asset cannot be created.
-        private List<PhraseNode> mPages;          // pages read from the project
+        private int mPages;                       // number of pages in the project
+        private int mAnnotations;                 // number of annotations in the project
 
         /// <summary>
-        /// The list of pages read from the project file.
+        /// The number of pages in the project.
         /// </summary>
-        public List<PhraseNode> Pages
+        public int Pages
         {
             get { return mPages; }
         }
 
         /// <summary>
+        /// The number of annotations in the project.
+        /// </summary>
+        public int Annotations
+        {
+            get { return mAnnotations; }
+        }
+
+        /// <summary>
         /// Create a new asset visitor for a given asset manager.
         /// </summary>
-        public AssetCreator(Assets.AssetManager assManager, ErrorHandler errorHandler)
+        public PhraseInitializer(Assets.AssetManager assManager, ErrorHandler errorHandler)
         {
             mAssManager = assManager;
             mErrorHandler = errorHandler;
-            mPages = new List<PhraseNode>();
+            mPages = 0;
+            mAnnotations = 0;
         }
 
         /// <summary>
@@ -78,10 +88,16 @@ namespace Obi.Visitors
                 {
                     ((PhraseNode)node).Asset = Assets.AudioMediaAsset.Empty;
                 }
-                if (((PhraseNode)node).PageProperty != null) mPages.Add((PhraseNode)node);
-                // klduge
-                ((PhraseNode)node).Annotation =
+
+                // count pages, annotations, and updates the annotation on nodes that have one.
+                if (((PhraseNode)node).PageProperty != null) ++mPages;
+                string annotation =
                     ((TextMedia)Project.GetMediaForChannel((PhraseNode)node, Project.AnnotationChannelName)).getText();
+                if (annotation != null)
+                {
+                    ((PhraseNode)node).Annotation = annotation;
+                    ++mAnnotations;
+                }
             }
             return true;
         }

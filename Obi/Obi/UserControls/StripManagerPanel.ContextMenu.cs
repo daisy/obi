@@ -176,14 +176,15 @@ namespace Obi.UserControls
             MergeBlocks();
         }
 
-        /// <summary>
-        /// Rename the currently selected audio block (JQ)
-        /// </summary>
         private void mEditAudioBlockLabelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             EditAnnotationForAudioBlock();
         }
 
+        /// <summary>
+        /// Edit the annotation for the selected audio block.
+        /// </summary>
+        /// <remarks>Start renaming process; the rest is handled by the annotation block itself.</remarks>
         public void EditAnnotationForAudioBlock()
         {
             if (mSelectedPhrase != null)
