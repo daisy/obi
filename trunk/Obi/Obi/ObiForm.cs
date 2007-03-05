@@ -124,7 +124,7 @@ namespace Obi
         /// </summary>
         private void mNewProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.TransportBar.Stop();
+            mProjectPanel.TransportBar.Enabled = false;
             Dialogs.NewProject dialog = new Dialogs.NewProject(mSettings.DefaultPath);
             dialog.CreateTitleSection = mSettings.CreateTitleSection;
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -145,6 +145,7 @@ namespace Obi
             {
                 Ready();
             }
+            mProjectPanel.TransportBar.Enabled = true;
         }
 
         /// <summary>
@@ -1243,9 +1244,11 @@ namespace Obi
             }
             catch (Exception e)
             {
+                // if opening failed, no project is open and we don't try to open it again next time.
                 MessageBox.Show(e.Message, Localizer.Message("open_project_error_caption"),
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 mProject = null;
+                mSettings.LastOpenProject = "";
             }
             finally
             {

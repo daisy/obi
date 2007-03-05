@@ -135,7 +135,7 @@ namespace Obi.UserControls
                     {
                         AudioBlock block = mPhraseNodeMap[mSelectedPhrase];
                         block.Selected = false;
-                        mSelectedPhrase = value; //null
+                        mSelectedPhrase = value;
                         SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(false, block));
                     }
                 }

@@ -25,36 +25,26 @@ namespace Obi.Dialogs
         /// </summary>
         public string Title
         {
-            get
-            {
-                return mTitleBox.Text;
-            }
+            get { return mTitleBox.Text; }
         }
 
         /// <summary>
         /// Flag telling whether to automatically create a new section for the title.
+        /// The value initial will be the one chosen when a new project was created last.
         /// </summary>
         public bool CreateTitleSection
         {
-            get
-            {
-                return mAutoTitleCheckBox.Checked;
-            }
-            set
-            {
-                mAutoTitleCheckBox.Checked = value;
-            }
+            get { return mAutoTitleCheckBox.Checked; }
+            set { mAutoTitleCheckBox.Checked = value; }
         }
 
         /// <summary>
-        /// The chosen path for the XUK project file.
+        /// The chosen path for the XUK project file; derived from the title or chosen
+        /// by the user.
         /// </summary>
         public string Path
         {
-            get
-            {
-                return mFileBox.Text;
-            }
+            get { return mFileBox.Text; }
         }
 
         /// <summary>
@@ -67,8 +57,9 @@ namespace Obi.Dialogs
             mCheckExisting = true;
             mCanClose = true;
             mTitleBox.Text = Localizer.Message("new_project");
-            // Add a trailing \ so that the last directory doesn't look like a file name (lame.)
-            mFileBox.Text = path + (path.EndsWith(@"\") ? "" : @"\");
+            // Add a trailing separator so that the last directory doesn't look like a file name (lame.)
+            mFileBox.Text = path + (path.EndsWith(System.IO.Path.DirectorySeparatorChar.ToString()) ?
+                "" : System.IO.Path.DirectorySeparatorChar.ToString());
             GenerateFileName();
         }
 
@@ -102,8 +93,8 @@ namespace Obi.Dialogs
         {
             try
             {
-                mFileBox.Text = String.Format(@"{0}\{1}.xuk", System.IO.Path.GetDirectoryName(mFileBox.Text),
-                    Project.SafeName(mTitleBox.Text));
+                mFileBox.Text = String.Format(@"{0}{1}{2}.xuk", System.IO.Path.GetDirectoryName(mFileBox.Text),
+                    System.IO.Path.DirectorySeparatorChar, Project.SafeName(mTitleBox.Text));
                 mCheckExisting = true;  // since the filename changed, we should check
             }
             catch (Exception)
@@ -115,19 +106,9 @@ namespace Obi.Dialogs
         /// <summary>
         /// Before closing, select
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void mOKButton_Click(object sender, EventArgs e)
         {
-            //mg: start with making sure we have an existing dir
-            if (IOUtils.ValidateAndCreateDir
-                (System.IO.Path.GetDirectoryName(mFileBox.Text))){
-                mCanClose = true;
-            }else{
-                //wont be able to render XUK since the dir doesnt exist
-                mCanClose = false;
-            }
-            
+            mCanClose = IOUtils.ValidateAndCreateDir(System.IO.Path.GetDirectoryName(mFileBox.Text));
             if (mCheckExisting && File.Exists(mFileBox.Text))
             {
                 DialogResult result = MessageBox.Show(String.Format(Localizer.Message("overwrite_file_text"), mFileBox.Text),
