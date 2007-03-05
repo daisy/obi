@@ -50,6 +50,7 @@ Main form
     + [K] Mark audio block as used/unused ... Ctrl+K
     + [E] Edit annotation ................... F2
     + [O] Remove annotation ................. Shift+Ctrl+Del
+    + [F] Focus on annotation ............... Alt+Shift+A
     + [T] Set page number ................... Ctrl+G
     + [N] Remove page number ................ Ctrl+Del
     + [P] Go to page ........................ Alt+G
@@ -117,6 +118,7 @@ Strip Manager Panel's context menu
     + [B] Backward .......................... Ctrl+Left
   + [O] Edit annotation ..................... F2
   + [M] Remove annotation ................... Shift+Ctrl+Del
+  + [F] Focus on annotation ................. Shift+Alt+A
   + [T] Set page number ..................... Ctrl+G
   + [R] Remove page number .................. Ctrl+Del
   + [P] Go to page .......................... Alt+G
@@ -161,6 +163,8 @@ Index of shortcuts
   Alt+Up ............. Transport > Previous section
 
   Alt+A .............. Tools > Audio preferences
+  Alt+Shift+A ........ Strips > Focus on annotation
+  Alt+Shift+A ........ [Strip Manager Panel] Focus on annotation
   Ctrl+A* ............ TOC > Add section
   Ctrl+A* ............ Strips > Add strip
   Ctrl+A* ............ [TOC Panel] Add section

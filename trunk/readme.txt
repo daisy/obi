@@ -23,6 +23,11 @@ download a web installer from Microsoft at the following URL:
 Once the DirectX runtime is installed, simply run the installer from this
 archive. The installer will also create a desktop icon and a shortcut.
 
+Note: many Windows XP installation *do* have DirectX installed; however, a
+specific runtime (so-called "managed" runtime) is necessary for Obi to work
+correctly. If Obi cannot start, the DirectX managed runtime may be missing
+so please install it from the above URL.
+
 
 Compiling Obi
 
