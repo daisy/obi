@@ -574,65 +574,35 @@ with regard to the distributed version of Obi.
 
 Appendix A - Missing features for version 1.0 (unsorted)
 
-  A.1 Keyboard navigation in the strip manager.
-
-  A.2 Page numbering: when a page number is set on a phrase, Obi
-  automatically assigns the page number (starting from 1 and counting
-  upwards.) Adding or removing page numbers lead to automatic renumbering.
-
-  A.3 Go to page: select the phrase with the given page number, if it
-  exists. A go to next page (and previous page) function would also be nice
-  to have.
-
-  A.4 Cut/copy/paste text from annotation is not available.
+  A.1 Cut/copy/paste text from annotation is not available.
   [NOTE: Actually it is, it interacts with the normal windows clipboard, as
   implemented by the text box widget. A better integration with Obi's
   clipboard is necessary though.]
 
-  A.5 Search text: select a section whose title contains this text, or a
+  A.2 Search text: select a section whose title contains this text, or a
   phrase with an annotation containing this text. May move to post-0.9.
 
-  A.6 "Save as" may be revised.
+  A.3 User profile and preferences will be merged under a single
+  "preferences" dialog. Menus will be reorganized a little.
 
-  A.7 User profile and preferences will be merged under a single
-  "preferences" dialog.
-
-  A.8 Unused item behavior may be too restrictive; maybe all operations
+  A.4 Unused item behavior may be too restrictive; maybe all operations
   should be allowed in unused sections and with unused audio blocks except
   that they won't be exported or played when the whole book plays.
 
-  A.9 The help file is badly outdated.
+  A.5 The help file is badly outdated. Release notes are still a draft too.
 
-  A.10 Exporting to DAISY makes you choose a folder, but the folder browser
-  dialog is really bad, so it will change to choosing a location for the
-  .opf file, just like creating a project asks for a location for the .xuk
-  file.
-
-  A.11 The transport bar buttons will be disabled when necessary, i.e. on
+  A.6 The transport bar buttons will be disabled when necessary, i.e. on
   the first section the "previous section" button will be disabled but if
   there is more than one section, the "next section" button will be enabled.
 
-  A.12 The time display will allow input to directly go to a selected time
+  A.7 The time display will allow input to directly go to a selected time
   in the book.
-
-  A.13 Add a real pause button to pause when going forward/backward.
-
-  A.14 One audio file per section.
 
 
 Appendix B - Known Issues
 [NOTE: there are really many more than that!]
 
-  B.1 Leaving a textbox (editing strip titles or annotations) before
-  committing the change by pressing return is not always handled elegantly.
-
-  B.2 Keyboard navigation hijacks arrow keys in many places where we want
-  them.
-
-  B.3 Phrase nodes have resizing/repainting bugs.
-
-  B.4 Focus does not follow selection, so a selected item can become
-  invisible (e.g. when playing.)
+  B.1 Project audio is lost after export.
 
 
 Appendix C - Changelog
@@ -640,6 +610,10 @@ Appendix C - Changelog
   * New in Obi 0.8.3.0
     * Cleaned-up menu accelerator keys.
     * Added "Strips > Go to page".
+    * Selection follows focus (when tabbing.)
+    * Focus follows selection (useful for screen readers.)
+    * Added "focus on annotation" (useful for screen readers too.)
+    * Default file names allow more characters (e.g. Japanese.)
 
   * New in Obi 0.8.2.0
     * Fixed some keyboard navigation bugs (but splitter in project panel is
@@ -654,3 +628,36 @@ Appendix C - Changelog
     * Separated play and pause buttons in the transport bar, and switched
     stop and record buttons. Modified transport menu accordingly.
     * Installer installs shortcut and desktop icon.
+
+
+Appendix D - TODO list
+
+[ ] Undo on edit annotation
+[ ] Colors in configuration file
+[ ] Make unused blocks useful
+[ ] Fix selection
+[ ] Master playlist?
+[ ] Fix record
+[ ] Double click on phrase while playing
+[ ] Double click on phrase (handled by project panel, not form)
+[ ] Merge release notes with documentation (reference part)
+[ ] Ask before creating shortcut/desktop icon in installer
+[ ] Automate DirectX setup
+[ ] Obi graphics in installer
+[ ] Fix message for empty annotation
+[ ] Disabling transport bar buttons and menu items
+[ ] Size of section strip
+[ ] Size of section strip label (depend on font size)
+[ ] Make root node an Obi node
+[ ] Enforce single sample rate in project
+[ ] Critical bugs/annoyances in the release notes
+[ ] More single key shortcuts?
+[ ] Go to next annotation (?) -> Go To annotation (similar to go to page)
+[ ] Go to section node/strip
+[ ] VU meter
+[ ] FFWD/RWD
+[ ] Bug when removing first section (when not the only top-level section?)
+[ ] Use previous unused phrase as silence phrase for phrase detection
+[ ] TouchedNode instead of ToggledNodeUseState in Project, etc.?
+[ ] Warn that there were empty phrases in a read project.
+[ ] When the last file opened cannot be found, should be reset.
