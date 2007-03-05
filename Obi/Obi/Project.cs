@@ -511,14 +511,17 @@ namespace Obi
 
         /// <summary>
         /// Get a safe name from a given title. Usable for XUK file and project directory filename.
-        /// We allow only digits, letters and underscores in the safe name and transform anything else
-        /// to underscores. Note that the user is allowed to change this--this is only a suggestion.
+        /// Disallowed characters for file paths are removed.
+        /// Note that the user is allowed to change this--this is only a suggestion.
         /// </summary>
         /// <param name="title">Complete title.</param>
         /// <returns>The safe version.</returns>
         public static string SafeName(string title)
         {
-            string safeName = System.Text.RegularExpressions.Regex.Replace(title, @"[^a-zA-Z0-9]+", "_");
+            string invalid = "[";
+            foreach (char c in System.IO.Path.GetInvalidFileNameChars()) invalid += String.Format("\\x{0:x2}", (int)c);
+            invalid += "]+";
+            string safeName = System.Text.RegularExpressions.Regex.Replace(title, invalid, "_");
             safeName = System.Text.RegularExpressions.Regex.Replace(safeName, "^_", "");
             safeName = System.Text.RegularExpressions.Regex.Replace(safeName, "_$", "");
             return safeName;
