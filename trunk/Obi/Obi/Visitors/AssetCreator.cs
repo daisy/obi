@@ -79,6 +79,9 @@ namespace Obi.Visitors
                     ((PhraseNode)node).Asset = Assets.AudioMediaAsset.Empty;
                 }
                 if (((PhraseNode)node).PageProperty != null) mPages.Add((PhraseNode)node);
+                // klduge
+                ((PhraseNode)node).Annotation =
+                    ((TextMedia)Project.GetMediaForChannel((PhraseNode)node, Project.AnnotationChannelName)).getText();
             }
             return true;
         }
