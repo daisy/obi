@@ -405,7 +405,7 @@ namespace Obi
         /// <param name="annotation">The new annotation for the node</param>
         public void EditAnnotationPhraseNode(PhraseNode node, string annotation)
         {
-            Commands.Strips.RenamePhrase command = new Commands.Strips.RenamePhrase(node, annotation);
+            Commands.Strips.EditOrRemoveAnnotation command = new Commands.Strips.EditOrRemoveAnnotation(node, annotation);
             node.Annotation = annotation;
             Modified(command);
         }
