@@ -614,6 +614,10 @@ Appendix C - Changelog
     * Focus follows selection (useful for screen readers.)
     * Added "focus on annotation" (useful for screen readers too.)
     * Default file names allow more characters (e.g. Japanese.)
+    * Deleting the text of annotation is the same as removing the
+    annotation (no more warnings about empty annotations.)
+    * Editing and removing annotations can be undone and modifies the
+    project.
 
   * New in Obi 0.8.2.0
     * Fixed some keyboard navigation bugs (but splitter in project panel is
@@ -632,7 +636,6 @@ Appendix C - Changelog
 
 Appendix D - TODO list
 
-[ ] Undo on edit annotation
 [ ] Colors in configuration file
 [ ] Make unused blocks useful
 [ ] Fix selection
@@ -644,7 +647,6 @@ Appendix D - TODO list
 [ ] Ask before creating shortcut/desktop icon in installer
 [ ] Automate DirectX setup
 [ ] Obi graphics in installer
-[ ] Fix message for empty annotation
 [ ] Disabling transport bar buttons and menu items
 [ ] Size of section strip
 [ ] Size of section strip label (depend on font size)
@@ -660,4 +662,3 @@ Appendix D - TODO list
 [ ] Use previous unused phrase as silence phrase for phrase detection
 [ ] TouchedNode instead of ToggledNodeUseState in Project, etc.?
 [ ] Warn that there were empty phrases in a read project.
-[ ] When the last file opened cannot be found, should be reset.
