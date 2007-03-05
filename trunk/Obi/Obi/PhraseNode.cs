@@ -38,8 +38,8 @@ namespace Obi
             {
                 mAnnotation = value;
                 mMedia.setText(value);
-                Channel channel = Project.FindChannel(Project.AnnotationChannelName);
-                if (channel != null) mChannel.setMedia(channel, mMedia);
+                if (mProject.AnnotationChannel != null)
+                    mProject.SetMedia(this, mProject.AnnotationChannel, mMedia);
             }
         }
 

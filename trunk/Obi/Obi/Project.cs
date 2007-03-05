@@ -56,6 +56,11 @@ namespace Obi
 
         private int mPages;  // count the pages in the book
 
+        public Channel AnnotationChannel
+        {
+            get { return mAnnotationChannel; }
+        }
+
         /// <summary>
         /// Identify self as generator for this project.
         /// </summary>
@@ -306,10 +311,10 @@ namespace Obi
                 mAssManager = new Assets.AssetManager(absoluteAssPath.AbsolutePath);
                 // Recreate the assets from the phrase nodes
                 // string errMessages = ""; 
-                Visitors.AssetCreator visitor = new Visitors.AssetCreator(mAssManager, delegate(string m) { });
+                Visitors.PhraseInitializer visitor = new Visitors.PhraseInitializer(mAssManager, delegate(string m) { });
                 //     delegate(string message) { errMessages += message + "\n"; });
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
-                mPages = visitor.Pages.Count;
+                mPages = visitor.Pages;
                 // if (errMessages != "")
                 // {
                 //     throw new Exception(String.Format(Localizer.Message("open_project_error_text") + "\n" + errMessages, xukPath));
@@ -519,7 +524,8 @@ namespace Obi
         public static string SafeName(string title)
         {
             string invalid = "[";
-            foreach (char c in System.IO.Path.GetInvalidFileNameChars()) invalid += String.Format("\\x{0:x2}", (int)c);
+            foreach (char c in System.IO.Path.GetInvalidFileNameChars())
+                invalid += String.Format("\\x{0:x2}", (int)c);
             invalid += "]+";
             string safeName = System.Text.RegularExpressions.Regex.Replace(title, invalid, "_");
             safeName = System.Text.RegularExpressions.Regex.Replace(safeName, "^_", "");

@@ -610,4 +610,10 @@ Do you want to replace the project contained in this file?</value>
   <data name="an_annotation" xml:space="preserve">
     <value>An annotation</value>
   </data>
+  <data name="edit_annotation_command_label" xml:space="preserve">
+    <value>edit annotation</value>
+  </data>
+  <data name="remove_annotation_command_label" xml:space="preserve">
+    <value>remove annotation</value>
+  </data>
 </root>

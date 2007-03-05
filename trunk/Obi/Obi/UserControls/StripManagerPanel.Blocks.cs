@@ -8,33 +8,6 @@ namespace Obi.UserControls
     public partial class StripManagerPanel
     {
         /// <summary>
-        /// The user has modified the label of an audio block, so the change has to be made in the project and shown on the block.
-        /// However, if the name change could not be made, the event is cancelled and the block's label is left unchanged.
-        /// </summary>
-        /// <param name="block">The block (with its old label.)</param>
-        /// <param name="newName">The new label for the block.</param>
-        internal void EditedAudioBlockLabel(AudioBlock block, string newName)
-        {
-            //md 20061220 fixes exit crash
-            if (mProjectPanel == null) return;
-
-            TextMedia media = (TextMedia)block.Node.getPresentation().getMediaFactory().createMedia(MediaType.TEXT);
-            media.setText(newName);
-            Events.Node.SetMediaEventArgs e =
-                new Events.Node.SetMediaEventArgs(this, block.Node, Project.AnnotationChannelName, media);
-            SetMediaRequested(this, e);
-            if (e.Cancel)
-            {
-                MessageBox.Show(String.Format(Localizer.Message("name_already_exists_text"), newName),
-                    Localizer.Message("name_already_exists_caption"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else
-            {
-                block.AnnotationBlock.Label = newName;
-            }
-        }
-
-        /// <summary>
         /// Remove the annotation on an audio block.
         /// </summary>
         /// <param name="block">The block to remove the annotation on.</param>
