@@ -89,11 +89,11 @@
     <Compile Include="Commands\Strips\AddPhrase.cs" />
     <Compile Include="Commands\Strips\ApplyPhraseDetection.cs" />
     <Compile Include="Commands\Strips\CopyPhrase.cs" />
+    <Compile Include="Commands\Strips\EditOrRemoveAnnotation.cs" />
     <Compile Include="Commands\Strips\MergePhrases.cs" />
     <Compile Include="Commands\Strips\DeletePhrase.cs" />
     <Compile Include="Commands\Strips\MovePhrase.cs" />
     <Compile Include="Commands\Strips\RemovePageNumber.cs" />
-    <Compile Include="Commands\Strips\RenamePhrase.cs" />
     <Compile Include="Commands\Strips\SetPageNumber.cs" />
     <Compile Include="Commands\Strips\SplitPhrase.cs" />
     <Compile Include="Commands\TOC\AddSection.cs" />

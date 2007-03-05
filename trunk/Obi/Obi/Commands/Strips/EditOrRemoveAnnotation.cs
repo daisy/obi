@@ -10,8 +10,7 @@ namespace Obi.Commands.Strips
     /// <summary>
     /// An annotation was edited.
     /// </summary>
-    /// <remarks>Needs to be renamed.</remarks>
-    class RenamePhrase: Command
+    class EditOrRemoveAnnotation: Command
     {
         private PhraseNode mNode;       // the phrase node for which the annotation is changing
         private string mOldAnnotation;  // the old annotation ("" if none)
@@ -31,7 +30,7 @@ namespace Obi.Commands.Strips
         /// The command is created before the media was updated, but after the asset was renamed.
         /// This does not look good...
         /// </summary>
-        public RenamePhrase(PhraseNode node, string annotation)
+        public EditOrRemoveAnnotation(PhraseNode node, string annotation)
         {
             mNode = node;
             mOldAnnotation = node.Annotation;

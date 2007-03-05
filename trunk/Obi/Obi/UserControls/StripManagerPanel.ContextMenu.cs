@@ -205,7 +205,7 @@ namespace Obi.UserControls
         {
             if (mSelectedPhrase != null)
             {
-                RemovedAnnotation(mPhraseNodeMap[mSelectedPhrase]);
+                mSelectedPhrase.Project.EditAnnotationPhraseNode(mSelectedPhrase, "");
             }
         }
 
