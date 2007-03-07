@@ -76,9 +76,9 @@ namespace Obi.UserControls
         /// <summary>
         /// Changed a media object on a node.
         /// </summary>
-        internal void SyncMediaSet(object sender, Events.Node.SetMediaEventArgs e)
+        public void SyncMediaSet(object sender, Events.Node.SetMediaEventArgs e)
         {
-            if (e.Node.getParent().GetType() == System.Type.GetType("Obi.SectionNode"))
+            if (e.Node.ParentSection != null)
             {
                 SectionStrip strip = mSectionNodeMap[(SectionNode)e.Node.getParent()];
                 if (e.Channel == Project.AnnotationChannelName)

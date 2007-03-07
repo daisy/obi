@@ -195,6 +195,7 @@ namespace Obi.UserControls
             mRenameBox.ReadOnly = true;
             mRenameBox.Visible = true;
             mRenameBox.Focus();
+            mManager.AllowShortcuts = true;
         }
     }
 }
