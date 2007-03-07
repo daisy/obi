@@ -205,7 +205,15 @@ namespace Obi.UserControls
         /// </summary>
         private void AudioBlock_Enter(object sender, EventArgs e)
         {
-            mManager.SelectedPhraseNode = mNode;
+            System.Diagnostics.Debug.Print("Entering <{0}> from {1} ({2})", AccessibleDescription, sender, e);
+            if (mSectionStrip.ChildCanFocus)
+            {
+                mManager.SelectedPhraseNode = mNode;
+            }
+            else
+            {
+                mSectionStrip.Focus();
+            }
         }
     }
 }

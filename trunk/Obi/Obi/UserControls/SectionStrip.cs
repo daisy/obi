@@ -74,9 +74,30 @@ namespace Obi.UserControls
                 if (mSelected != value)
                 {
                     mSelected = value;
-                    if (value) Focus();
+                    if (value)
+                    {
+                        // kludge to disallow the child from stealing the parent's focus/selection
+                        mChildCanFocus = false;
+                        Focus();
+                    }
                     Invalidate();
                 }
+            }
+        }
+
+        private bool mChildCanFocus = true;
+
+        /// <summary>
+        /// When a block gets the focus, check to see if it's not stealing it from the strip.
+        /// The next attempt should succeed, though.
+        /// </summary>
+        public bool ChildCanFocus
+        {
+            get
+            {
+                bool can = mChildCanFocus;
+                mChildCanFocus = true;
+                return can;
             }
         }
 
@@ -234,6 +255,8 @@ namespace Obi.UserControls
         {
             mAnnotationLayoutPanel.Controls.Add(block.AnnotationBlock);
             mAudioLayoutPanel.Controls.Add(block);
+            block.SectionStrip = this;
+            block.AnnotationBlock.SectionStrip = this;
             block.AnnotationBlock.ChangedMinimumSize += new SectionStrip.ChangedMinimumSizeHandler(
                 delegate(object sender, EventArgs e) { ManageAudioBlockWidth(block); }
             );
@@ -277,6 +300,8 @@ namespace Obi.UserControls
             int index = mAudioLayoutPanel.Controls.IndexOf(block);
             mAudioLayoutPanel.Controls.RemoveAt(index);
             mAnnotationLayoutPanel.Controls.RemoveAt(index);
+            block.SectionStrip = null;
+            block.AnnotationBlock.SectionStrip = null;
             //ReflowTabOrder(index);
             // fix the layout again if the strip becomes empty.
             if (mAudioLayoutPanel.Controls.Count == 0) mAudioLayoutPanel.Location = mAnnotationLayoutPanel.Location;
@@ -400,7 +425,7 @@ namespace Obi.UserControls
 
         private void SectionStrip_Enter(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.Print("Entering section <{0}>", Label);
+            System.Diagnostics.Debug.Print("Entering section <{0}> from <{1}> ({2})", Label, sender, e);
         }
     }
 }
