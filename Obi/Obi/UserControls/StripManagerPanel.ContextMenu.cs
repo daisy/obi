@@ -30,7 +30,7 @@ namespace Obi.UserControls
         private void mAddStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SectionNode node = mProjectPanel.Project.CreateSiblingSectionNode(mSelectedSection);
-            SelectedSectionNode = node;
+            _SelectedSectionNode = node;
             StartRenamingSelectedStrip();
         }
 

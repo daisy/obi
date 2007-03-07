@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Obi.Events.Node
 {
-    class SelectedEventArgs: EventArgs
+    public class SelectedEventArgs: EventArgs
     {
         private bool mSelected;
         private object mWidget; //the widget that was selected or deselected

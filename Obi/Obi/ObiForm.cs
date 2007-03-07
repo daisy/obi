@@ -1415,9 +1415,9 @@ namespace Obi
             mAddSubSectionToolStripMenuItem.Enabled = !isPlaying && isSectionNodeUsed;
             mRenameSectionToolStripMenuItem.Enabled = !isPlaying && isSectionNodeUsed;
             mMoveOutToolStripMenuItem.Enabled = !isPlaying && isSectionNodeUsed &&
-                mProjectPanel.Project.CanMoveSectionNodeOut(mProjectPanel.SelectedSection);
+                mProjectPanel.Project.CanMoveSectionNodeOut(mProjectPanel.SelectedNode as SectionNode);
             mMoveInToolStripMenuItem.Enabled = !isPlaying && isSectionNodeUsed &&
-                mProjectPanel.Project.CanMoveSectionNodeIn(mProjectPanel.SelectedSection);
+                mProjectPanel.Project.CanMoveSectionNodeIn(mProjectPanel.SelectedNode as SectionNode);
             
             // Mark section used/unused (by default, i.e. if disabled, "unused")
             mMarkSectionAsUnusedToolStripMenuItem.Enabled = !isPlaying && isSectionNodeSelected && isParentUsed;

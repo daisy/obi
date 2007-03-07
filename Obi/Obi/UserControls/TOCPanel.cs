@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -6,7 +7,6 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using urakawa.media;
-using System.Collections;
 
 namespace Obi.UserControls
 {
@@ -38,19 +38,16 @@ namespace Obi.UserControls
             get { return mTocTree.SelectedNode == null ? null : (SectionNode)mTocTree.SelectedNode.Tag; }
             set
             {
-                //make the new selection
-                if (value != null)// && (SectionNode)mTocTree.SelectedNode.Tag != value)
-                { 
-                    //deselect everything will actually call this function and set the value to null
-                    //therefore deselecting whatever is currently selected
-                    mProjectPanel.DeselectEverything();
-
-                    //this is sometimes redundant
+                if (value != null)
+                {
+                    if (mProjectPanel != null) mProjectPanel.DeselectEverythingElse(this);
                     mTocTree.SelectedNode = FindTreeNodeFromSectionNode(value);
                     SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(true, mTocTree.SelectedNode));
                 }
-                //note: deselection doesn't happen here as it is done automatically
-                //by the widget itself.  trust me.
+                else
+                {
+                    mTocTree.SelectedNode = null;
+                }
             }
         }
 
@@ -214,22 +211,12 @@ namespace Obi.UserControls
         /// <summary>
         /// Catch selection event on a node
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void mTocTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
             SelectedSection = (SectionNode)e.Node.Tag;
         }
 
-        private void mTocTree_BeforeSelect(object sender, TreeViewCancelEventArgs e)
-        {
-            //deselect
-            SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(false, mTocTree.SelectedNode));
-            mTocTree.SelectedNode = null;
-        }
-
-
-#endregion
+        #endregion
        
       
         #region helper functions

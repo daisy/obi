@@ -102,12 +102,12 @@ namespace Obi.UserControls
 
         private void AudioBlock_Click(object sender, EventArgs e)
         {
-            mManager.SelectedPhraseNode = mNode;
+            mManager.SelectedNode = mNode;
         }
 
         private void AudioBlock_DoubleClick(object sender, EventArgs e)
         {
-            mManager.SelectedPhraseNode = mNode;
+            mManager.SelectedNode = mNode;
             // should be handled by the project panel's transport bar
             ((ObiForm)mManager.ParentForm).Play(mNode);
         }
@@ -208,7 +208,7 @@ namespace Obi.UserControls
             System.Diagnostics.Debug.Print("Entering <{0}> from {1} ({2})", AccessibleDescription, sender, e);
             if (mSectionStrip.ChildCanFocus)
             {
-                mManager.SelectedPhraseNode = mNode;
+                mManager.SelectedNode = mNode;
             }
             else
             {

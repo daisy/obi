@@ -222,12 +222,12 @@ namespace Obi.UserControls
         
         private void SectionStrip_Click(object sender, EventArgs e)
         {
-            mManager.SelectedSectionNode = mNode;
+            mManager.SelectedNode = mNode;
         }
 
         private void SectionStrip_DoubleClick(object sender, EventArgs e)
         {
-            mManager.SelectedSectionNode = mNode;
+            mManager.SelectedNode = mNode;
             ((ObiForm)mManager.ParentForm).Play(mNode);
         }
 
@@ -323,8 +323,7 @@ namespace Obi.UserControls
         /// </summary>
         private void mAudioLayoutPanel_Click(object sender, EventArgs e)
         {
-            mManager.SelectedSectionNode = mNode;
-            mManager.SelectedPhraseNode = null;
+            mManager.SelectedNode = null;
         }
 
         /// <summary>
@@ -332,8 +331,7 @@ namespace Obi.UserControls
         /// </summary>
         private void mAnnotationLayoutPanel_Click(object sender, EventArgs e)
         {
-            mManager.SelectedSectionNode = mNode;
-            mManager.SelectedPhraseNode = null;
+            mManager.SelectedNode = mNode;
         }
 
         #endregion
