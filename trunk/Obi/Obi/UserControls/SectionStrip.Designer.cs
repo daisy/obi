@@ -43,7 +43,7 @@ namespace Obi.UserControls
             this.mAudioLayoutPanel.AutoSize = true;
             this.mAudioLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.mAudioLayoutPanel.BackColor = System.Drawing.Color.Transparent;
-            this.mAudioLayoutPanel.Location = new System.Drawing.Point(7, 30);
+            this.mAudioLayoutPanel.Location = new System.Drawing.Point(7, 33);
             this.mAudioLayoutPanel.Name = "mAudioLayoutPanel";
             this.mAudioLayoutPanel.Size = new System.Drawing.Size(0, 0);
             this.mAudioLayoutPanel.TabIndex = 3;
@@ -67,6 +67,7 @@ namespace Obi.UserControls
             this.mRenameBox.Enter += new System.EventHandler(this.mRenameBox_Enter);
             this.mRenameBox.Click += new System.EventHandler(this.SectionStrip_Click);
             this.mRenameBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mTextBox_MouseDown);
+            this.mRenameBox.Leave += new System.EventHandler(this.mRenameBox_Leave);
             this.mRenameBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mTextBox_KeyDown);
             // 
             // mLabel
@@ -96,7 +97,7 @@ namespace Obi.UserControls
             this.mAnnotationLayoutPanel.AutoSize = true;
             this.mAnnotationLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.mAnnotationLayoutPanel.BackColor = System.Drawing.Color.Transparent;
-            this.mAnnotationLayoutPanel.Location = new System.Drawing.Point(7, 33);
+            this.mAnnotationLayoutPanel.Location = new System.Drawing.Point(7, 36);
             this.mAnnotationLayoutPanel.Name = "mAnnotationLayoutPanel";
             this.mAnnotationLayoutPanel.Size = new System.Drawing.Size(0, 0);
             this.mAnnotationLayoutPanel.TabIndex = 2;
@@ -105,7 +106,7 @@ namespace Obi.UserControls
             // 
             // SectionStrip
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -117,7 +118,7 @@ namespace Obi.UserControls
             this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.Name = "SectionStrip";
             this.Padding = new System.Windows.Forms.Padding(4);
-            this.Size = new System.Drawing.Size(306, 40);
+            this.Size = new System.Drawing.Size(298, 43);
             this.Enter += new System.EventHandler(this.SectionStrip_Enter);
             this.DoubleClick += new System.EventHandler(this.SectionStrip_DoubleClick);
             this.Click += new System.EventHandler(this.SectionStrip_Click);

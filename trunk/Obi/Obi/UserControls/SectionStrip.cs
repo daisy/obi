@@ -425,5 +425,13 @@ namespace Obi.UserControls
         {
             System.Diagnostics.Debug.Print("Entering section <{0}> from <{1}> ({2})", Label, sender, e);
         }
+
+        private void mRenameBox_Leave(object sender, EventArgs e)
+        {
+            if (Label != mRenameBox.Text)
+            {
+                UpdateText();
+            }
+        }
     }
 }
