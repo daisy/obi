@@ -40,105 +40,74 @@ namespace Obi.UserControls
             get { return mSelectedPhrase == null ? (ObiNode)mSelectedSection : (ObiNode)mSelectedPhrase; }
             set
             {
-                if (value != null)
+                if (value is SectionNode)
                 {
-                    if (value is SectionNode)
-                    {
-                        SelectedSectionNode = (SectionNode)value;
-                    }
-                    else if (value is PhraseNode)
-                    {
-                        SelectedPhraseNode = (PhraseNode)value;
-                    }
-                    else
-                    {
-                        SelectedPhraseNode = null;
-                        SelectedSectionNode = null;
-                    }
+                    _SelectedPhraseNode = null;
+                    _SelectedSectionNode = (SectionNode)value;
+                }
+                else if (value is PhraseNode)
+                {
+                    _SelectedSectionNode = null;
+                    _SelectedPhraseNode = (PhraseNode)value;
                 }
                 else
                 {
-                    SelectedPhraseNode = null;
-                    SelectedSectionNode = null;
+                    _SelectedSectionNode = null;
+                    _SelectedPhraseNode = null;
                 }
+                if (mProjectPanel != null) mProjectPanel.SelectedNode = value;
             }
         }
 
         /// <summary>
-        /// Get or set the currently selected section node.
-        /// A null value means that no node is selected.
-        /// When the new selection is set, the previous one (if any) is desselected.
-        /// If there is a new selection, the node gets selected and the context menu is updated.
-        /// An event informs listeners (e.g. this panel and the main form) about the current selection status.
+        /// Get the section node for the currently selected strip.
+        /// Return null if no strip is selected.
         /// </summary>
         public SectionNode SelectedSectionNode
         {
             get { return mSelectedSection; }
+        }
+
+        private SectionNode _SelectedSectionNode
+        {
             set
             {
-                //make the new select
-                if (value != null && mSelectedSection != value)
+                if (value != mSelectedSection)
                 {
-                    //deselect everything will actually call this function and set the value to null
-                    //therefore deselecting whatever is currently selected
-                    mProjectPanel.DeselectEverything();
-
+                    Deselect();
                     mSelectedSection = value;
-                    mSectionNodeMap[mSelectedSection].Selected = true;
-                    SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(true, mSectionNodeMap[mSelectedSection]));
-                }
-                //or deselect the old selection
-                else if (value == null)
-                {
-                    if (mSelectedSection != null)
+                    if (value != null)
                     {
-                        if (mSectionNodeMap.ContainsKey(mSelectedSection))
-                        {
-                            SectionStrip strip = mSectionNodeMap[mSelectedSection];
-                            strip.Selected = false;
-                            SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(false, strip));
-                        }
-                        mSelectedSection = null;
+                        mSectionNodeMap[mSelectedSection].Selected = true;
+                        SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(true, mSectionNodeMap[mSelectedSection]));
                     }
                 }
             }
         }
 
         /// <summary>
-        /// Get or set the currently selected phrase node.
-        /// A null value means that no node is selected.
-        /// When the new selection is set, the previous one (if any) is desselected.
-        /// If there is a new selection, the node gets selected and the context menu is updated.
-        /// The parent section node is selected as well.
-        /// An event informs listeners (e.g. this panel and the main form) about the current selection status.
+        /// The currently selected phrase (null if none.)
         /// </summary>
         public PhraseNode SelectedPhraseNode
         {
             get { return mSelectedPhrase; }
+        }
+
+        private PhraseNode _SelectedPhraseNode
+        {
             set
             {
-               //make the new select
-                if (value != null && mSelectedPhrase != value)
+                if (value != mSelectedPhrase)
                 {
-                    //deselect everything will actually call this function and set the value to null
-                    //therefore deselecting whatever is currently selected
-                    mProjectPanel.DeselectEverything();
-
+                    Deselect();
                     mSelectedPhrase = value;
-                    mPhraseNodeMap[mSelectedPhrase].Selected = true;
-                    SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(true, mPhraseNodeMap[mSelectedPhrase]));
-                }
-                //or deselect the old selection
-                else if (value == null)
-                {
-                    if (mSelectedPhrase != null)
+                    if (value != null)
                     {
-                        AudioBlock block = mPhraseNodeMap[mSelectedPhrase];
-                        block.Selected = false;
-                        mSelectedPhrase = value;
-                        SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(false, block));
+                        mPhraseNodeMap[mSelectedPhrase].Selected = true;
+                        SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(true, mPhraseNodeMap[mSelectedPhrase]));
                     }
                 }
+
             }
         }
 
@@ -336,8 +305,7 @@ namespace Obi.UserControls
         /// </summary>
         private void mFlowLayoutPanel_Click(object sender, EventArgs e)
         {
-            SelectedSectionNode = null;
-            SelectedPhraseNode = null;
+            SelectedNode = null;
         }
 
         #region shortcut keys
@@ -373,5 +341,27 @@ namespace Obi.UserControls
         }
 
         #endregion
+
+        /// <summary>
+        /// Deselect all items (prior to setting the new selection.)
+        /// </summary>
+        private void Deselect()
+        {
+            // Deselect the currently selected item
+            if (mSelectedSection != null)
+            {
+                mSectionNodeMap[mSelectedSection].Selected = false;
+                SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(false, mSectionNodeMap[mSelectedSection]));
+            }
+            else if (mSelectedPhrase != null)
+            {
+                mPhraseNodeMap[mSelectedPhrase].Selected = false;
+                SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(false, mPhraseNodeMap[mSelectedPhrase]));
+            }
+            else
+            {
+                mProjectPanel.DeselectEverythingElse(this);
+            }
+        }
     }
 }

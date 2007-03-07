@@ -1,9 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
 
 using urakawa.core;
@@ -16,6 +11,45 @@ namespace Obi.UserControls
     public partial class ProjectPanel : UserControl
     {
         private Project mProject;       // the project to display
+        private ObiNode mSelectedNode;  // the selected node in one of the views (null if none)
+
+        #region properties
+
+        /// <summary>
+        /// True if there is a node currently selected and it can be cut/copied/deleted.
+        /// </summary>
+        public bool CanCutCopyDeleteNode
+        {
+            get { return mSelectedNode != null; }
+        }
+
+        /// <summary>
+        /// An audio block's status can be changed only if its parent section is used.
+        /// </summary>
+        public bool CanToggleAudioBlock
+        {
+            get
+            {
+                PhraseNode selected = mStripManagerPanel.SelectedPhraseNode;
+                return selected != null && selected.ParentSection.Used;
+            }
+        }
+
+        /// <summary>
+        /// A section's used state can be changed only if it or its parent is used
+        /// (cannot have a used section under an unused section), or it is the root.
+        /// </summary>
+        public bool CanToggleSection
+        {
+            get
+            {
+                SectionNode selected = mTOCPanel.SelectedSection;
+                if (selected == null) return false;
+                if (selected.Used) return true;
+                SectionNode parent = selected.ParentSection;
+                return parent == null || parent.Used;
+            }
+        }
 
         /// <summary>
         /// Set the project for the panel, as well as all the correct handlers.
@@ -30,7 +64,7 @@ namespace Obi.UserControls
                 mProject = value;
                 mSplitContainer.Visible = mProject != null;
                 mSplitContainer.Panel1Collapsed = false;
-                mNoProjectLabel.Text = mProject == null ? Localizer.Message("no_project") : "";
+                mNoProjectLabel.Visible = mProject == null;
                 mTransportBar.Enabled = mProject != null;
             }
         }
@@ -145,152 +179,6 @@ namespace Obi.UserControls
         #endregion
 
         /// <summary>
-        /// TOC panel can be visible (true) or hidden (false).
-        /// </summary>
-        public Boolean TOCPanelVisible
-        {
-            get { return mProject != null && !mSplitContainer.Panel1Collapsed; }
-        }
-
-        /// <summary>
-        /// The strip manager for this project.
-        /// </summary>
-        public StripManagerPanel StripManager
-        {
-            get { return mStripManagerPanel; }
-        }
-
-        /// <summary>
-        /// The TOC panel for this project.
-        /// </summary>
-        public TOCPanel TOCPanel
-        {
-            get { return mTOCPanel; }
-        }
-
-        /// <summary>
-        /// The transport bar for the project.
-        /// </summary>
-        public TransportBar TransportBar
-        {
-            get { return mTransportBar; }
-        }
-
-        /// <summary>
-        /// Return the node that is selected in either view, or null if no node is selected.
-        /// </summary>
-        public ObiNode SelectedNode
-        {
-            get
-            {
-                return mStripManagerPanel.SelectedNode != null ?
-                        mStripManagerPanel.SelectedNode :
-                    mTOCPanel.IsNodeSelected ?
-                        mTOCPanel.SelectedSection : null;
-            }
-        }
-
-        /// <summary>
-        /// Return the section node currently selected, either in the strip manager or the TOC view.
-        /// If no section node is selected, return null.
-        /// </summary>
-        public SectionNode SelectedSection
-        {
-            get
-            {
-                return mStripManagerPanel.SelectedSectionNode != null ?
-                    mStripManagerPanel.SelectedSectionNode :
-                    mTOCPanel.SelectedSection;
-            }
-        }
-
-        /// <summary>
-        /// True if there is a node currently selected and it can be cut/copied/deleted.
-        /// The selected node must be used in order to do that.
-        /// </summary>
-        public bool CanCutCopyDeleteNode
-        {
-            get
-            {
-                ObiNode selected = SelectedNode;
-                return selected != null && selected.Used;
-            }
-        }
-
-        /// <summary>
-        /// True if there is currently a selected section and its use status
-        /// can be toggled (i.e. its parent is used)
-        /// </summary>
-        public bool CanToggleSection
-        {
-            get
-            {
-                SectionNode selected = mTOCPanel.SelectedSection;
-                if (selected == null) return false;
-                if (selected.Used) return true;
-                SectionNode parent = selected.ParentSection;
-                return parent == null || parent.Used;
-            }
-        }
-
-        /// <summary>
-        /// True if there is currently a selected strip and its use status
-        /// can be toggled (i.e. its parent is used)
-        /// Can check for subsections as well? [optional]
-        /// </summary>
-        public bool CanToggleStrip
-        {
-            get
-            {
-                SectionNode selected = mStripManagerPanel.SelectedSectionNode;
-                if (selected == null) return false;
-                if (selected.SectionChildCount > 0) return false;  // optional
-                if (selected.Used) return true;
-                SectionNode parent = selected.ParentSection;
-                return parent == null || parent.Used;
-            }
-        }
-
-        /// <summary>
-        /// String to show in the menu: "mark audio block as used/unused"
-        /// </summary>
-        public string ToggleStripString
-        {
-            get
-            {
-                return String.Format(Localizer.Message("mark_x_as_y"), Localizer.Message("strip"),
-                    Localizer.Message(CanToggleStrip && !mStripManagerPanel.SelectedSectionNode.Used ?
-                    "used" : "unused"));
-            }
-        }
-
-        /// <summary>
-        /// True if there is currently a selected audio block and its use
-        /// status can be toggled (its parent section must be used.)
-        /// </summary>
-        public bool CanToggleAudioBlock
-        {
-            get
-            {
-                PhraseNode selected = mStripManagerPanel.SelectedPhraseNode;
-                return selected != null && selected.ParentSection.Used;
-            }
-        }
-
-        /// <summary>
-        /// String to show in the menu: "mark audio block as used/unused"
-        /// </summary>
-        public string ToggleAudioBlockString
-        {
-            get
-            {
-                return String.Format(Localizer.Message("mark_x_as_y"), Localizer.Message("audio_block"),
-                    Localizer.Message(CanToggleAudioBlock && !mStripManagerPanel.SelectedPhraseNode.Used ?
-                    "used" : "unused"));
-            }
-        }
-
-        /// <summary>
         /// Get a label for the node currently selected, i.e. "" if nothing is seleced,
         /// "audio block" for an audio block, "strip" for a strip and "section" for a
         /// section.
@@ -306,6 +194,76 @@ namespace Obi.UserControls
         }
 
         /// <summary>
+        /// Selected node in the panel.
+        /// To set the selection, use the StripView or the TOCPanel facilities.
+        /// </summary>
+        public ObiNode SelectedNode
+        {
+            get { return mSelectedNode; }
+            set { mSelectedNode = value; }
+        }
+
+        /// <summary>
+        /// The strip manager for this project.
+        /// </summary>
+        public StripManagerPanel StripManager
+        {
+            get { return mStripManagerPanel; }
+        }
+
+        /// <summary>
+        /// TOC panel can be visible (true) or hidden (false).
+        /// </summary>
+        public Boolean TOCPanelVisible
+        {
+            get { return mProject != null && !mSplitContainer.Panel1Collapsed; }
+        }
+
+        /// <summary>
+        /// The TOC panel for this project.
+        /// </summary>
+        public TOCPanel TOCPanel
+        {
+            get { return mTOCPanel; }
+        }
+
+        /// <summary>
+        /// String to show in the menu: "mark audio block as used/unused"
+        /// </summary>
+        public string ToggleAudioBlockString
+        {
+            get
+            {
+                return String.Format(Localizer.Message("mark_x_as_y"), Localizer.Message("audio_block"),
+                    Localizer.Message(CanToggleAudioBlock && mStripManagerPanel.SelectedPhraseNode.Used ?
+                    "unused" : "used"));
+            }
+        }
+
+        /// <summary>
+        /// String to show in the menu: "mark section as used/unused"
+        /// </summary>
+        public string ToggleSectionString
+        {
+            get
+            {
+                return String.Format(Localizer.Message("mark_x_as_y"), Localizer.Message("section"),
+                    Localizer.Message(CanToggleSection && mTOCPanel.SelectedSection.Used ?
+                    "unused" : "used"));
+            }
+        }
+
+        /// <summary>
+        /// The transport bar for the project.
+        /// </summary>
+        public TransportBar TransportBar
+        {
+            get { return mTransportBar; }
+        }
+
+        #endregion
+
+        /// <summary>
         /// Create a new project panel with currently no project.
         /// </summary>
         public ProjectPanel()
@@ -313,6 +271,7 @@ namespace Obi.UserControls
             InitializeComponent();
             mTOCPanel.ProjectPanel = this;
             mStripManagerPanel.ProjectPanel = this;
+            mTransportBar.ProjectPanel = this;
             Project = null;
         }
 
@@ -343,24 +302,28 @@ namespace Obi.UserControls
             mTransportBar.Playlist = new Playlist(mProject, Audio.AudioPlayer.Instance);
         }
 
-        //things to deselect:
-        /*StripManagerPanel.mPhraseNodeMap[mSelectedPhrase] (audio blocks)
-	    StripManagerPanel.mSectionNodeMap[mSelectedSection] (section strip)
-	    annotation block (future)
-	    page block (future)
-	    TOC panel node	*/
-        //IMPORTANT! don't raise anything like "SelectionChanged" events
-        internal void DeselectEverything()
+        /// <summary>
+        /// Deselect everything in controls other than the sender.
+        /// </summary>
+        public void DeselectEverythingElse(object from)
         {
-            mTOCPanel.SelectedSection = null;
-            mStripManagerPanel.SelectedPhraseNode = null;// SelectedBlock = null;
-            mStripManagerPanel.SelectedSectionNode = null;// SelectedSectionStrip = null;
+            if (from is StripManagerPanel)
+            {
+                mTOCPanel.SelectedSection = null;
+            }
+            else if (from is TOCPanel)
+            {
+                mStripManagerPanel.SelectedNode = null;
+            }
+            mSelectedNode = null;
         }
-        
-        internal void test_WidgetSelect(object sender, Obi.Events.Node.SelectedEventArgs e)
+
+        /// <summary>
+        /// This test method shows what gets selected when.
+        /// </summary>
+        public void test_WidgetSelect(object sender, Obi.Events.Node.SelectedEventArgs e)
         {
             CoreNode target = null;
-
             if (e.Widget is Obi.UserControls.SectionStrip)
             {
                 System.Diagnostics.Debug.Write("SectionStrip - ");
@@ -392,62 +355,33 @@ namespace Obi.UserControls
         }
 
         /// <summary>
-        /// True if the given node can be pasted. Some rules for pasting:
-        ///   (i) there must be something to paste,
-        ///   (ii) the project must be open,
-        ///   (iii) if no node is selected, the context is understood to be the context panel
-        ///     and the root node; as such, only sections can be pasted,
-        ///   (iv) a phrase node cannot be pasted in the TOC panel,
-        ///   (v) if the selected node is a phrase, only a phrase can be pasted,
-        ///   (vi) if the selected node is an unused section, then a section can be pasted only
-        ///     if the parent is the root or is used.
-        ///   (vii) if the selected node is an unused phrase, then a phrse can be pasted only
-        ///     if the parent section is used and the selected phrase is followed by a used
-        ///     phrase or is the last of its section.
-        ///   (viii) there is no viii.
+        /// A node (from the clipboard) can be pasted if the selection context is right.
+        /// Note that pasting a used section or used phrase under an unused section should
+        /// turn the pasted node to unused.
         /// </summary>
         /// <param name="node">The node to paste (coming from the clipboard.) Null if no node is in the clipboard.</param>
         public bool CanPaste(ObiNode node)
         {
             if (node == null)
             {
+                // nothing to paste
                 return false;
+            }
+            else if (mSelectedNode == null)
+            {
+                // no selection: can only paste a section
+                return mProject != null && node is SectionNode;
+            }
+            else if (node is SectionNode)
+            {
+                // a section can only be pasted under a section
+                return mSelectedNode is SectionNode;
             }
             else
             {
-                ObiNode selected = SelectedNode;
-                if (selected == null)
-                {
-                    // the context is the root so only a section node can be pasted.
-                    return mProject != null && node is SectionNode;
-                }
-                else
-                {
-                    if (node is SectionNode)
-                    {
-                        // a section node can be pasted only in the context of a section node,
-                        // which parent or self must be used
-                        return (selected is SectionNode) &&
-                            (selected.Used ||
-                            ((SectionNode)selected).ParentSection != null && ((SectionNode)selected).ParentSection.Used);
-                    }
-                    else
-                    {
-                        if (selected is PhraseNode && !selected.Used)
-                        {
-                            // pasting after an unused phrase node works if its last or
-                            // followed by a used node in a used section
-                            SectionNode parent = ((PhraseNode)selected).ParentSection;
-                            return selected.Index == parent.PhraseChildCount - 1 ||
-                                parent.PhraseChild(selected.Index + 1).Used;
-                        }
-                        else
-                        {
-                            // must be in the strip manager (i.e. not in the TOC panel)
-                            return mTOCPanel.SelectedSection == null;
-                        }
-                    }
-                }
+                // a phrase can be pasted anywhere as long as a node is selected in the strip view
+                // but not in the toc view
+                return mTOCPanel.SelectedSection == null;
             }
         }
 

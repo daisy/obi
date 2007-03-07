@@ -89,8 +89,6 @@ namespace Obi.UserControls
             this.mStripManagerPanel.Location = new System.Drawing.Point(0, 0);
             this.mStripManagerPanel.Name = "mStripManagerPanel";
             this.mStripManagerPanel.SelectedNode = null;
-            this.mStripManagerPanel.SelectedPhraseNode = null;
-            this.mStripManagerPanel.SelectedSectionNode = null;
             this.mStripManagerPanel.Size = new System.Drawing.Size(550, 409);
             this.mStripManagerPanel.TabIndex = 0;
             // 

@@ -32,7 +32,7 @@ namespace Obi.UserControls
                 AudioBlock block = SetupAudioBlockFromPhraseNode(e.Node);
                 strip.InsertAudioBlock(block, e.Node.Index);
                 if (e.Node.PageProperty != null) mProjectPanel.Project.RenumberPages();
-                SelectedPhraseNode = e.Node;
+                _SelectedPhraseNode = e.Node;
             }
         }
 
@@ -66,7 +66,7 @@ namespace Obi.UserControls
             if (e.Node.ParentSection != null)
             {
                 SectionStrip strip = mSectionNodeMap[e.Node.ParentSection];
-                if (SelectedPhraseNode == e.Node) SelectedPhraseNode = null;
+                if (SelectedPhraseNode == e.Node) _SelectedPhraseNode = null;
                 strip.RemoveAudioBlock(mPhraseNodeMap[e.Node]);
                 mPhraseNodeMap.Remove(e.Node);
                 if (e.Node.PageProperty != null) mProjectPanel.Project.RenumberPagesExcluding(e.Node);

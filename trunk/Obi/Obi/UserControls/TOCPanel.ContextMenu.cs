@@ -81,7 +81,7 @@ namespace Obi.UserControls
         {
             if (IsNodeSelected)
             {
-                ProjectPanel.StripManager.SelectedSectionNode = SelectedSection;
+                ProjectPanel.StripManager.SelectedNode = SelectedSection;
                 if (ProjectPanel.StripManager.SelectedSectionNode != null)
                 {
                     ProjectPanel.StripManager.SelectedSectionStrip.Focus();

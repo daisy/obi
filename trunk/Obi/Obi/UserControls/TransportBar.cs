@@ -10,6 +10,7 @@ namespace Obi.UserControls
     /// </summary>
     public partial class TransportBar : UserControl
     {
+        private ProjectPanel mProjectPanel;  // project panel to which the transport bar belongs
         private Playlist mPlaylist;          // current playlist (may be null)
         private ObiNode mPreviousSelection;  // selection before playback started
 
@@ -22,7 +23,13 @@ namespace Obi.UserControls
         // Pass the state change and playback rate change events from the playlist
         public event Events.Audio.Player.StateChangedHandler StateChanged;
         public event EventHandler PlaybackRateChanged;
-        
+
+        public ProjectPanel ProjectPanel
+        {
+            get { return mProjectPanel; }
+            set { mProjectPanel = value; }
+        }
+
         /// <summary>
         /// The transport bar as a whole can be enabled/disabled when necessary.
         /// Disabling the transport bar will also stop playback.
@@ -128,6 +135,7 @@ namespace Obi.UserControls
             mPlaylist = null;
             mDisplayBox.SelectedIndex = ElapsedTotal;
             mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
+            mProjectPanel = null;  // to be set when the project panel is initialized
         }
 
         /// <summary>
@@ -423,7 +431,7 @@ namespace Obi.UserControls
         /// </summary>
         private void Play_MovedToPhrase(object sender, Events.Node.PhraseNodeEventArgs e)
         {
-            ((ProjectPanel)Parent).StripManager.SelectedPhraseNode = e.Node;
+            mProjectPanel.StripManager.SelectedNode = e.Node;
         }
 
         /// <summary>

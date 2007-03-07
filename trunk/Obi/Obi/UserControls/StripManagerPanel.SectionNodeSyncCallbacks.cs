@@ -210,7 +210,7 @@ namespace Obi.UserControls
                     prev = mProjectPanel.Project.LastSection;
                 }
             }
-            if (prev != null) SelectedSectionNode = prev;
+            if (prev != null) _SelectedSectionNode = prev;
         }
 
         /// <summary>
@@ -236,7 +236,7 @@ namespace Obi.UserControls
                     next = mProjectPanel.Project.FirstSection;
                 }
             }
-            if (next != null) SelectedSectionNode = next;
+            if (next != null) _SelectedSectionNode = next;
         }
     }
 }
