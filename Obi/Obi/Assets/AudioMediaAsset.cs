@@ -879,6 +879,7 @@ namespace Obi.Assets
                 List<AudioClip> NewList = new List<AudioClip>();
                 NewList.Add(ExportAudioClip);
                 AssetList[ICount].mClips = NewList;
+                AssetList[ICount].Manager.AddedClip(ExportAudioClip);
             }
             return AssetList;
         }
