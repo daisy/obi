@@ -141,12 +141,6 @@
     <Compile Include="Dialogs\Preferences.Designer.cs">
       <DependentUpon>Preferences.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\Record.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\Record.Designer.cs">
-      <DependentUpon>Record.cs</DependentUpon>
-    </Compile>
     <Compile Include="Dialogs\SentenceDetection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -238,10 +232,6 @@
     <EmbeddedResource Include="Dialogs\Preferences.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Preferences.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\Record.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>Record.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Split.resx">
       <SubType>Designer</SubType>

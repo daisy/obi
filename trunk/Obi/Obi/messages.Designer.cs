@@ -1020,6 +1020,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recording....
+        /// </summary>
+        internal static string recording {
+            get {
+                return ResourceManager.GetString("recording", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Redo.
         /// </summary>
         internal static string redo {
