@@ -295,7 +295,7 @@ namespace Obi
         /// <param name="index">Base index in the parent for new phrases.</param>
         internal void FinishRecordingPhrase(Events.Audio.Recorder.PhraseEventArgs e, SectionNode parent, int index)
         {
-            PhraseNode phrase = parent.PhraseChild(index + e.PhraseIndex);
+            PhraseNode phrase = parent.PhraseChild(index);
             UpdateSeq(phrase);
             MediaSet(this, new Events.Node.SetMediaEventArgs(this, phrase, Project.AudioChannelName,
                 GetMediaForChannel(phrase, Project.AudioChannelName)));

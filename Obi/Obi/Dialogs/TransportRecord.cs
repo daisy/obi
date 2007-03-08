@@ -8,92 +8,101 @@ using System.Windows.Forms;
 
 namespace Obi.Dialogs
 {
+    /// <summary>
+    /// Dialog for recording new audio, including marking phrases and pages automatically.
+    /// </summary>
     public partial class TransportRecord : Form
     {
         private RecordingSession mRecordingSession;
 
+        /// <summary>
+        /// Constructor with no parameter (used by the designer.)
+        /// </summary>
         public TransportRecord()
         {
             InitializeComponent();
+            mRecordingSession = null;
         }
 
+        /// <summary>
+        /// Instantiate a new dialog for an existing session.
+        /// </summary>
+        /// <param name="recordingSession">The initial recording session.</param>
         public TransportRecord(RecordingSession recordingSession)
         {
             InitializeComponent();
             mRecordingSession = recordingSession;
         }
 
+        /// <summary>
+        /// Close the form.
+        /// </summary>
+        /// <remarks>Recording stops when the form is closing.</remarks>
         private void mStopButton_Click(object sender, EventArgs e)
         {
-            tmDisplayTime.Enabled = false;
-            mRecordingSession.Stop();
             Close();
         }
 
+        /// <summary>
+        /// Pause.
+        /// </summary>
         private void mPauseButton_Click(object sender, EventArgs e)
         {
             Pause();
         }
 
-/// <summary>
-///  Pauses and commits recording if it is going on
-/// <summary>
-/// </summary>
-/// </summary>
+        /// <summary>
+        /// Pause the recording and switch to listening mode.
+        /// If we were recording, the recorded audio is committed.
+        /// <summary>
         private void Pause()
         {
-            if (mPauseButton.Visible == true)
+            if (mPauseButton.Enabled)
             {
-                tmDisplayTime.Enabled = false;
-                txtDisplayTime.Text = "Listening";
-
+                mTimeDisplay.Enabled = false;
+                mTimeDisplayBox.Text = Localizer.Message("listening");
                 mRecordingSession.Stop();
                 mRecordingSession.Listen();
-                bool PauseFocussed = mPauseButton.Focused;
-                mRecordButton.Visible = true;
-                mPauseButton.Visible = false;
-                this.Text = "Recording Paused";
-
-                if ( PauseFocussed == true )
-                mRecordButton.Focus();
+                mRecordButton.Visible = mRecordButton.Enabled = true;
+                if (mPauseButton.Focused) mRecordButton.Focus();
+                mPauseButton.Visible = mPauseButton.Enabled = false;
+                Text = Localizer.Message("listening");
             }
         }
 
-
+        /// <summary>
+        /// Start recording.
+        /// </summary>
         private void mRecordButton_Click(object sender, EventArgs e)
         {
             StartRecording();
         }
 
-
         /// <summary>
-        ///  Starts Recording if paused or initialised
-        /// <summary></summary>
+        ///  Start recording if we were listening.
         /// </summary>
         private void StartRecording ()
         {
-            if (mRecordButton.Visible == true)
+            if (mRecordButton.Enabled)
             {
                 mRecordingSession.Stop();
                 mRecordingSession.Record();
-                bool RecordFocussed = mRecordButton.Focused;
-                mPauseButton.Visible = true;
-                mRecordButton.Visible = false;
-                this.Text = "Recording";
-
-                if ( RecordFocussed == true )
-                mPauseButton.Focus();
-
-            tmDisplayTime.Start();
+                mPauseButton.Visible = mPauseButton.Enabled = true;
+                if (mRecordButton.Focused) mPauseButton.Focus();
+                mRecordButton.Visible = mRecordButton.Enabled = false;
+                Text = Localizer.Message("recording");
+                mTimeDisplay.Start();
             }
         }
 
-
-        private void btnPageMark_Click(object sender, EventArgs e)
+        private void mPageMarkButton_Click(object sender, EventArgs e)
         {
             PageMark();
         }
 
+        /// <summary>
+        /// Mark a page.
+        /// </summary>
         private void PageMark()
         {
             mRecordingSession.MarkPage();
@@ -126,13 +135,13 @@ namespace Obi.Dialogs
             mTextVuMeter.Enable = true;
             mTextVuMeter.RecordingSessionObj = mRecordingSession;
 
-            tmDisplayTime.Enabled = false;
-            txtDisplayTime.Text = "Listening";
+            mTimeDisplay.Enabled = false;
+            mTimeDisplayBox.Text = "Listening";
         }
 
         private void TransportRecord_FormClosing(object sender, FormClosingEventArgs e)
         {
-            tmDisplayTime.Enabled = false;
+            mTimeDisplay.Enabled = false;
             mRecordingSession.Stop();
         }
 
@@ -170,7 +179,7 @@ namespace Obi.Dialogs
 
 
                 case Keys.Control | Keys.Alt | Keys.T :
-                    txtDisplayTime.Focus();
+                    mTimeDisplayBox.Focus();
                     break;
 
             }
@@ -202,7 +211,7 @@ namespace Obi.Dialogs
                 DisplayHours = DisplayHours - 60;
 
             string sHours = DisplayHours.ToString("00");
-           txtDisplayTime.Text = sHours + ":" + sMinutes + ":" + sSeconds;
+           mTimeDisplayBox.Text = sHours + ":" + sMinutes + ":" + sSeconds;
         }
 
 

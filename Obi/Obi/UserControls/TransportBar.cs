@@ -299,19 +299,19 @@ namespace Obi.UserControls
                 session.StartingPhrase += new Events.Audio.Recorder.StartingPhraseHandler(
                     delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
                     {
-                        ((ProjectPanel)Parent).Project.StartRecordingPhrase(_e, section, index);
+                        ((ProjectPanel)Parent).Project.StartRecordingPhrase(_e, section, index + _e.PhraseIndex);
                     }
                 );
                 session.ContinuingPhrase += new Events.Audio.Recorder.ContinuingPhraseHandler(
                     delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
                     {
-                        ((ProjectPanel)Parent).Project.ContinuingRecordingPhrase(_e, section, index);
+                        ((ProjectPanel)Parent).Project.ContinuingRecordingPhrase(_e, section, index + _e.PhraseIndex);
                     }
                 );
                 session.FinishingPhrase += new Events.Audio.Recorder.FinishingPhraseHandler(
                     delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
                     {
-                        ((ProjectPanel)Parent).Project.FinishRecordingPhrase(_e, section, index);
+                        ((ProjectPanel)Parent).Project.FinishRecordingPhrase(_e, section, index + _e.PhraseIndex);
                     }
                 );
                 new Dialogs.TransportRecord(session).ShowDialog();

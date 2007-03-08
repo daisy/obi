@@ -33,11 +33,11 @@ namespace Obi.Dialogs
             this.mRecordButton = new System.Windows.Forms.Button();
             this.mPauseButton = new System.Windows.Forms.Button();
             this.mStopButton = new System.Windows.Forms.Button();
-            this.btnPhraseMark = new System.Windows.Forms.Button();
-            this.btnBeginSection = new System.Windows.Forms.Button();
-            this.btnPageMark = new System.Windows.Forms.Button();
-            this.tmDisplayTime = new System.Windows.Forms.Timer(this.components);
-            this.txtDisplayTime = new System.Windows.Forms.TextBox();
+            this.mPhraseMarkButton = new System.Windows.Forms.Button();
+            this.mBeginSectionButton = new System.Windows.Forms.Button();
+            this.mPageMarkButton = new System.Windows.Forms.Button();
+            this.mTimeDisplay = new System.Windows.Forms.Timer(this.components);
+            this.mTimeDisplayBox = new System.Windows.Forms.TextBox();
             this.mTextVuMeter = new Obi.UserControls.TextVUMeterPanel();
             this.SuspendLayout();
             // 
@@ -72,49 +72,49 @@ namespace Obi.Dialogs
             this.mStopButton.UseVisualStyleBackColor = true;
             this.mStopButton.Click += new System.EventHandler(this.mStopButton_Click);
             // 
-            // btnPhraseMark
+            // mPhraseMarkButton
             // 
-            this.btnPhraseMark.Location = new System.Drawing.Point(12, 40);
-            this.btnPhraseMark.Name = "btnPhraseMark";
-            this.btnPhraseMark.Size = new System.Drawing.Size(75, 21);
-            this.btnPhraseMark.TabIndex = 4;
-            this.btnPhraseMark.Text = "Phrase &mark";
-            this.btnPhraseMark.UseVisualStyleBackColor = true;
-            this.btnPhraseMark.Click += new System.EventHandler(this.btnPhraseMark_Click);
+            this.mPhraseMarkButton.Location = new System.Drawing.Point(12, 40);
+            this.mPhraseMarkButton.Name = "mPhraseMarkButton";
+            this.mPhraseMarkButton.Size = new System.Drawing.Size(75, 21);
+            this.mPhraseMarkButton.TabIndex = 4;
+            this.mPhraseMarkButton.Text = "Phrase &mark";
+            this.mPhraseMarkButton.UseVisualStyleBackColor = true;
+            this.mPhraseMarkButton.Click += new System.EventHandler(this.btnPhraseMark_Click);
             // 
-            // btnBeginSection
+            // mBeginSectionButton
             // 
-            this.btnBeginSection.Location = new System.Drawing.Point(105, 40);
-            this.btnBeginSection.Name = "btnBeginSection";
-            this.btnBeginSection.Size = new System.Drawing.Size(75, 21);
-            this.btnBeginSection.TabIndex = 5;
-            this.btnBeginSection.Text = "Begin Se&ction";
-            this.btnBeginSection.UseVisualStyleBackColor = true;
-            this.btnBeginSection.Click += new System.EventHandler(this.btnBeginSection_Click);
+            this.mBeginSectionButton.Location = new System.Drawing.Point(105, 40);
+            this.mBeginSectionButton.Name = "mBeginSectionButton";
+            this.mBeginSectionButton.Size = new System.Drawing.Size(75, 21);
+            this.mBeginSectionButton.TabIndex = 5;
+            this.mBeginSectionButton.Text = "Begin Se&ction";
+            this.mBeginSectionButton.UseVisualStyleBackColor = true;
+            this.mBeginSectionButton.Click += new System.EventHandler(this.btnBeginSection_Click);
             // 
-            // btnPageMark
+            // mPageMarkButton
             // 
-            this.btnPageMark.Location = new System.Drawing.Point(195, 11);
-            this.btnPageMark.Name = "btnPageMark";
-            this.btnPageMark.Size = new System.Drawing.Size(75, 21);
-            this.btnPageMark.TabIndex = 6;
-            this.btnPageMark.Text = "P&age Mark";
-            this.btnPageMark.UseVisualStyleBackColor = true;
-            this.btnPageMark.Click += new System.EventHandler(this.btnPageMark_Click);
+            this.mPageMarkButton.Location = new System.Drawing.Point(195, 11);
+            this.mPageMarkButton.Name = "mPageMarkButton";
+            this.mPageMarkButton.Size = new System.Drawing.Size(75, 21);
+            this.mPageMarkButton.TabIndex = 6;
+            this.mPageMarkButton.Text = "P&age Mark";
+            this.mPageMarkButton.UseVisualStyleBackColor = true;
+            this.mPageMarkButton.Click += new System.EventHandler(this.mPageMarkButton_Click);
             // 
-            // tmDisplayTime
+            // mTimeDisplay
             // 
-            this.tmDisplayTime.Interval = 333;
-            this.tmDisplayTime.Tick += new System.EventHandler(this.tmDisplayTime_Tick);
+            this.mTimeDisplay.Interval = 333;
+            this.mTimeDisplay.Tick += new System.EventHandler(this.tmDisplayTime_Tick);
             // 
-            // txtDisplayTime
+            // mTimeDisplayBox
             // 
-            this.txtDisplayTime.AccessibleName = "Record Time:";
-            this.txtDisplayTime.Location = new System.Drawing.Point(105, 11);
-            this.txtDisplayTime.Name = "txtDisplayTime";
-            this.txtDisplayTime.ReadOnly = true;
-            this.txtDisplayTime.Size = new System.Drawing.Size(75, 19);
-            this.txtDisplayTime.TabIndex = 8;
+            this.mTimeDisplayBox.AccessibleName = "Record Time:";
+            this.mTimeDisplayBox.Location = new System.Drawing.Point(105, 11);
+            this.mTimeDisplayBox.Name = "mTimeDisplayBox";
+            this.mTimeDisplayBox.ReadOnly = true;
+            this.mTimeDisplayBox.Size = new System.Drawing.Size(75, 19);
+            this.mTimeDisplayBox.TabIndex = 8;
             // 
             // mTextVuMeter
             // 
@@ -131,11 +131,11 @@ namespace Obi.Dialogs
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(280, 102);
-            this.Controls.Add(this.txtDisplayTime);
+            this.Controls.Add(this.mTimeDisplayBox);
             this.Controls.Add(this.mTextVuMeter);
-            this.Controls.Add(this.btnPageMark);
-            this.Controls.Add(this.btnBeginSection);
-            this.Controls.Add(this.btnPhraseMark);
+            this.Controls.Add(this.mPageMarkButton);
+            this.Controls.Add(this.mBeginSectionButton);
+            this.Controls.Add(this.mPhraseMarkButton);
             this.Controls.Add(this.mStopButton);
             this.Controls.Add(this.mPauseButton);
             this.Controls.Add(this.mRecordButton);
@@ -154,11 +154,11 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button mRecordButton;
         private System.Windows.Forms.Button mPauseButton;
         private System.Windows.Forms.Button mStopButton;
-        private System.Windows.Forms.Button btnPhraseMark;
-        private System.Windows.Forms.Button btnBeginSection;
-        private System.Windows.Forms.Button btnPageMark;
+        private System.Windows.Forms.Button mPhraseMarkButton;
+        private System.Windows.Forms.Button mBeginSectionButton;
+        private System.Windows.Forms.Button mPageMarkButton;
         private Obi.UserControls.TextVUMeterPanel mTextVuMeter;
-        private System.Windows.Forms.Timer tmDisplayTime;
-        private System.Windows.Forms.TextBox txtDisplayTime;
+        private System.Windows.Forms.TextBox mTimeDisplayBox;
+        private System.Windows.Forms.Timer mTimeDisplay;
     }
 }

@@ -99,9 +99,9 @@ namespace Obi
 
             // StartingPhrase += new Obi.Events.Audio.Recorder.StartingPhraseHandler(CatchEvents);
             // ContinuingPhrase += new Obi.Events.Audio.Recorder.ContinuingPhraseHandler(CatchEvents);
-            FinishingPhrase += new Obi.Events.Audio.Recorder.FinishingPhraseHandler(CatchEvents);
-            StartingSection += new Obi.Events.Audio.Recorder.StartingSectionHandler(CatchEvents);
-            FinishingPage += new Obi.Events.Audio.Recorder.FinishingPageHandler(CatchEvents);
+            //FinishingPhrase += new Obi.Events.Audio.Recorder.FinishingPhraseHandler(CatchEvents);
+            //StartingSection += new Obi.Events.Audio.Recorder.StartingSectionHandler(CatchEvents);
+            //FinishingPage += new Obi.Events.Audio.Recorder.FinishingPageHandler(CatchEvents);
             
 
             // initialise commit timer
@@ -223,22 +223,14 @@ namespace Obi
             if (mRecorder.State == AudioRecorderState.Recording)
             {
                 mPhraseMarks.Add(mRecorder.CurrentTime);
-                double mAssetLengthInMs  ;
-                if ( mPhraseMarks.Count > 1 )
-                mAssetLengthInMs = mPhraseMarks[mPhraseMarks.Count - 1] - mPhraseMarks[mPhraseMarks.Count - 2];
-                else
-                    mAssetLengthInMs  = mPhraseMarks [ 0 ] ;
-
-                mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count - 1, mAssetLengthInMs);
-
+                int last = mPhraseMarks.Count - 1;
+                double length = mPhraseMarks.Count > 1 ? mPhraseMarks[last] - mPhraseMarks[last - 1] : mPhraseMarks[0];
+                Events.Audio.Recorder.PhraseEventArgs e = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, last, length);
                 mAssetList.Add(mAsset);
-                FinishingPhrase(this, mPhraseEventsArgs);
-                
-
-                mAsset = mProject.AssetManager.NewAudioMediaAsset ( mChannels , mBitDepth,  mSampleRate ) ;
-                mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count ,  0.0)  ;
-                StartingPhrase ( this , mPhraseEventsArgs ) ;
-
+                FinishingPhrase(this, e);
+                mAsset = mProject.AssetManager.NewAudioMediaAsset (mChannels , mBitDepth,  mSampleRate);
+                e = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count, 0.0);
+                StartingPhrase (this, mPhraseEventsArgs);
             }
         }
 
@@ -328,11 +320,5 @@ namespace Obi
             StopForCommit();
             Record();
         }
-
-        void CatchEvents(object sender, EventArgs  e)
-        {
-
-        }
-
-    } // end of class
+    }
 }
