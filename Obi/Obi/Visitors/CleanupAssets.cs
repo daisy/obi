@@ -64,7 +64,9 @@ namespace Obi.Visitors
                     for (int i = 0; i < ((SectionNode)node).PhraseChildCount; i++)
                     {
                         PhraseNode phraseNode = ((SectionNode)node).PhraseChild(i);
+                        //causes an error: phraseNode.Asset.Manager.RemoveAsset(phraseNode.Asset);
                         phraseNode.Asset = revisedAssList[i];
+                        //causes an error: phraseNode.Asset.Manager.AddAsset(phraseNode.Asset);
                     }
                 }
             }
