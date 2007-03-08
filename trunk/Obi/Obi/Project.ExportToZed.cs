@@ -25,9 +25,6 @@ namespace Obi
             tempAssetDirectory += "_temp\\";
             Directory.CreateDirectory(tempAssetDirectory);
 
-            //make a new asset directory
-            //string newAssetDirectory = this.AssignNewAssetDirectory();
-
             // sort out the audio clips: create one file per section, then one clip per phrase in this section.
             Visitors.CleanupAssets cleanAssVisitor = new Visitors.CleanupAssets(tempAssetDirectory, false);
    
