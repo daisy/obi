@@ -164,7 +164,11 @@ namespace Obi.UserControls
             //catch clipboard events
             if (e.Control == true)
             {
-                if (e.KeyCode == Keys.X) mRenameBox.Cut();
+                if (e.KeyCode == Keys.X)
+                {
+                    System.Diagnostics.Debug.Print("CUT!!");
+                    mRenameBox.Cut();
+                }
                 else if (e.KeyCode == Keys.Z) mRenameBox.Undo();
                 else if (e.KeyCode == Keys.C) mRenameBox.Copy();
                 else if (e.KeyCode == Keys.V) mRenameBox.Paste();

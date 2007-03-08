@@ -222,6 +222,8 @@ namespace Obi
             mAssManager = new Assets.AssetManager(mAssPath);
             mAssPath = (new Uri(xukPath)).MakeRelativeUri(new Uri(mAssPath)).ToString();
 
+            mAssPath = mAssPath.Replace("%20", " ");
+
             // Create metadata and channels factories
             ChannelFactory factory = presentation.getChannelFactory();
             ChannelsManager manager = presentation.getChannelsManager();
