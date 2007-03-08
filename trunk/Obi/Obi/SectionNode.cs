@@ -11,11 +11,11 @@ namespace Obi
     /// </summary>
     public class SectionNode : ObiNode
     {
-        public static readonly string Name = "section";
+        private TextMedia mMedia;    // text media for the title of the section
+        private int mSectionOffset;  // index of the first section child
+        private int mSpan;           // span of this section: 1 + sum of the span of each child section.
 
-        private string mLabel;              // string version of the text
-        private int mSectionOffset;         // index of the first section child
-        private int mSpan;                  // span of this section: 1 + sum of the span of each child section.
+        public static readonly string Name = "section";
 
         private ChannelsProperty ChannelsProperty
         {
@@ -24,12 +24,13 @@ namespace Obi
 
         public TextMedia TextMedia
         {
-            get { return (TextMedia)ChannelsProperty.getMedia(mProject.TextChannel); }
+            get { return mMedia; }
+            // get { return (TextMedia)ChannelsProperty.getMedia(mProject.TextChannel); }
         }
 
         public override string InfoString
         {
-            get { return string.Format("{0} #{1}@{2} `{3}'", base.InfoString, Index, Position, mLabel); }
+            get { return string.Format("{0} #{1}@{2} `{3}'", base.InfoString, Index, Position, Label); }
         }
 
         /// <summary>
@@ -37,14 +38,12 @@ namespace Obi
         /// </summary>
         public string Label
         {
-            get { return mLabel; }
+            get { return mMedia.getText(); }
             set
             {
-                mLabel = value;
-                TextMedia.setText(value);
-                ChannelsProperty prop = (ChannelsProperty)getProperty(typeof(ChannelsProperty));
+                mMedia.setText(value);
                 if (mProject.TextChannel != null)
-                    prop.setMedia(mProject.TextChannel, TextMedia);
+                    ChannelsProperty.setMedia(mProject.TextChannel, mMedia);
             }
         }
 
@@ -216,7 +215,10 @@ namespace Obi
         internal SectionNode(Project project, int id)
             : base(project, id)
         {
-            //Label = Localizer.Message("default_section_label");
+            ChannelsProperty prop = getPresentation().getPropertyFactory().createChannelsProperty();
+            setProperty(prop);
+            mMedia = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
+            Label = Localizer.Message("default_section_label");
             mSectionOffset = 0;
             mSpan = 1;
         }
