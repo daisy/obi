@@ -159,10 +159,15 @@ namespace Obi
             throw new Exception(String.Format(Localizer.Message("channel_not_found"), channel));
         }
 
+        /// <summary>
+        /// Media (text or audio) has changed on a phrase node.
+        /// </summary>
+        /// <param name="node">The node in question.</param>
+        /// <param name="channel">The channel on which the media has changed.</param>
+        /// <param name="media">The media that changed.</param>
         public void SetMedia(PhraseNode node, Channel channel, IMedia media)
         {
-            ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
-            prop.setMedia(channel, media);
+            node.ChannelsProperty.setMedia(channel, media);
             if (MediaSet != null) MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, channel.getName(), media));
         }
 

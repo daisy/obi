@@ -17,24 +17,16 @@ namespace Obi
 
         public static readonly string Name = "section";
 
-        private ChannelsProperty ChannelsProperty
-        {
-            get { return (ChannelsProperty)getProperty(typeof(ChannelsProperty)); }
-        }
-
-        public TextMedia TextMedia
-        {
-            get { return mMedia; }
-            // get { return (TextMedia)ChannelsProperty.getMedia(mProject.TextChannel); }
-        }
-
+        /// <summary>
+        /// Show info about this node as "{info string} #index@position `label'"
+        /// </summary>
         public override string InfoString
         {
             get { return string.Format("{0} #{1}@{2} `{3}'", base.InfoString, Index, Position, Label); }
         }
 
         /// <summary>
-        /// Get/set the label of the node as a simple string.
+        /// The label of the node is its title.
         /// </summary>
         public string Label
         {
@@ -215,8 +207,6 @@ namespace Obi
         internal SectionNode(Project project, int id)
             : base(project, id)
         {
-            ChannelsProperty prop = getPresentation().getPropertyFactory().createChannelsProperty();
-            setProperty(prop);
             mMedia = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
             Label = Localizer.Message("default_section_label");
             mSectionOffset = 0;
@@ -238,8 +228,7 @@ namespace Obi
         {
             if (base.XUKIn(source))
             {
-                ChannelsProperty prop = (ChannelsProperty)getProperty(typeof(ChannelsProperty));
-                Label = ((TextMedia)prop.getMedia(Project.FindChannel(Project.TextChannelName))).getText();
+                mMedia = (TextMedia)ChannelsProperty.getMedia(mProject.TextChannel);
                 return true;
             }
             else
@@ -277,11 +266,11 @@ namespace Obi
 
         public override void  appendChild(ITreeNode node)
         {
-            if (node.GetType() == System.Type.GetType("Obi.SectionNode"))
+            if (node is SectionNode)
             {
                 AppendChildSection((SectionNode)node);
             }
-            else if (node.GetType() == System.Type.GetType("Obi.PhraseNode"))
+            else if (node is PhraseNode)
             {
                 AppendChildPhrase((PhraseNode)node);
             }
