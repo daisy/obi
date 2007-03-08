@@ -48,7 +48,7 @@ namespace Obi
             // then invoke the XukToZed transformation
             string xukFileName = System.IO.Path.GetFileNameWithoutExtension(XUKPath);
             // create the output folder if it doesn't exist
-            // if (!System.IO.Directory.Exists(outputPath)) System.IO.Directory.CreateDirectory(outputPath);            
+            if (!System.IO.Directory.Exists(outputPath)) System.IO.Directory.CreateDirectory(outputPath);            
             ConvertXukToZed(xukFileName, outputPath);
         }
 
