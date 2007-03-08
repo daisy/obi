@@ -27,7 +27,6 @@ namespace Obi
     public partial class Project : urakawa.project.Project
     {
         private Channel mAudioChannel;       // handy pointer to the audio channel
-        private Channel mTextChannel;        // handy pointer to the text channel 
         private Channel mAnnotationChannel;  // handy pointer to the annotation channel
 
         private Assets.AssetManager mAssManager;  // the asset manager
@@ -63,7 +62,7 @@ namespace Obi
 
         public Channel TextChannel
         {
-            get { return mTextChannel == null ? FindChannel(TextChannelName) : mTextChannel; }
+            get { return FindChannel(TextChannelName); }
         }
 
         /// <summary>
@@ -182,7 +181,6 @@ namespace Obi
             mUnsaved = false;
             mXUKPath = null;
             mAudioChannel = null;
-            mTextChannel = null;
             mAnnotationChannel = null;
             mClipboard = new Clipboard();
             mPages = 0;
@@ -230,8 +228,7 @@ namespace Obi
             //create three channels
             mAudioChannel = factory.createChannel(AudioChannelName);
             manager.addChannel(mAudioChannel);
-            mTextChannel = factory.createChannel(TextChannelName);
-            manager.addChannel(mTextChannel);
+            manager.addChannel(factory.createChannel(TextChannelName));
             mAnnotationChannel = factory.createChannel(AnnotationChannelName);
             manager.addChannel(mAnnotationChannel);
             mMetadata = CreateMetadata(title, id, userProfile);
@@ -273,7 +270,6 @@ namespace Obi
                 mUnsaved = false;
                 mXUKPath = xukPath;
                 mAudioChannel = FindChannel(AudioChannelName);
-                mTextChannel = FindChannel(TextChannelName);
                 mAnnotationChannel = FindChannel(AnnotationChannelName);
                 mMetadata = new SimpleMetadata();
                 string xukversion = "none";
