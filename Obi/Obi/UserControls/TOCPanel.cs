@@ -83,7 +83,7 @@ namespace Obi.UserControls
         {
             set
             {
-                ((ObiForm)ParentForm).AllowDelete = value;
+                mProjectPanel.ParentObiForm.AllowDelete = value;
                 mDeleteSectionToolStripMenuItem.Enabled = value;
             }
         }
@@ -153,6 +153,15 @@ namespace Obi.UserControls
         #region toc tree event handlers
 
         /// <summary>
+        /// Suspend playback and disallow "delete" shortcut while editing.
+        /// </summary>
+        private void mTocTree_BeforeLabelEdit(object sender, NodeLabelEditEventArgs e)
+        {
+            mProjectPanel.TransportBar.Enabled = false;
+            AllowDelete = false;
+        }
+
+        /// <summary>
         /// The user has edited a label in the tree, so an event is raised to rename the node.
         /// </summary>
         private void mTocTree_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
@@ -176,6 +185,7 @@ namespace Obi.UserControls
                 }
             }
             AllowDelete = true;
+            mProjectPanel.TransportBar.Enabled = true;
         }
 
         /// <summary>
@@ -260,6 +270,7 @@ namespace Obi.UserControls
         {
             TreeNode foundNode = FindTreeNodeWithoutLabel(node);
             if (foundNode.Text != Project.GetTextMedia(node).getText())
+            //if (foundNode.Text != node.TextMedia.getText())
             {
                 throw new Exception(String.Format("Found tree node matching core node #{0} but labels mismatch (wanted \"{1}\" but got \"{2}\").",
                     node.GetHashCode(), Project.GetTextMedia(node).getText(), foundNode.Text));
@@ -319,11 +330,6 @@ namespace Obi.UserControls
                 SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(false, mTocTree.SelectedNode));
             }
             mTocTree.SelectedNode = null;
-        }
-
-        private void mTocTree_BeforeLabelEdit(object sender, NodeLabelEditEventArgs e)
-        {
-            AllowDelete = false;
         }
     }
 }

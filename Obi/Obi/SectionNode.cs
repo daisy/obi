@@ -13,11 +13,19 @@ namespace Obi
     {
         public static readonly string Name = "section";
 
-        private ChannelsProperty mChannel;  // quick reference to the channel property
-        private TextMedia mMedia;           // quick reference to the text media object
         private string mLabel;              // string version of the text
         private int mSectionOffset;         // index of the first section child
         private int mSpan;                  // span of this section: 1 + sum of the span of each child section.
+
+        private ChannelsProperty ChannelsProperty
+        {
+            get { return (ChannelsProperty)getProperty(typeof(ChannelsProperty)); }
+        }
+
+        public TextMedia TextMedia
+        {
+            get { return (TextMedia)ChannelsProperty.getMedia(mProject.TextChannel); }
+        }
 
         public override string InfoString
         {
@@ -33,9 +41,10 @@ namespace Obi
             set
             {
                 mLabel = value;
-                mMedia.setText(value);
-                Channel channel = Project.FindChannel(Project.TextChannelName);
-                if (channel != null) mChannel.setMedia(channel, mMedia);
+                TextMedia.setText(value);
+                ChannelsProperty prop = (ChannelsProperty)getProperty(typeof(ChannelsProperty));
+                if (mProject.TextChannel != null)
+                    prop.setMedia(mProject.TextChannel, TextMedia);
             }
         }
 
@@ -207,10 +216,7 @@ namespace Obi
         internal SectionNode(Project project, int id)
             : base(project, id)
         {
-            mChannel = getPresentation().getPropertyFactory().createChannelsProperty();
-            this.setProperty(mChannel);
-            mMedia = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
-            Label = Localizer.Message("default_section_label");
+            //Label = Localizer.Message("default_section_label");
             mSectionOffset = 0;
             mSpan = 1;
         }
