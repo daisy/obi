@@ -16,6 +16,14 @@ namespace Obi.UserControls
         #region properties
 
         /// <summary>
+        /// Return the parent form, which is supposed to be an ObiForm.
+        /// </summary>
+        public ObiForm ParentObiForm
+        {
+            get { return (ObiForm)ParentForm; }
+        }
+
+        /// <summary>
         /// True if there is a node currently selected and it can be cut/copied/deleted.
         /// </summary>
         public bool CanCutCopyDeleteNode

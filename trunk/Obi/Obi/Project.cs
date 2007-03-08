@@ -61,6 +61,11 @@ namespace Obi
             get { return mAnnotationChannel; }
         }
 
+        public Channel TextChannel
+        {
+            get { return mTextChannel == null ? FindChannel(TextChannelName) : mTextChannel; }
+        }
+
         /// <summary>
         /// Identify self as generator for this project.
         /// </summary>
@@ -581,22 +586,22 @@ namespace Obi
         /// <returns>The text media found, or null if none.</returns>
         public static TextMedia GetTextMedia(CoreNode node)
         {
-            ChannelsProperty channelsProp = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
-            Channel textChannel;
-            IList channelsList = channelsProp.getListOfUsedChannels();
-            for (int i = 0; i < channelsList.Count; i++)
+            ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
+            Channel textChannel = Project.GetChannel(node, TextChannelName);
+            return textChannel == null ? null : (TextMedia)prop.getMedia(textChannel);
+        }
+
+        public static Channel GetChannel(CoreNode node, string name)
+        {
+            ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
+            IList channels = prop.getListOfUsedChannels();
+            foreach (object o in channels)
             {
-                string channelName = ((IChannel)channelsList[i]).getName();
-                if (channelName == Project.TextChannelName)
-                {
-                    textChannel = (Channel)channelsList[i];
-                    return (TextMedia)channelsProp.getMedia(textChannel);
-                }
+                if (((Channel)o).getName() == name) return (Channel)o;
             }
             return null;
         }
 
-        
 
         /// <summary>
         /// Get the media object of a node for the first channel found wit the given name,
