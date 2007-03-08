@@ -7,12 +7,10 @@ namespace Obi
 {
     public class PhraseNode : ObiNode
     {
-        public static readonly string Name = "phrase";  // name of the element in the XUK file
+        private TextMedia mAnnotation;   // quick reference to the annotation text media object
+        private AudioMediaAsset mAsset;  // the audio asset for this phrase
 
-        private ChannelsProperty mChannel;   // quick reference to the channel property
-        private TextMedia mMedia;            // quick reference to the text media object
-        private string mAnnotation;          // the annotation for this phrase
-        private AudioMediaAsset mAsset;      // the audio asset for this phrase
+        public static readonly string Name = "phrase";  // name of the element in the XUK file
     
         /// <summary>
         /// Directions in which a phrase node can be moved.
@@ -25,7 +23,7 @@ namespace Obi
         /// <remarks>This has to be reviewed (along with actually setting the annotation!)</remarks>
         public bool HasAnnotation
         {
-            get { return mMedia.getText() != ""; }
+            get { return mAnnotation.getText() != ""; }
         }
 
         /// <summary>
@@ -33,13 +31,15 @@ namespace Obi
         /// </summary>
         public string Annotation
         {
-            get { return mAnnotation; }
+            get { return mAnnotation.getText(); }
             set
             {
-                mAnnotation = value;
-                mMedia.setText(value);
                 if (mProject.AnnotationChannel != null)
-                    mProject.SetMedia(this, mProject.AnnotationChannel, mMedia);
+                {
+                    mAnnotation.setText(value);
+                    ChannelsProperty.setMedia(mProject.AnnotationChannel, mAnnotation);
+                    mProject.SetMedia(this, mProject.AnnotationChannel, mAnnotation);
+                }
             }
         }
 
@@ -137,9 +137,7 @@ namespace Obi
         internal PhraseNode(Project project, int id)
             : base(project, id)
         {
-            mChannel = getPresentation().getPropertyFactory().createChannelsProperty();
-            this.setProperty(mChannel);
-            mMedia = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
+            mAnnotation = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
             Annotation = "";
             mAsset = null;
         }
@@ -163,9 +161,8 @@ namespace Obi
                 audio.setClipEnd(new Time((long)Math.Round(clip.EndTime)));
                 seq.appendItem(audio);
             }
-          
             Channel channel = Project.FindChannel(Project.AudioChannelName);
-            if (channel != null) mChannel.setMedia(channel, seq);
+            if (channel != null) ChannelsProperty.setMedia(channel, seq);
         }
 
         /// <summary>

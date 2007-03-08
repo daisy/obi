@@ -13,7 +13,15 @@ namespace Obi
         protected Project mProject;  // project that this node (or rather that its presentation) belongs to
         private int mId;             // unique id for this node
         protected bool mUsed;        // mark node as being in use or not
-        
+
+        /// <summary>
+        /// Channels property for the node.
+        /// </summary>
+        public ChannelsProperty ChannelsProperty
+        {
+            get { return (ChannelsProperty)getProperty(typeof(ChannelsProperty)); }
+        }
+
         /// <summary>
         /// Project to which the node belongs (and, from the project, the presentation to which it belongs.)
         /// </summary>
@@ -74,6 +82,8 @@ namespace Obi
         internal ObiNode(Project project, int id)
             : base(project.getPresentation())
         {
+            ChannelsProperty prop = getPresentation().getPropertyFactory().createChannelsProperty();
+            setProperty(prop);
             mProject = project;
             mId = id;
             mUsed = true;
