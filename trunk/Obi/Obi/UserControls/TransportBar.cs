@@ -24,10 +24,18 @@ namespace Obi.UserControls
         public event Events.Audio.Player.StateChangedHandler StateChanged;
         public event EventHandler PlaybackRateChanged;
 
+        /// <summary>
+        /// Get/set the parent project panel.
+        /// </summary>
         public ProjectPanel ProjectPanel
         {
             get { return mProjectPanel; }
-            set { mProjectPanel = value; }
+            set
+            {
+                mProjectPanel = value;
+                if (value != null)
+                    value.StripManager.SelectionChanged += new Obi.Events.SelectedHandler(StripManager_Selected);
+            }
         }
 
         /// <summary>
@@ -65,7 +73,7 @@ namespace Obi.UserControls
             get
             {
                 return Enabled &&
-                    ((ProjectPanel)Parent).Project != null &&
+                    mProjectPanel.Project != null &&
                     Playlist.State == Audio.AudioPlayerState.Stopped;
             }
         }
@@ -90,7 +98,7 @@ namespace Obi.UserControls
             get
             {
                 return Enabled &&
-                    ((ProjectPanel)Parent).Project != null &&
+                    mProjectPanel.Project != null &&
                     (mPlaylist == null || mPlaylist.State == Audio.AudioPlayerState.Stopped);
             }
         }
@@ -103,9 +111,9 @@ namespace Obi.UserControls
         {
             get
             {
-                if (mPlaylist == null && Parent is ProjectPanel && ((ProjectPanel)Parent).Project != null)
+                if (mPlaylist == null && Parent is ProjectPanel && mProjectPanel.Project != null)
                 {
-                    Playlist = new Playlist(((ProjectPanel)Parent).Project, Audio.AudioPlayer.Instance);
+                    Playlist = new Playlist(mProjectPanel.Project, Audio.AudioPlayer.Instance);
                 }
                 return mPlaylist;
             }
@@ -119,7 +127,7 @@ namespace Obi.UserControls
                     mPlaylist.StateChanged += new Events.Audio.Player.StateChangedHandler(Play_PlayerStateChanged);
                     mPlaylist.PlaybackRateChanged += new Playlist.PlaybackRateChangedHandler(mPlaylist_PlaybackRateChanged);
                     mPlaylist.EndOfPlaylist += new Playlist.EndOfPlaylistHandler(Play_PlayerStopped);
-                    mPreviousSelection = ((ProjectPanel)Parent).SelectedNode;
+                    mPreviousSelection = mProjectPanel.SelectedNode;
                     mDisplayBox.SelectedIndex = mPlaylist.WholeBook ? ElapsedTotal : Elapsed;
                 }
             }
@@ -218,7 +226,7 @@ namespace Obi.UserControls
                 if (mPlaylist == null || mPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
                 {
                     PhraseNode phrase = Playlist.CurrentPhrase;
-                    Playlist = new Playlist(((ProjectPanel)Parent).Project, Audio.AudioPlayer.Instance);
+                    Playlist = new Playlist(mProjectPanel.Project, Audio.AudioPlayer.Instance);
                     Playlist.CurrentPhrase = phrase;
                     mVUMeterPanel.Enable = true;
                     mVUMeterPanel.PlayListObj = mPlaylist;
@@ -274,44 +282,54 @@ namespace Obi.UserControls
         {
             if (CanRecord)
             {
-                ObiNode selected = ((ProjectPanel)Parent).StripManager.SelectedNode;
-                SectionNode section; // section in which we are recording
-                int index;           // index from which we add new phrases in the aforementioned section
+                ObiNode selected = mProjectPanel.StripManager.SelectedNode;
+                SectionNode section;  // section in which we are recording
+                int index;            // index from which we add new phrases in the aforementioned section
                 if (selected == null)
                 {
-                    section = ((ProjectPanel)Parent).Project.CreateSiblingSectionNode(null);
+                    // nothing selected: append a new section and start from 0
+                    section = mProjectPanel.Project.CreateSiblingSectionNode(null);
                     index = 0;
                 }
                 else if (selected is SectionNode)
                 {
+                    // a section is selected: append in the section
                     section = (SectionNode)selected;
                     index = section.PhraseChildCount;
                 }
                 else
                 {
+                    // a phrase is selected: inster before the phrase
                     section = ((PhraseNode)selected).ParentSection;
                     index = ((PhraseNode)selected).Index;
                 }
                 Settings settings = ((ObiForm)ParentForm).Settings;
-                RecordingSession session = new RecordingSession(((ProjectPanel)Parent).Project, Audio.AudioRecorder.Instance,
-                    selected, settings.AudioChannels, settings.SampleRate, settings.BitDepth);
+                RecordingSession session = new RecordingSession(mProjectPanel.Project, Audio.AudioRecorder.Instance,
+                    settings.AudioChannels, settings.SampleRate, settings.BitDepth);
                 // the following closures handle the various events sent during the recording session
                 session.StartingPhrase += new Events.Audio.Recorder.StartingPhraseHandler(
                     delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
                     {
-                        ((ProjectPanel)Parent).Project.StartRecordingPhrase(_e, section, index + _e.PhraseIndex);
+                        mProjectPanel.Project.StartRecordingPhrase(_e, section, index + _e.PhraseIndex);
                     }
                 );
                 session.ContinuingPhrase += new Events.Audio.Recorder.ContinuingPhraseHandler(
                     delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
                     {
-                        ((ProjectPanel)Parent).Project.ContinuingRecordingPhrase(_e, section, index + _e.PhraseIndex);
+                        mProjectPanel.Project.ContinuingRecordingPhrase(_e, section, index + _e.PhraseIndex);
                     }
                 );
                 session.FinishingPhrase += new Events.Audio.Recorder.FinishingPhraseHandler(
                     delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
                     {
-                        ((ProjectPanel)Parent).Project.FinishRecordingPhrase(_e, section, index + _e.PhraseIndex);
+                        mProjectPanel.Project.FinishRecordingPhrase(_e, section, index + _e.PhraseIndex);
+                    }
+                );
+                session.FinishingPage += new Events.Audio.Recorder.FinishingPageHandler(
+                    delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
+                    {
+                        PhraseNode _node = section.PhraseChild(index + _e.PhraseIndex);
+                        mProjectPanel.Project.DidSetPageNumberOnPhrase(_node);
                     }
                 );
                 new Dialogs.TransportRecord(session).ShowDialog();
@@ -333,7 +351,7 @@ namespace Obi.UserControls
                 // Stopping again deselects everything
                 if (State == Obi.Audio.AudioPlayerState.Stopped)
                 {
-                    ((ProjectPanel)Parent).StripManager.SelectedNode = null;
+                    mProjectPanel.StripManager.SelectedNode = null;
                 }
                 else if (mPlaylist != null)
                 {
@@ -423,7 +441,7 @@ namespace Obi.UserControls
         /// </summary>
         private void Play_PlayerStopped(object sender, EventArgs e)
         {
-            ((ProjectPanel)Parent).StripManager.SelectedNode = mPreviousSelection;
+            mProjectPanel.StripManager.SelectedNode = mPreviousSelection;
         }
 
         /// <summary>
@@ -471,17 +489,6 @@ namespace Obi.UserControls
         {
             UpdateTimeDisplay();
             mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
-        }
-
-        /// <summary>
-        /// Set up the event handler for strip manager selection when the parent is actually not null.
-        /// </summary>
-        private void TransportBar_ParentChanged(object sender, EventArgs e)
-        {
-            if (Parent != null && Parent is ProjectPanel)
-            {
-                ((ProjectPanel)Parent).StripManager.SelectionChanged += new Obi.Events.SelectedHandler(StripManager_Selected);
-            }
         }
 
         public void FocusTimeDisplay()

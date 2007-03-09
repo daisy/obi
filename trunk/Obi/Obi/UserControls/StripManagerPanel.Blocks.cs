@@ -107,7 +107,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void SyncUpdateAudioBlockTime(object sender, Events.Strip.UpdateTimeEventArgs e)
         {
-            mPhraseNodeMap[e.Node].RefreshDisplay();
+            mPhraseNodeMap[e.Node].RefreshDisplay(e.Time);
         }
 
         internal void InterceptKeyDownFromChildControl(KeyEventArgs e)
