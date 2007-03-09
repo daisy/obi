@@ -438,9 +438,10 @@ namespace Obi
         {
             if (mProject != null)
             {
-                StopIfPaused();
+                mProjectPanel.TransportBar.Enabled = false;
                 if (!mCommandManager.HasUndo) mProject.Touch();
                 mProjectPanel.SynchronizeWithCoreTree();
+                mProjectPanel.TransportBar.Enabled = true;
             }
         }
 

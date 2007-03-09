@@ -305,7 +305,8 @@ namespace Obi.UserControls
         /// </summary>
         private void mFlowLayoutPanel_Click(object sender, EventArgs e)
         {
-            SelectedNode = null;
+            if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Stopped)
+                SelectedNode = null;
         }
 
         #region shortcut keys
