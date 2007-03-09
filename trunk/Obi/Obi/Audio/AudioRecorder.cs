@@ -450,9 +450,10 @@ namespace Obi.Audio
 			{
 				NotifyThread = new Thread(new ThreadStart(WaitThread));										 			
 				Capturing = true;
-				NotifyThread.Start();
+				
 				// Create a notification event, for when the sound stops playing
 				NotificationEvent = new AutoResetEvent(false);
+                NotifyThread.Start();
 			}
 			// Setup the notification POSITIONS 
 			for (int i = 0; i < NumberRecordNotifications; i++)
@@ -510,6 +511,13 @@ namespace Obi.Audio
             //{
                 //MessageBox.Show( "Size" + ( m_iCaptureBufferSize.ToString () ) +  "Cap" + ( NextCaptureOffset.ToString () ) + "Log" + ( LockSize.ToString () ) + Ex.ToString());
             //}
+
+            // make update vumeter array length equal to CaptureData length
+                if (CaptureData.Length != arUpdateVM.Length)
+                {
+                    m_UpdateVMArrayLength = CaptureData.Length;
+                    Array.Resize(ref arUpdateVM, CaptureData.Length);
+                }
 
             // copy Capture data to an array and update it to VuMeter
                 Array.Copy( CaptureData , arUpdateVM, m_UpdateVMArrayLength);
