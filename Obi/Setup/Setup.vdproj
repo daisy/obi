@@ -153,6 +153,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_9F85E713DBA767CA81165164E079F2AB"
+        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_A4EB93BEC58F4B1A82EE9320D2BF4AAC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -167,12 +173,6 @@
         {
         "MsmKey" = "8:_B3C3B23328D14309B510D15630934875"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_DB90F9EA974C027CB8F7E5810382D47F"
-        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -214,7 +214,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_DB90F9EA974C027CB8F7E5810382D47F"
+        "OwnerKey" = "8:_9F85E713DBA767CA81165164E079F2AB"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -751,6 +751,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9F85E713DBA767CA81165164E079F2AB"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:urakawa, Version=0.5.0.33653, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_9F85E713DBA767CA81165164E079F2AB"
+                    {
+                    "Name" = "8:urakawa.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:urakawa.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A4EB93BEC58F4B1A82EE9320D2BF4AAC"
             {
             "SourcePath" = "8:..\\Obi\\images\\manual_audioblockeditoptions.png"
@@ -809,37 +840,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DB90F9EA974C027CB8F7E5810382D47F"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:urakawa, Version=0.5.0.26982, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_DB90F9EA974C027CB8F7E5810382D47F"
-                    {
-                    "Name" = "8:urakawa.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:urakawa.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F87DB30E49224DB78DC8BD1A10F23117"
@@ -1084,7 +1084,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0F34FEE7392245ED8C33C78EB0D2823B"
             {
-            "Name" = "8:Obi 0.8.3.0"
+            "Name" = "8:Obi 0.8.3.1"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -1098,7 +1098,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C26CA4074EF24904B9E49A74044A43B0"
             {
-            "Name" = "8:Obi 0.8.3.0"
+            "Name" = "8:Obi 0.8.3.1"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
