@@ -316,13 +316,13 @@ namespace Obi.UserControls
                 session.ContinuingPhrase += new Events.Audio.Recorder.ContinuingPhraseHandler(
                     delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
                     {
-                        mProjectPanel.Project.ContinuingRecordingPhrase(_e, section, index + _e.PhraseIndex);
+                        mProjectPanel.Project.RecordingPhraseUpdate(_e, section, index + _e.PhraseIndex);
                     }
                 );
                 session.FinishingPhrase += new Events.Audio.Recorder.FinishingPhraseHandler(
                     delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
                     {
-                        mProjectPanel.Project.FinishRecordingPhrase(_e, section, index + _e.PhraseIndex);
+                        mProjectPanel.Project.RecordingPhraseUpdate(_e, section, index + _e.PhraseIndex);
                     }
                 );
                 session.FinishingPage += new Events.Audio.Recorder.FinishingPageHandler(
@@ -333,6 +333,10 @@ namespace Obi.UserControls
                     }
                 );
                 new Dialogs.TransportRecord(session).ShowDialog();
+                for (int i = 0; i < session.RecordedAssets.Count; ++i)
+                {
+                    mProjectPanel.StripManager.UpdateAssetForPhrase(section.PhraseChild(index + i), session.RecordedAssets[i]);                   
+                }
             }
         }
 
