@@ -162,7 +162,8 @@ namespace Obi
                 seq.appendItem(audio);
             }
             Channel channel = Project.FindChannel(Project.AudioChannelName);
-            if (channel != null) ChannelsProperty.setMedia(channel, seq);
+            // if (channel != null) ChannelsProperty.setMedia(channel, seq);
+            if (channel != null) mProject.SetMedia(this, channel, seq);
         }
 
         /// <summary>

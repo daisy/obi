@@ -108,6 +108,7 @@ namespace Obi.UserControls
         internal void SyncUpdateAudioBlockTime(object sender, Events.Strip.UpdateTimeEventArgs e)
         {
             mPhraseNodeMap[e.Node].RefreshDisplay(e.Time);
+            System.Diagnostics.Debug.Print("{0} lasts {1}ms", e.Node, e.Time);
         }
 
         internal void InterceptKeyDownFromChildControl(KeyEventArgs e)
@@ -394,6 +395,12 @@ namespace Obi.UserControls
                 if (dialog.ShowDialog() == DialogResult.OK && dialog.SelectedPage != null)
                     SelectedNode = dialog.SelectedPage;
             }
+        }
+
+        internal void UpdateAssetForPhrase(PhraseNode node, Obi.Assets.AudioMediaAsset asset)
+        {
+            node.Asset = asset;
+            SelectedNode = node;
         }
     }
 }

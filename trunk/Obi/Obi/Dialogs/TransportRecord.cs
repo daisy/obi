@@ -115,7 +115,7 @@ namespace Obi.Dialogs
 
         private void NextSection()
         {
-            mRecordingSession.NextSection();
+            //mRecordingSession.NextSection();
         }
 
         private void btnPhraseMark_Click(object sender, EventArgs e)

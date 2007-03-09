@@ -281,24 +281,10 @@ namespace Obi
         /// <param name="e">The phrase event originally sent by the recording session.</param>
         /// <param name="parent">Parent core node for the new phrase.</param>
         /// <param name="index">Base index in the parent for new phrases.</param>
-        internal void ContinuingRecordingPhrase(Events.Audio.Recorder.PhraseEventArgs e, SectionNode parent, int index)
+        public void RecordingPhraseUpdate(Events.Audio.Recorder.PhraseEventArgs e, SectionNode parent, int index)
         {
             PhraseNode phrase = parent.PhraseChild(index);
             UpdateTime(this, new Events.Strip.UpdateTimeEventArgs(this, phrase, e.Time));            
-        }
-
-        /// <summary>
-        /// When a phrase has finished recording, update its media object.
-        /// </summary>
-        /// <param name="e">The phrase event originally sent by the recording session.</param>
-        /// <param name="parent">Parent core node for the new phrase.</param>
-        /// <param name="index">Base index in the parent for new phrases.</param>
-        internal void FinishRecordingPhrase(Events.Audio.Recorder.PhraseEventArgs e, SectionNode parent, int index)
-        {
-            PhraseNode phrase = parent.PhraseChild(index);
-            UpdateSeq(phrase);
-            MediaSet(this, new Events.Node.SetMediaEventArgs(this, phrase, Project.AudioChannelName,
-                GetMediaForChannel(phrase, Project.AudioChannelName)));
         }
 
         #endregion

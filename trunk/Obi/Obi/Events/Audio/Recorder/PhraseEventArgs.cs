@@ -29,7 +29,7 @@ namespace Obi.Events.Audio.Recorder
     /// </summary>
     public delegate void StartingSectionHandler(object sender, EventArgs e);
 
-    class PhraseEventArgs: EventArgs
+    public class PhraseEventArgs: EventArgs
     {
         private AudioMediaAsset mAsset;
         private int mPhraseIndex;
