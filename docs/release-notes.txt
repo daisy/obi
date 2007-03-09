@@ -2,7 +2,7 @@ Obi release notes
 $Id$
 
 
-These release notes describe Obi version 0.8.3.0, released 2007-03-xx. The
+These release notes describe Obi version 0.8.3.1, released 2007-03-09. The
 goal of this document is to list all of the features of the latest version
 of Obi, for developers, testers and users. See appendix C for the changelog.
 
@@ -604,8 +604,21 @@ Appendix B - Known Issues
 
   B.1 Project audio is lost after export.
 
+  B.2 Selection, especially when/after playing, is not always consistent.
+
+  B.3 Recording has some issues with display (some times are displayed
+  wrong), asset boundaries and page markers.
 
 Appendix C - Changelog
+
+  * New in Obi 0.8.3.1
+    * Fixed a "view in strip manager" bug; there may remain some related
+    problems with strips.
+    * Reallowed shortcuts with "focus on strip" (e.g. arrows.)
+    * Hide "no project" label in the project panel when a project is open;
+    shouldn't be picked up by screen readers (to be tested.)
+    * Recording mostly works but display is not really good yet. Behavior of
+    page marker dropping is a bit strange.
 
   * New in Obi 0.8.3.0
     * Cleaned-up menu accelerator keys.
@@ -636,29 +649,30 @@ Appendix C - Changelog
 
 Appendix D - TODO list
 
-[ ] Colors in configuration file
-[ ] Make unused blocks useful
-[ ] Fix selection
-[ ] Master playlist?
-[ ] Fix record
+[ ] Renaming sections
 [ ] Double click on phrase while playing
 [ ] Double click on phrase (handled by project panel, not form)
+[ ] Fix record display
+[ ] Fix record page marks
 [ ] Merge release notes with documentation (reference part)
-[ ] Ask before creating shortcut/desktop icon in installer
-[ ] Automate DirectX setup
-[ ] Obi graphics in installer
+[ ] Make unused blocks useful
 [ ] Disabling transport bar buttons and menu items
+[ ] Ask before creating shortcut/desktop icon in installer
+[ ] Obi graphics in installer
+[ ] Automate DirectX setup
 [ ] Size of section strip
 [ ] Size of section strip label (depend on font size)
-[ ] Make root node an Obi node
+[ ] Keyboard events on section strips versus phrases?
 [ ] Enforce single sample rate in project
 [ ] Critical bugs/annoyances in the release notes
-[ ] More single key shortcuts?
-[ ] Go to next annotation (?) -> Go To annotation (similar to go to page)
-[ ] Go to section node/strip
 [ ] VU meter
 [ ] FFWD/RWD
-[ ] Bug when removing first section (when not the only top-level section?)
+[ ] Clean up
+[ ] Go to next annotation (?) -> Go To annotation (similar to go to page)
+[ ] Warn that there were empty phrases in a read project.
+[ ] Colors in configuration file
+[ ] Make root node an Obi node
+[ ] Go to section node/strip
 [ ] Use previous unused phrase as silence phrase for phrase detection
 [ ] TouchedNode instead of ToggledNodeUseState in Project, etc.?
-[ ] Warn that there were empty phrases in a read project.
+[ ] Auto save
