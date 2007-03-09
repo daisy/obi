@@ -3,7 +3,6 @@ using Obi.Assets;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Threading;
 
 namespace Obi
 {
@@ -15,21 +14,18 @@ namespace Obi
     {
         private Project mProject;         // project in which we are recording
         private AudioRecorder mRecorder;  // the actual recorder
-        
-        private AudioMediaAsset mRecordingAsset ;
-        private int mChannels;            // number of channels of audio to record
-        private int mSampleRate;          // sample rate of audio to record
-        private int mBitDepth;            // bit depth of audio to record
-        //private Thread UpdateDisplayThread ;
 
-        private AudioMediaAsset mAsset;
+        private AudioMediaAsset mRecordingAsset;  // current recording asset
+        private int mChannels;                    // number of channels of audio to record
+        private int mSampleRate;                  // sample rate of audio to record
+        private int mBitDepth;                    // bit depth of audio to record
+        
+        private AudioMediaAsset mAsset;          
         private List<double> mPhraseMarks ;
         private List<int> mSectionMarks;
         private List<int> mPageMarks;
         private List<AudioMediaAsset> mAssetList;
-        private double mSecondsCount;
-        private System.Windows.Forms.Timer  tmCommitTimer = new System.Windows.Forms.Timer () ;
-        private System.Windows.Forms.Timer tmUpdateDisplay = new System.Windows.Forms.Timer();
+        private Timer mRecordingUpdateTimer = new Timer();
 
         /// <summary>
         /// The audio recorder used by the recording session.
@@ -39,23 +35,12 @@ namespace Obi
             get { return mRecorder; }
         }
 
-        /*
-        // Property to set Autocommit interval time in seconds
-        public int CommitIntervalSeconds
-        {
-            get { return tmCommitTimer.Interval/ 1000 ; }
-            set { tmCommitTimer.Interval = value * 1000; }
-        }
-        */
-
         // Record session events
         public event Events.Audio.Recorder.StartingPhraseHandler StartingPhrase;
         public event Events.Audio.Recorder.ContinuingPhraseHandler ContinuingPhrase;
         public event Events.Audio.Recorder.FinishingPhraseHandler FinishingPhrase;
         public event Events.Audio.Recorder.FinishingPageHandler FinishingPage;
         public event Events.Audio.Recorder.StartingSectionHandler StartingSection;
-
-        Obi.Events.Audio.Recorder.PhraseEventArgs mPhraseEventsArgs;  // JQ: should not be a class variable
 
         /// <summary>
         /// React to state change events from the recorder.
@@ -97,18 +82,9 @@ namespace Obi
             Audio.AudioRecorder.Instance.UpdateVuMeterFromRecorder +=
                 new Events.Audio.Recorder.UpdateVuMeterHandler(AudioRecorder_UpdateVuMeter);
 
-            // StartingPhrase += new Obi.Events.Audio.Recorder.StartingPhraseHandler(CatchEvents);
-            // ContinuingPhrase += new Obi.Events.Audio.Recorder.ContinuingPhraseHandler(CatchEvents);
-            //FinishingPhrase += new Obi.Events.Audio.Recorder.FinishingPhraseHandler(CatchEvents);
-            //StartingSection += new Obi.Events.Audio.Recorder.StartingSectionHandler(CatchEvents);
-            //FinishingPage += new Obi.Events.Audio.Recorder.FinishingPageHandler(CatchEvents);
-            
 
-            // initialise commit timer
-            //tmCommitTimer.Tick += new System.EventHandler( tmCommitTimer_tick );  //  Avn : Disabled on 2 Dec 2006
-            //tmCommitTimer.Interval = 300000;    //  Avn : Disabled on 2 Dec 2006
-            tmUpdateDisplay.Tick += new System.EventHandler ( tmUpdateDisplay_tick );
-            tmUpdateDisplay.Interval = 1000 ;
+            mRecordingUpdateTimer.Tick += new System.EventHandler ( tmUpdateDisplay_tick );
+            mRecordingUpdateTimer.Interval = 1000 ;
         }
 
 
@@ -138,16 +114,14 @@ namespace Obi
                 mSectionMarks = new List<int>();
                 mPageMarks = new List<int>();
                 mAssetList = new List<AudioMediaAsset>();
-                mSecondsCount = 0;
                 mRecordingAsset = mProject.AssetManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
                 mRecorder.StartRecording(mRecordingAsset);
                 mAsset = mProject.AssetManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
-                mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, 0, 0.0);
-                StartingPhrase(this, mPhraseEventsArgs);
+                StartingPhrase(this, new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, 0, 0.0));
                 //UpdateDisplayThread = new Thread(new ThreadStart(UpdateDisplayPeriodically));
                 //System.Media.SystemSounds.Exclamation.Play();
                 //tmCommitTimer.Enabled = true;  // avn: Disabled on 2 Dec 2006
-                tmUpdateDisplay.Enabled = true;
+                mRecordingUpdateTimer.Enabled = true;
             }
         }
 
@@ -157,7 +131,7 @@ namespace Obi
         public void Stop()
         {
             //tmCommitTimer.Enabled = false;    // avn: Disabled on 2 Dec 2006
-            tmUpdateDisplay.Enabled = false;
+            mRecordingUpdateTimer.Enabled = false;
             Obi.Events.Audio.Recorder.PhraseEventArgs e = StoppedRecording();
             if (e != null) FinishingPhrase(this, e);
         }
@@ -228,9 +202,8 @@ namespace Obi
                 Events.Audio.Recorder.PhraseEventArgs e = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, last, length);
                 mAssetList.Add(mAsset);
                 FinishingPhrase(this, e);
-                mAsset = mProject.AssetManager.NewAudioMediaAsset (mChannels , mBitDepth,  mSampleRate);
-                e = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count, 0.0);
-                StartingPhrase (this, mPhraseEventsArgs);
+                mAsset = mProject.AssetManager.NewAudioMediaAsset (mChannels, mBitDepth, mSampleRate);
+                StartingPhrase (this, new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count, 0.0));
             }
         }
 
@@ -251,16 +224,14 @@ namespace Obi
             else
                     mAssetLengthInMs = mPhraseMarks[0];
 
-                mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count - 1, mAssetLengthInMs );
+                Events.Audio.Recorder.PhraseEventArgs e =
+                    new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count - 1, mAssetLengthInMs);
                 mAssetList.Add(mAsset);
-                FinishingPhrase(this, mPhraseEventsArgs);
-
+                FinishingPhrase(this, e);
                 mAsset = mProject.AssetManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
-                mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count , 0.0);
-                
-                StartingSection(this,mPhraseEventsArgs  );
-                StartingPhrase(this, mPhraseEventsArgs);
-                
+                e = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count , 0.0);
+                StartingSection(this, e);
+                StartingPhrase(this, e);
                 mSectionMarks.Add(mPhraseMarks.Count - 1);
             }
         }
@@ -281,44 +252,23 @@ namespace Obi
             else
                     mAssetLengthInMs = mPhraseMarks[0];
 
-                mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count - 1, mAssetLengthInMs);
+                Events.Audio.Recorder.PhraseEventArgs e =
+                    new Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count - 1, mAssetLengthInMs);
                 mAssetList.Add(mAsset);
-                FinishingPhrase(this, mPhraseEventsArgs);
-
-                FinishingPage(this, mPhraseEventsArgs);
+                FinishingPhrase(this, e);
+                FinishingPage(this, e);
                 mPageMarks.Add(mPhraseMarks.Count - 1);
-
                 mAsset = mProject.AssetManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
-                mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count , 0.0);
-                StartingPhrase(this, mPhraseEventsArgs);
+                e = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count , 0.0);
+                StartingPhrase(this, e);
 
             }
-            // somewhere we'll have something like:
-            // mProject.AssignNumber(phrase)
-        }
-
-        /// <summary>
-        /// Throw a continuing phrase event every second.
-        /// </summary>
-        private void UpdateDisplayPeriodically()
-        {
-            Thread.Sleep(1000);
-            mSecondsCount++;
-            mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count, mRecorder.CurrentTime);
-            ContinuingPhrase(this, mPhraseEventsArgs);
         }
 
         private void tmUpdateDisplay_tick(object sender, EventArgs e)
         {
-//            System.Media.SystemSounds.Exclamation.Play();
-            mPhraseEventsArgs = new Obi.Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count, mRecorder.CurrentTime);
-            ContinuingPhrase(this, mPhraseEventsArgs);
-        }
-
-        private void tmCommitTimer_tick ( object sender , EventArgs e )
-        {
-            StopForCommit();
-            Record();
+            ContinuingPhrase(this,
+                new Events.Audio.Recorder.PhraseEventArgs(mAsset, mPhraseMarks.Count, mRecorder.CurrentTime));
         }
     }
 }
