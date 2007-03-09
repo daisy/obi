@@ -526,15 +526,17 @@ namespace Obi.Audio
                 if (mState != AudioRecorderState.Listening)
                 {
                     FileInfo fi = new FileInfo(m_sFileName);
-                    BinaryWriter Writer = new BinaryWriter(File.OpenWrite(m_sFileName));
-                    // Write the data into the wav file");	   
-                    Writer.BaseStream.Position = (long)(fi.Length);
-                    //Writer.Seek(0, SeekOrigin.End);			
-                    Writer.Write(CaptureData, 0, CaptureData.Length);
-                    Writer.Close();
-                    Writer = null;
+                    if (fi.Exists)
+                    {
+                        BinaryWriter Writer = new BinaryWriter(File.OpenWrite(m_sFileName));
+                        // Write the data into the wav file");	   
+                        Writer.BaseStream.Position = (long)(fi.Length);
+                        //Writer.Seek(0, SeekOrigin.End);			
+                        Writer.Write(CaptureData, 0, CaptureData.Length);
+                        Writer.Close();
+                        Writer = null;
+                    }
                 }
-
 			NotifyThread = null;	
 			// Update the number of samples, in bytes, of the file so far.
 			//SampleCount+= datalength;
