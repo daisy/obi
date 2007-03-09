@@ -20,7 +20,9 @@ namespace Obi.Audio
 
 	public class AudioRecorder
 	{
-		public event Events.Audio.Recorder.StateChangedHandler StateChanged;
+        private double mCurrentTime;
+        
+        public event Events.Audio.Recorder.StateChangedHandler StateChanged;
 		public event Events.Audio.Recorder.UpdateVuMeterHandler UpdateVuMeterFromRecorder;
 
 		//member variables
@@ -28,19 +30,17 @@ namespace Obi.Audio
 		private string sProjectDirectory; 
 		//the variables for current position and current time for VuMeter
 		long CurrentPositionInByte ;
-		private double dCurrentTime;
         private double mTime;
 
         private System.Windows.Forms.Timer tmUpdateVuMeter = new System.Windows.Forms.Timer();
 
         
-
+        /// <summary>
+        /// Current time since beginning of recording(?)
+        /// </summary>
 		public double CurrentTime
 		{
-			get
-			{
-				return dCurrentTime;
-			}
+			get { return mCurrentTime; }
 		}
 
 		// basic elements of WaveFormat
@@ -488,7 +488,7 @@ namespace Obi.Audio
 			applicationBuffer.GetCurrentPosition(out CapturePos, out ReadPos);
                         long mPosition = (long)CapturePos;
             CurrentPositionInByte = SampleCount + mPosition;
-            	dCurrentTime = CalculationFunctions.ConvertByteToTime(CurrentPositionInByte, m_SampleRate, m_FrameSize);
+            	mCurrentTime = CalculationFunctions.ConvertByteToTime(CurrentPositionInByte, m_SampleRate, m_FrameSize);
 
             
 			LockSize = ReadPos - NextCaptureOffset;
@@ -551,18 +551,6 @@ namespace Obi.Audio
 			set
 			{
 				CurrentPositionInByte= value;
-			}
-		}
-
-		internal double  GetTime
-		{
-			get
-			{
-				return dCurrentTime;
-			}
-			set
-			{
-				dCurrentTime = value;
 			}
 		}
 

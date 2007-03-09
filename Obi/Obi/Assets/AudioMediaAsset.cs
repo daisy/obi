@@ -469,13 +469,18 @@ namespace Obi.Assets
             return Split(dTime);
         }
 
+        /// <summary>
+        /// Split the asset at the given split time.
+        /// The part after the split point is returned and the asset is modified in place.
+        /// </summary>
+        /// <param name="time">The split point</param>
+        /// <returns>New asset with audio after the split point.</returns>
         public Assets.AudioMediaAsset Split(double time)
         {
             // checks if time parameter is in bounds of asset
             if (time >= 0 && time <= mAudioLengthInTime)
             {
                 // create new asset for clips after time specified in parameter
-
                 AudioMediaAsset ob_AudioMediaAsset = GetChunk(time, mAudioLengthInTime) as AudioMediaAsset;
 
                 //// modify original asset

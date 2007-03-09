@@ -148,6 +148,13 @@ namespace Obi.UserControls
             RefreshWidth();
         }
 
+        public void RefreshDisplay(double time)
+        {
+            RefreshUsed(time);
+            RefreshLabels(time);
+            RefreshWidth();
+        }
+
         /// <summary>
         /// Refresh the display of the block to show its used state.
         /// </summary>
@@ -155,6 +162,17 @@ namespace Obi.UserControls
         {
             BackColor = mNode != null && mNode.Used ?
                 mNode.Asset.LengthInMilliseconds == 0.0 ? Colors.AudioBlockEmpty : Colors.AudioBlockUsed :
+                Colors.AudioBlockUnused;
+            if (mAnnotationBlock != null)
+            {
+                mAnnotationBlock.Used = mNode.Used;
+            }
+        }
+
+        private void RefreshUsed(double time)
+        {
+            BackColor = mNode != null && mNode.Used ?
+                time == 0.0 ? Colors.AudioBlockEmpty : Colors.AudioBlockUsed :
                 Colors.AudioBlockUnused;
             if (mAnnotationBlock != null)
             {
@@ -186,6 +204,12 @@ namespace Obi.UserControls
             AccessibleDescription = mLabel.Text;
             // Set the time display
             mTimeLabel.Text = Assets.MediaAsset.FormatTime(mNode.Asset.LengthInMilliseconds);
+        }
+
+        private void RefreshLabels(double time)
+        {
+            RefreshLabels();
+            mTimeLabel.Text = Assets.MediaAsset.FormatTime(time);
         }
 
         /// <summary>

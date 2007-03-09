@@ -268,7 +268,6 @@ namespace Obi.UserControls
             this.Controls.Add(this.mPlayButton);
             this.Name = "TransportBar";
             this.Size = new System.Drawing.Size(865, 32);
-            this.ParentChanged += new System.EventHandler(this.TransportBar_ParentChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 
