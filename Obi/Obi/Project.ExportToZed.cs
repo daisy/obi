@@ -125,6 +125,7 @@ namespace Obi
                 System.Xml.XmlReader xukDatasource = System.Xml.XmlReader.Create(XUKPath);
 
                 x2z.WriteZed(xukDatasource);
+                xukDatasource.Close();
 
                 if (!System.IO.File.Exists(x2z.OuputDir + "/" + tmpNcxName) ||
                     !System.IO.File.Exists(x2z.OuputDir + "/" + tmpPackageName))
