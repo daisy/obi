@@ -96,6 +96,12 @@ namespace Obi.UserControls
                     double LeftDb = 20 *  Math.Log10 (  mPlaylist.Audioplayer.VuMeter.m_MeanValueLeft * 256  ) ;
                     double RightDb = 20 * Math.Log10(mPlaylist.Audioplayer.VuMeter.m_MeanValueRight * 256);
 
+                    if (LeftDb < 1)
+                        LeftDb = 0.0;
+
+                    if (RightDb < 1)
+                        RightDb = 0.0;
+
                     //double LeftDb = mPlaylist.Audioplayer.VuMeter.m_MeanValueLeft ;
                     //double RightDb = (mPlaylist.Audioplayer.VuMeter.m_MeanValueRight );
 
@@ -109,6 +115,12 @@ namespace Obi.UserControls
                 {
                     double LeftDb = 20 * Math.Log10 ( mRecordingSession.AudioRecorder.VuMeterObject.m_MeanValueLeft   * 256 ) ;
                     double RightDb =  20 * Math.Log10(mRecordingSession.AudioRecorder.VuMeterObject.m_MeanValueRight * 256);
+
+                    if ( LeftDb < 1 )
+                        LeftDb =  0.0 ;
+
+                    if ( RightDb < 1)
+                        RightDb = 0.0 ;
 
                     mLeftBox.Text = m_StrLeftOverloadIndicator +  LeftDb.ToString();
                     mRightBox.Text = m_StrRightOverloadIndicator +  RightDb.ToString();
