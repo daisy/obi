@@ -229,8 +229,10 @@ namespace Obi.Audio
 			UpdateVMForm.Start()  ;
 
 		}
-			
 
+        //LNN Testing the actual interval of runs of AnimationComputation
+        DateTime oldTime = DateTime.Now;
+        DateTime newTime = DateTime.Now;
 
 		int m_PeakValueLeft = 0;
 		int m_PeakValueRight = 0;
@@ -256,8 +258,9 @@ namespace Obi.Audio
 			if (m_SampleArrayPosition >= m_SampleCount )
 			{
 				m_SampleArrayPosition = 0 ;
-				
-			}
+
+            }
+            #region old calculation of values
 
 			// Find Mean Values of Left and Right Channels 
 			m_MeanValueLeft = m_MeanValueRight = 0 ;
@@ -269,7 +272,37 @@ namespace Obi.Audio
 			m_MeanValueLeft = m_MeanValueLeft / m_SampleCount ;
 			m_MeanValueRight = m_MeanValueRight / m_SampleCount ;
 
-			// update peak values if it is greater than previous value
+            #endregion
+
+
+            newTime = DateTime.Now;
+            System.Diagnostics.Debug.WriteLine(newTime - oldTime);
+            oldTime = newTime;
+
+            #region calculating extremes of difference rather than average
+/*
+            int m_LeftMin = int.MaxValue;
+            int m_LeftMax = int.MinValue;
+            int m_RightMin = int.MaxValue;
+            int m_RightMax = int.MinValue;
+
+            for (int i = 0; i < m_SampleCount; i++)
+            {
+                if (SampleArrayLeft[i] < m_LeftMin)
+                    m_LeftMin = SampleArrayLeft[i];
+                if (SampleArrayRight[i] < m_RightMin)
+                    m_RightMin = SampleArrayRight[i];
+                if (SampleArrayLeft[i] > m_LeftMax)
+                    m_LeftMax = SampleArrayLeft[i];
+                if (SampleArrayRight[i] > m_RightMax)
+                    m_RightMax = SampleArrayRight[i];
+            }
+            m_MeanValueRight = m_RightMax - m_RightMin;
+            m_MeanValueLeft = m_LeftMax - m_LeftMin;
+*/
+            #endregion
+
+            // update peak values if it is greater than previous value
 			if (m_PeakValueLeft < m_MeanValueLeft)  
 				arPeakOverloadValue[0] = m_PeakValueLeft = m_MeanValueLeft ;
 
@@ -340,8 +373,11 @@ namespace Obi.Audio
 
 		// calculates the amplitude of both channels from input taken from DirectX buffers
 		int [] AmplitudeValue()
-		{
-			long s0 =0 ;
+        {
+
+            #region Old algorithm for computing amplitude
+
+            long s0 =0 ;
 			long s1 = 0 ;
 			int Sum0 = 0 ;
 			int Sum1 = 0 ;
@@ -383,9 +419,62 @@ namespace Obi.Audio
 			Sum0 = Convert.ToInt32 (s0 / Divisor ) ;
 			Sum1 = Convert.ToInt32 (s1 / Divisor ) ;
 
-			int [] arSum= new int [2] ;
-			arSum [0] = Sum0 ;
-			arSum[1] = Sum1 ;
+            #endregion
+
+            #region New algorith for computing current volume based on amplitude
+            int iLeftMax = int.MinValue;
+            int iLeftMin = int.MaxValue;
+            int iRightMax = int.MinValue;
+            int iRightMin = int.MaxValue;
+            int iCurrLeft = 0;
+            int iCurrRight = 0;
+
+            for (int i = 0; i < m_UpdateVMArrayLength; i = i + m_FrameSize)
+            {
+                if (m_FrameSize == 1)
+                    iCurrLeft = m_arUpdatedVM[0 + i];
+                else if (m_FrameSize == 2)
+                {
+                    if (m_Channels == 2)
+                    {
+                        iCurrLeft = (m_arUpdatedVM[0 + i]);
+                        iCurrRight = m_arUpdatedVM[1 + i];
+
+                    }
+                    else if (m_Channels == 1)
+                    {
+                        iCurrLeft = m_arUpdatedVM[i] * byte.MaxValue + m_arUpdatedVM[i + 1];
+                    }
+                    // / end of if (FrameSize == 2)
+                }
+                else if (m_FrameSize == 4 && m_Channels == 2)
+                {
+                    iCurrLeft = m_arUpdatedVM[i + 0];// *byte.MaxValue + m_arUpdatedVM[i + 1];
+                    iCurrRight = m_arUpdatedVM[i + 2];// *byte.MaxValue + m_arUpdatedVM[i + 3];
+
+                }
+                iLeftMin = (iCurrLeft < iLeftMin) ? iCurrLeft : iLeftMin;
+                iLeftMax = (iCurrLeft > iLeftMax) ? iCurrLeft : iLeftMax;
+                iRightMin = (iCurrRight < iRightMin) ? iCurrRight : iRightMin;
+                iRightMax = (iCurrRight > iRightMax) ? iCurrRight : iRightMax;
+            }
+            /*
+            if (m_FrameSize / m_Channels > 1)
+            {
+                iLeftMin /= byte.MaxValue;
+                iRightMin /= byte.MaxValue;
+                iLeftMax /= byte.MaxValue;
+                iRightMax /= byte.MaxValue;
+            }
+            */
+
+            #endregion 
+
+            int [] arSum= new int [2] ;
+			arSum [0] = Sum0 ; //old version
+            arSum[1] = Sum1; //old version
+            arSum[0] = iLeftMax - iLeftMin;
+            arSum[1] = iRightMax - iRightMin;
 
 			return arSum ;
 		}

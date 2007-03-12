@@ -43,9 +43,9 @@ namespace Obi.Dialogs
             // 
             // mRecordButton
             // 
-            this.mRecordButton.Location = new System.Drawing.Point(12, 11);
+            this.mRecordButton.Location = new System.Drawing.Point(12, 12);
             this.mRecordButton.Name = "mRecordButton";
-            this.mRecordButton.Size = new System.Drawing.Size(75, 23);
+            this.mRecordButton.Size = new System.Drawing.Size(75, 25);
             this.mRecordButton.TabIndex = 0;
             this.mRecordButton.Text = "&Record";
             this.mRecordButton.UseVisualStyleBackColor = true;
@@ -53,9 +53,9 @@ namespace Obi.Dialogs
             // 
             // mPauseButton
             // 
-            this.mPauseButton.Location = new System.Drawing.Point(12, 11);
+            this.mPauseButton.Location = new System.Drawing.Point(12, 12);
             this.mPauseButton.Name = "mPauseButton";
-            this.mPauseButton.Size = new System.Drawing.Size(75, 23);
+            this.mPauseButton.Size = new System.Drawing.Size(75, 25);
             this.mPauseButton.TabIndex = 1;
             this.mPauseButton.Text = "&Pause";
             this.mPauseButton.UseVisualStyleBackColor = true;
@@ -64,9 +64,9 @@ namespace Obi.Dialogs
             // mStopButton
             // 
             this.mStopButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.mStopButton.Location = new System.Drawing.Point(195, 40);
+            this.mStopButton.Location = new System.Drawing.Point(195, 43);
             this.mStopButton.Name = "mStopButton";
-            this.mStopButton.Size = new System.Drawing.Size(75, 23);
+            this.mStopButton.Size = new System.Drawing.Size(75, 25);
             this.mStopButton.TabIndex = 3;
             this.mStopButton.Text = "&Stop/Close";
             this.mStopButton.UseVisualStyleBackColor = true;
@@ -74,9 +74,9 @@ namespace Obi.Dialogs
             // 
             // mPhraseMarkButton
             // 
-            this.mPhraseMarkButton.Location = new System.Drawing.Point(12, 40);
+            this.mPhraseMarkButton.Location = new System.Drawing.Point(12, 43);
             this.mPhraseMarkButton.Name = "mPhraseMarkButton";
-            this.mPhraseMarkButton.Size = new System.Drawing.Size(75, 21);
+            this.mPhraseMarkButton.Size = new System.Drawing.Size(75, 23);
             this.mPhraseMarkButton.TabIndex = 4;
             this.mPhraseMarkButton.Text = "Phrase &mark";
             this.mPhraseMarkButton.UseVisualStyleBackColor = true;
@@ -84,9 +84,9 @@ namespace Obi.Dialogs
             // 
             // mBeginSectionButton
             // 
-            this.mBeginSectionButton.Location = new System.Drawing.Point(105, 40);
+            this.mBeginSectionButton.Location = new System.Drawing.Point(105, 43);
             this.mBeginSectionButton.Name = "mBeginSectionButton";
-            this.mBeginSectionButton.Size = new System.Drawing.Size(75, 21);
+            this.mBeginSectionButton.Size = new System.Drawing.Size(75, 23);
             this.mBeginSectionButton.TabIndex = 5;
             this.mBeginSectionButton.Text = "Begin Se&ction";
             this.mBeginSectionButton.UseVisualStyleBackColor = true;
@@ -94,9 +94,9 @@ namespace Obi.Dialogs
             // 
             // mPageMarkButton
             // 
-            this.mPageMarkButton.Location = new System.Drawing.Point(195, 11);
+            this.mPageMarkButton.Location = new System.Drawing.Point(195, 12);
             this.mPageMarkButton.Name = "mPageMarkButton";
-            this.mPageMarkButton.Size = new System.Drawing.Size(75, 21);
+            this.mPageMarkButton.Size = new System.Drawing.Size(75, 23);
             this.mPageMarkButton.TabIndex = 6;
             this.mPageMarkButton.Text = "P&age Mark";
             this.mPageMarkButton.UseVisualStyleBackColor = true;
@@ -110,27 +110,27 @@ namespace Obi.Dialogs
             // mTimeDisplayBox
             // 
             this.mTimeDisplayBox.AccessibleName = "Record Time:";
-            this.mTimeDisplayBox.Location = new System.Drawing.Point(105, 11);
+            this.mTimeDisplayBox.Location = new System.Drawing.Point(105, 12);
             this.mTimeDisplayBox.Name = "mTimeDisplayBox";
             this.mTimeDisplayBox.ReadOnly = true;
-            this.mTimeDisplayBox.Size = new System.Drawing.Size(75, 19);
+            this.mTimeDisplayBox.Size = new System.Drawing.Size(75, 20);
             this.mTimeDisplayBox.TabIndex = 8;
             // 
             // mTextVuMeter
             // 
             this.mTextVuMeter.BackColor = System.Drawing.Color.Transparent;
-            this.mTextVuMeter.Location = new System.Drawing.Point(12, 66);
+            this.mTextVuMeter.Location = new System.Drawing.Point(12, 72);
             this.mTextVuMeter.Name = "mTextVuMeter";
             this.mTextVuMeter.PlayListObj = null;
             this.mTextVuMeter.RecordingSessionObj = null;
-            this.mTextVuMeter.Size = new System.Drawing.Size(205, 24);
+            this.mTextVuMeter.Size = new System.Drawing.Size(205, 26);
             this.mTextVuMeter.TabIndex = 7;
             // 
             // TransportRecord
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(280, 102);
+            this.ClientSize = new System.Drawing.Size(280, 111);
             this.Controls.Add(this.mTimeDisplayBox);
             this.Controls.Add(this.mTextVuMeter);
             this.Controls.Add(this.mPageMarkButton);
