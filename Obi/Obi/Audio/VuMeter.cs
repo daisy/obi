@@ -209,9 +209,11 @@ namespace Obi.Audio
 			m_arUpdatedVM  = new int  [m_UpdateVMArrayLength ] ;
 
 			Array.Copy ( ob_AudioPlayer.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
-			Thread UpdateVMForm = new Thread(new ThreadStart (AnimationComputation  ));
-            UpdateVMForm.IsBackground = true ;
-			UpdateVMForm.Start()  ;
+
+            AnimationComputation();
+            //Thread UpdateVMForm = new Thread(new ThreadStart (AnimationComputation  ));
+            //UpdateVMForm.IsBackground = true ;
+            //UpdateVMForm.Start()  ;
 		}
 
 		// handles update event from audio recorder
@@ -224,15 +226,14 @@ namespace Obi.Audio
 			m_UpdateVMArrayLength = Recorder.m_UpdateVMArrayLength ;
 			m_arUpdatedVM  = new int  [m_UpdateVMArrayLength ] ;
 			Array.Copy ( Recorder.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
-			Thread UpdateVMForm = new Thread(new ThreadStart (AnimationComputation  ));
-            UpdateVMForm.IsBackground = true;
-			UpdateVMForm.Start()  ;
+
+            AnimationComputation();
+            //Thread UpdateVMForm = new Thread(new ThreadStart (AnimationComputation  ));
+            //UpdateVMForm.IsBackground = true;
+            //UpdateVMForm.Start()  ;
+
 
 		}
-
-        //LNN Testing the actual interval of runs of AnimationComputation
-        DateTime oldTime = DateTime.Now;
-        DateTime newTime = DateTime.Now;
 
 		int m_PeakValueLeft = 0;
 		int m_PeakValueRight = 0;
@@ -273,11 +274,6 @@ namespace Obi.Audio
 			m_MeanValueRight = m_MeanValueRight / m_SampleCount ;
 
             #endregion
-
-
-            newTime = DateTime.Now;
-            System.Diagnostics.Debug.WriteLine(newTime - oldTime);
-            oldTime = newTime;
 
             #region calculating extremes of difference rather than average
 /*
@@ -458,7 +454,7 @@ namespace Obi.Audio
                 iRightMin = (iCurrRight < iRightMin) ? iCurrRight : iRightMin;
                 iRightMax = (iCurrRight > iRightMax) ? iCurrRight : iRightMax;
             }
-            /*
+
             if (m_FrameSize / m_Channels > 1)
             {
                 iLeftMin /= byte.MaxValue;
@@ -466,15 +462,64 @@ namespace Obi.Audio
                 iLeftMax /= byte.MaxValue;
                 iRightMax /= byte.MaxValue;
             }
-            */
-
             #endregion 
+
+            #region Calc. based on diff from half max val.
+            System.Collections.Generic.List<int> rightValues = new System.Collections.Generic.List<int>();
+            System.Collections.Generic.List<int> leftValues = new System.Collections.Generic.List<int>();
+
+            for (int i = 0; i < m_UpdateVMArrayLength; i = i + m_FrameSize)
+            {
+                if (m_FrameSize == 1)
+                    iCurrLeft = m_arUpdatedVM[0 + i];
+                else if (m_FrameSize == 2)
+                {
+                    if (m_Channels == 2)
+                    {
+                        iCurrLeft = (m_arUpdatedVM[0 + i]);
+                        iCurrRight = m_arUpdatedVM[1 + i];
+
+                    }
+                    else if (m_Channels == 1)
+                    {
+                        iCurrLeft = m_arUpdatedVM[i];// *byte.MaxValue + m_arUpdatedVM[i + 1];
+                    }
+                    // / end of if (FrameSize == 2)
+                }
+                else if (m_FrameSize == 4 && m_Channels == 2)
+                {
+                    iCurrLeft = m_arUpdatedVM[i + 0];// *byte.MaxValue + m_arUpdatedVM[i + 1];
+                    iCurrRight = m_arUpdatedVM[i + 2];// *byte.MaxValue + m_arUpdatedVM[i + 3];
+
+                }
+                iCurrLeft = Math.Abs(iCurrLeft - (byte.MaxValue / 2));
+                iCurrRight = Math.Abs(iCurrRight - (byte.MaxValue / 2));
+
+                leftValues.Add(iCurrLeft);
+                rightValues.Add(iCurrRight);
+
+            }
+            long leftSum = 0;
+            long rightSum = 0;
+            for (int i = 0; i < leftValues.Count; i++)
+            {
+                leftSum += leftValues[i];
+                rightSum += rightValues[i];
+            }
+            leftSum = leftSum / leftValues.Count;
+            rightSum = rightSum / leftValues.Count;
+
+            #endregion
 
             int [] arSum= new int [2] ;
 			arSum [0] = Sum0 ; //old version
             arSum[1] = Sum1; //old version
             arSum[0] = iLeftMax - iLeftMin;
             arSum[1] = iRightMax - iRightMin;
+
+            arSum[0] = (int)leftSum;
+            arSum[1] = (int)rightSum;
+            System.Diagnostics.Debug.WriteLine(arSum[0]);
 
 			return arSum ;
 		}
