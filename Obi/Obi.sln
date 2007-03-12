@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Obi", "Obi\Obi.csproj", "{1
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{3A8E7FDE-EBBE-4757-BAD2-35CDB25D5138}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XukToZed", "..\..\implementation\XukToZed\XukToZed\XukToZed.csproj", "{58463FC6-073B-41C2-A321-B2F7EDCCCC06}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,10 +17,6 @@ Global
 		{1553F3D3-A820-400E-9B98-BCCA970E1D58}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3A8E7FDE-EBBE-4757-BAD2-35CDB25D5138}.Debug|Any CPU.ActiveCfg = Debug
 		{3A8E7FDE-EBBE-4757-BAD2-35CDB25D5138}.Release|Any CPU.ActiveCfg = Release
-		{58463FC6-073B-41C2-A321-B2F7EDCCCC06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{58463FC6-073B-41C2-A321-B2F7EDCCCC06}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{58463FC6-073B-41C2-A321-B2F7EDCCCC06}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{58463FC6-073B-41C2-A321-B2F7EDCCCC06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
