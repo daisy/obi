@@ -99,7 +99,7 @@ namespace Obi.Audio
             ob_VuMeter = null;
 
             tmUpdateVuMeter.Tick += new EventHandler ( tmUpdateVuMeter_Tick );
-            tmUpdateVuMeter.Interval = 50;
+            tmUpdateVuMeter.Interval = 10; //TODO: LNN changed this from 50 to 10, see if it breaks anything
             tmUpdateVuMeter.Enabled = false;
 		}
 
