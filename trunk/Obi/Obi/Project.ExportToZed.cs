@@ -109,7 +109,7 @@ namespace Obi
             XukToZed.XukToZed x2z = new XukToZed.XukToZed(xsltPath);
 
             x2z.OuputDir = outputFolder;
-            x2z.contextFolderName = Environment.CurrentDirectory;
+            x2z.contextFolderName = Path.GetDirectoryName(mXUKPath) +@"\";// Environment.CurrentDirectory;
 
             string tmpPackageName = safeProjectName + ".opf";
             x2z.TransformationArguments.AddParam("packageFilename", "", tmpPackageName);
