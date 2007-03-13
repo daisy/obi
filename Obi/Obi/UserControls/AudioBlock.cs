@@ -201,7 +201,7 @@ namespace Obi.UserControls
                 }
                 mLabel.Text = String.Format(Localizer.Message("audio_block_default_label"), index, outof);
             }
-            AccessibleDescription = mLabel.Text;
+            AccessibleName  = mLabel.Text;
             // Set the time display
             mTimeLabel.Text = Assets.MediaAsset.FormatTime(mNode.Asset.LengthInMilliseconds);
         }
