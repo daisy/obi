@@ -35,7 +35,7 @@ namespace Obi.UserControls
             {
                 mRenameBox.Text = value;
                 mLabel.Text = value;
-                AccessibleDescription = value;
+                AccessibleName = value;
             }
         }
 
