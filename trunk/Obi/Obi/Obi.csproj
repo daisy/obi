@@ -64,7 +64,7 @@
     </Reference>
     <Reference Include="XukToZed, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\implementation\XukToZed\XukToZed\bin\Debug\XukToZed.dll</HintPath>
+      <HintPath>..\..\..\..\..\branches\sdk-0-5\implementation\XukToZed\XukToZed\bin\Debug\XukToZed.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
