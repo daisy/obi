@@ -216,6 +216,9 @@ namespace Obi.Audio
             EraserRight = Convert.ToInt32(LowBottom - (ScaleFactor * DisplayAmpRight ));
             //EraserLeft = 100+  mVuMeter.m_MeanValueLeft;
 
+            EraserLeft = HighTop + 2 * LineWidth + (int)(((double)LowBottom) * (((double)mVuMeter.m_MeanValueLeft) / ((double)int.MaxValue)));
+            EraserRight = HighTop + 2 * LineWidth + (int)(((double)LowBottom) * (((double)mVuMeter.m_MeanValueRight) / ((double)int.MaxValue)));
+
 			tmRefresh.Start ()  ;
             //MessageBox.Show(EraserLeft.ToString());
 		}
