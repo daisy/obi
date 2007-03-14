@@ -42,46 +42,48 @@ namespace Obi.Dialogs
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 15);
+            this.label1.Location = new System.Drawing.Point(12, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 12);
+            this.label1.Size = new System.Drawing.Size(30, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "&Title:";
             // 
             // mTitleBox
             // 
+            this.mTitleBox.AccessibleName = "Title:";
             this.mTitleBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.mTitleBox.Location = new System.Drawing.Point(48, 12);
+            this.mTitleBox.Location = new System.Drawing.Point(48, 13);
             this.mTitleBox.Name = "mTitleBox";
-            this.mTitleBox.Size = new System.Drawing.Size(532, 19);
+            this.mTitleBox.Size = new System.Drawing.Size(532, 20);
             this.mTitleBox.TabIndex = 1;
             this.mTitleBox.TextChanged += new System.EventHandler(this.mTitleBox_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 62);
+            this.label2.Location = new System.Drawing.Point(16, 67);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(26, 12);
+            this.label2.Size = new System.Drawing.Size(26, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "&File:";
             // 
             // mFileBox
             // 
+            this.mFileBox.AccessibleName = "File:";
             this.mFileBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.mFileBox.Location = new System.Drawing.Point(48, 59);
+            this.mFileBox.Location = new System.Drawing.Point(48, 64);
             this.mFileBox.Name = "mFileBox";
-            this.mFileBox.Size = new System.Drawing.Size(451, 19);
+            this.mFileBox.Size = new System.Drawing.Size(451, 20);
             this.mFileBox.TabIndex = 4;
             // 
             // mSelectButton
             // 
             this.mSelectButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mSelectButton.Location = new System.Drawing.Point(505, 57);
+            this.mSelectButton.Location = new System.Drawing.Point(505, 62);
             this.mSelectButton.Name = "mSelectButton";
-            this.mSelectButton.Size = new System.Drawing.Size(75, 23);
+            this.mSelectButton.Size = new System.Drawing.Size(75, 25);
             this.mSelectButton.TabIndex = 5;
             this.mSelectButton.Text = "&Select";
             this.mSelectButton.UseVisualStyleBackColor = true;
@@ -91,9 +93,9 @@ namespace Obi.Dialogs
             // 
             this.mOKButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.mOKButton.Location = new System.Drawing.Point(218, 113);
+            this.mOKButton.Location = new System.Drawing.Point(218, 122);
             this.mOKButton.Name = "mOKButton";
-            this.mOKButton.Size = new System.Drawing.Size(75, 23);
+            this.mOKButton.Size = new System.Drawing.Size(75, 25);
             this.mOKButton.TabIndex = 6;
             this.mOKButton.Text = "&OK";
             this.mOKButton.UseVisualStyleBackColor = true;
@@ -103,9 +105,9 @@ namespace Obi.Dialogs
             // 
             this.mCancelButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.mCancelButton.Location = new System.Drawing.Point(299, 113);
+            this.mCancelButton.Location = new System.Drawing.Point(299, 122);
             this.mCancelButton.Name = "mCancelButton";
-            this.mCancelButton.Size = new System.Drawing.Size(75, 23);
+            this.mCancelButton.Size = new System.Drawing.Size(75, 25);
             this.mCancelButton.TabIndex = 7;
             this.mCancelButton.Text = "&Cancel";
             this.mCancelButton.UseVisualStyleBackColor = true;
@@ -113,9 +115,9 @@ namespace Obi.Dialogs
             // mAutoTitleCheckBox
             // 
             this.mAutoTitleCheckBox.AutoSize = true;
-            this.mAutoTitleCheckBox.Location = new System.Drawing.Point(48, 37);
+            this.mAutoTitleCheckBox.Location = new System.Drawing.Point(48, 40);
             this.mAutoTitleCheckBox.Name = "mAutoTitleCheckBox";
-            this.mAutoTitleCheckBox.Size = new System.Drawing.Size(277, 16);
+            this.mAutoTitleCheckBox.Size = new System.Drawing.Size(246, 17);
             this.mAutoTitleCheckBox.TabIndex = 2;
             this.mAutoTitleCheckBox.Text = "&Automatically create a title section with this title";
             this.mAutoTitleCheckBox.UseVisualStyleBackColor = true;
@@ -123,10 +125,10 @@ namespace Obi.Dialogs
             // NewProject
             // 
             this.AcceptButton = this.mOKButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
-            this.ClientSize = new System.Drawing.Size(592, 148);
+            this.ClientSize = new System.Drawing.Size(592, 160);
             this.Controls.Add(this.mAutoTitleCheckBox);
             this.Controls.Add(this.mCancelButton);
             this.Controls.Add(this.mOKButton);
@@ -136,7 +138,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.mTitleBox);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(8, 162);
+            this.MinimumSize = new System.Drawing.Size(8, 173);
             this.Name = "NewProject";
             this.Text = "Create a new project";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NewProject_FormClosing);

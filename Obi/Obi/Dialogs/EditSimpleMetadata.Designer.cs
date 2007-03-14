@@ -47,9 +47,9 @@ namespace Obi.Dialogs
             // 
             this.mOKButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.mOKButton.Location = new System.Drawing.Point(174, 171);
+            this.mOKButton.Location = new System.Drawing.Point(174, 185);
             this.mOKButton.Name = "mOKButton";
-            this.mOKButton.Size = new System.Drawing.Size(75, 23);
+            this.mOKButton.Size = new System.Drawing.Size(75, 25);
             this.mOKButton.TabIndex = 10;
             this.mOKButton.Text = "&OK";
             this.mOKButton.UseVisualStyleBackColor = true;
@@ -59,9 +59,9 @@ namespace Obi.Dialogs
             // 
             this.mCancelButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.mCancelButton.Location = new System.Drawing.Point(255, 171);
+            this.mCancelButton.Location = new System.Drawing.Point(255, 185);
             this.mCancelButton.Name = "mCancelButton";
-            this.mCancelButton.Size = new System.Drawing.Size(75, 23);
+            this.mCancelButton.Size = new System.Drawing.Size(75, 25);
             this.mCancelButton.TabIndex = 11;
             this.mCancelButton.Text = "&Cancel";
             this.mCancelButton.UseVisualStyleBackColor = true;
@@ -70,7 +70,7 @@ namespace Obi.Dialogs
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(21, 15);
+            this.label1.Location = new System.Drawing.Point(21, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 16);
             this.label1.TabIndex = 0;
@@ -79,95 +79,100 @@ namespace Obi.Dialogs
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 44);
+            this.label2.Location = new System.Drawing.Point(18, 48);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 12);
+            this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "&Narrator:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 94);
+            this.label3.Location = new System.Drawing.Point(15, 102);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 12);
+            this.label3.Size = new System.Drawing.Size(50, 13);
             this.label3.TabIndex = 6;
             this.label3.Text = "&Identifier:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 69);
+            this.label4.Location = new System.Drawing.Point(13, 75);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 12);
+            this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 4;
             this.label4.Text = "&Publisher:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 119);
+            this.label5.Location = new System.Drawing.Point(12, 129);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 12);
+            this.label5.Size = new System.Drawing.Size(58, 13);
             this.label5.TabIndex = 8;
             this.label5.Text = "&Language:";
             // 
             // mTitleBox
             // 
+            this.mTitleBox.AccessibleName = "Title:";
             this.mTitleBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mTitleBox.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.mTitleBox.Location = new System.Drawing.Point(73, 12);
+            this.mTitleBox.Location = new System.Drawing.Point(73, 13);
             this.mTitleBox.Name = "mTitleBox";
             this.mTitleBox.Size = new System.Drawing.Size(419, 23);
             this.mTitleBox.TabIndex = 1;
             // 
             // mAuthorBox
             // 
+            this.mAuthorBox.AccessibleName = "Narrator:";
             this.mAuthorBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.mAuthorBox.Location = new System.Drawing.Point(73, 41);
+            this.mAuthorBox.Location = new System.Drawing.Point(73, 44);
             this.mAuthorBox.Name = "mAuthorBox";
-            this.mAuthorBox.Size = new System.Drawing.Size(419, 19);
+            this.mAuthorBox.Size = new System.Drawing.Size(419, 20);
             this.mAuthorBox.TabIndex = 3;
             // 
             // mPublisherBox
             // 
+            this.mPublisherBox.AccessibleName = "Publisher:";
             this.mPublisherBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.mPublisherBox.Location = new System.Drawing.Point(73, 66);
+            this.mPublisherBox.Location = new System.Drawing.Point(73, 72);
             this.mPublisherBox.Name = "mPublisherBox";
-            this.mPublisherBox.Size = new System.Drawing.Size(419, 19);
+            this.mPublisherBox.Size = new System.Drawing.Size(419, 20);
             this.mPublisherBox.TabIndex = 5;
             // 
             // mIdentiferBox
             // 
+            this.mIdentiferBox.AccessibleName = "Identifier:";
             this.mIdentiferBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.mIdentiferBox.Location = new System.Drawing.Point(73, 91);
+            this.mIdentiferBox.Location = new System.Drawing.Point(73, 99);
             this.mIdentiferBox.Name = "mIdentiferBox";
-            this.mIdentiferBox.Size = new System.Drawing.Size(419, 19);
+            this.mIdentiferBox.Size = new System.Drawing.Size(419, 20);
             this.mIdentiferBox.TabIndex = 7;
             // 
             // mLanguageBox
             // 
+            this.mLanguageBox.AccessibleName = "Language:";
             this.mLanguageBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mLanguageBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.mLanguageBox.FormattingEnabled = true;
-            this.mLanguageBox.Location = new System.Drawing.Point(73, 116);
+            this.mLanguageBox.Location = new System.Drawing.Point(73, 126);
             this.mLanguageBox.Name = "mLanguageBox";
-            this.mLanguageBox.Size = new System.Drawing.Size(419, 20);
+            this.mLanguageBox.Size = new System.Drawing.Size(419, 21);
             this.mLanguageBox.Sorted = true;
             this.mLanguageBox.TabIndex = 9;
             // 
             // EditSimpleMetadata
             // 
             this.AcceptButton = this.mOKButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
-            this.ClientSize = new System.Drawing.Size(504, 213);
+            this.ClientSize = new System.Drawing.Size(504, 231);
             this.Controls.Add(this.mLanguageBox);
             this.Controls.Add(this.mIdentiferBox);
             this.Controls.Add(this.mPublisherBox);
@@ -181,7 +186,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.mCancelButton);
             this.Controls.Add(this.mOKButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(8, 240);
+            this.MinimumSize = new System.Drawing.Size(8, 258);
             this.Name = "EditSimpleMetadata";
             this.Text = "Edit project metadata";
             this.ResumeLayout(false);
