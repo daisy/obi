@@ -36,10 +36,10 @@ namespace Obi.Audio
 		//Member variable used in properties
 		private int m_Channels =2 ;
 		private double m_ScaleFactor = 2 ;
-		private double m_SampleTimeLength = 400 ;
+		private double m_SampleTimeLength = 500 ;
 		internal bool m_bOverload = false ;
-        private int m_UpperThreshold = (int)((double)int.MaxValue * 0.95);
-		private int m_LowerThreshold = (int)((double)int.MaxValue * 0.5);
+		private int m_UpperThreshold = 190 ;
+		private int m_LowerThreshold = 60;
 		private int [] arPeakOverloadValue = new int [2] ;
 		private bool [] arPeakOverloadFlag = new bool [2] ;
 		
@@ -172,13 +172,16 @@ namespace Obi.Audio
 		void SetSampleCount ( double TimeLengthArg ) 
 		{
 			m_SampleTimeLength  = TimeLengthArg ;
-			m_SampleCount  = Convert.ToInt32 (TimeLengthArg / 50 ); // 50 is byte reading interval 
+//			m_SampleCount  = Convert.ToInt32 (TimeLengthArg / 50 ); // 50 is byte reading interval 
+            m_SampleCount = Convert.ToInt32(TimeLengthArg / m_BufferReadInterval); 
+
 			SampleArrayLeft  = new int [ 2 * m_SampleCount] ;
 			SampleArrayRight  = new int [2 * m_SampleCount] ;
+            
 		}
 
 		// member variables for internal processing
-		private byte [] m_arUpdatedVM  ;
+		private int [] m_arUpdatedVM  ;
 		private int m_UpdateVMArrayLength ;
 		private int m_FrameSize ;
 
@@ -196,6 +199,9 @@ namespace Obi.Audio
 		private int [] SampleArrayRight ;
 		private int m_SampleArrayPosition = 0;
 
+        // avn: added on 13 March 2007, Variable to hold value of time interval for reading bytes from Buffers
+        private double  m_BufferReadInterval= 50  ;
+
 		private bool boolPlayer =false ;
 
 		// Handles VuMeter event from player
@@ -205,19 +211,26 @@ namespace Obi.Audio
 			ob_AudioPlayer = sender as AudioPlayer;
 			m_FrameSize = ob_AudioPlayer.m_FrameSize ;
 			m_Channels = ob_AudioPlayer.m_Channels ;
-            lock (this)
+			m_UpdateVMArrayLength = ob_AudioPlayer.m_UpdateVMArrayLength ;
+			m_arUpdatedVM  = new int  [m_UpdateVMArrayLength ] ;
+
+			Array.Copy ( ob_AudioPlayer.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
+
+            //m_BufferReadInterval =( ( m_arUpdatedVM.Length * 1000 ) / (ob_AudioPlayer.CurrentAsset.SampleRate * m_FrameSize))  ;
+
+            if (m_BufferReadInterval != ((m_arUpdatedVM.Length * 1000) / (ob_AudioPlayer.CurrentAsset.SampleRate * ob_AudioPlayer.m_FrameSize )))
             {
-    			m_UpdateVMArrayLength = ob_AudioPlayer.m_UpdateVMArrayLength ;
-                m_arUpdatedVM = new byte[m_UpdateVMArrayLength];
-                Array.Copy(ob_AudioPlayer.arUpdateVM, m_arUpdatedVM, m_UpdateVMArrayLength);
-
-                AnimationComputation();
+                m_BufferReadInterval = ((m_arUpdatedVM.Length * 1000) / (ob_AudioPlayer.CurrentAsset.SampleRate * ob_AudioPlayer.m_FrameSize ));
+                SetSampleCount(m_SampleTimeLength);
             }
-            //Thread UpdateVMForm = new Thread(new ThreadStart (AnimationComputation  ));
-            //UpdateVMForm.IsBackground = true ;
-            //UpdateVMForm.Start()  ;
-		}
 
+			Thread UpdateVMForm = new Thread(new ThreadStart (AnimationComputation  ));
+            UpdateVMForm.IsBackground = true ;
+			UpdateVMForm.Start()  ;
+            
+
+		}
+        
 		// handles update event from audio recorder
 		public void CatchUpdateVuMeterEvent (object sender , Events.Audio.Recorder.UpdateVuMeterEventArgs UpdateVuMeter)
 		{
@@ -225,21 +238,24 @@ namespace Obi.Audio
 			ob_AudioRecorder = Recorder ;
 			m_FrameSize = Recorder.m_FrameSize ;
 			m_Channels = Recorder.m_Channels ;
+			m_UpdateVMArrayLength = Recorder.m_UpdateVMArrayLength ;
+			m_arUpdatedVM  = new int  [m_UpdateVMArrayLength ] ;
+			Array.Copy ( Recorder.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
 
-            lock (this)
+            //m_BufferReadInterval = ( m_arUpdatedVM.Length * 1000 ) / ( Recorder.SampleRate * m_FrameSize )  ;
+            if (Recorder != null && m_BufferReadInterval != ((m_arUpdatedVM.Length * 1000) / (Recorder.SampleRate * Recorder.m_FrameSize )))
             {
-                m_UpdateVMArrayLength = Recorder.m_UpdateVMArrayLength;
-                m_arUpdatedVM = new byte[m_UpdateVMArrayLength];
-                Array.Copy(Recorder.arUpdateVM, m_arUpdatedVM, m_UpdateVMArrayLength);
-
-                AnimationComputation();
+                m_BufferReadInterval = ((m_arUpdatedVM.Length * 1000) / (Recorder.SampleRate * Recorder.m_FrameSize  ));
+                SetSampleCount(m_SampleTimeLength);
             }
-            //Thread UpdateVMForm = new Thread(new ThreadStart (AnimationComputation  ));
-            //UpdateVMForm.IsBackground = true;
-            //UpdateVMForm.Start()  ;
 
+			Thread UpdateVMForm = new Thread(new ThreadStart (AnimationComputation  ));
+            UpdateVMForm.IsBackground = true;
+			UpdateVMForm.Start()  ;
 
 		}
+			
+
 
 		int m_PeakValueLeft = 0;
 		int m_PeakValueRight = 0;
@@ -265,25 +281,20 @@ namespace Obi.Audio
 			if (m_SampleArrayPosition >= m_SampleCount )
 			{
 				m_SampleArrayPosition = 0 ;
-
-            }
+				
+			}
 
 			// Find Mean Values of Left and Right Channels 
-            long tmpMeanValLeft = 0;
-            long tmpMeanValRight = 0;
-            m_MeanValueLeft = m_MeanValueRight = 0;
+			m_MeanValueLeft = m_MeanValueRight = 0 ;
 			for (int i = 0 ; i < m_SampleCount ; i++ )
 			{
-				tmpMeanValLeft += SampleArrayLeft [i] ;
-				tmpMeanValRight += SampleArrayRight [i] ;
+				m_MeanValueLeft = m_MeanValueLeft + SampleArrayLeft [i] ;
+				m_MeanValueRight = m_MeanValueRight + SampleArrayRight [i] ;
 			}
-			m_MeanValueLeft = (int)(tmpMeanValLeft / m_SampleCount) ;
-			m_MeanValueRight = (int)(tmpMeanValRight / m_SampleCount) ;
+			m_MeanValueLeft = m_MeanValueLeft / m_SampleCount ;
+			m_MeanValueRight = m_MeanValueRight / m_SampleCount ;
 
-            m_MeanValueLeft = AmpArray[0];
-            m_MeanValueRight = AmpArray[1];
-
-            // update peak values if it is greater than previous value
+			// update peak values if it is greater than previous value
 			if (m_PeakValueLeft < m_MeanValueLeft)  
 				arPeakOverloadValue[0] = m_PeakValueLeft = m_MeanValueLeft ;
 
@@ -354,10 +365,8 @@ namespace Obi.Audio
 
 		// calculates the amplitude of both channels from input taken from DirectX buffers
 		int [] AmplitudeValue()
-        {
-            #region Old algorithm for computing amplitude
-            /*
-            long s0 =0 ;
+		{
+			long s0 =0 ;
 			long s1 = 0 ;
 			int Sum0 = 0 ;
 			int Sum1 = 0 ;
@@ -398,124 +407,10 @@ namespace Obi.Audio
 			int Divisor = m_UpdateVMArrayLength  / m_FrameSize ;
 			Sum0 = Convert.ToInt32 (s0 / Divisor ) ;
 			Sum1 = Convert.ToInt32 (s1 / Divisor ) ;
-            */
-            #endregion
 
-            #region Cal. based on BitConverter.ToInt16(m_arUpdatedVM);
-
-            int leftVal = 0;
-            int rightVal = 0;
-            int tmpLeftVal = 0;
-            int tmpRightVal = 0;
-            int[] last2LeftVals = new int[] { 0, 1 };
-            int[] last2RightVals = new int[] { 0, 1 };
-            System.Collections.Generic.Stack<int> leftPeaks = new System.Collections.Generic.Stack<int>();
-            System.Collections.Generic.Stack<int> rightPeaks = new System.Collections.Generic.Stack<int>();
-
-            for (int i = 0; i < m_arUpdatedVM.Length; i += m_FrameSize)
-            {
-                switch (m_FrameSize)
-                {
-                    case 1:
-                        //each byte is a simple sample
-
-                        sbyte curVal = (sbyte)m_arUpdatedVM[i];
-                        tmpLeftVal = (int)curVal * (int.MaxValue / sbyte.MaxValue);
-                        break;
-
-                    case 2:
-                        switch (m_Channels)
-                        {
-                            case 1:
-                                short sCurVal = BitConverter.ToInt16(m_arUpdatedVM, i);
-                                tmpLeftVal = (int)sCurVal * (int.MaxValue / short.MaxValue);
-
-                                break;
-                            case 2:
-                                sbyte curValLeft = (sbyte)m_arUpdatedVM[i];
-                                sbyte curValRight = (sbyte)m_arUpdatedVM[i + 1];
-
-                                tmpLeftVal = (int)curValLeft * (int.MaxValue / sbyte.MaxValue);
-                                tmpRightVal = (int)curValRight * (int.MaxValue / sbyte.MaxValue);
-                                break;
-                            default:
-                                break;
-                        }
-                        break;
-
-                    case 4:
-                        short sCurValLeft = BitConverter.ToInt16(m_arUpdatedVM, i);
-                        short sCurValRight = BitConverter.ToInt16(m_arUpdatedVM, i+2);
-                        tmpLeftVal = (int)sCurValLeft * (int.MaxValue / short.MaxValue);
-                        tmpRightVal = (int)sCurValRight * (int.MaxValue / short.MaxValue);
-                        break;
-
-                    default:
-                        break;
-                }
-                if (tmpLeftVal == int.MinValue)
-                    tmpLeftVal = int.MaxValue;
-                if (tmpRightVal == int.MinValue)
-                    tmpRightVal = int.MaxValue;
-
-                tmpLeftVal = Math.Abs(tmpLeftVal);
-                tmpRightVal = Math.Abs(tmpRightVal);
-
-                //Test if this is a peak?
-                if (tmpLeftVal < last2LeftVals[0] && last2LeftVals[0] > last2LeftVals[1])
-                    leftPeaks.Push(tmpLeftVal);
-
-                if (tmpLeftVal < last2LeftVals[0] && last2RightVals[0] > last2RightVals[1])
-                    rightPeaks.Push(tmpRightVal);
-
-                if (tmpLeftVal != last2LeftVals[0])
-                {
-                    last2LeftVals[1] = last2LeftVals[0];
-                    last2LeftVals[0] = tmpLeftVal;
-                }
-                if (tmpRightVal != last2RightVals[0])
-                {
-                    last2RightVals[1] = last2RightVals[0];
-                    last2RightVals[0] = tmpRightVal;
-                }
-
-            }
-
-            long peakCount = 0;
-            long peakSum = 0;
-            for (; leftPeaks.Count > 0; peakCount++)
-            {
-                peakSum += leftPeaks.Pop();
-            }
-            if(peakCount>0)
-                leftVal = (int)(peakSum / peakCount);
-
-            peakCount = 0;
-            peakSum = 0;
-            for (; rightPeaks.Count > 0; peakCount++)
-            {
-                peakSum += rightPeaks.Pop();
-            }
-            if (peakCount > 0)
-                rightVal = (int)(peakSum / peakCount);
-
-            
-            #endregion
-
-
-            int [] arSum= new int [2] ;
-//            arSum[0] = Sum0;
-//            arSum[1] = Sum1;
-//            arSum[0] = iLeftMax - iLeftMin;
-//            arSum[1] = iRightMax - iRightMin;
-
-//            arSum[0] = (int)leftSum;
-//            arSum[1] = (int)rightSum;
-
-            arSum[0] = leftVal;
-            arSum[1] = rightVal;
-
-            System.Diagnostics.Debug.WriteLine(leftVal.ToString().PadLeft(10, ' ') + " : " + rightVal.ToString().PadLeft(10, ' '));
+			int [] arSum= new int [2] ;
+			arSum [0] = Sum0 ;
+			arSum[1] = Sum1 ;
 
 			return arSum ;
 		}
