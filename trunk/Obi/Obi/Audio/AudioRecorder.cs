@@ -513,8 +513,10 @@ namespace Obi.Audio
             //}
 
             // make update vumeter array length equal to CaptureData length
-                if (CaptureData.Length != arUpdateVM.Length)
+                if (CaptureData.Length != arUpdateVM.Length
+                    && CaptureData.Length < CalculationFunctions.ConvertTimeToByte(125 , m_SampleRate, m_FrameSize))
                 {
+
                     m_UpdateVMArrayLength = CaptureData.Length;
                     Array.Resize(ref arUpdateVM, CaptureData.Length);
                 }
