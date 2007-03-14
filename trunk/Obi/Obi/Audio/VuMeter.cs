@@ -38,8 +38,8 @@ namespace Obi.Audio
 		private double m_ScaleFactor = 2 ;
 		private double m_SampleTimeLength = 400 ;
 		internal bool m_bOverload = false ;
-        private int m_UpperThreshold = (int)((double)int.MaxValue * 0.8);
-		private int m_LowerThreshold = (int)((double)int.MaxValue * 0.3);
+        private int m_UpperThreshold = (int)((double)int.MaxValue * 0.95);
+		private int m_LowerThreshold = (int)((double)int.MaxValue * 0.5);
 		private int [] arPeakOverloadValue = new int [2] ;
 		private bool [] arPeakOverloadFlag = new bool [2] ;
 		
@@ -269,14 +269,19 @@ namespace Obi.Audio
             }
 
 			// Find Mean Values of Left and Right Channels 
-			m_MeanValueLeft = m_MeanValueRight = 0 ;
+            long tmpMeanValLeft = 0;
+            long tmpMeanValRight = 0;
+            m_MeanValueLeft = m_MeanValueRight = 0;
 			for (int i = 0 ; i < m_SampleCount ; i++ )
 			{
-				m_MeanValueLeft = m_MeanValueLeft + SampleArrayLeft [i] ;
-				m_MeanValueRight = m_MeanValueRight + SampleArrayRight [i] ;
+				tmpMeanValLeft += SampleArrayLeft [i] ;
+				tmpMeanValRight += SampleArrayRight [i] ;
 			}
-			m_MeanValueLeft = m_MeanValueLeft / m_SampleCount ;
-			m_MeanValueRight = m_MeanValueRight / m_SampleCount ;
+			m_MeanValueLeft = (int)(tmpMeanValLeft / m_SampleCount) ;
+			m_MeanValueRight = (int)(tmpMeanValRight / m_SampleCount) ;
+
+            m_MeanValueLeft = AmpArray[0];
+            m_MeanValueRight = AmpArray[1];
 
             // update peak values if it is greater than previous value
 			if (m_PeakValueLeft < m_MeanValueLeft)  
@@ -396,190 +401,104 @@ namespace Obi.Audio
             */
             #endregion
 
-            #region New algorith for computing current volume based on amplitude
-            /*
-            int iLeftMax = int.MinValue;
-            int iLeftMin = int.MaxValue;
-            int iRightMax = int.MinValue;
-            int iRightMin = int.MaxValue;
-            int iCurrLeft = 0;
-            int iCurrRight = 0;
-
-            for (int i = 0; i < m_UpdateVMArrayLength; i = i + m_FrameSize)
-            {
-                if (m_FrameSize == 1)
-                    iCurrLeft = m_arUpdatedVM[0 + i];
-                else if (m_FrameSize == 2)
-                {
-                    if (m_Channels == 2)
-                    {
-                        iCurrLeft = (m_arUpdatedVM[0 + i]);
-                        iCurrRight = m_arUpdatedVM[1 + i];
-
-                    }
-                    else if (m_Channels == 1)
-                    {
-                        iCurrLeft = m_arUpdatedVM[i] * byte.MaxValue + m_arUpdatedVM[i + 1];
-                    }
-                    // / end of if (FrameSize == 2)
-                }
-                else if (m_FrameSize == 4 && m_Channels == 2)
-                {
-                    iCurrLeft = m_arUpdatedVM[i + 0];// *byte.MaxValue + m_arUpdatedVM[i + 1];
-                    iCurrRight = m_arUpdatedVM[i + 2];// *byte.MaxValue + m_arUpdatedVM[i + 3];
-
-                }
-                iLeftMin = (iCurrLeft < iLeftMin) ? iCurrLeft : iLeftMin;
-                iLeftMax = (iCurrLeft > iLeftMax) ? iCurrLeft : iLeftMax;
-                iRightMin = (iCurrRight < iRightMin) ? iCurrRight : iRightMin;
-                iRightMax = (iCurrRight > iRightMax) ? iCurrRight : iRightMax;
-            }
-
-            if (m_FrameSize / m_Channels > 1)
-            {
-                iLeftMin /= byte.MaxValue;
-                iRightMin /= byte.MaxValue;
-                iLeftMax /= byte.MaxValue;
-                iRightMax /= byte.MaxValue;
-            }
-            */
-            #endregion 
-
-            #region Calc. based on diff from half max val.
-            /*
-            System.Collections.Generic.List<int> rightValues = new System.Collections.Generic.List<int>();
-            System.Collections.Generic.List<int> leftValues = new System.Collections.Generic.List<int>();
-
-            for (int i = 0; i < m_UpdateVMArrayLength; i = i + m_FrameSize)
-            {
-                if (m_FrameSize == 1)
-                    iCurrLeft = m_arUpdatedVM[0 + i];
-                else if (m_FrameSize == 2)
-                {
-                    if (m_Channels == 2)
-                    {
-                        iCurrLeft = (m_arUpdatedVM[0 + i]);
-                        iCurrRight = m_arUpdatedVM[1 + i];
-
-                    }
-                    else if (m_Channels == 1)
-                    {
-                        iCurrLeft = m_arUpdatedVM[i];// *byte.MaxValue + m_arUpdatedVM[i + 1];
-                    }
-                    // / end of if (FrameSize == 2)
-                }
-                else if (m_FrameSize == 4 && m_Channels == 2)
-                {
-                    iCurrLeft = m_arUpdatedVM[i + 0];// *byte.MaxValue + m_arUpdatedVM[i + 1];
-                    iCurrRight = m_arUpdatedVM[i + 2];// *byte.MaxValue + m_arUpdatedVM[i + 3];
-
-                }
-                iCurrLeft = Math.Abs(iCurrLeft - (byte.MaxValue / 2));
-                iCurrRight = Math.Abs(iCurrRight - (byte.MaxValue / 2));
-
-                leftValues.Add(iCurrLeft);
-                rightValues.Add(iCurrRight);
-
-            }
-            long leftSum = 0;
-            long rightSum = 0;
-            for (int i = 0; i < leftValues.Count; i++)
-            {
-                leftSum += leftValues[i];
-                rightSum += rightValues[i];
-            }
-            leftSum = leftSum / leftValues.Count;
-            rightSum = rightSum / leftValues.Count;
-
-             */
-            #endregion
-
             #region Cal. based on BitConverter.ToInt16(m_arUpdatedVM);
 
             int leftVal = 0;
             int rightVal = 0;
+            int tmpLeftVal = 0;
+            int tmpRightVal = 0;
+            int[] last2LeftVals = new int[] { 0, 1 };
+            int[] last2RightVals = new int[] { 0, 1 };
+            System.Collections.Generic.Stack<int> leftPeaks = new System.Collections.Generic.Stack<int>();
+            System.Collections.Generic.Stack<int> rightPeaks = new System.Collections.Generic.Stack<int>();
 
-            switch (m_FrameSize)
-            { 
-                case 1:
-                    //each byte is a simple sample
+            for (int i = 0; i < m_arUpdatedVM.Length; i += m_FrameSize)
+            {
+                switch (m_FrameSize)
+                {
+                    case 1:
+                        //each byte is a simple sample
 
-                    sbyte curVal = 0;
-                    sbyte castVal = 0;
-                    for (int i = 0; i < m_arUpdatedVM.Length; i++)
-                    {
-                        castVal = (sbyte)m_arUpdatedVM[i];
-//                        castVal = Math.Abs(castVal);
-                        if (castVal > curVal)
-                            curVal = castVal;
-                    }
-                    leftVal = (int) curVal * (int.MaxValue / sbyte.MaxValue);
-                    break;
+                        sbyte curVal = (sbyte)m_arUpdatedVM[i];
+                        tmpLeftVal = (int)curVal * (int.MaxValue / sbyte.MaxValue);
+                        break;
 
-                case 2:
-                    switch (m_Channels)
-                    { 
-                        case 1:
-                            short sCurVal = 0;
-                            short sCastVal = 0;
-                            for (int i = 0; i < m_arUpdatedVM.Length; i += 2)
-                            {
-                                sCastVal = BitConverter.ToInt16(m_arUpdatedVM, i);
-//                                sCastVal = Math.Abs(sCastVal);
-                                if (sCurVal < sCastVal)
-                                    sCurVal = sCastVal;
-                            }
-                            leftVal = (int)sCurVal *(int.MaxValue/short.MaxValue);
+                    case 2:
+                        switch (m_Channels)
+                        {
+                            case 1:
+                                short sCurVal = BitConverter.ToInt16(m_arUpdatedVM, i);
+                                tmpLeftVal = (int)sCurVal * (int.MaxValue / short.MaxValue);
 
-                            break;
-                        case 2:
-                            sbyte curValLeft = 0;
-                            sbyte castValLeft = 0;
-                            sbyte curValRight = 0;
-                            sbyte castValRight = 0;
-                            for (int i = 0; i < m_arUpdatedVM.Length; i+=2)
-                            {
-                                castValLeft = (sbyte)m_arUpdatedVM[i];
-//                                castValLeft = Math.Abs(castValLeft);
-                                if (castValLeft > curValLeft)
-                                    curValLeft = castValLeft;
+                                break;
+                            case 2:
+                                sbyte curValLeft = (sbyte)m_arUpdatedVM[i];
+                                sbyte curValRight = (sbyte)m_arUpdatedVM[i + 1];
 
-                                castValRight = (sbyte)m_arUpdatedVM[i+1];
-//                                castValRight = Math.Abs(castValRight);
-                                if (castValRight > curValRight)
-                                    curValRight = castValRight;
-                            }
-                            leftVal = (int)curValLeft *(int.MaxValue/sbyte.MaxValue);
-                            rightVal = (int)curValRight * (int.MaxValue / sbyte.MaxValue);
-                            break;
-                        default:
-                            break;
-                    }
-                    break;
+                                tmpLeftVal = (int)curValLeft * (int.MaxValue / sbyte.MaxValue);
+                                tmpRightVal = (int)curValRight * (int.MaxValue / sbyte.MaxValue);
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
 
-                case 4:
-                    short sCurValLeft = 0;
-                    short sCastValLeft = 0;
-                    short sCurValRight = 0;
-                    short sCastValRight = 0;
-                    for (int i = 0; i < m_arUpdatedVM.Length; i += 2)
-                    {
-                        sCastValLeft = BitConverter.ToInt16(m_arUpdatedVM, i);
-//                        sCastValLeft = Math.Abs(sCastValLeft);
-                        if (sCurValLeft < sCastValLeft)
-                            sCurValLeft = sCastValLeft;
-                        sCastValRight = BitConverter.ToInt16(m_arUpdatedVM, i);
-//                        sCastValRight = Math.Abs(sCastValRight);
-                        if (sCurValRight < sCastValRight)
-                            sCurValRight = sCastValRight;
-                    }
-                    leftVal = (int)sCurValLeft * (int.MaxValue/short.MaxValue);
-                    rightVal = (int)sCurValRight * (int.MaxValue / short.MaxValue);
-                    break;
+                    case 4:
+                        short sCurValLeft = BitConverter.ToInt16(m_arUpdatedVM, i);
+                        short sCurValRight = BitConverter.ToInt16(m_arUpdatedVM, i+2);
+                        tmpLeftVal = (int)sCurValLeft * (int.MaxValue / short.MaxValue);
+                        tmpRightVal = (int)sCurValRight * (int.MaxValue / short.MaxValue);
+                        break;
 
-                default:
-                    break;
+                    default:
+                        break;
+                }
+                if (tmpLeftVal == int.MinValue)
+                    tmpLeftVal = int.MaxValue;
+                if (tmpRightVal == int.MinValue)
+                    tmpRightVal = int.MaxValue;
+
+                tmpLeftVal = Math.Abs(tmpLeftVal);
+                tmpRightVal = Math.Abs(tmpRightVal);
+
+                //Test if this is a peak?
+                if (tmpLeftVal < last2LeftVals[0] && last2LeftVals[0] > last2LeftVals[1])
+                    leftPeaks.Push(tmpLeftVal);
+
+                if (tmpLeftVal < last2LeftVals[0] && last2RightVals[0] > last2RightVals[1])
+                    rightPeaks.Push(tmpRightVal);
+
+                if (tmpLeftVal != last2LeftVals[0])
+                {
+                    last2LeftVals[1] = last2LeftVals[0];
+                    last2LeftVals[0] = tmpLeftVal;
+                }
+                if (tmpRightVal != last2RightVals[0])
+                {
+                    last2RightVals[1] = last2RightVals[0];
+                    last2RightVals[0] = tmpRightVal;
+                }
+
             }
+
+            long peakCount = 0;
+            long peakSum = 0;
+            for (; leftPeaks.Count > 0; peakCount++)
+            {
+                peakSum += leftPeaks.Pop();
+            }
+            if(peakCount>0)
+                leftVal = (int)(peakSum / peakCount);
+
+            peakCount = 0;
+            peakSum = 0;
+            for (; rightPeaks.Count > 0; peakCount++)
+            {
+                peakSum += rightPeaks.Pop();
+            }
+            if (peakCount > 0)
+                rightVal = (int)(peakSum / peakCount);
+
             
             #endregion
 
@@ -596,7 +515,7 @@ namespace Obi.Audio
             arSum[0] = leftVal;
             arSum[1] = rightVal;
 
-            System.Diagnostics.Debug.WriteLine(arSum[0]);
+            System.Diagnostics.Debug.WriteLine(leftVal.ToString().PadLeft(10, ' ') + " : " + rightVal.ToString().PadLeft(10, ' '));
 
 			return arSum ;
 		}

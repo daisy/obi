@@ -33,7 +33,7 @@ namespace Obi.Audio
 			mVuMeter.PeakOverload += new Events.Audio.VuMeter.PeakOverloadHandler(CatchPeakOverloadEvent);
 			mVuMeter.UpdateForms += new Events.Audio.VuMeter.UpdateFormsHandler(CatchUpdateForms);
 			mVuMeter.ResetEvent += new Events.Audio.VuMeter.ResetHandler(CatchResetEvent);
-            setScaleFactor();
+//            setScaleFactor();
             //tmRefresh.Enabled = false;
 		}
 
@@ -167,7 +167,7 @@ namespace Obi.Audio
             set
             {
                 ScaleFactor = value;
-                setScaleFactor();
+//                setScaleFactor();
             }
     }
 
@@ -198,33 +198,45 @@ namespace Obi.Audio
             }
 		}
 
-		// function to catch the update event from VuMeter class to update graph cordinates
-		public void CatchUpdateForms (object sender , Events.Audio.VuMeter.UpdateFormsEventArgs Update )
+        double percentReadingLeft = 0.0; // values = 0.0 - 1.0
+        double percentReadingRight = 0.0;
+
+        public void CatchUpdateForms(object sender, Events.Audio.VuMeter.UpdateFormsEventArgs Update)
 		{
-			VuMeter ob_VuMeterArg  = sender as VuMeter ;
-			ob_VuMeter = ob_VuMeterArg ;
+            VuMeter ob_VuMeter = (VuMeter)sender;
+            percentReadingLeft = ob_VuMeter.m_MeanValueLeft > 0 ? (Math.Log10(ob_VuMeter.m_MeanValueLeft) - Math.Log10(1)) / (Math.Log10(int.MaxValue) - Math.Log10(1)) : 0;
+            percentReadingRight = ob_VuMeter.m_MeanValueRight > 0 ? (Math.Log10(ob_VuMeter.m_MeanValueRight) - Math.Log10(1)) / (Math.Log10(int.MaxValue) - Math.Log10(1)) : 0;
 
-// Update erase left and erase right cordinates
-            int ThresholdFactor = 12500 / (mVuMeter.UpperThreshold - mVuMeter.LowerThreshold);
-            int DisplayAmpLeft = (mVuMeter.m_MeanValueLeft * ThresholdFactor) / 100;
-            int DisplayAmpRight = (mVuMeter.m_MeanValueRight * ThresholdFactor) / 100;
-            int Offset = 65 - ((mVuMeter.LowerThreshold * ThresholdFactor) / 100);
-            DisplayAmpLeft = DisplayAmpLeft + Offset;
-            DisplayAmpRight = DisplayAmpRight + Offset;
+            tmRefresh.Start();
+        }
 
-            EraserLeft =  Convert.ToInt32(   LowBottom - ( ScaleFactor *  DisplayAmpLeft ));
-            EraserRight = Convert.ToInt32(LowBottom - (ScaleFactor * DisplayAmpRight ));
-            //EraserLeft = 100+  mVuMeter.m_MeanValueLeft;
+        private void tmRefresh_Tick(object sender, System.EventArgs e)
+        {
+            System.Drawing.Graphics objGraphics;
+            objGraphics = this.CreateGraphics();
 
-            EraserLeft = HighTop + 2 * LineWidth + (int)(((double)LowBottom) * (((double)mVuMeter.m_MeanValueLeft) / ((double)int.MaxValue)));
-            EraserRight = HighTop + 2 * LineWidth + (int)(((double)LowBottom) * (((double)mVuMeter.m_MeanValueRight) / ((double)int.MaxValue)));
+//            objGraphics.Clear(System.Drawing.Color.White);
 
-			tmRefresh.Start ()  ;
-            //MessageBox.Show(EraserLeft.ToString());
-		}
-        int BackPaintCount = 0;
-		private void tmRefresh_Tick(object sender, System.EventArgs e)
-		{
+            int borderwidth = this.ClientSize.Width/8;
+            int spaceAtTop = 40;
+            int graphWidth = (this.ClientSize.Width - 3 * borderwidth) / 2;
+            int graphMaxHeight = this.ClientSize.Height - 3 * borderwidth;
+
+            int leftSize = (int)(graphMaxHeight * percentReadingLeft);
+            int rightSize = (int)(graphMaxHeight * percentReadingRight);
+
+            Rectangle leftBar = new Rectangle(borderwidth, borderwidth * 2 + spaceAtTop + (graphMaxHeight - leftSize), graphWidth, leftSize);
+            Rectangle rightBar = new Rectangle(borderwidth * 2 + graphWidth, borderwidth * 2 + spaceAtTop + (graphMaxHeight - rightSize), graphWidth, rightSize);
+            Rectangle leftAntiBar = new Rectangle(borderwidth, borderwidth * 2 + spaceAtTop, graphWidth, (graphMaxHeight - leftSize));
+            Rectangle rightAntiBar = new Rectangle(borderwidth * 2 + graphWidth, borderwidth * 2 + spaceAtTop, graphWidth, (graphMaxHeight - rightSize));
+
+            objGraphics.FillRectangle(new SolidBrush(Color.White), leftAntiBar);
+            objGraphics.FillRectangle(new SolidBrush(Color.White), rightAntiBar);
+            objGraphics.FillRectangle(new SolidBrush(Color.Blue), leftBar);
+            objGraphics.FillRectangle(new SolidBrush(Color.Blue), rightBar);
+
+            #region old stufff
+            /*
             //System.Media.SystemS2ounds.Asterisk.Play();
             
 			// paint form
@@ -327,8 +339,11 @@ namespace Obi.Audio
 				objGraphics.DrawLine( PenOverloadLight , PeakOverloadLightX , PeakOverloadLightY, PeakOverloadLightX , PeakOverloadLightY  + PeakOverloadLightWidth );
                 LoadBeep();
 			}
-			
-		}
+            */
+            #endregion
+
+
+        }
 		
 		/// <summary>
 		/// Thread-safe way to set the text on a control.
@@ -377,24 +392,8 @@ namespace Obi.Audio
 
 		internal void CatchResetEvent ( object sender , Events.Audio.VuMeter.ResetEventArgs ob_VuMeterEvent)
 		{
-            
-			System.Drawing.Graphics objGraphics;
-			objGraphics = this.CreateGraphics();		
-
-			Pen PenVackPaint= new Pen(Color.White);
-			PenVackPaint.Width = 300 ;
-
-			objGraphics.DrawLine(PenVackPaint , 0, 0, 0, 600);		
-
-			Pen PenVackground = new Pen(Color.White);
-			PenVackground.Width = LineWidth ;
-			objGraphics.DrawLine(PenVackground , PeakOverloadLightX, PeakOverloadLightY, PeakOverloadLightX , PeakOverloadLightY + LineWidth + LineWidth);	
-			objGraphics.DrawLine(PenVackground , PeakOverloadLightX + LineWidth, PeakOverloadLightY, PeakOverloadLightX + LineWidth , PeakOverloadLightY + LineWidth + LineWidth);	
-
-			//SetTextBoxText(txtOverloadLeft, " ");   // avoid race condition - JQ
-			//SetTextBoxText(txtOverloadRight, " ");  // JQ
-            setScaleFactor();
-            
+            percentReadingLeft = 0.0;
+            percentReadingRight = 0.0;            
 		}
 
         private void VuMeterForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -402,6 +401,9 @@ namespace Obi.Audio
             Visible = false;
             e.Cancel = true;
         }
+
+
+        /*
 private void setScaleFactor()
         {
             //ScaleFactor = 2 ;
@@ -432,6 +434,7 @@ private void setScaleFactor()
         
     
         }
+        */ 
 
 		// end of class
 	}
