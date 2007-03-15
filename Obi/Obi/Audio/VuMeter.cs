@@ -445,8 +445,8 @@ namespace Obi.Audio
                 rightVal = (int)(peakSum / peakCount);
 
             int[] arSum = new int[2];
-            arSum[0] = leftVal;
-            arSum[1] = rightVal;
+            arSum[0] = leftVal / (int.MaxValue / 256); // division done to reduce the returned value to be in the range of 0-255
+            arSum[1] = rightVal / (int.MaxValue / 256);
 
             System.Diagnostics.Debug.WriteLine(leftVal.ToString().PadLeft(10, ' ') + " : " + rightVal.ToString().PadLeft(10, ' '));
 
