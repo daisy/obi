@@ -570,11 +570,27 @@ namespace Obi.Audio
         {
             get
             {
-            return mTime;
+                    return GetCurrentAssetTime();
             }
-            set{
-                mTime = value;
+        }
+
+        private double GetCurrentAssetTime()
+        {
+            if (mState == AudioRecorderState.Recording && applicationBuffer != null )
+            {
+                if (applicationBuffer.Capturing)
+                {
+                    int CapturePos;
+                    int ReadPos;
+                    applicationBuffer.GetCurrentPosition(out CapturePos, out ReadPos);
+                    long mPosition = (long)CapturePos;
+                    mPosition = mPosition - NextCaptureOffset;
+                    double TimeDifference = CalculationFunctions.ConvertByteToTime(mPosition, m_SampleRate, m_FrameSize);
+                    return mTime + TimeDifference;
+                }
             }
+            
+            return 0;
         }
 
 
