@@ -80,18 +80,18 @@ namespace Obi.Audio
             // btnClose
             // 
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(0, 9);
+            this.btnClose.Location = new System.Drawing.Point(0, 10);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(60, 22);
+            this.btnClose.Size = new System.Drawing.Size(60, 24);
             this.btnClose.TabIndex = 0;
             this.btnClose.Text = "&Close";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // VuMeterForm
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 12);
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(332, 566);
             this.Controls.Add(this.btnClose);
@@ -135,7 +135,7 @@ namespace Obi.Audio
 		internal int LeftGraphX = 20  ;
 		internal int RightGraphX = 75 ;
 
-        private int GraphOriginX  = 100;
+        private int GraphOriginY  = 100;
 
 		internal int BackGroundWidth = 0 ;
 		internal int BackGroundTop = 0 ;
@@ -175,13 +175,15 @@ namespace Obi.Audio
 		// initialise the form and frame for graph display
 		private void VuMeterForm_Load(object sender, System.EventArgs e)
         {
+            this.BackColor = Color.White;
+            setScaleFactor();
 			System.Drawing.Graphics objGraphics;
 			objGraphics = this.CreateGraphics();		
 
 			Pen PenWhite = new Pen(Color.White );
 			PenWhite.Width = 300 ;
 			objGraphics.DrawLine(PenWhite , 0, 0, 0, 600 ) ;
-            this.BackColor = Color.White;
+
 			// enables the refresh timer for repainting graph at regular interval
 			tmRefresh.Enabled = true ;
 			
@@ -233,7 +235,7 @@ namespace Obi.Audio
 			PenVackPaint.Width = 700 ;
 
             BackPaintCount++;
-            if ( BackPaintCount == 30 )
+            if ( BackPaintCount == 40 )
             {
                 
 
@@ -268,20 +270,23 @@ namespace Obi.Audio
             {
                 EraserRight = HighTop;
             }
-            
+
             // For left channel painting
             if (EraserLeft < LowBottom && EraserLeft > LowTop)
             {
-                objGraphics.DrawLine(PenLow, LeftGraphX, EraserLeft , LeftGraphX, LowBottom);	
+                objGraphics.DrawLine(PenLow, LeftGraphX, EraserLeft , LeftGraphX, LowBottom);
+                DrawBoundary(objGraphics, Color.Orange, LeftGraphX, LineWidth, EraserLeft , LowBottom);
             }
             else if( EraserLeft > NormalTop  &&  EraserLeft <= LowTop )
             {
-                objGraphics.DrawLine(PenLow, LeftGraphX, LowTop, LeftGraphX, LowBottom);	
+                objGraphics.DrawLine(PenLow, LeftGraphX, LowTop, LeftGraphX, LowBottom);
+                DrawBoundary(objGraphics, Color.Orange, LeftGraphX, LineWidth, LowTop, LowBottom);
                 objGraphics.DrawLine(PenNormal, LeftGraphX, EraserLeft , LeftGraphX, NormalBottom);	
             }
             else if ( EraserLeft >= HighTop  &&  EraserLeft <= NormalTop )
             {
-                objGraphics.DrawLine(PenLow, LeftGraphX, LowTop, LeftGraphX, LowBottom);
+                objGraphics.DrawLine(PenLow, LeftGraphX, LowTop , LeftGraphX, LowBottom);
+                DrawBoundary(objGraphics, Color.Orange , LeftGraphX, LineWidth ,  LowTop , LowBottom );
                 objGraphics.DrawLine(PenNormal, LeftGraphX, NormalTop, LeftGraphX, NormalBottom);
                 objGraphics.DrawLine(PenHigh, LeftGraphX, EraserLeft , LeftGraphX, HighBottom);		
             }
@@ -289,21 +294,24 @@ namespace Obi.Audio
             // for painting right channel
             if ( EraserRight < LowBottom && EraserRight > LowTop)
             {
-                objGraphics.DrawLine(PenLow, RightGraphX, EraserRight , RightGraphX, LowBottom);	
+                objGraphics.DrawLine(PenLow, RightGraphX, EraserRight , RightGraphX, LowBottom);
+                DrawBoundary(objGraphics, Color.Orange, RightGraphX, LineWidth, EraserRight , LowBottom);
             }
             else if (EraserRight > NormalTop  &&  EraserRight <= LowTop )
             {
-                objGraphics.DrawLine(PenLow, RightGraphX, LowTop, RightGraphX, LowBottom);	
+                objGraphics.DrawLine(PenLow, RightGraphX, LowTop, RightGraphX, LowBottom);
+                DrawBoundary(objGraphics, Color.Orange, RightGraphX, LineWidth, LowTop, LowBottom);
                 objGraphics.DrawLine(PenNormal, RightGraphX, EraserRight , RightGraphX, NormalBottom);	
             }
             else if (EraserRight >= HighTop &&  EraserRight <= NormalTop )
             {
-                objGraphics.DrawLine(PenLow, RightGraphX, LowTop, RightGraphX, LowBottom);	
+                objGraphics.DrawLine(PenLow, RightGraphX, LowTop , RightGraphX, LowBottom);
+                DrawBoundary(objGraphics, Color.Orange , RightGraphX , LineWidth, LowTop, LowBottom);
                 objGraphics.DrawLine(PenNormal, RightGraphX, NormalTop, RightGraphX, NormalBottom);	
                 objGraphics.DrawLine(PenHigh, RightGraphX, EraserRight , RightGraphX, HighBottom);		
             }
 
-	
+
 			// Erase the unwanted line starting from top according to amplitude of each channel
 			objGraphics.DrawLine(PenVackground , LeftGraphX, HighTop , LeftGraphX, EraserLeft );	
 			objGraphics.DrawLine(PenVackground , RightGraphX, HighTop , RightGraphX, EraserRight );
@@ -315,9 +323,7 @@ namespace Obi.Audio
 			
 			if ( BeepEnabled == false)
 			{
-				objGraphics.DrawLine(PenBackLight , PeakOverloadLightX, PeakOverloadLightY, PeakOverloadLightX , PeakOverloadLightY  + PeakOverloadLightWidth );	
-				
-                
+				objGraphics.DrawLine(PenBackLight , PeakOverloadLightX, PeakOverloadLightY, PeakOverloadLightX , PeakOverloadLightY  + PeakOverloadLightWidth );
 			}
 			else  // Paint the light red for warning
 			{
@@ -327,6 +333,19 @@ namespace Obi.Audio
 			
 		}
 		
+        private void DrawBoundary ( System.Drawing.Graphics objGraphics , Color BoundaryColor , int XCord , int Width , int TopY , int LowY )
+        {
+            Pen BoundaryPen = new Pen(BoundaryColor  ) ;
+            int BoundaryWidth = Convert.ToInt32(6 * ScaleFactor);
+            BoundaryPen.Width = BoundaryWidth;
+
+            int LeftX = XCord - ( ( Width/2 )  - ( BoundaryWidth / 2));
+            int RightX = XCord + ( ( Width/2 )  - (BoundaryWidth / 2));
+
+            objGraphics.DrawLine(BoundaryPen, LeftX ,TopY , LeftX , LowY );
+            objGraphics.DrawLine(BoundaryPen, RightX ,  TopY , RightX , LowY );
+        }
+
 		/// <summary>
 		/// Thread-safe way to set the text on a control.
 		/// </summary>
@@ -402,23 +421,23 @@ namespace Obi.Audio
 private void setScaleFactor()
         {
             //ScaleFactor = 2 ;
-            GraphOriginX = Convert.ToInt32(100 * ScaleFactor);
+            GraphOriginY = Convert.ToInt32(85 * ScaleFactor);
 
-            HighTop = GraphOriginX  ; 
+            HighTop = GraphOriginY  ; 
         HighBottom = HighTop  + Convert.ToInt32 (  60 * ScaleFactor  ) ;
 
-        NormalTop = HighBottom  + Convert.ToInt32 (   5 * ScaleFactor  ) ;
+        NormalTop = HighBottom  + Convert.ToInt32 ( 6   * ScaleFactor  ) ;
         NormalBottom = NormalTop + Convert.ToInt32 (  120 * ScaleFactor  ) ;
 
-        LowTop = NormalBottom + Convert.ToInt32 (  5 * ScaleFactor  ) ;
+        LowTop = NormalBottom + Convert.ToInt32(6 * ScaleFactor ) ;
         LowBottom = LowTop + Convert.ToInt32 ( 60 * ScaleFactor  ) ;
 
-        LineWidth = Convert.ToInt32 (  30* ScaleFactor  ) ;
+        LineWidth = Convert.ToInt32 (  31 * ScaleFactor  ) ;
 
         LeftGraphX = Convert.ToInt32 ( 25 * ScaleFactor   ) ;
-        RightGraphX = Convert.ToInt32 (  75    * ScaleFactor  ) ;
+        RightGraphX = Convert.ToInt32 (  76    * ScaleFactor  ) ;
 
-        PeakOverloadLightX = Convert.ToInt32 ( 65 * ScaleFactor);
+        PeakOverloadLightX = Convert.ToInt32 ( 60 * ScaleFactor);
     PeakOverloadLightY =  10 ;
     PeakOverloadLightWidth = Convert.ToInt32(45 * ScaleFactor);
 
