@@ -195,6 +195,7 @@ namespace Obi.Assets
                 m_sName = GenerateClipName();
                 static_htClipExists.Add(m_sName, this);
             }
+            
         }
 
         public AudioClip(string path)
@@ -295,6 +296,7 @@ namespace Obi.Assets
 
 
             // temp checks are as follows , these are to be removed during finalising
+            /*
             if (BeginTime < this.BeginTime)
                 MessageBox.Show("error begin time");
 
@@ -303,7 +305,8 @@ namespace Obi.Assets
 
             if (BeginTime >= EndTime)
                 MessageBox.Show("both");
-
+            */
+             
             // checks that the new clip time parameters are not out of boun of original clip
             if (BeginTime >= this.BeginTime && EndTime <= this.EndTime && BeginTime < EndTime)
             {
@@ -599,20 +602,25 @@ namespace Obi.Assets
                 {
                     if (Channels == 1)
                     {
-                        SubSum = Convert.ToInt64(br.ReadByte());
-                        SubSum = SubSum + (Convert.ToInt64(br.ReadByte()) * 256); SubSum = (SubSum * 256) / 65792;
+                        SubSum = Convert.ToInt64(br.ReadSByte ());
+                        SubSum = SubSum + (Convert.ToInt64(br.ReadSByte ()) * 256); 
+                        //SubSum = SubSum  ;
                     }
                     else if (Channels == 2)
                     {
                         SubSum = Convert.ToInt64(br.ReadByte());
-                        SubSum = SubSum + Convert.ToInt64(br.ReadByte()); SubSum = SubSum / 2;
+                        SubSum = SubSum + Convert.ToInt64(br.ReadByte()); 
+                        SubSum = SubSum / 2;
                     }
                     // FrameSize 2 ends
                 }
                 else if (FrameSize == 4)
                 {
+                    
                     if (Channels == 1)
                     {
+// 32 BitDepth is not yet supported so following lines are commentted
+                        /*
                         SubSum = Convert.ToInt64(br.ReadByte());
                         SubSum = SubSum +
                             (Convert.ToInt64(br.ReadByte()) * 256);
@@ -620,16 +628,17 @@ namespace Obi.Assets
                             (Convert.ToInt64(br.ReadByte()) * 256 * 256);
                         SubSum = SubSum +
                             (Convert.ToInt64(br.ReadByte()) * 256 * 256 * 256);
+                         */ 
                     }
                     else if (Channels == 2)
                     {
-                        SubSum = Convert.ToInt64(br.ReadByte());
-
-                        SubSum = SubSum + (Convert.ToInt64(br.ReadByte()) * 256);
+                        SubSum = Convert.ToInt64(br.ReadSByte ());
+                        SubSum = SubSum + (Convert.ToInt64(br.ReadSByte ()) * 256);
 
                         // second channel
-                        SubSum = SubSum + Convert.ToInt64(br.ReadByte()); SubSum = SubSum + (Convert.ToInt64(br.ReadByte()) * 256);
-                        SubSum = (SubSum * 256) / (65792 * 2);
+                        SubSum = SubSum + Convert.ToInt64(br.ReadSByte ()); 
+                        SubSum = SubSum + (Convert.ToInt64(br.ReadSByte ()) * 256);
+                        SubSum = ( SubSum / 2);
 
                     }
                     // FrameSize 4 ends
