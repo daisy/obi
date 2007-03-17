@@ -602,9 +602,9 @@ namespace Obi.Assets
                 {
                     if (Channels == 1)
                     {
-                        SubSum = Convert.ToInt64(br.ReadSByte ());
-                        SubSum = SubSum + (Convert.ToInt64(br.ReadSByte ()) * 256); 
-                        //SubSum = SubSum  ;
+                        long TmpSum  = Convert.ToInt64(br.ReadByte ());
+                        TmpSum = TmpSum + (Convert.ToInt64(br.ReadSByte ()) * 256);
+                        SubSum = TmpSum;
                     }
                     else if (Channels == 2)
                     {
@@ -632,13 +632,13 @@ namespace Obi.Assets
                     }
                     else if (Channels == 2)
                     {
-                        SubSum = Convert.ToInt64(br.ReadSByte ());
-                        SubSum = SubSum + (Convert.ToInt64(br.ReadSByte ()) * 256);
-
+                        long TmpSum1  = Convert.ToInt64(br.ReadByte ());
+                        TmpSum1 = SubSum + (Convert.ToInt64(br.ReadSByte ()) * 256);
+                        
                         // second channel
-                        SubSum = SubSum + Convert.ToInt64(br.ReadSByte ()); 
-                        SubSum = SubSum + (Convert.ToInt64(br.ReadSByte ()) * 256);
-                        SubSum = ( SubSum / 2);
+                        long TmpSum2  = Convert.ToInt64(br.ReadByte ()); 
+                        TmpSum2 = TmpSum2 + (Convert.ToInt64(br.ReadSByte ()) * 256);
+                        SubSum = (  TmpSum1 + TmpSum2 )  / 2 ;
 
                     }
                     // FrameSize 4 ends
