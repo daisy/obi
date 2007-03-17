@@ -217,10 +217,10 @@ namespace Obi.UserControls
         /// </summary>
         private void RefreshWidth()
         {
-            int wlabel = mLabel.Width + mLabel.Location.X + mLabel.Margin.Right;
-            int wtime = mTimeLabel.Width + mTimeLabel.Location.X + mTimeLabel.Margin.Right;
+            int wlabel = mLabel.Width;
+            int wtime = mTimeLabel.Width;
             int widest = wlabel > wtime ? wlabel : wtime;
-            MinimumSize = new Size(widest, Height);
+            MinimumSize = new Size(widest + mLabel.Margin.Left + mLabel.Margin.Right + Padding.Left + Padding.Right, Height);
             if (ChangedMinimumSize != null) ChangedMinimumSize(this, new EventArgs());
         }
 
@@ -238,6 +238,12 @@ namespace Obi.UserControls
             {
                 mSectionStrip.Focus();
             }
+        }
+
+        private void AudioBlock_SizeChanged(object sender, EventArgs e)
+        {
+            // cause a repaint of the selection borders
+            Invalidate();
         }
     }
 }

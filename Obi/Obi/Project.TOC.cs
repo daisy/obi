@@ -105,9 +105,7 @@ namespace Obi
                 AddChildSectionBefore(sibling, contextNode, parent);
             }
             AddedSectionNode(this, new Events.Node.SectionNodeEventArgs(this, sibling));
-            Modified();
-            CommandCreated(this,
-                new Events.Project.CommandCreatedEventArgs(new Commands.TOC.AddSectionNode(sibling)));
+            Modified(new Commands.TOC.AddSectionNode(sibling));
             return sibling;
         }
 
@@ -130,9 +128,7 @@ namespace Obi
                 AppendChildSection(child, parent);
             }
             AddedSectionNode(this, new Events.Node.SectionNodeEventArgs(this, child));
-            Modified();
-            CommandCreated(this,
-                new Events.Project.CommandCreatedEventArgs(new Commands.TOC.AddSectionNode(child)));
+            Modified(new Commands.TOC.AddSectionNode(child));
             return child;
         }
 

@@ -68,7 +68,7 @@ namespace Obi
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.mShowInStripviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStripsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mAddStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mInsertStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRenameStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.mImportAudioFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -84,6 +84,7 @@ namespace Obi
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.mEditAnnotationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRemoveAnnotationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mFocusOnAnnotationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
             this.mSetPageNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRemovePageNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -118,7 +119,6 @@ namespace Obi
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectPanel = new Obi.UserControls.ProjectPanel();
-            this.mFocusOnAnnotationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -396,7 +396,7 @@ namespace Obi
             this.mAddSectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
             this.mAddSectionToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
             this.mAddSectionToolStripMenuItem.Text = "&Insert section";
-            this.mAddSectionToolStripMenuItem.Click += new System.EventHandler(this.mAddSectionToolStripMenuItem_Click);
+            this.mAddSectionToolStripMenuItem.Click += new System.EventHandler(this.mInsertSectionToolStripMenuItem_Click);
             // 
             // mAddSubSectionToolStripMenuItem
             // 
@@ -456,7 +456,7 @@ namespace Obi
             // mStripsToolStripMenuItem
             // 
             this.mStripsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mAddStripToolStripMenuItem,
+            this.mInsertStripToolStripMenuItem,
             this.mRenameStripToolStripMenuItem,
             this.toolStripSeparator5,
             this.mImportAudioFileToolStripMenuItem,
@@ -484,11 +484,11 @@ namespace Obi
             // 
             // mAddStripToolStripMenuItem
             // 
-            this.mAddStripToolStripMenuItem.Name = "mAddStripToolStripMenuItem";
-            this.mAddStripToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.mAddStripToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
-            this.mAddStripToolStripMenuItem.Text = "&Insert strip";
-            this.mAddStripToolStripMenuItem.Click += new System.EventHandler(this.mAddStripToolStripMenuItem_Click);
+            this.mInsertStripToolStripMenuItem.Name = "mAddStripToolStripMenuItem";
+            this.mInsertStripToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
+            this.mInsertStripToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
+            this.mInsertStripToolStripMenuItem.Text = "&Insert strip";
+            this.mInsertStripToolStripMenuItem.Click += new System.EventHandler(this.mInsertStripToolStripMenuItem_Click);
             // 
             // mRenameStripToolStripMenuItem
             // 
@@ -607,6 +607,15 @@ namespace Obi
             this.mRemoveAnnotationToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
             this.mRemoveAnnotationToolStripMenuItem.Text = "Remove anno&tation";
             this.mRemoveAnnotationToolStripMenuItem.Click += new System.EventHandler(this.mRemoveAnnotationToolStripMenuItem_Click);
+            // 
+            // mFocusOnAnnotationToolStripMenuItem
+            // 
+            this.mFocusOnAnnotationToolStripMenuItem.Name = "mFocusOnAnnotationToolStripMenuItem";
+            this.mFocusOnAnnotationToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.A)));
+            this.mFocusOnAnnotationToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
+            this.mFocusOnAnnotationToolStripMenuItem.Text = "&Focus on annotation";
+            this.mFocusOnAnnotationToolStripMenuItem.Click += new System.EventHandler(this.mFocusOnAnnotationToolStripMenuItem_Click);
             // 
             // toolStripSeparator14
             // 
@@ -888,17 +897,9 @@ namespace Obi
             this.mProjectPanel.Location = new System.Drawing.Point(0, 24);
             this.mProjectPanel.Name = "mProjectPanel";
             this.mProjectPanel.Project = null;
+            this.mProjectPanel.SelectedNode = null;
             this.mProjectPanel.Size = new System.Drawing.Size(857, 497);
             this.mProjectPanel.TabIndex = 4;
-            // 
-            // mFocusOnAnnotationToolStripMenuItem
-            // 
-            this.mFocusOnAnnotationToolStripMenuItem.Name = "mFocusOnAnnotationToolStripMenuItem";
-            this.mFocusOnAnnotationToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Shift)
-                        | System.Windows.Forms.Keys.A)));
-            this.mFocusOnAnnotationToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
-            this.mFocusOnAnnotationToolStripMenuItem.Text = "&Focus on annotation";
-            this.mFocusOnAnnotationToolStripMenuItem.Click += new System.EventHandler(this.mFocusOnAnnotationToolStripMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -910,6 +911,7 @@ namespace Obi
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "ObiForm";
             this.Text = "Obi";
@@ -955,7 +957,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mAddSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mAddSubSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mRenameSectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mAddStripToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mInsertStripToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mRenameStripToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mUndoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mRedoToolStripMenuItem;

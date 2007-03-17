@@ -37,13 +37,12 @@ namespace Obi.UserControls
             // mTimeLabel
             // 
             this.mTimeLabel.AutoSize = true;
-            this.mTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mTimeLabel.Location = new System.Drawing.Point(7, 28);
             this.mTimeLabel.Margin = new System.Windows.Forms.Padding(3);
             this.mTimeLabel.Name = "mTimeLabel";
-            this.mTimeLabel.Size = new System.Drawing.Size(41, 16);
+            this.mTimeLabel.Size = new System.Drawing.Size(0, 15);
             this.mTimeLabel.TabIndex = 2;
-            this.mTimeLabel.Text = "(time)";
             this.mTimeLabel.DoubleClick += new System.EventHandler(this.AudioBlock_DoubleClick);
             this.mTimeLabel.Click += new System.EventHandler(this.AudioBlock_Click);
             this.mTimeLabel.SizeChanged += new System.EventHandler(this.ContentsSizeChanged);
@@ -64,9 +63,8 @@ namespace Obi.UserControls
             this.mLabel.Location = new System.Drawing.Point(7, 7);
             this.mLabel.Margin = new System.Windows.Forms.Padding(3);
             this.mLabel.Name = "mLabel";
-            this.mLabel.Size = new System.Drawing.Size(77, 15);
+            this.mLabel.Size = new System.Drawing.Size(0, 15);
             this.mLabel.TabIndex = 1;
-            this.mLabel.Text = "(audio/page)";
             this.mLabel.DoubleClick += new System.EventHandler(this.AudioBlock_DoubleClick);
             this.mLabel.Click += new System.EventHandler(this.AudioBlock_Click);
             this.mLabel.SizeChanged += new System.EventHandler(this.ContentsSizeChanged);
@@ -82,10 +80,11 @@ namespace Obi.UserControls
             this.Margin = new System.Windows.Forms.Padding(0, 0, 2, 0);
             this.Name = "AudioBlock";
             this.Padding = new System.Windows.Forms.Padding(4);
-            this.Size = new System.Drawing.Size(105, 55);
+            this.Size = new System.Drawing.Size(105, 54);
             this.Enter += new System.EventHandler(this.AudioBlock_Enter);
             this.DoubleClick += new System.EventHandler(this.AudioBlock_DoubleClick);
             this.Click += new System.EventHandler(this.AudioBlock_Click);
+            this.SizeChanged += new System.EventHandler(this.AudioBlock_SizeChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 

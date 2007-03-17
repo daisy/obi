@@ -83,6 +83,12 @@ namespace Obi.UserControls
             this.Name = "AbstractBlock";
             this.Padding = new System.Windows.Forms.Padding(4);
             this.ResumeLayout(false);
+
+        }
+
+        private void AbstractBlock_SizeChanged(object sender, EventArgs e)
+        {
+            Invalidate();
         }
     }
 }

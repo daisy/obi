@@ -506,8 +506,7 @@ namespace Obi
             phrase.Asset = asset;
             AddPhraseNode(phrase, section, index);
             Commands.Strips.AddPhrase command = new Commands.Strips.AddPhrase(phrase);
-            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-            Modified();
+            Modified(command);
         }
 
         #region page numbers

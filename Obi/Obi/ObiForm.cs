@@ -467,16 +467,14 @@ namespace Obi
             }
         }
 
-        private void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mInsertSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProject.CreateSiblingSectionNode(mProjectPanel.TOCPanel.SelectedSection);
-            mProjectPanel.TOCPanel.StartRenamingSelectedSection();
+            mProjectPanel.TOCPanel.InsertSection();
         }
 
         private void mAddSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProject.CreateChildSectionNode(mProjectPanel.TOCPanel.SelectedSection);
-            mProjectPanel.TOCPanel.StartRenamingSelectedSection();
+            mProjectPanel.TOCPanel.AddSubSection();
         }
 
         private void mRenameSectionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -509,13 +507,9 @@ namespace Obi
             UpdateEnabledItemsForStripsMenu();
         }
 
-        private void mAddStripToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mInsertStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProject != null)
-            {
-                mProject.CreateSiblingSectionNode(mProjectPanel.StripManager.SelectedSectionNode);
-                mProjectPanel.StripManager.StartRenamingSelectedStrip();
-            }
+            mProjectPanel.StripManager.InsertStrip();
         }
 
         private void mRenameStripToolStripMenuItem_Click(object sender, EventArgs e)
@@ -726,7 +720,6 @@ namespace Obi
         {
             // we don't use it at the moment
             // Application.AddMessageFilter(this);
-
             mShowInTOCViewToolStripMenuItem.Click +=
                 new EventHandler(mProjectPanel.StripManager.mShowInTOCViewToolStripMenuItem_Click);
         }
@@ -1446,7 +1439,7 @@ namespace Obi
             mInsertEmptyAudioblockToolStripMenuItem.Enabled = canInsertPhrase;
             mImportAudioFileToolStripMenuItem.Enabled = canInsertPhrase;
 
-            mAddStripToolStripMenuItem.Enabled = isProjectOpen;
+            mInsertStripToolStripMenuItem.Enabled = isProjectOpen;
             mRenameStripToolStripMenuItem.Enabled = isStripSelected;
 
             mSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;

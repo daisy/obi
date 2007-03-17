@@ -12,14 +12,14 @@ namespace Obi.Events.Node
     /// </summary>
     public class RenameSectionNodeEventArgs : SectionNodeEventArgs
     {
-        private string mLabel;    // the new text label of the node
+        private string mLabel;
 
+        /// <summary>
+        /// New label for a section.
+        /// </summary>
         public string Label
         {
-            get
-            {
-                return mLabel;
-            }
+            get { return mLabel; }
         }
 
         public RenameSectionNodeEventArgs(object origin, SectionNode node, string label) : 

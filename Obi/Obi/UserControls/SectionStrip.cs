@@ -133,7 +133,8 @@ namespace Obi.UserControls
                 if (value)
                 {
                     // start renaming
-                    mRenameBox.Size = new Size(Width, mRenameBox.Height);
+                    mRenameBox.Size = new Size(Width - Padding.Left - Padding.Right -
+                        mRenameBox.Margin.Left - mRenameBox.Margin.Right, mRenameBox.Height);
                     mRenameBox.Visible = true;
                     mRenameBox.BackColor = BackColor;
                     mRenameBox.Text = mLabel.Text;
@@ -258,6 +259,9 @@ namespace Obi.UserControls
             block.SectionStrip = this;
             block.AnnotationBlock.SectionStrip = this;
             block.AnnotationBlock.ChangedMinimumSize += new SectionStrip.ChangedMinimumSizeHandler(
+                delegate(object sender, EventArgs e) { ManageAudioBlockWidth(block); }
+            );
+            block.ChangedMinimumSize += new SectionStrip.ChangedMinimumSizeHandler(
                 delegate(object sender, EventArgs e) { ManageAudioBlockWidth(block); }
             );
             ManageAudioBlockWidth(block);
@@ -432,6 +436,11 @@ namespace Obi.UserControls
             {
                 UpdateText();
             }
+        }
+
+        private void mRenameBox_SizeChanged(object sender, EventArgs e)
+        {
+            Invalidate();
         }
     }
 }

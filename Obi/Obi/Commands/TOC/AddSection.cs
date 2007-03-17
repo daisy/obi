@@ -11,7 +11,7 @@ namespace Obi.Commands.TOC
         private SectionNode mNode;  // the newly added section node
         private CoreNode mParent;   // the parent to which it was added
         private int mIndex;         // the index at which it was added
-    
+
         public override string Label
         {
             get { return Localizer.Message("add_section_command_label"); }

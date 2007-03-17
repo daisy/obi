@@ -30,9 +30,9 @@ namespace Obi.UserControls
         {
             this.mNoProjectLabel = new System.Windows.Forms.Label();
             this.mSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.mTransportBar = new Obi.UserControls.TransportBar();
             this.mTOCPanel = new Obi.UserControls.TOCPanel();
             this.mStripManagerPanel = new Obi.UserControls.StripManagerPanel();
-            this.mTransportBar = new Obi.UserControls.TransportBar();
             this.mSplitContainer.Panel1.SuspendLayout();
             this.mSplitContainer.Panel2.SuspendLayout();
             this.mSplitContainer.SuspendLayout();
@@ -73,6 +73,20 @@ namespace Obi.UserControls
             this.mSplitContainer.SplitterDistance = 275;
             this.mSplitContainer.TabIndex = 1;
             // 
+            // mTransportBar
+            // 
+            this.mTransportBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mTransportBar.BackColor = System.Drawing.Color.White;
+            this.mTransportBar.Enabled = false;
+            this.mTransportBar.Location = new System.Drawing.Point(0, 415);
+            this.mTransportBar.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.mTransportBar.Name = "mTransportBar";
+            this.mTransportBar.Playlist = null;
+            this.mTransportBar.ProjectPanel = null;
+            this.mTransportBar.Size = new System.Drawing.Size(829, 32);
+            this.mTransportBar.TabIndex = 2;
+            // 
             // mTOCPanel
             // 
             this.mTOCPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -88,22 +102,10 @@ namespace Obi.UserControls
             this.mStripManagerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mStripManagerPanel.Location = new System.Drawing.Point(0, 0);
             this.mStripManagerPanel.Name = "mStripManagerPanel";
+            this.mStripManagerPanel.Padding = new System.Windows.Forms.Padding(3);
             this.mStripManagerPanel.SelectedNode = null;
             this.mStripManagerPanel.Size = new System.Drawing.Size(550, 409);
             this.mStripManagerPanel.TabIndex = 0;
-            // 
-            // mTransportBar
-            // 
-            this.mTransportBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.mTransportBar.BackColor = System.Drawing.Color.White;
-            this.mTransportBar.Enabled = false;
-            this.mTransportBar.Location = new System.Drawing.Point(0, 415);
-            this.mTransportBar.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.mTransportBar.Name = "mTransportBar";
-            this.mTransportBar.Playlist = null;
-            this.mTransportBar.Size = new System.Drawing.Size(829, 32);
-            this.mTransportBar.TabIndex = 2;
             // 
             // ProjectPanel
             // 

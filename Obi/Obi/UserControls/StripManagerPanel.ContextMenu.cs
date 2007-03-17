@@ -27,11 +27,22 @@ namespace Obi.UserControls
             UpdateEnabledItemsForContextMenu();
         }
 
-        private void mAddStripToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mInsertStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SectionNode node = mProjectPanel.Project.CreateSiblingSectionNode(mSelectedSection);
-            _SelectedSectionNode = node;
-            StartRenamingSelectedStrip();
+            InsertStrip();
+        }
+
+        /// <summary>
+        /// Insert a new strip for a section node, select it and rename it.
+        /// </summary>
+        public void InsertStrip()
+        {
+            if (mProjectPanel.Project != null)
+            {
+                SectionNode node = mProjectPanel.Project.CreateSiblingSectionNode(mSelectedSection);
+                _SelectedSectionNode = node;
+                StartRenamingSelectedStrip();
+            }
         }
 
         private void mRenameStripToolStripMenuItem_Click(object sender, EventArgs e)
@@ -62,7 +73,7 @@ namespace Obi.UserControls
                 (SelectedSectionNode.ParentSection == null || SelectedSectionNode.ParentSection.Used);
             bool noSelection = SelectedNode == null;
 
-            mAddStripToolStripMenuItem.Enabled = !isPlaying && (noSelection || isStripUsed || isParentUsed);
+            mInsertStripToolStripMenuItem.Enabled = !isPlaying && (noSelection || isStripUsed || isParentUsed);
             mRenameStripToolStripMenuItem.Enabled = !isPlaying && isStripUsed;
 
             bool canCutCopyDeleteSection = !isPlaying && isStripSelected && mProjectPanel.CanCutCopyDeleteNode;
