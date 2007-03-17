@@ -39,10 +39,10 @@ namespace Obi.UserControls
             this.mRenameBox.BackColor = System.Drawing.Color.PowderBlue;
             this.mRenameBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mRenameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mRenameBox.Location = new System.Drawing.Point(7, 3);
+            this.mRenameBox.Location = new System.Drawing.Point(3, 3);
             this.mRenameBox.Margin = new System.Windows.Forms.Padding(0);
             this.mRenameBox.Name = "mRenameBox";
-            this.mRenameBox.Size = new System.Drawing.Size(66, 14);
+            this.mRenameBox.Size = new System.Drawing.Size(0, 14);
             this.mRenameBox.TabIndex = 3;
             this.mRenameBox.TabStop = false;
             this.mRenameBox.Visible = false;
@@ -55,8 +55,8 @@ namespace Obi.UserControls
             // 
             this.mLabel.AutoSize = true;
             this.mLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mLabel.Location = new System.Drawing.Point(7, 3);
-            this.mLabel.Margin = new System.Windows.Forms.Padding(3);
+            this.mLabel.Location = new System.Drawing.Point(3, 3);
+            this.mLabel.Margin = new System.Windows.Forms.Padding(0);
             this.mLabel.Name = "mLabel";
             this.mLabel.Size = new System.Drawing.Size(0, 15);
             this.mLabel.TabIndex = 4;

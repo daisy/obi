@@ -42,7 +42,10 @@ namespace Obi.UserControls
                 {
                     if (mProjectPanel != null) mProjectPanel.DeselectEverythingElse(this);
                     mTocTree.SelectedNode = FindTreeNodeFromSectionNode(value);
-                    SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(true, mTocTree.SelectedNode));
+                    if (SelectionChanged != null)
+                    {
+                        SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(true, mTocTree.SelectedNode));
+                    }
                 }
                 else
                 {

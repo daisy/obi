@@ -153,7 +153,6 @@ namespace Obi.UserControls
         /// </summary>
         private void mLabel_SizeChanged(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.Print("Hi, annotation block here, my size is now {0}.", Size);
             MinimumSize = new Size(mLabel.Width + mLabel.Location.X + mLabel.Margin.Right, Height);
             if (ChangedMinimumSize != null) ChangedMinimumSize(this, new EventArgs());
         }
@@ -200,6 +199,11 @@ namespace Obi.UserControls
             mRenameBox.Visible = true;
             mRenameBox.Focus();
             mManager.AllowShortcuts = true;
+        }
+
+        private void mRenameBox_SizeChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

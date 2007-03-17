@@ -87,7 +87,7 @@ namespace Obi.UserControls
             this.mAddSectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
             this.mAddSectionToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.mAddSectionToolStripMenuItem.Text = "&Insert section";
-            this.mAddSectionToolStripMenuItem.Click += new System.EventHandler(this.mAddSectionToolStripMenuItem_Click);
+            this.mAddSectionToolStripMenuItem.Click += new System.EventHandler(this.mInsertSectionToolStripMenuItem_Click);
             // 
             // mAddSubSectionToolStripMenuItem
             // 

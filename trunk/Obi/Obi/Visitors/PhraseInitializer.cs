@@ -60,35 +60,33 @@ namespace Obi.Visitors
         {
             if (node is PhraseNode)
             {
+                ((PhraseNode)node).Asset = Assets.AudioMediaAsset.Empty;
                 SequenceMedia media = (SequenceMedia)Project.GetMediaForChannel((CoreNode)node, Project.AudioChannelName);
-                List<Assets.AudioClip> clips = new List<Assets.AudioClip>(media.getCount());
-                for (int i = 0; i < media.getCount(); ++i)
+                if (media != null)
                 {
-                    AudioMedia audio = (AudioMedia)media.getItem(i);
-                    try
+                    List<Assets.AudioClip> clips = new List<Assets.AudioClip>(media.getCount());
+                    for (int i = 0; i < media.getCount(); ++i)
                     {
-                        // location is an URI relative to the asset manager location
-                        Uri assetUri = new Uri(mAssManager.BaseURI, audio.getLocation().Location);
-                        string location = System.Text.RegularExpressions.Regex.Replace(assetUri.LocalPath, @"^\\\\localhost\\", "");
-                        clips.Add(new Assets.AudioClip(location, audio.getClipBegin().getAsMilliseconds(),
-                            audio.getClipEnd().getAsMilliseconds()));
+                        AudioMedia audio = (AudioMedia)media.getItem(i);
+                        try
+                        {
+                            // location is an URI relative to the asset manager location
+                            Uri assetUri = new Uri(mAssManager.BaseURI, audio.getLocation().Location);
+                            string location = System.Text.RegularExpressions.Regex.Replace(assetUri.LocalPath, @"^\\\\localhost\\", "");
+                            clips.Add(new Assets.AudioClip(location, audio.getClipBegin().getAsMilliseconds(),
+                                audio.getClipEnd().getAsMilliseconds()));
+                        }
+                        catch (Exception e)
+                        {
+                            mErrorHandler(e.Message);
+                        }
                     }
-                    catch (Exception e)
+                    if (clips.Count == media.getCount())
                     {
-                        mErrorHandler(e.Message);
+                        Assets.AudioMediaAsset asset = mAssManager.NewAudioMediaAsset(clips);
+                        ((PhraseNode)node).Asset = asset;
                     }
                 }
-                if (clips.Count == media.getCount())
-                {
-                    Assets.AudioMediaAsset asset = mAssManager.NewAudioMediaAsset(clips);
-                    ((PhraseNode)node).Asset = asset;
-                }
-                // should let the error handler take care of that
-                else
-                {
-                    ((PhraseNode)node).Asset = Assets.AudioMediaAsset.Empty;
-                }
-
                 // count pages, annotations, and updates the annotation on nodes that have one.
                 if (((PhraseNode)node).PageProperty != null) ++mPages;
                 string annotation =

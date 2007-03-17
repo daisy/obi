@@ -20,16 +20,38 @@ namespace Obi.UserControls
             UpdateEnabledItemsForContextMenu();
         }
 
-        private void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mInsertSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SectionNode section = mProjectPanel.Project.CreateSiblingSectionNode(SelectedSection);
-            StartRenamingSelectedSection();
+            InsertSection();
+        }
+
+        /// <summary>
+        /// Insert a new section in the project before the selected section
+        /// (or at the end if none is selected) and start renaming it.
+        /// </summary>
+        public void InsertSection()
+        {
+            if (mProjectPanel.Project != null)
+            {
+                SectionNode section = mProjectPanel.Project.CreateSiblingSectionNode(SelectedSection);
+                mTocTree.SelectedNode = FindTreeNodeFromSectionNode(section);
+                StartRenamingSelectedSection();
+            }
         }
 
         private void mAddSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SectionNode section = mProjectPanel.Project.CreateChildSectionNode(SelectedSection);
-            StartRenamingSelectedSection();
+            AddSubSection();
+        }
+
+        public void AddSubSection()
+        {
+            if (mProjectPanel.Project != null)
+            {
+                SectionNode section = mProjectPanel.Project.CreateChildSectionNode(SelectedSection);
+                mTocTree.SelectedNode = FindTreeNodeFromSectionNode(section);
+                StartRenamingSelectedSection();
+            }
         }
 
         private void mRenameToolStripMenuItem_Click(object sender, EventArgs e)

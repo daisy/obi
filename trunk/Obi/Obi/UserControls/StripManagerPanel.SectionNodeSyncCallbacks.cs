@@ -14,9 +14,17 @@ namespace Obi.UserControls
 {
     public partial class StripManagerPanel
     {
-        internal void SyncAddedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
+        /// <summary>
+        /// A section was added to the tree, so a strip is added to the strip view.
+        /// </summary>
+        public void SyncAddedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
         {
             AddStripFromNode(e.Node);
+            if (sender == this)
+            {
+                SelectedNode = e.Node;
+                mSectionNodeMap[e.Node].Renaming = true;
+            }
         }
 
         private void AddStripFromNode(SectionNode node)

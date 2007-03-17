@@ -1,36 +1,34 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-
 using urakawa.core;
 
 namespace Obi.Events.Node
 {
-   
     /// <summary>
     /// Communicate events about section nodes
     /// </summary>
     public class SectionNodeEventArgs
     {
-       private SectionNode mNode;  // the node on which the operation is performed
-        private object mOrigin;  // the origin of the event (initial requester)
+        private object mOrigin;
+        private SectionNode mNode;
 
-        public SectionNode Node
-        {
-            get
-            {
-                return mNode;
-            }
-        }
-
+        /// <summary>
+        /// Origin of the event.
+        /// </summary>
         public object Origin
         {
-            get
-            {
-                return mOrigin;
-            }
+            get { return mOrigin; }
         }
 
+        /// <summary>
+        /// Section node on which the action was performed.
+        /// </summary>
+        public SectionNode Node
+        {
+            get { return mNode; }
+        }
+
+        /// <param name="origin">Who is originally responsible for this event.</param>
+        /// <param name="node">Which node is concerned.</param>
         public SectionNodeEventArgs(object origin, SectionNode node)
         {
             mOrigin = origin;

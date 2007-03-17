@@ -213,11 +213,14 @@ namespace Obi.UserControls
                 dialog.Filter = Localizer.Message("audio_file_filter");
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
+                    int index = insert.index;
                     foreach (string path in dialog.FileNames)
                     {
                         mProjectPanel.Project.AddPhraseFromFile(path, insert.node, insert.index);
                         ++insert.index;
                     }
+                    // select the first added phrase
+                    _SelectedPhraseNode = insert.node.PhraseChild(index);
                 }
                 mProjectPanel.TransportBar.Enabled = true;
             }

@@ -32,7 +32,7 @@ namespace Obi.UserControls
             this.label1 = new System.Windows.Forms.Label();
             this.mFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.mContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mAddStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mInsertStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRenameStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mCutStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mCopyStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -93,7 +93,7 @@ namespace Obi.UserControls
             // mContextMenuStrip
             // 
             this.mContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mAddStripToolStripMenuItem,
+            this.mInsertStripToolStripMenuItem,
             this.mRenameStripToolStripMenuItem,
             this.mCutStripToolStripMenuItem,
             this.mCopyStripToolStripMenuItem,
@@ -129,11 +129,11 @@ namespace Obi.UserControls
             // 
             // mAddStripToolStripMenuItem
             // 
-            this.mAddStripToolStripMenuItem.Name = "mAddStripToolStripMenuItem";
-            this.mAddStripToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.mAddStripToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
-            this.mAddStripToolStripMenuItem.Text = "&Insert strip";
-            this.mAddStripToolStripMenuItem.Click += new System.EventHandler(this.mAddStripToolStripMenuItem_Click);
+            this.mInsertStripToolStripMenuItem.Name = "mAddStripToolStripMenuItem";
+            this.mInsertStripToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
+            this.mInsertStripToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
+            this.mInsertStripToolStripMenuItem.Text = "&Insert strip";
+            this.mInsertStripToolStripMenuItem.Click += new System.EventHandler(this.mInsertStripToolStripMenuItem_Click);
             // 
             // mRenameStripToolStripMenuItem
             // 
@@ -388,7 +388,7 @@ namespace Obi.UserControls
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.FlowLayoutPanel mFlowLayoutPanel;
         private System.Windows.Forms.ContextMenuStrip mContextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem mAddStripToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mInsertStripToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mRenameStripToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem mImportAudioFileToolStripMenuItem;

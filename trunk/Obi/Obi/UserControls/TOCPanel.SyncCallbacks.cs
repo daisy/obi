@@ -15,43 +15,23 @@ namespace Obi.UserControls
     {
         /// <summary>
         /// Change the label of the tree view node.
-        /// This is in response to external renames (i.e. those not originating from within the tree view itself)
+        /// This is to respond to external renames.
         /// </summary>
-        /// <param name="sender">The sender of this event notification</param>
-        /// <param name="e"><see cref="e.Node"/> is the tree node being renamed.</param>
         internal void SyncRenamedSectionNode(object sender, Events.Node.RenameSectionNodeEventArgs e)
         {
-            if (e.Origin != this)
-            {
-                TreeNode treeNode = FindTreeNodeWithoutLabel(e.Node);
-                treeNode.Text = e.Label;
-            }
+            TreeNode treeNode = FindTreeNodeWithoutLabel(e.Node);
+            treeNode.Text = e.Label;
         }
-
 
         /// <summary>
         /// Add a section to the tree view. If we were the ones to request its addition, 
         /// also start editing its label right now.
-        ///
-        /// The new heading has already been created as a <see cref="CoreNode"/>.  
-        /// It is in its correct place in the core tree.  
-        /// Now we need to add it as a <see cref="TreeNode"/> so 
-        /// it shows up in the tree view. Internally, the new <see cref="TreeNode"/>
-        /// is given the key of its <see cref="CoreNode"/> object's hash code.
-        /// This makes it faster to find a <see cref="TreeNode"/> 
-        /// based on a given <see cref="CoreNode"/>.
         /// </summary>
-        /// <param name="sender">The sender of this event notification</param>
-        /// <param name="e"><see cref="e.Node"/> is the new heading to add to the tree</param>
-
-        internal void SyncAddedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
+        public void SyncAddedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
         {
             TreeNode newTreeNode = AddSingleSectionNode(e.Node);
-            //start editing if the request to add a node happened in the tree view
-            if (e.Origin == this) newTreeNode.BeginEdit();
             newTreeNode.ExpandAll();
             newTreeNode.EnsureVisible();
-            mTocTree.SelectedNode = newTreeNode;
         }
 
         private TreeNode AddSingleSectionNode(SectionNode node)
