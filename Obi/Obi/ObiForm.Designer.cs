@@ -72,7 +72,6 @@ namespace Obi
             this.mRenameStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.mImportAudioFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mInsertEmptyAudioblockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSplitAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mQuickSplitAudioBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mApplyPhraseDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -460,7 +459,6 @@ namespace Obi
             this.mRenameStripToolStripMenuItem,
             this.toolStripSeparator5,
             this.mImportAudioFileToolStripMenuItem,
-            this.mInsertEmptyAudioblockToolStripMenuItem,
             this.mSplitAudioBlockToolStripMenuItem,
             this.mQuickSplitAudioBlockToolStripMenuItem,
             this.mApplyPhraseDetectionToolStripMenuItem,
@@ -482,9 +480,9 @@ namespace Obi
             this.mStripsToolStripMenuItem.Text = "&Strips";
             this.mStripsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.mStripsToolStripMenuItem_DropDownOpening);
             // 
-            // mAddStripToolStripMenuItem
+            // mInsertStripToolStripMenuItem
             // 
-            this.mInsertStripToolStripMenuItem.Name = "mAddStripToolStripMenuItem";
+            this.mInsertStripToolStripMenuItem.Name = "mInsertStripToolStripMenuItem";
             this.mInsertStripToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
             this.mInsertStripToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
             this.mInsertStripToolStripMenuItem.Text = "&Insert strip";
@@ -510,15 +508,6 @@ namespace Obi
             this.mImportAudioFileToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
             this.mImportAudioFileToolStripMenuItem.Text = "Import &audio file";
             this.mImportAudioFileToolStripMenuItem.Click += new System.EventHandler(this.mImportAudioFileToolStripMenuItem_Click);
-            // 
-            // mInsertEmptyAudioblockToolStripMenuItem
-            // 
-            this.mInsertEmptyAudioblockToolStripMenuItem.Name = "mInsertEmptyAudioblockToolStripMenuItem";
-            this.mInsertEmptyAudioblockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.J)));
-            this.mInsertEmptyAudioblockToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
-            this.mInsertEmptyAudioblockToolStripMenuItem.Text = "Insert empty audio &block";
-            this.mInsertEmptyAudioblockToolStripMenuItem.Visible = false;
-            this.mInsertEmptyAudioblockToolStripMenuItem.Click += new System.EventHandler(this.mInsertEmptyAudioblockToolStripMenuItem_Click);
             // 
             // mSplitAudioBlockToolStripMenuItem
             // 
@@ -1011,7 +1000,6 @@ namespace Obi
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripMenuItem mExportAsDAISYToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMarkAudioBlockAsUnusedToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mInsertEmptyAudioblockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mQuickSplitAudioBlockToolStripMenuItem;
         private Obi.UserControls.ProjectPanel mProjectPanel;
         private System.Windows.Forms.ToolStripMenuItem mPauseToolStripMenuItem;

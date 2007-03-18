@@ -69,6 +69,7 @@ namespace Obi.UserControls
         {
             SectionStrip strip = mSectionNodeMap[e.Node];
             mFlowLayoutPanel.Controls.Remove(strip);
+            if (mSelectedSection == e.Node) _SelectedSectionNode = null;
             mSectionNodeMap.Remove(e.Node);
         }
 
