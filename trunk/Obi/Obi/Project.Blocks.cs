@@ -176,7 +176,7 @@ namespace Obi
         /// </summary>
         /// <param name="node">The original node that was split, with its split asset.</param>
         /// <param name="newAsset">The new asset to create a new phrase node from.</param>
-        public void Split(PhraseNode node, Assets.AudioMediaAsset newAsset)
+        public PhraseNode Split(PhraseNode node, Assets.AudioMediaAsset newAsset)
         {
             PhraseNode newNode = CreatePhraseNode(newAsset);
             node.ParentSection.AddChildPhraseAfter(newNode, node);
@@ -188,6 +188,7 @@ namespace Obi
             Commands.Strips.SplitPhrase command = new Commands.Strips.SplitPhrase(node, newNode);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             Modified();
+            return newNode;
         }
 
         public void ApplyPhraseDetection(PhraseNode node, long threshold, double length, double gap)

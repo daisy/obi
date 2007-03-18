@@ -8,6 +8,7 @@ using urakawa.core;
 
 namespace Obi
 {
+
     /// <summary>
     /// The main for of the application.
     /// The form consists mostly of a menu bar and a project panel.
@@ -1436,7 +1437,6 @@ namespace Obi
             bool canMerge = isProjectOpen && mProjectPanel.StripManager.CanMerge;
 
             bool canInsertPhrase = !isPlaying && isProjectOpen && mProjectPanel.StripManager.CanInsertPhraseNode;
-            mInsertEmptyAudioblockToolStripMenuItem.Enabled = canInsertPhrase;
             mImportAudioFileToolStripMenuItem.Enabled = canInsertPhrase;
 
             mInsertStripToolStripMenuItem.Enabled = isProjectOpen;

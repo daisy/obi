@@ -213,14 +213,14 @@ namespace Obi.UserControls
                 dialog.Filter = Localizer.Message("audio_file_filter");
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    int index = insert.index;
+                    int first_index = insert.index;
                     foreach (string path in dialog.FileNames)
                     {
                         mProjectPanel.Project.AddPhraseFromFile(path, insert.node, insert.index);
                         ++insert.index;
                     }
                     // select the first added phrase
-                    _SelectedPhraseNode = insert.node.PhraseChild(index);
+                    _SelectedPhraseNode = insert.node.PhraseChild(first_index);
                 }
                 mProjectPanel.TransportBar.Enabled = true;
             }
@@ -238,7 +238,10 @@ namespace Obi.UserControls
                 Audio.AudioPlayerState state = mProjectPanel.TransportBar.State;
                 mProjectPanel.TransportBar.Enabled = false;
                 Dialogs.Split dialog = new Dialogs.Split(phrase, time, state);
-                if (dialog.ShowDialog() == DialogResult.OK) mProjectPanel.Project.Split(phrase, dialog.ResultAsset);
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    _SelectedPhraseNode = mProjectPanel.Project.Split(phrase, dialog.ResultAsset);
+                }
                 mProjectPanel.TransportBar.Enabled = true;
             }
         }
