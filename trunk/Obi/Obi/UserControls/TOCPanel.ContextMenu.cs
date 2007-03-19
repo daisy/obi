@@ -119,7 +119,7 @@ namespace Obi.UserControls
 
         public void UpdateEnabledItemsForContextMenu()
         {
-            bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
+            bool isPlaying = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing;
             bool isSelected = SelectedSection != null;
             bool isSelectedUsed = isSelected && SelectedSection.Used;
             bool isParentUsed = isSelected ?

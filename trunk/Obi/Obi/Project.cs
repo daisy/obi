@@ -638,10 +638,10 @@ namespace Obi
         }
 
         /// <summary>
-        /// Temporary convenience for finding the first phrase, i.e. the silence phrase (so far.)
+        /// Find the first phrase in the project.
         /// </summary>
         /// <returns>The first phrase node or null.</returns>
-        internal PhraseNode FindFirstPhrase()
+        public PhraseNode FindFirstPhrase()
         {
             PhraseNode first = null;
             getPresentation().getRootNode().visitDepthFirst
@@ -649,7 +649,7 @@ namespace Obi
                 delegate(ICoreNode n)
                 {
                     if (first != null) return false;
-                    if (n.GetType() == System.Type.GetType("Obi.PhraseNode")) { first = (PhraseNode)n; System.Diagnostics.Debug.Print("bing!"); }
+                    if (n is PhraseNode) first = (PhraseNode)n;
                     return true;
                 },
                 delegate(ICoreNode n) {}

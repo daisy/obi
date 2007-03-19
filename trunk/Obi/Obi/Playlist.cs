@@ -21,14 +21,14 @@ namespace Obi
         private int mCurrentPhraseIndex;          // index of the phrase currently playing
         private double mTotalTime;                // total time of this playlist
         private double mElapsedTime;              // elapsed time *before* the beginning of the current asset
-        private bool mWholeBook;                  // flag for playing whole book or just a selection
+        private bool mIsMaster;                  // flag for playing whole book or just a selection
         private double mPausePosition;            // position in the asset where we  paused
         private AudioPlayerState mPlaylistState;  // playlist state is not always the same as the player state
-        private System.Windows.Forms.Timer PreviewTimer = new Timer();
-        private enum PlayBackState { Normal , Forward , Rewind } ;
-        private PlayBackState mPlayBackState ;
-            
-        private int mPlaybackRate;
+        private Timer mPreviewTimer;              // ???
+        private PlayBackState mPlayBackState;     // current playback state (normal, forward, rewind)    
+        private int mPlaybackRate;                // current playback rate (multiplier)
+
+        private enum PlayBackState { Normal, Forward, Rewind } ;
         private static readonly int[] PlaybackRates = { 1, 2, 4, 8 };
 
         // Amount of time after which "previous phrase" goes to the beginning of the phrase
@@ -54,11 +54,59 @@ namespace Obi
         public event PlaybackRateChangedHandler PlaybackRateChanged;
 
         /// <summary>
+        /// Create an empty playlist (to be populated.)
+        /// </summary>
+        /// <param name="player">The audio player that will play the playlist.</param>
+        public Playlist(AudioPlayer player)
+        {
+            mPlayer = player;
+            Reset(true);
+        }
+
+        /// <summary>
+        /// Create a playlist for a single (presumably selected) node.
+        /// If the node is a phrase, add this only phrase to the playlist.
+        /// If the node is a section, add all of its phrases to the playlist.
+        /// </summary>
+        /// <param name="player">The audio player for this playlist.</param>
+        /// <param name="node">The phrase or section node in the playlist.</param>
+        public Playlist(AudioPlayer player, ObiNode node)
+        {
+            mPlayer = player;
+            Reset(false);
+            AddPhraseNodes(node);
+            SetEventHandlers();
+            SetupPreviewTimer();
+        }
+
+        public Project Project
+        {
+            set
+            {
+                Reset(true);
+                if (value != null)
+                {
+                    AddPhraseNodes(value.RootNode);
+                    SetEventHandlers();
+                    SetupPreviewTimer();
+                }
+            }
+        }
+
+        /// <summary>
         /// Get the audio player for the playlist. Useful for setting up event listeners.
         /// </summary>
         public AudioPlayer Audioplayer
         {
             get { return mPlayer; }
+        }
+
+        /// <summary>
+        /// First phrase in the playlist, or null if empty.
+        /// </summary>
+        public PhraseNode FirstPhrase
+        {
+            get { return mPhrases.Count > 0 ? mPhrases[0] : null; }
         }
 
         /// <summary>
@@ -246,7 +294,7 @@ namespace Obi
         /// </summary>
         public bool WholeBook
         {
-            get { return mWholeBook; }
+            get { return mIsMaster; }
         }
 
         public int PlaybackRate
@@ -254,57 +302,28 @@ namespace Obi
             get { return PlaybackRates[mPlaybackRate] * (mPlayBackState == PlayBackState.Rewind ? -1 : 1); }
         }
 
-        /// <summary>
-        /// Create a playlist for the whole project.
-        /// The playlist contains all phrase nodes.
-        /// </summary>
-        /// <param name="player">The audio player for this playlist.</param>
-        public Playlist(Project project, AudioPlayer player)
+        private void Reset(bool isMaster)
         {
-            InitPlaylist(player, project.RootNode, true);
-        }
-
-        /// <summary>
-        /// Create a playlist for a single (presumably selected) node.
-        /// If the node is a phrase, add this only phrase to the playlist.
-        /// If the node is a section, add all of its phrases to the playlist.
-        /// </summary>
-        /// <param name="player">The audio player for this playlist.</param>
-        /// <param name="node">The phrase or section node in the playlist.</param>
-        public Playlist(AudioPlayer player, CoreNode node)
-        {
-            InitPlaylist(player, node, false);
-        }
-
-        /// <summary>
-        /// Initialize the playlist with the given node and project.
-        /// </summary>
-        /// <param name="player">The audio player for this playlist.</param>
-        /// <param name="node">The node from which to initialize the playlist.</param>
-        /// <param name="wholeBook">Flag telling whether we are playing the whole book.</param>
-        private void InitPlaylist(AudioPlayer player, CoreNode node, bool wholeBook)
-        {
-            mPlayer = player;
             mPhrases = new List<PhraseNode>();
             mStartTimes = new List<double>();
-            mStartTimes = new List<double>();
-            mCurrentPhraseIndex = 0;
-            mElapsedTime = 0.0;
             mTotalTime = 0.0;
-            mWholeBook = wholeBook;
-            mPausePosition = 0.0;
             mPlaybackRate = 0;
+            mPlayBackState = PlayBackState.Normal;
             mPlaylistState = mPlayer.State;
-            System.Diagnostics.Debug.Assert(mPlaylistState == AudioPlayerState.Stopped,
-                "Audio player and playlist should be stopped.");
+            mIsMaster = isMaster;
+            if (mPreviewTimer == null) mPreviewTimer = new Timer();
+        }
+
+        private void AddPhraseNodes(CoreNode node)
+        {
             node.visitDepthFirst
             (
                 // Add all phrase nodes underneath (and including) the starting node.
-                // A phrase is excluded if it is marked as unused and the whole book
-                // is playing.
+                // A phrase is excluded if it is marked as unused and the playlist is
+                // is the master playlist.
                 delegate(ICoreNode n)
                 {
-                    if (n is PhraseNode && (!mWholeBook || ((PhraseNode)n).Used))
+                    if (n is PhraseNode && (!mIsMaster || ((PhraseNode)n).Used))
                     {
                         mPhrases.Add((PhraseNode)n);
                         mStartTimes.Add(mTotalTime);
@@ -315,26 +334,30 @@ namespace Obi
                 // nothing to do in post-visit
                 delegate(ICoreNode n) { }
             );
-            // mPlayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
+        }
+
+        private void SetEventHandlers()
+        {
             mPlayer.StateChanged += new Events.Audio.Player.StateChangedHandler
             (
                 // Intercept state change events from the player, and only pass along those that
                 // involve the "not ready" state.
                 delegate(object sender, Events.Audio.Player.StateChangedEventArgs e)
                 {
-                    if (e.OldState == AudioPlayerState.NotReady || mPlayer.State == AudioPlayerState.NotReady)
+                    if ((e.OldState == AudioPlayerState.NotReady || mPlayer.State == AudioPlayerState.NotReady) &&
+                        StateChanged != null)
                     {
                         StateChanged(this, e);
                     }
                 }
             );
+        }
 
-            mPlayBackState = PlayBackState.Normal;
-            // associate preview timer
-            PreviewTimer.Tick += new System.EventHandler(PreviewTimer_Tick);
-            PreviewTimer.Enabled = false;
-            PreviewTimer.Interval = 200;
-
+        private void SetupPreviewTimer()
+        {
+            mPreviewTimer.Tick += new System.EventHandler(PreviewTimer_Tick);
+            mPreviewTimer.Enabled = false;
+            mPreviewTimer.Interval = 200;
         }
 
         /// <summary>
@@ -345,7 +368,6 @@ namespace Obi
             System.Diagnostics.Debug.Assert(mPlaylistState == AudioPlayerState.Stopped, "Only play from stopped state.");
             // stop Fwd/Rwd if going on
             StopForwardRewind();
-
             if (mCurrentPhraseIndex < mPhrases.Count) PlayPhrase(mCurrentPhraseIndex);
         }
 
@@ -451,8 +473,8 @@ namespace Obi
                 mPlayBackState = PlayBackState.Rewind ;
                 mPlayer.m_EventsEnabled = false;
                 mPlayer.Stop();
-                PreviewTimer.Interval = 100;
-                PreviewTimer.Start();
+                mPreviewTimer.Interval = 100;
+                mPreviewTimer.Start();
                 
 
             }
@@ -477,8 +499,8 @@ namespace Obi
                 mPlayBackState = PlayBackState.Forward;
                 mPlayer.m_EventsEnabled = false;
                 mPlayer.Stop();
-                PreviewTimer.Interval = 100;
-                PreviewTimer.Start();
+                mPreviewTimer.Interval = 100;
+                mPreviewTimer.Start();
                 
 
             }
@@ -500,10 +522,10 @@ namespace Obi
         {
             double StepInMs = 6000 * mPlaybackRate ;
             int PlayChunkLength = 1200;
-            PreviewTimer.Interval = PlayChunkLength + 50  ;
+            mPreviewTimer.Interval = PlayChunkLength + 50  ;
             if (mPlayBackState == PlayBackState.Forward)
             {
-                if (( m_CurrentAudioAsset.LengthInMilliseconds - mPausePosition) > ( StepInMs  + PreviewTimer.Interval  ))
+                if (( m_CurrentAudioAsset.LengthInMilliseconds - mPausePosition) > ( StepInMs  + mPreviewTimer.Interval  ))
                 {
                     
                     mPausePosition = mPausePosition +  StepInMs ;
@@ -519,7 +541,7 @@ namespace Obi
                         SkipToPhrase(mCurrentPhraseIndex);
                         
                         mPausePosition = StepInMs * (-1) ;
-                        PreviewTimer.Interval = 50;
+                        mPreviewTimer.Interval = 50;
                     }
                     else
                     StopForwardRewind();                    
@@ -543,7 +565,7 @@ else if ( mPlayBackState == PlayBackState.Rewind )
             SkipToPhrase(mCurrentPhraseIndex);
 
             mPausePosition =  ( m_CurrentAudioAsset.LengthInMilliseconds - PlayChunkLength  ) + StepInMs ;
-            PreviewTimer.Interval = 50;
+            mPreviewTimer.Interval = 50;
         }
         else
             StopForwardRewind();                    
@@ -558,9 +580,9 @@ else if ( mPlayBackState == PlayBackState.Rewind )
         /// </summary>
         private void StopForwardRewind()
         {
-            if ( mPlayBackState != PlayBackState.Normal     ||  PreviewTimer.Enabled == true )
+            if ( mPlayBackState != PlayBackState.Normal     ||  mPreviewTimer.Enabled == true )
             {
-                PreviewTimer.Enabled = false;
+                mPreviewTimer.Enabled = false;
                 mPlaybackRate = 0;
                 mPlayBackState = PlayBackState.Normal;
                 mPlayer.Stop();
@@ -670,6 +692,58 @@ else if ( mPlayBackState == PlayBackState.Rewind )
             mElapsedTime = mStartTimes[mCurrentPhraseIndex];
             System.Diagnostics.Debug.Print(">>> Moved to phrase {0}", index);
             if (MovedToPhrase != null) MovedToPhrase(this, new Events.Node.PhraseNodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
+        }
+
+        /// <summary>
+        /// Add a new phrase node at the right spot in the (master) playlist.
+        /// The phrase that comes before it should already be in the playlist.
+        /// </summary>
+        /// <param name="node">The phrase node to add.</param>
+        public void AddPhrase(PhraseNode node)
+        {
+            PhraseNode prev = node.PreviousPhraseInProject;
+            int index = prev == null ? 0 : mPhrases.IndexOf(prev) + 1;
+            mPhrases.Insert(index, node);
+            mStartTimes.Add(0.0);
+            UpdateTimeFromIndex(index - 1);
+        }
+
+        /// <summary>
+        /// Remove a phrase node from the (master) playlist.
+        /// </summary>
+        /// <param name="node">The phrase node to remove.</param>
+        public void RemovePhrase(PhraseNode node)
+        {
+            int index = mPhrases.IndexOf(node);
+            mPhrases.RemoveAt(index);
+            mStartTimes.RemoveAt(index);
+            double length = node.Asset.LengthInMilliseconds;
+            mTotalTime -= length;
+            for (int i = index + 1; i < mStartTimes.Count; ++i) mStartTimes[i] -= length;
+            System.Diagnostics.Debug.Print("--- Playlist: {0} phrase(s), length = {1}ms.", mPhrases.Count, mTotalTime);
+        }
+
+        /// <summary>
+        /// A node's media has changed so change the timing info.
+        /// </summary>
+        /// <param name="node"></param>
+        public void UpdateTimeFrom(PhraseNode node)
+        {
+            if (mPhrases.Contains(node))
+            {
+                int index = mPhrases.IndexOf(node);
+                UpdateTimeFromIndex(index);
+            }
+        }
+
+        private void UpdateTimeFromIndex(int index)
+        {
+            for (int i = index + 1; i < mStartTimes.Count; ++i)
+            {
+                mStartTimes[i] = mStartTimes[i - 1] + mPhrases[i - 1].Asset.LengthInMilliseconds;
+            }
+            mTotalTime = mStartTimes[mStartTimes.Count - 1] + mPhrases[mStartTimes.Count - 1].Asset.LengthInMilliseconds;
+            System.Diagnostics.Debug.Print("!!! Playlist: {0} phrase(s), length = {1}ms.", mPhrases.Count, mTotalTime);
         }
     }
 }

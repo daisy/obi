@@ -26,6 +26,20 @@ namespace Obi
         }
 
         /// <summary>
+        /// Find the first used phrase in the section, if any.
+        /// Return null if no such phrase exists.
+        /// </summary>
+        public PhraseNode FirstUsedPhrase
+        {
+            get
+            {
+                int i;
+                for (i = 0; i < PhraseChildCount && !PhraseChild(i).Used; ++i) { }
+                return i < PhraseChildCount && PhraseChild(i).Used ? PhraseChild(i) : null;
+            }
+        }
+
+        /// <summary>
         /// The label of the node is its title.
         /// </summary>
         public string Label
