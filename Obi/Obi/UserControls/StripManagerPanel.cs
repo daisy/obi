@@ -305,7 +305,7 @@ namespace Obi.UserControls
         /// </summary>
         private void mFlowLayoutPanel_Click(object sender, EventArgs e)
         {
-            if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Stopped)
+            if (mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
                 SelectedNode = null;
         }
 

@@ -108,8 +108,7 @@ namespace Obi.UserControls
         private void AudioBlock_DoubleClick(object sender, EventArgs e)
         {
             mManager.SelectedNode = mNode;
-            // should be handled by the project panel's transport bar
-            ((ObiForm)mManager.ParentForm).Play(mNode);
+            mManager.ProjectPanel.TransportBar.Play(mNode);
         }
 
         #endregion

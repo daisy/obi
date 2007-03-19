@@ -86,6 +86,27 @@ namespace Obi
         }
 
         /// <summary>
+        /// Previous phrase node in linear order in the whole project.
+        /// Null if it is the first phrase in the project.
+        /// </summary>
+        public PhraseNode PreviousPhraseInProject
+        {
+            get
+            {
+                PhraseNode prev = PreviousPhraseInSection;
+                if (prev == null)
+                {
+                    SectionNode prevSection;
+                    for (prevSection = ParentSection.PreviousSection;
+                        prevSection != null && prevSection.PhraseChildCount == 0;
+                        prevSection = prevSection.PreviousSection) { }
+                    if (prevSection != null && prevSection.PhraseChildCount != 0) prev = prevSection.PhraseChild(-1);
+                }
+                return prev;
+            }
+        }
+
+        /// <summary>
         /// Previous phrase for this phrase in its section. Null if this phrase is the first one.
         /// </summary>
         public PhraseNode PreviousPhraseInSection

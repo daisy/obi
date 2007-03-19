@@ -104,12 +104,12 @@ namespace Obi
         /// </summary>
         void TransportBar_StateChanged(object sender, Obi.Events.Audio.Player.StateChangedEventArgs e)
         {
-            Status(Localizer.Message(mProjectPanel.TransportBar.State.ToString()));
+            Status(Localizer.Message(mProjectPanel.TransportBar._CurrentPlaylist.State.ToString()));
         }
 
         void TransportBar_PlaybackRateChanged(object sender, EventArgs e)
         {
-            Status(String.Format(Localizer.Message("playback_rate"), mProjectPanel.TransportBar.Playlist.PlaybackRate));
+            Status(String.Format(Localizer.Message("playback_rate"), mProjectPanel.TransportBar._CurrentPlaylist.PlaybackRate));
         }
 
 
@@ -869,7 +869,7 @@ namespace Obi
             bool isNodeSelected = isProjectOpen && mProjectPanel.SelectedNode != null;
 
             mShowHideVUMeterToolStripMenuItem.Text = Localizer.Message(mVuMeterForm.Visible ? "hide_vu_meter" : "show_vu_meter");
-            if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Stopped)
+            if (mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
             {
                 mPlayAllToolStripMenuItem.Enabled = isProjectOpen;
                 //mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
@@ -877,7 +877,7 @@ namespace Obi
                 //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
                 mStopToolStripMenuItem.Enabled = isNodeSelected;
             }
-            else if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.NotReady)
+            else if (mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.NotReady)
             {
                 mPlayAllToolStripMenuItem.Enabled = false;
                 //mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
@@ -885,19 +885,19 @@ namespace Obi
                 //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
                 mStopToolStripMenuItem.Enabled = false;
             }
-            else if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Paused)
+            else if (mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused)
             {
-                mPlayAllToolStripMenuItem.Enabled = mProjectPanel.TransportBar.Playlist.WholeBook;
+                mPlayAllToolStripMenuItem.Enabled = mProjectPanel.TransportBar._CurrentPlaylist.WholeBook;
                 //mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
-                mPlaySelectionToolStripMenuItem.Enabled = !mProjectPanel.TransportBar.Playlist.WholeBook;
+                mPlaySelectionToolStripMenuItem.Enabled = !mProjectPanel.TransportBar._CurrentPlaylist.WholeBook;
                 //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
                 mStopToolStripMenuItem.Enabled = true;
             }
             else // playing
             {
-                mPlayAllToolStripMenuItem.Enabled = mProjectPanel.TransportBar.Playlist.WholeBook;
+                mPlayAllToolStripMenuItem.Enabled = mProjectPanel.TransportBar._CurrentPlaylist.WholeBook;
                 //mPlayAllToolStripMenuItem.Text = Localizer.Message("pause_all");
-                mPlaySelectionToolStripMenuItem.Enabled = !mProjectPanel.TransportBar.Playlist.WholeBook;
+                mPlaySelectionToolStripMenuItem.Enabled = !mProjectPanel.TransportBar._CurrentPlaylist.WholeBook;
                 //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("pause");
                 mStopToolStripMenuItem.Enabled = true;
             }
@@ -966,7 +966,7 @@ namespace Obi
         /// <summary>
         /// Play a single phrase node using the transport bar.
         /// </summary>
-        internal void Play(urakawa.core.CoreNode node)
+        private void Play(ObiNode node)
         {
             mProjectPanel.TransportBar.Play(node);
         }
@@ -1021,7 +1021,7 @@ namespace Obi
 
         private void TransportBar_PreviousPhrase()
         {
-            if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Stopped)
+            if (mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
             {
             }
             else
@@ -1037,7 +1037,7 @@ namespace Obi
 
         private void TransportBar_NextPhrase()
         {
-            if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Stopped)
+            if (mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
             {
             }
             else
@@ -1273,7 +1273,7 @@ namespace Obi
         /// </summary>
         private void StopIfPaused()
         {
-            if (mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Paused)
+            if (mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused)
                 mProjectPanel.TransportBar.Stop();
         }
 
@@ -1315,7 +1315,7 @@ namespace Obi
         {
             bool isProjectOpen = mProject != null;
             bool isProjectModified = isProjectOpen && mProject.Unsaved;
-            bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
+            bool isPlaying = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing;
 
             mNewProjectToolStripMenuItem.Enabled = !isPlaying;
             mOpenProjectToolStripMenuItem.Enabled = !isPlaying;
@@ -1335,7 +1335,7 @@ namespace Obi
         {
             UpdateEnabledItemsForUndoRedo();
 
-            bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
+            bool isPlaying = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing;
             bool canCutCopyDelete = !isPlaying && mProjectPanel.CanCutCopyDeleteNode;
             string itemLabel = mProjectPanel.SelectedLabel;
             if (itemLabel != "") itemLabel = " " + itemLabel;
@@ -1363,7 +1363,7 @@ namespace Obi
         /// </summary>
         private void UpdateEnabledItemsForUndoRedo()
         {
-            bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
+            bool isPlaying = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing;
             if (mCommandManager.HasUndo)
             {
                 mUndoToolStripMenuItem.Enabled = !isPlaying;
@@ -1397,7 +1397,7 @@ namespace Obi
                 Localizer.Message(mProjectPanel.TOCPanelVisible ? "hide_toc_label" : "show_toc_label");
             mShowhideTableOfContentsToolStripMenuItem.Enabled = mProject != null;
 
-            bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
+            bool isPlaying = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing;
             bool isProjectOpen = mProject != null;
             bool noNodeSelected = isProjectOpen && mProjectPanel.SelectedNode == null;
             bool isSectionNodeSelected = isProjectOpen && mProjectPanel.TOCPanel.SelectedSection != null;
@@ -1424,7 +1424,7 @@ namespace Obi
 
         private void UpdateEnabledItemsForStripsMenu()
         {
-            bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
+            bool isPlaying = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing;
             bool isProjectOpen = mProject != null;
             bool isStripSelected = isProjectOpen && mProjectPanel.StripManager.SelectedSectionNode != null;
             bool isAudioBlockSelected = isProjectOpen && mProjectPanel.StripManager.SelectedPhraseNode != null;

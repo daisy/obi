@@ -11,8 +11,14 @@ namespace Obi.UserControls
     public partial class TransportBar : UserControl
     {
         private ProjectPanel mProjectPanel;  // project panel to which the transport bar belongs
-        private Playlist mPlaylist;          // current playlist (may be null)
-        private ObiNode mPreviousSelection;  // selection before playback started
+        private Playlist mMasterPlaylist;    // master playlist (all phrases in the project)
+        private Playlist mLocalPlaylist;     // local playlist (only selected; may be null)
+        private Playlist mCurrentPlaylist;   // playlist currently playing
+        private ObiNode mPlayingFrom;        // selection before playback started
+
+        // some invariants:
+        // Enabled => mCurrentPlaylist != null
+        // mLocalPlaylist != null => mMasterPlaylist != null
 
         // constants from the display combo box
         private static readonly int Elapsed = 0;
@@ -24,18 +30,29 @@ namespace Obi.UserControls
         public event Events.Audio.Player.StateChangedHandler StateChanged;
         public event EventHandler PlaybackRateChanged;
 
-        /// <summary>
-        /// Get/set the parent project panel.
-        /// </summary>
-        public ProjectPanel ProjectPanel
+        #region properties
+
+        public bool CanPlay
         {
-            get { return mProjectPanel; }
-            set
-            {
-                mProjectPanel = value;
-                if (value != null)
-                    value.StripManager.SelectionChanged += new Obi.Events.SelectedHandler(StripManager_Selected);
-            }
+            get { return Enabled && mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped; }
+        }
+
+        public bool CanRecord
+        {
+            get { return Enabled && mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped; }
+        }
+
+        public bool CanResume
+        {
+            get { return Enabled && mCurrentPlaylist.State == Audio.AudioPlayerState.Paused; }
+        }
+
+        /// <summary>
+        /// The playlist currently playing, or the master playlist by default.
+        /// </summary>
+        public Playlist _CurrentPlaylist
+        {
+            get { return mCurrentPlaylist; }
         }
 
         /// <summary>
@@ -47,91 +64,47 @@ namespace Obi.UserControls
             get { return base.Enabled; }
             set
             {
-                if (Enabled && !value &&
-                    (State == Obi.Audio.AudioPlayerState.Playing ||
-                    State == Obi.Audio.AudioPlayerState.Paused))
+                if (base.Enabled && !value &&
+                    (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing ||
+                    mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused))
                 {
                     Stop();
                 }
                 base.Enabled = value;
             }
         }
-        
-        /// <summary>
-        /// Everything can be solved by adding a new layer of indirection. So here it is.
-        /// </summary>
-        public Audio.AudioPlayerState State
-        {
-            get { return mPlaylist == null ? Audio.AudioPlayerState.Stopped : mPlaylist.State; }
-        }
 
         /// <summary>
-        /// Predicate telling if play is possible.
+        /// The local playlist allows to only play a selection.
         /// </summary>
-        public bool CanPlay
+        public Playlist LocalPlaylist
         {
-            get
-            {
-                return Enabled &&
-                    mProjectPanel.Project != null &&
-                    Playlist.State == Audio.AudioPlayerState.Stopped;
-            }
-        }
-
-        /// <summary>
-        /// Predicate telling if resume is possible.
-        /// </summary>
-        public bool CanResume
-        {
-            get
-            {
-                return Enabled &&
-                    Playlist.State == Audio.AudioPlayerState.Paused;
-            }
-        }
-
-        /// <summary>
-        /// Whether recording is currently possible.
-        /// </summary>
-        public bool CanRecord
-        {
-            get
-            {
-                return Enabled &&
-                    mProjectPanel.Project != null &&
-                    (mPlaylist == null || mPlaylist.State == Audio.AudioPlayerState.Stopped);
-            }
-        }
-
-        /// <summary>
-        /// Set the playlist to be handled by the transport bar.
-        /// </summary>
-        /// <remarks>Setting a null playlist always disables the transport bar.</remarks>
-        public Playlist Playlist
-        {
-            get
-            {
-                if (mPlaylist == null && Parent is ProjectPanel && mProjectPanel.Project != null)
-                {
-                    Playlist = new Playlist(mProjectPanel.Project, Audio.AudioPlayer.Instance);
-                }
-                return mPlaylist;
-            }
+            get { return mLocalPlaylist; }
             set
             {
-                mPlaylist = value;
-                Enabled = value != null;
-                if (value != null)
-                {
-                    mPlaylist.MovedToPhrase += new Playlist.MovedToPhraseHandler(Play_MovedToPhrase);
-                    mPlaylist.StateChanged += new Events.Audio.Player.StateChangedHandler(Play_PlayerStateChanged);
-                    mPlaylist.PlaybackRateChanged += new Playlist.PlaybackRateChangedHandler(mPlaylist_PlaybackRateChanged);
-                    mPlaylist.EndOfPlaylist += new Playlist.EndOfPlaylistHandler(Play_PlayerStopped);
-                    mPreviousSelection = mProjectPanel.SelectedNode;
-                    mDisplayBox.SelectedIndex = mPlaylist.WholeBook ? ElapsedTotal : Elapsed;
-                }
+                mLocalPlaylist = value;
+                if (value != null) SetPlaylistEvents(mLocalPlaylist);
             }
         }
+
+        /// <summary>
+        /// The master playlist is automatically maintained and canot be modified.
+        /// </summary>
+        public Playlist MasterPlaylist
+        {
+            get { return mMasterPlaylist; }
+        }
+
+        /// <summary>
+        /// Get/set the parent project panel.
+        /// </summary>
+        public ProjectPanel ProjectPanel
+        {
+            get { return mProjectPanel; }
+            set { mProjectPanel = value; }
+        }
+
+        #endregion
 
         /// <summary>
         /// Initialize the transport bar.
@@ -139,26 +112,70 @@ namespace Obi.UserControls
         public TransportBar()
         {
             InitializeComponent();
-            Enabled = false;
-            mPlaylist = null;
+            mLocalPlaylist = null;
+            mMasterPlaylist = new Playlist(Audio.AudioPlayer.Instance);
+            SetPlaylistEvents(mMasterPlaylist);
+            mCurrentPlaylist = mMasterPlaylist;
             mDisplayBox.SelectedIndex = ElapsedTotal;
             mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
-            mProjectPanel = null;  // to be set when the project panel is initialized
+            mProjectPanel = null;
+        }
+
+        #region playlist events
+
+        private void SetPlaylistEvents(Playlist playlist)
+        {
+            playlist.MovedToPhrase += new Playlist.MovedToPhraseHandler(Play_MovedToPhrase);
+            playlist.StateChanged += new Events.Audio.Player.StateChangedHandler(Play_PlayerStateChanged);
+            playlist.PlaybackRateChanged += new Playlist.PlaybackRateChangedHandler(mPlaylist_PlaybackRateChanged);
+            playlist.EndOfPlaylist += new Playlist.EndOfPlaylistHandler(Play_PlayerStopped);
         }
 
         /// <summary>
-        /// Handles selection of phrases in the strip manager; i.e. move to the selected phrase.
+        /// Highlight (i.e. select) the phrase currently playing.
         /// </summary>
-        void StripManager_Selected(object sender, Obi.Events.Node.SelectedEventArgs e)
+        private void Play_MovedToPhrase(object sender, Events.Node.PhraseNodeEventArgs e)
         {
-            if (e.Selected && e.Widget is AudioBlock)
-            {
-                PhraseNode phrase = ((AudioBlock)e.Widget).Node;
-                System.Diagnostics.Debug.Print("!!! Selected phrase caught ({0})",
-                    Playlist.CurrentPhrase == phrase ? "same" : "new");
-                if (Playlist.CurrentPhrase != phrase) Playlist.CurrentPhrase = (PhraseNode)phrase;
-            }
+            mProjectPanel.StripManager.SelectedNode = e.Node;
         }
+
+        /// <summary>
+        /// Update the transport bar according to the player state.
+        /// </summary>
+        private void Play_PlayerStateChanged(object sender, Obi.Events.Audio.Player.StateChangedEventArgs e)
+        {
+            if (mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped)
+            {
+                mDisplayTimer.Stop();
+                Play_PlayerStopped(this, null);
+            }
+            else if (mCurrentPlaylist.State == Audio.AudioPlayerState.Playing)
+            {
+                mDisplayTimer.Start();
+            }
+            if (StateChanged != null) StateChanged(this, e);
+            UpdateTimeDisplay();
+        }
+
+        /// <summary>
+        /// Simply pass the playback rate chang event.
+        /// </summary>
+        private void mPlaylist_PlaybackRateChanged(object sender, EventArgs e)
+        {
+            if (PlaybackRateChanged != null) PlaybackRateChanged(sender, e);
+        }
+
+        /// <summary>
+        /// Update the transport bar once the player has stopped.
+        /// </summary>
+        private void Play_PlayerStopped(object sender, EventArgs e)
+        {
+            mProjectPanel.StripManager.SelectedNode = mPlayingFrom;
+        }
+
+        #endregion
+
+        #region buttons
 
         private void mPrevSectionButton_Click(object sender, EventArgs e)
         {
@@ -170,7 +187,7 @@ namespace Obi.UserControls
         /// </summary>
         public void PrevSection()
         {
-            if (Enabled) mPlaylist.NavigateToPreviousSection();
+            if (Enabled) mCurrentPlaylist.NavigateToPreviousSection();
         }
 
         private void mPrevPhraseButton_Click(object sender, EventArgs e)
@@ -183,7 +200,7 @@ namespace Obi.UserControls
         /// </summary>
         public void PrevPhrase()
         {
-            if (Enabled) Playlist.NavigateToPreviousPhrase();
+            if (Enabled) mCurrentPlaylist.NavigateToPreviousPhrase();
         }
 
         private void mRewindButton_Click(object sender, EventArgs e)
@@ -198,15 +215,8 @@ namespace Obi.UserControls
         {
             if (Enabled)
             {
-                if (Playlist.State == Obi.Audio.AudioPlayerState.Playing)
-                {
-                    Pause();
-                    Playlist.Rewind();
-                }
-                else if (Playlist.State == Obi.Audio.AudioPlayerState.Paused)
-                {
-                    Playlist.Rewind();
-                }
+                if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing) Pause();
+                if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused) mCurrentPlaylist.Rewind();
             }
         }
 
@@ -216,44 +226,72 @@ namespace Obi.UserControls
         }
 
         /// <summary>
-        /// Play or resume.
+        /// Find the phrase to play from from the selected one in the project panel.
         /// </summary>
-        /// <remarks>Create a new playlist everytime we start playing. We could be smarter about this.</remarks>
+        private PhraseNode InitialPhrase
+        {
+            get
+            {
+                if (mProjectPanel != null)
+                {
+                    if (mProjectPanel.SelectedNode != null && mProjectPanel.SelectedNode.Used)
+                    {
+                        if (mProjectPanel.SelectedNode is PhraseNode) return (PhraseNode)mProjectPanel.SelectedNode;
+                        if (((SectionNode)mProjectPanel.SelectedNode).FirstUsedPhrase != null)
+                        {
+                            return ((SectionNode)mProjectPanel.SelectedNode).FirstUsedPhrase;
+                        }
+                    }
+                    return mCurrentPlaylist.FirstPhrase;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Play the master playlist, starting from the selected phrase, or the first phrase of
+        /// the selected section or the beginning of the project.
+        /// </summary>
         public void Play()
         {
             if (CanPlay)
             {
-                if (mPlaylist == null || mPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
+                mPlayingFrom = mProjectPanel.SelectedNode;
+                mCurrentPlaylist = mMasterPlaylist;
+                mCurrentPlaylist.CurrentPhrase = InitialPhrase;
+                if (mCurrentPlaylist.CurrentPhrase != null)
                 {
-                    PhraseNode phrase = Playlist.CurrentPhrase;
-                    Playlist = new Playlist(mProjectPanel.Project, Audio.AudioPlayer.Instance);
-                    Playlist.CurrentPhrase = phrase;
                     mVUMeterPanel.Enable = true;
-                    mVUMeterPanel.PlayListObj = mPlaylist;
+                    mVUMeterPanel.PlayListObj = mCurrentPlaylist;
+                    mCurrentPlaylist.Play();
                 }
-                mPlaylist.Play();
             }
             else if (CanResume)
             {
-                mPlaylist.Resume();
+                mCurrentPlaylist.Resume();
             }
         }
 
         /// <summary>
         /// Play a single node (phrase or section).
         /// </summary>
-        public void Play(urakawa.core.CoreNode node)
+        public void Play(ObiNode node)
         {
             if (CanPlay)
             {
-                Playlist = new Playlist(Audio.AudioPlayer.Instance, node);
-                mPlaylist.Play();
+                mPlayingFrom = mProjectPanel.SelectedNode;
+                mLocalPlaylist = new Playlist(Audio.AudioPlayer.Instance, node);
+                mCurrentPlaylist = mLocalPlaylist;
+                mCurrentPlaylist.Play();
+                mVUMeterPanel.PlayListObj = mCurrentPlaylist;
                 mVUMeterPanel.Enable = true;
-                mVUMeterPanel.PlayListObj = mPlaylist;
             }
             else if (CanResume)
             {
-                mPlaylist.Resume();
+                mCurrentPlaylist.Resume();
             }
         }
 
@@ -267,7 +305,7 @@ namespace Obi.UserControls
         /// </summary>
         public void Pause()
         {
-            if (Enabled) Playlist.Pause();
+            if (Enabled) mCurrentPlaylist.Pause();
         }
 
         private void mRecordButton_Click(object sender, EventArgs e)
@@ -353,13 +391,14 @@ namespace Obi.UserControls
             if (Enabled)
             {
                 // Stopping again deselects everything
-                if (State == Obi.Audio.AudioPlayerState.Stopped)
+                if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
                 {
                     mProjectPanel.StripManager.SelectedNode = null;
                 }
-                else if (mPlaylist != null)
+                else
                 {
-                    mPlaylist.Stop();
+                    mCurrentPlaylist.Stop();
+                    mProjectPanel.SelectedNode = mPlayingFrom;
                 }
             }
         }
@@ -376,15 +415,8 @@ namespace Obi.UserControls
         {
             if (Enabled)
             {
-                if (Playlist.State == Obi.Audio.AudioPlayerState.Playing)
-                {
-                    Pause();
-                    Playlist.FastForward();
-                }
-                else if (Playlist.State == Obi.Audio.AudioPlayerState.Paused)
-                {
-                    Playlist.FastForward();
-                }
+                if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing) Pause();
+                if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused) mCurrentPlaylist.FastForward();
             }
         }
 
@@ -398,7 +430,7 @@ namespace Obi.UserControls
         /// </summary>
         public void NextPhrase()
         {
-            if (Enabled) Playlist.NavigateToNextPhrase();
+            if (Enabled) mCurrentPlaylist.NavigateToNextPhrase();
         }
 
         private void mNextSectionButton_Click(object sender, EventArgs e)
@@ -411,50 +443,10 @@ namespace Obi.UserControls
         /// </summary>
         public void NextSection()
         {
-            if (Enabled) mPlaylist.NavigateToNextSection();
+            if (Enabled) mCurrentPlaylist.NavigateToNextSection();
         }
 
-        /// <summary>
-        /// Update the transport bar according to the player state.
-        /// </summary>
-        private void Play_PlayerStateChanged(object sender, Obi.Events.Audio.Player.StateChangedEventArgs e)
-        {
-            if (mPlaylist.State == Audio.AudioPlayerState.Stopped)
-            {
-                mDisplayTimer.Stop();
-                Play_PlayerStopped(this, null);
-            }
-            else if (mPlaylist.State == Audio.AudioPlayerState.Playing)
-            {
-                mDisplayTimer.Start();
-            }
-            if (StateChanged != null) StateChanged(this, e);
-            UpdateTimeDisplay();
-        }
-
-        /// <summary>
-        /// Simply pass the playback rate chang event.
-        /// </summary>
-        private void mPlaylist_PlaybackRateChanged(object sender, EventArgs e)
-        {
-            if (PlaybackRateChanged != null) PlaybackRateChanged(sender, e);
-        }
-
-        /// <summary>
-        /// Update the transport bar once the player has stopped.
-        /// </summary>
-        private void Play_PlayerStopped(object sender, EventArgs e)
-        {
-            mProjectPanel.StripManager.SelectedNode = mPreviousSelection;
-        }
-
-        /// <summary>
-        /// Highlight (i.e. select) the phrase currently playing.
-        /// </summary>
-        private void Play_MovedToPhrase(object sender, Events.Node.PhraseNodeEventArgs e)
-        {
-            mProjectPanel.StripManager.SelectedNode = e.Node;
-        }
+        #endregion
 
         /// <summary>
         /// Periodically update the time display.
@@ -469,16 +461,16 @@ namespace Obi.UserControls
         /// </summary>
         public void UpdateTimeDisplay()
         {
-            if (mPlaylist != null && mPlaylist.State != Obi.Audio.AudioPlayerState.Stopped)
+            if (Enabled && mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Stopped)
             {
                 mTimeDisplayBox.Text =
                     mDisplayBox.SelectedIndex == Elapsed ?
-                        Assets.MediaAsset.FormatTime_hh_mm_ss(mPlaylist.CurrentTimeInAsset) :
+                        Assets.MediaAsset.FormatTime_hh_mm_ss(mCurrentPlaylist.CurrentTimeInAsset) :
                     mDisplayBox.SelectedIndex == ElapsedTotal ?
-                        Assets.MediaAsset.FormatTime_hh_mm_ss(mPlaylist.CurrentTime) :
+                        Assets.MediaAsset.FormatTime_hh_mm_ss(mCurrentPlaylist.CurrentTime) :
                     mDisplayBox.SelectedIndex == Remain ?
-                        Assets.MediaAsset.FormatTime_hh_mm_ss(mPlaylist.RemainingTimeInAsset) :
-                        Assets.MediaAsset.FormatTime_hh_mm_ss(mPlaylist.RemainingTime);
+                        Assets.MediaAsset.FormatTime_hh_mm_ss(mCurrentPlaylist.RemainingTimeInAsset) :
+                        Assets.MediaAsset.FormatTime_hh_mm_ss(mCurrentPlaylist.RemainingTime);
             }
             else
             {
@@ -498,6 +490,53 @@ namespace Obi.UserControls
         public void FocusTimeDisplay()
         {
             mTimeDisplayBox.Focus();
+        }
+
+        /// <summary>
+        /// The project panel has a new project; rebuild the master playlist.
+        /// </summary>
+        public void UpdatedProject()
+        {
+            Enabled = mProjectPanel.Project != null;
+            if (mProjectPanel.Project != null)
+            {
+                mMasterPlaylist.Project = mProjectPanel.Project;
+                mCurrentPlaylist = mMasterPlaylist;
+                mProjectPanel.Project.AddedPhraseNode += new Obi.Events.PhraseNodeHandler(Project_AddedPhraseNode);
+                mProjectPanel.Project.DeletedPhraseNode += new Obi.Events.PhraseNodeHandler(Project_DeletedPhraseNode);
+                mProjectPanel.Project.ToggledNodeUsedState += new Obi.Events.ObiNodeHandler(Project_ToggledNodeUsedState);
+                mProjectPanel.Project.MediaSet += new Obi.Events.SetMediaHandler(Project_MediaSet);
+            }
+        }
+
+        void Project_AddedPhraseNode(object sender, Obi.Events.Node.PhraseNodeEventArgs e)
+        {
+            mMasterPlaylist.AddPhrase(e.Node);
+        }
+
+        void Project_DeletedPhraseNode(object sender, Obi.Events.Node.PhraseNodeEventArgs e)
+        {
+            mMasterPlaylist.RemovePhrase(e.Node);
+        }
+
+        void Project_ToggledNodeUsedState(object sender, Obi.Events.Node.ObiNodeEventArgs e)
+        {
+            if (e.Node is PhraseNode)
+            {
+                if (e.Node.Used)
+                {
+                    mMasterPlaylist.AddPhrase((PhraseNode)e.Node);
+                }
+                else
+                {
+                    mMasterPlaylist.RemovePhrase((PhraseNode)e.Node);
+                }
+            }
+        }
+
+        void Project_MediaSet(object sender, Obi.Events.Node.SetMediaEventArgs e)
+        {
+            mMasterPlaylist.UpdateTimeFrom(e.Node);
         }
     }
 }

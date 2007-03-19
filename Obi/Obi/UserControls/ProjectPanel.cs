@@ -73,7 +73,7 @@ namespace Obi.UserControls
                 mSplitContainer.Visible = mProject != null;
                 mSplitContainer.Panel1Collapsed = false;
                 mNoProjectLabel.Visible = mProject == null;
-                mTransportBar.Enabled = mProject != null;
+                mTransportBar.UpdatedProject();
             }
         }
 
@@ -280,6 +280,7 @@ namespace Obi.UserControls
             mTOCPanel.ProjectPanel = this;
             mStripManagerPanel.ProjectPanel = this;
             mTransportBar.ProjectPanel = this;
+            mTransportBar.Enabled = false;
             Project = null;
         }
 
@@ -307,7 +308,6 @@ namespace Obi.UserControls
         {
             mTOCPanel.SynchronizeWithCoreTree(mProject.RootNode);
             mStripManagerPanel.SynchronizeWithCoreTree(mProject.RootNode);
-            mTransportBar.Playlist = new Playlist(mProject, Audio.AudioPlayer.Instance);
         }
 
         /// <summary>

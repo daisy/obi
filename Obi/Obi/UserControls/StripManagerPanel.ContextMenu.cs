@@ -66,7 +66,7 @@ namespace Obi.UserControls
         /// </summary>
         public void UpdateEnabledItemsForContextMenu()
         {
-            bool isPlaying = mProjectPanel.TransportBar.State == Obi.Audio.AudioPlayerState.Playing;
+            bool isPlaying = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing;
             bool isStripSelected = SelectedSectionNode != null;
             bool isStripUsed = isStripSelected && SelectedSectionNode.Used;
             bool isParentUsed = isStripSelected &&

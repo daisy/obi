@@ -234,8 +234,8 @@ namespace Obi.UserControls
             if (mSelectedPhrase != null)
             {
                 PhraseNode phrase = mSelectedPhrase;
-                double time = mProjectPanel.TransportBar.Playlist.CurrentTimeInAsset;
-                Audio.AudioPlayerState state = mProjectPanel.TransportBar.State;
+                double time = mProjectPanel.TransportBar._CurrentPlaylist.CurrentTimeInAsset;
+                Audio.AudioPlayerState state = mProjectPanel.TransportBar._CurrentPlaylist.State;
                 mProjectPanel.TransportBar.Enabled = false;
                 Dialogs.Split dialog = new Dialogs.Split(phrase, time, state);
                 if (dialog.ShowDialog() == DialogResult.OK)
@@ -254,7 +254,7 @@ namespace Obi.UserControls
             if (mSelectedPhrase != null)
             {
                 PhraseNode phrase = mSelectedPhrase;
-                double time = ProjectPanel.TransportBar.Playlist.CurrentTimeInAsset;
+                double time = ProjectPanel.TransportBar._CurrentPlaylist.CurrentTimeInAsset;
                 mProjectPanel.TransportBar.Enabled = false;
                 Assets.AudioMediaAsset asset = phrase.Asset;
                 if (time > 0 && time < asset.LengthInMilliseconds)

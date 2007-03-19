@@ -229,7 +229,7 @@ namespace Obi.UserControls
         private void SectionStrip_DoubleClick(object sender, EventArgs e)
         {
             mManager.SelectedNode = mNode;
-            ((ObiForm)mManager.ParentForm).Play(mNode);
+            mManager.ProjectPanel.TransportBar.Play(mNode);
         }
 
         public void SetStripFontSize()
