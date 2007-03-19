@@ -38,7 +38,7 @@ namespace Obi.Audio
 		private double m_ScaleFactor = 2 ;
 		private double m_SampleTimeLength = 500 ;
 		internal bool m_bOverload = false ;
-		private int m_UpperThreshold = 190 ;
+		private int m_UpperThreshold = 210 ;
 		private int m_LowerThreshold = 15  ;
 		private int [] arPeakOverloadValue = new int [2] ;
 		private bool [] arPeakOverloadFlag = new bool [2] ;
