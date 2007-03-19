@@ -67,7 +67,7 @@ namespace Obi.UserControls
             // Associate events
             mPlaylist.Audioplayer.VuMeter.PeakOverload += new Obi.Events.Audio.VuMeter.PeakOverloadHandler( CatchPeakOverloadEvent  );
             mPlaylist.Audioplayer.StateChanged += new Obi.Events.Audio.Player.StateChangedHandler( CatchStateChangedEvent );
-
+mPlaylist.Audioplayer.VuMeter.ResetEvent += new Obi.Events.Audio.VuMeter.ResetHandler(VuMeter_ResetEvent);
 
             Enable = false;
         }
@@ -203,5 +203,26 @@ namespace Obi.UserControls
             }
         }
 
-    }
+        private delegate  void   SetTextBoxCallBack  () ;
+
+        private void VuMeter_ResetEvent( object sender  , EventArgs e )
+        {
+            SetResetText();
+        }
+
+        private void SetResetText()
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new  SetTextBoxCallBack  ( SetResetText ));
+            }
+            else
+            {
+                mLeftBox.Text = m_StrLeftOverloadIndicator;
+                mRightBox.Text = m_StrRightOverloadIndicator;
+            }
+        }
+
+
+    }// end of class
 }
