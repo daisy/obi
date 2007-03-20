@@ -223,12 +223,12 @@ namespace Obi.UserControls
         
         private void SectionStrip_Click(object sender, EventArgs e)
         {
-            mManager.SelectedNode = mNode;
+            mManager.ProjectPanel.CurrentSelection = new NodeSelection(mNode, mManager);
         }
 
         private void SectionStrip_DoubleClick(object sender, EventArgs e)
         {
-            mManager.SelectedNode = mNode;
+            mManager.ProjectPanel.CurrentSelection = new NodeSelection(mNode, mManager);
             mManager.ProjectPanel.TransportBar.Play(mNode);
         }
 
@@ -327,7 +327,7 @@ namespace Obi.UserControls
         /// </summary>
         private void mAudioLayoutPanel_Click(object sender, EventArgs e)
         {
-            mManager.SelectedNode = null;
+            mManager.ProjectPanel.CurrentSelection = null;
         }
 
         /// <summary>
@@ -335,7 +335,7 @@ namespace Obi.UserControls
         /// </summary>
         private void mAnnotationLayoutPanel_Click(object sender, EventArgs e)
         {
-            mManager.SelectedNode = mNode;
+            mManager.ProjectPanel.CurrentSelection = new NodeSelection(mNode, mManager);
         }
 
         #endregion

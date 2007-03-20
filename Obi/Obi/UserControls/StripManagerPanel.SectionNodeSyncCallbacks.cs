@@ -22,7 +22,7 @@ namespace Obi.UserControls
             AddStripFromNode(e.Node);
             if (sender == this)
             {
-                SelectedNode = e.Node;
+                mProjectPanel.CurrentSelection = new NodeSelection(e.Node, this);
                 mSectionNodeMap[e.Node].Renaming = true;
             }
         }
@@ -41,20 +41,15 @@ namespace Obi.UserControls
         //md 20060811
         //recursive function to add strips for a node and its subtree
         //returns the position marker after the operation is completed
-        //todo: this should probably be a visitor
         private void AddStripsFromNodeSubtree(SectionNode node)
         {      
             AddStripFromNode(node);
-         
             for (int i = 0; i < node.PhraseChildCount; i++)
             {
-                //todo: replace this with something cleaner ?  we are kind of falsely invoking an event handler
-                SyncAddedPhraseNode(this, new Obi.Events.Node.PhraseNodeEventArgs(this, node.PhraseChild(i)));
+                SyncAddedPhraseNode(node.PhraseChild(i));
             }
-
             for (int i = 0; i < node.SectionChildCount; i++)
             {
-                //then increment based on how many children were added
                 AddStripsFromNodeSubtree(node.SectionChild(i));
             }
         }
@@ -69,7 +64,7 @@ namespace Obi.UserControls
         {
             SectionStrip strip = mSectionNodeMap[e.Node];
             mFlowLayoutPanel.Controls.Remove(strip);
-            if (mSelectedSection == e.Node) _SelectedSectionNode = null;
+            if (mProjectPanel.CurrentSelectedStrip == e.Node) mProjectPanel.CurrentSelection = null;
             mSectionNodeMap.Remove(e.Node);
         }
 
@@ -206,20 +201,20 @@ namespace Obi.UserControls
             SectionNode prev = null;
             if (mProjectPanel.Project != null)
             {
-                if (mSelectedPhrase != null)
+                if (mProjectPanel.CurrentSelectedAudioBlock != null)
                 {
-                    prev = mSelectedPhrase.ParentSection;
+                    prev = mProjectPanel.CurrentSelectedAudioBlock.ParentSection;
                 }
-                else if (mSelectedSection != null)
+                else if (mProjectPanel.CurrentSelectedStrip != null)
                 {
-                    prev = mSelectedSection.PreviousSection;
+                    prev = mProjectPanel.CurrentSelectedStrip.PreviousSection;
                 }
                 else
                 {
                     prev = mProjectPanel.Project.LastSection;
                 }
             }
-            if (prev != null) _SelectedSectionNode = prev;
+            if (prev != null) mProjectPanel.CurrentSelection = new NodeSelection(prev, this);
         }
 
         /// <summary>
@@ -232,20 +227,20 @@ namespace Obi.UserControls
             SectionNode next = null;
             if (mProjectPanel.Project != null)
             {
-                if (mSelectedPhrase != null)
+                if (mProjectPanel.CurrentSelectedAudioBlock != null)
                 {
-                    next = mSelectedPhrase.ParentSection.NextSection;
+                    next = mProjectPanel.CurrentSelectedAudioBlock.ParentSection.NextSection;
                 }
-                else if (mSelectedSection != null)
+                else if (mProjectPanel.CurrentSelectedStrip != null)
                 {
-                    next = mSelectedSection.NextSection;
+                    next = mProjectPanel.CurrentSelectedStrip.NextSection;
                 }
                 else
                 {
                     next = mProjectPanel.Project.FirstSection;
                 }
             }
-            if (next != null) _SelectedSectionNode = next;
+            if (next != null) mProjectPanel.CurrentSelection = new NodeSelection(next, this);
         }
     }
 }

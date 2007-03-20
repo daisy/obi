@@ -583,7 +583,7 @@ namespace Obi
             // mEditAnnotationToolStripMenuItem
             // 
             this.mEditAnnotationToolStripMenuItem.Name = "mEditAnnotationToolStripMenuItem";
-            this.mEditAnnotationToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
+            this.mEditAnnotationToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.F2)));
             this.mEditAnnotationToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
             this.mEditAnnotationToolStripMenuItem.Text = "Edit ann&otation";
             this.mEditAnnotationToolStripMenuItem.Click += new System.EventHandler(this.mEditAnnotationToolStripMenuItem_Click);
@@ -646,6 +646,7 @@ namespace Obi
             this.mShowInTOCViewToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.V)));
             this.mShowInTOCViewToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
             this.mShowInTOCViewToolStripMenuItem.Text = "Show in TOC &view";
+            this.mShowInTOCViewToolStripMenuItem.Click += new System.EventHandler(this.mShowInTOCViewToolStripMenuItem_Click);
             // 
             // mTransportToolStripMenuItem
             // 
@@ -882,13 +883,14 @@ namespace Obi
             // mProjectPanel
             // 
             this.mProjectPanel.BackColor = System.Drawing.Color.White;
+            this.mProjectPanel.CurrentSelection = null;
             this.mProjectPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mProjectPanel.Location = new System.Drawing.Point(0, 24);
             this.mProjectPanel.Name = "mProjectPanel";
             this.mProjectPanel.Project = null;
-            this.mProjectPanel.SelectedNode = null;
             this.mProjectPanel.Size = new System.Drawing.Size(857, 497);
             this.mProjectPanel.TabIndex = 4;
+            this.mProjectPanel.Load += new System.EventHandler(this.mProjectPanel_Load);
             // 
             // ObiForm
             // 
@@ -905,7 +907,6 @@ namespace Obi
             this.Name = "ObiForm";
             this.Text = "Obi";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ObiForm_FormClosing);
-            this.Load += new System.EventHandler(this.ObiForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);

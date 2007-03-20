@@ -1,44 +1,149 @@
 using System;
 using System.Windows.Forms;
-
 using urakawa.core;
 
 namespace Obi.UserControls
 {
     /// <summary>
-    /// Top level panel that displays the current project, using a splitter (TOC on the left, strips on the right.)
+    /// Top level panel that displays the current project.
+    /// Contains a TOC (tree) view, a strip view, and a transport bar.
     /// </summary>
     public partial class ProjectPanel : UserControl
     {
-        private Project mProject;       // the project to display
-        private ObiNode mSelectedNode;  // the selected node in one of the views (null if none)
+        private Project mProject;                 // the project to display
+        private NodeSelection mCurrentSelection;  // node currently selected, and where
+
+        /// <summary>
+        /// Create an empty project panel.
+        /// Empty views and transport bar are created as well.
+        /// </summary>
+        public ProjectPanel()
+        {
+            InitializeComponent();
+            mTOCPanel.ProjectPanel = this;
+            mStripManagerPanel.ProjectPanel = this;
+            mTransportBar.ProjectPanel = this;
+            // TODO: find out why the transport bar cannot disable itself when created.
+            mTransportBar.Enabled = false;
+            Project = null;
+        }
+
+
+        #region selection
+
+        /// <summary>
+        /// Current selection in the project panel.
+        /// </summary>
+        public NodeSelection CurrentSelection
+        {
+            get { return mCurrentSelection; }
+            set
+            {
+                if (value == null)
+                {
+                    Deselect();
+                    mCurrentSelection = null;
+                }
+                else if (mCurrentSelection == null ||
+                    value.Node != mCurrentSelection.Node ||
+                    value.Control != mCurrentSelection.Control)
+                {
+                    // If the selection changes (was null or different), deselect the previous selection
+                    // then tell the control about the new selection. The transport bar should be told
+                    // of selection changes as well in case it is playing.
+                    Deselect();
+                    mCurrentSelection = value;
+                    value.Control.CurrentSelectedNode = value.Node;
+                    System.Diagnostics.Debug.Print("+++ SELECTED {0} +++", value);
+                    if (value.Control != mTransportBar) mTransportBar.CurrentSelectedNode = value.Node;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deselect the currently selection node (if any) in its control.
+        /// </summary>
+        private void Deselect()
+        {
+            if (mCurrentSelection != null)
+            {
+                mCurrentSelection.Control.CurrentSelectedNode = null;
+                System.Diagnostics.Debug.Print("--- DESELECTED ---");
+            }
+        }
+
+        /// <summary>
+        /// Currently selected node, regardless of its type or where it is selected.
+        /// Null if nothing is selected.
+        /// </summary>
+        public ObiNode CurrentSelectionNode
+        {
+            get { return mCurrentSelection == null ? null : mCurrentSelection.Node; }
+        }
+
+        /// <summary>
+        /// Section node for the currently selected section in the TOC panel.
+        /// Null if there is no such selection.
+        /// </summary>
+        public SectionNode CurrentSelectedSection
+        {
+            get
+            {
+                return mCurrentSelection == null || mCurrentSelection.Control != mTOCPanel ?
+                    null : mCurrentSelection.Node as SectionNode;
+            }   
+        }
+
+        /// <summary>
+        /// Section node for the currently selected strip in the strip manager panel.
+        /// Null if there is no such selection.
+        /// </summary>
+        public SectionNode CurrentSelectedStrip
+        {
+            get
+            {
+                return mCurrentSelection == null || mCurrentSelection.Control != mStripManagerPanel ?
+                    null : mCurrentSelection.Node as SectionNode;
+            }
+        }
+
+        /// <summary>
+        /// Phrase node for the currently selected audio block (if any, null otherwise.)
+        /// </summary>
+        public PhraseNode CurrentSelectedAudioBlock
+        {
+            get { return mCurrentSelection == null ? null : mCurrentSelection.Node as PhraseNode; }
+        }
+
+        /// <summary>
+        /// Get a label for the node currently selected, i.e. "" if nothing is seleced,
+        /// "audio block" for an audio block, "strip" for a strip and "section" for a
+        /// section.
+        /// </summary>
+        public string SelectedLabel
+        {
+            get
+            {
+                return mCurrentSelection == null ? "" :
+                    mCurrentSelection.Node is PhraseNode ? Localizer.Message("audio_block") :
+                    mCurrentSelection.Control == mStripManagerPanel ? Localizer.Message("strip") :
+                    Localizer.Message("section");
+            }
+        }
+
+        #endregion
+
 
         #region properties
 
         /// <summary>
-        /// Return the parent form, which is supposed to be an ObiForm.
-        /// </summary>
-        public ObiForm ParentObiForm
-        {
-            get { return (ObiForm)ParentForm; }
-        }
-
-        /// <summary>
-        /// True if there is a node currently selected and it can be cut/copied/deleted.
-        /// </summary>
-        public bool CanCutCopyDeleteNode
-        {
-            get { return mSelectedNode != null; }
-        }
-
-        /// <summary>
-        /// An audio block's status can be changed only if its parent section is used.
+        /// An audio block can be toggled if and only if it is in a used section.
         /// </summary>
         public bool CanToggleAudioBlock
         {
             get
             {
-                PhraseNode selected = mStripManagerPanel.SelectedPhraseNode;
+                PhraseNode selected = CurrentSelectedAudioBlock;
                 return selected != null && selected.ParentSection.Used;
             }
         }
@@ -51,12 +156,20 @@ namespace Obi.UserControls
         {
             get
             {
-                SectionNode selected = mTOCPanel.SelectedSection;
+                SectionNode selected = CurrentSelectedSection;
                 if (selected == null) return false;
                 if (selected.Used) return true;
                 SectionNode parent = selected.ParentSection;
                 return parent == null || parent.Used;
             }
+        }
+
+        /// <summary>
+        /// Return the parent form, which is supposed to be an ObiForm.
+        /// </summary>
+        public ObiForm ParentObiForm
+        {
+            get { return (ObiForm)ParentForm; }
         }
 
         /// <summary>
@@ -67,7 +180,11 @@ namespace Obi.UserControls
             get { return mProject; }
             set
             {
-                if (mProject != null) UnsetEventHandlers();
+                if (mProject != null)
+                {
+                    UnsetEventHandlers();
+                    if (value == null) Deselect();
+                }
                 if (value != null) SetEventHandlers(value);
                 mProject = value;
                 mSplitContainer.Visible = mProject != null;
@@ -85,47 +202,28 @@ namespace Obi.UserControls
         /// <param name="project">The new project.</param>
         private void SetEventHandlers(Project project)
         {
-            //md test 20061207
-            mStripManagerPanel.SelectionChanged += new Events.SelectedHandler(this.test_WidgetSelect);
-            mTOCPanel.SelectionChanged += new Events.SelectedHandler(this.test_WidgetSelect);
-
             project.AddedSectionNode += new Events.SectionNodeHandler(mTOCPanel.SyncAddedSectionNode);
             project.AddedSectionNode += new Events.SectionNodeHandler(mStripManagerPanel.SyncAddedSectionNode);
-
             project.MovedSectionNode += new Events.MovedSectionNodeHandler(mTOCPanel.SyncMovedSectionNode);
             project.MovedSectionNode += new Events.MovedSectionNodeHandler(mStripManagerPanel.SyncMovedSectionNode);
-
             project.UndidMoveSectionNode += new Events.MovedSectionNodeHandler(mTOCPanel.SyncMovedSectionNode);
             project.UndidMoveSectionNode += new Events.MovedSectionNodeHandler(mStripManagerPanel.SyncMovedSectionNode);
-
             project.DecreasedSectionNodeLevel += new Events.SectionNodeHandler(mTOCPanel.SyncDecreasedSectionNodeLevel);
             project.DecreasedSectionNodeLevel += new Events.SectionNodeHandler(mStripManagerPanel.SyncDecreaseSectionNodeLevel);
-
             project.RenamedSectionNode += new Events.RenameSectionNodeHandler(mTOCPanel.SyncRenamedSectionNode);
             project.RenamedSectionNode += new Events.RenameSectionNodeHandler(mStripManagerPanel.SyncRenamedNode);
-
             project.DeletedSectionNode += new Events.SectionNodeHandler(mTOCPanel.SyncDeletedSectionNode);
             project.DeletedSectionNode += new Events.SectionNodeHandler(mStripManagerPanel.SyncDeletedSectionNode);
-
-            // Block events
-
-            mStripManagerPanel.SetMediaRequested += new Events.SetMediaHandler(project.SetMediaRequested);
+            project.PastedSectionNode += new Events.SectionNodeHandler(mTOCPanel.SyncPastedSectionNode);
+            project.PastedSectionNode += new Events.SectionNodeHandler(mStripManagerPanel.SyncPastedSectionNode);
+            project.UndidPasteSectionNode += new Events.SectionNodeHandler(mTOCPanel.SyncUndidPasteSectionNode);
+            project.UndidPasteSectionNode += new Events.SectionNodeHandler(mStripManagerPanel.SyncUndidPasteSectionNode);
 
             project.AddedPhraseNode += new Events.PhraseNodeHandler(mStripManagerPanel.SyncAddedPhraseNode);
             project.DeletedPhraseNode += new Events.PhraseNodeHandler(mStripManagerPanel.SyncDeleteAudioBlock);
             project.MediaSet += new Events.SetMediaHandler(mStripManagerPanel.SyncMediaSet);
             project.TouchedNode += new Events.NodeEventHandler(mStripManagerPanel.SyncTouchedNode);
             project.UpdateTime += new Events.UpdateTimeHandler(mStripManagerPanel.SyncUpdateAudioBlockTime);
-
-            project.PastedSectionNode += new Events.SectionNodeHandler(mTOCPanel.SyncPastedSectionNode);
-            project.PastedSectionNode += new Events.SectionNodeHandler(mStripManagerPanel.SyncPastedSectionNode);
-            project.UndidPasteSectionNode += new Events.SectionNodeHandler(mTOCPanel.SyncUndidPasteSectionNode);
-            project.UndidPasteSectionNode += new Events.SectionNodeHandler(mStripManagerPanel.SyncUndidPasteSectionNode);
-
-
-            //md 20060812
-            mStripManagerPanel.ShallowDeleteSectionNodeRequested += new Events.SectionNodeHandler(project.ShallowDeleteSectionNodeRequested);
-
             project.RemovedPageNumber += new Events.PhraseNodeHandler(mStripManagerPanel.SyncRemovedPageNumber);
             project.SetPageNumber += new Events.PhraseNodeHandler(mStripManagerPanel.SyncSetPageNumber);
 
@@ -138,10 +236,6 @@ namespace Obi.UserControls
         /// </summary>
         private void UnsetEventHandlers()
         {
-            //md test 20061207
-            mStripManagerPanel.SelectionChanged -= new Events.SelectedHandler(this.test_WidgetSelect);
-            mTOCPanel.SelectionChanged -= new Events.SelectedHandler(this.test_WidgetSelect);
-
             mProject.AddedSectionNode -= new Events.SectionNodeHandler(mTOCPanel.SyncAddedSectionNode);
             mProject.AddedSectionNode -= new Events.SectionNodeHandler(mStripManagerPanel.SyncAddedSectionNode);
 
@@ -161,7 +255,6 @@ namespace Obi.UserControls
 
             mProject.AddedPhraseNode -= new Events.PhraseNodeHandler(mStripManagerPanel.SyncAddedPhraseNode);
 
-            mStripManagerPanel.SetMediaRequested -= new Events.SetMediaHandler(mProject.SetMediaRequested);
             mProject.MediaSet -= new Events.SetMediaHandler(mStripManagerPanel.SyncMediaSet);
 
             mProject.DeletedPhraseNode -= new Events.PhraseNodeHandler(mStripManagerPanel.SyncDeleteAudioBlock);
@@ -174,9 +267,6 @@ namespace Obi.UserControls
             mProject.TouchedNode -= new Events.NodeEventHandler(mStripManagerPanel.SyncTouchedNode);
             mProject.UpdateTime -= new Events.UpdateTimeHandler(mStripManagerPanel.SyncUpdateAudioBlockTime);
 
-            //md 20060812
-            mStripManagerPanel.ShallowDeleteSectionNodeRequested -= new Events.SectionNodeHandler(mProject.ShallowDeleteSectionNodeRequested);
-
             mProject.RemovedPageNumber -= new Events.PhraseNodeHandler(mStripManagerPanel.SyncRemovedPageNumber);
             mProject.SetPageNumber -= new Events.PhraseNodeHandler(mStripManagerPanel.SyncSetPageNumber);
 
@@ -185,31 +275,6 @@ namespace Obi.UserControls
         }
 
         #endregion
-
-        /// <summary>
-        /// Get a label for the node currently selected, i.e. "" if nothing is seleced,
-        /// "audio block" for an audio block, "strip" for a strip and "section" for a
-        /// section.
-        /// </summary>
-        public string SelectedLabel
-        {
-            get
-            {
-                return mStripManagerPanel.SelectedPhraseNode != null ? Localizer.Message("audio_block") :
-                    mStripManagerPanel.SelectedSectionNode != null ? Localizer.Message("strip") :
-                    mTOCPanel.SelectedSection != null ? Localizer.Message("section") : "";
-            }
-        }
-
-        /// <summary>
-        /// Selected node in the panel.
-        /// To set the selection, use the StripView or the TOCPanel facilities.
-        /// </summary>
-        public ObiNode SelectedNode
-        {
-            get { return mSelectedNode; }
-            set { mSelectedNode = value; }
-        }
 
         /// <summary>
         /// The strip manager for this project.
@@ -243,7 +308,7 @@ namespace Obi.UserControls
             get
             {
                 return String.Format(Localizer.Message("mark_x_as_y"), Localizer.Message("audio_block"),
-                    Localizer.Message(CanToggleAudioBlock && mStripManagerPanel.SelectedPhraseNode.Used ?
+                    Localizer.Message(CanToggleAudioBlock && CurrentSelectedAudioBlock.Used ?
                     "unused" : "used"));
             }
         }
@@ -256,7 +321,7 @@ namespace Obi.UserControls
             get
             {
                 return String.Format(Localizer.Message("mark_x_as_y"), Localizer.Message("section"),
-                    Localizer.Message(CanToggleSection && mTOCPanel.SelectedSection.Used ?
+                    Localizer.Message(CanToggleSection && CurrentSelectedSection.Used ?
                     "unused" : "used"));
             }
         }
@@ -271,18 +336,6 @@ namespace Obi.UserControls
 
         #endregion
 
-        /// <summary>
-        /// Create a new project panel with currently no project.
-        /// </summary>
-        public ProjectPanel()
-        {
-            InitializeComponent();
-            mTOCPanel.ProjectPanel = this;
-            mStripManagerPanel.ProjectPanel = this;
-            mTransportBar.ProjectPanel = this;
-            mTransportBar.Enabled = false;
-            Project = null;
-        }
 
         /// <summary>
         /// Hide the TOC panel.
@@ -300,6 +353,7 @@ namespace Obi.UserControls
             mSplitContainer.Panel1Collapsed = false;
         }
 
+
         /// <summary>
         /// Synchronize the project views with the core tree and initialize the playlist for the transport bar.
         /// Used when opening a XUK file or touching the project.
@@ -310,57 +364,6 @@ namespace Obi.UserControls
             mStripManagerPanel.SynchronizeWithCoreTree(mProject.RootNode);
         }
 
-        /// <summary>
-        /// Deselect everything in controls other than the sender.
-        /// </summary>
-        public void DeselectEverythingElse(object from)
-        {
-            if (from is StripManagerPanel)
-            {
-                mTOCPanel.SelectedSection = null;
-            }
-            else if (from is TOCPanel)
-            {
-                mStripManagerPanel.SelectedNode = null;
-            }
-            mSelectedNode = null;
-        }
-
-        /// <summary>
-        /// This test method shows what gets selected when.
-        /// </summary>
-        public void test_WidgetSelect(object sender, Obi.Events.Node.SelectedEventArgs e)
-        {
-            CoreNode target = null;
-            if (e.Widget is Obi.UserControls.SectionStrip)
-            {
-                System.Diagnostics.Debug.Write("SectionStrip - ");
-                Obi.UserControls.SectionStrip strip = (Obi.UserControls.SectionStrip)e.Widget;
-                target = strip.Node;
-            }
-            else if (e.Widget is Obi.UserControls.AudioBlock)
-            {
-                System.Diagnostics.Debug.Write("AudioBlock - ");
-                Obi.UserControls.AudioBlock block = (Obi.UserControls.AudioBlock)e.Widget;
-                target = block.Node;
-            }
-            else if (e.Widget is System.Windows.Forms.TreeNode)
-            {
-                System.Diagnostics.Debug.Write("TOC.TreeNode - ");
-                System.Windows.Forms.TreeNode treenode = (System.Windows.Forms.TreeNode)e.Widget;
-                target = this.mTOCPanel.SelectedSection;
-            }
-
-            if (target != null) System.Diagnostics.Debug.Write(target.GetType().ToString() + ": ");
-            else System.Diagnostics.Debug.Write("!target node is null");
-
-            string text = "";
-            if (target is SectionNode) text = Project.GetTextMedia((CoreNode)target).getText();
-            if (target is PhraseNode) text = ((urakawa.media.TextMedia)Project.GetMediaForChannel((CoreNode)target, Project.AnnotationChannelName)).getText();
-            System.Diagnostics.Debug.Write("\"" + text + "\"");
-            if (e.Selected) System.Diagnostics.Debug.Write(" is selected\n");
-            else System.Diagnostics.Debug.Write(" is deselected\n");
-        }
 
         /// <summary>
         /// A node (from the clipboard) can be pasted if the selection context is right.
@@ -375,7 +378,7 @@ namespace Obi.UserControls
                 // nothing to paste
                 return false;
             }
-            else if (mSelectedNode == null)
+            else if (mCurrentSelection == null)
             {
                 // no selection: can only paste a section
                 return mProject != null && node is SectionNode;
@@ -383,13 +386,13 @@ namespace Obi.UserControls
             else if (node is SectionNode)
             {
                 // a section can only be pasted under a section
-                return mSelectedNode is SectionNode;
+                // same for strips
+                return mCurrentSelection.Node is SectionNode;
             }
             else
             {
-                // a phrase can be pasted anywhere as long as a node is selected in the strip view
-                // but not in the toc view
-                return mTOCPanel.SelectedSection == null;
+                // a phrase can ony be pasted in the strip view
+                return mCurrentSelection.Control == mStripManagerPanel;
             }
         }
 
@@ -405,7 +408,8 @@ namespace Obi.UserControls
         {
             return node == null ? "" :                                      // nothing to paste
                 Localizer.Message(node is PhraseNode ? "audio_block" :      // audio block
-                    mTOCPanel.SelectedSection != null ? "section" :         // pasting in TOC panel
+                    mCurrentSelection != null &&
+                    mCurrentSelection.Control == mTOCPanel ? "section" :    // pasting in TOC panel
                     ((SectionNode)node).SectionChildCount > 0 ? "strips" :  // pasting several strips
                     "strip");                                               // pasting only one strip
         }

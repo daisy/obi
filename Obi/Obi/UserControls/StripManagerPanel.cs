@@ -15,135 +15,99 @@ namespace Obi.UserControls
     /// <summary>
     /// This control is a view of all the contents of a project
     /// </summary>
-    public partial class StripManagerPanel : UserControl, ICoreNodeVisitor
+    public partial class StripManagerPanel : UserControl, ICoreNodeVisitor, IControlWithSelection
     {
+        private ProjectPanel mProjectPanel;                             //the parent of this control
         private Dictionary<SectionNode, SectionStrip> mSectionNodeMap;  // find a section strip for a given node
-        private SectionNode mSelectedSection;                           // the selected node
-
-        private Dictionary<PhraseNode, AudioBlock> mPhraseNodeMap;     // find an audio block for a given phrase node
-        private PhraseNode mSelectedPhrase;                            // the selected audio block
-
-        private ProjectPanel mProjectPanel; //the parent of this control
-
-        private bool mAllowShortcuts;  // allow handling of shortcut keys
-
-        public event Events.SetMediaHandler SetMediaRequested;
-        public event Events.SelectedHandler SelectionChanged;
-
-        #region properties
+        private Dictionary<PhraseNode, AudioBlock> mPhraseNodeMap;      // find an audio block for a given phrase node
+        private bool mAllowShortcuts;                                   // allow handling of shortcut keys
 
         /// <summary>
-        /// Selected node (phrase or section.)
+        /// Create an empty manager panel.
         /// </summary>
-        public ObiNode SelectedNode
+        public StripManagerPanel()
         {
-            get { return mSelectedPhrase == null ? (ObiNode)mSelectedSection : (ObiNode)mSelectedPhrase; }
-            set
-            {
-                if (value is SectionNode)
-                {
-                    _SelectedPhraseNode = null;
-                    _SelectedSectionNode = (SectionNode)value;
-                }
-                else if (value is PhraseNode)
-                {
-                    _SelectedSectionNode = null;
-                    _SelectedPhraseNode = (PhraseNode)value;
-                }
-                else
-                {
-                    _SelectedSectionNode = null;
-                    _SelectedPhraseNode = null;
-                }
-                if (mProjectPanel != null) mProjectPanel.SelectedNode = value;
-            }
+            InitializeComponent();
+            InitializeShortcutKeys();
+            mSectionNodeMap = new Dictionary<SectionNode, SectionStrip>();
+            mPhraseNodeMap = new Dictionary<PhraseNode, AudioBlock>();
+            mAllowShortcuts = true;
         }
 
-        /// <summary>
-        /// Get the section node for the currently selected strip.
-        /// Return null if no strip is selected.
-        /// </summary>
-        public SectionNode SelectedSectionNode
-        {
-            get { return mSelectedSection; }
-        }
 
-        private SectionNode _SelectedSectionNode
-        {
-            set
-            {
-                if (value != mSelectedSection)
-                {
-                    Deselect();
-                    mSelectedSection = value;
-                    if (value != null)
-                    {
-                        mSectionNodeMap[mSelectedSection].Selected = true;
-                        SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(true, mSectionNodeMap[mSelectedSection]));
-                    }
-                }
-            }
-        }
+        #region selection
 
-        /// <summary>
-        /// The currently selected phrase (null if none.)
-        /// </summary>
-        public PhraseNode SelectedPhraseNode
-        {
-            get { return mSelectedPhrase; }
-        }
-
-        private PhraseNode _SelectedPhraseNode
-        {
-            set
-            {
-                if (value != mSelectedPhrase)
-                {
-                    Deselect();
-                    mSelectedPhrase = value;
-                    if (value != null)
-                    {
-                        mPhraseNodeMap[mSelectedPhrase].Selected = true;
-                        SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(true, mPhraseNodeMap[mSelectedPhrase]));
-                    }
-                }
-
-            }
-        }
-
-        /// <summary>
-        /// Get the SectionStrip that is currently seleced, or null if no current selection exists.
-        /// </summary>
-        // mg20060804
-        internal SectionStrip SelectedSectionStrip
-        {
-            get { return mSelectedSection == null ? null : mSectionNodeMap[mSelectedSection]; }
-        }
-
-        /// <summary>
-        /// Get the control of the Block (phrase) that is currently seleced, or null if no current selection exists.
-        /// </summary>
-        // mg20060804
-        internal AbstractBlock SelectedBlock
+        public ObiNode CurrentSelectedNode
         {
             get
             {
-                if (this.mSelectedPhrase != null)
-                    return this.mPhraseNodeMap[mSelectedPhrase];
-                return null;
+                return mProjectPanel.CurrentSelection != null &&
+                    mProjectPanel.CurrentSelection.Control == this ?
+                    mProjectPanel.CurrentSelection.Node : null;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    Deselect();
+                }
+                else if (value is PhraseNode)
+                {
+                    mPhraseNodeMap[(PhraseNode)value].Selected = true;
+                }
+                else if (value is SectionNode)
+                {
+                    mSectionNodeMap[(SectionNode)value].Selected = true;
+                }
             }
         }
+
+        private void Deselect()
+        {
+            if (mProjectPanel.CurrentSelectedAudioBlock != null &&
+                mPhraseNodeMap.ContainsKey((PhraseNode)mProjectPanel.CurrentSelectedAudioBlock))
+            {
+                mPhraseNodeMap[(PhraseNode)mProjectPanel.CurrentSelectedAudioBlock].Selected = false;
+            }
+            else if (mProjectPanel.CurrentSelectedStrip != null &&
+                mSectionNodeMap.ContainsKey((SectionNode)mProjectPanel.CurrentSelectedStrip))
+            {
+                mSectionNodeMap[(SectionNode)mProjectPanel.CurrentSelectedStrip].Selected = false;
+            }
+        }
+
+        public SectionNode SelectedSectionNode
+        {
+            get
+            {
+                return mProjectPanel.CurrentSelection != null &&
+                    mProjectPanel.CurrentSelection.Control == this ?
+                    mProjectPanel.CurrentSelection.Node as SectionNode : null;
+            }
+        }
+
+        public PhraseNode SelectedPhraseNode
+        {
+            get
+            {
+                return mProjectPanel.CurrentSelection != null &&
+                    mProjectPanel.CurrentSelection.Control == this ?
+                    mProjectPanel.CurrentSelection.Node as PhraseNode : null;
+            }
+        }
+
+        #endregion
+
+
+        #region properties
 
         /// <summary>
         /// Get the context menu strip of this StripManagerPanel
         /// </summary>
         /// <remarks>mg: for access by sectionstrip that needs to override the textbox menu</remarks> 
-        internal ContextMenuStrip PanelContextMenuStrip
+        public ContextMenuStrip PanelContextMenuStrip
         {
-            get
-            {
-                return this.mContextMenuStrip;
-            }
+            get { return this.mContextMenuStrip; }
         }
 
         /// <summary>
@@ -152,14 +116,8 @@ namespace Obi.UserControls
         // mg 20060804
         internal ProjectPanel ProjectPanel
         {
-            get
-            {
-                return mProjectPanel;
-            }
-            set
-            {
-                mProjectPanel = value;
-            }
+            get { return mProjectPanel; }
+            set { mProjectPanel = value; }
         }
 
         /// <summary>
@@ -167,7 +125,11 @@ namespace Obi.UserControls
         /// </summary>
         public bool CanSetPage
         {
-            get { return mSelectedPhrase != null && mSelectedPhrase.PageProperty == null; }
+            get
+            {
+                return mProjectPanel.CurrentSelectedAudioBlock != null &&
+                    mProjectPanel.CurrentSelectedAudioBlock.PageProperty == null;
+            }
         }
 
         /// <summary>
@@ -175,7 +137,11 @@ namespace Obi.UserControls
         /// </summary>
         public bool CanRemovePage
         {
-            get { return mSelectedPhrase != null && mSelectedPhrase.PageProperty != null; }
+            get
+            {
+                return mProjectPanel.CurrentSelectedAudioBlock != null &&
+                    mProjectPanel.CurrentSelectedAudioBlock.PageProperty != null;
+            }
         }
 
         /// <summary>
@@ -194,36 +160,6 @@ namespace Obi.UserControls
 
         #endregion
 
-        #region instantiators
-
-        /// <summary>
-        /// Create a new manager panel. At first the panel is empty and nothing is selected.
-        /// </summary>
-        public StripManagerPanel()
-        {
-            InitializeComponent();
-            InitializeEventHandlers();
-            InitializeShortcutKeys();
-            // The panel is empty and nothing is selected.
-            mSectionNodeMap = new Dictionary<SectionNode, SectionStrip>();
-            mSelectedSection = null;
-            mPhraseNodeMap = new Dictionary<PhraseNode, AudioBlock>();
-            mSelectedPhrase = null;
-            mAllowShortcuts = true;
-        }
-
-        /// <summary>
-        /// Initialize event handlers for the control.
-        /// </summary>
-        /// <remarks>The designer doesn't like those.</remarks>
-        private void InitializeEventHandlers()
-        {
-            mInsertEmptyAudioblockToolStripMenuItem.Click +=
-                new System.EventHandler(delegate(object _sender, System.EventArgs _e) { InsertEmptyAudioBlock(); });
-        }
-
-        #endregion
-
         /// <summary>
         /// Synchronize the strips view with the core tree.
         /// Since we need priviledged access to the class for synchronization,
@@ -233,10 +169,7 @@ namespace Obi.UserControls
         {
             mFlowLayoutPanel.Controls.Clear();
             mSectionNodeMap.Clear();
-            mSelectedSection = null;
-            mSelectedPhrase = null;
             root.acceptDepthFirst(this);
-            //if (mFlowLayoutPanel.Controls.Count > 0) this.ReflowTabOrder(mFlowLayoutPanel.Controls[0]);  // mg
         }
 
         #region Synchronization visitor
@@ -306,7 +239,9 @@ namespace Obi.UserControls
         private void mFlowLayoutPanel_Click(object sender, EventArgs e)
         {
             if (mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
-                SelectedNode = null;
+            {
+                mProjectPanel.CurrentSelection = null;
+            }
         }
 
         #region shortcut keys
@@ -343,26 +278,5 @@ namespace Obi.UserControls
 
         #endregion
 
-        /// <summary>
-        /// Deselect all items (prior to setting the new selection.)
-        /// </summary>
-        private void Deselect()
-        {
-            // Deselect the currently selected item
-            if (mSelectedSection != null)
-            {
-                mSectionNodeMap[mSelectedSection].Selected = false;
-                SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(false, mSectionNodeMap[mSelectedSection]));
-            }
-            else if (mSelectedPhrase != null)
-            {
-                mPhraseNodeMap[mSelectedPhrase].Selected = false;
-                SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(false, mPhraseNodeMap[mSelectedPhrase]));
-            }
-            else
-            {
-                mProjectPanel.DeselectEverythingElse(this);
-            }
-        }
     }
 }
