@@ -407,6 +407,8 @@ namespace Obi.UserControls
         {
             node.Asset = asset;
             SelectedNode = node;
+
+            mPhraseNodeMap[node].RefreshDisplay();
         }
     }
 }
