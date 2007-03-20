@@ -418,37 +418,37 @@ namespace Obi.Audio
             Visible = false;
             e.Cancel = true;
         }
-private void setScaleFactor()
+        private void setScaleFactor()
         {
             //ScaleFactor = 2 ;
             GraphOriginY = Convert.ToInt32(85 * ScaleFactor);
 
-            HighTop = GraphOriginY  ; 
-        HighBottom = HighTop  + Convert.ToInt32 (  60 * ScaleFactor  ) ;
+            HighTop = GraphOriginY;
+            HighBottom = HighTop + Convert.ToInt32(60 * ScaleFactor);
 
-        NormalTop = HighBottom  + Convert.ToInt32 ( 6   * ScaleFactor  ) ;
-        NormalBottom = NormalTop + Convert.ToInt32 (  120 * ScaleFactor  ) ;
+            NormalTop = HighBottom + Convert.ToInt32(6 * ScaleFactor);
+            NormalBottom = NormalTop + Convert.ToInt32(120 * ScaleFactor);
 
-        LowTop = NormalBottom + Convert.ToInt32(6 * ScaleFactor ) ;
-        LowBottom = LowTop + Convert.ToInt32 ( 60 * ScaleFactor  ) ;
+            LowTop = NormalBottom + Convert.ToInt32(6 * ScaleFactor);
+            LowBottom = LowTop + Convert.ToInt32(60 * ScaleFactor);
 
-        LineWidth = Convert.ToInt32 (  31 * ScaleFactor  ) ;
+            LineWidth = Convert.ToInt32(31 * ScaleFactor);
 
-        LeftGraphX = Convert.ToInt32 ( 25 * ScaleFactor   ) ;
-        RightGraphX = Convert.ToInt32 (  76    * ScaleFactor  ) ;
+            LeftGraphX = Convert.ToInt32(25 * ScaleFactor);
+            RightGraphX = Convert.ToInt32(76 * ScaleFactor);
 
-        PeakOverloadLightX = Convert.ToInt32 ( 60 * ScaleFactor);
-    PeakOverloadLightY =  10 ;
-    PeakOverloadLightWidth = Convert.ToInt32(45 * ScaleFactor);
+            PeakOverloadLightX = Convert.ToInt32(60 * ScaleFactor);
+            PeakOverloadLightY = 10;
+            PeakOverloadLightWidth = Convert.ToInt32(45 * ScaleFactor);
 
 
-        int width  = Convert.ToInt32 (  110 * ScaleFactor ) ;
-        int height  = Convert.ToInt32 (   ( LowBottom + 20 )  ) ;
-        this.Size = new Size( width , height );
-        
-    
+            int width = Convert.ToInt32(110 * ScaleFactor);
+            int height = Convert.ToInt32((LowBottom + 20));
+            this.Size = new Size(width, height);
+
+
         }
 
-		// end of class
-	}
+        // end of class
+    }
 }
