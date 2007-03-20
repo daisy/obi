@@ -8,17 +8,13 @@ namespace Obi.UserControls
     /// <summary>
     /// The transport bar: transport buttons, scrubbing slide, time display, text vu meter display.
     /// </summary>
-    public partial class TransportBar : UserControl
+    public partial class TransportBar : UserControl, IControlWithSelection
     {
         private ProjectPanel mProjectPanel;  // project panel to which the transport bar belongs
         private Playlist mMasterPlaylist;    // master playlist (all phrases in the project)
         private Playlist mLocalPlaylist;     // local playlist (only selected; may be null)
         private Playlist mCurrentPlaylist;   // playlist currently playing
-        private ObiNode mPlayingFrom;        // selection before playback started
-
-        // some invariants:
-        // Enabled => mCurrentPlaylist != null
-        // mLocalPlaylist != null => mMasterPlaylist != null
+        private NodeSelection mPlayingFrom;  // selection before playback started
 
         // constants from the display combo box
         private static readonly int Elapsed = 0;
@@ -29,6 +25,42 @@ namespace Obi.UserControls
         // Pass the state change and playback rate change events from the playlist
         public event Events.Audio.Player.StateChangedHandler StateChanged;
         public event EventHandler PlaybackRateChanged;
+
+
+        /// <summary>
+        /// Initialize the transport bar.
+        /// </summary>
+        public TransportBar()
+        {
+            InitializeComponent();
+            mLocalPlaylist = null;
+            mMasterPlaylist = new Playlist(Audio.AudioPlayer.Instance);
+            SetPlaylistEvents(mMasterPlaylist);
+            mCurrentPlaylist = mMasterPlaylist;
+            mDisplayBox.SelectedIndex = ElapsedTotal;
+            mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
+            mProjectPanel = null;
+        }
+
+
+        #region selection
+
+        public ObiNode CurrentSelectedNode
+        {
+            get { throw new Exception("Please don't ask me for a selection, I don't know anything about that stuff."); }
+            set
+            {
+                if ((mCurrentPlaylist.State == Audio.AudioPlayerState.Playing ||
+                    mCurrentPlaylist.State == Audio.AudioPlayerState.Paused) &&
+                    value is PhraseNode)
+                {
+                    mCurrentPlaylist.CurrentPhrase = (PhraseNode)value;
+                }
+            }
+        }
+
+        #endregion
+
 
         #region properties
 
@@ -106,20 +138,6 @@ namespace Obi.UserControls
 
         #endregion
 
-        /// <summary>
-        /// Initialize the transport bar.
-        /// </summary>
-        public TransportBar()
-        {
-            InitializeComponent();
-            mLocalPlaylist = null;
-            mMasterPlaylist = new Playlist(Audio.AudioPlayer.Instance);
-            SetPlaylistEvents(mMasterPlaylist);
-            mCurrentPlaylist = mMasterPlaylist;
-            mDisplayBox.SelectedIndex = ElapsedTotal;
-            mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
-            mProjectPanel = null;
-        }
 
         #region playlist events
 
@@ -136,7 +154,7 @@ namespace Obi.UserControls
         /// </summary>
         private void Play_MovedToPhrase(object sender, Events.Node.PhraseNodeEventArgs e)
         {
-            mProjectPanel.StripManager.SelectedNode = e.Node;
+            mProjectPanel.CurrentSelection = new NodeSelection(e.Node, mProjectPanel.StripManager);
         }
 
         /// <summary>
@@ -170,7 +188,7 @@ namespace Obi.UserControls
         /// </summary>
         private void Play_PlayerStopped(object sender, EventArgs e)
         {
-            mProjectPanel.StripManager.SelectedNode = mPlayingFrom;
+            mProjectPanel.CurrentSelection = mPlayingFrom;
         }
 
         #endregion
@@ -234,12 +252,15 @@ namespace Obi.UserControls
             {
                 if (mProjectPanel != null)
                 {
-                    if (mProjectPanel.SelectedNode != null && mProjectPanel.SelectedNode.Used)
+                    if (mProjectPanel.CurrentSelection != null && mProjectPanel.CurrentSelectionNode.Used)
                     {
-                        if (mProjectPanel.SelectedNode is PhraseNode) return (PhraseNode)mProjectPanel.SelectedNode;
-                        if (((SectionNode)mProjectPanel.SelectedNode).FirstUsedPhrase != null)
+                        if (mProjectPanel.CurrentSelectionNode is PhraseNode)
                         {
-                            return ((SectionNode)mProjectPanel.SelectedNode).FirstUsedPhrase;
+                            return (PhraseNode)mProjectPanel.CurrentSelectionNode;
+                        }
+                        if (((SectionNode)mProjectPanel.CurrentSelectionNode).FirstUsedPhrase != null)
+                        {
+                            return ((SectionNode)mProjectPanel.CurrentSelectionNode).FirstUsedPhrase;
                         }
                     }
                     return mCurrentPlaylist.FirstPhrase;
@@ -259,7 +280,7 @@ namespace Obi.UserControls
         {
             if (CanPlay)
             {
-                mPlayingFrom = mProjectPanel.SelectedNode;
+                mPlayingFrom = mProjectPanel.CurrentSelection;
                 mCurrentPlaylist = mMasterPlaylist;
                 mCurrentPlaylist.CurrentPhrase = InitialPhrase;
                 if (mCurrentPlaylist.CurrentPhrase != null)
@@ -282,7 +303,7 @@ namespace Obi.UserControls
         {
             if (CanPlay)
             {
-                mPlayingFrom = mProjectPanel.SelectedNode;
+                mPlayingFrom = mProjectPanel.CurrentSelection;
                 mLocalPlaylist = new Playlist(Audio.AudioPlayer.Instance, node);
                 mCurrentPlaylist = mLocalPlaylist;
                 mCurrentPlaylist.Play();
@@ -320,7 +341,7 @@ namespace Obi.UserControls
         {
             if (CanRecord)
             {
-                ObiNode selected = mProjectPanel.StripManager.SelectedNode;
+                ObiNode selected = mProjectPanel.CurrentSelectionNode;
                 SectionNode section;  // section in which we are recording
                 int index;            // index from which we add new phrases in the aforementioned section
                 if (selected == null)
@@ -393,12 +414,12 @@ namespace Obi.UserControls
                 // Stopping again deselects everything
                 if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
                 {
-                    mProjectPanel.StripManager.SelectedNode = null;
+                    mProjectPanel.CurrentSelection = null;
                 }
                 else
                 {
                     mCurrentPlaylist.Stop();
-                    mProjectPanel.SelectedNode = mPlayingFrom;
+                    mProjectPanel.CurrentSelection = mPlayingFrom;
                 }
             }
         }

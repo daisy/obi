@@ -717,10 +717,7 @@ else if ( mPlayBackState == PlayBackState.Rewind )
             int index = mPhrases.IndexOf(node);
             mPhrases.RemoveAt(index);
             mStartTimes.RemoveAt(index);
-            double length = node.Asset.LengthInMilliseconds;
-            mTotalTime -= length;
-            for (int i = index + 1; i < mStartTimes.Count; ++i) mStartTimes[i] -= length;
-            System.Diagnostics.Debug.Print("--- Playlist: {0} phrase(s), length = {1}ms.", mPhrases.Count, mTotalTime);
+            if (mPhrases.Count > 0) UpdateTimeFromIndex(index);
         }
 
         /// <summary>

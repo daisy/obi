@@ -91,7 +91,6 @@ namespace Obi.UserControls
             this.mTOCPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mTOCPanel.Location = new System.Drawing.Point(0, 0);
             this.mTOCPanel.Name = "mTOCPanel";
-            this.mTOCPanel.SelectedSection = null;
             this.mTOCPanel.Size = new System.Drawing.Size(275, 409);
             this.mTOCPanel.TabIndex = 0;
             // 
@@ -102,7 +101,6 @@ namespace Obi.UserControls
             this.mStripManagerPanel.Location = new System.Drawing.Point(0, 0);
             this.mStripManagerPanel.Name = "mStripManagerPanel";
             this.mStripManagerPanel.Padding = new System.Windows.Forms.Padding(3);
-            this.mStripManagerPanel.SelectedNode = null;
             this.mStripManagerPanel.Size = new System.Drawing.Size(550, 409);
             this.mStripManagerPanel.TabIndex = 0;
             // 

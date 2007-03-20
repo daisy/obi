@@ -16,12 +16,6 @@ namespace Obi.UserControls
 {
     public partial class StripManagerPanel
     {
-        public event Events.SectionNodeHandler ShallowDeleteSectionNodeRequested;
-        public event Events.SectionNodeHandler PasteSectionNodeRequested;
-
-        public Events.RequestToSetPageNumberHandler SetPageNumberRequested;
-        public Events.PhraseNodeHandler RemovePageNumberRequested;
-
         private void mContextMenuStrip_Opening(object sender, CancelEventArgs e)
         {
             UpdateEnabledItemsForContextMenu();
@@ -37,17 +31,27 @@ namespace Obi.UserControls
         /// </summary>
         public void InsertStrip()
         {
-            if (mProjectPanel.Project != null)
+            if (mProjectPanel.CurrentSelectedStrip != null)
             {
-                SectionNode node = mProjectPanel.Project.CreateSiblingSectionNode(mSelectedSection);
-                _SelectedSectionNode = node;
+                SectionNode node = mProjectPanel.Project.CreateSiblingSectionNode(mProjectPanel.CurrentSelectedStrip);
+                mProjectPanel.CurrentSelection = new NodeSelection(node, this);
                 StartRenamingSelectedStrip();
             }
         }
 
-        private void mRenameStripToolStripMenuItem_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Handle both "rename strip" and "edit annotation" (sharing the same shortcut.)
+        /// </summary>
+        private void RenameStripOrEditAnnotation(object sender, EventArgs e)
         {
-            StartRenamingSelectedStrip();
+            if (mProjectPanel.CurrentSelectedStrip != null)
+            {
+                mSectionNodeMap[mProjectPanel.CurrentSelectedStrip].Renaming = true;
+            }
+            else if (mProjectPanel.CurrentSelectedAudioBlock != null)
+            {
+                mPhraseNodeMap[mProjectPanel.CurrentSelectedAudioBlock].AnnotationBlock.Renaming = true;
+            }
         }
 
         /// <summary>
@@ -55,9 +59,9 @@ namespace Obi.UserControls
         /// </summary>
         public void StartRenamingSelectedStrip()
         {
-            if (mSelectedSection != null)
+            if (mProjectPanel.CurrentSelectedStrip != null)
             {
-                mSectionNodeMap[mSelectedSection].Renaming = true;
+                mSectionNodeMap[mProjectPanel.CurrentSelectedStrip].Renaming = true;
             }
         }
 
@@ -68,15 +72,15 @@ namespace Obi.UserControls
         {
             bool isPlaying = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing;
             bool isStripSelected = SelectedSectionNode != null;
-            bool isStripUsed = isStripSelected && SelectedSectionNode.Used;
+            bool isStripUsed = isStripSelected && SelectedSectionNode != null;
             bool isParentUsed = isStripSelected &&
                 (SelectedSectionNode.ParentSection == null || SelectedSectionNode.ParentSection.Used);
-            bool noSelection = SelectedNode == null;
+            bool noSelection = mProjectPanel.CurrentSelection == null || mProjectPanel.CurrentSelection.Control != this;
 
             mInsertStripToolStripMenuItem.Enabled = !isPlaying && (noSelection || isStripUsed || isParentUsed);
             mRenameStripToolStripMenuItem.Enabled = !isPlaying && isStripUsed;
 
-            bool canCutCopyDeleteSection = !isPlaying && isStripSelected && mProjectPanel.CanCutCopyDeleteNode;
+            bool canCutCopyDeleteSection = !isPlaying && isStripSelected && mProjectPanel.CurrentSelectionNode != null;
             bool canPasteSection = !isPlaying && mProjectPanel.CanPaste(mProjectPanel.Project.Clipboard.Section);
 
             mCutStripToolStripMenuItem.Enabled = canCutCopyDeleteSection;
@@ -87,12 +91,12 @@ namespace Obi.UserControls
             mShowInTOCViewToolStripMenuItem.Enabled = !isPlaying && isStripSelected;
 
             bool isBlockSelected = SelectedPhraseNode != null;
-            bool canCutCopyDeletePhrase = !isPlaying && isBlockSelected && mProjectPanel.CanCutCopyDeleteNode;
+            bool canCutCopyDeletePhrase = !isPlaying && isBlockSelected && mProjectPanel.CurrentSelectionNode != null;
             bool canPastePhrase = !isPlaying && mProjectPanel.CanPaste(mProjectPanel.Project.Clipboard.Phrase);
             bool canMoveForward = !isPlaying &&
-                mProjectPanel.Project.CanMovePhraseNode(mSelectedPhrase, PhraseNode.Direction.Forward);
+                mProjectPanel.Project.CanMovePhraseNode(mProjectPanel.CurrentSelectedAudioBlock, PhraseNode.Direction.Forward);
             bool canMoveBackward = !isPlaying &&
-                mProjectPanel.Project.CanMovePhraseNode(mSelectedPhrase, PhraseNode.Direction.Backward);
+                mProjectPanel.Project.CanMovePhraseNode(mProjectPanel.CurrentSelectedAudioBlock, PhraseNode.Direction.Backward);
 
             mImportAudioFileToolStripMenuItem.Enabled = !isPlaying && !noSelection;
             mInsertEmptyAudioblockToolStripMenuItem.Enabled = false; // !isPlaying && !noSelection
@@ -110,7 +114,7 @@ namespace Obi.UserControls
             mMoveAudioBlockToolStripMenuItem.Enabled = mMoveAudioBlockForwardToolStripMenuItem.Enabled ||
                 mMoveAudioBlockBackwardToolStripMenuItem.Enabled;
 
-            bool canRemoveAnnotation = !isPlaying && isBlockSelected && mSelectedPhrase.HasAnnotation;
+            bool canRemoveAnnotation = !isPlaying && isBlockSelected && mProjectPanel.CurrentSelectedAudioBlock.HasAnnotation;
             mEditAnnotationToolStripMenuItem.Enabled = !isPlaying && isBlockSelected;
             mRemoveAnnotationToolStripMenuItem.Enabled = canRemoveAnnotation;
             mFocusOnAnnotationToolStripMenuItem.Enabled = canRemoveAnnotation;
@@ -167,15 +171,15 @@ namespace Obi.UserControls
 
         public void ApplyPhraseDetection()
         {
-            if (mSelectedPhrase != null)
+            if (mProjectPanel.CurrentSelectedAudioBlock != null)
             {
                 PhraseNode silence = mProjectPanel.Project.FindFirstPhrase();
-                if (mSelectedPhrase != silence)
+                if (mProjectPanel.CurrentSelectedAudioBlock != silence)
                 {
                     Dialogs.SentenceDetection dialog = new Dialogs.SentenceDetection(silence);
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
-                        mProjectPanel.Project.ApplyPhraseDetection(mSelectedPhrase, dialog.Threshold, dialog.Gap,
+                        mProjectPanel.Project.ApplyPhraseDetection(mProjectPanel.CurrentSelectedAudioBlock, dialog.Threshold, dialog.Gap,
                             dialog.LeadingSilence);
                     }
                 }
@@ -187,20 +191,15 @@ namespace Obi.UserControls
             MergeBlocks();
         }
 
-        private void mEditAudioBlockLabelToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            EditAnnotationForAudioBlock();
-        }
-
         /// <summary>
         /// Edit the annotation for the selected audio block.
         /// </summary>
         /// <remarks>Start renaming process; the rest is handled by the annotation block itself.</remarks>
-        public void EditAnnotationForAudioBlock()
+        public void EditAnnotationForSelectedAudioBlock()
         {
-            if (mSelectedPhrase != null)
+            if (mProjectPanel.CurrentSelectedAudioBlock != null)
             {
-                mPhraseNodeMap[mSelectedPhrase].AnnotationBlock.Renaming = true;
+                mPhraseNodeMap[mProjectPanel.CurrentSelectedAudioBlock].AnnotationBlock.Renaming = true;
             }
         }
 
@@ -214,9 +213,9 @@ namespace Obi.UserControls
         /// </summary>
         public void RemoveAnnotationForAudioBlock()
         {
-            if (mSelectedPhrase != null)
+            if (mProjectPanel.CurrentSelectedAudioBlock != null)
             {
-                mSelectedPhrase.Project.EditAnnotationPhraseNode(mSelectedPhrase, "");
+                mProjectPanel.CurrentSelectedAudioBlock.Project.EditAnnotationPhraseNode(mProjectPanel.CurrentSelectedAudioBlock, "");
             }
         }
 
@@ -230,18 +229,10 @@ namespace Obi.UserControls
         /// </summary>
         public void FocusOnAnnotation()
         {
-            if (mSelectedPhrase != null)
+            if (mProjectPanel.CurrentSelectedAudioBlock != null)
             {
-                mPhraseNodeMap[mSelectedPhrase].AnnotationBlock.FocusOnAnnotation();
+                mPhraseNodeMap[mProjectPanel.CurrentSelectedAudioBlock].AnnotationBlock.FocusOnAnnotation();
             }
-        }
-
-        /// <summary>
-        /// Delete the currently selected audio block.
-        /// </summary>
-        private void mDeleteAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectPanel.Project.DeletePhraseNode(mSelectedPhrase);
         }
 
         /// <summary>
@@ -249,9 +240,9 @@ namespace Obi.UserControls
         /// </summary>
         private void mMoveAudioBlockForwardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mSelectedPhrase != null) 
+            if (mProjectPanel.CurrentSelectedAudioBlock != null) 
             {
-                mProjectPanel.Project.MovePhraseNode(mSelectedPhrase, PhraseNode.Direction.Forward);
+                mProjectPanel.Project.MovePhraseNode(mProjectPanel.CurrentSelectedAudioBlock, PhraseNode.Direction.Forward);
             }
         }
 
@@ -261,9 +252,9 @@ namespace Obi.UserControls
         //mg 20060813: made internal to allow obiform menu sync access
         internal void mMoveAudioBlockBackwardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mSelectedPhrase != null)
+            if (mProjectPanel.CurrentSelectedAudioBlock != null)
             {
-                mProjectPanel.Project.MovePhraseNode(mSelectedPhrase, PhraseNode.Direction.Backward);
+                mProjectPanel.Project.MovePhraseNode(mProjectPanel.CurrentSelectedAudioBlock, PhraseNode.Direction.Backward);
             }
         }
 
@@ -275,54 +266,24 @@ namespace Obi.UserControls
         //  mg20060804
         internal void mShowInTOCViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mSelectedSection != null)
+            if (mProjectPanel.CurrentSelectedStrip != null)
             {
-                ProjectPanel.TOCPanel.SelectedSection = mSelectedSection;
+                ProjectPanel.CurrentSelection = new NodeSelection(mProjectPanel.CurrentSelection.Node, mProjectPanel.TOCPanel);
                 //since the tree can be hidden:
                 mProjectPanel.ShowTOCPanel();
                 ProjectPanel.TOCPanel.Focus();
             }
         }
 
-        //md 20060812
-        //shallow-delete a section node
-        //mg 20060813: made internal to allow obiform menu sync access
-        private void mDeleteStripToolStripMenuItem_Click(object sender, EventArgs e)
+        /*public void DeleteStrip(SectionNode node)
         {
-            DeleteSelectedSection();
+            ShallowDeleteSectionNodeRequested(this, new SectionNodeEventArgs(this, node));
         }
 
         public void DeleteSelectedSection()
         {
-            ShallowDeleteSectionNodeRequested(this, new SectionNodeEventArgs(this, this.mSelectedSection));
-        }
-
-        /// <summary>
-        /// Cut the selected block and store it in the block clip board.
-        /// </summary>
-        //JQ 20060815
-        private void mCutBlockToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectPanel.Project.CutPhraseNode(mSelectedPhrase);
-        }
-
-        /// <summary>
-        /// Copy the selected blockand store it in the block clip board.
-        /// Actually nothing changes, but a command is still issued to undo (and retrieve the last value in the clipboard.)
-        /// </summary>
-        // JQ 20060816
-        private void mCopyAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mSelectedPhrase != null) mProjectPanel.Project.CopyPhraseNode(mSelectedPhrase);
-        }
-
-        /// <summary>
-        /// Paste the audio block in the clip board.
-        /// </summary>
-        private void mPasteAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectPanel.Project.PastePhraseNode(mProjectPanel.Project.Clipboard.Phrase, SelectedNode);
-        }
+            ShallowDeleteSectionNodeRequested(this, new SectionNodeEventArgs(this, mProjectPanel.CurrentSelectedStrip));
+        }*/
 
         /// <summary>
         /// Paste a section.
@@ -330,8 +291,7 @@ namespace Obi.UserControls
         /// <remarks>TODO: find the right context node when none is selected.</remarks>
         public void PasteSectionNode()
         {
-            // SectionNode contextNode = mSelectedSection;
-            PasteSectionNodeRequested(this, new SectionNodeEventArgs(this, mSelectedSection));
+            mProjectPanel.Project.PasteSectionNode(mProjectPanel.CurrentSelectedStrip);
         }
 
         /// <summary>
@@ -351,48 +311,103 @@ namespace Obi.UserControls
             mProjectPanel.Project.ToggleNodeUsedWithCommand(SelectedSectionNode, false);
         }
 
-        private void mMarkStripAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ToggleSelectedStripUsed();
-        }
-
         /// <summary>
         /// Toggle the "used" status of the selected phrase.
         /// Do nothing if no phrase is selected.
         /// </summary>
-        internal void ToggleSelectedPhraseUsed()
+        internal void ToggleSelectedAudioBlockUsed()
         {
             mProjectPanel.Project.ToggleNodeUsedWithCommand(SelectedPhraseNode, false);
         }
 
-        private void mMarkPhraseAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ToggleSelectedPhraseUsed();
-        }
-
-        private void mCutStripToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectPanel.Project.ShallowCutSectionNode(mSelectedSection);
-        }
-
-        private void mCopyStripToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectPanel.Project.ShallowCopySectionNode(mSelectedSection, true);
-        }
-
-        private void mPasteStripToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            PasteSectionNode();
-        }
-
         private void mSetPageNumberToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mSelectedPhrase != null) mProjectPanel.Project.SetPageNumberOnPhraseWithUndo(mSelectedPhrase);
+            if (mProjectPanel.CurrentSelectedAudioBlock != null) mProjectPanel.Project.SetPageNumberOnPhraseWithUndo(mProjectPanel.CurrentSelectedAudioBlock);
         }
 
         private void mGoTopageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mProjectPanel.Project.Pages > 0) GoToPage();
         }
+
+        #region ambiguous click event handlers
+
+
+        /// <summary>
+        /// Cut either the selected strip or the selected audio block.
+        /// </summary>
+        private void CutStripOrAudioBlockHandler(object sender, EventArgs e)
+        {
+            if (mProjectPanel.CurrentSelectedStrip != null)
+            {
+                mProjectPanel.Project.ShallowCutSectionNode(mProjectPanel.CurrentSelectedStrip);
+            }
+            else if (mProjectPanel.CurrentSelectedAudioBlock != null)
+            {
+                mProjectPanel.Project.CutPhraseNode(mProjectPanel.CurrentSelectedAudioBlock);
+            }
+        }
+
+        /// <summary>
+        /// Copy either the selected strip or the selected audio block.
+        /// </summary>
+        private void CopyStripOrAudioBlockHandler(object sender, EventArgs e)
+        {
+            if (mProjectPanel.CurrentSelectedStrip != null)
+            {
+                mProjectPanel.Project.ShallowCopySectionNode(mProjectPanel.CurrentSelectedStrip, true);
+            }
+            else if (mProjectPanel.CurrentSelectedAudioBlock != null)
+            {
+                mProjectPanel.Project.CopyPhraseNode(mProjectPanel.CurrentSelectedAudioBlock);
+            }
+        }
+
+        /// <summary>
+        /// Paste the node in the clipboard in the selected strip or before the selected audio block.
+        /// </summary>
+        private void PasteStripOrAudioBlockHandler(object sender, EventArgs e)
+        {
+            if (mProjectPanel.CurrentSelectedStrip != null)
+            {
+                PasteSectionNode();
+            }
+            else if (mProjectPanel.CurrentSelectedAudioBlock != null)
+            {
+                mProjectPanel.Project.PastePhraseNode(mProjectPanel.Project.Clipboard.Phrase, mProjectPanel.CurrentSelectionNode);
+            }
+        }
+
+        /// <summary>
+        /// Delete either the selected strip or audio block.
+        /// </summary>
+        private void DeleteStripOrAudioBlockHandler(object sender, EventArgs e)
+        {
+            if (mProjectPanel.CurrentSelectedStrip != null)
+            {
+                mProjectPanel.Project.ShallowDeleteSectionNode(this, mProjectPanel.CurrentSelectedStrip);
+            }
+            else if (mProjectPanel.CurrentSelectedAudioBlock != null)
+            {
+                mProjectPanel.Project.DeletePhraseNode(mProjectPanel.CurrentSelectedAudioBlock);
+            }
+        }
+
+        /// <summary>
+        /// Toggle the used state of either the selected strip or audio block.
+        /// </summary>
+        private void ToggleUsedStripOrAudioBlockHandler(object sender, EventArgs e)
+        {
+            if (mProjectPanel.CurrentSelectedStrip != null)
+            {
+                ToggleSelectedStripUsed();
+            }
+            else if (mProjectPanel.CurrentSelectedAudioBlock != null)
+            {
+                ToggleSelectedAudioBlockUsed();
+            }
+        }
+
+        #endregion
     }
 }

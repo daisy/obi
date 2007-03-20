@@ -14,7 +14,7 @@ namespace Obi
     /// The form consists mostly of a menu bar and a project panel.
     /// We also keep an undo stack (the command manager) and settings.
     /// </summary>
-    public partial class ObiForm : Form
+    public partial class ObiForm : Form, IMessageFilter
     {
         private Project mProject;                // the project currently being authored
         private Settings mSettings;              // application settings
@@ -330,21 +330,23 @@ namespace Obi
         {
             if (mProjectPanel != null)
             {
-                if (mProjectPanel.StripManager.SelectedPhraseNode != null)
+                mProjectPanel.TransportBar.Enabled = false;
+                if (mProjectPanel.CurrentSelectedAudioBlock != null)
                 {
-                    StopIfPaused();
-                    mProject.CutPhraseNode(mProjectPanel.StripManager.SelectedPhraseNode);
+                    mProject.CutPhraseNode(mProjectPanel.CurrentSelectedAudioBlock);
+                    mProjectPanel.CurrentSelection = null;
                 }
-                else if (mProjectPanel.StripManager.SelectedSectionNode != null)
+                else if (mProjectPanel.CurrentSelectedStrip != null)
                 {
-                    StopIfPaused();
-                    mProject.ShallowCutSectionNode(mProjectPanel.StripManager.SelectedSectionNode);
+                    mProject.ShallowCutSectionNode(mProjectPanel.CurrentSelectedStrip);
+                    mProjectPanel.CurrentSelection = null;
                 }
-                else if (mProjectPanel.TOCPanel.IsNodeSelected)
+                else if (mProjectPanel.CurrentSelectedSection != null)
                 {
-                    StopIfPaused();
-                    mProject.CutSectionNode(mProjectPanel.TOCPanel.SelectedSection);
+                    mProject.CutSectionNode(mProjectPanel.CurrentSelectedSection);
+                    mProjectPanel.CurrentSelection = null;
                 }
+                mProjectPanel.TransportBar.Enabled = true;
             }
         }
 
@@ -355,21 +357,20 @@ namespace Obi
         {
             if (mProjectPanel != null)
             {
-                if (mProjectPanel.StripManager.SelectedPhraseNode != null)
+                mProjectPanel.TransportBar.Enabled = false;
+                if (mProjectPanel.CurrentSelectedAudioBlock != null)
                 {
-                    StopIfPaused();
-                    mProject.CopyPhraseNode(mProjectPanel.StripManager.SelectedPhraseNode);
+                    mProject.CopyPhraseNode(mProjectPanel.CurrentSelectedAudioBlock);
                 }
-                else if (mProjectPanel.StripManager.SelectedSectionNode != null)
+                else if (mProjectPanel.CurrentSelectedStrip != null)
                 {
-                    StopIfPaused();
-                    mProject.ShallowCopySectionNode(mProjectPanel.StripManager.SelectedSectionNode, true);
+                    mProject.ShallowCopySectionNode(mProjectPanel.CurrentSelectedStrip, true);
                 }
-                else if (mProjectPanel.TOCPanel.IsNodeSelected)
+                else if (mProjectPanel.CurrentSelectedSection != null)
                 {
-                    StopIfPaused();
-                    mProject.CopySectionNode(mProjectPanel.TOCPanel.SelectedSection);
+                    mProject.CopySectionNode(mProjectPanel.CurrentSelectedSection);
                 }
+                mProjectPanel.TransportBar.Enabled = true;
             }
         }
 
@@ -380,15 +381,20 @@ namespace Obi
         {
             if (mProject != null)
             {
+                mProjectPanel.TransportBar.Enabled = false;
                 if (mProject.Clipboard.Section != null)
                 {
-                    mProject.PasteSectionNode(mProjectPanel.SelectedNode);
+                    IControlWithSelection control = mProjectPanel.CurrentSelection.Control;
+                    SectionNode pasted = mProject.PasteSectionNode(mProjectPanel.CurrentSelectionNode);
+                    mProjectPanel.CurrentSelection = new NodeSelection(pasted, control);
                 }
                 else if (mProject.Clipboard.Phrase != null)
                 {
-                    StopIfPaused();
-                    mProject.PastePhraseNode(mProject.Clipboard.Phrase, mProjectPanel.SelectedNode);
+                    PhraseNode pasted = mProject.PastePhraseNode(mProject.Clipboard.Phrase,
+                        mProjectPanel.CurrentSelectionNode);
+                    mProjectPanel.CurrentSelection = new NodeSelection(pasted, mProjectPanel.StripManager);
                 }
+                mProjectPanel.TransportBar.Enabled = true;
             }
         }
 
@@ -399,20 +405,21 @@ namespace Obi
         {
             if (mProjectPanel != null)
             {
-                if (mProjectPanel.StripManager.SelectedPhraseNode != null)
+                mProjectPanel.TransportBar.Enabled = false;
+                if (mProjectPanel.CurrentSelectedAudioBlock != null)
                 {
-                    StopIfPaused();
-                    mProject.DeletePhraseNode(mProjectPanel.StripManager.SelectedPhraseNode);
+                    mProject.DeletePhraseNode(mProjectPanel.CurrentSelectedAudioBlock);
                 }
-                else if (mProjectPanel.StripManager.SelectedSectionNode != null)
+                else if (mProjectPanel.CurrentSelectedStrip != null)
                 {
-                    mProjectPanel.StripManager.DeleteSelectedSection();
+                    // to review!
+                    mProject.ShallowDeleteSectionNode(this, mProjectPanel.CurrentSelectedStrip);
                 }
-                else if (mProjectPanel.TOCPanel.IsNodeSelected)
+                else if (mProjectPanel.CurrentSelectedSection != null)
                 {
-                    StopIfPaused();
-                    mProject.DeleteSectionNode(mProjectPanel.TOCPanel.SelectedSection);
+                    mProject.DeleteSectionNode(mProjectPanel.CurrentSelectedSection);
                 }
+                mProjectPanel.TransportBar.Enabled = true;
             }
         }
 
@@ -423,10 +430,11 @@ namespace Obi
         {
             if (mProject != null)
             {
-                StopIfPaused();
+                mProjectPanel.TransportBar.Enabled = false;
                 Dialogs.EditSimpleMetadata dialog = new Dialogs.EditSimpleMetadata(mProject.Metadata);
                 if (mProject != null && dialog.ShowDialog() == DialogResult.OK) mProject.Modified();
                 Ready();
+                mProjectPanel.TransportBar.Enabled = true;
             }
         }
 
@@ -485,12 +493,12 @@ namespace Obi
 
         private void mMoveOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProject.MoveSectionNodeOut(mProjectPanel.TOCPanel.SelectedSection);
+            mProject.MoveSectionNodeOut(mProjectPanel.CurrentSelectedSection);
         }
 
         private void mMoveInToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProject.MoveSectionNodeIn(mProjectPanel.TOCPanel.SelectedSection);
+            mProject.MoveSectionNodeIn(mProjectPanel.CurrentSelectedSection);
         }
 
         private void mShowInStripviewToolStripMenuItem_Click(object sender, EventArgs e)
@@ -555,12 +563,12 @@ namespace Obi
 
         private void mMarkAudioBlockAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.StripManager.ToggleSelectedPhraseUsed();
+            mProjectPanel.StripManager.ToggleSelectedAudioBlockUsed();
         }
 
         private void mEditAnnotationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.StripManager.EditAnnotationForAudioBlock();
+            mProjectPanel.StripManager.EditAnnotationForSelectedAudioBlock();
         }
 
         private void mRemoveAnnotationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -715,17 +723,6 @@ namespace Obi
         }
 
         /// <summary>
-        /// Setup the TOC and strip menus in the same way as the context menus for TOCPanel and StripManager.
-        /// </summary>
-        private void ObiForm_Load(object sender, EventArgs e)
-        {
-            // we don't use it at the moment
-            // Application.AddMessageFilter(this);
-            mShowInTOCViewToolStripMenuItem.Click +=
-                new EventHandler(mProjectPanel.StripManager.mShowInTOCViewToolStripMenuItem_Click);
-        }
-
-        /// <summary>
         /// Update the TOC menu when a tree node is (de)selected.
         /// </summary>
         private void TOCPanel_SelectedTreeNode(object sender, Events.Node.SelectedEventArgs e)
@@ -831,9 +828,10 @@ namespace Obi
         /// </summary>
         private void FormUpdateModifiedProject()
         {
-            StopIfPaused();
+            mProjectPanel.TransportBar.Enabled = false;
             this.Text = String.Format(Localizer.Message("title_bar"), mProject.Metadata.Title + "*");
             Ready();
+            mProjectPanel.TransportBar.Enabled = true;
         }
 
         private void dumpTreeDEBUGToolStripMenuItem_Click(object sender, EventArgs e)
@@ -866,7 +864,7 @@ namespace Obi
         private void UpdateEnabledItemsForTransportMenu()
         {
             bool isProjectOpen = mProject != null;
-            bool isNodeSelected = isProjectOpen && mProjectPanel.SelectedNode != null;
+            bool isNodeSelected = isProjectOpen && mProjectPanel.CurrentSelection != null;
 
             mShowHideVUMeterToolStripMenuItem.Text = Localizer.Message(mVuMeterForm.Visible ? "hide_vu_meter" : "show_vu_meter");
             if (mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
@@ -960,7 +958,7 @@ namespace Obi
         /// </summary>
         private void mPlaySelectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Play(mProjectPanel.StripManager.SelectedNode);
+            Play(mProjectPanel.CurrentSelectionNode);
         }
 
         /// <summary>
@@ -1077,7 +1075,7 @@ namespace Obi
         /// </summary>
         private void mMarkSectionAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProject.ToggleNodeUsedWithCommand(mProjectPanel.TOCPanel.SelectedSection, true);
+            mProject.ToggleNodeUsedWithCommand(mProjectPanel.CurrentSelectedSection, true);
         }
 
         /// <summary>
@@ -1156,9 +1154,9 @@ namespace Obi
         /// <returns>True if there is no open project or the currently open project could be closed.</returns>
         private bool ClosedProject()
         {
-            StopIfPaused();
             if (mProject != null && mProject.Unsaved)
             {
+                mProjectPanel.TransportBar.Enabled = false;
                 // Unsaved project: ask the user if they want to save and close ("yes" option),
                 // close without saving ("no" option) or not close at all ("cancel" option.)
                 DialogResult result = MessageBox.Show(Localizer.Message("closed_project_text"),
@@ -1174,6 +1172,7 @@ namespace Obi
                         return true;
                     // case DialogResult.Cancel:
                     default:
+                        mProjectPanel.TransportBar.Enabled = true;
                         return false;
                 }
             }
@@ -1269,15 +1268,6 @@ namespace Obi
         }
 
         /// <summary>
-        /// Stop the player if it was paused before an edit operation can be made.
-        /// </summary>
-        private void StopIfPaused()
-        {
-            if (mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused)
-                mProjectPanel.TransportBar.Stop();
-        }
-
-        /// <summary>
         /// Try to open a project from a XUK file.
         /// Actually open it only if a possible current project could be closed properly.
         /// </summary>
@@ -1336,7 +1326,7 @@ namespace Obi
             UpdateEnabledItemsForUndoRedo();
 
             bool isPlaying = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing;
-            bool canCutCopyDelete = !isPlaying && mProjectPanel.CanCutCopyDeleteNode;
+            bool canCutCopyDelete = !isPlaying && mProjectPanel.CurrentSelectionNode != null;
             string itemLabel = mProjectPanel.SelectedLabel;
             if (itemLabel != "") itemLabel = " " + itemLabel;
             ObiNode clipboardData = mProject == null ? null : mProject.Clipboard.Data as ObiNode;
@@ -1386,6 +1376,7 @@ namespace Obi
                 mRedoToolStripMenuItem.Enabled = false;
                 mRedoToolStripMenuItem.Text = Localizer.Message("redo");
             }
+            System.Diagnostics.Debug.Print("~~~ can{0} undo ~~~", mUndoToolStripMenuItem.Enabled ? "" : "NOT");
         }
 
         /// <summary>
@@ -1399,20 +1390,20 @@ namespace Obi
 
             bool isPlaying = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing;
             bool isProjectOpen = mProject != null;
-            bool noNodeSelected = isProjectOpen && mProjectPanel.SelectedNode == null;
-            bool isSectionNodeSelected = isProjectOpen && mProjectPanel.TOCPanel.SelectedSection != null;
-            bool isSectionNodeUsed = isSectionNodeSelected && mProjectPanel.TOCPanel.SelectedSection.Used;
+            bool noNodeSelected = isProjectOpen && mProjectPanel.CurrentSelection == null;
+            bool isSectionNodeSelected = isProjectOpen && mProjectPanel.CurrentSelectedSection != null;
+            bool isSectionNodeUsed = isSectionNodeSelected && mProjectPanel.CurrentSelectedSection.Used;
             bool isParentUsed = isSectionNodeSelected ?
-                mProjectPanel.TOCPanel.SelectedSection.ParentSection == null ||
-                mProjectPanel.TOCPanel.SelectedSection.ParentSection.Used : false;
+                mProjectPanel.CurrentSelectedSection.ParentSection == null ||
+                mProjectPanel.CurrentSelectedSection.ParentSection.Used : false;
 
             mAddSectionToolStripMenuItem.Enabled = !isPlaying && (noNodeSelected || isSectionNodeUsed || isParentUsed);
             mAddSubSectionToolStripMenuItem.Enabled = !isPlaying && isSectionNodeUsed;
             mRenameSectionToolStripMenuItem.Enabled = !isPlaying && isSectionNodeUsed;
             mMoveOutToolStripMenuItem.Enabled = !isPlaying && isSectionNodeUsed &&
-                mProjectPanel.Project.CanMoveSectionNodeOut(mProjectPanel.SelectedNode as SectionNode);
+                mProjectPanel.Project.CanMoveSectionNodeOut(mProjectPanel.CurrentSelectionNode as SectionNode);
             mMoveInToolStripMenuItem.Enabled = !isPlaying && isSectionNodeUsed &&
-                mProjectPanel.Project.CanMoveSectionNodeIn(mProjectPanel.SelectedNode as SectionNode);
+                mProjectPanel.Project.CanMoveSectionNodeIn(mProjectPanel.CurrentSelectionNode as SectionNode);
             
             // Mark section used/unused (by default, i.e. if disabled, "unused")
             mMarkSectionAsUnusedToolStripMenuItem.Enabled = !isPlaying && isSectionNodeSelected && isParentUsed;
@@ -1471,5 +1462,39 @@ namespace Obi
             Uri url = new Uri(Path.GetDirectoryName(GetType().Assembly.Location) + "\\help_en.html");
             System.Diagnostics.Process.Start(url.ToString());
         }
+
+        private void mShowInTOCViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // should be a project panel method?
+            if (mProjectPanel.CurrentSelectedStrip != null)
+            {
+                mProjectPanel.CurrentSelection = new NodeSelection(mProjectPanel.CurrentSelection.Node, mProjectPanel.TOCPanel);
+                //since the tree can be hidden:
+                mProjectPanel.ShowTOCPanel();
+                mProjectPanel.TOCPanel.Focus();
+            }
+        }
+
+        #region IMessageFilter Members
+
+        private const UInt32 WM_KEYDOWN = 0x0100;
+        private const UInt32 WM_SYSKEYDOWN = 0x0104;
+
+        private void mProjectPanel_Load(object sender, EventArgs e)
+        {
+            Application.AddMessageFilter(this);
+        }
+
+        public bool PreFilterMessage(ref Message m)
+        {
+            if (m.Msg == WM_KEYDOWN || m.Msg == WM_SYSKEYDOWN)
+            {
+                System.Diagnostics.Debug.Print("*** Got WM_{0}KEYDOWN message ***", m.Msg == WM_SYSKEYDOWN ? "SYS" : "");
+                UpdateEnabledItems();
+            }
+            return false;
+        }
+
+        #endregion
     }
 }

@@ -59,7 +59,7 @@ namespace Obi
         /// Paste the clipboard node under the parent (or the root if no parent is given.)
         /// </summary>
         /// <param name="parent">Parent to paste under (root if null.)</param>
-        public void PasteSectionNode(CoreNode parent)
+        public SectionNode PasteSectionNode(CoreNode parent)
         {
             if (mClipboard.Section != null)
             {
@@ -67,6 +67,11 @@ namespace Obi
                 SectionNode pasted = PasteCopyOfSectionNode(mClipboard.Section, parent);
                 CommandCreated(this,
                     new Events.Project.CommandCreatedEventArgs(new Commands.TOC.PasteSectionNode(pasted, parent)));
+                return pasted;
+            }
+            else
+            {
+                return null;
             }
         }
 
@@ -332,12 +337,6 @@ namespace Obi
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
 
-        }
-
-        //md 20060812
-        public void ShallowDeleteSectionNodeRequested(object sender, Events.Node.SectionNodeEventArgs e)
-        {
-            ShallowDeleteSectionNode(sender, e.Node);
         }
 
         //md 20060812

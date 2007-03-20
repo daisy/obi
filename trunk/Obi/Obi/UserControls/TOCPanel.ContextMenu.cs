@@ -33,7 +33,7 @@ namespace Obi.UserControls
         {
             if (mProjectPanel.Project != null)
             {
-                SectionNode section = mProjectPanel.Project.CreateSiblingSectionNode(SelectedSection);
+                SectionNode section = mProjectPanel.Project.CreateSiblingSectionNode(mProjectPanel.CurrentSelectedSection);
                 mTocTree.SelectedNode = FindTreeNodeFromSectionNode(section);
                 StartRenamingSelectedSection();
             }
@@ -48,7 +48,7 @@ namespace Obi.UserControls
         {
             if (mProjectPanel.Project != null)
             {
-                SectionNode section = mProjectPanel.Project.CreateChildSectionNode(SelectedSection);
+                SectionNode section = mProjectPanel.Project.CreateChildSectionNode(mProjectPanel.CurrentSelectedSection);
                 mTocTree.SelectedNode = FindTreeNodeFromSectionNode(section);
                 StartRenamingSelectedSection();
             }
@@ -61,37 +61,37 @@ namespace Obi.UserControls
 
         private void mMoveOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.Project.MoveSectionNodeOut(SelectedSection);
+            mProjectPanel.Project.MoveSectionNodeOut(mProjectPanel.CurrentSelectedSection);
         }
 
         private void mMoveInToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.Project.MoveSectionNodeIn(SelectedSection);
+            mProjectPanel.Project.MoveSectionNodeIn(mProjectPanel.CurrentSelectedSection);
         }
 
         private void mCutSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.Project.CutSectionNode(SelectedSection);
+            mProjectPanel.Project.CutSectionNode(mProjectPanel.CurrentSelectedSection);
         }
 
         private void mCopySectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.Project.CopySectionNode(SelectedSection);
+            mProjectPanel.Project.CopySectionNode(mProjectPanel.CurrentSelectedSection);
         }
 
         internal void mPasteSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.Project.PasteSectionNode(SelectedSection);
+            mProjectPanel.Project.PasteSectionNode(mProjectPanel.CurrentSelectedSection);
         }
 
         private void mDeleteSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.Project.DeleteSectionNode(SelectedSection);
+            mProjectPanel.Project.DeleteSectionNode(mProjectPanel.CurrentSelectedSection);
         }
 
         private void mMarkSectionAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.Project.ToggleNodeUsedWithCommand(SelectedSection, true);
+            mProjectPanel.Project.ToggleNodeUsedWithCommand(mProjectPanel.CurrentSelectedSection, true);
         }
 
         private void mShowInStripViewToolStripMenuItem_Click(object sender, EventArgs e)
@@ -101,13 +101,10 @@ namespace Obi.UserControls
 
         public void ShowSelectedSectionInStripView()
         {
-            if (IsNodeSelected)
+            SectionNode selected = mProjectPanel.CurrentSelectedSection;
+            if (selected != null)
             {
-                ProjectPanel.StripManager.SelectedNode = SelectedSection;
-                if (ProjectPanel.StripManager.SelectedSectionNode != null)
-                {
-                    ProjectPanel.StripManager.SelectedSectionStrip.Focus();
-                }
+                mProjectPanel.CurrentSelection = new NodeSelection(selected, mProjectPanel.StripManager);
             }
         }
 
@@ -120,17 +117,17 @@ namespace Obi.UserControls
         public void UpdateEnabledItemsForContextMenu()
         {
             bool isPlaying = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing;
-            bool isSelected = SelectedSection != null;
-            bool isSelectedUsed = isSelected && SelectedSection.Used;
+            bool isSelected = mProjectPanel.CurrentSelectedSection != null;
+            bool isSelectedUsed = isSelected && mProjectPanel.CurrentSelectedSection.Used;
             bool isParentUsed = isSelected ?
-                SelectedSection.ParentSection == null || SelectedSection.ParentSection.Used :
+                mProjectPanel.CurrentSelectedSection.ParentSection == null || mProjectPanel.CurrentSelectedSection.ParentSection.Used :
                 false;
 
             mAddSectionToolStripMenuItem.Enabled = !isPlaying && (!isSelected || isSelectedUsed || isParentUsed);
             mAddSubSectionToolStripMenuItem.Enabled = !isPlaying && isSelectedUsed;
             mRenameSectionToolStripMenuItem.Enabled = !isPlaying && isSelectedUsed;
-            mMoveOutToolStripMenuItem.Enabled = !isPlaying && mProjectPanel.Project.CanMoveSectionNodeOut(SelectedSection);
-            mMoveInToolStripMenuItem.Enabled = !isPlaying && mProjectPanel.Project.CanMoveSectionNodeIn(SelectedSection);
+            mMoveOutToolStripMenuItem.Enabled = !isPlaying && mProjectPanel.Project.CanMoveSectionNodeOut(mProjectPanel.CurrentSelectedSection);
+            mMoveInToolStripMenuItem.Enabled = !isPlaying && mProjectPanel.Project.CanMoveSectionNodeIn(mProjectPanel.CurrentSelectedSection);
 
             bool canCutCopyDelete = !isPlaying && isSelected && CanCutCopyDelete;
             bool canPaste = !isPlaying && CanPaste;

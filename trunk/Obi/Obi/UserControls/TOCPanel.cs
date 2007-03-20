@@ -16,43 +16,32 @@ namespace Obi.UserControls
     /// change the label, etc. of headings.)
     /// This control implements the CoreTreeView interface so that it can be synchronized with the core tree.
     /// </summary>
-    public partial class TOCPanel : UserControl
+    public partial class TOCPanel : UserControl, IControlWithSelection
     {
         private ProjectPanel mProjectPanel; //the parent of this control
 
-        public event Events.SelectedHandler SelectionChanged;
 
-        /// <summary>
-        /// Test whether a node is currently selected or not, *and* under user focus.
-        /// </summary>
-        public bool IsNodeSelected
-        {
-            get { return mTocTree.Focused && mTocTree.SelectedNode != null; }
-        }
+        #region IControlWithSelection Members
 
-        /// <summary>
-        /// The selected node.
-        /// </summary>
-        public SectionNode SelectedSection
+        public ObiNode CurrentSelectedNode
         {
-            get { return mTocTree.SelectedNode == null ? null : (SectionNode)mTocTree.SelectedNode.Tag; }
+            get
+            {
+                TreeNode selected = mTocTree.SelectedNode;
+                return selected == null ? null : (ObiNode)selected.Tag;
+            }
             set
             {
-                if (value != null)
+                if ((mTocTree.SelectedNode == null && value != null) ||
+                    (mTocTree.SelectedNode != null && mTocTree.SelectedNode.Tag != value))
                 {
-                    if (mProjectPanel != null) mProjectPanel.DeselectEverythingElse(this);
-                    mTocTree.SelectedNode = FindTreeNodeFromSectionNode(value);
-                    if (SelectionChanged != null)
-                    {
-                        SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(true, mTocTree.SelectedNode));
-                    }
-                }
-                else
-                {
-                    mTocTree.SelectedNode = null;
+                    mTocTree.SelectedNode = value == null ? null :
+                        FindTreeNodeFromSectionNode((SectionNode)value);
                 }
             }
         }
+
+        #endregion
 
         /// <summary>
         /// True if a section is selected and it can be cut, copied or deleted.
@@ -61,7 +50,7 @@ namespace Obi.UserControls
         {
             get
             {
-                SectionNode selected = SelectedSection;
+                SectionNode selected = mProjectPanel.CurrentSelectedSection;
                 return selected != null &&
                     (selected.Used || (selected.ParentSection == null || selected.ParentSection.Used));
             }
@@ -74,7 +63,7 @@ namespace Obi.UserControls
         {
             get
             {
-                SectionNode selected = SelectedSection;
+                SectionNode selected = mProjectPanel.CurrentSelectedSection;
                 return selected != null && selected.Used && mProjectPanel.Project.Clipboard.Section != null;
             }
         }
@@ -226,7 +215,13 @@ namespace Obi.UserControls
         /// </summary>
         private void mTocTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            SelectedSection = (SectionNode)e.Node.Tag;
+            if (mProjectPanel.CurrentSelectionNode != e.Node.Tag ||
+                (mProjectPanel.CurrentSelection != null && mProjectPanel.CurrentSelection.Control != this))
+            {
+                System.Diagnostics.Debug.Print("{0} changes toc tree selection from {1} to {2}.",
+                    sender, mProjectPanel.CurrentSelectionNode, e.Node.Tag);
+                mProjectPanel.CurrentSelection = new NodeSelection((SectionNode)e.Node.Tag, this);
+            }
         }
 
         #endregion
@@ -327,12 +322,11 @@ namespace Obi.UserControls
         /// </summary>
         private void mTocTree_Leave(object sender, EventArgs e)
         {
-            //as the project is closing, the event listeners have already been disassociated, so SelectionChanged is null
-            if (SelectionChanged != null)
+            if (mTocTree.SelectedNode != null)
             {
-                SelectionChanged(this, new Obi.Events.Node.SelectedEventArgs(false, mTocTree.SelectedNode));
+                mTocTree.SelectedNode = null;
+                mProjectPanel.CurrentSelection = null;
             }
-            mTocTree.SelectedNode = null;
         }
     }
 }

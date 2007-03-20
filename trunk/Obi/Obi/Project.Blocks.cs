@@ -69,7 +69,7 @@ namespace Obi
         /// <param name="node">The phrase node to paste.</param>
         /// <param name="contextNode">If the context is a section, paste at the end of the section.
         /// If it is a phrase, paste *before* this phrase.</param>
-        public void PastePhraseNode(PhraseNode node, ObiNode contextNode)
+        public PhraseNode PastePhraseNode(PhraseNode node, ObiNode contextNode)
         {
             if (node != null && contextNode != null)
             {
@@ -94,6 +94,11 @@ namespace Obi
                 Modified();
                 Commands.Strips.PastePhrase command = new Commands.Strips.PastePhrase(copy);
                 CommandCreated(this, new Obi.Events.Project.CommandCreatedEventArgs(command));
+                return copy;
+            }
+            else
+            {
+                return null;
             }
         }
 
@@ -125,15 +130,6 @@ namespace Obi
         }
 
         public enum Direction { Forward, Backward };
-
-        /// <summary>
-        /// Try to set the media on a given channel of a node.
-        /// Cancel the event the change could not be made (e.g. renaming a block.)
-        /// </summary>
-        public void SetMediaRequested(object sender, Events.Node.SetMediaEventArgs e)
-        {
-            if (!DidSetMedia(e.Node, e.Channel, e.Media)) e.Cancel = true;
-        }
 
         /// <summary>
         /// Find the channel and set the media object.
