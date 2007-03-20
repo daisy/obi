@@ -134,7 +134,7 @@ namespace Obi
                     // (to keep the split times correct) until the second one
                     for (int i = mPhraseMarks.Count - 2; i >= 0; --i)
                     {
-                        mAssetList.Insert(mSessionOffset, mSessionAsset.Split(mPhraseMarks[i]));
+                        mAssetList.Insert(mSessionOffset, mSessionAsset.Manager.SplitAudioMediaAsset  ( mSessionAsset ,  mPhraseMarks[i]));
                     }
                     // The first asset is what remains of the session asset
                     mAssetList.Insert(mSessionOffset, mSessionAsset);
