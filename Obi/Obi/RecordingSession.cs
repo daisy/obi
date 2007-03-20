@@ -183,7 +183,7 @@ namespace Obi
         private void mRecordingUpdateTimer_tick(object sender, EventArgs e)
         {
             double time = mRecorder.TimeOfAsset - (mPhraseMarks.Count > 0 ? mPhraseMarks[mPhraseMarks.Count - 1] : 0.0); 
-            ContinuingPhrase(this, new PhraseEventArgs(mSessionAsset, mSessionOffset + mPhraseMarks.Count, mRecorder.TimeOfAsset));
+            ContinuingPhrase(this, new PhraseEventArgs(mSessionAsset, mSessionOffset + mPhraseMarks.Count, time ));
         }
     }
 }
