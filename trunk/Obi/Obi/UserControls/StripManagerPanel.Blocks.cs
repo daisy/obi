@@ -225,10 +225,16 @@ namespace Obi.UserControls
                 Audio.AudioPlayerState state = mProjectPanel.TransportBar._CurrentPlaylist.State;
                 mProjectPanel.TransportBar.Enabled = false;
                 Dialogs.Split dialog = new Dialogs.Split(phrase, time, state);
+                NodeSelection originalSelection = mProjectPanel.CurrentSelection;
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     mProjectPanel.CurrentSelection =
                         new NodeSelection(mProjectPanel.Project.Split(phrase, dialog.ResultAsset), this);
+                }
+                else
+                {
+                    // kludge to reselect the original asset which was deselected when playback started
+                    mProjectPanel.CurrentSelection = originalSelection;
                 }
                 mProjectPanel.TransportBar.Enabled = true;
             }

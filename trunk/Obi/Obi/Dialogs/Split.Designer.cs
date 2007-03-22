@@ -31,44 +31,34 @@ namespace Obi.Dialogs
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Split));
             this.btnPreview = new System.Windows.Forms.Button();
-            this.txtDisplayAsset = new System.Windows.Forms.TextBox();
             this.txtDisplayTime = new System.Windows.Forms.TextBox();
             this.tmUpdateTimePosition = new System.Windows.Forms.Timer(this.components);
             this.btnFineRewind = new System.Windows.Forms.Button();
             this.btnFineForward = new System.Windows.Forms.Button();
             this.btnSplit = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
-            this.btnPause = new System.Windows.Forms.Button();
+            this.mPauseButton = new System.Windows.Forms.Button();
             this.txtSplitTime = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.labelAssetName = new System.Windows.Forms.Label();
             this.labelTime = new System.Windows.Forms.Label();
             this.labelSplitTime = new System.Windows.Forms.Label();
             this.lblStepSize = new System.Windows.Forms.Label();
             this.txtStepSize = new System.Windows.Forms.TextBox();
             this.btnStepSizeIncrement = new System.Windows.Forms.Button();
             this.btnStepSizeDecrement = new System.Windows.Forms.Button();
+            this.mPlayButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnPreview
             // 
-            this.btnPreview.Location = new System.Drawing.Point(135, 40);
+            this.btnPreview.Location = new System.Drawing.Point(136, 40);
             this.btnPreview.Name = "btnPreview";
-            this.btnPreview.Size = new System.Drawing.Size(118, 21);
+            this.btnPreview.Size = new System.Drawing.Size(127, 21);
             this.btnPreview.TabIndex = 2;
             this.btnPreview.Text = "Pre&view";
             this.btnPreview.UseVisualStyleBackColor = true;
             this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
-            // 
-            // txtDisplayAsset
-            // 
-            this.txtDisplayAsset.AccessibleName = "Asset Name";
-            this.txtDisplayAsset.Location = new System.Drawing.Point(136, 10);
-            this.txtDisplayAsset.Name = "txtDisplayAsset";
-            this.txtDisplayAsset.ReadOnly = true;
-            this.txtDisplayAsset.Size = new System.Drawing.Size(127, 19);
-            this.txtDisplayAsset.TabIndex = 1;
             // 
             // txtDisplayTime
             // 
@@ -127,15 +117,15 @@ namespace Obi.Dialogs
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
-            // btnPause
+            // mPauseButton
             // 
-            this.btnPause.Location = new System.Drawing.Point(12, 40);
-            this.btnPause.Name = "btnPause";
-            this.btnPause.Size = new System.Drawing.Size(127, 21);
-            this.btnPause.TabIndex = 2;
-            this.btnPause.Text = "Pause";
-            this.btnPause.UseVisualStyleBackColor = true;
-            this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
+            this.mPauseButton.Location = new System.Drawing.Point(12, 40);
+            this.mPauseButton.Name = "mPauseButton";
+            this.mPauseButton.Size = new System.Drawing.Size(118, 21);
+            this.mPauseButton.TabIndex = 2;
+            this.mPauseButton.Text = "&Pause";
+            this.mPauseButton.UseVisualStyleBackColor = true;
+            this.mPauseButton.Click += new System.EventHandler(this.mPauseButton_Click);
             // 
             // txtSplitTime
             // 
@@ -155,15 +145,6 @@ namespace Obi.Dialogs
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "navigate";
-            // 
-            // labelAssetName
-            // 
-            this.labelAssetName.AutoSize = true;
-            this.labelAssetName.Location = new System.Drawing.Point(68, 11);
-            this.labelAssetName.Name = "labelAssetName";
-            this.labelAssetName.Size = new System.Drawing.Size(66, 12);
-            this.labelAssetName.TabIndex = 0;
-            this.labelAssetName.Text = "Asset n&ame";
             // 
             // labelTime
             // 
@@ -224,6 +205,15 @@ namespace Obi.Dialogs
             this.btnStepSizeDecrement.UseVisualStyleBackColor = true;
             this.btnStepSizeDecrement.Click += new System.EventHandler(this.btnStepSizeDecrement_Click);
             // 
+            // mPlayButton
+            // 
+            this.mPlayButton.Location = new System.Drawing.Point(12, 39);
+            this.mPlayButton.Name = "mPlayButton";
+            this.mPlayButton.Size = new System.Drawing.Size(118, 23);
+            this.mPlayButton.TabIndex = 19;
+            this.mPlayButton.Text = "&Play";
+            this.mPlayButton.UseVisualStyleBackColor = true;
+            // 
             // Split
             // 
             this.AcceptButton = this.btnSplit;
@@ -232,20 +222,19 @@ namespace Obi.Dialogs
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnStop;
             this.ClientSize = new System.Drawing.Size(275, 307);
+            this.Controls.Add(this.mPlayButton);
             this.Controls.Add(this.btnStepSizeDecrement);
             this.Controls.Add(this.btnStepSizeIncrement);
             this.Controls.Add(this.txtStepSize);
             this.Controls.Add(this.lblStepSize);
             this.Controls.Add(this.labelSplitTime);
             this.Controls.Add(this.labelTime);
-            this.Controls.Add(this.labelAssetName);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtSplitTime);
-            this.Controls.Add(this.btnPause);
+            this.Controls.Add(this.mPauseButton);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnSplit);
             this.Controls.Add(this.txtDisplayTime);
-            this.Controls.Add(this.txtDisplayAsset);
             this.Controls.Add(this.btnPreview);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Split";
@@ -261,22 +250,21 @@ namespace Obi.Dialogs
         #endregion
 
         private System.Windows.Forms.Button btnPreview;
-        private System.Windows.Forms.TextBox txtDisplayAsset;
         private System.Windows.Forms.TextBox txtDisplayTime;
         private System.Windows.Forms.Timer tmUpdateTimePosition;
         private System.Windows.Forms.Button btnFineRewind;
         private System.Windows.Forms.Button btnFineForward;
         private System.Windows.Forms.Button btnSplit;
         private System.Windows.Forms.Button btnStop;
-        private System.Windows.Forms.Button btnPause;
+        private System.Windows.Forms.Button mPauseButton;
         private System.Windows.Forms.TextBox txtSplitTime;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label labelAssetName;
         private System.Windows.Forms.Label labelTime;
         private System.Windows.Forms.Label labelSplitTime;
         private System.Windows.Forms.Label lblStepSize;
         private System.Windows.Forms.TextBox txtStepSize;
         private System.Windows.Forms.Button btnStepSizeIncrement;
         private System.Windows.Forms.Button btnStepSizeDecrement;
+        private System.Windows.Forms.Button mPlayButton;
     }
 }

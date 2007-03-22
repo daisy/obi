@@ -21,7 +21,7 @@ namespace Obi
         private int mCurrentPhraseIndex;          // index of the phrase currently playing
         private double mTotalTime;                // total time of this playlist
         private double mElapsedTime;              // elapsed time *before* the beginning of the current asset
-        private bool mIsMaster;                  // flag for playing whole book or just a selection
+        private bool mIsMaster;                   // flag for playing whole book or just a selection
         private double mPausePosition;            // position in the asset where we  paused
         private AudioPlayerState mPlaylistState;  // playlist state is not always the same as the player state
         private Timer mPreviewTimer;              // ???
@@ -79,6 +79,9 @@ namespace Obi
             SetupPreviewTimer();
         }
 
+        /// <summary>
+        /// Project that this playlist is playing.
+        /// </summary>
         public Project Project
         {
             set
@@ -705,7 +708,7 @@ else if ( mPlayBackState == PlayBackState.Rewind )
             int index = prev == null ? 0 : mPhrases.IndexOf(prev) + 1;
             mPhrases.Insert(index, node);
             mStartTimes.Add(0.0);
-            UpdateTimeFromIndex(index - 1);
+            if (index > 1) UpdateTimeFromIndex(index - 1);
         }
 
         /// <summary>

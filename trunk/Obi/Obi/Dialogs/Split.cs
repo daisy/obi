@@ -13,59 +13,90 @@ namespace Obi.Dialogs
 {
     public partial class Split : Form
     {
-        private PhraseNode mNode;                       // the node to split
+        private PhraseNode mNode;                     // the phrase to split
         private Assets.AudioMediaAsset mSourceAsset;  // the source asset
         private Assets.AudioMediaAsset mResultAsset;  // the new asset created by the split
         private double mSplitTime;                    // time at which the split should occur
-        private Audio.AudioPlayerState mSplitState;
+        private Audio.AudioPlayerState mSplitState;   // audio player state when creating the dialog
         private double mDialogLoadTime ;
         private List<double> mStepSizeList = new List<double>();
         private int mSelectedStepSize;
 
-        
-
-
-        public Assets.AudioMediaAsset ResultAsset
+        public Split(PhraseNode node, double time, Audio.AudioPlayerState state)
         {
-            get
-            {
-                return mResultAsset;
-            }
-        }
-
-        public double SplitTime
-        {
-            get
-            {
-                return mSplitTime;
-            }
-        }
-
-        public Split(PhraseNode node, double Time , Audio.AudioPlayerState StateArg )
-        {
-            
             InitializeComponent();
             mNode = node;
-
-            mDialogLoadTime = Time;
-            mSplitState = StateArg;
-
+            mDialogLoadTime = time;
+            mSplitState = state;
             mSourceAsset = node.Asset;
-
-            
             mResultAsset = null;
+            
             Audio.AudioPlayer.Instance.StateChanged += new Events.Audio.Player.StateChangedHandler(AudioPlayer_StateChanged);
             Audio.AudioPlayer.Instance.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler(AudioPlayer_EndOfAudioAsset);
             Audio.AudioPlayer.Instance.UpdateVuMeter += new Events.Audio.Player.UpdateVuMeterHandler(AudioPlayer_UpdateVuMeter);
-            // enable timer for displaying formatted time in HH:mm:ss
             tmUpdateTimePosition.Enabled = true;
-
-            // initialise StepSizes
             InitialiseStepSizeList();
             mSelectedStepSize = 3;
-
         }
-        
+
+        private void Split_Load(object sender, EventArgs e)
+        {
+            txtDisplayTime.Text = "00:00:00";
+            txtSplitTime.Text = "0";
+
+            // start playing as soon as dialog is invoked
+            Audio.VuMeter ob_VuMeter = new Audio.VuMeter();
+            ob_VuMeter.LowerThreshold = 50;
+            ob_VuMeter.UpperThreshold = 300;
+            ob_VuMeter.SampleTimeLength = 1000;
+
+            if (mSplitState == Audio.AudioPlayerState.Stopped)
+            {
+                Audio.AudioPlayer.Instance.Play(mSourceAsset);
+                btnPreview.Enabled = false;
+                btnSplit.Enabled = false;
+                mPlayButton.Visible = false;
+                mPauseButton.Visible = true;
+            }
+            else if (mSplitState == Audio.AudioPlayerState.Playing)
+            {
+                Audio.AudioPlayer.Instance.Play(mSourceAsset, mDialogLoadTime);
+                btnPreview.Enabled = false;
+                btnSplit.Enabled = false;
+                mPlayButton.Visible = false;
+                mPauseButton.Visible = true;
+            }
+            else if (mSplitState == Audio.AudioPlayerState.Paused)
+            {
+                mSplitTime = mDialogLoadTime;
+
+                tmUpdateTimePosition.Enabled = false;
+                mPlayButton.Visible = true;
+                mPauseButton.Visible = false;
+                btnPreview.Enabled = true;
+                UpdateSplitTime();
+            }
+            mPauseButton.Focus();
+
+            txtStepSize.Text = (mStepSizeList[mSelectedStepSize]).ToString();
+        }
+
+        /// <summary>
+        /// When split was completed, get the result (= new) asset.
+        /// </summary>
+        public Assets.AudioMediaAsset ResultAsset
+        {
+            get { return mResultAsset; }
+        }
+
+        /// <summary>
+        /// Get the time at which the split happens.
+        /// </summary>
+        public double SplitTime
+        {
+            get { return mSplitTime; }
+        }
+
         //member variables
         int m_Step=10000;
         double m_FineStep = 500;
@@ -98,7 +129,7 @@ namespace Obi.Dialogs
                 PreviewEnabled = true;
                 btnPreview.Text = "&Back";
                 tmUpdateTimePosition.Enabled = true;
-                btnPause.Text = "&Pause";
+                mPauseButton.Text = "&Pause";
             }
         }
 
@@ -193,7 +224,7 @@ namespace Obi.Dialogs
         {
             m_FineStep = (  Convert.ToDouble(txtStepSize.Text ) * 1000 ) ;
             CheckSplitTime();
-            btnPause.Text = "&Play";
+            mPauseButton.Text = "&Play";
             if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
             {
                 double dCurrentPlayPosition = Audio.AudioPlayer.Instance.CurrentTimePosition;
@@ -266,88 +297,42 @@ namespace Obi.Dialogs
             this.Close();
         }
 
-        private void Split_Load(object sender, EventArgs e)
+ 
+        private void mPauseButton_Click(object sender, EventArgs e)
         {
-            
-
-            
-            //md annotation are not asset names anymore
-            //md removed: ((TextMedia)Project.GetMediaForChannel(mNode, Project.AnnotationChannel)).getText();
-            //md added:
-            txtDisplayAsset.Text = mNode.Asset.Name;
-
-            txtDisplayTime.Text = "00:00:00";
-            txtSplitTime.Text = "0";
-            
-            // start playing as soon as dialog is invoked
-            Audio.VuMeter ob_VuMeter = new Audio.VuMeter();
-            ob_VuMeter.LowerThreshold = 50;
-            ob_VuMeter.UpperThreshold = 300;
-            ob_VuMeter.SampleTimeLength = 1000;
-            //Audio.AudioPlayer.Instance.VuMeterObject = ob_VuMeter;
-
-            if (mSplitState == Audio.AudioPlayerState.Stopped)
-            {
-                Audio.AudioPlayer.Instance.Play(mSourceAsset);
-                btnPreview.Enabled = false;
-                btnSplit.Enabled = false;
-            }
-            else if (mSplitState == Audio.AudioPlayerState.Playing)
-            {
-                Audio.AudioPlayer.Instance.Play(mSourceAsset , mDialogLoadTime );
-                btnPreview.Enabled = false;
-                btnSplit.Enabled = false;
-            }
-            else if (mSplitState == Audio.AudioPlayerState.Paused)
-            {
-                mSplitTime = mDialogLoadTime;
-                
-                tmUpdateTimePosition.Enabled = false;
-                btnPause.Text = "&Play";
-                btnPreview.Enabled = true;
-                UpdateSplitTime();
-            }
-            btnPause.Focus();
-
-            txtStepSize.Text = ( mStepSizeList[mSelectedStepSize]).ToString ()  ;
-        }
-
-        private void btnPause_Click(object sender, EventArgs e)
-        {
-            
-            btnSplit.Enabled = true;
             if(Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
             {
-
                 // Assigns the m_dSplitTime according to playing mode i.e. preview or play
-                if (PreviewEnabled == false)
-                mSplitTime = Audio.AudioPlayer.Instance.CurrentTimePosition;
+                if (PreviewEnabled)
+                {
+                    mSplitTime = mSplitTime + Audio.AudioPlayer.Instance.CurrentTimePosition;
+                }
                 else
-                mSplitTime = mSplitTime  + Audio.AudioPlayer.Instance.CurrentTimePosition;
-
+                {
+                    mSplitTime = Audio.AudioPlayer.Instance.CurrentTimePosition;
+                }
                 Audio.AudioPlayer.Instance.Stop();
-                
-            tmUpdateTimePosition.Enabled = false;
-                btnPause.Text = "&Play";
-                btnPreview.Enabled= true;
-                btnPreview.Text = "Pre&view";
-                PreviewEnabled = false;
+                tmUpdateTimePosition.Enabled = false;
+                mPlayButton.Visible = true;
+                mPauseButton.Visible = false;
+                btnSplit.Enabled = true;
                 UpdateSplitTime();
             }
-            else if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped && mSplitTime != mSourceAsset.LengthInMilliseconds)
+        }
+
+        private void mPlayButton_Click(object sender, EventArgs e)
+        {
+            if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped && mSplitTime != mSourceAsset.LengthInMilliseconds)
             {
                 CheckSplitTime();
-                //MessageBox.Show(m_dSplitTime.ToString());
-                //AudioPlayer.Instance.Play(ob_AudioAsset.GetChunk(m_dSplitTime, ob_AudioAsset.LengthInMilliseconds));
-                Audio.AudioPlayer.Instance.Play( mSourceAsset , mSplitTime);
-                
-// enable the timer for displaying formated play time
+                Audio.AudioPlayer.Instance.Play(mSourceAsset, mSplitTime);
                 tmUpdateTimePosition.Enabled = true;
-                btnPause.Text = "&Pause";
+                mPlayButton.Visible = false;
+                mPauseButton.Visible = true;
+                btnSplit.Enabled = true;
                 btnPreview.Enabled = false;
+                txtDisplayTime.Text = ChangeTimeToDisplay(mSplitTime);
             }
-
-            txtDisplayTime.Text = ChangeTimeToDisplay(mSplitTime);
         }
 
         
@@ -389,9 +374,9 @@ namespace Obi.Dialogs
 
         void EndAssetOperations()
         {
-            btnPause.Text = "&Play";
+            mPauseButton.Text = "&Play";
             btnPreview.Text = "Pre&view";
-            btnPause.Enabled = true;
+            mPauseButton.Enabled = true;
             btnPreview.Enabled = true;
                txtDisplayTime.Text = ChangeTimeToDisplay (mSplitTime);
         }
@@ -456,7 +441,7 @@ namespace Obi.Dialogs
 
 
         
-        void UpdateSplitTime ( )
+        void UpdateSplitTime()
         {
             double dDisplaySplitTime = mSplitTime / 1000;
                 txtSplitTime.Text = dDisplaySplitTime.ToString ();
