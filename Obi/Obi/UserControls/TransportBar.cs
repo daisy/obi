@@ -304,15 +304,22 @@ namespace Obi.UserControls
             if (CanPlay)
             {
                 mPlayingFrom = mProjectPanel.CurrentSelection;
-                mLocalPlaylist = new Playlist(Audio.AudioPlayer.Instance, node);
+                LocalPlaylist = new Playlist(Audio.AudioPlayer.Instance, node);
                 mCurrentPlaylist = mLocalPlaylist;
-                mCurrentPlaylist.Play();
+                mCurrentPlaylist.CurrentPhrase = mLocalPlaylist.FirstPhrase;
                 mVUMeterPanel.PlayListObj = mCurrentPlaylist;
                 mVUMeterPanel.Enable = true;
+                mCurrentPlaylist.Play();
             }
             else if (CanResume)
             {
                 mCurrentPlaylist.Resume();
+            }
+            else if (mCurrentPlaylist != mMasterPlaylist)
+            {
+                mPlayingFrom.Node = node;
+                Stop();
+                Play(node);
             }
         }
 
@@ -421,6 +428,7 @@ namespace Obi.UserControls
                     mCurrentPlaylist.Stop();
                     mProjectPanel.CurrentSelection = mPlayingFrom;
                 }
+                mPlayingFrom = null;
             }
         }
 

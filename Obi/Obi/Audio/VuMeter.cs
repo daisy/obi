@@ -19,7 +19,7 @@ namespace Obi.Audio
         public VuMeter()
 		{
 			SetSampleCount(m_SampleTimeLength);
-			m_SampleArrayPosition = 0;
+			// m_SampleArrayPosition = 0;
 		}
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace Obi.Audio
 				SampleArrayLeft [i] = 0;
 				SampleArrayRight [i] = 0;
 			}
-			m_SampleArrayPosition  = 0 ;
+			// m_SampleArrayPosition  = 0 ;
 			m_MeanValueLeft = 0 ;
 			m_MeanValueRight = 0 ;
 			ResetEvent(this, new Events.Audio.VuMeter.ResetEventArgs());
@@ -197,7 +197,8 @@ namespace Obi.Audio
 		internal int m_MeanValueRight  ;
 		private  int [] SampleArrayLeft ;
 		private int [] SampleArrayRight ;
-		private int m_SampleArrayPosition = 0;
+		// jq: removed a compiler warning
+        // private int m_SampleArrayPosition = 0;
 
         // avn: added on 13 March 2007, Variable to hold value of time interval for reading bytes from Buffers
         private double  m_BufferReadInterval= 50  ;
