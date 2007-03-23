@@ -118,6 +118,7 @@ namespace Obi
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectPanel = new Obi.UserControls.ProjectPanel();
+            this.mReportBugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -835,6 +836,7 @@ namespace Obi
             this.mHelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mHelpToolStripMenuItem1,
             this.mViewHelpInExternalBrowserToolStripMenuItem,
+            this.mReportBugToolStripMenuItem,
             this.aboutObiToolStripMenuItem});
             this.mHelpToolStripMenuItem.Name = "mHelpToolStripMenuItem";
             this.mHelpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
@@ -891,6 +893,15 @@ namespace Obi
             this.mProjectPanel.Size = new System.Drawing.Size(857, 497);
             this.mProjectPanel.TabIndex = 4;
             this.mProjectPanel.Load += new System.EventHandler(this.mProjectPanel_Load);
+            // 
+            // mReportBugToolStripMenuItem
+            // 
+            this.mReportBugToolStripMenuItem.Name = "mReportBugToolStripMenuItem";
+            this.mReportBugToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.R)));
+            this.mReportBugToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
+            this.mReportBugToolStripMenuItem.Text = "&Report bug";
+            this.mReportBugToolStripMenuItem.Click += new System.EventHandler(this.mReportBugToolStripMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -1007,6 +1018,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mViewHelpInExternalBrowserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mGoToPageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mFocusOnAnnotationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mReportBugToolStripMenuItem;
 
 
     }

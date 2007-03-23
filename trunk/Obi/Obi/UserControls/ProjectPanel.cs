@@ -48,16 +48,28 @@ namespace Obi.UserControls
                     value.Node != mCurrentSelection.Node ||
                     value.Control != mCurrentSelection.Control)
                 {
-                    // If the selection changes (was null or different), deselect the previous selection
-                    // then tell the control about the new selection. The transport bar should be told
-                    // of selection changes as well in case it is playing.
-                    Deselect();
-                    mCurrentSelection = value;
-                    value.Control.CurrentSelectedNode = value.Node;
-                    System.Diagnostics.Debug.Print("+++ SELECTED {0} +++", value);
-                    if (value.Control != mTransportBar) mTransportBar.CurrentSelectedNode = value.Node;
+                    if (mTransportBar.IsSelectionRelevant(value.Node))
+                    {
+                        if (mTransportBar.CanSelectPhrase(value.Node))
+                        {
+                            Select(value);
+                            mTransportBar.CurrentSelectedNode = value.Node;
+                        }
+                    }
+                    else
+                    {
+                        Select(value);
+                    }
                 }
             }
+        }
+
+        private void Select(NodeSelection value)
+        {
+            Deselect();
+            mCurrentSelection = value;
+            value.Control.CurrentSelectedNode = value.Node;
+            System.Diagnostics.Debug.Print("+++ SELECTED {0} +++", value);
         }
 
         /// <summary>

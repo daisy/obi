@@ -248,15 +248,21 @@ namespace Obi.UserControls
             if (mProjectPanel.CurrentSelectedAudioBlock != null)
             {
                 PhraseNode phrase = mProjectPanel.CurrentSelectedAudioBlock;
+                PhraseNode split = null;
                 double time = ProjectPanel.TransportBar._CurrentPlaylist.CurrentTimeInAsset;
                 mProjectPanel.TransportBar.Enabled = false;
                 Assets.AudioMediaAsset asset = phrase.Asset;
                 if (time > 0 && time < asset.LengthInMilliseconds)
                 {
                     Assets.AudioMediaAsset result = asset.Manager.SplitAudioMediaAsset(asset, time);
-                    mProjectPanel.Project.Split(phrase, result);
+                    split = mProjectPanel.Project.Split(phrase, result);
                 }
                 mProjectPanel.TransportBar.Enabled = true;
+                if (split != null)
+                {
+                    mProjectPanel.CurrentSelection = new NodeSelection(split, this);
+                    mProjectPanel.TransportBar.Play();
+                }
             }
         }
 
@@ -268,7 +274,10 @@ namespace Obi.UserControls
             if (CanMerge)
             {
                 mProjectPanel.TransportBar.Enabled = false;
-                mProjectPanel.Project.MergeNodes(mProjectPanel.CurrentSelectedAudioBlock.PreviousPhraseInSection, mProjectPanel.CurrentSelectedAudioBlock);
+                mProjectPanel.CurrentSelection = new NodeSelection(mProjectPanel.Project.MergeNodes(
+                    mProjectPanel.CurrentSelectedAudioBlock.PreviousPhraseInSection,
+                    mProjectPanel.CurrentSelectedAudioBlock),
+                    this);
                 mProjectPanel.TransportBar.Enabled = true;
             }
         }

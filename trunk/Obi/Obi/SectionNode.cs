@@ -22,7 +22,21 @@ namespace Obi
         /// </summary>
         public override string InfoString
         {
-            get { return string.Format("{0} #{1}@{2} `{3}'", base.InfoString, Index, Position, Label); }
+            get { return string.Format("{0} #{1}@{2} `{3}' [{4}]", base.InfoString, Index, Position, Label, ChildrenString); }
+        }
+
+        private string ChildrenString
+        {
+            get
+            {
+                string children = "";
+                for (int i = 0; i < getChildCount(); ++i)
+                {
+                    if (i == mSectionOffset) children += "|";
+                    children += getChild(i) is PhraseNode ? "p" : "s";
+                }
+                return children;
+            }
         }
 
         /// <summary>
@@ -308,13 +322,13 @@ namespace Obi
         public void AddChildPhrase(PhraseNode node, int index)
         {
             insert(node, index);
-            ++mSectionOffset;
+            AfterAddingPhrase(node);
         }
 
         public void AppendChildPhrase(PhraseNode node)
         {
             base.appendChild(node);
-            ++mSectionOffset;
+            AfterAddingPhrase(node);
         }
 
         /// <summary>
@@ -325,6 +339,12 @@ namespace Obi
         internal void AddChildPhraseAfter(PhraseNode node, PhraseNode newNode)
         {
             insertAfter(node, newNode);
+            AfterAddingPhrase(newNode);
+        }
+
+        private void AfterAddingPhrase(PhraseNode node)
+        {
+            if (node.Used) node.Used = node.ParentSection.Used;
             ++mSectionOffset;
         }
 
