@@ -357,11 +357,13 @@ namespace Obi.UserControls
                 ObiNode selected = mProjectPanel.CurrentSelectionNode;
                 SectionNode section;  // section in which we are recording
                 int index;            // index from which we add new phrases in the aforementioned section
+                bool IsSectionCreated = false; // Flag to indicate creation of a section as to undo it if nothing is recorded.
                 if (selected == null)
                 {
                     // nothing selected: append a new section and start from 0
                     section = mProjectPanel.Project.CreateSiblingSectionNode(null);
                     index = 0;
+                    IsSectionCreated = true;
                 }
                 else if (selected is SectionNode)
                 {
@@ -406,6 +408,11 @@ namespace Obi.UserControls
                     }
                 );
                 new Dialogs.TransportRecord(session).ShowDialog();
+
+                // delete newly created section if nothing is recorded.
+                if (session.RecordedAssets.Count == 0 && IsSectionCreated)
+                    this.mProjectPanel.ParentObiForm.UndoLast();
+
                 for (int i = 0; i < session.RecordedAssets.Count; ++i)
                 {
                     mProjectPanel.StripManager.UpdateAssetForPhrase(section.PhraseChild(index + i), session.RecordedAssets[i]);                   
