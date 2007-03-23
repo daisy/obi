@@ -96,7 +96,8 @@ namespace Obi.UserControls
                 if (value)
                 {
                     mRenameBox.ReadOnly = false;
-                    mRenameBox.Width = Width - mRenameBox.Location.X - mRenameBox.Margin.Right;
+                    mRenameBox.Size = new Size(Width - Padding.Left - Padding.Right -
+                        mRenameBox.Margin.Left - mRenameBox.Margin.Right, mRenameBox.Height);
                     mRenameBox.Text = mLabel.Text;
                     mRenameBox.SelectAll();
                 }
