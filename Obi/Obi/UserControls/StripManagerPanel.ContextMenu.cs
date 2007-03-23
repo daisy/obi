@@ -276,25 +276,6 @@ namespace Obi.UserControls
             }
         }
 
-        /*public void DeleteStrip(SectionNode node)
-        {
-            ShallowDeleteSectionNodeRequested(this, new SectionNodeEventArgs(this, node));
-        }
-
-        public void DeleteSelectedSection()
-        {
-            ShallowDeleteSectionNodeRequested(this, new SectionNodeEventArgs(this, mProjectPanel.CurrentSelectedStrip));
-        }*/
-
-        /// <summary>
-        /// Paste a section.
-        /// </summary>
-        /// <remarks>TODO: find the right context node when none is selected.</remarks>
-        public void PasteSectionNode()
-        {
-            mProjectPanel.Project.PasteSectionNode(mProjectPanel.CurrentSelectedStrip);
-        }
-
         /// <summary>
         /// Remove a page number.
         /// </summary>
@@ -369,13 +350,13 @@ namespace Obi.UserControls
         /// </summary>
         private void PasteStripOrAudioBlockHandler(object sender, EventArgs e)
         {
-            if (mProjectPanel.CurrentSelectedStrip != null)
-            {
-                PasteSectionNode();
-            }
-            else if (mProjectPanel.CurrentSelectedAudioBlock != null)
+            if (mProjectPanel.Project.Clipboard.Phrase != null)
             {
                 mProjectPanel.Project.PastePhraseNode(mProjectPanel.Project.Clipboard.Phrase, mProjectPanel.CurrentSelectionNode);
+            }
+            else if (mProjectPanel.Project.Clipboard.Section != null)
+            {
+                mProjectPanel.Project.PasteSectionNode(mProjectPanel.CurrentSelectedStrip);
             }
         }
 
