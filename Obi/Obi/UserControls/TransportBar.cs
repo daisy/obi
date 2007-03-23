@@ -395,6 +395,7 @@ namespace Obi.UserControls
                     delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
                     {
                         mProjectPanel.Project.RecordingPhraseUpdate(_e, section, index + _e.PhraseIndex);
+                        mMasterPlaylist.UpdateTimeFrom(section.PhraseChild(index + _e.PhraseIndex).PreviousPhraseInProject);
                     }
                 );
                 session.FinishingPage += new Events.Audio.Recorder.FinishingPageHandler(
