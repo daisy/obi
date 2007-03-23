@@ -130,15 +130,27 @@ namespace Obi
             dialog.CreateTitleSection = mSettings.CreateTitleSection;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                // Whether or not the project was created, the setting for
-                // automatically creating a title section is saved.
-                mSettings.CreateTitleSection = dialog.CreateTitleSection;
-                if (ClosedProject())
+                try
                 {
-                    CreateNewProject(dialog.Path, dialog.Title, dialog.CreateTitleSection);
+                    // let's see if we can actually write the file that the user chose (bug #1679175)
+                    FileStream file = File.Create(dialog.Path);
+                    file.Close();
+                    // Whether or not the project was created, the setting for
+                    // automatically creating a title section is saved.
+                    mSettings.CreateTitleSection = dialog.CreateTitleSection;
+                    if (ClosedProject())
+                    {
+                        CreateNewProject(dialog.Path, dialog.Title, dialog.CreateTitleSection);
+                    }
+                    else
+                    {
+                        Ready();
+                    }
                 }
-                else
+                catch (Exception x)
                 {
+                    MessageBox.Show(String.Format(Localizer.Message("cannot_create_file_text"), dialog.Path, x.Message),
+                        Localizer.Message("cannot_create_file_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Ready();
                 }
             }
