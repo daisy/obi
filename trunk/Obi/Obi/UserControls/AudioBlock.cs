@@ -201,7 +201,8 @@ namespace Obi.UserControls
             }
             AccessibleName  = mLabel.Text;
             // Set the time display
-            mTimeLabel.Text = Assets.MediaAsset.FormatTime(mNode.Asset.LengthInMilliseconds);
+            if (Audio.AudioRecorder.Instance.State != Obi.Audio.AudioRecorderState.Recording)
+                mTimeLabel.Text = Assets.MediaAsset.FormatTime(mNode.Asset.LengthInMilliseconds);
         }
 
         private void RefreshLabels(double time)
