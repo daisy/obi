@@ -50,13 +50,19 @@ namespace Obi.UserControls
             get { throw new Exception("Please don't ask me for a selection, I don't know anything about that stuff."); }
             set
             {
-                if ((mCurrentPlaylist.State == Audio.AudioPlayerState.Playing ||
-                    mCurrentPlaylist.State == Audio.AudioPlayerState.Paused) &&
-                    value is PhraseNode)
-                {
-                    mCurrentPlaylist.CurrentPhrase = (PhraseNode)value;
-                }
+                if (IsSelectionRelevant(value) && value is PhraseNode) mCurrentPlaylist.CurrentPhrase = (PhraseNode)value;
             }
+        }
+
+        public bool IsSelectionRelevant(ObiNode node)
+        {
+            return ((mCurrentPlaylist.State == Audio.AudioPlayerState.Playing ||
+                    mCurrentPlaylist.State == Audio.AudioPlayerState.Paused));
+        }
+
+        public bool CanSelectPhrase(ObiNode node)
+        {
+            return mCurrentPlaylist != null && mCurrentPlaylist.ContainsPhrase(node as PhraseNode);
         }
 
         #endregion
@@ -317,8 +323,8 @@ namespace Obi.UserControls
             }
             else if (mCurrentPlaylist != mMasterPlaylist)
             {
-                mPlayingFrom.Node = node;
                 Stop();
+                mProjectPanel.CurrentSelection = new NodeSelection(node, mProjectPanel.StripManager);
                 Play(node);
             }
         }

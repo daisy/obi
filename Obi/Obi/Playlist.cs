@@ -74,7 +74,7 @@ namespace Obi
         {
             mPlayer = player;
             Reset(false);
-            AddPhraseNodes(node);
+            AddPhraseNodesFromStripOrPhrase(node);
             SetEventHandlers();
             SetupPreviewTimer();
         }
@@ -337,6 +337,23 @@ namespace Obi
                 // nothing to do in post-visit
                 delegate(ICoreNode n) { }
             );
+        }
+
+        private void AddPhraseNodesFromStripOrPhrase(ObiNode node)
+        {
+            if (node is PhraseNode)
+            {
+                mPhrases.Add((PhraseNode)node);
+                mStartTimes.Add(mTotalTime);
+                mTotalTime += ((PhraseNode)node).Asset.LengthInMilliseconds;
+            }
+            else if (node is SectionNode)
+            {
+                for (int i = 0; i < ((SectionNode)node).PhraseChildCount; ++i)
+                {
+                    AddPhraseNodesFromStripOrPhrase(((SectionNode)node).PhraseChild(i));
+                }
+            }
         }
 
         private void SetEventHandlers()
@@ -744,6 +761,11 @@ else if ( mPlayBackState == PlayBackState.Rewind )
             }
             mTotalTime = mStartTimes[mStartTimes.Count - 1] + mPhrases[mStartTimes.Count - 1].Asset.LengthInMilliseconds;
             System.Diagnostics.Debug.Print("!!! Playlist: {0} phrase(s), length = {1}ms.", mPhrases.Count, mTotalTime);
+        }
+
+        public bool ContainsPhrase(PhraseNode phrase)
+        {
+            return phrase != null && mPhrases.Contains(phrase);
         }
     }
 }

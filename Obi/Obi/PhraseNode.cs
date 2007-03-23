@@ -212,7 +212,8 @@ namespace Obi
             {
                 copy.Asset = (AudioMediaAsset)mAsset.Manager.CopyAsset(mAsset);
             }
-            copy.Annotation = copy.Asset.Name;
+            copy.Used = Used;
+            copy.Annotation = Annotation;
             copyProperties(copy);
             return copy;
         }

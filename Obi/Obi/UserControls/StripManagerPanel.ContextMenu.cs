@@ -71,6 +71,7 @@ namespace Obi.UserControls
         public void UpdateEnabledItemsForContextMenu()
         {
             bool isPlaying = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing;
+            bool isPaused = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused;
             bool isStripSelected = SelectedSectionNode != null;
             bool isStripUsed = isStripSelected && SelectedSectionNode != null;
             bool isParentUsed = isStripSelected &&
@@ -106,7 +107,7 @@ namespace Obi.UserControls
             mDeleteAudioBlockToolStripMenuItem.Enabled = canCutCopyDeletePhrase;
             mMarkPhraseAsUnusedToolStripMenuItem.Enabled = false;
             mSplitAudioBlockToolStripMenuItem.Enabled = isBlockSelected;
-            mQuickSplitAudioBlockToolStripMenuItem.Enabled = isBlockSelected;
+            mQuickSplitAudioBlockToolStripMenuItem.Enabled = isBlockSelected && (isPlaying || isPaused);
             mApplyPhraseDetectionToolStripMenuItem.Enabled = !isPlaying && isBlockSelected;
             mMergeWithPreviousAudioBlockToolStripMenuItem.Enabled = !isPlaying && CanMerge;
             mMoveAudioBlockForwardToolStripMenuItem.Enabled = canMoveForward;

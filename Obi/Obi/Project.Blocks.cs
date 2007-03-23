@@ -111,7 +111,7 @@ namespace Obi
         /// </summary>
         /// <param name="node">The node to merge.</param>
         /// <param name="next">The next one to merge with.</param>
-        public void MergeNodes(PhraseNode node, PhraseNode nextNode)
+        public PhraseNode MergeNodes(PhraseNode node, PhraseNode nextNode)
         {
             Assets.AudioMediaAsset asset = node.Asset;
             Assets.AudioMediaAsset next = nextNode.Asset;
@@ -127,6 +127,7 @@ namespace Obi
             TouchedNode(this, new Events.Node.NodeEventArgs(this, node));
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             Modified();
+            return node;
         }
 
         public enum Direction { Forward, Backward };

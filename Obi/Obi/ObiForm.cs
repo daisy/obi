@@ -1416,6 +1416,7 @@ namespace Obi
         private void UpdateEnabledItemsForStripsMenu()
         {
             bool isPlaying = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing;
+            bool isPaused = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused;
             bool isProjectOpen = mProject != null;
             bool isStripSelected = isProjectOpen && mProjectPanel.StripManager.SelectedSectionNode != null;
             bool isAudioBlockSelected = isProjectOpen && mProjectPanel.StripManager.SelectedPhraseNode != null;
@@ -1434,7 +1435,7 @@ namespace Obi
             mRenameStripToolStripMenuItem.Enabled = isStripSelected;
 
             mSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
-            mQuickSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected;
+            mQuickSplitAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && (isPlaying || isPaused);
             mApplyPhraseDetectionToolStripMenuItem.Enabled = isAudioBlockSelected;
             mMergeWithPreviousAudioBlockToolStripMenuItem.Enabled = !isPlaying && canMerge;
             mMoveAudioBlockForwardToolStripMenuItem.Enabled = isAudioBlockSelected && !isAudioBlockLast;
@@ -1460,6 +1461,12 @@ namespace Obi
         private void mViewHelpInExternalBrowserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Uri url = new Uri(Path.GetDirectoryName(GetType().Assembly.Location) + "\\help_en.html");
+            System.Diagnostics.Process.Start(url.ToString());
+        }
+
+        private void mReportBugToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Uri url = new Uri("http://sourceforge.net/tracker/?func=add&group_id=149942&atid=776242");
             System.Diagnostics.Process.Start(url.ToString());
         }
 

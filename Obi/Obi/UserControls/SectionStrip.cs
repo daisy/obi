@@ -228,7 +228,6 @@ namespace Obi.UserControls
 
         private void SectionStrip_DoubleClick(object sender, EventArgs e)
         {
-            mManager.ProjectPanel.CurrentSelection = new NodeSelection(mNode, mManager);
             mManager.ProjectPanel.TransportBar.Play(mNode);
         }
 
