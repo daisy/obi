@@ -196,6 +196,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot create project file.
+        /// </summary>
+        internal static string cannot_create_file_caption {
+            get {
+                return ResourceManager.GetString("cannot_create_file_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot create project file &quot;{0}&quot;: {1}..
+        /// </summary>
+        internal static string cannot_create_file_text {
+            get {
+                return ResourceManager.GetString("cannot_create_file_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find channel named &quot;{0}&quot;..
         /// </summary>
         internal static string channel_not_found {
