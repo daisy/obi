@@ -126,10 +126,14 @@ namespace Obi
             if (mRecorder.State != AudioRecorderState.Idle)
             {
                 bool wasRecording = mRecorder.State == AudioRecorderState.Recording;
+
+                if (wasRecording)
+                    FinishedPhrase();   // Avn:mRecorder.TimeOfAsset used in this will return time without exceptions if used before stopping recording    
+
                 mRecorder.StopRecording();
                 if (wasRecording)
                 {
-                    FinishedPhrase();
+                    
                     // Split the session asset into smaller assets starting from the end
                     // (to keep the split times correct) until the second one
                     for (int i = mPhraseMarks.Count - 2; i >= 0; --i)
