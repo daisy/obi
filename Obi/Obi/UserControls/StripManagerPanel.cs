@@ -158,6 +158,19 @@ namespace Obi.UserControls
             }
         }
 
+        private bool mEnabledTooltips;
+
+        public bool EnableTooltips
+        {
+            get { return mEnabledTooltips; }
+            set
+            {
+                mEnabledTooltips = value;
+                foreach (SectionStrip strip in mSectionNodeMap.Values) strip.EnableTooltips = value;
+                foreach (AudioBlock block in mPhraseNodeMap.Values) block.EnableTooltips = value;
+            }
+        }
+
         #endregion
 
         /// <summary>
@@ -272,11 +285,11 @@ namespace Obi.UserControls
             if ((msg.Msg == WM_KEYDOWN) || (msg.Msg == WM_SYSKEYDOWN))
             {
                 if (mAllowShortcuts && mShortcutKeys.ContainsKey(key) && mShortcutKeys[key]()) return true;
+                UpdateEnabledItemsForContextMenu();
             }
             return base.ProcessCmdKey(ref msg, key);
         }
 
         #endregion
-
     }
 }

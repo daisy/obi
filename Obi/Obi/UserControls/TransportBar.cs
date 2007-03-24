@@ -113,6 +113,14 @@ namespace Obi.UserControls
         }
 
         /// <summary>
+        /// Enable or disable the tooltips for this component.
+        /// </summary>
+        public bool EnableTooltips
+        {
+            set { mTransportBarTooltip.Active = value; }
+        }
+
+        /// <summary>
         /// The local playlist allows to only play a selection.
         /// </summary>
         public Playlist LocalPlaylist

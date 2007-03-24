@@ -66,6 +66,19 @@ namespace Obi.UserControls
             {
                 mManager = value;
                 mAnnotationBlock.Manager = value;
+                if (value != null) EnableTooltips = value.EnableTooltips;
+            }
+        }
+
+        /// <summary>
+        /// Enable or disable tooltips
+        /// </summary>
+        public bool EnableTooltips
+        {
+            set
+            {
+                mToolTip.Active = value;
+                mAnnotationBlock.EnableTooltips = value;
             }
         }
 
@@ -92,8 +105,8 @@ namespace Obi.UserControls
             InitializeComponent();
             mAnnotationBlock = new AnnotationBlock();
             mAnnotationBlock.AudioBlock = this;
-            this.mToolTip.SetToolTip(this, Localizer.Message("audio_block_tooltip"));
-            this.mToolTip.SetToolTip(this.mTimeLabel, Localizer.Message("audio_block_duration_tooltip"));
+            mToolTip.SetToolTip(this, Localizer.Message("audio_block_tooltip"));
+            mToolTip.SetToolTip(this.mTimeLabel, Localizer.Message("audio_block_duration_tooltip"));
         }
 
         #endregion

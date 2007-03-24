@@ -283,9 +283,19 @@ namespace Obi
                 FolderBrowserDialog dialog = new FolderBrowserDialog();
                 dialog.Description = Localizer.Message("export_choose_folder");
                 dialog.SelectedPath = mSettings.DefaultExportPath;
-                if (dialog.ShowDialog() == DialogResult.OK)
+                if (dialog.ShowDialog() == DialogResult.OK && IsExportDirectoryReady(dialog.SelectedPath))
                 {
-                    mProject.ExportToZed(dialog.SelectedPath);
+                    try
+                    {
+                        mProject.ExportToZed(dialog.SelectedPath);
+                        MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), dialog.SelectedPath),
+                            Localizer.Message("saved_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception x)
+                    {
+                        MessageBox.Show(String.Format(Localizer.Message("didnt_save_as_daisy_text"), dialog.SelectedPath, x.Message),
+                            Localizer.Message("didnt_save_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
@@ -294,6 +304,58 @@ namespace Obi
                 this.Cursor = Cursors.Default;
                 mProjectPanel.TransportBar.Enabled = true;
             }
+        }
+
+        /// <summary>
+        /// The export directory is ready if it doesn't exist and can be created, or exists
+        /// and is empty or can be emptied (or the user decided not to empty it.)
+        /// </summary>
+        private bool IsExportDirectoryReady(string path)
+        {
+            if (Directory.Exists(path))
+            {
+                string[] files = Directory.GetFiles(path);
+                if (files.Length > 0)
+                {
+                    DialogResult result = MessageBox.Show(String.Format(Localizer.Message("empty_directory_text"), path),
+                        Localizer.Message("empty_directory_caption"), MessageBoxButtons.YesNoCancel,
+                        MessageBoxIcon.Question);
+                    if (result == DialogResult.Cancel)
+                    {
+                        return false;
+                    }
+                    else if (result == DialogResult.Yes)
+                    {
+                        foreach (string file in files)
+                        {
+                            try
+                            {
+                                File.Delete(file);
+                            }
+                            catch (Exception e)
+                            {
+                                DialogResult dialog = MessageBox.Show(String.Format(Localizer.Message("cannot_delete_text"),
+                                    file, e.Message),
+                                    Localizer.Message("cannot_delete_caption"), MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                try
+                {
+                    DirectoryInfo info = Directory.CreateDirectory(path);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(String.Format(Localizer.Message("cannot_create_directory_text"), path, e.Message),
+                        Localizer.Message("cannot_create_directory_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            return true;
         }
 
         private void mExitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -393,20 +455,7 @@ namespace Obi
         {
             if (mProject != null)
             {
-                mProjectPanel.TransportBar.Enabled = false;
-                if (mProject.Clipboard.Section != null)
-                {
-                    IControlWithSelection control = mProjectPanel.CurrentSelection.Control;
-                    SectionNode pasted = mProject.PasteSectionNode(mProjectPanel.CurrentSelectionNode);
-                    mProjectPanel.CurrentSelection = new NodeSelection(pasted, control);
-                }
-                else if (mProject.Clipboard.Phrase != null)
-                {
-                    PhraseNode pasted = mProject.PastePhraseNode(mProject.Clipboard.Phrase,
-                        mProjectPanel.CurrentSelectionNode);
-                    mProjectPanel.CurrentSelection = new NodeSelection(pasted, mProjectPanel.StripManager);
-                }
-                mProjectPanel.TransportBar.Enabled = true;
+                mProjectPanel.Paste();
             }
         }
 
@@ -640,6 +689,11 @@ namespace Obi
         {
             Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings);
             dialog.SelectProjectTab();
+            ShowPreferencesDialog(dialog);
+        }
+
+        private void ShowPreferencesDialog(Dialogs.Preferences dialog)
+        {
             if (dialog.ShowDialog() == DialogResult.OK) UpdateSettings(dialog);
             Ready();
         }
@@ -651,8 +705,7 @@ namespace Obi
         {
             Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings);
             dialog.SelectAudioTab();
-            if (dialog.ShowDialog() == DialogResult.OK) UpdateSettings(dialog);
-            Ready();
+            ShowPreferencesDialog(dialog);
         }
 
         /// <summary>
@@ -671,6 +724,9 @@ namespace Obi
             mSettings.AudioChannels = dialog.AudioChannels;
             mSettings.SampleRate = dialog.SampleRate;
             mSettings.BitDepth = dialog.BitDepth;
+            // tooltips
+            mSettings.EnableTooltips = dialog.EnableTooltips;
+            mProjectPanel.EnableTooltips = dialog.EnableTooltips;
         }
 
         /// <summary>
@@ -798,6 +854,8 @@ namespace Obi
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
+            // tooltips
+            mProjectPanel.EnableTooltips = mSettings.EnableTooltips;
         }
 
         /// <summary>

@@ -100,12 +100,12 @@ namespace Obi.UserControls
                 mProjectPanel.Project.CanMovePhraseNode(mProjectPanel.CurrentSelectedAudioBlock, PhraseNode.Direction.Backward);
 
             mImportAudioFileToolStripMenuItem.Enabled = !isPlaying && !noSelection;
-            mInsertEmptyAudioblockToolStripMenuItem.Enabled = false; // !isPlaying && !noSelection
             mCutAudioBlockToolStripMenuItem.Enabled = canCutCopyDeletePhrase;
             mCopyAudioBlockToolStripMenuItem.Enabled = canCutCopyDeletePhrase;
             mPasteAudioBlockToolStripMenuItem.Enabled = canPastePhrase;
             mDeleteAudioBlockToolStripMenuItem.Enabled = canCutCopyDeletePhrase;
-            mMarkPhraseAsUnusedToolStripMenuItem.Enabled = false;
+            mMarkPhraseAsUnusedToolStripMenuItem.Enabled = mProjectPanel.CanToggleAudioBlock;
+            mMarkPhraseAsUnusedToolStripMenuItem.Text = mProjectPanel.ToggleAudioBlockString;
             mSplitAudioBlockToolStripMenuItem.Enabled = isBlockSelected;
             mQuickSplitAudioBlockToolStripMenuItem.Enabled = isBlockSelected && (isPlaying || isPaused);
             mApplyPhraseDetectionToolStripMenuItem.Enabled = !isPlaying && isBlockSelected;
@@ -145,6 +145,8 @@ namespace Obi.UserControls
                 if (item.Enabled) lastVisible = item;
             }
             if (lastVisible is ToolStripSeparator) lastVisible.Visible = false;
+            // For some reason marking section is impossible if marking phrase is disabled :(
+            if (mMarkStripAsUnusedToolStripMenuItem.Enabled) mMarkPhraseAsUnusedToolStripMenuItem.Enabled = true;
         }
 
         private void mImportAudioToolStripMenuItem_Click(object sender, EventArgs e)
@@ -350,14 +352,7 @@ namespace Obi.UserControls
         /// </summary>
         private void PasteStripOrAudioBlockHandler(object sender, EventArgs e)
         {
-            if (mProjectPanel.Project.Clipboard.Phrase != null)
-            {
-                mProjectPanel.Project.PastePhraseNode(mProjectPanel.Project.Clipboard.Phrase, mProjectPanel.CurrentSelectionNode);
-            }
-            else if (mProjectPanel.Project.Clipboard.Section != null)
-            {
-                mProjectPanel.Project.PasteSectionNode(mProjectPanel.CurrentSelectedStrip);
-            }
+            mProjectPanel.Paste();
         }
 
         /// <summary>

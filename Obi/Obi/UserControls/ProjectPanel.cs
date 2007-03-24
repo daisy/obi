@@ -12,6 +12,7 @@ namespace Obi.UserControls
     {
         private Project mProject;                 // the project to display
         private NodeSelection mCurrentSelection;  // node currently selected, and where
+        private bool mEnableTooltips;             // enable or disable tooltips
 
         /// <summary>
         /// Create an empty project panel.
@@ -173,6 +174,18 @@ namespace Obi.UserControls
                 if (selected.Used) return true;
                 SectionNode parent = selected.ParentSection;
                 return parent == null || parent.Used;
+            }
+        }
+
+        public bool EnableTooltips
+        {
+            get { return mEnableTooltips; }
+            set
+            {
+                mEnableTooltips = value;
+                mTOCPanel.EnableTooltips = value;
+                mTransportBar.EnableTooltips = value;
+                mStripManagerPanel.EnableTooltips = value;
             }
         }
 
@@ -424,6 +437,26 @@ namespace Obi.UserControls
                     mCurrentSelection.Control == mTOCPanel ? "section" :    // pasting in TOC panel
                     ((SectionNode)node).SectionChildCount > 0 ? "strips" :  // pasting several strips
                     "strip");                                               // pasting only one strip
+        }
+
+        /// <summary>
+        /// Paste the node in the clipboard in the selection context.
+        /// </summary>
+        public void Paste()
+        {
+            TransportBar.Enabled = false;
+            if (mProject.Clipboard.Section != null)
+            {
+                IControlWithSelection control = CurrentSelection.Control;
+                SectionNode pasted = mProject.PasteSectionNode(CurrentSelectionNode);
+                CurrentSelection = new NodeSelection(pasted, control);
+            }
+            else if (mProject.Clipboard.Phrase != null)
+            {
+                PhraseNode pasted = mProject.PastePhraseNode(mProject.Clipboard.Phrase, CurrentSelectionNode);
+                CurrentSelection = new NodeSelection(pasted, mStripManagerPanel);
+            }
+            TransportBar.Enabled = true;
         }
     }
 }

@@ -13,6 +13,11 @@ namespace Obi.UserControls
 
         public event SectionStrip.ChangedMinimumSizeHandler ChangedMinimumSize;
 
+        public bool EnableTooltips
+        {
+            set { mToolTip.Active = value; }
+        }
+
         /// <summary>
         /// Do not use Node on an annotation block.
         /// </summary>
@@ -144,9 +149,9 @@ namespace Obi.UserControls
         //md 20061009
         private void InitializeToolTips()
         {
-            this.mToolTip.SetToolTip(this, Localizer.Message("annotation_tooltip"));
-            this.mToolTip.SetToolTip(this.mRenameBox, Localizer.Message("annotation_tooltip"));
-            this.mToolTip.SetToolTip(this.mLabel, Localizer.Message("annotation_tooltip"));
+            mToolTip.SetToolTip(this, Localizer.Message("annotation_tooltip"));
+            mToolTip.SetToolTip(this.mRenameBox, Localizer.Message("annotation_tooltip"));
+            mToolTip.SetToolTip(this.mLabel, Localizer.Message("annotation_tooltip"));
         }
 
         /// <summary>
