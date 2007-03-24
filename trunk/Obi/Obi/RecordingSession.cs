@@ -179,6 +179,7 @@ namespace Obi
             mPhraseMarks.Add(mRecorder.TimeOfAsset);
             int last = mPhraseMarks.Count - 1;
             double length = mPhraseMarks[last] - (last == 0 ? 0.0 : mPhraseMarks[last - 1]);
+            length = length - (length % 100);
             PhraseEventArgs e = new PhraseEventArgs(mSessionAsset, mSessionOffset + last, length);
             FinishingPhrase(this, e);
             return e;
@@ -186,7 +187,8 @@ namespace Obi
 
         private void mRecordingUpdateTimer_tick(object sender, EventArgs e)
         {
-            double time = mRecorder.TimeOfAsset - (mPhraseMarks.Count > 0 ? mPhraseMarks[mPhraseMarks.Count - 1] : 0.0); 
+            double time = mRecorder.TimeOfAsset - (mPhraseMarks.Count > 0 ? mPhraseMarks[mPhraseMarks.Count - 1] : 0.0);
+            time = time - (time % 100);
             ContinuingPhrase(this, new PhraseEventArgs(mSessionAsset, mSessionOffset + mPhraseMarks.Count, time ));
         }
     }
