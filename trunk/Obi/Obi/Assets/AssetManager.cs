@@ -350,14 +350,6 @@ namespace Obi.Assets
         /// <returns>The new asset.</returns>
         public AudioMediaAsset SplitAudioMediaAsset(AudioMediaAsset asset, double time)
         {
-            /*if (asset.Type == MediaType.Audio)
-            {
-                foreach (AudioClip clip in ((AudioMediaAsset)asset).Clips)
-                {
-                    if (!mFiles.ContainsKey(clip.Path)) mFiles[clip.Path] = new List<AudioClip>();
-                    mFiles[clip.Path].Add(clip);
-                }
-            }*/
             return (AudioMediaAsset)NameAddAsset(asset.Split(time));
         }
 

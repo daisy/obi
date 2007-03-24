@@ -32,7 +32,7 @@ namespace Obi.Commands.Strips
             mNewNode = newNode;
             mSplitAsset = node.Asset;
             // reconstruct the original asset by merging.
-            mOriginalAsset = (AudioMediaAsset)newNode.Asset.Manager.CopyAsset(newNode.Asset);
+            mOriginalAsset = (AudioMediaAsset)node.Asset.Manager.CopyAsset(node.Asset);
             mOriginalAsset.MergeWith(newNode.Asset);
         }
 

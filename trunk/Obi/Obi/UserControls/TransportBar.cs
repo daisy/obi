@@ -562,12 +562,12 @@ namespace Obi.UserControls
 
         void Project_AddedPhraseNode(object sender, Obi.Events.Node.PhraseNodeEventArgs e)
         {
-            mMasterPlaylist.AddPhrase(e.Node);
+            if (e.Node.Used) mMasterPlaylist.AddPhrase(e.Node);
         }
 
         void Project_DeletedPhraseNode(object sender, Obi.Events.Node.PhraseNodeEventArgs e)
         {
-            mMasterPlaylist.RemovePhrase(e.Node);
+            if (e.Node.Used) mMasterPlaylist.RemovePhrase(e.Node);
         }
 
         void Project_ToggledNodeUsedState(object sender, Obi.Events.Node.ObiNodeEventArgs e)
@@ -587,7 +587,7 @@ namespace Obi.UserControls
 
         void Project_MediaSet(object sender, Obi.Events.Node.SetMediaEventArgs e)
         {
-            mMasterPlaylist.UpdateTimeFrom(e.Node);
+            if (e.Node.Used) mMasterPlaylist.UpdateTimeFrom(e.Node);
         }
     }
 }
