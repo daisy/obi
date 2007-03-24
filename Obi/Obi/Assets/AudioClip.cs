@@ -294,19 +294,6 @@ namespace Obi.Assets
             BeginTime = m_dBeginTime + BeginTime;
             EndTime = m_dBeginTime + EndTime;
 
-
-            // temp checks are as follows , these are to be removed during finalising
-            /*
-            if (BeginTime < this.BeginTime)
-                MessageBox.Show("error begin time");
-
-            if (EndTime > this.EndTime)
-                MessageBox.Show("error in end time");
-
-            if (BeginTime >= EndTime)
-                MessageBox.Show("both");
-            */
-             
             // checks that the new clip time parameters are not out of boun of original clip
             if (BeginTime >= this.BeginTime && EndTime <= this.EndTime && BeginTime < EndTime)
             {
