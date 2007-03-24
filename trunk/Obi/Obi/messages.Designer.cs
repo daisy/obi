@@ -196,6 +196,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot create directory.
+        /// </summary>
+        internal static string cannot_create_directory_caption {
+            get {
+                return ResourceManager.GetString("cannot_create_directory_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot create directory {0}: {1}..
+        /// </summary>
+        internal static string cannot_create_directory_text {
+            get {
+                return ResourceManager.GetString("cannot_create_directory_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot create project file.
         /// </summary>
         internal static string cannot_create_file_caption {
@@ -210,6 +228,24 @@ namespace Obi {
         internal static string cannot_create_file_text {
             get {
                 return ResourceManager.GetString("cannot_create_file_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot delete file.
+        /// </summary>
+        internal static string cannot_delete_caption {
+            get {
+                return ResourceManager.GetString("cannot_delete_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file {0} cannot be deleted. Press OK to continue or Cancel to abort. (Reason given: {1}).
+        /// </summary>
+        internal static string cannot_delete_text {
+            get {
+                return ResourceManager.GetString("cannot_delete_text", resourceCulture);
             }
         }
         
@@ -432,6 +468,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error exporting to DAISY.
+        /// </summary>
+        internal static string didnt_save_as_daisy_caption {
+            get {
+                return ResourceManager.GetString("didnt_save_as_daisy_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not export project to DAISY in directory {0}. Reason given: {1}.
+        /// </summary>
+        internal static string didnt_save_as_daisy_text {
+            get {
+                return ResourceManager.GetString("didnt_save_as_daisy_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Discarding changes to a modified project.
         /// </summary>
         internal static string discard_changes_caption {
@@ -461,6 +515,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exporting to a non-empty directory.
+        /// </summary>
+        internal static string empty_directory_caption {
+            get {
+                return ResourceManager.GetString("empty_directory_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are about to export your DAISY project to {0}. This directory is not empty (perhaps you exported a previous version of your project to that directory.) Do you want to empty this directory before exporting?.
+        /// </summary>
+        internal static string empty_directory_text {
+            get {
+                return ResourceManager.GetString("empty_directory_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Empty label.
         /// </summary>
         internal static string empty_label_warning_caption {
@@ -484,6 +556,15 @@ namespace Obi {
         internal static string error {
             get {
                 return ResourceManager.GetString("error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred during DAISY export..
+        /// </summary>
+        internal static string error_exporting_daisy {
+            get {
+                return ResourceManager.GetString("error_exporting_daisy", resourceCulture);
             }
         }
         
@@ -1140,11 +1221,20 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Saved as DAISY {0}.
+        ///   Looks up a localized string similar to Project exported to DAISY.
         /// </summary>
-        internal static string saved_as_daisy {
+        internal static string saved_as_daisy_caption {
             get {
-                return ResourceManager.GetString("saved_as_daisy", resourceCulture);
+                return ResourceManager.GetString("saved_as_daisy_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exported project to DAISY in directory {0}.
+        /// </summary>
+        internal static string saved_as_daisy_text {
+            get {
+                return ResourceManager.GetString("saved_as_daisy_text", resourceCulture);
             }
         }
         

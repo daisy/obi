@@ -17,6 +17,7 @@ namespace Obi.Dialogs
         private string mDefaultXUKDirectory;    // default project directory
         private string mDefaultDAISYDirectory;  // default export directory
         private bool mOpenLastProject;          // automatically open last project
+        private bool mEnableTooltips;                 // enable/disable tooltips
         private InputDevice mInputDevice;       // preferred input device
         private OutputDevice mOutputDevice;     // preferred output device
         private int mAudioChannels;             // preferred number of audio channels
@@ -53,6 +54,14 @@ namespace Obi.Dialogs
         public bool OpenLastProject
         {
             get { return mOpenLastProject; }
+        }
+
+        /// <summary>
+        /// Enable or disable tooltips.
+        /// </summary>
+        public bool EnableTooltips
+        {
+            get { return mEnableTooltips; }
         }
 
         public OutputDevice OutputDevice
@@ -93,6 +102,7 @@ namespace Obi.Dialogs
             mDirectoryBox.Text = mDefaultXUKDirectory;
             mExportBox.Text = mDefaultDAISYDirectory;
             mLastOpenCheckBox.Checked = settings.OpenLastProject;
+            mTooltipsCheckBox.Checked = settings.EnableTooltips;
             mInputDevice = AudioRecorder.Instance.InputDevice;
             mOutputDevice = AudioPlayer.Instance.OutputDevice;
             mSampleRate = settings.SampleRate;
@@ -150,7 +160,8 @@ namespace Obi.Dialogs
             {
                 mDefaultDAISYDirectory = mExportBox.Text;
             }
-            mOpenLastProject = mLastOpenCheckBox.Checked;            
+            mOpenLastProject = mLastOpenCheckBox.Checked;
+            mEnableTooltips = mTooltipsCheckBox.Checked;
             mInputDevice = (InputDevice)comboInputDevice.SelectedItem;
             mOutputDevice = (OutputDevice)comboOutputDevice.SelectedItem;
             if (comboChannels.SelectedItem.ToString() == "Mono")

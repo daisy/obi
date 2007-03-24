@@ -310,6 +310,14 @@ namespace Obi.UserControls
         }
         #endregion
 
+        /// <summary>
+        /// Enable or disable tooltip.
+        /// </summary>
+        public bool EnableTooltips
+        {
+            set { mToolTip.Active = value; }
+        }
+
         //md 20061009
         private void InitializeToolTips()
         {

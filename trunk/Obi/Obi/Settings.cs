@@ -27,6 +27,7 @@ namespace Obi
         public bool CreateTitleSection;   // defaulf for "create title section" in new project
         public string LastOpenProject;    // path to the last open project
         public bool OpenLastProject;      // open the last open project at startup
+        public bool EnableTooltips;       // enable or disable tooltips
 
         public string LastOutputDevice;   // the name of the last output device selected by the user
         public string LastInputDevice;    // the name of the last input device selected by the user
@@ -55,7 +56,8 @@ namespace Obi
             settings.AudioChannels = 1;
             settings.SampleRate = 44100;
             settings.BitDepth = 16;
-            settings.FontSize = 10.0f; 
+            settings.FontSize = 10.0f;
+            settings.EnableTooltips = true;
             IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
             try
             {

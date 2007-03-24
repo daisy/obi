@@ -25,6 +25,11 @@ namespace Obi.UserControls
 
         #region properties
 
+        public bool EnableTooltips
+        {
+            set { mToolTip.Active = value; }
+        }
+
         /// <summary>
         /// The label of a strip is the title of the section it represents.
         /// </summary>
@@ -44,8 +49,12 @@ namespace Obi.UserControls
         /// </summary>
         public StripManagerPanel Manager
         {
-            set { mManager = value; }
             get { return mManager; }
+            set
+            {
+                mManager = value;
+                if (mManager != null) mToolTip.Active = mManager.EnableTooltips;
+            }
         }
 
         /// <summary>

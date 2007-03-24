@@ -524,8 +524,8 @@ Do you want to replace the project contained in this file?</value>
     <value>strips</value>
     <comment>Plural of strip</comment>
   </data>
-  <data name="saved_as_daisy" xml:space="preserve">
-    <value>Saved as DAISY {0}</value>
+  <data name="saved_as_daisy_text" xml:space="preserve">
+    <value>Exported project to DAISY in directory {0}</value>
     <comment>Message when export to DAISY succeeds (MD)</comment>
   </data>
   <data name="user_profile_template" xml:space="preserve">
@@ -624,5 +624,35 @@ Do you want to replace the project contained in this file?</value>
   </data>
   <data name="cannot_create_file_text" xml:space="preserve">
     <value>Cannot create project file "{0}": {1}.</value>
+  </data>
+  <data name="cannot_create_directory_caption" xml:space="preserve">
+    <value>Cannot create directory</value>
+  </data>
+  <data name="cannot_create_directory_text" xml:space="preserve">
+    <value>Cannot create directory {0}: {1}.</value>
+  </data>
+  <data name="cannot_delete_caption" xml:space="preserve">
+    <value>Cannot delete file</value>
+  </data>
+  <data name="cannot_delete_text" xml:space="preserve">
+    <value>The file {0} cannot be deleted. Press OK to continue or Cancel to abort. (Reason given: {1})</value>
+  </data>
+  <data name="empty_directory_caption" xml:space="preserve">
+    <value>Exporting to a non-empty directory</value>
+  </data>
+  <data name="empty_directory_text" xml:space="preserve">
+    <value>You are about to export your DAISY project to {0}. This directory is not empty (perhaps you exported a previous version of your project to that directory.) Do you want to empty this directory before exporting?</value>
+  </data>
+  <data name="didnt_save_as_daisy_caption" xml:space="preserve">
+    <value>Error exporting to DAISY</value>
+  </data>
+  <data name="didnt_save_as_daisy_text" xml:space="preserve">
+    <value>Could not export project to DAISY in directory {0}. Reason given: {1}</value>
+  </data>
+  <data name="error_exporting_daisy" xml:space="preserve">
+    <value>An error occurred during DAISY export.</value>
+  </data>
+  <data name="saved_as_daisy_caption" xml:space="preserve">
+    <value>Project exported to DAISY</value>
   </data>
 </root>

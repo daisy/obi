@@ -5,17 +5,15 @@ namespace Obi
 {
     public partial class Project
     {
-        public static string DaisyOutputDirSuffix = "_daisy";
-        
         private static string mXsltFile = "XukToZed.xslt";
-        
+
         /// <summary>
         /// 
         /// </summary>
         public void ExportToZed(string outputPath)
         {
             UpdatePublicationMetadata();
-          
+
             string originalAssetDirectory = this.AssetManager.AssetsDirectory;
 
             //these assets go in a new directory (old_dir_name + "_temp")
@@ -27,14 +25,14 @@ namespace Obi
 
             // sort out the audio clips: create one file per section, then one clip per phrase in this section.
             Visitors.CleanupAssets cleanAssVisitor = new Visitors.CleanupAssets(tempAssetDirectory, false);
-   
+
             //clean up the assets
             this.RootNode.acceptDepthFirst(cleanAssVisitor);
             cleanAssVisitor = null;
 
             //remove the original asset directory, since all the cleaned assets are in the temp folder
             System.IO.Directory.Delete(originalAssetDirectory, true);
-      
+
             //rename the temp folder to the original directory's name
             System.IO.Directory.Move(tempAssetDirectory, originalAssetDirectory);
 
@@ -48,7 +46,7 @@ namespace Obi
             // then invoke the XukToZed transformation
             string xukFileName = System.IO.Path.GetFileNameWithoutExtension(XUKPath);
             // create the output folder if it doesn't exist
-            if (!System.IO.Directory.Exists(outputPath)) System.IO.Directory.CreateDirectory(outputPath);            
+            if (!System.IO.Directory.Exists(outputPath)) System.IO.Directory.CreateDirectory(outputPath);
             ConvertXukToZed(xukFileName, outputPath);
         }
 
@@ -109,7 +107,7 @@ namespace Obi
             XukToZed.XukToZed x2z = new XukToZed.XukToZed(xsltPath);
 
             x2z.OuputDir = outputFolder;
-            x2z.contextFolderName = Path.GetDirectoryName(mXUKPath) +@"\";// Environment.CurrentDirectory;
+            x2z.contextFolderName = Path.GetDirectoryName(mXUKPath) + @"\";// Environment.CurrentDirectory;
 
             string tmpPackageName = safeProjectName + ".opf";
             x2z.TransformationArguments.AddParam("packageFilename", "", tmpPackageName);
@@ -120,29 +118,15 @@ namespace Obi
             System.Xml.XmlReaderSettings readSettings = new System.Xml.XmlReaderSettings();
             readSettings.XmlResolver = null;
 
-            try
+            System.Xml.XmlReader xukDatasource = System.Xml.XmlReader.Create(XUKPath);
+
+            x2z.WriteZed(xukDatasource);
+            xukDatasource.Close();
+
+            if (!System.IO.File.Exists(x2z.OuputDir + "/" + tmpNcxName) ||
+                !System.IO.File.Exists(x2z.OuputDir + "/" + tmpPackageName))
             {
-                System.Xml.XmlReader xukDatasource = System.Xml.XmlReader.Create(XUKPath);
-
-                x2z.WriteZed(xukDatasource);
-                xukDatasource.Close();
-
-                if (!System.IO.File.Exists(x2z.OuputDir + "/" + tmpNcxName) ||
-                    !System.IO.File.Exists(x2z.OuputDir + "/" + tmpPackageName))
-                {
-                    throw new Exception("Error saving project as DAISY");
-                }
-                else
-                {
-                    string success = String.Format(Localizer.Message("saved_as_daisy"), outputFolder);
-
-                    System.Windows.Forms.MessageBox.Show(success);
-
-                }
-            }
-            catch (Exception e)
-            {
-                System.Diagnostics.Debug.Print("EXPORT FAILED: {0}", e.Message);
+                throw new Exception(Localizer.Message("error_exporting_daisy"));
             }
         }
     }
