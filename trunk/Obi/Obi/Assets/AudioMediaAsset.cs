@@ -884,6 +884,11 @@ namespace Obi.Assets
                 List<AudioClip> NewList = new List<AudioClip>();
                 NewList.Add(ExportAudioClip);
                 AssetList[ICount].mClips = NewList;
+
+                AssetList[ICount].mAudioLengthInTime = ExportAudioClip.LengthInTime;
+                AssetList[ICount].mAudioLengthInBytes = Audio.CalculationFunctions.ConvertTimeToByte(AssetList[ICount].mAudioLengthInTime, AssetList[ICount].mSamplingRate, AssetList[ICount].mFrameSize);
+                AssetList[ICount].mSizeInBytes = AssetList[ICount].mAudioLengthInBytes;
+
                 AssetList[ICount].Manager.AddedClip(ExportAudioClip);
             }
             return AssetList;
