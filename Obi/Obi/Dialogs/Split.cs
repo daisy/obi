@@ -301,6 +301,8 @@ namespace Obi.Dialogs
                 }
                 Audio.AudioPlayer.Instance.Stop();
                 tmUpdateTimePosition.Enabled = false;
+                mPlayButton.TabIndex = 1;
+                mPauseButton.TabIndex = 0;
                 mPlayButton.Visible = true;
                 mPauseButton.Visible = false;
                 btnPreview.Text = "Pre&view" ;
@@ -318,8 +320,11 @@ namespace Obi.Dialogs
                 CheckSplitTime();
                 Audio.AudioPlayer.Instance.Play(mSourceAsset, mSplitTime);
                 tmUpdateTimePosition.Enabled = true;
-                mPlayButton.Visible = false;
+                mPauseButton.TabIndex = 1;
+                mPlayButton.TabIndex = 0;
                 mPauseButton.Visible = true;
+                mPlayButton.Visible = false;
+                
                 btnSplit.Enabled = true;
                 btnPreview.Enabled = false;
                 txtDisplayTime.Text = ChangeTimeToDisplay(mSplitTime);
@@ -356,7 +361,8 @@ namespace Obi.Dialogs
         void EndAssetOperations()
         {
             btnPreview.Text = "Pre&view";
-            mPauseButton.Enabled = true;
+            mPauseButton.Visible = false;
+            mPlayButton.Visible = true;
             btnPreview.Enabled = true;
                txtDisplayTime.Text = ChangeTimeToDisplay (mSplitTime);
         }
