@@ -213,6 +213,7 @@ namespace Obi.Dialogs
             this.mPlayButton.TabIndex = 19;
             this.mPlayButton.Text = "&Play";
             this.mPlayButton.UseVisualStyleBackColor = true;
+            this.mPlayButton.Click += new System.EventHandler(this.mPlayButton_Click);
             // 
             // Split
             // 

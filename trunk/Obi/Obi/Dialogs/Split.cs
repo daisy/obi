@@ -45,10 +45,6 @@ namespace Obi.Dialogs
             txtSplitTime.Text = "0";
 
             // start playing as soon as dialog is invoked
-            Audio.VuMeter ob_VuMeter = new Audio.VuMeter();
-            ob_VuMeter.LowerThreshold = 50;
-            ob_VuMeter.UpperThreshold = 300;
-            ob_VuMeter.SampleTimeLength = 1000;
 
             if (mSplitState == Audio.AudioPlayerState.Stopped)
             {
@@ -114,12 +110,6 @@ namespace Obi.Dialogs
             if (mSourceAsset.AudioLengthInBytes > mSplitTime &&
                 Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped)
             {
-                // Vumeter values are kept high so that there is no warning for peak over load and it is not visible also
-                Audio.VuMeter ob_VuMeter = new Audio.VuMeter();
-                ob_VuMeter.LowerThreshold = 50;
-                ob_VuMeter.UpperThreshold = 300;
-                ob_VuMeter.SampleTimeLength = 1000;
-                //Audio.AudioPlayer.Instance.VuMeterObject = ob_VuMeter;
 
                 // check if sufficient time is left after split time to use GetChunk if not use Audio lengthin ms as second parameter
                 if (mSourceAsset.LengthInMilliseconds - mSplitTime > 4000 )
@@ -132,9 +122,8 @@ namespace Obi.Dialogs
                 mPauseButton.Text = "&Pause";
             }
         }
+        
 
-        //long lCountPreviewMinuts=4;
-        //long tmCount ;
         private void tmUpdateTimePosition_Tick(object sender, EventArgs e)
         {
 
@@ -149,8 +138,7 @@ namespace Obi.Dialogs
                 double temptime;
                 temptime = Audio.AudioPlayer.Instance.CurrentTimePosition;
                 txtDisplayTime.Text = ChangeTimeToDisplay( temptime );
-                //AudioTrackBar.Value = Convert.ToInt32( temptime / 100) ; 
- 
+                
             }
 
         }
@@ -315,6 +303,8 @@ namespace Obi.Dialogs
                 tmUpdateTimePosition.Enabled = false;
                 mPlayButton.Visible = true;
                 mPauseButton.Visible = false;
+                btnPreview.Text = "Pre&view" ;
+                btnPreview.Enabled = true;
                 btnSplit.Enabled = true;
                 UpdateSplitTime();
             }
@@ -324,6 +314,7 @@ namespace Obi.Dialogs
         {
             if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped && mSplitTime != mSourceAsset.LengthInMilliseconds)
             {
+                
                 CheckSplitTime();
                 Audio.AudioPlayer.Instance.Play(mSourceAsset, mSplitTime);
                 tmUpdateTimePosition.Enabled = true;
@@ -336,11 +327,7 @@ namespace Obi.Dialogs
         }
 
         
-            
-
-            
-
-
+        
 
         private void AudioPlayer_StateChanged(object sender, Events.Audio.Player.StateChangedEventArgs e)
         {
@@ -353,13 +340,7 @@ namespace Obi.Dialogs
             // for safe threading following function is called through delegate using invoke required
             CallEndAssetOperations();
 
-            // following one line added for serial playing experiment
-            //CanPlay = true;
         }
-
-        // following one line added for serial playing experiment
-        //bool CanPlay = false; 
-
 
             void CallEndAssetOperations()
         {
@@ -374,7 +355,6 @@ namespace Obi.Dialogs
 
         void EndAssetOperations()
         {
-            mPauseButton.Text = "&Play";
             btnPreview.Text = "Pre&view";
             mPauseButton.Enabled = true;
             btnPreview.Enabled = true;
@@ -494,18 +474,7 @@ namespace Obi.Dialogs
 
         }
 
-        // experiment for serial  playing of assets start line
-        private void tmMonitorEnd_Tick(object sender, EventArgs e)
-        {
-            //if (CanPlay == true)
-            //{
-                //Audio.AudioPlayer.Instance.Play(mSourceAsset);
-                //CanPlay = false;
-            //}
-            
-        }
-
-
+    
         private void InitialiseStepSizeList ()
     {
         mStepSizeList.Add (.1) ;
