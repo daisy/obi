@@ -146,6 +146,8 @@ NOTE TO TESTERS: please verify that every statement in this document is true wit
 
       3.5.2.3 The split time can be edited to be set manually. The expected format is s+(,mmm)? (seconds indicated by any integer, then optionally a comma followed by up to 3 decimal places.
       <LNN> Note that the use of '.' is ignored, making "1.000" equal to "1000". Input to this field causes an exception if invalid input is given, such as "1:23,456" (could be interpreted as 1 minute, 23 second, 456 milliseconds)</LNN>
+<Avn Date="27March2007">The Split time text box takes input in s.ms format i.e. seconds followed by milliseconds, seperated by "." . This is a very simple approach and avoids mistakes from user especially when Split dialog is made up for fine positioning.</Avn>
+
 
       3.5.2.4 The navigate box allows to rewind and forward while playing in order to find the split point in a long phrase or fine tune the split position. The step size in seconds text box can be modified with the +
       and - buttons to change the step from a small to larger increments.
@@ -241,6 +243,8 @@ NOTE TO TESTERS: please verify that every statement in this document is true wit
     4.4.4 "remaining (total)" shows the remaining time in the project (not including unused items.)
 
   4.5 The transport bar has a text VU meter than can be captured by screen readers (for instance.) The "left" and "right" boxes show the current value of the input or output in the respective channel (only left shows a value when playing monophonic sound.) When a channel overloads, the value is "stuck" so that it can be seen that an overload occurred; the reset button can be used to reset the value in both channels.
+
+<Avn date="27 March 2007">Overload behavior is different: On first overload sstring "OL" starts preceeding numeric values displayed in text VuMeter. This event is accompanied by appearance of Reset button. "OL" remains in text boxes till reset button is pressed in order to indicate overloaded channel even if recording/playing session is over. As reset button is pressed the, button disappears again eliminating "OL" from text boxes.</Avn>
 
   4.6 The record dialog appears when the record button is pressed. To record, a strip must be selected (then the recorded audio is appended to the strip) or a block must be selected (then the recorded audio is inserted before this block.)
 
