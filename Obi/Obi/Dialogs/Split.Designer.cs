@@ -134,6 +134,7 @@ namespace Obi.Dialogs
             this.txtSplitTime.Name = "txtSplitTime";
             this.txtSplitTime.Size = new System.Drawing.Size(127, 20);
             this.txtSplitTime.TabIndex = 7;
+            this.txtSplitTime.Leave += new System.EventHandler(this.txtSplitTime_Leave);
             // 
             // groupBox1
             // 
