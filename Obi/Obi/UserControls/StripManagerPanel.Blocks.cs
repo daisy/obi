@@ -228,6 +228,7 @@ namespace Obi.UserControls
                 NodeSelection originalSelection = mProjectPanel.CurrentSelection;
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
+                    if ( dialog.ResultAsset != null ) 
                     mProjectPanel.CurrentSelection =
                         new NodeSelection(mProjectPanel.Project.Split(phrase, dialog.ResultAsset), this);
                 }
