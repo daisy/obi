@@ -259,12 +259,12 @@ namespace Obi.Dialogs
         private void btnSplit_Click(object sender, EventArgs e)
         {
             // update m_dSplitTime from split text box
-            CheckSplitTime();
             // result of the split must be in mResultAsset
             // if split time is not on bounds of asset then stop asset if playing and split it
-            if (mSplitTime > 0 && mSplitTime < mSourceAsset.LengthInMilliseconds)
+            if ( CheckSplitTime ()  == true )
             {
                 if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing) Audio.AudioPlayer.Instance.Stop();
+
                 mResultAsset = mSourceAsset.Manager.SplitAudioMediaAsset(mSourceAsset, mSplitTime);
                 // mResultAsset = mSourceAsset.Split(mSplitTime);
                 // mSourceAsset.Manager.AddAsset(mResultAsset);
@@ -272,7 +272,7 @@ namespace Obi.Dialogs
             }
             else
             {
-                MessageBox.Show("Enter correct value to split");
+                MessageBox.Show("Split command canceled");
             }
         }
 
@@ -438,18 +438,34 @@ namespace Obi.Dialogs
 
         // checks the validity of split time in split text box and assign it to 
         // m_dSplitTime if it is not 0 or end of asset else show a error message box
-        void CheckSplitTime ()
+        bool CheckSplitTime ()
         {
+            // flag to indicate if split time is changed
+            bool IsChanged = true ;
+
             // split Text box shows time in sec so it is converted in ms
-            double dCheckTime = Convert.ToDouble (txtSplitTime.Text)* 1000;
+            double dCheckTime = 0 ;
+            try
+            {
+                dCheckTime = Convert.ToDouble(txtSplitTime.Text) * 1000;
+            }
+            catch
+            {
+                txtSplitTime.Text = ( mSplitTime / 1000 ).ToString () ;
+                IsChanged = false;
+                MessageBox.Show("Invalid Splittime format, continueing from previous valid time: " + txtSplitTime.Text + "sec");
+            }
             if (dCheckTime < 0 || dCheckTime > mSourceAsset.LengthInMilliseconds)
             {
-                MessageBox.Show("Error! Split time is out of bounds of asset");
+                txtSplitTime.Text = ( mSplitTime / 1000 ).ToString () ;
+                IsChanged = false;
+                MessageBox.Show("Error! Split time is out of bounds of asset, Continueing from previous Splittime: " + txtSplitTime.Text + "sec");
             }
             else
             {
                 mSplitTime = dCheckTime;
             }
+            return IsChanged;
         }
 
         protected override bool ProcessDialogKey(Keys keyData)
@@ -528,6 +544,11 @@ namespace Obi.Dialogs
         private void txtStepSize_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtSplitTime_Leave(object sender, EventArgs e)
+        {
+            CheckSplitTime();
         }
     }// end of class
 }
