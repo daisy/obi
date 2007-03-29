@@ -78,6 +78,7 @@ namespace Obi
             mCommandManager = new CommandManager();
             InitializeVuMeter();
             InitializeSettings();
+            InitialiseHighContrastSettings();
             mProjectPanel.TransportBar.StateChanged +=
                 new Obi.Events.Audio.Player.StateChangedHandler(TransportBar_StateChanged);
             mProjectPanel.TransportBar.PlaybackRateChanged += new EventHandler(TransportBar_PlaybackRateChanged);
@@ -748,6 +749,11 @@ namespace Obi
                 }
                 mProjectPanel.TransportBar.Stop();
                 Application.Exit();
+
+                // unhook User preferences system events 
+                Microsoft.Win32.SystemEvents.UserPreferenceChanged
+                -= new Microsoft.Win32.UserPreferenceChangedEventHandler(this.UserPreferenceChanged);
+
             }
             else
             {
@@ -1573,5 +1579,26 @@ namespace Obi
         }
 
         #endregion
+
+
+        private void InitialiseHighContrastSettings()
+        {
+            // Associate  user preference system events
+            Microsoft.Win32.SystemEvents.UserPreferenceChanged
+                += new Microsoft.Win32.UserPreferenceChangedEventHandler(this.UserPreferenceChanged);
+
+            //UserControls.Colors.SetHighContrastColors(SystemInformation.HighContrast);
+            //mProjectPanel.TransportBar.SetHighContrastColors(SystemInformation.HighContrast);
+            //BackColor = UserControls.Colors.ObiBackGround;
+            
+        }
+
+        private void UserPreferenceChanged( object sender , EventArgs e )
+        {
+            UserControls.Colors.SetHighContrastColors( SystemInformation.HighContrast );
+            //mProjectPanel.TransportBar.SetHighContrastColors(SystemInformation.HighContrast);
+            BackColor = UserControls.Colors.ObiBackGround;
+            mProject.Touch();
+        }
     }
 }
