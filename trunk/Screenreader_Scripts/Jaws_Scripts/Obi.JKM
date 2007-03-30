@@ -1,7 +1,13 @@
 [Common Keys]
-Alt+UpArrow=AltUpHook
+Alt+UpArrow=
 Alt+DownArrow=AltDownHook
 Alt+LeftArrow=AltLeftHook
 Alt+RightArrow=AltRightHook
 Alt+Shift+RightArrow=AltShiftRightHook
 Alt+Shift+LeftArrow=AltShiftLeftHook
+Insert+NumPad5=
+[Laptop Keys]
+Insert+NumPad5=SayWordOverriden
+JAWSKey+K=SayWordOverriden
+[Desktop Keys]
+JAWSKey+NumPad5=SayWordOverriden
