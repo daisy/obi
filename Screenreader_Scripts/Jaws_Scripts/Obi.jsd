@@ -1,5 +1,7 @@
 :script AltLeftHook
 
+:script SayWordOverriden
+
 :script AltShiftRightHook
 
 :script AltUpHook

@@ -48,11 +48,27 @@ EndScript
 
 
 
+Script SayWordOverriden ()
+var String BlockName
+let BlockName = GetObjectName (1) +" " +  GetObjectDescription (1)
+If IsSameScript () Then
+	If ( GetWord () == "Audio" 
+	&& IsPCCursor () 
+	&& BlockName != " "  ) Then
+		SpellString ( BlockName)
+	Else
+		PerformScript SayWord()
+	EndIf
+Else
+	If ( GetWord () == "Audio" 
+	&& IsPCCursor () 
+	&& BlockName != " " ) Then
+		SayString ( BlockName )
+	Else
+		PerformScript SayWord()
 
+	EndIf
+EndIf
 
-
-
-
-
-
+EndScript
 
