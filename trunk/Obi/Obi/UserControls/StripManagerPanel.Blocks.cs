@@ -228,9 +228,13 @@ namespace Obi.UserControls
                 NodeSelection originalSelection = mProjectPanel.CurrentSelection;
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    if ( dialog.ResultAsset != null ) 
-                    mProjectPanel.CurrentSelection =
-                        new NodeSelection(mProjectPanel.Project.Split(phrase, dialog.ResultAsset), this);
+                    if (dialog.ResultAsset != null)
+                    {
+                        PhraseNode SplitPhraseNode = mProjectPanel.Project.Split(phrase, dialog.ResultAsset ) ;
+                        SynchronizeWithCoreTree(SplitPhraseNode.ParentSection);
+                        mProjectPanel.CurrentSelection =
+                            new NodeSelection(SplitPhraseNode , this);
+                    }
                 }
                 else
                 {
@@ -261,6 +265,7 @@ namespace Obi.UserControls
                 mProjectPanel.TransportBar.Enabled = true;
                 if (split != null)
                 {
+                    SynchronizeWithCoreTree(split.ParentSection);
                     mProjectPanel.CurrentSelection = new NodeSelection(split, this);
                     mProjectPanel.TransportBar.Play();
                 }
