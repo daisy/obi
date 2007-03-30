@@ -215,13 +215,17 @@ namespace Obi.UserControls
             AccessibleName  = mLabel.Text;
             // Set the time display
             if (Audio.AudioRecorder.Instance.State != Obi.Audio.AudioRecorderState.Recording)
+            {
                 mTimeLabel.Text = Assets.MediaAsset.FormatTime(mNode.Asset.LengthInMilliseconds);
+                AccessibleDescription = mTimeLabel.Text ;
+            }
         }
 
         private void RefreshLabels(double time)
         {
             RefreshLabels();
             mTimeLabel.Text = Assets.MediaAsset.FormatTime(time);
+            AccessibleDescription = mTimeLabel.Text ;
         }
 
         /// <summary>
