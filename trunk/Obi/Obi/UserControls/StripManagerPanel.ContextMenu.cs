@@ -316,20 +316,12 @@ namespace Obi.UserControls
 
         #region ambiguous click event handlers
 
-
         /// <summary>
         /// Cut either the selected strip or the selected audio block.
         /// </summary>
         private void CutStripOrAudioBlockHandler(object sender, EventArgs e)
         {
-            if (mProjectPanel.CurrentSelectedStrip != null)
-            {
-                mProjectPanel.Project.ShallowCutSectionNode(mProjectPanel.CurrentSelectedStrip);
-            }
-            else if (mProjectPanel.CurrentSelectedAudioBlock != null)
-            {
-                mProjectPanel.Project.CutPhraseNode(mProjectPanel.CurrentSelectedAudioBlock);
-            }
+            mProjectPanel.Cut();
         }
 
         /// <summary>
@@ -337,14 +329,7 @@ namespace Obi.UserControls
         /// </summary>
         private void CopyStripOrAudioBlockHandler(object sender, EventArgs e)
         {
-            if (mProjectPanel.CurrentSelectedStrip != null)
-            {
-                mProjectPanel.Project.ShallowCopySectionNode(mProjectPanel.CurrentSelectedStrip, true);
-            }
-            else if (mProjectPanel.CurrentSelectedAudioBlock != null)
-            {
-                mProjectPanel.Project.CopyPhraseNode(mProjectPanel.CurrentSelectedAudioBlock);
-            }
+            mProjectPanel.Copy();
         }
 
         /// <summary>
@@ -360,14 +345,7 @@ namespace Obi.UserControls
         /// </summary>
         private void DeleteStripOrAudioBlockHandler(object sender, EventArgs e)
         {
-            if (mProjectPanel.CurrentSelectedStrip != null)
-            {
-                mProjectPanel.Project.ShallowDeleteSectionNode(this, mProjectPanel.CurrentSelectedStrip);
-            }
-            else if (mProjectPanel.CurrentSelectedAudioBlock != null)
-            {
-                mProjectPanel.Project.DeletePhraseNode(mProjectPanel.CurrentSelectedAudioBlock);
-            }
+            mProjectPanel.Delete();
         }
 
         /// <summary>

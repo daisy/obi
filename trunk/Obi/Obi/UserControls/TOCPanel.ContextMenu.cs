@@ -71,22 +71,22 @@ namespace Obi.UserControls
 
         private void mCutSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.Project.CutSectionNode(mProjectPanel.CurrentSelectedSection);
+            mProjectPanel.Cut();
         }
 
         private void mCopySectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.Project.CopySectionNode(mProjectPanel.CurrentSelectedSection);
+            mProjectPanel.Copy();
         }
 
-        internal void mPasteSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mPasteSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.Project.PasteSectionNode(mProjectPanel.CurrentSelectedSection);
+            mProjectPanel.Paste();
         }
 
         private void mDeleteSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.Project.DeleteSectionNode(mProjectPanel.CurrentSelectedSection);
+            mProjectPanel.Delete();
         }
 
         private void mMarkSectionAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)

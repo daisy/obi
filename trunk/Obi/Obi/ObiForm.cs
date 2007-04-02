@@ -403,26 +403,7 @@ namespace Obi
         /// </summary>
         private void mCutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProjectPanel != null)
-            {
-                mProjectPanel.TransportBar.Enabled = false;
-                if (mProjectPanel.CurrentSelectedAudioBlock != null)
-                {
-                    mProject.CutPhraseNode(mProjectPanel.CurrentSelectedAudioBlock);
-                    mProjectPanel.CurrentSelection = null;
-                }
-                else if (mProjectPanel.CurrentSelectedStrip != null)
-                {
-                    mProject.ShallowCutSectionNode(mProjectPanel.CurrentSelectedStrip);
-                    mProjectPanel.CurrentSelection = null;
-                }
-                else if (mProjectPanel.CurrentSelectedSection != null)
-                {
-                    mProject.CutSectionNode(mProjectPanel.CurrentSelectedSection);
-                    mProjectPanel.CurrentSelection = null;
-                }
-                mProjectPanel.TransportBar.Enabled = true;
-            }
+            if (mProjectPanel != null) mProjectPanel.Cut();
         }
 
         /// <summary>
@@ -430,34 +411,15 @@ namespace Obi
         /// </summary>
         private void mCopyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProjectPanel != null)
-            {
-                mProjectPanel.TransportBar.Enabled = false;
-                if (mProjectPanel.CurrentSelectedAudioBlock != null)
-                {
-                    mProject.CopyPhraseNode(mProjectPanel.CurrentSelectedAudioBlock);
-                }
-                else if (mProjectPanel.CurrentSelectedStrip != null)
-                {
-                    mProject.ShallowCopySectionNode(mProjectPanel.CurrentSelectedStrip, true);
-                }
-                else if (mProjectPanel.CurrentSelectedSection != null)
-                {
-                    mProject.CopySectionNode(mProjectPanel.CurrentSelectedSection);
-                }
-                mProjectPanel.TransportBar.Enabled = true;
-            }
+            if (mProjectPanel != null) mProjectPanel.Copy();
         }
 
         /// <summary>
-        /// Paste what's in the clipboard and what is selected.
+        /// Paste what's in the clipboard in/before what is selected.
         /// </summary>
         private void mPasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProject != null)
-            {
-                mProjectPanel.Paste();
-            }
+            if (mProject != null) mProjectPanel.Paste();
         }
 
         /// <summary>
@@ -465,24 +427,7 @@ namespace Obi
         /// </summary>
         private void mDeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProjectPanel != null)
-            {
-                mProjectPanel.TransportBar.Enabled = false;
-                if (mProjectPanel.CurrentSelectedAudioBlock != null)
-                {
-                    mProject.DeletePhraseNode(mProjectPanel.CurrentSelectedAudioBlock);
-                }
-                else if (mProjectPanel.CurrentSelectedStrip != null)
-                {
-                    // to review!
-                    mProject.ShallowDeleteSectionNode(this, mProjectPanel.CurrentSelectedStrip);
-                }
-                else if (mProjectPanel.CurrentSelectedSection != null)
-                {
-                    mProject.DeleteSectionNode(mProjectPanel.CurrentSelectedSection);
-                }
-                mProjectPanel.TransportBar.Enabled = true;
-            }
+            if (mProjectPanel != null) mProjectPanel.Delete();
         }
 
         /// <summary>
