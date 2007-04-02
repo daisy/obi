@@ -42,6 +42,7 @@ namespace Obi.Dialogs
             this.comboOutputDevice = new System.Windows.Forms.ComboBox();
             this.mTab = new System.Windows.Forms.TabControl();
             this.mProjectTab = new System.Windows.Forms.TabPage();
+            this.mTooltipsCheckBox = new System.Windows.Forms.CheckBox();
             this.mLastOpenCheckBox = new System.Windows.Forms.CheckBox();
             this.mExportBox = new System.Windows.Forms.TextBox();
             this.mBrowseExportButton = new System.Windows.Forms.Button();
@@ -51,7 +52,6 @@ namespace Obi.Dialogs
             this.labelChannels = new System.Windows.Forms.Label();
             this.comboSampleRate = new System.Windows.Forms.ComboBox();
             this.labelSampleRate = new System.Windows.Forms.Label();
-            this.mTooltipsCheckBox = new System.Windows.Forms.CheckBox();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             this.mAudioTab.SuspendLayout();
@@ -199,6 +199,16 @@ namespace Obi.Dialogs
             this.mProjectTab.Text = "Project";
             this.mProjectTab.UseVisualStyleBackColor = true;
             // 
+            // mTooltipsCheckBox
+            // 
+            this.mTooltipsCheckBox.AutoSize = true;
+            this.mTooltipsCheckBox.Location = new System.Drawing.Point(6, 117);
+            this.mTooltipsCheckBox.Name = "mTooltipsCheckBox";
+            this.mTooltipsCheckBox.Size = new System.Drawing.Size(100, 16);
+            this.mTooltipsCheckBox.TabIndex = 9;
+            this.mTooltipsCheckBox.Text = "&Enable tooltips";
+            this.mTooltipsCheckBox.UseVisualStyleBackColor = true;
+            // 
             // mLastOpenCheckBox
             // 
             this.mLastOpenCheckBox.AutoSize = true;
@@ -271,11 +281,11 @@ namespace Obi.Dialogs
             // labelChannels
             // 
             this.labelChannels.AutoSize = true;
-            this.labelChannels.Location = new System.Drawing.Point(22, 87);
+            this.labelChannels.Location = new System.Drawing.Point(30, 87);
             this.labelChannels.Name = "labelChannels";
-            this.labelChannels.Size = new System.Drawing.Size(93, 12);
+            this.labelChannels.Size = new System.Drawing.Size(85, 12);
             this.labelChannels.TabIndex = 15;
-            this.labelChannels.Text = "Default &channels:";
+            this.labelChannels.Text = "Audio &channels:";
             // 
             // comboSampleRate
             // 
@@ -291,21 +301,11 @@ namespace Obi.Dialogs
             // labelSampleRate
             // 
             this.labelSampleRate.AutoSize = true;
-            this.labelSampleRate.Location = new System.Drawing.Point(7, 61);
+            this.labelSampleRate.Location = new System.Drawing.Point(47, 61);
             this.labelSampleRate.Name = "labelSampleRate";
-            this.labelSampleRate.Size = new System.Drawing.Size(108, 12);
+            this.labelSampleRate.Size = new System.Drawing.Size(68, 12);
             this.labelSampleRate.TabIndex = 13;
-            this.labelSampleRate.Text = "Default &sample rate:";
-            // 
-            // mTooltipsCheckBox
-            // 
-            this.mTooltipsCheckBox.AutoSize = true;
-            this.mTooltipsCheckBox.Location = new System.Drawing.Point(6, 117);
-            this.mTooltipsCheckBox.Name = "mTooltipsCheckBox";
-            this.mTooltipsCheckBox.Size = new System.Drawing.Size(100, 16);
-            this.mTooltipsCheckBox.TabIndex = 9;
-            this.mTooltipsCheckBox.Text = "&Enable tooltips";
-            this.mTooltipsCheckBox.UseVisualStyleBackColor = true;
+            this.labelSampleRate.Text = "&Sample rate:";
             // 
             // Preferences
             // 

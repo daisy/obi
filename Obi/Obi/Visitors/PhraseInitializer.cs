@@ -16,8 +16,17 @@ namespace Obi.Visitors
     {
         private Assets.AssetManager mAssManager;  // the asset manager which handles the assets
         private ErrorHandler mErrorHandler;       // error handler called when an asset cannot be created.
+        private int mPhrases;                     // number of phrases in the project
         private int mPages;                       // number of pages in the project
         private int mAnnotations;                 // number of annotations in the project
+
+        /// <summary>
+        /// The number of phrases in the project.
+        /// </summary>
+        public int Phrases
+        {
+            get { return mPhrases; }
+        }
 
         /// <summary>
         /// The number of pages in the project.
@@ -42,6 +51,7 @@ namespace Obi.Visitors
         {
             mAssManager = assManager;
             mErrorHandler = errorHandler;
+            mPhrases = 0;
             mPages = 0;
             mAnnotations = 0;
         }
@@ -75,6 +85,7 @@ namespace Obi.Visitors
                             string location = System.Text.RegularExpressions.Regex.Replace(assetUri.LocalPath, @"^\\\\localhost\\", "");
                             clips.Add(new Assets.AudioClip(location, audio.getClipBegin().getAsMilliseconds(),
                                 audio.getClipEnd().getAsMilliseconds()));
+                            ++mPhrases;
                         }
                         catch (Exception e)
                         {

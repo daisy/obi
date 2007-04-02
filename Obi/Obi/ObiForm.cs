@@ -688,7 +688,7 @@ namespace Obi
         /// </summary>
         private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings);
+            Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings, mProject);
             dialog.SelectProjectTab();
             ShowPreferencesDialog(dialog);
         }
@@ -704,7 +704,7 @@ namespace Obi
         /// </summary>
         private void mAudioPreferencesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings);
+            Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings, mProject);
             dialog.SelectAudioTab();
             ShowPreferencesDialog(dialog);
         }

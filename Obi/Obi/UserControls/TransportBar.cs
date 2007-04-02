@@ -549,6 +549,7 @@ namespace Obi.UserControls
         public void UpdatedProject()
         {
             Enabled = mProjectPanel.Project != null;
+            mPlayingFrom = null;
             if (mProjectPanel.Project != null)
             {
                 mMasterPlaylist.Project = mProjectPanel.Project;

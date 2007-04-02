@@ -655,4 +655,10 @@ Do you want to replace the project contained in this file?</value>
   <data name="saved_as_daisy_caption" xml:space="preserve">
     <value>Project exported to DAISY</value>
   </data>
+  <data name="import_phrase_error_caption" xml:space="preserve">
+    <value>Error importing audio</value>
+  </data>
+  <data name="import_phrase_error_text" xml:space="preserve">
+    <value>The audio file "{0}" could not be imported as its audio settings (channels, bit depth, sample rate) do not match those of the project.</value>
+  </data>
 </root>
