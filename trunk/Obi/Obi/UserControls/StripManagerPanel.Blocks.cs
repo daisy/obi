@@ -203,8 +203,15 @@ namespace Obi.UserControls
                     int first_index = insert.index;
                     foreach (string path in dialog.FileNames)
                     {
-                        mProjectPanel.Project.AddPhraseFromFile(path, insert.node, insert.index);
-                        ++insert.index;
+                        if (mProjectPanel.Project.DidAddPhraseFromFile(path, insert.node, insert.index))
+                        {
+                            ++insert.index;
+                        }
+                        else
+                        {
+                            MessageBox.Show(String.Format(Localizer.Message("import_phrase_error_text"), path),
+                                Localizer.Message("import_phrase_error_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     // select the first added phrase
                     mProjectPanel.CurrentSelection = new NodeSelection(insert.node, this);

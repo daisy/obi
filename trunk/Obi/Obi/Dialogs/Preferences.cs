@@ -23,6 +23,7 @@ namespace Obi.Dialogs
         private int mAudioChannels;             // preferred number of audio channels
         private int mSampleRate;                // preferred sample rate
         private int mBitDepth;                  // preferred bit depth
+        private bool mCanChangeAudioSettings;   // if the settings come from the project they cannot change
 
         /// <summary>
         /// Identifier template for new projects
@@ -92,7 +93,7 @@ namespace Obi.Dialogs
         /// <summary>
         /// Initialize the preferences with the user settings.
         /// </summary>
-        public Preferences(Settings settings)
+        public Preferences(Settings settings, Project project)
         {
             InitializeComponent();
             mIdTemplate = settings.IdTemplate;
@@ -105,10 +106,20 @@ namespace Obi.Dialogs
             mTooltipsCheckBox.Checked = settings.EnableTooltips;
             mInputDevice = AudioRecorder.Instance.InputDevice;
             mOutputDevice = AudioPlayer.Instance.OutputDevice;
-            mSampleRate = settings.SampleRate;
-            mSampleRate = settings.SampleRate;
-            mAudioChannels = settings.AudioChannels;
-            mBitDepth = settings.BitDepth;
+            if (project.HasAudioSettings)
+            {
+                mSampleRate = project.SampleRate;
+                mAudioChannels = project.AudioChannels;
+                mBitDepth = project.AudioChannels;
+                mCanChangeAudioSettings = false;
+            }
+            else
+            {
+                mSampleRate = settings.SampleRate;
+                mAudioChannels = settings.AudioChannels;
+                mBitDepth = settings.BitDepth;
+                mCanChangeAudioSettings = true;
+            }
         }
 
         /// <summary>
@@ -186,11 +197,13 @@ namespace Obi.Dialogs
             mSample.Add("48000");
             comboSampleRate.DataSource = mSample;
             comboSampleRate.SelectedIndex = mSample.IndexOf(mSampleRate.ToString());
+            comboSampleRate.Enabled = mCanChangeAudioSettings;
             ArrayList mArrayChannels = new ArrayList();
             mArrayChannels.Add(Localizer.Message("mono"));
             mArrayChannels.Add(Localizer.Message("stereo"));
             comboChannels.DataSource = mArrayChannels;
             comboChannels.SelectedIndex = mArrayChannels.IndexOf(Localizer.Message(mAudioChannels == 1 ? "mono" : "stereo"));
+            comboChannels.Enabled = mCanChangeAudioSettings;
         }
  
         public void SelectProjectTab()

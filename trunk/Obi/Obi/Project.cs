@@ -37,10 +37,16 @@ namespace Obi
         private string mLastPath;            // last path to which the project was saved (see save as)
         private SimpleMetadata mMetadata;    // metadata for this project
 
-        private Clipboard mClipboard;        // project-wide clipboard.
-        //private PhraseNode mSilencePhrase;     // silence phrase used for phrase detection
+        private Clipboard mClipboard;        // project-wide clipboard; should move to project panel
 
-        public static readonly string XUKVersion = "obi-xuk-009";                // version of the Obi/XUK file
+        private int mAudioChannels;          // project-wide number of channels for audio
+        private int mSampleRate;             // project-wide sample rate for audio
+        private int mBitDepth;               // project-wide bit depth for audio
+
+        private int mPhraseCount;            // total number of phrases in the project
+        private int mPageCount;              // count the pages in the book
+
+        public static readonly string XUKVersion = "obi-xuk-010";                // version of the Obi/XUK file
         public static readonly string AudioChannelName = "obi.audio";            // canonical name of the audio channel
         public static readonly string TextChannelName = "obi.text";              // canonical name of the text channel
         public static readonly string AnnotationChannelName = "obi.annotation";  // canonical name of the annotation channel
@@ -52,8 +58,6 @@ namespace Obi
         public event Events.PhraseNodeHandler DeletedPhraseNode;            // deleted a phrase node 
         public event Events.NodeEventHandler TouchedNode;                   // this node was somehow modified
         public event Events.ObiNodeHandler ToggledNodeUsedState;            // the used state of a node was toggled.
-
-        private int mPages;  // count the pages in the book
 
         public Channel AnnotationChannel
         {
@@ -115,10 +119,7 @@ namespace Obi
         /// </summary>
         public SectionNode FirstSection
         {
-            get
-            {
-                return RootNode.getChildCount() > 0 ? (SectionNode)RootNode.getChild(0) : null;
-            }
+            get { return RootNode.getChildCount() > 0 ? (SectionNode)RootNode.getChild(0) : null; }
         }
 
         /// <summary>
@@ -167,7 +168,40 @@ namespace Obi
         /// </summary>
         public int Pages
         {
-            get { return mPages; }
+            get { return mPageCount; }
+        }
+
+        /// <summary>
+        /// If there is audio in the projects, the audio settings should come from the project
+        /// and not from the user settings.
+        /// </summary>
+        public bool HasAudioSettings
+        {
+            get { return mPhraseCount > 0; }
+        }
+
+        /// <summary>
+        /// Number of audio channels for the project audio.
+        /// </summary>
+        public int AudioChannels
+        {
+            get { return mAudioChannels; }
+        }
+
+        /// <summary>
+        /// Bit depth for the project audio.
+        /// </summary>
+        public int BitDepth
+        {
+            get { return mBitDepth; }
+        }
+
+        /// <summary>
+        /// Sample rate for the project audio.
+        /// </summary>
+        public int SampleRate
+        {
+            get { return mSampleRate; }
         }
 
         /// <summary>
@@ -183,7 +217,10 @@ namespace Obi
             mAudioChannel = null;
             mAnnotationChannel = null;
             mClipboard = new Clipboard();
-            mPages = 0;
+            mPhraseCount = 0;
+            mPageCount = 0;
+            AddedPhraseNode += new Obi.Events.PhraseNodeHandler(Project_AddedPhraseNode);
+            DeletedPhraseNode += new Obi.Events.PhraseNodeHandler(Project_DeletedPhraseNode);
         }
 
         /// <summary>
@@ -306,6 +343,18 @@ namespace Obi
                     {
                         xukversion = meta.getContent();
                     }
+                    else if (meta.getName() == SimpleMetadata.MetaAudioChannels)
+                    {
+                        mAudioChannels = Int32.Parse(meta.getContent());
+                    }
+                    else if (meta.getName() == SimpleMetadata.MetaSampleRate)
+                    {
+                        mSampleRate = Int32.Parse(meta.getContent());
+                    }
+                    else if (meta.getName() == SimpleMetadata.MetaBitDepth)
+                    {
+                        mBitDepth = Int32.Parse(meta.getContent());
+                    }
                 }
                 if (xukversion != Project.XUKVersion)
                     throw new Exception(String.Format(Localizer.Message("xuk_version_mismatch"), Project.XUKVersion, xukversion));
@@ -317,7 +366,8 @@ namespace Obi
                 Visitors.PhraseInitializer visitor = new Visitors.PhraseInitializer(mAssManager, delegate(string m) { });
                 //     delegate(string message) { errMessages += message + "\n"; });
                 getPresentation().getRootNode().acceptDepthFirst(visitor);
-                mPages = visitor.Pages;
+                mPhraseCount = visitor.Phrases;
+                mPageCount = visitor.Pages;
                 // if (errMessages != "")
                 // {
                 //     throw new Exception(String.Format(Localizer.Message("open_project_error_text") + "\n" + errMessages, xukPath));
@@ -362,8 +412,6 @@ namespace Obi
             AddMetadata(SimpleMetadata.MetaGenerator, this.Generator);
             AddMetadata(SimpleMetadata.MetaAssetsDir, mAssPath);
             AddMetadata(SimpleMetadata.MetaXUKVersion, Project.XUKVersion);
-            // urakawa.project.Metadata metaDate = AddMetadata("dc:Date", DateTime.Today.ToString("yyyy-MM-dd"));
-            // if (metaDate != null) metaDate.setScheme("YYYY-MM-DD");
             return metadata;
         }
 
@@ -373,6 +421,10 @@ namespace Obi
         /// </summary>
         private void UpdateMetadata()
         {
+            bool hasAudioChannelMetadata = false;
+            bool hasSampleRateMetadata = false;
+            bool hasBitDepthMetadata = false;
+
             foreach (object o in getMetadataList())
             {
                 urakawa.project.Metadata meta = (urakawa.project.Metadata)o;
@@ -400,6 +452,34 @@ namespace Obi
                 {
                     meta.setContent(mAssPath);
                 }
+                else if (meta.getName() == SimpleMetadata.MetaAudioChannels && mPhraseCount > 0)
+                {
+                    meta.setContent(mAudioChannels.ToString());
+                    hasAudioChannelMetadata = true;
+                }
+                else if (meta.getName() == SimpleMetadata.MetaSampleRate && mPhraseCount > 0)
+                {
+                    meta.setContent(mSampleRate.ToString());
+                    hasSampleRateMetadata = true;
+                }
+                else if (meta.getName() == SimpleMetadata.MetaBitDepth && mPhraseCount > 0)
+                {
+                    meta.setContent(mBitDepth.ToString());
+                    hasBitDepthMetadata = true;
+                }
+            }
+
+            if (mPhraseCount == 0)
+            {
+                deleteMetadata(SimpleMetadata.MetaAudioChannels);
+                deleteMetadata(SimpleMetadata.MetaSampleRate);
+                deleteMetadata(SimpleMetadata.MetaBitDepth);
+            }
+            else
+            {
+                if (!hasAudioChannelMetadata) AddMetadata(SimpleMetadata.MetaAudioChannels, mAudioChannels.ToString());
+                if (!hasSampleRateMetadata) AddMetadata(SimpleMetadata.MetaSampleRate, mSampleRate.ToString());
+                if (!hasBitDepthMetadata) AddMetadata(SimpleMetadata.MetaBitDepth, mBitDepth.ToString());
             }
         }
 
@@ -445,7 +525,7 @@ namespace Obi
         }
 
         /// <summary>
-        /// Project was saved
+        /// The project was saved.
         /// </summary>
         private void Saved()
         {
@@ -477,7 +557,7 @@ namespace Obi
             Directory.CreateDirectory(mAssPath);
             foreach (string assetPath in mAssManager.Files.Keys)
             {
-                File.Copy(assetPath, mAssPath + @"\" + Path.GetFileName(assetPath));
+                File.Copy(assetPath, mAssPath + Path.PathSeparator + Path.GetFileName(assetPath));
             }
             mAssPath = (new Uri(path)).MakeRelativeUri(new Uri(mAssPath)).ToString();
             UpdateMetadata();
@@ -519,7 +599,7 @@ namespace Obi
 
         /// <summary>
         /// Get a safe name from a given title. Usable for XUK file and project directory filename.
-        /// Disallowed characters for file paths are removed.
+        /// Disallowed characters for file paths are replaced by an underscore.
         /// Note that the user is allowed to change this--this is only a suggestion.
         /// </summary>
         /// <param name="title">Complete title.</param>
@@ -565,7 +645,6 @@ namespace Obi
             PhraseNode node = getPresentation().getCoreNodeFactory().createNode(PhraseNode.Name, ObiPropertyFactory.ObiNS)
                  as PhraseNode;
             node.Asset = asset;
-
             return node;
         }
 
@@ -721,7 +800,6 @@ namespace Obi
         /// <summary>
         /// Changes the asset path to the next available directory.  Also create the directory.
         /// </summary>
-        /// <param name="path"></param>
         public string AssignNewAssetDirectory()
         {
             Uri absoluteAssPath = new Uri(new Uri(mXUKPath), mAssPath); 

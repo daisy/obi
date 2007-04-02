@@ -623,6 +623,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error importing audio.
+        /// </summary>
+        internal static string import_phrase_error_caption {
+            get {
+                return ResourceManager.GetString("import_phrase_error_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The audio file &quot;{0}&quot; could not be imported as its audio settings (channels, bit depth, sample rate) do not match those of the project..
+        /// </summary>
+        internal static string import_phrase_error_text {
+            get {
+                return ResourceManager.GetString("import_phrase_error_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to move section in.
         /// </summary>
         internal static string increase_section_level_command_label {

@@ -491,20 +491,32 @@ namespace Obi
         /// <summary>
         /// Add a new phrase with an asset created from a sound file.
         /// This creates a command and modifies the project.
+        /// The audio settings of the asset must match those of the projects;
+        /// if they don't no phrase is added.
         /// </summary>
         /// <param name="path">The path of the sound file to create the asset from.</param>
         /// <param name="section">The section node in which to add the phrase.</param>
         /// <param name="index">The index at which the phrase is added.</param>
-        public void AddPhraseFromFile(string path, SectionNode section, int index)
+        /// <returns>True if the phrase was actually added.</returns>
+        public bool DidAddPhraseFromFile(string path, SectionNode section, int index)
         {
             AudioMediaAsset asset = mAssManager.ImportAudioMediaAsset(path);
-            mAssManager.InsureRename(asset, Path.GetFileNameWithoutExtension(path));
-            PhraseNode phrase = getPresentation().getCoreNodeFactory().createNode(PhraseNode.Name, ObiPropertyFactory.ObiNS)
-                 as PhraseNode;
-            phrase.Asset = asset;
-            AddPhraseNode(phrase, section, index);
-            Commands.Strips.AddPhrase command = new Commands.Strips.AddPhrase(phrase);
-            Modified(command);
+            if (mPhraseCount > 0 &&
+                (asset.SampleRate != mSampleRate || asset.BitDepth != mBitDepth || asset.Channels != mAudioChannels))
+            {
+                return false;
+            }
+            else
+            {
+                mAssManager.InsureRename(asset, Path.GetFileNameWithoutExtension(path));
+                PhraseNode phrase = getPresentation().getCoreNodeFactory().createNode(PhraseNode.Name, ObiPropertyFactory.ObiNS)
+                     as PhraseNode;
+                phrase.Asset = asset;
+                AddPhraseNode(phrase, section, index);
+                Commands.Strips.AddPhrase command = new Commands.Strips.AddPhrase(phrase);
+                Modified(command);
+                return true;
+            }
         }
 
         #region page numbers
@@ -521,7 +533,7 @@ namespace Obi
                 node.PageProperty = new PageProperty();
                 node.PageProperty.PageNumber = 0;
                 RenumberPages();
-                ++mPages;
+                ++mPageCount;
                 return true;
             }
             else
@@ -549,8 +561,8 @@ namespace Obi
             {
                 node.PageProperty = null;
                 RemovedPageNumber(this, new Events.Node.PhraseNodeEventArgs(this, node));
-                --mPages;
-                if (mPages > 0) RenumberPages();
+                --mPageCount;
+                if (mPageCount > 0) RenumberPages();
                 return true;
             }
             else
@@ -623,6 +635,44 @@ namespace Obi
                 },
                 delegate(ICoreNode n) { }
             );
+        }
+
+        #endregion
+
+        #region Audio properties of the project
+
+        /// <summary>
+        /// Monitor addition of phrase nodes to keep the audio properties.
+        /// </summary>
+        void Project_AddedPhraseNode(object sender, Obi.Events.Node.PhraseNodeEventArgs e)
+        {
+            AudioMediaAsset asset = e.Node.Asset;
+            // do not count the empty asset
+            if (asset != AudioMediaAsset.Empty)
+            {
+                if (mPhraseCount++ == 0)
+                {
+                    // no phrases so set the audio properties to that of the new phrase node
+                    mAudioChannels = asset.Channels;
+                    mBitDepth = asset.BitDepth;
+                    mSampleRate = asset.SampleRate;
+                }
+                else
+                {
+                    // sanity check; this should be tested before the asset is really added
+                    if (mAudioChannels != asset.Channels) throw new Exception("Audio channel mismatch :(");
+                    if (mBitDepth != asset.BitDepth) throw new Exception("Bit depth mismatch :(");
+                    if (mSampleRate != asset.SampleRate) throw new Exception("Sample rate mismatch :(");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Monitor the deletion of phrase nodes.
+        /// </summary>
+        void Project_DeletedPhraseNode(object sender, Obi.Events.Node.PhraseNodeEventArgs e)
+        {
+            if (e.Node.Asset != AudioMediaAsset.Empty) --mPhraseCount;
         }
 
         #endregion
