@@ -114,11 +114,11 @@ namespace Obi
             this.mHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.mViewHelpInExternalBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mReportBugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutObiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectPanel = new Obi.UserControls.ProjectPanel();
-            this.mReportBugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -728,7 +728,8 @@ namespace Obi
             // mPauseToolStripMenuItem
             // 
             this.mPauseToolStripMenuItem.Name = "mPauseToolStripMenuItem";
-            this.mPauseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Space)));
+            this.mPauseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.Space)));
             this.mPauseToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
             this.mPauseToolStripMenuItem.Text = "Pause (&z)";
             this.mPauseToolStripMenuItem.Click += new System.EventHandler(this.mPauseToolStripMenuItem_Click);
@@ -858,6 +859,15 @@ namespace Obi
             this.mViewHelpInExternalBrowserToolStripMenuItem.Text = "&View help in external browser";
             this.mViewHelpInExternalBrowserToolStripMenuItem.Click += new System.EventHandler(this.mViewHelpInExternalBrowserToolStripMenuItem_Click);
             // 
+            // mReportBugToolStripMenuItem
+            // 
+            this.mReportBugToolStripMenuItem.Name = "mReportBugToolStripMenuItem";
+            this.mReportBugToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.R)));
+            this.mReportBugToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
+            this.mReportBugToolStripMenuItem.Text = "&Report bug";
+            this.mReportBugToolStripMenuItem.Click += new System.EventHandler(this.mReportBugToolStripMenuItem_Click);
+            // 
             // aboutObiToolStripMenuItem
             // 
             this.aboutObiToolStripMenuItem.Name = "aboutObiToolStripMenuItem";
@@ -887,21 +897,13 @@ namespace Obi
             this.mProjectPanel.BackColor = System.Drawing.Color.White;
             this.mProjectPanel.CurrentSelection = null;
             this.mProjectPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mProjectPanel.EnableTooltips = false;
             this.mProjectPanel.Location = new System.Drawing.Point(0, 24);
             this.mProjectPanel.Name = "mProjectPanel";
             this.mProjectPanel.Project = null;
             this.mProjectPanel.Size = new System.Drawing.Size(857, 497);
             this.mProjectPanel.TabIndex = 4;
             this.mProjectPanel.Load += new System.EventHandler(this.mProjectPanel_Load);
-            // 
-            // mReportBugToolStripMenuItem
-            // 
-            this.mReportBugToolStripMenuItem.Name = "mReportBugToolStripMenuItem";
-            this.mReportBugToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
-                        | System.Windows.Forms.Keys.R)));
-            this.mReportBugToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
-            this.mReportBugToolStripMenuItem.Text = "&Report bug";
-            this.mReportBugToolStripMenuItem.Click += new System.EventHandler(this.mReportBugToolStripMenuItem_Click);
             // 
             // ObiForm
             // 
