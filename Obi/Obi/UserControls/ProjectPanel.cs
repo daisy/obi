@@ -439,6 +439,75 @@ namespace Obi.UserControls
                     "strip");                                               // pasting only one strip
         }
 
+        #region edit
+
+        /// <summary>
+        /// Cut the selected node (and deselect it!)
+        /// </summary>
+        public void Cut()
+        {
+            TransportBar.Enabled = false;
+            if (CurrentSelectedAudioBlock != null)
+            {
+                mProject.CutPhraseNode(CurrentSelectedAudioBlock);
+                CurrentSelection = null;
+            }
+            else if (CurrentSelectedStrip != null)
+            {
+                mProject.ShallowCutSectionNode(CurrentSelectedStrip);
+                CurrentSelection = null;
+            }
+            else if (CurrentSelectedSection != null)
+            {
+                mProject.CutSectionNode(CurrentSelectedSection);
+                CurrentSelection = null;
+            }
+            TransportBar.Enabled = true;
+        }
+
+        public void Copy()
+        {
+            TransportBar.Enabled = false;
+            if (CurrentSelectedAudioBlock != null)
+            {
+                mProject.CopyPhraseNode(CurrentSelectedAudioBlock);
+            }
+            else if (CurrentSelectedStrip != null)
+            {
+                mProject.ShallowCopySectionNode(CurrentSelectedStrip, true);
+            }
+            else if (CurrentSelectedSection != null)
+            {
+                mProject.CopySectionNode(CurrentSelectedSection);
+            }
+            TransportBar.Enabled = true;
+        }
+
+        /// <summary>
+        /// Delete the selected node (and deselect it!)
+        /// </summary>
+        public void Delete()
+        {
+            TransportBar.Enabled = false;
+            if (CurrentSelectedAudioBlock != null)
+            {
+                mProject.DeletePhraseNode(CurrentSelectedAudioBlock);
+                CurrentSelection = null;
+            }
+            else if (CurrentSelectedStrip != null)
+            {
+                // to review!
+                mProject.ShallowDeleteSectionNode(this, CurrentSelectedStrip);
+                CurrentSelection = null;
+            }
+            else if (CurrentSelectedSection != null)
+            {
+                mProject.DeleteSectionNode(CurrentSelectedSection);
+                CurrentSelection = null;
+            }
+            TransportBar.Enabled = true;
+        }
+
         /// <summary>
         /// Paste the node in the clipboard in the selection context.
         /// </summary>
@@ -458,5 +527,7 @@ namespace Obi.UserControls
             }
             TransportBar.Enabled = true;
         }
+
+        #endregion
     }
 }
