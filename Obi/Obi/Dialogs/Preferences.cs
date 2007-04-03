@@ -106,7 +106,7 @@ namespace Obi.Dialogs
             mTooltipsCheckBox.Checked = settings.EnableTooltips;
             mInputDevice = AudioRecorder.Instance.InputDevice;
             mOutputDevice = AudioPlayer.Instance.OutputDevice;
-            if (project.HasAudioSettings)
+            if (project != null && project.HasAudioSettings)
             {
                 mSampleRate = project.SampleRate;
                 mAudioChannels = project.AudioChannels;
