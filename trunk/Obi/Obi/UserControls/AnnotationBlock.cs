@@ -103,8 +103,9 @@ namespace Obi.UserControls
                     mRenameBox.ReadOnly = false;
                     mRenameBox.Size = new Size(Width - Padding.Left - Padding.Right -
                         mRenameBox.Margin.Left - mRenameBox.Margin.Right, mRenameBox.Height);
-                    mRenameBox.Text = mLabel.Text;
-                    mRenameBox.SelectAll();
+                    mRenameBox.Text = "";
+                    mRenameBox.SelectedText = mLabel.Text;  // just setting text doesn't give the right width
+                    mRenameBox.SelectAll();                 // the whole text should be selected but isn't
                 }
                 mRenameBox.Visible = value;
                 mLabel.Visible = !value;
