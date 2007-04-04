@@ -3,7 +3,7 @@
   "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Obi User Manual version 0.8.3.0</title>
+<title>Obi User Manual version 0.8.4.0</title>
 <style type="text/css">
   body { color: black; background-color: white; font-family: arial, sans-serif; margin: 3em; text-align: justify;}  
   ul.toc {margin-left: 0em; padding-left:0em;}
@@ -12,6 +12,7 @@
   .infobox .hd { font-weight: bold; margin-bottom: 0.5em }
   .obirdbox { border: 1px solid rgb(25,100,25); background-color: rgb(190,255,190); padding: 1em 1em 1em 1em; margin: 1em 0em 1em 0em; background-image: url("images/obird32.png"); background-repeat: no-repeat; }  
   .obirdbox .hd, h1.title .hd { display:none;  }    
+  .todo { border: 1px solid red; padding: 1em; margin: 1em 0; color: red }
   td { border: 1px solid gray; }
   tr.hd td {font-weight: bold;}  
   dt { font-weight: bold;}    
@@ -36,132 +37,200 @@
 		<img src="__$strRootHttpDir__images/ObiLogo.png" alt="The Obi logo"/>
 	</div>
 
-	<p>This is the user manual for <strong>Obi v0.8.3.0 (5th March 2007)</strong></p>
+  <p>This is the user manual for <strong>Obi v0.8.4.0 (4th April 2007)</strong></p>
 
 </div>
 
 <h1 class="title">
-      <span class="hd">Obi User Manual version 0.8.3.0</span>
+      <span class="hd">Obi User Manual version 0.8.4.0</span>
       <img style="width:128px;height:128px" alt="" src="images/oballoon_blue_256.png"/>
       <img style="width:128px;height:128px" alt="" src="images/obird256.png"/>
 </h1>
 
-<p>This is the manual for Obi v0.8.3.0 (5th March 2007)</p>
+<p>This is the manual for Obi v0.8.4.0 (4th April 2007)</p>
 
-<p><strong>Note to testers:</strong> this document is currently under heavy
-editing and may be inconsistent, incomplete, and just plain wrong. Things to
-test: inconsistencies with Obi, missing items, wrong shortcuts, non-working
-links, inconsistent screen dumps, etc.</p>
-
-<h2 id="toc">Obi Manual - Table of Contents</h2>
-
+<h2 id="toc">Table of contents</h2>
 <div id="www_table-of-contents">
-	<ul class="toc">
-
-	<li><a href="#getting-started">Getting started</a>
-	<ul>
-	<li><a href="#ovw_main">Main Window Overview</a>
-		<ul>
-			<li><a href="#ovw_toc">The TOC View</a></li>
-			<li><a href="#ovw_strip">The Strip View</a></li>
-			<li>The transport bar</li>
-		</ul>
-		</li>
-	<li><a href="#ovw_prefs">Setting Preferences</a></li>
-	<li><a href="#ovw_new">Create a New Project</a></li>
-	<li><a href="#ovw_recedit">Record and Edit the Project</a>
-		<ul>
-			<li><a href="#ovw_rec">Recording</a></li>
-			<li><a href="#ovw_importaudio">Importing audio</a></li>
-			<li><a href="#ovw_sectionedit">Section editing</a></li>
-			<li><a href="#ovw_audioblockedit">Audio Block editing</a></li>
-		</ul>
-		</li>
-	<li><a href="#ovw_save">Save the Project</a></li>
-	</ul>  
-	</li>
-
-	<li>OBI
-	<ul>
-		<li>The table of contents [sections]</li>
-		<li>The strip manager [strips and blocks]</li>
-		<li>The transport bar [audio]</li>
-	</ul>
-	</li>
-
-	<li><a href="#dialog-details">Dialog Details</a>
-	<ul>
-	<li><a href="#ctrl_tocview">Main Window - TOC View</a>
-
-		<ul>
-	<li><a href="#ctrl_sectionediting">Section editing</a></li>
-		</ul>
-		</li>
-
-	<li><a href="#ctrl_stripview">Main Window - Strip View</a>
-
-
-		<ul>
-			<li><a href="#ctrl_stripediting">Strip editing</a></li>
-			<li><a href="#ctrl_blockediting">Block editing</a></li>
-		</ul>
-
-		</li>
-
-	<li><a href="#ctrl_record">Record Dialog</a></li>
-	<li><a href="#ctrl_play">Play Dialog</a></li>
-	<li><a href="#ctrl_split">Split Dialog</a></li>
-	<li><a href="#ctrl_metadata">Metadata Dialog</a></li>
-	<li><a href="#ctrl_preferences">Preferences Dialog</a></li>
-	<li><a href="#ctrl_preferences_audio">Audio Preferences</a></li>
-	<li><a href="#ctrl_preferences_project">Project Preferences</a></li>
-	<li><a href="#ctrl_userprofile">User Profile Dialog</a></li>
-	</ul>
-	</li>
-	<li><a href="#ref_menus">Menu reference</a>
-		<ul>
-			<li><a href="#ref_menus_file">File menu</a></li>
-			<li><a href="#ref_menus_edit">Edit menu</a></li>
-		</ul>
-	</li>
-	<li><a href="#glossary-of-terms">Glossary of terms</a></li>
-	<li><a href="#keyboard-shortcuts">Keyboard shortcut table</a></li>
-	</ul>
+  <ul class="toc">
+    <li><a href="#what">What is Obi?</a></li>
+    <li><a href="#work-area">The work area</a>
+    <ul>
+      <li><a href="#toc-view">The table of contents view</a></li>
+      <li><a href="#strips-view">The strips view</a></li>
+      <li><a href="#transport-bar">The transport bar</a></li>
+    </ul>
+    </li>
+    <li><a href="#authoring">Authoring in Obi</a></li>
+    <ul>
+      <li><a href="#creating-opening">Creating and opening projects</a></li>
+      <li><a href="#project-metadata">Project metadata</a></li>
+      <li><a href="#editing-toc">Editing the table of contents</a>
+      <ul>
+        <li><a href="#creating-sections">Creating sections</a></li>
+        <li><a href="#renaming-section">Renaming a section</a></li>
+        <li><a href="#change-level">Changing the level of a section</a></li>
+        <li><a href="#edit-toc">Cut, copy, paste and delete</a></li>
+        <li><a href="#used-sections">Used and unused sections</a></li>
+      </ul>
+      </li>
+      <li>Editing the audio contents: section strips
+      <ul>
+        <li>Creating strips</li>
+        <li>Renaming a strip</li>
+        <li>Cut, copy, paste and delete</li>
+      </ul>
+      </li>
+      <li>Editing the audio contents: audio blocks
+      <ul>
+        <li>Importing audio</li>
+        <li>Recording audio</li>
+        <li>Splitting and merging audio blocks</li>
+        <li>Phrase detection</li>
+        <li>Cut, copy, paste, delete and move</li>
+        <li>Used and unused audio blocks</li>
+        <li>Page numbers</li>
+        <li>Annotations</li>
+      </ul>
+      </li>
+      <li>Oops! Using <q>undo</q> et <q>redo</q></li>
+      <li>Navigating through the project
+      <ul>
+        <li>Play, pause and stop</li>
+        <li>Navigating through sections</li>
+        <li>Navigating through phrases</li>
+        <li>Navigating through time</li>
+        <li>The VU meter</li>
+      </ul>
+      </li>
+      <li>Saving</li>
+      <li>Exporting to DAISY</li>
+      <li>Closing and exiting</li>
+    </ul>
+    <li><a href="#preferences">Setting your preferences</a></li>
+    <li>Contributing to Obi</li>
+    <li>Glossary</li>
+    <li>Index</li>
+  </ul>
 </div>
 
-<h2 id="intro">Obi - DAISY/NISO DTB Production Tool</h2>
-  <!-- <h3>What is Obi?</h3> -->
-     
-  <h3>Obi Online - Community Help and Support</h3>
-  <p>For further help and support on using Obi, please visit <a href="http://urakawa.sourceforge.net/obi">Obi online</a> and the <a href="http://urakawa.sourceforge.net">Urakawa project</a> web site.</p>
+<div id="what">
+  <h2>What is Obi?</h2>
+  <p>Obi is a <a href="http://en.wikipedia.org/wiki/Free_software">free software</a> <a href="#def-daisy-niso">DAISY/NISO</a> <a href="#gls_dtb">Digital Talking Book</a> (DTB) production tool.</p>
+  <p class="todo">Free to use, internationalized, accessible; audio-only; DAISY 3 export, etc.</p>
+  <p>Obi is being developed as part of the Urakawa project, where tools are developed to help developers build accessible multimedia applications. Please visit <a href="http://urakawa.sf.net">the Urakawa project website</a> to find out more.</p>
+</div>
 
-<h2 id="getstart">Getting Started</h2>
 
-<div id="www_getting-started">
-
-  <p>This section of the Obi manual contains a quicktrack introduction on how to use Obi. A more detailed description of Obi features and functions is available in the <a href="#ctrls">details section</a>.</p>
-  
-  <h3 id="ovw_main">Main Window Overview</h3>
-    <p>
-    The main window of Obi (which is the one that opens when you start Obi) contains two parallel views of the project; the <acronym title="Table of Contents">TOC</acronym> View on the left side of the main window, and the Strip View on the right side of the main window.
-      <br/>Before we start our project, let's try to understand what these views have in common, and where they differ.
-      <br/><br/>    
-    </p>
-
-    <p class="obivisible"><img src="images/manual_mainwindow.png" alt="the main window, with the TOC tree view at the left, and the strip view at the right" /></p>
-
-    <p class="wwwvisible"><a href="images/manual_mainwindow.png" title="full-size screenshot" rel="external"><img style="width:400px;height:200px;" src="images/manual_mainwindow.png" alt="the main window, with the TOC tree view at the left, and the strip view at the right" /></a></p>
-   
-    <h4 id="ovw_toc">The TOC View</h4>
-    <p>The TOC View can be understood as a Table of Contents for the project being recorded.</p>
-    <p>Using the TOC View you can navigate in the major structural elements of the project. Typically, this means that you move your current position to a certain section (or chapter if you will) of the DAISY <a href='#gls_dtb'>DTB</a> being recorded.</p>
+<div id="work-area">
+  <h2>The work area</h2>
+  <p>The image below shows the work area of Obi when a project is open. It consists of three parts: on the left-hand side is the <em>table of contents view</em>, or TOC view for short, where the table of contents for the project is shown; on the right-hand size is the <em>strips view</em> where the actual contents of the book are edited; and on the bottom is the <em>transport bar</em> that controls playback, recording and navigation of the audio in the project.</p>
+  <p class="obivisible"><img src="images/manual_mainwindow.png" alt="the main window, with the TOC tree view at the left, and the strip view at the right" /></p>
+  <p class="wwwvisible"><a href="images/manual_mainwindow.png" title="full-size screenshot" rel="external"><img style="width:400px;height:269px;" src="images/manual_mainwindow.png" alt="the main window, with the TOC tree view at the left, and the strip view at the right" /></a></p>
+  <div id="toc-view">
+    <h3>The table of contents view</h3>
+    <p>Using the TOC view you can navigate in the major structural elements of the project. Typically, this means that you move your current position to a certain section (or chapter if you will) of the DAISY <a href='#gls_dtb'>DTB</a> being recorded.</p>
     <p>The TOC View is a tree, which means that a section (a node in the tree) can have children. In DTB terminology, this feature is used to describe that a certain section is a sub-section (or a child) of another section.</p> 
     <p>The TOC View also allows section editing, such as adding and removing sections.</p>
+  </div>
+  <div id="strips-view">
+    <h3>The strips view</h3>
+    <p>The strips view contains <a href='#gls_strip'>strips</a>. A strip represents a section in the DTB. This also means that each strip in the strips view corresponds to one section in the TOC view.</p>
+    <p>The strips view provides a more detailed view of the project. Here, you can navigate not only between the major sections of the book, but also at a much more detailed level, namely among the <a href='#gls_block'>blocks</a> that are contained within each strip. We will learn more about blocks later.</p>
+  </div>
+  <div id="transport-bar">
+    <h3>The transport bar</h3>
+    <p>The transport bar is used to playback the contents of the project and to record new audio. It has controls similar to those found on hardware or software audio players and recorders such as play, pause, stop, record, fast forward and rewind as well as more specific navigation options such as next phrase or previous section. The transport bar also displays time information and a text-version of the VU meter which can be picked up by screen readers.</p>
+  </div>
+</div>
+
+<div id="authoring">
+  <h2>Authoring in Obi</h2>
+  <p>Without further ado, let's see how to use Obi to author a new project or complete a project in progress.</p>
+  <div id="creating-opening">
+    <h3>Creating and opening projects</h3>
+    <p>A project in Obi contains all of the audio data and structure information necesary to create a DAISY/NISO books. When you start Obi for the first time, no project will be open, so you will need to create a new project, or open an existing one.
+    <div>
+      <h4>Creating a new project</h4>
+      <p>To create a new project, select <q>New project</q> from the <q>File</q> menu, or press Ctrl+N. A dialog will appear as shown below:</p>
+      <p class="obivisible"><img src="images/manual_newproject.png" alt="the new project dialog" /></p>
+      <p class="wwwvisible"> <a rel="external" href="images/manual_newproject.png" title="full-size screenshot"><img style="width:400px;height:155px;" src="images/manual_newproject.png" alt="the new project dialog" /></a></p>
+      <p class="todo">Title: project title; see metadata. Checkbox to create section. File: choose location on hard drive; seen preferences.</p>
+      <div class="obirdbox">
+        <div class="hd">Obird suggestion</div> 
+        <p>Are you wondering what a XUK file is? I suggest that you read about the <a href='#gls_xuk'>XUK File format</a> in the glossary!</p>
+      </div>
+    </div>
+    <div>
+      <h4>Opening an existing project</h4>
+      <p>To open an existing project that was created previously with Obi, select <q>Open project</q> in the <q>File</q> menu, or press Ctrl+O. You will be presented with the familiar Windows file browser where you can select a <code>.xuk</code> Obi project file.</p>
+      <p>Obi remembers the projects that you have previously worked on, so you can also select <q>Open recent project</q> in the <q>File</q> menu to choose from a list of the projects recently opened.</p>
+      <p>Finally, Obi can be set to start automatically with the last open project; see <a href="#preferences">Setting your preferences</a> below.</p>
+    </div>
+  </div>
+  <div id="project-metadata">
+    <h3>Project metadata</h3>
+    <p>Let's do a little bit of bookkeeping first. Because DAISY books are usually meant to be part of a larger library of books, it is important to add some <em>metadata</em>, that is information about the book, so that it can be found later on.</p>
+    <p>To view or edit the metadata of your project, select <q>Metadata</q> in the <q>Edit</q> menu, or press Alt+M to bring up the dialog shown below:</p>
+    <p class="obivisible"><img src="images/manual_metadata.png" alt="screenshot of the metadata dialog" /></p>
+    <p class="wwwvisible"><a rel="external" href="images/manual_metadata.png" title="full-size screenshot"><img style="width:400px;height:223px;" src="images/manual_metadata.png" alt="screenshot of the metadata dialog" /></a></p>
+    <dl>
+      <dt>Title</dt>
+      <dd>A name given to the resource. Typically, Title will be a name by which the resource is formally known.</dd>
+      <dt>Author</dt>
+      <dd>An entity primarily responsible for making the content of the resource. Examples of Creator include a person, an organization, or a service. Typically, the name of a Creator should be used to indicate the entity.</dd>
+      <dt>Publisher</dt>
+      <dd>An entity responsible for making the resource available. Examples of Publisher include a person, an organization, or a service. Typically, the name of a Publisher should be used to indicate the entity.</dd>
+      <dt>Identifier</dt>
+      <dd>An unambiguous reference to the resource within a given context.</dd>
+      <dt>Language</dt>
+      <dd>A language of the intellectual content of the resource.</dd> 
+    </dl>
+    <div class="obirdbox">
+      <div class="hd">Obird suggestion</div>  
+      <p>DAISY DTB metadata uses the Dublin Core metadata standard. You may want to learn more about <a href="http://www.daisy.org/dkn">Dublin Core at the DAISY Knowledge Network</a> and about <a href="http://dublincore.org/documents/dces/">Dublin Core at the Dublin Core Metadata Initiative</a>.</p>
+    </div>
+  </div>
+  <div id="editing-toc">
+    <h3>Editing the table of contents</h3>
+    <p class="todo">Explain sections, subsections. Deep edits: changes made to a section are made to all subsections. No audio in this part, audio sync is done in strips view.</p>
+    <div id="creating-sections">
+      <h4>Creating sections</h4>
+      <p class="todo">Create a sibling section (Insert section Ctrl+A) before the selection, at the same level, and at the end, if no selection. Create a subsection as last child of the selected section. Unnamed sections when created.</p>
+    </div>
+    <div id="renaming-section">
+      <h4>Renaming a section</h4>
+      <p>To modify the name of a section, select a section in the TOC view and choose <q>Rename section</q> in the <q>TOC</q> menu, or press F2. The label for the section will be selected and you can edit it. You can also simply click on the label of the section that you want to edit until the label gets selected.</p>
+    </div>
+    <div id="change-level">
+      <h4>Changing the level of a section</h4>
+      <p class="todo">Move in and move out. Why cannot move in. Why cannot move out.</p>
+    </div>
+    <div id="edit-toc">
+      <h4>Cut, copy, paste and delete</h4>
+      <p>The familiar editing operations are available when you are working in the TOC panel (<em>i.e.</em>, when a section is selected in the TOC panel) from the <q>Edit</q> menu. All edits are <em>deep</em>, so that they affect not only the section that was selected, but all of its subsections as well.</p>
+      <h5>Cut section (Ctrl+X)</h5>
+      <p>The selected section is removed from the project and stored in the clipboard to be pasted later.</p>
+      <h5>Copy section (Ctrl+C)</h5>
+      <p>The selected section is stored in the clipboard to be pasted later.</p>
+      <h5>Paste section (Ctrl+V)</h5>
+      <p>When the clipboard contains a section (which was previously cut or copied), it can be pasted as a child of the selected section, along with all of its contents (subsections and recorded audio.)</p>
+      <h5>Delete section (Del)</h5>
+      <p>The selected section is deleted from the project.</p>
+    </div>
+    <div id="used-sections">
+      <h4>Used and unused sections</h4>
+      <p>While editing your project, you may want to keep some parts that are not ready or necessary for the final book but may still come handy later on. You can then mark some parts of the project as being <em>unused</em>, so that these parts will not be exported or played back. To mark a selected section as being unused, choose <q>Mark section as unused</q> in the <q>TOC</q> menu, or press Ctrl+K. The section will be grayed-out to show its status.</p>
+      <p>Similarly, you can turn a selected unused section back to <em>used</em> status again by choosing <q>Mark section as used</q> in the <q>TOC</q> menu, or pressing Ctrl+K.</p>
+    </div>
+  </div>
+</div>
+
+
+<div id="preferences">
+  <h2>Setting your preferences</h2>
+  <p>Let's do a little bit of bookkeeping first. Because DAISY books are usually meant to be part of a larger library of books, it is important to add some <em>metadata</em>, that is information about the book, so that it can be found later on.</p>
+</div>
     
-    <h4 id="ovw_strip">The Strip View</h4>
-    <p>The Strip View contains <a href='#gls_strip'>Strips</a>. A strip represents a section in the DTB. This also means that each strip in the Strip view corresponds to one section in the TOC View.</p>
-    <p>The Strip View provides a more detailed view of the project. Here, you can navigate not only between the major sections of the book, 
-    but also at a much more detailed level, namely among the <a href='#gls_block'>blocks</a> that are contained within each strip. We will learn more about blocks later.</p>
         
            
   <h3 id="ovw_prefs">Setting Preferences</h3>
@@ -173,23 +242,6 @@ links, inconsistent screen dumps, etc.</p>
   </ol> 
    
   <h3 id="ovw_new">Create a New Project</h3>
-  <p>Select New Project from the File Menu.</p>
-  <p>A dialog will appear that asks you to set the title of the project, 
-  and where on your computer's hard drive to store project data.  
-  </p>
-  <p class="wwwvisible">
-	<a rel="external" href="images/manual_newproject.png" title="full-size screenshot"><img style="width:400px;height:160px;" src="images/manual_newproject.png" alt="the new project dialog" /></a>
-	</p>
-	
-  <p class="obivisible">
-<img src="images/manual_newproject.png" alt="the new project dialog" />
-	</p>
-  
-          
-  <div class="obirdbox">
-  <div class="hd">Obird suggestion</div> 
-    <p>Are you wondering what a XUK file is? I suggest that you read about the <a href='#gls_xuk'>XUK File format</a> in the glossary!</p>
-  </div>
     
   <h3 id="ovw_recedit">Record and Edit the Project</h3>
     <h4 id="ovw_rec">Recording</h4>
@@ -400,40 +452,8 @@ links, inconsistent screen dumps, etc.</p>
     <dd>Cancels the split operation and exists the dialog.</dd>
     </dl>
 
-  <h3 id="ctrl_metadata">Metadata Dialog</h3>
-  <p>The metadata dialog allows editing of bibliographic metadata to be associated with the project.<br/> 
-  It is strongly suggested that you take the time to fill in these fields in properly.</p>
-  
-  <h4>Metadata Dialog fields</h4>  
-  <dl>
-  <dt>Title</dt>
-  <dd>A name given to the resource. Typically, Title will be a name by which the resource is formally known.</dd>
-  <dt>Author</dt>
-  <dd>An entity primarily responsible for making the content of the resource. Examples of Creator include a person, an organization, or a service. Typically, the name of a Creator should be used to indicate the entity.</dd>
-  <dt>Publisher</dt>
-  <dd>An entity responsible for making the resource available. Examples of Publisher include a person, an organization, or a service. Typically, the name of a Publisher should be used to indicate the entity.</dd>
-  <dt>Identifier</dt>
-  <dd>An unambiguous reference to the resource within a given context.</dd>
-  <dt>Language</dt>
-  <dd>A language of the intellectual content of the resource.</dd> 
-  </dl>
 
 
-  <p class="wwwvisible">
-	<a rel="external" href="images/manual_metadata.png" title="full-size screenshot"><img style="width:400px;height:200px;" src="images/manual_metadata.png" alt="screenshot of the metadata dialog" /></a>
-	</p>
-  <p class="obivisible">
-<img src="images/manual_metadata.png" alt="screenshot of the metadata dialog" />
-	</p>
-
-  <div class="obirdbox">
-  <div class="hd">Obird suggestion</div>  
-  <p>
-    DAISY DTB metadata uses the Dublin Core metadata standard.<br/> 
-    <a href="http://www.daisy.org/dkn">Learn more about Dublin Core at the DAISY Knowledge Network</a>.<br/>
-    <a href="http://dublincore.org/documents/dces/">Learn more about Dublin Core at the Dublin Core Metadata Initiative</a>.
-  </p>
-</div>
   
   	
   <h3 id="ctrl_preferences">Preferences Dialog</h3>
@@ -644,7 +664,7 @@ links, inconsistent screen dumps, etc.</p>
   Read more at the <a href="http://www.daisy.org/about_us/">daisy.org introduction area</a>.
   </dd>
   
-  <dt>DAISY/NISO</dt>
+  <dt id="def-daisy-niso">DAISY/NISO</dt>
   <dd>
   A name used to describe the <em>type</em> of <a href='#gls_dtb'>DTB</a> produced by Obi, in other words, the particular standard specification used.<br/> 
   Read more at <a href="http://www.daisy.org/z3986/">daisy.org standards area</a> and the <a href="http://www.daisy.org/about_us/">daisy.org introduction area</a>.
