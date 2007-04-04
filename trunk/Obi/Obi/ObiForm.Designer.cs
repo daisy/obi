@@ -507,7 +507,7 @@ namespace Obi
             this.mImportAudioFileToolStripMenuItem.Name = "mImportAudioFileToolStripMenuItem";
             this.mImportAudioFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
             this.mImportAudioFileToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
-            this.mImportAudioFileToolStripMenuItem.Text = "Import &audio file";
+            this.mImportAudioFileToolStripMenuItem.Text = "Import &audio files";
             this.mImportAudioFileToolStripMenuItem.Click += new System.EventHandler(this.mImportAudioFileToolStripMenuItem_Click);
             // 
             // mSplitAudioBlockToolStripMenuItem
