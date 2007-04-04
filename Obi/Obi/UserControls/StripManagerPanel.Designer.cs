@@ -199,7 +199,7 @@ namespace Obi.UserControls
             this.mImportAudioFileToolStripMenuItem.Name = "mImportAudioFileToolStripMenuItem";
             this.mImportAudioFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
             this.mImportAudioFileToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
-            this.mImportAudioFileToolStripMenuItem.Text = "Import &audio";
+            this.mImportAudioFileToolStripMenuItem.Text = "Import &audio files";
             this.mImportAudioFileToolStripMenuItem.Click += new System.EventHandler(this.mImportAudioToolStripMenuItem_Click);
             // 
             // mCutAudioBlockToolStripMenuItem
