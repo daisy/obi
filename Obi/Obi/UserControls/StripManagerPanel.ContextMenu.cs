@@ -31,12 +31,11 @@ namespace Obi.UserControls
         /// </summary>
         public void InsertStrip()
         {
-            if (mProjectPanel.CurrentSelectedStrip != null)
-            {
-                SectionNode node = mProjectPanel.Project.CreateSiblingSectionNode(mProjectPanel.CurrentSelectedStrip);
-                mProjectPanel.CurrentSelection = new NodeSelection(node, this);
-                StartRenamingSelectedStrip();
-            }
+            SectionNode node = mProjectPanel.CurrentSelectedStrip == null ?
+                mProjectPanel.Project.CreateChildSectionNode(mProjectPanel.Project.RootNode) :
+                mProjectPanel.Project.CreateSiblingSectionNode(mProjectPanel.CurrentSelectedStrip);
+            mProjectPanel.CurrentSelection = new NodeSelection(node, this);
+            StartRenamingSelectedStrip();
         }
 
         /// <summary>
