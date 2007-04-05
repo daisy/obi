@@ -80,6 +80,7 @@ Main form
     + [C] Contents .......................... F1
     + [V] View help in external browser ..... Shift+F1
     + [A] About Obi ......................... Missing
+    + [R] Report bug ........................ Ctrl+Shift+R
 
 
 TOC Panel's context menu
@@ -203,6 +204,7 @@ Index of shortcuts
   Ctrl+Shift+P ....... Strips > Quick split audio block
   Ctrl+Q ............. FREE
   Ctrl+R ............. Transport > Record
+  Ctrl+Shift+R ....... About > Report bug
   Ctrl+S ............. File > Save project
   Ctrl+Shift+S ....... File > Save project as
   Shift+Alt+T ........ TOC > Show/hide table of contents

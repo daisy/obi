@@ -6,9 +6,13 @@ NOTE TO TESTERS: please verify that every statement in this document is true wit
 1 Obi projects
 
   1.1 Obi can only open and save Obi projects, named with a .xuk extension.
-  Obi projects for this version are identified by the version string "obi-xuk-009".
+  Obi projects for this version are identified by the version string "obi-xuk-010".
 
   1.2 Obi can export projects to DAISY ANSI/NISO Z39.86-2005 format.
+
+    1.2.1 When a project is exported to DAISY, every section gets a single audio file. Because Obi does not do resampling and such, it is not possible to combine audio files with different sample rates, bit depth, or number of channels (mono/stereo) into one audio file at export time.  Therefore, Obi maintains the same audio settings for all audio in a single project.
+
+    1.2.2 The audio settings come from the first audio block in the project (see below.)
 
   1.3 Only one project at a time can be open. Opening another project or creating a new project closes a previously open project.
 
@@ -35,6 +39,7 @@ NOTE TO TESTERS: please verify that every statement in this document is true wit
 
   1.8 The project can be "touched" to simulate making a change (i.e. forcing the project to be resaved.) This also forced the views to be redrawn so it is useful when rendering bugs happen. The shortcut is F5, which is usually used for "refresh" operations in other applications. This was initially intended for debugging purposes but it should probably stay in the regular version.
   <LNN>I disagree. It's nice to have as long as it solves trouble caused by buggy features, but it should be removed so that we are sure to get reports on the bugs rather than having people get used to using their own workarounds. </LNN>
+
 
 2 The TOC panel
 
