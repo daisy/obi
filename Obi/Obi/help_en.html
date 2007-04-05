@@ -33,7 +33,7 @@
       <div style="float: right;">
         <img src="__$strRootHttpDir__images/obird_bobi.png" alt="The Obi logo"/>
       </div>
-      <p>This is the user manual for <strong>Obi v0.8.4.0 (4th April 2007)</strong></p>
+      <p>This is the user manual for <strong>Obi v0.8.4.0 (5th April 2007)</strong></p>
     </div>
 
     <h1 class="title">
@@ -41,7 +41,7 @@
       <img alt="" src="images/obird_bobi.png"/>
     </h1>
 
-    <p>This is the manual for Obi v0.8.4.0 (4th April 2007)</p>
+    <p>This is the manual for Obi v0.8.4.0 (5th April 2007)</p>
 
     <h2 id="toc">Table of contents</h2>
     <div id="www_table-of-contents">
@@ -54,7 +54,7 @@
           <li><a href="#transport-bar">The transport bar</a></li>
         </ul>
         </li>
-        <li><a href="#authoring">Authoring in Obi</a></li>
+        <li><a href="#authoring">Authoring in Obi</a>
         <ul>
           <li><a href="#creating-opening">Creating and opening projects</a></li>
           <li><a href="#project-metadata">Project metadata</a></li>
@@ -101,14 +101,15 @@
           </ul>
           </li>
           <li><a href="#saving">Saving</a></li>
-          <li>Exporting to DAISY</li>
-          <li>Closing and exitting</li>
+          <li><a href="#exporting">Exporting to DAISY</a></li>
+          <li><a href="#closing">Closing and exitting</a></li>
         </ul>
+        </li>
         <li><a href="#preferences">Setting your preferences</a></li>
-        <li>Contributing to Obi</li>
-        <li>Glossary</li>
-        <li>Index</li>
+        <li><a href="#contributing">Contributing to Obi</a></li>
+        <li><a href="#glossary">Glossary</a></li>
       </ul>
+      <p class="todo">An index would be nice, and an update to the menu reference.</p>
     </div>
 
     <div id="what">
@@ -146,7 +147,7 @@
       <p>Without further ado, let's see how to use Obi to author a new project or complete a project in progress.</p>
       <div id="creating-opening">
         <h3>Creating and opening projects</h3>
-        <p>A project in Obi contains all of the audio data and structure information necesary to create a DAISY/NISO books. When you start Obi for the first time, no project will be open, so you will need to create a new project, or open an existing one.
+        <p>A project in Obi contains all of the audio data and structure information necesary to create a DAISY/NISO books. When you start Obi for the first time, no project will be open, so you will need to create a new project, or open an existing one.</p>
         <div>
           <h4>Creating a new project</h4>
           <p>To create a new project, select <q>New project</q> from the <q>File</q> menu, or press Ctrl+N. A dialog will appear as shown below:</p>
@@ -199,6 +200,8 @@
       <div id="editing-toc">
         <h3>Editing the table of contents</h3>
         <p class="todo">Explain sections, subsections. Deep edits: changes made to a section are made to all subsections. No audio in this part, audio sync is done in strips view.</p>
+        <p class="obivisible"><img src="images/manual_toceditoptions.png" alt="the TOC context menu, showing editing operations such as add, cut, copy, delete, rename and move"/></p>
+        <p class="wwwvisible"><a rel="external" href="images/manual_toceditoptions.png" title="full-size screenshot"><img src="images/manual_toceditoptions.png" alt="the TOC context menu, showing editing operations such as add, cut, copy, delete, rename and move"/></a></p>
         <div id="creating-sections">
           <h4>Creating sections</h4>
           <p class="todo">Create a sibling section (Insert section Ctrl+A) before the selection, at the same level, and at the end, if no selection. Create a subsection as last child of the selected section. Unnamed sections when created.</p>
@@ -232,6 +235,8 @@
       <div id="editing-strips">
         <h3>Editing the audio contents: section strips</h3>
         <p class="todo">Strips introduction. Correspond to one section (but not subsections!) Has content in the form of audio blocks.</p>
+        <p class="obivisible"><img src="images/manual_stripeditoptions.png" alt="the audio block context menu, showing editing operations such as add, cut, copy, delete, rename and move"/></p>
+        <p class="wwwvisible"><a rel="external" href="images/manual_stripeditoptions.png" title="full-size screenshot"><img style="width: 400px; height: 242px;" src="images/manual_stripeditoptions.png" alt="the audio block context menu, showing editing operations such as add, cut, copy, delete, rename and move"/></a></p>
         <div id="creating-strips">
           <h4>Creating strips</h4>
           <p>To add a new strip to the strips view, choose <q>Insert strip</q> in the <q>Strips</q> menu, or press Ctrl+A. A new strip will be inserted before, and at the same level as, the selected strip, or at the top level and at the end of the project is no strip selected.</p>
@@ -259,6 +264,8 @@
       <div id="editing-blocks">
         <h3>Editing the audio contents: audio blocks</h3>
         <p class="todo">Audio blocks inside strips.</p>
+        <p class="obivisible"><img src="images/manual_audioblockeditoptions.png" alt="the audio block context menu, showing editing operations such as add, cut, copy, delete, rename and move"/></p>
+        <p class="wwwvisible"><a rel="external" href="images/manual_audioblockeditoptions.png" title="full-size screenshot"><img style="width: 400px; height: 282px;" src="images/manual_audioblockeditoptions.png" alt="the audio block context menu, showing editing operations such as add, cut, copy, delete, rename and move"/></a></p>
         <div id="importing-audio">
           <h4>Importing audio</h4>
           <p>The first way to add content is to import existing audio files to your project. Obi supports only uncompressed RIFF/WAVE files, which are usually named <code>.wav</code>.</p>
@@ -380,423 +387,34 @@
       </div>
       <div id="saving">
         <h4>Saving</h4>
+        <p>Remember to save your project often! All unsaved changes will be lost if you quit Obi withouth saving (or, unfortunately, if Obi crashes.) To save your project, choose <q>Save project</q> from the <q>File</q> menu, or press Ctrl+S. When your project is saved, all changes to the audio files are committed to disk, so it is not possible to undo your changes anymore.</p>
+        <p>You can also save your project to a different name or a different location, by choosing <q>Save project as</q> from the <q>File</q> menu, or pressing Ctrl+Shift+S. You will have to choose a location for your new file.</p>
+        <p>You may also want to cancel all of the changes that you made since you last saved. This can be done quickly by choosing <q>Discard changes</q> from the <q>File</q> menu or pressing Ctrl+D. Be careful as this cannot be undoe.</p>
       </div>
-    </div>
+      <div id="exporting">
+        <h4>Exporting</h4>
+        <p>When your project is ready to be distributed as a DAISY book, or you want to test it in a DAISY player, you can export it to a DAISY book by choosing <q>Export as DAISY</q> from the <q>File</q> menu, or pressing Ctrl+E. You will have to choose a directory in which to export your book. Note that changes to audio files need to be saved before export can take place, so if you don't want to save your project just yet, you shouldn't export it right now.</p>
+      </div>
+      <div id="closing">
+        <h4>Closing and exitting</h4>
+        <p>Obi can work with a single project open at once at the moment. If you want to work on a different project, you need to close the current project, by choosing <q>Close project</q> in the <q>File</q> menu, or pressing Ctrl+W. If changes were made, you will be asked if you want to save them before closing. Note that if you want to open a different project, you can do so directly without having to close the current project first.</p>
+        <p>Lastly, when you are done with Obi, you can qui by choose <q>Exit</q> from the <q>File</q> menu, or pressing Alt+F4. Once again, you will be given the change to save changes to the current project if there were any.</p>
+      </div>
 
 
     <div id="preferences">
       <h2>Setting your preferences</h2>
       <p>Let's do a little bit of bookkeeping first. Because DAISY books are usually meant to be part of a larger library of books, it is important to add some <em>metadata</em>, that is information about the book, so that it can be found later on.</p>
+      <p class="todo">Audio preferences (used for recording, but set once audio is already present); project preferences (locations, enable/disable tooltips, open last project on startup); user profile (name, organization, language.)</p>
     </div>
 
-        
-           
-  <h3 id="ovw_prefs">Setting Preferences</h3>
-  <p>The first thing to do before starting a new project, is to make sure that the system and project preferences are in order. Most important
-  is the configuration of the Audio device on your computer.</p>
-  <ol>
-    <li>Open <a href='#ctrl_preferences_audio'>Audio preferences</a> and make sure the correct input and output device is selected</li>
-    <li>Adjust the input and output volume using the Windows mixer</li>
-  </ol> 
-   
-  <h3 id="ovw_new">Create a New Project</h3>
-    
-  <h3 id="ovw_recedit">Record and Edit the Project</h3>
-    <h4 id="ovw_rec">Recording</h4>
-    <p>Once the new project has been created, you can start the recording process.</p>
-    <p>Select the <code>Add section</code> item in the TOC menu, and type the name of this section.</p>
-    <p>At this point, a new section has appeared in the TOC View, and a strip occurs in the Strip View.</p>
-    <p>Move to this section in the Strip View (by clicking on the strip in question, by tabbing to it, or be selecting the <code>Show in Strip View</code> menu item in the TOC menu.</p>
-    <p>Once the strip is selected, open the <a href='#ctrl_record'>record dialog</a> by selecting the <code>Record audio</code> menu item in the Strip menu.</p>    
-    <p>The recording dialog is now listening to the audio input device. Once you press the Record button, recording will commence. Use the phrase marker button to create audio blocks during the recording.</p>
-     
-    <div class="obirdbox">
-      <div class="hd">Obird suggestion</div>   
-       <p>All Obi functions and features have keyboard shortcuts! Learn more about them in the <a href='#kbd'>Keyboard shortcut table</a>!</p>
+    <div id="contributing">
+      <h2>Contributing to Obi</h2>
+      <p>Please help by reporting bugs! When you notice something wrong, please choose <q>Report bug</q> in the <q>Help</q> menu, or press Ctrl+Shift+R. If you are connected to the Internet, you will be taken to the Sourceforge bug tracker for Obi where you can file a new bug. You may want to browse existing bugs first to see if this issue was reported before. Please select the <q>Obi</q> category in the <q>Category</q> combo box, then give a brief description in the <q>Summary</q> text box, and a detailed description of the problem, including steps to reproduce the bug, expected outcome, and observed outcome.</p>
     </div>
-    
-    <h4 id="ovw_importaudio">Importing audio</h4>
-    <p>Besides recording live audio from your audio input device, you can also import existing audio files into a strip. Select the <code>import audio file</code> menu item in the Strip menu.    
-    </p>
 
-  <p class="obivisible">
-<img src="images/manual_importaudio.png" alt="the import audio item invoked while in the strip view" />
-	</p>
-
-  <p class="wwwvisible">
-	<a rel="external" href="images/manual_importaudio.png" title="full-size screenshot"><img style="width:400px;height:200px;" src="images/manual_importaudio.png" alt="the import audio item invoked while in the strip view" /></a>
-	</p>
-
-    
-    <h4 id="ovw_sectionedit">Section editing</h4>
-    <p>
-      Using either the TOC View or the Strip View, you can perform section level editing operations, such as add, cut, copy, delete, rename and move.
-    </p>
-    <p>Read more about <a href="#ctrl_tocview">section editing in the details section</a>.</p>
-
-
-  <p class="wwwvisible">
-	<a rel="external" href="images/manual_toceditoptions.png" title="full-size screenshot"><img style="width:400px;height:200px;" src="images/manual_toceditoptions.png" alt="the TOC context menu, showing editing operations such as add, cut, copy, delete, rename and move" /></a>
-	</p>
-  <p class="obivisible">
-<img src="images/manual_toceditoptions.png" alt="the TOC context menu, showing editing operations such as add, cut, copy, delete, rename and move" />
-	</p>
-    
-    
-    <h4 id="ovw_audioblockedit">Audio Block editing</h4>
-    <p>
-    Audio block editing is typically done after you have recorded some audio for a section. As an example, there may be a slight noise in the recording that you want to remove. 
-    Or there may be an audio block that you want to split, or merge. Read more about <a href="#ctrl_stripview">audio block editing in the details section</a>.    
-    </p>
-
-  <p class="obivisible">
-<img src="images/manual_audioblockeditoptions.png" alt="the audio block context menu, showing editing operations such as add, cut, copy, delete, rename and move" />
-	</p>
-  <p class="wwwvisible">
-	<a rel="external" href="images/manual_audioblockeditoptions.png" title="full-size screenshot"><img style="width:400px;height:200px;" src="images/manual_audioblockeditoptions.png" alt="the audio block context menu, showing editing operations such as add, cut, copy, delete, rename and move" /></a>
-	</p>
-
-    
-  <h3 id="ovw_save">Save the Project</h3>
-  <p>Once the recording session has finished, select the <code>save project</code> menu item from the file menu.</p>
-    <div class="obirdbox">
-      <div class="hd">Obird suggestion</div>   
-       <p>Saving your project at regular intervals during a long recording session is a good idea!</p>
-    </div>
-    <p><strong>Note:</strong> the <code>save project as</code> command makes
-    a new copy of your project and audio files. When you select this command,
-    the project in its current state is saved in a different location and/or
-    under a different name, but you are still editing the same project. You
-    may think of this as a backup command.</p>
-
-</div>
-  
-  <!-- <h3>Please enjoy the DAISY/NISO DTB</h3> 
-  <p>Or evacuate for a while.</p>
-  -->
-      
-<h2 id="ctrls">Obi Windows - details</h2>
-
-<div id="www_dialog-details">
-
-  <h3 id="ctrl_tocview">Main Window - TOC View</h3>
-    
-    <h4 id="ctrl_sectionediting">Section editing</h4>
-    <dl>
-    <dt>Add section</dt>
-    <dd>Adds a new section following the section that is currently selected.</dd>
-    <dt>Add sub-section</dt>
-    <dd>Adds a new section as a child of the section that is currently selected.</dd>
-    <dt>Cut section</dt>
-    <dd>Cuts the currently selected section and puts it in the clipboard.</dd>
-    <dt>Copy section</dt>
-    <dd>Copies the currently selected section and puts the copy in the clipboard</dd>
-    <dt>Paste section</dt>
-    <dd>Pastes a section currently in the clipboard, following the section that is currently selected.</dd>
-    <dt>Delete section</dt>
-    <dd>Deletes the currently selected section.</dd>
-    <dt>Rename section</dt>
-    <dd>Enables renaming of the currently selected section. After invoking rename, type the new name.</dd>
-    <dt>Move section up/down</dt>
-    <dd>Moves the currently selected section up or down in relation to its sibling sections. This feature is used to <em>reorder</em> the main structural units (chapters) of the DTB.</dd>
-    <dt>Move section in/out</dt>
-    <dd>Changes the depth of the currently selected section. "Move in" effectively means "make sub-section".</dd>
-    </dl>
-    
-    <h4>Other functions in TOC View</h4>
-    <dl>
-    <dt>Show in Strip View</dt>    
-    <dd>Moves the cursor (and focus) to the strip in the strip view that corresponds to the currently selected section in the TOC View.</dd>
-    </dl>
-    
-    <h3 id="ctrl_stripview">Main Window - Strip View</h3>
-    <h4 id="ctrl_stripediting">Strip editing</h4>
-    <dl>
-    <dt>Add strip</dt>
-    <dd>Adds a new strip following the strip that is currently selected.</dd>
-    <dt>Rename strip</dt>
-    <dd>Enables renaming of the currently selected strip. After invoking rename, type the new name.</dd>
-    <dt>Delete strip</dt>
-    <dd>Deletes the currently selected strip.</dd>
-    <dt>Move strip up/down</dt>
-    <dd>Moves the currently selected strip up or down in relation to its sibling strips. This feature is used to <em>reorder</em> the main structural units (chapters) of the DTB.</dd>
-    </dl>
-    
-    <h4 id="ctrl_blockediting">Block editing</h4>
-    <dl>
-    <dt>Edit audio block label</dt>
-    <dd>Edit the textual label of the currently selected audio block.</dd>
-    <dt>Delete audio block</dt>
-    <dd>Delete the currently selected audio block.</dd>
-    <dt>Split audio block</dt>
-    <dd>Opens the <a href='#ctrl_split'>split dialog</a>.</dd>
-    <dt>Merge with next audio block</dt>
-    <dd>Merges the currently selected audio block with the audio block that follows it. The result is that two audio blocks turns into one.</dd>
-    <dt>Move audio block forward/backward</dt>
-    <dd>Moves the currently selected audio block in relation to its sibling blocks. This will reorder the sequence of audio blocks within a strip.</dd>
-    <dt>Cut audio block</dt>
-    <dd>Cuts the currently selected audio block and puts it in the clipboard.</dd>
-    <dt>Copy audio block</dt>
-    <dd>Copies the currently selected audio block and puts the copy in the clipboard.</dd>
-    <dt>Paste audio block</dt>
-    <dd>Pastes an audio block currently in the clipboard, following the audio block that is currently selected.</dd>
-    </dl>
-        
-    <h4>Other functions in strip view</h4>
-    <dl>
-    <dt>Record audio</dt>
-    <dd>Opens the <a href='#ctrl_record'>recording dialog</a></dd>
-    <dt>Import audio</dt>
-    <dd>Opens the import audio dialog.</dd>
-    <dt>Play audio block</dt>
-    <dd>Opens the play dialog, and plays the currently selected audio block.</dd>
-    <dt>Show in TOC View</dt>
-    <dd>Moves the cursor (and focus) to the section in the TOC View that corresponds to the currently selected strip in the Strip View.</dd>
-    <dt>Set page label</dt>
-    <dd>A page label usually indicates a page number that can be inserted just
-    like in a print book. This is useful to include if you record a book that
-    exists in print. The page label appears on top of the audio block which
-    is usually the audio counterpart to the label.</dd>
-    <dt>Remove page label</dt>
-    <dd>Removes page label that was previously set.</dd>
-    </dl>
-    
-    <h3 id="ctrl_record">Record Dialog</h3>
-    <p>As the record dialog opens, Obi is already listening to the input device.</p>
-    <dl>
-    <dt>Record</dt>
-    <dd>Start the recording.</dd>
-    <dt>Stop</dt>
-    <dd>Stop the recording and close the dialog.</dd>
-    <dt>Phrase marker</dt>
-    <dd>Create a new Audio Block. This feature can be used during recording (<em>i.e.</em> without pressing stop.)</dd>
-    </dl>
-    
-    <h3 id="ctrl_play">Play Dialog</h3>
-    <p>When the play dialog opens, playback will start automatically.</p>
-    <dl>
-    <dt>pause/play</dt>
-    <dd>Pauses the playback, and rests at the current position. Pressing the same button again will resume playback.</dd>
-    <dt>stop</dt>
-    <dd>Stops playback and closes the play dialog.</dd>
-    </dl>
-    
-    <h3 id="ctrl_split">Split Dialog</h3>
-    <p>The split dialog is used to split one audio block into two.</p>
-    <p><img src="images/manual_splitdialog.png" alt="the new project dialog" /></p>
-    
-    <dl>
-    <dt>preview</dt>
-    <dd>Listen to the audio that follows the current split position.</dd>
-    <dt>back</dt>
-    <dd>Go back to the current split position, and play from that position</dd>
-    <dt>play/pause</dt>
-    <dd>Play the entire audio block.</dd>
-    <dt>fast rewind</dt>
-    <dd>Move backward in time a large step.</dd>
-    <dt>fast forward</dt>
-    <dd>Move forward in time a large step.</dd>
-    <dt>fine rewind</dt>
-    <dd>Move backward in time a small step.</dd>
-    <dt>fine forward</dt>
-    <dd>Move forward in time a small step.</dd>
-    <dt>current time</dt>
-    <dd>Displays the current time position in the audio block.</dd>
-    <dt>split time</dt>
-    <dd>Displays the split time position in the audio block.</dd>
-    <dt>split</dt>
-    <dd>Performs the split operation and exits the dialog.</dd>
-    <dt>stop</dt>
-    <dd>Cancels the split operation and exists the dialog.</dd>
-    </dl>
-
-
-
-  
-  	
-  <h3 id="ctrl_preferences">Preferences Dialog</h3>
-  <p>The preferences dialog contains various settings relating to the project and the system. Obi will remember these settings between session, in other words, when you restart Obi or your computer, these settings will remain as you left them.</p>    
-  <h3 id="ctrl_preferences_audio">Audio Preferences</h3>
-  <p>The audio preferences tab allows to view and modify settings relating to audio recording and audio playback.</p>
-  <h4>Audio Preferences fields</h4>
-  <dl>
-  <dt>Input device name</dt>
-  <dd>Set the audio device to use for recording. This is the same as selecting a <em>soundcard input port</em>.</dd>
-  <dt>Output device name</dt>
-  <dd>Set the audio device to use for playback. This is the same as selecting a <em>soundcard output port</em>.</dd>
-  <dt>Default sample rate</dt>
-  <dd>Select the sample rate to use for recording. This field defaults to <code>44100</code>, and normally, you can leave it at that. Under some circumstances (such as a very large book being recorded) you may want to change this setting to <code>22050</code>.</dd>
-  <dt>Default channels</dt>
-  <dd>Select whether you want to record in <code>mono</code> (one channel of audio) or <code>stereo</code> (two channels of audio). Normally, DAISY DTBs are recorded in mono.</dd>
-  </dl>
-
-
-  <p class="obivisible">
-<img src="images/manual_preferences_audio.png" alt="screenshot of the audio tab in the preferences dialog" />
-	</p>
-  <p class="wwwvisible">
-	<a rel="external" href="images/manual_preferences_audio.png" title="full-size screenshot"><img style="width:400px;height:140px;" src="images/manual_preferences_audio.png" alt="screenshot of the audio tab in the preferences dialog" /></a>
-	</p>
-
-  <div class="obirdbox">
-  <div class="hd">Obird suggestion</div>  
-  <p>
-    Changing sample rate and number of channels in the middle of a project is not a very good idea!<br/> 
-    Try to make your choice <em>before you start recording</em> in the project! Then try to stick to your choice!
-  </p>
-  </div>
-     
-  <h3 id="ctrl_preferences_project">Project Preferences</h3>
-  <p>The project preferences tab allows to view and modify settings relating to an Obi project.</p>
-  <h4>Project preferences fields</h4>
-  <dl>
-  <dt>Project identifier template</dt>
-  <dd>Obi can autogenerate an <a href='#ctrl_metadata'>identifier</a> for your project. In this field, you can determine how the identifier should be generated.
-  You can add any characters that will occur everytime an identifier is generated, and combine these with a number of hash characters (#) that Obi will replace with numerals. <br/>For example, if this field is set to <code>obi_####</code>, Obi will generate an identifier such as <code>obi_9682</code>.
-  </dd>
-  <dt>Default projects directory</dt>
-  <dd>Select a directory on your computers harddrive that Obi will suggest as a project directory when you start a new project.</dd>
-  </dl>
-
-
-  <p class="wwwvisible">
-	<a rel="external" href="images/manual_preferences_project.png" title="full-size screenshot"><img style="width:400px;height:120px;" src="images/manual_preferences_project.png" alt="screenshot of the project tab in the preferences dialog" /></a>
-	</p>
-  <p class="obivisible">
-<img src="images/manual_preferences_project.png" alt="screenshot of the project tab in the preferences dialog" />
-	</p>
-
-
-  <h3 id="ctrl_userprofile">User Profile Dialog</h3>  
-  <h4>User profile fields</h4>
-  <dl>
-  <dt>Full name</dt>
-  <dd>Name of user.</dd>
-  <dt>Organisation</dt>
-  <dd>Organisation of the user.</dd>
-  <dt>Language</dt>
-  <dd>The language of the user (which is not necessarily the same as the <a href='#ctrl_metadata'>language of the DTB being recorded</a>!)</dd>
-  </dl>
-  <p><img src="images/manual_userprofile.png" alt="screenshot of the user profile dialog"/></p>
-
-</div>
-
-<h2 id="ref_menus">Menu reference</h2>
-
-<div id="www_menu-reference">
-
-	<h3 id="ref_menus_file">File menu</h3>
-	<div id="www_file-menu">
-		<p>The file menu allows you to create, open, save, close and export
-		projects, and exit Obi.</p>
-		<dl>
-			<dt>New project (Ctrl+N)</dt>
-			<dd>Create a new project. If a project is currently open, it is closed
-			first. See <a href="#ovw_new">Create a new project</a>.</dd>
-			<dt>Open project (Ctrl+O)</dt>
-			<dd>Open a project file. If a project is currently open, it is closed
-			first. A file browser then lets you navigate your file system to find
-			the project file to open.</dd>
-			<dt>Open recent project</dt>
-			<dd>Obi will remember the location of the projects that have been
-			previously open so that you can quickly open them again. The projects
-			are listed by their filenames. If they are in your default directory,
-			then only the filename will appear; if they are somewhere else, then
-			the full path will be shown.<br/>
-			The "Clear list" option clears this list (be careful, as this cannot be
-			undone.)<br/>
-			There are no keyboard shortcuts for this item.</dd>
-			<dt>Save project (Ctrl+S)</dt>
-			<dd>Save all changes made to the project. Do this often as Obi does not
-			save your project automatically; but be careful that after saving
-			undoing previous changes becomes impossible.</dd>
-			<dt>Save project as (Ctrl+Shift+S)</dt>
-			<dd>Save a copy of the project with a different file name and continue
-			editing this file. [FIXME: not sure about this one.]</dd>
-			<dt>Discard changes (Ctrl+D)</dt>
-			<dd>Revert to the last saved version of the project. All changes made
-			are lost (this cannot be undone; alternatively, you can undo all changes
-			to go back to this version while still being able to redo some
-			operations.)</dd>
-			<dt>Close project (Ctrl+W)</dt>
-			<dd>Close the project currently open. If there are unsaved changes, you
-			will be asked whether to save these changes, close without saving, or
-			cancel (in which case the project is not closed.)</dd>
-			<dt>Export as DAISY (Ctrl+E)</dt>
-			<dd>Create a DAISY ANSI/NISO Z39.86-2005 book from your project. The
-			project must be saved before being exported. You will be asked for a
-			folder location in which to save the book. This book can then be opened
-			in a DAISY player such as <a href="http://amis.sf.net">AMIS</a>, but
-			it <strong>cannot</strong> be opened by Obi so do not delete your Obi
-			project file just yet or you won't be able to make any more changes!</dd>
-			<dt>Exit (Alt+F4)</dt>
-			<dd>Exit from Obi. If there is an open project with unsaved changes, you
-			will be given a chance to save or cancel. If you cancel, you will not
-			exit Obi. You can also exit Obi by closing the main window.</dd>
-		</dl>
-	</div>
-
-	<h3 id="ref_menus_edit">Edit menu</h3>
-	<div id="www_edit-menu">
-		<p>The edit menu allows you to make, unmake and remake general changes in
-		the project. From this menu you can undo previous changes, or redo undone
-		changes; you can also cut, copy, paste and delete items, and modify the
-		metadata of your project.</p>
-		<ul>
-			<li>Undo and redo
-		<dl>
-			<dt>Undo (Ctrl+Z)</dt>
-			<dd>This is a very important command as it allows you to undo the last
-			change that you made. When undo is enabled, the actual menu item will
-			describe exactly what is to be undone, for instance if you delete a
-			section, then the menu item will read "undo section." Undo will restore
-			your project to the same state that it was in just before you did this
-			action (in this case, the section will be undeleted and restored exactly
-			where it used to be.)<br/>
-			Obi will remember all the changes that you have made since you last
-			saved (or since you created) your project, so that undoing twice will
-			undo the last two commands, and so on. You can then undo every change
-			and your project will be restored to its unmodified state. Remember this
-			shortcut, it is very handy!
-			<dt>Redo (Ctrl+Y)</dt>
-			<dd>If you have undone a command, you can redo it. Obi will also remember
-			the commands that you have undone so that you can recreate all changes
-			that you have made. Be careful however; once you make a new change to the
-			project, all the undone commands are discarded so you won't be able to
-			redo them anymore (this is because your project is now in a different
-			state that it was before you made that change, and therefore the context
-			of undone commands may be inconsistent.)
-		</dl>
-		</li>
-		<li>Clipboard<br/>
-		You can cut and copy items (sections, strips, nodes, and text from
-		annotations)
-			<dl>
-			<dt>Cut (Ctrl+X)</dt>
-			<dd>Cut</dd>
-			<dt>Copy (Ctrl+C)</dt>
-			<dd>Copy</dd>
-			<dt>Paste (Ctrl+V)</dt>
-			<dd>Paste</dd>
-			<dt>Delete (Del)</dt>
-			<dd>Delete</dd>
-		</dl>
-		</li>
-		<li>Misc.</li>
-		<dl>
-			<dt>Metadata (Alt+M)</dt>
-			<dd>Simple metadata</dd>
-			<dt>Touch project (F5)</dt>
-			<dd>Touch (make it seem modified) and refresh display.</dd>
-		</dl>
-	</ul>
-	</div>
-
-</div>
-
-<h2 id="gloss">Glossary of Terms</h2>
-
-<div id="www_glossary-of-terms">
+    <div id="glossary">
+      <h2>Glossary</h2>
 
 <div class="obirdbox">
   <div class="hd">Obird suggestion</div>  
@@ -858,113 +476,5 @@
 </dl>
 
 </div>
-
-<h2 id="kbd">Keyboard Shortcut Table</h2>
-
-<div id="www_keyboard-shortcuts">
-
-<div class="infobox">
-<div class="hd">How keyboard shortcut syntax works</div>
-<p>In the table below, all keyboard shortcuts of Obi are described using a standard syntax. 
-<br/>The key components of this syntax are:</p>
-<dl>
-<dt>Sequences of keys to be pressed are described using the comma sign</dt>
-<dd>For example, <kbd>ALT,F</kbd> means: <em>First press and release the <kbd>ALT</kbd> key, then press and release the <kbd>F</kbd> key.</em></dd>
-<dt>Key combinations (i.e. keys to be pressed simultaneously) are described using the plus sign</dt>
-<dd>For example, <kbd>ALT+F</kbd> means: <em>Press the <kbd>ALT</kbd> and <kbd>F</kbd> key simultaneously, and then release them.</em></dd>
-</dl>
-</div>
-<!--
-Project modification invocations by default use the CTRL modkey 
-(unless there is a preferred Windows standard heritage key, for example F2 = rename, DEL = delete).
-View modifications (that change the GUI but not the project itself) by default use the ALT modkey
--->
-<p><strong>Note:</strong> these shortcuts may change in subsequent versions of
-Obi.</p>
-<table style="border-collapse:collapse" width="75%">
-  <tr class="hd"><td colspan="2">Obi Main Menu</td></tr>
-  <tr><td>File Menu</td>			<td><kbd>ALT,F</kbd></td></tr>
-  <tr><td>Edit Menu</td>			<td><kbd>ALT,E</kbd></td></tr>
-  <tr><td>TOC Menu</td>				<td><kbd>ALT,C</kbd></td></tr>
-  <tr><td>Strips Menu</td>			<td><kbd>ALT,S</kbd></td></tr>
-  <tr><td>Tools Menu</td>			<td><kbd>ALT,T</kbd></td></tr>
-  <tr><td>Help Menu</td>			<td><kbd>ALT,H</kbd></td></tr>
-
-  <tr class="hd"><td colspan="2">File Menu</td></tr>
-  <tr><td>New Project</td>			<td><kbd>CTRL+N</kbd></td></tr>
-  <tr><td>Open Project</td>			<td><kbd>CTRL+O</kbd></td></tr>
-  <tr><td>Save Project</td>			<td><kbd>CTRL+S</kbd></td></tr>
-  <tr><td>Save Project as</td>			<td><kbd>CTRL+SHIFT+S</kbd></td></tr>
-  <tr><td>Discard Changes</td>  <td><kbd>CTRL+D</kbd></td></tr>
-  <tr><td>Close Project</td>			<td><kbd>CTRL+W</kbd></td></tr>
-  <tr><td>Exit</td>				<td><kbd>ALT+F4</kbd></td></tr>
-  
-  <tr class="hd"><td colspan="2">Dialogs and Windows</td></tr>
-  <tr><td>Open Record Dialog</td>		<td><kbd>CTRL+R</kbd></td></tr> 
-  <tr><td>Open Help</td>			<td><kbd>F1</kbd></td></tr>
-  <tr><td>Open Metadata dialog</td>		<td><kbd>ALT+M</kbd></td></tr>
-  <tr><td>Open Audio Preferences</td>		<td><kbd>ALT+A</kbd></td></tr>   
-  <tr><td>Open Project Preferences</td>		<td><kbd>ALT+P</kbd></td></tr>
-  <tr><td>Open User Profile Dialog</td>		<td><kbd>ALT+U</kbd></td></tr>
-  
-  <tr class="hd"><td colspan="2">General editing operations</td></tr>
-  <tr><td>Undo</td>				<td><kbd>CTRL+Z</kbd></td></tr>
-  <tr><td>Redo</td>				<td><kbd>CTRL+Y</kbd></td></tr>
-  <tr><td>Touch project</td>			<td><kbd>CTRL+T</kbd></td></tr> <!-- (we should keep it in the final version, this is useful.) -->
-   
-  
-  <tr class="hd"><td colspan="2">Main view</td></tr>
-  <tr><td>Hide TOC View</td>			<td><kbd>ALT+T</kbd></td></tr>
-  <tr><td>Show TOC View</td>			<td><kbd>ALT+T</kbd></td></tr>
-  <tr><td>Show in Strip View</td>		<td><kbd>ALT+V</kbd></td></tr>
-  <tr><td>Show in TOC View</td>			<td><kbd>ALT+V</kbd></td></tr>
-    
-  <tr class="hd"><td colspan="2">Section Editing</td></tr>
-  <tr><td>Add section</td>			<td><kbd>CTRL+A</kbd></td></tr>
-  <tr><td>Add sub-section</td>			<td><kbd>CTRL+B</kbd></td></tr>
-  <tr><td>Cut section</td>			<td><kbd>CTRL+SHIFT+X</kbd></td></tr>
-  <tr><td>Copy section</td>			<td><kbd>CTRL+SHIFT+C</kbd></td></tr>
-  <tr><td>Paset section</td>			<td><kbd>CTRL+SHIFT+V</kbd></td></tr>
-  <tr><td>Delete section</td>			<td><kbd>DEL</kbd></td></tr>
-  <tr><td>Rename section</td>			<td><kbd>F2</kbd></td></tr>
-  <tr><td>Move Section Up</td>			<td><kbd>CTRL+SHIFT+UP</kbd></td></tr> <!-- (otherwise this conflicts with blocks.) -->
-  <tr><td>Move Section Down</td>		<td><kbd>CTRL+SHIFT+DOWN</kbd></td></tr>
-  <tr><td>Move Section In</td>			<td><kbd>CTRL+SHIFT+RIGHT</kbd></td></tr>
-  <tr><td>Move Section Out</td>			<td><kbd>CTRL+SHIFT+LEFT</kbd></td></tr>
-  
-  <tr class="hd"><td colspan="2">Strip Editing</td></tr>
-  <tr><td>Add strip</td>			<td><kbd>CTRL+A</kbd></td></tr>
-  <tr><td>Rename strip</td>			<td><kbd>SHIFT+F2</kbd></td></tr> <!-- (because of selection ambivalence in strips) -->
-  <tr><td>Delete strip</td>			<td><kbd>SHIFT+DEL</kbd></td></tr>
-  <tr><td>Move strip up</td>			<td><kbd>CTRL+SHIFT+UP</kbd></td></tr>
-  <tr><td>Move strip down</td>			<td><kbd>CTRL+SHIFT+DOWN</kbd></td></tr>
-    
-  <tr class="hd"><td colspan="2">Audio Editing</td></tr>
-  <tr><td>Import audio file</td>		<td><kbd>CTRL+I</kbd></td></tr>    
-  <tr><td>Edit audio block label</td>		<td><kbd>F2</kbd></td></tr>
-  <tr><td>Cut audio block</td>			<td><kbd>CTRL+X</kbd></td></tr>
-  <tr><td>Copy audio block</td>			<td><kbd>CTRL+C</kbd></td></tr>
-  <tr><td>Paset audio block</td>			<td><kbd>CTRL+V</kbd></td></tr>
-  <tr><td>Split audio block</td>		<td><kbd>CTRL+P</kbd></td></tr>
-  <tr><td>Delete audio block</td>		<td><kbd>DEL</kbd></td></tr>
-  <tr><td>Merge with next audio block</td>	<td><kbd>CTRL+M</kbd></td></tr>
-  <tr><td>Move audio block forward</td>		<td><kbd>CTRL+RIGHT</kbd></td></tr>
-  <tr><td>Move audio block backward</td>	<td><kbd>CTRL+LEFT</kbd></td></tr>
-  <tr><td>Play audio block</td>			<td><kbd>ALT+Space</kbd></td></tr> <!-- (should be space alone) -->
-
-  <tr class="hd"><td colspan="2">Page Labels</td></tr>
-  <tr><td>Set page label</td>		<td><kbd>CTRL+F2</kbd></td></tr>
-  <tr><td>Remove page label</td>		<td><kbd>CTRL+DEL</kbd></td></tr>
-
-</table>  
-
-</div>
-
-  <p>
-    <a href="http://validator.w3.org/check?uri=referer"><img
-        src="http://www.w3.org/Icons/valid-xhtml11"
-        alt="Valid XHTML 1.1" height="31" width="88" /></a>
-  </p>
-
 </body>
 </html>
