@@ -12,15 +12,16 @@
       .obirdbox { border: 1px solid rgb(25, 100, 25); background-color: rgb(190, 255, 190); padding: 0 1em 0 56px; margin: 1em 0; background-image: url("images/obird32.png"); background-repeat: no-repeat; background-position: 12px 12px; }  
       .obirdbox .hd, h1.title .hd { display:none } 
       .todo { border: 1px solid red; padding: 1em; margin: 1em 0; color: red }
+      .icon { float: left; margin-right: 1em; }
       td { border: 1px solid gray; }
       tr.hd td {font-weight: bold;}  
-      dt { font-weight: bold;}    
+      dt { font-weight: bold;}
       h1,h2,h3,h4,h5,h6 {color:rgb(5,80,5);} 
       h2,h3{border-bottom: 1px rgb(25,100,25) dotted;}  
       h1,h2 {margin-top: 3em}
       h3,h4 {margin-top: 2em}
       h5,h6 {margin-top: 1em}
-      img { border: 0 }    
+      img { border: 0 }
       .obivisible {}
       .wwwvisible {display: none;}
     </style>
@@ -79,25 +80,29 @@
             <li><a href="#split-merge">Splitting and merging audio blocks</a></li>
             <li><a href="#phrase-detection">Phrase detection</a></li>
             <li><a href="#edit-audio-blocks">Cut, copy, paste, delete and move</a></li>
-            <li>Used and unused audio blocks</li>
-            <li>Page numbers</li>
-            <li>Annotations</li>
+            <li><a href="#unused-blocks">Used and unused audio blocks</a></li>
+            <li><a href="#page-numbers">Page numbers</a></li>
+            <li><a href="#annotations">Annotations</a></li>
           </ul>
           </li>
-          <li>Oops! Using <q>undo</q> et <q>redo</q></li>
-          <li>Audio playback, recording and navigation
+          <li><a href="#oops">Oops! Using <q>undo</q> et <q>redo</q></a>
           <ul>
-            <li>Play, pause and stop</li>
-            <li><a href="#record">Record</a></li>
-            <li>Navigating through sections</li>
-            <li>Navigating through phrases</li>
-            <li>Navigating through time</li>
-            <li>The VU meter</li>
+            <li><a href="#undo">Undo</a></li>
+            <li><a href="#redo">Redo</a></li>
           </ul>
           </li>
-          <li>Saving</li>
+          <li><a href="#transport">Audio playback, recording and navigation</a>
+          <ul>
+            <li><a href="#playback">Playback</a></li>
+            <li><a href="#record">Record</a></li>
+            <li><a href="#nav-phrases">Navigating through phrases</a></li>
+            <li><a href="#nav-sections">Navigating through sections</a></li>
+            <li><a href="#nav-time">Navigating through time</a></li>
+          </ul>
+          </li>
+          <li><a href="#saving">Saving</a></li>
           <li>Exporting to DAISY</li>
-          <li>Closing and exiting</li>
+          <li>Closing and exitting</li>
         </ul>
         <li><a href="#preferences">Setting your preferences</a></li>
         <li>Contributing to Obi</li>
@@ -288,6 +293,93 @@
       </div>
       <div id="edit-audio-blocks">
         <h4>Cut, copy, paste, delete and move</h4>
+          <h5>Cut audio block (Ctrl+X)</h5>
+          <p>The selected audio block is removed from the project and stored in the clipboard to be pasted later.</p>
+          <h5>Copy audio block (Ctrl+C)</h5>
+          <p>The selected audio block is stored in the clipboard to be pasted later.</p>
+          <h5>Paste audio block (Ctrl+V)</h5>
+          <p>When the clipboard contains an audio block (which was previously cut or copied), it can be pasted in at the end of the selected strip, or before the selected audio block.</p>
+          <h5>Delete audio block (Del, the delete key)</h5>
+          <p>The selected audio block is deleted from the project.</p>
+          <h5>Move audio blocks (Ctrl+Shift+Left arrow key, Ctrl+Shift+Right arrow key)</h5>
+          <p>Audio blocks can be quickly moved inside their strip using two move commands, for moving them forward and backward. A block cannot move to a different strip in this way; it has to be cut and then pasted.</p>
+        </div>
+        <div id="unused-blocks">
+          <h4>Used and unused audio blocks</h4>
+          <p>We have seen how to mark sections as being unused, now you can do the same for audio blocks. To mark a selected audio block as being unused, choose <q>Mark audio block as unused</q> in the <q>Strips</q> menu, or press Ctrl+K. The block will turn gray to show its status. The block will not play when playing back the contents of the book, and will not be exported to DAISY.</p>
+          <p>Similarly, you can turn a selected unused audio block back to <em>used</em> status again by choosing <q>Mark audio block as used</q> in the <q>Strips</q> menu, or pressing Ctrl+K.</p>
+        </div>
+        <div id="page-numbers">
+          <h4>Page numbers</h4>
+          <p>Page numbers can be set on any audio block. Obi manages page numbers automatically; if you add a page number mark to an audio block in your project, page numbering will be updated so that the page numbers are in the sequence of the audio blocks in the project, starting from page number 1. Future versions of Obi will give more control about page numbering.</p>
+          <p>To set a page number mark on a selected audio block, choose <q>Set page number</q> in the <q>Strips</q> menu, or press Ctrl+G. The audio block will then show a page number.</p>
+          <p>To remove a page number from a selected audio block, choose <q>Remove page number</q> in the <q>Strips</q> menu, or press Ctrl+Del (the delete key.) The page number will disappear from the block.</p>
+          <p>When your project has page numbers, you can quickly move to any block with a page number using <q>Go to page</q> from the <q>Strips</q> menu, or pressing Alt+G. You will be presented with a list of all the pages in your book; if you select one, the selection will move to the corresponding audio block.</p>
+          <p class="todo">Add screenshot of the goto page dialog</p>
+        </div>
+        <div id="annotations">
+          <h4>Annotations</h4>
+          <p>Annotations are small text notes that are used only by Obi and are not exported to DAISY. These can be used for any purpose, for instance for marking parts that still need to be edited. Annotations are represented by annotation blocks similar to audio blocks but they cannot be selected; all operations on annotations are done by selecting the audio block that under the annotation.</p>
+          <p>To edit the annotation for a selected audio block, choose <q>Edit annotation</q> from the <q>Strips</q> menu, or press F2. You can then edit the annotation by typing directly in the text field; press return to when you are finished or escape to cancel the change.</p>
+          <p>To remove an annotation on a selected audio block, choose <q>Remove annotation</q> from the <q>Strips</q> menu, or press Ctrl+Del (the delete key.) You can also edit the annotation and clear all the text.</p>
+          <p>Because annotations are not selectable, an option is given for user of assistive technologies such as screen readers to force the focus on the annotation so that the text can be accessed. To do so, choose <q>Focus on annotation</q> from the <q>Strips</q> menu, or press Alt+Shift+A.</p>
+        </div>
+      </div>
+      <div id="oops">
+        <h3>Oops! Using <q>undo</q> et <q>redo</q></h3>
+        <p class="todo">Describe virtual edits, no changes to files made until saved.</p>
+        <div id="undo">
+          <h4>Undo</h4>
+          <p><em>Undo</em> is a very important command as it allows you to undo the last change that you made. When undo is enabled, the actual menu item will describe exactly what is to be undone, for instance if you delete a section, then the menu item will read <em>undo delete section</em>. Undo will restore your project to the same state that it was in just before you did this action (in this case, the section will be undeleted and restored exactly where it used to be.)</p>
+          <p>To undo the last operation, choose <q>Undo</q> from the <q>Edit</q> menu, or press Ctrl+Z.</p>
+          <p>Obi will remember all the changes that you have made since you last saved (or since you created) your project, so that undoing twice will undo the last two commands, and so on. You can then undo every change and your project will be restored to its unmodified state. Remember this shortcut, it is very handy!</p>
+        </div>
+        <div id="redo">
+          <h4>Redo</h4>
+          <p>If you have undone a command, you can redo it. Obi will also remember the commands that you have undone so that you can recreate all changes that you have made. Be careful however; once you make a new change to the project, all the undone commands are discarded so you won't be able to redo them anymore (this is because your project is now in a different state that it was before you made that change, and therefore the context of undone commands may be inconsistent.)</p>
+          <p>To redo the last undone operation, choose <q>Redo</q> from the <q>Edit</q> menu, or press Ctrl+Y.</p>
+        </div>
+      </div>
+      <div id="transport">
+        <h3>Audio playback, recording and navigation</h3>
+        <p>Obi is audio playback and recording tool and has basic playback, recording and navigation features that you can use when editing your project, but also to listen to a completed or in-progress project to test what the final result will sound like to your future readers.</p>
+        <div id="playback">
+          <h4>Playback</h4>
+          <h5>Play (Space)</h5>
+          <p><img src="images/icons/media-playback-start.png" alt="play icon" class="icon"/>To start playing the audio in the project, press the play button in the transport bar or press the spacebar. If nothing is selected, playback will start from the beginning. If a section or a strip is selected, it will start from the first audio block in the selected section or strip. If an audio block is selected, it will start from this audio block.</p>
+          <p>All audio blocks will be played in the order of the project until the last block has played, or until interrupted. Every time playback moves to a new block, the currently playing block is selected. Unused sections and audio blocks will be skipped.</p>
+          <p>You can also play a single block, or a single strip, <em>including</em> unused blocks, by choosing <q>Play selection</q> in the <q>Transport</q> menu, or pressing Ctrl+Shift+Space. You can also do the same by double-clicking a block or a strip.</p>
+          <p>Most editing operations are disabled while playing audio; an exception being quick-split so that splitting long blocks can be easily done on-the-fly. To make an edit at the currently playing point in the project, please pause first (see below.)</p>
+          <h5 style="clear:both">Pause (Alt+Shift+Space)</h5>
+          <p><img src="images/icons/media-playback-pause.png" alt="pause icon" class="icon"/>Playback can be paused at anytime by pressing the pause button. The audio block that was currently playing stays selected, so that it serves as context for editing. When an edit is done while paused, playback will generally stop (see below.)</p>
+          <h5 style="clear:both">Stop (Esc, the escape key)</h5>
+          <p><img src="images/icons/media-playback-stop.png" alt="stop icon" class="icon"/>To stop playback, press the stop button. The selection is restored to what it was before playback started. If you stop when not playing, any selected object gets deselected.</p>
+        </div>
+        <div style="clear:both" id="record">
+          <h4>Record</h4>
+          <p><img src="images/icons/media-record.png" alt="record icon" class="icon"/>New audio can be recorded by Obi. To record new audio, first select an audio block <em>before</em> which to record (new audio blocks will be created before the selected block), or a strip at the end of which to record (new audio blocks will be created at the end of the selected strip.) If no selection is made before recording, a new section will be created automatically.</p>
+          <p>Once the selection is made, press the record button, or Ctrl+R. This will bring up the record dialog shown below:</p>
+          <p style="clear:both" class="obivisible"><img src="images/manual_record.png" alt="the record dialog"/></p>
+          <p class="wwwvisible"><a rel="external" href="images/manual_record.png" title="full-size screenshot"><img src="images/manual_record.png" alt="the record dialog"/></a></p>
+        </div>
+        <p class="todo">Describe the dialog. Start listening, press record to record. Create a new phrase with phrase button, new page with page. Explain VU meter too btw.</p>
+        <div id="nav-phrases">
+          <h4>Navigating through phrases</h4>
+          <p><img src="images/icons/go-previous.png" alt="move to previous phrase icon" class="icon"/><img src="images/icons/go-next.png" alt="move to next phrase icon" class="icon"/>You can move from phrase to phrase in the book, <em>i.e.</em> from audio block to audio block, using the <q>previous phrase</q> and <q>next phrase</q> buttons in the transport bar, or the left and right arrow keys.</p>
+          <p class="todo">Moving backward to beginning of current block vs. previous block. Start when stopped, but not when paused?</p>
+        </div>
+        <div id="nav-sections">
+          <h4>Navigating through sections</h4>
+          <p><img src="images/icons/go-up.png" alt="move to previous section icon" class="icon"/><img src="images/icons/go-down.png" alt="move to next section icon" class="icon"/>You can move from section to section in the book, <em>i.e.</em> from strip to strip, using the <q>previous section</q> and <q>next section</q> buttons in the transport bar, or the up and down arrow keys.</p>
+          <p class="todo">Moving backward to beginning of current block vs. previous block. Start when stopped, but not when paused?</p>
+        </div>
+        <div id="nav-time">
+          <h4>Navigating through time</h4>
+          <p><img src="images/icons/media-seek-backward.png" alt="rewind icon" class="icon"/><img src="images/icons/media-seek-forward.png" alt="fast forward icon" class="icon"/>You can playback faster both forward and backward to navigate through long audio blocks using the fast forward and rewind buttons. When clicked, these buttons will increase and change the direction of the playback speed. To go back to normal playback, press pause or play.</p>
+        </div>
+      </div>
+      <div id="saving">
+        <h4>Saving</h4>
       </div>
     </div>
 
