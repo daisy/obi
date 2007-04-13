@@ -789,7 +789,10 @@ namespace Obi.Assets
                             for (int i = 0; i < AssetList[AssetCount].mClips.Count; i++)
                             {
                                 br = new BinaryReader(File.OpenRead(AssetList[AssetCount].mClips[i].Path));
-                                br.BaseStream.Position = AssetList[AssetCount].mClips[i].BeginByte + 44;
+
+                                // Align frames and place binary reader at offset of 44 bytes to skip header
+                                br.BaseStream.Position = 
+                                    Audio.CalculationFunctions.AdaptToFrame (  AssetList[AssetCount].mClips[i].BeginByte,AssetList[0].FrameSize )  + 44;
                                 for (long l = AssetList[AssetCount].mClips[i].BeginByte; l < AssetList[AssetCount].mClips[i].EndByte; l++)
                                 {
                                     bw.Write(br.ReadByte());
