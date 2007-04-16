@@ -238,7 +238,7 @@ namespace Obi.UserControls
                     if (dialog.ResultAsset != null)
                     {
                         PhraseNode SplitPhraseNode = mProjectPanel.Project.Split(phrase, dialog.ResultAsset ) ;
-                        SynchronizeWithCoreTree(SplitPhraseNode.ParentSection);
+                        mProjectPanel.SynchronizeWithCoreTree();
                         mProjectPanel.CurrentSelection =
                             new NodeSelection(SplitPhraseNode , this);
                     }
@@ -272,7 +272,8 @@ namespace Obi.UserControls
                 mProjectPanel.TransportBar.Enabled = true;
                 if (split != null)
                 {
-                    SynchronizeWithCoreTree(split.ParentSection);
+                    
+                    mProjectPanel.SynchronizeWithCoreTree();
                     mProjectPanel.CurrentSelection = new NodeSelection(split, this);
                     mProjectPanel.TransportBar.Play();
                 }
