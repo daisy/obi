@@ -897,5 +897,256 @@ namespace Obi.Assets
             return AssetList;
         }
 
+
+        /// <summary>
+        ///  converts format of audio asset just imported as it works on only one clip
+        ///  creates a new audio file with new format, rename it to name of original file and re assign asset format information
+        /// <see cref=""/>
+        /// </summary>
+        /// <param name="parChannels"></param>
+        /// <param name="parBitDepth"></param>
+        /// <param name="parSamplerate"></param>
+        public void ConvertAudioFormat(int parChannels, int parBitDepth, int parSamplerate )
+        {
+            
+            BinaryReader br = new BinaryReader(File.OpenRead( mClips[0].Path  ));
+            // Create a temporary file with new format 
+            string DestinationPath = mClips[0].Path  + "Temp";
+            BinaryWriter bw = null;
+            try
+            {
+                bw = new BinaryWriter(File.Create (DestinationPath ));
+            }
+            catch (System.Exception Ex)
+            {
+                MessageBox.Show(Ex.ToString());
+            }
+
+            br.BaseStream.Position = 0;
+            bw.BaseStream.Position = 0;
+
+            for (int i = 0; i < 44; i++)
+            {
+                bw.Write(br.ReadByte());
+            }
+            int SampleValue = 0;
+            long NewAudioLengthInBytes = 0;
+            br.BaseStream.Position = 44;
+            bw.BaseStream.Position = 44;
+
+            // use an incrementor in loops depending on byte size per sample
+            int Inr = mBitDepth / 8;
+
+
+            // array to pass sample values to average function 
+            int[] SampleArrayForChannels = new int[2];
+
+            // if sample rate is to be increased
+            if (mSamplingRate <= parSamplerate)
+            {
+                int SampleRatio = parSamplerate / mSamplingRate;
+
+                for (int i = 0; i <  mAudioLengthInBytes ; i = i + Inr)
+                {
+                    SampleValue = ReadSampleValue(br);
+
+                    // if channels are to be reduced
+                    if (mChannels > parChannels)
+                    {
+                        // compute average sample value from GetAverage function using an array
+                        SampleArrayForChannels[0] = SampleValue;
+                        SampleArrayForChannels[1] = ReadSampleValue(br);
+                        SampleValue = GetAverageSampleValue(SampleArrayForChannels);
+                        i = i + Inr;
+                    }
+
+                    // repeat writing of sample value to wav file in order to increase sample rate
+                    for (int j = 0; j < SampleRatio; j++)
+                    {
+                        WriteSampleValue(SampleValue, bw);
+                        NewAudioLengthInBytes = NewAudioLengthInBytes + 2;
+
+                        // if channels has to be increased, write sample value to both left and right channels
+                        if (mChannels < parChannels)
+                        {
+                            WriteSampleValue(SampleValue, bw);
+                            NewAudioLengthInBytes = NewAudioLengthInBytes + 2;
+                        }
+
+                    }
+                }
+                WriteHeader(bw, parChannels, parBitDepth, parSamplerate, NewAudioLengthInBytes);
+            }
+            else if (mSamplingRate > parSamplerate)  // Sample rate is to be reduced
+            {
+                int SampleRatio = mSamplingRate / parSamplerate;
+                int[] SampleArray = new int[SampleRatio];
+
+                // j is  counter equal to number of samples to be converted to one sample
+                int j = 0;
+
+                for (int i = 0; i < mAudioLengthInBytes ; i = i + Inr)
+                {
+
+                    SampleValue = ReadSampleValue(br);
+
+                    // if we need to reduce channels
+                    if (mChannels > parChannels)
+                    {
+                        SampleArrayForChannels[0] = SampleValue;
+                        SampleArrayForChannels[1] = ReadSampleValue(br);
+                        SampleValue = GetAverageSampleValue(SampleArrayForChannels);
+                        i = i + Inr;
+                    }
+
+                    // feed sample value to an array so as to cumpute its average
+                    SampleArray[j] = SampleValue;
+
+                    if (j == SampleRatio - 1)
+                    {
+                        SampleValue = GetAverageSampleValue(SampleArray);
+                        WriteSampleValue(SampleValue, bw);
+                        NewAudioLengthInBytes = NewAudioLengthInBytes + 2;
+
+                        // if channels are to be increased, repeat same sample value  for each channel
+                        if (mChannels < parChannels)
+                        {
+                            WriteSampleValue(SampleValue, bw);
+                            NewAudioLengthInBytes = NewAudioLengthInBytes + 2;
+                        }
+
+                    }
+                    ++j;
+                    if (j >= SampleRatio)
+                        j = 0;
+
+                }
+                WriteHeader(bw, parChannels, parBitDepth, parSamplerate, NewAudioLengthInBytes);
+            }
+
+
+            br.Close();
+            bw.Close();
+            br = null;
+            bw = null;
+
+            // Delete original file and rename temp file to name of original file
+            File.Delete( mClips[0].Path );
+            File.Move(DestinationPath, mClips[0].Path );
+
+            // change members
+
+            AudioClip ExportAudioClip ;
+            
+                ExportAudioClip = new AudioClip(mClips[0].Path ) ;
+
+                List<AudioClip> NewList = new List<AudioClip>();
+                NewList.Add(ExportAudioClip);
+                mClips = NewList;
+
+                mChannels = ExportAudioClip.Channels;
+                mBitDepth = ExportAudioClip.BitDepth;
+                mSamplingRate = ExportAudioClip.SampleRate;
+                mFrameSize = ExportAudioClip.FrameSize;
+
+                mAudioLengthInTime = ExportAudioClip.LengthInTime;
+                mAudioLengthInBytes = Audio.CalculationFunctions.ConvertTimeToByte(mAudioLengthInTime, mSamplingRate, mFrameSize);
+                mSizeInBytes = mAudioLengthInBytes;
+
+                Manager.AddedClip(ExportAudioClip);
+            
+        }
+
+        private int ReadSampleValue(BinaryReader br)
+        {
+            int SampleValue = br.ReadByte();
+            if (mBitDepth == 16)
+                SampleValue = SampleValue + (br.ReadByte() * 256);
+            else if (mBitDepth == 8)
+                SampleValue = SampleValue * 128;
+
+
+            return SampleValue;
+        }
+
+        private void WriteSampleValue(int SampleValue, BinaryWriter bw)
+        {
+            byte b = Convert.ToByte(Math.Abs(SampleValue % 256));
+            bw.Write(b);
+            b = Convert.ToByte((SampleValue / 256));
+            bw.Write((b));
+        }
+
+        private int GetAverageSampleValue(int[] SampleArray)
+        {
+            long AverageSampleValue = 0;
+            for (int i = 0; i < SampleArray.Length; i++)
+            {
+                if (SampleArray[i] > 32768)
+                    SampleArray[i] = SampleArray[i] - 65536;
+
+                AverageSampleValue = AverageSampleValue + SampleArray[i];
+            }
+            AverageSampleValue = AverageSampleValue / SampleArray.Length;
+
+            if (AverageSampleValue < 0)
+                AverageSampleValue = 65536 + AverageSampleValue;
+
+            return Convert.ToInt32(AverageSampleValue);
+        }
+
+        private void WriteHeader(BinaryWriter bw, int parChannels, int parBitDepth, int parSampleRate, long parLength)
+        {
+            //MessageBox.Show(parChannels.ToString()  + " : " + parBitDepth.ToString ()  + " : " + parSampleRate.ToString() + " : " + parLength.ToString () );
+            // write channels
+            bw.BaseStream.Position = 22;
+            bw.Write(Convert.ToByte(parChannels));
+
+            // write samplt rate
+            int[] Ar =Audio.CalculationFunctions.ConvertFromDecimal(Convert.ToInt64(parSampleRate));
+            bw.BaseStream.Position = 24;
+            for (int i = 0; i < 4; i++)
+            {
+                bw.Write(Convert.ToByte(Ar[i]));
+            }
+
+            // write frame size
+            bw.BaseStream.Position = 32;
+            bw.Write(Convert.ToByte(parChannels * (parBitDepth / 8)));
+
+            // write bits per second
+            int[] ArBps = Audio.CalculationFunctions.ConvertFromDecimal(parSampleRate * parChannels * (parBitDepth / 8));
+            bw.BaseStream.Position = 28;
+            for (int i = 0; i < 4; i++)
+            {
+                bw.Write(Convert.ToByte(ArBps[i]));
+            }
+
+            // write bit depth
+            Ar = Audio.CalculationFunctions.ConvertFromDecimal(Convert.ToInt64(parBitDepth));
+            bw.BaseStream.Position = 34;
+            for (int i = 0; i < 2; i++)
+                bw.Write(Convert.ToByte(Ar[i]));
+
+            // write audio length
+            Ar = Audio.CalculationFunctions.ConvertFromDecimal(parLength);
+            bw.BaseStream.Position = 40;
+            for (int i = 0; i < 4; i++)
+            {
+                bw.Write(Convert.ToByte(Ar[i]));
+            }
+
+            // write complete length in bytes
+            Ar = Audio.CalculationFunctions.ConvertFromDecimal(parLength + 44);
+            bw.BaseStream.Position = 4;
+            for (int i = 0; i < 4; i++)
+            {
+                bw.Write(Convert.ToByte(Ar[i]));
+            }
+
+        }
+
+
+
     }//end of class
 }
