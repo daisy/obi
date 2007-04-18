@@ -15,6 +15,7 @@ namespace Obi.UserControls
         private Playlist mLocalPlaylist;     // local playlist (only selected; may be null)
         private Playlist mCurrentPlaylist;   // playlist currently playing
         private NodeSelection mPlayingFrom;  // selection before playback started
+        private bool m_IsSerialPlaying = false ; // A  non fluctuating flag to be set till playing of assets in serial is continued
 
         // constants from the display combo box
         private static readonly int Elapsed = 0;
@@ -83,6 +84,15 @@ namespace Obi.UserControls
         public bool CanResume
         {
             get { return Enabled && mCurrentPlaylist.State == Audio.AudioPlayerState.Paused; }
+        }
+
+
+        public bool IsSeriallyPlaying
+        {
+            get
+            {
+                return m_IsSerialPlaying;
+            }
         }
 
         /// <summary>
@@ -179,7 +189,7 @@ namespace Obi.UserControls
             if (mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped)
             {
                 mDisplayTimer.Stop();
-                Play_PlayerStopped(this, null);
+                //Play_PlayerStopped(this, null); // Avn: commented as was invoking EndOfPlaylist catch function which gave wrong indication of end of playlist
             }
             else if (mCurrentPlaylist.State == Audio.AudioPlayerState.Playing)
             {
@@ -219,7 +229,11 @@ namespace Obi.UserControls
         /// </summary>
         public void PrevSection()
         {
+            m_IsSerialPlaying = true;
             if (Enabled) mCurrentPlaylist.NavigateToPreviousSection();
+
+            if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing)
+                m_IsSerialPlaying = false;
         }
 
         private void mPrevPhraseButton_Click(object sender, EventArgs e)
@@ -232,7 +246,13 @@ namespace Obi.UserControls
         /// </summary>
         public void PrevPhrase()
         {
+            if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing)
+                m_IsSerialPlaying = true;
+            
             if (Enabled) mCurrentPlaylist.NavigateToPreviousPhrase();
+
+            if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing)
+                m_IsSerialPlaying = false;
         }
 
         private void mRewindButton_Click(object sender, EventArgs e)
@@ -248,7 +268,11 @@ namespace Obi.UserControls
             if (Enabled)
             {
                 if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing) Pause();
-                if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused) mCurrentPlaylist.Rewind();
+                if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused)
+                {
+                    m_IsSerialPlaying = true;
+                    mCurrentPlaylist.Rewind();
+                }
             }
         }
 
@@ -301,11 +325,13 @@ namespace Obi.UserControls
                 {
                     mVUMeterPanel.Enable = true;
                     mVUMeterPanel.PlayListObj = mCurrentPlaylist;
+                    m_IsSerialPlaying = true;
                     mCurrentPlaylist.Play();
                 }
             }
             else if (CanResume)
             {
+                m_IsSerialPlaying = true;
                 mCurrentPlaylist.Resume();
             }
         }
@@ -323,16 +349,19 @@ namespace Obi.UserControls
                 mCurrentPlaylist.CurrentPhrase = mLocalPlaylist.FirstPhrase;
                 mVUMeterPanel.PlayListObj = mCurrentPlaylist;
                 mVUMeterPanel.Enable = true;
+                m_IsSerialPlaying = true;
                 mCurrentPlaylist.Play();
             }
             else if (CanResume)
             {
+                m_IsSerialPlaying = true;
                 mCurrentPlaylist.Resume();
             }
             else if (mCurrentPlaylist != mMasterPlaylist)
             {
                 Stop();
                 mProjectPanel.CurrentSelection = new NodeSelection(node, mProjectPanel.StripManager);
+                m_IsSerialPlaying = true;
                 Play(node);
             }
         }
@@ -347,7 +376,11 @@ namespace Obi.UserControls
         /// </summary>
         public void Pause()
         {
-            if (Enabled) mCurrentPlaylist.Pause();
+            if (Enabled)
+            {
+                mCurrentPlaylist.Pause();
+                m_IsSerialPlaying = false;
+            }
         }
 
         private void mRecordButton_Click(object sender, EventArgs e)
@@ -451,11 +484,13 @@ namespace Obi.UserControls
                     mProjectPanel.CurrentSelection = mPlayingFrom;
                 }
                 mPlayingFrom = null;
+                m_IsSerialPlaying = false;
             }
         }
 
         private void mFastForwardButton_Click(object sender, EventArgs e)
         {
+            
             FastForward();
         }
 
@@ -467,7 +502,11 @@ namespace Obi.UserControls
             if (Enabled)
             {
                 if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing) Pause();
-                if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused) mCurrentPlaylist.FastForward();
+                if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused)
+                {
+                    m_IsSerialPlaying = true;
+                    mCurrentPlaylist.FastForward();
+                }
             }
         }
 
@@ -481,12 +520,18 @@ namespace Obi.UserControls
         /// </summary>
         public void NextPhrase()
         {
+            m_IsSerialPlaying = true;
             if (Enabled) mCurrentPlaylist.NavigateToNextPhrase();
+
+            if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing)
+                m_IsSerialPlaying = false;
+
         }
 
         private void mNextSectionButton_Click(object sender, EventArgs e)
         {
             NextSection();
+
         }
 
         /// <summary>
@@ -494,7 +539,11 @@ namespace Obi.UserControls
         /// </summary>
         public void NextSection()
         {
+            m_IsSerialPlaying = true;
             if (Enabled) mCurrentPlaylist.NavigateToNextSection();
+
+            if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing)
+                m_IsSerialPlaying = false;
         }
 
         #endregion

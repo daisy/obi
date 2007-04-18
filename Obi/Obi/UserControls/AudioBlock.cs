@@ -42,7 +42,11 @@ namespace Obi.UserControls
                 if (mSelected != value)
                 {
                     mSelected = value;
-                    if (value) Focus();
+                    if (value)
+                    {
+                        if (Manager.ContainsFocus || !Manager.ProjectPanel.TransportBar.IsSeriallyPlaying)
+                            Focus();
+                    }
                     Invalidate();
                 }
             }

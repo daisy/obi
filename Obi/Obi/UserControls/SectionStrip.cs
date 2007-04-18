@@ -87,7 +87,8 @@ namespace Obi.UserControls
                     {
                         // kludge to disallow the child from stealing the parent's focus/selection
                         mChildCanFocus = false;
-                        Focus();
+                        if (Manager.ContainsFocus || !Manager.ProjectPanel.TransportBar.IsSeriallyPlaying)
+                            Focus();
                     }
                     Invalidate();
                 }
