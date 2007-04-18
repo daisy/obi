@@ -425,7 +425,7 @@ namespace Obi
             {
                 //mPlaylistState = AudioPlayerState.Stopped;    // Avn: Commented because changing Playlist state to stopped before calling stop () function will bypass stopping code
                 Stop();
-                //EndOfPlaylist(this, new EventArgs());// Avn: Commentted because this event is already triggered by Stop () function
+                EndOfPlaylist(this, new EventArgs());
             }
         }
 
