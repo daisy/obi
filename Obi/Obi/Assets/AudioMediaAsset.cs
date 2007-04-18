@@ -770,16 +770,17 @@ namespace Obi.Assets
                     // copy header of first audio clip file to export aubio file
                     br = new BinaryReader(File.OpenRead(AssetList[0].mClips[0].Path));
 
+                    bw.BaseStream.Position = 0 ;
                     for (int i = 0; i < 44; i++)
                     {
                         bw.Write(br.ReadByte());
                     }
-                    bw.BaseStream.Position = 44;
-                    br.Close();
 
+                    br.Close();
+                    bw.BaseStream.Position = 44;
                     // byte count variable for counting total bytes copied to export file
                     long ByteLengthCount = 0;
-
+                    int ListFrameSize = AssetList[0].FrameSize;
 
                     for (int AssetCount = 0; AssetCount < AssetList.Count; AssetCount++)
                     {
@@ -793,10 +794,10 @@ namespace Obi.Assets
                                 // Align frames and place binary reader at offset of 44 bytes to skip header
                                 br.BaseStream.Position = 
                                     Audio.CalculationFunctions.AdaptToFrame (  AssetList[AssetCount].mClips[i].BeginByte,AssetList[0].FrameSize )  + 44;
-                                for (long l = AssetList[AssetCount].mClips[i].BeginByte; l < AssetList[AssetCount].mClips[i].EndByte; l++)
+                                for (long l = AssetList[AssetCount].mClips[i].BeginByte; l < AssetList[AssetCount].mClips[i].EndByte; l = l + ListFrameSize )
                                 {
-                                    bw.Write(br.ReadByte());
-                                    ByteLengthCount++;
+                                    bw.Write(br.ReadBytes ( ListFrameSize ) , 0 , ListFrameSize );
+                                    ByteLengthCount = ByteLengthCount + ListFrameSize ;
 
                                 }
 

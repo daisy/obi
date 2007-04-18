@@ -261,6 +261,7 @@ namespace Obi.Assets
 
             // end byte and length in byte of original clip is modified
             m_lEndByte = CalculationFunctions.ConvertTimeToByte(m_dEndTime , m_ClipSamplingRate , m_ClipFrameSize );
+            m_lEndByte = CalculationFunctions.AdaptToFrame( m_lEndByte , m_ClipFrameSize);
             m_lLengthInBytes = CalculationFunctions.ConvertTimeToByte(m_dLengthInTime , m_ClipSamplingRate , m_ClipFrameSize );
 
             return ob_AudioClip;
