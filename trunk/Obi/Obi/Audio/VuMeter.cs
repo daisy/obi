@@ -343,6 +343,7 @@ namespace Obi.Audio
 
             //Thread.Sleep (25) ;
             // Update ccurrent graph cordinates to VuMeter display
+            if ( UpdateForms != null )
             UpdateForms(this, new Events.Audio.VuMeter.UpdateFormsEventArgs());
 		}
 
