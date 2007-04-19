@@ -21,6 +21,12 @@ namespace Obi.UserControls
         private Audio.VuMeter mVuMeter;
         private bool m_ResizeParentForm = false;
 
+        // flag to indicate overload for overload light to display
+        bool m_OverloadLightEnabled = false;
+
+        // variable to count number of timer ticks to skip for an operation
+        int BackPaintCount = 0;
+
         public Audio.VuMeter VuMeter
         {
             get
@@ -132,8 +138,7 @@ namespace Obi.UserControls
             tmRefresh.Start();
             //MessageBox.Show(EraserLeft.ToString());
         }
-        bool BeepEnabled = false;
-        int BackPaintCount = 0;
+        
         private void tmRefresh_Tick(object sender, System.EventArgs e)
         {
             //System.Media.SystemS2ounds.Asterisk.Play();
@@ -237,16 +242,16 @@ namespace Obi.UserControls
 
             // paint the peak overload light
 
-            if (BeepEnabled == false)
+            if (m_OverloadLightEnabled== false)
             {
                 objGraphics.DrawLine(PenBackLight, PeakOverloadLightX, PeakOverloadLightY, PeakOverloadLightX, PeakOverloadLightY + PeakOverloadLightWidth);
             }
             else  // Paint the light red for warning
             {
                 objGraphics.DrawLine(PenOverloadLight, PeakOverloadLightX, PeakOverloadLightY, PeakOverloadLightX, PeakOverloadLightY + PeakOverloadLightWidth);
-                //LoadBeep();
+
             }
-            BeepEnabled = false;
+            m_OverloadLightEnabled= false;
         }
 
 
@@ -274,7 +279,7 @@ namespace Obi.UserControls
             {
             }
 
-            BeepEnabled = true;
+            m_OverloadLightEnabled= true;
         }
 
         internal void CatchResetEvent(object sender, Events.Audio.VuMeter.ResetEventArgs ob_VuMeterEvent)
