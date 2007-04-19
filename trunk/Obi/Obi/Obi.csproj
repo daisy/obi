@@ -77,9 +77,14 @@
     <Compile Include="Audio\CalculationFunctions.cs" />
     <Compile Include="Audio\Commands.cs" />
     <Compile Include="Assets\MediaAsset.cs" />
-    <Compile Include="Audio\VuMeter.cs" />
+    <Compile Include="Audio\VuMeter.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Audio\VuMeterForm.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Audio\VuMeterForm.Designer.cs">
+      <DependentUpon>VuMeterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Clipboard.cs" />
     <Compile Include="Commands\Command.cs" />
@@ -217,10 +222,6 @@
     <Compile Include="Project.ExportToZed.cs" />
     <Compile Include="Project.TOC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Audio\VuMeterForm.resx">
-      <DependentUpon>VuMeterForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\EditSimpleMetadata.resx">
       <SubType>Designer</SubType>
       <DependentUpon>EditSimpleMetadata.cs</DependentUpon>
@@ -385,6 +386,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Audio\VuMeterForm.resx">
+      <DependentUpon>VuMeterForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\About.resx">
       <SubType>Designer</SubType>
       <DependentUpon>About.cs</DependentUpon>

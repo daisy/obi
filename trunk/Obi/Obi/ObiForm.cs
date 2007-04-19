@@ -20,6 +20,7 @@ namespace Obi
         private Settings mSettings;              // application settings
         private CommandManager mCommandManager;  // the undo stack for this project
         private Audio.VuMeterForm mVuMeterForm;  // keep track of a single VU meter form
+        private Audio.VuMeter m_Vumeter ; // VuMeterForm is to be initialised again and again so this instance is required as member
 
         public bool AllowDelete
         {
@@ -84,20 +85,26 @@ namespace Obi
             mProjectPanel.TransportBar.PlaybackRateChanged += new EventHandler(TransportBar_PlaybackRateChanged);
         }
 
+        
         /// <summary>
         /// Set up the VU meter form.
         /// </summary>
         private void InitializeVuMeter()
         {
-            Audio.VuMeter vumeter = new Obi.Audio.VuMeter();
-            Audio.AudioPlayer.Instance.VuMeter = vumeter;
-            Audio.AudioRecorder.Instance.VuMeterObject = vumeter;
-            vumeter.SetEventHandlers();
-            mVuMeterForm = new Audio.VuMeterForm(vumeter);
+            m_Vumeter  = new Obi.Audio.VuMeter();
+            Audio.AudioPlayer.Instance.VuMeter = m_Vumeter ;
+            Audio.AudioRecorder.Instance.VuMeterObject = m_Vumeter ;
+            m_Vumeter.SetEventHandlers();
+        }
+
+        // setup a VuMeter form and show it
+        private void ShowVuMeterForm ()
+        {
+            mVuMeterForm = new Audio.VuMeterForm(m_Vumeter );
             mVuMeterForm.MagnificationFactor = 1.5;
             // Kludgy
             mVuMeterForm.Show();
-            mVuMeterForm.Visible = false;
+            //mVuMeterForm.Visible = false;
         }
 
         /// <summary>
@@ -887,7 +894,7 @@ namespace Obi
             bool isProjectOpen = mProject != null;
             bool isNodeSelected = isProjectOpen && mProjectPanel.CurrentSelection != null;
 
-            mShowHideVUMeterToolStripMenuItem.Text = Localizer.Message(mVuMeterForm.Visible ? "hide_vu_meter" : "show_vu_meter");
+            mShowHideVUMeterToolStripMenuItem.Text = Localizer.Message(( mVuMeterForm != null && mVuMeterForm.Visible) ? "hide_vu_meter" : "show_vu_meter");
             if (mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
             {
                 mPlayAllToolStripMenuItem.Enabled = isProjectOpen;
@@ -957,11 +964,13 @@ namespace Obi
         {
             if (mVuMeterForm != null && mVuMeterForm.Visible)
             {
-                mVuMeterForm.Hide();
+
+                //mVuMeterForm.Hide();
+                mVuMeterForm.Close();
             }
             else
             {
-                mVuMeterForm.Show();
+                ShowVuMeterForm();
             }
         }
 
