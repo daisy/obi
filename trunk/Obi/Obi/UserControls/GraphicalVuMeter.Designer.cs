@@ -34,7 +34,7 @@ namespace Obi.UserControls
             // 
             // tmRefresh
             // 
-            this.tmRefresh.Interval = 10;
+            this.tmRefresh.Enabled = true;
             this.tmRefresh.Tick += new System.EventHandler(this.tmRefresh_Tick);
             // 
             // GraphicalVuMeter

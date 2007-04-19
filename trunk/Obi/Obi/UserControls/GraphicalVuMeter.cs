@@ -19,6 +19,7 @@ namespace Obi.UserControls
         }
 
         private Audio.VuMeter mVuMeter;
+        private bool m_ResizeParentForm = false;
 
         public Audio.VuMeter VuMeter
         {
@@ -42,6 +43,26 @@ namespace Obi.UserControls
             }
         }
 
+
+        public bool ResizeParent
+        {
+            get
+            {
+                return m_ResizeParentForm;
+            }
+            set
+            {
+                m_ResizeParentForm = value;
+            }
+        }
+
+        public void UnHookEvents ()
+        {
+            mVuMeter.PeakOverload -= new Events.Audio.VuMeter.PeakOverloadHandler(CatchPeakOverloadEvent);
+            mVuMeter.UpdateForms -= new Events.Audio.VuMeter.UpdateFormsHandler(CatchUpdateForms);
+            mVuMeter.ResetEvent -= new Events.Audio.VuMeter.ResetHandler(CatchResetEvent);
+        }
+
         // member variables
 
         internal int HighTop = 100;
@@ -59,7 +80,7 @@ namespace Obi.UserControls
         internal int LeftGraphX = 20;
         internal int RightGraphX = 75;
 
-        private int GraphOriginX = 100;
+        private int GraphOriginY = 100;
 
         internal int BackGroundWidth = 0;
         internal int BackGroundTop = 0;
@@ -76,25 +97,25 @@ namespace Obi.UserControls
 
         private void GraphicalVuMeter_Load(object sender, EventArgs e)
         {
+            this.BackColor = Color.White;
+            setScaleFactor();
             System.Drawing.Graphics objGraphics;
             objGraphics = this.CreateGraphics();
 
             Pen PenWhite = new Pen(Color.White);
             PenWhite.Width = 300;
             objGraphics.DrawLine(PenWhite, 0, 0, 0, 600);
-            this.BackColor = Color.White;
+
             // enables the refresh timer for repainting graph at regular interval
-            tmRefresh.Start();
-			
+            tmRefresh.Enabled = true;
         }
 
 
         // function to catch the update event from VuMeter class to update graph cordinates
         public void CatchUpdateForms(object sender, Events.Audio.VuMeter.UpdateFormsEventArgs Update)
         {
-            
             VuMeter ob_VuMeterArg = sender as VuMeter;
-            VuMeter  ob_VuMeter = ob_VuMeterArg;
+            mVuMeter = ob_VuMeterArg;
 
             // Update erase left and erase right cordinates
             int ThresholdFactor = 12500 / (mVuMeter.UpperThreshold - mVuMeter.LowerThreshold);
@@ -111,13 +132,12 @@ namespace Obi.UserControls
             tmRefresh.Start();
             //MessageBox.Show(EraserLeft.ToString());
         }
-
         bool BeepEnabled = false;
         int BackPaintCount = 0;
         private void tmRefresh_Tick(object sender, System.EventArgs e)
         {
+            //System.Media.SystemS2ounds.Asterisk.Play();
 
-            //System.Media.SystemSounds.Asterisk.Play();
             // paint form
             System.Drawing.Graphics objGraphics;
             objGraphics = this.CreateGraphics();
@@ -127,7 +147,7 @@ namespace Obi.UserControls
             PenVackPaint.Width = 700;
 
             BackPaintCount++;
-            if (BackPaintCount == 30)
+            if (BackPaintCount == 40)
             {
 
 
@@ -153,6 +173,9 @@ namespace Obi.UserControls
             Pen PenOverloadLight = new Pen(Color.Red);
             PenOverloadLight.Width = PeakOverloadLightWidth;
 
+            // following one line added for debugging
+            //EraserLeft = EraserRight = 0;
+
             if (EraserLeft < HighTop)
             {
                 EraserLeft = HighTop;
@@ -163,19 +186,23 @@ namespace Obi.UserControls
                 EraserRight = HighTop;
             }
 
+
             // For left channel painting
             if (EraserLeft < LowBottom && EraserLeft > LowTop)
             {
                 objGraphics.DrawLine(PenLow, LeftGraphX, EraserLeft, LeftGraphX, LowBottom);
+                DrawBoundary(objGraphics, Color.Orange, LeftGraphX, LineWidth, EraserLeft, LowBottom);
             }
             else if (EraserLeft > NormalTop && EraserLeft <= LowTop)
             {
                 objGraphics.DrawLine(PenLow, LeftGraphX, LowTop, LeftGraphX, LowBottom);
+                DrawBoundary(objGraphics, Color.Orange, LeftGraphX, LineWidth, LowTop, LowBottom);
                 objGraphics.DrawLine(PenNormal, LeftGraphX, EraserLeft, LeftGraphX, NormalBottom);
             }
             else if (EraserLeft >= HighTop && EraserLeft <= NormalTop)
             {
                 objGraphics.DrawLine(PenLow, LeftGraphX, LowTop, LeftGraphX, LowBottom);
+                DrawBoundary(objGraphics, Color.Orange, LeftGraphX, LineWidth, LowTop, LowBottom);
                 objGraphics.DrawLine(PenNormal, LeftGraphX, NormalTop, LeftGraphX, NormalBottom);
                 objGraphics.DrawLine(PenHigh, LeftGraphX, EraserLeft, LeftGraphX, HighBottom);
             }
@@ -184,15 +211,18 @@ namespace Obi.UserControls
             if (EraserRight < LowBottom && EraserRight > LowTop)
             {
                 objGraphics.DrawLine(PenLow, RightGraphX, EraserRight, RightGraphX, LowBottom);
+                DrawBoundary(objGraphics, Color.Orange, RightGraphX, LineWidth, EraserRight, LowBottom);
             }
             else if (EraserRight > NormalTop && EraserRight <= LowTop)
             {
                 objGraphics.DrawLine(PenLow, RightGraphX, LowTop, RightGraphX, LowBottom);
+                DrawBoundary(objGraphics, Color.Orange, RightGraphX, LineWidth, LowTop, LowBottom);
                 objGraphics.DrawLine(PenNormal, RightGraphX, EraserRight, RightGraphX, NormalBottom);
             }
             else if (EraserRight >= HighTop && EraserRight <= NormalTop)
             {
                 objGraphics.DrawLine(PenLow, RightGraphX, LowTop, RightGraphX, LowBottom);
+                DrawBoundary(objGraphics, Color.Orange, RightGraphX, LineWidth, LowTop, LowBottom);
                 objGraphics.DrawLine(PenNormal, RightGraphX, NormalTop, RightGraphX, NormalBottom);
                 objGraphics.DrawLine(PenHigh, RightGraphX, EraserRight, RightGraphX, HighBottom);
             }
@@ -210,15 +240,27 @@ namespace Obi.UserControls
             if (BeepEnabled == false)
             {
                 objGraphics.DrawLine(PenBackLight, PeakOverloadLightX, PeakOverloadLightY, PeakOverloadLightX, PeakOverloadLightY + PeakOverloadLightWidth);
-
-
             }
             else  // Paint the light red for warning
             {
                 objGraphics.DrawLine(PenOverloadLight, PeakOverloadLightX, PeakOverloadLightY, PeakOverloadLightX, PeakOverloadLightY + PeakOverloadLightWidth);
                 //LoadBeep();
             }
+            BeepEnabled = false;
+        }
 
+
+        private void DrawBoundary(System.Drawing.Graphics objGraphics, Color BoundaryColor, int XCord, int Width, int TopY, int LowY)
+        {
+            Pen BoundaryPen = new Pen(BoundaryColor);
+            int BoundaryWidth = Convert.ToInt32(6 * ScaleFactor);
+            BoundaryPen.Width = BoundaryWidth;
+
+            int LeftX = XCord - ((Width / 2) - (BoundaryWidth / 2));
+            int RightX = XCord + ((Width / 2) - (BoundaryWidth / 2));
+
+            objGraphics.DrawLine(BoundaryPen, LeftX, TopY, LeftX, LowY);
+            objGraphics.DrawLine(BoundaryPen, RightX, TopY, RightX, LowY);
         }
 
         // catch the peak overload event triggered by VuMeter
@@ -250,40 +292,43 @@ namespace Obi.UserControls
             PenVackground.Width = LineWidth;
             objGraphics.DrawLine(PenVackground, PeakOverloadLightX, PeakOverloadLightY, PeakOverloadLightX, PeakOverloadLightY + LineWidth + LineWidth);
             objGraphics.DrawLine(PenVackground, PeakOverloadLightX + LineWidth, PeakOverloadLightY, PeakOverloadLightX + LineWidth, PeakOverloadLightY + LineWidth + LineWidth);
-            
-            setScaleFactor();
 
+            //SetTextBoxText(txtOverloadLeft, " ");   // avoid race condition - JQ
+            //SetTextBoxText(txtOverloadRight, " ");  // JQ
+            m_ResizeParentForm = false;
+            setScaleFactor();
+            m_ResizeParentForm = true;
         }
 
         private void setScaleFactor()
         {
             //ScaleFactor = 2 ;
-            GraphOriginX = Convert.ToInt32(100 * ScaleFactor);
+            GraphOriginY = Convert.ToInt32(85 * ScaleFactor);
 
-            HighTop = GraphOriginX;
+            HighTop = GraphOriginY;
             HighBottom = HighTop + Convert.ToInt32(60 * ScaleFactor);
 
-            NormalTop = HighBottom + Convert.ToInt32(5 * ScaleFactor);
+            NormalTop = HighBottom + Convert.ToInt32(6 * ScaleFactor);
             NormalBottom = NormalTop + Convert.ToInt32(120 * ScaleFactor);
 
-            LowTop = NormalBottom + Convert.ToInt32(5 * ScaleFactor);
+            LowTop = NormalBottom + Convert.ToInt32(6 * ScaleFactor);
             LowBottom = LowTop + Convert.ToInt32(60 * ScaleFactor);
 
-            LineWidth = Convert.ToInt32(30 * ScaleFactor);
+            LineWidth = Convert.ToInt32(31 * ScaleFactor);
 
             LeftGraphX = Convert.ToInt32(25 * ScaleFactor);
-            RightGraphX = Convert.ToInt32(75 * ScaleFactor);
+            RightGraphX = Convert.ToInt32(76 * ScaleFactor);
 
-            PeakOverloadLightX = Convert.ToInt32(65 * ScaleFactor);
+            PeakOverloadLightX = Convert.ToInt32(60 * ScaleFactor);
             PeakOverloadLightY = 10;
             PeakOverloadLightWidth = Convert.ToInt32(45 * ScaleFactor);
 
-
             int width = Convert.ToInt32(110 * ScaleFactor);
             int height = Convert.ToInt32((LowBottom + 20));
-            //this.Size = new Size(width, height);
+            this.Size = new Size(width, height);
 
-
+            if ( m_ResizeParentForm )
+            this.ParentForm.Size = this.Size;
         }
 
         
