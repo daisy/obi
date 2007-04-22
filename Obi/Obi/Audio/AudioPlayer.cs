@@ -31,12 +31,14 @@ namespace Obi.Audio
   private OutputDevice mDevice;
 		
 		private BufferDescription BufferDesc = null;	
+
+        // integer to indicate which part of buffer is to be refreshed front or rear
 		private int m_BufferCheck ;
 
         // Size of buffer created for playing
 		private int m_SizeBuffer ;
 
-        // length of buffer to be refreshed during playing
+        // length of buffer to be refreshed during playing which is half of buffer size
 		private int m_RefreshLength ;
 
         // Total length of audio asset being played
@@ -44,20 +46,25 @@ namespace Obi.Audio
 
         // Length of audio asset in bytes which had been played
 		private long m_lPlayed ;
+
+        // thread for refreshing buffer while playing 
 		private Thread RefreshThread;
 
         // variable to hold stop position in buffer after audio asset is about to end and all refreshing is finished
         int m_BufferStopPosition= -1 ;
 
+        // flag to indicate last refresh has been done and do not refresh again
+        private bool m_IsLastRefresh = false;
+
         // step count to be used for compressing in fast play
-		private int m_Step = 1;
+		private int m_Step = 1 ;
 		internal int m_FrameSize ;
 		internal int m_Channels ;
 		private int m_SamplingRate ;
         private int m_VolumeLevel ;
 		private AudioPlayerState  m_State;
 		private int m_CompAddition = 0 ;
-		private long m_lClipByteCount ;
+		
 
 		private VuMeter ob_VuMeter;
 
@@ -357,14 +364,18 @@ namespace Obi.Audio
                     m_CompAddition = Convert.ToInt32(CalculationFunctions.AdaptToFrame(m_CompAddition, m_FrameSize));
                 }
 
+                // initialize M_lPlayed for this asset
+                m_lPlayed = lStartPosition;
+
+                m_IsEndOfAsset = false;
                 // Load from file to memory
                 LoadStream(true);
 
                     SoundBuffer.Write(0, m_MemoryStream, m_SizeBuffer, 0);
                 
                 // Adds the length (count) of file played into a variable
-                // Folowing one line was modified on 2 Aug 2006 i.e lStartPosition is added
-                m_lPlayed = m_SizeBuffer + (2 * m_CompAddition) + lStartPosition;
+                // Folowing one line was modified on 22 April 2007 i.update to m_lPlayed is done in load stream function
+                //m_lPlayed = m_SizeBuffer + (2 * m_CompAddition) + lStartPosition;
 
 
                 // trigger  events (modified JQ)
@@ -395,7 +406,7 @@ namespace Obi.Audio
             long SafeMargin = CalculationFunctions.ConvertTimeToByte(1, m_SamplingRate, m_FrameSize);
 
 
-			while (m_lPlayed < m_lLength - SafeMargin )
+			while ( ( m_lPlayed < m_lLength - SafeMargin )    &&     ( m_IsEndOfAsset == false ) )
 			{//1
 				if (SoundBuffer.Status.BufferLost  )
 					SoundBuffer.Restore () ;
@@ -421,7 +432,8 @@ namespace Obi.Audio
 				{//2
 						LoadStream (false) ;
 							SoundBuffer.Write (0 , m_MemoryStream, m_RefreshLength, 0) ;
-					m_lPlayed = m_lPlayed + m_RefreshLength+ m_CompAddition;
+                    // following one line commented on 22 April 2007 , m_lPlayed update is moved to loadStream  function 
+//					m_lPlayed = m_lPlayed + m_RefreshLength+ m_CompAddition;
 					m_BufferCheck++ ;
 				}//-1
                     // refresh Rear half of buffer for even count
@@ -429,14 +441,15 @@ namespace Obi.Audio
 				{//1
 						LoadStream (false) ;
 							SoundBuffer.Write (m_RefreshLength, m_MemoryStream, m_RefreshLength, 0)  ;
-					m_lPlayed = m_lPlayed + m_RefreshLength+m_CompAddition ;
+                            // following one line commented on 22 April 2007 , m_lPlayed update is moved to loadStream  function 
+					//m_lPlayed = m_lPlayed + m_RefreshLength+m_CompAddition ;
 					m_BufferCheck++ ;
 					// end of even/ odd part of buffer;
 				}//-1
 					
 				// end of while
 			}
-
+            m_IsEndOfAsset = false;
 
              m_BufferStopPosition= -1 ;
             if (m_BufferCheck == 1 )
@@ -669,22 +682,35 @@ namespace Obi.Audio
 
                 if (m_BufferStopPosition != -1)
                 {
-                    lCurrentPosition = m_Asset.AudioLengthInBytes - (m_BufferStopPosition - PlayPosition);
+                    int subtractor = (m_BufferStopPosition - PlayPosition) ;
+                    if (m_Step != 1)
+                        subtractor = subtractor + ((subtractor * 2) / m_Step);
+                    lCurrentPosition = m_Asset.AudioLengthInBytes - subtractor ;
                 }
                 //if (PlayPosition < m_RefreshLength) // Avn: changed on19 Dec 2006 for improving get position for pause
                 else if (m_BufferCheck % 2 == 1)
                 {
                     // takes the lPlayed position and subtract the part of buffer played from it
-                    lCurrentPosition = m_lPlayed - (2 * m_RefreshLength) + PlayPosition;
+                    int subtractor = (2 * m_RefreshLength) - PlayPosition;
+                    if (m_Step != 1)
+                        subtractor = subtractor + ((subtractor * 2) / m_Step);
+
+                    lCurrentPosition = m_lPlayed - subtractor ;
                 }
                 else
                 {
-                    lCurrentPosition = m_lPlayed - (3 * m_RefreshLength) + PlayPosition;
+                    int subtractor = (3 * m_RefreshLength) - PlayPosition;
+                    if (m_Step != 1)
+                        subtractor = subtractor + ((subtractor * 2) / m_Step);
+
+                    lCurrentPosition = m_lPlayed - subtractor ;
                 }
 
                 if (lCurrentPosition >= m_Asset.AudioLengthInBytes)
                     lCurrentPosition = m_Asset.AudioLengthInBytes - Convert.ToInt32(CalculationFunctions.ConvertTimeToByte(100, m_SamplingRate, m_FrameSize));
             }
+
+            lCurrentPosition = CalculationFunctions.AdaptToFrame(lCurrentPosition, m_FrameSize);
 			return lCurrentPosition ;
 		}
 
@@ -743,37 +769,71 @@ namespace Obi.Audio
 			SetCurrentBytePosition(lTemp) ;
 		}
 
+        // some member variables for use in loading of stream
+        // memory stream which collects audio bytes from clips and load them to buffer
 		MemoryStream m_MemoryStream = new MemoryStream () ;
+        long m_MemoryStreamPosition = 0;
+
+        // count bytes loaded per refresh to update to m_lPlayed
+      int  m_LoadCount = 0;
+
+        // binary reader to read audio bytes from clips
 		BinaryReader m_br  ;
+
+        // index of current clip in asset
 		int m_ClipIndex   ;
+
+        // audio clip of asset currently being loaded
 		Assets.AudioClip ob_Clip ;
 
+        // keeps  record of clip bytes loaded to memory stream, works only for current clip
+        private long m_lClipByteCount = 0;
+
+        /// <summary>
+        /// function to collect audio data from clips and load it to buffer
+        /// <see cref=""/>
+        /// </summary>
+        /// <param name="boolInit"></param>
 		void LoadStream (bool boolInit  )
 		{
 			m_MemoryStream.Position = 0 ;
+            m_LoadCount = 0;
+
 			if (boolInit == true)
 			{
 				m_StartPosition  = CalculationFunctions.AdaptToFrame (m_StartPosition , m_FrameSize) ;
+
+                // convert start position to time so as to use with find clip to process function
 				double dStartPosition = CalculationFunctions.ConvertByteToTime (m_StartPosition , m_SamplingRate , m_FrameSize) ;
+
+                // use FindClipToProcess function to find index of clip and its position from where current asset is to be played
 				ArrayList alInfo = new ArrayList (m_Asset.FindClipToProcess(dStartPosition)) ;
 				m_ClipIndex = Convert.ToInt32 (alInfo [0] );
-				//ob_Clip = m_Asset.m_alClipList [m_ClipIndex] as Assets.AudioClip;
+
                 ob_Clip = m_Asset.Clips[m_ClipIndex];
+
+                // Add local byte position in clip to begin byte of clip to get absolute position in file
 				double dPositionInClip = Convert.ToDouble (alInfo [1]) + ob_Clip.BeginTime ;
 				m_br =new BinaryReader (File.OpenRead(ob_Clip.Path)) ;
-				long lPositionInClip = CalculationFunctions.ConvertTimeToByte (dPositionInClip , m_SamplingRate , m_FrameSize) + 44;
-                lPositionInClip = CalculationFunctions.AdaptToFrame(lPositionInClip, m_FrameSize);
+                // on 22 April 2007 header 44 bytes added after frame alignment
+				long lPositionInClip = CalculationFunctions.ConvertTimeToByte (dPositionInClip , m_SamplingRate , m_FrameSize) ;
+                lPositionInClip = CalculationFunctions.AdaptToFrame(lPositionInClip, m_FrameSize) + 44 ;
                 m_br.BaseStream.Position = lPositionInClip  ;
                 m_lClipByteCount = lPositionInClip - ob_Clip.BeginByte ;
+
                 for (long l = 0; l < ob_Clip.LengthInBytes && l < 2 * (m_RefreshLength); l = l + m_FrameSize)
                 {
                     SkipFrames();
                     m_MemoryStream.Write(m_br.ReadBytes(m_FrameSize), 0, m_FrameSize);
                     m_lClipByteCount = m_lClipByteCount + m_FrameSize;
+                    m_LoadCount = m_LoadCount + m_FrameSize;
                     ReadNextClip();
 
-                    if ( m_lClipByteCount >=ob_Clip.LengthInBytes  && m_ClipIndex == m_Asset.Clips.Count - 1)
-                    break;
+                    if (m_lClipByteCount >= ob_Clip.LengthInBytes && m_ClipIndex == m_Asset.Clips.Count - 1)
+                    {
+                        m_IsEndOfAsset = true;
+                        break;
+                    }
                 }   
 			}
 			else
@@ -784,27 +844,33 @@ namespace Obi.Audio
 					SkipFrames () ;
 					m_MemoryStream.Write (m_br.ReadBytes(m_FrameSize), 0 , m_FrameSize) ;
 					m_lClipByteCount = m_lClipByteCount + m_FrameSize ;
+                    m_LoadCount = m_LoadCount + m_FrameSize;
 					ReadNextClip () ;
 				}
 			}
+            m_lPlayed = m_lPlayed + m_LoadCount ;
+            m_LoadCount = 0;
+
             m_MemoryStreamPosition = m_MemoryStream.Position;
 			m_MemoryStream.Position = 0 ;
 		}
-        long m_MemoryStreamPosition = 0;
+        
 		void ReadNextClip ()
 		{
 			if ( m_lClipByteCount >= ob_Clip.LengthInBytes)
 			{
 				//if (m_ClipIndex <m_Asset.m_alClipList.Count - 1)
                 if (m_ClipIndex < m_Asset.Clips.Count - 1)
-				{
-					m_ClipIndex++ ;
-					//ob_Clip = m_Asset.m_alClipList [m_ClipIndex] as Assets.AudioClip;
-                    ob_Clip = m_Asset.Clips[m_ClipIndex];	
-					m_br =new BinaryReader (File.OpenRead(ob_Clip.Path)) ;
-					m_br.BaseStream.Position = ob_Clip.BeginByte + 44;
-					m_lClipByteCount = 0 ;
-				}
+                {
+                    m_ClipIndex++;
+                    //ob_Clip = m_Asset.m_alClipList [m_ClipIndex] as Assets.AudioClip;
+                    ob_Clip = m_Asset.Clips[m_ClipIndex];
+                    m_br = new BinaryReader(File.OpenRead(ob_Clip.Path));
+                    m_br.BaseStream.Position = ob_Clip.BeginByte + 44;
+                    m_lClipByteCount = 0;
+                }
+                else
+                    m_IsEndOfAsset = true;
 			}
 		}
 
@@ -817,6 +883,7 @@ namespace Obi.Audio
 					m_br.ReadBytes(m_FrameSize) ;
 					m_br.ReadBytes(m_FrameSize) ;
 					m_lClipByteCount = m_lClipByteCount + m_FrameSize  + m_FrameSize;
+                    m_LoadCount = m_LoadCount + m_FrameSize+ m_FrameSize ;
 				}
 			}
 		}
