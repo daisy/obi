@@ -109,19 +109,27 @@
         <li><a href="#contributing">Contributing to Obi</a></li>
         <li><a href="#glossary">Glossary</a></li>
       </ul>
-      <p class="todo">An index would be nice, and an update to the menu reference.</p>
     </div>
+      <p class="todo">TODO: An index would be nice, and an update to the menu reference.</p>
 
-    <div id="what">
       <h2>What is Obi?</h2>
+
+<div id="www_what-is-obi">
+    <div id="what">
       <p>Obi is a <a href="http://en.wikipedia.org/wiki/Free_software">free software</a> <a href="#def-daisy-niso">DAISY/NISO</a> <a href="#gls_dtb">Digital Talking Book</a> (DTB) production tool.</p>
       <p class="todo">Free to use, internationalized, accessible; audio-only; DAISY 3 export, etc.</p>
       <p>Obi is being developed as part of the Urakawa project, where tools are developed to help developers build accessible multimedia applications. Please visit <a href="http://urakawa.sf.net">the Urakawa project website</a> to find out more.</p>
     </div>
+    </div>
 
 
-    <div id="work-area">
       <h2>The work area</h2>
+
+
+
+
+	    <div id="www_the-work-area">
+    <div id="work-area">
       <p>The image below shows the work area of Obi when a project is open. It consists of three parts: on the left-hand side is the <em>table of contents view</em>, or TOC view for short, where the table of contents for the project is shown; on the right-hand size is the <em>strips view</em> where the actual contents of the book are edited; and on the bottom is the <em>transport bar</em> that controls playback, recording and navigation of the audio in the project.</p>
       <p class="obivisible"><img src="images/manual_mainwindow.png" alt="the main window, with the TOC tree view at the left, and the strip view at the right" /></p>
       <p class="wwwvisible"><a href="images/manual_mainwindow.png" title="full-size screenshot" rel="external"><img style="width:400px;height:269px;" src="images/manual_mainwindow.png" alt="the main window, with the TOC tree view at the left, and the strip view at the right" /></a></p>
@@ -141,9 +149,13 @@
         <p>The transport bar is used to playback the contents of the project and to record new audio. It has controls similar to those found on hardware or software audio players and recorders such as play, pause, stop, record, fast forward and rewind as well as more specific navigation options such as next phrase or previous section. The transport bar also displays time information and a text-version of the VU meter which can be picked up by screen readers.</p>
       </div>
     </div>
+    </div>
 
-    <div id="authoring">
+
       <h2>Authoring in Obi</h2>
+
+    <div id="www_authoring-in-obi">
+    <div id="authoring">	
       <p>Without further ado, let's see how to use Obi to author a new project or complete a project in progress.</p>
       <div id="creating-opening">
         <h3>Creating and opening projects</h3>
@@ -353,6 +365,7 @@
         <div id="playback">
           <h4>Playback</h4>
           <h5>Play (Space)</h5>
+
           <p><img src="images/icons/media-playback-start.png" alt="play icon" class="icon"/>To start playing the audio in the project, press the play button in the transport bar or press the spacebar. If nothing is selected, playback will start from the beginning. If a section or a strip is selected, it will start from the first audio block in the selected section or strip. If an audio block is selected, it will start from this audio block.</p>
           <p>All audio blocks will be played in the order of the project until the last block has played, or until interrupted. Every time playback moves to a new block, the currently playing block is selected. Unused sections and audio blocks will be skipped.</p>
           <p>You can also play a single block, or a single strip, <em>including</em> unused blocks, by choosing <q>Play selection</q> in the <q>Transport</q> menu, or pressing Ctrl+Shift+Space. You can also do the same by double-clicking a block or a strip.</p>
@@ -401,21 +414,33 @@
         <p>Lastly, when you are done with Obi, you can qui by choose <q>Exit</q> from the <q>File</q> menu, or pressing Alt+F4. Once again, you will be given the change to save changes to the current project if there were any.</p>
       </div>
 
+</div>
 
-    <div id="preferences">
+
       <h2>Setting your preferences</h2>
+
+    <div id="www_setting-your-preferences">
+    <div id="preferences">	
       <p>Let's do a little bit of bookkeeping first. Because DAISY books are usually meant to be part of a larger library of books, it is important to add some <em>metadata</em>, that is information about the book, so that it can be found later on.</p>
       <p class="todo">Audio preferences (used for recording, but set once audio is already present); project preferences (locations, enable/disable tooltips, open last project on startup); user profile (name, organization, language.)</p>
     </div>
-
-    <div id="contributing">
-      <h2>Contributing to Obi</h2>
-      <p>Please help by reporting bugs! When you notice something wrong, please choose <q>Report bug</q> in the <q>Help</q> menu, or press Ctrl+Shift+R. If you are connected to the Internet, you will be taken to the Sourceforge bug tracker for Obi where you can file a new bug. You may want to browse existing bugs first to see if this issue was reported before. Please select the <q>Obi</q> category in the <q>Category</q> combo box, then give a brief description in the <q>Summary</q> text box, and a detailed description of the problem, including steps to reproduce the bug, expected outcome, and observed outcome.</p>
     </div>
 
-    <div id="glossary">
-      <h2>Glossary</h2>
 
+      <h2>Contributing to Obi</h2>
+
+<div id="www_contributing-to-obi">
+    <div id="contributing">    	
+      <p>Please help by reporting bugs! When you notice something wrong, please choose <q>Report bug</q> in the <q>Help</q> menu, or press Ctrl+Shift+R. If you are connected to the Internet, you will be taken to the Sourceforge bug tracker for Obi where you can file a new bug. You may want to browse existing bugs first to see if this issue was reported before. Please select the <q>Obi</q> category in the <q>Category</q> combo box, then give a brief description in the <q>Summary</q> text box, and a detailed description of the problem, including steps to reproduce the bug, expected outcome, and observed outcome.</p>
+    </div>
+    </div>
+
+
+ 
+     <h2>Glossary</h2>
+
+    <div id="www_obi-glossary">
+	    <div id="glossary">
 <div class="obirdbox">
   <div class="hd">Obird suggestion</div>  
   <p>If the word you are looking for does not exist in this glossary, I suggest that you have a look in the <a href="http://www.daisy.org/dkn">DAISY Knowledge Network</a>.</p>
@@ -475,6 +500,7 @@
   <dd>XUK is an acronym that stands for XML for Urakawa. This is a file format used while the <a href='#gls_dtb'>DTB</a> is under production. When you save the project, by default a XUK file is created. Once the DTB is ready for publishing, the XUK file format is converted into a DTB. Note that the XUK file is only the description of the project; all audio data is contained in a separate directory.</dd>
 </dl>
 
+</div>
 </div>
 </body>
 </html>
