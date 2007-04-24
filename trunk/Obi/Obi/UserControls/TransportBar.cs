@@ -347,8 +347,9 @@ namespace Obi.UserControls
                 LocalPlaylist = new Playlist(Audio.AudioPlayer.Instance, node);
                 mCurrentPlaylist = mLocalPlaylist;
                 mCurrentPlaylist.CurrentPhrase = mLocalPlaylist.FirstPhrase;
-                mVUMeterPanel.PlayListObj = mCurrentPlaylist;
                 mVUMeterPanel.Enable = true;
+                mVUMeterPanel.PlayListObj = mCurrentPlaylist;
+
                 m_IsSerialPlaying = true;
                 mCurrentPlaylist.Play();
             }
