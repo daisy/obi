@@ -78,6 +78,12 @@ namespace Obi.UserControls
         private void SyncRemovedSectionNode(SectionNode node)
         {
             TreeNode treeNode = FindTreeNodeFromSectionNode(node);
+
+            // Avn:  if the root node of tree is to be deleted, it should be deselected to avoid not found exceptions 
+            // important while using undoAdd Section  because current selection may not be on node to be deleted and this condition was not handled in ProjectPanel
+            if (mTocTree.SelectedNode != null && mTocTree.SelectedNode.Nodes.Count == 0)
+                mProjectPanel.CurrentSelection = null;
+                
             mTocTree.SelectedNode = treeNode.PrevVisibleNode;
             if (mTocTree.SelectedNode != null) mTocTree.SelectedNode.EnsureVisible();
             treeNode.Remove();
