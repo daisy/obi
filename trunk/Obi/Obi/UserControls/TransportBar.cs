@@ -608,6 +608,7 @@ namespace Obi.UserControls
                 mProjectPanel.Project.DeletedPhraseNode += new Obi.Events.PhraseNodeHandler(Project_DeletedPhraseNode);
                 mProjectPanel.Project.ToggledNodeUsedState += new Obi.Events.ObiNodeHandler(Project_ToggledNodeUsedState);
                 mProjectPanel.Project.MediaSet += new Obi.Events.SetMediaHandler(Project_MediaSet);
+                mProjectPanel.Project.PastedSectionNode += new Obi.Events.SectionNodeHandler(Project_PastedSectionNode);
             }
         }
 
@@ -640,5 +641,30 @@ namespace Obi.UserControls
         {
             if (e.Node.Used) mMasterPlaylist.UpdateTimeFrom(e.Node);
         }
+
+
+        void Project_PastedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
+        {
+            if ( e.Node != null )
+            {
+                
+                        e.Node.visitDepthFirst
+            (
+            // add all used phrases under this section node to master playlist
+                                                delegate(ICoreNode n)
+                {
+                    if (n is PhraseNode && ((PhraseNode)n).Used)
+                    {
+                                                mMasterPlaylist.AddPhrase((PhraseNode)n);
+                    }
+                    return true;
+                },
+                                delegate(ICoreNode n) { }
+            );
+ 
+            }
+        }
+
+
     }
 }
