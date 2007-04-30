@@ -149,7 +149,8 @@ namespace Obi.Assets
             copy.mFrameSize = mFrameSize;
             copy.mMediaType = mMediaType;
             copy.mName = mName;
-            foreach (AudioClip clip in mClips) copy.mClips.Add(clip);
+            foreach (AudioClip clip in mClips) 
+                copy.mClips.Add(clip.Copy ()  );
             return copy;
         }
 
