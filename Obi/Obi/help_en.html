@@ -211,19 +211,72 @@
       <div id="editing-toc">
         <h3>Editing the table of contents</h3>
         <p class="todo">Explain sections, subsections. Deep edits: changes made to a section are made to all subsections. No audio in this part, audio sync is done in strips view.</p>
-        <p class="obivisible"><img src="images/manual_toceditoptions.png" alt="the TOC context menu, showing editing operations such as add, cut, copy, delete, rename and move"/></p>
+        <p>
+            In Obi, the content is structured in sections, where each section can contain phrases
+            and other sections. Only the sections are displayed in the table of contents. By
+            nesting sections in each other, a deep navigation structure can be created.
+            By having all the sections in the table of contents expanded (this being the default),
+            you can see the entire structure of the project, and quickly navigate to any part
+            of it.</p>
+          <p>
+              When modifying sections in the table of contents, the entire tree of sections and
+              phrases that are contained within it is affected. This means that deleting a section
+              with a lot of subsections can quickly remove a lot of content, and thus should only
+              be done with care. Also, remember that "undo" (CTRL+z) will restore the projects
+              in most cases.</p>
+          <p>
+              Each section in the table of contents corresponds one strip in the strips view.
+              Performing modifications on a section in the TOC also affect the corresponding strip.
+              Since operations in the TOC affect the entire subtree of the presentation, the strips
+              representing any subsections will also be affected by operations on their "parent"
+              section.</p>
+          <p class="obivisible">
+              <img src="images/manual_toceditoptions.png" alt="the TOC context menu, showing editing operations such as add, cut, copy, delete, rename and move" id="IMG1"/>&nbsp;</p>
         <p class="wwwvisible"><a rel="external" href="images/manual_toceditoptions.png" title="full-size screenshot"><img src="images/manual_toceditoptions.png" alt="the TOC context menu, showing editing operations such as add, cut, copy, delete, rename and move"/></a></p>
         <div id="creating-sections">
           <h4>Creating sections</h4>
-          <p class="todo">Create a sibling section (Insert section Ctrl+A) before the selection, at the same level, and at the end, if no selection. Create a subsection as last child of the selected section. Unnamed sections when created.</p>
+            <p>
+                There are two ways of adding sections in Obi: as sections on the same level as the
+                current section, or as subsections of the currently selected section. A newly created
+                section is named "Untitled section", and should likely be renamed. A section cannot
+                have no name.</p>
+
+            <h5>Insert section (CTRL+A)</h5>
+            <p>
+                Insert section will generally add a new section to the presentation just before
+                whatever is currently selected. If nothing is selected, a new section will be created
+                at the end of the presentation.</p>
+
+            <h5>
+                Add sub-section (CTRL+B)</h5>
+            <p>
+                Add sub-section will add a new sub-section to the currently selected section.
+            </p>
         </div>
         <div id="renaming-section">
           <h4>Renaming a section</h4>
-          <p>To modify the name of a section, select a section in the TOC view and choose <q>Rename section</q> in the <q>TOC</q> menu, or press F2. The label for the section will be selected and you can edit it. You can also simply click on the label of the section that you want to edit until the label gets selected.</p>
+          <p>To modify the name of a section, select a section in the TOC view and choose <q>Rename section</q> in the <q>TOC</q> menu, or press F2. The label for the section will be selected and you can edit it. You can also simply click on the label of the section that you want to edit until the label gets selected. Note that double-clicking the section will navigate to
+              the matching strip, instead of enabling renaming.</p>
         </div>
         <div id="change-level">
           <h4>Changing the level of a section</h4>
-          <p class="todo">Move in and move out. Why cannot move in. Why cannot move out.</p>
+            <p>
+                A section may as mentioned contain other sections, that may again contain further
+                sections. This nested structure of sections may be edited, by moving a section into
+                or out of another section. Moving sections in or out in this manner does no affect
+                the playback order of the presentation.</p>
+            <h5>Move in</h5>
+            <p>
+                To move a section in, select it and press CTRL+SHIFT+RightArrow. This causes the
+                selected section (and any subsection it might have) to be moved 1 level deeper (to
+                the right)
+                in the TOC, and makes the selected section a child of it's former preceding sibling.
+                For this to work, the selected section must have a preceding sibling. This makes
+                it impossible to move the first sub-section of a section further in (to the right).</p>
+            <h5>Move out.</h5>
+            <p>
+                To move a section out, select it and press CTRL+SHIFT+LeftArrow. A section can never
+                be moved more out (to the left) than the first section of the presentation.</p>
         </div>
         <div id="edit-toc">
           <h4>Cut, copy, paste and delete</h4>
@@ -231,21 +284,68 @@
           <h5>Cut section (Ctrl+X)</h5>
           <p>The selected section is removed from the project and stored in the clipboard to be pasted later.</p>
           <h5>Copy section (Ctrl+C)</h5>
-          <p>The selected section is stored in the clipboard to be pasted later.</p>
+          <p>
+              A copy of the selected section is stored in the clipboard, allowing it to be pasted later.</p>
           <h5>Paste section (Ctrl+V)</h5>
-          <p>When the clipboard contains a section (which was previously cut or copied), it can be pasted as a child of the selected section, along with all of its contents (subsections and recorded audio.)</p>
+          <p>When the clipboard contains a section (which was previously cut or copied), it can be pasted as a child of the selected section, along with all of its contents (subsections and recorded audio). Note that "Paste section" and "Insert section" are two very
+              different concepts in Obi.</p>
           <h5>Delete section (Del)</h5>
           <p>The selected section is deleted from the project.</p>
         </div>
         <div id="used-sections">
           <h4>Used and unused sections</h4>
-          <p>While editing your project, you may want to keep some parts that are not ready or necessary for the final book but may still come handy later on. You can then mark some parts of the project as being <em>unused</em>, so that these parts will not be exported or played back. To mark a selected section as being unused, choose <q>Mark section as unused</q> in the <q>TOC</q> menu, or press Ctrl+K. The section will be grayed-out to show its status.</p>
-          <p>Similarly, you can turn a selected unused section back to <em>used</em> status again by choosing <q>Mark section as used</q> in the <q>TOC</q> menu, or pressing Ctrl+K.</p>
+          <p>While editing your project, you may want to keep some parts that are not ready or necessary for the final book but may still come handy later on. You can then mark some parts of the project as being <em>unused</em>, so that these parts will not be exported or played back. To mark a selected section as being unused, choose "<q>Mark section as unused"</q> in the <q>TOC</q> menu, or press Ctrl+K. The section will be grayed-out to show its status.</p>
+          <p>Similarly, you can turn a selected unused section back to <em>used</em> status again by choosing "<q>Mark section as used"</q> in the <q>TOC</q> menu, or pressing Ctrl+K.</p>
+          <h4>Navigating the TOC</h4>
+            <p>
+                The TOC can be navigated using the arrow keys. </p>
+            <p>
+                The "Right" arrow key generally moves focus deeper into the tree. When focus is on a collapsed section,
+                the first press of "Right" will expand the section, and the second press of "Right"
+                will move focus to the first child section. Correspondingly, the "Left" arrow key
+                will move focus to the parent of the currently selected element. The seconds press
+                of "Left" will collapse this section of the tree, hiding the section that previously
+                had focus.</p>
+            <p>
+                The "Up" and "Down" arrow keys generally
+                move to the preceding or following section,
+                ignoring depth, skipping any collapsed items. 
+            </p>
         </div>
       </div>
       <div id="editing-strips">
         <h3>Editing the audio contents: section strips</h3>
         <p class="todo">Strips introduction. Correspond to one section (but not subsections!) Has content in the form of audio blocks.</p>
+          <p>
+              The strips view is the detailed graphical representation of your project. In this
+              area, it is possible to work with strips and blocks. Each strip represents the container
+              for the audio within a section. Each block within a strip represent one navigable
+              length of audio.</p>
+          <p>
+              It the strips view, the sections are shown without their nesting. The depth of the
+              sections are hinted at by the size of the caption on the strip, but any modifications
+              done to the strip will not affect the contents of strips that in effect are children
+              of the matching section.</p>
+
+          <h4>Keyboard navigation</h4>
+          <p>
+              When in focus, the strips view can be navigated using the arrow keys.
+          </p>
+          <p>
+              Pressing the "Up" key select the preceding section. If focus is currently on a block
+              of audio, the containing section will get focus.</p>
+          <p>
+              Pressing the "Down" key selects the following section.</p>
+          <p>
+              Pressing "Right" will select the next audio block. When focus is on the last audio
+              block of a strip, focus will be moved to the next section, or the first audio block
+              of the next section if any such exists.</p>
+          <p>
+              Pressing "Left" works in the same manner as pressing "Right", except that the direction
+              is the opposite.</p>
+          <p>
+              In the image below, the first strip has been selected. Note the red border around
+              it.</p>
         <p class="obivisible"><img src="images/manual_stripeditoptions.png" alt="the audio block context menu, showing editing operations such as add, cut, copy, delete, rename and move"/></p>
         <p class="wwwvisible"><a rel="external" href="images/manual_stripeditoptions.png" title="full-size screenshot"><img style="width: 400px; height: 242px;" src="images/manual_stripeditoptions.png" alt="the audio block context menu, showing editing operations such as add, cut, copy, delete, rename and move"/></a></p>
         <div id="creating-strips">
