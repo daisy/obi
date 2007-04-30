@@ -368,6 +368,8 @@ namespace Obi.Audio
                 m_lPlayed = lStartPosition;
 
                 m_IsEndOfAsset = false;
+                    // following line added  for fast play update
+                m_IsLastRefresh = false;
                 // Load from file to memory
                 LoadStream(true);
 
@@ -406,7 +408,7 @@ namespace Obi.Audio
             long SafeMargin = CalculationFunctions.ConvertTimeToByte(1, m_SamplingRate, m_FrameSize);
 
 
-			while ( ( m_lPlayed < m_lLength - SafeMargin )    &&     ( m_IsEndOfAsset == false ) )
+			while ( ( m_lPlayed < m_lLength - SafeMargin )    &&     ( m_IsLastRefresh == false ) )
 			{//1
 				if (SoundBuffer.Status.BufferLost  )
 					SoundBuffer.Restore () ;
@@ -831,7 +833,7 @@ namespace Obi.Audio
 
                     if (m_lClipByteCount >= ob_Clip.LengthInBytes && m_ClipIndex == m_Asset.Clips.Count - 1)
                     {
-                        m_IsEndOfAsset = true;
+                        m_IsLastRefresh = true;
                         break;
                     }
                 }   
@@ -870,7 +872,7 @@ namespace Obi.Audio
                     m_lClipByteCount = 0;
                 }
                 else
-                    m_IsEndOfAsset = true;
+                    m_IsLastRefresh = true;
 			}
 		}
 
