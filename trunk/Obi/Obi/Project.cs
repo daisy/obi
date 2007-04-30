@@ -557,7 +557,7 @@ namespace Obi
             Directory.CreateDirectory(mAssPath);
             foreach (string assetPath in mAssManager.Files.Keys)
             {
-                File.Copy(assetPath, mAssPath + Path.PathSeparator + Path.GetFileName(assetPath));
+                File.Copy(assetPath, mAssPath + Path.DirectorySeparatorChar + Path.GetFileName(assetPath));
             }
             mAssPath = (new Uri(path)).MakeRelativeUri(new Uri(mAssPath)).ToString();
             UpdateMetadata();
