@@ -16,6 +16,7 @@ namespace Obi.UserControls
         private Playlist mCurrentPlaylist;   // playlist currently playing
         private NodeSelection mPlayingFrom;  // selection before playback started
         private bool m_IsSerialPlaying = false ; // A  non fluctuating flag to be set till playing of assets in serial is continued
+        private SectionNode m_CurrentPlayingSection;  // holds section currently being played for highlighting it in TOC view while playing
 
         // constants from the display combo box
         private static readonly int Elapsed = 0;
@@ -178,6 +179,12 @@ namespace Obi.UserControls
         /// </summary>
         private void Play_MovedToPhrase(object sender, Events.Node.PhraseNodeEventArgs e)
         {
+            if (mProjectPanel.TOCPanel.ContainsFocus    &&    m_CurrentPlayingSection != mCurrentPlaylist.CurrentSection)
+            {
+                mProjectPanel.TOCPanel.CurrentSelectedNode = mCurrentPlaylist.CurrentSection;
+                m_CurrentPlayingSection = mCurrentPlaylist.CurrentSection;
+                            }
+
             mProjectPanel.CurrentSelection = new NodeSelection(e.Node, mProjectPanel.StripManager);
         }
 
@@ -327,12 +334,14 @@ namespace Obi.UserControls
                     mVUMeterPanel.PlayListObj = mCurrentPlaylist;
                     m_IsSerialPlaying = true;
                     mCurrentPlaylist.Play();
+                    m_CurrentPlayingSection = mCurrentPlaylist.CurrentSection;
                 }
             }
             else if (CanResume)
             {
                 m_IsSerialPlaying = true;
                 mCurrentPlaylist.Resume();
+                m_CurrentPlayingSection = mCurrentPlaylist.CurrentSection;
             }
         }
 
@@ -352,11 +361,13 @@ namespace Obi.UserControls
 
                 m_IsSerialPlaying = true;
                 mCurrentPlaylist.Play();
+                m_CurrentPlayingSection = mCurrentPlaylist.CurrentSection;
             }
             else if (CanResume)
             {
                 m_IsSerialPlaying = true;
                 mCurrentPlaylist.Resume();
+                m_CurrentPlayingSection = mCurrentPlaylist.CurrentSection;
             }
             else if (mCurrentPlaylist != mMasterPlaylist)
             {
