@@ -164,9 +164,10 @@ namespace Obi.Audio
 			// m_SampleArrayPosition  = 0 ;
 			m_MeanValueLeft = 0 ;
 			m_MeanValueRight = 0 ;
+
+            if (ResetEvent  != null)
 			ResetEvent(this, new Events.Audio.VuMeter.ResetEventArgs());
-			// ob_Reset.TriggerReset  (this , ob_Reset) ;
-		}
+					}
 
 		// calculate and sets the count of samples to be read for computing RMS or mean value of amplitude
 		void SetSampleCount ( double TimeLengthArg ) 
