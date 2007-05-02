@@ -108,6 +108,10 @@ namespace Obi.UserControls
         /// </summary>
         internal void SyncSetPageNumber(object sender, Events.Node.PhraseNodeEventArgs e)
         {
+            // Avn: check for key added, useful for cases like cut/copy followed by paste
+            // because all phraseNodes  of cut/copied section are there but they are constructed one by one while calling this function 
+            // so this function tend to refresh some display controls of existing nodes and these display controls are yet to be constructed.
+            if (mPhraseNodeMap.ContainsKey(e.Node)) 
             mPhraseNodeMap[e.Node].RefreshDisplay();
         }
 
