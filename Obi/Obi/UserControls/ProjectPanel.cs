@@ -491,20 +491,29 @@ namespace Obi.UserControls
             TransportBar.Enabled = false;
             if (CurrentSelectedAudioBlock != null)
             {
-                mProject.DeletePhraseNode(CurrentSelectedAudioBlock);
-                CurrentSelection = null;
+                // Avn: Following check added to prevent deleting when shortcuts are disabled like during renaming.
+                // These checks are not added at lower layer like inside stripmanager so as to avoid problems in internally issued delete commands
+                if (mStripManagerPanel.AllowShortcuts)
+                {
+                    mProject.DeletePhraseNode(CurrentSelectedAudioBlock);
+                    CurrentSelection = null;
+                }
             }
             else if (CurrentSelectedStrip != null)
             {
                 // to review!
-                mProject.ShallowDeleteSectionNode(this, CurrentSelectedStrip);
-                CurrentSelection = null;
-            }
+                                                    mProject.ShallowDeleteSectionNode(this, CurrentSelectedStrip);
+                    CurrentSelection = null;
+                            }
             else if (CurrentSelectedSection != null)
             {
-                mProject.DeleteSectionNode(CurrentSelectedSection);
-                CurrentSelection = null;
-            }
+                // Avn: Following check added to prevent deleting  during during renaming etc.
+                if (mTOCPanel.AllowDelete)
+                {
+                    mProject.DeleteSectionNode(CurrentSelectedSection);
+                    CurrentSelection = null;
+                }
+                            }
             TransportBar.Enabled = true;
         }
 

@@ -68,15 +68,23 @@ namespace Obi.UserControls
             }
         }
 
+        // Avn: member to include getter in AllowDelete property so as to use it in ProjectPanel
+        // not to be assigned value directly, it is better to assign it value through property so that it is synchronised with parent ObiForm
+        private bool m_AllowDelete; 
         /// <summary>
         /// Allow delete key or not
         /// </summary>
         public bool AllowDelete
         {
+            get
+            {
+                return m_AllowDelete;
+            }
             set
             {
                 mProjectPanel.ParentObiForm.AllowDelete = value;
                 mDeleteSectionToolStripMenuItem.Enabled = value;
+                m_AllowDelete = value;
             }
         }
 
