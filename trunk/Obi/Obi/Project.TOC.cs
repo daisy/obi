@@ -510,6 +510,11 @@ namespace Obi
             {
                 Commands.TOC.ShallowCutSectionNode command = new Commands.TOC.ShallowCutSectionNode(node);
                 mClipboard.Section = node.copy(false);
+
+                //Avn:  copy phrases falling imidiately under this section
+                for (int i = 0; i < node.PhraseChildCount; ++i)
+                    mClipboard.Section.AppendChildPhrase (node.PhraseChild(i).copy(true)) ;
+                
                 for (int i = node.SectionChildCount - 1; i >= 0; --i)
                 {
                     command.AddCommand(DecreaseSectionNodeLevel(node.SectionChild(i)));
