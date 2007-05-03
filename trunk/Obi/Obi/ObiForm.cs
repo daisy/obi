@@ -268,6 +268,7 @@ namespace Obi
         {
             if (ClosedProject())
             {
+                mProjectPanel.CurrentSelection = null;
                 mProject = null;
                 mCommandManager.Clear();
             }
