@@ -149,6 +149,10 @@ namespace Obi.UserControls
         /// </summary>
         public bool AllowShortcuts
         {
+            get
+            {
+                return  mAllowShortcuts; // Avn: Getter added to use this property outside this class
+            }
             set
             {
                 mAllowShortcuts = value;
