@@ -288,6 +288,11 @@ namespace Obi
             //we have to gather this data here, because it might be different at the end
             //however, we can't create the command here, because its data isn't ready yet
             mClipboard.Section = node.copy(false);
+
+            //Avn:  copy phrases falling imidiately under this section
+            for (int i = 0; i < node.PhraseChildCount; ++i)
+                mClipboard.Section.AppendChildPhrase(node.PhraseChild(i).copy(true));
+
             Commands.TOC.ShallowCutSectionNode command = origin == this ?
                 null : new Commands.TOC.ShallowCutSectionNode(node);
             int numChildren = node.SectionChildCount;
