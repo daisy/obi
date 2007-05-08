@@ -224,7 +224,7 @@
               When modifying sections in the table of contents, the entire tree of sections and
               phrases that are contained within it is affected. This means that deleting a section
               with a lot of subsections can quickly remove a lot of content, and thus should only
-              be done with care. Also, remember that "undo" (CTRL+z) will restore the projects
+              be done with care. Also, remember that "Undo" (CTRL+Z) will restore the projects
               in most cases.</p>
           <p>
               Each section in the table of contents corresponds one strip in the strips view.
@@ -252,7 +252,7 @@
             <h5>
                 Add sub-section (CTRL+B)</h5>
             <p>
-                Add sub-section will add a new sub-section to the currently selected section.
+                Add sub-section will add a new sub-section as the last child of the currently selected section.
             </p>
         </div>
         <div id="renaming-section">
@@ -329,7 +329,7 @@
               done to the strip will not affect the contents of strips that in effect are children
               of the matching section.</p>
 
-          <h4>Keyboard navigation</h4>
+          <h4>Keyboard navigation of the strips view</h4>
           <p>
               When in focus, the strips view can be navigated using the arrow keys.
           </p>
@@ -344,15 +344,29 @@
               of the next section if any such exists.</p>
           <p>
               Pressing "Left" works in the same manner as pressing "Right", except that the direction
-              is the opposite.</p>
+              is reversed.</p>
           <p>
               In the image below, the first strip has been selected. Note the red border around
               it.</p>
+
+          <h4>Mouse navigation of the strips view</h4>
+          <p>
+              You can select the audio blocks or strips of the strips view by clicking them. Right-clicking
+              brings up a menu. The contents of the right click menu depends on what was selected
+              before right clicking, so be sure to have focus on the correct element in advance.
+              The annotation blocks (light blue in the image below) cannot be selected directly.
+              These blocks are implicitly selected when the audio block just below it is in focus.</p>
+          <p>
+              Once the project grows larger, scroll bars wil appear at right side of the view
+              for vertical scrolling, and a similar bar will appear at the bottom for horizontal
+              scrolling.</p>
+              
         <p class="obivisible"><img src="images/manual_stripeditoptions.png" alt="the audio block context menu, showing editing operations such as add, cut, copy, delete, rename and move"/></p>
         <p class="wwwvisible"><a rel="external" href="images/manual_stripeditoptions.png" title="full-size screenshot"><img style="width: 400px; height: 242px;" src="images/manual_stripeditoptions.png" alt="the audio block context menu, showing editing operations such as add, cut, copy, delete, rename and move"/></a></p>
         <div id="creating-strips">
           <h4>Creating strips</h4>
-          <p>To add a new strip to the strips view, choose <q>Insert strip</q> in the <q>Strips</q> menu, or press Ctrl+A. A new strip will be inserted before, and at the same level as, the selected strip, or at the top level and at the end of the project is no strip selected.</p>
+          <p>To add a new strip to the strips view, choose <q>Insert strip</q> in the <q>Strips</q> menu, or press Ctrl+A. A new strip will be inserted before, and at the same level as, the selected strip, or at the top level and at the end of the project if no
+              strip is selected.</p>
           <p>The new strip has a default title that can be edited straight away. Press enter to validate the title, or escape if you do not want to change it.</p>
         </div>
         <div id="renaming-strip">
@@ -364,9 +378,11 @@
           <h4>Cut, copy, paste and delete</h4>
           <p class="todo">Shallow operations only on the selected strip. Explain releveling of sections when changes happen.</p>
           <h5>Cut strip (Ctrl+X)</h5>
-          <p>The selected strip is removed from the project and stored in the clipboard to be pasted later.</p>
+          <p>The selected strip is removed from the project and stored in the clipboard, allowing
+              it to be pasted later.</p>
           <h5>Copy strip (Ctrl+C)</h5>
-          <p>The selected strip is stored in the clipboard to be pasted later.</p>
+          <p>
+              A copy of the selected strip is stored in the clipboard, allowing it to be pasted later.</p>
           <h5>Paste strip (Ctrl+V)</h5>
           <p>When the clipboard contains a strip (which was previously cut or copied), it can be pasted as the first child of the section corresponding to the selected strip. When the clipboard contains a section with subsections, all of the subsections are pasted as strips as well.</p>
           <p class="todo">Reword this and check that this is correct behavior</p>
