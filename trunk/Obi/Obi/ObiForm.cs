@@ -73,16 +73,26 @@ namespace Obi
 
         private void InitializeObi()
         {
-            InitializeComponent();
-            mProject = null;
-            mSettings = null;
-            mCommandManager = new CommandManager();
-            InitializeVuMeter();
-            InitializeSettings();
-            InitialiseHighContrastSettings();
-            mProjectPanel.TransportBar.StateChanged +=
-                new Obi.Events.Audio.Player.StateChangedHandler(TransportBar_StateChanged);
-            mProjectPanel.TransportBar.PlaybackRateChanged += new EventHandler(TransportBar_PlaybackRateChanged);
+            try
+            {
+                InitializeComponent();
+                mProject = null;
+                mSettings = null;
+                mCommandManager = new CommandManager();
+                InitializeVuMeter();
+                InitializeSettings();
+                InitialiseHighContrastSettings();
+                mProjectPanel.TransportBar.StateChanged +=
+                    new Obi.Events.Audio.Player.StateChangedHandler(TransportBar_StateChanged);
+                mProjectPanel.TransportBar.PlaybackRateChanged += new EventHandler(TransportBar_PlaybackRateChanged);
+            }
+            catch (Exception eAnyStartupException)
+            {
+                System.IO.StreamWriter tmpErrorLogStream = System.IO.File.CreateText(Application.StartupPath + Path.DirectorySeparatorChar + "ObiStartupError.txt");
+                tmpErrorLogStream.WriteLine(eAnyStartupException.ToString());
+                tmpErrorLogStream.Close();
+                System.Windows.Forms.MessageBox.Show("An error occured while initializing Obi.\nPlease Submit a bug report, including the contents of " + Application.StartupPath + Path.DirectorySeparatorChar + "ObiStartupError.txt\nError text:\n" + eAnyStartupException.ToString(), "Obi initialization error");
+            }
         }
 
         
