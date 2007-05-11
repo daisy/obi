@@ -256,10 +256,7 @@ namespace Obi
             // get from GetAssetDirectory to create/initialize the path of the asset manager.
             mXUKPath = xukPath;
             mAssPath = GetAssetDirectory(xukPath);
-            mAssManager = new Assets.AssetManager(mAssPath);
-            mAssPath = (new Uri(xukPath)).MakeRelativeUri(new Uri(mAssPath)).ToString();
-
-            mAssPath = mAssPath.Replace("%20", " ");
+            mAssManager = new Assets.AssetManager(Path.Combine(Path.GetDirectoryName(xukPath), mAssPath));
 
             // Create metadata and channels factories
             ChannelFactory factory = presentation.getChannelFactory();
@@ -290,10 +287,12 @@ namespace Obi
         /// The default name is the same as the XUK file with _assets instead of .xuk as a suffix.
         /// Mangle the name until a free name is found.
         /// </summary>
+        /// <returns>The relative paht to the directory chosen.</returns>
         private string GetAssetDirectory(string path)
         {
-            string assetdir = Path.GetDirectoryName(path) + @"\" + Path.GetFileNameWithoutExtension(path) + "_assets";
-            while (Directory.Exists(assetdir) || File.Exists(assetdir)) assetdir += "_";
+            string dir = Path.GetDirectoryName(path);
+            string assetdir = Path.GetFileNameWithoutExtension(path) + "_assets";
+            while (Directory.Exists(Path.Combine(dir, assetdir)) || File.Exists(Path.Combine(dir, assetdir))) assetdir += "_";
             return assetdir;
         }
 

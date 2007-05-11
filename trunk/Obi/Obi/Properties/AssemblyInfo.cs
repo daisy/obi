@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("DAISY/NISO Digital Talking Book Production Tool")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("The Urakawa Project (DAISY Consortium, CWI, INRIA, NRCD)")]
-[assembly: AssemblyProduct("Obi")]
+[assembly: AssemblyProduct("")]
 [assembly: AssemblyCopyright("Copyright © 2005-2007 The Urakawa Project")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -29,5 +29,4 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("0.8.5")]
-[assembly: AssemblyFileVersion("0.8.5")]
+[assembly: AssemblyVersion("0.8.5.1")]
