@@ -220,7 +220,8 @@ namespace Obi
                 foreach (PhraseNode n in nodes)
                 {
                     parent.AddChildPhrase(n, index);
-                    AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, n));
+                                        AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, n));
+                    index++;
                 }
                 Modified();
             }
