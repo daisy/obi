@@ -216,7 +216,12 @@ namespace Obi.UserControls
                 }
                 mLabel.Text = String.Format(Localizer.Message("audio_block_default_label"), index, outof);
             }
+            // Avn: add Strip name to accessible name for first audio block
+            if (mNode.ParentSection.FirstUsedPhrase == mNode)
+                AccessibleName = mNode.ParentSection.Label + " " +  mLabel.Text;
+            else
             AccessibleName  = mLabel.Text;
+
             // Set the time display
             if (Audio.AudioRecorder.Instance.State != Obi.Audio.AudioRecorderState.Recording)
             {
@@ -258,6 +263,8 @@ namespace Obi.UserControls
             {
                 mSectionStrip.Focus();
             }
+            if (mNode != null)
+                mManager.ProjectPanel.TransportBar.PlayPhraseOnFocus(mNode);
         }
 
         private void AudioBlock_SizeChanged(object sender, EventArgs e)

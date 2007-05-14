@@ -15,8 +15,14 @@ namespace Obi.UserControls
         private Playlist mLocalPlaylist;     // local playlist (only selected; may be null)
         private Playlist mCurrentPlaylist;   // playlist currently playing
         private NodeSelection mPlayingFrom;  // selection before playback started
-        private bool m_IsSerialPlaying = false ; // A  non fluctuating flag to be set till playing of assets in serial is continued
+        
         private SectionNode m_CurrentPlayingSection;  // holds section currently being played for highlighting it in TOC view while playing
+
+        // A  non fluctuating flag to be set till playing of assets in serial is continued
+        // it is true while a series of assets are being played but false when only single asset is played
+        // so it is true for play all command and true for play node command when node is section
+        // for Playing playlist state of serial play of asset it is true while for pause and stop state during serial play, it is false
+        private bool m_IsSerialPlaying = false; 
 
         // constants from the display combo box
         private static readonly int Elapsed = 0;
@@ -58,8 +64,14 @@ namespace Obi.UserControls
 
         public bool IsSelectionRelevant(ObiNode node)
         {
-            return ((mCurrentPlaylist.State == Audio.AudioPlayerState.Playing ||
-                    mCurrentPlaylist.State == Audio.AudioPlayerState.Paused));
+            //Avn: <> condition added for play on focus 13 May 2007
+            if (IsSeriallyPlaying)
+            {
+                return ((mCurrentPlaylist.State == Audio.AudioPlayerState.Playing ||
+                        mCurrentPlaylist.State == Audio.AudioPlayerState.Paused));
+            }
+            else
+                return false;
         }
 
         public bool CanSelectPhrase(ObiNode node)
@@ -219,7 +231,23 @@ namespace Obi.UserControls
         /// </summary>
         private void Play_PlayerStopped(object sender, EventArgs e)
         {
-            mProjectPanel.CurrentSelection = mPlayingFrom;
+            // Avn: condition added on 13 May 2007 
+            //to prevent focus from returning to initial position  after playback if focus is not in same view
+            if (IsSeriallyPlaying)
+            {
+                if (mPlayingFrom != null)
+                {
+                    if (mPlayingFrom.Control.GetType().FullName == "Obi.UserControls.TOCPanel"
+        && mProjectPanel.TOCPanel.ContainsFocus)
+                        mProjectPanel.CurrentSelection = mPlayingFrom;
+
+                    else if (mPlayingFrom.Control.GetType().FullName == "Obi.UserControls.StripManagerPanel"
+                    && mProjectPanel.StripManager.ContainsFocus)
+                        mProjectPanel.CurrentSelection = mPlayingFrom;
+                }
+                                            }
+            // Avn: statement added on 13 May 2007
+        m_IsSerialPlaying = false;
         }
 
         #endregion
@@ -359,13 +387,19 @@ namespace Obi.UserControls
                 mVUMeterPanel.Enable = true;
                 mVUMeterPanel.PlayListObj = mCurrentPlaylist;
 
+                // Avn: condition added on 13 may 2007
+                if (node.GetType().FullName != "Obi.PhraseNode")
                 m_IsSerialPlaying = true;
+
                 mCurrentPlaylist.Play();
                 m_CurrentPlayingSection = mCurrentPlaylist.CurrentSection;
             }
             else if (CanResume)
             {
+                // Avn: condition added on 13 may 2007
+                if (node.GetType().FullName != "Obi.PhraseNode")
                 m_IsSerialPlaying = true;
+
                 mCurrentPlaylist.Resume();
                 m_CurrentPlayingSection = mCurrentPlaylist.CurrentSection;
             }
@@ -557,6 +591,27 @@ namespace Obi.UserControls
             if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing)
                 m_IsSerialPlaying = false;
         }
+
+
+        // <> function added for play on focus 12 May 2007
+        /// <summary>
+        ///  Plays a single phrase when keyboard focus arrives on a audio block
+        /// <see cref=""/>
+        /// </summary>
+        /// <param name="node"></param>
+        public void PlayPhraseOnFocus(ObiNode node)
+        {
+            //execute on checking if play all is not active in playing state
+            if ( mCurrentPlaylist != null 
+                                    &&     !IsSeriallyPlaying)
+            {
+                                mCurrentPlaylist.Stop();
+                                mPlayingFrom = null;
+                m_IsSerialPlaying = false;
+                Play(node);
+            }// if ends
+        }
+
 
         #endregion
 
