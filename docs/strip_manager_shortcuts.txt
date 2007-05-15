@@ -1,4 +1,6 @@
-Keyboard shortcuts for strip manager first draft by Avneesh on 18 Jan 2007
+# Keyboard shortcuts for strip manager
+
+First draft by Avneesh on 18 Jan 2007
 
 
 1. left arrow: 	Navigate to prev phrase
