@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><title>Obi events</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><link rel="stylesheet" type="text/css" href="obi.css"/></head><body>
+<div id="top"><h1>Obi events</h1></div>
+
+<p><em>$Id$</em></p>
+
+<p>This document describes Obi's eventing and summarizes how to introduce new
+features in the application.</p>
+
+<div id="toc"><p>Table of Contents</p><ul><li><a href="#id53167">Obi components</a><ul><li><a href="#id53177">Project</a><ul><li><a href="#id53181"><code>Project</code></a></li><li><a href="#id53251"><code>SectionNode</code></a></li><li><a href="#id53261"><code>PhraseNode</code></a></li></ul></li><li><a href="#id53271">Views</a><ul><li><a href="#id53274"><code>ProjectPanel</code></a></li><li><a href="#id53279"><code>TOCPanel</code></a></li><li><a href="#id53283"><code>StripManagerPanel</code></a></li><li><a href="#id53288"><code>SectionStrip</code></a></li><li><a href="#id53293"><code>AudioBlock</code></a></li><li><a href="#id53297"><code>AnnotationBlock</code></a></li><li><a href="#id53302"><code>TransportBar</code></a></li></ul></li></ul></li><li><a href="#id53306">Example event sequence</a></li><li><a href="#id53341">Adding a new feature</a><ul><li><a href="#id53345">Menu items</a></li><li><a href="#id53371">Undo and redo</a></li></ul></li></ul></div>
+
+<h2 id="id53167">Obi components</h2>
+
+<p>The main problem is to synchronize the Obi project and its views, so that a
+change in one is reflected in the others. Most changes happen through one
+view, are effected in the project, and shown in the other views.</p>
+
+<h3 id="id53177">Project</h3>
+
+<h4 id="id53181"><code>Project</code></h4>
+
+<p><code>Project</code> is the object representing the whole Obi project currently being
+edited; basically the presentation (tree of section and phrase nodes with
+reference to media objects) and metadata. In this document, the former only
+is detailed.</p>
+
+<p>As of this writing, <code>Project</code> sends the following events (list
+alphabetically):</p>
+
+<ul>
+<li><code>AddedPhraseNode</code>: a phrase node was added.</li>
+<li><code>CommandCreated</code>: a new command was issued.</li>
+<li><code>DeletedPhraseNode</code>: a phrase node was deleted.</li>
+<li><code>MediaSet</code>: a media object (text or audio) was set on a node.</li>
+<li><code>StateChanged</code>: the project was closed, modified, opened, or saved.</li>
+<li><code>ToggledNodeUsedState</code>: a node was marked as used or unused.</li>
+<li><code>TouchedNode</code>: a node was somehow modified.</li>
+</ul>
+
+<h4 id="id53251"><code>SectionNode</code></h4>
+
+<p>Section nodes represent a section in the book. The have other section nodes
+and phrase nodes as children.</p>
+
+<h4 id="id53261"><code>PhraseNode</code></h4>
+
+<p>Phrase nodes represent phrases in the book (local navigation units.) They
+have audio content and may have an annotation, but no children.</p>
+
+<h3 id="id53271">Views</h3>
+
+<h4 id="id53274"><code>ProjectPanel</code></h4>
+
+<h4 id="id53279"><code>TOCPanel</code></h4>
+
+<h4 id="id53283"><code>StripManagerPanel</code></h4>
+
+<h4 id="id53288"><code>SectionStrip</code></h4>
+
+<h4 id="id53293"><code>AudioBlock</code></h4>
+
+<h4 id="id53297"><code>AnnotationBlock</code></h4>
+
+<h4 id="id53302"><code>TransportBar</code></h4>
+
+<h2 id="id53306">Example event sequence</h2>
+
+<ul>
+<li>User chooses from menu</li>
+<li>Change is made in <code>Project</code></li>
+<li><code>Project</code> fires event</li>
+<li>Event is caught by views</li>
+<li>Views update </li>
+</ul>
+
+<p>This is a bit more complicated unfortunately. Some of it should be corrected
+to make it easier though.</p>
+
+<h2 id="id53341">Adding a new feature</h2>
+
+<h3 id="id53345">Menu items</h3>
+
+<ul>
+<li>Find the right application-wide menu to add the new feature in. <strong>NOTE</strong>:
+we need to reorganize the top-level menus a bit.</li>
+<li>Find a new shortcut/accelerator and add the new menu item to
+<a href="menus.txt">menus.txt</a>.</li>
+</ul>
+
+<h3 id="id53371">Undo and redo</h3>
+</body></html>

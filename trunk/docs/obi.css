@@ -1,0 +1,8 @@
+body { background-color: white; color: black; text-align: justify; margin:
+  2em; }
+h1 { text-align: center; font-family: sans-serif; }
+h2, h3, h4 { font-family: sans-serif; color: #3c3; }
+div#top { margin: -2em -2em 2em -2em; padding: .1em 2em;
+  background-color: #6f6; color: white; }
+div#toc { border: solid thin #3c3; padding: 0 1em; }
+a { font-weight: bold; color: #3c3; }

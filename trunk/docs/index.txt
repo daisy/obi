@@ -1,0 +1,23 @@
+# Obi documentation
+
+Please keep this file up-to-date and link to available documents with a
+brief description. Here is what we have so far:
+
+* [Events](events.html): "This document describes Obi's eventing and summarizes how to introduce new features in the application."
+
+* [Menus](menus.txt): list of menu shortcuts and accelerator keys.
+
+* [Metadata](metadata.txt): list of required metadata for Z. Obi needs to
+implement those :(
+
+* [Obi](obi.html): describes the application itself.
+
+* [Reference](reference.txt): the reference manual. Needs a new revision.
+
+* [Release notes](release-notes.txt): release notes for Obi. Needs a new
+revision when we make a major new release.
+
+* [Strip manager shortcuts](strip_manager_shortcuts.html): as the name
+implies. Review those as part of the new requirements.
+
+* [Testing](testing.txt): instructions for testers.

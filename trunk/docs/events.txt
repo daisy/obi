@@ -1,0 +1,84 @@
+# Obi events
+
+_$Id$_
+
+This document describes Obi's eventing and summarizes how to introduce new
+features in the application.
+
+<div id="toc">Table of Contents</div>
+
+
+## Obi components
+
+The main problem is to synchronize the Obi project and its views, so that a
+change in one is reflected in the others. Most changes happen through one
+view, are effected in the project, and shown in the other views.
+
+### Project
+
+#### `Project`
+
+`Project` is the object representing the whole Obi project currently being
+edited; basically the presentation (tree of section and phrase nodes with
+reference to media objects) and metadata. In this document, the former only
+is detailed.
+
+As of this writing, `Project` sends the following events (list
+alphabetically):
+
+* `AddedPhraseNode`: a phrase node was added.
+* `CommandCreated`: a new command was issued.
+* `DeletedPhraseNode`: a phrase node was deleted.
+* `MediaSet`: a media object (text or audio) was set on a node.
+* `StateChanged`: the project was closed, modified, opened, or saved.
+* `ToggledNodeUsedState`: a node was marked as used or unused.
+* `TouchedNode`: a node was somehow modified.
+
+#### `SectionNode`
+
+Section nodes represent a section in the book. The have other section nodes
+and phrase nodes as children.
+
+#### `PhraseNode`
+
+Phrase nodes represent phrases in the book (local navigation units.) They
+have audio content and may have an annotation, but no children.
+
+### Views
+
+#### `ProjectPanel`
+
+#### `TOCPanel`
+
+#### `StripManagerPanel`
+
+#### `SectionStrip`
+
+#### `AudioBlock`
+
+#### `AnnotationBlock`
+
+#### `TransportBar`
+
+
+## Example event sequence
+
+* User chooses from menu
+* Change is made in `Project`
+* `Project` fires event
+* Event is caught by views
+* Views update 
+
+This is a bit more complicated unfortunately. Some of it should be corrected
+to make it easier though.
+
+## Adding a new feature
+
+### Menu items
+
+* Find the right application-wide menu to add the new feature in. __NOTE__:
+we need to reorganize the top-level menus a bit.
+* Find a new shortcut/accelerator and add the new menu item to
+[menus.txt](menus.txt).
+
+### Undo and redo
