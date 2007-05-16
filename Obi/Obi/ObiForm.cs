@@ -924,17 +924,21 @@ namespace Obi
             }
             else if (mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused)
             {
-                mPlayAllToolStripMenuItem.Enabled = mProjectPanel.TransportBar._CurrentPlaylist.WholeBook;
+                // Avn: changed to allowdirect change of Playback mode
+                mPlayAllToolStripMenuItem.Enabled = true; // mProjectPanel.TransportBar._CurrentPlaylist.WholeBook;
                 //mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
-                mPlaySelectionToolStripMenuItem.Enabled = !mProjectPanel.TransportBar._CurrentPlaylist.WholeBook;
+                // Avn: changed to allowdirect change of Playback mode
+                mPlaySelectionToolStripMenuItem.Enabled = ( mProjectPanel.CurrentSelection != null ) ;  // !mProjectPanel.TransportBar._CurrentPlaylist.WholeBook;
                 //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
                 mStopToolStripMenuItem.Enabled = true;
             }
             else // playing
             {
-                mPlayAllToolStripMenuItem.Enabled = mProjectPanel.TransportBar._CurrentPlaylist.WholeBook;
+                // Avn: changed to allowdirect change of Playback mode
+                mPlayAllToolStripMenuItem.Enabled = true ; //mProjectPanel.TransportBar._CurrentPlaylist.WholeBook;
                 //mPlayAllToolStripMenuItem.Text = Localizer.Message("pause_all");
-                mPlaySelectionToolStripMenuItem.Enabled = !mProjectPanel.TransportBar._CurrentPlaylist.WholeBook;
+                // Avn: changed to allowdirect change of Playback mode
+                mPlaySelectionToolStripMenuItem.Enabled = (mProjectPanel.CurrentSelection != null);  // !mProjectPanel.TransportBar._CurrentPlaylist.WholeBook;
                 //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("pause");
                 mStopToolStripMenuItem.Enabled = true;
             }
