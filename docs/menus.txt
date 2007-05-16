@@ -36,25 +36,26 @@ Main form
     + [V] Show in strip view ................ Alt+V
 
   + [S] Strips
-    + [A] Add strip ......................... Ctrl+A
-    + [R] Rename strip ...................... F2
-    + [I] Import audio file ................. Ctrl+I
-    + [B] Insert empty audio block .......... Ctrl+J
-    + [S] Split audio block ................. Ctrl+P
-    + [Q] Quick split audio block ........... Ctrl+Shift+P
-    + [H] Apply phrase detection ............ Ctrl+H
-    + [G] Merge with previous audio block ... Ctrl+M
-    + [V] Move audio block................... None
-      + [F] Forward ......................... Ctrl+Right
-      + [B] Backward ........................ Ctrl+Left
-    + [K] Mark audio block as used/unused ... Ctrl+K
-    + [E] Edit annotation ................... F2
-    + [O] Remove annotation ................. Shift+Ctrl+Del
-    + [F] Focus on annotation ............... Alt+Shift+A
-    + [T] Set page number ................... Ctrl+G
-    + [N] Remove page number ................ Ctrl+Del
-    + [P] Go to page ........................ Alt+G
-    + [W] Show in TOC view .................. Alt+V
+    + [A] Add strip ............................. Ctrl+A
+    + [R] Rename strip .......................... F2
+    + [I] Import audio file ..................... Ctrl+I
+    + [B] Insert empty audio block .............. Ctrl+J
+    + [S] Split audio block ..................... Ctrl+P
+    + [Q] Quick split audio block ............... Ctrl+Shift+P
+    + [H] Apply phrase detection ................ Ctrl+H
+    + [G] Merge with previous audio block ....... Ctrl+M
+    + [V] Move audio block....................... None
+      + [F] Forward ............................. Ctrl+Right
+      + [B] Backward ............................ Ctrl+Left
+    + [K] Mark audio block as used/unused ....... Ctrl+K
+    + [D] Mark audio block as section heading ... Ctrl+F 
+    + [E] Edit annotation ....................... F2
+    + [O] Remove annotation ..................... Shift+Ctrl+Del
+    + [F] Focus on annotation ................... Alt+Shift+A
+    + [T] Set page number ....................... Ctrl+G
+    + [N] Remove page number .................... Ctrl+Del
+    + [P] Go to page ............................ Alt+G
+    + [W] Show in TOC view ...................... Alt+V
 
   + [R] Transport
     + [U] Show/hide VU meter ................ Ctrl+U
@@ -100,29 +101,30 @@ TOC Panel's context menu
 
 Strip Manager Panel's context menu
 
-  + [A] Add strip ........................... Ctrl+A
-  + [N] Rename strip ........................ Shift+F2
-  + [D] Delete strip ........................ Shift+Del
-  + [W] Show in TOC view .................... Alt+V
-  + [I] Import audio ........................ Ctrl+I
-  + [B] Insert empty audio block ............ Ctrl+J
-  + [C] Cut phrase .......................... Ctrl+X
-  + [Y] Copy phrase ......................... Ctrl+C
-  + [E] Paste phrase ........................ Ctrl+V
-  + [L] Delete phrase ....................... Del
-  + [K] Mark phrase as used/unused .......... Ctrl+K
-  + [S] Split audio block ................... Ctrl+P
-  + [H] Apply phrase detection .............. Ctrl+H
-  + [G] Merge with previous audio block ..... Ctrl+M
-  + [V] Move audio block... ................. None
-    + [F] Forward ........................... Ctrl+Right
-    + [B] Backward .......................... Ctrl+Left
-  + [O] Edit annotation ..................... F2
-  + [M] Remove annotation ................... Shift+Ctrl+Del
-  + [F] Focus on annotation ................. Shift+Alt+A
-  + [T] Set page number ..................... Ctrl+G
-  + [R] Remove page number .................. Ctrl+Del
-  + [P] Go to page .......................... Alt+G
+  + [A] Add strip ............................. Ctrl+A
+  + [N] Rename strip .......................... Shift+F2
+  + [D] Delete strip .......................... Shift+Del
+  + [W] Show in TOC view ...................... Alt+V
+  + [I] Import audio .......................... Ctrl+I
+  + [B] Insert empty audio block .............. Ctrl+J
+  + [C] Cut phrase ............................ Ctrl+X
+  + [Y] Copy phrase ........................... Ctrl+C
+  + [E] Paste phrase .......................... Ctrl+V
+  + [L] Delete phrase ......................... Del
+  + [K] Mark phrase as used/unused ............ Ctrl+K
+  + [I] Mark audio block as section heading ... Ctrl+F
+  + [S] Split audio block ..................... Ctrl+P
+  + [H] Apply phrase detection ................ Ctrl+H
+  + [G] Merge with previous audio block ....... Ctrl+M
+  + [V] Move audio block... ................... None
+    + [F] Forward ............................. Ctrl+Right
+    + [B] Backward ............................ Ctrl+Left
+  + [O] Edit annotation ....................... F2
+  + [M] Remove annotation ..................... Shift+Ctrl+Del
+  + [F] Focus on annotation ................... Shift+Alt+A
+  + [T] Set page number ....................... Ctrl+G
+  + [R] Remove page number .................... Ctrl+Del
+  + [P] Go to page ............................ Alt+G
 
 
 Index of shortcuts
@@ -177,7 +179,8 @@ Index of shortcuts
   Ctrl+Shift+C ....... [TOC Panel] Copy section
   Ctrl+D ............. File > Discard changes
   Ctrl+E ............. File > Export as DAISY
-  Ctrl+F ............. FREE
+  Ctrl+F ............. Strips > Mark audio block as section heading
+  Ctrl+F ............. [Strip Manager Panel] > Mark audio block as section... 
   Ctrl+G ............. Strips > Set page number
   Ctrl+G ............. [Strip Manager Panel] Set page number
   Alt+G .............. Strips > Go to page
