@@ -404,7 +404,7 @@ namespace Obi.UserControls
                 mVUMeterPanel.PlayListObj = mCurrentPlaylist;
                 
                 // Avn: condition added on 13 may 2007
-                if (node.GetType().FullName != "Obi.PhraseNode")
+                if ( mCurrentPlaylist.PhraseList.Count > 1 )
                 m_IsSerialPlaying = true;
 
                 mCurrentPlaylist.Play();
@@ -413,7 +413,7 @@ namespace Obi.UserControls
             else if (CanResume)
             {
                 // Avn: condition added on 13 may 2007
-                if (node.GetType().FullName != "Obi.PhraseNode")
+                if ( mCurrentPlaylist.PhraseList.Count > 1 )
                 m_IsSerialPlaying = true;
 
                 mCurrentPlaylist.Resume();
@@ -422,8 +422,13 @@ namespace Obi.UserControls
             else if (mCurrentPlaylist != mMasterPlaylist)
             {
                 Stop();
-                                mProjectPanel.CurrentSelection = new NodeSelection(node, mProjectPanel.StripManager);
+                // Avn: following line replaced by next line as this function also work in toc panel
+                                //mProjectPanel.CurrentSelection = new NodeSelection(node, mProjectPanel.StripManager);
+                node = mProjectPanel.CurrentSelection.Node;
+
+                if ( mCurrentPlaylist.PhraseList.Count > 1 )
                 m_IsSerialPlaying = true;
+
                                 Play(node);
             }
                     }
