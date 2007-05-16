@@ -351,6 +351,11 @@ namespace Obi.UserControls
         /// </summary>
         public void Play()
         {
+            //Avn:  for instantly playing MasterPlaylist, check if current playlist is local and stop if this LocalPlaylist not in stop state
+            if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Stopped
+                && mCurrentPlaylist == mLocalPlaylist)
+                StopInternal();
+            
             if (CanPlay)
             {
                 mPlayingFrom = mProjectPanel.CurrentSelection;
@@ -378,7 +383,18 @@ namespace Obi.UserControls
         /// </summary>
         public void Play(ObiNode node)
         {
-            if (CanPlay)
+            // Avn: For instantly playing LocalPlaylist check if current playlist is MasterPlaylist and if this MasterPlaylist is not in stopped state, stop it.
+                                    if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Stopped
+                && mCurrentPlaylist == mMasterPlaylist)
+            {
+                                        // Avn: if keyboard focus is in toc panel, assign node to section as PlaySelection command in TOC panel plays a section
+                if ( mProjectPanel.TOCPanel.ContainsFocus )
+                node = m_CurrentPlayingSection;
+
+                StopInternal();
+                            }
+
+                        if (CanPlay)
             {
                 mPlayingFrom = mProjectPanel.CurrentSelection;
                 LocalPlaylist = new Playlist(Audio.AudioPlayer.Instance, node);
@@ -386,7 +402,7 @@ namespace Obi.UserControls
                 mCurrentPlaylist.CurrentPhrase = mLocalPlaylist.FirstPhrase;
                 mVUMeterPanel.Enable = true;
                 mVUMeterPanel.PlayListObj = mCurrentPlaylist;
-
+                
                 // Avn: condition added on 13 may 2007
                 if (node.GetType().FullName != "Obi.PhraseNode")
                 m_IsSerialPlaying = true;
@@ -406,11 +422,11 @@ namespace Obi.UserControls
             else if (mCurrentPlaylist != mMasterPlaylist)
             {
                 Stop();
-                mProjectPanel.CurrentSelection = new NodeSelection(node, mProjectPanel.StripManager);
+                                mProjectPanel.CurrentSelection = new NodeSelection(node, mProjectPanel.StripManager);
                 m_IsSerialPlaying = true;
-                Play(node);
+                                Play(node);
             }
-        }
+                    }
 
         private void mPauseButton_Click(object sender, EventArgs e)
         {
@@ -601,15 +617,30 @@ namespace Obi.UserControls
         /// <param name="node"></param>
         public void PlayPhraseOnFocus(ObiNode node)
         {
-            //execute on checking if play all is not active in playing state
-            if ( mCurrentPlaylist != null 
-                                    &&     !IsSeriallyPlaying)
+            
+            if (mCurrentPlaylist != null
+                                    && Enabled)
             {
-                                mCurrentPlaylist.Stop();
-                                mPlayingFrom = null;
+                //execute on checking if play all is not active in playing state
+                if (!IsSeriallyPlaying )
+                {
+                    StopInternal();
+
+    Play(node);
+                }// serial play  if ends
+            }
+        }
+
+        /// <summary>
+        /// Stops playlist without returning focus
+        ///  to be used locally inside this class
+        /// <see cref=""/>
+        /// </summary>
+        private void StopInternal()
+        {
+            mCurrentPlaylist.Stop();
+                                                    mPlayingFrom = null;
                 m_IsSerialPlaying = false;
-                Play(node);
-            }// if ends
         }
 
 
