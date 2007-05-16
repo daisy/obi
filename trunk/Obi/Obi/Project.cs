@@ -58,6 +58,7 @@ namespace Obi
         public event Events.PhraseNodeHandler DeletedPhraseNode;            // deleted a phrase node 
         public event Events.NodeEventHandler TouchedNode;                   // this node was somehow modified
         public event Events.ObiNodeHandler ToggledNodeUsedState;            // the used state of a node was toggled.
+        public event Events.SectionNodeHeadingHandler HeadingChanged;       // the heading of a section changed.
 
         public Channel AnnotationChannel
         {

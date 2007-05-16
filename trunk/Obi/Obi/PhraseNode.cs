@@ -152,6 +152,18 @@ namespace Obi
         }
 
         /// <summary>
+        /// True if the phrase node is a heading of its parent section.
+        /// False otherwise (not a heading or no parent.)
+        /// </summary>
+        /// <remarks>The node doesn't really know that it is a heading,
+        /// the information is only kept by the parent section in order
+        /// to minimize the risk of inconsistencies.</remarks>
+        public bool IsHeading
+        {
+            get { return ParentSection != null && ParentSection.Heading == this; }
+        }
+
+        /// <summary>
         /// Create a new phrase node inside the given project with an id.
         /// Don't forget to set the asset afterwards!
         /// </summary>

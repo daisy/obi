@@ -123,7 +123,11 @@ namespace Obi.UserControls
             mPhraseNodeMap[e.Node].RefreshDisplay();
         }
 
-
+        public void SyncHeadingChanged(object sender, Events.Node.SectionNodeHeadingEventArgs e)
+        {
+            if (e.PreviousHeading != null) mPhraseNodeMap[e.PreviousHeading].RefreshDisplay();
+            if (e.Node.Heading != null) mPhraseNodeMap[e.Node.Heading].RefreshDisplay();
+        }
 
 
 

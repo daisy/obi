@@ -677,5 +677,19 @@ namespace Obi
         }
 
         #endregion
+
+        public void MakePhraseHeading(PhraseNode phrase)
+        {
+            if (phrase != null && phrase.ParentSection != null)
+            {
+                PhraseNode previous = phrase.ParentSection.Heading;
+                if (previous != phrase)
+                {
+                    phrase.ParentSection.Heading = phrase;
+                    HeadingChanged(this, new Events.Node.SectionNodeHeadingEventArgs(this, phrase.ParentSection, previous));
+                    Modified();
+                }
+            }
+        }
     }
 }

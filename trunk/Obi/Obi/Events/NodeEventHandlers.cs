@@ -15,6 +15,7 @@ namespace Obi.Events
     public delegate void MovedSectionNodeHandler(object sender, MovedSectionNodeEventArgs e);
     public delegate void RenameSectionNodeHandler(object sender, RenameSectionNodeEventArgs e);
     public delegate void ShallowSwappedSectionNodesHandler(object sender, ShallowSwappedSectionNodesEventArgs e);
+    public delegate void SectionNodeHeadingHandler(object sender, SectionNodeHeadingEventArgs e);
 
     //Phrases
     //added, request anything, 

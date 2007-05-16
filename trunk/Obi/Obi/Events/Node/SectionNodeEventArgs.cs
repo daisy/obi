@@ -35,4 +35,20 @@ namespace Obi.Events.Node
             mNode = node;
         }
     }
+
+    public class SectionNodeHeadingEventArgs : SectionNodeEventArgs
+    {
+        private PhraseNode mPreviousHeading;
+
+        public PhraseNode PreviousHeading
+        {
+            get { return mPreviousHeading; }
+        }
+
+        public SectionNodeHeadingEventArgs(object origin, SectionNode node, PhraseNode previous)
+            : base(origin, node)
+        {
+            mPreviousHeading = previous;
+        }
+    }
 }
