@@ -79,6 +79,18 @@ namespace Obi
             SetupPreviewTimer();
         }
 
+        // Avn: added to expose list of phrases
+        /// <summary>
+        ///  exposes list of phrases in PlayList
+        /// <see cref=""/>
+        /// </summary>
+        public List<PhraseNode> PhraseList
+        {
+            get
+            {
+                return mPhrases;
+            }
+        }
         /// <summary>
         /// Project that this playlist is playing.
         /// </summary>
