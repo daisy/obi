@@ -3,29 +3,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><title>Obi events</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><link rel="stylesheet" type="text/css" href="obi.css"/></head><body>
 <div id="top"><h1>Obi events</h1></div>
 
-<p><em>$Id$</em></p>
+<p><code>$Id$</code></p>
 
 <p>This document describes Obi's eventing and summarizes how to introduce new
 features in the application.</p>
 
-<div id="toc"><p>Table of Contents</p><ul><li><a href="#id53167">Obi components</a><ul><li><a href="#id53177">Project</a><ul><li><a href="#id53181"><code>Project</code></a></li><li><a href="#id53251"><code>SectionNode</code></a></li><li><a href="#id53261"><code>PhraseNode</code></a></li></ul></li><li><a href="#id53271">Views</a><ul><li><a href="#id53274"><code>ProjectPanel</code></a></li><li><a href="#id53279"><code>TOCPanel</code></a></li><li><a href="#id53283"><code>StripManagerPanel</code></a></li><li><a href="#id53288"><code>SectionStrip</code></a></li><li><a href="#id53293"><code>AudioBlock</code></a></li><li><a href="#id53297"><code>AnnotationBlock</code></a></li><li><a href="#id53302"><code>TransportBar</code></a></li></ul></li></ul></li><li><a href="#id53306">Example event sequence</a></li><li><a href="#id53341">Adding a new feature</a><ul><li><a href="#id53345">Menu items</a></li><li><a href="#id53371">Undo and redo</a></li></ul></li></ul></div>
+<div id="toc"><p>Table of Contents</p><ul><li><a href="#id53169">Obi components</a><ul><li><a href="#id53179">Project</a><ul><li><a href="#id53182"><code>Project</code></a></li><li><a href="#id53276"><code>SectionNode</code></a></li><li><a href="#id53304"><code>PhraseNode</code></a></li></ul></li><li><a href="#id53324">Views</a><ul><li><a href="#id53328"><code>ProjectPanel</code></a></li><li><a href="#id53336"><code>TOCPanel</code></a></li><li><a href="#id53341"><code>StripManagerPanel</code></a></li><li><a href="#id53345"><code>SectionStrip</code></a></li><li><a href="#id53350"><code>AudioBlock</code></a></li><li><a href="#id53354"><code>AnnotationBlock</code></a></li><li><a href="#id53359"><code>TransportBar</code></a></li></ul></li></ul></li><li><a href="#id53364">Example event sequence</a><ul><li><a href="#id53367">Overview</a></li><li><a href="#id53400">Example: <em>Mark audio block as unused</em></a></li></ul></li><li><a href="#id53531">Adding a new feature</a><ul><li><a href="#id53544">Menu items</a></li><li><a href="#id53649">Synchronization event</a></li><li><a href="#id53732">Undo and redo</a></li></ul></li></ul></div>
 
-<h2 id="id53167">Obi components</h2>
+<h2 id="id53169">Obi components</h2>
 
 <p>The main problem is to synchronize the Obi project and its views, so that a
 change in one is reflected in the others. Most changes happen through one
 view, are effected in the project, and shown in the other views.</p>
 
-<h3 id="id53177">Project</h3>
+<h3 id="id53179">Project</h3>
 
-<h4 id="id53181"><code>Project</code></h4>
+<h4 id="id53182"><code>Project</code></h4>
 
 <p><code>Project</code> is the object representing the whole Obi project currently being
 edited; basically the presentation (tree of section and phrase nodes with
 reference to media objects) and metadata. In this document, the former only
 is detailed.</p>
 
-<p>As of this writing, <code>Project</code> sends the following events (list
+<p>As of this writing, <code>Project</code> sends the following events (listed
 alphabetically):</p>
 
 <ul>
@@ -38,55 +38,172 @@ alphabetically):</p>
 <li><code>TouchedNode</code>: a node was somehow modified.</li>
 </ul>
 
-<h4 id="id53251"><code>SectionNode</code></h4>
+<p>When implementing new features, new events may be added, but it is probably
+best to try and keep the list as short as possible. For instance (just
+thinking aloud) maybe <code>MediaSet</code>, <code>TouchedNode</code> and <code>ToggledNodeUsedState</code>
+could be merged.</p>
 
-<p>Section nodes represent a section in the book. The have other section nodes
-and phrase nodes as children.</p>
+<p>The corresponding view for the project is the project panel, which manages
+the TOC view, the strip view, and the transport bar.</p>
 
-<h4 id="id53261"><code>PhraseNode</code></h4>
+<h4 id="id53276"><code>SectionNode</code></h4>
+
+<p>Section nodes represent a section in the book. <code>SectionNode</code> inherits from
+<code>ObiNode</code> which in turn inherits from <code>CoreNode</code>.  They have other section
+nodes and phrase nodes as children. Because of this mixed content model, we
+have convenience methods to pretend that we have two independent lists of
+children nodes.</p>
+
+<p>The corresponding view for a section node is either an entry in the TOC
+panel or a section strip.</p>
+
+<h4 id="id53304"><code>PhraseNode</code></h4>
 
 <p>Phrase nodes represent phrases in the book (local navigation units.) They
-have audio content and may have an annotation, but no children.</p>
+have audio content and may have an annotation, but no children. Convenience
+methods allow to get the parent as a <code>SectionNode</code> and manage the media data
+associated with the node.</p>
 
-<h3 id="id53271">Views</h3>
+<p>The corresponding view for a phrase node is an audio block (and an
+annotation block) in the strip view.</p>
 
-<h4 id="id53274"><code>ProjectPanel</code></h4>
+<h3 id="id53324">Views</h3>
 
-<h4 id="id53279"><code>TOCPanel</code></h4>
+<h4 id="id53328"><code>ProjectPanel</code></h4>
 
-<h4 id="id53283"><code>StripManagerPanel</code></h4>
+<p>The main view for the project.</p>
 
-<h4 id="id53288"><code>SectionStrip</code></h4>
+<h4 id="id53336"><code>TOCPanel</code></h4>
 
-<h4 id="id53293"><code>AudioBlock</code></h4>
+<h4 id="id53341"><code>StripManagerPanel</code></h4>
 
-<h4 id="id53297"><code>AnnotationBlock</code></h4>
+<h4 id="id53345"><code>SectionStrip</code></h4>
 
-<h4 id="id53302"><code>TransportBar</code></h4>
+<h4 id="id53350"><code>AudioBlock</code></h4>
 
-<h2 id="id53306">Example event sequence</h2>
+<h4 id="id53354"><code>AnnotationBlock</code></h4>
 
-<ul>
+<h4 id="id53359"><code>TransportBar</code></h4>
+
+<h2 id="id53364">Example event sequence</h2>
+
+<h3 id="id53367">Overview</h3>
+
+<ol>
 <li>User chooses from menu</li>
-<li>Change is made in <code>Project</code></li>
-<li><code>Project</code> fires event</li>
-<li>Event is caught by views</li>
-<li>Views update </li>
-</ul>
+<li>Change is made in <code>Project</code>; command is issued and project is marked as
+modified</li>
+<li><code>Project</code> fires events (project modified, command created, change made)</li>
+<li>Events are caught by views</li>
+<li>Views are updated</li>
+</ol>
 
-<p>This is a bit more complicated unfortunately. Some of it should be corrected
-to make it easier though.</p>
+<h3 id="id53400">Example: <em>Mark audio block as unused</em></h3>
 
-<h2 id="id53341">Adding a new feature</h2>
-
-<h3 id="id53345">Menu items</h3>
+<ol>
+<li><p><code>mMarkAudioBlockAsUnusedToolStripMenuItem_Click()</code> (in <strong><code>ObiForm</code></strong>) is
+activated from the main menu, or <code>ToggleSelectedAudioBlockUsed()</code> (in
+<strong><code>StripManagerPanel</code></strong>) is activated from the context menu in the strip
+view.</p></li>
+<li><p>This is handled in <strong><code>Project</code></strong> by <code>ToggleNodUsedWithCommand()</code>. Note
+that there is an intermediary step to just get the right arguments to the
+function (here, the node currently selected, and the <code>deep</code> flag set to
+<code>false</code> which doesn't matter anyway since we're dealing with phrase nodes.)</p></li>
+<li><p><code>ToggleNodeUsedWithCommand()</code> modifies the tree and fires the following
+events (we'll concentrate on the first one only as the others shouldn't need
+to change when we add new features):</p>
 
 <ul>
-<li>Find the right application-wide menu to add the new feature in. <strong>NOTE</strong>:
-we need to reorganize the top-level menus a bit.</li>
-<li>Find a new shortcut/accelerator and add the new menu item to
-<a href="menus.txt">menus.txt</a>.</li>
+<li><code>ToggleNodeUsedState</code> indicating that this node's state has changed;</li>
+<li><code>StateChanged</code> indicating that the project was modified;</li>
+<li><code>CommandCreated</code> indicating that a new command was issued.</li>
+</ul></li>
+<li><p><code>ToggleNodeUsedState</code> is caught by both the strip view and the TOC view
+since the change can be seen in both of these views. The two handlers are
+set in the <code>SetEventHandlers()</code> method of <strong><code>ProjectPanel</code></strong>. The one that
+interests us here is <code>ToggledNodeUsedState()</code> in <strong><code>StripManagerPanel</code></strong> (as
+the change to an audio block doesn't show in the section view.)</p></li>
+<li><p><code>ToggleNodeUsedState()</code> calls <code>RefreshUsed()</code> for the block to show its
+new status. Voilà!</p></li>
+</ol>
+
+<h2 id="id53531">Adding a new feature</h2>
+
+<p>Let's see how to add <em>Mark audio block as section heading</em> to make a selected
+audio block be the heading for its parent section (I'm only concentrating on
+the event stuff here of course.)</p>
+
+<h3 id="id53544">Menu items</h3>
+
+<ul>
+<li><p>Find the right application-wide menu to add the new feature in. <strong>NOTE</strong>:
+we need to reorganize the top-level menus a bit. For the moment, the
+<em>Strips</em> menu will have to do.</p></li>
+<li><p>Find a new shortcut/accelerator and add the new menu item to
+<a href="menus.txt">menus.txt</a> <strong>and keep this file up-to-date</strong>. I picked up <code>d</code>
+for the accelerator, and <code>Ctrl+F</code> as the shortcut key (not many left!)</p></li>
+<li><p>Do the same (same shortcut key; accelerator had to change to <code>i</code>) for
+the corresponding context menu; here the one for the strip view.</p></li>
+<li><p>Maintain the enabled property of the new menu items: in the main menu,
+this is done by <code>UpdateEnabledItems()</code> in <strong><code>ObiForms</code></strong> (here, the actual
+method that is modified is <code>UpdateEnabledItemsForStripsMenu()</code>) and in the
+context menus look for <code>UpdateEnabledItemsForContextMenu()</code>.</p></li>
+<li><p>Now generate methods for both, which should end up calling the same method
+in the project panel in the end. Here I created the method
+<code>MarkSelectedAudioBlockAsHeading()</code> in <strong><code>StripManagerPanel</code></strong> which then
+calls the <code>MakePhraseHeading()</code> method in <strong><code>Project</code></strong> to make the change
+actually happen. We're getting there.</p></li>
 </ul>
 
-<h3 id="id53371">Undo and redo</h3>
+<h3 id="id53649">Synchronization event</h3>
+
+<p>Add a new event to the project, or reuse an existing one. A new handler
+may also be necessary, as well as an EventArgs subclass for the argument.
+Here I created a new <code>SectionNodeHeadingHandler</code> in
+<code>Obi/Events/Node/NodeEventHandlers.cs</code> and a new <code>SectionNodeHeadingEventArgs</code>
+subclass of <code>SectionNodeEventArgs</code>. I now have:</p>
+
+<pre><code>public event Events.SectionNodeHeadingHandler HeadingChanged;
+</code></pre>
+
+<p>in <code>Project</code>.</p>
+
+<p>We now need to throw the event somewhere in <code>MakePhraseHeading()</code> but also
+to catch it. Here is a simpler version of where it is thrown (in
+<code>Project.Block.cs</code>):</p>
+
+<pre><code>public void MakePhraseHeading(PhraseNode phrase)
+{
+    PhraseNode previous = phrase.ParentSection.Heading;
+    phrase.ParentSection.Heading = phrase;
+    HeadingChanged(this, new Events.Node.SectionNodeHeadingEventArgs(this,
+        phrase.ParentSection, previous));
+    Modified();
+}
+</code></pre>
+
+<p>The project panel will register the handler for the event (in
+<code>ProjectPanel.cs</code>):</p>
+
+<pre><code>private void SetEventHandlers(Project project)
+{
+    ...
+    project.HeadingChanged += new
+        Obi.Events.SectionNodeHeadingHandler(mStripManagerPanel.SyncHeadingChanged);
+}
+
+private void UnsetEventHandlers()
+{
+    ...
+    mProject.HeadingChanged -= new
+        Obi.Events.SectionNodeHeadingHandler(mStripManagerPanel.SyncHeadingChanged);
+}
+</code></pre>
+
+<p>The second part is necessary to unregister the handler when the project is
+closed; I think we can do better than that though.</p>
+
+<h3 id="id53732">Undo and redo</h3>
+
+<p>We need to add undo and redo now.</p>
 </body></html>
