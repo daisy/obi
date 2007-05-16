@@ -11,9 +11,10 @@ namespace Obi
     /// </summary>
     public class SectionNode : ObiNode
     {
-        private TextMedia mMedia;    // text media for the title of the section
-        private int mSectionOffset;  // index of the first section child
-        private int mSpan;           // span of this section: 1 + sum of the span of each child section.
+        private TextMedia mMedia;     // text media for the title of the section
+        private int mSectionOffset;   // index of the first section child
+        private int mSpan;            // span of this section: 1 + sum of the span of each child section.
+        private PhraseNode mHeading;  // section heading
 
         public static readonly string Name = "section";
 
@@ -33,7 +34,7 @@ namespace Obi
                 for (int i = 0; i < getChildCount(); ++i)
                 {
                     if (i == mSectionOffset) children += "|";
-                    children += getChild(i) is PhraseNode ? "p" : "s";
+                    children += getChild(i) is PhraseNode ? getChild(i) == mHeading ? "h" : "p" : "s";
                 }
                 return children;
             }
@@ -230,6 +231,15 @@ namespace Obi
         }
 
         /// <summary>
+        /// Get or set the heading phrase for this section.
+        /// </summary>
+        public PhraseNode Heading
+        {
+            get { return mHeading; }
+            set { mHeading = value; }
+        }
+
+        /// <summary>
         /// Create a new section node with the default label.
         /// </summary>
         internal SectionNode(Project project, int id)
@@ -239,6 +249,7 @@ namespace Obi
             Label = Localizer.Message("default_section_label");
             mSectionOffset = 0;
             mSpan = 1;
+            mHeading = null;
         }
 
         /// <summary>
@@ -344,7 +355,7 @@ namespace Obi
 
         private void AfterAddingPhrase(PhraseNode node)
         {
-            if (node.Used) node.Used = node.ParentSection.Used;
+            if (node.Used) node.Used = mUsed;
             ++mSectionOffset;
         }
 
@@ -379,7 +390,15 @@ namespace Obi
             copy.Label = Label;
             copy.Used = Used;
             copyProperties(copy);
-            if (deep) CopyChildren(copy);
+            if (deep)
+            {
+                CopyChildren(copy);
+                if (mHeading != null) copy.Heading = (PhraseNode) copy.getChild(indexOf(mHeading));
+            }
+            else
+            {
+                copy.Heading = mHeading;
+            }
             return copy;
         }
 

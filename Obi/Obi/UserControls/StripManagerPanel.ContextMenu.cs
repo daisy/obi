@@ -105,6 +105,8 @@ namespace Obi.UserControls
             mDeleteAudioBlockToolStripMenuItem.Enabled = canCutCopyDeletePhrase;
             mMarkPhraseAsUnusedToolStripMenuItem.Enabled = mProjectPanel.CanToggleAudioBlock;
             mMarkPhraseAsUnusedToolStripMenuItem.Text = mProjectPanel.ToggleAudioBlockString;
+            mMarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled = isBlockSelected &&
+                !SelectedPhraseNode.IsHeading && SelectedPhraseNode.Used;
             mSplitAudioBlockToolStripMenuItem.Enabled = isBlockSelected;
             mQuickSplitAudioBlockToolStripMenuItem.Enabled = isBlockSelected && (isPlaying || isPaused);
             mApplyPhraseDetectionToolStripMenuItem.Enabled = !isPlaying && isBlockSelected;
@@ -301,6 +303,19 @@ namespace Obi.UserControls
         internal void ToggleSelectedAudioBlockUsed()
         {
             mProjectPanel.Project.ToggleNodeUsedWithCommand(SelectedPhraseNode, false);
+        }
+
+        private void mMarkAudioBlockAsSectionHeadingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MarkSelectedAudioBlockAsHeading();
+        }
+
+        /// <summary>
+        /// The selected audio block becomes the heading.
+        /// </summary>
+        internal void MarkSelectedAudioBlockAsHeading()
+        {
+            mProjectPanel.Project.MakePhraseHeading(SelectedPhraseNode);
         }
 
         private void mSetPageNumberToolStripMenuItem_Click(object sender, EventArgs e)

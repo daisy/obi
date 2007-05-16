@@ -176,7 +176,8 @@ namespace Obi.UserControls
         private void RefreshUsed()
         {
             BackColor = mNode != null && mNode.Used ?
-                mNode.Asset.LengthInMilliseconds == 0.0 ? Colors.AudioBlockEmpty : Colors.AudioBlockUsed :
+                mNode.Asset.LengthInMilliseconds == 0.0 ? Colors.AudioBlockEmpty :
+                mNode.IsHeading ? Colors.AudioBlockHeading : Colors.AudioBlockUsed :
                 Colors.AudioBlockUnused;
             if (mAnnotationBlock != null)
             {
@@ -187,7 +188,8 @@ namespace Obi.UserControls
         private void RefreshUsed(double time)
         {
             BackColor = mNode != null && mNode.Used ?
-                time == 0.0 ? Colors.AudioBlockEmpty : Colors.AudioBlockUsed :
+                time == 0.0 ? Colors.AudioBlockEmpty :
+                mNode.IsHeading ? Colors.AudioBlockHeading : Colors.AudioBlockUsed :
                 Colors.AudioBlockUnused;
             if (mAnnotationBlock != null)
             {

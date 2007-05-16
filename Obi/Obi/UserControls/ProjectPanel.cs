@@ -254,6 +254,8 @@ namespace Obi.UserControls
 
             project.ToggledNodeUsedState += new Obi.Events.ObiNodeHandler(mStripManagerPanel.ToggledNodeUsedState);
             project.ToggledNodeUsedState += new Obi.Events.ObiNodeHandler(mTOCPanel.ToggledNodeUsedState);
+
+            project.HeadingChanged +=new Obi.Events.SectionNodeHeadingHandler(mStripManagerPanel.SyncHeadingChanged);
         }
 
         /// <summary>
@@ -297,6 +299,8 @@ namespace Obi.UserControls
 
             mProject.ToggledNodeUsedState -= new Obi.Events.ObiNodeHandler(mStripManagerPanel.ToggledNodeUsedState);
             mProject.ToggledNodeUsedState -= new Obi.Events.ObiNodeHandler(mTOCPanel.ToggledNodeUsedState);
+
+            mProject.HeadingChanged -= new Obi.Events.SectionNodeHeadingHandler(mStripManagerPanel.SyncHeadingChanged);
         }
 
         #endregion

@@ -591,6 +591,11 @@ namespace Obi
             mProjectPanel.StripManager.ToggleSelectedAudioBlockUsed();
         }
 
+        private void mMarkAudioBlockAsSectionHeadingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.StripManager.MarkSelectedAudioBlockAsHeading();
+        }
+
         private void mEditAnnotationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectPanel.StripManager.EditAnnotationForSelectedAudioBlock();
@@ -1501,6 +1506,8 @@ namespace Obi
 
             mMarkAudioBlockAsUnusedToolStripMenuItem.Enabled = mProjectPanel.CanToggleAudioBlock;
             mMarkAudioBlockAsUnusedToolStripMenuItem.Text = mProjectPanel.ToggleAudioBlockString;
+            mMarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled = isAudioBlockSelected &&
+                !mProjectPanel.CurrentSelectedAudioBlock.IsHeading && mProjectPanel.CurrentSelectedAudioBlock.Used;
         }
 
         private void mViewHelpInExternalBrowserToolStripMenuItem_Click(object sender, EventArgs e)
