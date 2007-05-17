@@ -166,7 +166,7 @@ in `Project`.
 
 We now need to throw the event somewhere in `MakePhraseHeading()` but also
 to catch it. Here is a simpler version of where it is thrown (in
-`Project.Block.cs`):
+`Project.Blocks.cs`):
 
     public void MakePhraseHeading(PhraseNode phrase)
     {
@@ -178,7 +178,7 @@ to catch it. Here is a simpler version of where it is thrown (in
     }
 
 The project panel will register the handler for the event (in
-`ProjectPanel.cs`):
+`UserControls/ProjectPanel.cs`):
 
     private void SetEventHandlers(Project project)
     {
@@ -197,6 +197,47 @@ The project panel will register the handler for the event (in
 The second part is necessary to unregister the handler when the project is
 closed; I think we can do better than that though.
 
-### Undo and redo
+### Not strictly event-related, but...
 
-We need to add undo and redo now.
+#### Undo and redo
+
+See `Commands/Nodes/MarkSectionHeading.cs`. Usually, the do/undo functions
+just use the same function that we implemented for making the change, but
+now the one above should make a command and not the one called by the
+command itself. So now we have:
+
+    public void MakePhraseHeadingWithCommand(PhraseNode phrase)
+    {
+        Commands.Node.MarkSectionHeading command = MakePhraseHeading(phrase);
+        CommandCreated(this, new Obi.Events.Project.CommandCreatedEventArgs(command));
+    }
+
+    public Commands.Node.MarkSectionHeading MakePhraseHeading(PhraseNode phrase)
+    {
+        PhraseNode previous = phrase.ParentSection.Heading;
+        phrase.ParentSection.Heading = phrase;
+        HeadingChanged(this, new Events.Node.SectionNodeHeadingEventArgs(this,
+            phrase.ParentSection, previous));
+        Modified();
+        return new Commands.Node.MarkSectionHeading(phrase, previous);
+    }
+
+#### Serialization (`XukIn` and `XukOut`)
+
+Normally we can get away with just overriding XukInAttributes rather than
+XukIn (which is not fun to override anyway.) Same for XukOut. If there are
+important changes to the file format, the xuk/obi version number should be
+bumped up by 1.
+
+#### Documentation
+
+New features need to be documented in the user manual. Screenshots are nice
+too. Let's see what we have for [Section
+headings](../Obi/Obi/help_en.html#section-headings) in the documentation. Do
+not forget to keep the version number and the date current (this should not
+be done automatically in order to make sure that the documentation is
+updated along with the application.)
+
+#### Tests
+
+And need to be tested (when we actually do that.)
