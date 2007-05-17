@@ -1,0 +1,183 @@
+# Obi tasklist for version 1.0
+
+`$Id$`
+
+This document covers the tasklist for Obi in versions 0.8.5.1 (May 2007) to
+1.0 (hopefully December.) Most tasks come from [the requirement list for
+version 2.0](../../common/ObiRequirements/Obi2_0Requirements.htm) which is
+really going to be version 1.0.
+
+<div id="toc">Table of Contents</div>
+
+## In progress
+
+### Specification of audio for section headings
+
+* Julien
+* [Requirement #12](../../common/ObiRequirements/Obi2_0Requirements.htm#f12)
+* TODO: make the heading change at export time.
+* TODO: custom sequence of phrases instead of a single phrase
+
+### Switch between states at a single key-press
+
+* Avneesh?
+* [Requirement #9](../../common/ObiRequirements/Obi2_0Requirements.htm#f9)
+
+## Todo
+
+### Essential requirements
+
+Not yet ordered or timed.
+
+#### Project cleanup
+
+* [Requirement #11](../../common/ObiRequirements/Obi2_0Requirements.htm#f11)
+* We do most of it at export time.
+
+#### Page number support
+
+* [Requirement #17](../../common/ObiRequirements/Obi2_0Requirements.htm#f17)
+
+#### Producer marks
+
+* [Requirement #25](../../common/ObiRequirements/Obi2_0Requirements.htm#f25)
+
+#### Recording Modes
+
+* [Requirement #1](../../common/ObiRequirements/Obi2_0Requirements.htm#f1)
+
+#### Monitor Control
+
+* [Requirement #2](../../common/ObiRequirements/Obi2_0Requirements.htm#f2)
+
+#### Ability to record directly to both WAV and MP3
+
+* [Requirement #7](../../common/ObiRequirements/Obi2_0Requirements.htm#f7)
+
+#### Support for input level adjustment during recording
+
+* [Requirement #8](../../common/ObiRequirements/Obi2_0Requirements.htm#f8)
+
+#### Import of predefined TOC structure
+
+* [Requirement #23](../../common/ObiRequirements/Obi2_0Requirements.htm#f23)
+
+#### Wave form display and editing
+
+* [Requirement #26](../../common/ObiRequirements/Obi2_0Requirements.htm#f26)
+
+#### Support for System high contrast and configurable colors
+
+* [Requirement #27](../../common/ObiRequirements/Obi2_0Requirements.htm#f26)
+
+### Other requirements
+
+#### User profiles
+
+* [Requirement #20](../../common/ObiRequirements/Obi2_0Requirements.htm#f20)
+
+#### Bookmark/Highlight/Last Mark support
+
+* [Requirement #3](../../common/ObiRequirements/Obi2_0Requirements.htm#f3)
+
+#### Support for resource files
+
+* [Requirement #4](../../common/ObiRequirements/Obi2_0Requirements.htm#f4)
+
+#### Skippability support
+
+* [Requirement #5](../../common/ObiRequirements/Obi2_0Requirements.htm#f5)
+
+#### Support for Escapable Structures
+
+* [Requirement #6](../../common/ObiRequirements/Obi2_0Requirements.htm#f6)
+
+#### Audio Counter
+
+* [Requirement #10](../../common/ObiRequirements/Obi2_0Requirements.htm#f10)
+* Not very well specified though.
+
+#### Support for images for section headings
+
+* [Requirement #21](../../common/ObiRequirements/Obi2_0Requirements.htm#f21)
+
+#### Configurable VU and peak meters
+
+* [Requirement #22](../../common/ObiRequirements/Obi2_0Requirements.htm#f22)
+
+#### Generic navigation list support
+
+* [Requirement #18](../../common/ObiRequirements/Obi2_0Requirements.htm#f18)
+
+#### Heading creation while recording
+
+* [Requirement #24](../../common/ObiRequirements/Obi2_0Requirements.htm#f24)
+
+#### Configurable keyboard shortcuts
+
+* [Requirement #28](../../common/ObiRequirements/Obi2_0Requirements.htm#f28)
+
+#### Support for system defined font size or adjustable font
+
+* [Requirement #29](../../common/ObiRequirements/Obi2_0Requirements.htm#f29)
+
+#### Interface for DAISY Pipeline
+
+* [Requirement #30](../../common/ObiRequirements/Obi2_0Requirements.htm#f30)
+
+#### Better installer
+
+* [Requirement #31](../../common/ObiRequirements/Obi2_0Requirements.htm#f31)
+
+#### Multiple selection
+
+* [Requirement #32](../../common/ObiRequirements/Obi2_0Requirements.htm#f32)
+
+#### Multiple projects
+
+* [Requirement #33](../../common/ObiRequirements/Obi2_0Requirements.htm#f33)
+
+#### Views synchronization
+
+* [Requirement #34](../../common/ObiRequirements/Obi2_0Requirements.htm#f34)
+
+#### Obi expert mode
+
+* [Requirement #35](../../common/ObiRequirements/Obi2_0Requirements.htm#f35)
+
+#### Full metadata
+
+* [Requirement #36](../../common/ObiRequirements/Obi2_0Requirements.htm#f36)
+
+### Backend features
+
+#### Inserting vs. appending
+
+* This should be settled for good
+
+#### Port to version 1.0 of the SDK
+
+* As soon as it is possible.
+
+#### Selection and clipboard
+
+* Clipboard to be owned by project panel, not project.
+* Selection to be managed by command manager to restore it after undo/redo.
+
+### Unclear status
+
+#### Support for import of Z39.86-2005 DTBs
+
+* [Requirement #13](../../common/ObiRequirements/Obi2_0Requirements.htm#f13)
+
+#### Support for import of Daisy 2.02 DTBs
+
+* [Requirement #15](../../common/ObiRequirements/Obi2_0Requirements.htm#f15)
+
+#### Support for publishing projects as Daisy 2.02 DTBs
+
+* [Requirement #16](../../common/ObiRequirements/Obi2_0Requirements.htm#f16)
+
+## Done
+
+This list is not even finished!
