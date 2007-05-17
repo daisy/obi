@@ -1582,5 +1582,36 @@ namespace Obi
             BackColor = UserControls.Colors.ObiBackGround;
             mProject.Touch();
         }
+
+
+        private void MoveToNextPanel()
+        {
+            mProjectPanel.TransportBar.PlayOnFocusEnabled = false;
+            if (mProjectPanel.TOCPanel.ContainsFocus)
+            {
+                //                                mProjectPanel.CurrentSelection = new NodeSelection(mProjectPanel.CurrentSelectionNode, mProjectPanel.StripManager);
+                mProjectPanel.TOCPanel.ShowSelectedSectionInStripView();
+            }
+            else if (mProjectPanel.StripManager.ContainsFocus)
+            {
+                mProjectPanel.TransportBar.Focus();
+            }
+            else if (mProjectPanel.TransportBar.ContainsFocus)
+            {
+                if (mProjectPanel.CurrentSelectionNode.GetType().Name == "PhraseNode")
+                {
+                    PhraseNode TempPhraseNode = mProjectPanel.CurrentSelectionNode as PhraseNode;
+                    mProjectPanel.CurrentSelection = new NodeSelection(TempPhraseNode.ParentSection, mProjectPanel.TOCPanel);
+                    mProjectPanel.TOCPanel.Focus();
+                }
+                else
+                    mProjectPanel.StripManager.ShowInTOCPanel();
+
+            }
+            mProjectPanel.TransportBar.PlayOnFocusEnabled = true;
+        }
+
+
+
     }
 }

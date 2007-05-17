@@ -272,6 +272,16 @@ namespace Obi.UserControls
         //  mg20060804
         internal void mShowInTOCViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ShowInTOCPanel  () ;
+        }
+
+        // Avn: moved to seperate function
+        /// <summary>
+        ///  displays the selected section in toc panel and shifts keyboard focus to toc panel
+        /// <see cref=""/>
+        /// </summary>
+        public void ShowInTOCPanel () 
+        {
             if (mProjectPanel.CurrentSelectedStrip != null)
             {
                 ProjectPanel.CurrentSelection = new NodeSelection(mProjectPanel.CurrentSelection.Node, mProjectPanel.TOCPanel);
