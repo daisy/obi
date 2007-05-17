@@ -46,7 +46,7 @@ namespace Obi
         private int mPhraseCount;            // total number of phrases in the project
         private int mPageCount;              // count the pages in the book
 
-        public static readonly string XUKVersion = "obi-xuk-010";                // version of the Obi/XUK file
+        public static readonly string XUKVersion = "obi-xuk-011";                // version of the Obi/XUK file
         public static readonly string AudioChannelName = "obi.audio";            // canonical name of the audio channel
         public static readonly string TextChannelName = "obi.text";              // canonical name of the text channel
         public static readonly string AnnotationChannelName = "obi.annotation";  // canonical name of the annotation channel
@@ -428,6 +428,10 @@ namespace Obi
             foreach (object o in getMetadataList())
             {
                 urakawa.project.Metadata meta = (urakawa.project.Metadata)o;
+                if (meta.getName() == SimpleMetadata.MetaGenerator)
+                {
+                    meta.setContent(Generator);
+                }
                 if (meta.getName() == SimpleMetadata.MetaTitle)
                 {
                     meta.setContent(mMetadata.Title);
