@@ -42,6 +42,17 @@ Not yet ordered or timed.
 
 * [Requirement #25](../../common/ObiRequirements/Obi2_0Requirements.htm#f25)
 
+#### Go to annotation
+
+* Group annotations by type?
+* This is related to producer marks.
+
+#### Search text
+
+* Search annotations
+* Search TOC headings
+* Search metadata
+
 #### Recording Modes
 
 * [Requirement #1](../../common/ObiRequirements/Obi2_0Requirements.htm#f1)
