@@ -678,8 +678,15 @@ namespace Obi
 
         #endregion
 
-        public void MakePhraseHeading(PhraseNode phrase)
+        public void MakePhraseHeadingWithCommand(PhraseNode phrase)
         {
+            Commands.Node.MarkSectionHeading command = MakePhraseHeading(phrase);
+            if (command != null) CommandCreated(this, new Obi.Events.Project.CommandCreatedEventArgs(command));
+        }
+
+        public Commands.Node.MarkSectionHeading MakePhraseHeading(PhraseNode phrase)
+        {
+            Commands.Node.MarkSectionHeading command = null;
             if (phrase != null && phrase.ParentSection != null)
             {
                 PhraseNode previous = phrase.ParentSection.Heading;
@@ -688,8 +695,17 @@ namespace Obi
                     phrase.ParentSection.Heading = phrase;
                     HeadingChanged(this, new Events.Node.SectionNodeHeadingEventArgs(this, phrase.ParentSection, previous));
                     Modified();
+                    command = new Obi.Commands.Node.MarkSectionHeading(phrase, previous);
                 }
             }
+            return command;
+        }
+
+        public void UnmakePhraseHeading(SectionNode section)
+        {
+            PhraseNode previous = section.Heading;
+            section.Heading = null;
+            HeadingChanged(this, new Events.Node.SectionNodeHeadingEventArgs(this, section, previous));
         }
     }
 }

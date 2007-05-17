@@ -1507,7 +1507,8 @@ namespace Obi
             mMarkAudioBlockAsUnusedToolStripMenuItem.Enabled = mProjectPanel.CanToggleAudioBlock;
             mMarkAudioBlockAsUnusedToolStripMenuItem.Text = mProjectPanel.ToggleAudioBlockString;
             mMarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled = isAudioBlockSelected &&
-                !mProjectPanel.CurrentSelectedAudioBlock.IsHeading && mProjectPanel.CurrentSelectedAudioBlock.Used;
+                !mProjectPanel.CurrentSelectedAudioBlock.IsHeading && mProjectPanel.CurrentSelectedAudioBlock.Used &&
+                mProjectPanel.CurrentSelectedAudioBlock.Asset.LengthInMilliseconds > 0.0;
         }
 
         private void mViewHelpInExternalBrowserToolStripMenuItem_Click(object sender, EventArgs e)

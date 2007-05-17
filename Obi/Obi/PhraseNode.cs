@@ -9,6 +9,7 @@ namespace Obi
     {
         private TextMedia mAnnotation;   // quick reference to the annotation text media object
         private AudioMediaAsset mAsset;  // the audio asset for this phrase
+        private bool mXukInHeadingFlag;  // got the heading flag from the XUK file
 
         public static readonly string Name = "phrase";  // name of the element in the XUK file
     
@@ -173,6 +174,7 @@ namespace Obi
             mAnnotation = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
             Annotation = "";
             mAsset = null;
+            mXukInHeadingFlag = false;
         }
 
         /// <summary>
@@ -236,6 +238,24 @@ namespace Obi
         public void DetachFromParent()
         {
             ParentSection.RemoveChildPhrase(this);
+        }
+
+        protected override bool XUKOutAttributes(System.Xml.XmlWriter wr)
+        {
+            if (IsHeading) wr.WriteAttributeString("heading", "True");
+            return base.XUKOutAttributes(wr);
+        }
+
+        protected override bool XUKInAttributes(System.Xml.XmlReader source)
+        {
+            string used = source.GetAttribute("heading");
+            if (used != null && used == "True") mXukInHeadingFlag = true;
+            return base.XUKInAttributes(source);
+        }
+
+        public bool HasXukInHeadingFlag
+        {
+            get { return mXukInHeadingFlag; }
         }
     }
 }

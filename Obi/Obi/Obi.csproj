@@ -90,6 +90,7 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\CommandManager.cs" />
     <Compile Include="Commands\ListCommand.cs" />
+    <Compile Include="Commands\Node\MarkSectionHeading.cs" />
     <Compile Include="Commands\Node\ToggleUsed.cs" />
     <Compile Include="Commands\Strips\AddPhrase.cs" />
     <Compile Include="Commands\Strips\ApplyPhraseDetection.cs" />

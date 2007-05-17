@@ -33,7 +33,7 @@
       <div style="float: right;">
         <img src="__$strRootHttpDir__images/obird_bobi.png" alt="The Obi logo"/>
       </div>
-      <p>This is the user manual for <strong>Obi v0.8.4.0 (01 May 2007)</strong></p>
+      <p>This is the user manual for <strong>Obi v0.8.5.1 (17 May 2007)</strong></p>
     </div>
 
     <h1 class="title">
@@ -83,6 +83,7 @@
             <li><a href="#phrase-detection">Phrase detection</a></li>
             <li><a href="#edit-audio-blocks">Cut, copy, paste, delete and move</a></li>
             <li><a href="#unused-blocks">Used and unused audio blocks</a></li>
+            <li><a href="#section-headings">Section headings</a></li>
             <li><a href="#page-numbers">Page numbers</a></li>
             <li><a href="#annotations">Annotations</a></li>
           </ul>
@@ -444,6 +445,12 @@
           <h4>Used and unused audio blocks</h4>
           <p>We have seen how to mark sections as being unused, now you can do the same for audio blocks. To mark a selected audio block as being unused, choose <q>Mark audio block as unused</q> in the <q>Strips</q> menu, or press Ctrl+K. The block will turn gray to show its status. The block will not play when playing back the contents of the book, and will not be exported to DAISY.</p>
           <p>Similarly, you can turn a selected unused audio block back to <em>used</em> status again by choosing <q>Mark audio block as used</q> in the <q>Strips</q> menu, or pressing Ctrl+K.</p>
+        </div>
+        <div id="section-headings">
+          <h4>Section headings</h4>
+          <p>The section heading is the audio block corresponding to the title of the section. This is the audio label for a section in the table of contents.</p>
+          <p>By default, Obi picks the first used audio block as the heading; but this can be set to a different block (which must be part of the current section though) by choosing <q>Mark audio block as section heading</q> in the <q>Strips</q> menu, or pressing Ctrl+F. There can be only one heading per section, so a possible previous heading is unmarked.</p>
+          <p>Note that Obi will not let you choose an unused or empty audio block for a section heading.</p>
         </div>
         <div id="page-numbers">
           <h4>Page numbers</h4>
