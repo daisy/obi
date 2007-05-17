@@ -107,6 +107,8 @@ namespace Obi.UserControls
             mMarkPhraseAsUnusedToolStripMenuItem.Text = mProjectPanel.ToggleAudioBlockString;
             mMarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled = isBlockSelected &&
                 !SelectedPhraseNode.IsHeading && SelectedPhraseNode.Used;
+            mUnmarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled = isBlockSelected &&
+                SelectedPhraseNode.IsHeading;
             mSplitAudioBlockToolStripMenuItem.Enabled = isBlockSelected;
             mQuickSplitAudioBlockToolStripMenuItem.Enabled = isBlockSelected && (isPlaying || isPaused);
             mApplyPhraseDetectionToolStripMenuItem.Enabled = !isPlaying && isBlockSelected;

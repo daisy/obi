@@ -664,4 +664,7 @@ Do you want to replace the project contained in this file?</value>
   <data name="mark_section_heading_command_label" xml:space="preserve">
     <value>mark audio block as section heading</value>
   </data>
+  <data name="unmark_section_heading_command_label" xml:space="preserve">
+    <value>unmark audio block as section heading</value>
+  </data>
 </root>

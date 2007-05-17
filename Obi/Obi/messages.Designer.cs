@@ -1464,6 +1464,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to unmark audio block as section heading.
+        /// </summary>
+        internal static string unmark_section_heading_command_label {
+            get {
+                return ResourceManager.GetString("unmark_section_heading_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to unused.
         /// </summary>
         internal static string unused {

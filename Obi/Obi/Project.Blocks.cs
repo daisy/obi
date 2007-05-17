@@ -694,9 +694,15 @@ namespace Obi
                 {
                     phrase.ParentSection.Heading = phrase;
                     HeadingChanged(this, new Events.Node.SectionNodeHeadingEventArgs(this, phrase.ParentSection, previous));
-                    Modified();
                     command = new Obi.Commands.Node.MarkSectionHeading(phrase, previous);
                 }
+                else
+                {
+                    phrase.ParentSection.Heading = null;
+                    HeadingChanged(this, new Events.Node.SectionNodeHeadingEventArgs(this, phrase.ParentSection, phrase));
+                    command = new Obi.Commands.Node.MarkSectionHeading(null, previous);
+                }
+                Modified();
             }
             return command;
         }
