@@ -22,7 +22,10 @@ namespace Obi.UserControls
         // it is true while a series of assets are being played but false when only single asset is played
         // so it is true for play all command and true for play node command when node is section
         // for Playing playlist state of serial play of asset it is true while for pause and stop state during serial play, it is false
-        private bool m_IsSerialPlaying = false; 
+        private bool m_IsSerialPlaying = false;
+
+        private bool m_PlayOnFocusEnabled = true;     // Avn: for controlling triggering of OnFocus playback.
+
 
         // constants from the display combo box
         private static readonly int Elapsed = 0;
@@ -78,6 +81,23 @@ namespace Obi.UserControls
         {
             return mCurrentPlaylist != null && mCurrentPlaylist.ContainsPhrase(node as PhraseNode);
         }
+
+        /// <summary>
+        ///  Controls triggering of On Focus Playback
+        /// <see cref=""/>
+        /// </summary>
+        public bool PlayOnFocusEnabled
+        {
+            get
+            {
+                return m_PlayOnFocusEnabled;
+            }
+            set
+            {
+                m_PlayOnFocusEnabled = value;
+            }
+                    }
+
 
         #endregion
 
@@ -624,7 +644,8 @@ namespace Obi.UserControls
         {
             
             if (mCurrentPlaylist != null
-                                    && Enabled)
+                                    && Enabled
+                &&     PlayOnFocusEnabled )
             {
                 //execute on checking if play all is not active in playing state
                 if (!IsSeriallyPlaying )
