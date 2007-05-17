@@ -356,6 +356,7 @@ namespace Obi
         private void AfterAddingPhrase(PhraseNode node)
         {
             if (node.Used) node.Used = mUsed;
+            if (node.HasXukInHeadingFlag) Heading = node;
             ++mSectionOffset;
         }
 
@@ -365,6 +366,7 @@ namespace Obi
         /// <param name="node"></param>
         public void RemoveChildPhrase(PhraseNode node)
         {
+            if (node == mHeading) mHeading = null;
             node.detach();
             --mSectionOffset;
         }

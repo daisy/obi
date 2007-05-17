@@ -668,6 +668,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to mark audio block as section heading.
+        /// </summary>
+        internal static string mark_section_heading_command_label {
+            get {
+                return ResourceManager.GetString("mark_section_heading_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mar&amp;k {0} as {1}.
         /// </summary>
         internal static string mark_x_as_y {

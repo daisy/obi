@@ -315,7 +315,7 @@ namespace Obi.UserControls
         /// </summary>
         internal void MarkSelectedAudioBlockAsHeading()
         {
-            mProjectPanel.Project.MakePhraseHeading(SelectedPhraseNode);
+            mProjectPanel.Project.MakePhraseHeadingWithCommand(SelectedPhraseNode);
         }
 
         private void mSetPageNumberToolStripMenuItem_Click(object sender, EventArgs e)
