@@ -6,9 +6,12 @@ div#top { margin: -2em -2em 2em -2em; padding: .1em 2em;
   background-color: #6f6; color: white; }
 
 h2, h3, h4 { font-family: sans-serif; color: rgb(5, 80, 5) }
-h2, h3 { border-bottom: thin, rgb(25, 100, 25) dotted; }
+h2, h3 { border-bottom: thin rgb(25, 100, 25) dotted; }
 
-div#toc { border: solid thin #3c3; padding: 0 1em; }
+div#toc ul { list-style-type: none; }
+
+.todo { font-weight: bold; color: red; }
+
 a { font-weight: bold }
 pre { background-color: #cfc; padding: 1em; margin-left: 2em;
   border: solid thin #6f6; }

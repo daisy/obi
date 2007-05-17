@@ -39,7 +39,7 @@
   <xsl:template match="div[@id='toc']">
     <xsl:element name="{name()}">
       <xsl:copy-of select="@*"/>
-      <xsl:element name="p">
+      <xsl:element name="h2">
         <xsl:apply-templates/>
       </xsl:element>
       <xsl:element name="ul">
@@ -114,6 +114,16 @@
         <xsl:apply-templates/>
       </xsl:element>
     </xsl:element>
+  </xsl:template>
+
+  <!-- TODO -->
+  <xsl:template match="text()[contains(.,'TODO')]">
+    <xsl:value-of select="substring-before(.,'TODO')"/>
+    <xsl:element name="span">
+      <xsl:attribute name="class">todo</xsl:attribute>
+      <xsl:text>TODO</xsl:text>
+    </xsl:element>
+    <xsl:value-of select="substring-after(.,'TODO')"/>
   </xsl:template>
 
   <!-- Dump the rest as is -->
