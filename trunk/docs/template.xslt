@@ -103,6 +103,19 @@
     </xsl:element>
   </xsl:template>
 
+  <!-- Link to source files -->
+  <xsl:template match="code[text()[contains(.,'.cs')]]">
+    <xsl:element name="a">
+      <xsl:attribute name="href">
+        <xsl:value-of select="concat('../Obi/Obi/',.)"/>
+      </xsl:attribute>
+      <xsl:element name="{name()}">
+        <xsl:copy-of select="@*"/>
+        <xsl:apply-templates/>
+      </xsl:element>
+    </xsl:element>
+  </xsl:template>
+
   <!-- Dump the rest as is -->
   <xsl:template match="*">
     <xsl:element name="{name()}">

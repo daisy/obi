@@ -8,17 +8,17 @@
 <p>This document describes Obi's eventing and summarizes how to introduce new
 features in the application.</p>
 
-<div id="toc"><p>Table of Contents</p><ul><li><a href="#id53169">Obi components</a><ul><li><a href="#id53179">Project</a><ul><li><a href="#id53182"><code>Project</code></a></li><li><a href="#id53276"><code>SectionNode</code></a></li><li><a href="#id53304"><code>PhraseNode</code></a></li></ul></li><li><a href="#id53324">Views</a><ul><li><a href="#id53328"><code>ProjectPanel</code></a></li><li><a href="#id53336"><code>TOCPanel</code></a></li><li><a href="#id53341"><code>StripManagerPanel</code></a></li><li><a href="#id53345"><code>SectionStrip</code></a></li><li><a href="#id53350"><code>AudioBlock</code></a></li><li><a href="#id53354"><code>AnnotationBlock</code></a></li><li><a href="#id53359"><code>TransportBar</code></a></li></ul></li></ul></li><li><a href="#id53364">Example event sequence</a><ul><li><a href="#id53367">Overview</a></li><li><a href="#id53400">Example: <em>Mark audio block as unused</em></a></li></ul></li><li><a href="#id53531">Adding a new feature</a><ul><li><a href="#id53544">Menu items</a></li><li><a href="#id53649">Synchronization event</a></li><li><a href="#id53732">Undo and redo</a></li></ul></li></ul></div>
+<div id="toc"><p>Table of Contents</p><ul><li><a href="#id53234">Obi components</a><ul><li><a href="#id53244">Project</a><ul><li><a href="#id53247"><code>Project</code></a></li><li><a href="#id53341"><code>SectionNode</code></a></li><li><a href="#id53369"><code>PhraseNode</code></a></li></ul></li><li><a href="#id53389">Views</a><ul><li><a href="#id53393"><code>ProjectPanel</code></a></li><li><a href="#id53401"><code>TOCPanel</code></a></li><li><a href="#id53406"><code>StripManagerPanel</code></a></li><li><a href="#id53410"><code>SectionStrip</code></a></li><li><a href="#id53415"><code>AudioBlock</code></a></li><li><a href="#id53420"><code>AnnotationBlock</code></a></li><li><a href="#id53424"><code>TransportBar</code></a></li></ul></li></ul></li><li><a href="#id53429">Example event sequence</a><ul><li><a href="#id53432">Overview</a></li><li><a href="#id53465">Example: <em>Mark audio block as unused</em></a></li></ul></li><li><a href="#id53596">Adding a new feature</a><ul><li><a href="#id53609">Menu items</a></li><li><a href="#id53714">Synchronization event</a></li><li><a href="#id53797">Not strictly event-related, but...</a><ul><li><a href="#id53801">Undo and redo</a></li><li><a href="#id53820">Serialization (<code>XukIn</code> and <code>XukOut</code>)</a></li><li><a href="#id53838">Documentation</a></li><li><a href="#id53857">Tests</a></li></ul></li></ul></li></ul></div>
 
-<h2 id="id53169">Obi components</h2>
+<h2 id="id53234">Obi components</h2>
 
 <p>The main problem is to synchronize the Obi project and its views, so that a
 change in one is reflected in the others. Most changes happen through one
 view, are effected in the project, and shown in the other views.</p>
 
-<h3 id="id53179">Project</h3>
+<h3 id="id53244">Project</h3>
 
-<h4 id="id53182"><code>Project</code></h4>
+<h4 id="id53247"><code>Project</code></h4>
 
 <p><code>Project</code> is the object representing the whole Obi project currently being
 edited; basically the presentation (tree of section and phrase nodes with
@@ -46,7 +46,7 @@ could be merged.</p>
 <p>The corresponding view for the project is the project panel, which manages
 the TOC view, the strip view, and the transport bar.</p>
 
-<h4 id="id53276"><code>SectionNode</code></h4>
+<h4 id="id53341"><code>SectionNode</code></h4>
 
 <p>Section nodes represent a section in the book. <code>SectionNode</code> inherits from
 <code>ObiNode</code> which in turn inherits from <code>CoreNode</code>.  They have other section
@@ -57,7 +57,7 @@ children nodes.</p>
 <p>The corresponding view for a section node is either an entry in the TOC
 panel or a section strip.</p>
 
-<h4 id="id53304"><code>PhraseNode</code></h4>
+<h4 id="id53369"><code>PhraseNode</code></h4>
 
 <p>Phrase nodes represent phrases in the book (local navigation units.) They
 have audio content and may have an annotation, but no children. Convenience
@@ -67,27 +67,27 @@ associated with the node.</p>
 <p>The corresponding view for a phrase node is an audio block (and an
 annotation block) in the strip view.</p>
 
-<h3 id="id53324">Views</h3>
+<h3 id="id53389">Views</h3>
 
-<h4 id="id53328"><code>ProjectPanel</code></h4>
+<h4 id="id53393"><code>ProjectPanel</code></h4>
 
 <p>The main view for the project.</p>
 
-<h4 id="id53336"><code>TOCPanel</code></h4>
+<h4 id="id53401"><code>TOCPanel</code></h4>
 
-<h4 id="id53341"><code>StripManagerPanel</code></h4>
+<h4 id="id53406"><code>StripManagerPanel</code></h4>
 
-<h4 id="id53345"><code>SectionStrip</code></h4>
+<h4 id="id53410"><code>SectionStrip</code></h4>
 
-<h4 id="id53350"><code>AudioBlock</code></h4>
+<h4 id="id53415"><code>AudioBlock</code></h4>
 
-<h4 id="id53354"><code>AnnotationBlock</code></h4>
+<h4 id="id53420"><code>AnnotationBlock</code></h4>
 
-<h4 id="id53359"><code>TransportBar</code></h4>
+<h4 id="id53424"><code>TransportBar</code></h4>
 
-<h2 id="id53364">Example event sequence</h2>
+<h2 id="id53429">Example event sequence</h2>
 
-<h3 id="id53367">Overview</h3>
+<h3 id="id53432">Overview</h3>
 
 <ol>
 <li>User chooses from menu</li>
@@ -98,7 +98,7 @@ modified</li>
 <li>Views are updated</li>
 </ol>
 
-<h3 id="id53400">Example: <em>Mark audio block as unused</em></h3>
+<h3 id="id53465">Example: <em>Mark audio block as unused</em></h3>
 
 <ol>
 <li><p><code>mMarkAudioBlockAsUnusedToolStripMenuItem_Click()</code> (in <strong><code>ObiForm</code></strong>) is
@@ -127,13 +127,13 @@ the change to an audio block doesn't show in the section view.)</p></li>
 new status. Voilà!</p></li>
 </ol>
 
-<h2 id="id53531">Adding a new feature</h2>
+<h2 id="id53596">Adding a new feature</h2>
 
 <p>Let's see how to add <em>Mark audio block as section heading</em> to make a selected
 audio block be the heading for its parent section (I'm only concentrating on
 the event stuff here of course.)</p>
 
-<h3 id="id53544">Menu items</h3>
+<h3 id="id53609">Menu items</h3>
 
 <ul>
 <li><p>Find the right application-wide menu to add the new feature in. <strong>NOTE</strong>:
@@ -155,12 +155,12 @@ calls the <code>MakePhraseHeading()</code> method in <strong><code>Project</code
 actually happen. We're getting there.</p></li>
 </ul>
 
-<h3 id="id53649">Synchronization event</h3>
+<h3 id="id53714">Synchronization event</h3>
 
 <p>Add a new event to the project, or reuse an existing one. A new handler
 may also be necessary, as well as an EventArgs subclass for the argument.
 Here I created a new <code>SectionNodeHeadingHandler</code> in
-<code>Obi/Events/Node/NodeEventHandlers.cs</code> and a new <code>SectionNodeHeadingEventArgs</code>
+<a href="../Obi/Obi/Obi/Events/Node/NodeEventHandlers.cs"><code>Obi/Events/Node/NodeEventHandlers.cs</code></a> and a new <code>SectionNodeHeadingEventArgs</code>
 subclass of <code>SectionNodeEventArgs</code>. I now have:</p>
 
 <pre><code>public event Events.SectionNodeHeadingHandler HeadingChanged;
@@ -170,7 +170,7 @@ subclass of <code>SectionNodeEventArgs</code>. I now have:</p>
 
 <p>We now need to throw the event somewhere in <code>MakePhraseHeading()</code> but also
 to catch it. Here is a simpler version of where it is thrown (in
-<code>Project.Block.cs</code>):</p>
+<a href="../Obi/Obi/Project.Blocks.cs"><code>Project.Blocks.cs</code></a>):</p>
 
 <pre><code>public void MakePhraseHeading(PhraseNode phrase)
 {
@@ -183,7 +183,7 @@ to catch it. Here is a simpler version of where it is thrown (in
 </code></pre>
 
 <p>The project panel will register the handler for the event (in
-<code>ProjectPanel.cs</code>):</p>
+<a href="../Obi/Obi/UserControls/ProjectPanel.cs"><code>UserControls/ProjectPanel.cs</code></a>):</p>
 
 <pre><code>private void SetEventHandlers(Project project)
 {
@@ -203,7 +203,49 @@ private void UnsetEventHandlers()
 <p>The second part is necessary to unregister the handler when the project is
 closed; I think we can do better than that though.</p>
 
-<h3 id="id53732">Undo and redo</h3>
+<h3 id="id53797">Not strictly event-related, but...</h3>
 
-<p>We need to add undo and redo now.</p>
+<h4 id="id53801">Undo and redo</h4>
+
+<p>See <a href="../Obi/Obi/Commands/Nodes/MarkSectionHeading.cs"><code>Commands/Nodes/MarkSectionHeading.cs</code></a>. Usually, the do/undo functions
+just use the same function that we implemented for making the change, but
+now the one above should make a command and not the one called by the
+command itself. So now we have:</p>
+
+<pre><code>public void MakePhraseHeadingWithCommand(PhraseNode phrase)
+{
+    Commands.Node.MarkSectionHeading command = MakePhraseHeading(phrase);
+    CommandCreated(this, new Obi.Events.Project.CommandCreatedEventArgs(command));
+}
+
+public Commands.Node.MarkSectionHeading MakePhraseHeading(PhraseNode phrase)
+{
+    PhraseNode previous = phrase.ParentSection.Heading;
+    phrase.ParentSection.Heading = phrase;
+    HeadingChanged(this, new Events.Node.SectionNodeHeadingEventArgs(this,
+        phrase.ParentSection, previous));
+    Modified();
+    return new Commands.Node.MarkSectionHeading(phrase, previous);
+}
+</code></pre>
+
+<h4 id="id53820">Serialization (<code>XukIn</code> and <code>XukOut</code>)</h4>
+
+<p>Normally we can get away with just overriding XukInAttributes rather than
+XukIn (which is not fun to override anyway.) Same for XukOut. If there are
+important changes to the file format, the xuk/obi version number should be
+bumped up by 1.</p>
+
+<h4 id="id53838">Documentation</h4>
+
+<p>New features need to be documented in the user manual. Screenshots are nice
+too. Let's see what we have for <a href="../Obi/Obi/help_en.html#section-headings">Section
+headings</a> in the documentation. Do
+not forget to keep the version number and the date current (this should not
+be done automatically in order to make sure that the documentation is
+updated along with the application.)</p>
+
+<h4 id="id53857">Tests</h4>
+
+<p>And need to be tested (when we actually do that.)</p>
 </body></html>
