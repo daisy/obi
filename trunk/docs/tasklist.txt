@@ -23,8 +23,8 @@ to do once we do multiple selection.
 
 ### Switch between states at a single key-press
 
-* Avneesh?
-* [Requirement #9](../../common/ObiRequirements/Obi2_0Requirements.htm#f9)
+* Avneesh. Time: Will be taken up and completed with modifying of playback
+*[Requirement #9](../../common/ObiRequirements/Obi2_0Requirements.htm#f9)
 
 ### Phrase detection
 
@@ -68,7 +68,7 @@ Not yet ordered or timed.
 
 #### Recording Modes
 
-* [Requirement #1](../../common/ObiRequirements/Obi2_0Requirements.htm#f1)
+*Avneesh. Time: Will be taken up during upgrading to toolkit AssetManager* [Requirement #1](../../common/ObiRequirements/Obi2_0Requirements.htm#f1)
 
 #### Monitor Control
 
@@ -76,7 +76,7 @@ Not yet ordered or timed.
 
 #### Ability to record directly to both WAV and MP3
 
-* [Requirement #7](../../common/ObiRequirements/Obi2_0Requirements.htm#f7)
+*Comment by Avneesh ( not assignment, just a comment) : depends a lot on use of external mp3 encoders by AudioMedia classes of toolkit** [Requirement #7](../../common/ObiRequirements/Obi2_0Requirements.htm#f7)
 
 #### Support for input level adjustment during recording
 
@@ -92,7 +92,7 @@ Not yet ordered or timed.
 
 #### Support for System high contrast and configurable colors
 
-* [Requirement #27](../../common/ObiRequirements/Obi2_0Requirements.htm#f26)
+*Avneesh with support from Julien as custom obi user controls are handled by Julien. time: One week* [Requirement #27](../../common/ObiRequirements/Obi2_0Requirements.htm#f26)
 
 ### Z requirements
 
