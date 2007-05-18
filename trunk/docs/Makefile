@@ -1,5 +1,4 @@
 # Make markdown documentation
-# $Id$
 
 XSLT =		xsltproc
 STYLESHEET =	template.xslt

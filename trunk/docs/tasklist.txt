@@ -15,8 +15,11 @@ really going to be version 1.0.
 
 * Julien
 * [Requirement #12](../../common/ObiRequirements/Obi2_0Requirements.htm#f12)
-* TODO: make the heading change at export time.
-* TODO: custom sequence of phrases instead of a single phrase
+* TODO: custom sequence of phrases instead of a single phrase. Reading from
+[the spec of the `<audio>`
+element](http://www.daisy.org/z3986/2005/z3986-2005.html#NCXElem), it seems
+that we can use a sequence of contiguous audio blocks; this should be easy
+to do once we do multiple selection.
 
 ### Switch between states at a single key-press
 
@@ -81,11 +84,10 @@ Not yet ordered or timed.
 
 * [Requirement #27](../../common/ObiRequirements/Obi2_0Requirements.htm#f26)
 
-### Other requirements
+### Z requirements
 
-#### User profiles
-
-* [Requirement #20](../../common/ObiRequirements/Obi2_0Requirements.htm#f20)
+These requirements were not marked as essential but all relate to better
+support of the Z spec so should be treated with special attention.
 
 #### Bookmark/Highlight/Last Mark support
 
@@ -103,22 +105,28 @@ Not yet ordered or timed.
 
 * [Requirement #6](../../common/ObiRequirements/Obi2_0Requirements.htm#f6)
 
+#### Support for images for section headings
+
+* [Requirement #21](../../common/ObiRequirements/Obi2_0Requirements.htm#f21)
+
+#### Generic navigation list support
+
+* [Requirement #18](../../common/ObiRequirements/Obi2_0Requirements.htm#f18)
+
+### Other requirements
+
+#### User profiles
+
+* [Requirement #20](../../common/ObiRequirements/Obi2_0Requirements.htm#f20)
+
 #### Audio Counter
 
 * [Requirement #10](../../common/ObiRequirements/Obi2_0Requirements.htm#f10)
 * Not very well specified though.
 
-#### Support for images for section headings
-
-* [Requirement #21](../../common/ObiRequirements/Obi2_0Requirements.htm#f21)
-
 #### Configurable VU and peak meters
 
 * [Requirement #22](../../common/ObiRequirements/Obi2_0Requirements.htm#f22)
-
-#### Generic navigation list support
-
-* [Requirement #18](../../common/ObiRequirements/Obi2_0Requirements.htm#f18)
 
 #### Heading creation while recording
 
@@ -191,4 +199,15 @@ Not yet ordered or timed.
 
 ## Done
 
-This list is not even finished!
+### Support for publishing projects as Z39.86-2005 DTBs
+
+* This is handled natively by Obi through a mixture of C# and XSLT. When new
+features (especially the Z ones) are added, improvements will be made to keep
+the export current.
+* [Requirement #14](../../common/ObiRequirements/Obi2_0Requirements.htm#f14)
+
+### Phrase detection
+
+* Arguably could be much better, but we need testing and feedback to improve
+it.
+* [Requirement #14](../../common/ObiRequirements/Obi2_0Requirements.htm#f14)
