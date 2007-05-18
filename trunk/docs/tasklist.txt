@@ -34,16 +34,18 @@ it.
 * TODO: implement better algorithm.
 * [Requirement #14](../../common/ObiRequirements/Obi2_0Requirements.htm#f14)
 
+### Project cleanup
+
+*Marisa
+* [Requirement #11](../../common/ObiRequirements/Obi2_0Requirements.htm#f11)
+* We do most of it at export time.
+
+
 ## Todo
 
 ### Essential requirements
 
 Not yet ordered or timed.
-
-#### Project cleanup
-
-* [Requirement #11](../../common/ObiRequirements/Obi2_0Requirements.htm#f11)
-* We do most of it at export time.
 
 #### Page number support
 
