@@ -379,7 +379,7 @@ namespace Obi
 
         private void mExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Close();
+                                    Close();
         }
 
         #endregion
@@ -1583,34 +1583,70 @@ namespace Obi
             mProject.Touch();
         }
 
-
-        private void MoveToNextPanel()
+/// <summary>
+///  move keyboard focus amung TOC view, Strip view, Transport Bar
+/// <see cref=""/>
+/// </summary>
+/// <param name="Clockwise">
+///  true for clockwise movement
+/// </param>
+        private void MoveToNextPanel( bool Clockwise )
         {
-            mProjectPanel.TransportBar.PlayOnFocusEnabled = false;
-            if (mProjectPanel.TOCPanel.ContainsFocus)
-            {
-                //                                mProjectPanel.CurrentSelection = new NodeSelection(mProjectPanel.CurrentSelectionNode, mProjectPanel.StripManager);
-                mProjectPanel.TOCPanel.ShowSelectedSectionInStripView();
-            }
-            else if (mProjectPanel.StripManager.ContainsFocus)
-            {
-                mProjectPanel.TransportBar.Focus();
-            }
-            else if (mProjectPanel.TransportBar.ContainsFocus)
-            {
-                if (mProjectPanel.CurrentSelectionNode.GetType().Name == "PhraseNode")
-                {
-                    PhraseNode TempPhraseNode = mProjectPanel.CurrentSelectionNode as PhraseNode;
-                    mProjectPanel.CurrentSelection = new NodeSelection(TempPhraseNode.ParentSection, mProjectPanel.TOCPanel);
-                    mProjectPanel.TOCPanel.Focus();
-                }
-                else
-                    mProjectPanel.StripManager.ShowInTOCPanel();
-
-            }
+                        mProjectPanel.TransportBar.PlayOnFocusEnabled = false;
+                        if (mProjectPanel.CurrentSelection != null)
+                        {
+                            if (mProjectPanel.TOCPanel.ContainsFocus)
+                            {
+                                if (Clockwise)
+                                {
+                                    NodeSelection TempnodeSelection = mProjectPanel.CurrentSelection;
+                                    mProjectPanel.StripManager.Focus();
+                                    mProjectPanel.CurrentSelection = new NodeSelection(TempnodeSelection.Node, mProjectPanel.StripManager);
+                                }
+                                else
+                                    mProjectPanel.TransportBar.Focus();
+                            }
+                            else if (mProjectPanel.StripManager.ContainsFocus)
+                            {
+                                if (Clockwise)
+                                    mProjectPanel.TransportBar.Focus();
+                                else
+                                    FocusTOCPanel();
+                            }
+                            else if (mProjectPanel.TransportBar.ContainsFocus)
+                            {
+                                if (Clockwise)
+                                    FocusTOCPanel();
+                                else
+                                {
+                                    NodeSelection TempnodeSelection = mProjectPanel.CurrentSelection;
+                                    mProjectPanel .StripManager.Focus();
+                                    mProjectPanel.CurrentSelection = new NodeSelection(TempnodeSelection.Node , mProjectPanel.StripManager);
+                                                                    }
+                            }
+                        }
+                        else
+                            mProjectPanel.TOCPanel.Focus();
             mProjectPanel.TransportBar.PlayOnFocusEnabled = true;
         }
 
+
+        /// <summary>
+        ///  convenience function to be used in MoveToNextPanel ()
+        /// <see cref=""/>
+        /// </summary>
+        private void FocusTOCPanel()
+        {
+            if (mProjectPanel.CurrentSelectionNode.GetType().Name == "PhraseNode")
+            {
+                PhraseNode TempPhraseNode = mProjectPanel.CurrentSelectionNode as PhraseNode;
+                mProjectPanel.CurrentSelection = new NodeSelection(TempPhraseNode.ParentSection, mProjectPanel.TOCPanel);
+                mProjectPanel.TOCPanel.Focus();
+            }
+            else
+                mProjectPanel.StripManager.ShowInTOCPanel();
+
+        }
 
 
     }
