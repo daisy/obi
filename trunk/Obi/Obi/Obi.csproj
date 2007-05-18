@@ -219,8 +219,8 @@
     <Compile Include="Playlist.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Project.Blocks.cs" />
+    <Compile Include="Project.CleanAndExport.cs" />
     <Compile Include="Project.cs" />
-    <Compile Include="Project.ExportToZed.cs" />
     <Compile Include="Project.TOC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Dialogs\EditSimpleMetadata.resx">
