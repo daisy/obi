@@ -283,7 +283,39 @@ namespace Obi
                 mCommandManager.Clear();
             }
         }
+        /// <summary>
+        /// Clean the assets of a project
+        /// </summary>
+        private void mCleanProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProject != null)
+            {
+                mProjectPanel.TransportBar.Enabled = false;
+                this.Cursor = Cursors.WaitCursor;
+            
+                try
+                {
+                    mProject.CleanProjectAssets();
+                }
+                catch (Exception x)
+                {
+                    //report an error and exit the function
+                    MessageBox.Show(String.Format(Localizer.Message("didnt_clean_project_text"), x.Message),
+                            Localizer.Message("didnt_clean_project_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+                    this.Cursor = Cursors.Default;
+                    mProjectPanel.TransportBar.Enabled = true;
+                    return;
+                }
+
+               //report success
+               MessageBox.Show(Localizer.Message("cleaned_project_text"), Localizer.Message("cleaned_project_caption"),
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                this.Cursor = Cursors.Default;
+                mProjectPanel.TransportBar.Enabled = true;
+            }
+        }
         /// <summary>
         /// Export the project to DAISY 3.
         /// </summary>
@@ -1366,6 +1398,7 @@ namespace Obi
             mDiscardChangesToolStripMenuItem.Enabled = !isPlaying && isProjectModified;
             mCloseProjectToolStripMenuItem.Enabled = isProjectOpen && !isPlaying;
             mExportAsDAISYToolStripMenuItem.Enabled = isProjectOpen && !isPlaying;
+            mCleanProjectToolStripMenuItem.Enabled = isProjectOpen && !isPlaying;
         }
 
         /// <summary>
@@ -1647,7 +1680,6 @@ namespace Obi
                 mProjectPanel.StripManager.ShowInTOCPanel();
 
         }
-
 
     }
 }

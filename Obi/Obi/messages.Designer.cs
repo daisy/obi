@@ -259,6 +259,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Project cleaned up.
+        /// </summary>
+        internal static string cleaned_project_caption {
+            get {
+                return ResourceManager.GetString("cleaned_project_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The project has been cleaned up successfully..
+        /// </summary>
+        internal static string cleaned_project_text {
+            get {
+                return ResourceManager.GetString("cleaned_project_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear the list of recent projects?.
         /// </summary>
         internal static string clear_recent_caption {
@@ -464,6 +482,24 @@ namespace Obi {
         internal static string delete_section_command_label {
             get {
                 return ResourceManager.GetString("delete_section_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error cleaning up project.
+        /// </summary>
+        internal static string didnt_clean_project_caption {
+            get {
+                return ResourceManager.GetString("didnt_clean_project_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not clean up project. Reason given: {0}.
+        /// </summary>
+        internal static string didnt_clean_project_text {
+            get {
+                return ResourceManager.GetString("didnt_clean_project_text", resourceCulture);
             }
         }
         

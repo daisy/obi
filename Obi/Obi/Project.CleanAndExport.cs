@@ -8,12 +8,10 @@ namespace Obi
         private static string mXsltFile = "XukToZed.xslt";
 
         /// <summary>
-        /// 
+        /// This function cleans up the assets in a project
         /// </summary>
-        public void ExportToZed(string outputPath)
+        public void CleanProjectAssets()
         {
-            UpdatePublicationMetadata();
-
             string originalAssetDirectory = this.AssetManager.AssetsDirectory;
 
             //these assets go in a new directory (old_dir_name + "_temp")
@@ -39,6 +37,21 @@ namespace Obi
             //tell the assets about their new directory
             cleanAssVisitor = new Visitors.CleanupAssets(originalAssetDirectory, true);
             this.RootNode.acceptDepthFirst(cleanAssVisitor);
+            
+            //is this necessary?  is it expected behavior?
+            Save();
+        }
+
+        /// <summary>
+        /// Export to DAISY/NISO (aka Zed)
+        /// </summary>
+        public void ExportToZed(string outputPath)
+        {
+            UpdatePublicationMetadata();
+
+            //smarter approach: only call this if things have changed since the last time it was called
+            //however, this would mean storing another status flag - is it really worth it?
+            CleanProjectAssets();
 
             // then save the xuk file to update the date metadata.
             Save();
