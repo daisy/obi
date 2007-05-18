@@ -20,4 +20,6 @@ revision when we make a major new release.
 * [Strip manager shortcuts](strip_manager_shortcuts.html): as the name
 implies. Review those as part of the new requirements.
 
+* [Task list](tasklist.html): task list for version 1.0.
+
 * [Testing](testing.txt): instructions for testers.
