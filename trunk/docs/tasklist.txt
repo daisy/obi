@@ -191,6 +191,11 @@ support of the Z spec so should be treated with special attention.
 * Clipboard to be owned by project panel, not project.
 * Selection to be managed by command manager to restore it after undo/redo.
 
+#### Automated testing
+
+* Backend testing with unit tests
+* Front-end testing with macros? Nunit Forms???
+
 ### Unclear status
 
 #### Support for import of Z39.86-2005 DTBs
