@@ -38,7 +38,8 @@ it.
 
 *Marisa
 * [Requirement #11](../../common/ObiRequirements/Obi2_0Requirements.htm#f11)
-* We do most of it at export time.
+* This has been implemented and separated from the export function, although the export function still includes cleanup
+* One open issue is that when Project.CleanProjectAssets fails, there is still a temporary asset directory.  We need to remove this and ensure a roll-back to a pre-cleaned up state.
 
 
 ## Todo
