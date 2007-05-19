@@ -36,7 +36,7 @@ it.
 
 ### Project cleanup
 
-*Marisa
+* Marisa
 * [Requirement #11](../../common/ObiRequirements/Obi2_0Requirements.htm#f11)
 * This has been implemented and separated from the export function, although the export function still includes cleanup
 * One open issue is that when Project.CleanProjectAssets fails, there is still a temporary asset directory.  We need to remove this and ensure a roll-back to a pre-cleaned up state.
@@ -69,7 +69,8 @@ Not yet ordered or timed.
 
 #### Recording Modes
 
-*Avneesh. Time: Will be taken up during upgrading to toolkit AssetManager* [Requirement #1](../../common/ObiRequirements/Obi2_0Requirements.htm#f1)
+* Avneesh. Time: Will be taken up during upgrading to toolkit AssetManager
+* [Requirement #1](../../common/ObiRequirements/Obi2_0Requirements.htm#f1)
 
 #### Monitor Control
 
@@ -77,7 +78,8 @@ Not yet ordered or timed.
 
 #### Ability to record directly to both WAV and MP3
 
-*Comment by Avneesh ( not assignment, just a comment) : depends a lot on use of external mp3 encoders by AudioMedia classes of toolkit** [Requirement #7](../../common/ObiRequirements/Obi2_0Requirements.htm#f7)
+* Comment by Avneesh ( not assignment, just a comment) : depends a lot on use of external mp3 encoders by AudioMedia classes of toolkit
+* [Requirement #7](../../common/ObiRequirements/Obi2_0Requirements.htm#f7)
 
 #### Support for input level adjustment during recording
 
@@ -93,7 +95,8 @@ Not yet ordered or timed.
 
 #### Support for System high contrast and configurable colors
 
-*Avneesh with support from Julien as custom obi user controls are handled by Julien. time: One week* [Requirement #27](../../common/ObiRequirements/Obi2_0Requirements.htm#f26)
+* Avneesh with support from Julien as custom obi user controls are handled by Julien. time: One week
+* [Requirement #27](../../common/ObiRequirements/Obi2_0Requirements.htm#f26)
 
 ### Z requirements
 
