@@ -404,7 +404,7 @@ namespace Obi.Assets
             BeforePhrase = Audio.CalculationFunctions.AdaptToFrame(BeforePhrase, this.FrameSize);
 
             // Block size of audio chunck which is least count of detection
-            int Block;
+            int Block= 0 ;
 
             // determine the Block  size
             if (this.SampleRate > 22500)
@@ -415,6 +415,7 @@ namespace Obi.Assets
             {
                 Block = 96 ;
             }
+
 
 
             // Detection starts here
@@ -441,7 +442,7 @@ namespace Obi.Assets
             // flags to indicate phrases and silence
             bool boolPhraseDetected = false;
             bool boolBeginPhraseDetected = false;
-
+            /*
             // scanning of file starts
             for (long j = this.BeginByte / Block; j < (lSize / Block); j=j+2 )
             {
@@ -480,7 +481,101 @@ namespace Obi.Assets
 
                 // end outer For
             }
+            */
+            // Experiments start here
 
+            
+            double BlockTime = 25;
+
+            lCountSilGap = Convert.ToInt64 ( Audio.CalculationFunctions.ConvertByteToTime(PhraseLength, m_ClipSamplingRate, m_ClipFrameSize) / BlockTime   ) ;
+
+            long Iterations = Convert.ToInt64 ( m_dLengthInTime / BlockTime ) ;
+            long SampleCount = Convert.ToInt64(m_ClipSamplingRate / (1000 / BlockTime));
+            long SpeechBlockCount = 0;
+
+
+            long  lSumPrev = 0;
+
+            bool PhraseNominated = false;
+            long SpeechChunkSize = 4     ;
+
+            for (long j = 0  ; j < Iterations -1  ; j++)
+            {
+                // decodes audio chunck inside block
+                lSum = ( GetAverageSampleValue(br, SampleCount)+ lSumPrev ) / 2  ;
+                lSumPrev = lSum;
+
+                // conditional triggering of phrase detection
+                if (lSum < SilVal)
+                {
+                    lCheck++;
+                    SpeechBlockCount = 0;
+                                    }
+                else
+                {
+                                        
+                        boolBeginPhraseDetected = false ;
+                                            
+
+                    // checks the length of silence
+                    if (    lCheck > lCountSilGap   )
+                    {
+                        SpeechBlockCount++;
+                                                                                            }
+
+                    if ( SpeechBlockCount >= SpeechChunkSize )
+                    {
+                        //sets the detection flag
+                        boolPhraseDetected = true;
+
+                        alPhrases.Add( ( j - SpeechChunkSize ) * BlockTime  );
+
+
+                        lCheck = 0;
+                        SpeechBlockCount = 0;
+                        MessageBox.Show("Detected");
+                                            }
+                }
+
+                // end outer For
+            }
+            br.Close();
+
+            // create clips from time information of phrases added in ArrayList
+            double dBeginTime;
+            double dEndTime;
+
+            ArrayList alClipList = new ArrayList();
+
+            alClipList.Add(boolPhraseDetected);
+
+
+            if (boolPhraseDetected == false)
+            {
+                alClipList.Add(this);
+
+
+            }
+            else
+            {
+
+                for (int i = 0; i < alPhrases.Count - 1; i++)
+                {
+                    dBeginTime = Convert.ToDouble (alPhrases[i] );
+                    dEndTime = Convert.ToDouble (alPhrases[i + 1]);
+
+                    alClipList.Add(CopyClipPart(dBeginTime, dEndTime));
+                }
+                dBeginTime = Convert.ToDouble (alPhrases[alPhrases.Count - 1]) ;
+                alClipList.Add(CopyClipPart(dBeginTime, m_dEndTime));
+            }
+
+            return alClipList;
+
+
+
+            // experiment ends here
+            /*
             br.Close();
 
             // create clips from time information of phrases added in ArrayList
@@ -513,6 +608,7 @@ namespace Obi.Assets
             }
 
             return alClipList;
+             */ 
 
         }
 
@@ -643,6 +739,53 @@ namespace Obi.Assets
 
             //MessageBox.Show(sum.ToString()) ;
             return sum;
+        }
+
+        private int GetAverageSampleValue ( BinaryReader br , long SampleLength )
+        {
+            long  AvgSampleValue = 0 ;
+
+            for ( long i = 0 ; i < SampleLength ; i++ )
+            {
+                AvgSampleValue = AvgSampleValue  +  GetSampleValue (br) ;
+                            }
+            AvgSampleValue = AvgSampleValue / SampleLength ;
+
+            return Convert.ToInt32 ( AvgSampleValue ) ;
+        }
+
+        private int GetSampleValue(BinaryReader br)
+        {
+            int SampleValue1 =  0 ;
+int SampleValue2 = 0 ;
+                            
+                
+                                SampleValue1 =  br.ReadByte(); 
+                                    if ( m_ClipBitDepth == 16 )                    
+            {
+                    SampleValue1 = SampleValue1 + (br.ReadByte() * 256);
+
+                    if (SampleValue1 > 32768)
+                        SampleValue1 = SampleValue1 - 65536;
+
+        }
+        if (m_ClipChannels == 2)
+        {
+            SampleValue2 = br.ReadByte();
+            if (m_ClipBitDepth == 16)
+            {
+                SampleValue2 = SampleValue2 + (br.ReadByte() * 256);
+
+                if (SampleValue2 > 32768)
+                    SampleValue2 = SampleValue2 - 65536;
+
+            }
+            SampleValue1 = (SampleValue1 + SampleValue2) / 2;
+        }
+
+
+            return SampleValue1 ;
+
         }
 
 
