@@ -265,8 +265,8 @@ namespace Obi.UserControls
             {
                 mSectionStrip.Focus();
             }
-            if (mNode != null)
-                mManager.ProjectPanel.TransportBar.PlayPhraseOnFocus(mNode);
+            //if (mNode != null)
+                //mManager.ProjectPanel.TransportBar.PlayPhraseOnFocus(mNode);
         }
 
         private void AudioBlock_SizeChanged(object sender, EventArgs e)
