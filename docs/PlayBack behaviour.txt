@@ -40,13 +40,26 @@ E.g. playback behaviour of quick split and split.
 <LNN>We need to be explicit about what editing commands are allowed during playback.</LNN>
 <LNN>We need to edefine how each command's behavior is in both playback modes.</LNN>
 <LNN>Behavior for cut to clipboard?</LNN>
+<Avn>for cut playback should stop in play current selection mode and should continue in play all mode</Avn>
+<Avn> for copy  playback should continue as it is </Avn>
+
 <LNN>Behavior for paste section from clipboard?</LNN>
 <LNN>Behavior for paste audio block from clipboard?</LNN>
+<Avn> for pasting section/AudioBlock from clipboard Current playback should stop but do not feel a need to resume playback (going with screen reader behaviour)< but if we decide to do all this on fly i.e. without breaking play all playback mode, playback from just pasted node should resume/Avn>
+
 <LNN>Behavior for Insert new section as child?</LNN>
 <LNN>Behavior for Insert new section as previous/following sibling?</LNN>
+<Avn>Playback should stop and for resuming:  new section is empty so there is nothing to play</Avn>
+
 <LNN>Behavior for Record?</LNN>
+<Avn>Playback should not resume after recording is complete </Avn>
+
 <LNN>Behavior for Split?</LNN>
+<Avn>Quick split requires resuming of playback while split do not</Avn>
+
 <LNN>Behavior for Phrase detect?</LNN>
+<Avn>Playback should not resume </Avn>
+
 <LNN>I expect that many of these commands would need to stop playback, and the manner of resuming playback in each case must be specified.</LNN>
 
 
@@ -67,7 +80,7 @@ Self triggered playback is not required on selecting  phrases with mouse. This s
 
 Remark: with mouse also there should be direct transition between playback modes without going through commands like pause or stop.
 <LNN>If there is a keyboard shortcut for it, I don't think that there needs to be a direct mouse command. The only way a mouse command could be considered "direct" would be to add an additional button to the transport bar.</LNN>
-
+<Avn> more explanation through exanple: if playback in play all mode is going, mouse command for play single selection  i.e. double click should on itself trigger stop followed by PlayCurrent Phrase command</Avn>
 
 2.2. Some suggestions for selection in strip manager using mouse:
 2.2.1. Single click for selecting single phrase.
@@ -83,7 +96,7 @@ This selection behaviour is similar to that used in text editors.
 3.2. Playback modes are same as in strip manager with same shortcut keys as listed in section 1.2.1.
 <LNN>Should "play selection" play the entire selected subtree, or just the strip that matches the heading?</LNN>
 
-Remark: There is only one difference between playback behaviour in TOC view in contrast with strip manager i.e. the selection in TOC view has least count of a section while selection in strip manager has least count of a phrase.
+Remark: There is only one difference between playback behaviour in TOC view in contrast with strip manager i.e. the selection in TOC view has least count of a strip corresponding to a section while selection in strip manager has least count of a phrase.
 
 
 4. Playback in TOC view with respect to mouse.
