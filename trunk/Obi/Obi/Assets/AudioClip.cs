@@ -493,7 +493,7 @@ namespace Obi.Assets
             long SampleCount = Convert.ToInt64(m_ClipSamplingRate / (1000 / BlockTime));
             long SpeechBlockCount = 0;
 
-
+            long lCurrentSum = 0;
             long  lSumPrev = 0;
 
             bool PhraseNominated = false;
@@ -502,8 +502,9 @@ namespace Obi.Assets
             for (long j = 0  ; j < Iterations -1  ; j++)
             {
                 // decodes audio chunck inside block
-                lSum = ( GetAverageSampleValue(br, SampleCount)+ lSumPrev ) / 2  ;
-                lSumPrev = lSum;
+                lCurrentSum = GetAverageSampleValue(br, SampleCount);
+                lSum = ( lCurrentSum + lSumPrev ) / 2  ;
+                lSumPrev = lCurrentSum ;
 
                 // conditional triggering of phrase detection
                 if (lSum < SilVal)
@@ -533,7 +534,7 @@ namespace Obi.Assets
 
                         lCheck = 0;
                         SpeechBlockCount = 0;
-                        MessageBox.Show("Detected");
+                        //MessageBox.Show("Detected");
                                             }
                 }
 
@@ -643,7 +644,7 @@ namespace Obi.Assets
 
             // adjust the  lSize to avoid reading beyond file length
             lSize = ((lSize / Block) * Block) - 4;
-
+            /*
             // loop to end of file reading collective value of  samples in Block and determine highest value denoted by lLargest
             // Step size is the Block size
             for (long j = 44 + this.BeginByte; j < (lSize); j = j + Block )
@@ -656,6 +657,39 @@ namespace Obi.Assets
                 }
             }
             long SilVal = Convert.ToInt64(lLargest);
+*/
+            // Experiment starts here
+            double BlockTime = 25;
+
+            long Iterations = Convert.ToInt64(m_dLengthInTime / BlockTime);
+            long SampleCount = Convert.ToInt64(m_ClipSamplingRate / (1000 / BlockTime));
+           
+            long lCurrentSum = 0 ;
+            long lSumPrev = 0;
+
+            
+            for (long j = 0 ; j < Iterations- 1  ; j++  )
+            {
+                //  BlockSum is function to retrieve average amplitude in  Block
+                try
+                {
+                lCurrentSum  = GetAverageSampleValue(brRef, SampleCount)  ;
+                    }
+                catch
+                {
+                    MessageBox.Show(Iterations.ToString() + "j" + j.ToString () );
+                    }
+                lBlockSum = Convert.ToInt64(( lCurrentSum + lSumPrev) / 2);
+                lSumPrev = lCurrentSum;
+
+                if (lLargest < lBlockSum)
+                {
+                    lLargest = lBlockSum;
+                }
+            }
+            long SilVal = Convert.ToInt64(lLargest);
+
+// experiment ends here
 
             brRef.Close();
 
