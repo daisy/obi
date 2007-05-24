@@ -484,8 +484,8 @@ namespace Obi.Assets
             */
             // Experiments start here
 
-            
-            double BlockTime = 25;
+            double BlockTime = 25; // milliseconds
+            double BeforePhraseInMS = Audio.CalculationFunctions.ConvertByteToTime(BeforePhrase, m_ClipSamplingRate, m_ClipFrameSize);
 
             lCountSilGap = Convert.ToInt64 ( Audio.CalculationFunctions.ConvertByteToTime(PhraseLength, m_ClipSamplingRate, m_ClipFrameSize) / BlockTime   ) ;
 
@@ -497,7 +497,7 @@ namespace Obi.Assets
             long  lSumPrev = 0;
 
             bool PhraseNominated = false;
-            long SpeechChunkSize = 4     ;
+            long SpeechChunkSize = 3; 
 
             for (long j = 0  ; j < Iterations -1  ; j++)
             {
@@ -509,14 +509,20 @@ namespace Obi.Assets
                 // conditional triggering of phrase detection
                 if (lSum < SilVal)
                 {
-                    lCheck++;
+                                            lCheck++;
+
                     SpeechBlockCount = 0;
                                     }
                 else
                 {
-                                        
-                        boolBeginPhraseDetected = false ;
-                                            
+                    if (j < lCountSilGap && boolBeginPhraseDetected == false)
+                    {
+                        boolBeginPhraseDetected = true;
+                        alPhrases.Add(Convert.ToInt64(0));
+                        boolPhraseDetected = true;
+                        lCheck = 0;
+                                            }                    
+                                                                                       
 
                     // checks the length of silence
                     if (    lCheck > lCountSilGap   )
@@ -529,12 +535,12 @@ namespace Obi.Assets
                         //sets the detection flag
                         boolPhraseDetected = true;
 
-                        alPhrases.Add( ( j - SpeechChunkSize ) * BlockTime  );
+                        alPhrases.Add( ( ( j - SpeechChunkSize ) * BlockTime  ) - BeforePhraseInMS )  ;
 
 
                         lCheck = 0;
                         SpeechBlockCount = 0;
-                        //MessageBox.Show("Detected");
+                        
                                             }
                 }
 
