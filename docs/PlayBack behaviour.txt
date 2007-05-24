@@ -34,7 +34,21 @@ Remark: Left arrow and right arrow should not jump section e.g. navigation with 
 
 
 1.3. Audio Editing during playback.
-1.3.1.  Context menu and drop down menu should be Conditionally  visible ( conditions should be other than playback states )  during playback 
+1.3.1.  Editing Commands in Context menu and drop down menu should be Conditionally  visible ( conditions should be other than playback states )  during playback 
+<Dipendra> Conditions for each command? </Dipendra>
+<Avn>
+Split: Should be enabled only when a single phrase is selected 
+Phrase detection: Should be enabled only when single phrase is selected.
+Move Audio block: Should be enabled only when single phrase is selected.
+Cut and copy: should be enabled if anything of phrase or section  is selected including multiple selection.
+paste: Enabled only when a single phrase or a single section is selected.
+Import audio files: enabled only when a single phrase or a single section is selected.
+Delete phrase: Should be enabled when a phrase or multiple phrases are selected.
+Merge phrase: should be visible on single  as well as multiple selection if we decide on merge multiple phrases. This multiple merge has to be discussed on friday skype call.
+</Avn>
+<Avn> Quick split do not fall in above list as it needs playback to work </Avn>
+
+
 1.3.2.  On giving Editing command playback should stop/pause and resume conditionally ( depending on requirements of command) after command execution is complete 
 E.g. playback behaviour of quick split and split.
 <LNN>We need to be explicit about what editing commands are allowed during playback.</LNN>
@@ -61,6 +75,7 @@ E.g. playback behaviour of quick split and split.
 <Avn>Playback should not resume </Avn>
 
 <LNN>I expect that many of these commands would need to stop playback, and the manner of resuming playback in each case must be specified.</LNN>
+<Dipendra> All other commands except quick split should stop playback without resuming it again </Dipendra>
 
 
 1.4. Playback behaviour during multiple selection.
@@ -82,12 +97,14 @@ Remark: with mouse also there should be direct transition between playback modes
 <LNN>If there is a keyboard shortcut for it, I don't think that there needs to be a direct mouse command. The only way a mouse command could be considered "direct" would be to add an additional button to the transport bar.</LNN>
 <Avn> more explanation through exanple: if playback in play all mode is going, mouse command for play single selection  i.e. double click should on itself trigger stop followed by PlayCurrent Phrase command</Avn>
 
+
 2.2. Some suggestions for selection in strip manager using mouse:
 2.2.1. Single click for selecting single phrase.
 2.2.2. Horizontal dragging of mouse for selecting series of phrases.
 2.2.3. Vertical dragging of mouse for spanning selection to next or prev section
 This selection behaviour is similar to that used in text editors.
 <LNN>If we do multiple select, we should let holding CTRL while pressing element signify adding or removing elements from the selection, in a similar manner to what Explorer does in Windows.</LNN>
+<Dipendra> Shift + left mouse click should also be used for selection i.e. single left click is used for selecting current phrase, say phrase P1 then shift + left click on another phrase say P2 will select all phrases between Phrase P1 and phrases P2 including P1 and P2 </Dipendra>
 
 
 3. Playback behaviour in TOC view with respect to keyboard.
