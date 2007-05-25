@@ -18,71 +18,80 @@
       <h2>Table of Contents</h2>
       <ul>
         <li>
-          <a href="#id53300">Hierarchy of blocks</a>
+          <a href="#id53301">Elements from the Z and DTBook specifications</a>
+        </li>
+        <li>
+          <a href="#id53319">Hierarchy of blocks</a>
           <ul>
             <li>
-              <a href="#id53304">Strip block, or section strip</a>
+              <a href="#id53323">Strip block, or section strip</a>
             </li>
             <li>
-              <a href="#id53332">Audio block, or phrase</a>
+              <a href="#id53350">Audio block, or phrase</a>
               <ul>
                 <li>
-                  <a href="#id53342">Heading block</a>
+                  <a href="#id53361">Heading block</a>
                 </li>
                 <li>
-                  <a href="#id53352">Page block</a>
+                  <a href="#id53371">Page block</a>
                 </li>
                 <li>
-                  <a href="#id53397">Silence block</a>
+                  <a href="#id53416">Silence block</a>
                 </li>
                 <li>
-                  <a href="#id53408">Custom block</a>
+                  <a href="#id53426">Custom block</a>
                 </li>
                 <li>
-                  <a href="#id53416">Container block, or phrases</a>
+                  <a href="#id53435">Container block, or phrases</a>
                 </li>
               </ul>
             </li>
           </ul>
         </li>
         <li>
-          <a href="#id53428">Additional properties</a>
+          <a href="#id53447">Additional properties</a>
           <ul>
             <li>
-              <a href="#id53432">Used and unused blocks</a>
+              <a href="#id53450">Used and unused blocks</a>
             </li>
             <li>
-              <a href="#id53495">Empty blocks</a>
+              <a href="#id53514">Empty blocks</a>
             </li>
             <li>
-              <a href="#id53507">Annotated blocks</a>
+              <a href="#id53526">Annotated blocks</a>
               <ul>
                 <li>
-                  <a href="#id53511">Producer marks</a>
+                  <a href="#id53530">Producer marks</a>
                 </li>
                 <li>
-                  <a href="#id53521">Custom annotations</a>
+                  <a href="#id53540">Custom annotations</a>
                 </li>
               </ul>
             </li>
             <li>
-              <a href="#id53530">Skippable blocks</a>
+              <a href="#id53549">Skippable blocks</a>
             </li>
             <li>
-              <a href="#id53538">Escapable blocks</a>
+              <a href="#id53557">Escapable blocks</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="#id53542">Resources</a>
+          <a href="#id53561">Resources</a>
         </li>
         <li>
-          <a href="#id53545">Visualization</a>
+          <a href="#id53564">Visualization</a>
         </li>
       </ul>
     </div>
-    <h2 id="id53300">Hierarchy of blocks</h2>
-    <h3 id="id53304">Strip block, or section strip</h3>
+    <h2 id="id53301">Elements from the Z and DTBook specifications</h2>
+    <ul>
+      <li>Bookmarks and highlights (<span class="todo">TODO</span>)</li>
+      <li>Footnotes (<span class="todo">TODO</span>)</li>
+      <li>Page numbers</li>
+    </ul>
+    <h2 id="id53319">Hierarchy of blocks</h2>
+    <h3 id="id53323">Strip block, or section strip</h3>
     <p>The top level container.</p>
     <ul>
       <li>A text label</li>
@@ -92,15 +101,15 @@
     <p>A strip block can contain one or more container blocks and audio blocks.
 Although a section contains subsection, a section strip is shallow and
 contains no other strips.</p>
-    <h3 id="id53332">Audio block, or phrase</h3>
+    <h3 id="id53350">Audio block, or phrase</h3>
     <p>An audio block contains some audio. A vanilla audio block is just a phrase
 used for local navigation in the book. It can have properties described
 below. There are hower subclasses of such blocks.</p>
-    <h4 id="id53342">Heading block</h4>
+    <h4 id="id53361">Heading block</h4>
     <p>A heading block is used as the audio label for a navpoint in the navlist.
 A section strip can have zero or one heading block (but a heading block can
 contain several phrases, see below.)</p>
-    <h4 id="id53352">Page block</h4>
+    <h4 id="id53371">Page block</h4>
     <p>Page blocks correspond to the <a href="http://www.daisy.org/z3986/2005/z3986-2005.html#NCXElem"><code>&lt;pageTarget&gt;</code> element in the
 navlist</a>. The audio
 in the block is the audio label for the page. There are three kinds of page
@@ -121,21 +130,21 @@ arabic numerals.</p>
     <p>All pages have a positive integer number; there cannot be two pages of the
 same kind with the same number. Do we have restrictions about front pages
 appearing only before normal and special pages?</p>
-    <h4 id="id53397">Silence block</h4>
+    <h4 id="id53416">Silence block</h4>
     <p>A silence block is used for phrase detection (until we implement a better
 algorithm that can do it on its own.) Since silence blocks normally do not
 contain any useful audio, they are considered as unused, but should be shown
 differently.</p>
-    <h4 id="id53408">Custom block</h4>
+    <h4 id="id53426">Custom block</h4>
     <p>Users should be able to define their own kinds of blocks, at least for
 visualization purposes.</p>
-    <h4 id="id53416">Container block, or phrases</h4>
+    <h4 id="id53435">Container block, or phrases</h4>
     <p>The container block is used for grouping one or more blocks sharing the same
 property (e.g. a list of heading blocks) in order to consider them as a
 single unit, even though they can contain more phrases. Containers are useful
 for headings spanning multiple phrases, or for escapable sections.</p>
-    <h2 id="id53428">Additional properties</h2>
-    <h3 id="id53432">Used and unused blocks</h3>
+    <h2 id="id53447">Additional properties</h2>
+    <h3 id="id53450">Used and unused blocks</h3>
     <p>Used blocks are blocks that are exported to the final project. Unused blocks
 are used to keep data during production without exporting it. Unused blocks
 are also not played back during continuous play of the book (continuous play
@@ -165,25 +174,25 @@ their properties before being made unused.</p>
         <p>the whole section is marked as unused.</p>
       </li>
     </ol>
-    <h3 id="id53495">Empty blocks</h3>
+    <h3 id="id53514">Empty blocks</h3>
     <p>An empty block has no audio data. Empty blocks are created when audio could
 not be read (so that the structure is not lost if the data can be retrieved,
 or replaced) or when a skeleton structure is imported (e.g. empty page,
 heading, etc.) Obi must support adding of audio to empty blocks rather than
 creating new blocks.</p>
-    <h3 id="id53507">Annotated blocks</h3>
-    <h4 id="id53511">Producer marks</h4>
+    <h3 id="id53526">Annotated blocks</h3>
+    <h4 id="id53530">Producer marks</h4>
     <p>These are special kinds of annotations, whose content is generated
 automatically (e.g. during recording). An empty block could be seen as a
 special kind of annotation ("audio missing.") We could let users add new
 annotations.</p>
-    <h4 id="id53521">Custom annotations</h4>
+    <h4 id="id53540">Custom annotations</h4>
     <p>Unconstrained text data that can be attached to any block for
 production-time viewing.</p>
-    <h3 id="id53530">Skippable blocks</h3>
+    <h3 id="id53549">Skippable blocks</h3>
     <p>Some blocks are skippable by default, some others can be marked as such.</p>
-    <h3 id="id53538">Escapable blocks</h3>
-    <h2 id="id53542">Resources</h2>
-    <h2 id="id53545">Visualization</h2>
+    <h3 id="id53557">Escapable blocks</h3>
+    <h2 id="id53561">Resources</h2>
+    <h2 id="id53564">Visualization</h2>
   </body>
 </html>

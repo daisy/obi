@@ -3,6 +3,8 @@
 Please keep this file up-to-date and link to available documents with a
 brief description. Here is what we have so far:
 
+* [Blocks](blocks.html): A taxonomy of Obi blocks.
+
 * [Events](events.html): "This document describes Obi's eventing and summarizes how to introduce new features in the application."
 
 * [Menus](menus.txt): list of menu shortcuts and accelerator keys.
@@ -11,6 +13,8 @@ brief description. Here is what we have so far:
 implement those :(
 
 * [Obi](obi.html): describes the application itself.
+
+* [Playback](playback.html): playback behavior.
 
 * [Reference](reference.txt): the reference manual. Needs a new revision.
 
