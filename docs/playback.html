@@ -18,74 +18,74 @@
       <h2>Table of contents</h2>
       <ul>
         <li>
-          <a href="#id53301">0. Preliminary notes</a>
+          <a href="#id53302">0. Preliminary notes</a>
         </li>
         <li>
           <a href="#id53325">1. Playback behaviour in StripManager with respect to keyboard navigation.</a>
           <ul>
             <li>
-              <a href="#id53329">1.1. A phrase will play by itself whenever keyboard focus arrives on it through StripManager navigation commands.</a>
+              <a href="#id53330">1.1. A phrase will play by itself whenever keyboard focus arrives on it through StripManager navigation commands.</a>
             </li>
             <li>
-              <a href="#id53435">1.2. Playback can be started by user in two modes by using playback commands.</a>
+              <a href="#id53436">1.2. Playback can be started by user in two modes by using playback commands.</a>
               <ul>
                 <li>
-                  <a href="#id53439">1.2.1. Play modes with Keyboard shortcuts</a>
+                  <a href="#id53440">1.2.1. Play modes with Keyboard shortcuts</a>
                 </li>
                 <li>
-                  <a href="#id53461">1.2.2. Further behavioural discription of two playback modes</a>
+                  <a href="#id53470">1.2.2. Further behavioural discription of two playback modes</a>
                 </li>
               </ul>
             </li>
             <li>
-              <a href="#id53492">1.3. Audio editing during playback.</a>
+              <a href="#id53501">1.3. Audio editing during playback.</a>
               <ul>
                 <li>
-                  <a href="#id53496">1.3.1. Editing commands</a>
+                  <a href="#id53505">1.3.1. Editing commands</a>
                 </li>
                 <li>
-                  <a href="#id53564">1.3.2. Editing and playback</a>
+                  <a href="#id53572">1.3.2. Editing and playback</a>
                 </li>
               </ul>
             </li>
             <li>
-              <a href="#id53712">1.4. Playback behaviour during multiple selection.</a>
+              <a href="#id53721">1.4. Playback behaviour during multiple selection.</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="#id53748">2. Behaviour of playback with respect of  mouse use in strip manager.</a>
+          <a href="#id53757">2. Behaviour of playback with respect of  mouse use in strip manager.</a>
           <ul>
             <li>
-              <a href="#id53758">2.1. Mouse commands for playback.</a>
+              <a href="#id53767">2.1. Mouse commands for playback.</a>
             </li>
             <li>
-              <a href="#id53822">2.2. Some suggestions for selection in strip manager using mouse:</a>
+              <a href="#id53830">2.2. Some suggestions for selection in strip manager using mouse:</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="#id53865">3. Playback behaviour in TOC view with respect to keyboard.</a>
+          <a href="#id53890">3. Playback behaviour in TOC view with respect to keyboard.</a>
           <ul>
             <li>
-              <a href="#id53869">3.1. There is no self triggering of playback required in  TOC view.</a>
+              <a href="#id53895">3.1. There is no self triggering of playback required in  TOC view.</a>
             </li>
             <li>
-              <a href="#id53880">3.2. Playback modes are same as in strip manager with same shortcut keys as listed in section 1.2.1.</a>
+              <a href="#id53921">3.2. Playback modes are same as in strip manager with same shortcut keys as listed in section 1.2.1.</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="#id53900">4. Playback in TOC view with respect to mouse.</a>
+          <a href="#id53950">4. Playback in TOC view with respect to mouse.</a>
           <ul>
             <li>
-              <a href="#id53904">4.1. Mouse playback commands:</a>
+              <a href="#id53954">4.1. Mouse playback commands:</a>
             </li>
           </ul>
         </li>
       </ul>
     </div>
-    <h2 id="id53301">0. Preliminary notes</h2>
+    <h2 id="id53302">0. Preliminary notes</h2>
     <ul>
       <li>
         <p>Playback currently disables many editing options so that the playlist
@@ -100,7 +100,7 @@ offers only its limited set of operations (marking, stopping, etc.)</p>
       </li>
     </ul>
     <h2 id="id53325">1. Playback behaviour in StripManager with respect to keyboard navigation.</h2>
-    <h3 id="id53329">1.1. A phrase will play by itself whenever keyboard focus arrives on it through StripManager navigation commands.</h3>
+    <h3 id="id53330">1.1. A phrase will play by itself whenever keyboard focus arrives on it through StripManager navigation commands.</h3>
     <p><strong>LNN</strong>: This is likely preferrable by visually impaired users, but highly limiting for sighted user, since it disable many editing comands untill playback has stopped. I would suggest that me make it a user preferrence whether automatic start of playback is enabled or not.</p>
     <p><strong>Julien</strong>: I would make the defaults to be: start playback when moving
 through keyboard, but not when clicking, but I agree with a prefrence
@@ -126,22 +126,25 @@ setting. Also, see section 0 for playback issue.</p>
     <p><strong>Julien</strong>: should this be a preference as well? (With above behavior as
 default.) But we should also try not to have too many
 settings/preferences...</p>
-    <h3 id="id53435">1.2. Playback can be started by user in two modes by using playback commands.</h3>
-    <h4 id="id53439">1.2.1. Play modes with Keyboard shortcuts</h4>
+    <h3 id="id53436">1.2. Playback can be started by user in two modes by using playback commands.</h3>
+    <h4 id="id53440">1.2.1. Play modes with Keyboard shortcuts</h4>
     <ul>
       <li>1.2.1.1. Space to play current phrase selection. <strong>Julien</strong>: or current
 section selection (all phrases in the strip, from first to last), or all
 phrases in multiple selection (when we do have multiple selections.)</li>
       <li>1.2.1.2. Ctrl + Space for play all from current phrase.</li>
     </ul>
-    <h4 id="id53461">1.2.2. Further behavioural discription of two playback modes</h4>
+    <p><strong>Julien</strong>: we need to expand this section to include fast forward/rewind
+and pause/stop. I want the space bar to switch between play and pause
+easily.</p>
+    <h4 id="id53470">1.2.2. Further behavioural discription of two playback modes</h4>
     <ul>
       <li>1.2.2.1. There should be direct transition from Play Selection mode to Play all mode and vice-versa without going through cycle of pause or stop i.e. if playback in one mode is going on, it is automatically stopped when command of playing in different playback mode is given. <strong>Julien</strong>: this seems tricky; I would give this low-priority.</li>
       <li>1.2.2.2.  While in playing state, all keyboard navigation command should work without breaking of playback or playback mode.</li>
       <li>1.2.2.3. While in paused or stopped state, all keyboard navigation commands should start playback in play single phrase mode.</li>
     </ul>
-    <h3 id="id53492">1.3. Audio editing during playback.</h3>
-    <h4 id="id53496">1.3.1. Editing commands</h4>
+    <h3 id="id53501">1.3. Audio editing during playback.</h3>
+    <h4 id="id53505">1.3.1. Editing commands</h4>
     <p>Editing Commands in Context menu and drop down menu should be Conditionally  visible (conditions should be other than playback states) during playback.</p>
     <p><strong>Julien</strong>: this needs to be reviewed when we implement multiple selection. Some things, e.g. moving contiguous phrases, should not be any problem. Also we can introduce a container block that sidesteps the issue.</p>
     <ul>
@@ -155,7 +158,7 @@ phrases in multiple selection (when we do have multiple selections.)</li>
       <li>Merge phrase: should be visible on single  as well as multiple selection if we decide on merge multiple phrases. This multiple merge has to be discussed on friday skype call.</li>
     </ul>
     <p><strong>Avn</strong>:  Quick split do not fall in above list as it needs playback to work </p>
-    <h4 id="id53564">1.3.2. Editing and playback</h4>
+    <h4 id="id53572">1.3.2. Editing and playback</h4>
     <p>On giving Editing command playback should stop/pause and resume conditionally (depending on requirements of command) after command execution is complete 
 E.g. playback behaviour of quick split and split.</p>
     <ul>
@@ -177,7 +180,7 @@ E.g. playback behaviour of quick split and split.</p>
     </ul>
     <p><strong>Dipendra</strong>:  All other commands except quick split should stop playback without resuming it again </p>
     <p><strong>Julien</strong>: This is close to the current behavior (not resuming.) But I would consider that resuming after changes in "play all" mode would help make edits on the fly quickly so it would be worthwile to allow that.</p>
-    <h3 id="id53712">1.4. Playback behaviour during multiple selection.</h3>
+    <h3 id="id53721">1.4. Playback behaviour during multiple selection.</h3>
     <ul>
       <li>1.4.1. Newly selected phrase should play on recieving focus by strip manager selection shortcut or atleast provide a short playback preview.</li>
       <li>1.4.2. Newly deselected phrase should also play on StripManager deselecting shortcut or atleast provide a small playback preview.</li>
@@ -187,9 +190,9 @@ E.g. playback behaviour of quick split and split.</p>
 that give audio feedback to users, like two different kinds of beeps when a
 block is selected or deselected. This can be turned off but could be useful
 for visual editing as well.</p>
-    <h2 id="id53748">2. Behaviour of playback with respect of  mouse use in strip manager.</h2>
+    <h2 id="id53757">2. Behaviour of playback with respect of  mouse use in strip manager.</h2>
     <p>Self triggered playback is not required on selecting  phrases with mouse. This should be done by giving playback commands.</p>
-    <h3 id="id53758">2.1. Mouse commands for playback.</h3>
+    <h3 id="id53767">2.1. Mouse commands for playback.</h3>
     <ul>
       <li>2.1.1. Double click for play current phrase. <strong>Julien</strong>: or rather, selection.</li>
       <li>2.1.2. Play selection command from context menu for playing selection.</li>
@@ -208,22 +211,35 @@ selection from block selection but this is tricky.</li></ul></li>
     <p>Remark: with mouse also there should be direct transition between playback modes without going through commands like pause or stop.</p>
     <p><strong>LNN</strong>: If there is a keyboard shortcut for it, I don't think that there needs to be a direct mouse command. The only way a mouse command could be considered "direct" would be to add an additional button to the transport bar.</p>
     <p><strong>Avn</strong>:  more explanation through example: if playback in play all mode is going, mouse command for play single selection  i.e. double click should on itself trigger stop followed by PlayCurrent Phrase command</p>
-    <h3 id="id53822">2.2. Some suggestions for selection in strip manager using mouse:</h3>
+    <h3 id="id53830">2.2. Some suggestions for selection in strip manager using mouse:</h3>
     <ul>
       <li>2.2.1. Single click for selecting single phrase.</li>
       <li>2.2.2. Horizontal dragging of mouse for selecting series of phrases.</li>
       <li>2.2.3. Vertical dragging of mouse for spanning selection to next or prev
 section. This selection behaviour is similar to that used in text editors.
-<ul><li><strong>LNN</strong>: If we do multiple select, we should let holding CTRL while pressing element signify adding or removing elements from the selection, in a similar manner to what Explorer does in Windows.</li><li><strong>Dipendra</strong>:  Shift + left mouse click should also be used for selection i.e. single left click is used for selecting current phrase, say phrase P1 then shift + left click on another phrase say P2 will select all phrases between Phrase P1 and phrases P2 including P1 and P2 </li></ul></li>
+<ul><li><strong>LNN</strong>: If we do multiple select, we should let holding CTRL while pressing element signify adding or removing elements from the selection, in a similar manner to what Explorer does in Windows.</li><li><strong>Dipendra</strong>:  Shift + left mouse click should also be used for selection i.e. single left click is used for selecting current phrase, say phrase P1 then shift + left click on another phrase say P2 will select all phrases between Phrase P1 and phrases P2 including P1 and P2 </li><li><strong>Julien</strong>: we have to see what happens when multiple selection crosses
+section boundaries (do we allow mixed selection, of section strips and
+phrases, or do we switch from phrase mode to section mode?), and what to
+do about non-contiguous selection (throught the ctrl+click mechanism);
+namely, I say we allow it because it is useful and we can do:</li></ul></li>
+      <li>2.2.4. Smart selection: we can select all unused phrases, all empty phrases, all pages, etc. through some scroll-down menu.</li>
     </ul>
-    <h2 id="id53865">3. Playback behaviour in TOC view with respect to keyboard.</h2>
-    <h3 id="id53869">3.1. There is no self triggering of playback required in  TOC view.</h3>
+    <h2 id="id53890">3. Playback behaviour in TOC view with respect to keyboard.</h2>
+    <h3 id="id53895">3.1. There is no self triggering of playback required in  TOC view.</h3>
     <p><strong>LNN</strong>: This seems like inconsistent behavior to me.</p>
-    <h3 id="id53880">3.2. Playback modes are same as in strip manager with same shortcut keys as listed in section 1.2.1.</h3>
+    <p><strong>Julien</strong>: Exactly. The behaviour should be the same as the one we have for
+the strip view. In this case, the heading for the section would play if
+there is self-triggering.</p>
+    <p><strong>Julien</strong>: If we do audio cues, we need some specific ones (e.g.
+expanding/collapsing sections; moving in and out...)</p>
+    <h3 id="id53921">3.2. Playback modes are same as in strip manager with same shortcut keys as listed in section 1.2.1.</h3>
     <p><strong>LNN</strong>: Should "play selection" play the entire selected subtree, or just the strip that matches the heading?</p>
     <p>Remark: There is only one difference between playback behaviour in TOC view in contrast with strip manager i.e. the selection in TOC view has least count of a strip corresponding to a section while selection in strip manager has least count of a phrase.</p>
-    <h2 id="id53900">4. Playback in TOC view with respect to mouse.</h2>
-    <h3 id="id53904">4.1. Mouse playback commands:</h3>
+    <p><strong>Julien</strong>: I would consider playback in the TOC as simply playback of the
+phrases in the headings of each section. Maybe that's what is meant above,
+but I want it to be said explicitely.</p>
+    <h2 id="id53950">4. Playback in TOC view with respect to mouse.</h2>
+    <h3 id="id53954">4.1. Mouse playback commands:</h3>
     <ul>
       <li>4.1.1. For playing current selection play selection command from context menu can be used.</li>
       <li>4.1.2. For play all, play button on transport bar may be used.</li>
