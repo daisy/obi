@@ -294,7 +294,7 @@ namespace Obi.Assets
             //convert relative time taken as input parameters to absolute time
             BeginTime = m_dBeginTime + BeginTime;
             EndTime = m_dBeginTime + EndTime;
-
+            
             // checks that the new clip time parameters are not out of boun of original clip
             if (BeginTime >= this.BeginTime && EndTime <= this.EndTime && BeginTime < EndTime)
             {
@@ -492,17 +492,18 @@ namespace Obi.Assets
             long Iterations = Convert.ToInt64 ( m_dLengthInTime / BlockTime ) ;
             long SampleCount = Convert.ToInt64(m_ClipSamplingRate / (1000 / BlockTime));
             long SpeechBlockCount = 0;
-
+            
             long lCurrentSum = 0;
             long  lSumPrev = 0;
 
             bool PhraseNominated = false;
-            long SpeechChunkSize = 3; 
-
+            long SpeechChunkSize = 5 ;
+            long Counter = 0;
             for (long j = 0  ; j < Iterations -1  ; j++)
             {
                 // decodes audio chunck inside block
-                lCurrentSum = GetAverageSampleValue(br, SampleCount);
+                //lCurrentSum = GetAverageSampleValue(br, SampleCount);
+                lCurrentSum = GetAvragePeakValue (br, SampleCount);
                 lSum = ( lCurrentSum + lSumPrev ) / 2  ;
                 lSumPrev = lCurrentSum ;
 
@@ -512,10 +513,10 @@ namespace Obi.Assets
                                             lCheck++;
 
                     SpeechBlockCount = 0;
-                                    }
+                                                        }
                 else
                 {
-                    if (j < lCountSilGap && boolBeginPhraseDetected == false)
+                                        if (j < lCountSilGap && boolBeginPhraseDetected == false)
                     {
                         boolBeginPhraseDetected = true;
                         alPhrases.Add(Convert.ToInt64(0));
@@ -527,27 +528,32 @@ namespace Obi.Assets
                     // checks the length of silence
                     if (    lCheck > lCountSilGap   )
                     {
-                        SpeechBlockCount++;
+                        PhraseNominated = true;
+                                                lCheck = 0;
                                                                                             }
+                                                                                            if (PhraseNominated)
+                                                                                                SpeechBlockCount++;
 
-                    if ( SpeechBlockCount >= SpeechChunkSize )
+                                        if ( SpeechBlockCount >= SpeechChunkSize &&  Counter >= 4  )
                     {
                         //sets the detection flag
                         boolPhraseDetected = true;
 
-                        alPhrases.Add( ( ( j - SpeechChunkSize ) * BlockTime  ) - BeforePhraseInMS )  ;
-
-
-                        lCheck = 0;
-                        SpeechBlockCount = 0;
+                        alPhrases.Add( ( ( j - Counter ) * BlockTime  ) - BeforePhraseInMS )  ;
                         
+                        
+                        SpeechBlockCount = 0;
+                        Counter = 0;
+                        PhraseNominated = false; 
                                             }
+                                            lCheck = 0;
                 }
-
+                if (PhraseNominated)
+                    Counter++;
                 // end outer For
             }
             br.Close();
-
+            
             // create clips from time information of phrases added in ArrayList
             double dBeginTime;
             double dEndTime;
@@ -570,11 +576,10 @@ namespace Obi.Assets
                 {
                     dBeginTime = Convert.ToDouble (alPhrases[i] );
                     dEndTime = Convert.ToDouble (alPhrases[i + 1]);
-
-                    alClipList.Add(CopyClipPart(dBeginTime, dEndTime));
+                                        alClipList.Add(CopyClipPart(dBeginTime, dEndTime));
                 }
-                dBeginTime = Convert.ToDouble (alPhrases[alPhrases.Count - 1]) ;
-                alClipList.Add(CopyClipPart(dBeginTime, m_dEndTime));
+                                dBeginTime = Convert.ToDouble (alPhrases[alPhrases.Count - 1]) ;
+                                                alClipList.Add(CopyClipPart(dBeginTime, m_dLengthInTime ));
             }
 
             return alClipList;
@@ -677,14 +682,8 @@ namespace Obi.Assets
             for (long j = 0 ; j < Iterations- 1  ; j++  )
             {
                 //  BlockSum is function to retrieve average amplitude in  Block
-                try
-                {
-                lCurrentSum  = GetAverageSampleValue(brRef, SampleCount)  ;
-                    }
-                catch
-                {
-                    MessageBox.Show(Iterations.ToString() + "j" + j.ToString () );
-                    }
+                //lCurrentSum  = GetAverageSampleValue(brRef, SampleCount)  ;
+                lCurrentSum =  GetAvragePeakValue (brRef, SampleCount);
                 lBlockSum = Convert.ToInt64(( lCurrentSum + lSumPrev) / 2);
                 lSumPrev = lCurrentSum;
 
@@ -794,6 +793,42 @@ namespace Obi.Assets
             return Convert.ToInt32 ( AvgSampleValue ) ;
         }
 
+        private int GetAvragePeakValue ( BinaryReader br, long SampleCount)
+        {
+                    // average value to return
+            long AverageValue = 0;
+
+            // number of samples from which peak is selected
+                        long PeakCount  = Convert.ToInt64 ( m_ClipSamplingRate / 3000 ) ;
+
+            // number of blocks iterated
+            long AverageCount = Convert.ToInt64 ( SampleCount / PeakCount ) ;
+
+                for (long i = 0; i < AverageCount; i++)
+                {
+                    AverageValue = AverageValue + GetPeak
+                        (br, PeakCount);
+                }
+            
+            AverageValue = AverageValue / AverageCount;
+
+            return Convert.ToInt32 (  AverageValue  ) ;
+
+        }
+        
+        private int GetPeak(BinaryReader br , long  UBound )
+        {
+            int Peak = 0;
+            
+            int CurrentValue = 0 ;
+            for (long i = 0; i < UBound; i++)
+            {
+                CurrentValue = GetSampleValue (br)  ;
+                if (CurrentValue > Peak)
+                    Peak = CurrentValue;
+            }
+            return Peak ;
+        }
         private int GetSampleValue(BinaryReader br)
         {
             int SampleValue1 =  0 ;
