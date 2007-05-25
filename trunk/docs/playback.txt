@@ -63,6 +63,10 @@ settings/preferences...
   phrases in multiple selection (when we do have multiple selections.)
 * 1.2.1.2. Ctrl + Space for play all from current phrase.
 
+__Julien__: we need to expand this section to include fast forward/rewind
+and pause/stop. I want the space bar to switch between play and pause
+easily.
+
 #### 1.2.2. Further behavioural discription of two playback modes
 
 * 1.2.2.1. There should be direct transition from Play Selection mode to Play all mode and vice-versa without going through cycle of pause or stop i.e. if playback in one mode is going on, it is automatically stopped when command of playing in different playback mode is given. __Julien__: this seems tricky; I would give this low-priority.
@@ -164,6 +168,12 @@ __Avn__:  more explanation through example: if playback in play all mode is goin
 section. This selection behaviour is similar to that used in text editors.
   * __LNN__: If we do multiple select, we should let holding CTRL while pressing element signify adding or removing elements from the selection, in a similar manner to what Explorer does in Windows.
   * __Dipendra__:  Shift + left mouse click should also be used for selection i.e. single left click is used for selecting current phrase, say phrase P1 then shift + left click on another phrase say P2 will select all phrases between Phrase P1 and phrases P2 including P1 and P2 
+  * __Julien__: we have to see what happens when multiple selection crosses
+  section boundaries (do we allow mixed selection, of section strips and
+  phrases, or do we switch from phrase mode to section mode?), and what to
+  do about non-contiguous selection (throught the ctrl+click mechanism);
+  namely, I say we allow it because it is useful and we can do:
+* 2.2.4. Smart selection: we can select all unused phrases, all empty phrases, all pages, etc. through some scroll-down menu.
 
 
 ## 3. Playback behaviour in TOC view with respect to keyboard.
@@ -172,12 +182,22 @@ section. This selection behaviour is similar to that used in text editors.
 
 __LNN__: This seems like inconsistent behavior to me.
 
+__Julien__: Exactly. The behaviour should be the same as the one we have for
+the strip view. In this case, the heading for the section would play if
+there is self-triggering.
+
+__Julien__: If we do audio cues, we need some specific ones (e.g.
+expanding/collapsing sections; moving in and out...)
+
 ### 3.2. Playback modes are same as in strip manager with same shortcut keys as listed in section 1.2.1.
 
 __LNN__: Should "play selection" play the entire selected subtree, or just the strip that matches the heading?
 
 Remark: There is only one difference between playback behaviour in TOC view in contrast with strip manager i.e. the selection in TOC view has least count of a strip corresponding to a section while selection in strip manager has least count of a phrase.
 
+__Julien__: I would consider playback in the TOC as simply playback of the
+phrases in the headings of each section. Maybe that's what is meant above,
+but I want it to be said explicitely.
 
 ## 4. Playback in TOC view with respect to mouse.
 
