@@ -527,16 +527,23 @@ namespace Obi.UserControls
         public void Paste()
         {
             TransportBar.Enabled = false;
-            if (mProject.Clipboard.Section != null)
+            if (CurrentSelection != null)
             {
-                IControlWithSelection control = CurrentSelection.Control;
-                SectionNode pasted = mProject.PasteSectionNode(CurrentSelectionNode);
-                CurrentSelection = new NodeSelection(pasted, control);
+                if (mProject.Clipboard.Section != null)
+                {
+                    IControlWithSelection control = CurrentSelection.Control;
+                    SectionNode pasted = mProject.PasteSectionNode(CurrentSelectionNode);
+                    CurrentSelection = new NodeSelection(pasted, control);
+                }
+                else if (mProject.Clipboard.Phrase != null)
+                {
+                    PhraseNode pasted = mProject.PastePhraseNode(mProject.Clipboard.Phrase, CurrentSelectionNode);
+                    CurrentSelection = new NodeSelection(pasted, mStripManagerPanel);
+                }
             }
-            else if (mProject.Clipboard.Phrase != null)
-            {
-                PhraseNode pasted = mProject.PastePhraseNode(mProject.Clipboard.Phrase, CurrentSelectionNode);
-                CurrentSelection = new NodeSelection(pasted, mStripManagerPanel);
+            else
+            { 
+                //TODO: figure out how to paste as append to the root
             }
             TransportBar.Enabled = true;
         }

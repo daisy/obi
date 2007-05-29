@@ -38,10 +38,19 @@ namespace Obi.UserControls
         {
             TreeNode newTreeNode;
             string label = Project.GetTextMedia(node).getText();
-            if (node.getParent().getParent() != null)
+
+            //            if (node.getParent().getParent() != null)
+            if (node.getParent() != null)
             {
-                TreeNode relTreeNode = FindTreeNodeFromSectionNode((SectionNode)node.getParent());
-                newTreeNode = relTreeNode.Nodes.Insert(node.Index, node.GetHashCode().ToString(), label);
+                if (node.getParent() is SectionNode)
+                {
+                    TreeNode relTreeNode = FindTreeNodeFromSectionNode((SectionNode)node.getParent());
+                    newTreeNode = relTreeNode.Nodes.Insert(node.Index, node.GetHashCode().ToString(), label);
+                }
+                else //must be the root that is parent
+                {
+                    newTreeNode = mTocTree.Nodes.Insert(node.Index, node.GetHashCode().ToString(), label);
+                }
             }
             else
             {
