@@ -77,7 +77,7 @@ namespace Obi.Commands.TOC
     class PasteSectionNode : Command
     {
         private SectionNode mNode;
-        private CoreNode mParent;
+        private CoreNode mContext;
 
         public override string Label
         {
@@ -87,12 +87,12 @@ namespace Obi.Commands.TOC
         public PasteSectionNode(SectionNode node, CoreNode parent)
         {
             mNode = node;
-            mParent = parent;
+            mContext = parent;
         }
 
         public override void Do()
         {
-            mNode = mNode.Project.PasteCopyOfSectionNode(mNode.Project.Clipboard.Section, mParent);
+            mNode = mNode.Project.PasteCopyOfSectionNode(mNode.Project.Clipboard.Section, mContext);
         }
 
         public override void Undo()

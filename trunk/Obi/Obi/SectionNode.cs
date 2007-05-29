@@ -170,8 +170,17 @@ namespace Obi
             {
                 CoreNode parent = (CoreNode)getParent();
                 int index = parent.indexOf(this);
-                int offset = parent is SectionNode ? ((SectionNode)parent).mSectionOffset : 0;
-                return index == offset ? null : (SectionNode)parent.getChild(index - 1);
+                //LNN: when parent is the root node, there might still be a pervious sibling!
+                // code was:
+                // int offset = parent is SectionNode ? ((SectionNode)parent).mSectionOffset : 0;
+                // return index == offset ? null : (SectionNode)parent.getChild(index - 1);
+
+                SectionNode rVal = null;
+                if(index>0)
+                    if(parent.getChild(index-1) is SectionNode)
+                        rVal = (SectionNode)parent.getChild(index-1);
+                return rVal;
+
             }
         }
 
@@ -197,6 +206,7 @@ namespace Obi
         {
             get
             {
+                /* defunct code?
                 SectionNode sibling = PreviousSibling;
                 if (sibling == null)
                 {
@@ -207,6 +217,24 @@ namespace Obi
                 {
                     return sibling.mSpan + sibling.Position;
                 }
+                */
+
+                int rVal = 0;
+                SectionNode sibling = PreviousSibling;
+                if (sibling != null)
+                {
+                    rVal = sibling.Position + sibling.mSpan;
+                }
+                else if (this.getParent() is SectionNode) //this is the first section child of a section, so it's position is 1 greater that the parent's
+                {
+                    rVal = ParentSection.Position + 1;
+                }
+                else //this should actually always return 0, since PreviousSibling was null
+                {
+                    rVal = ((CoreNode)this.getParent()).indexOf(this);
+                }
+
+                return rVal;
             }
         }
 

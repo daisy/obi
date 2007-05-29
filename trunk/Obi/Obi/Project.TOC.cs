@@ -59,14 +59,14 @@ namespace Obi
         /// Paste the clipboard node under the parent (or the root if no parent is given.)
         /// </summary>
         /// <param name="parent">Parent to paste under (root if null.)</param>
-        public SectionNode PasteSectionNode(CoreNode parent)
+        public SectionNode PasteSectionNode(CoreNode context)
         {
             if (mClipboard.Section != null)
             {
-                if (parent == null) parent = RootNode;
-                SectionNode pasted = PasteCopyOfSectionNode(mClipboard.Section, parent);
+                if (context == null) context = RootNode;
+                SectionNode pasted = PasteCopyOfSectionNode(mClipboard.Section, context);
                 CommandCreated(this,
-                    new Events.Project.CommandCreatedEventArgs(new Commands.TOC.PasteSectionNode(pasted, parent)));
+                    new Events.Project.CommandCreatedEventArgs(new Commands.TOC.PasteSectionNode(pasted, context)));
                 return pasted;
             }
             else
@@ -454,16 +454,17 @@ namespace Obi
         /// <param name="node">The node to paste.</param>
         /// <param name="parent">The parent under which to paste (append.)</param>
         /// <returns>The node actually pasted.</returns>
-        public SectionNode PasteCopyOfSectionNode(SectionNode node, CoreNode parent)
+        public SectionNode PasteCopyOfSectionNode(SectionNode node, CoreNode context)
         {
             SectionNode copy = node.copy(true);
-            if (parent is SectionNode)
+            if (context is SectionNode)
             {
-                ((SectionNode)parent).AppendChildSection(copy);
+                ((CoreNode)context.getParent()).insertBefore(copy, context);
+//                ((SectionNode)context).AppendChildSection(copy);
             }
-            else
+            else //this command is disabled when a PhraseNode is selected, so if no SectionNode is in focus, we must be pasting under the root
             {
-                parent.appendChild(copy);
+                context.appendChild(copy);
             }
             PastedSectionNode(this, new Events.Node.SectionNodeEventArgs(this, copy));
             Modified();
