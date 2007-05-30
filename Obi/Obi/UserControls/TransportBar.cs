@@ -49,6 +49,7 @@ namespace Obi.UserControls
             SetPlaylistEvents(mMasterPlaylist);
             mCurrentPlaylist = mMasterPlaylist;
             mDisplayBox.SelectedIndex = ElapsedTotal;
+            mRecordModeBox.SelectedIndex = 0; //First element will be the default selected one
             mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
             mProjectPanel = null;
         }
