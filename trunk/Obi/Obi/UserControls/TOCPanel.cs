@@ -82,9 +82,12 @@ namespace Obi.UserControls
             }
             set
             {
-                mProjectPanel.ParentObiForm.AllowDelete = value;
-                mDeleteSectionToolStripMenuItem.Enabled = value;
-                m_AllowDelete = value;
+                if (mProjectPanel != null) //this should only be false when our object model isn't initialized properly yet
+                {
+                    mProjectPanel.ParentObiForm.AllowDelete = value;
+                    mDeleteSectionToolStripMenuItem.Enabled = value;
+                    m_AllowDelete = value;
+                }
             }
         }
 
