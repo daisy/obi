@@ -45,6 +45,7 @@ namespace Obi.UserControls
             this.mDisplayTimer = new System.Windows.Forms.Timer(this.components);
             this.mDisplayBox = new System.Windows.Forms.ComboBox();
             this.mVUMeterPanel = new Obi.UserControls.TextVUMeterPanel();
+            this.mRecordModeBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // mPlayButton
@@ -248,11 +249,25 @@ namespace Obi.UserControls
             this.mVUMeterPanel.Size = new System.Drawing.Size(204, 44);
             this.mVUMeterPanel.TabIndex = 11;
             // 
+            // mRecordModeBox
+            // 
+            this.mRecordModeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.mRecordModeBox.FormattingEnabled = true;
+            this.mRecordModeBox.Items.AddRange(new object[] {
+            "Record using dialog",
+            "Record by inserting",
+            "Record by overwriting"});
+            this.mRecordModeBox.Location = new System.Drawing.Point(829, 4);
+            this.mRecordModeBox.Name = "mRecordModeBox";
+            this.mRecordModeBox.Size = new System.Drawing.Size(128, 21);
+            this.mRecordModeBox.TabIndex = 14;
+            // 
             // TransportBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.mRecordModeBox);
             this.Controls.Add(this.mFastForwardButton);
             this.Controls.Add(this.mRewindButton);
             this.Controls.Add(this.mVUMeterPanel);
@@ -267,7 +282,7 @@ namespace Obi.UserControls
             this.Controls.Add(this.mPauseButton);
             this.Controls.Add(this.mPlayButton);
             this.Name = "TransportBar";
-            this.Size = new System.Drawing.Size(865, 35);
+            this.Size = new System.Drawing.Size(960, 35);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,5 +305,6 @@ namespace Obi.UserControls
         private TextVUMeterPanel mVUMeterPanel;
         private System.Windows.Forms.Button mRewindButton;
         private System.Windows.Forms.Button mFastForwardButton;
+        private System.Windows.Forms.ComboBox mRecordModeBox;
     }
 }

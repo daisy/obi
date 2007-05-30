@@ -58,7 +58,17 @@ namespace Obi.UserControls
 
         public ObiNode CurrentSelectedNode
         {
-            get { throw new Exception("Please don't ask me for a selection, I don't know anything about that stuff."); }
+            get {
+                //LNN: removed this line, since it's higly annoying when working in the designer
+                //throw new Exception("Please don't ask me for a selection, I don't know anything about that stuff."); 
+
+                if (mCurrentPlaylist != null)
+                    if (mCurrentPlaylist.CurrentPhrase != null)
+                        return mCurrentPlaylist.CurrentPhrase;
+
+                //ok, I give up, this might cause you an error, so lay off asking me for the current selection!
+                return null;
+            }
             set
             {
                 if (IsSelectionRelevant(value) && value is PhraseNode) mCurrentPlaylist.CurrentPhrase = (PhraseNode)value;
