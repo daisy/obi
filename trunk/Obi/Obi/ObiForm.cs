@@ -943,43 +943,54 @@ namespace Obi
             bool isNodeSelected = isProjectOpen && mProjectPanel.CurrentSelection != null;
 
             mShowHideVUMeterToolStripMenuItem.Text = Localizer.Message(( mVuMeterForm != null && mVuMeterForm.Visible) ? "hide_vu_meter" : "show_vu_meter");
-            if (mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
+
+            if (mProjectPanel.TransportBar.IsInlineRecording)
             {
-                mPlayAllToolStripMenuItem.Enabled = isProjectOpen;
-                //mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
-                mPlaySelectionToolStripMenuItem.Enabled = isNodeSelected;
-                //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
-                mStopToolStripMenuItem.Enabled = isNodeSelected;
-            }
-            else if (mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.NotReady)
-            {
-                mPlayAllToolStripMenuItem.Enabled = false;
-                //mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
-                mPlaySelectionToolStripMenuItem.Enabled = false;
-                //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
-                mStopToolStripMenuItem.Enabled = false;
-            }
-            else if (mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused)
-            {
-                // Avn: changed to allowdirect change of Playback mode
-                mPlayAllToolStripMenuItem.Enabled = true; // mProjectPanel.TransportBar._CurrentPlaylist.WholeBook;
-                //mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
-                // Avn: changed to allowdirect change of Playback mode
-                mPlaySelectionToolStripMenuItem.Enabled = ( mProjectPanel.CurrentSelection != null ) ;  // !mProjectPanel.TransportBar._CurrentPlaylist.WholeBook;
-                //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
+                mPlayAllToolStripMenuItem.Enabled = true;
+                mPlaySelectionToolStripMenuItem.Enabled = true;
                 mStopToolStripMenuItem.Enabled = true;
             }
-            else // playing
+            else
             {
-                // Avn: changed to allowdirect change of Playback mode
-                mPlayAllToolStripMenuItem.Enabled = true ; //mProjectPanel.TransportBar._CurrentPlaylist.WholeBook;
-                //mPlayAllToolStripMenuItem.Text = Localizer.Message("pause_all");
-                // Avn: changed to allowdirect change of Playback mode
-                mPlaySelectionToolStripMenuItem.Enabled = (mProjectPanel.CurrentSelection != null);  // !mProjectPanel.TransportBar._CurrentPlaylist.WholeBook;
-                //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("pause");
-                mStopToolStripMenuItem.Enabled = true;
+
+                if (mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
+                {
+                    mPlayAllToolStripMenuItem.Enabled = isProjectOpen;
+                    //mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
+                    mPlaySelectionToolStripMenuItem.Enabled = isNodeSelected;
+                    //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
+                    mStopToolStripMenuItem.Enabled = isNodeSelected;
+                }
+                else if (mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.NotReady)
+                {
+                    mPlayAllToolStripMenuItem.Enabled = false;
+                    //mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
+                    mPlaySelectionToolStripMenuItem.Enabled = false;
+                    //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
+                    mStopToolStripMenuItem.Enabled = false;
+                }
+                else if (mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused)
+                {
+                    // Avn: changed to allowdirect change of Playback mode
+                    mPlayAllToolStripMenuItem.Enabled = true; // mProjectPanel.TransportBar._CurrentPlaylist.WholeBook;
+                    //mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
+                    // Avn: changed to allowdirect change of Playback mode
+                    mPlaySelectionToolStripMenuItem.Enabled = (mProjectPanel.CurrentSelection != null);  // !mProjectPanel.TransportBar._CurrentPlaylist.WholeBook;
+                    //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
+                    mStopToolStripMenuItem.Enabled = true;
+                }
+                else // playing
+                {
+                    // Avn: changed to allowdirect change of Playback mode
+                    mPlayAllToolStripMenuItem.Enabled = true; //mProjectPanel.TransportBar._CurrentPlaylist.WholeBook;
+                    //mPlayAllToolStripMenuItem.Text = Localizer.Message("pause_all");
+                    // Avn: changed to allowdirect change of Playback mode
+                    mPlaySelectionToolStripMenuItem.Enabled = (mProjectPanel.CurrentSelection != null);  // !mProjectPanel.TransportBar._CurrentPlaylist.WholeBook;
+                    //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("pause");
+                    mStopToolStripMenuItem.Enabled = true;
+                }
+                mRecordToolStripMenuItem.Enabled = mProjectPanel.TransportBar.CanRecord;
             }
-            mRecordToolStripMenuItem.Enabled = mProjectPanel.TransportBar.CanRecord;
         }
 
         /// <summary>
