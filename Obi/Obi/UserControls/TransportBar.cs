@@ -26,6 +26,10 @@ namespace Obi.UserControls
 
         private bool m_PlayOnFocusEnabled = true;     // Avn: for controlling triggering of OnFocus playback.
 
+        RecordingSession inlineRecordingSession = null; // LNN: hack for doing non-dialog recording.
+        public bool IsInlineRecording
+        { get { return (inlineRecordingSession != null); } }
+        private bool mDidCreateSectionForRecording = false;
 
         // constants from the display combo box
         private static readonly int Elapsed = 0;
@@ -107,7 +111,7 @@ namespace Obi.UserControls
             {
                 m_PlayOnFocusEnabled = value;
             }
-                    }
+        }
 
 
         #endregion
@@ -117,17 +121,17 @@ namespace Obi.UserControls
 
         public bool CanPlay
         {
-            get { return Enabled && mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped; }
+            get { return Enabled && mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped && !IsInlineRecording; }
         }
 
         public bool CanRecord
         {
-            get { return Enabled && mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped; }
+            get { return Enabled && mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped && !IsInlineRecording; }
         }
 
         public bool CanResume
         {
-            get { return Enabled && mCurrentPlaylist.State == Audio.AudioPlayerState.Paused; }
+            get { return Enabled && mCurrentPlaylist.State == Audio.AudioPlayerState.Paused && !IsInlineRecording; }
         }
 
 
@@ -295,11 +299,14 @@ namespace Obi.UserControls
         /// </summary>
         public void PrevSection()
         {
-            m_IsSerialPlaying = true;
-            if (Enabled) mCurrentPlaylist.NavigateToPreviousSection();
+            if (!IsInlineRecording)
+            {
+                m_IsSerialPlaying = true;
+                if (Enabled) mCurrentPlaylist.NavigateToPreviousSection();
 
-            if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing)
-                m_IsSerialPlaying = false;
+                if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing)
+                    m_IsSerialPlaying = false;
+            }
         }
 
         private void mPrevPhraseButton_Click(object sender, EventArgs e)
@@ -312,13 +319,16 @@ namespace Obi.UserControls
         /// </summary>
         public void PrevPhrase()
         {
-            if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing)
-                m_IsSerialPlaying = true;
-            
-            if (Enabled) mCurrentPlaylist.NavigateToPreviousPhrase();
+            if (!IsInlineRecording)
+            {
+                if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing)
+                    m_IsSerialPlaying = true;
 
-            if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing)
-                m_IsSerialPlaying = false;
+                if (Enabled) mCurrentPlaylist.NavigateToPreviousPhrase();
+
+                if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing)
+                    m_IsSerialPlaying = false;
+            }
         }
 
         private void mRewindButton_Click(object sender, EventArgs e)
@@ -462,7 +472,7 @@ namespace Obi.UserControls
 
                                 Play(node);
             }
-                    }
+        }
 
         private void mPauseButton_Click(object sender, EventArgs e)
         {
@@ -546,22 +556,61 @@ namespace Obi.UserControls
                         mProjectPanel.Project.DidSetPageNumberOnPhrase(_node);
                     }
                 );
-                new Dialogs.TransportRecord(session).ShowDialog();
 
-                // delete newly created section if nothing is recorded.
-                if (session.RecordedAssets.Count == 0 && IsSectionCreated)
-                    this.mProjectPanel.ParentObiForm.UndoLast();
-
-                for (int i = 0; i < session.RecordedAssets.Count; ++i)
+                if (mRecordModeBox.SelectedIndex == 0)
                 {
-                    mProjectPanel.StripManager.UpdateAssetForPhrase(section.PhraseChild(index + i), session.RecordedAssets[i]);                   
+                    new Dialogs.TransportRecord(session).ShowDialog();
+
+                    // delete newly created section if nothing is recorded.
+                    if (session.RecordedAssets.Count == 0 && IsSectionCreated)
+                        this.mProjectPanel.ParentObiForm.UndoLast();
+
+                    for (int i = 0; i < session.RecordedAssets.Count; ++i)
+                    {
+                        mProjectPanel.StripManager.UpdateAssetForPhrase(section.PhraseChild(index + i), session.RecordedAssets[i]);
+                    }
                 }
+                else
+                {
+                    mDidCreateSectionForRecording = IsSectionCreated;                        
+                    inlineRecordingSession = session;
+                    inlineRecordingSession.Record();
+                    UpdateInlineRecordingState();
+                }
+            }
+        }
+
+        public void UpdateInlineRecordingState()
+        {
+            if (IsInlineRecording)
+            {
+                mPrevPhraseButton.Enabled = false;
+                mPrevSectionButton.Enabled = false;
+                mRewindButton.Enabled = false;
+                mPlayButton.Enabled = false;
+                mFastForwardButton.Enabled = false;
+                mNextPhrase.Enabled = false;
+                mNextSectionButton.Enabled = false;
+                mPauseButton.Enabled = false;
+                mRecordModeBox.Enabled = false;
+            }
+            else
+            {
+                mPrevPhraseButton.Enabled = this.Enabled;
+                mPrevSectionButton.Enabled = this.Enabled;
+                mRewindButton.Enabled = this.Enabled;
+                mFastForwardButton.Enabled = this.Enabled;
+                mPlayButton.Enabled = CanPlay;
+                mNextPhrase.Enabled = this.Enabled;
+                mNextSectionButton.Enabled = this.Enabled;
+                mPauseButton.Enabled = this.Enabled;
+                mRecordModeBox.Enabled = this.Enabled;
             }
         }
 
         private void mStopButton_Click(object sender, EventArgs e)
         {
-            Stop();
+                Stop();
         }
 
         /// <summary>
@@ -569,7 +618,15 @@ namespace Obi.UserControls
         /// </summary>
         public void Stop()
         {
-            if (Enabled)
+            if (IsInlineRecording)
+            {
+                inlineRecordingSession.Stop();
+                if(mDidCreateSectionForRecording && inlineRecordingSession.RecordedAssets.Count == 0)
+                    this.mProjectPanel.ParentObiForm.UndoLast();
+                mDidCreateSectionForRecording = false;
+                inlineRecordingSession = null;
+            }
+            else if (Enabled)
             {
                 // Stopping again deselects everything
                 if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
@@ -597,7 +654,7 @@ namespace Obi.UserControls
         /// </summary>
         public void FastForward()
         {
-            if (Enabled)
+            if (Enabled && !IsInlineRecording)
             {
                 if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing) Pause();
                 if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused)
@@ -618,11 +675,14 @@ namespace Obi.UserControls
         /// </summary>
         public void NextPhrase()
         {
-            m_IsSerialPlaying = true;
-            if (Enabled) mCurrentPlaylist.NavigateToNextPhrase();
+            if (!IsInlineRecording)
+            {
+                m_IsSerialPlaying = true;
+                if (Enabled) mCurrentPlaylist.NavigateToNextPhrase();
 
-            if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing)
-                m_IsSerialPlaying = false;
+                if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing)
+                    m_IsSerialPlaying = false;
+            }
 
         }
 
@@ -637,11 +697,14 @@ namespace Obi.UserControls
         /// </summary>
         public void NextSection()
         {
-            m_IsSerialPlaying = true;
-            if (Enabled) mCurrentPlaylist.NavigateToNextSection();
+            if (!IsInlineRecording)
+            {
+                m_IsSerialPlaying = true;
+                if (Enabled) mCurrentPlaylist.NavigateToNextSection();
 
-            if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing)
-                m_IsSerialPlaying = false;
+                if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing)
+                    m_IsSerialPlaying = false;
+            }
         }
 
 
@@ -655,15 +718,14 @@ namespace Obi.UserControls
         {
             
             if (mCurrentPlaylist != null
-                                    && Enabled
-                &&     PlayOnFocusEnabled )
+                && Enabled
+                && PlayOnFocusEnabled )
             {
                 //execute on checking if play all is not active in playing state
                 if (!IsSeriallyPlaying )
                 {
                     StopInternal();
-
-    Play(node);
+                    Play(node);
                 }// serial play  if ends
             }
         }
@@ -676,8 +738,8 @@ namespace Obi.UserControls
         private void StopInternal()
         {
             mCurrentPlaylist.Stop();
-                                                    mPlayingFrom = null;
-                m_IsSerialPlaying = false;
+            mPlayingFrom = null;
+            m_IsSerialPlaying = false;
         }
 
 
@@ -711,6 +773,7 @@ namespace Obi.UserControls
             {
                 mTimeDisplayBox.Text = Assets.MediaAsset.FormatTime_hh_mm_ss(0.0);
             }
+            //LNN: needs handling of inline recording time
         }
 
         /// <summary>
