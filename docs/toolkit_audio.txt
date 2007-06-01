@@ -119,8 +119,8 @@ or `WavAudioMediaData` layer as follows:
 given asset at the given split time by modifiying the end point of the
 original asset and returning the second half as a new asset. (Note: two new
 assets could be returned instead of modifying the first one in place.)
-2. `AudioMediaData merge(AudioMediaData ass1, AudioMediaData ass2)` merges
-the two assets given as parameters and returns their concatenation.
+2. `AudioMediaData merge(AudioMediaData ass)` merges two assets and returns
+their concatenation.
 
 Remark: the returned `AudioMediaData` objects should not share clips with
 the source `AudioMediaData`, but only physical files.

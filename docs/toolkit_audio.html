@@ -41,7 +41,7 @@
               <a href="#id53733">Split and Merge</a>
             </li>
             <li>
-              <a href="#id53791">Phrase Detection</a>
+              <a href="#id53790">Phrase Detection</a>
             </li>
             <li>
               <a href="#id53840">PlayBack</a>
@@ -169,12 +169,12 @@ or <code>WavAudioMediaData</code> layer as follows:</p>
 given asset at the given split time by modifiying the end point of the
 original asset and returning the second half as a new asset. (Note: two new
 assets could be returned instead of modifying the first one in place.)</li>
-      <li><code>AudioMediaData merge(AudioMediaData ass1, AudioMediaData ass2)</code> merges
-the two assets given as parameters and returns their concatenation.</li>
+      <li><code>AudioMediaData merge(AudioMediaData ass)</code> merges two assets and returns
+their concatenation.</li>
     </ol>
     <p>Remark: the returned <code>AudioMediaData</code> objects should not share clips with
 the source <code>AudioMediaData</code>, but only physical files.</p>
-    <h3 id="id53791">Phrase Detection</h3>
+    <h3 id="id53790">Phrase Detection</h3>
     <p>Existing code flow is as follows:</p>
     <ul>
       <li>The underlying binary data from clips is processed to mark phrases w.r.t. time.</li>
