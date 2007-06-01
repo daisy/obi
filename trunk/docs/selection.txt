@@ -1,6 +1,6 @@
 # Selection specification
 
-`$Id: playback.txt 1882 2007-05-25 10:28:42Z julienq $`
+`$Id$`
 
 Redefining selection in Obi, in particular with regard to playback, and how
 to do multiple selection.
@@ -9,30 +9,53 @@ to do multiple selection.
 
 ## Selection basics
 
-* Click to select.
+We need a behavior that is consistent with user expectations:
+
+* Click to select one item; previous selection is deselected.
 * Dragging to select multiple items.
 * Shift+Click to select a range.
-* Ctrl+Click to select items one by one.
+* Ctrl+Click to select items one by one: each new item is added to the
+selection.
+* Click anywhere unselectable to deselect.
 
-## Selecting different items
+We need a mechanism for keyboard selection.
+
+Menu items that are usually present:
+
+* Select all: select all sections in the TOC view, select all section strips
+in the strip view.
+* Deselect: deselect anything that was selected.
+
+## Selecting different kinds of items
 
 ### Section selection
 
 * In the TOC.
 * The whole subtree is selected.
-* Multiple selection: restricted to sections of the same level?
-non-contiguous is OK.
+* Multiple selection is restricted to sections of the same level, but
+non-contiguous selection is possible.
 
 ### Block selection
 
 * In the strip/block view.
 * It is not the same to select all the blocks in a strip or a container
 block, and the strip or container block itself.
-* Multiple selection: 
+* Multiple selection: only blocks in the same container can be selected
+together.
+  * Only blocks inside the same strip can be selected together.
+  * A container block must be selected in full if it is in the same
+  selection than other blocks.
+  * Non-contiguous selection is possible.
 
 ### Text selection
 
+Text selection is handled automatically. No multiple selection.
+
 ### Waveform selection
+
+Waveform selection is similar to text selection. No multiple selection. We
+must clearly show the difference between selecting the waveform for a block
+and the block itself (it is not the same of course!)
 
 ## Selection and command management
 

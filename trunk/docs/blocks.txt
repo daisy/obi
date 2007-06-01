@@ -6,12 +6,6 @@ A block is meant here as a container in Obi.
 
 <div id="toc">Table of Contents</div>
 
-## Elements from the Z and DTBook specifications
-
-* Bookmarks and highlights (TODO)
-* Footnotes (TODO)
-* Page numbers
-
 ## Hierarchy of blocks
 
 ### Strip block, or section strip
