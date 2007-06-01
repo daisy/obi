@@ -4,7 +4,8 @@ XSLT =		xsltproc
 INDENT =	xmllint --format
 STYLESHEET =	template.xslt
 HTML_FILES =	blocks.html events.html index.html \
-		playback.html strip_manager_shortcuts.html tasklist.html
+		playback.html selection.html strip_manager_shortcuts.html \
+		tasklist.html toolkit_audio.html
 
 all:	$(HTML_FILES)
 

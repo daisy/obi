@@ -12,6 +12,9 @@ brief description. Here is what we have so far:
 * [Metadata](metadata.txt): list of required metadata for Z. Obi needs to
 implement those :(
 
+* [Migrating Obi to toolkit asset management](toolkit_audio.html): changes
+needed in Obi and the toolkit for replacing Obi's asset manager.
+
 * [Obi](obi.html): describes the application itself.
 
 * [Playback](playback.html): playback behavior.
@@ -20,6 +23,9 @@ implement those :(
 
 * [Release notes](release-notes.txt): release notes for Obi. Needs a new
 revision when we make a major new release.
+
+* [Selection](selection.html): selection specification (including multiple
+selection.)
 
 * [Strip manager shortcuts](strip_manager_shortcuts.html): as the name
 implies. Review those as part of the new requirements.
