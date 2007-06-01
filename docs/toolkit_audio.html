@@ -44,7 +44,7 @@
               <a href="#id53790">Phrase Detection</a>
             </li>
             <li>
-              <a href="#id53840">PlayBack</a>
+              <a href="#id53839">PlayBack</a>
             </li>
           </ul>
         </li>
@@ -165,8 +165,8 @@ Obi. It is therfore proposed to have functions in the toolkit
 <code>AudioMediaData</code> to accomplish splitting and merging at the <code>AudioMediaData</code>
 or <code>WavAudioMediaData</code> layer as follows:</p>
     <ol>
-      <li><code>AudioMediaData split(AudioMediData ass, ITime splitTime)</code> splits the
-given asset at the given split time by modifiying the end point of the
+      <li><code>AudioMediaData AudioMediaData.split(ITime splitTime)</code> splits an
+asset at the given split time by modifiying the end point of the
 original asset and returning the second half as a new asset. (Note: two new
 assets could be returned instead of modifying the first one in place.)</li>
       <li><code>AudioMediaData merge(AudioMediaData ass)</code> merges two assets and returns
@@ -189,7 +189,7 @@ markings:</p>
 data from the the original asset between begin and end times.</li>
     </ol>
     <p>Remark: another possible implementation is to use <code>split()</code> iteratively.</p>
-    <h3 id="id53840">PlayBack</h3>
+    <h3 id="id53839">PlayBack</h3>
     <p>Playback is mainly dependent on streams which are already provided by the
 toolkit. However, in many situations only a selected part of audio (<em>e.g.</em>
 during splitting preview, or when waveform editing is implemented and a

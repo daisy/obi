@@ -115,8 +115,8 @@ Obi. It is therfore proposed to have functions in the toolkit
 `AudioMediaData` to accomplish splitting and merging at the `AudioMediaData`
 or `WavAudioMediaData` layer as follows:
 
-1. `AudioMediaData split(AudioMediData ass, ITime splitTime)` splits the
-given asset at the given split time by modifiying the end point of the
+1. `AudioMediaData AudioMediaData.split(ITime splitTime)` splits an
+asset at the given split time by modifiying the end point of the
 original asset and returning the second half as a new asset. (Note: two new
 assets could be returned instead of modifying the first one in place.)
 2. `AudioMediaData merge(AudioMediaData ass)` merges two assets and returns
