@@ -41,6 +41,14 @@ it.
 * This has been implemented and separated from the export function, although the export function still includes cleanup
 * One open issue is that when Project.CleanProjectAssets fails, there is still a temporary asset directory.  We need to remove this and ensure a roll-back to a pre-cleaned up state.
 
+### Import of predefined TOC structure
+
+* Marisa
+* [Requirement #23](../../common/ObiRequirements/Obi2_0Requirements.htm#f23)
+* This has been partially implemented as something that reads in an XHTML document and creates section nodes for each heading
+* Some minor bugs are still there
+* Any issue surrounding empty audio blocks has not been addressed yet
+* The input XHTML must be well-formed, contain one or more headings, and have the headings in the correct order (i.e., h2 has to come between h1 and h3).
 
 ## Todo
 
@@ -84,10 +92,6 @@ Not yet ordered or timed.
 #### Support for input level adjustment during recording
 
 * [Requirement #8](../../common/ObiRequirements/Obi2_0Requirements.htm#f8)
-
-#### Import of predefined TOC structure
-
-* [Requirement #23](../../common/ObiRequirements/Obi2_0Requirements.htm#f23)
 
 #### Wave form display and editing
 
