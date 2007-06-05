@@ -24,8 +24,21 @@ namespace Obi
             // sort out the audio clips: create one file per section, then one clip per phrase in this section.
             Visitors.CleanupAssets cleanAssVisitor = new Visitors.CleanupAssets(tempAssetDirectory, false);
 
-            //clean up the assets
-            this.RootNode.acceptDepthFirst(cleanAssVisitor);
+            try
+            {
+                //clean up the assets
+                this.RootNode.acceptDepthFirst(cleanAssVisitor);
+            }
+            catch (Exception e)
+            {
+                cleanAssVisitor = null;
+                //delete the temporary asset directory
+                //this actually produces its own exception that some files are in use by another process. 
+                //we need a fix for this in AudioMediaAsset
+                System.IO.Directory.Delete(tempAssetDirectory, true);
+                //pass along the exception, since the caller still needs to know about it
+                throw e;
+            }
             cleanAssVisitor = null;
 
             //remove the original asset directory, since all the cleaned assets are in the temp folder

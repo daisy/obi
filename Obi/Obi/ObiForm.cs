@@ -1692,5 +1692,94 @@ namespace Obi
 
         }
 
+        //added by med june 4 2007
+        /// <summary>
+        /// Import an XHTML file and build the project structure from it.
+        /// The requirements for the file to import are:
+        /// 1. it is well-formed
+        /// 2. the headings are ordered properly (i.e. h2 comes between h1 and h3)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mNewProjectFromImportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectPanel.TransportBar.Enabled = false;
+
+            //select a file for import
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Title = "Choose a file for import";
+            openFile.Filter = "HTML | *.html";
+
+            if (openFile.ShowDialog() != DialogResult.OK) return;
+   
+            Dialogs.NewProject dialog = new Dialogs.NewProject(mSettings.DefaultPath);
+            dialog.makeAutoTitleCheckboxInvisible();
+            dialog.Text = "Create a new project starting from XHTML import";
+            dialog.Title = ImportStructure.grabTitle(new Uri(openFile.FileName));
+            if (dialog.ShowDialog() != DialogResult.OK) return;
+            
+            // let's see if we can actually write the file that the user chose (bug #1679175)
+            try
+            {
+                FileStream file = File.Create(dialog.Path);
+                file.Close();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show(String.Format(Localizer.Message("cannot_create_file_text"), dialog.Path, x.Message),
+                    Localizer.Message("cannot_create_file_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+               
+            if (ClosedProject())
+            {
+                CreateNewProject(dialog.Path, dialog.Title, false);
+                try
+                {
+                    ImportStructure importer = new ImportStructure();
+                    importer.ImportFromXHTML(openFile.FileName, mProject);
+                }
+                catch (Exception ex)
+                {
+                    //report failure and undo the creation of a new project
+                    MessageBox.Show("Import failed: " + ex.Message);
+                    DoCloseProject();
+                    File.Delete(dialog.Path);
+
+                    //this is troublesome
+                    try
+                    {
+                        File.Delete(mProject.AssetManager.AssetsDirectory);
+                    }
+                    catch (Exception exc)
+                    {
+                        MessageBox.Show("Could not delete assets directory.  Please do so manually. \n " + exc.Message);
+                    }
+                    RemoveRecentProject(dialog.Path);
+                    return;
+                }
+            }
+            
+            Ready();
+            mProjectPanel.TransportBar.Enabled = true;
+        }
+
+        
+        /// <summary>
+        /// Remove a project from the recent projects list
+        /// This is required when import fails halfway through
+        /// </summary>
+        /// <param name="p"></param>
+        //added by med june 4 2007
+        private void RemoveRecentProject(String path)
+        {
+            if (mSettings.RecentProjects.Contains(path))
+            {
+                int i = mSettings.RecentProjects.IndexOf(path);
+                mSettings.RecentProjects.RemoveAt(i);
+                mOpenRecentProjectToolStripMenuItem.DropDownItems.RemoveAt(i);
+            }
+        }
+
     }
 }

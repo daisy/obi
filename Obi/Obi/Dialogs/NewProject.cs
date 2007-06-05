@@ -23,9 +23,11 @@ namespace Obi.Dialogs
         /// <summary>
         /// The chosen title for the project.
         /// </summary>
+        //med june 4 2007: added "set" for use by the "import structure" feature
         public string Title
         {
             get { return mTitleBox.Text; }
+            set { mTitleBox.Text = value; }
         }
 
         /// <summary>
@@ -139,6 +141,14 @@ namespace Obi.Dialogs
                 e.Cancel = true;
                 mCanClose = true;
             }
+        }
+        
+        /// <summary>
+        /// This was added because the "import structure" feature needs this option disabled
+        /// </summary>
+        public void makeAutoTitleCheckboxInvisible()
+        {
+            mAutoTitleCheckBox.Visible = false;
         }
     }
 }
