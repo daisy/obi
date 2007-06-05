@@ -765,55 +765,80 @@ namespace Obi.Assets
                 {
 
                     // binary writer for writing to export wave file
-                    BinaryWriter bw = new BinaryWriter(File.Create(path));
+                    BinaryWriter bw ;
                     BinaryReader br;
 
                     // copy header of first audio clip file to export aubio file
-                    br = new BinaryReader(File.OpenRead(AssetList[0].mClips[0].Path));
-
-                    bw.BaseStream.Position = 0 ;
-                    for (int i = 0; i < 44; i++)
+                    try
                     {
-                        bw.Write(br.ReadByte());
+                        br = new BinaryReader(File.OpenRead(AssetList[0].mClips[0].Path));
+                        bw = new BinaryWriter(File.Create(path));
+                    }
+                    catch
+                    {
+                                                                        br = null;
+                        bw = null;
+                        throw new System.Exception ("Problem in creating audio files for export");
                     }
 
-                    br.Close();
-                    bw.BaseStream.Position = 44;
-                    // byte count variable for counting total bytes copied to export file
-                    long ByteLengthCount = 0;
-                    int ListFrameSize = AssetList[0].FrameSize;
-
-                    for (int AssetCount = 0; AssetCount < AssetList.Count; AssetCount++)
-                    {
-
-                        if (AssetList[AssetCount].mClips.Count != 0)
+                        try
                         {
-                            for (int i = 0; i < AssetList[AssetCount].mClips.Count; i++)
+                            bw.BaseStream.Position = 0;
+                            for (int i = 0; i < 44; i++)
                             {
-                                br = new BinaryReader(File.OpenRead(AssetList[AssetCount].mClips[i].Path));
+                                bw.Write(br.ReadByte());
+                            }
 
-                                // Align frames and place binary reader at offset of 44 bytes to skip header
-                                br.BaseStream.Position = 
-                                    Audio.CalculationFunctions.AdaptToFrame (  AssetList[AssetCount].mClips[i].BeginByte,AssetList[0].FrameSize )  + 44;
-                                for (long l = AssetList[AssetCount].mClips[i].BeginByte; l < AssetList[AssetCount].mClips[i].EndByte; l = l + ListFrameSize )
+                            br.Close();
+                            bw.BaseStream.Position = 44;
+                            // byte count variable for counting total bytes copied to export file
+                            long ByteLengthCount = 0;
+                            int ListFrameSize = AssetList[0].FrameSize;
+
+                            for (int AssetCount = 0; AssetCount < AssetList.Count; AssetCount++)
+                            {
+
+                                if (AssetList[AssetCount].mClips.Count != 0)
                                 {
-                                    bw.Write(br.ReadBytes ( ListFrameSize ) , 0 , ListFrameSize );
-                                    ByteLengthCount = ByteLengthCount + ListFrameSize ;
+                                    for (int i = 0; i < AssetList[AssetCount].mClips.Count; i++)
+                                    {
+                                        br = new BinaryReader(File.OpenRead(AssetList[AssetCount].mClips[i].Path));
 
+                                        // Align frames and place binary reader at offset of 44 bytes to skip header
+                                        br.BaseStream.Position =
+                                            Audio.CalculationFunctions.AdaptToFrame(AssetList[AssetCount].mClips[i].BeginByte, AssetList[0].FrameSize) + 44;
+                                        for (long l = AssetList[AssetCount].mClips[i].BeginByte; l < AssetList[AssetCount].mClips[i].EndByte; l = l + ListFrameSize)
+                                        {
+                                            bw.Write(br.ReadBytes(ListFrameSize), 0, ListFrameSize);
+                                            ByteLengthCount = ByteLengthCount + ListFrameSize;
+
+                                        }
+
+                                        br.Close();
+                                        br = null;
+
+                                    }
                                 }
 
-                                br.Close();
-                                br = null;
-
                             }
+
+                            AssetList[0].UpdateLengthHeader(ByteLengthCount + 44, bw);
                         }
-
-                    }
-
-                    AssetList[0].UpdateLengthHeader(ByteLengthCount + 44, bw);
-                    bw.Close();
-                    bw = null;
-
+                        //bw.Close();
+                        //bw = null;
+                        catch
+                        {
+                            if ( br != null )
+                            br.Close();
+                            br = null;
+                            throw new System.Exception("Problem in creating audio files for export");
+                                                    }
+            finally
+                    {
+                                                    if ( bw != null ) 
+                                                                        bw.Close();
+                        bw = null;
+                                                                    }
 
                 }
                 else
