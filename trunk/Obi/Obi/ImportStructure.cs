@@ -54,30 +54,34 @@ namespace Obi
             source.WhitespaceHandling = WhitespaceHandling.Significant;
             bool foundHeadings = false;
 
-           while (source.Read())
-           {
-                if (source.NodeType == XmlNodeType.Element)
+            try
+            {
+                while (source.Read())
                 {
-                    if (source.LocalName == "h1" ||
-                        source.LocalName == "h2" ||
-                        source.LocalName == "h3" ||
-                        source.LocalName == "h4" ||
-                        source.LocalName == "h5" ||
-                        source.LocalName == "h6")
+                    if (source.NodeType == XmlNodeType.Element)
                     {
-                        foundHeadings = true;
-                        Obi.SectionNode node = createSectionNode(source);
-                        if (node != null && node.Level < 6) mOpenSectionNodes.Push(node);
-
+                        if (source.LocalName == "h1" || source.LocalName == "h2" || source.LocalName == "h3" ||
+                            source.LocalName == "h4" || source.LocalName == "h5" || source.LocalName == "h6")
+                        {
+                            foundHeadings = true;
+                            Obi.SectionNode node = createSectionNode(source);
+                            if (node != null && node.Level < 6) mOpenSectionNodes.Push(node);
+                        }
                     }
+                    if (source.EOF) break;
                 }
-                if (source.EOF) break;
             }
-
+            catch (Exception e)
+            {
+                source.Close();
+                throw e;
+            }
             if (foundHeadings == false) throw new Exception("No headings found.");
         }
 
         //source points to a heading element (h1 through h6)
+        //weird behavior:  the first section will always be last, until Project.CreateSiblingSectionNode(..)
+        //inserts sections in-order.
         private SectionNode createSectionNode(XmlTextReader source)
         {
             //get the level of this node.  
@@ -124,7 +128,7 @@ namespace Obi
                 newNode = mProject.CreateChildSectionNode(parentNode);
             }
 
-            if (newNode != null) newNode.Label = source.ReadString();
+            if (newNode != null) mProject.RenameSectionNode(newNode, source.ReadString());
             return newNode;
         }
     }

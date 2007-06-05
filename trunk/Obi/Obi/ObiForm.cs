@@ -1704,7 +1704,13 @@ namespace Obi
         private void mNewProjectFromImportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectPanel.TransportBar.Enabled = false;
-
+            if (!ClosedProject())
+            {
+                mProjectPanel.TransportBar.Enabled = true;
+                Ready();
+                return;
+            }
+            
             //select a file for import
             OpenFileDialog openFile = new OpenFileDialog();
             openFile.Title = "Choose a file for import";
@@ -1731,35 +1737,34 @@ namespace Obi
                 return;
             }
                
-            if (ClosedProject())
+           
+            CreateNewProject(dialog.Path, dialog.Title, false);
+            try
             {
-                CreateNewProject(dialog.Path, dialog.Title, false);
+                ImportStructure importer = new ImportStructure();
+                importer.ImportFromXHTML(openFile.FileName, mProject);
+            }
+            catch (Exception ex)
+            {
+                //report failure and undo the creation of a new project
+                MessageBox.Show("Import failed: " + ex.Message);
+                DoCloseProject();
+                File.Delete(dialog.Path);
+                mProjectPanel.TransportBar.Enabled = false;
+
+                //this is troublesome
                 try
                 {
-                    ImportStructure importer = new ImportStructure();
-                    importer.ImportFromXHTML(openFile.FileName, mProject);
+                    File.Delete(mProject.AssetManager.AssetsDirectory);
                 }
-                catch (Exception ex)
+                catch (Exception exc)
                 {
-                    //report failure and undo the creation of a new project
-                    MessageBox.Show("Import failed: " + ex.Message);
-                    DoCloseProject();
-                    File.Delete(dialog.Path);
-
-                    //this is troublesome
-                    try
-                    {
-                        File.Delete(mProject.AssetManager.AssetsDirectory);
-                    }
-                    catch (Exception exc)
-                    {
-                        MessageBox.Show("Could not delete assets directory.  Please do so manually. \n " + exc.Message);
-                    }
-                    RemoveRecentProject(dialog.Path);
-                    return;
+                    MessageBox.Show("Could not delete assets directory.  Please do so manually. \n " + exc.Message);
                 }
+                RemoveRecentProject(dialog.Path);
+                return;
             }
-            
+        
             Ready();
             mProjectPanel.TransportBar.Enabled = true;
         }
