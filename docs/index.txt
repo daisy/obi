@@ -17,6 +17,8 @@ needed in Obi and the toolkit for replacing Obi's asset manager.
 
 * [Obi](obi.html): describes the application itself.
 
+* [Operations](operations.html): All the commands and operations in Obi 1.0.
+
 * [Playback](playback.html): playback behavior.
 
 * [Reference](reference.txt): the reference manual. Needs a new revision.
