@@ -40,14 +40,16 @@ it.
 * [Requirement #11](../../common/ObiRequirements/Obi2_0Requirements.htm#f11)
 * This has been implemented and separated from the export function, although the export function still includes cleanup
 * One open issue is that when Project.CleanProjectAssets fails, there is still a temporary asset directory.  We need to remove this and ensure a roll-back to a pre-cleaned up state.
+* TODO: Avneesh to add a fix in the AudioMediaAsset class to fix the above behavior
 
 ### Import of predefined TOC structure
 
 * Marisa
 * [Requirement #23](../../common/ObiRequirements/Obi2_0Requirements.htm#f23)
 * This has been partially implemented as something that reads in an XHTML document and creates section nodes for each heading
-* Some minor bugs are still there
-* Any issue surrounding empty audio blocks has not been addressed yet
+* TODO: grab the text from nested elements
+* TODO: add page numbers (&lt;p class="page&gt; or maybe a nested span)
+* Any issue surrounding empty audio blocks has not been addressed yet (note to self: this was for page numbers)
 * The input XHTML must be well-formed, contain one or more headings, and have the headings in the correct order (i.e., h2 has to come between h1 and h3).
 
 ## Todo
