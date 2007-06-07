@@ -52,6 +52,19 @@ it.
 * Any issue surrounding empty audio blocks has not been addressed yet (note to self: this was for page numbers)
 * The input XHTML must be well-formed, contain one or more headings, and have the headings in the correct order (i.e., h2 has to come between h1 and h3).
 
+### Support for images for section headings
+
+* Julien
+* Added in the strip view, show a thumbnail
+* New channel for images
+* [Requirement #21](../../common/ObiRequirements/Obi2_0Requirements.htm#f21)
+
+### Full metadata
+
+* Julien
+* [Requirement #36](../../common/ObiRequirements/Obi2_0Requirements.htm#f36)
+
+
 ## Todo
 
 ### Essential requirements
@@ -125,10 +138,6 @@ support of the Z spec so should be treated with special attention.
 
 * [Requirement #6](../../common/ObiRequirements/Obi2_0Requirements.htm#f6)
 
-#### Support for images for section headings
-
-* [Requirement #21](../../common/ObiRequirements/Obi2_0Requirements.htm#f21)
-
 #### Generic navigation list support
 
 * [Requirement #18](../../common/ObiRequirements/Obi2_0Requirements.htm#f18)
@@ -183,10 +192,6 @@ support of the Z spec so should be treated with special attention.
 #### Obi expert mode
 
 * [Requirement #35](../../common/ObiRequirements/Obi2_0Requirements.htm#f35)
-
-#### Full metadata
-
-* [Requirement #36](../../common/ObiRequirements/Obi2_0Requirements.htm#f36)
 
 ### Backend features
 
