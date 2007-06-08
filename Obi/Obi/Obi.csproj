@@ -153,6 +153,12 @@
     <Compile Include="Dialogs\SentenceDetection.Designer.cs">
       <DependentUpon>SentenceDetection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\ShowSource.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ShowSource.Designer.cs">
+      <DependentUpon>ShowSource.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\Split.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -410,6 +416,10 @@
     <EmbeddedResource Include="Dialogs\SentenceDetection.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SentenceDetection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ShowSource.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ShowSource.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\TransportRecord.resx">
       <SubType>Designer</SubType>

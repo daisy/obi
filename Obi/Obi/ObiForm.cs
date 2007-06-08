@@ -1786,5 +1786,27 @@ namespace Obi
             }
         }
 
+        private void mShowSourceDEBUGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProject != null)
+            {
+                if (mProject.Unsaved)
+                {
+                    if (MessageBox.Show("The current project is unsaved; do you wish to see the saved version?",
+                        "Unsaved project", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;        
+                }
+                try
+                {
+                    new Dialogs.ShowSource(mProject).Show();
+                }
+                catch (Exception e_)
+                {
+                    MessageBox.Show(e_.Message,
+                        "Could not read XUK file",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }
