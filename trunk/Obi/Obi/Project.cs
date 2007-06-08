@@ -46,7 +46,7 @@ namespace Obi
         private int mPhraseCount;            // total number of phrases in the project
         private int mPageCount;              // count the pages in the book
 
-        public static readonly string XUKVersion = "obi-xuk-011";                // version of the Obi/XUK file
+        public static readonly string CURRENT_XUK_VERSION = "obi-xuk-011";       // version of the Obi/XUK file
         public static readonly string AudioChannelName = "obi.audio";            // canonical name of the audio channel
         public static readonly string TextChannelName = "obi.text";              // canonical name of the text channel
         public static readonly string AnnotationChannelName = "obi.annotation";  // canonical name of the annotation channel
@@ -311,53 +311,12 @@ namespace Obi
                 mAudioChannel = FindChannel(AudioChannelName);
                 mAnnotationChannel = FindChannel(AnnotationChannelName);
                 mMetadata = new SimpleMetadata();
-                string xukversion = "none";
-                foreach (object o in getMetadataList())
+                if (XukVersion != CURRENT_XUK_VERSION)
                 {
-                    urakawa.project.Metadata meta = (urakawa.project.Metadata)o;
-                    if (meta.getName() == SimpleMetadata.MetaTitle)
-                    {
-                        mMetadata.Title = meta.getContent();
-                    }
-                    else if (meta.getName() == SimpleMetadata.MetaPublisher)
-                    {
-                        mMetadata.Publisher = meta.getContent();
-                    }
-                    else if (meta.getName() == SimpleMetadata.MetaIdentifier)
-                    {
-                        mMetadata.Identifier = meta.getContent();
-                    }
-                    else if (meta.getName() == SimpleMetadata.MetaLanguage)
-                    {
-                        mMetadata.Language = new System.Globalization.CultureInfo(meta.getContent());
-                    }
-                    else if (meta.getName() == SimpleMetadata.MetaNarrator)
-                    {
-                        mMetadata.Narrator = meta.getContent();
-                    }
-                    else if (meta.getName() == SimpleMetadata.MetaAssetsDir)
-                    {
-                        mAssPath = meta.getContent();
-                    }
-                    else if (meta.getName() == SimpleMetadata.MetaXUKVersion)
-                    {
-                        xukversion = meta.getContent();
-                    }
-                    else if (meta.getName() == SimpleMetadata.MetaAudioChannels)
-                    {
-                        mAudioChannels = Int32.Parse(meta.getContent());
-                    }
-                    else if (meta.getName() == SimpleMetadata.MetaSampleRate)
-                    {
-                        mSampleRate = Int32.Parse(meta.getContent());
-                    }
-                    else if (meta.getName() == SimpleMetadata.MetaBitDepth)
-                    {
-                        mBitDepth = Int32.Parse(meta.getContent());
-                    }
+                    throw new Exception(String.Format(Localizer.Message("xuk_version_mismatch"),
+                        CURRENT_XUK_VERSION, XukVersion));
                 }
-                if (xukversion != Project.XUKVersion)
-                    throw new Exception(String.Format(Localizer.Message("xuk_version_mismatch"), Project.XUKVersion, xukversion));
+                ReadMetadata();
                 if (mAssPath == null) throw new Exception(Localizer.Message("missing_asset_path"));
                 Uri absoluteAssPath = new Uri(new Uri(xukPath), mAssPath); 
                 mAssManager = new Assets.AssetManager(absoluteAssPath.AbsolutePath);
@@ -411,7 +370,7 @@ namespace Obi
             AddMetadata(SimpleMetadata.MetaNarrator, metadata.Narrator);
             AddMetadata(SimpleMetadata.MetaGenerator, this.Generator);
             AddMetadata(SimpleMetadata.MetaAssetsDir, mAssPath);
-            AddMetadata(SimpleMetadata.MetaXUKVersion, Project.XUKVersion);
+            XukVersion = CURRENT_XUK_VERSION;
             return metadata;
         }
 
@@ -484,28 +443,6 @@ namespace Obi
                 if (!hasAudioChannelMetadata) AddMetadata(SimpleMetadata.MetaAudioChannels, mAudioChannels.ToString());
                 if (!hasSampleRateMetadata) AddMetadata(SimpleMetadata.MetaSampleRate, mSampleRate.ToString());
                 if (!hasBitDepthMetadata) AddMetadata(SimpleMetadata.MetaBitDepth, mBitDepth.ToString());
-            }
-        }
-
-        /// <summary>
-        /// Convenience method to create a new metadata object with a name/value pair.
-        /// Skip it if there is no value (the toolkit doesn't like it.)
-        /// </summary>
-        /// <param name="name">The name of the metadata property.</param>
-        /// <param name="value">Its content, i.e. the value.</param>
-        private urakawa.project.Metadata AddMetadata(string name, string value)
-        {
-            if (value != null)
-            {
-                urakawa.project.Metadata meta = (urakawa.project.Metadata)getMetadataFactory().createMetadata();
-                meta.setName(name);
-                meta.setContent(value);
-                this.appendMetadata(meta);
-                return meta;
-            }
-            else
-            {
-                return null;
             }
         }
 
@@ -819,5 +756,122 @@ namespace Obi
             Directory.CreateDirectory(newAssPath);
             return newAssPath;
         }
+
+        #region metadata
+
+        /// <summary>
+        /// Convenience method to create a new metadata object with a name/value pair.
+        /// Skip it if there is no value (the toolkit doesn't like it.)
+        /// </summary>
+        /// <param name="name">The name of the metadata property.</param>
+        /// <param name="value">Its content, i.e. the value.</param>
+        private urakawa.project.Metadata AddMetadata(string name, string value)
+        {
+            if (value != null)
+            {
+                urakawa.project.Metadata meta = (urakawa.project.Metadata)getMetadataFactory().createMetadata();
+                meta.setName(name);
+                meta.setContent(value);
+                this.appendMetadata(meta);
+                return meta;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Get a metadata item
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns>The found metadata item, or null if not found.</returns>
+        public urakawa.project.Metadata GetSingleMetadataItem(string name)
+        {
+            IList list = getMetadataList(name);
+            if (list.Count > 1)
+            {
+                throw new Exception(String.Format("Expected a single metadata item for \"{0}\" but got {1}.",
+                    name, list.Count));
+            }
+            return list.Count == 1 ? list[0] as urakawa.project.Metadata : null;
+        }
+
+        /// <summary>
+        /// Set a metadata and ensure that it is the only one; i.e. delete any other occurrence.
+        /// </summary>
+        /// <param name="name">The name of the metadata item to set.</param>
+        /// <param name="content">The content of the metadata item to set.</param>
+        public void SetSingleMetadataItem(string name, string content)
+        {
+            deleteMetadata(name);
+            AddMetadata(name, content);
+        }
+
+        /// <summary>
+        /// Read the project metadata.
+        /// </summary>
+        private void ReadMetadata()
+        {
+            foreach (object o in getMetadataList())
+            {
+                urakawa.project.Metadata meta = (urakawa.project.Metadata)o;
+                if (meta.getName() == SimpleMetadata.MetaTitle)
+                {
+                    mMetadata.Title = meta.getContent();
+                }
+                else if (meta.getName() == SimpleMetadata.MetaPublisher)
+                {
+                    mMetadata.Publisher = meta.getContent();
+                }
+                else if (meta.getName() == SimpleMetadata.MetaIdentifier)
+                {
+                    mMetadata.Identifier = meta.getContent();
+                }
+                else if (meta.getName() == SimpleMetadata.MetaLanguage)
+                {
+                    mMetadata.Language = new System.Globalization.CultureInfo(meta.getContent());
+                }
+                else if (meta.getName() == SimpleMetadata.MetaNarrator)
+                {
+                    mMetadata.Narrator = meta.getContent();
+                }
+                else if (meta.getName() == SimpleMetadata.MetaAssetsDir)
+                {
+                    mAssPath = meta.getContent();
+                }
+                else if (meta.getName() == SimpleMetadata.MetaAudioChannels)
+                {
+                    mAudioChannels = Int32.Parse(meta.getContent());
+                }
+                else if (meta.getName() == SimpleMetadata.MetaSampleRate)
+                {
+                    mSampleRate = Int32.Parse(meta.getContent());
+                }
+                else if (meta.getName() == SimpleMetadata.MetaBitDepth)
+                {
+                    mBitDepth = Int32.Parse(meta.getContent());
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get or set the XUK version.
+        /// </summary>
+        private string XukVersion
+        {
+            get
+            {
+                urakawa.project.Metadata meta = GetSingleMetadataItem(Obi.Metadata.OBI_XUK_VERSION);
+                return meta == null ? "" : meta.getContent();
+            }
+            set
+            {
+                SetSingleMetadataItem(Obi.Metadata.OBI_XUK_VERSION, value);                
+            }
+        }
+
+
+        #endregion
     }
 }

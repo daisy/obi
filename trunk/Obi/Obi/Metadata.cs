@@ -13,6 +13,8 @@ namespace Obi
         private List<MetadataItem> mTemplates;                  // templates for metadata
         private Dictionary<string, List<MetadataItem>> mItems;  // defined items
 
+        public static readonly string OBI_XUK_VERSION = "obi:xukversion";
+
         /// <summary>
         /// List of required metadata items which are currently missing.
         /// </summary>

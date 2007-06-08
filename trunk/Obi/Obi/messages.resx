@@ -301,7 +301,7 @@ Do you want to replace the project contained in this file?</value>
     <comment>name template for media assets (JQ)</comment>
   </data>
   <data name="xuk_version_mismatch" xml:space="preserve">
-    <value>Version of XUK file is not the current version (expected {0} but got {1} instead.)</value>
+    <value>Version of XUK file is not the current version (expected "{0}" but got "{1}" instead.)</value>
     <comment>Opening an old XUK file (JQ)</comment>
   </data>
   <data name="name_already_exists_caption" xml:space="preserve">

@@ -1545,7 +1545,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Version of XUK file is not the current version (expected {0} but got {1} instead.).
+        ///   Looks up a localized string similar to Version of XUK file is not the current version (expected &quot;{0}&quot; but got &quot;{1}&quot; instead.).
         /// </summary>
         internal static string xuk_version_mismatch {
             get {
