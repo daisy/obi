@@ -278,8 +278,10 @@ namespace Obi
                 node.Label = title;
                 presentation.getRootNode().appendChild(node);
             }
-
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
+            if (StateChanged != null)
+            {
+                StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
+            }
             Save();
         }
 
@@ -370,7 +372,7 @@ namespace Obi
             AddMetadata(SimpleMetadata.MetaNarrator, metadata.Narrator);
             AddMetadata(SimpleMetadata.MetaGenerator, this.Generator);
             AddMetadata(SimpleMetadata.MetaAssetsDir, mAssPath);
-            XukVersion = CURRENT_XUK_VERSION;
+            SetSingleMetadataItem(Obi.Metadata.OBI_XUK_VERSION, CURRENT_XUK_VERSION);
             return metadata;
         }
 
@@ -471,7 +473,10 @@ namespace Obi
         private void Saved()
         {
             mUnsaved = false;
-            StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Saved));            
+            if (StateChanged != null)
+            {
+                StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Saved));
+            }
         }
 
         /// <summary>
@@ -858,16 +863,12 @@ namespace Obi
         /// <summary>
         /// Get or set the XUK version.
         /// </summary>
-        private string XukVersion
+        public string XukVersion
         {
             get
             {
                 urakawa.project.Metadata meta = GetSingleMetadataItem(Obi.Metadata.OBI_XUK_VERSION);
                 return meta == null ? "" : meta.getContent();
-            }
-            set
-            {
-                SetSingleMetadataItem(Obi.Metadata.OBI_XUK_VERSION, value);                
             }
         }
 
