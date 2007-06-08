@@ -32,7 +32,6 @@ namespace Obi
         
         public static readonly string MetaGenerator = "dtb:generator";
         public static readonly string MetaAssetsDir = "obi:assetsdir";
-        public static readonly string MetaXUKVersion = "obi:xukversion";
 
         public static readonly string MetaAudioChannels = "obi:audioChannels";
         public static readonly string MetaSampleRate = "obi:sampleRate";
