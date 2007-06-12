@@ -625,6 +625,7 @@ namespace Obi.UserControls
                     this.mProjectPanel.ParentObiForm.UndoLast();
                 mDidCreateSectionForRecording = false;
                 inlineRecordingSession = null;
+                UpdateInlineRecordingState();
             }
             else if (Enabled)
             {
