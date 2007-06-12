@@ -30,6 +30,9 @@ namespace Obi.UserControls
         public bool IsInlineRecording
         { get { return (inlineRecordingSession != null); } }
         private bool mDidCreateSectionForRecording = false;
+        private SectionNode mRecordingToSection = null;
+        private int mRecordingStartIndex = 0;
+
 
         // constants from the display combo box
         private static readonly int Elapsed = 0;
@@ -572,7 +575,9 @@ namespace Obi.UserControls
                 }
                 else
                 {
-                    mDidCreateSectionForRecording = IsSectionCreated;                        
+                    mDidCreateSectionForRecording = IsSectionCreated;
+                    mRecordingToSection = section;
+                    mRecordingStartIndex = index;
                     inlineRecordingSession = session;
                     inlineRecordingSession.Record();
                     UpdateInlineRecordingState();
@@ -623,6 +628,12 @@ namespace Obi.UserControls
                 inlineRecordingSession.Stop();
                 if(mDidCreateSectionForRecording && inlineRecordingSession.RecordedAssets.Count == 0)
                     this.mProjectPanel.ParentObiForm.UndoLast();
+
+                for (int i = 0; i < inlineRecordingSession.RecordedAssets.Count; ++i)
+                {
+                    mProjectPanel.StripManager.UpdateAssetForPhrase(mRecordingToSection.PhraseChild(mRecordingStartIndex + i), inlineRecordingSession.RecordedAssets[i]);
+                }
+                
                 mDidCreateSectionForRecording = false;
                 inlineRecordingSession = null;
                 UpdateInlineRecordingState();
