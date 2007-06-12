@@ -552,7 +552,7 @@ namespace Obi.Audio
             long mLength = (long)SampleCount;
 
             mTime = Audio.CalculationFunctions.ConvertByteToTime(mLength, m_SampleRate, mAsset.FrameSize);
-}
+        }
 
 		internal long GetCurrentPositioninBytes
 		{
