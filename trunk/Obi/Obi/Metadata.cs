@@ -9,12 +9,14 @@ namespace Obi
     /// </summary>
     public class Metadata
     {
-        private Project mProject;                               // project that this metadata belongs to
-        private List<MetadataItem> mTemplates;                  // templates for metadata
-        private Dictionary<string, List<MetadataItem>> mItems;  // defined items
-
         public static readonly string OBI_XUK_VERSION = "obi:xukversion";
 
+        // private Project mProject;                               // project that this metadata belongs to
+        // private List<MetadataItem> mTemplates;                  // templates for metadata
+        // private Dictionary<string, List<MetadataItem>> mItems;  // defined items
+
+
+        /*
         /// <summary>
         /// List of required metadata items which are currently missing.
         /// </summary>
@@ -110,63 +112,179 @@ namespace Obi
             if (mItems[SimpleMetadata.MetaTitle].Count > 0)
                 mProject.Metadata.Title = mItems[SimpleMetadata.MetaTitle][0].Content;
         }
+         * 
+         */
     }
 
     public enum MetadataOccurrence { Required, Recommended, Optional };
 
-    public class MetadataItem
+    public class MetadataEntryDescription
     {
-        private string mName;                    // name of the metadata item, e.g. "dc:Contributor"
-        private string mContent;                 // content string of the item
-        private MetadataOccurrence mOccurrence;  // required, recommended or optional
-        private bool mRepeatable;                // repeatable or not
+        private string mName;
+        private MetadataOccurrence mOccurrence;
+        private string mDescription;
+        private bool mRepeatable;
+        private List<List<string>> mAddlAttrs;
 
-        /// <summary>
-        /// Get the name of the item.
-        /// </summary>
-        public string Name
-        {
-            get { return mName; }
-        }
-
-        /// <summary>
-        /// Get/set the content, cannot set to an empty string (silently ignored.)
-        /// </summary>
-        public string Content
-        {
-            get { return mContent; }
-            set { if (value != null && value != "") mContent = value; }
-        }
-
-        public MetadataOccurrence Occurrence
-        {
-            get { return mOccurrence; }
-        }
-
-        public bool Repeatable
-        {
-            get { return mRepeatable; }
-        }
-
-        public MetadataItem(string name, string content, MetadataOccurrence occurrence, bool repeatable)
+        private static readonly List<MetadataEntryDescription> DAISY_ENTRIES = new List<MetadataEntryDescription>(0);
+        
+        public MetadataEntryDescription(string name, MetadataOccurrence occurrence, string description, bool repeatable)
         {
             mName = name;
-            mContent = content;
             mOccurrence = occurrence;
+            mDescription = description;
             mRepeatable = repeatable;
+            mAddlAttrs = new List<List<string>>(0);
         }
 
-        public MetadataItem(MetadataItem template, string content)
+        public void AddAddlAttr(string name, string description)
         {
-            mName = template.Name;
-            mContent = content;
-            mOccurrence = template.Occurrence;
-            mRepeatable = template.Repeatable;
+            List<string> attr = new List<string>(2);
+            attr.Add(name);
+            attr.Add(description);
+            mAddlAttrs.Add(attr);
         }
 
-        public override string  ToString()
+        public void AddAddlAttr(string name, string description, List<string> values)
         {
-            return String.Format("{0} ({1})", mName, mOccurrence);
+            List<string> attr = new List<string>(values.Count + 2);
+            attr.Add(name);
+            attr.Add(description);
+            attr.AddRange(values);
+            mAddlAttrs.Add(attr);
+        }
+
+        public string Name { get { return mName; } }
+        public MetadataOccurrence Occurrence { get { return mOccurrence; } }
+        public string Description { get { return mDescription; } }
+        public bool Repeatable { get { return mRepeatable; } }
+
+        public static List<MetadataEntryDescription> GetDAISYEntries()
+        {
+            if (DAISY_ENTRIES.Count == 0) CreateDAISYEntries();
+            return DAISY_ENTRIES;
+        }
+
+        public override string ToString() { return mName; }
+
+        private static void CreateDAISYEntries()
+        {
+            // Required publication metadata
+            DAISY_ENTRIES.Add(new MetadataEntryDescription(
+                "dc:Title",
+                MetadataOccurrence.Required,
+                Localizer.Message("dc_title_description"),
+                true));
+            DAISY_ENTRIES.Add(new MetadataEntryDescription(
+                "dc:Publisher",
+                MetadataOccurrence.Required,
+                Localizer.Message("dc_publisher_description"),
+                true));
+            DAISY_ENTRIES.Add(new MetadataEntryDescription(
+                "dc:Date",
+                MetadataOccurrence.Required,
+                Localizer.Message("missing_description"),
+                true));
+            DAISY_ENTRIES.Add(new MetadataEntryDescription(
+                "dc:Format",
+                MetadataOccurrence.Required,
+                Localizer.Message("missing_description"),
+                true));
+            DAISY_ENTRIES.Add(new MetadataEntryDescription(
+                "dc:Identifier",
+                MetadataOccurrence.Required,
+                Localizer.Message("missing_description"),
+                true));
+            DAISY_ENTRIES.Add(new MetadataEntryDescription(
+                "dc:Language",
+                MetadataOccurrence.Required,
+                Localizer.Message("missing_description"),
+                true));
+            DAISY_ENTRIES.Add(new MetadataEntryDescription(
+                "dc:Language",
+                MetadataOccurrence.Required,
+                Localizer.Message("missing_description"),
+                true));
+            DAISY_ENTRIES.Add(new MetadataEntryDescription(
+                "dtb:narrator",
+                MetadataOccurrence.Optional,
+                Localizer.Message("missing_description"),
+                true));
+            DAISY_ENTRIES.Add(new MetadataEntryDescription(
+                "dtb:producer",
+                MetadataOccurrence.Optional,
+                Localizer.Message("missing_description"),
+                true));
+            DAISY_ENTRIES.Add(new MetadataEntryDescription(
+                "dc:Creator",
+                MetadataOccurrence.Recommended,
+                Localizer.Message("missing_description"),
+                true));
+            DAISY_ENTRIES.Add(new MetadataEntryDescription(
+                "dc:Subject",
+                MetadataOccurrence.Recommended,
+                Localizer.Message("missing_description"),
+                true));
+            DAISY_ENTRIES.Add(new MetadataEntryDescription(
+                "dc:Description",
+                MetadataOccurrence.Optional,
+                Localizer.Message("missing_description"),
+                true));
+            DAISY_ENTRIES.Add(new MetadataEntryDescription(
+                "dc:Contributor",
+                MetadataOccurrence.Optional,
+                Localizer.Message("missing_description"),
+                true));
+            DAISY_ENTRIES.Add(new MetadataEntryDescription(
+                "dc:Source",
+                MetadataOccurrence.Recommended,
+                Localizer.Message("missing_description"),
+                true));
+            DAISY_ENTRIES.Add(new MetadataEntryDescription(
+                "dc:Relation",
+                MetadataOccurrence.Optional,
+                Localizer.Message("missing_description"),
+                true));
+            DAISY_ENTRIES.Add(new MetadataEntryDescription(
+                "dc:Coverage",
+                MetadataOccurrence.Optional,
+                Localizer.Message("missing_description"),
+                true));
+            DAISY_ENTRIES.Add(new MetadataEntryDescription(
+                "dc:Rights",
+                MetadataOccurrence.Optional,
+                Localizer.Message("missing_description"),
+                true));
+            DAISY_ENTRIES.Add(new MetadataEntryDescription(
+                "dtb:sourceDate",
+                MetadataOccurrence.Recommended,
+                Localizer.Message("missing_description"),
+                false));
+            DAISY_ENTRIES.Add(new MetadataEntryDescription(
+                "dtb:sourceEdition",
+                MetadataOccurrence.Recommended,
+                Localizer.Message("missing_description"),
+                false));
+            DAISY_ENTRIES.Add(new MetadataEntryDescription(
+                "dtb:sourcePublisher",
+                MetadataOccurrence.Recommended,
+                Localizer.Message("missing_description"),
+                false));
+            DAISY_ENTRIES.Add(new MetadataEntryDescription(
+                "dtb:sourceRights",
+                MetadataOccurrence.Recommended,
+                Localizer.Message("missing_description"),
+                false));
+            DAISY_ENTRIES.Add(new MetadataEntryDescription(
+                "dtb:sourceTitle",
+                MetadataOccurrence.Optional,
+                Localizer.Message("missing_description"),
+                false));
+            DAISY_ENTRIES.Add(new MetadataEntryDescription(
+                "dtb:revisionDescription",
+                MetadataOccurrence.Optional,
+                Localizer.Message("missing_description"),
+                false));
         }
     }
 }

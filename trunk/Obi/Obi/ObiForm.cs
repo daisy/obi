@@ -1439,6 +1439,7 @@ namespace Obi
             bool isProjectOpen = mProject != null;
             bool canTouch = !isPlaying && isProjectOpen;
             mMetadataToolStripMenuItem.Enabled = canTouch;
+            mFullMetadataToolStripMenuItem.Enabled = canTouch;
             mTouchProjectToolStripMenuItem.Enabled = canTouch;
         }
 
@@ -1806,6 +1807,34 @@ namespace Obi
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void mFullMetadataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FullMetadata dialog = new FullMetadata();
+            List<urakawa.project.Metadata> affected = new List<urakawa.project.Metadata>();
+            foreach (object o in mProject.getMetadataList())
+            {
+                urakawa.project.Metadata meta = (urakawa.project.Metadata)o;
+                if (MetadataEntryDescription.GetDAISYEntries().Find(delegate(MetadataEntryDescription entry)
+                    { return entry.Name == meta.getName(); }) != null)
+                {
+                    affected.Add(meta);
+                    dialog.AddPanel(meta.getName(), meta.getContent());
+                }
+            }
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                foreach (urakawa.project.Metadata m in affected) mProject.deleteMetadata(m.getName());
+                foreach (UserControls.MetadataPanel p in dialog.MetadataPanels)
+                {
+                    urakawa.project.Metadata m = (urakawa.project.Metadata)mProject.getMetadataFactory().createMetadata();
+                    m.setName(p.EntryName);
+                    m.setContent(p.EntryContent);
+                    mProject.appendMetadata(m);
+                }
+                mProject.Touch();
             }
         }
     }
