@@ -261,6 +261,7 @@ namespace Obi.UserControls
             this.mRecordModeBox.Name = "mRecordModeBox";
             this.mRecordModeBox.Size = new System.Drawing.Size(128, 21);
             this.mRecordModeBox.TabIndex = 14;
+            this.mRecordModeBox.SelectedIndexChanged += new System.EventHandler(this.mRecordModeBox_SelectedIndexChanged);
             // 
             // TransportBar
             // 

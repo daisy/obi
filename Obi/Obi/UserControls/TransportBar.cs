@@ -129,7 +129,14 @@ namespace Obi.UserControls
 
         public bool CanRecord
         {
-            get { return Enabled && mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped && !IsInlineRecording; }
+            get { 
+                return Enabled && 
+                    (
+                        (mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped && mRecordModeBox.SelectedIndex==0)
+                        || 
+                        (!IsInlineRecording && mRecordModeBox.SelectedIndex>0)
+                    ); 
+            }
         }
 
         public bool CanResume
@@ -575,6 +582,24 @@ namespace Obi.UserControls
                 }
                 else
                 {
+                    if (mCurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Playing)
+                    {
+                        mProjectPanel.StripManager.QuickSplitBlock();
+                        mCurrentPlaylist.Stop();
+                        m_IsSerialPlaying = false;
+                        index++; //for "punch in", we want to record between the parts of the split
+                    }
+                    if (mRecordModeBox.SelectedIndex == 2) //we are recording in destructive mode
+                    {
+                        PhraseNode removeableNode = section.PhraseChild(index);
+                        while (removeableNode != null)
+                        {
+                            this.ProjectPanel.Project.DeletePhraseNode(removeableNode);
+                            removeableNode = (index<section.PhraseChildCount)?section.PhraseChild(index):null;
+                        }
+                        this.ProjectPanel.CurrentSelection = null;
+                    }
+
                     mDidCreateSectionForRecording = IsSectionCreated;
                     mRecordingToSection = section;
                     mRecordingStartIndex = index;
@@ -872,6 +897,11 @@ namespace Obi.UserControls
             );
  
             }
+        }
+
+        private void mRecordModeBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
 
