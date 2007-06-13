@@ -423,6 +423,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The agency responsible for making the DTB available..
+        /// </summary>
+        internal static string dc_publisher_description {
+            get {
+                return ResourceManager.GetString("dc_publisher_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The title of the DTB, including any ssubtitles..
+        /// </summary>
+        internal static string dc_title_description {
+            get {
+                return ResourceManager.GetString("dc_title_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to move section out.
         /// </summary>
         internal static string decrease_section_level_command_label {
@@ -641,6 +659,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A normalized form of the contents suitable for machine processing..
+        /// </summary>
+        internal static string file_as_description {
+            get {
+                return ResourceManager.GetString("file_as_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hide &amp;table of contents.
         /// </summary>
         internal static string hide_toc_label {
@@ -754,6 +781,15 @@ namespace Obi {
         internal static string missing_asset_path {
             get {
                 return ResourceManager.GetString("missing_asset_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The description for this metadata item is missing..
+        /// </summary>
+        internal static string missing_description {
+            get {
+                return ResourceManager.GetString("missing_description", resourceCulture);
             }
         }
         

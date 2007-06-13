@@ -679,4 +679,16 @@ Do you want to replace the project contained in this file?</value>
   <data name="didnt_clean_project_text" xml:space="preserve">
     <value>Could not clean up project. Reason given: {0}</value>
   </data>
+  <data name="dc_publisher_description" xml:space="preserve">
+    <value>The agency responsible for making the DTB available.</value>
+  </data>
+  <data name="dc_title_description" xml:space="preserve">
+    <value>The title of the DTB, including any ssubtitles.</value>
+  </data>
+  <data name="file_as_description" xml:space="preserve">
+    <value>A normalized form of the contents suitable for machine processing.</value>
+  </data>
+  <data name="missing_description" xml:space="preserve">
+    <value>The description for this metadata item is missing.</value>
+  </data>
 </root>

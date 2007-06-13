@@ -115,6 +115,7 @@ namespace Obi
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.mDumpTreeDEBUGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mExportAssetDEBUGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mShowSourceDEBUGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.mViewHelpInExternalBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -123,7 +124,7 @@ namespace Obi
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectPanel = new Obi.UserControls.ProjectPanel();
-            this.mShowSourceDEBUGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mFullMetadataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -299,6 +300,7 @@ namespace Obi
             this.mDeleteToolStripMenuItem,
             this.toolStripSeparator4,
             this.mMetadataToolStripMenuItem,
+            this.mFullMetadataToolStripMenuItem,
             this.mTouchProjectToolStripMenuItem});
             this.mEditToolStripMenuItem.Name = "mEditToolStripMenuItem";
             this.mEditToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -872,6 +874,13 @@ namespace Obi
             this.mExportAssetDEBUGToolStripMenuItem.Text = "E&xport asset (DEBUG)";
             this.mExportAssetDEBUGToolStripMenuItem.Click += new System.EventHandler(this.mExportAssetDEBUGToolStripMenuItem_Click);
             // 
+            // mShowSourceDEBUGToolStripMenuItem
+            // 
+            this.mShowSourceDEBUGToolStripMenuItem.Name = "mShowSourceDEBUGToolStripMenuItem";
+            this.mShowSourceDEBUGToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.mShowSourceDEBUGToolStripMenuItem.Text = "Show source (DEBUG)";
+            this.mShowSourceDEBUGToolStripMenuItem.Click += new System.EventHandler(this.mShowSourceDEBUGToolStripMenuItem_Click);
+            // 
             // mHelpToolStripMenuItem
             // 
             this.mHelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -945,12 +954,12 @@ namespace Obi
             this.mProjectPanel.TabIndex = 4;
             this.mProjectPanel.Load += new System.EventHandler(this.mProjectPanel_Load);
             // 
-            // mShowSourceDEBUGToolStripMenuItem
+            // fullMetadataToolStripMenuItem
             // 
-            this.mShowSourceDEBUGToolStripMenuItem.Name = "mShowSourceDEBUGToolStripMenuItem";
-            this.mShowSourceDEBUGToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.mShowSourceDEBUGToolStripMenuItem.Text = "Show source (DEBUG)";
-            this.mShowSourceDEBUGToolStripMenuItem.Click += new System.EventHandler(this.mShowSourceDEBUGToolStripMenuItem_Click);
+            this.mFullMetadataToolStripMenuItem.Name = "fullMetadataToolStripMenuItem";
+            this.mFullMetadataToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.mFullMetadataToolStripMenuItem.Text = "Full metadata";
+            this.mFullMetadataToolStripMenuItem.Click += new System.EventHandler(this.mFullMetadataToolStripMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -1073,6 +1082,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mCleanProjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mNewProjectFromImportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mShowSourceDEBUGToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mFullMetadataToolStripMenuItem;
 
 
     }
