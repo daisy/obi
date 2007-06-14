@@ -81,32 +81,14 @@ namespace Obi
         /// </summary>
         private void UpdatePublicationMetadata()
         {
-            urakawa.project.Metadata producedDate = null;
-            urakawa.project.Metadata revision = null;
-            urakawa.project.Metadata revisionDate = null;
-
-            foreach (object o in getMetadataList())
-            {
-                urakawa.project.Metadata meta = (urakawa.project.Metadata)o;
-                if (meta.getName() == SimpleMetadata.MetaProducedDate)
-                {
-                    producedDate = meta;
-                }
-                else if (meta.getName() == SimpleMetadata.MetaRevision)
-                {
-                    revision = meta;
-                }
-                else if (meta.getName() == SimpleMetadata.MetaRevisionDate)
-                {
-                    revisionDate = meta;
-                }
-            }
-
             string date = DateTime.Today.ToString("yyyy-MM-dd");
+            urakawa.project.Metadata producedDate = GetSingleMetadataItem(Metadata.DTB_PRODUCED_DATE);
+            urakawa.project.Metadata revision = GetSingleMetadataItem(Metadata.DTB_REVISION);
+            urakawa.project.Metadata revisionDate = GetSingleMetadataItem(Metadata.DTB_REVISION_DATE);
             if (producedDate == null)
             {
                 System.Diagnostics.Debug.Assert(revisionDate == null && revision == null);
-                producedDate = AddMetadata(SimpleMetadata.MetaProducedDate, date);
+                SetSingleMetadataItem(Metadata.DTB_PRODUCED_DATE, date);
             }
             else
             {
@@ -120,8 +102,8 @@ namespace Obi
                 else
                 {
                     System.Diagnostics.Debug.Assert(revisionDate == null);
-                    AddMetadata(SimpleMetadata.MetaRevision, "1");
-                    AddMetadata(SimpleMetadata.MetaRevisionDate, date);
+                    SetSingleMetadataItem(Metadata.DTB_REVISION, "1");
+                    SetSingleMetadataItem(Metadata.DTB_REVISION_DATE, date);
                 }
             }
         }

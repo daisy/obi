@@ -310,7 +310,6 @@
     <Compile Include="SectionNode.cs" />
     <Compile Include="Selection.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="SimpleMetadata.cs" />
     <Compile Include="UserControls\AbstractBlock.cs">
       <SubType>UserControl</SubType>
     </Compile>

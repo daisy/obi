@@ -5,6 +5,7 @@ using System.IO.IsolatedStorage;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Soap;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Obi
 {
@@ -82,6 +83,21 @@ namespace Obi
             SoapFormatter soap = new SoapFormatter();
             soap.Serialize(stream, this);
             stream.Close();
+        }
+
+        public string GeneratedID
+        {
+            get
+            {
+                string id = IdTemplate;
+                Random rand = new Random();
+                Regex regex = new Regex("#");
+                while (id.Contains("#"))
+                {
+                    id = regex.Replace(id, String.Format("{0}", rand.Next(0, 10)), 1);
+                }
+                return id;
+            }
         }
     }
 }
