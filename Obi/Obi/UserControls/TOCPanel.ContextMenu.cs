@@ -116,21 +116,21 @@ namespace Obi.UserControls
 
         public void UpdateEnabledItemsForContextMenu()
         {
-            bool isPlaying = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing;
+            bool isPlayingOrRecording = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing || mProjectPanel.TransportBar.IsInlineRecording;
             bool isSelected = mProjectPanel.CurrentSelectedSection != null;
             bool isSelectedUsed = isSelected && mProjectPanel.CurrentSelectedSection.Used;
             bool isParentUsed = isSelected ?
                 mProjectPanel.CurrentSelectedSection.ParentSection == null || mProjectPanel.CurrentSelectedSection.ParentSection.Used :
                 false;
 
-            mAddSectionToolStripMenuItem.Enabled = !isPlaying && (!isSelected || isSelectedUsed || isParentUsed);
-            mAddSubSectionToolStripMenuItem.Enabled = !isPlaying && isSelectedUsed;
-            mRenameSectionToolStripMenuItem.Enabled = !isPlaying && isSelectedUsed;
-            mMoveOutToolStripMenuItem.Enabled = !isPlaying && mProjectPanel.Project.CanMoveSectionNodeOut(mProjectPanel.CurrentSelectedSection);
-            mMoveInToolStripMenuItem.Enabled = !isPlaying && mProjectPanel.Project.CanMoveSectionNodeIn(mProjectPanel.CurrentSelectedSection);
+            mAddSectionToolStripMenuItem.Enabled = !isPlayingOrRecording && (!isSelected || isSelectedUsed || isParentUsed);
+            mAddSubSectionToolStripMenuItem.Enabled = !isPlayingOrRecording && isSelectedUsed;
+            mRenameSectionToolStripMenuItem.Enabled = !isPlayingOrRecording && isSelectedUsed;
+            mMoveOutToolStripMenuItem.Enabled = !isPlayingOrRecording && mProjectPanel.Project.CanMoveSectionNodeOut(mProjectPanel.CurrentSelectedSection);
+            mMoveInToolStripMenuItem.Enabled = !isPlayingOrRecording && mProjectPanel.Project.CanMoveSectionNodeIn(mProjectPanel.CurrentSelectedSection);
 
-            bool canCutCopyDelete = !isPlaying && isSelected && CanCutCopyDelete;
-            bool canPaste = !isPlaying && CanPaste;
+            bool canCutCopyDelete = !isPlayingOrRecording && isSelected && CanCutCopyDelete;
+            bool canPaste = !isPlayingOrRecording && CanPaste;
 
             mCutSectionToolStripMenuItem.Enabled = canCutCopyDelete;
             mCopySectionToolStripMenuItem.Enabled = canCutCopyDelete;
@@ -138,7 +138,7 @@ namespace Obi.UserControls
             mDeleteSectionToolStripMenuItem.Enabled = canCutCopyDelete;
 
             // Mark section used/unused (by default, i.e. if disabled, "unused")
-            mMarkSectionAsUnusedToolStripMenuItem.Enabled = !isPlaying && isParentUsed;
+            mMarkSectionAsUnusedToolStripMenuItem.Enabled = !isPlayingOrRecording && isParentUsed;
             mMarkSectionAsUnusedToolStripMenuItem.Text = String.Format(Localizer.Message("mark_x_as_y"),
                 Localizer.Message("section"),
                 Localizer.Message(!isSelected || isSelectedUsed ? "unused" : "used"));

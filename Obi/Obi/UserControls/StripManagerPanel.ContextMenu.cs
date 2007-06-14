@@ -69,7 +69,7 @@ namespace Obi.UserControls
         /// </summary>
         public void UpdateEnabledItemsForContextMenu()
         {
-            bool isPlaying = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing;
+            bool isPlayingOrRecording = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing || mProjectPanel.TransportBar.IsInlineRecording;
             bool isPaused = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused;
             bool isStripSelected = SelectedSectionNode != null;
             bool isStripUsed = isStripSelected && SelectedSectionNode != null;
@@ -77,28 +77,28 @@ namespace Obi.UserControls
                 (SelectedSectionNode.ParentSection == null || SelectedSectionNode.ParentSection.Used);
             bool noSelection = mProjectPanel.CurrentSelection == null || mProjectPanel.CurrentSelection.Control != this;
 
-            mInsertStripToolStripMenuItem.Enabled = !isPlaying && (noSelection || isStripUsed || isParentUsed);
-            mRenameStripToolStripMenuItem.Enabled = !isPlaying && isStripUsed;
+            mInsertStripToolStripMenuItem.Enabled = !isPlayingOrRecording && (noSelection || isStripUsed || isParentUsed);
+            mRenameStripToolStripMenuItem.Enabled = !isPlayingOrRecording && isStripUsed;
 
-            bool canCutCopyDeleteSection = !isPlaying && isStripSelected && mProjectPanel.CurrentSelectionNode != null;
-            bool canPasteSection = !isPlaying && mProjectPanel.CanPaste(mProjectPanel.Project.Clipboard.Section);
+            bool canCutCopyDeleteSection = !isPlayingOrRecording && isStripSelected && mProjectPanel.CurrentSelectionNode != null;
+            bool canPasteSection = !isPlayingOrRecording && mProjectPanel.CanPaste(mProjectPanel.Project.Clipboard.Section);
 
             mCutStripToolStripMenuItem.Enabled = canCutCopyDeleteSection;
             mCopyStripToolStripMenuItem.Enabled = canCutCopyDeleteSection;
             mPasteStripToolStripMenuItem.Enabled = canPasteSection;
             mDeleteStripToolStripMenuItem.Enabled = canCutCopyDeleteSection;
-            mMarkStripAsUnusedToolStripMenuItem.Enabled = !isPlaying && isStripSelected;
-            mShowInTOCViewToolStripMenuItem.Enabled = !isPlaying && isStripSelected;
+            mMarkStripAsUnusedToolStripMenuItem.Enabled = !isPlayingOrRecording && isStripSelected;
+            mShowInTOCViewToolStripMenuItem.Enabled = !isPlayingOrRecording && isStripSelected;
 
             bool isBlockSelected = SelectedPhraseNode != null;
-            bool canCutCopyDeletePhrase = !isPlaying && isBlockSelected && mProjectPanel.CurrentSelectionNode != null;
-            bool canPastePhrase = !isPlaying && mProjectPanel.CanPaste(mProjectPanel.Project.Clipboard.Phrase);
-            bool canMoveForward = !isPlaying &&
+            bool canCutCopyDeletePhrase = !isPlayingOrRecording && isBlockSelected && mProjectPanel.CurrentSelectionNode != null;
+            bool canPastePhrase = !isPlayingOrRecording && mProjectPanel.CanPaste(mProjectPanel.Project.Clipboard.Phrase);
+            bool canMoveForward = !isPlayingOrRecording &&
                 mProjectPanel.Project.CanMovePhraseNode(mProjectPanel.CurrentSelectedAudioBlock, PhraseNode.Direction.Forward);
-            bool canMoveBackward = !isPlaying &&
+            bool canMoveBackward = !isPlayingOrRecording &&
                 mProjectPanel.Project.CanMovePhraseNode(mProjectPanel.CurrentSelectedAudioBlock, PhraseNode.Direction.Backward);
 
-            mImportAudioFileToolStripMenuItem.Enabled = !isPlaying && !noSelection;
+            mImportAudioFileToolStripMenuItem.Enabled = !isPlayingOrRecording && !noSelection;
             mCutAudioBlockToolStripMenuItem.Enabled = canCutCopyDeletePhrase;
             mCopyAudioBlockToolStripMenuItem.Enabled = canCutCopyDeletePhrase;
             mPasteAudioBlockToolStripMenuItem.Enabled = canPastePhrase;
@@ -110,22 +110,22 @@ namespace Obi.UserControls
             mUnmarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled = isBlockSelected &&
                 SelectedPhraseNode.IsHeading;
             mSplitAudioBlockToolStripMenuItem.Enabled = isBlockSelected;
-            mQuickSplitAudioBlockToolStripMenuItem.Enabled = isBlockSelected && (isPlaying || isPaused);
-            mApplyPhraseDetectionToolStripMenuItem.Enabled = !isPlaying && isBlockSelected;
-            mMergeWithPreviousAudioBlockToolStripMenuItem.Enabled = !isPlaying && CanMerge;
+            mQuickSplitAudioBlockToolStripMenuItem.Enabled = isBlockSelected && (isPlayingOrRecording || isPaused);
+            mApplyPhraseDetectionToolStripMenuItem.Enabled = !isPlayingOrRecording && isBlockSelected;
+            mMergeWithPreviousAudioBlockToolStripMenuItem.Enabled = !isPlayingOrRecording && CanMerge;
             mMoveAudioBlockForwardToolStripMenuItem.Enabled = canMoveForward;
             mMoveAudioBlockBackwardToolStripMenuItem.Enabled = canMoveBackward;
             mMoveAudioBlockToolStripMenuItem.Enabled = mMoveAudioBlockForwardToolStripMenuItem.Enabled ||
                 mMoveAudioBlockBackwardToolStripMenuItem.Enabled;
 
-            bool canRemoveAnnotation = !isPlaying && isBlockSelected && mProjectPanel.CurrentSelectedAudioBlock.HasAnnotation;
-            mEditAnnotationToolStripMenuItem.Enabled = !isPlaying && isBlockSelected;
+            bool canRemoveAnnotation = !isPlayingOrRecording && isBlockSelected && mProjectPanel.CurrentSelectedAudioBlock.HasAnnotation;
+            mEditAnnotationToolStripMenuItem.Enabled = !isPlayingOrRecording && isBlockSelected;
             mRemoveAnnotationToolStripMenuItem.Enabled = canRemoveAnnotation;
             mFocusOnAnnotationToolStripMenuItem.Enabled = canRemoveAnnotation;
 
-            mSetPageNumberToolStripMenuItem.Enabled = !isPlaying && CanSetPage;
-            mRemovePageNumberToolStripMenuItem.Enabled = !isPlaying && CanRemovePage;
-            mGoTopageToolStripMenuItem.Enabled = !isPlaying && mProjectPanel.Project.Pages > 0;
+            mSetPageNumberToolStripMenuItem.Enabled = !isPlayingOrRecording && CanSetPage;
+            mRemovePageNumberToolStripMenuItem.Enabled = !isPlayingOrRecording && CanRemovePage;
+            mGoTopageToolStripMenuItem.Enabled = !isPlayingOrRecording && mProjectPanel.Project.Pages > 0;
 
             UpdateVisibleItemsForContextMenu();
         }
