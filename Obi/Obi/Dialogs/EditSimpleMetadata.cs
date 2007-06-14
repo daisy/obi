@@ -11,30 +11,38 @@ namespace Obi.Dialogs
 {
     public partial class EditSimpleMetadata : Form
     {
-        private SimpleMetadata mMetadata;
+        private Project mProject;
 
-        public EditSimpleMetadata(SimpleMetadata metadata)
+        public EditSimpleMetadata(Project project)
         {
             InitializeComponent();
-            mMetadata = metadata;
-            mTitleBox.Text = mMetadata.Title;
-            mAuthorBox.Text = mMetadata.Narrator;
-            mPublisherBox.Text = mMetadata.Publisher;
-            mIdentiferBox.Text = mMetadata.Identifier;
+            mProject = project;
+            mTitleBox.Text = project.GetFirstMetadataItem(Metadata.DC_TITLE).getContent();
+            mAuthorBox.Text = project.GetFirstMetadataItem(Metadata.DTB_NARRATOR).getContent();
+            mPublisherBox.Text = project.GetFirstMetadataItem(Metadata.DC_PUBLISHER).getContent();
+            mIdentiferBox.Text = project.GetFirstMetadataItem(Metadata.DC_IDENTIFIER).getContent();
             foreach (CultureInfo c in CultureInfo.GetCultures(CultureTypes.AllCultures))
             {
                 mLanguageBox.Items.Add(c);
             }
-            mLanguageBox.SelectedItem = mMetadata.Language;
+            string language = project.GetFirstMetadataItem(Metadata.DC_LANGUAGE).getContent();
+            foreach (Object o in mLanguageBox.Items)
+            {
+                if (((CultureInfo)o).ToString() == language)
+                {
+                    mLanguageBox.SelectedItem = o;
+                    break;
+                }
+            }
         }
 
         private void mOKButton_Click(object sender, EventArgs e)
         {
-            mMetadata.Title = mTitleBox.Text;
-            mMetadata.Narrator = mAuthorBox.Text;
-            mMetadata.Publisher = mPublisherBox.Text;
-            mMetadata.Identifier = mIdentiferBox.Text;
-            mMetadata.Language = (CultureInfo)mLanguageBox.SelectedItem;
+            mProject.GetFirstMetadataItem(Metadata.DC_TITLE).setContent(mTitleBox.Text);
+            mProject.GetFirstMetadataItem(Metadata.DTB_NARRATOR).setContent(mAuthorBox.Text);
+            mProject.GetFirstMetadataItem(Metadata.DC_PUBLISHER).setContent(mPublisherBox.Text);
+            mProject.GetFirstMetadataItem(Metadata.DC_IDENTIFIER).setContent(mIdentiferBox.Text);
+            mProject.GetFirstMetadataItem(Metadata.DC_LANGUAGE).setContent(((CultureInfo)mLanguageBox.SelectedItem).ToString());
         }
     }
 }

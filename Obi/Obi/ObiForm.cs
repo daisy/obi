@@ -488,7 +488,7 @@ namespace Obi
             if (mProject != null)
             {
                 mProjectPanel.TransportBar.Enabled = false;
-                Dialogs.EditSimpleMetadata dialog = new Dialogs.EditSimpleMetadata(mProject.Metadata);
+                Dialogs.EditSimpleMetadata dialog = new Dialogs.EditSimpleMetadata(mProject);
                 if (mProject != null && dialog.ShowDialog() == DialogResult.OK) mProject.Modified();
                 Ready();
                 mProjectPanel.TransportBar.Enabled = true;
@@ -876,7 +876,7 @@ namespace Obi
             }
             else
             {
-                mToolStripStatusLabel.Text = String.Format(Localizer.Message("closed_project"), mProject.Metadata.Title);
+                mToolStripStatusLabel.Text = String.Format(Localizer.Message("closed_project"), mProject.Title);
                 mProjectPanel.Project = null;
             }
         }
@@ -886,7 +886,7 @@ namespace Obi
         /// </summary>
         private void FormUpdateOpenedProject()
         {
-            this.Text = String.Format(Localizer.Message("title_bar"), mProject.Metadata.Title);
+            this.Text = String.Format(Localizer.Message("title_bar"), mProject.Title);
             Status(String.Format(Localizer.Message("opened_project"), mProject.XUKPath));
         }
 
@@ -895,7 +895,7 @@ namespace Obi
         /// </summary>
         private void FormUpdateSavedProject()
         {
-            this.Text = String.Format(Localizer.Message("title_bar"), mProject.Metadata.Title);
+            this.Text = String.Format(Localizer.Message("title_bar"), mProject.Title);
             Status(String.Format(Localizer.Message("saved_project"), mProject.LastPath));
         }
 
@@ -905,7 +905,7 @@ namespace Obi
         private void FormUpdateModifiedProject()
         {
             mProjectPanel.TransportBar.Enabled = false;
-            this.Text = String.Format(Localizer.Message("title_bar"), mProject.Metadata.Title + "*");
+            this.Text = String.Format(Localizer.Message("title_bar"), mProject.Title + "*");
             Ready();
             mProjectPanel.TransportBar.Enabled = true;
         }
@@ -1289,7 +1289,7 @@ namespace Obi
             mProject = Project.BlankProject();
             mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
             mProject.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
-            mProject.Create(path, title, mSettings.IdTemplate, mSettings.UserProfile, createTitleSection);
+            mProject.Create(path, title, mSettings.GeneratedID, mSettings.UserProfile, createTitleSection);
             AddRecentProject(mProject.XUKPath);
         }
 

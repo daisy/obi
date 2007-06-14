@@ -13,26 +13,10 @@ namespace Obi.UserControls
         public delegate void MetadataPanelDeletedHandler(object sender, EventArgs e);
         public event MetadataPanelDeletedHandler Deleted; 
 
-        private bool mEditable;
-
         public MetadataPanel()
         {
             InitializeComponent();
             mNameBox.Items.AddRange(MetadataEntryDescription.GetDAISYEntries().ToArray());
-            Editable = true;
-        }
-
-        public bool Editable
-        {
-            get { return mEditable; }
-            set
-            {
-                if (mEditable != value)
-                {
-                    mEditable = value;
-                    mNameBox.Enabled = value;
-                }
-            }
         }
 
         public string EntryName
@@ -57,19 +41,9 @@ namespace Obi.UserControls
             set { mContentBox.Text = value; }
         }
 
-        private void mEditButton_Click(object sender, EventArgs e)
-        {
-            Editable = !mEditable;
-        }
-
         private void mDeleteButton_Click(object sender, EventArgs e)
         {
             if (Deleted != null) Deleted(this, new EventArgs());
-        }
-
-        private void mNameBox_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            Editable = false;
         }
     }
 }

@@ -33,7 +33,6 @@ namespace Obi.Dialogs
             UserControls.MetadataPanel panel = AddPanel();
             panel.EntryName = name;
             panel.EntryContent = content;
-            panel.Editable = false;
         }
 
         private void mAddButton_Click(object sender, EventArgs e)
@@ -46,6 +45,7 @@ namespace Obi.Dialogs
             UserControls.MetadataPanel panel = new UserControls.MetadataPanel();
             mMetadataPanels.Controls.Add(panel);
             panel.Deleted += new Obi.UserControls.MetadataPanel.MetadataPanelDeletedHandler(panel_Deleted);
+            mMetadataPanels.ScrollControlIntoView(panel);
             panel.Focus();
             return panel;
         }
@@ -61,7 +61,8 @@ namespace Obi.Dialogs
         {
             foreach (Control c in mMetadataPanels.Controls)
             {
-                c.Width = mMetadataPanels.Width;
+                c.Width = mMetadataPanels.Width - (mMetadataPanels.VerticalScroll.Visible ?
+                    SystemInformation.VerticalScrollBarWidth : 0) - c.Margin.Right;
             }
         }
     }

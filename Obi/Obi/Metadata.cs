@@ -9,111 +9,20 @@ namespace Obi
     /// </summary>
     public class Metadata
     {
+        public static readonly string DC_IDENTIFIER = "dc:Identifier";
+        public static readonly string DC_LANGUAGE = "dc:Language";
+        public static readonly string DC_PUBLISHER = "dc:Publisher";
+        public static readonly string DC_TITLE = "dc:Title";
+        public static readonly string DTB_GENERATOR = "dtb:generator";
+        public static readonly string DTB_NARRATOR = "dtb:narrator";
+        public static readonly string DTB_PRODUCED_DATE = "dtb:producedDate";
+        public static readonly string DTB_REVISION = "dtb:revision";
+        public static readonly string DTB_REVISION_DATE = "dtb:revisionDate";
+        public static readonly string OBI_ASSETS_DIR = "obi:assetsdir";
+        public static readonly string OBI_AUDIO_CHANNELS = "obi:audioChannels";
+        public static readonly string OBI_BIT_DEPTH = "obi:bitDepth";
+        public static readonly string OBI_SAMPLE_RATE = "obi:sampleRate";
         public static readonly string OBI_XUK_VERSION = "obi:xukversion";
-
-        // private Project mProject;                               // project that this metadata belongs to
-        // private List<MetadataItem> mTemplates;                  // templates for metadata
-        // private Dictionary<string, List<MetadataItem>> mItems;  // defined items
-
-
-        /*
-        /// <summary>
-        /// List of required metadata items which are currently missing.
-        /// </summary>
-        public List<MetadataItem> Missing
-        {
-            get
-            {
-                return mTemplates.FindAll(delegate(MetadataItem item)
-                {
-                    return item.Occurrence == MetadataOccurrence.Required &&
-                        mItems[item.Name].Count == 0;
-                });
-            }
-        }
-
-        /// <summary>
-        /// The lift of metadata items that can currently be added.
-        /// </summary>
-        public List<MetadataItem> CanAdd
-        {
-            get
-            {
-                return mTemplates.FindAll(delegate(MetadataItem item)
-                {
-                    return item.Repeatable || mItems[item.Name].Count > 0;
-                });
-            }
-        }
-
-        /// <summary>
-        /// Create a new empty metadata list following a given list of templates.
-        /// </summary>
-        public Metadata(Project project, List<MetadataItem> templates)
-        {
-            mProject = project;
-            mTemplates = templates;
-            mItems = new Dictionary<string, List<MetadataItem>>();
-            foreach (MetadataItem item in mTemplates) mItems[item.Name] = new List<MetadataItem>();
-        }
-
-        /// <summary>
-        /// Create a list of templates for DAISY metadata.
-        /// </summary>
-        public static List<MetadataItem> DaisyTemplates()
-        {
-            List<MetadataItem> templates = new List<MetadataItem>();
-            templates.Add(new MetadataItem(SimpleMetadata.MetaTitle, Localizer.Message("meta_dc_title"),
-                MetadataOccurrence.Required, true));
-            templates.Add(new MetadataItem("dc:Creator", Localizer.Message("meta_dc_creator"),
-                MetadataOccurrence.Recommended, true));
-            return templates;
-        }
-
-        /// <summary>
-        /// Add a metadata item.
-        /// Raise an exception if this does not conform to the metadata model. 
-        /// </summary>
-        /// <param name="item">The item to add.</param>
-        public void Add(MetadataItem item)
-        {
-            if (!item.Repeatable && mItems[item.Name].Count > 0)
-            {
-                throw new Exception(String.Format("Metadata item {0} cannot be repeated.", item.Name));
-            }
-            mItems[item.Name].Add(item);
-        }
-
-        /// <summary>
-        /// If the user wants to delete an item which is required (and for which there are no other items)
-        /// then a warning should be issued.
-        /// </summary>
-        internal bool DeleteWarning(MetadataItem item)
-        {
-            return
-                item.Occurrence == MetadataOccurrence.Required &&
-                mItems[item.Name].Count == 1;
-        }
-
-        /// <summary>
-        /// Delete an item.
-        /// </summary>
-        /// <param name="item">The item to delete.</param>
-        internal void Delete(MetadataItem item)
-        {
-            mItems[item.Name].Remove(item);
-        }
-
-        /// <summary>
-        /// Update the project simple metadata from the full metadata.
-        /// </summary>
-        public void UpdateSimpleMetadata()
-        {
-            if (mItems[SimpleMetadata.MetaTitle].Count > 0)
-                mProject.Metadata.Title = mItems[SimpleMetadata.MetaTitle][0].Content;
-        }
-         * 
-         */
     }
 
     public enum MetadataOccurrence { Required, Recommended, Optional };

@@ -520,6 +520,7 @@ namespace Obi
             }
         }
 
+
         #region page numbers
 
         /// <summary>
@@ -640,6 +641,7 @@ namespace Obi
 
         #endregion
 
+
         #region Audio properties of the project
 
         /// <summary>
@@ -657,6 +659,9 @@ namespace Obi
                     mAudioChannels = asset.Channels;
                     mBitDepth = asset.BitDepth;
                     mSampleRate = asset.SampleRate;
+                    SetSingleMetadataItem(Metadata.OBI_AUDIO_CHANNELS, mAudioChannels.ToString());
+                    SetSingleMetadataItem(Metadata.OBI_BIT_DEPTH, mBitDepth.ToString());
+                    SetSingleMetadataItem(Metadata.OBI_SAMPLE_RATE, mSampleRate.ToString());
                 }
                 else
                 {
@@ -674,6 +679,12 @@ namespace Obi
         void Project_DeletedPhraseNode(object sender, Obi.Events.Node.PhraseNodeEventArgs e)
         {
             if (e.Node.Asset != AudioMediaAsset.Empty) --mPhraseCount;
+            if (mPhraseCount == 0)
+            {
+                deleteMetadata(Metadata.OBI_AUDIO_CHANNELS);
+                deleteMetadata(Metadata.OBI_BIT_DEPTH);
+                deleteMetadata(Metadata.OBI_SAMPLE_RATE);
+            }
         }
 
         #endregion

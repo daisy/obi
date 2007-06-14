@@ -32,7 +32,6 @@ namespace Obi.UserControls
             this.mNameBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.mContentBox = new System.Windows.Forms.TextBox();
-            this.mEditButton = new System.Windows.Forms.Button();
             this.mDeleteButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -53,15 +52,14 @@ namespace Obi.UserControls
             this.mNameBox.FormattingEnabled = true;
             this.mNameBox.Location = new System.Drawing.Point(56, 5);
             this.mNameBox.Name = "mNameBox";
-            this.mNameBox.Size = new System.Drawing.Size(240, 20);
+            this.mNameBox.Size = new System.Drawing.Size(267, 20);
             this.mNameBox.Sorted = true;
             this.mNameBox.TabIndex = 1;
-            this.mNameBox.SelectionChangeCommitted += new System.EventHandler(this.mNameBox_SelectionChangeCommitted);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 37);
+            this.label2.Location = new System.Drawing.Point(3, 35);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 12);
             this.label2.TabIndex = 2;
@@ -71,28 +69,18 @@ namespace Obi.UserControls
             // 
             this.mContentBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.mContentBox.Location = new System.Drawing.Point(56, 34);
+            this.mContentBox.Location = new System.Drawing.Point(56, 32);
             this.mContentBox.Name = "mContentBox";
-            this.mContentBox.Size = new System.Drawing.Size(240, 19);
+            this.mContentBox.Size = new System.Drawing.Size(321, 19);
             this.mContentBox.TabIndex = 3;
-            // 
-            // mEditButton
-            // 
-            this.mEditButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mEditButton.Location = new System.Drawing.Point(302, 3);
-            this.mEditButton.Name = "mEditButton";
-            this.mEditButton.Size = new System.Drawing.Size(75, 23);
-            this.mEditButton.TabIndex = 4;
-            this.mEditButton.Text = "&Edit";
-            this.mEditButton.UseVisualStyleBackColor = true;
-            this.mEditButton.Click += new System.EventHandler(this.mEditButton_Click);
             // 
             // mDeleteButton
             // 
             this.mDeleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mDeleteButton.Location = new System.Drawing.Point(302, 32);
+            this.mDeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mDeleteButton.Location = new System.Drawing.Point(329, 3);
             this.mDeleteButton.Name = "mDeleteButton";
-            this.mDeleteButton.Size = new System.Drawing.Size(75, 23);
+            this.mDeleteButton.Size = new System.Drawing.Size(48, 23);
             this.mDeleteButton.TabIndex = 5;
             this.mDeleteButton.Text = "&Delete";
             this.mDeleteButton.UseVisualStyleBackColor = true;
@@ -103,13 +91,12 @@ namespace Obi.UserControls
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.mDeleteButton);
-            this.Controls.Add(this.mEditButton);
             this.Controls.Add(this.mContentBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.mNameBox);
             this.Controls.Add(this.label1);
             this.Name = "MetadataPanel";
-            this.Size = new System.Drawing.Size(380, 58);
+            this.Size = new System.Drawing.Size(380, 56);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -121,7 +108,6 @@ namespace Obi.UserControls
         private System.Windows.Forms.ComboBox mNameBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox mContentBox;
-        private System.Windows.Forms.Button mEditButton;
         private System.Windows.Forms.Button mDeleteButton;
     }
 }
