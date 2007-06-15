@@ -71,7 +71,7 @@ namespace Obi.Visitors
             if (node is PhraseNode)
             {
                 ((PhraseNode)node).Asset = Assets.AudioMediaAsset.Empty;
-                SequenceMedia media = (SequenceMedia)Project.GetMediaForChannel((CoreNode)node, Project.AudioChannelName);
+                SequenceMedia media = (SequenceMedia)Project.GetMediaForChannel((CoreNode)node, Project.AUDIO_CHANNEL_NAME);
                 if (media != null)
                 {
                     List<Assets.AudioClip> clips = new List<Assets.AudioClip>(media.getCount());
@@ -101,7 +101,7 @@ namespace Obi.Visitors
                 // count pages, annotations, and updates the annotation on nodes that have one.
                 if (((PhraseNode)node).PageProperty != null) ++mPages;
                 string annotation =
-                    ((TextMedia)Project.GetMediaForChannel((PhraseNode)node, Project.AnnotationChannelName)).getText();
+                    ((TextMedia)Project.GetMediaForChannel((PhraseNode)node, Project.ANNOTATION_CHANNEL_NAME)).getText();
                 if (annotation != null)
                 {
                     ((PhraseNode)node).Annotation = annotation;

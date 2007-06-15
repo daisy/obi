@@ -668,6 +668,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to help_en.html.
+        /// </summary>
+        internal static string help_file_name {
+            get {
+                return ResourceManager.GetString("help_file_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hide &amp;table of contents.
         /// </summary>
         internal static string hide_toc_label {

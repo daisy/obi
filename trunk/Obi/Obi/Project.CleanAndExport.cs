@@ -5,7 +5,7 @@ namespace Obi
 {
     public partial class Project
     {
-        private static string mXsltFile = "XukToZed.xslt";
+        private static string XSLT_FILE = "XukToZed.xslt";
 
         /// <summary>
         /// This function cleans up the assets in a project
@@ -18,7 +18,7 @@ namespace Obi
             //the project's asset directory isn't changed because we're going to switch
             //everything back to the original name when we're done
             string tempAssetDirectory = Path.GetDirectoryName(this.AssetManager.AssetsDirectory);
-            tempAssetDirectory += "_temp\\";
+            tempAssetDirectory += "_temp" + Path.DirectorySeparatorChar;
             Directory.CreateDirectory(tempAssetDirectory);
 
             // sort out the audio clips: create one file per section, then one clip per phrase in this section.
@@ -111,11 +111,11 @@ namespace Obi
         private void ConvertXukToZed(string safeProjectName, string outputFolder)
         {
             //assuming that the stylesheet is given as relative to the contextFolderName (set below)
-            string xsltPath = Path.GetDirectoryName(GetType().Assembly.Location) + @"\" + mXsltFile;
+            string xsltPath = Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location), XSLT_FILE);
             XukToZed.XukToZed x2z = new XukToZed.XukToZed(xsltPath);
 
             x2z.OuputDir = outputFolder;
-            x2z.contextFolderName = Path.GetDirectoryName(mXUKPath) + @"\";// Environment.CurrentDirectory;
+            x2z.contextFolderName = Path.GetDirectoryName(mXUKPath);
 
             string tmpPackageName = safeProjectName + ".opf";
             x2z.TransformationArguments.AddParam("packageFilename", "", tmpPackageName);

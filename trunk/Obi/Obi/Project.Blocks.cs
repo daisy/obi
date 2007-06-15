@@ -120,8 +120,8 @@ namespace Obi
             Commands.Strips.MergePhrases command = new Commands.Strips.MergePhrases(node, nextNode);
             mAssManager.MergeAudioMediaAssets(asset, next);
             UpdateSeq(node);
-            MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, Project.AudioChannelName,
-                GetMediaForChannel(node, Project.AudioChannelName)));
+            MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, Project.AUDIO_CHANNEL_NAME,
+                GetMediaForChannel(node, Project.AUDIO_CHANNEL_NAME)));
             DeletedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, nextNode));
             nextNode.DetachFromParent();
             TouchedNode(this, new Events.Node.NodeEventArgs(this, node));
@@ -179,8 +179,8 @@ namespace Obi
             node.ParentSection.AddChildPhraseAfter(newNode, node);
             UpdateSeq(node);
             // review this
-            MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, Project.AudioChannelName,
-                GetMediaForChannel(node, Project.AudioChannelName)));
+            MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, Project.AUDIO_CHANNEL_NAME,
+                GetMediaForChannel(node, Project.AUDIO_CHANNEL_NAME)));
             AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, newNode));
             Commands.Strips.SplitPhrase command = new Commands.Strips.SplitPhrase(node, newNode);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
@@ -294,31 +294,8 @@ namespace Obi
 
 
 
-        /// <summary>
-        /// This function is called when undeleting a subtree
-        /// the phrase nodes already exist under the section node, so they can't be re-added
-        /// they just need to be rebuilt in the views
-        /// </summary>
-        /// <param name="node"></param>
-        /// <param name="index"></param>
-        //md 20060813
-        public void ReconstructPhraseNodeInView(PhraseNode node)
-        {
-            //we might consider using a different event for this
-            //i don't know who else will be listening in the future (more than only viewports?)
-            AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, node));
-        }
 
-        /// <summary>
-        /// Delete a phrase node from the tree.
-        /// </summary>
-        /// <param name="node">The phrase node to delete.</param>
-        public void RemovePhraseNode(PhraseNode node)
-        {
-            DeletedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, node));
-            node.DetachFromParent();
-            Modified();
-        }
+
 
         /// <summary>
         /// Delete a phrase node from the tree and remove its asset from the asset manager.
@@ -446,79 +423,8 @@ namespace Obi
 
         #endregion
 
-        /// <summary>
-        /// Add an empty phrase node in a section at a given index.
-        /// The phrase node gets the empty media asset.
-        /// </summary>
-        /// <param name="section">The section node to add to.</param>
-        /// <param name="index">The index at which the new node is added.</param>
-        public void AddEmptyPhraseNode(SectionNode section, int index)
-        {
-            PhraseNode node = getPresentation().getCoreNodeFactory().createNode(PhraseNode.Name, ObiPropertyFactory.ObiNS)
-                as PhraseNode;
-            node.Asset = AudioMediaAsset.Empty;
-            AddPhraseNode(node, section, index);
-            Commands.Strips.AddPhrase command = new Commands.Strips.AddPhrase(node);
-            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-            Modified();
-        }
 
-        /// <summary>
-        /// Add an already existing phrase node.
-        /// </summary>
-        /// <param name="node">The phrase node to add.</param>
-        /// <param name="parent">Its parent section.</param>
-        /// <param name="index">Its position in the parent section (with regards to other phrases.)</param>
-        public void AddPhraseNode(PhraseNode node, SectionNode parent, int index)
-        {
-            parent.AddChildPhrase(node, index);
-            AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, node));
-            Modified();
-        }
 
-        /// <summary>
-        /// Add an already existing phrase node and its asset.
-        /// </summary>
-        /// <param name="node">The phrase node to add.</param>
-        /// <param name="parent">Its parent section.</param>
-        /// <param name="index">Its position in the parent section (with regards to other phrases.)</param>
-        public void AddPhraseNodeAndAsset(PhraseNode node, SectionNode parent, int index)
-        {
-            Assets.AudioMediaAsset asset = node.Asset;
-            mAssManager.AddAsset(asset);
-            AddPhraseNode(node, parent, index);
-        }
-
-        /// <summary>
-        /// Add a new phrase with an asset created from a sound file.
-        /// This creates a command and modifies the project.
-        /// The audio settings of the asset must match those of the projects;
-        /// if they don't no phrase is added.
-        /// </summary>
-        /// <param name="path">The path of the sound file to create the asset from.</param>
-        /// <param name="section">The section node in which to add the phrase.</param>
-        /// <param name="index">The index at which the phrase is added.</param>
-        /// <returns>True if the phrase was actually added.</returns>
-        public bool DidAddPhraseFromFile(string path, SectionNode section, int index)
-        {
-            AudioMediaAsset asset = mAssManager.ImportAudioMediaAsset(path);
-            if (mPhraseCount > 0 &&
-                (asset.SampleRate != mSampleRate || asset.BitDepth != mBitDepth || asset.Channels != mAudioChannels))
-            {
-                return false;
-            }
-            else
-            {
-                mAssManager.InsureRename(asset, Path.GetFileNameWithoutExtension(path));
-                PhraseNode phrase = getPresentation().getCoreNodeFactory().createNode(PhraseNode.Name, ObiPropertyFactory.ObiNS)
-                     as PhraseNode;
-                phrase.Asset = asset;
-                AddPhraseNode(phrase, section, index);
-                Commands.Strips.AddPhrase command = new Commands.Strips.AddPhrase(phrase);
-                Modified(command);
-                return true;
-            }
-        }
 
 
         #region page numbers
@@ -642,7 +548,135 @@ namespace Obi
         #endregion
 
 
-        #region Audio properties of the project
+        #region section headings
+
+        /// <summary>
+        /// Mark the phrase node as being a heading.
+        /// </summary>
+        /// <returns>The corresponding command.</returns>
+        public Commands.Node.MarkSectionHeading MakePhraseHeading(PhraseNode phrase)
+        {
+            Commands.Node.MarkSectionHeading command = null;
+            if (phrase != null && phrase.ParentSection != null)
+            {
+                PhraseNode previous = phrase.ParentSection.Heading;
+                PhraseNode changed = previous;
+                if (previous != phrase)
+                {
+                    phrase.ParentSection.Heading = phrase;
+                    command = new Obi.Commands.Node.MarkSectionHeading(phrase, previous);
+                }
+                else
+                {
+                    phrase.ParentSection.Heading = null;
+                    changed = phrase;
+                    command = new Obi.Commands.Node.MarkSectionHeading(null, previous);
+                }
+                if (HeadingChanged != null)
+                {
+                    HeadingChanged(this, new Obi.Events.Node.SectionNodeHeadingEventArgs(this, phrase.ParentSection, changed));
+                }
+                Modified();
+            }
+            return command;
+        }
+
+        /// <summary>
+        /// Mark the phrase node as being a heading and issue a command.
+        /// </summary>
+        public void MakePhraseHeadingWithCommand(PhraseNode phrase)
+        {
+            System.Diagnostics.Debug.Assert(CommandCreated != null);
+            Commands.Node.MarkSectionHeading command = MakePhraseHeading(phrase);
+            if (command != null) CommandCreated(this, new Obi.Events.Project.CommandCreatedEventArgs(command));
+        }
+
+        /// <summary>
+        /// Remove the heading from the section (but not the phrase!)
+        /// </summary>
+        public void UnmakePhraseHeading(SectionNode section)
+        {
+            PhraseNode previous = section.Heading;
+            section.Heading = null;
+            HeadingChanged(this, new Events.Node.SectionNodeHeadingEventArgs(this, section, previous));
+        }
+
+        #endregion
+
+
+
+        /// <summary>
+        /// Add a new empty phrase node in a section at a given index.
+        /// The phrase node gets the empty media asset.
+        /// </summary>
+        /// <param name="section">The section node to add to.</param>
+        /// <param name="index">The index at which the new node is added.</param>
+        public void AddEmptyPhraseNode(SectionNode section, int index)
+        {
+            PhraseNode node = CreatePhraseNode();
+            node.Asset = AudioMediaAsset.Empty;
+            AddPhraseNode(node, section, index);
+            Commands.Strips.AddPhrase command = new Commands.Strips.AddPhrase(node);
+            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            Modified();
+        }
+
+        /// <summary>
+        /// Add an already existing phrase node as a child of a section in the project.
+        /// </summary>
+        /// <param name="node">The phrase node to add.</param>
+        /// <param name="parent">Its parent section.</param>
+        /// <param name="index">Its position in the parent section (with regards to other phrases.)</param>
+        public void AddPhraseNode(PhraseNode node, SectionNode parent, int index)
+        {
+            parent.AddChildPhrase(node, index);
+            AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, node));
+            Modified();
+        }
+
+        /// <summary>
+        /// Add an already existing phrase node and its asset.
+        /// </summary>
+        /// <param name="node">The phrase node to add.</param>
+        /// <param name="parent">Its parent section.</param>
+        /// <param name="index">Its position in the parent section (with regards to other phrases.)</param>
+        public void AddPhraseNodeAndAsset(PhraseNode node, SectionNode parent, int index)
+        {
+            Assets.AudioMediaAsset asset = node.Asset;
+            mAssManager.AddAsset(asset);
+            AddPhraseNode(node, parent, index);
+        }
+
+        /// <summary>
+        /// Add a new phrase with an asset created from a sound file.
+        /// This creates a command and modifies the project.
+        /// The audio settings of the asset must match those of the projects;
+        /// if they don't no phrase is added.
+        /// </summary>
+        /// <param name="path">The path of the sound file to create the asset from.</param>
+        /// <param name="section">The section node in which to add the phrase.</param>
+        /// <param name="index">The index at which the phrase is added.</param>
+        /// <returns>True if the phrase was actually added.</returns>
+        public bool DidAddPhraseFromFile(string path, SectionNode section, int index)
+        {
+            AudioMediaAsset asset = mAssManager.ImportAudioMediaAsset(path);
+            if (mPhraseCount > 0 &&
+                (asset.SampleRate != mSampleRate || asset.BitDepth != mBitDepth || asset.Channels != mAudioChannels))
+            {
+                return false;
+            }
+            else
+            {
+                mAssManager.InsureRename(asset, Path.GetFileNameWithoutExtension(path));
+                PhraseNode phrase = getPresentation().getCoreNodeFactory().createNode(PhraseNode.Name, ObiPropertyFactory.ObiNS)
+                     as PhraseNode;
+                phrase.Asset = asset;
+                AddPhraseNode(phrase, section, index);
+                Commands.Strips.AddPhrase command = new Commands.Strips.AddPhrase(phrase);
+                Modified(command);
+                return true;
+            }
+        }
 
         /// <summary>
         /// Monitor addition of phrase nodes to keep the audio properties.
@@ -687,42 +721,26 @@ namespace Obi
             }
         }
 
-        #endregion
-
-        public void MakePhraseHeadingWithCommand(PhraseNode phrase)
+        /// <summary>
+        /// This function is called when undeleting a subtree
+        /// the phrase nodes already exist under the section node, so they can't be re-added
+        /// they just need to be rebuilt in the views
+        /// </summary>
+        public void ReconstructPhraseNodeInView(PhraseNode node)
         {
-            Commands.Node.MarkSectionHeading command = MakePhraseHeading(phrase);
-            if (command != null) CommandCreated(this, new Obi.Events.Project.CommandCreatedEventArgs(command));
+            // TODO check that this works with page numbering, audio settings, etc.
+            AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, node));
         }
 
-        public Commands.Node.MarkSectionHeading MakePhraseHeading(PhraseNode phrase)
+        /// <summary>
+        /// Delete a phrase node from the tree.
+        /// </summary>
+        /// <param name="node">The phrase node to delete.</param>
+        public void RemovePhraseNode(PhraseNode node)
         {
-            Commands.Node.MarkSectionHeading command = null;
-            if (phrase != null && phrase.ParentSection != null)
-            {
-                PhraseNode previous = phrase.ParentSection.Heading;
-                if (previous != phrase)
-                {
-                    phrase.ParentSection.Heading = phrase;
-                    HeadingChanged(this, new Events.Node.SectionNodeHeadingEventArgs(this, phrase.ParentSection, previous));
-                    command = new Obi.Commands.Node.MarkSectionHeading(phrase, previous);
-                }
-                else
-                {
-                    phrase.ParentSection.Heading = null;
-                    HeadingChanged(this, new Events.Node.SectionNodeHeadingEventArgs(this, phrase.ParentSection, phrase));
-                    command = new Obi.Commands.Node.MarkSectionHeading(null, previous);
-                }
-                Modified();
-            }
-            return command;
-        }
-
-        public void UnmakePhraseHeading(SectionNode section)
-        {
-            PhraseNode previous = section.Heading;
-            section.Heading = null;
-            HeadingChanged(this, new Events.Node.SectionNodeHeadingEventArgs(this, section, previous));
+            DeletedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, node));
+            node.DetachFromParent();
+            Modified();
         }
     }
 }

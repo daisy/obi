@@ -28,7 +28,7 @@ namespace Obi.Visitors
             }
             else if (node.GetType() == Type.GetType("Obi.PhraseNode"))
             {
-                info += " " + ((TextMedia)Project.GetMediaForChannel(n, Project.AnnotationChannelName)).getText();
+                info += " " + ((TextMedia)Project.GetMediaForChannel(n, Project.ANNOTATION_CHANNEL_NAME)).getText();
                 Assets.AudioMediaAsset asset = ((PhraseNode)n).Asset;
                 foreach (Assets.AudioClip clip in asset.Clips)
                 {
