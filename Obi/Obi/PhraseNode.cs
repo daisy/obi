@@ -196,7 +196,7 @@ namespace Obi
                 audio.setClipEnd(new Time((long)Math.Round(clip.EndTime)));
                 seq.appendItem(audio);
             }
-            Channel channel = Project.FindChannel(Project.AudioChannelName);
+            Channel channel = Project.FindChannel(Project.AUDIO_CHANNEL_NAME);
             // if (channel != null) ChannelsProperty.setMedia(channel, seq);
             if (channel != null) mProject.SetMedia(this, channel, seq);
         }

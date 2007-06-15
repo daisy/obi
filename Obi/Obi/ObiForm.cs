@@ -813,8 +813,9 @@ namespace Obi
         private void mHelpToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Dialogs.Help help = new Dialogs.Help();
-            // TODO: Make sure the file corresponds to the current language
-            help.WebBrowser.Url = new Uri(Path.GetDirectoryName(GetType().Assembly.Location) + "\\help_en.html");
+            help.WebBrowser.Url = new Uri(Path.Combine(
+                Path.GetDirectoryName(GetType().Assembly.Location),
+                Localizer.Message("help_file_name")));
             help.ShowDialog();
         }
 
@@ -1810,6 +1811,7 @@ namespace Obi
             }
         }
 
+        // TODO: merge full and simple metadata editing into a single dialog with two tabs
         private void mFullMetadataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FullMetadata dialog = new FullMetadata();

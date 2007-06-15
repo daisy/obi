@@ -32,20 +32,21 @@ namespace Obi
         private bool mUnsaved;               // saved flag
         private string mXUKPath;             // path to the project XUK file
         private string mLastPath;            // last path to which the project was saved (see save as)
-        private int mPhraseCount;            // total number of phrases in the project
-        private int mPageCount;              // count the pages in the book
-
-        private Channel mAudioChannel;       // handy pointer to the audio channel
-        private Channel mAnnotationChannel;  // handy pointer to the annotation channel
         private int mAudioChannels;          // project-wide number of channels for audio
         private int mSampleRate;             // project-wide sample rate for audio
         private int mBitDepth;               // project-wide bit depth for audio
+        private int mPhraseCount;            // total number of phrases in the project
+        private int mPageCount;              // count the pages in the book
+
+        // TODO remove mAudioChannel, mAnnotation and mClipboard as members.
+        private Channel mAudioChannel;       // handy pointer to the audio channel
+        private Channel mAnnotationChannel;  // handy pointer to the annotation channel
         private Clipboard mClipboard;        // project-wide clipboard; should move to project panel
 
-        public static readonly string CURRENT_XUK_VERSION = "obi-xuk-011";       // version of the Obi/XUK file
-        public static readonly string AudioChannelName = "obi.audio";            // canonical name of the audio channel
-        public static readonly string TextChannelName = "obi.text";              // canonical name of the text channel
-        public static readonly string AnnotationChannelName = "obi.annotation";  // canonical name of the annotation channel
+        public static readonly string CURRENT_XUK_VERSION = "obi-xuk-011";         // version of the Obi/XUK file
+        public static readonly string AUDIO_CHANNEL_NAME = "obi.audio";            // canonical name of the audio channel
+        public static readonly string TEXT_CHANNEL_NAME = "obi.text";              // canonical name of the text channel
+        public static readonly string ANNOTATION_CHANNEL_NAME = "obi.annotation";  // canonical name of the annotation channel
 
         public event Events.Project.StateChangedHandler StateChanged;       // the state of the project changed (modified, saved...)
         public event Events.Project.CommandCreatedHandler CommandCreated;   // a new command must be added to the command manager
@@ -220,7 +221,7 @@ namespace Obi
         /// </summary>
         public Channel TextChannel
         {
-            get { return FindChannel(TextChannelName); }
+            get { return FindChannel(TEXT_CHANNEL_NAME); }
         }
 
         /// <summary>
@@ -286,10 +287,10 @@ namespace Obi
         {
             ChannelFactory factory = getPresentation().getChannelFactory();
             ChannelsManager manager = getPresentation().getChannelsManager();
-            mAudioChannel = factory.createChannel(AudioChannelName);
+            mAudioChannel = factory.createChannel(AUDIO_CHANNEL_NAME);
             manager.addChannel(mAudioChannel);
-            manager.addChannel(factory.createChannel(TextChannelName));
-            mAnnotationChannel = factory.createChannel(AnnotationChannelName);
+            manager.addChannel(factory.createChannel(TEXT_CHANNEL_NAME));
+            mAnnotationChannel = factory.createChannel(ANNOTATION_CHANNEL_NAME);
             manager.addChannel(mAnnotationChannel);
         }
 
@@ -429,8 +430,8 @@ namespace Obi
                 }
                 ReadMetadata();
                 mXUKPath = xukPath;
-                mAudioChannel = FindChannel(AudioChannelName);
-                mAnnotationChannel = FindChannel(AnnotationChannelName);
+                mAudioChannel = FindChannel(AUDIO_CHANNEL_NAME);
+                mAnnotationChannel = FindChannel(ANNOTATION_CHANNEL_NAME);
                 if (mAssPath == null) throw new Exception(Localizer.Message("missing_asset_path"));
                 Uri absoluteAssPath = new Uri(new Uri(xukPath), mAssPath);
                 mAssManager = new Assets.AssetManager(absoluteAssPath.AbsolutePath);
@@ -542,7 +543,7 @@ namespace Obi
         public static TextMedia GetTextMedia(CoreNode node)
         {
             ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
-            Channel textChannel = Project.GetChannel(node, TextChannelName);
+            Channel textChannel = Project.GetChannel(node, TEXT_CHANNEL_NAME);
             return textChannel == null ? null : (TextMedia)prop.getMedia(textChannel);
         }
 
