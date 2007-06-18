@@ -10,9 +10,17 @@ namespace Obi.Dialogs
 {
     public partial class FullMetadata : Form
     {
+        private Project mProject;
+
         public FullMetadata()
         {
             InitializeComponent();
+        }
+
+        public FullMetadata(Project project)
+        {
+            InitializeComponent();
+            mProject = project;
         }
 
         public List<UserControls.MetadataPanel> MetadataPanels
@@ -53,8 +61,18 @@ namespace Obi.Dialogs
         void panel_Deleted(object sender, EventArgs e)
         {
             UserControls.MetadataPanel panel = (UserControls.MetadataPanel)sender;
-            mMetadataPanels.Controls.Remove(panel);
-            panel.Deleted -= new UserControls.MetadataPanel.MetadataPanelDeletedHandler(panel_Deleted);
+            if (mProject.CanDeleteMetadata(panel.EntryDescription))
+            {
+                mMetadataPanels.Controls.Remove(panel);
+                panel.Deleted -= new UserControls.MetadataPanel.MetadataPanelDeletedHandler(panel_Deleted);
+            }
+            else
+            {
+                MessageBox.Show(String.Format(Localizer.Message("cannot_delete_metadata_text"), panel.EntryName),
+                    Localizer.Message("cannot_delete_metadata_caption"),
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
         }
 
         private void mMetadataPanels_SizeChanged(object sender, EventArgs e)

@@ -19,6 +19,8 @@ namespace Obi.UserControls
             mNameBox.Items.AddRange(MetadataEntryDescription.GetDAISYEntries().ToArray());
         }
 
+        public MetadataEntryDescription EntryDescription { get { return (MetadataEntryDescription)mNameBox.SelectedItem; } }
+
         public string EntryName
         {
             get { return mNameBox.SelectedItem.ToString(); }

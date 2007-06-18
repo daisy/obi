@@ -720,6 +720,14 @@ namespace Obi
         }
 
         /// <summary>
+        /// Test whether a metadata entry can be deleted (i.e. if it is not the last of its kind and is required.)
+        /// </summary>
+        public bool CanDeleteMetadata(MetadataEntryDescription entry)
+        {
+            return entry.Occurrence != MetadataOccurrence.Required || getMetadataList(entry.Name).Count > 1;
+        }
+
+        /// <summary>
         /// Create the XUK metadata for the project from the project settings and the user profile.
         /// </summary>
         private void CreateMetadata(string title, string id, UserProfile userProfile)
