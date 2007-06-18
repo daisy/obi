@@ -241,6 +241,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot delete required metadata item.
+        /// </summary>
+        internal static string cannot_delete_metadata_caption {
+            get {
+                return ResourceManager.GetString("cannot_delete_metadata_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot delete metadata item &quot;{0}&quot;: it is required for the publication to be valid..
+        /// </summary>
+        internal static string cannot_delete_metadata_text {
+            get {
+                return ResourceManager.GetString("cannot_delete_metadata_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The file {0} cannot be deleted. Press OK to continue or Cancel to abort. (Reason given: {1}).
         /// </summary>
         internal static string cannot_delete_text {

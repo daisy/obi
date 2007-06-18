@@ -1814,7 +1814,7 @@ namespace Obi
         // TODO: merge full and simple metadata editing into a single dialog with two tabs
         private void mFullMetadataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FullMetadata dialog = new FullMetadata();
+            FullMetadata dialog = new FullMetadata(mProject);
             List<urakawa.project.Metadata> affected = new List<urakawa.project.Metadata>();
             foreach (object o in mProject.getMetadataList())
             {

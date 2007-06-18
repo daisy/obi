@@ -694,4 +694,10 @@ Do you want to replace the project contained in this file?</value>
   <data name="help_file_name" xml:space="preserve">
     <value>help_en.html</value>
   </data>
+  <data name="cannot_delete_metadata_caption" xml:space="preserve">
+    <value>Cannot delete required metadata item</value>
+  </data>
+  <data name="cannot_delete_metadata_text" xml:space="preserve">
+    <value>Cannot delete metadata item "{0}": it is required for the publication to be valid.</value>
+  </data>
 </root>
