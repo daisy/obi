@@ -57,6 +57,7 @@ namespace Obi
             this.mDeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.mMetadataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mFullMetadataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTouchProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowhideTableOfContentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -124,7 +125,6 @@ namespace Obi
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectPanel = new Obi.UserControls.ProjectPanel();
-            this.mFullMetadataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -372,6 +372,13 @@ namespace Obi
             this.mMetadataToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.mMetadataToolStripMenuItem.Text = "&Metadata";
             this.mMetadataToolStripMenuItem.Click += new System.EventHandler(this.mMetadataToolStripMenuItem_Click);
+            // 
+            // mFullMetadataToolStripMenuItem
+            // 
+            this.mFullMetadataToolStripMenuItem.Name = "mFullMetadataToolStripMenuItem";
+            this.mFullMetadataToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.mFullMetadataToolStripMenuItem.Text = "Full metadata";
+            this.mFullMetadataToolStripMenuItem.Click += new System.EventHandler(this.mFullMetadataToolStripMenuItem_Click);
             // 
             // mTouchProjectToolStripMenuItem
             // 
@@ -954,13 +961,6 @@ namespace Obi
             this.mProjectPanel.TabIndex = 4;
             this.mProjectPanel.Load += new System.EventHandler(this.mProjectPanel_Load);
             // 
-            // fullMetadataToolStripMenuItem
-            // 
-            this.mFullMetadataToolStripMenuItem.Name = "fullMetadataToolStripMenuItem";
-            this.mFullMetadataToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.mFullMetadataToolStripMenuItem.Text = "Full metadata";
-            this.mFullMetadataToolStripMenuItem.Click += new System.EventHandler(this.mFullMetadataToolStripMenuItem_Click);
-            // 
             // ObiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -976,6 +976,7 @@ namespace Obi
             this.Name = "ObiForm";
             this.Text = "Obi";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ObiForm_FormClosing);
+            this.ResizeEnd += new System.EventHandler(this.ObiForm_ResizeEnd);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
