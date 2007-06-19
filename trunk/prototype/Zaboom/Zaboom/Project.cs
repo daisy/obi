@@ -17,11 +17,15 @@ namespace Zaboom
     public class Project: urakawa.Project
     {
         private bool canSave;
+        private Uri path;
 
-        public Project(string title, Uri uri)
-            : base(uri)
+        public event StateChangedHandler StateChanged;
+
+        public Project(string title, string path)
+            : base(new Uri(Path.GetDirectoryName(path)))
         {
             canSave = true;
+            this.path = new Uri(path);
             Metadata metatitle = getMetadataFactory().createMetadata();
             metatitle.setName("zaboom:title");
             metatitle.setContent(title);
@@ -34,15 +38,14 @@ namespace Zaboom
 
         public void ImportAudioFile(string path)
         {
-            // Stream input = File.OpenRead(path);
-            // PCMDataInfo info = PCMDataInfo.parseRiffWaveHeader(input);
-            // input.Close();
-            // getPresentation().getMediaDataManager().getDefaultPCMFormat().setSampleRate(info.getSampleRate());
+            Stream input = File.OpenRead(path);
+            PCMDataInfo info = PCMDataInfo.parseRiffWaveHeader(input);
+            input.Close();
+            getPresentation().getMediaDataManager().getDefaultPCMFormat().setBitDepth(info.getBitDepth());
+            getPresentation().getMediaDataManager().getDefaultPCMFormat().setNumberOfChannels(info.getNumberOfChannels());
+            getPresentation().getMediaDataManager().getDefaultPCMFormat().setSampleRate(info.getSampleRate());
             AudioMediaData data = (AudioMediaData)
                 getPresentation().getMediaDataFactory().createMediaData(typeof(AudioMediaData));
-            // data.getPCMFormat().setBitDepth(info.getBitDepth());
-            // data.getPCMFormat().setNumberOfChannels(info.getNumberOfChannels());
-            // data.getPCMFormat().setSampleRate(info.getSampleRate());
             data.appendAudioDataFromRiffWave(path);
             ManagedAudioMedia media = (ManagedAudioMedia)
                 getPresentation().getMediaFactory().createMedia(MediaType.AUDIO);
@@ -53,16 +56,24 @@ namespace Zaboom
             TreeNode node = getPresentation().getTreeNodeFactory().createNode();
             node.setProperty(prop);
             getPresentation().getRootNode().appendChild(node);
+            Modified();
+        }
+
+        private void Modified()
+        {
+            canSave = true;
+            if (StateChanged != null) StateChanged(this, new StateChangedEventArgs(StateChange.Modified));
         }
 
         public void Save()
         {
             if (canSave)
             {
-                string directory = Path.GetDirectoryName(getPresentation().getBaseUri().LocalPath);
+                string directory = getPresentation().getBaseUri().LocalPath;
                 if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
-                saveXUK(getPresentation().getBaseUri());
+                saveXUK(path);
                 canSave = false;
+                if (StateChanged != null) StateChanged(this, new StateChangedEventArgs(StateChange.Saved));
             }
         }
 
@@ -96,5 +107,15 @@ namespace Zaboom
 
         #endregion
 
+    }
+
+    public enum StateChange { Closed, Modified, Opened, Saved };
+
+    public delegate void StateChangedHandler(object sender, StateChangedEventArgs e);
+
+    public class StateChangedEventArgs : EventArgs
+    {
+        public StateChange Change;
+        public StateChangedEventArgs(StateChange change) { Change = change; }
     }
 }

@@ -54,6 +54,7 @@ namespace Zaboom
             this.Controls.Add(this.sourceBox);
             this.Name = "SourceView";
             this.Text = "Source view";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SourceView_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

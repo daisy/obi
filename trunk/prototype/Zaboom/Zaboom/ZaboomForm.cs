@@ -9,11 +9,16 @@ using System.Windows.Forms;
 namespace Zaboom
 {
     public partial class ZaboomForm : Form
-    {
+    {   
         public ZaboomForm()
         {
             InitializeComponent();
             Text = "Zaboom";
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -25,14 +30,22 @@ namespace Zaboom
                 "Untitled Zaboom Project");
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                projectPanel.Project = new Project(dialog.Title, new Uri(dialog.ProjectLocation));
-                Text = "Zaboom - " + projectPanel.Project.TitleSaved;
+                projectPanel.Project = new Project(dialog.Title, dialog.ProjectLocation);
+                projectPanel.Project.StateChanged += new StateChangedHandler(Project_StateChanged);
+                projectPanel.Project.Save();
             }
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        void Project_StateChanged(object sender, StateChangedEventArgs e)
         {
-            Application.Exit();
+            if (e.Change == StateChange.Closed)
+            {
+                Text = "Zaboom";
+            }
+            else if (e.Change == StateChange.Modified || e.Change == StateChange.Opened || e.Change == StateChange.Saved)
+            {
+                Text = "Zaboom - " + projectPanel.Project.TitleSaved;
+            }
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -40,7 +53,6 @@ namespace Zaboom
             if (projectPanel.Project != null)
             {
                 projectPanel.Project.Save();
-                Text = "Zaboom - " + projectPanel.Project.TitleSaved;
             }
         }
 
@@ -74,9 +86,8 @@ namespace Zaboom
         {
             if (projectPanel.Project != null)
             {
-                SourceView dialog = new SourceView(projectPanel.Project.getPresentation().getBaseUri().LocalPath,
-                    projectPanel.Project.Title);
-                dialog.ShowDialog();
+                SourceView dialog = new SourceView(projectPanel.Project);
+                dialog.Show();
             }
         }
     }
