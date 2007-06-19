@@ -24,7 +24,7 @@ namespace Zaboom
         {
             InitializeComponent();
             this.info = info;
-            scale = Width / info.getDuration().TotalSeconds;
+            scale = Width / info.getDuration().getTimeDeltaAsMillisecondFloat();
         }
 
         protected override void OnPaint(PaintEventArgs e)

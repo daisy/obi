@@ -5,32 +5,54 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Zaboom
 {
     public partial class SourceView : Form
     {
+        private Project project;
+
         public SourceView()
         {
             InitializeComponent();
         }
 
-        public SourceView(string path, string title)
+        public SourceView(Project project)
         {
             InitializeComponent();
-            Text = Text + " - " + title;
-            sourceBox.Text = "";
-            try
-            {
-                System.IO.StreamReader reader = System.IO.File.OpenText(path);
-                sourceBox.AppendText(reader.ReadToEnd());
-                reader.Close();
-            }
-            catch (Exception e)
-            {
-                throw new Exception(String.Format("Could not read file \"{0}\": {1}",
-                    path, e.Message));
-            }
+            this.project = project;
+            Text = Text + " - " + project.Title;
+            UpdateView();
+            project.StateChanged += new StateChangedHandler(project_StateChanged);
+        }
+
+        private string GetXUKSource()
+        {
+            StringBuilder srcstr = new StringBuilder();
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Encoding = Encoding.UTF8;
+            settings.Indent = true;
+            settings.IndentChars = "  ";
+            XmlWriter writer = XmlWriter.Create(srcstr, settings);
+            project.saveXUK(writer);
+            writer.Close();
+            return srcstr.ToString();
+        }
+
+        void project_StateChanged(object sender, StateChangedEventArgs e)
+        {
+            if (e.Change == StateChange.Modified) UpdateView();
+        }
+
+        private void SourceView_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            project.StateChanged -= new StateChangedHandler(project_StateChanged);
+        }
+
+        private void UpdateView()
+        {
+            sourceBox.Text = GetXUKSource();
             sourceBox.Select(0, 0);
             sourceBox.ScrollToCaret();
         }
