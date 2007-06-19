@@ -863,6 +863,14 @@ namespace Obi
             }
             // tooltips
             mProjectPanel.EnableTooltips = mSettings.EnableTooltips;
+            if (mSettings.ObiFormSize.Width == 0 || mSettings.ObiFormSize.Height == 0)
+            {
+                mSettings.ObiFormSize = Size;
+            }
+            else
+            {
+                Size = mSettings.ObiFormSize;
+            }
         }
 
         /// <summary>
@@ -1838,6 +1846,11 @@ namespace Obi
                 }
                 mProject.Touch();
             }
+        }
+
+        private void ObiForm_ResizeEnd(object sender, EventArgs e)
+        {
+            mSettings.ObiFormSize = Size;
         }
     }
 }
