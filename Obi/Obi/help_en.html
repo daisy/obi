@@ -515,21 +515,79 @@
         <p class="todo">Describe the dialog. Start listening, press record to record. Create a new phrase with phrase button, new page with page. Explain VU meter too btw.</p>
           <p>
               Obi has 3 recording modes to choose from: Dialog based recording, inline recording
-              with insertion and inline recording with truncation. The selection in the strips
-              view determine where recording starts.</p>
+              with insertion and inline recording with truncation. You select the recording mode
+              that you want to use in the dropdown list to the far right of the transport bar.</p>
+          <p>
+              The selection in the strips
+              view determine where recording starts. If a section
+              is selected, the recorded audio will be appended to this section. If an audio block
+              is selected, the new audio will be created at this position, pushing the selected
+              audio block back. When nothing is selected, a new section will be created at the
+              end of the presentation for the recorded audio.</p>
+          <h4>
+              Dialog based recording.</h4>
+          <p>
+              The default setting of Obi is to open a new dialog when recording. This dialog is
+              modal, meaning that no other Obi functions are available while the dialog is shown.
+          </p>
+          <p>
+              To activate this form of recording, you have to make sure that Obi is not playing.
+              Should Obi be playing when this form of recording is selected, all clicks on the
+              red Record button are ignored.</p>
+          <p>
+              When first opening
+              this dialog, it is in listen mode. This means that the record button on this form
+              has to be activated before the actual recording begins.
+              Once recording is active, you have a few options for creating new audio blocks beyond
+              the first.</p>
+          <h6>
+              Pause</h6>
+          <p>
+              The Pause button replaces the Record button once recording has been started. Pressing
+              the Pause button hides the Record button, and also stops recording to the current
+              audio block. If Record is pressed again, a new audio block is begun.</p>
+          <h6>
+              Next phrase</h6>
+          <p>
+              Pressing Next Phrase during recording stop recording to the current audio block,
+              and starts recording of a new audio block.</p>
+          <h6>
+              Page Mark</h6>
+          <p>
+              Pressing Page Mark accomplises the same as pressing Next Phrase, and marks the finished
+              audio block as a page maker.</p>
+          <h6>
+              Begin</h6>
+          <p>
+              Begin currently does nothing.</p>
+          <h6>
+              Stop/Close</h6>
+          <p>
+              Stop/Close hides the recording dialog. If the dialog was recording, the audio block
+              is finished in a similar manner as pressing Pause first would accomplish.</p>
           <h5>
-              Dialog based recording.</h5>
-          <p class="todo">
-              Mention: Can't be started during playback. Opens dialog, reducing the number of
-              elements on the form. VU meter on dialog. Page marking. Phrase marking.</p>
+              Record by inserting.</h5>
+          <p>
+              By selecting "Record by insertion", you can bypass the record dialog. This selection
+              changes the behavior of the buttons on the transport bar.</p>
+          <p>
+              Pressing the red "Record" button will start recording an once. While recording,
+              many of Obi's functions are diabled. Recording will continue untill you press the
+              "Stop" button. If "Next Phrase" is pressed during recording, Obi will finish the
+              audio block it is currently recording to and begin a new one.</p>
+          <p>
+              If Obi is playing when "Record is pressed, the playing audio block will be split
+              at the current playback position, and any newly recorded audio blocks will appear
+              between the created parts.</p>
           <h5>
-              Inline insertion recording.</h5>
-          <p class="todo">
-              Mention: Disables many menu items. Changes behavior of buttons on transport bar.</p>
-          <h5>
-              Inline destructive recording</h5>
-          <p class="todo">
-              Mention: Same as "insertion", but clears the rest of the section content</p>
+              Record by overwriting</h5>
+          <p>
+              Selecting "Record by overwriting" allows you to break into a recorded section at
+              some point, and replace the recorded audio after that point. This recording mode
+              works in much the same manner as "Record by inserting". The only difference is that
+              any audio that might be in the section after the selection will be deleted when
+              "Record" is pressed. This manner of recording is sometimes referred to as "punch-in
+              recording".</p>
         <div id="nav-phrases">
           <h4>Navigating through phrases</h4>
           <p><img src="images/icons/go-previous.png" alt="move to previous phrase icon" class="icon"/><img src="images/icons/go-next.png" alt="move to next phrase icon" class="icon"/>You can move from phrase to phrase in the book, <em>i.e.</em> from audio block to audio block, using the <q>previous phrase</q> and <q>next phrase</q> buttons in the transport bar, or the left and right arrow keys.</p>

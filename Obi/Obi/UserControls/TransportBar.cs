@@ -567,7 +567,7 @@ namespace Obi.UserControls
                     }
                 );
 
-                if (mRecordModeBox.SelectedIndex == 0)
+                if (mRecordModeBox.SelectedIndex == 0) //recording using the dialog
                 {
                     new Dialogs.TransportRecord(session).ShowDialog();
 
@@ -580,7 +580,7 @@ namespace Obi.UserControls
                         mProjectPanel.StripManager.UpdateAssetForPhrase(section.PhraseChild(index + i), session.RecordedAssets[i]);
                     }
                 }
-                else
+                else //recording using the transportbar buttons
                 {
                     if (mCurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Playing)
                     {
@@ -589,7 +589,7 @@ namespace Obi.UserControls
                         m_IsSerialPlaying = false;
                         index++; //for "punch in", we want to record between the parts of the split
                     }
-                    if (mRecordModeBox.SelectedIndex == 2) //we are recording in destructive mode
+                    if (mRecordModeBox.SelectedIndex == 2 && section.PhraseChildCount>0) //we are recording in destructive mode
                     {
                         PhraseNode removeableNode = section.PhraseChild(index);
                         while (removeableNode != null)
@@ -619,7 +619,6 @@ namespace Obi.UserControls
                 mRewindButton.Enabled = false;
                 mPlayButton.Enabled = false;
                 mFastForwardButton.Enabled = false;
-                mNextPhrase.Enabled = false;
                 mNextSectionButton.Enabled = false;
                 mPauseButton.Enabled = false;
                 mRecordModeBox.Enabled = false;
@@ -712,7 +711,11 @@ namespace Obi.UserControls
         /// </summary>
         public void NextPhrase()
         {
-            if (!IsInlineRecording)
+            if (IsInlineRecording)
+            {
+                inlineRecordingSession.NextPhrase();
+            }
+            else
             {
                 m_IsSerialPlaying = true;
                 if (Enabled) mCurrentPlaylist.NavigateToNextPhrase();
