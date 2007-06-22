@@ -14,6 +14,20 @@ namespace Zaboom
         {
             InitializeComponent();
             Text = "Zaboom";
+            Status = "Ready.";
+            projectPanel.Player.StateChanged += new Audio.StateChangedHandler(Player_StateChanged);
+            projectPanel.Player.EndOfAudioAsset += new Audio.EndOfAudioAssetHandler(Player_EndOfAudioAsset);
+        }
+
+        void Player_StateChanged(object sender, Audio.StateChangedEventArgs e)
+        {
+            Status = projectPanel.Player.State.ToString();
+            System.Diagnostics.Debug.Print(e.PreviousState.ToString() + " => " + projectPanel.Player.State.ToString());
+        }
+
+        void Player_EndOfAudioAsset(object sender, EventArgs e)
+        {
+            // projectPanel.Player.Stop();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -89,6 +103,13 @@ namespace Zaboom
                 SourceView dialog = new SourceView(projectPanel.Project);
                 dialog.Show();
             }
+        }
+
+        private string Status { set { statusLabel.Text = value; } }
+
+        private void stopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            projectPanel.Player.Stop();
         }
     }
 }

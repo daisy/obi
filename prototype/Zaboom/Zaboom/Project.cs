@@ -19,7 +19,10 @@ namespace Zaboom
         private bool canSave;
         private Uri path;
 
+        public static readonly string AUDIO_CHANNEL_NAME = "zaboom.audio";
+
         public event StateChangedHandler StateChanged;
+        public event TreeNodeAddedHandler TreeNodeAdded;
 
         public Project(string title, string path)
             : base(new Uri(Path.GetDirectoryName(path)))
@@ -34,6 +37,16 @@ namespace Zaboom
                 urakawa.ToolkitSettings.XUK_NS);
             audio.setName(AUDIO_CHANNEL_NAME);
             getPresentation().getChannelsManager().addChannel(audio);
+        }
+
+        public Channel GetSingleChannelByName(string name)
+        {
+            List<Channel> channels = getPresentation().getChannelsManager().getChannelByName(name);
+            if (channels.Count != 1)
+            {
+                throw new Exception(String.Format("Expected 1 channel for {0}, got {1}.", name, channels.Count));
+            }
+            return channels[0];
         }
 
         public void ImportAudioFile(string path)
@@ -56,13 +69,7 @@ namespace Zaboom
             TreeNode node = getPresentation().getTreeNodeFactory().createNode();
             node.setProperty(prop);
             getPresentation().getRootNode().appendChild(node);
-            Modified();
-        }
-
-        private void Modified()
-        {
-            canSave = true;
-            if (StateChanged != null) StateChanged(this, new StateChangedEventArgs(StateChange.Modified));
+            AddedTreeNode(node);
         }
 
         public void Save()
@@ -82,17 +89,12 @@ namespace Zaboom
 
         #region utilities
 
-        private static readonly string AUDIO_CHANNEL_NAME = "zaboom.audio";
         private static readonly string META_TITLE_NAME = "zaboom:title";
 
-        private Channel GetSingleChannelByName(string name)
+        private void AddedTreeNode(TreeNode node)
         {
-            List<Channel> channels = getPresentation().getChannelsManager().getChannelByName(name);
-            if (channels.Count != 1)
-            {
-                throw new Exception(String.Format("Expected 1 channel for {0}, got {1}.", name, channels.Count));
-            }
-            return channels[0];
+            if (TreeNodeAdded != null) TreeNodeAdded(this, new TreeNodeEventArgs(this, node));
+            Modified();
         }
 
         private string GetSingleMetadataContentFor(string name)
@@ -105,17 +107,36 @@ namespace Zaboom
             return list[0].getContent();
         }
 
+        private void Modified()
+        {
+            canSave = true;
+            if (StateChanged != null) StateChanged(this, new StateChangedEventArgs(StateChange.Modified));
+        }
+
         #endregion
 
     }
 
     public enum StateChange { Closed, Modified, Opened, Saved };
 
-    public delegate void StateChangedHandler(object sender, StateChangedEventArgs e);
-
     public class StateChangedEventArgs : EventArgs
     {
         public StateChange Change;
         public StateChangedEventArgs(StateChange change) { Change = change; }
     }
+
+    public class TreeNodeEventArgs : EventArgs
+    {
+        public Project Project;
+        public TreeNode Node;
+
+        public TreeNodeEventArgs(Project project, TreeNode node)
+        {
+            Project = project;
+            Node = node;
+        }
+    }
+
+    public delegate void StateChangedHandler(object sender, StateChangedEventArgs e);
+    public delegate void TreeNodeAddedHandler(object sender, TreeNodeEventArgs e);
 }
