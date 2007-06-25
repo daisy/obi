@@ -28,32 +28,35 @@ namespace Obi.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
-            this.mSourceTextBox = new System.Windows.Forms.TextBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShowSource));
+            this.sourceBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // mSourceTextBox
+            // sourceBox
             // 
-            this.mSourceTextBox.BackColor = System.Drawing.Color.White;
-            this.mSourceTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.mSourceTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mSourceTextBox.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mSourceTextBox.Location = new System.Drawing.Point(0, 0);
-            this.mSourceTextBox.Multiline = true;
-            this.mSourceTextBox.Name = "mSourceTextBox";
-            this.mSourceTextBox.ReadOnly = true;
-            this.mSourceTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.mSourceTextBox.Size = new System.Drawing.Size(732, 629);
-            this.mSourceTextBox.TabIndex = 0;
-            this.mSourceTextBox.WordWrap = false;
+            this.sourceBox.BackColor = System.Drawing.Color.White;
+            this.sourceBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.sourceBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sourceBox.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sourceBox.Location = new System.Drawing.Point(0, 0);
+            this.sourceBox.Multiline = true;
+            this.sourceBox.Name = "sourceBox";
+            this.sourceBox.ReadOnly = true;
+            this.sourceBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.sourceBox.Size = new System.Drawing.Size(676, 609);
+            this.sourceBox.TabIndex = 0;
+            this.sourceBox.WordWrap = false;
             // 
             // ShowSource
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(732, 629);
-            this.Controls.Add(this.mSourceTextBox);
+            this.ClientSize = new System.Drawing.Size(676, 609);
+            this.Controls.Add(this.sourceBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ShowSource";
-            this.Text = "Show source";
+            this.Text = "Source view";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SourceView_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -61,6 +64,7 @@ namespace Obi.Dialogs
 
         #endregion
 
-        private System.Windows.Forms.TextBox mSourceTextBox;
+        private System.Windows.Forms.TextBox sourceBox;
+
     }
 }
