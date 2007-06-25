@@ -19,13 +19,22 @@ namespace Obi.UserControls
             mNameBox.Items.AddRange(MetadataEntryDescription.GetDAISYEntries().ToArray());
         }
 
+        public bool CanSetName
+        {
+            get
+            {
+                return mNameBox.SelectedItem != null || !mNameBox.Text.StartsWith("dtb:");
+            }
+        }
+
         public MetadataEntryDescription EntryDescription { get { return (MetadataEntryDescription)mNameBox.SelectedItem; } }
 
         public string EntryName
         {
-            get { return mNameBox.SelectedItem.ToString(); }
+            get { return mNameBox.SelectedItem == null ? mNameBox.Text : mNameBox.SelectedItem.ToString(); }
             set
             {
+                mNameBox.SelectedItem = null;
                 foreach (object item in mNameBox.Items)
                 {
                     if (item.ToString() == value)
@@ -34,6 +43,7 @@ namespace Obi.UserControls
                         break;
                     }
                 }
+                if (mNameBox.SelectedItem == null) mNameBox.Text = value;
             }
         }
         

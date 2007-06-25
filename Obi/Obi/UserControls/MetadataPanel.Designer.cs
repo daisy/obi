@@ -48,7 +48,6 @@ namespace Obi.UserControls
             // 
             this.mNameBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.mNameBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.mNameBox.FormattingEnabled = true;
             this.mNameBox.Location = new System.Drawing.Point(56, 5);
             this.mNameBox.Name = "mNameBox";

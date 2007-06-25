@@ -1798,25 +1798,7 @@ namespace Obi
 
         private void mShowSourceDEBUGToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProject != null)
-            {
-                if (mProject.Unsaved)
-                {
-                    if (MessageBox.Show("The current project is unsaved; do you wish to see the saved version?",
-                        "Unsaved project", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;        
-                }
-                try
-                {
-                    new Dialogs.ShowSource(mProject).Show();
-                }
-                catch (Exception e_)
-                {
-                    MessageBox.Show(e_.Message,
-                        "Could not read XUK file",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            if (mProject != null) new Dialogs.ShowSource(mProject).Show();
         }
 
         // TODO: merge full and simple metadata editing into a single dialog with two tabs
@@ -1839,10 +1821,18 @@ namespace Obi
                 foreach (urakawa.project.Metadata m in affected) mProject.deleteMetadata(m.getName());
                 foreach (UserControls.MetadataPanel p in dialog.MetadataPanels)
                 {
-                    urakawa.project.Metadata m = (urakawa.project.Metadata)mProject.getMetadataFactory().createMetadata();
-                    m.setName(p.EntryName);
-                    m.setContent(p.EntryContent);
-                    mProject.appendMetadata(m);
+                    if (p.CanSetName)
+                    {
+                        urakawa.project.Metadata m = (urakawa.project.Metadata)mProject.getMetadataFactory().createMetadata();
+                        m.setName(p.EntryName);
+                        m.setContent(p.EntryContent);
+                        mProject.appendMetadata(m);
+                    }
+                    else
+                    {
+                        MessageBox.Show(String.Format(Localizer.Message("error_metadata_name_message"), p.EntryName),
+                            Localizer.Message("error_metadata_name_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 mProject.Touch();
             }

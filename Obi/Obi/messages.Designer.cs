@@ -641,6 +641,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot create metadata item.
+        /// </summary>
+        internal static string error_metadata_name_caption {
+            get {
+                return ResourceManager.GetString("error_metadata_name_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot create metadata item with the name &quot;{0}&quot;: name must not start with &quot;dtb:&quot;.
+        /// </summary>
+        internal static string error_metadata_name_message {
+            get {
+                return ResourceManager.GetString("error_metadata_name_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select the folder in which to save your DAISY book..
         /// </summary>
         internal static string export_choose_folder {
