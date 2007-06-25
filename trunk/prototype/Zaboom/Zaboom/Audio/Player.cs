@@ -147,8 +147,9 @@ namespace Zaboom.Audio
         {
             if (state != AudioPlayerState.Stopped)
             {
-                soundBuffer.Stop();
-                reader.Close();
+                if (notifyThread != null && notifyThread.IsAlive) notifyThread.Abort();
+                if (soundBuffer != null) soundBuffer.Stop();
+                if (reader != null) reader.Close();
                 _State = AudioPlayerState.Stopped;
             }
         }
@@ -260,7 +261,9 @@ namespace Zaboom.Audio
                     playPosition, endPosition, diff, remaining);
             }
 
-            Stop();
+            soundBuffer.Stop();
+            reader.Close();
+            _State = AudioPlayerState.Stopped;
             if (EndOfAudioAsset != null) EndOfAudioAsset(this, new EventArgs());
         }
 

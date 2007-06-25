@@ -36,7 +36,6 @@ namespace Zaboom
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Name = "WaveformPanel";
-            this.Click += new System.EventHandler(this.WaveformPanel_Click);
             this.ResumeLayout(false);
 
         }
