@@ -24,19 +24,27 @@ namespace Zaboom
         public event StateChangedHandler StateChanged;
         public event TreeNodeAddedHandler TreeNodeAdded;
 
-        public Project(string title, string path)
+        private Project(string path, bool canSave)
             : base(new Uri(Path.GetDirectoryName(path)))
         {
-            canSave = true;
             this.path = new Uri(path);
-            Metadata metatitle = getMetadataFactory().createMetadata();
-            metatitle.setName("zaboom:title");
-            metatitle.setContent(title);
-            appendMetadata(metatitle);
+            this.canSave = canSave;
+        }
+
+        public Project(string title, string path)
+            : this(path, true)
+        {
+            _Title = title;
             Channel audio = getPresentation().getChannelFactory().createChannel(typeof(Channel).Name,
                 urakawa.ToolkitSettings.XUK_NS);
             audio.setName(AUDIO_CHANNEL_NAME);
             getPresentation().getChannelsManager().addChannel(audio);
+        }
+
+        public Project(string path)
+            : this(path, false)
+        {
+            openXUK(this.path);
         }
 
         public Channel GetSingleChannelByName(string name)
@@ -70,6 +78,14 @@ namespace Zaboom
             node.setProperty(prop);
             getPresentation().getRootNode().appendChild(node);
             AddedTreeNode(node);
+        }
+
+        public void Resync()
+        {
+            for (int i = 0; i < getPresentation().getRootNode().getChildCount(); ++i)
+            {
+                AddedTreeNode(getPresentation().getRootNode().getChild(i));
+            }
         }
 
         public void Save()
@@ -113,8 +129,31 @@ namespace Zaboom
             if (StateChanged != null) StateChanged(this, new StateChangedEventArgs(StateChange.Modified));
         }
 
-        #endregion
+        private string _Title
+        {
+            set
+            {
+                List<Metadata> list = getMetadataList(META_TITLE_NAME);
+                Metadata metatitle = null;
+                if (list.Count == 0)
+                {
+                    metatitle = getMetadataFactory().createMetadata();
+                    metatitle.setName("zaboom:title");
+                    appendMetadata(metatitle);
+                }
+                else if (list.Count == 1)
+                {
+                    metatitle = list[0];
+                }
+                else
+                {
+                    throw new Exception(String.Format("Expected 1 item for {0}, got {1}.", META_TITLE_NAME, list.Count));
+                }
+                metatitle.setContent(value);
+            }
+        }
 
+        #endregion
     }
 
     public enum StateChange { Closed, Modified, Opened, Saved };

@@ -15,59 +15,11 @@ namespace Zaboom
             InitializeComponent();
             Text = "Zaboom";
             Status = "Ready.";
-            projectPanel.Player.StateChanged += new Audio.StateChangedHandler(Player_StateChanged);
-            projectPanel.Player.EndOfAudioAsset += new Audio.EndOfAudioAssetHandler(Player_EndOfAudioAsset);
-        }
-
-        void Player_StateChanged(object sender, Audio.StateChangedEventArgs e)
-        {
-            Status = projectPanel.Player.State.ToString();
-            System.Diagnostics.Debug.Print(e.PreviousState.ToString() + " => " + projectPanel.Player.State.ToString());
-        }
-
-        void Player_EndOfAudioAsset(object sender, EventArgs e)
-        {
-            // projectPanel.Player.Stop();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            NewProjectDialog dialog = new NewProjectDialog(
-                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                "project.zab",
-                "Zaboom project files|*.zab",
-                "Untitled Zaboom Project");
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                projectPanel.Project = new Project(dialog.Title, dialog.ProjectLocation);
-                projectPanel.Project.StateChanged += new StateChangedHandler(Project_StateChanged);
-                projectPanel.Project.Save();
-            }
-        }
-
-        void Project_StateChanged(object sender, StateChangedEventArgs e)
-        {
-            if (e.Change == StateChange.Closed)
-            {
-                Text = "Zaboom";
-            }
-            else if (e.Change == StateChange.Modified || e.Change == StateChange.Opened || e.Change == StateChange.Saved)
-            {
-                Text = "Zaboom - " + projectPanel.Project.TitleSaved;
-            }
-        }
-
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (projectPanel.Project != null)
-            {
-                projectPanel.Project.Save();
-            }
         }
 
         private void importFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -96,6 +48,66 @@ namespace Zaboom
             }
         }
 
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewProjectDialog dialog = new NewProjectDialog(
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                "project.zab",
+                "Zaboom project files|*.zab",
+                "Untitled Zaboom Project");
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                projectPanel.Project = new Project(dialog.Title, dialog.ProjectLocation);
+                projectPanel.Project.StateChanged += new StateChangedHandler(Project_StateChanged);
+                projectPanel.Project.Save();
+            }
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Zaboom project files|*.zab";
+            dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            dialog.Multiselect = false;
+            dialog.SupportMultiDottedExtensions = true;
+            dialog.Title = "Open a Zaboom project file";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    projectPanel.Project = new Project(dialog.FileName);
+                    projectPanel.Project.StateChanged += new StateChangedHandler(Project_StateChanged);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(String.Format("An error occurred while opening the project file {0}: {1}",
+                        dialog.FileName, ex.Message), "Error opening project file", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                }
+            }
+        }
+
+        void Project_StateChanged(object sender, StateChangedEventArgs e)
+        {
+            if (e.Change == StateChange.Closed)
+            {
+                Text = "Zaboom";
+            }
+            else if (e.Change == StateChange.Modified || e.Change == StateChange.Opened || e.Change == StateChange.Saved)
+            {
+                Text = "Zaboom - " + projectPanel.Project.TitleSaved;
+            }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (projectPanel.Project != null)
+            {
+                projectPanel.Project.Save();
+            }
+        }
+
+        private string Status { set { statusLabel.Text = value; } }
+
         private void viewSourceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (projectPanel.Project != null)
@@ -105,11 +117,14 @@ namespace Zaboom
             }
         }
 
-        private string Status { set { statusLabel.Text = value; } }
-
-        private void stopToolStripMenuItem_Click(object sender, EventArgs e)
+        private void zoomInToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            projectPanel.Player.Stop();
+            if (projectPanel.Project != null) projectPanel.PixelsPerSecond *= 2;
+        }
+
+        private void zoomoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (projectPanel.Project != null) projectPanel.PixelsPerSecond /= 2;
         }
     }
 }

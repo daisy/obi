@@ -11,17 +11,14 @@ namespace Zaboom
     public partial class ProjectPanel : UserControl
     {
         private Project project;
-        private Audio.Player player;
+        private int pixelsPerSecond;
 
         public ProjectPanel()
         {
             InitializeComponent();
             project = null;
-            player = new Audio.Player();
-            player.SetOutputDevice(this);
+            pixelsPerSecond = WaveformPanel.DEFAULT_PIXELS_PER_SECOND;
         }
-
-        public Audio.Player Player { get { return player; } }
 
         public Project Project
         {
@@ -32,19 +29,29 @@ namespace Zaboom
                 {
                     project = value;
                     project.TreeNodeAdded += new TreeNodeAddedHandler(project_TreeNodeAdded);
+                    project.Resync();
                 }
             }
         }
 
-        void project_TreeNodeAdded(object sender, TreeNodeEventArgs e)
+        public int PixelsPerSecond
         {
-            WaveformPanel panel = new WaveformPanel(e.Project, e.Node);
-            flowLayout.Controls.Add(panel);
+            get { return pixelsPerSecond; }
+            set
+            {
+                pixelsPerSecond = value;
+                foreach (Control c in flowLayout.Controls)
+                {
+                    WaveformPanel panel = c as WaveformPanel;
+                    if (panel != null) panel.PixelsPerSecond = pixelsPerSecond;
+                }
+            }
         }
 
-        internal void AddWavPanel()
+        private void project_TreeNodeAdded(object sender, TreeNodeEventArgs e)
         {
-            flowLayout.Controls.Add(new WaveformPanel());
+            WaveformPanel panel = new WaveformPanel(e.Project, e.Node, pixelsPerSecond);
+            flowLayout.Controls.Add(panel);
         }
     }
 }

@@ -62,6 +62,12 @@
     <Compile Include="SourceView.Designer.cs">
       <DependentUpon>SourceView.cs</DependentUpon>
     </Compile>
+    <Compile Include="TransportBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TransportBar.Designer.cs">
+      <DependentUpon>TransportBar.cs</DependentUpon>
+    </Compile>
     <Compile Include="WaveformPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -87,6 +93,10 @@
     <EmbeddedResource Include="SourceView.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SourceView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TransportBar.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TransportBar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaveformPanel.resx">
       <SubType>Designer</SubType>
@@ -114,6 +124,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icons\media-playback-pause.png" />
+    <Content Include="icons\media-playback-start.png" />
+    <Content Include="icons\media-playback-stop.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
