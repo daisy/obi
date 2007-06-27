@@ -43,6 +43,13 @@
   <ItemGroup>
     <Compile Include="Audio\AudioDevice.cs" />
     <Compile Include="Audio\Player.cs" />
+    <Compile Include="Commands.cs" />
+    <Compile Include="DummyBlock.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DummyBlock.Designer.cs">
+      <DependentUpon>DummyBlock.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewProjectDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +89,10 @@
     </Compile>
     <Compile Include="Zaboom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DummyBlock.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DummyBlock.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NewProjectDialog.resx">
       <SubType>Designer</SubType>
       <DependentUpon>NewProjectDialog.cs</DependentUpon>

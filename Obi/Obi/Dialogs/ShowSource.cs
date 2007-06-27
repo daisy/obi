@@ -11,7 +11,7 @@ namespace Obi.Dialogs
 {
     public partial class ShowSource : Form
     {
-        private Project project;
+        private Project mProject;
 
         public ShowSource()
         {
@@ -21,7 +21,7 @@ namespace Obi.Dialogs
         public ShowSource(Project project)
         {
             InitializeComponent();
-            this.project = project;
+            this.mProject = project;
             Text = Text + " - " + project.Title;
             UpdateView();
             project.StateChanged += new Events.Project.StateChangedHandler(project_StateChanged);
@@ -34,7 +34,7 @@ namespace Obi.Dialogs
             settings.Indent = true;
             settings.IndentChars = "  ";
             XmlWriter writer = XmlWriter.Create(srcstr, settings);
-            project.saveXUK(writer);
+            mProject.saveXUK(writer);
             writer.Close();
             return srcstr.ToString();
         }
@@ -46,7 +46,7 @@ namespace Obi.Dialogs
 
         private void SourceView_FormClosed(object sender, FormClosedEventArgs e)
         {
-            project.StateChanged -= new Events.Project.StateChangedHandler(project_StateChanged);
+            mProject.StateChanged -= new Events.Project.StateChangedHandler(project_StateChanged);
         }
 
         private void UpdateView()

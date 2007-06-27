@@ -5,19 +5,24 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using urakawa.core.events;
+using urakawa.undo;
 
 namespace Zaboom
 {
     public partial class ProjectPanel : UserControl
     {
         private Project project;
+        private CommandManager commandManager;
         private int pixelsPerSecond;
 
         public ProjectPanel()
         {
             InitializeComponent();
             project = null;
+            commandManager = new CommandManager();
             pixelsPerSecond = WaveformPanel.DEFAULT_PIXELS_PER_SECOND;
+            transportBar.Enabled = false;  // let's wait for a working audio player
         }
 
         public Project Project
@@ -28,11 +33,13 @@ namespace Zaboom
                 if (project == null && value != null)
                 {
                     project = value;
-                    project.TreeNodeAdded += new TreeNodeAddedHandler(project_TreeNodeAdded);
-                    project.Resync();
+                    project.getPresentation().treeNodeAdded += new TreeNodeAddedEventHandler(project_treeNodeAdded);
+                    flowLayout.Controls.Add(new DummyBlock());
                 }
             }
         }
+
+        public CommandManager CommandManager { get { return commandManager; } }
 
         public int PixelsPerSecond
         {
@@ -48,10 +55,11 @@ namespace Zaboom
             }
         }
 
-        private void project_TreeNodeAdded(object sender, TreeNodeEventArgs e)
+        private void project_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
         {
-            WaveformPanel panel = new WaveformPanel(e.Project, e.Node, pixelsPerSecond);
+            WaveformPanel panel = new WaveformPanel(project, e.getTreeNode(), pixelsPerSecond);
             flowLayout.Controls.Add(panel);
+            flowLayout.Controls.SetChildIndex(panel, flowLayout.Controls.Count - 2);
         }
     }
 }
