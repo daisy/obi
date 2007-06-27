@@ -9,7 +9,7 @@ using System.Windows.Forms;
 namespace Zaboom
 {
     public partial class ZaboomForm : Form
-    {   
+    {
         public ZaboomForm()
         {
             InitializeComponent();
