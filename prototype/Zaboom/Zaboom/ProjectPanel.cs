@@ -14,6 +14,7 @@ namespace Zaboom
     {
         private Project project;
         private CommandManager commandManager;
+        private Dictionary<urakawa.core.TreeNode, Control> nodeMap;
         private int pixelsPerSecond;
 
         public ProjectPanel()
@@ -21,6 +22,7 @@ namespace Zaboom
             InitializeComponent();
             project = null;
             commandManager = new CommandManager();
+            nodeMap = new Dictionary<urakawa.core.TreeNode, Control>();
             pixelsPerSecond = WaveformPanel.DEFAULT_PIXELS_PER_SECOND;
             transportBar.Enabled = false;  // let's wait for a working audio player
         }
@@ -34,6 +36,7 @@ namespace Zaboom
                 {
                     project = value;
                     project.getPresentation().treeNodeAdded += new TreeNodeAddedEventHandler(project_treeNodeAdded);
+                    project.getPresentation().treeNodeRemoved += new TreeNodeRemovedEventHandler(project_treeNodeRemoved);
                     flowLayout.Controls.Add(new DummyBlock());
                 }
             }
@@ -55,11 +58,21 @@ namespace Zaboom
             }
         }
 
+        /// <summary>
+        /// Handle addition of a node.
+        /// </summary>
         private void project_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
         {
             WaveformPanel panel = new WaveformPanel(project, e.getTreeNode(), pixelsPerSecond);
             flowLayout.Controls.Add(panel);
             flowLayout.Controls.SetChildIndex(panel, flowLayout.Controls.Count - 2);
+            nodeMap[e.getTreeNode()] = panel;
+        }
+
+        void project_treeNodeRemoved(ITreeNodeChangedEventManager o, TreeNodeRemovedEventArgs e)
+        {
+            flowLayout.Controls.Remove(nodeMap[e.getTreeNode()]);
+            nodeMap.Remove(e.getTreeNode());
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Zaboom
             if (ProjectPanel != null && ProjectPanel.Project != null)
             {
                 playlist = new List<AudioMediaData>();
-                Channel audioch = ProjectPanel.Project.GetSingleChannelByName(Project.AUDIO_CHANNEL_NAME);
+                Channel audioch = ProjectPanel.Project.AudioChannel;
                 ProjectPanel.Project.getPresentation().getRootNode().acceptDepthFirst(
                     delegate(urakawa.core.TreeNode node)
                     {
