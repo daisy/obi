@@ -59,7 +59,7 @@ namespace Zaboom
             get
             {
                 ChannelsProperty channelsProp = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
-                Channel audioChannel = project.GetSingleChannelByName(Project.AUDIO_CHANNEL_NAME);
+                Channel audioChannel = project.AudioChannel;
                 ManagedAudioMedia media = (ManagedAudioMedia)channelsProp.getMedia(audioChannel);
                 return media.getMediaData();
             }

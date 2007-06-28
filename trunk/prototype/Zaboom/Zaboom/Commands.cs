@@ -5,12 +5,14 @@ namespace Zaboom
 {
     public class AddTreeNodeCommand: ICommand
     {
+        private Project project;
         private TreeNode node;
         private TreeNode parent;
         private int index;
 
-        public AddTreeNodeCommand(TreeNode node, TreeNode parent, int index)
+        public AddTreeNodeCommand(Project project, TreeNode node, TreeNode parent, int index)
         {
+            this.project = project;
             this.node = node;
             this.parent = parent;
             this.index = index;
@@ -25,7 +27,7 @@ namespace Zaboom
 
         public void execute()
         {
-            parent.insert(node, index);
+            project.AddTreeNode(node, parent, index);
         }
 
         public string getExecuteShortDescription()
@@ -40,7 +42,7 @@ namespace Zaboom
 
         public void unExecute()
         {
-            parent.removeChild(index);
+            project.RemoveTreeNode(node);
         }
 
         #endregion
