@@ -84,8 +84,8 @@ namespace Zaboom
             AudioMediaData data = (AudioMediaData)
                 getPresentation().getMediaDataFactory().createMediaData(typeof(AudioMediaData));
             data.appendAudioDataFromRiffWave(path);
-            ManagedAudioMedia media = (ManagedAudioMedia)
-                getPresentation().getMediaFactory().createMedia(MediaType.AUDIO);
+						ManagedAudioMedia media = (ManagedAudioMedia)
+								getPresentation().getMediaFactory().createAudioMedia();
             media.setMediaData(data);
             Channel audio = GetSingleChannelByName(AUDIO_CHANNEL_NAME);
             ChannelsProperty prop = getPresentation().getPropertyFactory().createChannelsProperty();
