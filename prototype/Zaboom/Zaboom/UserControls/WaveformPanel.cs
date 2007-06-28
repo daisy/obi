@@ -11,7 +11,7 @@ using urakawa.properties.channel;
 using urakawa.media.data;
 using urakawa.media.data.audio;
 
-namespace Zaboom
+namespace Zaboom.UserControls
 {
     public partial class WaveformPanel : UserControl
     {

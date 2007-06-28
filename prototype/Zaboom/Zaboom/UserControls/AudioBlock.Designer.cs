@@ -28,17 +28,17 @@ namespace Zaboom.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            this.waveformPanel = new WaveformPanel();
+            this.waveformPanel = new UserControls.WaveformPanel();
             this.SuspendLayout();
             // 
             // waveformPanel
             // 
             this.waveformPanel.BackColor = System.Drawing.Color.White;
-            this.waveformPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.waveformPanel.Location = new System.Drawing.Point(0, 22);
+            this.waveformPanel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.waveformPanel.Location = new System.Drawing.Point(32, 0);
             this.waveformPanel.Name = "waveformPanel";
             this.waveformPanel.PixelsPerSecond = 0;
-            this.waveformPanel.Size = new System.Drawing.Size(150, 128);
+            this.waveformPanel.Size = new System.Drawing.Size(118, 150);
             this.waveformPanel.TabIndex = 0;
             this.waveformPanel.SizeChanged += new System.EventHandler(this.waveformPanel_SizeChanged);
             // 
@@ -46,7 +46,7 @@ namespace Zaboom.UserControls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightCoral;
+            this.BackColor = System.Drawing.Color.RoyalBlue;
             this.Controls.Add(this.waveformPanel);
             this.Name = "AudioBlock";
             this.Click += new System.EventHandler(this.AudioBlock_Click);

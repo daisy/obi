@@ -8,25 +8,18 @@ using System.Windows.Forms;
 
 namespace Zaboom.UserControls
 {
-    public interface Selectable
-    {
-        bool Selected { get; set; }
-    }
-
-    public partial class AudioBlock : UserControl, Selectable
+    public partial class DummyBlock : UserControl, Selectable
     {
         private bool selected;
         protected ProjectPanel panel;
-
-        private static readonly int SELECT_TAB_WIDTH = 32;
         private static readonly Color BACK_COLOR_SELECTED = Color.Aquamarine;
         private static readonly Color BACK_COLOR_UNSELECTED = Color.RoyalBlue;
 
-        public AudioBlock()
+        public DummyBlock()
         {
             InitializeComponent();
-            panel = null;
             Selected = false;
+            panel = null;
         }
 
         public ProjectPanel Panel
@@ -34,14 +27,12 @@ namespace Zaboom.UserControls
             set
             {
                 if (panel != null) throw new Exception("Panel is already set!");
-                if (value == null) throw new urakawa.exception.MethodParameterIsNullException("Null panel!"); 
+                if (value == null) throw new urakawa.exception.MethodParameterIsNullException("Null panel!");
                 panel = value;
             }
         }
 
-        public WaveformPanel Waveform { get { return waveformPanel; } }
-
-        private void AudioBlock_Click(object sender, EventArgs e)
+        private void DummyBlock_Click(object sender, EventArgs e)
         {
             Selected = !selected;
             if (selected)
@@ -52,11 +43,6 @@ namespace Zaboom.UserControls
             {
                 panel.SelectionChanged(this);
             }
-        }
-
-        private void waveformPanel_SizeChanged(object sender, EventArgs e)
-        {
-            Width = waveformPanel.Width + SELECT_TAB_WIDTH;
         }
 
         #region Selectable Members
