@@ -32,13 +32,7 @@ namespace Zaboom
             InitializeComponent();
         }
 
-        public WaveformPanel(Project project, urakawa.core.TreeNode node, int pps)
-        {
-            InitializeComponent();
-            this.project = project;
-            this.node = node;
-            PixelsPerSecond = pps;
-        }
+        public urakawa.core.TreeNode Node { set { node = value; } }
 
         public int PixelsPerSecond
         {
@@ -46,22 +40,34 @@ namespace Zaboom
             set
             {
                 pixelsPerSecond = value;
-                Width = Convert.ToInt32(Math.Round(AudioData.getAudioDuration().getTimeDeltaAsMillisecondFloat() /
-                    1000.0 * value));
-                samplesPerPixel = Math.Ceiling((double)AudioData.getPCMFormat().getByteRate() /
-                    AudioData.getPCMFormat().getBlockAlign() / value);
-                Invalidate();
+                if (node != null)
+                {
+                    Width = Convert.ToInt32(Math.Round(AudioData.getAudioDuration().getTimeDeltaAsMillisecondFloat() /
+                        1000.0 * value));
+                    samplesPerPixel = Math.Ceiling((double)AudioData.getPCMFormat().getByteRate() /
+                        AudioData.getPCMFormat().getBlockAlign() / value);
+                    Invalidate();
+                }
             }
         }
+
+        public Project Project { set { project = value; } }
 
         private AudioMediaData AudioData
         {
             get
             {
-                ChannelsProperty channelsProp = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
-                Channel audioChannel = project.AudioChannel;
-                ManagedAudioMedia media = (ManagedAudioMedia)channelsProp.getMedia(audioChannel);
-                return media.getMediaData();
+                if (node != null)
+                {
+                    ChannelsProperty channelsProp = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
+                    Channel audioChannel = project.AudioChannel;
+                    ManagedAudioMedia media = (ManagedAudioMedia)channelsProp.getMedia(audioChannel);
+                    return media.getMediaData();
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 
@@ -71,30 +77,32 @@ namespace Zaboom
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-
-            byte[] shbuf = new byte[2];
-            int sample = 0;
-            int samples = AudioData.getPCMLength() / AudioData.getPCMFormat().getBlockAlign();
-            int x = 0;
-            System.IO.BinaryReader br = new System.IO.BinaryReader(AudioData.getAudioData());
-            while (sample < samples)
+            e.Graphics.DrawLine(MONOPEN, 0, Height / 2.0f, Width - 1, Height / 2.0f);
+            if (node != null)
             {
-                short min = short.MaxValue;
-                short max = short.MinValue;
-                for (int s = 0; sample < samples && s < samplesPerPixel; ++s, ++sample)
+                byte[] shbuf = new byte[2];
+                int sample = 0;
+                int samples = AudioData.getPCMLength() / AudioData.getPCMFormat().getBlockAlign();
+                int x = 0;
+                System.IO.BinaryReader br = new System.IO.BinaryReader(AudioData.getAudioData());
+                while (sample < samples)
                 {
-                    br.Read(shbuf, 0, 2);
-                    short sh = BitConverter.ToInt16(shbuf, 0);
-                    if (sh < min) min = sh;
-                    if (sh > max) max = sh;
+                    short min = short.MaxValue;
+                    short max = short.MinValue;
+                    for (int s = 0; sample < samples && s < samplesPerPixel; ++s, ++sample)
+                    {
+                        br.Read(shbuf, 0, 2);
+                        short sh = BitConverter.ToInt16(shbuf, 0);
+                        if (sh < min) min = sh;
+                        if (sh > max) max = sh;
+                    }
+                    int ymin = Height - ((min - short.MinValue) * Height) / ushort.MaxValue;
+                    int ymax = Height - ((max - short.MinValue) * Height) / ushort.MaxValue;
+                    e.Graphics.DrawLine(MONOPEN, x, ymin, x, ymax);
+                    ++x;
                 }
-                int ymin = Height - ((min - short.MinValue) * Height) / ushort.MaxValue;
-                int ymax = Height - ((max - short.MinValue) * Height) / ushort.MaxValue;
-                if (ymin == ymax) ++ymax;
-                e.Graphics.DrawLine(MONOPEN, x, ymin, x, ymax);
-                ++x;
+                br.Close();
             }
-            br.Close();
         }
     }
 }

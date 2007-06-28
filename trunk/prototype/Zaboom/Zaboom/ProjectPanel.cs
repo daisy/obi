@@ -63,10 +63,13 @@ namespace Zaboom
         /// </summary>
         private void project_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
         {
-            WaveformPanel panel = new WaveformPanel(project, e.getTreeNode(), pixelsPerSecond);
-            flowLayout.Controls.Add(panel);
-            flowLayout.Controls.SetChildIndex(panel, flowLayout.Controls.Count - 2);
-            nodeMap[e.getTreeNode()] = panel;
+            UserControls.AudioBlock block = new UserControls.AudioBlock();
+            block.Waveform.Project = project;
+            block.Waveform.Node = e.getTreeNode();
+            block.Waveform.PixelsPerSecond = pixelsPerSecond;
+            flowLayout.Controls.Add(block);
+            flowLayout.Controls.SetChildIndex(block, flowLayout.Controls.Count - 2);
+            nodeMap[e.getTreeNode()] = block;
         }
 
         void project_treeNodeRemoved(ITreeNodeChangedEventManager o, TreeNodeRemovedEventArgs e)

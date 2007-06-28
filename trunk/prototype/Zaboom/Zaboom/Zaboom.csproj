@@ -75,6 +75,12 @@
     <Compile Include="TransportBar.Designer.cs">
       <DependentUpon>TransportBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\AudioBlock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\AudioBlock.Designer.cs">
+      <DependentUpon>AudioBlock.cs</DependentUpon>
+    </Compile>
     <Compile Include="WaveformPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -108,6 +114,10 @@
     <EmbeddedResource Include="TransportBar.resx">
       <SubType>Designer</SubType>
       <DependentUpon>TransportBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\AudioBlock.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AudioBlock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaveformPanel.resx">
       <SubType>Designer</SubType>
