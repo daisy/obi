@@ -29,7 +29,7 @@ namespace Zaboom
         private void InitializeComponent()
         {
             this.flowLayout = new System.Windows.Forms.FlowLayoutPanel();
-            this.transportBar = new global::Zaboom.TransportBar();
+            this.transportBar = new TransportBar();
             this.SuspendLayout();
             // 
             // flowLayout
@@ -43,6 +43,7 @@ namespace Zaboom
             this.flowLayout.Name = "flowLayout";
             this.flowLayout.Size = new System.Drawing.Size(502, 364);
             this.flowLayout.TabIndex = 0;
+            this.flowLayout.Click += new System.EventHandler(this.flowLayout_Click);
             // 
             // transportBar
             // 

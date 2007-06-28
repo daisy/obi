@@ -1,13 +1,13 @@
-namespace Zaboom
+namespace Zaboom.UserControls
 {
     partial class DummyBlock
     {
-        /// <summary>
+        /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -22,7 +22,7 @@ namespace Zaboom
 
         #region Component Designer generated code
 
-        /// <summary>
+        /// <summary> 
         /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
@@ -32,8 +32,11 @@ namespace Zaboom
             // 
             // DummyBlock
             // 
-            this.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.Size = new System.Drawing.Size(30, 150);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Name = "DummyBlock";
+            this.Size = new System.Drawing.Size(32, 150);
             this.Click += new System.EventHandler(this.DummyBlock_Click);
             this.ResumeLayout(false);
 
