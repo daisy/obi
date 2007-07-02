@@ -1,4 +1,4 @@
-namespace Zaboom
+namespace Zaboom.UserControls
 {
     partial class ProjectPanel
     {

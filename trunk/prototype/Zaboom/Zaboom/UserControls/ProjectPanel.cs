@@ -8,14 +8,14 @@ using System.Windows.Forms;
 using urakawa.core.events;
 using urakawa.undo;
 
-namespace Zaboom
+namespace Zaboom.UserControls
 {
     public partial class ProjectPanel : UserControl
     {
         private Project project;
         private CommandManager commandManager;
         private Dictionary<urakawa.core.TreeNode, Control> nodeMap;
-        private List<UserControls.Selectable> selected;
+        private List<Selectable> selected;
         private int pixelsPerSecond;
 
         public ProjectPanel()
@@ -24,8 +24,8 @@ namespace Zaboom
             project = null;
             commandManager = new CommandManager();
             nodeMap = new Dictionary<urakawa.core.TreeNode, Control>();
-            selected = new List<UserControls.Selectable>();
-            pixelsPerSecond = UserControls.WaveformPanel.DEFAULT_PIXELS_PER_SECOND;
+            selected = new List<Selectable>();
+            pixelsPerSecond = WaveformPanel.DEFAULT_PIXELS_PER_SECOND;
             transportBar.Enabled = false;
         }
 
@@ -39,8 +39,8 @@ namespace Zaboom
                 pixelsPerSecond = value;
                 foreach (Control c in flowLayout.Controls)
                 {
-                    UserControls.AudioBlock block = c as UserControls.AudioBlock;
-                    if (block != null) block.Waveform.PixelsPerSecond = pixelsPerSecond;
+                    AudioBlock block = c as AudioBlock;
+                    if (block != null) block.PixelsPerSecond = pixelsPerSecond;
                 }
             }
         }
@@ -55,7 +55,7 @@ namespace Zaboom
                     project = value;
                     project.getPresentation().treeNodeAdded += new TreeNodeAddedEventHandler(project_treeNodeAdded);
                     project.getPresentation().treeNodeRemoved += new TreeNodeRemovedEventHandler(project_treeNodeRemoved);
-                    UserControls.DummyBlock dummy = new UserControls.DummyBlock();
+                    DummyBlock dummy = new DummyBlock();
                     dummy.Panel = this;
                     flowLayout.Controls.Add(dummy);
                 }
@@ -68,9 +68,9 @@ namespace Zaboom
             selected.Add(s);
         }
 
-        public List<UserControls.Selectable> Selected { get { return selected; } }
+        public List<Selectable> Selected { get { return selected; } }
 
-        public void SelectionChanged(UserControls.Selectable s)
+        public void SelectionChanged(Selectable s)
         {
             if (s.Selected)
             {
@@ -100,11 +100,11 @@ namespace Zaboom
         /// </summary>
         private void project_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
         {
-            UserControls.AudioBlock block = new UserControls.AudioBlock();
+            AudioBlock block = new AudioBlock();
             block.Panel = this;
-            block.Waveform.Project = project;
-            block.Waveform.Node = e.getTreeNode();
-            block.Waveform.PixelsPerSecond = pixelsPerSecond;
+            block.Project = project;
+            block.Node = e.getTreeNode();
+            block.PixelsPerSecond = pixelsPerSecond;
             flowLayout.Controls.Add(block);
             flowLayout.Controls.SetChildIndex(block, flowLayout.Controls.Count - 2);
             nodeMap[e.getTreeNode()] = block;

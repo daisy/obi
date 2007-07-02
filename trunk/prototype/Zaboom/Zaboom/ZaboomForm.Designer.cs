@@ -66,7 +66,7 @@ namespace Zaboom
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.projectPanel = new global::Zaboom.ProjectPanel();
+            this.projectPanel = new UserControls.ProjectPanel();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -436,7 +436,7 @@ namespace Zaboom
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem audioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importFileToolStripMenuItem;
-        private global::Zaboom.ProjectPanel projectPanel;
+        private UserControls.ProjectPanel projectPanel;
         private System.Windows.Forms.ToolStripMenuItem viewSourceToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
