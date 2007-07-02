@@ -45,6 +45,7 @@
     <Compile Include="Audio\Player.cs" />
     <Compile Include="Commands\AddTreeNode.cs" />
     <Compile Include="Commands\CommandManager.cs" />
+    <Compile Include="Commands\DeleteTreeNode.cs" />
     <Compile Include="NewProjectDialog.cs">
       <SubType>Form</SubType>
     </Compile>
