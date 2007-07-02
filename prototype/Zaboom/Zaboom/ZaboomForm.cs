@@ -17,6 +17,7 @@ namespace Zaboom
             Text = "Zaboom";
             Status = "Ready.";
             UpdateUndoRedoMenuItems();
+            projectPanel.SelectionChanged += new UserControls.SelectionChangedHandler(projectPanel_SelectionChanged);
         }
 
         /// <summary>
@@ -44,18 +45,19 @@ namespace Zaboom
         /// </summary>
         private void ImportFile()
         {
-            if (projectPanel.Project != null)
+            if (projectPanel.Project != null && projectPanel.Selected.Count > 0)
             {
                 OpenFileDialog dialog = new OpenFileDialog();
-                dialog.DefaultExt = ("WAV files|*.wav");
+                dialog.Filter = ("WAV files|*.wav");
                 dialog.Multiselect = false;
                 dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     try
                     {
-                        ICommand command = projectPanel.Project.ImportAudioFileCommand(dialog.FileName);
-                        projectPanel.CommandManager.execute(command);
+                        Commands.Command command = projectPanel.Project.ImportAudioFileCommand(dialog.FileName,
+                            projectPanel.Selected[0].Node);
+                        projectPanel.CommandManager.AddAndExecute(command);
                     }
                     catch (Exception e_)
                     {
@@ -211,7 +213,21 @@ namespace Zaboom
             {
                 Text = "Zaboom - " + projectPanel.Project.TitleSaved;
             }
+
+            bool hasProject = projectPanel.Project != null;
+            saveToolStripMenuItem.Enabled = hasProject && projectPanel.Project.CanSave;
+
+            bool hasProjectWithContents = projectPanel.Project != null && !projectPanel.Project.IsEmpty;
+            importFileToolStripMenuItem.Enabled = hasProject && projectPanel.Selected.Count > 0;
+            zoomInToolStripMenuItem.Enabled = hasProjectWithContents;
+            zoomOutToolStripMenuItem.Enabled = hasProjectWithContents;
+            
             UpdateUndoRedoMenuItems();
+        }
+
+        private void projectPanel_SelectionChanged(UserControls.ProjectPanel projectPanel, EventArgs e)
+        {
+            importFileToolStripMenuItem.Enabled = projectPanel.Selected.Count > 0;
         }
     }
 }

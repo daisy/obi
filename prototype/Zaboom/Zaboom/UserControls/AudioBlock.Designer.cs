@@ -45,6 +45,7 @@ namespace Zaboom.UserControls
             this.infoPanel.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.infoPanel.Size = new System.Drawing.Size(23, 144);
             this.infoPanel.TabIndex = 1;
+            this.infoPanel.Click += new System.EventHandler(this.click);
             this.infoPanel.SizeChanged += new System.EventHandler(this.ContentsSizeChanged);
             // 
             // timeLabel
@@ -56,6 +57,7 @@ namespace Zaboom.UserControls
             this.timeLabel.Size = new System.Drawing.Size(17, 12);
             this.timeLabel.TabIndex = 0;
             this.timeLabel.Text = "0s";
+            this.timeLabel.Click += new System.EventHandler(this.click);
             // 
             // waveformPanel
             // 
@@ -66,6 +68,7 @@ namespace Zaboom.UserControls
             this.waveformPanel.PixelsPerSecond = 0;
             this.waveformPanel.Size = new System.Drawing.Size(121, 144);
             this.waveformPanel.TabIndex = 1;
+            this.waveformPanel.Click += new System.EventHandler(this.click);
             this.waveformPanel.SizeChanged += new System.EventHandler(this.ContentsSizeChanged);
             // 
             // AudioBlock
@@ -77,7 +80,7 @@ namespace Zaboom.UserControls
             this.Controls.Add(this.infoPanel);
             this.Name = "AudioBlock";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Click += new System.EventHandler(this.AudioBlock_Click);
+            this.Click += new System.EventHandler(this.click);
             this.infoPanel.ResumeLayout(false);
             this.infoPanel.PerformLayout();
             this.ResumeLayout(false);

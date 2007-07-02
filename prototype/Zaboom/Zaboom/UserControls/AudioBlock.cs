@@ -10,6 +10,7 @@ namespace Zaboom.UserControls
 {
     public interface Selectable
     {
+        urakawa.core.TreeNode Node { get; }
         bool Selected { get; set; }
     }
 
@@ -30,6 +31,7 @@ namespace Zaboom.UserControls
 
         public urakawa.core.TreeNode Node
         {
+            get { return waveformPanel.Node; }
             set
             {
                 waveformPanel.Node = value;
@@ -54,7 +56,7 @@ namespace Zaboom.UserControls
 
         public Project Project { set { waveformPanel.Project = value; } }
 
-        private void AudioBlock_Click(object sender, EventArgs e)
+        private void click(object sender, EventArgs e)
         {
             Selected = !selected;
             if (selected)
@@ -63,7 +65,7 @@ namespace Zaboom.UserControls
             }
             else
             {
-                panel.SelectionChanged(this);
+                panel.ModifiedSelection(this);
             }
         }
 
