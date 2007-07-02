@@ -32,7 +32,11 @@ namespace Zaboom.UserControls
             InitializeComponent();
         }
 
-        public urakawa.core.TreeNode Node { set { node = value; } }
+        public urakawa.core.TreeNode Node
+        {
+            get { return node; }
+            set { node = value; }
+        }
 
         public int PixelsPerSecond
         {

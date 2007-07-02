@@ -10,27 +10,46 @@ using urakawa.undo;
 
 namespace Zaboom.UserControls
 {
+    /// <summary>
+    /// Panel displaying the project, i.e. blocks.
+    /// The project panel also manages selections.
+    /// </summary>
     public partial class ProjectPanel : UserControl
     {
-        private Project project;
-        private CommandManager commandManager;
-        private Dictionary<urakawa.core.TreeNode, Control> nodeMap;
-        private List<Selectable> selected;
-        private int pixelsPerSecond;
+        private Project project;                                     // the project to display
+        private Commands.CommandManager commandManager;              // command manager for the project
+        private Dictionary<urakawa.core.TreeNode, Control> nodeMap;  // find controls for nodes
+        private List<Selectable> selected;                           // currently selected
+        private int pixelsPerSecond;                                 // project-wide size of the waveform display
 
+        /// <summary>
+        /// This event is raised when the selection changes.
+        /// </summary>
+        public SelectionChangedHandler SelectionChanged;
+
+        /// <summary>
+        /// Create a blank project panel (no project yet.)
+        /// </summary>
         public ProjectPanel()
         {
             InitializeComponent();
             project = null;
-            commandManager = new CommandManager();
+            commandManager = new Commands.CommandManager(this);
             nodeMap = new Dictionary<urakawa.core.TreeNode, Control>();
             selected = new List<Selectable>();
             pixelsPerSecond = WaveformPanel.DEFAULT_PIXELS_PER_SECOND;
             transportBar.Enabled = false;
         }
 
-        public CommandManager CommandManager { get { return commandManager; } }
+        /// <summary>
+        /// Get the command manager of this project panel.
+        /// </summary>
+        public Commands.CommandManager CommandManager { get { return commandManager; } }
 
+        /// <summary>
+        /// Project-wide size of the waveform
+        /// </summary>
+        // TODO: move to samples per pixel, or have a float for lower numbers
         public int PixelsPerSecond
         {
             get { return pixelsPerSecond; }
@@ -45,6 +64,11 @@ namespace Zaboom.UserControls
             }
         }
 
+        /// <summary>
+        /// Get the current project.
+        /// Set the current project, only after a blank project was created (cannot set it again.)
+        /// </summary>
+        // TODO: close project
         public Project Project
         {
             get { return project; }
@@ -62,15 +86,51 @@ namespace Zaboom.UserControls
             }
         }
 
+        /// <summary>
+        /// The selection is replaced from a single selectable element.
+        /// </summary>
         public void ReplaceSelection(UserControls.Selectable s)
         {
-            Deselect();
+            DeselectWithoutEvent();
             selected.Add(s);
+            if (SelectionChanged != null) SelectionChanged(this, new EventArgs());
         }
 
+        /// <summary>
+        /// Get the list of currently selected items.
+        /// </summary>
         public List<Selectable> Selected { get { return selected; } }
 
-        public void SelectionChanged(Selectable s)
+        /// <summary>
+        /// The selection is replaced from a list of selectable elements. The corresponding selectable items are selected.
+        /// </summary>
+        public void SelectList(List<UserControls.Selectable> ss)
+        {
+            DeselectWithoutEvent();
+            foreach (UserControls.Selectable s in ss)
+            {
+                selected.Add(s);
+                s.Selected = true;
+            }
+            if (SelectionChanged != null) SelectionChanged(this, new EventArgs());
+        }
+
+        /// <summary>
+        /// The selection is replaced from the project. The corresponding selectable item is selected.
+        /// </summary>
+        public void SelectNode(urakawa.core.TreeNode node)
+        {
+            if (!nodeMap.ContainsKey(node)) throw new Exception("No control for node!");
+            Selectable s = nodeMap[node] as Selectable;
+            if (s == null) throw new Exception("Control is not selectable!");
+            ReplaceSelection(s);
+            s.Selected = true;
+        }
+
+        /// <summary>
+        /// An item's selected status was modified.
+        /// </summary>
+        public void ModifiedSelection(Selectable s)
         {
             if (s.Selected)
             {
@@ -80,6 +140,7 @@ namespace Zaboom.UserControls
             {
                 selected.Remove(s);
             }
+            if (SelectionChanged != null) SelectionChanged(this, new EventArgs());
         }
 
         /// <summary>
@@ -87,9 +148,23 @@ namespace Zaboom.UserControls
         /// </summary>
         private void Deselect()
         {
-            foreach (UserControls.Selectable s in selected) s.Selected = false;
+            DeselectWithoutEvent();
+            if (SelectionChanged != null) SelectionChanged(this, new EventArgs());
         }
 
+        /// <summary>
+        /// Deselect all selected items without sending an event.
+        /// All previously selected items are notified of their deselection.
+        /// </summary>
+        private void DeselectWithoutEvent()
+        {
+            foreach (UserControls.Selectable s in selected) s.Selected = false;
+            selected.Clear();
+        }
+
+        /// <summary>
+        /// Clicking outside of a control deselects everything.
+        /// </summary>
         private void flowLayout_Click(object sender, EventArgs e)
         {
             Deselect();
@@ -106,7 +181,7 @@ namespace Zaboom.UserControls
             block.Node = e.getTreeNode();
             block.PixelsPerSecond = pixelsPerSecond;
             flowLayout.Controls.Add(block);
-            flowLayout.Controls.SetChildIndex(block, flowLayout.Controls.Count - 2);
+            flowLayout.Controls.SetChildIndex(block, e.getTreeNode().getParent().indexOf(e.getTreeNode()));
             nodeMap[e.getTreeNode()] = block;
         }
 
@@ -119,4 +194,6 @@ namespace Zaboom.UserControls
             nodeMap.Remove(e.getTreeNode());
         }
     }
+
+    public delegate void SelectionChangedHandler(ProjectPanel sender, EventArgs e);
 }

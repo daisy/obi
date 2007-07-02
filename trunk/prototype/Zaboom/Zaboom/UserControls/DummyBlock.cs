@@ -46,11 +46,13 @@ namespace Zaboom.UserControls
             }
             else
             {
-                panel.SelectionChanged(this);
+                panel.ModifiedSelection(this);
             }
         }
 
         #region Selectable Members
+
+        public urakawa.core.TreeNode Node { get { return null; } }
 
         /// <summary>
         /// Used by the project panel to ask or tell the control when it selected or not.

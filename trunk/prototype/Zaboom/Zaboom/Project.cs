@@ -68,12 +68,19 @@ namespace Zaboom
         public Channel AudioChannel { get { return GetSingleChannelByName(AUDIO_CHANNEL_NAME); } }
 
         /// <summary>
+        /// True if the project has modifications that are not saved.
+        /// </summary>
+        public bool CanSave { get { return canSave; } }
+
+        /// <summary>
         /// Import an audio file to the project by creating a new node with audio from the file.
         /// The node is created but not actually added but a command is returned.
         /// </summary>
         /// <param name="path">Full path to the audio file to import.</param>
+        /// <param name="contextNode">The context node before which to import the audio file.
+        /// If null, add at the end.</param>
         /// <returns>The command for adding the node.</returns>
-        public AddTreeNodeCommand ImportAudioFileCommand(string path)
+        public Commands.AddTreeNode ImportAudioFileCommand(string path, TreeNode contextNode)
         {
             Stream input = File.OpenRead(path);
             PCMDataInfo info = PCMDataInfo.parseRiffWaveHeader(input);
@@ -92,9 +99,15 @@ namespace Zaboom
             TreeNode node = getPresentation().getTreeNodeFactory().createNode();
             node.setProperty(prop);
             TreeNode root = getPresentation().getRootNode();
-            AddTreeNodeCommand command = new AddTreeNodeCommand(this, node, root, root.getChildCount());
+            Commands.AddTreeNode command = new Commands.AddTreeNode(node, root,
+                contextNode == null ? root.getChildCount() : contextNode.getParent().indexOf(contextNode));
             return command;
         }
+
+        /// <summary>
+        /// True if the project has no content.
+        /// </summary>
+        public bool IsEmpty { get { return getPresentation().getRootNode().getChildCount() == 0; } }
 
         /// <summary>
         /// Open a XUK file into a blank project. The path to the file was given in the constructor.
