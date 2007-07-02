@@ -47,6 +47,15 @@ namespace Zaboom.UserControls
         public Commands.CommandManager CommandManager { get { return commandManager; } }
 
         /// <summary>
+        /// Deselect all selected items.
+        /// </summary>
+        public void Deselect()
+        {
+            DeselectWithoutEvent();
+            if (SelectionChanged != null) SelectionChanged(this, new EventArgs());
+        }
+
+        /// <summary>
         /// Project-wide size of the waveform
         /// </summary>
         // TODO: move to samples per pixel, or have a float for lower numbers
@@ -140,15 +149,6 @@ namespace Zaboom.UserControls
             {
                 selected.Remove(s);
             }
-            if (SelectionChanged != null) SelectionChanged(this, new EventArgs());
-        }
-
-        /// <summary>
-        /// Deselect all selected items.
-        /// </summary>
-        private void Deselect()
-        {
-            DeselectWithoutEvent();
             if (SelectionChanged != null) SelectionChanged(this, new EventArgs());
         }
 

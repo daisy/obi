@@ -20,6 +20,8 @@ namespace Zaboom
             projectPanel.SelectionChanged += new UserControls.SelectionChangedHandler(projectPanel_SelectionChanged);
         }
 
+        private bool CanDelete { get { return projectPanel.Project != null && projectPanel.Selected.Count > 0; } }
+
         /// <summary>
         /// Create a new, blank project.
         /// Bring up a dialog to choose a location and a title.
@@ -36,6 +38,22 @@ namespace Zaboom
                 projectPanel.Project = new Project(dialog.Title, dialog.ProjectLocation);
                 projectPanel.Project.StateChanged += new StateChangedHandler(Project_StateChanged);
                 projectPanel.Project.Save();
+            }
+        }
+
+        /// <summary>
+        /// Delete the selected items.
+        /// </summary>
+        private void Delete()
+        {
+            if (CanDelete)
+            {
+                List<UserControls.Selectable> ss = new List<UserControls.Selectable>(projectPanel.Selected);
+                foreach (UserControls.Selectable s in ss)
+                {
+                    Commands.DeleteTreeNode command = new Commands.DeleteTreeNode(s.Node);
+                    projectPanel.CommandManager.AddAndExecute(command);
+                }
             }
         }
 
@@ -188,6 +206,7 @@ namespace Zaboom
         // Edit
         private void undoToolStripMenuItem_Click(object sender, EventArgs e) { Undo(); }
         private void redoToolStripMenuItem_Click(object sender, EventArgs e) { Redo(); }
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e) { Delete(); }
 
         // Audio
         private void importFileToolStripMenuItem_Click(object sender, EventArgs e) { ImportFile(); }
@@ -216,6 +235,8 @@ namespace Zaboom
 
             bool hasProject = projectPanel.Project != null;
             saveToolStripMenuItem.Enabled = hasProject && projectPanel.Project.CanSave;
+
+            deleteToolStripMenuItem.Enabled = CanDelete;
 
             bool hasProjectWithContents = projectPanel.Project != null && !projectPanel.Project.IsEmpty;
             importFileToolStripMenuItem.Enabled = hasProject && projectPanel.Selected.Count > 0;
