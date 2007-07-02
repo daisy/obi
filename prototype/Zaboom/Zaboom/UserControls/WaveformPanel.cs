@@ -7,9 +7,9 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
-using urakawa.properties.channel;
 using urakawa.media.data;
 using urakawa.media.data.audio;
+using urakawa.property.channel;
 
 namespace Zaboom.UserControls
 {
@@ -18,7 +18,7 @@ namespace Zaboom.UserControls
         private Project project;
         private urakawa.core.TreeNode node;
 
-        public static readonly int DEFAULT_PIXELS_PER_SECOND = 24;
+        public static readonly int DEFAULT_PIXELS_PER_SECOND = 12;
 
         private static readonly Pen MONOPEN = new Pen(Color.FromArgb(192, 0, 0, 255), 1);
         private static readonly Pen STEREOPEN1 = new Pen(Color.FromArgb(128, 0, 0, 255), 1);
@@ -53,7 +53,7 @@ namespace Zaboom.UserControls
 
         public Project Project { set { project = value; } }
 
-        private AudioMediaData AudioData
+        public AudioMediaData AudioData
         {
             get
             {

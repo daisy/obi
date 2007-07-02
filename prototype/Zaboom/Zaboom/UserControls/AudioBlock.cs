@@ -18,7 +18,6 @@ namespace Zaboom.UserControls
         private bool selected;
         protected ProjectPanel panel;
 
-        private static readonly int SELECT_TAB_WIDTH = 32;
         private static readonly Color BACK_COLOR_SELECTED = Color.Aquamarine;
         private static readonly Color BACK_COLOR_UNSELECTED = Color.RoyalBlue;
 
@@ -28,6 +27,20 @@ namespace Zaboom.UserControls
             panel = null;
             Selected = false;
         }
+
+        public urakawa.core.TreeNode Node
+        {
+            set
+            {
+                waveformPanel.Node = value;
+                double dur = waveformPanel.AudioData.getAudioDuration().getTimeDeltaAsMillisecondFloat() / 1000.0;
+                timeLabel.Text = String.Format("{0}s", dur.ToString("0.00"));
+                infoPanel.Width = timeLabel.Width + infoPanel.Padding.Right;
+                Invalidate();
+            }
+        }
+
+        public int PixelsPerSecond { set { waveformPanel.PixelsPerSecond = value; } }
 
         public ProjectPanel Panel
         {
@@ -39,7 +52,7 @@ namespace Zaboom.UserControls
             }
         }
 
-        public WaveformPanel Waveform { get { return waveformPanel; } }
+        public Project Project { set { waveformPanel.Project = value; } }
 
         private void AudioBlock_Click(object sender, EventArgs e)
         {
@@ -54,9 +67,10 @@ namespace Zaboom.UserControls
             }
         }
 
-        private void waveformPanel_SizeChanged(object sender, EventArgs e)
+        private void ContentsSizeChanged(object sender, EventArgs e)
         {
-            Width = waveformPanel.Width + SELECT_TAB_WIDTH;
+            waveformPanel.Location = new Point(Padding.Left + infoPanel.Width, waveformPanel.Location.Y);
+            Width = Padding.Left + infoPanel.Width + waveformPanel.Width + Padding.Right;
         }
 
         #region Selectable Members

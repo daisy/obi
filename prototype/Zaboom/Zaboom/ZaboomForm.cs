@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using urakawa.undo;
 
 namespace Zaboom
 {
@@ -53,7 +54,7 @@ namespace Zaboom
                 {
                     try
                     {
-                        urakawa.undo.ICommand command = projectPanel.Project.ImportAudioFileCommand(dialog.FileName);
+                        ICommand command = projectPanel.Project.ImportAudioFileCommand(dialog.FileName);
                         projectPanel.CommandManager.execute(command);
                     }
                     catch (Exception e_)
@@ -112,10 +113,7 @@ namespace Zaboom
         /// </summary>
         private void SaveProject()
         {
-            if (projectPanel.Project != null)
-            {
-                projectPanel.Project.Save();
-            }
+            if (projectPanel.Project != null) projectPanel.Project.Save();
         }
 
         /// <summary>
@@ -200,7 +198,10 @@ namespace Zaboom
         #endregion
 
 
-        void Project_StateChanged(object sender, StateChangedEventArgs e)
+        /// <summary>
+        /// Update the title bar and the undo/redo menus when the project state has changed.
+        /// </summary>
+        private void Project_StateChanged(object sender, StateChangedEventArgs e)
         {
             if (e.Change == StateChange.Closed)
             {

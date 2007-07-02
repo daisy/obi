@@ -35,7 +35,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="urakawa, Version=1.0.0.22804, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="urakawa, Version=1.0.0.2331, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\implementation\UrakawaToolkit\bin\Debug\urakawa.dll</HintPath>
     </Reference>
@@ -51,23 +51,11 @@
       <DependentUpon>NewProjectDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Project.cs" />
-    <Compile Include="ProjectPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ProjectPanel.Designer.cs">
-      <DependentUpon>ProjectPanel.cs</DependentUpon>
-    </Compile>
     <Compile Include="SourceView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SourceView.Designer.cs">
       <DependentUpon>SourceView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TransportBar.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TransportBar.Designer.cs">
-      <DependentUpon>TransportBar.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\AudioBlock.cs">
       <SubType>UserControl</SubType>
@@ -80,6 +68,18 @@
     </Compile>
     <Compile Include="UserControls\DummyBlock.Designer.cs">
       <DependentUpon>DummyBlock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ProjectPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ProjectPanel.designer.cs">
+      <DependentUpon>ProjectPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TransportBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\TransportBar.designer.cs">
+      <DependentUpon>TransportBar.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\WaveformPanel.cs">
       <SubType>UserControl</SubType>
@@ -99,17 +99,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>NewProjectDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProjectPanel.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>ProjectPanel.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SourceView.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SourceView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TransportBar.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>TransportBar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\AudioBlock.resx">
       <SubType>Designer</SubType>
@@ -118,6 +110,14 @@
     <EmbeddedResource Include="UserControls\DummyBlock.resx">
       <SubType>Designer</SubType>
       <DependentUpon>DummyBlock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ProjectPanel.resx">
+      <DependentUpon>ProjectPanel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TransportBar.resx">
+      <DependentUpon>TransportBar.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\WaveformPanel.resx">
       <DependentUpon>WaveformPanel.cs</DependentUpon>

@@ -11,7 +11,7 @@ using urakawa.media.data;
 using urakawa.media.data.audio;
 using urakawa.media.data.utilities;
 using urakawa.metadata;
-using urakawa.properties.channel;
+using urakawa.property.channel;
 
 namespace Zaboom
 {
@@ -84,8 +84,7 @@ namespace Zaboom
             AudioMediaData data = (AudioMediaData)
                 getPresentation().getMediaDataFactory().createMediaData(typeof(AudioMediaData));
             data.appendAudioDataFromRiffWave(path);
-						ManagedAudioMedia media = (ManagedAudioMedia)
-								getPresentation().getMediaFactory().createAudioMedia();
+            ManagedAudioMedia media = (ManagedAudioMedia)getPresentation().getMediaFactory().createAudioMedia();
             media.setMediaData(data);
             Channel audio = GetSingleChannelByName(AUDIO_CHANNEL_NAME);
             ChannelsProperty prop = getPresentation().getPropertyFactory().createChannelsProperty();

@@ -8,9 +8,9 @@ using System.Windows.Forms;
 using urakawa.core;
 using urakawa.media.data;
 using urakawa.media.data.audio;
-using urakawa.properties.channel;
+using urakawa.property.channel;
 
-namespace Zaboom
+namespace Zaboom.UserControls
 {
     public partial class TransportBar : UserControl
     {

@@ -34,6 +34,11 @@ namespace Zaboom.UserControls
 
         private void DummyBlock_Click(object sender, EventArgs e)
         {
+            Clicked();
+        }
+
+        protected void Clicked()
+        {
             Selected = !selected;
             if (selected)
             {
