@@ -46,11 +46,12 @@ it.
 
 * Marisa
 * [Requirement #23](../../common/ObiRequirements/Obi2_0Requirements.htm#f23)
+* This is done but pending review from others
 * This has been partially implemented as something that reads in an XHTML document and creates section nodes for each heading
-* TODO: grab the text from nested elements
-* TODO: add page numbers (&lt;p class="page&gt; or maybe a nested span)
-* Any issue surrounding empty audio blocks has not been addressed yet (note to self: this was for page numbers)
 * The input XHTML must be well-formed, contain one or more headings, and have the headings in the correct order (i.e., h2 has to come between h1 and h3).
+* Pages can be added by having class="page" on p and span elements
+* See "/urakawa/trunk/urakawa/application/misc/test xhtml import" for example input documents.
+* However, if a page sequence is i, ii, iii, 1, 2, 3, 4, 5, then the annotations will show those string values, but the page numbers values will be 1, 2, 3 ... 8.  This is due to Obi's auto-page numbering.
 
 ### Support for images for section headings
 
