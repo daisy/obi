@@ -81,6 +81,24 @@
             <li>
               <a href="#id53954">4.1. Mouse playback commands:</a>
             </li>
+            <li>
+              <a href="#id53977">5 Fast play</a>
+            </li>
+            <li>
+              <a href="#id53994">5.1 Front end implementation:</a>
+            </li>
+            <li>
+              <a href="#id54004">5.1.1. Whenever play command is given may be from play button, drop down menu or shortcut key, playback start playing with Fast play rate selected in combobox</a>
+            </li>
+            <li>
+              <a href="#id54014">5.1.2 if  playback is going on, selecting playback speed from combovox will change playback speed. on the fly</a>
+            </li>
+            <li>
+              <a href="#id54019">5.2. Use of keyboard shortcuts for fastplay.</a>
+            </li>
+            <li>
+              <a href="#id54023">5.2.1. For strip manager we can have following behaviour:</a>
+            </li>
           </ul>
         </li>
       </ul>
@@ -245,5 +263,42 @@ but I want it to be said explicitely.</p>
       <li>4.1.2. For play all, play button on transport bar may be used.</li>
     </ul>
     <p><strong>LNN</strong>: I have the same opinion here on using mouse for playback, as I do in the  strips view centric playback.</p>
+    <h3 id="id53977">5 Fast play</h3>
+    <p>Fastplay means playing at higher playing speed.
+It is different from Fastforwrd as fast play means playing at higher speeds without breaking continuity of playback   while Fast forward plays small chuncks while jumping
+forward in time. <br/>
+This feature is extremely useful for proof reading and for audio editting by power users.
+Fast play already exists in backend audioplayer, we need to implement it in front end.</p>
+    <h3 id="id53994">5.1 Front end implementation:</h3>
+    <p>we need to add a combobox in transport bar containing values like.
+- Normal.
+- 1.1. times.
+- 1.25 times.
+- 1.33 times.
+- 1.5 times.
+- 1.66 times.
+- 2 times.
+These are not final values but good for example in this text.</p>
+    <h3 id="id54004">5.1.1. Whenever play command is given may be from play button, drop down menu or shortcut key, playback start playing with Fast play rate selected in combobox</h3>
+    <p>described in above text.</p>
+    <h3 id="id54014">5.1.2 if  playback is going on, selecting playback speed from combovox will change playback speed. on the fly</h3>
+    <h3 id="id54019">5.2. Use of keyboard shortcuts for fastplay.</h3>
+    <h3 id="id54023">5.2.1. For strip manager we can have following behaviour:</h3>
+    <p>We can use three single key shortcuts for it,
+each having following purpose.
+- Speed up: for increasing playback speed incrementally as in Fast Forward.
+- Speed Down: Decrease playback speed incrementally.
+- Speed Normal.: Return to normal speed.
+Remark: Speed down can not go below normal speed.
+We can also exclude Speed down shorcut and use rotory behaviour in speed up. i.e. keep on increasing speed when speed up shortcut is pressed till top speed
+is reached and drop down to normal speed on next press of speed up shortcut.</p>
+    <p>Speed Normal shortcut when used on fly should follow lapse back behaviour. Explanation with help of an example:
+A user wants to quick split while fast play.
+- He Starts playback and use speed up to increase playback speed.
+- He reaches the split point.
+- Now he can use Quick split shorcut directly or if he is not confident to do it at such a high playback speed, he can  press speed normal shortcut key.
+- This wil start playback 1 to 2 seconds before the current play position such that user can decide split point on normal playback speed and use quick split
+on the fly.
+- After quick split he can again increase playback speed using speed up shortcut key and continue like this.</p>
   </body>
 </html>
