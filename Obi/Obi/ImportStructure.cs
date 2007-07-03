@@ -11,6 +11,7 @@ namespace Obi
     class ImportStructure
     {
         private Obi.Project mProject;
+        private SectionNode mLastSection;
 
         //these are section nodes that could accept children
         private System.Collections.Generic.Stack <Obi.SectionNode> mOpenSectionNodes;
@@ -18,12 +19,9 @@ namespace Obi
         public ImportStructure(){}
 
         //this first pass will translate h1-h6 elements to SectionNodes
-        //future plans are:
-        // - allow mapping via an external file (e.g. <h1> = SectionNode, <p>=phrase, class="page" = pageproperty)
-        // - support pages and phrases
-        // - pick up metadata from the document head
         public void ImportFromXHTML(String xhtmlDocument, Obi.Project project)
         {
+            
             mOpenSectionNodes = new System.Collections.Generic.Stack<Obi.SectionNode>();
             mProject = project;
             LoadFromXHTML(new Uri(xhtmlDocument));
@@ -53,6 +51,7 @@ namespace Obi
             XmlTextReader source = new XmlTextReader(fileUri.ToString());
             source.WhitespaceHandling = WhitespaceHandling.Significant;
             bool foundHeadings = false;
+            mLastSection = null;
 
             try
             {
@@ -66,6 +65,14 @@ namespace Obi
                             foundHeadings = true;
                             Obi.SectionNode node = createSectionNode(source);
                             if (node != null && node.Level < 6) mOpenSectionNodes.Push(node);
+                            mLastSection = node;
+                        }
+                        else if (source.LocalName == "p" || source.LocalName == "span")
+                        {
+                            if (source.GetAttribute("class") == "page")
+                            {
+                                addPage(source);
+                            }
                         }
                     }
                     if (source.EOF) break;
@@ -77,6 +84,19 @@ namespace Obi
                 throw e;
             }
             if (foundHeadings == false) throw new Exception("No headings found.");
+        }
+
+        private void addPage(XmlTextReader source)
+        {
+            if (mLastSection == null) throw new Exception("Error adding page number: no parent section found");
+
+            mProject.AddEmptyPhraseNode(mLastSection, mLastSection.PhraseChildCount);
+            //the phrase we just added should be at the end of the phrase child list
+            PhraseNode pagePhrase = mLastSection.PhraseChild(mLastSection.PhraseChildCount - 1);
+            pagePhrase.Annotation = getElementText(source);
+            //is this the right function to call?
+            mProject.DidSetPageNumberOnPhrase(pagePhrase);
+           
         }
 
         //source points to a heading element (h1 through h6)
@@ -128,8 +148,24 @@ namespace Obi
                 newNode = mProject.CreateChildSectionNode(parentNode);
             }
 
-            if (newNode != null) mProject.RenameSectionNode(newNode, source.ReadString());
+            if (newNode != null) mProject.RenameSectionNode(newNode, getElementText(source));
             return newNode;
+        }
+
+        private string getElementText(XmlTextReader source)
+        {
+            string elementName = source.Name;
+            string allText = "";
+            allText += source.ReadString();
+           // source.Read();
+            //wait for the end tag; acculumate the text inside
+            while (!(source.NodeType == XmlNodeType.EndElement && source.Name == elementName))
+            {
+                allText += source.ReadString();
+                source.Read();
+            }
+
+            return allText;
         }
     }
 
