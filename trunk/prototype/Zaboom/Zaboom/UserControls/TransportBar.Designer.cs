@@ -65,6 +65,7 @@ namespace Zaboom.UserControls
             this.Controls.Add(this.playButton);
             this.Name = "TransportBar";
             this.Size = new System.Drawing.Size(272, 38);
+            this.ParentChanged += new System.EventHandler(this.TransportBar_ParentChanged);
             this.ResumeLayout(false);
 
         }

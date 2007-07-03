@@ -14,55 +14,65 @@ namespace Zaboom.UserControls
 {
     public partial class TransportBar : UserControl
     {
-        private Audio.Player player;
-        private List<AudioMediaData> playlist;
-        private int nowPlaying;
+        private Audio.Player player;            // audio player for this transport bar
+        private List<AudioMediaData> playlist;  // list of audio phrases to play
+        private int nowPlaying;                 // index in the playlist of the phrase currently playing
 
+        /// <summary>
+        /// Create a new transport bar.
+        /// </summary>
         public TransportBar()
         {
             InitializeComponent();
             player = new Audio.Player();
-            player.SetOutputDevice(this);
+            playlist = new List<AudioMediaData>();
         }
 
+        /// <summary>
+        /// Get the parent as a project panel.
+        /// </summary>
         private ProjectPanel ProjectPanel { get { return Parent as ProjectPanel; } }
 
-        private void playButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Update the playlist with the selection.
+        /// </summary>
+        private void ProjectPanel_SelectionChanged(ProjectPanel sender, EventArgs e)
         {
-            if (ProjectPanel != null && ProjectPanel.Project != null)
+            playlist.Clear();
+            foreach (Selectable s in ProjectPanel.Selected)
             {
-                playlist = new List<AudioMediaData>();
-                Channel audioch = ProjectPanel.Project.AudioChannel;
-                ProjectPanel.Project.getPresentation().getRootNode().acceptDepthFirst(
-                    delegate(urakawa.core.TreeNode node)
-                    {
-                        ChannelsProperty chprop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
-                        if (chprop != null)
-                        {
-                            ManagedAudioMedia media = chprop.getMedia(audioch) as ManagedAudioMedia;
-                            if (media != null) playlist.Add(media.getMediaData());
-                        }
-                        return true;
-                    },
-                    delegate(urakawa.core.TreeNode node) { }
-                );
-                System.Diagnostics.Debug.Print("# of media to play: {0}", playlist.Count);
-                if (playlist.Count > 0)
+                if (s.Node != null)
                 {
-                    player.EndOfAudioAsset += new Audio.EndOfAudioAssetHandler(player_EndOfAudioAsset);
-                    nowPlaying = -1;
-                    PlayNext();
+                    ChannelsProperty chprop = (ChannelsProperty)s.Node.getProperty(typeof(ChannelsProperty));
+                    if (chprop != null)
+                    {
+                        ManagedAudioMedia media = chprop.getMedia(ProjectPanel.Project.AudioChannel) as ManagedAudioMedia;
+                        if (media != null) playlist.Add(media.getMediaData());
+                    }
                 }
             }
         }
 
-        private bool PlayNext()
+        /// <summary>
+        /// Play the currently selected phrase(s).
+        /// </summary>
+        private void playButton_Click(object sender, EventArgs e)
         {
-            if (++nowPlaying < playlist.Count)
+                if (playlist.Count > 0)
+                {
+                    player.EndOfAudioAsset += new Audio.EndOfAudioAssetHandler(player_EndOfAudioAsset);
+                    nowPlaying = 0;
+                    Play();
+                }
+        }
+
+        private bool Play()
+        {
+            if (nowPlaying < playlist.Count)
             {
                 player.Stop();
-                player.CurrentMedia = playlist[nowPlaying];
-                player.Play();
+                // player.CurrentMedia = playlist[nowPlaying];
+                // player.Play();
                 return true;
             }
             else
@@ -71,9 +81,10 @@ namespace Zaboom.UserControls
             }
         }         
 
-        private void player_EndOfAudioAsset(object sender, EventArgs e)
+        private void player_EndOfAudioAsset(Audio.Player player, EventArgs e)
         {
-            if (!PlayNext())
+            ++nowPlaying;
+            if (!Play())
             {
                 player.EndOfAudioAsset -= new Audio.EndOfAudioAssetHandler(player_EndOfAudioAsset);
                 player.Stop();
@@ -84,6 +95,14 @@ namespace Zaboom.UserControls
         {
             player.EndOfAudioAsset -= new Audio.EndOfAudioAssetHandler(player_EndOfAudioAsset);
             player.Stop();
+        }
+
+        /// <summary>
+        /// When the transport is attached to a project, start listening to selection changes.
+        /// </summary>
+        private void TransportBar_ParentChanged(object sender, EventArgs e)
+        {
+            if (ProjectPanel != null) ProjectPanel.SelectionChanged += new SelectionChangedHandler(ProjectPanel_SelectionChanged);
         }
     }
 }

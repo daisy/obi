@@ -9,7 +9,7 @@ using urakawa.media.data.audio;
 
 namespace Zaboom.Audio
 {
-	public class Player
+	public class __OLD__Player
 	{
 		public event EndOfAudioAssetHandler EndOfAudioAsset;
 		public event StateChangedHandler StateChanged;
@@ -37,7 +37,7 @@ namespace Zaboom.Audio
 
         #endregion
 
-        public Player()
+        public __OLD__Player()
         {
             CurrentMedia = null;
             notifyPosition = new BufferPositionNotify[NOTIFICATIONS + 1];
