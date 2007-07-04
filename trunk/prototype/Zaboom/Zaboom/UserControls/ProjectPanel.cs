@@ -38,7 +38,6 @@ namespace Zaboom.UserControls
             nodeMap = new Dictionary<urakawa.core.TreeNode, Control>();
             selected = new List<Selectable>();
             pixelsPerSecond = WaveformPanel.DEFAULT_PIXELS_PER_SECOND;
-            transportBar.Enabled = false;
         }
 
         /// <summary>

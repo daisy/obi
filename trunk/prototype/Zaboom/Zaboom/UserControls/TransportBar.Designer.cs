@@ -31,6 +31,7 @@ namespace Zaboom.UserControls
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransportBar));
             this.playButton = new System.Windows.Forms.Button();
             this.stopButton = new System.Windows.Forms.Button();
+            this.statusLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // playButton
@@ -57,16 +58,29 @@ namespace Zaboom.UserControls
             this.stopButton.UseVisualStyleBackColor = true;
             this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
             // 
+            // statusLabel
+            // 
+            this.statusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.statusLabel.AutoSize = true;
+            this.statusLabel.Location = new System.Drawing.Point(246, 13);
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(23, 12);
+            this.statusLabel.TabIndex = 2;
+            this.statusLabel.Text = "***";
+            this.statusLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // TransportBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.stopButton);
             this.Controls.Add(this.playButton);
             this.Name = "TransportBar";
             this.Size = new System.Drawing.Size(272, 38);
-            this.ParentChanged += new System.EventHandler(this.TransportBar_ParentChanged);
+            this.Load += new System.EventHandler(this.TransportBar_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -74,5 +88,6 @@ namespace Zaboom.UserControls
 
         private System.Windows.Forms.Button playButton;
         private System.Windows.Forms.Button stopButton;
+        private System.Windows.Forms.Label statusLabel;
     }
 }

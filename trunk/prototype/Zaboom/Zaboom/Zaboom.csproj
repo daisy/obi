@@ -42,10 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audio\AudioDevice.cs" />
-    <Compile Include="Audio\AudioPlayer.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Audio\CalculationFunctions.cs" />
+    <Compile Include="Audio\Player.cs" />
     <Compile Include="Commands\AddTreeNode.cs" />
     <Compile Include="Commands\CommandManager.cs" />
     <Compile Include="Commands\DeleteTreeNode.cs" />
