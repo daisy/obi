@@ -14,9 +14,9 @@ namespace Zaboom.UserControls
 {
     public partial class TransportBar : UserControl
     {
-        private Audio.Player player;            // audio player for this transport bar
-        private List<AudioMediaData> playlist;  // list of audio phrases to play
-        private int nowPlaying;                 // index in the playlist of the phrase currently playing
+        private Audio.Player mPlayer;            // audio player for this transport bar
+        private List<AudioMediaData> mPlaylist;  // list of audio phrases to play
+        private int mNowPlaying;                 // index in the playlist of the phrase currently playing
 
         /// <summary>
         /// Create a new transport bar.
@@ -24,10 +24,10 @@ namespace Zaboom.UserControls
         public TransportBar()
         {
             InitializeComponent();
-            player = new Audio.Player();
-            player.StateChanged += new Audio.StateChangedHandler(player_StateChanged);
-            ShowPlayerStatus();
-            playlist = new List<AudioMediaData>();
+            mPlayer = new Audio.Player();
+            mPlayer.StateChanged += new Audio.StateChangedHandler(mPlayer_StateChanged);
+            UpdatePlayerStatus();
+            mPlaylist = new List<AudioMediaData>();
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Zaboom.UserControls
         /// </summary>
         private void ProjectPanel_SelectionChanged(ProjectPanel sender, EventArgs e)
         {
-            playlist.Clear();
+            mPlaylist.Clear();
             foreach (Selectable s in ProjectPanel.Selected)
             {
                 if (s.Node != null)
@@ -49,31 +49,36 @@ namespace Zaboom.UserControls
                     if (chprop != null)
                     {
                         ManagedAudioMedia media = chprop.getMedia(ProjectPanel.Project.AudioChannel) as ManagedAudioMedia;
-                        if (media != null) playlist.Add(media.getMediaData());
+                        if (media != null) mPlaylist.Add(media.getMediaData());
                     }
                 }
             }
+            UpdateButtonsState();
         }
 
         /// <summary>
         /// Play the currently selected phrase(s).
         /// </summary>
-        private void playButton_Click(object sender, EventArgs e)
+        private void mPlayButton_Click(object sender, EventArgs e)
         {
-                if (playlist.Count > 0)
-                {
-                    player.EndOfAudioAsset += new Audio.EndOfAudioAssetHandler(player_EndOfAudioAsset);
-                    nowPlaying = 0;
-                    Play();
-                }
+            if (mPlaylist.Count > 0)
+            {
+                mPlayer.EndOfAudioAsset += new Audio.EndOfAudioAssetHandler(mPlayer_EndOfAudioAsset);
+                mNowPlaying = 0;
+                Play();
+            }
         }
 
+        /// <summary>
+        /// Play from the current item in the playlist.
+        /// </summary>
+        /// <returns>True if there was anything to play.</returns>
         private bool Play()
         {
-            if (nowPlaying < playlist.Count)
+            if (mNowPlaying < mPlaylist.Count)
             {
-                player.Stop();
-                player.Play(playlist[nowPlaying]);
+                mPlayer.Stop();
+                mPlayer.Play(mPlaylist[mNowPlaying]);
                 return true;
             }
             else
@@ -85,36 +90,52 @@ namespace Zaboom.UserControls
         /// <summary>
         /// Move to the next asset in the playlist or stop if at the end.
         /// </summary>
-        private void player_EndOfAudioAsset(Audio.Player player, EventArgs e)
+        private void mPlayer_EndOfAudioAsset(Audio.Player player, EventArgs e)
         {
-            ++nowPlaying;
+            ++mNowPlaying;
             if (!Play())
             {
-                player.EndOfAudioAsset -= new Audio.EndOfAudioAssetHandler(player_EndOfAudioAsset);
+                player.EndOfAudioAsset -= new Audio.EndOfAudioAssetHandler(mPlayer_EndOfAudioAsset);
                 player.Stop();
             }
         }
 
-        private void player_StateChanged(Audio.Player player, Audio.StateChangedEventArgs e)
+        /// <summary>
+        /// Update the transport bar when the player state changes.
+        /// </summary>
+        private void mPlayer_StateChanged(Audio.Player player, Audio.StateChangedEventArgs e)
         {
-            ShowPlayerStatus();
-
+            UpdatePlayerStatus();
         }
 
         private delegate void VoidCallback();
 
-        private void ShowPlayerStatus()
+        /// <summary>
+        /// Update the player status in the transport bar.
+        /// </summary>
+        private void UpdatePlayerStatus()
         {
-            if (statusLabel.InvokeRequired)
+            if (mStatusLabel.InvokeRequired)
             {
-                Invoke(new VoidCallback(ShowPlayerStatus));
+                Invoke(new VoidCallback(UpdatePlayerStatus));
             }
             else
             {
-                int w = statusLabel.Width;
-                statusLabel.Text = player.State.ToString();
-                statusLabel.Location = new Point(statusLabel.Location.X - statusLabel.Width + w, statusLabel.Location.Y);
+                int w = mStatusLabel.Width;
+                mStatusLabel.Text = mPlayer.State.ToString();
+                mStatusLabel.Location = new Point(mStatusLabel.Location.X - mStatusLabel.Width + w, mStatusLabel.Location.Y);
+                UpdateButtonsState();
             }
+        }
+
+        /// <summary>
+        /// Update the state of the buttons depending on the player and selection state.
+        /// </summary>
+        private void UpdateButtonsState()
+        {
+            Enabled = mPlayer.State != Audio.PlayerState.NotReady;
+            mPlayButton.Enabled = mPlayer.CanPlay && mPlaylist.Count > 0;
+            mStopButton.Enabled = mPlayer.CanStop;
         }
 
         /// <summary>
@@ -122,8 +143,8 @@ namespace Zaboom.UserControls
         /// </summary>
         private void stopButton_Click(object sender, EventArgs e)
         {
-            player.EndOfAudioAsset -= new Audio.EndOfAudioAssetHandler(player_EndOfAudioAsset);
-            player.Stop();
+            mPlayer.EndOfAudioAsset -= new Audio.EndOfAudioAssetHandler(mPlayer_EndOfAudioAsset);
+            mPlayer.Stop();
         }
 
         /// <summary>
@@ -132,7 +153,7 @@ namespace Zaboom.UserControls
         private void TransportBar_Load(object sender, EventArgs e)
         {
             ProjectPanel.SelectionChanged += new SelectionChangedHandler(ProjectPanel_SelectionChanged);
-            player.SetDevice(ParentForm, "");
+            mPlayer.SetDevice(ParentForm, "");
         }
     }
 }
