@@ -25,6 +25,8 @@ namespace Zaboom.UserControls
         {
             InitializeComponent();
             player = new Audio.Player();
+            player.StateChanged += new Audio.StateChangedHandler(player_StateChanged);
+            ShowPlayerStatus();
             playlist = new List<AudioMediaData>();
         }
 
@@ -71,8 +73,7 @@ namespace Zaboom.UserControls
             if (nowPlaying < playlist.Count)
             {
                 player.Stop();
-                // player.CurrentMedia = playlist[nowPlaying];
-                // player.Play();
+                player.Play(playlist[nowPlaying]);
                 return true;
             }
             else
@@ -81,6 +82,9 @@ namespace Zaboom.UserControls
             }
         }         
 
+        /// <summary>
+        /// Move to the next asset in the playlist or stop if at the end.
+        /// </summary>
         private void player_EndOfAudioAsset(Audio.Player player, EventArgs e)
         {
             ++nowPlaying;
@@ -91,6 +95,31 @@ namespace Zaboom.UserControls
             }
         }
 
+        private void player_StateChanged(Audio.Player player, Audio.StateChangedEventArgs e)
+        {
+            ShowPlayerStatus();
+
+        }
+
+        private delegate void VoidCallback();
+
+        private void ShowPlayerStatus()
+        {
+            if (statusLabel.InvokeRequired)
+            {
+                Invoke(new VoidCallback(ShowPlayerStatus));
+            }
+            else
+            {
+                int w = statusLabel.Width;
+                statusLabel.Text = player.State.ToString();
+                statusLabel.Location = new Point(statusLabel.Location.X - statusLabel.Width + w, statusLabel.Location.Y);
+            }
+        }
+
+        /// <summary>
+        /// Stop playback.
+        /// </summary>
         private void stopButton_Click(object sender, EventArgs e)
         {
             player.EndOfAudioAsset -= new Audio.EndOfAudioAssetHandler(player_EndOfAudioAsset);
@@ -98,11 +127,12 @@ namespace Zaboom.UserControls
         }
 
         /// <summary>
-        /// When the transport is attached to a project, start listening to selection changes.
+        /// Set the audio device and listen to selection events from the parent project panel.
         /// </summary>
-        private void TransportBar_ParentChanged(object sender, EventArgs e)
+        private void TransportBar_Load(object sender, EventArgs e)
         {
-            if (ProjectPanel != null) ProjectPanel.SelectionChanged += new SelectionChangedHandler(ProjectPanel_SelectionChanged);
+            ProjectPanel.SelectionChanged += new SelectionChangedHandler(ProjectPanel_SelectionChanged);
+            player.SetDevice(ParentForm, "");
         }
     }
 }
