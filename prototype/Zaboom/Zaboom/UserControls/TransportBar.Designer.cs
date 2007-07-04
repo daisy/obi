@@ -29,53 +29,53 @@ namespace Zaboom.UserControls
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransportBar));
-            this.playButton = new System.Windows.Forms.Button();
-            this.stopButton = new System.Windows.Forms.Button();
-            this.statusLabel = new System.Windows.Forms.Label();
+            this.mPlayButton = new System.Windows.Forms.Button();
+            this.mStopButton = new System.Windows.Forms.Button();
+            this.mStatusLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // playButton
             // 
-            this.playButton.FlatAppearance.BorderSize = 0;
-            this.playButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.playButton.Image = ((System.Drawing.Image)(resources.GetObject("playButton.Image")));
-            this.playButton.Location = new System.Drawing.Point(3, 3);
-            this.playButton.Name = "playButton";
-            this.playButton.Size = new System.Drawing.Size(32, 32);
-            this.playButton.TabIndex = 0;
-            this.playButton.UseVisualStyleBackColor = true;
-            this.playButton.Click += new System.EventHandler(this.playButton_Click);
+            this.mPlayButton.FlatAppearance.BorderSize = 0;
+            this.mPlayButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mPlayButton.Image = ((System.Drawing.Image)(resources.GetObject("playButton.Image")));
+            this.mPlayButton.Location = new System.Drawing.Point(3, 3);
+            this.mPlayButton.Name = "playButton";
+            this.mPlayButton.Size = new System.Drawing.Size(32, 32);
+            this.mPlayButton.TabIndex = 0;
+            this.mPlayButton.UseVisualStyleBackColor = true;
+            this.mPlayButton.Click += new System.EventHandler(this.mPlayButton_Click);
             // 
             // stopButton
             // 
-            this.stopButton.FlatAppearance.BorderSize = 0;
-            this.stopButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.stopButton.Image = ((System.Drawing.Image)(resources.GetObject("stopButton.Image")));
-            this.stopButton.Location = new System.Drawing.Point(41, 3);
-            this.stopButton.Name = "stopButton";
-            this.stopButton.Size = new System.Drawing.Size(32, 32);
-            this.stopButton.TabIndex = 1;
-            this.stopButton.UseVisualStyleBackColor = true;
-            this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
+            this.mStopButton.FlatAppearance.BorderSize = 0;
+            this.mStopButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mStopButton.Image = ((System.Drawing.Image)(resources.GetObject("stopButton.Image")));
+            this.mStopButton.Location = new System.Drawing.Point(41, 3);
+            this.mStopButton.Name = "stopButton";
+            this.mStopButton.Size = new System.Drawing.Size(32, 32);
+            this.mStopButton.TabIndex = 1;
+            this.mStopButton.UseVisualStyleBackColor = true;
+            this.mStopButton.Click += new System.EventHandler(this.stopButton_Click);
             // 
             // statusLabel
             // 
-            this.statusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.statusLabel.AutoSize = true;
-            this.statusLabel.Location = new System.Drawing.Point(246, 13);
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(23, 12);
-            this.statusLabel.TabIndex = 2;
-            this.statusLabel.Text = "***";
-            this.statusLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.mStatusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mStatusLabel.AutoSize = true;
+            this.mStatusLabel.Location = new System.Drawing.Point(246, 13);
+            this.mStatusLabel.Name = "statusLabel";
+            this.mStatusLabel.Size = new System.Drawing.Size(23, 12);
+            this.mStatusLabel.TabIndex = 2;
+            this.mStatusLabel.Text = "***";
+            this.mStatusLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // TransportBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.statusLabel);
-            this.Controls.Add(this.stopButton);
-            this.Controls.Add(this.playButton);
+            this.Controls.Add(this.mStatusLabel);
+            this.Controls.Add(this.mStopButton);
+            this.Controls.Add(this.mPlayButton);
             this.Name = "TransportBar";
             this.Size = new System.Drawing.Size(272, 38);
             this.Load += new System.EventHandler(this.TransportBar_Load);
@@ -86,8 +86,8 @@ namespace Zaboom.UserControls
 
         #endregion
 
-        private System.Windows.Forms.Button playButton;
-        private System.Windows.Forms.Button stopButton;
-        private System.Windows.Forms.Label statusLabel;
+        private System.Windows.Forms.Button mPlayButton;
+        private System.Windows.Forms.Button mStopButton;
+        private System.Windows.Forms.Label mStatusLabel;
     }
 }
