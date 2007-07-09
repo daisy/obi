@@ -31,8 +31,8 @@ namespace Obi.Dialogs
             // populate the list of pages and the combo box items
             // the combo box says "page 1", "page 2", ...
             mPages = new List<PhraseNode>(project.Pages);
-            project.RootNode.visitDepthFirst(
-                delegate(ICoreNode n)
+            project.RootNode.acceptDepthFirst(
+                delegate(urakawa.core.TreeNode n)
                 {
                     PhraseNode phrase = n as PhraseNode;
                     if (phrase != null && phrase.PageProperty != null)
@@ -43,7 +43,7 @@ namespace Obi.Dialogs
                     }
                     return true;
                 },
-                delegate(ICoreNode n) { }
+                delegate(urakawa.core.TreeNode n) { }
             );
             SelectedPage = null;
         }

@@ -1608,15 +1608,6 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}{1} [{2}].
-        /// </summary>
-        internal static string user_profile_template {
-            get {
-                return ResourceManager.GetString("user_profile_template", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Obi project file (*.xuk)|*.xuk|Any file|*.*.
         /// </summary>
         internal static string xuk_filter {

@@ -1,18 +1,33 @@
 using System;
 using urakawa.core;
 using urakawa.exception;
+using urakawa.property.channel;
 
 namespace Obi
 {
     /// <summary>
     /// Base class for nodes in the Obi tree; doesn't do much.
-    /// Note that all nodes in the tree will be obi nodes, except for the root node which is a regular core node.
+    /// All nodes in the tree will be of a derived class.
     /// </summary>
-    public abstract class ObiNode : CoreNode
+    public abstract class ObiNode : TreeNode
     {
-        protected Project mProject;  // project that this node (or rather that its presentation) belongs to
-        private int mId;             // unique id for this node
-        protected bool mUsed;        // mark node as being in use or not
+        private Project mProject;  // project that this node (or rather that its presentation) belongs to
+        private bool mUsed;        // mark node as being in use or not
+
+        private static readonly string USED_ATTR_NAME = "used";
+
+        /// <summary>
+        /// Create a new node for a project.
+        /// </summary>
+        protected ObiNode(Project project)
+            : base(project.getPresentation())
+        {
+            ChannelsProperty prop = getPresentation().getPropertyFactory().createChannelsProperty();
+            setProperty(prop);
+            mProject = project;
+            mUsed = true;
+        }
+
 
         /// <summary>
         /// Channels property for the node.
@@ -23,32 +38,12 @@ namespace Obi
         }
 
         /// <summary>
-        /// Project to which the node belongs (and, from the project, the presentation to which it belongs.)
+        /// Index of this node in its parent's list of children.
         /// </summary>
-        public Project Project
-        {
-            get { return mProject; }
-        }
+        public abstract int Index { get; }
 
         /// <summary>
-        /// Number ID for identifiying nodes.
-        /// </summary>
-        public int Id
-        {
-            get { return mId; }
-        }
-
-        /// <summary>
-        /// Used flag.
-        /// </summary>
-        public bool Used
-        {
-            get { return mUsed; }
-            set { mUsed = value; }
-        }
-
-        /// <summary>
-        /// Level of the node in the tree. It is assumed that the root is a CoreNode with a level of 0.
+        /// Level of the node in the tree. It is assumed that the root is a TreeNode with a level of 0.
         /// </summary>
         /// <remarks>Used to be "depth" but "level" makes more sense. We may need "depth" in the future.</remarks>
         public int Level
@@ -61,59 +56,41 @@ namespace Obi
         }
 
         /// <summary>
-        /// Index of this node in its parent's list of children.
+        /// Project to which the presentation of this node belongs.
         /// </summary>
-        public abstract int Index
+        public Project Project { get { return mProject; } }
+
+        /// <summary>
+        /// Used flag.
+        /// </summary>
+        public bool Used
         {
-            get;
+            get { return mUsed; }
+            set { mUsed = value; }
         }
 
         /// <summary>
-        /// Information string for dumping the core tree to a console.
+        /// Read back the used attribute.
         /// </summary>
-        public virtual string InfoString
+        protected override void XukInAttributes(System.Xml.XmlReader reader)
         {
-            get { return String.Format(" <{0}>", mId); }
-        }
-
-        /// <summary>
-        /// Create a new node for a project with a new id. The factory gives ids to nodes.
-        /// </summary>
-        internal ObiNode(Project project, int id)
-            : base(project.getPresentation())
-        {
-            ChannelsProperty prop = getPresentation().getPropertyFactory().createChannelsProperty();
-            setProperty(prop);
-            mProject = project;
-            mId = id;
-            mUsed = true;
-        }
-
-        /// <summary>
-        /// Write the id of the node as an id attribute.
-        /// </summary>
-        protected override bool XUKOutAttributes(System.Xml.XmlWriter wr)
-        {
-            if (!mUsed) wr.WriteAttributeString("used", "False");
-            return base.XUKOutAttributes(wr);
-        }
-
-        /// <summary>
-        /// Read back the id attribute.
-        /// </summary>
-        protected override bool XUKInAttributes(System.Xml.XmlReader source)
-        {
-            string used = source.GetAttribute("used");
+            string used = reader.GetAttribute(USED_ATTR_NAME);
             if (used != null && used == "False") mUsed = false;
-            return base.XUKInAttributes(source);
+            base.XukInAttributes(reader);
+        }
+
+        /// <summary>
+        /// Write the used attribute if its value is false (true being the default.)
+        /// </summary>
+        protected override void XukOutAttributes(System.Xml.XmlWriter writer)
+        {
+            if (!mUsed) writer.WriteAttributeString(USED_ATTR_NAME, "False");
+            base.XukOutAttributes(writer);
         }
 
         /// <summary>
         /// Return the correct namespace URI for all Obi nodes.
         /// </summary>
-        protected override string getNamespaceURI()
-        {
-            return ObiPropertyFactory.ObiNS;  // have to move this where it makes sense
-        }
+        public override string getXukNamespaceUri() { return Program.OBI_NS; }
     }
 }

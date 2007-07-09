@@ -2,25 +2,26 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+using urakawa.core.visitor;
 using urakawa.core;
 using urakawa.media;
 
 namespace Obi.Visitors
 {
-    public class DumpTree: ICoreNodeVisitor
+    public class DumpTree: ITreeNodeVisitor
     {
         private string indent = "+ ";
 
-        public void postVisit(ICoreNode node)
+        public void postVisit(TreeNode node)
         {
             indent = indent.Substring(2);
         }
 
-        public bool preVisit(ICoreNode node)
+        public bool preVisit(TreeNode node)
         {
-            CoreNode n = (CoreNode)node;
+            TreeNode n = (TreeNode)node;
            
-            string info = String.Format("{0}{1}{2}", indent, n.GetType(), ((CoreNode)n).GetHashCode().ToString());
+            string info = String.Format("{0}{1}{2}", indent, n.GetType(), ((TreeNode)n).GetHashCode().ToString());
            
             if (node.GetType() == Type.GetType("Obi.SectionNode"))
             {

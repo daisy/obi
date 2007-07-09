@@ -7,9 +7,9 @@ namespace Obi
 {
     public class PhraseNode : ObiNode
     {
-        private TextMedia mAnnotation;   // quick reference to the annotation text media object
-        private AudioMediaAsset mAsset;  // the audio asset for this phrase
         private bool mXukInHeadingFlag;  // got the heading flag from the XUK file
+        private ITextMedia mAnnotation;  // annotation (to be removed)
+        private AudioMediaAsset mAsset;  // asset (to be removed)
 
         public static readonly string Name = "phrase";  // name of the element in the XUK file
     
@@ -35,11 +35,11 @@ namespace Obi
             get { return mAnnotation.getText(); }
             set
             {
-                if (mProject.AnnotationChannel != null)
+                if (Project.AnnotationChannel != null)
                 {
                     mAnnotation.setText(value);
-                    ChannelsProperty.setMedia(mProject.AnnotationChannel, mAnnotation);
-                    mProject.SetMedia(this, mProject.AnnotationChannel, mAnnotation);
+                    ChannelsProperty.setMedia(Project.AnnotationChannel, mAnnotation);
+                    Project.SetMedia(this, Project.AnnotationChannel, mAnnotation);
                 }
             }
         }
@@ -168,10 +168,10 @@ namespace Obi
         /// Create a new phrase node inside the given project with an id.
         /// Don't forget to set the asset afterwards!
         /// </summary>
-        internal PhraseNode(Project project, int id)
-            : base(project, id)
+        internal PhraseNode(Project project)
+            : base(project)
         {
-            mAnnotation = (TextMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.TEXT);
+            mAnnotation = getPresentation().getMediaFactory().createTextMedia();
             Annotation = "";
             mAsset = null;
             mXukInHeadingFlag = false;
@@ -182,7 +182,7 @@ namespace Obi
         /// </summary>
         public void UpdateSeq()
         {
-            SequenceMedia seq =
+            /*SequenceMedia seq =
                 (SequenceMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.EMPTY_SEQUENCE);
             foreach (AudioClip clip in mAsset.Clips)
             {
@@ -199,12 +199,13 @@ namespace Obi
             Channel channel = Project.FindChannel(Project.AUDIO_CHANNEL_NAME);
             // if (channel != null) ChannelsProperty.setMedia(channel, seq);
             if (channel != null) mProject.SetMedia(this, channel, seq);
+             */
         }
 
         /// <summary>
         /// Custom element name for XUKOut.
         /// </summary>
-        protected override string getLocalName()
+        public override string getXukLocalName()
         {
             return Name;
         }
@@ -215,7 +216,7 @@ namespace Obi
         /// <param name="deep">Ignored; the node is shallow.</param>
         public new PhraseNode copy(bool deep)
         {
-            PhraseNode copy = (PhraseNode) getPresentation().getCoreNodeFactory().createNode(Name, ObiPropertyFactory.ObiNS);
+            PhraseNode copy = (PhraseNode) getPresentation().getTreeNodeFactory().createNode(Name, ObiPropertyFactory.ObiNS);
             //the manager might be null if we are doing a cut/paste
             if (mAsset.Manager == null)
             {
@@ -240,17 +241,17 @@ namespace Obi
             ParentSection.RemoveChildPhrase(this);
         }
 
-        protected override bool XUKOutAttributes(System.Xml.XmlWriter wr)
+        protected override void XukOutAttributes(System.Xml.XmlWriter wr)
         {
             if (IsHeading) wr.WriteAttributeString("heading", "True");
-            return base.XUKOutAttributes(wr);
+            base.XukOutAttributes(wr);
         }
 
-        protected override bool XUKInAttributes(System.Xml.XmlReader source)
+        protected override void XukInAttributes(System.Xml.XmlReader source)
         {
             string used = source.GetAttribute("heading");
             if (used != null && used == "True") mXukInHeadingFlag = true;
-            return base.XUKInAttributes(source);
+            base.XukInAttributes(source);
         }
 
         public bool HasXukInHeadingFlag

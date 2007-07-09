@@ -9,7 +9,7 @@ namespace Obi.Commands.TOC
     class AddSectionNode: Command
     {
         private SectionNode mNode;  // the newly added section node
-        private CoreNode mParent;   // the parent to which it was added
+        private TreeNode mParent;   // the parent to which it was added
         private int mIndex;         // the index at which it was added
 
         public override string Label
@@ -24,7 +24,7 @@ namespace Obi.Commands.TOC
         public AddSectionNode(SectionNode node)
         {
             mNode = node;
-            mParent = (CoreNode)node.getParent();
+            mParent = (TreeNode)node.getParent();
             mIndex = mNode.Index;
         }
 

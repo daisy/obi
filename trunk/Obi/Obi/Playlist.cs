@@ -329,14 +329,14 @@ namespace Obi
             if (mPreviewTimer == null) mPreviewTimer = new Timer();
         }
 
-        private void AddPhraseNodes(CoreNode node)
+        private void AddPhraseNodes(urakawa.core.TreeNode node)
         {
-            node.visitDepthFirst
+            node.acceptDepthFirst
             (
                 // Add all phrase nodes underneath (and including) the starting node.
                 // A phrase is excluded if it is marked as unused and the playlist is
                 // is the master playlist.
-                delegate(ICoreNode n)
+                delegate(urakawa.core.TreeNode n)
                 {
                     if (n is PhraseNode && (!mIsMaster || ((PhraseNode)n).Used))
                     {
@@ -347,7 +347,7 @@ namespace Obi
                     return true;
                 },
                 // nothing to do in post-visit
-                delegate(ICoreNode n) { }
+                delegate(urakawa.core.TreeNode n) { }
             );
         }
 

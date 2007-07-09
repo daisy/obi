@@ -77,14 +77,14 @@ namespace Obi.Commands.TOC
     class PasteSectionNode : Command
     {
         private SectionNode mNode;
-        private CoreNode mContext;
+        private TreeNode mContext;
 
         public override string Label
         {
             get { return Localizer.Message("paste_section_command_label"); }
         }
 
-        public PasteSectionNode(SectionNode node, CoreNode parent)
+        public PasteSectionNode(SectionNode node, TreeNode parent)
         {
             mNode = node;
             mContext = parent;

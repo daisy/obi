@@ -110,14 +110,14 @@ namespace Obi.UserControls
         /// <summary>
         /// Synchronize the tree view with the core tree.
         /// Since we need priviledged access to the class for synchronization,
-        /// we make it implement ICoreNodeVisitor directly.
+        /// we make it implement ITreeNodeVisitor directly.
         /// </summary>
-        public void SynchronizeWithCoreTree(urakawa.core.CoreNode root)
+        public void SynchronizeWithCoreTree(urakawa.core.TreeNode root)
         {
             this.Cursor = Cursors.WaitCursor;
             mTocTree.Nodes.Clear();
             mTocTree.SelectedNode = null;
-            root.visitDepthFirst(SectionNodeVisitor, delegate(urakawa.core.ICoreNode node) { });
+            root.acceptDepthFirst(SectionNodeVisitor, delegate(urakawa.core.TreeNode node) { });
             this.Cursor = Cursors.Default;
         }
 
@@ -128,9 +128,9 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="node">The node to add to the tree.</param>
         /// <returns>True </returns>
-        public bool SectionNodeVisitor(urakawa.core.ICoreNode node)
+        public bool SectionNodeVisitor(urakawa.core.TreeNode node)
         {
-            urakawa.core.CoreNode _node = (urakawa.core.CoreNode)node;
+            urakawa.core.TreeNode _node = (urakawa.core.TreeNode)node;
             if (_node.GetType() == System.Type.GetType("Obi.SectionNode"))
             {
                 string label = Project.GetTextMedia(_node).getText();
@@ -245,19 +245,19 @@ namespace Obi.UserControls
         /// <param name="node">the node (points to its own presentation)</param>
         /// <param name="channelName">the channel name</param>
         /// <returns></returns>
-        private urakawa.core.Channel GetChannelByName(urakawa.core.CoreNode node, string channelName)
+        private urakawa.property.channel.Channel GetChannelByName(urakawa.core.TreeNode node, string channelName)
         {
-            urakawa.core.ChannelsProperty channelsProp = 
-                (urakawa.core.ChannelsProperty)node.getProperty(typeof(urakawa.core.ChannelsProperty));
-            urakawa.core.Channel foundChannel = null;
+            urakawa.property.channel.ChannelsProperty channelsProp = 
+                (urakawa.property.channel.ChannelsProperty)node.getProperty(typeof(urakawa.property.channel.ChannelsProperty));
+            urakawa.property.channel.Channel foundChannel = null;
             IList channelsList = channelsProp.getListOfUsedChannels();
 
             for (int i = 0; i < channelsList.Count; i++)
             {
-                string name = ((urakawa.core.IChannel)channelsList[i]).getName();
+                string name = ((urakawa.property.channel.Channel)channelsList[i]).getName();
                 if (name == channelName)
                 {
-                    foundChannel = (urakawa.core.Channel)channelsList[i];
+                    foundChannel = (urakawa.property.channel.Channel)channelsList[i];
                     break;
                 }
             }

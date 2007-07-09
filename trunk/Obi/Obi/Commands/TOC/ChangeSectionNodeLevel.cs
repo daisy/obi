@@ -15,7 +15,7 @@ namespace Obi.Commands.TOC
             get { return Localizer.Message("decrease_section_level_command_label"); }
         }
 
-        public DecreaseSectionNodeLevel(SectionNode node, CoreNode parent)
+        public DecreaseSectionNodeLevel(SectionNode node, TreeNode parent)
             : base(node, parent)
         {
             mNumChildren = node.SectionChildCount;
@@ -45,7 +45,7 @@ namespace Obi.Commands.TOC
             get { return Localizer.Message("increase_section_level_command_label"); }
         }
 
-        public IncreaseSectionNodeLevel(SectionNode node, CoreNode parent)
+        public IncreaseSectionNodeLevel(SectionNode node, TreeNode parent)
             : base(node, parent)
         {
         }

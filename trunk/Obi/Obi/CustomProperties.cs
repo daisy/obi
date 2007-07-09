@@ -3,26 +3,25 @@ using System.Collections.Generic;
 using System.Text;
 
 using urakawa.core;
+using urakawa.property;
 
 // This file contains the custom properties sutff
 
 namespace Obi
 {
-    public abstract class ObiProperty: IProperty
+    public abstract class ObiProperty: Property
     {
-        protected CoreNode mOwner;  // owner of the property
+        /*protected TreeNode mOwner;  // owner of the property
 
-        public abstract IProperty copy();
-
-        public ICoreNode getOwner()
+        public override TreeNode getOwner()
         {
             return mOwner;
         }
 
-        public void setOwner(ICoreNode newOwner)
+        public override void setOwner(TreeNode newOwner)
         {
-            mOwner = (CoreNode)newOwner;
-        }
+            mOwner = (TreeNode)newOwner;
+        }*/
 
         public virtual bool XUKIn(System.Xml.XmlReader source)
         {
@@ -35,7 +34,7 @@ namespace Obi
         }
     }
 
-    public class ObiPropertyFactory : PropertyFactory
+    public class ObiPropertyFactory : urakawa.PropertyFactory
     {
         public static readonly string ObiNS = "http://www.daisy.org/urakawa/obi";  // NS for Obi XUK
 
@@ -43,7 +42,7 @@ namespace Obi
 		{
 		}
 
-        public override IProperty createProperty(string localName, string namespaceUri)
+        public override Property createProperty(string localName, string namespaceUri)
         {
             if (namespaceUri == ObiNS)
             {
@@ -91,10 +90,10 @@ namespace Obi
         /// Copy of the page property (with the same page number and owner.)
         /// </summary>
         /// <returns>A copy of the property.</returns>
-        public override IProperty copy()
+        protected override Property copyProtected()
         {
             PageProperty copy = new PageProperty();
-            copy.mOwner = mOwner;
+            copy.setOwner(getOwner());
             copy.mPageNumber = mPageNumber;
             return copy;
         }

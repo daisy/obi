@@ -1295,7 +1295,7 @@ namespace Obi
         /// <param name="createTitleSection">If true, a title section is automatically created.</param>
         private void CreateNewProject(string path, string title, bool createTitleSection)
         {
-            mProject = Project.BlankProject();
+            mProject = Project.BlankProject(path);
             mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
             mProject.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
             mProject.Create(path, title, mSettings.GeneratedID, mSettings.UserProfile, createTitleSection);
@@ -1312,7 +1312,7 @@ namespace Obi
             {
                 // A bit kldugy but an easy way to rebuild the list of used files when discarding changes.
                 string path = mProject.XUKPath;
-                mProject = Project.BlankProject();
+                mProject = Project.BlankProject(path);
                 mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(Program.Noop);
                 mProject.Open(path);
                 mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
@@ -1330,7 +1330,7 @@ namespace Obi
         {
             try
             {
-                mProject = Project.BlankProject();  // new Project();
+                mProject = Project.BlankProject(path);
                 mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
                 mProject.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
                 this.Cursor = Cursors.WaitCursor;
@@ -1805,10 +1805,10 @@ namespace Obi
         private void mFullMetadataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FullMetadata dialog = new FullMetadata(mProject);
-            List<urakawa.project.Metadata> affected = new List<urakawa.project.Metadata>();
+            List<urakawa.metadata.Metadata> affected = new List<urakawa.metadata.Metadata>();
             foreach (object o in mProject.getMetadataList())
             {
-                urakawa.project.Metadata meta = (urakawa.project.Metadata)o;
+                urakawa.metadata.Metadata meta = (urakawa.metadata.Metadata)o;
                 if (MetadataEntryDescription.GetDAISYEntries().Find(delegate(MetadataEntryDescription entry)
                     { return entry.Name == meta.getName(); }) != null)
                 {
@@ -1818,12 +1818,12 @@ namespace Obi
             }
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                foreach (urakawa.project.Metadata m in affected) mProject.deleteMetadata(m.getName());
+                foreach (urakawa.metadata.Metadata m in affected) mProject.deleteMetadata(m.getName());
                 foreach (UserControls.MetadataPanel p in dialog.MetadataPanels)
                 {
                     if (p.CanSetName)
                     {
-                        urakawa.project.Metadata m = (urakawa.project.Metadata)mProject.getMetadataFactory().createMetadata();
+                        urakawa.metadata.Metadata m = (urakawa.metadata.Metadata)mProject.getMetadataFactory().createMetadata();
                         m.setName(p.EntryName);
                         m.setContent(p.EntryContent);
                         mProject.appendMetadata(m);

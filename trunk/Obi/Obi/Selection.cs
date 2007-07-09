@@ -2,15 +2,11 @@ namespace Obi
 {
     /// <summary>
     /// Controls for which the selection is managed through the project panel
-    /// implement this interface.
+    /// implement this interface (e.g. strip view, TOC view, transport bar...)
     /// </summary>
     public interface IControlWithSelection
     {
-        ObiNode CurrentSelectedNode
-        {
-            get;
-            set;
-        }
+        ObiNode CurrentSelectedNode { get; set; }
     }
 
     /// <summary>
