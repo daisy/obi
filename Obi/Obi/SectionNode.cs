@@ -20,7 +20,7 @@ namespace Obi
         /// <summary>
         /// Create a new section node with the default label.
         /// </summary>
-        internal SectionNode(Project project)
+        public SectionNode(Project project)
             : base(project)
         {
             mSectionOffset = 0;

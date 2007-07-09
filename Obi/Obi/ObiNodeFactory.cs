@@ -1,3 +1,4 @@
+using System;
 using urakawa.core;
 
 namespace Obi
@@ -9,15 +10,24 @@ namespace Obi
     {
         private Project mProject;  // project that the presenation belongs to
 
-        public Project Project
-        {
-            set { if (mProject == null) mProject = value; }
-        }
-
-        public ObiNodeFactory()
-            : base()
+        /// <summary>
+        /// Create a new node factory. It is not attached to any project yet.
+        /// </summary>
+        public ObiNodeFactory(): base()
         {
             mProject = null;
+        }
+
+        /// <summary>
+        /// Set the project for the node factory. The project cannot be set again.
+        /// </summary>
+        public Project Project
+        {
+            set
+            {
+                if (mProject != null && mProject != value) throw new Exception("Project already set.");
+                mProject = value; 
+            }
         }
 
         /// <summary>
@@ -28,20 +38,23 @@ namespace Obi
         /// <returns>A new node or null if the qname corresponds to no known node.</returns>
         public override TreeNode createNode(string localName, string namespaceUri)
         {
-            if (namespaceUri == ObiPropertyFactory.ObiNS)
+            if (namespaceUri == Program.OBI_NS)
             {
-                // we handle the Obi NS
-                if (localName == SectionNode.XUK_ELEMENT_NAME)
+                if (localName == RootNode.XUK_ELEMENT_NAME)
                 {
-                    return new SectionNode(mProject);
+                    return new RootNode(mProject);
                 }
-                else if (localName == PhraseNode.Name)
+                else if (localName == PhraseNode.XUK_ELEMENT_NAME)
                 {
                     return new PhraseNode(mProject);
                 }
+                else if (localName == SectionNode.XUK_ELEMENT_NAME)
+                {
+                    return new SectionNode(mProject);
+                }
                 else
                 {
-                    return null;
+                    throw new Exception(String.Format("Unknown node type `{0}' in Obi namespace.", localName));
                 }
             }
             else

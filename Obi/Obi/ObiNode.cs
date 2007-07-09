@@ -19,8 +19,7 @@ namespace Obi
         /// <summary>
         /// Create a new node for a project.
         /// </summary>
-        protected ObiNode(Project project)
-            : base(project.getPresentation())
+        protected ObiNode(Project project): base(project.getPresentation())
         {
             ChannelsProperty prop = getPresentation().getPropertyFactory().createChannelsProperty();
             setProperty(prop);
@@ -92,5 +91,16 @@ namespace Obi
         /// Return the correct namespace URI for all Obi nodes.
         /// </summary>
         public override string getXukNamespaceUri() { return Program.OBI_NS; }
+    }
+
+    public class RootNode : ObiNode
+    {
+        public static readonly string XUK_ELEMENT_NAME = "root";  // name of the element in the XUK file
+
+        public RootNode(Project project): base(project)
+        {
+        }
+
+        public override int Index { get { return 0; } }
     }
 }

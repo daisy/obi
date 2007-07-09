@@ -99,7 +99,7 @@ namespace Obi
         {
             TreeNode parent = (TreeNode)(contextNode == null ? RootNode : contextNode.getParent());
             SectionNode sibling = (SectionNode)
-                getPresentation().getTreeNodeFactory().createNode(SectionNode.XUK_ELEMENT_NAME, ObiPropertyFactory.ObiNS);
+                getPresentation().getTreeNodeFactory().createNode(SectionNode.XUK_ELEMENT_NAME, Program.OBI_NS);
             if (contextNode == null)
             {
                 // first node ever
@@ -123,7 +123,7 @@ namespace Obi
         public SectionNode CreateChildSectionNode(TreeNode parent)
         {
             SectionNode child = (SectionNode)
-                getPresentation().getTreeNodeFactory().createNode(SectionNode.XUK_ELEMENT_NAME, ObiPropertyFactory.ObiNS);
+                getPresentation().getTreeNodeFactory().createNode(SectionNode.XUK_ELEMENT_NAME, Program.OBI_NS);
             if (parent == null)
             {
                 RootNode.appendChild(child);
