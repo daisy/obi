@@ -9,10 +9,10 @@ namespace Obi.Commands.TOC
    public abstract class MoveSectionNode : Command
     {
         protected SectionNode mNode;
-        protected CoreNode mParent;
+        protected TreeNode mParent;
         protected int mIndex;
 
-        public MoveSectionNode(SectionNode node, CoreNode parent)
+        public MoveSectionNode(SectionNode node, TreeNode parent)
         {
             mNode = node;
             mParent = parent;

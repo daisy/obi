@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Collections;
 
 using urakawa.core;
+using urakawa.core.visitor;
 using urakawa.media;
 
 namespace Obi.UserControls
@@ -15,7 +16,7 @@ namespace Obi.UserControls
     /// <summary>
     /// This control is a view of all the contents of a project
     /// </summary>
-    public partial class StripManagerPanel : UserControl, ICoreNodeVisitor, IControlWithSelection
+    public partial class StripManagerPanel : UserControl, ITreeNodeVisitor, IControlWithSelection
     {
         private ProjectPanel mProjectPanel;                             //the parent of this control
         private Dictionary<SectionNode, SectionStrip> mSectionNodeMap;  // find a section strip for a given node
@@ -183,9 +184,9 @@ namespace Obi.UserControls
         /// <summary>
         /// Synchronize the strips view with the core tree.
         /// Since we need priviledged access to the class for synchronization,
-        /// we make it implement ICoreNodeVisitor directly.
+        /// we make it implement ITreeNodeVisitor directly.
         /// </summary>
-        public void SynchronizeWithCoreTree(CoreNode root)
+        public void SynchronizeWithCoreTree(urakawa.core.TreeNode root)
         {
             mFlowLayoutPanel.Controls.Clear();
             mSectionNodeMap.Clear();
@@ -194,16 +195,16 @@ namespace Obi.UserControls
 
         #region Synchronization visitor
 
-        private CoreNode parentSection;  // the current parent section to add phrases to
-        private CoreNode parentPhrase;   // the current phrase node to add structure nodes to
+        private urakawa.core.TreeNode parentSection;  // the current parent section to add phrases to
+        private urakawa.core.TreeNode parentPhrase;   // the current phrase node to add structure nodes to
 
         /// <summary>
         /// Update the parent section to attach phrase nodes to.
         /// </summary>
         /// <param name="node">The node to do nothing with.</param>
-        public void postVisit(ICoreNode node)
+        public void postVisit(urakawa.core.TreeNode node)
         {
-            parentSection = (CoreNode)node.getParent();
+            parentSection = (urakawa.core.TreeNode)node.getParent();
         }
 
         /// <summary>
@@ -212,19 +213,19 @@ namespace Obi.UserControls
         /// </summary>
         /// <param name="node">The node to add to the tree.</param>
         /// <returns>True.</returns>
-        public bool preVisit(ICoreNode node)
+        public bool preVisit(urakawa.core.TreeNode node)
         {
             SectionStrip strip = null;
            
             //if node is root
-            if (node.GetType() == Type.GetType("urakawa.core.CoreNode"))
+            if (node.GetType() == Type.GetType("urakawa.core.TreeNode"))
             { 
                 parentSection = null;
             }
             else if (node.GetType() == Type.GetType("Obi.SectionNode"))
             {
                 strip = new SectionStrip();
-                strip.Label = Project.GetTextMedia((CoreNode)node).getText();
+                strip.Label = Project.GetTextMedia(node).getText();
                 strip.Manager = this;
                 strip.Node = (SectionNode)node;
                 mSectionNodeMap[(SectionNode)node] = strip;

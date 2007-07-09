@@ -119,8 +119,8 @@ namespace Obi.UserControls
         //md 20060811
         internal void SyncCutSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
         {
-            e.Node.visitDepthFirst(
-                delegate(ICoreNode n)
+            e.Node.acceptDepthFirst(
+                delegate(urakawa.core.TreeNode n)
                 {
                     if (n is SectionNode)
                     {
@@ -130,7 +130,7 @@ namespace Obi.UserControls
                     }
                     return true;
                 },
-                delegate(ICoreNode n) { }
+                delegate(urakawa.core.TreeNode n) { }
             );
         }
 

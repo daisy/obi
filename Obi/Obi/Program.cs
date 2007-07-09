@@ -5,6 +5,8 @@ namespace Obi
 {
     static class Program
     {
+        internal static readonly string OBI_NS = "http://www.daisy.org/urakawa/obi";  // Obi namespace URI
+        
         /// <summary>
         /// The main entry point for the application.
         /// Open the first file given as argument, or just start.

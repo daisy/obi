@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 using urakawa.core;
+using urakawa.core.visitor;
 using urakawa.media;
 
 namespace Obi.Visitors
@@ -11,9 +12,9 @@ namespace Obi.Visitors
     /// Visitor to collect all the assets per section. 
     /// First, call SetNewDirectory; then call the visitor functions; then call RemoveOldDirectory
     /// </summary>
-    class CleanupAssets : ICoreNodeVisitor
+    class CleanupAssets : ITreeNodeVisitor
     {
-        #region ICoreNodeVisitor Members
+        #region ITreeNodeVisitor Members
 
         //list of lists of audio assets
         //it needs to be this way because we might not be done with a list before the next one starts
@@ -34,14 +35,14 @@ namespace Obi.Visitors
             mbFlagPostProcessOnly = postProcessOnly;
         }
        
-        public void postVisit(ICoreNode node)
+        public void postVisit(TreeNode node)
         {
             int idx = mAudioAssLists.Count - 1;
                
             if (node is Obi.SectionNode && mAudioAssLists.Count > 0 && mAudioAssLists[idx].Count > 0)
             {
                //the name of the audio file will be the ID of the section name
-                string sectionAudioPath = mAssetDirectory + ((SectionNode)node).Id + @".wav";
+                string sectionAudioPath = mAssetDirectory + node.GetHashCode().ToString() + @".wav";
 
                 //if we are doing the first phase of the cleanup (ExportAssets)
                 if (mbFlagPostProcessOnly == false)
@@ -79,7 +80,7 @@ namespace Obi.Visitors
             }
         }
 
-        public bool preVisit(ICoreNode node)
+        public bool preVisit(TreeNode node)
         {
             if (node is Obi.SectionNode)
             {

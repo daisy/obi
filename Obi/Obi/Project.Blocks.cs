@@ -5,6 +5,7 @@ using System.IO;
 
 using urakawa.core;
 using urakawa.media;
+using urakawa.property.channel;
 using Obi.Assets;
 
 namespace Obi
@@ -144,7 +145,7 @@ namespace Obi
             IList channelsList = channelsProp.getListOfUsedChannels();
             for (int i = 0; i < channelsList.Count; i++)
             {
-                IChannel ch = (IChannel)channelsList[i];
+                Channel ch = (Channel)channelsList[i];
                 if (ch.getName() == channel)
                 {
                     channelsProp.setMedia(ch, media);
@@ -394,7 +395,7 @@ namespace Obi
         //md change from private to internal so it could be used by CopyPhraseAssets
         internal void UpdateSeq(PhraseNode node)
         {
-            Assets.AudioMediaAsset asset = node.Asset;
+            /*Assets.AudioMediaAsset asset = node.Asset;
             ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
             SequenceMedia seq =
                 (SequenceMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.EMPTY_SEQUENCE);
@@ -410,13 +411,13 @@ namespace Obi
                 audio.setClipEnd(new Time((long)Math.Round(clip.EndTime)));
                 seq.appendItem(audio);
             }
-            prop.setMedia(mAudioChannel, seq);
+            prop.setMedia(mAudioChannel, seq);*/
         }
 
         /// <summary>
         /// Send a TouchedNode event.
         /// </summary>
-        internal void TouchNode(CoreNode node)
+        internal void TouchNode(TreeNode node)
         {
             TouchedNode(this, new Events.Node.NodeEventArgs(this, node));
         }
@@ -494,8 +495,8 @@ namespace Obi
         public void RenumberPages()
         {
             int pageNumber = 1;
-            RootNode.visitDepthFirst(
-                delegate(ICoreNode n)
+            RootNode.acceptDepthFirst(
+                delegate(TreeNode n)
                 {
                     PhraseNode visited = n as PhraseNode;
                     if (visited != null)
@@ -512,7 +513,7 @@ namespace Obi
                     }
                     return true;
                 },
-                delegate(ICoreNode n) { }
+                delegate(TreeNode n) { }
             );
         }
 
@@ -523,8 +524,8 @@ namespace Obi
         public void RenumberPagesExcluding(PhraseNode excluded)
         {
             int pageNumber = 1;
-            RootNode.visitDepthFirst(
-                delegate(ICoreNode n)
+            RootNode.acceptDepthFirst(
+                delegate(TreeNode n)
                 {
                     PhraseNode visited = n as PhraseNode;
                     if (visited != null)
@@ -541,7 +542,7 @@ namespace Obi
                     }
                     return true;
                 },
-                delegate(ICoreNode n) { }
+                delegate(TreeNode n) { }
             );
         }
 
@@ -668,7 +669,7 @@ namespace Obi
             else
             {
                 mAssManager.InsureRename(asset, Path.GetFileNameWithoutExtension(path));
-                PhraseNode phrase = getPresentation().getCoreNodeFactory().createNode(PhraseNode.Name, ObiPropertyFactory.ObiNS)
+                PhraseNode phrase = getPresentation().getTreeNodeFactory().createNode(PhraseNode.Name, ObiPropertyFactory.ObiNS)
                      as PhraseNode;
                 phrase.Asset = asset;
                 AddPhraseNode(phrase, section, index);

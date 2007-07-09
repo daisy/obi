@@ -27,19 +27,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_0FC43A2DF385409C8112DC094BD3316C"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_1CB17C26CE1940A5B39598BA9EAE0193"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1F45174010664AD08ECEB73C47191C5F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -76,12 +64,6 @@
         "Entry"
         {
         "MsmKey" = "8:_48EC9C1AD8004B6A8065D9C2CEE745A8"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4F8F1BD4311A4D2F96838CD8CE4890A4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -159,12 +141,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_9279972AD47D4F5EACAEBED36591E875"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_96FEC3498FBF4852B35346478C52FB18"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -195,6 +171,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_9F85E713DBA767CA81165164E079F2AB"
+        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_A312DCD7F0F7454B8EBAD7FD60A52383"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -207,13 +189,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_ACAC4279C4A5484799788897BBC116EE"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_AA7FCD6A5AAE48DDC3F022F5F4AFDF21"
+        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_AD9EA3AD3A0144768108ECD6F977144F"
+        "MsmKey" = "8:_ACAC4279C4A5484799788897BBC116EE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -231,20 +213,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B76BA50CBFE449C3BA530755AC5F97B6"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_B87AB11A986143448A9CAE4FE871D6F9"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_BAC783FB4330B258C8E43663EA0ED6DB"
-        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -263,12 +233,6 @@
         {
         "MsmKey" = "8:_D4909E9CFA644DA89683EAF723E33F3B"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E01379ED8C2AE7F2E4F726CB9E911548"
-        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -316,13 +280,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BAC783FB4330B258C8E43663EA0ED6DB"
+        "OwnerKey" = "8:_AA7FCD6A5AAE48DDC3F022F5F4AFDF21"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E01379ED8C2AE7F2E4F726CB9E911548"
+        "OwnerKey" = "8:_9F85E713DBA767CA81165164E079F2AB"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -455,50 +419,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0FC43A2DF385409C8112DC094BD3316C"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\..\\branches\\sdk-0-5\\implementation\\XukToZed\\XukToZed\\X2Z_smil.xslt"
-            "TargetName" = "8:X2Z_smil.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1CB17C26CE1940A5B39598BA9EAE0193"
             {
             "SourcePath" = "8:..\\Obi\\help_en.html"
             "TargetName" = "8:help_en.html"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1F45174010664AD08ECEB73C47191C5F"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\..\\branches\\sdk-0-5\\implementation\\XukToZed\\XukToZed\\X2Z_package.xslt"
-            "TargetName" = "8:X2Z_package.xslt"
             "Tag" = "8:"
             "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
             "Condition" = "8:"
@@ -632,26 +556,6 @@
             "TargetName" = "8:obird_bobi.png"
             "Tag" = "8:"
             "Folder" = "8:_32F80C511F4B40F1B79B5D7AFD966F83"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4F8F1BD4311A4D2F96838CD8CE4890A4"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\..\\branches\\sdk-0-5\\implementation\\XukToZed\\XukToZed\\XukToZed.xslt"
-            "TargetName" = "8:XukToZed.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -868,26 +772,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9279972AD47D4F5EACAEBED36591E875"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\..\\branches\\sdk-0-5\\implementation\\XukToZed\\XukToZed\\X2Z_navmap.xslt"
-            "TargetName" = "8:X2Z_navmap.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_96FEC3498FBF4852B35346478C52FB18"
             {
             "SourcePath" = "8:..\\Obi\\images\\manual_newproject.png"
@@ -988,6 +872,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9F85E713DBA767CA81165164E079F2AB"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:urakawa, Version=0.5.0.19401, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_9F85E713DBA767CA81165164E079F2AB"
+                    {
+                    "Name" = "8:urakawa.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:urakawa.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A312DCD7F0F7454B8EBAD7FD60A52383"
             {
             "SourcePath" = "8:..\\Obi\\images\\icons\\media-skip-backward.png"
@@ -1028,12 +943,23 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_ACAC4279C4A5484799788897BBC116EE"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AA7FCD6A5AAE48DDC3F022F5F4AFDF21"
             {
-            "SourcePath" = "8:..\\Obi\\images\\icons\\media-record.png"
-            "TargetName" = "8:media-record.png"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:XukToZed, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_AA7FCD6A5AAE48DDC3F022F5F4AFDF21"
+                    {
+                    "Name" = "8:XukToZed.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:XukToZed.dll"
+            "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_53D7B6575F284B4A885B84E2D69DDE71"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1045,15 +971,15 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AD9EA3AD3A0144768108ECD6F977144F"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_ACAC4279C4A5484799788897BBC116EE"
             {
-            "SourcePath" = "8:..\\..\\..\\..\\..\\branches\\sdk-0-5\\implementation\\XukToZed\\XukToZed\\X2Z_manifest.xslt"
-            "TargetName" = "8:X2Z_manifest.xslt"
+            "SourcePath" = "8:..\\Obi\\images\\icons\\media-record.png"
+            "TargetName" = "8:media-record.png"
             "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Folder" = "8:_53D7B6575F284B4A885B84E2D69DDE71"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1108,26 +1034,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B76BA50CBFE449C3BA530755AC5F97B6"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\..\\branches\\sdk-0-5\\implementation\\XukToZed\\XukToZed\\X2Z_pageList.xslt"
-            "TargetName" = "8:X2Z_pageList.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B87AB11A986143448A9CAE4FE871D6F9"
             {
             "SourcePath" = "8:..\\Obi\\images\\icons\\media-seek-backward.png"
@@ -1146,37 +1052,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BAC783FB4330B258C8E43663EA0ED6DB"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:XukToZed, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_BAC783FB4330B258C8E43663EA0ED6DB"
-                    {
-                    "Name" = "8:XukToZed.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:XukToZed.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BD396C467A4244BF912AC4679292E96D"
@@ -1237,37 +1112,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E01379ED8C2AE7F2E4F726CB9E911548"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:urakawa, Version=0.5.0.26788, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_E01379ED8C2AE7F2E4F726CB9E911548"
-                    {
-                    "Name" = "8:urakawa.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:urakawa.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F2D4BC1F855740FFA36B1D872B3A7944"

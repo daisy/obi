@@ -139,10 +139,11 @@ Do you want to save these modifications before closing the project?</value>
   </data>
   <data name="default_organization" xml:space="preserve">
     <value>N/A</value>
-    <comment>Default name for the user organization (JQ)</comment>
+    <comment>Default name for the user organization</comment>
   </data>
   <data name="default_section_label" xml:space="preserve">
     <value>Untitled section</value>
+    <comment>Default label for untitled sections</comment>
   </data>
   <data name="discard_changes_caption" xml:space="preserve">
     <value>Discarding changes to a modified project</value>
@@ -527,10 +528,6 @@ Do you want to replace the project contained in this file?</value>
   <data name="saved_as_daisy_text" xml:space="preserve">
     <value>Exported project to DAISY in directory {0}</value>
     <comment>Message when export to DAISY succeeds (MD)</comment>
-  </data>
-  <data name="user_profile_template" xml:space="preserve">
-    <value>{0}{1} [{2}]</value>
-    <comment>Short string for the user profile (JQ)</comment>
   </data>
   <data name="title_bar" xml:space="preserve">
     <value>{0} - Obi</value>

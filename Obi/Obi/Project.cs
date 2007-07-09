@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using urakawa;
 using urakawa.core;
 using urakawa.media;
+using urakawa.property.channel;
 using Obi.Assets;
 
 namespace Obi
@@ -25,7 +27,7 @@ namespace Obi
     ///   3. an annotation channel for text annotation of other items in the book (e.g. phrases.)
     /// So we keep a handy pointer to those.
     /// </summary>
-    public partial class Project : urakawa.project.Project
+    public partial class Project : urakawa.Project
     {
         private AssetManager mAssManager;    // the asset manager
         private string mAssPath;             // the path to the asset manager directory
@@ -41,6 +43,7 @@ namespace Obi
         // TODO remove mAudioChannel, mAnnotation and mClipboard as members.
         private Channel mAudioChannel;       // handy pointer to the audio channel
         private Channel mAnnotationChannel;  // handy pointer to the annotation channel
+        private Channel mTextChannel;
         private Clipboard mClipboard;        // project-wide clipboard; should move to project panel
 
         public static readonly string CURRENT_XUK_VERSION = "obi-xuk-011";         // version of the Obi/XUK file
@@ -82,17 +85,25 @@ namespace Obi
         /// core node factory and custom property factory. Set up the channel manager as well.
         /// </summary>
         /// <returns>The newly created, blank project.</returns>
-        public static Project BlankProject()
+        public static Project BlankProject(string xukpath)
         {
-            ObiNodeFactory nodeFactory = new ObiNodeFactory();
+            /*ObiNodeFactory nodeFactory = new ObiNodeFactory();
             Presentation presentation = new Presentation(nodeFactory, null, null, new ObiPropertyFactory(), null);
             ChannelFactory factory = presentation.getChannelFactory();
             ChannelsManager manager = presentation.getChannelsManager();
             Project project = new Project(presentation);
             nodeFactory.Project = project;
+            return project;*/
+
+            string asspath = Path.Combine(Path.GetDirectoryName(xukpath), GetAssetDirectory(xukpath));
+            ObiNodeFactory nodeFactory = new ObiNodeFactory();
+            Presentation presentation = new Presentation(new Uri(asspath), nodeFactory, new ObiPropertyFactory(), null, null, null, null, null);
+            ChannelFactory factory = (ChannelFactory)presentation.getChannelFactory();
+            ChannelsManager manager = (ChannelsManager)presentation.getChannelsManager();
+            Project project = new Project(presentation);
+            nodeFactory.Project = project;
             return project;
         }
-
 
         #region properties
 
@@ -201,11 +212,11 @@ namespace Obi
         }
 
         /// <summary>
-        /// Get the root node of the presentation as a CoreNode.
+        /// Get the root node of the presentation as a TreeNode.
         /// </summary>
-        public CoreNode RootNode
+        public TreeNode RootNode
         {
-            get { return (CoreNode)getPresentation().getRootNode(); }
+            get { return (TreeNode)getPresentation().getRootNode(); }
         }
 
         /// <summary>
@@ -285,12 +296,17 @@ namespace Obi
         /// </summary>
         private void CreateChannels()
         {
-            ChannelFactory factory = getPresentation().getChannelFactory();
-            ChannelsManager manager = getPresentation().getChannelsManager();
-            mAudioChannel = factory.createChannel(AUDIO_CHANNEL_NAME);
+            Presentation presentation = (Presentation)getPresentation();
+            ChannelFactory factory = (ChannelFactory)presentation.getChannelFactory();
+            ChannelsManager manager = (ChannelsManager)presentation.getChannelsManager();
+            mAudioChannel = (Channel)factory.createChannel(typeof(Channel).Name, urakawa.ToolkitSettings.XUK_NS);
+            mAudioChannel.setName(AUDIO_CHANNEL_NAME);
             manager.addChannel(mAudioChannel);
-            manager.addChannel(factory.createChannel(TEXT_CHANNEL_NAME));
-            mAnnotationChannel = factory.createChannel(ANNOTATION_CHANNEL_NAME);
+            mTextChannel = factory.createChannel(mAudioChannel.getXukLocalName(), mAudioChannel.getXukNamespaceUri());
+            mTextChannel.setName(TEXT_CHANNEL_NAME);
+            manager.addChannel(mTextChannel);
+            mAnnotationChannel = (Channel)factory.createChannel(mAudioChannel.getXukLocalName(), mAudioChannel.getXukNamespaceUri());
+            mAnnotationChannel.setName(ANNOTATION_CHANNEL_NAME);
             manager.addChannel(mAnnotationChannel);
         }
 
@@ -300,7 +316,7 @@ namespace Obi
         private PhraseNode CreatePhraseNode()
         {
             return (PhraseNode)
-                getPresentation().getCoreNodeFactory().createNode(PhraseNode.Name, ObiPropertyFactory.ObiNS);
+                getPresentation().getTreeNodeFactory().createNode(PhraseNode.Name, ObiPropertyFactory.ObiNS);
         }
 
         /// <summary>
@@ -323,7 +339,7 @@ namespace Obi
         private SectionNode CreateSectionNode()
         {
             return (SectionNode)
-                getPresentation().getCoreNodeFactory().createNode(SectionNode.Name, ObiPropertyFactory.ObiNS);
+                getPresentation().getTreeNodeFactory().createNode(SectionNode.XUK_ELEMENT_NAME, ObiPropertyFactory.ObiNS);
         }
 
         // Create a title section
@@ -365,13 +381,13 @@ namespace Obi
         /// <returns>The channel found.</returns>
         public Channel FindChannel(string name)
         {
-            IChannel[] channels = getPresentation().getChannelsManager().getChannelByName(name);
-            if (channels.Length != 1)
+            List<Channel> channels = getPresentation().getChannelsManager().getChannelByName(name);
+            if (channels.Count != 1)
             {
                 throw new Exception(String.Format("Expected one channel named {0} in {1}, but got {2}.",
-                    name, mXUKPath, channels.Length));
+                    name, mXUKPath, channels.Count));
             }
-            return (Channel)channels[0];
+            return channels[0];
         }
 
         /// <summary>
@@ -380,7 +396,7 @@ namespace Obi
         /// Mangle the name until a free name is found.
         /// </summary>
         /// <returns>The relative paht to the directory chosen.</returns>
-        private string GetAssetDirectory(string path)
+        private static string GetAssetDirectory(string path)
         {
             string dir = Path.GetDirectoryName(path);
             string assetdir = Path.GetFileNameWithoutExtension(path) + "_assets";
@@ -420,34 +436,26 @@ namespace Obi
         /// <param name="xukPath">The path of the XUK file.</param>
         public void Open(string xukPath)
         {
-            if (openXUK(new Uri(xukPath)))
+            openXUK(new Uri(xukPath));
+            mUnsaved = false;
+            if (XukVersion != CURRENT_XUK_VERSION)
             {
-                mUnsaved = false;
-                if (XukVersion != CURRENT_XUK_VERSION)
-                {
-                    throw new Exception(String.Format(Localizer.Message("xuk_version_mismatch"),
-                        CURRENT_XUK_VERSION, XukVersion));
-                }
-                ReadMetadata();
-                mXUKPath = xukPath;
-                mAudioChannel = FindChannel(AUDIO_CHANNEL_NAME);
-                mAnnotationChannel = FindChannel(ANNOTATION_CHANNEL_NAME);
-                if (mAssPath == null) throw new Exception(Localizer.Message("missing_asset_path"));
-                Uri absoluteAssPath = new Uri(new Uri(xukPath), mAssPath);
-                mAssManager = new Assets.AssetManager(absoluteAssPath.AbsolutePath);
-                // Recreate the assets from the phrase nodes
-                Visitors.PhraseInitializer visitor = new Visitors.PhraseInitializer(mAssManager, delegate(string m) { });
-                RootNode.acceptDepthFirst(visitor);
-                mPhraseCount = visitor.Phrases;
-                mPageCount = visitor.Pages;
-                if (StateChanged != null)
-                {
-                    StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
-                }
+                throw new Exception(String.Format(Localizer.Message("xuk_version_mismatch"),
+                    CURRENT_XUK_VERSION, XukVersion));
             }
-            else
+            ReadMetadata();
+            mXUKPath = xukPath;
+            mAudioChannel = FindChannel(AUDIO_CHANNEL_NAME);
+            mAnnotationChannel = FindChannel(ANNOTATION_CHANNEL_NAME);
+            if (mAssPath == null) throw new Exception(Localizer.Message("missing_asset_path"));
+            Uri absoluteAssPath = new Uri(new Uri(xukPath), mAssPath);
+            mAssManager = new Assets.AssetManager(absoluteAssPath.AbsolutePath);
+            // TODO: count pages and phrases
+            // mPhraseCount = visitor.Phrases;
+            // mPageCount = visitor.Pages;
+            if (StateChanged != null)
             {
-                throw new Exception(String.Format(Localizer.Message("open_project_error_text"), xukPath));
+                StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
             }
         }
 
@@ -529,25 +537,25 @@ namespace Obi
 
         /// <summary>
         /// Get the text media of a core node. The result can then be used to get or set the text of a node.
-        /// Original comments: A helper function to get the text from the given <see cref="CoreNode"/>.
+        /// Original comments: A helper function to get the text from the given <see cref="TreeNode"/>.
         /// The text channel which contains the desired text will be named so that we know 
         /// what its purpose is (ie, "DefaultText" or "PrimaryText")
         /// @todo
         /// Otherwise we should use the default, only, or randomly first text channel found.
         /// </summary>
-        /// <remarks>This replaces get/setCoreNodeText. E.g. getCoreNodeText(node) = GetTextMedia(node).getText()</remarks>
+        /// <remarks>This replaces get/setTreeNodeText. E.g. getTreeNodeText(node) = GetTextMedia(node).getText()</remarks>
         /// <remarks>This is taken from TOCPanel, and should probably be a node method;
-        /// we would subclass CoreNode fort his.</remarks>
+        /// we would subclass TreeNode fort his.</remarks>
         /// <param name="node">The node which text media we are interested in.</param>
         /// <returns>The text media found, or null if none.</returns>
-        public static TextMedia GetTextMedia(CoreNode node)
+        public static TextMedia GetTextMedia(TreeNode node)
         {
             ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
             Channel textChannel = Project.GetChannel(node, TEXT_CHANNEL_NAME);
             return textChannel == null ? null : (TextMedia)prop.getMedia(textChannel);
         }
 
-        public static Channel GetChannel(CoreNode node, string name)
+        public static Channel GetChannel(TreeNode node, string name)
         {
             ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
             IList channels = prop.getListOfUsedChannels();
@@ -566,14 +574,14 @@ namespace Obi
         /// <param name="node">The node for which we want a media object.</param>
         /// <param name="channel">The name of the channel that we are interested in.</param>
         /// <returns>The media object set on the first channel of that name, or null.</returns>
-        public static IMedia GetMediaForChannel(CoreNode node, string channel)
+        public static IMedia GetMediaForChannel(TreeNode node, string channel)
         {
             ChannelsProperty channelsProp = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
             Channel foundChannel;
-            IList channelsList = channelsProp.getListOfUsedChannels();
+            List<Channel> channelsList = channelsProp.getListOfUsedChannels();
             for (int i = 0; i < channelsList.Count; i++)
             {
-                string channelName = ((IChannel)channelsList[i]).getName();
+                string channelName = (channelsList[i]).getName();
                 if (channelName == channel)
                 {
                     foundChannel = (Channel)channelsList[i];
@@ -602,15 +610,15 @@ namespace Obi
         public PhraseNode FindFirstPhrase()
         {
             PhraseNode first = null;
-            getPresentation().getRootNode().visitDepthFirst
+            getPresentation().getRootNode().acceptDepthFirst
             (
-                delegate(ICoreNode n)
+                delegate(TreeNode n)
                 {
                     if (first != null) return false;
                     if (n is PhraseNode) first = (PhraseNode)n;
                     return true;
                 },
-                delegate(ICoreNode n) {}
+                delegate(TreeNode n) {}
             );
             return first;
         }
@@ -640,8 +648,8 @@ namespace Obi
             if (deep)
             {
                 // mark all nodes in the subtree.
-                node.visitDepthFirst(
-                    delegate(ICoreNode n)
+                node.acceptDepthFirst(
+                    delegate(TreeNode n)
                     {
                         ObiNode _n = (ObiNode)n;
                         if (_n.Used != used)
@@ -651,7 +659,7 @@ namespace Obi
                         }
                         return true;
                     },
-                    delegate(ICoreNode n) { }
+                    delegate(TreeNode n) { }
                 );
             }
             else
@@ -703,11 +711,11 @@ namespace Obi
         /// </summary>
         /// <param name="name">The name of the metadata property.</param>
         /// <param name="value">Its content, i.e. the value.</param>
-        private urakawa.project.Metadata AddMetadata(string name, string value)
+        private urakawa.metadata.Metadata AddMetadata(string name, string value)
         {
             if (value != null)
             {
-                urakawa.project.Metadata meta = (urakawa.project.Metadata)getMetadataFactory().createMetadata();
+                urakawa.metadata.Metadata meta = getMetadataFactory().createMetadata();
                 meta.setName(name);
                 meta.setContent(value);
                 this.appendMetadata(meta);
@@ -746,17 +754,17 @@ namespace Obi
         /// Get a single metadata item.
         /// </summary>
         /// <returns>The found metadata item, or null if not found.</returns>
-        public urakawa.project.Metadata GetFirstMetadataItem(string name)
+        public urakawa.metadata.Metadata GetFirstMetadataItem(string name)
         {
             IList list = getMetadataList(name);
-            return list.Count > 0 ? list[0] as urakawa.project.Metadata : null;
+            return list.Count > 0 ? list[0] as urakawa.metadata.Metadata : null;
         }
 
         /// <summary>
         /// Get a single metadata item.
         /// </summary>
         /// <returns>The found metadata item, or null if not found.</returns>
-        public urakawa.project.Metadata GetSingleMetadataItem(string name)
+        public urakawa.metadata.Metadata GetSingleMetadataItem(string name)
         {
             IList list = getMetadataList(name);
             if (list.Count > 1)
@@ -764,7 +772,7 @@ namespace Obi
                 throw new Exception(String.Format("Expected a single metadata item for \"{0}\" but got {1}.",
                     name, list.Count));
             }
-            return list.Count == 1 ? list[0] as urakawa.project.Metadata : null;
+            return list.Count == 1 ? list[0] as urakawa.metadata.Metadata : null;
         }
 
         /// <summary>
@@ -784,7 +792,7 @@ namespace Obi
         private void ReadMetadata()
         {
             mAssPath = GetSingleMetadataItem(Metadata.OBI_ASSETS_DIR).getContent();
-            urakawa.project.Metadata m;
+            urakawa.metadata.Metadata m;
             if ((m = GetSingleMetadataItem(Metadata.OBI_AUDIO_CHANNELS)) != null)
             {
                 mAudioChannels = Int32.Parse(m.getContent());
@@ -814,7 +822,7 @@ namespace Obi
         {
             get
             {
-                urakawa.project.Metadata meta = GetSingleMetadataItem(Obi.Metadata.OBI_XUK_VERSION);
+                urakawa.metadata.Metadata meta = GetSingleMetadataItem(Obi.Metadata.OBI_XUK_VERSION);
                 return meta == null ? "" : meta.getContent();
             }
         }

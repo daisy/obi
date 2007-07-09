@@ -5,10 +5,9 @@ namespace Obi
     /// <summary>
     /// Node factory that can create plain core nodes, or Obi nodes.
     /// </summary>
-    public class ObiNodeFactory : CoreNodeFactory
+    public class ObiNodeFactory : TreeNodeFactory
     {
         private Project mProject;  // project that the presenation belongs to
-        private int mNextId;       // counter to give node ids
 
         public Project Project
         {
@@ -19,7 +18,6 @@ namespace Obi
             : base()
         {
             mProject = null;
-            mNextId = 0;
         }
 
         /// <summary>
@@ -28,18 +26,18 @@ namespace Obi
         /// <param name="localName">the local part of the qname.</param>
         /// <param name="namespaceUri">the namespace URI of the qname.</param>
         /// <returns>A new node or null if the qname corresponds to no known node.</returns>
-        public override CoreNode createNode(string localName, string namespaceUri)
+        public override TreeNode createNode(string localName, string namespaceUri)
         {
             if (namespaceUri == ObiPropertyFactory.ObiNS)
             {
                 // we handle the Obi NS
-                if (localName == SectionNode.Name)
+                if (localName == SectionNode.XUK_ELEMENT_NAME)
                 {
-                    return new SectionNode(mProject, mNextId++);
+                    return new SectionNode(mProject);
                 }
                 else if (localName == PhraseNode.Name)
                 {
-                    return new PhraseNode(mProject, mNextId++);
+                    return new PhraseNode(mProject);
                 }
                 else
                 {

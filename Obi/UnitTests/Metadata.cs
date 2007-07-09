@@ -16,7 +16,7 @@ namespace UnitTests
             profile.Culture = new System.Globalization.CultureInfo("en");
             profile.Name = "Obird";
             profile.Organization = "The Urakawa Project";
-            Project project = Project.BlankProject();
+            Project project = Project.BlankProject(System.IO.Path.GetTempPath());
             project.Create(System.IO.Path.GetTempFileName(), "Test project", "test_id", profile, false);
             Assert.AreEqual(project.XukVersion, Project.CURRENT_XUK_VERSION);
         }

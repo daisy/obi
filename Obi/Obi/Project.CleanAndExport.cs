@@ -82,9 +82,9 @@ namespace Obi
         private void UpdatePublicationMetadata()
         {
             string date = DateTime.Today.ToString("yyyy-MM-dd");
-            urakawa.project.Metadata producedDate = GetSingleMetadataItem(Metadata.DTB_PRODUCED_DATE);
-            urakawa.project.Metadata revision = GetSingleMetadataItem(Metadata.DTB_REVISION);
-            urakawa.project.Metadata revisionDate = GetSingleMetadataItem(Metadata.DTB_REVISION_DATE);
+            urakawa.metadata.Metadata producedDate = GetSingleMetadataItem(Metadata.DTB_PRODUCED_DATE);
+            urakawa.metadata.Metadata revision = GetSingleMetadataItem(Metadata.DTB_REVISION);
+            urakawa.metadata.Metadata revisionDate = GetSingleMetadataItem(Metadata.DTB_REVISION_DATE);
             if (producedDate == null)
             {
                 System.Diagnostics.Debug.Assert(revisionDate == null && revision == null);

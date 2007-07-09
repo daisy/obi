@@ -3,30 +3,31 @@ using System.Collections.Generic;
 using System.Text;
 
 using urakawa.core;
+using urakawa.core.visitor;
 
 namespace Obi.Visitors
 {
-    class UndeleteSubtree: ICoreNodeVisitor
+    class UndeleteSubtree: ITreeNodeVisitor
     {
         private Project mProject;  // the project in which the nodes belong
-        private CoreNode mParent;  // parent of the node to readd
+        private TreeNode mParent;  // parent of the node to readd
         private int mIndex;        // the future index of the subtree root, once it is re-integrated
    
-        public UndeleteSubtree(Project project, CoreNode parent, int index)
+        public UndeleteSubtree(Project project, TreeNode parent, int index)
         {
             mProject = project;
             mParent = parent;
             mIndex = index;
         }
 
-        #region ICoreNodeVisitor Members
+        #region ITreeNodeVisitor Members
 
-        public void postVisit(ICoreNode node)
+        public void postVisit(TreeNode node)
         {
-            mParent = (CoreNode)node.getParent();
+            mParent = (TreeNode)node.getParent();
         }
 
-        public bool preVisit(ICoreNode node)
+        public bool preVisit(TreeNode node)
         {
             if (node.GetType() == System.Type.GetType("Obi.SectionNode"))
             {

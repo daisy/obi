@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Text;
 
 using urakawa.core;
+using urakawa.core.visitor;
 
 namespace Obi.Visitors
 {
     /// <summary>
     /// Get the list of phrases in the book in order.
     /// </summary>
-    class PhraseEnumerator: ICoreNodeVisitor 
+    class PhraseEnumerator: ITreeNodeVisitor 
     {
-        private List<CoreNode> mPhrases;
+        private List<TreeNode> mPhrases;
 
-        public List<CoreNode> Phrases
+        public List<TreeNode> Phrases
         {
             get
             {
@@ -23,20 +24,20 @@ namespace Obi.Visitors
 
         public PhraseEnumerator()
         {
-            mPhrases = new List<CoreNode>();
+            mPhrases = new List<TreeNode>();
         }
 
-        #region ICoreNodeVisitor Members
+        #region ITreeNodeVisitor Members
 
-        public void postVisit(ICoreNode node)
+        public void postVisit(TreeNode node)
         {
         }
 
-        public bool preVisit(ICoreNode node)
+        public bool preVisit(TreeNode node)
         {
             if (node.GetType() == System.Type.GetType("Obi.PhraseNode"))
             {
-                mPhrases.Add((CoreNode)node);
+                mPhrases.Add((TreeNode)node);
             }
             return true;
         }

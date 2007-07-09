@@ -11,34 +11,30 @@ using System.Drawing;
 namespace Obi
 {
     /// <summary>
-    /// Various persistent application settings.
-    /// This is mostly a glorified struct.
-    /// We mark this class as serializable so that it can be easily serialized through the SOAP serializer
-    /// (this is probably overkill, but it's available.)
+    /// Persistent application settings.
     /// </summary>
-    /// <remarks>It seems that the recent list is not saved, have to investigate...</remarks>
-    /// <remarks>It also seems that making a change in the class resets the existing settings?</remarks>
+    /// <remarks>It also seems that making a change in the class resets the existing settings.</remarks>
     [Serializable()]
     public class Settings
     {
-        public ArrayList RecentProjects;  // paths to projects recently opened
-        public UserProfile UserProfile;   // the user profile
-        public string IdTemplate;         // identifier template
-        public string DefaultPath;        // default location
-        public string DefaultExportPath;  // default path for DAISY export
-        public bool CreateTitleSection;   // defaulf for "create title section" in new project
-        public string LastOpenProject;    // path to the last open project
-        public bool OpenLastProject;      // open the last open project at startup
-        public bool EnableTooltips;       // enable or disable tooltips
-        public string LastOutputDevice;   // the name of the last output device selected by the user
-        public string LastInputDevice;    // the name of the last input device selected by the user
         public int AudioChannels;         // number of channels for recording
-        public int SampleRate;            // sample rate in Hertz
         public int BitDepth;              // sample bit depth
+        public bool CreateTitleSection;   // defaulf for "create title section" in new project
+        public string DefaultExportPath;  // default path for DAISY export
+        public string DefaultPath;        // default location
+        public bool EnableTooltips;       // enable or disable tooltips
         public float FontSize;            // global font size (all font sizes must be relative to this one)
+        public string IdTemplate;         // identifier template
+        public string LastInputDevice;    // the name of the last input device selected by the user
+        public string LastOpenProject;    // path to the last open project
+        public string LastOutputDevice;   // the name of the last output device selected by the user
         public Size ObiFormSize;          // size of the form (for future sessions) 
+        public bool OpenLastProject;      // open the last open project at startup
+        public ArrayList RecentProjects;  // paths to projects recently opened
+        public int SampleRate;            // sample rate in Hertz
+        public UserProfile UserProfile;   // the user profile
 
-        public static readonly string SettingsFileName = "obi_settings.xml";  // settings file name
+        private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
         /// <summary>
         /// An ID generated from the pattern in the settings.
@@ -61,6 +57,7 @@ namespace Obi
         /// <summary>
         /// Read the settings from the settings file; missing values are replaced with defaults.
         /// </summary>
+        /// <remarks>Errors are silently ignored and default settings are returned.</remarks>
         public static Settings GetSettings()
         {
             Settings settings = new Settings();
@@ -82,7 +79,7 @@ namespace Obi
             try
             {
                 IsolatedStorageFileStream stream =
-                    new IsolatedStorageFileStream(SettingsFileName, FileMode.Open, FileAccess.Read, file);
+                    new IsolatedStorageFileStream(SETTINGS_FILE_NAME, FileMode.Open, FileAccess.Read, file);
                 SoapFormatter soap = new SoapFormatter();
                 settings = (Settings)soap.Deserialize(stream);
                 stream.Close();
@@ -98,7 +95,7 @@ namespace Obi
         {
             IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
             IsolatedStorageFileStream stream =
-                new IsolatedStorageFileStream(SettingsFileName, FileMode.Create, FileAccess.Write, file);
+                new IsolatedStorageFileStream(SETTINGS_FILE_NAME, FileMode.Create, FileAccess.Write, file);
             SoapFormatter soap = new SoapFormatter();
             soap.Serialize(stream, this);
             stream.Close();

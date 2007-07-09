@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 using urakawa.core;
+using urakawa.core.visitor;
 using urakawa.media;
 using Obi.Assets;
 
@@ -13,7 +14,7 @@ namespace Obi.Visitors
     /// then assign them to the nodes (which are already copies of the data structure)
     /// </summary>
     //md 20060816
-    class CopyPhraseAssets : ICoreNodeVisitor
+    class CopyPhraseAssets : ITreeNodeVisitor
     {
         private AssetManager mAssManager;
         private Obi.Project mProject;
@@ -23,14 +24,14 @@ namespace Obi.Visitors
             mAssManager = assetManager;
             mProject = project;
         }
-        #region ICoreNodeVisitor Members
+        #region ITreeNodeVisitor Members
 
-        public void postVisit(ICoreNode node)
+        public void postVisit(TreeNode node)
         {
             
         }
 
-        public bool preVisit(ICoreNode node)
+        public bool preVisit(TreeNode node)
         {
             if (node.GetType() == System.Type.GetType("Obi.PhraseNode"))
             {
