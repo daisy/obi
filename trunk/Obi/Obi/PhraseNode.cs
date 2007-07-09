@@ -11,7 +11,7 @@ namespace Obi
         private ITextMedia mAnnotation;  // annotation (to be removed)
         private AudioMediaAsset mAsset;  // asset (to be removed)
 
-        public static readonly string Name = "phrase";  // name of the element in the XUK file
+        public static readonly string XUK_ELEMENT_NAME = "phrase";  // name of the element in the XUK file
     
         /// <summary>
         /// Directions in which a phrase node can be moved.
@@ -207,7 +207,7 @@ namespace Obi
         /// </summary>
         public override string getXukLocalName()
         {
-            return Name;
+            return XUK_ELEMENT_NAME;
         }
 
         /// <summary>
@@ -216,7 +216,7 @@ namespace Obi
         /// <param name="deep">Ignored; the node is shallow.</param>
         public new PhraseNode copy(bool deep)
         {
-            PhraseNode copy = (PhraseNode) getPresentation().getTreeNodeFactory().createNode(Name, ObiPropertyFactory.ObiNS);
+            PhraseNode copy = (PhraseNode) getPresentation().getTreeNodeFactory().createNode(XUK_ELEMENT_NAME, Program.OBI_NS);
             //the manager might be null if we are doing a cut/paste
             if (mAsset.Manager == null)
             {

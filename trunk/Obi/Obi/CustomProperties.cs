@@ -36,15 +36,13 @@ namespace Obi
 
     public class ObiPropertyFactory : urakawa.PropertyFactory
     {
-        public static readonly string ObiNS = "http://www.daisy.org/urakawa/obi";  // NS for Obi XUK
-
         public ObiPropertyFactory() : base()
 		{
 		}
 
         public override Property createProperty(string localName, string namespaceUri)
         {
-            if (namespaceUri == ObiNS)
+            if (namespaceUri == Program.OBI_NS)
             {
                 switch (localName)
                 {
@@ -105,7 +103,7 @@ namespace Obi
         {
             if (source == null) throw new urakawa.exception.MethodParameterIsNullException("Xml Reader is null");
             if (source.LocalName == NodeName &&
-                source.NamespaceURI == ObiPropertyFactory.ObiNS &&
+                source.NamespaceURI == Program.OBI_NS &&
                 source.NodeType == System.Xml.XmlNodeType.Element)
             {
                 string page = source.GetAttribute(AttrName);
@@ -121,7 +119,7 @@ namespace Obi
         public override bool XUKOut(System.Xml.XmlWriter destination)
         {
             if (destination == null) throw new urakawa.exception.MethodParameterIsNullException("Xml Writer is null");
-            destination.WriteStartElement(NodeName, ObiPropertyFactory.ObiNS);
+            destination.WriteStartElement(NodeName, Program.OBI_NS);
             destination.WriteAttributeString(AttrName, mPageNumber.ToString());
             destination.WriteEndElement();
             return true;

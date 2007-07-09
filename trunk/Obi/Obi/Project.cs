@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using urakawa;
 using urakawa.core;
+using urakawa.core.events;
 using urakawa.media;
 using urakawa.property.channel;
 using Obi.Assets;
@@ -29,24 +30,24 @@ namespace Obi
     /// </summary>
     public partial class Project : urakawa.Project
     {
-        private AssetManager mAssManager;    // the asset manager
-        private string mAssPath;             // the path to the asset manager directory
         private bool mUnsaved;               // saved flag
         private string mXUKPath;             // path to the project XUK file
+
+        private AssetManager mAssManager;    // the asset manager
+        private string mAssPath;             // the path to the asset manager directory
         private string mLastPath;            // last path to which the project was saved (see save as)
         private int mAudioChannels;          // project-wide number of channels for audio
         private int mSampleRate;             // project-wide sample rate for audio
         private int mBitDepth;               // project-wide bit depth for audio
-        private int mPhraseCount;            // total number of phrases in the project
         private int mPageCount;              // count the pages in the book
+        private int mPhraseCount;            // total number of phrases in the project
 
         // TODO remove mAudioChannel, mAnnotation and mClipboard as members.
         private Channel mAudioChannel;       // handy pointer to the audio channel
         private Channel mAnnotationChannel;  // handy pointer to the annotation channel
-        private Channel mTextChannel;
         private Clipboard mClipboard;        // project-wide clipboard; should move to project panel
 
-        public static readonly string CURRENT_XUK_VERSION = "obi-xuk-011";         // version of the Obi/XUK file
+        public static readonly string CURRENT_XUK_VERSION = "obi-xuk-012";         // version of the Obi/XUK file
         public static readonly string AUDIO_CHANNEL_NAME = "obi.audio";            // canonical name of the audio channel
         public static readonly string TEXT_CHANNEL_NAME = "obi.text";              // canonical name of the text channel
         public static readonly string ANNOTATION_CHANNEL_NAME = "obi.annotation";  // canonical name of the annotation channel
@@ -59,6 +60,156 @@ namespace Obi
         public event Events.NodeEventHandler TouchedNode;                   // this node was somehow modified
         public event Events.ObiNodeHandler ToggledNodeUsedState;            // the used state of a node was toggled.
         public event Events.SectionNodeHeadingHandler HeadingChanged;       // the heading of a section changed.
+
+
+        /// <summary>
+        /// Create a new empty project.
+        /// </summary>
+        /// <param name="XUKPath">The path to the XUK file where the project is to be saved.</param>
+        public Project(string XUKPath): base(CreatePresentation(XUKPath), null)
+        {
+            mPhraseCount = 0;
+            mPageCount = 0;
+            mUnsaved = true;
+            mXUKPath = XUKPath;
+            Presentation presentation = getPresentation();
+            ((ObiNodeFactory)presentation.getTreeNodeFactory()).Project = this;
+            presentation.setRootNode(presentation.getTreeNodeFactory().createNode(Obi.RootNode.XUK_ELEMENT_NAME,
+                Program.OBI_NS));
+        }
+
+        /// <summary>
+        /// Create a new project with initial metadata.
+        /// </summary>
+        /// <param name="XUKPath">The path to the XUK file where the project is to be saved.</param>
+        /// <param name="title">The title of the project.</param>
+        /// <param name="id">The identifier for the project.</param>
+        /// <param name="userProfile">The user profile for the user creating the project.</param>
+        /// <param name="createTitle">If true, create an initial title section.</param>
+        public Project(string XUKPath, string title, string id, UserProfile userProfile, bool createTitle): this(XUKPath)
+        {
+            AddChannel(ANNOTATION_CHANNEL_NAME);
+            AddChannel(AUDIO_CHANNEL_NAME);
+            AddChannel(TEXT_CHANNEL_NAME);
+            CreateMetadata(title, id, userProfile);
+            if (createTitle) CreateTitleSection(title);
+            if (StateChanged != null) StateChanged(this,
+                new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
+            Save();
+        }
+
+
+        /// <summary>
+        /// Get the annotation channel of the project.
+        /// </summary>
+        public Channel AnnotationChannel { get { return GetSingleChannelByName(ANNOTATION_CHANNEL_NAME); } }
+
+        /// <summary>
+        /// Get the audio channel of the project.
+        /// </summary>
+        public Channel AudioChannel { get { return GetSingleChannelByName(AUDIO_CHANNEL_NAME); } }
+
+        /// <summary>
+        /// Close the project.
+        /// </summary>
+        public void Close()
+        {
+            if (StateChanged != null)
+            {
+                StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Closed));
+            }
+        }
+
+        /// <summary>
+        /// Get the text channel of the project.
+        /// </summary>
+        public Channel TextChannel { get { return GetSingleChannelByName(TEXT_CHANNEL_NAME); } }
+
+        /// <summary>
+        /// This flag is set to true if the project contains modifications that have not been saved.
+        /// </summary>
+        public bool Unsaved { get { return mUnsaved; } }
+
+        /// <summary>
+        /// The path to the XUK file for this project.
+        /// </summary>
+        public string XUKPath { get { return mXUKPath; } }
+
+
+        #region utility functions
+
+        /// <summary>
+        /// Add a new channel with the given name to the presentation's channel manager.
+        /// </summary>
+        /// <param name="name">Name of the new channel.</param>
+        private void AddChannel(string name)
+        {
+            Channel channel = getPresentation().getChannelFactory().createChannel();
+            channel.setName(name);
+            getPresentation().getChannelsManager().addChannel(channel);
+        }
+
+        /// <summary>
+        /// Create a new phrase node.
+        /// </summary>
+        private PhraseNode CreatePhraseNode()
+        {
+            return (PhraseNode)
+                getPresentation().getTreeNodeFactory().createNode(PhraseNode.XUK_ELEMENT_NAME, Program.OBI_NS);
+        }
+
+        /// <summary>
+        /// Create a new empty presentation with custom node and property factories.
+        /// </summary>
+        /// <param name="XUKPath">Path of the XUK file for the project hosting this presentation.</param>
+        /// <returns>The new presentation.</returns>
+        private static Presentation CreatePresentation(string XUKPath)
+        {
+            return new Presentation(new Uri(Path.GetDirectoryName(XUKPath) + Path.DirectorySeparatorChar),
+                new ObiNodeFactory(), new PropertyFactory(), null, null, null, null, null);
+        }
+
+        /// <summary>
+        /// Create a section node.
+        /// </summary>
+        private SectionNode CreateSectionNode()
+        {
+            return (SectionNode)
+                getPresentation().getTreeNodeFactory().createNode(SectionNode.XUK_ELEMENT_NAME, Program.OBI_NS);
+        }
+
+        /// <summary>
+        /// Create a title section.
+        /// </summary>
+        /// <param name="title">The title of this section.</param>
+        private void CreateTitleSection(string title)
+        {
+            SectionNode node = CreateSectionNode();
+            node.Label = title;
+            RootNode.appendChild(node);
+        }
+
+        /// <summary>
+        /// Access a channel which we know exist and is the only channel by this name.
+        /// </summary>
+        /// <param name="name">The name of the channel (use the name constants.)</param>
+        /// <returns>The channel for this name.</returns>
+        /// <exception cref="urakawa.exception.ChannelDoesNotExistException">Thrown when there is no channel by that name.</exception>
+        /// <exception cref="TooManyChannelsException">Thrown when there are more than one channels with that name.</exception>
+        private Channel GetSingleChannelByName(string name)
+        {
+            List<Channel> channels = getPresentation().getChannelsManager().getChannelByName(name);
+            if (channels.Count == 0) throw new Exception(String.Format("No channel named \"{0}\"", name));
+            if (channels.Count > 1) throw new Exception(String.Format("Expected 1 channel for {0}, got {1}.",
+                name, channels.Count));
+            return channels[0];
+        }
+
+        #endregion
+
+
+
+
 
 
         /// <summary>
@@ -105,22 +256,12 @@ namespace Obi
             return project;
         }
 
-        #region properties
-
         /// <summary>
         /// Number of audio channels for the project audio.
         /// </summary>
         public int AudioChannels
         {
             get { return mAudioChannels; }
-        }
-
-        /// <summary>
-        /// Cached version of the annotation channel
-        /// </summary>
-        public Channel AnnotationChannel
-        {
-            get { return mAnnotationChannel; }
         }
 
         /// <summary>
@@ -227,43 +368,6 @@ namespace Obi
             get { return mSampleRate; }
         }
 
-        /// <summary>
-        /// Cached version of the text channel
-        /// </summary>
-        public Channel TextChannel
-        {
-            get { return FindChannel(TEXT_CHANNEL_NAME); }
-        }
-
-        /// <summary>
-        /// This flag is set to true if the project contains modifications that have not been saved.
-        /// </summary>
-        public bool Unsaved
-        {
-            get { return mUnsaved; }
-        }
-
-        /// <summary>
-        /// The path to the XUK file for this project.
-        /// </summary>
-        public string XUKPath
-        {
-            get { return mXUKPath; }
-        }
-
-        #endregion
-
-
-        /// <summary>
-        /// Close the project.
-        /// </summary>
-        public void Close()
-        {
-            if (StateChanged != null)
-            {
-                StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Closed));
-            }
-        }
 
         /// <summary>
         /// Create an empty project with some initial metadata.
@@ -281,7 +385,7 @@ namespace Obi
             mXUKPath = xukPath;
             mAssPath = GetAssetDirectory(xukPath);
             mAssManager = new Assets.AssetManager(Path.Combine(Path.GetDirectoryName(xukPath), mAssPath));
-            CreateChannels();
+            // CreateChannels();
             CreateMetadata(title, id, userProfile);
             if (createTitle) CreateTitleSection(title);
             if (StateChanged != null)
@@ -291,33 +395,7 @@ namespace Obi
             Save();
         }
 
-        /// <summary>
-        /// Create the default channels for the presentation.
-        /// </summary>
-        private void CreateChannels()
-        {
-            Presentation presentation = (Presentation)getPresentation();
-            ChannelFactory factory = (ChannelFactory)presentation.getChannelFactory();
-            ChannelsManager manager = (ChannelsManager)presentation.getChannelsManager();
-            mAudioChannel = (Channel)factory.createChannel(typeof(Channel).Name, urakawa.ToolkitSettings.XUK_NS);
-            mAudioChannel.setName(AUDIO_CHANNEL_NAME);
-            manager.addChannel(mAudioChannel);
-            mTextChannel = factory.createChannel(mAudioChannel.getXukLocalName(), mAudioChannel.getXukNamespaceUri());
-            mTextChannel.setName(TEXT_CHANNEL_NAME);
-            manager.addChannel(mTextChannel);
-            mAnnotationChannel = (Channel)factory.createChannel(mAudioChannel.getXukLocalName(), mAudioChannel.getXukNamespaceUri());
-            mAnnotationChannel.setName(ANNOTATION_CHANNEL_NAME);
-            manager.addChannel(mAnnotationChannel);
-        }
 
-        /// <summary>
-        /// Convenience method to create a new phrase node.
-        /// </summary>
-        private PhraseNode CreatePhraseNode()
-        {
-            return (PhraseNode)
-                getPresentation().getTreeNodeFactory().createNode(PhraseNode.Name, ObiPropertyFactory.ObiNS);
-        }
 
         /// <summary>
         /// Create a new phrase node from an asset.
@@ -331,23 +409,6 @@ namespace Obi
             PhraseNode node = CreatePhraseNode();
             node.Asset = asset;
             return node;
-        }
-
-        /// <summary>
-        /// Convenience method to create a section node.
-        /// </summary>
-        private SectionNode CreateSectionNode()
-        {
-            return (SectionNode)
-                getPresentation().getTreeNodeFactory().createNode(SectionNode.XUK_ELEMENT_NAME, ObiPropertyFactory.ObiNS);
-        }
-
-        // Create a title section
-        private void CreateTitleSection(string title)
-        {
-            SectionNode node = CreateSectionNode();
-            node.Label = title;
-            RootNode.appendChild(node);
         }
 
         /// <summary>
