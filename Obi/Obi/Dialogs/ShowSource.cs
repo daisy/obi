@@ -13,6 +13,9 @@ namespace Obi.Dialogs
     {
         private Project mProject;  // the project for which the source is shown
 
+        /// <summary>
+        /// Used by the designer.
+        /// </summary>
         public ShowSource()
         {
             InitializeComponent();

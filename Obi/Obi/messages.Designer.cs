@@ -486,6 +486,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to project.obi.
+        /// </summary>
+        internal static string default_project_filename {
+            get {
+                return ResourceManager.GetString("default_project_filename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Untitled Obi Project.
+        /// </summary>
+        internal static string default_project_title {
+            get {
+                return ResourceManager.GetString("default_project_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Untitled section.
         /// </summary>
         internal static string default_section_label {
@@ -1028,6 +1046,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Obi project file (*.obi)|*.obi|Any file|*.*.
+        /// </summary>
+        internal static string obi_project_extension {
+            get {
+                return ResourceManager.GetString("obi_project_extension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error opening project file.
         /// </summary>
         internal static string open_project_error_caption {
@@ -1232,6 +1259,24 @@ namespace Obi {
         internal static string really_delete_required_metadata_item_text {
             get {
                 return ResourceManager.GetString("really_delete_required_metadata_item_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Non-empty new project directory.
+        /// </summary>
+        internal static string really_use_directory_caption {
+            get {
+                return ResourceManager.GetString("really_use_directory_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Directory &quot;{0}&quot;is not empty. If you create a new project in this directory, some contents may be overwritten. Do you wish to continue?.
+        /// </summary>
+        internal static string really_use_directory_text {
+            get {
+                return ResourceManager.GetString("really_use_directory_text", resourceCulture);
             }
         }
         

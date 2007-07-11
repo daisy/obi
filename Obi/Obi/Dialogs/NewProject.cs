@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Obi.Dialogs
@@ -17,18 +17,31 @@ namespace Obi.Dialogs
     /// </summary>
     public partial class NewProject : Form
     {
-        private bool mCheckExisting;  // flag for checking for an existing file before closing.
-        private bool mCanClose;       // as a result, this flag tells whether to close the form or not.
- 
+        private string mBasepath;       // the base path for the project
+        private bool mCanClose;         // can close the form or not (cannot close if file existed)
+        private string mExtension;      // file extension for the file chooser
+        private string mFilename;       // the actual filename 
+        private bool mUserSetLocation;  // the location was changed manually by the user
+
         /// <summary>
-        /// The chosen title for the project.
+        /// Create a new dialog with default information (dummy name and default path.)
         /// </summary>
-        //med june 4 2007: added "set" for use by the "import structure" feature
-        public string Title
+        /// <param name="basepath">The initial directory where to create the project.</param>
+        /// <param name="filename">The actual file name for the project.</param>
+        /// <param name="extension">The file extension (for a file dialog.)</param>
+        /// <param name="title">The project title.</param>
+        public NewProject(string basepath, string filename, string extension, string title)
         {
-            get { return mTitleBox.Text; }
-            set { mTitleBox.Text = value; }
+            InitializeComponent();
+            mTitleBox.Text = title;
+            mBasepath = basepath;
+            mExtension = extension;
+            mFilename = filename;
+            mCanClose = true;
+            mUserSetLocation = false;
+            GenerateFileName();
         }
+
 
         /// <summary>
         /// Flag telling whether to automatically create a new section for the title.
@@ -41,6 +54,11 @@ namespace Obi.Dialogs
         }
 
         /// <summary>
+        /// Make the "create title section" checkbox invisible (use only for project import.)
+        /// </summary>
+        public void MakeAutoTitleCheckboxInvisible() { mAutoTitleCheckBox.Visible = false; }
+
+        /// <summary>
         /// The chosen path for the XUK project file; derived from the title or chosen
         /// by the user.
         /// </summary>
@@ -50,85 +68,58 @@ namespace Obi.Dialogs
         }
 
         /// <summary>
-        /// Create a new dialog with default information (dummy name and default path.)
+        /// The chosen title for the project.
         /// </summary>
-        /// <param name="path">The initial directory where to create the project.</param>
-        public NewProject(string path)
+        public string Title
         {
-            InitializeComponent();
-            mCheckExisting = true;
-            mCanClose = true;
-            mTitleBox.Text = Localizer.Message("new_project");
-            // Add a trailing separator so that the last directory doesn't look like a file name (lame.)
-            mFileBox.Text = path + (path.EndsWith(System.IO.Path.DirectorySeparatorChar.ToString()) ?
-                "" : System.IO.Path.DirectorySeparatorChar.ToString());
-            GenerateFileName();
+            get { return mTitleBox.Text; }
+        }
+
+
+        /// <summary>
+        /// Generate the file name for the project.
+        /// </summary>
+        private void GenerateFileName()
+        {
+            if (!mUserSetLocation)
+            {
+                mFileBox.Text = String.Format("{0}{1}{2}{1}{3}",
+                    mBasepath,
+                    System.IO.Path.DirectorySeparatorChar,
+                    SafeName(mTitleBox.Text),
+                    mFilename);
+            }
+        }
+
+        /// <summary>
+        /// Before closing, make sure that the directory chosen works.
+        /// </summary>
+        private void mOKButton_Click(object sender, EventArgs e)
+        {
+            string directory = System.IO.Path.GetDirectoryName(mFileBox.Text);
+            mCanClose = ObiForm.CanUseDirectory(directory, true);
         }
 
         /// <summary>
         /// Update the path text box with the selected path from the file chooser.
         /// </summary>
-        private void selectButton_Click(object sender, EventArgs e)
+        private void mSelectButton_Click(object sender, EventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.InitialDirectory = System.IO.Path.GetDirectoryName(mFileBox.Text);
-            dialog.Filter = Localizer.Message("xuk_filter");
+            dialog.Filter = mExtension;
+            dialog.AddExtension = true;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 mFileBox.Text = dialog.FileName;
-                mCheckExisting = false;  // the user was asked by the file chooser
+                mUserSetLocation = true;
             }
         }
 
         /// <summary>
         /// Generate a new XUK file name when a new title is chosen.
         /// </summary>
-        private void mTitleBox_TextChanged(object sender, EventArgs e)
-        {
-            GenerateFileName();
-        }
-
-        /// <summary>
-        /// Generate a full path from the initial directory and the title of the project.
-        /// </summary>
-        private void GenerateFileName()
-        {
-            try
-            {
-                mFileBox.Text = String.Format(@"{0}{1}{2}.xuk", System.IO.Path.GetDirectoryName(mFileBox.Text),
-                    System.IO.Path.DirectorySeparatorChar, Project.SafeName(mTitleBox.Text));
-                mCheckExisting = true;  // since the filename changed, we should check
-            }
-            catch (Exception)
-            {
-                // catch a possible ill-formed path exception when the text field is initialized
-            }
-        }
-
-        /// <summary>
-        /// Before closing, select
-        /// </summary>
-        private void mOKButton_Click(object sender, EventArgs e)
-        {
-            mCanClose = IOUtils.ValidateAndCreateDir(System.IO.Path.GetDirectoryName(mFileBox.Text));
-            if (mCheckExisting && File.Exists(mFileBox.Text))
-            {
-                DialogResult result = MessageBox.Show(String.Format(Localizer.Message("overwrite_file_text"), mFileBox.Text),
-                    Localizer.Message("overwrite_file_caption"),
-                    MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                switch (result)
-                {
-                    case DialogResult.No:
-                        mCanClose = false;
-                        break;
-                    case DialogResult.Cancel:
-                        this.DialogResult = result;
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
+        private void mTitleBox_TextChanged(object sender, EventArgs e) { GenerateFileName(); }
 
         /// <summary>
         /// If we decided not to overwrite a file, then the form should not be closed.
@@ -142,13 +133,21 @@ namespace Obi.Dialogs
                 mCanClose = true;
             }
         }
-        
+
         /// <summary>
-        /// This was added because the "import structure" feature needs this option disabled
+        /// Get a safename for the project directory from the title.
         /// </summary>
-        public void makeAutoTitleCheckboxInvisible()
+        /// <param name="title">The project title.</param>
+        /// <returns>A safe name for the file system.</returns>
+        private static string SafeName(string title)
         {
-            mAutoTitleCheckBox.Visible = false;
+            string invalid = "[";
+            foreach (char c in System.IO.Path.GetInvalidFileNameChars()) invalid += String.Format("\\x{0:x2}", (int)c);
+            invalid += "]+";
+            string safe = Regex.Replace(title, invalid, "_");
+            safe = Regex.Replace(safe, "^_", "");
+            safe = Regex.Replace(safe, "_$", "");
+            return safe;
         }
     }
 }

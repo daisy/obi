@@ -336,7 +336,7 @@ namespace Zaboom.Audio
         /// <param name="lEndPosition">Use 0 to play until the end.</param>
         private void PlayDataStream(long startPos, long endPos)
         {
-            if (mState != PlayerState.Stopped) throw new Exception("Player is not stopped.");
+            //if (mState != PlayerState.Stopped) throw new Exception("Player is not stopped.");
             startPos = CalculationFunctions.AdaptToFrame(startPos, mCurrentAudioMediaData.getPCMFormat().getBlockAlign());
             endPos = CalculationFunctions.AdaptToFrame(endPos, mCurrentAudioMediaData.getPCMFormat().getBlockAlign());
             mPlayed = startPos;

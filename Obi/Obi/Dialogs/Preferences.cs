@@ -163,11 +163,11 @@ namespace Obi.Dialogs
             if (mDefaultXUKDirectory != mDirectoryBox.Text)                
             {
                 //...do we go through the test to avoid annyoing repeats
-                if (IOUtils.ValidateAndCreateDir(mDirectoryBox.Text))
+                if (ObiForm.CanUseDirectory(mDirectoryBox.Text, false))
                     mDefaultXUKDirectory = mDirectoryBox.Text;                
             }
             if (mDefaultDAISYDirectory != mExportBox.Text &&
-                IOUtils.ValidateAndCreateDir(mExportBox.Text))
+                ObiForm.CanUseDirectory(mExportBox.Text, false))
             {
                 mDefaultDAISYDirectory = mExportBox.Text;
             }
