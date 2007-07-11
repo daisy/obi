@@ -212,7 +212,6 @@
     <Compile Include="Events\Audio\Recorder\PhraseEventArgs.cs" />
     <Compile Include="Events\Strip\UpdateTimeEventArgs.cs" />
     <Compile Include="ImportStructure.cs" />
-    <Compile Include="IOUtils.cs" />
     <Compile Include="Localizer.cs" />
     <Compile Include="messages.Designer.cs">
       <AutoGen>True</AutoGen>

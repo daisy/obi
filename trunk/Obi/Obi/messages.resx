@@ -703,4 +703,20 @@ Do you want to replace the project contained in this file?</value>
   <data name="error_metadata_name_message" xml:space="preserve">
     <value>Cannot create metadata item with the name "{0}": name must not start with "dtb:"</value>
   </data>
+  <data name="default_project_title" xml:space="preserve">
+    <value>Untitled Obi Project</value>
+  </data>
+  <data name="default_project_filename" xml:space="preserve">
+    <value>project.obi</value>
+  </data>
+  <data name="obi_project_extension" xml:space="preserve">
+    <value>Obi project file (*.obi)|*.obi|Any file|*.*</value>
+  </data>
+  <data name="really_use_directory_caption" xml:space="preserve">
+    <value>Non-empty new project directory</value>
+  </data>
+  <data name="really_use_directory_text" xml:space="preserve">
+    <value>Directory "{0}"is not empty. If you create a new project in this directory, some contents may be overwritten. Do you wish to continue?</value>
+    <comment>Selecting a non-empty directory to save a project in.</comment>
+  </data>
 </root>

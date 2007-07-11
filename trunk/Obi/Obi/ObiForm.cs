@@ -144,7 +144,11 @@ namespace Obi
         private void mNewProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectPanel.TransportBar.Enabled = false;
-            Dialogs.NewProject dialog = new Dialogs.NewProject(mSettings.DefaultPath);
+            Dialogs.NewProject dialog = new Dialogs.NewProject(
+                mSettings.DefaultPath,
+                Localizer.Message("default_project_filename"),
+                Localizer.Message("obi_project_extension"),
+                Localizer.Message("default_project_title"));
             dialog.CreateTitleSection = mSettings.CreateTitleSection;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
@@ -1727,11 +1731,14 @@ namespace Obi
             openFile.Filter = "HTML | *.html";
 
             if (openFile.ShowDialog() != DialogResult.OK) return;
-   
-            Dialogs.NewProject dialog = new Dialogs.NewProject(mSettings.DefaultPath);
-            dialog.makeAutoTitleCheckboxInvisible();
+
+            Dialogs.NewProject dialog = new Dialogs.NewProject(
+                mSettings.DefaultPath,
+                Localizer.Message("default_project_filename"),
+                Localizer.Message("obi_project_extension"),
+                ImportStructure.grabTitle(new Uri(openFile.FileName)));
+            dialog.MakeAutoTitleCheckboxInvisible();
             dialog.Text = "Create a new project starting from XHTML import";
-            dialog.Title = ImportStructure.grabTitle(new Uri(openFile.FileName));
             if (dialog.ShowDialog() != DialogResult.OK) return;
             
             // let's see if we can actually write the file that the user chose (bug #1679175)
@@ -1841,6 +1848,80 @@ namespace Obi
         private void ObiForm_ResizeEnd(object sender, EventArgs e)
         {
             mSettings.ObiFormSize = Size;
+        }
+
+
+
+        /// <summary>
+        /// Check if a string representation of a directory 
+        /// exists as a directory on the filesystem,
+        /// if not, try to create it, asking the user first.
+        /// </summary>
+        /// <param name="path">String representation of the directory to be checked/created</param>
+        /// <param name="checkEmpty">Check for empty directories.</param>
+        /// <returns>True if the is suitable, false otherwise.</returns>        
+        public static bool CanUseDirectory(string path, bool checkEmpty)
+        {
+            return File.Exists(path) ? false :
+                Directory.Exists(path) ? CheckEmpty(path, checkEmpty) : DidCreateDirectory(path);
+        }
+
+        /// <summary>
+        /// Check if a directory is empty or not; ask the user to confirm
+        /// that they mean this directory even though it is not empty.
+        /// </summary>
+        /// <param name="path">The directory to check.</param>
+        /// <param name="checkEmpty">Actually check.</param>
+        private static bool CheckEmpty(string path, bool checkEmpty)
+        {
+            if (checkEmpty && Directory.GetFiles(path).Length > 0)
+            {
+                DialogResult result = MessageBox.Show(
+                    String.Format(Localizer.Message("really_use_directory_text"), path),
+                    Localizer.Message("really_use_directory_caption"),
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+                return result == DialogResult.Yes;
+            }
+            else
+            {
+                return true;  // the directory was empty or we didn't need to check
+            }
+        }
+
+        /// <summary>
+        /// Ask the user whether she wants to create a directory,
+        /// and try to create it if she does.
+        /// </summary>
+        /// <param name="path">Path to the non-existing directory.</param>
+        /// <returns>True if the directory was created.</returns>
+        private static bool DidCreateDirectory(string path)
+        {
+            if (MessageBox.Show(
+                String.Format(Localizer.Message("create_directory_query"), path),
+                Localizer.Message("create_directory_caption"),
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    Directory.CreateDirectory(path);
+                    return true;  // did create the directory
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(
+                        String.Format(Localizer.Message("create_directory_failure"), path, e.Message),
+                        Localizer.Message("error"),
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return false;  // couldn't create the directory
+                }
+            }
+            else
+            {
+                return false;  // didn't want to create the directory
+            }
         }
     }
 }

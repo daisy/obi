@@ -87,7 +87,7 @@ namespace Obi.Dialogs
             this.mSelectButton.TabIndex = 5;
             this.mSelectButton.Text = "&Select";
             this.mSelectButton.UseVisualStyleBackColor = true;
-            this.mSelectButton.Click += new System.EventHandler(this.selectButton_Click);
+            this.mSelectButton.Click += new System.EventHandler(this.mSelectButton_Click);
             // 
             // mOKButton
             // 

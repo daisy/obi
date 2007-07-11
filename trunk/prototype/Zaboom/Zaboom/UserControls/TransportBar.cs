@@ -30,6 +30,11 @@ namespace Zaboom.UserControls
             mPlaylist = new List<AudioMediaData>();
         }
 
+        private void mPauseButton_Click(object sender, EventArgs e)
+        {
+            if (mPlayer.CanPause) mPlayer.Pause();
+        }
+
         /// <summary>
         /// Get the parent as a project panel.
         /// </summary>
@@ -61,7 +66,11 @@ namespace Zaboom.UserControls
         /// </summary>
         private void mPlayButton_Click(object sender, EventArgs e)
         {
-            if (mPlaylist.Count > 0)
+            if (mPlayer.CanResume)
+            {
+                mPlayer.Resume();
+            }
+            else if (mPlayer.CanPlay && mPlaylist.Count > 0)
             {
                 mPlayer.EndOfAudioAsset += new Audio.EndOfAudioAssetHandler(mPlayer_EndOfAudioAsset);
                 mNowPlaying = 0;
@@ -136,6 +145,7 @@ namespace Zaboom.UserControls
             Enabled = mPlayer.State != Audio.PlayerState.NotReady;
             mPlayButton.Enabled = mPlayer.CanPlay && mPlaylist.Count > 0;
             mStopButton.Enabled = mPlayer.CanStop;
+            mPauseButton.Enabled = mPlayer.CanPause;
         }
 
         /// <summary>

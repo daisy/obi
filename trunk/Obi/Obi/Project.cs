@@ -304,9 +304,11 @@ namespace Obi
         {
             get
             {
-                return String.Format("{0} v{1} with Urakawa SDK v0.5 (http://urakawa.sf.net)",
+                return String.Format("{0} v{1} with {2} v{3} (http://urakawa.sf.net)",
                     System.Reflection.Assembly.GetExecutingAssembly().GetName().Name,
-                    System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
+                    System.Reflection.Assembly.GetExecutingAssembly().GetName().Version,
+                    System.Reflection.Assembly.GetAssembly(typeof(urakawa.Project)).GetName().Name,
+                    System.Reflection.Assembly.GetAssembly(typeof(urakawa.Project)).GetName().Version);
             }
         }
 
