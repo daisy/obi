@@ -17,7 +17,8 @@ namespace UnitTests
             profile.Organization = "The Urakawa Project";
             string title = "Test project";
             string id = "test_id";
-            Project project = new Project(System.IO.Path.GetTempFileName(), title, id, profile, false);
+            Project project = new Project(System.IO.Path.GetTempFileName());
+            project.Initialize(title, id, profile, false);
             Assert.AreEqual(project.XukVersion, Project.CURRENT_XUK_VERSION);
             Assert.AreEqual(profile.Name, project.GetSingleMetadataItem(Obi.Metadata.DTB_NARRATOR).getContent());
             Assert.AreEqual(profile.Culture.ToString(),

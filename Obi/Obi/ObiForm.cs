@@ -8,7 +8,6 @@ using urakawa.core;
 
 namespace Obi
 {
-
     /// <summary>
     /// The main for of the application.
     /// The form consists mostly of a menu bar and a project panel.
@@ -1299,10 +1298,10 @@ namespace Obi
         /// <param name="createTitleSection">If true, a title section is automatically created.</param>
         private void CreateNewProject(string path, string title, bool createTitleSection)
         {
-            mProject = Project.BlankProject(path);
+            mProject = new Project(path);
             mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
             mProject.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
-            mProject.Create(path, title, mSettings.GeneratedID, mSettings.UserProfile, createTitleSection);
+            mProject.Initialize(title, mSettings.GeneratedID, mSettings.UserProfile, createTitleSection);
             AddRecentProject(mProject.XUKPath);
         }
 
@@ -1316,7 +1315,7 @@ namespace Obi
             {
                 // A bit kldugy but an easy way to rebuild the list of used files when discarding changes.
                 string path = mProject.XUKPath;
-                mProject = Project.BlankProject(path);
+                mProject = new Project(path);
                 mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(Program.Noop);
                 mProject.Open(path);
                 mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
@@ -1334,7 +1333,7 @@ namespace Obi
         {
             try
             {
-                mProject = Project.BlankProject(path);
+                mProject = new Project(path);
                 mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
                 mProject.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
                 this.Cursor = Cursors.WaitCursor;

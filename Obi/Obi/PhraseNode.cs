@@ -5,9 +5,13 @@ using urakawa.media;
 
 namespace Obi
 {
+    /// <summary>
+    /// A phrase node is a node that contains audio data.
+    /// </summary>
     public class PhraseNode : ObiNode
     {
         private bool mXukInHeadingFlag;  // got the heading flag from the XUK file
+
         private ITextMedia mAnnotation;  // annotation (to be removed)
         private AudioMediaAsset mAsset;  // asset (to be removed)
 
@@ -17,6 +21,7 @@ namespace Obi
         /// Directions in which a phrase node can be moved.
         /// </summary>
         public enum Direction { Forward, Backward };
+
 
         /// <summary>
         /// True if there is an annotation on the node.

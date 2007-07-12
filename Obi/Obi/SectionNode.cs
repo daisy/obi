@@ -20,12 +20,11 @@ namespace Obi
         /// <summary>
         /// Create a new section node with the default label.
         /// </summary>
-        public SectionNode(Project project)
-            : base(project)
+        public SectionNode(Project project): base(project)
         {
+            mHeading = null;
             mSectionOffset = 0;
             mSpan = 1;
-            mHeading = null;
             // Create the text media object for the label with a default label
             ITextMedia labelMedia = getPresentation().getMediaFactory().createTextMedia();
             labelMedia.setText(Localizer.Message("default_section_label"));
