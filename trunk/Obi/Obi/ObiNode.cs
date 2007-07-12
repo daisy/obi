@@ -102,5 +102,11 @@ namespace Obi
         }
 
         public override int Index { get { return 0; } }
+
+        public SectionNode SectionChild(int index)
+        {
+            if (index < 0) index = getChildCount() - index;
+            return (SectionNode)getChild(index);
+        }
     }
 }

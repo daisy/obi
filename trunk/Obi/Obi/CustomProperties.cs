@@ -1,56 +1,37 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
 using urakawa.core;
 using urakawa.property;
 
-// This file contains the custom properties sutff
-
 namespace Obi
 {
-    public abstract class ObiProperty: Property
-    {
-        /*protected TreeNode mOwner;  // owner of the property
-
-        public override TreeNode getOwner()
-        {
-            return mOwner;
-        }
-
-        public override void setOwner(TreeNode newOwner)
-        {
-            mOwner = (TreeNode)newOwner;
-        }*/
-
-        public virtual bool XUKIn(System.Xml.XmlReader source)
-        {
-            return false;
-        }
-
-        public virtual bool XUKOut(System.Xml.XmlWriter destination)
-        {
-            return true;
-        }
-    }
-
+    /// <summary>
+    /// Property factory for Obi properties.
+    /// </summary>
     public class ObiPropertyFactory : urakawa.PropertyFactory
     {
-        public ObiPropertyFactory() : base()
-		{
-		}
+        /// <summary>
+        /// Create a new property factory.
+        /// </summary>
+        public ObiPropertyFactory(): base()
+        {
+        }
 
+        /// <summary>
+        /// Create a new Obi or default property.
+        /// </summary>
         public override Property createProperty(string localName, string namespaceUri)
         {
             if (namespaceUri == Program.OBI_NS)
             {
-                switch (localName)
+                if (localName == PageProperty.XUK_ELEMENT_NAME)
                 {
-                    case "page":
-                    case "PageProperty":
-                        return new PageProperty();
-                    default:
-                        throw new Exception(String.Format("Cannot create property named `{0}'", localName));
+                    return new PageProperty();
+                }
+                else
+                {
+                    throw new Exception(String.Format("Cannot create property named `{0}'", localName));
                 }
             }
             return base.createProperty(localName, namespaceUri);
@@ -60,11 +41,12 @@ namespace Obi
     /// <summary>
     /// Page property: assign a page number to a phrase node.
     /// </summary>
-    public class PageProperty : ObiProperty
+    public class PageProperty : Property
     {
-        private int mPageNumber;                          // page number (non-negative integer)
-        public static readonly string NodeName = "page";  // the XML element name for XUK in/out
-        public static readonly string AttrName = "num";   // attribute name for the page number
+        private int mPageNumber;  // page number (non-negative integer)
+
+        public static readonly string XUK_ELEMENT_NAME = "page";    // the XML element name for XUK in/out
+        public static readonly string XUK_ATTRIBUTE_NAME = "num";   // attribute name for the page number
 
         /// <summary>
         /// Get or set the page number.
@@ -78,8 +60,7 @@ namespace Obi
         /// <summary>
         /// Create a new page property.
         /// </summary>
-        internal PageProperty()
-            : base()
+        public PageProperty(): base()
         {
             mPageNumber = 0;
         }
@@ -99,30 +80,20 @@ namespace Obi
         /// <summary>
         /// Read in a page property from a XUK file.
         /// </summary>
-        public override bool XUKIn(System.Xml.XmlReader source)
+        protected override void XukInAttributes(System.Xml.XmlReader source)
         {
-            if (source == null) throw new urakawa.exception.MethodParameterIsNullException("Xml Reader is null");
-            if (source.LocalName == NodeName &&
-                source.NamespaceURI == Program.OBI_NS &&
-                source.NodeType == System.Xml.XmlNodeType.Element)
-            {
-                string page = source.GetAttribute(AttrName);
-                mPageNumber = Int32.Parse(page);
-                if (source.IsEmptyElement) return true;
-            }
-            return false;
+            base.XukInAttributes(source);
+            string page = source.GetAttribute(XUK_ATTRIBUTE_NAME);
+            mPageNumber = Int32.Parse(page);
         }
 
         /// <summary>
         /// Write out the page property to a XUK file.
         /// </summary>
-        public override bool XUKOut(System.Xml.XmlWriter destination)
+        protected override void XukOutAttributes(System.Xml.XmlWriter destination)
         {
-            if (destination == null) throw new urakawa.exception.MethodParameterIsNullException("Xml Writer is null");
-            destination.WriteStartElement(NodeName, Program.OBI_NS);
-            destination.WriteAttributeString(AttrName, mPageNumber.ToString());
-            destination.WriteEndElement();
-            return true;
+            base.XukOutAttributes(destination);
+            destination.WriteAttributeString(XUK_ATTRIBUTE_NAME, mPageNumber.ToString());
         }
     }
 }

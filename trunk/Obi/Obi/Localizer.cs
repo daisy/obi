@@ -5,16 +5,21 @@ using System.Text;
 
 namespace Obi
 {
+    /// <summary>
+    /// Application-wide localizer for messages.
+    /// </summary>
     class Localizer
     {
-        private static readonly Localizer instance = new Localizer();
-        private ResourceManager resmngr;
+        private ResourceManager mResmngr;                              // the resource manager for the messages
 
-        public static Localizer Instance { get { return instance; } }
+        private static readonly Localizer INSTANCE = new Localizer();  // singleton to have a static Message() method
 
+        /// <summary>
+        /// Create an new localizer
+        /// </summary>
         private Localizer()
         {
-            resmngr = new ResourceManager("Obi.messages", GetType().Assembly);
+            mResmngr = new ResourceManager("Obi.messages", GetType().Assembly);
         }
 
         /// <summary>
@@ -24,7 +29,7 @@ namespace Obi
         /// <returns>The localized string for the given key.</returns>
         public static string Message(string key)
         {
-            return instance.resmngr.GetString(key);
+            return INSTANCE.mResmngr.GetString(key);
         }
     }
 }

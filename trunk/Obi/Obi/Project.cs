@@ -78,20 +78,26 @@ namespace Obi
                 Program.OBI_NS));
         }
 
+
         /// <summary>
-        /// Create a new project with initial metadata.
+        /// Initialize a new project with metadata.
         /// </summary>
         /// <param name="XUKPath">The path to the XUK file where the project is to be saved.</param>
         /// <param name="title">The title of the project.</param>
         /// <param name="id">The identifier for the project.</param>
         /// <param name="userProfile">The user profile for the user creating the project.</param>
         /// <param name="createTitle">If true, create an initial title section.</param>
-        public Project(string XUKPath, string title, string id, UserProfile userProfile, bool createTitle): this(XUKPath)
+        public void Initialize(string title, string id, UserProfile userProfile, bool createTitle)
         {
             AddChannel(ANNOTATION_CHANNEL_NAME);
             AddChannel(AUDIO_CHANNEL_NAME);
             AddChannel(TEXT_CHANNEL_NAME);
             CreateMetadata(title, id, userProfile);
+            
+            // TODO remove this
+            mAssPath = GetAssetDirectory(mXUKPath);
+            mAssManager = new Assets.AssetManager(Path.Combine(Path.GetDirectoryName(mXUKPath), mAssPath));
+
             if (createTitle) CreateTitleSection(title);
             if (StateChanged != null) StateChanged(this,
                 new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
@@ -232,31 +238,6 @@ namespace Obi
         }
 
         /// <summary>
-        /// Convenience method for creating a new blank project. Actually create a presentation first so that we can use our own
-        /// core node factory and custom property factory. Set up the channel manager as well.
-        /// </summary>
-        /// <returns>The newly created, blank project.</returns>
-        public static Project BlankProject(string xukpath)
-        {
-            /*ObiNodeFactory nodeFactory = new ObiNodeFactory();
-            Presentation presentation = new Presentation(nodeFactory, null, null, new ObiPropertyFactory(), null);
-            ChannelFactory factory = presentation.getChannelFactory();
-            ChannelsManager manager = presentation.getChannelsManager();
-            Project project = new Project(presentation);
-            nodeFactory.Project = project;
-            return project;*/
-
-            string asspath = Path.Combine(Path.GetDirectoryName(xukpath), GetAssetDirectory(xukpath));
-            ObiNodeFactory nodeFactory = new ObiNodeFactory();
-            Presentation presentation = new Presentation(new Uri(asspath), nodeFactory, new ObiPropertyFactory(), null, null, null, null, null);
-            ChannelFactory factory = (ChannelFactory)presentation.getChannelFactory();
-            ChannelsManager manager = (ChannelsManager)presentation.getChannelsManager();
-            Project project = new Project(presentation);
-            nodeFactory.Project = project;
-            return project;
-        }
-
-        /// <summary>
         /// Number of audio channels for the project audio.
         /// </summary>
         public int AudioChannels
@@ -357,9 +338,9 @@ namespace Obi
         /// <summary>
         /// Get the root node of the presentation as a TreeNode.
         /// </summary>
-        public TreeNode RootNode
+        public RootNode RootNode
         {
-            get { return (TreeNode)getPresentation().getRootNode(); }
+            get { return (RootNode)getPresentation().getRootNode(); }
         }
 
         /// <summary>
@@ -371,31 +352,7 @@ namespace Obi
         }
 
 
-        /// <summary>
-        /// Create an empty project with some initial metadata.
-        /// We can also automatically create the first node.
-        /// </summary>
-        /// <param name="xukPath">The path of the XUK file.</param>
-        /// <param name="title">The title of the project.</param>
-        /// <param name="id">The id of the project.</param>
-        /// <param name="userProfile">The profile of the user who created it to fill in the metadata blanks.</param>
-        /// <param name="createTitle">Create a title section.</param>
-        public void Create(string xukPath, string title, string id, UserProfile userProfile, bool createTitle)
-        {
-            // The asset manager path is made relative to the XUK file's path; but we still use the absolute value that we
-            // get from GetAssetDirectory to create/initialize the path of the asset manager.
-            mXUKPath = xukPath;
-            mAssPath = GetAssetDirectory(xukPath);
-            mAssManager = new Assets.AssetManager(Path.Combine(Path.GetDirectoryName(xukPath), mAssPath));
-            // CreateChannels();
-            CreateMetadata(title, id, userProfile);
-            if (createTitle) CreateTitleSection(title);
-            if (StateChanged != null)
-            {
-                StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
-            }
-            Save();
-        }
+
 
 
 
