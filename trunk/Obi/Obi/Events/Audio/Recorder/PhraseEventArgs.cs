@@ -1,6 +1,5 @@
 using System;
-
-using Obi.Assets;
+using urakawa.media.data;
 
 namespace Obi.Events.Audio.Recorder
 {
@@ -31,30 +30,19 @@ namespace Obi.Events.Audio.Recorder
 
     public class PhraseEventArgs: EventArgs
     {
-        private AudioMediaAsset mAsset;
+        private ManagedAudioMedia mAudio;
         private int mPhraseIndex;
         private double mTime;
 
-        public AudioMediaAsset Asset
+        public PhraseEventArgs(ManagedAudioMedia audio, int index, double time)
         {
-            get { return mAsset; }
-        }
-
-        public int PhraseIndex
-        {
-            get { return mPhraseIndex; }
-        }
-
-        public double Time
-        {
-            get { return mTime; }
-        }
-
-        public PhraseEventArgs(AudioMediaAsset asset, int index, double time)
-        {
-            mAsset = asset;
+            mAudio = audio;
             mPhraseIndex = index;
             mTime = time;
         }
+
+        public ManagedAudioMedia Audio { get { return mAudio; } }
+        public int PhraseIndex { get { return mPhraseIndex; } }
+        public double Time { get { return mTime; } }
     }
 }

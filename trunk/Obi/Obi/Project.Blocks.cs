@@ -5,35 +5,31 @@ using System.IO;
 
 using urakawa.core;
 using urakawa.media;
+using urakawa.media.data;
 using urakawa.property.channel;
-using Obi.Assets;
 
 namespace Obi
 {
     public partial class Project
     {
-        public Events.UpdateTimeHandler UpdateTime;
-        public Events.PhraseNodeHandler RemovedPageNumber;
-        public Events.PhraseNodeHandler SetPageNumber;
-
-        #region clip board (cut/copy/paste/delete)
+        public Events.UpdateTimeHandler UpdateTime;         // a block time has changed
+        public Events.PhraseNodeHandler RemovedPageNumber;  // a page number was removed
+        public Events.PhraseNodeHandler SetPageNumber;      // a page number was set
 
         /// <summary>
-        /// Cut a phrase node: delete it and store it in the clipboard (store the original node, not a copy.)
-        /// Issue a command and modify the project.
+        /// Create a copy of a managed audio media object and add it to the manager.
         /// </summary>
-        /// <param name="node">The phrase node to cut.</param>
-        public void CutPhraseNode(PhraseNode node)
+        /// <param name="media">The audio media to copy.</param>
+        /// <returns>The copy that is now managed.</returns>
+        public ManagedAudioMedia CopyAudioMedia(ManagedAudioMedia media)
         {
-            if (node != null)
-            {
-                Commands.Strips.CutPhrase command = new Commands.Strips.CutPhrase(node);
-                mClipboard.Phrase = node;
-                RemovePhraseNodeAndAsset(node);
-                Modified();
-                CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-            }
+            ManagedAudioMedia copy = (ManagedAudioMedia)getPresentation().getMediaFactory().createAudioMedia();
+            copy.setMediaData(getPresentation().getMediaDataManager().copyMediaData(media.getMediaData()));
+            getPresentation().getMediaDataManager().addMediaData(copy.getMediaData());
+            return copy;
         }
+
+
 
         /// <summary>
         /// Copy a phrase node by storing a copy in the clipboard.
@@ -44,7 +40,7 @@ namespace Obi
         {
             if (node != null)
             {
-                PhraseNode copy = node.copy(true);
+                PhraseNode copy = (PhraseNode)node.copy(true);
                 Commands.Strips.CopyPhrase command = new Commands.Strips.CopyPhrase(copy);
                 mClipboard.Phrase = copy;
                 CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
@@ -52,16 +48,47 @@ namespace Obi
         }
 
         /// <summary>
-        /// Delete a phrase node from the tree and remove its asset from the asset manager.
+        /// Cut a phrase node: delete it and store it in the clipboard
+        /// (store the original node, not a copy.)
+        /// Issue a command and modify the project.
+        /// </summary>
+        /// <param name="node">The phrase node to cut.</param>
+        public void CutPhraseNode(PhraseNode node)
+        {
+            if (node != null)
+            {
+                Commands.Strips.CutPhrase command = new Commands.Strips.CutPhrase(node);
+                mClipboard.Phrase = node;
+                DeletePhraseNodeAndMedia(node);
+                Modified(command);
+            }
+        }
+
+        /// <summary>
+        /// Delete a phrase node from the tree and its media.
+        /// Modify the project and issue a command.
         /// </summary>
         public void DeletePhraseNode(PhraseNode node)
         {
             if (node != null)
             {
-                Commands.Strips.DeletePhrase command = RemovePhraseNodeAndAsset(node);
+                Commands.Strips.DeletePhrase command = DeletePhraseNodeAndMedia(node);
                 Modified();
                 CommandCreated(this, new Obi.Events.Project.CommandCreatedEventArgs(command));
             }
+        }
+
+        /// <summary>
+        /// Delete a phrase node from the tree and remove its media from the manager.
+        /// </summary>
+        /// <param name="node">The phrase node to delete.</param>
+        /// <returns>A suitable command for shallow delete.</returns>
+        public Commands.Strips.DeletePhrase DeletePhraseNodeAndMedia(PhraseNode node)
+        {
+            Commands.Strips.DeletePhrase command = new Commands.Strips.DeletePhrase(node);
+            DeleteNode(node);
+            getPresentation().getMediaDataManager().removeMediaData(node.Audio.getMediaData());
+            return command;
         }
 
         /// <summary>
@@ -70,7 +97,7 @@ namespace Obi
         /// <param name="node">The phrase node to paste.</param>
         /// <param name="contextNode">If the context is a section, paste at the end of the section.
         /// If it is a phrase, paste *before* this phrase.</param>
-        public PhraseNode PastePhraseNode(PhraseNode node, ObiNode contextNode)
+        public PhraseNode PastePhraseNodeBefore(PhraseNode node, ObiNode contextNode)
         {
             if (node != null && contextNode != null)
             {
@@ -90,11 +117,10 @@ namespace Obi
                 {
                     throw new Exception(String.Format("Cannot paste with context node as {0}.", contextNode.GetType()));
                 }
-                PhraseNode copy = node.copy(true);
+                PhraseNode copy = (PhraseNode)node.copy(true);
                 AddPhraseNode(copy, parent, index);
-                Modified();
                 Commands.Strips.PastePhrase command = new Commands.Strips.PastePhrase(copy);
-                CommandCreated(this, new Obi.Events.Project.CommandCreatedEventArgs(command));
+                Modified(command);
                 return copy;
             }
             else
@@ -103,7 +129,12 @@ namespace Obi
             }
         }
 
-        #endregion
+
+
+
+
+
+
 
         #region event handlers
 
@@ -114,16 +145,18 @@ namespace Obi
         /// <param name="next">The next one to merge with.</param>
         public PhraseNode MergeNodes(PhraseNode node, PhraseNode nextNode)
         {
+
+
+
             Assets.AudioMediaAsset asset = node.Asset;
             Assets.AudioMediaAsset next = nextNode.Asset;
             // the command is created while the assets are not changed; there is time to copy the original asset before the
             // merge is done.
             Commands.Strips.MergePhrases command = new Commands.Strips.MergePhrases(node, nextNode);
-            mAssManager.MergeAudioMediaAssets(asset, next);
+            // mAssManager.MergeAudioMediaAssets(asset, next);
             UpdateSeq(node);
             MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, Project.AUDIO_CHANNEL_NAME,
                 GetMediaForChannel(node, Project.AUDIO_CHANNEL_NAME)));
-            DeletedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, nextNode));
             nextNode.DetachFromParent();
             TouchedNode(this, new Events.Node.NodeEventArgs(this, node));
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
@@ -174,15 +207,14 @@ namespace Obi
         /// </summary>
         /// <param name="node">The original node that was split, with its split asset.</param>
         /// <param name="newAsset">The new asset to create a new phrase node from.</param>
-        public PhraseNode Split(PhraseNode node, Assets.AudioMediaAsset newAsset)
+        public PhraseNode Split(PhraseNode node, urakawa.media.data.ManagedAudioMedia newAudio)
         {
-            PhraseNode newNode = CreatePhraseNode(newAsset);
-            node.ParentSection.AddChildPhraseAfter(newNode, node);
+            PhraseNode newNode = CreatePhraseNode(newAudio);
+            node.ParentSection.insertAfter(newNode, node);
             UpdateSeq(node);
             // review this
             MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, Project.AUDIO_CHANNEL_NAME,
                 GetMediaForChannel(node, Project.AUDIO_CHANNEL_NAME)));
-            AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, newNode));
             Commands.Strips.SplitPhrase command = new Commands.Strips.SplitPhrase(node, newNode);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             Modified();
@@ -215,13 +247,11 @@ namespace Obi
             {
                 SectionNode parent = (SectionNode)node.getParent();
                 int index = parent.indexOf(node);
-                DeletedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, node));
                 node.DetachFromParent();
 
                 foreach (PhraseNode n in nodes)
                 {
-                    parent.AddChildPhrase(n, index);
-                                        AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, n));
+                    parent.insert(n, index);
                     index++;
                 }
                 Modified();
@@ -245,11 +275,9 @@ namespace Obi
 
                 foreach (PhraseNode n in nodes)
                 {
-                    DeletedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, n));
                     n.DetachFromParent();
                 }
-                parent.AddChildPhrase(node, index);
-                AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, node));
+                parent.insert(node, index);
                 Modified();
             }
             else
@@ -266,9 +294,8 @@ namespace Obi
         internal void StartRecordingPhrase(Events.Audio.Recorder.PhraseEventArgs e, SectionNode parent, int index)
         {
             PhraseNode phrase = CreatePhraseNode(e.Asset);
-            parent.AddChildPhrase(phrase, index);
+            parent.insert(phrase, index);
             UpdateSeq(phrase);
-            AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, phrase));
             Commands.Strips.AddPhrase command = new Commands.Strips.AddPhrase(phrase);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             mUnsaved = true;
@@ -298,18 +325,6 @@ namespace Obi
 
 
 
-        /// <summary>
-        /// Delete a phrase node from the tree and remove its asset from the asset manager.
-        /// </summary>
-        /// <param name="node">The phrase node to delete.</param>
-        /// <returns>A suitable command for shallow delete.</returns>
-        public Commands.Strips.DeletePhrase RemovePhraseNodeAndAsset(PhraseNode node)
-        {
-            Commands.Strips.DeletePhrase command = new Commands.Strips.DeletePhrase(node);
-            mAssManager.RemoveAsset(node.Asset);
-            RemovePhraseNode(node);
-            return command;
-        }
 
         /// <summary>
         /// Get the next phrase in the section. If this is the last phrase, then return null. If the original node is null,
@@ -362,7 +377,7 @@ namespace Obi
         public void MovePhraseNodeTo(PhraseNode node, int index)
         {
             SectionNode parent = node.ParentSection;
-            RemovePhraseNode(node);
+            DeleteNode(node);
             AddPhraseNode(node, parent, index);
         }
 
@@ -376,42 +391,6 @@ namespace Obi
             Commands.Strips.EditOrRemoveAnnotation command = new Commands.Strips.EditOrRemoveAnnotation(node, annotation);
             node.Annotation = annotation;
             Modified(command);
-        }
-
-        /// <summary>
-        /// Set the audio media asset for a phrase node.
-        /// The Sequence media object is updated as well.
-        /// </summary>
-        internal void SetAudioMediaAsset(PhraseNode node, AudioMediaAsset asset)
-        {
-            node.Asset = asset;
-            UpdateSeq(node);
-        }
-
-        /// <summary>
-        /// Make a new sequence media object for the asset of this node.
-        /// The sequence media object is simply a translation of the list of clips.
-        /// </summary>
-        //md change from private to internal so it could be used by CopyPhraseAssets
-        internal void UpdateSeq(PhraseNode node)
-        {
-            /*Assets.AudioMediaAsset asset = node.Asset;
-            ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
-            SequenceMedia seq =
-                (SequenceMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.EMPTY_SEQUENCE);
-            foreach (Assets.AudioClip clip in asset.Clips)
-            {
-                AudioMedia audio = (AudioMedia)getPresentation().getMediaFactory().createMedia(urakawa.media.MediaType.AUDIO);
-                UriBuilder builder = new UriBuilder();
-                builder.Scheme = "file";
-                builder.Path = clip.Path;
-                Uri relUri = mAssManager.BaseURI.MakeRelativeUri(builder.Uri);
-                audio.setLocation(new MediaLocation(relUri.ToString()));
-                audio.setClipBegin(new Time((long)Math.Round(clip.BeginTime)));
-                audio.setClipEnd(new Time((long)Math.Round(clip.EndTime)));
-                seq.appendItem(audio);
-            }
-            prop.setMedia(mAudioChannel, seq);*/
         }
 
         /// <summary>
@@ -630,8 +609,7 @@ namespace Obi
         /// <param name="index">Its position in the parent section (with regards to other phrases.)</param>
         public void AddPhraseNode(PhraseNode node, SectionNode parent, int index)
         {
-            parent.AddChildPhrase(node, index);
-            AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, node));
+            parent.insert(node, index);
             Modified();
         }
 
@@ -644,7 +622,7 @@ namespace Obi
         public void AddPhraseNodeAndAsset(PhraseNode node, SectionNode parent, int index)
         {
             Assets.AudioMediaAsset asset = node.Asset;
-            mAssManager.AddAsset(asset);
+            // mAssManager.AddAsset(asset);
             AddPhraseNode(node, parent, index);
         }
 
@@ -660,64 +638,21 @@ namespace Obi
         /// <returns>True if the phrase was actually added.</returns>
         public bool DidAddPhraseFromFile(string path, SectionNode section, int index)
         {
-            AudioMediaAsset asset = mAssManager.ImportAudioMediaAsset(path);
+            AudioMediaAsset asset = null; // mAssManager.ImportAudioMediaAsset(path);
             if (mPhraseCount > 0 &&
-                (asset.SampleRate != mSampleRate || asset.BitDepth != mBitDepth || asset.Channels != mAudioChannels))
+                (asset.SampleRate != SampleRate || asset.BitDepth != BitDepth || asset.Channels != AudioChannels))
             {
                 return false;
             }
             else
             {
-                mAssManager.InsureRename(asset, Path.GetFileNameWithoutExtension(path));
+                // mAssManager.InsureRename(asset, Path.GetFileNameWithoutExtension(path));
                 PhraseNode phrase = CreatePhraseNode();
                 phrase.Asset = asset;
                 AddPhraseNode(phrase, section, index);
                 Commands.Strips.AddPhrase command = new Commands.Strips.AddPhrase(phrase);
                 Modified(command);
                 return true;
-            }
-        }
-
-        /// <summary>
-        /// Monitor addition of phrase nodes to keep the audio properties.
-        /// </summary>
-        void Project_AddedPhraseNode(object sender, Obi.Events.Node.PhraseNodeEventArgs e)
-        {
-            AudioMediaAsset asset = e.Node.Asset;
-            // do not count the empty asset
-            if (asset != AudioMediaAsset.Empty)
-            {
-                if (mPhraseCount++ == 0)
-                {
-                    // no phrases so set the audio properties to that of the new phrase node
-                    mAudioChannels = asset.Channels;
-                    mBitDepth = asset.BitDepth;
-                    mSampleRate = asset.SampleRate;
-                    SetSingleMetadataItem(Metadata.OBI_AUDIO_CHANNELS, mAudioChannels.ToString());
-                    SetSingleMetadataItem(Metadata.OBI_BIT_DEPTH, mBitDepth.ToString());
-                    SetSingleMetadataItem(Metadata.OBI_SAMPLE_RATE, mSampleRate.ToString());
-                }
-                else
-                {
-                    // sanity check; this should be tested before the asset is really added
-                    if (mAudioChannels != asset.Channels) throw new Exception("Audio channel mismatch :(");
-                    if (mBitDepth != asset.BitDepth) throw new Exception("Bit depth mismatch :(");
-                    if (mSampleRate != asset.SampleRate) throw new Exception("Sample rate mismatch :(");
-                }
-            }
-        }
-
-        /// <summary>
-        /// Monitor the deletion of phrase nodes.
-        /// </summary>
-        void Project_DeletedPhraseNode(object sender, Obi.Events.Node.PhraseNodeEventArgs e)
-        {
-            if (e.Node.Asset != AudioMediaAsset.Empty) --mPhraseCount;
-            if (mPhraseCount == 0)
-            {
-                deleteMetadata(Metadata.OBI_AUDIO_CHANNELS);
-                deleteMetadata(Metadata.OBI_BIT_DEPTH);
-                deleteMetadata(Metadata.OBI_SAMPLE_RATE);
             }
         }
 
@@ -729,18 +664,9 @@ namespace Obi
         public void ReconstructPhraseNodeInView(PhraseNode node)
         {
             // TODO check that this works with page numbering, audio settings, etc.
-            AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, node));
+            // Can we generate a treeNodeAdded event ourselves?
+            // AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, node));
         }
 
-        /// <summary>
-        /// Delete a phrase node from the tree.
-        /// </summary>
-        /// <param name="node">The phrase node to delete.</param>
-        public void RemovePhraseNode(PhraseNode node)
-        {
-            DeletedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, node));
-            node.DetachFromParent();
-            Modified();
-        }
     }
 }

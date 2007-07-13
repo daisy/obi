@@ -5,6 +5,7 @@ using System.Text;
 using urakawa.core;
 using urakawa.core.visitor;
 using urakawa.media;
+using urakawa.media.data;
 
 namespace Obi.Visitors
 {
@@ -20,7 +21,7 @@ namespace Obi.Visitors
         //it needs to be this way because we might not be done with a list before the next one starts
         //right now, it will probably happen this way, because of the way the tree is structured (a section contains
         //its phrases then its subsections), but if we ever change this, this code should remain stable.  (*should*).
-        private List<List<Assets.AudioMediaAsset>> mAudioAssLists;
+        private List<List<ManagedAudioMedia>> mAudioAssLists;
         string mAssetDirectory;
         bool mbFlagPostProcessOnly;
 

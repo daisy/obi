@@ -33,9 +33,6 @@ namespace Obi
         /// Stringify the selection for debug printing.
         /// </summary>
         /// <returns>"{node type} in {control}"</returns>
-        public override string ToString()
-        {
-            return System.String.Format("{0} in {1}", Node, Control);
-        }
+        public override string ToString()  { return System.String.Format("{0} in {1}", Node, Control); }
     };
 }

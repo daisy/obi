@@ -1,9 +1,9 @@
-using Obi.Assets;
 using Obi.Audio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using urakawa.core;
+using urakawa.media.data;
 
 namespace Obi
 {
@@ -513,7 +513,6 @@ namespace Obi
             if (PlaybackRateChanged != null)
             PlaybackRateChanged(this, new EventArgs());
         }
-        Assets.AudioMediaAsset m_CurrentAudioAsset;
         public void FastForward()
         {
             // stop Rewind  if it is going on and reset playback rate

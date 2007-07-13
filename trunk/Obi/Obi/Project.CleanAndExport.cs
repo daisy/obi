@@ -12,6 +12,7 @@ namespace Obi
         /// </summary>
         public void CleanProjectAssets()
         {
+            /*
             string originalAssetDirectory = this.AssetManager.AssetsDirectory;
 
             //these assets go in a new directory (old_dir_name + "_temp")
@@ -53,6 +54,7 @@ namespace Obi
             
             //is this necessary?  is it expected behavior?
             Save();
+             * */
         }
 
         /// <summary>

@@ -1,4 +1,3 @@
-using Obi.Assets;
 using urakawa.core;
 using Obi.Events.Node;
 using Obi.Events.Strip;

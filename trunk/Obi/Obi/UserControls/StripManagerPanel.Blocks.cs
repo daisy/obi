@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Forms;
 using urakawa.core;
+using urakawa.core.events;
 using urakawa.media;
 
 namespace Obi.UserControls
@@ -11,21 +12,27 @@ namespace Obi.UserControls
         /// Add a new block from a phrase node.
         /// The block is not selected; it should be by whoever wanted to add it (if necessary.)
         /// </summary>
-        public void SyncAddedPhraseNode(object sender, Events.Node.PhraseNodeEventArgs e)
+        public void Project_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
         {
-            SyncAddedPhraseNode(e.Node);
+            SyncAddedPhraseNode(e.getTreeNode() as PhraseNode);
         }
 
-        private void SyncAddedPhraseNode(PhraseNode node)
+        private void SyncAddedPhraseNode(PhraseNode phrase)
         {
-            if (node != null && node.ParentSection != null)
+            if (phrase != null && phrase.ParentSection != null)
             {
-                SectionStrip strip = mSectionNodeMap[node.ParentSection];
-                AudioBlock block = SetupAudioBlockFromPhraseNode(node);
-                strip.InsertAudioBlock(block, node.Index);
-                if (node.PageProperty != null) mProjectPanel.Project.RenumberPages();
+                SectionStrip strip = mSectionNodeMap[phrase.ParentSection];
+                AudioBlock block = SetupAudioBlockFromPhraseNode(phrase);
+                strip.InsertAudioBlock(block, phrase.Index);
+                if (phrase.PageProperty != null) mProjectPanel.Project.RenumberPages();
             }
         }
+
+
+
+
+
+
 
         /// <summary>
         /// Setup a new audio block from a phrase node.
@@ -47,16 +54,16 @@ namespace Obi.UserControls
         /// Delete the block of a phrase node. If it was selected, it gets deselected.
         /// </summary>
         /// <param name="e">The node event with a pointer to the deleted phrase node.</param>
-        public void SyncDeleteAudioBlock(object sender, Events.Node.PhraseNodeEventArgs e)
+        public void Project_treeNodeRemoved(ITreeNodeChangedEventManager o, TreeNodeRemovedEventArgs e)
         {
-            System.Diagnostics.Debug.Assert(e.Node != null);
-            if (e.Node.ParentSection != null)
+            PhraseNode phrase = (PhraseNode)e.getTreeNode();
+            if (phrase.ParentSection != null)
             {
-                SectionStrip strip = mSectionNodeMap[e.Node.ParentSection];
-                if (mProjectPanel.CurrentSelectionNode == e.Node) mProjectPanel.CurrentSelection = null;
-                strip.RemoveAudioBlock(mPhraseNodeMap[e.Node]);
-                mPhraseNodeMap.Remove(e.Node);
-                if (e.Node.PageProperty != null) mProjectPanel.Project.RenumberPagesExcluding(e.Node);
+                SectionStrip strip = mSectionNodeMap[phrase.ParentSection];
+                if (mProjectPanel.CurrentSelectionNode == phrase) mProjectPanel.CurrentSelection = null;
+                strip.RemoveAudioBlock(mPhraseNodeMap[phrase]);
+                mPhraseNodeMap.Remove(phrase);
+                if (phrase.PageProperty != null) mProjectPanel.Project.RenumberPagesExcluding(phrase);
             }
         }
 
@@ -430,11 +437,9 @@ namespace Obi.UserControls
             }
         }
 
-        internal void UpdateAssetForPhrase(PhraseNode node, Obi.Assets.AudioMediaAsset asset)
+        public void UpdateAudioForPhrase(PhraseNode node, urakawa.media.data.ManagedAudioMedia audio)
         {
-            node.Asset = asset;
-            // SelectedNode = node;
-
+            node.Audio = audio;
             mPhraseNodeMap[node].RefreshDisplay();
         }
     }

@@ -68,15 +68,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AssetManager.cs" />
-    <Compile Include="Assets\AudioClip.cs" />
     <Compile Include="Audio\AudioDevice.cs" />
-    <Compile Include="Assets\AudioMediaAsset.cs" />
     <Compile Include="Audio\AudioPlayer.cs" />
     <Compile Include="Audio\AudioRecorder.cs" />
     <Compile Include="Audio\CalculationFunctions.cs" />
     <Compile Include="Audio\Commands.cs" />
-    <Compile Include="Assets\MediaAsset.cs" />
     <Compile Include="Audio\VuMeter.cs">
       <SubType>Code</SubType>
     </Compile>

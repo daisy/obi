@@ -36,7 +36,7 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Undo()
         {
-            mNode.Project.RemovePhraseNodeAndAsset(mNode);
+            mNode.Project.DeletePhraseNodeAndMedia(mNode);
         }
     }
 
