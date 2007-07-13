@@ -217,14 +217,17 @@ namespace Obi.UserControls
                     int first_index = insert.index;
                     foreach (string path in dialog.FileNames)
                     {
-                        if (mProjectPanel.Project.DidAddPhraseFromFile(path, insert.node, insert.index))
+                        try
                         {
+                            mProjectPanel.Project.DidAddPhraseFromFile(path, insert.node, insert.index);
                             ++insert.index;
                         }
-                        else
+                        catch (Exception)
                         {
                             MessageBox.Show(String.Format(Localizer.Message("import_phrase_error_text"), path),
-                                Localizer.Message("import_phrase_error_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                Localizer.Message("import_phrase_error_caption"),
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
                         }
                     }
                     // select the first added phrase
@@ -309,16 +312,6 @@ namespace Obi.UserControls
                     this);
                 mProjectPanel.TransportBar.Enabled = true;
             }
-        }
-
-        /// <summary>
-        /// Insert an empty audio block at the current insertion point.
-        /// </summary>
-        /// <remarks>Currently disabled</remarks>
-        public void InsertEmptyAudioBlock()
-        {
-            InsertPoint insert = this.CurrentInsertPoint;
-            if (insert.node != null) mProjectPanel.Project.AddEmptyPhraseNode(insert.node, insert.index);   
         }
 
         /// <summary>

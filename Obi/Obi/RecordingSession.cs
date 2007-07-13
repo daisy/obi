@@ -51,7 +51,7 @@ namespace Obi
             mSessionOffset = 0;
             mPhraseMarks = new List<double>();
             mSectionMarks = new List<int>();
-            mAudioList = new List<AudioMediaAsset>();
+            mAudioList = new List<ManagedAudioMedia>();
             // set up event handlers
             Audio.AudioRecorder.Instance.StateChanged +=
                 new StateChangedHandler(delegate(object sender, StateChangedEventArgs e) { });
@@ -138,7 +138,9 @@ namespace Obi
                     // (to keep the split times correct) until the second one
                     for (int i = mPhraseMarks.Count - 2; i >= 0; --i)
                     {
-                        mAudioList.Insert(mSessionOffset, mSessionMedia.Manager.SplitAudioMediaAsset  ( mSessionMedia ,  mPhraseMarks[i]));
+                        ManagedAudioMedia split = mSessionMedia.split(new urakawa.media.timing.Time(mPhraseMarks[i]));
+                        mSessionMedia.getMediaData().getMediaDataManager().addMediaData(split.getMediaData());
+                        mAudioList.Insert(mSessionOffset, split);
                     }
                     // The first asset is what remains of the session asset
                     mAudioList.Insert(mSessionOffset, mSessionMedia);

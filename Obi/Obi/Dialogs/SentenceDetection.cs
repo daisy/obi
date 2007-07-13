@@ -3,6 +3,7 @@ using System.Collections ;
 using System.Collections.Generic ;
 using System.Windows.Forms;
 using urakawa.core;
+using urakawa.media.data;
 
 namespace Obi.Dialogs
 {
@@ -38,10 +39,9 @@ namespace Obi.Dialogs
         public SentenceDetection(PhraseNode silence)
         {
             InitializeComponent();
-            Assets.AudioMediaAsset silenceAsset = silence.Asset;
-            mThresholdBox.Text = silenceAsset.GetSilenceAmplitude().ToString();
-            mGapBox.Text = Assets.AudioMediaAsset.DefaultGap.ToString();
-            mLeadingSilenceBox.Text = Assets.AudioMediaAsset.DefaultLeadingSilence.ToString();
+            mThresholdBox.Text = Audio.PhraseDetection.GetSilenceAmplitude(silence.Audio).ToString();
+            mGapBox.Text = Audio.PhraseDetection.DefaultGap.ToString();
+            mLeadingSilenceBox.Text = Audio.PhraseDetection.DefaultLeadingSilence.ToString();
         }
     }
 }

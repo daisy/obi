@@ -1073,27 +1073,6 @@ namespace Obi
         }
 
         /// <summary>
-        /// Test the export asset function.
-        /// </summary>
-        private void mExportAssetDEBUGToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProjectPanel.StripManager.SelectedPhraseNode != null)
-            {
-                SaveFileDialog dialog = new SaveFileDialog();
-                dialog.Filter = Localizer.Message("audio_file_filter");
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    mProjectPanel.StripManager.SelectedPhraseNode.Asset.Export(dialog.FileName);
-                }
-                else
-                {
-                    Ready();
-                }
-
-            }
-        }
-
-        /// <summary>
         /// Toggle section used/unsed.
         /// </summary>
         private void mMarkSectionAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1107,11 +1086,6 @@ namespace Obi
         private void mMarkStripAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectPanel.StripManager.ToggleSelectedStripUsed();
-        }
-
-        private void mInsertEmptyAudioblockToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectPanel.StripManager.InsertEmptyAudioBlock();
         }
 
 
@@ -1410,7 +1384,7 @@ namespace Obi
             
             mMarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled = isAudioBlockSelected &&
                 !mProjectPanel.CurrentSelectedAudioBlock.IsHeading && mProjectPanel.CurrentSelectedAudioBlock.Used &&
-                mProjectPanel.CurrentSelectedAudioBlock.Asset.LengthInMilliseconds > 0.0;
+                mProjectPanel.CurrentSelectedAudioBlock.Audio.getDuration().getTimeDeltaAsMillisecondFloat() > 0.0;
             mUnmarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled = isAudioBlockSelected &&
                 mProjectPanel.CurrentSelectedAudioBlock.IsHeading;
             mUnmarkAudioBlockAsSectionHeadingToolStripMenuItem.Visible = mUnmarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled;

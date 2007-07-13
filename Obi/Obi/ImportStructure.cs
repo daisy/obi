@@ -90,7 +90,7 @@ namespace Obi
         {
             if (mLastSection == null) throw new Exception("Error adding page number: no parent section found");
 
-            mProject.AddEmptyPhraseNode(mLastSection, mLastSection.PhraseChildCount);
+            // TODO mProject.AddEmptyPhraseNode(mLastSection, mLastSection.PhraseChildCount);
             //the phrase we just added should be at the end of the phrase child list
             PhraseNode pagePhrase = mLastSection.PhraseChild(mLastSection.PhraseChildCount - 1);
             pagePhrase.Annotation = getElementText(source);

@@ -120,7 +120,8 @@ namespace Obi.Audio
             EndOfAudioAsset += new Obi.Events.Audio.Player.EndOfAudioAssetHandler(CatchEvents);
 		}
 
-		
+        public AudioMediaData CurrentAudio { get { return m_Asset; } }
+
         /// <summary>
         /// The Vu meter associated with the player.
         /// </summary>
@@ -750,7 +751,7 @@ private 		 long GetCurrentBytePosition()
     return lCurrentPosition;
 }
 
-		private  double GetCurrentTimePosition()
+		public double GetCurrentTimePosition()
 		{	
 			return CalculationFunctions.ConvertByteToTime (GetCurrentBytePosition() , m_SamplingRate , m_FrameSize);
 		}

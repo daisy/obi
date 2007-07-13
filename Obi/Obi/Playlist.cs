@@ -18,6 +18,7 @@ namespace Obi
         private AudioPlayer mPlayer;              // audio player for actually playing
         private List<PhraseNode> mPhrases;        // list of phrase nodes (from which we get the assets)
         private List<double> mStartTimes;         // start time of every phrase
+        private ManagedAudioMedia mCurrentAudio;
         private int mCurrentPhraseIndex;          // index of the phrase currently playing
         private double mTotalTime;                // total time of this playlist
         private double mElapsedTime;              // elapsed time *before* the beginning of the current asset
@@ -245,7 +246,8 @@ namespace Obi
             }
             set
             {
-                if (value >= 0 && value < mPhrases[mCurrentPhraseIndex].Asset.LengthInMilliseconds)
+                if (value >= 0 &&
+                    value < mPhrases[mCurrentPhraseIndex].Audio.getDuration().getTimeDeltaAsMillisecondFloat())
                 {
                     if (mPlaylistState == AudioPlayerState.Playing)
                     {
@@ -275,7 +277,7 @@ namespace Obi
             get
             {
                 return mCurrentPhraseIndex >= 0 && mCurrentPhraseIndex < mPhrases.Count ?
-                    mPhrases[mCurrentPhraseIndex].Asset.LengthInMilliseconds : 0.0;
+                    mPhrases[mCurrentPhraseIndex].Audio.getDuration().getTimeDeltaAsMillisecondFloat() : 0.0;
             }
         }
 
@@ -295,12 +297,12 @@ namespace Obi
         {
             get
             {
-                return mPhrases[mCurrentPhraseIndex].Asset.LengthInMilliseconds -
+                return mPhrases[mCurrentPhraseIndex].Audio.getDuration().getTimeDeltaAsMillisecondFloat() -
                     (mPlaylistState == AudioPlayerState.Playing ? mPlayer.GetCurrentTimePosition() : mPausePosition);
             }
             set
             {
-                CurrentTimeInAsset = mPhrases[mCurrentPhraseIndex].Asset.LengthInMilliseconds - value;
+                CurrentTimeInAsset = mPhrases[mCurrentPhraseIndex].Audio.getDuration().getTimeDeltaAsMillisecondFloat() - value;
             }
         }
 
@@ -342,7 +344,7 @@ namespace Obi
                     {
                         mPhrases.Add((PhraseNode)n);
                         mStartTimes.Add(mTotalTime);
-                        mTotalTime += ((PhraseNode)n).Asset.LengthInMilliseconds;
+                        mTotalTime += ((PhraseNode)n).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
                     }
                     return true;
                 },
@@ -357,7 +359,7 @@ namespace Obi
             {
                 mPhrases.Add((PhraseNode)node);
                 mStartTimes.Add(mTotalTime);
-                mTotalTime += ((PhraseNode)node).Asset.LengthInMilliseconds;
+                mTotalTime += ((PhraseNode)node).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
             }
             else if (node is SectionNode)
             {
@@ -413,7 +415,7 @@ namespace Obi
             StopForwardRewind();
 
             mPlaylistState = AudioPlayerState.Playing;
-            mPlayer.Play(mPhrases[mCurrentPhraseIndex].Asset, mPausePosition);
+            // TODO: mPlayer.Play(mPhrases[mCurrentPhraseIndex].Asset, mPausePosition);
             if (StateChanged != null)
             {
                 StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Paused));
@@ -501,7 +503,7 @@ namespace Obi
             // let's play backward!
             if (mPlayBackState == PlayBackState.Normal)
             {
-                m_CurrentAudioAsset = mPhrases[mCurrentPhraseIndex].Asset;
+                mCurrentAudio = mPhrases[mCurrentPhraseIndex].Audio;
                 mPlayBackState = PlayBackState.Rewind ;
                 mPlayer.m_EventsEnabled = false;
                 mPlayer.Stop();
@@ -526,7 +528,7 @@ namespace Obi
             // let's play forward!
             if (mPlayBackState == PlayBackState.Normal)
             {
-                m_CurrentAudioAsset = mPhrases[mCurrentPhraseIndex].Asset;
+                mCurrentAudio = mPhrases[mCurrentPhraseIndex].Audio;
                 mPlayBackState = PlayBackState.Forward;
                 mPlayer.m_EventsEnabled = false;
                 mPlayer.Stop();
@@ -556,19 +558,19 @@ namespace Obi
             mPreviewTimer.Interval = PlayChunkLength + 50  ;
             if (mPlayBackState == PlayBackState.Forward)
             {
-                if (( m_CurrentAudioAsset.LengthInMilliseconds - mPausePosition) > ( StepInMs  + mPreviewTimer.Interval  ))
+                if (( mCurrentAudio.getDuration().getTimeDeltaAsMillisecondFloat() - mPausePosition) > ( StepInMs  + mPreviewTimer.Interval  ))
                 {
                     
                     mPausePosition = mPausePosition +  StepInMs ;
 
-                    mPlayer.Play( m_CurrentAudioAsset.GetChunk (  mPausePosition , mPausePosition + PlayChunkLength ) );
+                    // TODO: mPlayer.Play( mCurrentAudio.GetChunk (  mPausePosition , mPausePosition + PlayChunkLength ) );
                 }
                 else
                 {
                     if (mCurrentPhraseIndex < mPhrases.Count - 1)
                     {
                         ++mCurrentPhraseIndex;
-                        m_CurrentAudioAsset = mPhrases[mCurrentPhraseIndex].Asset;
+                        mCurrentAudio = mPhrases[mCurrentPhraseIndex].Audio;
                         SkipToPhrase(mCurrentPhraseIndex);
                         
                         mPausePosition = StepInMs * (-1) ;
@@ -580,22 +582,22 @@ namespace Obi
             }
 else if ( mPlayBackState == PlayBackState.Rewind )
 {
-    if (mPausePosition > ( StepInMs )   &&  PlayChunkLength <= m_CurrentAudioAsset.LengthInMilliseconds  )
+    if (mPausePosition > ( StepInMs )   &&  PlayChunkLength <= mCurrentAudio.getDuration().getTimeDeltaAsMillisecondFloat()  )
     {
 
         mPausePosition = mPausePosition -  StepInMs ;
 
-        mPlayer.Play(m_CurrentAudioAsset.GetChunk(mPausePosition, mPausePosition + PlayChunkLength ));
+        // TODO mPlayer.Play(mCurrentAudio.GetChunk(mPausePosition, mPausePosition + PlayChunkLength ));
     }
     else
     {
         if (mCurrentPhraseIndex != 0 )
         {
             --mCurrentPhraseIndex;
-            m_CurrentAudioAsset = mPhrases[mCurrentPhraseIndex].Asset;
+            mCurrentAudio = mPhrases[mCurrentPhraseIndex].Audio;
             SkipToPhrase(mCurrentPhraseIndex);
 
-            mPausePosition =  ( m_CurrentAudioAsset.LengthInMilliseconds - PlayChunkLength  ) + StepInMs ;
+            mPausePosition =  ( mCurrentAudio.getDuration().getTimeDeltaAsMillisecondFloat() - PlayChunkLength  ) + StepInMs ;
             mPreviewTimer.Interval = 50;
         }
         else
@@ -706,7 +708,7 @@ else if ( mPlayBackState == PlayBackState.Rewind )
                 mPlayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
             }
             mPlaylistState = AudioPlayerState.Playing;
-            mPlayer.Play(mPhrases[mCurrentPhraseIndex].Asset);
+            // TODO mPlayer.Play(mPhrases[mCurrentPhraseIndex].Asset);
             // send the state change event if the state actually changed
             if (StateChanged != null && mPlayer.State != evargs.OldState) StateChanged(this, evargs);
         }
@@ -768,9 +770,9 @@ else if ( mPlayBackState == PlayBackState.Rewind )
         {
             for (int i = index + 1; i < mStartTimes.Count; ++i)
             {
-                mStartTimes[i] = mStartTimes[i - 1] + mPhrases[i - 1].Asset.LengthInMilliseconds;
+                mStartTimes[i] = mStartTimes[i - 1] + mPhrases[i - 1].Audio.getDuration().getTimeDeltaAsMillisecondFloat();
             }
-            mTotalTime = mStartTimes[mStartTimes.Count - 1] + mPhrases[mStartTimes.Count - 1].Asset.LengthInMilliseconds;
+            mTotalTime = mStartTimes[mStartTimes.Count - 1] + mPhrases[mStartTimes.Count - 1].Audio.getDuration().getTimeDeltaAsMillisecondFloat();
             System.Diagnostics.Debug.Print("!!! Playlist: {0} phrase(s), length = {1}ms.", mPhrases.Count, mTotalTime);
         }
 
