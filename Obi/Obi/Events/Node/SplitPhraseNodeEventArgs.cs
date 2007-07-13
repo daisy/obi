@@ -3,24 +3,21 @@ using System.Collections.Generic;
 using System.Text;
 
 using urakawa.core;
-using Obi.Assets;
+using urakawa.media.data;
 
 namespace Obi.Events.Node
 {
   
     public class SplitPhraseNodeEventArgs: PhraseNodeEventArgs
     {
-        private AudioMediaAsset mNewAsset;  // the new asset created from the split
+        private ManagedAudioMedia mNewAudio;  // the new audio from the split
 
-        public AudioMediaAsset NewAsset
-        {
-            get { return mNewAsset; }
-        }
-
-        public SplitPhraseNodeEventArgs(object origin, PhraseNode node, AudioMediaAsset newAsset)
+        public SplitPhraseNodeEventArgs(object origin, PhraseNode node, ManagedAudioMedia newAudio)
             : base(origin, node)
         {
-            mNewAsset = newAsset;
+            mNewAudio = newAudio;
         }
+
+        public ManagedAudioMedia NewAsset { get { return mNewAudio; } }
     }
 }

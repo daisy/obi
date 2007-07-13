@@ -9,15 +9,17 @@ using System.Collections.Generic;
 
 using urakawa.core;
 using urakawa.media;
+using urakawa.media.data;
+
 namespace Obi.Dialogs
 {
     public partial class Split : Form
     {
-        private PhraseNode mNode;                     // the phrase to split
-        private Assets.AudioMediaAsset mSourceAsset;  // the source asset
-        private Assets.AudioMediaAsset mResultAsset;  // the new asset created by the split
-        private double mSplitTime;                    // time at which the split should occur
-        private Audio.AudioPlayerState mSplitState;   // audio player state when creating the dialog
+        private PhraseNode mNode;                    // the phrase to split
+        private ManagedAudioMedia mSourceAudio;      // source audio
+        private ManagedAudioMedia mResultAudio;      // new audio after the split
+        private double mSplitTime;                   // time at which the split should occur
+        private Audio.AudioPlayerState mSplitState;  // audio player state when creating the dialog
         private double mDialogLoadTime ;
         private List<double> mStepSizeList = new List<double>();
         private int mSelectedStepSize;
@@ -28,8 +30,8 @@ namespace Obi.Dialogs
             mNode = node;
             mDialogLoadTime = time;
             mSplitState = state;
-            mSourceAsset = node.Asset;
-            mResultAsset = null;
+            mSourceAudio = node.Asset;
+            mResultAudio = null;
             
             Audio.AudioPlayer.Instance.StateChanged += new Events.Audio.Player.StateChangedHandler(AudioPlayer_StateChanged);
             Audio.AudioPlayer.Instance.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler(AudioPlayer_EndOfAudioAsset);
@@ -38,6 +40,17 @@ namespace Obi.Dialogs
             InitialiseStepSizeList();
             mSelectedStepSize = 3;
         }
+
+        /// <summary>
+        /// New audio after the split.
+        /// </summary>
+        public ManagedAudioMedia ResultAudio { get { return mResultAudio; } }
+
+        /// <summary>
+        /// Get the time at which the split happens.
+        /// </summary>
+        public double SplitTime { get { return mSplitTime; } }
+
 
         private void Split_Load(object sender, EventArgs e)
         {
@@ -48,7 +61,7 @@ namespace Obi.Dialogs
 
             if (mSplitState == Audio.AudioPlayerState.Stopped)
             {
-                Audio.AudioPlayer.Instance.Play(mSourceAsset);
+                Audio.AudioPlayer.Instance.Play(mSourceAudio);
                 btnPreview.Enabled = false;
                 btnSplit.Enabled = false;
                 mPlayButton.Visible = false;
@@ -56,7 +69,7 @@ namespace Obi.Dialogs
             }
             else if (mSplitState == Audio.AudioPlayerState.Playing)
             {
-                Audio.AudioPlayer.Instance.Play(mSourceAsset, mDialogLoadTime);
+                Audio.AudioPlayer.Instance.Play(mSourceAudio, mDialogLoadTime);
                 btnPreview.Enabled = false;
                 btnSplit.Enabled = false;
                 mPlayButton.Visible = false;
@@ -77,22 +90,6 @@ namespace Obi.Dialogs
             txtStepSize.Text = (mStepSizeList[mSelectedStepSize]).ToString();
         }
 
-        /// <summary>
-        /// When split was completed, get the result (= new) asset.
-        /// </summary>
-        public Assets.AudioMediaAsset ResultAsset
-        {
-            get { return mResultAsset; }
-        }
-
-        /// <summary>
-        /// Get the time at which the split happens.
-        /// </summary>
-        public double SplitTime
-        {
-            get { return mSplitTime; }
-        }
-
         //member variables
         int m_Step=10000;
         double m_FineStep = 500;
@@ -107,15 +104,15 @@ namespace Obi.Dialogs
             if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
                 Audio.AudioPlayer.Instance.Stop();
 
-            if (mSourceAsset.AudioLengthInBytes > mSplitTime &&
+            if (mSourceAudio.AudioLengthInBytes > mSplitTime &&
                 Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped)
             {
 
                 // check if sufficient time is left after split time to use GetChunk if not use Audio lengthin ms as second parameter
-                if (mSourceAsset.LengthInMilliseconds - mSplitTime > 4000 )
-                Audio.AudioPlayer.Instance.Play(mSourceAsset.GetChunk(mSplitTime, mSplitTime + 4000));
+                if (mSourceAudio.LengthInMilliseconds - mSplitTime > 4000 )
+                Audio.AudioPlayer.Instance.Play(mSourceAudio.GetChunk(mSplitTime, mSplitTime + 4000));
                 else
-                Audio.AudioPlayer.Instance.Play(mSourceAsset.GetChunk(mSplitTime, mSourceAsset.LengthInMilliseconds-100 ));
+                Audio.AudioPlayer.Instance.Play(mSourceAudio.GetChunk(mSplitTime, mSourceAudio.LengthInMilliseconds-100 ));
                 PreviewEnabled = true;
                 btnPreview.Text = "&Back";
                 tmUpdateTimePosition.Enabled = true;
@@ -190,14 +187,14 @@ namespace Obi.Dialogs
             {
                 
                 double dCurrentPlayPosition = Audio.AudioPlayer.Instance.CurrentTimePosition;
-                if (dCurrentPlayPosition + m_Step < mSourceAsset.LengthInMilliseconds  - m_FineStep )
+                if (dCurrentPlayPosition + m_Step < mSourceAudio.LengthInMilliseconds  - m_FineStep )
                     Audio.AudioPlayer.Instance.CurrentTimePosition = dCurrentPlayPosition + m_Step;
             }
             else
             {
                 mSplitTime = mSplitTime + m_Step;
-                if (mSplitTime > mSourceAsset.LengthInMilliseconds - m_FineStep)
-                    mSplitTime = mSourceAsset.LengthInMilliseconds;
+                if (mSplitTime > mSourceAudio.LengthInMilliseconds - m_FineStep)
+                    mSplitTime = mSourceAudio.LengthInMilliseconds;
                 UpdateSplitTime();
                 txtDisplayTime.Text = ChangeTimeToDisplay(mSplitTime);
             }
@@ -242,14 +239,14 @@ namespace Obi.Dialogs
             if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing)
             {
                 double dCurrentPlayPosition = Audio.AudioPlayer.Instance.CurrentTimePosition;
-                if (dCurrentPlayPosition + m_FineStep < mSourceAsset.LengthInMilliseconds - m_FineStep )
+                if (dCurrentPlayPosition + m_FineStep < mSourceAudio.LengthInMilliseconds - m_FineStep )
                     Audio.AudioPlayer.Instance.CurrentTimePosition = dCurrentPlayPosition + m_FineStep;
             }
             else
             {
                 mSplitTime = mSplitTime + m_FineStep;
-                if (mSplitTime > mSourceAsset.LengthInMilliseconds- m_FineStep)
-                    mSplitTime = mSourceAsset.LengthInMilliseconds;
+                if (mSplitTime > mSourceAudio.LengthInMilliseconds- m_FineStep)
+                    mSplitTime = mSourceAudio.LengthInMilliseconds;
                 UpdateSplitTime();
                 txtDisplayTime.Text = mSplitTime.ToString(); txtDisplayTime.Text = ChangeTimeToDisplay(mSplitTime);
             }
@@ -265,7 +262,7 @@ namespace Obi.Dialogs
             {
                 if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing) Audio.AudioPlayer.Instance.Stop();
 
-                mResultAsset = mSourceAsset.Manager.SplitAudioMediaAsset(mSourceAsset, mSplitTime);
+                mResultAudio = mSourceAudio.Manager.SplitAudioMediaAsset(mSourceAudio, mSplitTime);
                 // mResultAsset = mSourceAsset.Split(mSplitTime);
                 // mSourceAsset.Manager.AddAsset(mResultAsset);
                 Close();
@@ -314,11 +311,11 @@ namespace Obi.Dialogs
 
         private void mPlayButton_Click(object sender, EventArgs e)
         {
-            if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped && mSplitTime != mSourceAsset.LengthInMilliseconds)
+            if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Stopped && mSplitTime != mSourceAudio.LengthInMilliseconds)
             {
                 
                 CheckSplitTime();
-                Audio.AudioPlayer.Instance.Play(mSourceAsset, mSplitTime);
+                Audio.AudioPlayer.Instance.Play(mSourceAudio, mSplitTime);
                 tmUpdateTimePosition.Enabled = true;
                 mPauseButton.TabIndex = 1;
                 mPlayButton.TabIndex = 0;
@@ -455,7 +452,7 @@ namespace Obi.Dialogs
                 IsChanged = false;
                 MessageBox.Show("Invalid Splittime format, continueing from previous valid time: " + txtSplitTime.Text + "sec");
             }
-            if (dCheckTime < 0 || dCheckTime > mSourceAsset.LengthInMilliseconds)
+            if (dCheckTime < 0 || dCheckTime > mSourceAudio.LengthInMilliseconds)
             {
                 txtSplitTime.Text = ( mSplitTime / 1000 ).ToString () ;
                 IsChanged = false;

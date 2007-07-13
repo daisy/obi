@@ -841,8 +841,6 @@ namespace Obi.UserControls
             {
                 mMasterPlaylist.Project = mProjectPanel.Project;
                 mCurrentPlaylist = mMasterPlaylist;
-                mProjectPanel.Project.AddedPhraseNode += new Obi.Events.PhraseNodeHandler(Project_AddedPhraseNode);
-                mProjectPanel.Project.DeletedPhraseNode += new Obi.Events.PhraseNodeHandler(Project_DeletedPhraseNode);
                 mProjectPanel.Project.ToggledNodeUsedState += new Obi.Events.ObiNodeHandler(Project_ToggledNodeUsedState);
                 mProjectPanel.Project.MediaSet += new Obi.Events.SetMediaHandler(Project_MediaSet);
                 mProjectPanel.Project.PastedSectionNode += new Obi.Events.SectionNodeHandler(Project_PastedSectionNode);

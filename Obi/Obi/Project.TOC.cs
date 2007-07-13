@@ -10,15 +10,13 @@ namespace Obi
 {
     public partial class Project
     {
-        public event Events.SectionNodeHandler AddedSectionNode;           // a section node was added to the TOC
         public event Events.RenameSectionNodeHandler RenamedSectionNode;   // a node was renamed in the presentation
         public event Events.MovedSectionNodeHandler MovedSectionNode;      // a node was moved in the presentation
         public event Events.SectionNodeHandler DecreasedSectionNodeLevel;  // a node's level was decreased in the presentation
         public event Events.MovedSectionNodeHandler UndidMoveSectionNode;  // a node was restored to its previous location
-        public event Events.SectionNodeHandler DeletedSectionNode;         // a node was deleted from the presentation
-        public event Events.SectionNodeHandler PastedSectionNode;
-        public event Events.SectionNodeHandler UndidPasteSectionNode;
-        public event Events.SectionNodeHandler ToggledSectionUsedState;
+        public event Events.SectionNodeHandler PastedSectionNode;          // a section node was pasted
+        public event Events.SectionNodeHandler UndidPasteSectionNode;      // a section node was unpasted
+        public event Events.SectionNodeHandler ToggledSectionUsedState;    // a section node used state was changed
 
         /// <summary>
         /// Cut the whole subtree for a section node.
@@ -109,7 +107,6 @@ namespace Obi
             {
                 AddChildSectionBefore(sibling, contextNode, parent);
             }
-            AddedSectionNode(this, new Events.Node.SectionNodeEventArgs(this, sibling));
             Modified(new Commands.TOC.AddSectionNode(sibling));
             return sibling;
         }
@@ -132,7 +129,6 @@ namespace Obi
             {
                 AppendChildSection(child, parent);
             }
-            AddedSectionNode(this, new Events.Node.SectionNodeEventArgs(this, child));
             Modified(new Commands.TOC.AddSectionNode(child));
             return child;
         }
@@ -291,7 +287,7 @@ namespace Obi
 
             //Avn:  copy phrases falling imidiately under this section
             for (int i = 0; i < node.PhraseChildCount; ++i)
-                mClipboard.Section.AppendChildPhrase(node.PhraseChild(i).copy(true));
+                mClipboard.Section.appendChild(node.PhraseChild(i).copy(true));
 
             Commands.TOC.ShallowCutSectionNode command = origin == this ?
                 null : new Commands.TOC.ShallowCutSectionNode(node);
@@ -304,7 +300,7 @@ namespace Obi
             numChildren = node.PhraseChildCount;
             for (int i = numChildren - 1; i >= 0; i--)
             {
-                Commands.Command cmdDeletePhrase = RemovePhraseNodeAndAsset(node.PhraseChild(i));
+                Commands.Command cmdDeletePhrase = DeletePhraseNodeAndMedia(node.PhraseChild(i));
                 if (command != null) command.AddCommand(cmdDeletePhrase);
             }
             Commands.Command cmdRemove = RemoveSectionNode(node);
@@ -370,7 +366,7 @@ namespace Obi
             numChildren = node.PhraseChildCount;
             for (int i = numChildren - 1; i>=0; i--)
             {
-                Commands.Command cmdDeletePhrase = RemovePhraseNodeAndAsset(node.PhraseChild(i));
+                Commands.Command cmdDeletePhrase = DeletePhraseNodeAndMedia(node.PhraseChild(i));
                 command.AddCommand(cmdDeletePhrase);
             }
 
@@ -480,7 +476,6 @@ namespace Obi
         public void ReaddSectionNode(SectionNode node, TreeNode parent, int index)
         {
             AddChildSection(node, parent, index);
-            AddedSectionNode(this, new Events.Node.SectionNodeEventArgs(this, node));
         }
 
         /// <summary>
@@ -493,13 +488,12 @@ namespace Obi
             Commands.TOC.DeleteSectionNode command = new Commands.TOC.DeleteSectionNode(node);
             for (int i = node.PhraseChildCount - 1; i >= 0; --i)
             {
-                command.AddCommand(RemovePhraseNodeAndAsset(node.PhraseChild(i)));
+                command.AddCommand(DeletePhraseNodeAndMedia(node.PhraseChild(i)));
             }
             for (int i = node.SectionChildCount - 1; i >= 0; --i)
             {
                 command.AddCommand(RemoveSectionNode(node.SectionChild(i)));
             }
-            DeletedSectionNode(this, new Events.Node.SectionNodeEventArgs(this, node));
             node.DetachFromParent();
             return command;
         }
@@ -519,7 +513,7 @@ namespace Obi
 
                 //Avn:  copy phrases falling imidiately under this section
                 for (int i = 0; i < node.PhraseChildCount; ++i)
-                    mClipboard.Section.AppendChildPhrase (node.PhraseChild(i).copy(true)) ;
+                    mClipboard.Section.appendChild(node.PhraseChild(i).copy(true)) ;
                 
                 for (int i = node.SectionChildCount - 1; i >= 0; --i)
                 {
@@ -527,7 +521,7 @@ namespace Obi
                 }
                 for (int i = node.PhraseChildCount - 1; i >= 0; --i)
                 {
-                    command.AddCommand(RemovePhraseNodeAndAsset(node.PhraseChild(i)));
+                    command.AddCommand(DeletePhraseNodeAndMedia(node.PhraseChild(i)));
                 }
                 command.AddCommand(RemoveSectionNode(node));
                 Modified();
@@ -549,7 +543,7 @@ namespace Obi
                 SectionNode copy = node.copy(false);
                 for (int i = 0; i < node.PhraseChildCount; ++i)
                 {
-                    copy.AppendChildPhrase(node.PhraseChild(i).copy(true));
+                    copy.appendChild(node.PhraseChild(i).copy(true));
                 }
                 mClipboard.Section = copy;
                 if (issueCommand)

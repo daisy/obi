@@ -33,29 +33,10 @@ namespace Obi
 
 
         /// <summary>
-        /// Add a child phrase at the given index.
+        /// Add a child section at the given index.
+        /// The span of this section, plus that of parent sections,
+        /// is increased accordingly.
         /// </summary>
-        public void AddChildPhrase(PhraseNode node, int index)
-        {
-            insert(node, index);
-            AfterAddingPhrase(node);
-        }
-
-        /// <summary>
-        /// Add a new child phrase after an existing child phrase.
-        /// </summary>
-        /// <param name="node">The existing child phrase after which to add.</param>
-        /// <param name="newNode">The new child phrase to add.</param>
-        public void AddChildPhraseAfter(PhraseNode node, PhraseNode newNode)
-        {
-            insertAfter(node, newNode);
-            AfterAddingPhrase(newNode);
-        }
-
-        /// <summary>
-        /// Add a child section at the given index. The span of this section, plus that of parent sections, is increased accordingly.
-        /// </summary>
-        // TODO: replace by catching node added event
         public void AddChildSection(SectionNode node, int index)
         {
             insert(node, index + mSectionOffset);
@@ -72,10 +53,15 @@ namespace Obi
             UpdateSpan(node.mSpan);
         }
 
-        public void AppendChildPhrase(PhraseNode node)
+        /// <summary>
+        /// Called when a new child phrase was added to maintain bookkeeping information.
+        /// </summary>
+        /// <param name="phrase">The new child phrase.</param>
+        public void AddedPhraseNode(PhraseNode phrase)
         {
-            base.appendChild(node);
-            AfterAddingPhrase(node);
+            if (phrase.Used) phrase.Used = Used;
+            if (phrase.HasXukInHeadingFlag) Heading = phrase;
+            ++mSectionOffset;
         }
 
         /// <summary>
@@ -328,9 +314,7 @@ namespace Obi
 
         private void AfterAddingPhrase(PhraseNode node)
         {
-            if (node.Used) node.Used = Used;
-            if (node.HasXukInHeadingFlag) Heading = node;
-            ++mSectionOffset;
+            throw new System.Exception("Don't!!!");
         }
 
         /// <summary>
@@ -340,7 +324,7 @@ namespace Obi
         {
             for (int i = 0; i < PhraseChildCount; ++i)
             {
-                destinationNode.AddChildPhrase(PhraseChild(i).copy(true), i);
+                destinationNode.insert(PhraseChild(i).copy(true), i);
             }
             for (int i = 0; i < SectionChildCount; ++i)
             {
@@ -401,5 +385,6 @@ namespace Obi
             }
         }
         */
+
     }
 }

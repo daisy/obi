@@ -19,12 +19,6 @@ namespace Obi
         public static readonly string DTB_REVISION = "dtb:revision";
         public static readonly string DTB_REVISION_DATE = "dtb:revisionDate";
         public static readonly string OBI_XUK_VERSION = "obi:xukversion";
-
-        // this goes out
-        public static readonly string OBI_ASSETS_DIR = "obi:assetsdir";
-        public static readonly string OBI_AUDIO_CHANNELS = "obi:audioChannels";
-        public static readonly string OBI_BIT_DEPTH = "obi:bitDepth";
-        public static readonly string OBI_SAMPLE_RATE = "obi:sampleRate";
     }
 
     /// <summary>

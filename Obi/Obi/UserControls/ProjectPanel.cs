@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Forms;
 using urakawa.core;
+using urakawa.core.events;
 
 namespace Obi.UserControls
 {
@@ -10,7 +11,7 @@ namespace Obi.UserControls
     /// </summary>
     public partial class ProjectPanel : UserControl
     {
-        private Project mProject;                 // the project to display
+        private Project mProject;                 // the project to display, null if none is open.
         private NodeSelection mCurrentSelection;  // node currently selected, and where
         private bool mEnableTooltips;             // enable or disable tooltips
 
@@ -227,8 +228,15 @@ namespace Obi.UserControls
         /// <param name="project">The new project.</param>
         private void SetEventHandlers(Project project)
         {
-            project.AddedSectionNode += new Events.SectionNodeHandler(mTOCPanel.SyncAddedSectionNode);
-            project.AddedSectionNode += new Events.SectionNodeHandler(mStripManagerPanel.SyncAddedSectionNode);
+            project.getPresentation().treeNodeAdded +=
+                new TreeNodeAddedEventHandler(mTOCPanel.Project_treeNodeAdded);
+            project.getPresentation().treeNodeAdded +=
+                new TreeNodeAddedEventHandler(mStripManagerPanel.Project_treeNodeAdded);
+            project.getPresentation().treeNodeRemoved +=
+                new TreeNodeRemovedEventHandler(mTOCPanel.Project_treeNodeRemoved);
+            project.getPresentation().treeNodeRemoved +=
+                new TreeNodeRemovedEventHandler(mStripManagerPanel.Project_treeNodeRemoved);
+
             project.MovedSectionNode += new Events.MovedSectionNodeHandler(mTOCPanel.SyncMovedSectionNode);
             project.MovedSectionNode += new Events.MovedSectionNodeHandler(mStripManagerPanel.SyncMovedSectionNode);
             project.UndidMoveSectionNode += new Events.MovedSectionNodeHandler(mTOCPanel.SyncMovedSectionNode);
@@ -237,15 +245,11 @@ namespace Obi.UserControls
             project.DecreasedSectionNodeLevel += new Events.SectionNodeHandler(mStripManagerPanel.SyncDecreaseSectionNodeLevel);
             project.RenamedSectionNode += new Events.RenameSectionNodeHandler(mTOCPanel.SyncRenamedSectionNode);
             project.RenamedSectionNode += new Events.RenameSectionNodeHandler(mStripManagerPanel.SyncRenamedNode);
-            project.DeletedSectionNode += new Events.SectionNodeHandler(mTOCPanel.SyncDeletedSectionNode);
-            project.DeletedSectionNode += new Events.SectionNodeHandler(mStripManagerPanel.SyncDeletedSectionNode);
             project.PastedSectionNode += new Events.SectionNodeHandler(mTOCPanel.SyncPastedSectionNode);
             project.PastedSectionNode += new Events.SectionNodeHandler(mStripManagerPanel.SyncPastedSectionNode);
             project.UndidPasteSectionNode += new Events.SectionNodeHandler(mTOCPanel.SyncUndidPasteSectionNode);
             project.UndidPasteSectionNode += new Events.SectionNodeHandler(mStripManagerPanel.SyncUndidPasteSectionNode);
 
-            project.AddedPhraseNode += new Events.PhraseNodeHandler(mStripManagerPanel.SyncAddedPhraseNode);
-            project.DeletedPhraseNode += new Events.PhraseNodeHandler(mStripManagerPanel.SyncDeleteAudioBlock);
             project.MediaSet += new Events.SetMediaHandler(mStripManagerPanel.SyncMediaSet);
             project.TouchedNode += new Events.NodeEventHandler(mStripManagerPanel.SyncTouchedNode);
             project.UpdateTime += new Events.UpdateTimeHandler(mStripManagerPanel.SyncUpdateAudioBlockTime);
@@ -258,48 +262,36 @@ namespace Obi.UserControls
             project.HeadingChanged +=new Obi.Events.SectionNodeHeadingHandler(mStripManagerPanel.SyncHeadingChanged);
         }
 
+
         /// <summary>
         /// Unset event handlers from the old project (still set.)
         /// </summary>
         private void UnsetEventHandlers()
         {
-            mProject.AddedSectionNode -= new Events.SectionNodeHandler(mTOCPanel.SyncAddedSectionNode);
-            mProject.AddedSectionNode -= new Events.SectionNodeHandler(mStripManagerPanel.SyncAddedSectionNode);
+            mProject.getPresentation().treeNodeAdded -= new TreeNodeAddedEventHandler(mStripManagerPanel.Project_treeNodeAdded);
+            mProject.getPresentation().treeNodeAdded -= new TreeNodeAddedEventHandler(mTOCPanel.Project_treeNodeAdded);
+            mProject.getPresentation().treeNodeRemoved -= new TreeNodeRemovedEventHandler(mStripManagerPanel.Project_treeNodeRemoved);
+            mProject.getPresentation().treeNodeRemoved -= new TreeNodeRemovedEventHandler(mTOCPanel.Project_treeNodeRemoved);
 
             mProject.MovedSectionNode -= new Events.MovedSectionNodeHandler(mTOCPanel.SyncMovedSectionNode);
             mProject.MovedSectionNode -= new Events.MovedSectionNodeHandler(mStripManagerPanel.SyncMovedSectionNode);
             mProject.UndidMoveSectionNode -= new Events.MovedSectionNodeHandler(mTOCPanel.SyncMovedSectionNode);
             mProject.UndidMoveSectionNode -= new Events.MovedSectionNodeHandler(mStripManagerPanel.SyncMovedSectionNode);
-
             mProject.DecreasedSectionNodeLevel -= new Events.SectionNodeHandler(mTOCPanel.SyncDecreasedSectionNodeLevel);
             mProject.DecreasedSectionNodeLevel -= new Events.SectionNodeHandler(mStripManagerPanel.SyncDecreaseSectionNodeLevel);
-
             mProject.RenamedSectionNode -= new Events.RenameSectionNodeHandler(mTOCPanel.SyncRenamedSectionNode);
             mProject.RenamedSectionNode -= new Events.RenameSectionNodeHandler(mStripManagerPanel.SyncRenamedNode);
-
-            mProject.DeletedSectionNode -= new Events.SectionNodeHandler(mTOCPanel.SyncDeletedSectionNode);
-            mProject.DeletedSectionNode -= new Events.SectionNodeHandler(mStripManagerPanel.SyncDeletedSectionNode);
-
-            mProject.AddedPhraseNode -= new Events.PhraseNodeHandler(mStripManagerPanel.SyncAddedPhraseNode);
-
             mProject.MediaSet -= new Events.SetMediaHandler(mStripManagerPanel.SyncMediaSet);
-
-            mProject.DeletedPhraseNode -= new Events.PhraseNodeHandler(mStripManagerPanel.SyncDeleteAudioBlock);
-          
             mProject.PastedSectionNode -= new Events.SectionNodeHandler(mTOCPanel.SyncPastedSectionNode);
             mProject.PastedSectionNode -= new Events.SectionNodeHandler(mStripManagerPanel.SyncPastedSectionNode);
             mProject.UndidPasteSectionNode -= new Events.SectionNodeHandler(mTOCPanel.SyncUndidPasteSectionNode);
             mProject.UndidPasteSectionNode -= new Events.SectionNodeHandler(mStripManagerPanel.SyncUndidPasteSectionNode);
-
             mProject.TouchedNode -= new Events.NodeEventHandler(mStripManagerPanel.SyncTouchedNode);
             mProject.UpdateTime -= new Events.UpdateTimeHandler(mStripManagerPanel.SyncUpdateAudioBlockTime);
-
             mProject.RemovedPageNumber -= new Events.PhraseNodeHandler(mStripManagerPanel.SyncRemovedPageNumber);
             mProject.SetPageNumber -= new Events.PhraseNodeHandler(mStripManagerPanel.SyncSetPageNumber);
-
             mProject.ToggledNodeUsedState -= new Obi.Events.ObiNodeHandler(mStripManagerPanel.ToggledNodeUsedState);
             mProject.ToggledNodeUsedState -= new Obi.Events.ObiNodeHandler(mTOCPanel.ToggledNodeUsedState);
-
             mProject.HeadingChanged -= new Obi.Events.SectionNodeHeadingHandler(mStripManagerPanel.SyncHeadingChanged);
         }
 
@@ -537,7 +529,7 @@ namespace Obi.UserControls
                 }
                 else if (mProject.Clipboard.Phrase != null)
                 {
-                    PhraseNode pasted = mProject.PastePhraseNode(mProject.Clipboard.Phrase, CurrentSelectionNode);
+                    PhraseNode pasted = mProject.PastePhraseNodeBefore(mProject.Clipboard.Phrase, CurrentSelectionNode);
                     CurrentSelection = new NodeSelection(pasted, mStripManagerPanel);
                 }
             }

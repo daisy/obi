@@ -84,6 +84,7 @@ namespace Obi
                 mProjectPanel.TransportBar.StateChanged +=
                     new Obi.Events.Audio.Player.StateChangedHandler(TransportBar_StateChanged);
                 mProjectPanel.TransportBar.PlaybackRateChanged += new EventHandler(TransportBar_PlaybackRateChanged);
+                StatusUpdateClosedProject();
             }
             catch (Exception eAnyStartupException)
             {
@@ -137,50 +138,8 @@ namespace Obi
             UpdateEnabledItemsForFileMenu();
         }
 
-        /// <summary>
-        /// Create a new project if the current one was closed properly, or if none was open.
-        /// </summary>
-        private void mNewProjectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectPanel.TransportBar.Enabled = false;
-            Dialogs.NewProject dialog = new Dialogs.NewProject(
-                mSettings.DefaultPath,
-                Localizer.Message("default_project_filename"),
-                Localizer.Message("obi_project_extension"),
-                Localizer.Message("default_project_title"));
-            dialog.CreateTitleSection = mSettings.CreateTitleSection;
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    // let's see if we can actually write the file that the user chose (bug #1679175)
-                    FileStream file = File.Create(dialog.Path);
-                    file.Close();
-                    // Whether or not the project was created, the setting for
-                    // automatically creating a title section is saved.
-                    mSettings.CreateTitleSection = dialog.CreateTitleSection;
-                    if (ClosedProject())
-                    {
-                        CreateNewProject(dialog.Path, dialog.Title, dialog.CreateTitleSection);
-                    }
-                    else
-                    {
-                        Ready();
-                    }
-                }
-                catch (Exception x)
-                {
-                    MessageBox.Show(String.Format(Localizer.Message("cannot_create_file_text"), dialog.Path, x.Message),
-                        Localizer.Message("cannot_create_file_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Ready();
-                }
-            }
-            else
-            {
-                Ready();
-            }
-            mProjectPanel.TransportBar.Enabled = true;
-        }
+        private void mNewProjectToolStripMenuItem_Click(object sender, EventArgs e) { NewProject(); }
+
 
         /// <summary>
         /// Open a project from a XUK file by prompting the user for a file location.
@@ -188,7 +147,7 @@ namespace Obi
         /// </summary>
         private void mOpenProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (ClosedProject())
+            if (DidCloseProject())
             {
                 OpenFileDialog dialog = new OpenFileDialog();
                 dialog.Filter = Localizer.Message("xuk_filter");
@@ -279,7 +238,7 @@ namespace Obi
         /// </summary>
         private void mCloseProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (ClosedProject())
+            if (DidCloseProject())
             {
                 mProjectPanel.CurrentSelection = null;
                 mProject = null;
@@ -739,7 +698,7 @@ namespace Obi
         /// <remarks>Warn when closing while playing?</remarks>
         private void ObiForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (ClosedProject())
+            if (DidCloseProject())
             {
                 try
                 {
@@ -762,31 +721,6 @@ namespace Obi
             {
                 e.Cancel = true;
                 Ready();
-            }
-        }
-
-        /// <summary>
-        /// Handle state change events from the project (closed, modified, opened, saved.)
-        /// </summary>
-        private void mProject_StateChanged(object sender, Events.Project.StateChangedEventArgs e)
-        {
-            switch (e.Change)
-            {
-                case Obi.Events.Project.StateChange.Closed:
-                    StatusUpdateClosedProject();
-                    break;
-                case Obi.Events.Project.StateChange.Modified:
-                    FormUpdateModifiedProject();
-                    break;
-                case Obi.Events.Project.StateChange.Opened:
-                    mProjectPanel.Project = mProject;
-                    FormUpdateOpenedProject();
-                    mCommandManager.Clear();
-                    mProjectPanel.SynchronizeWithCoreTree();
-                    break;
-                case Obi.Events.Project.StateChange.Saved:
-                    FormUpdateSavedProject();
-                    break;
             }
         }
 
@@ -890,7 +824,13 @@ namespace Obi
             {
                 mToolStripStatusLabel.Text = String.Format(Localizer.Message("closed_project"), mProject.Title);
                 mProjectPanel.Project = null;
+                EnableItemsProjectClosed();
             }
+        }
+
+        private void EnableItemsProjectClosed()
+        {
+            mShowSourceDEBUGToolStripMenuItem.Enabled = false;
         }
 
         /// <summary>
@@ -916,16 +856,8 @@ namespace Obi
         /// </summary>
         private void FormUpdateModifiedProject()
         {
-            mProjectPanel.TransportBar.Enabled = false;
             this.Text = String.Format(Localizer.Message("title_bar"), mProject.Title + "*");
             Ready();
-            mProjectPanel.TransportBar.Enabled = true;
-        }
-
-        private void dumpTreeDEBUGToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProject.RootNode.acceptDepthFirst(new Visitors.DumpTree());
-            mProject.DumpAssManager();
         }
 
 
@@ -1003,20 +935,6 @@ namespace Obi
                 }
                 mRecordToolStripMenuItem.Enabled = mProjectPanel.TransportBar.CanRecord;
             }
-        }
-
-        /// <summary>
-        /// Tools item are always enabled (except for the debug stuff.)
-        /// </summary>
-        private void mToolsToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
-        {
-            UpdateEnabledItemsForToolsMenu();
-        }
-
-        private void UpdateEnabledItemsForToolsMenu()
-        {
-            mDumpTreeDEBUGToolStripMenuItem.Enabled = mProject != null;
-            mExportAssetDEBUGToolStripMenuItem.Enabled = mProjectPanel.StripManager.SelectedPhraseNode != null;
         }
 
         internal void UndoLast()
@@ -1252,79 +1170,6 @@ namespace Obi
         }
 
         /// <summary>
-        /// Stop playback, then
-        /// check whether a project is currently open and not saved; prompt the user about what to do.
-        /// Close the project if that is what the user wants to do or if it was unmodified.
-        /// </summary>
-        /// <returns>True if there is no open project or the currently open project could be closed.</returns>
-        private bool ClosedProject()
-        {
-            if (mProject != null && mProject.Unsaved)
-            {
-                mProjectPanel.TransportBar.Enabled = false;
-                // Unsaved project: ask the user if they want to save and close ("yes" option),
-                // close without saving ("no" option) or not close at all ("cancel" option.)
-                DialogResult result = MessageBox.Show(Localizer.Message("closed_project_text"),
-                    Localizer.Message("closed_project_caption"), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                switch (result)
-                {
-                    case DialogResult.Yes:
-                        mProject.Save();
-                        DoCloseProject();
-                        return true;
-                    case DialogResult.No:
-                        DoCloseProject();
-                        return true;
-                    // case DialogResult.Cancel:
-                    default:
-                        mProjectPanel.TransportBar.Enabled = true;
-                        return false;
-                }
-            }
-            else
-            {
-                // No project, or no changes, so just close.
-                if (mProject != null) DoCloseProject();
-                return true;
-            }
-        }
-
-        /// <summary>
-        /// Create a new project. The application listens to the project's state change and
-        /// command created events.
-        /// </summary>
-        /// <param name="path">Path of the XUK file to the project.</param>
-        /// <param name="title">Title of the project.</param>
-        /// <param name="createTitleSection">If true, a title section is automatically created.</param>
-        private void CreateNewProject(string path, string title, bool createTitleSection)
-        {
-            mProject = new Project(path);
-            mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
-            mProject.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
-            mProject.Initialize(title, mSettings.GeneratedID, mSettings.UserProfile, createTitleSection);
-            AddRecentProject(mProject.XUKPath);
-        }
-
-        /// <summary>
-        /// Clean up and close the project.
-        /// Cleaning up only occurs when the project is closed.
-        /// </summary>
-        private void DoCloseProject()
-        {
-            if (mProject.Unsaved)
-            {
-                // A bit kldugy but an easy way to rebuild the list of used files when discarding changes.
-                string path = mProject.XUKPath;
-                mProject = new Project(path);
-                mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(Program.Noop);
-                mProject.Open(path);
-                mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
-            }
-            mProject.DeleteUnusedFiles(ReportDeleteError);
-            mProject.Close();
-        }
-
-        /// <summary>
         /// Open a project without asking anything (using for reverting, for instance.)
         /// </summary>
         /// <param name="path">The path of the project to open.</param>
@@ -1379,7 +1224,7 @@ namespace Obi
         /// <param name="path">The path of the XUK file to open.</param>
         private void TryOpenProject(string path)
         {
-            if (ClosedProject())
+            if (DidCloseProject())
             {
                 DoOpenProject(path);
             }
@@ -1400,7 +1245,6 @@ namespace Obi
             UpdateEnabledItemsForTOCMenu();
             UpdateEnabledItemsForStripsMenu();
             UpdateEnabledItemsForTransportMenu();
-            UpdateEnabledItemsForToolsMenu();
         }
 
         /// <summary>
@@ -1412,7 +1256,7 @@ namespace Obi
             bool isProjectModified = isProjectOpen && mProject.Unsaved;
             bool isPlayingOrRecording = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing || mProjectPanel.TransportBar.IsInlineRecording;
 
-            mNewProjectToolStripMenuItem.Enabled = !isPlayingOrRecording;
+            // mNewProjectToolStripMenuItem.Enabled = !isPlayingOrRecording;
             mOpenProjectToolStripMenuItem.Enabled = !isPlayingOrRecording;
             mOpenRecentProjectToolStripMenuItem.Enabled = !isPlayingOrRecording && mSettings.RecentProjects.Count > 0;
             mClearListToolStripMenuItem.Enabled = !isPlayingOrRecording;
@@ -1717,7 +1561,7 @@ namespace Obi
         private void mNewProjectFromImportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectPanel.TransportBar.Enabled = false;
-            if (!ClosedProject())
+            if (!DidCloseProject())
             {
                 mProjectPanel.TransportBar.Enabled = true;
                 Ready();
@@ -1764,19 +1608,9 @@ namespace Obi
             {
                 //report failure and undo the creation of a new project
                 MessageBox.Show("Import failed: " + ex.Message);
-                DoCloseProject();
+                mProject.Close();
                 File.Delete(dialog.Path);
                 mProjectPanel.TransportBar.Enabled = false;
-
-                //this is troublesome
-                try
-                {
-                    File.Delete(mProject.AssetManager.AssetsDirectory);
-                }
-                catch (Exception exc)
-                {
-                    MessageBox.Show("Could not delete assets directory.  Please do so manually. \n " + exc.Message);
-                }
                 RemoveRecentProject(dialog.Path);
                 return;
             }
@@ -1851,6 +1685,10 @@ namespace Obi
 
 
 
+
+
+
+
         /// <summary>
         /// Check if a string representation of a directory 
         /// exists as a directory on the filesystem,
@@ -1889,6 +1727,56 @@ namespace Obi
         }
 
         /// <summary>
+        /// Create a new project. The application listens to the project's state change and
+        /// command created events.
+        /// </summary>
+        /// <param name="path">Path of the XUK file to the project.</param>
+        /// <param name="title">Title of the project.</param>
+        /// <param name="createTitleSection">If true, a title section is automatically created.</param>
+        private void CreateNewProject(string path, string title, bool createTitleSection)
+        {
+            mProject = new Project(path);
+            mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
+            mProject.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
+            mProject.Initialize(title, mSettings.GeneratedID, mSettings.UserProfile, createTitleSection);
+            AddRecentProject(mProject.XUKPath);
+        }
+
+        /// <summary>
+        /// Check whether a project is currently open and not saved; prompt the user about what to do.
+        /// Close the project if that is what the user wants to do or if it was unmodified.
+        /// </summary>
+        /// <returns>True if there is no open project or the currently open project could be closed.</returns>
+        private bool DidCloseProject()
+        {
+            mProjectPanel.TransportBar.Stop();
+            if (mProject != null && mProject.Unsaved)
+            {
+                DialogResult result = MessageBox.Show(Localizer.Message("closed_project_text"),
+                    Localizer.Message("closed_project_caption"),
+                    MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Question);
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        mProject.Save();
+                        mProject.Close();
+                        return true;
+                    case DialogResult.No:
+                        mProject.Close();
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+            else
+            {
+                if (mProject != null) mProject.Close();
+                return true;
+            }
+        }
+
+        /// <summary>
         /// Ask the user whether she wants to create a directory,
         /// and try to create it if she does.
         /// </summary>
@@ -1922,5 +1810,74 @@ namespace Obi
                 return false;  // didn't want to create the directory
             }
         }
+
+        /// <summary>
+        /// Create a new project if the current one was closed properly, or if none was open.
+        /// </summary>
+        private void NewProject()
+        {
+            Dialogs.NewProject dialog = new Dialogs.NewProject(
+                mSettings.DefaultPath,
+                Localizer.Message("default_project_filename"),
+                Localizer.Message("obi_project_extension"),
+                Localizer.Message("default_project_title"));
+            dialog.CreateTitleSection = mSettings.CreateTitleSection;
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    // let's see if we can actually write the file that the user chose (bug #1679175)
+                    FileStream file = File.Create(dialog.Path);
+                    file.Close();
+                    mSettings.CreateTitleSection = dialog.CreateTitleSection;
+                    if (DidCloseProject())
+                    {
+                        CreateNewProject(dialog.Path, dialog.Title, dialog.CreateTitleSection);
+                    }
+                    else
+                    {
+                        Ready();
+                    }
+                }
+                catch (Exception x)
+                {
+                    MessageBox.Show(String.Format(Localizer.Message("cannot_create_file_text"), dialog.Path, x.Message),
+                        Localizer.Message("cannot_create_file_caption"),
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    Ready();
+                }
+            }
+            else
+            {
+                Ready();
+            }
+        }
+
+        /// <summary>
+        /// Handle state change events from the project (closed, modified, opened, saved.)
+        /// </summary>
+        private void mProject_StateChanged(object sender, Events.Project.StateChangedEventArgs e)
+        {
+            switch (e.Change)
+            {
+                case Obi.Events.Project.StateChange.Closed:
+                    StatusUpdateClosedProject();
+                    break;
+                case Obi.Events.Project.StateChange.Modified:
+                    FormUpdateModifiedProject();
+                    break;
+                case Obi.Events.Project.StateChange.Opened:
+                    mProjectPanel.Project = mProject;
+                    FormUpdateOpenedProject();
+                    mCommandManager.Clear();
+                    mProjectPanel.SynchronizeWithCoreTree();
+                    break;
+                case Obi.Events.Project.StateChange.Saved:
+                    FormUpdateSavedProject();
+                    break;
+            }
+        }
+
     }
 }

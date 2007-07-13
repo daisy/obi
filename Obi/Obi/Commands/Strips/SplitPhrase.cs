@@ -1,5 +1,5 @@
 using urakawa.core;
-using Obi.Assets;
+using urakawa.media.data;
 
 namespace Obi.Commands.Strips
 {
@@ -10,8 +10,8 @@ namespace Obi.Commands.Strips
     {
         private PhraseNode mNode;                // the phrase node that is split
         private PhraseNode mNewNode;             // the new phrase node that was created
-        private AudioMediaAsset mSplitAsset;     // the first part of the split asset
-        private AudioMediaAsset mOriginalAsset;  // the original asset before the split
+        private ManagedAudioMedia mSplitAudio;     // the first part of the split asset
+        private ManagedAudioMedia mOriginalAudio;  // the original asset before the split
 
         /// <summary>
         /// Label for the undo menu item.
@@ -30,14 +30,14 @@ namespace Obi.Commands.Strips
         {
             mNode = node;
             mNewNode = newNode;
-            mSplitAsset = node.Asset;
+            mSplitAudio = node.Asset;
             
             // make a copy of two products of split for creating original asset
-            mOriginalAsset = (AudioMediaAsset)node.Asset.Manager.CopyAsset(node.Asset);
+            mOriginalAudio = (AudioMediaAsset)node.Asset.Manager.CopyAsset(node.Asset);
             AudioMediaAsset NewNodeAsset = (AudioMediaAsset)  newNode.Asset.Manager.CopyAsset(newNode.Asset);
 
             // reconstruct the original asset by merging.
-            mOriginalAsset.Manager.MergeAudioMediaAssets(mOriginalAsset, NewNodeAsset);
+            mOriginalAudio.Manager.MergeAudioMediaAssets(mOriginalAudio, NewNodeAsset);
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void  Do()
         {
-            mNode.Asset = mSplitAsset;
+            mNode.Asset = mSplitAudio;
             mNode.Project.AddPhraseNodeAndAsset(mNewNode, mNode.ParentSection, mNode.Index + 1);
         }
 
@@ -54,8 +54,8 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Undo()
         {
-            mNode.Project.RemovePhraseNodeAndAsset(mNewNode);            
-            mNode.Project.SetAudioMediaAsset(mNode, mOriginalAsset);
+            mNode.Project.DeletePhraseNodeAndMedia(mNewNode);            
+            mNode.Project.SetAudioMediaAsset(mNode, mOriginalAudio);
             mNode.Project.TouchNode(mNode);
         }
     }

@@ -7,44 +7,21 @@ using urakawa;
 using urakawa.core;
 using urakawa.core.events;
 using urakawa.media;
+using urakawa.media.data;
 using urakawa.property.channel;
-using Obi.Assets;
 
 namespace Obi
 {
-    /// <summary>
-    /// Error handler for cleaning up files (happens when a file cannot be deleted.)
-    /// </summary>
-    /// <param name="path">Path to the file that caused the error.</param>
-    /// <param name="message">Error message.</param>
-    public delegate void DeletingFileErrorHandler(string path, string message);
-
-    /// <summary>
-    /// An Obi project is an Urakawa project (core tree and metadata)
-    /// It also knows where to save itself and has a simpler set of metadata.
-    /// The core tree uses three channels:
-    ///   1. an audio channel for audio media
-    ///   2. a text channel for table of contents items (which will become NCX label in DTB)
-    ///   3. an annotation channel for text annotation of other items in the book (e.g. phrases.)
-    /// So we keep a handy pointer to those.
-    /// </summary>
     public partial class Project : urakawa.Project
     {
-        private bool mUnsaved;               // saved flag
-        private string mXUKPath;             // path to the project XUK file
-
-        private AssetManager mAssManager;    // the asset manager
-        private string mAssPath;             // the path to the asset manager directory
-        private string mLastPath;            // last path to which the project was saved (see save as)
-        private int mAudioChannels;          // project-wide number of channels for audio
-        private int mSampleRate;             // project-wide sample rate for audio
-        private int mBitDepth;               // project-wide bit depth for audio
         private int mPageCount;              // count the pages in the book
         private int mPhraseCount;            // total number of phrases in the project
-
+        private bool mUnsaved;               // saved flag
+        private string mXUKPath;             // path to the project XUK file
+        
+        private string mLastPath;            // last path to which the project was saved (see save as)
+        
         // TODO remove mAudioChannel, mAnnotation and mClipboard as members.
-        private Channel mAudioChannel;       // handy pointer to the audio channel
-        private Channel mAnnotationChannel;  // handy pointer to the annotation channel
         private Clipboard mClipboard;        // project-wide clipboard; should move to project panel
 
         public static readonly string CURRENT_XUK_VERSION = "obi-xuk-012";         // version of the Obi/XUK file
@@ -54,9 +31,7 @@ namespace Obi
 
         public event Events.Project.StateChangedHandler StateChanged;       // the state of the project changed (modified, saved...)
         public event Events.Project.CommandCreatedHandler CommandCreated;   // a new command must be added to the command manager
-        public event Events.PhraseNodeHandler AddedPhraseNode;              // a phrase node was added to a strip
         public event Events.SetMediaHandler MediaSet;                       // a media object was set on a node
-        public event Events.PhraseNodeHandler DeletedPhraseNode;            // deleted a phrase node 
         public event Events.NodeEventHandler TouchedNode;                   // this node was somehow modified
         public event Events.ObiNodeHandler ToggledNodeUsedState;            // the used state of a node was toggled.
         public event Events.SectionNodeHeadingHandler HeadingChanged;       // the heading of a section changed.
@@ -76,32 +51,12 @@ namespace Obi
             ((ObiNodeFactory)presentation.getTreeNodeFactory()).Project = this;
             presentation.setRootNode(presentation.getTreeNodeFactory().createNode(Obi.RootNode.XUK_ELEMENT_NAME,
                 Program.OBI_NS));
-        }
-
-
-        /// <summary>
-        /// Initialize a new project with metadata.
-        /// </summary>
-        /// <param name="XUKPath">The path to the XUK file where the project is to be saved.</param>
-        /// <param name="title">The title of the project.</param>
-        /// <param name="id">The identifier for the project.</param>
-        /// <param name="userProfile">The user profile for the user creating the project.</param>
-        /// <param name="createTitle">If true, create an initial title section.</param>
-        public void Initialize(string title, string id, UserProfile userProfile, bool createTitle)
-        {
+            presentation.treeNodeAdded += new TreeNodeAddedEventHandler(presentation_treeNodeAdded);
+            presentation.treeNodeRemoved += new TreeNodeRemovedEventHandler(presentation_treeNodeRemoved);
+            presentation.getMediaDataManager().setEnforceSinglePCMFormat(true);
             AddChannel(ANNOTATION_CHANNEL_NAME);
             AddChannel(AUDIO_CHANNEL_NAME);
             AddChannel(TEXT_CHANNEL_NAME);
-            CreateMetadata(title, id, userProfile);
-            
-            // TODO remove this
-            mAssPath = GetAssetDirectory(mXUKPath);
-            mAssManager = new Assets.AssetManager(Path.Combine(Path.GetDirectoryName(mXUKPath), mAssPath));
-
-            if (createTitle) CreateTitleSection(title);
-            if (StateChanged != null) StateChanged(this,
-                new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
-            Save();
         }
 
 
@@ -116,6 +71,22 @@ namespace Obi
         public Channel AudioChannel { get { return GetSingleChannelByName(AUDIO_CHANNEL_NAME); } }
 
         /// <summary>
+        /// Number of audio channels for the project audio.
+        /// </summary>
+        public int AudioChannels
+        {
+            get { return getPresentation().getMediaDataManager().getDefaultPCMFormat().getNumberOfChannels(); }
+        }
+
+        /// <summary>
+        /// Bit depth for the project audio.
+        /// </summary>
+        public int BitDepth
+        {
+            get { return getPresentation().getMediaDataManager().getDefaultPCMFormat().getBitDepth(); }
+        }
+
+        /// <summary>
         /// Close the project.
         /// </summary>
         public void Close()
@@ -124,6 +95,60 @@ namespace Obi
             {
                 StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Closed));
             }
+        }
+
+        /// <summary>
+        /// Initialize a new project with metadata.
+        /// </summary>
+        /// <param name="XUKPath">The path to the XUK file where the project is to be saved.</param>
+        /// <param name="title">The title of the project.</param>
+        /// <param name="id">The identifier for the project.</param>
+        /// <param name="userProfile">The user profile for the user creating the project.</param>
+        /// <param name="createTitle">If true, create an initial title section.</param>
+        public void Initialize(string title, string id, UserProfile userProfile, bool createTitle)
+        {
+            CreateMetadata(title, id, userProfile);
+            
+            // TODO remove this
+            mClipboard = new Clipboard();
+            // mAssPath = GetAssetDirectory(mXUKPath);
+            // mAssManager = new Assets.AssetManager(Path.Combine(Path.GetDirectoryName(mXUKPath), mAssPath));
+
+            if (createTitle) CreateTitleSection(title);
+            if (StateChanged != null) StateChanged(this,
+                new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
+            Save();
+        }
+
+        /// <summary>
+        /// Delete a node from the tree.
+        /// </summary>
+        /// <param name="node">The node to delete.</param>
+        public void DeleteNode(ObiNode node)
+        {
+            node.detach();
+            Modified();
+        }
+
+        /// <summary>
+        /// First section node in the project, or null if there are no sections.
+        /// </summary>
+        public SectionNode FirstSection
+        {
+            get { return RootNode.getChildCount() > 0 ? RootNode.SectionChild(0) : null; }
+        }
+
+        /// <summary>
+        /// Get the number of pages in the book.
+        /// </summary>
+        public int Pages { get { return mPageCount; } }
+
+        /// <summary>
+        /// Sample rate for the project audio.
+        /// </summary>
+        public int SampleRate
+        {
+            get { return (int)getPresentation().getMediaDataManager().getDefaultPCMFormat().getSampleRate(); }
         }
 
         /// <summary>
@@ -162,6 +187,16 @@ namespace Obi
         {
             return (PhraseNode)
                 getPresentation().getTreeNodeFactory().createNode(PhraseNode.XUK_ELEMENT_NAME, Program.OBI_NS);
+        }
+
+        /// <summary>
+        /// Create a new phrase node from an audio media.
+        /// </summary>
+        private PhraseNode CreatePhraseNode(ManagedAudioMedia audio)
+        {
+            PhraseNode node = CreatePhraseNode();
+            node.Audio = audio;
+            return node;
         }
 
         /// <summary>
@@ -216,51 +251,6 @@ namespace Obi
 
 
 
-
-
-        /// <summary>
-        /// Create a blank project from a seed presentation and using the default metadata factory.
-        /// </summary>
-        /// <param name="presentation">The presentation for this project.</param>
-        private Project(Presentation presentation)
-            : base(presentation, null)
-        {
-            mAssManager = null;
-            mUnsaved = false;
-            mXUKPath = null;
-            mAudioChannel = null;
-            mAnnotationChannel = null;
-            mClipboard = new Clipboard();
-            mPhraseCount = 0;
-            mPageCount = 0;
-            AddedPhraseNode += new Obi.Events.PhraseNodeHandler(Project_AddedPhraseNode);
-            DeletedPhraseNode += new Obi.Events.PhraseNodeHandler(Project_DeletedPhraseNode);
-        }
-
-        /// <summary>
-        /// Number of audio channels for the project audio.
-        /// </summary>
-        public int AudioChannels
-        {
-            get { return mAudioChannels; }
-        }
-
-        /// <summary>
-        /// Get the asset manager for this project.
-        /// </summary>
-        public AssetManager AssetManager
-        {
-            get { return mAssManager; }
-        }
-
-        /// <summary>
-        /// Bit depth for the project audio.
-        /// </summary>
-        public int BitDepth
-        {
-            get { return mBitDepth; }
-        }
-
         /// <summary>
         /// The project-wide clipboard.
         /// </summary>
@@ -269,13 +259,7 @@ namespace Obi
             get { return mClipboard; }
         }
 
-        /// <summary>
-        /// Get the first section node in the project or null if there are no sections.
-        /// </summary>
-        public SectionNode FirstSection
-        {
-            get { return RootNode.getChildCount() > 0 ? (SectionNode)RootNode.getChild(0) : null; }
-        }
+
 
         /// <summary>
         /// Get the generator string (Obi/Urakawa SDK) for the project.
@@ -328,14 +312,6 @@ namespace Obi
         }
 
         /// <summary>
-        /// Get the number of pages in the book.
-        /// </summary>
-        public int Pages
-        {
-            get { return mPageCount; }
-        }
-
-        /// <summary>
         /// Get the root node of the presentation as a TreeNode.
         /// </summary>
         public RootNode RootNode
@@ -343,72 +319,10 @@ namespace Obi
             get { return (RootNode)getPresentation().getRootNode(); }
         }
 
-        /// <summary>
-        /// Sample rate for the project audio.
-        /// </summary>
-        public int SampleRate
-        {
-            get { return mSampleRate; }
-        }
 
 
 
 
-
-
-        /// <summary>
-        /// Create a new phrase node from an asset.
-        /// Add a seq media object with the clips of the audio asset. Do not forget to set begin/end time explicitely.
-        /// Add a node information custom property as well.
-        /// </summary>
-        /// <param name="asset">The asset for the phrase.</param>
-        /// <returns>The created node.</returns>
-        private PhraseNode CreatePhraseNode(Assets.AudioMediaAsset asset)
-        {
-            PhraseNode node = CreatePhraseNode();
-            node.Asset = asset;
-            return node;
-        }
-
-        /// <summary>
-        /// Delets files that are not in use anymore.
-        /// </summary>
-        /// <param name="report">Report errors that occur while deleting files.</param>
-        public void DeleteUnusedFiles(DeletingFileErrorHandler report)
-        {
-            foreach (string path in mAssManager.UnusedFilePaths())
-            {
-                System.Diagnostics.Debug.Print("Deleting unused file: {0}", path);
-                if (File.Exists(path))
-                {
-                    try
-                    {
-                        File.Delete(path);
-                    }
-                    catch (Exception e)
-                    {
-                        report(path, e.Message);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Find the channel with the given name. It must be unique.
-        /// </summary>
-        /// <remarks>This is a convenience method because the toolkit returns an array of channels.</remarks>
-        /// <param name="name">Name of the channel that we are looking for.</param>
-        /// <returns>The channel found.</returns>
-        public Channel FindChannel(string name)
-        {
-            List<Channel> channels = getPresentation().getChannelsManager().getChannelByName(name);
-            if (channels.Count != 1)
-            {
-                throw new Exception(String.Format("Expected one channel named {0} in {1}, but got {2}.",
-                    name, mXUKPath, channels.Count));
-            }
-            return channels[0];
-        }
 
         /// <summary>
         /// Get a suitable directory name to store the assets.
@@ -463,13 +377,7 @@ namespace Obi
                 throw new Exception(String.Format(Localizer.Message("xuk_version_mismatch"),
                     CURRENT_XUK_VERSION, XukVersion));
             }
-            ReadMetadata();
             mXUKPath = xukPath;
-            mAudioChannel = FindChannel(AUDIO_CHANNEL_NAME);
-            mAnnotationChannel = FindChannel(ANNOTATION_CHANNEL_NAME);
-            if (mAssPath == null) throw new Exception(Localizer.Message("missing_asset_path"));
-            Uri absoluteAssPath = new Uri(new Uri(xukPath), mAssPath);
-            mAssManager = new Assets.AssetManager(absoluteAssPath.AbsolutePath);
             // TODO: count pages and phrases
             // mPhraseCount = visitor.Phrases;
             // mPageCount = visitor.Pages;
@@ -522,17 +430,7 @@ namespace Obi
         /// <remarks>TO REVIEW</remarks>
         public void SaveAs(string path)
         {
-            string oldAssPath = mAssPath;
-            mAssPath = GetAssetDirectory(path);
-            Directory.CreateDirectory(mAssPath);
-            foreach (string assetPath in mAssManager.Files.Keys)
-            {
-                File.Copy(assetPath, mAssPath + Path.DirectorySeparatorChar + Path.GetFileName(assetPath));
-            }
-            mAssPath = (new Uri(path)).MakeRelativeUri(new Uri(mAssPath)).ToString();
-            saveXUK(new Uri(path));
-            mLastPath = path;
-            mAssPath = oldAssPath;
+            throw new Exception("DISABLED RIGHT NOW.");
         }
 
         /// <summary>
@@ -609,18 +507,6 @@ namespace Obi
                 }
             }
             return null;
-        }
-
-        /// <summary>
-        /// Dump the asset manager to check what's going on.
-        /// </summary>
-        internal void DumpAssManager()
-        {
-            System.Diagnostics.Debug.Print("Managed assets:");
-            foreach (string name in mAssManager.GetAssets(Assets.MediaType.Audio).Keys)
-            {
-                System.Diagnostics.Debug.Print("* {0}", name);
-            }
         }
 
         /// <summary>
@@ -704,25 +590,6 @@ namespace Obi
             Modified();
         }
 
-        /// <summary>
-        /// Changes the asset path to the next available directory.  Also create the directory.
-        /// </summary>
-        public string AssignNewAssetDirectory()
-        {
-            Uri absoluteAssPath = new Uri(new Uri(mXUKPath), mAssPath); 
-            string newAssPath = GetAssetDirectory(absoluteAssPath.ToString());
-
-            //make as a local path, as that's what everyone seems to want
-            newAssPath = (new Uri(newAssPath)).LocalPath;
-            
-            //save the new asset path as a relative Uri
-            mAssPath = (new Uri(mXUKPath)).MakeRelativeUri(new Uri(newAssPath)).ToString();
-            
-            //create and return the new asset path
-            Directory.CreateDirectory(newAssPath);
-            return newAssPath;
-        }
-
         #region metadata
 
         /// <summary>
@@ -766,7 +633,6 @@ namespace Obi
             SetSingleMetadataItem(Obi.Metadata.DC_LANGUAGE, userProfile.Culture.ToString());
             SetSingleMetadataItem(Obi.Metadata.DTB_NARRATOR, userProfile.Name);
             SetSingleMetadataItem(Obi.Metadata.DTB_GENERATOR, Generator);
-            SetSingleMetadataItem(Obi.Metadata.OBI_ASSETS_DIR, mAssPath);
             SetSingleMetadataItem(Obi.Metadata.OBI_XUK_VERSION, CURRENT_XUK_VERSION);
         }
 
@@ -807,27 +673,6 @@ namespace Obi
         }
 
         /// <summary>
-        /// Read the project metadata.
-        /// </summary>
-        private void ReadMetadata()
-        {
-            mAssPath = GetSingleMetadataItem(Metadata.OBI_ASSETS_DIR).getContent();
-            urakawa.metadata.Metadata m;
-            if ((m = GetSingleMetadataItem(Metadata.OBI_AUDIO_CHANNELS)) != null)
-            {
-                mAudioChannels = Int32.Parse(m.getContent());
-            }
-            if ((m = GetSingleMetadataItem(Metadata.OBI_BIT_DEPTH)) != null)
-            {
-                mBitDepth = Int32.Parse(m.getContent());
-            }
-            if ((m = GetSingleMetadataItem(Metadata.OBI_SAMPLE_RATE)) != null)
-            {
-                mSampleRate = Int32.Parse(m.getContent());
-            }
-        }
-
-        /// <summary>
         /// Shortcut to get the title of the project.
         /// </summary>
         public string Title
@@ -845,6 +690,29 @@ namespace Obi
                 urakawa.metadata.Metadata meta = GetSingleMetadataItem(Obi.Metadata.OBI_XUK_VERSION);
                 return meta == null ? "" : meta.getContent();
             }
+        }
+
+
+
+        /// <summary>
+        /// Monitor the insertion of new nodes
+        /// </summary>
+        /// <param name="o"></param>
+        /// <param name="e"></param>
+        private void presentation_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
+        {
+            if (e.getTreeNode() is PhraseNode)
+            {
+                PhraseNode phrase = (PhraseNode)e.getTreeNode();
+                ++mPhraseCount;
+                if (phrase.PageProperty != null) ++mPageCount;
+                phrase.ParentSection.AddedPhraseNode(phrase);
+            }
+        }
+
+        void presentation_treeNodeRemoved(ITreeNodeChangedEventManager o, TreeNodeRemovedEventArgs e)
+        {
+            throw new Exception("The method or operation is not implemented.");
         }
 
 

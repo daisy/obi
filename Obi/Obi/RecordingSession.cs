@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Obi.Audio;
-using Obi.Assets;
 using Obi.Events.Audio.Recorder;
+using urakawa.media.data;
 
 namespace Obi
 {
@@ -20,11 +20,11 @@ namespace Obi
         private int mSampleRate;                            // sample rate of audio to record
         private int mBitDepth;                              // bit depth of audio to record
 
-        private AudioMediaAsset mSessionAsset;              // session asset (?)
+        private ManagedAudioMedia mSessionMedia;              // session asset (?)
         private int mSessionOffset;                         // offset from end of last part of the session
         private List<double> mPhraseMarks ;                 // list of phrase marks
         private List<int> mSectionMarks;                    // list of section marks (necessary?)
-        private List<AudioMediaAsset> mAssetList;           // list of assets created
+        private List<ManagedAudioMedia> mAudioList;           // list of assets created
         private Timer mRecordingUpdateTimer = new Timer();  // timer to send regular "recording" messages
 
         // Record session events
@@ -51,7 +51,7 @@ namespace Obi
             mSessionOffset = 0;
             mPhraseMarks = new List<double>();
             mSectionMarks = new List<int>();
-            mAssetList = new List<AudioMediaAsset>();
+            mAudioList = new List<AudioMediaAsset>();
             // set up event handlers
             Audio.AudioRecorder.Instance.StateChanged +=
                 new StateChangedHandler(delegate(object sender, StateChangedEventArgs e) { });
@@ -72,9 +72,9 @@ namespace Obi
         /// <summary>
         /// The list of recorded asset, in the order in which they were recorded during the session.
         /// </summary>
-        public List<AudioMediaAsset> RecordedAssets
+        public List<ManagedAudioMedia> RecordedAudio
         {
-            get { return mAssetList; }
+            get { return mAudioList; }
         }
 
         /// <summary>
@@ -85,8 +85,8 @@ namespace Obi
         {
             if (mRecorder.State == AudioRecorderState.Idle)
             {
-                AudioMediaAsset asset = mProject.AssetManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
-                mRecorder.StartListening(asset);
+                // AudioMediaAsset asset = mProject.AssetManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
+                // mRecorder.StartListening(asset);
             }
         }
 
@@ -97,13 +97,13 @@ namespace Obi
         {
             if (mRecorder.State == AudioRecorderState.Idle)
             {
-                mSessionOffset = mAssetList.Count;
+                mSessionOffset = mAudioList.Count;
                 mPhraseMarks = new List<double>();
                 mSectionMarks = new List<int>();
-                mSessionAsset = mProject.AssetManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
-                mRecorder.StartRecording(mSessionAsset);
-                StartingPhrase(this, new PhraseEventArgs(mSessionAsset, mSessionOffset, 0.0));
-                mRecordingUpdateTimer.Enabled = true;
+                // mSessionAsset = mProject.AssetManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
+                // mRecorder.StartRecording(mSessionAsset);
+                // StartingPhrase(this, new PhraseEventArgs(mSessionAsset, mSessionOffset, 0.0));
+                // mRecordingUpdateTimer.Enabled = true;
             }
         }
 
@@ -138,10 +138,10 @@ namespace Obi
                     // (to keep the split times correct) until the second one
                     for (int i = mPhraseMarks.Count - 2; i >= 0; --i)
                     {
-                        mAssetList.Insert(mSessionOffset, mSessionAsset.Manager.SplitAudioMediaAsset  ( mSessionAsset ,  mPhraseMarks[i]));
+                        mAudioList.Insert(mSessionOffset, mSessionMedia.Manager.SplitAudioMediaAsset  ( mSessionMedia ,  mPhraseMarks[i]));
                     }
                     // The first asset is what remains of the session asset
-                    mAssetList.Insert(mSessionOffset, mSessionAsset);
+                    mAudioList.Insert(mSessionOffset, mSessionMedia);
                 }
             }
         }
@@ -154,7 +154,7 @@ namespace Obi
             if (mRecorder.State == AudioRecorderState.Recording)
             {
                 FinishedPhrase();
-                StartingPhrase (this, new PhraseEventArgs(mSessionAsset, mSessionOffset + mPhraseMarks.Count, 0.0));
+                StartingPhrase (this, new PhraseEventArgs(mSessionMedia, mSessionOffset + mPhraseMarks.Count, 0.0));
             }
         }
 
@@ -167,7 +167,7 @@ namespace Obi
             if (mRecorder.State == AudioRecorderState.Recording)
             {
                 FinishingPage(this, FinishedPhrase());
-                StartingPhrase(this, new PhraseEventArgs(mSessionAsset, mPhraseMarks.Count, 0.0));
+                StartingPhrase(this, new PhraseEventArgs(mSessionMedia, mPhraseMarks.Count, 0.0));
             }
         }
 
@@ -180,7 +180,7 @@ namespace Obi
             int last = mPhraseMarks.Count - 1;
             double length = mPhraseMarks[last] - (last == 0 ? 0.0 : mPhraseMarks[last - 1]);
             length = length - (length % 100);
-            PhraseEventArgs e = new PhraseEventArgs(mSessionAsset, mSessionOffset + last, length);
+            PhraseEventArgs e = new PhraseEventArgs(mSessionMedia, mSessionOffset + last, length);
             FinishingPhrase(this, e);
             return e;
         }
@@ -189,7 +189,7 @@ namespace Obi
         {
             double time = mRecorder.TimeOfAsset - (mPhraseMarks.Count > 0 ? mPhraseMarks[mPhraseMarks.Count - 1] : 0.0);
             time = time - (time % 100);
-            ContinuingPhrase(this, new PhraseEventArgs(mSessionAsset, mSessionOffset + mPhraseMarks.Count, time ));
+            ContinuingPhrase(this, new PhraseEventArgs(mSessionMedia, mSessionOffset + mPhraseMarks.Count, time ));
         }
     }
 }

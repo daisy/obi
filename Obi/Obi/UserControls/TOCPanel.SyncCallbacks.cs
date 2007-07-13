@@ -6,13 +6,16 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using urakawa.media;
+using urakawa.core.events;
 using System.Collections;
+
 
 
 namespace Obi.UserControls
 {
     public partial class TOCPanel
     {
+        
         /// <summary>
         /// Change the label of the tree view node.
         /// This is to respond to external renames.
@@ -23,15 +26,15 @@ namespace Obi.UserControls
             treeNode.Text = e.Label;
         }
 
-        /// <summary>
-        /// Add a section to the tree view. If we were the ones to request its addition, 
-        /// also start editing its label right now.
-        /// </summary>
-        public void SyncAddedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
+        public void Project_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
         {
-            TreeNode newTreeNode = AddSingleSectionNode(e.Node);
-            newTreeNode.ExpandAll();
-            newTreeNode.EnsureVisible();
+            SectionNode section = e.getTreeNode() as SectionNode;
+            if (section != null)
+            {
+                TreeNode newTreeNode = AddSingleSectionNode(section);
+                newTreeNode.ExpandAll();
+                newTreeNode.EnsureVisible();
+            }
         }
 
         private TreeNode AddSingleSectionNode(SectionNode node)
@@ -73,15 +76,9 @@ namespace Obi.UserControls
             return addedNode;
         }
 
-        /// <summary>
-        /// Remove a node from the tree view.
-        /// This will remove the whole subtree.
-        /// </summary>
-        /// <param name="sender">The sender of this event notification</param>
-        /// <param name="e"><see cref="e.Node"/> is the node to be removed.</param>
-        internal void SyncDeletedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
+        public void Project_treeNodeRemoved(ITreeNodeChangedEventManager o, TreeNodeRemovedEventArgs e)
         {
-            SyncRemovedSectionNode(e.Node);
+            if (e.getTreeNode() is SectionNode) SyncRemovedSectionNode((SectionNode)e.getTreeNode());
         }
 
         private void SyncRemovedSectionNode(SectionNode node)

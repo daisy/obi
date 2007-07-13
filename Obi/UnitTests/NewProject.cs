@@ -27,13 +27,16 @@ namespace UnitTests
             Assert.IsTrue(project.RootNode is RootNode);
             Assert.IsTrue(project.RootNode.getChildCount() == 1);
             Assert.IsTrue(project.RootNode.getChild(0) is SectionNode);
-            Assert.IsTrue(project.RootNode.SectionChild(0).Label == TITLE); 
+            Assert.IsTrue(project.RootNode.SectionChild(0).Label == TITLE);
+            Assert.IsTrue(project.RootNode.SectionChild(0).getChildCount() == 0);
         }
 
         [Test]
         public void Channels()
         {
             Obi.Project project = CreateProject(false);
+            Assert.IsInstanceOfType(typeof(Channel), project.AnnotationChannel);
+            Assert.IsInstanceOfType(typeof(Channel), project.AudioChannel);
             Assert.IsInstanceOfType(typeof(Channel), project.TextChannel);
         }
 
