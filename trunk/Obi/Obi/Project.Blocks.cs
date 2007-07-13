@@ -145,22 +145,18 @@ namespace Obi
         /// <param name="next">The next one to merge with.</param>
         public PhraseNode MergeNodes(PhraseNode node, PhraseNode nextNode)
         {
-
-
-
-            Assets.AudioMediaAsset asset = node.Asset;
-            Assets.AudioMediaAsset next = nextNode.Asset;
+            ManagedAudioMedia audio = node.Audio;
+            ManagedAudioMedia next = nextNode.Audio;
             // the command is created while the assets are not changed; there is time to copy the original asset before the
             // merge is done.
             Commands.Strips.MergePhrases command = new Commands.Strips.MergePhrases(node, nextNode);
-            // mAssManager.MergeAudioMediaAssets(asset, next);
-            UpdateSeq(node);
+            audio.mergeWith(next);
+            next.getMediaData().delete();
             MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, Project.AUDIO_CHANNEL_NAME,
                 GetMediaForChannel(node, Project.AUDIO_CHANNEL_NAME)));
-            nextNode.DetachFromParent();
+            nextNode.detach();
             TouchedNode(this, new Events.Node.NodeEventArgs(this, node));
-            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-            Modified();
+            Modified(command);
             return node;
         }
 
@@ -211,28 +207,23 @@ namespace Obi
         {
             PhraseNode newNode = CreatePhraseNode(newAudio);
             node.ParentSection.insertAfter(newNode, node);
-            UpdateSeq(node);
-            // review this
+            // TODO review this
             MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, Project.AUDIO_CHANNEL_NAME,
                 GetMediaForChannel(node, Project.AUDIO_CHANNEL_NAME)));
-            Commands.Strips.SplitPhrase command = new Commands.Strips.SplitPhrase(node, newNode);
-            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-            Modified();
+            Modified(new Commands.Strips.SplitPhrase(node, newNode));
             return newNode;
         }
 
         public void ApplyPhraseDetection(PhraseNode node, long threshold, double length, double gap)
         {
-            AudioMediaAsset originalAsset = node.Asset;
-            List<AudioMediaAsset> assets = originalAsset.ApplyPhraseDetection(threshold, length, gap);
-            if (assets.Count > 1)
+            ManagedAudioMedia originalAudio = node.Audio;
+            List<ManagedAudioMedia> audioList = Audio.PhraseDetection.Apply(originalAudio, threshold, length, gap);
+            if (audioList.Count > 1)
             {
                 List<PhraseNode> nodes = new List<PhraseNode>(assets.Count);
-                assets.ForEach(delegate(AudioMediaAsset ass) { nodes.Add(CreatePhraseNode(ass)); });
+                audioList.ForEach(delegate(ManagedAudioMedia audio) { nodes.Add(CreatePhraseNode(audio)); });
                 ReplaceNodeWithNodes(node, nodes);
-                CommandCreated(this,
-                    new Events.Project.CommandCreatedEventArgs(new Commands.Strips.ApplyPhraseDetection(this, node, nodes)));
-                Modified();
+                Modified(new Commands.Strips.ApplyPhraseDetection(this, node, nodes));
             }
         }
 
