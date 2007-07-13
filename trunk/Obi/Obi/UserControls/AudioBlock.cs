@@ -176,7 +176,7 @@ namespace Obi.UserControls
         private void RefreshUsed()
         {
             BackColor = mNode != null && mNode.Used ?
-                mNode.Asset.LengthInMilliseconds == 0.0 ? Colors.AudioBlockEmpty :
+                mNode.Audio.getDuration().getTimeDeltaAsMillisecondFloat() == 0.0 ? Colors.AudioBlockEmpty :
                 mNode.IsHeading ? Colors.AudioBlockHeading : Colors.AudioBlockUsed :
                 Colors.AudioBlockUnused;
             if (mAnnotationBlock != null)
@@ -227,7 +227,8 @@ namespace Obi.UserControls
             // Set the time display
             if (Audio.AudioRecorder.Instance.State != Obi.Audio.AudioRecorderState.Recording)
             {
-                mTimeLabel.Text = Assets.MediaAsset.FormatTime(mNode.Asset.LengthInMilliseconds);
+                // TODO check time formatting for duration
+                mTimeLabel.Text = mNode.Audio.getDuration().ToString();
                 AccessibleDescription = mTimeLabel.Text ;
             }
         }
@@ -235,8 +236,9 @@ namespace Obi.UserControls
         private void RefreshLabels(double time)
         {
             RefreshLabels();
-            mTimeLabel.Text = Assets.MediaAsset.FormatTime(time);
-            AccessibleDescription = mTimeLabel.Text ;
+            // TODO check time formatting for duration
+            mTimeLabel.Text = time.ToString();
+            AccessibleDescription = mTimeLabel.Text;
         }
 
         /// <summary>

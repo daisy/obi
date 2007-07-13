@@ -6,6 +6,7 @@ using System.IO;
 using urakawa.core;
 using urakawa.media;
 using urakawa.media.data;
+using urakawa.media.data.audio;
 using urakawa.property.channel;
 
 namespace Obi
@@ -220,7 +221,7 @@ namespace Obi
             List<ManagedAudioMedia> audioList = Audio.PhraseDetection.Apply(originalAudio, threshold, length, gap);
             if (audioList.Count > 1)
             {
-                List<PhraseNode> nodes = new List<PhraseNode>(assets.Count);
+                List<PhraseNode> nodes = new List<PhraseNode>(audioList.Count);
                 audioList.ForEach(delegate(ManagedAudioMedia audio) { nodes.Add(CreatePhraseNode(audio)); });
                 ReplaceNodeWithNodes(node, nodes);
                 Modified(new Commands.Strips.ApplyPhraseDetection(this, node, nodes));
@@ -238,7 +239,7 @@ namespace Obi
             {
                 SectionNode parent = (SectionNode)node.getParent();
                 int index = parent.indexOf(node);
-                node.DetachFromParent();
+                node.detach();
 
                 foreach (PhraseNode n in nodes)
                 {
@@ -259,21 +260,11 @@ namespace Obi
         /// <param name="mNode">The node to add instead.</param>
         internal void ReplaceNodesWithNode(List<PhraseNode> nodes, PhraseNode node)
         {
-            if (nodes[0].getParent().GetType() == Type.GetType("Obi.SectionNode"))
-            {
-                SectionNode parent = (SectionNode)nodes[0].getParent();
-                int index = nodes[0].Index;
-
-                foreach (PhraseNode n in nodes)
-                {
-                    n.DetachFromParent();
-                }
-                parent.insert(node, index);
-                Modified();
-            }
-            else
-            {//TODO: when will this case arise?
-            }
+            SectionNode parent = (SectionNode)nodes[0].getParent();
+            int index = nodes[0].Index;
+            foreach (PhraseNode n in nodes) n.detach(); 
+            parent.insert(node, index);
+            Modified();
         }
 
         /// <summary>
@@ -284,9 +275,9 @@ namespace Obi
         /// <param name="index">Base index in the parent for new phrases.</param>
         internal void StartRecordingPhrase(Events.Audio.Recorder.PhraseEventArgs e, SectionNode parent, int index)
         {
-            PhraseNode phrase = CreatePhraseNode(e.Asset);
+            PhraseNode phrase = CreatePhraseNode(e.Audio);
             parent.insert(phrase, index);
-            UpdateSeq(phrase);
+            // UpdateSeq(phrase);
             Commands.Strips.AddPhrase command = new Commands.Strips.AddPhrase(phrase);
             CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             mUnsaved = true;
@@ -577,22 +568,6 @@ namespace Obi
 
 
         /// <summary>
-        /// Add a new empty phrase node in a section at a given index.
-        /// The phrase node gets the empty media asset.
-        /// </summary>
-        /// <param name="section">The section node to add to.</param>
-        /// <param name="index">The index at which the new node is added.</param>
-        public void AddEmptyPhraseNode(SectionNode section, int index)
-        {
-            PhraseNode node = CreatePhraseNode();
-            node.Asset = AudioMediaAsset.Empty;
-            AddPhraseNode(node, section, index);
-            Commands.Strips.AddPhrase command = new Commands.Strips.AddPhrase(node);
-            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
-            Modified();
-        }
-
-        /// <summary>
         /// Add an already existing phrase node as a child of a section in the project.
         /// </summary>
         /// <param name="node">The phrase node to add.</param>
@@ -610,10 +585,9 @@ namespace Obi
         /// <param name="node">The phrase node to add.</param>
         /// <param name="parent">Its parent section.</param>
         /// <param name="index">Its position in the parent section (with regards to other phrases.)</param>
-        public void AddPhraseNodeAndAsset(PhraseNode node, SectionNode parent, int index)
+        public void AddPhraseNodeWithAudio(PhraseNode node, SectionNode parent, int index)
         {
-            Assets.AudioMediaAsset asset = node.Asset;
-            // mAssManager.AddAsset(asset);
+            getPresentation().getMediaDataManager().addMediaData(node.Audio.getMediaData());
             AddPhraseNode(node, parent, index);
         }
 
@@ -626,25 +600,31 @@ namespace Obi
         /// <param name="path">The path of the sound file to create the asset from.</param>
         /// <param name="section">The section node in which to add the phrase.</param>
         /// <param name="index">The index at which the phrase is added.</param>
-        /// <returns>True if the phrase was actually added.</returns>
-        public bool DidAddPhraseFromFile(string path, SectionNode section, int index)
+        public void DidAddPhraseFromFile(string path, SectionNode section, int index)
         {
-            AudioMediaAsset asset = null; // mAssManager.ImportAudioMediaAsset(path);
-            if (mPhraseCount > 0 &&
-                (asset.SampleRate != SampleRate || asset.BitDepth != BitDepth || asset.Channels != AudioChannels))
+            PhraseNode phrase = CreatePhraseNode(ImportAudioFromFile(path));
+            AddPhraseNode(phrase, section, index);
+            Modified(new Commands.Strips.AddPhrase(phrase));
+        }
+
+        private ManagedAudioMedia ImportAudioFromFile(string path)
+        {
+            if (mPhraseCount == 0)
             {
-                return false;
+                Stream input = File.OpenRead(path);
+                PCMDataInfo info = PCMDataInfo.parseRiffWaveHeader(input);
+                input.Close();
+                getPresentation().getMediaDataManager().getDefaultPCMFormat().setBitDepth(info.getBitDepth());
+                getPresentation().getMediaDataManager().getDefaultPCMFormat().setNumberOfChannels(info.getNumberOfChannels());
+                getPresentation().getMediaDataManager().getDefaultPCMFormat().setSampleRate(info.getSampleRate());
+                getPresentation().getMediaDataManager().setEnforceSinglePCMFormat(true);
             }
-            else
-            {
-                // mAssManager.InsureRename(asset, Path.GetFileNameWithoutExtension(path));
-                PhraseNode phrase = CreatePhraseNode();
-                phrase.Asset = asset;
-                AddPhraseNode(phrase, section, index);
-                Commands.Strips.AddPhrase command = new Commands.Strips.AddPhrase(phrase);
-                Modified(command);
-                return true;
-            }
+            AudioMediaData data = (AudioMediaData)
+                getPresentation().getMediaDataFactory().createMediaData(typeof(AudioMediaData));
+            data.appendAudioDataFromRiffWave(path);
+            ManagedAudioMedia media = (ManagedAudioMedia)getPresentation().getMediaFactory().createAudioMedia();
+            media.setMediaData(data);
+            return media;
         }
 
         /// <summary>

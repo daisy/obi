@@ -47,7 +47,7 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Undo()
         {
-            mNode.Project.AddPhraseNodeAndAsset(mNode, mParent, mIndex);
+            mNode.Project.AddPhraseNodeWithAudio(mNode, mParent, mIndex);
         }
     }
 

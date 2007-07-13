@@ -46,7 +46,7 @@ namespace Obi.Commands.Strips
         public override void  Do()
         {
             mNode.Asset = mSplitAudio;
-            mNode.Project.AddPhraseNodeAndAsset(mNewNode, mNode.ParentSection, mNode.Index + 1);
+            mNode.Project.AddPhraseNodeWithAudio(mNewNode, mNode.ParentSection, mNode.Index + 1);
         }
 
         /// <summary>

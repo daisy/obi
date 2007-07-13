@@ -219,10 +219,9 @@ namespace Obi.Audio
 			Array.Copy ( ob_AudioPlayer.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
 
             //m_BufferReadInterval =( ( m_arUpdatedVM.Length * 1000 ) / (ob_AudioPlayer.CurrentAsset.SampleRate * m_FrameSize))  ;
-
-            if (m_BufferReadInterval != ((m_arUpdatedVM.Length * 1000) / (ob_AudioPlayer.CurrentAsset.SampleRate * ob_AudioPlayer.m_FrameSize )))
+            if (m_BufferReadInterval != ((m_arUpdatedVM.Length * 1000) / (ob_AudioPlayer.CurrentAudio.getPCMFormat().getSampleRate() * ob_AudioPlayer.m_FrameSize )))
             {
-                m_BufferReadInterval = ((m_arUpdatedVM.Length * 1000) / (ob_AudioPlayer.CurrentAsset.SampleRate * ob_AudioPlayer.m_FrameSize ));
+                m_BufferReadInterval = ((m_arUpdatedVM.Length * 1000) / (ob_AudioPlayer.CurrentAudio.getPCMFormat().getSampleRate() * ob_AudioPlayer.m_FrameSize ));
                 SetSampleCount(m_SampleTimeLength);
             }
 

@@ -32,7 +32,7 @@ namespace Obi.Commands.Strips
         public override void Undo()
         {
             mNode.Project.SetAudioMediaAsset(mNode, mAudio);
-            mNode.Project.AddPhraseNodeAndAsset(mNext, mNode.ParentSection, mNode.Index + 1);
+            mNode.Project.AddPhraseNodeWithAudio(mNext, mNode.ParentSection, mNode.Index + 1);
             //md 20061130 - this used to be .TouchPhraseNode(mNode), which is now unavailable
             //hope i've picked the right replacement
             mNode.Project.TouchNode(mNode);

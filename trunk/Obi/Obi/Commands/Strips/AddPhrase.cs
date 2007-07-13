@@ -27,7 +27,7 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Do()
         {
-            mNode.Project.AddPhraseNodeAndAsset(mNode, mParent, mIndex);
+            mNode.Project.AddPhraseNodeWithAudio(mNode, mParent, mIndex);
         }
 
         /// <summary>
