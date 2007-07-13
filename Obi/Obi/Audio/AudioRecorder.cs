@@ -7,6 +7,8 @@ using Microsoft.DirectX;
 using Microsoft.DirectX.DirectSound;
 using System.Threading;
 
+using urakawa.media.data.audio;
+
 namespace Obi.Audio
 {
     /// <summary>
@@ -74,11 +76,9 @@ namespace Obi.Audio
 		internal int m_UpdateVMArrayLength ;
 
 		VuMeter ob_VuMeter;
-		
-		Assets.AudioMediaAsset m_AudioMediaAsset; 
-		
-		//this is the audio asset which will be used to store the old asset
-		Assets.AudioMediaAsset mAsset;
+			
+				
+AudioMediaData 		  mAsset;
 		
 
 		private static readonly AudioRecorder instance = new AudioRecorder();
@@ -137,6 +137,17 @@ namespace Obi.Audio
 			}
 		}
 
+        public string AssetsDirectory
+        {
+            get
+            {
+                return sProjectDirectory;
+            }
+            set
+            {
+                sProjectDirectory = value;
+            }
+        }
 		// returns a list of input devices
 		/*public ArrayList GetInputDevices()
 		{
@@ -171,55 +182,46 @@ namespace Obi.Audio
             }
         }
 
-		public void StartListening(Assets.AudioMediaAsset asset)
+		public void StartListening(AudioMediaData  asset)
 		{
             Events.Audio.Recorder.StateChangedEventArgs e = new Events.Audio.Recorder.StateChangedEventArgs(mState);
 			mState = AudioRecorderState.Listening;
 			StateChanged(this, e);
-			m_Channels = asset.Channels;
-			m_bitDepth = asset.BitDepth;
-			m_SampleRate = asset.SampleRate;
-			// mAsset = new Assets.AudioMediaAsset(m_Channels, m_bitDepth, m_SampleRate);
-			// mAsset = asset.Copy() as Assets.AudioMediaAsset;
-            // Assets.AssetManager manager = asset.Manager as Assets.AssetManager;
+
+			m_Channels = asset.getPCMFormat ().getNumberOfChannels () ;
+			m_bitDepth = asset.getPCMFormat ().getBitDepth ()  ;
+			m_SampleRate = (int)  asset.getPCMFormat ().getSampleRate ()  ;
+            m_FrameSize = (m_bitDepth / 8) * m_Channels;
+            
             // sProjectDirectory= manager.AssetsDirectory ;
             mAsset = asset;
-            sProjectDirectory = asset.Manager.AssetsDirectory;
+            //sProjectDirectory = asset.Manager.AssetsDirectory; // comment toolkit
 			InputFormat = GetInputFormat();
             m_sFileName = sProjectDirectory + "\\" + "Listen.wav";
-            // Following file operations disabled to eliminate listen file on 2 Feb 2007
-            /*
-			
-			BinaryWriter ListenWriter  = new BinaryWriter(File.Create(m_sFileName));
-			CreateRIFF(ListenWriter);
-             */ 
+             
 			CreateCaptureBuffer();
 			InitRecording(true);
 		}
 		
 		//it will start actual recording, append if there is data 
 		//in the wave file through the RecordCaptureData()
-		public void StartRecording(Assets.AudioMediaAsset asset)
+		public void StartRecording(AudioMediaData  asset)
 		{	
             Events.Audio.Recorder.StateChangedEventArgs e = new Events.Audio.Recorder.StateChangedEventArgs(mState);
 			mState = AudioRecorderState.Recording;
 			StateChanged(this, e);
-			m_Channels = asset.Channels;
-			m_SampleRate = asset.SampleRate;
-			m_bitDepth = asset.BitDepth;
-			// mAsset = new Assets.AudioMediaAsset(m_Channels, m_bitDepth, m_SampleRate);  // why create a new asset here?
-			// mAsset = asset.Copy() as Assets.AudioMediaAsset;
-			// Assets.AssetManager manager = mAsset.Manager as Assets.AssetManager;
+
+			m_Channels = asset.getPCMFormat ().getNumberOfChannels () ;
+			m_SampleRate = (int)  asset.getPCMFormat ().getSampleRate ()  ;
+			m_bitDepth = asset.getPCMFormat ().getBitDepth ()  ;
+            m_FrameSize = (m_bitDepth / 8) * m_Channels;
+
             mAsset = asset;
-			sProjectDirectory= asset.Manager.AssetsDirectory ;
+			//sProjectDirectory= asset.Manager.AssetsDirectory ; // comment for toolkit
 		    InputFormat = GetInputFormat();
-            // Below lines commented to eliminate listen file on 2 Fev 2007
-            /*
-            if (File.Exists(sProjectDirectory+"\\"+"Listen.wav"))
-                File.Delete(sProjectDirectory+"\\"+"Listen.wav");
-             */ 
-            // m_sFileName = GetFileName();
-            m_sFileName = asset.Manager.UniqueFileName(".wav");
+            
+             m_sFileName = GetFileName();
+//            m_sFileName = asset.Manager.UniqueFileName(".wav");
 			BinaryWriter bw = new BinaryWriter(File.Create(m_sFileName));
 			CreateRIFF(bw);
 			CreateCaptureBuffer();
@@ -250,12 +252,7 @@ namespace Obi.Audio
                         InitRecording(false);
                 
                 FileInfo fi = new FileInfo(m_sFileName);
-
-                // Below lines commented to eliminate listen file on 2 Fev 2007
-                /*
-                if (File.Exists(sProjectDirectory + "\\" + "Listen.wav"))
-                    File.Delete(sProjectDirectory + "\\" + "Listen.wav");
-                 */ 
+                
                 if (File.Exists(m_sFileName))
                     if (fi.Length == 44)
                         File.Delete(m_sFileName);
@@ -306,13 +303,12 @@ namespace Obi.Audio
 		
 		public WaveFormat GetInputFormat()
 		{				
-			m_AudioMediaAsset = new Assets.AudioMediaAsset(m_Channels, m_bitDepth, m_SampleRate);
-			InputFormat.Channels = Convert.ToInt16(m_AudioMediaAsset.Channels);
-			InputFormat.SamplesPerSecond = m_AudioMediaAsset.SampleRate;
-			InputFormat.BitsPerSample = Convert.ToInt16(m_AudioMediaAsset.BitDepth);
-			InputFormat.AverageBytesPerSecond = m_AudioMediaAsset.SampleRate * m_AudioMediaAsset.FrameSize;
-			InputFormat.BlockAlign = Convert.ToInt16(m_AudioMediaAsset.FrameSize);
-			m_FrameSize = m_AudioMediaAsset.FrameSize;
+            
+            InputFormat.Channels = Convert.ToInt16(m_Channels );
+            InputFormat.SamplesPerSecond =  m_SampleRate ;
+            InputFormat.BitsPerSample = Convert.ToInt16(m_bitDepth );
+            InputFormat.AverageBytesPerSecond = m_SampleRate * m_FrameSize ;
+            InputFormat.BlockAlign = Convert.ToInt16(m_FrameSize );
 			//			m_Channels = m_AudioMediaAsset.Channels;
 			//m_SampleRate =  m_AudioMediaAsset.SampleRate;
 			return InputFormat;
@@ -551,8 +547,8 @@ namespace Obi.Audio
             // instead of above line following line is used
             long mLength = (long)SampleCount;
 
-            mTime = Audio.CalculationFunctions.ConvertByteToTime(mLength, m_SampleRate, mAsset.FrameSize);
-        }
+            mTime = Audio.CalculationFunctions.ConvertByteToTime(mLength, m_SampleRate, m_FrameSize );
+}
 
 		internal long GetCurrentPositioninBytes
 		{
@@ -630,16 +626,19 @@ namespace Obi.Audio
                 if (WasListening == false)
                 {
 				BinaryWriter Writer = new BinaryWriter(File.OpenWrite(m_sFileName));
-				long Audiolength = (long)(SampleCount+44);
+                FileInfo RecordedFile = new FileInfo(m_sFileName);
+//				long Audiolength = (long)(SampleCount+44);
+                long Audiolength = RecordedFile.Length - 8;
 				for (int i = 0; i<4 ; i++)
 				{
 					Writer.BaseStream.Position = i + 4 ;
 					Writer.Write (Convert.ToByte (CalculationFunctions.ConvertFromDecimal (Audiolength)[i])) ;
 				}
+                Audiolength = Audiolength - 36;
 				for (int i = 0; i<4 ; i++)
 				{
 					Writer.BaseStream.Position = i + 40 ;
-					Writer.Write (Convert.ToByte (CalculationFunctions.ConvertFromDecimal (SampleCount )[i])) ;
+					Writer.Write (Convert.ToByte (CalculationFunctions.ConvertFromDecimal ( Audiolength )[i])) ;
 				}
 				Writer.Close();	// Close the file now.
 				//Set the writer to null.
@@ -647,10 +646,11 @@ namespace Obi.Audio
                 Audiolength = 0;
                 ///-///
                 
-                    Assets.AudioClip NewRecordedClip = new Assets.AudioClip(m_sFileName);
-                    mAsset.AddClip(NewRecordedClip);
-                    mAsset.Manager.AddedClip(NewRecordedClip);
-                }
+                    //Assets.AudioClip NewRecordedClip = new Assets.AudioClip(m_sFileName);
+                    //mAsset.AddClip(NewRecordedClip);
+                    //mAsset.Manager.AddedClip(NewRecordedClip);
+                                mAsset.appendAudioDataFromRiffWave(m_sFileName);
+                                }
 
                 SampleCount = 0;
                 

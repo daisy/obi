@@ -294,7 +294,7 @@ namespace Obi.Audio
                 if (boolPlayer)
                 {
                     e = new Events.Audio.VuMeter.PeakOverloadEventArgs(1,
-                        ob_AudioPlayer.GetCurrentBytePosition(), ob_AudioPlayer.GetCurrentTimePosition());
+                        ob_AudioPlayer.CurrentBytePosition , ob_AudioPlayer.CurrentTimePosition );
                 }
                 else
                 {
@@ -316,7 +316,7 @@ namespace Obi.Audio
                 if (boolPlayer)
                 {
                     e = new Events.Audio.VuMeter.PeakOverloadEventArgs(2,
-                        ob_AudioPlayer.GetCurrentBytePosition(), ob_AudioPlayer.GetCurrentTimePosition());
+                        ob_AudioPlayer.CurrentBytePosition , ob_AudioPlayer.CurrentTimePosition );
                 }
                 else
                 {

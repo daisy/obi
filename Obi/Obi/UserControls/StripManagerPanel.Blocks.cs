@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using urakawa.core;
 using urakawa.core.events;
 using urakawa.media;
+using urakawa.media.data;
 
 namespace Obi.UserControls
 {
@@ -43,9 +44,7 @@ namespace Obi.UserControls
             block.Manager = this;
             block.Node = node;
             mPhraseNodeMap[node] = block;
-            TextMedia annotation = (TextMedia)Project.GetMediaForChannel(node, Project.ANNOTATION_CHANNEL_NAME);
-            if (annotation != null) block.AnnotationBlock.Label = annotation.getText();
-            Assets.AudioMediaAsset asset = node.Asset;// Project.GetAudioMediaAsset(node);
+            block.AnnotationBlock.Label = node.Annotation;
             PageProperty pageProp = node.getProperty(typeof(PageProperty)) as PageProperty;
             return block;
         }
@@ -250,9 +249,9 @@ namespace Obi.UserControls
                 NodeSelection originalSelection = mProjectPanel.CurrentSelection;
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (dialog.ResultAsset != null)
+                    if (dialog.ResultAudio != null)
                     {
-                        PhraseNode SplitPhraseNode = mProjectPanel.Project.Split(phrase, dialog.ResultAsset ) ;
+                        PhraseNode SplitPhraseNode = mProjectPanel.Project.Split(phrase, dialog.ResultAudio ) ;
                         mProjectPanel.SynchronizeWithCoreTree();
                         mProjectPanel.CurrentSelection =
                             new NodeSelection(SplitPhraseNode , this);
@@ -278,10 +277,11 @@ namespace Obi.UserControls
                 PhraseNode split = null;
                 double time = ProjectPanel.TransportBar._CurrentPlaylist.CurrentTimeInAsset;
                 mProjectPanel.TransportBar.Enabled = false;
-                Assets.AudioMediaAsset asset = phrase.Asset;
-                if (time > 0 && time < asset.LengthInMilliseconds)
+                ManagedAudioMedia audio = phrase.Audio;
+                if (time > 0 && time < audio.getMediaData().getAudioDuration().getTimeDeltaAsMillisecondFloat())
                 {
-                    Assets.AudioMediaAsset result = asset.Manager.SplitAudioMediaAsset(asset, time);
+                    ManagedAudioMedia result = audio.split(new urakawa.media.timing.Time(time));
+                    audio.getMediaData().getMediaDataManager().addMediaData(result.getMediaData());
                     split = mProjectPanel.Project.Split(phrase, result);
                 }
                 mProjectPanel.TransportBar.Enabled = true;
