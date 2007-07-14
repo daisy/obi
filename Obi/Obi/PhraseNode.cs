@@ -25,7 +25,6 @@ namespace Obi
         /// </summary>
         public PhraseNode(Project project): base(project)
         {
-            ITextMedia annotation = getPresentation().getMediaFactory().createTextMedia();
             Annotation = "";
             mXukInHeadingFlag = false;
         }
@@ -36,8 +35,26 @@ namespace Obi
         /// </summary>
         public string Annotation
         {
-            get { return AnnotationMedia.getText(); }
-            set { AnnotationMedia.setText(value); }
+            get
+            {
+                return AnnotationMedia == null ? "" : AnnotationMedia.getText();
+            }
+            set
+            {
+                if (value == null || value == "")
+                {
+                    ChannelsProperty.setMedia(Project.AnnotationChannel, null);
+                }
+                else if (value != null)
+                {
+                    if (AnnotationMedia == null)
+                    {
+                        ITextMedia annotation = getPresentation().getMediaFactory().createTextMedia();
+                        ChannelsProperty.setMedia(Project.AnnotationChannel, annotation);
+                    }
+                    AnnotationMedia.setText(value);
+                }
+            }
         }
 
         /// <summary>
@@ -151,10 +168,11 @@ namespace Obi
             }
         }
 
-        // TODO: copy the audio data
+
         protected override TreeNode copyProtected(bool deep, bool inclProperties)
         {
             PhraseNode copy = (PhraseNode)base.copy(deep, inclProperties);
+            copy.Audio = Project.DataManager.CopyAndManage(Audio);
             copy.Used = Used;
             copy.Annotation = Annotation;
             copyProperties(copy);
@@ -177,7 +195,8 @@ namespace Obi
 
         /// <summary>
         /// The text media for the annotation.
+        /// Maybe null if no annotation was set.
         /// </summary>
-        private TextMedia AnnotationMedia { get { return (TextMedia)ChannelsProperty.getMedia(Project.AnnotationChannel); } }
+        private TextMedia AnnotationMedia { get { return ChannelsProperty.getMedia(Project.AnnotationChannel) as TextMedia; } }
     }
 }

@@ -89,8 +89,7 @@ namespace Obi
         private void addPage(XmlTextReader source)
         {
             if (mLastSection == null) throw new Exception("Error adding page number: no parent section found");
-
-            // TODO mProject.AddEmptyPhraseNode(mLastSection, mLastSection.PhraseChildCount);
+            mProject.AddEmptyPhraseNode(mLastSection, mLastSection.PhraseChildCount);
             //the phrase we just added should be at the end of the phrase child list
             PhraseNode pagePhrase = mLastSection.PhraseChild(mLastSection.PhraseChildCount - 1);
             pagePhrase.Annotation = getElementText(source);

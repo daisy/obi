@@ -43,6 +43,7 @@ namespace Obi
         /// <param name="XUKPath">The path to the XUK file where the project is to be saved.</param>
         public Project(string XUKPath): base(CreatePresentation(XUKPath), null)
         {
+            mClipboard = new Clipboard();  // TODO move this to project panel
             mPhraseCount = 0;
             mPageCount = 0;
             mUnsaved = true;
@@ -53,7 +54,6 @@ namespace Obi
                 Program.OBI_NS));
             presentation.treeNodeAdded += new TreeNodeAddedEventHandler(presentation_treeNodeAdded);
             presentation.treeNodeRemoved += new TreeNodeRemovedEventHandler(presentation_treeNodeRemoved);
-            presentation.getMediaDataManager().setEnforceSinglePCMFormat(true);
             AddChannel(ANNOTATION_CHANNEL_NAME);
             AddChannel(AUDIO_CHANNEL_NAME);
             AddChannel(TEXT_CHANNEL_NAME);
@@ -98,6 +98,11 @@ namespace Obi
         }
 
         /// <summary>
+        /// The media data manager for the project.
+        /// </summary>
+        public Audio.DataManager DataManager { get { return (Audio.DataManager)getPresentation().getMediaDataManager(); } }
+
+        /// <summary>
         /// Initialize a new project with metadata.
         /// </summary>
         /// <param name="XUKPath">The path to the XUK file where the project is to be saved.</param>
@@ -108,12 +113,8 @@ namespace Obi
         public void Initialize(string title, string id, UserProfile userProfile, bool createTitle)
         {
             CreateMetadata(title, id, userProfile);
-            
             // TODO remove this
             mClipboard = new Clipboard();
-            // mAssPath = GetAssetDirectory(mXUKPath);
-            // mAssManager = new Assets.AssetManager(Path.Combine(Path.GetDirectoryName(mXUKPath), mAssPath));
-
             if (createTitle) CreateTitleSection(title);
             if (StateChanged != null) StateChanged(this,
                 new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
@@ -139,9 +140,70 @@ namespace Obi
         }
 
         /// <summary>
+        /// If there is audio in the projects, the audio settings should come from the project
+        /// and not from the user settings.
+        /// </summary>
+        public bool HasAudioSettings
+        {
+            get { return mPhraseCount > 0; }
+        }
+
+        /// <summary>
+        /// Get the last section node in the project or null if there are no sections.
+        /// </summary>
+        public SectionNode LastSection
+        {
+            get
+            {
+                SectionNode last = RootNode.getChildCount() > 0 ? RootNode.SectionChild(-1) : null;
+                while (last != null && last.SectionChildCount > 0) last = last.SectionChild(-1);
+                return last;
+            }
+        }
+
+        /// <summary>
+        /// Open a project from a XUK file.
+        /// Throw an exception if the file could not be read.
+        /// </summary>
+        /// <param name="xukPath">The path of the XUK file.</param>
+        public void Open(string xukPath)
+        {
+            openXUK(new Uri(xukPath));
+            mUnsaved = false;
+            if (XukVersion != CURRENT_XUK_VERSION)
+            {
+                throw new Exception(String.Format(Localizer.Message("xuk_version_mismatch"),
+                    CURRENT_XUK_VERSION, XukVersion));
+            }
+            mXUKPath = xukPath;
+            // getPresentation().setBaseUri(new Uri(Path.GetDirectoryName(xukPath)));
+            // TODO: make sure that phrases and pages are counted (should be!)
+            if (StateChanged != null)
+            {
+                StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
+            }
+        }
+
+        /// <summary>
         /// Get the number of pages in the book.
         /// </summary>
         public int Pages { get { return mPageCount; } }
+
+        /// <summary>
+        /// Project has reverted to its initial state (e.g. after all commands have been undone.)
+        /// </summary>
+        public void Reverted()
+        {
+            Saved();
+        }
+
+        /// <summary>
+        /// Get the root node of the presentation as a TreeNode.
+        /// </summary>
+        public RootNode RootNode
+        {
+            get { return (RootNode)getPresentation().getRootNode(); }
+        }
 
         /// <summary>
         /// Sample rate for the project audio.
@@ -152,9 +214,42 @@ namespace Obi
         }
 
         /// <summary>
+        /// Save the project to its XUK file.
+        /// </summary>
+        internal void Save()
+        {
+            bool enforce = DataManager.getEnforceSinglePCMFormat();
+            DataManager.setEnforceSinglePCMFormat(true);  // TODO remove this kludge
+            saveXUK(new Uri(mXUKPath));
+            DataManager.setEnforceSinglePCMFormat(enforce);
+            mLastPath = mXUKPath;
+            Saved();
+        }
+
+        /// <summary>
+        /// The project was saved.
+        /// </summary>
+        private void Saved()
+        {
+            mUnsaved = false;
+            if (StateChanged != null)
+            {
+                StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Saved));
+            }
+        }
+
+        /// <summary>
         /// Get the text channel of the project.
         /// </summary>
         public Channel TextChannel { get { return GetSingleChannelByName(TEXT_CHANNEL_NAME); } }
+
+        /// <summary>
+        /// Simulate a modification of the project.
+        /// </summary>
+        public void Touch()
+        {
+            Modified(new Commands.Touch(this));
+        }
 
         /// <summary>
         /// This flag is set to true if the project contains modifications that have not been saved.
@@ -200,14 +295,14 @@ namespace Obi
         }
 
         /// <summary>
-        /// Create a new empty presentation with custom node and property factories.
+        /// Create a new empty presentation with custom node and property factories and audio data manager.
         /// </summary>
         /// <param name="XUKPath">Path of the XUK file for the project hosting this presentation.</param>
         /// <returns>The new presentation.</returns>
         private static Presentation CreatePresentation(string XUKPath)
         {
             return new Presentation(new Uri(Path.GetDirectoryName(XUKPath) + Path.DirectorySeparatorChar),
-                new ObiNodeFactory(), new PropertyFactory(), null, null, null, null, null);
+                new ObiNodeFactory(), new PropertyFactory(), null, null, null, new Audio.DataManager(), null);
         }
 
         /// <summary>
@@ -231,6 +326,22 @@ namespace Obi
         }
 
         /// <summary>
+        /// Get the generator string (Obi/Urakawa SDK) for the project.
+        /// </summary>
+        /// <remarks>Use the actual assembly name/version string for the toolkit (from 1.0)</remarks>
+        private string Generator
+        {
+            get
+            {
+                return String.Format("{0} v{1} with {2} v{3} (http://urakawa.sf.net)",
+                    System.Reflection.Assembly.GetExecutingAssembly().GetName().Name,
+                    System.Reflection.Assembly.GetExecutingAssembly().GetName().Version,
+                    System.Reflection.Assembly.GetAssembly(typeof(urakawa.Project)).GetName().Name,
+                    System.Reflection.Assembly.GetAssembly(typeof(urakawa.Project)).GetName().Version);
+            }
+        }
+
+        /// <summary>
         /// Access a channel which we know exist and is the only channel by this name.
         /// </summary>
         /// <param name="name">The name of the channel (use the name constants.)</param>
@@ -246,102 +357,10 @@ namespace Obi
             return channels[0];
         }
 
-        #endregion
-
-
-
-
-        /// <summary>
-        /// The project-wide clipboard.
-        /// </summary>
-        public Clipboard Clipboard
-        {
-            get { return mClipboard; }
-        }
-
-
-
-        /// <summary>
-        /// Get the generator string (Obi/Urakawa SDK) for the project.
-        /// </summary>
-        /// <remarks>Use the actual assembly name/version string for the toolkit (from 1.0)</remarks>
-        public string Generator
-        {
-            get
-            {
-                return String.Format("{0} v{1} with {2} v{3} (http://urakawa.sf.net)",
-                    System.Reflection.Assembly.GetExecutingAssembly().GetName().Name,
-                    System.Reflection.Assembly.GetExecutingAssembly().GetName().Version,
-                    System.Reflection.Assembly.GetAssembly(typeof(urakawa.Project)).GetName().Name,
-                    System.Reflection.Assembly.GetAssembly(typeof(urakawa.Project)).GetName().Version);
-            }
-        }
-
-        /// <summary>
-        /// If there is audio in the projects, the audio settings should come from the project
-        /// and not from the user settings.
-        /// </summary>
-        public bool HasAudioSettings
-        {
-            get { return mPhraseCount > 0; }
-        }
-
-        /// <summary>
-        /// Last path under which the project was saved (different from the normal path when we save as)
-        /// </summary>
-        public string LastPath
-        {
-            get { return mLastPath; }
-        }
-
-        /// <summary>
-        /// Get the last section node in the project or null if there are no sections.
-        /// </summary>
-        public SectionNode LastSection
-        {
-            get
-            {
-                SectionNode last = null;
-                if (RootNode.getChildCount() > 0)
-                {
-                    last = (SectionNode)RootNode.getChild(RootNode.getChildCount() - 1);
-                    while (last.SectionChildCount > 0) last = last.SectionChild(-1);
-                }
-                return last;
-            }
-        }
-
-        /// <summary>
-        /// Get the root node of the presentation as a TreeNode.
-        /// </summary>
-        public RootNode RootNode
-        {
-            get { return (RootNode)getPresentation().getRootNode(); }
-        }
-
-
-
-
-
-
-        /// <summary>
-        /// Get a suitable directory name to store the assets.
-        /// The default name is the same as the XUK file with _assets instead of .xuk as a suffix.
-        /// Mangle the name until a free name is found.
-        /// </summary>
-        /// <returns>The relative paht to the directory chosen.</returns>
-        private static string GetAssetDirectory(string path)
-        {
-            string dir = Path.GetDirectoryName(path);
-            string assetdir = Path.GetFileNameWithoutExtension(path) + "_assets";
-            while (Directory.Exists(Path.Combine(dir, assetdir)) || File.Exists(Path.Combine(dir, assetdir))) assetdir += "_";
-            return assetdir;
-        }
-
         /// <summary>
         /// Project was modified.
         /// </summary>
-        public void Modified()
+        private void Modified()
         {
             mUnsaved = true;
             if (StateChanged != null)
@@ -354,7 +373,7 @@ namespace Obi
         /// Project was modified and a command is issued.
         /// </summary>
         /// <param name="command">The command to issue.</param>
-        public void Modified(Commands.Command command)
+        private void Modified(Commands.Command command)
         {
             if (CommandCreated != null)
             {
@@ -363,66 +382,43 @@ namespace Obi
             Modified();
         }
 
-        /// <summary>
-        /// Open a project from a XUK file.
-        /// Throw an exception if the file could not be read.
-        /// </summary>
-        /// <param name="xukPath">The path of the XUK file.</param>
-        public void Open(string xukPath)
-        {
-            openXUK(new Uri(xukPath));
-            mUnsaved = false;
-            if (XukVersion != CURRENT_XUK_VERSION)
-            {
-                throw new Exception(String.Format(Localizer.Message("xuk_version_mismatch"),
-                    CURRENT_XUK_VERSION, XukVersion));
-            }
-            mXUKPath = xukPath;
-            // TODO: count pages and phrases
-            // mPhraseCount = visitor.Phrases;
-            // mPageCount = visitor.Pages;
-            if (StateChanged != null)
-            {
-                StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
-            }
-        }
+        #endregion
+
+
+
 
         /// <summary>
-        /// Project has reverted to its initial state (e.g. after all commands have been undone.)
+        /// The project-wide clipboard.
         /// </summary>
-        public void Reverted()
+        /// TODO this needs to go
+        public Clipboard Clipboard
         {
-            Saved();
+            get { return mClipboard; }
         }
 
-        /// <summary>
-        /// Get a safe name from a given title. Usable for XUK file and project directory filename.
-        /// Disallowed characters for file paths are replaced by an underscore.
-        /// Note that the user is allowed to change this--this is only a suggestion.
-        /// </summary>
-        /// <param name="title">Complete title.</param>
-        /// <returns>The safe version.</returns>
-        public static string SafeName(string title)
-        {
-            string invalid = "[";
-            foreach (char c in System.IO.Path.GetInvalidFileNameChars())
-                invalid += String.Format("\\x{0:x2}", (int)c);
-            invalid += "]+";
-            string safeName = System.Text.RegularExpressions.Regex.Replace(title, invalid, "_");
-            safeName = System.Text.RegularExpressions.Regex.Replace(safeName, "^_", "");
-            safeName = System.Text.RegularExpressions.Regex.Replace(safeName, "_$", "");
-            return safeName;
-        }
+
+
+
 
         /// <summary>
-        /// Save the project to its XUK file.
+        /// Last path under which the project was saved (different from the normal path when we save as)
         /// </summary>
-        internal void Save()
+        /// TODO review save as
+        public string LastPath
         {
-            saveXUK(new Uri(mXUKPath));
-            mLastPath = mXUKPath;
-            Saved();
+            get { return mLastPath; }
         }
+
+
+
+
+
+
+
+
+
+
+
 
         /// <summary>
         /// Save the project to a different name/XUK file.
@@ -431,26 +427,6 @@ namespace Obi
         public void SaveAs(string path)
         {
             throw new Exception("DISABLED RIGHT NOW.");
-        }
-
-        /// <summary>
-        /// The project was saved.
-        /// </summary>
-        private void Saved()
-        {
-            mUnsaved = false;
-            if (StateChanged != null)
-            {
-                StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Saved));
-            }
-        }
-
-        /// <summary>
-        /// Simulate a modification of the project.
-        /// </summary>
-        public void Touch()
-        {
-            Modified(new Commands.Touch(this));
         }
 
         /// <summary>
@@ -692,7 +668,9 @@ namespace Obi
             }
         }
 
+        #endregion
 
+        #region treeNode events
 
         /// <summary>
         /// Monitor the insertion of new nodes
@@ -706,15 +684,24 @@ namespace Obi
                 PhraseNode phrase = (PhraseNode)e.getTreeNode();
                 ++mPhraseCount;
                 if (phrase.PageProperty != null) ++mPageCount;
+                if (phrase.Audio != null && !DataManager.getEnforceSinglePCMFormat())
+                {
+                    DataManager.getDefaultPCMFormat().setSampleRate(phrase.Audio.getMediaData().getPCMFormat().getSampleRate());
+                    DataManager.getDefaultPCMFormat().setNumberOfChannels(phrase.Audio.getMediaData().getPCMFormat().getNumberOfChannels());
+                    DataManager.getDefaultPCMFormat().setBitDepth(phrase.Audio.getMediaData().getPCMFormat().getBitDepth());
+                    DataManager.setEnforceSinglePCMFormat(true);
+                }
                 phrase.ParentSection.AddedPhraseNode(phrase);
             }
         }
 
         void presentation_treeNodeRemoved(ITreeNodeChangedEventManager o, TreeNodeRemovedEventArgs e)
         {
-            throw new Exception("The method or operation is not implemented.");
+            if (e.getTreeNode() is PhraseNode)
+            {
+                if (DataManager.getListOfManagedMediaData().Count == 0) DataManager.setEnforceSinglePCMFormat(false);
+            }
         }
-
 
         #endregion
     }

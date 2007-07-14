@@ -451,7 +451,7 @@ namespace Obi
             {
                 mProjectPanel.TransportBar.Enabled = false;
                 Dialogs.EditSimpleMetadata dialog = new Dialogs.EditSimpleMetadata(mProject);
-                if (mProject != null && dialog.ShowDialog() == DialogResult.OK) mProject.Modified();
+                // TODO replace this: if (mProject != null && dialog.ShowDialog() == DialogResult.OK) mProject.Modified();
                 Ready();
                 mProjectPanel.TransportBar.Enabled = true;
             }

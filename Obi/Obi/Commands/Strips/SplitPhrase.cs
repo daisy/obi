@@ -14,14 +14,6 @@ namespace Obi.Commands.Strips
         private ManagedAudioMedia mOriginalAudio;  // the original asset before the split
 
         /// <summary>
-        /// Label for the undo menu item.
-        /// </summary>
-        public override string Label
-        {
-            get { return Localizer.Message("split_phrase_command_label"); }
-        }
-
-        /// <summary>
         /// Create the command once a node has been split in two from its two parts.
         /// </summary>
         /// <param name="node">The phrase node that was split.</param>
@@ -31,20 +23,21 @@ namespace Obi.Commands.Strips
             mNode = node;
             mNewNode = newNode;
             mSplitAudio = node.Audio;
-            
-            // make a copy of two products of split for creating original asset
-            // TODO copy
-            // mOriginalAudio = (AudioMediaAsset)node.Asset.Manager.CopyAsset(node.Asset);
-            // AudioMediaAsset NewNodeAsset = (AudioMediaAsset)  newNode.Asset.Manager.CopyAsset(newNode.Asset);
-
-            // reconstruct the original asset by merging.
-            // mOriginalAudio.Manager.MergeAudioMediaAssets(mOriginalAudio, NewNodeAsset);
+            mOriginalAudio = node.Project.DataManager.CopyAndManage(node.Audio);
+            ManagedAudioMedia newAudio = newNode.Project.DataManager.CopyAndManage(newNode.Audio);
+            Audio.DataManager.MergeAndManage(mOriginalAudio, newAudio);
         }
+
+
+        /// <summary>
+        /// Label for the undo menu item.
+        /// </summary>
+        public override string Label { get { return Localizer.Message("split_phrase_command_label"); } }
 
         /// <summary>
         /// Do: restore the split asset on the split node, and readd the new node.
         /// </summary>
-        public override void  Do()
+        public override void Do()
         {
             mNode.Audio = mSplitAudio;
             mNode.Project.AddPhraseNodeWithAudio(mNewNode, mNode.ParentSection, mNode.Index + 1);

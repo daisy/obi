@@ -108,5 +108,10 @@ namespace Obi
             if (index < 0) index = getChildCount() - index;
             return (SectionNode)getChild(index);
         }
+
+        public override string getXukLocalName()
+        {
+            return XUK_ELEMENT_NAME;
+        }
     }
 }
