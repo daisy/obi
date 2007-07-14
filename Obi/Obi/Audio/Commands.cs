@@ -92,11 +92,12 @@ namespace Obi.Audio
         /// </summary>
         public override void Do()
         {
-            if (m_boolTime == true)
-                mNewAudio = mAudio.DeleteChunk(m_dBeginTime, m_dEndTime);
+            // TODO write DeleteChunk
+            /*if (m_boolTime)
+                            mNewAudio = mAudio.DeleteChunk(m_dBeginTime, m_dEndTime);
             else
                 mNewAudio = mAudio.DeleteChunk(m_lBeginPosition, m_lEndPosition);
-
+            */
         }
 
         /// <summary>
@@ -104,10 +105,13 @@ namespace Obi.Audio
         /// </summary>
         public override void Undo()
         {
-            if (m_boolTime == true)
+            // TODO replace InsertAsset
+            /*
+            if (m_boolTime)
                 mAudio.InsertAsset(mNewAudio, m_dBeginTime);
             else
                 mAudio.InsertAsset(mNewAudio, m_lBeginPosition);
+             * */
         }
     }
 
@@ -143,7 +147,7 @@ namespace Obi.Audio
         /// </summary>
         public override void Do()
         {
-            mAudio.Manager.RemoveAsset(mAudio);
+            mAudio.getMediaData().delete();
         }
 
         /// <summary>
@@ -151,7 +155,7 @@ namespace Obi.Audio
         /// </summary>
         public override void Undo()
         {
-            mAssetManager.AddAsset(mAudio);
+            mManager.addMediaData(mAudio.getMediaData());
         }
     }
 
@@ -208,11 +212,13 @@ namespace Obi.Audio
         /// </summary>
         public override void Do()
         {
+            // TODO InsertAsset
+            /*
             if (m_boolTime == true)
                 mAudio.InsertAsset(mChunk, m_dInsertionTime);
             else
                 mAudio.InsertAsset(mChunk, m_lInsertionPosition);
-
+            */
         }
 
         /// <summary>
@@ -220,10 +226,13 @@ namespace Obi.Audio
         /// </summary>
         public override void Undo()
         {
+            // TODO DeleteChunk
+            /*
             if (m_boolTime == true)
                 mAudio.DeleteChunk(m_dInsertionTime, m_dInsertionTime + mChunk.LengthInMilliseconds);
             else
                 mAudio.DeleteChunk(m_lInsertionPosition, m_lInsertionPosition + mChunk.AudioLengthInBytes);
+             * */
         }
     }
 
@@ -254,7 +263,7 @@ namespace Obi.Audio
         {
             mFirstAudio = first;
             mSecondAudio = second;
-            m_dUndoSplitTime = mFirstAudio.LengthInMilliseconds;
+            m_dUndoSplitTime = mFirstAudio.getDuration().getTimeDeltaAsMillisecondFloat();
         }
 
         /// <summary>
@@ -262,7 +271,7 @@ namespace Obi.Audio
         /// </summary>
         public override void Do()
         {
-            mFirstAudio.MergeWith(mSecondAudio);
+            mFirstAudio.mergeWith(mSecondAudio);
         }
 
         /// <summary>
@@ -270,7 +279,7 @@ namespace Obi.Audio
         /// </summary>
         public override void Undo()
         {
-            mSecondAudio = mFirstAudio.Split(m_dUndoSplitTime);
+            mSecondAudio = mFirstAudio.split(new urakawa.media.timing.Time(m_dUndoSplitTime));
         }
     }
 
@@ -279,14 +288,8 @@ namespace Obi.Audio
     /// </summary>
     public class PhraseDetectionCommand : Command
     {
-        public override string Label
-        {
-            get
-            {
-                return "apply phrase detection";
-            }
-        }
-
+        public override string Label { get { return "apply phrase detection"; } }
+        
         public ArrayList AssetList
         {
             get
@@ -355,18 +358,21 @@ namespace Obi.Audio
         {
             if (m_alAssets == null)
             {
-                if (m_boolTime == true)
-                    m_alAssets = new ArrayList(mAudio.ApplyPhraseDetection(m_lThreshold, m_dPhraseLength, m_dBefore));
+                if (m_boolTime)
+                {
+                    m_alAssets = new ArrayList(PhraseDetection.Apply(mAudio, m_lThreshold, m_dPhraseLength, m_dBefore));
+                }
                 else
-                    m_alAssets = new ArrayList(mAudio.ApplyPhraseDetection(m_lThreshold, m_lPhraseLength, m_lBefore));
+                {
+                    m_alAssets = new ArrayList(PhraseDetection.Apply(mAudio, m_lThreshold, m_lPhraseLength, m_lBefore));
+                }
             }
 
             // Replace original asset in AssetManager with ArrayList assets
-            mManager.RemoveAsset(mAudio);
-
+            mAudio.getMediaData().delete();
             for (int n = 0; n < m_alAssets.Count; n++)
             {
-                mManager.AddAsset(m_alAssets[n] as Assets.AudioMediaAsset);
+                mManager.addMediaData(((ManagedAudioMedia)m_alAssets[n]).getMediaData());
             }
 
         }
@@ -378,56 +384,9 @@ namespace Obi.Audio
         {
             foreach (int n in m_alAssets)
             {
-                mManager.RemoveAsset(m_alAssets[n] as Assets.AudioMediaAsset);
+                ((ManagedAudioMedia)m_alAssets[n]).getMediaData().delete();
             }
-
-            mManager.AddAsset(mAudio);
-        }
-    }
-
-    /// <summary>
-    /// Rename an asset.
-    /// </summary>
-    public class RenameAssetCommand : Command
-    {
-        private ManagedAudioMedia mAudio;  // the asset to rename
-        private string mName;        // the new name of the asset
-        private string m_sOldName;
-
-        public override string Label
-        {
-            get
-            {
-                return "rename asset";
-            }
-        }
-
-        /// <summary>
-        /// Create a new command to rename an asset in the asset manager.
-        /// </summary>
-        /// <param name="asset">The asset to rename.</param>
-        /// <param name="name">The new name of the asset.</param>
-        public RenameAssetCommand(ManagedAudioMedia audio, string name)
-        {
-            mAudio = audio;
-            mName = name;
-            m_sOldName = asset.Name;
-        }
-
-        /// <summary>
-        /// Change the name of the asset to its new name.
-        /// </summary>
-        public override void Do()
-        {
-            mName = mAudio.Manager.RenameAsset(mAudio, mName);
-        }
-
-        /// <summary>
-        /// Revert to the old name of the asset. (This is actually the same as Do()!)
-        /// </summary>
-        public override void Undo()
-        {
-            mName = mAudio.Manager.RenameAsset(mAudio, m_sOldName);
+            mManager.addMediaData(mAudio.getMediaData());
         }
     }
 
@@ -480,11 +439,13 @@ namespace Obi.Audio
         /// </summary>
         public override void Do()
         {
+            // TODO split
+            /*
             if (m_boolTime == true)
                 mRearAudio = mAudio.Split(m_dSplitTime);
             else
                 mRearAudio = mAudio.Split(m_lSplitPosition);
-
+            */
         }
 
         /// <summary>
@@ -492,7 +453,8 @@ namespace Obi.Audio
         /// </summary>
         public override void Undo()
         {
-            mAudio.MergeWith(mRearAudio);
+            // TODO merge
+            // mAudio.MergeWith(mRearAudio);
         }
     }
 }

@@ -30,14 +30,15 @@ namespace Obi.Commands.Strips
         {
             mNode = node;
             mNewNode = newNode;
-            mSplitAudio = node.Asset;
+            mSplitAudio = node.Audio;
             
             // make a copy of two products of split for creating original asset
-            mOriginalAudio = (AudioMediaAsset)node.Asset.Manager.CopyAsset(node.Asset);
-            AudioMediaAsset NewNodeAsset = (AudioMediaAsset)  newNode.Asset.Manager.CopyAsset(newNode.Asset);
+            // TODO copy
+            // mOriginalAudio = (AudioMediaAsset)node.Asset.Manager.CopyAsset(node.Asset);
+            // AudioMediaAsset NewNodeAsset = (AudioMediaAsset)  newNode.Asset.Manager.CopyAsset(newNode.Asset);
 
             // reconstruct the original asset by merging.
-            mOriginalAudio.Manager.MergeAudioMediaAssets(mOriginalAudio, NewNodeAsset);
+            // mOriginalAudio.Manager.MergeAudioMediaAssets(mOriginalAudio, NewNodeAsset);
         }
 
         /// <summary>
@@ -45,7 +46,7 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void  Do()
         {
-            mNode.Asset = mSplitAudio;
+            mNode.Audio = mSplitAudio;
             mNode.Project.AddPhraseNodeWithAudio(mNewNode, mNode.ParentSection, mNode.Index + 1);
         }
 
@@ -55,7 +56,7 @@ namespace Obi.Commands.Strips
         public override void Undo()
         {
             mNode.Project.DeletePhraseNodeAndMedia(mNewNode);            
-            mNode.Project.SetAudioMediaAsset(mNode, mOriginalAudio);
+            mNode.Audio = mOriginalAudio;
             mNode.Project.TouchNode(mNode);
         }
     }
