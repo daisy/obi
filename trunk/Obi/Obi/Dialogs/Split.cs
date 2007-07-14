@@ -54,7 +54,7 @@ namespace Obi.Dialogs
 
         private void Split_Load(object sender, EventArgs e)
         {
-            txtDisplayTime.Text = "00:00:00";
+            txtDisplayTime.Text = ObiForm.FormatTime_hh_mm_ss(0.0);
             txtSplitTime.Text = "0";
 
             // start playing as soon as dialog is invoked
@@ -263,8 +263,7 @@ namespace Obi.Dialogs
             if ( CheckSplitTime ()  == true )
             {
                 if (Audio.AudioPlayer.Instance.State == Audio.AudioPlayerState.Playing) Audio.AudioPlayer.Instance.Stop();
-                mResultAudio = mSourceAudio.split(new urakawa.media.timing.Time(mSplitTime));
-                mSourceAudio.getMediaData().getMediaDataManager().addMediaData(mResultAudio.getMediaData());
+                mResultAudio = Audio.DataManager.SplitAndManage(mSourceAudio, mSplitTime);
                 Close();
             }
             else

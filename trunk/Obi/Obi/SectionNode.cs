@@ -33,6 +33,14 @@ namespace Obi
 
 
         /// <summary>
+        /// Add a child phrase at the given index.
+        /// </summary>
+        public void AddChildPhrase(PhraseNode node, int index)
+        {
+            insert(node, index);
+        }
+
+        /// <summary>
         /// Add a child section at the given index.
         /// The span of this section, plus that of parent sections,
         /// is increased accordingly.

@@ -228,7 +228,7 @@ namespace Obi.UserControls
             if (Audio.AudioRecorder.Instance.State != Obi.Audio.AudioRecorderState.Recording)
             {
                 // TODO check time formatting for duration
-                mTimeLabel.Text = mNode.Audio.getDuration().ToString();
+                mTimeLabel.Text = ObiForm.FormatTime(mNode.Audio.getDuration().getTimeDeltaAsMillisecondFloat());
                 AccessibleDescription = mTimeLabel.Text ;
             }
         }
@@ -237,7 +237,7 @@ namespace Obi.UserControls
         {
             RefreshLabels();
             // TODO check time formatting for duration
-            mTimeLabel.Text = time.ToString();
+            mTimeLabel.Text = ObiForm.FormatTime(time);
             AccessibleDescription = mTimeLabel.Text;
         }
 

@@ -72,7 +72,7 @@
     <Compile Include="Audio\AudioPlayer.cs" />
     <Compile Include="Audio\AudioRecorder.cs" />
     <Compile Include="Audio\CalculationFunctions.cs" />
-    <Compile Include="Audio\Commands.cs" />
+    <Compile Include="Audio\DataManager.cs" />
     <Compile Include="Audio\PhraseDetection.cs" />
     <Compile Include="Audio\VuMeter.cs">
       <SubType>Code</SubType>

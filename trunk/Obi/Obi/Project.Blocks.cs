@@ -567,6 +567,11 @@ namespace Obi
 
 
 
+        public void AddEmptyPhraseNode(SectionNode parent, int index)
+        {
+            parent.AddChildPhrase(CreatePhraseNode(DataManager.CreateEmptyAudioMedia()), index);
+        }
+
         /// <summary>
         /// Add an already existing phrase node as a child of a section in the project.
         /// </summary>
@@ -575,7 +580,7 @@ namespace Obi
         /// <param name="index">Its position in the parent section (with regards to other phrases.)</param>
         public void AddPhraseNode(PhraseNode node, SectionNode parent, int index)
         {
-            parent.insert(node, index);
+            parent.AddChildPhrase(node, index);
             Modified();
         }
 
@@ -609,7 +614,7 @@ namespace Obi
 
         private ManagedAudioMedia ImportAudioFromFile(string path)
         {
-            if (mPhraseCount == 0)
+            if (!DataManager.getEnforceSinglePCMFormat())
             {
                 Stream input = File.OpenRead(path);
                 PCMDataInfo info = PCMDataInfo.parseRiffWaveHeader(input);
@@ -617,7 +622,7 @@ namespace Obi
                 getPresentation().getMediaDataManager().getDefaultPCMFormat().setBitDepth(info.getBitDepth());
                 getPresentation().getMediaDataManager().getDefaultPCMFormat().setNumberOfChannels(info.getNumberOfChannels());
                 getPresentation().getMediaDataManager().getDefaultPCMFormat().setSampleRate(info.getSampleRate());
-                getPresentation().getMediaDataManager().setEnforceSinglePCMFormat(true);
+                DataManager.setEnforceSinglePCMFormat(true);
             }
             AudioMediaData data = (AudioMediaData)
                 getPresentation().getMediaDataFactory().createMediaData(typeof(AudioMediaData));
@@ -638,6 +643,5 @@ namespace Obi
             // Can we generate a treeNodeAdded event ourselves?
             // AddedPhraseNode(this, new Events.Node.PhraseNodeEventArgs(this, node));
         }
-
     }
 }
