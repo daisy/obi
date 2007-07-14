@@ -40,8 +40,8 @@ namespace Obi.Dialogs
         {
             InitializeComponent();
             mThresholdBox.Text = Audio.PhraseDetection.GetSilenceAmplitude(silence.Audio).ToString();
-            mGapBox.Text = Audio.PhraseDetection.DefaultGap.ToString();
-            mLeadingSilenceBox.Text = Audio.PhraseDetection.DefaultLeadingSilence.ToString();
+            mGapBox.Text = Audio.PhraseDetection.DEFAULT_GAP.ToString();
+            mLeadingSilenceBox.Text = Audio.PhraseDetection.DEFAULT_LEADING_SILENCE.ToString();
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Obi.Visitors
         public CleanupAssets(string assetDirectory, bool postProcessOnly)
         {
             mAssetDirectory = assetDirectory;
-            mAudioAssLists = new List<List<Obi.Assets.AudioMediaAsset>>();
+            mAudioAssLists = new List<List<ManagedAudioMedia>>();
             mbFlagPostProcessOnly = postProcessOnly;
         }
        
@@ -49,13 +49,15 @@ namespace Obi.Visitors
                 if (mbFlagPostProcessOnly == false)
                 {
                     //call asset combining function here
-                    Assets.AudioMediaAsset.ExportAssets(mAudioAssLists[idx], sectionAudioPath);
+                    // TODO export
+                    // Assets.AudioMediaAsset.ExportAssets(mAudioAssLists[idx], sectionAudioPath);
 
                 }
                 //otherwise the visitor should call CreateExportClips (the second phrase of the cleanup)
                 else
                 {
-                    List<Assets.AudioMediaAsset> revisedAssList = Assets.AudioMediaAsset.CreateExportClips(mAudioAssLists[idx], sectionAudioPath);
+                    // TODO exportclips
+                    List<ManagedAudioMedia> revisedAssList = null; // Assets.AudioMediaAsset.CreateExportClips(mAudioAssLists[idx], sectionAudioPath);
                     //make sure we have one asset per phrase
                     if (revisedAssList.Count != ((SectionNode)node).PhraseChildCount)
                     {
@@ -67,7 +69,7 @@ namespace Obi.Visitors
                     {
                         PhraseNode phraseNode = ((SectionNode)node).PhraseChild(i);
                         //causes an error: phraseNode.Asset.Manager.RemoveAsset(phraseNode.Asset);
-                        phraseNode.Asset = revisedAssList[i];
+                        phraseNode.Audio = revisedAssList[i];
                         //causes an error: phraseNode.Asset.Manager.AddAsset(phraseNode.Asset);
                     }
                 }
@@ -85,13 +87,13 @@ namespace Obi.Visitors
         {
             if (node is Obi.SectionNode)
             {
-                List<Assets.AudioMediaAsset> audioAssList = new List<Obi.Assets.AudioMediaAsset>();
+                List<ManagedAudioMedia> audioAssList = new List<ManagedAudioMedia>();
                 mAudioAssLists.Add(audioAssList);
             }
             else if (node is Obi.PhraseNode)
             {
                 if (mAudioAssLists.Count <= 0) throw new Exception("Error while collecting assets for cleanup");
-                mAudioAssLists[mAudioAssLists.Count - 1].Add(((Obi.PhraseNode)node).Asset);
+                mAudioAssLists[mAudioAssLists.Count - 1].Add(((Obi.PhraseNode)node).Audio);
             }
 
             return true;

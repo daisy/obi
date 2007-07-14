@@ -572,12 +572,12 @@ namespace Obi.UserControls
                     new Dialogs.TransportRecord(session).ShowDialog();
 
                     // delete newly created section if nothing is recorded.
-                    if (session.RecordedAssets.Count == 0 && IsSectionCreated)
+                    if (session.RecordedAudio.Count == 0 && IsSectionCreated)
                         this.mProjectPanel.ParentObiForm.UndoLast();
 
-                    for (int i = 0; i < session.RecordedAssets.Count; ++i)
+                    for (int i = 0; i < session.RecordedAudio.Count; ++i)
                     {
-                        mProjectPanel.StripManager.UpdateAssetForPhrase(section.PhraseChild(index + i), session.RecordedAssets[i]);
+                        mProjectPanel.StripManager.UpdateAudioForPhrase(section.PhraseChild(index + i), session.RecordedAudio[i]);
                     }
                 }
                 else //recording using the transportbar buttons
@@ -650,12 +650,12 @@ namespace Obi.UserControls
             if (IsInlineRecording)
             {
                 inlineRecordingSession.Stop();
-                if(mDidCreateSectionForRecording && inlineRecordingSession.RecordedAssets.Count == 0)
+                if(mDidCreateSectionForRecording && inlineRecordingSession.RecordedAudio.Count == 0)
                     this.mProjectPanel.ParentObiForm.UndoLast();
 
-                for (int i = 0; i < inlineRecordingSession.RecordedAssets.Count; ++i)
+                for (int i = 0; i < inlineRecordingSession.RecordedAudio.Count; ++i)
                 {
-                    mProjectPanel.StripManager.UpdateAssetForPhrase(mRecordingToSection.PhraseChild(mRecordingStartIndex + i), inlineRecordingSession.RecordedAssets[i]);
+                    mProjectPanel.StripManager.UpdateAudioForPhrase(mRecordingToSection.PhraseChild(mRecordingStartIndex + i), inlineRecordingSession.RecordedAudio[i]);
                 }
                 
                 mDidCreateSectionForRecording = false;
@@ -802,16 +802,16 @@ namespace Obi.UserControls
             {
                 mTimeDisplayBox.Text =
                     mDisplayBox.SelectedIndex == Elapsed ?
-                        Assets.MediaAsset.FormatTime_hh_mm_ss(mCurrentPlaylist.CurrentTimeInAsset) :
+                        ObiForm.FormatTime_hh_mm_ss(mCurrentPlaylist.CurrentTimeInAsset) :
                     mDisplayBox.SelectedIndex == ElapsedTotal ?
-                        Assets.MediaAsset.FormatTime_hh_mm_ss(mCurrentPlaylist.CurrentTime) :
+                        ObiForm.FormatTime_hh_mm_ss(mCurrentPlaylist.CurrentTime) :
                     mDisplayBox.SelectedIndex == Remain ?
-                        Assets.MediaAsset.FormatTime_hh_mm_ss(mCurrentPlaylist.RemainingTimeInAsset) :
-                        Assets.MediaAsset.FormatTime_hh_mm_ss(mCurrentPlaylist.RemainingTime);
+                        ObiForm.FormatTime_hh_mm_ss(mCurrentPlaylist.RemainingTimeInAsset) :
+                        ObiForm.FormatTime_hh_mm_ss(mCurrentPlaylist.RemainingTime);
             }
             else
             {
-                mTimeDisplayBox.Text = Assets.MediaAsset.FormatTime_hh_mm_ss(0.0);
+                mTimeDisplayBox.Text = ObiForm.FormatTime_hh_mm_ss(0.0);
             }
             //LNN: needs handling of inline recording time
         }
