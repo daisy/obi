@@ -101,8 +101,8 @@ namespace Obi
         /// </summary>
         private void InitializeVuMeter()
         {
-            m_Vumeter  = new Obi.Audio.VuMeter();
-            Audio.AudioPlayer.Instance.VuMeter = m_Vumeter ;
+            m_Vumeter  = new Obi.Audio.VuMeter(mProjectPanel.TransportBar.AudioPlayer);
+            mProjectPanel.TransportBar.AudioPlayer.VuMeter = m_Vumeter;
             Audio.AudioRecorder.Instance.VuMeterObject = m_Vumeter ;
             m_Vumeter.SetEventHandlers();
         }
@@ -650,7 +650,7 @@ namespace Obi
         /// </summary>
         private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings, mProject);
+            Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings, mProject, mProjectPanel.TransportBar);
             dialog.SelectProjectTab();
             ShowPreferencesDialog(dialog);
         }
@@ -666,7 +666,7 @@ namespace Obi
         /// </summary>
         private void mAudioPreferencesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings, mProject);
+            Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings, mProject, mProjectPanel.TransportBar);
             dialog.SelectAudioTab();
             ShowPreferencesDialog(dialog);
         }
@@ -681,7 +681,7 @@ namespace Obi
             if (Directory.Exists(dialog.DefaultDAISYDirectory)) mSettings.DefaultExportPath = dialog.DefaultDAISYDirectory;
             mSettings.OpenLastProject = dialog.OpenLastProject;
             mSettings.LastOutputDevice = dialog.OutputDevice.Name;
-            Audio.AudioPlayer.Instance.SetDevice(this, dialog.OutputDevice);
+            mProjectPanel.TransportBar.AudioPlayer.SetDevice(this, dialog.OutputDevice);
             mSettings.LastInputDevice = dialog.InputDevice.Name;
             Audio.AudioRecorder.Instance.InputDevice = dialog.InputDevice;
             mSettings.AudioChannels = dialog.AudioChannels;
@@ -780,7 +780,7 @@ namespace Obi
             }
             try
             {
-                Audio.AudioPlayer.Instance.SetDevice(this, mSettings.LastOutputDevice);
+                mProjectPanel.TransportBar.AudioPlayer.SetDevice(this, mSettings.LastOutputDevice);
             }
             catch (Exception)
             {

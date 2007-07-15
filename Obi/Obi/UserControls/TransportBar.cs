@@ -10,6 +10,7 @@ namespace Obi.UserControls
     /// </summary>
     public partial class TransportBar : UserControl, IControlWithSelection
     {
+        private Audio.AudioPlayer mPlayer;   // the player for this playlist
         private ProjectPanel mProjectPanel;  // project panel to which the transport bar belongs
         private Playlist mMasterPlaylist;    // master playlist (all phrases in the project)
         private Playlist mLocalPlaylist;     // local playlist (only selected; may be null)
@@ -51,8 +52,9 @@ namespace Obi.UserControls
         public TransportBar()
         {
             InitializeComponent();
+            mPlayer = new Audio.AudioPlayer();
             mLocalPlaylist = null;
-            mMasterPlaylist = new Playlist(Audio.AudioPlayer.Instance);
+            mMasterPlaylist = new Playlist(mPlayer);
             SetPlaylistEvents(mMasterPlaylist);
             mCurrentPlaylist = mMasterPlaylist;
             mDisplayBox.SelectedIndex = ElapsedTotal;
@@ -61,6 +63,11 @@ namespace Obi.UserControls
             mProjectPanel = null;
         }
 
+
+        /// <summary>
+        /// The audio player used by the transport bar.
+        /// </summary>
+        public Audio.AudioPlayer AudioPlayer { get { return mPlayer; } }
 
         #region selection
 
@@ -448,7 +455,7 @@ namespace Obi.UserControls
                         if (CanPlay)
             {
                 mPlayingFrom = mProjectPanel.CurrentSelection;
-                LocalPlaylist = new Playlist(Audio.AudioPlayer.Instance, node);
+                LocalPlaylist = new Playlist(mPlayer, node);
                 mCurrentPlaylist = mLocalPlaylist;
                 mCurrentPlaylist.CurrentPhrase = mLocalPlaylist.FirstPhrase;
                 mVUMeterPanel.Enable = true;

@@ -6,197 +6,274 @@ using System.Collections;
 using System.Collections.Generic;
 using Microsoft.DirectX;
 using Microsoft.DirectX.DirectSound;
+using urakawa.media.data.audio;
 
-using urakawa.media.data.audio  ;
- 
+// TODO change all longs to ints
 
 namespace Obi.Audio
 {
     /// <summary>
-    /// The three states of the audio player.
-    /// NotReady: the player is not ready, for whatever reason.
+    /// The four states of the audio player.
+    /// NotReady: the player has no output device set yet.
     /// Playing: sound is currently playing.
-    /// Paused: playback was interrupted and can be resumed.
+    /// Paused: playback was paused and can be resumed.
     /// Stopped: player is idle.
     /// </summary>
     public enum AudioPlayerState { NotReady, Stopped, Playing, Paused };
 
     /// <summary>
-    /// <see cref=""/>
-    ///   Playback modes for AudioPlayer
+    /// Playback modes for AudioPlayer
     /// Normal: for normal playback
     /// FastForward: For playing small chunks while jumping forward
     /// Rewind: for playing small chunks while jumping backward
-        /// </summary>
-    public enum PlaybackModes { Normal, FastForward, Rewind} ;
+    /// </summary>
+    public enum PlaybackMode { Normal, FastForward, Rewind };
+
 
 	public class AudioPlayer
 	{
-		// Events of the audio player (JQ)
-		public event Events.Audio.Player.EndOfAudioAssetHandler EndOfAudioAsset;
-		public event Events.Audio.Player.StateChangedHandler StateChanged;
-		public event Events.Audio.Player.UpdateVuMeterHandler UpdateVuMeter;
+        #region private members
 
-		// declare member variables
-		private AudioMediaData  m_Asset ;
-        private Stream m_AssetStream;
-		private SecondaryBuffer m_SoundBuffer;
-  private OutputDevice mDevice;
-		
+        private Stream mAudioStream;           // audio stream
+        private int mBufferStopPosition;       // stop position in buffer
+        private AudioMediaData mCurrentAudio;  // the audio currently playing
+        public bool mEventsEnabled;            // flag to temporarily enable or disable events
+        private bool mIsFwdRwd;                // forward or rewind playback is going on
+        private PlaybackMode mPlaybackMode;    // current playback mode
+        private SecondaryBuffer mSoundBuffer;  // DX playback buffer
+        private AudioPlayerState mState;       // player state
+        
+        private VuMeter ob_VuMeter;            // to be removed
+        
+        private OutputDevice mDevice;
         // integer to indicate which part of buffer is to be refreshed front or rear
-		private int m_BufferCheck ;
-
+        private int m_BufferCheck;
         // Size of buffer created for playing
-		private int m_SizeBuffer ;
-
+        private int m_SizeBuffer;
         // length of buffer to be refreshed during playing which is half of buffer size
-		private int m_RefreshLength ;
-
+        private int m_RefreshLength;
         // Total length of audio asset being played
-		private long m_lLength;
-
+        private long m_lLength;
         // Length of audio asset in bytes which had been played
-		private long m_lPlayed ;
-
+        private long m_lPlayed;
         // thread for refreshing buffer while playing 
-		private Thread RefreshThread;
-
-        // variable to hold stop position in buffer after audio asset is about to end and all refreshing is finished , it will remain -1 till refreshing is going on
-        int m_BufferStopPosition ;
-
+        private Thread RefreshThread;
         private long m_lPausePosition; // holds pause position in bytes to allow play resume playback from there
-        private long m_lResumeToPosition ; // In case play ( from, to ) function is used, holds the end position i.e. "to"  for resuming playback
-
-		internal int m_FrameSize ; 
-		internal int m_Channels ;
-		private int m_SamplingRate ;
-        private int m_VolumeLevel ;
-		private AudioPlayerState  m_State;
-        private PlaybackModes m_PlaybackMode ;
-        private int m_FwdRwdRate  ; // holds skip time multiplier for forward / rewind mode
-        private float m_fFastPlayFactor ; /// fholds fast play multiplier
-        private bool m_IsFwdRwd ; // Is true if Playback mode is not normal and Forward / rewind playback is going on
-
-        // bool variable to enable or disable event
-        public bool m_EventsEnabled ; // sometimes  it is required to suppress events, this is done by this variable
-		private VuMeter ob_VuMeter;
-
+        private long m_lResumeToPosition; // In case play ( from, to ) function is used, holds the end position i.e. "to"  for resuming playback
+        internal int m_FrameSize;
+        internal int m_Channels;
+        private int m_SamplingRate;
+        private int m_VolumeLevel;
+        private int m_FwdRwdRate; // holds skip time multiplier for forward / rewind mode
+        private float m_fFastPlayFactor; /// fholds fast play multiplier
         // monitoring timer to trigger events independent of refresh thread
         private System.Windows.Forms.Timer MoniteringTimer = new System.Windows.Forms.Timer();
-
         // Flag to trigger end of asset events, flag is set for a moment and again reset
-        private bool m_IsEndOfAsset  ; // variable required to signal monitoring timer to trigger end of asset event
+        private bool m_IsEndOfAsset; // variable required to signal monitoring timer to trigger end of asset event
+        // array for update current amplitude to VuMeter
+        internal byte[] arUpdateVM;
+        internal int m_UpdateVMArrayLength;
+
+        #endregion
+
+        public event Events.Audio.Player.EndOfAudioAssetHandler EndOfAudioAsset;
+        public event Events.Audio.Player.StateChangedHandler StateChanged;
+        public event Events.Audio.Player.UpdateVuMeterHandler UpdateVuMeter;
 
 
-		private static readonly AudioPlayer mInstance = new AudioPlayer();
-
-		public static AudioPlayer Instance
-		{
-			get { return mInstance; }
-		}
-
-		// JQ changed constructor to be private (singleton)
-		private AudioPlayer()
+        /// <summary>
+        /// Create a new player. It doesn't have an output device yet.
+        /// </summary>
+        public AudioPlayer()
         {
-
-			m_State = AudioPlayerState.NotReady ;
+            mState = AudioPlayerState.NotReady;
             ob_VuMeter = null;
             MoniteringTimer.Tick += new System.EventHandler(this.MoniteringTimer_Tick);
             MoniteringTimer.Interval = 200;
-           mPreviewTimer.Tick += new System.EventHandler(this.PreviewTimer_Tick );
-           mPreviewTimer.Interval = 100;
-
-           m_PlaybackMode = PlaybackModes.Normal;
+            mPreviewTimer.Tick += new System.EventHandler(this.PreviewTimer_Tick);
+            mPreviewTimer.Interval = 100;
+            mPlaybackMode = PlaybackMode.Normal;
             m_FwdRwdRate = 1;
             m_fFastPlayFactor = 1;
-            m_IsFwdRwd = false;
-            m_EventsEnabled = true;
-            m_lResumeToPosition = 0 ;
-  m_BufferStopPosition= -1  ;
-  m_IsEndOfAsset = false;
+            mIsFwdRwd = false;
+            mEventsEnabled = true;
+            m_lResumeToPosition = 0;
+            mBufferStopPosition = -1;
+            m_IsEndOfAsset = false;
+        }
 
-            // events associated with local function so as to avoid null exceptions            
-            StateChanged += new Obi.Events.Audio.Player.StateChangedHandler(CatchEvents);
-            EndOfAudioAsset += new Obi.Events.Audio.Player.EndOfAudioAssetHandler(CatchEvents);
-		}
-
-        public AudioMediaData CurrentAudio { get { return m_Asset; } }
 
         /// <summary>
-        /// The Vu meter associated with the player.
+        /// The audio data currently playing.
         /// </summary>
-		public VuMeter VuMeter
-		{
-			get { return ob_VuMeter; }
-            set
-            {
-                ob_VuMeter = value;
-            }
-		}
-
-		void TriggerStateChangedEvent(Events.Audio.Player.StateChangedEventArgs e)
-		{
-			if (m_EventsEnabled) StateChanged(this, e);
-		}
-
-		// array for update current amplitude to VuMeter
-		internal byte [] arUpdateVM ;
-		internal int m_UpdateVMArrayLength ;
-
-		// gets the current AudioPlayer state
-		public AudioPlayerState State
-		{
-			get
-			{
-                if (m_IsFwdRwd == true )
-                    return AudioPlayerState.Playing;
-                else
-				return m_State ;
-			}
-		}
+        public AudioMediaData CurrentAudio { get { return mCurrentAudio; } }
 
         /// <summary>
-        /// <see cref=""/>
-        /// Gets and Sets Currently active playback mode in AudioPlayer
-        ///  Playback mode returns to normal on pause or stop
+        /// Currently used output device.
         /// </summary>
-        public PlaybackModes PlaybackMode
+        public OutputDevice OutputDevice { get { return mDevice; } }
+
+        /// <summary>
+        /// Get and set the active playback mode.
+        /// Playback mode returns to normal on pause or stop.
+        /// </summary>
+        public PlaybackMode PlaybackMode
         {
-            get
+            get { return mPlaybackMode; }
+            set { SetPlaybackMode(value); }
+        }
+
+        /// <summary>
+        /// Current state of the player.
+        /// </summary>
+        public AudioPlayerState State
+        {
+            get { return mIsFwdRwd ? AudioPlayerState.Playing : mState; }
+        }
+
+
+        /// <summary>
+        /// Get the current playback position in bytes.
+        /// </summary>
+        private long GetCurrentBytePosition()
+        {
+            int PlayPosition = 0;
+            long lCurrentPosition = 0;
+            if (mCurrentAudio.getPCMLength() > 0)
             {
-                return  m_PlaybackMode;
+                if (mState == AudioPlayerState.Playing)
+                {
+                    PlayPosition = mSoundBuffer.PlayPosition;
+                    // if refreshing of buffer has finished and player is near end of asset
+                    if (mBufferStopPosition != -1)
+                    {
+                        int subtractor = (mBufferStopPosition - PlayPosition);
+                        lCurrentPosition = mCurrentAudio.getPCMLength() - subtractor;
+                    }
+                    else if (m_BufferCheck % 2 == 1)
+                    {
+                        // takes the lPlayed position and subtract the part of buffer played from it
+                        int subtractor = (2 * m_RefreshLength) - PlayPosition;
+                        lCurrentPosition = m_lPlayed - subtractor;
+                    }
+                    else
+                    {
+                        int subtractor = (3 * m_RefreshLength) - PlayPosition;
+                        lCurrentPosition = m_lPlayed - subtractor;
+                    }
+                    if (lCurrentPosition >= mCurrentAudio.getPCMLength())
+                    {
+                        lCurrentPosition = mCurrentAudio.getPCMLength() -
+                            Convert.ToInt32(CalculationFunctions.ConvertTimeToByte(100, m_SamplingRate, m_FrameSize));
+                    }
+                }
             }
-            set
+            else if (mState == AudioPlayerState.Paused)
             {
-                SetPlaybackMode(value);
+                lCurrentPosition = m_lPausePosition;
+            }
+            lCurrentPosition = CalculationFunctions.AdaptToFrame(lCurrentPosition, m_FrameSize);
+            if (mPlaybackMode != PlaybackMode.Normal) lCurrentPosition = m_lChunkStartPosition;
+            return lCurrentPosition;
+        }
+
+        /// <summary>
+        /// Set a new playback mode.
+        /// </summary>
+        /// <param name="mode">The new mode.</param>
+        private void SetPlaybackMode(PlaybackMode mode)
+        {
+            if (mode != mPlaybackMode)
+            {
+                if (State == AudioPlayerState.Playing)
+                {
+                    long restartPos = GetCurrentBytePosition();
+                    StopPlayback();
+                    mState = AudioPlayerState.Paused;
+                    mPlaybackMode = mode;
+                    InitPlay(restartPos, 0);
+                }
+                else if (mState == AudioPlayerState.Paused || mState == AudioPlayerState.Stopped)
+                {
+                    mPlaybackMode = mode;
+                }
             }
         }
 
         /// <summary>
-        /// <see cref=""/>
-        ///  Forward / Rewind rate
-        ///  whenever set to 0, Playback mode sets to normal
+        /// Stop rewinding or forwarding, including the preview timer.
+        /// </summary>
+        private void StopForwardRewind()
+        {
+            if (mPlaybackMode != PlaybackMode.Normal || mPreviewTimer.Enabled)
+            {
+                mPreviewTimer.Enabled = false;
+                m_FwdRwdRate = 1;
+                m_lChunkStartPosition = 0;
+                mIsFwdRwd = false;
+                mPlaybackMode = PlaybackMode.Normal;
+                mEventsEnabled = true;
+            }
+        }
+
+        /// <summary>
+        /// Stop the playback and revert to normal playback mode.
+        /// </summary>
+        private void StopPlayback()
+        {
+            StopForwardRewind();
+            mSoundBuffer.Stop();
+            if (RefreshThread != null && RefreshThread.IsAlive) RefreshThread.Abort();
+            mBufferStopPosition = -1;
+            if (ob_VuMeter != null) ob_VuMeter.Reset();  // TODO replace with an event
+            mAudioStream.Close();
+        }
+
+        /// <summary>
+        /// Convenience method for sending a state change event only if events are enabled and there is a listener.
+        /// </summary>
+		private void TriggerStateChangedEvent(Events.Audio.Player.StateChangedEventArgs e)
+		{
+			if (mEventsEnabled && StateChanged != null) StateChanged(this, e);
+		}
+
+
+
+        /// <summary>
+        /// The Vu meter associated with the player.
+        /// </summary>
+        /// TODO this must be removed; the audio player communicates with any VU meter through events.
+        public VuMeter VuMeter
+        {
+            get { return ob_VuMeter; }
+            set { ob_VuMeter = value; }
+        }
+
+
+
+
+
+
+
+        /// <summary>
+        /// Forward / Rewind rate.
+        /// Whenever set to 0, Playback mode resets to normal
         /// </summary>
         public int PlaybackFwdRwdRate
         {
             get
             {
-                return m_FwdRwdRate ;
+                return m_FwdRwdRate;
             }
-            set 
+            set
             {
-                m_FwdRwdRate = value ;
-                if ( m_FwdRwdRate == 0    &&    m_PlaybackMode != PlaybackModes.Normal )
-                    SetPlaybackMode ( PlaybackModes.Normal ) ;
+                m_FwdRwdRate = value;
+                if (m_FwdRwdRate == 0 && mPlaybackMode != PlaybackMode.Normal)
+                    SetPlaybackMode(PlaybackMode.Normal);
             }
         }
-        
 
 
-        public OutputDevice OutputDevice
-        {
-            get { return mDevice; }
-        }
 
         public int OutputVolume
         {
@@ -256,8 +333,8 @@ namespace Obi.Audio
         {
             m_VolumeLevel = VolLevel;
 
-            if (m_SoundBuffer != null)
-                m_SoundBuffer.Volume = m_VolumeLevel;
+            if (mSoundBuffer != null)
+                mSoundBuffer.Volume = m_VolumeLevel;
 
         }
 
@@ -290,7 +367,7 @@ namespace Obi.Audio
         {
             mDevice = device;
             mDevice.Device.SetCooperativeLevel(handle, CooperativeLevel.Priority);
-            m_State = AudioPlayerState.Stopped;
+            mState = AudioPlayerState.Stopped;
         }
 
 		/// <summary>
@@ -304,28 +381,28 @@ namespace Obi.Audio
             if (found != null)
             {
                 SetDevice(FormHandle, found);
-                m_State = AudioPlayerState.Stopped;
+                mState = AudioPlayerState.Stopped;
             }
             else if (devices.Count > 0)
             {
                 SetDevice(FormHandle, devices[0]);
-                m_State = AudioPlayerState.Stopped;
+                mState = AudioPlayerState.Stopped;
             }
             else
             {
-                m_State = AudioPlayerState.NotReady;
+                mState = AudioPlayerState.NotReady;
                 throw new Exception("No output device available.");
             }
         }
 
         void SetPlayFrequency(float l_frequency)
         {
-            if (m_SoundBuffer != null
-                && m_PlaybackMode == PlaybackModes.Normal)
+            if (mSoundBuffer != null
+                && mPlaybackMode == PlaybackMode.Normal)
             {
                 try
                 {
-                    m_SoundBuffer.Frequency = (int)(m_SoundBuffer.Format.SamplesPerSecond * l_frequency);
+                    mSoundBuffer.Frequency = (int)(mSoundBuffer.Format.SamplesPerSecond * l_frequency);
                     m_fFastPlayFactor = l_frequency;
                 }
                 catch (System.Exception Ex)
@@ -338,68 +415,51 @@ namespace Obi.Audio
         }
 
 
-        private void SetPlaybackMode(PlaybackModes l_PlaybackMode)
-        {
-            if (m_State == AudioPlayerState.Playing      ||     m_IsFwdRwd  )
-            {
-                                long RestartPos = 0;
-                                                                    RestartPos = GetCurrentBytePosition();
-                    
-                StopFunction();
-                m_State = AudioPlayerState.Paused ;
-                m_PlaybackMode = l_PlaybackMode;
-                InitPlay ( RestartPos , 0 ) ;
-            }
-            else if (m_State == AudioPlayerState.Paused   ||   m_State == AudioPlayerState.Stopped )
-            {
-                m_PlaybackMode = l_PlaybackMode;
-            }
-        }
 
 
 public 		 void InitPlay(long lStartPosition, long lEndPosition)
 		{
             //if (m_State == AudioPlayerState.Stopped || m_State == AudioPlayerState.NotReady)
-                if (m_State != AudioPlayerState.Playing )
+                if (mState != AudioPlayerState.Playing )
             {
             
-                    InitialiseWithAsset ( Data) ;
+                    InitialiseWithAsset (mCurrentAudio) ;
 
-                    if (m_PlaybackMode  == PlaybackModes.Normal)
+                    if (mPlaybackMode  == PlaybackMode.Normal)
                         PlayAssetStream( lStartPosition , lEndPosition);
-                    else if (m_PlaybackMode  == PlaybackModes.FastForward)
+                    else if (mPlaybackMode  == PlaybackMode.FastForward)
                     {
                                                 FastForward( lStartPosition );
                     }
-                    else if (m_PlaybackMode == PlaybackModes.Rewind)
+                    else if (mPlaybackMode == PlaybackMode.Rewind)
                     {
                         if (lStartPosition == 0)
-                            lStartPosition = m_Asset.getPCMLength();
+                            lStartPosition = mCurrentAudio.getPCMLength();
                         Rewind(lStartPosition);
                     }
             }// end of state check
 			// end of function
 		}
-        public AudioMediaData Data;
-        private void InitialiseWithAsset(AudioMediaData Asset)
+
+        private void InitialiseWithAsset(AudioMediaData audio)
         {
-            if (m_State != AudioPlayerState.Playing)
+            if (mState != AudioPlayerState.Playing)
             {
-                m_Asset = Asset;
+                mCurrentAudio = audio;
                 WaveFormat newFormat = new WaveFormat();
                  BufferDescription  BufferDesc = new BufferDescription();
                 
                 // retrieve format from asset
-                m_FrameSize = m_Asset.getPCMFormat().getBlockAlign();
-                m_Channels = m_Asset.getPCMFormat().getNumberOfChannels();
-                newFormat.AverageBytesPerSecond = (int)m_Asset.getPCMFormat().getSampleRate() * m_Asset.getPCMFormat().getBlockAlign();
-                                newFormat.BitsPerSample = Convert.ToInt16(m_Asset.getPCMFormat().getBitDepth());
-                newFormat.BlockAlign = Convert.ToInt16(m_Asset.getPCMFormat().getBlockAlign());
-                newFormat.Channels = Convert.ToInt16(m_Asset.getPCMFormat().getNumberOfChannels());
+                m_FrameSize = mCurrentAudio.getPCMFormat().getBlockAlign();
+                m_Channels = mCurrentAudio.getPCMFormat().getNumberOfChannels();
+                newFormat.AverageBytesPerSecond = (int)mCurrentAudio.getPCMFormat().getSampleRate() * mCurrentAudio.getPCMFormat().getBlockAlign();
+                                newFormat.BitsPerSample = Convert.ToInt16(mCurrentAudio.getPCMFormat().getBitDepth());
+                newFormat.BlockAlign = Convert.ToInt16(mCurrentAudio.getPCMFormat().getBlockAlign());
+                newFormat.Channels = Convert.ToInt16(mCurrentAudio.getPCMFormat().getNumberOfChannels());
 
                 newFormat.FormatTag = WaveFormatTag.Pcm;
 
-                newFormat.SamplesPerSecond = (int)m_Asset.getPCMFormat().getSampleRate();
+                newFormat.SamplesPerSecond = (int)mCurrentAudio.getPCMFormat().getSampleRate();
 
                 // loads  format to buffer description
                 BufferDesc.Format = newFormat;
@@ -409,8 +469,8 @@ public 		 void InitPlay(long lStartPosition, long lEndPosition)
                 BufferDesc.ControlFrequency = true;
 
                 // calculate size of buffer so as to contain 1 second of audio
-                m_SizeBuffer = (int)m_Asset.getPCMFormat().getSampleRate() * m_Asset.getPCMFormat().getBlockAlign();
-                m_RefreshLength = (int)(m_Asset.getPCMFormat().getSampleRate() / 2) * m_Asset.getPCMFormat().getBlockAlign();
+                m_SizeBuffer = (int)mCurrentAudio.getPCMFormat().getSampleRate() * mCurrentAudio.getPCMFormat().getBlockAlign();
+                m_RefreshLength = (int)(mCurrentAudio.getPCMFormat().getSampleRate() / 2) * mCurrentAudio.getPCMFormat().getBlockAlign();
 
                 // calculate the size of VuMeter Update array length
                 m_UpdateVMArrayLength = m_SizeBuffer / 20;
@@ -427,7 +487,7 @@ public 		 void InitPlay(long lStartPosition, long lEndPosition)
 
                 // initialising secondary buffer
                 // m_SoundBuffer = new SecondaryBuffer(BufferDesc, SndDevice);
-                m_SoundBuffer = new SecondaryBuffer(BufferDesc, mDevice.Device);
+                mSoundBuffer = new SecondaryBuffer(BufferDesc, mDevice.Device);
 
                 SetPlayFrequency(m_fFastPlayFactor);
 
@@ -436,12 +496,12 @@ public 		 void InitPlay(long lStartPosition, long lEndPosition)
 
         private void PlayAssetStream(long lStartPosition, long lEndPosition)
         {
-            if (m_State != AudioPlayerState.Playing)
+            if (mState != AudioPlayerState.Playing)
             {
                 // Adjust the start and end position according to frame size
-                lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, m_Asset.getPCMFormat().getBlockAlign());
-                lEndPosition = CalculationFunctions.AdaptToFrame(lEndPosition, m_Asset.getPCMFormat().getBlockAlign());
-                m_SamplingRate = (int)m_Asset.getPCMFormat().getSampleRate();
+                lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, mCurrentAudio.getPCMFormat().getBlockAlign());
+                lEndPosition = CalculationFunctions.AdaptToFrame(lEndPosition, mCurrentAudio.getPCMFormat().getBlockAlign());
+                m_SamplingRate = (int)mCurrentAudio.getPCMFormat().getSampleRate();
 
                 // lEndPosition = 0 means that file is played to end
                 if (lEndPosition != 0)
@@ -452,7 +512,7 @@ public 		 void InitPlay(long lStartPosition, long lEndPosition)
                 {
                     // folowing one line is modified on 2 Aug 2006
                     //m_lLength = (m_Asset .SizeInBytes  - lStartPosition ) ;
-                    m_lLength = (m_Asset.getPCMLength());
+                    m_lLength = (mCurrentAudio.getPCMLength());
                 }
 
 
@@ -461,22 +521,22 @@ public 		 void InitPlay(long lStartPosition, long lEndPosition)
 
                 m_IsEndOfAsset = false;
                 
-                m_AssetStream = m_Asset.getAudioData();
-                m_AssetStream.Position = lStartPosition;
+                mAudioStream = mCurrentAudio.getAudioData();
+                mAudioStream.Position = lStartPosition;
                 
-                m_SoundBuffer.Write(0, m_AssetStream, m_SizeBuffer, 0);
+                mSoundBuffer.Write(0, mAudioStream, m_SizeBuffer, 0);
 
                 // Adds the length (count) of file played into a variable
                 m_lPlayed += m_SizeBuffer;
 
                 // trigger  events (modified JQ)
-                Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
-                m_State = AudioPlayerState.Playing;
+                Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(mState);
+                mState = AudioPlayerState.Playing;
                 TriggerStateChangedEvent(e);
 
                 MoniteringTimer.Enabled = true;
                 // starts playing
-                m_SoundBuffer.Play(0, BufferPlayFlags.Looping);
+                mSoundBuffer.Play(0, BufferPlayFlags.Looping);
                 m_BufferCheck = 1;
 
                 //initialise and start thread for refreshing buffer
@@ -498,35 +558,35 @@ public 		 void InitPlay(long lStartPosition, long lEndPosition)
 
 			while (  m_lPlayed < ( m_lLength - SafeMargin ) )
 			{//1
-				if (m_SoundBuffer.Status.BufferLost  )
-					m_SoundBuffer.Restore () ;
+				if (mSoundBuffer.Status.BufferLost  )
+					mSoundBuffer.Restore () ;
 
 				
 				Thread.Sleep (50) ;
 
                 if (ob_VuMeter != null)
                 {
-                    ReadPosition = m_SoundBuffer.PlayPosition;
+                    ReadPosition = mSoundBuffer.PlayPosition;
 
                     if (ReadPosition < ((m_SizeBuffer) - m_UpdateVMArrayLength))
                     {
-                        Array.Copy(m_SoundBuffer.Read(ReadPosition, typeof(byte), LockFlag.None, m_UpdateVMArrayLength), arUpdateVM, m_UpdateVMArrayLength);
+                        Array.Copy(mSoundBuffer.Read(ReadPosition, typeof(byte), LockFlag.None, m_UpdateVMArrayLength), arUpdateVM, m_UpdateVMArrayLength);
                         //if ( m_EventsEnabled == true)
                         //UpdateVuMeter(this, new Events.Audio.Player.UpdateVuMeterEventArgs());  // JQ // temp for debugging tk
                     }
                 }
 				// check if play cursor is in second half , then refresh first half else second
                 // refresh front part for odd count
-				if ((m_BufferCheck% 2) == 1 &&  m_SoundBuffer.PlayPosition > m_RefreshLength) 
+				if ((m_BufferCheck% 2) == 1 &&  mSoundBuffer.PlayPosition > m_RefreshLength) 
 				{//2
-													m_SoundBuffer.Write (0 , m_AssetStream , m_RefreshLength, 0) ;
+													mSoundBuffer.Write (0 , mAudioStream , m_RefreshLength, 0) ;
                     					m_lPlayed = m_lPlayed + m_RefreshLength ;
 					m_BufferCheck++ ;
 				}//-1
                     // refresh Rear half of buffer for even count
-				else if ((m_BufferCheck % 2 == 0) &&  m_SoundBuffer.PlayPosition < m_RefreshLength)
+				else if ((m_BufferCheck % 2 == 0) &&  mSoundBuffer.PlayPosition < m_RefreshLength)
 				{//1
-													m_SoundBuffer.Write (m_RefreshLength,  m_AssetStream, m_RefreshLength, 0)  ;
+													mSoundBuffer.Write (m_RefreshLength,  mAudioStream, m_RefreshLength, 0)  ;
                             					m_lPlayed = m_lPlayed + m_RefreshLength ;
 					m_BufferCheck++ ;
 					// end of even/ odd part of buffer;
@@ -537,52 +597,52 @@ public 		 void InitPlay(long lStartPosition, long lEndPosition)
             
             m_IsEndOfAsset = false;
             int LengthDifference = (int)(m_lPlayed - m_lLength  );
-             m_BufferStopPosition= -1 ;
+             mBufferStopPosition= -1 ;
                          // if there is no refresh after first load thenrefresh maps directly  
                         if  ( m_BufferCheck == 1  )
                             {
-                m_BufferStopPosition = Convert.ToInt32(m_SizeBuffer - LengthDifference );
+                mBufferStopPosition = Convert.ToInt32(m_SizeBuffer - LengthDifference );
             }
 
             // if last refresh is to Front, BufferCheck is even and stop position is at front of buffer.
             else if ((m_BufferCheck % 2) == 0)
             {
-                m_BufferStopPosition = Convert.ToInt32(m_RefreshLength - LengthDifference );
+                mBufferStopPosition = Convert.ToInt32(m_RefreshLength - LengthDifference );
                             }
             else if ((m_BufferCheck >  1) && (m_BufferCheck % 2) == 1)
             {
-                m_BufferStopPosition = Convert.ToInt32(m_SizeBuffer - LengthDifference);
+                mBufferStopPosition = Convert.ToInt32(m_SizeBuffer - LengthDifference);
             }
             
             int CurrentPlayPosition;
-            CurrentPlayPosition = m_SoundBuffer.PlayPosition;
+            CurrentPlayPosition = mSoundBuffer.PlayPosition;
             int StopMargin = Convert.ToInt32 (CalculationFunctions.ConvertTimeToByte( 70 , m_SamplingRate, m_FrameSize));
             StopMargin = (int)  (StopMargin * m_fFastPlayFactor);
 
-            if ( m_BufferStopPosition < StopMargin)
-                m_BufferStopPosition = StopMargin; 
+            if ( mBufferStopPosition < StopMargin)
+                mBufferStopPosition = StopMargin; 
 
-             while (CurrentPlayPosition < (m_BufferStopPosition - StopMargin) || CurrentPlayPosition > ( m_BufferStopPosition ))
+             while (CurrentPlayPosition < (mBufferStopPosition - StopMargin) || CurrentPlayPosition > ( mBufferStopPosition ))
                 {
                     Thread.Sleep(50);
-                    CurrentPlayPosition = m_SoundBuffer.PlayPosition;
+                    CurrentPlayPosition = mSoundBuffer.PlayPosition;
                 }
 
 			
 			// Stopping process begins
-                                m_BufferStopPosition = -1 ;
+                                mBufferStopPosition = -1 ;
                 m_lPausePosition = 0;
-			m_SoundBuffer.Stop () ;
+			mSoundBuffer.Stop () ;
 			if (ob_VuMeter != null) ob_VuMeter.Reset () ;
-            m_AssetStream.Close();
+            mAudioStream.Close();
 
 			// changes the state and trigger events
-            Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
-            m_State = AudioPlayerState.Stopped;
+            Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(mState);
+            mState = AudioPlayerState.Stopped;
 
 			TriggerStateChangedEvent(e);
 
-            if (m_EventsEnabled)
+            if (mEventsEnabled)
                 m_IsEventEnabledDelayedTillTimer= true;
             else
                 m_IsEventEnabledDelayedTillTimer= false;
@@ -600,23 +660,23 @@ public 		 void InitPlay(long lStartPosition, long lEndPosition)
         private void SimulateEmptyAssetPlaying()
         {
             
-            m_Channels = m_Asset.getPCMFormat ().getNumberOfChannels ()  ;
-            m_FrameSize = m_Asset.getPCMFormat ().getNumberOfChannels ()  * (m_Asset.getPCMFormat ().getBitDepth ()  / 8);
-            m_SamplingRate = (int)  m_Asset.getPCMFormat ().getSampleRate () ;
+            m_Channels = mCurrentAudio.getPCMFormat ().getNumberOfChannels ()  ;
+            m_FrameSize = mCurrentAudio.getPCMFormat ().getNumberOfChannels ()  * (mCurrentAudio.getPCMFormat ().getBitDepth ()  / 8);
+            m_SamplingRate = (int)  mCurrentAudio.getPCMFormat ().getSampleRate () ;
 
-            Events.Audio.Player.StateChangedEventArgs  e = new Events.Audio.Player.StateChangedEventArgs(m_State);
-            m_State = AudioPlayerState.Playing;
+            Events.Audio.Player.StateChangedEventArgs  e = new Events.Audio.Player.StateChangedEventArgs(mState);
+            mState = AudioPlayerState.Playing;
             TriggerStateChangedEvent(e);
             
 
             Thread.Sleep(50);
 
-            e = new Events.Audio.Player.StateChangedEventArgs(m_State);
-            m_State = AudioPlayerState.Stopped;
+            e = new Events.Audio.Player.StateChangedEventArgs(mState);
+            mState = AudioPlayerState.Stopped;
             TriggerStateChangedEvent(e);
 
             // trigger end of asset event
-            if (m_EventsEnabled == true)
+            if (mEventsEnabled == true)
                 EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());
 //            System.Media.SystemSounds.Asterisk.Play();
         }
@@ -633,16 +693,16 @@ public 		 void InitPlay(long lStartPosition, long lEndPosition)
 			{
                 
                     m_lPausePosition = GetCurrentBytePosition();
-                    if (!m_IsFwdRwd)
+                    if (!mIsFwdRwd)
                         m_lResumeToPosition = m_lLength;
                     else
                         m_lResumeToPosition = 0;
 
-                StopFunction();
+                StopPlayback();
 
 				// Change the state and trigger event
-				Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State) ;
-                m_State = AudioPlayerState.Paused;
+				Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(mState) ;
+                mState = AudioPlayerState.Paused;
 				TriggerStateChangedEvent(e);
                 
 			}
@@ -658,10 +718,10 @@ public 		 void InitPlay(long lStartPosition, long lEndPosition)
             			if ( State.Equals(AudioPlayerState.Paused))
 			{
                 
-                long lPosition = CalculationFunctions.AdaptToFrame( m_lPausePosition , m_Asset.getPCMFormat ().getBlockAlign ()  );
-                long lEndPosition = CalculationFunctions.AdaptToFrame( m_lResumeToPosition , m_Asset.getPCMFormat().getBlockAlign());
+                long lPosition = CalculationFunctions.AdaptToFrame( m_lPausePosition , mCurrentAudio.getPCMFormat ().getBlockAlign ()  );
+                long lEndPosition = CalculationFunctions.AdaptToFrame( m_lResumeToPosition , mCurrentAudio.getPCMFormat().getBlockAlign());
 
-                if (lPosition >= 0 && lPosition < m_Asset.getPCMLength () )
+                if (lPosition >= 0 && lPosition < mCurrentAudio.getPCMLength () )
                 {
                     m_StartPosition = lPosition;
                                         InitPlay(lPosition, lEndPosition );
@@ -676,80 +736,16 @@ public 		 void InitPlay(long lStartPosition, long lEndPosition)
             // API state is used
 			if ( State != AudioPlayerState.Stopped )			
 			{
-				                StopFunction();
+				                StopPlayback();
 			}
             
         m_lPausePosition = 0;
-			Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(m_State);
-            m_State = AudioPlayerState.Stopped;
+			Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(mState);
+            mState = AudioPlayerState.Stopped;
 			TriggerStateChangedEvent(e);
 		}
 
-        private void StopFunction ()
-        {
-            if (m_PlaybackMode  != PlaybackModes.Normal)
-                StopForwardRewind();
 
-
-            
-            m_SoundBuffer.Stop();
-                        if (RefreshThread != null &&    RefreshThread.IsAlive )
-                            RefreshThread.Abort();
-
-                        m_BufferStopPosition = -1;
-
-            				if (ob_VuMeter != null) ob_VuMeter.Reset();
-
-                                        m_AssetStream.Close();
-                    }
-
-private 		 long GetCurrentBytePosition()
-{
-    int PlayPosition = 0;
-    long lCurrentPosition = 0;
-
-    if (m_Asset.getPCMLength() > 0)
-    {
-        if (m_State == AudioPlayerState.Playing)
-        {
-            PlayPosition = m_SoundBuffer.PlayPosition;
-            // if refreshing of buffer has finished and player is near end of asset
-            if (m_BufferStopPosition != -1)
-            {
-                int subtractor = (m_BufferStopPosition - PlayPosition);
-                lCurrentPosition = m_Asset.getPCMLength() - subtractor;
-            }
-            //if (PlayPosition < m_RefreshLength) // Avn: changed on19 Dec 2006 for improving get position for pause
-            else if (m_BufferCheck % 2 == 1)
-            {
-                // takes the lPlayed position and subtract the part of buffer played from it
-                int subtractor = (2 * m_RefreshLength) - PlayPosition;
-
-                lCurrentPosition = m_lPlayed - subtractor;
-            }
-            else
-            {
-                int subtractor = (3 * m_RefreshLength) - PlayPosition;
-                lCurrentPosition = m_lPlayed - subtractor;
-            }
-
-            if (lCurrentPosition >= m_Asset.getPCMLength())
-                lCurrentPosition = m_Asset.getPCMLength() - Convert.ToInt32(CalculationFunctions.ConvertTimeToByte(100, m_SamplingRate, m_FrameSize));
-
-
-        }
-    }
-    else if (m_State == AudioPlayerState.Paused)
-        lCurrentPosition = m_lPausePosition;
-
-        lCurrentPosition = CalculationFunctions.AdaptToFrame(lCurrentPosition, m_FrameSize);
-
-
-        if (m_PlaybackMode != PlaybackModes.Normal)
-            lCurrentPosition = m_lChunkStartPosition;
-        
-    return lCurrentPosition;
-}
 
 		public double GetCurrentTimePosition()
 		{	
@@ -763,11 +759,11 @@ private 		 long GetCurrentBytePosition()
 			if (localPosition < 0)
 				localPosition = 0;
 
-			if (localPosition > m_Asset.getPCMLength ()  )
-				localPosition = m_Asset.getPCMLength ()  - 100;
+			if (localPosition > mCurrentAudio.getPCMLength ()  )
+				localPosition = mCurrentAudio.getPCMLength ()  - 100;
 
 
-			m_EventsEnabled = false ;
+			mEventsEnabled = false ;
 
 			if (State == AudioPlayerState.Playing  )
 			{
@@ -778,12 +774,12 @@ private 		 long GetCurrentBytePosition()
 				
 			}		
 			
-			else if(m_State.Equals (AudioPlayerState .Paused ) )
+			else if(mState.Equals (AudioPlayerState .Paused ) )
 			{
 					m_StartPosition = localPosition ;
                     m_lPausePosition = localPosition;
 																																	}
-			m_EventsEnabled = true ;
+			mEventsEnabled = true ;
 
 			// end of set byte position
 		}
@@ -806,11 +802,11 @@ private          long m_lChunkStartPosition = 0;
         public void Rewind( long lStartPosition  )
         {
                         // let's play backward!
-            if ( m_PlaybackMode  !=  PlaybackModes.Normal )
+            if ( mPlaybackMode  !=  PlaybackMode.Normal )
             {
                 m_lChunkStartPosition = lStartPosition ;
-                                m_EventsEnabled = false;
-                                m_IsFwdRwd = true;
+                                mEventsEnabled = false;
+                                mIsFwdRwd = true;
                                 mPreviewTimer.Interval = 50;
                 mPreviewTimer.Start();
                 
@@ -822,11 +818,11 @@ private          long m_lChunkStartPosition = 0;
         {
 
             // let's play forward!
-            if (m_PlaybackMode != PlaybackModes.Normal)
+            if (mPlaybackMode != PlaybackMode.Normal)
             {
                 m_lChunkStartPosition = lStartPosition;
-                m_EventsEnabled = false;
-                m_IsFwdRwd = true;
+                mEventsEnabled = false;
+                mIsFwdRwd = true;
                 mPreviewTimer.Interval = 50;
                 mPreviewTimer.Start();
             }
@@ -839,16 +835,16 @@ private          long m_lChunkStartPosition = 0;
         { //1
             
             double StepInMs = 3000 * m_FwdRwdRate  ;
-            long lStepInBytes = CalculationFunctions.ConvertTimeToByte(StepInMs, (int)  m_Asset.getPCMFormat().getSampleRate ()  , m_Asset.getPCMFormat().getBlockAlign ());
+            long lStepInBytes = CalculationFunctions.ConvertTimeToByte(StepInMs, (int)  mCurrentAudio.getPCMFormat().getSampleRate ()  , mCurrentAudio.getPCMFormat().getBlockAlign ());
             int PlayChunkLength = 1200;
-            long lPlayChunkLength = CalculationFunctions.ConvertTimeToByte( PlayChunkLength , (int)m_Asset.getPCMFormat().getSampleRate(), m_Asset.getPCMFormat().getBlockAlign());
+            long lPlayChunkLength = CalculationFunctions.ConvertTimeToByte( PlayChunkLength , (int)mCurrentAudio.getPCMFormat().getSampleRate(), mCurrentAudio.getPCMFormat().getBlockAlign());
             mPreviewTimer.Interval = PlayChunkLength + 50;
 
             long PlayStartPos = 0;
             long PlayEndPos = 0;
-            if ( m_PlaybackMode  == PlaybackModes.FastForward  )
+            if ( mPlaybackMode  == PlaybackMode.FastForward  )
             { //2
-                if (( m_Asset.getPCMLength () - ( lStepInBytes + m_lChunkStartPosition ) ) >  lPlayChunkLength )
+                if (( mCurrentAudio.getPCMLength () - ( lStepInBytes + m_lChunkStartPosition ) ) >  lPlayChunkLength )
                 { //3
                     if (m_lChunkStartPosition > 0)
                     {
@@ -861,25 +857,25 @@ private          long m_lChunkStartPosition = 0;
 PlayEndPos  = m_lChunkStartPosition + lPlayChunkLength  ;
 PlayAssetStream  (  PlayStartPos, PlayEndPos);
 
-if (m_lChunkStartPosition > m_Asset.getPCMLength())
-    m_lChunkStartPosition = m_Asset.getPCMLength();
+if (m_lChunkStartPosition > mCurrentAudio.getPCMLength())
+    m_lChunkStartPosition = mCurrentAudio.getPCMLength();
                                     } //-3
                 else
                 { //3
                     Stop();
-                    if (m_EventsEnabled)
+                    if (mEventsEnabled)
                         EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());
                                 } //-3
             } //-2
-            else if ( m_PlaybackMode  ==  PlaybackModes.Rewind )
+            else if ( mPlaybackMode  ==  PlaybackMode.Rewind )
             { //2
                 //if (m_lChunkStartPosition > (lStepInBytes ) && lPlayChunkLength <= m_Asset.getPCMLength () )
                 if (m_lChunkStartPosition >  0 )
                 { //3
-                    if (m_lChunkStartPosition < m_Asset.getPCMLength())
+                    if (m_lChunkStartPosition < mCurrentAudio.getPCMLength())
                         m_lChunkStartPosition -= lStepInBytes;
                     else
-                        m_lChunkStartPosition = m_Asset.getPCMLength() - lPlayChunkLength  ;
+                        m_lChunkStartPosition = mCurrentAudio.getPCMLength() - lPlayChunkLength  ;
 
                     PlayStartPos = m_lChunkStartPosition ;
                     PlayEndPos = m_lChunkStartPosition +  lPlayChunkLength;
@@ -891,29 +887,13 @@ if (m_lChunkStartPosition > m_Asset.getPCMLength())
                 else
                 {
                     Stop();
-                    if (m_EventsEnabled)
+                    if (mEventsEnabled)
                         EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());
                                     }
                 } //-2
                             } //-1
        
 
-        /// <summary>
-        /// function to stop Fast Forward / Rewind and also stop preview timer
-        /// </summary>
-        private void StopForwardRewind()
-        {
-            if (m_PlaybackMode  != PlaybackModes.Normal || mPreviewTimer.Enabled == true)
-            {
-                mPreviewTimer.Enabled = false;
-m_FwdRwdRate                 = 1 ;
-m_lChunkStartPosition = 0;
-m_IsFwdRwd = false;
-m_PlaybackMode  = PlaybackModes.Normal;
-                                m_EventsEnabled = true;
-            }
-                
-        }
 
 
         private void MoniteringTimer_Tick(object sender, EventArgs e)
@@ -927,7 +907,7 @@ m_PlaybackMode  = PlaybackModes.Normal;
                 {
                     EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());
                                     }
-            if (m_EventsEnabled == true)
+            if (mEventsEnabled == true)
                 m_IsEventEnabledDelayedTillTimer= true;
             else
                 m_IsEventEnabledDelayedTillTimer= false;
@@ -936,12 +916,14 @@ m_PlaybackMode  = PlaybackModes.Normal;
         }
 
 
-        // function to catch events so as to avoid null  reference exceptions
-        private void CatchEvents(object sender, EventArgs e)
+        /// <summary>
+        /// Play an audio media data object.
+        /// </summary>
+        /// <param name="data">The data object to play.</param>
+        public void Play(AudioMediaData data)
         {
-            //System.Media.SystemSounds.Asterisk.Play();
+            InitialiseWithAsset(data);
+            InitPlay(0, 0);
         }
-
-
-    } // End Class
-	}
+    }
+}

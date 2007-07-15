@@ -248,7 +248,7 @@ namespace Obi.UserControls
                 double time = mProjectPanel.TransportBar._CurrentPlaylist.CurrentTimeInAsset;
                 Audio.AudioPlayerState state = mProjectPanel.TransportBar._CurrentPlaylist.State;
                 mProjectPanel.TransportBar.Enabled = false;
-                Dialogs.Split dialog = new Dialogs.Split(phrase, time, state);
+                Dialogs.Split dialog = new Dialogs.Split(phrase, time, mProjectPanel.TransportBar.AudioPlayer);
                 NodeSelection originalSelection = mProjectPanel.CurrentSelection;
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
