@@ -13,12 +13,15 @@ namespace Obi.Audio
 		public event Events.Audio.VuMeter.ResetHandler ResetEvent;
 		public event Events.Audio.VuMeter.UpdateFormsHandler UpdateForms;
 
+        private AudioPlayer mPlayer;
+
 		/// <summary>
 		/// Create the VU meter object.
 		/// </summary>
-        public VuMeter()
+        public VuMeter(AudioPlayer player)
 		{
 			SetSampleCount(m_SampleTimeLength);
+            mPlayer = player;
 			// m_SampleArrayPosition = 0;
 		}
 
@@ -27,7 +30,7 @@ namespace Obi.Audio
         /// </summary>
         public void SetEventHandlers()
         {
-            AudioPlayer.Instance.UpdateVuMeter +=
+            mPlayer.UpdateVuMeter +=
                 new Events.Audio.Player.UpdateVuMeterHandler(CatchUpdateVuMeterEvent);
             AudioRecorder.Instance.UpdateVuMeterFromRecorder +=
                 new Events.Audio.Recorder.UpdateVuMeterHandler(CatchUpdateVuMeterEvent);

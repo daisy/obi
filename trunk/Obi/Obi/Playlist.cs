@@ -505,7 +505,7 @@ namespace Obi
             {
                 mCurrentAudio = mPhrases[mCurrentPhraseIndex].Audio;
                 mPlayBackState = PlayBackState.Rewind ;
-                mPlayer.m_EventsEnabled = false;
+                mPlayer.mEventsEnabled = false;
                 mPlayer.Stop();
                 mPreviewTimer.Interval = 100;
                 mPreviewTimer.Start();
@@ -530,7 +530,7 @@ namespace Obi
             {
                 mCurrentAudio = mPhrases[mCurrentPhraseIndex].Audio;
                 mPlayBackState = PlayBackState.Forward;
-                mPlayer.m_EventsEnabled = false;
+                mPlayer.mEventsEnabled = false;
                 mPlayer.Stop();
                 mPreviewTimer.Interval = 100;
                 mPreviewTimer.Start();
@@ -562,7 +562,6 @@ namespace Obi
                 {
                     
                     mPausePosition = mPausePosition +  StepInMs ;
-
                     // TODO: mPlayer.Play( mCurrentAudio.GetChunk (  mPausePosition , mPausePosition + PlayChunkLength ) );
                 }
                 else
@@ -619,7 +618,7 @@ else if ( mPlayBackState == PlayBackState.Rewind )
                 mPlaybackRate = 0;
                 mPlayBackState = PlayBackState.Normal;
                 mPlayer.Stop();
-                mPlayer.m_EventsEnabled = true;
+                mPlayer.mEventsEnabled = true;
             }
             if ( PlaybackRateChanged != null )
             PlaybackRateChanged(this, new EventArgs());
@@ -708,7 +707,7 @@ else if ( mPlayBackState == PlayBackState.Rewind )
                 mPlayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
             }
             mPlaylistState = AudioPlayerState.Playing;
-            // TODO mPlayer.Play(mPhrases[mCurrentPhraseIndex].Asset);
+            mPlayer.Play(mPhrases[mCurrentPhraseIndex].Audio.getMediaData());
             // send the state change event if the state actually changed
             if (StateChanged != null && mPlayer.State != evargs.OldState) StateChanged(this, evargs);
         }

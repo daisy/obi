@@ -25,6 +25,8 @@ namespace Obi.Dialogs
         private int mBitDepth;                  // preferred bit depth
         private bool mCanChangeAudioSettings;   // if the settings come from the project they cannot change
 
+        private Audio.AudioPlayer mPlayer;      // audio player
+
         /// <summary>
         /// Identifier template for new projects
         /// </summary>
@@ -93,7 +95,7 @@ namespace Obi.Dialogs
         /// <summary>
         /// Initialize the preferences with the user settings.
         /// </summary>
-        public Preferences(Settings settings, Project project)
+        public Preferences(Settings settings, Project project, UserControls.TransportBar transportbar)
         {
             InitializeComponent();
             mIdTemplate = settings.IdTemplate;
@@ -104,8 +106,9 @@ namespace Obi.Dialogs
             mExportBox.Text = mDefaultDAISYDirectory;
             mLastOpenCheckBox.Checked = settings.OpenLastProject;
             mTooltipsCheckBox.Checked = settings.EnableTooltips;
+            mPlayer = transportbar.AudioPlayer;
             mInputDevice = AudioRecorder.Instance.InputDevice;
-            mOutputDevice = AudioPlayer.Instance.OutputDevice;
+            mOutputDevice = mPlayer.OutputDevice;
             if (project != null && project.HasAudioSettings)
             {
                 mSampleRate = project.SampleRate;
@@ -187,8 +190,8 @@ namespace Obi.Dialogs
         {
             comboInputDevice.DataSource = AudioRecorder.Instance.InputDevices;
             comboInputDevice.SelectedIndex = AudioRecorder.Instance.InputDevices.IndexOf(mInputDevice);
-            comboOutputDevice.DataSource = AudioPlayer.Instance.OutputDevices;
-            comboOutputDevice.SelectedIndex = AudioPlayer.Instance.OutputDevices.IndexOf(mOutputDevice);
+            comboOutputDevice.DataSource = mPlayer.OutputDevices;
+            comboOutputDevice.SelectedIndex = mPlayer.OutputDevices.IndexOf(mOutputDevice);
             ArrayList mSample = new ArrayList();
             // TODO: replace this with a list obtained from the player or the device
             mSample.Add("11025");
