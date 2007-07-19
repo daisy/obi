@@ -1,9 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
+
 using Obi.Audio;
 using Obi.Events.Audio.Recorder;
 using urakawa.media.data;
+using urakawa.media.data.audio ;
+
 
 namespace Obi
 {
@@ -44,7 +48,10 @@ namespace Obi
         public RecordingSession(Project project, AudioRecorder recorder, int channels, int sampleRate, int bitDepth)
         {
             mProject = project;
-            mRecorder = recorder;            
+            mRecorder = recorder;
+            mRecorder.AssetsDirectory = ((urakawa.media.data.FileDataProviderManager)mProject.getPresentation().getDataProviderManager()).getDataFileDirectoryFullPath();
+            if (!Directory.Exists(mRecorder.AssetsDirectory))
+                Directory.CreateDirectory(mRecorder.AssetsDirectory);
             mChannels = channels;
             mSampleRate = sampleRate;
             mBitDepth = bitDepth;
@@ -87,9 +94,11 @@ namespace Obi
             {
                 // AudioMediaAsset asset = mProject.AssetManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
                 // mRecorder.StartListening(asset);
+                AudioMediaData ToolkitAsset = (AudioMediaData)mProject.getPresentation().getMediaDataFactory().createMediaData(typeof(AudioMediaData)); // for tk
+                mRecorder.StartListening(ToolkitAsset); // for tk
             }
         }
-
+        
         /// <summary>
         /// Start recording.
         /// </summary>
@@ -102,7 +111,11 @@ namespace Obi
                 mSectionMarks = new List<int>();
                 // mSessionAsset = mProject.AssetManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
                 // mRecorder.StartRecording(mSessionAsset);
-                // StartingPhrase(this, new PhraseEventArgs(mSessionAsset, mSessionOffset, 0.0));
+                AudioMediaData ToolkitAsset = (AudioMediaData)mProject.getPresentation().getMediaDataFactory().createMediaData(typeof(AudioMediaData)); // tk
+mSessionMedia                 = (ManagedAudioMedia)mProject.getPresentation().getMediaFactory().createAudioMedia ()  ;
+                                    mSessionMedia.setMediaData(ToolkitAsset ); // tk
+                                                mRecorder.StartRecording(ToolkitAsset); // tk
+                 //StartingPhrase(this, new PhraseEventArgs( mSessionMedia , mSessionOffset, 0.0)); // tk
                 // mRecordingUpdateTimer.Enabled = true;
             }
         }
@@ -128,13 +141,14 @@ namespace Obi
                 bool wasRecording = mRecorder.State == AudioRecorderState.Recording;
 
                 if (wasRecording)
-                    FinishedPhrase();   // Avn:mRecorder.TimeOfAsset used in this will return time without exceptions if used before stopping recording    
-
+                {
+//                    FinishedPhrase();   // Avn:mRecorder.TimeOfAsset used in this will return time without exceptions if used before stopping recording     //tk 
+                }
+                    
                 mRecorder.StopRecording();
                 if (wasRecording)
                 {
-                    
-                    // Split the session asset into smaller assets starting from the end
+                                                            // Split the session asset into smaller assets starting from the end
                     // (to keep the split times correct) until the second one
                     for (int i = mPhraseMarks.Count - 2; i >= 0; --i)
                     {
@@ -145,7 +159,7 @@ namespace Obi
                     // The first asset is what remains of the session asset
                     mAudioList.Insert(mSessionOffset, mSessionMedia);
                 }
-            }
+                            }
         }
 
         /// <summary>
