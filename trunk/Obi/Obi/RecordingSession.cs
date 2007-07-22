@@ -109,14 +109,13 @@ namespace Obi
                 mSessionOffset = mAudioList.Count;
                 mPhraseMarks = new List<double>();
                 mSectionMarks = new List<int>();
-                // mSessionAsset = mProject.AssetManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
-                // mRecorder.StartRecording(mSessionAsset);
+ 
                 AudioMediaData ToolkitAsset = (AudioMediaData)mProject.getPresentation().getMediaDataFactory().createMediaData(typeof(AudioMediaData)); // tk
 mSessionMedia                 = (ManagedAudioMedia)mProject.getPresentation().getMediaFactory().createAudioMedia ()  ;
                                     mSessionMedia.setMediaData(ToolkitAsset ); // tk
                                                 mRecorder.StartRecording(ToolkitAsset); // tk
-                 //StartingPhrase(this, new PhraseEventArgs( mSessionMedia , mSessionOffset, 0.0)); // tk
-                // mRecordingUpdateTimer.Enabled = true;
+                 StartingPhrase(this, new PhraseEventArgs( mSessionMedia , mSessionOffset, 0.0)); // tk
+                 mRecordingUpdateTimer.Enabled = true;
             }
         }
 
@@ -142,7 +141,7 @@ mSessionMedia                 = (ManagedAudioMedia)mProject.getPresentation().ge
 
                 if (wasRecording)
                 {
-//                    FinishedPhrase();   // Avn:mRecorder.TimeOfAsset used in this will return time without exceptions if used before stopping recording     //tk 
+                    FinishedPhrase();   // Avn:mRecorder.TimeOfAsset used in this will return time without exceptions if used before stopping recording     //tk 
                 }
                     
                 mRecorder.StopRecording();
