@@ -191,7 +191,7 @@ namespace Obi.Audio
                     StopPlayback();
                     mState = AudioPlayerState.Paused;
                     mPlaybackMode = mode;
-                    InitPlay(restartPos, 0);
+                    InitPlay( mCurrentAudio ,  restartPos, 0);
                 }
                 else if (mState == AudioPlayerState.Paused || mState == AudioPlayerState.Stopped)
                 {
@@ -415,15 +415,99 @@ namespace Obi.Audio
         }
 
 
+        /// <summary>
+        ///  Plays an asset from beginning to end
+        /// <see cref=""/>
+        /// </summary>
+        /// <param name="asset"></param>
+        public void Play( AudioMediaData asset)
+        {
+            // This is public function so API state will be used
+            if (State == AudioPlayerState.Stopped || State == AudioPlayerState.Paused)
+            {
+                m_StartPosition = 0;
+                //m_State = AudioPlayerState.NotReady;
+                
+                if ( asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() != 0)
+                    InitPlay(asset ,  0, 0);
+                else
+                    SimulateEmptyAssetPlaying();
+
+            }
+        }
 
 
-public 		 void InitPlay(long lStartPosition, long lEndPosition)
+
+        /// <summary>
+        ///  Plays an asset from a specified time position its to end
+        /// <see cref=""/>
+        /// </summary>
+        /// <param name="asset"></param>
+        /// <param name="timeFrom"></param>
+        public void Play(AudioMediaData  asset, double timeFrom)
+        {
+            // it is public function so API state will be used
+            if (State == AudioPlayerState.Stopped || State == AudioPlayerState.Paused)
+            {
+                //m_State = AudioPlayerState.NotReady;
+                if (asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() > 0)
+                {
+                    long lPosition = CalculationFunctions.ConvertTimeToByte(timeFrom, (int)asset.getPCMFormat().getSampleRate(), asset.getPCMFormat().getBlockAlign());
+                    lPosition = CalculationFunctions.AdaptToFrame(lPosition, asset.getPCMFormat().getBlockAlign());
+                    if (lPosition >= 0 && lPosition <= asset.getPCMLength())
+                    {
+                                                m_StartPosition = lPosition;
+                        InitPlay( asset , lPosition, 0);
+                    }
+                    else throw new Exception("Start Position is out of bounds of Audio Asset");
+                }
+                else    // if m_Asset.AudioLengthInBytes= 0 i.e. empty asset
+                {
+                    SimulateEmptyAssetPlaying();
+                }
+            }
+        }
+
+
+        /// <summary>
+        ///  Plays an asset from a specified time position upto another specified time position
+        /// <see cref=""/>
+        /// </summary>
+        /// <param name="asset"></param>
+        /// <param name="timeFrom"></param>
+        /// <param name="timeTo"></param>
+        public void Play(AudioMediaData asset, double timeFrom, double timeTo)
+        {
+            //m_Asset = asset as Assets.AudioMediaAsset; //tk
+
+            if ( asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() > 0)
+            {
+                long lStartPosition = CalculationFunctions.ConvertTimeToByte(timeFrom, (int) asset.getPCMFormat().getSampleRate(), asset.getPCMFormat().getBlockAlign());
+                lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, asset.getPCMFormat().getBlockAlign());
+                long lEndPosition = CalculationFunctions.ConvertTimeToByte(timeTo, (int)asset.getPCMFormat().getSampleRate(), asset.getPCMFormat().getBlockAlign());
+                lEndPosition = CalculationFunctions.AdaptToFrame(lEndPosition,  asset.getPCMFormat().getBlockAlign());
+                // check for valid arguments
+                if (lStartPosition > 0 && lStartPosition < lEndPosition && lEndPosition <= asset.getPCMLength())
+                {
+                    InitPlay( asset , lStartPosition, lEndPosition);
+                }
+                else
+                    throw new Exception("Start Position is out of bounds of Audio Asset");
+            }
+            else
+            {
+                SimulateEmptyAssetPlaying();
+            }
+        }
+
+
+private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPosition)
 		{
             //if (m_State == AudioPlayerState.Stopped || m_State == AudioPlayerState.NotReady)
                 if (mState != AudioPlayerState.Playing )
             {
             
-                    InitialiseWithAsset (mCurrentAudio) ;
+                    InitialiseWithAsset (asset ) ;
 
                     if (mPlaybackMode  == PlaybackMode.Normal)
                         PlayAssetStream( lStartPosition , lEndPosition);
@@ -440,6 +524,7 @@ public 		 void InitPlay(long lStartPosition, long lEndPosition)
             }// end of state check
 			// end of function
 		}
+
 
         private void InitialiseWithAsset(AudioMediaData audio)
         {
@@ -724,7 +809,7 @@ public 		 void InitPlay(long lStartPosition, long lEndPosition)
                 if (lPosition >= 0 && lPosition < mCurrentAudio.getPCMLength () )
                 {
                     m_StartPosition = lPosition;
-                                        InitPlay(lPosition, lEndPosition );
+                                        InitPlay( mCurrentAudio , lPosition, lEndPosition );
                 }
                 else
                     throw new Exception("Start Position is out of bounds of Audio Asset");
@@ -770,7 +855,7 @@ public 		 void InitPlay(long lStartPosition, long lEndPosition)
                 					Stop();
 					Thread.Sleep (30) ;
 					m_StartPosition = localPosition ;
-                    					InitPlay(localPosition , 0);
+                    					InitPlay( mCurrentAudio , localPosition , 0);
 				
 			}		
 			
@@ -905,6 +990,7 @@ if (m_lChunkStartPosition > mCurrentAudio.getPCMLength())
 
                 if (m_IsEventEnabledDelayedTillTimer)
                 {
+                    if ( EndOfAudioAsset != null )
                     EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());
                                     }
             if (mEventsEnabled == true)
@@ -915,7 +1001,7 @@ if (m_lChunkStartPosition > mCurrentAudio.getPCMLength())
 
         }
 
-
+/*
         /// <summary>
         /// Play an audio media data object.
         /// </summary>
@@ -923,7 +1009,8 @@ if (m_lChunkStartPosition > mCurrentAudio.getPCMLength())
         public void Play(AudioMediaData data)
         {
             InitialiseWithAsset(data);
-            InitPlay(0, 0);
+            InitPlay( data , 0, 0);
         }
+ */
     }
 }
