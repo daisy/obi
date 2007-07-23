@@ -120,7 +120,10 @@ namespace Obi.Audio
         public PlaybackMode PlaybackMode
         {
             get { return mPlaybackMode; }
-            set { SetPlaybackMode(value); }
+            set 
+            {
+                                SetPlaybackMode(value); 
+            }
         }
 
         /// <summary>
@@ -128,9 +131,13 @@ namespace Obi.Audio
         /// </summary>
         public AudioPlayerState State
         {
-            get { return mIsFwdRwd ? AudioPlayerState.Playing : mState; }
+            get
+            {
+                if (mIsFwdRwd) return AudioPlayerState.Playing;
+                else 
+                    return mState;
+            }
         }
-
 
         /// <summary>
         /// Get the current playback position in bytes.
@@ -185,12 +192,13 @@ namespace Obi.Audio
         {
             if (mode != mPlaybackMode)
             {
-                if (State == AudioPlayerState.Playing)
+                                                    if (State == AudioPlayerState.Playing)
                 {
-                    long restartPos = GetCurrentBytePosition();
+                                        long restartPos = GetCurrentBytePosition();
                     StopPlayback();
                     mState = AudioPlayerState.Paused;
                     mPlaybackMode = mode;
+                    
                     InitPlay( mCurrentAudio ,  restartPos, 0);
                 }
                 else if (mState == AudioPlayerState.Paused || mState == AudioPlayerState.Stopped)
@@ -211,7 +219,7 @@ namespace Obi.Audio
                 m_FwdRwdRate = 1;
                 m_lChunkStartPosition = 0;
                 mIsFwdRwd = false;
-                mPlaybackMode = PlaybackMode.Normal;
+                //mPlaybackMode = PlaybackMode.Normal;
                 mEventsEnabled = true;
             }
         }
@@ -506,8 +514,7 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
             //if (m_State == AudioPlayerState.Stopped || m_State == AudioPlayerState.NotReady)
                 if (mState != AudioPlayerState.Playing )
             {
-            
-                    InitialiseWithAsset (asset ) ;
+                                InitialiseWithAsset (asset ) ;
 
                     if (mPlaybackMode  == PlaybackMode.Normal)
                         PlayAssetStream( lStartPosition , lEndPosition);
@@ -517,7 +524,7 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
                     }
                     else if (mPlaybackMode == PlaybackMode.Rewind)
                     {
-                        if (lStartPosition == 0)
+                                                if (lStartPosition == 0)
                             lStartPosition = mCurrentAudio.getPCMLength();
                         Rewind(lStartPosition);
                     }
@@ -587,7 +594,7 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
                 lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, mCurrentAudio.getPCMFormat().getBlockAlign());
                 lEndPosition = CalculationFunctions.AdaptToFrame(lEndPosition, mCurrentAudio.getPCMFormat().getBlockAlign());
                 m_SamplingRate = (int)mCurrentAudio.getPCMFormat().getSampleRate();
-
+                
                 // lEndPosition = 0 means that file is played to end
                 if (lEndPosition != 0)
                 {
@@ -727,6 +734,7 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
 
 			TriggerStateChangedEvent(e);
 
+            //mPlaybackMode = PlaybackMode.Normal;
             if (mEventsEnabled)
                 m_IsEventEnabledDelayedTillTimer= true;
             else

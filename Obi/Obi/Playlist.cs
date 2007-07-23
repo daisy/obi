@@ -23,10 +23,9 @@ namespace Obi
         private double mTotalTime;                // total time of this playlist
         private double mElapsedTime;              // elapsed time *before* the beginning of the current asset
         private bool mIsMaster;                   // flag for playing whole book or just a selection
-        private double mPausePosition;            // position in the asset where we  paused
-        private AudioPlayerState mPlaylistState;  // playlist state is not always the same as the player state
+                private AudioPlayerState mPlaylistState;  // playlist state is not always the same as the player state
         private Timer mPreviewTimer;              // ???
-        private PlayBackState mPlayBackState;     // current playback state (normal, forward, rewind)    
+        private PlayBackState mPlayBackState ;
         private int mPlaybackRate;                // current playback rate (multiplier)
 
         private enum PlayBackState { Normal, Forward, Rewind } ;
@@ -77,8 +76,7 @@ namespace Obi
             Reset(false);
             AddPhraseNodesFromStripOrPhrase(node);
             SetEventHandlers();
-            SetupPreviewTimer();
-        }
+                    }
 
         // Avn: added to expose list of phrases
         /// <summary>
@@ -104,8 +102,7 @@ namespace Obi
                 {
                     AddPhraseNodes(value.RootNode);
                     SetEventHandlers();
-                    SetupPreviewTimer();
-                }
+                                    }
             }
         }
 
@@ -159,8 +156,7 @@ namespace Obi
             set
             {
                 mCurrentPhraseIndex = value;
-                mPausePosition = 0.0;
-                mElapsedTime = mStartTimes[mCurrentPhraseIndex];
+                                mElapsedTime = mStartTimes[mCurrentPhraseIndex];
             }
         }
 
@@ -242,21 +238,19 @@ namespace Obi
         {
             get
             {
-                return mPlaylistState == AudioPlayerState.Playing ? mPlayer.GetCurrentTimePosition() : mPausePosition; 
+                return mPlayer.CurrentTimePosition;
             }
             set
             {
                 if (value >= 0 &&
                     value < mPhrases[mCurrentPhraseIndex].Audio.getDuration().getTimeDeltaAsMillisecondFloat())
                 {
-                    if (mPlaylistState == AudioPlayerState.Playing)
-                    {
+                    
+
                         mPlayer.CurrentTimePosition = value;
-                    }
-                    else
-                    {
-                        mPausePosition = value;
-                    }
+                    
+                        
+                    
                 }
             }
         }
@@ -298,7 +292,7 @@ namespace Obi
             get
             {
                 return mPhrases[mCurrentPhraseIndex].Audio.getDuration().getTimeDeltaAsMillisecondFloat() -
-                    (mPlaylistState == AudioPlayerState.Playing ? mPlayer.GetCurrentTimePosition() : mPausePosition);
+                    (mPlayer.GetCurrentTimePosition() );
             }
             set
             {
@@ -387,21 +381,15 @@ namespace Obi
             );
         }
 
-        private void SetupPreviewTimer()
-        {
-            mPreviewTimer.Tick += new System.EventHandler(PreviewTimer_Tick);
-            mPreviewTimer.Enabled = false;
-            mPreviewTimer.Interval = 200;
-        }
+        
 
         /// <summary>
         /// Play from stopped state.
         /// </summary>
         public void Play()
         {
-            System.Diagnostics.Debug.Assert(mPlaylistState == AudioPlayerState.Stopped, "Only play from stopped state.");
-            // stop Fwd/Rwd if going on
-            StopForwardRewind();
+                        System.Diagnostics.Debug.Assert(mPlaylistState == AudioPlayerState.Stopped, "Only play from stopped state.");
+           
             if (mCurrentPhraseIndex < mPhrases.Count) PlayPhrase(mCurrentPhraseIndex);
         }
 
@@ -411,10 +399,9 @@ namespace Obi
         public void Resume()
         {
             System.Diagnostics.Debug.Assert(mPlaylistState == AudioPlayerState.Paused, "Only resume from paused state.");
-            // Stop Preview Fwd/Rwd if going on
-            StopForwardRewind();
 
             mPlaylistState = AudioPlayerState.Playing;
+            mPlayer.Resume();
             // TODO: mPlayer.Play(mPhrases[mCurrentPhraseIndex].Asset, mPausePosition);
             if (StateChanged != null)
             {
@@ -448,16 +435,12 @@ namespace Obi
         /// </summary>
         public void Pause()
         {
-            // stop Fwd/Rwd if it is boing on
-            StopForwardRewind();
-
             if (mPlaylistState == AudioPlayerState.Playing)
             {
-                mPausePosition = mPlayer.CurrentTimePosition;
-                mPlaylistState = AudioPlayerState.Paused;
-                mPlayer.Stop();
-                mPlaybackRate = 0; // Avn: Temporarily disabled
-                if (StateChanged != null)
+                                mPlaylistState = AudioPlayerState.Paused;
+                mPlayer.Pause  () ;
+                mPlayer.PlaybackMode = PlaybackMode.Normal;
+                                if (StateChanged != null)
                 {
                     StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Playing));
                 }
@@ -469,19 +452,17 @@ namespace Obi
         /// </summary>
         public void Stop()
         {
-            // stop fwd/rwd if it is going on
-            StopForwardRewind();
-
-            if (mPlaylistState == AudioPlayerState.Playing || mPlaylistState == AudioPlayerState.Paused)
+                                    if (mPlaylistState == AudioPlayerState.Playing || mPlaylistState == AudioPlayerState.Paused)
             {
                 Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs(mPlayer.State);
                 mPlayer.Stop();
-                mPlaybackRate = 0;
+                mPlayer.PlaybackMode = PlaybackMode.Normal;
+
                 mPlaylistState = AudioPlayerState.Stopped;
+
                 if (StateChanged != null) StateChanged(this, evargs);
                 mCurrentPhraseIndex = 0;
-                mPausePosition = 0.0;
-                mElapsedTime = 0.0;
+                                mElapsedTime = 0.0;
                 System.Diagnostics.Debug.Print("--- end of audio asset handler unset");
                 mPlayer.EndOfAudioAsset -= new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
             }
@@ -492,51 +473,44 @@ namespace Obi
         /// </summary>
         public void Rewind()
         {
-            // stop fast forward  if it is going on and reset playback rate
-            if (mPlayBackState == PlayBackState.Forward)
+            if (mPlayer.PlaybackMode != Audio.PlaybackMode.Rewind )
             {
-                StopForwardRewind();
-                mPlaybackRate = 0;
-            }
+                mPlaybackRate = 1;
+                mPlayer.PlaybackFwdRwdRate = mPlaybackRate;
+                                mPlayer.PlaybackMode = Audio.PlaybackMode.Rewind ;
 
+                                if (mPlayer.State == AudioPlayerState.Paused)
+                                    mPlayer.Resume();
+                                else if (mPlayer.State == AudioPlayerState.Stopped)
+                                    Play();
+
+                mPlayBackState = PlayBackState.Rewind;
+            }
+            else
             IncreasePlaybackRate();
-            // let's play backward!
-            if (mPlayBackState == PlayBackState.Normal)
-            {
-                mCurrentAudio = mPhrases[mCurrentPhraseIndex].Audio;
-                mPlayBackState = PlayBackState.Rewind ;
-                mPlayer.mEventsEnabled = false;
-                mPlayer.Stop();
-                mPreviewTimer.Interval = 100;
-                mPreviewTimer.Start();
-                
-
-            }
             if (PlaybackRateChanged != null)
             PlaybackRateChanged(this, new EventArgs());
         }
+
+
         public void FastForward()
         {
-            // stop Rewind  if it is going on and reset playback rate
-            if (mPlayBackState == PlayBackState.Rewind )
+            if (mPlayer.PlaybackMode !=Audio.PlaybackMode.FastForward  )
             {
-                StopForwardRewind();
-                mPlaybackRate = 0;
-            }
-            
-            IncreasePlaybackRate();
-            // let's play forward!
-            if (mPlayBackState == PlayBackState.Normal)
-            {
-                mCurrentAudio = mPhrases[mCurrentPhraseIndex].Audio;
-                mPlayBackState = PlayBackState.Forward;
-                mPlayer.mEventsEnabled = false;
-                mPlayer.Stop();
-                mPreviewTimer.Interval = 100;
-                mPreviewTimer.Start();
-                
+                mPlaybackRate = 1;
+                mPlayer.PlaybackFwdRwdRate =  mPlaybackRate  ;
+                mPlayer.PlaybackMode = Audio.PlaybackMode.FastForward   ;
 
+                if (mPlayer.State == AudioPlayerState.Paused)
+                    mPlayer.Resume();
+                else if (mPlayer.State == AudioPlayerState.Stopped)
+                    Play();
+
+                mPlayBackState = PlayBackState.Forward;
             }
+            else
+            IncreasePlaybackRate();
+            
             if (PlaybackRateChanged != null)
             PlaybackRateChanged(this, new EventArgs());
         }
@@ -547,83 +521,12 @@ namespace Obi
         private void IncreasePlaybackRate()
         {
             ++mPlaybackRate;
-            if (mPlaybackRate == PlaybackRates.Length) mPlaybackRate = 1;
+                        if (mPlaybackRate == PlaybackRates.Length) mPlaybackRate = 1;
+
+                        mPlayer.PlaybackFwdRwdRate = PlaybackRate;
         }
 
-       ///Preview timer tick function
-        private void PreviewTimer_Tick(object sender, EventArgs e)
-        {
-            double StepInMs = 6000 * mPlaybackRate ;
-            int PlayChunkLength = 1200;
-            mPreviewTimer.Interval = PlayChunkLength + 50  ;
-            if (mPlayBackState == PlayBackState.Forward)
-            {
-                if (( mCurrentAudio.getDuration().getTimeDeltaAsMillisecondFloat() - mPausePosition) > ( StepInMs  + mPreviewTimer.Interval  ))
-                {
-                    
-                    mPausePosition = mPausePosition +  StepInMs ;
-                    // TODO: mPlayer.Play( mCurrentAudio.GetChunk (  mPausePosition , mPausePosition + PlayChunkLength ) );
-                }
-                else
-                {
-                    if (mCurrentPhraseIndex < mPhrases.Count - 1)
-                    {
-                        ++mCurrentPhraseIndex;
-                        mCurrentAudio = mPhrases[mCurrentPhraseIndex].Audio;
-                        SkipToPhrase(mCurrentPhraseIndex);
-                        
-                        mPausePosition = StepInMs * (-1) ;
-                        mPreviewTimer.Interval = 50;
-                    }
-                    else
-                    StopForwardRewind();                    
-                }
-            }
-else if ( mPlayBackState == PlayBackState.Rewind )
-{
-    if (mPausePosition > ( StepInMs )   &&  PlayChunkLength <= mCurrentAudio.getDuration().getTimeDeltaAsMillisecondFloat()  )
-    {
-
-        mPausePosition = mPausePosition -  StepInMs ;
-
-        // TODO mPlayer.Play(mCurrentAudio.GetChunk(mPausePosition, mPausePosition + PlayChunkLength ));
-    }
-    else
-    {
-        if (mCurrentPhraseIndex != 0 )
-        {
-            --mCurrentPhraseIndex;
-            mCurrentAudio = mPhrases[mCurrentPhraseIndex].Audio;
-            SkipToPhrase(mCurrentPhraseIndex);
-
-            mPausePosition =  ( mCurrentAudio.getDuration().getTimeDeltaAsMillisecondFloat() - PlayChunkLength  ) + StepInMs ;
-            mPreviewTimer.Interval = 50;
-        }
-        else
-            StopForwardRewind();                    
-        
-    }
-            }
-            
-        }
-
-        /// <summary>
-        /// function to stop Fast Forward / Rewind and also stop preview timer
-        /// </summary>
-        private void StopForwardRewind()
-        {
-            if ( mPlayBackState != PlayBackState.Normal     ||  mPreviewTimer.Enabled == true )
-            {
-                mPreviewTimer.Enabled = false;
-                mPlaybackRate = 0;
-                mPlayBackState = PlayBackState.Normal;
-                mPlayer.Stop();
-                mPlayer.mEventsEnabled = true;
-            }
-            if ( PlaybackRateChanged != null )
-            PlaybackRateChanged(this, new EventArgs());
-        }
-
+       
         /// <summary>
         /// Move to the first phrase of the previous section, or of this section if we are not yet past the initial threshold.
         /// </summary>
@@ -720,8 +623,7 @@ else if ( mPlayBackState == PlayBackState.Rewind )
         {
             System.Diagnostics.Debug.Assert(index >= 0 && index < mPhrases.Count, "Phrase index out of range!");
             mCurrentPhraseIndex = index;
-            mPausePosition = 0.0;
-            mElapsedTime = mStartTimes[mCurrentPhraseIndex];
+                        mElapsedTime = mStartTimes[mCurrentPhraseIndex];
             System.Diagnostics.Debug.Print(">>> Moved to phrase {0}", index);
             if (MovedToPhrase != null) MovedToPhrase(this, new Events.Node.PhraseNodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
         }
