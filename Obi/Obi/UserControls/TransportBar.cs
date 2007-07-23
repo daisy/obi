@@ -148,7 +148,11 @@ namespace Obi.UserControls
 
         public bool CanResume
         {
-            get { return Enabled && mCurrentPlaylist.State == Audio.AudioPlayerState.Paused && !IsInlineRecording; }
+            get 
+            { 
+                return Enabled   && mCurrentPlaylist.State == Audio.AudioPlayerState.Paused  
+                  && !IsInlineRecording; 
+            }
         }
 
 
@@ -360,12 +364,8 @@ namespace Obi.UserControls
         {
             if (Enabled)
             {
-                if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing) Pause();
-                if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused)
-                {
                     m_IsSerialPlaying = true;
                     mCurrentPlaylist.Rewind();
-                }
             }
         }
 
@@ -699,12 +699,8 @@ namespace Obi.UserControls
         {
             if (Enabled && !IsInlineRecording)
             {
-                if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing) Pause();
-                if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused)
-                {
                     m_IsSerialPlaying = true;
                     mCurrentPlaylist.FastForward();
-                }
             }
         }
 
