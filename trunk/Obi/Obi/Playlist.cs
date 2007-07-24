@@ -24,8 +24,7 @@ namespace Obi
         private double mElapsedTime;              // elapsed time *before* the beginning of the current asset
         private bool mIsMaster;                   // flag for playing whole book or just a selection
                 private AudioPlayerState mPlaylistState;  // playlist state is not always the same as the player state
-        private Timer mPreviewTimer;              // ???
-        private PlayBackState mPlayBackState ;
+                private PlayBackState mPlayBackState ;
         private int mPlaybackRate;                // current playback rate (multiplier)
 
         private enum PlayBackState { Normal, Forward, Rewind } ;
@@ -322,8 +321,7 @@ namespace Obi
             mPlayBackState = PlayBackState.Normal;
             mPlaylistState = mPlayer.State;
             mIsMaster = isMaster;
-            if (mPreviewTimer == null) mPreviewTimer = new Timer();
-        }
+                    }
 
         private void AddPhraseNodes(urakawa.core.TreeNode node)
         {
@@ -418,11 +416,14 @@ namespace Obi
         {
             // add an option to have a beep between assets
             // System.Media.SystemSounds.Exclamation.Play();
-            if (mCurrentPhraseIndex < mPhrases.Count - 1)
-            {
-                PlayPhrase(mCurrentPhraseIndex + 1);
-            }
-            else if (EndOfPlaylist != null)
+            
+            
+                if (mPlayer.PlaybackMode == Audio.PlaybackMode.Rewind
+                    && mCurrentPhraseIndex > 0 )
+                                                PlayPhrase(mCurrentPhraseIndex - 1);
+                    else  if (mCurrentPhraseIndex < mPhrases.Count - 1 && mPlayer.PlaybackMode != Audio.PlaybackMode.Rewind )
+                    PlayPhrase(mCurrentPhraseIndex + 1);
+                        else if (EndOfPlaylist != null)
             {
                 //mPlaylistState = AudioPlayerState.Stopped;    // Avn: Commented because changing Playlist state to stopped before calling stop () function will bypass stopping code
                 Stop();
@@ -473,21 +474,22 @@ namespace Obi
         /// </summary>
         public void Rewind()
         {
-            if (mPlayer.PlaybackMode != Audio.PlaybackMode.Rewind )
+            if (mPlayer.PlaybackMode != Audio.PlaybackMode.Rewind)
             {
                 mPlaybackRate = 1;
                 mPlayer.PlaybackFwdRwdRate = mPlaybackRate;
-                                mPlayer.PlaybackMode = Audio.PlaybackMode.Rewind ;
+                mPlayer.PlaybackMode = Audio.PlaybackMode.Rewind;
 
-                                if (mPlayer.State == AudioPlayerState.Paused)
-                                    mPlayer.Resume();
-                                else if (mPlayer.State == AudioPlayerState.Stopped)
-                                    Play();
+                if (mPlayer.State == AudioPlayerState.Paused)
+                    mPlayer.Resume();
+                else if (mPlayer.State == AudioPlayerState.Stopped)
+                    Play();
 
                 mPlayBackState = PlayBackState.Rewind;
             }
             else
-            IncreasePlaybackRate();
+                IncreasePlaybackRate();
+            
             if (PlaybackRateChanged != null)
             PlaybackRateChanged(this, new EventArgs());
         }
@@ -521,10 +523,11 @@ namespace Obi
         private void IncreasePlaybackRate()
         {
             ++mPlaybackRate;
-                        if (mPlaybackRate == PlaybackRates.Length) mPlaybackRate = 1;
+                        if (mPlaybackRate == PlaybackRates.Length) 
+                            mPlaybackRate = 1;
 
-                        mPlayer.PlaybackFwdRwdRate = PlaybackRate;
-        }
+                        mPlayer.PlaybackFwdRwdRate = mPlaybackRate ;
+                                }
 
        
         /// <summary>
@@ -625,7 +628,10 @@ namespace Obi
             mCurrentPhraseIndex = index;
                         mElapsedTime = mStartTimes[mCurrentPhraseIndex];
             System.Diagnostics.Debug.Print(">>> Moved to phrase {0}", index);
+            Audio.PlaybackMode Mode = mPlayer.PlaybackMode; // Temporary fix to avoid reset to normal playback bugg invoked by following event
             if (MovedToPhrase != null) MovedToPhrase(this, new Events.Node.PhraseNodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
+            mPlayer.Stop();
+            mPlayer.PlaybackMode = Mode;
         }
 
         /// <summary>
