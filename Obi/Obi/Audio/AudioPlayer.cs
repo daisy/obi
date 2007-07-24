@@ -115,8 +115,7 @@ namespace Obi.Audio
 
         /// <summary>
         /// Get and set the active playback mode.
-        /// Playback mode returns to normal on pause or stop.
-        /// </summary>
+                /// </summary>
         public PlaybackMode PlaybackMode
         {
             get { return mPlaybackMode; }
@@ -174,13 +173,13 @@ namespace Obi.Audio
                             Convert.ToInt32(CalculationFunctions.ConvertTimeToByte(100, m_SamplingRate, m_FrameSize));
                     }
                 }
-            }
-            else if (mState == AudioPlayerState.Paused)
+                        else if (mState == AudioPlayerState.Paused)
             {
                 lCurrentPosition = m_lPausePosition;
             }
+                        if (mPlaybackMode != PlaybackMode.Normal) lCurrentPosition = m_lChunkStartPosition;
             lCurrentPosition = CalculationFunctions.AdaptToFrame(lCurrentPosition, m_FrameSize);
-            if (mPlaybackMode != PlaybackMode.Normal) lCurrentPosition = m_lChunkStartPosition;
+        }
             return lCurrentPosition;
         }
 
@@ -216,11 +215,10 @@ namespace Obi.Audio
             if (mPlaybackMode != PlaybackMode.Normal || mPreviewTimer.Enabled)
             {
                 mPreviewTimer.Enabled = false;
-                m_FwdRwdRate = 1;
+//                m_FwdRwdRate = 1;
                 m_lChunkStartPosition = 0;
                 mIsFwdRwd = false;
-                //mPlaybackMode = PlaybackMode.Normal;
-                mEventsEnabled = true;
+                                mEventsEnabled = true;
             }
         }
 
@@ -277,7 +275,10 @@ namespace Obi.Audio
             {
                 m_FwdRwdRate = value;
                 if (m_FwdRwdRate == 0 && mPlaybackMode != PlaybackMode.Normal)
+                {
+                    MessageBox.Show("FwdRwd rate is 0 ");
                     SetPlaybackMode(PlaybackMode.Normal);
+                }
             }
         }
 
@@ -734,7 +735,6 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
 
 			TriggerStateChangedEvent(e);
 
-            //mPlaybackMode = PlaybackMode.Normal;
             if (mEventsEnabled)
                 m_IsEventEnabledDelayedTillTimer= true;
             else
@@ -894,11 +894,11 @@ private          long m_lChunkStartPosition = 0;
 
         public void Rewind( long lStartPosition  )
         {
-                        // let's play backward!
+                                    // let's play backward!
             if ( mPlaybackMode  !=  PlaybackMode.Normal )
             {
-                m_lChunkStartPosition = lStartPosition ;
-                                mEventsEnabled = false;
+                                m_lChunkStartPosition = lStartPosition ;
+                                                mEventsEnabled = false;
                                 mIsFwdRwd = true;
                                 mPreviewTimer.Interval = 50;
                 mPreviewTimer.Start();
@@ -927,7 +927,7 @@ private          long m_lChunkStartPosition = 0;
         private void PreviewTimer_Tick(object sender, EventArgs e)
         { //1
             
-            double StepInMs = 3000 * m_FwdRwdRate  ;
+            double StepInMs = 4000 * m_FwdRwdRate  ;
             long lStepInBytes = CalculationFunctions.ConvertTimeToByte(StepInMs, (int)  mCurrentAudio.getPCMFormat().getSampleRate ()  , mCurrentAudio.getPCMFormat().getBlockAlign ());
             int PlayChunkLength = 1200;
             long lPlayChunkLength = CalculationFunctions.ConvertTimeToByte( PlayChunkLength , (int)mCurrentAudio.getPCMFormat().getSampleRate(), mCurrentAudio.getPCMFormat().getBlockAlign());
@@ -998,8 +998,9 @@ if (m_lChunkStartPosition > mCurrentAudio.getPCMLength())
 
                 if (m_IsEventEnabledDelayedTillTimer)
                 {
-                    if ( EndOfAudioAsset != null )
-                    EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());
+                    if (EndOfAudioAsset != null)
+                        EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());
+                                            
                                     }
             if (mEventsEnabled == true)
                 m_IsEventEnabledDelayedTillTimer= true;
@@ -1009,16 +1010,6 @@ if (m_lChunkStartPosition > mCurrentAudio.getPCMLength())
 
         }
 
-/*
-        /// <summary>
-        /// Play an audio media data object.
-        /// </summary>
-        /// <param name="data">The data object to play.</param>
-        public void Play(AudioMediaData data)
-        {
-            InitialiseWithAsset(data);
-            InitPlay( data , 0, 0);
-        }
- */
+
     }
 }
