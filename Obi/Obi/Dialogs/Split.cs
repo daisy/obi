@@ -63,8 +63,7 @@ namespace Obi.Dialogs
 
             if (mSplitState == Audio.AudioPlayerState.Stopped)
             {
-                // TODO where's play?
-                // mPlayer.Play(mSourceAudio);
+                                 mPlayer.Play(mSourceAudio.getMediaData ()  );
                 btnPreview.Enabled = false;
                 btnSplit.Enabled = false;
                 mPlayButton.Visible = false;
@@ -73,7 +72,7 @@ namespace Obi.Dialogs
             else if (mSplitState == Audio.AudioPlayerState.Playing)
             {
                 // TODO where's play?
-                // mPlayer.Play(mSourceAudio, mDialogLoadTime);
+                 mPlayer.Play(mSourceAudio.getMediaData ()  , mDialogLoadTime);
                 btnPreview.Enabled = false;
                 btnSplit.Enabled = false;
                 mPlayButton.Visible = false;
@@ -111,10 +110,10 @@ namespace Obi.Dialogs
             {
                 // check if sufficient time is left after split time to use GetChunk if not use Audio lengthin ms as second parameter
                 // TODO check time and see about play
-                //if (mSourceAudio.getDuration().getTimeDeltaAsMillisecondFloat() - mSplitTime > 4000 )
-                //mPlayer.Play(mSourceAudio.GetChunk(mSplitTime, mSplitTime + 4000));
-                //else
-                //mPlayer.Play(mSourceAudio.GetChunk(mSplitTime, mSourceAudio.LengthInMilliseconds-100 ));
+                if (mSourceAudio.getDuration().getTimeDeltaAsMillisecondFloat() - mSplitTime > 3000)
+                    mPlayer.Play(mSourceAudio.getMediaData(), mSplitTime, mSplitTime + 3000);
+                else
+                    mPlayer.Play(mSourceAudio.getMediaData(), mSplitTime, mSourceAudio.getDuration().getTimeDeltaAsMillisecondFloat()); 
                 PreviewEnabled = true;
                 btnPreview.Text = "&Back";
                 tmUpdateTimePosition.Enabled = true;
@@ -313,7 +312,7 @@ namespace Obi.Dialogs
                 mSplitTime != mSourceAudio.getDuration().getTimeDeltaAsMillisecondFloat())
             {
                 CheckSplitTime();
-                // TODO: mPlayer.Play(mSourceAudio, mSplitTime);
+                 mPlayer.Play(mSourceAudio.getMediaData ()  , mSplitTime);
                 tmUpdateTimePosition.Enabled = true;
                 mPauseButton.TabIndex = 1;
                 mPlayButton.TabIndex = 0;
