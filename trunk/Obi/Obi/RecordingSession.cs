@@ -152,7 +152,7 @@ mSessionMedia                 = (ManagedAudioMedia)mProject.getPresentation().ge
                     for (int i = mPhraseMarks.Count - 2; i >= 0; --i)
                     {
                         ManagedAudioMedia split = mSessionMedia.split(new urakawa.media.timing.Time(mPhraseMarks[i]));
-                        mSessionMedia.getMediaData().getMediaDataManager().addMediaData(split.getMediaData());
+                        //mSessionMedia.getMediaData().getMediaDataManager().addMediaData(split.getMediaData());
                         mAudioList.Insert(mSessionOffset, split);
                     }
                     // The first asset is what remains of the session asset

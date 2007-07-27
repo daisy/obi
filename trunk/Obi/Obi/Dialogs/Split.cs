@@ -261,7 +261,8 @@ namespace Obi.Dialogs
             if ( CheckSplitTime ()  == true )
             {
                 if (mPlayer.State == Audio.AudioPlayerState.Playing) mPlayer.Stop();
-                mResultAudio = Audio.DataManager.SplitAndManage(mSourceAudio, mSplitTime);
+                mResultAudio =  mSourceAudio.split(new urakawa.media.timing.Time( mSplitTime ));
+                //mResultAudio = Audio.DataManager.SplitAndManage(mSourceAudio, mSplitTime);
                 Close();
             }
             else
