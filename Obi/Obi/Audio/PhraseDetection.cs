@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using System.IO ;
+using System.Windows.Forms;
 
 using urakawa.media.data;
 using  urakawa.media.data.audio ;
@@ -108,7 +109,7 @@ namespace Obi.Audio
         // Detecs the maximum size of noise level in a silent sample file
         public static long GetSilenceAmplitude (ManagedAudioMedia RefAsset)
         {
-
+            m_AudioAsset = RefAsset.getMediaData();
             BinaryReader brRef = new BinaryReader(RefAsset.getMediaData ().getAudioData ()  );
 
             // creates counter of size equal to clip size
@@ -284,8 +285,9 @@ namespace Obi.Audio
                 for (int i = alPhrases.Count-1   ; i >= 0 ; i-- )
                 {
                     ManagedAudioMedia splitAsset  = ManagedAsset.split(new urakawa.media.timing.Time( Convert.ToDouble ( alPhrases[i] )) ) ;
-                    ManagedAsset.getMediaData().getMediaDataManager().addMediaData(splitAsset.getMediaData());
+                                        //ManagedAsset.getMediaData().getMediaDataManager().addMediaData(splitAsset.getMediaData());
                     ReturnList.Insert(0, splitAsset);
+                    //MessageBox.Show(Convert.ToDouble(alPhrases[i]).ToString());
                 }
 
             }
