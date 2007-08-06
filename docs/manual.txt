@@ -1,0 +1,143 @@
+# Mockup of Obi 1.0 manual
+
+`$Id$`
+
+<div id="toc">Table of contents</div>
+
+The idea is that we document features first, then implement them. This way
+we can better test if they behave as planned and we don't have to document
+them later. This file can be the basis for the proper help page (with
+screenshots, with more end-user hand-holding) with the objective of reusing
+as much of it as possible.
+
+## What is Obi?
+
+## The work area
+
+The work area shows the whole project at once and allows the user to focus
+on specific parts while editing, recording and testing playback of a
+project.
+
+Sketch of the work area:
+
+<pre>
++--------------------------------------------------------------------------+
+|                         |                                                |
+|  TOC view               |  Strip view                                    |
+|                         |                                                |
+|  * My book              |  +---------------------------------------------|
+|    * First section      |  |                                             |
+|    * Second section     |  |  My book                                    |
+|      * First chapter    |  |                                             |
+|      * Second chapter   |  |  +------------------------------------------|
+|    * Third section      |  |  |            |           |             |   |
+|                         |  |  |  Audio     |  Audio    |  Audio      |  A|
+|                         |  |  |            |           |             |   |
+|-------------------------|  |  +------------------------------------------|
+|                         |  |                                             |
+|  Metadata               |  +---------------------------------------------|
+|                         |                                                |
+|  Title: My title        |  +---------------------------------------------|
+|  Author: So and so      |  |                                             |
+|                         |  |  First section                              |
+|--------------------------------------------------------------------------|
+|                                                                          |
+|  Transport bar                                                           |
+|                                                                          |
++--------------------------------------------------------------------------+
+</pre>
+
+### Metadata view
+
+The metadata view can be shown under the TOC view or instead of the strips
+view. Maybe a condensed version if a sidebar?
+
+### The table of contents view
+
+Hierarchy of the project. Synchronized with the Strip view. (This could be
+an option.)
+
+### Strips view
+
+Shows strips and blocks.
+
+#### Strips
+
+Strips are containers for blocks and map one-to-one with sections. They are
+composed of:
+
+* The name of the section (same as shown in the TOC view, changing one
+changes the other.)
+
+* The thumbnail of the section image (can be shown full-size in a modal
+window, and/or in the sidebar à la iTunes?)
+
+* The audio blocks, see below.
+
+Unused strips are kept in the project but 
+
+Strips may be indented/collapsed?
+
+#### Blocks
+
+Audio blocks are the phrases of the book.  Several kinds of audio blocks
+(strictly speaking we may want to distinguish between class and property;
+classes are mutually exclusive whereas properties apply to any class):
+
+* Plain audio block: this is a regular phrase in the book.
+
+* Empty audio block: has no audio; is a placeholder but can be marked as
+heading or page.
+
+* Page block: has a page number.
+
+* Heading: is the heading for its section. If a section has no explicit
+heading, the first plain block is the default.
+
+* Footnote/reference: need to figure out these.
+
+* Skippable: can be skipped depending on the player setting.
+
+* Escapable: can be escaped during playback.
+
+* Unused: kept at production time but normally skipped and not exported.
+
+* Block group: several consecutive blocks of the same class that share the
+same properties so can be treated as a single block for this purpose; for
+instance, there can be only one header block for a section but this block
+can be a group block. Sneaky!
+
+### Transport bar
+
+Used for recording and QA playback. Buttons are overloaded for recording;
+for instance, the next phrase button introduces a new phrase. Whether this is
+sufficient remains to be seen. An idea would be to modify the toolbar when
+recording.
+
+### VU meter
+
+Has its own window, or is part of the transport bar (text/small version.)
+
+## Editing metadata
+
+## Editing structure
+
+## Editing audio
+
+## Audio playback and recording
+
+### Playback
+
+### Recording
+
+## Saving and exporting
+
+### XUK/.obi format
+
+### Cleaning up
+
+### Exporting to DAISY 3
+
+### Using the DAISY Pipeline for import/export
+
+## User profile and preferences

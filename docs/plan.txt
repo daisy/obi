@@ -117,6 +117,9 @@ reports to reach a real 1.0 version in the following weeks.
 Probably not implementable in the current timeframe given the current team
 composition.
 
+* Indenting and collapsing of strips: this is not in the feature list
+although it would fit in the interface redesign. But this is not a priority.
+
 * Images in section heading: can add a thumbnail in the view.
 
 * Inter-project copy, since it seems that there will be little time to add
