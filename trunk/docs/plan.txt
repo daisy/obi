@@ -1,0 +1,151 @@
+# Plan for Obi - August to December 2007
+
+`$Id$`
+
+<div id="toc">Table of contents</div>
+
+This is a tentative plan that will change after the Copenhagen meeting. The
+current Obi team is Julien (~0.8 FTE), Avneesh (1 FTE), and Marisa (~0.2 FTE)
+*i.e.* about 2 FTE. See [the Obi tasklist](tasklist.html) for a description of
+most of the items listed here. The required features list is mostly covered,
+although some features (including a few marked as "essential") are moved to
+"iffy" status, *i.e.* probably won't be implemented by version 1.0.
+
+
+## August
+
+Version 0.9 is the first version that includes the new toolkit, *i.e.* version
+1.0 of the SDK. Version 0.9 can be used for testing late August/early
+September.
+
+* Fix remaining audio issues from toolkit migration (Avneesh with help from
+Ole for debugging the SDK) along with cleaning up audio player/recorder.
+
+* Some regression testing? [Marisa taking over from Laust] We need to
+identify things not working anymore since the SDK upgrade, write some tests
+to ensure that our fixes are permanent, and mark the issues as fix
+(immediatly) or redesign (later) For instance, asset related issues should
+be fixed, command related bugs could wait for redesign.
+
+* Fix issues marked as fix (all) and release 0.9 [Julien]
+
+## September
+
+Version 0.10 will be the main development version of Obi between September
+and December. It will include a redesign of front end as well as back end
+elements. We will need better tester support and try to have a weekly
+release schedule.
+
+* Redesign of the audio backend, review VU meter. [Avneesh with Julien]
+
+* New blocks design: remove annotation blocks; show waveform in blocks;
+have more types of blocks (pages, headings, footnotes, etc. need a complete
+taxonomy from the spec plus a container block for consecutive blocks sharing
+the same properties.) Review section strip display (e.g. use entire width
+available; use indenting?) [Julien]
+
+* New project panel design: add an additional panel for metadata, probably
+one for recording, and possibly one for source view. Panels can be open in
+different, but not modal windows? In this manner, undo/redo works for all
+operations. Include views synchronization (with preference.)
+
+* Review command manager, use new one from SDK or redo our own [Julien,
+Marisa]
+
+* Review cleanup, import (structure) and export (Z) [Marisa with Avneesh/Ole]
+
+* Fix insert/append issue for new elements and edit operations for real.
+[all]
+ 
+## October
+
+* Waveform editing (mouse [Julien] and keyboard [Avneesh]) in phrase blocks.
+
+* Page numbering: support manual numbering, front/main/back numbers,
+renumbering on demand. [Julien]
+
+* Search text [Marisa] in annotations and headings
+
+* Recording modes [Avneesh taking over from Laust], as well as recording
+improvements: 
+
+## November
+
+By November we should have a good look and evaluate whether we're on track
+for delivering with the desired feature set. Feature cuts may be necessary
+at this time to make a more solid application. So if all goes well:
+
+* Multiple selection [Julien with Marisa]. Container blocks may be
+implemented at this time.
+
+* Phrase detection: more testing, automatic detection? [Avneesh]
+
+* Configurable and colors and default profiles (high contrast), font/widget
+size [Julien and Anveesh]
+
+If all goes *very* well:
+
+* Skippable and escapable items [Julien]
+
+* Generic navigation lists [Marisa]
+
+* Better user preferences/profile (save undo/redo state with project, window
+sizes and position, lastmark, etc.)
+
+Otherwise:
+
+* Cut, cut, cut [all]
+
+* Solidify [all]
+
+## December
+
+Version 1.0 should come out late December. We may still call the december
+release a candidate release, and have testers and early adopters submit bug
+reports to reach a real 1.0 version in the following weeks.
+
+* Testing [all]
+
+* DAISY Pipeline interface [Avneesh, Marisa]
+
+* Improve installer [Julien]
+
+* Release [Julien]
+
+## Iffy features
+
+Probably not implementable in the current timeframe given the current team
+composition.
+
+* Images in section heading: can add a thumbnail in the view.
+
+* Inter-project copy, since it seems that there will be little time to add
+to it to the application after the SDK supports it.
+
+* Monitor control: probably not enough time/expertise for this one.
+
+* MP3 support: too bad.
+
+* Bookmarks: although through preferences we 
+
+* Resource files. We don't really know what to do with those anyway.
+
+* Audio counter: not very well specified anyway.
+
+## Further comments
+
+### Additional resources
+
+The schedule is probably overly optimistic and additional resources are
+necessary to meet it.
+
+### F2F
+
+F2F meetings have been very beneficial so far in Obi development and another
+one should happen. I see two opportunities right now:
+
+* A design meeting in September could be really useful, possibly in
+conjunction with a Tobi design meeting, but it seems tricky to organize
+although a couple days around the SMIL F2F in Amsterdam could work.
+
+* A late November/early December week-long cram session to tie loose ends.
