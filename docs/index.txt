@@ -7,6 +7,8 @@ brief description. Here is what we have so far:
 
 * [Events](events.html): "This document describes Obi's eventing and summarizes how to introduce new features in the application."
 
+* [Manual](manual.html): Mockup manual for what Obi 1.0 will be.
+
 * [Menus](menus.txt): list of menu shortcuts and accelerator keys.
 
 * [Metadata](metadata.txt): list of required metadata for Z. Obi needs to
@@ -18,6 +20,8 @@ needed in Obi and the toolkit for replacing Obi's asset manager.
 * [Obi](obi.html): describes the application itself.
 
 * [Operations](operations.html): All the commands and operations in Obi 1.0.
+
+* [Plan](plan.html): Obi plan from August to December 2007.
 
 * [Playback](playback.html): playback behavior.
 
