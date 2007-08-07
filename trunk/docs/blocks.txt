@@ -2,7 +2,10 @@
 
 `$Id$`
 
-A block is meant here as a container in Obi.
+A block is meant here as a container in Obi. A block is a visual
+representation for a node in the tree, but the relationship is not
+necessarily one-to-one (_e.g._ there is no concrete representation of the
+root node, and dummy blocks do not represent nodes.)
 
 <div id="toc">Table of Contents</div>
 
@@ -19,6 +22,10 @@ The top level container.
 A strip block can contain one or more container blocks and audio blocks.
 Although a section contains subsection, a section strip is shallow and
 contains no other strips.
+
+#### Dummy strip block
+
+The dummy strip block is introduced in the 
 
 ### Audio block, or phrase
 

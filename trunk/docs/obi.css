@@ -13,6 +13,8 @@ h2, h3 { border-bottom: thin #0c0 dotted; }
 div#toc ul { list-style-type: none; }
 
 .todo { font-weight: bold; color: red; }
+.who { color: red; background-color: yellow; font-weight: bold; font-size:
+  80%; }
 
 a { font-weight: bold; color: #048 }
 pre { background-color: #cfc; padding: 1em; margin-left: 2em;

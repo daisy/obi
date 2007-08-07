@@ -18,16 +18,17 @@ Version 0.9 is the first version that includes the new toolkit, *i.e.* version
 1.0 of the SDK. Version 0.9 can be used for testing late August/early
 September.
 
-* Fix remaining audio issues from toolkit migration (Avneesh with help from
-Ole for debugging the SDK) along with cleaning up audio player/recorder.
+* Fix remaining audio issues from toolkit migration <span class="who">Avneesh with help from
+Ole for debugging the SDK</span> along with cleaning up audio player/recorder.
 
-* Some regression testing? [Marisa taking over from Laust] We need to
+* Some regression testing? <span class="who">Marisa taking over from Laust</span> We need to
 identify things not working anymore since the SDK upgrade, write some tests
 to ensure that our fixes are permanent, and mark the issues as fix
 (immediatly) or redesign (later) For instance, asset related issues should
 be fixed, command related bugs could wait for redesign.
 
-* Fix issues marked as fix (all) and release 0.9 [Julien]
+* Fix issues marked as fix (all) and release 0.9 <span
+class="who">Julien</span>
 
 ## September
 
@@ -36,38 +37,40 @@ and December. It will include a redesign of front end as well as back end
 elements. We will need better tester support and try to have a weekly
 release schedule.
 
-* Redesign of the audio backend, review VU meter. [Avneesh with Julien]
+* Redesign of the audio backend, review VU meter. <span class="who">Avneesh with Julien</span>
 
 * New blocks design: remove annotation blocks; show waveform in blocks;
 have more types of blocks (pages, headings, footnotes, etc. need a complete
 taxonomy from the spec plus a container block for consecutive blocks sharing
 the same properties.) Review section strip display (e.g. use entire width
-available; use indenting?) [Julien]
+available; use indenting?) <span class="who">Julien</span>
 
 * New project panel design: add an additional panel for metadata, probably
 one for recording, and possibly one for source view. Panels can be open in
 different, but not modal windows? In this manner, undo/redo works for all
 operations. Include views synchronization (with preference.)
 
-* Review command manager, use new one from SDK or redo our own [Julien,
-Marisa]
+* Review command manager, use new one from SDK or redo our own <span class="who">Julien,
+Marisa</span>
 
-* Review cleanup, import (structure) and export (Z) [Marisa with Avneesh/Ole]
+* Review cleanup, import (structure) and export (Z) <span class="who">Marisa with Avneesh/Ole</span>
 
 * Fix insert/append issue for new elements and edit operations for real.
-[all]
+<span class="who">all</span>
  
 ## October
 
-* Waveform editing (mouse [Julien] and keyboard [Avneesh]) in phrase blocks.
+* Waveform editing (mouse <span class="who">Julien</span> and keyboard <span class="who">Avneesh</span>) in phrase blocks.
 
 * Page numbering: support manual numbering, front/main/back numbers,
-renumbering on demand. [Julien]
+renumbering on demand. <span class="who">Julien</span>
 
-* Search text [Marisa] in annotations and headings
+* Search text <span class="who">Marisa</span> in annotations and headings;
+maintain a list of producer marks (such as TODO, FIXME, etc.) that can easily
+be set and found.
 
-* Recording modes [Avneesh taking over from Laust], as well as recording
-improvements: 
+* Recording modes <span class="who">Avneesh taking over from Laust</span>, as
+well as recording improvements: (...)
 
 ## November
 
@@ -75,28 +78,28 @@ By November we should have a good look and evaluate whether we're on track
 for delivering with the desired feature set. Feature cuts may be necessary
 at this time to make a more solid application. So if all goes well:
 
-* Multiple selection [Julien with Marisa]. Container blocks may be
+* Multiple selection <span class="who">Julien with Marisa</span>. Container blocks may be
 implemented at this time.
 
-* Phrase detection: more testing, automatic detection? [Avneesh]
+* Phrase detection: more testing, automatic detection? <span class="who">Avneesh</span>
 
 * Configurable and colors and default profiles (high contrast), font/widget
-size [Julien and Anveesh]
+size <span class="who">Julien and Anveesh</span>
 
 If all goes *very* well:
 
-* Skippable and escapable items [Julien]
+* Skippable and escapable items <span class="who">Julien</span>
 
-* Generic navigation lists [Marisa]
+* Generic navigation lists <span class="who">Marisa</span>
 
 * Better user preferences/profile (save undo/redo state with project, window
-sizes and position, lastmark, etc.)
+sizes and position, lastmark, etc.) <span class="who">Julien</span>
 
 Otherwise:
 
-* Cut, cut, cut [all]
+* Cut what sucks <span class="who">all</span>
 
-* Solidify [all]
+* Make the rest really not suck <span class="who">all</span>
 
 ## December
 
@@ -104,13 +107,13 @@ Version 1.0 should come out late December. We may still call the december
 release a candidate release, and have testers and early adopters submit bug
 reports to reach a real 1.0 version in the following weeks.
 
-* Testing [all]
+* Testing <span class="who">all</span>
 
-* DAISY Pipeline interface [Avneesh, Marisa]
+* DAISY Pipeline interface <span class="who">Avneesh, Marisa</span>
 
-* Improve installer [Julien]
+* Improve installer <span class="who">Julien</span>
 
-* Release [Julien]
+* Release <span class="who">Julien</span>
 
 ## Iffy features
 
@@ -127,13 +130,19 @@ to it to the application after the SDK supports it.
 
 * Monitor control: probably not enough time/expertise for this one.
 
-* MP3 support: too bad.
+* MP3 support: let the pipeline handle that. Although having MP3 import
+would really be helpful (even though the MP3 would be converted back to
+RIFF/WAV) as well as other formats supported by DAISY.
 
 * Bookmarks: although through preferences we 
 
 * Resource files. We don't really know what to do with those anyway.
 
 * Audio counter: not very well specified anyway.
+
+* Non-contiguous strip content: mixing phrase and section children for a
+section. Currently Obi supports only phrase children followed by section
+children.
 
 ## Further comments
 

@@ -80,32 +80,38 @@ Strips may be indented/collapsed?
 
 #### Blocks
 
-Audio blocks are the phrases of the book.  Several kinds of audio blocks
-(strictly speaking we may want to distinguish between class and property;
-classes are mutually exclusive whereas properties apply to any class):
+All blocks belong to one of the following class:
 
-* Plain audio block: this is a regular phrase in the book.
+* Plain audio block: this is the regular kind of audio blocks. They have a
+wave-form display.
 
-* Empty audio block: has no audio; is a placeholder but can be marked as
-heading or page.
+* Page block: a block with a page number (can be automatic or manually
+assigned.)
 
-* Page block: has a page number.
+* Heading block: represents the heading for the section strip that it
+belongs to.
 
-* Heading: is the heading for its section. If a section has no explicit
-heading, the first plain block is the default.
+* Escapable block: marked as escapable in the SMIL output. (See Z spec
+section 7.4.1)
 
-* Footnote/reference: need to figure out these.
+* Skippable block: can be skipped by default.
 
-* Skippable: can be skipped depending on the player setting.
+* Group block: a group block contains one or more blocks of the same kind
+which all share the same properties.
 
-* Escapable: can be escaped during playback.
+* Also: footnotes and references, producer notes, custom blocks.
 
-* Unused: kept at production time but normally skipped and not exported.
+All of these blocks can have the following properties:
 
-* Block group: several consecutive blocks of the same class that share the
-same properties so can be treated as a single block for this purpose; for
-instance, there can be only one header block for a section but this block
-can be a group block. Sneaky!
+* Empty or non-empty: the block has audio data or not. An empty block has no
+wave-form display, naturally, but has two buttons or links to import or
+record audio data into it.
+
+* Used or unused: unused blocks are kept in the project but are not exported
+and skipped during playback (unless explicitely played.)
+
+* Annotation: any block can have a free-text annotation. This is a
+production time feature. The user can 
 
 ### Transport bar
 
@@ -121,6 +127,10 @@ Has its own window, or is part of the transport bar (text/small version.)
 ## Editing metadata
 
 ## Editing structure
+
+## Editing contents
+
+### Page numbering
 
 ## Editing audio
 
