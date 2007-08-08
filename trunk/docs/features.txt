@@ -1,17 +1,18 @@
 # Obi 1.0 feature list
 
-Obi is a free software DAISY/NISO Digital Talking Book (DTB) production
-tool. Obi is being developed as part of the Urakawa project, where tools are
-developed to help developers build accessible multimedia applications. Obi
-version 1.0 is scheduled to be released for Windows XP in December 2007.
+Obi is a free software DAISY/NISO NCX-only Digital Talking Book (DTB)
+production tool. Obi is being developed as part of the Urakawa project,
+where tools are developed to help developers build accessible multimedia
+applications. Obi version 1.0 is scheduled to be released for Windows XP in
+December 2007.
 
 <div id="toc">Table of contents</div>
 
 ## Obi file format
 
-Obi uses its own authoring format defined as part of the Urakawa project. A
-project can be saved at any point during authoring and can be reopened for
-later editing.
+Obi uses its own authoring format defined by the Urakawa SDK. A project can
+be saved at any point during authoring and can be reopened for later
+editing.
 
 ### Import
 
@@ -80,7 +81,7 @@ assigned.)
 belongs to.
 
 * Nested blocks: several blocks of the same kind and sharing the same
-properties can be grouped toghther. Tables can be authored using this
+properties can be grouped together. Tables or lists can be authored using this
 feature.
 
 * Custom blocks: the author can create new blocks classes (such as sidebars
@@ -134,18 +135,22 @@ of audio.
 Recording creates new audio blocks and sections. While recording, it is
 possible to mark phrases, pages and sections
 
+The input device used for recording can be set from within Obi.
+
 ### Audio playback
 
 Obi can playback the content of a book allowing navigation similar to a
 DAISY player:
 
-* Play, pause, stop
+* Play, pause, stop, fast-forward, rewind
 * Previous/next section
 * Previous/next phrase
 * Previous/next page
 
 For QA purposes, it is possible to play the whole book or just a selected
-part of it (*i.e.* a block or a section.)
+part of it (*e.g.* a block or a section.)
+
+The output device used for playback can be set from within Obi.
 
 ### Audio editing
 
@@ -159,7 +164,7 @@ non-visual audio editing:
 Obi also supports waveform editing using mouse or keyboard as found in
 typical audio applications.
 
-Obi also has a clean up operation which removes all unused audio data
+Obi also has a cleanup operation which removes all unused audio data
 throughout the project.
 
 ### Accessible VU meter
@@ -183,7 +188,7 @@ Obi stores user profiles to help with metadata, as well as user preferences
 such as audio settings or window sizes.
 
 Color schemes and font sizes can be customized. Default color schemes such
-as high contract color scheme are provided.
+as high contrast color scheme are provided.
 
 ## Search
 
