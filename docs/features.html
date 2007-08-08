@@ -10,10 +10,11 @@
     <div id="top">
       <h1>Obi 1.0 feature list</h1>
     </div>
-    <p>Obi is a free software DAISY/NISO Digital Talking Book (DTB) production
-tool. Obi is being developed as part of the Urakawa project, where tools are
-developed to help developers build accessible multimedia applications. Obi
-version 1.0 is scheduled to be released for Windows XP in December 2007.</p>
+    <p>Obi is a free software DAISY/NISO NCX-only Digital Talking Book (DTB)
+production tool. Obi is being developed as part of the Urakawa project,
+where tools are developed to help developers build accessible multimedia
+applications. Obi version 1.0 is scheduled to be released for Windows XP in
+December 2007.</p>
     <div id="toc">
       <h2>Table of contents</h2>
       <ul>
@@ -49,34 +50,34 @@ version 1.0 is scheduled to be released for Windows XP in December 2007.</p>
               <a href="#id53567">Audio recording</a>
             </li>
             <li>
-              <a href="#id53592">Audio playback</a>
+              <a href="#id53597">Audio playback</a>
             </li>
             <li>
-              <a href="#id53628">Audio editing</a>
+              <a href="#id53636">Audio editing</a>
             </li>
             <li>
-              <a href="#id53661">Accessible VU meter</a>
+              <a href="#id53670">Accessible VU meter</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="#id53670">Metadata editing</a>
+          <a href="#id53679">Metadata editing</a>
         </li>
         <li>
-          <a href="#id53680">Undo/redo</a>
+          <a href="#id53689">Undo/redo</a>
         </li>
         <li>
-          <a href="#id53688">User customization</a>
+          <a href="#id53697">User customization</a>
         </li>
         <li>
-          <a href="#id53702">Search</a>
+          <a href="#id53711">Search</a>
         </li>
       </ul>
     </div>
     <h2 id="id53300">Obi file format</h2>
-    <p>Obi uses its own authoring format defined as part of the Urakawa project. A
-project can be saved at any point during authoring and can be reopened for
-later editing.</p>
+    <p>Obi uses its own authoring format defined by the Urakawa SDK. A project can
+be saved at any point during authoring and can be reopened for later
+editing.</p>
     <h3 id="id53310">Import</h3>
     <p>Obi can import an existing book structure and create a skeleton project
 ready for recording. Through the DAISY Pipeline, Obi can open NCX-only DAISY
@@ -137,7 +138,7 @@ belongs to.</p>
       </li>
       <li>
         <p>Nested blocks: several blocks of the same kind and sharing the same
-properties can be grouped toghther. Tables can be authored using this
+properties can be grouped together. Tables or lists can be authored using this
 feature.</p>
       </li>
       <li>
@@ -195,18 +196,20 @@ of audio.</li>
     </ul>
     <p>Recording creates new audio blocks and sections. While recording, it is
 possible to mark phrases, pages and sections</p>
-    <h3 id="id53592">Audio playback</h3>
+    <p>The input device used for recording can be set from within Obi.</p>
+    <h3 id="id53597">Audio playback</h3>
     <p>Obi can playback the content of a book allowing navigation similar to a
 DAISY player:</p>
     <ul>
-      <li>Play, pause, stop</li>
+      <li>Play, pause, stop, fast-forward, rewind</li>
       <li>Previous/next section</li>
       <li>Previous/next phrase</li>
       <li>Previous/next page</li>
     </ul>
     <p>For QA purposes, it is possible to play the whole book or just a selected
-part of it (<em>i.e.</em> a block or a section.)</p>
-    <h3 id="id53628">Audio editing</h3>
+part of it (<em>e.g.</em> a block or a section.)</p>
+    <p>The output device used for playback can be set from within Obi.</p>
+    <h3 id="id53636">Audio editing</h3>
     <p>Obi is built with accessibility in mind and provides simple primitives for
 non-visual audio editing:</p>
     <ul>
@@ -216,23 +219,23 @@ non-visual audio editing:</p>
     </ul>
     <p>Obi also supports waveform editing using mouse or keyboard as found in
 typical audio applications.</p>
-    <p>Obi also has a clean up operation which removes all unused audio data
+    <p>Obi also has a cleanup operation which removes all unused audio data
 throughout the project.</p>
-    <h3 id="id53661">Accessible VU meter</h3>
+    <h3 id="id53670">Accessible VU meter</h3>
     <p>Obi provides a graphical VU meter used to monitor recording and playback
 levels. It also provides a text-based VU meter that can work with screen
 readers.</p>
-    <h2 id="id53670">Metadata editing</h2>
+    <h2 id="id53679">Metadata editing</h2>
     <p>Obi supports editing of all DAISY metadata specified in the DAISY/NISO 2005
 specification and allows the addition of custom metadata.</p>
-    <h2 id="id53680">Undo/redo</h2>
+    <h2 id="id53689">Undo/redo</h2>
     <p>All operations within Obi can be undone or redone, including audio edits.</p>
-    <h2 id="id53688">User customization</h2>
+    <h2 id="id53697">User customization</h2>
     <p>Obi stores user profiles to help with metadata, as well as user preferences
 such as audio settings or window sizes.</p>
     <p>Color schemes and font sizes can be customized. Default color schemes such
-as high contract color scheme are provided.</p>
-    <h2 id="id53702">Search</h2>
+as high contrast color scheme are provided.</p>
+    <h2 id="id53711">Search</h2>
     <p>All text content in a project (such as section titles or annotations) can be
 searched and located.</p>
   </body>
