@@ -26,22 +26,22 @@
           <a href="#id53450">October</a>
         </li>
         <li>
-          <a href="#id53506">November</a>
+          <a href="#id53507">November</a>
         </li>
         <li>
-          <a href="#id53614">December</a>
+          <a href="#id53602">December</a>
         </li>
         <li>
-          <a href="#id53663">Iffy features</a>
+          <a href="#id53652">Iffy features</a>
         </li>
         <li>
-          <a href="#id53729">Further comments</a>
+          <a href="#id53727">Further comments</a>
           <ul>
             <li>
-              <a href="#id53733">Additional resources</a>
+              <a href="#id53731">Additional resources</a>
             </li>
             <li>
-              <a href="#id53741">F2F</a>
+              <a href="#id53740">F2F</a>
             </li>
           </ul>
         </li>
@@ -59,15 +59,17 @@ although some features (including a few marked as "essential") are moved to
 September.</p>
     <ul>
       <li>
-        <p>Fix remaining audio issues from toolkit migration <span class="who">Avneesh with help from
-Ole for debugging the SDK</span> along with cleaning up audio player/recorder.</p>
+        <p>Fix remaining audio issues from toolkit migration <span class="who">Avneesh
+with help from Ole for debugging the SDK</span> along with cleaning up audio
+player/recorder.</p>
       </li>
       <li>
-        <p>Some regression testing? <span class="who">Marisa taking over from Laust</span> We need to
-identify things not working anymore since the SDK upgrade, write some tests
-to ensure that our fixes are permanent, and mark the issues as fix
-(immediatly) or redesign (later) For instance, asset related issues should
-be fixed, command related bugs could wait for redesign.</p>
+        <p>Some regression testing? <span class="who">Marisa taking over from
+Laust</span> We need to identify things not working anymore since the SDK
+upgrade, write some tests to ensure that our fixes are permanent, and mark
+the issues as fix (immediatly) or redesign (later) For instance, asset
+related issues should be fixed, command related bugs could wait for
+redesign.</p>
       </li>
       <li>
         <p>Fix issues marked as fix (all) and release 0.9 <span class="who">Julien</span></p>
@@ -80,11 +82,12 @@ elements. We will need better tester support and try to have a weekly
 release schedule.</p>
     <ul>
       <li>
-        <p>Redesign of the audio backend, review VU meter. <span class="who">Avneesh with Julien</span></p>
+        <p>Redesign of the audio backend, review VU meter. <span class="who">Avneesh
+with Julien</span></p>
       </li>
       <li>
         <p>New blocks design: remove annotation blocks; show waveform in blocks;
-have more types of blocks (pages, headings, footnotes, etc. need a complete
+have more types of blocks (pages, headings, etc. need a complete
 taxonomy from the spec plus a container block for consecutive blocks sharing
 the same properties.) Review section strip display (e.g. use entire width
 available; use indenting?) <span class="who">Julien</span></p>
@@ -96,15 +99,15 @@ different, but not modal windows? In this manner, undo/redo works for all
 operations. Include views synchronization (with preference.)</p>
       </li>
       <li>
-        <p>Review command manager, use new one from SDK or redo our own <span class="who">Julien,
-Marisa</span></p>
+        <p>Review command manager, use new one from SDK or redo our own <span class="who">Julien, Marisa</span></p>
       </li>
       <li>
-        <p>Review cleanup, import (structure) and export (Z) <span class="who">Marisa with Avneesh/Ole</span></p>
+        <p>Review cleanup, import (structure) and export (Z) <span class="who">Marisa
+with Avneesh/Ole</span></p>
       </li>
       <li>
-        <p>Fix insert/append issue for new elements and edit operations for real.
-<span class="who">all</span></p>
+        <p>Usability issue: fix insert/append issue for new elements and edit
+operations for real.  <span class="who">all</span></p>
       </li>
     </ul>
     <h2 id="id53450">October</h2>
@@ -118,38 +121,35 @@ renumbering on demand. <span class="who">Julien</span></p>
       </li>
       <li>
         <p>Search text <span class="who">Marisa</span> in annotations and headings;
-maintain a list of producer marks (such as <span class="todo">TODO</span>, FIXME, etc.) that can easily
-be set and found.</p>
+maintain a list of producer marks (such as <span class="todo">TODO</span>, FIXME, etc.) that can
+easily be set and found.</p>
       </li>
       <li>
-        <p>Recording modes <span class="who">Avneesh taking over from Laust</span>, as
-well as recording improvements: (...)</p>
+        <p>Recording modes <span class="who">Avneesh taking over from Laust</span>,
+as well as recording improvements (to be specified; at least some simple
+punch-in mechanism.)</p>
       </li>
     </ul>
-    <h2 id="id53506">November</h2>
+    <h2 id="id53507">November</h2>
     <p>By November we should have a good look and evaluate whether we're on track
 for delivering with the desired feature set. Feature cuts may be necessary
-at this time to make a more solid application. So if all goes well:</p>
+at this time to make a more solid application; but we really need those:</p>
     <ul>
-      <li>
-        <p>Multiple selection <span class="who">Julien with Marisa</span>. Container blocks may be
-implemented at this time.</p>
-      </li>
-      <li>
-        <p>Phrase detection: more testing, automatic detection? <span class="who">Avneesh</span></p>
-      </li>
       <li>
         <p>Configurable and colors and default profiles (high contrast), font/widget
-size <span class="who">Julien and Anveesh</span></p>
+size <span class="who">Julien and Avneesh</span></p>
       </li>
-    </ul>
-    <p>If all goes <em>very</em> well:</p>
-    <ul>
       <li>
         <p>Skippable and escapable items <span class="who">Julien</span></p>
       </li>
+    </ul>
+    <p>Then, if all goes well:</p>
+    <ul>
       <li>
-        <p>Generic navigation lists <span class="who">Marisa</span></p>
+        <p>Multiple selection <span class="who">Julien with Marisa</span>.</p>
+      </li>
+      <li>
+        <p>Phrase detection: more testing, automatic detection? <span class="who">Avneesh</span> </p>
       </li>
       <li>
         <p>Better user preferences/profile (save undo/redo state with project, window
@@ -165,7 +165,7 @@ sizes and position, lastmark, etc.) <span class="who">Julien</span></p>
         <p>Make the rest really not suck <span class="who">all</span></p>
       </li>
     </ul>
-    <h2 id="id53614">December</h2>
+    <h2 id="id53602">December</h2>
     <p>Version 1.0 should come out late December. We may still call the december
 release a candidate release, and have testers and early adopters submit bug
 reports to reach a real 1.0 version in the following weeks.</p>
@@ -183,7 +183,7 @@ reports to reach a real 1.0 version in the following weeks.</p>
         <p>Release <span class="who">Julien</span></p>
       </li>
     </ul>
-    <h2 id="id53663">Iffy features</h2>
+    <h2 id="id53652">Iffy features</h2>
     <p>Probably not implementable in the current timeframe given the current team
 composition.</p>
     <ul>
@@ -220,12 +220,18 @@ RIFF/WAV) as well as other formats supported by DAISY.</p>
 section. Currently Obi supports only phrase children followed by section
 children.</p>
       </li>
+      <li>
+        <p>Generic navigation lists</p>
+      </li>
+      <li>
+        <p>Links and footnotes</p>
+      </li>
     </ul>
-    <h2 id="id53729">Further comments</h2>
-    <h3 id="id53733">Additional resources</h3>
+    <h2 id="id53727">Further comments</h2>
+    <h3 id="id53731">Additional resources</h3>
     <p>The schedule is probably overly optimistic and additional resources are
 necessary to meet it.</p>
-    <h3 id="id53741">F2F</h3>
+    <h3 id="id53740">F2F</h3>
     <p>F2F meetings have been very beneficial so far in Obi development and another
 one should happen. I see two opportunities right now:</p>
     <ul>
