@@ -7,6 +7,8 @@ brief description. Here is what we have so far:
 
 * [Events](events.html): "This document describes Obi's eventing and summarizes how to introduce new features in the application."
 
+* [Features](features.html): Full feature list for Obi 1.0.
+
 * [Manual](manual.html): Mockup manual for what Obi 1.0 will be.
 
 * [Menus](menus.txt): list of menu shortcuts and accelerator keys.
