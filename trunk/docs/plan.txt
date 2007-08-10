@@ -61,7 +61,11 @@ with Avneesh/Ole</span>
 
 * Usability issue: fix insert/append issue for new elements and edit
 operations for real.  <span class="who">all</span>
- 
+
+* Organize a coding workshop for November/December; <span
+class="who">Dipendra</span> to inquire about India and <span
+class="who">Julien</span> about Japan.
+
 ## October
 
 * Waveform editing (mouse <span class="who">Julien</span> and keyboard <span
@@ -177,4 +181,5 @@ one should happen. I see two opportunities right now:
 conjunction with a Tobi design meeting, but it seems tricky to organize
 although a couple days around the SMIL F2F in Amsterdam could work.
 
-* A late November/early December week-long cram session to tie loose ends.
+* A late November/early December coding workshop, to be held in India or
+Japan for around two weeks (Marisa's involvment could be shorter.)
