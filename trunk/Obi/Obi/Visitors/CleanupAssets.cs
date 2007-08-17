@@ -6,6 +6,7 @@ using urakawa.core;
 using urakawa.core.visitor;
 using urakawa.media;
 using urakawa.media.data;
+using urakawa.media.data.audio ;
 
 namespace Obi.Visitors
 {

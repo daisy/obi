@@ -1,5 +1,6 @@
 using System;
 using urakawa.media.data;
+using urakawa.media.data.audio ;
 
 namespace Obi.Events.Audio.Recorder
 {
