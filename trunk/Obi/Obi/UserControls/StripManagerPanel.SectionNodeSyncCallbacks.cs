@@ -9,6 +9,7 @@ using System.Collections;
 
 using urakawa.core;
 using urakawa.media;
+using urakawa.core.events;
 
 namespace Obi.UserControls
 {
@@ -19,7 +20,7 @@ namespace Obi.UserControls
         /// </summary>
         public void SyncAddedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
         {
-            AddStripFromNode(e.Node);
+                        AddStripFromNode(e.Node);
             if (sender == this)
             {
                 mProjectPanel.CurrentSelection = new NodeSelection(e.Node, this);
@@ -27,9 +28,9 @@ namespace Obi.UserControls
             }
         }
 
-        private void AddStripFromNode(SectionNode node)
+internal          void AddStripFromNode(SectionNode node)
         {
-            SectionStrip strip = new SectionStrip();
+                        SectionStrip strip = new SectionStrip();
             strip.Label = Project.GetTextMedia(node).getText();
             strip.Manager = this;
             strip.Node = node;

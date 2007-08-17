@@ -230,13 +230,14 @@ namespace Obi.UserControls
         {
             project.getPresentation().treeNodeAdded +=
                 new TreeNodeAddedEventHandler(mTOCPanel.Project_treeNodeAdded);
+                            
             project.getPresentation().treeNodeAdded +=
                 new TreeNodeAddedEventHandler(mStripManagerPanel.Project_treeNodeAdded);
             project.getPresentation().treeNodeRemoved +=
                 new TreeNodeRemovedEventHandler(mTOCPanel.Project_treeNodeRemoved);
             project.getPresentation().treeNodeRemoved +=
                 new TreeNodeRemovedEventHandler(mStripManagerPanel.Project_treeNodeRemoved);
-
+            
             project.MovedSectionNode += new Events.MovedSectionNodeHandler(mTOCPanel.SyncMovedSectionNode);
             project.MovedSectionNode += new Events.MovedSectionNodeHandler(mStripManagerPanel.SyncMovedSectionNode);
             project.UndidMoveSectionNode += new Events.MovedSectionNodeHandler(mTOCPanel.SyncMovedSectionNode);
