@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using urakawa.core;
 using urakawa.media;
 using urakawa.media.data;
+using urakawa.media.data.audio;
 
 namespace Obi.Dialogs
 {
@@ -31,8 +32,8 @@ namespace Obi.Dialogs
             mNode = node;
             mDialogLoadTime = time;
             mPlayer = player;
-            mSplitState = mPlayer.State;
-            mSourceAudio = node.Audio;
+            mSplitState = Audio.AudioPlayerState.Playing;
+                        mSourceAudio = node.Audio;
             mResultAudio = null;
             
             mPlayer.StateChanged += new Events.Audio.Player.StateChangedHandler(AudioPlayer_StateChanged);
@@ -41,6 +42,7 @@ namespace Obi.Dialogs
             tmUpdateTimePosition.Enabled = true;
             InitialiseStepSizeList();
             mSelectedStepSize = 3;
+            MessageBox.Show(time.ToString());
         }
 
         /// <summary>
