@@ -34,6 +34,7 @@ namespace Obi.UserControls
                 TreeNode newTreeNode = AddSingleSectionNode(section);
                 newTreeNode.ExpandAll();
                 newTreeNode.EnsureVisible();
+                mProjectPanel.StripManager.AddStripFromNode(section);
             }
         }
 

@@ -4,6 +4,8 @@ using urakawa.core;
 using urakawa.core.events;
 using urakawa.media;
 using urakawa.media.data;
+using urakawa.media.data.audio;
+
 
 namespace Obi.UserControls
 {
@@ -15,15 +17,15 @@ namespace Obi.UserControls
         /// </summary>
         public void Project_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
         {
-            SyncAddedPhraseNode(e.getTreeNode() as PhraseNode);
+                                    SyncAddedPhraseNode(e.getTreeNode() as PhraseNode);
         }
 
         private void SyncAddedPhraseNode(PhraseNode phrase)
         {
             if (phrase != null && phrase.ParentSection != null)
             {
-                SectionStrip strip = mSectionNodeMap[phrase.ParentSection];
-                AudioBlock block = SetupAudioBlockFromPhraseNode(phrase);
+                                                    SectionStrip strip  = mSectionNodeMap[phrase.ParentSection];
+                                AudioBlock block = SetupAudioBlockFromPhraseNode(phrase);
                 strip.InsertAudioBlock(block, phrase.Index);
                 if (phrase.PageProperty != null) mProjectPanel.Project.RenumberPages();
             }
@@ -245,8 +247,9 @@ namespace Obi.UserControls
             if (mProjectPanel.CurrentSelectedAudioBlock != null)
             {
                 PhraseNode phrase = mProjectPanel.CurrentSelectedAudioBlock;
-                double time = mProjectPanel.TransportBar._CurrentPlaylist.CurrentTimeInAsset;
+                                double time = mProjectPanel.TransportBar._CurrentPlaylist.CurrentTimeInAsset;
                 Audio.AudioPlayerState state = mProjectPanel.TransportBar._CurrentPlaylist.State;
+                MessageBox.Show(time.ToString());
                 mProjectPanel.TransportBar.Enabled = false;
                 Dialogs.Split dialog = new Dialogs.Split(phrase, time, mProjectPanel.TransportBar.AudioPlayer);
                 NodeSelection originalSelection = mProjectPanel.CurrentSelection;
@@ -430,7 +433,7 @@ namespace Obi.UserControls
             }
         }
 
-        public void UpdateAudioForPhrase(PhraseNode node, urakawa.media.data.ManagedAudioMedia audio)
+        public void UpdateAudioForPhrase(PhraseNode node, ManagedAudioMedia audio)
         {
             node.Audio = audio;
             mPhraseNodeMap[node].RefreshDisplay();

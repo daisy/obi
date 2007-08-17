@@ -164,7 +164,7 @@ namespace Obi.UserControls
         /// </summary>
         public SectionStrip()
         {
-            InitializeComponent();
+                        InitializeComponent();
             InitializeToolTips();
             mManager = null;
             mNode = null;
