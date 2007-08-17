@@ -2,6 +2,7 @@ using System;
 using urakawa.core;
 using urakawa.media;
 using urakawa.media.data;
+using urakawa.media.data.audio ;
 
 namespace Obi
 {
