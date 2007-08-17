@@ -19,13 +19,14 @@ namespace Obi
         /// <summary>
         /// Create a new node for a project.
         /// </summary>
-        protected ObiNode(Project project): base(project.getPresentation())
+        protected ObiNode(Project project): base()
         {
-            ChannelsProperty prop = getPresentation().getPropertyFactory().createChannelsProperty();
+                setPresentation(project.getPresentation());
+                                    ChannelsProperty prop = getPresentation().getPropertyFactory().createChannelsProperty();
             setProperty(prop);
             mProject = project;
             mUsed = true;
-        }
+                    }
 
 
         /// <summary>

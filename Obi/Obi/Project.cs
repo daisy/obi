@@ -50,8 +50,10 @@ namespace Obi
             mXUKPath = XUKPath;
             Presentation presentation = getPresentation();
             ((ObiNodeFactory)presentation.getTreeNodeFactory()).Project = this;
-            presentation.setRootNode(presentation.getTreeNodeFactory().createNode(Obi.RootNode.XUK_ELEMENT_NAME,
-                Program.OBI_NS));
+           
+                presentation.setRootNode(presentation.getTreeNodeFactory().createNode(Obi.RootNode.XUK_ELEMENT_NAME,
+        Program.OBI_NS));
+            
             presentation.treeNodeAdded += new TreeNodeAddedEventHandler(presentation_treeNodeAdded);
             presentation.treeNodeRemoved += new TreeNodeRemovedEventHandler(presentation_treeNodeRemoved);
             AddChannel(ANNOTATION_CHANNEL_NAME);
@@ -287,7 +289,7 @@ namespace Obi
         /// <summary>
         /// Create a new phrase node from an audio media.
         /// </summary>
-        private PhraseNode CreatePhraseNode(ManagedAudioMedia audio)
+        private PhraseNode CreatePhraseNode( urakawa.media.data.audio.ManagedAudioMedia audio)
         {
             PhraseNode node = CreatePhraseNode();
             node.Audio = audio;
@@ -302,8 +304,10 @@ namespace Obi
         private static Presentation CreatePresentation(string XUKPath)
         {
             return new Presentation(new Uri(Path.GetDirectoryName(XUKPath) + Path.DirectorySeparatorChar),
-                new ObiNodeFactory(), new PropertyFactory(), null, null, null, new Audio.DataManager(), null);
-        }
+                new ObiNodeFactory(), new PropertyFactory(), 
+                null, null, null,
+                new Audio.DataManager(), null , null);
+                        }
 
         /// <summary>
         /// Create a section node.
@@ -350,7 +354,7 @@ namespace Obi
         /// <exception cref="TooManyChannelsException">Thrown when there are more than one channels with that name.</exception>
         private Channel GetSingleChannelByName(string name)
         {
-            List<Channel> channels = getPresentation().getChannelsManager().getChannelByName(name);
+            List<Channel> channels = getPresentation().getChannelsManager().getListOfChannels(name);
             if (channels.Count == 0) throw new Exception(String.Format("No channel named \"{0}\"", name));
             if (channels.Count > 1) throw new Exception(String.Format("Expected 1 channel for {0}, got {1}.",
                 name, channels.Count));
@@ -699,7 +703,7 @@ namespace Obi
         {
             if (e.getTreeNode() is PhraseNode)
             {
-                if (DataManager.getListOfManagedMediaData().Count == 0) DataManager.setEnforceSinglePCMFormat(false);
+                                if (DataManager.getListOfMediaData ().Count == 0) DataManager.setEnforceSinglePCMFormat(false);
             }
         }
 

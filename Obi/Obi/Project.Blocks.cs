@@ -204,15 +204,15 @@ namespace Obi
         /// </summary>
         /// <param name="node">The original node that was split, with its split asset.</param>
         /// <param name="newAsset">The new asset to create a new phrase node from.</param>
-        public PhraseNode Split(PhraseNode node, urakawa.media.data.ManagedAudioMedia newAudio)
+        public PhraseNode Split(PhraseNode node, urakawa.media.data.audio.ManagedAudioMedia newAudio)
         {
             PhraseNode newNode = CreatePhraseNode(newAudio);
-            node.ParentSection.insertAfter(newNode, node);
-            // TODO review this
-            MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, Project.AUDIO_CHANNEL_NAME,
-                GetMediaForChannel(node, Project.AUDIO_CHANNEL_NAME)));
-            Modified(new Commands.Strips.SplitPhrase(node, newNode));
-            return newNode;
+                node.ParentSection.insertAfter(newNode, node);
+                // TODO review this
+                MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, Project.AUDIO_CHANNEL_NAME,
+                    GetMediaForChannel(node, Project.AUDIO_CHANNEL_NAME)));
+                Modified(new Commands.Strips.SplitPhrase(node, newNode));
+                        return newNode;
         }
 
         public void ApplyPhraseDetection(PhraseNode node, long threshold, double length, double gap)
