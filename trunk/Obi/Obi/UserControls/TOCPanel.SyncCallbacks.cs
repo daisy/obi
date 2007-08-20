@@ -34,6 +34,8 @@ namespace Obi.UserControls
                 TreeNode newTreeNode = AddSingleSectionNode(section);
                 newTreeNode.ExpandAll();
                 newTreeNode.EnsureVisible();
+
+                // Avn:  temporary fix to allow obi run properly. Will be finally done by catching tree node events.
                 mProjectPanel.StripManager.AddStripFromNode(section);
             }
         }
