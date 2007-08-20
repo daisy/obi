@@ -249,9 +249,8 @@ namespace Obi.UserControls
                 PhraseNode phrase = mProjectPanel.CurrentSelectedAudioBlock;
                                 double time = mProjectPanel.TransportBar._CurrentPlaylist.CurrentTimeInAsset;
                 Audio.AudioPlayerState state = mProjectPanel.TransportBar._CurrentPlaylist.State;
-                MessageBox.Show(time.ToString());
-                mProjectPanel.TransportBar.Enabled = false;
-                Dialogs.Split dialog = new Dialogs.Split(phrase, time, mProjectPanel.TransportBar.AudioPlayer);
+                                mProjectPanel.TransportBar.Enabled = false;
+                                Dialogs.Split dialog = new Dialogs.Split(phrase, time, mProjectPanel.TransportBar.AudioPlayer, state );
                 NodeSelection originalSelection = mProjectPanel.CurrentSelection;
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {

@@ -26,13 +26,13 @@ namespace Obi.Dialogs
         private List<double> mStepSizeList = new List<double>();
         private int mSelectedStepSize;
 
-        public Split(PhraseNode node, double time, Audio.AudioPlayer player)
+        public Split(PhraseNode node, double time, Audio.AudioPlayer player , Audio.AudioPlayerState PlayerState  )
         {
             InitializeComponent();
             mNode = node;
             mDialogLoadTime = time;
             mPlayer = player;
-            mSplitState = Audio.AudioPlayerState.Playing;
+            mSplitState = PlayerState ;
                         mSourceAudio = node.Audio;
             mResultAudio = null;
             
@@ -42,8 +42,7 @@ namespace Obi.Dialogs
             tmUpdateTimePosition.Enabled = true;
             InitialiseStepSizeList();
             mSelectedStepSize = 3;
-            MessageBox.Show(time.ToString());
-        }
+                    }
 
         /// <summary>
         /// New audio after the split.
@@ -266,7 +265,7 @@ namespace Obi.Dialogs
                 mResultAudio =  mSourceAudio.split(new urakawa.media.timing.Time( mSplitTime ));
                 //mResultAudio = Audio.DataManager.SplitAndManage(mSourceAudio, mSplitTime);
                 Close();
-            }
+                            }
             else
             {
                 MessageBox.Show("Split command canceled");

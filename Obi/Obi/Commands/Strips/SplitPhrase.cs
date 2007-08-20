@@ -24,8 +24,13 @@ namespace Obi.Commands.Strips
             mNode = node;
             mNewNode = newNode;
             mSplitAudio = node.Audio;
-            mOriginalAudio = node.Project.DataManager.CopyAndManage(node.Audio);
-            ManagedAudioMedia newAudio = newNode.Project.DataManager.CopyAndManage(newNode.Audio);
+
+            // Avn: following two lines changed for updated toolkit
+            //mOriginalAudio = node.Project.DataManager.CopyAndManage(node.Audio);
+                        //ManagedAudioMedia newAudio = newNode.Project.DataManager.CopyAndManage(newNode.Audio);
+            mOriginalAudio = node.Audio.copy();
+            ManagedAudioMedia newAudio = newNode.Audio.copy();
+
             Audio.DataManager.MergeAndManage(mOriginalAudio, newAudio);
         }
 
