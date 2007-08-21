@@ -308,9 +308,11 @@ namespace Obi.UserControls
             if (CanMerge)
             {
                 mProjectPanel.TransportBar.Enabled = false;
-                mProjectPanel.CurrentSelection = new NodeSelection(mProjectPanel.Project.MergeNodes(
+                PhraseNode MergedNode = mProjectPanel.Project.MergeNodes(
                     mProjectPanel.CurrentSelectedAudioBlock.PreviousPhraseInSection,
-                    mProjectPanel.CurrentSelectedAudioBlock),
+                    mProjectPanel.CurrentSelectedAudioBlock) ;
+                mProjectPanel.SynchronizeWithCoreTree();
+                mProjectPanel.CurrentSelection = new NodeSelection(MergedNode   ,
                     this);
                 mProjectPanel.TransportBar.Enabled = true;
             }
@@ -436,6 +438,6 @@ namespace Obi.UserControls
         {
             node.Audio = audio;
             mPhraseNodeMap[node].RefreshDisplay();
-        }
+                    }
     }
 }

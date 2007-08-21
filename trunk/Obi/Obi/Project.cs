@@ -306,7 +306,7 @@ namespace Obi
             return new Presentation(new Uri(Path.GetDirectoryName(XUKPath) + Path.DirectorySeparatorChar),
                 new ObiNodeFactory(), new PropertyFactory(), 
                 null, null, null,
-                new Audio.DataManager(), null , null);
+                new Audio.DataManager(), null , null , null , null );
                         }
 
         /// <summary>

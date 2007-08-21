@@ -145,41 +145,41 @@ namespace Obi.Audio
         {
             int PlayPosition = 0;
             long lCurrentPosition = 0;
-            if (mCurrentAudio.getPCMLength() > 0)
-            {
+            if (mCurrentAudio != null     &&       mCurrentAudio.getPCMLength() > 0)
+            {//1
                 if (mState == AudioPlayerState.Playing)
-                {
+                {//2
                     PlayPosition = mSoundBuffer.PlayPosition;
                     // if refreshing of buffer has finished and player is near end of asset
                     if (mBufferStopPosition != -1)
-                    {
+                    {//3
                         int subtractor = (mBufferStopPosition - PlayPosition);
                         lCurrentPosition = mCurrentAudio.getPCMLength() - subtractor;
-                    }
+                    }//-3
                     else if (m_BufferCheck % 2 == 1)
-                    {
+                    {//3
                         // takes the lPlayed position and subtract the part of buffer played from it
                         int subtractor = (2 * m_RefreshLength) - PlayPosition;
                         lCurrentPosition = m_lPlayed - subtractor;
-                    }
+                    }//-3
                     else
-                    {
+                    {//3
                         int subtractor = (3 * m_RefreshLength) - PlayPosition;
                         lCurrentPosition = m_lPlayed - subtractor;
-                    }
+                    }//-3
                     if (lCurrentPosition >= mCurrentAudio.getPCMLength())
-                    {
+                    {//3
                         lCurrentPosition = mCurrentAudio.getPCMLength() -
                             Convert.ToInt32(CalculationFunctions.ConvertTimeToByte(100, m_SamplingRate, m_FrameSize));
-                    }
-                }
+                    }//-3
+                }//-2
                         else if (mState == AudioPlayerState.Paused)
-            {
+            {//2
                 lCurrentPosition = m_lPausePosition;
-            }
+            }//-2
                         if (mPlaybackMode != PlaybackMode.Normal) lCurrentPosition = m_lChunkStartPosition;
             lCurrentPosition = CalculationFunctions.AdaptToFrame(lCurrentPosition, m_FrameSize);
-        }
+        }//-1
             return lCurrentPosition;
         }
 
@@ -842,7 +842,10 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
 
 		public double GetCurrentTimePosition()
 		{	
+            if ( mCurrentAudio != null )
 			return CalculationFunctions.ConvertByteToTime (GetCurrentBytePosition() , m_SamplingRate , m_FrameSize);
+            else
+                return 0 ;
 		}
 		
 		long m_StartPosition  ;
