@@ -1620,7 +1620,7 @@ namespace Obi
         {
             FullMetadata dialog = new FullMetadata(mProject);
             List<urakawa.metadata.Metadata> affected = new List<urakawa.metadata.Metadata>();
-            foreach (object o in mProject.getMetadataList())
+            foreach (object o in mProject.getPresentation ().getMetadataList())
             {
                 urakawa.metadata.Metadata meta = (urakawa.metadata.Metadata)o;
                 if (MetadataEntryDescription.GetDAISYEntries().Find(delegate(MetadataEntryDescription entry)
@@ -1632,15 +1632,15 @@ namespace Obi
             }
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                foreach (urakawa.metadata.Metadata m in affected) mProject.deleteMetadata(m.getName());
+                foreach (urakawa.metadata.Metadata m in affected) mProject.getPresentation ().deleteMetadata(m.getName());
                 foreach (UserControls.MetadataPanel p in dialog.MetadataPanels)
                 {
                     if (p.CanSetName)
                     {
-                        urakawa.metadata.Metadata m = (urakawa.metadata.Metadata)mProject.getMetadataFactory().createMetadata();
+                        urakawa.metadata.Metadata m = (urakawa.metadata.Metadata)mProject.getPresentation ().getMetadataFactory().createMetadata();
                         m.setName(p.EntryName);
                         m.setContent(p.EntryContent);
-                        mProject.appendMetadata(m);
+                        mProject.getPresentation().appendMetadata(m);
                     }
                     else
                     {
