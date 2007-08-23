@@ -121,7 +121,7 @@ namespace Obi
             {
                 if (value != null)
                 {
-                    setProperty(value);
+                                        setProperty(value);
                 }
                 else
                 {
