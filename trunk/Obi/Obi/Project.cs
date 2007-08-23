@@ -306,7 +306,7 @@ namespace Obi
             return new Presentation(new Uri(Path.GetDirectoryName(XUKPath) + Path.DirectorySeparatorChar),
                 new ObiNodeFactory(), new PropertyFactory(), 
                 null, null, null,
-                new Audio.DataManager(), null , null , null , null );
+                new Audio.DataManager(), null , null , null , null , null );
                         }
 
         /// <summary>
@@ -582,10 +582,10 @@ namespace Obi
         {
             if (value != null)
             {
-                urakawa.metadata.Metadata meta = getMetadataFactory().createMetadata();
+                                urakawa.metadata.Metadata meta = getPresentation ().getMetadataFactory().createMetadata();
                 meta.setName(name);
                 meta.setContent(value);
-                this.appendMetadata(meta);
+                this.getPresentation ().appendMetadata(meta);
                 return meta;
             }
             else
@@ -599,7 +599,7 @@ namespace Obi
         /// </summary>
         public bool CanDeleteMetadata(MetadataEntryDescription entry)
         {
-            return entry.Occurrence != MetadataOccurrence.Required || getMetadataList(entry.Name).Count > 1;
+            return entry.Occurrence != MetadataOccurrence.Required || getPresentation ().getMetadataList(entry.Name).Count > 1;
         }
 
         /// <summary>
@@ -622,7 +622,7 @@ namespace Obi
         /// <returns>The found metadata item, or null if not found.</returns>
         public urakawa.metadata.Metadata GetFirstMetadataItem(string name)
         {
-            IList list = getMetadataList(name);
+            IList list = getPresentation ().getMetadataList(name);
             return list.Count > 0 ? list[0] as urakawa.metadata.Metadata : null;
         }
 
@@ -632,7 +632,7 @@ namespace Obi
         /// <returns>The found metadata item, or null if not found.</returns>
         public urakawa.metadata.Metadata GetSingleMetadataItem(string name)
         {
-            IList list = getMetadataList(name);
+            IList list = getPresentation ().getMetadataList(name);
             if (list.Count > 1)
             {
                 throw new Exception(String.Format("Expected a single metadata item for \"{0}\" but got {1}.",
@@ -648,7 +648,7 @@ namespace Obi
         /// <param name="content">The content of the metadata item to set.</param>
         public void SetSingleMetadataItem(string name, string content)
         {
-            deleteMetadata(name);
+            getPresentation ().deleteMetadata(name);
             AddMetadata(name, content);
         }
 

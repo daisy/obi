@@ -158,7 +158,7 @@ namespace Obi
             nextNode.detach();
             TouchedNode(this, new Events.Node.NodeEventArgs(this, node));
             Modified(command);
-            return node;
+                        return node;
         }
 
         public enum Direction { Forward, Backward };
@@ -206,13 +206,13 @@ namespace Obi
         /// <param name="newAsset">The new asset to create a new phrase node from.</param>
         public PhraseNode Split(PhraseNode node, urakawa.media.data.audio.ManagedAudioMedia newAudio)
         {
-            PhraseNode newNode = CreatePhraseNode(newAudio);
+                        PhraseNode newNode = CreatePhraseNode(newAudio);
                 node.ParentSection.insertAfter(newNode, node);
-                // TODO review this
+                                // TODO review this
                 MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, Project.AUDIO_CHANNEL_NAME,
                     GetMediaForChannel(node, Project.AUDIO_CHANNEL_NAME)));
-                Modified(new Commands.Strips.SplitPhrase(node, newNode));
-                        return newNode;
+                                Modified(new Commands.Strips.SplitPhrase(node, newNode));
+                                        return newNode;
         }
 
         public void ApplyPhraseDetection(PhraseNode node, long threshold, double length, double gap)
@@ -400,9 +400,9 @@ namespace Obi
         {
             if (node.PageProperty == null)
             {
-                node.PageProperty = new PageProperty();
-                node.PageProperty.PageNumber = 0;
-                RenumberPages();
+                                                                node.PageProperty = new PageProperty();
+                                node.PageProperty.PageNumber = 0;
+                                RenumberPages();
                 ++mPageCount;
                 return true;
             }
@@ -418,7 +418,7 @@ namespace Obi
         /// <param name="node">The phrase node to set a page on.</param>
         public void SetPageNumberOnPhraseWithUndo(PhraseNode node)
         {
-            if (DidSetPageNumberOnPhrase(node)) Modified(new Commands.Strips.SetPageNumber(node));
+                        if (DidSetPageNumberOnPhrase(node)) Modified(new Commands.Strips.SetPageNumber(node));
         }
 
         /// <summary>
