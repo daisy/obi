@@ -664,8 +664,8 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
                     if (ReadPosition < ((m_SizeBuffer) - m_UpdateVMArrayLength))
                     {
                         Array.Copy(mSoundBuffer.Read(ReadPosition, typeof(byte), LockFlag.None, m_UpdateVMArrayLength), arUpdateVM, m_UpdateVMArrayLength);
-                        //if ( m_EventsEnabled == true)
-                        //UpdateVuMeter(this, new Events.Audio.Player.UpdateVuMeterEventArgs());  // JQ // temp for debugging tk
+                        if ( mEventsEnabled == true)
+                        UpdateVuMeter(this, new Events.Audio.Player.UpdateVuMeterEventArgs());  // JQ // temp for debugging tk
                     }
                 }
 				// check if play cursor is in second half , then refresh first half else second
