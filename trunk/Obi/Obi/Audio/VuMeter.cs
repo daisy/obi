@@ -241,16 +241,16 @@ namespace Obi.Audio
 		{
 			AudioRecorder Recorder = sender as AudioRecorder ;
 			ob_AudioRecorder = Recorder ;
-			m_FrameSize = Recorder.m_FrameSize ;
-			m_Channels = Recorder.m_Channels ;
+			m_FrameSize = ( Recorder.Channels * ( Recorder.BitDepth / 8 ) )   ;
+			m_Channels = Recorder.Channels ;
 			m_UpdateVMArrayLength = Recorder.m_UpdateVMArrayLength ;
 			m_arUpdatedVM  = new byte [m_UpdateVMArrayLength ] ;
 			Array.Copy ( Recorder.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
 
             //m_BufferReadInterval = ( m_arUpdatedVM.Length * 1000 ) / ( Recorder.SampleRate * m_FrameSize )  ;
-            if (Recorder != null && m_BufferReadInterval != ((m_arUpdatedVM.Length * 1000) / (Recorder.SampleRate * Recorder.m_FrameSize )))
+            if (Recorder != null && m_BufferReadInterval != ((m_arUpdatedVM.Length * 1000) / (Recorder.SampleRate *  m_FrameSize  )))
             {
-                m_BufferReadInterval = ((m_arUpdatedVM.Length * 1000) / (Recorder.SampleRate * Recorder.m_FrameSize  ));
+                m_BufferReadInterval = ((m_arUpdatedVM.Length * 1000) / (Recorder.SampleRate *  m_FrameSize  ));
                 SetSampleCount(m_SampleTimeLength);
             }
 

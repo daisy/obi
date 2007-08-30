@@ -22,65 +22,49 @@ namespace Obi.Audio
 
 	public class AudioRecorder
 	{
-        private double mCurrentTime;
+
+        private double mCurrentTime; // Time in milliseconds
         
         public event Events.Audio.Recorder.StateChangedHandler StateChanged;
 		public event Events.Audio.Recorder.UpdateVuMeterHandler UpdateVuMeterFromRecorder;
 
 		//member variables
-		//the directory to hold the recorded files
-		private string sProjectDirectory; 
-		//the variables for current position and current time for VuMeter
-		long CurrentPositionInByte ;
-        private double mTime;
-
-        private System.Windows.Forms.Timer tmUpdateVuMeter = new System.Windows.Forms.Timer();
-
-        
-        /// <summary>
-        /// Current time since beginning of recording(?)
-        /// </summary>
-		public double CurrentTime
-		{
-			get { return mCurrentTime; }
-		}
-
-		// basic elements of WaveFormat
-		internal int m_Channels;
-		internal int m_bitDepth;
-		internal int m_SampleRate;
-		internal int m_FrameSize;
-		//  state of AudioRecorder
-		AudioRecorderState mState;
-		//variables from DirectX.DirectSound
-		// Microsoft.DirectX.DirectSound.Device m_InputDevice;
+        // member variables initialised only once in a session
+        private string sProjectDirectory;  //the directory to hold the recorded files
         InputDevice mDevice;
-		private bool Capturing;
-		// private Capture m_cApplicationDevice;
-		private int m_iNotifySize;
-		private int m_iCaptureBufferSize;
-		private const int NumberRecordNotifications = 16;
-		private BufferPositionNotify[] PositionNotify = new BufferPositionNotify[NumberRecordNotifications + 1];  
-		private int NextCaptureOffset;
-		private long SampleCount = 0;
-		private AutoResetEvent NotificationEvent = null;
-		private Thread NotifyThread = null;
-		private CaptureBuffer applicationBuffer;	
-		private Notify applicationNotify;
-		WaveFormat InputFormat;
+        private const int NumberRecordNotifications = 16; // number of notifications in capture buffer 
 
-		private string m_sFileName;
-		
-		//		 array for update current amplitude to VuMeter
-		internal byte [] arUpdateVM ;
-		internal int m_UpdateVMArrayLength ;
 
-		VuMeter ob_VuMeter;
-			
-				
-AudioMediaData 		  mAsset;
-		
+        // member variables which change whenever recording of a new asset starts
+        AudioMediaData mAsset; // Asset currently  being  recorded
+                private int m_Channels;
+        private int m_bitDepth;
+        private int m_SampleRate;
+        private int m_FrameSize;
+        WaveFormat InputFormat; // DX wave format object for DX buffers etc.
+        private string m_sFileName; // Full file path of file being recorded
+        private CaptureBuffer applicationBuffer; // DX Capture buffer for recording
+        private bool Capturing; // Flag to indicate status of capturing
+        private Notify applicationNotify;  // DX notification Object to setup capture buffer notifications
+        private int m_iCaptureBufferSize; // Size of capture buffer
+        private int m_iNotifySize; // size of bytes between two notifications
+                private BufferPositionNotify[] PositionNotify; // array containing notification  position in capture buffer
+        VuMeter ob_VuMeter; // VuMeter object
+        internal byte[] arUpdateVM; // array for updating VuMeter
+        internal int m_UpdateVMArrayLength; // Length of Vumeter array
 
+
+// member variables  which are re assigned during recording
+       AudioRecorderState mState; //  state of AudioRecorder
+       //the variables for current position and current time for VuMeter
+       long CurrentPositionInByte;
+       private double mTime;
+
+        private int NextCaptureOffset; // Offset in DX capture buffer
+        private long SampleCount ; // Count of total bytes being recorded at an instance of time
+        private AutoResetEvent NotificationEvent = null;
+        private Thread NotifyThread = null;
+                        
 		private static readonly AudioRecorder instance = new AudioRecorder();
 		
 		public static AudioRecorder Instance
@@ -94,14 +78,23 @@ AudioMediaData 		  mAsset;
 		// constructor, made private by JQ 
 		private AudioRecorder()
 		{
-            mState = AudioRecorderState.Idle;
+                        mState = AudioRecorderState.Idle;
+                        PositionNotify = new BufferPositionNotify[NumberRecordNotifications + 1];
             Capturing = false;
+            SampleCount = 0;
             ob_VuMeter = null;
-
-            tmUpdateVuMeter.Tick += new EventHandler ( tmUpdateVuMeter_Tick );
-            tmUpdateVuMeter.Interval = 10; //TODO: LNN changed this from 50 to 10, see if it breaks anything
-            tmUpdateVuMeter.Enabled = false;
+                        
 		}
+
+
+        /// <summary>
+        /// Current time since beginning of recording(?)
+        /// </summary>
+        public double CurrentTime
+        {
+            get { return mCurrentTime; }
+        }
+
 
 		public int SampleRate
 		{
@@ -193,9 +186,7 @@ AudioMediaData 		  mAsset;
 			m_SampleRate = (int)  asset.getPCMFormat ().getSampleRate ()  ;
             m_FrameSize = (m_bitDepth / 8) * m_Channels;
             
-            // sProjectDirectory= manager.AssetsDirectory ;
             mAsset = asset;
-            //sProjectDirectory = asset.Manager.AssetsDirectory; // comment toolkit
 			InputFormat = GetInputFormat();
             m_sFileName = sProjectDirectory + "\\" + "Listen.wav";
              
@@ -217,11 +208,9 @@ AudioMediaData 		  mAsset;
             m_FrameSize = (m_bitDepth / 8) * m_Channels;
 
             mAsset = asset;
-			//sProjectDirectory= asset.Manager.AssetsDirectory ; // comment for toolkit
-		    InputFormat = GetInputFormat();
+					    InputFormat = GetInputFormat();
             
              m_sFileName = GetFileName();
-//            m_sFileName = asset.Manager.UniqueFileName(".wav");
 			BinaryWriter bw = new BinaryWriter(File.Create(m_sFileName));
 			CreateRIFF(bw);
 			CreateCaptureBuffer();
@@ -287,19 +276,6 @@ AudioMediaData 		  mAsset;
                     File.Delete(m_sFileName);
         }
 
-
-		/*public Capture InitDirectSound(int Index)
-		{
-			CaptureDevicesCollection devices = new CaptureDevicesCollection();
-			Guid mGuid  = Guid.Empty;
-			mGuid = devices[Index].DriverGuid;
-			m_cApplicationDevice = new Capture(mGuid);
-			return m_cApplicationDevice;
-		}*/	
-
-		
-
-		
 		
 		public WaveFormat GetInputFormat()
 		{				
@@ -309,8 +285,7 @@ AudioMediaData 		  mAsset;
             InputFormat.BitsPerSample = Convert.ToInt16(m_bitDepth );
             InputFormat.AverageBytesPerSecond = m_SampleRate * m_FrameSize ;
             InputFormat.BlockAlign = Convert.ToInt16(m_FrameSize );
-			//			m_Channels = m_AudioMediaAsset.Channels;
-			//m_SampleRate =  m_AudioMediaAsset.SampleRate;
+
 			return InputFormat;
 		}
 
@@ -416,13 +391,7 @@ AudioMediaData 		  mAsset;
 			m_iNotifySize -= m_iNotifySize % InputFormat.BlockAlign;   
 			// Set the buffer sizes
 			m_iCaptureBufferSize = m_iNotifySize * NumberRecordNotifications;
-			//calculate the size of VuMeter Update array length
-			/*
-						m_UpdateVMArrayLength = m_iCaptureBufferSize/ 50 ;
-						CalculationFunctions cf = new CalculationFunctions();
-						m_UpdateVMArrayLength = Convert.ToInt32 (cf.AdaptToFrame ( Convert.ToInt32 ( m_UpdateVMArrayLength ),  m_FrameSize)  );
-						arUpdateVM = new byte [ m_UpdateVMArrayLength ] ;
-			*/			
+			
 			// Create the capture buffer
 			dsc.BufferBytes = m_iCaptureBufferSize;
 			InputFormat.FormatTag = WaveFormatTag.Pcm;
@@ -550,7 +519,7 @@ AudioMediaData 		  mAsset;
             mTime = Audio.CalculationFunctions.ConvertByteToTime(mLength, m_SampleRate, m_FrameSize );
 }
 
-		internal long GetCurrentPositioninBytes
+		private long GetCurrentPositioninBytes
 		{
 			get
 			{
@@ -590,10 +559,6 @@ AudioMediaData 		  mAsset;
         }
 
 
-
-
-
-
 		
 		public void InitRecording(bool SRecording)
 		{	
@@ -614,12 +579,10 @@ AudioMediaData 		  mAsset;
                 m_UpdateVMArrayLength = m_iCaptureBufferSize / 20;
                 m_UpdateVMArrayLength = Convert.ToInt32(CalculationFunctions.AdaptToFrame(Convert.ToInt32(m_UpdateVMArrayLength), m_FrameSize));
                 arUpdateVM = new byte[m_UpdateVMArrayLength];
-                //tmUpdateVuMeter.Enabled = true;   // Avn: Currently timer is disabled , may not require if CaptureData works
 			}
 			else
 			{
-                tmUpdateVuMeter.Enabled = false;    
-				applicationBuffer.Stop();
+                				applicationBuffer.Stop();
 				RecordCapturedData();
 
                 // condition for listening added to eleminate listen file on 2 Feb 2007
@@ -645,10 +608,6 @@ AudioMediaData 		  mAsset;
 				Writer = null;
                 Audiolength = 0;
                 ///-///
-                
-                    //Assets.AudioClip NewRecordedClip = new Assets.AudioClip(m_sFileName);
-                    //mAsset.AddClip(NewRecordedClip);
-                    //mAsset.Manager.AddedClip(NewRecordedClip);
                                 mAsset.appendAudioDataFromRiffWave(m_sFileName);
                                 }
 
@@ -657,20 +616,6 @@ AudioMediaData 		  mAsset;
 			}
 		}
 
-        private void tmUpdateVuMeter_Tick(object sender, EventArgs e)
-        {
-            //System.Media.SystemSounds.Exclamation.Play();
-            int ReadPos;
-            int CapturePos;
-            applicationBuffer.GetCurrentPosition(out CapturePos, out ReadPos);
-            ReadPos = CapturePos;            
-
-            if ( ReadPos >  m_UpdateVMArrayLength    &&     ReadPos < ( m_iCaptureBufferSize - m_UpdateVMArrayLength  )   )
-            {
-
-                //UpdateVuMeterFromRecorder(this, new Events.Audio.Recorder.UpdateVuMeterEventArgs());
-            }
-        }
 
 		/*public void SetInputDeviceForRecording(Control FormHandle, int Index)
 		{
