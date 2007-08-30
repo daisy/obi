@@ -4,7 +4,7 @@
   <head>
     <title>Obi 1.0 feature list</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" type="text/css" href="obi_.css"/>
+    <link rel="stylesheet" type="text/css" href="obi.css"/>
   </head>
   <body>
     <div id="top">
@@ -33,44 +33,47 @@ December 2007.</p>
           <a href="#id53329">Book structure and table of contents</a>
         </li>
         <li>
-          <a href="#id53384">Strips and blocks</a>
+          <a href="#id53394">Strips and blocks</a>
           <ul>
             <li>
-              <a href="#id53388">Strips</a>
+              <a href="#id53398">Strips</a>
             </li>
             <li>
-              <a href="#id53432">Audio blocks</a>
+              <a href="#id53443">Audio blocks</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="#id53554">Audio</a>
+          <a href="#id53565">Audio</a>
           <ul>
             <li>
-              <a href="#id53567">Audio recording</a>
+              <a href="#id53577">Audio recording</a>
             </li>
             <li>
-              <a href="#id53597">Audio playback</a>
+              <a href="#id53607">Audio playback</a>
             </li>
             <li>
-              <a href="#id53636">Audio editing</a>
+              <a href="#id53647">Audio editing</a>
             </li>
             <li>
-              <a href="#id53670">Accessible VU meter</a>
+              <a href="#id53680">Accessible VU meter</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="#id53679">Metadata editing</a>
+          <a href="#id53690">Metadata editing</a>
         </li>
         <li>
-          <a href="#id53689">Undo/redo</a>
+          <a href="#id53699">Undo/redo</a>
         </li>
         <li>
-          <a href="#id53697">User customization</a>
+          <a href="#id53707">User customization</a>
         </li>
         <li>
-          <a href="#id53711">Search</a>
+          <a href="#id53722">Search</a>
+        </li>
+        <li>
+          <a href="#id53730">Checklist</a>
         </li>
       </ul>
     </div>
@@ -94,6 +97,8 @@ view, where every strip represents a section laid out linearly.</p>
     <ul>
       <li>Adding a new section</li>
       <li>Adding a new subsection to a section</li>
+      <li>Changing the level of a section by moving it in (increasing its level) or
+out (decreasing its level)</li>
       <li>Cutting a section</li>
       <li>Copying a section</li>
       <li>Pasting a section</li>
@@ -102,9 +107,10 @@ view, where every strip represents a section laid out linearly.</p>
       <li>Editing the title of a section</li>
     </ul>
     <p>The structure can be created entirely within Obi or be imported from an
-XHTML file when creating a new project.</p>
-    <h2 id="id53384">Strips and blocks</h2>
-    <h3 id="id53388">Strips</h3>
+XHTML file when creating a new project. All operations described above have
+effect on a section and all of its subsections (these are <em>deep</em> edits.)</p>
+    <h2 id="id53394">Strips and blocks</h2>
+    <h3 id="id53398">Strips</h3>
     <p>A strip represents a section in the book. Every strip corresponds to a
 section in the table of contents. A strip shows the title of the section as
 well as the audio contents in the form of a sequence of audio blocks. See
@@ -119,7 +125,7 @@ below for a detailed description of blocks.</p>
       <li>Editing the title of the section for a strip</li>
       <li>Managing the audio contents through audio block editing</li>
     </ul>
-    <h3 id="id53432">Audio blocks</h3>
+    <h3 id="id53443">Audio blocks</h3>
     <p>Audio blocks represent the actual audio content of the book. Every block is
 a phrase which is the smallest navigation unit in the book. Obi defines the
 following kinds of blocks:</p>
@@ -181,13 +187,13 @@ blocks of the same kind.</p>
       <li>Moving a block forward or backward</li>
       <li>Changing the kind and properties of a block</li>
     </ul>
-    <h2 id="id53554">Audio</h2>
+    <h2 id="id53565">Audio</h2>
     <p>Obi supports uncompressed RIFF/WAV audio. Through the DAISY Pipeline, audio
 contents can be converted to MP3 or other audio formats that DAISY supports.
 Audio contents can either be imported from existing files or recorded
 directly within Obi. All audio contents within an Obi projects share the
 same WAV format (sample rate, number of channels, etc.)</p>
-    <h3 id="id53567">Audio recording</h3>
+    <h3 id="id53577">Audio recording</h3>
     <p>Obi supports live recording of audio. There are two recording modes:</p>
     <ul>
       <li>Append mode: new audio contents are added to the book.</li>
@@ -195,9 +201,9 @@ same WAV format (sample rate, number of channels, etc.)</p>
 of audio.</li>
     </ul>
     <p>Recording creates new audio blocks and sections. While recording, it is
-possible to mark phrases, pages and sections</p>
+possible to mark phrases, pages and sections, as well as custom blocks.</p>
     <p>The input device used for recording can be set from within Obi.</p>
-    <h3 id="id53597">Audio playback</h3>
+    <h3 id="id53607">Audio playback</h3>
     <p>Obi can playback the content of a book allowing navigation similar to a
 DAISY player:</p>
     <ul>
@@ -209,7 +215,7 @@ DAISY player:</p>
     <p>For QA purposes, it is possible to play the whole book or just a selected
 part of it (<em>e.g.</em> a block or a section.)</p>
     <p>The output device used for playback can be set from within Obi.</p>
-    <h3 id="id53636">Audio editing</h3>
+    <h3 id="id53647">Audio editing</h3>
     <p>Obi is built with accessibility in mind and provides simple primitives for
 non-visual audio editing:</p>
     <ul>
@@ -221,22 +227,126 @@ non-visual audio editing:</p>
 typical audio applications.</p>
     <p>Obi also has a cleanup operation which removes all unused audio data
 throughout the project.</p>
-    <h3 id="id53670">Accessible VU meter</h3>
+    <h3 id="id53680">Accessible VU meter</h3>
     <p>Obi provides a graphical VU meter used to monitor recording and playback
 levels. It also provides a text-based VU meter that can work with screen
 readers.</p>
-    <h2 id="id53679">Metadata editing</h2>
+    <h2 id="id53690">Metadata editing</h2>
     <p>Obi supports editing of all DAISY metadata specified in the DAISY/NISO 2005
 specification and allows the addition of custom metadata.</p>
-    <h2 id="id53689">Undo/redo</h2>
+    <h2 id="id53699">Undo/redo</h2>
     <p>All operations within Obi can be undone or redone, including audio edits.</p>
-    <h2 id="id53697">User customization</h2>
+    <h2 id="id53707">User customization</h2>
     <p>Obi stores user profiles to help with metadata, as well as user preferences
 such as audio settings or window sizes.</p>
     <p>Color schemes and font sizes can be customized. Default color schemes such
 as high contrast color scheme are provided.</p>
-    <h2 id="id53711">Search</h2>
+    <h2 id="id53722">Search</h2>
     <p>All text content in a project (such as section titles or annotations) can be
 searched and located.</p>
+    <h2 id="id53730">Checklist</h2>
+    <pre>Obi version: 0.9.1.0
+
+Key:
+[ ] Unknown status
+[/] Implementation in progress
+[~] Partial implementation
+[x] Done and working (for some value of working)
+[!] Currently not working
+[-] Not implemented yet
+
+* Obi file format
+
+[ ] Create a new project from scratch
+[ ] Create a new project from an XHTML file
+[ ] Open an existing project from a XUK (.obi) file
+[-] Open a DAISY 2.02 book
+[-] Open a DAISY 3 book
+[ ] Save a project to a XUK (.obi) file
+[ ] Save a project under a different name
+[-] Export a project to DAISY 2.02
+[ ] Export a project to DAISY 3
+
+* Sections/TOC view
+
+[ ] Add a new section
+[ ] Add a new subsection
+[ ] Edit the title of a section
+[ ] Move a section in (increase level)
+[ ] Move a section out (decrease level)
+[ ] Cut a section
+[ ] Copy a section
+[ ] Paste a section
+[ ] Delete a section
+[ ] Mark a section used/unused
+
+* Strips
+
+[ ] Add a new strip
+[ ] Edit the title of a strip
+[ ] Cut a strip
+[ ] Copy a strip
+[ ] Paste a strip
+[ ] Delete a strip
+
+* Audio Blocks
+
+[ ] Plain audio block
+[ ] Page block
+[ ] Heading block
+[-] Nested block
+[-] Custom block
+[ ] Empty block
+[ ] Used/unused block
+[ ] Annotation
+[-] Escapable block
+[-] Skippable block
+[ ] Create a new block from an audio file
+[ ] Cut a block
+[ ] Copy a block
+[ ] Paste a block
+[ ] Delete a block
+[ ] Move a block forward or backward in its strip
+[ ] Change kind/properties of a block
+
+* Audio recording
+
+[ ] Set input device
+[ ] Graphical VU meter
+[ ] Text VU meter
+[ ] Append mode
+[-] Punch-in mode
+[ ] Mark phrase while recording
+[ ] Mark page while recording
+[ ] Mark section while recording
+[-] Mark custom block while recording
+
+* Audio playback
+
+[ ] Set output device
+[ ] Graphical VU meter
+[ ] Text VU meter
+[ ] Play
+[ ] Pause
+[ ] Stop
+[ ] Fast-forward
+[ ] Rewind
+[ ] Go to previous and next section
+[ ] Go to previous and next phrase
+[ ] Go to previous and next page
+[-] Go to previous and next custom block
+
+* Audio editing
+
+[ ] Split a block
+[ ] Merge two blocks
+[ ] Phrase detection
+
+* Misc.
+
+[ ] DAISY metadata editing
+[ ] Color profiles
+[ ] Font and widget size
+</pre>
   </body>
 </html>

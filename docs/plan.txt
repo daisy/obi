@@ -39,8 +39,7 @@ and December. It will include a redesign of front end as well as back end
 elements. We will need better tester support and try to have a weekly
 release schedule.
 
-* Redesign of the audio backend, review VU meter. <span class="who">Avneesh
-with Julien</span>
+* Redesign of the audio backend and playback. <span class="who">Avneesh</span>
 
 * New blocks design: remove annotation blocks; show waveform in blocks;
 have more types of blocks (pages, headings, etc. need a complete
@@ -82,6 +81,8 @@ easily be set while recording and found <span class="who">Avneesh</span>
 * Recording modes <span class="who">Avneesh taking over from Laust</span>,
 as well as recording improvements (to be specified; at least some simple
 punch-in mechanism.)
+
+* VU Meter improvements <span class="who">Avneesh</span>.
 
 ## November
 
