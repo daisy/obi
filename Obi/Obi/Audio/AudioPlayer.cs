@@ -34,45 +34,51 @@ namespace Obi.Audio
 	{
         #region private members
 
-        private Stream mAudioStream;           // audio stream
-        private int mBufferStopPosition;       // stop position in buffer
-        private AudioMediaData mCurrentAudio;  // the audio currently playing
-        public bool mEventsEnabled;            // flag to temporarily enable or disable events
-        private bool mIsFwdRwd;                // forward or rewind playback is going on
-        private PlaybackMode mPlaybackMode;    // current playback mode
-        private SecondaryBuffer mSoundBuffer;  // DX playback buffer
-        private AudioPlayerState mState;       // player state
-        
-        private VuMeter ob_VuMeter;            // to be removed
-        
+        // member variables initialised once
         private OutputDevice mDevice;
-        // integer to indicate which part of buffer is to be refreshed front or rear
-        private int m_BufferCheck;
-        // Size of buffer created for playing
-        private int m_SizeBuffer;
-        // length of buffer to be refreshed during playing which is half of buffer size
-        private int m_RefreshLength;
-        // Total length of audio asset being played
-        private long m_lLength;
-        // Length of audio asset in bytes which had been played
-        private long m_lPlayed;
-        // thread for refreshing buffer while playing 
-        private Thread RefreshThread;
+        private System.Windows.Forms.Timer MoniteringTimer; // monitoring timer to trigger events independent of refresh thread
+        private VuMeter ob_VuMeter;            // to be removed
+        System.Windows.Forms.Timer mPreviewTimer ; // timer for playing chunks at interval during Forward/Rewind
+
+
+
+        // Member variables to be re initialised only at time of starting  playback of an asset
+        private Stream mAudioStream;           // audio stream
+                private AudioMediaData mCurrentAudio;  // the audio currently playing
+        private SecondaryBuffer mSoundBuffer;  // DX playback buffer
+                private int m_SizeBuffer; // Size of buffer created for playing
+                        private int m_RefreshLength;         // length of buffer to be refreshed during playing which is half of buffer size
+                                private long m_lLength;         // Total length of audio asset being played
+                                private Thread RefreshThread; // thread for refreshing buffer while playing 
+                                internal int m_FrameSize;
+                                internal int m_Channels;
+        private int m_SamplingRate;
+        internal byte[] arUpdateVM; // array for update current amplitude to VuMeter
+        internal int m_UpdateVMArrayLength; // length of VuMeter update array ( may be removed )
+
+
+        // Member variables changed more than ones ( in one asset session ) by functions in AudioPlayer class
+        private bool mIsFwdRwd;                // forward or rewind playback is going on
+        private AudioPlayerState mState;       // player state
+        private int m_BufferCheck; // integer to indicate which part of buffer is to be refreshed front or rear
+        private long m_lPlayed;         // Length of audio asset in bytes which had been played
         private long m_lPausePosition; // holds pause position in bytes to allow play resume playback from there
         private long m_lResumeToPosition; // In case play ( from, to ) function is used, holds the end position i.e. "to"  for resuming playback
-        internal int m_FrameSize;
-        internal int m_Channels;
-        private int m_SamplingRate;
-        private int m_VolumeLevel;
+
+        private long m_lChunkStartPosition = 0; // position for starting chunk play in forward/Rewind
+
+        // Member variables changed by user 
+                        private PlaybackMode mPlaybackMode;    // current playback mode
+                private int m_VolumeLevel;
         private int m_FwdRwdRate; // holds skip time multiplier for forward / rewind mode
         private float m_fFastPlayFactor; /// fholds fast play multiplier
-        // monitoring timer to trigger events independent of refresh thread
-        private System.Windows.Forms.Timer MoniteringTimer = new System.Windows.Forms.Timer();
-        // Flag to trigger end of asset events, flag is set for a moment and again reset
-        private bool m_IsEndOfAsset; // variable required to signal monitoring timer to trigger end of asset event
-        // array for update current amplitude to VuMeter
-        internal byte[] arUpdateVM;
-        internal int m_UpdateVMArrayLength;
+
+
+        // changed by AudioPlayer functions for a short time like enabling/disabling events, stopping buffer etc.
+        public bool mEventsEnabled;            // flag to temporarily enable or disable events
+        private bool m_IsEndOfAsset; // variable required to signal monitoring timer to trigger end of asset event, flag is set for a moment and again reset
+        private int mBufferStopPosition;       // stop position in buffer
+
 
         #endregion
 
@@ -88,8 +94,11 @@ namespace Obi.Audio
         {
             mState = AudioPlayerState.NotReady;
             ob_VuMeter = null;
+            MoniteringTimer = new System.Windows.Forms.Timer();
             MoniteringTimer.Tick += new System.EventHandler(this.MoniteringTimer_Tick);
             MoniteringTimer.Interval = 200;
+
+            mPreviewTimer = new System.Windows.Forms.Timer(); 
             mPreviewTimer.Tick += new System.EventHandler(this.PreviewTimer_Tick);
             mPreviewTimer.Interval = 100;
             mPlaybackMode = PlaybackMode.Normal;
@@ -509,7 +518,13 @@ namespace Obi.Audio
             }
         }
 
-
+        /// <summary>
+        ///  convenience function to start playback of an asset
+        ///  first initialise player with asset followed by starting playback using PlayAssetStream function
+        /// </summary>
+        /// <param name="asset"></param>
+        /// <param name="lStartPosition"></param>
+        /// <param name="lEndPosition"></param>
 private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPosition)
 		{
             //if (m_State == AudioPlayerState.Stopped || m_State == AudioPlayerState.NotReady)
@@ -533,7 +548,12 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
 			// end of function
 		}
 
-
+        /// <summary>
+        ///  Called when a new asset is passed to player for playback 
+        ///  initialises all asset dependent members excluding stream dependent members
+        /// <see cref=""/>
+        /// </summary>
+        /// <param name="audio"></param>
         private void InitialiseWithAsset(AudioMediaData audio)
         {
             if (mState != AudioPlayerState.Playing)
@@ -587,6 +607,13 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
             }// end of state check
                             } // end function
 
+        /// <summary>
+        ///  Called to start playback when player is already initialised with an asset
+        ///  Initialises all member variables dependent on asset stream and fill play buffers with data
+        /// <see cref=""/>
+        /// </summary>
+        /// <param name="lStartPosition"></param>
+        /// <param name="lEndPosition"></param>
         private void PlayAssetStream(long lStartPosition, long lEndPosition)
         {
             if (mState != AudioPlayerState.Playing)
@@ -640,7 +667,11 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
             }
         } // function ends
 
-		void RefreshBuffer ()
+        /// <summary>
+        ///  Thread function which is responsible for refreshing half of sound buffer after every 0.5 second and also for stopping play at end of asset
+        /// <see cref=""/>
+        /// </summary>
+	private void RefreshBuffer ()
 		{
 		
 			int ReadPosition;
@@ -889,12 +920,7 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
 
 
         //  FastForward , Rewind playback modes
-        // timer for playing chunks at interval
-        System.Windows.Forms.Timer mPreviewTimer = new System.Windows.Forms.Timer();
         
-        // position for starting chunk play
-private          long m_lChunkStartPosition = 0;
-
         public void Rewind( long lStartPosition  )
         {
                                     // let's play backward!
