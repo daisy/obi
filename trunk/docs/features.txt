@@ -36,6 +36,8 @@ The tree view supports the following editing features:
 
 * Adding a new section
 * Adding a new subsection to a section
+* Changing the level of a section by moving it in (increasing its level) or
+out (decreasing its level)
 * Cutting a section
 * Copying a section
 * Pasting a section
@@ -44,7 +46,8 @@ The tree view supports the following editing features:
 * Editing the title of a section
 
 The structure can be created entirely within Obi or be imported from an
-XHTML file when creating a new project.
+XHTML file when creating a new project. All operations described above have
+effect on a section and all of its subsections (these are _deep_ edits.)
 
 ## Strips and blocks
 
@@ -133,7 +136,7 @@ Obi supports live recording of audio. There are two recording modes:
 of audio.
 
 Recording creates new audio blocks and sections. While recording, it is
-possible to mark phrases, pages and sections
+possible to mark phrases, pages and sections, as well as custom blocks.
 
 The input device used for recording can be set from within Obi.
 
@@ -194,3 +197,109 @@ as high contrast color scheme are provided.
 
 All text content in a project (such as section titles or annotations) can be
 searched and located.
+
+## Checklist
+
+<pre>Obi version: 0.9.1.0
+
+Key:
+[ ] Unknown status
+[/] Implementation in progress
+[~] Partial implementation
+[x] Done and working (for some value of working)
+[!] Currently not working
+[-] Not implemented yet
+
+* Obi file format
+
+[ ] Create a new project from scratch
+[ ] Create a new project from an XHTML file
+[ ] Open an existing project from a XUK (.obi) file
+[-] Open a DAISY 2.02 book
+[-] Open a DAISY 3 book
+[ ] Save a project to a XUK (.obi) file
+[ ] Save a project under a different name
+[-] Export a project to DAISY 2.02
+[ ] Export a project to DAISY 3
+
+* Sections/TOC view
+
+[ ] Add a new section
+[ ] Add a new subsection
+[ ] Edit the title of a section
+[ ] Move a section in (increase level)
+[ ] Move a section out (decrease level)
+[ ] Cut a section
+[ ] Copy a section
+[ ] Paste a section
+[ ] Delete a section
+[ ] Mark a section used/unused
+
+* Strips
+
+[ ] Add a new strip
+[ ] Edit the title of a strip
+[ ] Cut a strip
+[ ] Copy a strip
+[ ] Paste a strip
+[ ] Delete a strip
+
+* Audio Blocks
+
+[ ] Plain audio block
+[ ] Page block
+[ ] Heading block
+[-] Nested block
+[-] Custom block
+[ ] Empty block
+[ ] Used/unused block
+[ ] Annotation
+[-] Escapable block
+[-] Skippable block
+[ ] Create a new block from an audio file
+[ ] Cut a block
+[ ] Copy a block
+[ ] Paste a block
+[ ] Delete a block
+[ ] Move a block forward or backward in its strip
+[ ] Change kind/properties of a block
+
+* Audio recording
+
+[ ] Set input device
+[ ] Graphical VU meter
+[ ] Text VU meter
+[ ] Append mode
+[-] Punch-in mode
+[ ] Mark phrase while recording
+[ ] Mark page while recording
+[ ] Mark section while recording
+[-] Mark custom block while recording
+
+* Audio playback
+
+[ ] Set output device
+[ ] Graphical VU meter
+[ ] Text VU meter
+[ ] Play
+[ ] Pause
+[ ] Stop
+[ ] Fast-forward
+[ ] Rewind
+[ ] Go to previous and next section
+[ ] Go to previous and next phrase
+[ ] Go to previous and next page
+[-] Go to previous and next custom block
+
+* Audio editing
+
+[ ] Split a block
+[ ] Merge two blocks
+[ ] Phrase detection
+
+* Misc.
+
+[ ] DAISY metadata editing
+[ ] Color profiles
+[ ] Font and widget size
+</pre>
