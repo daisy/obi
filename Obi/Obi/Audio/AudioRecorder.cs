@@ -141,21 +141,7 @@ namespace Obi.Audio
                 sProjectDirectory = value;
             }
         }
-		// returns a list of input devices
-		/*public ArrayList GetInputDevices()
-		{
-			// gathers the available capture devices
-			CaptureDevicesCollection devices = new CaptureDevicesCollection();  
-			
-			//ArrayList to collect all the availabel devices
-			ArrayList m_devicesList = new ArrayList();
-			foreach (DeviceInformation info in devices)
-			{
-				m_devicesList.Add(info.Description);
-			}
-			return m_devicesList;
-		}*/
-
+		
         private List<InputDevice> mInputDevicesList = null;
 
         public List<InputDevice> InputDevices
@@ -653,18 +639,6 @@ namespace Obi.Audio
                 throw new Exception("No input device available.");
             }
         }
-
-		/*public Device InputDevice
-		{
-			get
-			{
-				return m_InputDevice;
-			}
-			set
-			{
-				m_InputDevice = value;
-			}
-		}*/
 
         public InputDevice InputDevice
         {
