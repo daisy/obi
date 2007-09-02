@@ -58,10 +58,10 @@ namespace Obi.Audio
 
 
         // Member variables changed more than ones ( in one asset session ) by functions in AudioPlayer class
-        private bool mIsFwdRwd;                // forward or rewind playback is going on
+        private bool mIsFwdRwd;                // flag indicating forward or rewind playback is going on
         private AudioPlayerState mState;       // player state
-        private int m_BufferCheck; // integer to indicate which part of buffer is to be refreshed front or rear
-        private long m_lPlayed;         // Length of audio asset in bytes which had been played
+        private int m_BufferCheck; // integer to indicate which part of buffer is to be refreshed front or rear, value is odd for refreshing front part and even for refreshing rear
+        private long m_lPlayed;         // Length of audio asset in bytes which had been played ( loadded to SoundBuffer )
         private long m_lPausePosition; // holds pause position in bytes to allow play resume playback from there
         private long m_lResumeToPosition; // In case play ( from, to ) function is used, holds the end position i.e. "to"  for resuming playback
 
@@ -77,7 +77,7 @@ namespace Obi.Audio
         // changed by AudioPlayer functions for a short time like enabling/disabling events, stopping buffer etc.
         public bool mEventsEnabled;            // flag to temporarily enable or disable events
         private bool m_IsEndOfAsset; // variable required to signal monitoring timer to trigger end of asset event, flag is set for a moment and again reset
-        private int mBufferStopPosition;       // stop position in buffer
+        private int mBufferStopPosition;       // used by refresh thread for stop position in buffer, value is negetive till refreshing of buffer is going on
 
 
         #endregion
@@ -412,7 +412,11 @@ namespace Obi.Audio
                 throw new Exception("No output device available.");
             }
         }
-
+        /// <summary>
+        ///  Set playback frequency i.e. playback rate
+        /// <see cref=""/>
+        /// </summary>
+        /// <param name="l_frequency"></param>
         void SetPlayFrequency(float l_frequency)
         {
             if (mSoundBuffer != null
@@ -920,7 +924,11 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
 
 
         //  FastForward , Rewind playback modes
-        
+        /// <summary>
+        ///  Starts playing small chunks of audio while jumping backward in audio asset
+        /// <see cref=""/>
+        /// </summary>
+        /// <param name="lStartPosition"></param>
         public void Rewind( long lStartPosition  )
         {
                                     // let's play backward!
@@ -936,6 +944,11 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
         }
         
 
+        /// <summary>
+        ///  Starts playing small chunks while jumping forward in audio asset
+        /// <see cref=""/>
+        /// </summary>
+        /// <param name="lStartPosition"></param>
         public void FastForward(long lStartPosition   )
         {
 
