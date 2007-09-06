@@ -1,13 +1,15 @@
 # Make markdown documentation
 
 XSLT =		xsltproc
+PERL =		perl
 INDENT =	xmllint --format
 STYLESHEET =	template.xslt
 HTML_FILES =	blocks.html events.html index.html manual.html plan.html\
 		playback.html selection.html strip_manager_shortcuts.html \
 		tasklist.html toolkit_audio.html operations.html features.html
+TODO_HTML =	todo.html
 
-all:	$(HTML_FILES)
+all:	$(HTML_FILES) todo
 
 %.html:	%.txt
 	echo "<markdown>" > $@.markdown && \
@@ -16,7 +18,10 @@ all:	$(HTML_FILES)
 	$(XSLT) $(STYLESHEET) $@.markdown | $(INDENT) - > $@ && \
 	$(RM) $@.markdown
 
-.PHONY:	clean
+.PHONY:	clean todo
+
+todo:	TODO
+	$(PERL) todo.pl < $< > $(TODO_HTML)
 
 clean:
-	$(RM) *.markdown $(HTML_FILES)
+	$(RM) *.markdown $(HTML_FILES) $(TODO_HTML)
