@@ -1,0 +1,154 @@
+# Please follow this entry format. One line per field. Run the tasks.pl
+# script on this file to generate HTML output; watch out for "skipped"
+# messages.
+
+# "What" should be a short description of the task.
+# "When" should tell when the task is expected to be completed, and can also
+# include an evaluation of the time it should take (or a time span in which
+# it should be completed.)
+# "Who" is who.
+# "Done" can be: NO (default), NOTYET, YES, LATER
+# "And" can be ommitted, but should contain notes, etc.
+
+What? Audio backend cleanup.
+When? September
+Who? Avneesh
+Done? NOTYET
+And? Julien has to better document the management of the audio player, recorder and VU meter instances.
+
+What? Playback behavior.
+When? September
+Who? Avneesh
+And? Julien should review the playback document to make sure that it's in sync with the forthcoming changes.
+
+What? Mockup manual.
+When? September 7th
+Who? Julien
+And? Have a mockup of the user manual (at least a skeleton) so that features to be implemented are documented. This is used for reference and testing.
+
+What? New block design.
+When? September
+Who? Julien
+Done? YES
+And? Pretty much done; see the mockup documentation.
+
+What? New block design implementation.
+When? September
+Who? Julien
+And? Break this down further.
+# And? Remove annotation blocks (annotations are displayed in the block); show waveform in blocks; implement different kinds of blocks and properties, and separate content and container blocks. The documentation mockup has details.
+
+What? Waveform display.
+When? September
+Who? Julien
+And? Audio blocks display the waveform of their content. 
+
+What? Update import structure.
+When? After blocks are implemented.
+Who? Marisa
+And? Allow marking up blocks in the HTML document following new blocks structure, at least page numbers.
+
+What? Update Z export.
+When? After blocks are implemented.
+Who? Julien, Marisa
+And? Update the XSLT to export the new kinds of blocks. This should be part of implementing each new block functionality.
+
+What? Mark custom blocks on the fly.
+When? After blocks are implemented.
+Who? Avneesh
+And? Main block classes (phrases, pages, sections) have their button and shortcut, but all other classes can be added through an extra custom button.
+
+What? Skippable items.
+When? November
+Who? Julien
+
+What? Escapabel items.
+When? November
+Who? Julien
+
+What? New strip design.
+When? September
+Who? Julien
+And? No margin between strips, use the entire width of the strips view.
+
+What? New project panel design.
+When? September
+Who? Julien
+And? Add a metadata view instead of the dialog, and use the transport bar instead of the record dialog. Make everything undoable.
+
+What? Review of the command manager.
+When? 22 September
+Who? Julien, Marisa
+And? We have a meeting planned in Amsterdam to handle this issue. We need to get definite info from the architecture team by then.
+
+What? Review cleanup.
+When? September
+Who? Marisa, Avneesh
+And? Check with the implementation about the status of cleanup in the new asset manager. We need two kinds of cleanup: (1) cleanup unreferenced assets (this is handled by the asset manager), and (2) get rid of unused book elements (which in turn performs the asset manager cleanup.)
+
+What? Organize coding workshop.
+When? September
+Who? Julien, Dipendra
+And? Should take place late November/early December; Julien to inquire about organizing it in Japan and Dipendra about India.
+
+What? Waveform editing.
+When? October
+Who? Julien, Avneesh
+And? Julien to take care of mouse operation, Avneesh to help with keyboard and accessibility.
+
+What? Page numbering.
+When? October
+Who? Julien
+And? Manual numbering, renumbering on demand, support for front, main and special pages.
+
+What? Search text.
+When? October
+Who? Marisa
+And? Search text in section titles, annotations, metadata, custom classes, page numbers.
+
+What? Split and merge sections.
+When? October
+Who? Julien
+And? This is necessary for punch-in recording.
+
+What? Recording modes
+When? October
+Who? Avneesh
+And? Add a new recording mode to allow punch-in in addition to append.  Punch-in should overwrite what is selected; when new blocks or sections are added, they are right after the replaced selection.
+
+What? VU meter graphical improvements.
+When? October
+Who? Avneesh
+
+What? Configurable colors and default color schemes.
+When? November
+Who? Julien and Avneesh
+
+What? Configurable font sizes.
+When? November
+Who? Julien and Avneesh
+
+What? Multiple selection.
+When? November
+Who? Julien and Marisa
+
+What? Phrase detection.
+When? November
+Who? Avneesh and Julien
+
+What? User preferences and profile.
+When? November
+Who? Julien
+
+What? Pre-release testing.
+When? December
+Who? All
+
+What? Improve installer.
+When? December
+Who? Julien
+And? Especially fix the .Net/DirectX issues.
+
+What? Release 1.0.
+When? Late December
+Who? Julien

@@ -23,7 +23,7 @@ Sketch of the work area:
 <pre>
 +--------------------------------------------------------------------------+
 |                         |                                                |
-|  TOC view               |  Strip view                                    |
+|         TOC view        |                   Strip view                   |
 |                         |                                                |
 |  * My book              |  +---------------------------------------------|
 |    * First section      |  |                                             |
@@ -35,22 +35,23 @@ Sketch of the work area:
 |                         |  |  |            |           |             |   |
 |-------------------------|  |  +------------------------------------------|
 |                         |  |                                             |
-|  Metadata               |  +---------------------------------------------|
+|        Metadata         |  +---------------------------------------------|
 |                         |                                                |
-|  Title: My title        |  +---------------------------------------------|
-|  Author: So and so      |  |                                             |
+|  Title: My book         |  +---------------------------------------------|
+|  Author: Obird          |  |                                             |
 |                         |  |  First section                              |
 |--------------------------------------------------------------------------|
 |                                                                          |
-|  Transport bar                                                           |
+|                               Transport bar                              |
 |                                                                          |
 +--------------------------------------------------------------------------+
 </pre>
 
 ### Metadata view
 
-The metadata view can be shown under the TOC view or instead of the strips
-view. Maybe a condensed version if a sidebar?
+The metadata view is shown as a sidebar of the strips view. If the TOC view
+is shown, the metadata view is shown underneath the TOC view as in the
+figure above. The 
 
 ### The table of contents view
 
@@ -80,38 +81,64 @@ Strips may be indented/collapsed?
 
 #### Blocks
 
-All blocks belong to one of the following class:
+__Block classes and properties.__ There are three basic kinds of blocks:
 
-* Plain audio block: this is the regular kind of audio blocks. They have a
-wave-form display.
+1. _Plain audio blocks_ are the default kind of audio block.
 
-* Page block: a block with a page number (can be automatic or manually
-assigned.)
+2. _Page blocks_ are used to represent page numbers. A page block has a page
+number that can be edited and searched for. The audio data of a page block
+is usually a reading of this page number.
 
-* Heading block: represents the heading for the section strip that it
-belongs to.
+3. _Heading blocks_ are used to represent the audio label of sections in the
+table of contents. There can be only one heading block per section, although
+it does not have to be the first block.
 
-* Escapable block: marked as escapable in the SMIL output. (See Z spec
-section 7.4.1)
+Additionally, the user may create custom classes of blocks (for instance
+producer notes, sidebars, etc.) which behave like regular blocks but can be
+easily searched or manipulated as a class rather than block by block. This
+is also useful for working with skippable blocks, as described below.
 
-* Skippable block: can be skipped by default.
+Blocks can then the following properties; properties are either set (which
+means that they do apply to this block) or unset (they do not.)
 
-* Group block: a group block contains one or more blocks of the same kind
-which all share the same properties.
+* The _used_ property means, when set, that the block is indeed part of the
+book. By defaults, blocks are used (_i.e._ this property is set.) Unused
+blocks will not play during normal playback of the book and will not be
+exported to the final DAISY books. Unused blocks can also be removed all at
+once during project cleanup.
 
-* Also: footnotes and references, producer notes, custom blocks.
+* The _skippable_ property means, when set, that this block can be
+automatically skipped during playback. This property is generally used with
+pages and custom blocks, so that for instance all producer notes in the book
+can be skipped by default. DAISY players allow the reader to ultimately decide
+whether they want these to be skipped or not.
 
-All of these blocks can have the following properties:
+* The _escapable_ property means, when set, that playback can escape
 
-* Empty or non-empty: the block has audio data or not. An empty block has no
-wave-form display, naturally, but has two buttons or links to import or
-record audio data into it.
+* The _empty_ property means, when set, that the block has no actual
+content; it is just a placeholder. This can happen when importing a project,
+or failing to read sound files from existing projects. The user can also
+create empty blocks explicitly. This property is automatically set or unset
+by Obi.
 
-* Used or unused: unused blocks are kept in the project but are not exported
-and skipped during playback (unless explicitely played.)
+There is an additional property which is an _annotation string_. This is
+purely for authoring and can be used to set short annotations on blocks
+(_e.g._ ``fix this'' or ``to be recorded later'').
 
-* Annotation: any block can have a free-text annotation. This is a
-production time feature. The user can 
+Lastly, there is a special kind of block which instead of containing an
+audio phrase, contains other blocks. We call this a _container block_. All
+blocks in the container block share the properties of the container. As an
+example, a container block can be used to group together several phrase
+blocks to have an audio label consisting of several phrases (remember that
+there can only be a single heading block per section; in that case the
+container block is marked as being the heading block.)
+
+There are other examples of the use of container blocks, that can be marked
+as escapable; for instance a list of phrases or an audio table (container
+blocks can contain other container blocks, so a table can be a list of rows
+which are themselves lists of phrases.)
+
+__Display.__ A block is displayed as a colored rectang{
 
 ### Transport bar
 

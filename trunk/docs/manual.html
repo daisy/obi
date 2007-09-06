@@ -26,74 +26,74 @@
               <a href="#id53326">Metadata view</a>
             </li>
             <li>
-              <a href="#id53334">The table of contents view</a>
+              <a href="#id53335">The table of contents view</a>
             </li>
             <li>
-              <a href="#id53343">Strips view</a>
+              <a href="#id53344">Strips view</a>
               <ul>
                 <li>
-                  <a href="#id53350">Strips</a>
+                  <a href="#id53351">Strips</a>
                 </li>
                 <li>
-                  <a href="#id53390">Blocks</a>
+                  <a href="#id53391">Blocks</a>
                 </li>
               </ul>
             </li>
             <li>
-              <a href="#id53466">Transport bar</a>
+              <a href="#id53546">Transport bar</a>
             </li>
             <li>
-              <a href="#id53477">VU meter</a>
+              <a href="#id53556">VU meter</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="#id53485">Editing metadata</a>
+          <a href="#id53564">Editing metadata</a>
         </li>
         <li>
-          <a href="#id53489">Editing structure</a>
+          <a href="#id53568">Editing structure</a>
         </li>
         <li>
-          <a href="#id53493">Editing contents</a>
+          <a href="#id53572">Editing contents</a>
           <ul>
             <li>
-              <a href="#id53496">Page numbering</a>
+              <a href="#id53576">Page numbering</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="#id53500">Editing audio</a>
+          <a href="#id53579">Editing audio</a>
         </li>
         <li>
-          <a href="#id53503">Audio playback and recording</a>
+          <a href="#id53582">Audio playback and recording</a>
           <ul>
             <li>
-              <a href="#id53507">Playback</a>
+              <a href="#id53586">Playback</a>
             </li>
             <li>
-              <a href="#id53510">Recording</a>
+              <a href="#id53590">Recording</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="#id53514">Saving and exporting</a>
+          <a href="#id53593">Saving and exporting</a>
           <ul>
             <li>
-              <a href="#id53518">XUK/.obi format</a>
+              <a href="#id53597">XUK/.obi format</a>
             </li>
             <li>
-              <a href="#id53521">Cleaning up</a>
+              <a href="#id53600">Cleaning up</a>
             </li>
             <li>
-              <a href="#id53525">Exporting to DAISY 3</a>
+              <a href="#id53604">Exporting to DAISY 3</a>
             </li>
             <li>
-              <a href="#id53528">Using the DAISY Pipeline for import/export</a>
+              <a href="#id53608">Using the DAISY Pipeline for import/export</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="#id53532">User profile and preferences</a>
+          <a href="#id53612">User profile and preferences</a>
         </li>
       </ul>
     </div>
@@ -111,7 +111,7 @@ project.</p>
     <pre>
 +--------------------------------------------------------------------------+
 |                         |                                                |
-|  TOC view               |  Strip view                                    |
+|         TOC view        |                   Strip view                   |
 |                         |                                                |
 |  * My book              |  +---------------------------------------------|
 |    * First section      |  |                                             |
@@ -123,26 +123,27 @@ project.</p>
 |                         |  |  |            |           |             |   |
 |-------------------------|  |  +------------------------------------------|
 |                         |  |                                             |
-|  Metadata               |  +---------------------------------------------|
+|        Metadata         |  +---------------------------------------------|
 |                         |                                                |
-|  Title: My title        |  +---------------------------------------------|
-|  Author: So and so      |  |                                             |
+|  Title: My book         |  +---------------------------------------------|
+|  Author: Obird          |  |                                             |
 |                         |  |  First section                              |
 |--------------------------------------------------------------------------|
 |                                                                          |
-|  Transport bar                                                           |
+|                               Transport bar                              |
 |                                                                          |
 +--------------------------------------------------------------------------+
 </pre>
     <h3 id="id53326">Metadata view</h3>
-    <p>The metadata view can be shown under the TOC view or instead of the strips
-view. Maybe a condensed version if a sidebar?</p>
-    <h3 id="id53334">The table of contents view</h3>
+    <p>The metadata view is shown as a sidebar of the strips view. If the TOC view
+is shown, the metadata view is shown underneath the TOC view as in the
+figure above. The </p>
+    <h3 id="id53335">The table of contents view</h3>
     <p>Hierarchy of the project. Synchronized with the Strip view. (This could be
 an option.)</p>
-    <h3 id="id53343">Strips view</h3>
+    <h3 id="id53344">Strips view</h3>
     <p>Shows strips and blocks.</p>
-    <h4 id="id53350">Strips</h4>
+    <h4 id="id53351">Strips</h4>
     <p>Strips are containers for blocks and map one-to-one with sections. They are
 composed of:</p>
     <ul>
@@ -160,72 +161,90 @@ window, and/or in the sidebar à la iTunes?)</p>
     </ul>
     <p>Unused strips are kept in the project but </p>
     <p>Strips may be indented/collapsed?</p>
-    <h4 id="id53390">Blocks</h4>
-    <p>All blocks belong to one of the following class:</p>
+    <h4 id="id53391">Blocks</h4>
+    <p><strong>Block classes and properties.</strong> There are three basic kinds of blocks:</p>
+    <ol>
+      <li>
+        <p><em>Plain audio blocks</em> are the default kind of audio block.</p>
+      </li>
+      <li>
+        <p><em>Page blocks</em> are used to represent page numbers. A page block has a page
+number that can be edited and searched for. The audio data of a page block
+is usually a reading of this page number.</p>
+      </li>
+      <li>
+        <p><em>Heading blocks</em> are used to represent the audio label of sections in the
+table of contents. There can be only one heading block per section, although
+it does not have to be the first block.</p>
+      </li>
+    </ol>
+    <p>Additionally, the user may create custom classes of blocks (for instance
+producer notes, sidebars, etc.) which behave like regular blocks but can be
+easily searched or manipulated as a class rather than block by block. This
+is also useful for working with skippable blocks, as described below.</p>
+    <p>Blocks can then the following properties; properties are either set (which
+means that they do apply to this block) or unset (they do not.)</p>
     <ul>
       <li>
-        <p>Plain audio block: this is the regular kind of audio blocks. They have a
-wave-form display.</p>
+        <p>The <em>used</em> property means, when set, that the block is indeed part of the
+book. By defaults, blocks are used (<em>i.e.</em> this property is set.) Unused
+blocks will not play during normal playback of the book and will not be
+exported to the final DAISY books. Unused blocks can also be removed all at
+once during project cleanup.</p>
       </li>
       <li>
-        <p>Page block: a block with a page number (can be automatic or manually
-assigned.)</p>
+        <p>The <em>skippable</em> property means, when set, that this block can be
+automatically skipped during playback. This property is generally used with
+pages and custom blocks, so that for instance all producer notes in the book
+can be skipped by default. DAISY players allow the reader to ultimately decide
+whether they want these to be skipped or not.</p>
       </li>
       <li>
-        <p>Heading block: represents the heading for the section strip that it
-belongs to.</p>
+        <p>The <em>escapable</em> property means, when set, that playback can escape</p>
       </li>
       <li>
-        <p>Escapable block: marked as escapable in the SMIL output. (See Z spec
-section 7.4.1)</p>
-      </li>
-      <li>
-        <p>Skippable block: can be skipped by default.</p>
-      </li>
-      <li>
-        <p>Group block: a group block contains one or more blocks of the same kind
-which all share the same properties.</p>
-      </li>
-      <li>
-        <p>Also: footnotes and references, producer notes, custom blocks.</p>
+        <p>The <em>empty</em> property means, when set, that the block has no actual
+content; it is just a placeholder. This can happen when importing a project,
+or failing to read sound files from existing projects. The user can also
+create empty blocks explicitly. This property is automatically set or unset
+by Obi.</p>
       </li>
     </ul>
-    <p>All of these blocks can have the following properties:</p>
-    <ul>
-      <li>
-        <p>Empty or non-empty: the block has audio data or not. An empty block has no
-wave-form display, naturally, but has two buttons or links to import or
-record audio data into it.</p>
-      </li>
-      <li>
-        <p>Used or unused: unused blocks are kept in the project but are not exported
-and skipped during playback (unless explicitely played.)</p>
-      </li>
-      <li>
-        <p>Annotation: any block can have a free-text annotation. This is a
-production time feature. The user can </p>
-      </li>
-    </ul>
-    <h3 id="id53466">Transport bar</h3>
+    <p>There is an additional property which is an <em>annotation string</em>. This is
+purely for authoring and can be used to set short annotations on blocks
+(<em>e.g.</em> <code>fix this'' or</code>to be recorded later'').</p>
+    <p>Lastly, there is a special kind of block which instead of containing an
+audio phrase, contains other blocks. We call this a <em>container block</em>. All
+blocks in the container block share the properties of the container. As an
+example, a container block can be used to group together several phrase
+blocks to have an audio label consisting of several phrases (remember that
+there can only be a single heading block per section; in that case the
+container block is marked as being the heading block.)</p>
+    <p>There are other examples of the use of container blocks, that can be marked
+as escapable; for instance a list of phrases or an audio table (container
+blocks can contain other container blocks, so a table can be a list of rows
+which are themselves lists of phrases.)</p>
+    <p><strong>Display.</strong> A block is displayed as a colored rectang{</p>
+    <h3 id="id53546">Transport bar</h3>
     <p>Used for recording and QA playback. Buttons are overloaded for recording;
 for instance, the next phrase button introduces a new phrase. Whether this is
 sufficient remains to be seen. An idea would be to modify the toolbar when
 recording.</p>
-    <h3 id="id53477">VU meter</h3>
+    <h3 id="id53556">VU meter</h3>
     <p>Has its own window, or is part of the transport bar (text/small version.)</p>
-    <h2 id="id53485">Editing metadata</h2>
-    <h2 id="id53489">Editing structure</h2>
-    <h2 id="id53493">Editing contents</h2>
-    <h3 id="id53496">Page numbering</h3>
-    <h2 id="id53500">Editing audio</h2>
-    <h2 id="id53503">Audio playback and recording</h2>
-    <h3 id="id53507">Playback</h3>
-    <h3 id="id53510">Recording</h3>
-    <h2 id="id53514">Saving and exporting</h2>
-    <h3 id="id53518">XUK/.obi format</h3>
-    <h3 id="id53521">Cleaning up</h3>
-    <h3 id="id53525">Exporting to DAISY 3</h3>
-    <h3 id="id53528">Using the DAISY Pipeline for import/export</h3>
-    <h2 id="id53532">User profile and preferences</h2>
+    <h2 id="id53564">Editing metadata</h2>
+    <h2 id="id53568">Editing structure</h2>
+    <h2 id="id53572">Editing contents</h2>
+    <h3 id="id53576">Page numbering</h3>
+    <h2 id="id53579">Editing audio</h2>
+    <h2 id="id53582">Audio playback and recording</h2>
+    <h3 id="id53586">Playback</h3>
+    <h3 id="id53590">Recording</h3>
+    <h2 id="id53593">Saving and exporting</h2>
+    <h3 id="id53597">XUK/.obi format</h3>
+    <h3 id="id53600">Cleaning up</h3>
+    <h3 id="id53604">Exporting to DAISY 3</h3>
+    <h3 id="id53608">Using the DAISY Pipeline for import/export</h3>
+    <h2 id="id53612">User profile and preferences</h2>
   </body>
 </html>
