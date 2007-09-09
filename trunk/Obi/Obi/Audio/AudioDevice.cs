@@ -13,20 +13,11 @@ namespace Obi.Audio
         /// <summary>
         /// An informative string (i.e. name) for this device.
         /// </summary>
-        public string Name
-        {
-            get { return mName; }
-        }
+        public string Name { get { return mName; } }
 
-		protected AudioDevice(string name)
-		{
-            mName = name;
-		}
+		protected AudioDevice(string name) { mName = name; }
 
-        public override string ToString()
-        {
-            return mName;
-        }
+        public override string ToString() { return mName; }
 	}
 
     public class OutputDevice: AudioDevice

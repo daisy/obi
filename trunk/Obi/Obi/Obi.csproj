@@ -60,11 +60,11 @@
     <Reference Include="System.Xml" />
     <Reference Include="urakawa, Version=1.0.0.30290, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\implementation\UrakawaToolkit\bin\Debug\urakawa.dll</HintPath>
+      <HintPath>..\..\..\..\..\tags\implementation-before-prop-refact\UrakawaToolkit\obj\Debug\urakawa.dll</HintPath>
     </Reference>
     <Reference Include="XukToZed, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\implementation\XukToZed\XukToZed\bin\Debug\XukToZed.dll</HintPath>
+      <HintPath>..\..\..\..\..\tags\implementation-before-prop-refact\XukToZed\XukToZed\obj\Debug\XukToZed.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
