@@ -2,6 +2,7 @@
 
 XSLT =		xsltproc
 PERL =		perl
+MARKDOWN =	markdown
 INDENT =	xmllint --format
 STYLESHEET =	template.xslt
 HTML_FILES =	blocks.html events.html index.html manual.html plan.html\
@@ -13,7 +14,7 @@ all:	$(HTML_FILES) todo
 
 %.html:	%.txt
 	echo "<markdown>" > $@.markdown && \
-	markdown $< >> $@.markdown && \
+	$(MARKDOWN) $< >> $@.markdown && \
 	echo "</markdown>" >> $@.markdown && \
 	$(XSLT) $(STYLESHEET) $@.markdown | $(INDENT) - > $@ && \
 	$(RM) $@.markdown
