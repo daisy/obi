@@ -116,6 +116,15 @@
     </xsl:element>
   </xsl:template>
 
+  <!-- Indent paragaphs following other paragraphs -->
+  <xsl:template match="p[preceding-sibling::*[1][name()='p']]">
+    <xsl:element name="{name()}">
+      <xsl:copy-of select="@*"/>
+      <xsl:attribute name="class">indent</xsl:attribute>
+      <xsl:apply-templates/>
+    </xsl:element>
+  </xsl:template>
+  
   <!-- TODO -->
   <xsl:template match="text()[contains(.,'TODO')]">
     <xsl:value-of select="substring-before(.,'TODO')"/>

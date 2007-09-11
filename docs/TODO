@@ -22,9 +22,10 @@ Who? Avneesh
 And? Julien should review the playback document to make sure that it's in sync with the forthcoming changes.
 
 What? Mockup manual.
-When? September 7th
+When? September 13th
 Who? Julien
 And? Have a mockup of the user manual (at least a skeleton) so that features to be implemented are documented. This is used for reference and testing.
+Done? NOTYET
 
 What? New block design.
 When? September
@@ -46,7 +47,7 @@ And? Audio blocks display the waveform of their content.
 What? Update import structure.
 When? After blocks are implemented.
 Who? Marisa
-And? Allow marking up blocks in the HTML document following new blocks structure, at least page numbers.
+And? Allow marking up blocks in the HTML document following new blocks structure, at least page numbers. Julien to look into the test files and update the description for import in the mockup manual.
 
 What? Update Z export.
 When? After blocks are implemented.
