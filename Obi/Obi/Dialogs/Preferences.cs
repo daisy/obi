@@ -26,6 +26,7 @@ namespace Obi.Dialogs
         private bool mCanChangeAudioSettings;   // if the settings come from the project they cannot change
 
         private Audio.AudioPlayer mPlayer;      // audio player
+        private Audio.AudioRecorder m_Recorder; // Recorder instance
 
         /// <summary>
         /// Identifier template for new projects
@@ -107,7 +108,8 @@ namespace Obi.Dialogs
             mLastOpenCheckBox.Checked = settings.OpenLastProject;
             mTooltipsCheckBox.Checked = settings.EnableTooltips;
             mPlayer = transportbar.AudioPlayer;
-            mInputDevice = AudioRecorder.Instance.InputDevice;
+            m_Recorder = transportbar.Recorder;
+            mInputDevice = m_Recorder.InputDevice;
             mOutputDevice = mPlayer.OutputDevice;
             if (project != null && project.HasAudioSettings)
             {
@@ -188,8 +190,8 @@ namespace Obi.Dialogs
 
         private void Preferences_Load(object sender, EventArgs e)
         {
-            comboInputDevice.DataSource = AudioRecorder.Instance.InputDevices;
-            comboInputDevice.SelectedIndex = AudioRecorder.Instance.InputDevices.IndexOf(mInputDevice);
+            comboInputDevice.DataSource = m_Recorder.InputDevices;
+            comboInputDevice.SelectedIndex =m_Recorder.InputDevices.IndexOf(mInputDevice);
             comboOutputDevice.DataSource = mPlayer.OutputDevices;
             comboOutputDevice.SelectedIndex = mPlayer.OutputDevices.IndexOf(mOutputDevice);
             ArrayList mSample = new ArrayList();

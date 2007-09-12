@@ -64,19 +64,18 @@ namespace Obi.Audio
         private long SampleCount ; // Count of total bytes being recorded at an instance of time
         private AutoResetEvent NotificationEvent = null;
         private Thread NotifyThread = null;
-                        
+        /*                
 		private static readonly AudioRecorder instance = new AudioRecorder();
-		
-		public static AudioRecorder Instance
+				public static AudioRecorder Instance
 		{ 
 			get 
 			{ 
-				return instance; 
+				return th; 
 			} 
 		}
-
+        */
 		// constructor, made private by JQ 
-		private AudioRecorder()
+		public AudioRecorder()
 		{
                         mState = AudioRecorderState.Idle;
                         PositionNotify = new BufferPositionNotify[NumberRecordNotifications + 1];

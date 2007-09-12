@@ -11,6 +11,7 @@ namespace Obi.UserControls
     public partial class TransportBar : UserControl, IControlWithSelection
     {
         private Audio.AudioPlayer mPlayer;   // the player for this playlist
+        private Audio.AudioRecorder m_Recorder; // AudioRecorder for this transport bar 
         private ProjectPanel mProjectPanel;  // project panel to which the transport bar belongs
         private Playlist mMasterPlaylist;    // master playlist (all phrases in the project)
         private Playlist mLocalPlaylist;     // local playlist (only selected; may be null)
@@ -53,6 +54,7 @@ namespace Obi.UserControls
         {
             InitializeComponent();
             mPlayer = new Audio.AudioPlayer();
+            m_Recorder = new Obi.Audio.AudioRecorder();
             mLocalPlaylist = null;
             mMasterPlaylist = new Playlist(mPlayer);
             SetPlaylistEvents(mMasterPlaylist);
@@ -68,6 +70,15 @@ namespace Obi.UserControls
         /// The audio player used by the transport bar.
         /// </summary>
         public Audio.AudioPlayer AudioPlayer { get { return mPlayer; } }
+
+        public Audio.AudioRecorder Recorder
+        {
+            get
+            {
+                return m_Recorder;
+            }
+        }
+
 
         #region selection
 
@@ -544,7 +555,7 @@ namespace Obi.UserControls
                     index = ((PhraseNode)selected).Index;
                 }
                 Settings settings = ((ObiForm)ParentForm).Settings;
-                RecordingSession session = new RecordingSession(mProjectPanel.Project, Audio.AudioRecorder.Instance,
+                RecordingSession session = new RecordingSession(mProjectPanel.Project, m_Recorder ,
                     settings.AudioChannels, settings.SampleRate, settings.BitDepth);
                 // the following closures handle the various events sent during the recording session
                 session.StartingPhrase += new Events.Audio.Recorder.StartingPhraseHandler(
@@ -585,7 +596,7 @@ namespace Obi.UserControls
                     for (int i = 0; i < session.RecordedAudio.Count; ++i)
                     {
                         mProjectPanel.StripManager.UpdateAudioForPhrase(section.PhraseChild(index + i), session.RecordedAudio[i]);
-                    }
+                                                                    }
                 }
                 else //recording using the transportbar buttons
                 {
@@ -853,7 +864,7 @@ namespace Obi.UserControls
         void Project_AddedPhraseNode(object sender, Obi.Events.Node.PhraseNodeEventArgs e)
         {
             if (e.Node.Used) mMasterPlaylist.AddPhrase(e.Node);
-        }
+                    }
 
         void Project_DeletedPhraseNode(object sender, Obi.Events.Node.PhraseNodeEventArgs e)
         {

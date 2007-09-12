@@ -225,7 +225,7 @@ namespace Obi.UserControls
             AccessibleName  = mLabel.Text;
 
             // Set the time display
-            if (Audio.AudioRecorder.Instance.State != Obi.Audio.AudioRecorderState.Recording)
+            if ( Manager.ProjectPanel.TransportBar.Recorder.State != Obi.Audio.AudioRecorderState.Recording)
             {
                 // TODO check time formatting for duration
                 mTimeLabel.Text = ObiForm.FormatTime(mNode.Audio.getDuration().getTimeDeltaAsMillisecondFloat());
