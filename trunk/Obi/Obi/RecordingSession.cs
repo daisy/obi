@@ -60,9 +60,9 @@ namespace Obi
             mSectionMarks = new List<int>();
             mAudioList = new List<ManagedAudioMedia>();
             // set up event handlers
-            Audio.AudioRecorder.Instance.StateChanged +=
+            mRecorder.StateChanged +=
                 new StateChangedHandler(delegate(object sender, StateChangedEventArgs e) { });
-            Audio.AudioRecorder.Instance.UpdateVuMeterFromRecorder +=
+            mRecorder.UpdateVuMeterFromRecorder +=
                 new UpdateVuMeterHandler(delegate(object sender, UpdateVuMeterEventArgs e) { });
             mRecordingUpdateTimer.Tick += new System.EventHandler(mRecordingUpdateTimer_tick);
             mRecordingUpdateTimer.Interval = 1000;

@@ -101,9 +101,9 @@ namespace Obi
         /// </summary>
         private void InitializeVuMeter()
         {
-            m_Vumeter  = new Obi.Audio.VuMeter(mProjectPanel.TransportBar.AudioPlayer);
+            m_Vumeter  = new Obi.Audio.VuMeter(mProjectPanel.TransportBar.AudioPlayer ,  mProjectPanel.TransportBar.Recorder );
             mProjectPanel.TransportBar.AudioPlayer.VuMeter = m_Vumeter;
-            Audio.AudioRecorder.Instance.VuMeterObject = m_Vumeter ;
+            mProjectPanel.TransportBar.Recorder.VuMeterObject = m_Vumeter ;
             m_Vumeter.SetEventHandlers();
         }
 
@@ -683,7 +683,7 @@ namespace Obi
             mSettings.LastOutputDevice = dialog.OutputDevice.Name;
             mProjectPanel.TransportBar.AudioPlayer.SetDevice(this, dialog.OutputDevice);
             mSettings.LastInputDevice = dialog.InputDevice.Name;
-            Audio.AudioRecorder.Instance.InputDevice = dialog.InputDevice;
+            mProjectPanel.TransportBar.Recorder.InputDevice = dialog.InputDevice;
             mSettings.AudioChannels = dialog.AudioChannels;
             mSettings.SampleRate = dialog.SampleRate;
             mSettings.BitDepth = dialog.BitDepth;
@@ -790,7 +790,7 @@ namespace Obi
             }
             try
             {
-                Audio.AudioRecorder.Instance.SetDevice(this, mSettings.LastInputDevice);
+                mProjectPanel.TransportBar.Recorder.SetDevice(this, mSettings.LastInputDevice);
             }
             catch (Exception)
             {

@@ -110,7 +110,7 @@ mPlaylist.Audioplayer.VuMeter.ResetEvent += new Obi.Events.Audio.VuMeter.ResetHa
 
                     mLeftBox.Text = m_StrLeftOverloadIndicator +  LeftDb.ToString();
                     mRightBox.Text = m_StrRightOverloadIndicator +  RightDb.ToString();
-                }
+                                    }
             }
             else if (IsPlay == false && mRecordingSession != null )
             {
