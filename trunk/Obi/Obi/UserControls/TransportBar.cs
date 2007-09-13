@@ -12,6 +12,7 @@ namespace Obi.UserControls
     {
         private Audio.AudioPlayer mPlayer;   // the player for this playlist
         private Audio.AudioRecorder m_Recorder; // AudioRecorder for this transport bar 
+        private Audio.VuMeter m_VuMeter;    // VuMeter for this transport bar
         private ProjectPanel mProjectPanel;  // project panel to which the transport bar belongs
         private Playlist mMasterPlaylist;    // master playlist (all phrases in the project)
         private Playlist mLocalPlaylist;     // local playlist (only selected; may be null)
@@ -55,6 +56,10 @@ namespace Obi.UserControls
             InitializeComponent();
             mPlayer = new Audio.AudioPlayer();
             m_Recorder = new Obi.Audio.AudioRecorder();
+            m_VuMeter = new Obi.Audio.VuMeter(mPlayer, m_Recorder);
+            mPlayer.VuMeter = m_VuMeter;
+            m_Recorder.VuMeterObject = m_VuMeter;
+            m_VuMeter.SetEventHandlers();
             mLocalPlaylist = null;
             mMasterPlaylist = new Playlist(mPlayer);
             SetPlaylistEvents(mMasterPlaylist);
@@ -79,6 +84,13 @@ namespace Obi.UserControls
             }
         }
 
+        public Audio.VuMeter VuMeter
+        {
+            get
+            {
+                return m_VuMeter;
+            }
+        }
 
         #region selection
 
