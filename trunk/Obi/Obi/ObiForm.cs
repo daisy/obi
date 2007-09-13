@@ -81,9 +81,9 @@ namespace Obi
                 InitializeVuMeter();
                 InitializeSettings();
                 InitialiseHighContrastSettings();
-                mProjectPanel.TransportBar.StateChanged +=
+                mProjectView.TransportBar.StateChanged +=
                     new Obi.Events.Audio.Player.StateChangedHandler(TransportBar_StateChanged);
-                mProjectPanel.TransportBar.PlaybackRateChanged += new EventHandler(TransportBar_PlaybackRateChanged);
+                mProjectView.TransportBar.PlaybackRateChanged += new EventHandler(TransportBar_PlaybackRateChanged);
                 StatusUpdateClosedProject();
             }
             catch (Exception eAnyStartupException)
@@ -101,8 +101,8 @@ namespace Obi
         /// </summary>
         private void InitializeVuMeter()
         {
-            m_Vumeter = mProjectPanel.TransportBar.VuMeter;
-                    }
+            m_Vumeter = mProjectView.TransportBar.VuMeter;
+        }
 
         // setup a VuMeter form and show it
         private void ShowVuMeterForm ()
@@ -119,12 +119,12 @@ namespace Obi
         /// </summary>
         void TransportBar_StateChanged(object sender, Obi.Events.Audio.Player.StateChangedEventArgs e)
         {
-            Status(Localizer.Message(mProjectPanel.TransportBar._CurrentPlaylist.State.ToString()));
+            Status(Localizer.Message(mProjectView.TransportBar._CurrentPlaylist.State.ToString()));
         }
 
         void TransportBar_PlaybackRateChanged(object sender, EventArgs e)
         {
-            Status(String.Format(Localizer.Message("playback_rate"), mProjectPanel.TransportBar._CurrentPlaylist.PlaybackRate));
+            Status(String.Format(Localizer.Message("playback_rate"), mProjectView.TransportBar._CurrentPlaylist.PlaybackRate));
         }
 
 
@@ -169,7 +169,7 @@ namespace Obi
         /// </summary>
         private void mClearListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.TransportBar.Stop();
+            mProjectView.TransportBar.Stop();
             if (MessageBox.Show(Localizer.Message("clear_recent_text"),
                     Localizer.Message("clear_recent_caption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
                 DialogResult.Yes)
@@ -187,7 +187,7 @@ namespace Obi
         {
             if (mProject.Unsaved)
             {
-                mProjectPanel.TransportBar.Stop();
+                mProjectView.TransportBar.Stop();
                 mProject.Save();
                 mCommandManager.Clear();
             }
@@ -198,7 +198,7 @@ namespace Obi
         /// </summary>
         private void mSaveProjectAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.TransportBar.Stop();
+            mProjectView.TransportBar.Stop();
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.Filter = Localizer.Message("xuk_filter");
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -219,7 +219,7 @@ namespace Obi
         {
             if (mProject.Unsaved)
             {
-                mProjectPanel.TransportBar.Stop();
+                mProjectView.TransportBar.Stop();
                 // Ask for confirmation (yes/no question)
                 if (MessageBox.Show(Localizer.Message("discard_changes_text"),
                     Localizer.Message("discard_changes_caption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
@@ -237,7 +237,7 @@ namespace Obi
         {
             if (DidCloseProject())
             {
-                mProjectPanel.CurrentSelection = null;
+                mProjectView.Selection = null;
                 mProject = null;
                 mCommandManager.Clear();
             }
@@ -249,7 +249,7 @@ namespace Obi
         {
             if (mProject != null)
             {
-                mProjectPanel.TransportBar.Enabled = false;
+                mProjectView.TransportBar.Enabled = false;
                 this.Cursor = Cursors.WaitCursor;
             
                 try
@@ -263,7 +263,7 @@ namespace Obi
                             Localizer.Message("didnt_clean_project_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     this.Cursor = Cursors.Default;
-                    mProjectPanel.TransportBar.Enabled = true;
+                    mProjectView.TransportBar.Enabled = true;
                     return;
                 }
 
@@ -272,7 +272,7 @@ namespace Obi
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.Cursor = Cursors.Default;
-                mProjectPanel.TransportBar.Enabled = true;
+                mProjectView.TransportBar.Enabled = true;
             }
         }
         /// <summary>
@@ -282,7 +282,7 @@ namespace Obi
         {
             if (mProject != null)
             {
-                mProjectPanel.TransportBar.Enabled = false;
+                mProjectView.TransportBar.Enabled = false;
                 if (mProject.Unsaved)
                 {
                     DialogResult result = MessageBox.Show(Localizer.Message("export_unsaved_text"),
@@ -312,7 +312,7 @@ namespace Obi
                     Ready();
                 }
                 this.Cursor = Cursors.Default;
-                mProjectPanel.TransportBar.Enabled = true;
+                mProjectView.TransportBar.Enabled = true;
             }
         }
 
@@ -412,7 +412,7 @@ namespace Obi
         /// </summary>
         private void mCutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProjectPanel != null) mProjectPanel.Cut();
+            if (mProjectView != null) mProjectView.Cut();
         }
 
         /// <summary>
@@ -420,7 +420,7 @@ namespace Obi
         /// </summary>
         private void mCopyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProjectPanel != null) mProjectPanel.Copy();
+            if (mProjectView != null) mProjectView.Copy();
         }
 
         /// <summary>
@@ -428,7 +428,7 @@ namespace Obi
         /// </summary>
         private void mPasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProject != null) mProjectPanel.Paste();
+            if (mProject != null) mProjectView.Paste();
         }
 
         /// <summary>
@@ -436,7 +436,7 @@ namespace Obi
         /// </summary>
         private void mDeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProjectPanel != null) mProjectPanel.Delete();
+            if (mProjectView != null) mProjectView.Delete();
         }
 
         /// <summary>
@@ -446,11 +446,11 @@ namespace Obi
         {
             if (mProject != null)
             {
-                mProjectPanel.TransportBar.Enabled = false;
+                mProjectView.TransportBar.Enabled = false;
                 Dialogs.EditSimpleMetadata dialog = new Dialogs.EditSimpleMetadata(mProject);
                 // TODO replace this: if (mProject != null && dialog.ShowDialog() == DialogResult.OK) mProject.Modified();
                 Ready();
-                mProjectPanel.TransportBar.Enabled = true;
+                mProjectView.TransportBar.Enabled = true;
             }
         }
 
@@ -463,10 +463,10 @@ namespace Obi
         {
             if (mProject != null)
             {
-                mProjectPanel.TransportBar.Enabled = false;
+                mProjectView.TransportBar.Enabled = false;
                 if (!mCommandManager.HasUndo) mProject.Touch();
-                mProjectPanel.SynchronizeWithCoreTree();
-                mProjectPanel.TransportBar.Enabled = true;
+                mProjectView.SynchronizeWithCoreTree();
+                mProjectView.TransportBar.Enabled = true;
             }
         }
 
@@ -482,44 +482,37 @@ namespace Obi
 
         private void mShowhideTableOfContentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProjectPanel.TOCPanelVisible)
-            {
-                mProjectPanel.HideTOCPanel();
-            }
-            else
-            {
-                mProjectPanel.ShowTOCPanel();
-            }
+            mProjectView.TOCPanelVisible = !mProjectView.TOCPanelVisible;
         }
 
         private void mInsertSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.TOCPanel.InsertSection();
+            mProjectView.InsertSection();
         }
 
         private void mAddSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.TOCPanel.AddSubSection();
+            mProjectView.AddSubSection();
         }
 
         private void mRenameSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.TOCPanel.StartRenamingSelectedSection();
+            mProjectView.StartRenamingSelectedSection();
         }
 
         private void mMoveOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProject.MoveSectionNodeOut(mProjectPanel.CurrentSelectedSection);
+            mProject.MoveSectionNodeOut(mProjectView.SelectedSection);
         }
 
         private void mMoveInToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProject.MoveSectionNodeIn(mProjectPanel.CurrentSelectedSection);
+            mProject.MoveSectionNodeIn(mProjectView.SelectedSection);
         }
 
         private void mShowInStripviewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.TOCPanel.ShowSelectedSectionInStripView();
+            mProjectView.ShowSelectedSectionInStripView();
         }
 
         #endregion
@@ -534,87 +527,87 @@ namespace Obi
 
         private void mInsertStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.StripManager.InsertStrip();
+            mProjectView.InsertStrip();
         }
 
         private void mRenameStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.StripManager.StartRenamingSelectedStrip();
+            mProjectView.StartRenamingSelectedStrip();
         }
 
         private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.StripManager.ImportPhrases();
+            mProjectView.ImportPhrases();
         }
 
         private void mSplitAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.StripManager.SplitBlock();
+            mProjectView.SplitBlock();
         }
 
         private void mQuickSplitAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.StripManager.QuickSplitBlock();
+            mProjectView.QuickSplitBlock();
         }
 
         private void mApplyPhraseDetectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.StripManager.ApplyPhraseDetection();
+            mProjectView.ApplyPhraseDetection();
         }
 
         private void mMergeWithPreviousAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.StripManager.MergeBlocks();
+            mProjectView.MergeBlocks();
         }
 
         private void mMoveAudioBlockForwardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.StripManager.MoveBlock(PhraseNode.Direction.Forward);
+            mProjectView.MoveBlock(PhraseNode.Direction.Forward);
         }
 
         private void mMoveAudioBlockBackwardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.StripManager.MoveBlock(PhraseNode.Direction.Backward);
+            mProjectView.MoveBlock(PhraseNode.Direction.Backward);
         }
 
         private void mMarkAudioBlockAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.StripManager.ToggleSelectedAudioBlockUsed();
+            mProjectView.ToggleSelectedAudioBlockUsed();
         }
 
         private void mMarkAudioBlockAsSectionHeadingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.StripManager.MarkSelectedAudioBlockAsHeading();
+            mProjectView.MarkSelectedAudioBlockAsHeading();
         }
 
         private void mEditAnnotationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.StripManager.EditAnnotationForSelectedAudioBlock();
+            mProjectView.EditAnnotationForSelectedAudioBlock();
         }
 
         private void mRemoveAnnotationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.StripManager.RemoveAnnotationForAudioBlock();
+            mProjectView.RemoveAnnotationForAudioBlock();
         }
 
         private void mSetPageNumberToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.StripManager.SetPageNumber();
+            mProjectView.SetPageNumber();
         }
 
         private void mRemovePageNumberToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.StripManager.RemovePageNumber();
+            mProjectView.RemovePageNumber();
         }
 
         private void mFocusOnAnnotationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.StripManager.FocusOnAnnotation();
+            mProjectView.FocusOnAnnotation();
         }
 
         private void mGoToPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.StripManager.GoToPage();
+            mProjectView.GoToPage();
         }
 
         #endregion
@@ -647,7 +640,7 @@ namespace Obi
         /// </summary>
         private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings, mProject, mProjectPanel.TransportBar);
+            Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings, mProject, mProjectView.TransportBar);
             dialog.SelectProjectTab();
             ShowPreferencesDialog(dialog);
         }
@@ -663,7 +656,7 @@ namespace Obi
         /// </summary>
         private void mAudioPreferencesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings, mProject, mProjectPanel.TransportBar);
+            Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings, mProject, mProjectView.TransportBar);
             dialog.SelectAudioTab();
             ShowPreferencesDialog(dialog);
         }
@@ -678,15 +671,15 @@ namespace Obi
             if (Directory.Exists(dialog.DefaultDAISYDirectory)) mSettings.DefaultExportPath = dialog.DefaultDAISYDirectory;
             mSettings.OpenLastProject = dialog.OpenLastProject;
             mSettings.LastOutputDevice = dialog.OutputDevice.Name;
-            mProjectPanel.TransportBar.AudioPlayer.SetDevice(this, dialog.OutputDevice);
+            mProjectView.TransportBar.AudioPlayer.SetDevice(this, dialog.OutputDevice);
             mSettings.LastInputDevice = dialog.InputDevice.Name;
-            mProjectPanel.TransportBar.Recorder.InputDevice = dialog.InputDevice;
+            mProjectView.TransportBar.Recorder.InputDevice = dialog.InputDevice;
             mSettings.AudioChannels = dialog.AudioChannels;
             mSettings.SampleRate = dialog.SampleRate;
             mSettings.BitDepth = dialog.BitDepth;
             // tooltips
             mSettings.EnableTooltips = dialog.EnableTooltips;
-            mProjectPanel.EnableTooltips = dialog.EnableTooltips;
+            mProjectView.EnableTooltips = dialog.EnableTooltips;
         }
 
         /// <summary>
@@ -706,7 +699,7 @@ namespace Obi
                     MessageBox.Show(String.Format(Localizer.Message("save_settings_error_text"), x.Message),
                         Localizer.Message("save_settings_error_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                mProjectPanel.TransportBar.Stop();
+                mProjectView.TransportBar.Stop();
                 Application.Exit();
 
                 // unhook User preferences system events 
@@ -777,7 +770,7 @@ namespace Obi
             }
             try
             {
-                mProjectPanel.TransportBar.AudioPlayer.SetDevice(this, mSettings.LastOutputDevice);
+                mProjectView.TransportBar.AudioPlayer.SetDevice(this, mSettings.LastOutputDevice);
             }
             catch (Exception)
             {
@@ -787,7 +780,7 @@ namespace Obi
             }
             try
             {
-                mProjectPanel.TransportBar.Recorder.SetDevice(this, mSettings.LastInputDevice);
+                mProjectView.TransportBar.Recorder.SetDevice(this, mSettings.LastInputDevice);
             }
             catch (Exception)
             {
@@ -796,7 +789,7 @@ namespace Obi
                 Application.Exit();
             }
             // tooltips
-            mProjectPanel.EnableTooltips = mSettings.EnableTooltips;
+            mProjectView.EnableTooltips = mSettings.EnableTooltips;
             if (mSettings.ObiFormSize.Width == 0 || mSettings.ObiFormSize.Height == 0)
             {
                 mSettings.ObiFormSize = Size;
@@ -820,7 +813,7 @@ namespace Obi
             else
             {
                 mToolStripStatusLabel.Text = String.Format(Localizer.Message("closed_project"), mProject.Title);
-                mProjectPanel.Project = null;
+                mProjectView.Project = null;
                 EnableItemsProjectClosed();
             }
         }
@@ -881,11 +874,11 @@ namespace Obi
         private void UpdateEnabledItemsForTransportMenu()
         {
             bool isProjectOpen = mProject != null;
-            bool isNodeSelected = isProjectOpen && mProjectPanel.CurrentSelection != null;
+            bool isNodeSelected = isProjectOpen && mProjectView.Selection != null;
 
             mShowHideVUMeterToolStripMenuItem.Text = Localizer.Message(( mVuMeterForm != null && mVuMeterForm.Visible) ? "hide_vu_meter" : "show_vu_meter");
 
-            if (mProjectPanel.TransportBar.IsInlineRecording)
+            if (mProjectView.TransportBar.IsInlineRecording)
             {
                 mPlayAllToolStripMenuItem.Enabled = true;
                 mPlaySelectionToolStripMenuItem.Enabled = true;
@@ -894,7 +887,7 @@ namespace Obi
             else
             {
 
-                if (mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
+                if (mProjectView.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
                 {
                     mPlayAllToolStripMenuItem.Enabled = isProjectOpen;
                     //mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
@@ -902,7 +895,7 @@ namespace Obi
                     //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
                     mStopToolStripMenuItem.Enabled = isNodeSelected;
                 }
-                else if (mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.NotReady)
+                else if (mProjectView.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.NotReady)
                 {
                     mPlayAllToolStripMenuItem.Enabled = false;
                     //mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
@@ -910,27 +903,27 @@ namespace Obi
                     //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
                     mStopToolStripMenuItem.Enabled = false;
                 }
-                else if (mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused)
+                else if (mProjectView.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused)
                 {
                     // Avn: changed to allowdirect change of Playback mode
-                    mPlayAllToolStripMenuItem.Enabled = true; // mProjectPanel.TransportBar._CurrentPlaylist.WholeBook;
+                    mPlayAllToolStripMenuItem.Enabled = true; // mProjectView.TransportBar._CurrentPlaylist.WholeBook;
                     //mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
                     // Avn: changed to allowdirect change of Playback mode
-                    mPlaySelectionToolStripMenuItem.Enabled = (mProjectPanel.CurrentSelection != null);  // !mProjectPanel.TransportBar._CurrentPlaylist.WholeBook;
+                    mPlaySelectionToolStripMenuItem.Enabled = (mProjectView.Selection != null);  // !mProjectView.TransportBar._CurrentPlaylist.WholeBook;
                     //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
                     mStopToolStripMenuItem.Enabled = true;
                 }
                 else // playing
                 {
                     // Avn: changed to allowdirect change of Playback mode
-                    mPlayAllToolStripMenuItem.Enabled = true; //mProjectPanel.TransportBar._CurrentPlaylist.WholeBook;
+                    mPlayAllToolStripMenuItem.Enabled = true; //mProjectView.TransportBar._CurrentPlaylist.WholeBook;
                     //mPlayAllToolStripMenuItem.Text = Localizer.Message("pause_all");
                     // Avn: changed to allowdirect change of Playback mode
-                    mPlaySelectionToolStripMenuItem.Enabled = (mProjectPanel.CurrentSelection != null);  // !mProjectPanel.TransportBar._CurrentPlaylist.WholeBook;
+                    mPlaySelectionToolStripMenuItem.Enabled = (mProjectView.Selection != null);  // !mProjectView.TransportBar._CurrentPlaylist.WholeBook;
                     //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("pause");
                     mStopToolStripMenuItem.Enabled = true;
                 }
-                mRecordToolStripMenuItem.Enabled = mProjectPanel.TransportBar.CanRecord;
+                mRecordToolStripMenuItem.Enabled = mProjectView.TransportBar.CanRecord;
             }
         }
 
@@ -970,7 +963,7 @@ namespace Obi
         /// </summary>
         private void mPlayAllToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            mProjectPanel.TransportBar.Play();
+            mProjectView.TransportBar.Play();
         }
 
         /// <summary>
@@ -978,7 +971,7 @@ namespace Obi
         /// </summary>
         private void mPlaySelectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Play(mProjectPanel.CurrentSelectionNode);
+            Play(mProjectView.SelectionNode);
         }
 
         /// <summary>
@@ -986,12 +979,12 @@ namespace Obi
         /// </summary>
         private void Play(ObiNode node)
         {
-            mProjectPanel.TransportBar.Play(node);
+            mProjectView.TransportBar.Play(node);
         }
 
         private void mPauseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.TransportBar.Pause();
+            mProjectView.TransportBar.Pause();
         }
 
         /// <summary>
@@ -1004,7 +997,7 @@ namespace Obi
 
         private void TransportBar_Stop ()
         {
-            mProjectPanel.TransportBar.Stop();
+            mProjectView.TransportBar.Stop();
         }
 
         /// <summary>
@@ -1012,24 +1005,24 @@ namespace Obi
         /// </summary>
         private void mRecordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.TransportBar.Record();
+            mProjectView.TransportBar.Record();
         }
 
         #endregion
 
         private void mRewindToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.TransportBar.Rewind();
+            mProjectView.TransportBar.Rewind();
         }
 
         private void mFastForwardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.TransportBar.FastForward();
+            mProjectView.TransportBar.FastForward();
         }
 
         private void mPreviousSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.TransportBar.PrevSection();
+            mProjectView.TransportBar.PrevSection();
         }
 
         private void mPreviousPhraseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1039,12 +1032,12 @@ namespace Obi
 
         private void TransportBar_PreviousPhrase()
         {
-            if (mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
+            if (mProjectView.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
             {
             }
             else
             {
-                mProjectPanel.TransportBar.PrevPhrase();
+                mProjectView.TransportBar.PrevPhrase();
             }
         }
 
@@ -1055,18 +1048,18 @@ namespace Obi
 
         private void TransportBar_NextPhrase()
         {
-            if (mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
+            if (mProjectView.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
             {
             }
             else
             {
-                mProjectPanel.TransportBar.NextPhrase();
+                mProjectView.TransportBar.NextPhrase();
             }
         }
 
         private void mNextSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.TransportBar.NextSection();
+            mProjectView.TransportBar.NextSection();
         }
 
         /// <summary>
@@ -1074,7 +1067,7 @@ namespace Obi
         /// </summary>
         private void mMarkSectionAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProject.ToggleNodeUsedWithCommand(mProjectPanel.CurrentSelectedSection, true);
+            mProject.ToggleNodeUsedWithCommand(mProjectView.SelectedSection, true);
         }
 
         /// <summary>
@@ -1082,7 +1075,7 @@ namespace Obi
         /// </summary>
         private void mMarkStripAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.StripManager.ToggleSelectedStripUsed();
+            mProjectView.ToggleSelectedStripUsed();
         }
 
 
@@ -1225,7 +1218,7 @@ namespace Obi
         {
             bool isProjectOpen = mProject != null;
             bool isProjectModified = isProjectOpen && mProject.Unsaved;
-            bool isPlayingOrRecording = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing || mProjectPanel.TransportBar.IsInlineRecording;
+            bool isPlayingOrRecording = mProjectView.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing || mProjectView.TransportBar.IsInlineRecording;
 
             // mNewProjectToolStripMenuItem.Enabled = !isPlayingOrRecording;
             mOpenProjectToolStripMenuItem.Enabled = !isPlayingOrRecording;
@@ -1246,25 +1239,25 @@ namespace Obi
         {
             UpdateEnabledItemsForUndoRedo();
 
-            bool isPlayingOrRecording = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing || mProjectPanel.TransportBar.IsInlineRecording;
-            bool canCutCopyDelete = !isPlayingOrRecording && mProjectPanel.CurrentSelectionNode != null && !mProjectPanel.TransportBar.IsInlineRecording;
-            string itemLabel = mProjectPanel.SelectedLabel;
+            bool isPlayingOrRecording = mProjectView.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing || mProjectView.TransportBar.IsInlineRecording;
+            bool canCutCopyDelete = !isPlayingOrRecording && mProjectView.SelectionNode != null && !mProjectView.TransportBar.IsInlineRecording;
+            string itemLabel = mProjectView.SelectedName;
             if (itemLabel != "") itemLabel = " " + itemLabel;
             ObiNode clipboardData = mProject == null ? null : mProject.Clipboard.Data as ObiNode;
-            string pasteLabel = mProjectPanel.PasteLabel(clipboardData);
+            string pasteLabel = mProjectView.PasteLabel(clipboardData);
             if (pasteLabel != "") pasteLabel = " " + pasteLabel;
 
             mCutToolStripMenuItem.Enabled = canCutCopyDelete;
             mCutToolStripMenuItem.Text = String.Format(Localizer.Message("cut_menu_label"), itemLabel);
             mCopyToolStripMenuItem.Enabled = canCutCopyDelete;
             mCopyToolStripMenuItem.Text = String.Format(Localizer.Message("copy_menu_label"), itemLabel);
-            mPasteToolStripMenuItem.Enabled = !isPlayingOrRecording && mProjectPanel.CanPaste(clipboardData);
+            mPasteToolStripMenuItem.Enabled = !isPlayingOrRecording && mProjectView.CanPaste(clipboardData);
             mPasteToolStripMenuItem.Text = String.Format(Localizer.Message("paste_menu_label"), pasteLabel);
             mDeleteToolStripMenuItem.Enabled = canCutCopyDelete;
             mDeleteToolStripMenuItem.Text = String.Format(Localizer.Message("delete_menu_label"), itemLabel);
 
             bool isProjectOpen = mProject != null;
-            bool canTouch = !isPlayingOrRecording && isProjectOpen && !mProjectPanel.TransportBar.IsInlineRecording;
+            bool canTouch = !isPlayingOrRecording && isProjectOpen && !mProjectView.TransportBar.IsInlineRecording;
             mMetadataToolStripMenuItem.Enabled = canTouch;
             mFullMetadataToolStripMenuItem.Enabled = canTouch;
             mTouchProjectToolStripMenuItem.Enabled = canTouch;
@@ -1275,7 +1268,7 @@ namespace Obi
         /// </summary>
         private void UpdateEnabledItemsForUndoRedo()
         {
-            bool isPlayingOrRecording = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing || mProjectPanel.TransportBar.IsInlineRecording;
+            bool isPlayingOrRecording = mProjectView.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing || mProjectView.TransportBar.IsInlineRecording;
             if (mCommandManager.HasUndo)
             {
                 mUndoToolStripMenuItem.Enabled = !isPlayingOrRecording;
@@ -1307,25 +1300,25 @@ namespace Obi
         private void UpdateEnabledItemsForTOCMenu()
         {
             mShowhideTableOfContentsToolStripMenuItem.Text =
-                Localizer.Message(mProjectPanel.TOCPanelVisible ? "hide_toc_label" : "show_toc_label");
+                Localizer.Message(mProjectView.TOCPanelVisible ? "hide_toc_label" : "show_toc_label");
             mShowhideTableOfContentsToolStripMenuItem.Enabled = mProject != null;
 
-            bool isPlayingOrRecording = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing ||mProjectPanel.TransportBar.IsInlineRecording;
+            bool isPlayingOrRecording = mProjectView.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing ||mProjectView.TransportBar.IsInlineRecording;
             bool isProjectOpen = mProject != null;
-            bool noNodeSelected = isProjectOpen && mProjectPanel.CurrentSelection == null;
-            bool isSectionNodeSelected = isProjectOpen && mProjectPanel.CurrentSelectedSection != null;
-            bool isSectionNodeUsed = isSectionNodeSelected && mProjectPanel.CurrentSelectedSection.Used;
+            bool noNodeSelected = isProjectOpen && mProjectView.Selection == null;
+            bool isSectionNodeSelected = isProjectOpen && mProjectView.SelectedSection != null;
+            bool isSectionNodeUsed = isSectionNodeSelected && mProjectView.SelectedSection.Used;
             bool isParentUsed = isSectionNodeSelected ?
-                mProjectPanel.CurrentSelectedSection.ParentSection == null ||
-                mProjectPanel.CurrentSelectedSection.ParentSection.Used : false;
+                mProjectView.SelectedSection.ParentSection == null ||
+                mProjectView.SelectedSection.ParentSection.Used : false;
 
             mAddSectionToolStripMenuItem.Enabled = !isPlayingOrRecording && (noNodeSelected || isSectionNodeUsed || isParentUsed);
             mAddSubSectionToolStripMenuItem.Enabled = !isPlayingOrRecording && isSectionNodeUsed;
             mRenameSectionToolStripMenuItem.Enabled = !isPlayingOrRecording && isSectionNodeUsed;
             mMoveOutToolStripMenuItem.Enabled = !isPlayingOrRecording && isSectionNodeUsed &&
-                mProjectPanel.Project.CanMoveSectionNodeOut(mProjectPanel.CurrentSelectionNode as SectionNode);
+                mProjectView.Project.CanMoveSectionNodeOut(mProjectView.SelectionNode as SectionNode);
             mMoveInToolStripMenuItem.Enabled = !isPlayingOrRecording && isSectionNodeUsed &&
-                mProjectPanel.Project.CanMoveSectionNodeIn(mProjectPanel.CurrentSelectionNode as SectionNode);
+                mProjectView.Project.CanMoveSectionNodeIn(mProjectView.SelectionNode as SectionNode);
             
             // Mark section used/unused (by default, i.e. if disabled, "unused")
             mMarkSectionAsUnusedToolStripMenuItem.Enabled = !isPlayingOrRecording && isSectionNodeSelected && isParentUsed;
@@ -1337,20 +1330,20 @@ namespace Obi
 
         private void UpdateEnabledItemsForStripsMenu()
         {
-            bool isPlayingOrRecording = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing || mProjectPanel.TransportBar.IsInlineRecording;
-            bool isPaused = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused;
+            bool isPlayingOrRecording = mProjectView.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing || mProjectView.TransportBar.IsInlineRecording;
+            bool isPaused = mProjectView.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused;
             bool isProjectOpen = mProject != null;
-            bool isStripSelected = isProjectOpen && mProjectPanel.StripManager.SelectedSectionNode != null;
-            bool isAudioBlockSelected = isProjectOpen && mProjectPanel.StripManager.SelectedPhraseNode != null;
+            bool isStripSelected = isProjectOpen && mProjectView.SelectedStripNode != null;
+            bool isAudioBlockSelected = isProjectOpen && mProjectView.SelectedBlockNode != null;
             bool isAudioBlockLast = isAudioBlockSelected &&
-                mProjectPanel.StripManager.SelectedPhraseNode.Index ==
-                mProjectPanel.StripManager.SelectedPhraseNode.ParentSection.PhraseChildCount - 1;
+                mProjectView.SelectedBlockNode.Index ==
+                mProjectView.SelectedBlockNode.ParentSection.PhraseChildCount - 1;
             bool isAudioBlockFirst = isAudioBlockSelected &&
-                mProjectPanel.StripManager.SelectedPhraseNode.Index == 0;
+                mProjectView.SelectedBlockNode.Index == 0;
             bool isBlockClipBoardSet = isProjectOpen && mProject.Clipboard.Phrase != null;
-            bool canMerge = isProjectOpen && mProjectPanel.StripManager.CanMerge;
+            bool canMerge = isProjectOpen && mProjectView.CanMergeBlocks;
 
-            bool canInsertPhrase = !isPlayingOrRecording && isProjectOpen && mProjectPanel.StripManager.CanInsertPhraseNode;
+            bool canInsertPhrase = !isPlayingOrRecording && isProjectOpen && mProjectView.CanInsertAudioBlock;
             mImportAudioFileToolStripMenuItem.Enabled = canInsertPhrase;
 
             mInsertStripToolStripMenuItem.Enabled = isProjectOpen;
@@ -1365,33 +1358,33 @@ namespace Obi
             mMoveAudioBlockToolStripMenuItem.Enabled = isAudioBlockSelected && (!isAudioBlockFirst || !isAudioBlockLast);
 
             bool canRemoveAnnotation = !isPlayingOrRecording && isAudioBlockSelected &&
-                mProjectPanel.StripManager.SelectedPhraseNode.HasAnnotation;
+                mProjectView.SelectedBlockNode.HasAnnotation;
             mEditAnnotationToolStripMenuItem.Enabled = !isPlayingOrRecording && isAudioBlockSelected;
             mRemoveAnnotationToolStripMenuItem.Enabled = canRemoveAnnotation;
             mFocusOnAnnotationToolStripMenuItem.Enabled = canRemoveAnnotation;
 
-            mSetPageNumberToolStripMenuItem.Enabled = !isPlayingOrRecording && mProjectPanel.StripManager.CanSetPage;
-            mRemovePageNumberToolStripMenuItem.Enabled = !isPlayingOrRecording && mProjectPanel.StripManager.CanRemovePage;
+            mSetPageNumberToolStripMenuItem.Enabled = !isPlayingOrRecording && mProjectView.CanSetPageNumber;
+            mRemovePageNumberToolStripMenuItem.Enabled = !isPlayingOrRecording && mProjectView.CanRemovePageNumber;
             mGoToPageToolStripMenuItem.Enabled = !isPlayingOrRecording && isProjectOpen && mProject.Pages > 0; 
 
             mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;
 
-            mMarkAudioBlockAsUnusedToolStripMenuItem.Enabled = mProjectPanel.CanToggleAudioBlock;
-            mMarkAudioBlockAsUnusedToolStripMenuItem.Text = mProjectPanel.ToggleAudioBlockString;
+            mMarkAudioBlockAsUnusedToolStripMenuItem.Enabled = mProjectView.CanToggleAudioBlockUsedFlag;
+            mMarkAudioBlockAsUnusedToolStripMenuItem.Text = mProjectView.ToggleAudioBlockUsedFlagLabel;
             
             mMarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled = isAudioBlockSelected &&
-                !mProjectPanel.CurrentSelectedAudioBlock.IsHeading && mProjectPanel.CurrentSelectedAudioBlock.Used &&
-                mProjectPanel.CurrentSelectedAudioBlock.Audio.getDuration().getTimeDeltaAsMillisecondFloat() > 0.0;
+                !mProjectView.SelectedBlockNode.IsHeading && mProjectView.SelectedBlockNode.Used &&
+                mProjectView.SelectedBlockNode.Audio.getDuration().getTimeDeltaAsMillisecondFloat() > 0.0;
             mUnmarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled = isAudioBlockSelected &&
-                mProjectPanel.CurrentSelectedAudioBlock.IsHeading;
+                mProjectView.SelectedBlockNode.IsHeading;
             mUnmarkAudioBlockAsSectionHeadingToolStripMenuItem.Visible = mUnmarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled;
             mMarkAudioBlockAsSectionHeadingToolStripMenuItem.Visible = !mUnmarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled;
         }
 
         private void mViewHelpInExternalBrowserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Uri url = new Uri(Path.GetDirectoryName(GetType().Assembly.Location) + "\\help_en.html");
-            System.Diagnostics.Process.Start(url.ToString());
+            System.Diagnostics.Process.Start((new Uri(Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location),
+                Localizer.Message("help_html")))).ToString());
         }
 
         private void mReportBugToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1402,14 +1395,7 @@ namespace Obi
 
         private void mShowInTOCViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // should be a project panel method?
-            if (mProjectPanel.CurrentSelectedStrip != null)
-            {
-                mProjectPanel.CurrentSelection = new NodeSelection(mProjectPanel.CurrentSelection.Node, mProjectPanel.TOCPanel);
-                //since the tree can be hidden:
-                mProjectPanel.ShowTOCPanel();
-                mProjectPanel.TOCPanel.Focus();
-            }
+            mProjectView.ShowSelectedStripInTOCView();
         }
 
         #region IMessageFilter Members
@@ -1417,7 +1403,7 @@ namespace Obi
         private const UInt32 WM_KEYDOWN = 0x0100;
         private const UInt32 WM_SYSKEYDOWN = 0x0104;
 
-        private void mProjectPanel_Load(object sender, EventArgs e)
+        private void mProjectView_Load(object sender, EventArgs e)
         {
             Application.AddMessageFilter(this);
         }
@@ -1442,7 +1428,7 @@ namespace Obi
                 += new Microsoft.Win32.UserPreferenceChangedEventHandler(this.UserPreferenceChanged);
 
             //UserControls.Colors.SetHighContrastColors(SystemInformation.HighContrast);
-            //mProjectPanel.TransportBar.SetHighContrastColors(SystemInformation.HighContrast);
+            //mProjectView.TransportBar.SetHighContrastColors(SystemInformation.HighContrast);
             //BackColor = UserControls.Colors.ObiBackGround;
             
         }
@@ -1450,7 +1436,7 @@ namespace Obi
         private void UserPreferenceChanged( object sender , EventArgs e )
         {
             UserControls.Colors.SetHighContrastColors( SystemInformation.HighContrast );
-            //mProjectPanel.TransportBar.SetHighContrastColors(SystemInformation.HighContrast);
+            //mProjectView.TransportBar.SetHighContrastColors(SystemInformation.HighContrast);
             BackColor = UserControls.Colors.ObiBackGround;
             mProject.Touch();
         }
@@ -1464,42 +1450,45 @@ namespace Obi
 /// </param>
         private void MoveToNextPanel( bool Clockwise )
         {
-                        mProjectPanel.TransportBar.PlayOnFocusEnabled = false;
-                        if (mProjectPanel.CurrentSelection != null)
+
+            /*
+                        mProjectView.TransportBar.PlayOnFocusEnabled = false;
+                        if (mProjectView.CurrentSelection != null)
                         {
-                            if (mProjectPanel.TOCPanel.ContainsFocus)
+                            if (mProjectView.TOCPanel.ContainsFocus)
                             {
                                 if (Clockwise)
                                 {
-                                    NodeSelection TempnodeSelection = mProjectPanel.CurrentSelection;
-                                    mProjectPanel.StripManager.Focus();
-                                    mProjectPanel.CurrentSelection = new NodeSelection(TempnodeSelection.Node, mProjectPanel.StripManager);
+                                    NodeSelection TempnodeSelection = mProjectView.CurrentSelection;
+                                    mProjectView.StripManager.Focus();
+                                    mProjectView.CurrentSelection = new NodeSelection(TempnodeSelection.Node, mProjectView.StripManager);
                                 }
                                 else
-                                    mProjectPanel.TransportBar.Focus();
+                                    mProjectView.TransportBar.Focus();
                             }
-                            else if (mProjectPanel.StripManager.ContainsFocus)
+                            else if (mProjectView.StripManager.ContainsFocus)
                             {
                                 if (Clockwise)
-                                    mProjectPanel.TransportBar.Focus();
+                                    mProjectView.TransportBar.Focus();
                                 else
                                     FocusTOCPanel();
                             }
-                            else if (mProjectPanel.TransportBar.ContainsFocus)
+                            else if (mProjectView.TransportBar.ContainsFocus)
                             {
                                 if (Clockwise)
                                     FocusTOCPanel();
                                 else
                                 {
-                                    NodeSelection TempnodeSelection = mProjectPanel.CurrentSelection;
-                                    mProjectPanel .StripManager.Focus();
-                                    mProjectPanel.CurrentSelection = new NodeSelection(TempnodeSelection.Node , mProjectPanel.StripManager);
+                                    NodeSelection TempnodeSelection = mProjectView.CurrentSelection;
+                                    mProjectView .StripManager.Focus();
+                                    mProjectView.CurrentSelection = new NodeSelection(TempnodeSelection.Node , mProjectView.StripManager);
                                                                     }
                             }
                         }
                         else
-                            mProjectPanel.TOCPanel.Focus();
-            mProjectPanel.TransportBar.PlayOnFocusEnabled = true;
+                            mProjectView.TOCPanel.Focus();
+            mProjectView.TransportBar.PlayOnFocusEnabled = true;
+             * */
         }
 
 
@@ -1509,15 +1498,16 @@ namespace Obi
         /// </summary>
         private void FocusTOCPanel()
         {
-            if (mProjectPanel.CurrentSelectionNode.GetType().Name == "PhraseNode")
+            /*
+            if (mProjectView.CurrentSelectionNode.GetType().Name == "PhraseNode")
             {
-                PhraseNode TempPhraseNode = mProjectPanel.CurrentSelectionNode as PhraseNode;
-                mProjectPanel.CurrentSelection = new NodeSelection(TempPhraseNode.ParentSection, mProjectPanel.TOCPanel);
-                mProjectPanel.TOCPanel.Focus();
+                PhraseNode TempPhraseNode = mProjectView.CurrentSelectionNode as PhraseNode;
+                mProjectView.CurrentSelection = new NodeSelection(TempPhraseNode.ParentSection, mProjectView.TOCPanel);
+                mProjectView.TOCPanel.Focus();
             }
             else
-                mProjectPanel.StripManager.ShowInTOCPanel();
-
+                mProjectView.StripManager.ShowInTOCPanel();
+            */
         }
 
         //added by med june 4 2007
@@ -1531,10 +1521,10 @@ namespace Obi
         /// <param name="e"></param>
         private void mNewProjectFromImportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectPanel.TransportBar.Enabled = false;
+            mProjectView.TransportBar.Enabled = false;
             if (!DidCloseProject())
             {
-                mProjectPanel.TransportBar.Enabled = true;
+                mProjectView.TransportBar.Enabled = true;
                 Ready();
                 return;
             }
@@ -1581,13 +1571,13 @@ namespace Obi
                 MessageBox.Show("Import failed: " + ex.Message);
                 mProject.Close();
                 File.Delete(dialog.Path);
-                mProjectPanel.TransportBar.Enabled = false;
+                mProjectView.TransportBar.Enabled = false;
                 RemoveRecentProject(dialog.Path);
                 return;
             }
         
             Ready();
-            mProjectPanel.TransportBar.Enabled = true;
+            mProjectView.TransportBar.Enabled = true;
         }
 
         
@@ -1720,7 +1710,7 @@ namespace Obi
         /// <returns>True if there is no open project or the currently open project could be closed.</returns>
         private bool DidCloseProject()
         {
-            mProjectPanel.TransportBar.Stop();
+            mProjectView.TransportBar.Stop();
             if (mProject != null && mProject.Unsaved)
             {
                 DialogResult result = MessageBox.Show(Localizer.Message("closed_project_text"),
@@ -1839,10 +1829,10 @@ namespace Obi
                     FormUpdateModifiedProject();
                     break;
                 case Obi.Events.Project.StateChange.Opened:
-                    mProjectPanel.Project = mProject;
+                    mProjectView.Project = mProject;
                     FormUpdateOpenedProject();
                     mCommandManager.Clear();
-                    mProjectPanel.SynchronizeWithCoreTree();
+                    mProjectView.SynchronizeWithCoreTree();
                     break;
                 case Obi.Events.Project.StateChange.Saved:
                     FormUpdateSavedProject();
@@ -1891,6 +1881,11 @@ namespace Obi
         {
             time /= 1000.0;
             return time.ToString("0.00") + "s";
+        }
+
+        private void mProjectView_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

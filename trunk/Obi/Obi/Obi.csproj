@@ -231,6 +231,18 @@
     <Compile Include="Project.CleanAndExport.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Project.TOC.cs" />
+    <Compile Include="ProjectView\ProjectView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProjectView\ProjectView.designer.cs">
+      <DependentUpon>ProjectView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectView\StripsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProjectView\StripsView.Designer.cs">
+      <DependentUpon>StripsView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Dialogs\EditSimpleMetadata.resx">
       <SubType>Designer</SubType>
@@ -433,6 +445,14 @@
     <EmbeddedResource Include="Dialogs\TransportRecord.resx">
       <SubType>Designer</SubType>
       <DependentUpon>TransportRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\ProjectView.resx">
+      <DependentUpon>ProjectView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\StripsView.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>StripsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\AbstractBlock.resx">
       <SubType>Designer</SubType>

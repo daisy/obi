@@ -719,4 +719,8 @@ Do you want to replace the project contained in this file?</value>
     <value>Directory "{0}"is not empty. If you create a new project in this directory, some contents may be overwritten. Do you wish to continue?</value>
     <comment>Selecting a non-empty directory to save a project in.</comment>
   </data>
+  <data name="help_html" xml:space="preserve">
+    <value>help_en.html</value>
+    <comment>Name of the help file for the current language</comment>
+  </data>
 </root>
