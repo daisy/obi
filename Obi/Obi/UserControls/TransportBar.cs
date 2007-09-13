@@ -10,10 +10,21 @@ namespace Obi.UserControls
     /// </summary>
     public partial class TransportBar : UserControl, IControlWithSelection
     {
+        // TO BE REMOVED
+        private ProjectPanel mProjectPanel;  // project panel to which the transport bar belongs
+
+        private ProjectView.ProjectView mProjectView;  // the project view to which this transport bar belongs
+
+        public ProjectView.ProjectView ProjectView
+        {
+            get { return mProjectView; }
+            set { mProjectView = value; }
+        }
+
+
         private Audio.AudioPlayer mPlayer;   // the player for this playlist
         private Audio.AudioRecorder m_Recorder; // AudioRecorder for this transport bar 
         private Audio.VuMeter m_VuMeter;    // VuMeter for this transport bar
-        private ProjectPanel mProjectPanel;  // project panel to which the transport bar belongs
         private Playlist mMasterPlaylist;    // master playlist (all phrases in the project)
         private Playlist mLocalPlaylist;     // local playlist (only selected; may be null)
         private Playlist mCurrentPlaylist;   // playlist currently playing
@@ -702,7 +713,7 @@ namespace Obi.UserControls
                 else
                 {
                     mCurrentPlaylist.Stop();
-                    mProjectPanel.CurrentSelection = mPlayingFrom;
+                    mProjectView.Selection = mPlayingFrom;
                 }
                 mPlayingFrom = null;
                 m_IsSerialPlaying = false;
