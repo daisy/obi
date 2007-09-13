@@ -244,9 +244,7 @@ namespace Obi.UserControls
             this.mVUMeterPanel.BackColor = System.Drawing.Color.Transparent;
             this.mVUMeterPanel.Location = new System.Drawing.Point(618, 0);
             this.mVUMeterPanel.Name = "mVUMeterPanel";
-            this.mVUMeterPanel.PlayListObj = null;
-            this.mVUMeterPanel.RecordingSessionObj = null;
-            this.mVUMeterPanel.Size = new System.Drawing.Size(204, 44);
+                                    this.mVUMeterPanel.Size = new System.Drawing.Size(204, 44);
             this.mVUMeterPanel.TabIndex = 11;
             // 
             // mRecordModeBox

@@ -28,10 +28,11 @@ namespace Obi.Dialogs
         /// Instantiate a new dialog for an existing session.
         /// </summary>
         /// <param name="recordingSession">The initial recording session.</param>
-        public TransportRecord(RecordingSession recordingSession)
+        public TransportRecord(RecordingSession recordingSession , Audio.VuMeter vumeter  )
         {
             InitializeComponent();
             mRecordingSession = recordingSession;
+                        mTextVuMeter.VuMeter = vumeter  ;
         }
 
         /// <summary>
@@ -132,9 +133,7 @@ namespace Obi.Dialogs
         {
             mPauseButton.Visible = false;
             mRecordingSession.Listen();
-            mTextVuMeter.Enable = true;
-            mTextVuMeter.RecordingSessionObj = mRecordingSession;
-
+                        
             mTimeDisplay.Enabled = false;
             mTimeDisplayBox.Text = "Listening";
         }
