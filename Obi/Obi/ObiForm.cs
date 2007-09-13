@@ -101,11 +101,8 @@ namespace Obi
         /// </summary>
         private void InitializeVuMeter()
         {
-            m_Vumeter  = new Obi.Audio.VuMeter(mProjectPanel.TransportBar.AudioPlayer ,  mProjectPanel.TransportBar.Recorder );
-            mProjectPanel.TransportBar.AudioPlayer.VuMeter = m_Vumeter;
-            mProjectPanel.TransportBar.Recorder.VuMeterObject = m_Vumeter ;
-            m_Vumeter.SetEventHandlers();
-        }
+            m_Vumeter = mProjectPanel.TransportBar.VuMeter;
+                    }
 
         // setup a VuMeter form and show it
         private void ShowVuMeterForm ()
