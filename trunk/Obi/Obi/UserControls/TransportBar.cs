@@ -455,9 +455,7 @@ namespace Obi.UserControls
                 mCurrentPlaylist.CurrentPhrase = InitialPhrase;
                 if (mCurrentPlaylist.CurrentPhrase != null)
                 {
-                    mVUMeterPanel.Enable = true;
-                    mVUMeterPanel.PlayListObj = mCurrentPlaylist;
-                    m_IsSerialPlaying = true;
+                                                            m_IsSerialPlaying = true;
                     mCurrentPlaylist.Play();
                     m_CurrentPlayingSection = mCurrentPlaylist.CurrentSection;
                 }
@@ -492,9 +490,7 @@ namespace Obi.UserControls
                 LocalPlaylist = new Playlist(mPlayer, node);
                 mCurrentPlaylist = mLocalPlaylist;
                 mCurrentPlaylist.CurrentPhrase = mLocalPlaylist.FirstPhrase;
-                mVUMeterPanel.Enable = true;
-                mVUMeterPanel.PlayListObj = mCurrentPlaylist;
-                
+                                                
                 // Avn: condition added on 13 may 2007
                 if ( mCurrentPlaylist.PhraseList.Count > 1 )
                 m_IsSerialPlaying = true;
@@ -610,7 +606,7 @@ namespace Obi.UserControls
 
                 if (mRecordModeBox.SelectedIndex == 0) //recording using the dialog
                 {
-                    new Dialogs.TransportRecord(session).ShowDialog();
+                    new Dialogs.TransportRecord(session , m_VuMeter ).ShowDialog ();
 
                     // delete newly created section if nothing is recorded.
                     if (session.RecordedAudio.Count == 0 && IsSectionCreated)

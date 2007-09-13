@@ -121,9 +121,7 @@ namespace Obi.Dialogs
             this.mTextVuMeter.BackColor = System.Drawing.Color.Transparent;
             this.mTextVuMeter.Location = new System.Drawing.Point(12, 72);
             this.mTextVuMeter.Name = "mTextVuMeter";
-            this.mTextVuMeter.PlayListObj = null;
-            this.mTextVuMeter.RecordingSessionObj = null;
-            this.mTextVuMeter.Size = new System.Drawing.Size(205, 26);
+                        this.mTextVuMeter.Size = new System.Drawing.Size(205, 26);
             this.mTextVuMeter.TabIndex = 7;
             // 
             // TransportRecord
