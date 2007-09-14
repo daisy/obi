@@ -68,8 +68,6 @@ namespace Obi.UserControls
             mPlayer = new Audio.AudioPlayer();
             m_Recorder = new Obi.Audio.AudioRecorder();
             m_VuMeter = new Obi.Audio.VuMeter(mPlayer, m_Recorder);
-            mPlayer.VuMeter = m_VuMeter;
-            m_Recorder.VuMeterObject = m_VuMeter;
             m_VuMeter.SetEventHandlers();
             mLocalPlaylist = null;
             mMasterPlaylist = new Playlist(mPlayer);

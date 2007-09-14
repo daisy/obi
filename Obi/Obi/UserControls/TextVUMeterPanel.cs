@@ -11,12 +11,9 @@ namespace Obi.UserControls
 {
     public partial class TextVUMeterPanel : UserControl
     {
-        //private bool IsPlay ;
+        // member variables
         private Audio.VuMeter m_VuMeter;    // Instance of VuMeter 
-        //private Playlist mPlaylist = null;
-        //private RecordingSession mRecordingSession = null;
-        //public bool Enable = false;
-        private String m_StrLeftOverloadIndicator;
+                private String m_StrLeftOverloadIndicator;
         private String m_StrRightOverloadIndicator;
         private bool m_BeepEnabled = false;
 
@@ -49,67 +46,7 @@ namespace Obi.UserControls
                 }
             }
         }
-        /*
-    public Playlist PlayListObj
-    {
-        get
-        {
-            return mPlaylist;
-        }
-        set
-        {
-            if (Enable)
-            {
-                //SetPlayer(value);
-            }
-        }
-    }
 
-        public RecordingSession RecordingSessionObj
-        {
-            get
-            {
-                return mRecordingSession;
-            }
-            set
-            {
-                if (Enable)
-                {
-                    //SetRecorder(value);
-                }
-            }
-        }
-
-
-        private void SetPlayer( Playlist PlayListArg )
-        {
-            
-            mPlaylist = PlayListArg ;
-            mRecordingSession = null;
-            IsPlay = true;
-
-            // Associate events
-            mPlaylist.Audioplayer.VuMeter.PeakOverload += new Obi.Events.Audio.VuMeter.PeakOverloadHandler( CatchPeakOverloadEvent  );
-            mPlaylist.Audioplayer.StateChanged += new Obi.Events.Audio.Player.StateChangedHandler( CatchStateChangedEvent );
-mPlaylist.Audioplayer.VuMeter.ResetEvent += new Obi.Events.Audio.VuMeter.ResetHandler(VuMeter_ResetEvent);
-
-            Enable = false;
-        }
-
-
-        private void SetRecorder(RecordingSession RecordingSessionArg)
-        {
-            mRecordingSession = RecordingSessionArg ;
-            mPlaylist = null;
-            IsPlay = false;
-
-            // Associate events
-            mRecordingSession.AudioRecorder.VuMeterObject.PeakOverload += new Obi.Events.Audio.VuMeter.PeakOverloadHandler ( CatchPeakOverloadEvent ) ; 
-            mRecordingSession.AudioRecorder.StateChanged += new Obi.Events.Audio.Recorder.StateChangedHandler ( CatchStateChangedEvent );
-
-            Enable = false;
-        }   
-        */
 
         private void tmUpdateText_Tick(object sender, EventArgs e)
         {

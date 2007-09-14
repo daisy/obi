@@ -27,6 +27,8 @@ namespace Obi.Audio
         
         public event Events.Audio.Recorder.StateChangedHandler StateChanged;
 		public event Events.Audio.Recorder.UpdateVuMeterHandler UpdateVuMeterFromRecorder;
+        public event Events.Audio.Recorder.ResetVuMeterHandler ResetVuMeter ;
+
 
 		//member variables
         // member variables initialised only once in a session
@@ -49,8 +51,7 @@ namespace Obi.Audio
         private int m_iCaptureBufferSize; // Size of capture buffer
         private int m_iNotifySize; // size of bytes between two notifications
                 private BufferPositionNotify[] PositionNotify; // array containing notification  position in capture buffer
-        VuMeter ob_VuMeter; // VuMeter object
-        internal byte[] arUpdateVM; // array for updating VuMeter
+                internal byte[] arUpdateVM; // array for updating VuMeter
         internal int m_UpdateVMArrayLength; // Length of Vumeter array
 
 
@@ -81,8 +82,7 @@ namespace Obi.Audio
                         PositionNotify = new BufferPositionNotify[NumberRecordNotifications + 1];
             Capturing = false;
             SampleCount = 0;
-            ob_VuMeter = null;
-                        
+                                    
 		}
 
 
@@ -343,18 +343,7 @@ namespace Obi.Audio
 			m_sFileName= GenerateFileName(".wav", sProjectDirectory);
 			return m_sFileName;
 		}
-		
-		public VuMeter VuMeterObject
-		{
-			get
-			{
-				return ob_VuMeter ;
-			}
-			set
-			{
-				ob_VuMeter = value;
-			}
-		}
+
 
 		public void CreateCaptureBuffer()
 		{	
@@ -564,6 +553,7 @@ namespace Obi.Audio
                 m_UpdateVMArrayLength = m_iCaptureBufferSize / 20;
                 m_UpdateVMArrayLength = Convert.ToInt32(CalculationFunctions.AdaptToFrame(Convert.ToInt32(m_UpdateVMArrayLength), m_FrameSize));
                 arUpdateVM = new byte[m_UpdateVMArrayLength];
+
 			}
 			else
 			{
@@ -599,6 +589,9 @@ namespace Obi.Audio
                 SampleCount = 0;
                 
 			}
+            // reset VuMeter
+            if (ResetVuMeter != null)
+                ResetVuMeter(this, new Obi.Events.Audio.Recorder.UpdateVuMeterEventArgs());
 		}
 
 
