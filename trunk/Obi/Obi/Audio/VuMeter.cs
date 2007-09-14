@@ -160,6 +160,22 @@ namespace Obi.Audio
 			}
 		}
 
+        public int ChannelValue_Left
+        {
+            get
+            {
+                return m_MeanValueLeft;
+            }
+        }
+
+        public int ChannelValue_Right
+        {
+            get
+            {
+                return m_MeanValueRight;
+            }
+        }
+
         public void CatchResetEvent(object sender, EventArgs e)
         {
             Reset();
@@ -208,8 +224,8 @@ namespace Obi.Audio
 		private AudioPlayer ob_AudioPlayer ;
 		private AudioRecorder  ob_AudioRecorder ;
 		private int  m_SampleCount    ;
-		internal int m_MeanValueLeft ;
-		internal int m_MeanValueRight  ;
+		private int m_MeanValueLeft ;
+		private int m_MeanValueRight  ;
 		private  int [] SampleArrayLeft ;
 		private int [] SampleArrayRight ;
 		// jq: removed a compiler warning

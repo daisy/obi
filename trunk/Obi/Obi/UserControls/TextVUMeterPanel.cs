@@ -52,8 +52,8 @@ namespace Obi.UserControls
         {
             if (m_VuMeter != null)
             {
-                double LeftDb = 20 * Math.Log10(m_VuMeter.m_MeanValueLeft * 256);
-                double RightDb = 20 * Math.Log10(m_VuMeter.m_MeanValueRight * 256);
+                double LeftDb = 20 * Math.Log10(m_VuMeter.ChannelValue_Left  * 256);
+                double RightDb = 20 * Math.Log10(m_VuMeter.ChannelValue_Right * 256);
 
                 if (LeftDb < 1)
                     LeftDb = 0.0;

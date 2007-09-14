@@ -125,8 +125,8 @@ namespace Obi.UserControls
 
             // Update erase left and erase right cordinates
             int ThresholdFactor = 12500 / (mVuMeter.UpperThreshold - mVuMeter.LowerThreshold);
-            int DisplayAmpLeft = (mVuMeter.m_MeanValueLeft * ThresholdFactor) / 100;
-            int DisplayAmpRight = (mVuMeter.m_MeanValueRight * ThresholdFactor) / 100;
+            int DisplayAmpLeft = (mVuMeter.ChannelValue_Left * ThresholdFactor) / 100;
+            int DisplayAmpRight = (mVuMeter.ChannelValue_Right * ThresholdFactor) / 100;
             int Offset = 65 - ((mVuMeter.LowerThreshold * ThresholdFactor) / 100);
             DisplayAmpLeft = DisplayAmpLeft + Offset;
             DisplayAmpRight = DisplayAmpRight + Offset;
