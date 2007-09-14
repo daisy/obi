@@ -34,8 +34,13 @@ namespace Obi.Audio
         {
             mPlayer.UpdateVuMeter +=
                 new Events.Audio.Player.UpdateVuMeterHandler(CatchUpdateVuMeterEvent);
+            mPlayer.ResetVuMeter +=
+                new Events.Audio.Player.ResetVuMeterHandler(CatchResetEvent );
+
             m_Recorder.UpdateVuMeterFromRecorder +=
                 new Events.Audio.Recorder.UpdateVuMeterHandler(CatchUpdateVuMeterEvent);
+            m_Recorder.ResetVuMeter +=
+                new Events.Audio.Recorder.ResetVuMeterHandler  ( CatchResetEvent );
         }
 
 		//Member variable used in properties
@@ -155,10 +160,14 @@ namespace Obi.Audio
 			}
 		}
 
+        public void CatchResetEvent(object sender, EventArgs e)
+        {
+            Reset();
+        }
 
 		public void Reset()
 		{
-			arPeakOverloadValue [0] = 0 ;
+            			arPeakOverloadValue [0] = 0 ;
 			arPeakOverloadValue [1] = 0 ;
 			arPeakOverloadFlag[0] = arPeakOverloadFlag [1] = false ;
 			for (int i = 0 ; i< m_SampleCount ; i++)

@@ -37,8 +37,7 @@ namespace Obi.Audio
         // member variables initialised once
         private OutputDevice mDevice;
         private System.Windows.Forms.Timer MoniteringTimer; // monitoring timer to trigger events independent of refresh thread
-        private VuMeter ob_VuMeter;            // to be removed
-        System.Windows.Forms.Timer mPreviewTimer ; // timer for playing chunks at interval during Forward/Rewind
+                System.Windows.Forms.Timer mPreviewTimer ; // timer for playing chunks at interval during Forward/Rewind
 
 
 
@@ -85,6 +84,7 @@ namespace Obi.Audio
         public event Events.Audio.Player.EndOfAudioAssetHandler EndOfAudioAsset;
         public event Events.Audio.Player.StateChangedHandler StateChanged;
         public event Events.Audio.Player.UpdateVuMeterHandler UpdateVuMeter;
+        public event Events.Audio.Player.ResetVuMeterHandler ResetVuMeter;
 
 
         /// <summary>
@@ -93,8 +93,7 @@ namespace Obi.Audio
         public AudioPlayer()
         {
             mState = AudioPlayerState.NotReady;
-            ob_VuMeter = null;
-            MoniteringTimer = new System.Windows.Forms.Timer();
+                        MoniteringTimer = new System.Windows.Forms.Timer();
             MoniteringTimer.Tick += new System.EventHandler(this.MoniteringTimer_Tick);
             MoniteringTimer.Interval = 200;
 
@@ -240,7 +239,9 @@ namespace Obi.Audio
             mSoundBuffer.Stop();
             if (RefreshThread != null && RefreshThread.IsAlive) RefreshThread.Abort();
             mBufferStopPosition = -1;
-            if (ob_VuMeter != null) ob_VuMeter.Reset();  // TODO replace with an event
+            if (ResetVuMeter != null)
+                ResetVuMeter(this, new Obi.Events.Audio.Player.UpdateVuMeterEventArgs());
+
             mAudioStream.Close();
         }
 
@@ -251,23 +252,6 @@ namespace Obi.Audio
 		{
 			if (mEventsEnabled && StateChanged != null) StateChanged(this, e);
 		}
-
-
-
-        /// <summary>
-        /// The Vu meter associated with the player.
-        /// </summary>
-        /// TODO this must be removed; the audio player communicates with any VU meter through events.
-        public VuMeter VuMeter
-        {
-            get { return ob_VuMeter; }
-            set { ob_VuMeter = value; }
-        }
-
-
-
-
-
 
 
         /// <summary>
@@ -594,7 +578,8 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
                 m_UpdateVMArrayLength = Convert.ToInt32(CalculationFunctions.AdaptToFrame(Convert.ToInt32(m_UpdateVMArrayLength), m_FrameSize));
                 arUpdateVM = new byte[m_UpdateVMArrayLength];
                 // reset the VuMeter (if set)
-                if (ob_VuMeter != null) ob_VuMeter.Reset();
+                if (ResetVuMeter != null)
+                    ResetVuMeter ( this , new Obi.Events.Audio.Player.UpdateVuMeterEventArgs () ) ;
 
                 // sets the calculated size of buffer
                 BufferDesc.BufferBytes = m_SizeBuffer;
@@ -692,7 +677,7 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
 				
 				Thread.Sleep (50) ;
 
-                if (ob_VuMeter != null)
+                if (UpdateVuMeter != null)
                 {
                     ReadPosition = mSoundBuffer.PlayPosition;
 
@@ -761,7 +746,9 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
                                 mBufferStopPosition = -1 ;
                 m_lPausePosition = 0;
 			mSoundBuffer.Stop () ;
-			if (ob_VuMeter != null) ob_VuMeter.Reset () ;
+            if (ResetVuMeter != null)
+                ResetVuMeter(this, new Obi.Events.Audio.Player.UpdateVuMeterEventArgs());
+
             mAudioStream.Close();
 
 			// changes the state and trigger events
