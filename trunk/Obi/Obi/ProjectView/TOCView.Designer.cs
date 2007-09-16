@@ -1,6 +1,6 @@
 namespace Obi.ProjectView
 {
-    partial class StripsView
+    partial class TOCView
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,35 +28,32 @@ namespace Obi.ProjectView
         /// </summary>
         private void InitializeComponent()
         {
-            this.mLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.mTOCTree = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
-            // mLayoutPanel
+            // mTOCTree
             // 
-            this.mLayoutPanel.AutoScroll = true;
-            this.mLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.mLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.mLayoutPanel.Name = "mLayoutPanel";
-            this.mLayoutPanel.Size = new System.Drawing.Size(398, 297);
-            this.mLayoutPanel.TabIndex = 0;
-            this.mLayoutPanel.WrapContents = false;
-            this.mLayoutPanel.SizeChanged += new System.EventHandler(this.mLayoutPanel_SizeChanged);
+            this.mTOCTree.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mTOCTree.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mTOCTree.Location = new System.Drawing.Point(0, 0);
+            this.mTOCTree.Name = "mTOCTree";
+            this.mTOCTree.Size = new System.Drawing.Size(150, 150);
+            this.mTOCTree.TabIndex = 0;
             // 
-            // StripsView
+            // TOCView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.mLayoutPanel);
-            this.Name = "StripsView";
-            this.Size = new System.Drawing.Size(398, 297);
+            this.AutoScroll = true;
+            this.Controls.Add(this.mTOCTree);
+            this.Name = "TOCView";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel mLayoutPanel;
+        private System.Windows.Forms.TreeView mTOCTree;
+
     }
 }

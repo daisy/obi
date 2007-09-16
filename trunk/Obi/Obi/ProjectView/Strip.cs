@@ -14,5 +14,19 @@ namespace Obi.ProjectView
         {
             InitializeComponent();
         }
+
+        public string Label
+        {
+            get { return mLabel.Label; }
+            set { mLabel.Label = value; }
+        }
+
+        private void mLabel_SizeChanged(object sender, EventArgs e)
+        {
+            mBlocksPanel.Location = new Point(mBlocksPanel.Location.X,
+                mLabel.Location.Y + mLabel.Height + mLabel.Margin.Bottom);
+            Size = new Size(Width,
+                mBlocksPanel.Location.Y + mBlocksPanel.Height + mBlocksPanel.Margin.Bottom);
+        }
     }
 }

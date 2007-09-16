@@ -29,6 +29,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationVersion>0.7.2.%2a</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <StartupObject>Obi.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,6 +39,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>default</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -231,11 +233,23 @@
     <Compile Include="Project.CleanAndExport.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Project.TOC.cs" />
+    <Compile Include="ProjectView\Block.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProjectView\Block.Designer.cs">
+      <DependentUpon>Block.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProjectView\EditableLabel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ProjectView\EditableLabel.Designer.cs">
       <DependentUpon>EditableLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectView\MetadataView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProjectView\MetadataView.Designer.cs">
+      <DependentUpon>MetadataView.cs</DependentUpon>
     </Compile>
     <Compile Include="ProjectView\ProjectView.cs">
       <SubType>UserControl</SubType>
@@ -254,6 +268,12 @@
     </Compile>
     <Compile Include="ProjectView\StripsView.Designer.cs">
       <DependentUpon>StripsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectView\TOCView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProjectView\TOCView.Designer.cs">
+      <DependentUpon>TOCView.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Dialogs\EditSimpleMetadata.resx">
@@ -458,9 +478,17 @@
       <SubType>Designer</SubType>
       <DependentUpon>TransportRecord.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\Block.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Block.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\EditableLabel.resx">
       <SubType>Designer</SubType>
       <DependentUpon>EditableLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\MetadataView.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MetadataView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\ProjectView.resx">
       <DependentUpon>ProjectView.cs</DependentUpon>
@@ -473,6 +501,10 @@
     <EmbeddedResource Include="ProjectView\StripsView.resx">
       <SubType>Designer</SubType>
       <DependentUpon>StripsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\TOCView.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TOCView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\AbstractBlock.resx">
       <SubType>Designer</SubType>

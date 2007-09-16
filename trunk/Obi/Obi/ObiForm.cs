@@ -477,7 +477,7 @@ namespace Obi
 
         private void mTocToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
-            UpdateEnabledItemsForTOCMenu();
+            // UpdateEnabledItemsForTOCMenu();
         }
 
         private void mShowhideTableOfContentsToolStripMenuItem_Click(object sender, EventArgs e)
