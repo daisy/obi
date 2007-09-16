@@ -1,6 +1,6 @@
 namespace Obi.ProjectView
 {
-    partial class StripsView
+    partial class MetadataView
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,35 +28,31 @@ namespace Obi.ProjectView
         /// </summary>
         private void InitializeComponent()
         {
-            this.mLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // mLayoutPanel
+            // label1
             // 
-            this.mLayoutPanel.AutoScroll = true;
-            this.mLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.mLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.mLayoutPanel.Name = "mLayoutPanel";
-            this.mLayoutPanel.Size = new System.Drawing.Size(398, 297);
-            this.mLayoutPanel.TabIndex = 0;
-            this.mLayoutPanel.WrapContents = false;
-            this.mLayoutPanel.SizeChanged += new System.EventHandler(this.mLayoutPanel_SizeChanged);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Metadata panel";
             // 
-            // StripsView
+            // MetadataView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.mLayoutPanel);
-            this.Name = "StripsView";
-            this.Size = new System.Drawing.Size(398, 297);
+            this.Controls.Add(this.label1);
+            this.Name = "MetadataView";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel mLayoutPanel;
+        private System.Windows.Forms.Label label1;
     }
 }

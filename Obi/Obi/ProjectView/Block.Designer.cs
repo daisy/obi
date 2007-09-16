@@ -1,6 +1,6 @@
 namespace Obi.ProjectView
 {
-    partial class StripsView
+    partial class Block
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,35 +28,19 @@ namespace Obi.ProjectView
         /// </summary>
         private void InitializeComponent()
         {
-            this.mLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
-            // mLayoutPanel
-            // 
-            this.mLayoutPanel.AutoScroll = true;
-            this.mLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.mLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.mLayoutPanel.Name = "mLayoutPanel";
-            this.mLayoutPanel.Size = new System.Drawing.Size(398, 297);
-            this.mLayoutPanel.TabIndex = 0;
-            this.mLayoutPanel.WrapContents = false;
-            this.mLayoutPanel.SizeChanged += new System.EventHandler(this.mLayoutPanel_SizeChanged);
-            // 
-            // StripsView
+            // Block
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.mLayoutPanel);
-            this.Name = "StripsView";
-            this.Size = new System.Drawing.Size(398, 297);
+            this.BackColor = System.Drawing.Color.HotPink;
+            this.Name = "Block";
+            this.Size = new System.Drawing.Size(104, 104);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.FlowLayoutPanel mLayoutPanel;
     }
 }

@@ -28,21 +28,55 @@ namespace Obi.ProjectView
         /// </summary>
         private void InitializeComponent()
         {
+            this.mBlocksPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.mLabel = new Obi.ProjectView.EditableLabel();
             this.SuspendLayout();
+            // 
+            // mBlocksPanel
+            // 
+            this.mBlocksPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mBlocksPanel.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.mBlocksPanel.Location = new System.Drawing.Point(3, 25);
+            this.mBlocksPanel.Name = "mBlocksPanel";
+            this.mBlocksPanel.Size = new System.Drawing.Size(284, 104);
+            this.mBlocksPanel.TabIndex = 0;
+            // 
+            // mLabel
+            // 
+            this.mLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mLabel.BackColor = System.Drawing.Color.Thistle;
+            this.mLabel.Editable = false;
+            this.mLabel.Label = "*** NOT YET INITIALIZED ***";
+            this.mLabel.Location = new System.Drawing.Point(3, 3);
+            this.mLabel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.mLabel.Name = "mLabel";
+            this.mLabel.Size = new System.Drawing.Size(284, 19);
+            this.mLabel.TabIndex = 0;
+            this.mLabel.SizeChanged += new System.EventHandler(this.mLabel_SizeChanged);
             // 
             // Strip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.Controls.Add(this.mLabel);
+            this.Controls.Add(this.mBlocksPanel);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "Strip";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(244, 150);
+            this.Size = new System.Drawing.Size(290, 132);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.FlowLayoutPanel mBlocksPanel;
+        private EditableLabel mLabel;
+
+
 
     }
 }

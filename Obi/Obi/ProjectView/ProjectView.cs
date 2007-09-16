@@ -128,8 +128,13 @@ namespace Obi.ProjectView
                     /* cleanup old project */
                     mProject = value;
                     /* initialize stuff */
-                    // e.g.:
-                    SynchronizeWithCoreTree();
+                    if (mProject != null)
+                    {
+                        mTOCView.Project = mProject;
+                        mStripsView.Project = mProject;
+                        // mMetadataView.Project = mProject;
+                        SynchronizeWithCoreTree();
+                    }
                 }
             }
         }
@@ -223,11 +228,11 @@ namespace Obi.ProjectView
 
         /// <summary>
         /// Insert a new sibling section of the currently selected section in the TOC view.
-        /// If no section is selected, then 
+        /// If no section is selected, then append a new section at the top level.
         /// </summary>
         public void InsertSection()
         {
-            throw new Exception("The method or operation is not implemented.");
+            mProject.CreateSiblingSectionNode(mTOCView.SelectedSection);
         }
 
         /// <summary>
