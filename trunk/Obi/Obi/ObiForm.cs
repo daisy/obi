@@ -487,7 +487,7 @@ namespace Obi
 
         private void mInsertSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.InsertSection();
+            mProjectView.StartRenamingSection(mProjectView.InsertSection());
         }
 
         private void mAddSubSectionToolStripMenuItem_Click(object sender, EventArgs e)

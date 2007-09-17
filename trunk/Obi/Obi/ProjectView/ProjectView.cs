@@ -230,9 +230,9 @@ namespace Obi.ProjectView
         /// Insert a new sibling section of the currently selected section in the TOC view.
         /// If no section is selected, then append a new section at the top level.
         /// </summary>
-        public void InsertSection()
+        public SectionNode InsertSection()
         {
-            mProject.CreateSiblingSectionNode(mTOCView.SelectedSection);
+            return mProject.CreateSiblingSectionNode(mTOCView.SelectedSection);
         }
 
         /// <summary>
@@ -241,6 +241,18 @@ namespace Obi.ProjectView
         public void ShowSelectedSectionInStripView()
         {
             throw new Exception("The method or operation is not implemented.");
+        }
+
+        /// <summary>
+        /// Select and start renaming a newly added section in the TOC view.
+        /// </summary>
+        public void StartRenamingSection(SectionNode sectionNode)
+        {
+            mTOCView.SelectedSection = sectionNode;
+            // TODO select in the view as well!
+            mTOCView.StartRenaming(sectionNode);
+            // TODO then this becomes:
+            // StartRenamingSelectedSection();
         }
 
         /// <summary>
