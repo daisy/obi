@@ -25,13 +25,39 @@ namespace Obi.ProjectView
             {
                 mProject = value;
                 mProject.getPresentation().treeNodeAdded += new TreeNodeAddedEventHandler(TOCView_treeNodeAdded);
+                mProject.RenamedSectionNode += new Obi.Events.RenameSectionNodeHandler(mProject_RenamedSectionNode);
+            }
+        }
+
+        private void mProject_RenamedSectionNode(object sender, Obi.Events.Node.RenameSectionNodeEventArgs e)
+        {
+            TreeNode n = FindTreeNodeWithoutLabel(e.Node);
+            n.Text = e.Label;
+        }
+
+        // Rename the section after the text of the tree node has changed.
+        // Cancel if the text is empty.
+        private void mTOCTree_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
+        {
+            if (e.Label != null && e.Label != "")
+            {
+                mProject.RenameSectionNode(e.Node.Tag as SectionNode, e.Label);
+            }
+            else
+            {
+                e.CancelEdit = true;
             }
         }
 
         public SectionNode SelectedSection
         {
             get { return mTOCTree.SelectedNode == null ? null : mTOCTree.SelectedNode.Tag as SectionNode; }
-            set { mTOCTree.SelectedNode = value == null ? null : FindTreeNode(null); }
+            set { mTOCTree.SelectedNode = value == null ? null : FindTreeNode(value); }
+        }
+
+        public void StartRenaming(SectionNode sectionNode)
+        {
+            FindTreeNode(sectionNode).BeginEdit();
         }
 
         private void TOCView_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
@@ -74,7 +100,7 @@ namespace Obi.ProjectView
             TreeNode n = FindTreeNodeWithoutLabel(section);
             if (n.Text != section.Label)
             {
-                throw new Exception(String.Format("Found tree node matching core node #{0} but labels mismatch (wanted \"{1}\" but got \"{2}\").",
+                throw new Exception(String.Format("Found tree node matching section node #{0} but labels mismatch (wanted \"{1}\" but got \"{2}\").",
                     section.GetHashCode(), section.Label, n.Text));
             }
             return n;
@@ -92,7 +118,7 @@ namespace Obi.ProjectView
             {
                 if (n.Tag == section) return n;
             }
-            throw new Exception(String.Format("Could not find tree node matching core node #{0} with label \"{1}\".",
+            throw new Exception(String.Format("Could not find tree node matching section node #{0} with label \"{1}\".",
                     section.GetHashCode(), Project.GetTextMedia(section).getText()));
         }
     }

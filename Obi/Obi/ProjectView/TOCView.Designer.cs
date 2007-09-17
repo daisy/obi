@@ -35,10 +35,12 @@ namespace Obi.ProjectView
             // 
             this.mTOCTree.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mTOCTree.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mTOCTree.LabelEdit = true;
             this.mTOCTree.Location = new System.Drawing.Point(0, 0);
             this.mTOCTree.Name = "mTOCTree";
             this.mTOCTree.Size = new System.Drawing.Size(150, 150);
             this.mTOCTree.TabIndex = 0;
+            this.mTOCTree.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.mTOCTree_AfterLabelEdit);
             // 
             // TOCView
             // 

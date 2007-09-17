@@ -11,36 +11,34 @@ namespace Obi.ProjectView
 {
     public partial class StripsView : UserControl
     {
-        private Project mProject;
+        private Project mProject;  // project for this view
 
-
+        /// <summary>
+        /// A new strips view that is unconnected to any project yet.
+        /// </summary>
         public StripsView()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Connect the strips view to the project.
+        /// TODO we may need to get rid of old events if we change projects.
+        /// </summary>
         public Project Project
         {
             set
             {
                 mProject = value;
                 mProject.getPresentation().treeNodeAdded += new TreeNodeAddedEventHandler(StripsView_treeNodeAdded);
+                mProject.RenamedSectionNode += new Obi.Events.RenameSectionNodeHandler(mProject_RenamedSectionNode);
             }
         }
 
-        void StripsView_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
-        {
-            SectionNode section = e.getTreeNode() as SectionNode;
-            if (section != null)
-            {
-                Strip strip = new Strip();
-                strip.Label = section.Label;
-                mLayoutPanel.Controls.Add(new Strip());
-                // TODO why doesn't this work?
-                mLayoutPanel.ScrollControlIntoView(strip);
-            }
-        }
 
+        #region Event handlers
+
+        // Handle resizing of the layout panel: all strips are resized to be at least as wide.
         private void mLayoutPanel_SizeChanged(object sender, EventArgs e)
         {
             foreach (Control c in mLayoutPanel.Controls)
@@ -49,9 +47,48 @@ namespace Obi.ProjectView
             }
         }
 
-        internal void InsertSection()
+        // Handle section nodes renamed from the project: change the label of the corresponding strip.
+        private void mProject_RenamedSectionNode(object sender, Obi.Events.Node.RenameSectionNodeEventArgs e)
         {
-            throw new Exception("The method or operation is not implemented.");
+            Strip strip = FindStrip(e.Node);
+            strip.Label = e.Label;
         }
+
+        // Handle addition of tree nodes: add a new strip for new section nodes.
+        private void StripsView_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
+        {
+            SectionNode section = e.getTreeNode() as SectionNode;
+            if (section != null)
+            {
+                Strip strip = new Strip(section);
+                strip.LabelEditedByUser += new EventHandler(delegate(object sender, EventArgs _e)
+                {
+                    mProject.RenameSectionNode(section, strip.Label);
+                });
+                mLayoutPanel.Controls.Add(strip);
+                // TODO why doesn't this work?
+                mLayoutPanel.ScrollControlIntoView(strip);
+            }
+        }
+
+        #endregion
+
+
+        #region Utility functions
+
+        /// <summary>
+        /// Find the strip for the given section node.
+        /// The strip must be present so an exception is thrown on failure.
+        /// </summary>
+        private Strip FindStrip(SectionNode section)
+        {
+            foreach (Control c in mLayoutPanel.Controls)
+            {
+                if (c is Strip && ((Strip)c).Node == section) return c as Strip;
+            }
+            throw new Exception(String.Format("Could not find strip for section node labeled `{0}'", section.Label));
+        }
+
+        #endregion
     }
 }

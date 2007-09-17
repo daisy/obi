@@ -10,11 +10,29 @@ namespace Obi.ProjectView
 {
     public partial class EditableLabel : UserControl
     {
-        private bool mEditable;
+        private bool mAllowEmptyLabel;                // accept empty labels or not
+        private bool mEditable;                       // change the label status
 
+        public event EventHandler LabelEditedByUser;  // raised when the user has edited the label
+
+        /// <summary>
+        /// Create a new label. Don't forget to set its Label property.
+        /// </summary>
         public EditableLabel()
         {
             InitializeComponent();
+            mAllowEmptyLabel = false;
+        }
+
+
+        public bool AllowEmptyLabel
+        {
+            get { return mAllowEmptyLabel; }
+            set
+            {
+                if (!value && mLabel.Text == "") throw new Exception("Empty label");
+                mAllowEmptyLabel = value;
+            }
         }
 
         /// <summary>
@@ -58,7 +76,11 @@ namespace Obi.ProjectView
         public string Label
         {
             get { return mLabel.Text; }
-            set { mLabel.Text = value; }
+            set
+            {
+                if (!mAllowEmptyLabel && value == "") throw new Exception("Empty label is not allowed.");
+                mLabel.Text = value;
+            }
         }
 
         /// <summary>
@@ -122,7 +144,11 @@ namespace Obi.ProjectView
 
         private void UpdateText()
         {
-            Label = mTextBox.Text;
+            if (mAllowEmptyLabel || mTextBox.Text != "")
+            {
+                Label = mTextBox.Text;
+                if (LabelEditedByUser != null) LabelEditedByUser(this, new EventArgs());
+            }
             Editable = false;
         }
     }
