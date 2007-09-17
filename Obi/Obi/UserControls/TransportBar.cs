@@ -14,13 +14,13 @@ namespace Obi.UserControls
         private ProjectPanel mProjectPanel;  // project panel to which the transport bar belongs
 
         private ProjectView.ProjectView mProjectView;  // the project view to which this transport bar belongs
-
+        
         public ProjectView.ProjectView ProjectView
         {
             get { return mProjectView; }
             set { mProjectView = value; }
         }
-
+        
 
         private Audio.AudioPlayer mPlayer;   // the player for this playlist
         private Audio.AudioRecorder m_Recorder; // AudioRecorder for this transport bar 
@@ -28,6 +28,7 @@ namespace Obi.UserControls
         private Playlist mMasterPlaylist;    // master playlist (all phrases in the project)
         private Playlist mLocalPlaylist;     // local playlist (only selected; may be null)
         private Playlist mCurrentPlaylist;   // playlist currently playing
+        private RecordingSession m_RecordingSession;
         private NodeSelection mPlayingFrom;  // selection before playback started
         
         private SectionNode m_CurrentPlayingSection;  // holds section currently being played for highlighting it in TOC view while playing
@@ -77,6 +78,14 @@ namespace Obi.UserControls
             mRecordModeBox.SelectedIndex = 0; //First element will be the default selected one
             mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
             mProjectPanel = null;
+
+            ComboFastPlateRate.Items.Add("1.0");
+            ComboFastPlateRate.Items.Add("1.125");
+            ComboFastPlateRate.Items.Add("1.25");
+            ComboFastPlateRate.Items.Add("1.5");
+            ComboFastPlateRate.Items.Add("1.75");
+            ComboFastPlateRate.Items.Add("2.0");
+            ComboFastPlateRate.SelectedIndex = 0;
         }
 
 
@@ -92,7 +101,14 @@ namespace Obi.UserControls
                 return m_Recorder;
             }
         }
-
+        
+        public RecordingSession Recordingsession
+        {
+            get
+            {
+                return m_RecordingSession;
+            }
+        }
         public Audio.VuMeter VuMeter
         {
             get
@@ -293,9 +309,10 @@ namespace Obi.UserControls
         /// </summary>
         private void Play_PlayerStateChanged(object sender, Obi.Events.Audio.Player.StateChangedEventArgs e)
         {
+            
             if (mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped)
             {
-                mDisplayTimer.Stop();
+                                                mDisplayTimer.Stop();
                 //Play_PlayerStopped(this, null); // Avn: commented as was invoking EndOfPlaylist catch function which gave wrong indication of end of playlist
             }
             else if (mCurrentPlaylist.State == Audio.AudioPlayerState.Playing)
@@ -572,29 +589,29 @@ namespace Obi.UserControls
                     index = ((PhraseNode)selected).Index;
                 }
                 Settings settings = ((ObiForm)ParentForm).Settings;
-                RecordingSession session = new RecordingSession(mProjectPanel.Project, m_Recorder ,
+                m_RecordingSession = new RecordingSession(mProjectPanel.Project, m_Recorder ,
                     settings.AudioChannels, settings.SampleRate, settings.BitDepth);
                 // the following closures handle the various events sent during the recording session
-                session.StartingPhrase += new Events.Audio.Recorder.StartingPhraseHandler(
+                m_RecordingSession.StartingPhrase += new Events.Audio.Recorder.StartingPhraseHandler(
                     delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
                     {
                         mProjectPanel.Project.StartRecordingPhrase(_e, section, index + _e.PhraseIndex);
                     }
                 );
-                session.ContinuingPhrase += new Events.Audio.Recorder.ContinuingPhraseHandler(
+                m_RecordingSession.ContinuingPhrase += new Events.Audio.Recorder.ContinuingPhraseHandler(
                     delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
                     {
                         mProjectPanel.Project.RecordingPhraseUpdate(_e, section, index + _e.PhraseIndex);
                     }
                 );
-                session.FinishingPhrase += new Events.Audio.Recorder.FinishingPhraseHandler(
+                m_RecordingSession.FinishingPhrase += new Events.Audio.Recorder.FinishingPhraseHandler(
                     delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
                     {
                         mProjectPanel.Project.RecordingPhraseUpdate(_e, section, index + _e.PhraseIndex);
                         mMasterPlaylist.UpdateTimeFrom(section.PhraseChild(index + _e.PhraseIndex).PreviousPhraseInProject);
                     }
                 );
-                session.FinishingPage += new Events.Audio.Recorder.FinishingPageHandler(
+                m_RecordingSession.FinishingPage += new Events.Audio.Recorder.FinishingPageHandler(
                     delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
                     {
                         PhraseNode _node = section.PhraseChild(index + _e.PhraseIndex);
@@ -604,15 +621,15 @@ namespace Obi.UserControls
 
                 if (mRecordModeBox.SelectedIndex == 0) //recording using the dialog
                 {
-                    new Dialogs.TransportRecord(session , m_VuMeter ).ShowDialog ();
+                    new Dialogs.TransportRecord(m_RecordingSession , m_VuMeter).ShowDialog();
 
                     // delete newly created section if nothing is recorded.
-                    if (session.RecordedAudio.Count == 0 && IsSectionCreated)
+                    if (m_RecordingSession.RecordedAudio.Count == 0 && IsSectionCreated)
                         this.mProjectPanel.ParentObiForm.UndoLast();
 
-                    for (int i = 0; i < session.RecordedAudio.Count; ++i)
+                    for (int i = 0; i < m_RecordingSession.RecordedAudio.Count; ++i)
                     {
-                        mProjectPanel.StripManager.UpdateAudioForPhrase(section.PhraseChild(index + i), session.RecordedAudio[i]);
+                        mProjectPanel.StripManager.UpdateAudioForPhrase(section.PhraseChild(index + i), m_RecordingSession.RecordedAudio[i]);
                                                                     }
                 }
                 else //recording using the transportbar buttons
@@ -638,7 +655,7 @@ namespace Obi.UserControls
                     mDidCreateSectionForRecording = IsSectionCreated;
                     mRecordingToSection = section;
                     mRecordingStartIndex = index;
-                    inlineRecordingSession = session;
+                    inlineRecordingSession = m_RecordingSession ;
                     inlineRecordingSession.Record();
                     UpdateInlineRecordingState();
                 }
@@ -708,7 +725,7 @@ namespace Obi.UserControls
                 {
                     mCurrentPlaylist.Stop();
                     mProjectView.Selection = mPlayingFrom;
-                }
+                                    }
                 mPlayingFrom = null;
                 m_IsSerialPlaying = false;
             }
@@ -936,6 +953,39 @@ namespace Obi.UserControls
 
         }
 
+        public void FastPlayRateStepUp()
+        {
+            if (ComboFastPlateRate.SelectedIndex < ComboFastPlateRate.Items.Count - 1)
+            {
+                            ComboFastPlateRate.SelectedIndex = ComboFastPlateRate.SelectedIndex + 1;
+                            mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(ComboFastPlateRate.SelectedItem.ToString());
+                            }
+                    }
 
+        public void FastPlayRateStepDown ()
+        {
+            if (ComboFastPlateRate.SelectedIndex > 0)
+            {
+                ComboFastPlateRate.SelectedIndex = ComboFastPlateRate.SelectedIndex - 1;
+                mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(ComboFastPlateRate.SelectedItem.ToString());
+            }
+        }
+
+        public void FastPlayRateNormalise ()
+        {
+            ComboFastPlateRate.SelectedIndex = 0;
+            mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(ComboFastPlateRate.SelectedItem.ToString());
+        }
+
+        private void ComboFastPlateRate_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+                        mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(ComboFastPlateRate.SelectedItem.ToString());
+        }
+
+        public void FastPlayNormaliseWithLapseBack()
+        {
+            mCurrentPlaylist.FastPlayNormaliseWithLapseBack(1500);
+            ComboFastPlateRate.SelectedIndex = 0;
+        }
     }
 }

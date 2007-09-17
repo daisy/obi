@@ -44,8 +44,9 @@ namespace Obi.UserControls
             this.mFastForwardButton = new System.Windows.Forms.Button();
             this.mDisplayTimer = new System.Windows.Forms.Timer(this.components);
             this.mDisplayBox = new System.Windows.Forms.ComboBox();
-            this.mVUMeterPanel = new Obi.UserControls.TextVUMeterPanel();
             this.mRecordModeBox = new System.Windows.Forms.ComboBox();
+            this.ComboFastPlateRate = new System.Windows.Forms.ComboBox();
+            this.mVUMeterPanel = new Obi.UserControls.TextVUMeterPanel();
             this.SuspendLayout();
             // 
             // mPlayButton
@@ -239,14 +240,6 @@ namespace Obi.UserControls
             this.mDisplayBox.TabIndex = 10;
             this.mDisplayBox.SelectionChangeCommitted += new System.EventHandler(this.mDisplayBox_SelectionChangeCommitted);
             // 
-            // mVUMeterPanel
-            // 
-            this.mVUMeterPanel.BackColor = System.Drawing.Color.Transparent;
-            this.mVUMeterPanel.Location = new System.Drawing.Point(618, 0);
-            this.mVUMeterPanel.Name = "mVUMeterPanel";
-                                    this.mVUMeterPanel.Size = new System.Drawing.Size(204, 44);
-            this.mVUMeterPanel.TabIndex = 11;
-            // 
             // mRecordModeBox
             // 
             this.mRecordModeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -261,11 +254,31 @@ namespace Obi.UserControls
             this.mRecordModeBox.TabIndex = 14;
             this.mRecordModeBox.SelectedIndexChanged += new System.EventHandler(this.mRecordModeBox_SelectedIndexChanged);
             // 
+            // ComboFastPlateRate
+            // 
+            this.ComboFastPlateRate.AccessibleName = "Fast Play Rate";
+            this.ComboFastPlateRate.FormattingEnabled = true;
+            this.ComboFastPlateRate.Location = new System.Drawing.Point(970, 0);
+            this.ComboFastPlateRate.Name = "ComboFastPlateRate";
+            this.ComboFastPlateRate.Size = new System.Drawing.Size(90, 21);
+            this.ComboFastPlateRate.TabIndex = 15;
+            this.ComboFastPlateRate.SelectionChangeCommitted += new System.EventHandler(this.ComboFastPlateRate_SelectionChangeCommitted);
+            // 
+            // mVUMeterPanel
+            // 
+            this.mVUMeterPanel.BackColor = System.Drawing.Color.Transparent;
+            this.mVUMeterPanel.Location = new System.Drawing.Point(618, 0);
+            this.mVUMeterPanel.Name = "mVUMeterPanel";
+            this.mVUMeterPanel.Size = new System.Drawing.Size(204, 44);
+            this.mVUMeterPanel.TabIndex = 11;
+            this.mVUMeterPanel.VuMeter = null;
+            // 
             // TransportBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.ComboFastPlateRate);
             this.Controls.Add(this.mRecordModeBox);
             this.Controls.Add(this.mFastForwardButton);
             this.Controls.Add(this.mRewindButton);
@@ -281,7 +294,7 @@ namespace Obi.UserControls
             this.Controls.Add(this.mPauseButton);
             this.Controls.Add(this.mPlayButton);
             this.Name = "TransportBar";
-            this.Size = new System.Drawing.Size(960, 35);
+            this.Size = new System.Drawing.Size(1060, 35);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -305,5 +318,6 @@ namespace Obi.UserControls
         private System.Windows.Forms.Button mRewindButton;
         private System.Windows.Forms.Button mFastForwardButton;
         private System.Windows.Forms.ComboBox mRecordModeBox;
+        private System.Windows.Forms.ComboBox ComboFastPlateRate;
     }
 }

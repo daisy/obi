@@ -140,7 +140,7 @@ namespace Obi
             set
             {
                 bool playing = mPlaylistState == AudioPlayerState.Playing;
-                if (playing) Stop();
+                if (playing)  Stop();
                 int i;
                 for (i = 0; i < mPhrases.Count && mPhrases[i] != value; ++i) { }
                 if (i < mPhrases.Count) CurrentIndexStart = i;
@@ -371,12 +371,12 @@ namespace Obi
                 // involve the "not ready" state.
                 delegate(object sender, Events.Audio.Player.StateChangedEventArgs e)
                 {
-                    if ((e.OldState == AudioPlayerState.NotReady || mPlayer.State == AudioPlayerState.NotReady) &&
+                                        if ((e.OldState == AudioPlayerState.NotReady || mPlayer.State == AudioPlayerState.NotReady) &&
                         StateChanged != null)
                     {
-                        StateChanged(this, e);
-                    }
-                }
+                        //StateChanged(this, e);
+                                         }
+                                      }
             );
         }
 
@@ -422,14 +422,16 @@ namespace Obi
                 if (mPlayer.PlaybackMode == Audio.PlaybackMode.Rewind
                     && mCurrentPhraseIndex > 0 )
                                                 PlayPhrase(mCurrentPhraseIndex - 1);
-                    else  if (mCurrentPhraseIndex < mPhrases.Count - 1 && mPlayer.PlaybackMode != Audio.PlaybackMode.Rewind )
-                    PlayPhrase(mCurrentPhraseIndex + 1);
-                        else if (EndOfPlaylist != null)
-            {
-                //mPlaylistState = AudioPlayerState.Stopped;    // Avn: Commented because changing Playlist state to stopped before calling stop () function will bypass stopping code
-                Stop();
-                EndOfPlaylist(this, new EventArgs());
-            }
+                                            else if (mCurrentPhraseIndex < mPhrases.Count - 1 && mPlayer.PlaybackMode != Audio.PlaybackMode.Rewind)
+                                            {
+                                                PlayPhrase(mCurrentPhraseIndex + 1);
+                                                                                            }
+                                            else if (EndOfPlaylist != null)
+                                            {
+                                                //mPlaylistState = AudioPlayerState.Stopped;    // Avn: Commented because changing Playlist state to stopped before calling stop () function will bypass stopping code
+                                                Stop();
+                                                EndOfPlaylist(this, new EventArgs());
+                                            }
         }
 
         /// <summary>
@@ -459,10 +461,10 @@ namespace Obi
                 Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs(mPlayer.State);
                 mPlayer.Stop();
                 mPlayer.PlaybackMode = PlaybackMode.Normal;
-
-                mPlaylistState = AudioPlayerState.Stopped;
-
-                if (StateChanged != null) StateChanged(this, evargs);
+                //System.Media.SystemSounds.Asterisk.Play();
+        mPlaylistState = AudioPlayerState.Stopped;
+        if (StateChanged != null) StateChanged(this, evargs);
+	            
                 mCurrentPhraseIndex = 0;
                                 mElapsedTime = 0.0;
                 System.Diagnostics.Debug.Print("--- end of audio asset handler unset");
@@ -598,8 +600,8 @@ namespace Obi
         /// <param name="index">The index of the phrase to play.</param>
         private void PlayPhrase(int index)
         {
-            SkipToPhrase(index);
-            PlayCurrentPhrase();
+                        SkipToPhrase(index);
+                                                                        PlayCurrentPhrase();
         }
 
         /// <summary>
@@ -607,14 +609,15 @@ namespace Obi
         /// </summary>
         private void PlayCurrentPhrase()
         {
-            Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs(mPlayer.State);
+                        Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs(  mPlayer.State );
             if (mPlaylistState == AudioPlayerState.Stopped)
             {
                 System.Diagnostics.Debug.Print("+++ end of audio asset handler set");
                 mPlayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
-            }
+                            }
             mPlaylistState = AudioPlayerState.Playing;
-            mPlayer.Play(mPhrases[mCurrentPhraseIndex].Audio.getMediaData());
+                mPlayer.Play(mPhrases[mCurrentPhraseIndex].Audio.getMediaData());
+
             // send the state change event if the state actually changed
             if (StateChanged != null && mPlayer.State != evargs.OldState) StateChanged(this, evargs);
         }
@@ -625,13 +628,13 @@ namespace Obi
         /// <param name="index">Index of the phrase to skip to.</param>
         private void SkipToPhrase(int index)
         {
-            System.Diagnostics.Debug.Assert(index >= 0 && index < mPhrases.Count, "Phrase index out of range!");
+                        System.Diagnostics.Debug.Assert(index >= 0 && index < mPhrases.Count, "Phrase index out of range!");
             mCurrentPhraseIndex = index;
                         mElapsedTime = mStartTimes[mCurrentPhraseIndex];
             System.Diagnostics.Debug.Print(">>> Moved to phrase {0}", index);
             Audio.PlaybackMode Mode = mPlayer.PlaybackMode; // Temporary fix to avoid reset to normal playback bugg invoked by following event
-            if (MovedToPhrase != null) MovedToPhrase(this, new Events.Node.PhraseNodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
-            mPlayer.Stop();
+                                    if (MovedToPhrase != null) MovedToPhrase(this, new Events.Node.PhraseNodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
+                                    mPlayer.Stop();
             mPlayer.PlaybackMode = Mode;
         }
 
@@ -687,6 +690,25 @@ namespace Obi
         public bool ContainsPhrase(PhraseNode phrase)
         {
             return phrase != null && mPhrases.Contains(phrase);
+        }
+
+        internal void FastPlayNormaliseWithLapseBack( double LapseBackTime )
+        {
+            if (mPlayer.CurrentTimePosition > LapseBackTime)
+            {
+                mPlayer.Pause();
+                mPlayer.FastPlayFactor = 1;
+                mPlayer.CurrentTimePosition = mPlayer.CurrentTimePosition  - LapseBackTime;
+                mPlayer.Resume();
+            }
+            else
+            {
+                mPlayer.Pause();
+                mPlayer.CurrentTimePosition = 10;
+                mPlayer.FastPlayFactor = 1;
+                mPlayer.Resume();
+                                            }
+
         }
     }
 }
