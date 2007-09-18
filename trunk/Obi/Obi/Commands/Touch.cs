@@ -4,7 +4,7 @@ namespace Obi.Commands
     /// Touch the project, making it seem modified.
     /// (Also used in the GUI to refresh the display.)
     /// </summary>
-    public class Touch : Command
+    public class Touch : Command__OLD__
     {
         private Project mProject;
 

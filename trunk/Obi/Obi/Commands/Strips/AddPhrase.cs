@@ -3,7 +3,7 @@ using urakawa.media;
 
 namespace Obi.Commands.Strips
 {
-    public class AddPhrase: Command
+    public class AddPhrase: Command__OLD__
     {
         protected PhraseNode mNode;   // the phrase node to add/remove
         private SectionNode mParent;  // the section node to add to

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Obi.Commands.Node
 {
-    public class MarkSectionHeading : Command
+    public class MarkSectionHeading : Command__OLD__
     {
         PhraseNode mNewHeading;  // new section heading
         PhraseNode mOldHeading;  // previous section heading

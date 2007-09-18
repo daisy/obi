@@ -10,7 +10,7 @@ namespace Obi.Commands.Strips
     /// <summary>
     /// An annotation was edited.
     /// </summary>
-    class EditOrRemoveAnnotation: Command
+    class EditOrRemoveAnnotation: Command__OLD__
     {
         private PhraseNode mNode;       // the phrase node for which the annotation is changing
         private string mOldAnnotation;  // the old annotation ("" if none)

@@ -101,6 +101,7 @@
     <Compile Include="Commands\Strips\RemovePageNumber.cs" />
     <Compile Include="Commands\Strips\SetPageNumber.cs" />
     <Compile Include="Commands\Strips\SplitPhrase.cs" />
+    <Compile Include="Commands\TOC\AddNewSection.cs" />
     <Compile Include="Commands\TOC\AddSection.cs" />
     <Compile Include="Commands\TOC\ChangeSectionNodeLevel.cs" />
     <Compile Include="Commands\TOC\DeleteSection.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="Commands\TOC\SectionNodeClipboard.cs" />
     <Compile Include="Commands\TOC\ShallowDeleteSectionNode.cs" />
     <Compile Include="Commands\Touch.cs" />
+    <Compile Include="Commands\UndoRedoManager.cs" />
     <Compile Include="CustomProperties.cs" />
     <Compile Include="Dialogs\About.cs">
       <SubType>Form</SubType>

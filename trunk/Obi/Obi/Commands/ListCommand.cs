@@ -2,10 +2,10 @@ using System.Collections.Generic;
 
 namespace Obi.Commands
 {
-    public class ListCommand : Command
+    public class ListCommand : Command__OLD__
     {
         private string mLabel;            // the label that will be shown in the end
-        private List<Command> mCommands;  // list of actual commands
+        private List<Command__OLD__> mCommands;  // list of actual commands
 
         public override string Label
         {
@@ -15,7 +15,7 @@ namespace Obi.Commands
         /// <summary>
         /// Create a list of commands from, well, a list of commands.
         /// </summary>
-        public ListCommand(string label, List<Command> commands)
+        public ListCommand(string label, List<Command__OLD__> commands)
         //    : base(Command.Visible)
         {
             mLabel = label + "*";  // just for debugging
@@ -28,7 +28,7 @@ namespace Obi.Commands
         public ListCommand()
         {
             mLabel = "";
-            mCommands = new List<Command>();
+            mCommands = new List<Command__OLD__>();
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Obi.Commands
         /// </summary>
         public override void Do()
         {
-            foreach (Command c in mCommands) c.Do();
+            foreach (Command__OLD__ c in mCommands) c.Do();
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Obi.Commands
         public override void Undo()
         {
             mCommands.Reverse();
-            foreach (Command c in mCommands) c.Undo();
+            foreach (Command__OLD__ c in mCommands) c.Undo();
             mCommands.Reverse();
         }
 
@@ -53,7 +53,7 @@ namespace Obi.Commands
         /// Append a new command to the list.
         /// </summary>
         /// <param name="cmd">The command to append</param>
-        public void AddCommand(Command cmd)
+        public void AddCommand(Command__OLD__ cmd)
         {
             mCommands.Add(cmd);
         }

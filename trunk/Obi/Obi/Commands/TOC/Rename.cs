@@ -6,7 +6,7 @@ using urakawa.core;
 
 namespace Obi.Commands.TOC
 {
-    class Rename: Command
+    class Rename: Command__OLD__
     {
         private SectionNode mNode;
         private string mOldName;

@@ -41,7 +41,7 @@ namespace Obi.Commands.TOC
         }
     }
 
-    class CopySectionNode : Command
+    class CopySectionNode : Command__OLD__
     {
         private object mPrevious;   // previous clipboard data
         private SectionNode mNode;  // the node to copy
@@ -74,7 +74,7 @@ namespace Obi.Commands.TOC
         }
     }
 
-    class PasteSectionNode : Command
+    class PasteSectionNode : Command__OLD__
     {
         private SectionNode mNode;
         private TreeNode mContext;

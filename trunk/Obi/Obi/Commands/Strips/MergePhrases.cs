@@ -4,7 +4,7 @@ using urakawa.media.data.audio ;
 
 namespace Obi.Commands.Strips
 {
-    public class MergePhrases : Command
+    public class MergePhrases : Command__OLD__
     {
         private PhraseNode mNode;
         private PhraseNode mNext;

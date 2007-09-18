@@ -15,9 +15,9 @@ namespace Obi.Events.Project
     /// </summary>
     public class CommandCreatedEventArgs : EventArgs
     {
-        private Command mCommand; 
+        private Command__OLD__ mCommand; 
 
-        public Command Command
+        public Command__OLD__ Command
         {
             get
             {
@@ -25,7 +25,7 @@ namespace Obi.Events.Project
             }
         }
 
-        public CommandCreatedEventArgs(Command command)
+        public CommandCreatedEventArgs(Command__OLD__ command)
         {
             mCommand = command;
         }

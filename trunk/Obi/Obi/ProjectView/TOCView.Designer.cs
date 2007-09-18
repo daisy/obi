@@ -35,6 +35,7 @@ namespace Obi.ProjectView
             // 
             this.mTOCTree.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mTOCTree.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mTOCTree.FullRowSelect = true;
             this.mTOCTree.LabelEdit = true;
             this.mTOCTree.Location = new System.Drawing.Point(0, 0);
             this.mTOCTree.Name = "mTOCTree";

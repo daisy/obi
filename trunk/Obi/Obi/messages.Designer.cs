@@ -70,6 +70,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to add section.
+        /// </summary>
+        internal static string add_new_section_command {
+            get {
+                return ResourceManager.GetString("add_new_section_command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to add audio block.
         /// </summary>
         internal static string add_phrase_command_label {
@@ -781,6 +790,15 @@ namespace Obi {
         internal static string increase_section_level_command_label {
             get {
                 return ResourceManager.GetString("increase_section_level_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to last command.
+        /// </summary>
+        internal static string last_command {
+            get {
+                return ResourceManager.GetString("last_command", resourceCulture);
             }
         }
         

@@ -6,8 +6,8 @@ namespace Obi.Commands
 {
     class CommandManager
     {
-        Stack<Command> mUndo;  // the undo stack
-        Stack<Command> mRedo;  // the redo stack
+        Stack<Command__OLD__> mUndo;  // the undo stack
+        Stack<Command__OLD__> mRedo;  // the redo stack
 
         /// <summary>
         /// The label of the command on top of the undo stack, or null if the stack is empty.
@@ -46,8 +46,8 @@ namespace Obi.Commands
         /// </summary>
         public CommandManager()
         {
-            mUndo = new Stack<Command>();
-            mRedo = new Stack<Command>();
+            mUndo = new Stack<Command__OLD__>();
+            mRedo = new Stack<Command__OLD__>();
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Obi.Commands
         /// 
         /// </summary>
         /// <param name="command">The latest command.</param>
-        public void Add(Command command)
+        public void Add(Command__OLD__ command)
         {
             mUndo.Push(command);
             mRedo.Clear();
@@ -78,7 +78,7 @@ namespace Obi.Commands
         {
             if (mUndo.Count > 0)
             {
-                Command command = mUndo.Pop();
+                Command__OLD__ command = mUndo.Pop();
                 command.Undo();
                 mRedo.Push(command);
             }
@@ -92,7 +92,7 @@ namespace Obi.Commands
         {
             if (mRedo.Count > 0)
             {
-                Command command = mRedo.Pop();
+                Command__OLD__ command = mRedo.Pop();
                 command.Do();
                 mUndo.Push(command);
             }

@@ -6,7 +6,7 @@ using urakawa.core;
 
 namespace Obi.Commands.TOC
 {
-   public abstract class MoveSectionNode : Command
+   public abstract class MoveSectionNode : Command__OLD__
     {
         protected SectionNode mNode;
         protected TreeNode mParent;

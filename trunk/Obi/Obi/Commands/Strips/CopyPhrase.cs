@@ -6,7 +6,7 @@ using urakawa.core;
 
 namespace Obi.Commands.Strips
 {
-    class CopyPhrase: Command
+    class CopyPhrase: Command__OLD__
     {
         private object mPrevious;  // the previous data in the clipboard
         private PhraseNode mNode;  // the phrase node that was copied

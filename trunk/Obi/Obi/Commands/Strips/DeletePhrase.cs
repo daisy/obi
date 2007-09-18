@@ -6,7 +6,7 @@ namespace Obi.Commands.Strips
     /// Command to delete a phrase. Undo restores the phrase in its place.
     /// The command must be created before the node is actually deleted.
     /// </summary>
-    public class DeletePhrase : Command
+    public class DeletePhrase : Command__OLD__
     {
         private PhraseNode mNode;     // the phrase node to add/remove
         private SectionNode mParent;  // the section node to add to
