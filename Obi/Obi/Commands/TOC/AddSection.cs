@@ -6,7 +6,7 @@ using urakawa.core;
 
 namespace Obi.Commands.TOC
 {
-    class AddSectionNode: Command
+    class AddSectionNode: Command__OLD__
     {
         private SectionNode mNode;  // the newly added section node
         private TreeNode mParent;   // the parent to which it was added

@@ -6,7 +6,7 @@ using urakawa.core;
 
 namespace Obi.Commands.Strips
 {
-    public class RemovePageNumber: Command
+    public class RemovePageNumber: Command__OLD__
     {
         protected PhraseNode mNode;  // the phrase node
         

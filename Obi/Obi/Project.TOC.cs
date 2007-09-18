@@ -95,7 +95,7 @@ namespace Obi
         /// <returns>The new section node.</returns>
         public SectionNode CreateSiblingSectionNode(SectionNode contextNode)
         {
-            TreeNode parent = (TreeNode)(contextNode == null ? RootNode : contextNode.getParent());
+            TreeNode parent = contextNode == null ? RootNode : contextNode.getParent();
             SectionNode sibling = (SectionNode)
                 getPresentation().getTreeNodeFactory().createNode(SectionNode.XUK_ELEMENT_NAME, Program.OBI_NS);
             if (contextNode == null)
@@ -105,7 +105,8 @@ namespace Obi
             }
             else
             {
-                AddChildSectionBefore(sibling, contextNode, parent);
+                parent.insertAfter(sibling, contextNode);
+                // AddChildSectionBefore(sibling, contextNode, parent);
             }
             Modified(new Commands.TOC.AddSectionNode(sibling));
             return sibling;
@@ -294,16 +295,16 @@ namespace Obi
             int numChildren = node.SectionChildCount;
             for (int i = numChildren - 1; i >= 0; i--)
             {
-                Commands.Command cmdDecrease = DecreaseSectionNodeLevel(node.SectionChild(i));
+                Commands.Command__OLD__ cmdDecrease = DecreaseSectionNodeLevel(node.SectionChild(i));
                 if (command != null) command.AddCommand(cmdDecrease);
             }
             numChildren = node.PhraseChildCount;
             for (int i = numChildren - 1; i >= 0; i--)
             {
-                Commands.Command cmdDeletePhrase = DeletePhraseNodeAndMedia(node.PhraseChild(i));
+                Commands.Command__OLD__ cmdDeletePhrase = DeletePhraseNodeAndMedia(node.PhraseChild(i));
                 if (command != null) command.AddCommand(cmdDeletePhrase);
             }
-            Commands.Command cmdRemove = RemoveSectionNode(node);
+            Commands.Command__OLD__ cmdRemove = RemoveSectionNode(node);
             if (command != null) command.AddCommand(cmdRemove);
             Modified();
             if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
@@ -359,18 +360,18 @@ namespace Obi
             int numChildren = node.SectionChildCount;
             for (int i = numChildren - 1; i>=0; i--)
             {
-                Commands.Command cmdDecrease = DecreaseSectionNodeLevel(node.SectionChild(i));
+                Commands.Command__OLD__ cmdDecrease = DecreaseSectionNodeLevel(node.SectionChild(i));
                 command.AddCommand(cmdDecrease);
             }
 
             numChildren = node.PhraseChildCount;
             for (int i = numChildren - 1; i>=0; i--)
             {
-                Commands.Command cmdDeletePhrase = DeletePhraseNodeAndMedia(node.PhraseChild(i));
+                Commands.Command__OLD__ cmdDeletePhrase = DeletePhraseNodeAndMedia(node.PhraseChild(i));
                 command.AddCommand(cmdDeletePhrase);
             }
 
-            Commands.Command cmdRemove = this.RemoveSectionNode(node);
+            Commands.Command__OLD__ cmdRemove = this.RemoveSectionNode(node);
             command.AddCommand(cmdRemove);
 
           
@@ -423,11 +424,6 @@ namespace Obi
                 ((SectionNode)parent).AppendChildSection(node);
             }         
         }
-
-
-
-
-
 
         //helper function which tests for parent being root
         //md 20061204

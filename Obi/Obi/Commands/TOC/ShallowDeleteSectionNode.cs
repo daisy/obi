@@ -7,7 +7,7 @@ using urakawa.core;
 
 namespace Obi.Commands.TOC
 {
-    class ShallowDeleteSectionNode : Command
+    class ShallowDeleteSectionNode : Command__OLD__
     {
         protected SectionNode mNode;         // the node being deleted
         protected ListCommand mSubCommands;  // successive commands for redo
@@ -41,7 +41,7 @@ namespace Obi.Commands.TOC
 
         //md
         //needed to add this to make it easier to keep track of composite actions
-        public void AddCommand(Command cmd)
+        public void AddCommand(Command__OLD__ cmd)
         {
             mSubCommands.AddCommand(cmd);
         }

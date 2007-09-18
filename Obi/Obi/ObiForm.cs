@@ -485,9 +485,9 @@ namespace Obi
             mProjectView.TOCPanelVisible = !mProjectView.TOCPanelVisible;
         }
 
-        private void mInsertSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.StartRenamingSection(mProjectView.InsertSection());
+            mProjectView.AddNewSection();
         }
 
         private void mAddSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1145,6 +1145,7 @@ namespace Obi
                 mProject = new Project(path);
                 mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
                 mProject.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
+                // mProjectView.CommandExecuted += new
                 this.Cursor = Cursors.WaitCursor;
                 mProject.Open(path);
                 AddRecentProject(path);

@@ -9,6 +9,7 @@ using urakawa.core.events;
 using urakawa.media;
 using urakawa.media.data;
 using urakawa.property.channel;
+using urakawa.undo;
 
 namespace Obi
 {
@@ -16,6 +17,7 @@ namespace Obi
     {
         private int mPageCount;              // count the pages in the book
         private int mPhraseCount;            // total number of phrases in the project
+        private UndoRedoManager mUndoMngr;   // undo/redo manager for this project
         private bool mUnsaved;               // saved flag
         private string mXUKPath;             // path to the project XUK file
         
@@ -46,14 +48,13 @@ namespace Obi
             mClipboard = new Clipboard();  // TODO move this to project panel
             mPhraseCount = 0;
             mPageCount = 0;
+            mUndoMngr = new UndoRedoManager();
             mUnsaved = true;
             mXUKPath = XUKPath;
             Presentation presentation = getPresentation();
             ((ObiNodeFactory)presentation.getTreeNodeFactory()).Project = this;
-           
-                presentation.setRootNode(presentation.getTreeNodeFactory().createNode(Obi.RootNode.XUK_ELEMENT_NAME,
-        Program.OBI_NS));
-            
+            presentation.setRootNode(presentation.getTreeNodeFactory().createNode(Obi.RootNode.XUK_ELEMENT_NAME,
+                Program.OBI_NS));
             presentation.treeNodeAdded += new TreeNodeAddedEventHandler(presentation_treeNodeAdded);
             presentation.treeNodeRemoved += new TreeNodeRemovedEventHandler(presentation_treeNodeRemoved);
             AddChannel(ANNOTATION_CHANNEL_NAME);
@@ -377,7 +378,7 @@ namespace Obi
         /// Project was modified and a command is issued.
         /// </summary>
         /// <param name="command">The command to issue.</param>
-        private void Modified(Commands.Command command)
+        private void Modified(Commands.Command__OLD__ command)
         {
             if (CommandCreated != null)
             {
@@ -708,5 +709,15 @@ namespace Obi
         }
 
         #endregion
+
+
+        /// <summary>
+        /// Convenience method to create a new section node.
+        /// </summary>
+        public SectionNode NewSectionNode()
+        {
+            return getPresentation().getTreeNodeFactory().createNode(SectionNode.XUK_ELEMENT_NAME, Program.OBI_NS)
+            as SectionNode;
+        }
     }
 }

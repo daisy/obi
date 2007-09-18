@@ -425,8 +425,8 @@ namespace Obi
             this.mAddSectionToolStripMenuItem.Name = "mAddSectionToolStripMenuItem";
             this.mAddSectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
             this.mAddSectionToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
-            this.mAddSectionToolStripMenuItem.Text = "&Insert section";
-            this.mAddSectionToolStripMenuItem.Click += new System.EventHandler(this.mInsertSectionToolStripMenuItem_Click);
+            this.mAddSectionToolStripMenuItem.Text = "&Add section";
+            this.mAddSectionToolStripMenuItem.Click += new System.EventHandler(this.mAddSectionToolStripMenuItem_Click);
             // 
             // mAddSubSectionToolStripMenuItem
             // 
@@ -839,13 +839,13 @@ namespace Obi
             this.mAudioPreferencesToolStripMenuItem,
             this.toolStripSeparator10,
             this.mShowSourceDEBUGToolStripMenuItem});
-            this.mToolsToolStripMenuItem.Enabled = false;
             this.mToolsToolStripMenuItem.Name = "mToolsToolStripMenuItem";
             this.mToolsToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.mToolsToolStripMenuItem.Text = "&Tools";
             // 
             // userSettingsToolStripMenuItem
             // 
+            this.userSettingsToolStripMenuItem.Enabled = false;
             this.userSettingsToolStripMenuItem.Name = "userSettingsToolStripMenuItem";
             this.userSettingsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.U)));
             this.userSettingsToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
@@ -854,6 +854,7 @@ namespace Obi
             // 
             // preferencesToolStripMenuItem
             // 
+            this.preferencesToolStripMenuItem.Enabled = false;
             this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
             this.preferencesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.P)));
             this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
@@ -862,6 +863,7 @@ namespace Obi
             // 
             // mAudioPreferencesToolStripMenuItem
             // 
+            this.mAudioPreferencesToolStripMenuItem.Enabled = false;
             this.mAudioPreferencesToolStripMenuItem.Name = "mAudioPreferencesToolStripMenuItem";
             this.mAudioPreferencesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.A)));
             this.mAudioPreferencesToolStripMenuItem.Size = new System.Drawing.Size(203, 22);

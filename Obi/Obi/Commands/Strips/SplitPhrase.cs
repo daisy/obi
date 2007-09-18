@@ -7,7 +7,7 @@ namespace Obi.Commands.Strips
     /// <summary>
     /// Command to split a phrase node. The new node has already been created and the audio asset was already split.
     /// </summary>
-    public class SplitPhrase : Command
+    public class SplitPhrase : Command__OLD__
     {
         private PhraseNode mNode;                // the phrase node that is split
         private PhraseNode mNewNode;             // the new phrase node that was created

@@ -30,10 +30,11 @@ namespace Obi.ProjectView
         {
             this.mHSplitter = new System.Windows.Forms.SplitContainer();
             this.mVSplitter = new System.Windows.Forms.SplitContainer();
-            this.mStripsView = new Obi.ProjectView.StripsView();
-            this.mTransportBar = new Obi.UserControls.TransportBar();
+            this.mNoProjectLabel = new System.Windows.Forms.Label();
             this.mTOCView = new Obi.ProjectView.TOCView();
             this.mMetadataView = new Obi.ProjectView.MetadataView();
+            this.mStripsView = new Obi.ProjectView.StripsView();
+            this.mTransportBar = new Obi.UserControls.TransportBar();
             this.mHSplitter.Panel1.SuspendLayout();
             this.mHSplitter.Panel2.SuspendLayout();
             this.mHSplitter.SuspendLayout();
@@ -79,6 +80,36 @@ namespace Obi.ProjectView
             this.mVSplitter.SplitterDistance = 327;
             this.mVSplitter.TabIndex = 0;
             // 
+            // mNoProjectLabel
+            // 
+            this.mNoProjectLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.mNoProjectLabel.AutoSize = true;
+            this.mNoProjectLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mNoProjectLabel.ForeColor = System.Drawing.Color.Orange;
+            this.mNoProjectLabel.Location = new System.Drawing.Point(241, 225);
+            this.mNoProjectLabel.Name = "mNoProjectLabel";
+            this.mNoProjectLabel.Size = new System.Drawing.Size(490, 108);
+            this.mNoProjectLabel.TabIndex = 2;
+            this.mNoProjectLabel.Text = "No project";
+            // 
+            // mTOCView
+            // 
+            this.mTOCView.AutoScroll = true;
+            this.mTOCView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mTOCView.Location = new System.Drawing.Point(0, 0);
+            this.mTOCView.Name = "mTOCView";
+            this.mTOCView.SelectedSection = null;
+            this.mTOCView.Size = new System.Drawing.Size(226, 327);
+            this.mTOCView.TabIndex = 0;
+            // 
+            // mMetadataView
+            // 
+            this.mMetadataView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mMetadataView.Location = new System.Drawing.Point(0, 0);
+            this.mMetadataView.Name = "mMetadataView";
+            this.mMetadataView.Size = new System.Drawing.Size(226, 186);
+            this.mMetadataView.TabIndex = 0;
+            // 
             // mStripsView
             // 
             this.mStripsView.BackColor = System.Drawing.Color.Transparent;
@@ -103,22 +134,6 @@ namespace Obi.ProjectView
             this.mTransportBar.Size = new System.Drawing.Size(960, 35);
             this.mTransportBar.TabIndex = 0;
             // 
-            // mTOCView
-            // 
-            this.mTOCView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mTOCView.Location = new System.Drawing.Point(0, 0);
-            this.mTOCView.Name = "mTOCView";
-            this.mTOCView.Size = new System.Drawing.Size(226, 327);
-            this.mTOCView.TabIndex = 0;
-            // 
-            // mMetadataView
-            // 
-            this.mMetadataView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mMetadataView.Location = new System.Drawing.Point(0, 0);
-            this.mMetadataView.Name = "mMetadataView";
-            this.mMetadataView.Size = new System.Drawing.Size(226, 186);
-            this.mMetadataView.TabIndex = 0;
-            // 
             // ProjectView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -126,6 +141,7 @@ namespace Obi.ProjectView
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.mHSplitter);
             this.Controls.Add(this.mTransportBar);
+            this.Controls.Add(this.mNoProjectLabel);
             this.Name = "ProjectView";
             this.Size = new System.Drawing.Size(972, 558);
             this.mHSplitter.Panel1.ResumeLayout(false);
@@ -135,6 +151,7 @@ namespace Obi.ProjectView
             this.mVSplitter.Panel2.ResumeLayout(false);
             this.mVSplitter.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -146,6 +163,7 @@ namespace Obi.ProjectView
         private System.Windows.Forms.SplitContainer mVSplitter;
         private TOCView mTOCView;
         private MetadataView mMetadataView;
+        private System.Windows.Forms.Label mNoProjectLabel;
 
     }
 }

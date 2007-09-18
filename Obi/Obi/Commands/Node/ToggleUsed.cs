@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Obi.Commands.Node
 {
-    public class ToggleUsed : Command
+    public class ToggleUsed : Command__OLD__
     {
         private ObiNode mNode;
         private bool mNowUsed;

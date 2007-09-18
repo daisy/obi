@@ -9,7 +9,7 @@ namespace Obi.Commands.Strips
     /// <summary>
     /// Command to move a phrase node inside its strip in one direction or the other.
     /// </summary>
-    class MovePhrase: Command
+    class MovePhrase: Command__OLD__
     {
         private PhraseNode mNode;      // the phrase node to move
         private int mIndexBeforeMove;  // the original index of the node

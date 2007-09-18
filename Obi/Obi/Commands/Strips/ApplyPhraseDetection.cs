@@ -5,7 +5,7 @@ using urakawa.core;
 
 namespace Obi.Commands.Strips
 {
-    public class ApplyPhraseDetection: Command
+    public class ApplyPhraseDetection: Command__OLD__
     {
         private Obi.Project mProject;
         private PhraseNode mNode;

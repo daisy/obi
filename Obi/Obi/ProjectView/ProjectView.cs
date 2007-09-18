@@ -10,16 +10,30 @@ namespace Obi.ProjectView
 {
     public partial class ProjectView : UserControl
     {
-        private bool mEnableTooltips;      // tooltips flag
-        private Project mProject;          // project model
-        private NodeSelection mSelection;  // currently selected node
-        
+        private bool mEnableTooltips;            // tooltips flag
+        private Project mProject;                // project model
+        private NodeSelection mSelection;        // currently selected node
+        private Commands.UndoRedoManager mUndo;  // the undo manager for the project view
+
+        public EventHandler CommandExecuted;
+        public EventHandler CommandUnexecuted;
+
         public ProjectView()
         {
             InitializeComponent();
             mProject = null;
             mSelection = null;
             mTransportBar.ProjectView = this;
+            // Create the undo/redo manager for the view and pass along its events
+            mUndo = new Commands.UndoRedoManager();
+            mUndo.CommandExecuted += new EventHandler(delegate(object sender, EventArgs e)
+            {
+                if (CommandExecuted != null) CommandExecuted(sender, e);
+            });
+            mUndo.CommandUnexecuted += new EventHandler(delegate(object sender, EventArgs e)
+            {
+                if (CommandUnexecuted != null) CommandUnexecuted(sender, e);
+            });
         }
 
 
@@ -123,6 +137,7 @@ namespace Obi.ProjectView
             get { return mProject; }
             set
             {
+                ProjectVisible = value != null;
                 if (mProject != value)
                 {
                     /* cleanup old project */
@@ -136,6 +151,17 @@ namespace Obi.ProjectView
                         SynchronizeWithCoreTree();
                     }
                 }
+            }
+        }
+
+        private bool ProjectVisible
+        {
+            set
+            {
+                mHSplitter.Visible = value;
+                mVSplitter.Visible = value;
+                mTransportBar.Visible = value;
+                mNoProjectLabel.Visible = !value;
             }
         }
 
@@ -227,10 +253,10 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Insert a new sibling section of the currently selected section in the TOC view.
+        /// Add a new sibling section after the currently selected section in the TOC view.
         /// If no section is selected, then append a new section at the top level.
         /// </summary>
-        public SectionNode InsertSection()
+        public SectionNode AddSection()
         {
             return mProject.CreateSiblingSectionNode(mTOCView.SelectedSection);
         }
@@ -428,6 +454,15 @@ namespace Obi.ProjectView
         internal void ShowSelectedStripInTOCView()
         {
             throw new Exception("The method or operation is not implemented.");
+        }
+
+        /// <summary>
+        /// Add a new section node to the project.
+        /// TODO rename it!
+        /// </summary>
+        public void AddNewSection()
+        {
+            if (mProject != null) mUndo.execute(new Commands.TOC.AddNewSection(this, mTOCView.SelectedSection));
         }
     }
 }
