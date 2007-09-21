@@ -292,7 +292,7 @@ namespace Obi
             get
             {
                 return mPhrases[mCurrentPhraseIndex].Audio.getDuration().getTimeDeltaAsMillisecondFloat() -
-                    (mPlayer.GetCurrentTimePosition() );
+                    (mPlayer.CurrentTimePosition  );
             }
             set
             {
