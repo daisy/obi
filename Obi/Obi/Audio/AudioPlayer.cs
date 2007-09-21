@@ -146,6 +146,19 @@ namespace Obi.Audio
             }
         }
 
+/// <summary>
+///      Returns the current position of play cursor to be used by CurrentTimePosition property
+/// </summary>
+/// <returns></returns>
+                 private     double GetCurrentTimePosition()
+        {
+            if (mCurrentAudio != null)
+                return CalculationFunctions.ConvertByteToTime(GetCurrentBytePosition(), m_SamplingRate, m_FrameSize);
+            else
+                return 0;
+        }
+
+
         /// <summary>
         /// Get the current playback position in bytes.
         /// </summary>
@@ -215,22 +228,8 @@ namespace Obi.Audio
             }
         }
 
-        /// <summary>
-        /// Stop rewinding or forwarding, including the preview timer.
-        /// </summary>
-        private void StopForwardRewind()
-        {
-            if (mPlaybackMode != PlaybackMode.Normal || mPreviewTimer.Enabled)
-            {
-                mPreviewTimer.Enabled = false;
-//                m_FwdRwdRate = 1;
-                m_lChunkStartPosition = 0;
-                mIsFwdRwd = false;
-                                mEventsEnabled = true;
-            }
-        }
 
-        /// <summary>
+/// <summary>
         /// Stop the playback and revert to normal playback mode.
         /// </summary>
         private void StopPlayback()
@@ -860,15 +859,6 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
 			TriggerStateChangedEvent(e);
 		}
 
-
-
-		public double GetCurrentTimePosition()
-		{	
-            if ( mCurrentAudio != null )
-			return CalculationFunctions.ConvertByteToTime (GetCurrentBytePosition() , m_SamplingRate , m_FrameSize);
-            else
-                return 0 ;
-		}
 		
 		long m_StartPosition  ;
 
@@ -1014,7 +1004,22 @@ if (m_lChunkStartPosition > mCurrentAudio.getPCMLength())
                                     }
                 } //-2
                             } //-1
-       
+
+
+                            /// <summary>
+                            /// Stop rewinding or forwarding, including the preview timer.
+                            /// </summary>
+                            private void StopForwardRewind()
+                            {
+                                if (mPlaybackMode != PlaybackMode.Normal || mPreviewTimer.Enabled)
+                                {
+                                    mPreviewTimer.Enabled = false;
+                                    //                m_FwdRwdRate = 1;
+                                    m_lChunkStartPosition = 0;
+                                    mIsFwdRwd = false;
+                                    mEventsEnabled = true;
+                                }
+                            }
 
 
 

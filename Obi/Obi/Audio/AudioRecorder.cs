@@ -65,17 +65,8 @@ namespace Obi.Audio
         private long SampleCount ; // Count of total bytes being recorded at an instance of time
         private AutoResetEvent NotificationEvent = null;
         private Thread NotifyThread = null;
-        /*                
-		private static readonly AudioRecorder instance = new AudioRecorder();
-				public static AudioRecorder Instance
-		{ 
-			get 
-			{ 
-				return th; 
-			} 
-		}
-        */
-		// constructor, made private by JQ 
+        
+		// constructor, made public by Avn
 		public AudioRecorder()
 		{
                         mState = AudioRecorderState.Idle;
@@ -84,16 +75,6 @@ namespace Obi.Audio
             SampleCount = 0;
                                     
 		}
-
-
-        /// <summary>
-        /// Current time since beginning of recording(?)
-        /// </summary>
-        public double CurrentTime
-        {
-            get { return mCurrentTime; }
-        }
-
 
 		public int SampleRate
 		{
@@ -226,10 +207,13 @@ namespace Obi.Audio
                         InitRecording(false);
                 
                 FileInfo fi = new FileInfo(m_sFileName);
-                
+
                 if (File.Exists(m_sFileName))
+                {
                     if (fi.Length == 44)
                         File.Delete(m_sFileName);
+                }
+
             }
         }
 
@@ -593,26 +577,6 @@ namespace Obi.Audio
             if (ResetVuMeter != null)
                 ResetVuMeter(this, new Obi.Events.Audio.Recorder.UpdateVuMeterEventArgs());
 		}
-
-
-		/*public void SetInputDeviceForRecording(Control FormHandle, int Index)
-		{
-			CaptureDevicesCollection devices  = new CaptureDevicesCollection();
-			Microsoft.DirectX.DirectSound.Device mDevice = new  Microsoft.DirectX.DirectSound.Device ( devices[Index].DriverGuid);
-			mDevice .SetCooperativeLevel(FormHandle, CooperativeLevel.Priority);
-			m_InputDevice = mDevice;
-		}
-
-		public void SetInputDeviceForRecording(Control FormHandle, string name)
-		{
-			SetInputDeviceForRecording(FormHandle, 0);
-		}*/
-
-        /*public void SetDevice(Control handle, InputDevice device)
-        {
-            mDevice = device;
-            //mDevice.Capture.SetCooperativeLevel(handle, CooperativeLevel.Priority);
-        }*/
 
         public void SetDevice(Control handle, string name)
         {
