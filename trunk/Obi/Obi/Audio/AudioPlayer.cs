@@ -21,15 +21,6 @@ namespace Obi.Audio
     /// </summary>
     public enum AudioPlayerState { NotReady, Stopped, Playing, Paused };
 
-    /// <summary>
-    /// Playback modes for AudioPlayer
-    /// Normal: for normal playback
-    /// FastForward: For playing small chunks while jumping forward
-    /// Rewind: for playing small chunks while jumping backward
-    /// </summary>
-    public enum PlaybackMode { Normal, FastForward, Rewind };
-
-
 	public class AudioPlayer
 	{
         #region private members
@@ -67,9 +58,8 @@ namespace Obi.Audio
         private long m_lChunkStartPosition = 0; // position for starting chunk play in forward/Rewind
 
         // Member variables changed by user 
-                        private PlaybackMode mPlaybackMode;    // current playback mode
-                private int m_VolumeLevel;
-        private int m_FwdRwdRate; // holds skip time multiplier for forward / rewind mode
+                                        private int m_VolumeLevel;
+        private int m_FwdRwdRate; // holds skip time multiplier for forward / rewind mode , value is 0 for normal playback,  positive  for FastForward and negetive  for Rewind
         private float m_fFastPlayFactor; /// fholds fast play multiplier
 
 
@@ -100,8 +90,8 @@ namespace Obi.Audio
             mPreviewTimer = new System.Windows.Forms.Timer(); 
             mPreviewTimer.Tick += new System.EventHandler(this.PreviewTimer_Tick);
             mPreviewTimer.Interval = 100;
-            mPlaybackMode = PlaybackMode.Normal;
-            m_FwdRwdRate = 1;
+            //mPlaybackMode = PlaybackMode.Normal;
+            m_FwdRwdRate = 0 ;
             m_fFastPlayFactor = 1;
             mIsFwdRwd = false;
             mEventsEnabled = true;
@@ -120,18 +110,6 @@ namespace Obi.Audio
         /// Currently used output device.
         /// </summary>
         public OutputDevice OutputDevice { get { return mDevice; } }
-
-        /// <summary>
-        /// Get and set the active playback mode.
-                /// </summary>
-        public PlaybackMode PlaybackMode
-        {
-            get { return mPlaybackMode; }
-            set 
-            {
-                                SetPlaybackMode(value); 
-            }
-        }
 
         /// <summary>
         /// Current state of the player.
@@ -198,32 +176,33 @@ namespace Obi.Audio
             {//2
                 lCurrentPosition = m_lPausePosition;
             }//-2
-                        if (mPlaybackMode != PlaybackMode.Normal) lCurrentPosition = m_lChunkStartPosition;
+                        if (m_FwdRwdRate  != 0 ) lCurrentPosition = m_lChunkStartPosition;
             lCurrentPosition = CalculationFunctions.AdaptToFrame(lCurrentPosition, m_FrameSize);
         }//-1
             return lCurrentPosition;
         }
 
+
         /// <summary>
-        /// Set a new playback mode.
+        /// Set a new playback mode i.e. one of Normal, FastForward, Rewind 
         /// </summary>
         /// <param name="mode">The new mode.</param>
-        private void SetPlaybackMode(PlaybackMode mode)
-        {
-            if (mode != mPlaybackMode)
+                    private void SetPlaybackMode( int rate )
+            {
+            if (rate != m_FwdRwdRate )
             {
                                                     if (State == AudioPlayerState.Playing)
                 {
                                         long restartPos = GetCurrentBytePosition();
                     StopPlayback();
                     mState = AudioPlayerState.Paused;
-                    mPlaybackMode = mode;
+                    m_FwdRwdRate = rate ;
                     
                     InitPlay( mCurrentAudio ,  restartPos, 0);
                 }
                 else if (mState == AudioPlayerState.Paused || mState == AudioPlayerState.Stopped)
                 {
-                    mPlaybackMode = mode;
+                    m_FwdRwdRate = rate  ;
                 }
             }
         }
@@ -255,7 +234,9 @@ namespace Obi.Audio
 
         /// <summary>
         /// Forward / Rewind rate.
-        /// Whenever set to 0, Playback mode resets to normal
+        ///  0 for normal playback
+        ///   negetive integer for  Rewind
+        ///  positive integer   for FastForward
         /// </summary>
         public int PlaybackFwdRwdRate
         {
@@ -265,13 +246,8 @@ namespace Obi.Audio
             }
             set
             {
-                m_FwdRwdRate = value;
-                if (m_FwdRwdRate == 0 && mPlaybackMode != PlaybackMode.Normal)
-                {
-                    MessageBox.Show("FwdRwd rate is 0 ");
-                    SetPlaybackMode(PlaybackMode.Normal);
-                }
-            }
+                SetPlaybackMode (value);
+                            }
         }
 
 
@@ -403,7 +379,7 @@ namespace Obi.Audio
         void SetPlayFrequency(float l_frequency)
         {
             if (mSoundBuffer != null
-                && mPlaybackMode == PlaybackMode.Normal)
+                && m_FwdRwdRate == 0 )
             {
                 try
                 {
@@ -519,13 +495,13 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
             {
                                 InitialiseWithAsset (asset ) ;
 
-                    if (mPlaybackMode  == PlaybackMode.Normal)
+                    if ( m_FwdRwdRate == 0  )
                         PlayAssetStream( lStartPosition , lEndPosition);
-                    else if (mPlaybackMode  == PlaybackMode.FastForward)
+                    else if ( m_FwdRwdRate > 0   )
                     {
                                                 FastForward( lStartPosition );
                     }
-                    else if (mPlaybackMode == PlaybackMode.Rewind)
+                    else if ( m_FwdRwdRate < 0  )
                     {
                                                 if (lStartPosition == 0)
                             lStartPosition = mCurrentAudio.getPCMLength();
@@ -906,10 +882,10 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
         /// <see cref=""/>
         /// </summary>
         /// <param name="lStartPosition"></param>
-        public void Rewind( long lStartPosition  )
+        private  void Rewind( long lStartPosition  )
         {
                                     // let's play backward!
-            if ( mPlaybackMode  !=  PlaybackMode.Normal )
+            if ( m_FwdRwdRate !=  0 )
             {
                                 m_lChunkStartPosition = lStartPosition ;
                                                 mEventsEnabled = false;
@@ -926,11 +902,11 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
         /// <see cref=""/>
         /// </summary>
         /// <param name="lStartPosition"></param>
-        public void FastForward(long lStartPosition   )
+        private void FastForward(long lStartPosition   )
         {
 
             // let's play forward!
-            if (mPlaybackMode != PlaybackMode.Normal)
+            if (m_FwdRwdRate !=  0  )
             {
                 m_lChunkStartPosition = lStartPosition;
                 mEventsEnabled = false;
@@ -946,7 +922,7 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
         private void PreviewTimer_Tick(object sender, EventArgs e)
         { //1
             
-            double StepInMs = 4000 * m_FwdRwdRate  ;
+            double StepInMs = Math.Abs( 4000 * m_FwdRwdRate   ) ;
             long lStepInBytes = CalculationFunctions.ConvertTimeToByte(StepInMs, (int)  mCurrentAudio.getPCMFormat().getSampleRate ()  , mCurrentAudio.getPCMFormat().getBlockAlign ());
             int PlayChunkLength = 1200;
             long lPlayChunkLength = CalculationFunctions.ConvertTimeToByte( PlayChunkLength , (int)mCurrentAudio.getPCMFormat().getSampleRate(), mCurrentAudio.getPCMFormat().getBlockAlign());
@@ -954,7 +930,7 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
 
             long PlayStartPos = 0;
             long PlayEndPos = 0;
-            if ( mPlaybackMode  == PlaybackMode.FastForward  )
+            if ( m_FwdRwdRate > 0 )
             { //2
                 if (( mCurrentAudio.getPCMLength () - ( lStepInBytes + m_lChunkStartPosition ) ) >  lPlayChunkLength )
                 { //3
@@ -979,7 +955,7 @@ if (m_lChunkStartPosition > mCurrentAudio.getPCMLength())
                         EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());
                                 } //-3
             } //-2
-            else if ( mPlaybackMode  ==  PlaybackMode.Rewind )
+            else if ( m_FwdRwdRate <  0 )
             { //2
                 //if (m_lChunkStartPosition > (lStepInBytes ) && lPlayChunkLength <= m_Asset.getPCMLength () )
                 if (m_lChunkStartPosition >  0 )
@@ -1011,10 +987,10 @@ if (m_lChunkStartPosition > mCurrentAudio.getPCMLength())
                             /// </summary>
                             private void StopForwardRewind()
                             {
-                                if (mPlaybackMode != PlaybackMode.Normal || mPreviewTimer.Enabled)
+                                if (m_FwdRwdRate != 0 || mPreviewTimer.Enabled)
                                 {
                                     mPreviewTimer.Enabled = false;
-                                    //                m_FwdRwdRate = 1;
+                                                    //m_FwdRwdRate = 0 ;
                                     m_lChunkStartPosition = 0;
                                     mIsFwdRwd = false;
                                     mEventsEnabled = true;
