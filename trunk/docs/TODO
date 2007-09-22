@@ -47,7 +47,8 @@ And? Audio blocks display the waveform of their content.
 What? Update import structure.
 When? After blocks are implemented.
 Who? Marisa
-And? Allow marking up blocks in the HTML document following new blocks structure, at least page numbers. Julien to look into the test files and update the description for import in the mockup manual.
+Done? NOTYET
+And? Allow marking up blocks in the HTML document following new blocks structure, at least page numbers. Julien to look into the test files and update the description for import in the mockup manual. Actually, you could import structure + pages from HTML in Obi .9, but it will need to be cleaned up for the new blocks.
 
 What? Update Z export.
 When? After blocks are implemented.
@@ -85,7 +86,8 @@ And? We have a meeting planned in Amsterdam to handle this issue. We need to get
 What? Review cleanup.
 When? September
 Who? Marisa, Avneesh
-And? Check with the implementation about the status of cleanup in the new asset manager. We need two kinds of cleanup: (1) cleanup unreferenced assets (this is handled by the asset manager), and (2) get rid of unused book elements (which in turn performs the asset manager cleanup.)
+Done? NOTYET
+And? Check with the implementation about the status of cleanup in the new asset manager. We need two kinds of cleanup: (1) cleanup unreferenced assets (this is handled by the asset manager), and (2) get rid of unused book elements (which in turn performs the asset manager cleanup.) An update from Ole (12 Sept): "There is currently a cleanup method on Presentation, that removes any unused managed audio data. A side-effect is that a single data provider (and therefore wav file ) is created for each WavAudioMedia/ManagedAudioMedia." 
 
 What? Organize coding workshop.
 When? September
