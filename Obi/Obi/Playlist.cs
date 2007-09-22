@@ -419,10 +419,12 @@ namespace Obi
             // System.Media.SystemSounds.Exclamation.Play();
             
             
-                if (mPlayer.PlaybackMode == Audio.PlaybackMode.Rewind
+                if ( //mPlayer.PlaybackMode == Audio.PlaybackMode.Rewind
+                    mPlayer.PlaybackFwdRwdRate < 0
                     && mCurrentPhraseIndex > 0 )
                                                 PlayPhrase(mCurrentPhraseIndex - 1);
-                                            else if (mCurrentPhraseIndex < mPhrases.Count - 1 && mPlayer.PlaybackMode != Audio.PlaybackMode.Rewind)
+                                            else if (mCurrentPhraseIndex < mPhrases.Count - 1 && //mPlayer.PlaybackMode != Audio.PlaybackMode.Rewind
+                    mPlayer.PlaybackFwdRwdRate >= 0  )
                                             {
                                                 PlayPhrase(mCurrentPhraseIndex + 1);
                                                                                             }
@@ -443,7 +445,8 @@ namespace Obi
             {
                                 mPlaylistState = AudioPlayerState.Paused;
                 mPlayer.Pause  () ;
-                mPlayer.PlaybackMode = PlaybackMode.Normal;
+                //mPlayer.PlaybackMode = PlaybackMode.Normal;
+                mPlayer.PlaybackFwdRwdRate = 0;
                                 if (StateChanged != null)
                 {
                     StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Playing));
@@ -460,7 +463,8 @@ namespace Obi
             {
                 Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs(mPlayer.State);
                 mPlayer.Stop();
-                mPlayer.PlaybackMode = PlaybackMode.Normal;
+                //mPlayer.PlaybackMode = PlaybackMode.Normal;
+                mPlayer.PlaybackFwdRwdRate = 0;
                 //System.Media.SystemSounds.Asterisk.Play();
         mPlaylistState = AudioPlayerState.Stopped;
         if (StateChanged != null) StateChanged(this, evargs);
@@ -477,11 +481,12 @@ namespace Obi
         /// </summary>
         public void Rewind()
         {
-            if (mPlayer.PlaybackMode != Audio.PlaybackMode.Rewind)
+            //if (mPlayer.PlaybackMode != Audio.PlaybackMode.Rewind)
+            if (mPlayer.PlaybackFwdRwdRate >= 0)
             {
                 mPlaybackRate = 1;
-                mPlayer.PlaybackFwdRwdRate = mPlaybackRate;
-                mPlayer.PlaybackMode = Audio.PlaybackMode.Rewind;
+                mPlayer.PlaybackFwdRwdRate = mPlaybackRate * -1;
+                //mPlayer.PlaybackMode = Audio.PlaybackMode.Rewind;
 
                 if (mPlayer.State == AudioPlayerState.Paused)
                     mPlayer.Resume();
@@ -491,8 +496,10 @@ namespace Obi
                 mPlayBackState = PlayBackState.Rewind;
             }
             else
+            {
                 IncreasePlaybackRate();
-            
+                mPlayer.PlaybackFwdRwdRate = mPlaybackRate * -1;
+            }
             if (PlaybackRateChanged != null)
             PlaybackRateChanged(this, new EventArgs());
         }
@@ -500,11 +507,12 @@ namespace Obi
 
         public void FastForward()
         {
-            if (mPlayer.PlaybackMode !=Audio.PlaybackMode.FastForward  )
+            //if (mPlayer.PlaybackMode !=Audio.PlaybackMode.FastForward  )
+            if (mPlayer.PlaybackFwdRwdRate <= 0)
             {
                 mPlaybackRate = 1;
-                mPlayer.PlaybackFwdRwdRate =  mPlaybackRate  ;
-                mPlayer.PlaybackMode = Audio.PlaybackMode.FastForward   ;
+                mPlayer.PlaybackFwdRwdRate = mPlaybackRate;
+                //mPlayer.PlaybackMode = Audio.PlaybackMode.FastForward;
 
                 if (mPlayer.State == AudioPlayerState.Paused)
                     mPlayer.Resume();
@@ -514,8 +522,10 @@ namespace Obi
                 mPlayBackState = PlayBackState.Forward;
             }
             else
-            IncreasePlaybackRate();
-            
+            {
+                IncreasePlaybackRate();
+                mPlayer.PlaybackFwdRwdRate = mPlaybackRate;
+            }
             if (PlaybackRateChanged != null)
             PlaybackRateChanged(this, new EventArgs());
         }
@@ -632,10 +642,10 @@ namespace Obi
             mCurrentPhraseIndex = index;
                         mElapsedTime = mStartTimes[mCurrentPhraseIndex];
             System.Diagnostics.Debug.Print(">>> Moved to phrase {0}", index);
-            Audio.PlaybackMode Mode = mPlayer.PlaybackMode; // Temporary fix to avoid reset to normal playback bugg invoked by following event
+            int Mode = mPlayer.PlaybackFwdRwdRate  ; // Temporary fix to avoid reset to normal playback bugg invoked by following event
                                     if (MovedToPhrase != null) MovedToPhrase(this, new Events.Node.PhraseNodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
                                     mPlayer.Stop();
-            mPlayer.PlaybackMode = Mode;
+            mPlayer.PlaybackFwdRwdRate = Mode;
         }
 
         /// <summary>
