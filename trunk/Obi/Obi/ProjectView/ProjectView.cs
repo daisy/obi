@@ -15,8 +15,8 @@ namespace Obi.ProjectView
         private NodeSelection mSelection;        // currently selected node
         private Commands.UndoRedoManager mUndo;  // the undo manager for the project view
 
-        public EventHandler CommandExecuted;
-        public EventHandler CommandUnexecuted;
+        public Commands.UndoRedoEventHandler CommandExecuted;
+        public Commands.UndoRedoEventHandler CommandUnexecuted;
 
         public ProjectView()
         {
@@ -26,11 +26,11 @@ namespace Obi.ProjectView
             mTransportBar.ProjectView = this;
             // Create the undo/redo manager for the view and pass along its events
             mUndo = new Commands.UndoRedoManager();
-            mUndo.CommandExecuted += new EventHandler(delegate(object sender, EventArgs e)
+            mUndo.CommandExecuted += new Commands.UndoRedoEventHandler(delegate(object sender, Commands.UndoRedoEventArgs e)
             {
                 if (CommandExecuted != null) CommandExecuted(sender, e);
             });
-            mUndo.CommandUnexecuted += new EventHandler(delegate(object sender, EventArgs e)
+            mUndo.CommandUnexecuted += new Commands.UndoRedoEventHandler(delegate(object sender, Commands.UndoRedoEventArgs e)
             {
                 if (CommandUnexecuted != null) CommandUnexecuted(sender, e);
             });
@@ -463,6 +463,22 @@ namespace Obi.ProjectView
         public void AddNewSection()
         {
             if (mProject != null) mUndo.execute(new Commands.TOC.AddNewSection(this, mTOCView.SelectedSection));
+        }
+
+        /// <summary>
+        /// Undo the last command if there is any. Don't do anything otherwise.
+        /// </summary>
+        public void Undo()
+        {
+            if (mUndo.canUndo()) mUndo.undo();
+        }
+
+        /// <summary>
+        /// Redo the last command if there is ant. Don't do anything otherwise.
+        /// </summary>
+        public void Redo()
+        {
+            if (mUndo.canRedo()) mUndo.redo();
         }
     }
 }

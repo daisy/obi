@@ -25,6 +25,7 @@ namespace Obi.ProjectView
             {
                 mProject = value;
                 mProject.getPresentation().treeNodeAdded += new TreeNodeAddedEventHandler(TOCView_treeNodeAdded);
+                mProject.getPresentation().treeNodeRemoved += new TreeNodeRemovedEventHandler(TOCView_treeNodeRemoved);
                 mProject.RenamedSectionNode += new Obi.Events.RenameSectionNodeHandler(mProject_RenamedSectionNode);
             }
         }
@@ -69,6 +70,13 @@ namespace Obi.ProjectView
                 n.ExpandAll();
                 n.EnsureVisible();
             }
+        }
+
+        // Handle tree node removal: remove the node from the view.
+        void TOCView_treeNodeRemoved(ITreeNodeChangedEventManager o, TreeNodeRemovedEventArgs e)
+        {
+            SectionNode section = e.getTreeNode() as SectionNode;
+            if (section != null) mTOCTree.Nodes.Remove(FindTreeNode(section));
         }
 
         /// <summary>

@@ -31,6 +31,7 @@ namespace Obi.ProjectView
             {
                 mProject = value;
                 mProject.getPresentation().treeNodeAdded += new TreeNodeAddedEventHandler(StripsView_treeNodeAdded);
+                mProject.getPresentation().treeNodeRemoved += new TreeNodeRemovedEventHandler(StripsView_treeNodeRemoved);
                 mProject.RenamedSectionNode += new Obi.Events.RenameSectionNodeHandler(mProject_RenamedSectionNode);
             }
         }
@@ -68,6 +69,17 @@ namespace Obi.ProjectView
                 mLayoutPanel.Controls.Add(strip);
                 // TODO why doesn't this work?
                 mLayoutPanel.ScrollControlIntoView(strip);
+            }
+        }
+
+        // Handle removal of tree nodes: remove a strip for a section node.
+        void StripsView_treeNodeRemoved(ITreeNodeChangedEventManager o, TreeNodeRemovedEventArgs e)
+        {
+            SectionNode section = e.getTreeNode() as SectionNode;
+            if (section != null)
+            {
+                Strip strip = FindStrip(section);
+                mLayoutPanel.Controls.Remove(strip);
             }
         }
 
