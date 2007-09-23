@@ -8,9 +8,12 @@ namespace Obi.Commands
 {
     public abstract class Command: ICommand
     {
-        private ProjectView.ProjectView mView;
-        private NodeSelection mSelectionBefore;
+        private ProjectView.ProjectView mView;   // the view that the command is executed in
+        private NodeSelection mSelectionBefore;  // the selection before the command happened
 
+        /// <summary>
+        /// Create a new command for a view.
+        /// </summary>
         public Command(ProjectView.ProjectView view)
         {
             mView = view;

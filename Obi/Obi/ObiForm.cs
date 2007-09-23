@@ -380,7 +380,7 @@ namespace Obi
 
         private void mEditToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
-            UpdateEnabledItemsForEditMenu();
+            //UpdateEnabledItemsForEditMenu();
         }
 
         /// <summary>
@@ -1143,9 +1143,11 @@ namespace Obi
             try
             {
                 mProject = new Project(path);
+                // TODO extract this (same as create new project)
+                mProjectView.CommandExecuted += new UndoRedoEventHandler(mProjectView_CommandExecuted);
+                mProjectView.CommandUnexecuted += new UndoRedoEventHandler(mProjectView_CommandUnexecuted);
                 mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
                 mProject.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
-                // mProjectView.CommandExecuted += new
                 this.Cursor = Cursors.WaitCursor;
                 mProject.Open(path);
                 AddRecentProject(path);
@@ -1206,7 +1208,7 @@ namespace Obi
         private void UpdateEnabledItems()
         {
             UpdateEnabledItemsForFileMenu();
-            UpdateEnabledItemsForEditMenu();
+            //UpdateEnabledItemsForEditMenu();
             UpdateEnabledItemsForTOCMenu();
             UpdateEnabledItemsForStripsMenu();
             UpdateEnabledItemsForTransportMenu();
@@ -1884,9 +1886,30 @@ namespace Obi
             return time.ToString("0.00") + "s";
         }
 
-        private void mProjectView_Load_1(object sender, EventArgs e)
+        private void mProjectView_CommandExecuted(object sender, UndoRedoEventArgs e)
         {
+            UpdateUndoRedo(e);
+        }
 
+        private void mProjectView_CommandUnexecuted(object sender, UndoRedoEventArgs e)
+        {
+            UpdateUndoRedo(e);
+        }
+
+        private void UpdateUndoRedo(UndoRedoEventArgs e)
+        {
+            NEWundoToolStripMenuItem.Enabled = e.Manager.canUndo();
+            NEWredoToolStripMenuItem.Enabled = e.Manager.canRedo();
+        }
+
+        private void NEWundoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.Undo();
+        }
+
+        private void NEWredoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.Redo();
         }
     }
 }
