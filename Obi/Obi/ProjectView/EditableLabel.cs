@@ -68,6 +68,27 @@ namespace Obi.ProjectView
             }
         }
 
+        public float FontSize
+        {
+            get { return mLabel.Font.Size; }
+            set
+            {
+                mLabel.Font = new Font(mLabel.Font.FontFamily, value);
+                mTextBox.Font = new Font(mLabel.Font.FontFamily, value);
+                if (mEditable)
+                {
+                    int h = mTextBox.Location.Y + mTextBox.Height + mTextBox.Margin.Bottom + mOKButton.Margin.Top;
+                    mOKButton.Location = new Point(mOKButton.Location.X, h);
+                    mCancelButton.Location = new Point(mCancelButton.Location.X, h);
+                    Size = new Size(Width, h + mOKButton.Height + mOKButton.Margin.Bottom);
+                }
+                else
+                {
+                    Size = new Size(Width, mLabel.Location.Y + mLabel.Height + mLabel.Margin.Bottom);
+                }
+            }
+        }
+
         /// <summary>
         /// The (uneditable) label that is displayed.
         /// When the label is changed, make sure that it shows,
