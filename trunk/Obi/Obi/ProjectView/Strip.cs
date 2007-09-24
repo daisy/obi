@@ -19,6 +19,7 @@ namespace Obi.ProjectView
         public Strip()
         {
             InitializeComponent();
+            mLabel.FontSize = 12.0F;
             mNode = null;
             mLabel.LabelEditedByUser += new EventHandler(delegate(object sender, EventArgs e)
             {

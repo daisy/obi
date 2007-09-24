@@ -44,10 +44,12 @@ namespace Obi.ProjectView
             // 
             // mLabel
             // 
+            this.mLabel.AllowEmptyLabel = false;
             this.mLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mLabel.BackColor = System.Drawing.Color.Thistle;
             this.mLabel.Editable = false;
+            this.mLabel.FontSize = 8.25F;
             this.mLabel.Label = "*** NOT YET INITIALIZED ***";
             this.mLabel.Location = new System.Drawing.Point(3, 3);
             this.mLabel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
