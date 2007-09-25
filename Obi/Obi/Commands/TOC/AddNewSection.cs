@@ -27,6 +27,7 @@ namespace Obi.Commands.TOC
             mParent = contextNode == null ? View.Project.RootNode : contextNode.getParent();
             mIndex = contextNode == null ? View.Project.RootNode.getChildCount() : mParent.indexOf(contextNode) + 1;
             mNode = View.Project.NewSectionNode();
+            view.SelectAndRenameNodeInTOCView(mNode);
         }
 
         /// <summary>

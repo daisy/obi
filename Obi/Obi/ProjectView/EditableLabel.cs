@@ -25,12 +25,15 @@ namespace Obi.ProjectView
         }
 
 
+        /// <summary>
+        /// True if an empty label can be input.
+        /// </summary>
         public bool AllowEmptyLabel
         {
             get { return mAllowEmptyLabel; }
             set
             {
-                if (!value && mLabel.Text == "") throw new Exception("Empty label");
+                if (!value && mLabel.Text == "") throw new Exception("Cannot disallow empty labels when the label is empty.");
                 mAllowEmptyLabel = value;
             }
         }
@@ -68,6 +71,9 @@ namespace Obi.ProjectView
             }
         }
 
+        /// <summary>
+        /// The font size (in points of the label). 
+        /// </summary>
         public float FontSize
         {
             get { return mLabel.Font.Size; }
@@ -75,11 +81,11 @@ namespace Obi.ProjectView
             {
                 mLabel.Font = new Font(mLabel.Font.FontFamily, value);
                 mTextBox.Font = new Font(mLabel.Font.FontFamily, value);
+                int h = mTextBox.Location.Y + mTextBox.Height + mTextBox.Margin.Bottom;
+                mOKButton.Location = new Point(mOKButton.Location.X, h);
+                mCancelButton.Location = new Point(mCancelButton.Location.X, h);
                 if (mEditable)
                 {
-                    int h = mTextBox.Location.Y + mTextBox.Height + mTextBox.Margin.Bottom + mOKButton.Margin.Top;
-                    mOKButton.Location = new Point(mOKButton.Location.X, h);
-                    mCancelButton.Location = new Point(mCancelButton.Location.X, h);
                     Size = new Size(Width, h + mOKButton.Height + mOKButton.Margin.Bottom);
                 }
                 else
@@ -170,6 +176,14 @@ namespace Obi.ProjectView
                 Label = mTextBox.Text;
                 if (LabelEditedByUser != null) LabelEditedByUser(this, new EventArgs());
             }
+            Editable = false;
+        }
+
+        /// <summary>
+        /// If the label loses its focus then it becomes non-editable.
+        /// </summary>
+        private void EditableLabel_Leave(object sender, EventArgs e)
+        {
             Editable = false;
         }
     }

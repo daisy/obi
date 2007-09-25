@@ -19,7 +19,7 @@ namespace Obi.ProjectView
         public Strip()
         {
             InitializeComponent();
-            mLabel.FontSize = 12.0F;
+            mLabel.FontSize = 18.0F;
             mNode = null;
             mLabel.LabelEditedByUser += new EventHandler(delegate(object sender, EventArgs e)
             {
@@ -36,6 +36,7 @@ namespace Obi.ProjectView
             mNode = node;
             Label = mNode.Label;
         }
+
 
         /// <summary>
         /// The label of the strip (i.e. the title of the section; editable.)

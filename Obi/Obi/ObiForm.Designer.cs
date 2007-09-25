@@ -120,11 +120,11 @@ namespace Obi
             this.mViewHelpInExternalBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mReportBugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutObiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.NEWundoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NEWredoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectView = new Obi.ProjectView.ProjectView();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -450,7 +450,6 @@ namespace Obi
             // 
             // mRenameSectionToolStripMenuItem
             // 
-            this.mRenameSectionToolStripMenuItem.Enabled = false;
             this.mRenameSectionToolStripMenuItem.Name = "mRenameSectionToolStripMenuItem";
             this.mRenameSectionToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
             this.mRenameSectionToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
@@ -856,7 +855,6 @@ namespace Obi
             // 
             // userSettingsToolStripMenuItem
             // 
-            this.userSettingsToolStripMenuItem.Enabled = false;
             this.userSettingsToolStripMenuItem.Name = "userSettingsToolStripMenuItem";
             this.userSettingsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.U)));
             this.userSettingsToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
@@ -865,7 +863,6 @@ namespace Obi
             // 
             // preferencesToolStripMenuItem
             // 
-            this.preferencesToolStripMenuItem.Enabled = false;
             this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
             this.preferencesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.P)));
             this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
@@ -937,6 +934,31 @@ namespace Obi
             this.aboutObiToolStripMenuItem.Text = "&About Obi";
             this.aboutObiToolStripMenuItem.Click += new System.EventHandler(this.mAboutObiToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.NEWundoToolStripMenuItem,
+            this.NEWredoToolStripMenuItem});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(68, 20);
+            this.toolStripMenuItem1.Text = "NEW EDIT";
+            // 
+            // NEWundoToolStripMenuItem
+            // 
+            this.NEWundoToolStripMenuItem.Enabled = false;
+            this.NEWundoToolStripMenuItem.Name = "NEWundoToolStripMenuItem";
+            this.NEWundoToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.NEWundoToolStripMenuItem.Text = "Undo";
+            this.NEWundoToolStripMenuItem.Click += new System.EventHandler(this.NEWundoToolStripMenuItem_Click);
+            // 
+            // NEWredoToolStripMenuItem
+            // 
+            this.NEWredoToolStripMenuItem.Enabled = false;
+            this.NEWredoToolStripMenuItem.Name = "NEWredoToolStripMenuItem";
+            this.NEWredoToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.NEWredoToolStripMenuItem.Text = "Redo";
+            this.NEWredoToolStripMenuItem.Click += new System.EventHandler(this.NEWredoToolStripMenuItem_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -953,31 +975,6 @@ namespace Obi
             this.mToolStripStatusLabel.BackColor = System.Drawing.Color.Transparent;
             this.mToolStripStatusLabel.Name = "mToolStripStatusLabel";
             this.mToolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.NEWundoToolStripMenuItem,
-            this.NEWredoToolStripMenuItem});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(68, 20);
-            this.toolStripMenuItem1.Text = "NEW EDIT";
-            // 
-            // NEWundoToolStripMenuItem
-            // 
-            this.NEWundoToolStripMenuItem.Enabled = false;
-            this.NEWundoToolStripMenuItem.Name = "NEWundoToolStripMenuItem";
-            this.NEWundoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.NEWundoToolStripMenuItem.Text = "Undo";
-            this.NEWundoToolStripMenuItem.Click += new System.EventHandler(this.NEWundoToolStripMenuItem_Click);
-            // 
-            // NEWredoToolStripMenuItem
-            // 
-            this.NEWredoToolStripMenuItem.Enabled = false;
-            this.NEWredoToolStripMenuItem.Name = "NEWredoToolStripMenuItem";
-            this.NEWredoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.NEWredoToolStripMenuItem.Text = "Redo";
-            this.NEWredoToolStripMenuItem.Click += new System.EventHandler(this.NEWredoToolStripMenuItem_Click);
             // 
             // mProjectView
             // 
