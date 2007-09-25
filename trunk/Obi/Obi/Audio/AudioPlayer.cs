@@ -40,11 +40,11 @@ namespace Obi.Audio
                         private int m_RefreshLength;         // length of buffer to be refreshed during playing which is half of buffer size
                                 private long m_lLength;         // Total length of audio asset being played
                                 private Thread RefreshThread; // thread for refreshing buffer while playing 
-                                internal int m_FrameSize;
-                                internal int m_Channels;
+                                private int m_FrameSize;
+                                private int m_Channels;
         private int m_SamplingRate;
         internal byte[] arUpdateVM; // array for update current amplitude to VuMeter
-        internal int m_UpdateVMArrayLength; // length of VuMeter update array ( may be removed )
+        private int m_UpdateVMArrayLength; // length of VuMeter update array ( may be removed )
 
 
         // Member variables changed more than ones ( in one asset session ) by functions in AudioPlayer class

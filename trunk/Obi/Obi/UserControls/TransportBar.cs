@@ -78,6 +78,7 @@ namespace Obi.UserControls
             mRecordModeBox.SelectedIndex = 0; //First element will be the default selected one
             mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
             mProjectPanel = null;
+            mVUMeterPanel.VuMeter = m_VuMeter;
 
             ComboFastPlateRate.Items.Add("1.0");
             ComboFastPlateRate.Items.Add("1.125");
