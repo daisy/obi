@@ -93,6 +93,7 @@ namespace Obi.ProjectView
             this.Size = new System.Drawing.Size(150, 55);
             this.Load += new System.EventHandler(this.EditableLabel_Load);
             this.Click += new System.EventHandler(this.EditableLabel_Click);
+            this.Leave += new System.EventHandler(this.EditableLabel_Leave);
             this.ResumeLayout(false);
             this.PerformLayout();
 

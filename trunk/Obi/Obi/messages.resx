@@ -313,8 +313,8 @@ Do you want to replace the project contained in this file?</value>
     <value>Could not rename item `{0}' as this name is already in use in the project.</value>
     <comment>JQ</comment>
   </data>
-  <data name="xuk_filter" xml:space="preserve">
-    <value>Obi project file (*.xuk)|*.xuk|Any file|*.*</value>
+  <data name="obi_filter" xml:space="preserve">
+    <value>Obi project file (*.obi)|*.obi|Any file|*.*</value>
     <comment>Filter for opening XUK files (JQ)</comment>
   </data>
   <data name="report_delete_error" xml:space="preserve">
@@ -730,5 +730,11 @@ Do you want to replace the project contained in this file?</value>
   <data name="last_command" xml:space="preserve">
     <value>last command</value>
     <comment>Generic command short description</comment>
+  </data>
+  <data name="cannot_redo" xml:space="preserve">
+    <value>Cannot redo</value>
+  </data>
+  <data name="cannot_undo" xml:space="preserve">
+    <value>Cannot undo</value>
   </data>
 </root>

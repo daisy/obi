@@ -55,7 +55,7 @@ namespace Obi.UserControls
                         if (mTransportBar.CanSelectPhrase(value.Node))
                         {
                             Select(value);
-                            mTransportBar.CurrentSelectedNode = value.Node;
+                            mTransportBar.Selection = value.Node;
                         }
                     }
                     else
@@ -70,7 +70,7 @@ namespace Obi.UserControls
         {
             Deselect();
             mCurrentSelection = value;
-            value.Control.CurrentSelectedNode = value.Node;
+            value.Control.Selection = value.Node;
             System.Diagnostics.Debug.Print("+++ SELECTED {0} +++", value);
         }
 
@@ -81,7 +81,7 @@ namespace Obi.UserControls
         {
             if (mCurrentSelection != null)
             {
-                mCurrentSelection.Control.CurrentSelectedNode = null;
+                mCurrentSelection.Control.Selection = null;
                 System.Diagnostics.Debug.Print("--- DESELECTED ---");
             }
         }

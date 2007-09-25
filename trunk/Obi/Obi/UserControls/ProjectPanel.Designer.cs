@@ -78,7 +78,7 @@ namespace Obi.UserControls
             this.mTransportBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mTransportBar.BackColor = System.Drawing.Color.White;
-            this.mTransportBar.CurrentSelectedNode = null;
+            this.mTransportBar.Selection = null;
             this.mTransportBar.Enabled = false;
             this.mTransportBar.LocalPlaylist = null;
             this.mTransportBar.Location = new System.Drawing.Point(0, 450);
@@ -92,7 +92,7 @@ namespace Obi.UserControls
             // mTOCPanel
             // 
             this.mTOCPanel.AllowDelete = false;
-            this.mTOCPanel.CurrentSelectedNode = null;
+            this.mTOCPanel.Selection = null;
             this.mTOCPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mTOCPanel.Location = new System.Drawing.Point(0, 0);
             this.mTOCPanel.Name = "mTOCPanel";

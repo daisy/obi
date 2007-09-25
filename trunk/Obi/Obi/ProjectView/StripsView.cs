@@ -67,6 +67,7 @@ namespace Obi.ProjectView
                     mProject.RenameSectionNode(section, strip.Label);
                 });
                 mLayoutPanel.Controls.Add(strip);
+                strip.MinimumSize = new Size(mLayoutPanel.Width, strip.MinimumSize.Height);
                 // TODO why doesn't this work?
                 mLayoutPanel.ScrollControlIntoView(strip);
             }

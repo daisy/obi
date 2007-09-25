@@ -23,7 +23,7 @@ namespace Obi.UserControls
 
         #region IControlWithSelection Members
 
-        public ObiNode CurrentSelectedNode
+        public ObiNode Selection
         {
             get
             {
@@ -33,10 +33,9 @@ namespace Obi.UserControls
             set
             {
                 if ((mTocTree.SelectedNode == null && value != null) ||
-                    (mTocTree.SelectedNode != null && mTocTree.SelectedNode.Tag != value))
+                    (mTocTree.SelectedNode != null && value != mTocTree.SelectedNode.Tag))
                 {
-                    mTocTree.SelectedNode = value == null ? null :
-                        FindTreeNodeFromSectionNode((SectionNode)value);
+                    mTocTree.SelectedNode = value == null ? null : FindTreeNodeFromSectionNode((SectionNode)value);
                 }
             }
         }

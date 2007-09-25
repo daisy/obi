@@ -38,7 +38,7 @@ namespace Obi.UserControls
 
         #region selection
 
-        public ObiNode CurrentSelectedNode
+        public ObiNode Selection
         {
             get
             {

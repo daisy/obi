@@ -6,7 +6,7 @@ namespace Obi
     /// </summary>
     public interface IControlWithSelection
     {
-        ObiNode CurrentSelectedNode { get; set; }
+        ObiNode Selection { get; set; }
     }
 
     /// <summary>
@@ -34,5 +34,14 @@ namespace Obi
         /// </summary>
         /// <returns>"{node type} in {control}"</returns>
         public override string ToString()  { return System.String.Format("{0} in {1}", Node, Control); }
+
+        /// <summary>
+        /// Two node selections are equal if they are the selection of the same node in the same control.
+        /// </summary>
+        public override bool Equals(object obj)
+        {
+            NodeSelection s = obj as NodeSelection;
+            return s != null && s.Node == Node && s.Control == Control;
+        }
     };
 }

@@ -9,7 +9,7 @@ using urakawa.core.events;
 
 namespace Obi.ProjectView
 {
-    public partial class TOCView : UserControl
+    public partial class TOCView : UserControl, IControlWithSelection
     {
         private Project mProject;
 
@@ -19,6 +19,7 @@ namespace Obi.ProjectView
             mProject = null;
         }
 
+
         public Project Project
         {
             set
@@ -27,6 +28,23 @@ namespace Obi.ProjectView
                 mProject.getPresentation().treeNodeAdded += new TreeNodeAddedEventHandler(TOCView_treeNodeAdded);
                 mProject.getPresentation().treeNodeRemoved += new TreeNodeRemovedEventHandler(TOCView_treeNodeRemoved);
                 mProject.RenamedSectionNode += new Obi.Events.RenameSectionNodeHandler(mProject_RenamedSectionNode);
+            }
+        }
+
+        public ObiNode Selection
+        {
+            get
+            {
+                TreeNode selected = mTOCTree.SelectedNode;
+                return selected == null ? null : (ObiNode)selected.Tag;
+            }
+            set
+            {
+                if ((mTOCTree.SelectedNode == null && value != null) ||
+                    (mTOCTree.SelectedNode != null && value != mTOCTree.SelectedNode.Tag))
+                {
+                    mTOCTree.SelectedNode = value == null ? null : FindTreeNode((SectionNode)value);
+                }
             }
         }
 
@@ -100,6 +118,31 @@ namespace Obi.ProjectView
         }
 
 
+        private TreeNode FindTreeNode(SectionNode section, bool matchLabel, bool mayFail)
+        {
+            TreeNode node = null;
+            TreeNode[] nodes = mTOCTree.Nodes.Find(section.GetHashCode().ToString(), true);
+            foreach (TreeNode n in nodes)
+            {
+                if (n.Tag == section)
+                {
+                    node = n;
+                    break;
+                }
+            }
+            if (node == null && !mayFail)
+            {
+                throw new Exception(String.Format("Could not find tree node matching section node #{0} with label \"{1}\".",
+                    section.GetHashCode(), section.Label));
+            }
+            else if (matchLabel && node != null && node.Text != section.Label)
+            {
+                throw new Exception(String.Format("Found tree node matching section node #{0} but labels mismatch (wanted \"{1}\" but got \"{2}\").",
+                    section.GetHashCode(), section.Label, node.Text));
+            }
+            return node;
+        }
+
         /// <summary>
         /// Find the tree node for a section node. The labels must also match.
         /// </summary>
@@ -128,6 +171,29 @@ namespace Obi.ProjectView
             }
             throw new Exception(String.Format("Could not find tree node matching section node #{0} with label \"{1}\".",
                     section.GetHashCode(), Project.GetTextMedia(section).getText()));
+        }
+
+        public void SelectAndRenameNode(ProjectView view, SectionNode section)
+        {
+            TreeNode n = FindTreeNode(section, true, true);
+            if (n != null)
+            {
+                StartRenaming(section);
+                view.Selection = new NodeSelection(section, this);
+            }
+            else
+            {
+                TreeNodeAddedEventHandler h = delegate(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e) { };
+                h = delegate(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
+                {
+                    if (e.getTreeNode() == section)
+                    {
+                        SelectAndRenameNode(view, section);
+                        mProject.getPresentation().treeNodeAdded -= h;
+                    }
+                };
+                mProject.getPresentation().treeNodeAdded += h;
+            }
         }
     }
 }

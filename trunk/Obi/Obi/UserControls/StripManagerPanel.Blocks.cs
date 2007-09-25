@@ -17,7 +17,7 @@ namespace Obi.UserControls
         /// </summary>
         public void Project_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
         {
-                                    SyncAddedPhraseNode(e.getTreeNode() as PhraseNode);
+            SyncAddedPhraseNode(e.getTreeNode() as PhraseNode);
         }
 
         private void SyncAddedPhraseNode(PhraseNode phrase)

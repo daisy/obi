@@ -277,6 +277,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot redo.
+        /// </summary>
+        internal static string cannot_redo {
+            get {
+                return ResourceManager.GetString("cannot_redo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot undo.
+        /// </summary>
+        internal static string cannot_undo {
+            get {
+                return ResourceManager.GetString("cannot_undo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find channel named &quot;{0}&quot;..
         /// </summary>
         internal static string channel_not_found {
@@ -1075,6 +1093,15 @@ namespace Obi {
         /// <summary>
         ///   Looks up a localized string similar to Obi project file (*.obi)|*.obi|Any file|*.*.
         /// </summary>
+        internal static string obi_filter {
+            get {
+                return ResourceManager.GetString("obi_filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obi project file (*.obi)|*.obi|Any file|*.*.
+        /// </summary>
         internal static string obi_project_extension {
             get {
                 return ResourceManager.GetString("obi_project_extension", resourceCulture);
@@ -1676,15 +1703,6 @@ namespace Obi {
         internal static string used {
             get {
                 return ResourceManager.GetString("used", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Obi project file (*.xuk)|*.xuk|Any file|*.*.
-        /// </summary>
-        internal static string xuk_filter {
-            get {
-                return ResourceManager.GetString("xuk_filter", resourceCulture);
             }
         }
         

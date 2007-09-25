@@ -120,7 +120,7 @@ namespace Obi.UserControls
 
         #region selection
 
-        public ObiNode CurrentSelectedNode
+        public ObiNode Selection
         {
             get {
                 //LNN: removed this line, since it's higly annoying when working in the designer
@@ -298,7 +298,7 @@ namespace Obi.UserControls
         {
             if (mProjectPanel.TOCPanel.ContainsFocus    &&    m_CurrentPlayingSection != mCurrentPlaylist.CurrentSection)
             {
-                mProjectPanel.TOCPanel.CurrentSelectedNode = mCurrentPlaylist.CurrentSection;
+                mProjectPanel.TOCPanel.Selection = mCurrentPlaylist.CurrentSection;
                 m_CurrentPlayingSection = mCurrentPlaylist.CurrentSection;
                             }
 

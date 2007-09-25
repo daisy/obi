@@ -187,9 +187,9 @@ namespace Obi.ProjectView
             {
                 if (mSelection != value)
                 {
-                    /* unselect previous */
+                    if (mSelection != null) mSelection.Control.Selection = null;
                     mSelection = value;
-                    /* select new */
+                    if (value != null) value.Control.Selection = value.Node;
                 }
             }                
         }
@@ -272,13 +272,13 @@ namespace Obi.ProjectView
         /// <summary>
         /// Select and start renaming a newly added section in the TOC view.
         /// </summary>
-        public void StartRenamingSection(SectionNode sectionNode)
+        public void StartRenamingSection(SectionNode section)
         {
-            mTOCView.SelectedSection = sectionNode;
-            // TODO select in the view as well!
-            mTOCView.StartRenaming(sectionNode);
-            // TODO then this becomes:
-            // StartRenamingSelectedSection();
+            if (section != null)
+            {
+                mTOCView.SelectedSection = section;
+                mTOCView.StartRenaming(section);
+            }
         }
 
         /// <summary>
@@ -286,7 +286,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void StartRenamingSelectedSection()
         {
-            throw new Exception("The method or operation is not implemented.");
+            if (mSelection != null && mSelection.Control == mTOCView) StartRenamingSection(mSelection.Node as SectionNode);
         }
 
         #endregion
@@ -479,6 +479,19 @@ namespace Obi.ProjectView
         public void Redo()
         {
             if (mUndo.canRedo()) mUndo.redo();
+        }
+
+        /// <summary>
+        /// Select a section node in the TOC view.
+        /// </summary>
+        public void SelectInTOCView(SectionNode selection)
+        {
+            Selection = new NodeSelection(selection, mTOCView);
+        }
+
+        public void SelectAndRenameNodeInTOCView(SectionNode section)
+        {
+            mTOCView.SelectAndRenameNode(this, section);
         }
     }
 }

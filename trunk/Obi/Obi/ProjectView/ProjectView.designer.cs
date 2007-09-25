@@ -123,7 +123,7 @@ namespace Obi.ProjectView
             // 
             this.mTransportBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.mTransportBar.BackColor = System.Drawing.Color.White;
-            this.mTransportBar.CurrentSelectedNode = null;
+            this.mTransportBar.Selection = null;
             this.mTransportBar.LocalPlaylist = null;
             this.mTransportBar.Location = new System.Drawing.Point(0, 523);
             this.mTransportBar.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);

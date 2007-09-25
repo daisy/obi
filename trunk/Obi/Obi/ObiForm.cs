@@ -147,7 +147,7 @@ namespace Obi
             if (DidCloseProject())
             {
                 OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = Localizer.Message("xuk_filter");
+                dialog.Filter = Localizer.Message("obi_filter");
                 dialog.InitialDirectory = mSettings.DefaultPath;
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
@@ -1899,7 +1899,13 @@ namespace Obi
         private void UpdateUndoRedo(UndoRedoEventArgs e)
         {
             NEWundoToolStripMenuItem.Enabled = e.Manager.canUndo();
+            NEWundoToolStripMenuItem.Text = e.Manager.canUndo() ?
+                String.Format(Localizer.Message("undo_label"), Localizer.Message("undo"), e.Manager.getUndoShortDescription()) :
+                Localizer.Message("cannot_undo");
             NEWredoToolStripMenuItem.Enabled = e.Manager.canRedo();
+            NEWredoToolStripMenuItem.Text = e.Manager.canRedo() ?
+                String.Format(Localizer.Message("redo_label"), Localizer.Message("redo"), e.Manager.getRedoShortDescription()) :
+                Localizer.Message("cannot_redo");
         }
 
         private void NEWundoToolStripMenuItem_Click(object sender, EventArgs e)
