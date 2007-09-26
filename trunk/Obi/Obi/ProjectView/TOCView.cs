@@ -102,6 +102,13 @@ namespace Obi.ProjectView
             }
         }
 
+        // Pass a new selection to the main view.
+        // Do not act on reselection of the same item to avoid infinite loops.
+        private void mTOCTree_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (e.Node.Tag != mView.SelectedSection) mView.Selection = new NodeSelection((ObiNode)e.Node.Tag, this);
+        }
+
         // Add new section nodes to the tree
         private void TOCView_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
         {
