@@ -11,26 +11,42 @@ namespace Obi.ProjectView
 {
     public partial class TOCView : UserControl, IControlWithSelection
     {
-        private Project mProject;
+        private ProjectView mView;  // the parent project view
 
-        public TOCView()
+        /// <summary>
+        /// Create a new TOC view as part of a project view
+        /// </summary>
+        /// <param name="view"></param>
+        public TOCView(ProjectView view) : this() { mView = view; }
+        public TOCView() { InitializeComponent(); }
+
+
+        /// <summary>
+        /// Set a new project for this view.
+        /// </summary>
+        public void NewProject()
         {
-            InitializeComponent();
-            mProject = null;
+            mView.Project.getPresentation().treeNodeAdded += new TreeNodeAddedEventHandler(TOCView_treeNodeAdded);
+            mView.Project.getPresentation().treeNodeRemoved += new TreeNodeRemovedEventHandler(TOCView_treeNodeRemoved);
+            mView.Project.RenamedSectionNode += new Obi.Events.RenameSectionNodeHandler(Project_RenamedSectionNode);
         }
 
-
-        public Project Project
+        /// <summary>
+        /// Select a node in the TOC view and start its renaming.
+        /// </summary>
+        public void SelectAndRenameNode(SectionNode section)
         {
-            set
+            DoToNewNode(section, delegate()
             {
-                mProject = value;
-                mProject.getPresentation().treeNodeAdded += new TreeNodeAddedEventHandler(TOCView_treeNodeAdded);
-                mProject.getPresentation().treeNodeRemoved += new TreeNodeRemovedEventHandler(TOCView_treeNodeRemoved);
-                mProject.RenamedSectionNode += new Obi.Events.RenameSectionNodeHandler(mProject_RenamedSectionNode);
-            }
+                TreeNode n = FindTreeNode(section);
+                n.BeginEdit();
+                mView.Selection = new NodeSelection(section, this);
+            });
         }
 
+        /// <summary>
+        /// Get or set the current selection. Make sure that the node is indeed in the tree.
+        /// </summary>
         public ObiNode Selection
         {
             get
@@ -48,7 +64,25 @@ namespace Obi.ProjectView
             }
         }
 
-        private void mProject_RenamedSectionNode(object sender, Obi.Events.Node.RenameSectionNodeEventArgs e)
+        /// <summary>
+        /// Get the selected section, or null if nothing is selected.
+        /// </summary>
+        public SectionNode SelectedSection
+        {
+            get { return Selection as SectionNode; }
+        }
+
+        /// <summary>
+        /// Select a node in the TOC view.
+        /// </summary>
+        public void SelectNode(SectionNode section)
+        {
+            DoToNewNode(section, delegate() { mView.Selection = new NodeSelection(section, this); });
+        }
+
+
+        // When a node was renamed, show the new name in the tree.
+        private void Project_RenamedSectionNode(object sender, Obi.Events.Node.RenameSectionNodeEventArgs e)
         {
             TreeNode n = FindTreeNodeWithoutLabel(e.Node);
             n.Text = e.Label;
@@ -60,8 +94,7 @@ namespace Obi.ProjectView
         {
             if (e.Label != null && e.Label != "")
             {
-
-                mProject.RenameSectionNode(e.Node.Tag as SectionNode, e.Label);
+                mView.RenameSectionNode(e.Node.Tag as SectionNode, e.Label);
             }
             else
             {
@@ -69,17 +102,7 @@ namespace Obi.ProjectView
             }
         }
 
-        public SectionNode SelectedSection
-        {
-            get { return mTOCTree.SelectedNode == null ? null : mTOCTree.SelectedNode.Tag as SectionNode; }
-            set { mTOCTree.SelectedNode = value == null ? null : FindTreeNode(value); }
-        }
-
-        public void StartRenaming(SectionNode sectionNode)
-        {
-            FindTreeNode(sectionNode).BeginEdit();
-        }
-
+        // Add new section nodes to the tree
         private void TOCView_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
         {
             SectionNode section = e.getTreeNode() as SectionNode;
@@ -91,17 +114,15 @@ namespace Obi.ProjectView
             }
         }
 
-        // Handle tree node removal: remove the node from the view.
+        // Remove deleted section nodes from the tree
         void TOCView_treeNodeRemoved(ITreeNodeChangedEventManager o, TreeNodeRemovedEventArgs e)
         {
             SectionNode section = e.getTreeNode() as SectionNode;
             if (section != null) mTOCTree.Nodes.Remove(FindTreeNode(section));
         }
 
-        /// <summary>
-        /// Add a new tree node for an empty section.
-        /// </summary>
-        /// <returns>The tree node created.</returns>
+
+        // Convenience method to add a new tree node for a section. Return the added tree node.
         private TreeNode AddSingleSectionNode(SectionNode section)
         {
             TreeNode n;
@@ -119,31 +140,6 @@ namespace Obi.ProjectView
         }
 
 
-        private TreeNode FindTreeNode(SectionNode section, bool matchLabel, bool mayFail)
-        {
-            TreeNode node = null;
-            TreeNode[] nodes = mTOCTree.Nodes.Find(section.GetHashCode().ToString(), true);
-            foreach (TreeNode n in nodes)
-            {
-                if (n.Tag == section)
-                {
-                    node = n;
-                    break;
-                }
-            }
-            if (node == null && !mayFail)
-            {
-                throw new Exception(String.Format("Could not find tree node matching section node #{0} with label \"{1}\".",
-                    section.GetHashCode(), section.Label));
-            }
-            else if (matchLabel && node != null && node.Text != section.Label)
-            {
-                throw new Exception(String.Format("Found tree node matching section node #{0} but labels mismatch (wanted \"{1}\" but got \"{2}\").",
-                    section.GetHashCode(), section.Label, node.Text));
-            }
-            return node;
-        }
-
         /// <summary>
         /// Find the tree node for a section node. The labels must also match.
         /// </summary>
@@ -152,7 +148,8 @@ namespace Obi.ProjectView
             TreeNode n = FindTreeNodeWithoutLabel(section);
             if (n.Text != section.Label)
             {
-                throw new Exception(String.Format("Found tree node matching section node #{0} but labels mismatch (wanted \"{1}\" but got \"{2}\").",
+                throw new TreeNodeFoundWithWrongLabelException(
+                    String.Format("Found tree node matching section node #{0} but labels mismatch (wanted \"{1}\" but got \"{2}\").",
                     section.GetHashCode(), section.Label, n.Text));
             }
             return n;
@@ -170,53 +167,49 @@ namespace Obi.ProjectView
             {
                 if (n.Tag == section) return n;
             }
-            throw new Exception(String.Format("Could not find tree node matching section node #{0} with label \"{1}\".",
+            throw new TreeNodeNotFoundException(
+                String.Format("Could not find tree node matching section node #{0} with label \"{1}\".",
                     section.GetHashCode(), Project.GetTextMedia(section).getText()));
         }
 
-        public void SelectNode(ProjectView view, SectionNode section)
-        {
-            TreeNode n = FindTreeNode(section, true, true);
-            if (n != null)
-            {
-                view.Selection = new NodeSelection(section, this);
-            }
-            else
-            {
-                TreeNodeAddedEventHandler h = delegate(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e) { };
-                h = delegate(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
-                {
-                    if (e.getTreeNode() == section)
-                    {
-                        SelectNode(view, section);
-                        mProject.getPresentation().treeNodeAdded -= h;
-                    }
-                };
-                mProject.getPresentation().treeNodeAdded += h;
-            }
-        }
+        private delegate void DoToNewNodeDelegate();
 
-        public void SelectAndRenameNode(ProjectView view, SectionNode section)
+        // Do f() to a section node that may not yet be in the tree.
+        private void DoToNewNode(SectionNode section, DoToNewNodeDelegate f)
         {
-            TreeNode n = FindTreeNode(section, true, true);
-            if (n != null)
+            try
             {
-                StartRenaming(section);
-                view.Selection = new NodeSelection(section, this);
+                f();
             }
-            else
+            catch (TreeNodeNotFoundException _e)
             {
                 TreeNodeAddedEventHandler h = delegate(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e) { };
                 h = delegate(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
                 {
                     if (e.getTreeNode() == section)
                     {
-                        SelectAndRenameNode(view, section);
-                        mProject.getPresentation().treeNodeAdded -= h;
+                        f();
+                        mView.Project.getPresentation().treeNodeAdded -= h;
                     }
                 };
-                mProject.getPresentation().treeNodeAdded += h;
+                mView.Project.getPresentation().treeNodeAdded += h;
             }
         }
+    }
+
+    /// <summary>
+    /// Raised when a tree node could not be found.
+    /// </summary>
+    public class TreeNodeNotFoundException : Exception
+    {
+        public TreeNodeNotFoundException(string msg) : base(msg) { }
+    }
+
+    /// <summary>
+    /// Raised when a tree node is found but with the wrong label.
+    /// </summary>
+    public class TreeNodeFoundWithWrongLabelException: Exception
+    {
+        public TreeNodeFoundWithWrongLabelException(string msg) : base(msg) { }
     }
 }

@@ -737,4 +737,8 @@ Do you want to replace the project contained in this file?</value>
   <data name="cannot_undo" xml:space="preserve">
     <value>Cannot undo</value>
   </data>
+  <data name="rename_section_command" xml:space="preserve">
+    <value>rename section</value>
+    <comment>RenameSection command label</comment>
+  </data>
 </root>
