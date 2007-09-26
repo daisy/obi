@@ -19,7 +19,7 @@ And? We are now using the tagged version and are waiting for Ole's OK to move ba
 What? Audio backend cleanup.
 When? September
 Who? Avneesh
-Done? NOTYET
+Done? YES
 And? Julien has to better document the management of the audio player, recorder and VU meter instances.
 
 What? Playback behavior.
@@ -43,7 +43,7 @@ What? Scalable editable labels.
 When? September
 Who? Julien
 And? Editable labels that automatically scale to accomodate larger font sizes. Tese labels are used in most other controls so that they can scale along with the label.
-Done? NO
+Done? YES
 
 What? New strips.
 When? September
@@ -67,6 +67,11 @@ What? Waveform display.
 When? September
 Who? Julien
 And? Audio blocks display the waveform of their content. 
+
+What? Obi 0.10.0
+When? October 10th
+Who? Julien
+And? Obi reaches version 0.10.0 where Obi is stable enough to implement the October tasks.
 
 What? Mark custom blocks on the fly.
 When? October
