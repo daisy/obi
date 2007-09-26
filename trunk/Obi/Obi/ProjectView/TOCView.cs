@@ -60,6 +60,7 @@ namespace Obi.ProjectView
         {
             if (e.Label != null && e.Label != "")
             {
+
                 mProject.RenameSectionNode(e.Node.Tag as SectionNode, e.Label);
             }
             else
@@ -171,6 +172,28 @@ namespace Obi.ProjectView
             }
             throw new Exception(String.Format("Could not find tree node matching section node #{0} with label \"{1}\".",
                     section.GetHashCode(), Project.GetTextMedia(section).getText()));
+        }
+
+        public void SelectNode(ProjectView view, SectionNode section)
+        {
+            TreeNode n = FindTreeNode(section, true, true);
+            if (n != null)
+            {
+                view.Selection = new NodeSelection(section, this);
+            }
+            else
+            {
+                TreeNodeAddedEventHandler h = delegate(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e) { };
+                h = delegate(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
+                {
+                    if (e.getTreeNode() == section)
+                    {
+                        SelectNode(view, section);
+                        mProject.getPresentation().treeNodeAdded -= h;
+                    }
+                };
+                mProject.getPresentation().treeNodeAdded += h;
+            }
         }
 
         public void SelectAndRenameNode(ProjectView view, SectionNode section)

@@ -492,7 +492,7 @@ namespace Obi
 
         private void mAddSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.AddSubSection();
+            mProjectView.AddNewSubSection();
         }
 
         private void mRenameSectionToolStripMenuItem_Click(object sender, EventArgs e)
