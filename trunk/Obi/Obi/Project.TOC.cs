@@ -145,7 +145,6 @@ namespace Obi
         {
             node.Label = label;
             RenamedSectionNode(this, new Obi.Events.Node.RenameSectionNodeEventArgs(this, node, label));
-            Modified();
         }
 
 

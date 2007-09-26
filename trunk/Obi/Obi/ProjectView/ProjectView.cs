@@ -145,7 +145,7 @@ namespace Obi.ProjectView
                     /* initialize stuff */
                     if (mProject != null)
                     {
-                        mTOCView.Project = mProject;
+                        mTOCView.NewProject();
                         mStripsView.Project = mProject;
                         // mMetadataView.Project = mProject;
                         SynchronizeWithCoreTree();
@@ -455,7 +455,7 @@ namespace Obi.ProjectView
         {
             if (mSelection != null && mTOCView.SelectedSection != null)
             {
-                mTOCView.SelectAndRenameNode(this, mTOCView.SelectedSection);
+                mTOCView.SelectAndRenameNode(mTOCView.SelectedSection);
             }
         }
 
@@ -480,7 +480,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void SelectInTOCView(SectionNode section)
         {
-            mTOCView.SelectNode(this, section);
+            mTOCView.SelectNode(section);
         }
 
         /// <summary>
@@ -489,7 +489,12 @@ namespace Obi.ProjectView
         /// <param name="section"></param>
         public void SelectAndRenameNodeInTOCView(SectionNode section)
         {
-            mTOCView.SelectAndRenameNode(this, section);
+            mTOCView.SelectAndRenameNode(section);
+        }
+
+        public void RenameSectionNode(SectionNode section, string label)
+        {
+            mUndo.execute(new Commands.Node.RenameSection(this, section, label));
         }
     }
 }

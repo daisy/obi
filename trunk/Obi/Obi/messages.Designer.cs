@@ -1425,6 +1425,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to rename section.
+        /// </summary>
+        internal static string rename_section_command {
+            get {
+                return ResourceManager.GetString("rename_section_command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error deleting file {0}. ({1}).
         /// </summary>
         internal static string report_delete_error {

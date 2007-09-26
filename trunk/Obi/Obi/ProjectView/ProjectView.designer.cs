@@ -31,7 +31,7 @@ namespace Obi.ProjectView
             this.mHSplitter = new System.Windows.Forms.SplitContainer();
             this.mVSplitter = new System.Windows.Forms.SplitContainer();
             this.mNoProjectLabel = new System.Windows.Forms.Label();
-            this.mTOCView = new Obi.ProjectView.TOCView();
+            this.mTOCView = new Obi.ProjectView.TOCView(this);
             this.mMetadataView = new Obi.ProjectView.MetadataView();
             this.mStripsView = new Obi.ProjectView.StripsView();
             this.mTransportBar = new Obi.UserControls.TransportBar();
@@ -98,7 +98,7 @@ namespace Obi.ProjectView
             this.mTOCView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mTOCView.Location = new System.Drawing.Point(0, 0);
             this.mTOCView.Name = "mTOCView";
-            this.mTOCView.SelectedSection = null;
+            this.mTOCView.Selection = null;
             this.mTOCView.Size = new System.Drawing.Size(226, 327);
             this.mTOCView.TabIndex = 0;
             // 
