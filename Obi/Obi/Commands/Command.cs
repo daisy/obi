@@ -25,6 +25,8 @@ namespace Obi.Commands
         public virtual void unExecute() { mView.Selection = mSelectionBefore; }
         public virtual string getShortDescription() { return Localizer.Message("last command"); }
 
+        protected NodeSelection SelectionBefore { get { return mSelectionBefore; } }
+
         /// <summary>
         /// Normally commands are always undoable.
         /// </summary>
