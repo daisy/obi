@@ -245,14 +245,6 @@ namespace Obi.ProjectView
         #region TOC Panel
 
         /// <summary>
-        /// Insert a new subsection in the book as the last child of the selected section node in the TOC view.
-        /// </summary>
-        public void AddSubSection()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        /// <summary>
         /// Add a new sibling section after the currently selected section in the TOC view.
         /// If no section is selected, then append a new section at the top level.
         /// </summary>
@@ -267,26 +259,6 @@ namespace Obi.ProjectView
         public void ShowSelectedSectionInStripView()
         {
             throw new Exception("The method or operation is not implemented.");
-        }
-
-        /// <summary>
-        /// Select and start renaming a newly added section in the TOC view.
-        /// </summary>
-        public void StartRenamingSection(SectionNode section)
-        {
-            if (section != null)
-            {
-                mTOCView.SelectedSection = section;
-                mTOCView.StartRenaming(section);
-            }
-        }
-
-        /// <summary>
-        /// Select the name field of the selected section and start editing it.
-        /// </summary>
-        public void StartRenamingSelectedSection()
-        {
-            if (mSelection != null && mSelection.Control == mTOCView) StartRenamingSection(mSelection.Node as SectionNode);
         }
 
         #endregion
@@ -449,20 +421,42 @@ namespace Obi.ProjectView
             throw new Exception("The method or operation is not implemented.");
         }
 
-        #endregion
-
         internal void ShowSelectedStripInTOCView()
         {
             throw new Exception("The method or operation is not implemented.");
         }
 
+        #endregion
+
+
         /// <summary>
         /// Add a new section node to the project.
-        /// TODO rename it!
         /// </summary>
         public void AddNewSection()
         {
             if (mProject != null) mUndo.execute(new Commands.TOC.AddNewSection(this, mTOCView.SelectedSection));
+        }
+
+        /// <summary>
+        /// Insert a new subsection in the book as the last child of the selected section node in the TOC view.
+        /// </summary>
+        public void AddNewSubSection()
+        {
+            if (mProject != null && mTOCView.SelectedSection != null)
+            {
+                mUndo.execute(new Commands.TOC.AddNewSection(this, mTOCView.SelectedSection, true));
+            }
+        }
+
+        /// <summary>
+        /// Select the name field of the selected section and start editing it.
+        /// </summary>
+        public void StartRenamingSelectedSection()
+        {
+            if (mSelection != null && mTOCView.SelectedSection != null)
+            {
+                mTOCView.SelectAndRenameNode(this, mTOCView.SelectedSection);
+            }
         }
 
         /// <summary>
@@ -484,11 +478,15 @@ namespace Obi.ProjectView
         /// <summary>
         /// Select a section node in the TOC view.
         /// </summary>
-        public void SelectInTOCView(SectionNode selection)
+        public void SelectInTOCView(SectionNode section)
         {
-            Selection = new NodeSelection(selection, mTOCView);
+            mTOCView.SelectNode(this, section);
         }
 
+        /// <summary>
+        /// Select a section node in the TOC view and start renaming it.
+        /// </summary>
+        /// <param name="section"></param>
         public void SelectAndRenameNodeInTOCView(SectionNode section)
         {
             mTOCView.SelectAndRenameNode(this, section);

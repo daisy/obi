@@ -441,7 +441,6 @@ namespace Obi
             // 
             // mAddSubSectionToolStripMenuItem
             // 
-            this.mAddSubSectionToolStripMenuItem.Enabled = false;
             this.mAddSubSectionToolStripMenuItem.Name = "mAddSubSectionToolStripMenuItem";
             this.mAddSubSectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
             this.mAddSubSectionToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
