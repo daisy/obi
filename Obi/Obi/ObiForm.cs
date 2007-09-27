@@ -94,7 +94,6 @@ namespace Obi
                 System.Windows.Forms.MessageBox.Show("An error occured while initializing Obi.\nPlease Submit a bug report, including the contents of " + Application.StartupPath + Path.DirectorySeparatorChar + "ObiStartupError.txt\nError text:\n" + eAnyStartupException.ToString(), "Obi initialization error");
             }
         }
-
         
         /// <summary>
         /// Set up the VU meter form.
@@ -480,11 +479,6 @@ namespace Obi
             // UpdateEnabledItemsForTOCMenu();
         }
 
-        private void mShowhideTableOfContentsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TOCPanelVisible = !mProjectView.TOCPanelVisible;
-        }
-
         private void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.AddNewSection();
@@ -820,7 +814,6 @@ namespace Obi
 
         private void EnableItemsProjectClosed()
         {
-            mShowSourceDEBUGToolStripMenuItem.Enabled = false;
         }
 
         /// <summary>
@@ -1302,10 +1295,6 @@ namespace Obi
         /// </summary>
         private void UpdateEnabledItemsForTOCMenu()
         {
-            mShowhideTableOfContentsToolStripMenuItem.Text =
-                Localizer.Message(mProjectView.TOCPanelVisible ? "hide_toc_label" : "show_toc_label");
-            mShowhideTableOfContentsToolStripMenuItem.Enabled = mProject != null;
-
             bool isPlayingOrRecording = mProjectView.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing ||mProjectView.TransportBar.IsInlineRecording;
             bool isProjectOpen = mProject != null;
             bool noNodeSelected = isProjectOpen && mProjectView.Selection == null;
@@ -1600,11 +1589,6 @@ namespace Obi
             }
         }
 
-        private void mShowSourceDEBUGToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProject != null) new Dialogs.ShowSource(mProject).Show();
-        }
-
         // TODO: merge full and simple metadata editing into a single dialog with two tabs
         private void mFullMetadataToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1827,6 +1811,7 @@ namespace Obi
             {
                 case Obi.Events.Project.StateChange.Closed:
                     StatusUpdateClosedProject();
+                    mViewToolStripMenuItem.Enabled = false;
                     break;
                 case Obi.Events.Project.StateChange.Modified:
                     FormUpdateModifiedProject();
@@ -1836,6 +1821,11 @@ namespace Obi
                     FormUpdateOpenedProject();
                     mCommandManager.Clear();
                     mProjectView.SynchronizeWithCoreTree();
+                    mProjectView.TOCViewVisibilityChanged += new EventHandler(mProjectView_TOCViewVisibilityChanged);
+                    mProjectView.MetadataViewVisibilityChanged += new EventHandler(mProjectView_MetadataViewVisibilityChanged);
+                    mViewToolStripMenuItem.Enabled = true;
+                    mProjectView.TOCViewVisible = true;
+                    mProjectView.MetadataViewVisible = true;
                     break;
                 case Obi.Events.Project.StateChange.Saved:
                     FormUpdateSavedProject();
@@ -1916,6 +1906,46 @@ namespace Obi
         private void NEWredoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.Redo();
+        }
+
+        private void mShowTOCViewToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TOCViewVisible = true; }
+        private void mHideTOCViewToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TOCViewVisible = false; }
+
+        void mProjectView_TOCViewVisibilityChanged(object sender, EventArgs e)
+        {
+            mShowTOCViewToolStripMenuItem.Visible = !mProjectView.TOCViewVisible;
+            mHideTOCViewToolStripMenuItem.Visible = mProjectView.TOCViewVisible;
+        }
+
+        private void mShowMetadataViewToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MetadataViewVisible = true; }
+        private void mHideMetadataViewToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MetadataViewVisible = false; }
+
+        private void mProjectView_MetadataViewVisibilityChanged(object sender, EventArgs e)
+        {
+            mShowMetadataViewToolStripMenuItem.Visible = !mProjectView.MetadataViewVisible;
+            mHideMetadataViewToolStripMenuItem.Visible = mProjectView.MetadataViewVisible;
+        }
+
+        // Show a new source view window or give focus back to the previously opened one.
+        private Dialogs.ShowSource mSourceView = null;
+        private void showSourceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.Project != null)
+            {
+                if (mSourceView == null)
+                {
+                    mSourceView = new Dialogs.ShowSource(mProjectView);
+                    mSourceView.FormClosed += new FormClosedEventHandler(delegate(object _sender, FormClosedEventArgs _e)
+                    {
+                        mSourceView = null;
+                    });
+                    mSourceView.Show();
+                }
+                else
+                {
+                    mSourceView.Focus();
+                }
+            }
         }
     }
 }

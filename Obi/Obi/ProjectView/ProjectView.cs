@@ -15,8 +15,10 @@ namespace Obi.ProjectView
         private NodeSelection mSelection;        // currently selected node
         private Commands.UndoRedoManager mUndo;  // the undo manager for the project view
 
-        public Commands.UndoRedoEventHandler CommandExecuted;
-        public Commands.UndoRedoEventHandler CommandUnexecuted;
+        public event EventHandler TOCViewVisibilityChanged;
+        public event EventHandler MetadataViewVisibilityChanged;
+        public event Commands.UndoRedoEventHandler CommandExecuted;
+        public event Commands.UndoRedoEventHandler CommandUnexecuted;
 
         public ProjectView()
         {
@@ -24,6 +26,8 @@ namespace Obi.ProjectView
             mProject = null;
             mSelection = null;
             mTransportBar.ProjectView = this;
+            mTOCViewVisible = !mHSplitter.Panel1Collapsed && !mVSplitter.Panel1Collapsed;
+            mMetadataViewVisible = !mHSplitter.Panel1Collapsed && !mVSplitter.Panel2Collapsed;
             // Create the undo/redo manager for the view and pass along its events
             mUndo = new Commands.UndoRedoManager();
             mUndo.CommandExecuted += new Commands.UndoRedoEventHandler(delegate(object sender, Commands.UndoRedoEventArgs e)
@@ -124,7 +128,7 @@ namespace Obi.ProjectView
             return node == null ? "" :                                      // nothing to paste
                 Localizer.Message(node is PhraseNode ? "audio_block" :      // audio block
                     mSelection != null &&
-                    //mSelection.Control == mTOCPanel ? "section" :    // pasting in TOC panel
+                //mSelection.Control == mTOCPanel ? "section" :    // pasting in TOC panel
                     ((SectionNode)node).SectionChildCount > 0 ? "strips" :  // pasting several strips
                     "strip");                                               // pasting only one strip
         }
@@ -189,9 +193,14 @@ namespace Obi.ProjectView
                 {
                     if (mSelection != null) mSelection.Control.Selection = null;
                     mSelection = value;
+                    if (mSelection != null)
+                    {
+                        if (mSelection.Control == mTOCView) TOCViewVisible = true;
+                        else if (mSelection.Control == mMetadataView) MetadataViewVisible = true;
+                    }
                     if (value != null) value.Control.Selection = value.Node;
                 }
-            }                
+            }
         }
 
         /// <summary>
@@ -204,8 +213,8 @@ namespace Obi.ProjectView
             get
             {
                 return
-                    mSelection == null ?                       "" :
-                    mSelection.Node is PhraseNode ?            Localizer.Message("audio_block") :
+                    mSelection == null ? "" :
+                    mSelection.Node is PhraseNode ? Localizer.Message("audio_block") :
                     // mSelection.Control == mStripManagerPanel ? Localizer.Message("strip") :
                                                                Localizer.Message("section");
             }
@@ -231,15 +240,6 @@ namespace Obi.ProjectView
         /// The transport bar for the view.
         /// </summary>
         public UserControls.TransportBar TransportBar { get { return mTransportBar; } }
-
-        /// <summary>
-        /// True if the TOC panel is visible. Set it to change the panel visibility.
-        /// </summary>
-        public bool TOCPanelVisible
-        {
-            get { return true; }
-            set { /* change the TOC panel visibility. */ }
-        }
 
 
         #region TOC Panel
@@ -323,7 +323,7 @@ namespace Obi.ProjectView
         public SectionNode SelectedStripNode
         {
             get { return null; }
-            set {  }
+            set { }
         }
 
         /// <summary>
@@ -495,6 +495,54 @@ namespace Obi.ProjectView
         public void RenameSectionNode(SectionNode section, string label)
         {
             mUndo.execute(new Commands.Node.RenameSection(this, section, label));
+        }
+
+        private bool mTOCViewVisible;  // keep track of the TOC view visibility (don't reopen it accidentally)
+
+        /// <summary>
+        /// Show or hide the TOC view.
+        /// </summary>
+        public bool TOCViewVisible
+        {
+            get { return mTOCViewVisible; }
+            set
+            {
+                mTOCViewVisible = value;
+                if (value)
+                {
+                    mHSplitter.Panel1Collapsed = false;
+                    mVSplitter.Panel2Collapsed = !MetadataViewVisible;
+                }
+                else
+                {
+                    if (mSelection != null && mSelection.Control == mTOCView) Selection = null;
+                    if (!MetadataViewVisible) mHSplitter.Panel1Collapsed = true;
+                }
+                mVSplitter.Panel1Collapsed = !value;
+                if (TOCViewVisibilityChanged != null) TOCViewVisibilityChanged(this, new EventArgs());
+            }
+        }
+
+        private bool mMetadataViewVisible;  // keep track of the Metadata view visibility
+
+        /// <summary>
+        /// Show or hide the Metadata view.
+        /// </summary>
+        public bool MetadataViewVisible
+        {
+            get { return mMetadataViewVisible; }
+            set
+            {
+                mMetadataViewVisible = value;
+                if (value)
+                {
+                    mHSplitter.Panel1Collapsed = false;
+                    mVSplitter.Panel1Collapsed = !TOCViewVisible;
+                }
+                else if (!value && !TOCViewVisible) mHSplitter.Panel1Collapsed = true;
+                mVSplitter.Panel2Collapsed = !value;
+                if (MetadataViewVisibilityChanged != null) MetadataViewVisibilityChanged(this, new EventArgs());
+            }
         }
     }
 }

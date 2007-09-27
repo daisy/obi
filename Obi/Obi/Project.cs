@@ -17,7 +17,6 @@ namespace Obi
     {
         private int mPageCount;              // count the pages in the book
         private int mPhraseCount;            // total number of phrases in the project
-        private UndoRedoManager mUndoMngr;   // undo/redo manager for this project
         private bool mUnsaved;               // saved flag
         private string mXUKPath;             // path to the project XUK file
         
@@ -48,7 +47,6 @@ namespace Obi
             mClipboard = new Clipboard();  // TODO move this to project panel
             mPhraseCount = 0;
             mPageCount = 0;
-            mUndoMngr = new UndoRedoManager();
             mUnsaved = true;
             mXUKPath = XUKPath;
             Presentation presentation = getPresentation();
