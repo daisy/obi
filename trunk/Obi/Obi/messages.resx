@@ -744,4 +744,10 @@ Do you want to replace the project contained in this file?</value>
   <data name="dummy_section" xml:space="preserve">
     <value>(dummy section)</value>
   </data>
+  <data name="move_section_out_command" xml:space="preserve">
+    <value>move section out</value>
+  </data>
+  <data name="move_section_in_command" xml:space="preserve">
+    <value>move section in</value>
+  </data>
 </root>

@@ -496,12 +496,12 @@ namespace Obi
 
         private void mMoveOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProject.MoveSectionNodeOut(mProjectView.SelectedSection);
+            mProjectView.MoveSelectedSectionOut();
         }
 
         private void mMoveInToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProject.MoveSectionNodeIn(mProjectView.SelectedSection);
+            mProjectView.MoveSelectedSectionIn();
         }
 
         private void mShowInStripviewToolStripMenuItem_Click(object sender, EventArgs e)

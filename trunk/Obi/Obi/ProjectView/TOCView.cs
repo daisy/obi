@@ -28,6 +28,30 @@ namespace Obi.ProjectView
 
 
         /// <summary>
+        /// True if there is a selected section and it can be moved out (i.e. decrease its level)
+        /// </summary>
+        public bool CanMoveSectionOut
+        {
+            get
+            {
+                return mTOCTree.SelectedNode != null && mTOCTree.SelectedNode.Tag is SectionNode &&
+                    ((SectionNode)mTOCTree.SelectedNode.Tag).ParentSection != null;
+            }
+        }
+
+        /// <summary>
+        /// True if there is a selected section and it can be moved out (i.e. decrease its level)
+        /// </summary>
+        public bool CanMoveSectionIn
+        {
+            get
+            {
+                return mTOCTree.SelectedNode != null && mTOCTree.SelectedNode.Tag is SectionNode &&
+                    ((SectionNode)mTOCTree.SelectedNode.Tag).Index > 0;
+            }
+        }
+
+        /// <summary>
         /// Set a new project for this view.
         /// </summary>
         public void NewProject()
@@ -129,13 +153,15 @@ namespace Obi.ProjectView
         // Add new section nodes to the tree
         private void TOCView_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
         {
-            SectionNode section = e.getTreeNode() as SectionNode;
-            if (section != null)
-            {
-                TreeNode n = AddSingleSectionNode(section);
-                n.ExpandAll();
-                n.EnsureVisible();
-            }
+            CreateTreeNodeForSectionNode(e.getTreeNode() as SectionNode);
+        }
+
+        private void CreateTreeNodeForSectionNode(SectionNode section)
+        {
+            TreeNode n = AddSingleSectionNode(section);
+            n.ExpandAll();
+            n.EnsureVisible();
+            for (int i = 0; i < section.SectionChildCount; ++i) CreateTreeNodeForSectionNode(section.SectionChild(i));
         }
 
         // Remove deleted section nodes from the tree
