@@ -17,6 +17,7 @@ namespace Obi
     {
         public ObiNode Node;                   // the selected node
         public IControlWithSelection Control;  // control in which it is selected
+        public bool UnderSectionFlag;          // flag
 
         /// <summary>
         /// Create a new selection object.
@@ -27,6 +28,13 @@ namespace Obi
         {
             Node = node;
             Control = control;
+            UnderSectionFlag = false;
+        }
+
+        public NodeSelection(ObiNode node, IControlWithSelection control, bool underSectionFlag)
+            : this(node, control)
+        {
+            UnderSectionFlag = underSectionFlag;
         }
 
         /// <summary>
