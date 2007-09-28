@@ -106,7 +106,9 @@
     <Compile Include="Commands\TOC\AddSection.cs" />
     <Compile Include="Commands\TOC\ChangeSectionNodeLevel.cs" />
     <Compile Include="Commands\TOC\DeleteSection.cs" />
+    <Compile Include="Commands\TOC\MoveSectionIn.cs" />
     <Compile Include="Commands\TOC\MoveSectionNode.cs" />
+    <Compile Include="Commands\TOC\MoveSectionOut.cs" />
     <Compile Include="Commands\TOC\Rename.cs" />
     <Compile Include="Commands\TOC\SectionNodeClipboard.cs" />
     <Compile Include="Commands\TOC\ShallowDeleteSectionNode.cs" />

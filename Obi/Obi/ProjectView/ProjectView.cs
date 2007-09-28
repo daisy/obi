@@ -460,6 +460,22 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Move the selected section node out.
+        /// </summary>
+        public void MoveSelectedSectionOut()
+        {
+            if (mTOCView.CanMoveSectionOut) mUndo.execute(new Commands.TOC.MoveSectionOut(this, mTOCView.SelectedSection));
+        }
+
+        /// <summary>
+        /// Move the selected section node in.
+        /// </summary>
+        public void MoveSelectedSectionIn()
+        {
+            if (mTOCView.CanMoveSectionIn) mUndo.execute(new Commands.TOC.MoveSectionIn(this, mTOCView.SelectedSection));
+        }
+
+        /// <summary>
         /// Undo the last command if there is any. Don't do anything otherwise.
         /// </summary>
         public void Undo()

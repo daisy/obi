@@ -947,6 +947,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to move section in.
+        /// </summary>
+        internal static string move_section_in_command {
+            get {
+                return ResourceManager.GetString("move_section_in_command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to move section out.
+        /// </summary>
+        internal static string move_section_out_command {
+            get {
+                return ResourceManager.GetString("move_section_out_command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to move section up.
         /// </summary>
         internal static string move_section_up_command_label {
