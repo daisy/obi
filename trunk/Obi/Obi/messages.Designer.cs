@@ -623,6 +623,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (dummy section).
+        /// </summary>
+        internal static string dummy_section {
+            get {
+                return ResourceManager.GetString("dummy_section", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to edit annotation.
         /// </summary>
         internal static string edit_annotation_command_label {
