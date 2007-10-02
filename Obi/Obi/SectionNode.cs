@@ -231,7 +231,7 @@ namespace Obi
         {
             get
             {
-                SectionNode sibling = PreviousSibling;
+                SectionNode sibling = PrecedingSibling;
                 if (sibling != null)
                 {
                     return sibling.Position + sibling.mSpan;
@@ -266,7 +266,7 @@ namespace Obi
         {
             get
             {
-                SectionNode previous = PreviousSibling;
+                SectionNode previous = PrecedingSibling;
                 if (previous == null)
                 {
                     previous = ParentSection;
@@ -282,7 +282,7 @@ namespace Obi
         /// <summary>
         /// Return the previous section sibling node, or null if this is the first child.
         /// </summary>
-        public SectionNode PreviousSibling
+        public SectionNode PrecedingSibling
         {
             get
             {

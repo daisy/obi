@@ -32,11 +32,7 @@ namespace Obi.ProjectView
         /// </summary>
         public bool CanMoveSectionOut
         {
-            get
-            {
-                return mTOCTree.SelectedNode != null && mTOCTree.SelectedNode.Tag is SectionNode &&
-                    ((SectionNode)mTOCTree.SelectedNode.Tag).ParentSection != null;
-            }
+            get { return Commands.TOC.MoveSectionOut.CanMoveNode(mTOCTree.SelectedNode.Tag as SectionNode); }
         }
 
         /// <summary>
@@ -44,11 +40,7 @@ namespace Obi.ProjectView
         /// </summary>
         public bool CanMoveSectionIn
         {
-            get
-            {
-                return mTOCTree.SelectedNode != null && mTOCTree.SelectedNode.Tag is SectionNode &&
-                    ((SectionNode)mTOCTree.SelectedNode.Tag).Index > 0;
-            }
+            get { return Commands.TOC.MoveSectionIn.CanMoveNode(mTOCTree.SelectedNode.Tag as SectionNode); }
         }
 
         /// <summary>

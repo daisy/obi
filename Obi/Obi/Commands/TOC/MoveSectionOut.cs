@@ -7,19 +7,34 @@ namespace Obi.Commands.TOC
     public class MoveSectionOut: Command
     {
         private SectionNode mSection;
-        private SectionNode mParent;
-        private int mIndex;
-        private List<SectionNode> mSiblings;
 
         public MoveSectionOut(ProjectView.ProjectView view, SectionNode section)
             : base(view)
         {
             mSection = section;
-            mParent = section.ParentSection;
-            if (mParent == null) throw new Exception("Cannot move out top-level section");
-            mIndex = mSection.Index;
-            mSiblings = new List<SectionNode>(mParent.SectionChildCount - 1 - mIndex);
-            for (int i = mIndex + 1; i < mParent.SectionChildCount; ++i) mSiblings.Add(mParent.SectionChild(i));
+        }
+
+        /// <summary>
+        /// Check whether a (possibly null) section can be moved out.
+        /// </summary>
+        public static bool CanMoveNode(SectionNode section)
+        {
+            return section != null && section.ParentSection != null && section.SectionChildCount == 0;
+        }
+
+        /// <summary>
+        /// Increase the level of the section.
+        /// </summary>
+        public static void Move(SectionNode section)
+        {
+            int index = section.Index + 1;
+            SectionNode sibling = section.ParentSection;
+            for (int i = index; i < sibling.SectionChildCount; ++i)
+            {
+                section.AddChildSection((SectionNode)sibling.removeChild(index), section.SectionChildCount);
+            }
+            sibling.removeChild(section);
+            sibling.getParent().insertAfter(section, sibling);
         }
 
         public override string getShortDescription() { return Localizer.Message("move_section_out_command"); }
@@ -27,21 +42,13 @@ namespace Obi.Commands.TOC
         public override void execute()
         {
             base.execute();
-            mParent.removeChild(mSection);
-            foreach (SectionNode sibling in mSiblings) mParent.removeChild(sibling);
-            urakawa.core.TreeNode parent = mParent.getParent();
-            if (parent is SectionNode) ((SectionNode)parent).AddChildSection(mSection, mParent.Index + 1);
-            else parent.insert(mSection, mParent.Index + 1);
-            foreach (SectionNode sibling in mSiblings) mSection.AppendChildSection(sibling);
+            Move(mSection);
             View.SelectInTOCView(mSection);
         }
 
         public override void unExecute()
         {
-            foreach (SectionNode sibling in mSiblings) mSection.removeChild(sibling);
-            mParent.getParent().removeChild(mSection);
-            mParent.AddChildSection(mSection, mIndex);
-            foreach (SectionNode sibling in mSiblings) mParent.AppendChildSection(sibling);
+            MoveSectionIn.Move(mSection);
             base.unExecute();
         }
     }
