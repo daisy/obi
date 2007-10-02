@@ -10,6 +10,11 @@ them later. This file can be the basis for the proper help page (with
 screenshots, with more end-user hand-holding) with the objective of reusing
 as much of it as possible.
 
+So far this is more or less the manual for Obi 0.10.0 scheduled for October
+10th, 2007. Further revisions before version 1.0 will see some feature
+changes that will need modifications to this manual, most notably multiple
+selection. See [the to-do list](todo.html) for details.
+
 ## What is Obi?
 
 I am the introduction paragraph for the manual.
@@ -193,6 +198,81 @@ Has its own window, or is part of the transport bar (text/small version.)
 ## Editing metadata
 
 ## Editing structure
+
+TOC view, TOC and Edit menus mostly. Don't forget to have the TOC view
+visible to edit the document structure (see View menu.)
+
+### Creating sections
+
+New sections are added after, or as subsections of existing sections. A new
+section is created through the _Add section_ menu item in the _TOC_ menu. In
+order to create a new section, an existing section must be selected. The new
+section will always be created _after_ the selected section, and then become
+selected. New sections get a default label which can be immediately modified
+by typing the desired name.
+
+Whenever a section is selected in the TOC view, a _dummy section_ appears
+underneath it. The dummy section can itself be selected to add a new section
+_before_ the first section or subsection of a section, or as the first
+subsection of a section with no subsection yet. When no section is selected
+in the TOC view, the dummy section appears as the first section of the book.
+[NOTE use an actual, unused section as the dummy section.]
+
+#### Using the dummy section
+
+* Adding the first section in the project: since the TOC is empty, there
+will be a dummy section in the TOC view. Select it then choose _add section_
+from the _TOC_ menu.
+
+* Adding a subsection under an existing section: if there are no subsections
+yet, select the section under which you want to add a subsection. A dummy
+subsection will appear. Select it then choose _add section_ from the _TOC_
+menu. [NOTE is it too inconvenient to have to select twice for adding the
+first subsection? Or worth keeping the _add subsection_ menu item?]
+
+* Adding a section before the first section: [NOTE maybe the
+"root" dummy section should always be visible since unselecting in the TOC
+view is inconvenient.]
+
+### Renaming sections
+
+A section can change its label simply by renaming it in the TOC view. This
+can be done in several ways:
+
+* Select the section, then choose _rename section_ in the _TOC_ menu;
+
+* Select the section, then click it again to start editing;
+
+* Select the section, then press `F2`.
+
+The section label will then become editable until you press the `Return` key
+to validate. If you wish to cancel your edit, just press the `Escape` key.
+A section cannot have an empty string as a label.
+
+### Changing section levels
+
+[EXAMPLE]
+
+Note that changing the level of a section is a _shallow_ operation as it
+only changes the level of the selected section, and not its subsections.
+Changing the level of a section and its subsections is better achieved
+through cut-and-paste [NOTE and through multiple selection in the future.]
+
+#### Move in
+
+Moving a section _in_ is the same as _increasing_ its level. A section
+cannot be moved in if it is the first subsection of its parent section (or
+if it is the first section in the book.)
+
+#### Move out
+
+Moving a section _out_ is the same as _decreasing_ its level, so that the
+level of a subsection becomes the same as its parent section's. As a
+consequence, only subsections can be moved out; top-level sections already
+have the lowest level.
+
+### Used and unused sections
+
 
 ## Editing contents
 
