@@ -30,8 +30,8 @@ And? Julien should review the playback document to make sure that it's in sync w
 What? Mockup manual.
 When? September
 Who? Julien
-And? Have a mockup of the user manual (at least a skeleton) so that features to be implemented are documented. This is used for reference and testing.
-Done? NOTYET
+And? Have a mockup of the user manual (at least a skeleton) so that features to be implemented are documented. This is used for reference and testing. We will update the manual as we go along, so it will be a moving target until November, at which point it should describe all of the features and will be ready for final editing.
+Done? LATER
 
 What? New project panel design and implementation.
 When? September
@@ -68,6 +68,12 @@ When? September
 Who? Julien
 And? Audio blocks display the waveform of their content. 
 
+What? Organize coding workshop.
+When? September
+Who? Julien, Dipendra
+Done? NOTYET
+And? Julien proposed last week of November.
+
 What? Obi 0.10.0
 When? October 10th
 Who? Julien
@@ -94,6 +100,12 @@ When? October
 Who? Julien
 And? When an empty block is selected, do not create a new block to import audio in. If importing several files, create new blocks for the other files.
 
+What? Dummy section node in the TOC view.
+When? October
+Who? Julien
+And? Add a dummy section node under the currently selected section (or the top of the tree) to allow operations in the beginning or under a node. Remove need for paste before/after, or add subsection.
+Done? NOTYET
+
 What? Skippable items.
 When? November
 Who? Julien
@@ -101,12 +113,6 @@ Who? Julien
 What? Escapable items.
 When? November
 Who? Julien
-
-What? Organize coding workshop.
-When? September
-Who? Julien, Dipendra
-Done? NOTYET
-And? Julien proposed last week of November.
 
 What? Waveform editing.
 When? October
