@@ -13,10 +13,7 @@ namespace Obi
         /// <summary>
         /// Create a new node factory. It is not attached to any project yet.
         /// </summary>
-        public ObiNodeFactory(): base()
-        {
-            mProject = null;
-        }
+        public ObiNodeFactory(): base() { mProject = null; }
 
         /// <summary>
         /// Set the project for the node factory. The project cannot be set again.

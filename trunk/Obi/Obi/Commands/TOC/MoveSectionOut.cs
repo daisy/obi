@@ -31,10 +31,12 @@ namespace Obi.Commands.TOC
             SectionNode sibling = section.ParentSection;
             for (int i = index; i < sibling.SectionChildCount; ++i)
             {
-                section.AddChildSection((SectionNode)sibling.removeChild(index), section.SectionChildCount);
+                SectionNode child = sibling.SectionChild(index);
+                child.Detach();
+                section.Append(child);
             }
-            sibling.removeChild(section);
-            sibling.getParent().insertAfter(section, sibling);
+            section.Detach();
+            sibling.Parent.InsertAfter(section, sibling);
         }
 
         public override string getShortDescription() { return Localizer.Message("move_section_out_command"); }

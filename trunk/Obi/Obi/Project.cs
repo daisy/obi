@@ -303,10 +303,11 @@ namespace Obi
         private static Presentation CreatePresentation(string XUKPath)
         {
             return new Presentation(new Uri(Path.GetDirectoryName(XUKPath) + Path.DirectorySeparatorChar),
-                new ObiNodeFactory(), new PropertyFactory(), 
+                new ObiNodeFactory(), new PropertyFactory(),
                 null, null, null,
-                new Audio.DataManager(), null , null , null , null , null );
-                        }
+                new Audio.DataManager(), null, null, null, null, null);
+        }
+                        
 
         /// <summary>
         /// Create a section node.
@@ -694,7 +695,7 @@ namespace Obi
                     DataManager.getDefaultPCMFormat().setBitDepth(phrase.Audio.getMediaData().getPCMFormat().getBitDepth());
                     DataManager.setEnforceSinglePCMFormat(true);
                 }
-                phrase.ParentSection.AddedPhraseNode(phrase);
+                phrase.ParentSection.AddedPhraseNode__REMOVE__(phrase);
             }
         }
 

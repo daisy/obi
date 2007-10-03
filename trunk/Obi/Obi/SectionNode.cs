@@ -8,12 +8,11 @@ namespace Obi
 {
     /// <summary>
     /// Section nodes are Obi nodes with either section nodes or phrase nodes as their children.
+    /// All phrase children come first, then the section children.
     /// </summary>
     public class SectionNode : ObiNode
     {
         private PhraseNode mHeading;  // section heading
-        private int mSectionOffset;   // index of the first section child
-        private int mSpan;            // span of this section: 1 + sum of the span of each child section.
 
         public static readonly string XUK_ELEMENT_NAME = "section";
 
@@ -23,8 +22,6 @@ namespace Obi
         public SectionNode(Project project): base(project)
         {
             mHeading = null;
-            mSectionOffset = 0;
-            mSpan = 1;
             // Create the text media object for the label with a default label
             ITextMedia labelMedia = getPresentation().getMediaFactory().createTextMedia();
             labelMedia.setText(Localizer.Message("default_section_label"));
@@ -32,54 +29,10 @@ namespace Obi
         }
 
 
-        /// <summary>
-        /// Add a child phrase at the given index.
-        /// </summary>
-        public void AddChildPhrase(PhraseNode node, int index)
+        public override void Append(ObiNode node)
         {
+            int index = node is PhraseNode ? FirstSectionIndex : getChildCount();
             insert(node, index);
-        }
-
-        /// <summary>
-        /// Add a child section at the given index.
-        /// The span of this section, plus that of parent sections,
-        /// is increased accordingly.
-        /// </summary>
-        public void AddChildSection(SectionNode node, int index)
-        {
-            insert(node, index + mSectionOffset);
-            UpdateSpan(node.mSpan);
-        }
-
-        /// <summary>
-        /// Add a new child section right before the context seciont section.
-        /// </summary>
-        /// TODO: replace
-        public void AddChildSectionBefore(SectionNode node, SectionNode anchorNode)
-        {
-            insertBefore(node, anchorNode);
-            UpdateSpan(node.mSpan);
-        }
-
-        /// <summary>
-        /// Called when a new child phrase was added to maintain bookkeeping information.
-        /// </summary>
-        /// <param name="phrase">The new child phrase.</param>
-        public void AddedPhraseNode(PhraseNode phrase)
-        {
-            if (phrase.Used) phrase.Used = Used;
-            if (phrase.HasXukInHeadingFlag) Heading = phrase;
-            ++mSectionOffset;
-        }
-
-        /// <summary>
-        /// Append a child section.
-        /// </summary>
-        /// TODO: replace
-        public void AppendChildSection(SectionNode node)
-        {
-            base.appendChild(node);
-            UpdateSpan(node.mSpan);
         }
 
         /// <summary>
@@ -107,12 +60,89 @@ namespace Obi
         }
 
         /// <summary>
-        /// Detach this node section from its parent and update the span.
+        /// Index of this section relative to the other sections.
         /// </summary>
-        // TODO: replace
-        public SectionNode DetachFromParent()
+        public override int Index
         {
-            if (ParentSection != null) ParentSection.UpdateSpan(-mSpan);
+            get
+            {
+                TreeNode parent = getParent();
+                int index = parent.indexOf(this);
+                return index - (parent is SectionNode ? ParentSection.FirstSectionIndex : 0);
+            }
+        }
+
+        /// <summary>
+        /// Insert a node at the given index.
+        /// The index is interpreted relatively to the position of the other phrases or sections.
+        /// If the index is negative, count backward from the end (i.e. -1 inserts in the last position)
+        /// </summary>
+        public override void Insert(ObiNode node, int index)
+        {
+            index = node is PhraseNode ? index < 0 ? FirstSectionIndex + index : index :
+                                         index < 0 ? getChildCount() + index : index + FirstSectionIndex;
+            insert(node, index);
+        }
+
+        /// <summary>
+        /// Position when view as a flat list.
+        /// </summary>
+        public int Position
+        {
+            get
+            {
+                return Index > 0 ? PrecedingSibling.Position + PrecedingSibling.Span :
+                    ParentSection == null ? 0 : 1 + ParentSection.Position;
+            }
+        }
+
+        /// <summary>
+        /// Get the child section at an index relative to sections only.
+        /// If the index is negative, start from the end of the list.
+        /// </summary>
+        public SectionNode SectionChild(int index)
+        {
+            if (index < 0) index = getChildCount() + index;
+            return (SectionNode)getChild(index + FirstSectionIndex);
+        }
+
+        /// <summary>
+        /// Number of section children.
+        /// </summary>
+        public int SectionChildCount { get { return getChildCount() - FirstSectionIndex; } }
+
+
+        // The index of the first section in the list of children. 
+        // If there is no section this is simply the number of children (i.e. where the first phrase would be.)
+        private int FirstSectionIndex
+        {
+            get
+            {
+                for (int i = 0; i < getChildCount(); ++i) if (getChild(i) is SectionNode) return i;
+                return getChildCount();
+            }
+        }
+
+        // Span of the section in number of nodes. If there are no subsections, the span is one; otherwise it is
+        // 1 + the sum of the spans of all subsections.
+        private int Span
+        {
+            get
+            {
+                int span = 1;
+                for (int i = 0; i < SectionChildCount; ++i) span += SectionChild(i).Span;
+                return span;
+            }
+        }
+
+
+            /// <summary>
+            /// Detach this node section from its parent and update the span.
+            /// </summary>
+            // TODO: replace
+            public SectionNode DetachFromParent__REMOVE__()
+        {
+            // if (ParentSection != null) ParentSection.UpdateSpan(-mSpan);
             return (SectionNode)this.detach();
         }
 
@@ -144,18 +174,6 @@ namespace Obi
             set { mHeading = value; }
         }
 
-        /// <summary>
-        /// Index of this section relative to the other sections.
-        /// </summary>
-        public override int Index
-        {
-            get
-            {
-                TreeNode parent = getParent();
-                int index = parent.indexOf(this);
-                return index - (parent is SectionNode ? ((SectionNode)parent).mSectionOffset : 0);
-            }
-        }
 
         /// <summary>
         /// The label of the node is its title.
@@ -220,18 +238,18 @@ namespace Obi
         /// <summary>
         /// Number of phrase children.
         /// </summary>
-        public int PhraseChildCount { get { return mSectionOffset; } }
+        public int PhraseChildCount { get { return FirstSectionIndex; } }
 
         /// <summary>
         /// Position of this section in the "flat list" of sections. If the section is the first child,
         /// then it is simply the position of its parent + 1. Otherwise, it is the position of its previous
         /// sibling + the span of the previous sibling.
         /// </summary>
-        public int Position
+        public int Position__REMOVE__
         {
             get
             {
-                SectionNode sibling = PrecedingSibling;
+                /*SectionNode sibling = PrecedingSibling;
                 if (sibling != null)
                 {
                     return sibling.Position + sibling.mSpan;
@@ -245,7 +263,8 @@ namespace Obi
                 {
                     // this is the first node (no previous sibling, parent is not a section node)
                     return 0;
-                }
+                }*/
+                return 0;
             }
         }
 
@@ -300,23 +319,8 @@ namespace Obi
         {
             if (node == mHeading) mHeading = null;
             node.detach();
-            --mSectionOffset;
+            //--mSectionOffset;
         }
-
-        /// <summary>
-        /// Get the child section at an index relative to sections only.
-        /// If the index is negative, start from the end of the list.
-        /// </summary>
-        public SectionNode SectionChild(int index)
-        {
-            if (index < 0) index = SectionChildCount + index;
-            return (SectionNode)getChild(index + mSectionOffset);
-        }
-
-        /// <summary>
-        /// Number of section children.
-        /// </summary>
-        public int SectionChildCount { get { return getChildCount() - mSectionOffset; } }
 
 
 
@@ -336,7 +340,7 @@ namespace Obi
             }
             for (int i = 0; i < SectionChildCount; ++i)
             {
-                destinationNode.AddChildSection(SectionChild(i).copy(true), i);
+                destinationNode.AddChildSection__REMOVE__(SectionChild(i).copy(true), i);
             }
         }
 
@@ -348,51 +352,63 @@ namespace Obi
             get { return (TextMedia)ChannelsProperty.getMedia(Project.TextChannel); }
         }
 
-        /// <summary>
-        /// Update span of current and ancestor sections.
-        /// </summary>
-        /// <param name="span">The span change (can be negative if nodes are removed.)</param>
-        private void UpdateSpan(int span)
-        {
-            for (TreeNode parent = this; parent is SectionNode; parent = parent.getParent())
-            {
-                ((SectionNode)parent).mSpan += span;
-            }
-        }
 
+
+
+
+
+
+        // TO BE REMOVED
 
         /// <summary>
-        /// When the section is read, update its label with the actual text media data.
+        /// Add a child phrase at the given index.
         /// </summary>
-        // TODO: replace this by???
-        /*
-        public override void XUKIn(XmlReader source)
+        public void AddChildPhrase__REMOVE__(PhraseNode node, int index)
         {
-            if (base.XUKIn(source))
-            {
-                mMedia = (TextMedia)ChannelsProperty.getMedia(mProject.TextChannel);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            insert(node, index);
         }
-        */
 
-        /*
-        public override void  appendChild(TreeNode node)
+        /// <summary>
+        /// Add a child section at the given index.
+        /// The span of this section, plus that of parent sections,
+        /// is increased accordingly.
+        /// </summary>
+        public void AddChildSection__REMOVE__(SectionNode node, int index)
         {
-            if (node is SectionNode)
-            {
-                AppendChildSection((SectionNode)node);
-            }
-            else if (node is PhraseNode)
-            {
-                AppendChildPhrase((PhraseNode)node);
-            }
+            // insert(node, index + mSectionOffset);
+            // UpdateSpan(node.mSpan);
         }
-        */
+
+        /// <summary>
+        /// Add a new child section right before the context seciont section.
+        /// </summary>
+        /// TODO: replace
+        public void AddChildSectionBefore__REMOVE__(SectionNode node, SectionNode anchorNode)
+        {
+            insertBefore(node, anchorNode);
+            // UpdateSpan(node.mSpan);
+        }
+
+        /// <summary>
+        /// Called when a new child phrase was added to maintain bookkeeping information.
+        /// </summary>
+        /// <param name="phrase">The new child phrase.</param>
+        public void AddedPhraseNode__REMOVE__(PhraseNode phrase)
+        {
+            if (phrase.Used) phrase.Used = Used;
+            if (phrase.HasXukInHeadingFlag) Heading = phrase;
+            // ++mSectionOffset;
+        }
+
+        /// <summary>
+        /// Append a child section.
+        /// </summary>
+        /// TODO: replace
+        public void AppendChildSection__REMOVE__(SectionNode node)
+        {
+            base.appendChild(node);
+            // UpdateSpan(node.mSpan);
+        }
 
     }
 }
