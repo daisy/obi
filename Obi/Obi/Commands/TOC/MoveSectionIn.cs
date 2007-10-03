@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Obi.Commands.TOC
 {
@@ -29,11 +27,13 @@ namespace Obi.Commands.TOC
         public static void Move(SectionNode section)
         {
             SectionNode sibling = section.PrecedingSibling;
-            section.getParent().removeChild(section);
-            sibling.AddChildSection(section, sibling.SectionChildCount);
+            section.Detach();
+            sibling.Append(section);
             for (int i = 0; i < section.SectionChildCount; ++i)
             {
-                sibling.AddChildSection((SectionNode)section.removeChild(0), sibling.SectionChildCount);
+                SectionNode child = section.SectionChild(0);
+                child.Detach();
+                sibling.Append(child);
             }
         }
 

@@ -172,7 +172,7 @@ namespace Obi
         /// <param name="position"></param>
         public void UndoMoveSectionNode(SectionNode node, TreeNode parent, int index)
         {
-            if (node.getParent() != null) node.DetachFromParent();
+            if (node.getParent() != null) node.DetachFromParent__REMOVE__();
             AddChildSection(node, parent, index);
             UndidMoveSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, parent));
             Modified();
@@ -200,7 +200,7 @@ namespace Obi
             SectionNode newParent = node.ParentSection == null ?
                 (SectionNode)((TreeNode)node.getParent()).getChild(node.Index - 1) :
                 node.ParentSection.SectionChild(node.Index - 1);
-            node.DetachFromParent();
+            node.DetachFromParent__REMOVE__();
             AppendChildSection(node, newParent);
             MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, newParent));
             Modified();
@@ -232,9 +232,9 @@ namespace Obi
             List<SectionNode> newChildren = new List<SectionNode>();            
             for (int i = parent.SectionChildCount - 1; i > node.Index; --i)
             {
-                newChildren.Insert(0, parent.SectionChild(i).DetachFromParent());
+                newChildren.Insert(0, parent.SectionChild(i).DetachFromParent__REMOVE__());
             }
-            node.DetachFromParent();
+            node.DetachFromParent__REMOVE__();
             TreeNode newParent = (TreeNode)parent.getParent();
             AddChildSection(node, newParent, parent.Index + 1);
             newChildren.ForEach(delegate(SectionNode n) { AppendChildSection(n, node); });
@@ -254,9 +254,9 @@ namespace Obi
             List<SectionNode> unOriginalChildren = new List<SectionNode>();
             for (int i = node.SectionChildCount - 1; i >= originalChildCount; --i)
             {
-                unOriginalChildren.Insert(0, node.SectionChild(i).DetachFromParent());
+                unOriginalChildren.Insert(0, node.SectionChild(i).DetachFromParent__REMOVE__());
             }
-            node.DetachFromParent();
+            node.DetachFromParent__REMOVE__();
             AppendChildSection(node, parent);
             MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, parent));
             foreach (SectionNode child in unOriginalChildren)
@@ -332,7 +332,7 @@ namespace Obi
         //md 20060810
         public void UndoPasteSectionNode(SectionNode node)
         {
-            node.DetachFromParent();
+            node.DetachFromParent__REMOVE__();
            
             UndidPasteSectionNode(this, new Events.Node.SectionNodeEventArgs(this, node));
             mUnsaved = true;
@@ -406,7 +406,7 @@ namespace Obi
             }
             else if (parent.GetType() == Type.GetType("Obi.SectionNode"))
             {
-                ((SectionNode)parent).AddChildSection(node, index);
+                ((SectionNode)parent).AddChildSection__REMOVE__(node, index);
             }          
         }
 
@@ -420,7 +420,7 @@ namespace Obi
             }
             else if (parent.GetType() == Type.GetType("Obi.SectionNode"))
             {
-                ((SectionNode)parent).AppendChildSection(node);
+                ((SectionNode)parent).AppendChildSection__REMOVE__(node);
             }         
         }
 
@@ -434,7 +434,7 @@ namespace Obi
             }
             else if (parent is SectionNode)
             {
-                ((SectionNode)parent).AddChildSectionBefore(node, contextNode);
+                ((SectionNode)parent).AddChildSectionBefore__REMOVE__(node, contextNode);
             }
         }
 
@@ -489,7 +489,7 @@ namespace Obi
             {
                 command.AddCommand(RemoveSectionNode(node.SectionChild(i)));
             }
-            node.DetachFromParent();
+            node.DetachFromParent__REMOVE__();
             return command;
         }
 

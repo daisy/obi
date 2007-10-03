@@ -11,7 +11,7 @@ namespace Obi.Commands.TOC
     /// </summary>
     public class AddNewSection: Command
     {
-        private TreeNode mParent;   // parent of the new section (section or root node)
+        private ObiNode mParent;   // parent of the new section (section or root node)
         private int mIndex;         // index of the new section
         private SectionNode mNode;  // the node for the new section
 
@@ -22,19 +22,20 @@ namespace Obi.Commands.TOC
         /// </summary>
         /// <param name="view">The view in which the command is to be executed.</param>
         /// <param name="asChild">If true, add a subsection of the selected section.</param>
-        public AddNewSection(ProjectView.ProjectView view, TreeNode contextNode, bool asChild)
+        public AddNewSection(ProjectView.ProjectView view, ObiNode contextNode, bool asChild)
             : base(view)
         {
             if (asChild)
             {
                 if (contextNode == null) throw new Exception("Cannot add as child with no parent node!");
                 mParent = contextNode;
-                mIndex = contextNode.getChildCount();
+                mIndex = contextNode is SectionNode ? ((SectionNode)contextNode).SectionChildCount :
+                    contextNode.getChildCount();
             }
             else
             {
-                mParent = contextNode == null ? View.Project.RootNode : contextNode.getParent();
-                mIndex = contextNode == null ? View.Project.RootNode.getChildCount() : mParent.indexOf(contextNode) + 1;
+                mParent = contextNode == null ? View.Project.RootNode : contextNode.Parent;
+                mIndex = contextNode == null ? View.Project.RootNode.getChildCount() : contextNode.Index + 1;
             }
             mNode = View.Project.NewSectionNode();
             view.SelectAndRenameNodeInTOCView(mNode);
@@ -46,7 +47,7 @@ namespace Obi.Commands.TOC
         /// The node is selected and the user can start renaming it.
         /// </summary>
         /// <param name="view">The view in which the command is to be executed.</param>
-        public AddNewSection(ProjectView.ProjectView view, TreeNode contextNode)
+        public AddNewSection(ProjectView.ProjectView view, ObiNode contextNode)
             : this(view, contextNode, false)
         {
         }
@@ -59,7 +60,7 @@ namespace Obi.Commands.TOC
         public override void execute()
         {
             base.execute();
-            mParent.insert(mNode, mIndex);
+            mParent.Insert(mNode, mIndex);
             View.SelectInTOCView(mNode);
         }
 
@@ -68,7 +69,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void unExecute()
         {
-            mParent.removeChild(mIndex);
+            mNode.Detach();
             base.unExecute();
         }
     }

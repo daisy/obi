@@ -38,13 +38,14 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="urakawa, Version=1.0.0.30290, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="urakawa, Version=1.0.0.34591, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\implementation\UrakawaToolkit\bin\Debug\urakawa.dll</HintPath>
+      <HintPath>..\..\..\..\..\tags\implementation-before-prop-refact\UrakawaToolkit\obj\Debug\urakawa.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NewProject.cs" />
+    <Compile Include="Nodes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Metadata.cs" />
   </ItemGroup>

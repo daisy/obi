@@ -569,7 +569,7 @@ namespace Obi
 
         public void AddEmptyPhraseNode(SectionNode parent, int index)
         {
-            parent.AddChildPhrase(CreatePhraseNode(DataManager.CreateEmptyAudioMedia()), index);
+            parent.AddChildPhrase__REMOVE__(CreatePhraseNode(DataManager.CreateEmptyAudioMedia()), index);
         }
 
         /// <summary>
@@ -580,7 +580,7 @@ namespace Obi
         /// <param name="index">Its position in the parent section (with regards to other phrases.)</param>
         public void AddPhraseNode(PhraseNode node, SectionNode parent, int index)
         {
-            parent.AddChildPhrase(node, index);
+            parent.AddChildPhrase__REMOVE__(node, index);
             Modified();
         }
 

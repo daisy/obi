@@ -31,6 +31,18 @@ namespace Obi
         }
 
 
+
+        /// <summary>
+        /// Allow only phrase nodes to be inserted.
+        /// If the index is negative, count backward from the end (-1 is last.)
+        /// </summary>
+        public override void Insert(ObiNode node, int index)
+        {
+            if (!(node is PhraseNode)) throw new Exception("Only phrase nodes can be added as children of a phrase node.");
+            if (index < 0) index += getChildCount();
+            insert(node, index);
+        }
+
         /// <summary>
         /// The annotation for this node.
         /// </summary>
