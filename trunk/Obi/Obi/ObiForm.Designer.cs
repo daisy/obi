@@ -131,6 +131,8 @@ namespace Obi
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -300,7 +302,9 @@ namespace Obi
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NEWundoToolStripMenuItem,
-            this.NEWredoToolStripMenuItem});
+            this.NEWredoToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.deleteToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
             this.toolStripMenuItem1.Text = "&Edit";
@@ -310,7 +314,7 @@ namespace Obi
             this.NEWundoToolStripMenuItem.Enabled = false;
             this.NEWundoToolStripMenuItem.Name = "NEWundoToolStripMenuItem";
             this.NEWundoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.NEWundoToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.NEWundoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.NEWundoToolStripMenuItem.Text = "&Undo";
             this.NEWundoToolStripMenuItem.Click += new System.EventHandler(this.NEWundoToolStripMenuItem_Click);
             // 
@@ -319,7 +323,7 @@ namespace Obi
             this.NEWredoToolStripMenuItem.Enabled = false;
             this.NEWredoToolStripMenuItem.Name = "NEWredoToolStripMenuItem";
             this.NEWredoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.NEWredoToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.NEWredoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.NEWredoToolStripMenuItem.Text = "&Redo";
             this.NEWredoToolStripMenuItem.Click += new System.EventHandler(this.NEWredoToolStripMenuItem_Click);
             // 
@@ -1037,6 +1041,19 @@ namespace Obi
             this.mProjectView.TabIndex = 4;
             this.mProjectView.TOCViewVisible = true;
             // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Text = "&Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
             // ObiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1166,6 +1183,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem showInStripsViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
         private System.Windows.Forms.ToolStripMenuItem showSourceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
 
 
     }

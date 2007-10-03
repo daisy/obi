@@ -560,6 +560,15 @@ namespace Obi {
         /// <summary>
         ///   Looks up a localized string similar to delete section.
         /// </summary>
+        internal static string delete_section_command {
+            get {
+                return ResourceManager.GetString("delete_section_command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to delete section.
+        /// </summary>
         internal static string delete_section_command_label {
             get {
                 return ResourceManager.GetString("delete_section_command_label", resourceCulture);
