@@ -389,6 +389,15 @@ namespace Obi {
         /// <summary>
         ///   Looks up a localized string similar to copy section.
         /// </summary>
+        internal static string copy_section_command {
+            get {
+                return ResourceManager.GetString("copy_section_command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to copy section.
+        /// </summary>
         internal static string copy_section_command_label {
             get {
                 return ResourceManager.GetString("copy_section_command_label", resourceCulture);
@@ -446,6 +455,15 @@ namespace Obi {
         internal static string cut_phrase_command_label {
             get {
                 return ResourceManager.GetString("cut_phrase_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to cut section.
+        /// </summary>
+        internal static string cut_section_command {
+            get {
+                return ResourceManager.GetString("cut_section_command", resourceCulture);
             }
         }
         
@@ -1214,6 +1232,15 @@ namespace Obi {
         internal static string paste_phrase_command_label {
             get {
                 return ResourceManager.GetString("paste_phrase_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to paste section.
+        /// </summary>
+        internal static string paste_section_command {
+            get {
+                return ResourceManager.GetString("paste_section_command", resourceCulture);
             }
         }
         

@@ -753,4 +753,13 @@ Do you want to replace the project contained in this file?</value>
   <data name="delete_section_command" xml:space="preserve">
     <value>delete section</value>
   </data>
+  <data name="copy_section_command" xml:space="preserve">
+    <value>copy section</value>
+  </data>
+  <data name="cut_section_command" xml:space="preserve">
+    <value>cut section</value>
+  </data>
+  <data name="paste_section_command" xml:space="preserve">
+    <value>paste section</value>
+  </data>
 </root>

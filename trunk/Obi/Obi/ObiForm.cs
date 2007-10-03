@@ -1898,20 +1898,12 @@ namespace Obi
                 Localizer.Message("cannot_redo");
         }
 
-        private void NEWundoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.Undo();
-        }
-
-        private void NEWredoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.Redo();
-        }
-
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.Delete();
-        }
+        private void NEWundoToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Undo(); }
+        private void NEWredoToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Redo(); }
+        private void cutToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Cut(); }
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Copy(); }
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Paste(); }
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Delete(); }
 
         private void mShowTOCViewToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TOCViewVisible = true; }
         private void mHideTOCViewToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TOCViewVisible = false; }
