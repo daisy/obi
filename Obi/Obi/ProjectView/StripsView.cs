@@ -58,40 +58,42 @@ namespace Obi.ProjectView
         // Handle addition of tree nodes: add a new strip for new section nodes.
         private void StripsView_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
         {
-            AddStripForSection(e.getTreeNode() as SectionNode);
-        }
-
-        private void AddStripForSection(SectionNode section)
-        {
-            if (section != null)
+            if (e.getTreeNode() is SectionNode)
             {
-                for (int i = 0; i < section.SectionChildCount; ++i) AddStripForSection(section.SectionChild(i));
-                Strip strip = new Strip(section);
-                strip.LabelEditedByUser += new EventHandler(delegate(object sender, EventArgs _e)
-                {
-                    mProject.RenameSectionNode(section, strip.Label);
-                });
-                mLayoutPanel.Controls.Add(strip);
-                mLayoutPanel.Controls.SetChildIndex(strip, section.Position);
-                strip.MinimumSize = new Size(mLayoutPanel.Width, strip.MinimumSize.Height);
+                SectionNode section = (SectionNode)e.getTreeNode();
+                Strip strip = AddStripForSection(section);
                 mLayoutPanel.ScrollControlIntoView(strip);
             }
+        }
+
+        private Strip AddStripForSection(SectionNode section)
+        {
+            for (int i = 0; i < section.SectionChildCount; ++i) AddStripForSection(section.SectionChild(i));
+            Strip strip = new Strip(section);
+            strip.LabelEditedByUser += new EventHandler(delegate(object sender, EventArgs _e)
+            {
+                mProject.RenameSectionNode(section, strip.Label);
+            });
+            mLayoutPanel.Controls.Add(strip);
+            mLayoutPanel.Controls.SetChildIndex(strip, section.Position);
+            strip.MinimumSize = new Size(mLayoutPanel.Width, strip.MinimumSize.Height);
+            return strip;
         }
 
         // Handle removal of tree nodes: remove a strip for a section node and all of its children.
         void StripsView_treeNodeRemoved(ITreeNodeChangedEventManager o, TreeNodeRemovedEventArgs e)
         {
-            RemoveStripForSection(e.getTreeNode() as SectionNode);
+            if (e.getTreeNode() is SectionNode)
+            {
+                RemoveStripForSection((SectionNode)e.getTreeNode());
+            }
         }
 
         private void RemoveStripForSection(SectionNode section)
         {
-            if (section != null)
-            {
-                for (int i = 0; i < section.SectionChildCount; ++i) RemoveStripForSection(section.SectionChild(i));
-                Strip strip = FindStrip(section);
-                mLayoutPanel.Controls.Remove(strip);
-            }
+            for (int i = 0; i < section.SectionChildCount; ++i) RemoveStripForSection(section.SectionChild(i));
+            Strip strip = FindStrip(section);
+            mLayoutPanel.Controls.Remove(strip);
         }
 
         #endregion

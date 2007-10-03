@@ -13,6 +13,7 @@ namespace Obi.ProjectView
         private bool mEnableTooltips;            // tooltips flag
         private Project mProject;                // project model
         private NodeSelection mSelection;        // currently selected node
+        private ObiNode mClipboard;              // node in the clipboard
         private Commands.UndoRedoManager mUndo;  // the undo manager for the project view
 
         public event EventHandler TOCViewVisibilityChanged;
@@ -73,17 +74,12 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Copy the current selection into the clipboard. Noop if there is no selection.
+        /// Contents of the clipboard (at the moment a single node.)
         /// </summary>
-        public void Copy()
+        public ObiNode Clipboard
         {
-        }
-
-        /// <summary>
-        /// Copy the current selection into the clipboard then delete it from the panel. Noop if there is no selection.
-        /// </summary>
-        public void Cut()
-        {
+            get { return mClipboard; }
+            set { mClipboard = value; }
         }
 
         /// <summary>
@@ -99,13 +95,6 @@ namespace Obi.ProjectView
                 // mTOCPanel.EnableTooltips = value;
                 mTransportBar.EnableTooltips = value;
             }
-        }
-
-        /// <summary>
-        /// Paste the contents of the clipboard in the current context. Noop if the clipboard is empty.
-        /// </summary>
-        public void Paste()
-        {
         }
 
         /// <summary>
@@ -482,6 +471,34 @@ namespace Obi.ProjectView
         public void Redo()
         {
             if (mUndo.canRedo()) mUndo.redo();
+        }
+
+        /// <summary>
+        /// Cut (delete) the selection and store it in the clipboard.
+        /// </summary>
+        /// <remarks>TODO: phrases and </remarks>
+        public void Cut()
+        {
+            if (mTOCView.SelectedSection != null) mUndo.execute(new Commands.TOC.Cut(this, mTOCView.SelectedSection));
+        }
+
+        /// <summary>
+        /// Copy the current selection into the clipboard. Noop if there is no selection.
+        /// </summary>
+        public void Copy()
+        {
+            if (mTOCView.SelectedSection != null) mUndo.execute(new Commands.TOC.Copy(this, mTOCView.SelectedSection));
+        }
+
+        /// <summary>
+        /// Paste the contents of the clipboard in the current context. Noop if the clipboard is empty.
+        /// </summary>
+        public void Paste()
+        {
+            if (mTOCView.SelectedSection != null && mClipboard is SectionNode)
+            {
+                mUndo.execute(new Commands.TOC.Paste(this, mTOCView.SelectedSection));
+            }
         }
 
         /// <summary>
