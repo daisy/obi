@@ -87,13 +87,6 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Delete the current selection. Noop if there is no selection.
-        /// </summary>
-        public void Delete()
-        {
-        }
-
-        /// <summary>
         /// Enable/disable tooltips in the view.
         /// </summary>
         public bool EnableTooltips
@@ -489,6 +482,14 @@ namespace Obi.ProjectView
         public void Redo()
         {
             if (mUndo.canRedo()) mUndo.redo();
+        }
+
+        /// <summary>
+        /// Delete the current selection. Noop if there is no selection.
+        /// </summary>
+        public void Delete()
+        {
+            if (mTOCView.SelectedSection != null) mUndo.execute(new Commands.TOC.Delete(this, mTOCView.SelectedSection));
         }
 
         /// <summary>

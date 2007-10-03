@@ -58,9 +58,14 @@ namespace Obi.ProjectView
         // Handle addition of tree nodes: add a new strip for new section nodes.
         private void StripsView_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
         {
-            SectionNode section = e.getTreeNode() as SectionNode;
+            AddStripForSection(e.getTreeNode() as SectionNode);
+        }
+
+        private void AddStripForSection(SectionNode section)
+        {
             if (section != null)
             {
+                for (int i = 0; i < section.SectionChildCount; ++i) AddStripForSection(section.SectionChild(i));
                 Strip strip = new Strip(section);
                 strip.LabelEditedByUser += new EventHandler(delegate(object sender, EventArgs _e)
                 {
@@ -73,12 +78,17 @@ namespace Obi.ProjectView
             }
         }
 
-        // Handle removal of tree nodes: remove a strip for a section node.
+        // Handle removal of tree nodes: remove a strip for a section node and all of its children.
         void StripsView_treeNodeRemoved(ITreeNodeChangedEventManager o, TreeNodeRemovedEventArgs e)
         {
-            SectionNode section = e.getTreeNode() as SectionNode;
+            RemoveStripForSection(e.getTreeNode() as SectionNode);
+        }
+
+        private void RemoveStripForSection(SectionNode section)
+        {
             if (section != null)
             {
+                for (int i = 0; i < section.SectionChildCount; ++i) RemoveStripForSection(section.SectionChild(i));
                 Strip strip = FindStrip(section);
                 mLayoutPanel.Controls.Remove(strip);
             }

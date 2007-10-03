@@ -750,4 +750,7 @@ Do you want to replace the project contained in this file?</value>
   <data name="move_section_in_command" xml:space="preserve">
     <value>move section in</value>
   </data>
+  <data name="delete_section_command" xml:space="preserve">
+    <value>delete section</value>
+  </data>
 </root>

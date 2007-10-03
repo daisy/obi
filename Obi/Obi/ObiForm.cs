@@ -1908,6 +1908,11 @@ namespace Obi
             mProjectView.Redo();
         }
 
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.Delete();
+        }
+
         private void mShowTOCViewToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TOCViewVisible = true; }
         private void mHideTOCViewToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TOCViewVisible = false; }
 
