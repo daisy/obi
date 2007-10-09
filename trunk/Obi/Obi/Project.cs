@@ -312,7 +312,7 @@ namespace Obi
         /// <summary>
         /// Create a section node.
         /// </summary>
-        private SectionNode CreateSectionNode()
+        public SectionNode CreateSectionNode()
         {
             return (SectionNode)
                 getPresentation().getTreeNodeFactory().createNode(SectionNode.XUK_ELEMENT_NAME, Program.OBI_NS);
