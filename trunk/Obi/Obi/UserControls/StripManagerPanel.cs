@@ -159,7 +159,7 @@ namespace Obi.UserControls
                 if (ParentForm != null) //won't set anything untill we have a parent form!
                 {
                     mAllowShortcuts = value;
-                    ((ObiForm)ParentForm).AllowDelete = value;
+                    // ((ObiForm)ParentForm).AllowDelete = value;
                     mDeleteStripToolStripMenuItem.Enabled = value;
                     mDeleteAudioBlockToolStripMenuItem.Enabled = value;
                 }

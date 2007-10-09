@@ -32,7 +32,11 @@ namespace Obi.ProjectView
         /// </summary>
         public bool CanMoveSectionOut
         {
-            get { return Commands.TOC.MoveSectionOut.CanMoveNode(mTOCTree.SelectedNode.Tag as SectionNode); }
+            get
+            {
+                return mTOCTree.SelectedNode != null &&
+                    Commands.TOC.MoveSectionOut.CanMoveNode(mTOCTree.SelectedNode.Tag as SectionNode);
+            }
         }
 
         /// <summary>
@@ -40,7 +44,11 @@ namespace Obi.ProjectView
         /// </summary>
         public bool CanMoveSectionIn
         {
-            get { return Commands.TOC.MoveSectionIn.CanMoveNode(mTOCTree.SelectedNode.Tag as SectionNode); }
+            get
+            {
+                return mTOCTree.SelectedNode != null &&
+                    Commands.TOC.MoveSectionIn.CanMoveNode(mTOCTree.SelectedNode.Tag as SectionNode);
+            }
         }
 
         /// <summary>
@@ -178,9 +186,20 @@ namespace Obi.ProjectView
                 n = mTOCTree.Nodes.Insert(section.Index, section.GetHashCode().ToString(), section.Label);
             }
             n.Tag = section;
+            ChangeColorUsed(n, section.Used);
+            section.UsedStateChanged += new EventHandler(section_UsedStateChanged);
             return n;
         }
 
+        private void section_UsedStateChanged(object sender, EventArgs e)
+        {
+            if (sender is SectionNode) ChangeColorUsed(FindTreeNode((SectionNode)sender), ((SectionNode)sender).Used);
+        }
+
+        private void ChangeColorUsed(TreeNode n, bool used)
+        {
+            n.ForeColor = used ? Color.Black : Color.LightGray;
+        }
 
         // Create and insert a dummy node under the selected section, or at the root of the tree if nothing is selected.
         private void ShowDummyNode(TreeNode parent)

@@ -59,9 +59,15 @@ namespace Obi.Dialogs
         // Unregister the listener when the window closes.
         private void SourceView_FormClosed(object sender, FormClosedEventArgs e)
         {
-            mView.Project.StateChanged -= new Obi.Events.Project.StateChangedHandler(project_StateChanged);
-            mView.CommandExecuted -= new Obi.Commands.UndoRedoEventHandler(view_CommandExecuted);
-            mView.CommandUnexecuted -= new Obi.Commands.UndoRedoEventHandler(view_CommandExecuted);
+            if (mView != null)
+            {
+                if (mView.Project != null)
+                {
+                    mView.Project.StateChanged -= new Obi.Events.Project.StateChangedHandler(project_StateChanged);
+                }
+                mView.CommandExecuted -= new Obi.Commands.UndoRedoEventHandler(view_CommandExecuted);
+                mView.CommandUnexecuted -= new Obi.Commands.UndoRedoEventHandler(view_CommandExecuted);
+            }
         }
 
         // Update the source view.

@@ -505,11 +505,11 @@ namespace Obi.UserControls
             else if (CurrentSelectedSection != null)
             {
                 // Avn: Following check added to prevent deleting  during during renaming etc.
-                if (mTOCPanel.AllowDelete)
+                /*if (mTOCPanel.AllowDelete)
                 {
                     mProject.DeleteSectionNode(CurrentSelectedSection);
                     CurrentSelection = null;
-                }
+                }*/
                             }
             TransportBar.Enabled = true;
         }

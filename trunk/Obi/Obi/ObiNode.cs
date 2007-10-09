@@ -14,6 +14,8 @@ namespace Obi
         private Project mProject;  // project that this node (or rather that its presentation) belongs to
         private bool mUsed;        // mark node as being in use or not
 
+        public event EventHandler UsedStateChanged;  // triggerd when the used state of the node has changed
+
         private static readonly string USED_ATTR_NAME = "used";
 
         /// <summary>
@@ -71,7 +73,14 @@ namespace Obi
         public bool Used
         {
             get { return mUsed; }
-            set { mUsed = value; }
+            set
+            {
+                if (mUsed != value)
+                {
+                    mUsed = value;
+                    if (UsedStateChanged != null) UsedStateChanged(this, new EventArgs());
+                }
+            }
         }
 
         /// <summary>
