@@ -1,0 +1,51 @@
+Obi's Recording behaviour 
+first draft by Avneesh on October 9, 2007.
+
+
+Recording behaviour is intended to be straight forward and with simple punch in capabilities.
+
+behaviour:
+1. Append mode.
+2. Punch  in mode
+
+
+1. Append mode.
+It is simple recording in which newly recorded content is appended to list of phrases.
+1.1. If a audio block in strip manager is selected, recording appends  new audio blocks to currently selected block.
+1.2. If a strip in strip manager is selected, recording appends audio blocks at end of current strip  in the same strip. 
+1.3. If a section in tree view is selected, recording appends audio blocks at end of section in same section.
+
+
+2. Punch in mode:
+This mode allows user to correct recording errors by inserting  live recording at a point in a audio block. It can be done in following ways:
+2.1. Insert mode.
+2.2. Replace phrase to end
+
+
+2.1. Insert mode:
+In this mode a time point in a audio block is selected through playback or fwd, rwd  and Recording in insert mode is started. This splits selected audio block at current point and inserts newly recorded audio blocks between two splitted blocks.
+
+
+2.2.  Replace phrase to end mode:
+It has two implementations:
+2.2.1 If a time point in an audio block is selected and recording is started. This replaces the audio after the time point by newly recorded audio. This mode do not create a new phrase instead only  replaces a part of old audio to end in  same phrase.
+2.2.2. If no time point is selected and cursor is at time 0 of phrase and recording is started in this mode, the the complete audio of selected phrase is replaced by newly recorded audio i.e. underlying AudioMediaData  asset is replaced by new audiomediaData asset.
+
+
+Remark: The  overwrite mode is not listed in this draft as it seems to be risky and somewhat less used. 
+One way to implement its safe use is  by  implementing part selection of a phrase as follows:
+- A part of phrase which is required to be replaced is selected 
+- Recording is started in  overwrite mode.
+- The selected part of phrase is replaced by newly recorded audio inside the phrase irrespective of difference of lenghts of selected audio w.r.t. newly recorded audio.
+This  implementation of overwrite is currently out of scope as it requires  implementation of part selection within phrase boundaries.
+
+
+ Selection of a time point inside a phrase:
+Non visually a selection point can be selected by using pause during 
+- playback 
+- FastForward/Rewind 
+- FastPlay. 
+The playback pause position is used as selected time point for punch in recording.
+Time point is reset to 0 during playback stop state.
+
+Visual selection of time point is dependent on waveform display.
