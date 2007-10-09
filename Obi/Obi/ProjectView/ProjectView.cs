@@ -18,6 +18,7 @@ namespace Obi.ProjectView
 
         public event EventHandler TOCViewVisibilityChanged;
         public event EventHandler MetadataViewVisibilityChanged;
+        public event EventHandler SelectionChanged;
         public event Commands.UndoRedoEventHandler CommandExecuted;
         public event Commands.UndoRedoEventHandler CommandUnexecuted;
 
@@ -181,6 +182,7 @@ namespace Obi.ProjectView
                         else if (mSelection.Control == mMetadataView) MetadataViewVisible = true;
                     }
                     if (value != null) value.Control.Selection = value.Node;
+                    if (SelectionChanged != null) SelectionChanged(this, new EventArgs());
                 }
             }
         }
@@ -358,11 +360,6 @@ namespace Obi.ProjectView
             throw new Exception("The method or operation is not implemented.");
         }
 
-        internal void ToggleSelectedAudioBlockUsed()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
         internal void MarkSelectedAudioBlockAsHeading()
         {
             throw new Exception("The method or operation is not implemented.");
@@ -455,6 +452,17 @@ namespace Obi.ProjectView
         public void MoveSelectedSectionIn()
         {
             if (mTOCView.CanMoveSectionIn) mUndo.execute(new Commands.TOC.MoveSectionIn(this, mTOCView.SelectedSection));
+        }
+
+        /// <summary>
+        /// Change the used status of the selected section, and of all its subsections.
+        /// </summary>
+        public void MarkSectionUsed(bool used)
+        {
+            if (mTOCView.SelectedSection != null && mTOCView.SelectedSection.Used != used)
+            {
+                mUndo.execute(new Commands.TOC.ToggleSectionUsed(this, mTOCView.SelectedSection));
+            }
         }
 
         /// <summary>
@@ -578,5 +586,8 @@ namespace Obi.ProjectView
                 if (MetadataViewVisibilityChanged != null) MetadataViewVisibilityChanged(this, new EventArgs());
             }
         }
+
+        public bool CanMoveSectionIn { get { return mTOCView.CanMoveSectionIn; } }
+        public bool CanMoveSectionOut { get { return mTOCView.CanMoveSectionOut; } }
     }
 }

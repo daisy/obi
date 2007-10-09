@@ -91,7 +91,6 @@ namespace Obi.UserControls
             // 
             // mTOCPanel
             // 
-            this.mTOCPanel.AllowDelete = false;
             this.mTOCPanel.Selection = null;
             this.mTOCPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mTOCPanel.Location = new System.Drawing.Point(0, 0);

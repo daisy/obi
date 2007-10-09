@@ -21,11 +21,6 @@ namespace Obi
         private Audio.VuMeterForm mVuMeterForm;  // keep track of a single VU meter form
         private Audio.VuMeter m_Vumeter ; // VuMeterForm is to be initialised again and again so this instance is required as member
 
-        public bool AllowDelete
-        {
-            set { mDeleteToolStripMenuItem.Enabled = value; }
-        }
-
         /// <summary>
         /// Application settings.
         /// </summary>
@@ -504,9 +499,14 @@ namespace Obi
             mProjectView.MoveSelectedSectionIn();
         }
 
-        private void mShowInStripviewToolStripMenuItem_Click(object sender, EventArgs e)
+        private void markSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.ShowSelectedSectionInStripView();
+            mProjectView.MarkSectionUsed(true);
+        }
+
+        private void mMarkSectionAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.MarkSectionUsed(false);
         }
 
         #endregion
@@ -562,11 +562,6 @@ namespace Obi
         private void mMoveAudioBlockBackwardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.MoveBlock(PhraseNode.Direction.Backward);
-        }
-
-        private void mMarkAudioBlockAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.ToggleSelectedAudioBlockUsed();
         }
 
         private void mMarkAudioBlockAsSectionHeadingToolStripMenuItem_Click(object sender, EventArgs e)
@@ -693,6 +688,7 @@ namespace Obi
                     MessageBox.Show(String.Format(Localizer.Message("save_settings_error_text"), x.Message),
                         Localizer.Message("save_settings_error_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                mProjectView.SelectionChanged -= new EventHandler(mProjectView_SelectionChanged);
                 mProjectView.TransportBar.Stop();
                 Application.Exit();
 
@@ -709,23 +705,12 @@ namespace Obi
         }
 
         /// <summary>
-        /// Add a new command to the command manager and update the status display and menu items.
-        /// </summary>
-        private void mProject_CommandCreated(object sender, Events.Project.CommandCreatedEventArgs e)
-        {
-            mCommandManager.Add(e.Command);
-            UpdateEnabledItemsForUndoRedo();
-        }
-
-        /// <summary>
         /// Update the TOC menu when a tree node is (de)selected.
         /// </summary>
         private void TOCPanel_SelectedTreeNode(object sender, Events.Node.SelectedEventArgs e)
         {
             mAddSubSectionToolStripMenuItem.Enabled = e.Selected;
             mRenameSectionToolStripMenuItem.Enabled = e.Selected;
-            mShowInStripviewToolStripMenuItem.Enabled = e.Selected;
-
         }
 
         /// <summary>
@@ -925,7 +910,7 @@ namespace Obi
             if (mCommandManager.HasUndo)
             {
                 mCommandManager.Undo();
-                UpdateEnabledItemsForUndoRedo();
+                //UpdateEnabledItemsForUndoRedo();
             }
         }
 
@@ -1056,14 +1041,6 @@ namespace Obi
         }
 
         /// <summary>
-        /// Toggle section used/unsed.
-        /// </summary>
-        private void mMarkSectionAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProject.ToggleNodeUsedWithCommand(mProjectView.SelectedSection, true);
-        }
-
-        /// <summary>
         /// Toggle strip used/unused.
         /// </summary>
         private void mMarkStripAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1139,8 +1116,8 @@ namespace Obi
                 // TODO extract this (same as create new project)
                 mProjectView.CommandExecuted += new UndoRedoEventHandler(mProjectView_CommandExecuted);
                 mProjectView.CommandUnexecuted += new UndoRedoEventHandler(mProjectView_CommandUnexecuted);
+                mProjectView.SelectionChanged += new EventHandler(mProjectView_SelectionChanged);
                 mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
-                mProject.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
                 this.Cursor = Cursors.WaitCursor;
                 mProject.Open(path);
                 AddRecentProject(path);
@@ -1231,68 +1208,6 @@ namespace Obi
         /// <summary>
         /// Update the enabled items of the Edit menu.
         /// </summary>
-        private void UpdateEnabledItemsForEditMenu()
-        {
-            UpdateEnabledItemsForUndoRedo();
-
-            bool isPlayingOrRecording = mProjectView.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing || mProjectView.TransportBar.IsInlineRecording;
-            bool canCutCopyDelete = !isPlayingOrRecording && mProjectView.SelectionNode != null && !mProjectView.TransportBar.IsInlineRecording;
-            string itemLabel = mProjectView.SelectedName;
-            if (itemLabel != "") itemLabel = " " + itemLabel;
-            ObiNode clipboardData = mProject == null ? null : mProject.Clipboard.Data as ObiNode;
-            string pasteLabel = mProjectView.PasteLabel(clipboardData);
-            if (pasteLabel != "") pasteLabel = " " + pasteLabel;
-
-            mCutToolStripMenuItem.Enabled = canCutCopyDelete;
-            mCutToolStripMenuItem.Text = String.Format(Localizer.Message("cut_menu_label"), itemLabel);
-            mCopyToolStripMenuItem.Enabled = canCutCopyDelete;
-            mCopyToolStripMenuItem.Text = String.Format(Localizer.Message("copy_menu_label"), itemLabel);
-            mPasteToolStripMenuItem.Enabled = !isPlayingOrRecording && mProjectView.CanPaste(clipboardData);
-            mPasteToolStripMenuItem.Text = String.Format(Localizer.Message("paste_menu_label"), pasteLabel);
-            mDeleteToolStripMenuItem.Enabled = canCutCopyDelete;
-            mDeleteToolStripMenuItem.Text = String.Format(Localizer.Message("delete_menu_label"), itemLabel);
-
-            bool isProjectOpen = mProject != null;
-            bool canTouch = !isPlayingOrRecording && isProjectOpen && !mProjectView.TransportBar.IsInlineRecording;
-            mMetadataToolStripMenuItem.Enabled = canTouch;
-            mFullMetadataToolStripMenuItem.Enabled = canTouch;
-            mTouchProjectToolStripMenuItem.Enabled = canTouch;
-        }
-
-        /// <summary>
-        /// Update the label for undo and redo (and their availability) depending on what is in the command manager.
-        /// </summary>
-        private void UpdateEnabledItemsForUndoRedo()
-        {
-            bool isPlayingOrRecording = mProjectView.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing || mProjectView.TransportBar.IsInlineRecording;
-            if (mCommandManager.HasUndo)
-            {
-                mUndoToolStripMenuItem.Enabled = !isPlayingOrRecording;
-                mUndoToolStripMenuItem.Text = String.Format(Localizer.Message("undo_label"), Localizer.Message("undo"),
-                    mCommandManager.UndoLabel);
-            }
-            else
-            {
-                mUndoToolStripMenuItem.Enabled = false;
-                mUndoToolStripMenuItem.Text = Localizer.Message("undo");
-            }
-            if (mCommandManager.HasRedo)
-            {
-                mRedoToolStripMenuItem.Enabled = !isPlayingOrRecording;
-                mRedoToolStripMenuItem.Text = String.Format(Localizer.Message("redo_label"), Localizer.Message("redo"),
-                    mCommandManager.RedoLabel);
-            }
-            else
-            {
-                mRedoToolStripMenuItem.Enabled = false;
-                mRedoToolStripMenuItem.Text = Localizer.Message("redo");
-            }
-            System.Diagnostics.Debug.Print("~~~ can{0} undo ~~~", mUndoToolStripMenuItem.Enabled ? "" : "NOT");
-        }
-
-        /// <summary>
-        /// Update the enabled items of the Edit menu.
-        /// </summary>
         private void UpdateEnabledItemsForTOCMenu()
         {
             bool isPlayingOrRecording = mProjectView.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing ||mProjectView.TransportBar.IsInlineRecording;
@@ -1317,7 +1232,6 @@ namespace Obi
             mMarkSectionAsUnusedToolStripMenuItem.Text = String.Format(Localizer.Message("mark_x_as_y"),
                 Localizer.Message("section"),
                 Localizer.Message(!isSectionNodeSelected || isSectionNodeUsed ? "unused" : "used"));
-            mShowInStripviewToolStripMenuItem.Enabled = isSectionNodeSelected;
         }
 
         private void UpdateEnabledItemsForStripsMenu()
@@ -1685,7 +1599,6 @@ namespace Obi
         {
             mProject = new Project(path);
             mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
-            mProject.CommandCreated += new Obi.Events.Project.CommandCreatedHandler(mProject_CommandCreated);
             mProject.Initialize(title, mSettings.GeneratedID, mSettings.UserProfile, createTitleSection);
             AddRecentProject(mProject.XUKPath);
         }
@@ -1896,6 +1809,22 @@ namespace Obi
             NEWredoToolStripMenuItem.Text = e.Manager.canRedo() ?
                 String.Format(Localizer.Message("redo_label"), Localizer.Message("redo"), e.Manager.getRedoShortDescription()) :
                 Localizer.Message("cannot_redo");
+        }
+
+        private void mProjectView_SelectionChanged(object sender, EventArgs e)
+        {
+            UpdateMenus();
+        }
+
+        private void UpdateMenus()
+        {
+            bool selectedSection = mProjectView.SelectedSection != null;
+            mRenameSectionToolStripMenuItem.Enabled = selectedSection;
+            mMoveOutToolStripMenuItem.Enabled = mProjectView.CanMoveSectionOut;
+            mMoveInToolStripMenuItem.Enabled = mProjectView.CanMoveSectionIn;
+            mMarkSectionAsUsedToolStripMenuItem.Visible = selectedSection && !mProjectView.SelectedSection.Used;
+            mMarkSectionAsUnusedToolStripMenuItem.Visible = selectedSection && mProjectView.SelectedSection.Used;
+            mMarkSectionAsUsedunusedToolStripMenuItem.Visible = !selectedSection;
         }
 
         private void NEWundoToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Undo(); }
