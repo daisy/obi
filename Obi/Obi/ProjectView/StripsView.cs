@@ -61,8 +61,11 @@ namespace Obi.ProjectView
             if (e.getTreeNode() is SectionNode)
             {
                 SectionNode section = (SectionNode)e.getTreeNode();
-                Strip strip = AddStripForSection(section);
-                mLayoutPanel.ScrollControlIntoView(strip);
+                if (section.IsRooted)
+                {
+                    Strip strip = AddStripForSection(section);
+                    mLayoutPanel.ScrollControlIntoView(strip);
+                }
             }
         }
 

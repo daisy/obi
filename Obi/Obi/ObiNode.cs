@@ -52,6 +52,14 @@ namespace Obi
         public virtual int Index { get { return getParent().indexOf(this); } }
 
         /// <summary>
+        /// Check whether the node is rooted in the tree or not.
+        /// </summary>
+        public bool IsRooted
+        {
+            get { return this is RootNode || (getParent() is ObiNode && ((ObiNode)getParent()).IsRooted); }
+        }
+
+        /// <summary>
         /// Level of the node in the tree. It is assumed that the root is an ObiNode with a level of 0.
         /// </summary>
         /// <remarks>Used to be "depth" but "level" makes more sense. We may need "depth" in the future.</remarks>
