@@ -23,7 +23,7 @@ namespace Obi.UserControls
                         AddStripFromNode(e.Node);
             if (sender == this)
             {
-                mProjectPanel.CurrentSelection = new NodeSelection(e.Node, this);
+                //mProjectPanel.CurrentSelection = new NodeSelection(e.Node, this);
                 mSectionNodeMap[e.Node].Renaming = true;
             }
         }
@@ -215,7 +215,7 @@ internal          void AddStripFromNode(SectionNode node)
                     prev = mProjectPanel.Project.LastSection;
                 }
             }
-            if (prev != null) mProjectPanel.CurrentSelection = new NodeSelection(prev, this);
+            //if (prev != null) mProjectPanel.CurrentSelection = new NodeSelection(prev, this);
         }
 
         /// <summary>
@@ -241,7 +241,7 @@ internal          void AddStripFromNode(SectionNode node)
                     next = mProjectPanel.Project.FirstSection;
                 }
             }
-            if (next != null) mProjectPanel.CurrentSelection = new NodeSelection(next, this);
+            //if (next != null) mProjectPanel.CurrentSelection = new NodeSelection(next, this);
         }
     }
 }

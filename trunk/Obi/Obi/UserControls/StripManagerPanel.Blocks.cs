@@ -233,7 +233,7 @@ namespace Obi.UserControls
                         }
                     }
                     // select the first added phrase
-                    mProjectPanel.CurrentSelection = new NodeSelection(insert.node, this);
+                    //mProjectPanel.CurrentSelection = new NodeSelection(insert.node, this);
                 }
                 mProjectPanel.TransportBar.Enabled = true;
             }
@@ -258,8 +258,7 @@ namespace Obi.UserControls
                     {
                         PhraseNode SplitPhraseNode = mProjectPanel.Project.Split(phrase, dialog.ResultAudio ) ;
                         mProjectPanel.SynchronizeWithCoreTree();
-                        mProjectPanel.CurrentSelection =
-                            new NodeSelection(SplitPhraseNode , this);
+                        //mProjectPanel.CurrentSelection = new NodeSelection(SplitPhraseNode , this);
                     }
                 }
                 else
@@ -294,7 +293,7 @@ namespace Obi.UserControls
                 {
                     
                     mProjectPanel.SynchronizeWithCoreTree();
-                    mProjectPanel.CurrentSelection = new NodeSelection(split, this);
+                    //mProjectPanel.CurrentSelection = new NodeSelection(split, this);
                     mProjectPanel.TransportBar.Play();
                 }
             }
@@ -312,8 +311,7 @@ namespace Obi.UserControls
                     mProjectPanel.CurrentSelectedAudioBlock.PreviousPhraseInSection,
                     mProjectPanel.CurrentSelectedAudioBlock) ;
                 mProjectPanel.SynchronizeWithCoreTree();
-                mProjectPanel.CurrentSelection = new NodeSelection(MergedNode   ,
-                    this);
+                //mProjectPanel.CurrentSelection = new NodeSelection(MergedNode, this);
                 mProjectPanel.TransportBar.Enabled = true;
             }
         }
@@ -380,7 +378,7 @@ namespace Obi.UserControls
                     }
                 }
             }
-            if (prev != null) mProjectPanel.CurrentSelection = new NodeSelection(prev, this);
+            //if (prev != null) mProjectPanel.CurrentSelection = new NodeSelection(prev, this);
         }
 
         /// <summary>
@@ -419,7 +417,7 @@ namespace Obi.UserControls
                     }
                 }
             }
-            if (next != null) mProjectPanel.CurrentSelection = new NodeSelection(next, this);
+            //if (next != null) mProjectPanel.CurrentSelection = new NodeSelection(next, this);
         }
 
         public void GoToPage()
@@ -429,7 +427,7 @@ namespace Obi.UserControls
                 Dialogs.GoToPage dialog = new Dialogs.GoToPage(mProjectPanel.Project);
                 if (dialog.ShowDialog() == DialogResult.OK && dialog.SelectedPage != null)
                 {
-                    mProjectPanel.CurrentSelection = new NodeSelection(dialog.SelectedPage, this);
+                    //mProjectPanel.CurrentSelection = new NodeSelection(dialog.SelectedPage, this);
                 }
             }
         }

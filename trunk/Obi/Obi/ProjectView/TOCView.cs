@@ -1,21 +1,20 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
 using urakawa.core.events;
 
 namespace Obi.ProjectView
 {
+    /// <summary>
+    /// The view of the table of contents, mostly a wrapper over a tree view.
+    /// </summary>
     public partial class TOCView : UserControl, IControlWithSelection
     {
         private ProjectView mView;   // the parent project view
-        private SectionNode mDummy;  // dummy section node (for selection)
+        private TreeNode mDummy;     // dummy section node (for selection)
 
         /// <summary>
-        /// Create a new TOC view as part of a project view
+        /// Create a new TOC view as part of a project view.
         /// </summary>
         public TOCView(ProjectView view) : this()
         {
@@ -34,7 +33,7 @@ namespace Obi.ProjectView
         {
             get
             {
-                return mTOCTree.SelectedNode != null && mTOCTree.SelectedNode.Tag != mDummy &&
+                return mTOCTree.SelectedNode != null && mTOCTree.SelectedNode != mDummy &&
                     Commands.TOC.MoveSectionOut.CanMoveNode(mTOCTree.SelectedNode.Tag as SectionNode);
             }
         }
@@ -46,8 +45,30 @@ namespace Obi.ProjectView
         {
             get
             {
-                return mTOCTree.SelectedNode != null && 
+                return mTOCTree.SelectedNode != null && mTOCTree.SelectedNode != mDummy &&
                     Commands.TOC.MoveSectionIn.CanMoveNode(mTOCTree.SelectedNode.Tag as SectionNode);
+            }
+        }
+
+        /// <summary>
+        /// True if the selected node can be renamed.
+        /// </summary>
+        public bool CanRenameSection { get { return mTOCTree.SelectedNode != null && mTOCTree.SelectedNode != mDummy; } }
+
+        /// <summary>
+        /// True if the selected node can be removed (deleted or cut)
+        /// </summary>
+        public bool CanRemoveSection { get { return mTOCTree.SelectedNode != null && mTOCTree.SelectedNode != mDummy; } }
+
+        /// <summary>
+        /// True if the used state of the selected section can be changed
+        /// </summary>
+        public bool CanToggleSectionUsed
+        {
+            get
+            {
+                return mTOCTree.SelectedNode != null && mTOCTree.SelectedNode != mDummy &&
+                    ((ObiNode)mTOCTree.SelectedNode.Tag).Parent.Used;
             }
         }
 
@@ -60,6 +81,10 @@ namespace Obi.ProjectView
             mView.Project.getPresentation().treeNodeRemoved += new TreeNodeRemovedEventHandler(TOCView_treeNodeRemoved);
             mView.Project.RenamedSectionNode += new Obi.Events.RenameSectionNodeHandler(Project_RenamedSectionNode);
             mTOCTree.Nodes.Clear();
+            /*mDummy = new TreeNode(Localizer.Message("dummy_section"));
+            mTOCTree.Nodes.Add(mDummy);
+            mDummy.ForeColor = Color.LightGray;
+            mDummy.Tag = mView.Project.RootNode;*/
         }
 
         /// <summary>
@@ -71,37 +96,31 @@ namespace Obi.ProjectView
             {
                 TreeNode n = FindTreeNode(section);
                 n.BeginEdit();
-                mView.Selection = new NodeSelection(section, this);
             });
         }
 
         /// <summary>
-        /// Get or set the current selection. Make sure that the node is indeed in the tree.
+        /// Get or set the current selection.
         /// </summary>
-        public ObiNode Selection
+        public NodeSelection Selection
         {
             get
             {
                 TreeNode selected = mTOCTree.SelectedNode;
-                return selected == null ? null : (ObiNode)selected.Tag;
+                return selected == null ? null : new NodeSelection((ObiNode)selected.Tag, this, selected == mDummy);
             }
             set
             {
-                if ((mTOCTree.SelectedNode == null && value != null) ||
-                    (mTOCTree.SelectedNode != null && value != mTOCTree.SelectedNode.Tag))
+                TreeNode n = value == null ? null : value.IsDummy ? mDummy : FindTreeNode((SectionNode)value.Node);
+                if (n != mTOCTree.SelectedNode)
                 {
-                    TreeNode n = value == null ? null : FindTreeNode((SectionNode)value);
+                    // ignore the select event, since we were asked to change the selection
+                    mTOCTree.AfterSelect -= new TreeViewEventHandler(mTOCTree_AfterSelect);
+                    // if (n != mDummy) UpdateDummyNode(n);
                     mTOCTree.SelectedNode = n;
+                    mTOCTree.AfterSelect += new TreeViewEventHandler(mTOCTree_AfterSelect);
                 }
             }
-        }
-
-        /// <summary>
-        /// Get the selected section, or null if nothing is selected.
-        /// </summary>
-        public SectionNode SelectedSection
-        {
-            get { return Selection as SectionNode; }
         }
 
         /// <summary>
@@ -109,7 +128,10 @@ namespace Obi.ProjectView
         /// </summary>
         public void SelectNode(SectionNode section)
         {
-            DoToNewNode(section, delegate() { mView.Selection = new NodeSelection(section, this); });
+            DoToNewNode(section, delegate()
+            {
+                mView.Selection = new NodeSelection(section, this, false);
+            });
         }
 
 
@@ -127,6 +149,7 @@ namespace Obi.ProjectView
             if (e.Node.Tag != null && e.Label != null && e.Label != "")
             {
                 mView.RenameSectionNode((SectionNode)e.Node.Tag, e.Label);
+                //mView.Selection = new NodeSelection((SectionNode)e.Node.Tag, this, false);
             }
             else
             {
@@ -134,7 +157,6 @@ namespace Obi.ProjectView
             }
         }
 
-        // Do not allow editing of the dummy node
         private void mTOCTree_BeforeLabelEdit(object sender, NodeLabelEditEventArgs e)
         {
             if (!(e.Node.Tag is SectionNode)) e.CancelEdit = true;
@@ -146,30 +168,21 @@ namespace Obi.ProjectView
         {
             if (e.Node.Tag != mView.SelectedSection)
             {
-                mView.Selection = new NodeSelection((ObiNode)e.Node.Tag, this);
-                if (e.Node.Tag != mDummy) ShowDummyNode();
+                mView.Selection = new NodeSelection((ObiNode)e.Node.Tag, this, e.Node == mDummy);
             }
         }
 
-        private void ShowDummyNode()
+        // Show the dummy node under the selected section, or the root of the tree
+        private void UpdateDummyNode(TreeNode n)
         {
-            if (mDummy != null)
+            mDummy.Remove();
+            if (n != null)
             {
-                mDummy.Detach();
+                n.Nodes.Insert(0, mDummy);
             }
             else
             {
-                mDummy = mView.Project.CreateSectionNode();
-                mDummy.Label = Localizer.Message("dummy_section");
-                mDummy.Used = false;
-            }
-            if (SelectedSection == null)
-            {
-                mView.Project.RootNode.Insert(mDummy, 0);
-            }
-            else
-            {
-                SelectedSection.Insert(mDummy, 0);
+                mTOCTree.Nodes.Insert(0, mDummy);
             }
         }
 
@@ -179,6 +192,7 @@ namespace Obi.ProjectView
             CreateTreeNodeForSectionNode(e.getTreeNode() as SectionNode);
         }
 
+        // Create a new tree node for a section node and all of its descendants
         private void CreateTreeNodeForSectionNode(SectionNode section)
         {
             TreeNode n = AddSingleSectionNode(section);
@@ -200,10 +214,13 @@ namespace Obi.ProjectView
         // Check whether a node is in the tree view
         private bool IsInTree(SectionNode section)
         {
-            TreeNode[] nodes = mTOCTree.Nodes.Find(section.GetHashCode().ToString(), true);
-            foreach (TreeNode n in nodes)
+            if (section != null)
             {
-                if (n.Tag == section && n.Text == section.Label) return true;
+                TreeNode[] nodes = mTOCTree.Nodes.Find(section.GetHashCode().ToString(), true);
+                foreach (TreeNode n in nodes)
+                {
+                    if (n.Tag == section && n.Text == section.Label) return true;
+                }
             }
             return false;
         }
@@ -277,11 +294,11 @@ namespace Obi.ProjectView
         // Do f() to a section node that may not yet be in the tree.
         private void DoToNewNode(SectionNode section, DoToNewNodeDelegate f)
         {
-            try
+            if (IsInTree(section))
             {
                 f();
             }
-            catch (TreeNodeNotFoundException _e)
+            else
             {
                 TreeNodeAddedEventHandler h = delegate(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e) { };
                 h = delegate(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)

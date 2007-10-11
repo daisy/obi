@@ -34,7 +34,7 @@ namespace Obi.UserControls
             SectionNode node = mProjectPanel.CurrentSelectedStrip == null ?
                 mProjectPanel.Project.CreateChildSectionNode(mProjectPanel.Project.RootNode) :
                 mProjectPanel.Project.CreateSiblingSectionNode(mProjectPanel.CurrentSelectedStrip);
-            mProjectPanel.CurrentSelection = new NodeSelection(node, this);
+            //mProjectPanel.CurrentSelection = new NodeSelection(node, this);
             StartRenamingSelectedStrip();
         }
 
@@ -284,7 +284,7 @@ namespace Obi.UserControls
         {
             if (mProjectPanel.CurrentSelectedStrip != null)
             {
-                ProjectPanel.CurrentSelection = new NodeSelection(mProjectPanel.CurrentSelection.Node, mProjectPanel.TOCPanel);
+                //ProjectPanel.CurrentSelection = new NodeSelection(mProjectPanel.CurrentSelection.Node, mProjectPanel.TOCPanel);
                 //since the tree can be hidden:
                 mProjectPanel.ShowTOCPanel();
                 ProjectPanel.TOCPanel.Focus();

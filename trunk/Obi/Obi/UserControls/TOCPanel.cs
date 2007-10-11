@@ -23,20 +23,21 @@ namespace Obi.UserControls
 
         #region IControlWithSelection Members
 
-        public ObiNode Selection
+        public NodeSelection Selection
         {
             get
             {
-                TreeNode selected = mTocTree.SelectedNode;
-                return selected == null ? null : (ObiNode)selected.Tag;
+                return null;
+                /*TreeNode selected = mTocTree.SelectedNode;
+                return selected == null ? null : (ObiNode)selected.Tag;*/
             }
             set
             {
-                if ((mTocTree.SelectedNode == null && value != null) ||
+                /*if ((mTocTree.SelectedNode == null && value != null) ||
                     (mTocTree.SelectedNode != null && value != mTocTree.SelectedNode.Tag))
                 {
                     mTocTree.SelectedNode = value == null ? null : FindTreeNodeFromSectionNode((SectionNode)value);
-                }
+                }*/
             }
         }
 
@@ -202,13 +203,13 @@ namespace Obi.UserControls
         /// </summary>
         private void mTocTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (mProjectPanel.CurrentSelectionNode != e.Node.Tag ||
+            /*if (mProjectPanel.CurrentSelectionNode != e.Node.Tag ||
                 (mProjectPanel.CurrentSelection != null && mProjectPanel.CurrentSelection.Control != this))
             {
                 System.Diagnostics.Debug.Print("{0} changes toc tree selection from {1} to {2}.",
                     sender, mProjectPanel.CurrentSelectionNode, e.Node.Tag);
                 mProjectPanel.CurrentSelection = new NodeSelection((SectionNode)e.Node.Tag, this);
-            }
+            }*/
         }
 
         #endregion

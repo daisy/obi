@@ -11,7 +11,7 @@ namespace Obi.Commands.TOC
     /// </summary>
     public class AddNewSection: Command
     {
-        private ObiNode mParent;   // parent of the new section (section or root node)
+        private ObiNode mParent;    // parent of the new section (section or root node)
         private int mIndex;         // index of the new section
         private SectionNode mNode;  // the node for the new section
 
@@ -20,17 +20,14 @@ namespace Obi.Commands.TOC
         /// and at the same level (or as last child of the root if the context node is null)
         /// The node is selected and the user can start renaming it.
         /// </summary>
-        /// <param name="view">The view in which the command is to be executed.</param>
-        /// <param name="asChild">If true, add a subsection of the selected section.</param>
-        public AddNewSection(ProjectView.ProjectView view, ObiNode contextNode, bool asChild)
+        public AddNewSection(ProjectView.ProjectView view, NodeSelection selection)
             : base(view)
         {
-            if (asChild)
+            ObiNode contextNode = selection == null || !(selection.Node is SectionNode) ? null : selection.Node;
+            if (selection != null && selection.IsDummy)
             {
-                if (contextNode == null) throw new Exception("Cannot add as child with no parent node!");
                 mParent = contextNode;
-                mIndex = contextNode is SectionNode ? ((SectionNode)contextNode).SectionChildCount :
-                    contextNode.getChildCount();
+                mIndex = contextNode is SectionNode ? ((SectionNode)contextNode).SectionChildCount : contextNode.getChildCount();
             }
             else
             {
@@ -38,18 +35,7 @@ namespace Obi.Commands.TOC
                 mIndex = contextNode == null ? View.Project.RootNode.getChildCount() : contextNode.Index + 1;
             }
             mNode = View.Project.NewSectionNode();
-            view.SelectAndRenameNodeInTOCView(mNode);
-        }
-        
-        /// <summary>
-        /// Create a new add section command to add a new section after the context node
-        /// and at the same level (or as last child of the root if the context node is null)
-        /// The node is selected and the user can start renaming it.
-        /// </summary>
-        /// <param name="view">The view in which the command is to be executed.</param>
-        public AddNewSection(ProjectView.ProjectView view, ObiNode contextNode)
-            : this(view, contextNode, false)
-        {
+            View.SelectAndRenameNodeInTOCView(mNode);
         }
 
         public override string getShortDescription() { return Localizer.Message("add_new_section_command"); }

@@ -501,12 +501,12 @@ namespace Obi
 
         private void markSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.MarkSectionUsed(true);
+            mProjectView.ToggleSectionUsed();
         }
 
         private void mMarkSectionAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.MarkSectionUsed(false);
+            mProjectView.ToggleSectionUsed();
         }
 
         #endregion
@@ -1731,6 +1731,7 @@ namespace Obi
                     break;
                 case Obi.Events.Project.StateChange.Opened:
                     mProjectView.Project = mProject;
+                    UpdateMenus();
                     FormUpdateOpenedProject();
                     mCommandManager.Clear();
                     mProjectView.SynchronizeWithCoreTree();
@@ -1789,42 +1790,33 @@ namespace Obi
             return time.ToString("0.00") + "s";
         }
 
-        private void mProjectView_CommandExecuted(object sender, UndoRedoEventArgs e)
-        {
-            UpdateUndoRedo(e);
-        }
-
-        private void mProjectView_CommandUnexecuted(object sender, UndoRedoEventArgs e)
-        {
-            UpdateUndoRedo(e);
-        }
+        private void mProjectView_CommandExecuted(object sender, UndoRedoEventArgs e) { UpdateUndoRedo(e); }
+        private void mProjectView_CommandUnexecuted(object sender, UndoRedoEventArgs e) { UpdateUndoRedo(e); }
 
         private void UpdateUndoRedo(UndoRedoEventArgs e)
         {
-            NEWundoToolStripMenuItem.Enabled = e.Manager.canUndo();
-            NEWundoToolStripMenuItem.Text = e.Manager.canUndo() ?
+            mUndoToolStripMenuItem.Enabled = e.Manager.canUndo();
+            mUndoToolStripMenuItem.Text = e.Manager.canUndo() ?
                 String.Format(Localizer.Message("undo_label"), Localizer.Message("undo"), e.Manager.getUndoShortDescription()) :
                 Localizer.Message("cannot_undo");
-            NEWredoToolStripMenuItem.Enabled = e.Manager.canRedo();
-            NEWredoToolStripMenuItem.Text = e.Manager.canRedo() ?
+            mRedoToolStripMenuItem.Enabled = e.Manager.canRedo();
+            mRedoToolStripMenuItem.Text = e.Manager.canRedo() ?
                 String.Format(Localizer.Message("redo_label"), Localizer.Message("redo"), e.Manager.getRedoShortDescription()) :
                 Localizer.Message("cannot_redo");
         }
 
-        private void mProjectView_SelectionChanged(object sender, EventArgs e)
-        {
-            UpdateMenus();
-        }
+        private void mProjectView_SelectionChanged(object sender, EventArgs e) { UpdateMenus(); }
 
         private void UpdateMenus()
         {
-            bool selectedSection = mProjectView.SelectedSection != null;
-            mRenameSectionToolStripMenuItem.Enabled = selectedSection;
+            mAddSectionToolStripMenuItem.Enabled = mProjectView.CanAddSection;
+            mAddSubSectionToolStripMenuItem.Enabled = mProjectView.CanAddSubSection;
+            mRenameSectionToolStripMenuItem.Enabled = mProjectView.CanRenameSection;
             mMoveOutToolStripMenuItem.Enabled = mProjectView.CanMoveSectionOut;
             mMoveInToolStripMenuItem.Enabled = mProjectView.CanMoveSectionIn;
-            mMarkSectionAsUsedToolStripMenuItem.Visible = selectedSection && !mProjectView.SelectedSection.Used;
-            mMarkSectionAsUnusedToolStripMenuItem.Visible = selectedSection && mProjectView.SelectedSection.Used;
-            mMarkSectionAsUsedunusedToolStripMenuItem.Visible = !selectedSection;
+            mMarkSectionAsUsedToolStripMenuItem.Visible = mProjectView.CanMarkSectionUsed;
+            mMarkSectionAsUnusedToolStripMenuItem.Visible = mProjectView.CanMarkSectionUnused;
+            mMarkSectionAsUsedunusedToolStripMenuItem.Visible = !mProjectView.CanToggleSectionUsed;
         }
 
         private void NEWundoToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Undo(); }

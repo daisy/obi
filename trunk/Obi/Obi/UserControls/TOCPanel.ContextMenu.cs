@@ -104,7 +104,7 @@ namespace Obi.UserControls
             SectionNode selected = mProjectPanel.CurrentSelectedSection;
             if (selected != null)
             {
-                mProjectPanel.CurrentSelection = new NodeSelection(selected, mProjectPanel.StripManager);
+                //mProjectPanel.CurrentSelection = new NodeSelection(selected, mProjectPanel.StripManager);
             }
         }
 
