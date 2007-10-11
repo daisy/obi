@@ -55,7 +55,7 @@ namespace Obi.UserControls
                         if (mTransportBar.CanSelectPhrase(value.Node))
                         {
                             Select(value);
-                            mTransportBar.Selection = value.Node;
+                            mTransportBar.Selection = value;
                         }
                     }
                     else
@@ -70,7 +70,7 @@ namespace Obi.UserControls
         {
             Deselect();
             mCurrentSelection = value;
-            value.Control.Selection = value.Node;
+            value.Control.Selection = value;
             System.Diagnostics.Debug.Print("+++ SELECTED {0} +++", value);
         }
 
@@ -526,12 +526,12 @@ namespace Obi.UserControls
                 {
                     IControlWithSelection control = CurrentSelection.Control;
                     SectionNode pasted = mProject.PasteSectionNode(CurrentSelectionNode);
-                    CurrentSelection = new NodeSelection(pasted, control);
+                    //CurrentSelection = new NodeSelection(pasted, control);
                 }
                 else if (mProject.Clipboard.Phrase != null)
                 {
                     PhraseNode pasted = mProject.PastePhraseNodeBefore(mProject.Clipboard.Phrase, CurrentSelectionNode);
-                    CurrentSelection = new NodeSelection(pasted, mStripManagerPanel);
+                    //CurrentSelection = new NodeSelection(pasted, mStripManagerPanel);
                 }
             }
             else

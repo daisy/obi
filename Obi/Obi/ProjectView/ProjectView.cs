@@ -44,37 +44,6 @@ namespace Obi.ProjectView
 
 
         /// <summary>
-        /// A node (from the clipboard) can be pasted if the selection context is right.
-        /// Note that pasting a used section or used phrase under an unused section should
-        /// turn the pasted node to unused.
-        /// </summary>
-        /// <param name="node">The node to paste (coming from the clipboard.) Null if no node is in the clipboard.</param>
-        public bool CanPaste(ObiNode node)
-        {
-            if (node == null)
-            {
-                // nothing to paste
-                return false;
-            }
-            else if (mSelection == null)
-            {
-                // no selection: can only paste a section
-                return mProject != null && node is SectionNode;
-            }
-            else if (node is SectionNode)
-            {
-                // a section can only be pasted under a section
-                // same for strips
-                return mSelection.Node is SectionNode;
-            }
-            else
-            {
-                // a phrase can ony be pasted in the strip view
-                return false; // mCurrentSelection.Control == mStripManagerPanel;
-            }
-        }
-
-        /// <summary>
         /// Contents of the clipboard (at the moment a single node.)
         /// </summary>
         public ObiNode Clipboard
@@ -96,24 +65,6 @@ namespace Obi.ProjectView
                 // mTOCPanel.EnableTooltips = value;
                 mTransportBar.EnableTooltips = value;
             }
-        }
-
-        /// <summary>
-        /// Get a label for the node currently in the clipboard, with regard to the
-        /// context in which it is to be pasted (i.e. show "strip" if the context is
-        /// the strip manager, which it is by default, or "section" if the context is
-        /// the TOC panel.)
-        /// </summary>
-        /// <param name="node">The node to paste (coming from the clipboard.) Null if
-        /// no node is in the clipboard.</param>
-        public string PasteLabel(ObiNode node)
-        {
-            return node == null ? "" :                                      // nothing to paste
-                Localizer.Message(node is PhraseNode ? "audio_block" :      // audio block
-                    mSelection != null &&
-                //mSelection.Control == mTOCPanel ? "section" :    // pasting in TOC panel
-                    ((SectionNode)node).SectionChildCount > 0 ? "strips" :  // pasting several strips
-                    "strip");                                               // pasting only one strip
         }
 
         /// <summary>
@@ -174,14 +125,19 @@ namespace Obi.ProjectView
             {
                 if (mSelection != value)
                 {
-                    if (mSelection != null) mSelection.Control.Selection = null;
+                    // deselect if there was a selection in a different control
+                    if (mSelection != null && value != null && mSelection.Control != value.Control)
+                    {
+                        mSelection.Control.Selection = null;
+                    }
+                    // select in the control
                     mSelection = value;
                     if (mSelection != null)
                     {
                         if (mSelection.Control == mTOCView) TOCViewVisible = true;
                         else if (mSelection.Control == mMetadataView) MetadataViewVisible = true;
                     }
-                    if (value != null) value.Control.Selection = value.Node;
+                    if (value != null) value.Control.Selection = value;
                     if (SelectionChanged != null) SelectionChanged(this, new EventArgs());
                 }
             }
@@ -227,15 +183,6 @@ namespace Obi.ProjectView
 
 
         #region TOC Panel
-
-        /// <summary>
-        /// Add a new sibling section after the currently selected section in the TOC view.
-        /// If no section is selected, then append a new section at the top level.
-        /// </summary>
-        public SectionNode AddSection()
-        {
-            return mProject.CreateSiblingSectionNode(mTOCView.SelectedSection);
-        }
 
         /// <summary>
         /// Show the selected section in the TOC view in the strip view.
@@ -413,7 +360,10 @@ namespace Obi.ProjectView
         /// </summary>
         public void AddNewSection()
         {
-            if (mProject != null) mUndo.execute(new Commands.TOC.AddNewSection(this, mTOCView.SelectedSection));
+            if (CanAddSection)
+            {
+                mUndo.execute(new Commands.TOC.AddNewSection(this, mTOCView.Selection));
+            }
         }
 
         /// <summary>
@@ -421,9 +371,10 @@ namespace Obi.ProjectView
         /// </summary>
         public void AddNewSubSection()
         {
-            if (mProject != null && mTOCView.SelectedSection != null)
+            if (CanAddSubSection)
             {
-                mUndo.execute(new Commands.TOC.AddNewSection(this, mTOCView.SelectedSection, true));
+                mUndo.execute(new Commands.TOC.AddNewSection(this,
+                    new NodeSelection(mTOCView.Selection.Node, mTOCView.Selection.Control, true)));
             }
         }
 
@@ -432,10 +383,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void StartRenamingSelectedSection()
         {
-            if (mSelection != null && mTOCView.SelectedSection != null)
-            {
-                mTOCView.SelectAndRenameNode(mTOCView.SelectedSection);
-            }
+            if (CanRenameSection) mTOCView.SelectAndRenameNode(mTOCView.Selection.Section);
         }
 
         /// <summary>
@@ -443,7 +391,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void MoveSelectedSectionOut()
         {
-            if (mTOCView.CanMoveSectionOut) mUndo.execute(new Commands.TOC.MoveSectionOut(this, mTOCView.SelectedSection));
+            if (CanMoveSectionOut) mUndo.execute(new Commands.TOC.MoveSectionOut(this, mTOCView.Selection.Section));
         }
 
         /// <summary>
@@ -451,17 +399,17 @@ namespace Obi.ProjectView
         /// </summary>
         public void MoveSelectedSectionIn()
         {
-            if (mTOCView.CanMoveSectionIn) mUndo.execute(new Commands.TOC.MoveSectionIn(this, mTOCView.SelectedSection));
+            if (CanMoveSectionIn) mUndo.execute(new Commands.TOC.MoveSectionIn(this, mTOCView.Selection.Section));
         }
 
         /// <summary>
         /// Change the used status of the selected section, and of all its subsections.
         /// </summary>
-        public void MarkSectionUsed(bool used)
+        public void ToggleSectionUsed()
         {
-            if (mTOCView.SelectedSection != null && mTOCView.SelectedSection.Used != used)
+            if (CanToggleSectionUsed)
             {
-                mUndo.execute(new Commands.TOC.ToggleSectionUsed(this, mTOCView.SelectedSection));
+                mUndo.execute(new Commands.TOC.ToggleSectionUsed(this, mTOCView.Selection.Section));
             }
         }
 
@@ -487,7 +435,7 @@ namespace Obi.ProjectView
         /// <remarks>TODO: phrases and </remarks>
         public void Cut()
         {
-            if (mTOCView.SelectedSection != null) mUndo.execute(new Commands.TOC.Cut(this, mTOCView.SelectedSection));
+            if (CanRemoveSection) mUndo.execute(new Commands.TOC.Cut(this, mTOCView.Selection.Section));
         }
 
         /// <summary>
@@ -495,7 +443,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void Copy()
         {
-            if (mTOCView.SelectedSection != null) mUndo.execute(new Commands.TOC.Copy(this, mTOCView.SelectedSection));
+            if (CanCopySection) mUndo.execute(new Commands.TOC.Copy(this, mTOCView.Selection.Section));
         }
 
         /// <summary>
@@ -503,10 +451,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void Paste()
         {
-            if (mTOCView.SelectedSection != null && mClipboard is SectionNode)
-            {
-                mUndo.execute(new Commands.TOC.Paste(this, mTOCView.SelectedSection));
-            }
+            if (CanPasteSection) mUndo.execute(new Commands.TOC.Paste(this, mTOCView.Selection.Section));
         }
 
         /// <summary>
@@ -514,7 +459,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void Delete()
         {
-            if (mTOCView.SelectedSection != null) mUndo.execute(new Commands.TOC.Delete(this, mTOCView.SelectedSection));
+            if (CanRemoveSection) mUndo.execute(new Commands.TOC.Delete(this, mTOCView.Selection.Section));
         }
 
         /// <summary>
@@ -587,7 +532,17 @@ namespace Obi.ProjectView
             }
         }
 
+        public bool CanAddSection { get { return true; } }
+        public bool CanAddSubSection { get { return mTOCView.Selection != null; } }
+        public bool CanCopySection { get { return mTOCView.Selection != null && !mTOCView.Selection.IsDummy; } }
+        public bool CanMarkSectionUnused { get { return mTOCView.CanToggleSectionUsed && mTOCView.Selection.Node.Used; } }
+        public bool CanMarkSectionUsed { get { return mTOCView.CanToggleSectionUsed && !mTOCView.Selection.Node.Used; } }
         public bool CanMoveSectionIn { get { return mTOCView.CanMoveSectionIn; } }
         public bool CanMoveSectionOut { get { return mTOCView.CanMoveSectionOut; } }
+        public bool CanPasteSection { get { return mTOCView.Selection != null && mTOCView.Selection.Node is SectionNode
+            && mClipboard is SectionNode; } }
+        public bool CanRemoveSection { get { return mTOCView.CanRemoveSection; } }
+        public bool CanRenameSection { get { return mTOCView.CanRenameSection; } }
+        public bool CanToggleSectionUsed { get { return mTOCView.CanToggleSectionUsed; } }
     }
 }

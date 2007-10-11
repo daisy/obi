@@ -650,7 +650,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to (dummy section).
+        ///   Looks up a localized string similar to (add new node).
         /// </summary>
         internal static string dummy_section {
             get {

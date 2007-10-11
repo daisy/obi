@@ -120,22 +120,22 @@ namespace Obi.UserControls
 
         #region selection
 
-        public ObiNode Selection
+        public NodeSelection Selection
         {
             get {
                 //LNN: removed this line, since it's higly annoying when working in the designer
                 //throw new Exception("Please don't ask me for a selection, I don't know anything about that stuff."); 
-
+                /*
                 if (mCurrentPlaylist != null)
                     if (mCurrentPlaylist.CurrentPhrase != null)
                         return mCurrentPlaylist.CurrentPhrase;
-
+                */
                 //ok, I give up, this might cause you an error, so lay off asking me for the current selection!
                 return null;
             }
             set
             {
-                if (IsSelectionRelevant(value) && value is PhraseNode) mCurrentPlaylist.CurrentPhrase = (PhraseNode)value;
+                //if (IsSelectionRelevant(value) && value is PhraseNode) mCurrentPlaylist.CurrentPhrase = (PhraseNode)value;
             }
         }
 
@@ -298,11 +298,11 @@ namespace Obi.UserControls
         {
             if (mProjectPanel.TOCPanel.ContainsFocus    &&    m_CurrentPlayingSection != mCurrentPlaylist.CurrentSection)
             {
-                mProjectPanel.TOCPanel.Selection = mCurrentPlaylist.CurrentSection;
+                //mProjectPanel.TOCPanel.Selection = mCurrentPlaylist.CurrentSection;
                 m_CurrentPlayingSection = mCurrentPlaylist.CurrentSection;
                             }
 
-            mProjectPanel.CurrentSelection = new NodeSelection(e.Node, mProjectPanel.StripManager);
+            //mProjectPanel.CurrentSelection = new NodeSelection(e.Node, mProjectPanel.StripManager);
         }
 
         /// <summary>

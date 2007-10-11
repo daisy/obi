@@ -742,7 +742,7 @@ Do you want to replace the project contained in this file?</value>
     <comment>RenameSection command label</comment>
   </data>
   <data name="dummy_section" xml:space="preserve">
-    <value>(dummy section)</value>
+    <value>(add new node)</value>
   </data>
   <data name="move_section_out_command" xml:space="preserve">
     <value>move section out</value>

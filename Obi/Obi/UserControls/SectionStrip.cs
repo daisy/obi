@@ -234,7 +234,7 @@ namespace Obi.UserControls
         
         private void SectionStrip_Click(object sender, EventArgs e)
         {
-            mManager.ProjectPanel.CurrentSelection = new NodeSelection(mNode, mManager);
+            //mManager.ProjectPanel.CurrentSelection = new NodeSelection(mNode, mManager);
         }
 
         private void SectionStrip_DoubleClick(object sender, EventArgs e)
@@ -345,7 +345,7 @@ namespace Obi.UserControls
         /// </summary>
         private void mAnnotationLayoutPanel_Click(object sender, EventArgs e)
         {
-            mManager.ProjectPanel.CurrentSelection = new NodeSelection(mNode, mManager);
+            //mManager.ProjectPanel.CurrentSelection = new NodeSelection(mNode, mManager);
         }
 
         #endregion

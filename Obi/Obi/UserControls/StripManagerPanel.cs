@@ -38,16 +38,18 @@ namespace Obi.UserControls
 
         #region selection
 
-        public ObiNode Selection
+        public NodeSelection Selection
         {
             get
             {
+                return null;
+                /*
                 return mProjectPanel.CurrentSelection != null &&
                     mProjectPanel.CurrentSelection.Control == this ?
-                    mProjectPanel.CurrentSelection.Node : null;
+                    mProjectPanel.CurrentSelection.Node : null;*/
             }
             set
-            {
+            {/*
                 if (value == null)
                 {
                     Deselect();
@@ -59,7 +61,7 @@ namespace Obi.UserControls
                 else if (value is SectionNode)
                 {
                     mSectionNodeMap[(SectionNode)value].Selected = true;
-                }
+                }*/
             }
         }
 

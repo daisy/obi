@@ -48,8 +48,8 @@ namespace Obi
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.NEWundoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.NEWredoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mUndoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mRedoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,6 +72,7 @@ namespace Obi
             this.mMoveInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMarkSectionAsUsedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMarkSectionAsUnusedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mMarkSectionAsUsedunusedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStripsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mInsertStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRenameStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -123,7 +124,6 @@ namespace Obi
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.mMarkSectionAsUsedunusedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -291,8 +291,8 @@ namespace Obi
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.NEWundoToolStripMenuItem,
-            this.NEWredoToolStripMenuItem,
+            this.mUndoToolStripMenuItem,
+            this.mRedoToolStripMenuItem,
             this.toolStripSeparator1,
             this.cutToolStripMenuItem,
             this.copyToolStripMenuItem,
@@ -304,21 +304,21 @@ namespace Obi
             // 
             // NEWundoToolStripMenuItem
             // 
-            this.NEWundoToolStripMenuItem.Enabled = false;
-            this.NEWundoToolStripMenuItem.Name = "NEWundoToolStripMenuItem";
-            this.NEWundoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.NEWundoToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
-            this.NEWundoToolStripMenuItem.Text = "&Undo";
-            this.NEWundoToolStripMenuItem.Click += new System.EventHandler(this.NEWundoToolStripMenuItem_Click);
+            this.mUndoToolStripMenuItem.Enabled = false;
+            this.mUndoToolStripMenuItem.Name = "NEWundoToolStripMenuItem";
+            this.mUndoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
+            this.mUndoToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.mUndoToolStripMenuItem.Text = "&Undo";
+            this.mUndoToolStripMenuItem.Click += new System.EventHandler(this.NEWundoToolStripMenuItem_Click);
             // 
             // NEWredoToolStripMenuItem
             // 
-            this.NEWredoToolStripMenuItem.Enabled = false;
-            this.NEWredoToolStripMenuItem.Name = "NEWredoToolStripMenuItem";
-            this.NEWredoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.NEWredoToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
-            this.NEWredoToolStripMenuItem.Text = "&Redo";
-            this.NEWredoToolStripMenuItem.Click += new System.EventHandler(this.NEWredoToolStripMenuItem_Click);
+            this.mRedoToolStripMenuItem.Enabled = false;
+            this.mRedoToolStripMenuItem.Name = "NEWredoToolStripMenuItem";
+            this.mRedoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
+            this.mRedoToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.mRedoToolStripMenuItem.Text = "&Redo";
+            this.mRedoToolStripMenuItem.Click += new System.EventHandler(this.NEWredoToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -499,6 +499,14 @@ namespace Obi
             this.mMarkSectionAsUnusedToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
             this.mMarkSectionAsUnusedToolStripMenuItem.Text = "Mar&k section as unused";
             this.mMarkSectionAsUnusedToolStripMenuItem.Click += new System.EventHandler(this.mMarkSectionAsUnusedToolStripMenuItem_Click);
+            // 
+            // mMarkSectionAsUsedunusedToolStripMenuItem
+            // 
+            this.mMarkSectionAsUsedunusedToolStripMenuItem.Enabled = false;
+            this.mMarkSectionAsUsedunusedToolStripMenuItem.Name = "mMarkSectionAsUsedunusedToolStripMenuItem";
+            this.mMarkSectionAsUsedunusedToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.K)));
+            this.mMarkSectionAsUsedunusedToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.mMarkSectionAsUsedunusedToolStripMenuItem.Text = "Mar&k section as used/unused";
             // 
             // mStripsToolStripMenuItem
             // 
@@ -955,14 +963,6 @@ namespace Obi
             this.mProjectView.TabIndex = 4;
             this.mProjectView.TOCViewVisible = true;
             // 
-            // mMarkSectionAsUsedunusedToolStripMenuItem
-            // 
-            this.mMarkSectionAsUsedunusedToolStripMenuItem.Enabled = false;
-            this.mMarkSectionAsUsedunusedToolStripMenuItem.Name = "mMarkSectionAsUsedunusedToolStripMenuItem";
-            this.mMarkSectionAsUsedunusedToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.K)));
-            this.mMarkSectionAsUsedunusedToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
-            this.mMarkSectionAsUsedunusedToolStripMenuItem.Text = "Mar&k section as used/unused";
-            // 
             // ObiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1067,8 +1067,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mNewProjectFromImportToolStripMenuItem;
         private Obi.ProjectView.ProjectView mProjectView;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem NEWundoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem NEWredoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mUndoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mRedoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mShowTOCViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mHideTOCViewToolStripMenuItem;
