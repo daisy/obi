@@ -5,11 +5,12 @@ namespace Obi.Commands.TOC
     /// <summary>
     /// Delete a section (and all of its subsections)
     /// </summary>
+    // TODO: this should be generic
     public class Delete : Command
     {
         private SectionNode mSection;  // the deleted section
-        private ObiNode mParent;       // parent of the deleted section (section or root node)
-        private int mIndex;            // index of the deleted section
+        private ObiNode mParent;       // its original parent
+        private int mIndex;            // its original index
 
         public Delete(ProjectView.ProjectView view, SectionNode section): base(view)
         {
