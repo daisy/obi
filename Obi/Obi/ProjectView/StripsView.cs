@@ -9,33 +9,73 @@ using urakawa.core.events;
 
 namespace Obi.ProjectView
 {
-    public partial class StripsView : UserControl
+    public partial class StripsView : UserControl, IControlWithSelection
     {
-        private Project mProject;  // project for this view
+        private ProjectView mView;     // parent project view
+        private Strip mSelectedStrip;  // the current selection
 
         /// <summary>
-        /// A new strips view that is unconnected to any project yet.
+        /// A new strips view.
         /// </summary>
-        public StripsView()
+        public StripsView(ProjectView view): this()
         {
-            InitializeComponent();
+            mView = view;
+            mSelectedStrip = null;
+        }
+
+        // Used by the designer
+        public StripsView() { InitializeComponent(); }
+
+
+        /// <summary>
+        /// Show the strip for this section node.
+        /// </summary>
+        public void MakeStripVisibleForSection(SectionNode section)
+        {
+            if (section != null) mLayoutPanel.ScrollControlIntoView(FindStrip(section));
         }
 
         /// <summary>
-        /// Connect the strips view to the project.
-        /// TODO we may need to get rid of old events if we change projects.
+        /// Set a new project for this view.
         /// </summary>
-        public Project Project
+        public void NewProject()
         {
+            mView.Project.getPresentation().treeNodeAdded += new TreeNodeAddedEventHandler(StripsView_treeNodeAdded);
+            mView.Project.getPresentation().treeNodeRemoved += new TreeNodeRemovedEventHandler(StripsView_treeNodeRemoved);
+            mView.Project.RenamedSectionNode += new Obi.Events.RenameSectionNodeHandler(Project_RenamedSectionNode);
+        }
+
+        /// <summary>
+        /// Set the selected section (null to deselect)
+        /// </summary>
+        public SectionNode SelectedSection
+        {
+            get { return mSelectedStrip == null ? null : mSelectedStrip.Node; }
+            set { mView.Selection = new NodeSelection(value, this, false); }
+        }
+
+        /// <summary>
+        /// Set the selection from the parent view.
+        /// </summary>
+        public NodeSelection Selection
+        {
+            get { return new NodeSelection(mSelectedStrip.Node, this, false); }
             set
             {
-                mProject = value;
-                mProject.getPresentation().treeNodeAdded += new TreeNodeAddedEventHandler(StripsView_treeNodeAdded);
-                mProject.getPresentation().treeNodeRemoved += new TreeNodeRemovedEventHandler(StripsView_treeNodeRemoved);
-                mProject.RenamedSectionNode += new Obi.Events.RenameSectionNodeHandler(mProject_RenamedSectionNode);
+                Strip s = value == null ? null : FindStrip(value.Node as SectionNode);
+                if (s != mSelectedStrip)
+                {
+                    if (mSelectedStrip != null) mSelectedStrip.Selected = false;
+                    if (s != null)
+                    {
+                        s.Selected = true;
+                        mLayoutPanel.ScrollControlIntoView(s);
+                        mView.MakeTreeNodeVisibleForSection(value.Node as SectionNode);
+                    }
+                    mSelectedStrip = s;
+                }
             }
         }
-
 
         #region Event handlers
 
@@ -49,7 +89,7 @@ namespace Obi.ProjectView
         }
 
         // Handle section nodes renamed from the project: change the label of the corresponding strip.
-        private void mProject_RenamedSectionNode(object sender, Obi.Events.Node.RenameSectionNodeEventArgs e)
+        private void Project_RenamedSectionNode(object sender, Obi.Events.Node.RenameSectionNodeEventArgs e)
         {
             Strip strip = FindStrip(e.Node);
             strip.Label = e.Label;
@@ -69,14 +109,11 @@ namespace Obi.ProjectView
             }
         }
 
+        // Add a new strip for a section and all of its subsections
         private Strip AddStripForSection(SectionNode section)
         {
             for (int i = 0; i < section.SectionChildCount; ++i) AddStripForSection(section.SectionChild(i));
-            Strip strip = new Strip(section);
-            strip.LabelEditedByUser += new EventHandler(delegate(object sender, EventArgs _e)
-            {
-                mProject.RenameSectionNode(section, strip.Label);
-            });
+            Strip strip = new Strip(section, this);
             mLayoutPanel.Controls.Add(strip);
             mLayoutPanel.Controls.SetChildIndex(strip, section.Position);
             strip.MinimumSize = new Size(mLayoutPanel.Width, strip.MinimumSize.Height);
@@ -92,6 +129,7 @@ namespace Obi.ProjectView
             }
         }
 
+        // Remove all strips for a section and its subsections
         private void RemoveStripForSection(SectionNode section)
         {
             for (int i = 0; i < section.SectionChildCount; ++i) RemoveStripForSection(section.SectionChild(i));
@@ -118,13 +156,5 @@ namespace Obi.ProjectView
         }
 
         #endregion
-
-        /// <summary>
-        /// Show the strip for this section node.
-        /// </summary>
-        public void MakeStripVisibleForSection(SectionNode section)
-        {
-            if (section != null) mLayoutPanel.ScrollControlIntoView(FindStrip(section));
-        }
     }
 }

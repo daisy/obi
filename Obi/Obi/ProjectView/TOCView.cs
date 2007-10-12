@@ -73,6 +73,14 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Make the tree node for this section visible.
+        /// </summary>
+        public void MakeTreeNodeVisibleForSection(SectionNode section)
+        {
+            FindTreeNode(section).EnsureVisible();
+        }
+
+        /// <summary>
         /// Set a new project for this view.
         /// </summary>
         public void NewProject()

@@ -33,7 +33,7 @@ namespace Obi.ProjectView
             this.mNoProjectLabel = new System.Windows.Forms.Label();
             this.mTOCView = new Obi.ProjectView.TOCView(this);
             this.mMetadataView = new Obi.ProjectView.MetadataView();
-            this.mStripsView = new Obi.ProjectView.StripsView();
+            this.mStripsView = new Obi.ProjectView.StripsView(this);
             this.mTransportBar = new Obi.UserControls.TransportBar();
             this.mHSplitter.Panel1.SuspendLayout();
             this.mHSplitter.Panel2.SuspendLayout();
