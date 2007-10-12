@@ -15,6 +15,7 @@ namespace Obi.ProjectView
         private NodeSelection mSelection;        // currently selected node
         private ObiNode mClipboard;              // node in the clipboard
         private Commands.UndoRedoManager mUndo;  // the undo manager for the project view
+        private bool mSynchronizeViews;          // synchronize views flag
 
         public event EventHandler TOCViewVisibilityChanged;
         public event EventHandler MetadataViewVisibilityChanged;
@@ -168,6 +169,11 @@ namespace Obi.ProjectView
         {
             get { return mSelection == null ? null : mSelection.Node; }
         }
+
+        /// <summary>
+        /// Set the synchronize views flag for this view.
+        /// </summary>
+        public bool SynchronizeViews { set { mSynchronizeViews = value; } }
 
         /// <summary>
         /// Redraw everything to keep the view in sync with the model.
@@ -544,5 +550,14 @@ namespace Obi.ProjectView
         public bool CanRemoveSection { get { return mTOCView.CanRemoveSection; } }
         public bool CanRenameSection { get { return mTOCView.CanRenameSection; } }
         public bool CanToggleSectionUsed { get { return mTOCView.CanToggleSectionUsed; } }
+
+        /// <summary>
+        /// Show the strip for the given section
+        /// </summary>
+        /// <param name="sectionNode"></param>
+        public void MakeStripVisibleForSection(SectionNode section)
+        {
+            if (mSynchronizeViews) mStripsView.MakeStripVisibleForSection(section);
+        }
     }
 }

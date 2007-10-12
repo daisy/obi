@@ -124,6 +124,7 @@ namespace Obi
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.mSynchronizeViewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -302,19 +303,19 @@ namespace Obi
             this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
             this.toolStripMenuItem1.Text = "&Edit";
             // 
-            // NEWundoToolStripMenuItem
+            // mUndoToolStripMenuItem
             // 
             this.mUndoToolStripMenuItem.Enabled = false;
-            this.mUndoToolStripMenuItem.Name = "NEWundoToolStripMenuItem";
+            this.mUndoToolStripMenuItem.Name = "mUndoToolStripMenuItem";
             this.mUndoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
             this.mUndoToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.mUndoToolStripMenuItem.Text = "&Undo";
             this.mUndoToolStripMenuItem.Click += new System.EventHandler(this.NEWundoToolStripMenuItem_Click);
             // 
-            // NEWredoToolStripMenuItem
+            // mRedoToolStripMenuItem
             // 
             this.mRedoToolStripMenuItem.Enabled = false;
-            this.mRedoToolStripMenuItem.Name = "NEWredoToolStripMenuItem";
+            this.mRedoToolStripMenuItem.Name = "mRedoToolStripMenuItem";
             this.mRedoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
             this.mRedoToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.mRedoToolStripMenuItem.Text = "&Redo";
@@ -366,8 +367,9 @@ namespace Obi
             this.mHideMetadataViewToolStripMenuItem,
             this.showToolStripMenuItem,
             this.showInStripsViewToolStripMenuItem,
+            this.showSourceToolStripMenuItem,
             this.toolStripSeparator12,
-            this.showSourceToolStripMenuItem});
+            this.mSynchronizeViewsToolStripMenuItem});
             this.mViewToolStripMenuItem.Name = "mViewToolStripMenuItem";
             this.mViewToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
             this.mViewToolStripMenuItem.Text = "&View";
@@ -963,6 +965,13 @@ namespace Obi
             this.mProjectView.TabIndex = 4;
             this.mProjectView.TOCViewVisible = true;
             // 
+            // mSynchronizeViewsToolStripMenuItem
+            // 
+            this.mSynchronizeViewsToolStripMenuItem.Name = "mSynchronizeViewsToolStripMenuItem";
+            this.mSynchronizeViewsToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.mSynchronizeViewsToolStripMenuItem.Text = "Synchronize views";
+            this.mSynchronizeViewsToolStripMenuItem.Click += new System.EventHandler(this.mSynchronizeViewsToolStripMenuItem_Click);
+            // 
             // ObiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1085,6 +1094,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMarkSectionAsUsedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMarkSectionAsUsedunusedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSynchronizeViewsToolStripMenuItem;
 
 
     }

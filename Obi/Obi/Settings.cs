@@ -30,6 +30,7 @@ namespace Obi
         public string LastOutputDevice;   // the name of the last output device selected by the user
         public Size ObiFormSize;          // size of the form (for future sessions) 
         public bool OpenLastProject;      // open the last open project at startup
+        public bool SynchronizeViews;     // keep views synchronized
         public ArrayList RecentProjects;  // paths to projects recently opened
         public int SampleRate;            // sample rate in Hertz
         public UserProfile UserProfile;   // the user profile
@@ -74,6 +75,8 @@ namespace Obi
             settings.BitDepth = 16;
             settings.FontSize = 10.0f;
             settings.EnableTooltips = true;
+            settings.OpenLastProject = false;
+            settings.SynchronizeViews = true;
             settings.ObiFormSize = new Size(0, 0);
             IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
             try
