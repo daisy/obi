@@ -777,6 +777,8 @@ namespace Obi
             {
                 Size = mSettings.ObiFormSize;
             }
+            // Synchronize views
+            SynchronizeViews = mSettings.SynchronizeViews;
         }
 
         /// <summary>
@@ -1863,6 +1865,21 @@ namespace Obi
                 {
                     mSourceView.Focus();
                 }
+            }
+        }
+
+        private void mSynchronizeViewsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SynchronizeViews = !mSettings.SynchronizeViews;
+        }
+
+        private bool SynchronizeViews
+        {
+            set
+            {
+                mSettings.SynchronizeViews = value;
+                mSynchronizeViewsToolStripMenuItem.Checked = value;
+                mProjectView.SynchronizeViews = value;
             }
         }
     }

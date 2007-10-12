@@ -118,5 +118,13 @@ namespace Obi.ProjectView
         }
 
         #endregion
+
+        /// <summary>
+        /// Show the strip for this section node.
+        /// </summary>
+        public void MakeStripVisibleForSection(SectionNode section)
+        {
+            if (section != null) mLayoutPanel.ScrollControlIntoView(FindStrip(section));
+        }
     }
 }

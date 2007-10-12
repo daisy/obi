@@ -112,14 +112,14 @@ namespace Obi.ProjectView
             set
             {
                 TreeNode n = value == null ? null : value.IsDummy ? mDummy : FindTreeNode((SectionNode)value.Node);
-                if (n != mTOCTree.SelectedNode)
-                {
-                    // ignore the select event, since we were asked to change the selection
-                    mTOCTree.AfterSelect -= new TreeViewEventHandler(mTOCTree_AfterSelect);
-                    // if (n != mDummy) UpdateDummyNode(n);
-                    mTOCTree.SelectedNode = n;
-                    mTOCTree.AfterSelect += new TreeViewEventHandler(mTOCTree_AfterSelect);
-                }
+                // ignore the select event, since we were asked to change the selection
+                mTOCTree.AfterSelect -= new TreeViewEventHandler(mTOCTree_AfterSelect);
+                // if (n != mDummy) UpdateDummyNode(n);  // TODO dummy node is not working yet
+                mTOCTree.SelectedNode = n;
+                // Show the strip for the selected section (use "as SectionNode" since the dummy under the root
+                // may be selected and there is no strip for it.)
+                if (n != null) mView.MakeStripVisibleForSection(n.Tag as SectionNode);
+                mTOCTree.AfterSelect += new TreeViewEventHandler(mTOCTree_AfterSelect);
             }
         }
 
