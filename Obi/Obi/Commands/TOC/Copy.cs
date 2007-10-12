@@ -1,13 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Obi.Commands.TOC
 {
+    /// <summary>
+    /// Copy a section node.
+    /// </summary>
+    // TODO: this should be generic.
     public class Copy : Command
     {
-        private SectionNode mSection;
-        private ObiNode mClipboard;
+        private SectionNode mSection;  // the copied section
+        private ObiNode mClipboard;    // the previous contents of the clipboard
 
         public Copy(ProjectView.ProjectView view, SectionNode section)
             : base(view)

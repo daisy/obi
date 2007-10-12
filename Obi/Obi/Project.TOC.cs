@@ -30,11 +30,11 @@ namespace Obi
             if (node != null)
             {
                 SectionNode copy = node.copy(true);
-                Commands.TOC.CutSectionNode command = new Commands.TOC.CutSectionNode(copy);
-                command.AddCommand(RemoveSectionNode(node));
+                //Commands.TOC.CutSectionNode command = new Commands.TOC.CutSectionNode(copy);
+                //command.AddCommand(RemoveSectionNode(node));
                 mClipboard.Section = copy;
                 Modified();
-                CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+                //CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             }
         }
 
@@ -48,7 +48,7 @@ namespace Obi
             if (node != null)
             {
                 SectionNode copy = node.copy(true);
-                CommandCreated(this, new Events.Project.CommandCreatedEventArgs(new Commands.TOC.CopySectionNode(copy)));
+                //CommandCreated(this, new Events.Project.CommandCreatedEventArgs(new Commands.TOC.CopySectionNode(copy)));
                 mClipboard.Section = copy;
             }
         }
@@ -63,8 +63,8 @@ namespace Obi
             {
                 if (context == null) context = RootNode;
                 SectionNode pasted = PasteCopyOfSectionNode(mClipboard.Section, context);
-                CommandCreated(this,
-                    new Events.Project.CommandCreatedEventArgs(new Commands.TOC.PasteSectionNode(pasted, context)));
+                //CommandCreated(this,
+                //    new Events.Project.CommandCreatedEventArgs(new Commands.TOC.PasteSectionNode(pasted, context)));
                 return pasted;
             }
             else
@@ -80,9 +80,9 @@ namespace Obi
         {
             if (node != null)
             {
-                Commands.TOC.DeleteSectionNode command = RemoveSectionNode(node);
+                //Commands.TOC.DeleteSectionNode command = RemoveSectionNode(node);
                 Modified();
-                CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+                //CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             }
         }
 
@@ -108,7 +108,7 @@ namespace Obi
                 parent.insertAfter(sibling, contextNode);
                 // AddChildSectionBefore(sibling, contextNode, parent);
             }
-            Modified(new Commands.TOC.AddSectionNode(sibling));
+            // Modified(new Commands.TOC.AddSectionNode(sibling));
             return sibling;
         }
 
@@ -130,7 +130,7 @@ namespace Obi
             {
                 AppendChildSection(child, parent);
             }
-            Modified(new Commands.TOC.AddSectionNode(child));
+            // Modified(new Commands.TOC.AddSectionNode(child));
             return child;
         }
 
@@ -194,7 +194,7 @@ namespace Obi
         /// </summary>
         /// <param name="node">The node to increase the level of.</param>
         /// <returns>Return an increase command (for use in shallow section commands.)</returns>
-        public Commands.TOC.IncreaseSectionNodeLevel IncreaseSectionNodeLevel(SectionNode node)
+        /*public Commands.TOC.IncreaseSectionNodeLevel IncreaseSectionNodeLevel(SectionNode node)
         {
             Commands.TOC.IncreaseSectionNodeLevel command = new Commands.TOC.IncreaseSectionNodeLevel(node, (TreeNode)node.getParent());
             SectionNode newParent = node.ParentSection == null ?
@@ -205,7 +205,7 @@ namespace Obi
             MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, newParent));
             Modified();
             return command;
-        }
+        }*/
 
         /// <summary>
         /// Move a section node out (decrease its level.)
@@ -215,8 +215,8 @@ namespace Obi
         {
             if (CanMoveSectionNodeOut(node))
             {
-                Commands.TOC.DecreaseSectionNodeLevel command = DecreaseSectionNodeLevel(node);
-                CommandCreated(this, new Obi.Events.Project.CommandCreatedEventArgs(command));
+                // Commands.TOC.DecreaseSectionNodeLevel command = DecreaseSectionNodeLevel(node);
+                // CommandCreated(this, new Obi.Events.Project.CommandCreatedEventArgs(command));
             }
         }
 
@@ -224,7 +224,7 @@ namespace Obi
         /// Decrease the level of a section node.
         /// </summary>
         /// <param name="node">The node getting it.</param>
-        public Commands.TOC.DecreaseSectionNodeLevel DecreaseSectionNodeLevel(SectionNode node)
+        /*public Commands.TOC.DecreaseSectionNodeLevel DecreaseSectionNodeLevel(SectionNode node)
         {
             SectionNode parent = node.ParentSection;
             Commands.TOC.DecreaseSectionNodeLevel command = new Commands.TOC.DecreaseSectionNodeLevel(node, parent);
@@ -241,7 +241,7 @@ namespace Obi
             DecreasedSectionNodeLevel(this, new Events.Node.SectionNodeEventArgs(this, node));
             Modified();
             return command;
-        }
+        }*/
 
         /// <summary>
         /// Undo decrease node level is a bit tricky because we might have to move some of the node's
@@ -273,8 +273,8 @@ namespace Obi
         {
             if (CanMoveSectionNodeIn(node))
             {
-                Commands.TOC.IncreaseSectionNodeLevel command = IncreaseSectionNodeLevel(node);
-                CommandCreated(this, new Obi.Events.Project.CommandCreatedEventArgs(command));
+                // Commands.TOC.IncreaseSectionNodeLevel command = IncreaseSectionNodeLevel(node);
+                // CommandCreated(this, new Obi.Events.Project.CommandCreatedEventArgs(command));
             }
         }
 
@@ -289,24 +289,24 @@ namespace Obi
             for (int i = 0; i < node.PhraseChildCount; ++i)
                 mClipboard.Section.appendChild(node.PhraseChild(i).copy(true));
 
-            Commands.TOC.ShallowCutSectionNode command = origin == this ?
-                null : new Commands.TOC.ShallowCutSectionNode(node);
+            //Commands.TOC.ShallowCutSectionNode command = origin == this ?
+            //    null : new Commands.TOC.ShallowCutSectionNode(node);
             int numChildren = node.SectionChildCount;
             for (int i = numChildren - 1; i >= 0; i--)
             {
-                Commands.Command__OLD__ cmdDecrease = DecreaseSectionNodeLevel(node.SectionChild(i));
-                if (command != null) command.AddCommand(cmdDecrease);
+                //Commands.Command__OLD__ cmdDecrease = DecreaseSectionNodeLevel(node.SectionChild(i));
+                //if (command != null) command.AddCommand(cmdDecrease);
             }
             numChildren = node.PhraseChildCount;
             for (int i = numChildren - 1; i >= 0; i--)
             {
                 Commands.Command__OLD__ cmdDeletePhrase = DeletePhraseNodeAndMedia(node.PhraseChild(i));
-                if (command != null) command.AddCommand(cmdDeletePhrase);
+                //if (command != null) command.AddCommand(cmdDeletePhrase);
             }
-            Commands.Command__OLD__ cmdRemove = RemoveSectionNode(node);
-            if (command != null) command.AddCommand(cmdRemove);
+            //Commands.Command__OLD__ cmdRemove = RemoveSectionNode(node);
+            //if (command != null) command.AddCommand(cmdRemove);
             Modified();
-            if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            //if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
         }
 
         //md 20061220
@@ -349,34 +349,34 @@ namespace Obi
             //however, we can't create the command here, because its data isn't ready yet
             //these lines only need to be executed if origin != this
        
-            Commands.TOC.ShallowDeleteSectionNode command = null;
+            //Commands.TOC.ShallowDeleteSectionNode command = null;
         
             if (origin != this)
             {  
-                command = new Commands.TOC.ShallowDeleteSectionNode(node);
+                //command = new Commands.TOC.ShallowDeleteSectionNode(node);
             }
                
             int numChildren = node.SectionChildCount;
             for (int i = numChildren - 1; i>=0; i--)
             {
-                Commands.Command__OLD__ cmdDecrease = DecreaseSectionNodeLevel(node.SectionChild(i));
-                command.AddCommand(cmdDecrease);
+                //Commands.Command__OLD__ cmdDecrease = DecreaseSectionNodeLevel(node.SectionChild(i));
+                //command.AddCommand(cmdDecrease);
             }
 
             numChildren = node.PhraseChildCount;
             for (int i = numChildren - 1; i>=0; i--)
             {
                 Commands.Command__OLD__ cmdDeletePhrase = DeletePhraseNodeAndMedia(node.PhraseChild(i));
-                command.AddCommand(cmdDeletePhrase);
+                //command.AddCommand(cmdDeletePhrase);
             }
 
-            Commands.Command__OLD__ cmdRemove = this.RemoveSectionNode(node);
-            command.AddCommand(cmdRemove);
+            //Commands.Command__OLD__ cmdRemove = this.RemoveSectionNode(node);
+            //command.AddCommand(cmdRemove);
 
           
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
-            if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            //if (command != null) CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
              
         }
 
@@ -478,7 +478,7 @@ namespace Obi
         /// </summary>
         /// <param name="node">The node to remove.</param>
         /// <returns>The corresponding delete command.</returns>
-        public Commands.TOC.DeleteSectionNode RemoveSectionNode(SectionNode node)
+        /*public Commands.TOC.DeleteSectionNode RemoveSectionNode(SectionNode node)
         {
             Commands.TOC.DeleteSectionNode command = new Commands.TOC.DeleteSectionNode(node);
             for (int i = node.PhraseChildCount - 1; i >= 0; --i)
@@ -491,7 +491,7 @@ namespace Obi
             }
             node.DetachFromParent__REMOVE__();
             return command;
-        }
+        }*/
 
         /// <summary>
         /// Shallow cut of a section node, i.e. only the strip.
@@ -503,7 +503,7 @@ namespace Obi
         {
             if (node != null)
             {
-                Commands.TOC.ShallowCutSectionNode command = new Commands.TOC.ShallowCutSectionNode(node);
+                //Commands.TOC.ShallowCutSectionNode command = new Commands.TOC.ShallowCutSectionNode(node);
                 mClipboard.Section = node.copy(false);
 
                 //Avn:  copy phrases falling imidiately under this section
@@ -512,15 +512,15 @@ namespace Obi
                 
                 for (int i = node.SectionChildCount - 1; i >= 0; --i)
                 {
-                    command.AddCommand(DecreaseSectionNodeLevel(node.SectionChild(i)));
+                    //command.AddCommand(DecreaseSectionNodeLevel(node.SectionChild(i)));
                 }
                 for (int i = node.PhraseChildCount - 1; i >= 0; --i)
                 {
-                    command.AddCommand(DeletePhraseNodeAndMedia(node.PhraseChild(i)));
+                    //command.AddCommand(DeletePhraseNodeAndMedia(node.PhraseChild(i)));
                 }
-                command.AddCommand(RemoveSectionNode(node));
+                //command.AddCommand(RemoveSectionNode(node));
                 Modified();
-                CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+                //CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             }
         }
 
