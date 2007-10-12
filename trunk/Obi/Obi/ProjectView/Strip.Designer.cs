@@ -41,6 +41,7 @@ namespace Obi.ProjectView
             this.mBlocksPanel.Name = "mBlocksPanel";
             this.mBlocksPanel.Size = new System.Drawing.Size(284, 104);
             this.mBlocksPanel.TabIndex = 0;
+            this.mBlocksPanel.Click += new System.EventHandler(this.Strip_Click);
             // 
             // mLabel
             // 
@@ -56,19 +57,21 @@ namespace Obi.ProjectView
             this.mLabel.Name = "mLabel";
             this.mLabel.Size = new System.Drawing.Size(284, 19);
             this.mLabel.TabIndex = 0;
+            this.mLabel.Click += new System.EventHandler(this.Strip_Click);
             this.mLabel.SizeChanged += new System.EventHandler(this.mLabel_SizeChanged);
             // 
             // Strip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.Controls.Add(this.mLabel);
             this.Controls.Add(this.mBlocksPanel);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "Strip";
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Size = new System.Drawing.Size(290, 132);
+            this.Click += new System.EventHandler(this.Strip_Click);
             this.ResumeLayout(false);
 
         }

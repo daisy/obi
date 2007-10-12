@@ -85,7 +85,7 @@ namespace Obi.ProjectView
                     if (mProject != null)
                     {
                         mTOCView.NewProject();
-                        mStripsView.Project = mProject;
+                        mStripsView.NewProject();
                         // mMetadataView.Project = mProject;
                         SynchronizeWithCoreTree();
                     }
@@ -138,7 +138,7 @@ namespace Obi.ProjectView
                         if (mSelection.Control == mTOCView) TOCViewVisible = true;
                         else if (mSelection.Control == mMetadataView) MetadataViewVisible = true;
                     }
-                    if (value != null) value.Control.Selection = value;
+                    if (mSelection != null) mSelection.Control.Selection = value;
                     if (SelectionChanged != null) SelectionChanged(this, new EventArgs());
                 }
             }
@@ -554,10 +554,17 @@ namespace Obi.ProjectView
         /// <summary>
         /// Show the strip for the given section
         /// </summary>
-        /// <param name="sectionNode"></param>
         public void MakeStripVisibleForSection(SectionNode section)
         {
             if (mSynchronizeViews) mStripsView.MakeStripVisibleForSection(section);
+        }
+
+        /// <summary>
+        /// Show the tree node in the TOC view for the given section
+        /// </summary>
+        public void MakeTreeNodeVisibleForSection(SectionNode section)
+        {
+            if (mSynchronizeViews) mTOCView.MakeTreeNodeVisibleForSection(section);
         }
     }
 }
