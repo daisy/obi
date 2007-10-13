@@ -127,7 +127,7 @@ namespace Obi.ProjectView
                 if (mSelection != value)
                 {
                     // deselect if there was a selection in a different control
-                    if (mSelection != null && value != null && mSelection.Control != value.Control)
+                    if (mSelection != null && (value == null || mSelection.Control != value.Control))
                     {
                         mSelection.Control.Selection = null;
                     }
@@ -171,9 +171,27 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Set the synchronize views flag for this view.
+        /// Set the synchronize views flag for this view and resynchronize the views if necessary.
         /// </summary>
-        public bool SynchronizeViews { set { mSynchronizeViews = value; } }
+        public bool SynchronizeViews
+        {
+            set
+            {
+                mSynchronizeViews = value;
+                if (mSynchronizeViews)
+                {
+                    mTOCView.ResyncViews();
+                    if (mSelection != null && mSelection.Control == mTOCView)
+                    {
+                        mStripsView.MakeStripVisibleForSection(SelectedSection);
+                    }
+                }
+                else
+                {
+                    mStripsView.UnsyncViews();
+                }
+            }
+        }
 
         /// <summary>
         /// Redraw everything to keep the view in sync with the model.
@@ -538,15 +556,25 @@ namespace Obi.ProjectView
             }
         }
 
-        public bool CanAddSection { get { return true; } }
+
+        public bool CanShowInStripsView { get { return SelectedSection != null && mSelection.Control == mTOCView; } }
+        public bool CanShowInTOCView { get { return SelectedSection != null && mSelection.Control == mStripsView; } }
+
+        public bool CanAddSection { get { return mTOCView.CanAddSection; } }
         public bool CanAddSubSection { get { return mTOCView.Selection != null; } }
         public bool CanCopySection { get { return mTOCView.Selection != null && !mTOCView.Selection.IsDummy; } }
         public bool CanMarkSectionUnused { get { return mTOCView.CanToggleSectionUsed && mTOCView.Selection.Node.Used; } }
         public bool CanMarkSectionUsed { get { return mTOCView.CanToggleSectionUsed && !mTOCView.Selection.Node.Used; } }
         public bool CanMoveSectionIn { get { return mTOCView.CanMoveSectionIn; } }
         public bool CanMoveSectionOut { get { return mTOCView.CanMoveSectionOut; } }
-        public bool CanPasteSection { get { return mTOCView.Selection != null && mTOCView.Selection.Node is SectionNode
-            && mClipboard is SectionNode; } }
+        public bool CanPasteSection
+        {
+            get
+            {
+                return mTOCView.Selection != null && mTOCView.Selection.Node is SectionNode
+                    && mClipboard is SectionNode;
+            }
+        }
         public bool CanRemoveSection { get { return mTOCView.CanRemoveSection; } }
         public bool CanRenameSection { get { return mTOCView.CanRenameSection; } }
         public bool CanToggleSectionUsed { get { return mTOCView.CanToggleSectionUsed; } }
@@ -565,6 +593,30 @@ namespace Obi.ProjectView
         public void MakeTreeNodeVisibleForSection(SectionNode section)
         {
             if (mSynchronizeViews) mTOCView.MakeTreeNodeVisibleForSection(section);
+        }
+
+        /// <summary>
+        /// Show/hide strips for nodes that were collapsed/expanded when the views are synchronized
+        /// </summary>
+        public void SetStripsVisibilityForSection(SectionNode section, bool visible)
+        {
+            if (mSynchronizeViews) mStripsView.SetStripsVisibilityForSection(section, visible);
+        }
+
+        /// <summary>
+        /// Show (select) the section node for the current selection
+        /// </summary>
+        public void ShowSectionInTOCView()
+        {
+            if (CanShowInTOCView) Selection = new NodeSelection(mSelection.Node, mTOCView, false);
+        }
+
+        /// <summary>
+        /// Show (select) the strip for the current selection
+        /// </summary>
+        public void ShowSelectedSectionInStripsView()
+        {
+            if (CanShowInStripsView) Selection = new NodeSelection(mSelection.Node, mStripsView, false);
         }
     }
 }

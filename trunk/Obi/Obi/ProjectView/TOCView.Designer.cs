@@ -41,9 +41,11 @@ namespace Obi.ProjectView
             this.mTOCTree.Name = "mTOCTree";
             this.mTOCTree.Size = new System.Drawing.Size(150, 150);
             this.mTOCTree.TabIndex = 0;
+            this.mTOCTree.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.mTOCTree_AfterCollapse);
             this.mTOCTree.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.mTOCTree_AfterLabelEdit);
             this.mTOCTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.mTOCTree_AfterSelect);
             this.mTOCTree.BeforeLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.mTOCTree_BeforeLabelEdit);
+            this.mTOCTree.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.mTOCTree_AfterExpand);
             // 
             // TOCView
             // 

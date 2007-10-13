@@ -1811,6 +1811,8 @@ namespace Obi
 
         private void UpdateMenus()
         {
+            showToolStripMenuItem.Enabled = mProjectView.CanShowInTOCView;
+            showInStripsViewToolStripMenuItem.Enabled = mProjectView.CanShowInStripsView;
             mAddSectionToolStripMenuItem.Enabled = mProjectView.CanAddSection;
             mAddSubSectionToolStripMenuItem.Enabled = mProjectView.CanAddSubSection;
             mRenameSectionToolStripMenuItem.Enabled = mProjectView.CanRenameSection;
@@ -1868,6 +1870,19 @@ namespace Obi
             }
         }
 
+        // Show (select) the selected section in the TOC view 
+        private void showToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.ShowSectionInTOCView();
+        }
+
+        // Show (select) the selected section in the Strips view
+        private void showInStripsViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.ShowSelectedSectionInStripsView();
+        }
+
+        // Synchronize/desynchronize views
         private void mSynchronizeViewsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SynchronizeViews = !mSettings.SynchronizeViews;

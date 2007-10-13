@@ -77,6 +77,33 @@ namespace Obi.ProjectView
             }
         }
 
+        /// <summary>
+        /// Show/hide strips under the one for which the section was collapsed or expanded.
+        /// </summary>
+        public void SetStripsVisibilityForSection(SectionNode section, bool visible)
+        {
+            for (int i = 0; i < section.SectionChildCount; ++i)
+            {
+                Strip s;
+                SectionNode child = section.SectionChild(i);
+                if ((s = FindStrip(child)) != null)
+                {
+                    s.Visible = visible;
+                    if (mSelectedStrip == s && !visible) mView.Selection = null;
+                    SetStripsVisibilityForSection(section.SectionChild(i), visible);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Views are not synchronized anymore, so make sure that all strips are visible.
+        /// </summary>
+        public void UnsyncViews()
+        {
+            foreach (Control c in mLayoutPanel.Controls) c.Visible = true;
+        }
+
+
         #region Event handlers
 
         // Handle resizing of the layout panel: all strips are resized to be at least as wide.
@@ -137,6 +164,12 @@ namespace Obi.ProjectView
             mLayoutPanel.Controls.Remove(strip);
         }
 
+        // Deselect everything when clicking the 
+        private void mLayoutPanel_Click(object sender, EventArgs e)
+        {
+            mView.Selection = null;
+        }
+
         #endregion
 
 
@@ -152,7 +185,8 @@ namespace Obi.ProjectView
             {
                 if (c is Strip && ((Strip)c).Node == section) return c as Strip;
             }
-            throw new Exception(String.Format("Could not find strip for section node labeled `{0}'", section.Label));
+            //throw new Exception(String.Format("Could not find strip for section node labeled `{0}'", section.Label));
+            return null;
         }
 
         #endregion

@@ -25,6 +25,8 @@ namespace Obi.ProjectView
         // Used by the designer
         public TOCView() { InitializeComponent(); }
 
+        // When we have a dummy section, then a section *must* be selected (?)
+        public bool CanAddSection { get { return true; } }
 
         /// <summary>
         /// True if there is a selected section and it can be moved out (i.e. decrease its level)
@@ -142,6 +144,23 @@ namespace Obi.ProjectView
             });
         }
 
+        public void ResyncViews()
+        {
+            foreach (TreeNode n in mTOCTree.Nodes) ResyncViews(n);
+        }
+
+        private void ResyncViews(TreeNode n)
+        {
+            if (n.IsExpanded)
+            {
+                mView.SetStripsVisibilityForSection((SectionNode)n.Tag, true);
+                foreach (TreeNode n_ in n.Nodes) ResyncViews(n_);
+            }
+            else
+            {
+                mView.SetStripsVisibilityForSection((SectionNode)n.Tag, false);
+            }
+        }
 
         // When a node was renamed, show the new name in the tree.
         private void Project_RenamedSectionNode(object sender, Obi.Events.Node.RenameSectionNodeEventArgs e)
@@ -174,10 +193,8 @@ namespace Obi.ProjectView
         // Do not act on reselection of the same item to avoid infinite loops.
         private void mTOCTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (e.Node.Tag != mView.SelectedSection)
-            {
-                mView.Selection = new NodeSelection((ObiNode)e.Node.Tag, this, e.Node == mDummy);
-            }
+            NodeSelection s = new NodeSelection((ObiNode)e.Node.Tag, this, e.Node == mDummy);
+            if (s != mView.Selection) mView.Selection = s;
         }
 
         // Show the dummy node under the selected section, or the root of the tree
@@ -206,8 +223,8 @@ namespace Obi.ProjectView
             TreeNode n = AddSingleSectionNode(section);
             if (n != null)
             {
-                n.ExpandAll();
                 n.EnsureVisible();
+                n.ExpandAll();
                 for (int i = 0; i < section.SectionChildCount; ++i) CreateTreeNodeForSectionNode(section.SectionChild(i));
             }
         }
@@ -319,6 +336,16 @@ namespace Obi.ProjectView
                 };
                 mView.Project.getPresentation().treeNodeAdded += h;
             }
+        }
+
+        private void mTOCTree_AfterCollapse(object sender, TreeViewEventArgs e)
+        {
+            mView.SetStripsVisibilityForSection((SectionNode)e.Node.Tag, false);
+        }
+
+        private void mTOCTree_AfterExpand(object sender, TreeViewEventArgs e)
+        {
+            mView.SetStripsVisibilityForSection((SectionNode)e.Node.Tag, true);
         }
     }
 

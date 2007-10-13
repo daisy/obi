@@ -62,8 +62,9 @@ namespace Obi
             this.mHideMetadataViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showInStripsViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.showSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.mSynchronizeViewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddSubSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -124,7 +125,6 @@ namespace Obi
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.mSynchronizeViewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -365,10 +365,10 @@ namespace Obi
             this.mHideTOCViewToolStripMenuItem,
             this.mShowMetadataViewToolStripMenuItem,
             this.mHideMetadataViewToolStripMenuItem,
-            this.showToolStripMenuItem,
-            this.showInStripsViewToolStripMenuItem,
             this.showSourceToolStripMenuItem,
             this.toolStripSeparator12,
+            this.showToolStripMenuItem,
+            this.showInStripsViewToolStripMenuItem,
             this.mSynchronizeViewsToolStripMenuItem});
             this.mViewToolStripMenuItem.Name = "mViewToolStripMenuItem";
             this.mViewToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
@@ -404,29 +404,36 @@ namespace Obi
             // 
             // showToolStripMenuItem
             // 
-            this.showToolStripMenuItem.Enabled = false;
             this.showToolStripMenuItem.Name = "showToolStripMenuItem";
             this.showToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.showToolStripMenuItem.Text = "Show in TOC view";
+            this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
             // 
             // showInStripsViewToolStripMenuItem
             // 
-            this.showInStripsViewToolStripMenuItem.Enabled = false;
             this.showInStripsViewToolStripMenuItem.Name = "showInStripsViewToolStripMenuItem";
             this.showInStripsViewToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.showInStripsViewToolStripMenuItem.Text = "Show in Strips view";
+            this.showInStripsViewToolStripMenuItem.Click += new System.EventHandler(this.showInStripsViewToolStripMenuItem_Click);
+            // 
+            // showSourceToolStripMenuItem
+            // 
+            this.showSourceToolStripMenuItem.Name = "showSourceToolStripMenuItem";
+            this.showSourceToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.showSourceToolStripMenuItem.Text = "Show source view";
+            this.showSourceToolStripMenuItem.Click += new System.EventHandler(this.showSourceToolStripMenuItem_Click);
             // 
             // toolStripSeparator12
             // 
             this.toolStripSeparator12.Name = "toolStripSeparator12";
             this.toolStripSeparator12.Size = new System.Drawing.Size(171, 6);
             // 
-            // showSourceToolStripMenuItem
+            // mSynchronizeViewsToolStripMenuItem
             // 
-            this.showSourceToolStripMenuItem.Name = "showSourceToolStripMenuItem";
-            this.showSourceToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.showSourceToolStripMenuItem.Text = "Show source";
-            this.showSourceToolStripMenuItem.Click += new System.EventHandler(this.showSourceToolStripMenuItem_Click);
+            this.mSynchronizeViewsToolStripMenuItem.Name = "mSynchronizeViewsToolStripMenuItem";
+            this.mSynchronizeViewsToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.mSynchronizeViewsToolStripMenuItem.Text = "Synchronize views";
+            this.mSynchronizeViewsToolStripMenuItem.Click += new System.EventHandler(this.mSynchronizeViewsToolStripMenuItem_Click);
             // 
             // mTocToolStripMenuItem
             // 
@@ -964,13 +971,6 @@ namespace Obi
             this.mProjectView.Size = new System.Drawing.Size(960, 584);
             this.mProjectView.TabIndex = 4;
             this.mProjectView.TOCViewVisible = true;
-            // 
-            // mSynchronizeViewsToolStripMenuItem
-            // 
-            this.mSynchronizeViewsToolStripMenuItem.Name = "mSynchronizeViewsToolStripMenuItem";
-            this.mSynchronizeViewsToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.mSynchronizeViewsToolStripMenuItem.Text = "Synchronize views";
-            this.mSynchronizeViewsToolStripMenuItem.Click += new System.EventHandler(this.mSynchronizeViewsToolStripMenuItem_Click);
             // 
             // ObiForm
             // 
