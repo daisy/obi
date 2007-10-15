@@ -396,7 +396,7 @@ namespace Obi
         public void AddedPhraseNode__REMOVE__(PhraseNode phrase)
         {
             if (phrase.Used) phrase.Used = Used;
-            if (phrase.HasXukInHeadingFlag) Heading = phrase;
+            // if (phrase.HasXukInHeadingFlag) Heading = phrase;
             // ++mSectionOffset;
         }
 

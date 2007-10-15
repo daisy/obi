@@ -9,6 +9,11 @@ namespace Obi
         NodeSelection Selection { get; set; }
     }
 
+    public interface IControlWithRenamableSelection : IControlWithSelection
+    {
+        void SelectAndRename(ObiNode node);
+    }
+
     /// <summary>
     /// Selection structure to tell where a node is selected.
     /// Node should never be null, the whole selection should be.

@@ -105,10 +105,10 @@ namespace Obi.UserControls
             mDeleteAudioBlockToolStripMenuItem.Enabled = canCutCopyDeletePhrase;
             mMarkPhraseAsUnusedToolStripMenuItem.Enabled = mProjectPanel.CanToggleAudioBlock;
             mMarkPhraseAsUnusedToolStripMenuItem.Text = mProjectPanel.ToggleAudioBlockString;
-            mMarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled = isBlockSelected &&
-                !SelectedPhraseNode.IsHeading && SelectedPhraseNode.Used;
-            mUnmarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled = isBlockSelected &&
-                SelectedPhraseNode.IsHeading;
+            //mMarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled = isBlockSelected &&
+            //    !SelectedPhraseNode.IsHeading && SelectedPhraseNode.Used;
+            //mUnmarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled = isBlockSelected &&
+            //    SelectedPhraseNode.IsHeading;
             mSplitAudioBlockToolStripMenuItem.Enabled = isBlockSelected;
             mQuickSplitAudioBlockToolStripMenuItem.Enabled = isBlockSelected && (isPlayingOrRecording || isPaused);
             mApplyPhraseDetectionToolStripMenuItem.Enabled = !isPlayingOrRecording && isBlockSelected;

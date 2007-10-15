@@ -469,65 +469,11 @@ namespace Obi
 
         #region TOC menu event handlers
 
-        private void mTocToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
-        {
-            // UpdateEnabledItemsForTOCMenu();
-        }
-
-        private void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.AddNewSection();
-        }
-
-        private void mAddSubSectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.AddNewSubSection();
-        }
-
-        private void mRenameSectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.StartRenamingSelectedSection();
-        }
-
-        private void mMoveOutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.MoveSelectedSectionOut();
-        }
-
-        private void mMoveInToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.MoveSelectedSectionIn();
-        }
-
-        private void markSectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.ToggleSectionUsed();
-        }
-
-        private void mMarkSectionAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.ToggleSectionUsed();
-        }
 
         #endregion
 
 
         #region Strips menu event handlers
-
-        private void mStripsToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
-        {
-            UpdateEnabledItemsForStripsMenu();
-        }
-
-        private void mInsertStripToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.InsertStrip();
-        }
-
-        private void mRenameStripToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.StartRenamingSelectedStrip();
-        }
 
         private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1275,16 +1221,14 @@ namespace Obi
             mRemovePageNumberToolStripMenuItem.Enabled = !isPlayingOrRecording && mProjectView.CanRemovePageNumber;
             mGoToPageToolStripMenuItem.Enabled = !isPlayingOrRecording && isProjectOpen && mProject.Pages > 0; 
 
-            mShowInTOCViewToolStripMenuItem.Enabled = isStripSelected;
-
             mMarkAudioBlockAsUnusedToolStripMenuItem.Enabled = mProjectView.CanToggleAudioBlockUsedFlag;
             mMarkAudioBlockAsUnusedToolStripMenuItem.Text = mProjectView.ToggleAudioBlockUsedFlagLabel;
             
-            mMarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled = isAudioBlockSelected &&
-                !mProjectView.SelectedBlockNode.IsHeading && mProjectView.SelectedBlockNode.Used &&
-                mProjectView.SelectedBlockNode.Audio.getDuration().getTimeDeltaAsMillisecondFloat() > 0.0;
-            mUnmarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled = isAudioBlockSelected &&
-                mProjectView.SelectedBlockNode.IsHeading;
+            //mMarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled = isAudioBlockSelected &&
+            //    !mProjectView.SelectedBlockNode.IsHeading && mProjectView.SelectedBlockNode.Used &&
+            //    mProjectView.SelectedBlockNode.Audio.getDuration().getTimeDeltaAsMillisecondFloat() > 0.0;
+            //mUnmarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled = isAudioBlockSelected &&
+            //    mProjectView.SelectedBlockNode.IsHeading;
             mUnmarkAudioBlockAsSectionHeadingToolStripMenuItem.Visible = mUnmarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled;
             mMarkAudioBlockAsSectionHeadingToolStripMenuItem.Visible = !mUnmarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled;
         }
@@ -1821,6 +1765,8 @@ namespace Obi
             mMarkSectionAsUsedToolStripMenuItem.Visible = mProjectView.CanMarkSectionUsed;
             mMarkSectionAsUnusedToolStripMenuItem.Visible = mProjectView.CanMarkSectionUnused;
             mMarkSectionAsUsedunusedToolStripMenuItem.Visible = !mProjectView.CanToggleSectionUsed;
+            mInsertStripToolStripMenuItem.Enabled = mProjectView.CanAddStrip;
+            mRenameStripToolStripMenuItem.Enabled = mProjectView.CanRenameStrip;
         }
 
         private void NEWundoToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Undo(); }
@@ -1897,5 +1843,20 @@ namespace Obi
                 mProjectView.SynchronizeViews = value;
             }
         }
+
+        // TOC menu
+
+        private void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddNewSection(); }
+        private void mAddSubSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddNewSubSection(); }
+        private void mRenameSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.StartRenamingSelectedSection(); }
+        private void mMoveOutToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MoveSelectedSectionOut(); }
+        private void mMoveInToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MoveSelectedSectionIn(); }
+        private void markSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ToggleSectionUsed(); }
+        private void mMarkSectionAsUnusedToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ToggleSectionUsed(); }
+
+        // Strips menu
+
+        private void mInsertStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddNewStrip(); }
+        private void mRenameStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.StartRenamingSelectedStrip(); }
     }
 }

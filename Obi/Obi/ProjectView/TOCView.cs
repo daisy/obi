@@ -8,7 +8,7 @@ namespace Obi.ProjectView
     /// <summary>
     /// The view of the table of contents, mostly a wrapper over a tree view.
     /// </summary>
-    public partial class TOCView : UserControl, IControlWithSelection
+    public partial class TOCView : UserControl, IControlWithRenamableSelection
     {
         private ProjectView mView;   // the parent project view
         private TreeNode mDummy;     // dummy section node (for selection)
@@ -98,18 +98,6 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Select a node in the TOC view and start its renaming.
-        /// </summary>
-        public void SelectAndRenameNode(SectionNode section)
-        {
-            DoToNewNode(section, delegate()
-            {
-                TreeNode n = FindTreeNode(section);
-                n.BeginEdit();
-            });
-        }
-
-        /// <summary>
         /// Get or set the current selection.
         /// </summary>
         public NodeSelection Selection
@@ -176,7 +164,6 @@ namespace Obi.ProjectView
             if (e.Node.Tag != null && e.Label != null && e.Label != "")
             {
                 mView.RenameSectionNode((SectionNode)e.Node.Tag, e.Label);
-                //mView.Selection = new NodeSelection((SectionNode)e.Node.Tag, this, false);
             }
             else
             {
@@ -197,6 +184,11 @@ namespace Obi.ProjectView
             if (s != mView.Selection) mView.Selection = s;
         }
 
+        private void mTOCTree_BeforeSelect(object sender, TreeViewCancelEventArgs e)
+        {
+            //if (mTOCTree.SelectedNode != null && mTOCTree.SelectedNode != e.Node) mTOCTree.SelectedNode.EndEdit(true);
+        }
+
         // Show the dummy node under the selected section, or the root of the tree
         private void UpdateDummyNode(TreeNode n)
         {
@@ -214,7 +206,11 @@ namespace Obi.ProjectView
         // Add new section nodes to the tree
         private void TOCView_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
         {
+            System.Diagnostics.Debug.Print("+++ new tree node!");
+            // ignore the selection of the new tree node
+            mTOCTree.AfterSelect -= new TreeViewEventHandler(mTOCTree_AfterSelect);
             CreateTreeNodeForSectionNode(e.getTreeNode() as SectionNode);
+            mTOCTree.AfterSelect += new TreeViewEventHandler(mTOCTree_AfterSelect);
         }
 
         // Create a new tree node for a section node and all of its descendants
@@ -321,6 +317,7 @@ namespace Obi.ProjectView
         {
             if (IsInTree(section))
             {
+                System.Diagnostics.Debug.Print("=== Doing to new node");
                 f();
             }
             else
@@ -330,6 +327,7 @@ namespace Obi.ProjectView
                 {
                     if (e.getTreeNode() == section)
                     {
+                        System.Diagnostics.Debug.Print("~~~ Doing to new node");
                         f();
                         mView.Project.getPresentation().treeNodeAdded -= h;
                     }
@@ -347,6 +345,15 @@ namespace Obi.ProjectView
         {
             mView.SetStripsVisibilityForSection((SectionNode)e.Node.Tag, true);
         }
+
+        #region IControlWithRenamableSelection Members
+
+        public void SelectAndRename(ObiNode node)
+        {
+            DoToNewNode((SectionNode)node, delegate() { FindTreeNode((SectionNode)node).BeginEdit(); });
+        }
+
+        #endregion
     }
 
     /// <summary>

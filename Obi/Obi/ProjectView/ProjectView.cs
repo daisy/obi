@@ -124,6 +124,7 @@ namespace Obi.ProjectView
             get { return mSelection; }
             set
             {
+                System.Diagnostics.Debug.Print("Selection: `{0}' >>> `{1}'", mSelection, value);
                 if (mSelection != value)
                 {
                     // deselect if there was a selection in a different control
@@ -180,6 +181,8 @@ namespace Obi.ProjectView
                 mSynchronizeViews = value;
                 if (mSynchronizeViews)
                 {
+                    // TODO depending on where the focus is, resync TOC-wise or strips-wise
+                    // (now it is TOC-wise...)
                     mTOCView.ResyncViews();
                     if (mSelection != null && mSelection.Control == mTOCView)
                     {
@@ -291,15 +294,6 @@ namespace Obi.ProjectView
 
 
 
-        internal void InsertStrip()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        internal void StartRenamingSelectedStrip()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
 
         internal void ImportPhrases()
         {
@@ -386,7 +380,9 @@ namespace Obi.ProjectView
         {
             if (CanAddSection)
             {
-                mUndo.execute(new Commands.TOC.AddNewSection(this, mTOCView.Selection));
+                // TODO when there is a dummy node this becomes unnecessary
+                mUndo.execute(new Commands.TOC.AddNewSection(this, mTOCView.Selection == null ?
+                    new NodeSelection(mProject.RootNode, mTOCView, true) : mTOCView.Selection));
             }
         }
 
@@ -398,8 +394,16 @@ namespace Obi.ProjectView
             if (CanAddSubSection)
             {
                 mUndo.execute(new Commands.TOC.AddNewSection(this,
-                    new NodeSelection(mTOCView.Selection.Node, mTOCView.Selection.Control, true)));
+                    new NodeSelection(mTOCView.Selection.Node, mTOCView, true)));
             }
+        }
+
+        /// <summary>
+        /// Add a new strip after, and at the same level as, the selected strip
+        /// </summary>
+        public void AddNewStrip()
+        {
+            if (CanAddStrip) { mUndo.execute(new Commands.Strips.AddNewStrip(this)); }
         }
 
         /// <summary>
@@ -407,7 +411,15 @@ namespace Obi.ProjectView
         /// </summary>
         public void StartRenamingSelectedSection()
         {
-            if (CanRenameSection) mTOCView.SelectAndRenameNode(mTOCView.Selection.Section);
+            if (CanRenameSection) mTOCView.SelectAndRename(mTOCView.Selection.Section);
+        }
+
+        /// <summary>
+        /// Select the label of the strip and start editing it.
+        /// </summary>
+        public void StartRenamingSelectedStrip()
+        {
+            if (CanRenameStrip) mStripsView.SelectAndRename(mStripsView.Selection.Section);
         }
 
         /// <summary>
@@ -495,12 +507,14 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Select a section node in the TOC view and start renaming it.
+        /// Select a section or strip and start renaming it.
         /// </summary>
-        /// <param name="section"></param>
-        public void SelectAndRenameNodeInTOCView(SectionNode section)
+        public void SelectAndRenameSelection(NodeSelection selection)
         {
-            mTOCView.SelectAndRenameNode(section);
+            if (selection.Control is IControlWithRenamableSelection)
+            {
+                ((IControlWithRenamableSelection)selection.Control).SelectAndRename(selection.Node);
+            }
         }
 
         public void RenameSectionNode(SectionNode section, string label)
@@ -560,7 +574,9 @@ namespace Obi.ProjectView
         public bool CanShowInStripsView { get { return SelectedSection != null && mSelection.Control == mTOCView; } }
         public bool CanShowInTOCView { get { return SelectedSection != null && mSelection.Control == mStripsView; } }
 
-        public bool CanAddSection { get { return mTOCView.CanAddSection; } }
+        // hacky but will do for now
+        public bool CanAddSection { get { return mTOCView.CanAddSection && !mStripsView.CanAddStrip; } }
+        public bool CanAddStrip { get { return mStripsView.CanAddStrip; } }
         public bool CanAddSubSection { get { return mTOCView.Selection != null; } }
         public bool CanCopySection { get { return mTOCView.Selection != null && !mTOCView.Selection.IsDummy; } }
         public bool CanMarkSectionUnused { get { return mTOCView.CanToggleSectionUsed && mTOCView.Selection.Node.Used; } }
@@ -577,6 +593,7 @@ namespace Obi.ProjectView
         }
         public bool CanRemoveSection { get { return mTOCView.CanRemoveSection; } }
         public bool CanRenameSection { get { return mTOCView.CanRenameSection; } }
+        public bool CanRenameStrip { get { return mStripsView.CanRenameStrip; } }
         public bool CanToggleSectionUsed { get { return mTOCView.CanToggleSectionUsed; } }
 
         /// <summary>

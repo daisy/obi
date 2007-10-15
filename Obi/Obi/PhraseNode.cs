@@ -11,7 +11,8 @@ namespace Obi
     /// </summary>
     public class PhraseNode : ObiNode
     {
-        private bool mXukInHeadingFlag;  // got the heading flag from the XUK file
+        private Kind mKind;          // this block's kind
+        private string mCustomKind;  // custom kind name
 
         public static readonly string XUK_ELEMENT_NAME = "phrase";  // name of the element in the XUK file
 
@@ -21,37 +22,37 @@ namespace Obi
         public enum Direction { Forward, Backward };
 
         /// <summary>
+        /// Different kinds of phrases
+        /// </summary>
+        public enum Kind { Plain, Page, Heading, Custom }; 
+
+        /// <summary>
         /// Create a new phrase node inside the given project with an id.
         /// Don't forget to set the asset afterwards!
         /// </summary>
         public PhraseNode(Project project): base(project)
         {
             Annotation = "";
-            mXukInHeadingFlag = false;
+            mKind = Kind.Plain;
+            mCustomKind = null;
         }
 
-
-
-        /// <summary>
-        /// Allow only phrase nodes to be inserted.
-        /// If the index is negative, count backward from the end (-1 is last.)
-        /// </summary>
-        public override void Insert(ObiNode node, int index)
+        public PhraseNode(Project project, Kind kind) : this(project) { mKind = kind; }
+        
+        public PhraseNode(Project project, string custom)
+            : this(project)
         {
-            if (!(node is PhraseNode)) throw new Exception("Only phrase nodes can be added as children of a phrase node.");
-            if (index < 0) index += getChildCount();
-            insert(node, index);
+            mKind = Kind.Custom;
+            mCustomKind = custom;
         }
+
 
         /// <summary>
         /// The annotation for this node.
         /// </summary>
         public string Annotation
         {
-            get
-            {
-                return AnnotationMedia == null ? "" : AnnotationMedia.getText();
-            }
+            get { return AnnotationMedia == null ? "" : AnnotationMedia.getText(); }
             set
             {
                 if (value == null || value == "")
@@ -80,6 +81,11 @@ namespace Obi
         }
 
         /// <summary>
+        /// Custom kind (may be null if it is Plain, Page or Heading.)
+        /// </summary>
+        public string CustomKind { get { return mCustomKind; } }
+
+        /// <summary>
         /// Custom element name for XUKOut.
         /// </summary>
         public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
@@ -89,25 +95,20 @@ namespace Obi
         /// </summary>
         public bool HasAnnotation { get { return Annotation != ""; } }
 
-        public bool HasXukInHeadingFlag { get { return mXukInHeadingFlag; } }
-
         /// <summary>
         /// Index of this node relative to the other phrases.
         /// </summary>
         public override int Index { get { return getParent().indexOf(this); } }
 
-        public int IndexOutOf { get { return ParentSection.PhraseChildCount; } }
-
         /// <summary>
-        /// True if the phrase node is a heading of its parent section.
-        /// False otherwise (not a heading or no parent.)
+        /// Allow only phrase nodes to be inserted.
+        /// If the index is negative, count backward from the end (-1 is last.)
         /// </summary>
-        /// <remarks>The node doesn't really know that it is a heading,
-        /// the information is only kept by the parent section in order
-        /// to minimize the risk of inconsistencies.</remarks>
-        public bool IsHeading
+        public override void Insert(ObiNode node, int index)
         {
-            get { return ParentSection != null && ParentSection.Heading == this; }
+            if (!(node is PhraseNode)) throw new Exception("Only phrase nodes can be added as children of a phrase node.");
+            if (index < 0) index += getChildCount();
+            insert(node, index);
         }
 
         /// <summary>
@@ -133,7 +134,7 @@ namespace Obi
             {
                 if (value != null)
                 {
-                                        setProperty(value);
+                    setProperty(value);
                 }
                 else
                 {
@@ -146,6 +147,11 @@ namespace Obi
         /// Parent section of this phrase. Null if the phrase has no parent.
         /// </summary>
         public SectionNode ParentSection { get { return getParent() as SectionNode; } }
+
+        /// <summary>
+        /// The kind of node.
+        /// </summary>
+        public Kind PhraseKind { get { return mKind; } }
 
         /// <summary>
         /// Previous phrase node in linear order in the whole project.
@@ -188,20 +194,38 @@ namespace Obi
             copy.Audio = Project.DataManager.CopyAndManage(Audio);
             copy.Used = Used;
             copy.Annotation = Annotation;
+            copy.mKind = mKind;
+            copy.mCustomKind = mCustomKind;
             copyProperties(copy);
             return copy;
         }
 
         protected override void XukInAttributes(System.Xml.XmlReader source)
         {
-            string used = source.GetAttribute("heading");
-            if (used != null && used == "True") mXukInHeadingFlag = true;
+            //string used = source.GetAttribute("heading");
+            //if (used != null && used == "True") mXukInHeadingFlag = true;
+            string kind = source.GetAttribute("kind");
+            if (kind != null) mKind = kind == "Custom" ?  Kind.Custom :
+                                      kind == "Heading" ? Kind.Heading :
+                                      kind == "Page" ?    Kind.Page :
+                                                          Kind.Plain;
+            if (kind != null && kind != mKind.ToString()) throw new Exception("Unknown kind: " + kind);
+            mCustomKind = source.GetAttribute("custom");
+            if (mKind != Kind.Custom && mCustomKind != null)
+            {
+                throw new Exception("Extraneous `custom' attribute.");
+            }
+            else if (mKind == Kind.Custom && mCustomKind == null)
+            {
+                throw new Exception("Missing `custom' attribute.");
+            }
             base.XukInAttributes(source);
         }
 
         protected override void XukOutAttributes(System.Xml.XmlWriter wr)
         {
-            if (IsHeading) wr.WriteAttributeString("heading", "True");
+            if (mKind != Kind.Plain) wr.WriteAttributeString("kind", mKind.ToString());
+            if (mKind == Kind.Custom) wr.WriteAttributeString("custom", mCustomKind);
             base.XukOutAttributes(wr);
         }
 

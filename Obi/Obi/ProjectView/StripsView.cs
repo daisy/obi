@@ -9,7 +9,7 @@ using urakawa.core.events;
 
 namespace Obi.ProjectView
 {
-    public partial class StripsView : UserControl, IControlWithSelection
+    public partial class StripsView : UserControl, IControlWithRenamableSelection
     {
         private ProjectView mView;     // parent project view
         private Strip mSelectedStrip;  // the current selection
@@ -17,7 +17,8 @@ namespace Obi.ProjectView
         /// <summary>
         /// A new strips view.
         /// </summary>
-        public StripsView(ProjectView view): this()
+        public StripsView(ProjectView view)
+            : this()
         {
             mView = view;
             mSelectedStrip = null;
@@ -26,6 +27,9 @@ namespace Obi.ProjectView
         // Used by the designer
         public StripsView() { InitializeComponent(); }
 
+
+        public bool CanAddStrip { get { return mSelectedStrip != null; } }
+        public bool CanRenameStrip { get { return mSelectedStrip != null; } }
 
         /// <summary>
         /// Show the strip for this section node.
@@ -43,6 +47,14 @@ namespace Obi.ProjectView
             mView.Project.getPresentation().treeNodeAdded += new TreeNodeAddedEventHandler(StripsView_treeNodeAdded);
             mView.Project.getPresentation().treeNodeRemoved += new TreeNodeRemovedEventHandler(StripsView_treeNodeRemoved);
             mView.Project.RenamedSectionNode += new Obi.Events.RenameSectionNodeHandler(Project_RenamedSectionNode);
+        }
+
+        /// <summary>
+        /// Rename a strip.
+        /// </summary>
+        public void RenameStrip(Strip strip)
+        {
+            mView.RenameSectionNode(strip.Node, strip.Label);
         }
 
         /// <summary>
@@ -187,6 +199,48 @@ namespace Obi.ProjectView
             }
             //throw new Exception(String.Format("Could not find strip for section node labeled `{0}'", section.Label));
             return null;
+        }
+
+        #endregion
+
+        #region IControlWithRenamableSelection Members
+
+        public void SelectAndRename(ObiNode node)
+        {
+            DoToNewNode(node, delegate()
+            {
+                mView.Selection = new NodeSelection(node, this, false);
+                FindStrip((SectionNode)node).StartRenaming();
+            });
+        }
+
+        private delegate void DoToNewNodeDelegate();
+
+        // Do f() to a section node that may not yet be in the view.
+        private void DoToNewNode(ObiNode node, DoToNewNodeDelegate f)
+        {
+            if (IsInView(node))
+            {
+                f();
+            }
+            else
+            {
+                TreeNodeAddedEventHandler h = delegate(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e) { };
+                h = delegate(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
+                {
+                    if (e.getTreeNode() == node)
+                    {
+                        f();
+                        mView.Project.getPresentation().treeNodeAdded -= h;
+                    }
+                };
+                mView.Project.getPresentation().treeNodeAdded += h;
+            }
+        }
+
+        private bool IsInView(ObiNode node)
+        {
+            return node is SectionNode && FindStrip((SectionNode)node) != null;
         }
 
         #endregion
