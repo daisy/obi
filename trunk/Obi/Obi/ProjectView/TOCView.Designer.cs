@@ -45,6 +45,7 @@ namespace Obi.ProjectView
             this.mTOCTree.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.mTOCTree_AfterLabelEdit);
             this.mTOCTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.mTOCTree_AfterSelect);
             this.mTOCTree.BeforeLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.mTOCTree_BeforeLabelEdit);
+            this.mTOCTree.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.mTOCTree_BeforeSelect);
             this.mTOCTree.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.mTOCTree_AfterExpand);
             // 
             // TOCView

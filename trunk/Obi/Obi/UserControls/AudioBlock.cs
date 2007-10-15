@@ -175,10 +175,10 @@ namespace Obi.UserControls
         /// </summary>
         private void RefreshUsed()
         {
-            BackColor = mNode != null && mNode.Used ?
-                mNode.Audio.getDuration().getTimeDeltaAsMillisecondFloat() == 0.0 ? Colors.AudioBlockEmpty :
-                mNode.IsHeading ? Colors.AudioBlockHeading : Colors.AudioBlockUsed :
-                Colors.AudioBlockUnused;
+            //BackColor = mNode != null && mNode.Used ?
+            //    mNode.Audio.getDuration().getTimeDeltaAsMillisecondFloat() == 0.0 ? Colors.AudioBlockEmpty :
+                //mNode.IsHeading ? Colors.AudioBlockHeading : Colors.AudioBlockUsed :
+            //    Colors.AudioBlockUnused;
             if (mAnnotationBlock != null)
             {
                 mAnnotationBlock.Used = mNode.Used;
@@ -187,10 +187,10 @@ namespace Obi.UserControls
 
         private void RefreshUsed(double time)
         {
-            BackColor = mNode != null && mNode.Used ?
-                time == 0.0 ? Colors.AudioBlockEmpty :
-                mNode.IsHeading ? Colors.AudioBlockHeading : Colors.AudioBlockUsed :
-                Colors.AudioBlockUnused;
+            //BackColor = mNode != null && mNode.Used ?
+            //    time == 0.0 ? Colors.AudioBlockEmpty :
+            //    mNode.IsHeading ? Colors.AudioBlockHeading : Colors.AudioBlockUsed :
+            //    Colors.AudioBlockUnused;
             if (mAnnotationBlock != null)
             {
                 mAnnotationBlock.Used = mNode.Used;

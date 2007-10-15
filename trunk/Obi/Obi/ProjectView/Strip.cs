@@ -14,9 +14,6 @@ namespace Obi.ProjectView
         private bool mSelected;          // selected flag
         private StripsView mParentView;  // parent strip view
 
-        public event EventHandler LabelEditedByUser;  // raised when the user has edited the label
-        public event EventHandler SelectedByUser;     // raised when the user selects the strip
-
         /// <summary>
         /// This constructor is used by the designer.
         /// </summary>
@@ -27,7 +24,14 @@ namespace Obi.ProjectView
             mNode = null;
             mLabel.LabelEditedByUser += new EventHandler(delegate(object sender, EventArgs e)
             {
-                if (LabelEditedByUser != null) LabelEditedByUser(this, e);
+                if (mLabel.Label != "")
+                {
+                    mParentView.RenameStrip(this);
+                }
+                else
+                {
+                    mLabel.Label = mNode.Label;
+                }
             });
             Selected = false;
         }
@@ -70,6 +74,8 @@ namespace Obi.ProjectView
                 BackColor = mSelected ? Color.Yellow : Color.LightSkyBlue;
             }
         }
+
+        public void StartRenaming() { mLabel.Editable = true; }
 
 
         // Resize the strip according to the editable label, whose size can change.
