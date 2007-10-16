@@ -24,7 +24,7 @@ namespace Obi.Commands.Node
             if (mSelection.IsDummy)
             {
                 mParent = contextNode;
-                mIndex = contextNode is SectionNode ? ((SectionNode)contextNode).SectionChildCount : 0;
+                mIndex = 0;
             }
             else
             {

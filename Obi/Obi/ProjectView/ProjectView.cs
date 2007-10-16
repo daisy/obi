@@ -29,6 +29,7 @@ namespace Obi.ProjectView
             mProject = null;
             mSelection = null;
             mTransportBar.ProjectView = this;
+            mTransportBar.Enabled = false;
             mTOCViewVisible = !mHSplitter.Panel1Collapsed && !mVSplitter.Panel1Collapsed;
             mMetadataViewVisible = !mHSplitter.Panel1Collapsed && !mVSplitter.Panel2Collapsed;
             // Create the undo/redo manager for the view and pass along its events
@@ -393,7 +394,11 @@ namespace Obi.ProjectView
         {
             if (CanAddSubSection)
             {
+                // hack to simulate the dummy node
+                SectionNode section = (SectionNode)mTOCView.Selection.Node;
                 mUndo.execute(new Commands.TOC.AddNewSection(this,
+                    section.SectionChildCount > 0 ?
+                    new NodeSelection(section.SectionChild(section.SectionChildCount - 1), mTOCView, false) :
                     new NodeSelection(mTOCView.Selection.Node, mTOCView, true)));
             }
         }
