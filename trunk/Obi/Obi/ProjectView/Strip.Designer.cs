@@ -67,6 +67,7 @@ namespace Obi.ProjectView
             this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.Controls.Add(this.mLabel);
             this.Controls.Add(this.mBlocksPanel);
+            this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.Name = "Strip";
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Size = new System.Drawing.Size(290, 132);
