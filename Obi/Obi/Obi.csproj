@@ -269,6 +269,12 @@
     <Compile Include="ProjectView\ProjectView.designer.cs">
       <DependentUpon>ProjectView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProjectView\FindInText.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProjectView\FindInText.Designer.cs">
+      <DependentUpon>FindInText.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProjectView\Strip.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -505,6 +511,10 @@
     <EmbeddedResource Include="ProjectView\ProjectView.resx">
       <DependentUpon>ProjectView.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\FindInText.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FindInText.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\Strip.resx">
       <SubType>Designer</SubType>

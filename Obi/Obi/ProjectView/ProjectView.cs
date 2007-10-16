@@ -32,6 +32,7 @@ namespace Obi.ProjectView
             mTransportBar.Enabled = false;
             mTOCViewVisible = !mHSplitter.Panel1Collapsed && !mVSplitter.Panel1Collapsed;
             mMetadataViewVisible = !mHSplitter.Panel1Collapsed && !mVSplitter.Panel2Collapsed;
+            mFindInText.Visible = false;
             // Create the undo/redo manager for the view and pass along its events
             mUndo = new Commands.UndoRedoManager();
             mUndo.CommandExecuted += new Commands.UndoRedoEventHandler(delegate(object sender, Commands.UndoRedoEventArgs e)
@@ -640,5 +641,30 @@ namespace Obi.ProjectView
         {
             if (CanShowInStripsView) Selection = new NodeSelection(mSelection.Node, mStripsView, false);
         }
+
+        #region Find in Text
+
+        public void ShowFindInText()
+        {
+            //iterating over the layout panel seems to be the way to search the sections 
+            mFindInText.InitializeComponentsToSearch(this.mStripsView.LayoutPanel());
+            mFindInText.Visible = true;
+            mFindInText.Focus();
+        }
+        public void FindNextInText()
+        {
+            if (mFindInText.Visible) mFindInText.FindNext();
+        }
+
+        public void FindPreviousInText()
+        {
+            if (mFindInText.Visible) mFindInText.FindPrevious();
+        }
+
+        
+        #endregion
+
+
+        
     }
 }
