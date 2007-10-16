@@ -244,5 +244,12 @@ namespace Obi.ProjectView
         }
 
         #endregion
+
+        //marisa added this
+        //hopefully a more elegant solution can be found
+        public FlowLayoutPanel LayoutPanel()
+        {
+            return mLayoutPanel;
+        }
     }
 }

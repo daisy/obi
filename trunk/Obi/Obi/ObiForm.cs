@@ -19,7 +19,7 @@ namespace Obi
         private Settings mSettings;              // application settings
         private CommandManager mCommandManager;  // the undo stack for this project
         private Audio.VuMeterForm mVuMeterForm;  // keep track of a single VU meter form
-        private Audio.VuMeter m_Vumeter ; // VuMeterForm is to be initialised again and again so this instance is required as member
+        private Audio.VuMeter m_Vumeter; // VuMeterForm is to be initialised again and again so this instance is required as member
 
         /// <summary>
         /// Application settings.
@@ -89,7 +89,7 @@ namespace Obi
                 System.Windows.Forms.MessageBox.Show("An error occured while initializing Obi.\nPlease Submit a bug report, including the contents of " + Application.StartupPath + Path.DirectorySeparatorChar + "ObiStartupError.txt\nError text:\n" + eAnyStartupException.ToString(), "Obi initialization error");
             }
         }
-        
+
         /// <summary>
         /// Set up the VU meter form.
         /// </summary>
@@ -99,9 +99,9 @@ namespace Obi
         }
 
         // setup a VuMeter form and show it
-        private void ShowVuMeterForm ()
+        private void ShowVuMeterForm()
         {
-            mVuMeterForm = new Audio.VuMeterForm(m_Vumeter );
+            mVuMeterForm = new Audio.VuMeterForm(m_Vumeter);
             mVuMeterForm.MagnificationFactor = 1.5;
             // Kludgy
             mVuMeterForm.Show();
@@ -245,7 +245,7 @@ namespace Obi
             {
                 mProjectView.TransportBar.Enabled = false;
                 this.Cursor = Cursors.WaitCursor;
-            
+
                 try
                 {
                     mProject.CleanProjectAssets();
@@ -261,9 +261,9 @@ namespace Obi
                     return;
                 }
 
-               //report success
-               MessageBox.Show(Localizer.Message("cleaned_project_text"), Localizer.Message("cleaned_project_caption"),
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //report success
+                MessageBox.Show(Localizer.Message("cleaned_project_text"), Localizer.Message("cleaned_project_caption"),
+                         MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.Cursor = Cursors.Default;
                 mProjectView.TransportBar.Enabled = true;
@@ -364,7 +364,7 @@ namespace Obi
 
         private void mExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-                                    Close();
+            Close();
         }
 
         #endregion
@@ -779,7 +779,7 @@ namespace Obi
 
 
 
-        
+
 
 
 
@@ -802,7 +802,7 @@ namespace Obi
             bool isProjectOpen = mProject != null;
             bool isNodeSelected = isProjectOpen && mProjectView.Selection != null;
 
-            mShowHideVUMeterToolStripMenuItem.Text = Localizer.Message(( mVuMeterForm != null && mVuMeterForm.Visible) ? "hide_vu_meter" : "show_vu_meter");
+            mShowHideVUMeterToolStripMenuItem.Text = Localizer.Message((mVuMeterForm != null && mVuMeterForm.Visible) ? "hide_vu_meter" : "show_vu_meter");
 
             if (mProjectView.TransportBar.IsInlineRecording)
             {
@@ -921,7 +921,7 @@ namespace Obi
             TransportBar_Stop();
         }
 
-        private void TransportBar_Stop ()
+        private void TransportBar_Stop()
         {
             mProjectView.TransportBar.Stop();
         }
@@ -1158,7 +1158,7 @@ namespace Obi
         /// </summary>
         private void UpdateEnabledItemsForTOCMenu()
         {
-            bool isPlayingOrRecording = mProjectView.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing ||mProjectView.TransportBar.IsInlineRecording;
+            bool isPlayingOrRecording = mProjectView.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing || mProjectView.TransportBar.IsInlineRecording;
             bool isProjectOpen = mProject != null;
             bool noNodeSelected = isProjectOpen && mProjectView.Selection == null;
             bool isSectionNodeSelected = isProjectOpen && mProjectView.SelectedSection != null;
@@ -1174,7 +1174,7 @@ namespace Obi
                 mProjectView.Project.CanMoveSectionNodeOut(mProjectView.SelectionNode as SectionNode);
             mMoveInToolStripMenuItem.Enabled = !isPlayingOrRecording && isSectionNodeUsed &&
                 mProjectView.Project.CanMoveSectionNodeIn(mProjectView.SelectionNode as SectionNode);
-            
+
             // Mark section used/unused (by default, i.e. if disabled, "unused")
             mMarkSectionAsUnusedToolStripMenuItem.Enabled = !isPlayingOrRecording && isSectionNodeSelected && isParentUsed;
             mMarkSectionAsUnusedToolStripMenuItem.Text = String.Format(Localizer.Message("mark_x_as_y"),
@@ -1219,11 +1219,11 @@ namespace Obi
 
             mSetPageNumberToolStripMenuItem.Enabled = !isPlayingOrRecording && mProjectView.CanSetPageNumber;
             mRemovePageNumberToolStripMenuItem.Enabled = !isPlayingOrRecording && mProjectView.CanRemovePageNumber;
-            mGoToPageToolStripMenuItem.Enabled = !isPlayingOrRecording && isProjectOpen && mProject.Pages > 0; 
+            mGoToPageToolStripMenuItem.Enabled = !isPlayingOrRecording && isProjectOpen && mProject.Pages > 0;
 
             mMarkAudioBlockAsUnusedToolStripMenuItem.Enabled = mProjectView.CanToggleAudioBlockUsedFlag;
             mMarkAudioBlockAsUnusedToolStripMenuItem.Text = mProjectView.ToggleAudioBlockUsedFlagLabel;
-            
+
             //mMarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled = isAudioBlockSelected &&
             //    !mProjectView.SelectedBlockNode.IsHeading && mProjectView.SelectedBlockNode.Used &&
             //    mProjectView.SelectedBlockNode.Audio.getDuration().getTimeDeltaAsMillisecondFloat() > 0.0;
@@ -1282,25 +1282,25 @@ namespace Obi
             //UserControls.Colors.SetHighContrastColors(SystemInformation.HighContrast);
             //mProjectView.TransportBar.SetHighContrastColors(SystemInformation.HighContrast);
             //BackColor = UserControls.Colors.ObiBackGround;
-            
+
         }
 
-        private void UserPreferenceChanged( object sender , EventArgs e )
+        private void UserPreferenceChanged(object sender, EventArgs e)
         {
-            UserControls.Colors.SetHighContrastColors( SystemInformation.HighContrast );
+            UserControls.Colors.SetHighContrastColors(SystemInformation.HighContrast);
             //mProjectView.TransportBar.SetHighContrastColors(SystemInformation.HighContrast);
             BackColor = UserControls.Colors.ObiBackGround;
             mProject.Touch();
         }
 
-/// <summary>
-///  move keyboard focus amung TOC view, Strip view, Transport Bar
-/// <see cref=""/>
-/// </summary>
-/// <param name="Clockwise">
-///  true for clockwise movement
-/// </param>
-        private void MoveToNextPanel( bool Clockwise )
+        /// <summary>
+        ///  move keyboard focus amung TOC view, Strip view, Transport Bar
+        /// <see cref=""/>
+        /// </summary>
+        /// <param name="Clockwise">
+        ///  true for clockwise movement
+        /// </param>
+        private void MoveToNextPanel(bool Clockwise)
         {
 
             /*
@@ -1380,7 +1380,7 @@ namespace Obi
                 Ready();
                 return;
             }
-            
+
             //select a file for import
             OpenFileDialog openFile = new OpenFileDialog();
             openFile.Title = "Choose a file for import";
@@ -1396,7 +1396,7 @@ namespace Obi
             dialog.MakeAutoTitleCheckboxInvisible();
             dialog.Text = "Create a new project starting from XHTML import";
             if (dialog.ShowDialog() != DialogResult.OK) return;
-            
+
             // let's see if we can actually write the file that the user chose (bug #1679175)
             try
             {
@@ -1409,8 +1409,8 @@ namespace Obi
                     Localizer.Message("cannot_create_file_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-               
-           
+
+
             CreateNewProject(dialog.Path, dialog.Title, false);
             try
             {
@@ -1427,12 +1427,12 @@ namespace Obi
                 RemoveRecentProject(dialog.Path);
                 return;
             }
-        
+
             Ready();
             mProjectView.TransportBar.Enabled = true;
         }
 
-        
+
         /// <summary>
         /// Remove a project from the recent projects list
         /// This is required when import fails halfway through
@@ -1454,7 +1454,7 @@ namespace Obi
         {
             FullMetadata dialog = new FullMetadata(mProject);
             List<urakawa.metadata.Metadata> affected = new List<urakawa.metadata.Metadata>();
-            foreach (object o in mProject.getPresentation ().getMetadataList())
+            foreach (object o in mProject.getPresentation().getMetadataList())
             {
                 urakawa.metadata.Metadata meta = (urakawa.metadata.Metadata)o;
                 if (MetadataEntryDescription.GetDAISYEntries().Find(delegate(MetadataEntryDescription entry)
@@ -1466,12 +1466,12 @@ namespace Obi
             }
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                foreach (urakawa.metadata.Metadata m in affected) mProject.getPresentation ().deleteMetadata(m.getName());
+                foreach (urakawa.metadata.Metadata m in affected) mProject.getPresentation().deleteMetadata(m.getName());
                 foreach (UserControls.MetadataPanel p in dialog.MetadataPanels)
                 {
                     if (p.CanSetName)
                     {
-                        urakawa.metadata.Metadata m = (urakawa.metadata.Metadata)mProject.getPresentation ().getMetadataFactory().createMetadata();
+                        urakawa.metadata.Metadata m = (urakawa.metadata.Metadata)mProject.getPresentation().getMetadataFactory().createMetadata();
                         m.setName(p.EntryName);
                         m.setContent(p.EntryContent);
                         mProject.getPresentation().appendMetadata(m);
@@ -1858,5 +1858,10 @@ namespace Obi
 
         private void mInsertStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddNewStrip(); }
         private void mRenameStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.StartRenamingSelectedStrip(); }
+
+        private void mSearchToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ShowFindInText(); }
+        private void findNextToolStripMenuItem_Click(object sender, EventArgs e) {mProjectView.FindNextInText();}
+        private void findPreviousToolStripMenuItem_Click(object sender, EventArgs e) {mProjectView.FindPreviousInText();}
+
     }
 }
