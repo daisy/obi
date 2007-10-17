@@ -56,8 +56,8 @@ namespace Obi
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.mSearchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mFindPreviousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mFindInTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mFindPreviousInTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHideTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -307,8 +307,8 @@ namespace Obi
             this.pasteToolStripMenuItem,
             this.deleteToolStripMenuItem,
             this.toolStripSeparator4,
-            this.mSearchToolStripMenuItem,
-            this.mFindPreviousToolStripMenuItem});
+            this.mFindInTextToolStripMenuItem,
+            this.mFindPreviousInTextToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
             this.toolStripMenuItem1.Text = "&Edit";
@@ -373,21 +373,21 @@ namespace Obi
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(184, 6);
             // 
-            // mSearchToolStripMenuItem
+            // mFindInTextToolStripMenuItem
             // 
-            this.mSearchToolStripMenuItem.Name = "mSearchToolStripMenuItem";
-            this.mSearchToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.mSearchToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.mSearchToolStripMenuItem.Text = "Find";
-            this.mSearchToolStripMenuItem.Click += new System.EventHandler(this.mSearchToolStripMenuItem_Click);
+            this.mFindInTextToolStripMenuItem.Name = "mFindInTextToolStripMenuItem";
+            this.mFindInTextToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
+            this.mFindInTextToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.mFindInTextToolStripMenuItem.Text = "Find";
+            this.mFindInTextToolStripMenuItem.Click += new System.EventHandler(this.mFindInTextToolStripMenuItem_Click);
             // 
-            // mFindPreviousToolStripMenuItem
+            // mFindPreviousInTextToolStripMenuItem
             // 
-            this.mFindPreviousToolStripMenuItem.Name = "mFindPreviousToolStripMenuItem";
-            this.mFindPreviousToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.F3)));
-            this.mFindPreviousToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.mFindPreviousToolStripMenuItem.Text = "Find previous";
-            this.mFindPreviousToolStripMenuItem.Click += new System.EventHandler(this.findPreviousToolStripMenuItem_Click);
+            this.mFindPreviousInTextToolStripMenuItem.Name = "mFindPreviousInTextToolStripMenuItem";
+            this.mFindPreviousInTextToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.F3)));
+            this.mFindPreviousInTextToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.mFindPreviousInTextToolStripMenuItem.Text = "Find previous";
+            this.mFindPreviousInTextToolStripMenuItem.Click += new System.EventHandler(this.mFindPreviousInTextToolStripMenuItem_Click);
             // 
             // mViewToolStripMenuItem
             // 
@@ -1138,8 +1138,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mMarkSectionAsUsedunusedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mSynchronizeViewsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripMenuItem mSearchToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mFindPreviousToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mFindInTextToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mFindPreviousInTextToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mSplitStripToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMergeWithNextStripToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mAboutThisStripToolStripMenuItem;
