@@ -647,10 +647,11 @@ namespace Obi.ProjectView
         public void ShowFindInText()
         {
             //iterating over the layout panel seems to be the way to search the sections 
-            mFindInText.InitializeComponentsToSearch(this.mStripsView.LayoutPanel());
+            mFindInText.InitializeComponentsToSearch(mStripsView.LayoutPanel);
             mFindInText.Visible = true;
             mFindInText.Focus();
         }
+
         public void FindNextInText()
         {
             if (mFindInText.Visible) mFindInText.FindNext();
@@ -660,7 +661,6 @@ namespace Obi.ProjectView
         {
             if (mFindInText.Visible) mFindInText.FindPrevious();
         }
-
         
         #endregion
 

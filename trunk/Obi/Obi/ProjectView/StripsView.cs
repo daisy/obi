@@ -245,11 +245,23 @@ namespace Obi.ProjectView
 
         #endregion
 
-        //marisa added this
-        //hopefully a more elegant solution can be found
-        public FlowLayoutPanel LayoutPanel()
+
+
+
+        // temporary for search
+        public FlowLayoutPanel LayoutPanel { get { return mLayoutPanel; } }
+
+        /// <summary>
+        /// Get all the searchable items (i.e. strips) in the control
+        /// </summary>
+        public List<ISearchable> Searchables
         {
-            return mLayoutPanel;
+            get
+            {
+                List<ISearchable> l = new List<ISearchable>(mLayoutPanel.Controls.Count);
+                foreach (Control c in mLayoutPanel.Controls) if (c is ISearchable) l.Add((ISearchable)c);
+                return l;
+            }
         }
     }
 }
