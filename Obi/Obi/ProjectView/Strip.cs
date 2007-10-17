@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Obi.ProjectView
 {
-    public partial class Strip : UserControl
+    public partial class Strip : UserControl, ISearchable
     {
         private SectionNode mNode;       // the section node for this strip
         private bool mSelected;          // selected flag
@@ -93,5 +93,19 @@ namespace Obi.ProjectView
         {
             if (!mSelected) mParentView.SelectedSection = mNode;
         }
+
+        #region ISearchable Members
+
+        public bool Matches(string search)
+        {
+            return FindInText.Match(Label, search);
+        }
+
+        public void Replace(string search, string replace)
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
+        #endregion
     }
 }

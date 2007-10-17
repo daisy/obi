@@ -8,6 +8,23 @@ using System.Windows.Forms;
 
 namespace Obi.ProjectView
 {
+    /// <summary>
+    /// Interface for all controls that have searchable text (strips, blocks, metadata panels so far.)
+    /// </summary>
+    public interface ISearchable
+    {
+        /// <summary>
+        /// True if there is text that matches the search string.
+        /// </summary>
+        bool Matches(string search);
+
+        /// <summary>
+        /// Replace the text that matched the search string with the replace string.
+        /// </summary>
+        /// <remarks>Throw an exception if the search doesn't match.</remarks>
+        void Replace(string search, string replace);
+    }
+
     /*
      * Disclaimer: this is new and doesn't yet work as described below.
      * 
@@ -96,6 +113,16 @@ namespace Obi.ProjectView
         public void FindPrevious()
         {
             
+        }
+
+        /// <summary>
+        /// Try to match target string with search string.
+        /// Do only exact match now, but should improve for caseless match, maybe regex?
+        /// </summary>
+        // This method is used by all Searchables to implement the string matching
+        public static bool Match(string target, string search)
+        {
+            return target.Contains(search);
         }
     }
 }
