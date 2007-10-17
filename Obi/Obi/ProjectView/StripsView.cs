@@ -71,7 +71,7 @@ namespace Obi.ProjectView
         /// </summary>
         public NodeSelection Selection
         {
-            get { return new NodeSelection(mSelectedStrip.Node, this, false); }
+            get { return mSelectedStrip == null ? null : new NodeSelection(mSelectedStrip.Node, this, false); }
             set
             {
                 Strip s = value == null ? null : FindStrip(value.Node as SectionNode);
@@ -151,11 +151,11 @@ namespace Obi.ProjectView
         // Add a new strip for a section and all of its subsections
         private Strip AddStripForSection(SectionNode section)
         {
-            for (int i = 0; i < section.SectionChildCount; ++i) AddStripForSection(section.SectionChild(i));
             Strip strip = new Strip(section, this);
             mLayoutPanel.Controls.Add(strip);
             mLayoutPanel.Controls.SetChildIndex(strip, section.Position);
             strip.MinimumSize = new Size(mLayoutPanel.Width, strip.MinimumSize.Height);
+            for (int i = 0; i < section.SectionChildCount; ++i) AddStripForSection(section.SectionChild(i));
             return strip;
         }
 
@@ -252,7 +252,7 @@ namespace Obi.ProjectView
         public FlowLayoutPanel LayoutPanel { get { return mLayoutPanel; } }
 
         /// <summary>
-        /// Get all the searchable items (i.e. strips) in the control
+        /// Get all the searchable items (i.e. strips; later blocks) in the control
         /// </summary>
         public List<ISearchable> Searchables
         {
@@ -262,6 +262,15 @@ namespace Obi.ProjectView
                 foreach (Control c in mLayoutPanel.Controls) if (c is ISearchable) l.Add((ISearchable)c);
                 return l;
             }
+        }
+
+        /// <summary>
+        /// Get some information about the selected strip
+        /// </summary>
+        public void AboutSelectedStrip()
+        {
+            Console.Out.WriteLine("[Strip at level {0}, position {1}, with label `{2}' (`{3}')]",
+                mSelectedStrip.Node.Level, mSelectedStrip.Node.Position, mSelectedStrip.Label, mSelectedStrip.Node.Label);
         }
     }
 }

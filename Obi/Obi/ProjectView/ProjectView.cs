@@ -297,11 +297,6 @@ namespace Obi.ProjectView
 
 
 
-        internal void ImportPhrases()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
         internal void SplitBlock()
         {
             throw new Exception("The method or operation is not implemented.");
@@ -665,6 +660,36 @@ namespace Obi.ProjectView
         #endregion
 
 
-        
+        /// <summary>
+        /// Split a strip at the selected position. (TODO!)
+        /// </summary>
+        public void SplitStrip() { if (CanSplitStrip) { } }
+        public bool CanSplitStrip { get { return false; } }
+
+        /// <summary>
+        /// Merge a strip with the next one. (TODO!)
+        /// </summary>
+        public void MergeStrips() { if (CanMergeStrips) {} }
+        public bool CanMergeStrips { get { return false; } }
+
+        /// <summary>
+        /// Debug information about the selected strip
+        /// </summary>
+        public void AboutStrip() { if (CanTellAboutStrip) { mStripsView.AboutSelectedStrip(); } }
+        public bool CanTellAboutStrip { get { return mStripsView.Selection != null; } }
+
+        /// <summary>
+        /// Import new phrases in the strip, one block per file.
+        /// </summary>
+        public void ImportPhrases()
+        {
+            if (CanImportPhrases)
+            {
+                string[] filenames = Commands.Strips.ImportPhrases.SelectPhrases();
+                if (filenames != null) mUndo.execute(new Commands.Strips.ImportPhrases(this, filenames));
+            }
+        }
+
+        public bool CanImportPhrases { get { return mStripsView.Selection != null; } }
     }
 }

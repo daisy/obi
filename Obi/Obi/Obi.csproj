@@ -104,6 +104,7 @@
     <Compile Include="Commands\Strips\ApplyPhraseDetection.cs" />
     <Compile Include="Commands\Strips\CopyPhrase.cs" />
     <Compile Include="Commands\Strips\EditOrRemoveAnnotation.cs" />
+    <Compile Include="Commands\Strips\ImportPhrases.cs" />
     <Compile Include="Commands\Strips\MergePhrases.cs" />
     <Compile Include="Commands\Strips\DeletePhrase.cs" />
     <Compile Include="Commands\Strips\MovePhrase.cs" />

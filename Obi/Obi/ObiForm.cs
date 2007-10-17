@@ -475,11 +475,6 @@ namespace Obi
 
         #region Strips menu event handlers
 
-        private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.ImportPhrases();
-        }
-
         private void mSplitAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.SplitBlock();
@@ -1767,6 +1762,10 @@ namespace Obi
             mMarkSectionAsUsedunusedToolStripMenuItem.Visible = !mProjectView.CanToggleSectionUsed;
             mInsertStripToolStripMenuItem.Enabled = mProjectView.CanAddStrip;
             mRenameStripToolStripMenuItem.Enabled = mProjectView.CanRenameStrip;
+            mSplitStripToolStripMenuItem.Enabled = mProjectView.CanSplitStrip;
+            mMergeWithNextStripToolStripMenuItem.Enabled = mProjectView.CanMergeStrips;
+            mAboutThisStripToolStripMenuItem.Enabled = mProjectView.CanTellAboutStrip;
+            mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
         }
 
         private void NEWundoToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Undo(); }
@@ -1858,6 +1857,13 @@ namespace Obi
 
         private void mInsertStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddNewStrip(); }
         private void mRenameStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.StartRenamingSelectedStrip(); }
+        private void mSplitStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SplitStrip(); }
+        private void mMergeWithNextStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeStrips(); }
+        private void mAboutThisStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AboutStrip(); }
+
+        // Blocks menu
+        
+        private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ImportPhrases(); }
 
         private void mSearchToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ShowFindInText(); }
         private void findNextToolStripMenuItem_Click(object sender, EventArgs e) {mProjectView.FindNextInText();}
