@@ -137,12 +137,12 @@ namespace Obi.ProjectView
             this.mTransportBar.Size = new System.Drawing.Size(960, 35);
             this.mTransportBar.TabIndex = 0;
             // 
-            // searchText1
+            // mFindInText
             // 
             this.mFindInText.BackColor = System.Drawing.Color.Chartreuse;
             this.mFindInText.Location = new System.Drawing.Point(3, 176);
-            this.mFindInText.Name = "searchText1";
-            this.mFindInText.Size = new System.Drawing.Size(209, 25);
+            this.mFindInText.Name = "FindInText1";
+            this.mFindInText.Size = new System.Drawing.Size(209, 100);
             this.mFindInText.TabIndex = 1;
             // 
             // ProjectView

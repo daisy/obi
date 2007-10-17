@@ -639,22 +639,15 @@ namespace Obi.ProjectView
 
         #region Find in Text
 
-        public void ShowFindInText()
+        public void FindInText()
         {
             //iterating over the layout panel seems to be the way to search the sections 
-            mFindInText.InitializeComponentsToSearch(mStripsView.LayoutPanel);
-            mFindInText.Visible = true;
-            mFindInText.Focus();
-        }
-
-        public void FindNextInText()
-        {
-            if (mFindInText.Visible) mFindInText.FindNext();
+            mFindInText.ShowFinder(mStripsView.LayoutPanel);
         }
 
         public void FindPreviousInText()
         {
-            if (mFindInText.Visible) mFindInText.FindPrevious();
+            if (mFindInText.Visible) mFindInText.FindPreviousInText();
         }
         
         #endregion

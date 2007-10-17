@@ -1865,9 +1865,8 @@ namespace Obi
         
         private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ImportPhrases(); }
 
-        private void mSearchToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ShowFindInText(); }
-        private void findNextToolStripMenuItem_Click(object sender, EventArgs e) {mProjectView.FindNextInText();}
-        private void findPreviousToolStripMenuItem_Click(object sender, EventArgs e) {mProjectView.FindPreviousInText();}
+        private void mFindInTextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.FindInText(); }
+        private void mFindPreviousInTextToolStripMenuItem_Click(object sender, EventArgs e) {mProjectView.FindPreviousInText();}
 
     }
 }

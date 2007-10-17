@@ -28,7 +28,7 @@ namespace Obi.ProjectView
     /*
      * Disclaimer: this is new and doesn't yet work as described below.
      * 
-     * Press F3 to bring up the SearchText form
+     * Press F3 to bring up the FindInText form
      * Type and press enter to start searching
      * F3 to search next
      * Shift-F3 to search previous
@@ -39,49 +39,92 @@ namespace Obi.ProjectView
     public partial class FindInText : UserControl
     {
         FlowLayoutPanel mStripsPanel;
+        int mOriginalPosition;
 
         public FindInText()
         {
+            mStripsPanel = null;
+            mOriginalPosition = -1;
             InitializeComponent();
         }
 
-        //eventually this will take as input:
-        //the strips (or their view/panel)
-        //the toc
-        //the metadata
-        //or this function will be collapsed into the SearchText constructor or something that assures that it
-        //is called before the search starts.
-        public void InitializeComponentsToSearch(FlowLayoutPanel stripsPanel)
+        //this is the function that starts this widget
+        //eventually, the parameter here should be a list of strips
+        //or a list of ISearchable's.
+        //we need to know the user's current selection too, and we need to be able to select a control
+        public void ShowFinder(FlowLayoutPanel stripsPanel)
         {
-            mStripsPanel = stripsPanel;    
-        }
-
-        //when they press enter, start searching
-        //press escape to close (although the scope of this should be wider than just the text box)
-        private void mSearchString_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Return) startSearch(mSearchString.Text);
-            if (e.KeyChar == (char)Keys.Escape) this.Visible = false;
-        }
-
-        //search the views
-        //note that this actually searches the views, not the data model
-        //it feels a bit weird (perhaps because it's so lightweight) but i think it's the right approach
-        private void startSearch(String searchString)
-        {
-            bool found = false;
-
-            foreach (Control c in mStripsPanel.Controls)
+            //if this form is already being shown and has a search string, do a "Find Next"
+            if (this.Visible && mString.Text.Length > 0) FindNextInText();
+            else
             {
-               //todo: consider starting at the user's current selection
+                System.Diagnostics.Trace.Write("Find in Text: starting search form\n");
+                mStripsPanel = stripsPanel;
+                this.Visible = true;
+                mString.Focus();
+            }
+        }
 
-                //this is not case-sensitive
-                if (c is Strip && ((Strip)c).Label.ToLowerInvariant().Contains(searchString.ToLowerInvariant()))
+        public void FindNextInText()
+        {
+            //redundancy check: if the form is already visible and contains search criteria, do a "find next"
+            if (this.Visible && mString.Text.Length > 0) 
+            {
+                int currentSelection = GetIndexOfCurrentlySelectedStrip(mStripsPanel);
+                System.Diagnostics.Trace.Write("Find in Text: Find Next from index = " + currentSelection + "\n");
+                search(GetIndexOfNextStrip(mStripsPanel, currentSelection), mString.Text);
+            }
+        }
+
+        public void FindPreviousInText()
+        {
+            if (this.Visible && mString.Text.Length > 0)
+            {
+                int currentSelection = GetIndexOfCurrentlySelectedStrip(mStripsPanel);
+                System.Diagnostics.Trace.Write("Find in Text: Find Previous from index = " + currentSelection + "\n");
+                search(GetIndexOfPreviousStrip(mStripsPanel, currentSelection), mString.Text);
+            }
+        }
+
+     
+
+        private void search(int startingPoint, String searchString)
+        {
+            int startIndex = startingPoint;
+            if (startIndex == -1)
+            {
+                startIndex = GetIndexOfFirstStrip(mStripsPanel);
+                if (startIndex == -1)
+                {
+                    mTempStatus.Text = "Nothing to search";
+                    System.Diagnostics.Trace.Write("Find in Text: Nothing to search\n");
+                    return;
+                }
+            }
+
+            System.Diagnostics.Trace.Write("Find in Text: Searching..., starting from " + startIndex + "\n");
+            mTempStatus.Text = "Searching...";
+
+            bool found = false;
+            while (startIndex != -1 && found == false)
+            {
+                Control control = mStripsPanel.Controls[startIndex];
+                //make sure that this is the type of control we want to search
+                System.Diagnostics.Debug.Assert(MeetsCriteria(control));
+
+                if (((ISearchable)control).Matches(mString.Text))
                 {
                     //does this function work? 
-                    ((Strip)c).Select();
+                    ((Strip)control).Select();
                     found = true;
-                    break;
+                }
+                else
+                {
+                    startIndex = GetIndexOfNextStrip(mStripsPanel, startIndex);
+                    //don't loop forever
+                    if (startIndex == mOriginalPosition) break;
+
+                    System.Diagnostics.Trace.Write("Find in Text: still looking.  Index = " + startIndex + "\n");
                 }
             }
 
@@ -89,40 +132,115 @@ namespace Obi.ProjectView
             {
                 //todo: change the menu item text from "Find" to "Find next" menu item
                 //enable "Find previous"
-                MessageBox.Show("Found it! Yay!");
-                
+                mTempStatus.Text = "Found occurence";
+                System.Diagnostics.Trace.Write("Find in Text: Found occurence at " + startIndex + "\n");
             }
             else
             {
-                //alert "not found", but perhaps more elegantly
-                MessageBox.Show("Didn't find it :(");
+                mTempStatus.Text = "Not found.";
+                System.Diagnostics.Trace.Write("Find in Text: Not found.\n");
             }
         }
 
-        //when the form loads, focus on the text box
-        private void SearchText_Load(object sender, EventArgs e)
+     
+     
+        //when they press enter, start searching
+        //press escape to close (although the scope of this should be wider than just the text box)
+        private void mSearchString_KeyPress(object sender, KeyPressEventArgs e)
         {
-            mSearchString.Focus();
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                mOriginalPosition = GetIndexOfCurrentlySelectedStrip(mStripsPanel);
+                search(mOriginalPosition, mString.Text);
+            }
+            else if (e.KeyChar == (char)Keys.Escape) this.Visible = false;
+            else if (e.KeyChar == (char)Keys.F3) FindNextInText();
+        }
+       
+        private void FindInText_VisibleChanged(object sender, EventArgs e)
+        {
+            //if the form is being hidden:
+            //Change the main menu entry back to "Find" instead of "Find next"
+            //gray-out "Find Previous"
         }
 
-        public void FindNext()
+        //does the widget meet our criteria for being a searchable widget?
+        //this function is only temporary
+        private static bool MeetsCriteria(Control control)
         {
-            
-        }
-
-        public void FindPrevious()
-        {
-            
+            if (control != null && control is ISearchable && control is Strip) return true;
+            else return false;
         }
 
         /// <summary>
         /// Try to match target string with search string.
-        /// Do only exact match now, but should improve for caseless match, maybe regex?
+        /// Do only case-insensitive match now, but should improve, perhaps with regex?
         /// </summary>
         // This method is used by all Searchables to implement the string matching
+        //if this method grows, it should probably move out of this file.
         public static bool Match(string target, string search)
         {
-            return target.Contains(search);
+            return target.ToLowerInvariant().Contains(search.ToLowerInvariant());
         }
+
+        #region Indexing
+        //get the index of the currently selected ISearchable item
+        //ideally, we could count on ISearchable objects to also be index-able, so this function would return ISearchable instead
+        private static int GetIndexOfCurrentlySelectedStrip(FlowLayoutPanel stripsPanel)
+        {
+            for (int i = 0; i < stripsPanel.Controls.Count; i++)
+            {
+                Control control = stripsPanel.Controls[i];
+                if (MeetsCriteria(control) && ((Strip)control).Selected) return i;
+            }
+            return -1;
+        }
+
+        //get the index of the first ISearchable strip
+        private static int GetIndexOfFirstStrip(FlowLayoutPanel stripsPanel)
+        {
+            for (int i = 0; i < stripsPanel.Controls.Count; i++)
+            {
+                Control control = stripsPanel.Controls[i];
+                if (MeetsCriteria(control)) return i;
+            }
+            return -1;
+        }
+        //get the index of the last ISearchable strip
+        private static int GetIndexOfLastStrip(FlowLayoutPanel stripsPanel)
+        {
+            for (int i = stripsPanel.Controls.Count - 1; i >= 0; i--)
+            {
+                Control control = stripsPanel.Controls[i];
+                if (MeetsCriteria(control)) return i;
+            }
+            return -1;
+        }
+
+        //get the next ISearchable strip
+        private int GetIndexOfNextStrip(FlowLayoutPanel stripsPanel, int startIndex)
+        {
+            for (int i = startIndex + 1; i < stripsPanel.Controls.Count; i++)
+            {
+                Control control = stripsPanel.Controls[i];
+                if (MeetsCriteria(control)) return i;
+            }
+            //loop back to the beginning
+            return GetIndexOfFirstStrip(stripsPanel);
+        }
+
+        //get the previous ISearchable strip
+        private static int GetIndexOfPreviousStrip(FlowLayoutPanel stripsPanel, int startIndex)
+        {
+            for (int i = startIndex - 1; i >= 0; i--)
+            {
+                Control control = stripsPanel.Controls[i];
+                if (MeetsCriteria(control)) return i;
+            }
+            //loop back to the end
+            return GetIndexOfLastStrip(stripsPanel);
+        }
+    #endregion
+
     }
 }
