@@ -23,6 +23,10 @@ namespace Obi.ProjectView
         public event Commands.UndoRedoEventHandler CommandExecuted;
         public event Commands.UndoRedoEventHandler CommandUnexecuted;
 
+        public event ImportingFileEventHandler ImportingFile;  // triggered when a file is being imported
+        public event EventHandler FinishedImportingFiles;      // triggered when all files were imported
+
+
         public ProjectView()
         {
             InitializeComponent();
@@ -680,8 +684,19 @@ namespace Obi.ProjectView
         {
             if (CanImportPhrases)
             {
-                List<PhraseNode> phrases = SelectPhrases();
-                if (phrases.Count > 0) mUndo.execute(new Commands.Strips.ImportPhrases(this, phrases));
+                string[] paths = SelectFilesToImport();
+                List<PhraseNode> phrases = new List<PhraseNode>(paths.Length);
+                BackgroundWorker worker = new BackgroundWorker();
+                worker.DoWork += new DoWorkEventHandler(delegate(object sender, DoWorkEventArgs e)
+                {
+                    CreatePhrasesForFiles(phrases, paths);
+                });
+                worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(
+                    delegate(object sender, RunWorkerCompletedEventArgs e)
+                    {
+                        if (phrases.Count > 0) mUndo.execute(new Commands.Strips.ImportPhrases(this, phrases));
+                    });
+                worker.RunWorkerAsync();
             }
         }
 
@@ -691,30 +706,41 @@ namespace Obi.ProjectView
         /// Bring up the file chooser to select audio files to import and return new phrase nodes for the selected files,
         /// or null if nothing was selected.
         /// </summary>
-        private List<PhraseNode> SelectPhrases()
+        private string[] SelectFilesToImport()
         {
-            List<PhraseNode> phrases = new List<PhraseNode>();
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Multiselect = true;
             dialog.Filter = Localizer.Message("audio_file_filter");
-            if (dialog.ShowDialog() == DialogResult.OK)
+            return dialog.ShowDialog() == DialogResult.OK ? dialog.FileNames : new string[0];
+        }
+
+        private void CreatePhrasesForFiles(List<PhraseNode> phrases, string[] paths)
+        {
+            foreach (string path in paths)
             {
-                foreach (string path in dialog.FileNames)
+                if (ImportingFile != null) ImportingFile(this, new ImportingFileEventArgs(path));
+                try
                 {
-                    try
-                    {
-                        phrases.Add(mProject.NewPhraseNodeFromFile(path));
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show(String.Format(Localizer.Message("import_phrase_error_text"), path),
-                            Localizer.Message("import_phrase_error_caption"),
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                    }
+                    phrases.Add(mProject.NewPhraseNodeFromFile(path));
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(String.Format(Localizer.Message("import_phrase_error_text"), path),
+                        Localizer.Message("import_phrase_error_caption"),
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
             }
-            return phrases;
+            if (FinishedImportingFiles != null) FinishedImportingFiles(this, null);
         }
     }
+
+    public class ImportingFileEventArgs
+    {
+        public string Path;  // path of the file being imported
+        public ImportingFileEventArgs(string path) { Path = path; }
+    }
+
+    public delegate void ImportingFileEventHandler(object sender, ImportingFileEventArgs e);
+
 }

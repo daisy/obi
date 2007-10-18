@@ -41,7 +41,7 @@ namespace Obi.Commands.Strips
 
         public override void unExecute()
         {
-            foreach (PhraseNode phrase in mPhrases) mParent.removeChild(phrase);
+            foreach (PhraseNode phrase in mPhrases) mParent.RemoveChild(phrase);
             base.unExecute();
         }
     }
