@@ -14,7 +14,8 @@ namespace Obi
         private Project mProject;  // project that this node (or rather that its presentation) belongs to
         private bool mUsed;        // mark node as being in use or not
 
-        public event EventHandler UsedStateChanged;  // triggerd when the used state of the node has changed
+        public event EventHandler UsedStateChanged;       // triggered when the used state of the node has changed
+        public event EventHandler BeforeTreeNodeRemoved;  // triggered before a node is removed
 
         private static readonly string USED_ATTR_NAME = "used";
 
@@ -74,6 +75,15 @@ namespace Obi
         /// Project to which the presentation of this node belongs.
         /// </summary>
         public Project Project { get { return mProject; } }
+
+        /// <summary>
+        /// Remove a node but warn beforehand!
+        /// </summary>
+        public void RemoveChild(ObiNode child)
+        {
+            if (BeforeTreeNodeRemoved != null) BeforeTreeNodeRemoved(this, null);
+            removeChild(child);
+        }
 
         /// <summary>
         /// Used flag.

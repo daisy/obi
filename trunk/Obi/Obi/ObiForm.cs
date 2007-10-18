@@ -79,6 +79,8 @@ namespace Obi
                 mProjectView.TransportBar.StateChanged +=
                     new Obi.Events.Audio.Player.StateChangedHandler(TransportBar_StateChanged);
                 mProjectView.TransportBar.PlaybackRateChanged += new EventHandler(TransportBar_PlaybackRateChanged);
+                mProjectView.ImportingFile += new Obi.ProjectView.ImportingFileEventHandler(mProjectView_ImportingFile);
+                mProjectView.FinishedImportingFiles += new EventHandler(mProjectView_FinishedImportingFiles);
                 StatusUpdateClosedProject();
             }
             catch (Exception eAnyStartupException)
@@ -734,7 +736,7 @@ namespace Obi
             }
             else
             {
-                mToolStripStatusLabel.Text = String.Format(Localizer.Message("closed_project"), mProject.Title);
+                mStatusLabel.Text = String.Format(Localizer.Message("closed_project"), mProject.Title);
                 mProjectView.Project = null;
                 EnableItemsProjectClosed();
             }
@@ -1085,6 +1087,7 @@ namespace Obi
         /// </summary>
         private void Ready()
         {
+            Cursor = Cursors.Default;
             Status(Localizer.Message("ready"));
         }
 
@@ -1094,7 +1097,7 @@ namespace Obi
         /// <param name="message">The message to display.</param>
         private void Status(string message)
         {
-            mToolStripStatusLabel.Text = message;
+            mStatusLabel.Text = message;
         }
 
         /// <summary>
@@ -1744,6 +1747,7 @@ namespace Obi
             mRedoToolStripMenuItem.Text = e.Manager.canRedo() ?
                 String.Format(Localizer.Message("redo_label"), Localizer.Message("redo"), e.Manager.getRedoShortDescription()) :
                 Localizer.Message("cannot_redo");
+            Ready();
         }
 
         private void mProjectView_SelectionChanged(object sender, EventArgs e) { UpdateMenus(); }
@@ -1862,11 +1866,38 @@ namespace Obi
         private void mAboutThisStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AboutStrip(); }
 
         // Blocks menu
-        
+
         private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ImportPhrases(); }
 
         private void mFindInTextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.FindInText(); }
         private void mFindPreviousInTextToolStripMenuItem_Click(object sender, EventArgs e) {mProjectView.FindPreviousInText();}
 
+
+        private delegate void DisableCallback(bool disable);
+
+        private void Disable(bool disable)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new DisableCallback(Disable), new object[] { disable });
+            }
+            else
+            {
+                Cursor = disable ? Cursors.WaitCursor : Cursors.Default;
+                menuStrip1.Enabled = !disable;
+                mProjectView.Enabled = !disable;
+            }
+        }
+
+        void mProjectView_ImportingFile(object sender, Obi.ProjectView.ImportingFileEventArgs e)
+        {
+            Disable(true);
+            Status(String.Format(Localizer.Message("importing_file"), e.Path));
+        }
+
+        void mProjectView_FinishedImportingFiles(object sender, EventArgs e)
+        {
+            Disable(false);
+        }
     }
 }

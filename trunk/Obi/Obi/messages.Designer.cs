@@ -857,6 +857,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Importing file &quot;{0}&quot;.
+        /// </summary>
+        internal static string importing_file {
+            get {
+                return ResourceManager.GetString("importing_file", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to move section in.
         /// </summary>
         internal static string increase_section_level_command_label {
