@@ -848,6 +848,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to import audio files.
+        /// </summary>
+        internal static string import_phrases_command {
+            get {
+                return ResourceManager.GetString("import_phrases_command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to move section in.
         /// </summary>
         internal static string increase_section_level_command_label {

@@ -612,25 +612,6 @@ namespace Obi
             Modified(new Commands.Strips.AddPhrase(phrase));
         }
 
-        private ManagedAudioMedia ImportAudioFromFile(string path)
-        {
-            if (!DataManager.getEnforceSinglePCMFormat())
-            {
-                Stream input = File.OpenRead(path);
-                PCMDataInfo info = PCMDataInfo.parseRiffWaveHeader(input);
-                input.Close();
-                getPresentation().getMediaDataManager().getDefaultPCMFormat().setBitDepth(info.getBitDepth());
-                getPresentation().getMediaDataManager().getDefaultPCMFormat().setNumberOfChannels(info.getNumberOfChannels());
-                getPresentation().getMediaDataManager().getDefaultPCMFormat().setSampleRate(info.getSampleRate());
-                DataManager.setEnforceSinglePCMFormat(true);
-            }
-            AudioMediaData data = (AudioMediaData)
-                getPresentation().getMediaDataFactory().createMediaData(typeof(AudioMediaData));
-            data.appendAudioDataFromRiffWave(path);
-            ManagedAudioMedia media = (ManagedAudioMedia)getPresentation().getMediaFactory().createAudioMedia();
-            media.setMediaData(data);
-            return media;
-        }
 
         /// <summary>
         /// This function is called when undeleting a subtree
