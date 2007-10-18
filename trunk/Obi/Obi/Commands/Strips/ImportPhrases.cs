@@ -1,43 +1,48 @@
 using System;
-using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace Obi.Commands.Strips
 {
+    /// <summary>
+    /// Import phrases from files.
+    /// </summary>
     class ImportPhrases: Command
     {
-        public ImportPhrases(ProjectView.ProjectView view, string[] filenames)
+        private ObiNode mParent;            // parent node for the phrases
+        private int mFirstIndex;            // index of the first phrase to import
+        private List<PhraseNode> mPhrases;  // the created phrases
+
+        public ImportPhrases(ProjectView.ProjectView view, List<PhraseNode> phrases)
             : base(view)
         {
-        }
-
-        public static string[] SelectPhrases()
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Multiselect = true;
-            dialog.Filter = Localizer.Message("audio_file_filter");
-            return dialog.ShowDialog() == DialogResult.OK ? dialog.FileNames : null;
-        }
-
-        /*
-                foreach (string path in dialog.FileNames)
-                {
-                    try
-                    {
-                        mProjectPanel.Project.DidAddPhraseFromFile(path, insert.node, insert.index);
-                        ++insert.index;
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show(String.Format(Localizer.Message("import_phrase_error_text"), path),
-                            Localizer.Message("import_phrase_error_caption"),
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                    }
-                }
-                // select the first added phrase
-                //mProjectPanel.CurrentSelection = new NodeSelection(insert.node, this);
+            // normally we will want the dummy phrase to be selected
+            if (SelectionBefore.Node is SectionNode)
+            {
+                mParent = SelectionBefore.Node;
+                mFirstIndex = 0;
             }
+            else
+            {
+                // after the selected node
+                mParent = SelectionBefore.Node.Parent;
+                mFirstIndex = SelectionBefore.Node.Index + 1;
+            }
+            mPhrases = phrases;
         }
-         */
+
+        public override string getShortDescription() { return Localizer.Message("import_phrases_command"); }
+
+        public override void execute()
+        {
+            base.execute();
+            for (int i = 0; i < mPhrases.Count; ++i) mParent.Insert(mPhrases[i], mFirstIndex + i);
+            View.Selection = new NodeSelection(mPhrases[mPhrases.Count - 1], SelectionBefore.Control, false);
+        }
+
+        public override void unExecute()
+        {
+            foreach (PhraseNode phrase in mPhrases) mParent.removeChild(phrase);
+            base.unExecute();
+        }
     }
 }

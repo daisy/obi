@@ -8,6 +8,7 @@ using urakawa.core;
 using urakawa.core.events;
 using urakawa.media;
 using urakawa.media.data;
+using urakawa.media.data.audio;
 using urakawa.property.channel;
 using urakawa.undo;
 
@@ -274,25 +275,6 @@ namespace Obi
             Channel channel = getPresentation().getChannelFactory().createChannel();
             channel.setName(name);
             getPresentation().getChannelsManager().addChannel(channel);
-        }
-
-        /// <summary>
-        /// Create a new phrase node.
-        /// </summary>
-        private PhraseNode CreatePhraseNode()
-        {
-            return (PhraseNode)
-                getPresentation().getTreeNodeFactory().createNode(PhraseNode.XUK_ELEMENT_NAME, Program.OBI_NS);
-        }
-
-        /// <summary>
-        /// Create a new phrase node from an audio media.
-        /// </summary>
-        private PhraseNode CreatePhraseNode( urakawa.media.data.audio.ManagedAudioMedia audio)
-        {
-            PhraseNode node = CreatePhraseNode();
-            node.Audio = audio;
-            return node;
         }
 
         /// <summary>
@@ -717,6 +699,47 @@ namespace Obi
         {
             return getPresentation().getTreeNodeFactory().createNode(SectionNode.XUK_ELEMENT_NAME, Program.OBI_NS)
             as SectionNode;
+        }
+
+        /// <summary>
+        /// Convenience method to create a new plain phrase node from a file.
+        /// </summary>
+        public PhraseNode NewPhraseNodeFromFile(string path) { return CreatePhraseNode(ImportAudioFromFile(path)); }
+
+        // Create a new phrase node.
+        private PhraseNode CreatePhraseNode()
+        {
+            return (PhraseNode)
+                getPresentation().getTreeNodeFactory().createNode(PhraseNode.XUK_ELEMENT_NAME, Program.OBI_NS);
+        }
+
+        // Create a new phrase node from an audio media.
+        private PhraseNode CreatePhraseNode(urakawa.media.data.audio.ManagedAudioMedia audio)
+        {
+            PhraseNode node = CreatePhraseNode();
+            node.Audio = audio;
+            return node;
+        }
+
+        // Create a media object from a sound file.
+        private ManagedAudioMedia ImportAudioFromFile(string path)
+        {
+            if (!DataManager.getEnforceSinglePCMFormat())
+            {
+                Stream input = File.OpenRead(path);
+                PCMDataInfo info = PCMDataInfo.parseRiffWaveHeader(input);
+                input.Close();
+                getPresentation().getMediaDataManager().getDefaultPCMFormat().setBitDepth(info.getBitDepth());
+                getPresentation().getMediaDataManager().getDefaultPCMFormat().setNumberOfChannels(info.getNumberOfChannels());
+                getPresentation().getMediaDataManager().getDefaultPCMFormat().setSampleRate(info.getSampleRate());
+                DataManager.setEnforceSinglePCMFormat(true);
+            }
+            AudioMediaData data = (AudioMediaData)
+                getPresentation().getMediaDataFactory().createMediaData(typeof(AudioMediaData));
+            data.appendAudioDataFromRiffWave(path);
+            ManagedAudioMedia media = (ManagedAudioMedia)getPresentation().getMediaFactory().createAudioMedia();
+            media.setMediaData(data);
+            return media;
         }
     }
 }

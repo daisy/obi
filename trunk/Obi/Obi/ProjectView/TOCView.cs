@@ -10,8 +10,8 @@ namespace Obi.ProjectView
     /// </summary>
     public partial class TOCView : UserControl, IControlWithRenamableSelection
     {
-        private ProjectView mView;   // the parent project view
-        private TreeNode mDummy;     // dummy section node (for selection)
+        private ProjectView mView;  // the parent project view
+        private TreeNode mDummy;    // dummy section node (for selection)
 
         /// <summary>
         /// Create a new TOC view as part of a project view.
@@ -87,14 +87,14 @@ namespace Obi.ProjectView
         /// </summary>
         public void NewProject()
         {
-            mView.Project.getPresentation().treeNodeAdded += new TreeNodeAddedEventHandler(TOCView_treeNodeAdded);
-            mView.Project.getPresentation().treeNodeRemoved += new TreeNodeRemovedEventHandler(TOCView_treeNodeRemoved);
-            mView.Project.RenamedSectionNode += new Obi.Events.RenameSectionNodeHandler(Project_RenamedSectionNode);
             mTOCTree.Nodes.Clear();
             /*mDummy = new TreeNode(Localizer.Message("dummy_section"));
             mTOCTree.Nodes.Add(mDummy);
             mDummy.ForeColor = Color.LightGray;
             mDummy.Tag = mView.Project.RootNode;*/
+            mView.Project.getPresentation().treeNodeAdded += new TreeNodeAddedEventHandler(TOCView_treeNodeAdded);
+            mView.Project.getPresentation().treeNodeRemoved += new TreeNodeRemovedEventHandler(TOCView_treeNodeRemoved);
+            mView.Project.RenamedSectionNode += new Obi.Events.RenameSectionNodeHandler(Project_RenamedSectionNode);
         }
 
         /// <summary>
@@ -110,14 +110,17 @@ namespace Obi.ProjectView
             set
             {
                 TreeNode n = value == null ? null : value.IsDummy ? mDummy : FindTreeNode((SectionNode)value.Node);
-                // ignore the select event, since we were asked to change the selection
+                // ignore the select event, since we were asked to change the selection;
+                // but allow the selection not coming from the user
                 mTOCTree.AfterSelect -= new TreeViewEventHandler(mTOCTree_AfterSelect);
+                mTOCTree.BeforeSelect -= new TreeViewCancelEventHandler(mTOCTree_BeforeSelect);
                 // if (n != mDummy) UpdateDummyNode(n);  // TODO dummy node is not working yet
                 mTOCTree.SelectedNode = n;
                 // Show the strip for the selected section (use "as SectionNode" since the dummy under the root
                 // may be selected and there is no strip for it.)
                 if (n != null) mView.MakeStripVisibleForSection(n.Tag as SectionNode);
                 mTOCTree.AfterSelect += new TreeViewEventHandler(mTOCTree_AfterSelect);
+                mTOCTree.BeforeSelect += new TreeViewCancelEventHandler(mTOCTree_BeforeSelect);
             }
         }
 
@@ -184,9 +187,14 @@ namespace Obi.ProjectView
             if (s != mView.Selection) mView.Selection = s;
         }
 
+        // Filter out unwanted tree selections (not caused by the user clicking, expanding, collapsing or keyboarding.)
         private void mTOCTree_BeforeSelect(object sender, TreeViewCancelEventArgs e)
         {
-            //if (mTOCTree.SelectedNode != null && mTOCTree.SelectedNode != e.Node) mTOCTree.SelectedNode.EndEdit(true);
+            if (e.Action == TreeViewAction.Unknown)
+            {
+                System.Diagnostics.Debug.Print("!!! Cancelled selection in tree from `{0}'", sender);
+                e.Cancel = true;
+            }
         }
 
         // Show the dummy node under the selected section, or the root of the tree
@@ -206,11 +214,14 @@ namespace Obi.ProjectView
         // Add new section nodes to the tree
         private void TOCView_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
         {
-            System.Diagnostics.Debug.Print("+++ new tree node!");
-            // ignore the selection of the new tree node
-            mTOCTree.AfterSelect -= new TreeViewEventHandler(mTOCTree_AfterSelect);
-            CreateTreeNodeForSectionNode(e.getTreeNode() as SectionNode);
-            mTOCTree.AfterSelect += new TreeViewEventHandler(mTOCTree_AfterSelect);
+            if (e.getTreeNode() is SectionNode)
+            {
+                System.Diagnostics.Debug.Print("+++ new tree node!");
+                // ignore the selection of the new tree node
+                mTOCTree.AfterSelect -= new TreeViewEventHandler(mTOCTree_AfterSelect);
+                CreateTreeNodeForSectionNode(e.getTreeNode() as SectionNode);
+                mTOCTree.AfterSelect += new TreeViewEventHandler(mTOCTree_AfterSelect);
+            }
         }
 
         // Create a new tree node for a section node and all of its descendants

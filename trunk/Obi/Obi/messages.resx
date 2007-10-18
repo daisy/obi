@@ -768,4 +768,7 @@ Do you want to replace the project contained in this file?</value>
   <data name="add_strip_command" xml:space="preserve">
     <value>add strip</value>
   </data>
+  <data name="import_phrases_command" xml:space="preserve">
+    <value>import audio files</value>
+  </data>
 </root>

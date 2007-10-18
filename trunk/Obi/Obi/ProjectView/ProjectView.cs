@@ -671,6 +671,8 @@ namespace Obi.ProjectView
         public void AboutStrip() { if (CanTellAboutStrip) { mStripsView.AboutSelectedStrip(); } }
         public bool CanTellAboutStrip { get { return mStripsView.Selection != null; } }
 
+        // Blocks
+
         /// <summary>
         /// Import new phrases in the strip, one block per file.
         /// </summary>
@@ -678,11 +680,41 @@ namespace Obi.ProjectView
         {
             if (CanImportPhrases)
             {
-                string[] filenames = Commands.Strips.ImportPhrases.SelectPhrases();
-                if (filenames != null) mUndo.execute(new Commands.Strips.ImportPhrases(this, filenames));
+                List<PhraseNode> phrases = SelectPhrases();
+                if (phrases.Count > 0) mUndo.execute(new Commands.Strips.ImportPhrases(this, phrases));
             }
         }
 
         public bool CanImportPhrases { get { return mStripsView.Selection != null; } }
+
+        /// <summary>
+        /// Bring up the file chooser to select audio files to import and return new phrase nodes for the selected files,
+        /// or null if nothing was selected.
+        /// </summary>
+        private List<PhraseNode> SelectPhrases()
+        {
+            List<PhraseNode> phrases = new List<PhraseNode>();
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Multiselect = true;
+            dialog.Filter = Localizer.Message("audio_file_filter");
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                foreach (string path in dialog.FileNames)
+                {
+                    try
+                    {
+                        phrases.Add(mProject.NewPhraseNodeFromFile(path));
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show(String.Format(Localizer.Message("import_phrase_error_text"), path),
+                            Localizer.Message("import_phrase_error_caption"),
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                }
+            }
+            return phrases;
+        }
     }
 }

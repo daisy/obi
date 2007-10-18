@@ -9,10 +9,19 @@ using urakawa.core.events;
 
 namespace Obi.ProjectView
 {
+    /// <summary>
+    /// Common interface for selection of strips and blocks
+    /// </summary>
+    public interface ISelectableInStripView
+    {
+        bool Selected { get; set; }
+        ObiNode ObiNode { get; }
+    }
+
     public partial class StripsView : UserControl, IControlWithRenamableSelection
     {
-        private ProjectView mView;     // parent project view
-        private Strip mSelectedStrip;  // the current selection
+        private ProjectView mView;                     // parent project view
+        private ISelectableInStripView mSelectedItem;  // selected strip or block
 
         /// <summary>
         /// A new strips view.
@@ -21,15 +30,15 @@ namespace Obi.ProjectView
             : this()
         {
             mView = view;
-            mSelectedStrip = null;
+            mSelectedItem = null;
         }
 
         // Used by the designer
         public StripsView() { InitializeComponent(); }
 
 
-        public bool CanAddStrip { get { return mSelectedStrip != null; } }
-        public bool CanRenameStrip { get { return mSelectedStrip != null; } }
+        public bool CanAddStrip { get { return mSelectedItem is Strip; } }
+        public bool CanRenameStrip { get { return mSelectedItem is Strip; } }
 
         /// <summary>
         /// Show the strip for this section node.
@@ -57,12 +66,18 @@ namespace Obi.ProjectView
             mView.RenameSectionNode(strip.Node, strip.Label);
         }
 
+        public PhraseNode SelectedPhrase
+        {
+            get { return mSelectedItem != null && mSelectedItem is Block ? ((Block)mSelectedItem).Node : null; }
+            set { mView.Selection = new NodeSelection(value, this, false); }
+        }
+
         /// <summary>
         /// Set the selected section (null to deselect)
         /// </summary>
         public SectionNode SelectedSection
         {
-            get { return mSelectedStrip == null ? null : mSelectedStrip.Node; }
+            get { return mSelectedItem != null && mSelectedItem is Strip ? ((Strip)mSelectedItem).Node : null; }
             set { mView.Selection = new NodeSelection(value, this, false); }
         }
 
@@ -71,20 +86,22 @@ namespace Obi.ProjectView
         /// </summary>
         public NodeSelection Selection
         {
-            get { return mSelectedStrip == null ? null : new NodeSelection(mSelectedStrip.Node, this, false); }
+            get { return mSelectedItem == null ? null : new NodeSelection(mSelectedItem.ObiNode, this, false); }
             set
             {
-                Strip s = value == null ? null : FindStrip(value.Node as SectionNode);
-                if (s != mSelectedStrip)
+                ISelectableInStripView s = value == null ? null : FindSelectable(value.Node);
+                if (s != mSelectedItem)
                 {
-                    if (mSelectedStrip != null) mSelectedStrip.Selected = false;
+                    if (mSelectedItem != null) mSelectedItem.Selected = false;
                     if (s != null)
                     {
                         s.Selected = true;
-                        mLayoutPanel.ScrollControlIntoView(s);
-                        mView.MakeTreeNodeVisibleForSection(value.Node as SectionNode);
+                        mLayoutPanel.ScrollControlIntoView((Control)s);
+                        SectionNode section = value.Node is SectionNode ? (SectionNode)value.Node :
+                            value.Node is PhraseNode ? ((PhraseNode)value.Node).ParentSection : null;
+                        mView.MakeTreeNodeVisibleForSection(section);
                     }
-                    mSelectedStrip = s;
+                    mSelectedItem = s;
                 }
             }
         }
@@ -101,7 +118,7 @@ namespace Obi.ProjectView
                 if ((s = FindStrip(child)) != null)
                 {
                     s.Visible = visible;
-                    if (mSelectedStrip == s && !visible) mView.Selection = null;
+                    if (mSelectedItem == s && !visible) mView.Selection = null;
                     SetStripsVisibilityForSection(section.SectionChild(i), visible);
                 }
             }
@@ -146,6 +163,12 @@ namespace Obi.ProjectView
                     mLayoutPanel.ScrollControlIntoView(strip);
                 }
             }
+            else if (e.getTreeNode() is PhraseNode)
+            {
+                PhraseNode phrase = (PhraseNode)e.getTreeNode();
+                Block block = FindStrip(phrase.ParentSection).AddBlockForPhrase(phrase);
+                mLayoutPanel.ScrollControlIntoView(block);
+            }
         }
 
         // Add a new strip for a section and all of its subsections
@@ -186,6 +209,17 @@ namespace Obi.ProjectView
 
 
         #region Utility functions
+
+        private Block FindBlock(PhraseNode node)
+        {
+            return FindStrip(node.ParentSection).FindBlock(node);
+        }
+
+        private ISelectableInStripView FindSelectable(ObiNode node)
+        {
+            return node is SectionNode ? (ISelectableInStripView)FindStrip((SectionNode)node) :
+                node is PhraseNode ? (ISelectableInStripView)FindBlock((PhraseNode)node) : null;
+        }
 
         /// <summary>
         /// Find the strip for the given section node.
@@ -269,8 +303,8 @@ namespace Obi.ProjectView
         /// </summary>
         public void AboutSelectedStrip()
         {
-            Console.Out.WriteLine("[Strip at level {0}, position {1}, with label `{2}' (`{3}')]",
-                mSelectedStrip.Node.Level, mSelectedStrip.Node.Position, mSelectedStrip.Label, mSelectedStrip.Node.Label);
+            //Console.Out.WriteLine("[Strip at level {0}, position {1}, with label `{2}' (`{3}')]",
+            //    mSelectedStrip.Node.Level, mSelectedStrip.Node.Position, mSelectedStrip.Label, mSelectedStrip.Node.Label);
         }
     }
 }
