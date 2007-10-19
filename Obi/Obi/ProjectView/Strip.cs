@@ -56,10 +56,6 @@ namespace Obi.ProjectView
             Block block = new Block(phrase, this);
             mBlocksPanel.Controls.Add(block);
             mBlocksPanel.Controls.SetChildIndex(block, phrase.Index);
-            phrase.BeforeTreeNodeRemoved += new EventHandler(delegate(object sender, EventArgs e)
-            {
-                RemoveBlock(block);
-            });
             return block;
         }
 
@@ -141,9 +137,9 @@ namespace Obi.ProjectView
             return null;
         }
 
-        private void RemoveBlock(Block block)
+        public void RemoveBlock(PhraseNode phrase)
         {
-            mBlocksPanel.Controls.Remove(block);
+            mBlocksPanel.Controls.Remove(FindBlock(phrase));
         }
     }
 }

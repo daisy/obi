@@ -189,6 +189,10 @@ namespace Obi.ProjectView
             {
                 RemoveStripForSection((SectionNode)e.getTreeNode());
             }
+            else if (e.getTreeNode() is PhraseNode)
+            {
+                FindStrip((SectionNode)e.getFormerParent()).RemoveBlock((PhraseNode)e.getTreeNode());
+            }
         }
 
         // Remove all strips for a section and its subsections
