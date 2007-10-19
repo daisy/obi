@@ -33,7 +33,7 @@ namespace Obi.Commands.TOC
             {
                 SectionNode child = sibling.SectionChild(index);
                 child.Detach();
-                section.Append(child);
+                section.AppendChild(child);
             }
             section.Detach();
             sibling.Parent.InsertAfter(section, sibling);

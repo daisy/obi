@@ -29,7 +29,7 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Do()
         {
-            mNode.Project.DidSetPageNumberOnPhrase(mNode);
+            //mNode.Project.DidSetPageNumberOnPhrase(mNode);
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Undo()
         {
-            mNode.Project.DidRemovePageNumberFromPhrase(mNode);
+            //mNode.Project.DidRemovePageNumberFromPhrase(mNode);
         }
     }
 }

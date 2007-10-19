@@ -43,7 +43,7 @@ namespace Obi
         /// Create a new empty project.
         /// </summary>
         /// <param name="XUKPath">The path to the XUK file where the project is to be saved.</param>
-        public Project(string XUKPath): base(CreatePresentation(XUKPath))
+        /*public Project(string XUKPath): base(CreatePresentation(XUKPath))
         {
             mClipboard = new Clipboard();  // TODO move this to project panel
             mPhraseCount = 0;
@@ -59,7 +59,7 @@ namespace Obi
             AddChannel(ANNOTATION_CHANNEL_NAME);
             AddChannel(AUDIO_CHANNEL_NAME);
             AddChannel(TEXT_CHANNEL_NAME);
-        }
+        }*/
 
 
         /// <summary>

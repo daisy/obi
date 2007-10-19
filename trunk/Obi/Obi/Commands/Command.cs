@@ -45,12 +45,12 @@ namespace Obi.Commands
         /// <summary>
         /// Get the presentation from the view's project
         /// </summary>
-        public Presentation getPresentation() { return mView.Project.getPresentation(); }
+        public urakawa.Presentation getPresentation() { return mView.Project.getPresentation(); }
 
         /// <summary>
         /// The presentation cannot be set.
         /// </summary>
-        public void setPresentation(Presentation newPres)
+        public void setPresentation(urakawa.Presentation newPres)
         {
             throw new Exception("The presentation cannot be set on a command; set the project view instead.");
         }
@@ -60,7 +60,7 @@ namespace Obi.Commands
             throw new Exception("The method or operation is not implemented.");
         }
 
-        public void XukOut(System.Xml.XmlWriter destination)
+        public void XukOut(System.Xml.XmlWriter destination, Uri baseUri)
         {
             throw new Exception("The method or operation is not implemented.");
         }
@@ -70,7 +70,7 @@ namespace Obi.Commands
             throw new Exception("The method or operation is not implemented.");
         }
 
-        public string getXukNamespaceUri() { return Program.OBI_NS; }
+        public string getXukNamespaceUri() { return DataModelFactory.NS; }
     }
 
     /// <summary>

@@ -29,7 +29,7 @@ namespace Obi
         }
 
 
-        public override void Append(ObiNode node)
+        public override void AppendChild(ObiNode node)
         {
             int index = node is PhraseNode ? FirstSectionIndex : getChildCount();
             insert(node, index);
@@ -100,7 +100,7 @@ namespace Obi
         /// Get the child section at an index relative to sections only.
         /// If the index is negative, start from the end of the list.
         /// </summary>
-        public SectionNode SectionChild(int index)
+        public override SectionNode SectionChild(int index)
         {
             if (index < 0) index = getChildCount() + index;
             return (SectionNode)getChild(index + FirstSectionIndex);
@@ -272,7 +272,7 @@ namespace Obi
         /// Get the child phrase at an index relative to phrases only.
         /// If the index is negative, start from the end of the list.
         /// </summary>
-        public PhraseNode PhraseChild(int index)
+        public override PhraseNode PhraseChild(int index)
         {
             if (index < 0) index = PhraseChildCount + index;
             return (PhraseNode)getChild(index);

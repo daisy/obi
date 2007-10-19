@@ -21,11 +21,6 @@ namespace Obi.Commands
         public event UndoRedoEventHandler CommandExecuted;
         public event UndoRedoEventHandler CommandUnexecuted;
 
-        public UndoRedoManager()
-            : base()
-        {
-        }
-
         public override void execute(urakawa.undo.ICommand command)
         {
             base.execute(command);

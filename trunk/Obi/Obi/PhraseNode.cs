@@ -30,21 +30,15 @@ namespace Obi
         /// Create a new phrase node inside the given project with an id.
         /// Don't forget to set the asset afterwards!
         /// </summary>
-        public PhraseNode(Project project): base(project)
+        public PhraseNode(Presentation presentation): base(presentation)
         {
             Annotation = "";
             mKind = Kind.Plain;
             mCustomKind = null;
         }
 
-        public PhraseNode(Project project, Kind kind) : this(project) { mKind = kind; }
-        
-        public PhraseNode(Project project, string custom)
-            : this(project)
-        {
-            mKind = Kind.Custom;
-            mCustomKind = custom;
-        }
+        public PhraseNode(Presentation presentation, Kind kind) : this(presentation) { mKind = kind; }
+        public PhraseNode(Presentation presentation, string custom) : this(presentation, Kind.Custom) { mCustomKind = custom; }
 
 
         /// <summary>
@@ -202,8 +196,6 @@ namespace Obi
 
         protected override void XukInAttributes(System.Xml.XmlReader source)
         {
-            //string used = source.GetAttribute("heading");
-            //if (used != null && used == "True") mXukInHeadingFlag = true;
             string kind = source.GetAttribute("kind");
             if (kind != null) mKind = kind == "Custom" ?  Kind.Custom :
                                       kind == "Heading" ? Kind.Heading :
@@ -222,11 +214,11 @@ namespace Obi
             base.XukInAttributes(source);
         }
 
-        protected override void XukOutAttributes(System.Xml.XmlWriter wr)
+        protected override void XukOutAttributes(System.Xml.XmlWriter wr, Uri baseUri)
         {
             if (mKind != Kind.Plain) wr.WriteAttributeString("kind", mKind.ToString());
             if (mKind == Kind.Custom) wr.WriteAttributeString("custom", mCustomKind);
-            base.XukOutAttributes(wr);
+            base.XukOutAttributes(wr, baseUri);
         }
 
 
@@ -235,5 +227,15 @@ namespace Obi
         /// Maybe null if no annotation was set.
         /// </summary>
         private TextMedia AnnotationMedia { get { return ChannelsProperty.getMedia(Project.AnnotationChannel) as TextMedia; } }
+
+        public override SectionNode SectionChild(int index)
+        {
+            throw new Exception("A phrase node has no section child!");
+        }
+
+        public override PhraseNode PhraseChild(int index)
+        {
+            throw new Exception("No child yet.");
+        }
     }
 }

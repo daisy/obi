@@ -214,17 +214,6 @@ namespace Obi.UserControls
             RemoveAnnotationForAudioBlock();
         }
 
-        /// <summary>
-        /// Remove the annotation on a block.
-        /// </summary>
-        public void RemoveAnnotationForAudioBlock()
-        {
-            if (mProjectPanel.CurrentSelectedAudioBlock != null)
-            {
-                mProjectPanel.CurrentSelectedAudioBlock.Project.EditAnnotationPhraseNode(mProjectPanel.CurrentSelectedAudioBlock, "");
-            }
-        }
-
         private void mFocusOnAnnotationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FocusOnAnnotation();
@@ -390,5 +379,21 @@ namespace Obi.UserControls
         }
 
         #endregion
+
+
+        // OLD, must disappear sooner or later
+
+
+        /// <summary>
+        /// Remove the annotation on a block.
+        /// </summary>
+        public void RemoveAnnotationForAudioBlock()
+        {
+            /*if (mProjectPanel.CurrentSelectedAudioBlock != null)
+            {
+                mProjectPanel.CurrentSelectedAudioBlock.Project.EditAnnotationPhraseNode(mProjectPanel.CurrentSelectedAudioBlock, "");
+            }*/
+        }
+
     }
 }

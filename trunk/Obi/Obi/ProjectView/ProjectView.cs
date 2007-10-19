@@ -12,6 +12,7 @@ namespace Obi.ProjectView
     {
         private bool mEnableTooltips;            // tooltips flag
         private Project mProject;                // project model
+        private Presentation mPresentation;      // presentation
         private NodeSelection mSelection;        // currently selected node
         private ObiNode mClipboard;              // node in the clipboard
         private Commands.UndoRedoManager mUndo;  // the undo manager for the project view
@@ -97,6 +98,11 @@ namespace Obi.ProjectView
                     }
                 }
             }
+        }
+
+        public Presentation Presentation
+        {
+            get { return mPresentation; }
         }
 
         private bool ProjectVisible
