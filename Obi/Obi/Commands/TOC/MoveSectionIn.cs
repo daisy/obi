@@ -28,12 +28,12 @@ namespace Obi.Commands.TOC
         {
             SectionNode sibling = section.PrecedingSibling;
             section.Detach();
-            sibling.Append(section);
+            sibling.AppendChild(section);
             for (int i = 0; i < section.SectionChildCount; ++i)
             {
                 SectionNode child = section.SectionChild(0);
                 child.Detach();
-                sibling.Append(child);
+                sibling.AppendChild(child);
             }
         }
 

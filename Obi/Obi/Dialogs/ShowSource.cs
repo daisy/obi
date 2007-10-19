@@ -42,7 +42,7 @@ namespace Obi.Dialogs
             settings.Indent = true;
             settings.IndentChars = "  ";
             XmlWriter writer = XmlWriter.Create(srcstr, settings);
-            mView.Project.saveXUK(writer);
+            mView.Project.saveXUK(writer, null); 
             writer.Close();
             return srcstr.ToString();
         }

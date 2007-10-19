@@ -15,11 +15,51 @@ namespace Obi
     /// </summary>
     public partial class ObiForm : Form, IMessageFilter
     {
-        private Project mProject;                // the project currently being authored
-        private Settings mSettings;              // application settings
-        private CommandManager mCommandManager;  // the undo stack for this project
+        private Session mSession;    // current work session
+        private Settings mSettings;  // application settings
+
         private Audio.VuMeterForm mVuMeterForm;  // keep track of a single VU meter form
-        private Audio.VuMeter m_Vumeter; // VuMeterForm is to be initialised again and again so this instance is required as member
+
+        /// <summary>
+        /// Initialize a new form and open the last project if set in the preferences.
+        /// </summary>
+        public ObiForm()
+        {
+            InitializeObi();
+            if (mSettings.OpenLastProject && mSettings.LastOpenProject != "") DoOpenProject(mSettings.LastOpenProject);
+        }
+
+        /// <summary>
+        /// Initialize a new form with a XUK path given as parameter.
+        /// </summary>
+        public ObiForm(string path)
+        {
+            InitializeObi();
+            DoOpenProject(path);
+        }
+
+
+        private void InitializeObi()
+        {
+            try
+            {
+                InitializeComponent();
+                InitializeSettings();
+                InitialiseHighContrastSettings();
+                mProjectView.TransportBar.StateChanged +=
+                    new Obi.Events.Audio.Player.StateChangedHandler(TransportBar_StateChanged);
+                mProjectView.TransportBar.PlaybackRateChanged += new EventHandler(TransportBar_PlaybackRateChanged);
+                mProjectView.ImportingFile += new Obi.ProjectView.ImportingFileEventHandler(mProjectView_ImportingFile);
+                mProjectView.FinishedImportingFiles += new EventHandler(mProjectView_FinishedImportingFiles);
+            }
+            catch (Exception eAnyStartupException)
+            {
+                System.IO.StreamWriter tmpErrorLogStream = System.IO.File.CreateText(Application.StartupPath + Path.DirectorySeparatorChar + "ObiStartupError.txt");
+                tmpErrorLogStream.WriteLine(eAnyStartupException.ToString());
+                tmpErrorLogStream.Close();
+                System.Windows.Forms.MessageBox.Show("An error occured while initializing Obi.\nPlease Submit a bug report, including the contents of " + Application.StartupPath + Path.DirectorySeparatorChar + "ObiStartupError.txt\nError text:\n" + eAnyStartupException.ToString(), "Obi initialization error");
+            }
+        }
 
         /// <summary>
         /// Application settings.
@@ -37,73 +77,10 @@ namespace Obi
             get { return mVuMeterForm; }
         }
 
-        /// <summary>
-        /// Initialize a new form.
-        /// </summary>
-        public ObiForm()
-        {
-            InitializeObi();
-            if (mSettings.OpenLastProject && mSettings.LastOpenProject != "")
-            {
-                // open the last open project
-                DoOpenProject(mSettings.LastOpenProject);
-            }
-            else
-            {
-                // no project opened, same as if we closed a project.
-                StatusUpdateClosedProject();
-            }
-        }
-
-        /// <summary>
-        /// Initialize a new form with a project given as parameter.
-        /// </summary>
-        /// <param name="path">The project to open on startup.</param>
-        public ObiForm(string path)
-        {
-            InitializeObi();
-            DoOpenProject(path);
-        }
-
-        private void InitializeObi()
-        {
-            try
-            {
-                InitializeComponent();
-                mProject = null;
-                mSettings = null;
-                mCommandManager = new CommandManager();
-                InitializeVuMeter();
-                InitializeSettings();
-                InitialiseHighContrastSettings();
-                mProjectView.TransportBar.StateChanged +=
-                    new Obi.Events.Audio.Player.StateChangedHandler(TransportBar_StateChanged);
-                mProjectView.TransportBar.PlaybackRateChanged += new EventHandler(TransportBar_PlaybackRateChanged);
-                mProjectView.ImportingFile += new Obi.ProjectView.ImportingFileEventHandler(mProjectView_ImportingFile);
-                mProjectView.FinishedImportingFiles += new EventHandler(mProjectView_FinishedImportingFiles);
-                StatusUpdateClosedProject();
-            }
-            catch (Exception eAnyStartupException)
-            {
-                System.IO.StreamWriter tmpErrorLogStream = System.IO.File.CreateText(Application.StartupPath + Path.DirectorySeparatorChar + "ObiStartupError.txt");
-                tmpErrorLogStream.WriteLine(eAnyStartupException.ToString());
-                tmpErrorLogStream.Close();
-                System.Windows.Forms.MessageBox.Show("An error occured while initializing Obi.\nPlease Submit a bug report, including the contents of " + Application.StartupPath + Path.DirectorySeparatorChar + "ObiStartupError.txt\nError text:\n" + eAnyStartupException.ToString(), "Obi initialization error");
-            }
-        }
-
-        /// <summary>
-        /// Set up the VU meter form.
-        /// </summary>
-        private void InitializeVuMeter()
-        {
-            m_Vumeter = mProjectView.TransportBar.VuMeter;
-        }
-
         // setup a VuMeter form and show it
         private void ShowVuMeterForm()
         {
-            mVuMeterForm = new Audio.VuMeterForm(m_Vumeter);
+            mVuMeterForm = new Audio.VuMeterForm(mProjectView.TransportBar.VuMeter);
             mVuMeterForm.MagnificationFactor = 1.5;
             // Kludgy
             mVuMeterForm.Show();
@@ -1447,43 +1424,6 @@ namespace Obi
             }
         }
 
-        // TODO: merge full and simple metadata editing into a single dialog with two tabs
-        private void mFullMetadataToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FullMetadata dialog = new FullMetadata(mProject);
-            List<urakawa.metadata.Metadata> affected = new List<urakawa.metadata.Metadata>();
-            foreach (object o in mProject.getPresentation().getMetadataList())
-            {
-                urakawa.metadata.Metadata meta = (urakawa.metadata.Metadata)o;
-                if (MetadataEntryDescription.GetDAISYEntries().Find(delegate(MetadataEntryDescription entry)
-                    { return entry.Name == meta.getName(); }) != null)
-                {
-                    affected.Add(meta);
-                    dialog.AddPanel(meta.getName(), meta.getContent());
-                }
-            }
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                foreach (urakawa.metadata.Metadata m in affected) mProject.getPresentation().deleteMetadata(m.getName());
-                foreach (UserControls.MetadataPanel p in dialog.MetadataPanels)
-                {
-                    if (p.CanSetName)
-                    {
-                        urakawa.metadata.Metadata m = (urakawa.metadata.Metadata)mProject.getPresentation().getMetadataFactory().createMetadata();
-                        m.setName(p.EntryName);
-                        m.setContent(p.EntryContent);
-                        mProject.getPresentation().appendMetadata(m);
-                    }
-                    else
-                    {
-                        MessageBox.Show(String.Format(Localizer.Message("error_metadata_name_message"), p.EntryName),
-                            Localizer.Message("error_metadata_name_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                mProject.Touch();
-            }
-        }
-
         private void ObiForm_ResizeEnd(object sender, EventArgs e)
         {
             mSettings.ObiFormSize = Size;
@@ -1899,5 +1839,46 @@ namespace Obi
         {
             Disable(false);
         }
+
+
+        #region OLD
+
+        // TODO: merge full and simple metadata editing into a single dialog with two tabs
+        private void mFullMetadataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            /*FullMetadata dialog = new FullMetadata(mProject);
+            List<urakawa.metadata.Metadata> affected = new List<urakawa.metadata.Metadata>();
+            foreach (object o in mProject.getPresentation().getMetadataList())
+            {
+                urakawa.metadata.Metadata meta = (urakawa.metadata.Metadata)o;
+                if (MetadataEntryDescription.GetDAISYEntries().Find(delegate(MetadataEntryDescription entry)
+                    { return entry.Name == meta.getName(); }) != null)
+                {
+                    affected.Add(meta);
+                    dialog.AddPanel(meta.getName(), meta.getContent());
+                }
+            }
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                foreach (urakawa.metadata.Metadata m in affected) mProject.getPresentation().deleteMetadata(m.getName());
+                foreach (UserControls.MetadataPanel p in dialog.MetadataPanels)
+                {
+                    if (p.CanSetName)
+                    {
+                        urakawa.metadata.Metadata m = (urakawa.metadata.Metadata)mProject.getPresentation().getMetadataFactory().createMetadata();
+                        m.setName(p.EntryName);
+                        m.setContent(p.EntryContent);
+                        mProject.getPresentation().appendMetadata(m);
+                    }
+                    else
+                    {
+                        MessageBox.Show(String.Format(Localizer.Message("error_metadata_name_message"), p.EntryName),
+                            Localizer.Message("error_metadata_name_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                mProject.Touch();
+            }*/
+        }
+        #endregion
     }
 }

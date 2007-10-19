@@ -11,41 +11,32 @@ namespace Obi
     /// </summary>
     public abstract class ObiNode : TreeNode
     {
-        private Project mProject;  // project that this node (or rather that its presentation) belongs to
-        private bool mUsed;        // mark node as being in use or not
-
-        public event EventHandler UsedStateChanged;       // triggered when the used state of the node has changed
-        public event EventHandler BeforeTreeNodeRemoved;  // triggered before a node is removed
-
-        private static readonly string USED_ATTR_NAME = "used";
+        private bool mUsed;  // mark node as being in use or not
 
         /// <summary>
-        /// Create a new node for a project.
+        /// Create a new node for a presentation.
         /// </summary>
-        protected ObiNode(Project project)
-            : base()
+        protected ObiNode(Presentation presentation) : base()
         {
-            setPresentation(project.getPresentation());
-            ChannelsProperty prop = getPresentation().getPropertyFactory().createChannelsProperty();
-            setProperty(prop);
-            mProject = project;
+            setPresentation(presentation);
+            addProperty(getPresentation().getPropertyFactory().createChannelsProperty());
             mUsed = true;
         }
 
 
-        public virtual void Append(ObiNode node) { appendChild(node); }
+        // Our own overrides
+
+        public virtual void AppendChild(ObiNode node) { appendChild(node); }
         public void Detach() { detach(); }
         public abstract void Insert(ObiNode node, int index);
         public void InsertAfter(ObiNode node, ObiNode anchor) { insertAfter(node, anchor); }
         public void InsertBefore(ObiNode node, ObiNode anchor) { insertBefore(node, anchor); }
+        public void RemoveChild(ObiNode child) { removeChild(child); }
 
         /// <summary>
         /// Channels property for the node.
         /// </summary>
-        public ChannelsProperty ChannelsProperty
-        {
-            get { return (ChannelsProperty)getProperty(typeof(ChannelsProperty)); }
-        }
+        public ChannelsProperty ChannelsProperty { get { return getProperty<ChannelsProperty>(); } }
 
         /// <summary>
         /// Index of this node in its parent's list of children.
@@ -63,7 +54,6 @@ namespace Obi
         /// <summary>
         /// Level of the node in the tree. It is assumed that the root is an ObiNode with a level of 0.
         /// </summary>
-        /// <remarks>Used to be "depth" but "level" makes more sense. We may need "depth" in the future.</remarks>
         public virtual int Level { get { return 1 + ((ObiNode)getParent()).Level; } }
 
         /// <summary>
@@ -72,19 +62,13 @@ namespace Obi
         public ObiNode Parent { get { return getParent() as ObiNode; } }
 
         /// <summary>
-        /// Project to which the presentation of this node belongs.
+        /// Presentation to which this node belongs.
         /// </summary>
-        public Project Project { get { return mProject; } }
+        public Presentation Presentation { get { return (Presentation)getPresentation(); } }
 
-        /// <summary>
-        /// Remove a node but warn beforehand!
-        /// </summary>
-        public void RemoveChild(ObiNode child)
-        {
-            if (BeforeTreeNodeRemoved != null) BeforeTreeNodeRemoved(this, null);
-            removeChild(child);
-        }
-
+        public abstract SectionNode SectionChild(int index);
+        public abstract PhraseNode PhraseChild(int index);
+        
         /// <summary>
         /// Used flag.
         /// </summary>
@@ -101,6 +85,10 @@ namespace Obi
             }
         }
 
+        // XUK stuff
+        
+        private static readonly string USED_ATTR_NAME = "used";  // name of the used attribute
+
         /// <summary>
         /// Read back the used attribute.
         /// </summary>
@@ -114,16 +102,16 @@ namespace Obi
         /// <summary>
         /// Write the used attribute if its value is false (true being the default.)
         /// </summary>
-        protected override void XukOutAttributes(System.Xml.XmlWriter writer)
+        protected override void XukOutAttributes(System.Xml.XmlWriter destination, Uri baseUri)
         {
             if (!mUsed) writer.WriteAttributeString(USED_ATTR_NAME, "False");
-            base.XukOutAttributes(writer);
+            base.XukOutAttributes(writer, baseUri);
         }
 
         /// <summary>
         /// Return the correct namespace URI for all Obi nodes.
         /// </summary>
-        public override string getXukNamespaceUri() { return Program.OBI_NS; }
+        public override string getXukNamespaceUri() { return DataModelFactory.NS; }
     }
 
     /// <summary>
@@ -148,13 +136,18 @@ namespace Obi
             insert(node, index);
         }
 
+        /// <summary>
+        /// The level of the root node is always 0; top-level sections have a level of 1.
+        /// </summary>
         public override int Level { get { return 0; } }
 
-        public SectionNode SectionChild(int index)
+        public override SectionNode SectionChild(int index)
         {
             if (index < 0) index = getChildCount() - index;
             return (SectionNode)getChild(index);
         }
+
+        public override PhraseNode PhraseChild(int index) { throw new Exception("A root node has no phrase children."); }
 
         public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
     }

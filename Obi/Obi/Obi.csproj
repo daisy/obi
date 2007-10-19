@@ -66,13 +66,13 @@
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="urakawa, Version=1.0.0.30290, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="urakawa, Version=1.0.0.20496, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\tags\implementation-before-prop-refact\UrakawaToolkit\obj\Debug\urakawa.dll</HintPath>
+      <HintPath>..\..\..\implementation\UrakawaToolkit\bin\Debug\urakawa.dll</HintPath>
     </Reference>
     <Reference Include="XukToZed, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\tags\implementation-before-prop-refact\XukToZed\XukToZed\obj\Debug\XukToZed.dll</HintPath>
+      <HintPath>..\..\..\implementation\XukToZed\XukToZed\bin\Debug\XukToZed.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -241,6 +241,7 @@
     <Compile Include="ObiNodeFactory.cs" />
     <Compile Include="PhraseNode.cs" />
     <Compile Include="Playlist.cs" />
+    <Compile Include="Presentation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Project.Blocks.cs" />
     <Compile Include="Project.CleanAndExport.cs" />
@@ -368,6 +369,7 @@
     <Compile Include="RecordingSession.cs" />
     <Compile Include="SectionNode.cs" />
     <Compile Include="Selection.cs" />
+    <Compile Include="Session.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="UserControls\AbstractBlock.cs">
       <SubType>UserControl</SubType>

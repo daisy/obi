@@ -9,7 +9,7 @@ namespace Obi
     /// <summary>
     /// Property factory for Obi properties.
     /// </summary>
-    public class ObiPropertyFactory : urakawa.PropertyFactory
+    public class ObiPropertyFactory : urakawa.property.PropertyFactory
     {
         /// <summary>
         /// Create a new property factory.
@@ -90,10 +90,10 @@ namespace Obi
         /// <summary>
         /// Write out the page property to a XUK file.
         /// </summary>
-        protected override void XukOutAttributes(System.Xml.XmlWriter destination)
+        protected override void XukOutAttributes(System.Xml.XmlWriter destination, Uri baseUri)
         {
-            base.XukOutAttributes(destination);
             destination.WriteAttributeString(XUK_ATTRIBUTE_NAME, mPageNumber.ToString());
+            base.XukOutAttributes(destination, baseUri);
         }
     }
 }
