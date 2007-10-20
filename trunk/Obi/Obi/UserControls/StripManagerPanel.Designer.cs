@@ -135,7 +135,6 @@ namespace Obi.UserControls
             this.mInsertStripToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
             this.mInsertStripToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
             this.mInsertStripToolStripMenuItem.Text = "&Insert strip";
-            this.mInsertStripToolStripMenuItem.Click += new System.EventHandler(this.mInsertStripToolStripMenuItem_Click);
             // 
             // mRenameStripToolStripMenuItem
             // 

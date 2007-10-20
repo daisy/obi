@@ -53,8 +53,8 @@ namespace Obi.ProjectView
         /// </summary>
         public void NewProject()
         {
-            mView.Project.getPresentation().treeNodeAdded += new TreeNodeAddedEventHandler(StripsView_treeNodeAdded);
-            mView.Project.getPresentation().treeNodeRemoved += new TreeNodeRemovedEventHandler(StripsView_treeNodeRemoved);
+            mView.Presentation.treeNodeAdded += new TreeNodeAddedEventHandler(StripsView_treeNodeAdded);
+            mView.Presentation.treeNodeRemoved += new TreeNodeRemovedEventHandler(StripsView_treeNodeRemoved);
             mView.Project.RenamedSectionNode += new Obi.Events.RenameSectionNodeHandler(Project_RenamedSectionNode);
         }
 
@@ -269,10 +269,10 @@ namespace Obi.ProjectView
                     if (e.getTreeNode() == node)
                     {
                         f();
-                        mView.Project.getPresentation().treeNodeAdded -= h;
+                        mView.Presentation.treeNodeAdded -= h;
                     }
                 };
-                mView.Project.getPresentation().treeNodeAdded += h;
+                mView.Presentation.treeNodeAdded += h;
             }
         }
 

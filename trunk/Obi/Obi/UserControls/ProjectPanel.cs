@@ -228,7 +228,7 @@ namespace Obi.UserControls
         /// <param name="project">The new project.</param>
         private void SetEventHandlers(Project project)
         {
-            project.getPresentation().treeNodeAdded +=
+            /*project.getPresentation().treeNodeAdded +=
                 new TreeNodeAddedEventHandler(mTOCPanel.Project_treeNodeAdded);
                             
             project.getPresentation().treeNodeAdded +=
@@ -261,6 +261,7 @@ namespace Obi.UserControls
             project.ToggledNodeUsedState += new Obi.Events.ObiNodeHandler(mTOCPanel.ToggledNodeUsedState);
 
             project.HeadingChanged +=new Obi.Events.SectionNodeHeadingHandler(mStripManagerPanel.SyncHeadingChanged);
+             * */
         }
 
 
@@ -269,6 +270,7 @@ namespace Obi.UserControls
         /// </summary>
         private void UnsetEventHandlers()
         {
+            /*
             mProject.getPresentation().treeNodeAdded -= new TreeNodeAddedEventHandler(mStripManagerPanel.Project_treeNodeAdded);
             mProject.getPresentation().treeNodeAdded -= new TreeNodeAddedEventHandler(mTOCPanel.Project_treeNodeAdded);
             mProject.getPresentation().treeNodeRemoved -= new TreeNodeRemovedEventHandler(mStripManagerPanel.Project_treeNodeRemoved);
@@ -294,7 +296,7 @@ namespace Obi.UserControls
             mProject.ToggledNodeUsedState -= new Obi.Events.ObiNodeHandler(mStripManagerPanel.ToggledNodeUsedState);
             mProject.ToggledNodeUsedState -= new Obi.Events.ObiNodeHandler(mTOCPanel.ToggledNodeUsedState);
             mProject.HeadingChanged -= new Obi.Events.SectionNodeHeadingHandler(mStripManagerPanel.SyncHeadingChanged);
-        }
+        */}
 
         #endregion
 

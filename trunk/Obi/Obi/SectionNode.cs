@@ -19,13 +19,13 @@ namespace Obi
         /// <summary>
         /// Create a new section node with the default label.
         /// </summary>
-        public SectionNode(Project project): base(project)
+        public SectionNode(Presentation presentation): base(presentation)
         {
             mHeading = null;
             // Create the text media object for the label with a default label
             ITextMedia labelMedia = getPresentation().getMediaFactory().createTextMedia();
             labelMedia.setText(Localizer.Message("default_section_label"));
-            ChannelsProperty.setMedia(Project.TextChannel, labelMedia);
+            //ChannelsProperty.setMedia(Project.TextChannel, labelMedia);
         }
 
 
@@ -42,8 +42,7 @@ namespace Obi
         /// <returns>The copy of the section node.</returns>
         public new SectionNode copy(bool deep)
         {
-            SectionNode copy = (SectionNode)
-                getPresentation().getTreeNodeFactory().createNode(XUK_ELEMENT_NAME, Program.OBI_NS);
+            SectionNode copy = Presentation.CreateSectionNode();
             copy.Label = Label;
             copy.Used = Used;
             copyProperties(copy);
@@ -349,7 +348,7 @@ namespace Obi
         /// </summary>
         private TextMedia LabelTextMedia
         {
-            get { return (TextMedia)ChannelsProperty.getMedia(Project.TextChannel); }
+            get { return null; } // (TextMedia)ChannelsProperty.getMedia(Project.TextChannel); }
         }
 
 

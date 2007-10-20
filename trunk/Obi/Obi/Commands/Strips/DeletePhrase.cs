@@ -39,7 +39,7 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Do()
         {
-            mNode.Project.DeletePhraseNodeAndMedia(mNode);
+            //mNode.Project.DeletePhraseNodeAndMedia(mNode);
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Undo()
         {
-            mNode.Project.AddPhraseNodeWithAudio(mNode, mParent, mIndex);
+            //mNode.Project.AddPhraseNodeWithAudio(mNode, mParent, mIndex);
         }
     }
 
@@ -72,7 +72,7 @@ namespace Obi.Commands.Strips
         public CutPhrase(PhraseNode node)
             : base(node)
         {
-            mPrevious = node.Project.Clipboard.Data;
+            //mPrevious = node.Project.Clipboard.Data;
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Obi.Commands.Strips
         public override void Do()
         {
             base.Do();
-            Node.Project.Clipboard.Phrase = Node;
+            //Node.Project.Clipboard.Phrase = Node;
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace Obi.Commands.Strips
         public override void Undo()
         {
             base.Undo();
-            Node.Project.Clipboard.Data = mPrevious;
+            //Node.Project.Clipboard.Data = mPrevious;
         }
     }
 }

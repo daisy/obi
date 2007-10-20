@@ -29,12 +29,12 @@ namespace Obi.Commands.Node
 
         public override void Do()
         {
-            mNode.Project.ToggleNodeUsed(mNode, mDeep);
+            //mNode.Project.ToggleNodeUsed(mNode, mDeep);
         }
 
         public override void Undo()
         {
-            mNode.Project.ToggleNodeUsed(mNode, mDeep);
+            //mNode.Project.ToggleNodeUsed(mNode, mDeep);
         }
     }
 }

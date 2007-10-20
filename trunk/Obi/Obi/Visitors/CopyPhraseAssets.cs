@@ -27,7 +27,7 @@ namespace Obi.Visitors
         public bool preVisit(TreeNode node)
         {
             PhraseNode phrase = node as PhraseNode;
-            if (phrase != null) phrase.Audio = phrase.Project.CopyAudioMedia(phrase.Audio);
+            //if (phrase != null) phrase.Audio = phrase.Project.CopyAudioMedia(phrase.Audio);
             return true;
         }
 

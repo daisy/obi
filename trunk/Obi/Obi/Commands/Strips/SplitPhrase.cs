@@ -46,7 +46,7 @@ namespace Obi.Commands.Strips
         public override void Do()
         {
             mNode.Audio = mSplitAudio;
-            mNode.Project.AddPhraseNodeWithAudio(mNewNode, mNode.ParentSection, mNode.Index + 1);
+            //mNode.Project.AddPhraseNodeWithAudio(mNewNode, mNode.ParentSection, mNode.Index + 1);
         }
 
         /// <summary>
@@ -54,9 +54,9 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Undo()
         {
-            mNode.Project.DeletePhraseNodeAndMedia(mNewNode);            
+            //mNode.Project.DeletePhraseNodeAndMedia(mNewNode);            
             mNode.Audio = mOriginalAudio;
-            mNode.Project.TouchNode(mNode);
+            //mNode.Project.TouchNode(mNode);
         }
     }
 }

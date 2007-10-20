@@ -774,4 +774,12 @@ Do you want to replace the project contained in this file?</value>
   <data name="importing_file" xml:space="preserve">
     <value>Importing file "{0}"</value>
   </data>
+  <data name="init_error" xml:space="preserve">
+    <value>An error occured while initializing Obi.
+Please Submit a bug report, including the contents of {0}
+Error text: {1}</value>
+  </data>
+  <data name="init_error_title" xml:space="preserve">
+    <value>Obi initialization error</value>
+  </data>
 </root>

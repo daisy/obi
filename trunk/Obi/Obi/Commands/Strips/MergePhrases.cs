@@ -27,16 +27,16 @@ namespace Obi.Commands.Strips
         public override void  Do()
         {
             mNode.Audio = mMergedAudio; // replaces: mNode.Project.SetAudioMediaAsset(mNode, mMergedAudio);
-            mNode.Project.DeletePhraseNodeAndMedia(mNext);
+            //mNode.Project.DeletePhraseNodeAndMedia(mNext);
         }
 
         public override void Undo()
         {
             mNode.Audio = mAudio;  // replaces: mNode.Project.SetAudioMediaAsset(mNode, mAudio);
-            mNode.Project.AddPhraseNodeWithAudio(mNext, mNode.ParentSection, mNode.Index + 1);
+            //mNode.Project.AddPhraseNodeWithAudio(mNext, mNode.ParentSection, mNode.Index + 1);
             //md 20061130 - this used to be .TouchPhraseNode(mNode), which is now unavailable
             //hope i've picked the right replacement
-            mNode.Project.TouchNode(mNode);
+            //mNode.Project.TouchNode(mNode);
         }
     }
 }

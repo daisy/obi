@@ -31,7 +31,7 @@ namespace Obi.Commands.Node
                 mParent = contextNode.Parent;
                 mIndex = contextNode.Index + 1;
             }
-            mNode = View.Project.NewSectionNode();
+            mNode = View.Presentation.CreateSectionNode();
             View.SelectAndRenameSelection(new NodeSelection(mNode, mSelection.Control, false));
         }
 

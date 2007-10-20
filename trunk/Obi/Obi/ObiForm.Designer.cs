@@ -173,7 +173,6 @@ namespace Obi
             this.mFileToolStripMenuItem.Name = "mFileToolStripMenuItem";
             this.mFileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
             this.mFileToolStripMenuItem.Text = "&File";
-            this.mFileToolStripMenuItem.DropDownOpening += new System.EventHandler(this.mFileToolStripMenuItem_DropDownOpening);
             // 
             // mNewProjectToolStripMenuItem
             // 

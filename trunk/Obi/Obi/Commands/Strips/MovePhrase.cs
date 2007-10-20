@@ -37,7 +37,7 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Do()
         {
-            mNode.Project.MovePhraseNodeTo(mNode, mIndexAfterMove);
+            //mNode.Project.MovePhraseNodeTo(mNode, mIndexAfterMove);
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Undo()
         {
-            mNode.Project.MovePhraseNodeTo(mNode, mIndexBeforeMove);
+            //mNode.Project.MovePhraseNodeTo(mNode, mIndexBeforeMove);
         }
     }
 }

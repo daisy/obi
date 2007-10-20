@@ -15,7 +15,7 @@ namespace UnitTests
         public void Factories()
         {
             Obi.Project project = CreateProject(false);
-            Presentation presentation = project.getPresentation();
+            Presentation presentation = project.getPresentation(0);
             Assert.AreSame(presentation, presentation.getTreeNodeFactory().getPresentation());
             Assert.AreSame(presentation, presentation.getPropertyFactory().getPresentation());
         }

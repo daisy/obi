@@ -86,54 +86,6 @@ namespace Obi
             }
         }
 
-        /// <summary>
-        /// Create a sibling section for a given section.
-        /// The context node may be null if this is the first node that is added, in which case
-        /// we add a new child to the root (and not a sibling.)
-        /// </summary>
-        /// <param name="contextNode">The sibling of the new node.</param>
-        /// <returns>The new section node.</returns>
-        public SectionNode CreateSiblingSectionNode(SectionNode contextNode)
-        {
-            TreeNode parent = contextNode == null ? RootNode : contextNode.getParent();
-            SectionNode sibling = (SectionNode)
-                getPresentation().getTreeNodeFactory().createNode(SectionNode.XUK_ELEMENT_NAME, Program.OBI_NS);
-            if (contextNode == null)
-            {
-                // first node ever
-                parent.appendChild(sibling);
-            }
-            else
-            {
-                parent.insertAfter(sibling, contextNode);
-                // AddChildSectionBefore(sibling, contextNode, parent);
-            }
-            // Modified(new Commands.TOC.AddSectionNode(sibling));
-            return sibling;
-        }
-
-        /// <summary>
-        /// Create a new child section for a given section.
-        /// If the context node is null, add to the root of the tree.
-        /// </summary>
-        /// <param name="parent">The parent section of the new section.</param>
-        /// <returns>The created section.</returns>
-        public SectionNode CreateChildSectionNode(TreeNode parent)
-        {
-            SectionNode child = (SectionNode)
-                getPresentation().getTreeNodeFactory().createNode(SectionNode.XUK_ELEMENT_NAME, Program.OBI_NS);
-            if (parent == null)
-            {
-                RootNode.appendChild(child);
-            }
-            else
-            {
-                AppendChildSection(child, parent);
-            }
-            // Modified(new Commands.TOC.AddSectionNode(child));
-            return child;
-        }
-
         public void RenameSectionNodeWithCommand(SectionNode node, string label)
         {
             Commands.TOC.Rename command = new Commands.TOC.Rename(node, label);
@@ -161,32 +113,6 @@ namespace Obi
         {
             Visitors.UndeleteSubtree visitor = new Visitors.UndeleteSubtree(this, parent, index);
             node.acceptDepthFirst(visitor);
-        }
-
-        /// <summary>
-        /// reposition the node at the index under its given parent
-        /// </summary>
-        /// <param name="node"></param>
-        /// <param name="parent"></param>
-        /// <param name="index"></param>
-        /// <param name="position"></param>
-        public void UndoMoveSectionNode(SectionNode node, TreeNode parent, int index)
-        {
-            if (node.getParent() != null) node.DetachFromParent__REMOVE__();
-            AddChildSection(node, parent, index);
-            UndidMoveSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, parent));
-            Modified();
-        }
-
-        /// <summary>
-        /// Undo increase level
-        /// </summary>
-        /// <param name="origin"></param>
-        /// <param name="node"></param>
-        //added by marisa 01 aug 06
-        public void UnincreaseSectionNodeLevel(SectionNode node, TreeNode parent, int index)
-        {
-            UndoMoveSectionNode(node, parent, index);
         }
 
         /// <summary>
@@ -242,29 +168,6 @@ namespace Obi
             Modified();
             return command;
         }*/
-
-        /// <summary>
-        /// Undo decrease node level is a bit tricky because we might have to move some of the node's
-        /// children out a level, but only if they were newly adopted after the decrease level action happened. 
-        /// </summary>
-        /// <param name="originalChildCount">number of children this node used to have before the decrease level
-        /// action happened</param>
-        public void UndecreaseSectionNodeLevel(SectionNode node, TreeNode parent, int originalChildCount)
-        {
-            List<SectionNode> unOriginalChildren = new List<SectionNode>();
-            for (int i = node.SectionChildCount - 1; i >= originalChildCount; --i)
-            {
-                unOriginalChildren.Insert(0, node.SectionChild(i).DetachFromParent__REMOVE__());
-            }
-            node.DetachFromParent__REMOVE__();
-            AppendChildSection(node, parent);
-            MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, parent));
-            foreach (SectionNode child in unOriginalChildren)
-            {
-                AppendChildSection(child, parent);
-                MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, child, parent));
-            }
-        }
 
         /// <summary>
         /// Increase the level of a section node.
@@ -396,48 +299,6 @@ namespace Obi
             return node != null && node.ParentSection != null;
         }
 
-        //helper function which tests for parent being root
-        //md 20061204
-        internal void AddChildSection(SectionNode node, TreeNode parent, int index)
-        {
-            if (parent.Equals(getPresentation().getRootNode()))
-            {
-                parent.insert(node, index);
-            }
-            else if (parent.GetType() == Type.GetType("Obi.SectionNode"))
-            {
-                ((SectionNode)parent).AddChildSection__REMOVE__(node, index);
-            }          
-        }
-
-        //helper function which tests for parent being root
-        //md 20061204
-        internal void AppendChildSection(SectionNode node, TreeNode parent)
-        {
-            if (parent.Equals(getPresentation().getRootNode()))
-            {
-                parent.appendChild(node);
-            }
-            else if (parent.GetType() == Type.GetType("Obi.SectionNode"))
-            {
-                ((SectionNode)parent).AppendChildSection__REMOVE__(node);
-            }         
-        }
-
-        //helper function which tests for parent being root
-        //md 20061204
-        private void AddChildSectionBefore(SectionNode node, SectionNode contextNode, TreeNode parent)
-        {
-            if (parent is TreeNode)
-            {
-                parent.insertBefore(node, contextNode);
-            }
-            else if (parent is SectionNode)
-            {
-                ((SectionNode)parent).AddChildSectionBefore__REMOVE__(node, contextNode);
-            }
-        }
-
         /// <summary>
         /// Paste a copy of a section node under a parent. Both must be defined.
         /// Project is modified but no command is issued.
@@ -460,17 +321,6 @@ namespace Obi
             PastedSectionNode(this, new Events.Node.SectionNodeEventArgs(this, copy));
             Modified();
             return copy;
-        }
-
-        /// <summary>
-        /// Add a section that had previously been added.
-        /// </summary>
-        /// <param name="node">The section node to (re)add.</param>
-        /// <param name="parent">Its parent node.</param>
-        /// <param name="index">Its index in the parent.</param>
-        public void ReaddSectionNode(SectionNode node, TreeNode parent, int index)
-        {
-            AddChildSection(node, parent, index);
         }
 
         /// <summary>
