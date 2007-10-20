@@ -45,7 +45,7 @@ namespace Obi.Commands
         /// <summary>
         /// Get the presentation from the view's project
         /// </summary>
-        public urakawa.Presentation getPresentation() { return mView.Project.getPresentation(); }
+        public urakawa.Presentation getPresentation() { return mView.Presentation; }
 
         /// <summary>
         /// The presentation cannot be set.

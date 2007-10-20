@@ -125,7 +125,7 @@ namespace Obi.UserControls
             if (mRenameBox.Text != mLabel.Text)
             {
                 mLabel.Text = mRenameBox.Text;
-                mAudioBlock.Node.Project.EditAnnotationPhraseNode(mAudioBlock.Node, mLabel.Text);
+                //mAudioBlock.Node.Project.EditAnnotationPhraseNode(mAudioBlock.Node, mLabel.Text);
             }
             Renaming = false;
         }

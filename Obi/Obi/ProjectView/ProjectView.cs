@@ -727,7 +727,7 @@ namespace Obi.ProjectView
                 if (ImportingFile != null) ImportingFile(this, new ImportingFileEventArgs(path));
                 try
                 {
-                    phrases.Add(mProject.NewPhraseNodeFromFile(path));
+                    phrases.Add(mPresentation.CreatePhraseNode(path));
                 }
                 catch (Exception)
                 {

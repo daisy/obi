@@ -92,8 +92,8 @@ namespace Obi.ProjectView
             mTOCTree.Nodes.Add(mDummy);
             mDummy.ForeColor = Color.LightGray;
             mDummy.Tag = mView.Project.RootNode;*/
-            mView.Project.getPresentation().treeNodeAdded += new TreeNodeAddedEventHandler(TOCView_treeNodeAdded);
-            mView.Project.getPresentation().treeNodeRemoved += new TreeNodeRemovedEventHandler(TOCView_treeNodeRemoved);
+            mView.Presentation.treeNodeAdded += new TreeNodeAddedEventHandler(TOCView_treeNodeAdded);
+            mView.Presentation.treeNodeRemoved += new TreeNodeRemovedEventHandler(TOCView_treeNodeRemoved);
             mView.Project.RenamedSectionNode += new Obi.Events.RenameSectionNodeHandler(Project_RenamedSectionNode);
         }
 
@@ -274,7 +274,7 @@ namespace Obi.ProjectView
                 }
                 n.Tag = section;
                 ChangeColorUsed(n, section.Used);
-                section.UsedStateChanged += new EventHandler(section_UsedStateChanged);
+                //section.UsedStateChanged += new EventHandler(section_UsedStateChanged);
             }
             return n;
         }
@@ -340,10 +340,10 @@ namespace Obi.ProjectView
                     {
                         System.Diagnostics.Debug.Print("~~~ Doing to new node");
                         f();
-                        mView.Project.getPresentation().treeNodeAdded -= h;
+                        mView.Presentation.treeNodeAdded -= h;
                     }
                 };
-                mView.Project.getPresentation().treeNodeAdded += h;
+                mView.Presentation.treeNodeAdded += h;
             }
         }
 

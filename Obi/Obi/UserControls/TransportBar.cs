@@ -573,7 +573,7 @@ namespace Obi.UserControls
                 if (selected == null)
                 {
                     // nothing selected: append a new section and start from 0
-                    section = mProjectPanel.Project.CreateSiblingSectionNode(null);
+                    section = null; // mProjectPanel.Project.CreateSiblingSectionNode(null);
                     index = 0;
                     IsSectionCreated = true;
                 }
@@ -630,7 +630,7 @@ namespace Obi.UserControls
 
                     for (int i = 0; i < m_RecordingSession.RecordedAudio.Count; ++i)
                     {
-                        mProjectPanel.StripManager.UpdateAudioForPhrase(section.PhraseChild(index + i), m_RecordingSession.RecordedAudio[i]);
+                        //mProjectPanel.StripManager.UpdateAudioForPhrase(section.PhraseChild(index + i), m_RecordingSession.RecordedAudio[i]);
                                                                     }
                 }
                 else //recording using the transportbar buttons

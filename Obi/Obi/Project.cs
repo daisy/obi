@@ -77,7 +77,7 @@ namespace Obi
         /// </summary>
         public int AudioChannels
         {
-            get { return getPresentation().getMediaDataManager().getDefaultPCMFormat().getNumberOfChannels(); }
+            get { return getPresentation(0).getMediaDataManager().getDefaultPCMFormat().getNumberOfChannels(); }
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace Obi
         /// </summary>
         public int BitDepth
         {
-            get { return getPresentation().getMediaDataManager().getDefaultPCMFormat().getBitDepth(); }
+            get { return getPresentation(0).getMediaDataManager().getDefaultPCMFormat().getBitDepth(); }
         }
 
         /// <summary>
@@ -99,10 +99,6 @@ namespace Obi
             }
         }
 
-        /// <summary>
-        /// The media data manager for the project.
-        /// </summary>
-        public Audio.DataManager DataManager { get { return (Audio.DataManager)getPresentation().getMediaDataManager(); } }
 
         /// <summary>
         /// Initialize a new project with metadata.
@@ -116,8 +112,7 @@ namespace Obi
         {
             CreateMetadata(title, id, userProfile);
             // TODO remove this
-            mClipboard = new Clipboard();
-            if (createTitle) CreateTitleSection(title);
+            // if (createTitle) CreateTitleSection(title);
             if (StateChanged != null) StateChanged(this,
                 new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
             Save();
@@ -204,7 +199,7 @@ namespace Obi
         /// </summary>
         public RootNode RootNode
         {
-            get { return (RootNode)getPresentation().getRootNode(); }
+            get { return (RootNode)getPresentation(0).getRootNode(); }
         }
 
         /// <summary>
@@ -212,7 +207,7 @@ namespace Obi
         /// </summary>
         public int SampleRate
         {
-            get { return (int)getPresentation().getMediaDataManager().getDefaultPCMFormat().getSampleRate(); }
+            get { return (int)getPresentation(0).getMediaDataManager().getDefaultPCMFormat().getSampleRate(); }
         }
 
         /// <summary>
@@ -220,12 +215,12 @@ namespace Obi
         /// </summary>
         internal void Save()
         {
-            bool enforce = DataManager.getEnforceSinglePCMFormat();
+            /*bool enforce = DataManager.getEnforceSinglePCMFormat();
             DataManager.setEnforceSinglePCMFormat(true);  // TODO remove this kludge
             saveXUK(new Uri(mXUKPath));
             DataManager.setEnforceSinglePCMFormat(enforce);
             mLastPath = mXUKPath;
-            Saved();
+            Saved();*/
         }
 
         /// <summary>
@@ -272,44 +267,13 @@ namespace Obi
         /// <param name="name">Name of the new channel.</param>
         private void AddChannel(string name)
         {
-            Channel channel = getPresentation().getChannelFactory().createChannel();
+            Channel channel = getPresentation(0).getChannelFactory().createChannel();
             channel.setName(name);
-            getPresentation().getChannelsManager().addChannel(channel);
-        }
-
-        /// <summary>
-        /// Create a new empty presentation with custom node and property factories and audio data manager.
-        /// </summary>
-        /// <param name="XUKPath">Path of the XUK file for the project hosting this presentation.</param>
-        /// <returns>The new presentation.</returns>
-        private static Presentation CreatePresentation(string XUKPath)
-        {
-            return new Presentation(new Uri(Path.GetDirectoryName(XUKPath) + Path.DirectorySeparatorChar),
-                new ObiNodeFactory(), new PropertyFactory(),
-                null, null, null,
-                new Audio.DataManager(), null, null, null, null, null);
+            getPresentation(0).getChannelsManager().addChannel(channel);
         }
                         
 
-        /// <summary>
-        /// Create a section node.
-        /// </summary>
-        public SectionNode CreateSectionNode()
-        {
-            return (SectionNode)
-                getPresentation().getTreeNodeFactory().createNode(SectionNode.XUK_ELEMENT_NAME, Program.OBI_NS);
-        }
 
-        /// <summary>
-        /// Create a title section.
-        /// </summary>
-        /// <param name="title">The title of this section.</param>
-        private void CreateTitleSection(string title)
-        {
-            SectionNode node = CreateSectionNode();
-            node.Label = title;
-            RootNode.appendChild(node);
-        }
 
         /// <summary>
         /// Get the generator string (Obi/Urakawa SDK) for the project.
@@ -336,7 +300,7 @@ namespace Obi
         /// <exception cref="TooManyChannelsException">Thrown when there are more than one channels with that name.</exception>
         private Channel GetSingleChannelByName(string name)
         {
-            List<Channel> channels = getPresentation().getChannelsManager().getListOfChannels(name);
+            List<Channel> channels = getPresentation(0).getChannelsManager().getListOfChannels(name);
             if (channels.Count == 0) throw new Exception(String.Format("No channel named \"{0}\"", name));
             if (channels.Count > 1) throw new Exception(String.Format("Expected 1 channel for {0}, got {1}.",
                 name, channels.Count));
@@ -478,7 +442,7 @@ namespace Obi
         public PhraseNode FindFirstPhrase()
         {
             PhraseNode first = null;
-            getPresentation().getRootNode().acceptDepthFirst
+            getPresentation(0).getRootNode().acceptDepthFirst
             (
                 delegate(TreeNode n)
                 {
@@ -564,10 +528,10 @@ namespace Obi
         {
             if (value != null)
             {
-                                urakawa.metadata.Metadata meta = getPresentation ().getMetadataFactory().createMetadata();
+                                urakawa.metadata.Metadata meta = getPresentation(0).getMetadataFactory().createMetadata();
                 meta.setName(name);
                 meta.setContent(value);
-                this.getPresentation ().appendMetadata(meta);
+                this.getPresentation (0).appendMetadata(meta);
                 return meta;
             }
             else
@@ -581,7 +545,7 @@ namespace Obi
         /// </summary>
         public bool CanDeleteMetadata(MetadataEntryDescription entry)
         {
-            return entry.Occurrence != MetadataOccurrence.Required || getPresentation ().getMetadataList(entry.Name).Count > 1;
+            return entry.Occurrence != MetadataOccurrence.Required || getPresentation(0).getMetadataList(entry.Name).Count > 1;
         }
 
         /// <summary>
@@ -604,7 +568,7 @@ namespace Obi
         /// <returns>The found metadata item, or null if not found.</returns>
         public urakawa.metadata.Metadata GetFirstMetadataItem(string name)
         {
-            IList list = getPresentation ().getMetadataList(name);
+            IList list = getPresentation(0).getMetadataList(name);
             return list.Count > 0 ? list[0] as urakawa.metadata.Metadata : null;
         }
 
@@ -614,7 +578,7 @@ namespace Obi
         /// <returns>The found metadata item, or null if not found.</returns>
         public urakawa.metadata.Metadata GetSingleMetadataItem(string name)
         {
-            IList list = getPresentation ().getMetadataList(name);
+            IList list = getPresentation(0).getMetadataList(name);
             if (list.Count > 1)
             {
                 throw new Exception(String.Format("Expected a single metadata item for \"{0}\" but got {1}.",
@@ -630,7 +594,7 @@ namespace Obi
         /// <param name="content">The content of the metadata item to set.</param>
         public void SetSingleMetadataItem(string name, string content)
         {
-            getPresentation ().deleteMetadata(name);
+            getPresentation(0).deleteMetadata(name);
             AddMetadata(name, content);
         }
 
@@ -665,7 +629,7 @@ namespace Obi
         /// <param name="e"></param>
         private void presentation_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
         {
-            if (e.getTreeNode() is PhraseNode)
+            /*if (e.getTreeNode() is PhraseNode)
             {
                 PhraseNode phrase = (PhraseNode)e.getTreeNode();
                 ++mPhraseCount;
@@ -678,68 +642,20 @@ namespace Obi
                     DataManager.setEnforceSinglePCMFormat(true);
                 }
                 phrase.ParentSection.AddedPhraseNode__REMOVE__(phrase);
-            }
+            }*/
         }
 
         void presentation_treeNodeRemoved(ITreeNodeChangedEventManager o, TreeNodeRemovedEventArgs e)
         {
-            if (e.getTreeNode() is PhraseNode)
+            /*if (e.getTreeNode() is PhraseNode)
             {
                                 if (DataManager.getListOfMediaData ().Count == 0) DataManager.setEnforceSinglePCMFormat(false);
-            }
+            }*/
         }
 
         #endregion
 
 
-        /// <summary>
-        /// Convenience method to create a new section node.
-        /// </summary>
-        public SectionNode NewSectionNode()
-        {
-            return getPresentation().getTreeNodeFactory().createNode(SectionNode.XUK_ELEMENT_NAME, Program.OBI_NS)
-            as SectionNode;
-        }
 
-        /// <summary>
-        /// Convenience method to create a new plain phrase node from a file.
-        /// </summary>
-        public PhraseNode NewPhraseNodeFromFile(string path) { return CreatePhraseNode(ImportAudioFromFile(path)); }
-
-        // Create a new phrase node.
-        private PhraseNode CreatePhraseNode()
-        {
-            return (PhraseNode)
-                getPresentation().getTreeNodeFactory().createNode(PhraseNode.XUK_ELEMENT_NAME, Program.OBI_NS);
-        }
-
-        // Create a new phrase node from an audio media.
-        private PhraseNode CreatePhraseNode(urakawa.media.data.audio.ManagedAudioMedia audio)
-        {
-            PhraseNode node = CreatePhraseNode();
-            node.Audio = audio;
-            return node;
-        }
-
-        // Create a media object from a sound file.
-        private ManagedAudioMedia ImportAudioFromFile(string path)
-        {
-            if (!DataManager.getEnforceSinglePCMFormat())
-            {
-                Stream input = File.OpenRead(path);
-                PCMDataInfo info = PCMDataInfo.parseRiffWaveHeader(input);
-                input.Close();
-                getPresentation().getMediaDataManager().getDefaultPCMFormat().setBitDepth(info.getBitDepth());
-                getPresentation().getMediaDataManager().getDefaultPCMFormat().setNumberOfChannels(info.getNumberOfChannels());
-                getPresentation().getMediaDataManager().getDefaultPCMFormat().setSampleRate(info.getSampleRate());
-                DataManager.setEnforceSinglePCMFormat(true);
-            }
-            AudioMediaData data = (AudioMediaData)
-                getPresentation().getMediaDataFactory().createMediaData(typeof(AudioMediaData));
-            data.appendAudioDataFromRiffWave(path);
-            ManagedAudioMedia media = (ManagedAudioMedia)getPresentation().getMediaFactory().createAudioMedia();
-            media.setMediaData(data);
-            return media;
-        }
     }
 }

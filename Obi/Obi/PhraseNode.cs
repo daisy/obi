@@ -51,14 +51,14 @@ namespace Obi
             {
                 if (value == null || value == "")
                 {
-                    ChannelsProperty.setMedia(Project.AnnotationChannel, null);
+                    //ChannelsProperty.setMedia(Project.AnnotationChannel, null);
                 }
                 else if (value != null)
                 {
                     if (AnnotationMedia == null)
                     {
                         ITextMedia annotation = getPresentation().getMediaFactory().createTextMedia();
-                        ChannelsProperty.setMedia(Project.AnnotationChannel, annotation);
+                        //ChannelsProperty.setMedia(Project.AnnotationChannel, annotation);
                     }
                     AnnotationMedia.setText(value);
                 }
@@ -70,8 +70,8 @@ namespace Obi
         /// </summary>
         public ManagedAudioMedia Audio
         {
-            get { return ChannelsProperty.getMedia(Project.AudioChannel) as ManagedAudioMedia; }
-            set { ChannelsProperty.setMedia(Project.AudioChannel, value); }
+            get { return null; }// ChannelsProperty.getMedia(Project.AudioChannel) as ManagedAudioMedia; }
+            set { } //ChannelsProperty.setMedia(Project.AudioChannel, value); }
         }
 
         /// <summary>
@@ -128,11 +128,11 @@ namespace Obi
             {
                 if (value != null)
                 {
-                    setProperty(value);
+                    //setProperty(value);
                 }
                 else
                 {
-                    removeProperty(typeof(PageProperty));
+                    //removeProperty(typeof(PageProperty));
                 }
             }
         }
@@ -185,7 +185,7 @@ namespace Obi
         protected override TreeNode copyProtected(bool deep, bool inclProperties)
         {
             PhraseNode copy = (PhraseNode)base.copy(deep, inclProperties);
-            copy.Audio = Project.DataManager.CopyAndManage(Audio);
+            copy.Audio = null; // Project.DataManager.CopyAndManage(Audio);
             copy.Used = Used;
             copy.Annotation = Annotation;
             copy.mKind = mKind;
@@ -226,7 +226,7 @@ namespace Obi
         /// The text media for the annotation.
         /// Maybe null if no annotation was set.
         /// </summary>
-        private TextMedia AnnotationMedia { get { return ChannelsProperty.getMedia(Project.AnnotationChannel) as TextMedia; } }
+        private TextMedia AnnotationMedia { get { return null; } } // ChannelsProperty.getMedia(Project.AnnotationChannel) as TextMedia; } }
 
         public override SectionNode SectionChild(int index)
         {

@@ -22,12 +22,12 @@ namespace Obi.Commands.Strips
 
         public override void Do()
         {
-            mNode.Project.DidRemovePageNumberFromPhrase(mNode);
+            //mNode.Project.DidRemovePageNumberFromPhrase(mNode);
         }
 
         public override void Undo()
         {
-            mNode.Project.DidSetPageNumberOnPhrase(mNode);
+            //mNode.Project.DidSetPageNumberOnPhrase(mNode);
         }
     }
 }

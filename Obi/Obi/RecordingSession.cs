@@ -49,7 +49,7 @@ namespace Obi
         {
             mProject = project;
             mRecorder = recorder;
-            mRecorder.AssetsDirectory = ((urakawa.media.data.FileDataProviderManager)mProject.getPresentation().getDataProviderManager()).getDataFileDirectoryFullPath();
+            mRecorder.AssetsDirectory = ((urakawa.media.data.FileDataProviderManager)mProject.getPresentation(0).getDataProviderManager()).getDataFileDirectoryFullPath();
             if (!Directory.Exists(mRecorder.AssetsDirectory))
                 Directory.CreateDirectory(mRecorder.AssetsDirectory);
             mChannels = channels;
@@ -94,7 +94,7 @@ namespace Obi
             {
                 // AudioMediaAsset asset = mProject.AssetManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
                 // mRecorder.StartListening(asset);
-                AudioMediaData ToolkitAsset = (AudioMediaData)mProject.getPresentation().getMediaDataFactory().createMediaData(typeof(AudioMediaData)); // for tk
+                AudioMediaData ToolkitAsset = (AudioMediaData)mProject.getPresentation(0).getMediaDataFactory().createMediaData(typeof(AudioMediaData)); // for tk
                 mRecorder.StartListening(ToolkitAsset); // for tk
             }
         }
@@ -110,8 +110,8 @@ namespace Obi
                 mPhraseMarks = new List<double>();
                 mSectionMarks = new List<int>();
  
-                AudioMediaData ToolkitAsset = (AudioMediaData)mProject.getPresentation().getMediaDataFactory().createMediaData(typeof(AudioMediaData)); // tk
-mSessionMedia                 = (ManagedAudioMedia)mProject.getPresentation().getMediaFactory().createAudioMedia ()  ;
+                AudioMediaData ToolkitAsset = (AudioMediaData)mProject.getPresentation(0).getMediaDataFactory().createMediaData(typeof(AudioMediaData)); // tk
+mSessionMedia                 = (ManagedAudioMedia)mProject.getPresentation(0).getMediaFactory().createAudioMedia ()  ;
                                     mSessionMedia.setMediaData(ToolkitAsset ); // tk
                                                 mRecorder.StartRecording(ToolkitAsset); // tk
                  StartingPhrase(this, new PhraseEventArgs( mSessionMedia , mSessionOffset, 0.0)); // tk

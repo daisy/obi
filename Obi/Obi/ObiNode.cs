@@ -80,7 +80,7 @@ namespace Obi
                 if (mUsed != value)
                 {
                     mUsed = value;
-                    if (UsedStateChanged != null) UsedStateChanged(this, new EventArgs());
+                    // if (UsedStateChanged != null) UsedStateChanged(this, new EventArgs());
                 }
             }
         }
@@ -104,8 +104,8 @@ namespace Obi
         /// </summary>
         protected override void XukOutAttributes(System.Xml.XmlWriter destination, Uri baseUri)
         {
-            if (!mUsed) writer.WriteAttributeString(USED_ATTR_NAME, "False");
-            base.XukOutAttributes(writer, baseUri);
+            if (!mUsed) destination.WriteAttributeString(USED_ATTR_NAME, "False");
+            base.XukOutAttributes(destination, baseUri);
         }
 
         /// <summary>
@@ -122,8 +122,7 @@ namespace Obi
     {
         public static readonly string XUK_ELEMENT_NAME = "root";  // name of the element in the XUK file
 
-        public RootNode(Project project): base(project) {}
-
+        public RootNode(Presentation presentation) : base(presentation) { }
 
         /// <summary>
         /// Allow only section nodes to be inserted.

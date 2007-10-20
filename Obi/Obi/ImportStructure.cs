@@ -131,7 +131,7 @@ namespace Obi
 
                 if (mProject.FirstSection == null)
                 {
-                    newNode = mProject.CreateSiblingSectionNode(null);
+                    newNode = null; // mProject.CreateSiblingSectionNode(null);
                 }
                 else
                 {
@@ -139,12 +139,12 @@ namespace Obi
                     //is there an easier way to do this?
                     SectionNode lastSection = mProject.LastSection;
                     while (lastSection.ParentSection != null) lastSection = lastSection.ParentSection;
-                    newNode = mProject.CreateSiblingSectionNode(lastSection);
+                    newNode = null; // mProject.CreateSiblingSectionNode(lastSection);
                 }
             }
             else
             {
-                newNode = mProject.CreateChildSectionNode(parentNode);
+                newNode = null; // mProject.CreateChildSectionNode(parentNode);
             }
 
             if (newNode != null) mProject.RenameSectionNode(newNode, getElementText(source));

@@ -29,11 +29,11 @@ namespace Obi.Commands.Node
         {
             if (mNewHeading == null)
             {
-                mOldHeading.Project.UnmakePhraseHeading(mOldHeading.ParentSection);
+                //mOldHeading.Project.UnmakePhraseHeading(mOldHeading.ParentSection);
             }
             else
             {
-                mNewHeading.Project.MakePhraseHeading(mNewHeading);
+                //mNewHeading.Project.MakePhraseHeading(mNewHeading);
             }
         }
 
@@ -41,11 +41,11 @@ namespace Obi.Commands.Node
         {
             if (mOldHeading == null)
             {
-                mNewHeading.Project.UnmakePhraseHeading(mNewHeading.ParentSection);
+                //mNewHeading.Project.UnmakePhraseHeading(mNewHeading.ParentSection);
             }
             else
             {
-                mOldHeading.Project.MakePhraseHeading(mOldHeading);
+                //mOldHeading.Project.MakePhraseHeading(mOldHeading);
             }
         }
     }

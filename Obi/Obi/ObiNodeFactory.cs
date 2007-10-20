@@ -8,22 +8,19 @@ namespace Obi
     /// </summary>
     public class ObiNodeFactory : TreeNodeFactory
     {
-        private Project mProject;  // project that the presenation belongs to
+        private Presentation mPresentation;
 
         /// <summary>
         /// Create a new node factory. It is not attached to any project yet.
         /// </summary>
-        public ObiNodeFactory(): base() { mProject = null; }
+        public ObiNodeFactory(): base() { mPresentation = null; }
 
-        /// <summary>
-        /// Set the project for the node factory. The project cannot be set again.
-        /// </summary>
-        public Project Project
+        public Presentation Presentation
         {
             set
             {
-                if (mProject != null && mProject != value) throw new Exception("Project already set.");
-                mProject = value; 
+                if (mPresentation != null) throw new Exception("Presentation already set!");
+                mPresentation = value;
             }
         }
 
@@ -35,19 +32,19 @@ namespace Obi
         /// <returns>A new node or null if the qname corresponds to no known node.</returns>
         public override TreeNode createNode(string localName, string namespaceUri)
         {
-            if (namespaceUri == Program.OBI_NS)
+            if (namespaceUri == DataModelFactory.NS)
             {
                 if (localName == RootNode.XUK_ELEMENT_NAME)
                 {
-                    return new RootNode(mProject);
+                    return new RootNode(mPresentation);
                 }
                 else if (localName == PhraseNode.XUK_ELEMENT_NAME)
                 {
-                    return new PhraseNode(mProject);
+                    return new PhraseNode(mPresentation);
                 }
                 else if (localName == SectionNode.XUK_ELEMENT_NAME)
                 {
-                    return new SectionNode(mProject);
+                    return new SectionNode(mPresentation);
                 }
                 else
                 {

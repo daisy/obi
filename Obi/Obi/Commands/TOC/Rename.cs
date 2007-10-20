@@ -32,7 +32,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Do()
         {
-            mNode.Project.RenameSectionNode(mNode, mNewName);
+            //mNode.Project.RenameSectionNode(mNode, mNewName);
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public override void Undo()
         {
-            mNode.Project.RenameSectionNode(mNode, mOldName);
+            //mNode.Project.RenameSectionNode(mNode, mOldName);
         }
     }
 }

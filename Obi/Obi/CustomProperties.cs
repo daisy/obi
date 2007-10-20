@@ -23,7 +23,7 @@ namespace Obi
         /// </summary>
         public override Property createProperty(string localName, string namespaceUri)
         {
-            if (namespaceUri == Program.OBI_NS)
+            if (namespaceUri == DataModelFactory.NS)
             {
                 if (localName == PageProperty.XUK_ELEMENT_NAME)
                 {
@@ -72,7 +72,7 @@ namespace Obi
         protected override Property copyProtected()
         {
             PageProperty copy = new PageProperty();
-            copy.setOwner(getOwner());
+            //copy.setOwner(getOwner());
             copy.mPageNumber = mPageNumber;
             return copy;
         }

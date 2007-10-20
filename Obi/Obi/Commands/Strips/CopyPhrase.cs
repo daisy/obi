@@ -23,7 +23,7 @@ namespace Obi.Commands.Strips
         public CopyPhrase(PhraseNode node)
         {
             mNode = node;
-            mPrevious = mNode.Project.Clipboard.Data;
+            //mPrevious = mNode.Project.Clipboard.Data;
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Do()
         {
-            mNode.Project.Clipboard.Phrase = mNode;
+            //mNode.Project.Clipboard.Phrase = mNode;
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Obi.Commands.Strips
         /// </summary>
         public override void Undo()
         {
-            mNode.Project.Clipboard.Data = mPrevious;
+            //mNode.Project.Clipboard.Data = mPrevious;
         }
     }
 }

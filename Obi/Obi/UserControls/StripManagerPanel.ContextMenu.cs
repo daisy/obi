@@ -21,23 +21,6 @@ namespace Obi.UserControls
             UpdateEnabledItemsForContextMenu();
         }
 
-        private void mInsertStripToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            InsertStrip();
-        }
-
-        /// <summary>
-        /// Insert a new strip for a section node, select it and rename it.
-        /// </summary>
-        public void InsertStrip()
-        {
-            SectionNode node = mProjectPanel.CurrentSelectedStrip == null ?
-                mProjectPanel.Project.CreateChildSectionNode(mProjectPanel.Project.RootNode) :
-                mProjectPanel.Project.CreateSiblingSectionNode(mProjectPanel.CurrentSelectedStrip);
-            //mProjectPanel.CurrentSelection = new NodeSelection(node, this);
-            StartRenamingSelectedStrip();
-        }
-
         /// <summary>
         /// Handle both "rename strip" and "edit annotation" (sharing the same shortcut.)
         /// </summary>

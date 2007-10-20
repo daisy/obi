@@ -24,10 +24,11 @@ namespace Obi
         /// <returns>The copy that is now managed.</returns>
         public ManagedAudioMedia CopyAudioMedia(ManagedAudioMedia media)
         {
-            ManagedAudioMedia copy = (ManagedAudioMedia)getPresentation().getMediaFactory().createAudioMedia();
-            copy.setMediaData(getPresentation().getMediaDataManager().copyMediaData(media.getMediaData()));
-            getPresentation().getMediaDataManager().addMediaData(copy.getMediaData());
-            return copy;
+            //ManagedAudioMedia copy = (ManagedAudioMedia)getPresentation().getMediaFactory().createAudioMedia();
+            //copy.setMediaData(getPresentation().getMediaDataManager().copyMediaData(media.getMediaData()));
+            //getPresentation().getMediaDataManager().addMediaData(copy.getMediaData());
+            //return copy;
+            return null;
         }
 
 
@@ -88,7 +89,7 @@ namespace Obi
         {
             Commands.Strips.DeletePhrase command = new Commands.Strips.DeletePhrase(node);
             DeleteNode(node);
-            getPresentation().getMediaDataManager().removeMediaData(node.Audio.getMediaData());
+            getPresentation(0).getMediaDataManager().removeMediaData(node.Audio.getMediaData());
             return command;
         }
 
@@ -120,8 +121,8 @@ namespace Obi
                 }
                 PhraseNode copy = (PhraseNode)node.copy(true);
                 AddPhraseNode(copy, parent, index);
-                Commands.Strips.PastePhrase command = new Commands.Strips.PastePhrase(copy);
-                Modified(command);
+                //Commands.Strips.PastePhrase command = new Commands.Strips.PastePhrase(copy);
+                //Modified(command);
                 return copy;
             }
             else
@@ -206,7 +207,7 @@ namespace Obi
         /// <param name="newAsset">The new asset to create a new phrase node from.</param>
         public PhraseNode Split(PhraseNode node, urakawa.media.data.audio.ManagedAudioMedia newAudio)
         {
-            PhraseNode newNode = CreatePhraseNode(newAudio);
+            PhraseNode newNode = null; // CreatePhraseNode(newAudio);
             node.ParentSection.insertAfter(newNode, node);
             // TODO review this
             MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, Project.AUDIO_CHANNEL_NAME,
@@ -222,7 +223,7 @@ namespace Obi
             if (audioList.Count > 1)
             {
                 List<PhraseNode> nodes = new List<PhraseNode>(audioList.Count);
-                audioList.ForEach(delegate(ManagedAudioMedia audio) { nodes.Add(CreatePhraseNode(audio)); });
+                audioList.ForEach(delegate(ManagedAudioMedia audio) { nodes.Add(null); }); //CreatePhraseNode(audio)); });
                 ReplaceNodeWithNodes(node, nodes);
                 Modified(new Commands.Strips.ApplyPhraseDetection(this, node, nodes));
             }
@@ -275,11 +276,11 @@ namespace Obi
         /// <param name="index">Base index in the parent for new phrases.</param>
         internal void StartRecordingPhrase(Events.Audio.Recorder.PhraseEventArgs e, SectionNode parent, int index)
         {
-            PhraseNode phrase = CreatePhraseNode(e.Audio);
+            PhraseNode phrase = null; // CreatePhraseNode(e.Audio);
             parent.insert(phrase, index);
             // UpdateSeq(phrase);
-            Commands.Strips.AddPhrase command = new Commands.Strips.AddPhrase(phrase);
-            CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
+            //Commands.Strips.AddPhrase command = new Commands.Strips.AddPhrase(phrase);
+            //CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
         }
@@ -569,7 +570,7 @@ namespace Obi
 
         public void AddEmptyPhraseNode(SectionNode parent, int index)
         {
-            parent.AddChildPhrase__REMOVE__(CreatePhraseNode(DataManager.CreateEmptyAudioMedia()), index);
+            //parent.AddChildPhrase__REMOVE__(CreatePhraseNode(DataManager.CreateEmptyAudioMedia()), index);
         }
 
         /// <summary>
@@ -592,7 +593,7 @@ namespace Obi
         /// <param name="index">Its position in the parent section (with regards to other phrases.)</param>
         public void AddPhraseNodeWithAudio(PhraseNode node, SectionNode parent, int index)
         {
-            getPresentation().getMediaDataManager().addMediaData(node.Audio.getMediaData());
+            getPresentation(0).getMediaDataManager().addMediaData(node.Audio.getMediaData());
             AddPhraseNode(node, parent, index);
         }
 
@@ -607,9 +608,9 @@ namespace Obi
         /// <param name="index">The index at which the phrase is added.</param>
         public void DidAddPhraseFromFile(string path, SectionNode section, int index)
         {
-            PhraseNode phrase = CreatePhraseNode(ImportAudioFromFile(path));
+            PhraseNode phrase = null; // CreatePhraseNode(ImportAudioFromFile(path));
             AddPhraseNode(phrase, section, index);
-            Modified(new Commands.Strips.AddPhrase(phrase));
+            //Modified(new Commands.Strips.AddPhrase(phrase));
         }
 
 

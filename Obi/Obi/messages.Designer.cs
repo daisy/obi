@@ -875,6 +875,26 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occured while initializing Obi.
+        ///Please Submit a bug report, including the contents of {0}
+        ///Error text: {1}.
+        /// </summary>
+        internal static string init_error {
+            get {
+                return ResourceManager.GetString("init_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obi initialization error.
+        /// </summary>
+        internal static string init_error_title {
+            get {
+                return ResourceManager.GetString("init_error_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to last command.
         /// </summary>
         internal static string last_command {

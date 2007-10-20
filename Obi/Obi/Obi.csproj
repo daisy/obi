@@ -100,7 +100,6 @@
     <Compile Include="Commands\Node\RenameSection.cs" />
     <Compile Include="Commands\Node\ToggleUsed.cs" />
     <Compile Include="Commands\Strips\AddNewStrip.cs" />
-    <Compile Include="Commands\Strips\AddPhrase.cs" />
     <Compile Include="Commands\Strips\ApplyPhraseDetection.cs" />
     <Compile Include="Commands\Strips\CopyPhrase.cs" />
     <Compile Include="Commands\Strips\EditOrRemoveAnnotation.cs" />
