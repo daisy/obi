@@ -28,7 +28,7 @@ namespace Obi
         public ObiForm()
         {
             InitializeObi();
-            if (mSettings.OpenLastProject && mSettings.LastOpenProject != "") DoOpenProject(mSettings.LastOpenProject);
+            if (mSettings.OpenLastProject && mSettings.LastOpenProject != "") OpenProject(mSettings.LastOpenProject);
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Obi
         public ObiForm(string path)
         {
             InitializeObi();
-            DoOpenProject(path);
+            OpenProject(path);
         }
 
 
@@ -50,6 +50,7 @@ namespace Obi
         private void UpdateMenus()
         {
             UpdateFileMenu();
+            UpdateEditMenu();
             UpdateViewMenu();
 
             showToolStripMenuItem.Enabled = mProjectView.CanShowInTOCView;
@@ -109,7 +110,7 @@ namespace Obi
                     Localizer.Message("discard_changes_caption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
                     DialogResult.Yes)
             {
-                DoOpenProject(mSession.Path);
+                OpenProject(mSession.Path);
             }
         }
 
@@ -175,35 +176,6 @@ namespace Obi
             mProjectView.TransportBar.Enabled = true;
         }
 
-        // Open a new project from a file chosen by the user.
-        private void Open()
-        {
-            if (DidCloseProject())
-            {
-                OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = Localizer.Message("obi_filter");
-                dialog.InitialDirectory = mSettings.DefaultPath;
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    TryOpenProject(dialog.FileName);
-                }
-                else
-                {
-                    Ready();
-                }
-            }
-            else
-            {
-                Ready();
-            }
-        }
-
-        // Save the current project
-        private void Save()
-        {
-            if (mSession.CanSave) Save();
-        }
-
         // Save the current project under a different name; ask for a new path first.
         private void SaveAs()
         {
@@ -222,6 +194,25 @@ namespace Obi
 
         #endregion
 
+        #region Edit menu
+
+        private void UpdateEditMenu()
+        {
+            mUndoToolStripMenuItem.Enabled = mSession.CanUndo;
+            mUndoToolStripMenuItem.Text = mSession.CanUndo ?
+                String.Format(Localizer.Message("undo_label"), Localizer.Message("undo"), mSession.UndoLabel) :
+                Localizer.Message("cannot_undo");
+            mRedoToolStripMenuItem.Enabled = mSession.CanRedo;
+            mRedoToolStripMenuItem.Text = mSession.CanRedo ?
+                String.Format(Localizer.Message("redo_label"), Localizer.Message("redo"), mSession.RedoLabel) :
+                Localizer.Message("cannot_redo");
+        }
+
+        private void mUndoToolStripMenuItem_Click(object sender, EventArgs e) { Undo(); }
+        private void mRedoToolStripMenuItem_Click(object sender, EventArgs e) { Redo(); }
+
+        #endregion
+
         #region View menu
 
         private void UpdateViewMenu()
@@ -236,36 +227,45 @@ namespace Obi
 
         // Utility functions
 
-        // Return whether the project can be closed or not.
-        // If a project is open and unsaved, ask about what to do.
-        private bool DidCloseProject()
+
+        /// <summary>
+        /// Add a project to the list of recent projects.
+        /// If the project was already in the list, promote it to the top of the list.
+        /// </summary>
+        private void AddRecentProject(string path)
         {
-            if (!mSession.CanClose)
+            if (mSettings.RecentProjects.Contains(path))
             {
-                DialogResult result = MessageBox.Show(Localizer.Message("closed_project_text"),
-                    Localizer.Message("closed_project_caption"),
-                    MessageBoxButtons.YesNoCancel,
-                    MessageBoxIcon.Question);
-                switch (result)
-                {
-                    case DialogResult.Yes:
-                        mSession.Save();
-                        mSession.Close();
-                        return true;
-                    case DialogResult.No:
-                        mSession.Close();
-                        return true;
-                    default:
-                        return false;
-                }
+                // the item was in the list so bump it up
+                int i = mSettings.RecentProjects.IndexOf(path);
+                mSettings.RecentProjects.RemoveAt(i);
+                mOpenRecentProjectToolStripMenuItem.DropDownItems.RemoveAt(i);
             }
-            mSession.Close();
+            AddRecentProjectsItem(path);
+            mSettings.RecentProjects.Insert(0, path);
+            mSettings.LastOpenProject = path;
+        }
+
+        /// <summary>
+        /// Add an item in the recent projects list.
+        /// </summary>
+        private bool AddRecentProjectsItem(string path)
+        {
+            ToolStripMenuItem item = new ToolStripMenuItem();
+            item.Text = path;
+            item.Click += new System.EventHandler(delegate(object sender, EventArgs e) { CloseAndOpenProject(path); });
+            mOpenRecentProjectToolStripMenuItem.DropDownItems.Insert(0, item);
             return true;
         }
 
+        /// <summary>
+        /// Try to open a project from a XUK file.
+        /// Actually open it only if a possible current project could be closed properly.
+        /// </summary>
+        private void CloseAndOpenProject(string path) { if (DidCloseProject()) OpenProject(path); }
+
         // Try to create a new project with the given title at the given path.
-        // Return true on success.
-        private bool DidCreateNewProject(string path, string title, bool createTitleSection)
+        private void CreateNewProject(string path, string title, bool createTitleSection)
         {
             try
             {
@@ -276,7 +276,6 @@ namespace Obi
                 if (DidCloseProject())
                 {
                     mSession.NewPresentation(path, title, createTitleSection, "(please set id)", mSettings.UserProfile);
-                    return true;
                 }
             }
             catch (Exception e)
@@ -287,7 +286,32 @@ namespace Obi
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
-            return false;
+        }
+
+        // Return whether the project can be closed or not.
+        // If a project is open and unsaved, ask about what to do.
+        private bool DidCloseProject()
+        {
+            if (!mSession.CanClose)
+            {
+                DialogResult result = MessageBox.Show(Localizer.Message("closed_project_text"),
+                    Localizer.Message("closed_project_caption"),
+                    MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Question);
+                if (result == DialogResult.Cancel) return false;
+                if (result == DialogResult.Yes) mSession.Save();
+            }
+            mSession.Close();
+            return true;
+        }
+
+        // A new presentation was loaded or created.
+        private void GotNewPresentation()
+        {
+            UpdateObi();
+            mProjectView.Presentation = mSession.Presentation;
+            mSession.Presentation.CommandExecuted += new UndoRedoEventHandler(Presentation_CommandExecuted);
+            mSession.Presentation.CommandUnexecuted += new UndoRedoEventHandler(Presentation_CommandUnexecuted);
         }
 
         // Catch problems with initialization and report them.
@@ -295,12 +319,14 @@ namespace Obi
         {
             try
             {
-                mSession = new Session();
-                mSession.ProjectOpened += new EventHandler(mSession_ProjectOpened);
-                mSession.ProjectCreated += new EventHandler(mSession_ProjectCreated);
-                mSession.ProjectClosed += new ProjectClosedEventHandler(mSession_ProjectClosed);
-                mSourceView = null;
                 InitializeComponent();
+                mProjectView.SelectionChanged += new EventHandler(ProjectView_SelectionChanged);
+                mSession = new Session();
+                mSession.ProjectOpened += new EventHandler(Session_ProjectOpened);
+                mSession.ProjectCreated += new EventHandler(Session_ProjectCreated);
+                mSession.ProjectClosed += new ProjectClosedEventHandler(Session_ProjectClosed);
+                mSession.ProjectSaved += new EventHandler(Session_ProjectSaved);
+                mSourceView = null;
                 InitializeSettings();
                 InitialiseHighContrastSettings();
                 InitializeEventHandlers();
@@ -319,31 +345,6 @@ namespace Obi
                 MessageBox.Show(String.Format(Localizer.Message("init_error"), path, e.ToString()),
                     Localizer.Message("init_error_title"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        void mSession_ProjectCreated(object sender, EventArgs e)
-        {
-            UpdateTitleBar();
-            UpdateMenus();
-            Status(String.Format(Localizer.Message("created_new_project"), mSession.Presentation.Title));
-            mProjectView.Presentation = mSession.Presentation;
-        }
-
-        void mSession_ProjectClosed(object sender, ProjectClosedEventArgs e)
-        {
-            UpdateTitleBar();
-            UpdateMenus();
-            Status(String.Format(Localizer.Message("closed_project"), e.ClosedPresentation.Title));
-            mProjectView.Presentation = null;
-            if (mSourceView != null) mSourceView.Close();
-        }
-
-        void mSession_ProjectOpened(object sender, EventArgs e)
-        {
-            UpdateTitleBar();
-            UpdateMenus();
-            Status("Opened project.");
-            mProjectView.Presentation = mSession.Presentation;
         }
 
         // Initialize event handlers from the project view
@@ -366,8 +367,46 @@ namespace Obi
                 Localizer.Message("obi_project_extension"),
                 Localizer.Message("default_project_title"));
             dialog.CreateTitleSection = mSettings.CreateTitleSection;
-            if (dialog.ShowDialog() != DialogResult.OK ||
-                !DidCreateNewProject(dialog.Path, dialog.Title, dialog.CreateTitleSection)) Ready();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                CreateNewProject(dialog.Path, dialog.Title, dialog.CreateTitleSection);
+            }
+        }
+
+        // Open a new project from a file chosen by the user.
+        private void Open()
+        {
+            if (DidCloseProject())
+            {
+                OpenFileDialog dialog = new OpenFileDialog();
+                dialog.Filter = Localizer.Message("obi_filter");
+                dialog.InitialDirectory = mSettings.DefaultPath;
+                if (dialog.ShowDialog() == DialogResult.OK) OpenProject(dialog.FileName);
+            }
+        }
+
+        // Open the project at the given path; warn the user on error.
+        private void OpenProject(string path)
+        {
+            try
+            {
+                mSession.Open(path);
+                AddRecentProject(path);
+            }
+            catch (Exception e)
+            {
+                // if opening failed, no project is open and we don't try to open it again next time.
+                MessageBox.Show(e.Message, Localizer.Message("open_project_error_caption"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mSettings.LastOpenProject = "";
+            }
+        }
+
+        // The project was modified.
+        private void ProjectHasChanged()
+        {
+            mSession.PresentationHasChanged();
+            UpdateObi();
         }
 
         // Update the status bar to say "Ready."
@@ -375,6 +414,12 @@ namespace Obi
         {
             mStatusTimer.Enabled = false;
             Status(Localizer.Message("ready"));
+        }
+
+        // Redo
+        private void Redo()
+        {
+            if (mSession.CanRedo) mSession.Presentation.UndoRedoManager.redo();
         }
 
         // Show a new source view window or give focus back to the previously opened one.
@@ -397,8 +442,31 @@ namespace Obi
             }
         }
 
+        // Save the current project
+        private void Save()
+        {
+            if (mSession.CanSave)
+            {
+                mSession.Save();
+                AddRecentProject(mSession.Path);
+            }
+        }
+
         // Display a message in the status bar.
         private void Status(string message) { mStatusLabel.Text = message; }
+
+        // Undo
+        private void Undo()
+        {
+            if (mSession.CanUndo) mSession.Presentation.UndoRedoManager.undo();
+        }
+
+        // Update all of Obi.
+        private void UpdateObi()
+        {
+            UpdateTitleBar();
+            UpdateMenus();
+        }
 
         // Update the title bar to show the name of the project, and if it has unsaved changes
         private void UpdateTitleBar()
@@ -412,8 +480,37 @@ namespace Obi
         }
 
 
+        // Event handlers
 
+        private void Presentation_CommandUnexecuted(object sender, UndoRedoEventArgs e) { ProjectHasChanged(); }
+        private void Presentation_CommandExecuted(object sender, UndoRedoEventArgs e) { ProjectHasChanged(); }
+        private void ProjectView_SelectionChanged(object sender, EventArgs e) { UpdateMenus(); }
 
+        private void Session_ProjectCreated(object sender, EventArgs e)
+        {
+            GotNewPresentation();
+            Status(String.Format(Localizer.Message("created_new_project"), mSession.Presentation.Title));
+        }
+
+        private void Session_ProjectClosed(object sender, ProjectClosedEventArgs e)
+        {
+            UpdateObi();
+            Status(String.Format(Localizer.Message("closed_project"), e.ClosedPresentation.Title));
+            mProjectView.Presentation = null;
+            if (mSourceView != null) mSourceView.Close();
+        }
+
+        private void Session_ProjectOpened(object sender, EventArgs e)
+        {
+            GotNewPresentation();
+            Status(String.Format(Localizer.Message("opened_project"), mSession.Presentation.Title));
+        }
+
+        private void Session_ProjectSaved(object sender, EventArgs e)
+        {
+            UpdateObi();
+            Status(String.Format(Localizer.Message("saved_project"), mSession.Path));
+        }
 
 
 
@@ -755,7 +852,7 @@ if (mProject != null)
                     MessageBox.Show(String.Format(Localizer.Message("save_settings_error_text"), x.Message),
                         Localizer.Message("save_settings_error_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                mProjectView.SelectionChanged -= new EventHandler(mProjectView_SelectionChanged);
+                mProjectView.SelectionChanged -= new EventHandler(ProjectView_SelectionChanged);
                 mProjectView.TransportBar.Stop();
                 Application.Exit();
 
@@ -1121,46 +1218,6 @@ if (mProject != null)
         // Various utility functions
 
         /// <summary>
-        /// Add a project to the list of recent projects.
-        /// If the project was already in the list, promote it to the top of the list.
-        /// </summary>
-        /// <param name="path">The path of the project to add.</param>
-        private void AddRecentProject(string path)
-        {
-            if (mSettings.RecentProjects.Contains(path))
-            {
-                // the item was in the list so bump it up
-                int i = mSettings.RecentProjects.IndexOf(path);
-                mSettings.RecentProjects.RemoveAt(i);
-                mOpenRecentProjectToolStripMenuItem.DropDownItems.RemoveAt(i);
-            }
-            if (AddRecentProjectsItem(path)) mSettings.RecentProjects.Insert(0, path);
-        }
-
-        /// <summary>
-        /// Add an item in the recent projects list, if the file actually exists.
-        /// The path relative to the project directory is shown.
-        /// </summary>
-        /// <param name="path">The path of the item to add.</param>
-        /// <returns>True if the file was added.</returns>
-        /// <remarks>The file was in the preferences but may have disappeared since.</remarks>
-        private bool AddRecentProjectsItem(string path)
-        {
-            if (File.Exists(path))
-            {
-                ToolStripMenuItem item = new ToolStripMenuItem();
-                item.Text = Path.GetDirectoryName(path) == mSettings.DefaultPath ? Path.GetFileName(path) : path;
-                item.Click += new System.EventHandler(delegate(object sender, EventArgs e) { TryOpenProject(path); });
-                mOpenRecentProjectToolStripMenuItem.DropDownItems.Insert(0, item);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
         /// Clear the list of recent projects.
         /// </summary>
         private void ClearRecentList()
@@ -1170,57 +1227,6 @@ if (mProject != null)
                 mOpenRecentProjectToolStripMenuItem.DropDownItems.RemoveAt(0);
             }
             mSettings.RecentProjects.Clear();
-        }
-
-        /// <summary>
-        /// Open a project without asking anything (using for reverting, for instance.)
-        /// </summary>
-        /// <param name="path">The path of the project to open.</param>
-        /// <remarks>TODO: have a progress bar, and hide the panel while opening.</remarks>
-        private void DoOpenProject(string path)
-        {
-            /*try
-            {
-                mProject = new Project(path);
-                // TODO extract this (same as create new project)
-                mProjectView.CommandExecuted += new UndoRedoEventHandler(mProjectView_CommandExecuted);
-                mProjectView.CommandUnexecuted += new UndoRedoEventHandler(mProjectView_CommandUnexecuted);
-                mProjectView.SelectionChanged += new EventHandler(mProjectView_SelectionChanged);
-                mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
-                this.Cursor = Cursors.WaitCursor;
-                mProject.Open(path);
-                AddRecentProject(path);
-                mSettings.LastOpenProject = path;
-            }
-            catch (Exception e)
-            {
-                // if opening failed, no project is open and we don't try to open it again next time.
-                MessageBox.Show(e.Message, Localizer.Message("open_project_error_caption"),
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                mProject = null;
-                mSettings.LastOpenProject = "";
-            }
-            finally
-            {
-                this.Cursor = Cursors.Default;
-            }*/
-        }
-
-        /// <summary>
-        /// Try to open a project from a XUK file.
-        /// Actually open it only if a possible current project could be closed properly.
-        /// </summary>
-        /// <param name="path">The path of the XUK file to open.</param>
-        private void TryOpenProject(string path)
-        {
-            if (DidCloseProject())
-            {
-                DoOpenProject(path);
-            }
-            else
-            {
-                Ready();
-            }
         }
 
 
@@ -1407,21 +1413,6 @@ if (mProject != null)
             }
         }
 
-        /// <summary>
-        /// Create a new project. The application listens to the project's state change and
-        /// command created events.
-        /// </summary>
-        /// <param name="path">Path of the XUK file to the project.</param>
-        /// <param name="title">Title of the project.</param>
-        /// <param name="createTitleSection">If true, a title section is automatically created.</param>
-        private void CreateNewProject(string path, string title, bool createTitleSection)
-        {
-            /*mProject = new Project(path);
-            mProject.StateChanged += new Obi.Events.Project.StateChangedHandler(mProject_StateChanged);
-            mProject.Initialize(title, mSettings.GeneratedID, mSettings.UserProfile, createTitleSection);
-            AddRecentProject(mProject.XUKPath);*/
-        }
-
 
         /// <summary>
         /// Ask the user whether she wants to create a directory,
@@ -1533,26 +1524,6 @@ if (mProject != null)
             return time.ToString("0.00") + "s";
         }
 
-        private void mProjectView_CommandExecuted(object sender, UndoRedoEventArgs e) { UpdateUndoRedo(e); }
-        private void mProjectView_CommandUnexecuted(object sender, UndoRedoEventArgs e) { UpdateUndoRedo(e); }
-
-        private void UpdateUndoRedo(UndoRedoEventArgs e)
-        {
-            mUndoToolStripMenuItem.Enabled = e.Manager.canUndo();
-            mUndoToolStripMenuItem.Text = e.Manager.canUndo() ?
-                String.Format(Localizer.Message("undo_label"), Localizer.Message("undo"), e.Manager.getUndoShortDescription()) :
-                Localizer.Message("cannot_undo");
-            mRedoToolStripMenuItem.Enabled = e.Manager.canRedo();
-            mRedoToolStripMenuItem.Text = e.Manager.canRedo() ?
-                String.Format(Localizer.Message("redo_label"), Localizer.Message("redo"), e.Manager.getRedoShortDescription()) :
-                Localizer.Message("cannot_redo");
-            Ready();
-        }
-
-        private void mProjectView_SelectionChanged(object sender, EventArgs e) { UpdateMenus(); }
-
-        private void NEWundoToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Undo(); }
-        private void NEWredoToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Redo(); }
         private void cutToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Cut(); }
         private void copyToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Copy(); }
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Paste(); }
@@ -1656,7 +1627,6 @@ if (mProject != null)
         {
             Disable(false);
         }
-
 
         #region OLD
 

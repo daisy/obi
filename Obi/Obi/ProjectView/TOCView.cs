@@ -25,6 +25,7 @@ namespace Obi.ProjectView
         // Used by the designer
         public TOCView() { InitializeComponent(); }
 
+
         // When we have a dummy section, then a section *must* be selected (?)
         public bool CanAddSection { get { return true; } }
 
@@ -53,14 +54,14 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// True if the selected node can be renamed.
-        /// </summary>
-        public bool CanRenameSection { get { return mTOCTree.SelectedNode != null && mTOCTree.SelectedNode != mDummy; } }
-
-        /// <summary>
         /// True if the selected node can be removed (deleted or cut)
         /// </summary>
         public bool CanRemoveSection { get { return mTOCTree.SelectedNode != null && mTOCTree.SelectedNode != mDummy; } }
+
+        /// <summary>
+        /// True if the selected node can be renamed.
+        /// </summary>
+        public bool CanRenameSection { get { return mTOCTree.SelectedNode != null && mTOCTree.SelectedNode != mDummy; } }
 
         /// <summary>
         /// True if the used state of the selected section can be changed
@@ -82,24 +83,17 @@ namespace Obi.ProjectView
             FindTreeNode(section).EnsureVisible();
         }
 
-        /// <summary>
-        /// Set a new project for this view.
-        /// </summary>
-        public void NewProject()
+        public void NewPresentation()
         {
             mTOCTree.Nodes.Clear();
             /*mDummy = new TreeNode(Localizer.Message("dummy_section"));
             mTOCTree.Nodes.Add(mDummy);
             mDummy.ForeColor = Color.LightGray;
             mDummy.Tag = mView.Project.RootNode;*/
+            CreateTreeNodeForSectionNode(mView.Presentation.RootNode);
             mView.Presentation.treeNodeAdded += new TreeNodeAddedEventHandler(TOCView_treeNodeAdded);
             mView.Presentation.treeNodeRemoved += new TreeNodeRemovedEventHandler(TOCView_treeNodeRemoved);
-            mView.Project.RenamedSectionNode += new Obi.Events.RenameSectionNodeHandler(Project_RenamedSectionNode);
-        }
-
-        public void NewPresentation()
-        {
-            mTOCTree.Nodes.Clear();
+            mView.Presentation.RenamedSectionNode += new SectionNodeEventHandler(TOCView_RenamedSectionNode);
         }
 
         /// <summary>
@@ -159,10 +153,10 @@ namespace Obi.ProjectView
         }
 
         // When a node was renamed, show the new name in the tree.
-        private void Project_RenamedSectionNode(object sender, Obi.Events.Node.RenameSectionNodeEventArgs e)
+        private void TOCView_RenamedSectionNode(object sender, SectionNodeEventArgs e)
         {
             TreeNode n = FindTreeNodeWithoutLabel(e.Node);
-            n.Text = e.Label;
+            n.Text = e.Node.Label;
         }
 
         // Rename the section after the text of the tree node has changed.
@@ -230,14 +224,17 @@ namespace Obi.ProjectView
         }
 
         // Create a new tree node for a section node and all of its descendants
-        private void CreateTreeNodeForSectionNode(SectionNode section)
+        private void CreateTreeNodeForSectionNode(ObiNode node)
         {
-            TreeNode n = AddSingleSectionNode(section);
+            TreeNode n = AddSingleSectionNode(node);
             if (n != null)
             {
                 n.EnsureVisible();
                 n.ExpandAll();
-                for (int i = 0; i < section.SectionChildCount; ++i) CreateTreeNodeForSectionNode(section.SectionChild(i));
+            }
+            if (n != null || node is RootNode)
+            {
+                for (int i = 0; i < node.SectionChildCount; ++i) CreateTreeNodeForSectionNode(node.SectionChild(i));
             }
         }
 
@@ -263,22 +260,22 @@ namespace Obi.ProjectView
         }
 
         // Convenience method to add a new tree node for a section. Return the added tree node.
-        private TreeNode AddSingleSectionNode(SectionNode section)
+        private TreeNode AddSingleSectionNode(ObiNode node)
         {
             TreeNode n = null;
-            if (section.IsRooted)
+            if (node is SectionNode && node.IsRooted)
             {
-                if (section.ParentSection != null)
+                if (node.ParentSection != null)
                 {
-                    TreeNode p = FindTreeNode(section.ParentSection);
-                    n = p.Nodes.Insert(section.Index, section.GetHashCode().ToString(), section.Label);
+                    TreeNode p = FindTreeNode(node.ParentSection);
+                    n = p.Nodes.Insert(node.Index, node.GetHashCode().ToString(), ((SectionNode)node).Label);
                 }
                 else
                 {
-                    n = mTOCTree.Nodes.Insert(section.Index, section.GetHashCode().ToString(), section.Label);
+                    n = mTOCTree.Nodes.Insert(node.Index, node.GetHashCode().ToString(), ((SectionNode)node).Label);
                 }
-                n.Tag = section;
-                ChangeColorUsed(n, section.Used);
+                n.Tag = node;
+                ChangeColorUsed(n, node.Used);
                 //section.UsedStateChanged += new EventHandler(section_UsedStateChanged);
             }
             return n;

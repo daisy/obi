@@ -11,18 +11,14 @@ namespace Obi.ProjectView
     public partial class ProjectView : UserControl
     {
         private bool mEnableTooltips;            // tooltips flag
-        private Project mProject;                // project model
         private Presentation mPresentation;      // presentation
         private NodeSelection mSelection;        // currently selected node
         private ObiNode mClipboard;              // node in the clipboard
-        private Commands.UndoRedoManager mUndo;  // the undo manager for the project view
         private bool mSynchronizeViews;          // synchronize views flag
 
         public event EventHandler TOCViewVisibilityChanged;
         public event EventHandler MetadataViewVisibilityChanged;
         public event EventHandler SelectionChanged;
-        public event Commands.UndoRedoEventHandler CommandExecuted;
-        public event Commands.UndoRedoEventHandler CommandUnexecuted;
 
         public event ImportingFileEventHandler ImportingFile;  // triggered when a file is being imported
         public event EventHandler FinishedImportingFiles;      // triggered when all files were imported
@@ -31,23 +27,13 @@ namespace Obi.ProjectView
         public ProjectView()
         {
             InitializeComponent();
-            mProject = null;
+            mPresentation = null;
             mSelection = null;
             mTransportBar.ProjectView = this;
             mTransportBar.Enabled = false;
             mTOCViewVisible = !mHSplitter.Panel1Collapsed && !mVSplitter.Panel1Collapsed;
             mMetadataViewVisible = !mHSplitter.Panel1Collapsed && !mVSplitter.Panel2Collapsed;
             mFindInText.Visible = false;
-            // Create the undo/redo manager for the view and pass along its events
-            mUndo = new Commands.UndoRedoManager();
-            mUndo.CommandExecuted += new Commands.UndoRedoEventHandler(delegate(object sender, Commands.UndoRedoEventArgs e)
-            {
-                if (CommandExecuted != null) CommandExecuted(sender, e);
-            });
-            mUndo.CommandUnexecuted += new Commands.UndoRedoEventHandler(delegate(object sender, Commands.UndoRedoEventArgs e)
-            {
-                if (CommandUnexecuted != null) CommandUnexecuted(sender, e);
-            });
         }
 
 
@@ -72,31 +58,6 @@ namespace Obi.ProjectView
                 // mStripManagerPanel.EnableTooltips = value;
                 // mTOCPanel.EnableTooltips = value;
                 mTransportBar.EnableTooltips = value;
-            }
-        }
-
-        /// <summary>
-        /// The project model that is shown by this view.
-        /// </summary>
-        public Project Project
-        {
-            get { return mProject; }
-            set
-            {
-                ProjectVisible = value != null;
-                if (mProject != value)
-                {
-                    /* cleanup old project */
-                    mProject = value;
-                    /* initialize stuff */
-                    if (mProject != null)
-                    {
-                        mTOCView.NewProject();
-                        mStripsView.NewProject();
-                        // mMetadataView.Project = mProject;
-                        SynchronizeWithCoreTree();
-                    }
-                }
             }
         }
 
@@ -401,8 +362,8 @@ namespace Obi.ProjectView
             if (CanAddSection)
             {
                 // TODO when there is a dummy node this becomes unnecessary
-                mUndo.execute(new Commands.TOC.AddNewSection(this, mTOCView.Selection == null ?
-                    new NodeSelection(mProject.RootNode, mTOCView, true) : mTOCView.Selection));
+                mPresentation.UndoRedoManager.execute(new Commands.TOC.AddNewSection(this, mTOCView.Selection == null ?
+                    new NodeSelection(mPresentation.RootNode, mTOCView, true) : mTOCView.Selection));
             }
         }
 
@@ -415,7 +376,7 @@ namespace Obi.ProjectView
             {
                 // hack to simulate the dummy node
                 SectionNode section = (SectionNode)mTOCView.Selection.Node;
-                mUndo.execute(new Commands.TOC.AddNewSection(this,
+                mPresentation.UndoRedoManager.execute(new Commands.TOC.AddNewSection(this,
                     section.SectionChildCount > 0 ?
                     new NodeSelection(section.SectionChild(section.SectionChildCount - 1), mTOCView, false) :
                     new NodeSelection(mTOCView.Selection.Node, mTOCView, true)));
@@ -427,7 +388,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void AddNewStrip()
         {
-            if (CanAddStrip) { mUndo.execute(new Commands.Strips.AddNewStrip(this)); }
+            if (CanAddStrip) { mPresentation.UndoRedoManager.execute(new Commands.Strips.AddNewStrip(this)); }
         }
 
         /// <summary>
@@ -451,7 +412,10 @@ namespace Obi.ProjectView
         /// </summary>
         public void MoveSelectedSectionOut()
         {
-            if (CanMoveSectionOut) mUndo.execute(new Commands.TOC.MoveSectionOut(this, mTOCView.Selection.Section));
+            if (CanMoveSectionOut)
+            {
+                mPresentation.UndoRedoManager.execute(new Commands.TOC.MoveSectionOut(this, mTOCView.Selection.Section));
+            }
         }
 
         /// <summary>
@@ -459,7 +423,10 @@ namespace Obi.ProjectView
         /// </summary>
         public void MoveSelectedSectionIn()
         {
-            if (CanMoveSectionIn) mUndo.execute(new Commands.TOC.MoveSectionIn(this, mTOCView.Selection.Section));
+            if (CanMoveSectionIn)
+            {
+                mPresentation.UndoRedoManager.execute(new Commands.TOC.MoveSectionIn(this, mTOCView.Selection.Section));
+            }
         }
 
         /// <summary>
@@ -469,33 +436,19 @@ namespace Obi.ProjectView
         {
             if (CanToggleSectionUsed)
             {
-                mUndo.execute(new Commands.TOC.ToggleSectionUsed(this, mTOCView.Selection.Section));
+                mPresentation.UndoRedoManager.execute(new Commands.TOC.ToggleSectionUsed(this, mTOCView.Selection.Section));
             }
-        }
-
-        /// <summary>
-        /// Undo the last command if there is any. Don't do anything otherwise.
-        /// </summary>
-        public void Undo()
-        {
-            if (mUndo.canUndo()) mUndo.undo();
-        }
-
-        /// <summary>
-        /// Redo the last command if there is ant. Don't do anything otherwise.
-        /// </summary>
-        public void Redo()
-        {
-            if (mUndo.canRedo()) mUndo.redo();
         }
 
         /// <summary>
         /// Cut (delete) the selection and store it in the clipboard.
         /// </summary>
-        /// <remarks>TODO: phrases and </remarks>
         public void Cut()
         {
-            if (CanRemoveSection) mUndo.execute(new Commands.TOC.Cut(this, mTOCView.Selection.Section));
+            if (CanRemoveSection)
+            {
+                mPresentation.UndoRedoManager.execute(new Commands.TOC.Cut(this, mTOCView.Selection.Section));
+            }
         }
 
         /// <summary>
@@ -503,7 +456,10 @@ namespace Obi.ProjectView
         /// </summary>
         public void Copy()
         {
-            if (CanCopySection) mUndo.execute(new Commands.TOC.Copy(this, mTOCView.Selection.Section));
+            if (CanCopySection)
+            {
+                mPresentation.UndoRedoManager.execute(new Commands.TOC.Copy(this, mTOCView.Selection.Section));
+            }
         }
 
         /// <summary>
@@ -511,7 +467,10 @@ namespace Obi.ProjectView
         /// </summary>
         public void Paste()
         {
-            if (CanPasteSection) mUndo.execute(new Commands.TOC.Paste(this, mTOCView.Selection.Section));
+            if (CanPasteSection)
+            {
+                mPresentation.UndoRedoManager.execute(new Commands.TOC.Paste(this, mTOCView.Selection.Section));
+            }
         }
 
         /// <summary>
@@ -519,7 +478,10 @@ namespace Obi.ProjectView
         /// </summary>
         public void Delete()
         {
-            if (CanRemoveSection) mUndo.execute(new Commands.TOC.Delete(this, mTOCView.Selection.Section));
+            if (CanRemoveSection)
+            {
+                mPresentation.UndoRedoManager.execute(new Commands.TOC.Delete(this, mTOCView.Selection.Section));
+            }
         }
 
         /// <summary>
@@ -543,7 +505,7 @@ namespace Obi.ProjectView
 
         public void RenameSectionNode(SectionNode section, string label)
         {
-            mUndo.execute(new Commands.Node.RenameSection(this, section, label));
+            mPresentation.UndoRedoManager.execute(new Commands.Node.RenameSection(this, section, label));
         }
 
         private bool mTOCViewVisible;  // keep track of the TOC view visibility (don't reopen it accidentally)
@@ -713,7 +675,7 @@ namespace Obi.ProjectView
                 worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(
                     delegate(object sender, RunWorkerCompletedEventArgs e)
                     {
-                        if (phrases.Count > 0) mUndo.execute(new Commands.Strips.ImportPhrases(this, phrases));
+                        if (phrases.Count > 0) mPresentation.UndoRedoManager.execute(new Commands.Strips.ImportPhrases(this, phrases));
                     });
                 worker.RunWorkerAsync();
             }

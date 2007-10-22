@@ -27,13 +27,13 @@ namespace Obi.Commands.Node
         public override void execute()
         {
             base.execute();
-            View.Project.RenameSectionNode(mNode, mNewLabel);
+            View.Presentation.RenameSectionNode(mNode, mNewLabel);
             View.Selection = SelectionBefore;
         }
 
         public override void unExecute()
         {
-            View.Project.RenameSectionNode(mNode, mOldLabel);
+            View.Presentation.RenameSectionNode(mNode, mOldLabel);
             base.unExecute();
         }
     }

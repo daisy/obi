@@ -182,7 +182,7 @@ You cannot undo this operation.</value>
     <value>Could not read XUK file {0}.</value>
   </data>
   <data name="opened_project" xml:space="preserve">
-    <value>Opened XUK file {0}.</value>
+    <value>Opened file "{0}".</value>
   </data>
   <data name="ready" xml:space="preserve">
     <value>Ready.</value>
@@ -203,7 +203,7 @@ As a result, changes to the settings made during this session have not been save
 Oh well.</value>
   </data>
   <data name="saved_project" xml:space="preserve">
-    <value>Saved XUK file {0}.</value>
+    <value>Saved project to file "{0}".</value>
   </data>
   <data name="show_toc_label" xml:space="preserve">
     <value>Show &amp;table of contents</value>

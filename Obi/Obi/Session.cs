@@ -15,6 +15,7 @@ namespace Obi
         public event ProjectClosedEventHandler ProjectClosed;   // the project was closed
         public event EventHandler ProjectCreated;               // a new project was created
         public event EventHandler ProjectOpened;                // a project was opened
+        public event EventHandler ProjectSaved;                 // a project was saved
 
         /// <summary>
         /// Create a new session for Obi.
@@ -34,9 +35,19 @@ namespace Obi
         public bool CanClose { get { return !mHasUnsavedChanges; } }
 
         /// <summary>
+        /// True if the redo stack is non-empty.
+        /// </summary>
+        public bool CanRedo { get { return mProject != null && Presentation.UndoRedoManager.canRedo(); } }
+
+        /// <summary>
         /// True if the project has unsaved changes.
         /// </summary>
         public bool CanSave { get { return mHasUnsavedChanges; } }
+
+        /// <summary>
+        /// True if the redo stack is non-empty.
+        /// </summary>
+        public bool CanUndo { get { return mProject != null && Presentation.UndoRedoManager.canUndo(); } }
 
         /// <summary>
         /// True if there is a project currently open.
@@ -52,6 +63,16 @@ namespace Obi
         /// Get the current (Obi) presentation.
         /// </summary>
         public Presentation Presentation { get { return mProject == null ? null : (Presentation)mProject.getPresentation(0); } }
+
+        /// <summary>
+        /// Get the description of the top redo command.
+        /// </summary>
+        public string RedoLabel { get { return Presentation.UndoRedoManager.getRedoShortDescription(); } }
+
+        /// <summary>
+        /// Get the description of the top undo command.
+        /// </summary>
+        public string UndoLabel { get { return Presentation.UndoRedoManager.getUndoShortDescription(); } }
 
 
         /// <summary>
@@ -70,6 +91,11 @@ namespace Obi
         }
 
         /// <summary>
+        /// Notify the session that the presentation has changed.
+        /// </summary>
+        public void PresentationHasChanged() { mHasUnsavedChanges = true; }
+
+        /// <summary>
         /// Create a new presentation in the session, with a path to save its XUK file.
         /// </summary>
         public void NewPresentation(string path, string title, bool createTitleSection, string id, UserProfile userProfile)
@@ -78,9 +104,20 @@ namespace Obi
             mProject.setDataModelFactory(mDataModelFactory);
             mProject.setPresentation(mDataModelFactory.createPresentation(), 0);
             mPath = path;
-            Presentation.Initialize(title, createTitleSection, id, userProfile);
             mHasUnsavedChanges = true;
+            Presentation.Initialize(title, createTitleSection, id, userProfile);
             if (ProjectCreated != null) ProjectCreated(this, null);
+        }
+
+        /// <summary>
+        /// Open a project from a XUK file.
+        /// </summary>
+        public void Open(string path)
+        {
+            mProject = new urakawa.Project();
+            mProject.setDataModelFactory(mDataModelFactory);
+            mProject.openXUK(new Uri(path));
+            if (ProjectOpened != null) ProjectOpened(this, null);
         }
 
         /// <summary>
@@ -90,10 +127,15 @@ namespace Obi
         {
             if (CanSave)
             {
-                mHasUnsavedChanges = true;
+                mProject.saveXUK(new Uri(mPath));
+                mHasUnsavedChanges = false;
+                if (ProjectSaved != null) ProjectSaved(this, null);
             }
         }
 
+        /// <summary>
+        /// Save as. Not sure yet about it.
+        /// </summary>
         public void SaveAs(string path)
         {
         }

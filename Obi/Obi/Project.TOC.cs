@@ -237,7 +237,7 @@ namespace Obi
         {
             node.DetachFromParent__REMOVE__();
            
-            UndidPasteSectionNode(this, new Events.Node.SectionNodeEventArgs(this, node));
+            //UndidPasteSectionNode(this, new Events.Node.SectionNodeEventArgs(this, node));
             mUnsaved = true;
             StateChanged(this, new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Modified));
 
@@ -318,7 +318,7 @@ namespace Obi
             {
                 context.appendChild(copy);
             }
-            PastedSectionNode(this, new Events.Node.SectionNodeEventArgs(this, copy));
+            //PastedSectionNode(this, new Events.Node.SectionNodeEventArgs(this, copy));
             Modified();
             return copy;
         }
@@ -405,7 +405,7 @@ namespace Obi
         internal void ToggleSectionUsedState(Events.Node.SectionNodeEventArgs e)
         {
             e.Node.Used = !e.Node.Used;
-            ToggledSectionUsedState(this, e);
+            //ToggledSectionUsedState(this, e);
         }
     }
 }

@@ -108,7 +108,7 @@ namespace Obi
         /// <summary>
         /// Number of section children.
         /// </summary>
-        public int SectionChildCount { get { return getChildCount() - FirstSectionIndex; } }
+        public override int SectionChildCount { get { return getChildCount() - FirstSectionIndex; } }
 
 
         // The index of the first section in the list of children. 
@@ -232,12 +232,12 @@ namespace Obi
         /// Return the parent as a section node.
         /// If the parent is really the root of the tree, return null.
         /// </summary>
-        public SectionNode ParentSection { get { return getParent() as SectionNode; } }
+        public override SectionNode ParentSection { get { return getParent() as SectionNode; } }
 
         /// <summary>
         /// Number of phrase children.
         /// </summary>
-        public int PhraseChildCount { get { return FirstSectionIndex; } }
+        public override int PhraseChildCount { get { return FirstSectionIndex; } }
 
         /// <summary>
         /// Position of this section in the "flat list" of sections. If the section is the first child,
@@ -350,8 +350,6 @@ namespace Obi
         {
             get { return (TextMedia)ChannelsProperty.getMedia(Presentation.TextChannel); }
         }
-
-
 
 
 

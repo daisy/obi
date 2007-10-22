@@ -323,7 +323,7 @@ namespace Obi
             this.mUndoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
             this.mUndoToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.mUndoToolStripMenuItem.Text = "&Undo";
-            this.mUndoToolStripMenuItem.Click += new System.EventHandler(this.NEWundoToolStripMenuItem_Click);
+            this.mUndoToolStripMenuItem.Click += new System.EventHandler(this.mUndoToolStripMenuItem_Click);
             // 
             // mRedoToolStripMenuItem
             // 
@@ -332,7 +332,7 @@ namespace Obi
             this.mRedoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
             this.mRedoToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.mRedoToolStripMenuItem.Text = "&Redo";
-            this.mRedoToolStripMenuItem.Click += new System.EventHandler(this.NEWredoToolStripMenuItem_Click);
+            this.mRedoToolStripMenuItem.Click += new System.EventHandler(this.mRedoToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -1048,7 +1048,6 @@ namespace Obi
             this.mProjectView.Name = "mProjectView";
             this.mProjectView.Padding = new System.Windows.Forms.Padding(3);
             this.mProjectView.Presentation = null;
-            this.mProjectView.Project = null;
             this.mProjectView.SelectedBlockNode = null;
             this.mProjectView.SelectedStripNode = null;
             this.mProjectView.Selection = null;

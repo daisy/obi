@@ -892,7 +892,7 @@ namespace Obi.UserControls
                 mCurrentPlaylist = mMasterPlaylist;
                 mProjectPanel.Project.ToggledNodeUsedState += new Obi.Events.ObiNodeHandler(Project_ToggledNodeUsedState);
                 mProjectPanel.Project.MediaSet += new Obi.Events.SetMediaHandler(Project_MediaSet);
-                mProjectPanel.Project.PastedSectionNode += new Obi.Events.SectionNodeHandler(Project_PastedSectionNode);
+                //mProjectPanel.Project.PastedSectionNode += new Obi.Events.SectionNodeHandler(Project_PastedSectionNode);
             }
         }
 

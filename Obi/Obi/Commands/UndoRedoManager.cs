@@ -40,5 +40,7 @@ namespace Obi.Commands
             base.redo();
             if (CommandExecuted != null) CommandExecuted(this, new UndoRedoEventArgs(null, this));
         }
+
+        public override string getXukNamespaceUri() { return DataModelFactory.NS; }
     }
 }
