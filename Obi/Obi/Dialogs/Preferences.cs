@@ -17,7 +17,7 @@ namespace Obi.Dialogs
         private string mDefaultXUKDirectory;    // default project directory
         private string mDefaultDAISYDirectory;  // default export directory
         private bool mOpenLastProject;          // automatically open last project
-        private bool mEnableTooltips;                 // enable/disable tooltips
+        private bool mEnableTooltips;           // enable/disable tooltips
         private InputDevice mInputDevice;       // preferred input device
         private OutputDevice mOutputDevice;     // preferred output device
         private int mAudioChannels;             // preferred number of audio channels
@@ -26,77 +26,12 @@ namespace Obi.Dialogs
         private bool mCanChangeAudioSettings;   // if the settings come from the project they cannot change
 
         private Audio.AudioPlayer mPlayer;      // audio player
-        private Audio.AudioRecorder m_Recorder; // Recorder instance
-
-        /// <summary>
-        /// Identifier template for new projects
-        /// </summary>
-        public string IdTemplate
-        {
-            get { return mIdTemplate; }
-        }
-
-        /// <summary>
-        /// Default directory for new projects
-        /// </summary>
-        public string DefaultXUKDirectory
-        {
-            get { return mDefaultXUKDirectory; }
-        }
-
-        /// <summary>
-        /// Default directory for exported DAISY books
-        /// </summary>
-        public string DefaultDAISYDirectory
-        {
-            get { return mDefaultDAISYDirectory; }
-        }
-
-        /// <summary>
-        /// Automatically open last open project on startup.
-        /// </summary>
-        public bool OpenLastProject
-        {
-            get { return mOpenLastProject; }
-        }
-
-        /// <summary>
-        /// Enable or disable tooltips.
-        /// </summary>
-        public bool EnableTooltips
-        {
-            get { return mEnableTooltips; }
-        }
-
-        public OutputDevice OutputDevice
-        {
-            get { return mOutputDevice; }
-        }
-
-        public InputDevice InputDevice
-        {
-            get { return mInputDevice; }
-        }
-
-        public int AudioChannels
-        {
-            get { return mAudioChannels; }
-        }
-
-        public int SampleRate
-        {
-            get { return mSampleRate; }
-        }
-
-        public int BitDepth
-        {
-            get { return mBitDepth; }
-        }
+        private Audio.AudioRecorder mRecorder;  // Recorder instance
 
         /// <summary>
         /// Initialize the preferences with the user settings.
         /// </summary>
-        public Preferences(Settings settings, Project project, UserControls.TransportBar transportbar)
+        public Preferences(Settings settings, Presentation presentation, UserControls.TransportBar transportbar)
         {
             InitializeComponent();
             mIdTemplate = settings.IdTemplate;
@@ -108,9 +43,10 @@ namespace Obi.Dialogs
             mLastOpenCheckBox.Checked = settings.OpenLastProject;
             mTooltipsCheckBox.Checked = settings.EnableTooltips;
             mPlayer = transportbar.AudioPlayer;
-            m_Recorder = transportbar.Recorder;
-            mInputDevice = m_Recorder.InputDevice;
+            mRecorder = transportbar.Recorder;
+            mInputDevice = mRecorder.InputDevice;
             mOutputDevice = mPlayer.OutputDevice;
+            /*
             if (project != null && project.HasAudioSettings)
             {
                 mSampleRate = project.SampleRate;
@@ -119,13 +55,64 @@ namespace Obi.Dialogs
                 mCanChangeAudioSettings = false;
             }
             else
-            {
+            {*/
                 mSampleRate = settings.SampleRate;
                 mAudioChannels = settings.AudioChannels;
                 mBitDepth = settings.BitDepth;
                 mCanChangeAudioSettings = true;
-            }
+            //}
         }
+
+
+        /// <summary>
+        /// Current number of audio channels.
+        /// </summary>
+        public int AudioChannels { get { return mAudioChannels; } }
+
+        /// <summary>
+        /// Current bit depth.
+        /// </summary>
+        public int BitDepth { get { return mBitDepth; } }
+
+        /// <summary>
+        /// Default directory for exported DAISY books
+        /// </summary>
+        public string DefaultDAISYDirectory { get { return mDefaultDAISYDirectory; } }
+
+        /// <summary>
+        /// Default directory for new projects
+        /// </summary>
+        public string DefaultXUKDirectory { get { return mDefaultXUKDirectory; } }
+
+        /// <summary>
+        /// Enable or disable tooltips.
+        /// </summary>
+        public bool EnableTooltips { get { return mEnableTooltips; } }
+
+        /// <summary>
+        /// Identifier template for new projects
+        /// </summary>
+        public string IdTemplate { get { return mIdTemplate; } }
+
+        /// <summary>
+        /// The current input device.
+        /// </summary>
+        public InputDevice InputDevice { get { return mInputDevice; } }
+
+        /// <summary>
+        /// Automatically open last open project on startup.
+        /// </summary>
+        public bool OpenLastProject { get { return mOpenLastProject; } }
+
+        /// <summary>
+        /// The current output device.
+        /// </summary>
+        public OutputDevice OutputDevice { get { return mOutputDevice; } }
+
+        /// <summary>
+        /// Current sample rate.
+        /// </summary>
+        public int SampleRate { get { return mSampleRate; } }
 
         /// <summary>
         /// Browse for a project directory.
@@ -141,6 +128,7 @@ namespace Obi.Dialogs
                 mDirectoryBox.Text = mDefaultXUKDirectory;
             }
         }
+
 
         /// <summary>
         /// Browse for the export directory.
@@ -190,8 +178,8 @@ namespace Obi.Dialogs
 
         private void Preferences_Load(object sender, EventArgs e)
         {
-            comboInputDevice.DataSource = m_Recorder.InputDevices;
-            comboInputDevice.SelectedIndex =m_Recorder.InputDevices.IndexOf(mInputDevice);
+            comboInputDevice.DataSource = mRecorder.InputDevices;
+            comboInputDevice.SelectedIndex =mRecorder.InputDevices.IndexOf(mInputDevice);
             comboOutputDevice.DataSource = mPlayer.OutputDevices;
             comboOutputDevice.SelectedIndex = mPlayer.OutputDevices.IndexOf(mOutputDevice);
             ArrayList mSample = new ArrayList();
@@ -211,14 +199,7 @@ namespace Obi.Dialogs
             comboChannels.Enabled = mCanChangeAudioSettings;
         }
  
-        public void SelectProjectTab()
-        {
-            mTab.SelectedTab = mProjectTab;
-        }
-
-        public void SelectAudioTab()
-        {
-            mTab.SelectedTab = mAudioTab;
-        }
+        public void SelectProjectTab() { mTab.SelectedTab = mProjectTab; }
+        public void SelectAudioTab() { mTab.SelectedTab = mAudioTab; }
     }
 }

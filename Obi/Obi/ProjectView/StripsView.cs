@@ -58,6 +58,10 @@ namespace Obi.ProjectView
             mView.Project.RenamedSectionNode += new Obi.Events.RenameSectionNodeHandler(Project_RenamedSectionNode);
         }
 
+        public void NewPresentation()
+        {
+        }
+
         /// <summary>
         /// Rename a strip.
         /// </summary>

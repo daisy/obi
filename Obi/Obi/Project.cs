@@ -110,7 +110,7 @@ namespace Obi
         /// <param name="createTitle">If true, create an initial title section.</param>
         public void Initialize(string title, string id, UserProfile userProfile, bool createTitle)
         {
-            CreateMetadata(title, id, userProfile);
+            // CreateMetadata(title, id, userProfile);
             // TODO remove this
             // if (createTitle) CreateTitleSection(title);
             if (StateChanged != null) StateChanged(this,
@@ -279,17 +279,6 @@ namespace Obi
         /// Get the generator string (Obi/Urakawa SDK) for the project.
         /// </summary>
         /// <remarks>Use the actual assembly name/version string for the toolkit (from 1.0)</remarks>
-        private string Generator
-        {
-            get
-            {
-                return String.Format("{0} v{1} with {2} v{3} (http://urakawa.sf.net)",
-                    System.Reflection.Assembly.GetExecutingAssembly().GetName().Name,
-                    System.Reflection.Assembly.GetExecutingAssembly().GetName().Version,
-                    System.Reflection.Assembly.GetAssembly(typeof(urakawa.Project)).GetName().Name,
-                    System.Reflection.Assembly.GetAssembly(typeof(urakawa.Project)).GetName().Version);
-            }
-        }
 
         /// <summary>
         /// Access a channel which we know exist and is the only channel by this name.
@@ -519,57 +508,11 @@ namespace Obi
         #region metadata
 
         /// <summary>
-        /// Convenience method to create a new metadata object with a name/value pair.
-        /// Skip it if there is no value (the toolkit doesn't like it.)
-        /// </summary>
-        /// <param name="name">The name of the metadata property.</param>
-        /// <param name="value">Its content, i.e. the value.</param>
-        private urakawa.metadata.Metadata AddMetadata(string name, string value)
-        {
-            if (value != null)
-            {
-                                urakawa.metadata.Metadata meta = getPresentation(0).getMetadataFactory().createMetadata();
-                meta.setName(name);
-                meta.setContent(value);
-                this.getPresentation (0).appendMetadata(meta);
-                return meta;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
         /// Test whether a metadata entry can be deleted (i.e. if it is not the last of its kind and is required.)
         /// </summary>
         public bool CanDeleteMetadata(MetadataEntryDescription entry)
         {
             return entry.Occurrence != MetadataOccurrence.Required || getPresentation(0).getMetadataList(entry.Name).Count > 1;
-        }
-
-        /// <summary>
-        /// Create the XUK metadata for the project from the project settings and the user profile.
-        /// </summary>
-        private void CreateMetadata(string title, string id, UserProfile userProfile)
-        {
-            SetSingleMetadataItem(Obi.Metadata.DC_TITLE, title);
-            SetSingleMetadataItem(Obi.Metadata.DC_PUBLISHER, userProfile.Organization);
-            SetSingleMetadataItem(Obi.Metadata.DC_IDENTIFIER, id);
-            SetSingleMetadataItem(Obi.Metadata.DC_LANGUAGE, userProfile.Culture.ToString());
-            SetSingleMetadataItem(Obi.Metadata.DTB_NARRATOR, userProfile.Name);
-            SetSingleMetadataItem(Obi.Metadata.DTB_GENERATOR, Generator);
-            SetSingleMetadataItem(Obi.Metadata.OBI_XUK_VERSION, CURRENT_XUK_VERSION);
-        }
-
-        /// <summary>
-        /// Get a single metadata item.
-        /// </summary>
-        /// <returns>The found metadata item, or null if not found.</returns>
-        public urakawa.metadata.Metadata GetFirstMetadataItem(string name)
-        {
-            IList list = getPresentation(0).getMetadataList(name);
-            return list.Count > 0 ? list[0] as urakawa.metadata.Metadata : null;
         }
 
         /// <summary>
@@ -587,24 +530,6 @@ namespace Obi
             return list.Count == 1 ? list[0] as urakawa.metadata.Metadata : null;
         }
 
-        /// <summary>
-        /// Set a metadata and ensure that it is the only one; i.e. delete any other occurrence.
-        /// </summary>
-        /// <param name="name">The name of the metadata item to set.</param>
-        /// <param name="content">The content of the metadata item to set.</param>
-        public void SetSingleMetadataItem(string name, string content)
-        {
-            getPresentation(0).deleteMetadata(name);
-            AddMetadata(name, content);
-        }
-
-        /// <summary>
-        /// Shortcut to get the title of the project.
-        /// </summary>
-        public string Title
-        {
-            get { return GetFirstMetadataItem(Metadata.DC_TITLE).getContent(); }
-        }
 
         /// <summary>
         /// Get or set the XUK version.

@@ -13,13 +13,7 @@ namespace Obi.Dialogs
     {
         private ProjectView.ProjectView mView;  // the project view with the attached project
 
-        /// <summary>
-        /// Used by the designer.
-        /// </summary>
-        public ShowSource()
-        {
-            InitializeComponent();
-        }
+        public ShowSource() { InitializeComponent(); }
 
         /// <summary>
         /// Create a new source view for the current project view.
@@ -27,11 +21,10 @@ namespace Obi.Dialogs
         public ShowSource(ProjectView.ProjectView view): this()
         {
             mView = view;
-            Text = String.Format("{0} - {1}", Text, mView.Project.Title);
+            Text = String.Format("{0} - {1}", Text, mView.Presentation.Title);
             UpdateView();
-            mView.Project.StateChanged += new Obi.Events.Project.StateChangedHandler(project_StateChanged);
-            mView.CommandExecuted += new Obi.Commands.UndoRedoEventHandler(view_CommandExecuted);
-            mView.CommandUnexecuted += new Obi.Commands.UndoRedoEventHandler(view_CommandExecuted);
+            // mView.CommandExecuted += new Obi.Commands.UndoRedoEventHandler(view_CommandExecuted);
+            // mView.CommandUnexecuted += new Obi.Commands.UndoRedoEventHandler(view_CommandExecuted);
         }
 
         // Return the XUK source as a string.
@@ -42,31 +35,31 @@ namespace Obi.Dialogs
             settings.Indent = true;
             settings.IndentChars = "  ";
             XmlWriter writer = XmlWriter.Create(srcstr, settings);
-            mView.Project.saveXUK(writer, null); 
+            mView.Presentation.getProject().saveXUK(writer, null);
             writer.Close();
             return srcstr.ToString();
         }
 
         // Update the view on project modification
-        private void project_StateChanged(object sender, Events.Project.StateChangedEventArgs e)
+        /*private void project_StateChanged(object sender, Events.Project.StateChangedEventArgs e)
         {
             if (e.Change == Obi.Events.Project.StateChange.Modified) UpdateView();
-        }
+        }*/
 
         // Update the view on undo/redo
-        private void view_CommandExecuted(object sender, Obi.Commands.UndoRedoEventArgs e) { UpdateView(); }
+        // private void view_CommandExecuted(object sender, Obi.Commands.UndoRedoEventArgs e) { UpdateView(); }
 
         // Unregister the listener when the window closes.
         private void SourceView_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (mView != null)
             {
-                if (mView.Project != null)
+                /*if (mView.Project != null)
                 {
                     mView.Project.StateChanged -= new Obi.Events.Project.StateChangedHandler(project_StateChanged);
                 }
                 mView.CommandExecuted -= new Obi.Commands.UndoRedoEventHandler(view_CommandExecuted);
-                mView.CommandUnexecuted -= new Obi.Commands.UndoRedoEventHandler(view_CommandExecuted);
+                mView.CommandUnexecuted -= new Obi.Commands.UndoRedoEventHandler(view_CommandExecuted);*/
             }
         }
 

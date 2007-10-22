@@ -530,8 +530,8 @@ Do you want to replace the project contained in this file?</value>
     <comment>Message when export to DAISY succeeds (MD)</comment>
   </data>
   <data name="title_bar" xml:space="preserve">
-    <value>{0} - Obi</value>
-    <comment>Message shown in the title bar: "Project Name - Title"</comment>
+    <value>{0}{1} - {2}</value>
+    <comment>Message shown in the title bar: "Project Name* - Obi"</comment>
   </data>
   <data name="meta_dc_creator" xml:space="preserve">
     <value>Names of primary author or creator of the intellectual content of the publication.</value>
@@ -781,5 +781,8 @@ Error text: {1}</value>
   </data>
   <data name="init_error_title" xml:space="preserve">
     <value>Obi initialization error</value>
+  </data>
+  <data name="created_new_project" xml:space="preserve">
+    <value>Created new project "{0}".</value>
   </data>
 </root>

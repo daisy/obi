@@ -122,17 +122,12 @@
     <Compile Include="Commands\Touch.cs" />
     <Compile Include="Commands\UndoRedoManager.cs" />
     <Compile Include="CustomProperties.cs" />
+    <Compile Include="DataModelFactory.cs" />
     <Compile Include="Dialogs\About.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialogs\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\EditSimpleMetadata.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\EditSimpleMetadata.Designer.cs">
-      <DependentUpon>EditSimpleMetadata.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\FullMetadata.cs">
       <SubType>Form</SubType>
@@ -295,10 +290,6 @@
       <DependentUpon>TOCView.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Dialogs\EditSimpleMetadata.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>EditSimpleMetadata.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\NewProject.resx">
       <SubType>Designer</SubType>
       <DependentUpon>NewProject.cs</DependentUpon>

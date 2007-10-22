@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.IO;
 using urakawa.media.data.audio;
 
@@ -6,12 +7,6 @@ namespace Obi
 {
     public class Presentation: urakawa.Presentation
     {
-        public Presentation()
-            : base()
-        {
-            setRootNode(new RootNode(this));
-        }
-
         /// <summary>
         /// Root node of the presentation.
         /// </summary>
@@ -21,6 +16,11 @@ namespace Obi
         /// The media data manager for the project.
         /// </summary>
         public Audio.DataManager DataManager { get { return (Audio.DataManager)getMediaDataManager(); } }
+
+        /// <summary>
+        /// Get the title of the presentation from the metadata.
+        /// </summary>
+        public string Title { get { return GetFirstMetadataItem(Metadata.DC_TITLE).getContent(); } }
 
 
         /// <summary>
@@ -44,6 +44,69 @@ namespace Obi
             return (SectionNode)getTreeNodeFactory().createNode(SectionNode.XUK_ELEMENT_NAME, DataModelFactory.NS);
         }
 
+        /// <summary>
+        /// Initialize the metadata of the presentation, and create a title section if necessary.
+        /// </summary>
+        public void Initialize(string title, bool createTitleSection, string id, UserProfile userProfile)
+        {
+            setRootNode(new RootNode(this));
+            CreateMetadata(title, id, userProfile);
+            if (createTitleSection) CreateTitleSection(title);
+        }
+
+        /// <summary>
+        /// Get a single metadata item by name; return null if not found.
+        /// </summary>
+        public urakawa.metadata.Metadata GetFirstMetadataItem(string name)
+        {
+            IList list = getMetadataList(name);
+            return list.Count > 0 ? (urakawa.metadata.Metadata)list[0] : null;
+        }
+
+        /// <summary>
+        /// Set a metadata and ensure that it is the only one; i.e. delete any other occurrence.
+        /// </summary>
+        public void SetSingleMetadataItem(string name, string content)
+        {
+            deleteMetadata(name);
+            AddMetadata(name, content);
+        }
+
+
+
+        /// <summary>
+        /// Convenience method to create a new metadata object with a name/value pair.
+        /// Skip it if there is no value (the toolkit doesn't like it.)
+        /// </summary>
+        private urakawa.metadata.Metadata AddMetadata(string name, string value)
+        {
+            if (value != null)
+            {
+                urakawa.metadata.Metadata meta = getMetadataFactory().createMetadata();
+                meta.setName(name);
+                meta.setContent(value);
+                appendMetadata(meta);
+                return meta;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Create the XUK metadata for the project from the project settings and the user profile.
+        /// </summary>
+        private void CreateMetadata(string title, string id, UserProfile userProfile)
+        {
+            SetSingleMetadataItem(Obi.Metadata.DC_TITLE, title);
+            SetSingleMetadataItem(Obi.Metadata.DC_PUBLISHER, userProfile.Organization);
+            SetSingleMetadataItem(Obi.Metadata.DC_IDENTIFIER, id);
+            SetSingleMetadataItem(Obi.Metadata.DC_LANGUAGE, userProfile.Culture.ToString());
+            SetSingleMetadataItem(Obi.Metadata.DTB_NARRATOR, userProfile.Name);
+            SetSingleMetadataItem(Obi.Metadata.DTB_GENERATOR, DataModelFactory.Generator);
+            SetSingleMetadataItem(Obi.Metadata.OBI_XUK_VERSION, DataModelFactory.XUK_VERSION);
+        }
 
         // Create a new phrase node from an audio media.
         private PhraseNode CreatePhraseNode(urakawa.media.data.audio.ManagedAudioMedia audio)
