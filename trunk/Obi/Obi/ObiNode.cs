@@ -66,8 +66,11 @@ namespace Obi
         /// </summary>
         public Presentation Presentation { get { return (Presentation)getPresentation(); } }
 
+        public abstract SectionNode ParentSection { get; }
         public abstract SectionNode SectionChild(int index);
+        public abstract int SectionChildCount { get; }
         public abstract PhraseNode PhraseChild(int index);
+        public abstract int PhraseChildCount { get; }
         
         /// <summary>
         /// Used flag.
@@ -146,8 +149,10 @@ namespace Obi
             return (SectionNode)getChild(index);
         }
 
+        public override SectionNode ParentSection { get { return null; } }
+        public override int SectionChildCount { get { return getChildCount(); } }
         public override PhraseNode PhraseChild(int index) { throw new Exception("A root node has no phrase children."); }
-
+        public override int PhraseChildCount { get { return 0; } }
         public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
     }
 }

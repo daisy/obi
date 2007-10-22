@@ -12,13 +12,6 @@ namespace Obi
     public class ObiPropertyFactory : urakawa.property.PropertyFactory
     {
         /// <summary>
-        /// Create a new property factory.
-        /// </summary>
-        public ObiPropertyFactory(): base()
-        {
-        }
-
-        /// <summary>
         /// Create a new Obi or default property.
         /// </summary>
         public override Property createProperty(string localName, string namespaceUri)
@@ -36,6 +29,8 @@ namespace Obi
             }
             return base.createProperty(localName, namespaceUri);
         }
+
+        public override string getXukNamespaceUri() { return DataModelFactory.NS; }
     }
 
     /// <summary>

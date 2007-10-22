@@ -42,6 +42,8 @@ namespace Obi
             }
         }
 
+        public override string getXukNamespaceUri() { return DataModelFactory.NS; }
+
         private Presentation Presentation { get { return (Presentation)getPresentation(); } }
     }
 }

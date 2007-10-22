@@ -140,7 +140,7 @@ namespace Obi
         /// <summary>
         /// Parent section of this phrase. Null if the phrase has no parent.
         /// </summary>
-        public SectionNode ParentSection { get { return getParent() as SectionNode; } }
+        public override SectionNode ParentSection { get { return getParent() as SectionNode; } }
 
         /// <summary>
         /// The kind of node.
@@ -228,14 +228,9 @@ namespace Obi
         /// </summary>
         private TextMedia AnnotationMedia { get { return null; } } // ChannelsProperty.getMedia(Project.AnnotationChannel) as TextMedia; } }
 
-        public override SectionNode SectionChild(int index)
-        {
-            throw new Exception("A phrase node has no section child!");
-        }
-
-        public override PhraseNode PhraseChild(int index)
-        {
-            throw new Exception("No child yet.");
-        }
+        public override SectionNode SectionChild(int index) { throw new Exception("A phrase node has no section child!"); }
+        public override int SectionChildCount { get { return 0; } }
+        public override PhraseNode PhraseChild(int index) { throw new Exception("No child yet."); }
+        public override int PhraseChildCount { get { return 0; } }
     }
 }

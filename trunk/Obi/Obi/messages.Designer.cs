@@ -1237,7 +1237,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Opened XUK file {0}..
+        ///   Looks up a localized string similar to Opened file &quot;{0}&quot;..
         /// </summary>
         internal static string opened_project {
             get {
@@ -1610,7 +1610,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Saved XUK file {0}..
+        ///   Looks up a localized string similar to Saved project to file &quot;{0}&quot;..
         /// </summary>
         internal static string saved_project {
             get {

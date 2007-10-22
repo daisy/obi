@@ -11,6 +11,10 @@ namespace Obi
     {
         public static readonly string TEXT_CHANNEL_NAME = "obi.text";  // canonical name of the text channel
 
+        public event Commands.UndoRedoEventHandler CommandExecuted;    // triggered when a command was executed
+        public event Commands.UndoRedoEventHandler CommandUnexecuted;  // triggered when a command was unexecuted
+        public event SectionNodeEventHandler RenamedSectionNode;       // triggered after a section was renamed
+
         /// <summary>
         /// The media data manager for the project.
         /// </summary>
@@ -30,6 +34,11 @@ namespace Obi
         /// Get the title of the presentation from the metadata.
         /// </summary>
         public string Title { get { return GetFirstMetadataItem(Metadata.DC_TITLE).getContent(); } }
+
+        /// <summary>
+        /// The Undo/redo manager for this presentation (with the correct type.)
+        /// </summary>
+        public Commands.UndoRedoManager UndoRedoManager { get { return (Commands.UndoRedoManager)getUndoRedoManager(); } }
 
 
         /// <summary>
@@ -62,6 +71,18 @@ namespace Obi
             CreateMetadata(title, id, userProfile);
             AddChannel(TEXT_CHANNEL_NAME);
             if (createTitleSection) CreateTitleSection(title);
+            UndoRedoManager.CommandExecuted += new Obi.Commands.UndoRedoEventHandler(undo_CommandExecuted);
+            UndoRedoManager.CommandUnexecuted += new Obi.Commands.UndoRedoEventHandler(undo_CommandUnexecuted);
+        }
+
+        void undo_CommandExecuted(object sender, Obi.Commands.UndoRedoEventArgs e)
+        {
+            if (CommandExecuted != null) CommandExecuted(this, e);
+        }
+
+        void undo_CommandUnexecuted(object sender, Obi.Commands.UndoRedoEventArgs e)
+        {
+            if (CommandUnexecuted != null) CommandUnexecuted(this, e);
         }
 
         /// <summary>
@@ -71,6 +92,17 @@ namespace Obi
         {
             IList list = getMetadataList(name);
             return list.Count > 0 ? (urakawa.metadata.Metadata)list[0] : null;
+        }
+
+        /// <summary>
+        /// Use the Obi namespace URI!
+        /// </summary>
+        public override string getXukNamespaceUri() { return DataModelFactory.NS; }
+
+        public void RenameSectionNode(SectionNode section, string label)
+        {
+            section.Label = label;
+            if (RenamedSectionNode != null) RenamedSectionNode(this, new SectionNodeEventArgs(section));
         }
 
         /// <summary>
@@ -181,4 +213,13 @@ namespace Obi
             return media;
         }
     }
+
+    public class SectionNodeEventArgs : EventArgs
+    {
+        private SectionNode mNode;
+        public SectionNodeEventArgs(SectionNode node) : base() { mNode = node; }
+        public SectionNode Node { get { return mNode; } }
+    }
+
+    public delegate void SectionNodeEventHandler(object sender, SectionNodeEventArgs e);
 }

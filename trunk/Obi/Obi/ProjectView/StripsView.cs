@@ -49,17 +49,15 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Set a new project for this view.
+        /// Set a new presentation for this view.
         /// </summary>
-        public void NewProject()
-        {
-            mView.Presentation.treeNodeAdded += new TreeNodeAddedEventHandler(StripsView_treeNodeAdded);
-            mView.Presentation.treeNodeRemoved += new TreeNodeRemovedEventHandler(StripsView_treeNodeRemoved);
-            mView.Project.RenamedSectionNode += new Obi.Events.RenameSectionNodeHandler(Project_RenamedSectionNode);
-        }
-
         public void NewPresentation()
         {
+            mLayoutPanel.Controls.Clear();
+            AddStripForSection(mView.Presentation.RootNode);
+            mView.Presentation.treeNodeAdded += new TreeNodeAddedEventHandler(StripsView_treeNodeAdded);
+            mView.Presentation.treeNodeRemoved += new TreeNodeRemovedEventHandler(StripsView_treeNodeRemoved);
+            mView.Presentation.RenamedSectionNode += new SectionNodeEventHandler(StripsView_RenamedSectionNode);
         }
 
         /// <summary>
@@ -149,10 +147,10 @@ namespace Obi.ProjectView
         }
 
         // Handle section nodes renamed from the project: change the label of the corresponding strip.
-        private void Project_RenamedSectionNode(object sender, Obi.Events.Node.RenameSectionNodeEventArgs e)
+        private void StripsView_RenamedSectionNode(object sender, SectionNodeEventArgs e)
         {
             Strip strip = FindStrip(e.Node);
-            strip.Label = e.Label;
+            strip.Label = e.Node.Label;
         }
 
         // Handle addition of tree nodes: add a new strip for new section nodes.
@@ -176,13 +174,17 @@ namespace Obi.ProjectView
         }
 
         // Add a new strip for a section and all of its subsections
-        private Strip AddStripForSection(SectionNode section)
+        private Strip AddStripForSection(ObiNode node)
         {
-            Strip strip = new Strip(section, this);
-            mLayoutPanel.Controls.Add(strip);
-            mLayoutPanel.Controls.SetChildIndex(strip, section.Position);
-            strip.MinimumSize = new Size(mLayoutPanel.Width, strip.MinimumSize.Height);
-            for (int i = 0; i < section.SectionChildCount; ++i) AddStripForSection(section.SectionChild(i));
+            Strip strip = null;
+            if (node is SectionNode)
+            {
+                strip = new Strip((SectionNode)node, this);
+                mLayoutPanel.Controls.Add(strip);
+                mLayoutPanel.Controls.SetChildIndex(strip, ((SectionNode)node).Position);
+                strip.MinimumSize = new Size(mLayoutPanel.Width, strip.MinimumSize.Height);
+            }
+            for (int i = 0; i < node.SectionChildCount; ++i) AddStripForSection(node.SectionChild(i));
             return strip;
         }
 

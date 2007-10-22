@@ -52,24 +52,24 @@ namespace Obi.Commands
         /// </summary>
         public void setPresentation(urakawa.Presentation newPres)
         {
-            throw new Exception("The presentation cannot be set on a command; set the project view instead.");
+            throw new Exception("The presentation cannot be set on a command; set the pre instead.");
         }
 
+        /// <summary>
+        /// Commands are not saved so far.
+        /// </summary>
         public void XukIn(System.Xml.XmlReader source)
         {
-            throw new Exception("The method or operation is not implemented.");
         }
 
+        /// <summary>
+        /// Commands are not saved so far.
+        /// </summary>
         public void XukOut(System.Xml.XmlWriter destination, Uri baseUri)
         {
-            throw new Exception("The method or operation is not implemented.");
         }
 
-        public string getXukLocalName()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
+        public string getXukLocalName() { return GetType().Name; }
         public string getXukNamespaceUri() { return DataModelFactory.NS; }
     }
 
