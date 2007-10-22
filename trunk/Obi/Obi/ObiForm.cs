@@ -14,10 +14,13 @@ namespace Obi
     /// </summary>
     public partial class ObiForm : Form
     {
-        private Session mSession;    // current work session
-        private Settings mSettings;  // application settings
+        private Session mSession;                // current work session
+        private Settings mSettings;              // application settings
+        private Dialogs.ShowSource mSourceView;  // maintain a single "source view" dialog
 
         private Audio.VuMeterForm mVuMeterForm;  // keep track of a single VU meter form
+
+        private int STATUS_TIMER_DELAY_IN_SECONDS = 30;  // amount of time status messages stay on
 
         /// <summary>
         /// Initialize a new form and open the last project if set in the preferences.
@@ -44,53 +47,165 @@ namespace Obi
         public Settings Settings { get { return mSettings; } }
 
 
-
-        // Catch problems with initialization and report them.
-        private void InitializeObi()
+        private void UpdateMenus()
         {
+            UpdateFileMenu();
+            UpdateViewMenu();
+
+            showToolStripMenuItem.Enabled = mProjectView.CanShowInTOCView;
+            showInStripsViewToolStripMenuItem.Enabled = mProjectView.CanShowInStripsView;
+            mAddSectionToolStripMenuItem.Enabled = mProjectView.CanAddSection;
+            mAddSubSectionToolStripMenuItem.Enabled = mProjectView.CanAddSubSection;
+            mRenameSectionToolStripMenuItem.Enabled = mProjectView.CanRenameSection;
+            mMoveOutToolStripMenuItem.Enabled = mProjectView.CanMoveSectionOut;
+            mMoveInToolStripMenuItem.Enabled = mProjectView.CanMoveSectionIn;
+            mMarkSectionAsUsedToolStripMenuItem.Visible = mProjectView.CanMarkSectionUsed;
+            mMarkSectionAsUnusedToolStripMenuItem.Visible = mProjectView.CanMarkSectionUnused;
+            mMarkSectionAsUsedunusedToolStripMenuItem.Visible = !mProjectView.CanToggleSectionUsed;
+            mInsertStripToolStripMenuItem.Enabled = mProjectView.CanAddStrip;
+            mRenameStripToolStripMenuItem.Enabled = mProjectView.CanRenameStrip;
+            mSplitStripToolStripMenuItem.Enabled = mProjectView.CanSplitStrip;
+            mMergeWithNextStripToolStripMenuItem.Enabled = mProjectView.CanMergeStrips;
+            mAboutThisStripToolStripMenuItem.Enabled = mProjectView.CanTellAboutStrip;
+            mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
+        }
+
+
+        #region File menu
+
+        private void UpdateFileMenu()
+        {
+            mNewProjectToolStripMenuItem.Enabled = true;
+            mNewProjectFromImportToolStripMenuItem.Enabled = false;  // currently disabled
+            mOpenProjectToolStripMenuItem.Enabled = true;
+            mOpenRecentProjectToolStripMenuItem.Enabled = mSettings.RecentProjects.Count > 0;
+            mClearListToolStripMenuItem.Enabled = true;
+            mSaveProjectToolStripMenuItem.Enabled = mSession.CanSave;
+            mSaveProjectAsToolStripMenuItem.Enabled = mSession.HasProject;
+            mDiscardChangesToolStripMenuItem.Enabled = mSession.CanSave;
+            mCloseProjectToolStripMenuItem.Enabled = mSession.HasProject;
+            mCleanProjectToolStripMenuItem.Enabled = false; // currently disabled
+            mExportAsDAISYToolStripMenuItem.Enabled = false;  // currently disabled
+            mExitToolStripMenuItem.Enabled = true;
+        }
+
+        private void mNewProjectToolStripMenuItem_Click(object sender, EventArgs e) { NewProject(); }
+        private void mNewProjectFromImportToolStripMenuItem_Click(object sender, EventArgs e) { NewProjectFromImport(); }
+        private void mOpenProjectToolStripMenuItem_Click(object sender, EventArgs e) { Open(); }
+        private void mClearListToolStripMenuItem_Click(object sender, EventArgs e) { ClearRecentProjectsList(); }
+        private void mSaveProjectToolStripMenuItem_Click(object sender, EventArgs e) { Save(); }
+        private void mSaveProjectAsToolStripMenuItem_Click(object sender, EventArgs e) { SaveAs(); }
+        private void mDiscardChangesToolStripMenuItem_Click(object sender, EventArgs e) { DiscardChanges(); }
+        private void mCloseProjectToolStripMenuItem_Click(object sender, EventArgs e) { DidCloseProject(); }
+        private void mCleanProjectToolStripMenuItem_Click(object sender, EventArgs e) { Cleanup(); }
+        private void mExportAsDAISYToolStripMenuItem_Click(object sender, EventArgs e) { Export(); }
+        private void mExitToolStripMenuItem_Click(object sender, EventArgs e) { Close(); }
+
+        // Revert the project back to its last saved state.
+        private void DiscardChanges()
+        {
+            if (mSession.CanSave &&
+                MessageBox.Show(Localizer.Message("discard_changes_text"),
+                    Localizer.Message("discard_changes_caption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
+                    DialogResult.Yes)
+            {
+                DoOpenProject(mSession.Path);
+            }
+        }
+
+        // Create a new project by importing an XHTML file
+        private void NewProjectFromImport()
+        {
+            mProjectView.TransportBar.Enabled = false;
+            if (!DidCloseProject())
+            {
+                mProjectView.TransportBar.Enabled = true;
+                Ready();
+                return;
+            }
+
+            //select a file for import
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Title = "Choose a file for import";
+            openFile.Filter = "HTML | *.html";
+
+            if (openFile.ShowDialog() != DialogResult.OK) return;
+
+            Dialogs.NewProject dialog = new Dialogs.NewProject(
+                mSettings.DefaultPath,
+                Localizer.Message("default_project_filename"),
+                Localizer.Message("obi_project_extension"),
+                ImportStructure.grabTitle(new Uri(openFile.FileName)));
+            dialog.MakeAutoTitleCheckboxInvisible();
+            dialog.Text = "Create a new project starting from XHTML import";
+            if (dialog.ShowDialog() != DialogResult.OK) return;
+
+            // let's see if we can actually write the file that the user chose (bug #1679175)
             try
             {
-                InitializeComponent();
-                InitializeSettings();
-                InitialiseHighContrastSettings();
-                InitializeEventHandlers();
+                FileStream file = File.Create(dialog.Path);
+                file.Close();
             }
-            catch (Exception e)
+            catch (Exception x)
             {
-                string path = Path.Combine(Application.StartupPath, "obi_startup_error.txt");
-                System.IO.StreamWriter tmpErrorLogStream = System.IO.File.CreateText(path);
-                tmpErrorLogStream.WriteLine(e.ToString());
-                tmpErrorLogStream.Close();
-                MessageBox.Show(String.Format(Localizer.Message("init_error"), path, e.ToString()),
-                    Localizer.Message("init_error_title"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(String.Format(Localizer.Message("cannot_create_file_text"), dialog.Path, x.Message),
+                    Localizer.Message("cannot_create_file_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+            CreateNewProject(dialog.Path, dialog.Title, false);
+            try
+            {
+                ImportStructure importer = new ImportStructure();
+                //importer.ImportFromXHTML(openFile.FileName, mProject);
+            }
+            catch (Exception ex)
+            {
+                //report failure and undo the creation of a new project
+                MessageBox.Show("Import failed: " + ex.Message);
+                //mProject.Close();
+                File.Delete(dialog.Path);
+                mProjectView.TransportBar.Enabled = false;
+                RemoveRecentProject(dialog.Path);
+                return;
+            }
+
+            Ready();
+            mProjectView.TransportBar.Enabled = true;
+        }
+
+        // Open a new project from a file chosen by the user.
+        private void Open()
+        {
+            if (DidCloseProject())
+            {
+                OpenFileDialog dialog = new OpenFileDialog();
+                dialog.Filter = Localizer.Message("obi_filter");
+                dialog.InitialDirectory = mSettings.DefaultPath;
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    TryOpenProject(dialog.FileName);
+                }
+                else
+                {
+                    Ready();
+                }
+            }
+            else
+            {
+                Ready();
             }
         }
 
-        // Initialize event handlers from the project view
-        private void InitializeEventHandlers()
+        // Save the current project
+        private void Save()
         {
-            mProjectView.TransportBar.StateChanged += new Obi.Events.Audio.Player.StateChangedHandler(TransportBar_StateChanged);
-            mProjectView.TransportBar.PlaybackRateChanged += new EventHandler(TransportBar_PlaybackRateChanged);
-            mProjectView.ImportingFile += new Obi.ProjectView.ImportingFileEventHandler(mProjectView_ImportingFile);
-            mProjectView.FinishedImportingFiles += new EventHandler(mProjectView_FinishedImportingFiles);
+            if (mSession.CanSave) Save();
         }
 
-
-        // File menu
-
-        /// <summary>
-        /// Save the current project under its current name, or ask for one if none is defined yet.
-        /// </summary>
-        /// <remarks>In the future, do not clear the command manager (only after cleanup.)</remarks>
-        private void mSaveProjectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mSession.CanSave) { mSession.Save(); }
-        }
-
-        /// <summary>
-        /// Save the project under a (presumably) different name.
-        /// </summary>
-        private void mSaveProjectAsToolStripMenuItem_Click(object sender, EventArgs e)
+        // Save the current project under a different name; ask for a new path first.
+        private void SaveAs()
         {
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.Filter = Localizer.Message("obi_filter");
@@ -105,30 +220,196 @@ namespace Obi
             }
         }
 
-        /// <summary>
-        /// Revert the project to its last saved state.
-        /// </summary>
-        private void mDiscardChangesToolStripMenuItem_Click(object sender, EventArgs e)
+        #endregion
+
+        #region View menu
+
+        private void UpdateViewMenu()
         {
-            if (mSession.CanSave &&
-                MessageBox.Show(Localizer.Message("discard_changes_text"),
-                    Localizer.Message("discard_changes_caption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
-                    DialogResult.Yes)
+            mShowSourceToolStripMenuItem.Enabled = mSession.HasProject;
+        }
+
+        private void mShowSourceToolStripMenuItem_Click(object sender, EventArgs e) { ShowSource(); }
+
+        #endregion
+
+
+        // Utility functions
+
+        // Return whether the project can be closed or not.
+        // If a project is open and unsaved, ask about what to do.
+        private bool DidCloseProject()
+        {
+            if (!mSession.CanClose)
             {
-                DoOpenProject(mSession.Path);
+                DialogResult result = MessageBox.Show(Localizer.Message("closed_project_text"),
+                    Localizer.Message("closed_project_caption"),
+                    MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Question);
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        mSession.Save();
+                        mSession.Close();
+                        return true;
+                    case DialogResult.No:
+                        mSession.Close();
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+            mSession.Close();
+            return true;
+        }
+
+        // Try to create a new project with the given title at the given path.
+        // Return true on success.
+        private bool DidCreateNewProject(string path, string title, bool createTitleSection)
+        {
+            try
+            {
+                // let's see if we can actually write the file that the user chose (bug #1679175)
+                FileStream file = File.Create(path);
+                file.Close();
+                mSettings.CreateTitleSection = createTitleSection;
+                if (DidCloseProject())
+                {
+                    mSession.NewPresentation(path, title, createTitleSection, "(please set id)", mSettings.UserProfile);
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(
+                    String.Format(Localizer.Message("cannot_create_file_text"), path, e.Message),
+                    Localizer.Message("cannot_create_file_caption"),
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            return false;
+        }
+
+        // Catch problems with initialization and report them.
+        private void InitializeObi()
+        {
+            try
+            {
+                mSession = new Session();
+                mSession.ProjectOpened += new EventHandler(mSession_ProjectOpened);
+                mSession.ProjectCreated += new EventHandler(mSession_ProjectCreated);
+                mSession.ProjectClosed += new ProjectClosedEventHandler(mSession_ProjectClosed);
+                mSourceView = null;
+                InitializeComponent();
+                InitializeSettings();
+                InitialiseHighContrastSettings();
+                InitializeEventHandlers();
+                UpdateMenus();
+                mStatusTimer.Interval = STATUS_TIMER_DELAY_IN_SECONDS * 1000;
+                mStatusTimer.Tick += new EventHandler(delegate(object sender, EventArgs e) { Ready(); });
+                mShowStatusBarToolStripMenuItem.Checked = true;
+                Ready();
+            }
+            catch (Exception e)
+            {
+                string path = Path.Combine(Application.StartupPath, "obi_startup_error.txt");
+                System.IO.StreamWriter tmpErrorLogStream = System.IO.File.CreateText(path);
+                tmpErrorLogStream.WriteLine(e.ToString());
+                tmpErrorLogStream.Close();
+                MessageBox.Show(String.Format(Localizer.Message("init_error"), path, e.ToString()),
+                    Localizer.Message("init_error_title"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        /// <summary>
-        /// Close and clean up the current project.
-        /// </summary>
-        private void mCloseProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        void mSession_ProjectCreated(object sender, EventArgs e)
         {
-            if (DidCloseProject()) { mSession.Closed(); }
+            UpdateTitleBar();
+            UpdateMenus();
+            Status(String.Format(Localizer.Message("created_new_project"), mSession.Presentation.Title));
+            mProjectView.Presentation = mSession.Presentation;
         }
 
+        void mSession_ProjectClosed(object sender, ProjectClosedEventArgs e)
+        {
+            UpdateTitleBar();
+            UpdateMenus();
+            Status(String.Format(Localizer.Message("closed_project"), e.ClosedPresentation.Title));
+            mProjectView.Presentation = null;
+            if (mSourceView != null) mSourceView.Close();
+        }
 
+        void mSession_ProjectOpened(object sender, EventArgs e)
+        {
+            UpdateTitleBar();
+            UpdateMenus();
+            Status("Opened project.");
+            mProjectView.Presentation = mSession.Presentation;
+        }
 
+        // Initialize event handlers from the project view
+        private void InitializeEventHandlers()
+        {
+            mProjectView.TransportBar.StateChanged += new Obi.Events.Audio.Player.StateChangedHandler(TransportBar_StateChanged);
+            mProjectView.TransportBar.PlaybackRateChanged += new EventHandler(TransportBar_PlaybackRateChanged);
+            mProjectView.ImportingFile += new Obi.ProjectView.ImportingFileEventHandler(mProjectView_ImportingFile);
+            mProjectView.FinishedImportingFiles += new EventHandler(mProjectView_FinishedImportingFiles);
+        }
+
+        /// <summary>
+        /// Create a new project if the current one was closed properly, or if none was open.
+        /// </summary>
+        private void NewProject()
+        {
+            Dialogs.NewProject dialog = new Dialogs.NewProject(
+                mSettings.DefaultPath,
+                Localizer.Message("default_project_filename"),
+                Localizer.Message("obi_project_extension"),
+                Localizer.Message("default_project_title"));
+            dialog.CreateTitleSection = mSettings.CreateTitleSection;
+            if (dialog.ShowDialog() != DialogResult.OK ||
+                !DidCreateNewProject(dialog.Path, dialog.Title, dialog.CreateTitleSection)) Ready();
+        }
+
+        // Update the status bar to say "Ready."
+        private void Ready()
+        {
+            mStatusTimer.Enabled = false;
+            Status(Localizer.Message("ready"));
+        }
+
+        // Show a new source view window or give focus back to the previously opened one.
+        private void ShowSource()
+        {
+            if (mSession.HasProject)
+            {
+                if (mSourceView == null)
+                {
+                    mSourceView = new Dialogs.ShowSource(mProjectView);
+                    mSourceView.FormClosed +=
+                        new FormClosedEventHandler(delegate(object sender, FormClosedEventArgs e) { mSourceView = null; });
+                    mSourceView.Show();
+                }
+                else
+                {
+                    mSourceView.Focus();
+                }
+                Ready();
+            }
+        }
+
+        // Display a message in the status bar.
+        private void Status(string message) { mStatusLabel.Text = message; }
+
+        // Update the title bar to show the name of the project, and if it has unsaved changes
+        private void UpdateTitleBar()
+        {
+            Text = mSession.HasProject ?
+                String.Format(Localizer.Message("title_bar"), mSession.Presentation.Title,
+                    (mSession.CanSave ? "*" : ""), Localizer.Message("obi")) :
+                Localizer.Message("obi");
+            if (mStatusTimer.Enabled) mStatusTimer.Enabled = false;
+            mStatusTimer.Enabled = true;
+        }
 
 
 
@@ -164,39 +445,16 @@ namespace Obi
 
         #region File menu event handlers
 
-        private void mNewProjectToolStripMenuItem_Click(object sender, EventArgs e) { NewProject(); }
-
 
         /// <summary>
         /// Open a project from a XUK file by prompting the user for a file location.
         /// Try to close a possibly open project first.
         /// </summary>
-        private void mOpenProjectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (DidCloseProject())
-            {
-                OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = Localizer.Message("obi_filter");
-                dialog.InitialDirectory = mSettings.DefaultPath;
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    TryOpenProject(dialog.FileName);
-                }
-                else
-                {
-                    Ready();
-                }
-            }
-            else
-            {
-                Ready();
-            }
-        }
 
         /// <summary>
         /// Clear the list of recently opened files (prompt the user first.)
         /// </summary>
-        private void mClearListToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ClearRecentProjectsList()
         {
             mProjectView.TransportBar.Stop();
             if (MessageBox.Show(Localizer.Message("clear_recent_text"),
@@ -210,12 +468,9 @@ namespace Obi
 
 
 
-        /// <summary>
-        /// Clean the assets of a project
-        /// </summary>
-        private void mCleanProjectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            /*
+
+        private void Cleanup()
+        {            /*
             if (mProject != null)
             {
                 mProjectView.TransportBar.Enabled = false;
@@ -244,47 +499,47 @@ namespace Obi
                 mProjectView.TransportBar.Enabled = true;
             }
              */
+
         }
-        /// <summary>
-        /// Export the project to DAISY 3.
-        /// </summary>
-        private void mExportAsDAISYToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void Export()
         {
             /*
-            if (mProject != null)
-            {
-                mProjectView.TransportBar.Enabled = false;
-                if (mProject.Unsaved)
-                {
-                    DialogResult result = MessageBox.Show(Localizer.Message("export_unsaved_text"),
-                        Localizer.Message("export_unsaved_caption"), MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                    if (result == DialogResult.Cancel) return;
-                }
-                this.Cursor = Cursors.WaitCursor;
-                FolderBrowserDialog dialog = new FolderBrowserDialog();
-                dialog.Description = Localizer.Message("export_choose_folder");
-                dialog.SelectedPath = mSettings.DefaultExportPath;
-                if (dialog.ShowDialog() == DialogResult.OK && IsExportDirectoryReady(dialog.SelectedPath))
-                {
-                    try
-                    {
-                        mProject.ExportToZed(dialog.SelectedPath);
-                        MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), dialog.SelectedPath),
-                            Localizer.Message("saved_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    catch (Exception x)
-                    {
-                        MessageBox.Show(String.Format(Localizer.Message("didnt_save_as_daisy_text"), dialog.SelectedPath, x.Message),
-                            Localizer.Message("didnt_save_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                else
-                {
-                    Ready();
-                }
-                this.Cursor = Cursors.Default;
-                mProjectView.TransportBar.Enabled = true;
-            }*/
+if (mProject != null)
+{
+    mProjectView.TransportBar.Enabled = false;
+    if (mProject.Unsaved)
+    {
+        DialogResult result = MessageBox.Show(Localizer.Message("export_unsaved_text"),
+            Localizer.Message("export_unsaved_caption"), MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+        if (result == DialogResult.Cancel) return;
+    }
+    this.Cursor = Cursors.WaitCursor;
+    FolderBrowserDialog dialog = new FolderBrowserDialog();
+    dialog.Description = Localizer.Message("export_choose_folder");
+    dialog.SelectedPath = mSettings.DefaultExportPath;
+    if (dialog.ShowDialog() == DialogResult.OK && IsExportDirectoryReady(dialog.SelectedPath))
+    {
+        try
+        {
+            mProject.ExportToZed(dialog.SelectedPath);
+            MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), dialog.SelectedPath),
+                Localizer.Message("saved_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        catch (Exception x)
+        {
+            MessageBox.Show(String.Format(Localizer.Message("didnt_save_as_daisy_text"), dialog.SelectedPath, x.Message),
+                Localizer.Message("didnt_save_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+    else
+    {
+        Ready();
+    }
+    this.Cursor = Cursors.Default;
+    mProjectView.TransportBar.Enabled = true;
+}*/
+
         }
 
         /// <summary>
@@ -337,11 +592,6 @@ namespace Obi
                 }
             }
             return true;
-        }
-
-        private void mExitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Close();
         }
 
         #endregion
@@ -446,9 +696,9 @@ namespace Obi
         /// </summary>
         private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings, mProject, mProjectView.TransportBar);
+            Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings, mSession.Presentation, mProjectView.TransportBar);
             dialog.SelectProjectTab();
-            ShowPreferencesDialog(dialog);*/
+            ShowPreferencesDialog(dialog);
         }
 
         private void ShowPreferencesDialog(Dialogs.Preferences dialog)
@@ -462,9 +712,9 @@ namespace Obi
         /// </summary>
         private void mAudioPreferencesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings, mProject, mProjectView.TransportBar);
+            Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings, mSession.Presentation, mProjectView.TransportBar);
             dialog.SelectAudioTab();
-            ShowPreferencesDialog(dialog);*/
+            ShowPreferencesDialog(dialog);
         }
 
         /// <summary>
@@ -957,24 +1207,6 @@ namespace Obi
         }
 
         /// <summary>
-        /// Update the status bar to say "Ready."
-        /// </summary>
-        private void Ready()
-        {
-            Cursor = Cursors.Default;
-            Status(Localizer.Message("ready"));
-        }
-
-        /// <summary>
-        /// Display a message on the status bar.
-        /// </summary>
-        /// <param name="message">The message to display.</param>
-        private void Status(string message)
-        {
-            mStatusLabel.Text = message;
-        }
-
-        /// <summary>
         /// Try to open a project from a XUK file.
         /// Actually open it only if a possible current project could be closed properly.
         /// </summary>
@@ -1108,66 +1340,7 @@ namespace Obi
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void mNewProjectFromImportToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.Enabled = false;
-            if (!DidCloseProject())
-            {
-                mProjectView.TransportBar.Enabled = true;
-                Ready();
-                return;
-            }
 
-            //select a file for import
-            OpenFileDialog openFile = new OpenFileDialog();
-            openFile.Title = "Choose a file for import";
-            openFile.Filter = "HTML | *.html";
-
-            if (openFile.ShowDialog() != DialogResult.OK) return;
-
-            Dialogs.NewProject dialog = new Dialogs.NewProject(
-                mSettings.DefaultPath,
-                Localizer.Message("default_project_filename"),
-                Localizer.Message("obi_project_extension"),
-                ImportStructure.grabTitle(new Uri(openFile.FileName)));
-            dialog.MakeAutoTitleCheckboxInvisible();
-            dialog.Text = "Create a new project starting from XHTML import";
-            if (dialog.ShowDialog() != DialogResult.OK) return;
-
-            // let's see if we can actually write the file that the user chose (bug #1679175)
-            try
-            {
-                FileStream file = File.Create(dialog.Path);
-                file.Close();
-            }
-            catch (Exception x)
-            {
-                MessageBox.Show(String.Format(Localizer.Message("cannot_create_file_text"), dialog.Path, x.Message),
-                    Localizer.Message("cannot_create_file_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-
-            CreateNewProject(dialog.Path, dialog.Title, false);
-            try
-            {
-                ImportStructure importer = new ImportStructure();
-                //importer.ImportFromXHTML(openFile.FileName, mProject);
-            }
-            catch (Exception ex)
-            {
-                //report failure and undo the creation of a new project
-                MessageBox.Show("Import failed: " + ex.Message);
-                //mProject.Close();
-                File.Delete(dialog.Path);
-                mProjectView.TransportBar.Enabled = false;
-                RemoveRecentProject(dialog.Path);
-                return;
-            }
-
-            Ready();
-            mProjectView.TransportBar.Enabled = true;
-        }
 
 
         /// <summary>
@@ -1249,40 +1422,6 @@ namespace Obi
             AddRecentProject(mProject.XUKPath);*/
         }
 
-        /// <summary>
-        /// Check whether a project is currently open and not saved; prompt the user about what to do.
-        /// Close the project if that is what the user wants to do or if it was unmodified.
-        /// </summary>
-        /// <returns>True if there is no open project or the currently open project could be closed.</returns>
-        private bool DidCloseProject()
-        {
-            /*mProjectView.TransportBar.Stop();
-            if (mProject != null && mProject.Unsaved)
-            {
-                DialogResult result = MessageBox.Show(Localizer.Message("closed_project_text"),
-                    Localizer.Message("closed_project_caption"),
-                    MessageBoxButtons.YesNoCancel,
-                    MessageBoxIcon.Question);
-                switch (result)
-                {
-                    case DialogResult.Yes:
-                        mProject.Save();
-                        mProject.Close();
-                        return true;
-                    case DialogResult.No:
-                        mProject.Close();
-                        return true;
-                    default:
-                        return false;
-                }
-            }
-            else
-            {
-                if (mProject != null) mProject.Close();
-                return true;
-            }*/
-            return false;
-        }
 
         /// <summary>
         /// Ask the user whether she wants to create a directory,
@@ -1316,49 +1455,6 @@ namespace Obi
             else
             {
                 return false;  // didn't want to create the directory
-            }
-        }
-
-        /// <summary>
-        /// Create a new project if the current one was closed properly, or if none was open.
-        /// </summary>
-        private void NewProject()
-        {
-            Dialogs.NewProject dialog = new Dialogs.NewProject(
-                mSettings.DefaultPath,
-                Localizer.Message("default_project_filename"),
-                Localizer.Message("obi_project_extension"),
-                Localizer.Message("default_project_title"));
-            dialog.CreateTitleSection = mSettings.CreateTitleSection;
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    // let's see if we can actually write the file that the user chose (bug #1679175)
-                    FileStream file = File.Create(dialog.Path);
-                    file.Close();
-                    mSettings.CreateTitleSection = dialog.CreateTitleSection;
-                    if (DidCloseProject())
-                    {
-                        CreateNewProject(dialog.Path, dialog.Title, dialog.CreateTitleSection);
-                    }
-                    else
-                    {
-                        Ready();
-                    }
-                }
-                catch (Exception x)
-                {
-                    MessageBox.Show(String.Format(Localizer.Message("cannot_create_file_text"), dialog.Path, x.Message),
-                        Localizer.Message("cannot_create_file_caption"),
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    Ready();
-                }
-            }
-            else
-            {
-                Ready();
             }
         }
 
@@ -1455,26 +1551,6 @@ namespace Obi
 
         private void mProjectView_SelectionChanged(object sender, EventArgs e) { UpdateMenus(); }
 
-        private void UpdateMenus()
-        {
-            showToolStripMenuItem.Enabled = mProjectView.CanShowInTOCView;
-            showInStripsViewToolStripMenuItem.Enabled = mProjectView.CanShowInStripsView;
-            mAddSectionToolStripMenuItem.Enabled = mProjectView.CanAddSection;
-            mAddSubSectionToolStripMenuItem.Enabled = mProjectView.CanAddSubSection;
-            mRenameSectionToolStripMenuItem.Enabled = mProjectView.CanRenameSection;
-            mMoveOutToolStripMenuItem.Enabled = mProjectView.CanMoveSectionOut;
-            mMoveInToolStripMenuItem.Enabled = mProjectView.CanMoveSectionIn;
-            mMarkSectionAsUsedToolStripMenuItem.Visible = mProjectView.CanMarkSectionUsed;
-            mMarkSectionAsUnusedToolStripMenuItem.Visible = mProjectView.CanMarkSectionUnused;
-            mMarkSectionAsUsedunusedToolStripMenuItem.Visible = !mProjectView.CanToggleSectionUsed;
-            mInsertStripToolStripMenuItem.Enabled = mProjectView.CanAddStrip;
-            mRenameStripToolStripMenuItem.Enabled = mProjectView.CanRenameStrip;
-            mSplitStripToolStripMenuItem.Enabled = mProjectView.CanSplitStrip;
-            mMergeWithNextStripToolStripMenuItem.Enabled = mProjectView.CanMergeStrips;
-            mAboutThisStripToolStripMenuItem.Enabled = mProjectView.CanTellAboutStrip;
-            mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
-        }
-
         private void NEWundoToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Undo(); }
         private void NEWredoToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Redo(); }
         private void cutToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Cut(); }
@@ -1498,28 +1574,6 @@ namespace Obi
         {
             mShowMetadataViewToolStripMenuItem.Visible = !mProjectView.MetadataViewVisible;
             mHideMetadataViewToolStripMenuItem.Visible = mProjectView.MetadataViewVisible;
-        }
-
-        // Show a new source view window or give focus back to the previously opened one.
-        private Dialogs.ShowSource mSourceView = null;
-        private void showSourceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProjectView.Project != null)
-            {
-                if (mSourceView == null)
-                {
-                    mSourceView = new Dialogs.ShowSource(mProjectView);
-                    mSourceView.FormClosed += new FormClosedEventHandler(delegate(object _sender, FormClosedEventArgs _e)
-                    {
-                        mSourceView = null;
-                    });
-                    mSourceView.Show();
-                }
-                else
-                {
-                    mSourceView.Focus();
-                }
-            }
         }
 
         // Show (select) the selected section in the TOC view 
@@ -1643,5 +1697,15 @@ namespace Obi
             }*/
         }
         #endregion
+
+        private void mShowStatusBarToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            mStatusStrip.Visible = mShowStatusBarToolStripMenuItem.Checked;
+        }
+
+        private void mShowStatusBarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mShowStatusBarToolStripMenuItem.Checked = !mShowStatusBarToolStripMenuItem.Checked;
+        }
     }
 }

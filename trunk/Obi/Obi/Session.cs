@@ -9,32 +9,39 @@ namespace Obi
     {
         private DataModelFactory mDataModelFactory;  // the Obi data model factory (see below)
         private urakawa.Project mProject;            // the current project (as of now 1 presentation = 1 project)
-        private string mPath;
+        private string mPath;                        // path of the XUK file to save to
+        private bool mHasUnsavedChanges;             // true when the project has unsaved changes
 
+        public event ProjectClosedEventHandler ProjectClosed;   // the project was closed
+        public event EventHandler ProjectCreated;               // a new project was created
+        public event EventHandler ProjectOpened;                // a project was opened
+
+        /// <summary>
+        /// Create a new session for Obi.
+        /// </summary>
         public Session()
         {
             mDataModelFactory = new DataModelFactory();
             mProject = null;
+            mPath = null;
+            mHasUnsavedChanges = false;
         }
 
 
         /// <summary>
-        /// Closed the last project.
+        /// True if the project can be safely closed.
         /// </summary>
-        public void Closed()
-        {
-        }
+        public bool CanClose { get { return !mHasUnsavedChanges; } }
 
         /// <summary>
-        /// Create a new presentation in the session, with a path to save its XUK file.
+        /// True if the project has unsaved changes.
         /// </summary>
-        public void NewPresentation(string path)
-        {
-            mProject = new urakawa.Project();
-            mProject.setDataModelFactory(mDataModelFactory);
-            mProject.setPresentation(mDataModelFactory.createPresentation(), 0);
-            mPath = path;
-        }
+        public bool CanSave { get { return mHasUnsavedChanges; } }
+
+        /// <summary>
+        /// True if there is a project currently open.
+        /// </summary>
+        public bool HasProject { get { return mProject != null; } }
 
         /// <summary>
         /// Get the path of the XUK file of the current presentation.
@@ -44,71 +51,60 @@ namespace Obi
         /// <summary>
         /// Get the current (Obi) presentation.
         /// </summary>
-        public Presentation Presentation { get { return (Presentation)mProject.getPresentation(0); } }
+        public Presentation Presentation { get { return mProject == null ? null : (Presentation)mProject.getPresentation(0); } }
+
+
+        /// <summary>
+        /// Close the last project.
+        /// Will close no matter what, so check with CanClose before doing anything.
+        /// </summary>
+        public void Close()
+        {
+            if (mProject != null)
+            {
+                Presentation presentation = Presentation;
+                mProject = null;
+                mHasUnsavedChanges = false;
+                if (ProjectClosed != null) ProjectClosed(this, new ProjectClosedEventArgs(presentation));
+            }
+        }
+
+        /// <summary>
+        /// Create a new presentation in the session, with a path to save its XUK file.
+        /// </summary>
+        public void NewPresentation(string path, string title, bool createTitleSection, string id, UserProfile userProfile)
+        {
+            mProject = new urakawa.Project();
+            mProject.setDataModelFactory(mDataModelFactory);
+            mProject.setPresentation(mDataModelFactory.createPresentation(), 0);
+            mPath = path;
+            Presentation.Initialize(title, createTitleSection, id, userProfile);
+            mHasUnsavedChanges = true;
+            if (ProjectCreated != null) ProjectCreated(this, null);
+        }
 
         /// <summary>
         /// Save the current presentation to XUK.
         /// </summary>
         public void Save()
         {
+            if (CanSave)
+            {
+                mHasUnsavedChanges = true;
+            }
         }
-        public bool CanSave { get { return true; } }
 
         public void SaveAs(string path)
         {
         }
     }
 
-    public class DataModelFactory : urakawa.DataModelFactory
+    public class ProjectClosedEventArgs : EventArgs
     {
-        public static readonly string NS = "http://www.daisy.org/urakawa/obi";
-        public static readonly string XUK_VERSION = "xuk/obi;pre-1";
-
-        public override urakawa.Presentation createPresentation()
-        {
-            return createPresentation(typeof(Obi.Presentation).Name, NS);
-        }
-
-        // TODO: what about a custom data manager?
-
-        public override urakawa.Presentation createPresentation(string localName, string namespaceUri)
-        {
-            if (namespaceUri != NS || localName == typeof(Obi.Presentation).Name)
-            {
-                throw new Exception(String.Format("Cannot create presentation for QName `{0}:{1}'",
-                    namespaceUri, localName));
-            }
-            return new Obi.Presentation();
-        }
-
-        public override urakawa.property.PropertyFactory createPropertyFactory(string localName, string namespaceUri)
-        {
-            if (namespaceUri != NS && localName != typeof(ObiPropertyFactory).Name)
-            {
-                throw new Exception(String.Format("Cannot create property factory for QName `{0}:{1}'",
-                    namespaceUri, localName));
-            }
-            return new ObiPropertyFactory();
-        }
-
-        public override urakawa.core.TreeNodeFactory createTreeNodeFactory(string localName, string namespaceUri)
-        {
-            if (namespaceUri != NS && localName != typeof(ObiNodeFactory).Name)
-            {
-                throw new Exception(String.Format("Cannot create tree node factory for QName `{0}:{1}'",
-                    namespaceUri, localName));
-            }
-            return new ObiNodeFactory();
-        }
-
-        public override urakawa.undo.UndoRedoManager createUndoRedoManager(string localName, string namespaceUri)
-        {
-            if (namespaceUri != NS && localName != typeof(Commands.UndoRedoManager).Name)
-            {
-                throw new Exception(String.Format("Cannot create undo/redo manager for QName `{0}:{1}'",
-                    namespaceUri, localName));
-            }
-            return new Commands.UndoRedoManager();
-        }
+        private Presentation mClosedPresentation;
+        public ProjectClosedEventArgs(Presentation p) : base() { mClosedPresentation = p; }
+        public Presentation ClosedPresentation { get { return mClosedPresentation; } }
     }
+
+    public delegate void ProjectClosedEventHandler(object sender, ProjectClosedEventArgs e);
 }

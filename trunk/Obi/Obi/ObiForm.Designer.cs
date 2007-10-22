@@ -28,6 +28,7 @@ namespace Obi
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ObiForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,7 +47,7 @@ namespace Obi
             this.mCleanProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mExportAsDAISYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.mUndoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRedoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,11 +64,13 @@ namespace Obi
             this.mHideTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowMetadataViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHideMetadataViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showInStripsViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSynchronizeViewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.mShowSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mShowStatusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddSubSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -128,11 +131,12 @@ namespace Obi
             this.mViewHelpInExternalBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mReportBugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutObiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.mStatusTimer = new System.Windows.Forms.Timer(this.components);
             this.mProjectView = new Obi.ProjectView.ProjectView();
             this.menuStrip1.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
+            this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -169,7 +173,7 @@ namespace Obi
             this.mCleanProjectToolStripMenuItem,
             this.mExportAsDAISYToolStripMenuItem,
             this.toolStripSeparator3,
-            this.exitToolStripMenuItem});
+            this.mExitToolStripMenuItem});
             this.mFileToolStripMenuItem.Name = "mFileToolStripMenuItem";
             this.mFileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
             this.mFileToolStripMenuItem.Text = "&File";
@@ -287,13 +291,13 @@ namespace Obi
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(214, 6);
             // 
-            // exitToolStripMenuItem
+            // mExitToolStripMenuItem
             // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.exitToolStripMenuItem.Text = "E&xit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.mExitToolStripMenuItem_Click);
+            this.mExitToolStripMenuItem.Name = "mExitToolStripMenuItem";
+            this.mExitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.mExitToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.mExitToolStripMenuItem.Text = "E&xit";
+            this.mExitToolStripMenuItem.Click += new System.EventHandler(this.mExitToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -395,11 +399,13 @@ namespace Obi
             this.mHideTOCViewToolStripMenuItem,
             this.mShowMetadataViewToolStripMenuItem,
             this.mHideMetadataViewToolStripMenuItem,
-            this.showSourceToolStripMenuItem,
             this.toolStripSeparator12,
             this.showToolStripMenuItem,
             this.showInStripsViewToolStripMenuItem,
-            this.mSynchronizeViewsToolStripMenuItem});
+            this.mSynchronizeViewsToolStripMenuItem,
+            this.toolStripSeparator10,
+            this.mShowSourceToolStripMenuItem,
+            this.mShowStatusBarToolStripMenuItem});
             this.mViewToolStripMenuItem.Name = "mViewToolStripMenuItem";
             this.mViewToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
             this.mViewToolStripMenuItem.Text = "&View";
@@ -432,13 +438,6 @@ namespace Obi
             this.mHideMetadataViewToolStripMenuItem.Text = "Hide Metadata view";
             this.mHideMetadataViewToolStripMenuItem.Click += new System.EventHandler(this.mHideMetadataViewToolStripMenuItem_Click);
             // 
-            // showSourceToolStripMenuItem
-            // 
-            this.showSourceToolStripMenuItem.Name = "showSourceToolStripMenuItem";
-            this.showSourceToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.showSourceToolStripMenuItem.Text = "Show source view";
-            this.showSourceToolStripMenuItem.Click += new System.EventHandler(this.showSourceToolStripMenuItem_Click);
-            // 
             // toolStripSeparator12
             // 
             this.toolStripSeparator12.Name = "toolStripSeparator12";
@@ -464,6 +463,28 @@ namespace Obi
             this.mSynchronizeViewsToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.mSynchronizeViewsToolStripMenuItem.Text = "Synchronize views";
             this.mSynchronizeViewsToolStripMenuItem.Click += new System.EventHandler(this.mSynchronizeViewsToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(171, 6);
+            // 
+            // mShowSourceToolStripMenuItem
+            // 
+            this.mShowSourceToolStripMenuItem.Name = "mShowSourceToolStripMenuItem";
+            this.mShowSourceToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.mShowSourceToolStripMenuItem.Text = "Show source view";
+            this.mShowSourceToolStripMenuItem.Click += new System.EventHandler(this.mShowSourceToolStripMenuItem_Click);
+            // 
+            // mShowStatusBarToolStripMenuItem
+            // 
+            this.mShowStatusBarToolStripMenuItem.Checked = true;
+            this.mShowStatusBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mShowStatusBarToolStripMenuItem.Name = "mShowStatusBarToolStripMenuItem";
+            this.mShowStatusBarToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.mShowStatusBarToolStripMenuItem.Text = "Show status bar";
+            this.mShowStatusBarToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mShowStatusBarToolStripMenuItem_CheckedChanged);
+            this.mShowStatusBarToolStripMenuItem.Click += new System.EventHandler(this.mShowStatusBarToolStripMenuItem_Click);
             // 
             // mTocToolStripMenuItem
             // 
@@ -999,21 +1020,21 @@ namespace Obi
             this.aboutObiToolStripMenuItem.Text = "&About Obi";
             this.aboutObiToolStripMenuItem.Click += new System.EventHandler(this.mAboutObiToolStripMenuItem_Click);
             // 
-            // statusStrip1
+            // mStatusStrip
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mStatusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 606);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
-            this.statusStrip1.Size = new System.Drawing.Size(958, 22);
-            this.statusStrip1.TabIndex = 3;
-            this.statusStrip1.Text = "statusStrip1";
+            this.mStatusStrip.Location = new System.Drawing.Point(0, 606);
+            this.mStatusStrip.Name = "mStatusStrip";
+            this.mStatusStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
+            this.mStatusStrip.Size = new System.Drawing.Size(958, 22);
+            this.mStatusStrip.TabIndex = 3;
+            this.mStatusStrip.Text = "statusStrip1";
             // 
-            // mToolStripStatusLabel
+            // mStatusLabel
             // 
             this.mStatusLabel.BackColor = System.Drawing.Color.Transparent;
-            this.mStatusLabel.Name = "mToolStripStatusLabel";
+            this.mStatusLabel.Name = "mStatusLabel";
             this.mStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // mProjectView
@@ -1026,6 +1047,7 @@ namespace Obi
             this.mProjectView.MetadataViewVisible = true;
             this.mProjectView.Name = "mProjectView";
             this.mProjectView.Padding = new System.Windows.Forms.Padding(3);
+            this.mProjectView.Presentation = null;
             this.mProjectView.Project = null;
             this.mProjectView.SelectedBlockNode = null;
             this.mProjectView.SelectedStripNode = null;
@@ -1041,7 +1063,7 @@ namespace Obi
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(958, 628);
             this.Controls.Add(this.mProjectView);
-            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.mStatusStrip);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
@@ -1052,8 +1074,8 @@ namespace Obi
             this.ResizeEnd += new System.EventHandler(this.ObiForm_ResizeEnd);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
+            this.mStatusStrip.ResumeLayout(false);
+            this.mStatusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1063,8 +1085,8 @@ namespace Obi
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem mFileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripMenuItem mExitToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip mStatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel mStatusLabel;
         private System.Windows.Forms.ToolStripMenuItem mNewProjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mOpenProjectToolStripMenuItem;
@@ -1127,7 +1149,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showInStripsViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
-        private System.Windows.Forms.ToolStripMenuItem showSourceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mShowSourceToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
@@ -1163,6 +1185,9 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mSetPageNumberToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mRemovePageNumberToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mGoToPageToolStripMenuItem;
+        private System.Windows.Forms.Timer mStatusTimer;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.ToolStripMenuItem mShowStatusBarToolStripMenuItem;
 
 
     }

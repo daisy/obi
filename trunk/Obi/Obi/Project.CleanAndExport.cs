@@ -90,7 +90,7 @@ namespace Obi
             if (producedDate == null)
             {
                 System.Diagnostics.Debug.Assert(revisionDate == null && revision == null);
-                SetSingleMetadataItem(Metadata.DTB_PRODUCED_DATE, date);
+                // SetSingleMetadataItem(Metadata.DTB_PRODUCED_DATE, date);
             }
             else
             {
@@ -104,8 +104,8 @@ namespace Obi
                 else
                 {
                     System.Diagnostics.Debug.Assert(revisionDate == null);
-                    SetSingleMetadataItem(Metadata.DTB_REVISION, "1");
-                    SetSingleMetadataItem(Metadata.DTB_REVISION_DATE, date);
+                    // SetSingleMetadataItem(Metadata.DTB_REVISION, "1");
+                    // SetSingleMetadataItem(Metadata.DTB_REVISION_DATE, date);
                 }
             }
         }

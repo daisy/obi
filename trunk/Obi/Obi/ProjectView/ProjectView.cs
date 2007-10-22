@@ -103,6 +103,19 @@ namespace Obi.ProjectView
         public Presentation Presentation
         {
             get { return mPresentation; }
+            set
+            {
+                ProjectVisible = value != null;
+                if (mPresentation != value)
+                {
+                    mPresentation = value;
+                    if (mPresentation != null)
+                    {
+                        mTOCView.NewPresentation();
+                        mStripsView.NewPresentation();
+                    }
+                }
+            }
         }
 
         private bool ProjectVisible

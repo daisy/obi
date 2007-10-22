@@ -97,6 +97,11 @@ namespace Obi.ProjectView
             mView.Project.RenamedSectionNode += new Obi.Events.RenameSectionNodeHandler(Project_RenamedSectionNode);
         }
 
+        public void NewPresentation()
+        {
+            mTOCTree.Nodes.Clear();
+        }
+
         /// <summary>
         /// Get or set the current selection.
         /// </summary>
