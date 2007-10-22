@@ -8,22 +8,6 @@ namespace Obi
     /// </summary>
     public class ObiNodeFactory : TreeNodeFactory
     {
-        private Presentation mPresentation;
-
-        /// <summary>
-        /// Create a new node factory. It is not attached to any project yet.
-        /// </summary>
-        public ObiNodeFactory(): base() { mPresentation = null; }
-
-        public Presentation Presentation
-        {
-            set
-            {
-                if (mPresentation != null) throw new Exception("Presentation already set!");
-                mPresentation = value;
-            }
-        }
-
         /// <summary>
         /// Create a new node given a QName.
         /// </summary>
@@ -36,15 +20,15 @@ namespace Obi
             {
                 if (localName == RootNode.XUK_ELEMENT_NAME)
                 {
-                    return new RootNode(mPresentation);
+                    return new RootNode(Presentation);
                 }
                 else if (localName == PhraseNode.XUK_ELEMENT_NAME)
                 {
-                    return new PhraseNode(mPresentation);
+                    return new PhraseNode(Presentation);
                 }
                 else if (localName == SectionNode.XUK_ELEMENT_NAME)
                 {
-                    return new SectionNode(mPresentation);
+                    return new SectionNode(Presentation);
                 }
                 else
                 {
@@ -57,5 +41,7 @@ namespace Obi
                 return base.createNode(localName, namespaceUri);
             }
         }
+
+        private Presentation Presentation { get { return (Presentation)getPresentation(); } }
     }
 }

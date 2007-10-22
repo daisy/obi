@@ -37,7 +37,7 @@ namespace UnitTests
             Obi.Project project = CreateProject(false);
             Assert.IsInstanceOfType(typeof(Channel), project.AnnotationChannel);
             Assert.IsInstanceOfType(typeof(Channel), project.AudioChannel);
-            Assert.IsInstanceOfType(typeof(Channel), project.TextChannel);
+            //Assert.IsInstanceOfType(typeof(Channel), project.TextChannel);
         }
 
         private static readonly string TITLE = "Title test";
