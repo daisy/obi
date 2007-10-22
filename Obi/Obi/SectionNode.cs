@@ -25,7 +25,7 @@ namespace Obi
             // Create the text media object for the label with a default label
             ITextMedia labelMedia = getPresentation().getMediaFactory().createTextMedia();
             labelMedia.setText(Localizer.Message("default_section_label"));
-            //ChannelsProperty.setMedia(Project.TextChannel, labelMedia);
+            ChannelsProperty.setMedia(Presentation.TextChannel, labelMedia);
         }
 
 
@@ -348,7 +348,7 @@ namespace Obi
         /// </summary>
         private TextMedia LabelTextMedia
         {
-            get { return null; } // (TextMedia)ChannelsProperty.getMedia(Project.TextChannel); }
+            get { return (TextMedia)ChannelsProperty.getMedia(Presentation.TextChannel); }
         }
 
 

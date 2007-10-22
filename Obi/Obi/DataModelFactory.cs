@@ -41,7 +41,11 @@ namespace Obi
                 throw new Exception(String.Format("Cannot create presentation for QName `{0}:{1}'",
                     namespaceUri, localName));
             }
-            return new Obi.Presentation();
+            Obi.Presentation presentation = new Obi.Presentation();
+            presentation.setTreeNodeFactory(new ObiNodeFactory());
+            presentation.setPropertyFactory(new ObiPropertyFactory());
+            presentation.setUndoRedoManager(new Commands.UndoRedoManager());
+            return presentation;
         }
 
         public override urakawa.property.PropertyFactory createPropertyFactory(string localName, string namespaceUri)

@@ -26,9 +26,7 @@ namespace Obi
         // TODO remove mAudioChannel, mAnnotation and mClipboard as members.
         private Clipboard mClipboard;        // project-wide clipboard; should move to project panel
 
-        public static readonly string CURRENT_XUK_VERSION = "obi-xuk-012";         // version of the Obi/XUK file
         public static readonly string AUDIO_CHANNEL_NAME = "obi.audio";            // canonical name of the audio channel
-        public static readonly string TEXT_CHANNEL_NAME = "obi.text";              // canonical name of the text channel
         public static readonly string ANNOTATION_CHANNEL_NAME = "obi.annotation";  // canonical name of the annotation channel
 
         public event Events.Project.StateChangedHandler StateChanged;       // the state of the project changed (modified, saved...)
@@ -65,12 +63,12 @@ namespace Obi
         /// <summary>
         /// Get the annotation channel of the project.
         /// </summary>
-        public Channel AnnotationChannel { get { return GetSingleChannelByName(ANNOTATION_CHANNEL_NAME); } }
+        public Channel AnnotationChannel { get { return null; } } // GetSingleChannelByName(ANNOTATION_CHANNEL_NAME); } }
 
         /// <summary>
         /// Get the audio channel of the project.
         /// </summary>
-        public Channel AudioChannel { get { return GetSingleChannelByName(AUDIO_CHANNEL_NAME); } }
+        public Channel AudioChannel { get { return null; } } // GetSingleChannelByName(AUDIO_CHANNEL_NAME); } }
 
         /// <summary>
         /// Number of audio channels for the project audio.
@@ -167,11 +165,11 @@ namespace Obi
         {
             openXUK(new Uri(xukPath));
             mUnsaved = false;
-            if (XukVersion != CURRENT_XUK_VERSION)
+            /*if (XukVersion != CURRENT_XUK_VERSION)
             {
                 throw new Exception(String.Format(Localizer.Message("xuk_version_mismatch"),
                     CURRENT_XUK_VERSION, XukVersion));
-            }
+            }*/
             mXUKPath = xukPath;
             // getPresentation().setBaseUri(new Uri(Path.GetDirectoryName(xukPath)));
             // TODO: make sure that phrases and pages are counted (should be!)
@@ -235,10 +233,6 @@ namespace Obi
             }
         }
 
-        /// <summary>
-        /// Get the text channel of the project.
-        /// </summary>
-        public Channel TextChannel { get { return GetSingleChannelByName(TEXT_CHANNEL_NAME); } }
 
         /// <summary>
         /// Simulate a modification of the project.
@@ -260,17 +254,6 @@ namespace Obi
 
 
         #region utility functions
-
-        /// <summary>
-        /// Add a new channel with the given name to the presentation's channel manager.
-        /// </summary>
-        /// <param name="name">Name of the new channel.</param>
-        private void AddChannel(string name)
-        {
-            Channel channel = getPresentation(0).getChannelFactory().createChannel();
-            channel.setName(name);
-            getPresentation(0).getChannelsManager().addChannel(channel);
-        }
                         
 
 
@@ -280,21 +263,7 @@ namespace Obi
         /// </summary>
         /// <remarks>Use the actual assembly name/version string for the toolkit (from 1.0)</remarks>
 
-        /// <summary>
-        /// Access a channel which we know exist and is the only channel by this name.
-        /// </summary>
-        /// <param name="name">The name of the channel (use the name constants.)</param>
-        /// <returns>The channel for this name.</returns>
-        /// <exception cref="urakawa.exception.ChannelDoesNotExistException">Thrown when there is no channel by that name.</exception>
-        /// <exception cref="TooManyChannelsException">Thrown when there are more than one channels with that name.</exception>
-        private Channel GetSingleChannelByName(string name)
-        {
-            List<Channel> channels = getPresentation(0).getChannelsManager().getListOfChannels(name);
-            if (channels.Count == 0) throw new Exception(String.Format("No channel named \"{0}\"", name));
-            if (channels.Count > 1) throw new Exception(String.Format("Expected 1 channel for {0}, got {1}.",
-                name, channels.Count));
-            return channels[0];
-        }
+
 
         /// <summary>
         /// Project was modified.
@@ -384,7 +353,7 @@ namespace Obi
         public static TextMedia GetTextMedia(TreeNode node)
         {
             ChannelsProperty prop = (ChannelsProperty)node.getProperty(typeof(ChannelsProperty));
-            Channel textChannel = Project.GetChannel(node, TEXT_CHANNEL_NAME);
+            Channel textChannel = null; // Project.GetChannel(node, TEXT_CHANNEL_NAME);
             return textChannel == null ? null : (TextMedia)prop.getMedia(textChannel);
         }
 

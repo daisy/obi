@@ -1,21 +1,30 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
+using urakawa.property.channel;
 using urakawa.media.data.audio;
 
 namespace Obi
 {
     public class Presentation: urakawa.Presentation
     {
+        public static readonly string TEXT_CHANNEL_NAME = "obi.text";  // canonical name of the text channel
+
+        /// <summary>
+        /// The media data manager for the project.
+        /// </summary>
+        public Audio.DataManager DataManager { get { return (Audio.DataManager)getMediaDataManager(); } }
+
         /// <summary>
         /// Root node of the presentation.
         /// </summary>
         public RootNode RootNode { get { return (RootNode)getRootNode(); } }
 
         /// <summary>
-        /// The media data manager for the project.
+        /// Get the text channel of the presentation.
         /// </summary>
-        public Audio.DataManager DataManager { get { return (Audio.DataManager)getMediaDataManager(); } }
+        public Channel TextChannel { get { return GetSingleChannelByName(TEXT_CHANNEL_NAME); } }
 
         /// <summary>
         /// Get the title of the presentation from the metadata.
@@ -51,6 +60,7 @@ namespace Obi
         {
             setRootNode(new RootNode(this));
             CreateMetadata(title, id, userProfile);
+            AddChannel(TEXT_CHANNEL_NAME);
             if (createTitleSection) CreateTitleSection(title);
         }
 
@@ -73,6 +83,17 @@ namespace Obi
         }
 
 
+
+
+        /// <summary>
+        /// Add a new channel with the given name to the presentation's channel manager.
+        /// </summary>
+        private void AddChannel(string name)
+        {
+            Channel channel = getChannelFactory().createChannel();
+            channel.setName(name);
+            getChannelsManager().addChannel(channel);
+        }
 
         /// <summary>
         /// Convenience method to create a new metadata object with a name/value pair.
@@ -122,6 +143,22 @@ namespace Obi
             SectionNode node = CreateSectionNode();
             node.Label = title;
             RootNode.AppendChild(node);
+        }
+
+        /// <summary>
+        /// Access a channel which we know exist and is the only channel by this name.
+        /// </summary>
+        /// <param name="name">The name of the channel (use the name constants.)</param>
+        /// <returns>The channel for this name.</returns>
+        /// <exception cref="urakawa.exception.ChannelDoesNotExistException">Thrown when there is no channel by that name.</exception>
+        /// <exception cref="TooManyChannelsException">Thrown when there are more than one channels with that name.</exception>
+        private Channel GetSingleChannelByName(string name)
+        {
+            List<Channel> channels = getChannelsManager().getListOfChannels(name);
+            if (channels.Count == 0) throw new Exception(String.Format("No channel named \"{0}\"", name));
+            if (channels.Count > 1) throw new Exception(String.Format("Expected 1 channel for {0}, got {1}.",
+                name, channels.Count));
+            return channels[0];
         }
 
         // Create a media object from a sound file.
