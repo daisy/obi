@@ -377,7 +377,6 @@ namespace Obi
                 InitializeComponent();
                 mProjectView.ObiForm = this;
                 mProjectView.SelectionChanged += new EventHandler(ProjectView_SelectionChanged);
-                mProjectView.FindInTextVisibleChanged += new EventHandler(ProjectView_FindInTextVisibleChanged);
                 mSession = new Session();
                 mSession.ProjectOpened += new EventHandler(Session_ProjectOpened);
                 mSession.ProjectCreated += new EventHandler(Session_ProjectCreated);

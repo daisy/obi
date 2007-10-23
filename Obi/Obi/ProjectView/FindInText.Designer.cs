@@ -58,7 +58,7 @@ namespace Obi.ProjectView
             this.Controls.Add(this.mString);
             this.Controls.Add(this.mLabel);
             this.Name = "FindInText";
-            this.Size = new System.Drawing.Size(212, 28);
+            this.Size = new System.Drawing.Size(972, 26);
             this.ResumeLayout(false);
             this.PerformLayout();
 
