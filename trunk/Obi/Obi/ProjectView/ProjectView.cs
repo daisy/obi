@@ -24,6 +24,8 @@ namespace Obi.ProjectView
         public ProjectView()
         {
             InitializeComponent();
+            mTOCView.ProjectView = this;
+            mStripsView.ProjectView = this;
             mPresentation = null;
             mSelection = null;
             mTransportBar.ProjectView = this;
@@ -588,6 +590,14 @@ namespace Obi.ProjectView
         public void MakeTreeNodeVisibleForSection(SectionNode section)
         {
             if (mSynchronizeViews) mTOCView.MakeTreeNodeVisibleForSection(section);
+        }
+
+        /// <summary>
+        /// Select the strip in the strips view.
+        /// </summary>
+        public void SelectStrip(Strip strip)
+        {
+            Selection = new NodeSelection(strip.Node, mStripsView, false);
         }
 
         /// <summary>

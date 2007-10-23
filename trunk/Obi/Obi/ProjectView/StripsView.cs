@@ -26,15 +26,13 @@ namespace Obi.ProjectView
         /// <summary>
         /// A new strips view.
         /// </summary>
-        public StripsView(ProjectView view)
-            : this()
+        public StripsView()
         {
-            mView = view;
+            InitializeComponent();
             mSelectedItem = null;
         }
 
-        // Used by the designer
-        public StripsView() { InitializeComponent(); }
+        public ProjectView ProjectView { set { mView = value; } }
 
 
         public bool CanAddStrip { get { return mSelectedItem is Strip; } }
@@ -80,7 +78,7 @@ namespace Obi.ProjectView
         public SectionNode SelectedSection
         {
             get { return mSelectedItem != null && mSelectedItem is Strip ? ((Strip)mSelectedItem).Node : null; }
-            set { mView.Selection = new NodeSelection(value, this, false); }
+            set { if (mView != null) mView.Selection = new NodeSelection(value, this, false); }
         }
 
         /// <summary>

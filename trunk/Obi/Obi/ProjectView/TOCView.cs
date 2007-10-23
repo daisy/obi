@@ -16,15 +16,13 @@ namespace Obi.ProjectView
         /// <summary>
         /// Create a new TOC view as part of a project view.
         /// </summary>
-        public TOCView(ProjectView view) : this()
+        public TOCView()
         {
-            mView = view;
+            InitializeComponent();
             mDummy = null;
         }
 
-        // Used by the designer
-        public TOCView() { InitializeComponent(); }
-
+        public ProjectView ProjectView { set { mView = value; } }
 
         // When we have a dummy section, then a section *must* be selected (?)
         public bool CanAddSection { get { return true; } }
