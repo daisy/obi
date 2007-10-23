@@ -30,7 +30,6 @@ namespace Obi.ProjectView
         {
             this.mLabel = new System.Windows.Forms.Label();
             this.mString = new System.Windows.Forms.TextBox();
-            this.mTempStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // mLabel
@@ -51,25 +50,16 @@ namespace Obi.ProjectView
             this.mString.TabIndex = 1;
             this.mString.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mSearchString_KeyPress);
             // 
-            // mTempStatus
-            // 
-            this.mTempStatus.AutoSize = true;
-            this.mTempStatus.Location = new System.Drawing.Point(223, 10);
-            this.mTempStatus.Name = "mTempStatus";
-            this.mTempStatus.Size = new System.Drawing.Size(0, 13);
-            this.mTempStatus.TabIndex = 2;
-            // 
             // FindInText
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Honeydew;
-            this.Controls.Add(this.mTempStatus);
             this.Controls.Add(this.mString);
             this.Controls.Add(this.mLabel);
             this.Name = "FindInText";
-            this.Size = new System.Drawing.Size(391, 28);
-            this.VisibleChanged += new System.EventHandler(this.FindInText_VisibleChanged);
+            this.Size = new System.Drawing.Size(212, 28);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FindInText_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -79,6 +69,5 @@ namespace Obi.ProjectView
 
         private System.Windows.Forms.Label mLabel;
         private System.Windows.Forms.TextBox mString;
-        private System.Windows.Forms.Label mTempStatus;
     }
 }

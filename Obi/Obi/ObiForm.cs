@@ -1597,9 +1597,12 @@ if (mProject != null)
 
         private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ImportPhrases(); }
 
-        private void mFindInTextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.FindInText(); }
-        private void mFindPreviousInTextToolStripMenuItem_Click(object sender, EventArgs e) {mProjectView.FindPreviousInText();}
-
+        private void mFindInTextToolStripMenuItem_Click(object sender, EventArgs e) 
+        { 
+            //this will bring up the findintext form
+            mProjectView.FindInText(); 
+        }
+       
 
         private delegate void DisableCallback(bool disable);
 
