@@ -30,9 +30,9 @@ namespace Obi.ProjectView
         {
             this.mHSplitter = new System.Windows.Forms.SplitContainer();
             this.mVSplitter = new System.Windows.Forms.SplitContainer();
-            this.mTOCView = new Obi.ProjectView.TOCView(this);
+            this.mTOCView = new Obi.ProjectView.TOCView();
             this.mMetadataView = new Obi.ProjectView.MetadataView();
-            this.mStripsView = new Obi.ProjectView.StripsView(this);
+            this.mStripsView = new Obi.ProjectView.StripsView();
             this.mNoProjectLabel = new System.Windows.Forms.Label();
             this.mTransportBar = new Obi.UserControls.TransportBar();
             this.mFindInText = new Obi.ProjectView.FindInText();
