@@ -119,6 +119,7 @@ namespace Obi
             mProject = new urakawa.Project();
             mProject.setDataModelFactory(mDataModelFactory);
             mProject.openXUK(new Uri(path));
+            Presentation.Initialize();
             if (ProjectOpened != null) ProjectOpened(this, null);
         }
 
