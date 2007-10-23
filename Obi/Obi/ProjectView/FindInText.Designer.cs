@@ -48,7 +48,7 @@ namespace Obi.ProjectView
             this.mString.Name = "mString";
             this.mString.Size = new System.Drawing.Size(146, 20);
             this.mString.TabIndex = 1;
-            this.mString.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mSearchString_KeyPress);
+            this.mString.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mString_KeyDown);
             // 
             // FindInText
             // 
@@ -59,7 +59,6 @@ namespace Obi.ProjectView
             this.Controls.Add(this.mLabel);
             this.Name = "FindInText";
             this.Size = new System.Drawing.Size(212, 28);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FindInText_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 
