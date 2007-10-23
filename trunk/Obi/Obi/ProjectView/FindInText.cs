@@ -152,6 +152,8 @@ namespace Obi.ProjectView
                 mOriginalPosition = GetIndexOfCurrentlySelectedStrip(mStripsPanel);
                 // also deselect
                 mView.Selection = null;
+                // show a message in the status bar (just an example; please use the localizer!)
+                mView.ObiForm.Status("No match!");
             }
         }
 
