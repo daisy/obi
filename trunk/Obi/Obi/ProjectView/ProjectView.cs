@@ -16,7 +16,8 @@ namespace Obi.ProjectView
         private ObiNode mClipboard;              // node in the clipboard
         private bool mSynchronizeViews;          // synchronize views flag
 
-        public event EventHandler SelectionChanged;
+        public event EventHandler SelectionChanged;            // triggered when the selection changes
+        public event EventHandler FindInTextVisibleChanged;    // triggered when the search bar shows up or disappears
         public event ImportingFileEventHandler ImportingFile;  // triggered when a file is being imported
         public event EventHandler FinishedImportingFiles;      // triggered when all files were imported
 
@@ -26,6 +27,7 @@ namespace Obi.ProjectView
             InitializeComponent();
             mTOCView.ProjectView = this;
             mStripsView.ProjectView = this;
+            mFindInText.ProjectView = this;
             mPresentation = null;
             mSelection = null;
             mTransportBar.ProjectView = this;
@@ -33,6 +35,12 @@ namespace Obi.ProjectView
             mTOCViewVisible = !mHSplitter.Panel1Collapsed && !mVSplitter.Panel1Collapsed;
             mMetadataViewVisible = !mHSplitter.Panel1Collapsed && !mVSplitter.Panel2Collapsed;
             mFindInText.Visible = false;
+            mFindInText.VisibleChanged += new EventHandler(mFindInText_VisibleChanged);
+        }
+
+        void mFindInText_VisibleChanged(object sender, EventArgs e)
+        {
+            if (FindInTextVisibleChanged != null) FindInTextVisibleChanged(this, null);
         }
 
 
@@ -254,7 +262,7 @@ namespace Obi.ProjectView
         public SectionNode SelectedStripNode
         {
             get { return null; }
-            set { }
+            set { Selection = new NodeSelection(value, mStripsView, false); }
         }
 
         /// <summary>
@@ -534,6 +542,15 @@ namespace Obi.ProjectView
                 else if (!value && !TOCViewVisible) mHSplitter.Panel1Collapsed = true;
                 mVSplitter.Panel2Collapsed = !value;
             }
+        }
+
+        /// <summary>
+        /// Show or hide the search bar.
+        /// </summary>
+        public bool FindInTextVisible
+        {
+            get { return mFindInText.Visible; }
+            set { if (mFindInText.Visible != value) mFindInText.Visible = value; }
         }
 
         /// <summary>

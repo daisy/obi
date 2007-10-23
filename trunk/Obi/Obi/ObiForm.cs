@@ -204,6 +204,7 @@ namespace Obi
         {
             mShowTOCViewToolStripMenuItem.Enabled = mSession.HasProject;
             mShowMetadataViewToolStripMenuItem.Enabled = mSession.HasProject;
+            mShowSearchBarToolStripMenuItem.Enabled = mSession.HasProject;
             mShowTransportBarToolStripMenuItem.Enabled = mSession.HasProject;
             mShowStatusBarToolStripMenuItem.Enabled = true;
             mShowInTOCViewToolStripMenuItem.Enabled = mProjectView.CanShowInTOCView;
@@ -220,6 +221,11 @@ namespace Obi
         private void mShowMetadataViewToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             mProjectView.MetadataViewVisible = mShowMetadataViewToolStripMenuItem.Checked;
+        }
+
+        private void mShowSearchBarToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            mProjectView.FindInTextVisible = mShowSearchBarToolStripMenuItem.Checked;
         }
 
         private void mShowTransportBarToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
@@ -365,6 +371,7 @@ namespace Obi
             {
                 InitializeComponent();
                 mProjectView.SelectionChanged += new EventHandler(ProjectView_SelectionChanged);
+                mProjectView.FindInTextVisibleChanged += new EventHandler(ProjectView_FindInTextVisibleChanged);
                 mSession = new Session();
                 mSession.ProjectOpened += new EventHandler(Session_ProjectOpened);
                 mSession.ProjectCreated += new EventHandler(Session_ProjectCreated);
@@ -380,6 +387,8 @@ namespace Obi
                 // these should be stored in settings
                 mShowTOCViewToolStripMenuItem.Checked = true;
                 mShowMetadataViewToolStripMenuItem.Checked = true;
+                mShowSearchBarToolStripMenuItem.Checked = false;
+                mShowTransportBarToolStripMenuItem.Checked = true;
                 mShowStatusBarToolStripMenuItem.Checked = true;
                 Ready();
             }
@@ -569,6 +578,11 @@ namespace Obi
         private void Presentation_CommandUnexecuted(object sender, UndoRedoEventArgs e) { ProjectHasChanged(); }
         private void Presentation_CommandExecuted(object sender, UndoRedoEventArgs e) { ProjectHasChanged(); }
         private void ProjectView_SelectionChanged(object sender, EventArgs e) { UpdateMenus(); }
+
+        private void ProjectView_FindInTextVisibleChanged(object sender, EventArgs e)
+        {
+            mShowSearchBarToolStripMenuItem.Checked = mProjectView.FindInTextVisible;
+        }
 
         private void Session_ProjectCreated(object sender, EventArgs e)
         {

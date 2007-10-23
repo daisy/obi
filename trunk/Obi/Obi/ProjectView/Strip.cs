@@ -75,7 +75,7 @@ namespace Obi.ProjectView
         public ObiNode ObiNode { get { return mNode; } }
 
         /// <summary>
-        /// Set the selected flag for the strip.
+        /// Set the selected flag for the strip. This just tells the strip that it is selected.
         /// </summary>
         public bool Selected
         {

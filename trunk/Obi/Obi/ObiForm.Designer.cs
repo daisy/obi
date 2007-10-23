@@ -61,8 +61,8 @@ namespace Obi
             this.mViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowMetadataViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mShowStatusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowTransportBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mShowStatusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.mShowInTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowInStripsViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -133,6 +133,7 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusTimer = new System.Windows.Forms.Timer(this.components);
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.mShowSearchBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -317,7 +318,7 @@ namespace Obi
             // 
             this.mUndoToolStripMenuItem.Name = "mUndoToolStripMenuItem";
             this.mUndoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.mUndoToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.mUndoToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.mUndoToolStripMenuItem.Text = "&Undo";
             this.mUndoToolStripMenuItem.Click += new System.EventHandler(this.mUndoToolStripMenuItem_Click);
             // 
@@ -325,20 +326,20 @@ namespace Obi
             // 
             this.mRedoToolStripMenuItem.Name = "mRedoToolStripMenuItem";
             this.mRedoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.mRedoToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.mRedoToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.mRedoToolStripMenuItem.Text = "&Redo";
             this.mRedoToolStripMenuItem.Click += new System.EventHandler(this.mRedoToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(184, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(136, 6);
             // 
             // mCutToolStripMenuItem
             // 
             this.mCutToolStripMenuItem.Name = "mCutToolStripMenuItem";
             this.mCutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.mCutToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.mCutToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.mCutToolStripMenuItem.Text = "&Cut";
             this.mCutToolStripMenuItem.Click += new System.EventHandler(this.mCutToolStripMenuItem_Click);
             // 
@@ -346,7 +347,7 @@ namespace Obi
             // 
             this.mCopyToolStripMenuItem.Name = "mCopyToolStripMenuItem";
             this.mCopyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.mCopyToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.mCopyToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.mCopyToolStripMenuItem.Text = "Cop&y";
             this.mCopyToolStripMenuItem.Click += new System.EventHandler(this.mCopyToolStripMenuItem_Click);
             // 
@@ -354,7 +355,7 @@ namespace Obi
             // 
             this.mPasteToolStripMenuItem.Name = "mPasteToolStripMenuItem";
             this.mPasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.mPasteToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.mPasteToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.mPasteToolStripMenuItem.Text = "&Paste";
             this.mPasteToolStripMenuItem.Click += new System.EventHandler(this.mPasteToolStripMenuItem_Click);
             // 
@@ -362,20 +363,20 @@ namespace Obi
             // 
             this.mDeleteToolStripMenuItem.Name = "mDeleteToolStripMenuItem";
             this.mDeleteToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.mDeleteToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.mDeleteToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.mDeleteToolStripMenuItem.Text = "&Delete";
             this.mDeleteToolStripMenuItem.Click += new System.EventHandler(this.mDeleteToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(184, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(136, 6);
             // 
             // mFindInTextToolStripMenuItem
             // 
             this.mFindInTextToolStripMenuItem.Name = "mFindInTextToolStripMenuItem";
             this.mFindInTextToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.mFindInTextToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.mFindInTextToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.mFindInTextToolStripMenuItem.Text = "Find";
             this.mFindInTextToolStripMenuItem.Click += new System.EventHandler(this.mFindInTextToolStripMenuItem_Click);
             // 
@@ -384,6 +385,7 @@ namespace Obi
             this.mViewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mShowTOCViewToolStripMenuItem,
             this.mShowMetadataViewToolStripMenuItem,
+            this.mShowSearchBarToolStripMenuItem,
             this.mShowTransportBarToolStripMenuItem,
             this.mShowStatusBarToolStripMenuItem,
             this.toolStripSeparator12,
@@ -416,16 +418,6 @@ namespace Obi
             this.mShowMetadataViewToolStripMenuItem.Text = "Show metadata view";
             this.mShowMetadataViewToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mShowMetadataViewToolStripMenuItem_CheckedChanged);
             // 
-            // mShowStatusBarToolStripMenuItem
-            // 
-            this.mShowStatusBarToolStripMenuItem.Checked = true;
-            this.mShowStatusBarToolStripMenuItem.CheckOnClick = true;
-            this.mShowStatusBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.mShowStatusBarToolStripMenuItem.Name = "mShowStatusBarToolStripMenuItem";
-            this.mShowStatusBarToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.mShowStatusBarToolStripMenuItem.Text = "Show status bar";
-            this.mShowStatusBarToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mShowStatusBarToolStripMenuItem_CheckedChanged);
-            // 
             // mShowTransportBarToolStripMenuItem
             // 
             this.mShowTransportBarToolStripMenuItem.Checked = true;
@@ -435,6 +427,16 @@ namespace Obi
             this.mShowTransportBarToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.mShowTransportBarToolStripMenuItem.Text = "Show transport bar";
             this.mShowTransportBarToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mShowTransportBarToolStripMenuItem_CheckedChanged);
+            // 
+            // mShowStatusBarToolStripMenuItem
+            // 
+            this.mShowStatusBarToolStripMenuItem.Checked = true;
+            this.mShowStatusBarToolStripMenuItem.CheckOnClick = true;
+            this.mShowStatusBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mShowStatusBarToolStripMenuItem.Name = "mShowStatusBarToolStripMenuItem";
+            this.mShowStatusBarToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.mShowStatusBarToolStripMenuItem.Text = "Show status bar";
+            this.mShowStatusBarToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mShowStatusBarToolStripMenuItem_CheckedChanged);
             // 
             // toolStripSeparator12
             // 
@@ -1047,6 +1049,16 @@ namespace Obi
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
             // 
+            // mShowSearchBarToolStripMenuItem
+            // 
+            this.mShowSearchBarToolStripMenuItem.Checked = true;
+            this.mShowSearchBarToolStripMenuItem.CheckOnClick = true;
+            this.mShowSearchBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mShowSearchBarToolStripMenuItem.Name = "mShowSearchBarToolStripMenuItem";
+            this.mShowSearchBarToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.mShowSearchBarToolStripMenuItem.Text = "Show search bar";
+            this.mShowSearchBarToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mShowSearchBarToolStripMenuItem_CheckedChanged);
+            // 
             // ObiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1177,6 +1189,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
         private System.Windows.Forms.ToolStripMenuItem mShowStatusBarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mShowTransportBarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mShowSearchBarToolStripMenuItem;
 
 
     }

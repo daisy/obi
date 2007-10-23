@@ -40,12 +40,26 @@ namespace Obi.ProjectView
     {
         FlowLayoutPanel mStripsPanel;
         int mOriginalPosition;
+        private ProjectView mView;  // the parent project view
 
         public FindInText()
         {
             mStripsPanel = null;
             mOriginalPosition = -1;
+            mView = null;
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// The parent project view. Should be set ASAP, and only once.
+        /// </summary>
+        public ProjectView ProjectView
+        {
+            set
+            {
+                if (mView != null) throw new Exception("Cannot set the project view again!");
+                mView = value;
+            }
         }
 
         //this is the function that starts this widget
@@ -108,8 +122,7 @@ namespace Obi.ProjectView
 
                 if (((ISearchable)control).Matches(mString.Text))
                 {
-                    //does this function work? 
-                    ((Strip)control).Selected = true;
+                    mView.SelectedStripNode = ((Strip)control).Node;
                     found = true;
                 }
                 else
@@ -137,6 +150,8 @@ namespace Obi.ProjectView
                 //so if the user presses F3, they can start searching again
                 //anyway...i think this will work, but it needs to be tested
                 mOriginalPosition = GetIndexOfCurrentlySelectedStrip(mStripsPanel);
+                // also deselect
+                mView.Selection = null;
             }
         }
 
