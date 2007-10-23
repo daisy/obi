@@ -63,16 +63,24 @@ namespace Obi
         }
 
         /// <summary>
+        /// Initialize event handling for a new presentation.
+        /// </summary>
+        public void Initialize()
+        {
+            UndoRedoManager.CommandExecuted += new Obi.Commands.UndoRedoEventHandler(undo_CommandExecuted);
+            UndoRedoManager.CommandUnexecuted += new Obi.Commands.UndoRedoEventHandler(undo_CommandUnexecuted);
+        }
+
+        /// <summary>
         /// Initialize the metadata of the presentation, and create a title section if necessary.
         /// </summary>
         public void Initialize(string title, bool createTitleSection, string id, UserProfile userProfile)
         {
+            Initialize();
             setRootNode(new RootNode(this));
             CreateMetadata(title, id, userProfile);
             AddChannel(TEXT_CHANNEL_NAME);
             if (createTitleSection) CreateTitleSection(title);
-            UndoRedoManager.CommandExecuted += new Obi.Commands.UndoRedoEventHandler(undo_CommandExecuted);
-            UndoRedoManager.CommandUnexecuted += new Obi.Commands.UndoRedoEventHandler(undo_CommandUnexecuted);
         }
 
         void undo_CommandExecuted(object sender, Obi.Commands.UndoRedoEventArgs e)
