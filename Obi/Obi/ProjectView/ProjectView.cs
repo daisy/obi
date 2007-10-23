@@ -15,6 +15,7 @@ namespace Obi.ProjectView
         private NodeSelection mSelection;        // currently selected node
         private ObiNode mClipboard;              // node in the clipboard
         private bool mSynchronizeViews;          // synchronize views flag
+        private ObiForm mForm;                   // parent form
 
         public event EventHandler SelectionChanged;            // triggered when the selection changes
         public event EventHandler FindInTextVisibleChanged;    // triggered when the search bar shows up or disappears
@@ -36,6 +37,7 @@ namespace Obi.ProjectView
             mMetadataViewVisible = !mHSplitter.Panel1Collapsed && !mVSplitter.Panel2Collapsed;
             mFindInText.Visible = false;
             mFindInText.VisibleChanged += new EventHandler(mFindInText_VisibleChanged);
+            mForm = null;
         }
 
         void mFindInText_VisibleChanged(object sender, EventArgs e)
@@ -66,6 +68,15 @@ namespace Obi.ProjectView
                 // mTOCPanel.EnableTooltips = value;
                 mTransportBar.EnableTooltips = value;
             }
+        }
+
+        /// <summary>
+        /// The parent form as an Obi form.
+        /// </summary>
+        public ObiForm ObiForm
+        {
+            get { return mForm; }
+            set { mForm = value; }
         }
 
         public Presentation Presentation

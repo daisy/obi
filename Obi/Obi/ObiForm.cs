@@ -46,6 +46,11 @@ namespace Obi
         /// </summary>
         public Settings Settings { get { return mSettings; } }
 
+        /// <summary>
+        /// Display a message in the status bar.
+        /// </summary>
+        public void Status(string message) { mStatusLabel.Text = message; }
+
 
         #region File menu
 
@@ -370,6 +375,7 @@ namespace Obi
             try
             {
                 InitializeComponent();
+                mProjectView.ObiForm = this;
                 mProjectView.SelectionChanged += new EventHandler(ProjectView_SelectionChanged);
                 mProjectView.FindInTextVisibleChanged += new EventHandler(ProjectView_FindInTextVisibleChanged);
                 mSession = new Session();
@@ -508,9 +514,6 @@ namespace Obi
                 AddRecentProject(mSession.Path);
             }
         }
-
-        // Display a message in the status bar.
-        private void Status(string message) { mStatusLabel.Text = message; }
 
         // Undo
         private void Undo()
