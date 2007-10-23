@@ -84,11 +84,10 @@ When? October
 Who? Avneesh
 And? Main block classes (phrases, pages, sections) have their button and shortcut, but all other classes can be added through an extra custom button.
 
-What? Import structure
+What? Update import structure to work with new blocks
 When? October
 Who? Marisa
-Done? NOTYET
-And? The HTML file can contain page blocks and heading blocks. When the project is created within Obi, empty blocks are created as well.
+And? Waiting for new blocks.
 
 What? Record into empty blocks
 When? October
@@ -127,7 +126,8 @@ And? Manual numbering, renumbering on demand, support for front, main and specia
 What? Search text.
 When? October
 Who? Marisa
-And? Search text in section titles, annotations, metadata, custom classes, page numbers. Use a VI model with / which brings up a popup dialog, and selects the current search result in the view that has focus (e.g. text found in a section title selects the TOC node in the TOC view, or the strip otherwise.)
+And? Search text in section titles and blocks (and metadata?). F3 brings up a popup dialog, and selects the current search result in the strip view (or the metadata view?).
+Done? NOTYET
 
 What? Split and merge sections.
 When? October
