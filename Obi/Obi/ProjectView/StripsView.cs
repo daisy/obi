@@ -29,10 +29,22 @@ namespace Obi.ProjectView
         public StripsView()
         {
             InitializeComponent();
+            mView = null;
             mSelectedItem = null;
         }
 
-        public ProjectView ProjectView { set { mView = value; } }
+
+        /// <summary>
+        /// The parent project view. Should be set ASAP, and only once.
+        /// </summary>
+        public ProjectView ProjectView
+        {
+            set
+            {
+                if (mView != null) throw new Exception("Cannot set the project view again!");
+                mView = value;
+            }
+        }
 
 
         public bool CanAddStrip { get { return mSelectedItem is Strip; } }
