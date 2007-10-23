@@ -132,35 +132,37 @@ namespace Obi.ProjectView
             }
             else
             {
-                System.Diagnostics.Trace.Write("Find in Text: Not found.\n");
+                System.Diagnostics.Trace.Write("Find in Text: Not found or no more found.\n");
+                //reset the original position to wherever we are now
+                //so if the user presses F3, they can start searching again
+                //anyway...i think this will work, but it needs to be tested
+                mOriginalPosition = GetIndexOfCurrentlySelectedStrip(mStripsPanel);
             }
         }
 
-
-        private void FindInText_KeyPress(object sender, KeyPressEventArgs e)
+        private void mString_KeyDown(object sender, KeyEventArgs e)
         {
             ProcessKeys(e);
         }
-        //note: i don't know if these have to be handled in both the textbox and form
-        private void mSearchString_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ProcessKeys(e);
-        }
-
+     
         //enter = search
         //f3 = search or search next
         //shift + f3 = search previous
         //escape = close
-        private void ProcessKeys(KeyPressEventArgs e)
+        private void ProcessKeys(KeyEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Return)
+            if (e.KeyCode == Keys.Return)
             {
                 mOriginalPosition = GetIndexOfCurrentlySelectedStrip(mStripsPanel);
                 search(mOriginalPosition, mString.Text, 1);
             }
-            else if (e.KeyChar == (char)Keys.Escape) this.Visible = false;
-            else if (e.KeyChar == (char)Keys.F3) FindNextInText();
-            else if (e.KeyChar == (char)Keys.F3 && Control.ModifierKeys == Keys.Control) FindPreviousInText();
+            else if (e.KeyCode == Keys.Escape) this.Visible = false;
+           
+            else if (e.KeyCode == Keys.F3)
+            {
+                if (Control.ModifierKeys == Keys.Shift) FindPreviousInText();
+                else FindNextInText();
+            }
         }
 
         //does the widget meet our criteria for being a searchable widget?
@@ -241,6 +243,5 @@ namespace Obi.ProjectView
         }
     #endregion
 
-      
     }
 }
