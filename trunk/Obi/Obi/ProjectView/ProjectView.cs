@@ -593,14 +593,6 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Select the strip in the strips view.
-        /// </summary>
-        public void SelectStrip(Strip strip)
-        {
-            Selection = new NodeSelection(strip.Node, mStripsView, false);
-        }
-
-        /// <summary>
         /// Show/hide strips for nodes that were collapsed/expanded when the views are synchronized
         /// </summary>
         public void SetStripsVisibilityForSection(SectionNode section, bool visible)

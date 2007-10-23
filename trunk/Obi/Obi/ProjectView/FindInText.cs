@@ -109,7 +109,7 @@ namespace Obi.ProjectView
                 if (((ISearchable)control).Matches(mString.Text))
                 {
                     //does this function work? 
-                    ((Strip)control).Select();
+                    ((Strip)control).Selected = true;
                     found = true;
                 }
                 else
