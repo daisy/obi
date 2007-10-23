@@ -25,9 +25,7 @@ namespace Obi.ProjectView
         void Replace(string search, string replace);
     }
 
-    /*
-     * Disclaimer: this is new and doesn't yet work as described below.
-     * 
+    /* 
      * Press F3 to bring up the FindInText form
      * Type and press enter to start searching
      * F3 to search next
@@ -69,12 +67,12 @@ namespace Obi.ProjectView
         public void ShowFindInText(FlowLayoutPanel stripsPanel)
         {
             //if this form is already being shown and has a search string, do a "Find Next"
-            if (this.Visible && mString.Text.Length > 0) FindNextInText();
+            if (mView.FindInTextVisible == true && mString.Text.Length > 0) FindNextInText();
             else
             {
-                System.Diagnostics.Trace.Write("Find in Text: starting search form\n");
+                mView.ObiForm.Status("See the lovely find in text form?");
                 mStripsPanel = stripsPanel;
-                this.Visible = true;
+                mView.FindInTextVisible = true;
                 mString.Focus();
             }
         }
@@ -84,7 +82,7 @@ namespace Obi.ProjectView
             //there is a bug here because currentlyselectedstrip is always the one that was clicked, not the one that
             //had a search result in it.  when Strip.Select() works, it will be better.
             int currentSelection = GetIndexOfCurrentlySelectedStrip(mStripsPanel);
-            System.Diagnostics.Trace.Write("Find in Text: Find Next from index = " + currentSelection + "\n");
+            mView.ObiForm.Status("Find next.");
             search(GetIndexOfNextStrip(mStripsPanel, currentSelection), mString.Text, 1);
         }
 
@@ -93,7 +91,7 @@ namespace Obi.ProjectView
             int currentSelection = GetIndexOfCurrentlySelectedStrip(mStripsPanel);
             //start at the strip before our current strip
             int previousStrip = GetIndexOfPreviousStrip(mStripsPanel, currentSelection);
-            System.Diagnostics.Trace.Write("Find in Text: Find Previous from index = " + currentSelection + "\n");
+            mView.ObiForm.Status("Find previous.");
             search(GetIndexOfPreviousStrip(mStripsPanel, currentSelection), mString.Text, -1);
         }
 
@@ -106,12 +104,12 @@ namespace Obi.ProjectView
                 startIndex = GetIndexOfFirstStrip(mStripsPanel);
                 if (startIndex == -1)
                 {
-                    System.Diagnostics.Trace.Write("Find in Text: Nothing to search\n");
+                    mView.ObiForm.Status("Nothing to search!");
                     return;
                 }
             }
 
-            System.Diagnostics.Trace.Write("Find in Text: Searching..., starting from " + startIndex + "\n");
+            mView.ObiForm.Status("Searching...");
          
             bool found = false;
             while (startIndex != -1 && found == false)
@@ -132,27 +130,26 @@ namespace Obi.ProjectView
                     //don't loop forever
                     if (startIndex == mOriginalPosition)
                     {
-                        System.Diagnostics.Trace.Write("Find in Text: searched all text.  Stopping.\n");
+                        mView.ObiForm.Status("Searched all text.");
                         break;
                     }
-                    System.Diagnostics.Trace.Write("Find in Text: still looking.  Index = " + startIndex + "\n");
                 }
             }
 
             if (found)
             {
-                System.Diagnostics.Trace.Write("Find in Text: Found occurence at " + startIndex + "\n");
+                mView.ObiForm.Status("Found occurence of \"" + mString.Text + "\".");
             }
             else
             {
-                System.Diagnostics.Trace.Write("Find in Text: Not found or no more found.\n");
+                mView.ObiForm.Status("Not found or no more found.");
                 //reset the original position to wherever we are now
                 //so if the user presses F3, they can start searching again
                 //anyway...i think this will work, but it needs to be tested
                 mOriginalPosition = GetIndexOfCurrentlySelectedStrip(mStripsPanel);
                 // also deselect
                 mView.Selection = null;
-                // show a message in the status bar (just an example; please use the localizer!)
+                // show a message in the status bar )
                 mView.ObiForm.Status("No match!");
             }
         }
@@ -173,7 +170,7 @@ namespace Obi.ProjectView
                 mOriginalPosition = GetIndexOfCurrentlySelectedStrip(mStripsPanel);
                 search(mOriginalPosition, mString.Text, 1);
             }
-            else if (e.KeyCode == Keys.Escape) this.Visible = false;
+            else if (e.KeyCode == Keys.Escape) mView.FindInTextVisible = false;
            
             else if (e.KeyCode == Keys.F3)
             {

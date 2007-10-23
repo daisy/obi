@@ -18,7 +18,6 @@ namespace Obi.ProjectView
         private ObiForm mForm;                   // parent form
 
         public event EventHandler SelectionChanged;            // triggered when the selection changes
-        public event EventHandler FindInTextVisibleChanged;    // triggered when the search bar shows up or disappears
         public event ImportingFileEventHandler ImportingFile;  // triggered when a file is being imported
         public event EventHandler FinishedImportingFiles;      // triggered when all files were imported
 
@@ -35,14 +34,8 @@ namespace Obi.ProjectView
             mTransportBar.Enabled = false;
             mTOCViewVisible = !mHSplitter.Panel1Collapsed && !mVSplitter.Panel1Collapsed;
             mMetadataViewVisible = !mHSplitter.Panel1Collapsed && !mVSplitter.Panel2Collapsed;
-            mFindInText.Visible = false;
-            mFindInText.VisibleChanged += new EventHandler(mFindInText_VisibleChanged);
+            mFindInTextSplitter.Panel2Collapsed = true;
             mForm = null;
-        }
-
-        void mFindInText_VisibleChanged(object sender, EventArgs e)
-        {
-            if (FindInTextVisibleChanged != null) FindInTextVisibleChanged(this, null);
         }
 
 
@@ -560,8 +553,12 @@ namespace Obi.ProjectView
         /// </summary>
         public bool FindInTextVisible
         {
-            get { return mFindInText.Visible; }
-            set { if (mFindInText.Visible != value) mFindInText.Visible = value; }
+            get { return !mFindInTextSplitter.Panel2Collapsed; }
+            set 
+            {
+                bool isVisible = !mFindInTextSplitter.Panel2Collapsed;
+                if (isVisible != value) mFindInTextSplitter.Panel2Collapsed = !value; 
+            }
         }
 
         /// <summary>
@@ -648,6 +645,9 @@ namespace Obi.ProjectView
 
         public void FindInText()
         {
+            //show the form if it's not already shown
+            if (mFindInTextSplitter.Panel2Collapsed == true) mFindInTextSplitter.Panel2Collapsed = false;
+            FindInTextVisible = true;
             //iterating over the layout panel seems to be the way to search the sections 
             mFindInText.ShowFindInText(mStripsView.LayoutPanel);
         }
@@ -730,6 +730,11 @@ namespace Obi.ProjectView
                 }
             }
             if (FinishedImportingFiles != null) FinishedImportingFiles(this, null);
+        }
+
+        private void mStripsView_Load(object sender, EventArgs e)
+        {
+
         }
     }
 
