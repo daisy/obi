@@ -16,10 +16,7 @@ namespace Obi.ProjectView
         private ObiNode mClipboard;              // node in the clipboard
         private bool mSynchronizeViews;          // synchronize views flag
 
-        public event EventHandler TOCViewVisibilityChanged;
-        public event EventHandler MetadataViewVisibilityChanged;
         public event EventHandler SelectionChanged;
-
         public event ImportingFileEventHandler ImportingFile;  // triggered when a file is being imported
         public event EventHandler FinishedImportingFiles;      // triggered when all files were imported
 
@@ -195,18 +192,6 @@ namespace Obi.ProjectView
         public UserControls.TransportBar TransportBar { get { return mTransportBar; } }
 
 
-        #region TOC Panel
-
-        /// <summary>
-        /// Show the selected section in the TOC view in the strip view.
-        /// </summary>
-        public void ShowSelectedSectionInStripView()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        #endregion
-
         #region Strips
 
         /// <summary>
@@ -342,11 +327,6 @@ namespace Obi.ProjectView
         }
 
         internal void ToggleSelectedStripUsed()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        internal void ShowSelectedStripInTOCView()
         {
             throw new Exception("The method or operation is not implemented.");
         }
@@ -530,7 +510,6 @@ namespace Obi.ProjectView
                     if (!MetadataViewVisible) mHSplitter.Panel1Collapsed = true;
                 }
                 mVSplitter.Panel1Collapsed = !value;
-                if (TOCViewVisibilityChanged != null) TOCViewVisibilityChanged(this, new EventArgs());
             }
         }
 
@@ -552,10 +531,23 @@ namespace Obi.ProjectView
                 }
                 else if (!value && !TOCViewVisible) mHSplitter.Panel1Collapsed = true;
                 mVSplitter.Panel2Collapsed = !value;
-                if (MetadataViewVisibilityChanged != null) MetadataViewVisibilityChanged(this, new EventArgs());
             }
         }
 
+        /// <summary>
+        /// Show or hide the transport bar.
+        /// </summary>
+        public bool TransportBarVisible
+        {
+            get { return mTransportBar.Visible; }
+            set { mTransportBar.Visible = value; }
+        }
+
+
+        public bool CanCut { get { return Selection != null; } }
+        public bool CanCopy { get { return Selection != null; } }
+        public bool CanDelete { get { return Selection != null; } }
+        public bool CanPaste { get { return Selection != null && mClipboard != null; } }
 
         public bool CanShowInStripsView { get { return SelectedSection != null && mSelection.Control == mTOCView; } }
         public bool CanShowInTOCView { get { return SelectedSection != null && mSelection.Control == mStripsView; } }
@@ -609,7 +601,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// Show (select) the section node for the current selection
         /// </summary>
-        public void ShowSectionInTOCView()
+        public void ShowSelectedSectionInTOCView()
         {
             if (CanShowInTOCView) Selection = new NodeSelection(mSelection.Node, mTOCView, false);
         }

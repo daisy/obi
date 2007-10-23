@@ -83,7 +83,9 @@ namespace Obi
         {
             if (mProject != null)
             {
-                Presentation presentation = Presentation;
+                // if the project could not be opened, there is no presentation so this call may fail
+                Presentation presentation = null;
+                try { presentation = Presentation; } catch(Exception) {}
                 mProject = null;
                 mHasUnsavedChanges = false;
                 if (ProjectClosed != null) ProjectClosed(this, new ProjectClosedEventArgs(presentation));
