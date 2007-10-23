@@ -141,9 +141,10 @@ namespace Obi.ProjectView
             // 
             this.mFindInText.BackColor = System.Drawing.Color.Chartreuse;
             this.mFindInText.Location = new System.Drawing.Point(3, 176);
-            this.mFindInText.Name = "FindInText1";
+            this.mFindInText.Name = "mFindInText";
             this.mFindInText.Size = new System.Drawing.Size(209, 100);
             this.mFindInText.TabIndex = 1;
+            
             // 
             // ProjectView
             // 
