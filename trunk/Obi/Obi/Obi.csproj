@@ -129,12 +129,6 @@
     <Compile Include="Dialogs\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\FullMetadata.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\FullMetadata.Designer.cs">
-      <DependentUpon>FullMetadata.cs</DependentUpon>
-    </Compile>
     <Compile Include="Dialogs\GoToPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -461,10 +455,6 @@
     <EmbeddedResource Include="Dialogs\About.resx">
       <SubType>Designer</SubType>
       <DependentUpon>About.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\FullMetadata.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>FullMetadata.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\GoToPage.resx">
       <SubType>Designer</SubType>

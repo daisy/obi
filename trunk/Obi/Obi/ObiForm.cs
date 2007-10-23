@@ -47,31 +47,6 @@ namespace Obi
         public Settings Settings { get { return mSettings; } }
 
 
-        private void UpdateMenus()
-        {
-            UpdateFileMenu();
-            UpdateEditMenu();
-            UpdateViewMenu();
-
-            showToolStripMenuItem.Enabled = mProjectView.CanShowInTOCView;
-            showInStripsViewToolStripMenuItem.Enabled = mProjectView.CanShowInStripsView;
-            mAddSectionToolStripMenuItem.Enabled = mProjectView.CanAddSection;
-            mAddSubSectionToolStripMenuItem.Enabled = mProjectView.CanAddSubSection;
-            mRenameSectionToolStripMenuItem.Enabled = mProjectView.CanRenameSection;
-            mMoveOutToolStripMenuItem.Enabled = mProjectView.CanMoveSectionOut;
-            mMoveInToolStripMenuItem.Enabled = mProjectView.CanMoveSectionIn;
-            mMarkSectionAsUsedToolStripMenuItem.Visible = mProjectView.CanMarkSectionUsed;
-            mMarkSectionAsUnusedToolStripMenuItem.Visible = mProjectView.CanMarkSectionUnused;
-            mMarkSectionAsUsedunusedToolStripMenuItem.Visible = !mProjectView.CanToggleSectionUsed;
-            mInsertStripToolStripMenuItem.Enabled = mProjectView.CanAddStrip;
-            mRenameStripToolStripMenuItem.Enabled = mProjectView.CanRenameStrip;
-            mSplitStripToolStripMenuItem.Enabled = mProjectView.CanSplitStrip;
-            mMergeWithNextStripToolStripMenuItem.Enabled = mProjectView.CanMergeStrips;
-            mAboutThisStripToolStripMenuItem.Enabled = mProjectView.CanTellAboutStrip;
-            mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
-        }
-
-
         #region File menu
 
         private void UpdateFileMenu()
@@ -206,10 +181,20 @@ namespace Obi
             mRedoToolStripMenuItem.Text = mSession.CanRedo ?
                 String.Format(Localizer.Message("redo_label"), Localizer.Message("redo"), mSession.RedoLabel) :
                 Localizer.Message("cannot_redo");
+            mCutToolStripMenuItem.Enabled = mProjectView.CanCut;
+            mCopyToolStripMenuItem.Enabled = mProjectView.CanCopy;
+            mPasteToolStripMenuItem.Enabled = mProjectView.CanPaste;
+            mDeleteToolStripMenuItem.Enabled = mProjectView.CanDelete;
+            mFindInTextToolStripMenuItem.Enabled = mSession.HasProject;
         }
 
         private void mUndoToolStripMenuItem_Click(object sender, EventArgs e) { Undo(); }
         private void mRedoToolStripMenuItem_Click(object sender, EventArgs e) { Redo(); }
+        private void mCutToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Cut(); }
+        private void mCopyToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Copy(); }
+        private void mPasteToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Paste(); }
+        private void mDeleteToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Delete(); }
+        private void mFindInTextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.FindInText(); }
 
         #endregion
 
@@ -217,8 +202,51 @@ namespace Obi
 
         private void UpdateViewMenu()
         {
+            mShowTOCViewToolStripMenuItem.Enabled = mSession.HasProject;
+            mShowMetadataViewToolStripMenuItem.Enabled = mSession.HasProject;
+            mShowTransportBarToolStripMenuItem.Enabled = mSession.HasProject;
+            mShowStatusBarToolStripMenuItem.Enabled = true;
+            mShowInTOCViewToolStripMenuItem.Enabled = mProjectView.CanShowInTOCView;
+            mShowInStripsViewToolStripMenuItem.Enabled = mProjectView.CanShowInStripsView;
+            mSynchronizeViewsToolStripMenuItem.Enabled = mSession.HasProject;
             mShowSourceToolStripMenuItem.Enabled = mSession.HasProject;
         }
+
+        private void mShowTOCViewToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            mProjectView.TOCViewVisible = mShowTOCViewToolStripMenuItem.Checked;
+        }
+
+        private void mShowMetadataViewToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            mProjectView.MetadataViewVisible = mShowMetadataViewToolStripMenuItem.Checked;
+        }
+
+        private void mShowTransportBarToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            mProjectView.TransportBarVisible = mShowTransportBarToolStripMenuItem.Checked;
+        }
+
+        private void mShowStatusBarToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            mStatusStrip.Visible = mShowStatusBarToolStripMenuItem.Checked;
+        }
+
+        private void mShowInTOCViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.ShowSelectedSectionInTOCView();
+        }
+
+        private void mShowInStripsViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.ShowSelectedSectionInStripsView(); 
+        }
+
+        private void mSynchronizeViewsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            SynchronizeViews = mSynchronizeViewsToolStripMenuItem.Checked;
+        }
+
 
         private void mShowSourceToolStripMenuItem_Click(object sender, EventArgs e) { ShowSource(); }
 
@@ -256,6 +284,22 @@ namespace Obi
             item.Click += new System.EventHandler(delegate(object sender, EventArgs e) { CloseAndOpenProject(path); });
             mOpenRecentProjectToolStripMenuItem.DropDownItems.Insert(0, item);
             return true;
+        }
+
+        // Clear the list of recently opened files (prompt the user first.)
+        private void ClearRecentProjectsList()
+        {
+            if (MessageBox.Show(Localizer.Message("clear_recent_text"),
+                    Localizer.Message("clear_recent_caption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
+                DialogResult.Yes)
+            {
+                while (mOpenRecentProjectToolStripMenuItem.DropDownItems.Count > 2)
+                {
+                    mOpenRecentProjectToolStripMenuItem.DropDownItems.RemoveAt(0);
+                }
+                mSettings.RecentProjects.Clear();
+                mOpenRecentProjectToolStripMenuItem.Enabled = false;
+            }
         }
 
         /// <summary>
@@ -333,6 +377,9 @@ namespace Obi
                 UpdateMenus();
                 mStatusTimer.Interval = STATUS_TIMER_DELAY_IN_SECONDS * 1000;
                 mStatusTimer.Tick += new EventHandler(delegate(object sender, EventArgs e) { Ready(); });
+                // these should be stored in settings
+                mShowTOCViewToolStripMenuItem.Checked = true;
+                mShowMetadataViewToolStripMenuItem.Checked = true;
                 mShowStatusBarToolStripMenuItem.Checked = true;
                 Ready();
             }
@@ -399,6 +446,7 @@ namespace Obi
                 MessageBox.Show(e.Message, Localizer.Message("open_project_error_caption"),
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 mSettings.LastOpenProject = "";
+                mSession.Close();
             }
         }
 
@@ -461,15 +509,51 @@ namespace Obi
             if (mSession.CanUndo) mSession.Presentation.UndoRedoManager.undo();
         }
 
+        /// <summary>
+        /// Set view synchronization and update the menu and settings accordingly.
+        /// </summary>
+        private bool SynchronizeViews
+        {
+            set
+            {
+                mSettings.SynchronizeViews = value;
+                mSynchronizeViewsToolStripMenuItem.Checked = value;
+                mProjectView.SynchronizeViews = value;
+            }
+        }
+
         // Update all of Obi.
         private void UpdateObi()
         {
-            UpdateTitleBar();
+            UpdateTitleAndStatusBar();
             UpdateMenus();
         }
 
-        // Update the title bar to show the name of the project, and if it has unsaved changes
-        private void UpdateTitleBar()
+        // Update all menu items.
+        private void UpdateMenus()
+        {
+            UpdateFileMenu();
+            UpdateEditMenu();
+            UpdateViewMenu();
+
+            mAddSectionToolStripMenuItem.Enabled = mProjectView.CanAddSection;
+            mAddSubSectionToolStripMenuItem.Enabled = mProjectView.CanAddSubSection;
+            mRenameSectionToolStripMenuItem.Enabled = mProjectView.CanRenameSection;
+            mMoveOutToolStripMenuItem.Enabled = mProjectView.CanMoveSectionOut;
+            mMoveInToolStripMenuItem.Enabled = mProjectView.CanMoveSectionIn;
+            mMarkSectionAsUsedToolStripMenuItem.Visible = mProjectView.CanMarkSectionUsed;
+            mMarkSectionAsUnusedToolStripMenuItem.Visible = mProjectView.CanMarkSectionUnused;
+            mMarkSectionAsUsedunusedToolStripMenuItem.Visible = !mProjectView.CanToggleSectionUsed;
+            mInsertStripToolStripMenuItem.Enabled = mProjectView.CanAddStrip;
+            mRenameStripToolStripMenuItem.Enabled = mProjectView.CanRenameStrip;
+            mSplitStripToolStripMenuItem.Enabled = mProjectView.CanSplitStrip;
+            mMergeWithNextStripToolStripMenuItem.Enabled = mProjectView.CanMergeStrips;
+            mAboutThisStripToolStripMenuItem.Enabled = mProjectView.CanTellAboutStrip;
+            mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
+        }
+
+        // Update the title and status bars to show the name of the project, and if it has unsaved changes
+        private void UpdateTitleAndStatusBar()
         {
             Text = mSession.HasProject ?
                 String.Format(Localizer.Message("title_bar"), mSession.Presentation.Title,
@@ -480,7 +564,7 @@ namespace Obi
         }
 
 
-        // Event handlers
+        #region Event handlers
 
         private void Presentation_CommandUnexecuted(object sender, UndoRedoEventArgs e) { ProjectHasChanged(); }
         private void Presentation_CommandExecuted(object sender, UndoRedoEventArgs e) { ProjectHasChanged(); }
@@ -495,7 +579,7 @@ namespace Obi
         private void Session_ProjectClosed(object sender, ProjectClosedEventArgs e)
         {
             UpdateObi();
-            Status(String.Format(Localizer.Message("closed_project"), e.ClosedPresentation.Title));
+            if (e.ClosedPresentation != null) Status(String.Format(Localizer.Message("closed_project"), e.ClosedPresentation.Title));
             mProjectView.Presentation = null;
             if (mSourceView != null) mSourceView.Close();
         }
@@ -512,7 +596,7 @@ namespace Obi
             Status(String.Format(Localizer.Message("saved_project"), mSession.Path));
         }
 
-
+        #endregion
 
 
 
@@ -548,20 +632,6 @@ namespace Obi
         /// Try to close a possibly open project first.
         /// </summary>
 
-        /// <summary>
-        /// Clear the list of recently opened files (prompt the user first.)
-        /// </summary>
-        private void ClearRecentProjectsList()
-        {
-            mProjectView.TransportBar.Stop();
-            if (MessageBox.Show(Localizer.Message("clear_recent_text"),
-                    Localizer.Message("clear_recent_caption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
-                DialogResult.Yes)
-            {
-                ClearRecentList();
-            }
-            Ready();
-        }
 
 
 
@@ -1217,18 +1287,6 @@ if (mProject != null)
 
         // Various utility functions
 
-        /// <summary>
-        /// Clear the list of recent projects.
-        /// </summary>
-        private void ClearRecentList()
-        {
-            while (mOpenRecentProjectToolStripMenuItem.DropDownItems.Count > 2)
-            {
-                mOpenRecentProjectToolStripMenuItem.DropDownItems.RemoveAt(0);
-            }
-            mSettings.RecentProjects.Clear();
-        }
-
 
         private void mViewHelpInExternalBrowserToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1240,11 +1298,6 @@ if (mProject != null)
         {
             Uri url = new Uri("http://sourceforge.net/tracker/?func=add&group_id=149942&atid=776242");
             System.Diagnostics.Process.Start(url.ToString());
-        }
-
-        private void mShowInTOCViewToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.ShowSelectedStripInTOCView();
         }
 
 
@@ -1449,38 +1502,6 @@ if (mProject != null)
             }
         }
 
-        /// <summary>
-        /// Handle state change events from the project (closed, modified, opened, saved.)
-        /// </summary>
-        private void mProject_StateChanged(object sender, Events.Project.StateChangedEventArgs e)
-        {
-            switch (e.Change)
-            {
-                case Obi.Events.Project.StateChange.Closed:
-                    StatusUpdateClosedProject();
-                    mViewToolStripMenuItem.Enabled = false;
-                    break;
-                case Obi.Events.Project.StateChange.Modified:
-                    FormUpdateModifiedProject();
-                    break;
-                case Obi.Events.Project.StateChange.Opened:
-                    //mProjectView.Project = mProject;
-                    UpdateMenus();
-                    FormUpdateOpenedProject();
-                    //mCommandManager.Clear();
-                    mProjectView.SynchronizeWithCoreTree();
-                    mProjectView.TOCViewVisibilityChanged += new EventHandler(mProjectView_TOCViewVisibilityChanged);
-                    mProjectView.MetadataViewVisibilityChanged += new EventHandler(mProjectView_MetadataViewVisibilityChanged);
-                    mViewToolStripMenuItem.Enabled = true;
-                    mProjectView.TOCViewVisible = true;
-                    mProjectView.MetadataViewVisible = true;
-                    break;
-                case Obi.Events.Project.StateChange.Saved:
-                    FormUpdateSavedProject();
-                    break;
-            }
-        }
-
 
         /// <summary>
         /// Format a time value. If less than a minute, display seconds and milliseconds.
@@ -1524,56 +1545,6 @@ if (mProject != null)
             return time.ToString("0.00") + "s";
         }
 
-        private void cutToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Cut(); }
-        private void copyToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Copy(); }
-        private void pasteToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Paste(); }
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Delete(); }
-
-        private void mShowTOCViewToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TOCViewVisible = true; }
-        private void mHideTOCViewToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TOCViewVisible = false; }
-
-        void mProjectView_TOCViewVisibilityChanged(object sender, EventArgs e)
-        {
-            mShowTOCViewToolStripMenuItem.Visible = !mProjectView.TOCViewVisible;
-            mHideTOCViewToolStripMenuItem.Visible = mProjectView.TOCViewVisible;
-        }
-
-        private void mShowMetadataViewToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MetadataViewVisible = true; }
-        private void mHideMetadataViewToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MetadataViewVisible = false; }
-
-        private void mProjectView_MetadataViewVisibilityChanged(object sender, EventArgs e)
-        {
-            mShowMetadataViewToolStripMenuItem.Visible = !mProjectView.MetadataViewVisible;
-            mHideMetadataViewToolStripMenuItem.Visible = mProjectView.MetadataViewVisible;
-        }
-
-        // Show (select) the selected section in the TOC view 
-        private void showToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.ShowSectionInTOCView();
-        }
-
-        // Show (select) the selected section in the Strips view
-        private void showInStripsViewToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.ShowSelectedSectionInStripsView();
-        }
-
-        // Synchronize/desynchronize views
-        private void mSynchronizeViewsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SynchronizeViews = !mSettings.SynchronizeViews;
-        }
-
-        private bool SynchronizeViews
-        {
-            set
-            {
-                mSettings.SynchronizeViews = value;
-                mSynchronizeViewsToolStripMenuItem.Checked = value;
-                mProjectView.SynchronizeViews = value;
-            }
-        }
 
         // TOC menu
 
@@ -1597,12 +1568,6 @@ if (mProject != null)
 
         private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ImportPhrases(); }
 
-        private void mFindInTextToolStripMenuItem_Click(object sender, EventArgs e) 
-        { 
-            //this will bring up the findintext form
-            mProjectView.FindInText(); 
-        }
-       
 
         private delegate void DisableCallback(bool disable);
 
@@ -1615,7 +1580,7 @@ if (mProject != null)
             else
             {
                 Cursor = disable ? Cursors.WaitCursor : Cursors.Default;
-                menuStrip1.Enabled = !disable;
+                mMenuStrip.Enabled = !disable;
                 mProjectView.Enabled = !disable;
             }
         }
@@ -1671,14 +1636,5 @@ if (mProject != null)
         }
         #endregion
 
-        private void mShowStatusBarToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
-        {
-            mStatusStrip.Visible = mShowStatusBarToolStripMenuItem.Checked;
-        }
-
-        private void mShowStatusBarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mShowStatusBarToolStripMenuItem.Checked = !mShowStatusBarToolStripMenuItem.Checked;
-        }
     }
 }

@@ -23,9 +23,12 @@ namespace Obi.Dialogs
             mView = view;
             Text = String.Format("{0} - {1}", Text, mView.Presentation.Title);
             UpdateView();
-            // mView.CommandExecuted += new Obi.Commands.UndoRedoEventHandler(view_CommandExecuted);
-            // mView.CommandUnexecuted += new Obi.Commands.UndoRedoEventHandler(view_CommandExecuted);
+            mView.Presentation.CommandExecuted += new Obi.Commands.UndoRedoEventHandler(Presentation_CommandExecuted);
+            mView.Presentation.CommandUnexecuted += new Obi.Commands.UndoRedoEventHandler(Presentation_CommandUnexecuted);
         }
+
+        private void Presentation_CommandUnexecuted(object sender, Obi.Commands.UndoRedoEventArgs e) { UpdateView(); }
+        private void Presentation_CommandExecuted(object sender, Obi.Commands.UndoRedoEventArgs e) { UpdateView(); }
 
         // Return the XUK source as a string.
         private string GetXUKSource()
@@ -40,26 +43,13 @@ namespace Obi.Dialogs
             return srcstr.ToString();
         }
 
-        // Update the view on project modification
-        /*private void project_StateChanged(object sender, Events.Project.StateChangedEventArgs e)
-        {
-            if (e.Change == Obi.Events.Project.StateChange.Modified) UpdateView();
-        }*/
-
-        // Update the view on undo/redo
-        // private void view_CommandExecuted(object sender, Obi.Commands.UndoRedoEventArgs e) { UpdateView(); }
-
         // Unregister the listener when the window closes.
         private void SourceView_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (mView != null)
+            if (mView.Presentation != null)
             {
-                /*if (mView.Project != null)
-                {
-                    mView.Project.StateChanged -= new Obi.Events.Project.StateChangedHandler(project_StateChanged);
-                }
-                mView.CommandExecuted -= new Obi.Commands.UndoRedoEventHandler(view_CommandExecuted);
-                mView.CommandUnexecuted -= new Obi.Commands.UndoRedoEventHandler(view_CommandExecuted);*/
+                mView.Presentation.CommandExecuted -= new Obi.Commands.UndoRedoEventHandler(Presentation_CommandExecuted);
+                mView.Presentation.CommandUnexecuted -= new Obi.Commands.UndoRedoEventHandler(Presentation_CommandExecuted);
             }
         }
 
