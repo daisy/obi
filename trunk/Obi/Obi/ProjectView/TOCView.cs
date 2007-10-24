@@ -89,9 +89,10 @@ namespace Obi.ProjectView
             mDummy.ForeColor = Color.LightGray;
             mDummy.Tag = mView.Project.RootNode;*/
             CreateTreeNodeForSectionNode(mView.Presentation.RootNode);
-            mView.Presentation.treeNodeAdded += new TreeNodeAddedEventHandler(TOCView_treeNodeAdded);
-            mView.Presentation.treeNodeRemoved += new TreeNodeRemovedEventHandler(TOCView_treeNodeRemoved);
-            mView.Presentation.RenamedSectionNode += new SectionNodeEventHandler(TOCView_RenamedSectionNode);
+            mView.Presentation.treeNodeAdded += new TreeNodeAddedEventHandler(Presentation_treeNodeAdded);
+            mView.Presentation.treeNodeRemoved += new TreeNodeRemovedEventHandler(Presentation_treeNodeRemoved);
+            mView.Presentation.RenamedSectionNode += new NodeEventHandler<SectionNode>(Presentation_RenamedSectionNode);
+            mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
         }
 
         /// <summary>
@@ -151,7 +152,7 @@ namespace Obi.ProjectView
         }
 
         // When a node was renamed, show the new name in the tree.
-        private void TOCView_RenamedSectionNode(object sender, SectionNodeEventArgs e)
+        private void Presentation_RenamedSectionNode(object sender, NodeEventArgs<SectionNode> e)
         {
             TreeNode n = FindTreeNodeWithoutLabel(e.Node);
             n.Text = e.Node.Label;
@@ -209,7 +210,7 @@ namespace Obi.ProjectView
         }
 
         // Add new section nodes to the tree
-        private void TOCView_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
+        private void Presentation_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
         {
             if (e.getTreeNode() is SectionNode)
             {
@@ -229,6 +230,7 @@ namespace Obi.ProjectView
             {
                 n.EnsureVisible();
                 n.ExpandAll();
+                ChangeColorUsed(n, node.Used);
             }
             if (n != null || node is RootNode)
             {
@@ -237,7 +239,7 @@ namespace Obi.ProjectView
         }
 
         // Remove deleted section nodes from the tree
-        void TOCView_treeNodeRemoved(ITreeNodeChangedEventManager o, TreeNodeRemovedEventArgs e)
+        void Presentation_treeNodeRemoved(ITreeNodeChangedEventManager o, TreeNodeRemovedEventArgs e)
         {
             SectionNode section = e.getTreeNode() as SectionNode;
             if (section != null && IsInTree(section)) mTOCTree.Nodes.Remove(FindTreeNode(section));
@@ -274,14 +276,14 @@ namespace Obi.ProjectView
                 }
                 n.Tag = node;
                 ChangeColorUsed(n, node.Used);
-                //section.UsedStateChanged += new EventHandler(section_UsedStateChanged);
             }
             return n;
         }
 
-        private void section_UsedStateChanged(object sender, EventArgs e)
+        // Node used status changed
+        private void Presentation_UsedStatusChanged(object sender, NodeEventArgs<ObiNode> e)
         {
-            if (sender is SectionNode) ChangeColorUsed(FindTreeNode((SectionNode)sender), ((SectionNode)sender).Used);
+            if (e.Node is SectionNode && IsInTree((SectionNode)e.Node)) ChangeColorUsed(FindTreeNode((SectionNode)e.Node), e.Node.Used);
         }
 
         private void ChangeColorUsed(TreeNode n, bool used)

@@ -83,7 +83,7 @@ namespace Obi
                 if (mUsed != value)
                 {
                     mUsed = value;
-                    // if (UsedStateChanged != null) UsedStateChanged(this, new EventArgs());
+                    Presentation.SignalUsedStatusChanged(this);
                 }
             }
         }

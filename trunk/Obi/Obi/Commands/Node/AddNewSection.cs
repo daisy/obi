@@ -32,6 +32,7 @@ namespace Obi.Commands.Node
                 mIndex = contextNode.Index + 1;
             }
             mNode = View.Presentation.CreateSectionNode();
+            mNode.Used = mParent.Used;
             View.SelectAndRenameSelection(new NodeSelection(mNode, mSelection.Control, false));
         }
 
