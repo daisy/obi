@@ -9,11 +9,12 @@ namespace Obi
 {
     public class Presentation: urakawa.Presentation
     {
-        public static readonly string TEXT_CHANNEL_NAME = "obi.text";  // canonical name of the text channel
+        public static readonly string TEXT_CHANNEL_NAME = "obi.text";    // canonical name of the text channel
 
-        public event Commands.UndoRedoEventHandler CommandExecuted;    // triggered when a command was executed
-        public event Commands.UndoRedoEventHandler CommandUnexecuted;  // triggered when a command was unexecuted
-        public event SectionNodeEventHandler RenamedSectionNode;       // triggered after a section was renamed
+        public event Commands.UndoRedoEventHandler CommandExecuted;     // triggered when a command was executed
+        public event Commands.UndoRedoEventHandler CommandUnexecuted;   // triggered when a command was unexecuted
+        public event NodeEventHandler<SectionNode> RenamedSectionNode;  // triggered after a section was renamed
+        public event NodeEventHandler<ObiNode> UsedStatusChanged;       // triggered after a node used status changed
 
         /// <summary>
         /// The media data manager for the project.
@@ -110,7 +111,7 @@ namespace Obi
         public void RenameSectionNode(SectionNode section, string label)
         {
             section.Label = label;
-            if (RenamedSectionNode != null) RenamedSectionNode(this, new SectionNodeEventArgs(section));
+            if (RenamedSectionNode != null) RenamedSectionNode(this, new NodeEventArgs<SectionNode>(section));
         }
 
         /// <summary>
@@ -120,6 +121,14 @@ namespace Obi
         {
             deleteMetadata(name);
             AddMetadata(name, content);
+        }
+
+        /// <summary>
+        /// Signal that the used status of a node has changed.
+        /// </summary>
+        public void SignalUsedStatusChanged(ObiNode node)
+        {
+            if (UsedStatusChanged != null) UsedStatusChanged(this, new NodeEventArgs<ObiNode>(node));
         }
 
 
@@ -222,12 +231,12 @@ namespace Obi
         }
     }
 
-    public class SectionNodeEventArgs : EventArgs
+    public class NodeEventArgs<T> : EventArgs
     {
-        private SectionNode mNode;
-        public SectionNodeEventArgs(SectionNode node) : base() { mNode = node; }
-        public SectionNode Node { get { return mNode; } }
+        private T mNode;
+        public NodeEventArgs(T node): base() { mNode = node; }
+        public T Node { get { return mNode; } }
     }
 
-    public delegate void SectionNodeEventHandler(object sender, SectionNodeEventArgs e);
+    public delegate void NodeEventHandler<T>(object sender, NodeEventArgs<T> e);
 }

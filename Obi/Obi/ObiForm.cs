@@ -62,8 +62,8 @@ namespace Obi
             mOpenRecentProjectToolStripMenuItem.Enabled = mSettings.RecentProjects.Count > 0;
             mClearListToolStripMenuItem.Enabled = true;
             mSaveProjectToolStripMenuItem.Enabled = mSession.CanSave;
-            mSaveProjectAsToolStripMenuItem.Enabled = mSession.HasProject;
-            mDiscardChangesToolStripMenuItem.Enabled = mSession.CanSave;
+            mSaveProjectAsToolStripMenuItem.Enabled = false;  // mSession.HasProject;
+            mDiscardChangesToolStripMenuItem.Enabled = false;  // mSession.CanSave;
             mCloseProjectToolStripMenuItem.Enabled = mSession.HasProject;
             mCleanProjectToolStripMenuItem.Enabled = false; // currently disabled
             mExportAsDAISYToolStripMenuItem.Enabled = false;  // currently disabled

@@ -45,6 +45,7 @@ namespace Obi.ProjectView
             mNode = node;
             Label = mNode.Label;
             mParentView = parent;
+            UpdateColors();
         }
 
 
@@ -83,7 +84,20 @@ namespace Obi.ProjectView
             set
             {
                 mSelected = value;
-                BackColor = mSelected ? Color.Yellow : Color.LightSkyBlue;
+                UpdateColors();
+            }
+        }
+
+        /// <summary>
+        /// Update the colors of the block when the state of its node has changed.
+        /// </summary>
+        public void UpdateColors()
+        {
+            if (mNode != null)
+            {
+                BackColor = mSelected ? Color.Yellow : mNode.Used ? Color.LightSkyBlue : Color.LightGray;
+                mLabel.BackColor = mNode.Used ? Color.Thistle : Color.LightGray;
+                mBlocksPanel.BackColor = mNode.Used ? Color.CornflowerBlue : Color.LightGray;
             }
         }
 
@@ -91,6 +105,7 @@ namespace Obi.ProjectView
         /// Select a block in the strip.
         /// </summary>
         public Block SelectedBlock { set { mParentView.Selection = new NodeSelection(value.Node, mParentView, false); } }
+
 
         /// <summary>
         /// Start renaming the strip.

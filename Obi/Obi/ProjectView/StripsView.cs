@@ -65,9 +65,10 @@ namespace Obi.ProjectView
         {
             mLayoutPanel.Controls.Clear();
             AddStripForSection(mView.Presentation.RootNode);
-            mView.Presentation.treeNodeAdded += new TreeNodeAddedEventHandler(StripsView_treeNodeAdded);
-            mView.Presentation.treeNodeRemoved += new TreeNodeRemovedEventHandler(StripsView_treeNodeRemoved);
-            mView.Presentation.RenamedSectionNode += new SectionNodeEventHandler(StripsView_RenamedSectionNode);
+            mView.Presentation.treeNodeAdded += new TreeNodeAddedEventHandler(Presentation_treeNodeAdded);
+            mView.Presentation.treeNodeRemoved += new TreeNodeRemovedEventHandler(Presentation_treeNodeRemoved);
+            mView.Presentation.RenamedSectionNode += new NodeEventHandler<SectionNode>(Presentation_RenamedSectionNode);
+            mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
         }
 
         /// <summary>
@@ -157,14 +158,24 @@ namespace Obi.ProjectView
         }
 
         // Handle section nodes renamed from the project: change the label of the corresponding strip.
-        private void StripsView_RenamedSectionNode(object sender, SectionNodeEventArgs e)
+        private void Presentation_RenamedSectionNode(object sender, NodeEventArgs<SectionNode> e)
         {
             Strip strip = FindStrip(e.Node);
             strip.Label = e.Node.Label;
         }
 
+        // Handle change of used status
+        private void Presentation_UsedStatusChanged(object sender, NodeEventArgs<ObiNode> e)
+        {
+            if (e.Node is SectionNode)
+            {
+                Strip strip = FindStrip((SectionNode)e.Node);
+                if (strip != null) strip.UpdateColors();
+            }
+        }
+
         // Handle addition of tree nodes: add a new strip for new section nodes.
-        private void StripsView_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
+        private void Presentation_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
         {
             if (e.getTreeNode() is SectionNode)
             {
@@ -199,7 +210,7 @@ namespace Obi.ProjectView
         }
 
         // Handle removal of tree nodes: remove a strip for a section node and all of its children.
-        void StripsView_treeNodeRemoved(ITreeNodeChangedEventManager o, TreeNodeRemovedEventArgs e)
+        void Presentation_treeNodeRemoved(ITreeNodeChangedEventManager o, TreeNodeRemovedEventArgs e)
         {
             if (e.getTreeNode() is SectionNode)
             {
