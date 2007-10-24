@@ -67,7 +67,7 @@ namespace Obi
             {
                 TreeNode parent = getParent();
                 int index = parent.indexOf(this);
-                return index - (parent is SectionNode ? ParentSection.FirstSectionIndex : 0);
+                return index - (parent is SectionNode ? ParentAs<SectionNode>().FirstSectionIndex : 0);
             }
         }
 
@@ -91,7 +91,7 @@ namespace Obi
             get
             {
                 return Index > 0 ? PrecedingSibling.Position + PrecedingSibling.Span :
-                    ParentSection == null ? 0 : 1 + ParentSection.Position;
+                    ParentAs<SectionNode>() == null ? 0 : 1 + ParentAs<SectionNode>().Position;
             }
         }
 
@@ -141,7 +141,7 @@ namespace Obi
             // TODO: replace
             public SectionNode DetachFromParent__REMOVE__()
         {
-            // if (ParentSection != null) ParentSection.UpdateSpan(-mSpan);
+            // if (ParentAs<SectionNode>() != null) ParentAs<SectionNode>().UpdateSpan(-mSpan);
             return (SectionNode)this.detach();
         }
 
@@ -203,11 +203,11 @@ namespace Obi
                     }
                     else
                     {
-                        SectionNode parent = ParentSection;
+                        SectionNode parent = ParentAs<SectionNode>();
                         while (parent != null && sibling == null)
                         {
                             sibling = parent.NextSibling;
-                            parent = parent.ParentSection;
+                            parent = parent.ParentAs<SectionNode>();
                         }
                         return sibling;
                     }
@@ -227,12 +227,6 @@ namespace Obi
                 return index == parent.getChildCount() - 1 ? null : (SectionNode)parent.getChild(index + 1);
             }
         }
-
-        /// <summary>
-        /// Return the parent as a section node.
-        /// If the parent is really the root of the tree, return null.
-        /// </summary>
-        public override SectionNode ParentSection { get { return getParent() as SectionNode; } }
 
         /// <summary>
         /// Number of phrase children.
@@ -256,7 +250,7 @@ namespace Obi
                 else if (this.getParent() is SectionNode)
                 {
                     //this is the first section child of a section, so its position is 1 greater that the parent's
-                    return 1 + ParentSection.Position;
+                    return 1 + ParentAs<SectionNode>().Position;
                 }
                 else
                 {
@@ -287,7 +281,7 @@ namespace Obi
                 SectionNode previous = PrecedingSibling;
                 if (previous == null)
                 {
-                    previous = ParentSection;
+                    previous = ParentAs<SectionNode>();
                 }
                 else
                 {

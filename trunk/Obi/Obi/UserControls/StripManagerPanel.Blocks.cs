@@ -22,9 +22,9 @@ namespace Obi.UserControls
 
         private void SyncAddedPhraseNode(PhraseNode phrase)
         {
-            if (phrase != null && phrase.ParentSection != null)
+            if (phrase != null && phrase.ParentAs<SectionNode>() != null)
             {
-                                                    SectionStrip strip  = mSectionNodeMap[phrase.ParentSection];
+                                                    SectionStrip strip  = mSectionNodeMap[phrase.ParentAs<SectionNode>()];
                                 AudioBlock block = SetupAudioBlockFromPhraseNode(phrase);
                 strip.InsertAudioBlock(block, phrase.Index);
                 if (phrase.PageProperty != null) mProjectPanel.Project.RenumberPages();
@@ -58,9 +58,9 @@ namespace Obi.UserControls
         public void Project_treeNodeRemoved(ITreeNodeChangedEventManager o, TreeNodeRemovedEventArgs e)
         {
             PhraseNode phrase = (PhraseNode)e.getTreeNode();
-            if (phrase.ParentSection != null)
+            if (phrase.ParentAs<SectionNode>() != null)
             {
-                SectionStrip strip = mSectionNodeMap[phrase.ParentSection];
+                SectionStrip strip = mSectionNodeMap[phrase.ParentAs<SectionNode>()];
                 if (mProjectPanel.CurrentSelectionNode == phrase) mProjectPanel.CurrentSelection = null;
                 strip.RemoveAudioBlock(mPhraseNodeMap[phrase]);
                 mPhraseNodeMap.Remove(phrase);
@@ -73,7 +73,7 @@ namespace Obi.UserControls
         /// </summary>
         public void SyncMediaSet(object sender, Events.Node.SetMediaEventArgs e)
         {
-            if (e.Node.ParentSection != null)
+            if (e.Node.ParentAs<SectionNode>() != null)
             {
                 SectionStrip strip = mSectionNodeMap[(SectionNode)e.Node.getParent()];
                 if (e.Channel == Project.ANNOTATION_CHANNEL_NAME)
@@ -161,7 +161,7 @@ namespace Obi.UserControls
                 InsertPoint insert = new InsertPoint();
                 if (SelectedPhraseNode != null)
                 {
-                    insert.node = SelectedPhraseNode.ParentSection;
+                    insert.node = SelectedPhraseNode.ParentAs<SectionNode>();
                     insert.index = SelectedPhraseNode.Index;
                 }
                 else if (SelectedSectionNode != null)
@@ -358,7 +358,7 @@ namespace Obi.UserControls
                     prev = mProjectPanel.CurrentSelectedAudioBlock.PreviousPhraseInSection;
                     if (prev == null)
                     {
-                        prev = mProjectPanel.CurrentSelectedAudioBlock.ParentSection.PreviousSection;
+                        prev = mProjectPanel.CurrentSelectedAudioBlock.ParentAs<SectionNode>().PreviousSection;
                         if (prev != null && ((SectionNode)prev).PhraseChildCount > 0)
                             prev = ((SectionNode)prev).PhraseChild(-1);
                     }
@@ -398,7 +398,7 @@ namespace Obi.UserControls
                     next = mProjectPanel.CurrentSelectedAudioBlock.NextPhraseInSection;
                     if (next == null)
                     {
-                        next = mProjectPanel.CurrentSelectedAudioBlock.ParentSection.NextSection;
+                        next = mProjectPanel.CurrentSelectedAudioBlock.ParentAs<SectionNode>().NextSection;
                         if (next != null && ((SectionNode)next).PhraseChildCount > 0)
                             next = ((SectionNode)next).PhraseChild(0);
                     }

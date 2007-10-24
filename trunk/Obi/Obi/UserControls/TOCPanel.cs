@@ -52,7 +52,7 @@ namespace Obi.UserControls
             {
                 SectionNode selected = mProjectPanel.CurrentSelectedSection;
                 return selected != null &&
-                    (selected.Used || (selected.ParentSection == null || selected.ParentSection.Used));
+                    (selected.Used || (selected.ParentAs<SectionNode>() == null || selected.ParentAs<SectionNode>().Used));
             }
         }
 

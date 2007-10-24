@@ -23,7 +23,7 @@ namespace Obi.Commands.TOC
         public override void execute()
         {
             base.execute();
-            mSection.Parent.InsertAfter(mCopy, mSection);
+            mSection.ParentAs<ObiNode>().InsertAfter(mCopy, mSection);
             View.SelectInTOCView(mCopy);
         }
 

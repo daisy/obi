@@ -112,7 +112,7 @@ namespace Obi
                 }
                 else if (contextNode is PhraseNode)
                 {
-                    parent = ((PhraseNode)contextNode).ParentSection;
+                    parent = ((PhraseNode)contextNode).ParentAs<SectionNode>();
                     index = ((PhraseNode)contextNode).Index;
                 }
                 else
@@ -208,7 +208,7 @@ namespace Obi
         public PhraseNode Split(PhraseNode node, urakawa.media.data.audio.ManagedAudioMedia newAudio)
         {
             PhraseNode newNode = null; // CreatePhraseNode(newAudio);
-            node.ParentSection.insertAfter(newNode, node);
+            node.ParentAs<SectionNode>().insertAfter(newNode, node);
             // TODO review this
             MediaSet(this, new Events.Node.SetMediaEventArgs(this, node, Project.AUDIO_CHANNEL_NAME,
                 GetMediaForChannel(node, Project.AUDIO_CHANNEL_NAME)));
@@ -335,7 +335,7 @@ namespace Obi
             if (node != null)
             {
                 int index = node.Index + (dir == PhraseNode.Direction.Forward ? 1 : -1);
-                return index >= 0 && index < node.ParentSection.PhraseChildCount;
+                return index >= 0 && index < node.ParentAs<SectionNode>().PhraseChildCount;
             }
             else
             {
@@ -349,7 +349,7 @@ namespace Obi
         public void MovePhraseNode(PhraseNode node, PhraseNode.Direction dir)
         {
             int index = node.Index + (dir == PhraseNode.Direction.Forward ? 1 : -1);
-            if (index >= 0 && index < node.ParentSection.PhraseChildCount)
+            if (index >= 0 && index < node.ParentAs<SectionNode>().PhraseChildCount)
             {
                 CommandCreated(this, new Events.Project.CommandCreatedEventArgs(new Commands.Strips.MovePhrase(node, index)));
                 MovePhraseNodeTo(node, index);
@@ -359,7 +359,7 @@ namespace Obi
 
         public void MovePhraseNodeTo(PhraseNode node, int index)
         {
-            SectionNode parent = node.ParentSection;
+            SectionNode parent = node.ParentAs<SectionNode>();
             DeleteNode(node);
             AddPhraseNode(node, parent, index);
         }
@@ -520,24 +520,24 @@ namespace Obi
         public Commands.Node.MarkSectionHeading MakePhraseHeading(PhraseNode phrase)
         {
             Commands.Node.MarkSectionHeading command = null;
-            if (phrase != null && phrase.ParentSection != null)
+            if (phrase != null && phrase.ParentAs<SectionNode>() != null)
             {
-                PhraseNode previous = phrase.ParentSection.Heading;
+                PhraseNode previous = phrase.ParentAs<SectionNode>().Heading;
                 PhraseNode changed = previous;
                 if (previous != phrase)
                 {
-                    phrase.ParentSection.Heading = phrase;
+                    phrase.ParentAs<SectionNode>().Heading = phrase;
                     command = new Obi.Commands.Node.MarkSectionHeading(phrase, previous);
                 }
                 else
                 {
-                    phrase.ParentSection.Heading = null;
+                    phrase.ParentAs<SectionNode>().Heading = null;
                     changed = phrase;
                     command = new Obi.Commands.Node.MarkSectionHeading(null, previous);
                 }
                 if (HeadingChanged != null)
                 {
-                    HeadingChanged(this, new Obi.Events.Node.SectionNodeHeadingEventArgs(this, phrase.ParentSection, changed));
+                    HeadingChanged(this, new Obi.Events.Node.SectionNodeHeadingEventArgs(this, phrase.ParentAs<SectionNode>(), changed));
                 }
                 Modified();
             }

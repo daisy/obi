@@ -29,7 +29,7 @@ namespace Obi.Commands.Node
         {
             if (mNewHeading == null)
             {
-                //mOldHeading.Project.UnmakePhraseHeading(mOldHeading.ParentSection);
+                //mOldHeading.Project.UnmakePhraseHeading(mOldHeading.ParentAs<SectionNode>());
             }
             else
             {
@@ -41,7 +41,7 @@ namespace Obi.Commands.Node
         {
             if (mOldHeading == null)
             {
-                //mNewHeading.Project.UnmakePhraseHeading(mNewHeading.ParentSection);
+                //mNewHeading.Project.UnmakePhraseHeading(mNewHeading.ParentAs<SectionNode>());
             }
             else
             {

@@ -158,7 +158,7 @@ namespace Obi.UserControls
             get
             {
                 PhraseNode selected = CurrentSelectedAudioBlock;
-                return selected != null && selected.ParentSection.Used;
+                return selected != null && selected.ParentAs<SectionNode>().Used;
             }
         }
 
@@ -173,7 +173,7 @@ namespace Obi.UserControls
                 SectionNode selected = CurrentSelectedSection;
                 if (selected == null) return false;
                 if (selected.Used) return true;
-                SectionNode parent = selected.ParentSection;
+                SectionNode parent = selected.ParentAs<SectionNode>();
                 return parent == null || parent.Used;
             }
         }

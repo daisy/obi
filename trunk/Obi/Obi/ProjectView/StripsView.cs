@@ -111,7 +111,7 @@ namespace Obi.ProjectView
                         s.Selected = true;
                         mLayoutPanel.ScrollControlIntoView((Control)s);
                         SectionNode section = value.Node is SectionNode ? (SectionNode)value.Node :
-                            value.Node is PhraseNode ? ((PhraseNode)value.Node).ParentSection : null;
+                            value.Node is PhraseNode ? ((PhraseNode)value.Node).ParentAs<SectionNode>() : null;
                         mView.MakeTreeNodeVisibleForSection(section);
                     }
                     mSelectedItem = s;
@@ -189,7 +189,7 @@ namespace Obi.ProjectView
             else if (e.getTreeNode() is PhraseNode)
             {
                 PhraseNode phrase = (PhraseNode)e.getTreeNode();
-                Block block = FindStrip(phrase.ParentSection).AddBlockForPhrase(phrase);
+                Block block = FindStrip(phrase.ParentAs<SectionNode>()).AddBlockForPhrase(phrase);
                 mLayoutPanel.ScrollControlIntoView(block);
             }
         }
@@ -243,7 +243,7 @@ namespace Obi.ProjectView
 
         private Block FindBlock(PhraseNode node)
         {
-            return FindStrip(node.ParentSection).FindBlock(node);
+            return FindStrip(node.ParentAs<SectionNode>()).FindBlock(node);
         }
 
         private ISelectableInStripView FindSelectable(ObiNode node)

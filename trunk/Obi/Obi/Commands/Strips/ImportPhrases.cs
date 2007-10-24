@@ -24,7 +24,7 @@ namespace Obi.Commands.Strips
             else
             {
                 // after the selected node
-                mParent = SelectionBefore.Node.Parent;
+                mParent = SelectionBefore.Node.ParentAs<ObiNode>();
                 mFirstIndex = SelectionBefore.Node.Index + 1;
             }
             mPhrases = phrases;

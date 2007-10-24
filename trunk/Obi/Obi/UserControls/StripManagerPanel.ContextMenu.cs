@@ -57,7 +57,7 @@ namespace Obi.UserControls
             bool isStripSelected = SelectedSectionNode != null;
             bool isStripUsed = isStripSelected && SelectedSectionNode != null;
             bool isParentUsed = isStripSelected &&
-                (SelectedSectionNode.ParentSection == null || SelectedSectionNode.ParentSection.Used);
+                (SelectedSectionNode.ParentAs<SectionNode>() == null || SelectedSectionNode.ParentAs<SectionNode>().Used);
             bool noSelection = mProjectPanel.CurrentSelection == null || mProjectPanel.CurrentSelection.Control != this;
 
             mInsertStripToolStripMenuItem.Enabled = !isPlayingOrRecording && (noSelection || isStripUsed || isParentUsed);

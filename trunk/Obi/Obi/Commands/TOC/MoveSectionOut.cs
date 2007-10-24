@@ -19,7 +19,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public static bool CanMoveNode(SectionNode section)
         {
-            return section != null && section.ParentSection != null && section.SectionChildCount == 0;
+            return section != null && section.ParentAs<SectionNode>() != null && section.SectionChildCount == 0;
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace Obi.Commands.TOC
         public static void Move(SectionNode section)
         {
             int index = section.Index + 1;
-            SectionNode sibling = section.ParentSection;
+            SectionNode sibling = section.ParentAs<SectionNode>();
             for (int i = index; i < sibling.SectionChildCount; ++i)
             {
                 SectionNode child = sibling.SectionChild(index);
@@ -36,7 +36,7 @@ namespace Obi.Commands.TOC
                 section.AppendChild(child);
             }
             section.Detach();
-            sibling.Parent.InsertAfter(section, sibling);
+            sibling.ParentAs<ObiNode>().InsertAfter(section, sibling);
         }
 
         public override string getShortDescription() { return Localizer.Message("move_section_out_command"); }

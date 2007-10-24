@@ -123,9 +123,9 @@ namespace Obi
         /*public Commands.TOC.IncreaseSectionNodeLevel IncreaseSectionNodeLevel(SectionNode node)
         {
             Commands.TOC.IncreaseSectionNodeLevel command = new Commands.TOC.IncreaseSectionNodeLevel(node, (TreeNode)node.getParent());
-            SectionNode newParent = node.ParentSection == null ?
+            SectionNode newParent = node.ParentAs<SectionNode>() == null ?
                 (SectionNode)((TreeNode)node.getParent()).getChild(node.Index - 1) :
-                node.ParentSection.SectionChild(node.Index - 1);
+                node.ParentAs<SectionNode>().SectionChild(node.Index - 1);
             node.DetachFromParent__REMOVE__();
             AppendChildSection(node, newParent);
             MovedSectionNode(this, new Events.Node.MovedSectionNodeEventArgs(this, node, newParent));
@@ -152,7 +152,7 @@ namespace Obi
         /// <param name="node">The node getting it.</param>
         /*public Commands.TOC.DecreaseSectionNodeLevel DecreaseSectionNodeLevel(SectionNode node)
         {
-            SectionNode parent = node.ParentSection;
+            SectionNode parent = node.ParentAs<SectionNode>();
             Commands.TOC.DecreaseSectionNodeLevel command = new Commands.TOC.DecreaseSectionNodeLevel(node, parent);
             // Make a list of the following siblings which will become children of the node
             List<SectionNode> newChildren = new List<SectionNode>();            
@@ -296,7 +296,7 @@ namespace Obi
         /// </summary>
         public bool CanMoveSectionNodeOut(SectionNode node)
         {
-            return node != null && node.ParentSection != null;
+            return node != null && node.ParentAs<SectionNode>() != null;
         }
 
         /// <summary>

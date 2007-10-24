@@ -219,8 +219,8 @@ namespace Obi.UserControls
                 mLabel.Text = String.Format(Localizer.Message("audio_block_default_label"), index, outof);
             }
             // Avn: add Strip name to accessible name for first audio block
-            if (mNode.ParentSection.FirstUsedPhrase == mNode)
-                AccessibleName = mNode.ParentSection.Label + " " +  mLabel.Text;
+            if (mNode.ParentAs<SectionNode>().FirstUsedPhrase == mNode)
+                AccessibleName = mNode.ParentAs<SectionNode>().Label + " " +  mLabel.Text;
             else
             AccessibleName  = mLabel.Text;
 

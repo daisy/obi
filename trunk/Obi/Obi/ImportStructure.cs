@@ -138,7 +138,7 @@ namespace Obi
                     //walk up the tree to find the last top-level section
                     //is there an easier way to do this?
                     SectionNode lastSection = mProject.LastSection;
-                    while (lastSection.ParentSection != null) lastSection = lastSection.ParentSection;
+                    while (lastSection.ParentAs<SectionNode>() != null) lastSection = lastSection.ParentAs<SectionNode>();
                     newNode = null; // mProject.CreateSiblingSectionNode(lastSection);
                 }
             }
