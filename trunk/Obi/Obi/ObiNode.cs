@@ -19,7 +19,6 @@ namespace Obi
         protected ObiNode(Presentation presentation) : base()
         {
             setPresentation(presentation);
-            addProperty(getPresentation().getPropertyFactory().createChannelsProperty());
             mUsed = true;
         }
 
@@ -114,6 +113,16 @@ namespace Obi
         /// Return the correct namespace URI for all Obi nodes.
         /// </summary>
         public override string getXukNamespaceUri() { return DataModelFactory.NS; }
+
+        /// <summary>
+        /// Copy the used flag as well as properties.
+        /// </summary>
+        protected override TreeNode copyProtected(bool deep, bool inclProperties)
+        {
+            ObiNode copy = (ObiNode)base.copyProtected(deep, inclProperties);
+            copy.mUsed = mUsed;
+            return copy;
+        }
     }
 
     /// <summary>
