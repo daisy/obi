@@ -258,7 +258,6 @@ namespace Obi
             SynchronizeViews = mSynchronizeViewsToolStripMenuItem.Checked;
         }
 
-
         private void mShowSourceToolStripMenuItem_Click(object sender, EventArgs e) { ShowSource(); }
 
         #endregion
@@ -377,6 +376,7 @@ namespace Obi
                 InitializeComponent();
                 mProjectView.ObiForm = this;
                 mProjectView.SelectionChanged += new EventHandler(ProjectView_SelectionChanged);
+                mProjectView.FindInTextVisibilityChanged += new EventHandler(ProjectView_FindInTextVisibilityChanged);
                 mSession = new Session();
                 mSession.ProjectOpened += new EventHandler(Session_ProjectOpened);
                 mSession.ProjectCreated += new EventHandler(Session_ProjectCreated);
@@ -390,11 +390,11 @@ namespace Obi
                 mStatusTimer.Interval = STATUS_TIMER_DELAY_IN_SECONDS * 1000;
                 mStatusTimer.Tick += new EventHandler(delegate(object sender, EventArgs e) { Ready(); });
                 // these should be stored in settings
-                mShowTOCViewToolStripMenuItem.Checked = true;
-                mShowMetadataViewToolStripMenuItem.Checked = true;
-                mShowSearchBarToolStripMenuItem.Checked = false;
-                mShowTransportBarToolStripMenuItem.Checked = true;
-                mShowStatusBarToolStripMenuItem.Checked = true;
+                mShowTOCViewToolStripMenuItem.Checked = mProjectView.TOCViewVisible = true;
+                mShowMetadataViewToolStripMenuItem.Checked = mProjectView.MetadataViewVisible = true;
+                mShowSearchBarToolStripMenuItem.Checked = mProjectView.FindInTextVisible = false;
+                mShowTransportBarToolStripMenuItem.Checked = mProjectView.TransportBarVisible = true;
+                mShowStatusBarToolStripMenuItem.Checked = mStatusStrip.Visible = true;
                 Ready();
             }
             catch (Exception e)
@@ -581,7 +581,7 @@ namespace Obi
         private void Presentation_CommandExecuted(object sender, UndoRedoEventArgs e) { ProjectHasChanged(); }
         private void ProjectView_SelectionChanged(object sender, EventArgs e) { UpdateMenus(); }
 
-        private void ProjectView_FindInTextVisibleChanged(object sender, EventArgs e)
+        private void ProjectView_FindInTextVisibilityChanged(object sender, EventArgs e)
         {
             mShowSearchBarToolStripMenuItem.Checked = mProjectView.FindInTextVisible;
         }
