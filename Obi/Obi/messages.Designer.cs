@@ -576,6 +576,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to delete block.
+        /// </summary>
+        internal static string delete_block_command {
+            get {
+                return ResourceManager.GetString("delete_block_command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Delete{0}.
         /// </summary>
         internal static string delete_menu_label {
@@ -608,6 +617,15 @@ namespace Obi {
         internal static string delete_section_command_label {
             get {
                 return ResourceManager.GetString("delete_section_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to delete strip.
+        /// </summary>
+        internal static string delete_strip_command {
+            get {
+                return ResourceManager.GetString("delete_strip_command", resourceCulture);
             }
         }
         

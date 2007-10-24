@@ -96,6 +96,7 @@
     <Compile Include="Commands\CommandManager.cs" />
     <Compile Include="Commands\ListCommand.cs" />
     <Compile Include="Commands\Node\AddNewSection.cs" />
+    <Compile Include="Commands\Node\Delete.cs" />
     <Compile Include="Commands\Node\MarkSectionHeading.cs" />
     <Compile Include="Commands\Node\RenameSection.cs" />
     <Compile Include="Commands\Node\ToggleUsed.cs" />
@@ -113,7 +114,6 @@
     <Compile Include="Commands\TOC\AddNewSection.cs" />
     <Compile Include="Commands\TOC\Copy.cs" />
     <Compile Include="Commands\TOC\Cut.cs" />
-    <Compile Include="Commands\TOC\Delete.cs" />
     <Compile Include="Commands\TOC\MoveSectionIn.cs" />
     <Compile Include="Commands\TOC\MoveSectionOut.cs" />
     <Compile Include="Commands\TOC\Paste.cs" />
