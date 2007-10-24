@@ -69,7 +69,7 @@ namespace Obi.ProjectView
             get
             {
                 return mTOCTree.SelectedNode != null && mTOCTree.SelectedNode != mDummy &&
-                    ((ObiNode)mTOCTree.SelectedNode.Tag).Parent.Used;
+                    ((ObiNode)mTOCTree.SelectedNode.Tag).ParentAs<ObiNode>().Used;
             }
         }
 
@@ -265,9 +265,9 @@ namespace Obi.ProjectView
             TreeNode n = null;
             if (node is SectionNode && node.IsRooted)
             {
-                if (node.ParentSection != null)
+                if (node.ParentAs<SectionNode>() != null)
                 {
-                    TreeNode p = FindTreeNode(node.ParentSection);
+                    TreeNode p = FindTreeNode(node.ParentAs<SectionNode>());
                     n = p.Nodes.Insert(node.Index, node.GetHashCode().ToString(), ((SectionNode)node).Label);
                 }
                 else

@@ -138,11 +138,6 @@ namespace Obi
         }
 
         /// <summary>
-        /// Parent section of this phrase. Null if the phrase has no parent.
-        /// </summary>
-        public override SectionNode ParentSection { get { return getParent() as SectionNode; } }
-
-        /// <summary>
         /// The kind of node.
         /// </summary>
         public Kind PhraseKind { get { return mKind; } }
@@ -159,7 +154,7 @@ namespace Obi
                 if (prev == null)
                 {
                     SectionNode prevSection;
-                    for (prevSection = ParentSection.PreviousSection;
+                    for (prevSection = ParentAs<SectionNode>().PreviousSection;
                         prevSection != null && prevSection.PhraseChildCount == 0;
                         prevSection = prevSection.PreviousSection) { }
                     if (prevSection != null && prevSection.PhraseChildCount != 0) prev = prevSection.PhraseChild(-1);

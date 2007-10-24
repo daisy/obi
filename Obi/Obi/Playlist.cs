@@ -165,7 +165,7 @@ namespace Obi
         /// </summary>
         public SectionNode CurrentSection
         {
-            get { return mPhrases[mCurrentPhraseIndex].ParentSection; }
+            get { return mPhrases[mCurrentPhraseIndex].ParentAs<SectionNode>(); }
         }
 
         /// <summary>
@@ -176,7 +176,7 @@ namespace Obi
             get
             {
                 int i = mCurrentPhraseIndex + 1;
-                for (; i < mPhrases.Count && mPhrases[i].ParentSection == CurrentSection; ++i) { }
+                for (; i < mPhrases.Count && mPhrases[i].ParentAs<SectionNode>() == CurrentSection; ++i) { }
                 return i;
             }
         }
@@ -191,7 +191,7 @@ namespace Obi
             {
                 // find the first phrase of the current section
                 int first = mCurrentPhraseIndex;
-                for (; first >= 0 && mPhrases[first].ParentSection == CurrentSection; --first) { }
+                for (; first >= 0 && mPhrases[first].ParentAs<SectionNode>() == CurrentSection; --first) { }
                 ++first;
                 if ((first == 0) || (CurrentTime - mStartTimes[first] > InitialThreshold))
                 {
@@ -202,9 +202,9 @@ namespace Obi
                 {
                     // find the first of the previous section 
                     int previous = first - 1;
-                    SectionNode previousSection = mPhrases[previous].ParentSection;
+                    SectionNode previousSection = mPhrases[previous].ParentAs<SectionNode>();
                     // go back while we are in the previous section
-                    for (; previous >= 0 && mPhrases[previous].ParentSection == previousSection; --previous) { }
+                    for (; previous >= 0 && mPhrases[previous].ParentAs<SectionNode>() == previousSection; --previous) { }
                     // we went back one too many
                     return previous + 1;
                 }

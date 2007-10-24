@@ -1398,7 +1398,7 @@ if (mProject != null)
             if (mProjectView.CurrentSelectionNode.GetType().Name == "PhraseNode")
             {
                 PhraseNode TempPhraseNode = mProjectView.CurrentSelectionNode as PhraseNode;
-                mProjectView.CurrentSelection = new NodeSelection(TempPhraseNode.ParentSection, mProjectView.TOCPanel);
+                mProjectView.CurrentSelection = new NodeSelection(TempPhraseNode.ParentAs<SectionNode>(), mProjectView.TOCPanel);
                 mProjectView.TOCPanel.Focus();
             }
             else

@@ -87,7 +87,7 @@ namespace Obi.UserControls
             bool isSelected = mProjectPanel.CurrentSelectedSection != null;
             bool isSelectedUsed = isSelected && mProjectPanel.CurrentSelectedSection.Used;
             bool isParentUsed = isSelected ?
-                mProjectPanel.CurrentSelectedSection.ParentSection == null || mProjectPanel.CurrentSelectedSection.ParentSection.Used :
+                mProjectPanel.CurrentSelectedSection.ParentAs<SectionNode>() == null || mProjectPanel.CurrentSelectedSection.ParentAs<SectionNode>().Used :
                 false;
 
             mAddSectionToolStripMenuItem.Enabled = !isPlayingOrRecording && (!isSelected || isSelectedUsed || isParentUsed);

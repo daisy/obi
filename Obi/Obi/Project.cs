@@ -535,7 +535,7 @@ namespace Obi
                     DataManager.getDefaultPCMFormat().setBitDepth(phrase.Audio.getMediaData().getPCMFormat().getBitDepth());
                     DataManager.setEnforceSinglePCMFormat(true);
                 }
-                phrase.ParentSection.AddedPhraseNode__REMOVE__(phrase);
+                phrase.ParentAs<SectionNode>().AddedPhraseNode__REMOVE__(phrase);
             }*/
         }
 

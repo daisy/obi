@@ -586,7 +586,7 @@ namespace Obi.UserControls
                 else
                 {
                     // a phrase is selected: inster before the phrase
-                    section = ((PhraseNode)selected).ParentSection;
+                    section = ((PhraseNode)selected).ParentAs<SectionNode>();
                     index = ((PhraseNode)selected).Index;
                 }
                 Settings settings = ((ObiForm)ParentForm).Settings;

@@ -204,7 +204,7 @@ internal          void AddStripFromNode(SectionNode node)
             {
                 if (mProjectPanel.CurrentSelectedAudioBlock != null)
                 {
-                    prev = mProjectPanel.CurrentSelectedAudioBlock.ParentSection;
+                    prev = mProjectPanel.CurrentSelectedAudioBlock.ParentAs<SectionNode>();
                 }
                 else if (mProjectPanel.CurrentSelectedStrip != null)
                 {
@@ -230,7 +230,7 @@ internal          void AddStripFromNode(SectionNode node)
             {
                 if (mProjectPanel.CurrentSelectedAudioBlock != null)
                 {
-                    next = mProjectPanel.CurrentSelectedAudioBlock.ParentSection.NextSection;
+                    next = mProjectPanel.CurrentSelectedAudioBlock.ParentAs<SectionNode>().NextSection;
                 }
                 else if (mProjectPanel.CurrentSelectedStrip != null)
                 {

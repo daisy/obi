@@ -28,7 +28,7 @@ namespace Obi.Commands.Node
             }
             else
             {
-                mParent = contextNode.Parent;
+                mParent = contextNode.ParentAs<ObiNode>();
                 mIndex = contextNode.Index + 1;
             }
             mNode = View.Presentation.CreateSectionNode();

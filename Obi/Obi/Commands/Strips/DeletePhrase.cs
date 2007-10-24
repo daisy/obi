@@ -30,7 +30,7 @@ namespace Obi.Commands.Strips
         public DeletePhrase(PhraseNode node)
         {
             mNode = node;
-            mParent = node.ParentSection;
+            mParent = node.ParentAs<SectionNode>();
             mIndex = node.Index;
         }
 

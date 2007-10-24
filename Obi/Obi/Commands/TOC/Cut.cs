@@ -17,7 +17,7 @@ namespace Obi.Commands.TOC
             : base(view)
         {
             mSection = section;
-            mParent = section.Parent;
+            mParent = section.ParentAs<ObiNode>();
             mIndex = section.Index;
             mClipboard = view.Clipboard;
         }

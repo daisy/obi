@@ -57,21 +57,20 @@ namespace Obi
         public virtual int Level { get { return 1 + ((ObiNode)getParent()).Level; } }
 
         /// <summary>
-        /// Get the parent node as an Obi node.
+        /// Get the parent node as an ObiNode or any subclass thereof. I am not sure what "thereof" means, though.
         /// </summary>
-        public ObiNode Parent { get { return getParent() as ObiNode; } }
+        public T ParentAs<T>() where T : ObiNode { return getParent() as T; }
 
         /// <summary>
         /// Presentation to which this node belongs.
         /// </summary>
         public Presentation Presentation { get { return (Presentation)getPresentation(); } }
 
-        public abstract SectionNode ParentSection { get; }
         public abstract SectionNode SectionChild(int index);
         public abstract int SectionChildCount { get; }
         public abstract PhraseNode PhraseChild(int index);
         public abstract int PhraseChildCount { get; }
-        
+
         /// <summary>
         /// Used flag.
         /// </summary>
@@ -149,7 +148,6 @@ namespace Obi
             return (SectionNode)getChild(index);
         }
 
-        public override SectionNode ParentSection { get { return null; } }
         public override int SectionChildCount { get { return getChildCount(); } }
         public override PhraseNode PhraseChild(int index) { throw new Exception("A root node has no phrase children."); }
         public override int PhraseChildCount { get { return 0; } }
