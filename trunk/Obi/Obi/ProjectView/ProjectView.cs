@@ -17,9 +17,10 @@ namespace Obi.ProjectView
         private bool mSynchronizeViews;          // synchronize views flag
         private ObiForm mForm;                   // parent form
 
-        public event EventHandler SelectionChanged;            // triggered when the selection changes
-        public event ImportingFileEventHandler ImportingFile;  // triggered when a file is being imported
-        public event EventHandler FinishedImportingFiles;      // triggered when all files were imported
+        public event EventHandler SelectionChanged;             // triggered when the selection changes
+        public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
+        public event ImportingFileEventHandler ImportingFile;   // triggered when a file is being imported
+        public event EventHandler FinishedImportingFiles;       // triggered when all files were imported
 
 
         public ProjectView()
@@ -28,13 +29,12 @@ namespace Obi.ProjectView
             mTOCView.ProjectView = this;
             mStripsView.ProjectView = this;
             mFindInText.ProjectView = this;
-            mPresentation = null;
-            mSelection = null;
             mTransportBar.ProjectView = this;
             mTransportBar.Enabled = false;
-            mTOCViewVisible = !mHSplitter.Panel1Collapsed && !mVSplitter.Panel1Collapsed;
-            mMetadataViewVisible = !mHSplitter.Panel1Collapsed && !mVSplitter.Panel2Collapsed;
-            mFindInTextSplitter.Panel2Collapsed = true;
+            mTOCViewVisible = !mTOCSplitter.Panel1Collapsed && !mMetadataSplitter.Panel1Collapsed;
+            mMetadataViewVisible = !mTOCSplitter.Panel1Collapsed && !mMetadataSplitter.Panel2Collapsed;
+            mPresentation = null;
+            mSelection = null;
             mForm = null;
         }
 
@@ -59,7 +59,7 @@ namespace Obi.ProjectView
                 mEnableTooltips = value;
                 // mStripManagerPanel.EnableTooltips = value;
                 // mTOCPanel.EnableTooltips = value;
-                mTransportBar.EnableTooltips = value;
+                // mTransportBar.EnableTooltips = value;
             }
         }
 
@@ -72,6 +72,9 @@ namespace Obi.ProjectView
             set { mForm = value; }
         }
 
+        /// <summary>
+        /// Set the presentation that the project view displays.
+        /// </summary>
         public Presentation Presentation
         {
             get { return mPresentation; }
@@ -90,13 +93,14 @@ namespace Obi.ProjectView
             }
         }
 
+        /// <summary>
+        /// Show or hide the project display.
+        /// </summary>
         private bool ProjectVisible
         {
             set
             {
-                mHSplitter.Visible = value;
-                mVSplitter.Visible = value;
-                mTransportBar.Visible = value;
+                mTransportBarSplitter.Visible = value;
                 mNoProjectLabel.Visible = !value;
             }
         }
@@ -191,13 +195,6 @@ namespace Obi.ProjectView
                     mStripsView.UnsyncViews();
                 }
             }
-        }
-
-        /// <summary>
-        /// Redraw everything to keep the view in sync with the model.
-        /// </summary>
-        public void SynchronizeWithCoreTree()
-        {
         }
 
         /// <summary>
@@ -515,15 +512,15 @@ namespace Obi.ProjectView
                 mTOCViewVisible = value;
                 if (value)
                 {
-                    mHSplitter.Panel1Collapsed = false;
-                    mVSplitter.Panel2Collapsed = !MetadataViewVisible;
+                    mTOCSplitter.Panel1Collapsed = false;
+                    mMetadataSplitter.Panel2Collapsed = !MetadataViewVisible;
                 }
                 else
                 {
                     if (mSelection != null && mSelection.Control == mTOCView) Selection = null;
-                    if (!MetadataViewVisible) mHSplitter.Panel1Collapsed = true;
+                    if (!MetadataViewVisible) mTOCSplitter.Panel1Collapsed = true;
                 }
-                mVSplitter.Panel1Collapsed = !value;
+                mMetadataSplitter.Panel1Collapsed = !value;
             }
         }
 
@@ -540,11 +537,11 @@ namespace Obi.ProjectView
                 mMetadataViewVisible = value;
                 if (value)
                 {
-                    mHSplitter.Panel1Collapsed = false;
-                    mVSplitter.Panel1Collapsed = !TOCViewVisible;
+                    mTOCSplitter.Panel1Collapsed = false;
+                    mMetadataSplitter.Panel1Collapsed = !TOCViewVisible;
                 }
-                else if (!value && !TOCViewVisible) mHSplitter.Panel1Collapsed = true;
-                mVSplitter.Panel2Collapsed = !value;
+                else if (!value && !TOCViewVisible) mTOCSplitter.Panel1Collapsed = true;
+                mMetadataSplitter.Panel2Collapsed = !value;
             }
         }
 
@@ -557,7 +554,8 @@ namespace Obi.ProjectView
             set 
             {
                 bool isVisible = !mFindInTextSplitter.Panel2Collapsed;
-                if (isVisible != value) mFindInTextSplitter.Panel2Collapsed = !value; 
+                if (isVisible != value) mFindInTextSplitter.Panel2Collapsed = !value;
+                if (FindInTextVisibilityChanged != null) FindInTextVisibilityChanged(this, null);
             }
         }
 
@@ -566,8 +564,12 @@ namespace Obi.ProjectView
         /// </summary>
         public bool TransportBarVisible
         {
-            get { return mTransportBar.Visible; }
-            set { mTransportBar.Visible = value; }
+            get { return !mTransportBarSplitter.Panel2Collapsed; }
+            set
+            {
+                bool isVisible = !mTransportBarSplitter.Panel2Collapsed;
+                if (isVisible != value) mTransportBarSplitter.Panel2Collapsed = !value;
+            }
         }
 
 

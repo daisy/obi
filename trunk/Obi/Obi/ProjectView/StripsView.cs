@@ -81,7 +81,7 @@ namespace Obi.ProjectView
         public PhraseNode SelectedPhrase
         {
             get { return mSelectedItem != null && mSelectedItem is Block ? ((Block)mSelectedItem).Node : null; }
-            set { mView.Selection = new NodeSelection(value, this, false); }
+            set { if (mView != null) mView.Selection = new NodeSelection(value, this, false); }
         }
 
         /// <summary>
