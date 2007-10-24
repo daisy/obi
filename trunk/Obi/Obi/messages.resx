@@ -785,4 +785,10 @@ Error text: {1}</value>
   <data name="created_new_project" xml:space="preserve">
     <value>Created new project "{0}".</value>
   </data>
+  <data name="delete_block_command" xml:space="preserve">
+    <value>delete block</value>
+  </data>
+  <data name="delete_strip_command" xml:space="preserve">
+    <value>delete strip</value>
+  </data>
 </root>
