@@ -16,18 +16,8 @@ namespace Obi
         /// </summary>
         public override Property createProperty(string localName, string namespaceUri)
         {
-            if (namespaceUri == DataModelFactory.NS)
-            {
-                if (localName == PageProperty.XUK_ELEMENT_NAME)
-                {
-                    return new PageProperty();
-                }
-                else
-                {
-                    throw new Exception(String.Format("Cannot create property named `{0}'", localName));
-                }
-            }
-            return base.createProperty(localName, namespaceUri);
+            return namespaceUri == DataModelFactory.NS && localName == PageProperty.XUK_ELEMENT_NAME ?
+                new PageProperty() : base.createProperty(localName, namespaceUri);
         }
 
         public override string getXukNamespaceUri() { return DataModelFactory.NS; }

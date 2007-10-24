@@ -30,16 +30,8 @@ namespace Obi
                 {
                     return new SectionNode(Presentation);
                 }
-                else
-                {
-                    throw new Exception(String.Format("Unknown node type `{0}' in Obi namespace.", localName));
-                }
             }
-            else
-            {
-                // other namespaces are handled by the default factory.
-                return base.createNode(localName, namespaceUri);
-            }
+            return base.createNode(localName, namespaceUri);
         }
 
         public override string getXukNamespaceUri() { return DataModelFactory.NS; }
