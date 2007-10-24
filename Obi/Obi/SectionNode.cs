@@ -22,10 +22,6 @@ namespace Obi
         public SectionNode(Presentation presentation): base(presentation)
         {
             mHeading = null;
-            // Create the text media object for the label with a default label
-            ITextMedia labelMedia = getPresentation().getMediaFactory().createTextMedia();
-            labelMedia.setText(Localizer.Message("default_section_label"));
-            ChannelsProperty.setMedia(Presentation.TextChannel, labelMedia);
         }
 
 

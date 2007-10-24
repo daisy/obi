@@ -47,7 +47,9 @@ namespace Obi
         /// </summary>
         public PhraseNode CreatePhraseNode()
         {
-            return (PhraseNode)getTreeNodeFactory().createNode(PhraseNode.XUK_ELEMENT_NAME, DataModelFactory.NS);
+            PhraseNode node = (PhraseNode)getTreeNodeFactory().createNode(PhraseNode.XUK_ELEMENT_NAME, DataModelFactory.NS);
+            node.addProperty(getPropertyFactory().createChannelsProperty());
+            return node;
         }
 
         /// <summary>
@@ -60,7 +62,14 @@ namespace Obi
         /// </summary>
         public SectionNode CreateSectionNode()
         {
-            return (SectionNode)getTreeNodeFactory().createNode(SectionNode.XUK_ELEMENT_NAME, DataModelFactory.NS);
+            SectionNode node = (SectionNode)getTreeNodeFactory().createNode(SectionNode.XUK_ELEMENT_NAME, DataModelFactory.NS);
+            urakawa.property.channel.ChannelsProperty channelsProperty = getPropertyFactory().createChannelsProperty();
+            node.addProperty(channelsProperty);
+            // Create the text media object for the label with a default label
+            urakawa.media.ITextMedia labelMedia = getMediaFactory().createTextMedia();
+            labelMedia.setText(Localizer.Message("default_section_label"));
+            channelsProperty.setMedia(TextChannel, labelMedia);
+            return node;
         }
 
         /// <summary>
