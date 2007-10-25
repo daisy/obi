@@ -416,6 +416,15 @@ namespace Obi {
         /// <summary>
         ///   Looks up a localized string similar to copy strip.
         /// </summary>
+        internal static string copy_strip_command {
+            get {
+                return ResourceManager.GetString("copy_strip_command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to copy strip.
+        /// </summary>
         internal static string copy_strip_command_label {
             get {
                 return ResourceManager.GetString("copy_strip_command_label", resourceCulture);
@@ -491,6 +500,15 @@ namespace Obi {
         internal static string cut_section_command_label {
             get {
                 return ResourceManager.GetString("cut_section_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to cut strip.
+        /// </summary>
+        internal static string cut_strip_command {
+            get {
+                return ResourceManager.GetString("cut_strip_command", resourceCulture);
             }
         }
         
@@ -1324,6 +1342,24 @@ namespace Obi {
         internal static string paste_section_command_label {
             get {
                 return ResourceManager.GetString("paste_section_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to paste strip.
+        /// </summary>
+        internal static string paste_strip_command {
+            get {
+                return ResourceManager.GetString("paste_strip_command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to paste strips.
+        /// </summary>
+        internal static string paste_strips_command {
+            get {
+                return ResourceManager.GetString("paste_strips_command", resourceCulture);
             }
         }
         

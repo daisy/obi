@@ -441,48 +441,6 @@ namespace Obi.UserControls
         #region edit
 
         /// <summary>
-        /// Cut the selected node (and deselect it!)
-        /// </summary>
-        public void Cut()
-        {
-            TransportBar.Enabled = false;
-            if (CurrentSelectedAudioBlock != null)
-            {
-                mProject.CutPhraseNode(CurrentSelectedAudioBlock);
-                CurrentSelection = null;
-            }
-            else if (CurrentSelectedStrip != null)
-            {
-                mProject.ShallowCutSectionNode(CurrentSelectedStrip);
-                CurrentSelection = null;
-            }
-            else if (CurrentSelectedSection != null)
-            {
-                mProject.CutSectionNode(CurrentSelectedSection);
-                CurrentSelection = null;
-            }
-            TransportBar.Enabled = true;
-        }
-
-        public void Copy()
-        {
-            TransportBar.Enabled = false;
-            if (CurrentSelectedAudioBlock != null)
-            {
-                mProject.CopyPhraseNode(CurrentSelectedAudioBlock);
-            }
-            else if (CurrentSelectedStrip != null)
-            {
-                mProject.ShallowCopySectionNode(CurrentSelectedStrip, true);
-            }
-            else if (CurrentSelectedSection != null)
-            {
-                mProject.CopySectionNode(CurrentSelectedSection);
-            }
-            TransportBar.Enabled = true;
-        }
-
-        /// <summary>
         /// Delete the selected node (and deselect it!)
         /// </summary>
         public void Delete()
@@ -513,33 +471,6 @@ namespace Obi.UserControls
                     CurrentSelection = null;
                 }*/
                             }
-            TransportBar.Enabled = true;
-        }
-
-        /// <summary>
-        /// Paste the node in the clipboard in the selection context.
-        /// </summary>
-        public void Paste()
-        {
-            TransportBar.Enabled = false;
-            if (CurrentSelection != null)
-            {
-                if (mProject.Clipboard.Section != null)
-                {
-                    IControlWithSelection control = CurrentSelection.Control;
-                    SectionNode pasted = mProject.PasteSectionNode(CurrentSelectionNode);
-                    //CurrentSelection = new NodeSelection(pasted, control);
-                }
-                else if (mProject.Clipboard.Phrase != null)
-                {
-                    PhraseNode pasted = mProject.PastePhraseNodeBefore(mProject.Clipboard.Phrase, CurrentSelectionNode);
-                    //CurrentSelection = new NodeSelection(pasted, mStripManagerPanel);
-                }
-            }
-            else
-            { 
-                //TODO: figure out how to paste as append to the root
-            }
             TransportBar.Enabled = true;
         }
 

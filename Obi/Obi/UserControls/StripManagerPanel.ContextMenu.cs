@@ -52,65 +52,6 @@ namespace Obi.UserControls
         /// </summary>
         public void UpdateEnabledItemsForContextMenu()
         {
-            bool isPlayingOrRecording = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing || mProjectPanel.TransportBar.IsInlineRecording;
-            bool isPaused = mProjectPanel.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused;
-            bool isStripSelected = SelectedSectionNode != null;
-            bool isStripUsed = isStripSelected && SelectedSectionNode != null;
-            bool isParentUsed = isStripSelected &&
-                (SelectedSectionNode.ParentAs<SectionNode>() == null || SelectedSectionNode.ParentAs<SectionNode>().Used);
-            bool noSelection = mProjectPanel.CurrentSelection == null || mProjectPanel.CurrentSelection.Control != this;
-
-            mInsertStripToolStripMenuItem.Enabled = !isPlayingOrRecording && (noSelection || isStripUsed || isParentUsed);
-            mRenameStripToolStripMenuItem.Enabled = !isPlayingOrRecording && isStripUsed;
-
-            bool canCutCopyDeleteSection = !isPlayingOrRecording && isStripSelected && mProjectPanel.CurrentSelectionNode != null;
-            bool canPasteSection = !isPlayingOrRecording && mProjectPanel.CanPaste(mProjectPanel.Project.Clipboard.Section);
-
-            mCutStripToolStripMenuItem.Enabled = canCutCopyDeleteSection;
-            mCopyStripToolStripMenuItem.Enabled = canCutCopyDeleteSection;
-            mPasteStripToolStripMenuItem.Enabled = canPasteSection;
-            mDeleteStripToolStripMenuItem.Enabled = canCutCopyDeleteSection;
-            mMarkStripAsUnusedToolStripMenuItem.Enabled = !isPlayingOrRecording && isStripSelected;
-            mShowInTOCViewToolStripMenuItem.Enabled = !isPlayingOrRecording && isStripSelected;
-
-            bool isBlockSelected = SelectedPhraseNode != null;
-            bool canCutCopyDeletePhrase = !isPlayingOrRecording && isBlockSelected && mProjectPanel.CurrentSelectionNode != null;
-            bool canPastePhrase = !isPlayingOrRecording && mProjectPanel.CanPaste(mProjectPanel.Project.Clipboard.Phrase);
-            bool canMoveForward = !isPlayingOrRecording &&
-                mProjectPanel.Project.CanMovePhraseNode(mProjectPanel.CurrentSelectedAudioBlock, PhraseNode.Direction.Forward);
-            bool canMoveBackward = !isPlayingOrRecording &&
-                mProjectPanel.Project.CanMovePhraseNode(mProjectPanel.CurrentSelectedAudioBlock, PhraseNode.Direction.Backward);
-
-            mImportAudioFileToolStripMenuItem.Enabled = !isPlayingOrRecording && !noSelection;
-            mCutAudioBlockToolStripMenuItem.Enabled = canCutCopyDeletePhrase;
-            mCopyAudioBlockToolStripMenuItem.Enabled = canCutCopyDeletePhrase;
-            mPasteAudioBlockToolStripMenuItem.Enabled = canPastePhrase;
-            mDeleteAudioBlockToolStripMenuItem.Enabled = canCutCopyDeletePhrase;
-            mMarkPhraseAsUnusedToolStripMenuItem.Enabled = mProjectPanel.CanToggleAudioBlock;
-            mMarkPhraseAsUnusedToolStripMenuItem.Text = mProjectPanel.ToggleAudioBlockString;
-            //mMarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled = isBlockSelected &&
-            //    !SelectedPhraseNode.IsHeading && SelectedPhraseNode.Used;
-            //mUnmarkAudioBlockAsSectionHeadingToolStripMenuItem.Enabled = isBlockSelected &&
-            //    SelectedPhraseNode.IsHeading;
-            mSplitAudioBlockToolStripMenuItem.Enabled = isBlockSelected;
-            mQuickSplitAudioBlockToolStripMenuItem.Enabled = isBlockSelected && (isPlayingOrRecording || isPaused);
-            mApplyPhraseDetectionToolStripMenuItem.Enabled = !isPlayingOrRecording && isBlockSelected;
-            mMergeWithPreviousAudioBlockToolStripMenuItem.Enabled = !isPlayingOrRecording && CanMerge;
-            mMoveAudioBlockForwardToolStripMenuItem.Enabled = canMoveForward;
-            mMoveAudioBlockBackwardToolStripMenuItem.Enabled = canMoveBackward;
-            mMoveAudioBlockToolStripMenuItem.Enabled = mMoveAudioBlockForwardToolStripMenuItem.Enabled ||
-                mMoveAudioBlockBackwardToolStripMenuItem.Enabled;
-
-            bool canRemoveAnnotation = !isPlayingOrRecording && isBlockSelected && mProjectPanel.CurrentSelectedAudioBlock.HasAnnotation;
-            mEditAnnotationToolStripMenuItem.Enabled = !isPlayingOrRecording && isBlockSelected;
-            mRemoveAnnotationToolStripMenuItem.Enabled = canRemoveAnnotation;
-            mFocusOnAnnotationToolStripMenuItem.Enabled = canRemoveAnnotation;
-
-            mSetPageNumberToolStripMenuItem.Enabled = !isPlayingOrRecording && CanSetPage;
-            mRemovePageNumberToolStripMenuItem.Enabled = !isPlayingOrRecording && CanRemovePage;
-            mGoTopageToolStripMenuItem.Enabled = !isPlayingOrRecording && mProjectPanel.Project.Pages > 0;
-
-            UpdateVisibleItemsForContextMenu();
         }
 
         /// <summary>
@@ -313,30 +254,6 @@ namespace Obi.UserControls
         }
 
         #region ambiguous click event handlers
-
-        /// <summary>
-        /// Cut either the selected strip or the selected audio block.
-        /// </summary>
-        private void CutStripOrAudioBlockHandler(object sender, EventArgs e)
-        {
-            mProjectPanel.Cut();
-        }
-
-        /// <summary>
-        /// Copy either the selected strip or the selected audio block.
-        /// </summary>
-        private void CopyStripOrAudioBlockHandler(object sender, EventArgs e)
-        {
-            mProjectPanel.Copy();
-        }
-
-        /// <summary>
-        /// Paste the node in the clipboard in the selected strip or before the selected audio block.
-        /// </summary>
-        private void PasteStripOrAudioBlockHandler(object sender, EventArgs e)
-        {
-            mProjectPanel.Paste();
-        }
 
         /// <summary>
         /// Delete either the selected strip or audio block.
