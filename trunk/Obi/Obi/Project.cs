@@ -233,15 +233,6 @@ namespace Obi
             }
         }
 
-
-        /// <summary>
-        /// Simulate a modification of the project.
-        /// </summary>
-        public void Touch()
-        {
-            Modified(new Commands.Touch(this));
-        }
-
         /// <summary>
         /// This flag is set to true if the project contains modifications that have not been saved.
         /// </summary>
