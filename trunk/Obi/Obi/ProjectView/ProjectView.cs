@@ -470,7 +470,22 @@ namespace Obi.ProjectView
         {
             if (CanPaste)
             {
-                mPresentation.UndoRedoManager.execute(new Commands.Node.Paste(this));
+                Commands.Node.Paste paste = new Commands.Node.Paste(this);
+                if (mSelection.Control is StripsView && mSelection.Node.SectionChildCount > 0)
+                {
+                    urakawa.undo.CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
+                    for (int i = 0; i < mSelection.Node.SectionChildCount; ++i)
+                    {
+                        command.append(new Commands.Node.ChangeParent(this, mSelection.Node.SectionChild(i), paste.Copy));
+                    }
+                    command.append(paste);
+                    command.setShortDescription(paste.getShortDescription());
+                    mPresentation.UndoRedoManager.execute(command);
+                }
+                else
+                {
+                    mPresentation.UndoRedoManager.execute(paste);
+                }
             }
         }
 

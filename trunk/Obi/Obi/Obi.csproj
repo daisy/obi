@@ -95,6 +95,7 @@
     <Compile Include="Commands\CommandManager.cs" />
     <Compile Include="Commands\ListCommand.cs" />
     <Compile Include="Commands\Node\AddNewSection.cs" />
+    <Compile Include="Commands\Node\ChangeParent.cs" />
     <Compile Include="Commands\Node\Copy.cs" />
     <Compile Include="Commands\Node\Delete.cs" />
     <Compile Include="Commands\Node\MarkSectionHeading.cs" />
