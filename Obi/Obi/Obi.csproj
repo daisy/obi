@@ -92,8 +92,6 @@
       <DependentUpon>VuMeterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Command.cs" />
-    <Compile Include="Commands\CommandManager.cs" />
-    <Compile Include="Commands\ListCommand.cs" />
     <Compile Include="Commands\Node\AddNewSection.cs" />
     <Compile Include="Commands\Node\ChangeParent.cs" />
     <Compile Include="Commands\Node\Copy.cs" />
@@ -118,7 +116,6 @@
     <Compile Include="Commands\TOC\MoveSectionOut.cs" />
     <Compile Include="Commands\TOC\Rename.cs" />
     <Compile Include="Commands\TOC\ToggleSectionUsed.cs" />
-    <Compile Include="Commands\Touch.cs" />
     <Compile Include="Commands\UndoRedoManager.cs" />
     <Compile Include="CustomProperties.cs" />
     <Compile Include="DataModelFactory.cs" />
