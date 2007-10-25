@@ -44,7 +44,7 @@ namespace Obi
             {
                 PhraseNode copy = (PhraseNode)node.copy(true);
                 Commands.Strips.CopyPhrase command = new Commands.Strips.CopyPhrase(copy);
-                mClipboard.Phrase = copy;
+                //mClipboard.Phrase = copy;
                 CommandCreated(this, new Events.Project.CommandCreatedEventArgs(command));
             }
         }
@@ -60,7 +60,7 @@ namespace Obi
             if (node != null)
             {
                 Commands.Strips.CutPhrase command = new Commands.Strips.CutPhrase(node);
-                mClipboard.Phrase = node;
+                //mClipboard.Phrase = node;
                 DeletePhraseNodeAndMedia(node);
                 Modified(command);
             }

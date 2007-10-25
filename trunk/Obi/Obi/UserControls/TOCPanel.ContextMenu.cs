@@ -36,21 +36,6 @@ namespace Obi.UserControls
             mProjectPanel.Project.MoveSectionNodeIn(mProjectPanel.CurrentSelectedSection);
         }
 
-        private void mCutSectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectPanel.Cut();
-        }
-
-        private void mCopySectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectPanel.Copy();
-        }
-
-        private void mPasteSectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectPanel.Paste();
-        }
-
         private void mDeleteSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectPanel.Delete();

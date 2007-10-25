@@ -64,7 +64,7 @@ namespace Obi.UserControls
             get
             {
                 SectionNode selected = mProjectPanel.CurrentSelectedSection;
-                return selected != null && selected.Used && mProjectPanel.Project.Clipboard.Section != null;
+                return selected != null ; //&& selected.Used && mProjectPanel.Project.Clipboard.Section != null;
             }
         }
 

@@ -791,4 +791,16 @@ Error text: {1}</value>
   <data name="delete_strip_command" xml:space="preserve">
     <value>delete strip</value>
   </data>
+  <data name="copy_strip_command" xml:space="preserve">
+    <value>copy strip</value>
+  </data>
+  <data name="paste_strip_command" xml:space="preserve">
+    <value>paste strip</value>
+  </data>
+  <data name="paste_strips_command" xml:space="preserve">
+    <value>paste strips</value>
+  </data>
+  <data name="cut_strip_command" xml:space="preserve">
+    <value>cut strip</value>
+  </data>
 </root>

@@ -129,7 +129,6 @@ namespace Obi.UserControls
                         | System.Windows.Forms.Keys.X)));
             this.mCutSectionToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.mCutSectionToolStripMenuItem.Text = "Cu&t section";
-            this.mCutSectionToolStripMenuItem.Click += new System.EventHandler(this.mCutSectionToolStripMenuItem_Click);
             // 
             // mCopySectionToolStripMenuItem
             // 
@@ -138,7 +137,6 @@ namespace Obi.UserControls
                         | System.Windows.Forms.Keys.C)));
             this.mCopySectionToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.mCopySectionToolStripMenuItem.Text = "&Copy section";
-            this.mCopySectionToolStripMenuItem.Click += new System.EventHandler(this.mCopySectionToolStripMenuItem_Click);
             // 
             // mPasteSectionToolStripMenuItem
             // 
@@ -147,7 +145,6 @@ namespace Obi.UserControls
                         | System.Windows.Forms.Keys.V)));
             this.mPasteSectionToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.mPasteSectionToolStripMenuItem.Text = "&Paste section";
-            this.mPasteSectionToolStripMenuItem.Click += new System.EventHandler(this.mPasteSectionToolStripMenuItem_Click);
             // 
             // mDeleteSectionToolStripMenuItem
             // 

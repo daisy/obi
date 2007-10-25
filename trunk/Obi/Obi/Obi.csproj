@@ -91,13 +91,14 @@
     <Compile Include="Audio\VuMeterForm.Designer.cs">
       <DependentUpon>VuMeterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clipboard.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\CommandManager.cs" />
     <Compile Include="Commands\ListCommand.cs" />
     <Compile Include="Commands\Node\AddNewSection.cs" />
+    <Compile Include="Commands\Node\Copy.cs" />
     <Compile Include="Commands\Node\Delete.cs" />
     <Compile Include="Commands\Node\MarkSectionHeading.cs" />
+    <Compile Include="Commands\Node\Paste.cs" />
     <Compile Include="Commands\Node\RenameSection.cs" />
     <Compile Include="Commands\Node\ToggleUsed.cs" />
     <Compile Include="Commands\Strips\AddNewStrip.cs" />
@@ -112,11 +113,8 @@
     <Compile Include="Commands\Strips\SetPageNumber.cs" />
     <Compile Include="Commands\Strips\SplitPhrase.cs" />
     <Compile Include="Commands\TOC\AddNewSection.cs" />
-    <Compile Include="Commands\TOC\Copy.cs" />
-    <Compile Include="Commands\TOC\Cut.cs" />
     <Compile Include="Commands\TOC\MoveSectionIn.cs" />
     <Compile Include="Commands\TOC\MoveSectionOut.cs" />
-    <Compile Include="Commands\TOC\Paste.cs" />
     <Compile Include="Commands\TOC\Rename.cs" />
     <Compile Include="Commands\TOC\ToggleSectionUsed.cs" />
     <Compile Include="Commands\Touch.cs" />

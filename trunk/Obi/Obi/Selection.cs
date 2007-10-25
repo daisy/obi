@@ -36,6 +36,8 @@ namespace Obi
             IsDummy = isDummy;
         }
 
+        public NodeSelection(ObiNode node, IControlWithSelection control) : this(node, control, false) { }
+
         /// <summary>
         /// Stringify the selection for debug printing.
         /// </summary>
@@ -53,5 +55,29 @@ namespace Obi
 
         public SectionNode Section { get { return Node as SectionNode; } }
         public PhraseNode Phrase { get { return Node as PhraseNode; } }
+
+        public bool CanPaste(Clipboard clipboard)
+        {
+            return clipboard == null ? false :
+                Control is ProjectView.TOCView ? clipboard.Node is SectionNode :
+                Control is ProjectView.StripsView ? clipboard.Node is SectionNode :
+                false;
+        }
     };
+
+    public class Clipboard
+    {
+        private ObiNode mNode;
+        private bool mDeep;
+
+        public Clipboard(ObiNode node, bool deep)
+        {
+            mNode = node;
+            mDeep = deep;
+        }
+
+        public ObiNode Copy { get { return (ObiNode)mNode.copy(mDeep, true); } }
+        public bool Deep { get { return mDeep; } }
+        public ObiNode Node { get { return mNode; } }
+    }
 }
