@@ -69,7 +69,7 @@ namespace Obi
             CleanProjectAssets();
 
             // then save the xuk file to update the date metadata.
-            Save();
+            // Save();
 
             // then invoke the XukToZed transformation
             string xukFileName = System.IO.Path.GetFileNameWithoutExtension(XUKPath);

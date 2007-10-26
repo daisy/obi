@@ -256,14 +256,6 @@ namespace Obi.UserControls
         #region ambiguous click event handlers
 
         /// <summary>
-        /// Delete either the selected strip or audio block.
-        /// </summary>
-        private void DeleteStripOrAudioBlockHandler(object sender, EventArgs e)
-        {
-            mProjectPanel.Delete();
-        }
-
-        /// <summary>
         /// Toggle the used state of either the selected strip or audio block.
         /// </summary>
         private void ToggleUsedStripOrAudioBlockHandler(object sender, EventArgs e)

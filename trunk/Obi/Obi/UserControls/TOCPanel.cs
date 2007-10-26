@@ -142,33 +142,6 @@ namespace Obi.UserControls
         }
 
         /// <summary>
-        /// The user has edited a label in the tree, so an event is raised to rename the node.
-        /// </summary>
-        private void mTocTree_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
-        {
-            if (e.Label != null)
-            {
-                if (e.Label == "")
-                {
-                    // Normally, the toolkit would cause an exception for an empty string;
-                    // but it's easier to catch it here and cancel the event.
-                    // In any case I am not sure that the behavior of the toolkit is good
-                    // in this situation.
-                    e.CancelEdit = true;
-                    MessageBox.Show(Localizer.Message("empty_label_warning_text"),
-                        Localizer.Message("empty_label_warning_caption"),
-                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else if (e.Label != Project.GetTextMedia((SectionNode)e.Node.Tag).getText())
-                {
-                    mProjectPanel.Project.RenameSectionNodeWithCommand((SectionNode)e.Node.Tag, e.Label);
-                }
-            }
-            // AllowDelete = true;
-            mProjectPanel.TransportBar.Enabled = true;
-        }
-
-        /// <summary>
         /// synchronize the highlight with the strip view on double-click
         /// </summary>
         /// <param name="sender"></param>

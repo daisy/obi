@@ -70,8 +70,8 @@ namespace Obi
         /// </summary>
         public ManagedAudioMedia Audio
         {
-            get { return null; }// ChannelsProperty.getMedia(Project.AudioChannel) as ManagedAudioMedia; }
-            set { } //ChannelsProperty.setMedia(Project.AudioChannel, value); }
+            get { return (ManagedAudioMedia)ChannelsProperty.getMedia(Presentation.AudioChannel); }
+            set { ChannelsProperty.setMedia(Presentation.AudioChannel, value); }
         }
 
         /// <summary>

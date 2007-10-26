@@ -10,14 +10,6 @@ namespace Obi.Audio
     public class DataManager: MediaDataManager
     {
         /// <summary>
-        /// Simple constructor.
-        /// </summary>
-        public DataManager(): base()
-        {
-        }
-
-
-        /// <summary>
         /// Create an empty audio media and manage it.
         /// </summary>
         /// <returns>The new managed empty media.</returns>
@@ -67,6 +59,5 @@ namespace Obi.Audio
             audio.getMediaData().getMediaDataManager().addMediaData(result.getMediaData());
             return result;
         }
-
     }
 }

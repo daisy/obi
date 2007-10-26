@@ -17,14 +17,8 @@ namespace Obi
     public partial class Project : urakawa.Project
     {
         private int mPageCount;              // count the pages in the book
-        private int mPhraseCount;            // total number of phrases in the project
         private bool mUnsaved;               // saved flag
         private string mXUKPath;             // path to the project XUK file
-        
-        private string mLastPath;            // last path to which the project was saved (see save as)
-        
-        // TODO remove mAudioChannel, mAnnotation and mClipboard as members.
-        private Clipboard mClipboard;        // project-wide clipboard; should move to project panel
 
         public static readonly string AUDIO_CHANNEL_NAME = "obi.audio";            // canonical name of the audio channel
         public static readonly string ANNOTATION_CHANNEL_NAME = "obi.annotation";  // canonical name of the annotation channel
@@ -99,24 +93,6 @@ namespace Obi
 
 
         /// <summary>
-        /// Initialize a new project with metadata.
-        /// </summary>
-        /// <param name="XUKPath">The path to the XUK file where the project is to be saved.</param>
-        /// <param name="title">The title of the project.</param>
-        /// <param name="id">The identifier for the project.</param>
-        /// <param name="userProfile">The user profile for the user creating the project.</param>
-        /// <param name="createTitle">If true, create an initial title section.</param>
-        public void Initialize(string title, string id, UserProfile userProfile, bool createTitle)
-        {
-            // CreateMetadata(title, id, userProfile);
-            // TODO remove this
-            // if (createTitle) CreateTitleSection(title);
-            if (StateChanged != null) StateChanged(this,
-                new Events.Project.StateChangedEventArgs(Events.Project.StateChange.Opened));
-            Save();
-        }
-
-        /// <summary>
         /// Delete a node from the tree.
         /// </summary>
         /// <param name="node">The node to delete.</param>
@@ -132,15 +108,6 @@ namespace Obi
         public SectionNode FirstSection
         {
             get { return RootNode.getChildCount() > 0 ? RootNode.SectionChild(0) : null; }
-        }
-
-        /// <summary>
-        /// If there is audio in the projects, the audio settings should come from the project
-        /// and not from the user settings.
-        /// </summary>
-        public bool HasAudioSettings
-        {
-            get { return mPhraseCount > 0; }
         }
 
         /// <summary>
@@ -209,19 +176,6 @@ namespace Obi
         }
 
         /// <summary>
-        /// Save the project to its XUK file.
-        /// </summary>
-        internal void Save()
-        {
-            /*bool enforce = DataManager.getEnforceSinglePCMFormat();
-            DataManager.setEnforceSinglePCMFormat(true);  // TODO remove this kludge
-            saveXUK(new Uri(mXUKPath));
-            DataManager.setEnforceSinglePCMFormat(enforce);
-            mLastPath = mXUKPath;
-            Saved();*/
-        }
-
-        /// <summary>
         /// The project was saved.
         /// </summary>
         private void Saved()
@@ -282,51 +236,6 @@ namespace Obi
         }
 
         #endregion
-
-
-
-
-        /// <summary>
-        /// The project-wide clipboard.
-        /// </summary>
-        /// TODO this needs to go
-        public Clipboard Clipboard
-        {
-            get { return mClipboard; }
-        }
-
-
-
-
-
-        /// <summary>
-        /// Last path under which the project was saved (different from the normal path when we save as)
-        /// </summary>
-        /// TODO review save as
-        public string LastPath
-        {
-            get { return mLastPath; }
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-        /// <summary>
-        /// Save the project to a different name/XUK file.
-        /// </summary>
-        /// <remarks>TO REVIEW</remarks>
-        public void SaveAs(string path)
-        {
-            throw new Exception("DISABLED RIGHT NOW.");
-        }
 
         /// <summary>
         /// Get the text media of a core node. The result can then be used to get or set the text of a node.

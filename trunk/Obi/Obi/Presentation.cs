@@ -9,6 +9,7 @@ namespace Obi
 {
     public class Presentation: urakawa.Presentation
     {
+        public static readonly string AUDIO_CHANNEL_NAME = "obi.audio";  // canonical name of the audio channel
         public static readonly string TEXT_CHANNEL_NAME = "obi.text";    // canonical name of the text channel
 
         public event Commands.UndoRedoEventHandler CommandExecuted;     // triggered when a command was executed
@@ -25,6 +26,12 @@ namespace Obi
         /// Root node of the presentation.
         /// </summary>
         public RootNode RootNode { get { return (RootNode)getRootNode(); } }
+
+
+        /// <summary>
+        /// Get the audio channel of the presentation
+        /// </summary>
+        public Channel AudioChannel { get { return GetSingleChannelByName(AUDIO_CHANNEL_NAME); } }
 
         /// <summary>
         /// Get the text channel of the presentation.
@@ -75,8 +82,9 @@ namespace Obi
         /// <summary>
         /// Initialize event handling for a new presentation.
         /// </summary>
-        public void Initialize()
+        public void Initialize(Session session)
         {
+            setRootUri(new Uri(String.Format("{0}/", Path.GetDirectoryName(session.Path))));
             UndoRedoManager.CommandExecuted += new Obi.Commands.UndoRedoEventHandler(undo_CommandExecuted);
             UndoRedoManager.CommandUnexecuted += new Obi.Commands.UndoRedoEventHandler(undo_CommandUnexecuted);
         }
@@ -84,13 +92,17 @@ namespace Obi
         /// <summary>
         /// Initialize the metadata of the presentation, and create a title section if necessary.
         /// </summary>
-        public void Initialize(string title, bool createTitleSection, string id, UserProfile userProfile)
+        public void Initialize(Session session, string title, bool createTitleSection, string id, Settings settings)
         {
-            Initialize();
+            Initialize(session);
             setRootNode(new RootNode(this));
-            CreateMetadata(title, id, userProfile);
+            CreateMetadata(title, id, settings.UserProfile);
+            AddChannel(AUDIO_CHANNEL_NAME);
             AddChannel(TEXT_CHANNEL_NAME);
             if (createTitleSection) CreateTitleSection(title);
+            DataManager.getDefaultPCMFormat().setNumberOfChannels((ushort)settings.AudioChannels);
+            DataManager.getDefaultPCMFormat().setBitDepth((ushort)settings.BitDepth);
+            DataManager.getDefaultPCMFormat().setSampleRate((uint)settings.SampleRate);
         }
 
         void undo_CommandExecuted(object sender, Obi.Commands.UndoRedoEventArgs e)
@@ -188,7 +200,7 @@ namespace Obi
         }
 
         // Create a new phrase node from an audio media.
-        private PhraseNode CreatePhraseNode(urakawa.media.data.audio.ManagedAudioMedia audio)
+        private PhraseNode CreatePhraseNode(ManagedAudioMedia audio)
         {
             PhraseNode node = CreatePhraseNode();
             node.Audio = audio;
@@ -203,13 +215,7 @@ namespace Obi
             RootNode.AppendChild(node);
         }
 
-        /// <summary>
-        /// Access a channel which we know exist and is the only channel by this name.
-        /// </summary>
-        /// <param name="name">The name of the channel (use the name constants.)</param>
-        /// <returns>The channel for this name.</returns>
-        /// <exception cref="urakawa.exception.ChannelDoesNotExistException">Thrown when there is no channel by that name.</exception>
-        /// <exception cref="TooManyChannelsException">Thrown when there are more than one channels with that name.</exception>
+        // Access a channel which we know exist and is the only channel by this name.
         private Channel GetSingleChannelByName(string name)
         {
             List<Channel> channels = getChannelsManager().getListOfChannels(name);
@@ -222,7 +228,7 @@ namespace Obi
         // Create a media object from a sound file.
         private ManagedAudioMedia ImportAudioFromFile(string path)
         {
-            if (!DataManager.getEnforceSinglePCMFormat())
+            if (!getMediaDataManager().getEnforceSinglePCMFormat())
             {
                 Stream input = File.OpenRead(path);
                 PCMDataInfo info = PCMDataInfo.parseRiffWaveHeader(input);
@@ -232,7 +238,7 @@ namespace Obi
                 getMediaDataManager().getDefaultPCMFormat().setSampleRate(info.getSampleRate());
                 DataManager.setEnforceSinglePCMFormat(true);
             }
-            AudioMediaData data = (AudioMediaData)getMediaDataFactory().createMediaData(typeof(AudioMediaData));
+            AudioMediaData data = getMediaDataFactory().createAudioMediaData();
             data.appendAudioDataFromRiffWave(path);
             ManagedAudioMedia media = (ManagedAudioMedia)getMediaFactory().createAudioMedia();
             media.setMediaData(data);

@@ -26,21 +26,6 @@ namespace Obi.UserControls
             StartRenamingSelectedSection();
         }
 
-        private void mMoveOutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectPanel.Project.MoveSectionNodeOut(mProjectPanel.CurrentSelectedSection);
-        }
-
-        private void mMoveInToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectPanel.Project.MoveSectionNodeIn(mProjectPanel.CurrentSelectedSection);
-        }
-
-        private void mDeleteSectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectPanel.Delete();
-        }
-
         private void mMarkSectionAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectPanel.Project.ToggleNodeUsedWithCommand(mProjectPanel.CurrentSelectedSection, true);
@@ -78,8 +63,6 @@ namespace Obi.UserControls
             mAddSectionToolStripMenuItem.Enabled = !isPlayingOrRecording && (!isSelected || isSelectedUsed || isParentUsed);
             mAddSubSectionToolStripMenuItem.Enabled = !isPlayingOrRecording && isSelectedUsed;
             mRenameSectionToolStripMenuItem.Enabled = !isPlayingOrRecording && isSelectedUsed;
-            mMoveOutToolStripMenuItem.Enabled = !isPlayingOrRecording && mProjectPanel.Project.CanMoveSectionNodeOut(mProjectPanel.CurrentSelectedSection);
-            mMoveInToolStripMenuItem.Enabled = !isPlayingOrRecording && mProjectPanel.Project.CanMoveSectionNodeIn(mProjectPanel.CurrentSelectedSection);
 
             bool canCutCopyDelete = !isPlayingOrRecording && isSelected && CanCutCopyDelete;
             bool canPaste = !isPlayingOrRecording && CanPaste;

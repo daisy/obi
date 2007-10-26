@@ -67,9 +67,7 @@ namespace Obi.UserControls
             this.mRenameBox.Enter += new System.EventHandler(this.mRenameBox_Enter);
             this.mRenameBox.Click += new System.EventHandler(this.SectionStrip_Click);
             this.mRenameBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mTextBox_MouseDown);
-            this.mRenameBox.Leave += new System.EventHandler(this.mRenameBox_Leave);
             this.mRenameBox.SizeChanged += new System.EventHandler(this.mRenameBox_SizeChanged);
-            this.mRenameBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mTextBox_KeyDown);
             // 
             // mLabel
             // 

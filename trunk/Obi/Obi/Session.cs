@@ -100,14 +100,14 @@ namespace Obi
         /// <summary>
         /// Create a new presentation in the session, with a path to save its XUK file.
         /// </summary>
-        public void NewPresentation(string path, string title, bool createTitleSection, string id, UserProfile userProfile)
+        public void NewPresentation(string path, string title, bool createTitleSection, string id, Settings settings)
         {
             mProject = new urakawa.Project();
             mProject.setDataModelFactory(mDataModelFactory);
             mProject.setPresentation(mDataModelFactory.createPresentation(), 0);
             mPath = path;
             mHasUnsavedChanges = true;
-            Presentation.Initialize(title, createTitleSection, id, userProfile);
+            Presentation.Initialize(this, title, createTitleSection, id, settings);
             if (ProjectCreated != null) ProjectCreated(this, null);
         }
 
@@ -120,7 +120,7 @@ namespace Obi
             mProject.setDataModelFactory(mDataModelFactory);
             mProject.openXUK(new Uri(path));
             mPath = path;
-            Presentation.Initialize();
+            Presentation.Initialize(this);
             if (ProjectOpened != null) ProjectOpened(this, null);
         }
 

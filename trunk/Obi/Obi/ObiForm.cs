@@ -329,7 +329,7 @@ namespace Obi
                 mSettings.CreateTitleSection = createTitleSection;
                 if (DidCloseProject())
                 {
-                    mSession.NewPresentation(path, title, createTitleSection, "(please set id)", mSettings.UserProfile);
+                    mSession.NewPresentation(path, title, createTitleSection, "(please set id)", mSettings);
                 }
             }
             catch (Exception e)

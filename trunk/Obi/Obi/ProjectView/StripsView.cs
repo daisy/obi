@@ -52,6 +52,27 @@ namespace Obi.ProjectView
         public bool CanRenameStrip { get { return mSelectedItem is Strip; } }
 
         /// <summary>
+        /// Create a command to delete the selected strip.
+        /// </summary>
+        public urakawa.undo.ICommand DeleteStripCommand()
+        {
+            SectionNode section = SelectedSection;
+            Commands.Node.Delete delete = new Commands.Node.Delete(mView, section, Localizer.Message("delete_strip_command"));
+            if (section.SectionChildCount > 0)
+            {
+                urakawa.undo.CompositeCommand command = mView.Presentation.getCommandFactory().createCompositeCommand();
+                command.setShortDescription(delete.getShortDescription());
+                command.append(new Commands.TOC.MoveSectionOut(mView, section.SectionChild(0)));
+                command.append(delete);
+                return command;
+            }
+            else
+            {
+                return delete;
+            }
+        }
+
+        /// <summary>
         /// Show the strip for this section node.
         /// </summary>
         public void MakeStripVisibleForSection(SectionNode section)
@@ -207,6 +228,7 @@ namespace Obi.ProjectView
                 strip.MinimumSize = new Size(mLayoutPanel.Width, strip.MinimumSize.Height);
             }
             for (int i = 0; i < node.SectionChildCount; ++i) AddStripForSection(node.SectionChild(i));
+            for (int i = 0; i < node.PhraseChildCount; ++i) strip.AddBlockForPhrase(node.PhraseChild(i));
             return strip;
         }
 
@@ -215,7 +237,7 @@ namespace Obi.ProjectView
         {
             if (e.getTreeNode() is SectionNode)
             {
-                RemoveStripForSection((SectionNode)e.getTreeNode());
+                RemoveStripsForSection((SectionNode)e.getTreeNode());
             }
             else if (e.getTreeNode() is PhraseNode)
             {
@@ -224,9 +246,9 @@ namespace Obi.ProjectView
         }
 
         // Remove all strips for a section and its subsections
-        private void RemoveStripForSection(SectionNode section)
+        private void RemoveStripsForSection(SectionNode section)
         {
-            for (int i = 0; i < section.SectionChildCount; ++i) RemoveStripForSection(section.SectionChild(i));
+            for (int i = 0; i < section.SectionChildCount; ++i) RemoveStripsForSection(section.SectionChild(i));
             Strip strip = FindStrip(section);
             mLayoutPanel.Controls.Remove(strip);
         }
@@ -337,27 +359,6 @@ namespace Obi.ProjectView
         {
             //Console.Out.WriteLine("[Strip at level {0}, position {1}, with label `{2}' (`{3}')]",
             //    mSelectedStrip.Node.Level, mSelectedStrip.Node.Position, mSelectedStrip.Label, mSelectedStrip.Node.Label);
-        }
-
-        /// <summary>
-        /// Create a command to delete the selected strip.
-        /// </summary>
-        public urakawa.undo.ICommand DeleteStripCommand()
-        {
-            SectionNode section = SelectedSection;
-            Commands.Node.Delete delete = new Commands.Node.Delete(mView, section, Localizer.Message("delete_strip_command"));
-            if (section.SectionChildCount > 0)
-            {
-                urakawa.undo.CompositeCommand command = mView.Presentation.getCommandFactory().createCompositeCommand();
-                command.setShortDescription(delete.getShortDescription());
-                command.append(new Commands.TOC.MoveSectionOut(mView, section.SectionChild(0)));
-                command.append(delete);
-                return command;
-            }
-            else
-            {
-                return delete;
-            }
         }
     }
 }
