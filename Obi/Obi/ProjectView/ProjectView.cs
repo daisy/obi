@@ -757,11 +757,6 @@ namespace Obi.ProjectView
             }
             if (FinishedImportingFiles != null) FinishedImportingFiles(this, null);
         }
-
-        private void mStripsView_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 
     public class ImportingFileEventArgs

@@ -11,7 +11,6 @@ namespace Obi
     public partial class Project
     {
         public event Events.RenameSectionNodeHandler RenamedSectionNode;   // a node was renamed in the presentation
-        public event Events.MovedSectionNodeHandler MovedSectionNode;      // a node was moved in the presentation
         public event Events.SectionNodeHandler DecreasedSectionNodeLevel;  // a node's level was decreased in the presentation
         public event Events.MovedSectionNodeHandler UndidMoveSectionNode;  // a node was restored to its previous location
         public event Events.SectionNodeHandler PastedSectionNode;          // a section node was pasted

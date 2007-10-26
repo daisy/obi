@@ -230,7 +230,6 @@
     <Compile Include="Project.Blocks.cs" />
     <Compile Include="Project.CleanAndExport.cs" />
     <Compile Include="Project.cs" />
-    <Compile Include="Project.TOC.cs" />
     <Compile Include="ProjectView\Block.cs">
       <SubType>UserControl</SubType>
     </Compile>

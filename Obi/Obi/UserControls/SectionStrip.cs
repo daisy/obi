@@ -192,41 +192,6 @@ namespace Obi.UserControls
         {
             this.mRenameBox.ContextMenuStrip = this.Manager.PanelContextMenuStrip;
         }
-
-        /// <summary>
-        /// Typing return updates the text property; escape cancels the edit.
-        /// </summary>
-        private void mTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-                UpdateText();
-            }
-            else if (e.KeyCode == Keys.Escape)
-            {
-                Renaming = false;
-            }
-        }
-
-        /// <summary>
-        /// Upate the text label from the text box input.
-        /// If the input is empty, then do not change the text and warn the user.
-        /// The manager is then asked to send a rename event.
-        /// </summary>
-        private void UpdateText()
-        {
-            if (mRenameBox.Text != "")
-            {
-                mLabel.Text = mRenameBox.Text;
-                mManager.RenamedSectionStrip(this);
-            }
-            else
-            {
-                MessageBox.Show(String.Format(Localizer.Message("empty_label_warning_text"), Localizer.Message("a_section")),
-                    Localizer.Message("empty_label_warning_caption"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            Renaming = false;
-        }
         
         #endregion
         
@@ -438,14 +403,6 @@ namespace Obi.UserControls
         private void SectionStrip_Enter(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.Print("Entering section <{0}> from <{1}> ({2})", Label, sender, e);
-        }
-
-        private void mRenameBox_Leave(object sender, EventArgs e)
-        {
-            if (Label != mRenameBox.Text)
-            {
-                UpdateText();
-            }
         }
 
         private void mRenameBox_SizeChanged(object sender, EventArgs e)

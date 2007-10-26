@@ -59,7 +59,6 @@ namespace Obi.UserControls
             this.mTocTree.Size = new System.Drawing.Size(129, 133);
             this.mTocTree.TabIndex = 0;
             this.mTocTree.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tocTree_NodeMouseDoubleClick);
-            this.mTocTree.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.mTocTree_AfterLabelEdit);
             this.mTocTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.mTocTree_AfterSelect);
             this.mTocTree.BeforeLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.mTocTree_BeforeLabelEdit);
             this.mTocTree.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tocTree_KeyDown);
@@ -111,7 +110,6 @@ namespace Obi.UserControls
                         | System.Windows.Forms.Keys.Left)));
             this.mMoveOutToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.mMoveOutToolStripMenuItem.Text = "Move &out";
-            this.mMoveOutToolStripMenuItem.Click += new System.EventHandler(this.mMoveOutToolStripMenuItem_Click);
             // 
             // mMoveInToolStripMenuItem
             // 
@@ -120,7 +118,6 @@ namespace Obi.UserControls
                         | System.Windows.Forms.Keys.Right)));
             this.mMoveInToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.mMoveInToolStripMenuItem.Text = "Move i&n";
-            this.mMoveInToolStripMenuItem.Click += new System.EventHandler(this.mMoveInToolStripMenuItem_Click);
             // 
             // mCutSectionToolStripMenuItem
             // 
@@ -152,7 +149,6 @@ namespace Obi.UserControls
             this.mDeleteSectionToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.mDeleteSectionToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.mDeleteSectionToolStripMenuItem.Text = "&Delete section";
-            this.mDeleteSectionToolStripMenuItem.Click += new System.EventHandler(this.mDeleteSectionToolStripMenuItem_Click);
             // 
             // mMarkSectionAsUnusedToolStripMenuItem
             // 

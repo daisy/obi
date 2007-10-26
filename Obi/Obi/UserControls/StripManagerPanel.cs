@@ -247,16 +247,6 @@ namespace Obi.UserControls
         #endregion
 
         /// <summary>
-        /// Convenience method to send the event that a strip was renamed, so that we don't have to track down
-        /// all individual strips.
-        /// </summary>
-        /// <param name="strip">The renamed strip (with its new name as a label.)</param>
-        public void RenamedSectionStrip(SectionStrip strip)
-        {
-            mProjectPanel.Project.RenameSectionNodeWithCommand(strip.Node, strip.Label);
-        }
-
-        /// <summary>
         /// Clicking outside of a strip deselects any selected strip or block.
         /// </summary>
         private void mFlowLayoutPanel_Click(object sender, EventArgs e)

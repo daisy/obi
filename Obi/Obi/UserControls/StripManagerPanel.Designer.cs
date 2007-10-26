@@ -171,7 +171,6 @@ namespace Obi.UserControls
             this.mDeleteStripToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.mDeleteStripToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
             this.mDeleteStripToolStripMenuItem.Text = "&Delete strip";
-            this.mDeleteStripToolStripMenuItem.Click += new System.EventHandler(this.DeleteStripOrAudioBlockHandler);
             // 
             // mMarkStripAsUnusedToolStripMenuItem
             // 
@@ -229,7 +228,6 @@ namespace Obi.UserControls
             this.mDeleteAudioBlockToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.mDeleteAudioBlockToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
             this.mDeleteAudioBlockToolStripMenuItem.Text = "&Delete phrase";
-            this.mDeleteAudioBlockToolStripMenuItem.Click += new System.EventHandler(this.DeleteStripOrAudioBlockHandler);
             // 
             // mMarkPhraseAsUnusedToolStripMenuItem
             // 

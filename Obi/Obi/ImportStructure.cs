@@ -147,7 +147,7 @@ namespace Obi
                 newNode = null; // mProject.CreateChildSectionNode(parentNode);
             }
 
-            if (newNode != null) mProject.RenameSectionNode(newNode, getElementText(source));
+            //if (newNode != null) mProject.RenameSectionNode(newNode, getElementText(source));
             return newNode;
         }
 

@@ -27,7 +27,16 @@ namespace Obi
             }
         }
 
-        // TODO: what about a custom data manager?
+        public override urakawa.media.data.MediaDataManager createMediaDataManager()
+        {
+            return createMediaDataManager(typeof(Audio.DataManager).Name, NS);
+        }
+
+        public override urakawa.media.data.MediaDataManager createMediaDataManager(string localName, string namespaceUri)
+        {
+            return namespaceUri == NS && localName == typeof(Audio.DataManager).Name ?
+                new Audio.DataManager() : base.createMediaDataManager(localName, namespaceUri);
+        }
 
         public override urakawa.Presentation createPresentation()
         {

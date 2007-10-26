@@ -14,14 +14,25 @@ namespace Obi.ProjectView
         private Strip mStrip;      // the parent strip
         private bool mSelected;    // selected flag
 
+        private static readonly float AUDIO_SCALE = 0.02f;
+
         public Block(PhraseNode node, Strip strip): this()
         {
             mNode = node;
             mStrip = strip;
             mSelected = false;
+            long time = node.Audio.getDuration().getTimeDeltaAsMilliseconds();
+            mTimeLabel.Text = FormatTime(time);
+            int width = (int)Math.Round(time * AUDIO_SCALE);
+            Size = new Size(width < mTimeLabel.Width ? mTimeLabel.Width : width, Height);
         }
 
         public Block() { InitializeComponent(); }
+
+        private string FormatTime(long milliseconds)
+        {
+            return String.Format("{0:0.00}s", milliseconds / 1000.0);
+        }
 
 
         /// <summary>

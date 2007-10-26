@@ -438,42 +438,5 @@ namespace Obi.UserControls
                     "strip");                                               // pasting only one strip
         }
 
-        #region edit
-
-        /// <summary>
-        /// Delete the selected node (and deselect it!)
-        /// </summary>
-        public void Delete()
-        {
-            TransportBar.Enabled = false;
-            if (CurrentSelectedAudioBlock != null)
-            {
-                // Avn: Following check added to prevent deleting when shortcuts are disabled like during renaming.
-                // These checks are not added at lower layer like inside stripmanager so as to avoid problems in internally issued delete commands
-                if (mStripManagerPanel.AllowShortcuts)
-                {
-                    mProject.DeletePhraseNode(CurrentSelectedAudioBlock);
-                    CurrentSelection = null;
-                }
-            }
-            else if (CurrentSelectedStrip != null)
-            {
-                // to review!
-                                                    mProject.ShallowDeleteSectionNode(this, CurrentSelectedStrip);
-                    CurrentSelection = null;
-                            }
-            else if (CurrentSelectedSection != null)
-            {
-                // Avn: Following check added to prevent deleting  during during renaming etc.
-                /*if (mTOCPanel.AllowDelete)
-                {
-                    mProject.DeleteSectionNode(CurrentSelectedSection);
-                    CurrentSelection = null;
-                }*/
-                            }
-            TransportBar.Enabled = true;
-        }
-
-        #endregion
     }
 }
