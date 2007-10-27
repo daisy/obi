@@ -79,6 +79,15 @@ namespace Obi
             insert(node, index);
         }
 
+        public override ObiNode LastDescendant
+        {
+            get
+            {
+                int n = SectionChildCount;
+                return n == 0 ? this : SectionChild(n - 1).LastDescendant;
+            }
+        }
+
         /// <summary>
         /// Position when view as a flat list.
         /// </summary>

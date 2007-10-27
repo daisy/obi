@@ -51,6 +51,11 @@ namespace Obi
         }
 
         /// <summary>
+        /// Last descendant of the same kind as this node.
+        /// </summary>
+        public virtual ObiNode LastDescendant { get { return this; } }
+
+        /// <summary>
         /// Level of the node in the tree. It is assumed that the root is an ObiNode with a level of 0.
         /// </summary>
         public virtual int Level { get { return 1 + ((ObiNode)getParent()).Level; } }
