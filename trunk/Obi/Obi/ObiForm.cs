@@ -595,7 +595,10 @@ namespace Obi
         private void Session_ProjectClosed(object sender, ProjectClosedEventArgs e)
         {
             UpdateObi();
-            if (e.ClosedPresentation != null) Status(String.Format(Localizer.Message("closed_project"), e.ClosedPresentation.Title));
+            if (e.ClosedPresentation != null && e.ClosedPresentation.Initialized)
+            {
+                Status(String.Format(Localizer.Message("closed_project"), e.ClosedPresentation.Title));
+            }
             mProjectView.Presentation = null;
             if (mSourceView != null) mSourceView.Close();
         }
