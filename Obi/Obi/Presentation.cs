@@ -9,6 +9,10 @@ namespace Obi
 {
     public class Presentation: urakawa.Presentation
     {
+        private bool mInitialized;
+
+        public Presentation() : base() { mInitialized = false; }
+
         public static readonly string AUDIO_CHANNEL_NAME = "obi.audio";  // canonical name of the audio channel
         public static readonly string TEXT_CHANNEL_NAME = "obi.text";    // canonical name of the text channel
 
@@ -84,7 +88,9 @@ namespace Obi
         /// </summary>
         public void Initialize(Session session)
         {
-            setRootUri(new Uri(String.Format("{0}/", Path.GetDirectoryName(session.Path))));
+            mInitialized = true;
+            Uri uri = new Uri(session.Path);
+            if (getRootUri() != uri) setRootUri(uri);
             UndoRedoManager.CommandExecuted += new Obi.Commands.UndoRedoEventHandler(undo_CommandExecuted);
             UndoRedoManager.CommandUnexecuted += new Obi.Commands.UndoRedoEventHandler(undo_CommandUnexecuted);
         }
@@ -104,6 +110,11 @@ namespace Obi
             DataManager.getDefaultPCMFormat().setBitDepth((ushort)settings.BitDepth);
             DataManager.getDefaultPCMFormat().setSampleRate((uint)settings.SampleRate);
         }
+
+        /// <summary>
+        /// True if the presentation was initialized.
+        /// </summary>
+        public bool Initialized { get { return mInitialized; } }
 
         void undo_CommandExecuted(object sender, Obi.Commands.UndoRedoEventArgs e)
         {
@@ -228,7 +239,8 @@ namespace Obi
         // Create a media object from a sound file.
         private ManagedAudioMedia ImportAudioFromFile(string path)
         {
-            if (!getMediaDataManager().getEnforceSinglePCMFormat())
+            // Disabled for now
+            /*if (!getMediaDataManager().getEnforceSinglePCMFormat())
             {
                 Stream input = File.OpenRead(path);
                 PCMDataInfo info = PCMDataInfo.parseRiffWaveHeader(input);
@@ -237,7 +249,7 @@ namespace Obi
                 getMediaDataManager().getDefaultPCMFormat().setNumberOfChannels(info.getNumberOfChannels());
                 getMediaDataManager().getDefaultPCMFormat().setSampleRate(info.getSampleRate());
                 DataManager.setEnforceSinglePCMFormat(true);
-            }
+            }*/
             AudioMediaData data = getMediaDataFactory().createAudioMediaData();
             data.appendAudioDataFromRiffWave(path);
             ManagedAudioMedia media = (ManagedAudioMedia)getMediaFactory().createAudioMedia();

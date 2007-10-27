@@ -9,6 +9,8 @@ namespace Obi.Audio
     /// </summary>
     public class DataManager: MediaDataManager
     {
+        public override string getXukNamespaceUri() { return DataModelFactory.NS; }
+
         /// <summary>
         /// Create an empty audio media and manage it.
         /// </summary>
