@@ -8,6 +8,7 @@ namespace Obi.Commands.Node
     {
         private NodeSelection mSelection;  // the selection context
         private ObiNode mCopy;             // copy of the node to paste
+        private ObiNode mLastNode;         // last node copied (for selection)
         private string mLabel;             // command label
         
         public Paste(ProjectView.ProjectView view)
@@ -15,6 +16,7 @@ namespace Obi.Commands.Node
         {
             mSelection = view.Selection;
             mCopy = view.Clipboard.Copy;
+            mLastNode = mCopy.LastDescendant;
             mLabel = Localizer.Message(
                 view.Selection.Control is ProjectView.TOCView ? "paste_section_command" :
                 mCopy.SectionChildCount > 0 ? "paste_strips_command" : "paste_strip_command"
@@ -33,7 +35,7 @@ namespace Obi.Commands.Node
             base.execute();
             mSelection.Node.ParentAs<ObiNode>().InsertAfter(mCopy, mSelection.Node);
             if (!mCopy.ParentAs<ObiNode>().Used) MakeUnused(mCopy);
-            View.Selection = new NodeSelection(mCopy, mSelection.Control, false);
+            View.Selection = new NodeSelection(mLastNode, mSelection.Control, false);
         }
 
         private void MakeUnused(ObiNode node)
