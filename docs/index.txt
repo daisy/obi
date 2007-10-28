@@ -9,6 +9,9 @@ brief description. Here is what we have so far:
 
 * [Features](features.html): Full feature list for Obi 1.0.
 
+* [Keyboard navigation](keyboarding.html): Navigating, listening and selecting
+using the keyboard.
+
 * [Manual](manual.html): Mockup manual for what Obi 1.0 will be.
 
 * [Menus](menus.txt): list of menu shortcuts and accelerator keys.
@@ -26,6 +29,8 @@ needed in Obi and the toolkit for replacing Obi's asset manager.
 * [Plan](plan.html): Obi plan from August to December 2007.
 
 * [Playback](playback.html): playback behavior.
+
+* [Recording](recording.html): recording behavior.
 
 * [Reference](reference.txt): the reference manual. Needs a new revision.
 
