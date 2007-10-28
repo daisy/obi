@@ -41,6 +41,7 @@ namespace Obi.ProjectView
             this.mBlocksPanel.Name = "mBlocksPanel";
             this.mBlocksPanel.Size = new System.Drawing.Size(284, 104);
             this.mBlocksPanel.TabIndex = 0;
+            this.mBlocksPanel.WrapContents = false;
             this.mBlocksPanel.Click += new System.EventHandler(this.Strip_Click);
             // 
             // mLabel
@@ -54,6 +55,7 @@ namespace Obi.ProjectView
             this.mLabel.Label = "*** NOT YET INITIALIZED ***";
             this.mLabel.Location = new System.Drawing.Point(3, 3);
             this.mLabel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.mLabel.MinimumSize = new System.Drawing.Size(150, 0);
             this.mLabel.Name = "mLabel";
             this.mLabel.Size = new System.Drawing.Size(284, 19);
             this.mLabel.TabIndex = 0;

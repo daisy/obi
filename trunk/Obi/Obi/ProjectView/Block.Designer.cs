@@ -40,6 +40,7 @@ namespace Obi.ProjectView
             this.mTimeLabel.Size = new System.Drawing.Size(26, 20);
             this.mTimeLabel.TabIndex = 0;
             this.mTimeLabel.Text = "0s";
+            this.mTimeLabel.Click += new System.EventHandler(this.TimeLabel_Click);
             // 
             // Block
             // 

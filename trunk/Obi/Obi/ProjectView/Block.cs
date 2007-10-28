@@ -14,7 +14,7 @@ namespace Obi.ProjectView
         private Strip mStrip;      // the parent strip
         private bool mSelected;    // selected flag
 
-        private static readonly float AUDIO_SCALE = 0.02f;
+        private static readonly float AUDIO_SCALE = 0.01f;
 
         public Block(PhraseNode node, Strip strip): this()
         {
@@ -24,15 +24,10 @@ namespace Obi.ProjectView
             long time = node.Audio.getDuration().getTimeDeltaAsMilliseconds();
             mTimeLabel.Text = FormatTime(time);
             int width = (int)Math.Round(time * AUDIO_SCALE);
-            Size = new Size(width < mTimeLabel.Width ? mTimeLabel.Width : width, Height);
+            Size = new Size(width < MinimumWidth ? MinimumWidth : width, Height);
         }
 
         public Block() { InitializeComponent(); }
-
-        private string FormatTime(long milliseconds)
-        {
-            return String.Format("{0:0.00}s", milliseconds / 1000.0);
-        }
 
 
         /// <summary>
@@ -54,9 +49,23 @@ namespace Obi.ProjectView
             }
         }
 
-        private void Block_Click(object sender, EventArgs e)
+
+        // Select on click
+        private void Block_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
+        private void TimeLabel_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
+
+        // The block shouldn't be smaller than its label
+        private int MinimumWidth
         {
-            mStrip.SelectedBlock = this;
+            get { return mTimeLabel.Location.X + mTimeLabel.Width + mTimeLabel.Margin.Right; }
+        }
+
+        // Format the time string to display in the block.
+        private string FormatTime(long milliseconds)
+        {
+            return milliseconds > 60000 ?
+                String.Format("{0}:{1:00}", milliseconds / 60000, Math.Round((milliseconds % 60000) / 1000.0)) : 
+                String.Format("{0:0.00}s", milliseconds / 1000.0);
         }
     }
 }
