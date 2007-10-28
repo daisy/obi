@@ -503,6 +503,11 @@ namespace Obi.ProjectView
             {
                 mPresentation.UndoRedoManager.execute(mStripsView.DeleteStripCommand());
             }
+            else if (CanRemoveBlock)
+            {
+                mPresentation.UndoRedoManager.execute(new Commands.Node.Delete(this, mStripsView.Selection.Phrase,
+                    Localizer.Message("delete_block_command")));
+            }
         }
 
         /// <summary>
@@ -605,7 +610,7 @@ namespace Obi.ProjectView
 
         public bool CanCut { get { return Selection != null; } }
         public bool CanCopy { get { return CanCopySection || CanCopyStrip; } }
-        public bool CanDelete { get { return CanRemoveSection || CanRemoveStrip; } }
+        public bool CanDelete { get { return CanRemoveSection || CanRemoveStrip || CanRemoveBlock; } }
         public bool CanPaste { get { return mSelection != null && mSelection.CanPaste(mClipboard); } }
 
         public bool CanShowInStripsView { get { return SelectedSection != null && mSelection.Control == mTOCView; } }
@@ -621,6 +626,7 @@ namespace Obi.ProjectView
         public bool CanMarkSectionUsed { get { return mTOCView.CanToggleSectionUsed && !mTOCView.Selection.Node.Used; } }
         public bool CanMoveSectionIn { get { return mTOCView.CanMoveSectionIn; } }
         public bool CanMoveSectionOut { get { return mTOCView.CanMoveSectionOut; } }
+        public bool CanRemoveBlock { get { return mStripsView.CanRemoveBlock; } }
         public bool CanRemoveSection { get { return mTOCView.CanRemoveSection; } }
         public bool CanRemoveStrip { get { return mStripsView.CanRemoveStrip; } }
         public bool CanRenameSection { get { return mTOCView.CanRenameSection; } }

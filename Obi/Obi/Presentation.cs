@@ -239,8 +239,7 @@ namespace Obi
         // Create a media object from a sound file.
         private ManagedAudioMedia ImportAudioFromFile(string path)
         {
-            // Disabled for now
-            /*if (!getMediaDataManager().getEnforceSinglePCMFormat())
+            if (!getMediaDataManager().getEnforceSinglePCMFormat())
             {
                 Stream input = File.OpenRead(path);
                 PCMDataInfo info = PCMDataInfo.parseRiffWaveHeader(input);
@@ -249,7 +248,7 @@ namespace Obi
                 getMediaDataManager().getDefaultPCMFormat().setNumberOfChannels(info.getNumberOfChannels());
                 getMediaDataManager().getDefaultPCMFormat().setSampleRate(info.getSampleRate());
                 DataManager.setEnforceSinglePCMFormat(true);
-            }*/
+            }
             AudioMediaData data = getMediaDataFactory().createAudioMediaData();
             data.appendAudioDataFromRiffWave(path);
             ManagedAudioMedia media = (ManagedAudioMedia)getMediaFactory().createAudioMedia();

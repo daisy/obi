@@ -48,6 +48,7 @@ namespace Obi.ProjectView
 
 
         public bool CanAddStrip { get { return mSelectedItem is Strip; } }
+        public bool CanRemoveBlock { get { return mSelectedItem is Block; } }
         public bool CanRemoveStrip { get { return mSelectedItem is Strip; } }
         public bool CanRenameStrip { get { return mSelectedItem is Strip; } }
 
@@ -101,6 +102,9 @@ namespace Obi.ProjectView
             mView.RenameSectionNode(strip.Node, strip.Label);
         }
 
+        /// <summary>
+        /// Set the selected phrase (null to deselect)
+        /// </summary>
         public PhraseNode SelectedPhrase
         {
             get { return mSelectedItem != null && mSelectedItem is Block ? ((Block)mSelectedItem).Node : null; }

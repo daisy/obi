@@ -110,7 +110,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// Select a block in the strip.
         /// </summary>
-        public Block SelectedBlock { set { mParentView.Selection = new NodeSelection(value.Node, mParentView, false); } }
+        public Block SelectedBlock { set { mParentView.SelectedPhrase = value.Node; } }
 
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace Obi.ProjectView
         {
             int w = 0;
             foreach (Control c in mBlocksPanel.Controls) w += c.Width + c.Margin.Right;
-            w -= mBlocksPanel.Controls[mBlocksPanel.Controls.Count - 1].Margin.Right;
+            if (mBlocksPanel.Controls.Count > 0) w -= mBlocksPanel.Controls[mBlocksPanel.Controls.Count - 1].Margin.Right;
             if (w > mBlocksPanel.Width) mBlocksPanel.Size = new Size(w, mBlocksPanel.Height);
             w += mBlocksPanel.Location.X + mBlocksPanel.Margin.Right;
             if (w > MinimumSize.Width) MinimumSize = new Size(w, MinimumSize.Height);
