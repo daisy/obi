@@ -57,6 +57,7 @@ namespace Obi.ProjectView
             Block block = new Block(phrase, this);
             mBlocksPanel.Controls.Add(block);
             mBlocksPanel.Controls.SetChildIndex(block, phrase.Index);
+            UpdateWidth();
             return block;
         }
 
@@ -66,7 +67,12 @@ namespace Obi.ProjectView
         public string Label
         {
             get { return mLabel.Label; }
-            set { mLabel.Label = value; }
+            set
+            {
+                mLabel.Label = value;
+                int w = mLabel.Location.X + mLabel.MinimumSize.Width + mLabel.Margin.Right;
+                if (w > MinimumSize.Width) MinimumSize = new Size(w, MinimumSize.Height);
+            }
         }
 
         /// <summary>
@@ -96,8 +102,8 @@ namespace Obi.ProjectView
             if (mNode != null)
             {
                 BackColor = mSelected ? Color.Yellow : mNode.Used ? Color.LightSkyBlue : Color.LightGray;
-                mLabel.BackColor = mNode.Used ? Color.Thistle : Color.LightGray;
-                mBlocksPanel.BackColor = mNode.Used ? Color.CornflowerBlue : Color.LightGray;
+                mLabel.BackColor = mSelected ? Color.Yellow : mNode.Used ? Color.Thistle : Color.LightGray;
+                mBlocksPanel.BackColor = mSelected ? Color.Yellow : mNode.Used ? Color.CornflowerBlue : Color.LightGray;
             }
         }
 
@@ -155,6 +161,17 @@ namespace Obi.ProjectView
         public void RemoveBlock(PhraseNode phrase)
         {
             mBlocksPanel.Controls.Remove(FindBlock(phrase));
+            UpdateWidth();
+        }
+
+        private void UpdateWidth()
+        {
+            int w = 0;
+            foreach (Control c in mBlocksPanel.Controls) w += c.Width + c.Margin.Right;
+            w -= mBlocksPanel.Controls[mBlocksPanel.Controls.Count - 1].Margin.Right;
+            if (w > mBlocksPanel.Width) mBlocksPanel.Size = new Size(w, mBlocksPanel.Height);
+            w += mBlocksPanel.Location.X + mBlocksPanel.Margin.Right;
+            if (w > MinimumSize.Width) MinimumSize = new Size(w, MinimumSize.Height);
         }
     }
 }

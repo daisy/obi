@@ -107,6 +107,10 @@ namespace Obi.ProjectView
             {
                 if (!mAllowEmptyLabel && value == "") throw new Exception("Empty label is not allowed.");
                 mLabel.Text = value;
+                mTextBox.Text = value;
+                int wb = mCancelButton.Location.X + mCancelButton.Width + mCancelButton.Margin.Right;
+                int wl = mTextBox.Location.X + mTextBox.Width + mTextBox.Margin.Right;
+                MinimumSize = new Size(wb > wl ? wb : wl, MinimumSize.Height);
             }
         }
 

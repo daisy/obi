@@ -175,7 +175,8 @@ namespace Obi.ProjectView
         {
             foreach (Control c in mLayoutPanel.Controls)
             {
-                c.MinimumSize = new Size(mLayoutPanel.Width, c.MinimumSize.Height);
+                int w = mLayoutPanel.Width - c.Location.X - c.Margin.Right;
+                c.Size = new Size(w, c.Height);
             }
         }
 
@@ -225,7 +226,8 @@ namespace Obi.ProjectView
                 strip = new Strip((SectionNode)node, this);
                 mLayoutPanel.Controls.Add(strip);
                 mLayoutPanel.Controls.SetChildIndex(strip, ((SectionNode)node).Position);
-                strip.MinimumSize = new Size(mLayoutPanel.Width, strip.MinimumSize.Height);
+                int w = mLayoutPanel.Width - strip.Location.X - strip.Margin.Right;
+                strip.Size = new Size(w, strip.Height);
             }
             for (int i = 0; i < node.SectionChildCount; ++i) AddStripForSection(node.SectionChild(i));
             for (int i = 0; i < node.PhraseChildCount; ++i) strip.AddBlockForPhrase(node.PhraseChild(i));
