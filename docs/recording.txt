@@ -1,7 +1,9 @@
 # Recording in Obi
 
 First draft by Avneesh on October 9, 2007; second draft, October 22, 2007;
-third draft by Julien, October 29 2007. (Some rough parts left.)
+third draft by Julien. (Some rough parts left.)
+
+`$Id$`
 
 <div id="toc">Table Of Contents</div>
 
@@ -94,10 +96,10 @@ imported projects.
 #### Composite blocks
 
 A composite block (not implemented yet; _e.g._ the heading for a section with
-several phrases or a table row) is treated like a strip. This goes for
-selecting a composite block (append new phrases in the block) as well as
-for blocks inside a composite block (all new phrases are inside this composite
-block.)
+several phrases or a table row) is treated like a block. When the composite
+block itself is selected, recording takes place after the block; when a block
+inside the composite block is selected then the new blocks are added after
+the selected block inside the composite block.
 
 ### 5. The playback cursor is set inside an audio block.
 
@@ -126,6 +128,11 @@ original block is `[ASZ]` with `S` being the selected chunk and the user
 records the phrases `U`, `V`, `W`, ... the result is the blocks `[AU] [V] [W]
 ... [Z]`.
 
+Another usage for this mode is to replace all of the audio of a block by
+selecting all of the waveform, then recording. (Note that also normal edit
+operations such as delete and cut work as expected with the waveform selection
+so deleting all the audio can also be achieved in this way.)
+
 ## Safety setting
 
 There is a user setting that can be turned on or off (and is stored in the user
@@ -144,3 +151,4 @@ draft, but has been moved to a user preferrence.)
 page number?
 * Creating sections: the section is split after the last block, and a new
 section is introduced.
+* Creating composite blocks?
