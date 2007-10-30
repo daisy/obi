@@ -21,10 +21,17 @@ namespace Obi.ProjectView
             mNode = node;
             mStrip = strip;
             mSelected = false;
-            long time = node.Audio.getDuration().getTimeDeltaAsMilliseconds();
-            mTimeLabel.Text = FormatTime(time);
-            int width = (int)Math.Round(time * AUDIO_SCALE);
-            Size = new Size(width < MinimumWidth ? MinimumWidth : width, Height);
+            if (node.Audio != null)
+            {
+                long time = node.Audio.getDuration().getTimeDeltaAsMilliseconds();
+                mWaveform.Width = (int)Math.Round(time * AUDIO_SCALE);
+                mWaveform.Media = node.Audio.getMediaData();
+                Size = new Size(mWaveform.Width + mWaveform.Margin.Right + mWaveform.Margin.Left, Height);
+            }
+            else
+            {
+                mWaveform.Visible = false;
+            }
         }
 
         public Block() { InitializeComponent(); }
@@ -52,20 +59,6 @@ namespace Obi.ProjectView
 
         // Select on click
         private void Block_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
-        private void TimeLabel_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
-
-        // The block shouldn't be smaller than its label
-        private int MinimumWidth
-        {
-            get { return mTimeLabel.Location.X + mTimeLabel.Width + mTimeLabel.Margin.Right; }
-        }
-
-        // Format the time string to display in the block.
-        private string FormatTime(long milliseconds)
-        {
-            return milliseconds > 60000 ?
-                String.Format("{0}:{1:00}", milliseconds / 60000, Math.Round((milliseconds % 60000) / 1000.0)) : 
-                String.Format("{0:0.00}s", milliseconds / 1000.0);
-        }
+        private void mWaveform_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
     }
 }

@@ -278,6 +278,12 @@
     <Compile Include="ProjectView\TOCView.Designer.cs">
       <DependentUpon>TOCView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProjectView\Waveform.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjectView\Waveform.Designer.cs">
+      <DependentUpon>Waveform.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Dialogs\NewProject.resx">
       <SubType>Designer</SubType>
@@ -505,6 +511,10 @@
     <EmbeddedResource Include="ProjectView\TOCView.resx">
       <SubType>Designer</SubType>
       <DependentUpon>TOCView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\Waveform.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Waveform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\AbstractBlock.resx">
       <SubType>Designer</SubType>
