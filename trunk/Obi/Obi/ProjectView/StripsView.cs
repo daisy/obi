@@ -357,14 +357,5 @@ namespace Obi.ProjectView
                 return l;
             }
         }
-
-        /// <summary>
-        /// Get some information about the selected strip
-        /// </summary>
-        public void AboutSelectedStrip()
-        {
-            //Console.Out.WriteLine("[Strip at level {0}, position {1}, with label `{2}' (`{3}')]",
-            //    mSelectedStrip.Node.Level, mSelectedStrip.Node.Position, mSelectedStrip.Label, mSelectedStrip.Node.Label);
-        }
     }
 }

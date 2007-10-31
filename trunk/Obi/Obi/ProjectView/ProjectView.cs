@@ -424,11 +424,12 @@ namespace Obi.ProjectView
         /// <summary>
         /// Change the used status of the selected section, and of all its subsections.
         /// </summary>
-        public void ToggleSectionUsed()
+        public void MarkSectionUsed(bool used)
         {
             if (CanToggleSectionUsed)
             {
-                mPresentation.UndoRedoManager.execute(new Commands.TOC.ToggleSectionUsed(this, mTOCView.Selection.Section));
+                SectionNode section = mTOCView.Selection.Section;
+                if (section.Used != used) mPresentation.UndoRedoManager.execute(new Commands.TOC.ToggleSectionUsed(this, section));
             }
         }
 
@@ -623,7 +624,6 @@ namespace Obi.ProjectView
         public bool CanCopySection { get { return mTOCView.Selection != null && !mTOCView.Selection.IsDummy; } }
         public bool CanCopyStrip { get { return mStripsView.SelectedSection != null && !mStripsView.Selection.IsDummy; } }
         public bool CanMarkSectionUnused { get { return mTOCView.CanToggleSectionUsed && mTOCView.Selection.Node.Used; } }
-        public bool CanMarkSectionUsed { get { return mTOCView.CanToggleSectionUsed && !mTOCView.Selection.Node.Used; } }
         public bool CanMoveSectionIn { get { return mTOCView.CanMoveSectionIn; } }
         public bool CanMoveSectionOut { get { return mTOCView.CanMoveSectionOut; } }
         public bool CanRemoveBlock { get { return mStripsView.CanRemoveBlock; } }
@@ -699,11 +699,10 @@ namespace Obi.ProjectView
         public void MergeStrips() { if (CanMergeStrips) {} }
         public bool CanMergeStrips { get { return false; } }
 
-        /// <summary>
-        /// Debug information about the selected strip
-        /// </summary>
-        public void AboutStrip() { if (CanTellAboutStrip) { mStripsView.AboutSelectedStrip(); } }
-        public bool CanTellAboutStrip { get { return mStripsView.Selection != null; } }
+        public void ListenToSelection() { }
+        public bool CanListenToSection { get { return mTransportBar.Enabled && mTOCView.Selection != null; } }
+        public bool CanListenToStrip { get { return mTransportBar.Enabled && mStripsView.Selection.Section != null; } }
+        public bool CanListenToBlock { get { return mTransportBar.Enabled && mStripsView.Selection.Phrase != null; } }
 
         // Blocks
 
