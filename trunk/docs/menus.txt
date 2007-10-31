@@ -6,38 +6,72 @@ Main form
 
   + [F] File
     + [N] New project ....................... Ctrl+N
+    + [W] New project from import ........... Ctrl+Shift+N
     + [O] Open project ...................... Ctrl+O
-    + [R] Open recent project ............... None
+    + [R] Open recent project ............... (none)
+    ------------------------------------------------------
     + [S] Save project ...................... Ctrl+S
     + [A] Save project as ................... Ctrl+Shift+S
     + [D] Discard changes ................... Ctrl+D
     + [C] Close project ..................... Ctrl+W
+    ------------------------------------------------------
+    + [L] Clean project ..................... (none)
     + [E] Export as DAISY ................... Ctrl+E
+    ------------------------------------------------------
     + [X] Exit .............................. Alt+F4
 
   + [E] Edit
     + [U] Undo .............................. Ctrl+Z
     + [R] Redo .............................. Ctrl+Y
+    ------------------------------------------------
     + [C] Cut ............................... Ctrl+X
     + [Y] Copy .............................. Ctrl+C
     + [P] Paste ............................. Ctrl+V
     + [D] Delete ............................ Del
-    + [M] Metadata .......................... Alt+M
-    + [T] Touch project ..................... F5
+    + [S] Select nothing .................... Alt+N
+    ------------------------------------------------
+    + [F] Find .............................. F3
+
+  + [V] View
+    + [T] Show TOC view...................... Shift+Alt+T
+    + [M] Show metadata view ................ Shift+Alt+M
+    + [S] Show search bar ................... Shift+Alt+S
+    + [B] Show transport bar ................ Shift+Alt+B
+    + [U] Show status bar ................... Shift+Alt+U
+    -----------------------------------------------------
+    + [C] Show in TOC view .................. Alt+T
+    + [P] Show in strips view ............... Alt+S
+    + [Y] Synchronize views ................. Alt+Y
+    -----------------------------------------------------
+    + [R] Show source view .................. Alt+R
 
   + [C] TOC
-    + [T] Show/hide table of contents ....... Shift+Alt+T
     + [A] Add section ....................... Ctrl+A
-    + [S] Add sub-section ................... Ctrl+B
+    + [S] Add sub-section ................... Ctrl+Shift+A
     + [N] Rename section .................... F2
-    + [K] Mark section as used/unused ....... Ctrl+K
-    + [O] Move out .......................... Ctrl+Shift+Left
-    + [I] Move in ........................... Ctrl+Shift+Right
-    + [V] Show in strip view ................ Alt+V
+    + [O] Move section out .................. Ctrl+Shift+Left
+    + [I] Move section in ................... Ctrl+Shift+Right
+    + [U] Section is used ................... Ctrl+K
+    ----------------------------------------------------------
+    + [L] Listen to section ................. Alt+L
 
   + [S] Strips
-    + [A] Add strip ............................. Ctrl+A
-    + [R] Rename strip .......................... F2
+    + [A] Add strip ......................... Ctrl+A
+    + [M] Rename strip ...................... F2
+    + [S] Split strip ....................... Ctrl+Shift+P
+    + [G] Merge strip with next ............. Ctrl+Shift+M
+    ------------------------------------------------------
+    + [L] Listen to strip ................... Alt+L
+
+  + [B] Blocks
+    + [I] Import audio files ................ Ctrl+I
+    ------------------------------------------------
+    + [L] Listen to block ................... Alt+L
+
+  (unupdated after this point)
+
+
+
     + [I] Import audio file ..................... Ctrl+I
     + [B] Insert empty audio block .............. Ctrl+J
     + [S] Split audio block ..................... Ctrl+P
@@ -172,6 +206,7 @@ Index of shortcuts
   Ctrl+A* ............ Strips > Add strip
   Ctrl+A* ............ [TOC Panel] Add section
   Ctrl+A* ............ [Strip Manager Panel] Add strip
+  Alt+Shift+B ........ View > Show transport bar
   Ctrl+B ............. TOC > Add subsection
   Ctrl+B ............. [TOC Panel] Add sub-section
   Ctrl+C* ............ File > Copy
@@ -196,7 +231,7 @@ Index of shortcuts
   Ctrl+K ............. Strips > Mark audio block as used/unused
   Ctrl+K ............. [Strip Manager Panel] Mark audio block as used/unused*
   Ctrl+L ............. FREE
-  Alt+M .............. Edit > Metadata
+  Alt+Shift+M ........ View > Show metadata view
   Ctrl+M ............. Strips > Merge with previous audio block
   Ctrl+M ............. [Strip Manager Panel] Merge with previous audio block
   Ctrl+N ............. File > New project
@@ -206,10 +241,13 @@ Index of shortcuts
   Ctrl+P ............. [Strip Manager Panel] Split Audio Block
   Ctrl+Shift+P ....... Strips > Quick split audio block
   Ctrl+Q ............. FREE
+  Alt+R .............. View > Show source view
   Ctrl+R ............. Transport > Record
   Ctrl+Shift+R ....... About > Report bug
+  Alt+S .............. View > Show in strips view
   Ctrl+S ............. File > Save project
   Ctrl+Shift+S ....... File > Save project as
+  Alt+T .............. View > Show in TOC view
   Shift+Alt+T ........ TOC > Show/hide table of contents
   Ctrl+T ............. Transport > Stop
   Alt+U .............. Tools > User profile
@@ -257,3 +295,11 @@ Transport bar shortcut keys
   R .................. Record
   Plus ............... Fast forward
   Minus .............. Rewind
+
+
+Shortcut keys that could be reclaimed:
+
+  Ctrl+D (discard changes)
+  Ctrl+E (export as DAISY)
+  Ctrl+W (close project)
+  Ctrl+N (new project)
