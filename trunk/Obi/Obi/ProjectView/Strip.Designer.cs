@@ -73,6 +73,7 @@ namespace Obi.ProjectView
             this.Name = "Strip";
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Size = new System.Drawing.Size(290, 132);
+            this.Enter += new System.EventHandler(this.Strip_Enter);
             this.Click += new System.EventHandler(this.Strip_Click);
             this.ResumeLayout(false);
 

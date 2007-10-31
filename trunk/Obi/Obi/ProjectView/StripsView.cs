@@ -136,6 +136,7 @@ namespace Obi.ProjectView
                     {
                         s.Selected = true;
                         mLayoutPanel.ScrollControlIntoView((Control)s);
+                        ((Control)s).Focus();
                         SectionNode section = value.Node is SectionNode ? (SectionNode)value.Node :
                             value.Node is PhraseNode ? ((PhraseNode)value.Node).ParentAs<SectionNode>() : null;
                         mView.MakeTreeNodeVisibleForSection(section);
@@ -356,6 +357,11 @@ namespace Obi.ProjectView
                 foreach (Control c in mLayoutPanel.Controls) if (c is ISearchable) l.Add((ISearchable)c);
                 return l;
             }
+        }
+
+        private void StripsView_Leave(object sender, EventArgs e)
+        {
+            if (mView.Selection != null && mView.Selection.Control == this) mView.Selection = null;
         }
     }
 }
