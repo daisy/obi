@@ -79,6 +79,8 @@ namespace Obi
         /// </summary>
         public string CustomKind { get { return mCustomKind; } }
 
+        public override PhraseNode FirstUsedPhrase { get { return Used ? this : null; } }
+
         /// <summary>
         /// Custom element name for XUKOut.
         /// </summary>

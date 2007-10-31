@@ -37,7 +37,7 @@ namespace Obi.ProjectView
             this.mMetadataView = new Obi.ProjectView.MetadataView();
             this.mStripsView = new Obi.ProjectView.StripsView();
             this.mFindInText = new Obi.ProjectView.FindInText();
-            this.mTransportBar = new Obi.UserControls.TransportBar();
+            this.mTransportBar = new Obi.ProjectView.TransportBar();
             this.mTransportBarSplitter.Panel1.SuspendLayout();
             this.mTransportBarSplitter.Panel2.SuspendLayout();
             this.mTransportBarSplitter.SuspendLayout();
@@ -187,7 +187,6 @@ namespace Obi.ProjectView
             this.mTransportBar.Location = new System.Drawing.Point(0, 0);
             this.mTransportBar.Name = "mTransportBar";
             this.mTransportBar.PlayOnFocusEnabled = true;
-            this.mTransportBar.ProjectPanel = null;
             this.mTransportBar.ProjectView = null;
             this.mTransportBar.Selection = null;
             this.mTransportBar.Size = new System.Drawing.Size(1060, 35);
@@ -222,7 +221,7 @@ namespace Obi.ProjectView
         #endregion
 
         private System.Windows.Forms.SplitContainer mTransportBarSplitter;
-        private Obi.UserControls.TransportBar mTransportBar;
+        private TransportBar mTransportBar;
         private System.Windows.Forms.SplitContainer mFindInTextSplitter;
         private System.Windows.Forms.SplitContainer mTOCSplitter;
         private StripsView mStripsView;

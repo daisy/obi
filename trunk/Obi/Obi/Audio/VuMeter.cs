@@ -32,15 +32,10 @@ namespace Obi.Audio
         /// </summary>
         public void SetEventHandlers()
         {
-            mPlayer.UpdateVuMeter +=
-                new Events.Audio.Player.UpdateVuMeterHandler(CatchUpdateVuMeterEvent);
-            mPlayer.ResetVuMeter +=
-                new Events.Audio.Player.ResetVuMeterHandler(CatchResetEvent );
-
-            m_Recorder.UpdateVuMeterFromRecorder +=
-                new Events.Audio.Recorder.UpdateVuMeterHandler(CatchUpdateVuMeterEvent);
-            m_Recorder.ResetVuMeter +=
-                new Events.Audio.Recorder.ResetVuMeterHandler  ( CatchResetEvent );
+            mPlayer.UpdateVuMeter += new Events.Audio.Player.UpdateVuMeterHandler(CatchUpdateVuMeterEvent);
+            mPlayer.ResetVuMeter += new Events.Audio.Player.ResetVuMeterHandler(CatchResetEvent );
+            m_Recorder.UpdateVuMeterFromRecorder += new Events.Audio.Recorder.UpdateVuMeterHandler(CatchUpdateVuMeterEvent);
+            m_Recorder.ResetVuMeter += new Events.Audio.Recorder.ResetVuMeterHandler(CatchResetEvent);
         }
 
 		//Member variable used in properties

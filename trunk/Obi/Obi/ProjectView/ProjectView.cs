@@ -85,10 +85,12 @@ namespace Obi.ProjectView
                 if (mPresentation != value)
                 {
                     mPresentation = value;
+                    mTransportBar.Enabled = mPresentation != null;
                     if (mPresentation != null)
                     {
                         mTOCView.NewPresentation();
                         mStripsView.NewPresentation();
+                        mTransportBar.NewPresentation();
                     }
                 }
             }
@@ -198,10 +200,7 @@ namespace Obi.ProjectView
             }
         }
 
-        /// <summary>
-        /// The transport bar for the view.
-        /// </summary>
-        public UserControls.TransportBar TransportBar { get { return mTransportBar; } }
+        public TransportBar TransportBar { get { return mTransportBar; } }
 
 
         #region Strips
@@ -701,8 +700,8 @@ namespace Obi.ProjectView
 
         public void ListenToSelection() { }
         public bool CanListenToSection { get { return mTransportBar.Enabled && mTOCView.Selection != null; } }
-        public bool CanListenToStrip { get { return mTransportBar.Enabled && mStripsView.Selection.Section != null; } }
-        public bool CanListenToBlock { get { return mTransportBar.Enabled && mStripsView.Selection.Phrase != null; } }
+        public bool CanListenToStrip { get { return mTransportBar.Enabled && mStripsView.SelectedSection != null; } }
+        public bool CanListenToBlock { get { return mTransportBar.Enabled && mStripsView.SelectedPhrase != null; } }
 
         // Blocks
 

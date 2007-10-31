@@ -137,7 +137,7 @@ namespace Obi.UserControls
         /// </summary>
         private void mTocTree_BeforeLabelEdit(object sender, NodeLabelEditEventArgs e)
         {
-            mProjectPanel.TransportBar.Enabled = false;
+            // mProjectPanel.TransportBar.Enabled = false;
             // AllowDelete = false;
         }
 

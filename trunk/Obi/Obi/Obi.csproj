@@ -315,26 +315,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\AudioBlock.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>AudioBlock.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\ProjectPanel.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>ProjectPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\SectionStrip.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>SectionStrip.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\StripManagerPanel.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>StripManagerPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\TOCPanel.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>TOCPanel.cs</DependentUpon>
-    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -356,78 +336,17 @@
     <Compile Include="Selection.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="UserControls\AbstractBlock.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\AnnotationBlock.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\AnnotationBlock.Designer.cs">
-      <DependentUpon>AnnotationBlock.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\AudioBlock.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\AudioBlock.Designer.cs">
-      <DependentUpon>AudioBlock.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Colors.cs" />
     <Compile Include="UserControls\GraphicalVuMeter.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\GraphicalVuMeter.Designer.cs">
       <DependentUpon>GraphicalVuMeter.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\MetadataPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\MetadataPanel.Designer.cs">
-      <DependentUpon>MetadataPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\ProjectPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\ProjectPanel.Designer.cs">
-      <DependentUpon>ProjectPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\SectionStrip.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\SectionStrip.Designer.cs">
-      <DependentUpon>SectionStrip.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\StripManagerPanel.Blocks.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\StripManagerPanel.ContextMenu.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\StripManagerPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\StripManagerPanel.Designer.cs">
-      <DependentUpon>StripManagerPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\StripManagerPanel.SectionNodeSyncCallbacks.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="UserControls\TextVUMeterPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\TextVUMeterPanel.Designer.cs">
       <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\TOCPanel.ContextMenu.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\TOCPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\TOCPanel.Designer.cs">
-      <DependentUpon>TOCPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\TOCPanel.SyncCallbacks.cs">
-      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\TransportBar.cs">
       <SubType>UserControl</SubType>
@@ -516,29 +435,17 @@
       <SubType>Designer</SubType>
       <DependentUpon>Waveform.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\AbstractBlock.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>AbstractBlock.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\AnnotationBlock.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>AnnotationBlock.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\GraphicalVuMeter.resx">
       <DependentUpon>GraphicalVuMeter.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\MetadataPanel.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>MetadataPanel.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TextVUMeterPanel.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TransportBar.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>TransportBar.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

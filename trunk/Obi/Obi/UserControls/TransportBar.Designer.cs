@@ -1,4 +1,4 @@
-namespace Obi.UserControls
+namespace Obi.ProjectView
 {
     partial class TransportBar
     {
@@ -314,7 +314,7 @@ namespace Obi.UserControls
         private System.Windows.Forms.ToolTip mTransportBarTooltip;
         private System.Windows.Forms.Timer mDisplayTimer;
         private System.Windows.Forms.ComboBox mDisplayBox;
-        private TextVUMeterPanel mVUMeterPanel;
+        private Obi.UserControls.TextVUMeterPanel mVUMeterPanel;
         private System.Windows.Forms.Button mRewindButton;
         private System.Windows.Forms.Button mFastForwardButton;
         private System.Windows.Forms.ComboBox mRecordModeBox;
