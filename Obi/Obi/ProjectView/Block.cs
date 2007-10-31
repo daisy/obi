@@ -57,8 +57,9 @@ namespace Obi.ProjectView
         }
 
 
-        // Select on click
+        // Select on click and tabbing
         private void Block_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
         private void mWaveform_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
+        private void Block_Enter(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
     }
 }

@@ -142,8 +142,8 @@ namespace Obi.ProjectView
                     {
                         if (mSelection.Control == mTOCView) TOCViewVisible = true;
                         else if (mSelection.Control == mMetadataView) MetadataViewVisible = true;
+                        mSelection.Control.Selection = value;
                     }
-                    if (mSelection != null) mSelection.Control.Selection = value;
                     if (SelectionChanged != null) SelectionChanged(this, new EventArgs());
                 }
             }

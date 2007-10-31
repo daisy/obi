@@ -173,5 +173,10 @@ namespace Obi.ProjectView
             w += mBlocksPanel.Location.X + mBlocksPanel.Margin.Right;
             if (w > MinimumSize.Width) MinimumSize = new Size(w, MinimumSize.Height);
         }
+
+        private void Strip_Enter(object sender, EventArgs e)
+        {
+            mParentView.SelectedSection = mNode;
+        }
     }
 }
