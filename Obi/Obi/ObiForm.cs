@@ -548,21 +548,9 @@ namespace Obi
             UpdateFileMenu();
             UpdateEditMenu();
             UpdateViewMenu();
-
-            mAddSectionToolStripMenuItem.Enabled = mProjectView.CanAddSection;
-            mAddSubSectionToolStripMenuItem.Enabled = mProjectView.CanAddSubSection;
-            mRenameSectionToolStripMenuItem.Enabled = mProjectView.CanRenameSection;
-            mMoveOutToolStripMenuItem.Enabled = mProjectView.CanMoveSectionOut;
-            mMoveInToolStripMenuItem.Enabled = mProjectView.CanMoveSectionIn;
-            mMarkSectionAsUsedToolStripMenuItem.Visible = mProjectView.CanMarkSectionUsed;
-            mMarkSectionAsUnusedToolStripMenuItem.Visible = mProjectView.CanMarkSectionUnused;
-            mMarkSectionAsUsedunusedToolStripMenuItem.Visible = !mProjectView.CanToggleSectionUsed;
-            mInsertStripToolStripMenuItem.Enabled = mProjectView.CanAddStrip;
-            mRenameStripToolStripMenuItem.Enabled = mProjectView.CanRenameStrip;
-            mSplitStripToolStripMenuItem.Enabled = mProjectView.CanSplitStrip;
-            mMergeWithNextStripToolStripMenuItem.Enabled = mProjectView.CanMergeStrips;
-            mAboutThisStripToolStripMenuItem.Enabled = mProjectView.CanTellAboutStrip;
-            mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
+            UpdateTOCMenu();
+            UpdateStripsMenu();
+            UpdateBlocksMenu();
         }
 
         // Update the title and status bars to show the name of the project, and if it has unsaved changes
@@ -1569,23 +1557,52 @@ if (mProject != null)
 
         // TOC menu
 
+        private void UpdateTOCMenu()
+        {
+            mAddSectionToolStripMenuItem.Enabled = mProjectView.CanAddSection;
+            mAddSubSectionToolStripMenuItem.Enabled = mProjectView.CanAddSubSection;
+            mRenameSectionToolStripMenuItem.Enabled = mProjectView.CanRenameSection;
+            mMoveOutToolStripMenuItem.Enabled = mProjectView.CanMoveSectionOut;
+            mMoveInToolStripMenuItem.Enabled = mProjectView.CanMoveSectionIn;
+            mSectionIsUsedToolStripMenuItem.Enabled = mProjectView.CanToggleSectionUsed;
+            mSectionIsUsedToolStripMenuItem.Checked = mProjectView.CanMarkSectionUnused;
+            mListenToSectionToolStripMenuItem.Enabled = mProjectView.CanListenToSection;
+        }
+
         private void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddNewSection(); }
         private void mAddSubSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddNewSubSection(); }
         private void mRenameSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.StartRenamingSelectedSection(); }
         private void mMoveOutToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MoveSelectedSectionOut(); }
         private void mMoveInToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MoveSelectedSectionIn(); }
-        private void markSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ToggleSectionUsed(); }
-        private void mMarkSectionAsUnusedToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ToggleSectionUsed(); }
+        private void mSectionIsUsedToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            mProjectView.MarkSectionUsed(mSectionIsUsedToolStripMenuItem.Checked);
+        }
+        private void mListenToSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ListenToSelection(); }
 
         // Strips menu
+
+        private void UpdateStripsMenu()
+        {
+            mInsertStripToolStripMenuItem.Enabled = mProjectView.CanAddStrip;
+            mRenameStripToolStripMenuItem.Enabled = mProjectView.CanRenameStrip;
+            mSplitStripToolStripMenuItem.Enabled = mProjectView.CanSplitStrip;
+            mMergeWithNextStripToolStripMenuItem.Enabled = mProjectView.CanMergeStrips;
+            mListenToStripToolStripMenuItem.Enabled = mProjectView.CanListenToStrip;
+        }
 
         private void mInsertStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddNewStrip(); }
         private void mRenameStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.StartRenamingSelectedStrip(); }
         private void mSplitStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SplitStrip(); }
         private void mMergeWithNextStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeStrips(); }
-        private void mAboutThisStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AboutStrip(); }
+        private void mListenToStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ListenToSelection(); }
 
         // Blocks menu
+
+        private void UpdateBlocksMenu()
+        {
+            mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
+        }
 
         private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ImportPhrases(); }
 
