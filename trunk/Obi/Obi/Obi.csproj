@@ -278,6 +278,12 @@
     <Compile Include="ProjectView\TOCView.Designer.cs">
       <DependentUpon>TOCView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProjectView\TransportBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProjectView\TransportBar.Designer.cs">
+      <DependentUpon>TransportBar.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProjectView\Waveform.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -347,12 +353,6 @@
     </Compile>
     <Compile Include="UserControls\TextVUMeterPanel.Designer.cs">
       <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\TransportBar.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\TransportBar.Designer.cs">
-      <DependentUpon>TransportBar.cs</DependentUpon>
     </Compile>
     <Compile Include="UserProfile.cs" />
     <Compile Include="Visitors\CleanupAssets.cs" />
@@ -431,6 +431,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>TOCView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\TransportBar.resx">
+      <DependentUpon>TransportBar.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\Waveform.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Waveform.cs</DependentUpon>
@@ -441,10 +445,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TextVUMeterPanel.resx">
       <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\TransportBar.resx">
-      <DependentUpon>TransportBar.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
