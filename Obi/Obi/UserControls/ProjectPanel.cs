@@ -350,14 +350,6 @@ namespace Obi.UserControls
             }
         }
 
-        /// <summary>
-        /// The transport bar for the project.
-        /// </summary>
-        public TransportBar TransportBar
-        {
-            get { return mTransportBar; }
-        }
-
         #endregion
 
 

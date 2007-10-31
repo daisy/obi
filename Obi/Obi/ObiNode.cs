@@ -75,6 +75,8 @@ namespace Obi
         public abstract PhraseNode PhraseChild(int index);
         public abstract int PhraseChildCount { get; }
 
+        public abstract PhraseNode FirstUsedPhrase { get; }
+
         /// <summary>
         /// Used flag.
         /// </summary>
@@ -162,6 +164,10 @@ namespace Obi
             return (SectionNode)getChild(index);
         }
 
+        public override PhraseNode FirstUsedPhrase
+        {
+            get { throw new Exception("The method or operation is not implemented."); }
+        }
         public override int SectionChildCount { get { return getChildCount(); } }
         public override PhraseNode PhraseChild(int index) { throw new Exception("A root node has no phrase children."); }
         public override int PhraseChildCount { get { return 0; } }

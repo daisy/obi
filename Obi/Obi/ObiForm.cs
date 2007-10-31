@@ -97,6 +97,7 @@ namespace Obi
         // Create a new project by importing an XHTML file
         private void NewProjectFromImport()
         {
+            /*
             mProjectView.TransportBar.Enabled = false;
             if (!DidCloseProject())
             {
@@ -154,6 +155,7 @@ namespace Obi
 
             Ready();
             mProjectView.TransportBar.Enabled = true;
+             * */
         }
 
         // Save the current project under a different name; ask for a new path first.
@@ -624,12 +626,12 @@ namespace Obi
         /// </summary>
         void TransportBar_StateChanged(object sender, Obi.Events.Audio.Player.StateChangedEventArgs e)
         {
-            Status(Localizer.Message(mProjectView.TransportBar._CurrentPlaylist.State.ToString()));
+            Status(Localizer.Message(mProjectView.TransportBar.CurrentPlaylist.State.ToString()));
         }
 
         void TransportBar_PlaybackRateChanged(object sender, EventArgs e)
         {
-            Status(String.Format(Localizer.Message("playback_rate"), mProjectView.TransportBar._CurrentPlaylist.PlaybackRate));
+            Status(String.Format(Localizer.Message("playback_rate"), mProjectView.TransportBar.CurrentPlaylist.PlaybackRate));
         }
 
 
@@ -1255,7 +1257,7 @@ if (mProject != null)
 
         private void TransportBar_PreviousPhrase()
         {
-            if (mProjectView.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
+            if (mProjectView.TransportBar.CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
             {
             }
             else
@@ -1271,7 +1273,7 @@ if (mProject != null)
 
         private void TransportBar_NextPhrase()
         {
-            if (mProjectView.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
+            if (mProjectView.TransportBar.CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
             {
             }
             else
@@ -1324,10 +1326,10 @@ if (mProject != null)
 
         private void UserPreferenceChanged(object sender, EventArgs e)
         {
-            UserControls.Colors.SetHighContrastColors(SystemInformation.HighContrast);
-            //mProjectView.TransportBar.SetHighContrastColors(SystemInformation.HighContrast);
-            BackColor = UserControls.Colors.ObiBackGround;
-            //mProject.Touch();
+            // UserControls.Colors.SetHighContrastColors(SystemInformation.HighContrast);
+            // mProjectView.TransportBar.SetHighContrastColors(SystemInformation.HighContrast);
+            // BackColor = UserControls.Colors.ObiBackGround;
+            // mProject.Touch();
         }
 
         /// <summary>

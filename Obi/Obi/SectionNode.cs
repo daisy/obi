@@ -154,7 +154,7 @@ namespace Obi
         /// Find the first used phrase in the section, if any.
         /// Return null if no such phrase exists.
         /// </summary>
-        public PhraseNode FirstUsedPhrase
+        public override PhraseNode FirstUsedPhrase
         {
             get
             {

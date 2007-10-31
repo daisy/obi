@@ -45,9 +45,9 @@ namespace Obi
         /// <param name="channels">Number of channels of audio to record.</param>
         /// <param name="sampleRate">Sample rate of audio to record.</param>
         /// <param name="bitDepth">Bit depth of audio to record.</param>
-        public RecordingSession(Project project, AudioRecorder recorder, int channels, int sampleRate, int bitDepth)
+        public RecordingSession(Presentation presentation, AudioRecorder recorder, int channels, int sampleRate, int bitDepth)
         {
-            mProject = project;
+            mProject = null;
             mRecorder = recorder;
             mRecorder.AssetsDirectory = ((urakawa.media.data.FileDataProviderManager)mProject.getPresentation(0).getDataProviderManager()).getDataFileDirectoryFullPath();
             if (!Directory.Exists(mRecorder.AssetsDirectory))

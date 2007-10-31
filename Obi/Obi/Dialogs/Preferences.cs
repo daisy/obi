@@ -31,7 +31,7 @@ namespace Obi.Dialogs
         /// <summary>
         /// Initialize the preferences with the user settings.
         /// </summary>
-        public Preferences(Settings settings, Presentation presentation, UserControls.TransportBar transportbar)
+        public Preferences(Settings settings, Presentation presentation, ProjectView.TransportBar transportbar)
         {
             InitializeComponent();
             mIdTemplate = settings.IdTemplate;
@@ -46,21 +46,24 @@ namespace Obi.Dialogs
             mRecorder = transportbar.Recorder;
             mInputDevice = mRecorder.InputDevice;
             mOutputDevice = mPlayer.OutputDevice;
-            /*
-            if (project != null && project.HasAudioSettings)
+            if (presentation != null)
             {
-                mSampleRate = project.SampleRate;
-                mAudioChannels = project.AudioChannels;
-                mBitDepth = project.AudioChannels;
-                mCanChangeAudioSettings = false;
-            }
-            else
-            {*/
                 mSampleRate = settings.SampleRate;
                 mAudioChannels = settings.AudioChannels;
                 mBitDepth = settings.BitDepth;
                 mCanChangeAudioSettings = true;
-            //}
+                //mSampleRate = presentation.SampleRate;
+                //mAudioChannels = presentation.AudioChannels;
+                //mBitDepth = presentation.BitDepth;
+                //mCanChangeAudioSettings = presentation.CanChangeAudioSettings;
+            }
+            else
+            {
+                mSampleRate = settings.SampleRate;
+                mAudioChannels = settings.AudioChannels;
+                mBitDepth = settings.BitDepth;
+                mCanChangeAudioSettings = true;
+            }
         }
 
 

@@ -134,7 +134,6 @@ namespace Obi.UserControls
         private System.Windows.Forms.SplitContainer mSplitContainer;
         private StripManagerPanel mStripManagerPanel;
         private TOCPanel mTOCPanel;
-        private TransportBar mTransportBar;
 
     }
 }
