@@ -106,6 +106,19 @@ namespace Obi
             }
         }
 
+        public Presentation presentation
+        {
+            set
+            {
+                Reset(true);
+                if (value != null)
+                {
+                    AddPhraseNodes(value.RootNode);
+                    SetEventHandlers();
+                }
+            }
+        }
+
         /// <summary>
         /// Get the audio player for the playlist. Useful for setting up event listeners.
         /// </summary>
