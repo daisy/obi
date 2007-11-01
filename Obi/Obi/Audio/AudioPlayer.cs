@@ -335,8 +335,9 @@ namespace Obi.Audio
                 return mOutputDevicesList;
             }
         }
-
-
+        
+               
+        
         /// <summary>
         /// Set the device to be used by the player.
         /// </summary>
@@ -344,7 +345,9 @@ namespace Obi.Audio
         {
             mDevice = device;
             mDevice.Device.SetCooperativeLevel(handle, CooperativeLevel.Priority);
+            Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(mState);
             mState = AudioPlayerState.Stopped;
+            TriggerStateChangedEvent(e);
         }
 
 		/// <summary>
@@ -358,12 +361,17 @@ namespace Obi.Audio
             if (found != null)
             {
                 SetDevice(FormHandle, found);
+
+                Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(mState);
                 mState = AudioPlayerState.Stopped;
+                TriggerStateChangedEvent(e);
             }
             else if (devices.Count > 0)
             {
                 SetDevice(FormHandle, devices[0]);
+                Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(mState);
                 mState = AudioPlayerState.Stopped;
+                TriggerStateChangedEvent(e);
             }
             else
             {

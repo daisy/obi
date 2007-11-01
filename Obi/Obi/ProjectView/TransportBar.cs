@@ -348,6 +348,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void Play()
         {
+            mMasterPlaylist.presentation = mView.Presentation;
             //Avn:  for instantly playing MasterPlaylist, check if current playlist is local
             // and stop if this LocalPlaylist not in stop state
             if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Stopped && mCurrentPlaylist == mLocalPlaylist) StopInternal();
