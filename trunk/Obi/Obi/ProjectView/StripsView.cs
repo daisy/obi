@@ -132,16 +132,16 @@ namespace Obi.ProjectView
                 if (s != mSelectedItem)
                 {
                     if (mSelectedItem != null) mSelectedItem.Selected = false;
+                    mSelectedItem = s;
                     if (s != null)
                     {
                         s.Selected = true;
                         mLayoutPanel.ScrollControlIntoView((Control)s);
-                        ((Control)s).Focus();
                         SectionNode section = value.Node is SectionNode ? (SectionNode)value.Node :
                             value.Node is PhraseNode ? ((PhraseNode)value.Node).ParentAs<SectionNode>() : null;
                         mView.MakeTreeNodeVisibleForSection(section);
+                        if (!((Control)s).Focused) ((Control)s).Focus();
                     }
-                    mSelectedItem = s;
                 }
             }
         }

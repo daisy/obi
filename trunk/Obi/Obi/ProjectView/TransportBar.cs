@@ -58,6 +58,11 @@ namespace Obi.ProjectView
             }
         }
 
+        public void NewPresentation()
+        {
+            mPlayingFrom = null;
+            mMasterPlaylist.Presentation = mView.Presentation;
+        }
 
         /// <summary>
         /// Initialize the transport bar.
@@ -348,8 +353,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void Play()
         {
-            mMasterPlaylist.presentation = mView.Presentation;
-            //Avn:  for instantly playing MasterPlaylist, check if current playlist is local
+            //Avn: for instantly playing MasterPlaylist, check if current playlist is local
             // and stop if this LocalPlaylist not in stop state
             if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Stopped && mCurrentPlaylist == mLocalPlaylist) StopInternal();
             if (CanPlay)
@@ -741,59 +745,6 @@ namespace Obi.ProjectView
             mTimeDisplayBox.Focus();
         }
 
-        void Project_AddedPhraseNode(object sender, Obi.Events.Node.PhraseNodeEventArgs e)
-        {
-            if (e.Node.Used) mMasterPlaylist.AddPhrase(e.Node);
-        }
-
-        void Project_DeletedPhraseNode(object sender, Obi.Events.Node.PhraseNodeEventArgs e)
-        {
-            if (e.Node.Used) mMasterPlaylist.RemovePhrase(e.Node);
-        }
-
-        void Project_ToggledNodeUsedState(object sender, Obi.Events.Node.ObiNodeEventArgs e)
-        {
-            if (e.Node is PhraseNode)
-            {
-                if (e.Node.Used)
-                {
-                    mMasterPlaylist.AddPhrase((PhraseNode)e.Node);
-                }
-                else
-                {
-                    mMasterPlaylist.RemovePhrase((PhraseNode)e.Node);
-                }
-            }
-        }
-
-        void Project_MediaSet(object sender, Obi.Events.Node.SetMediaEventArgs e)
-        {
-            if (e.Node.Used) mMasterPlaylist.UpdateTimeFrom(e.Node);
-        }
-
-
-        void Project_PastedSectionNode(object sender, Events.Node.SectionNodeEventArgs e)
-        {
-            if (e.Node != null)
-            {
-
-                e.Node.acceptDepthFirst
-    (
-                    // add all used phrases under this section node to master playlist
-                                        delegate(urakawa.core.TreeNode n)
-                                        {
-                                            if (n is PhraseNode && ((PhraseNode)n).Used)
-                                            {
-                                                mMasterPlaylist.AddPhrase((PhraseNode)n);
-                                            }
-                                            return true;
-                                        },
-                        delegate(urakawa.core.TreeNode n) { }
-    );
-
-            }
-        }
-
         private void mRecordModeBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -832,23 +783,6 @@ namespace Obi.ProjectView
         {
             mCurrentPlaylist.FastPlayNormaliseWithLapseBack(1500);
             ComboFastPlateRate.SelectedIndex = 0;
-        }
-
-        public void NewPresentation()
-        {
-            /*
-             *             Enabled = mProjectPanel.Project != null;
-            mPlayingFrom = null;
-            if (mProjectPanel.Project != null)
-            {
-                mMasterPlaylist.Project = mProjectPanel.Project;
-                mCurrentPlaylist = mMasterPlaylist;
-                mProjectPanel.Project.ToggledNodeUsedState += new Obi.Events.ObiNodeHandler(Project_ToggledNodeUsedState);
-                mProjectPanel.Project.MediaSet += new Obi.Events.SetMediaHandler(Project_MediaSet);
-                //mProjectPanel.Project.PastedSectionNode += new Obi.Events.SectionNodeHandler(Project_PastedSectionNode);
-            }
-
-             */
         }
     }
 }
