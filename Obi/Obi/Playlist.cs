@@ -19,13 +19,12 @@ namespace Obi
         private AudioPlayer mPlayer;              // audio player for actually playing
         private List<PhraseNode> mPhrases;        // list of phrase nodes (from which we get the assets)
         private List<double> mStartTimes;         // start time of every phrase
-        private ManagedAudioMedia mCurrentAudio;
         private int mCurrentPhraseIndex;          // index of the phrase currently playing
         private double mTotalTime;                // total time of this playlist
         private double mElapsedTime;              // elapsed time *before* the beginning of the current asset
         private bool mIsMaster;                   // flag for playing whole book or just a selection
-                private AudioPlayerState mPlaylistState;  // playlist state is not always the same as the player state
-                private PlayBackState mPlayBackState ;
+        private AudioPlayerState mPlaylistState;  // playlist state is not always the same as the player state
+        private PlayBackState mPlayBackState;
         private int mPlaybackRate;                // current playback rate (multiplier)
 
         private enum PlayBackState { Normal, Forward, Rewind } ;
@@ -75,73 +74,91 @@ namespace Obi
             mPlayer = player;
             Reset(false);
             AddPhraseNodesFromStripOrPhrase(node);
-            SetEventHandlers();
-                    }
+        }
 
         // Avn: added to expose list of phrases
         /// <summary>
         ///  exposes list of phrases in PlayList
         /// <see cref=""/>
         /// </summary>
-        public List<PhraseNode> PhraseList
-        {
-            get
-            {
-                return mPhrases;
-            }
-        }
+        public List<PhraseNode> PhraseList { get { return mPhrases; } }
+
         /// <summary>
-        /// Project that this playlist is playing.
+        /// Set a new presentation for this playlist; i.e. regenerate the master playlist for the presentation.
         /// </summary>
-        public Project Project
+        public Presentation Presentation
         {
             set
             {
                 Reset(true);
-                if (value != null)
-                {
-                    AddPhraseNodes(value.RootNode);
-                    SetEventHandlers();
-                                    }
+                if (value != null) AddPhraseNodes(value.RootNode);
+                value.treeNodeAdded += new urakawa.core.events.TreeNodeAddedEventHandler(Presentation_treeNodeAdded);
+                value.treeNodeRemoved += new urakawa.core.events.TreeNodeRemovedEventHandler(Presentation_treeNodeRemoved);
+                value.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
             }
         }
 
-        public Presentation presentation
+        // Maintain the master playlist by adding (used) nodes
+        private void Presentation_treeNodeAdded(urakawa.core.events.ITreeNodeChangedEventManager o,
+            urakawa.core.events.TreeNodeAddedEventArgs e)
         {
-            set
-            {
-                Reset(true);
-                if (value != null)
+            InsertNode(e.getTreeNode());
+        }
+
+        // Insert new tree nodes in the right place in the playlist.
+        private void InsertNode(urakawa.core.TreeNode node)
+        {
+        }
+
+        private void Presentation_treeNodeRemoved(urakawa.core.events.ITreeNodeChangedEventManager o,
+            urakawa.core.events.TreeNodeRemovedEventArgs e)
+        {
+            RemoveNode(e.getTreeNode());
+        }
+
+        // Remove a node and all of its contents from the playlist
+        private void RemoveNode(urakawa.core.TreeNode node)
+        {
+            int updateTimeFrom = mPhrases.Count;
+            node.acceptDepthFirst(
+                delegate(urakawa.core.TreeNode n)
                 {
-                    AddPhraseNodes(value.RootNode);
-                    SetEventHandlers();
-                }
+                    if (n is PhraseNode && mPhrases.Contains((PhraseNode)n)) 
+                    {
+                        int index = mPhrases.IndexOf((PhraseNode)n);
+                        if (updateTimeFrom == mPhrases.Count) updateTimeFrom = index == 0 ? 1 : index;
+                        mPhrases.RemoveAt(index);
+                        if (index < mStartTimes.Count) mStartTimes.RemoveAt(index + 1);
+                        mTotalTime -= ((PhraseNode)n).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
+                    }
+                    return true;
+                },
+                delegate(urakawa.core.TreeNode n) { }
+            );
+            for (int i = updateTimeFrom; i < mPhrases.Count; ++i)
+            {
+                mStartTimes[i] = mStartTimes[i - 1] + mPhrases[i - 1].Audio.getDuration().getTimeDeltaAsMillisecondFloat();
             }
+        }
+
+        private void Presentation_UsedStatusChanged(object sender, NodeEventArgs<ObiNode> e)
+        {
         }
 
         /// <summary>
         /// Get the audio player for the playlist. Useful for setting up event listeners.
         /// </summary>
-        public AudioPlayer Audioplayer
-        {
-            get { return mPlayer; }
-        }
+        public AudioPlayer Audioplayer { get { return mPlayer; } }
 
         /// <summary>
         /// First phrase in the playlist, or null if empty.
         /// </summary>
-        public PhraseNode FirstPhrase
-        {
-            get { return mPhrases.Count > 0 ? mPhrases[0] : null; }
-        }
+        public PhraseNode FirstPhrase { get { return mPhrases.Count > 0 ? mPhrases[0] : null; } }
 
         /// <summary>
         /// The state of the playlist, as opposed to that of the underlying player.
         /// </summary>
-        public AudioPlayerState State
-        {
-            get { return mPlaylistState; }
-        }
+        public AudioPlayerState State { get { return mPlaylistState; } }
 
         /// <summary>
         /// Set the currently playing node directly (when not playing.)
@@ -153,7 +170,7 @@ namespace Obi
             set
             {
                 bool playing = mPlaylistState == AudioPlayerState.Playing;
-                if (playing)  Stop();
+                if (playing) Stop();
                 int i;
                 for (i = 0; i < mPhrases.Count && mPhrases[i] != value; ++i) { }
                 if (i < mPhrases.Count) CurrentIndexStart = i;
@@ -169,17 +186,14 @@ namespace Obi
             set
             {
                 mCurrentPhraseIndex = value;
-                                mElapsedTime = mStartTimes[mCurrentPhraseIndex];
+                mElapsedTime = mStartTimes[mCurrentPhraseIndex];
             }
         }
 
         /// <summary>
         /// The section in which the currently playing phrase is.
         /// </summary>
-        public SectionNode CurrentSection
-        {
-            get { return mPhrases[mCurrentPhraseIndex].ParentAs<SectionNode>(); }
-        }
+        public SectionNode CurrentSection { get { return mPhrases[mCurrentPhraseIndex].ParentAs<SectionNode>(); } }
 
         /// <summary>
         /// Index of the first phrase of the next section, or number of phrases if there is no next section.
@@ -230,7 +244,7 @@ namespace Obi
         /// </summary>
         public double CurrentTime
         {
-            get { return mElapsedTime + CurrentTimeInAsset;}
+            get { return mElapsedTime + CurrentTimeInAsset; }
             set
             {
                 if (value >= 0 && value < mTotalTime)
@@ -249,21 +263,13 @@ namespace Obi
         /// </summary>
         public double CurrentTimeInAsset
         {
-            get
-            {
-                return mPlayer.CurrentTimePosition;
-            }
+            get { return mPlayer.CurrentTimePosition; }
             set
             {
                 if (value >= 0 &&
                     value < mPhrases[mCurrentPhraseIndex].Audio.getDuration().getTimeDeltaAsMillisecondFloat())
                 {
-                    
-
-                        mPlayer.CurrentTimePosition = value;
-                    
-                        
-                    
+                    mPlayer.CurrentTimePosition = value;
                 }
             }
         }
@@ -271,10 +277,7 @@ namespace Obi
         /// <summary>
         /// Get the total time for this playlist in milliseconds.
         /// </summary>
-        public double TotalTime
-        {
-            get { return mTotalTime; }
-        }
+        public double TotalTime { get { return mTotalTime; } }
 
         /// <summary>
         /// Get the total time for the current asset in milliseconds. 
@@ -305,7 +308,7 @@ namespace Obi
             get
             {
                 return mPhrases[mCurrentPhraseIndex].Audio.getDuration().getTimeDeltaAsMillisecondFloat() -
-                    (mPlayer.CurrentTimePosition  );
+                    (mPlayer.CurrentTimePosition);
             }
             set
             {
@@ -316,10 +319,7 @@ namespace Obi
         /// <summary>
         /// Playing the whole book or just a selection.
         /// </summary>
-        public bool WholeBook
-        {
-            get { return mIsMaster; }
-        }
+        public bool WholeBook { get { return mIsMaster; } }
 
         public int PlaybackRate
         {
@@ -335,7 +335,7 @@ namespace Obi
             mPlayBackState = PlayBackState.Normal;
             mPlaylistState = mPlayer.State;
             mIsMaster = isMaster;
-                    }
+        }
 
         private void AddPhraseNodes(urakawa.core.TreeNode node)
         {
@@ -376,32 +376,12 @@ namespace Obi
             }
         }
 
-        private void SetEventHandlers()
-        {
-            mPlayer.StateChanged += new Events.Audio.Player.StateChangedHandler
-            (
-                // Intercept state change events from the player, and only pass along those that
-                // involve the "not ready" state.
-                delegate(object sender, Events.Audio.Player.StateChangedEventArgs e)
-                {
-                                        if ((e.OldState == AudioPlayerState.NotReady || mPlayer.State == AudioPlayerState.NotReady) &&
-                        StateChanged != null)
-                    {
-                        //StateChanged(this, e);
-                                         }
-                                      }
-            );
-        }
-
-        
-
         /// <summary>
         /// Play from stopped state.
         /// </summary>
         public void Play()
         {
-                        System.Diagnostics.Debug.Assert(mPlaylistState == AudioPlayerState.Stopped, "Only play from stopped state.");
-           
+            System.Diagnostics.Debug.Assert(mPlaylistState == AudioPlayerState.Stopped, "Only play from stopped state.");
             if (mCurrentPhraseIndex < mPhrases.Count) PlayPhrase(mCurrentPhraseIndex);
         }
 
@@ -411,7 +391,6 @@ namespace Obi
         public void Resume()
         {
             System.Diagnostics.Debug.Assert(mPlaylistState == AudioPlayerState.Paused, "Only resume from paused state.");
-
             mPlaylistState = AudioPlayerState.Playing;
             mPlayer.Resume();
             // TODO: mPlayer.Play(mPhrases[mCurrentPhraseIndex].Asset, mPausePosition);
@@ -430,23 +409,23 @@ namespace Obi
         {
             // add an option to have a beep between assets
             // System.Media.SystemSounds.Exclamation.Play();
-            
-            
-                if ( //mPlayer.PlaybackMode == Audio.PlaybackMode.Rewind
-                    mPlayer.PlaybackFwdRwdRate < 0
-                    && mCurrentPhraseIndex > 0 )
-                                                PlayPhrase(mCurrentPhraseIndex - 1);
-                                            else if (mCurrentPhraseIndex < mPhrases.Count - 1 && //mPlayer.PlaybackMode != Audio.PlaybackMode.Rewind
-                    mPlayer.PlaybackFwdRwdRate >= 0  )
-                                            {
-                                                PlayPhrase(mCurrentPhraseIndex + 1);
-                                                                                            }
-                                            else if (EndOfPlaylist != null)
-                                            {
-                                                //mPlaylistState = AudioPlayerState.Stopped;    // Avn: Commented because changing Playlist state to stopped before calling stop () function will bypass stopping code
-                                                Stop();
-                                                EndOfPlaylist(this, new EventArgs());
-                                            }
+
+
+            if ( //mPlayer.PlaybackMode == Audio.PlaybackMode.Rewind
+                mPlayer.PlaybackFwdRwdRate < 0
+                && mCurrentPhraseIndex > 0)
+                PlayPhrase(mCurrentPhraseIndex - 1);
+            else if (mCurrentPhraseIndex < mPhrases.Count - 1 && //mPlayer.PlaybackMode != Audio.PlaybackMode.Rewind
+                mPlayer.PlaybackFwdRwdRate >= 0)
+            {
+                PlayPhrase(mCurrentPhraseIndex + 1);
+            }
+            else if (EndOfPlaylist != null)
+            {
+                //mPlaylistState = AudioPlayerState.Stopped;    // Avn: Commented because changing Playlist state to stopped before calling stop () function will bypass stopping code
+                Stop();
+                EndOfPlaylist(this, new EventArgs());
+            }
         }
 
         /// <summary>
@@ -456,11 +435,11 @@ namespace Obi
         {
             if (mPlaylistState == AudioPlayerState.Playing)
             {
-                                mPlaylistState = AudioPlayerState.Paused;
-                mPlayer.Pause  () ;
+                mPlaylistState = AudioPlayerState.Paused;
+                mPlayer.Pause();
                 //mPlayer.PlaybackMode = PlaybackMode.Normal;
                 mPlayer.PlaybackFwdRwdRate = 0;
-                                if (StateChanged != null)
+                if (StateChanged != null)
                 {
                     StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Playing));
                 }
@@ -472,18 +451,18 @@ namespace Obi
         /// </summary>
         public void Stop()
         {
-                                    if (mPlaylistState == AudioPlayerState.Playing || mPlaylistState == AudioPlayerState.Paused)
+            if (mPlaylistState == AudioPlayerState.Playing || mPlaylistState == AudioPlayerState.Paused)
             {
                 Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs(mPlayer.State);
                 mPlayer.Stop();
                 //mPlayer.PlaybackMode = PlaybackMode.Normal;
                 mPlayer.PlaybackFwdRwdRate = 0;
                 //System.Media.SystemSounds.Asterisk.Play();
-        mPlaylistState = AudioPlayerState.Stopped;
-        if (StateChanged != null) StateChanged(this, evargs);
-	            
+                mPlaylistState = AudioPlayerState.Stopped;
+                if (StateChanged != null) StateChanged(this, evargs);
+
                 mCurrentPhraseIndex = 0;
-                                mElapsedTime = 0.0;
+                mElapsedTime = 0.0;
                 System.Diagnostics.Debug.Print("--- end of audio asset handler unset");
                 mPlayer.EndOfAudioAsset -= new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
             }
@@ -514,7 +493,7 @@ namespace Obi
                 mPlayer.PlaybackFwdRwdRate = mPlaybackRate * -1;
             }
             if (PlaybackRateChanged != null)
-            PlaybackRateChanged(this, new EventArgs());
+                PlaybackRateChanged(this, new EventArgs());
         }
 
 
@@ -540,7 +519,7 @@ namespace Obi
                 mPlayer.PlaybackFwdRwdRate = mPlaybackRate;
             }
             if (PlaybackRateChanged != null)
-            PlaybackRateChanged(this, new EventArgs());
+                PlaybackRateChanged(this, new EventArgs());
         }
 
         /// <summary>
@@ -549,13 +528,13 @@ namespace Obi
         private void IncreasePlaybackRate()
         {
             ++mPlaybackRate;
-                        if (mPlaybackRate == PlaybackRates.Length) 
-                            mPlaybackRate = 1;
+            if (mPlaybackRate == PlaybackRates.Length)
+                mPlaybackRate = 1;
 
-                        mPlayer.PlaybackFwdRwdRate = mPlaybackRate ;
-                                }
+            mPlayer.PlaybackFwdRwdRate = mPlaybackRate;
+        }
 
-       
+
         /// <summary>
         /// Move to the first phrase of the previous section, or of this section if we are not yet past the initial threshold.
         /// </summary>
@@ -623,8 +602,8 @@ namespace Obi
         /// <param name="index">The index of the phrase to play.</param>
         private void PlayPhrase(int index)
         {
-                        SkipToPhrase(index);
-                                                                        PlayCurrentPhrase();
+            SkipToPhrase(index);
+            PlayCurrentPhrase();
         }
 
         /// <summary>
@@ -632,14 +611,14 @@ namespace Obi
         /// </summary>
         private void PlayCurrentPhrase()
         {
-                        Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs(  mPlayer.State );
+            Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs(mPlayer.State);
             if (mPlaylistState == AudioPlayerState.Stopped)
             {
                 System.Diagnostics.Debug.Print("+++ end of audio asset handler set");
                 mPlayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
-                            }
+            }
             mPlaylistState = AudioPlayerState.Playing;
-                mPlayer.Play(mPhrases[mCurrentPhraseIndex].Audio.getMediaData());
+            mPlayer.Play(mPhrases[mCurrentPhraseIndex].Audio.getMediaData());
 
             // send the state change event if the state actually changed
             if (StateChanged != null && mPlayer.State != evargs.OldState) StateChanged(this, evargs);
@@ -651,13 +630,13 @@ namespace Obi
         /// <param name="index">Index of the phrase to skip to.</param>
         private void SkipToPhrase(int index)
         {
-                        System.Diagnostics.Debug.Assert(index >= 0 && index < mPhrases.Count, "Phrase index out of range!");
+            System.Diagnostics.Debug.Assert(index >= 0 && index < mPhrases.Count, "Phrase index out of range!");
             mCurrentPhraseIndex = index;
-                        mElapsedTime = mStartTimes[mCurrentPhraseIndex];
+            mElapsedTime = mStartTimes[mCurrentPhraseIndex];
             System.Diagnostics.Debug.Print(">>> Moved to phrase {0}", index);
-            int Mode = mPlayer.PlaybackFwdRwdRate  ; // Temporary fix to avoid reset to normal playback bugg invoked by following event
-                                    if (MovedToPhrase != null) MovedToPhrase(this, new Events.Node.PhraseNodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
-                                    mPlayer.Stop();
+            int Mode = mPlayer.PlaybackFwdRwdRate; // Temporary fix to avoid reset to normal playback bugg invoked by following event
+            if (MovedToPhrase != null) MovedToPhrase(this, new Events.Node.PhraseNodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
+            mPlayer.Stop();
             mPlayer.PlaybackFwdRwdRate = Mode;
         }
 
@@ -715,13 +694,13 @@ namespace Obi
             return phrase != null && mPhrases.Contains(phrase);
         }
 
-        internal void FastPlayNormaliseWithLapseBack( double LapseBackTime )
+        public void FastPlayNormaliseWithLapseBack(double LapseBackTime)
         {
             if (mPlayer.CurrentTimePosition > LapseBackTime)
             {
                 mPlayer.Pause();
                 mPlayer.FastPlayFactor = 1;
-                mPlayer.CurrentTimePosition = mPlayer.CurrentTimePosition  - LapseBackTime;
+                mPlayer.CurrentTimePosition = mPlayer.CurrentTimePosition - LapseBackTime;
                 mPlayer.Resume();
             }
             else
@@ -730,8 +709,7 @@ namespace Obi
                 mPlayer.CurrentTimePosition = 10;
                 mPlayer.FastPlayFactor = 1;
                 mPlayer.Resume();
-                                            }
-
+            }
         }
     }
 }

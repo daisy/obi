@@ -176,7 +176,10 @@ namespace Obi.ProjectView
 
         private void Strip_Enter(object sender, EventArgs e)
         {
-            mParentView.SelectedSection = mNode;
+            if (mParentView.SelectedPhrase == null || mParentView.SelectedPhrase.ParentAs<SectionNode>() != mNode)
+            {
+                mParentView.SelectedSection = mNode;
+            }
         }
     }
 }
