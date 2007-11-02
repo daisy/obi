@@ -26,10 +26,13 @@ namespace Obi.ProjectView
                 long time = node.Audio.getDuration().getTimeDeltaAsMilliseconds();
                 mWaveform.Width = (int)Math.Round(time * AUDIO_SCALE);
                 mWaveform.Media = node.Audio.getMediaData();
+                mTimeLabel.Text = String.Format("{0:0.00}s",
+                    node.Audio.getDuration().getTimeDeltaAsMillisecondFloat() / 1000);
                 Size = new Size(mWaveform.Width + mWaveform.Margin.Right + mWaveform.Margin.Left, Height);
             }
             else
             {
+                mTimeLabel.Text = "0s";
                 mWaveform.Visible = false;
             }
         }
@@ -59,7 +62,15 @@ namespace Obi.ProjectView
 
         // Select on click and tabbing
         private void Block_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
-        private void mWaveform_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
         private void Block_Enter(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
+        private void mTimeLabel_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
+        private void mWaveform_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
+
+        private void mWaveform_MouseClick(object sender, MouseEventArgs e)
+        {
+            mStrip.SelectedBlock = this;
+            mWaveform.CursorPosition = e.X;
+        }
+
     }
 }

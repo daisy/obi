@@ -28,8 +28,21 @@ namespace Obi.ProjectView
         /// </summary>
         private void InitializeComponent()
         {
+            this.mTimeLabel = new System.Windows.Forms.Label();
             this.mWaveform = new Obi.ProjectView.Waveform();
             this.SuspendLayout();
+            // 
+            // mTimeLabel
+            // 
+            this.mTimeLabel.AutoSize = true;
+            this.mTimeLabel.BackColor = System.Drawing.Color.Transparent;
+            this.mTimeLabel.Location = new System.Drawing.Point(3, 3);
+            this.mTimeLabel.Margin = new System.Windows.Forms.Padding(3);
+            this.mTimeLabel.Name = "mTimeLabel";
+            this.mTimeLabel.Size = new System.Drawing.Size(32, 13);
+            this.mTimeLabel.TabIndex = 2;
+            this.mTimeLabel.Text = "(time)";
+            this.mTimeLabel.Click += new System.EventHandler(this.mTimeLabel_Click);
             // 
             // mWaveform
             // 
@@ -39,12 +52,14 @@ namespace Obi.ProjectView
             this.mWaveform.TabIndex = 1;
             this.mWaveform.Text = "waveform1";
             this.mWaveform.Click += new System.EventHandler(this.mWaveform_Click);
+            this.mWaveform.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mWaveform_MouseClick);
             // 
             // Block
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.HotPink;
+            this.Controls.Add(this.mTimeLabel);
             this.Controls.Add(this.mWaveform);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.Name = "Block";
@@ -52,11 +67,13 @@ namespace Obi.ProjectView
             this.Enter += new System.EventHandler(this.Block_Enter);
             this.Click += new System.EventHandler(this.Block_Click);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private Waveform mWaveform;
+        private System.Windows.Forms.Label mTimeLabel;
     }
 }

@@ -12,11 +12,15 @@ namespace Obi.ProjectView
 {
     public partial class Waveform : Control
     {
-        private AudioMediaData mAudio;  // audio data to draw
-        private Bitmap mBitmap;         // cached bitmap of the waveform
+        private AudioMediaData mAudio;   // audio data to draw
+        private Bitmap mBitmap;          // cached bitmap of the waveform
+        private bool mHasCursor;         // flag to show the cursor
+        private double mCursorPosition;  // cursor position in time
 
         private static readonly Pen Channel1Pen = new Pen(Color.FromArgb(128, 0, 0, 255));
         private static readonly Pen Channel2Pen = new Pen(Color.FromArgb(128, 255, 0, 255));
+        private static readonly Pen CursorPen = new Pen(Color.FromArgb(128, 0, 255, 255));
+
 
         /// <summary>
         /// Create a waveform with no data to display yet.
@@ -26,6 +30,7 @@ namespace Obi.ProjectView
             InitializeComponent();
             mAudio = null;
             mBitmap = null;
+            mHasCursor = false;
         }
 
         /// <summary>
@@ -43,8 +48,27 @@ namespace Obi.ProjectView
         protected override void OnPaint(PaintEventArgs pe)
         {
             if (mBitmap != null) pe.Graphics.DrawImage(mBitmap, new Point(0, 0));
+            if (mHasCursor) pe.Graphics.DrawLine(CursorPen, new Point(CursorPosition, 0),
+                new Point(CursorPosition, Height - 1));
             base.OnPaint(pe);
         }
+
+        public int CursorPosition
+        {
+            get
+            {
+                return (int)
+                    Math.Round(mCursorPosition / mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat() * Width);
+            }
+            set
+            {
+                mHasCursor = true;
+                mCursorPosition = value * mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat() / Width;
+                Invalidate();
+            }
+        }
+
+        public void HideCursor() { mHasCursor = false; }
 
         private void Waveform_SizeChanged(object sender, EventArgs e) { UpdateWaveform(); }
 
