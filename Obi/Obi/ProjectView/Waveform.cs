@@ -16,14 +16,14 @@ namespace Obi.ProjectView
         private Bitmap mBitmap;          // cached bitmap of the waveform
         private bool mHasCursor;         // flag to show the cursor
         private bool mHasSelection;      // flag to show the selection
-        private bool mDraggingCursor;    // flag telling when the cursor is dragging
         private double mCursorPosition;  // cursor position in time
-        private double mSelectionEnd;    // end of selection, if any
+        private double mSelectionStart;  // start position of the selection
+        private double mSelectionEnd;    // end position of the selection
 
         private static readonly Pen Channel1Pen = new Pen(Color.FromArgb(128, 0, 0, 255));
         private static readonly Pen Channel2Pen = new Pen(Color.FromArgb(128, 255, 0, 255));
         private static readonly Pen CursorPen = new Pen(Color.FromArgb(128, 0, 255, 255));
-        private static readonly Pen SelectionPen = new Pen(Color.FromArgb(128, 0, 255, 0));
+        private static readonly SolidBrush SelectionBrush = new SolidBrush(Color.FromArgb(128, 0, 255, 0));
 
 
         /// <summary>
@@ -32,6 +32,7 @@ namespace Obi.ProjectView
         public Waveform()
         {
             InitializeComponent();
+            DoubleBuffered = true;
             mAudio = null;
             mBitmap = null;
             mHasCursor = false;
@@ -54,22 +55,55 @@ namespace Obi.ProjectView
             if (mBitmap != null) pe.Graphics.DrawImage(mBitmap, new Point(0, 0));
             if (mHasCursor) pe.Graphics.DrawLine(CursorPen, new Point(CursorPosition, 0),
                 new Point(CursorPosition, Height - 1));
+            if (mHasSelection) pe.Graphics.FillRectangle(SelectionBrush, InitialSelectionPosition, 0,
+                FinalSelectionPosition - InitialSelectionPosition, Height);
             base.OnPaint(pe);
         }
 
         public int CursorPosition
         {
-            get
-            {
-                return (int)
-                    Math.Round(mCursorPosition / mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat() * Width);
-            }
+            get { return XFromTime(mCursorPosition); }
             set
             {
                 mHasCursor = true;
-                mCursorPosition = value * mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat() / Width;
+                mHasSelection = false;
+                mCursorPosition = TimeFromX(value);
                 Invalidate();
             }
+        }
+
+        public int InitialSelectionPosition { get { return XFromTime(mSelectionStart); } }
+
+        public int FinalSelectionPosition
+        {
+            get { return XFromTime(mSelectionEnd); }
+            set
+            {
+                double end = TimeFromX(value);
+                if (end == mCursorPosition)
+                {
+                    mHasCursor = true;
+                    mHasSelection = false;
+                }
+                else
+                {
+                    mHasSelection = true;
+                    mHasCursor = false;
+                    mSelectionStart = Math.Min(mCursorPosition, end);
+                    mSelectionEnd = Math.Max(mCursorPosition, end);
+                }
+                Invalidate();
+            }
+        }
+
+        private int XFromTime(double time)
+        {
+            return (int)Math.Round(time / mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat() * Width);
+        }
+
+        private double TimeFromX(int x)
+        {
+            return x * mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat() / Width;
         }
 
         /// <summary>

@@ -69,10 +69,29 @@ namespace Obi.ProjectView
             set
             {
                 mHighlighted = value;
-                if (!mSelected) BackColor = mHighlighted ? Color.LimeGreen : Color.HotPink;
+                if (!mSelected) BackColor = mHighlighted ? Color.SpringGreen : Color.HotPink;
             }
         }
 
+        /// <summary>
+        /// Get the tab index of the block.
+        /// </summary>
+        public int LastTabIndex { get { return TabIndex; } }
+
+        /// <summary>
+        /// Update the tab index of the block with the new value and return the next index.
+        /// </summary>
+        public int UpdateTabIndex(int index)
+        {
+            TabIndex = index;
+            ++index;
+            return index;
+        }
+
+        /// <summary>
+        /// The strip that contains this block.
+        /// </summary>
+        public Strip Strip { get { return mStrip; } }
 
         // Select on click and tabbing
         private void Block_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
@@ -80,11 +99,23 @@ namespace Obi.ProjectView
         private void mTimeLabel_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
         private void mWaveform_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
 
-        private void mWaveform_MouseClick(object sender, MouseEventArgs e)
+        private void mWaveform_MouseDown(object sender, MouseEventArgs e)
         {
-            mStrip.SelectedBlock = this;
-            mWaveform.CursorPosition = e.X;
+            if (e.Button == MouseButtons.Left)
+            {
+                mStrip.SelectedBlock = this;
+                mWaveform.CursorPosition = e.X;
+            }
         }
 
+        private void mWaveform_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left) mWaveform.FinalSelectionPosition = e.X;
+        }    
+
+        private void mWaveform_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left) mWaveform.FinalSelectionPosition = e.X;
+        }
     }
 }
