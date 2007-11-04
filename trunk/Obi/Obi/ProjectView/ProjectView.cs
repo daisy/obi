@@ -148,6 +148,7 @@ namespace Obi.ProjectView
                     }
                     if (SelectionChanged != null) SelectionChanged(this, new EventArgs());
                 }
+                Highlight = mSelection;
             }
         }
 

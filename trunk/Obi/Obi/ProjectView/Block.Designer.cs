@@ -46,13 +46,16 @@ namespace Obi.ProjectView
             // 
             // mWaveform
             // 
+            this.mWaveform.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.mWaveform.Location = new System.Drawing.Point(3, 3);
             this.mWaveform.Name = "mWaveform";
             this.mWaveform.Size = new System.Drawing.Size(98, 98);
             this.mWaveform.TabIndex = 1;
             this.mWaveform.Text = "waveform1";
             this.mWaveform.Click += new System.EventHandler(this.mWaveform_Click);
-            this.mWaveform.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mWaveform_MouseClick);
+            this.mWaveform.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mWaveform_MouseDown);
+            this.mWaveform.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mWaveform_MouseMove);
+            this.mWaveform.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mWaveform_MouseUp);
             // 
             // Block
             // 

@@ -77,6 +77,29 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Get the tab index of the last control in the strip
+        /// </summary>
+        public int LastTabIndex
+        {
+            get
+            {
+                int count = mBlocksPanel.Controls.Count;
+                return count == 0 ? TabIndex : ((Block)mBlocksPanel.Controls[count - 1]).LastTabIndex;
+            }
+        }
+
+        /// <summary>
+        /// Update the tab index for the strip and all of its blocks.
+        /// </summary>
+        public int UpdateTabIndex(int index)
+        {
+            TabIndex = index;
+            ++index;
+            foreach (Control c in mBlocksPanel.Controls) index = ((Block)c).UpdateTabIndex(index);
+            return index;
+        }
+
+        /// <summary>
         /// The section node for this strip.
         /// </summary>
         public SectionNode Node { get { return mNode; } }
@@ -112,12 +135,11 @@ namespace Obi.ProjectView
         {
             if (mNode != null)
             {
-                BackColor = mSelected ? Color.Yellow : mHighlighted ? Color.LimeGreen :
-                    mNode.Used ? Color.LightSkyBlue : Color.LightGray;
-                mLabel.BackColor = mSelected ? Color.Yellow : mHighlighted ? Color.LimeGreen :
-                    mNode.Used ? Color.Thistle : Color.LightGray;
-                mBlocksPanel.BackColor = mSelected ? Color.Yellow : mHighlighted ? Color.LimeGreen :
-                    mNode.Used ? Color.CornflowerBlue : Color.LightGray;
+                mLabel.BackColor = mNode.Used ? Color.Thistle : Color.LightGray;    
+                BackColor = mBlocksPanel.BackColor =
+                    mSelected ? Color.Yellow :
+                    mHighlighted ? Color.SpringGreen :
+                    mNode.Used ? Color.LightBlue : Color.LightGray;
             }
         }
 
@@ -193,5 +215,30 @@ namespace Obi.ProjectView
         }
 
         private void Strip_Enter(object sender, EventArgs e) { mParentView.HighlightedSection = mNode; }
+
+        /// <summary>
+        /// Return the block after the highlighted block or strip. In the case of a strip is the first block.
+        /// Return null if this the last block, there are no blocks, or nothing was highlighted in the first place.
+        /// </summary>
+        public Block BlockAfter(ISelectableInStripView item)
+        {
+            int count = mBlocksPanel.Controls.Count;
+            int index = item is Strip ? 0 :
+                        item is Block ? mBlocksPanel.Controls.IndexOf((Control)item) + 1 :
+                                        count;
+            return index < count ? (Block)mBlocksPanel.Controls[index] : null;
+        }
+
+        /// <summary>
+        /// Return the block before the highlighted block or strip. In the case of a strip this is the last block.
+        /// Return null if this the first block, there are no blocks, or nothing was highlighted in the first place.
+        /// </summary>
+        public Block BlockBefore(ISelectableInStripView item)
+        {
+            int index = item is Strip ? mBlocksPanel.Controls.Count :
+                        item is Block ? mBlocksPanel.Controls.IndexOf((Control)item) :
+                                        0;
+            return index > 0 ? (Block)mBlocksPanel.Controls[index - 1] : null;
+        }
     }
 }
