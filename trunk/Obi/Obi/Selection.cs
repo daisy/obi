@@ -1,12 +1,13 @@
 namespace Obi
 {
     /// <summary>
-    /// Controls for which the selection is managed through the project panel
-    /// implement this interface (e.g. strip view, TOC view, transport bar...)
+    /// Controls for which the selection and highlighting is managed through the project
+    /// view implement this interface (e.g. strip view, TOC view, transport bar...)
     /// </summary>
     public interface IControlWithSelection
     {
         NodeSelection Selection { get; set; }
+        NodeSelection Highlight { get; set; }
     }
 
     public interface IControlWithRenamableSelection : IControlWithSelection

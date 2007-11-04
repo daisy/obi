@@ -8,7 +8,7 @@ namespace Obi.ProjectView
     /// <summary>
     /// The transport bar: transport buttons, scrubbing slide, time display, text vu meter display.
     /// </summary>
-    public partial class TransportBar : UserControl, IControlWithSelection
+    public partial class TransportBar : UserControl
     {
         private ProjectView mView;                   // the parent project view
         private Audio.AudioPlayer mPlayer;           // the audio player

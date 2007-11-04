@@ -10,9 +10,10 @@ namespace Obi.ProjectView
 {
     public partial class Block : UserControl, ISelectableInStripView
     {
-        private PhraseNode mNode;  // the corresponding node
-        private Strip mStrip;      // the parent strip
-        private bool mSelected;    // selected flag
+        private PhraseNode mNode;   // the corresponding node
+        private Strip mStrip;       // the parent strip
+        private bool mSelected;     // selected flag
+        private bool mHighlighted;  // highlighted flag
 
         private static readonly float AUDIO_SCALE = 0.01f;
 
@@ -59,10 +60,23 @@ namespace Obi.ProjectView
             }
         }
 
+        /// <summary>
+        /// Set the highlighted flag for the block.
+        /// </summary>
+        public bool Highlighted
+        {
+            get { return mHighlighted; }
+            set
+            {
+                mHighlighted = value;
+                if (!mSelected) BackColor = mHighlighted ? Color.LimeGreen : Color.HotPink;
+            }
+        }
+
 
         // Select on click and tabbing
         private void Block_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
-        private void Block_Enter(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
+        private void Block_Enter(object sender, EventArgs e) { mStrip.HighlightedBlock = this; }
         private void mTimeLabel_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
         private void mWaveform_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
 

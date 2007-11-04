@@ -15,13 +15,15 @@ namespace Obi.ProjectView
     public interface ISelectableInStripView
     {
         bool Selected { get; set; }
+        bool Highlighted { get; set; }
         ObiNode ObiNode { get; }
     }
 
     public partial class StripsView : UserControl, IControlWithRenamableSelection
     {
-        private ProjectView mView;                     // parent project view
-        private ISelectableInStripView mSelectedItem;  // selected strip or block
+        private ProjectView mView;                        // parent project view
+        private ISelectableInStripView mSelectedItem;     // selected strip or block
+        private ISelectableInStripView mHighlightedItem;  // highlighted strip or block
 
         /// <summary>
         /// A new strips view.
@@ -112,12 +114,30 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Set the highlighted phrase (null to cancel)
+        /// </summary>
+        public PhraseNode HighlightedPhrase
+        {
+            get { return mHighlightedItem != null && mHighlightedItem is Block ? ((Block)mHighlightedItem).Node : null; }
+            set { if (mView != null) mView.Highlight = new NodeSelection(value, this); }
+        }
+
+        /// <summary>
         /// Set the selected section (null to deselect)
         /// </summary>
         public SectionNode SelectedSection
         {
             get { return mSelectedItem != null && mSelectedItem is Strip ? ((Strip)mSelectedItem).Node : null; }
             set { if (mView != null) mView.Selection = new NodeSelection(value, this, false); }
+        }
+
+        /// <summary>
+        /// Set the highlighted section (null to cancel highlight)
+        /// </summary>
+        public SectionNode HighlightedSection
+        {
+            get { return mHighlightedItem != null && mHighlightedItem is Strip ? ((Strip)mHighlightedItem).Node : null; }
+            set { if (mView != null) mView.Highlight = new NodeSelection(value, this); }
         }
 
         /// <summary>
@@ -140,6 +160,29 @@ namespace Obi.ProjectView
                         SectionNode section = value.Node is SectionNode ? (SectionNode)value.Node :
                             value.Node is PhraseNode ? ((PhraseNode)value.Node).ParentAs<SectionNode>() : null;
                         mView.MakeTreeNodeVisibleForSection(section);
+                        if (!((Control)s).Focused) ((Control)s).Focus();
+                    }
+                }
+            }
+        }
+
+        public NodeSelection Highlight
+        {
+            get { return mHighlightedItem == null ? null : new NodeSelection(mHighlightedItem.ObiNode, this); }
+            set
+            {
+                ISelectableInStripView s = value == null ? null : FindSelectable(value.Node);
+                if (s != mHighlightedItem)
+                {
+                    if (mHighlightedItem != null) mHighlightedItem.Highlighted = false;
+                    mHighlightedItem = s;
+                    if (s != null)
+                    {
+                        s.Highlighted = true;
+                        mLayoutPanel.ScrollControlIntoView((Control)s);
+                        SectionNode section = value.Node is SectionNode ? (SectionNode)value.Node :
+                            value.Node is PhraseNode ? ((PhraseNode)value.Node).ParentAs<SectionNode>() : null;
+                        mView.MakeStripVisibleForSection(section);
                         if (!((Control)s).Focused) ((Control)s).Focus();
                     }
                 }
@@ -359,9 +402,6 @@ namespace Obi.ProjectView
             }
         }
 
-        private void StripsView_Leave(object sender, EventArgs e)
-        {
-            if (mView.Selection != null && mView.Selection.Control == this) mView.Selection = null;
-        }
+        private void StripsView_Leave(object sender, EventArgs e) { mView.Highlight = null; }
     }
 }

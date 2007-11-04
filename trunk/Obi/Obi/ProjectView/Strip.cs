@@ -12,6 +12,7 @@ namespace Obi.ProjectView
     {
         private SectionNode mNode;       // the section node for this strip
         private bool mSelected;          // selected flag
+        private bool mHighlighted;       // highlighted flag
         private StripsView mParentView;  // parent strip view
 
         /// <summary>
@@ -94,6 +95,16 @@ namespace Obi.ProjectView
             }
         }
 
+        public bool Highlighted
+        {
+            get { return mHighlighted; }
+            set
+            {
+                mHighlighted = value;
+                UpdateColors();
+            }
+        }
+
         /// <summary>
         /// Update the colors of the block when the state of its node has changed.
         /// </summary>
@@ -101,9 +112,12 @@ namespace Obi.ProjectView
         {
             if (mNode != null)
             {
-                BackColor = mSelected ? Color.Yellow : mNode.Used ? Color.LightSkyBlue : Color.LightGray;
-                mLabel.BackColor = mSelected ? Color.Yellow : mNode.Used ? Color.Thistle : Color.LightGray;
-                mBlocksPanel.BackColor = mSelected ? Color.Yellow : mNode.Used ? Color.CornflowerBlue : Color.LightGray;
+                BackColor = mSelected ? Color.Yellow : mHighlighted ? Color.LimeGreen :
+                    mNode.Used ? Color.LightSkyBlue : Color.LightGray;
+                mLabel.BackColor = mSelected ? Color.Yellow : mHighlighted ? Color.LimeGreen :
+                    mNode.Used ? Color.Thistle : Color.LightGray;
+                mBlocksPanel.BackColor = mSelected ? Color.Yellow : mHighlighted ? Color.LimeGreen :
+                    mNode.Used ? Color.CornflowerBlue : Color.LightGray;
             }
         }
 
@@ -112,6 +126,10 @@ namespace Obi.ProjectView
         /// </summary>
         public Block SelectedBlock { set { mParentView.SelectedPhrase = value.Node; } }
 
+        /// <summary>
+        /// Highlight a block in the strip.
+        /// </summary>
+        public Block HighlightedBlock { set { mParentView.HighlightedPhrase = value.Node; } }
 
         /// <summary>
         /// Start renaming the strip.
@@ -174,12 +192,6 @@ namespace Obi.ProjectView
             if (w > MinimumSize.Width) MinimumSize = new Size(w, MinimumSize.Height);
         }
 
-        private void Strip_Enter(object sender, EventArgs e)
-        {
-            if (mParentView.SelectedPhrase == null || mParentView.SelectedPhrase.ParentAs<SectionNode>() != mNode)
-            {
-                mParentView.SelectedSection = mNode;
-            }
-        }
+        private void Strip_Enter(object sender, EventArgs e) { mParentView.HighlightedSection = mNode; }
     }
 }
