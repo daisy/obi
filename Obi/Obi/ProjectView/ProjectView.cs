@@ -13,11 +13,13 @@ namespace Obi.ProjectView
         private bool mEnableTooltips;            // tooltips flag
         private Presentation mPresentation;      // presentation
         private NodeSelection mSelection;        // currently selected node
+        private NodeSelection mHighlight;        // currently highlighted node
         private Clipboard mClipboard;            // the clipboard
         private bool mSynchronizeViews;          // synchronize views flag
         private ObiForm mForm;                   // parent form
 
         public event EventHandler SelectionChanged;             // triggered when the selection changes
+        public event EventHandler HighlightChanged;             // triggered when the highlighted item changes
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
         public event ImportingFileEventHandler ImportingFile;   // triggered when a file is being imported
         public event EventHandler FinishedImportingFiles;       // triggered when all files were imported
@@ -150,6 +152,33 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// The current highlight is the same as the selection.
+        /// </summary>
+        public NodeSelection Highlight
+        {
+            get { return mHighlight; }
+            set
+            {
+                System.Diagnostics.Debug.Print("Highlight: `{0}' >>> `{1}'", mHighlight, value);
+                if (mHighlight != value)
+                {
+                    if (mHighlight != null && (value == null || mHighlight.Control != value.Control))
+                    {
+                        mHighlight.Control.Highlight = null;
+                    }
+                    mHighlight = value;
+                    if (mHighlight != null)
+                    {
+                        if (mHighlight.Control == mTOCView) TOCViewVisible = true;
+                        else if (mHighlight.Control == mMetadataView) MetadataViewVisible = true;
+                        mHighlight.Control.Highlight = value;
+                    }
+                    if (HighlightChanged != null) HighlightChanged(this, new EventArgs());
+                }
+            }
+        }
+
+        /// <summary>
         /// Get a label for the node currently selected, i.e. "" if nothing is seleced,
         /// "audio block" for an audio block, "strip" for a strip and "section" for a
         /// section.
@@ -263,7 +292,7 @@ namespace Obi.ProjectView
         public SectionNode SelectedStripNode
         {
             get { return null; }
-            set { Selection = new NodeSelection(value, mStripsView, false); }
+            set { Selection = value == null ? null : new NodeSelection(value, mStripsView, false); }
         }
 
         /// <summary>

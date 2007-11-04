@@ -15,11 +15,15 @@ namespace Obi.ProjectView
         private AudioMediaData mAudio;   // audio data to draw
         private Bitmap mBitmap;          // cached bitmap of the waveform
         private bool mHasCursor;         // flag to show the cursor
+        private bool mHasSelection;      // flag to show the selection
+        private bool mDraggingCursor;    // flag telling when the cursor is dragging
         private double mCursorPosition;  // cursor position in time
+        private double mSelectionEnd;    // end of selection, if any
 
         private static readonly Pen Channel1Pen = new Pen(Color.FromArgb(128, 0, 0, 255));
         private static readonly Pen Channel2Pen = new Pen(Color.FromArgb(128, 255, 0, 255));
         private static readonly Pen CursorPen = new Pen(Color.FromArgb(128, 0, 255, 255));
+        private static readonly Pen SelectionPen = new Pen(Color.FromArgb(128, 0, 255, 0));
 
 
         /// <summary>
@@ -68,7 +72,17 @@ namespace Obi.ProjectView
             }
         }
 
-        public void HideCursor() { mHasCursor = false; }
+        /// <summary>
+        /// Hide the cursor from the panel.
+        /// </summary>
+        public void HideCursor()
+        {
+            if (mHasCursor)
+            {
+                mHasCursor = false;
+                Invalidate();
+            }
+        }
 
         private void Waveform_SizeChanged(object sender, EventArgs e) { UpdateWaveform(); }
 

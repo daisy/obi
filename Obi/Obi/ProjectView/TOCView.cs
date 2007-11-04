@@ -122,6 +122,12 @@ namespace Obi.ProjectView
             }
         }
 
+        public NodeSelection Highlight
+        {
+            get { return Selection; }
+            set { Selection = value; }
+        }
+
         /// <summary>
         /// Select a node in the TOC view.
         /// </summary>
