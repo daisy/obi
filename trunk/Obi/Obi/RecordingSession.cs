@@ -17,7 +17,7 @@ namespace Obi
     /// </summary>
     public class RecordingSession
     {
-        private Project mProject;                           // project in which we are recording
+                private Presentation m_Presentation;
         private AudioRecorder mRecorder;                    // the actual recorder
 
         private int mChannels;                              // number of channels of audio to record
@@ -47,9 +47,9 @@ namespace Obi
         /// <param name="bitDepth">Bit depth of audio to record.</param>
         public RecordingSession(Presentation presentation, AudioRecorder recorder, int channels, int sampleRate, int bitDepth)
         {
-            mProject = null;
+                        m_Presentation = presentation;
             mRecorder = recorder;
-            mRecorder.AssetsDirectory = ((urakawa.media.data.FileDataProviderManager)mProject.getPresentation(0).getDataProviderManager()).getDataFileDirectoryFullPath();
+            mRecorder.AssetsDirectory = ((urakawa.media.data.FileDataProviderManager)presentation.getDataProviderManager()).getDataFileDirectoryFullPath();
             if (!Directory.Exists(mRecorder.AssetsDirectory))
                 Directory.CreateDirectory(mRecorder.AssetsDirectory);
             mChannels = channels;
@@ -92,9 +92,7 @@ namespace Obi
         {
             if (mRecorder.State == AudioRecorderState.Idle)
             {
-                // AudioMediaAsset asset = mProject.AssetManager.NewAudioMediaAsset(mChannels, mBitDepth, mSampleRate);
-                // mRecorder.StartListening(asset);
-                AudioMediaData ToolkitAsset = (AudioMediaData)mProject.getPresentation(0).getMediaDataFactory().createMediaData(typeof(AudioMediaData)); // for tk
+                                                AudioMediaData ToolkitAsset = (AudioMediaData)m_Presentation.getMediaDataFactory().createMediaData(typeof(AudioMediaData)); // for tk
                 mRecorder.StartListening(ToolkitAsset); // for tk
             }
         }
@@ -110,8 +108,8 @@ namespace Obi
                 mPhraseMarks = new List<double>();
                 mSectionMarks = new List<int>();
  
-                AudioMediaData ToolkitAsset = (AudioMediaData)mProject.getPresentation(0).getMediaDataFactory().createMediaData(typeof(AudioMediaData)); // tk
-mSessionMedia                 = (ManagedAudioMedia)mProject.getPresentation(0).getMediaFactory().createAudioMedia ()  ;
+                AudioMediaData ToolkitAsset = (AudioMediaData)m_Presentation.getMediaDataFactory().createMediaData(typeof(AudioMediaData)); // tk
+mSessionMedia                 = (ManagedAudioMedia)m_Presentation.getMediaFactory().createAudioMedia ()  ;
                                     mSessionMedia.setMediaData(ToolkitAsset ); // tk
                                                 mRecorder.StartRecording(ToolkitAsset); // tk
                  StartingPhrase(this, new PhraseEventArgs( mSessionMedia , mSessionOffset, 0.0)); // tk
@@ -147,14 +145,14 @@ mSessionMedia                 = (ManagedAudioMedia)mProject.getPresentation(0).g
                 mRecorder.StopRecording();
                 if (wasRecording)
                 {
-                                                            // Split the session asset into smaller assets starting from the end
+                                                                                // Split the session asset into smaller assets starting from the end
                     // (to keep the split times correct) until the second one
                     for (int i = mPhraseMarks.Count - 2; i >= 0; --i)
                     {
                         ManagedAudioMedia split = mSessionMedia.split(new urakawa.media.timing.Time(mPhraseMarks[i]));
                         //mSessionMedia.getMediaData().getMediaDataManager().addMediaData(split.getMediaData());
                         mAudioList.Insert(mSessionOffset, split);
-                    }
+                                            }
                     // The first asset is what remains of the session asset
                     mAudioList.Insert(mSessionOffset, mSessionMedia);
                 }
@@ -196,7 +194,7 @@ mSessionMedia                 = (ManagedAudioMedia)mProject.getPresentation(0).g
             double length = mPhraseMarks[last] - (last == 0 ? 0.0 : mPhraseMarks[last - 1]);
             length = length - (length % 100);
             PhraseEventArgs e = new PhraseEventArgs(mSessionMedia, mSessionOffset + last, length);
-            FinishingPhrase(this, e);
+                        FinishingPhrase(this, e);
             return e;
         }
 
