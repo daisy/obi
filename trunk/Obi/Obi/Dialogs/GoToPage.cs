@@ -25,13 +25,13 @@ namespace Obi.Dialogs
         /// Create a dialog for the pages of a project.
         /// </summary>
         /// <param name="project">The project to select a page in.</param>
-        public GoToPage(Project project)
+        public GoToPage(Presentation presentation)
         {
             InitializeComponent();
             // populate the list of pages and the combo box items
             // the combo box says "page 1", "page 2", ...
-            mPages = new List<PhraseNode>(project.Pages);
-            project.RootNode.acceptDepthFirst(
+            mPages = new List<PhraseNode>(presentation.Pages);
+            presentation.RootNode.acceptDepthFirst(
                 delegate(urakawa.core.TreeNode n)
                 {
                     PhraseNode phrase = n as PhraseNode;

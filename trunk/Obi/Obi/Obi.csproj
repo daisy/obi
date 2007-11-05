@@ -101,7 +101,6 @@
     <Compile Include="Commands\Node\RenameSection.cs" />
     <Compile Include="Commands\Node\ToggleUsed.cs" />
     <Compile Include="Commands\Strips\AddNewStrip.cs" />
-    <Compile Include="Commands\Strips\ApplyPhraseDetection.cs" />
     <Compile Include="Commands\Strips\CopyPhrase.cs" />
     <Compile Include="Commands\Strips\EditOrRemoveAnnotation.cs" />
     <Compile Include="Commands\Strips\ImportPhrases.cs" />
@@ -227,9 +226,6 @@
     <Compile Include="Playlist.cs" />
     <Compile Include="Presentation.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Project.Blocks.cs" />
-    <Compile Include="Project.CleanAndExport.cs" />
-    <Compile Include="Project.cs" />
     <Compile Include="ProjectView\Block.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -355,10 +351,6 @@
       <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="UserProfile.cs" />
-    <Compile Include="Visitors\CleanupAssets.cs" />
-    <Compile Include="Visitors\PhraseEnumerator.cs" />
-    <Compile Include="Visitors\CopyPhraseAssets.cs" />
-    <Compile Include="Visitors\UndeleteSubtree.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
