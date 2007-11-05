@@ -38,6 +38,33 @@ namespace Obi
         public Channel AudioChannel { get { return GetSingleChannelByName(AUDIO_CHANNEL_NAME); } }
 
         /// <summary>
+        /// Get the number of pages in the book.
+        /// </summary>
+        public int Pages { get { return 0; /* mPageCount */ } }
+
+        /// <summary>
+        /// First section node in the project, or null if there are no sections.
+        /// </summary>
+        public SectionNode FirstSection
+        {
+            get { return RootNode.SectionChildCount > 0 ? RootNode.SectionChild(0) : null; }
+        }
+
+        /// <summary>
+        /// Get the last section node in the project or null if there are no sections.
+        /// </summary>
+        public SectionNode LastSection
+        {
+            get
+            {
+                SectionNode last = RootNode.SectionChildCount > 0 ? RootNode.SectionChild(-1) : null;
+                while (last != null && last.SectionChildCount > 0) last = last.SectionChild(-1);
+                return last;
+            }
+        }
+
+
+        /// <summary>
         /// Get the text channel of the presentation.
         /// </summary>
         public Channel TextChannel { get { return GetSingleChannelByName(TEXT_CHANNEL_NAME); } }

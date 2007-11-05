@@ -324,9 +324,10 @@ namespace Obi.ProjectView
             {
                 if (n.Tag == section) return n;
             }
-            throw new TreeNodeNotFoundException(
-                String.Format("Could not find tree node matching section node #{0} with label \"{1}\".",
-                    section.GetHashCode(), Project.GetTextMedia(section).getText()));
+            return null;
+            //throw new TreeNodeNotFoundException(
+            //    String.Format("Could not find tree node matching section node #{0} with label \"{1}\".",
+            //        section.GetHashCode(), Project.GetTextMedia(section).getText()));
         }
 
         private delegate void DoToNewNodeDelegate();

@@ -10,7 +10,7 @@ namespace Obi
     /// </summary>
     class ImportStructure
     {
-        private Obi.Project mProject;
+        private Obi.Presentation mPresentation;
         private SectionNode mLastSection;
 
         //these are section nodes that could accept children
@@ -19,11 +19,10 @@ namespace Obi
         public ImportStructure(){}
 
         //this first pass will translate h1-h6 elements to SectionNodes
-        public void ImportFromXHTML(String xhtmlDocument, Obi.Project project)
-        {
-            
+        public void ImportFromXHTML(String xhtmlDocument, Obi.Presentation presentation)
+        {            
             mOpenSectionNodes = new System.Collections.Generic.Stack<Obi.SectionNode>();
-            mProject = project;
+            mPresentation = presentation;
             LoadFromXHTML(new Uri(xhtmlDocument));
         }
 
@@ -89,12 +88,13 @@ namespace Obi
         private void addPage(XmlTextReader source)
         {
             if (mLastSection == null) throw new Exception("Error adding page number: no parent section found");
-            mProject.AddEmptyPhraseNode(mLastSection, mLastSection.PhraseChildCount);
+            // not ported from Project to Presentation yet:
+            // mPresentation.AddEmptyPhraseNode(mLastSection, mLastSection.PhraseChildCount);
             //the phrase we just added should be at the end of the phrase child list
             PhraseNode pagePhrase = mLastSection.PhraseChild(mLastSection.PhraseChildCount - 1);
             pagePhrase.Annotation = getElementText(source);
             //is this the right function to call?
-            mProject.DidSetPageNumberOnPhrase(pagePhrase);
+            // mProject.DidSetPageNumberOnPhrase(pagePhrase);
            
         }
 
@@ -129,7 +129,7 @@ namespace Obi
             {
                 if (source.LocalName != "h1") throw new Exception("Heading element ordering is wrong.");
 
-                if (mProject.FirstSection == null)
+                if (mPresentation.FirstSection == null)
                 {
                     newNode = null; // mProject.CreateSiblingSectionNode(null);
                 }
@@ -137,7 +137,7 @@ namespace Obi
                 {
                     //walk up the tree to find the last top-level section
                     //is there an easier way to do this?
-                    SectionNode lastSection = mProject.LastSection;
+                    SectionNode lastSection = mPresentation.LastSection;
                     while (lastSection.ParentAs<SectionNode>() != null) lastSection = lastSection.ParentAs<SectionNode>();
                     newNode = null; // mProject.CreateSiblingSectionNode(lastSection);
                 }
