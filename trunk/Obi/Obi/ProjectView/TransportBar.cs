@@ -750,39 +750,48 @@ namespace Obi.ProjectView
 
         }
 
-        public void FastPlayRateStepUp()
+        public bool FastPlayRateStepUp()
         {
             if (ComboFastPlateRate.SelectedIndex < ComboFastPlateRate.Items.Count - 1)
             {
                 ComboFastPlateRate.SelectedIndex = ComboFastPlateRate.SelectedIndex + 1;
                 mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(ComboFastPlateRate.SelectedItem.ToString());
+                return true;
             }
+            return false;
         }
 
-        public void FastPlayRateStepDown()
+        public bool  FastPlayRateStepDown()
         {
             if (ComboFastPlateRate.SelectedIndex > 0)
             {
                 ComboFastPlateRate.SelectedIndex = ComboFastPlateRate.SelectedIndex - 1;
                 mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(ComboFastPlateRate.SelectedItem.ToString());
+                return true;
             }
+            return false;
         }
 
-        public void FastPlayRateNormalise()
+        public bool FastPlayRateNormalise()
         {
             ComboFastPlateRate.SelectedIndex = 0;
             mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(ComboFastPlateRate.SelectedItem.ToString());
-        }
+            return true;
+                    }
 
         private void ComboFastPlateRate_SelectionChangeCommitted(object sender, EventArgs e)
         {
             mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(ComboFastPlateRate.SelectedItem.ToString());
         }
 
-        public void FastPlayNormaliseWithLapseBack()
+        public bool FastPlayNormaliseWithLapseBack()
         {
             mCurrentPlaylist.FastPlayNormaliseWithLapseBack(1500);
             ComboFastPlateRate.SelectedIndex = 0;
+
+            return true;
         }
+
+
     }
 }
