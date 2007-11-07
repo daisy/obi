@@ -437,7 +437,15 @@ namespace Obi.ProjectView
             // Transport bar
             // mShortcutKeys[Keys.Space] = delegate() { mProjectPanel.TransportBar.Play(); return true; };
                         // mShortcutKeys[Keys.Escape] = delegate() { mProjectPanel.TransportBar.Stop(); return true; };
+
+            // playback shortcuts.
+            // Note: if these shortcuts are to be disabled till finalisation, just comment following five lines.
             mShortcutKeys[Keys.Space] = TogglePlayPause;
+            mShortcutKeys[Keys.S] = FastPlayRateStepDown ;
+            mShortcutKeys[Keys.F] = FastPlayRateStepUp ;
+            mShortcutKeys[Keys.D] = FastPlayRateNormalise;
+            mShortcutKeys[Keys.E] = FastPlayNormaliseWithLapseBack  ;
+            
 
             mShortcutKeys[Keys.Return] = SelectHighlighted;
 
@@ -572,6 +580,27 @@ namespace Obi.ProjectView
                 return true;
             }
             return false;
+                    }
+
+
+        private bool FastPlayRateStepDown()
+        {
+            return mView.TransportBar.FastPlayRateStepDown();
+        }
+
+                    private bool FastPlayRateStepUp()
+                    {
+                        return mView.TransportBar.FastPlayRateStepUp();
+                    }
+
+                    private bool FastPlayRateNormalise()
+                    {
+                        return mView.TransportBar.FastPlayRateNormalise();
+                    }
+
+                    private bool FastPlayNormaliseWithLapseBack()
+                    {
+                        return mView.TransportBar.FastPlayNormaliseWithLapseBack();
                     }
 
         #endregion
