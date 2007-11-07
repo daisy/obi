@@ -436,7 +436,8 @@ namespace Obi.ProjectView
 
             // Transport bar
             // mShortcutKeys[Keys.Space] = delegate() { mProjectPanel.TransportBar.Play(); return true; };
-            // mShortcutKeys[Keys.Escape] = delegate() { mProjectPanel.TransportBar.Stop(); return true; };
+                        // mShortcutKeys[Keys.Escape] = delegate() { mProjectPanel.TransportBar.Stop(); return true; };
+            mShortcutKeys[Keys.Space] = TogglePlayPause;
 
             mShortcutKeys[Keys.Return] = SelectHighlighted;
 
@@ -514,7 +515,7 @@ namespace Obi.ProjectView
             if (strip != null)
             {
                 mView.Highlight = new NodeSelection(strip.Node, this);
-                return true;
+                                return true;
             }
             return false;
         }
@@ -550,6 +551,28 @@ namespace Obi.ProjectView
             }
             return null;
         }
+
+        /// <summary>
+        /// Toggles play selection and pause with spacebar
+        /// In this function Pause works both for play selection and Play all
+        /// <see cref=""/>
+        /// </summary>
+        /// <returns></returns>
+        private bool TogglePlayPause()
+        {
+            if (mView.TransportBar.CurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Stopped
+                || mView.TransportBar.CurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Paused)
+            {
+                mView.TransportBar.Play(mView.Selection.Node);
+                return true;
+            }
+            else if (mView.TransportBar.CurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Playing)
+            {
+                mView.TransportBar.Pause();
+                return true;
+            }
+            return false;
+                    }
 
         #endregion
     }
