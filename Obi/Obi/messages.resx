@@ -803,4 +803,7 @@ Error text: {1}</value>
   <data name="cut_strip_command" xml:space="preserve">
     <value>cut strip</value>
   </data>
+  <data name="split_strip_command" xml:space="preserve">
+    <value>split strip</value>
+  </data>
 </root>

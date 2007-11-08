@@ -1745,6 +1745,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to split strip.
+        /// </summary>
+        internal static string split_strip_command {
+            get {
+                return ResourceManager.GetString("split_strip_command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hiding table of contents..
         /// </summary>
         internal static string status_toc_hidden {

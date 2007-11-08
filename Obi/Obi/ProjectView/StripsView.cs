@@ -57,6 +57,7 @@ namespace Obi.ProjectView
         public bool CanRemoveBlock { get { return mSelectedItem is Block; } }
         public bool CanRemoveStrip { get { return mSelectedItem is Strip; } }
         public bool CanRenameStrip { get { return mSelectedItem is Strip; } }
+        public bool CanSplitStrip { get { return SelectedPhrase != null && SelectedPhrase.Index > 0; } }
 
         /// <summary>
         /// Create a command to delete the selected strip.
@@ -265,9 +266,12 @@ namespace Obi.ProjectView
             else if (e.getTreeNode() is PhraseNode)
             {
                 PhraseNode phrase = (PhraseNode)e.getTreeNode();
-                Block block = FindStrip(phrase.ParentAs<SectionNode>()).AddBlockForPhrase(phrase);
-                mLayoutPanel.ScrollControlIntoView(block);
-                UpdateTabIndex(block);
+                if (phrase.IsRooted)
+                {
+                    Block block = FindStrip(phrase.ParentAs<SectionNode>()).AddBlockForPhrase(phrase);
+                    mLayoutPanel.ScrollControlIntoView(block);
+                    UpdateTabIndex(block);
+                }
             }
         }
 
@@ -297,7 +301,8 @@ namespace Obi.ProjectView
             }
             else if (e.getTreeNode() is PhraseNode)
             {
-                FindStrip((SectionNode)e.getFormerParent()).RemoveBlock((PhraseNode)e.getTreeNode());
+                Strip strip = FindStrip((SectionNode)e.getFormerParent());
+                if (strip != null) strip.RemoveBlock((PhraseNode)e.getTreeNode());
             }
         }
 
@@ -309,7 +314,38 @@ namespace Obi.ProjectView
             mLayoutPanel.Controls.Remove(strip);
         }
 
-        // Deselect everything when clicking the 
+        /// <summary>
+        /// Split a strip at the given block; i.e. create a new sibling section which inherits the children of
+        /// the split section except for the phrases before the selected block. Do not do anything if there are
+        /// no phrases before.
+        /// </summary>
+        public urakawa.undo.CompositeCommand SplitStripFromSelectedBlockCommand()
+        {
+            urakawa.undo.CompositeCommand command = null;
+            if (CanSplitStrip)
+            {
+                PhraseNode phrase = SelectedPhrase;
+                SectionNode section = phrase.ParentAs<SectionNode>();
+                command = mView.Presentation.getCommandFactory().createCompositeCommand();
+                command.setShortDescription(Localizer.Message("split_strip_command"));
+                SectionNode sibling = mView.Presentation.CreateSectionNode();
+                sibling.Label = section.Label;
+                for (int i = 0; i < section.SectionChildCount; ++i)
+                {
+                    command.append(new Commands.Node.ChangeParent(mView, section.SectionChild(i), sibling));
+                }
+                for (int i = phrase.Index; i < section.PhraseChildCount; ++i)
+                {
+                    command.append(new Commands.Node.ChangeParent(mView, section.PhraseChild(i), sibling, phrase.Index));
+                }
+                command.append(new Commands.Node.AddNode(mView, sibling, section.ParentAs<ObiNode>(),
+                    section.Index + 1));
+            }
+            return command;
+        }
+
+
+        // Deselect everything when clicking the panel
         private void mLayoutPanel_Click(object sender, EventArgs e)
         {
             mView.Selection = null;
@@ -436,16 +472,16 @@ namespace Obi.ProjectView
 
             // Transport bar
             // mShortcutKeys[Keys.Space] = delegate() { mProjectPanel.TransportBar.Play(); return true; };
-                        // mShortcutKeys[Keys.Escape] = delegate() { mProjectPanel.TransportBar.Stop(); return true; };
+            // mShortcutKeys[Keys.Escape] = delegate() { mProjectPanel.TransportBar.Stop(); return true; };
 
             // playback shortcuts.
             // Note: if these shortcuts are to be disabled till finalisation, just comment following five lines.
             mShortcutKeys[Keys.Space] = TogglePlayPause;
-            mShortcutKeys[Keys.S] = FastPlayRateStepDown ;
-            mShortcutKeys[Keys.F] = FastPlayRateStepUp ;
+            mShortcutKeys[Keys.S] = FastPlayRateStepDown;
+            mShortcutKeys[Keys.F] = FastPlayRateStepUp;
             mShortcutKeys[Keys.D] = FastPlayRateNormalise;
-            mShortcutKeys[Keys.E] = FastPlayNormaliseWithLapseBack  ;
-            
+            mShortcutKeys[Keys.E] = FastPlayNormaliseWithLapseBack;
+
 
             mShortcutKeys[Keys.Return] = SelectHighlighted;
 
@@ -458,7 +494,7 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.Up] = HighlightPreviousStrip;
             mShortcutKeys[Keys.Down] = HighlightNextStrip;
             mShortcutKeys[Keys.Control | Keys.Home] = HighlightFirstStrip;
-            mShortcutKeys[Keys.Control | Keys.End ] = HighlightLastStrip ;
+            mShortcutKeys[Keys.Control | Keys.End] = HighlightLastStrip;
         }
 
         private static readonly int WM_KEYDOWN = 0x100;
@@ -522,7 +558,7 @@ namespace Obi.ProjectView
             return false;
         }
 
-        private bool HighlightLastBlockInStrip () 
+        private bool HighlightLastBlockInStrip()
         {
             if (StripForHighlight != null)
             {
@@ -532,15 +568,15 @@ namespace Obi.ProjectView
                     mView.Highlight = new NodeSelection(block.Node, this);
                     return true;
                 }
-        }
-        return false ;
+            }
+            return false;
         }
 
         private bool HighlightFirstBlockInStrip()
         {
             if (StripForHighlight != null)
             {
-                Block block = StripForHighlight.BlockFirst ();
+                Block block = StripForHighlight.BlockFirst();
                 if (block.Node != null)
                 {
                     mView.Highlight = new NodeSelection(block.Node, this);
@@ -556,7 +592,7 @@ namespace Obi.ProjectView
             if (strip != null)
             {
                 mView.Highlight = new NodeSelection(strip.Node, this);
-                                return true;
+                return true;
             }
             return false;
         }
@@ -585,7 +621,7 @@ namespace Obi.ProjectView
 
         private bool HighlightLastStrip()
         {
-            Strip strip = (Strip)mLayoutPanel.Controls[mLayoutPanel.Controls.Count - 1  ];
+            Strip strip = (Strip)mLayoutPanel.Controls[mLayoutPanel.Controls.Count - 1];
             if (strip != null)
             {
                 mView.Highlight = new NodeSelection(strip.Node, this);
@@ -605,7 +641,7 @@ namespace Obi.ProjectView
             }
             return null;
         }
-            
+
         public Strip StripBefore(Strip strip)
         {
             if (strip != null)
@@ -616,7 +652,7 @@ namespace Obi.ProjectView
             return null;
         }
 
-        
+
         /// <summary>
         /// Toggles play selection and pause with spacebar
         /// In this function Pause works both for play selection and Play all
@@ -637,7 +673,7 @@ namespace Obi.ProjectView
                 return true;
             }
             return false;
-                    }
+        }
 
 
         private bool FastPlayRateStepDown()
@@ -645,20 +681,20 @@ namespace Obi.ProjectView
             return mView.TransportBar.FastPlayRateStepDown();
         }
 
-                    private bool FastPlayRateStepUp()
-                    {
-                        return mView.TransportBar.FastPlayRateStepUp();
-                    }
+        private bool FastPlayRateStepUp()
+        {
+            return mView.TransportBar.FastPlayRateStepUp();
+        }
 
-                    private bool FastPlayRateNormalise()
-                    {
-                        return mView.TransportBar.FastPlayRateNormalise();
-                    }
+        private bool FastPlayRateNormalise()
+        {
+            return mView.TransportBar.FastPlayRateNormalise();
+        }
 
-                    private bool FastPlayNormaliseWithLapseBack()
-                    {
-                        return mView.TransportBar.FastPlayNormaliseWithLapseBack();
-                    }
+        private bool FastPlayNormaliseWithLapseBack()
+        {
+            return mView.TransportBar.FastPlayNormaliseWithLapseBack();
+        }
 
         #endregion
     }

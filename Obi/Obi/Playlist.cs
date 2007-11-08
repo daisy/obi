@@ -128,7 +128,7 @@ namespace Obi
                         int index = mPhrases.IndexOf((PhraseNode)n);
                         if (updateTimeFrom == mPhrases.Count) updateTimeFrom = index == 0 ? 1 : index;
                         mPhrases.RemoveAt(index);
-                        if (index < mStartTimes.Count) mStartTimes.RemoveAt(index + 1);
+                        if (index < mStartTimes.Count - 1) mStartTimes.RemoveAt(index + 1);
                         mTotalTime -= ((PhraseNode)n).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
                     }
                     return true;
