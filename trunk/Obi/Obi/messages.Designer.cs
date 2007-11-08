@@ -994,6 +994,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to merge strips.
+        /// </summary>
+        internal static string merge_strips_command {
+            get {
+                return ResourceManager.GetString("merge_strips_command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Names of primary author or creator of the intellectual content of the publication..
         /// </summary>
         internal static string meta_dc_creator {

@@ -806,4 +806,7 @@ Error text: {1}</value>
   <data name="split_strip_command" xml:space="preserve">
     <value>split strip</value>
   </data>
+  <data name="merge_strips_command" xml:space="preserve">
+    <value>merge strips</value>
+  </data>
 </root>
