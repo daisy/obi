@@ -429,6 +429,17 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Split a strip at the selected position.
+        /// </summary>
+        public void SplitStrip()
+        {
+            if (CanSplitStrip) mPresentation.UndoRedoManager.execute(mStripsView.SplitStripFromSelectedBlockCommand());
+        }
+
+        public bool CanSplitStrip { get { return mStripsView.CanSplitStrip; } }
+
+
+        /// <summary>
         /// Move the selected section node out.
         /// </summary>
         public void MoveSelectedSectionOut()
@@ -715,12 +726,6 @@ namespace Obi.ProjectView
         
         #endregion
 
-
-        /// <summary>
-        /// Split a strip at the selected position. (TODO!)
-        /// </summary>
-        public void SplitStrip() { if (CanSplitStrip) { } }
-        public bool CanSplitStrip { get { return false; } }
 
         /// <summary>
         /// Merge a strip with the next one. (TODO!)
