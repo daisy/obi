@@ -1589,7 +1589,7 @@ if (mProject != null)
             mInsertStripToolStripMenuItem.Enabled = mProjectView.CanAddStrip;
             mRenameStripToolStripMenuItem.Enabled = mProjectView.CanRenameStrip;
             mSplitStripToolStripMenuItem.Enabled = mProjectView.CanSplitStrip;
-            mMergeWithNextStripToolStripMenuItem.Enabled = mProjectView.CanMergeStrips;
+            mMergeWithNextStripToolStripMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
             mListenToStripToolStripMenuItem.Enabled = mProjectView.CanListenToStrip;
         }
 

@@ -438,6 +438,16 @@ namespace Obi.ProjectView
 
         public bool CanSplitStrip { get { return mStripsView.CanSplitStrip; } }
 
+        /// <summary>
+        /// Merge the selection strip with the next one, i.e. either its first sibling or its first child.
+        /// </summary>
+        public void MergeStrips()
+        {
+            if (CanMergeStripWithNext) mPresentation.UndoRedoManager.execute(mStripsView.MergeSelectedStripWithNextCommand());
+        }
+
+        public bool CanMergeStripWithNext { get { return mStripsView.CanMergeWithNextStrip; } }
+
 
         /// <summary>
         /// Move the selected section node out.
@@ -726,12 +736,6 @@ namespace Obi.ProjectView
         
         #endregion
 
-
-        /// <summary>
-        /// Merge a strip with the next one. (TODO!)
-        /// </summary>
-        public void MergeStrips() { if (CanMergeStrips) {} }
-        public bool CanMergeStrips { get { return false; } }
 
         public void ListenToSelection() { }
         public bool CanListenToSection { get { return mTransportBar.Enabled && mTOCView.Selection != null; } }

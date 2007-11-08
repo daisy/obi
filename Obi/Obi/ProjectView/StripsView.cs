@@ -59,12 +59,25 @@ namespace Obi.ProjectView
         public bool CanRenameStrip { get { return mSelectedItem is Strip; } }
         public bool CanSplitStrip { get { return SelectedPhrase != null && SelectedPhrase.Index > 0; } }
 
+        public bool CanMergeWithNextStrip
+        {
+            get
+            {
+                return mSelectedItem is Strip &&
+                    mLayoutPanel.Controls.IndexOf((Control)mSelectedItem) < mLayoutPanel.Controls.Count - 1;
+            }
+        }
+
         /// <summary>
         /// Create a command to delete the selected strip.
         /// </summary>
         public urakawa.undo.ICommand DeleteStripCommand()
         {
-            SectionNode section = SelectedSection;
+            return DeleteStripCommand(SelectedSection);
+        }
+
+        private urakawa.undo.ICommand DeleteStripCommand(SectionNode section)
+        {
             Commands.Node.Delete delete = new Commands.Node.Delete(mView, section, Localizer.Message("delete_strip_command"));
             if (section.SectionChildCount > 0)
             {
@@ -86,6 +99,27 @@ namespace Obi.ProjectView
         public void MakeStripVisibleForSection(SectionNode section)
         {
             if (section != null) mLayoutPanel.ScrollControlIntoView(FindStrip(section));
+        }
+
+        /// <summary>
+        /// Get a command to merge the selected strip with the next one.
+        /// </summary>
+        public urakawa.undo.ICommand MergeSelectedStripWithNextCommand()
+        {
+            urakawa.undo.CompositeCommand command = null;
+            if (CanMergeWithNextStrip)
+            {
+                command = mView.Presentation.getCommandFactory().createCompositeCommand();
+                command.setShortDescription(Localizer.Message("merge_strips_command"));
+                SectionNode section = SelectedSection;
+                SectionNode next = section.SectionChildCount == 0 ? section.NextSibling : section.SectionChild(0);
+                for (int i = 0; i < next.PhraseChildCount; ++i)
+                {
+                    command.append(new Commands.Node.ChangeParent(mView, next.PhraseChild(i), section)); 
+                }
+                command.append(DeleteStripCommand(next));
+            }
+            return command;
         }
 
         /// <summary>
@@ -213,6 +247,36 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Split a strip at the given block; i.e. create a new sibling section which inherits the children of
+        /// the split section except for the phrases before the selected block. Do not do anything if there are
+        /// no phrases before.
+        /// </summary>
+        public urakawa.undo.CompositeCommand SplitStripFromSelectedBlockCommand()
+        {
+            urakawa.undo.CompositeCommand command = null;
+            if (CanSplitStrip)
+            {
+                PhraseNode phrase = SelectedPhrase;
+                SectionNode section = phrase.ParentAs<SectionNode>();
+                command = mView.Presentation.getCommandFactory().createCompositeCommand();
+                command.setShortDescription(Localizer.Message("split_strip_command"));
+                SectionNode sibling = mView.Presentation.CreateSectionNode();
+                sibling.Label = section.Label;
+                for (int i = 0; i < section.SectionChildCount; ++i)
+                {
+                    command.append(new Commands.Node.ChangeParent(mView, section.SectionChild(i), sibling));
+                }
+                for (int i = phrase.Index; i < section.PhraseChildCount; ++i)
+                {
+                    command.append(new Commands.Node.ChangeParent(mView, section.PhraseChild(i), sibling, phrase.Index));
+                }
+                command.append(new Commands.Node.AddNode(mView, sibling, section.ParentAs<ObiNode>(),
+                    section.Index + 1));
+            }
+            return command;
+        }
+
+        /// <summary>
         /// Views are not synchronized anymore, so make sure that all strips are visible.
         /// </summary>
         public void UnsyncViews()
@@ -312,36 +376,6 @@ namespace Obi.ProjectView
             for (int i = 0; i < section.SectionChildCount; ++i) RemoveStripsForSection(section.SectionChild(i));
             Strip strip = FindStrip(section);
             mLayoutPanel.Controls.Remove(strip);
-        }
-
-        /// <summary>
-        /// Split a strip at the given block; i.e. create a new sibling section which inherits the children of
-        /// the split section except for the phrases before the selected block. Do not do anything if there are
-        /// no phrases before.
-        /// </summary>
-        public urakawa.undo.CompositeCommand SplitStripFromSelectedBlockCommand()
-        {
-            urakawa.undo.CompositeCommand command = null;
-            if (CanSplitStrip)
-            {
-                PhraseNode phrase = SelectedPhrase;
-                SectionNode section = phrase.ParentAs<SectionNode>();
-                command = mView.Presentation.getCommandFactory().createCompositeCommand();
-                command.setShortDescription(Localizer.Message("split_strip_command"));
-                SectionNode sibling = mView.Presentation.CreateSectionNode();
-                sibling.Label = section.Label;
-                for (int i = 0; i < section.SectionChildCount; ++i)
-                {
-                    command.append(new Commands.Node.ChangeParent(mView, section.SectionChild(i), sibling));
-                }
-                for (int i = phrase.Index; i < section.PhraseChildCount; ++i)
-                {
-                    command.append(new Commands.Node.ChangeParent(mView, section.PhraseChild(i), sibling, phrase.Index));
-                }
-                command.append(new Commands.Node.AddNode(mView, sibling, section.ParentAs<ObiNode>(),
-                    section.Index + 1));
-            }
-            return command;
         }
 
 
