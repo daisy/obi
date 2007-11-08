@@ -452,8 +452,13 @@ namespace Obi.ProjectView
             // Strips navigation
             mShortcutKeys[Keys.Left] = HighlightPrecedingBlock;
             mShortcutKeys[Keys.Right] = HighlightFollowingBlock;
+            mShortcutKeys[Keys.End] = HighlightLastBlockInStrip;
+            mShortcutKeys[Keys.Home] = HighlightFirstBlockInStrip;
+
             mShortcutKeys[Keys.Up] = HighlightPreviousStrip;
             mShortcutKeys[Keys.Down] = HighlightNextStrip;
+            mShortcutKeys[Keys.Control | Keys.Home] = HighlightFirstStrip;
+            mShortcutKeys[Keys.Control | Keys.End ] = HighlightLastStrip ;
         }
 
         private static readonly int WM_KEYDOWN = 0x100;
@@ -517,6 +522,34 @@ namespace Obi.ProjectView
             return false;
         }
 
+        private bool HighlightLastBlockInStrip () 
+        {
+            if (StripForHighlight != null)
+            {
+                Block block = StripForHighlight.BlockLast();
+                if (block.Node != null)
+                {
+                    mView.Highlight = new NodeSelection(block.Node, this);
+                    return true;
+                }
+        }
+        return false ;
+        }
+
+        private bool HighlightFirstBlockInStrip()
+        {
+            if (StripForHighlight != null)
+            {
+                Block block = StripForHighlight.BlockFirst ();
+                if (block.Node != null)
+                {
+                    mView.Highlight = new NodeSelection(block.Node, this);
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private bool HighlightPreviousStrip()
         {
             Strip strip = mHighlightedItem is Block ? StripForHighlight : StripBefore(StripForHighlight);
@@ -539,6 +572,29 @@ namespace Obi.ProjectView
             return false;
         }
 
+        private bool HighlightFirstStrip()
+        {
+            Strip strip = (Strip)mLayoutPanel.Controls[0];
+            if (strip != null)
+            {
+                mView.Highlight = new NodeSelection(strip.Node, this);
+                return true;
+            }
+            return false;
+        }
+
+        private bool HighlightLastStrip()
+        {
+            Strip strip = (Strip)mLayoutPanel.Controls[mLayoutPanel.Controls.Count - 1  ];
+            if (strip != null)
+            {
+                mView.Highlight = new NodeSelection(strip.Node, this);
+                return true;
+            }
+            return false;
+        }
+
+
         private Strip StripAfter(Strip strip)
         {
             if (strip != null)
@@ -560,6 +616,7 @@ namespace Obi.ProjectView
             return null;
         }
 
+        
         /// <summary>
         /// Toggles play selection and pause with spacebar
         /// In this function Pause works both for play selection and Play all

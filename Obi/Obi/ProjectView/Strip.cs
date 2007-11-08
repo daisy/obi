@@ -240,5 +240,17 @@ namespace Obi.ProjectView
                                         0;
             return index > 0 ? (Block)mBlocksPanel.Controls[index - 1] : null;
         }
+
+        public Block BlockLast()
+        {
+int Index = mBlocksPanel.Controls.Count - 1 ;
+return (Block) mBlocksPanel.Controls[Index];
+        }
+
+        public Block BlockFirst()
+        {
+            return (Block)mBlocksPanel.Controls[0];
+        }
+
     }
 }
