@@ -72,29 +72,4 @@ namespace Obi.Commands
         public string getXukLocalName() { return GetType().Name; }
         public string getXukNamespaceUri() { return DataModelFactory.NS; }
     }
-
-    /// <summary>
-    /// The basic command class. All commands inherit from this one.
-    /// THIS IS THE OLD CLASS.
-    /// </summary>
-    public abstract class Command__OLD__
-	{
-        /// <summary>
-        /// The label of this command for the undo menu.
-        /// </summary>
-        public abstract string Label
-        {
-            get;
-        }
-
-        /// <summary>
-        /// Do, or rather redo, the command from the initial state.
-        /// </summary>
-		public abstract void Do();
-        
-        /// <summary>
-        /// Undo the command and bring everything back to the initial state.
-        /// </summary>
-        public abstract void Undo();
-	}
 }

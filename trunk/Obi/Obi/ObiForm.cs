@@ -192,7 +192,7 @@ namespace Obi
             mCopyToolStripMenuItem.Enabled = mProjectView.CanCopy;
             mPasteToolStripMenuItem.Enabled = mProjectView.CanPaste;
             mDeleteToolStripMenuItem.Enabled = mProjectView.CanDelete;
-            mSelectNothingToolStripMenuItem.Enabled = mProjectView.Selection != null;
+            mSelectNothingToolStripMenuItem.Enabled = mProjectView.CanDeselect;
             mFindInTextToolStripMenuItem.Enabled = mSession.HasProject;
         }
 
@@ -202,7 +202,7 @@ namespace Obi
         private void mCopyToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Copy(); }
         private void mPasteToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Paste(); }
         private void mDeleteToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Delete(); }
-        private void mSelectNothingToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Selection = null; }
+        private void mSelectNothingToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SelectNothing(); }
         private void mFindInTextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.FindInText(); }
 
         #endregion

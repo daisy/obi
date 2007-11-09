@@ -663,6 +663,7 @@ namespace Obi.ProjectView
         public bool CanCopy { get { return CanCopySection || CanCopyStrip; } }
         public bool CanDelete { get { return CanRemoveSection || CanRemoveStrip || CanRemoveBlock; } }
         public bool CanPaste { get { return mSelection != null && mSelection.CanPaste(mClipboard); } }
+        public bool CanDeselect { get { return mSelection != null || mHighlight != null; } }
 
         public bool CanShowInStripsView { get { return SelectedSection != null && mSelection.Control == mTOCView; } }
         public bool CanShowInTOCView { get { return SelectedSection != null && mSelection.Control == mStripsView; } }
@@ -799,6 +800,12 @@ namespace Obi.ProjectView
                 }
             }
             if (FinishedImportingFiles != null) FinishedImportingFiles(this, null);
+        }
+
+        public void SelectNothing()
+        {
+            Selection = null;
+            Highlight = null;
         }
     }
 

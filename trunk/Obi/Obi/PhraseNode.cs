@@ -181,8 +181,8 @@ namespace Obi
 
         protected override TreeNode copyProtected(bool deep, bool inclProperties)
         {
-            PhraseNode copy = (PhraseNode)base.copy(deep, inclProperties);
-            copy.Audio = null; // Project.DataManager.CopyAndManage(Audio);
+            PhraseNode copy = Presentation.CreatePhraseNode();
+            copy.Audio = Presentation.DataManager.CopyAndManage(Audio);
             copy.Used = Used;
             copy.Annotation = Annotation;
             copy.mKind = mKind;
