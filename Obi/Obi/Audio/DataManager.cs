@@ -34,7 +34,7 @@ namespace Obi.Audio
         public ManagedAudioMedia CopyAndManage(ManagedAudioMedia original)
         {
             ManagedAudioMedia copy = original.copy();
-            addMediaData(copy.getMediaData());
+            //addMediaData(copy.getMediaData());
             return copy;
         }
 
