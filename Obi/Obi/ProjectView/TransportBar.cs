@@ -491,7 +491,7 @@ namespace Obi.ProjectView
                 mRecordingSession.StartingPhrase += new Events.Audio.Recorder.StartingPhraseHandler(
                     delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
                     {
-                        // mProjectPanel.Project.StartRecordingPhrase(_e, section, index + _e.PhraseIndex);
+                        mView.Presentation.StartRecordingPhrase(_e, section, index + _e.PhraseIndex);
                     }
                 );
                 mRecordingSession.ContinuingPhrase += new Events.Audio.Recorder.ContinuingPhraseHandler(
@@ -523,7 +523,7 @@ namespace Obi.ProjectView
                     //    this.mProjectPanel.ParentObiForm.UndoLast();
                     for (int i = 0; i < mRecordingSession.RecordedAudio.Count; ++i)
                     {
-                        //mProjectPanel.StripManager.UpdateAudioForPhrase(section.PhraseChild(index + i), m_RecordingSession.RecordedAudio[i]);
+                        mView.Presentation.UpdateAudioForPhrase(section.PhraseChild(index + i), mRecordingSession.RecordedAudio[i]);
                     }
                 }
                 else //recording using the transportbar buttons

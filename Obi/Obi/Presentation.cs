@@ -282,6 +282,29 @@ namespace Obi
             media.setMediaData(data);
             return media;
         }
+
+        /// <summary>
+        /// A new phrase being recorded.
+        /// </summary>
+        /// <param name="e">The phrase event originally sent by the recording session.</param>
+        /// <param name="parent">Parent core node for the new phrase.</param>
+        /// <param name="index">Base index in the parent for new phrases.</param>
+        internal void StartRecordingPhrase(Events.Audio.Recorder.PhraseEventArgs e, SectionNode parent, int index)
+        {
+            PhraseNode phrase =  CreatePhraseNode(e.Audio);
+            parent.insert(phrase, index);
+                                }
+
+        internal  void UpdateAudioForPhrase( PhraseNode phrase , ManagedAudioMedia media )
+    {
+        if (phrase != null && media != null)
+        {
+                        phrase.Audio = media;
+            System.Windows.Forms.MessageBox.Show(phrase.Audio.getMediaData().getAudioDuration().getTimeDeltaAsMilliseconds().ToString());
+                    }
+            }
+
+
     }
 
     public class NodeEventArgs<T> : EventArgs
