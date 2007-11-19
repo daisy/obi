@@ -445,6 +445,11 @@ namespace Obi.ProjectView
         /// </summary>
         public void Pause()
         {
+            if (mRecordingSession != null &&
+                (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Listening || mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording))
+            {
+                PauseRecording();
+            }
             if (Enabled)
             {
                 mCurrentPlaylist.Pause();
@@ -452,36 +457,54 @@ namespace Obi.ProjectView
             }
         }
 
+        bool m_IsSectionCreatedForRecording;
+        int m_RecordingInitPhraseIndex ;
+        SectionNode m_RecordingSection; // Section in which we are recording
 
         /// <summary>
         /// Start listening/recording.
         /// </summary>
         public void Record()
-        {
+            {
+            
+            if (mRecordingSession != null)
+            {
+                if (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Listening)
+                {
+                    mRecordingSession.Stop();
+                    StartRecording();
+                }
+                }
+            else
+                InitialiseRecord();
+        }
+
+            void InitialiseRecord  ()
+                        {
             if (CanRecord)
             {
                 ObiNode selected = mView.Selection.Node;
-                SectionNode section;  // section in which we are recording
-                int index;            // index from which we add new phrases in the aforementioned section
-                bool IsSectionCreated = false; // Flag to indicate creation of a section as to undo it if nothing is recorded.
+                //SectionNode section;  // section in which we are recording
+                //int index;            // index from which we add new phrases in the aforementioned section
+                m_IsSectionCreatedForRecording = false;
                 if (selected == null)
                 {
                     // nothing selected: append a new section and start from 0
-                    section = null; // mProjectPanel.Project.CreateSiblingSectionNode(null);
-                    index = 0;
-                    IsSectionCreated = true;
+                    m_RecordingSection = null; // mProjectPanel.Project.CreateSiblingSectionNode(null);
+                    m_RecordingInitPhraseIndex = 0;
+                    m_IsSectionCreatedForRecording = true;
                 }
                 else if (selected is SectionNode)
                 {
                     // a section is selected: append in the section
-                    section = (SectionNode)selected;
-                    index = section.PhraseChildCount;
+                    m_RecordingSection = (SectionNode)selected;
+                    m_RecordingInitPhraseIndex = m_RecordingSection.PhraseChildCount;
                 }
                 else
                 {
                     // a phrase is selected: inster before the phrase
-                    section = ((PhraseNode)selected).ParentAs<SectionNode>();
-                    index = ((PhraseNode)selected).Index;
+                    m_RecordingSection = ((PhraseNode)selected).ParentAs<SectionNode>();
+                    m_RecordingInitPhraseIndex = ((PhraseNode)selected).Index;
                 }
                 Settings settings = ((ObiForm)ParentForm).Settings;
                 mRecordingSession = new RecordingSession(mView.Presentation, mRecorder,
@@ -490,7 +513,7 @@ namespace Obi.ProjectView
                 mRecordingSession.StartingPhrase += new Events.Audio.Recorder.StartingPhraseHandler(
                     delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
                     {
-                        mView.Presentation.StartRecordingPhrase(_e, section, index + _e.PhraseIndex);
+                        mView.Presentation.StartRecordingPhrase(_e, m_RecordingSection, m_RecordingInitPhraseIndex + _e.PhraseIndex);
                     }
                 );
                 mRecordingSession.ContinuingPhrase += new Events.Audio.Recorder.ContinuingPhraseHandler(
@@ -503,7 +526,7 @@ namespace Obi.ProjectView
                     delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
                     {
                         // mProjectPanel.Project.RecordingPhraseUpdate(_e, section, index + _e.PhraseIndex);
-                        mMasterPlaylist.UpdateTimeFrom(section.PhraseChild(index + _e.PhraseIndex).PreviousPhraseInProject);
+                        mMasterPlaylist.UpdateTimeFrom(m_RecordingSection.PhraseChild(m_RecordingInitPhraseIndex + _e.PhraseIndex).PreviousPhraseInProject);
                     }
                 );
                 mRecordingSession.FinishingPage += new Events.Audio.Recorder.FinishingPageHandler(
@@ -514,16 +537,17 @@ namespace Obi.ProjectView
                     }
                 );
 
-                
 
-                    new Dialogs.TransportRecord(mRecordingSession , mVuMeter).ShowDialog();
+                StartListening();
+                    //new Dialogs.TransportRecord(mRecordingSession , mVuMeter).ShowDialog();
                     // delete newly created section if nothing is recorded.
-                    // if (mRecordingSession.RecordedAudio.Count == 0 && IsSectionCreated)
+                    // if (mRecordingSession.RecordedAudio.Count == 0 && m_IsSectionCreatedForRecording )
                     //    this.mProjectPanel.ParentObiForm.UndoLast();
-                    for (int i = 0; i < mRecordingSession.RecordedAudio.Count; ++i)
-                    {
-                        mView.Presentation.UpdateAudioForPhrase(section.PhraseChild(index + i), mRecordingSession.RecordedAudio[i]);
-                    }
+                // following loop disabled for removing record dialog
+                    //for (int i = 0; i < mRecordingSession.RecordedAudio.Count; ++i)
+                    //{
+                        //mView.Presentation.UpdateAudioForPhrase(section.PhraseChild(index + i), mRecordingSession.RecordedAudio[i]);
+                    //}
                 /*
                 else //recording using the transportbar buttons
                 {
@@ -557,6 +581,71 @@ namespace Obi.ProjectView
             }
         }
 
+        void StartListening()
+        {
+            if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
+            {
+                mPlayButton.Enabled = false;
+                mPrevPhraseButton.Enabled = false;
+                mPrevSectionButton.Enabled = false;
+                mFastForwardButton.Enabled = false;
+                mRewindButton.Enabled = false;
+                                ComboFastPlateRate.Enabled = false;
+
+                mRecordButton.AccessibleName = "Start Recording";
+                mRecordingSession.Listen();
+            }
+        }
+
+        void StartRecording()
+        {
+            mRecordingSession.Record();
+            mRecordButton.Enabled = false;
+        }
+
+        void PauseRecording()
+        {
+            mRecordingSession.Stop();
+
+            mRecordingSession.Listen();
+            mRecordButton.Enabled = true;
+            mRecordButton.AccessibleName = "Start Recording";
+
+        }
+
+        void StopRecording()
+        {
+            if (mRecordingSession != null &&
+                (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Listening || mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording))
+            {
+                mRecordingSession.Stop();
+
+                // delete newly created section if nothing is recorded.
+                                if (mRecordingSession.RecordedAudio.Count == 0 && m_IsSectionCreatedForRecording)
+                                    this.mView.ObiForm.UndoLast();
+
+                // update phrases with audio assets
+                                for (int i = 0; i < mRecordingSession.RecordedAudio.Count; ++i)
+                                {
+                                    mView.Presentation.UpdateAudioForPhrase(m_RecordingSection.PhraseChild(m_RecordingInitPhraseIndex + i), mRecordingSession.RecordedAudio[i]);
+                                }
+
+                m_IsSectionCreatedForRecording = false;
+                mRecordButton.Enabled = true;
+                mRecordButton.AccessibleName = "Record";
+                mRecordingSession = null;
+
+                // enable playback controls
+                mPlayButton.Enabled = true;
+                mPrevPhraseButton.Enabled = true;
+                mPrevSectionButton.Enabled = true;
+                mFastForwardButton.Enabled = true;
+                mRewindButton.Enabled = true;
+                ComboFastPlateRate.Enabled = true;
+            }
+        }
+
+
         public void UpdateInlineRecordingState()
         {
             if (IsInlineRecording)
@@ -588,6 +677,11 @@ namespace Obi.ProjectView
         /// </summary>
         public void Stop()
         {
+                        if (mRecordingSession != null &&
+                (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Listening || mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording))
+            {
+                StopRecording();
+            }
             if (IsInlineRecording)
             {
                 inlineRecordingSession.Stop();
