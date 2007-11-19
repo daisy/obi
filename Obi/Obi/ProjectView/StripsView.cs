@@ -15,7 +15,6 @@ namespace Obi.ProjectView
     public interface ISelectableInStripView
     {
         bool Selected { get; set; }
-        bool Highlighted { get; set; }
         ObiNode ObiNode { get; }
     }
 
@@ -23,7 +22,6 @@ namespace Obi.ProjectView
     {
         private ProjectView mView;                                   // parent project view
         private ISelectableInStripView mSelectedItem;                // selected strip or block
-        private ISelectableInStripView mHighlightedItem;             // highlighted strip or block
         private Dictionary<Keys, HandledShortcutKey> mShortcutKeys;  // list of all shortcuts
 
         public delegate bool HandledShortcutKey();
@@ -153,30 +151,12 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Set the highlighted phrase (null to cancel)
-        /// </summary>
-        public PhraseNode HighlightedPhrase
-        {
-            get { return mHighlightedItem != null && mHighlightedItem is Block ? ((Block)mHighlightedItem).Node : null; }
-            set { if (mView != null) mView.Highlight = new NodeSelection(value, this); }
-        }
-
-        /// <summary>
         /// Set the selected section (null to deselect)
         /// </summary>
         public SectionNode SelectedSection
         {
             get { return mSelectedItem != null && mSelectedItem is Strip ? ((Strip)mSelectedItem).Node : null; }
             set { if (mView != null) mView.Selection = new NodeSelection(value, this, false); }
-        }
-
-        /// <summary>
-        /// Set the highlighted section (null to cancel highlight)
-        /// </summary>
-        public SectionNode HighlightedSection
-        {
-            get { return mHighlightedItem != null && mHighlightedItem is Strip ? ((Strip)mHighlightedItem).Node : null; }
-            set { if (mView != null) mView.Highlight = new NodeSelection(value, this); }
         }
 
         /// <summary>
@@ -199,29 +179,6 @@ namespace Obi.ProjectView
                         SectionNode section = value.Node is SectionNode ? (SectionNode)value.Node :
                             value.Node is PhraseNode ? ((PhraseNode)value.Node).ParentAs<SectionNode>() : null;
                         mView.MakeTreeNodeVisibleForSection(section);
-                        if (!((Control)s).Focused) ((Control)s).Focus();
-                    }
-                }
-            }
-        }
-
-        public NodeSelection Highlight
-        {
-            get { return mHighlightedItem == null ? null : new NodeSelection(mHighlightedItem.ObiNode, this); }
-            set
-            {
-                ISelectableInStripView s = value == null ? null : FindSelectable(value.Node);
-                if (s != mHighlightedItem)
-                {
-                    if (mHighlightedItem != null) mHighlightedItem.Highlighted = false;
-                    mHighlightedItem = s;
-                    if (s != null)
-                    {
-                        s.Highlighted = true;
-                        mLayoutPanel.ScrollControlIntoView((Control)s);
-                        SectionNode section = value.Node is SectionNode ? (SectionNode)value.Node :
-                            value.Node is PhraseNode ? ((PhraseNode)value.Node).ParentAs<SectionNode>() : null;
-                        mView.MakeStripVisibleForSection(section);
                         if (!((Control)s).Focused) ((Control)s).Focus();
                     }
                 }
@@ -480,8 +437,6 @@ namespace Obi.ProjectView
 
         #region tabbing
 
-        private void StripsView_Leave(object sender, EventArgs e) { mView.Highlight = null; }
-
         // Update tab index for all controls after a newly added strip
         private void UpdateTabIndex(Strip strip)
         {
@@ -516,19 +471,16 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.D] = FastPlayRateNormalise;
             mShortcutKeys[Keys.E] = FastPlayNormaliseWithLapseBack;
 
-
-            mShortcutKeys[Keys.Return] = SelectHighlighted;
-
             // Strips navigation
-            mShortcutKeys[Keys.Left] = HighlightPrecedingBlock;
-            mShortcutKeys[Keys.Right] = HighlightFollowingBlock;
-            mShortcutKeys[Keys.End] = HighlightLastBlockInStrip;
-            mShortcutKeys[Keys.Home] = HighlightFirstBlockInStrip;
+            mShortcutKeys[Keys.Left] = SelectPrecedingBlock;
+            mShortcutKeys[Keys.Right] = SelectFollowingBlock;
+            mShortcutKeys[Keys.End] = SelectLastBlockInStrip;
+            mShortcutKeys[Keys.Home] = SelectFirstBlockInStrip;
 
-            mShortcutKeys[Keys.Up] = HighlightPreviousStrip;
-            mShortcutKeys[Keys.Down] = HighlightNextStrip;
-            mShortcutKeys[Keys.Control | Keys.Home] = HighlightFirstStrip;
-            mShortcutKeys[Keys.Control | Keys.End] = HighlightLastStrip;
+            mShortcutKeys[Keys.Up] = SelectPreviousStrip;
+            mShortcutKeys[Keys.Down] = SelectNextStrip;
+            mShortcutKeys[Keys.Control | Keys.Home] = SelectFirstStrip;
+            mShortcutKeys[Keys.Control | Keys.End] = SelectLastStrip;
         }
 
         private static readonly int WM_KEYDOWN = 0x100;
@@ -541,129 +493,95 @@ namespace Obi.ProjectView
             return base.ProcessCmdKey(ref msg, key);
         }
 
-        private bool SelectHighlighted()
-        {
-            if (mHighlightedItem != null)
-            {
-                mView.Selection = mView.Highlight;
-                return true;
-            }
-            return false;
-        }
-
-        // Get the strip for the current highlighted component (i.e. the strip itself, or the parent strip
+        // Get the strip for the currently selected component (i.e. the strip itself, or the parent strip
         // for a block.)
-        private Strip StripForHighlight
+        private Strip StripFor(ISelectableInStripView item)
         {
-            get
-            {
-                return mHighlightedItem is Strip ? (Strip)mHighlightedItem :
-                    mHighlightedItem is Block ? ((Block)mHighlightedItem).Strip : null;
-            }
+            return item is Strip ? (Strip)item : item is Block ? ((Block)item).Strip : null;
         }
 
-        // Highlight the previous block; do not cross strip boundaries; must have a block already highlighted.
-        // If a strip is highlighted, then the last block is highlighted (or none if it has no block.)
-        private bool HighlightPrecedingBlock()
+        private delegate Block SelectBlockFunction(Strip strip, ISelectableInStripView item);
+
+        private bool SelectBlockFor(SelectBlockFunction f)
         {
-            if (StripForHighlight != null)
+            Strip strip = StripFor(mSelectedItem);
+            if (strip != null)
             {
-                Block block = StripForHighlight.BlockBefore(mHighlightedItem);
+                Block block = f(strip, mSelectedItem);
                 if (block != null)
                 {
-                    mView.Highlight = new NodeSelection(block.Node, this);
+                    mView.Selection = new NodeSelection(block.Node, this);
                     return true;
                 }
             }
             return false;
         }
 
-        private bool HighlightFollowingBlock()
+        private bool SelectPrecedingBlock()
         {
-            if (StripForHighlight != null)
-            {
-                Block block = StripForHighlight.BlockAfter(mHighlightedItem);
-                if (block != null)
-                {
-                    mView.Highlight = new NodeSelection(block.Node, this);
-                    return true;
-                }
-            }
-            return false;
+            return SelectBlockFor(delegate(Strip strip, ISelectableInStripView item) { return strip.BlockBefore(item); });
         }
 
-        private bool HighlightLastBlockInStrip()
+        private bool SelectFollowingBlock()
         {
-            if (StripForHighlight != null)
-            {
-                Block block = StripForHighlight.BlockLast();
-                if (block.Node != null)
-                {
-                    mView.Highlight = new NodeSelection(block.Node, this);
-                    return true;
-                }
-            }
-            return false;
+            return SelectBlockFor(delegate(Strip strip, ISelectableInStripView item) { return strip.BlockAfter(item); });
         }
 
-        private bool HighlightFirstBlockInStrip()
+        private bool SelectLastBlockInStrip()
         {
-            if (StripForHighlight != null)
-            {
-                Block block = StripForHighlight.BlockFirst();
-                if (block.Node != null)
-                {
-                    mView.Highlight = new NodeSelection(block.Node, this);
-                    return true;
-                }
-            }
-            return false;
+            return SelectBlockFor(delegate(Strip strip, ISelectableInStripView item) { return strip.BlockLast(); });
         }
 
-        private bool HighlightPreviousStrip()
+        private bool SelectFirstBlockInStrip()
         {
-            Strip strip = mHighlightedItem is Block ? StripForHighlight : StripBefore(StripForHighlight);
+            return SelectBlockFor(delegate(Strip strip, ISelectableInStripView item) { return strip.BlockFirst(); });
+        }
+
+        private delegate Strip SelectStripFunction(Strip strip);
+
+        private bool SelectStripFor(SelectStripFunction f)
+        {
+            Strip strip = f(StripFor(mSelectedItem) as Strip);
             if (strip != null)
             {
-                mView.Highlight = new NodeSelection(strip.Node, this);
+                mView.Selection = new NodeSelection(strip.Node, this);
                 return true;
             }
             return false;
         }
 
-        private bool HighlightNextStrip()
+        private bool SelectPreviousStrip()
         {
-            Strip strip = StripAfter(StripForHighlight);
+            Strip strip = mSelectedItem is Block ? StripFor(mSelectedItem) : StripBefore(StripFor(mSelectedItem));
             if (strip != null)
             {
-                mView.Highlight = new NodeSelection(strip.Node, this);
+                mView.Selection = new NodeSelection(strip.Node, this);
                 return true;
             }
             return false;
         }
 
-        private bool HighlightFirstStrip()
+        private bool SelectNextStrip()
         {
-            Strip strip = (Strip)mLayoutPanel.Controls[0];
-            if (strip != null)
-            {
-                mView.Highlight = new NodeSelection(strip.Node, this);
-                return true;
-            }
-            return false;
+            return SelectStripFor(StripAfter);
         }
 
-        private bool HighlightLastStrip()
+        private bool SelectFirstStrip()
         {
-            Strip strip = (Strip)mLayoutPanel.Controls[mLayoutPanel.Controls.Count - 1];
-            if (strip != null)
+            return SelectStripFor(delegate(Strip strip)
             {
-                mView.Highlight = new NodeSelection(strip.Node, this);
-                return true;
-            }
-            return false;
+                return mLayoutPanel.Controls.Count > 0 ? (Strip)mLayoutPanel.Controls[0] : null;
+            });
         }
 
+        private bool SelectLastStrip()
+        {
+            return SelectStripFor(delegate(Strip strip)
+            {
+                return mLayoutPanel.Controls.Count > 0 ? (Strip)mLayoutPanel.Controls[mLayoutPanel.Controls.Count - 1] :
+                    null;
+            });
+        }
 
         private Strip StripAfter(Strip strip)
         {

@@ -32,7 +32,7 @@ namespace Obi.ProjectView
      * Shift-F3 to search previous
      * Esc to clear and close the form
      * 
-     * As the search criteria is matched, the corresponding UI item is highlighted and played
+     * As the search criteria is matched, the corresponding UI item is selected and played
      * */
     public partial class FindInText : UserControl
     {

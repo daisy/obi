@@ -44,7 +44,7 @@ namespace Obi
         public event EndOfPlaylistHandler EndOfPlaylist;
 
         // Moved to a new phrase (while playing, or paused.)
-        // this is to notify Obi to highlight the current phrase.
+        // this is to notify Obi to select the current phrase.
         public delegate void MovedToPhraseHandler(object sender, Events.Node.PhraseNodeEventArgs e);
         public event MovedToPhraseHandler MovedToPhrase;
 
