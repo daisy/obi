@@ -80,8 +80,7 @@ namespace Obi.ProjectView
             SetPlaylistEvents(mMasterPlaylist);
             mCurrentPlaylist = mMasterPlaylist;
             mDisplayBox.SelectedIndex = ElapsedTotal;
-            mRecordModeBox.SelectedIndex = 0; //First element will be the default selected one
-            mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
+                        mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
             mVUMeterPanel.VuMeter = mVuMeter;
 
             ComboFastPlateRate.Items.Add("1.0");
@@ -106,9 +105,9 @@ namespace Obi.ProjectView
             {
                 return Enabled &&
                     (
-                        (mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped && mRecordModeBox.SelectedIndex == 0)
+                        (mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped )
                         ||
-                        (!IsInlineRecording && mRecordModeBox.SelectedIndex > 0)
+                        (!IsInlineRecording )
                     );
             }
         }
@@ -515,8 +514,8 @@ namespace Obi.ProjectView
                     }
                 );
 
-                if (mRecordModeBox.SelectedIndex == 0) //recording using the dialog
-                {
+                
+
                     new Dialogs.TransportRecord(mRecordingSession , mVuMeter).ShowDialog();
                     // delete newly created section if nothing is recorded.
                     // if (mRecordingSession.RecordedAudio.Count == 0 && IsSectionCreated)
@@ -525,7 +524,7 @@ namespace Obi.ProjectView
                     {
                         mView.Presentation.UpdateAudioForPhrase(section.PhraseChild(index + i), mRecordingSession.RecordedAudio[i]);
                     }
-                }
+                /*
                 else //recording using the transportbar buttons
                 {
                     if (mCurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Playing)
@@ -535,6 +534,7 @@ namespace Obi.ProjectView
                         mIsSerialPlaying = false;
                         index++; //for "punch in", we want to record between the parts of the split
                     }
+                    
                     if (mRecordModeBox.SelectedIndex == 2 && section.PhraseChildCount>0) //we are recording in destructive mode
                     {
                         PhraseNode removeableNode = section.PhraseChild(index);
@@ -545,6 +545,7 @@ namespace Obi.ProjectView
                         }
                         // this.ProjectPanel.CurrentSelection = null;
                     }
+                     
                     mDidCreateSectionForRecording = IsSectionCreated;
                     mRecordingToSection = section;
                     mRecordingStartIndex = index;
@@ -552,6 +553,7 @@ namespace Obi.ProjectView
                     inlineRecordingSession.Record();
                     UpdateInlineRecordingState();
                 }
+                 */ 
             }
         }
 
@@ -566,8 +568,7 @@ namespace Obi.ProjectView
                 mFastForwardButton.Enabled = false;
                 mNextSectionButton.Enabled = false;
                 mPauseButton.Enabled = false;
-                mRecordModeBox.Enabled = false;
-            }
+                            }
             else
             {
                 mPrevPhraseButton.Enabled = this.Enabled;
@@ -578,8 +579,7 @@ namespace Obi.ProjectView
                 mNextPhrase.Enabled = this.Enabled;
                 mNextSectionButton.Enabled = this.Enabled;
                 mPauseButton.Enabled = this.Enabled;
-                mRecordModeBox.Enabled = this.Enabled;
-            }
+                            }
         }
 
 

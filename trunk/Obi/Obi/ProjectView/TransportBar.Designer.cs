@@ -44,7 +44,6 @@ namespace Obi.ProjectView
             this.mFastForwardButton = new System.Windows.Forms.Button();
             this.mDisplayTimer = new System.Windows.Forms.Timer(this.components);
             this.mDisplayBox = new System.Windows.Forms.ComboBox();
-            this.mRecordModeBox = new System.Windows.Forms.ComboBox();
             this.ComboFastPlateRate = new System.Windows.Forms.ComboBox();
             this.mVUMeterPanel = new Obi.UserControls.TextVUMeterPanel();
             this.SuspendLayout();
@@ -240,25 +239,11 @@ namespace Obi.ProjectView
             this.mDisplayBox.TabIndex = 10;
             this.mDisplayBox.SelectionChangeCommitted += new System.EventHandler(this.mDisplayBox_SelectionChangeCommitted);
             // 
-            // mRecordModeBox
-            // 
-            this.mRecordModeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.mRecordModeBox.FormattingEnabled = true;
-            this.mRecordModeBox.Items.AddRange(new object[] {
-            "Record using dialog",
-            "Record by inserting",
-            "Record by overwriting"});
-            this.mRecordModeBox.Location = new System.Drawing.Point(829, 4);
-            this.mRecordModeBox.Name = "mRecordModeBox";
-            this.mRecordModeBox.Size = new System.Drawing.Size(128, 21);
-            this.mRecordModeBox.TabIndex = 14;
-            this.mRecordModeBox.SelectedIndexChanged += new System.EventHandler(this.mRecordModeBox_SelectedIndexChanged);
-            // 
             // ComboFastPlateRate
             // 
             this.ComboFastPlateRate.AccessibleName = "Fast Play Rate";
             this.ComboFastPlateRate.FormattingEnabled = true;
-            this.ComboFastPlateRate.Location = new System.Drawing.Point(970, 0);
+            this.ComboFastPlateRate.Location = new System.Drawing.Point(930, 0);
             this.ComboFastPlateRate.Name = "ComboFastPlateRate";
             this.ComboFastPlateRate.Size = new System.Drawing.Size(90, 21);
             this.ComboFastPlateRate.TabIndex = 15;
@@ -279,7 +264,6 @@ namespace Obi.ProjectView
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.ComboFastPlateRate);
-            this.Controls.Add(this.mRecordModeBox);
             this.Controls.Add(this.mFastForwardButton);
             this.Controls.Add(this.mRewindButton);
             this.Controls.Add(this.mVUMeterPanel);
@@ -317,7 +301,6 @@ namespace Obi.ProjectView
         private Obi.UserControls.TextVUMeterPanel mVUMeterPanel;
         private System.Windows.Forms.Button mRewindButton;
         private System.Windows.Forms.Button mFastForwardButton;
-        private System.Windows.Forms.ComboBox mRecordModeBox;
         private System.Windows.Forms.ComboBox ComboFastPlateRate;
     }
 }
