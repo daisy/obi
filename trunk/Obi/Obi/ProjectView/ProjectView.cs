@@ -13,13 +13,11 @@ namespace Obi.ProjectView
         private bool mEnableTooltips;            // tooltips flag
         private Presentation mPresentation;      // presentation
         private NodeSelection mSelection;        // currently selected node
-        private NodeSelection mHighlight;        // currently highlighted node
         private Clipboard mClipboard;            // the clipboard
         private bool mSynchronizeViews;          // synchronize views flag
         private ObiForm mForm;                   // parent form
 
         public event EventHandler SelectionChanged;             // triggered when the selection changes
-        public event EventHandler HighlightChanged;             // triggered when the highlighted item changes
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
         public event ImportingFileEventHandler ImportingFile;   // triggered when a file is being imported
         public event EventHandler FinishedImportingFiles;       // triggered when all files were imported
@@ -147,34 +145,6 @@ namespace Obi.ProjectView
                         mSelection.Control.Selection = value;
                     }
                     if (SelectionChanged != null) SelectionChanged(this, new EventArgs());
-                }
-                Highlight = mSelection;
-            }
-        }
-
-        /// <summary>
-        /// The current highlight is the same as the selection.
-        /// </summary>
-        public NodeSelection Highlight
-        {
-            get { return mHighlight; }
-            set
-            {
-                System.Diagnostics.Debug.Print("Highlight: `{0}' >>> `{1}'", mHighlight, value);
-                if (mHighlight != value)
-                {
-                    if (mHighlight != null && (value == null || mHighlight.Control != value.Control))
-                    {
-                        mHighlight.Control.Highlight = null;
-                    }
-                    mHighlight = value;
-                    if (mHighlight != null)
-                    {
-                        if (mHighlight.Control == mTOCView) TOCViewVisible = true;
-                        else if (mHighlight.Control == mMetadataView) MetadataViewVisible = true;
-                        mHighlight.Control.Highlight = value;
-                    }
-                    if (HighlightChanged != null) HighlightChanged(this, new EventArgs());
                 }
             }
         }
@@ -663,7 +633,7 @@ namespace Obi.ProjectView
         public bool CanCopy { get { return CanCopySection || CanCopyStrip; } }
         public bool CanDelete { get { return CanRemoveSection || CanRemoveStrip || CanRemoveBlock; } }
         public bool CanPaste { get { return mSelection != null && mSelection.CanPaste(mClipboard); } }
-        public bool CanDeselect { get { return mSelection != null || mHighlight != null; } }
+        public bool CanDeselect { get { return mSelection != null; } }
 
         public bool CanShowInStripsView { get { return SelectedSection != null && mSelection.Control == mTOCView; } }
         public bool CanShowInTOCView { get { return SelectedSection != null && mSelection.Control == mStripsView; } }
@@ -802,11 +772,7 @@ namespace Obi.ProjectView
             if (FinishedImportingFiles != null) FinishedImportingFiles(this, null);
         }
 
-        public void SelectNothing()
-        {
-            Selection = null;
-            Highlight = null;
-        }
+        public void SelectNothing() { Selection = null; }
     }
 
     public class ImportingFileEventArgs

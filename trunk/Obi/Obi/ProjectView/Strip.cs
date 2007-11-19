@@ -12,7 +12,6 @@ namespace Obi.ProjectView
     {
         private SectionNode mNode;       // the section node for this strip
         private bool mSelected;          // selected flag
-        private bool mHighlighted;       // highlighted flag
         private StripsView mParentView;  // parent strip view
 
         /// <summary>
@@ -118,16 +117,6 @@ namespace Obi.ProjectView
             }
         }
 
-        public bool Highlighted
-        {
-            get { return mHighlighted; }
-            set
-            {
-                mHighlighted = value;
-                UpdateColors();
-            }
-        }
-
         /// <summary>
         /// Update the colors of the block when the state of its node has changed.
         /// </summary>
@@ -138,7 +127,6 @@ namespace Obi.ProjectView
                 mLabel.BackColor = mNode.Used ? Color.Thistle : Color.LightGray;    
                 BackColor = mBlocksPanel.BackColor =
                     mSelected ? Color.Yellow :
-                    mHighlighted ? Color.SpringGreen :
                     mNode.Used ? Color.LightBlue : Color.LightGray;
             }
         }
@@ -147,11 +135,6 @@ namespace Obi.ProjectView
         /// Select a block in the strip.
         /// </summary>
         public Block SelectedBlock { set { mParentView.SelectedPhrase = value.Node; } }
-
-        /// <summary>
-        /// Highlight a block in the strip.
-        /// </summary>
-        public Block HighlightedBlock { set { mParentView.HighlightedPhrase = value.Node; } }
 
         /// <summary>
         /// Start renaming the strip.
@@ -214,11 +197,11 @@ namespace Obi.ProjectView
             if (w > MinimumSize.Width) MinimumSize = new Size(w, MinimumSize.Height);
         }
 
-        private void Strip_Enter(object sender, EventArgs e) { mParentView.HighlightedSection = mNode; }
+        private void Strip_Enter(object sender, EventArgs e) { mParentView.SelectedSection = mNode; }
 
         /// <summary>
-        /// Return the block after the highlighted block or strip. In the case of a strip is the first block.
-        /// Return null if this the last block, there are no blocks, or nothing was highlighted in the first place.
+        /// Return the block after the selected block or strip. In the case of a strip is the first block.
+        /// Return null if this the last block, there are no blocks, or nothing was selected in the first place.
         /// </summary>
         public Block BlockAfter(ISelectableInStripView item)
         {
@@ -230,8 +213,8 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Return the block before the highlighted block or strip. In the case of a strip this is the last block.
-        /// Return null if this the first block, there are no blocks, or nothing was highlighted in the first place.
+        /// Return the block before the selected block or strip. In the case of a strip this is the last block.
+        /// Return null if this the first block, there are no blocks, or nothing was selected in the first place.
         /// </summary>
         public Block BlockBefore(ISelectableInStripView item)
         {

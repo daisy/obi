@@ -289,21 +289,17 @@ namespace Obi
         /// <param name="e">The phrase event originally sent by the recording session.</param>
         /// <param name="parent">Parent core node for the new phrase.</param>
         /// <param name="index">Base index in the parent for new phrases.</param>
-        internal void StartRecordingPhrase(Events.Audio.Recorder.PhraseEventArgs e, SectionNode parent, int index)
+        public void StartRecordingPhrase(Events.Audio.Recorder.PhraseEventArgs e, SectionNode parent, int index)
         {
-            PhraseNode phrase =  CreatePhraseNode(e.Audio);
-            parent.insert(phrase, index);
-                                }
+            parent.Insert(CreatePhraseNode(e.Audio), index);
+        }
 
-        internal  void UpdateAudioForPhrase( PhraseNode phrase , ManagedAudioMedia media )
-    {
-        if (phrase != null && media != null)
+        /// <summary>
+        /// During recording of a phrase, its audio may/should be updated.
+        /// </summary>
+        public void UpdateAudioForPhrase(PhraseNode phrase, ManagedAudioMedia media)
         {
-                        phrase.Audio = media;
-            System.Windows.Forms.MessageBox.Show(phrase.Audio.getMediaData().getAudioDuration().getTimeDeltaAsMilliseconds().ToString());
-                    }
-            }
-
+        }
 
     }
 
