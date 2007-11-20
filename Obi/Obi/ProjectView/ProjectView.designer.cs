@@ -165,8 +165,7 @@ namespace Obi.ProjectView
             this.mStripsView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mStripsView.Location = new System.Drawing.Point(0, 0);
             this.mStripsView.Name = "mStripsView";
-            this.mStripsView.SelectedPhrase = null;
-            this.mStripsView.SelectedSection = null;
+            this.mStripsView.SelectedNode = null;
             this.mStripsView.Selection = null;
             this.mStripsView.Size = new System.Drawing.Size(689, 629);
             this.mStripsView.TabIndex = 0;

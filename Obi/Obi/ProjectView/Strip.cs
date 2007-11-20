@@ -22,18 +22,22 @@ namespace Obi.ProjectView
             InitializeComponent();
             mLabel.FontSize = 18.0F;
             mNode = null;
-            mLabel.LabelEditedByUser += new EventHandler(delegate(object sender, EventArgs e)
-            {
-                if (mLabel.Label != "")
-                {
-                    mParentView.RenameStrip(this);
-                }
-                else
-                {
-                    mLabel.Label = mNode.Label;
-                }
-            });
             Selected = false;
+        }
+
+        private void Label_LabelEditedByUser(object sender, EventArgs e)
+        {
+            if (mLabel.Label != "")
+            {
+                // update the label for the node
+                mParentView.RenameStrip(this);
+                mParentView.Selection = new NodeSelection(mNode, mParentView);
+            }
+            else
+            {
+                // restore the previous label from the node
+                mLabel.Label = mNode.Label;
+            }
         }
 
         /// <summary>
@@ -112,7 +116,7 @@ namespace Obi.ProjectView
             get { return mSelected; }
             set
             {
-                mSelected = value;
+                mSelected = value && mParentView.Selection.Text == null;
                 UpdateColors();
             }
         }
@@ -134,13 +138,16 @@ namespace Obi.ProjectView
         /// <summary>
         /// Select a block in the strip.
         /// </summary>
-        public Block SelectedBlock { set { mParentView.SelectedPhrase = value.Node; } }
+        public Block SelectedBlock { set { mParentView.SelectedNode = value.Node; } }
 
         /// <summary>
         /// Start renaming the strip.
         /// </summary>
-        public void StartRenaming() { mLabel.Editable = true; }
-
+        public void StartRenaming()
+        {
+            mLabel.Editable = true;
+            mParentView.Selection = new NodeSelection(mNode, mParentView, Label);
+        }
 
         // Resize the strip according to the editable label, whose size can change.
         // TODO since there are really two possible heights, we should cache these values.
@@ -155,7 +162,12 @@ namespace Obi.ProjectView
         // The user clicked on this strip, so select it if it wasn't already selected
         private void Strip_Click(object sender, EventArgs e)
         {
-            if (!mSelected) mParentView.SelectedSection = mNode;
+            if (!mSelected) mParentView.SelectedNode = mNode;
+        }
+
+        private void Label_Click(object sender, EventArgs e)
+        {
+            mParentView.Selection = new NodeSelection(mNode, mParentView, mLabel.Label);
         }
 
         #region ISearchable Members
@@ -197,7 +209,7 @@ namespace Obi.ProjectView
             if (w > MinimumSize.Width) MinimumSize = new Size(w, MinimumSize.Height);
         }
 
-        private void Strip_Enter(object sender, EventArgs e) { mParentView.SelectedSection = mNode; }
+        private void Strip_Enter(object sender, EventArgs e) { mParentView.SelectedNode = mNode; }
 
         /// <summary>
         /// Return the block after the selected block or strip. In the case of a strip is the first block.
@@ -224,16 +236,27 @@ namespace Obi.ProjectView
             return index > 0 ? (Block)mBlocksPanel.Controls[index - 1] : null;
         }
 
-        public Block BlockLast()
+        /// <summary>
+        /// Return the last block in the strip, or null if empty.
+        /// </summary>
+        public Block LastBlock
         {
-int Index = mBlocksPanel.Controls.Count - 1 ;
-return (Block) mBlocksPanel.Controls[Index];
+            get
+            {
+                return mBlocksPanel.Controls.Count > 0 ? (Block)mBlocksPanel.Controls[mBlocksPanel.Controls.Count - 1]:
+                    null;
+            }
         }
 
-        public Block BlockFirst()
+        /// <summary>
+        /// Return the first block in the strip, or null if empty.
+        /// </summary>
+        public Block FirstBlock
         {
-            return (Block)mBlocksPanel.Controls[0];
+            get
+            {
+                return mBlocksPanel.Controls.Count > 0 ? (Block)mBlocksPanel.Controls[0] : null;
+            }
         }
-
     }
 }

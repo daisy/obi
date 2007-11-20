@@ -21,10 +21,9 @@ namespace Obi.ProjectView
     public partial class StripsView : UserControl, IControlWithRenamableSelection
     {
         private ProjectView mView;                                   // parent project view
-        private ISelectableInStripView mSelectedItem;                // selected strip or block
+        private NodeSelection mSelection;                            // current selection
+        private ISelectableInStripView mSelectedItem;                // the actual item for the selection
         private Dictionary<Keys, HandledShortcutKey> mShortcutKeys;  // list of all shortcuts
-
-        public delegate bool HandledShortcutKey();
 
         /// <summary>
         /// A new strips view.
@@ -34,7 +33,7 @@ namespace Obi.ProjectView
             InitializeComponent();
             InitializeShortcutKeys();
             mView = null;
-            mSelectedItem = null;
+            mSelection = null;
         }
 
 
@@ -50,18 +49,20 @@ namespace Obi.ProjectView
             }
         }
 
+        private bool BlockSelected { get { return mSelectedItem is Block && mSelection.Text == null; } }
+        private bool StripSelected { get { return mSelectedItem is Strip && mSelection.Text == null; } }
 
-        public bool CanAddStrip { get { return mSelectedItem is Strip; } }
-        public bool CanRemoveBlock { get { return mSelectedItem is Block; } }
-        public bool CanRemoveStrip { get { return mSelectedItem is Strip; } }
-        public bool CanRenameStrip { get { return mSelectedItem is Strip; } }
-        public bool CanSplitStrip { get { return SelectedPhrase != null && SelectedPhrase.Index > 0; } }
+        public bool CanAddStrip { get { return StripSelected; } }
+        public bool CanRemoveBlock { get { return BlockSelected; } }
+        public bool CanRemoveStrip { get { return StripSelected; } }
+        public bool CanRenameStrip { get { return StripSelected; } }
+        public bool CanSplitStrip { get { return BlockSelected && SelectedPhrase.Index > 0; } }
 
         public bool CanMergeWithNextStrip
         {
             get
             {
-                return mSelectedItem is Strip &&
+                return StripSelected &&
                     mLayoutPanel.Controls.IndexOf((Control)mSelectedItem) < mLayoutPanel.Controls.Count - 1;
             }
         }
@@ -141,36 +142,23 @@ namespace Obi.ProjectView
             mView.RenameSectionNode(strip.Node, strip.Label);
         }
 
-        /// <summary>
-        /// Set the selected phrase (null to deselect)
-        /// </summary>
-        public PhraseNode SelectedPhrase
-        {
-            get { return mSelectedItem != null && mSelectedItem is Block ? ((Block)mSelectedItem).Node : null; }
-            set { if (mView != null) mView.Selection = new NodeSelection(value, this, false); }
-        }
-
-        /// <summary>
-        /// Set the selected section (null to deselect)
-        /// </summary>
-        public SectionNode SelectedSection
-        {
-            get { return mSelectedItem != null && mSelectedItem is Strip ? ((Strip)mSelectedItem).Node : null; }
-            set { if (mView != null) mView.Selection = new NodeSelection(value, this, false); }
-        }
+        public PhraseNode SelectedPhrase { get { return BlockSelected ? ((Block)mSelectedItem).Node : null; } }
+        public SectionNode SelectedSection { get { return StripSelected ? ((Strip)mSelectedItem).Node : null; } }
+        public ObiNode SelectedNode { set { if (mView != null) mView.Selection = new NodeSelection(value, this); } }
 
         /// <summary>
         /// Set the selection from the parent view.
         /// </summary>
         public NodeSelection Selection
         {
-            get { return mSelectedItem == null ? null : new NodeSelection(mSelectedItem.ObiNode, this, false); }
+            get { return mSelection; }
             set
             {
-                ISelectableInStripView s = value == null ? null : FindSelectable(value.Node);
-                if (s != mSelectedItem)
+                if (value != mSelection)
                 {
+                    ISelectableInStripView s = value == null ? null : FindSelectable(value.Node);
                     if (mSelectedItem != null) mSelectedItem.Selected = false;
+                    mSelection = value;
                     mSelectedItem = s;
                     if (s != null)
                     {
@@ -455,13 +443,11 @@ namespace Obi.ProjectView
 
         #region shortcut keys
 
+        public delegate bool HandledShortcutKey();  // key handling delegate
+
         private void InitializeShortcutKeys()
         {
             mShortcutKeys = new Dictionary<Keys, HandledShortcutKey>();
-
-            // Transport bar
-            // mShortcutKeys[Keys.Space] = delegate() { mProjectPanel.TransportBar.Play(); return true; };
-            // mShortcutKeys[Keys.Escape] = delegate() { mProjectPanel.TransportBar.Stop(); return true; };
 
             // playback shortcuts.
             // Note: if these shortcuts are to be disabled till finalisation, just comment following five lines.
@@ -486,9 +472,12 @@ namespace Obi.ProjectView
         private static readonly int WM_KEYDOWN = 0x100;
         private static readonly int WM_SYSKEYDOWN = 0x104;
 
+        private bool CanUseKeys { get { return mSelection == null || mSelection.Text == null; } }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys key)
         {
-            if (((msg.Msg == WM_KEYDOWN) || (msg.Msg == WM_SYSKEYDOWN)) &&
+            if (CanUseKeys &&
+                ((msg.Msg == WM_KEYDOWN) || (msg.Msg == WM_SYSKEYDOWN)) &&
                 mShortcutKeys.ContainsKey(key) && mShortcutKeys[key]()) return true;
             return base.ProcessCmdKey(ref msg, key);
         }
@@ -529,12 +518,12 @@ namespace Obi.ProjectView
 
         private bool SelectLastBlockInStrip()
         {
-            return SelectBlockFor(delegate(Strip strip, ISelectableInStripView item) { return strip.BlockLast(); });
+            return SelectBlockFor(delegate(Strip strip, ISelectableInStripView item) { return strip.LastBlock; });
         }
 
         private bool SelectFirstBlockInStrip()
         {
-            return SelectBlockFor(delegate(Strip strip, ISelectableInStripView item) { return strip.BlockFirst(); });
+            return SelectBlockFor(delegate(Strip strip, ISelectableInStripView item) { return strip.FirstBlock; });
         }
 
         private delegate Strip SelectStripFunction(Strip strip);
