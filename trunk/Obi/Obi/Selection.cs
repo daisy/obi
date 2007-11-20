@@ -23,20 +23,24 @@ namespace Obi
         public ObiNode Node;                   // the selected node
         public IControlWithSelection Control;  // control in which it is selected
         public bool IsDummy;                   // true if actually a dummy node is selected
+        public string Text;                    // selected text within the node
 
         /// <summary>
         /// Create a new selection object.
         /// </summary>
         /// <param name="node">The selected node.</param>
         /// <param name="control">The control in which it is selected.</param>
-        public NodeSelection(ObiNode node, IControlWithSelection control, bool isDummy)
+        public NodeSelection(ObiNode node, IControlWithSelection control, bool isDummy, string text)
         {
             Node = node;
             Control = control;
             IsDummy = isDummy;
+            Text = text;
         }
 
-        public NodeSelection(ObiNode node, IControlWithSelection control) : this(node, control, false) { }
+        public NodeSelection(ObiNode node, IControlWithSelection control) : this(node, control, false, null) { }
+        public NodeSelection(ObiNode node, IControlWithSelection control, bool isDummy) : this(node, control, isDummy, null) { }
+        public NodeSelection(ObiNode node, IControlWithSelection control, string text) : this(node, control, false, text) { }
 
         /// <summary>
         /// Stringify the selection for debug printing.
@@ -50,11 +54,14 @@ namespace Obi
         public override bool Equals(object obj)
         {
             NodeSelection s = obj as NodeSelection;
-            return s != null && s.Node == Node && s.Control == Control && s.IsDummy == IsDummy;
+            return s != null && s.Node == Node && s.Control == Control && s.IsDummy == IsDummy && s.Text == Text;
         }
 
         public SectionNode Section { get { return Node as SectionNode; } }
+        public SectionNode SectionOnly { get { return Text == null ? Node as SectionNode : null; } }
+        public SectionNode SectionOf { get { return Node is PhraseNode ? Node.ParentAs<SectionNode>() : Node as SectionNode; } }
         public PhraseNode Phrase { get { return Node as PhraseNode; } }
+        public PhraseNode PhraseOnly { get { return Text == null ? Node as PhraseNode : null; } }
 
         public bool CanPaste(Clipboard clipboard)
         {
