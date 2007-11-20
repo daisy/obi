@@ -466,7 +466,6 @@ namespace Obi.ProjectView
         /// </summary>
         public void Record()
             {
-            
             if (mRecordingSession != null)
             {
                 if (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Listening)
@@ -476,10 +475,28 @@ namespace Obi.ProjectView
                 }
                 }
             else
-                InitialiseRecord();
+                InitialiseRecord( false );
+                     }
+
+
+        /// <summary>
+        /// Start recording directly without initialising listening
+                /// </summary>
+        public void RecordDirectly ()
+        {
+            if (mRecordingSession == null)
+            {
+                InitialiseRecord(true);
+            }
         }
 
-            void InitialiseRecord  ()
+        /// <summary>
+        /// prepare for recording and
+        /// start listening if parameter is false
+        /// else start recording directly
+                /// </summary>
+        /// <param name="IsDirectRecording"></param>
+            void InitialiseRecord  ( bool IsDirectRecording )
                         {
             if (CanRecord)
             {
@@ -537,17 +554,15 @@ namespace Obi.ProjectView
                     }
                 );
 
+                if (IsDirectRecording)
+                {
+                    StartRecording();
+                    DisablePlaybackButtonsForRecording();
+                }
+                else
+                    StartListening();
+                   
 
-                StartListening();
-                    //new Dialogs.TransportRecord(mRecordingSession , mVuMeter).ShowDialog();
-                    // delete newly created section if nothing is recorded.
-                    // if (mRecordingSession.RecordedAudio.Count == 0 && m_IsSectionCreatedForRecording )
-                    //    this.mProjectPanel.ParentObiForm.UndoLast();
-                // following loop disabled for removing record dialog
-                    //for (int i = 0; i < mRecordingSession.RecordedAudio.Count; ++i)
-                    //{
-                        //mView.Presentation.UpdateAudioForPhrase(section.PhraseChild(index + i), mRecordingSession.RecordedAudio[i]);
-                    //}
                 /*
                 else //recording using the transportbar buttons
                 {
@@ -585,16 +600,21 @@ namespace Obi.ProjectView
         {
             if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
             {
-                mPlayButton.Enabled = false;
-                mPrevPhraseButton.Enabled = false;
-                mPrevSectionButton.Enabled = false;
-                mFastForwardButton.Enabled = false;
-                mRewindButton.Enabled = false;
-                                ComboFastPlateRate.Enabled = false;
-
-                mRecordButton.AccessibleName = "Start Recording";
+                DisablePlaybackButtonsForRecording();
+                                mRecordButton.AccessibleName = "Start Recording";
                 mRecordingSession.Listen();
             }
+        }
+
+        private void DisablePlaybackButtonsForRecording ()
+        {
+            mPlayButton.Enabled = false;
+            mPrevPhraseButton.Enabled = false;
+            mPrevSectionButton.Enabled = false;
+            mFastForwardButton.Enabled = false;
+            mRewindButton.Enabled = false;
+            ComboFastPlateRate.Enabled = false;
+
         }
 
         void StartRecording()
@@ -732,9 +752,9 @@ namespace Obi.ProjectView
         /// </summary>
         public void NextPhrase()
         {
-            if (IsInlineRecording)
+            if ( mRecordingSession != null    &&     mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording )
             {
-                inlineRecordingSession.NextPhrase();
+                mRecordingSession.NextPhrase();
             }
             else
             {
@@ -749,7 +769,11 @@ namespace Obi.ProjectView
         /// </summary>
         public void NextSection()
         {
-            if (!IsInlineRecording)
+                            if (mRecordingSession != null && mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording)
+                {
+                    // mark section
+                }
+                            else
             {
                 mIsSerialPlaying = true;
                 if (Enabled) mCurrentPlaylist.NavigateToNextSection();
@@ -839,10 +863,6 @@ namespace Obi.ProjectView
             mTimeDisplayBox.Focus();
         }
 
-        private void mRecordModeBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         public bool FastPlayRateStepUp()
         {
