@@ -10,8 +10,9 @@ namespace Obi.ProjectView
     /// </summary>
     public partial class TOCView : UserControl, IControlWithRenamableSelection
     {
-        private ProjectView mView;  // the parent project view
-        private TreeNode mDummy;    // dummy section node (for selection)
+        private ProjectView mView;         // the parent project view
+        private TreeNode mDummy;           // dummy section node (for selection; not used yet)
+        private NodeSelection mSelection;  // actual selection context
 
         /// <summary>
         /// Create a new TOC view as part of a project view.
@@ -54,7 +55,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// True if the selected node can be removed (deleted or cut)
         /// </summary>
-        public bool CanRemoveSection { get { return mTOCTree.SelectedNode != null && mTOCTree.SelectedNode != mDummy; } }
+        public bool CanRemoveSection { get { return mSelection != null && mSelection.SectionOnly != null && !mSelection.IsDummy; } }
 
         /// <summary>
         /// True if the selected node can be renamed.
@@ -100,25 +101,25 @@ namespace Obi.ProjectView
         /// </summary>
         public NodeSelection Selection
         {
-            get
-            {
-                TreeNode selected = mTOCTree.SelectedNode;
-                return selected == null ? null : new NodeSelection((ObiNode)selected.Tag, this, selected == mDummy);
-            }
+            get { return mSelection; }
             set
             {
-                TreeNode n = value == null ? null : value.IsDummy ? mDummy : FindTreeNode((SectionNode)value.Node);
-                // ignore the select event, since we were asked to change the selection;
-                // but allow the selection not coming from the user
-                mTOCTree.AfterSelect -= new TreeViewEventHandler(mTOCTree_AfterSelect);
-                mTOCTree.BeforeSelect -= new TreeViewCancelEventHandler(mTOCTree_BeforeSelect);
-                // if (n != mDummy) UpdateDummyNode(n);  // TODO dummy node is not working yet
-                mTOCTree.SelectedNode = n;
-                // Show the strip for the selected section (use "as SectionNode" since the dummy under the root
-                // may be selected and there is no strip for it.)
-                if (n != null) mView.MakeStripVisibleForSection(n.Tag as SectionNode);
-                mTOCTree.AfterSelect += new TreeViewEventHandler(mTOCTree_AfterSelect);
-                mTOCTree.BeforeSelect += new TreeViewCancelEventHandler(mTOCTree_BeforeSelect);
+                if (mSelection != value)
+                {
+                    mSelection = value;
+                    TreeNode n = value == null ? null : value.IsDummy ? mDummy : FindTreeNode((SectionNode)value.Node);
+                    // ignore the select event, since we were asked to change the selection;
+                    // but allow the selection not coming from the user
+                    mTOCTree.AfterSelect -= new TreeViewEventHandler(mTOCTree_AfterSelect);
+                    mTOCTree.BeforeSelect -= new TreeViewCancelEventHandler(mTOCTree_BeforeSelect);
+                    // if (n != mDummy) UpdateDummyNode(n);  // TODO dummy node is not working yet
+                    mTOCTree.SelectedNode = n;
+                    // Show the strip for the selected section (use "as SectionNode" since the dummy under the root
+                    // may be selected and there is no strip for it.)
+                    if (n != null) mView.MakeStripVisibleForSection(n.Tag as SectionNode);
+                    mTOCTree.AfterSelect += new TreeViewEventHandler(mTOCTree_AfterSelect);
+                    mTOCTree.BeforeSelect += new TreeViewCancelEventHandler(mTOCTree_BeforeSelect);
+                }
             }
         }
 
@@ -156,6 +157,8 @@ namespace Obi.ProjectView
         {
             TreeNode n = FindTreeNodeWithoutLabel(e.Node);
             n.Text = e.Node.Label;
+            // not sure why this is necessary...
+            mSelection.Text = null;
         }
 
         // Rename the section after the text of the tree node has changed.
@@ -170,11 +173,19 @@ namespace Obi.ProjectView
             {
                 e.CancelEdit = true;
             }
+            mSelection.Text = null;
         }
 
         private void mTOCTree_BeforeLabelEdit(object sender, NodeLabelEditEventArgs e)
         {
-            if (!(e.Node.Tag is SectionNode)) e.CancelEdit = true;
+            if (!(e.Node.Tag is SectionNode))
+            {
+                e.CancelEdit = true;
+            }
+            else
+            {
+                mSelection.Text = e.Node.Text;
+            }
         }
 
         // Pass a new selection to the main view.
