@@ -165,9 +165,9 @@ namespace Obi.ProjectView
             if (!mSelected) mParentView.SelectedNode = mNode;
         }
 
-        private void Label_Click(object sender, EventArgs e)
+        private void mLabel_EditableChanged(object sender, EventArgs e)
         {
-            mParentView.Selection = new NodeSelection(mNode, mParentView, mLabel.Label);
+            if (mLabel.Editable) mParentView.Selection = new NodeSelection(mNode, mParentView, mLabel.Label);
         }
 
         #region ISearchable Members
@@ -209,7 +209,10 @@ namespace Obi.ProjectView
             if (w > MinimumSize.Width) MinimumSize = new Size(w, MinimumSize.Height);
         }
 
-        private void Strip_Enter(object sender, EventArgs e) { mParentView.SelectedNode = mNode; }
+        private void Strip_Enter(object sender, EventArgs e)
+        {
+            if (mParentView.SelectedSection != mNode) mParentView.SelectedNode = mNode;
+        }
 
         /// <summary>
         /// Return the block after the selected block or strip. In the case of a strip is the first block.

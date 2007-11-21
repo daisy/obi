@@ -37,13 +37,13 @@ namespace Obi.ProjectView
             // mLabel
             // 
             this.mLabel.AutoSize = true;
-            this.mLabel.Location = new System.Drawing.Point(3, 3);
+            this.mLabel.Location = new System.Drawing.Point(3, 5);
             this.mLabel.Margin = new System.Windows.Forms.Padding(3);
             this.mLabel.Name = "mLabel";
             this.mLabel.Size = new System.Drawing.Size(35, 13);
             this.mLabel.TabIndex = 0;
             this.mLabel.Text = "label1";
-            this.mLabel.Click += new System.EventHandler(this.mLabel_Click);
+            this.mLabel.Click += new System.EventHandler(this.EditableLabel_Click);
             // 
             // mTextBox
             // 

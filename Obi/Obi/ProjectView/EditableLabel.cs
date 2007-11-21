@@ -10,9 +10,9 @@ namespace Obi.ProjectView
 {
     public partial class EditableLabel : UserControl
     {
-        private bool mAllowEmptyLabel;                // accept empty labels or not
         private bool mEditable;                       // change the label status
 
+        public event EventHandler EditableChanged;    // editable status changed
         public event EventHandler LabelEditedByUser;  // raised when the user has edited the label
 
         /// <summary>
@@ -21,22 +21,9 @@ namespace Obi.ProjectView
         public EditableLabel()
         {
             InitializeComponent();
-            mAllowEmptyLabel = false;
+            Editable = false;
         }
 
-
-        /// <summary>
-        /// True if an empty label can be input.
-        /// </summary>
-        public bool AllowEmptyLabel
-        {
-            get { return mAllowEmptyLabel; }
-            set
-            {
-                if (!value && mLabel.Text == "") throw new Exception("Cannot disallow empty labels when the label is empty.");
-                mAllowEmptyLabel = value;
-            }
-        }
 
         /// <summary>
         /// Make the label editable or not.
@@ -68,6 +55,7 @@ namespace Obi.ProjectView
                 {
                     Size = new Size(Width, mLabel.Location.Y + mLabel.Height + mLabel.Margin.Bottom);
                 }
+                if (EditableChanged != null) EditableChanged(this, new EventArgs());
             }
         }
 
@@ -105,7 +93,7 @@ namespace Obi.ProjectView
             get { return mLabel.Text; }
             set
             {
-                if (!mAllowEmptyLabel && value == "") throw new Exception("Empty label is not allowed.");
+                if (value == "") throw new Exception("Empty label is not allowed.");
                 mLabel.Text = value;
                 mTextBox.Text = value;
                 int wb = mCancelButton.Location.X + mCancelButton.Width + mCancelButton.Margin.Right;
@@ -119,7 +107,7 @@ namespace Obi.ProjectView
         /// </summary>
         private void EditableLabel_Load(object sender, EventArgs e)
         {
-            Editable = false;
+            //Editable = false;
         }
 
         /// <summary>
@@ -152,11 +140,6 @@ namespace Obi.ProjectView
             if (!mEditable) Editable = true;
         }
 
-        private void mLabel_Click(object sender, EventArgs e)
-        {
-            if (!mEditable) Editable = true;
-        }
-
         /// <summary>
         /// Pressing enter is like pressing OK.
         /// Escape is like cancel.
@@ -175,7 +158,7 @@ namespace Obi.ProjectView
 
         private void UpdateText()
         {
-            if (mAllowEmptyLabel || mTextBox.Text != "")
+            if (mTextBox.Text != "")
             {
                 Label = mTextBox.Text;
                 if (LabelEditedByUser != null) LabelEditedByUser(this, new EventArgs());

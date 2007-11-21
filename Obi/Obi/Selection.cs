@@ -9,6 +9,9 @@ namespace Obi
         NodeSelection Selection { get; set; }
     }
 
+    /// <summary>
+    /// Controls for which the selection can also be renamed.
+    /// </summary>
     public interface IControlWithRenamableSelection : IControlWithSelection
     {
         void SelectAndRename(ObiNode node);
@@ -45,8 +48,7 @@ namespace Obi
         /// <summary>
         /// Stringify the selection for debug printing.
         /// </summary>
-        /// <returns>"{node type} in {control}"</returns>
-        public override string ToString() { return System.String.Format("{0}{2} in {1}", Node, Control, IsDummy ? "*" : ""); }
+        public override string ToString() { return System.String.Format("{0}{2} in {1}", Node, Control, IsDummy ? "*" : Text != null ? "#" : ""); }
 
         /// <summary>
         /// Two node selections are equal if they are the selection of the same node in the same control.
