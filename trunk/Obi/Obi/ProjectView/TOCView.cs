@@ -158,7 +158,7 @@ namespace Obi.ProjectView
             TreeNode n = FindTreeNodeWithoutLabel(e.Node);
             n.Text = e.Node.Label;
             // not sure why this is necessary...
-            mSelection.Text = null;
+            if (mSelection != null) mSelection.Text = null;
         }
 
         // Rename the section after the text of the tree node has changed.
@@ -173,7 +173,7 @@ namespace Obi.ProjectView
             {
                 e.CancelEdit = true;
             }
-            mSelection.Text = null;
+            if (mSelection != null) mSelection.Text = null;
         }
 
         private void mTOCTree_BeforeLabelEdit(object sender, NodeLabelEditEventArgs e)
@@ -182,7 +182,7 @@ namespace Obi.ProjectView
             {
                 e.CancelEdit = true;
             }
-            else
+            else if (mSelection != null)
             {
                 mSelection.Text = e.Node.Text;
             }

@@ -46,7 +46,6 @@ namespace Obi.ProjectView
             // 
             // mLabel
             // 
-            this.mLabel.AllowEmptyLabel = false;
             this.mLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mLabel.BackColor = System.Drawing.Color.Thistle;
@@ -57,10 +56,10 @@ namespace Obi.ProjectView
             this.mLabel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.mLabel.MinimumSize = new System.Drawing.Size(150, 0);
             this.mLabel.Name = "mLabel";
-            this.mLabel.Size = new System.Drawing.Size(284, 19);
+            this.mLabel.Size = new System.Drawing.Size(284, 21);
             this.mLabel.TabIndex = 0;
-            this.mLabel.Click += new System.EventHandler(this.Label_Click);
             this.mLabel.LabelEditedByUser += new System.EventHandler(this.Label_LabelEditedByUser);
+            this.mLabel.EditableChanged += new System.EventHandler(this.mLabel_EditableChanged);
             this.mLabel.SizeChanged += new System.EventHandler(this.mLabel_SizeChanged);
             // 
             // Strip
