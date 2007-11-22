@@ -458,13 +458,21 @@ namespace Obi.ProjectView
         /// </summary>
         public void Cut()
         {
-            if (CanRemoveSection)
+            if (CanRemoveSection || CanRemoveStrip)
             {
                 bool isSection = mSelection.Control is TOCView;
                 urakawa.undo.CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
                 command.setShortDescription(Localizer.Message(isSection ? "cut_section_command" : "cut_strip_command"));
-                command.append(new Commands.Node.Copy(this, isSection, ""));
-                command.append(new Commands.Node.Delete(this, mSelection.Node, ""));
+                command.append(new Commands.Node.Copy(this, isSection));
+                command.append(new Commands.Node.Delete(this, mSelection.Node));
+                mPresentation.UndoRedoManager.execute(command);
+            }
+            else if (CanRemoveBlock)
+            {
+                urakawa.undo.CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
+                command.setShortDescription(Localizer.Message("cut_block_command"));
+                command.append(new Commands.Node.Copy(this, true));
+                command.append(new Commands.Node.Delete(this, mSelection.Node));
                 mPresentation.UndoRedoManager.execute(command);
             }
         }
@@ -481,6 +489,10 @@ namespace Obi.ProjectView
             else if (CanCopyStrip)
             {
                 mPresentation.UndoRedoManager.execute(new Commands.Node.Copy(this, false, Localizer.Message("copy_strip_command")));
+            }
+            else if (CanCopyBlock)
+            {
+                mPresentation.UndoRedoManager.execute(new Commands.Node.Copy(this, true, Localizer.Message("copy_block_command")));
             }
         }
 
@@ -629,8 +641,8 @@ namespace Obi.ProjectView
         }
 
 
-        public bool CanCut { get { return Selection != null; } }
-        public bool CanCopy { get { return CanCopySection || CanCopyStrip; } }
+        public bool CanCut { get { return CanDelete; } }
+        public bool CanCopy { get { return CanCopySection || CanCopyStrip || CanCopyBlock; } }
         public bool CanDelete { get { return CanRemoveSection || CanRemoveStrip || CanRemoveBlock; } }
         public bool CanPaste { get { return mSelection != null && mSelection.CanPaste(mClipboard); } }
         public bool CanDeselect { get { return mSelection != null; } }
@@ -644,6 +656,7 @@ namespace Obi.ProjectView
         public bool CanAddSubSection { get { return mTOCView.Selection != null; } }
         public bool CanCopySection { get { return mTOCView.Selection != null && !mTOCView.Selection.IsDummy; } }
         public bool CanCopyStrip { get { return mStripsView.SelectedSection != null && !mStripsView.Selection.IsDummy; } }
+        public bool CanCopyBlock { get { return mStripsView.Selection != null && mStripsView.Selection.PhraseOnly != null && !mStripsView.Selection.IsDummy; } }
         public bool CanMarkSectionUnused { get { return mTOCView.CanToggleSectionUsed && mTOCView.Selection.Node.Used; } }
         public bool CanMoveSectionIn { get { return mTOCView.CanMoveSectionIn; } }
         public bool CanMoveSectionOut { get { return mTOCView.CanMoveSectionOut; } }

@@ -187,7 +187,7 @@ namespace Obi
             copy.Annotation = Annotation;
             copy.mKind = mKind;
             copy.mCustomKind = mCustomKind;
-            copyProperties(copy);
+            //copyProperties(copy);
             return copy;
         }
 

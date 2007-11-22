@@ -17,6 +17,8 @@ namespace Obi.Commands.Node
             mLabel = label;
         }
 
+        public Copy(ProjectView.ProjectView view, bool deep) : this(view, deep, "") { }
+
         public override string getShortDescription() { return mLabel; }
 
         public override void execute()

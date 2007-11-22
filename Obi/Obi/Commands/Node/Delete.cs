@@ -22,6 +22,8 @@ namespace Obi.Commands.Node
             mDescription = description;
         }
 
+        public Delete(ProjectView.ProjectView view, ObiNode node) : this(view, node, "") { }
+
         public override string getShortDescription() { return mDescription; }
 
         public override void execute()

@@ -69,7 +69,8 @@ namespace Obi
         {
             return clipboard == null ? false :
                 Control is ProjectView.TOCView ? clipboard.Node is SectionNode :
-                Control is ProjectView.StripsView ? clipboard.Node is SectionNode :
+                Control is ProjectView.StripsView ? (clipboard.Node is SectionNode && Node is SectionNode)
+                                                    || clipboard.Node is PhraseNode :
                 false;
         }
     };
