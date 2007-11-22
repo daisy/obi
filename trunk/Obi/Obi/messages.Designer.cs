@@ -378,6 +378,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to copy block.
+        /// </summary>
+        internal static string copy_block_command {
+            get {
+                return ResourceManager.GetString("copy_block_command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cop&amp;y{0}.
         /// </summary>
         internal static string copy_menu_label {
@@ -464,6 +473,15 @@ namespace Obi {
         internal static string created_new_project {
             get {
                 return ResourceManager.GetString("created_new_project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to cut block.
+        /// </summary>
+        internal static string cut_block_command {
+            get {
+                return ResourceManager.GetString("cut_block_command", resourceCulture);
             }
         }
         

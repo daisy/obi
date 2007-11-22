@@ -809,4 +809,10 @@ Error text: {1}</value>
   <data name="merge_strips_command" xml:space="preserve">
     <value>merge strips</value>
   </data>
+  <data name="cut_block_command" xml:space="preserve">
+    <value>cut block</value>
+  </data>
+  <data name="copy_block_command" xml:space="preserve">
+    <value>copy block</value>
+  </data>
 </root>
