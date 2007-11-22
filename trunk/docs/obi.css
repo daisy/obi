@@ -13,7 +13,7 @@ h2, h3 { border-bottom: thin #0c0 dotted; }
 div#toc ul { list-style-type: none; }
 
 .indent { text-indent: 2em; }
-.todo { font-weight: bold; color: red; }
+.todo { font-weight: bold; color: red; background-color: yellow; }
 .who { color: red; background-color: yellow; font-weight: bold; font-size:
   80%; }
 

@@ -4,16 +4,114 @@
 
 <div id="toc">Table of contents</div>
 
+## Selection
+
+TODO: handle waveform selection (position and chunk selection.)
+
+## Menus
+
+### File menu
+
+### Edit menu (`Alt+E`)
+
+Obi stores all executed commands in an _undo stack_ so that commands can be
+undone later. All commands executed since the current project was loaded are
+stored so an unlimited number of commands can be undone. Undone commands are
+also stored in a _redo stack_ so that an undone command can be redone. Whenever
+a new command is executed, the redo stack is cleared.
+
+* __Undo__ (`Ctrl+Z`): undo the last executed command.
+  * TODO: save the undo stack in the XUK file.
+  * TODO: when the project reverts to the last saved state, mark it as
+    unmodified.
+
+* __Redo__ (`Ctrl+Y`): redo the last undone command.
+
+Obi maintains a clipboard that contains the last cut or copied item. Undoing a
+cut or copy operation restores the previous value of the clipboard.
+
+* __Cut__ (`Ctrl+X`): copy then delete the selected item. See description for
+  both commands below.
+
+* __Copy__ (`Ctrl+C`): copy the selected item into the clipboard. When a section
+  is selected, all of its subsections are also copied, but when a strip is
+  selected, this strip only is selected.
+  * TODO: copy a chunk of audio data.
+  * TODO: copy text.
+  * TODO: copy metadata (how exactly?)
+
+* __Paste__ (`Ctrl+V`): paste the item in the clipboard in the current context.
+  * When the clipboard contains a strip or section (_i.e._ a section and
+    possibly subsections)...
+      * ... and a section is selected: paste a copy of the section in the
+      clipboard as the next sibling of the selected section.
+      * ... and a strip is selected: paste strips right after the selected
+      strip; the pasted section is at the same level as the section of the
+      selected strip.
+      * ... and a block is selected: same as if the strip in which the block is
+      was selected (TODO)
+  * When the clipboard contains a block...
+      * ... and a section or strip is selected: paste a copy of the block at
+      the end of the strip (or the strip for the section.)
+      * ... and a block is selected: paste a copy of the block in the clipboard
+      after the selected block.
+  * TODO: impement dummy section in the TOC view to always have a selected
+  item to paste after, and being able to paste at the beginning.
+  * TODO: implement dummy block.
+  * TODO: paste text.
+  * TODO: paste audio data.
+
+* __Delete__ (`Del`): delete the selected item. If it is a section, then all
+  subsections are deleted as well. If it is a strip, then only this strip is
+  deleted. If the corresponding section has subsection, the first subsection
+  is moved to the level of the deleted section so that the consistency of the
+  TOC is preserved.
+  * TODO: delete a chunk of audio data. (Delete text works out of the box.)
+  * TODO: trim audio data? (but this is not a generic edit function.)
+
+* __Select nothing__ (`Alt+N`): deselect any item that was selected.
+  * TODO: change the keyboard shortcut.
+
+Athough Obi is an audio editing tool, a large project can still contain a non
+trivial amount of text (section headings, metadata, annotations) so a search
+function is provided.
+
+* __Find__ (`F3`): bring the search bar in focus and let the user type some
+  text to find. The first item containing this text is selected (in the case
+  of section titles, the strip corresponding to the section is selected.)
+
+  * TODO: quick find with `/` as in `vi`.
+  * TODO: search metadata.
+  * TODO: buttons in the search bar (previous, next?)
+  * TODO: replace?
+
+### View menu (`Alt+V`)
+
+* __Show source view__ (`Alt+R`): show the source of the XUK file for this
+  project. This is mainly useful for debugging and may be removed from the
+  release version.
+  * TODO: change keyboard shortcut.
+
+### TOC menu
+
+### Strips menu
+
+### Blocks menu
+
+### Transport menu
+
+### Tools menu
+
+### Help menu
+
+
+## Outdated stuff beyond this point
+
 The idea is that we document features first, then implement them. This way
 we can better test if they behave as planned and we don't have to document
 them later. This file can be the basis for the proper help page (with
 screenshots, with more end-user hand-holding) with the objective of reusing
 as much of it as possible.
-
-So far this is more or less the manual for Obi 0.10.0 scheduled for October
-10th, 2007. Further revisions before version 1.0 will see some feature
-changes that will need modifications to this manual, most notably multiple
-selection. See [the to-do list](todo.html) for details.
 
 ## What is Obi?
 

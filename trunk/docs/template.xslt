@@ -6,11 +6,11 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <xsl:output method="xml" encoding="UTF-8"
-    doctype-public="-//W3C//DTD XHTML 1.1//EN"
-    doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"/>
+    doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
+    doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
 
   <xsl:template match="/markdown">
-    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
       <head>
         <title>
           <xsl:value-of select="//h1"/>
@@ -124,8 +124,8 @@
       <xsl:apply-templates/>
     </xsl:element>
   </xsl:template>
-  
-  <!-- TODO -->
+
+  <!-- Highlight TODO in red. -->
   <xsl:template match="text()[contains(.,'TODO')]">
     <xsl:value-of select="substring-before(.,'TODO')"/>
     <xsl:element name="span">
