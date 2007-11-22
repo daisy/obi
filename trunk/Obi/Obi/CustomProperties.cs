@@ -65,9 +65,9 @@ namespace Obi
         /// <summary>
         /// Read in a page property from a XUK file.
         /// </summary>
-        protected override void XukInAttributes(System.Xml.XmlReader source)
+        protected override void xukInAttributes(System.Xml.XmlReader source)
         {
-            base.XukInAttributes(source);
+            base.xukInAttributes(source);
             string page = source.GetAttribute(XUK_ATTRIBUTE_NAME);
             mPageNumber = Int32.Parse(page);
         }
@@ -75,10 +75,10 @@ namespace Obi
         /// <summary>
         /// Write out the page property to a XUK file.
         /// </summary>
-        protected override void XukOutAttributes(System.Xml.XmlWriter destination, Uri baseUri)
+        protected override void xukOutAttributes(System.Xml.XmlWriter destination, Uri baseUri)
         {
             destination.WriteAttributeString(XUK_ATTRIBUTE_NAME, mPageNumber.ToString());
-            base.XukOutAttributes(destination, baseUri);
+            base.xukOutAttributes(destination, baseUri);
         }
     }
 }

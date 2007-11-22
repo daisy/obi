@@ -158,8 +158,8 @@ namespace Obi
         /// </summary>
         public urakawa.metadata.Metadata GetFirstMetadataItem(string name)
         {
-            IList list = getMetadataList(name);
-            return list.Count > 0 ? (urakawa.metadata.Metadata)list[0] : null;
+            List<urakawa.metadata.Metadata> list = getListOfMetadata(name);
+            return list.Count > 0 ? list[0] : null;
         }
 
         /// <summary>
@@ -214,7 +214,7 @@ namespace Obi
                 urakawa.metadata.Metadata meta = getMetadataFactory().createMetadata();
                 meta.setName(name);
                 meta.setContent(value);
-                appendMetadata(meta);
+                addMetadata(meta);
                 return meta;
             }
             else

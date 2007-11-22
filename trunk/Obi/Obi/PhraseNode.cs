@@ -191,7 +191,7 @@ namespace Obi
             return copy;
         }
 
-        protected override void XukInAttributes(System.Xml.XmlReader source)
+        protected override void xukInAttributes(System.Xml.XmlReader source)
         {
             string kind = source.GetAttribute("kind");
             if (kind != null) mKind = kind == "Custom" ?  Kind.Custom :
@@ -208,14 +208,14 @@ namespace Obi
             {
                 throw new Exception("Missing `custom' attribute.");
             }
-            base.XukInAttributes(source);
+            base.xukInAttributes(source);
         }
 
-        protected override void XukOutAttributes(System.Xml.XmlWriter wr, Uri baseUri)
+        protected override void xukOutAttributes(System.Xml.XmlWriter wr, Uri baseUri)
         {
             if (mKind != Kind.Plain) wr.WriteAttributeString("kind", mKind.ToString());
             if (mKind == Kind.Custom) wr.WriteAttributeString("custom", mCustomKind);
-            base.XukOutAttributes(wr, baseUri);
+            base.xukOutAttributes(wr, baseUri);
         }
 
 
