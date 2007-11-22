@@ -100,20 +100,20 @@ namespace Obi
         /// <summary>
         /// Read back the used attribute.
         /// </summary>
-        protected override void XukInAttributes(System.Xml.XmlReader reader)
+        protected override void xukInAttributes(System.Xml.XmlReader reader)
         {
             string used = reader.GetAttribute(USED_ATTR_NAME);
             if (used != null && used == "False") mUsed = false;
-            base.XukInAttributes(reader);
+            base.xukInAttributes(reader);
         }
 
         /// <summary>
         /// Write the used attribute if its value is false (true being the default.)
         /// </summary>
-        protected override void XukOutAttributes(System.Xml.XmlWriter destination, Uri baseUri)
+        protected override void xukOutAttributes(System.Xml.XmlWriter destination, Uri baseUri)
         {
             if (!mUsed) destination.WriteAttributeString(USED_ATTR_NAME, "False");
-            base.XukOutAttributes(destination, baseUri);
+            base.xukOutAttributes(destination, baseUri);
         }
 
         /// <summary>

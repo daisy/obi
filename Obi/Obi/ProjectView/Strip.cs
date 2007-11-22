@@ -73,7 +73,7 @@ namespace Obi.ProjectView
             get { return mLabel.Label; }
             set
             {
-                mLabel.Label = value;
+                if (value != null && value != "") mLabel.Label = value;
                 int w = mLabel.Location.X + mLabel.MinimumSize.Width + mLabel.Margin.Right;
                 if (w > MinimumSize.Width) MinimumSize = new Size(w, MinimumSize.Height);
             }

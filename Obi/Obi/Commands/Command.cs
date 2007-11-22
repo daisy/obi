@@ -58,14 +58,14 @@ namespace Obi.Commands
         /// <summary>
         /// Commands are not saved so far.
         /// </summary>
-        public void XukIn(System.Xml.XmlReader source)
+        public void xukIn(System.Xml.XmlReader source)
         {
         }
 
         /// <summary>
         /// Commands are not saved so far.
         /// </summary>
-        public void XukOut(System.Xml.XmlWriter destination, Uri baseUri)
+        public void xukOut(System.Xml.XmlWriter destination, Uri baseUri)
         {
         }
 
