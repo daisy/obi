@@ -857,6 +857,51 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type the text to search for occurences..
+        /// </summary>
+        internal static string find_in_text_init {
+            get {
+                return ResourceManager.GetString("find_in_text_init", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Searching ahead....
+        /// </summary>
+        internal static string find_next_in_text {
+            get {
+                return ResourceManager.GetString("find_next_in_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Searching in reverse....
+        /// </summary>
+        internal static string find_prev_in_text {
+            get {
+                return ResourceManager.GetString("find_prev_in_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Searched all text..
+        /// </summary>
+        internal static string finished_searching_all {
+            get {
+                return ResourceManager.GetString("finished_searching_all", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Found occurence of &quot;{0}&quot;..
+        /// </summary>
+        internal static string found_in_text {
+            get {
+                return ResourceManager.GetString("found_in_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to help_en.html.
         /// </summary>
         internal static string help_file_name {
@@ -1242,6 +1287,24 @@ namespace Obi {
         internal static string no_project {
             get {
                 return ResourceManager.GetString("no_project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No matches were found..
+        /// </summary>
+        internal static string not_found_in_text {
+            get {
+                return ResourceManager.GetString("not_found_in_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nothing to search!.
+        /// </summary>
+        internal static string nothing_to_search {
+            get {
+                return ResourceManager.GetString("nothing_to_search", resourceCulture);
             }
         }
         
@@ -1696,6 +1759,15 @@ namespace Obi {
         internal static string saved_project {
             get {
                 return ResourceManager.GetString("saved_project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Searching....
+        /// </summary>
+        internal static string searching {
+            get {
+                return ResourceManager.GetString("searching", resourceCulture);
             }
         }
         
