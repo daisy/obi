@@ -815,4 +815,32 @@ Error text: {1}</value>
   <data name="copy_block_command" xml:space="preserve">
     <value>copy block</value>
   </data>
+  <data name="find_in_text_init" xml:space="preserve">
+    <value>Type the text to search for it in the project.</value>
+    <comment>Shown in the status bar when the find in text form opens (MD)</comment>
+  </data>
+  <data name="find_next_in_text" xml:space="preserve">
+    <value>Searching ahead...</value>
+    <comment>(MD)</comment>
+  </data>
+  <data name="find_prev_in_text" xml:space="preserve">
+    <value>Searching in reverse...</value>
+  </data>
+  <data name="finished_searching_all" xml:space="preserve">
+    <value>Searched all text.</value>
+  </data>
+  <data name="found_in_text" xml:space="preserve">
+    <value>Found occurrence of "{0}".</value>
+  </data>
+  <data name="not_found_in_text" xml:space="preserve">
+    <value>No matches were found.</value>
+  </data>
+  <data name="nothing_to_search" xml:space="preserve">
+    <value>Nothing to search!</value>
+    <comment>Shown when trying to search and no searchable controls are available.(MD)</comment>
+  </data>
+  <data name="searching" xml:space="preserve">
+    <value>Searching...</value>
+    <comment>Shown while the search is in progress (MD).</comment>
+  </data>
 </root>
