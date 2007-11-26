@@ -165,7 +165,6 @@ namespace Obi.ProjectView
             this.mStripsView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mStripsView.Location = new System.Drawing.Point(0, 0);
             this.mStripsView.Name = "mStripsView";
-            this.mStripsView.SelectedNode = null;
             this.mStripsView.Selection = null;
             this.mStripsView.Size = new System.Drawing.Size(689, 629);
             this.mStripsView.TabIndex = 0;
@@ -186,7 +185,6 @@ namespace Obi.ProjectView
             this.mTransportBar.Location = new System.Drawing.Point(0, 0);
             this.mTransportBar.Name = "mTransportBar";
             this.mTransportBar.PlayOnFocusEnabled = true;
-            this.mTransportBar.ProjectView = null;
             this.mTransportBar.Selection = null;
             this.mTransportBar.Size = new System.Drawing.Size(1060, 35);
             this.mTransportBar.TabIndex = 0;
