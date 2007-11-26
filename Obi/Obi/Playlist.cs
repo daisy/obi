@@ -99,8 +99,7 @@ namespace Obi
         }
 
         // Maintain the master playlist by adding (used) nodes
-        private void Presentation_treeNodeAdded(urakawa.core.events.ITreeNodeChangedEventManager o,
-            urakawa.core.events.TreeNodeAddedEventArgs e)
+        private void Presentation_treeNodeAdded(object o, urakawa.core.events.TreeNodeAddedEventArgs e)
         {
             InsertNode(e.getTreeNode());
         }
@@ -110,8 +109,7 @@ namespace Obi
         {
         }
 
-        private void Presentation_treeNodeRemoved(urakawa.core.events.ITreeNodeChangedEventManager o,
-            urakawa.core.events.TreeNodeRemovedEventArgs e)
+        private void Presentation_treeNodeRemoved(object o, urakawa.core.events.TreeNodeRemovedEventArgs e)
         {
             RemoveNode(e.getTreeNode());
         }

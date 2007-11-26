@@ -260,7 +260,7 @@ namespace Obi.ProjectView
         }
 
         // Handle addition of tree nodes: add a new strip for new section nodes.
-        private void Presentation_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
+        private void Presentation_treeNodeAdded(object o, TreeNodeAddedEventArgs e)
         {
             if (e.getTreeNode() is SectionNode)
             {
@@ -302,7 +302,7 @@ namespace Obi.ProjectView
         }
 
         // Handle removal of tree nodes: remove a strip for a section node and all of its children.
-        void Presentation_treeNodeRemoved(ITreeNodeChangedEventManager o, TreeNodeRemovedEventArgs e)
+        void Presentation_treeNodeRemoved(object o, TreeNodeRemovedEventArgs e)
         {
             if (e.getTreeNode() is SectionNode)
             {
@@ -384,8 +384,8 @@ namespace Obi.ProjectView
             }
             else
             {
-                TreeNodeAddedEventHandler h = delegate(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e) { };
-                h = delegate(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
+                TreeNodeAddedEventHandler h = delegate(object o, TreeNodeAddedEventArgs e) { };
+                h = delegate(object o, TreeNodeAddedEventArgs e)
                 {
                     if (e.getTreeNode() == node)
                     {
