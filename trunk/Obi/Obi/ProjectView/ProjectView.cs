@@ -253,7 +253,7 @@ namespace Obi.ProjectView
         public PhraseNode SelectedBlockNode
         {
             get { return null; }
-            set { }
+            set { Selection = value == null ? null : new NodeSelection(value, mStripsView); }
         }
 
         /// <summary>
@@ -263,7 +263,7 @@ namespace Obi.ProjectView
         public SectionNode SelectedStripNode
         {
             get { return null; }
-            set { Selection = value == null ? null : new NodeSelection(value, mStripsView, false); }
+            set { Selection = value == null ? null : new NodeSelection(value, mStripsView); }
         }
 
         /// <summary>

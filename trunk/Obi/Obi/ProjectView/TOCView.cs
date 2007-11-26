@@ -221,7 +221,7 @@ namespace Obi.ProjectView
         }
 
         // Add new section nodes to the tree
-        private void Presentation_treeNodeAdded(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
+        private void Presentation_treeNodeAdded(object o, TreeNodeAddedEventArgs e)
         {
             if (e.getTreeNode() is SectionNode)
             {
@@ -250,7 +250,7 @@ namespace Obi.ProjectView
         }
 
         // Remove deleted section nodes from the tree
-        void Presentation_treeNodeRemoved(ITreeNodeChangedEventManager o, TreeNodeRemovedEventArgs e)
+        void Presentation_treeNodeRemoved(object o, TreeNodeRemovedEventArgs e)
         {
             SectionNode section = e.getTreeNode() as SectionNode;
             if (section != null && IsInTree(section)) mTOCTree.Nodes.Remove(FindTreeNode(section));
@@ -347,8 +347,8 @@ namespace Obi.ProjectView
             }
             else
             {
-                TreeNodeAddedEventHandler h = delegate(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e) { };
-                h = delegate(ITreeNodeChangedEventManager o, TreeNodeAddedEventArgs e)
+                TreeNodeAddedEventHandler h = delegate(object o, TreeNodeAddedEventArgs e) { };
+                h = delegate(object o, TreeNodeAddedEventArgs e)
                 {
                     if (e.getTreeNode() == section)
                     {

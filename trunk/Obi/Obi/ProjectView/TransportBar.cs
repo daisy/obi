@@ -241,10 +241,10 @@ namespace Obi.ProjectView
             playlist.EndOfPlaylist += new Playlist.EndOfPlaylistHandler(Play_PlayerStopped);
         }
 
-        // Move the cursor to next phrase
-        // Highlight in the section view if it has the focus
+        // Show the phrase playing by selecting it.
         private void Play_MovedToPhrase(object sender, Events.Node.PhraseNodeEventArgs e)
         {
+            mView.SelectedBlockNode = e.Node;
         }
 
         // Update the transport bar according to the player state.
