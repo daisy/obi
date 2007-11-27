@@ -843,6 +843,9 @@ Error text: {1}</value>
     <value>Searching...</value>
     <comment>Shown while the search is in progress (MD).</comment>
   </data>
+  <data name="please_enter_some_text" xml:space="preserve">
+    <value>Please enter some text.</value>
+  </data>
   <data name="recording_command" xml:space="preserve">
     <value>recording</value>
   </data>

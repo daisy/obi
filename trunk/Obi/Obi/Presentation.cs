@@ -10,17 +10,24 @@ namespace Obi
     public class Presentation: urakawa.Presentation
     {
         private bool mInitialized;
+        private List<string> mCustomTypes;
 
-        public Presentation() : base() { mInitialized = false; }
+        public Presentation() : base() 
+        { 
+            mInitialized = false; 
+            mCustomTypes = new List<string>();
+        }
 
         public static readonly string AUDIO_CHANNEL_NAME = "obi.audio";  // canonical name of the audio channel
         public static readonly string TEXT_CHANNEL_NAME = "obi.text";    // canonical name of the text channel
-
+        
         public event Commands.UndoRedoEventHandler CommandExecuted;     // triggered when a command was executed
         public event Commands.UndoRedoEventHandler CommandUnexecuted;   // triggered when a command was unexecuted
         public event NodeEventHandler<SectionNode> RenamedSectionNode;  // triggered after a section was renamed
         public event NodeEventHandler<ObiNode> UsedStatusChanged;       // triggered after a node used status changed
 
+       
+        
         /// <summary>
         /// The media data manager for the project.
         /// </summary>
@@ -74,6 +81,28 @@ namespace Obi
         /// </summary>
         public string Title { get { return GetFirstMetadataItem(Metadata.DC_TITLE).getContent(); } }
 
+        /// <summary>
+        /// Get a list of the custom classes that have been defined by the user for this presentation
+        /// </summary>
+        public List<string> CustomTypes { get { return mCustomTypes; } }
+        /// <summary>
+        /// Add a custom class to the list.  Duplicates are filtered out.
+        /// </summary>
+        /// <param name="customClass"></param>
+        public void AddCustomType(string customType)
+        {
+            if (customType == "") return;
+            Predicate<string> exists = delegate(string matchThis){return matchThis == customType;};
+            if(!mCustomTypes.Exists(exists)) mCustomTypes.Add(customType);
+        }
+        /// <summary>
+        /// Remove a custom class from the list.
+        /// </summary>
+        /// <param name="p"></param>
+        public void RemoveCustomType(string customType)
+        {
+            if (customType != "") mCustomTypes.Remove(customType);
+        }
         /// <summary>
         /// The Undo/redo manager for this presentation (with the correct type.)
         /// </summary>
@@ -302,7 +331,6 @@ namespace Obi
         public void UpdateAudioForPhrase(PhraseNode phrase, ManagedAudioMedia media)
         {
         }
-
     }
 
     public class NodeEventArgs<T> : EventArgs

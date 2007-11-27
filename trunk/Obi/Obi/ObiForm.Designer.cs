@@ -78,6 +78,8 @@ namespace Obi
             this.mMoveOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMoveInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSectionIsUsedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            this.mListenToSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStripsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mInsertStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRenameStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,6 +89,13 @@ namespace Obi
             this.mListenToStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.blocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mImportAudioFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mAssignCustomTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.emptyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mCustomTypeToolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.mAddNewCustomTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mClearCustomTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
+            this.mListenToBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTransportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowHideVUMeterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
@@ -114,10 +123,6 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusTimer = new System.Windows.Forms.Timer(this.components);
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.mListenToSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
-            this.mListenToBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -567,6 +572,19 @@ namespace Obi
             this.mSectionIsUsedToolStripMenuItem.Text = "Section is &used";
             this.mSectionIsUsedToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mSectionIsUsedToolStripMenuItem_CheckedChanged);
             // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(234, 6);
+            // 
+            // mListenToSectionToolStripMenuItem
+            // 
+            this.mListenToSectionToolStripMenuItem.Name = "mListenToSectionToolStripMenuItem";
+            this.mListenToSectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
+            this.mListenToSectionToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.mListenToSectionToolStripMenuItem.Text = "&Listen to section";
+            this.mListenToSectionToolStripMenuItem.Click += new System.EventHandler(this.mListenToSectionToolStripMenuItem_Click);
+            // 
             // mStripsToolStripMenuItem
             // 
             this.mStripsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -631,6 +649,8 @@ namespace Obi
             // 
             this.blocksToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mImportAudioFileToolStripMenuItem,
+            this.mAssignCustomTypeToolStripMenuItem,
+            this.mClearCustomTypeToolStripMenuItem,
             this.toolStripSeparator13,
             this.mListenToBlockToolStripMenuItem});
             this.blocksToolStripMenuItem.Name = "blocksToolStripMenuItem";
@@ -644,6 +664,54 @@ namespace Obi
             this.mImportAudioFileToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.mImportAudioFileToolStripMenuItem.Text = "&Import audio files";
             this.mImportAudioFileToolStripMenuItem.Click += new System.EventHandler(this.mImportAudioFileToolStripMenuItem_Click);
+            // 
+            // mAssignCustomTypeToolStripMenuItem
+            // 
+            this.mAssignCustomTypeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.emptyToolStripMenuItem,
+            this.mCustomTypeToolStripSeparator,
+            this.mAddNewCustomTypeToolStripMenuItem});
+            this.mAssignCustomTypeToolStripMenuItem.Name = "mAssignCustomTypeToolStripMenuItem";
+            this.mAssignCustomTypeToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.mAssignCustomTypeToolStripMenuItem.Text = "Assign custom type";
+            this.mAssignCustomTypeToolStripMenuItem.DropDownOpening += new System.EventHandler(this.mAssignCustomTypeToolStripMenuItem_DropDownOpening);
+            // 
+            // emptyToolStripMenuItem
+            // 
+            this.emptyToolStripMenuItem.Name = "emptyToolStripMenuItem";
+            this.emptyToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.emptyToolStripMenuItem.Text = "Empty";
+            // 
+            // toolStripSeparator6
+            // 
+            this.mCustomTypeToolStripSeparator.Name = "toolStripSeparator6";
+            this.mCustomTypeToolStripSeparator.Size = new System.Drawing.Size(187, 6);
+            // 
+            // mAddNewCustomTypeToolStripMenuItem
+            // 
+            this.mAddNewCustomTypeToolStripMenuItem.Name = "mAddNewCustomTypeToolStripMenuItem";
+            this.mAddNewCustomTypeToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.mAddNewCustomTypeToolStripMenuItem.Text = "Add new custom type...";
+            this.mAddNewCustomTypeToolStripMenuItem.Click += new System.EventHandler(this.mAddNewCustomTypeToolStripMenuItem_Click);
+            // 
+            // mClearCustomTypeToolStripMenuItem
+            // 
+            this.mClearCustomTypeToolStripMenuItem.Name = "mClearCustomTypeToolStripMenuItem";
+            this.mClearCustomTypeToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.mClearCustomTypeToolStripMenuItem.Text = "Clear custom type";
+            this.mClearCustomTypeToolStripMenuItem.Click += new System.EventHandler(this.mClearCustomTypeToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator13
+            // 
+            this.toolStripSeparator13.Name = "toolStripSeparator13";
+            this.toolStripSeparator13.Size = new System.Drawing.Size(190, 6);
+            // 
+            // mListenToBlockToolStripMenuItem
+            // 
+            this.mListenToBlockToolStripMenuItem.Name = "mListenToBlockToolStripMenuItem";
+            this.mListenToBlockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
+            this.mListenToBlockToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.mListenToBlockToolStripMenuItem.Text = "&Listen to block";
             // 
             // mTransportToolStripMenuItem
             // 
@@ -888,31 +956,6 @@ namespace Obi
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
             // 
-            // mListenToSectionToolStripMenuItem
-            // 
-            this.mListenToSectionToolStripMenuItem.Name = "mListenToSectionToolStripMenuItem";
-            this.mListenToSectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
-            this.mListenToSectionToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
-            this.mListenToSectionToolStripMenuItem.Text = "&Listen to section";
-            this.mListenToSectionToolStripMenuItem.Click += new System.EventHandler(this.mListenToSectionToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator11
-            // 
-            this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(234, 6);
-            // 
-            // toolStripSeparator13
-            // 
-            this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(190, 6);
-            // 
-            // mListenToBlockToolStripMenuItem
-            // 
-            this.mListenToBlockToolStripMenuItem.Name = "mListenToBlockToolStripMenuItem";
-            this.mListenToBlockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
-            this.mListenToBlockToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.mListenToBlockToolStripMenuItem.Text = "&Listen to block";
-            // 
             // ObiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1028,6 +1071,11 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mListenToSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
         private System.Windows.Forms.ToolStripMenuItem mListenToBlockToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mAssignCustomTypeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem emptyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator mCustomTypeToolStripSeparator;
+        private System.Windows.Forms.ToolStripMenuItem mAddNewCustomTypeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mClearCustomTypeToolStripMenuItem;
 
 
     }
