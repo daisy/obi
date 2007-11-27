@@ -470,12 +470,18 @@ namespace Obi.ProjectView
             ComboFastPlateRate.Enabled = false;
 
         }
-
+        PhraseNode m_ResumerecordingPhrase ;
         void PauseRecording()
         {
             mRecordingSession.Stop();
-
-            mRecordingSession.Listen();
+            for (int i = 0; i < mRecordingSession.RecordedAudio.Count; ++i)
+            {
+                mView.Presentation.UpdateAudioForPhrase(mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i),
+                    mRecordingSession.RecordedAudio[i]);
+            }
+            m_ResumerecordingPhrase = mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1 );
+            mRecordingSession = null;
+            //mRecordingSession.Listen();
             mRecordButton.Enabled = true;
             mRecordButton.AccessibleName = "Start Recording";
 
@@ -738,11 +744,14 @@ namespace Obi.ProjectView
                     mRecordingSession.Stop();
                     StartRecording();
                 }
-            }
+                            }
+                            else if (m_ResumerecordingPhrase != null)
+                            {
+                                PrepareForRecording(true, m_ResumerecordingPhrase);
+                            }
             else
             {
-
-                PrepareForRecording(false);
+                                                PrepareForRecording(false , null );
 
             }
         }
@@ -757,12 +766,13 @@ namespace Obi.ProjectView
         urakawa.undo.CompositeCommand mRecordingCommand;
 
         // Prepare for recording and return the corresponding recording command.
-        private void PrepareForRecording(bool startRecording)
+        private void PrepareForRecording(bool startRecording, ObiNode selected )
         {
                         if (!CanRecord) return;
             mRecordingCommand = CreateRecordingCommand();
 
-            ObiNode selected = mView.SelectionNode;
+            if ( selected == null )
+            selected = mView.SelectionNode;
                         
             // If nothing is selected, create a new section to record in.
             if (selected == null)
@@ -855,6 +865,7 @@ namespace Obi.ProjectView
                 mRecordButton.Enabled = true;
                 mRecordButton.AccessibleName = Localizer.Message("record");
                 mRecordingSession = null;
+                m_ResumerecordingPhrase = null;
 
                 // enable playback controls
                 mPlayButton.Enabled = true;
