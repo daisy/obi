@@ -30,6 +30,7 @@ namespace Obi.ProjectView
                 mTimeLabel.Text = String.Format("{0:0.00}s",
                     node.Audio.getDuration().getTimeDeltaAsMillisecondFloat() / 1000);
                 Size = new Size(mWaveform.Width + mWaveform.Margin.Right + mWaveform.Margin.Left, Height);
+                node.CustomTypeChanged += new ChangedCustomTypeEventHandler(node_CustomTypeChanged);
             }
             else
             {
@@ -38,8 +39,13 @@ namespace Obi.ProjectView
             }
         }
 
+        
         public Block() { InitializeComponent(); }
 
+        void node_CustomTypeChanged(object sender, Events.Node.ChangedCustomTypeEventArgs e)
+        {
+            CustomKindLabel = e.CustomType;
+        }
 
         public string CustomKindLabel
         {

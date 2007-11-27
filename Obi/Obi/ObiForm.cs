@@ -1675,5 +1675,38 @@ if (mProject != null)
             }*/
         }
         #endregion
+
+
+        private void mAssignCustomTypeToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            //clear the menu except for the separator and "add new.." item
+            mAssignCustomTypeToolStripMenuItem.DropDownItems.Clear();
+            mAssignCustomTypeToolStripMenuItem.DropDownItems.Insert(0, mAddNewCustomTypeToolStripMenuItem);
+            mAssignCustomTypeToolStripMenuItem.DropDownItems.Insert(0, mCustomTypeToolStripSeparator);
+
+            List<string> customTypes = mSession.Presentation.CustomTypes;
+
+            //Fill the drop down choices with the custom classes
+            foreach(string customType in customTypes)
+            {
+                ToolStripMenuItem item = new ToolStripMenuItem();
+                item.Text = customType;
+                item.Click += new System.EventHandler(delegate(object theSender, EventArgs theEventArgs)
+                    { mProjectView.SetCustomTypeForSelectedBlock(customType); });
+                mAssignCustomTypeToolStripMenuItem.DropDownItems.Insert(0, item);
+            }
+        }
+
+        private void mClearCustomTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.SetCustomTypeForSelectedBlock("");
+        }
+
+        private void mAddNewCustomTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CustomTypes dialog = new CustomTypes(mSession.Presentation, mProjectView);
+            dialog.ShowDialog();
+        }
+
     }
 }

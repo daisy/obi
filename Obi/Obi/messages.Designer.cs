@@ -1544,6 +1544,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter some text..
+        /// </summary>
+        internal static string please_enter_some_text {
+            get {
+                return ResourceManager.GetString("please_enter_some_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not create project directory {0}..
         /// </summary>
         internal static string project_directory_creation_error {

@@ -79,6 +79,12 @@ namespace Obi.ProjectView
 
         private void FindNextInText()
         {
+            if (mString.Text.Length == 0)
+            {
+                mString.Focus();
+                mView.ObiForm.Status(Localizer.Message("please_enter_some_text"));
+                return;
+            }
             int currentSelection = GetIndexOfCurrentlySelectedStrip(mStripsPanel);
             mView.ObiForm.Status(Localizer.Message("find_next_in_text"));
             search(GetIndexOfNextStrip(mStripsPanel, currentSelection), mString.Text, 1);
@@ -86,6 +92,13 @@ namespace Obi.ProjectView
 
         private void FindPreviousInText()
         {
+            if (mString.Text.Length == 0)
+            {
+                mString.Focus();
+                mView.ObiForm.Status(Localizer.Message("please_enter_some_text"));
+                return;
+            }
+
             int currentSelection = GetIndexOfCurrentlySelectedStrip(mStripsPanel);
             //start at the strip before our current strip
             int previousStrip = GetIndexOfPreviousStrip(mStripsPanel, currentSelection);
@@ -125,13 +138,11 @@ namespace Obi.ProjectView
                 {
                     if (direction == 1) startIndex = GetIndexOfNextStrip(mStripsPanel, startIndex);
                     else if (direction == -1) startIndex = GetIndexOfPreviousStrip(mStripsPanel, startIndex);
-                    //don't loop forever
-                    if (startIndex == mOriginalPosition)
-                    {
-                        mView.ObiForm.Status(Localizer.Message("finished_searching_all"));
-                        break;
-                    }
                 }
+
+                //don't loop forever
+                if (startIndex == mOriginalPosition) break;
+              
             }
 
             if (found)
@@ -140,14 +151,13 @@ namespace Obi.ProjectView
             }
             else
             {
+                if (startIndex == mOriginalPosition) mView.ObiForm.Status(Localizer.Message("finished_searching_all"));
+                else mView.ObiForm.Status(Localizer.Message("not_found_in_text"));
+          
                 //reset the original position to wherever we are now
-                //so if the user presses F3, they can start searching again
-                //anyway...i think this will work, but it needs to be tested
-                mOriginalPosition = GetIndexOfCurrentlySelectedStrip(mStripsPanel);
+                mOriginalPosition = startIndex;
                 // also deselect
                 mView.Selection = null;
-                // show a message in the status bar )
-                mView.ObiForm.Status(Localizer.Message("not_found_in_text"));
             }
         }
 

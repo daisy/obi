@@ -252,7 +252,7 @@ namespace Obi.ProjectView
         /// </summary>
         public PhraseNode SelectedBlockNode
         {
-            get { return null; }
+            get { return mSelection == null ? null : mSelection.Node as PhraseNode; }
             set { Selection = value == null ? null : new NodeSelection(value, mStripsView); }
         }
 
@@ -262,7 +262,7 @@ namespace Obi.ProjectView
         /// </summary>
         public SectionNode SelectedStripNode
         {
-            get { return null; }
+            get { return mSelection == null ? null : mSelection.Node as SectionNode; }
             set { Selection = value == null ? null : new NodeSelection(value, mStripsView); }
         }
 
@@ -786,6 +786,12 @@ namespace Obi.ProjectView
         }
 
         public void SelectNothing() { Selection = null; }
+
+        public void SetCustomTypeForSelectedBlock(string customType)
+        {
+            if (SelectedBlockNode != null)
+                mPresentation.UndoRedoManager.execute(new Commands.Node.ChangeCustomType(this, SelectedBlockNode, customType));
+        }
     }
 
     public class ImportingFileEventArgs

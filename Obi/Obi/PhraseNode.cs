@@ -6,6 +6,8 @@ using urakawa.media.data.audio ;
 
 namespace Obi
 {
+    public delegate void ChangedCustomTypeEventHandler(object sender, Events.Node.ChangedCustomTypeEventArgs e);
+
     /// <summary>
     /// A phrase node is a node that contains audio data.
     /// </summary>
@@ -13,7 +15,7 @@ namespace Obi
     {
         private Kind mKind;          // this block's kind
         private string mCustomKind;  // custom kind name
-
+        public event ChangedCustomTypeEventHandler CustomTypeChanged;
         public static readonly string XUK_ELEMENT_NAME = "phrase";  // name of the element in the XUK file
 
         /// <summary>
@@ -77,7 +79,15 @@ namespace Obi
         /// <summary>
         /// Custom kind (may be null if it is Plain, Page or Heading.)
         /// </summary>
-        public string CustomKind { get { return mCustomKind; } }
+        public string CustomKind 
+        { 
+            get { return mCustomKind; }
+            set 
+            { 
+                mCustomKind = value;
+                if (CustomTypeChanged != null) CustomTypeChanged(this, new Events.Node.ChangedCustomTypeEventArgs(this, this, mCustomKind));
+            }
+        }
 
         public override PhraseNode FirstUsedPhrase { get { return Used ? this : null; } }
 
@@ -142,8 +152,11 @@ namespace Obi
         /// <summary>
         /// The kind of node.
         /// </summary>
-        public Kind PhraseKind { get { return mKind; } }
-
+        public Kind PhraseKind 
+        { 
+            get { return mKind; }
+            set { mKind = value; }                    
+        }
         /// <summary>
         /// Previous phrase node in linear order in the whole project.
         /// Null if it is the first phrase in the project.

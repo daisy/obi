@@ -94,6 +94,7 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\Node\AddNewSection.cs" />
     <Compile Include="Commands\Node\AddNode.cs" />
+    <Compile Include="Commands\Node\ChangeCustomType.cs" />
     <Compile Include="Commands\Node\ChangeParent.cs" />
     <Compile Include="Commands\Node\Copy.cs" />
     <Compile Include="Commands\Node\Delete.cs" />
@@ -113,6 +114,12 @@
     </Compile>
     <Compile Include="Dialogs\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\CustomTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\CustomTypes.Designer.cs">
+      <DependentUpon>CustomTypes.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\GoToPage.cs">
       <SubType>Form</SubType>
@@ -178,6 +185,7 @@
     <Compile Include="Events\Audio\VuMeter\ResetEventArgs.cs" />
     <Compile Include="Events\Audio\VuMeter\UpdateFormsEventArgs.cs" />
     <Compile Include="Events\NodeEventHandlers.cs" />
+    <Compile Include="Events\Node\ChangedCustomTypeEventArgs.cs" />
     <Compile Include="Events\Node\ObiNodeEventArgs.cs" />
     <Compile Include="Events\Node\PhraseNodeEventArgs.cs" />
     <Compile Include="Events\Node\SectionNodeEventArgs.cs" />
@@ -355,6 +363,10 @@
     <EmbeddedResource Include="Dialogs\About.resx">
       <SubType>Designer</SubType>
       <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CustomTypes.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CustomTypes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\GoToPage.resx">
       <SubType>Designer</SubType>
