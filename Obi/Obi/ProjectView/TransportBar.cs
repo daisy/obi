@@ -107,7 +107,7 @@ namespace Obi.ProjectView
                     (
                         (mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped )
                         ||
-                        (!IsInlineRecording )
+                        (mCurrentPlaylist.State == Audio.AudioPlayerState.Paused )
                     );
             }
         }
@@ -730,6 +730,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void Record()
         {
+
             if (mRecordingSession != null)
             {
                 if (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Listening)
@@ -740,7 +741,9 @@ namespace Obi.ProjectView
             }
             else
             {
+
                 PrepareForRecording(false);
+
             }
         }
 
@@ -756,9 +759,11 @@ namespace Obi.ProjectView
         // Prepare for recording and return the corresponding recording command.
         private void PrepareForRecording(bool startRecording)
         {
-            if (!CanRecord) return;
+                        if (!CanRecord) return;
             mRecordingCommand = CreateRecordingCommand();
+
             ObiNode selected = mView.SelectionNode;
+                        
             // If nothing is selected, create a new section to record in.
             if (selected == null)
             {
@@ -779,7 +784,14 @@ namespace Obi.ProjectView
             else if (selected is PhraseNode)
             {
                 mRecordingSection = selected.ParentAs<SectionNode>();
-                mRecordingInitPhraseIndex = 1 + selected.Index;
+                if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused)
+                {
+                    // split
+                    mCurrentPlaylist.Stop();
+                    mRecordingInitPhraseIndex =  selected.Index;
+                }
+                else
+                mRecordingInitPhraseIndex =  1 + selected.Index;
             }
             Settings settings = mView.ObiForm.Settings;
             mRecordingSession = new RecordingSession(mView.Presentation, mRecorder,
