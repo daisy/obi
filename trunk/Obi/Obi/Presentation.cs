@@ -96,6 +96,17 @@ namespace Obi
         public PhraseNode CreatePhraseNode(string path) { return CreatePhraseNode(ImportAudioFromFile(path)); }
 
         /// <summary>
+        /// Create a new phrase node from an audio media.
+        /// </summary>
+        public PhraseNode CreatePhraseNode(ManagedAudioMedia audio)
+        {
+            PhraseNode node = CreatePhraseNode();
+            node.Audio = audio;
+            return node;
+        }
+
+
+        /// <summary>
         /// Create a section node belonging to this presentation.
         /// </summary>
         public SectionNode CreateSectionNode()
@@ -237,14 +248,6 @@ namespace Obi
             SetSingleMetadataItem(Obi.Metadata.OBI_XUK_VERSION, DataModelFactory.XUK_VERSION);
         }
 
-        // Create a new phrase node from an audio media.
-        private PhraseNode CreatePhraseNode(ManagedAudioMedia audio)
-        {
-            PhraseNode node = CreatePhraseNode();
-            node.Audio = audio;
-            return node;
-        }
-
         // Create a title section with a string as its title.
         private void CreateTitleSection(string title)
         {
@@ -284,14 +287,13 @@ namespace Obi
         }
 
         /// <summary>
-        /// A new phrase being recorded.
+        /// A new phrase is being recorded, so create and return it.
         /// </summary>
-        /// <param name="e">The phrase event originally sent by the recording session.</param>
-        /// <param name="parent">Parent core node for the new phrase.</param>
-        /// <param name="index">Base index in the parent for new phrases.</param>
-        public void StartRecordingPhrase(Events.Audio.Recorder.PhraseEventArgs e, SectionNode parent, int index)
+        public PhraseNode StartRecordingPhrase(Events.Audio.Recorder.PhraseEventArgs e, SectionNode parent, int index)
         {
-            parent.Insert(CreatePhraseNode(e.Audio), index);
+            PhraseNode phrase = CreatePhraseNode(e.Audio);
+            parent.Insert(phrase, index);
+            return phrase;
         }
 
         /// <summary>

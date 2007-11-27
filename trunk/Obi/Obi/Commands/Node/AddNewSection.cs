@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Obi.Commands.Node
 {
-    public abstract class AddNewSection: Command
+    public class AddNewSection: Command
     {
         private ObiNode mParent;
         private int mIndex;
@@ -36,6 +36,11 @@ namespace Obi.Commands.Node
             View.SelectAndRenameSelection(new NodeSelection(mNode, mSelection.Control, false));
         }
 
+        /// <summary>
+        /// The new section node to be added.
+        /// </summary>
+        public SectionNode NewSection { get { return mNode; } }
+        
         /// <summary>
         /// Add or readd the new section node then restore this as the selection.
         /// </summary>
