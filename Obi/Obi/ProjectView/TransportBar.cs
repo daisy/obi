@@ -457,7 +457,6 @@ namespace Obi.ProjectView
             }
         }
 
-        bool m_IsSectionCreatedForRecording;
         int mRecordingInitPhraseIndex ;
         SectionNode mRecordingSection; // Section in which we are recording
 
@@ -759,14 +758,15 @@ namespace Obi.ProjectView
         {
             if (!CanRecord) return;
             mRecordingCommand = CreateRecordingCommand();
-            ObiNode selected = mView.Selection.Node;
+            ObiNode selected = mView.SelectionNode;
             // If nothing is selected, create a new section to record in.
             if (selected == null)
             {
                 // create a new section node to record in
-                Commands.Node.AddNewSection newSectionCmd = new Commands.Node.AddNewSection(mView);
-                mRecordingCommand.append(newSectionCmd);
-                selected = newSectionCmd.NewSection;
+                SectionNode section = mView.Presentation.CreateSectionNode();
+                mRecordingCommand.append(new Commands.Node.AddNode(mView, section, mView.Presentation.RootNode,
+                    mView.Presentation.RootNode.SectionChildCount));
+                selected = section;
             }
             // Now we should always have a selection.
             System.Diagnostics.Debug.Assert(selected != null, "No selection for recording.");
@@ -779,7 +779,7 @@ namespace Obi.ProjectView
             else if (selected is PhraseNode)
             {
                 mRecordingSection = selected.ParentAs<SectionNode>();
-                mRecordingInitPhraseIndex = selected.Index;
+                mRecordingInitPhraseIndex = 1 + selected.Index;
             }
             Settings settings = mView.ObiForm.Settings;
             mRecordingSession = new RecordingSession(mView.Presentation, mRecorder,
@@ -834,7 +834,6 @@ namespace Obi.ProjectView
                 mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording))
             {
                 mRecordingSession.Stop();
-                if (mRecordingSession.RecordedAudio.Count == 0) mRecordingCommand.unExecute();
                 // update phrases with audio assets
                 for (int i = 0; i < mRecordingSession.RecordedAudio.Count; ++i)
                 {
