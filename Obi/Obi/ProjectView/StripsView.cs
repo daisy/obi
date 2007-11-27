@@ -145,6 +145,7 @@ namespace Obi.ProjectView
         public PhraseNode SelectedPhrase { get { return BlockSelected ? ((Block)mSelectedItem).Node : null; } }
         public SectionNode SelectedSection { get { return StripSelected ? ((Strip)mSelectedItem).Node : null; } }
         public ObiNode SelectedNode { set { if (mView != null) mView.Selection = new NodeSelection(value, this); } }
+        public NodeSelection SelectionFromStrip { set { if (mView != null) mView.Selection = value; } }
 
         /// <summary>
         /// Set the selection from the parent view.
@@ -167,7 +168,6 @@ namespace Obi.ProjectView
                         SectionNode section = value.Node is SectionNode ? (SectionNode)value.Node :
                             value.Node is PhraseNode ? ((PhraseNode)value.Node).ParentAs<SectionNode>() : null;
                         mView.MakeTreeNodeVisibleForSection(section);
-                        if (!((Control)s).Focused) ((Control)s).Focus();
                     }
                 }
             }

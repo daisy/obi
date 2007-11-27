@@ -17,6 +17,45 @@ namespace Obi
         void SelectAndRename(ObiNode node);
     }
 
+    public class WaveformSelection
+    {
+        private bool mHasCursor;
+        private bool mHasSelection;
+        public double CursorTime;
+        public double SelectionEndTime;
+
+        public bool HasCursor
+        {
+            get { return mHasCursor; }
+            set { mHasCursor = value; mHasSelection = !value; }
+        }
+
+        public bool HasSelection
+        {
+            get { return mHasSelection; }
+            set { mHasSelection = value; mHasCursor = !value; }
+        }
+
+        public double SelectionBeginTime
+        {
+            get { return CursorTime; }
+            set { CursorTime = value; }
+        }
+
+        public WaveformSelection(double time)
+        {
+            HasCursor = true;
+            CursorTime = time;
+        }
+
+        public WaveformSelection(double from, double to)
+        {
+            HasSelection = true;
+            CursorTime = from;
+            SelectionEndTime = to;
+        }
+    }
+
     /// <summary>
     /// Selection structure to tell where a node is selected.
     /// Node should never be null, the whole selection should be.
@@ -27,23 +66,25 @@ namespace Obi
         public IControlWithSelection Control;  // control in which it is selected
         public bool IsDummy;                   // true if actually a dummy node is selected
         public string Text;                    // selected text within the node
+        public WaveformSelection Waveform;     // waveform selection for a block
 
         /// <summary>
         /// Create a new selection object.
         /// </summary>
-        /// <param name="node">The selected node.</param>
-        /// <param name="control">The control in which it is selected.</param>
-        public NodeSelection(ObiNode node, IControlWithSelection control, bool isDummy, string text)
+        public NodeSelection(ObiNode node, IControlWithSelection control, bool isDummy, string text,
+            WaveformSelection waveform)
         {
             Node = node;
             Control = control;
             IsDummy = isDummy;
             Text = text;
+            Waveform = waveform;
         }
 
-        public NodeSelection(ObiNode node, IControlWithSelection control) : this(node, control, false, null) { }
-        public NodeSelection(ObiNode node, IControlWithSelection control, bool isDummy) : this(node, control, isDummy, null) { }
-        public NodeSelection(ObiNode node, IControlWithSelection control, string text) : this(node, control, false, text) { }
+        public NodeSelection(ObiNode node, IControlWithSelection control) : this(node, control, false, null, null) { }
+        public NodeSelection(ObiNode node, IControlWithSelection control, bool isDummy) : this(node, control, isDummy, null, null) { }
+        public NodeSelection(ObiNode node, IControlWithSelection control, string text) : this(node, control, false, text, null) { }
+        public NodeSelection(ObiNode node, IControlWithSelection control, WaveformSelection waveform) : this(node, control, false, null, waveform) { }
 
         /// <summary>
         /// Stringify the selection for debug printing.

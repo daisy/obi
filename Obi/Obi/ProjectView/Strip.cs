@@ -261,5 +261,10 @@ namespace Obi.ProjectView
                 return mBlocksPanel.Controls.Count > 0 ? (Block)mBlocksPanel.Controls[0] : null;
             }
         }
+
+        public void SelectTimeInBlock(Block block, WaveformSelection waveformSelection)
+        {
+            mParentView.SelectionFromStrip = new NodeSelection(block.Node, mParentView, waveformSelection);
+        }
     }
 }

@@ -107,7 +107,8 @@ namespace Obi.ProjectView
         private void Block_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
         private void Block_Enter(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
         private void mTimeLabel_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
-        private void mWaveform_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
+        private void mCustomKindLabel_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
+        private void mWaveform_Click(object sender, EventArgs e) { mStrip.SelectTimeInBlock(this, mWaveform.Selection); }
 
         private void mWaveform_MouseDown(object sender, MouseEventArgs e)
         {
