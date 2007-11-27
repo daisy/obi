@@ -1607,7 +1607,8 @@ if (mProject != null)
         }
 
         private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ImportPhrases(); }
-
+        private void mSplitBlockToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SplitBlock(); }
+        private void mMergeBlockWithNextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeBlockWithNext(); }
 
         private delegate void DisableCallback(bool disable);
 
@@ -1707,6 +1708,5 @@ if (mProject != null)
             CustomTypes dialog = new CustomTypes(mSession.Presentation, mProjectView);
             dialog.ShowDialog();
         }
-
     }
 }

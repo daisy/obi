@@ -66,6 +66,7 @@ namespace Obi.ProjectView
             this.mCustomKindLabel.Size = new System.Drawing.Size(70, 13);
             this.mCustomKindLabel.TabIndex = 3;
             this.mCustomKindLabel.Text = "(custom kind)";
+            this.mCustomKindLabel.Click += new System.EventHandler(this.mCustomKindLabel_Click);
             // 
             // Block
             // 

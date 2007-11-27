@@ -123,6 +123,8 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusTimer = new System.Windows.Forms.Timer(this.components);
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.mSplitBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mMergeBlockWithNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -649,6 +651,8 @@ namespace Obi
             // 
             this.blocksToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mImportAudioFileToolStripMenuItem,
+            this.mSplitBlockToolStripMenuItem,
+            this.mMergeBlockWithNextToolStripMenuItem,
             this.mAssignCustomTypeToolStripMenuItem,
             this.mClearCustomTypeToolStripMenuItem,
             this.toolStripSeparator13,
@@ -661,7 +665,7 @@ namespace Obi
             // 
             this.mImportAudioFileToolStripMenuItem.Name = "mImportAudioFileToolStripMenuItem";
             this.mImportAudioFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-            this.mImportAudioFileToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.mImportAudioFileToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.mImportAudioFileToolStripMenuItem.Text = "&Import audio files";
             this.mImportAudioFileToolStripMenuItem.Click += new System.EventHandler(this.mImportAudioFileToolStripMenuItem_Click);
             // 
@@ -672,7 +676,7 @@ namespace Obi
             this.mCustomTypeToolStripSeparator,
             this.mAddNewCustomTypeToolStripMenuItem});
             this.mAssignCustomTypeToolStripMenuItem.Name = "mAssignCustomTypeToolStripMenuItem";
-            this.mAssignCustomTypeToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.mAssignCustomTypeToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.mAssignCustomTypeToolStripMenuItem.Text = "Assign custom type";
             this.mAssignCustomTypeToolStripMenuItem.DropDownOpening += new System.EventHandler(this.mAssignCustomTypeToolStripMenuItem_DropDownOpening);
             // 
@@ -682,9 +686,9 @@ namespace Obi
             this.emptyToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.emptyToolStripMenuItem.Text = "Empty";
             // 
-            // toolStripSeparator6
+            // mCustomTypeToolStripSeparator
             // 
-            this.mCustomTypeToolStripSeparator.Name = "toolStripSeparator6";
+            this.mCustomTypeToolStripSeparator.Name = "mCustomTypeToolStripSeparator";
             this.mCustomTypeToolStripSeparator.Size = new System.Drawing.Size(187, 6);
             // 
             // mAddNewCustomTypeToolStripMenuItem
@@ -697,20 +701,20 @@ namespace Obi
             // mClearCustomTypeToolStripMenuItem
             // 
             this.mClearCustomTypeToolStripMenuItem.Name = "mClearCustomTypeToolStripMenuItem";
-            this.mClearCustomTypeToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.mClearCustomTypeToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.mClearCustomTypeToolStripMenuItem.Text = "Clear custom type";
             this.mClearCustomTypeToolStripMenuItem.Click += new System.EventHandler(this.mClearCustomTypeToolStripMenuItem_Click);
             // 
             // toolStripSeparator13
             // 
             this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(190, 6);
+            this.toolStripSeparator13.Size = new System.Drawing.Size(216, 6);
             // 
             // mListenToBlockToolStripMenuItem
             // 
             this.mListenToBlockToolStripMenuItem.Name = "mListenToBlockToolStripMenuItem";
             this.mListenToBlockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
-            this.mListenToBlockToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.mListenToBlockToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.mListenToBlockToolStripMenuItem.Text = "&Listen to block";
             // 
             // mTransportToolStripMenuItem
@@ -956,6 +960,22 @@ namespace Obi
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
             // 
+            // mSplitBlockToolStripMenuItem
+            // 
+            this.mSplitBlockToolStripMenuItem.Name = "mSplitBlockToolStripMenuItem";
+            this.mSplitBlockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.mSplitBlockToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.mSplitBlockToolStripMenuItem.Text = "&Split block";
+            this.mSplitBlockToolStripMenuItem.Click += new System.EventHandler(this.mSplitBlockToolStripMenuItem_Click);
+            // 
+            // mMergeBlockWithNextToolStripMenuItem
+            // 
+            this.mMergeBlockWithNextToolStripMenuItem.Name = "mMergeBlockWithNextToolStripMenuItem";
+            this.mMergeBlockWithNextToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
+            this.mMergeBlockWithNextToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.mMergeBlockWithNextToolStripMenuItem.Text = "&Merge block with next";
+            this.mMergeBlockWithNextToolStripMenuItem.Click += new System.EventHandler(this.mMergeBlockWithNextToolStripMenuItem_Click);
+            // 
             // ObiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1076,6 +1096,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripSeparator mCustomTypeToolStripSeparator;
         private System.Windows.Forms.ToolStripMenuItem mAddNewCustomTypeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mClearCustomTypeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSplitBlockToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mMergeBlockWithNextToolStripMenuItem;
 
 
     }

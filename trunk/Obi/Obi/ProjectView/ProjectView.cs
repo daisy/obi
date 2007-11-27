@@ -206,46 +206,6 @@ namespace Obi.ProjectView
         #region Strips
 
         /// <summary>
-        /// True if the current selection/focus allows the insertion of an audio block.
-        /// </summary>
-        public bool CanInsertAudioBlock
-        {
-            get { throw new Exception("The method or operation is not implemented."); }
-        }
-
-        /// <summary>
-        /// True if the current selection allows merging of blocks.
-        /// </summary>
-        public bool CanMergeBlocks
-        {
-            get { throw new Exception("The method or operation is not implemented."); }
-        }
-
-        /// <summary>
-        /// True if the current selection allows the removal of a page number.
-        /// </summary>
-        public bool CanRemovePageNumber
-        {
-            get { throw new Exception("The method or operation is not implemented."); }
-        }
-
-        /// <summary>
-        /// True if the current selection allows the setting of a page number.
-        /// </summary>
-        public bool CanSetPageNumber
-        {
-            get { throw new Exception("The method or operation is not implemented."); }
-        }
-
-        /// <summary>
-        /// True if the current selection allows the the toggling of and audio block's used flag.
-        /// </summary>
-        public bool CanToggleAudioBlockUsedFlag
-        {
-            get { throw new Exception("The method or operation is not implemented."); }
-        }
-
-        /// <summary>
         /// The phrase node for the block selected in the strips view.
         /// Null if no strip is selected.
         /// TODO: we need a compound node kind for container blocks.
@@ -264,82 +224,6 @@ namespace Obi.ProjectView
         {
             get { return mSelection == null ? null : mSelection.Node as SectionNode; }
             set { Selection = value == null ? null : new NodeSelection(value, mStripsView); }
-        }
-
-        /// <summary>
-        /// The label for the toggling of an audio block's used flag.
-        /// </summary>
-        public string ToggleAudioBlockUsedFlagLabel
-        {
-            get { throw new Exception("The method or operation is not implemented."); }
-        }
-
-
-
-
-        internal void SplitBlock()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        internal void QuickSplitBlock()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        internal void ApplyPhraseDetection()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        internal void MergeBlocks()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        internal void MoveBlock(PhraseNode.Direction direction)
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        internal void MarkSelectedAudioBlockAsHeading()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        internal void EditAnnotationForSelectedAudioBlock()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        internal void RemoveAnnotationForAudioBlock()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        internal void SetPageNumber()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        internal void RemovePageNumber()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        internal void FocusOnAnnotation()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        internal void GoToPage()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        internal void ToggleSelectedStripUsed()
-        {
-            throw new Exception("The method or operation is not implemented.");
         }
 
         #endregion
@@ -406,8 +290,6 @@ namespace Obi.ProjectView
             if (CanSplitStrip) mPresentation.UndoRedoManager.execute(mStripsView.SplitStripFromSelectedBlockCommand());
         }
 
-        public bool CanSplitStrip { get { return mStripsView.CanSplitStrip; } }
-
         /// <summary>
         /// Merge the selection strip with the next one, i.e. either its first sibling or its first child.
         /// </summary>
@@ -415,8 +297,6 @@ namespace Obi.ProjectView
         {
             if (CanMergeStripWithNext) mPresentation.UndoRedoManager.execute(mStripsView.MergeSelectedStripWithNextCommand());
         }
-
-        public bool CanMergeStripWithNext { get { return mStripsView.CanMergeWithNextStrip; } }
 
 
         /// <summary>
@@ -658,6 +538,8 @@ namespace Obi.ProjectView
         public bool CanCopyStrip { get { return mStripsView.SelectedSection != null && !mStripsView.Selection.IsDummy; } }
         public bool CanCopyBlock { get { return mStripsView.Selection != null && mStripsView.Selection.PhraseOnly != null && !mStripsView.Selection.IsDummy; } }
         public bool CanMarkSectionUnused { get { return mTOCView.CanToggleSectionUsed && mTOCView.Selection.Node.Used; } }
+        public bool CanMergeBlockWithNext { get { return false; } }
+        public bool CanMergeStripWithNext { get { return mStripsView.CanMergeWithNextStrip; } }
         public bool CanMoveSectionIn { get { return mTOCView.CanMoveSectionIn; } }
         public bool CanMoveSectionOut { get { return mTOCView.CanMoveSectionOut; } }
         public bool CanRemoveBlock { get { return mStripsView.CanRemoveBlock; } }
@@ -665,6 +547,8 @@ namespace Obi.ProjectView
         public bool CanRemoveStrip { get { return mStripsView.CanRemoveStrip; } }
         public bool CanRenameSection { get { return mTOCView.CanRenameSection; } }
         public bool CanRenameStrip { get { return mStripsView.CanRenameStrip; } }
+        public bool CanSplitBlock { get { return mStripsView.SelectedPhrase != null && mSelection.Waveform != null; } }
+        public bool CanSplitStrip { get { return mStripsView.CanSplitStrip; } }
         public bool CanToggleSectionUsed { get { return mTOCView.CanToggleSectionUsed; } }
 
         /// <summary>
@@ -791,6 +675,20 @@ namespace Obi.ProjectView
         {
             if (SelectedBlockNode != null)
                 mPresentation.UndoRedoManager.execute(new Commands.Node.ChangeCustomType(this, SelectedBlockNode, customType));
+        }
+
+        public void SplitBlock()
+        {
+            if (CanSplitBlock)
+            {
+            }
+        }
+
+        public void MergeBlockWithNext()
+        {
+            if (CanMergeBlockWithNext)
+            {
+            }
         }
     }
 

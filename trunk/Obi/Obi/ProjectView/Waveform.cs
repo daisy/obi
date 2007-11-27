@@ -12,13 +12,9 @@ namespace Obi.ProjectView
 {
     public partial class Waveform : Control
     {
-        private AudioMediaData mAudio;   // audio data to draw
-        private Bitmap mBitmap;          // cached bitmap of the waveform
-        private bool mHasCursor;         // flag to show the cursor
-        private bool mHasSelection;      // flag to show the selection
-        private double mCursorPosition;  // cursor position in time
-        private double mSelectionStart;  // start position of the selection
-        private double mSelectionEnd;    // end position of the selection
+        private AudioMediaData mAudio;         // audio data to draw
+        private Bitmap mBitmap;                // cached bitmap of the waveform
+        private WaveformSelection mSelection;  // selection in the waveform
 
         private static readonly Pen Channel1Pen = new Pen(Color.FromArgb(128, 0, 0, 255));
         private static readonly Pen Channel2Pen = new Pen(Color.FromArgb(128, 255, 0, 255));
@@ -35,7 +31,7 @@ namespace Obi.ProjectView
             DoubleBuffered = true;
             mAudio = null;
             mBitmap = null;
-            mHasCursor = false;
+            mSelection = null;
         }
 
         /// <summary>
@@ -50,47 +46,58 @@ namespace Obi.ProjectView
             }
         }
 
+        public WaveformSelection Selection
+        {
+            get { return mSelection; }
+        }
+
+        public void Deselect() { mSelection = null; }
+
         protected override void OnPaint(PaintEventArgs pe)
         {
             if (mBitmap != null) pe.Graphics.DrawImage(mBitmap, new Point(0, 0));
-            if (mHasCursor) pe.Graphics.DrawLine(CursorPen, new Point(CursorPosition, 0),
-                new Point(CursorPosition, Height - 1));
-            if (mHasSelection) pe.Graphics.FillRectangle(SelectionBrush, InitialSelectionPosition, 0,
-                FinalSelectionPosition - InitialSelectionPosition, Height);
+            if (mSelection != null)
+            {
+                if (mSelection.HasCursor)
+                {
+                    pe.Graphics.DrawLine(CursorPen, new Point(CursorPosition, 0), new Point(CursorPosition, Height - 1));
+                }
+                else
+                {
+                    pe.Graphics.FillRectangle(SelectionBrush, InitialSelectionPosition, 0, FinalSelectionPosition - InitialSelectionPosition, Height);
+                }
+            }
             base.OnPaint(pe);
         }
 
         public int CursorPosition
         {
-            get { return XFromTime(mCursorPosition); }
+            get { return XFromTime(mSelection.CursorTime); }
             set
             {
-                mHasCursor = true;
-                mHasSelection = false;
-                mCursorPosition = TimeFromX(value);
+                mSelection = new WaveformSelection(value);
                 Invalidate();
             }
         }
 
-        public int InitialSelectionPosition { get { return XFromTime(mSelectionStart); } }
+        public int InitialSelectionPosition { get { return XFromTime(mSelection.SelectionBeginTime); } }
 
         public int FinalSelectionPosition
         {
-            get { return XFromTime(mSelectionEnd); }
+            get { return XFromTime(mSelection.SelectionEndTime); }
             set
             {
+                double start = mSelection.SelectionBeginTime;
                 double end = TimeFromX(value);
-                if (end == mCursorPosition)
+                if (start == end)
                 {
-                    mHasCursor = true;
-                    mHasSelection = false;
+                    mSelection.HasCursor = true;
                 }
                 else
                 {
-                    mHasSelection = true;
-                    mHasCursor = false;
-                    mSelectionStart = Math.Min(mCursorPosition, end);
-                    mSelectionEnd = Math.Max(mCursorPosition, end);
+                    mSelection.HasSelection = true;
+                    mSelection.SelectionBeginTime = Math.Min(start, end);
+                    mSelection.SelectionEndTime = Math.Max(start, end);
                 }
                 Invalidate();
             }
@@ -104,18 +111,6 @@ namespace Obi.ProjectView
         private double TimeFromX(int x)
         {
             return x * mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat() / Width;
-        }
-
-        /// <summary>
-        /// Hide the cursor from the panel.
-        /// </summary>
-        public void HideCursor()
-        {
-            if (mHasCursor)
-            {
-                mHasCursor = false;
-                Invalidate();
-            }
         }
 
         private void Waveform_SizeChanged(object sender, EventArgs e) { UpdateWaveform(); }
