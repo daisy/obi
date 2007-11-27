@@ -19,6 +19,7 @@ namespace Obi.ProjectView
         public Block(PhraseNode node, Strip strip): this()
         {
             mNode = node;
+            CustomKindLabel = node.CustomKind;
             mStrip = strip;
             mSelected = false;
             if (node.Audio != null)
@@ -39,6 +40,23 @@ namespace Obi.ProjectView
 
         public Block() { InitializeComponent(); }
 
+
+        public string CustomKindLabel
+        {
+            set
+            {
+                if (value == null)
+                {
+                    mCustomKindLabel.Text = "";
+                    mCustomKindLabel.Visible = false;
+                }
+                else
+                {
+                    mCustomKindLabel.Text = value;
+                    mCustomKindLabel.Visible = true;
+                }
+            }
+        }
 
         /// <summary>
         /// The phrase node for this block.

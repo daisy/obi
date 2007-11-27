@@ -30,6 +30,7 @@ namespace Obi.ProjectView
         {
             this.mTimeLabel = new System.Windows.Forms.Label();
             this.mWaveform = new Obi.ProjectView.Waveform();
+            this.mCustomKindLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // mTimeLabel
@@ -57,11 +58,21 @@ namespace Obi.ProjectView
             this.mWaveform.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mWaveform_MouseMove);
             this.mWaveform.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mWaveform_MouseUp);
             // 
+            // mCustomKindLabel
+            // 
+            this.mCustomKindLabel.AutoSize = true;
+            this.mCustomKindLabel.Location = new System.Drawing.Point(3, 19);
+            this.mCustomKindLabel.Name = "mCustomKindLabel";
+            this.mCustomKindLabel.Size = new System.Drawing.Size(70, 13);
+            this.mCustomKindLabel.TabIndex = 3;
+            this.mCustomKindLabel.Text = "(custom kind)";
+            // 
             // Block
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.HotPink;
+            this.Controls.Add(this.mCustomKindLabel);
             this.Controls.Add(this.mTimeLabel);
             this.Controls.Add(this.mWaveform);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
@@ -78,5 +89,6 @@ namespace Obi.ProjectView
 
         private Waveform mWaveform;
         private System.Windows.Forms.Label mTimeLabel;
+        private System.Windows.Forms.Label mCustomKindLabel;
     }
 }
