@@ -42,5 +42,8 @@ namespace Obi.Commands
         }
 
         public override string getXukNamespaceUri() { return DataModelFactory.NS; }
+
+        // do not save anything
+        protected override void xukOutChildren(System.Xml.XmlWriter destination, Uri baseUri) {}
     }
 }
