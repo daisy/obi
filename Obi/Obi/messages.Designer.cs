@@ -857,7 +857,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Type the text to search for occurences..
+        ///   Looks up a localized string similar to Type the text to search for it in the project..
         /// </summary>
         internal static string find_in_text_init {
             get {
@@ -893,7 +893,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Found occurence of &quot;{0}&quot;..
+        ///   Looks up a localized string similar to Found occurrence of &quot;{0}&quot;..
         /// </summary>
         internal static string found_in_text {
             get {
@@ -1634,6 +1634,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to recording.
+        /// </summary>
+        internal static string recording_command {
+            get {
+                return ResourceManager.GetString("recording_command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Redo.
         /// </summary>
         internal static string redo {
@@ -1849,6 +1858,15 @@ namespace Obi {
         internal static string split_strip_command {
             get {
                 return ResourceManager.GetString("split_strip_command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start recording.
+        /// </summary>
+        internal static string start_recording {
+            get {
+                return ResourceManager.GetString("start_recording", resourceCulture);
             }
         }
         

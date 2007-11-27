@@ -194,7 +194,7 @@ mSessionMedia                 = (ManagedAudioMedia)m_Presentation.getMediaFactor
             double length = mPhraseMarks[last] - (last == 0 ? 0.0 : mPhraseMarks[last - 1]);
             length = length - (length % 100);
             PhraseEventArgs e = new PhraseEventArgs(mSessionMedia, mSessionOffset + last, length);
-                        FinishingPhrase(this, e);
+            if (FinishingPhrase != null) FinishingPhrase(this, e);
             return e;
         }
 
@@ -202,7 +202,7 @@ mSessionMedia                 = (ManagedAudioMedia)m_Presentation.getMediaFactor
         {
             double time = mRecorder.TimeOfAsset - (mPhraseMarks.Count > 0 ? mPhraseMarks[mPhraseMarks.Count - 1] : 0.0);
             time = time - (time % 100);
-            ContinuingPhrase(this, new PhraseEventArgs(mSessionMedia, mSessionOffset + mPhraseMarks.Count, time ));
+            if (ContinuingPhrase != null) ContinuingPhrase(this, new PhraseEventArgs(mSessionMedia, mSessionOffset + mPhraseMarks.Count, time));
         }
     }
 }

@@ -17,6 +17,9 @@ namespace Obi.Commands.Node
             mIndex = index;
         }
 
+        public AddNode(ProjectView.ProjectView view, ObiNode node)
+            : this(view, node, node.ParentAs<ObiNode>(), node.Index) {}
+
         public override void execute()
         {
             base.execute();

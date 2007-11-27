@@ -843,4 +843,10 @@ Error text: {1}</value>
     <value>Searching...</value>
     <comment>Shown while the search is in progress (MD).</comment>
   </data>
+  <data name="recording_command" xml:space="preserve">
+    <value>recording</value>
+  </data>
+  <data name="start_recording" xml:space="preserve">
+    <value>Start recording</value>
+  </data>
 </root>
