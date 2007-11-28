@@ -98,6 +98,8 @@ namespace Obi
             this.mClearCustomTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.mListenToBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.containerizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTransportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowHideVUMeterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
@@ -125,8 +127,8 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusTimer = new System.Windows.Forms.Timer(this.components);
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.containerizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uncontainerizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.makeEmptyContainerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -660,7 +662,9 @@ namespace Obi
             this.toolStripSeparator13,
             this.mListenToBlockToolStripMenuItem,
             this.toolStripSeparator6,
-            this.containerizeToolStripMenuItem});
+            this.containerizeToolStripMenuItem,
+            this.uncontainerizeToolStripMenuItem,
+            this.makeEmptyContainerToolStripMenuItem});
             this.blocksToolStripMenuItem.Name = "blocksToolStripMenuItem";
             this.blocksToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.blocksToolStripMenuItem.Text = "&Blocks";
@@ -736,6 +740,18 @@ namespace Obi
             this.mListenToBlockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
             this.mListenToBlockToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.mListenToBlockToolStripMenuItem.Text = "&Listen to block";
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(216, 6);
+            // 
+            // containerizeToolStripMenuItem
+            // 
+            this.containerizeToolStripMenuItem.Name = "containerizeToolStripMenuItem";
+            this.containerizeToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.containerizeToolStripMenuItem.Text = "containerize";
+            this.containerizeToolStripMenuItem.Click += new System.EventHandler(this.containerizeToolStripMenuItem_Click);
             // 
             // mTransportToolStripMenuItem
             // 
@@ -980,17 +996,18 @@ namespace Obi
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
             // 
-            // toolStripSeparator6
+            // uncontainerizeToolStripMenuItem
             // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(216, 6);
+            this.uncontainerizeToolStripMenuItem.Name = "uncontainerizeToolStripMenuItem";
+            this.uncontainerizeToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.uncontainerizeToolStripMenuItem.Text = "uncontainerize";
+            this.uncontainerizeToolStripMenuItem.Click += new System.EventHandler(this.uncontainerizeToolStripMenuItem_Click);
             // 
-            // containerizeToolStripMenuItem
+            // makeEmptyContainerToolStripMenuItem
             // 
-            this.containerizeToolStripMenuItem.Name = "containerizeToolStripMenuItem";
-            this.containerizeToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.containerizeToolStripMenuItem.Text = "containerize";
-            this.containerizeToolStripMenuItem.Click += new System.EventHandler(this.containerizeToolStripMenuItem_Click);
+            this.makeEmptyContainerToolStripMenuItem.Name = "makeEmptyContainerToolStripMenuItem";
+            this.makeEmptyContainerToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.makeEmptyContainerToolStripMenuItem.Text = "make empty container";
             // 
             // ObiForm
             // 
@@ -1116,6 +1133,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mMergeBlockWithNextToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem containerizeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem uncontainerizeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem makeEmptyContainerToolStripMenuItem;
 
 
     }
