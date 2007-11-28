@@ -143,6 +143,7 @@ namespace Obi.Dialogs
 
         private void CustomTypes_Load(object sender, EventArgs e)
         {
+            if (mPresentation.CustomTypes == null || mPresentation.CustomTypes.Count == 0) return;
             foreach (string customType in mPresentation.CustomTypes)
             {
                 mCustomTypesList.Items.Add(customType);
