@@ -29,7 +29,6 @@ namespace Obi.ProjectView
         private void InitializeComponent()
         {
             this.mTimeLabel = new System.Windows.Forms.Label();
-            this.mWaveform = new Obi.ProjectView.Waveform();
             this.mCustomKindLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -44,19 +43,6 @@ namespace Obi.ProjectView
             this.mTimeLabel.TabIndex = 2;
             this.mTimeLabel.Text = "(time)";
             this.mTimeLabel.Click += new System.EventHandler(this.mTimeLabel_Click);
-            // 
-            // mWaveform
-            // 
-            this.mWaveform.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.mWaveform.Location = new System.Drawing.Point(3, 3);
-            this.mWaveform.Name = "mWaveform";
-            this.mWaveform.Size = new System.Drawing.Size(98, 98);
-            this.mWaveform.TabIndex = 1;
-            this.mWaveform.Text = "waveform1";
-            this.mWaveform.Click += new System.EventHandler(this.mWaveform_Click);
-            this.mWaveform.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mWaveform_MouseDown);
-            this.mWaveform.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mWaveform_MouseMove);
-            this.mWaveform.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mWaveform_MouseUp);
             // 
             // mCustomKindLabel
             // 
@@ -75,7 +61,6 @@ namespace Obi.ProjectView
             this.BackColor = System.Drawing.Color.HotPink;
             this.Controls.Add(this.mCustomKindLabel);
             this.Controls.Add(this.mTimeLabel);
-            this.Controls.Add(this.mWaveform);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.Name = "Block";
             this.Size = new System.Drawing.Size(104, 104);
@@ -88,7 +73,6 @@ namespace Obi.ProjectView
 
         #endregion
 
-        private Waveform mWaveform;
         private System.Windows.Forms.Label mTimeLabel;
         private System.Windows.Forms.Label mCustomKindLabel;
     }
