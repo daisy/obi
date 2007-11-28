@@ -14,47 +14,21 @@ namespace Obi.ProjectView
         private Strip mStrip;       // the parent strip
         private bool mSelected;     // selected flag
 
-        private static readonly float AUDIO_SCALE = 0.01f;
-
         public Block(PhraseNode node, Strip strip): this()
         {
             mNode = node;
             CustomKindLabel = node.CustomKind;
             mStrip = strip;
             mSelected = false;
-            if (node.Audio != null)
-            {
-                SetWaveform(node);
-            }
-            else
-            {
-                mTimeLabel.Text = "0s";
-                mWaveform.Visible = false;
-            }
+            mTimeLabel.Text = "0s";
             node.CustomTypeChanged += new ChangedCustomTypeEventHandler(node_CustomTypeChanged);
-            node.NodeAudioChanged += new NodeEventHandler<PhraseNode>(node_NodeAudioChanged);
         }
 
-        private void SetWaveform(PhraseNode node)
-        {
-            long time = node.Audio.getDuration().getTimeDeltaAsMilliseconds();
-            mWaveform.Width = (int)Math.Round(time * AUDIO_SCALE);
-            mWaveform.Media = node.Audio.getMediaData();
-            mTimeLabel.Text = String.Format("{0:0.00}s",
-                node.Audio.getDuration().getTimeDeltaAsMillisecondFloat() / 1000);
-            Size = new Size(mWaveform.Width + mWaveform.Margin.Right + mWaveform.Margin.Left, Height);
-        }
-        
         public Block() { InitializeComponent(); }
 
         void node_CustomTypeChanged(object sender, Events.Node.ChangedCustomTypeEventArgs e)
         {
             CustomKindLabel = e.CustomType;
-        }
-
-        private void node_NodeAudioChanged(object sender, NodeEventArgs<PhraseNode> e)
-        {
-            SetWaveform(mNode);
         }
 
         public string CustomKindLabel
@@ -81,15 +55,23 @@ namespace Obi.ProjectView
         public ObiNode ObiNode { get { return mNode; } }
 
         /// <summary>
+        /// The time label control
+        /// </summary>
+        public string TimeLabel
+        {
+            get { return mTimeLabel.Text; }
+            set { mTimeLabel.Text = value; }
+        }
+
+        /// <summary>
         /// Set the selected flag for the block.
         /// </summary>
-        public bool Selected
+        public virtual bool Selected
         {
             get { return mSelected; }
             set
             {
                 mSelected = value;
-                if (!mSelected) mWaveform.Deselect();
                 BackColor = mSelected ? Color.Yellow : Color.HotPink;
             }
         }
@@ -97,7 +79,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// Set the selection from the parent view
         /// </summary>
-        public NodeSelection SelectionFromView
+        public virtual NodeSelection SelectionFromView
         {
             set
             {
@@ -107,7 +89,6 @@ namespace Obi.ProjectView
                 }
                 else
                 {
-                    mWaveform.Selection = value.Waveform;
                     Selected = true;
                 }
             }
@@ -149,25 +130,5 @@ namespace Obi.ProjectView
         private void Block_Enter(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
         private void mTimeLabel_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
         private void mCustomKindLabel_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
-        private void mWaveform_Click(object sender, EventArgs e) { mStrip.SelectTimeInBlock(this, mWaveform.Selection); }
-
-        private void mWaveform_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                mWaveform.CursorPosition = e.X;
-                mStrip.SelectTimeInBlock(this, mWaveform.Selection);
-            }
-        }
-
-        private void mWaveform_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left && mWaveform.Selection != null) mWaveform.FinalSelectionPosition = e.X;
-        }    
-
-        private void mWaveform_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left && mWaveform.Selection != null) mWaveform.FinalSelectionPosition = e.X;
-        }
     }
 }

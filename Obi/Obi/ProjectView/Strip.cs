@@ -58,7 +58,16 @@ namespace Obi.ProjectView
         /// </summary>
         public Block AddBlockForPhrase(PhraseNode phrase)
         {
-            Block block = new Block(phrase, this);
+            Block block = null;
+            if (phrase.Audio == null && phrase.PhraseChildCount == 0)
+                block = new Block(phrase, this);
+            else
+            {
+                if (phrase.PhraseChildCount > 0)
+                    block = new Block(phrase, this); //TODO: make a container block instead
+                else if (phrase.Audio != null)
+                    block = new AudioBlock(phrase, this);
+            }
             mBlocksPanel.Controls.Add(block);
             mBlocksPanel.Controls.SetChildIndex(block, phrase.Index);
             UpdateWidth();

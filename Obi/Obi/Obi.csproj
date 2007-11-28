@@ -230,6 +230,12 @@
     <Compile Include="ProjectView\Block.Designer.cs">
       <DependentUpon>Block.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProjectView\AudioBlock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProjectView\AudioBlock.Designer.cs">
+      <DependentUpon>AudioBlock.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProjectView\EditableLabel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -396,6 +402,10 @@
     <EmbeddedResource Include="ProjectView\Block.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Block.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\AudioBlock.resx">
+      <DependentUpon>AudioBlock.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\EditableLabel.resx">
       <SubType>Designer</SubType>
