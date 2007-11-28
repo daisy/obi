@@ -1633,5 +1633,10 @@ if (mProject != null)
         {
             mProjectView.MakeBlockIntoContainerBlock();
         }
+
+        private void uncontainerizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.MakeContainerBlockIntoBlocks();
+        }
     }
 }

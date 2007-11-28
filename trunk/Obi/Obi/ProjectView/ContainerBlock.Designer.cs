@@ -33,18 +33,19 @@ namespace Obi.ProjectView
             // 
             // mBlocksPanel
             // 
-            this.mBlocksPanel.BackColor = System.Drawing.Color.Violet;
-            this.mBlocksPanel.Location = new System.Drawing.Point(3, 18);
+            this.mBlocksPanel.BackColor = System.Drawing.Color.Transparent;
+            this.mBlocksPanel.Location = new System.Drawing.Point(5, 34);
             this.mBlocksPanel.Name = "mBlocksPanel";
-            this.mBlocksPanel.Size = new System.Drawing.Size(98, 83);
+            this.mBlocksPanel.Size = new System.Drawing.Size(104, 104);
             this.mBlocksPanel.TabIndex = 4;
             // 
             // ContainerBlock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.BackColor = System.Drawing.Color.LightPink;
             this.Controls.Add(this.mBlocksPanel);
             this.Name = "ContainerBlock";
-            this.Size = new System.Drawing.Size(104, 107);
+            this.Size = new System.Drawing.Size(114, 143);
             this.Controls.SetChildIndex(this.mBlocksPanel, 0);
             this.ResumeLayout(false);
             this.PerformLayout();

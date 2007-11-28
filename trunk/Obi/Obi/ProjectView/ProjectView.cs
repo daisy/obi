@@ -699,6 +699,22 @@ namespace Obi.ProjectView
                 parentNode.Insert(containerPhrase, index);
             }
         }
+
+        //remove the container
+        internal void MakeContainerBlockIntoBlocks()
+        {
+            if (SelectedBlockNode != null)
+            {
+                int index = SelectedBlockNode.Index;
+                ObiNode parentNode = SelectedBlockNode.ParentAs<ObiNode>();
+                for (int i = 0; i < SelectedBlockNode.PhraseChildCount; i++)
+                {
+                    PhraseNode node = (PhraseNode)SelectedBlockNode.PhraseChild(0).Detach();
+                    parentNode.Insert(node, index + i);
+                }
+                parentNode.RemoveChild(SelectedBlockNode);
+            }
+        }
     }
 
     public class ImportingFileEventArgs

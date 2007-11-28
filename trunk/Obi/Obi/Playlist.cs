@@ -344,7 +344,7 @@ namespace Obi
                 // is the master playlist.
                 delegate(urakawa.core.TreeNode n)
                 {
-                    if (n is PhraseNode && (!mIsMaster || ((PhraseNode)n).Used))
+                    if (n is PhraseNode && n.getChildCount() == 0 && (!mIsMaster || ((PhraseNode)n).Used))
                     {
                         mPhrases.Add((PhraseNode)n);
                         mStartTimes.Add(mTotalTime);
