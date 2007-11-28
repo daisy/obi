@@ -123,6 +123,17 @@ namespace Obi.ProjectView
         /// </summary>
         public Strip Strip { get { return mStrip; } }
 
+        public void GiveFocus()
+        {
+            if (!Focused)
+            {
+                Enter -= new EventHandler(Block_Enter);
+                mStrip.GiveFocus();
+                Focus();
+                Enter += new EventHandler(Block_Enter);
+            }
+        }
+
         // Select on click and tabbing
         private void Block_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
         private void Block_Enter(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
