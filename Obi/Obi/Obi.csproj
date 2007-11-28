@@ -99,6 +99,7 @@
     <Compile Include="Commands\Node\Copy.cs" />
     <Compile Include="Commands\Node\Delete.cs" />
     <Compile Include="Commands\Node\Paste.cs" />
+    <Compile Include="Commands\Node\AddRemoveCustomType.cs" />
     <Compile Include="Commands\Node\RenameSection.cs" />
     <Compile Include="Commands\Strips\AddNewStrip.cs" />
     <Compile Include="Commands\Strips\ImportPhrases.cs" />

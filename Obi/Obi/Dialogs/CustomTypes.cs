@@ -14,40 +14,85 @@ namespace Obi.Dialogs
     {
         private Presentation mPresentation;
         private ProjectView.ProjectView mProjectView;
+        int mNumberOfCommandsSinceOpened;
 
         public CustomTypes(Presentation presentation, ProjectView.ProjectView projectView)
         {
             if (presentation == null) throw new Exception("Invalid presentation for custom types dialog");
             if (projectView == null) throw new Exception("Invalid project view for custom types dialog");
             InitializeComponent();
+            mNumberOfCommandsSinceOpened = 0;
             mPresentation = presentation;
             mProjectView = projectView;
-            foreach (string customType in mPresentation.CustomTypes)
+         }
+
+        /// <summary>
+        /// Keypress in the list box.
+        /// Enter: apply the selected type to the selected block
+        /// Delete: remove the selected type
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mCustomTypesList_KeyUp(object sender, KeyEventArgs e)
+        {
+            //Close the dialog and apply the change
+            if (e.KeyCode == Keys.Enter)
             {
-                mCustomTypesList.Items.Add(customType);
+                ApplyAndClose();
             }
-        }
-
-        private void mAddButton_Click(object sender, EventArgs e)
-        {
-            if (mPresentation != null) mPresentation.AddCustomType(mNewCustomType.Text);
-            mCustomTypesList.Items.Add(mNewCustomType.Text);
-        }
-
-        private void mCustomClassesList_KeyUp(object sender, KeyEventArgs e)
-        {
+            //Remove the custom type from the list and also from all blocks
+            //do not close the dialog
             if (e.KeyCode == Keys.Delete)
             {
-                string removedClass = (string)mCustomTypesList.SelectedItem;
-                mPresentation.RemoveCustomType((string)mCustomTypesList.SelectedItem);
+                string removedType = (string)mCustomTypesList.SelectedItem;
                 mCustomTypesList.Items.RemoveAt(mCustomTypesList.SelectedIndex);
-                RemoveCustomClassFromNodes(removedClass);
+                bool res = RemoveCustomTypeFromNodes(removedType);
             }
         }
-
-        private void RemoveCustomClassFromNodes(object removedClass)
+        /// <summary>
+        /// Keypress in the text field.
+        /// Enter: apply the selected type to the selected block
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mNewCustomType_KeyUp(object sender, KeyEventArgs e)
         {
-            /*
+            //Close the dialog and apply the change
+            if (e.KeyCode == Keys.Enter)
+            {
+                ApplyAndClose();
+            }
+
+        }
+        /// <summary>
+        /// If there is text in the text box, apply it to the block
+        /// </summary>
+        private void ApplyAndClose()
+        {
+            if (mNewCustomType.Text != "")
+            {
+                urakawa.undo.CompositeCommand command = new urakawa.undo.CompositeCommand();
+                //this will filter duplicates
+                Commands.Node.AddCustomType cmd = new Obi.Commands.Node.AddCustomType(mProjectView, mPresentation, mNewCustomType.Text);
+                Commands.Node.ChangeCustomType otherCmd = new Obi.Commands.Node.ChangeCustomType(mProjectView, mProjectView.SelectedBlockNode, mNewCustomType.Text);
+                command.append(cmd);
+                command.append(otherCmd);
+                mPresentation.UndoRedoManager.execute(command);
+            }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        /// <summary>
+        /// Go through the tree and remove the given custom type from any node who has it
+        /// </summary>
+        /// <param name="removedType"></param>
+        /// <returns></returns>
+        private bool RemoveCustomTypeFromNodes(string removedType)
+        {
+            urakawa.undo.CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
+            command.setShortDescription(Localizer.Message("remove_custom_type"));
+            bool foundNodeWithThisType = false;
             mPresentation.RootNode.acceptDepthFirst
             (
                 // Remove the custom kind, phrase kind, and custom kind label for any phrase with
@@ -58,18 +103,51 @@ namespace Obi.Dialogs
                     if (n is PhraseNode && ((PhraseNode)n).PhraseKind == PhraseNode.Kind.Custom)
                     {
                         string customKind = ((PhraseNode)n).CustomKind;
-                        if (customKind == removedClass)
+                        if (customKind == removedType)
                         {
-                            ((PhraseNode)n).CustomKind = "";
-                            ((PhraseNode)n).PhraseKind = PhraseNode.Kind.Plain;
-                            mProjectView.RemoveCustomKindLabelForBlock((PhraseNode)n);
+                            foundNodeWithThisType = true;
+                            Commands.Node.ChangeCustomType cmd = new Commands.Node.ChangeCustomType(mProjectView, (PhraseNode)n, "");
+                            command.append(cmd);
                         }
                     }
                     return true;
                 },
                 // nothing to do in post-visit
                 delegate(urakawa.core.TreeNode n) { }
-            );*/
+            );
+            Commands.Node.RemoveCustomType otherCmd = new Commands.Node.RemoveCustomType(mProjectView, mPresentation, removedType);
+            command.append(otherCmd);
+            mPresentation.UndoRedoManager.execute(command);
+            mNumberOfCommandsSinceOpened++;
+            return foundNodeWithThisType;
+        }
+
+        private void mCustomTypesList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            mNewCustomType.Text = (string)mCustomTypesList.SelectedItem;
+        }
+
+        private void mOk_Click(object sender, EventArgs e)
+        {
+            ApplyAndClose();
+        }
+
+        private void mCancel_Click(object sender, EventArgs e)
+        {
+            //undo anything we've done since this dialog has been open
+            for (int i = 0; i < mNumberOfCommandsSinceOpened; i++) mPresentation.UndoRedoManager.undo();
+            //end the dialog
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void CustomTypes_Load(object sender, EventArgs e)
+        {
+            foreach (string customType in mPresentation.CustomTypes)
+            {
+                mCustomTypesList.Items.Add(customType);
+            }
+            mNewCustomType.Focus();
         }
     }
 }
