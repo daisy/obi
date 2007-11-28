@@ -1520,6 +1520,8 @@ if (mProject != null)
         private void UpdateBlocksMenu()
         {
             mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
+            mSplitBlockToolStripMenuItem.Enabled = mProjectView.CanSplitBlock;
+            mMergeBlockWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeBlockWithNext;
         }
 
         private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ImportPhrases(); }

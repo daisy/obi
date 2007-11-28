@@ -49,6 +49,7 @@ namespace Obi.ProjectView
         public WaveformSelection Selection
         {
             get { return mSelection; }
+            set { mSelection = value; }
         }
 
         public void Deselect()
@@ -79,7 +80,7 @@ namespace Obi.ProjectView
             get { return XFromTime(mSelection.CursorTime); }
             set
             {
-                mSelection = new WaveformSelection(value);
+                mSelection = new WaveformSelection(TimeFromX(value));
                 Invalidate();
             }
         }
@@ -91,7 +92,7 @@ namespace Obi.ProjectView
             get { return XFromTime(mSelection.SelectionEndTime); }
             set
             {
-                double start = mSelection.SelectionBeginTime;
+                double start = mSelection.CursorTime;
                 double end = TimeFromX(value);
                 if (start == end)
                 {
@@ -99,7 +100,7 @@ namespace Obi.ProjectView
                 }
                 else
                 {
-                    mSelection.HasSelection = true;
+                    mSelection.HasCursor = false;
                     mSelection.SelectionBeginTime = Math.Min(start, end);
                     mSelection.SelectionEndTime = Math.Max(start, end);
                 }

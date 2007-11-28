@@ -122,6 +122,11 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Set the selection from the parent view
+        /// </summary>
+        public NodeSelection SelectionFromView { set { Selected = value != null; } }
+
+        /// <summary>
         /// Update the colors of the block when the state of its node has changed.
         /// </summary>
         public void UpdateColors()

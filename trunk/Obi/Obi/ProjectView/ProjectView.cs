@@ -538,8 +538,8 @@ namespace Obi.ProjectView
         public bool CanCopyStrip { get { return mStripsView.SelectedSection != null && !mStripsView.Selection.IsDummy; } }
         public bool CanCopyBlock { get { return mStripsView.Selection != null && mStripsView.Selection.PhraseOnly != null && !mStripsView.Selection.IsDummy; } }
         public bool CanMarkSectionUnused { get { return mTOCView.CanToggleSectionUsed && mTOCView.Selection.Node.Used; } }
-        public bool CanMergeBlockWithNext { get { return false; } }
-        public bool CanMergeStripWithNext { get { return mStripsView.CanMergeWithNextStrip; } }
+        public bool CanMergeBlockWithNext { get { return mStripsView.CanMergeBlockWithNext; } }
+        public bool CanMergeStripWithNext { get { return mStripsView.CanMergeStripWithNext; } }
         public bool CanMoveSectionIn { get { return mTOCView.CanMoveSectionIn; } }
         public bool CanMoveSectionOut { get { return mTOCView.CanMoveSectionOut; } }
         public bool CanRemoveBlock { get { return mStripsView.CanRemoveBlock; } }

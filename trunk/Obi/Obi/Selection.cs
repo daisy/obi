@@ -19,28 +19,10 @@ namespace Obi
 
     public class WaveformSelection
     {
-        private bool mHasCursor;
-        private bool mHasSelection;
-        public double CursorTime;
-        public double SelectionEndTime;
-
-        public bool HasCursor
-        {
-            get { return mHasCursor; }
-            set { mHasCursor = value; mHasSelection = !value; }
-        }
-
-        public bool HasSelection
-        {
-            get { return mHasSelection; }
-            set { mHasSelection = value; mHasCursor = !value; }
-        }
-
-        public double SelectionBeginTime
-        {
-            get { return CursorTime; }
-            set { CursorTime = value; }
-        }
+        public bool HasCursor;             // selection is just a cursor position; if false, begin/end
+        public double CursorTime;          // time position of the cursor (if true)
+        public double SelectionBeginTime;  // begin time of selection
+        public double SelectionEndTime;    // end time of selection
 
         public WaveformSelection(double time)
         {
@@ -50,9 +32,16 @@ namespace Obi
 
         public WaveformSelection(double from, double to)
         {
-            HasSelection = true;
-            CursorTime = from;
+            HasCursor = false;
+            SelectionBeginTime = from;
             SelectionEndTime = to;
+        }
+
+        public override bool Equals(object obj)
+        {
+            WaveformSelection s = obj as WaveformSelection;
+            return s != null && HasCursor ? s.HasCursor && s.CursorTime == CursorTime :
+                !s.HasCursor && s.SelectionBeginTime == SelectionBeginTime && s.SelectionEndTime == SelectionEndTime;
         }
     }
 
@@ -97,7 +86,8 @@ namespace Obi
         public override bool Equals(object obj)
         {
             NodeSelection s = obj as NodeSelection;
-            return s != null && s.Node == Node && s.Control == Control && s.IsDummy == IsDummy && s.Text == Text;
+            return s != null && s.Node == Node && s.Control == Control && s.IsDummy == IsDummy && s.Text == Text &&
+                s.Waveform == Waveform;
         }
 
         public SectionNode Section { get { return Node as SectionNode; } }
