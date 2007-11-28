@@ -89,6 +89,8 @@ namespace Obi
             this.mListenToStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.blocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mImportAudioFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSplitBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mMergeBlockWithNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAssignCustomTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.emptyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mCustomTypeToolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -123,8 +125,8 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusTimer = new System.Windows.Forms.Timer(this.components);
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.mSplitBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mMergeBlockWithNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.containerizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -656,7 +658,9 @@ namespace Obi
             this.mAssignCustomTypeToolStripMenuItem,
             this.mClearCustomTypeToolStripMenuItem,
             this.toolStripSeparator13,
-            this.mListenToBlockToolStripMenuItem});
+            this.mListenToBlockToolStripMenuItem,
+            this.toolStripSeparator6,
+            this.containerizeToolStripMenuItem});
             this.blocksToolStripMenuItem.Name = "blocksToolStripMenuItem";
             this.blocksToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.blocksToolStripMenuItem.Text = "&Blocks";
@@ -668,6 +672,22 @@ namespace Obi
             this.mImportAudioFileToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.mImportAudioFileToolStripMenuItem.Text = "&Import audio files";
             this.mImportAudioFileToolStripMenuItem.Click += new System.EventHandler(this.mImportAudioFileToolStripMenuItem_Click);
+            // 
+            // mSplitBlockToolStripMenuItem
+            // 
+            this.mSplitBlockToolStripMenuItem.Name = "mSplitBlockToolStripMenuItem";
+            this.mSplitBlockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.mSplitBlockToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.mSplitBlockToolStripMenuItem.Text = "&Split block";
+            this.mSplitBlockToolStripMenuItem.Click += new System.EventHandler(this.mSplitBlockToolStripMenuItem_Click);
+            // 
+            // mMergeBlockWithNextToolStripMenuItem
+            // 
+            this.mMergeBlockWithNextToolStripMenuItem.Name = "mMergeBlockWithNextToolStripMenuItem";
+            this.mMergeBlockWithNextToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
+            this.mMergeBlockWithNextToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.mMergeBlockWithNextToolStripMenuItem.Text = "&Merge block with next";
+            this.mMergeBlockWithNextToolStripMenuItem.Click += new System.EventHandler(this.mMergeBlockWithNextToolStripMenuItem_Click);
             // 
             // mAssignCustomTypeToolStripMenuItem
             // 
@@ -960,21 +980,17 @@ namespace Obi
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
             // 
-            // mSplitBlockToolStripMenuItem
+            // toolStripSeparator6
             // 
-            this.mSplitBlockToolStripMenuItem.Name = "mSplitBlockToolStripMenuItem";
-            this.mSplitBlockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.mSplitBlockToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.mSplitBlockToolStripMenuItem.Text = "&Split block";
-            this.mSplitBlockToolStripMenuItem.Click += new System.EventHandler(this.mSplitBlockToolStripMenuItem_Click);
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(216, 6);
             // 
-            // mMergeBlockWithNextToolStripMenuItem
+            // containerizeToolStripMenuItem
             // 
-            this.mMergeBlockWithNextToolStripMenuItem.Name = "mMergeBlockWithNextToolStripMenuItem";
-            this.mMergeBlockWithNextToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
-            this.mMergeBlockWithNextToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.mMergeBlockWithNextToolStripMenuItem.Text = "&Merge block with next";
-            this.mMergeBlockWithNextToolStripMenuItem.Click += new System.EventHandler(this.mMergeBlockWithNextToolStripMenuItem_Click);
+            this.containerizeToolStripMenuItem.Name = "containerizeToolStripMenuItem";
+            this.containerizeToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.containerizeToolStripMenuItem.Text = "containerize";
+            this.containerizeToolStripMenuItem.Click += new System.EventHandler(this.containerizeToolStripMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -1098,6 +1114,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mClearCustomTypeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mSplitBlockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMergeBlockWithNextToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem containerizeToolStripMenuItem;
 
 
     }

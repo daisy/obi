@@ -243,8 +243,19 @@ namespace Obi
 
         public override SectionNode SectionChild(int index) { throw new Exception("A phrase node has no section child!"); }
         public override int SectionChildCount { get { return 0; } }
-        public override PhraseNode PhraseChild(int index) { throw new Exception("No child yet."); }
-        public override int PhraseChildCount { get { return 0; } }
+        public override PhraseNode PhraseChild(int index) 
+        {
+            if (this.Audio != null)
+            {
+                if (this.getChildCount() != 0) throw new Exception("Audio phrase nodes should not have children.");
+                else return null;
+            }
+            else
+            {
+                return (PhraseNode)getChild(index);
+            }
+        }
+        public override int PhraseChildCount { get { return this.getChildCount(); } }
 
         public ManagedAudioMedia SplitAudio(urakawa.media.timing.Time splitPoint)
         {

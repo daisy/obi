@@ -686,6 +686,19 @@ namespace Obi.ProjectView
         {
             if (CanMergeBlockWithNext) mPresentation.UndoRedoManager.execute(new Commands.Node.MergeAudio(this));
         }
+
+        internal void MakeBlockIntoContainerBlock()
+        {
+            if (SelectedBlockNode != null)
+            {
+                int index = SelectedBlockNode.Index;
+                ObiNode parentNode = SelectedBlockNode.ParentAs<ObiNode>();
+                PhraseNode containerPhrase = mPresentation.CreatePhraseNode();
+                PhraseNode nodeToInsert = (PhraseNode)SelectedBlockNode.Detach();
+                containerPhrase.AppendChild(nodeToInsert);
+                parentNode.Insert(containerPhrase, index);
+            }
+        }
     }
 
     public class ImportingFileEventArgs
