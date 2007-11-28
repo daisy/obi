@@ -51,7 +51,11 @@ namespace Obi.ProjectView
             get { return mSelection; }
         }
 
-        public void Deselect() { mSelection = null; }
+        public void Deselect()
+        {
+            mSelection = null;
+            Invalidate();
+        }
 
         protected override void OnPaint(PaintEventArgs pe)
         {
