@@ -568,6 +568,10 @@ namespace Obi.Audio
                 Audiolength = 0;
                 ///-///
                                 mAsset.appendAudioDataFromRiffWave(m_sFileName);
+
+                    // the file has been copied so it should be deleted.
+                    if ( File.Exists ( m_sFileName )  )
+                        File.Delete ( m_sFileName ) ;
                                 }
 
                 SampleCount = 0;
