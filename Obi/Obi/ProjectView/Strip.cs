@@ -219,6 +219,16 @@ namespace Obi.ProjectView
             if (mParentView.SelectedSection != mNode) mParentView.SelectedNode = mNode;
         }
 
+        public void GiveFocus()
+        {
+            if (!Focused)
+            {
+                Enter -= new EventHandler(Strip_Enter);
+                Focus();
+                Enter += new EventHandler(Strip_Enter);
+            }
+        }
+
         /// <summary>
         /// Return the block after the selected block or strip. In the case of a strip is the first block.
         /// Return null if this the last block, there are no blocks, or nothing was selected in the first place.

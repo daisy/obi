@@ -17,6 +17,7 @@ namespace Obi.ProjectView
         bool Selected { get; set; }
         ObiNode ObiNode { get; }
         NodeSelection SelectionFromView { set; }
+        void GiveFocus();
     }
 
     public partial class StripsView : UserControl, IControlWithRenamableSelection
@@ -178,6 +179,7 @@ namespace Obi.ProjectView
                         SectionNode section = value.Node is SectionNode ? (SectionNode)value.Node :
                             value.Node is PhraseNode ? ((PhraseNode)value.Node).ParentAs<SectionNode>() : null;
                         mView.MakeTreeNodeVisibleForSection(section);
+                        s.GiveFocus();
                     }
                 }
             }
