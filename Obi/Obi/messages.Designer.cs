@@ -1855,6 +1855,15 @@ namespace Obi {
         /// <summary>
         ///   Looks up a localized string similar to split block.
         /// </summary>
+        internal static string split_block {
+            get {
+                return ResourceManager.GetString("split_block", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to split block.
+        /// </summary>
         internal static string split_phrase_command_label {
             get {
                 return ResourceManager.GetString("split_phrase_command_label", resourceCulture);

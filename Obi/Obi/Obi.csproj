@@ -101,6 +101,7 @@
     <Compile Include="Commands\Node\Paste.cs" />
     <Compile Include="Commands\Node\AddRemoveCustomType.cs" />
     <Compile Include="Commands\Node\RenameSection.cs" />
+    <Compile Include="Commands\Node\SplitAudio.cs" />
     <Compile Include="Commands\Strips\AddNewStrip.cs" />
     <Compile Include="Commands\Strips\ImportPhrases.cs" />
     <Compile Include="Commands\TOC\AddNewSection.cs" />

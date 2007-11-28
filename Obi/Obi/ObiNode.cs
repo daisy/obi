@@ -29,6 +29,7 @@ namespace Obi
         public void Detach() { detach(); }
         public abstract void Insert(ObiNode node, int index);
         public void InsertAfter(ObiNode node, ObiNode anchor) { insertAfter(node, anchor); }
+        public void InsertAfterSelf(ObiNode node) { getParent().insertAfter(node, this); }
         public void InsertBefore(ObiNode node, ObiNode anchor) { insertBefore(node, anchor); }
         public void RemoveChild(ObiNode child) { removeChild(child); }
 
