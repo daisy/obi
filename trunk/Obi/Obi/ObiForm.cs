@@ -1522,6 +1522,9 @@ if (mProject != null)
             mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
             mSplitBlockToolStripMenuItem.Enabled = mProjectView.CanSplitBlock;
             mMergeBlockWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeBlockWithNext;
+            mAssignCustomTypeToolStripMenuItem.Enabled = (mProjectView.SelectedBlockNode != null);
+            mClearCustomTypeToolStripMenuItem.Enabled = (mProjectView.SelectedBlockNode != null);
+            mListenToBlockToolStripMenuItem.Enabled = (mProjectView.SelectedBlockNode != null);
         }
 
         private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ImportPhrases(); }
