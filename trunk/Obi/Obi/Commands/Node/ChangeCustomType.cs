@@ -14,12 +14,17 @@ namespace Obi.Commands.Node
         //the node plus the information about the change that we're about to make
         public ChangeCustomType(ProjectView.ProjectView view, PhraseNode node, string customType) : base(view)
         {
-            mNode = node;
-            mCustomKind = customType;
-            mOldCustomKind = node.CustomKind;
+            mNode = null;
+            if (node != null)
+            {
+                mNode = node;
+                mCustomKind = customType;
+                mOldCustomKind = node.CustomKind;
+            }
         }
         public override void execute()
         {
+            if (mNode == null) return;
             mNode.CustomKind = mCustomKind;
             if (mCustomKind == "") mNode.PhraseKind = PhraseNode.Kind.Plain;
             else mNode.PhraseKind = PhraseNode.Kind.Custom;
@@ -27,6 +32,7 @@ namespace Obi.Commands.Node
 
         public override void unExecute()
         {
+            if (mNode == null) return;
             mNode.CustomKind = mOldCustomKind;
             if (mOldCustomKind == "") mNode.PhraseKind = PhraseNode.Kind.Plain;
             else mNode.PhraseKind = PhraseNode.Kind.Custom;

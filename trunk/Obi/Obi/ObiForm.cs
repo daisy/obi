@@ -1601,10 +1601,9 @@ if (mProject != null)
             //clear the menu except for the separator and "add new.." item
             mAssignCustomTypeToolStripMenuItem.DropDownItems.Clear();
             mAssignCustomTypeToolStripMenuItem.DropDownItems.Insert(0, mAddNewCustomTypeToolStripMenuItem);
-            mAssignCustomTypeToolStripMenuItem.DropDownItems.Insert(0, mCustomTypeToolStripSeparator);
 
             List<string> customTypes = mSession.Presentation.CustomTypes;
-
+            if (customTypes.Count > 0) mAssignCustomTypeToolStripMenuItem.DropDownItems.Insert(0, mCustomTypeToolStripSeparator);
             //Fill the drop down choices with the custom classes
             foreach(string customType in customTypes)
             {

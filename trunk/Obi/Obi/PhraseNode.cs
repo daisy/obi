@@ -221,6 +221,8 @@ namespace Obi
             {
                 throw new Exception("Missing `custom' attribute.");
             }
+            //add it to the presentation
+            this.Presentation.AddCustomType(mCustomKind);
             base.xukInAttributes(source);
         }
 
