@@ -1628,5 +1628,10 @@ if (mProject != null)
             CustomTypes dialog = new CustomTypes(mSession.Presentation, mProjectView);
             dialog.ShowDialog();
         }
+
+        private void containerizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.MakeBlockIntoContainerBlock();
+        }
     }
 }

@@ -64,7 +64,10 @@ namespace Obi.ProjectView
             else
             {
                 if (phrase.PhraseChildCount > 0)
-                    block = new Block(phrase, this); //TODO: make a container block instead
+                {
+                    block = new ContainerBlock(phrase, this);
+                    ((ContainerBlock)block).AddBlocksForPhrase(phrase);
+                }
                 else if (phrase.Audio != null)
                     block = new AudioBlock(phrase, this);
             }

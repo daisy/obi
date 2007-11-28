@@ -26,9 +26,7 @@ namespace Obi.ProjectView
             }
             node.NodeAudioChanged += new NodeEventHandler<PhraseNode>(node_NodeAudioChanged);
         }
-        
-        public AudioBlock():base() { this.InitializeComponent(); }
-
+      
         private void SetWaveform(PhraseNode node)
         {
              long time = node.Audio.getDuration().getTimeDeltaAsMilliseconds();
