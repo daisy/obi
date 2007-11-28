@@ -24,27 +24,37 @@ namespace Obi.ProjectView
             mSelected = false;
             if (node.Audio != null)
             {
-                long time = node.Audio.getDuration().getTimeDeltaAsMilliseconds();
-                mWaveform.Width = (int)Math.Round(time * AUDIO_SCALE);
-                mWaveform.Media = node.Audio.getMediaData();
-                mTimeLabel.Text = String.Format("{0:0.00}s",
-                    node.Audio.getDuration().getTimeDeltaAsMillisecondFloat() / 1000);
-                Size = new Size(mWaveform.Width + mWaveform.Margin.Right + mWaveform.Margin.Left, Height);
-                node.CustomTypeChanged += new ChangedCustomTypeEventHandler(node_CustomTypeChanged);
+                SetWaveform(node);
             }
             else
             {
                 mTimeLabel.Text = "0s";
                 mWaveform.Visible = false;
             }
+            node.CustomTypeChanged += new ChangedCustomTypeEventHandler(node_CustomTypeChanged);
+            node.NodeAudioChanged += new NodeEventHandler<PhraseNode>(node_NodeAudioChanged);
         }
 
+        private void SetWaveform(PhraseNode node)
+        {
+            long time = node.Audio.getDuration().getTimeDeltaAsMilliseconds();
+            mWaveform.Width = (int)Math.Round(time * AUDIO_SCALE);
+            mWaveform.Media = node.Audio.getMediaData();
+            mTimeLabel.Text = String.Format("{0:0.00}s",
+                node.Audio.getDuration().getTimeDeltaAsMillisecondFloat() / 1000);
+            Size = new Size(mWaveform.Width + mWaveform.Margin.Right + mWaveform.Margin.Left, Height);
+        }
         
         public Block() { InitializeComponent(); }
 
         void node_CustomTypeChanged(object sender, Events.Node.ChangedCustomTypeEventArgs e)
         {
             CustomKindLabel = e.CustomType;
+        }
+
+        private void node_NodeAudioChanged(object sender, NodeEventArgs<PhraseNode> e)
+        {
+            SetWaveform(mNode);
         }
 
         public string CustomKindLabel
@@ -127,7 +137,7 @@ namespace Obi.ProjectView
         {
             if (!Focused)
             {
-                Enter -= new EventHandler(Block_Enter);
+                Enter -= new EventHandler(Block_Enter); 
                 mStrip.GiveFocus();
                 Focus();
                 Enter += new EventHandler(Block_Enter);
@@ -143,17 +153,21 @@ namespace Obi.ProjectView
 
         private void mWaveform_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left) mWaveform.CursorPosition = e.X;
+            if (e.Button == MouseButtons.Left)
+            {
+                mWaveform.CursorPosition = e.X;
+                mStrip.SelectTimeInBlock(this, mWaveform.Selection);
+            }
         }
 
         private void mWaveform_MouseUp(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left) mWaveform.FinalSelectionPosition = e.X;
+            if (e.Button == MouseButtons.Left && mWaveform.Selection != null) mWaveform.FinalSelectionPosition = e.X;
         }    
 
         private void mWaveform_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left) mWaveform.FinalSelectionPosition = e.X;
+            if (e.Button == MouseButtons.Left && mWaveform.Selection != null) mWaveform.FinalSelectionPosition = e.X;
         }
     }
 }

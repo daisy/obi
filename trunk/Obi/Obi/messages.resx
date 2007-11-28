@@ -852,4 +852,7 @@ Error text: {1}</value>
   <data name="start_recording" xml:space="preserve">
     <value>Start recording</value>
   </data>
+  <data name="split_block" xml:space="preserve">
+    <value>split block</value>
+  </data>
 </root>

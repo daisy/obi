@@ -16,6 +16,7 @@ namespace Obi
         private Kind mKind;          // this block's kind
         private string mCustomKind;  // custom kind name
         public event ChangedCustomTypeEventHandler CustomTypeChanged;
+        public event NodeEventHandler<PhraseNode> NodeAudioChanged;
         public static readonly string XUK_ELEMENT_NAME = "phrase";  // name of the element in the XUK file
 
         /// <summary>
@@ -244,5 +245,18 @@ namespace Obi
         public override int SectionChildCount { get { return 0; } }
         public override PhraseNode PhraseChild(int index) { throw new Exception("No child yet."); }
         public override int PhraseChildCount { get { return 0; } }
+
+        public ManagedAudioMedia SplitAudio(urakawa.media.timing.Time splitPoint)
+        {
+            ManagedAudioMedia newAudio = Audio.split(splitPoint);
+            if (NodeAudioChanged != null) NodeAudioChanged(this, new NodeEventArgs<PhraseNode>(this));
+            return newAudio;
+        }
+
+        public void MergeAudioWith(ManagedAudioMedia audio)
+        {
+            Audio.mergeWith(audio);
+            if (NodeAudioChanged != null) NodeAudioChanged(this, new NodeEventArgs<PhraseNode>(this));
+        }
     }
 }

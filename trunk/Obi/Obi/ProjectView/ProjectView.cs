@@ -679,9 +679,7 @@ namespace Obi.ProjectView
 
         public void SplitBlock()
         {
-            if (CanSplitBlock)
-            {
-            }
+            if (CanSplitBlock) mPresentation.UndoRedoManager.execute(new Commands.Node.SplitAudio(this));
         }
 
         public void MergeBlockWithNext()
