@@ -855,4 +855,7 @@ Error text: {1}</value>
   <data name="split_block" xml:space="preserve">
     <value>split block</value>
   </data>
+  <data name="merge_block_with_next" xml:space="preserve">
+    <value>merge block with next</value>
+  </data>
 </root>

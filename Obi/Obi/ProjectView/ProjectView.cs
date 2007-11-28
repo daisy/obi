@@ -684,9 +684,7 @@ namespace Obi.ProjectView
 
         public void MergeBlockWithNext()
         {
-            if (CanMergeBlockWithNext)
-            {
-            }
+            if (CanMergeBlockWithNext) mPresentation.UndoRedoManager.execute(new Commands.Node.MergeAudio(this));
         }
     }
 

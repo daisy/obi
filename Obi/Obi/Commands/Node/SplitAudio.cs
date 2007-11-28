@@ -17,19 +17,23 @@ namespace Obi.Commands.Node
 
         public override string getShortDescription() { return Localizer.Message("split_block"); }
 
+        public static PhraseNode Split(PhraseNode node, Time splitPoint)
+        {
+            PhraseNode newNode = ((Presentation)node.getPresentation()).CreatePhraseNode(node.SplitAudio(splitPoint));
+            node.InsertAfterSelf(newNode);
+            return newNode;
+        }
+
         public override void execute()
         {
             base.execute();
-            ManagedAudioMedia newAudio = mNode.SplitAudio(mSplitPoint);
-            mNewNode = ((Presentation)mNode.getPresentation()).CreatePhraseNode(newAudio);
-            mNode.InsertAfterSelf(mNewNode);
+            mNewNode = Split(mNode, mSplitPoint);
             View.SelectedBlockNode = mNewNode;
         }
 
         public override void unExecute()
         {
-            mNewNode.Detach();
-            mNode.MergeAudioWith(mNewNode.Audio);
+            MergeAudio.Merge(mNode, mNewNode);
             base.unExecute();
         }
     }

@@ -1048,6 +1048,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to merge block with next.
+        /// </summary>
+        internal static string merge_block_with_next {
+            get {
+                return ResourceManager.GetString("merge_block_with_next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to merge blocks.
         /// </summary>
         internal static string merge_phrases_command_label {
