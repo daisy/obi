@@ -79,6 +79,7 @@ namespace Obi.ProjectView
             set
             {
                 mSelected = value;
+                if (!mSelected) mWaveform.Deselect();
                 BackColor = mSelected ? Color.Yellow : Color.HotPink;
             }
         }

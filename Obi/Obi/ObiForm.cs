@@ -775,81 +775,6 @@ if (mProject != null)
         #endregion
 
 
-
-
-        #region Strips menu event handlers
-
-        private void mSplitAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.SplitBlock();
-        }
-
-        private void mQuickSplitAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.QuickSplitBlock();
-        }
-
-        private void mApplyPhraseDetectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.ApplyPhraseDetection();
-        }
-
-        private void mMergeWithPreviousAudioBlockToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.MergeBlocks();
-        }
-
-        private void mMoveAudioBlockForwardToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.MoveBlock(PhraseNode.Direction.Forward);
-        }
-
-        private void mMoveAudioBlockBackwardToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.MoveBlock(PhraseNode.Direction.Backward);
-        }
-
-        private void mMarkAudioBlockAsSectionHeadingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.MarkSelectedAudioBlockAsHeading();
-        }
-
-        private void mEditAnnotationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.EditAnnotationForSelectedAudioBlock();
-        }
-
-        private void mRemoveAnnotationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.RemoveAnnotationForAudioBlock();
-        }
-
-        private void mSetPageNumberToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.SetPageNumber();
-        }
-
-        private void mRemovePageNumberToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.RemovePageNumber();
-        }
-
-        private void mFocusOnAnnotationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.FocusOnAnnotation();
-        }
-
-        private void mGoToPageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.GoToPage();
-        }
-
-        #endregion
-
-
-
-
-
         /// <summary>
         /// Handle errors when closing a project.
         /// </summary>
@@ -1286,15 +1211,6 @@ if (mProject != null)
         {
             mProjectView.TransportBar.NextSection();
         }
-
-        /// <summary>
-        /// Toggle strip used/unused.
-        /// </summary>
-        private void mMarkStripAsUnusedToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.ToggleSelectedStripUsed();
-        }
-
 
         // Various utility functions
 
