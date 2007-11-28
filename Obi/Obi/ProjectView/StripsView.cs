@@ -16,6 +16,7 @@ namespace Obi.ProjectView
     {
         bool Selected { get; set; }
         ObiNode ObiNode { get; }
+        NodeSelection SelectionFromView { set; }
     }
 
     public partial class StripsView : UserControl, IControlWithRenamableSelection
@@ -58,7 +59,16 @@ namespace Obi.ProjectView
         public bool CanRenameStrip { get { return StripSelected; } }
         public bool CanSplitStrip { get { return BlockSelected && SelectedPhrase.Index > 0; } }
 
-        public bool CanMergeWithNextStrip
+        public bool CanMergeBlockWithNext
+        {
+            get
+            {
+                PhraseNode phrase = mSelectedItem is Block ? ((Block)mSelectedItem).Node : null;
+                return phrase != null && phrase.Index < phrase.ParentAs<SectionNode>().PhraseChildCount - 1;
+            }
+        }
+
+        public bool CanMergeStripWithNext
         {
             get
             {
@@ -106,7 +116,7 @@ namespace Obi.ProjectView
         public urakawa.undo.ICommand MergeSelectedStripWithNextCommand()
         {
             urakawa.undo.CompositeCommand command = null;
-            if (CanMergeWithNextStrip)
+            if (CanMergeStripWithNext)
             {
                 command = mView.Presentation.getCommandFactory().createCompositeCommand();
                 command.setShortDescription(Localizer.Message("merge_strips_command"));
@@ -163,7 +173,7 @@ namespace Obi.ProjectView
                     mSelectedItem = s;
                     if (s != null)
                     {
-                        s.Selected = true;
+                        s.SelectionFromView = mSelection;
                         mLayoutPanel.ScrollControlIntoView((Control)s);
                         SectionNode section = value.Node is SectionNode ? (SectionNode)value.Node :
                             value.Node is PhraseNode ? ((PhraseNode)value.Node).ParentAs<SectionNode>() : null;

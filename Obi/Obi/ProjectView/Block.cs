@@ -85,6 +85,25 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Set the selection from the parent view
+        /// </summary>
+        public NodeSelection SelectionFromView
+        {
+            set
+            {
+                if (value == null)
+                {
+                    Selected = false;
+                }
+                else
+                {
+                    mWaveform.Selection = value.Waveform;
+                    Selected = true;
+                }
+            }
+        }
+
+        /// <summary>
         /// Get the tab index of the block.
         /// </summary>
         public int LastTabIndex { get { return TabIndex; } }
@@ -113,11 +132,7 @@ namespace Obi.ProjectView
 
         private void mWaveform_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                mStrip.SelectedBlock = this;
-                mWaveform.CursorPosition = e.X;
-            }
+            if (e.Button == MouseButtons.Left) mWaveform.CursorPosition = e.X;
         }
 
         private void mWaveform_MouseUp(object sender, MouseEventArgs e)
