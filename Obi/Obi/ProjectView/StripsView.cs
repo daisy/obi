@@ -68,7 +68,7 @@ namespace Obi.ProjectView
             get
             {
                 PhraseNode phrase = mSelectedItem is Block ? ((Block)mSelectedItem).Node : null;
-                return phrase != null && phrase.Index < phrase.ParentAs<SectionNode>().PhraseChildCount - 1;
+                return phrase != null && phrase.Index < phrase.ParentAs<ObiNode>().PhraseChildCount - 1;
             }
         }
 
@@ -191,8 +191,15 @@ namespace Obi.ProjectView
                     {
                         s.SelectionFromView = mSelection;
                         mLayoutPanel.ScrollControlIntoView((Control)s);
-                        SectionNode section = value.Node is SectionNode ? (SectionNode)value.Node :
-                            value.Node is PhraseNode ? ((PhraseNode)value.Node).ParentAs<SectionNode>() : null;
+                        SectionNode section = null;
+                        if (value.Node is SectionNode) section = (SectionNode)value.Node;
+                        else if (value.Node is PhraseNode)
+                        {
+                            //check for nodes inside a phrase container
+                            if (value.Node.getParent() is PhraseNode) section = value.Node.ParentAs<PhraseNode>().ParentAs<SectionNode>();
+                            else section = value.Node.ParentAs<SectionNode>();
+                        }
+                        else section = null;
                         mView.MakeTreeNodeVisibleForSection(section);
                         s.GiveFocus();
                     }
@@ -364,7 +371,19 @@ namespace Obi.ProjectView
 
         private Block FindBlock(PhraseNode node)
         {
-            return FindStrip(node.ParentAs<SectionNode>()).FindBlock(node);
+            //if this node's parent is a phrase node (i.e., this node is in a container)
+            if (node.getParent() is PhraseNode)
+            {
+                PhraseNode p = node.ParentAs<PhraseNode>();
+                ContainerBlock b = (ContainerBlock)this.FindBlock(p);
+                Block phraseblock = b.FindBlock(node);
+                return phraseblock;
+            
+            }
+            else
+            {
+                return FindStrip(node.ParentAs<SectionNode>()).FindBlock(node);
+            }
         }
 
         private ISelectableInStripView FindSelectable(ObiNode node)

@@ -30,6 +30,15 @@ namespace Obi.ProjectView
             mBlocksPanel.Controls.Add(block);
             mBlocksPanel.Controls.SetChildIndex(block, phrase.Index);
             UpdateWidth();
+            UpdateTime();
+        }
+
+        private void UpdateTime()
+        {
+            double time = 0;
+            for (int i = 0; i < Node.PhraseChildCount; i++)
+                time += Node.PhraseChild(i).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
+            TimeLabel = String.Format("{0:0.00}s", time / 1000);
         }
 
         private void UpdateWidth()
@@ -41,5 +50,15 @@ namespace Obi.ProjectView
             w += mBlocksPanel.Location.X + mBlocksPanel.Margin.Right;
             if (w > MinimumSize.Width) MinimumSize = new Size(w, MinimumSize.Height);
         }
+
+        public Block FindBlock(PhraseNode phrase)
+        {
+            foreach (Control c in mBlocksPanel.Controls)
+            {
+                if (c is Block && ((Block)c).Node == phrase) return (Block)c;
+            }
+            return null;
+        }
+       
     }
 }
