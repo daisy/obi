@@ -17,7 +17,6 @@ namespace Obi.ProjectView
         bool Selected { get; set; }
         ObiNode ObiNode { get; }
         NodeSelection SelectionFromView { set; }
-        void GiveFocus();
     }
 
     public partial class StripsView : UserControl, IControlWithRenamableSelection
@@ -29,6 +28,7 @@ namespace Obi.ProjectView
 
         // cursor stuff
         private AudioBlock mPlaybackBlock;
+        private bool mFocusing;
 
         /// <summary>
         /// A new strips view.
@@ -39,6 +39,7 @@ namespace Obi.ProjectView
             InitializeShortcutKeys();
             mView = null;
             mSelection = null;
+            mFocusing = false;
         }
 
 
@@ -80,6 +81,8 @@ namespace Obi.ProjectView
                     mLayoutPanel.Controls.IndexOf((Control)mSelectedItem) < mLayoutPanel.Controls.Count - 1;
             }
         }
+
+        public bool Focusing { get { return mFocusing; } }
 
         public PhraseNode PlaybackBlock
         {
@@ -201,7 +204,9 @@ namespace Obi.ProjectView
                         }
                         else section = null;
                         mView.MakeTreeNodeVisibleForSection(section);
-                        s.GiveFocus();
+                        mFocusing = true;
+                        if (!((Control)s).Focused) ((Control)s).Focus();
+                        mFocusing = false;
                     }
                 }
             }

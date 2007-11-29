@@ -25,6 +25,8 @@ namespace Obi.ProjectView
             Selected = false;
         }
 
+        public StripsView ParentView { get { return mParentView; } }
+
         private void Label_LabelEditedByUser(object sender, EventArgs e)
         {
             if (mLabel.Label != "")
@@ -228,17 +230,7 @@ namespace Obi.ProjectView
 
         private void Strip_Enter(object sender, EventArgs e)
         {
-            if (mParentView.SelectedSection != mNode) mParentView.SelectedNode = mNode;
-        }
-
-        public void GiveFocus()
-        {
-            if (!Focused)
-            {
-                Enter -= new EventHandler(Strip_Enter);
-                Focus();
-                Enter += new EventHandler(Strip_Enter);
-            }
+            if (mParentView.SelectedSection != mNode && !mParentView.Focusing) mParentView.SelectedNode = mNode;
         }
 
         /// <summary>
