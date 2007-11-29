@@ -219,7 +219,6 @@ namespace Obi.ProjectView
             // 
             // mDisplayTimer
             // 
-            this.mDisplayTimer.Interval = 333;
             this.mDisplayTimer.Tick += new System.EventHandler(this.mDisplayTimer_Tick);
             // 
             // mDisplayBox
