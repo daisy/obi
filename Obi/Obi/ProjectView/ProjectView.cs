@@ -216,6 +216,8 @@ namespace Obi.ProjectView
             set { Selection = value == null ? null : new NodeSelection(value, mStripsView); }
         }
 
+        public PhraseNode PlaybackBlock { set { mStripsView.PlaybackBlock = value; } }
+
         /// <summary>
         /// The section node for the strip selected in the strips view.
         /// Null if no strip is selected.
@@ -715,6 +717,9 @@ namespace Obi.ProjectView
                 parentNode.RemoveChild(SelectedBlockNode);
             }
         }
+
+        public void UpdateCursorPosition(double time) { mStripsView.UpdateCursorPosition(time); }
+        public void SelectAtCurrentTime() { mStripsView.SelectAtCurrentTime(); }
     }
 
     public class ImportingFileEventArgs

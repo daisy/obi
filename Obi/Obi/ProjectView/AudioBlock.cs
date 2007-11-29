@@ -81,5 +81,18 @@ namespace Obi.ProjectView
         {
             if (e.Button == MouseButtons.Left) mWaveform.FinalSelectionPosition = e.X;
         }
+
+        public void SetCursorTime(double time)
+        {
+            mWaveform.Selection = new WaveformSelection(time);
+            Strip.SelectTimeInBlock(this, mWaveform.Selection);
+        }
+
+        public void UpdateCursorTime(double time)
+        {
+            if (time > mWaveform.Selection.CursorTime) mWaveform.CursorTime = time;
+        }
+
+        public void SelectAtCurrentTime() { Strip.SelectTimeInBlock(this, mWaveform.Selection); }
     }
 }

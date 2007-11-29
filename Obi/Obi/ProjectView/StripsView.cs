@@ -27,6 +27,9 @@ namespace Obi.ProjectView
         private ISelectableInStripView mSelectedItem;                // the actual item for the selection
         private Dictionary<Keys, HandledShortcutKey> mShortcutKeys;  // list of all shortcuts
 
+        // cursor stuff
+        private AudioBlock mPlaybackBlock;
+
         /// <summary>
         /// A new strips view.
         /// </summary>
@@ -77,6 +80,18 @@ namespace Obi.ProjectView
                     mLayoutPanel.Controls.IndexOf((Control)mSelectedItem) < mLayoutPanel.Controls.Count - 1;
             }
         }
+
+        public PhraseNode PlaybackBlock
+        {
+            get { return mPlaybackBlock.Node; }
+            set
+            {
+                mPlaybackBlock = value == null ? null : (AudioBlock)FindBlock(value);
+                if (mPlaybackBlock != null) mPlaybackBlock.SetCursorTime(0.0);
+            }
+        }
+
+        public void UpdateCursorPosition(double time) { mPlaybackBlock.UpdateCursorTime(time); }
 
         /// <summary>
         /// Create a command to delete the selected strip.
@@ -651,5 +666,6 @@ namespace Obi.ProjectView
 
         #endregion
 
+        public void SelectAtCurrentTime() { mPlaybackBlock.SelectAtCurrentTime(); }
     }
 }

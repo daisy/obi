@@ -245,6 +245,8 @@ namespace Obi.ProjectView
         private void Play_MovedToPhrase(object sender, Events.Node.PhraseNodeEventArgs e)
         {
             mView.SelectedBlockNode = e.Node;
+            mView.PlaybackBlock = e.Node;
+            mDisplayTime = 0.0;
         }
 
         // Update the transport bar according to the player state.
@@ -271,6 +273,8 @@ namespace Obi.ProjectView
         // Update the transport bar once the player has stopped.
         private void Play_PlayerStopped(object sender, EventArgs e)
         {
+            mView.PlaybackBlock = null;
+            mDisplayTime = 0.0;
             /*
             // Avn: condition added on 13 May 2007 
             //to prevent focus from returning to initial position  after playback if focus is not in same view
@@ -453,6 +457,8 @@ namespace Obi.ProjectView
             if (Enabled)
             {
                 mCurrentPlaylist.Pause();
+                mDisplayTimer.Stop();
+                mView.SelectAtCurrentTime();
                 mIsSerialPlaying = false;
             }
         }
@@ -647,7 +653,10 @@ namespace Obi.ProjectView
         private void mDisplayTimer_Tick(object sender, EventArgs e)
         {
             UpdateTimeDisplay();
+            mView.UpdateCursorPosition(mCurrentPlaylist.CurrentTimeInAsset);
         }
+
+        private double mDisplayTime;
 
         /// <summary>
         /// Update the time display to show current time. Depends on the what kind of timing is selected.
@@ -656,14 +665,18 @@ namespace Obi.ProjectView
         {
             if (Enabled && mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Stopped)
             {
-                mTimeDisplayBox.Text =
-                    mDisplayBox.SelectedIndex == Elapsed ?
-                        ObiForm.FormatTime_hh_mm_ss(mCurrentPlaylist.CurrentTimeInAsset) :
-                    mDisplayBox.SelectedIndex == ElapsedTotal ?
-                        ObiForm.FormatTime_hh_mm_ss(mCurrentPlaylist.CurrentTime) :
-                    mDisplayBox.SelectedIndex == Remain ?
-                        ObiForm.FormatTime_hh_mm_ss(mCurrentPlaylist.RemainingTimeInAsset) :
-                        ObiForm.FormatTime_hh_mm_ss(mCurrentPlaylist.RemainingTime);
+                if (mCurrentPlaylist.CurrentTimeInAsset > mDisplayTime)
+                {
+                    mDisplayTime = mCurrentPlaylist.CurrentTimeInAsset;
+                    mTimeDisplayBox.Text =
+                        mDisplayBox.SelectedIndex == Elapsed ?
+                            ObiForm.FormatTime_hh_mm_ss(mCurrentPlaylist.CurrentTimeInAsset) :
+                        mDisplayBox.SelectedIndex == ElapsedTotal ?
+                            ObiForm.FormatTime_hh_mm_ss(mCurrentPlaylist.CurrentTime) :
+                        mDisplayBox.SelectedIndex == Remain ?
+                            ObiForm.FormatTime_hh_mm_ss(mCurrentPlaylist.RemainingTimeInAsset) :
+                            ObiForm.FormatTime_hh_mm_ss(mCurrentPlaylist.RemainingTime);
+                }
             }
             else
             {

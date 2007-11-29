@@ -75,6 +75,15 @@ namespace Obi.ProjectView
             base.OnPaint(pe);
         }
 
+        public double CursorTime
+        {
+            set
+            {
+                mSelection.CursorTime = value;
+                Invalidate();
+            }
+        }
+
         public int CursorPosition
         {
             get { return XFromTime(mSelection.CursorTime); }
