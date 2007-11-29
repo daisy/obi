@@ -27,7 +27,9 @@ namespace Obi
         private PlayBackState mPlayBackState;
         private int mPlaybackRate;                // current playback rate (multiplier)
 
-        private enum PlayBackState { Normal, Forward, Rewind } ;
+        private double mPlaybackStartTime;        // start time in first asset
+
+        private enum PlayBackState { Normal, Forward, Rewind };
         private static readonly int[] PlaybackRates = { 1, 2, 4, 8 };
 
         // Amount of time after which "previous phrase" goes to the beginning of the phrase
@@ -69,11 +71,12 @@ namespace Obi
         /// </summary>
         /// <param name="player">The audio player for this playlist.</param>
         /// <param name="node">The phrase or section node in the playlist.</param>
-        public Playlist(AudioPlayer player, ObiNode node)
+        public Playlist(AudioPlayer player, NodeSelection selection)
         {
             mPlayer = player;
             Reset(false);
-            AddPhraseNodesFromStripOrPhrase(node);
+            AddPhraseNodesFromStripOrPhrase(selection.Node);
+            if (selection.Waveform != null && selection.Waveform.HasCursor) mPlaybackStartTime = selection.Waveform.CursorTime;
         }
 
         // Avn: added to expose list of phrases
@@ -107,6 +110,7 @@ namespace Obi
         // Insert new tree nodes in the right place in the playlist.
         private void InsertNode(urakawa.core.TreeNode node)
         {
+
         }
 
         private void Presentation_treeNodeRemoved(object o, urakawa.core.events.TreeNodeRemovedEventArgs e)
@@ -333,6 +337,7 @@ namespace Obi
             mPlayBackState = PlayBackState.Normal;
             mPlaylistState = mPlayer.State;
             mIsMaster = isMaster;
+            mPlaybackStartTime = 0.0;
         }
 
         private void AddPhraseNodes(urakawa.core.TreeNode node)
@@ -380,7 +385,11 @@ namespace Obi
         public void Play()
         {
             System.Diagnostics.Debug.Assert(mPlaylistState == AudioPlayerState.Stopped, "Only play from stopped state.");
-            if (mCurrentPhraseIndex < mPhrases.Count) PlayPhrase(mCurrentPhraseIndex);
+            if (mCurrentPhraseIndex < mPhrases.Count)
+            {
+                PlayPhrase(mCurrentPhraseIndex);
+                mPlayer.CurrentTimePosition = mPlaybackStartTime;
+            }
         }
 
         /// <summary>

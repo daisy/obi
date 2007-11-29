@@ -257,6 +257,10 @@ namespace Obi
         }
         public override int PhraseChildCount { get { return this.getChildCount(); } }
 
+        /// <summary>
+        /// Split the audio of this phrase at the given position and notify that the 
+        /// </summary>
+        /// <returns>The other half of the split audio.</returns>
         public ManagedAudioMedia SplitAudio(urakawa.media.timing.Time splitPoint)
         {
             ManagedAudioMedia newAudio = Audio.split(splitPoint);
@@ -264,10 +268,24 @@ namespace Obi
             return newAudio;
         }
 
+        /// <summary>
+        /// Merge the audio of this phrase with the audio of another phrase and notify that audio has changed.
+        /// </summary>
+        /// <param name="audio"></param>
         public void MergeAudioWith(ManagedAudioMedia audio)
         {
             Audio.mergeWith(audio);
             if (NodeAudioChanged != null) NodeAudioChanged(this, new NodeEventArgs<PhraseNode>(this));
+        }
+
+        /// <summary>
+        /// Test whether this node is 
+        /// </summary>
+        public bool IsBeforeInProject(PhraseNode other)
+        {
+            SectionNode parent = ParentAs<SectionNode>();
+            SectionNode otherParent = other.ParentAs<SectionNode>();
+            return parent.Position < otherParent.Position || (parent == otherParent && Index < other.Index);
         }
     }
 }

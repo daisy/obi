@@ -10,15 +10,15 @@ namespace Obi.ProjectView
 {
     public partial class Block : UserControl, ISelectableInStripView
     {
-        private PhraseNode mNode;   // the corresponding node
-        private Strip mStrip;       // the parent strip
-        private bool mSelected;     // selected flag
+        private PhraseNode mNode;                         // the corresponding node
+        private bool mSelected;                           // selected flag
+        private ISelectableInStripView mParentContainer;  // not necessarily a strip!
 
-        public Block(PhraseNode node, Strip strip): this()
+        public Block(PhraseNode node, ISelectableInStripView parent): this()
         {
             mNode = node;
+            mParentContainer = parent;
             CustomKindLabel = node.CustomKind;
-            mStrip = strip;
             mSelected = false;
             mTimeLabel.Text = "0s";
             node.CustomTypeChanged += new ChangedCustomTypeEventHandler(node_CustomTypeChanged);
@@ -79,20 +79,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// Set the selection from the parent view
         /// </summary>
-        public virtual NodeSelection SelectionFromView
-        {
-            set
-            {
-                if (value == null)
-                {
-                    Selected = false;
-                }
-                else
-                {
-                    Selected = true;
-                }
-            }
-        }
+        public virtual NodeSelection SelectionFromView { set { Selected = value != null; } }
 
         /// <summary>
         /// Get the tab index of the block.
@@ -112,23 +99,29 @@ namespace Obi.ProjectView
         /// <summary>
         /// The strip that contains this block.
         /// </summary>
-        public Strip Strip { get { return mStrip; } }
-
-        public void GiveFocus()
-        {
-            if (!Focused)
-            {
-                Enter -= new EventHandler(Block_Enter); 
-                mStrip.GiveFocus();
-                Focus();
-                Enter += new EventHandler(Block_Enter);
-            }
-        }
+        public Strip Strip { get { return mParentContainer is Strip ? (Strip)mParentContainer : ((Block)mParentContainer).Strip; } }
 
         // Select on click and tabbing
-        private void Block_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
-        private void Block_Enter(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
-        private void mTimeLabel_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
-        private void mCustomKindLabel_Click(object sender, EventArgs e) { mStrip.SelectedBlock = this; }
+        private void Block_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.Print("Click on {0}", this);
+            Strip.SelectedBlock = this;
+        }
+
+        protected void Block_Enter(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.Print("Enter {0}?", this);
+            if (!Strip.ParentView.Focusing)
+            {
+                System.Diagnostics.Debug.Print("Yes.");
+                Strip.SelectedBlock = this;
+            }
+            else
+            {
+                System.Diagnostics.Debug.Print("No.");
+            }
+        }
+        private void mTimeLabel_Click(object sender, EventArgs e) { Strip.SelectedBlock = this; }
+        private void mCustomKindLabel_Click(object sender, EventArgs e) { Strip.SelectedBlock = this; }
     }
 }

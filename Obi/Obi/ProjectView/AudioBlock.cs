@@ -69,7 +69,11 @@ namespace Obi.ProjectView
 
         private void mWaveform_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left) mWaveform.CursorPosition = e.X;
+            if (e.Button == MouseButtons.Left)
+            {
+                mWaveform.CursorPosition = e.X;
+                Strip.SelectTimeInBlock(this, mWaveform.Selection);
+            }
         }
 
         private void mWaveform_MouseUp(object sender, MouseEventArgs e)

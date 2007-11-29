@@ -25,7 +25,7 @@ namespace Obi.ProjectView
         private void AddBlockForPhrase(PhraseNode phrase)
         {
             Block block = null;
-            if (phrase.Audio == null) block = new Block(phrase, Strip);
+            if (phrase.Audio == null) block = new Block(phrase, this);
             else block = new AudioBlock(phrase, Strip);
             mBlocksPanel.Controls.Add(block);
             mBlocksPanel.Controls.SetChildIndex(block, phrase.Index);
@@ -59,6 +59,5 @@ namespace Obi.ProjectView
             }
             return null;
         }
-       
     }
 }
