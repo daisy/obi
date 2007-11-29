@@ -123,7 +123,7 @@ namespace Obi.Audio
                     return mState;
             }
         }
-
+        
 /// <summary>
 ///      Returns the current position of play cursor to be used by CurrentTimePosition property
 /// </summary>
@@ -136,7 +136,7 @@ namespace Obi.Audio
                 return 0;
         }
 
-
+        long  PrevBytePosition ;
         /// <summary>
         /// Get the current playback position in bytes.
         /// </summary>
@@ -179,6 +179,12 @@ namespace Obi.Audio
                         if (m_FwdRwdRate  != 0 ) lCurrentPosition = m_lChunkStartPosition;
             lCurrentPosition = CalculationFunctions.AdaptToFrame(lCurrentPosition, m_FrameSize);
         }//-1
+
+        if (PrevBytePosition > lCurrentPosition && m_FwdRwdRate >= 0)
+                                return PrevBytePosition;
+                                        
+        PrevBytePosition = lCurrentPosition;
+
             return lCurrentPosition;
         }
 
@@ -607,7 +613,7 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
                     m_lLength = (mCurrentAudio.getPCMLength());
                 }
 
-
+                PrevBytePosition = lStartPosition;
                 // initialize M_lPlayed for this asset
                 m_lPlayed = lStartPosition;
 
