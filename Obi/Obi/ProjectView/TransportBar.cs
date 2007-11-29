@@ -809,11 +809,14 @@ namespace Obi.ProjectView
                 mRecordingSection = selected.ParentAs<SectionNode>();
                 if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused)
                 {
-                    // split
-                    mCurrentPlaylist.Stop();
-                    mRecordingInitPhraseIndex =  selected.Index;
+                    if (mView.Selection.Waveform.HasCursor)
+                    {
+                        mView.Presentation.UndoRedoManager.execute(new Commands.Node.SplitAudio(mView ));
+                        mCurrentPlaylist.Stop();
+                        //mRecordingInitPhraseIndex = selected.Index;
+                    }
                 }
-                else
+                
                 mRecordingInitPhraseIndex =  1 + selected.Index;
             }
             Settings settings = mView.ObiForm.Settings;
