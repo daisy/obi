@@ -97,15 +97,6 @@ namespace Obi.Audio
         */
         // NewDetection
 
-        public static List<ManagedAudioMedia> Apply(ManagedAudioMedia audio, long threshold, double GapLength, double before)
-        {
-            long lGapLength = CalculationFunctions.ConvertTimeToByte(GapLength, (int)audio.getMediaData().getPCMFormat().getSampleRate(), audio.getMediaData().getPCMFormat().getBlockAlign());
-            long lBefore = CalculationFunctions.ConvertTimeToByte(before, (int)audio.getMediaData().getPCMFormat().getSampleRate(), audio.getMediaData().getPCMFormat().getBlockAlign());
-            return ApplyPhraseDetection(audio, threshold, lGapLength, lBefore);
-        }
-
-
-
         // Detecs the maximum size of noise level in a silent sample file
         public static long GetSilenceAmplitude (ManagedAudioMedia RefAsset)
         {
@@ -170,9 +161,15 @@ namespace Obi.Audio
         }
 
 
+        public static List<ManagedAudioMedia> Apply(ManagedAudioMedia audio, long threshold, double GapLength, double before)
+        {
+            long lGapLength = CalculationFunctions.ConvertTimeToByte(GapLength, (int)audio.getMediaData().getPCMFormat().getSampleRate(), audio.getMediaData().getPCMFormat().getBlockAlign());
+            long lBefore = CalculationFunctions.ConvertTimeToByte(before, (int)audio.getMediaData().getPCMFormat().getSampleRate(), audio.getMediaData().getPCMFormat().getBlockAlign());
+            return ApplyPhraseDetection(audio, threshold, lGapLength, lBefore);
+        }
 
 
-        public static  List<ManagedAudioMedia> ApplyPhraseDetection(ManagedAudioMedia ManagedAsset, long threshold, long GapLength, long before)
+        private static  List<ManagedAudioMedia> ApplyPhraseDetection(ManagedAudioMedia ManagedAsset, long threshold, long GapLength, long before)
         {
             m_AudioAsset = ManagedAsset.getMediaData ()  ;
             GapLength = CalculationFunctions.AdaptToFrame(GapLength, m_AudioAsset.getPCMFormat().getBlockAlign());
