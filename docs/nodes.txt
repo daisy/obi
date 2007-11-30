@@ -1,0 +1,55 @@
+# Node hierarchy
+
+* ObiNode
+  + parent Obi node
+  + used/unused
+  - no title
+  - no audio
+  + subsections
+  + contents
+  - no special class
+
+  * RootNode < ObiNode
+    ~ no parent (always null)
+    ~ no contents (only sections)
+
+  * SectionNode < ObiNode
+    ~ parent is RootNode or SectionNode
+    + title (text channel)
+    + subsections (Section nodes)
+    + contents (EmptyNodes)
+
+  * EmptyNode < ObiNode
+    ~ parent is ContainerNode or SectionNode
+    + special class
+    ~ no subsections
+
+    * PhraseNode < EmptyNode
+      + audio (audio channel)
+      ~ no children whatsoever
+
+    * ContainerNode < EmptyNode
+      + contents (EmptyNodes)
+      + special class
+
+
+# Navigation
+
+* Tab is linear: move from node to node in a depth-first way
+* Arrows:
+  * up: moves up the tree inside contents, then to previous section.
+  * down: moves to next section.
+  * right: moves to next phrase, or first phrase of container. Don't go
+    outside of strips, but go outside of containers.
+  * left: moves to previous phrase, or last phrase of container/section.
+
+
+# Behavior (blocks)
+
+* Dummy node in the TOC
+* Cursor between blocks
+  * Add to node selection: a node is always selected; may have cursor.
+* Empty:
+  * Record: transform into audio block (like dummy node)
+  * Import audio: transform into audio block (like dummy node)
+  * Paste a block: 
