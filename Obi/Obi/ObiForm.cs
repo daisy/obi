@@ -66,7 +66,7 @@ namespace Obi
             mDiscardChangesToolStripMenuItem.Enabled = false;  // mSession.CanSave;
             mCloseProjectToolStripMenuItem.Enabled = mSession.HasProject;
             mCleanProjectToolStripMenuItem.Enabled = false; // currently disabled
-            mExportAsDAISYToolStripMenuItem.Enabled = false;  // currently disabled
+            mExportAsDAISYToolStripMenuItem.Enabled = mSession.HasProject;  // currently disabled
             mExitToolStripMenuItem.Enabled = true;
         }
 
@@ -680,44 +680,40 @@ namespace Obi
 
         }
 
+        /// <summary>
+        /// Export makes an in-memory copy of the project tree and export it as a Daisy book
+        /// </summary>
         private void Export()
         {
-            /*
-if (mProject != null)
-{
-    mProjectView.TransportBar.Enabled = false;
-    if (mProject.Unsaved)
-    {
-        DialogResult result = MessageBox.Show(Localizer.Message("export_unsaved_text"),
-            Localizer.Message("export_unsaved_caption"), MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-        if (result == DialogResult.Cancel) return;
-    }
-    this.Cursor = Cursors.WaitCursor;
-    FolderBrowserDialog dialog = new FolderBrowserDialog();
-    dialog.Description = Localizer.Message("export_choose_folder");
-    dialog.SelectedPath = mSettings.DefaultExportPath;
-    if (dialog.ShowDialog() == DialogResult.OK && IsExportDirectoryReady(dialog.SelectedPath))
-    {
-        try
-        {
-            mProject.ExportToZed(dialog.SelectedPath);
-            MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), dialog.SelectedPath),
-                Localizer.Message("saved_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-        catch (Exception x)
-        {
-            MessageBox.Show(String.Format(Localizer.Message("didnt_save_as_daisy_text"), dialog.SelectedPath, x.Message),
-                Localizer.Message("didnt_save_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-    }
-    else
-    {
-        Ready();
-    }
-    this.Cursor = Cursors.Default;
-    mProjectView.TransportBar.Enabled = true;
-}*/
+            mProjectView.TransportBar.Enabled = false;
+            
+            //should we prompt the user to save first before exporting?  we used to do this.
 
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.Description = Localizer.Message("export_choose_folder");
+            dialog.SelectedPath = mSettings.DefaultExportPath;
+            if (dialog.ShowDialog() == DialogResult.OK && IsExportDirectoryReady(dialog.SelectedPath))
+            {
+                try
+                {
+                    //need the trailing slash -- otherwise exported data ends up in a folder one level higher than our selection
+                    string path = dialog.SelectedPath;
+                    if (!path.EndsWith("/")) path += "/";
+                    mSession.Presentation.ExportToZed(new System.Uri(path));
+                    MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), dialog.SelectedPath),
+                    Localizer.Message("saved_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception x)
+                {
+                    MessageBox.Show(String.Format(Localizer.Message("didnt_save_as_daisy_text"), dialog.SelectedPath, x.Message),
+                    Localizer.Message("didnt_save_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                Ready();
+            }
+            mProjectView.TransportBar.Enabled = true;
         }
 
         /// <summary>

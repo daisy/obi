@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using urakawa.property.channel;
 using urakawa.media.data.audio;
+using urakawa.publish;
+using System.Xml;
 
 namespace Obi
 {
@@ -20,7 +22,8 @@ namespace Obi
 
         public static readonly string AUDIO_CHANNEL_NAME = "obi.audio";  // canonical name of the audio channel
         public static readonly string TEXT_CHANNEL_NAME = "obi.text";    // canonical name of the text channel
-        
+        public static readonly string PUBLISH_AUDIO_CHANNEL_NAME = "obi.publish.audio"; //canonical name of the published audio channel
+
         public event Commands.UndoRedoEventHandler CommandExecuted;     // triggered when a command was executed
         public event Commands.UndoRedoEventHandler CommandUnexecuted;   // triggered when a command was unexecuted
         public event NodeEventHandler<SectionNode> RenamedSectionNode;  // triggered after a section was renamed
@@ -340,6 +343,33 @@ namespace Obi
         /// </summary>
         public void UpdateAudioForPhrase(PhraseNode phrase, ManagedAudioMedia media)
         {
+        }
+
+        public void ExportToZed(Uri destinationDirectory)
+        {
+            //these delegates help filter the nodes
+            TreeNodeTestDelegate nodeIsSection = delegate(urakawa.core.TreeNode node) { return node is SectionNode; };
+            TreeNodeTestDelegate nodeIsUnused = delegate(urakawa.core.TreeNode node) { return !((ObiNode)node).Used; };
+            
+            //add a channel to hold the published audio media
+            AddChannel(Presentation.PUBLISH_AUDIO_CHANNEL_NAME);
+            Channel publishChannel = GetSingleChannelByName(Presentation.PUBLISH_AUDIO_CHANNEL_NAME);
+
+            //this visitor should make one audio file per section in the destination channel
+            PublishManagedAudioVisitor visitor = new PublishManagedAudioVisitor(nodeIsSection, nodeIsUnused);
+            visitor.setDestinationChannel(publishChannel);
+            visitor.setSourceChannel(AudioChannel);
+            visitor.setDestinationDirectory(destinationDirectory);
+            RootNode.acceptDepthFirst(visitor);
+
+            //get the XUK source as a string.
+            System.Text.StringBuilder srcstr = new System.Text.StringBuilder();
+            //write to disk for testing
+            //XmlWriter writer = XmlWriter.Create(destinationDirectory.LocalPath + "testoutput.xml");
+            XmlWriter writer = XmlWriter.Create(srcstr);
+            getProject().saveXUK(writer, null);
+            writer.Close();
+            
         }
     }
 
