@@ -65,6 +65,8 @@ Main form
 
   + [B] Blocks
     + [I] Import audio files ................ Ctrl+I
+    + [S] Split block ....................... Ctrl+P
+    + [M] Merge block with next ............. Ctrl+M
     ------------------------------------------------
     + [L] Listen to block ................... Alt+L
 
