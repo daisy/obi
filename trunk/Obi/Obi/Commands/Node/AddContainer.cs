@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Obi.Commands.Node
 {
+    /// <summary>
+    /// This command adds a container.  However, it will probably go away when empty block support is complete.
+    /// </summary>
     class AddContainer : Command
     {
         private int mIndex;

@@ -691,6 +691,8 @@ namespace Obi.ProjectView
 
         public void MakeBlockIntoContainer()
         {
+            //there is a problem with this because the treenode_added event gets thrown for each step
+            //and Obi isn't used to dealing with empty nodes yet (which happens after cmd1 below gets executed)
             if (SelectedBlockNode != null)
             {
                 urakawa.undo.CompositeCommand command = new urakawa.undo.CompositeCommand();
