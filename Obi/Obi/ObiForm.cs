@@ -1629,14 +1629,14 @@ if (mProject != null)
             dialog.ShowDialog();
         }
 
-        private void containerizeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mMakeBlockIntoContainerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.MakeBlockIntoContainerBlock();
+            mProjectView.MakeBlockIntoContainer();
         }
 
-        private void uncontainerizeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mRemoveContainerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.MakeContainerBlockIntoBlocks();
+            mProjectView.RemoveContainer();
         }
     }
 }
