@@ -325,6 +325,16 @@ namespace Obi
             return phrase;
         }
 
+        public List <PhraseNode> CreatePhraseNodesFromAudioAssetList(List<ManagedAudioMedia> AssetList)
+        {
+            List<PhraseNode> PhraseList = new List<PhraseNode> () ;
+
+            for (int i = 0; i < AssetList.Count; i++)
+            {
+                CreatePhraseNode(AssetList[i]);
+            }
+            return PhraseList ;
+        }
         /// <summary>
         /// During recording of a phrase, its audio may/should be updated.
         /// </summary>
