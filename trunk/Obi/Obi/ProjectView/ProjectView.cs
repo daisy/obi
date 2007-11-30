@@ -689,24 +689,24 @@ namespace Obi.ProjectView
             if (CanMergeBlockWithNext) mPresentation.UndoRedoManager.execute(new Commands.Node.MergeAudio(this));
         }
 
-        internal void MakeBlockIntoContainerBlock()
+        public void MakeBlockIntoContainer()
         {
             if (SelectedBlockNode != null)
             {
-                int index = SelectedBlockNode.Index;
-                ObiNode parentNode = SelectedBlockNode.ParentAs<ObiNode>();
-                PhraseNode containerPhrase = mPresentation.CreatePhraseNode();
-                PhraseNode nodeToInsert = (PhraseNode)SelectedBlockNode.Detach();
-                containerPhrase.AppendChild(nodeToInsert);
-                parentNode.Insert(containerPhrase, index);
+                urakawa.undo.CompositeCommand command = new urakawa.undo.CompositeCommand();
+                Commands.Node.AddContainer cmd1 = new Obi.Commands.Node.AddContainer(this, SelectedBlockNode.ParentAs<ObiNode>(), SelectedBlockNode.Index);
+                Commands.Node.ChangeParent cmd2 = new Obi.Commands.Node.ChangeParent(this, SelectedBlockNode, cmd1.Container);
+                command.append(cmd1);
+                command.append(cmd2);
+                mPresentation.UndoRedoManager.execute(command);
             }
         }
 
-        //remove the container
-        internal void MakeContainerBlockIntoBlocks()
+        public void RemoveContainer()
         {
             if (SelectedBlockNode != null)
             {
+                //here, selected block node is the container itself
                 int index = SelectedBlockNode.Index;
                 ObiNode parentNode = SelectedBlockNode.ParentAs<ObiNode>();
                 for (int i = 0; i < SelectedBlockNode.PhraseChildCount; i++)

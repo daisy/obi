@@ -22,7 +22,7 @@ namespace Obi.ProjectView
                 AddBlockForPhrase(phrase.PhraseChild(i));
             }
         }
-        private void AddBlockForPhrase(PhraseNode phrase)
+        public Block AddBlockForPhrase(PhraseNode phrase)
         {
             Block block = null;
             if (phrase.Audio == null) block = new Block(phrase, this);
@@ -31,6 +31,7 @@ namespace Obi.ProjectView
             mBlocksPanel.Controls.SetChildIndex(block, phrase.Index);
             UpdateWidth();
             UpdateTime();
+            return block;
         }
 
         private void UpdateTime()
