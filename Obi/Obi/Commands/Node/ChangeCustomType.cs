@@ -19,23 +19,23 @@ namespace Obi.Commands.Node
             {
                 mNode = node;
                 mCustomKind = customType;
-                mOldCustomKind = node.CustomKind;
+                mOldCustomKind = node.CustomClass;
             }
         }
         public override void execute()
         {
             if (mNode == null) return;
-            mNode.CustomKind = mCustomKind;
-            if (mCustomKind == "") mNode.PhraseKind = PhraseNode.Kind.Plain;
-            else mNode.PhraseKind = PhraseNode.Kind.Custom;
+            mNode.CustomClass = mCustomKind;
+            if (mCustomKind == "") mNode.NodeKind = PhraseNode.Kind.Plain;
+            else mNode.NodeKind = PhraseNode.Kind.Custom;
         }
 
         public override void unExecute()
         {
             if (mNode == null) return;
-            mNode.CustomKind = mOldCustomKind;
-            if (mOldCustomKind == "") mNode.PhraseKind = PhraseNode.Kind.Plain;
-            else mNode.PhraseKind = PhraseNode.Kind.Custom;
+            mNode.CustomClass = mOldCustomKind;
+            if (mOldCustomKind == "") mNode.NodeKind = PhraseNode.Kind.Plain;
+            else mNode.NodeKind = PhraseNode.Kind.Custom;
         }
     }
 }

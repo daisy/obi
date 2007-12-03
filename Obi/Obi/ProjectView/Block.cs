@@ -10,40 +10,40 @@ namespace Obi.ProjectView
 {
     public partial class Block : UserControl, ISelectableInStripView
     {
-        private PhraseNode mNode;                         // the corresponding node
+        private EmptyNode mNode;                          // the corresponding node
         private bool mSelected;                           // selected flag
         private ISelectableInStripView mParentContainer;  // not necessarily a strip!
 
-        public Block(PhraseNode node, ISelectableInStripView parent): this()
+        public Block(EmptyNode node, ISelectableInStripView parent): this()
         {
             mNode = node;
             mParentContainer = parent;
-            CustomKindLabel = node.CustomKind;
+            CustomClassLabel = node.CustomClass;
             mSelected = false;
             mTimeLabel.Text = "0s";
-            node.CustomTypeChanged += new ChangedCustomTypeEventHandler(node_CustomTypeChanged);
+            node.ChangedKind += new EmptyNode.ChangedKindEventHandler(node_ChangedKind);
         }
 
         public Block() { InitializeComponent(); }
 
-        void node_CustomTypeChanged(object sender, Events.Node.ChangedCustomTypeEventArgs e)
+        void node_ChangedKind(object sender, ChangedKindEventArgs e)
         {
-            CustomKindLabel = e.CustomType;
+            CustomClassLabel = e.Node.NodeKind == EmptyNode.Kind.Custom ? e.Node.CustomClass : e.Node.NodeKind.ToString();
         }
 
-        public string CustomKindLabel
+        public string CustomClassLabel
         {
             set
             {
                 if (value == null)
                 {
-                    mCustomKindLabel.Text = "";
-                    mCustomKindLabel.Visible = false;
+                    mCustomClassLabel.Text = "";
+                    mCustomClassLabel.Visible = false;
                 }
                 else
                 {
-                    mCustomKindLabel.Text = value;
-                    mCustomKindLabel.Visible = true;
+                    mCustomClassLabel.Text = value;
+                    mCustomClassLabel.Visible = true;
                 }
             }
         }
@@ -51,7 +51,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// The phrase node for this block.
         /// </summary>
-        public PhraseNode Node { get { return mNode; } }
+        public EmptyNode Node { get { return mNode; } }
         public ObiNode ObiNode { get { return mNode; } }
 
         /// <summary>

@@ -58,23 +58,12 @@ namespace Obi.ProjectView
         /// <summary>
         /// Add a new block for a phrase node.
         /// </summary>
-        public Block AddBlockForPhrase(PhraseNode phrase)
+        public Block AddBlockForPhrase(EmptyNode node)
         {
-            Block block = null;
-            if (phrase.Audio == null && phrase.PhraseChildCount == 0)
-                block = new Block(phrase, this);
-            else
-            {
-                if (phrase.PhraseChildCount > 0)
-                {
-                    block = new ContainerBlock(phrase, this);
-                    ((ContainerBlock)block).AddBlocksForPhrase(phrase);
-                }
-                else if (phrase.Audio != null)
-                    block = new AudioBlock(phrase, this);
-            }
+            Block block = node is EmptyNode ? new Block(node, this) :
+                node is PhraseNode ? new AudioBlock((PhraseNode)node, this) : null; // AddContainerBlock();
             mBlocksPanel.Controls.Add(block);
-            mBlocksPanel.Controls.SetChildIndex(block, phrase.Index);
+            mBlocksPanel.Controls.SetChildIndex(block, node.Index);
             UpdateWidth();
             return block;
         }

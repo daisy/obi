@@ -129,8 +129,20 @@ namespace Obi
         {
             ObiNode copy = (ObiNode)base.copyProtected(deep, inclProperties);
             copy.mUsed = mUsed;
+            if (inclProperties) copyProperties(copy);
             return copy;
         }
+
+        /// <summary>
+        /// Test whether this node is 
+        /// </summary>
+        public bool IsBeforeInProject(PhraseNode other)
+        {
+            SectionNode parent = ParentAs<SectionNode>();
+            SectionNode otherParent = other.ParentAs<SectionNode>();
+            return parent.Position < otherParent.Position || (parent == otherParent && Index < other.Index);
+        }
+
     }
 
     /// <summary>
