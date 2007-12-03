@@ -99,15 +99,11 @@ namespace Obi.Dialogs
                 delegate(urakawa.core.TreeNode n)
                 {
                     //is this a custom type of phrase?
-                    if (n is PhraseNode && ((PhraseNode)n).PhraseKind == PhraseNode.Kind.Custom)
+                    if (n is EmptyNode && ((EmptyNode)n).CustomClass == removedType)
                     {
-                        string customKind = ((PhraseNode)n).CustomKind;
-                        if (customKind == removedType)
-                        {
-                            foundNodeWithThisType = true;
-                            Commands.Node.ChangeCustomType cmd = new Commands.Node.ChangeCustomType(mProjectView, (PhraseNode)n, "");
-                            command.append(cmd);
-                        }
+                        foundNodeWithThisType = true;
+                        Commands.Node.ChangeCustomType cmd = new Commands.Node.ChangeCustomType(mProjectView, (PhraseNode)n, "");
+                        command.append(cmd);
                     }
                     return true;
                 },

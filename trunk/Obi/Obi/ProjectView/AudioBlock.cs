@@ -17,7 +17,7 @@ namespace Obi.ProjectView
             this.InitializeComponent();
             if (node.Audio != null)
             {
-                SetWaveform(Node);
+                SetWaveform((PhraseNode)Node);
             }
             else
             {
@@ -33,13 +33,13 @@ namespace Obi.ProjectView
              mWaveform.Width = (int)Math.Round(time * AUDIO_SCALE);
              mWaveform.Media = node.Audio.getMediaData();
              TimeLabel = String.Format("{0:0.00}s",
-             Node.Audio.getDuration().getTimeDeltaAsMillisecondFloat() / 1000);
+             ((PhraseNode)Node).Audio.getDuration().getTimeDeltaAsMillisecondFloat() / 1000);
              Size = new Size(mWaveform.Width + mWaveform.Margin.Right + mWaveform.Margin.Left, Height);
         }
         
         private void node_NodeAudioChanged(object sender, NodeEventArgs<PhraseNode> e)
         {
-            SetWaveform(Node);
+            SetWaveform((PhraseNode)Node);
         }
         /// <summary>
         /// Set the selected flag for the block.

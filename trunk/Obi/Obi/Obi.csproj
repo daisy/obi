@@ -179,6 +179,7 @@
     <Compile Include="Dialogs\UserProfile.Designer.cs">
       <DependentUpon>UserProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="EmptyNode.cs" />
     <Compile Include="Events\Audio\Player\EndOfAudioDataEventArgs.cs" />
     <Compile Include="Events\Audio\Player\StateChangedEventArgs.cs" />
     <Compile Include="Events\Audio\Player\UpdateVuMeter.cs" />

@@ -6,67 +6,19 @@ using urakawa.media.data.audio ;
 
 namespace Obi
 {
-    public delegate void ChangedCustomTypeEventHandler(object sender, Events.Node.ChangedCustomTypeEventArgs e);
-
-    /// <summary>
-    /// A phrase node is a node that contains audio data.
-    /// </summary>
-    public class PhraseNode : ObiNode
+    public class PhraseNode: EmptyNode
     {
-        private Kind mKind;          // this block's kind
-        private string mCustomKind;  // custom kind name
-        public event ChangedCustomTypeEventHandler CustomTypeChanged;
+        /// <summary>
+        /// This event is sent when the audio
+        /// </summary>
         public event NodeEventHandler<PhraseNode> NodeAudioChanged;
-        public static readonly string XUK_ELEMENT_NAME = "phrase";  // name of the element in the XUK file
 
-        /// <summary>
-        /// Directions in which a phrase node can be moved.
-        /// </summary>
-        public enum Direction { Forward, Backward };
+        public static new readonly string XUK_ELEMENT_NAME = "phrase";  // name of the element in the XUK file
 
-        /// <summary>
-        /// Different kinds of phrases
-        /// </summary>
-        public enum Kind { Plain, Page, Heading, Custom }; 
+        public PhraseNode(Presentation presentation): base(presentation) {}
+        public PhraseNode(Presentation presentation, EmptyNode.Kind kind) : base(presentation, kind) {} 
+        public PhraseNode(Presentation presentation, string custom) : base(presentation, Kind.Custom) {}
 
-        /// <summary>
-        /// Create a new phrase node inside the given project with an id.
-        /// Don't forget to set the asset afterwards!
-        /// </summary>
-        public PhraseNode(Presentation presentation): base(presentation)
-        {
-            Annotation = "";
-            mKind = Kind.Plain;
-            mCustomKind = null;
-        }
-
-        public PhraseNode(Presentation presentation, Kind kind) : this(presentation) { mKind = kind; }
-        public PhraseNode(Presentation presentation, string custom) : this(presentation, Kind.Custom) { mCustomKind = custom; }
-
-
-        /// <summary>
-        /// The annotation for this node.
-        /// </summary>
-        public string Annotation
-        {
-            get { return AnnotationMedia == null ? "" : AnnotationMedia.getText(); }
-            set
-            {
-                if (value == null || value == "")
-                {
-                    //ChannelsProperty.setMedia(Project.AnnotationChannel, null);
-                }
-                else if (value != null)
-                {
-                    if (AnnotationMedia == null)
-                    {
-                        ITextMedia annotation = getPresentation().getMediaFactory().createTextMedia();
-                        //ChannelsProperty.setMedia(Project.AnnotationChannel, annotation);
-                    }
-                    AnnotationMedia.setText(value);
-                }
-            }
-        }
 
         /// <summary>
         /// The audio media data associated with this node.
@@ -78,34 +30,9 @@ namespace Obi
         }
 
         /// <summary>
-        /// Custom kind (may be null if it is Plain, Page or Heading.)
+        /// If used, then is its own first used phrase.
         /// </summary>
-        public string CustomKind 
-        { 
-            get { return mCustomKind; }
-            set 
-            { 
-                mCustomKind = value;
-                if (CustomTypeChanged != null) CustomTypeChanged(this, new Events.Node.ChangedCustomTypeEventArgs(this, this, mCustomKind));
-            }
-        }
-
         public override PhraseNode FirstUsedPhrase { get { return Used ? this : null; } }
-
-        /// <summary>
-        /// Custom element name for XUKOut.
-        /// </summary>
-        public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
-
-        /// <summary>
-        /// True if there is an annotation on the node.
-        /// </summary>
-        public bool HasAnnotation { get { return Annotation != ""; } }
-
-        /// <summary>
-        /// Index of this node relative to the other phrases.
-        /// </summary>
-        public override int Index { get { return getParent().indexOf(this); } }
 
         /// <summary>
         /// Allow only phrase nodes to be inserted.
@@ -131,33 +58,6 @@ namespace Obi
             }
         }
 
-        /// <summary>
-        /// Page (if set) associated with this phrase.
-        /// </summary>
-        public PageProperty PageProperty
-        {
-            get { return getProperty(typeof(PageProperty)) as PageProperty; }  // may be null
-            set
-            {
-                if (value != null)
-                {
-                    //setProperty(value);
-                }
-                else
-                {
-                    //removeProperty(typeof(PageProperty));
-                }
-            }
-        }
-
-        /// <summary>
-        /// The kind of node.
-        /// </summary>
-        public Kind PhraseKind 
-        { 
-            get { return mKind; }
-            set { mKind = value; }                    
-        }
         /// <summary>
         /// Previous phrase node in linear order in the whole project.
         /// Null if it is the first phrase in the project.
@@ -191,72 +91,6 @@ namespace Obi
                 return index > 0 ? parent.PhraseChild(index - 1) : null;
             }
         }
-
-
-        protected override TreeNode copyProtected(bool deep, bool inclProperties)
-        {
-            PhraseNode copy = Presentation.CreatePhraseNode();
-            copy.Audio = Presentation.DataManager.CopyAndManage(Audio);
-            copy.Used = Used;
-            copy.Annotation = Annotation;
-            copy.mKind = mKind;
-            copy.mCustomKind = mCustomKind;
-            //copyProperties(copy);
-            return copy;
-        }
-
-        protected override void xukInAttributes(System.Xml.XmlReader source)
-        {
-            string kind = source.GetAttribute("kind");
-            if (kind != null) mKind = kind == "Custom" ?  Kind.Custom :
-                                      kind == "Heading" ? Kind.Heading :
-                                      kind == "Page" ?    Kind.Page :
-                                                          Kind.Plain;
-            if (kind != null && kind != mKind.ToString()) throw new Exception("Unknown kind: " + kind);
-            mCustomKind = source.GetAttribute("custom");
-            if (mKind != Kind.Custom && mCustomKind != null)
-            {
-                throw new Exception("Extraneous `custom' attribute.");
-            }
-            else if (mKind == Kind.Custom && mCustomKind == null)
-            {
-                throw new Exception("Missing `custom' attribute.");
-            }
-            //add it to the presentation
-            this.Presentation.AddCustomType(mCustomKind);
-            base.xukInAttributes(source);
-        }
-
-        protected override void xukOutAttributes(System.Xml.XmlWriter wr, Uri baseUri)
-        {
-            if (mKind != Kind.Plain) wr.WriteAttributeString("kind", mKind.ToString());
-            if (mKind == Kind.Custom) wr.WriteAttributeString("custom", mCustomKind);
-            base.xukOutAttributes(wr, baseUri);
-        }
-
-
-        /// <summary>
-        /// The text media for the annotation.
-        /// Maybe null if no annotation was set.
-        /// </summary>
-        private TextMedia AnnotationMedia { get { return null; } } // ChannelsProperty.getMedia(Project.AnnotationChannel) as TextMedia; } }
-
-        public override SectionNode SectionChild(int index) { throw new Exception("A phrase node has no section child!"); }
-        public override int SectionChildCount { get { return 0; } }
-        public override PhraseNode PhraseChild(int index) 
-        {
-            if (this.Audio != null)
-            {
-                if (this.getChildCount() != 0) throw new Exception("Audio phrase nodes should not have children.");
-                else return null;
-            }
-            else
-            {
-                return (PhraseNode)getChild(index);
-            }
-        }
-        public override int PhraseChildCount { get { return this.getChildCount(); } }
-
         /// <summary>
         /// Split the audio of this phrase at the given position and notify that the 
         /// </summary>
@@ -276,16 +110,6 @@ namespace Obi
         {
             Audio.mergeWith(audio);
             if (NodeAudioChanged != null) NodeAudioChanged(this, new NodeEventArgs<PhraseNode>(this));
-        }
-
-        /// <summary>
-        /// Test whether this node is 
-        /// </summary>
-        public bool IsBeforeInProject(PhraseNode other)
-        {
-            SectionNode parent = ParentAs<SectionNode>();
-            SectionNode otherParent = other.ParentAs<SectionNode>();
-            return parent.Position < otherParent.Position || (parent == otherParent && Index < other.Index);
         }
     }
 }

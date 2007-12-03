@@ -68,8 +68,8 @@ namespace Obi.ProjectView
         {
             get
             {
-                PhraseNode phrase = mSelectedItem is Block ? ((Block)mSelectedItem).Node : null;
-                return phrase != null && phrase.Index < phrase.ParentAs<ObiNode>().PhraseChildCount - 1;
+                EmptyNode node = mSelectedItem is Block ? ((Block)mSelectedItem).Node : null;
+                return node != null && node.Index < node.ParentAs<ObiNode>().PhraseChildCount - 1;
             }
         }
 
@@ -86,7 +86,7 @@ namespace Obi.ProjectView
 
         public PhraseNode PlaybackBlock
         {
-            get { return mPlaybackBlock.Node; }
+            get { return mPlaybackBlock.Node as PhraseNode; }
             set
             {
                 mPlaybackBlock = value == null ? null : (AudioBlock)FindBlock(value);
@@ -171,7 +171,8 @@ namespace Obi.ProjectView
             mView.RenameSectionNode(strip.Node, strip.Label);
         }
 
-        public PhraseNode SelectedPhrase { get { return BlockSelected ? ((Block)mSelectedItem).Node : null; } }
+        public EmptyNode SelectedEmptyNode { get { return BlockSelected ? ((Block)mSelectedItem).Node : null; } }
+        public PhraseNode SelectedPhrase { get { return BlockSelected ? ((Block)mSelectedItem).Node as PhraseNode : null; } }
         public SectionNode SelectedSection { get { return StripSelected ? ((Strip)mSelectedItem).Node : null; } }
         public ObiNode SelectedNode { set { if (mView != null) mView.Selection = new NodeSelection(value, this); } }
         public NodeSelection SelectionFromStrip { set { if (mView != null) mView.Selection = value; } }
