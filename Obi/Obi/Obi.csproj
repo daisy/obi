@@ -50,6 +50,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AudioEngine.PPMeter, Version=1.0.2893.30300, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\implementation\AudioSystem\PPMeter\bin\Debug\AudioEngine.PPMeter.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.DirectX, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\..\..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\DirectX for Managed Code\1.0.2902.0\Microsoft.DirectX.dll</HintPath>
     </Reference>
@@ -81,6 +85,12 @@
     <Compile Include="Audio\AudioRecorder.cs" />
     <Compile Include="Audio\CalculationFunctions.cs" />
     <Compile Include="Audio\DataManager.cs" />
+    <Compile Include="Audio\PeakMeterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Audio\PeakMeterForm.Designer.cs">
+      <DependentUpon>PeakMeterForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Audio\PhraseDetection.cs" />
     <Compile Include="Audio\VuMeter.cs">
       <SubType>Code</SubType>
@@ -189,6 +199,7 @@
     <Compile Include="Events\Audio\VuMeter\PeakOverloadEventArgs.cs" />
     <Compile Include="Events\Audio\VuMeter\ResetEventArgs.cs" />
     <Compile Include="Events\Audio\VuMeter\UpdateFormsEventArgs.cs" />
+    <Compile Include="Events\Audio\VuMeter\UpdatePeakMeter.cs" />
     <Compile Include="Events\NodeEventHandlers.cs" />
     <Compile Include="Events\Node\ChangedCustomTypeEventArgs.cs" />
     <Compile Include="Events\Node\ObiNodeEventArgs.cs" />
@@ -351,6 +362,12 @@
     <Compile Include="Selection.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="UserControls\GraphicalPeakMeter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\GraphicalPeakMeter.Designer.cs">
+      <DependentUpon>GraphicalPeakMeter.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\GraphicalVuMeter.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -373,6 +390,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Audio\PeakMeterForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PeakMeterForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Audio\VuMeterForm.resx">
       <DependentUpon>VuMeterForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -455,6 +476,10 @@
     <EmbeddedResource Include="ProjectView\Waveform.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Waveform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\GraphicalPeakMeter.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>GraphicalPeakMeter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\GraphicalVuMeter.resx">
       <DependentUpon>GraphicalVuMeter.cs</DependentUpon>

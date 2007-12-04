@@ -17,6 +17,7 @@ namespace Obi
         private Session mSession;                // current work session
         private Settings mSettings;              // application settings
         private Dialogs.ShowSource mSourceView;  // maintain a single "source view" dialog
+		    private Audio.PeakMeterForm mPeakMeter;  // maintain a single "peak meter" form
 
         private Audio.VuMeterForm mVuMeterForm;  // keep track of a single VU meter form
 
@@ -506,6 +507,23 @@ namespace Obi
                 }
                 Ready();
             }
+        }
+
+        // Show a new peak meter form or give focus back to the previously opned one
+        private void ShowPeakMeter()
+        {
+            if (mPeakMeter == null)
+            {
+                mPeakMeter = new Obi.Audio.PeakMeterForm();
+                mPeakMeter.SourceVuMeter = mProjectView.TransportBar.VuMeter;
+                mPeakMeter.FormClosed += new FormClosedEventHandler(delegate(object sender, FormClosedEventArgs e) { mPeakMeter = null; });
+                mPeakMeter.Show();
+            }
+            else
+            {
+                mPeakMeter.Focus();
+            }
+            this.Ready();
         }
 
         // Save the current project
@@ -1634,6 +1652,11 @@ namespace Obi
         private void mRemoveContainerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.RemoveContainer();
+        }
+
+        private void mShowPeakMeterMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowPeakMeter();
         }
 
     }
