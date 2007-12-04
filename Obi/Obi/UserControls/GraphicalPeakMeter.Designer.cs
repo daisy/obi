@@ -34,6 +34,7 @@ namespace Obi.UserControls
             // mPPMeter
             // 
             this.mPPMeter.BackColor = System.Drawing.Color.Black;
+            this.mPPMeter.BarOrientation = System.Windows.Forms.Orientation.Vertical;
             this.mPPMeter.BarPadding = 5;
             this.mPPMeter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mPPMeter.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -45,7 +46,7 @@ namespace Obi.UserControls
             this.mPPMeter.Minimum = -35;
             this.mPPMeter.Name = "mPPMeter";
             this.mPPMeter.NumberOfChannels = 2;
-            this.mPPMeter.Size = new System.Drawing.Size(452, 112);
+            this.mPPMeter.Size = new System.Drawing.Size(222, 356);
             this.mPPMeter.SpectrumEndColor = System.Drawing.Color.Red;
             this.mPPMeter.TabIndex = 0;
             this.mPPMeter.Resize += new System.EventHandler(this.mPPMeter_Resize);
@@ -57,13 +58,13 @@ namespace Obi.UserControls
             this.Controls.Add(this.mPPMeter);
             this.MinimumSize = new System.Drawing.Size(100, 40);
             this.Name = "GraphicalPeakMeter";
-            this.Size = new System.Drawing.Size(452, 112);
+            this.Size = new System.Drawing.Size(222, 356);
             this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		private AudioEngine.PPMeter.PPMeter mPPMeter;
+        private AudioEngine.PPMeter.PPMeter mPPMeter;
 	}
 }

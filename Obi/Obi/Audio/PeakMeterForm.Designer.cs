@@ -33,14 +33,14 @@ namespace Obi.Audio
             // 
             // mGraphicalPeakMeter
             // 
-            this.mGraphicalPeakMeter.BarPaddingToHeightRatio = 0.075F;
+            this.mGraphicalPeakMeter.BarPaddingToWidthRatio = 0.075F;
             this.mGraphicalPeakMeter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mGraphicalPeakMeter.FontToHeightRatio = 0.075F;
-            this.mGraphicalPeakMeter.FontToWidthRatio = 0.03F;
+            this.mGraphicalPeakMeter.FontToHeightRatio = 0.03F;
+            this.mGraphicalPeakMeter.FontToWidthRatio = 0.075F;
             this.mGraphicalPeakMeter.Location = new System.Drawing.Point(0, 0);
             this.mGraphicalPeakMeter.MinimumSize = new System.Drawing.Size(100, 40);
             this.mGraphicalPeakMeter.Name = "mGraphicalPeakMeter";
-            this.mGraphicalPeakMeter.Size = new System.Drawing.Size(307, 119);
+            this.mGraphicalPeakMeter.Size = new System.Drawing.Size(154, 492);
             this.mGraphicalPeakMeter.SourceVuMeter = null;
             this.mGraphicalPeakMeter.TabIndex = 0;
             // 
@@ -48,7 +48,7 @@ namespace Obi.Audio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(307, 119);
+            this.ClientSize = new System.Drawing.Size(154, 492);
             this.Controls.Add(this.mGraphicalPeakMeter);
             this.Name = "PeakMeterForm";
             this.Text = "Peak Meter";
