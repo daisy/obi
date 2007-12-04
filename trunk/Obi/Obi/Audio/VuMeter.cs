@@ -307,8 +307,7 @@ namespace Obi.Audio
 
             if ( UpdatePeakMeter != null )
             UpdatePeakMeter(this, new Obi.Events.Audio.VuMeter.UpdatePeakMeter(maxDbs));
-        System.IO.File.AppendAllText("c:\\1.txt", "\n" );
-        System.IO.File.AppendAllText("c:\\1.txt", maxDbs[0].ToString());
+        
         
         }
 
@@ -382,19 +381,20 @@ namespace Obi.Audio
             }
 
             // compute the cordinates of graph and animation
-            DisplayGraph();
+            //DisplayGraph();
 
-            int ThresholdFactor = 12500 / (m_UpperThreshold - m_LowerThreshold);
-            int DisplayAmpLeft = (m_MeanValueLeft * ThresholdFactor) / 100;
-            int DisplayAmpRight = (m_MeanValueRight * ThresholdFactor) / 100;
-            int Offset = 65 - ((m_LowerThreshold * ThresholdFactor) / 100);
-            DisplayAmpLeft = DisplayAmpLeft + Offset;
-            DisplayAmpRight = DisplayAmpRight + Offset;
+            //int ThresholdFactor = 12500 / (m_UpperThreshold - m_LowerThreshold);
+            //int DisplayAmpLeft = (m_MeanValueLeft * ThresholdFactor) / 100;
+            //int DisplayAmpRight = (m_MeanValueRight * ThresholdFactor) / 100;
+            //int Offset = 65 - ((m_LowerThreshold * ThresholdFactor) / 100);
+            //DisplayAmpLeft = DisplayAmpLeft + Offset;
+            //DisplayAmpRight = DisplayAmpRight + Offset;
 
-            Graph.EraserLeft = OriginY + Convert.ToInt32(m_ScaleFactor * (254 - DisplayAmpLeft));
-            Graph.EraserRight = OriginY + Convert.ToInt32(m_ScaleFactor * (254 - DisplayAmpRight));
+            //Graph.EraserLeft = OriginY + Convert.ToInt32(m_ScaleFactor * (254 - DisplayAmpLeft));
+            //Graph.EraserRight = OriginY + Convert.ToInt32(m_ScaleFactor * (254 - DisplayAmpRight));
 
             //Thread.Sleep (25) ;
+
             // Update ccurrent graph cordinates to VuMeter display
             if ( UpdateForms != null )
             UpdateForms(this, new Events.Audio.VuMeter.UpdateFormsEventArgs());
@@ -508,75 +508,8 @@ namespace Obi.Audio
             return arSum;
 		}
 
-		// calculates the values of graph cordinates with respect to position and scale factor
-		public GraphPts Graph = new GraphPts() ;
-		public void DisplayGraph	 ()
-		{
-			int OriginX = m_GraphPositionX -  Convert.ToInt32  ( ( m_ScaleFactor * 60 ));
-			int OriginY =m_GraphPositionY- Convert.ToInt32 ( 125 * m_ScaleFactor) ;
-
-			// Position of BackGround color of graph 
-			Graph.BackGroundTop = OriginY - (Convert.ToInt32 (50 * m_ScaleFactor) ) ;
-			Graph.BackGroundBottom = OriginY + (Convert.ToInt32 ( 304 * m_ScaleFactor)) ;
-			Graph.BackGroundX= OriginX - (Convert.ToInt32(50 * m_ScaleFactor)) ;
-			Graph.BackGroundWidth = Convert.ToInt32 ( 220 * m_ScaleFactor) ;
-
-			// Position of tri colored vertical lines
-
-			Graph.LineWidth = Convert.ToInt32 (30 * m_ScaleFactor) ;
-
-			Graph.HighTop = OriginY ;
-			Graph.HighBottom = OriginY + Convert.ToInt32 (m_ScaleFactor * 60) ;
-
-			Graph.NormalTop = OriginY + Convert.ToInt32 (m_ScaleFactor * 67) ;
-			Graph.NormalBottom = OriginY + Convert.ToInt32 (m_ScaleFactor * 187 ) ;
-
-			Graph.LowTop  = OriginY + Convert.ToInt32 (m_ScaleFactor * 194) ;
-			Graph.LowBottom = OriginY + Convert.ToInt32 (m_ScaleFactor * 254) ;
-
-			Graph.LeftGraphX = OriginX ;
-			Graph.RightGraphX = OriginX +Convert.ToInt32 (m_ScaleFactor * 60) ;
-
-			Graph.PeakOverloadLightX = 240 ;
-			Graph.PeakOverloadLightY = 30 ;
-		}
-		/*
-				internal class Threshold
-				{
-			public int UpperThreshold ;
-					public int LowerThreshold ;
-				}
-		*/
-		public struct GraphPts
-		{
-
-			public int HighTop ;
-			public int HighBottom ;
-
-			public int NormalTop ;
-			public int NormalBottom ;
-
-			public int LowTop ;
-			public int LowBottom ;
-
-			public int LineWidth ;
-
-			public int ScaleFactor ;
-			public int LeftGraphX ;
-			public int RightGraphX ;
-
-			public int BackGroundWidth ;
-			public int BackGroundTop ;
-			public int BackGroundBottom ;
-			public int BackGroundX ;
-
-			public int EraserLeft ;
-			public int EraserRight ;
-
-			public int PeakOverloadLightX ;
-			public int PeakOverloadLightY ;
-		}
-		// end of class
+		
+		 // end of class
 	}
 
 }
