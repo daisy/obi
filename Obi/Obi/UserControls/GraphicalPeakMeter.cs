@@ -21,6 +21,13 @@ namespace Obi.UserControls
 
 		private VuMeter mSourceVuMeter;
 
+        protected override void OnHandleDestroyed(EventArgs e)
+        {
+            SourceVuMeter = null;
+            Application.DoEvents();
+            base.OnHandleDestroyed(e);
+        }
+
 		/// <summary>
 		/// Gets or sets the <see cref="VuMeter"/> class providing the <see cref="VuMeter.UpdatePeakMeter"/> events
 		/// updating the peak meter
