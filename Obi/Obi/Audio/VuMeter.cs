@@ -253,7 +253,10 @@ namespace Obi.Audio
             AnimationComputation();
             ComputePeakDbValue();
 		}
-        
+
+
+        private Thread ThreadTriggerPeakEventWithDelay;
+
 		// handles update event from audio recorder
 		public void CatchUpdateVuMeterEvent (object sender , Events.Audio.Recorder.UpdateVuMeterEventArgs UpdateVuMeter)
 		{
@@ -261,7 +264,7 @@ namespace Obi.Audio
 			ob_AudioRecorder = Recorder ;
 			m_FrameSize = ( Recorder.Channels * ( Recorder.BitDepth / 8 ) )   ;
 			m_Channels = Recorder.Channels ;
-            m_UpdateVMArrayLength =  Recorder.m_UpdateVMArrayLength ;
+            m_UpdateVMArrayLength =  Recorder.m_UpdateVMArrayLength / 2 ;
 			m_arUpdatedVM  = new byte [m_UpdateVMArrayLength ] ;
 			Array.Copy ( Recorder.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
 
@@ -274,8 +277,21 @@ namespace Obi.Audio
 
             AnimationComputation();
             ComputePeakDbValue();
-		}
 
+
+            if ( ThreadTriggerPeakEventWithDelay != null    &&    ThreadTriggerPeakEventWithDelay.IsAlive)
+                ThreadTriggerPeakEventWithDelay.Abort(); 
+
+            ThreadTriggerPeakEventWithDelay = new Thread(new ThreadStart(TriggerPeakEventForSecondHalf ));
+            ThreadTriggerPeakEventWithDelay.IsBackground = true;
+            ThreadTriggerPeakEventWithDelay.Start(); 
+            
+		}
+        
+        /// <summary>
+        ///  Compute VuMeter peak values and triggeres peak value event
+        /// <see cref=""/>
+        /// </summary>
         private void  ComputePeakDbValue()
         {
             int bytesPerSample = m_FrameSize / m_Channels;
@@ -307,11 +323,16 @@ namespace Obi.Audio
 
             if ( UpdatePeakMeter != null )
             UpdatePeakMeter(this, new Obi.Events.Audio.VuMeter.UpdatePeakMeter(maxDbs));
-        
+
         
         }
 
-
+        private void TriggerPeakEventForSecondHalf()
+        {
+            Thread.Sleep(66);
+            Array.Copy(m_Recorder.arUpdateVM, m_UpdateVMArrayLength, m_arUpdatedVM, 0, m_UpdateVMArrayLength);
+            ComputePeakDbValue();
+        }
 		int m_PeakValueLeft = 0;
 		int m_PeakValueRight = 0;
 		void AnimationComputation ()
