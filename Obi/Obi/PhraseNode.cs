@@ -111,5 +111,10 @@ namespace Obi
             Audio.mergeWith(audio);
             if (NodeAudioChanged != null) NodeAudioChanged(this, new NodeEventArgs<PhraseNode>(this));
         }
+
+        public override string getXukLocalName()
+        {
+            return XUK_ELEMENT_NAME;
+        }
     }
 }
