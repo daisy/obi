@@ -12,21 +12,22 @@ namespace Obi.Audio
 		public event Events.Audio.VuMeter.PeakOverloadHandler PeakOverload;
 		public event Events.Audio.VuMeter.ResetHandler ResetEvent;
 		public event Events.Audio.VuMeter.UpdateFormsHandler UpdateForms;
+        public event Events.Audio.VuMeter.UpdatePeakMeterHandler UpdatePeakMeter ;
 
         private AudioPlayer mPlayer;
         private AudioRecorder m_Recorder;
-
+        
 		/// <summary>
 		/// Create the VU meter object.
 		/// </summary>
         public VuMeter(AudioPlayer player , AudioRecorder recorder )
 		{
-			SetSampleCount(m_SampleTimeLength);
+            			SetSampleCount(m_SampleTimeLength);
             mPlayer = player;
             m_Recorder = recorder;
 			// m_SampleArrayPosition = 0;
 		}
-
+        
         /// <summary>
         /// Set the VU meter to listen to the audio player and recorder.
         /// </summary>
@@ -250,11 +251,7 @@ namespace Obi.Audio
             }
 
             AnimationComputation();
-//			Thread UpdateVMForm = new Thread(new ThreadStart (AnimationComputation  ));
-//            UpdateVMForm.IsBackground = true ;
-//			UpdateVMForm.Start()  ;
-            
-
+            ComputePeakDbValue();
 		}
         
 		// handles update event from audio recorder
@@ -264,7 +261,7 @@ namespace Obi.Audio
 			ob_AudioRecorder = Recorder ;
 			m_FrameSize = ( Recorder.Channels * ( Recorder.BitDepth / 8 ) )   ;
 			m_Channels = Recorder.Channels ;
-			m_UpdateVMArrayLength = Recorder.m_UpdateVMArrayLength ;
+            m_UpdateVMArrayLength =  Recorder.m_UpdateVMArrayLength ;
 			m_arUpdatedVM  = new byte [m_UpdateVMArrayLength ] ;
 			Array.Copy ( Recorder.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
 
@@ -276,12 +273,44 @@ namespace Obi.Audio
             }
 
             AnimationComputation();
-            //Thread UpdateVMForm = new Thread(new ThreadStart (AnimationComputation  ));
-            //UpdateVMForm.IsBackground = true;
-            //UpdateVMForm.Start()  ;
-
+            ComputePeakDbValue();
 		}
-			
+
+        private void  ComputePeakDbValue()
+        {
+            int bytesPerSample = m_FrameSize / m_Channels;
+            int noc = m_Channels;
+            double[] maxDbs = new double[noc];
+            double full = Math.Pow(2, 8 * bytesPerSample);
+            double halfFull = full / 2;
+
+            for (int i = 0; i < m_arUpdatedVM.Length; i += bytesPerSample * noc)
+            {//1
+                for (int c = 0; c < noc; c++)
+                { //2
+                    double val = 0;
+                    for (int j = 0; j < bytesPerSample; j++)
+                    { //3
+                        val += Math.Pow(2, 8 * j) * m_arUpdatedVM[i + (c * bytesPerSample) + j];
+                    } //-3
+                    if (val > halfFull)
+                    { //3
+                        val = full - val;
+                    } //-3
+                    if (val > maxDbs[c]) maxDbs[c] = val;
+                } //-2
+            } //-1
+            for (int c = 0; c < noc; c++)
+            { //1
+                maxDbs[c] = 20 * Math.Log10(maxDbs[c] / halfFull);
+            } // -1
+
+            if ( UpdatePeakMeter != null )
+            UpdatePeakMeter(this, new Obi.Events.Audio.VuMeter.UpdatePeakMeter(maxDbs));
+        System.IO.File.AppendAllText("c:\\1.txt", "\n" );
+        System.IO.File.AppendAllText("c:\\1.txt", maxDbs[0].ToString());
+        
+        }
 
 
 		int m_PeakValueLeft = 0;
