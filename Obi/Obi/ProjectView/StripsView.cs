@@ -312,24 +312,13 @@ namespace Obi.ProjectView
                     UpdateTabIndex(strip);
                 }
             }
-            else if (e.getTreeNode() is PhraseNode)
+            else if (e.getTreeNode() is EmptyNode)
             {
-                PhraseNode phrase = (PhraseNode)e.getTreeNode();
-                if (phrase.IsRooted)
+                EmptyNode node = (EmptyNode)e.getTreeNode();
+                if (node.IsRooted)
                 {
-                    Block block = null;
-                    //is this phrase inside a container?
-                    if (phrase.getParent() is PhraseNode)
-                    {
-                        PhraseNode parent = phrase.ParentAs<PhraseNode>();
-                        ContainerBlock container = (ContainerBlock)FindBlock(parent);
-                        block = container.AddBlockForPhrase(phrase);
-                    }
-                    else
-                    {
-                        SectionNode section = phrase.ParentAs<SectionNode>();
-                        block = FindStrip(section).AddBlockForPhrase(phrase);
-                    }
+                    // TODO replace FindStrip with FindParentContainer, as it can be a strip or a block
+                    Block block = FindStrip(node.ParentAs<SectionNode>()).AddBlockForPhrase(node);
                     mLayoutPanel.ScrollControlIntoView(block);
                     UpdateTabIndex(block);
                 }
@@ -360,14 +349,10 @@ namespace Obi.ProjectView
             {
                 RemoveStripsForSection((SectionNode)e.getTreeNode());
             }
-            else if (e.getTreeNode() is PhraseNode)
+            else if (e.getTreeNode() is EmptyNode)
             {
-                SectionNode section = null;
-                if (e.getFormerParent() is PhraseNode) section = (SectionNode)e.getFormerParent().getParent();
-                else section = (SectionNode)e.getFormerParent();
-
-                Strip strip = FindStrip(section);
-                if (strip != null) strip.RemoveBlock((PhraseNode)e.getTreeNode());
+                Strip strip = FindStrip((SectionNode)e.getFormerParent());
+                if (strip != null) strip.RemoveBlock((EmptyNode)e.getTreeNode());
             }
         }
 
@@ -708,5 +693,24 @@ namespace Obi.ProjectView
         #endregion
 
         public void SelectAtCurrentTime() { mPlaybackBlock.SelectAtCurrentTime(); }
+
+        /// <summary>
+        /// Get the parent for adding a new block depending on the current selection.
+        /// </summary>
+        public ObiNode ParentForNewBlock()
+        {
+            return mSelection == null ? null :
+                mSelection.Node is SectionNode ? mSelection.Node : mSelection.Node.ParentAs<ObiNode>();
+        }
+
+        /// <summary>
+        /// Get the index at which to insert a new block depending on the current selection.
+        /// </summary>
+        /// <returns></returns>
+        public int IndexForNewBlock()
+        {
+            return mSelection == null ? -1 :
+                mSelection.Node is SectionNode ? mSelection.Node.PhraseChildCount : (mSelection.Node.Index + 1);
+        }
     }
 }

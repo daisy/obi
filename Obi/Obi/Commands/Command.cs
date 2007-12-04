@@ -10,20 +10,25 @@ namespace Obi.Commands
     {
         private ProjectView.ProjectView mView;   // the view that the command is executed in
         private NodeSelection mSelectionBefore;  // the selection before the command happened
+        private string mLabel;                   // command label (can be overridden)
 
         /// <summary>
         /// Create a new command for a view.
         /// </summary>
-        public Command(ProjectView.ProjectView view)
+        public Command(ProjectView.ProjectView view, string label)
         {
             mView = view;
             mSelectionBefore = mView.Selection;
+            mLabel = label;
         }
+
+        public Command(ProjectView.ProjectView view) : this(view, "") { }
+
+        public string Label { set { mLabel = value; } }
 
         public ProjectView.ProjectView View { get { return mView; } }
         public virtual void execute() {}
         public virtual void unExecute() { mView.Selection = mSelectionBefore; }
-        public virtual string getShortDescription() { return Localizer.Message("last command"); }
 
         protected NodeSelection SelectionBefore { get { return mSelectionBefore; } }
 
@@ -36,6 +41,11 @@ namespace Obi.Commands
         /// Most commands do not use any media data.
         /// </summary>
         public virtual List<MediaData> getListOfUsedMediaData() { return new List<MediaData>(); }
+
+        /// <summary>
+        /// The short description is the label of the command.
+        /// </summary>
+        public virtual string getShortDescription() { return mLabel; }
 
         /// <summary>
         /// We don't normally use long description, so just return the short one.

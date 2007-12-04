@@ -858,4 +858,7 @@ Error text: {1}</value>
   <data name="merge_block_with_next" xml:space="preserve">
     <value>merge block with next</value>
   </data>
+  <data name="add_empty_block" xml:space="preserve">
+    <value>add empty block</value>
+  </data>
 </root>

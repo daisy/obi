@@ -88,6 +88,7 @@ namespace Obi
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.mListenToStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.blocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mAddEmptyBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mImportAudioFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSplitBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMergeBlockWithNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,9 +99,6 @@ namespace Obi
             this.mClearCustomTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.mListenToBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.mMakeBlockIntoContainerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mRemoveContainerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTransportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowHideVUMeterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
@@ -128,6 +126,7 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusTimer = new System.Windows.Forms.Timer(this.components);
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -653,19 +652,25 @@ namespace Obi
             // blocksToolStripMenuItem
             // 
             this.blocksToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mAddEmptyBlockToolStripMenuItem,
             this.mImportAudioFileToolStripMenuItem,
             this.mSplitBlockToolStripMenuItem,
             this.mMergeBlockWithNextToolStripMenuItem,
+            this.toolStripSeparator6,
             this.mAssignCustomTypeToolStripMenuItem,
             this.mClearCustomTypeToolStripMenuItem,
             this.toolStripSeparator13,
-            this.mListenToBlockToolStripMenuItem,
-            this.toolStripSeparator6,
-            this.mMakeBlockIntoContainerToolStripMenuItem,
-            this.mRemoveContainerToolStripMenuItem});
+            this.mListenToBlockToolStripMenuItem});
             this.blocksToolStripMenuItem.Name = "blocksToolStripMenuItem";
             this.blocksToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.blocksToolStripMenuItem.Text = "&Blocks";
+            // 
+            // mAddEmptyBlockToolStripMenuItem
+            // 
+            this.mAddEmptyBlockToolStripMenuItem.Name = "mAddEmptyBlockToolStripMenuItem";
+            this.mAddEmptyBlockToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.mAddEmptyBlockToolStripMenuItem.Text = "Add &empty block";
+            this.mAddEmptyBlockToolStripMenuItem.Click += new System.EventHandler(this.mAddEmptyBlockToolStripMenuItem_Click);
             // 
             // mImportAudioFileToolStripMenuItem
             // 
@@ -738,25 +743,6 @@ namespace Obi
             this.mListenToBlockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
             this.mListenToBlockToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.mListenToBlockToolStripMenuItem.Text = "&Listen to block";
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(216, 6);
-            // 
-            // mMakeBlockIntoContainerToolStripMenuItem
-            // 
-            this.mMakeBlockIntoContainerToolStripMenuItem.Name = "mMakeBlockIntoContainerToolStripMenuItem";
-            this.mMakeBlockIntoContainerToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.mMakeBlockIntoContainerToolStripMenuItem.Text = "Make block into a container";
-            this.mMakeBlockIntoContainerToolStripMenuItem.Click += new System.EventHandler(this.mMakeBlockIntoContainerToolStripMenuItem_Click);
-            // 
-            // mRemoveContainerToolStripMenuItem
-            // 
-            this.mRemoveContainerToolStripMenuItem.Name = "mRemoveContainerToolStripMenuItem";
-            this.mRemoveContainerToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.mRemoveContainerToolStripMenuItem.Text = "Remove container";
-            this.mRemoveContainerToolStripMenuItem.Click += new System.EventHandler(this.mRemoveContainerToolStripMenuItem_Click);
             // 
             // mTransportToolStripMenuItem
             // 
@@ -1001,6 +987,11 @@ namespace Obi
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
             // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(216, 6);
+            // 
             // ObiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1123,9 +1114,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mClearCustomTypeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mSplitBlockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMergeBlockWithNextToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mAddEmptyBlockToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-        private System.Windows.Forms.ToolStripMenuItem mMakeBlockIntoContainerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mRemoveContainerToolStripMenuItem;
 
 
     }

@@ -70,6 +70,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to add empty block.
+        /// </summary>
+        internal static string add_empty_block {
+            get {
+                return ResourceManager.GetString("add_empty_block", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to add section.
         /// </summary>
         internal static string add_new_section_command {

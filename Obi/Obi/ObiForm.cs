@@ -1523,6 +1523,7 @@ namespace Obi
             mListenToBlockToolStripMenuItem.Enabled = (mProjectView.SelectedBlockNode != null);
         }
 
+        private void mAddEmptyBlockToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddEmptyBlock(); }
         private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ImportPhrases(); }
         private void mSplitBlockToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SplitBlock(); }
         private void mMergeBlockWithNextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeBlockWithNext(); }
@@ -1634,5 +1635,6 @@ namespace Obi
         {
             mProjectView.RemoveContainer();
         }
+
     }
 }

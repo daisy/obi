@@ -532,7 +532,7 @@ namespace Obi.ProjectView
         public bool CanShowInStripsView { get { return SelectedSection != null && mSelection.Control == mTOCView; } }
         public bool CanShowInTOCView { get { return SelectedSection != null && mSelection.Control == mStripsView; } }
 
-        // hacky but will do for now
+        public bool CanAddEmptyBlock { get { return mStripsView.Selection != null; } }
         public bool CanAddSection { get { return mTOCView.CanAddSection && !mStripsView.CanAddStrip; } }
         public bool CanAddStrip { get { return mStripsView.CanAddStrip; } }
         public bool CanAddSubSection { get { return mTOCView.Selection != null; } }
@@ -613,6 +613,22 @@ namespace Obi.ProjectView
         public bool CanListenToBlock { get { return mTransportBar.Enabled && mStripsView.SelectedPhrase != null; } }
 
         // Blocks
+
+
+        /// <summary>
+        /// Add a new empty block.
+        /// </summary>
+        public void AddEmptyBlock()
+        {
+            if (CanAddEmptyBlock)
+            {
+                EmptyNode node = new EmptyNode(mPresentation);
+                Commands.Node.AddNode command = new Commands.Node.AddNode(this, node,
+                    mStripsView.ParentForNewBlock(), mStripsView.IndexForNewBlock());
+                command.Label = Localizer.Message("add_empty_block");
+                mPresentation.UndoRedoManager.execute(command);
+            }
+        }
 
         /// <summary>
         /// Import new phrases in the strip, one block per file.

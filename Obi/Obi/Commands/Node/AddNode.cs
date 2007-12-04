@@ -4,13 +4,16 @@ using System.Text;
 
 namespace Obi.Commands.Node
 {
+    /// <summary>
+    /// Command adding an existing node.
+    /// </summary>
     public class AddNode: Command
     {
         private ObiNode mNode;
         private ObiNode mParent;
         private int mIndex;
 
-        public AddNode(ProjectView.ProjectView view, ObiNode node, ObiNode parent, int index): base(view)
+        public AddNode(ProjectView.ProjectView view, ObiNode node, ObiNode parent, int index): base(view, "")
         {
             mNode = node;
             mParent = parent;

@@ -74,8 +74,8 @@ namespace Obi
         /// </summary>
         public override void Insert(ObiNode node, int index)
         {
-            index = node is PhraseNode ? index < 0 ? FirstSectionIndex + index : index :
-                                         index < 0 ? getChildCount() + index : index + FirstSectionIndex;
+            index = node is EmptyNode ? index < 0 ? FirstSectionIndex + index : index :
+                                        index < 0 ? getChildCount() + index : index + FirstSectionIndex;
             insert(node, index);
         }
 
