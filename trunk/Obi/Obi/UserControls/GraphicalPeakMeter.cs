@@ -121,11 +121,11 @@ namespace Obi.UserControls
                 {
                     mPPMeter.Font = new Font(mPPMeter.Font.FontFamily, emSize);
                 }
-                mPPMeter.BarPadding = (int)(BarPaddingToHeightRatio * mPPMeter.Height);
+                mPPMeter.BarPadding = (int)(BarPaddingToWidthRatio * mPPMeter.Width);
             }
 		}
 
-		private float mFontToHeightRatio = 0.075f;
+		private float mFontToHeightRatio = 0.03f;
 		public float FontToHeightRatio
 		{
 			get
@@ -140,7 +140,7 @@ namespace Obi.UserControls
 			}
 		}
 
-		private float mFontToWidthRatio = 0.03f;
+		private float mFontToWidthRatio = 0.075f;
 		public float FontToWidthRatio
 		{
 			get
@@ -155,17 +155,17 @@ namespace Obi.UserControls
 			}
 		}
 
-		private float mBarPaddingToHeightRatio = 0.075f;
-		public float BarPaddingToHeightRatio
+		private float mBarPaddingToWidthRatio = 0.075f;
+		public float BarPaddingToWidthRatio
 		{
 			get
 			{
-				return mBarPaddingToHeightRatio;
+				return mBarPaddingToWidthRatio;
 			}
 			set
 			{
-				mBarPaddingToHeightRatio = value;
-				if (mBarPaddingToHeightRatio < 0.01f) mBarPaddingToHeightRatio = 0.01f;
+				mBarPaddingToWidthRatio = value;
+				if (mBarPaddingToWidthRatio < 0.01f) mBarPaddingToWidthRatio = 0.01f;
 				UpdateFontSizeAndBarPadding();
 			}
 		}
