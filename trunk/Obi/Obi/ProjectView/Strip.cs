@@ -191,18 +191,18 @@ namespace Obi.ProjectView
 
         #endregion
 
-        public Block FindBlock(PhraseNode phrase)
+        public Block FindBlock(EmptyNode node)
         {
             foreach (Control c in mBlocksPanel.Controls)
             {
-                if (c is Block && ((Block)c).Node == phrase) return (Block)c;
+                if (c is Block && ((Block)c).Node == node) return (Block)c;
             }
             return null;
         }
 
-        public void RemoveBlock(PhraseNode phrase)
+        public void RemoveBlock(EmptyNode node)
         {
-            mBlocksPanel.Controls.Remove(FindBlock(phrase));
+            mBlocksPanel.Controls.Remove(FindBlock(node));
             UpdateWidth();
         }
 
