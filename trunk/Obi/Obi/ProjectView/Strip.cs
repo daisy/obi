@@ -23,6 +23,7 @@ namespace Obi.ProjectView
             mLabel.FontSize = 18.0F;
             mNode = null;
             Selected = false;
+            mLabel.AccessibleName = this.Label;
         }
 
         public StripsView ParentView { get { return mParentView; } }
@@ -52,6 +53,7 @@ namespace Obi.ProjectView
             Label = mNode.Label;
             mParentView = parent;
             UpdateColors();
+            mLabel.AccessibleName = this.Label;
         }
 
 
@@ -154,6 +156,7 @@ namespace Obi.ProjectView
         {
             mLabel.Editable = true;
             mParentView.Selection = new NodeSelection(mNode, mParentView, Label);
+            mLabel.AccessibleName = this.Label;
         }
 
         // Resize the strip according to the editable label, whose size can change.
