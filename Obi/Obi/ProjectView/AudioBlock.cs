@@ -15,26 +15,30 @@ namespace Obi.ProjectView
         public AudioBlock(PhraseNode node, Strip strip): base(node, strip)
         {
             this.InitializeComponent();
+            AccessibleName = "Audio" + (node.Index + 1).ToString() + "Of" + Node.ParentAs<SectionNode>().PhraseChildCount.ToString();
+            
             if (node.Audio != null)
             {
                 SetWaveform((PhraseNode)Node);
-            }
+                                            }
             else
             {
                 TimeLabel = "0s";
                 mWaveform.Visible = false;
             }
             node.NodeAudioChanged += new NodeEventHandler<PhraseNode>(node_NodeAudioChanged);
-        }
+                                }
       
         private void SetWaveform(PhraseNode node)
         {
+            mWaveform.AccessibleName = AccessibleName;
              long time = node.Audio.getDuration().getTimeDeltaAsMilliseconds();
              mWaveform.Width = (int)Math.Round(time * AUDIO_SCALE);
              mWaveform.Media = node.Audio.getMediaData();
              TimeLabel = String.Format("{0:0.00}s",
              ((PhraseNode)Node).Audio.getDuration().getTimeDeltaAsMillisecondFloat() / 1000);
              Size = new Size(mWaveform.Width + mWaveform.Margin.Right + mWaveform.Margin.Left, Height);
+             
         }
         
         private void node_NodeAudioChanged(object sender, NodeEventArgs<PhraseNode> e)
