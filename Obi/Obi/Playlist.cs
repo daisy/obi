@@ -388,7 +388,9 @@ namespace Obi
             if (mCurrentPhraseIndex < mPhrases.Count)
             {
                 PlayPhrase(mCurrentPhraseIndex);
-                mPlayer.CurrentTimePosition = mPlaybackStartTime;
+
+                // Avn": Following line commented for removing stuttering playback initialization problem.
+                //mPlayer.CurrentTimePosition = mPlaybackStartTime;
             }
         }
 
