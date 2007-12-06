@@ -104,6 +104,46 @@ namespace Obi
                                                     || clipboard.Node is PhraseNode :
                 false;
         }
+
+
+        /// <summary>
+        /// Find the parent node for a new node to be added at the current selection.
+        /// The new node can either be a SectionNode or an EmtpyNode.
+        /// The rule is to add inside containers and after cursor/phrase block.
+        /// </summary>
+        public ObiNode ParentForNewNode(ObiNode newNode)
+        {
+            return newNode is SectionNode ?
+                (Node is SectionNode ? Node.ParentAs<ObiNode>() : Node.AncestorAs<SectionNode>()) :
+                (Node is SectionNode ? Node : Node.ParentAs<ObiNode>());
+        }
+
+        public int IndexForNewNode(ObiNode newNode)
+        {
+            return newNode is SectionNode ?
+                (Node is SectionNode ? Node.SectionChildCount : Node.AncestorAs<SectionNode>().SectionChildCount) :
+                (Node is SectionNode ? Node.PhraseChildCount : (Node.Index + 1));
+        }
+
+        /// <summary>
+        /// Get the parent for adding a new block depending on the context.
+        /// </summary>
+        public ObiNode ParentForNewBlock()
+        {
+            // TODO: handle cursor
+            return Node is SectionNode ? Node : Node is EmptyNode ? Node.ParentAs<ObiNode>() : null;
+        }
+
+        /// <summary>
+        /// Get the index at which to insert a new block depending on the context.
+        /// </summary>
+        /// <returns></returns>
+        public int IndexForNewBlock()
+        {
+            // TODO: handle cursor
+            return Node is SectionNode ? Node.PhraseChildCount : Node is EmptyNode ? (Node.Index + 1) : -1;
+        }
+
     };
 
     public class Clipboard

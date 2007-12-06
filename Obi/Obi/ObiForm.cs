@@ -1533,6 +1533,7 @@ namespace Obi
 
         private void UpdateBlocksMenu()
         {
+            mAddEmptyBlockToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
             mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
             mSplitBlockToolStripMenuItem.Enabled = mProjectView.CanSplitBlock;
             mMergeBlockWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeBlockWithNext;

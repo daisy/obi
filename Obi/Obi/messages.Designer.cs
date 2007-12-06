@@ -72,9 +72,9 @@ namespace Obi {
         /// <summary>
         ///   Looks up a localized string similar to add empty block.
         /// </summary>
-        internal static string add_empty_block {
+        internal static string add_empty_block_command {
             get {
-                return ResourceManager.GetString("add_empty_block", resourceCulture);
+                return ResourceManager.GetString("add_empty_block_command", resourceCulture);
             }
         }
         
@@ -156,6 +156,15 @@ namespace Obi {
         internal static string asset_name {
             get {
                 return ResourceManager.GetString("asset_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Audio {0} of {1}.
+        /// </summary>
+        internal static string audio_accessible_name {
+            get {
+                return ResourceManager.GetString("audio_accessible_name", resourceCulture);
             }
         }
         
@@ -1414,6 +1423,15 @@ namespace Obi {
         internal static string page_number {
             get {
                 return ResourceManager.GetString("page_number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to paste block.
+        /// </summary>
+        internal static string paste_block_command {
+            get {
+                return ResourceManager.GetString("paste_block_command", resourceCulture);
             }
         }
         

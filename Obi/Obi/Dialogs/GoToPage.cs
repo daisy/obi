@@ -35,12 +35,14 @@ namespace Obi.Dialogs
                 delegate(urakawa.core.TreeNode n)
                 {
                     PhraseNode phrase = n as PhraseNode;
+                    /*
                     if (phrase != null && phrase.PageProperty != null)
                     {
                         mPages.Add(phrase);
                         mPagesComboBox.Items.Add(String.Format(Localizer.Message("page_number"),
                             phrase.PageProperty.PageNumber));
                     }
+                     * */
                     return true;
                 },
                 delegate(urakawa.core.TreeNode n) { }

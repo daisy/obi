@@ -13,7 +13,9 @@ namespace Obi
         private Kind mKind;           // this node's kind
         private string mCustomClass;  // custom class name
 
-        public static readonly string XUK_ELEMENT_NAME = "empty";  // name of the element in the XUK file
+        public static readonly string XUK_ELEMENT_NAME = "empty";        // name of the element in the XUK file
+        private static readonly string XUK_ATTR_NAME_KIND = "kind";      // name of the kind attribute
+        private static readonly string XUK_ATTR_NAME_CUSTOM = "custom";  // name of the custom attribute
 
         /// <summary>
         /// Different kinds of content nodes.
@@ -31,27 +33,33 @@ namespace Obi
         public event ChangedKindEventHandler ChangedKind;
         public delegate void ChangedKindEventHandler(object sender, ChangedKindEventArgs e);
 
+        /// <summary>
+        /// Create a new empty node of a given kind in a presentation.
+        /// </summary>
         public EmptyNode(Presentation presentation, Kind kind, string customClass): base(presentation)
         {
             mKind = kind;
             mCustomClass = customClass;
         }
 
+        /// <summary>
+        /// Create a plain empty node in a presentation.
+        /// </summary>
         public EmptyNode(Presentation presentation): this(presentation, Kind.Plain, null) {}
+
+        /// <summary>
+        /// Create an empty node of a pre-defined kind a presentation.
+        /// </summary>
         public EmptyNode(Presentation presentation, Kind kind): this(presentation, kind, null) {}
+
+        /// <summary>
+        /// Create an empty node with a custom class in a presentation.
+        /// </summary>
         public EmptyNode(Presentation presentation, string customClass): this(presentation, Kind.Custom, customClass) {}
 
 
-        public void SetKind(Kind kind, string customClass)
-        {
-            ChangedKindEventArgs args = new ChangedKindEventArgs(this, mKind, mCustomClass);
-            mKind = kind;
-            mCustomClass = customClass;
-            if (ChangedKind != null) ChangedKind(this, args);
-        }
-
         /// <summary>
-        /// Custom class (may be null if it is Plain, Page or Heading.)
+        /// Custom class (may be null if it is a predefined kind such as plain, page or heading.)
         /// </summary>
         public string CustomClass
         {
@@ -65,16 +73,62 @@ namespace Obi
         public override PhraseNode FirstUsedPhrase { get { return null; } }
 
         /// <summary>
-        /// Index of this node relative to the other phrases.
+        /// Predefined kind of the node.
         /// </summary>
-        public override int Index { get { return getParent().indexOf(this); } }
-
         public Kind NodeKind
         {
             get { return mKind; }
             set { SetKind(value, null); }
         }
 
+        /// <summary>
+        /// Set the kind or custom class of the node.
+        /// </summary>
+        public void SetKind(Kind kind, string customClass)
+        {
+            ChangedKindEventArgs args = new ChangedKindEventArgs(this, mKind, mCustomClass);
+            mKind = kind;
+            mCustomClass = customClass;
+            if (ChangedKind != null) ChangedKind(this, args);
+        }
+
+        public override void Insert(ObiNode node, int index) { throw new Exception("Empty nodes have no children."); }
+        public override SectionNode SectionChild(int index) { throw new Exception("Empty nodes have no children."); }
+        public override int SectionChildCount { get { return 0; } }
+        public override PhraseNode PhraseChild(int index) { throw new Exception("Emtpy nodes have no children."); }
+        public override int PhraseChildCount { get { return 0; } }
+
+
+        protected override void xukInAttributes(System.Xml.XmlReader source)
+        {
+            string kind = source.GetAttribute(XUK_ATTR_NAME_KIND);
+            if (kind != null) mKind = kind == Kind.Custom.ToString() ? Kind.Custom :
+                                      kind == Kind.Heading.ToString() ? Kind.Heading :
+                                      kind == Kind.Page.ToString() ? Kind.Page :
+                                      kind == Kind.Silence.ToString () ? Kind.Silence : Kind.Plain;
+            if (kind != null && kind != mKind.ToString()) throw new Exception("Unknown kind: " + kind);
+            mCustomClass = source.GetAttribute(XUK_ATTR_NAME_CUSTOM);
+            if (mKind != Kind.Custom && mCustomClass != null)
+            {
+                throw new Exception("Extraneous `custom' attribute.");
+            }
+            else if (mKind == Kind.Custom && mCustomClass == null)
+            {
+                throw new Exception("Missing `custom' attribute.");
+            }
+            // add it to the presentation
+            Presentation.AddCustomClass(mCustomClass);
+            base.xukInAttributes(source);
+        }
+
+        protected override void xukOutAttributes(System.Xml.XmlWriter wr, Uri baseUri)
+        {
+            if (mKind != Kind.Plain) wr.WriteAttributeString(XUK_ATTR_NAME_KIND, mKind.ToString());
+            if (mKind == Kind.Custom) wr.WriteAttributeString(XUK_ATTR_NAME_CUSTOM, mCustomClass);
+            base.xukOutAttributes(wr, baseUri);
+        }
+
+        /*
         /// <summary>
         /// Page (if set) associated with this phrase.
         /// </summary>
@@ -91,43 +145,12 @@ namespace Obi
                 }
             }
         }
-
-        protected override void xukInAttributes(System.Xml.XmlReader source)
-        {
-            string kind = source.GetAttribute("kind");
-            if (kind != null) mKind = kind == "Custom" ? Kind.Custom :
-                                      kind == "Heading" ? Kind.Heading :
-                                      kind == "Page" ? Kind.Page :
-                                      kind == "Silence" ? Kind.Silence : Kind.Plain;
-            if (kind != null && kind != mKind.ToString()) throw new Exception("Unknown kind: " + kind);
-            mCustomClass = source.GetAttribute("custom");
-            if (mKind != Kind.Custom && mCustomClass != null)
-            {
-                throw new Exception("Extraneous `custom' attribute.");
-            }
-            else if (mKind == Kind.Custom && mCustomClass == null)
-            {
-                throw new Exception("Missing `custom' attribute.");
-            }
-            // add it to the presentation
-            Presentation.AddCustomType(mCustomClass);
-            base.xukInAttributes(source);
-        }
-
-        protected override void xukOutAttributes(System.Xml.XmlWriter wr, Uri baseUri)
-        {
-            if (mKind != Kind.Plain) wr.WriteAttributeString("kind", mKind.ToString());
-            if (mKind == Kind.Custom) wr.WriteAttributeString("custom", mCustomClass);
-            base.xukOutAttributes(wr, baseUri);
-        }
-
-        public override void Insert(ObiNode node, int index) { throw new Exception("Empty nodes have no children."); }
-        public override SectionNode SectionChild(int index) { throw new Exception("Empty nodes have no children."); }
-        public override int SectionChildCount { get { throw new Exception("Empty nodes have no children."); } }
-        public override PhraseNode PhraseChild(int index) { throw new Exception("Emtpy nodes have no children."); } 
-        public override int PhraseChildCount { get { throw new Exception("Empty nodes have no children."); } }
+        */
     }
 
+    /// <summary>
+    /// Informs that a node's kind has changed and pass along its old kind.
+    /// </summary>
     class ChangedKindEventArgs : NodeEventArgs<EmptyNode>
     {
         private EmptyNode.Kind mKind;

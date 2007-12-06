@@ -2,7 +2,8 @@ using System;
 using urakawa.core;
 using urakawa.media;
 using urakawa.media.data;
-using urakawa.media.data.audio ;
+using urakawa.media.data.audio;
+using urakawa.property.channel;
 
 namespace Obi
 {
@@ -25,8 +26,8 @@ namespace Obi
         /// </summary>
         public ManagedAudioMedia Audio
         {
-            get { return (ManagedAudioMedia)ChannelsProperty.getMedia(Presentation.AudioChannel); }
-            set { ChannelsProperty.setMedia(Presentation.AudioChannel, value); }
+            get { return (ManagedAudioMedia)getProperty<ChannelsProperty>().getMedia(Presentation.AudioChannel); }
+            set { getProperty<ChannelsProperty>().setMedia(Presentation.AudioChannel, value); }
         }
 
         /// <summary>

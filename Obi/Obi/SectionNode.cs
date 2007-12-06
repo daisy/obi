@@ -347,7 +347,7 @@ namespace Obi
         /// </summary>
         private TextMedia LabelTextMedia
         {
-            get { return (TextMedia)ChannelsProperty.getMedia(Presentation.TextChannel); }
+            get { return (TextMedia)getProperty<ChannelsProperty>().getMedia(Presentation.TextChannel); }
         }
 
 

@@ -92,7 +92,7 @@ namespace Obi
         /// Add a custom class to the list.  Duplicates are filtered out.
         /// </summary>
         /// <param name="customClass"></param>
-        public void AddCustomType(string customType)
+        public void AddCustomClass(string customType)
         {
             if (customType == "") return;
             Predicate<string> exists = delegate(string matchThis){return matchThis == customType;};
