@@ -46,7 +46,7 @@ namespace Obi.UserControls
             this.mPPMeter.Minimum = -35;
             this.mPPMeter.Name = "mPPMeter";
             this.mPPMeter.NumberOfChannels = 2;
-            this.mPPMeter.Size = new System.Drawing.Size(222, 356);
+            this.mPPMeter.Size = new System.Drawing.Size(127, 299);
             this.mPPMeter.SpectrumEndColor = System.Drawing.Color.Red;
             this.mPPMeter.TabIndex = 0;
             this.mPPMeter.Resize += new System.EventHandler(this.mPPMeter_Resize);
@@ -58,7 +58,7 @@ namespace Obi.UserControls
             this.Controls.Add(this.mPPMeter);
             this.MinimumSize = new System.Drawing.Size(100, 40);
             this.Name = "GraphicalPeakMeter";
-            this.Size = new System.Drawing.Size(222, 356);
+            this.Size = new System.Drawing.Size(127, 299);
             this.ResumeLayout(false);
 
 		}
