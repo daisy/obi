@@ -23,20 +23,15 @@ namespace Obi
         }
 
 
-        // Our own overrides
-
-        public virtual void AppendChild(ObiNode node) { appendChild(node); }
-        public ObiNode Detach() { return (ObiNode)detach(); }
-        public abstract void Insert(ObiNode node, int index);
-        public void InsertAfter(ObiNode node, ObiNode anchor) { insertAfter(node, anchor); }
-        public void InsertAfterSelf(ObiNode node) { getParent().insertAfter(node, this); }
-        public void InsertBefore(ObiNode node, ObiNode anchor) { insertBefore(node, anchor); }
-        public void RemoveChild(ObiNode child) { removeChild(child); }
-
         /// <summary>
-        /// Channels property for the node.
+        /// Get the nearest ancestor of the given type. This is useful to get the section ancestor of a phrase
+        /// regardless of its nesting level.
         /// </summary>
-        public ChannelsProperty ChannelsProperty { get { return getProperty<ChannelsProperty>(); } }
+        public T AncestorAs<T>() where T : ObiNode
+        {
+            ObiNode parent = getParent() as ObiNode;
+            return parent == null || parent is T ? parent as T : parent.AncestorAs<T>();
+        }
 
         /// <summary>
         /// Index of this node in its parent's list of children.
@@ -65,6 +60,17 @@ namespace Obi
         /// Get the parent node as an ObiNode or any subclass thereof. I am not sure what "thereof" means, though.
         /// </summary>
         public T ParentAs<T>() where T : ObiNode { return getParent() as T; }
+
+
+        // Our own overrides
+
+        public virtual void AppendChild(ObiNode node) { appendChild(node); }
+        public ObiNode Detach() { return (ObiNode)detach(); }
+        public abstract void Insert(ObiNode node, int index);
+        public void InsertAfter(ObiNode node, ObiNode anchor) { insertAfter(node, anchor); }
+        public void InsertAfterSelf(ObiNode node) { getParent().insertAfter(node, this); }
+        public void InsertBefore(ObiNode node, ObiNode anchor) { insertBefore(node, anchor); }
+        public void RemoveChild(ObiNode child) { removeChild(child); }
 
         /// <summary>
         /// Presentation to which this node belongs.
@@ -129,7 +135,7 @@ namespace Obi
         {
             ObiNode copy = (ObiNode)base.copyProtected(deep, inclProperties);
             copy.mUsed = mUsed;
-            if (inclProperties) copyProperties(copy);
+            //if (inclProperties) copyProperties(copy);
             return copy;
         }
 

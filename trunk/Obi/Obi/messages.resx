@@ -858,7 +858,13 @@ Error text: {1}</value>
   <data name="merge_block_with_next" xml:space="preserve">
     <value>merge block with next</value>
   </data>
-  <data name="add_empty_block" xml:space="preserve">
+  <data name="paste_block_command" xml:space="preserve">
+    <value>paste block</value>
+  </data>
+  <data name="add_empty_block_command" xml:space="preserve">
     <value>add empty block</value>
+  </data>
+  <data name="audio_accessible_name" xml:space="preserve">
+    <value>Audio {0} of {1}</value>
   </data>
 </root>

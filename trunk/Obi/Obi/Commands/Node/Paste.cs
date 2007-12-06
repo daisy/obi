@@ -9,7 +9,8 @@ namespace Obi.Commands.Node
         private NodeSelection mSelection;  // the selection context
         private ObiNode mCopy;             // copy of the node to paste
         private ObiNode mLastNode;         // last node copied (for selection)
-        private string mLabel;             // command label
+        private ObiNode mParent;           // parent for the copy
+        private int mIndex;                // index for the copy
         
         public Paste(ProjectView.ProjectView view)
             : base(view)
@@ -17,8 +18,11 @@ namespace Obi.Commands.Node
             mSelection = view.Selection;
             mCopy = view.Clipboard.Copy;
             mLastNode = mCopy.LastDescendant;
-            mLabel = Localizer.Message(
-                view.Selection.Control is ProjectView.TOCView ? "paste_section_command" :
+            mParent = mSelection.ParentForNewNode(mCopy);
+            mIndex = mSelection.IndexForNewNode(mCopy);
+            Label = Localizer.Message(
+                mCopy is EmptyNode ? "paste_block_command" :
+                view.Selection.Control is ProjectView.TOCView ? "paste_section_command " :
                 mCopy.SectionChildCount > 0 ? "paste_strips_command" : "paste_strip_command"
             );
         }
@@ -28,14 +32,12 @@ namespace Obi.Commands.Node
         /// </summary>
         public ObiNode Copy { get { return mCopy; } }
 
-        public override string getShortDescription() { return mLabel; }
-
         public override void execute()
         {
             base.execute();
-            mSelection.Node.ParentAs<ObiNode>().InsertAfter(mCopy, mSelection.Node);
-            if (!mCopy.ParentAs<ObiNode>().Used) MakeUnused(mCopy);
-            View.Selection = new NodeSelection(mLastNode, mSelection.Control, false);
+            mParent.Insert(mCopy, mIndex);
+            if (!mParent.Used) MakeUnused(mCopy);
+            View.Selection = new NodeSelection(mLastNode, mSelection.Control);
         }
 
         private void MakeUnused(ObiNode node)

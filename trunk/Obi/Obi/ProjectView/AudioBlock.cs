@@ -12,22 +12,24 @@ namespace Obi.ProjectView
     {
         private static readonly float AUDIO_SCALE = 0.01f;
 
-        public AudioBlock(PhraseNode node, Strip strip): base(node, strip)
+        public AudioBlock(PhraseNode node, Strip strip)
+            : base(node, strip)
         {
             this.InitializeComponent();
-            AccessibleName = "Audio" + (node.Index + 1).ToString() + "Of" + Node.ParentAs<SectionNode>().PhraseChildCount.ToString();
-            
+            AccessibleName = String.Format(Localizer.Message("audio_accessible_name"),
+                node.Index + 1, node.ParentAs<ObiNode>().PhraseChildCount);
+
             if (node.Audio != null)
             {
                 SetWaveform((PhraseNode)Node);
-                                            }
+            }
             else
             {
                 TimeLabel = "0s";
                 mWaveform.Visible = false;
             }
             node.NodeAudioChanged += new NodeEventHandler<PhraseNode>(node_NodeAudioChanged);
-                                }
+        }
       
         private void SetWaveform(PhraseNode node)
         {
@@ -96,10 +98,7 @@ namespace Obi.ProjectView
             Strip.SelectTimeInBlock(this, mWaveform.Selection);
         }
 
-        public void UpdateCursorTime(double time)
-        {
-            if (time > mWaveform.Selection.CursorTime) mWaveform.CursorTime = time;
-        }
+        public void UpdateCursorTime(double time) { mWaveform.CursorTime = time; }
 
         public void SelectAtCurrentTime() { Strip.SelectTimeInBlock(this, mWaveform.Selection); }
     }

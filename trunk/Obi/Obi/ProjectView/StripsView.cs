@@ -62,7 +62,7 @@ namespace Obi.ProjectView
         public bool CanRemoveBlock { get { return BlockSelected; } }
         public bool CanRemoveStrip { get { return StripSelected; } }
         public bool CanRenameStrip { get { return StripSelected; } }
-        public bool CanSplitStrip { get { return BlockSelected && SelectedPhrase.Index > 0; } }
+        public bool CanSplitStrip { get { return BlockSelected && SelectedEmptyNode.Index > 0; } }
 
         public bool CanMergeBlockWithNext
         {
@@ -195,15 +195,8 @@ namespace Obi.ProjectView
                     {
                         s.SelectionFromView = mSelection;
                         mLayoutPanel.ScrollControlIntoView((Control)s);
-                        SectionNode section = null;
-                        if (value.Node is SectionNode) section = (SectionNode)value.Node;
-                        else if (value.Node is PhraseNode)
-                        {
-                            //check for nodes inside a phrase container
-                            if (value.Node.getParent() is PhraseNode) section = value.Node.ParentAs<PhraseNode>().ParentAs<SectionNode>();
-                            else section = value.Node.ParentAs<SectionNode>();
-                        }
-                        else section = null;
+                        SectionNode section = value.Node is SectionNode ? (SectionNode)value.Node :
+                            value.Node.ParentAs<SectionNode>();
                         mView.MakeTreeNodeVisibleForSection(section);
                         mFocusing = true;
                         if (!((Control)s).Focused) ((Control)s).Focus();
@@ -376,27 +369,16 @@ namespace Obi.ProjectView
 
         #region Utility functions
 
-        private Block FindBlock(PhraseNode node)
+        // Find the block for the given node
+        private Block FindBlock(EmptyNode node)
         {
-            //if this node's parent is a phrase node (i.e., this node is in a container)
-            if (node.getParent() is PhraseNode)
-            {
-                PhraseNode p = node.ParentAs<PhraseNode>();
-                ContainerBlock b = (ContainerBlock)this.FindBlock(p);
-                Block phraseblock = b.FindBlock(node);
-                return phraseblock;
-            
-            }
-            else
-            {
-                return FindStrip(node.ParentAs<SectionNode>()).FindBlock(node);
-            }
+            return FindStrip(node.ParentAs<SectionNode>()).FindBlock(node);
         }
 
         private ISelectableInStripView FindSelectable(ObiNode node)
         {
             return node is SectionNode ? (ISelectableInStripView)FindStrip((SectionNode)node) :
-                node is PhraseNode ? (ISelectableInStripView)FindBlock((PhraseNode)node) : null;
+                node is EmptyNode ? (ISelectableInStripView)FindBlock((EmptyNode)node) : null;
         }
 
         /// <summary>
@@ -693,24 +675,5 @@ namespace Obi.ProjectView
         #endregion
 
         public void SelectAtCurrentTime() { mPlaybackBlock.SelectAtCurrentTime(); }
-
-        /// <summary>
-        /// Get the parent for adding a new block depending on the current selection.
-        /// </summary>
-        public ObiNode ParentForNewBlock()
-        {
-            return mSelection == null ? null :
-                mSelection.Node is SectionNode ? mSelection.Node : mSelection.Node.ParentAs<ObiNode>();
-        }
-
-        /// <summary>
-        /// Get the index at which to insert a new block depending on the current selection.
-        /// </summary>
-        /// <returns></returns>
-        public int IndexForNewBlock()
-        {
-            return mSelection == null ? -1 :
-                mSelection.Node is SectionNode ? mSelection.Node.PhraseChildCount : (mSelection.Node.Index + 1);
-        }
     }
 }

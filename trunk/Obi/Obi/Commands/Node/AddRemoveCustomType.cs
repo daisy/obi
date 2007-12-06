@@ -21,7 +21,7 @@ namespace Obi.Commands.Node
 
         public override void execute()
         {
-            mPresentation.AddCustomType(mCustomType);
+            mPresentation.AddCustomClass(mCustomType);
         }
         public override void unExecute()
         {
@@ -50,7 +50,7 @@ namespace Obi.Commands.Node
         }
         public override void unExecute()
         {
-            mPresentation.AddCustomType(mCustomType);
+            mPresentation.AddCustomClass(mCustomType);
         }
 
     }

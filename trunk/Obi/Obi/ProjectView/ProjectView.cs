@@ -623,10 +623,8 @@ namespace Obi.ProjectView
             if (CanAddEmptyBlock)
             {
                 EmptyNode node = new EmptyNode(mPresentation);
-                Commands.Node.AddNode command = new Commands.Node.AddNode(this, node,
-                    mStripsView.ParentForNewBlock(), mStripsView.IndexForNewBlock());
-                command.Label = Localizer.Message("add_empty_block");
-                mPresentation.UndoRedoManager.execute(command);
+                mPresentation.UndoRedoManager.execute(new Commands.Node.AddEmptyNode(this, node,
+                    mStripsView.Selection.ParentForNewNode(node), mStripsView.Selection.IndexForNewNode(node)));
             }
         }
 
