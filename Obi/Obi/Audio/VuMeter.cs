@@ -172,6 +172,16 @@ namespace Obi.Audio
             }
         }
 
+
+        public double[] PeakDbValue
+        {
+            get
+            {
+                return m_PeakDbValue;
+            }
+        }
+
+
         public void CatchResetEvent(object sender, EventArgs e)
         {
             Reset();
@@ -191,7 +201,7 @@ namespace Obi.Audio
 			m_MeanValueLeft = 0 ;
 			m_MeanValueRight = 0 ;
 
-            if (ResetEvent  != null)
+                        if (ResetEvent  != null)
 			ResetEvent(this, new Events.Audio.VuMeter.ResetEventArgs());
 					}
 
@@ -212,6 +222,7 @@ namespace Obi.Audio
 		private int m_UpdateVMArrayLength ;
 		private int m_FrameSize ;
 
+
 		// for position of graph which is centre of graph in Y and centre of left edges of two graph for x
 		private int m_GraphPositionX = 170 ;
 		private int m_GraphPositionY = 300 ;
@@ -226,6 +237,8 @@ namespace Obi.Audio
 		private int [] SampleArrayRight ;
 		// jq: removed a compiler warning
         // private int m_SampleArrayPosition = 0;
+        private double[] m_PeakDbValue;
+
 
         // avn: added on 13 March 2007, Variable to hold value of time interval for reading bytes from Buffers
         private double  m_BufferReadInterval= 50  ;
@@ -250,7 +263,7 @@ namespace Obi.Audio
                 SetSampleCount(m_SampleTimeLength);
             }
 
-            AnimationComputation();
+            //AnimationComputation();
             ComputePeakDbValue();
 		}
 
@@ -275,7 +288,7 @@ namespace Obi.Audio
                 SetSampleCount(m_SampleTimeLength);
             }
 
-            AnimationComputation();
+            //AnimationComputation();
             ComputePeakDbValue();
 
 
@@ -292,7 +305,7 @@ namespace Obi.Audio
         ///  Compute VuMeter peak values and triggeres peak value event
         /// <see cref=""/>
         /// </summary>
-        private void  ComputePeakDbValue()
+        private void ComputePeakDbValue()
         {
             int bytesPerSample = m_FrameSize / m_Channels;
             int noc = m_Channels;
@@ -321,10 +334,13 @@ namespace Obi.Audio
                 maxDbs[c] = 20 * Math.Log10(maxDbs[c] / halfFull);
             } // -1
 
+            m_PeakDbValue = maxDbs;
             if ( UpdatePeakMeter != null )
-            UpdatePeakMeter(this, new Obi.Events.Audio.VuMeter.UpdatePeakMeter(maxDbs));
+                            UpdatePeakMeter(this, new Obi.Events.Audio.VuMeter.UpdatePeakMeter(maxDbs));
 
-        
+                        DetectOverloadForPeakMeter();
+        //System.IO.File.AppendAllText("c:\\1.txt", "\n");
+        //System.IO.File.AppendAllText("c:\\1.txt", maxDbs[0].ToString());
         }
 
         private void TriggerPeakEventForSecondHalf()
@@ -529,7 +545,53 @@ namespace Obi.Audio
             return arSum;
 		}
 
-		
+        private void DetectOverloadForPeakMeter()
+        {
+        // Check for Peak Overload  and fire event if overloaded
+            if ( m_PeakDbValue.Length > 0 &&    m_PeakDbValue [0]  >= 0 )
+            {
+                arPeakOverloadFlag[0] = true;
+                Events.Audio.VuMeter.PeakOverloadEventArgs e;
+                if (boolPlayer)
+                {
+                    e = new Events.Audio.VuMeter.PeakOverloadEventArgs(1,
+                        ob_AudioPlayer.CurrentBytePosition , ob_AudioPlayer.CurrentTimePosition );
+                }
+                else
+                {
+                    e = new Events.Audio.VuMeter.PeakOverloadEventArgs(1, 0, 0);
+                }
+                PeakOverload(this, e);
+            }
+            else
+            {
+                arPeakOverloadFlag[0] = false;
+            }
+
+            if (m_PeakDbValue.Length > 1    &&   m_PeakDbValue [1]   >=  0 )
+            {
+                m_bOverload = true;
+
+                arPeakOverloadFlag[1] = true;
+                Events.Audio.VuMeter.PeakOverloadEventArgs e;
+                if (boolPlayer)
+                {
+                    e = new Events.Audio.VuMeter.PeakOverloadEventArgs(2,
+                        ob_AudioPlayer.CurrentBytePosition , ob_AudioPlayer.CurrentTimePosition );
+                }
+                else
+                {
+                    e = new Events.Audio.VuMeter.PeakOverloadEventArgs(2, 0, 0);
+                }
+                PeakOverload(this, e);
+            }
+            else
+            {
+                arPeakOverloadFlag[1] = false;
+            }
+
+        }
+
 		 // end of class
 	}
 

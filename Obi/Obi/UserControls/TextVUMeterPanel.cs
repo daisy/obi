@@ -52,18 +52,23 @@ namespace Obi.UserControls
         {
             if (m_VuMeter != null)
             {
-                double LeftDb = 20 * Math.Log10(m_VuMeter.ChannelValue_Left  * 256);
-                double RightDb = 20 * Math.Log10(m_VuMeter.ChannelValue_Right * 256);
+                double LeftDb = 0;
+                double RightDb = 0;
+                if (VuMeter.PeakDbValue != null)
+                {
+                                        if (VuMeter.PeakDbValue.Length > 0)
+                        LeftDb = VuMeter.PeakDbValue[0];
 
-                if (LeftDb < 1)
-                    LeftDb = 0.0;
+                    if (VuMeter.PeakDbValue.Length > 1)
+                        RightDb = VuMeter.PeakDbValue[1];
+                    
+                    if (LeftDb > 0 )
+                        LeftDb = 0.0;
 
-                if (RightDb < 1)
-                    RightDb = 0.0;
-
-                //double LeftDb = mPlaylist.Audioplayer.VuMeter.m_MeanValueLeft ;
-                //double RightDb = (mPlaylist.Audioplayer.VuMeter.m_MeanValueRight );
-
+                    if (RightDb >  0 )
+                        RightDb = 0.0;
+                                        
+                }
                 mLeftBox.Text = m_StrLeftOverloadIndicator + LeftDb.ToString();
                 mRightBox.Text = m_StrRightOverloadIndicator + RightDb.ToString();
             }  
