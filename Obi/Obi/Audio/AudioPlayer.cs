@@ -61,6 +61,7 @@ namespace Obi.Audio
                                         private int m_VolumeLevel;
         private int m_FwdRwdRate; // holds skip time multiplier for forward / rewind mode , value is 0 for normal playback,  positive  for FastForward and negetive  for Rewind
         private float m_fFastPlayFactor; /// fholds fast play multiplier
+        private bool m_IsPreviewing; // Is true when playback is used for previewing a  selection or marking.
 
 
         // changed by AudioPlayer functions for a short time like enabling/disabling events, stopping buffer etc.
@@ -98,6 +99,7 @@ namespace Obi.Audio
             m_lResumeToPosition = 0;
             mBufferStopPosition = -1;
             m_IsEndOfAsset = false;
+            m_IsPreviewing = false;
         }
 
 
@@ -256,7 +258,17 @@ namespace Obi.Audio
                             }
         }
 
-
+        /// <summary>
+        ///  indicate if playback is previewing
+        /// <see cref=""/>
+        /// </summary>
+        public bool IsPreviewing
+        {
+            get
+            {
+                return m_IsPreviewing;
+            }
+        }
 
         public int OutputVolume
         {
@@ -421,7 +433,6 @@ namespace Obi.Audio
             if (State == AudioPlayerState.Stopped || State == AudioPlayerState.Paused)
             {
                 m_StartPosition = 0;
-                //m_State = AudioPlayerState.NotReady;
                 
                 if ( asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() != 0)
                     InitPlay(asset ,  0, 0);
@@ -444,8 +455,7 @@ namespace Obi.Audio
             // it is public function so API state will be used
             if (State == AudioPlayerState.Stopped || State == AudioPlayerState.Paused)
             {
-                //m_State = AudioPlayerState.NotReady;
-                if (asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() > 0)
+                                if (asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() > 0)
                 {
                     long lPosition = CalculationFunctions.ConvertTimeToByte(timeFrom, (int)asset.getPCMFormat().getSampleRate(), asset.getPCMFormat().getBlockAlign());
                     lPosition = CalculationFunctions.AdaptToFrame(lPosition, asset.getPCMFormat().getBlockAlign());
@@ -473,28 +483,84 @@ namespace Obi.Audio
         /// <param name="timeTo"></param>
         public void Play(AudioMediaData asset, double timeFrom, double timeTo)
         {
-            //m_Asset = asset as Assets.AudioMediaAsset; //tk
-
-            if ( asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() > 0)
+            // it is public function so API state will be used
+            if (State == AudioPlayerState.Stopped || State == AudioPlayerState.Paused)
             {
-                long lStartPosition = CalculationFunctions.ConvertTimeToByte(timeFrom, (int) asset.getPCMFormat().getSampleRate(), asset.getPCMFormat().getBlockAlign());
-                lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, asset.getPCMFormat().getBlockAlign());
-                long lEndPosition = CalculationFunctions.ConvertTimeToByte(timeTo, (int)asset.getPCMFormat().getSampleRate(), asset.getPCMFormat().getBlockAlign());
-                lEndPosition = CalculationFunctions.AdaptToFrame(lEndPosition,  asset.getPCMFormat().getBlockAlign());
-                // check for valid arguments
-                if (lStartPosition > 0 && lStartPosition < lEndPosition && lEndPosition <= asset.getPCMLength())
+                if (asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() > 0)
                 {
-                    InitPlay( asset , lStartPosition, lEndPosition);
+                    long lStartPosition = CalculationFunctions.ConvertTimeToByte(timeFrom, (int)asset.getPCMFormat().getSampleRate(), asset.getPCMFormat().getBlockAlign());
+                    lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, asset.getPCMFormat().getBlockAlign());
+                    long lEndPosition = CalculationFunctions.ConvertTimeToByte(timeTo, (int)asset.getPCMFormat().getSampleRate(), asset.getPCMFormat().getBlockAlign());
+                    lEndPosition = CalculationFunctions.AdaptToFrame(lEndPosition, asset.getPCMFormat().getBlockAlign());
+                    // check for valid arguments
+                    if (lStartPosition > 0 && lStartPosition < lEndPosition && lEndPosition <= asset.getPCMLength())
+                    {
+                        InitPlay(asset, lStartPosition, lEndPosition);
+                    }
+                    else
+                        throw new Exception("Start Position is out of bounds of Audio Asset");
                 }
                 else
-                    throw new Exception("Start Position is out of bounds of Audio Asset");
+                {
+                    SimulateEmptyAssetPlaying();
+                }
             }
-            else
-            {
-                SimulateEmptyAssetPlaying();
-            }
+
         }
 
+        /// <summary>
+        /// Starts a preview playback
+        /// playback time returns back to restore time after previewing
+        /// end of asset is not triggered after previewing
+        /// pause and stop functions work as same as that during normal playback
+        /// <see cref=""/>
+        /// </summary>
+        /// <param name="asset"></param>
+        /// <param name="timeFrom"></param>
+        /// <param name="timeTo"></param>
+        /// <param name="RestoreTime"></param>
+        public void PlayPreview(AudioMediaData asset, double timeFrom, double timeTo, double RestoreTime)
+        {
+            // it is public function so API state will be used
+            if (State == AudioPlayerState.Stopped || State == AudioPlayerState.Paused)
+            {
+                if (asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() > 0)
+                {
+                    long lStartPosition = CalculationFunctions.ConvertTimeToByte(timeFrom, (int)asset.getPCMFormat().getSampleRate(), asset.getPCMFormat().getBlockAlign());
+                    lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, asset.getPCMFormat().getBlockAlign());
+                    long lEndPosition = CalculationFunctions.ConvertTimeToByte(timeTo, (int)asset.getPCMFormat().getSampleRate(), asset.getPCMFormat().getBlockAlign());
+                    lEndPosition = CalculationFunctions.AdaptToFrame(lEndPosition, asset.getPCMFormat().getBlockAlign());
+                    // check for valid arguments
+                    if (lStartPosition < 0)
+                        lStartPosition = 0;
+
+                    if (lEndPosition > asset.getPCMLength())
+                        lEndPosition = asset.getPCMLength();
+
+                    if ( m_FwdRwdRate == 0  )
+                    {
+                        m_IsPreviewing = true ;
+                        m_StateBeforePreview = State;
+                            
+                        InitPlay(asset, lStartPosition, lEndPosition);
+
+                        if (RestoreTime >= 0 && RestoreTime < asset.getAudioDuration().getTimeDeltaAsMillisecondFloat())
+                            m_PreviewStartPosition = CalculationFunctions.ConvertTimeToByte(RestoreTime, (int)m_SamplingRate, m_FrameSize);
+                        else
+                            m_PreviewStartPosition = 0;
+
+                            mEventsEnabled = false;
+
+                    }
+                    else
+                        throw new Exception("Start Position is out of bounds of Audio Asset");
+                }
+                else
+                {
+                    SimulateEmptyAssetPlaying();
+                }
+            }
+        }
         /// <summary>
         ///  convenience function to start playback of an asset
         ///  first initialise player with asset followed by starting playback using PlayAssetStream function
@@ -504,27 +570,30 @@ namespace Obi.Audio
         /// <param name="lEndPosition"></param>
 private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPosition)
 		{
-            //if (m_State == AudioPlayerState.Stopped || m_State == AudioPlayerState.NotReady)
-                if (mState != AudioPlayerState.Playing )
+                            if (mState != AudioPlayerState.Playing )
             {
-                                InitialiseWithAsset (asset ) ;
+                                                                InitialiseWithAsset (asset ) ;
 
-                    if ( m_FwdRwdRate == 0  )
-                        PlayAssetStream( lStartPosition , lEndPosition);
-                    else if ( m_FwdRwdRate > 0   )
-                    {
-                                                FastForward( lStartPosition );
-                    }
-                    else if ( m_FwdRwdRate < 0  )
-                    {
-                                                if (lStartPosition == 0)
-                            lStartPosition = mCurrentAudio.getPCMLength();
-                        Rewind(lStartPosition);
-                    }
+                                if (m_FwdRwdRate == 0)
+                                                                    PlayAssetStream(lStartPosition, lEndPosition);
+                                                                    else if (m_FwdRwdRate > 0)
+                                {
+                                    FastForward(lStartPosition);
+                                }
+                                else if (m_FwdRwdRate < 0)
+                                {
+                                    if (lStartPosition == 0)
+                                        lStartPosition = mCurrentAudio.getPCMLength();
+                                    Rewind(lStartPosition);
+                                }
             }// end of state check
 			// end of function
 		}
 
+        private AudioPlayerState  m_StateBeforePreview ;
+        private long m_PreviewStartPosition ;
+
+        
         /// <summary>
         ///  Called when a new asset is passed to player for playback 
         ///  initialises all asset dependent members excluding stream dependent members
@@ -753,9 +822,34 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
 
             m_IsEndOfAsset = true;
 
-			// RefreshBuffer ends
+            PreviewPlaybackStop();
+        			// RefreshBuffer ends
 		}
         private bool m_IsEventEnabledDelayedTillTimer= true ;
+
+        private void PreviewPlaybackStop()
+        {
+                        if (m_IsPreviewing)
+            {
+                m_IsPreviewing = false;
+                m_IsEndOfAsset = false;
+                mEventsEnabled = true;
+                
+                if (m_StateBeforePreview == AudioPlayerState.Paused)
+                {
+                    Events.Audio.Player.StateChangedEventArgs e = new Obi.Events.Audio.Player.StateChangedEventArgs( AudioPlayerState.Playing );
+                    mState = AudioPlayerState.Paused;
+                    m_lPausePosition = m_PreviewStartPosition;
+                    TriggerStateChangedEvent(e);
+                                    }
+                else if (m_StateBeforePreview == AudioPlayerState.Stopped )
+                {
+                    Events.Audio.Player.StateChangedEventArgs e = new Obi.Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Playing);
+                                                            TriggerStateChangedEvent(e);
+                }
+            }
+        }
+
 
         ///<summary>
         /// Function for simulating playing for assets with no audio
@@ -795,7 +889,9 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
             // API state is used
 			if ( State.Equals(AudioPlayerState .Playing)  )
 			{
-                
+                if (m_IsPreviewing)
+                    m_IsPreviewing = false;
+
                     m_lPausePosition = GetCurrentBytePosition();
                     if (!mIsFwdRwd)
                         m_lResumeToPosition = m_lLength;
@@ -840,6 +936,9 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
             // API state is used
 			if ( State != AudioPlayerState.Stopped )			
 			{
+                if (m_IsPreviewing)
+                    m_IsPreviewing = false;
+
 				                StopPlayback();
 			}
             
