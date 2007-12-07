@@ -46,15 +46,22 @@ namespace Obi.UserControls
 					{
 						mSourceVuMeter.UpdatePeakMeter -= new Obi.Events.Audio.VuMeter.UpdatePeakMeterHandler(SourceVuMeter_UpdatePeakMeter);
                         mSourceVuMeter.ResetEvent -= new Obi.Events.Audio.VuMeter.ResetHandler(SourceVuMeter_ResetEvent);
-                    }
+						mSourceVuMeter.PeakOverload -= new Obi.Events.Audio.VuMeter.PeakOverloadHandler(SourceVuMeter_PeakOverload);
+					}
 					mSourceVuMeter = value;
 					if (mSourceVuMeter != null)
 					{
 						mSourceVuMeter.UpdatePeakMeter += new Obi.Events.Audio.VuMeter.UpdatePeakMeterHandler(SourceVuMeter_UpdatePeakMeter);
                         mSourceVuMeter.ResetEvent += new Obi.Events.Audio.VuMeter.ResetHandler(SourceVuMeter_ResetEvent);
+						mSourceVuMeter.PeakOverload += new Obi.Events.Audio.VuMeter.PeakOverloadHandler(SourceVuMeter_PeakOverload);
 					}
 				}
 			}
+		}
+
+		void SourceVuMeter_PeakOverload(object sender, Obi.Events.Audio.VuMeter.PeakOverloadEventArgs e)
+		{
+			mPPMeter.SetPeakOverloadCount(e.Channel - 1, mPPMeter.GetPeakOverloadCount(e.Channel - 1) + 1);
 		}
 
         void SourceVuMeter_ResetEvent(object sender, Obi.Events.Audio.VuMeter.ResetEventArgs e)
@@ -168,6 +175,11 @@ namespace Obi.UserControls
 				if (mBarPaddingToWidthRatio < 0.01f) mBarPaddingToWidthRatio = 0.01f;
 				UpdateFontSizeAndBarPadding();
 			}
+		}
+
+		private void mPPMeter_PeakOverloadIndicatorClicked(object sender, AudioEngine.PPMeter.PeakOverloadIndicatorClickedEventArgs e)
+		{
+			mPPMeter.SetPeakOverloadCount(e.ChannelNumber, 0);
 		}
 	}
 }
