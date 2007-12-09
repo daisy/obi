@@ -8,38 +8,123 @@ Now this is really the reference section.
 
 ## Views
 
+The work area of Obi is composed of several views, as described below. All
+views (except for the strips view) can be shown or hidden as necessary.
+
 ### Strips view
 
-The main view is the __strips view__.
+The main view is the _strips view_. This is the view in which the contents of
+the book are edited. There is a strip for every section in the book and they
+appear in book order in the strips view. Inside each strip the actual contents
+appear as blocks.
+
+#### Strips
+
+A _strip_ represents a section and its contents. Subsections are represented as
+other strips that follow in the strip view. Contents are represented as blocks
+which are shown in book order inside the strip. A strip fills the entire width
+of the strips view and has two parts:
+
+1. an editable label showing the title of the section;
+
+2. a sequence of zero or more blocks.
+
+#### Blocks
+
+A _block_ is used to represent an unit of content in the strips view. A block
+can be empty or contain audio. The audio content of a block is called a
+_phrase_ as it allows for the reader to skip easily from phrase to phrase
+when the book is exported to DAISY. Obi does not impose any limitations on
+the amount of audio that a block may contain.
+
+#### Different kinds of blocks
+
+* _Empty blocks_ are blocks that contain no audio. They can be used as
+  placeholders for adding audio at a later time. An empty block only contains
+  an information label. TODO: describe contents of label; something like "block
+  _n_ of _m_."
+
+* _Plain blocks_ are blocks that contain audio. In addition to the information
+  label, the waveform of the audio is displayed.
+
+* _Page blocks_ are blocks that represent a page number. The corresponding
+  phrase is usually a reading of the page number. An actual number is
+  associated with the block. Example: page number 42 in the book can be
+  represented by a page block bearing the number 42 and the phrase "page
+  42." In the exported DAISY book, a page block will be skippable.
+
+* _Silence blocks_ are used for phrase detection; see below.
+
+* _Custom blocks_ are blocks that have some additional property in the current
+  book (such as producer notes, side bars, etc.) These can be defined by the
+  producer of the book as needed. In the exported DAISY book, custom blocks
+  will be skippable.
+
+__Note:__ future versions of Obi will have _container blocks_ that can hold
+other blocks to create escapable structures, such as lists or audio tables,
+but they are not included in the current release of Obi.
 
 ### TOC view
 
+The _table of contents view_ (_TOC view_ for short) shows the table of contents
+of the book in a hierarchical way. Each entry in the table of contents is
+called a _section_; this is a generic Obi term, and can be a book part,
+chapter, section, subsection, etc. The level of each section is shown by its
+indentation. As noted above, there is a corresponding strip for every section
+in the TOC view.
+
 ### Metadata view
 
-### Search view
+The _metadata view_ shows the metadata of the book: information such as title,
+narrator, date of publication, etc. Metadata entries can be edited in this
+view.
 
-### Transport bar
+### Transport bar and peak meter
 
-The transport bar is where playback and recording happen.
+The _transport bar_ is used for recording and playback of the book. It has
+buttons such as play, record, or stop; a time display; and a textual peak
+meter. In addition to the transport bar, an external peak meter can also be
+shown alongside Obi's main window.
 
 ## Selection
 
-### Selectable items
+All edits in Obi are based on the current selection. In the current version of
+Obi, only a single selection can be made at once (future versions of Obi will
+have multiple selection.)
 
-* Section (in the TOC view): the selection is _deep_, so subsections and all
-  of their phrases are selected as well.
+In general, selection is performed by clicking (and possibly dragging) on the
+object or area to select; keyboard users can navigate to the desired region
+to select (see keyboard navigation below.)
 
-* Strip (in the strips view):
+### What is selectable?
 
-TODO: handle waveform selection (position and chunk selection.)
+* In the strips view:
+  * A strip is selectable.
+  * The label of a strip is selectable. When selected, the label becomes
+    editable.
+  * A position inside a strip is selectable. The position can be before the
+    first block, after the last block, or between two blocks.
+  * A block inside a strip is selectable.
+  * The waveform in a block is selectable; either a position or a range of
+    audio.
+* In the TOC view:
+  * A section is selectable.
+  * The text label of a section is selectable. When selected, it becomes
+    editable.
+* In the metadata view:
+  * A metadata entry in the metadata view is selectable (TODO).
+  * The text inside a metadata entry is selectable (TODO). When selected, it
+    becomes editable.
 
-## Transport bar
+## Transport bar and peak meter
+
+### Controls
+
+### Playback
 
 ### Recording
 
-Undo acts at the phrase level: after recording has ended, undo will undo the
-last recorded phrase, then the one before, etc. Sections that were created
-during recording are also removed (TODO).
+### Peak meter
 
 ## Menus
 
@@ -146,7 +231,10 @@ function is provided.
 
 ### Strips menu
 
-### Blocks menu
+### Blocks menu (`Alt+B`)
+
+* __Add empty block__ (`Ctrl+Alt+A`): add a new empty block at the end of the
+  selected strip, or after the selected item in the strip.
 
 * __Split block__ (`Ctrl+P`): split the block at the current cursor position.
   The block is split in two blocks, one with all the audio data before the
@@ -166,295 +254,3 @@ function is provided.
 ### Tools menu
 
 ### Help menu
-
-
-## Outdated stuff beyond this point
-
-The idea is that we document features first, then implement them. This way
-we can better test if they behave as planned and we don't have to document
-them later. This file can be the basis for the proper help page (with
-screenshots, with more end-user hand-holding) with the objective of reusing
-as much of it as possible.
-
-## What is Obi?
-
-I am the introduction paragraph for the manual.
-
-## The work area
-
-The work area shows the whole project at once and allows the user to focus
-on specific parts while editing, recording and testing playback of a
-project. The three main areas are:
-
-1. The Table of Contents view, where the structure of the book is edited.
-
-2. The Metadata view, where the data _about_ the book is edited.
-
-3. The Strips view, where the audio contents of the book are edited.
-
-In addition, a transport bar acts as the interface for recording and
-playback of the book. The figure below [to be replaced by an actual
-screenshot] shows a sketch of the work area:
-
-
-<pre>
-+--------------------------------------------------------------------------+
-|                         |                                                |
-|         TOC view        |                   Strip view                   |
-|                         |                                                |
-|  * My book              |  +---------------------------------------------|
-|    * First section      |  |                                             |
-|    * Second section     |  |  My book                                    |
-|      * First chapter    |  |                                             |
-|      * Second chapter   |  |  +------------------------------------------|
-|    * Third section      |  |  |            |           |             |   |
-|                         |  |  |  Audio     |  Audio    |  Audio      |  A|
-|                         |  |  |            |           |             |   |
-|-------------------------|  |  +------------------------------------------|
-|                         |  |                                             |
-|        Metadata         |  +---------------------------------------------|
-|                         |                                                |
-|  Title: My book         |  +---------------------------------------------|
-|  Author: Obird          |  |                                             |
-|                         |  |  First section                              |
-|--------------------------------------------------------------------------|
-|                                                                          |
-|                               Transport bar                              |
-|                                                                          |
-+--------------------------------------------------------------------------+
-</pre>
-
-### The table of contents view (TOC view)
-
-The TOC view is shown as a sidebar of the strips view. If the Metadata view
-is shown, the TOV view is shown above the Metadata view as shown in the
-figure above. The TOC view can be hidden.
-
-The TOC view shows the sections and subsections in the book. It allows
-hierarchical editing of sections (adding new sections and subsections,
-changing the level of sections, renaming sections, etc.) Operations such as
-deleting or copying sections are _deep_: they act not only on a section, but
-on all of its contents, subsections as well as audio.  The audio content of
-the sections themselves are managed in the strips view.
-
-### Metadata view
-
-The metadata view is shown as a sidebar of the strips view. If the TOC view
-is shown, the metadata view is shown underneath the TOC view as in the
-figure above. The metadata view can be hidden.
-
-This is the view where the user edits the metadata for the project. The
-DAISY spec mandates some entries to be present and Obi makes sure that these
-entries are always present. It also helps the user add additional useful
-metadata to her project. Some metadata is autogenerated (for instance the
-total length of the book) and is not editable through this view.
-
-### Strips view
-
-The strips view is where the audio contents of the book are edited. Every
-section in the book is represented in a horizontal _strip_, where audio
-contents are arranged in _blocks_ that represent the audio units (such as
-phrases) of the book.
-
-Contrary to the TOC view, the strips view is _flat_; the strips are
-presented in the book order, but not in a hierarchical way. This is similar
-to how they usually appear in the book, outside of its table of contents.
-
-#### Strips
-
-Strips are containers for blocks and map one-to-one with sections. They are
-composed of:
-
-* The name of the section (same as shown in the TOC view, changing one
-changes the other.)
-
-* The thumbnail of the image label, if there is one (the full-size image can
-be shown in a modal dialog.)
-
-* The audio blocks, as described below.
-
-#### Blocks
-
-__Block classes and properties.__ There are three basic kinds of blocks:
-
-1. Plain _audio blocks_ are the default kind of audio block.
-
-2. _Page blocks_ are used to represent page numbers. A page block has a page
-number that can be edited and searched for. The audio data of a page block
-is usually a reading of this page number.
-
-3. _Heading blocks_ are used to represent the audio label of sections in the
-table of contents. There can be only one heading block per section, although
-it does not have to be the first block.
-
-Additionally, the user may create custom classes of blocks (for instance
-producer notes, sidebars, etc.) which behave like regular blocks but can be
-easily searched or manipulated as a class rather than block by block. This
-is also useful for working with skippable blocks, as described below.
-
-Blocks can then the following properties; properties are either set (which
-means that they do apply to this block) or unset (they do not.)
-
-* The _used_ property means, when set, that the block is indeed part of the
-book. By defaults, blocks are used (_i.e._ this property is set.) Unused
-blocks will not play during normal playback of the book and will not be
-exported to the final DAISY books. Unused blocks can also be removed all at
-once during project cleanup.
-
-* The _skippable_ property means, when set, that this block can be
-automatically skipped during playback. This property is generally used with
-pages and custom blocks, so that for instance all producer notes in the book
-can be skipped by default. DAISY players allow the reader to ultimately decide
-whether they want these to be skipped or not.
-
-* The _escapable_ property means, when set, that playback can escape
-
-* The _empty_ property means, when set, that the block has no actual
-content; it is just a placeholder. This can happen when importing a project,
-or failing to read sound files from existing projects. The user can also
-create empty blocks explicitly. This property is automatically set or unset
-by Obi.
-
-There is an additional property which is an _annotation string_. This is
-purely for authoring and can be used to set short annotations on blocks
-(_e.g._ ``fix this'' or ``to be recorded later'').
-
-Lastly, there is a special kind of block which instead of containing an
-audio phrase, contains other blocks. We call this a _container block_. All
-blocks in the container block share the properties of the container. As an
-example, a container block can be used to group together several phrase
-blocks to have an audio label consisting of several phrases (remember that
-there can only be a single heading block per section; in that case the
-container block is marked as being the heading block.)
-
-There are other examples of the use of container blocks, that can be marked
-as escapable; for instance a list of phrases or an audio table (container
-blocks can contain other container blocks, so a table can be a list of rows
-which are themselves lists of phrases.)
-
-__Display.__ A block is displayed as a colored rectangle that contains all
-of the relevant information:
-
-* Block content: can be a waveform, other blocks (in case of a container
-block), or an "empty" icon.
-
-* Annotation
-
-* Total audio length of the block
-
-The block size is proportional to the size of its contents; longer audio
-blocks are wider.
-
-### Transport bar
-
-Used for recording and QA playback. Buttons are overloaded for recording;
-for instance, the next phrase button introduces a new phrase. Whether this is
-sufficient remains to be seen. An idea would be to modify the toolbar when
-recording.
-
-### VU meter
-
-Has its own window, or is part of the transport bar (text/small version.)
-
-## Editing metadata
-
-## Editing structure
-
-TOC view, TOC and Edit menus mostly. Don't forget to have the TOC view
-visible to edit the document structure (see View menu.)
-
-### Creating sections
-
-New sections are added after, or as subsections of existing sections. A new
-section is created through the _Add section_ menu item in the _TOC_ menu. In
-order to create a new section, an existing section must be selected. The new
-section will always be created _after_ the selected section, and then become
-selected. New sections get a default label which can be immediately modified
-by typing the desired name.
-
-Whenever a section is selected in the TOC view, a _dummy section_ appears
-underneath it. The dummy section can itself be selected to add a new section
-_before_ the first section or subsection of a section, or as the first
-subsection of a section with no subsection yet. When no section is selected
-in the TOC view, the dummy section appears as the first section of the book.
-[NOTE use an actual, unused section as the dummy section.]
-
-#### Using the dummy section
-
-* Adding the first section in the project: since the TOC is empty, there
-will be a dummy section in the TOC view. Select it then choose _add section_
-from the _TOC_ menu.
-
-* Adding a subsection under an existing section: if there are no subsections
-yet, select the section under which you want to add a subsection. A dummy
-subsection will appear. Select it then choose _add section_ from the _TOC_
-menu. [NOTE is it too inconvenient to have to select twice for adding the
-first subsection? Or worth keeping the _add subsection_ menu item?]
-
-* Adding a section before the first section: [NOTE maybe the
-"root" dummy section should always be visible since unselecting in the TOC
-view is inconvenient.]
-
-### Renaming sections
-
-A section can change its label simply by renaming it in the TOC view. This
-can be done in several ways:
-
-* Select the section, then choose _rename section_ in the _TOC_ menu;
-
-* Select the section, then click it again to start editing;
-
-* Select the section, then press `F2`.
-
-The section label will then become editable until you press the `Return` key
-to validate. If you wish to cancel your edit, just press the `Escape` key.
-A section cannot have an empty string as a label.
-
-### Changing section levels
-
-[EXAMPLE]
-
-Note that changing the level of a section is a _shallow_ operation as it
-only changes the level of the selected section, and not its subsections.
-Changing the level of a section and its subsections is better achieved
-through cut-and-paste [NOTE and through multiple selection in the future.]
-
-#### Move in
-
-Moving a section _in_ is the same as _increasing_ its level. A section
-cannot be moved in if it is the first subsection of its parent section (or
-if it is the first section in the book.)
-
-#### Move out
-
-Moving a section _out_ is the same as _decreasing_ its level, so that the
-level of a subsection becomes the same as its parent section's. As a
-consequence, only subsections can be moved out; top-level sections already
-have the lowest level.
-
-### Used and unused sections
-
-
-## Editing contents
-
-### Page numbering
-
-## Editing audio
-
-## Audio playback and recording
-
-### Playback
-
-### Recording
-
-## Saving and exporting
-
-### XUK/.obi format
-
-### Cleaning up
-
-### Exporting to DAISY 3
-
-### Using the DAISY Pipeline for import/export
-
-## User profile and preferences
