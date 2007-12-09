@@ -37,7 +37,7 @@ namespace Obi.ProjectView
             mParentView = parent;
             UpdateColors();
             mLabel.AccessibleName = this.Label;
-            AddCursor();
+            AddCursor(0);
         }
 
 
@@ -51,7 +51,7 @@ namespace Obi.ProjectView
             mBlocksPanel.Controls.Add(block);
             mBlocksPanel.Controls.SetChildIndex(block, 1 + node.Index * 2);
             UpdateWidth();
-            AddCursor();
+            AddCursor(2 * (1 + node.Index));
             return block;
         }
 
@@ -63,9 +63,9 @@ namespace Obi.ProjectView
         public Block BlockAfter(ISelectableInStripView item)
         {
             int count = mBlocksPanel.Controls.Count;
-            int index = item is Strip ? 0 :
-                        item is Block ? mBlocksPanel.Controls.IndexOf((Control)item) + 1 :
-                                        count;
+            int index = item is Strip ? 1 :
+                        item is StripCursor ? mBlocksPanel.Controls.IndexOf((Control)item) + 1 :
+                        item is Block ? mBlocksPanel.Controls.IndexOf((Control)item) + 2 : count;
             return index < count ? (Block)mBlocksPanel.Controls[index] : null;
         }
 
@@ -75,10 +75,10 @@ namespace Obi.ProjectView
         /// </summary>
         public Block BlockBefore(ISelectableInStripView item)
         {
-            int index = item is Strip ? mBlocksPanel.Controls.Count :
-                        item is Block ? mBlocksPanel.Controls.IndexOf((Control)item) :
-                                        0;
-            return index > 0 ? (Block)mBlocksPanel.Controls[index - 1] : null;
+            int index = item is Strip ? mBlocksPanel.Controls.Count - 2 :
+                        item is StripCursor ? mBlocksPanel.Controls.IndexOf((Control)item) - 1 :
+                        item is Block ? mBlocksPanel.Controls.IndexOf((Control)item) - 2 : 0;
+            return index > 0 ? (Block)mBlocksPanel.Controls[index] : null;
         }
 
         /// <summary>
@@ -276,15 +276,16 @@ namespace Obi.ProjectView
 
 
         // Add a cursor at the end of the strip
-        private void AddCursor()
+        private void AddCursor(int index)
         {
             StripCursor cursor = new StripCursor();
             cursor.Size = new Size(12, mBlocksPanel.Height);
             mBlocksPanel.Controls.Add(cursor);
-            int index = mBlocksPanel.Controls.Count / 2;
+            mBlocksPanel.Controls.SetChildIndex(cursor, index);
             cursor.Click += new EventHandler(delegate(object sender, EventArgs e)
                 {
-                    mParentView.SelectionFromStrip = new StripCursorSelection(mNode, mParentView, index);
+                    mParentView.SelectionFromStrip = new StripCursorSelection(mNode, mParentView,
+                        mBlocksPanel.Controls.IndexOf((Control)cursor) / 2);
                 }
             );
         }
