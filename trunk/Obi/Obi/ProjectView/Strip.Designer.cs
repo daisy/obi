@@ -59,8 +59,8 @@ namespace Obi.ProjectView
             this.mLabel.Size = new System.Drawing.Size(284, 21);
             this.mLabel.TabIndex = 0;
             this.mLabel.LabelEditedByUser += new System.EventHandler(this.Label_LabelEditedByUser);
-            this.mLabel.EditableChanged += new System.EventHandler(this.mLabel_EditableChanged);
-            this.mLabel.SizeChanged += new System.EventHandler(this.mLabel_SizeChanged);
+            this.mLabel.EditableChanged += new System.EventHandler(this.Label_EditableChanged);
+            this.mLabel.SizeChanged += new System.EventHandler(this.Label_SizeChanged);
             // 
             // Strip
             // 

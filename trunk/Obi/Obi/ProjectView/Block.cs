@@ -26,6 +26,7 @@ namespace Obi.ProjectView
 
         public Block() { InitializeComponent(); }
 
+
         void node_ChangedKind(object sender, ChangedKindEventArgs e)
         {
             CustomClassLabel = e.Node.NodeKind == EmptyNode.Kind.Custom ? e.Node.CustomClass : e.Node.NodeKind.ToString();

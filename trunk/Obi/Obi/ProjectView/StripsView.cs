@@ -14,9 +14,9 @@ namespace Obi.ProjectView
     /// </summary>
     public interface ISelectableInStripView
     {
-        bool Selected { get; set; }
-        ObiNode ObiNode { get; }
-        NodeSelection SelectionFromView { set; }
+        bool Selected { get; set; }               // set the selected state of the control
+        ObiNode ObiNode { get; }                  // get the Obi node for the control
+        NodeSelection SelectionFromView { set; }  // used by the parent view to set the selection 
     }
 
     public partial class StripsView : UserControl, IControlWithRenamableSelection
@@ -187,7 +187,7 @@ namespace Obi.ProjectView
             {
                 if (value != mSelection)
                 {
-                    ISelectableInStripView s = value == null ? null : FindSelectable(value.Node);
+                    ISelectableInStripView s = value == null ? null : FindSelectable(value);
                     if (mSelectedItem != null) mSelectedItem.Selected = false;
                     mSelection = value;
                     mSelectedItem = s;
@@ -311,7 +311,7 @@ namespace Obi.ProjectView
                 if (node.IsRooted)
                 {
                     // TODO replace FindStrip with FindParentContainer, as it can be a strip or a block
-                    Block block = FindStrip(node.ParentAs<SectionNode>()).AddBlockForPhrase(node);
+                    Block block = FindStrip(node.ParentAs<SectionNode>()).AddBlockForNode(node);
                     mLayoutPanel.ScrollControlIntoView(block);
                     UpdateTabIndex(block);
                 }
@@ -331,7 +331,7 @@ namespace Obi.ProjectView
                 strip.Size = new Size(w, strip.Height);
             }
             for (int i = 0; i < node.SectionChildCount; ++i) AddStripForSection(node.SectionChild(i));
-            for (int i = 0; i < node.PhraseChildCount; ++i) strip.AddBlockForPhrase(node.PhraseChild(i));
+            for (int i = 0; i < node.PhraseChildCount; ++i) strip.AddBlockForNode(node.PhraseChild(i));
             return strip;
         }
 
@@ -375,10 +375,14 @@ namespace Obi.ProjectView
             return FindStrip(node.ParentAs<SectionNode>()).FindBlock(node);
         }
 
-        private ISelectableInStripView FindSelectable(ObiNode node)
+        // Find the selectable item for this selection object
+        private ISelectableInStripView FindSelectable(NodeSelection selection)
         {
-            return node is SectionNode ? (ISelectableInStripView)FindStrip((SectionNode)node) :
-                node is EmptyNode ? (ISelectableInStripView)FindBlock((EmptyNode)node) : null;
+            return selection is StripCursorSelection ? (ISelectableInStripView)
+                    FindStrip((SectionNode)selection.Node).FindStripCursor((StripCursorSelection)selection) :
+                selection == null ? null :
+                selection.Node is SectionNode ? (ISelectableInStripView)FindStrip((SectionNode)selection.Node) :
+                selection.Node is EmptyNode ? (ISelectableInStripView)FindBlock((EmptyNode)selection.Node) : null;
         }
 
         /// <summary>
