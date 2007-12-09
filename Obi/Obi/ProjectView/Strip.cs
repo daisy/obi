@@ -23,30 +23,13 @@ namespace Obi.ProjectView
             mLabel.FontSize = 18.0F;
             mNode = null;
             Selected = false;
-            mLabel.AccessibleName = this.Label;
-        }
-
-        public StripsView ParentView { get { return mParentView; } }
-
-        private void Label_LabelEditedByUser(object sender, EventArgs e)
-        {
-            if (mLabel.Label != "")
-            {
-                // update the label for the node
-                mParentView.RenameStrip(this);
-                mParentView.Selection = new NodeSelection(mNode, mParentView);
-            }
-            else
-            {
-                // restore the previous label from the node
-                mLabel.Label = mNode.Label;
-            }
         }
 
         /// <summary>
         /// Create a new strip with an associated section node.
         /// </summary>
-        public Strip(SectionNode node, StripsView parent): this()
+        public Strip(SectionNode node, StripsView parent)
+            : this()
         {
             if (node == null) throw new Exception("Cannot set a null section node for a strip!");
             mNode = node;
@@ -54,179 +37,28 @@ namespace Obi.ProjectView
             mParentView = parent;
             UpdateColors();
             mLabel.AccessibleName = this.Label;
+            AddCursor();
         }
 
 
         /// <summary>
         /// Add a new block for a phrase node.
         /// </summary>
-        public Block AddBlockForPhrase(EmptyNode node)
+        public Block AddBlockForNode(EmptyNode node)
         {
             Block block = node is PhraseNode ? new AudioBlock((PhraseNode)node, this) : new Block(node, this);
+            block.Margin = new Padding(0, 0, 0, 0);
             mBlocksPanel.Controls.Add(block);
-            mBlocksPanel.Controls.SetChildIndex(block, node.Index);
+            mBlocksPanel.Controls.SetChildIndex(block, 1 + node.Index * 2);
             UpdateWidth();
+            AddCursor();
             return block;
-        }
-
-        /// <summary>
-        /// The label of the strip (i.e. the title of the section; editable.)
-        /// </summary>
-        public string Label
-        {
-            get { return mLabel.Label; }
-            set
-            {
-                if (value != null && value != "") mLabel.Label = value;
-                int w = mLabel.Location.X + mLabel.MinimumSize.Width + mLabel.Margin.Right;
-                if (w > MinimumSize.Width) MinimumSize = new Size(w, MinimumSize.Height);
-            }
-        }
-
-        /// <summary>
-        /// Get the tab index of the last control in the strip
-        /// </summary>
-        public int LastTabIndex
-        {
-            get
-            {
-                int count = mBlocksPanel.Controls.Count;
-                return count == 0 ? TabIndex : ((Block)mBlocksPanel.Controls[count - 1]).LastTabIndex;
-            }
-        }
-
-        /// <summary>
-        /// Update the tab index for the strip and all of its blocks.
-        /// </summary>
-        public int UpdateTabIndex(int index)
-        {
-            TabIndex = index;
-            ++index;
-            foreach (Control c in mBlocksPanel.Controls) index = ((Block)c).UpdateTabIndex(index);
-            return index;
-        }
-
-        /// <summary>
-        /// The section node for this strip.
-        /// </summary>
-        public SectionNode Node { get { return mNode; } }
-        public ObiNode ObiNode { get { return mNode; } }
-
-        /// <summary>
-        /// Set the selected flag for the strip. This just tells the strip that it is selected.
-        /// </summary>
-        public bool Selected
-        {
-            get { return mSelected; }
-            set
-            {
-                mSelected = value && mParentView.Selection.Text == null;
-                UpdateColors();
-            }
-        }
-
-        /// <summary>
-        /// Set the selection from the parent view
-        /// </summary>
-        public NodeSelection SelectionFromView { set { Selected = value != null; } }
-
-        /// <summary>
-        /// Update the colors of the block when the state of its node has changed.
-        /// </summary>
-        public void UpdateColors()
-        {
-            if (mNode != null)
-            {
-                mLabel.BackColor = mNode.Used ? Color.Thistle : Color.LightGray;    
-                BackColor = mBlocksPanel.BackColor =
-                    mSelected ? Color.Yellow :
-                    mNode.Used ? Color.LightBlue : Color.LightGray;
-            }
-        }
-
-        /// <summary>
-        /// Select a block in the strip.
-        /// </summary>
-        public Block SelectedBlock { set { mParentView.SelectedNode = value.Node; } }
-
-        /// <summary>
-        /// Start renaming the strip.
-        /// </summary>
-        public void StartRenaming()
-        {
-            mLabel.Editable = true;
-            mParentView.Selection = new NodeSelection(mNode, mParentView, Label);
-            mLabel.AccessibleName = this.Label;
-        }
-
-        // Resize the strip according to the editable label, whose size can change.
-        // TODO since there are really two possible heights, we should cache these values.
-        private void mLabel_SizeChanged(object sender, EventArgs e)
-        {
-            mBlocksPanel.Location = new Point(mBlocksPanel.Location.X,
-                mLabel.Location.Y + mLabel.Height + mLabel.Margin.Bottom);
-            Size = new Size(Width,
-                mBlocksPanel.Location.Y + mBlocksPanel.Height + mBlocksPanel.Margin.Bottom);
-        }
-
-        // The user clicked on this strip, so select it if it wasn't already selected
-        private void Strip_Click(object sender, EventArgs e)
-        {
-            if (!mSelected) mParentView.SelectedNode = mNode;
-        }
-
-        private void mLabel_EditableChanged(object sender, EventArgs e)
-        {
-            if (mLabel.Editable) mParentView.Selection = new NodeSelection(mNode, mParentView, mLabel.Label);
-        }
-
-        #region ISearchable Members
-
-        public bool Matches(string search)
-        {
-            return FindInText.Match(Label, search);
-        }
-
-        public void Replace(string search, string replace)
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        #endregion
-
-        public Block FindBlock(EmptyNode node)
-        {
-            foreach (Control c in mBlocksPanel.Controls)
-            {
-                if (c is Block && ((Block)c).Node == node) return (Block)c;
-            }
-            return null;
-        }
-
-        public void RemoveBlock(EmptyNode node)
-        {
-            mBlocksPanel.Controls.Remove(FindBlock(node));
-            UpdateWidth();
-        }
-
-        private void UpdateWidth()
-        {
-            int w = 0;
-            foreach (Control c in mBlocksPanel.Controls) w += c.Width + c.Margin.Right;
-            if (mBlocksPanel.Controls.Count > 0) w -= mBlocksPanel.Controls[mBlocksPanel.Controls.Count - 1].Margin.Right;
-            if (w > mBlocksPanel.Width) mBlocksPanel.Size = new Size(w, mBlocksPanel.Height);
-            w += mBlocksPanel.Location.X + mBlocksPanel.Margin.Right;
-            if (w > MinimumSize.Width) MinimumSize = new Size(w, MinimumSize.Height);
-        }
-
-        private void Strip_Enter(object sender, EventArgs e)
-        {
-            if (mParentView.SelectedSection != mNode && !mParentView.Focusing) mParentView.SelectedNode = mNode;
         }
 
         /// <summary>
         /// Return the block after the selected block or strip. In the case of a strip is the first block.
         /// Return null if this the last block, there are no blocks, or nothing was selected in the first place.
+        /// This is used for arrow navigation.
         /// </summary>
         public Block BlockAfter(ISelectableInStripView item)
         {
@@ -250,15 +82,24 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Return the last block in the strip, or null if empty.
+        /// Find the block for the corresponding node inside the strip.
         /// </summary>
-        public Block LastBlock
+        public Block FindBlock(EmptyNode node)
         {
-            get
+            foreach (Control c in mBlocksPanel.Controls)
             {
-                return mBlocksPanel.Controls.Count > 0 ? (Block)mBlocksPanel.Controls[mBlocksPanel.Controls.Count - 1]:
-                    null;
+                // this needs to be updated for container blocks
+                if (c is Block && ((Block)c).Node == node) return (Block)c;
             }
+            return null;
+        }
+
+        /// <summary>
+        /// Find the strip cursor for the given selection.
+        /// </summary>
+        public StripCursor FindStripCursor(StripCursorSelection selection)
+        {
+            return (StripCursor)mBlocksPanel.Controls[selection.Index * 2];
         }
 
         /// <summary>
@@ -272,9 +113,235 @@ namespace Obi.ProjectView
             }
         }
 
+        /// <summary>
+        /// The label of the strip (i.e. the title of the section; editable.)
+        /// </summary>
+        public string Label
+        {
+            get { return mLabel.Label; }
+            set
+            {
+                if (value != null && value != "") mLabel.Label = value;
+                int w = mLabel.Location.X + mLabel.MinimumSize.Width + mLabel.Margin.Right;
+                if (w > MinimumSize.Width) MinimumSize = new Size(w, MinimumSize.Height);
+            }
+        }
+
+        /// <summary>
+        /// Return the last block in the strip, or null if empty.
+        /// </summary>
+        public Block LastBlock
+        {
+            get
+            {
+                return mBlocksPanel.Controls.Count > 0 ? (Block)mBlocksPanel.Controls[mBlocksPanel.Controls.Count - 1] :
+                    null;
+            }
+        }
+        /// <summary>
+        /// Get the tab index of the last control in the strip
+        /// </summary>
+        public int LastTabIndex
+        {
+            get
+            {
+                int count = mBlocksPanel.Controls.Count;
+                return count == 0 ? TabIndex : ((Block)mBlocksPanel.Controls[count - 1]).LastTabIndex;
+            }
+        }
+
+        /// <summary>
+        /// The section node for this strip.
+        /// </summary>
+        public SectionNode Node { get { return mNode; } }
+
+        /// <summary>
+        /// The (generic) node for this strip; used for selection.
+        /// </summary>
+        public ObiNode ObiNode { get { return mNode; } }
+
+        public StripsView ParentView { get { return mParentView; } }
+
+        /// <summary>
+        /// Remove the block for the given node.
+        /// </summary>
+        public void RemoveBlock(EmptyNode node)
+        {
+            Block block = FindBlock(node);
+            if (block != null)
+            {
+                int index = mBlocksPanel.Controls.IndexOf(block);
+                mBlocksPanel.Controls.RemoveAt(index + 1);         // remove the cursor after the block
+                mBlocksPanel.Controls.RemoveAt(index);             // and the block itself
+                UpdateWidth();
+            }
+        }
+
+        /// <summary>
+        /// Set the selected flag for the strip. This just tells the strip that it is selected.
+        /// </summary>
+        public bool Selected
+        {
+            get { return mSelected; }
+            set
+            {
+                mSelected = value && mParentView.Selection.Text == null;
+                UpdateColors();
+            }
+        }
+
+        /// <summary>
+        /// Select a block in the strip.
+        /// </summary>
+        public Block SelectedBlock { set { mParentView.SelectedNode = value.Node; } }
+
+        /// <summary>
+        /// Set the selection from the parent view
+        /// </summary>
+        public NodeSelection SelectionFromView
+        {
+            set
+            {
+                if (value is StripCursorSelection)
+                {
+                    ((StripCursor)mBlocksPanel.Controls[((StripCursorSelection)value).Index * 2]).Selected = true;
+                }
+                else
+                {
+                    Selected = value != null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Show the cursor at the current time in the waveform of the current playing block.
+        /// </summary>
         public void SelectTimeInBlock(Block block, WaveformSelection waveformSelection)
         {
             mParentView.SelectionFromStrip = new NodeSelection(block.Node, mParentView, waveformSelection);
+        }
+
+        /// <summary>
+        /// Start renaming the strip.
+        /// </summary>
+        public void StartRenaming()
+        {
+            mLabel.Editable = true;
+            mParentView.Selection = new NodeSelection(mNode, mParentView, Label);
+            mLabel.AccessibleName = this.Label;
+        }
+
+        /// <summary>
+        /// Update the colors of the block when the state of its node has changed.
+        /// </summary>
+        public void UpdateColors()
+        {
+            if (mNode != null)
+            {
+                // Get colors from profile
+                mLabel.BackColor = mNode.Used ? Color.Thistle : Color.LightGray;
+                BackColor = mBlocksPanel.BackColor =
+                    mSelected ? Color.Yellow :
+                    mNode.Used ? Color.LightBlue : Color.LightGray;
+            }
+        }
+
+        /// <summary>
+        /// Update the tab index for the strip and all of its blocks.
+        /// </summary>
+        public int UpdateTabIndex(int index)
+        {
+            TabIndex = index;
+            ++index;
+            foreach (Control c in mBlocksPanel.Controls)
+            {
+                if (c is Block) index = ((Block)c).UpdateTabIndex(index);
+            }
+            return index;
+        }
+
+        #region ISearchable Members
+
+        public bool Matches(string search)
+        {
+            return FindInText.Match(Label, search);
+        }
+
+        public void Replace(string search, string replace)
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
+        #endregion
+
+
+        // Add a cursor at the end of the strip
+        private void AddCursor()
+        {
+            StripCursor cursor = new StripCursor();
+            cursor.Size = new Size(12, mBlocksPanel.Height);
+            mBlocksPanel.Controls.Add(cursor);
+            int index = mBlocksPanel.Controls.Count / 2;
+            cursor.Click += new EventHandler(delegate(object sender, EventArgs e)
+                {
+                    mParentView.SelectionFromStrip = new StripCursorSelection(mNode, mParentView, index);
+                }
+            );
+        }
+
+        // Select the label when it is clicked (i.e. made editable) by the user.
+        private void Label_EditableChanged(object sender, EventArgs e)
+        {
+            if (mLabel.Editable) mParentView.Selection = new NodeSelection(mNode, mParentView, mLabel.Label);
+        }
+
+        // Update the label of the node after the user edited it.
+        private void Label_LabelEditedByUser(object sender, EventArgs e)
+        {
+            if (mLabel.Label != "")
+            {
+                // update the label for the node
+                mParentView.RenameStrip(this);
+                mParentView.Selection = new NodeSelection(mNode, mParentView);
+            }
+            else
+            {
+                // restore the previous label from the node
+                mLabel.Label = mNode.Label;
+            }
+        }
+
+        // Resize the strip according to the editable label, whose size can change.
+        // TODO since there are really two possible heights, we should cache these values.
+        private void Label_SizeChanged(object sender, EventArgs e)
+        {
+            mBlocksPanel.Location = new Point(mBlocksPanel.Location.X,
+                mLabel.Location.Y + mLabel.Height + mLabel.Margin.Bottom);
+            Size = new Size(Width,
+                mBlocksPanel.Location.Y + mBlocksPanel.Height + mBlocksPanel.Margin.Bottom);
+        }
+
+        // The user clicked on this strip, so select it if it wasn't already selected
+        private void Strip_Click(object sender, EventArgs e)
+        {
+            if (!mSelected) mParentView.SelectedNode = mNode;
+        }
+
+        // Select when tabbed into
+        private void Strip_Enter(object sender, EventArgs e)
+        {
+            if (mParentView.SelectedSection != mNode && !mParentView.Focusing) mParentView.SelectedNode = mNode;
+        }
+
+        // Update the width of the strip to use the available width of the view
+        private void UpdateWidth()
+        {
+            int w = 0;
+            foreach (Control c in mBlocksPanel.Controls) w += c.Width + c.Margin.Right;
+            if (mBlocksPanel.Controls.Count > 0) w -= mBlocksPanel.Controls[mBlocksPanel.Controls.Count - 1].Margin.Right;
+            if (w > mBlocksPanel.Width) mBlocksPanel.Size = new Size(w, mBlocksPanel.Height);
+            w += mBlocksPanel.Location.X + mBlocksPanel.Margin.Right;
+            if (w > MinimumSize.Width) MinimumSize = new Size(w, MinimumSize.Height);
         }
     }
 }

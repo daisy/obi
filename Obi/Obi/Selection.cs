@@ -146,6 +146,29 @@ namespace Obi
 
     };
 
+    /// <summary>
+    /// Cursor selection inside a strip.
+    /// </summary>
+    public class StripCursorSelection : NodeSelection
+    {
+        private int mIndex;  // cursor index in the strip
+
+        public StripCursorSelection(SectionNode node, IControlWithSelection control, int index)
+            :
+            base(node, control)
+        {
+            mIndex = index;
+        }
+
+        public int Index { get { return mIndex; } }
+
+        public override bool Equals(object obj)
+        {
+            StripCursorSelection s = obj as StripCursorSelection;
+            return s != null && s.Index == mIndex && base.Equals(s);
+        }
+    }
+
     public class Clipboard
     {
         private ObiNode mNode;
