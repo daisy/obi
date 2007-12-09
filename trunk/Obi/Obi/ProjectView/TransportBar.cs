@@ -742,6 +742,31 @@ namespace Obi.ProjectView
             return true;
         }
 
+
+        // preview playback functions
+        private const int m_PreviewDuration = 1500;
+
+        public bool PlayPreviewFromCurrentPosition()
+        {
+            mCurrentPlaylist.PreviewFromCurrentPosition(m_PreviewDuration);
+            return true;
+        }
+
+        public bool PlayPreviewSelectedFragment()
+        {
+            // add code for playing between markings
+            //mCurrentPlaylist.PreviewSelectedFragment(1000, 2000);
+
+            return true;
+        }
+
+        public bool PlayPreviewUptoCurrentPosition()
+        {
+            mCurrentPlaylist.PreviewUptoCurrentPosition(m_PreviewDuration);
+            return true;
+        }
+
+
         #region undoable recording
 
         /// <summary>

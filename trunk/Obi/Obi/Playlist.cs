@@ -751,6 +751,19 @@ namespace Obi
             mPlayer.PlayPreview(AudioData, StartTime, EndTime, EndTime);
         }
 
+        public void PreviewSelectedFragment(double StartTime , double EndTime )
+        {
+            AudioMediaData AudioData = mPhrases[mCurrentPhraseIndex].Audio.getMediaData();
 
+            if (StartTime < 0)
+                StartTime = 0;
+
+            if ( EndTime >  AudioData.getAudioDuration ().getTimeDeltaAsMillisecondFloat () )
+                EndTime = AudioData.getAudioDuration ().getTimeDeltaAsMillisecondFloat ()  ;
+
+            
+            mPlayer.PlayPreview(AudioData, StartTime, EndTime, StartTime );
+
+        }
     }
 }
