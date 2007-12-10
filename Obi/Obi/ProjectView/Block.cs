@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Obi.ProjectView
 {
-    public partial class Block : UserControl, ISelectableInStripView
+    public partial class Block : UserControl, ISelectableInStripView, ISearchable
     {
         private EmptyNode mNode;                          // the corresponding node
         private bool mSelected;                           // selected flag
@@ -47,6 +47,7 @@ namespace Obi.ProjectView
                     mCustomClassLabel.Visible = true;
                 }
             }
+            get { return mCustomClassLabel.Text; }
         }
 
         /// <summary>
@@ -124,5 +125,19 @@ namespace Obi.ProjectView
         }
         private void mTimeLabel_Click(object sender, EventArgs e) { Strip.SelectedBlock = this; }
         private void mCustomKindLabel_Click(object sender, EventArgs e) { Strip.SelectedBlock = this; }
+
+        #region ISearchable Members
+
+        public bool Matches(string search)
+        {
+            return FindInText.Match(this.CustomClassLabel, search);
+        }
+
+        public void Replace(string search, string replace)
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
+        #endregion
     }
 }

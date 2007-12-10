@@ -48,6 +48,7 @@ namespace Obi.ProjectView
             this.mString.Name = "mString";
             this.mString.Size = new System.Drawing.Size(146, 20);
             this.mString.TabIndex = 1;
+            this.mString.TextChanged += new System.EventHandler(this.mString_TextChanged);
             this.mString.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mString_KeyDown);
             // 
             // FindInText

@@ -1692,5 +1692,15 @@ namespace Obi
             ShowPeakMeter();
         }
 
+        private void mFindNextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.FindNextInText();
+        }
+
+        private void mFindPreviousToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.FindPreviousInText();
+        }
+
     }
 }
