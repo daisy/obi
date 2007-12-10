@@ -20,20 +20,11 @@ namespace Obi.Commands.Node
             : base(view)
         {
             mSelection = selection;
-            ObiNode contextNode = mSelection.Node;
-            if (mSelection.IsDummy)
-            {
-                mParent = contextNode;
-                mIndex = 0;
-            }
-            else
-            {
-                mParent = contextNode.ParentAs<ObiNode>();
-                mIndex = contextNode.Index + 1;
-            }
-            mNode = View.Presentation.CreateSectionNode();
+            mNode = view.Presentation.CreateSectionNode();
+            mIndex = selection.IndexForNewNode(mNode);
+            mParent = selection.ParentForNewNode(mNode);
             mNode.Used = mParent.Used;
-            View.SelectAndRenameSelection(new NodeSelection(mNode, mSelection.Control, false));
+            View.SelectAndRenameSelection(new NodeSelection(mNode, mSelection.Control));
         }
 
         /// <summary>
@@ -48,7 +39,7 @@ namespace Obi.Commands.Node
         {
             base.execute();
             mParent.Insert(mNode, mIndex);
-            View.Selection = new NodeSelection(mNode, mSelection.Control, false);
+            View.Selection = new NodeSelection(mNode, mSelection.Control);
         }
 
         /// <summary>

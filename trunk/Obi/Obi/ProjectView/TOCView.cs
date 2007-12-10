@@ -28,6 +28,8 @@ namespace Obi.ProjectView
         // When we have a dummy section, then a section *must* be selected (?)
         public bool CanAddSection { get { return true; } }
 
+        public bool CanCopySection { get { return mSelection != null && !(mSelection is DummySelection); } }
+
         /// <summary>
         /// True if there is a selected section and it can be moved out (i.e. decrease its level)
         /// </summary>
@@ -52,15 +54,18 @@ namespace Obi.ProjectView
             }
         }
 
+        // TODO: check for dummy selection
+        private bool IsActualSectionSelected { get { return mSelection != null; } }
+
         /// <summary>
         /// True if the selected node can be removed (deleted or cut)
         /// </summary>
-        public bool CanRemoveSection { get { return mSelection != null && mSelection.SectionOnly != null && !mSelection.IsDummy; } }
+        public bool CanRemoveSection { get { return IsActualSectionSelected; } }
 
         /// <summary>
         /// True if the selected node can be renamed.
         /// </summary>
-        public bool CanRenameSection { get { return mTOCTree.SelectedNode != null && mTOCTree.SelectedNode != mDummy; } }
+        public bool CanRenameSection { get { return IsActualSectionSelected; } }
 
         /// <summary>
         /// True if the used state of the selected section can be changed
@@ -107,7 +112,8 @@ namespace Obi.ProjectView
                 if (mSelection != value)
                 {
                     mSelection = value;
-                    TreeNode n = value == null ? null : value.IsDummy ? mDummy : FindTreeNode((SectionNode)value.Node);
+                    TreeNode n = value == null ? null : value is DummySelection ? mDummy :
+                        FindTreeNode((SectionNode)value.Node);
                     // ignore the select event, since we were asked to change the selection;
                     // but allow the selection not coming from the user
                     mTOCTree.AfterSelect -= new TreeViewEventHandler(mTOCTree_AfterSelect);
@@ -128,10 +134,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void SelectNode(SectionNode section)
         {
-            DoToNewNode(section, delegate()
-            {
-                mView.Selection = new NodeSelection(section, this, false);
-            });
+            DoToNewNode(section, delegate() { mView.Selection = new NodeSelection(section, this); });
         }
 
         public void ResyncViews()
@@ -157,8 +160,6 @@ namespace Obi.ProjectView
         {
             TreeNode n = FindTreeNodeWithoutLabel(e.Node);
             n.Text = e.Node.Label;
-            // not sure why this is necessary...
-            if (mSelection != null) mSelection.Text = null;
         }
 
         // Rename the section after the text of the tree node has changed.
@@ -173,7 +174,6 @@ namespace Obi.ProjectView
             {
                 e.CancelEdit = true;
             }
-            if (mSelection != null) mSelection.Text = null;
         }
 
         private void mTOCTree_BeforeLabelEdit(object sender, NodeLabelEditEventArgs e)
@@ -184,7 +184,7 @@ namespace Obi.ProjectView
             }
             else if (mSelection != null)
             {
-                mSelection.Text = e.Node.Text;
+                mSelection = new TextSelection((SectionNode)e.Node.Tag, this, e.Node.Text);
             }
         }
 
@@ -192,7 +192,9 @@ namespace Obi.ProjectView
         // Do not act on reselection of the same item to avoid infinite loops.
         private void mTOCTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            NodeSelection s = new NodeSelection((ObiNode)e.Node.Tag, this, e.Node == mDummy);
+            NodeSelection s = e.Node == mDummy ?
+                new DummySelection(e.Node.Parent == null ? mView.Presentation.RootNode : (ObiNode)e.Node.Parent.Tag, this) :
+                new NodeSelection((SectionNode)e.Node.Tag, this);
             if (s != mView.Selection) mView.Selection = s;
         }
 

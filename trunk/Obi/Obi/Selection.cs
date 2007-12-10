@@ -53,32 +53,24 @@ namespace Obi
     {
         public ObiNode Node;                   // the selected node
         public IControlWithSelection Control;  // control in which it is selected
-        public bool IsDummy;                   // true if actually a dummy node is selected
-        public string Text;                    // selected text within the node
         public WaveformSelection Waveform;     // waveform selection for a block
 
         /// <summary>
         /// Create a new selection object.
         /// </summary>
-        public NodeSelection(ObiNode node, IControlWithSelection control, bool isDummy, string text,
-            WaveformSelection waveform)
+        public NodeSelection(ObiNode node, IControlWithSelection control, WaveformSelection waveform)
         {
             Node = node;
             Control = control;
-            IsDummy = isDummy;
-            Text = text;
             Waveform = waveform;
         }
 
-        public NodeSelection(ObiNode node, IControlWithSelection control) : this(node, control, false, null, null) { }
-        public NodeSelection(ObiNode node, IControlWithSelection control, bool isDummy) : this(node, control, isDummy, null, null) { }
-        public NodeSelection(ObiNode node, IControlWithSelection control, string text) : this(node, control, false, text, null) { }
-        public NodeSelection(ObiNode node, IControlWithSelection control, WaveformSelection waveform) : this(node, control, false, null, waveform) { }
+        public NodeSelection(ObiNode node, IControlWithSelection control) : this(node, control, null) { }
 
         /// <summary>
         /// Stringify the selection for debug printing.
         /// </summary>
-        public override string ToString() { return System.String.Format("{0}{2} in {1}", Node, Control, IsDummy ? "*" : Text != null ? "#" : ""); }
+        public override string ToString() { return System.String.Format("{0} in {1}", Node, Control); }
 
         /// <summary>
         /// Two node selections are equal if they are the selection of the same node in the same control.
@@ -86,15 +78,12 @@ namespace Obi
         public override bool Equals(object obj)
         {
             NodeSelection s = obj as NodeSelection;
-            return s != null && s.Node == Node && s.Control == Control && s.IsDummy == IsDummy && s.Text == Text &&
-                s.Waveform == Waveform;
+            return s != null && s.Node == Node && s.Control == Control && s.Waveform == Waveform;
         }
 
         public SectionNode Section { get { return Node as SectionNode; } }
-        public SectionNode SectionOnly { get { return Text == null ? Node as SectionNode : null; } }
         public SectionNode SectionOf { get { return Node is PhraseNode ? Node.ParentAs<SectionNode>() : Node as SectionNode; } }
         public PhraseNode Phrase { get { return Node as PhraseNode; } }
-        public PhraseNode PhraseOnly { get { return Text == null ? Node as PhraseNode : null; } }
 
         public bool CanPaste(Clipboard clipboard)
         {
@@ -121,7 +110,7 @@ namespace Obi
         public virtual int IndexForNewNode(ObiNode newNode)
         {
             return newNode is SectionNode ?
-                (Node is SectionNode ? Node.SectionChildCount : Node.AncestorAs<SectionNode>().SectionChildCount) :
+                (Node is SectionNode ? (Node.SectionChildCount + 1) : Node.AncestorAs<SectionNode>().SectionChildCount) :
                 (Node is SectionNode ? Node.PhraseChildCount : (Node.Index + 1));
         }
 
@@ -145,6 +134,46 @@ namespace Obi
         }
 
     };
+
+    /// <summary>
+    /// Section dummy selected in the TOC view. The selected section is then the parent of the dummy, which is
+    /// always the first child of its parent.
+    /// </summary>
+    public class DummySelection : NodeSelection
+    {
+        public DummySelection(ObiNode node, ProjectView.TOCView view) : base(node, view) { }
+
+        public override bool Equals(object obj)
+        {
+            DummySelection s = obj as DummySelection;
+            return s is DummySelection && base.Equals(obj);
+        }
+
+        public override ObiNode ParentForNewNode(ObiNode newNode) { return Node; }
+        public override int IndexForNewNode(ObiNode newNode) { return 0; }
+    }
+
+    /// <summary>
+    /// Text selected inside a strip or a section.
+    /// </summary>
+    public class TextSelection : NodeSelection
+    {
+        private string mText;
+
+        public TextSelection(SectionNode node, IControlWithSelection control, string text)
+            : base(node, control)
+        {
+            mText = text;
+        }
+
+        public string Text { get { return mText; } }
+
+        public override bool Equals(object obj)
+        {
+            TextSelection s = obj as TextSelection;
+            return s != null && s.Text == mText && base.Equals(obj);
+        }
+    }
 
     /// <summary>
     /// Cursor selection inside a strip. The actual node is always a section node.
