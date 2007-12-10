@@ -25,26 +25,31 @@ namespace Obi.ProjectView
         void Replace(string search, string replace);
     }
 
-    /* 
-     * Press F3 to bring up the FindInText form
-     * Type and press enter to start searching
-     * F3 to search next
-     * Shift-F3 to search previous
-     * Esc to clear and close the form
-     * 
-     * As the search criteria is matched, the corresponding UI item is selected and played
-     * */
+  
+    /// <summary>
+    /// Find text in searchable controls (right now this means that we search strip titles, block annotations)
+    /// </summary>
+    /// <remarks>
+    /// Press Control + F to bring up the FindInText form (F3 and Shift + F3 should also work)
+    /// Type and press enter to start searching
+    /// F3 to search next
+    /// Shift-F3 to search previous
+    /// Esc to clear and close the form; or wait for the form timeout.
+    /// As the search criteria is matched, the corresponding UI item is selected and played
+    /// </remarks>
     public partial class FindInText : UserControl
     {
         FlowLayoutPanel mStripsPanel;
         int mOriginalPosition;
+        bool mFoundFirst;
         private ProjectView mView;  // the parent project view
-
+     
         public FindInText()
         {
             mStripsPanel = null;
             mOriginalPosition = -1;
             mView = null;
+            mFoundFirst = false;
             InitializeComponent();
         }
 
@@ -60,25 +65,37 @@ namespace Obi.ProjectView
             }
         }
 
-        //this is the function that starts this widget
-        //eventually, the parameter here should be a list of strips
-        //or a list of ISearchable's.
-        //we need to know the user's current selection too, and we need to be able to select a control
-        public void ShowFindInText(FlowLayoutPanel stripsPanel)
+        /// <summary>
+        /// Say whether next and previous text searching is allowed
+        /// </summary>
+        public bool CanFindNextPreviousText
         {
-            //if this form is already being shown and has a search string, do a "Find Next"
-            if (mView.FindInTextVisible == true && mString.Text.Length > 0) FindNextInText();
-            else
-            {
-                mView.ObiForm.Status(Localizer.Message("find_in_text_init"));
-                mStripsPanel = stripsPanel;
-                mView.FindInTextVisible = true;
-                mString.Focus();
-            }
+            get { return mFoundFirst; }
         }
 
-        private void FindNextInText()
+        /// <summary>
+        /// This function displays the find in text form.
+        /// </summary>
+        public void StartNewSearch(FlowLayoutPanel strips)
         {
+            mStripsPanel = strips;
+            mView.ObiForm.Status(Localizer.Message("find_in_text_init"));
+            mView.FindInTextVisible = true;
+            mFoundFirst = false;
+            mString.SelectAll();
+            mString.Focus();
+        }
+
+        /// <summary>
+        /// Search for the next occurrence of the text.  
+        /// </summary>
+        public void FindNext()
+        {
+            if (!Visible || !mFoundFirst)
+            {
+                //debugging exception only!
+                throw new Exception("Find next not available; form is not being shown or text was never found in the first place.");
+            }
             if (mString.Text.Length == 0)
             {
                 mString.Focus();
@@ -90,8 +107,16 @@ namespace Obi.ProjectView
             search(GetIndexOfNextStrip(mStripsPanel, currentSelection), mString.Text, 1);
         }
 
-        private void FindPreviousInText()
+        /// <summary>
+        /// Search for the previous occurrence of the text
+        /// </summary>
+        public void FindPrevious()
         {
+            if (!Visible || !mFoundFirst)
+            {
+                //debugging exception only!
+                throw new Exception("Find previous not available; form is not being shown or text was never found in the first place.");
+            }
             if (mString.Text.Length == 0)
             {
                 mString.Focus();
@@ -106,7 +131,12 @@ namespace Obi.ProjectView
             search(GetIndexOfPreviousStrip(mStripsPanel, currentSelection), mString.Text, -1);
         }
 
-        //search from starting point and continue in the specified direction (1 = forward, -1 = backwards)
+        /// <summary>
+        /// Search from the starting point and continue in the specified direction
+        /// </summary>
+        /// <param name="startingPoint">index of current position</param>
+        /// <param name="searchString">what to search for</param>
+        /// <param name="direction">1 = forward, -1 = backwards</param>
         private void search(int startingPoint, String searchString, int direction)
         {
             int startIndex = startingPoint;
@@ -142,36 +172,49 @@ namespace Obi.ProjectView
 
                 //don't loop forever
                 if (startIndex == mOriginalPosition) break;
-              
             }
 
             if (found)
             {
+                if (!mFoundFirst) mFoundFirst = true;
                 mView.ObiForm.Status(String.Format(Localizer.Message("found_in_text"), mString.Text));
             }
             else
             {
                 if (startIndex == mOriginalPosition) mView.ObiForm.Status(Localizer.Message("finished_searching_all"));
                 else mView.ObiForm.Status(Localizer.Message("not_found_in_text"));
-          
                 //reset the original position to wherever we are now
                 mOriginalPosition = startIndex;
                 // also deselect
                 mView.Selection = null;
             }
+            mView.ObiForm.UpdateFindInTextMenuItems();
         }
 
+        /// <summary>
+        /// Catch keypresses in the text field
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mString_KeyDown(object sender, KeyEventArgs e)
         {
             ProcessKeys(e);
         }
      
-        //enter = search
-        //f3 = search or search next
-        //shift + f3 = search previous
-        //escape = close
+        /// <summary>
+        /// process key presses
+        /// </summary>
+        /// <param name="e"></param>
+        /// <remarks>
+        /// enter = search
+        /// f3 = search next
+        /// shift+f3 = search previous
+        /// control + f = new search
+        /// escape = close form
+        /// </remarks>
         private void ProcessKeys(KeyEventArgs e)
         {
+            //start the search
             if (e.KeyCode == Keys.Return)
             {
                 mOriginalPosition = GetIndexOfCurrentlySelectedStrip(mStripsPanel);
@@ -179,17 +222,29 @@ namespace Obi.ProjectView
                 if (mOriginalPosition == -1) mOriginalPosition = GetIndexOfFirstStrip(mStripsPanel);
                 search(mOriginalPosition, mString.Text, 1);
             }
-            else if (e.KeyCode == Keys.Escape) mView.FindInTextVisible = false;
-           
+            //close the form
+            else if (e.KeyCode == Keys.Escape)
+            {
+                mView.FindInTextVisible = false;
+            }
+            //find previous or next
             else if (e.KeyCode == Keys.F3)
             {
-                if (Control.ModifierKeys == Keys.Shift) FindPreviousInText();
-                else FindNextInText();
+                if (Control.ModifierKeys == Keys.Shift) FindPrevious();
+                else FindNext();
+            }
+            //maybe the user wants to start a new search
+            else if (e.KeyCode == Keys.F && Control.ModifierKeys == Keys.Control)
+            {
+                StartNewSearch(mStripsPanel);
             }
         }
 
-        //does the widget meet our criteria for being a searchable widget?
-        //this function is only temporary
+        /// <summary>
+        /// Test if the widget meets our criteria for being a searchable widget
+        /// </summary>
+        /// <param name="control"></param>
+        /// <returns></returns>
         private static bool MeetsCriteria(Control control)
         {
             if (control != null && control is ISearchable && control is Strip) return true;
@@ -200,16 +255,23 @@ namespace Obi.ProjectView
         /// Try to match target string with search string.
         /// Do only case-insensitive match now, but should improve, perhaps with regex?
         /// </summary>
-        // This method is used by all Searchables to implement the string matching
-        //if this method grows, it should probably move out of this file.
+        /// <remarks>
+        /// This method is used by all Searchables to implement the string matching
+        /// if this method grows, it should probably move out of this file.
+        /// </remarks>
         public static bool Match(string target, string search)
         {
             return target.ToLowerInvariant().Contains(search.ToLowerInvariant());
         }
 
         #region Indexing
-        //get the index of the currently selected ISearchable item
-        //ideally, we could count on ISearchable objects to also be index-able, so this function would return ISearchable instead
+
+        /// <summary>
+        /// get the index of the currently selected ISearchable item
+        /// </summary>
+        /// <param name="stripsPanel"></param>
+        /// <returns></returns>
+        ///ideally, we could count on ISearchable objects to also be index-able, so this function would return ISearchable instead
         private static int GetIndexOfCurrentlySelectedStrip(FlowLayoutPanel stripsPanel)
         {
             for (int i = 0; i < stripsPanel.Controls.Count; i++)
@@ -220,7 +282,11 @@ namespace Obi.ProjectView
             return -1;
         }
 
-        //get the index of the first ISearchable strip
+        /// <summary>
+        /// get the index of the first ISearchable strip
+        /// </summary>
+        /// <param name="stripsPanel"></param>
+        /// <returns></returns>
         private static int GetIndexOfFirstStrip(FlowLayoutPanel stripsPanel)
         {
             for (int i = 0; i < stripsPanel.Controls.Count; i++)
@@ -230,7 +296,12 @@ namespace Obi.ProjectView
             }
             return -1;
         }
-        //get the index of the last ISearchable strip
+        
+        /// <summary>
+        /// get the index of the last ISearchable strip
+        /// </summary>
+        /// <param name="stripsPanel"></param>
+        /// <returns></returns>
         private static int GetIndexOfLastStrip(FlowLayoutPanel stripsPanel)
         {
             for (int i = stripsPanel.Controls.Count - 1; i >= 0; i--)
@@ -240,8 +311,13 @@ namespace Obi.ProjectView
             }
             return -1;
         }
-
-        //get the next ISearchable strip
+        
+        /// <summary>
+        /// get the next ISearchable strip
+        /// </summary>
+        /// <param name="stripsPanel"></param>
+        /// <param name="startIndex"></param>
+        /// <returns></returns>
         private int GetIndexOfNextStrip(FlowLayoutPanel stripsPanel, int startIndex)
         {
             for (int i = startIndex + 1; i < stripsPanel.Controls.Count; i++)
@@ -253,7 +329,12 @@ namespace Obi.ProjectView
             return GetIndexOfFirstStrip(stripsPanel);
         }
 
-        //get the previous ISearchable strip
+        /// <summary>
+        /// get the previous ISearchable strip
+        /// </summary>
+        /// <param name="stripsPanel"></param>
+        /// <param name="startIndex"></param>
+        /// <returns></returns>
         private static int GetIndexOfPreviousStrip(FlowLayoutPanel stripsPanel, int startIndex)
         {
             for (int i = startIndex - 1; i >= 0; i--)

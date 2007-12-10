@@ -179,6 +179,15 @@ namespace Obi
 
         #region Edit menu
 
+        /// <summary>
+        /// Explicitly update the find in text menu items
+        /// </summary>
+        public void UpdateFindInTextMenuItems()
+        {
+            mFindNextToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText;
+            mFindPreviousToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText;
+        }
+
         private void UpdateEditMenu()
         {
             mUndoToolStripMenuItem.Enabled = mSession.CanUndo;
@@ -195,6 +204,8 @@ namespace Obi
             mDeleteToolStripMenuItem.Enabled = mProjectView.CanDelete;
             mSelectNothingToolStripMenuItem.Enabled = mProjectView.CanDeselect;
             mFindInTextToolStripMenuItem.Enabled = mSession.HasProject;
+            mFindNextToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText;
+            mFindPreviousToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText;
         }
 
         private void mUndoToolStripMenuItem_Click(object sender, EventArgs e) { Undo(); }
