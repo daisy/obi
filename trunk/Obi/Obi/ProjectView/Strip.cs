@@ -227,7 +227,7 @@ namespace Obi.ProjectView
         public void StartRenaming()
         {
             mLabel.Editable = true;
-            mParentView.Selection = new TextSelection(mNode, mParentView, Label);
+            mParentView.SelectionFromStrip = new TextSelection(mNode, mParentView, Label);
             mLabel.AccessibleName = this.Label;
         }
 
@@ -293,7 +293,7 @@ namespace Obi.ProjectView
         // Select the label when it is clicked (i.e. made editable) by the user.
         private void Label_EditableChanged(object sender, EventArgs e)
         {
-            if (mLabel.Editable) mParentView.Selection = new TextSelection(mNode, mParentView, mLabel.Label);
+            if (mLabel.Editable) mParentView.SelectionFromStrip = new TextSelection(mNode, mParentView, mLabel.Label);
         }
 
         // Update the label of the node after the user edited it.
@@ -303,7 +303,7 @@ namespace Obi.ProjectView
             {
                 // update the label for the node
                 mParentView.RenameStrip(this);
-                mParentView.Selection = new NodeSelection(mNode, mParentView);
+                mParentView.SelectionFromStrip = new NodeSelection(mNode, mParentView);
             }
             else
             {

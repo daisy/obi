@@ -88,7 +88,7 @@ namespace Obi.ProjectView
                     mTransportBar.Enabled = mPresentation != null;
                     if (mPresentation != null)
                     {
-                        mTOCView.NewPresentation();
+                        mTOCView.SetNewPresentation();
                         mStripsView.NewPresentation();
                         mTransportBar.NewPresentation();
                     }
@@ -427,10 +427,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// Select a section node in the TOC view.
         /// </summary>
-        public void SelectInTOCView(SectionNode section)
-        {
-            mTOCView.SelectNode(section);
-        }
+        public void SelectInTOCView(SectionNode section) { Selection = new NodeSelection(section, mTOCView); }
 
         /// <summary>
         /// Select a section or strip and start renaming it.

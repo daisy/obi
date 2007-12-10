@@ -41,12 +41,12 @@ namespace Obi.ProjectView
             this.mTOCTree.Name = "mTOCTree";
             this.mTOCTree.Size = new System.Drawing.Size(150, 150);
             this.mTOCTree.TabIndex = 0;
-            this.mTOCTree.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.mTOCTree_AfterCollapse);
-            this.mTOCTree.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.mTOCTree_AfterLabelEdit);
-            this.mTOCTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.mTOCTree_AfterSelect);
-            this.mTOCTree.BeforeLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.mTOCTree_BeforeLabelEdit);
-            this.mTOCTree.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.mTOCTree_BeforeSelect);
-            this.mTOCTree.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.mTOCTree_AfterExpand);
+            this.mTOCTree.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.TOCTree_AfterCollapse);
+            this.mTOCTree.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.TOCTree_AfterLabelEdit);
+            this.mTOCTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TOCTree_AfterSelect);
+            this.mTOCTree.BeforeLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.TOCTree_BeforeLabelEdit);
+            this.mTOCTree.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.TOCTree_BeforeSelect);
+            this.mTOCTree.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.TOCTree_AfterExpand);
             // 
             // TOCView
             // 
