@@ -55,10 +55,12 @@ namespace Obi.ProjectView
             }
         }
 
-        private bool BlockSelected { get { return mSelectedItem is Block && mSelection.Text == null; } }
-        private bool StripSelected { get { return mSelectedItem is Strip && mSelection.Text == null; } }
+        private bool BlockSelected { get { return mSelectedItem is Block && mSelection.GetType() == typeof(NodeSelection); } }
+        private bool StripSelected { get { return mSelectedItem is Strip && mSelection.GetType() == typeof(NodeSelection); } }
 
         public bool CanAddStrip { get { return StripSelected; } }
+        public bool CanCopyBlock { get { return BlockSelected; } }
+        public bool CanCopyStrip { get { return StripSelected; } }
         public bool CanRemoveBlock { get { return BlockSelected; } }
         public bool CanRemoveStrip { get { return StripSelected; } }
         public bool CanRenameStrip { get { return StripSelected; } }
@@ -407,7 +409,7 @@ namespace Obi.ProjectView
         {
             DoToNewNode(node, delegate()
             {
-                mView.Selection = new NodeSelection(node, this, false);
+                mView.Selection = new NodeSelection(node, this);
                 FindStrip((SectionNode)node).StartRenaming();
             });
         }
@@ -514,7 +516,7 @@ namespace Obi.ProjectView
         private static readonly int WM_KEYDOWN = 0x100;
         private static readonly int WM_SYSKEYDOWN = 0x104;
 
-        private bool CanUseKeys { get { return mSelection == null || mSelection.Text == null; } }
+        private bool CanUseKeys { get { return mSelection == null || !(mSelection is TextSelection); } }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys key)
         {

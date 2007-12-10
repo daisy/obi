@@ -25,7 +25,7 @@ namespace Obi.Commands.Node
         {
             base.execute();
             View.Clipboard = mNewClipboard;
-            View.Selection = new NodeSelection(mNewClipboard.Node, mControl, false);
+            View.Selection = new NodeSelection(mNewClipboard.Node, mControl);
         }
 
         public override void unExecute()

@@ -145,8 +145,8 @@ namespace Obi.ProjectView
         {
             get
             {
-                int count = mBlocksPanel.Controls.Count;
-                return count == 0 ? TabIndex : ((Block)mBlocksPanel.Controls[count - 1]).LastTabIndex;
+                int last = mBlocksPanel.Controls.Count - 2; // index of the last block (if any; last control is a cursor)
+                return last >= 0 ? ((Block)mBlocksPanel.Controls[last]).LastTabIndex : TabIndex;
             }
         }
 
@@ -185,7 +185,7 @@ namespace Obi.ProjectView
             get { return mSelected; }
             set
             {
-                mSelected = value && mParentView.Selection.Text == null;
+                mSelected = value && !(mParentView.Selection is TextSelection);
                 UpdateColors();
             }
         }
@@ -227,7 +227,7 @@ namespace Obi.ProjectView
         public void StartRenaming()
         {
             mLabel.Editable = true;
-            mParentView.Selection = new NodeSelection(mNode, mParentView, Label);
+            mParentView.Selection = new TextSelection(mNode, mParentView, Label);
             mLabel.AccessibleName = this.Label;
         }
 
@@ -293,7 +293,7 @@ namespace Obi.ProjectView
         // Select the label when it is clicked (i.e. made editable) by the user.
         private void Label_EditableChanged(object sender, EventArgs e)
         {
-            if (mLabel.Editable) mParentView.Selection = new NodeSelection(mNode, mParentView, mLabel.Label);
+            if (mLabel.Editable) mParentView.Selection = new TextSelection(mNode, mParentView, mLabel.Label);
         }
 
         // Update the label of the node after the user edited it.

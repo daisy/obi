@@ -36,7 +36,7 @@ namespace Obi.Commands.Strips
         {
             base.execute();
             for (int i = 0; i < mPhrases.Count; ++i) mParent.Insert(mPhrases[i], mFirstIndex + i);
-            View.Selection = new NodeSelection(mPhrases[mPhrases.Count - 1], SelectionBefore.Control, false);
+            View.Selection = new NodeSelection(mPhrases[mPhrases.Count - 1], SelectionBefore.Control);
         }
 
         public override void unExecute()

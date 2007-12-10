@@ -238,9 +238,8 @@ namespace Obi.ProjectView
         {
             if (CanAddSection)
             {
-                // TODO when there is a dummy node this becomes unnecessary
                 mPresentation.UndoRedoManager.execute(new Commands.TOC.AddNewSection(this, mTOCView.Selection == null ?
-                    new NodeSelection(mPresentation.RootNode, mTOCView, true) : mTOCView.Selection));
+                    new DummySelection(mPresentation.RootNode, mTOCView) : mTOCView.Selection));
             }
         }
 
@@ -255,8 +254,8 @@ namespace Obi.ProjectView
                 SectionNode section = (SectionNode)mTOCView.Selection.Node;
                 mPresentation.UndoRedoManager.execute(new Commands.TOC.AddNewSection(this,
                     section.SectionChildCount > 0 ?
-                    new NodeSelection(section.SectionChild(section.SectionChildCount - 1), mTOCView, false) :
-                    new NodeSelection(mTOCView.Selection.Node, mTOCView, true)));
+                    new NodeSelection(section.SectionChild(section.SectionChildCount - 1), mTOCView) :
+                    new DummySelection(mTOCView.Selection.Node, mTOCView)));
             }
         }
 
@@ -536,9 +535,9 @@ namespace Obi.ProjectView
         public bool CanAddSection { get { return mTOCView.CanAddSection && !mStripsView.CanAddStrip; } }
         public bool CanAddStrip { get { return mStripsView.CanAddStrip; } }
         public bool CanAddSubSection { get { return mTOCView.Selection != null; } }
-        public bool CanCopySection { get { return mTOCView.Selection != null && !mTOCView.Selection.IsDummy; } }
-        public bool CanCopyStrip { get { return mStripsView.SelectedSection != null && !mStripsView.Selection.IsDummy; } }
-        public bool CanCopyBlock { get { return mStripsView.Selection != null && mStripsView.Selection.PhraseOnly != null && !mStripsView.Selection.IsDummy; } }
+        public bool CanCopySection { get { return mTOCView.CanCopySection; } }
+        public bool CanCopyStrip { get { return mStripsView.CanCopyStrip; } }
+        public bool CanCopyBlock { get { return mStripsView.CanCopyBlock; } }
         public bool CanMarkSectionUnused { get { return mTOCView.CanToggleSectionUsed && mTOCView.Selection.Node.Used; } }
         public bool CanMergeBlockWithNext { get { return mStripsView.CanMergeBlockWithNext; } }
         public bool CanMergeStripWithNext { get { return mStripsView.CanMergeStripWithNext; } }
@@ -582,7 +581,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void ShowSelectedSectionInTOCView()
         {
-            if (CanShowInTOCView) Selection = new NodeSelection(mSelection.Node, mTOCView, false);
+            if (CanShowInTOCView) Selection = new NodeSelection(mSelection.Node, mTOCView);
         }
 
         /// <summary>
@@ -590,7 +589,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void ShowSelectedSectionInStripsView()
         {
-            if (CanShowInStripsView) Selection = new NodeSelection(mSelection.Node, mStripsView, false);
+            if (CanShowInStripsView) Selection = new NodeSelection(mSelection.Node, mStripsView);
         }
 
         #region Find in Text

@@ -11,8 +11,10 @@ namespace Obi.Commands.Strips
         // has children, then the new strip is added as a first child; otherwise as the
         // next sibling.
         public AddNewStrip(ProjectView.ProjectView view)
-            : base(view, new NodeSelection(view.Selection.Node, view.Selection.Control,         
-                    view.Selection.Node is SectionNode && ((SectionNode)view.Selection.Node).SectionChildCount > 0)) {}
+            : base(view,
+                view.Selection.Node is SectionNode && ((SectionNode)view.Selection.Node).SectionChildCount > 0 ?
+                    new DummySelection(view.Selection.Node, (ProjectView.TOCView)view.Selection.Control) :
+                    new NodeSelection(view.Selection.Node, view.Selection.Control)) {}
         public override string getShortDescription() { return Localizer.Message("add_strip_command"); }
     }
 }
