@@ -208,6 +208,12 @@ namespace Obi.ProjectView
             }
         }
 
+        public void SetStripVisibilityForSection(SectionNode node, bool visible)
+        {
+            Strip s = FindStrip(node);
+            if (s != null) s.Visible = visible;
+        }
+
         /// <summary>
         /// Show/hide strips under the one for which the section was collapsed or expanded.
         /// </summary>

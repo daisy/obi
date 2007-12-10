@@ -37,9 +37,9 @@ namespace Obi.Commands.Node
         /// </summary>
         public override void execute()
         {
-            base.execute();
             mParent.Insert(mNode, mIndex);
-            View.Selection = new NodeSelection(mNode, mSelection.Control);
+            if (Redo) View.Selection = new NodeSelection(mNode, mSelection.Control);
+            base.execute();
         }
 
         /// <summary>

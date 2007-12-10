@@ -531,7 +531,7 @@ namespace Obi.ProjectView
         public bool CanAddEmptyBlock { get { return mStripsView.Selection != null; } }
         public bool CanAddSection { get { return mTOCView.CanAddSection && !mStripsView.CanAddStrip; } }
         public bool CanAddStrip { get { return mStripsView.CanAddStrip; } }
-        public bool CanAddSubSection { get { return mTOCView.Selection != null; } }
+        public bool CanAddSubSection { get { return mTOCView.CanAddSection && mTOCView.Selection != null; } }
         public bool CanCopySection { get { return mTOCView.CanCopySection; } }
         public bool CanCopyStrip { get { return mStripsView.CanCopyStrip; } }
         public bool CanCopyBlock { get { return mStripsView.CanCopyBlock; } }
@@ -571,6 +571,11 @@ namespace Obi.ProjectView
         public void SetStripsVisibilityForSection(SectionNode section, bool visible)
         {
             if (mSynchronizeViews) mStripsView.SetStripsVisibilityForSection(section, visible);
+        }
+
+        public void SetStripVisibilityForSection(SectionNode section, bool visible)
+        {
+            if (mSynchronizeViews) mStripsView.SetStripVisibilityForSection(section, visible);
         }
 
         /// <summary>

@@ -1,3 +1,5 @@
+using System;
+
 namespace Obi
 {
     /// <summary>
@@ -70,7 +72,7 @@ namespace Obi
         /// <summary>
         /// Stringify the selection for debug printing.
         /// </summary>
-        public override string ToString() { return System.String.Format("{0} in {1}", Node, Control); }
+        public override string ToString() { return String.Format("{0} in {1}", Node, Control); }
 
         /// <summary>
         /// Two node selections are equal if they are the selection of the same node in the same control.
@@ -172,6 +174,11 @@ namespace Obi
         {
             TextSelection s = obj as TextSelection;
             return s != null && s.Text == mText && base.Equals(obj);
+        }
+
+        public override string ToString()
+        {
+            return String.Format("\"{0}\" in {1}", mText, base.ToString());
         }
     }
 

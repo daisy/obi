@@ -11,6 +11,7 @@ namespace Obi.Commands
         private ProjectView.ProjectView mView;   // the view that the command is executed in
         private NodeSelection mSelectionBefore;  // the selection before the command happened
         private string mLabel;                   // command label (can be overridden)
+        private bool mRedo;                      // true if redo, false on first execution
 
         /// <summary>
         /// Create a new command for a view.
@@ -20,16 +21,39 @@ namespace Obi.Commands
             mView = view;
             mSelectionBefore = mView.Selection;
             mLabel = label;
+            mRedo = false;
         }
 
         public Command(ProjectView.ProjectView view) : this(view, "") { }
 
+        /// <summary>
+        /// Set the label for the command (if not using default.)
+        /// </summary>
         public string Label { set { mLabel = value; } }
 
+        /// <summary>
+        /// Get the redo flag (true if the command is being redone, false if executed the first time.)
+        /// </summary>
+        public bool Redo { get { return mRedo; } }
+
+        /// <summary>
+        /// Get the view that the command is executed into.
+        /// </summary>
         public ProjectView.ProjectView View { get { return mView; } }
-        public virtual void execute() {}
+
+        /// <summary>
+        /// Execute and set the redo flag. If you need to use the redo flag, call base.execute() at the end of execute()!
+        /// </summary>
+        public virtual void execute() { mRedo = true; }
+
+        /// <summary>
+        /// Reset the selection to what it was before the command was executed.
+        /// </summary>
         public virtual void unExecute() { mView.Selection = mSelectionBefore; }
 
+        /// <summary>
+        /// Get the selection before the command was executed.
+        /// </summary>
         protected NodeSelection SelectionBefore { get { return mSelectionBefore; } }
 
         /// <summary>
@@ -62,6 +86,7 @@ namespace Obi.Commands
         /// </summary>
         public void setPresentation(urakawa.Presentation newPres)
         {
+            // I am not sure what this message is supposed to mean?!
             throw new Exception("The presentation cannot be set on a command; set the pre instead.");
         }
 
