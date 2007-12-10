@@ -21,6 +21,9 @@ namespace Obi.ProjectView
         private NodeSelection mPlayingFrom;          // selection before playback started
         private SectionNode mCurrentPlayingSection;  // holds section currently being played for highlighting it in TOC view while playing
 
+        private double m_AudioMarkIn;
+        private double m_AudioMarkOut;
+
         // A  non fluctuating flag to be set till playing of assets in serial is continued
         // it is true while a series of assets are being played but false when only single asset is played
         // so it is true for play all command and true for play node command when node is section
@@ -82,6 +85,7 @@ namespace Obi.ProjectView
             mDisplayBox.SelectedIndex = ElapsedTotal;
                         mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
             mVUMeterPanel.VuMeter = mVuMeter;
+            m_AudioMarkIn = m_AudioMarkOut = -1 ;
 
             ComboFastPlateRate.Items.Add("1.0");
             ComboFastPlateRate.Items.Add("1.125");
@@ -170,7 +174,35 @@ namespace Obi.ProjectView
         public Playlist MasterPlaylist { get { return mMasterPlaylist; } }
 
 
+        public double MarkINTime
+        {
+            get
+            {
+                return m_AudioMarkIn;
+            }
+            set
+            {
+                if (value >= 0
+                    && value < mView.SelectedBlockNode.Audio.getDuration().getTimeDeltaAsMillisecondFloat())
+                    m_AudioMarkIn = value;
+            }
+        }
 
+
+        public double MarkOutTime
+        {
+            get
+            {
+                return m_AudioMarkOut;
+            }
+            set
+            {
+                if ( m_AudioMarkIn > -1
+                    &&     value > m_AudioMarkIn
+                    && value < mView.SelectedBlockNode.Audio.getDuration().getTimeDeltaAsMillisecondFloat())
+                    m_AudioMarkOut = value;
+            }
+        }
 
         #region selection
 
@@ -247,7 +279,8 @@ namespace Obi.ProjectView
             mView.SelectedBlockNode = e.Node;
             mView.PlaybackBlock = e.Node;
             mDisplayTime = 0.0;
-        }
+            m_AudioMarkIn = m_AudioMarkOut = -1;
+                    }
 
         // Update the transport bar according to the player state.
         private void Play_PlayerStateChanged(object sender, Obi.Events.Audio.Player.StateChangedEventArgs e)
@@ -755,9 +788,13 @@ namespace Obi.ProjectView
         public bool PlayPreviewSelectedFragment()
         {
             // add code for playing between markings
-            //mCurrentPlaylist.PreviewSelectedFragment(1000, 2000);
-
-            return true;
+                        if ( m_AudioMarkIn > -1    &&     m_AudioMarkOut > -1 
+                            &&     m_AudioMarkIn < m_AudioMarkOut)
+            {
+                                mCurrentPlaylist.PreviewSelectedFragment( m_AudioMarkIn , m_AudioMarkOut );
+                return true;
+            }
+            return false;
         }
 
         public bool PlayPreviewUptoCurrentPosition()
