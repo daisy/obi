@@ -59,6 +59,8 @@ namespace Obi
             this.mSelectNothingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.mFindInTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mFindNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mFindPreviousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowMetadataViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -129,8 +131,6 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusTimer = new System.Windows.Forms.Timer(this.components);
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.mFindNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mFindPreviousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -389,6 +389,22 @@ namespace Obi
             this.mFindInTextToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.mFindInTextToolStripMenuItem.Text = "&Find";
             this.mFindInTextToolStripMenuItem.Click += new System.EventHandler(this.mFindInTextToolStripMenuItem_Click);
+            // 
+            // mFindNextToolStripMenuItem
+            // 
+            this.mFindNextToolStripMenuItem.Name = "mFindNextToolStripMenuItem";
+            this.mFindNextToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
+            this.mFindNextToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.mFindNextToolStripMenuItem.Text = "Find &next";
+            this.mFindNextToolStripMenuItem.Click += new System.EventHandler(this.mFindNextToolStripMenuItem_Click);
+            // 
+            // mFindPreviousToolStripMenuItem
+            // 
+            this.mFindPreviousToolStripMenuItem.Name = "mFindPreviousToolStripMenuItem";
+            this.mFindPreviousToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.F3)));
+            this.mFindPreviousToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.mFindPreviousToolStripMenuItem.Text = "Find pre&vious";
+            this.mFindPreviousToolStripMenuItem.Click += new System.EventHandler(this.mFindPreviousToolStripMenuItem_Click);
             // 
             // mViewToolStripMenuItem
             // 
@@ -1013,20 +1029,6 @@ namespace Obi
             this.mProjectView.TabIndex = 4;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
-            // 
-            // mFindNextToolStripMenuItem
-            // 
-            this.mFindNextToolStripMenuItem.Name = "mFindNextToolStripMenuItem";
-            this.mFindNextToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.mFindNextToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.mFindNextToolStripMenuItem.Text = "Find &next";
-            // 
-            // mFindPreviousToolStripMenuItem
-            // 
-            this.mFindPreviousToolStripMenuItem.Name = "mFindPreviousToolStripMenuItem";
-            this.mFindPreviousToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.F3)));
-            this.mFindPreviousToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.mFindPreviousToolStripMenuItem.Text = "Find pre&vious";
             // 
             // ObiForm
             // 

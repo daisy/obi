@@ -82,6 +82,7 @@ namespace Obi.ProjectView
             mView.ObiForm.Status(Localizer.Message("find_in_text_init"));
             mView.FindInTextVisible = true;
             mFoundFirst = false;
+            mView.ObiForm.UpdateFindInTextMenuItems();
             mString.SelectAll();
             mString.Focus();
         }
@@ -205,13 +206,6 @@ namespace Obi.ProjectView
         /// process key presses
         /// </summary>
         /// <param name="e"></param>
-        /// <remarks>
-        /// enter = search
-        /// f3 = search next
-        /// shift+f3 = search previous
-        /// control + f = new search
-        /// escape = close form
-        /// </remarks>
         private void ProcessKeys(KeyEventArgs e)
         {
             //start the search
@@ -256,12 +250,23 @@ namespace Obi.ProjectView
         /// Do only case-insensitive match now, but should improve, perhaps with regex?
         /// </summary>
         /// <remarks>
-        /// This method is used by all Searchables to implement the string matching
-        /// if this method grows, it should probably move out of this file.
+        /// This method is used by all ISearchables to implement the string matching
         /// </remarks>
         public static bool Match(string target, string search)
         {
             return target.ToLowerInvariant().Contains(search.ToLowerInvariant());
+        }
+
+
+        /// <summary>
+        /// event raised when the text on the form changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mString_TextChanged(object sender, EventArgs e)
+        {
+            //if the text has been cleared, pretend it's a new search
+            if (mString.Text == "") StartNewSearch(mStripsPanel);
         }
 
         #region Indexing
