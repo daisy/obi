@@ -22,7 +22,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// This needs to be refined when the dummy section is implemented.
         /// </summary>
-        public bool CanAddSection { get { return true; } }
+        public bool CanAddSection { get { return !(mSelection is TextSelection); } }
 
         /// <summary>
         /// An actual section must be selected to be copied (i.e. not the dummy section or the text of the section.)
@@ -73,7 +73,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void ResyncViews()
         {
-            foreach (TreeNode n in mTOCTree.Nodes) ResyncViews(n);
+            foreach (TreeNode n in mTOCTree.Nodes) SetStripsVisibilityForNode(n, true);
         }
 
         /// <summary>
@@ -107,7 +107,11 @@ namespace Obi.ProjectView
         /// </summary>
         public void SelectAndRename(ObiNode node)
         {
-            DoToNewNode((SectionNode)node, delegate() { FindTreeNode((SectionNode)node).BeginEdit(); });
+            DoToNewNode((SectionNode)node, delegate()
+            {
+                mView.Selection = new TextSelection((SectionNode)node, this, ((SectionNode)node).Label);
+                FindTreeNode((SectionNode)node).BeginEdit();
+            });
         }
 
         /// <summary>
@@ -281,30 +285,23 @@ namespace Obi.ProjectView
             if (section != null && IsInTree(section)) mTOCTree.Nodes.Remove(FindTreeNode(section));
         }
 
-        // Resync the views for the subtree root at the given node.
-        private void ResyncViews(TreeNode n)
+        // Set the strips visibility for the given tree node according to expandednessity
+        private void SetStripsVisibilityForNode(TreeNode node, bool visible)
         {
-            if (n.IsExpanded)
-            {
-                mView.SetStripsVisibilityForSection((SectionNode)n.Tag, true);
-                foreach (TreeNode n_ in n.Nodes) ResyncViews(n_);
-            }
-            else
-            {
-                mView.SetStripsVisibilityForSection((SectionNode)n.Tag, false);
-            }
+            mView.SetStripVisibilityForSection((SectionNode)node.Tag, visible);
+            foreach (TreeNode n in node.Nodes) SetStripsVisibilityForNode(n, visible && node.IsExpanded);
         }
 
         // When a node is collapsed, hide strips corresponding to the collapsed nodes.
         private void TOCTree_AfterCollapse(object sender, TreeViewEventArgs e)
         {
-            mView.SetStripsVisibilityForSection((SectionNode)e.Node.Tag, false);
+            SetStripsVisibilityForNode(e.Node, true);
         }
 
         // When a node is expanded, make the strips reappear
         private void TOCTree_AfterExpand(object sender, TreeViewEventArgs e)
         {
-            mView.SetStripsVisibilityForSection((SectionNode)e.Node.Tag, true);
+            SetStripsVisibilityForNode(e.Node, true);
         }
 
         // Rename the section after the text of the tree node has changed.
