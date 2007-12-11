@@ -346,7 +346,7 @@ namespace Obi.Audio
         private void TriggerPeakEventForSecondHalf()
         {
             Thread.Sleep(66);
-            Array.Copy(m_Recorder.arUpdateVM, m_UpdateVMArrayLength, m_arUpdatedVM, 0, m_UpdateVMArrayLength);
+            Array.Copy(m_Recorder.arUpdateVM, m_UpdateVMArrayLength, m_arUpdatedVM, 0, m_UpdateVMArrayLength - m_FrameSize);
             ComputePeakDbValue();
         }
 		int m_PeakValueLeft = 0;
