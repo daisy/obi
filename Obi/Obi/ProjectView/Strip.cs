@@ -218,7 +218,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void SelectTimeInBlock(Block block, WaveformSelection waveformSelection)
         {
-            mParentView.SelectionFromStrip = new NodeSelection(block.Node, mParentView, waveformSelection);
+            mParentView.SelectionFromStrip = new AudioSelection((PhraseNode)block.Node, mParentView, waveformSelection);
         }
 
         /// <summary>

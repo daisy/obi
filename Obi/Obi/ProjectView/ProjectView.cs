@@ -545,7 +545,7 @@ namespace Obi.ProjectView
         public bool CanRemoveStrip { get { return mStripsView.CanRemoveStrip; } }
         public bool CanRenameSection { get { return mTOCView.CanRenameSection; } }
         public bool CanRenameStrip { get { return mStripsView.CanRenameStrip; } }
-        public bool CanSplitBlock { get { return mStripsView.SelectedPhrase != null && mSelection.Waveform != null; } }
+        public bool CanSplitBlock { get { return mSelection is AudioSelection; } }
         public bool CanSplitStrip { get { return mStripsView.CanSplitStrip; } }
         public bool CanToggleSectionUsed { get { return mTOCView.CanToggleSectionUsed; } }
 

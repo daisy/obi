@@ -76,7 +76,10 @@ namespace Obi
             mPlayer = player;
             Reset(false);
             AddPhraseNodesFromStripOrPhrase(selection.Node);
-            if (selection.Waveform != null && selection.Waveform.HasCursor) mPlaybackStartTime = selection.Waveform.CursorTime;
+            if (selection is AudioSelection && ((AudioSelection)selection).WaveformSelection.HasCursor)
+            {
+                mPlaybackStartTime = ((AudioSelection)selection).WaveformSelection.CursorTime;
+            }
         }
 
         // Avn: added to expose list of phrases

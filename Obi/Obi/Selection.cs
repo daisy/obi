@@ -55,19 +55,15 @@ namespace Obi
     {
         public ObiNode Node;                   // the selected node
         public IControlWithSelection Control;  // control in which it is selected
-        public WaveformSelection Waveform;     // waveform selection for a block
 
         /// <summary>
         /// Create a new selection object.
         /// </summary>
-        public NodeSelection(ObiNode node, IControlWithSelection control, WaveformSelection waveform)
+        public NodeSelection(ObiNode node, IControlWithSelection control)
         {
             Node = node;
             Control = control;
-            Waveform = waveform;
         }
-
-        public NodeSelection(ObiNode node, IControlWithSelection control) : this(node, control, null) { }
 
         /// <summary>
         /// Stringify the selection for debug printing.
@@ -79,8 +75,8 @@ namespace Obi
         /// </summary>
         public override bool Equals(object obj)
         {
-            NodeSelection s = obj as NodeSelection;
-            return s != null && s.Node == Node && s.Control == Control && s.Waveform == Waveform;
+            return obj != null && obj.GetType() == GetType() &&
+                ((NodeSelection)obj).Node == Node && ((NodeSelection)obj).Control == Control;
         }
 
         public SectionNode Section { get { return Node as SectionNode; } }
@@ -145,14 +141,9 @@ namespace Obi
     {
         public DummySelection(ObiNode node, ProjectView.TOCView view) : base(node, view) { }
 
-        public override bool Equals(object obj)
-        {
-            DummySelection s = obj as DummySelection;
-            return s is DummySelection && base.Equals(obj);
-        }
-
         public override ObiNode ParentForNewNode(ObiNode newNode) { return Node; }
         public override int IndexForNewNode(ObiNode newNode) { return 0; }
+        public override string ToString() { return String.Format("Dummy for {0}", base.ToString()); }
     }
 
     /// <summary>
@@ -172,13 +163,39 @@ namespace Obi
 
         public override bool Equals(object obj)
         {
-            TextSelection s = obj as TextSelection;
-            return s != null && s.Text == mText && base.Equals(obj);
+            return obj != null && obj.GetType() == GetType() && ((TextSelection)obj).Text == mText && base.Equals(obj);
         }
 
         public override string ToString()
         {
             return String.Format("\"{0}\" in {1}", mText, base.ToString());
+        }
+    }
+
+    /// <summary>
+    /// Selection of audio within a block.
+    /// </summary>
+    public class AudioSelection : NodeSelection
+    {
+        private WaveformSelection mWaveformSeletion;
+
+        public AudioSelection(PhraseNode node, IControlWithSelection control, WaveformSelection waveformSelection)
+            : base(node, control)
+        {
+            mWaveformSeletion = waveformSelection;
+        }
+
+        public WaveformSelection WaveformSelection { get { return mWaveformSeletion; } }
+
+        public override bool Equals(object obj)
+        {
+            return obj != null && obj.GetType() == GetType() &&
+                ((AudioSelection)obj).WaveformSelection == mWaveformSeletion && base.Equals(obj);
+        }
+
+        public override string ToString()
+        {
+            return String.Format("Audio in {0}", base.ToString());
         }
     }
 
@@ -199,8 +216,7 @@ namespace Obi
 
         public override bool Equals(object obj)
         {
-            StripCursorSelection s = obj as StripCursorSelection;
-            return s != null && s.Index == mIndex && base.Equals(s);
+            return obj != null && obj.GetType() == GetType() && ((StripCursorSelection)obj).Index == mIndex && base.Equals(obj);
         }
 
         public override ObiNode ParentForNewNode(ObiNode newNode)
