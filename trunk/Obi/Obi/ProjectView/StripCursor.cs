@@ -45,8 +45,9 @@ namespace Obi.ProjectView
             }
         }
 
-        public ObiNode ObiNode { get { return mStrip.Node; } }
 
+        public ObiNode ObiNode { get { return mStrip.Node; } }
+        public Strip Strip { get { return mStrip; } }
         public NodeSelection SelectionFromView { set { Selected = value != null; } }
 
         #endregion

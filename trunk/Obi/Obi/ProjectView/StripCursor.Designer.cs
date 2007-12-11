@@ -33,6 +33,7 @@ namespace Obi.ProjectView
             // StripCursor
             // 
             this.Margin = new System.Windows.Forms.Padding(0);
+            this.TabStop = false;
             this.ResumeLayout(false);
 
         }
