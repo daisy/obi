@@ -66,7 +66,7 @@ namespace Obi.ProjectView
         {
             set
             {
-                if (value != null) mWaveform.Selection = value.Waveform;
+                if (value != null) mWaveform.Selection = value is AudioSelection ? ((AudioSelection)value).WaveformSelection : null;
                 base.SelectionFromView = value;
             }
         }

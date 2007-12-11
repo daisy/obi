@@ -781,9 +781,9 @@ namespace Obi.ProjectView
 
         public bool PlayPreviewFromCurrentPosition()
         {
-            if (mView.Selection.Waveform.HasCursor)
+            if (((AudioSelection)mView.Selection).WaveformSelection.HasCursor)
             {
-                mCurrentPlaylist.PreviewFromCurrentPosition(mView.Selection.Waveform.CursorTime, m_PreviewDuration);
+                mCurrentPlaylist.PreviewFromCurrentPosition(((AudioSelection)mView.Selection).WaveformSelection.CursorTime, m_PreviewDuration);
                 return true;
             }
             return false;
@@ -803,9 +803,9 @@ namespace Obi.ProjectView
 
         public bool PlayPreviewUptoCurrentPosition()
         {
-            if (mView.Selection.Waveform.HasCursor)
+            if (((AudioSelection)mView.Selection).WaveformSelection.HasCursor)
             {
-                mCurrentPlaylist.PreviewUptoCurrentPosition(mView.Selection.Waveform.CursorTime ,  m_PreviewDuration);
+                mCurrentPlaylist.PreviewUptoCurrentPosition(((AudioSelection)mView.Selection).WaveformSelection.CursorTime ,  m_PreviewDuration);
                 return true;
             }
             return false;
@@ -879,7 +879,7 @@ namespace Obi.ProjectView
                 mRecordingSection = selected.ParentAs<SectionNode>();
                 if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused)
                 {
-                    if (mView.Selection.Waveform.HasCursor)
+                    if (((AudioSelection)mView.Selection).WaveformSelection.HasCursor)
                     {
                         mView.Presentation.UndoRedoManager.execute(new Commands.Node.SplitAudio(mView ));
 
