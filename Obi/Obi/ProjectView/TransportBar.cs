@@ -781,8 +781,12 @@ namespace Obi.ProjectView
 
         public bool PlayPreviewFromCurrentPosition()
         {
-            mCurrentPlaylist.PreviewFromCurrentPosition(m_PreviewDuration);
-            return true;
+            if (mView.Selection.Waveform.HasCursor)
+            {
+                mCurrentPlaylist.PreviewFromCurrentPosition(mView.Selection.Waveform.CursorTime, m_PreviewDuration);
+                return true;
+            }
+            return false;
         }
 
         public bool PlayPreviewSelectedFragment()
@@ -799,8 +803,12 @@ namespace Obi.ProjectView
 
         public bool PlayPreviewUptoCurrentPosition()
         {
-            mCurrentPlaylist.PreviewUptoCurrentPosition(m_PreviewDuration);
-            return true;
+            if (mView.Selection.Waveform.HasCursor)
+            {
+                mCurrentPlaylist.PreviewUptoCurrentPosition(mView.Selection.Waveform.CursorTime ,  m_PreviewDuration);
+                return true;
+            }
+            return false;
         }
 
 

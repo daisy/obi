@@ -723,11 +723,10 @@ namespace Obi
 
 
 
-        public void PreviewFromCurrentPosition(double duration)
+        public void PreviewFromCurrentPosition( double StartTime , double duration)
         {
             AudioMediaData AudioData = mPhrases[mCurrentPhraseIndex].Audio.getMediaData();
 
-            double StartTime = mPlayer.CurrentTimePosition;
 
             double EndTime = StartTime + duration;
 
@@ -737,11 +736,9 @@ namespace Obi
             mPlayer.PlayPreview(AudioData, StartTime, EndTime, StartTime);
         }
 
-        public void PreviewUptoCurrentPosition(double duration)
+        public void PreviewUptoCurrentPosition( double EndTime , double duration)
         {
             AudioMediaData AudioData = mPhrases[mCurrentPhraseIndex].Audio.getMediaData();
-
-            double EndTime = mPlayer.CurrentTimePosition;
 
             double StartTime = EndTime - duration;
 
