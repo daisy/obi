@@ -35,7 +35,7 @@ namespace Obi.ProjectView
         private bool mDidCreateSectionForRecording = false;
         private SectionNode mRecordingToSection = null;
         private int mRecordingStartIndex = 0;
-
+        private int m_PreviewDuration = 1500; // duration of preview playback, to be  included in settings.
 
         // constants from the display combo box
         private static readonly int Elapsed = 0;
@@ -744,11 +744,12 @@ namespace Obi.ProjectView
 
 
         // preview playback functions
-        private const int m_PreviewDuration = 1500;
+        
 
         public bool MarkSelectionBeginTime ()
         {
-            if (((AudioSelection)mView.Selection).WaveformSelection.HasCursor)
+            if ( ((AudioSelection)mView.Selection) != null
+                &&    ((AudioSelection)mView.Selection).WaveformSelection.HasCursor)
             {
                 ((AudioSelection)mView.Selection).WaveformSelection.SelectionBeginTime = ((AudioSelection)mView.Selection).WaveformSelection.CursorTime ;
                 return true;
@@ -758,7 +759,8 @@ namespace Obi.ProjectView
 
         public bool MarkSelectionEndTime()
         {
-            if (((AudioSelection)mView.Selection).WaveformSelection.HasCursor
+            if (((AudioSelection)mView.Selection) != null
+                &&    ((AudioSelection)mView.Selection).WaveformSelection.HasCursor
                 && mCurrentPlaylist.CurrentTimeInAsset > ((AudioSelection)mView.Selection).WaveformSelection.SelectionBeginTime )
             {
                 ((AudioSelection)mView.Selection).WaveformSelection.SelectionEndTime = ((AudioSelection)mView.Selection).WaveformSelection.CursorTime ;
@@ -770,7 +772,8 @@ namespace Obi.ProjectView
 
         public bool PlayPreviewFromCurrentPosition()
         {
-            if (((AudioSelection)mView.Selection).WaveformSelection.HasCursor)
+            if ((mView.Selection) != null
+                &&    ((AudioSelection)mView.Selection).WaveformSelection.HasCursor)
             {
                 mCurrentPlaylist.PreviewFromCurrentPosition(((AudioSelection)mView.Selection).WaveformSelection.CursorTime, m_PreviewDuration);
                 return true;
@@ -781,7 +784,8 @@ namespace Obi.ProjectView
         public bool PlayPreviewSelectedFragment()
         {
                         // add code for playing between markings
-                        if ( ((AudioSelection)mView.Selection).WaveformSelection.SelectionBeginTime < ((AudioSelection)mView.Selection).WaveformSelection.SelectionEndTime )
+            if (( mView.Selection) != null
+                            &&    ((AudioSelection)mView.Selection).WaveformSelection.SelectionBeginTime < ((AudioSelection)mView.Selection).WaveformSelection.SelectionEndTime )
             {
                 mCurrentPlaylist.PreviewSelectedFragment(((AudioSelection)mView.Selection).WaveformSelection.SelectionBeginTime, ((AudioSelection)mView.Selection).WaveformSelection.SelectionEndTime );
                 return true;
@@ -791,7 +795,8 @@ namespace Obi.ProjectView
 
         public bool PlayPreviewUptoCurrentPosition()
         {
-            if (((AudioSelection)mView.Selection).WaveformSelection.HasCursor)
+            if ((mView.Selection) != null
+                && ((AudioSelection)mView.Selection).WaveformSelection.HasCursor)
             {
                 mCurrentPlaylist.PreviewUptoCurrentPosition(((AudioSelection)mView.Selection).WaveformSelection.CursorTime ,  m_PreviewDuration);
                 return true;
@@ -867,14 +872,18 @@ namespace Obi.ProjectView
                 mRecordingSection = selected.ParentAs<SectionNode>();
                 if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused)
                 {
-                    if (((AudioSelection)mView.Selection).WaveformSelection.HasCursor)
+                    if (((AudioSelection)mView.Selection) != null    &&    ((AudioSelection)mView.Selection).WaveformSelection.HasCursor)
                     {
+                        if (((AudioSelection)mView.Selection).WaveformSelection.SelectionEndTime != 0
+                            && ((AudioSelection)mView.Selection).WaveformSelection.SelectionBeginTime < ((AudioSelection)mView.Selection).WaveformSelection.SelectionEndTime)
+                        {
+                            mView.Presentation.UndoRedoManager.execute(new Commands.Node.SplitAudioSelection(mView));
+                            mView.Presentation.UndoRedoManager.execute(new Commands.Node.Delete(mView, mView.Selection.Node));
+                                                    }
+                        else
                         mView.Presentation.UndoRedoManager.execute(new Commands.Node.SplitAudio(mView ));
 
-                        // To add  conditions for following commented code for replace recording.
-                        //mView.Presentation.UndoRedoManager.execute(new Commands.Node.SplitAudioSelection(mView));
-                        //mView.Presentation.UndoRedoManager.execute(new Commands.Node.Delete(mView, mView.Selection.Node));
-
+                        
                         mCurrentPlaylist.Stop();
                         
                     }
