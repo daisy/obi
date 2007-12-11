@@ -413,12 +413,12 @@ namespace Obi
             this.mShowSearchBarToolStripMenuItem,
             this.mShowTransportBarToolStripMenuItem,
             this.mShowStatusBarToolStripMenuItem,
-            this.mShowPeakMeterMenuItem,
             this.toolStripSeparator12,
             this.mFocusOnStripsViewToolStripMenuItem,
             this.mFocusOnTOCViewToolStripMenuItem,
             this.mSynchronizeViewsToolStripMenuItem,
             this.toolStripSeparator10,
+            this.mShowPeakMeterMenuItem,
             this.mShowSourceToolStripMenuItem});
             this.mViewToolStripMenuItem.Name = "mViewToolStripMenuItem";
             this.mViewToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
@@ -533,7 +533,8 @@ namespace Obi
             // mShowSourceToolStripMenuItem
             // 
             this.mShowSourceToolStripMenuItem.Name = "mShowSourceToolStripMenuItem";
-            this.mShowSourceToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.R)));
+            this.mShowSourceToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.R)));
             this.mShowSourceToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
             this.mShowSourceToolStripMenuItem.Text = "Show sou&rce view";
             this.mShowSourceToolStripMenuItem.Click += new System.EventHandler(this.mShowSourceToolStripMenuItem_Click);
