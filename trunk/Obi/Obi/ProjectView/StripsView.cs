@@ -503,6 +503,8 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.F] = FastPlayRateStepUp;
             mShortcutKeys[Keys.D] = FastPlayRateNormalise;
             mShortcutKeys[Keys.E] = FastPlayNormaliseWithLapseBack;
+            mShortcutKeys[Keys.OemOpenBrackets ] =MarkSelectionBeginTime  ;
+            mShortcutKeys[Keys.OemCloseBrackets ] =  MarkSelectionEndTime ;
             mShortcutKeys[Keys.X ] = PlayPreviewUptoCurrentPosition ;
             mShortcutKeys[Keys.C] = PlayPreviewSelectedFragment ;
             mShortcutKeys[Keys.V ] = PlayPreviewFromCurrentPosition ;
@@ -721,7 +723,17 @@ namespace Obi.ProjectView
         {
             return mView.TransportBar.FastPlayNormaliseWithLapseBack();
         }
-        
+
+        private bool MarkSelectionBeginTime()
+        {
+                        return mView.TransportBar.MarkSelectionBeginTime();
+        }
+
+        private bool MarkSelectionEndTime()
+        {
+            return mView.TransportBar.MarkSelectionEndTime();
+        }
+
         private bool PlayPreviewFromCurrentPosition ()
         {
             return  mView.TransportBar.PlayPreviewFromCurrentPosition () ;
