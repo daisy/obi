@@ -28,6 +28,7 @@ namespace Obi.Audio
 		/// </summary>
 		private void InitializeComponent()
 		{
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PeakMeterForm));
             this.mGraphicalPeakMeter = new Obi.UserControls.GraphicalPeakMeter();
             this.SuspendLayout();
             // 
@@ -50,6 +51,7 @@ namespace Obi.Audio
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(154, 492);
             this.Controls.Add(this.mGraphicalPeakMeter);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PeakMeterForm";
             this.Text = "Peak Meter";
             this.ResumeLayout(false);

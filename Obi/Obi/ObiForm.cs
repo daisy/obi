@@ -231,6 +231,7 @@ namespace Obi
             mFocusOnStripsViewToolStripMenuItem.Enabled = mSession.HasProject;
             mFocusOnTOCViewToolStripMenuItem.Enabled = mSession.HasProject;
             mSynchronizeViewsToolStripMenuItem.Enabled = mSession.HasProject;
+            mShowPeakMeterMenuItem.Enabled = mSession.HasProject;
             mShowSourceToolStripMenuItem.Enabled = mSession.HasProject;
         }
 
