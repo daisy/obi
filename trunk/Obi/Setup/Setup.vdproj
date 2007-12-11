@@ -15,6 +15,18 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_020E765E81AB7190548EE8511E3685F1"
+        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_08E90A85C087A8E87AC7D546E48D9CE8"
+        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0BF7D9BC6AB14E07BEF8345AE13C57A7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -141,6 +153,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_956E4CA1D2500E6365469C0F7282490E"
+        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_96FEC3498FBF4852B35346478C52FB18"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -171,12 +189,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_9F85E713DBA767CA81165164E079F2AB"
-        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_A312DCD7F0F7454B8EBAD7FD60A52383"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -185,12 +197,6 @@
         {
         "MsmKey" = "8:_A4EB93BEC58F4B1A82EE9320D2BF4AAC"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AA7FCD6A5AAE48DDC3F022F5F4AFDF21"
-        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -280,13 +286,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_AA7FCD6A5AAE48DDC3F022F5F4AFDF21"
+        "OwnerKey" = "8:_956E4CA1D2500E6365469C0F7282490E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9F85E713DBA767CA81165164E079F2AB"
+        "OwnerKey" = "8:_020E765E81AB7190548EE8511E3685F1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_08E90A85C087A8E87AC7D546E48D9CE8"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -379,6 +391,68 @@
         }
         "File"
         {
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_020E765E81AB7190548EE8511E3685F1"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:urakawa, Version=1.0.0.19132, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_020E765E81AB7190548EE8511E3685F1"
+                    {
+                    "Name" = "8:urakawa.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:urakawa.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_08E90A85C087A8E87AC7D546E48D9CE8"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:AudioEngine.PPMeter, Version=1.0.2897.24541, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_08E90A85C087A8E87AC7D546E48D9CE8"
+                    {
+                    "Name" = "8:AudioEngine.PPMeter.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:AudioEngine.PPMeter.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0BF7D9BC6AB14E07BEF8345AE13C57A7"
             {
             "SourcePath" = "8:..\\Obi\\images\\manual_heading.png"
@@ -772,6 +846,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_956E4CA1D2500E6365469C0F7282490E"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:XukToZed, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_956E4CA1D2500E6365469C0F7282490E"
+                    {
+                    "Name" = "8:XukToZed.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:XukToZed.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_96FEC3498FBF4852B35346478C52FB18"
             {
             "SourcePath" = "8:..\\Obi\\images\\manual_newproject.png"
@@ -872,37 +977,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9F85E713DBA767CA81165164E079F2AB"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:urakawa, Version=0.5.0.19401, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_9F85E713DBA767CA81165164E079F2AB"
-                    {
-                    "Name" = "8:urakawa.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:urakawa.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A312DCD7F0F7454B8EBAD7FD60A52383"
             {
             "SourcePath" = "8:..\\Obi\\images\\icons\\media-skip-backward.png"
@@ -941,37 +1015,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AA7FCD6A5AAE48DDC3F022F5F4AFDF21"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:XukToZed, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_AA7FCD6A5AAE48DDC3F022F5F4AFDF21"
-                    {
-                    "Name" = "8:XukToZed.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:XukToZed.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_ACAC4279C4A5484799788897BBC116EE"
@@ -1181,7 +1224,7 @@
             {
             "Name" = "8:Obi project file"
             "Description" = "8:The XUK file for an Obi project"
-            "Extensions" = "8:xuk"
+            "Extensions" = "8:obi"
             "MIME" = "8:"
             "Icon" = "8:_9C20083F5AC541BB9A68D0CA14309F6D"
             "IconIndex" = "3:0"
@@ -1284,15 +1327,15 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Obi 0.8.5.1"
-        "ProductCode" = "8:{CFB2C480-0673-42BF-8455-1EC3AB8F7BBD}"
-        "PackageCode" = "8:{EB98598F-3D4A-4740-8FAD-41504D179CE7}"
+        "ProductName" = "8:Obi 0.10.1.0"
+        "ProductCode" = "8:{6ADF29B8-72AC-4BA5-B89C-A198AEEFEA78}"
+        "PackageCode" = "8:{D3E98918-EF8A-4978-AAF7-432E05C62250}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:0.8.5"
+        "ProductVersion" = "8:0.10.1"
         "Manufacturer" = "8:The Urakawa Project"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1407,7 +1450,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0F34FEE7392245ED8C33C78EB0D2823B"
             {
-            "Name" = "8:Obi 0.8.5.1"
+            "Name" = "8:Obi 0.10.1.0"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -1421,7 +1464,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C26CA4074EF24904B9E49A74044A43B0"
             {
-            "Name" = "8:Obi 0.8.5.1"
+            "Name" = "8:Obi 0.10.1.0"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -1860,9 +1903,6 @@
                 {
                 }
             }
-        }
-        "VJSharpPlugin"
-        {
         }
     }
 }
