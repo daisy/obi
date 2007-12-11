@@ -228,8 +228,8 @@ namespace Obi
             mShowSearchBarToolStripMenuItem.Enabled = mSession.HasProject;
             mShowTransportBarToolStripMenuItem.Enabled = mSession.HasProject;
             mShowStatusBarToolStripMenuItem.Enabled = true;
-            mShowInTOCViewToolStripMenuItem.Enabled = mProjectView.CanShowInTOCView;
-            mShowInStripsViewToolStripMenuItem.Enabled = mProjectView.CanShowInStripsView;
+            mFocusOnStripsViewToolStripMenuItem.Enabled = mSession.HasProject;
+            mFocusOnTOCViewToolStripMenuItem.Enabled = mSession.HasProject;
             mSynchronizeViewsToolStripMenuItem.Enabled = mSession.HasProject;
             mShowSourceToolStripMenuItem.Enabled = mSession.HasProject;
         }
@@ -259,14 +259,14 @@ namespace Obi
             mStatusStrip.Visible = mShowStatusBarToolStripMenuItem.Checked;
         }
 
-        private void mShowInTOCViewToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mFocusOnStripsViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.ShowSelectedSectionInTOCView();
+            mProjectView.ShowSelectedSectionInStripsView();
         }
 
-        private void mShowInStripsViewToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mFocusOnTOCViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.ShowSelectedSectionInStripsView(); 
+            mProjectView.ShowSelectedSectionInTOCView();
         }
 
         private void mSynchronizeViewsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)

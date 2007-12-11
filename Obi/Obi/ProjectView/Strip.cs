@@ -232,6 +232,31 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Get the index of the cursor to select after the given item (cursor, block or strip.)
+        /// In the case of a strip this is the first cursor, and in the case of the last cursor position
+        /// return -1.
+        /// </summary>
+        public int StripCursorAfter(ISelectableInStripView item)
+        {
+            int index = item is Strip ? 0 :
+                        item is StripCursor ? mBlocksPanel.Controls.IndexOf((Control)item) + 2 :
+                        item is Block ? mBlocksPanel.Controls.IndexOf((Control)item) + 1 : -2;
+            return index < mBlocksPanel.Controls.Count ? index / 2: -1;
+        }
+
+        /// <summary>
+        /// Get the index of the cursor to select before the given item (cursor, block or strip.)
+        /// In the case of a strip this is the last cursor, and in the case of the first cursor position
+        /// return a negative value.
+        /// </summary>
+        public int StripCursorBefore(ISelectableInStripView item)
+        {
+            return (item is Strip ? mBlocksPanel.Controls.Count - 1 :
+                    item is StripCursor ? mBlocksPanel.Controls.IndexOf((Control)item) - 2 :
+                    item is Block ? mBlocksPanel.Controls.IndexOf((Control)item) - 1 : -2) / 2;
+        }
+
+        /// <summary>
         /// Update the colors of the block when the state of its node has changed.
         /// </summary>
         public void UpdateColors()
@@ -278,7 +303,7 @@ namespace Obi.ProjectView
         // Add a cursor at the end of the strip
         private void AddCursor(int index)
         {
-            StripCursor cursor = new StripCursor();
+            StripCursor cursor = new StripCursor(this);
             cursor.Size = new Size(12, mBlocksPanel.Height);
             mBlocksPanel.Controls.Add(cursor);
             mBlocksPanel.Controls.SetChildIndex(cursor, index);

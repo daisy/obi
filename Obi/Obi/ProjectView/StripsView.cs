@@ -517,6 +517,10 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.Down] = SelectNextStrip;
             mShortcutKeys[Keys.Control | Keys.Home] = SelectFirstStrip;
             mShortcutKeys[Keys.Control | Keys.End] = SelectLastStrip;
+
+            // Control + arrows moves the strip cursor
+            mShortcutKeys[Keys.Control | Keys.Left] = SelectPrecedingStripCursor;
+            mShortcutKeys[Keys.Control | Keys.Right] = SelectFollowingStripCursor;
         }
 
         private static readonly int WM_KEYDOWN = 0x100;
@@ -536,7 +540,9 @@ namespace Obi.ProjectView
         // for a block.)
         private Strip StripFor(ISelectableInStripView item)
         {
-            return item is Strip ? (Strip)item : item is Block ? ((Block)item).Strip : null;
+            return item is Strip ? (Strip)item :
+                   item is StripCursor ? ((StripCursor)item).Strip :
+                   item is Block ? ((Block)item).Strip : null;
         }
 
         private delegate Block SelectBlockFunction(Strip strip, ISelectableInStripView item);
@@ -556,14 +562,43 @@ namespace Obi.ProjectView
             return false;
         }
 
+        private delegate int SelectStripCursorFunction(Strip strip, ISelectableInStripView item);
+
+        private bool SelectStripCursorFor(SelectStripCursorFunction f)
+        {
+            System.Diagnostics.Debug.Print("SelectStripCursorFor {0} ...", mSelectedItem);
+            Strip strip = StripFor(mSelectedItem);
+            if (strip != null)
+            {
+                int index = f(strip, mSelectedItem);
+                if (index >= 0)
+                {
+                    System.Diagnostics.Debug.Print("  ... got index {0}", index);
+                    mView.Selection = new StripCursorSelection(strip.Node, this, index);
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private bool SelectPrecedingBlock()
         {
             return SelectBlockFor(delegate(Strip strip, ISelectableInStripView item) { return strip.BlockBefore(item); });
         }
 
+        private bool SelectPrecedingStripCursor()
+        {
+            return SelectStripCursorFor(delegate(Strip strip, ISelectableInStripView item) { return strip.StripCursorBefore(item); });
+        }
+
         private bool SelectFollowingBlock()
         {
             return SelectBlockFor(delegate(Strip strip, ISelectableInStripView item) { return strip.BlockAfter(item); });
+        }
+
+        private bool SelectFollowingStripCursor()
+        {
+            return SelectStripCursorFor(delegate(Strip strip, ISelectableInStripView item) { return strip.StripCursorAfter(item); });
         }
 
         private bool SelectLastBlockInStrip()
@@ -591,7 +626,7 @@ namespace Obi.ProjectView
 
         private bool SelectPreviousStrip()
         {
-            Strip strip = mSelectedItem is Block ? StripFor(mSelectedItem) : StripBefore(StripFor(mSelectedItem));
+            Strip strip = mSelectedItem is Strip ? StripBefore(StripFor(mSelectedItem)) : StripFor(mSelectedItem);
             if (strip != null)
             {
                 mView.Selection = new NodeSelection(strip.Node, this);
@@ -705,5 +740,17 @@ namespace Obi.ProjectView
                #endregion
 
         public void SelectAtCurrentTime() { mPlaybackBlock.SelectAtCurrentTime(); }
+
+        public void GetFocus()
+        {
+            if (mSelection == null)
+            {
+                mView.Selection = new NodeSelection(mView.Presentation.FirstSection, this);
+            }
+            else
+            {
+                Focus();
+            }
+        }
     }
 }

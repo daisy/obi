@@ -583,7 +583,15 @@ namespace Obi.ProjectView
         /// </summary>
         public void ShowSelectedSectionInTOCView()
         {
-            if (CanShowInTOCView) Selection = new NodeSelection(mSelection.Node, mTOCView);
+            if (CanShowInTOCView)
+            {
+                Selection = new NodeSelection(mSelection.Node, mTOCView);
+            }
+            else
+            {
+                TOCViewVisible = true;
+                mTOCView.Focus();
+            }
         }
 
         /// <summary>
@@ -591,7 +599,14 @@ namespace Obi.ProjectView
         /// </summary>
         public void ShowSelectedSectionInStripsView()
         {
-            if (CanShowInStripsView) Selection = new NodeSelection(mSelection.Node, mStripsView);
+            if (CanShowInStripsView)
+            {
+                Selection = new NodeSelection(mSelection.Node, mStripsView);
+            }
+            else
+            {
+                mStripsView.GetFocus();
+            }
         }
 
         #region Find in Text

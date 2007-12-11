@@ -212,6 +212,11 @@ namespace Obi
         {
             return newNode is SectionNode ? Node.Index + 1 : mIndex;
         }
+
+        public override string ToString()
+        {
+            return String.Format("Index {0} in {1}", mIndex, base.ToString());
+        }
     }
 
     public class Clipboard

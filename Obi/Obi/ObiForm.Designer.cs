@@ -67,11 +67,10 @@ namespace Obi
             this.mShowSearchBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowTransportBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowStatusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.mShowPeakMeterMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
-            this.mShowInTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mShowInStripsViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mFocusOnStripsViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mFocusOnTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSynchronizeViewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.mShowSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -414,11 +413,10 @@ namespace Obi
             this.mShowSearchBarToolStripMenuItem,
             this.mShowTransportBarToolStripMenuItem,
             this.mShowStatusBarToolStripMenuItem,
-            this.toolStripSeparator8,
             this.mShowPeakMeterMenuItem,
             this.toolStripSeparator12,
-            this.mShowInTOCViewToolStripMenuItem,
-            this.mShowInStripsViewToolStripMenuItem,
+            this.mFocusOnStripsViewToolStripMenuItem,
+            this.mFocusOnTOCViewToolStripMenuItem,
             this.mSynchronizeViewsToolStripMenuItem,
             this.toolStripSeparator10,
             this.mShowSourceToolStripMenuItem});
@@ -486,14 +484,11 @@ namespace Obi
             this.mShowStatusBarToolStripMenuItem.Text = "Show stat&us bar";
             this.mShowStatusBarToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mShowStatusBarToolStripMenuItem_CheckedChanged);
             // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(237, 6);
-            // 
             // mShowPeakMeterMenuItem
             // 
             this.mShowPeakMeterMenuItem.Name = "mShowPeakMeterMenuItem";
+            this.mShowPeakMeterMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.P)));
             this.mShowPeakMeterMenuItem.Size = new System.Drawing.Size(240, 22);
             this.mShowPeakMeterMenuItem.Text = "Show &peak meter";
             this.mShowPeakMeterMenuItem.Click += new System.EventHandler(this.mShowPeakMeterMenuItem_Click);
@@ -503,21 +498,21 @@ namespace Obi
             this.toolStripSeparator12.Name = "toolStripSeparator12";
             this.toolStripSeparator12.Size = new System.Drawing.Size(237, 6);
             // 
-            // mShowInTOCViewToolStripMenuItem
+            // mFocusOnStripsViewToolStripMenuItem
             // 
-            this.mShowInTOCViewToolStripMenuItem.Name = "mShowInTOCViewToolStripMenuItem";
-            this.mShowInTOCViewToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.T)));
-            this.mShowInTOCViewToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
-            this.mShowInTOCViewToolStripMenuItem.Text = "Show in TO&C view";
-            this.mShowInTOCViewToolStripMenuItem.Click += new System.EventHandler(this.mShowInTOCViewToolStripMenuItem_Click);
+            this.mFocusOnStripsViewToolStripMenuItem.Name = "mFocusOnStripsViewToolStripMenuItem";
+            this.mFocusOnStripsViewToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
+            this.mFocusOnStripsViewToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.mFocusOnStripsViewToolStripMenuItem.Text = "Focus on stri&ps view";
+            this.mFocusOnStripsViewToolStripMenuItem.Click += new System.EventHandler(this.mFocusOnStripsViewToolStripMenuItem_Click);
             // 
-            // mShowInStripsViewToolStripMenuItem
+            // mFocusOnTOCViewToolStripMenuItem
             // 
-            this.mShowInStripsViewToolStripMenuItem.Name = "mShowInStripsViewToolStripMenuItem";
-            this.mShowInStripsViewToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
-            this.mShowInStripsViewToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
-            this.mShowInStripsViewToolStripMenuItem.Text = "Show in stri&ps view";
-            this.mShowInStripsViewToolStripMenuItem.Click += new System.EventHandler(this.mShowInStripsViewToolStripMenuItem_Click);
+            this.mFocusOnTOCViewToolStripMenuItem.Name = "mFocusOnTOCViewToolStripMenuItem";
+            this.mFocusOnTOCViewToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
+            this.mFocusOnTOCViewToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.mFocusOnTOCViewToolStripMenuItem.Text = "Focus on TO&C view";
+            this.mFocusOnTOCViewToolStripMenuItem.Click += new System.EventHandler(this.mFocusOnTOCViewToolStripMenuItem_Click);
             // 
             // mSynchronizeViewsToolStripMenuItem
             // 
@@ -1116,8 +1111,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mShowTOCViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mShowMetadataViewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mShowInTOCViewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mShowInStripsViewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mFocusOnTOCViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
         private System.Windows.Forms.ToolStripMenuItem mShowSourceToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -1154,10 +1148,10 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mMergeBlockWithNextToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mAddEmptyBlockToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-			private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
 			private System.Windows.Forms.ToolStripMenuItem mShowPeakMeterMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mFindNextToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mFindPreviousToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mFocusOnStripsViewToolStripMenuItem;
 
 
     }
