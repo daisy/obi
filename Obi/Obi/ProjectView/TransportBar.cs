@@ -882,8 +882,13 @@ namespace Obi.ProjectView
                     if (mView.Selection.Waveform.HasCursor)
                     {
                         mView.Presentation.UndoRedoManager.execute(new Commands.Node.SplitAudio(mView ));
+
+                        // To add  conditions for following commented code for replace recording.
+                        //mView.Presentation.UndoRedoManager.execute(new Commands.Node.SplitAudioSelection(mView));
+                        //mView.Presentation.UndoRedoManager.execute(new Commands.Node.Delete(mView, mView.Selection.Node));
+
                         mCurrentPlaylist.Stop();
-                        //mRecordingInitPhraseIndex = selected.Index;
+                        
                     }
                 }
                 
