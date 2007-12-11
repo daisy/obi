@@ -70,7 +70,7 @@
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="urakawa, Version=1.0.0.20496, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="urakawa, Version=1.0.0.36257, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\implementation\UrakawaToolkit\bin\Debug\urakawa.dll</HintPath>
     </Reference>
@@ -112,8 +112,10 @@
     <Compile Include="Commands\Node\MergeAudio.cs" />
     <Compile Include="Commands\Node\Paste.cs" />
     <Compile Include="Commands\Node\AddRemoveCustomType.cs" />
+    <Compile Include="Commands\Node\PhraseDetection.cs" />
     <Compile Include="Commands\Node\RenameSection.cs" />
     <Compile Include="Commands\Node\SplitAudio.cs" />
+    <Compile Include="Commands\Node\SplitAudioSelection.cs" />
     <Compile Include="Commands\Strips\AddNewStrip.cs" />
     <Compile Include="Commands\Strips\ImportPhrases.cs" />
     <Compile Include="Commands\TOC\AddNewSection.cs" />
