@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using urakawa.undo;
 
-namespace Obi.Commands.Node
+namespace Obi.Commands
 {
     /// <summary>
-    /// Add a custom type
+    /// Add a custom type to the presentation
     /// </summary>
     class AddCustomType : Command
     {
@@ -31,7 +31,7 @@ namespace Obi.Commands.Node
     }
 
     /// <summary>
-    /// This removes a custom type from the list of custom types.
+    /// This removes a custom type from the list of custom types in the presentation.
     /// </summary>
     class RemoveCustomType : Command
     {

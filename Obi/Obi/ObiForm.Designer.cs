@@ -67,12 +67,12 @@ namespace Obi
             this.mShowSearchBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowTransportBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowStatusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mShowPeakMeterMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.mFocusOnStripsViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFocusOnTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSynchronizeViewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.mShowPeakMeterMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,11 +96,12 @@ namespace Obi
             this.mSplitBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMergeBlockWithNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.mAssignCustomTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.emptyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mCustomTypeToolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.mAddNewCustomTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mClearCustomTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mAssignRoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSetAsHeadingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mCustomRoleToolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.mAddRoleToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.mEditRolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mClearRoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.mListenToBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTransportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -484,15 +485,6 @@ namespace Obi
             this.mShowStatusBarToolStripMenuItem.Text = "Show stat&us bar";
             this.mShowStatusBarToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mShowStatusBarToolStripMenuItem_CheckedChanged);
             // 
-            // mShowPeakMeterMenuItem
-            // 
-            this.mShowPeakMeterMenuItem.Name = "mShowPeakMeterMenuItem";
-            this.mShowPeakMeterMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Shift)
-                        | System.Windows.Forms.Keys.P)));
-            this.mShowPeakMeterMenuItem.Size = new System.Drawing.Size(240, 22);
-            this.mShowPeakMeterMenuItem.Text = "Show &peak meter";
-            this.mShowPeakMeterMenuItem.Click += new System.EventHandler(this.mShowPeakMeterMenuItem_Click);
-            // 
             // toolStripSeparator12
             // 
             this.toolStripSeparator12.Name = "toolStripSeparator12";
@@ -529,6 +521,15 @@ namespace Obi
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
             this.toolStripSeparator10.Size = new System.Drawing.Size(237, 6);
+            // 
+            // mShowPeakMeterMenuItem
+            // 
+            this.mShowPeakMeterMenuItem.Name = "mShowPeakMeterMenuItem";
+            this.mShowPeakMeterMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.P)));
+            this.mShowPeakMeterMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.mShowPeakMeterMenuItem.Text = "Show &peak meter";
+            this.mShowPeakMeterMenuItem.Click += new System.EventHandler(this.mShowPeakMeterMenuItem_Click);
             // 
             // mShowSourceToolStripMenuItem
             // 
@@ -689,8 +690,9 @@ namespace Obi
             this.mSplitBlockToolStripMenuItem,
             this.mMergeBlockWithNextToolStripMenuItem,
             this.toolStripSeparator6,
-            this.mAssignCustomTypeToolStripMenuItem,
-            this.mClearCustomTypeToolStripMenuItem,
+            this.mAssignRoleToolStripMenuItem,
+            this.mEditRolesToolStripMenuItem,
+            this.mClearRoleToolStripMenuItem,
             this.toolStripSeparator13,
             this.mListenToBlockToolStripMenuItem});
             this.blocksToolStripMenuItem.Name = "blocksToolStripMenuItem";
@@ -735,41 +737,50 @@ namespace Obi
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(216, 6);
             // 
-            // mAssignCustomTypeToolStripMenuItem
+            // mAssignRoleToolStripMenuItem
             // 
-            this.mAssignCustomTypeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.emptyToolStripMenuItem,
-            this.mCustomTypeToolStripSeparator,
-            this.mAddNewCustomTypeToolStripMenuItem});
-            this.mAssignCustomTypeToolStripMenuItem.Name = "mAssignCustomTypeToolStripMenuItem";
-            this.mAssignCustomTypeToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.mAssignCustomTypeToolStripMenuItem.Text = "Assign custom type";
-            this.mAssignCustomTypeToolStripMenuItem.DropDownOpening += new System.EventHandler(this.mAssignCustomTypeToolStripMenuItem_DropDownOpening);
+            this.mAssignRoleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mSetAsHeadingToolStripMenuItem,
+            this.mCustomRoleToolStripSeparator,
+            this.mAddRoleToolStripTextBox});
+            this.mAssignRoleToolStripMenuItem.Name = "mAssignRoleToolStripMenuItem";
+            this.mAssignRoleToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.mAssignRoleToolStripMenuItem.Text = "&Assign role";
+            this.mAssignRoleToolStripMenuItem.DropDownOpening += new System.EventHandler(this.mAssignRoleToolStripMenuItem_DropDownOpening);
             // 
-            // emptyToolStripMenuItem
+            // mSetAsHeadingToolStripMenuItem
             // 
-            this.emptyToolStripMenuItem.Name = "emptyToolStripMenuItem";
-            this.emptyToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.emptyToolStripMenuItem.Text = "Empty";
+            this.mSetAsHeadingToolStripMenuItem.Name = "mSetAsHeadingToolStripMenuItem";
+            this.mSetAsHeadingToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.mSetAsHeadingToolStripMenuItem.Text = "&Heading";
+            this.mSetAsHeadingToolStripMenuItem.Click += new System.EventHandler(this.mSetAsHeadingToolStripMenuItem_Click);
             // 
-            // mCustomTypeToolStripSeparator
+            // mCustomRoleToolStripSeparator
             // 
-            this.mCustomTypeToolStripSeparator.Name = "mCustomTypeToolStripSeparator";
-            this.mCustomTypeToolStripSeparator.Size = new System.Drawing.Size(187, 6);
+            this.mCustomRoleToolStripSeparator.Name = "mCustomRoleToolStripSeparator";
+            this.mCustomRoleToolStripSeparator.Size = new System.Drawing.Size(157, 6);
             // 
-            // mAddNewCustomTypeToolStripMenuItem
+            // mAddRoleToolStripTextBox
             // 
-            this.mAddNewCustomTypeToolStripMenuItem.Name = "mAddNewCustomTypeToolStripMenuItem";
-            this.mAddNewCustomTypeToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.mAddNewCustomTypeToolStripMenuItem.Text = "Add new custom type...";
-            this.mAddNewCustomTypeToolStripMenuItem.Click += new System.EventHandler(this.mAddNewCustomTypeToolStripMenuItem_Click);
+            this.mAddRoleToolStripTextBox.Name = "mAddRoleToolStripTextBox";
+            this.mAddRoleToolStripTextBox.Size = new System.Drawing.Size(100, 21);
+            this.mAddRoleToolStripTextBox.Text = "<Add role>";
+            this.mAddRoleToolStripTextBox.Leave += new System.EventHandler(this.mAddRoleToolStripTextBox_Leave);
+            this.mAddRoleToolStripTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.mAddRoleToolStripTextBox_KeyUp);
             // 
-            // mClearCustomTypeToolStripMenuItem
+            // mEditRolesToolStripMenuItem
             // 
-            this.mClearCustomTypeToolStripMenuItem.Name = "mClearCustomTypeToolStripMenuItem";
-            this.mClearCustomTypeToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.mClearCustomTypeToolStripMenuItem.Text = "Clear custom type";
-            this.mClearCustomTypeToolStripMenuItem.Click += new System.EventHandler(this.mClearCustomTypeToolStripMenuItem_Click);
+            this.mEditRolesToolStripMenuItem.Name = "mEditRolesToolStripMenuItem";
+            this.mEditRolesToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.mEditRolesToolStripMenuItem.Text = "Edit roles...";
+            this.mEditRolesToolStripMenuItem.Click += new System.EventHandler(this.mEditRolesToolStripMenuItem_Click);
+            // 
+            // mClearRoleToolStripMenuItem
+            // 
+            this.mClearRoleToolStripMenuItem.Name = "mClearRoleToolStripMenuItem";
+            this.mClearRoleToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.mClearRoleToolStripMenuItem.Text = "&Clear role";
+            this.mClearRoleToolStripMenuItem.Click += new System.EventHandler(this.mClearRoleToolStripMenuItem_Click);
             // 
             // toolStripSeparator13
             // 
@@ -1140,11 +1151,9 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mListenToSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
         private System.Windows.Forms.ToolStripMenuItem mListenToBlockToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mAssignCustomTypeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem emptyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator mCustomTypeToolStripSeparator;
-        private System.Windows.Forms.ToolStripMenuItem mAddNewCustomTypeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mClearCustomTypeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mAssignRoleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator mCustomRoleToolStripSeparator;
+        private System.Windows.Forms.ToolStripMenuItem mClearRoleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mSplitBlockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMergeBlockWithNextToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mAddEmptyBlockToolStripMenuItem;
@@ -1153,8 +1162,9 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mFindNextToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mFindPreviousToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mFocusOnStripsViewToolStripMenuItem;
-
-
+        private System.Windows.Forms.ToolStripTextBox mAddRoleToolStripTextBox;
+        private System.Windows.Forms.ToolStripMenuItem mSetAsHeadingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mEditRolesToolStripMenuItem;
     }
 }
 
