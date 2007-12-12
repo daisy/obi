@@ -973,6 +973,26 @@ namespace Obi.ProjectView
             }
         }
 
+        private void mNextPageButton_Click(object sender, EventArgs e)
+        {
+            NextPage();
+            
+        }
+
+        public void NextPage ()
+        {
+            if (mRecordingSession != null
+                && mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording)
+            {
+                mRecordingSession.MarkPage();
+            }
+        }
+
+        private void mPreviousPageButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
 /*                // the following closures handle the various events sent during the recording session
                 mRecordingSession.ContinuingPhrase += new Events.Audio.Recorder.ContinuingPhraseHandler(
                     delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
