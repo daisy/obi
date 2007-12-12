@@ -403,9 +403,6 @@ Do you want to replace the project contained in this file?</value>
   <data name="remove_page_command_label" xml:space="preserve">
     <value>remove page number</value>
   </data>
-  <data name="set_page_command_label" xml:space="preserve">
-    <value>set page number</value>
-  </data>
   <data name="recorder_error_caption" xml:space="preserve">
     <value>Recording error</value>
   </data>
@@ -867,12 +864,21 @@ Error text: {1}</value>
   <data name="audio_accessible_name" xml:space="preserve">
     <value>Audio {0} of {1}</value>
   </data>
-  <data name="heading" xml:space="preserve">
-    <value>heading</value>
+  <data name="Heading" xml:space="preserve">
+    <value>Heading</value>
     <comment>Used for node kind (MD)</comment>
   </data>
   <data name="add_new" xml:space="preserve">
     <value>&lt;Add new&gt;</value>
     <comment>For the custom types dropdown</comment>
+  </data>
+  <data name="Silence" xml:space="preserve">
+    <value>Silence</value>
+  </data>
+  <data name="change_role" xml:space="preserve">
+    <value>change role</value>
+  </data>
+  <data name="set_page_number" xml:space="preserve">
+    <value>set page number</value>
   </data>
 </root>

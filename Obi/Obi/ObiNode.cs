@@ -38,18 +38,43 @@ namespace Obi
         /// </summary>
         public virtual ObiNode PrecedingNode
         {
-            get { return Index > 0 ? ((ObiNode)getPreviousSibling()).LastDescendantNode : ParentAs<ObiNode>(); }
+            get { return getParent().indexOf(this) > 0 ? ((ObiNode)getPreviousSibling()).LastLeaf : ParentAs<ObiNode>(); }
         }
 
         /// <summary>
-        /// Last descendant node of any kind.
+        /// Last leaf from a given node. In this case, we don't distinguish between phrase and section nodes.
         /// </summary>
-        public ObiNode LastDescendantNode
+        public ObiNode LastLeaf
         {
             get
             {
                 int children = getChildCount();
-                return children == 0 ? this : ((ObiNode)getChild(children - 1)).LastDescendantNode;
+                return children == 0 ? this : ((ObiNode)getChild(children - 1)).LastLeaf;
+            }
+        }
+
+        /// <summary>
+        /// Get the following node in the tree.
+        /// </summary>
+        public virtual ObiNode FollowingNode
+        {
+            get
+            { 
+                return getParent().indexOf(this) < getParent().getChildCount() - 1 ?
+                    ((ObiNode)getNextSibling()).FirstLeaf : 
+                    ((ObiNode)getParent()).FollowingNode;
+            }
+        }
+
+        /// <summary>
+        /// First leadt from a given node.
+        /// </summary>
+        public ObiNode FirstLeaf
+        {
+            get
+            {
+                int childrent = getChildCount();
+                return childrent == 0 ? this : ((ObiNode)getChild(0)).FirstLeaf;
             }
         }
 
@@ -204,11 +229,13 @@ namespace Obi
         }
 
         public override ObiNode PrecedingNode { get { return null; } }
+        public override ObiNode FollowingNode { get { return null; } }
 
         public override PhraseNode FirstUsedPhrase
         {
             get { throw new Exception("The method or operation is not implemented."); }
         }
+
         public override int SectionChildCount { get { return getChildCount(); } }
         public override PhraseNode PhraseChild(int index) { throw new Exception("A root node has no phrase children."); }
         public override int PhraseChildCount { get { return 0; } }

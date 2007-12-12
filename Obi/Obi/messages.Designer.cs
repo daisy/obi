@@ -331,6 +331,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to change role.
+        /// </summary>
+        internal static string change_role {
+            get {
+                return ResourceManager.GetString("change_role", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find channel named &quot;{0}&quot;..
         /// </summary>
         internal static string channel_not_found {
@@ -929,11 +938,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to heading.
+        ///   Looks up a localized string similar to Heading.
         /// </summary>
-        internal static string heading {
+        internal static string Heading {
             get {
-                return ResourceManager.GetString("heading", resourceCulture);
+                return ResourceManager.GetString("Heading", resourceCulture);
             }
         }
         
@@ -1436,15 +1445,6 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to page {0}.
-        /// </summary>
-        internal static string page_number {
-            get {
-                return ResourceManager.GetString("page_number", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to paste block.
         /// </summary>
         internal static string paste_block_command {
@@ -1873,9 +1873,9 @@ namespace Obi {
         /// <summary>
         ///   Looks up a localized string similar to set page number.
         /// </summary>
-        internal static string set_page_command_label {
+        internal static string set_page_number {
             get {
-                return ResourceManager.GetString("set_page_command_label", resourceCulture);
+                return ResourceManager.GetString("set_page_number", resourceCulture);
             }
         }
         
@@ -1903,6 +1903,15 @@ namespace Obi {
         internal static string show_vu_meter {
             get {
                 return ResourceManager.GetString("show_vu_meter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Silence.
+        /// </summary>
+        internal static string Silence {
+            get {
+                return ResourceManager.GetString("Silence", resourceCulture);
             }
         }
         

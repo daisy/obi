@@ -25,6 +25,7 @@ namespace Obi.Commands.Node
             mOldNodeKind = mNode.NodeKind;
             mOldCustomClass = mNode.CustomClass;
             mOldPageNumber = mNode.PageNumber;
+            Label = Localizer.Message("change_role");
         }
 
         /// <summary>
@@ -42,6 +43,7 @@ namespace Obi.Commands.Node
         public override void execute()
         {
             mNode.SetKind(mNodeKind, mCustomClass);
+            View.SelectedBlockNode = mNode;
             base.execute();
         }
 
@@ -61,6 +63,7 @@ namespace Obi.Commands.Node
             : base(view, node, EmptyNode.Kind.Page)
         {
             mPageNumber = pageNumber;
+            Label = Localizer.Message("set_page_number");
         }
 
         public override void execute()

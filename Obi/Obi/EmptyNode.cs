@@ -12,10 +12,12 @@ namespace Obi
     {
         private Kind mKind;           // this node's kind
         private string mCustomClass;  // custom class name
+        private int mPageNumber;      // page number
 
         public static readonly string XUK_ELEMENT_NAME = "empty";        // name of the element in the XUK file
         private static readonly string XUK_ATTR_NAME_KIND = "kind";      // name of the kind attribute
         private static readonly string XUK_ATTR_NAME_CUSTOM = "custom";  // name of the custom attribute
+        private static readonly string XUK_ATTR_NAME_PAGE = "page";      // name of the page attribute
 
         /// <summary>
         /// Different kinds of content nodes.
@@ -34,12 +36,18 @@ namespace Obi
         public delegate void ChangedKindEventHandler(object sender, ChangedKindEventArgs e);
 
         /// <summary>
+        /// This event is sent when the page number changes on a node (for a node which previously had a page number.)
+        /// </summary>
+        public event NodeEventHandler<EmptyNode> ChangedPageNumber;
+
+        /// <summary>
         /// Create a new empty node of a given kind in a presentation.
         /// </summary>
         public EmptyNode(Presentation presentation, Kind kind, string customClass): base(presentation)
         {
             mKind = kind;
             mCustomClass = customClass;
+            mPageNumber = 0;
         }
 
         /// <summary>
@@ -87,36 +95,35 @@ namespace Obi
         /// </summary>
         public int PageNumber
         {
-            get { return mKind == Kind.Page ? getProperty<PageProperty>().PageNumber : -1; }
+            get { return mPageNumber; }
             set
             {
-                if (mKind == Kind.Page)
+                if (value <= 0) return;
+                mPageNumber = value;
+                if (mKind == Kind.Page)            
                 {
-                    getProperty<PageProperty>().PageNumber = value;
+                    if (ChangedPageNumber != null) ChangedPageNumber(this, new NodeEventArgs<EmptyNode>(this));
                 }
                 else
                 {
-                    PageProperty prop = (PageProperty)
-                        getPresentation().getPropertyFactory().createProperty(PageProperty.XUK_ELEMENT_NAME, DataModelFactory.NS);
-                    prop.setPresentation(Presentation);
-                    prop.PageNumber = value;
-                    addProperty(prop);
                     NodeKind = Kind.Page;
                 }
             }
         }
-
-
 
         /// <summary>
         /// Set the kind or custom class of the node.
         /// </summary>
         public void SetKind(Kind kind, string customClass)
         {
-            ChangedKindEventArgs args = new ChangedKindEventArgs(this, mKind, mCustomClass);
-            mKind = kind;
-            mCustomClass = customClass;
-            if (ChangedKind != null) ChangedKind(this, args);
+            if (mKind != kind || mCustomClass != customClass)
+            {
+                ChangedKindEventArgs args = new ChangedKindEventArgs(this, mKind, mCustomClass);
+                mKind = kind;
+                mCustomClass = customClass;
+                if (kind != Kind.Page) mPageNumber = 0;
+                if (ChangedKind != null) ChangedKind(this, args);
+            }
         }
 
         public override void Insert(ObiNode node, int index) { throw new Exception("Empty nodes have no children."); }
@@ -125,6 +132,12 @@ namespace Obi
         public override PhraseNode PhraseChild(int index) { throw new Exception("Emtpy nodes have no children."); }
         public override int PhraseChildCount { get { return 0; } }
 
+
+
+        public override string getXukLocalName()
+        {
+            return XUK_ELEMENT_NAME;
+        }
 
         protected override void xukInAttributes(System.Xml.XmlReader source)
         {
@@ -135,6 +148,7 @@ namespace Obi
                                       kind == Kind.Silence.ToString () ? Kind.Silence : Kind.Plain;
             if (kind != null && kind != mKind.ToString()) throw new Exception("Unknown kind: " + kind);
             mCustomClass = source.GetAttribute(XUK_ATTR_NAME_CUSTOM);
+            if (mKind == Kind.Page) mPageNumber = SafeParsePageNumber(source.GetAttribute(XUK_ATTR_NAME_PAGE));
             if (mKind != Kind.Custom && mCustomClass != null)
             {
                 throw new Exception("Extraneous `custom' attribute.");
@@ -142,6 +156,10 @@ namespace Obi
             else if (mKind == Kind.Custom && mCustomClass == null)
             {
                 throw new Exception("Missing `custom' attribute.");
+            }
+            else if (mKind == Kind.Page && mPageNumber == 0)
+            {
+                throw new Exception("Missing `page' attribute (page number for page node.)");
             }
             // add it to the presentation
             Presentation.AddCustomClass(mCustomClass);
@@ -152,27 +170,23 @@ namespace Obi
         {
             if (mKind != Kind.Plain) wr.WriteAttributeString(XUK_ATTR_NAME_KIND, mKind.ToString());
             if (mKind == Kind.Custom) wr.WriteAttributeString(XUK_ATTR_NAME_CUSTOM, mCustomClass);
+            if (mKind == Kind.Page) wr.WriteAttributeString(XUK_ATTR_NAME_PAGE, mPageNumber.ToString());
             base.xukOutAttributes(wr, baseUri);
         }
 
-        /*
         /// <summary>
-        /// Page (if set) associated with this phrase.
+        /// Attempt to parse a page number from a string; return 0 on negative/non-number values.
         /// </summary>
-        public PageProperty PageProperty
+        public static int SafeParsePageNumber(string str)
         {
-            get { return getProperty<PageProperty>(); }
-            set
+            int page = 0;
+            try
             {
-                if (mKind == Kind.Page) removeProperty(getProperty<PageProperty>());
-                if (value != null)
-                {
-                    addProperty(value);
-                    if (mKind != Kind.Page) NodeKind = Kind.Page;
-                }
+                page = Int32.Parse(str);
             }
+            catch (Exception) { }
+            return page;
         }
-        */
     }
 
     /// <summary>
