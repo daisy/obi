@@ -158,9 +158,9 @@ namespace Obi
         {
             get
             {
-                int i;
-                for (i = 0; i < PhraseChildCount && !PhraseChild(i).Used; ++i) { }
-                return i < PhraseChildCount && PhraseChild(i).Used ? PhraseChild(i) : null;
+                PhraseNode first = null;
+                for (int i = 0; i < PhraseChildCount && first == null; ++i) first = PhraseChild(i).FirstUsedPhrase;
+                return first;
             }
         }
 
@@ -270,10 +270,10 @@ namespace Obi
         /// Get the child phrase at an index relative to phrases only.
         /// If the index is negative, start from the end of the list.
         /// </summary>
-        public override PhraseNode PhraseChild(int index)
+        public override EmptyNode PhraseChild(int index)
         {
             if (index < 0) index = PhraseChildCount + index;
-            return (PhraseNode)getChild(index);
+            return (EmptyNode)getChild(index);
         }
 
         /// <summary>

@@ -485,7 +485,8 @@ namespace Obi.ProjectView
                 mView.Presentation.UpdateAudioForPhrase(mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i),
                     mRecordingSession.RecordedAudio[i]);
             }
-            m_ResumerecordingPhrase = mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1 );
+            // TODO check this!!!
+            m_ResumerecordingPhrase = (PhraseNode)mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1 );
             mRecordingSession = null;
             //mRecordingSession.Listen();
             mRecordButton.Enabled = true;

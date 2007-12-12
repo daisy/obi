@@ -129,15 +129,12 @@ namespace Obi
         public override void Insert(ObiNode node, int index) { throw new Exception("Empty nodes have no children."); }
         public override SectionNode SectionChild(int index) { throw new Exception("Empty nodes have no children."); }
         public override int SectionChildCount { get { return 0; } }
-        public override PhraseNode PhraseChild(int index) { throw new Exception("Emtpy nodes have no children."); }
+        public override EmptyNode PhraseChild(int index) { throw new Exception("Emtpy nodes have no children."); }
         public override int PhraseChildCount { get { return 0; } }
 
 
 
-        public override string getXukLocalName()
-        {
-            return XUK_ELEMENT_NAME;
-        }
+        public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
 
         protected override void xukInAttributes(System.Xml.XmlReader source)
         {

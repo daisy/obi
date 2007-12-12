@@ -49,7 +49,7 @@ namespace Obi
         /// <summary>
         /// Next phrase for this phrase in its section. Null if this phrase is the last one.
         /// </summary>
-        public PhraseNode NextPhraseInSection
+        public EmptyNode NextPhraseInSection
         {
             get
             {
@@ -67,31 +67,12 @@ namespace Obi
         {
             get
             {
-                PhraseNode prev = PreviousPhraseInSection;
-                if (prev == null)
-                {
-                    SectionNode prevSection;
-                    for (prevSection = ParentAs<SectionNode>().PreviousSection;
-                        prevSection != null && prevSection.PhraseChildCount == 0;
-                        prevSection = prevSection.PreviousSection) { }
-                    if (prevSection != null && prevSection.PhraseChildCount != 0) prev = prevSection.PhraseChild(-1);
-                }
-                return prev;
+                ObiNode prev;
+                for (prev = PrecedingNode; prev != null && !(prev is PhraseNode); prev = PrecedingNode);
+                return prev as PhraseNode;
             }
         }
 
-        /// <summary>
-        /// Previous phrase for this phrase in its section. Null if this phrase is the first one.
-        /// </summary>
-        public PhraseNode PreviousPhraseInSection
-        {
-            get
-            {
-                SectionNode parent = (SectionNode)getParent();
-                int index = Index;
-                return index > 0 ? parent.PhraseChild(index - 1) : null;
-            }
-        }
         /// <summary>
         /// Split the audio of this phrase at the given position and notify that the 
         /// </summary>

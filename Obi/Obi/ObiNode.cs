@@ -124,7 +124,7 @@ namespace Obi
 
         public abstract SectionNode SectionChild(int index);
         public abstract int SectionChildCount { get; }
-        public abstract PhraseNode PhraseChild(int index);
+        public abstract EmptyNode PhraseChild(int index);
         public abstract int PhraseChildCount { get; }
 
         public abstract PhraseNode FirstUsedPhrase { get; }
@@ -237,7 +237,7 @@ namespace Obi
         }
 
         public override int SectionChildCount { get { return getChildCount(); } }
-        public override PhraseNode PhraseChild(int index) { throw new Exception("A root node has no phrase children."); }
+        public override EmptyNode PhraseChild(int index) { throw new Exception("A root node has no phrase children."); }
         public override int PhraseChildCount { get { return 0; } }
         public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
     }

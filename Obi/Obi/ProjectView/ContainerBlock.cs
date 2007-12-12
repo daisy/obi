@@ -22,11 +22,9 @@ namespace Obi.ProjectView
                 AddBlockForPhrase(phrase.PhraseChild(i));
             }
         }
-        public Block AddBlockForPhrase(PhraseNode phrase)
+        public Block AddBlockForPhrase(EmptyNode phrase)
         {
-            Block block = null;
-            if (phrase.Audio == null) block = new Block(phrase, this);
-            else block = new AudioBlock(phrase, Strip);
+            Block block = phrase is PhraseNode ? new AudioBlock((PhraseNode)phrase, Strip) : new Block(phrase, this);
             mBlocksPanel.Controls.Add(block);
             mBlocksPanel.Controls.SetChildIndex(block, phrase.Index);
             UpdateWidth();
@@ -38,7 +36,10 @@ namespace Obi.ProjectView
         {
             double time = 0;
             for (int i = 0; i < Node.PhraseChildCount; i++)
-                time += Node.PhraseChild(i).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
+            {
+                PhraseNode phrase = Node.PhraseChild(i) as PhraseNode;
+                if (phrase != null) time += phrase.Audio.getDuration().getTimeDeltaAsMillisecondFloat();
+            }
             TimeLabel = String.Format("{0:0.00}s", time / 1000);
         }
 
