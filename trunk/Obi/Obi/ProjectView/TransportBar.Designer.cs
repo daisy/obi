@@ -46,6 +46,8 @@ namespace Obi.ProjectView
             this.mDisplayBox = new System.Windows.Forms.ComboBox();
             this.ComboFastPlateRate = new System.Windows.Forms.ComboBox();
             this.mVUMeterPanel = new Obi.UserControls.TextVUMeterPanel();
+            this.mNextPageButton = new System.Windows.Forms.Button();
+            this.mPreviousPageButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // mPlayButton
@@ -174,7 +176,7 @@ namespace Obi.ProjectView
             this.mTimeDisplayBox.BackColor = System.Drawing.Color.Azure;
             this.mTimeDisplayBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mTimeDisplayBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mTimeDisplayBox.Location = new System.Drawing.Point(380, 0);
+            this.mTimeDisplayBox.Location = new System.Drawing.Point(474, 0);
             this.mTimeDisplayBox.Name = "mTimeDisplayBox";
             this.mTimeDisplayBox.ReadOnly = true;
             this.mTimeDisplayBox.Size = new System.Drawing.Size(118, 33);
@@ -209,7 +211,7 @@ namespace Obi.ProjectView
             this.mFastForwardButton.FlatAppearance.BorderSize = 0;
             this.mFastForwardButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mFastForwardButton.Image = ((System.Drawing.Image)(resources.GetObject("mFastForwardButton.Image")));
-            this.mFastForwardButton.Location = new System.Drawing.Point(266, 0);
+            this.mFastForwardButton.Location = new System.Drawing.Point(267, 0);
             this.mFastForwardButton.Name = "mFastForwardButton";
             this.mFastForwardButton.Size = new System.Drawing.Size(32, 35);
             this.mFastForwardButton.TabIndex = 13;
@@ -232,7 +234,7 @@ namespace Obi.ProjectView
             "elapsed (total)",
             "remaining",
             "remaining (total)"});
-            this.mDisplayBox.Location = new System.Drawing.Point(504, 3);
+            this.mDisplayBox.Location = new System.Drawing.Point(624, 3);
             this.mDisplayBox.Name = "mDisplayBox";
             this.mDisplayBox.Size = new System.Drawing.Size(108, 23);
             this.mDisplayBox.TabIndex = 10;
@@ -242,7 +244,7 @@ namespace Obi.ProjectView
             // 
             this.ComboFastPlateRate.AccessibleName = "Fast Play Rate";
             this.ComboFastPlateRate.FormattingEnabled = true;
-            this.ComboFastPlateRate.Location = new System.Drawing.Point(930, 0);
+            this.ComboFastPlateRate.Location = new System.Drawing.Point(1000, 0);
             this.ComboFastPlateRate.Name = "ComboFastPlateRate";
             this.ComboFastPlateRate.Size = new System.Drawing.Size(90, 21);
             this.ComboFastPlateRate.TabIndex = 15;
@@ -251,17 +253,39 @@ namespace Obi.ProjectView
             // mVUMeterPanel
             // 
             this.mVUMeterPanel.BackColor = System.Drawing.Color.Transparent;
-            this.mVUMeterPanel.Location = new System.Drawing.Point(618, 0);
+            this.mVUMeterPanel.Location = new System.Drawing.Point(751, 0);
             this.mVUMeterPanel.Name = "mVUMeterPanel";
             this.mVUMeterPanel.Size = new System.Drawing.Size(204, 44);
             this.mVUMeterPanel.TabIndex = 11;
             this.mVUMeterPanel.VuMeter = null;
+            // 
+            // mNextPageButton
+            // 
+            this.mNextPageButton.AccessibleName = "Next Page";
+            this.mNextPageButton.Location = new System.Drawing.Point(389, 2);
+            this.mNextPageButton.Name = "mNextPageButton";
+            this.mNextPageButton.Size = new System.Drawing.Size(32, 35);
+            this.mNextPageButton.TabIndex = 16;
+            this.mNextPageButton.UseVisualStyleBackColor = true;
+            this.mNextPageButton.Click += new System.EventHandler(this.mNextPageButton_Click);
+            // 
+            // mPreviousPageButton
+            // 
+            this.mPreviousPageButton.AccessibleName = "Previous Page";
+            this.mPreviousPageButton.Location = new System.Drawing.Point(431, 2);
+            this.mPreviousPageButton.Name = "mPreviousPageButton";
+            this.mPreviousPageButton.Size = new System.Drawing.Size(32, 35);
+            this.mPreviousPageButton.TabIndex = 17;
+            this.mPreviousPageButton.UseVisualStyleBackColor = true;
+            this.mPreviousPageButton.Click += new System.EventHandler(this.mPreviousPageButton_Click);
             // 
             // TransportBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.mPreviousPageButton);
+            this.Controls.Add(this.mNextPageButton);
             this.Controls.Add(this.ComboFastPlateRate);
             this.Controls.Add(this.mFastForwardButton);
             this.Controls.Add(this.mRewindButton);
@@ -277,7 +301,7 @@ namespace Obi.ProjectView
             this.Controls.Add(this.mPauseButton);
             this.Controls.Add(this.mPlayButton);
             this.Name = "TransportBar";
-            this.Size = new System.Drawing.Size(1060, 35);
+            this.Size = new System.Drawing.Size(1130, 35);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,5 +325,7 @@ namespace Obi.ProjectView
         private System.Windows.Forms.Button mRewindButton;
         private System.Windows.Forms.Button mFastForwardButton;
         private System.Windows.Forms.ComboBox ComboFastPlateRate;
+        private System.Windows.Forms.Button mNextPageButton;
+        private System.Windows.Forms.Button mPreviousPageButton;
     }
 }
