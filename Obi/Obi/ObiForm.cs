@@ -1572,6 +1572,7 @@ namespace Obi
             mMergeBlockWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeBlockWithNext;
             mListenToBlockToolStripMenuItem.Enabled = (mProjectView.SelectedBlockNode != null);
             mAssignRoleToolStripMenuItem.Enabled = (mProjectView.SelectedBlockNode != null);
+            mPageToolStripMenuItem.Enabled = mProjectView.CanSetPageNumber;
             mClearRoleToolStripMenuItem.Enabled = (mProjectView.SelectedBlockNode != null);
         }
 
@@ -1606,6 +1607,16 @@ namespace Obi
         {
             Disable(false);
         }
+
+        private void mPageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.CanSetPageNumber)
+            {
+                Dialogs.SetPageNumber dialog = new SetPageNumber(mProjectView.NextPageNumber);
+                if (dialog.ShowDialog() == DialogResult.OK) mProjectView.SetPageNumberOnSelectedBock(dialog.Number);
+            }
+        }
+
 
         #region OLD
 
@@ -1655,17 +1666,18 @@ namespace Obi
             //clear the menu
             mAssignRoleToolStripMenuItem.DropDownItems.Clear();
             //re-add the heading and separator items
+            mAssignRoleToolStripMenuItem.DropDownItems.Insert(menuIdx++, mPageToolStripMenuItem);
             mAssignRoleToolStripMenuItem.DropDownItems.Insert(menuIdx++, mSetAsHeadingToolStripMenuItem);
             mAssignRoleToolStripMenuItem.DropDownItems.Insert(menuIdx++, mCustomRoleToolStripSeparator);
   
-            List<string> customTypes = mSession.Presentation.CustomTypes;
+            List<string> customClasses = mSession.Presentation.CustomClasses;
              //Fill the drop down choices with the custom classes
-            foreach(string customType in customTypes)
+            foreach(string customClass in customClasses)
             {
                 ToolStripMenuItem item = new ToolStripMenuItem();
-                item.Text = customType;
-                item.Click += new System.EventHandler(delegate(object theSender, EventArgs theEventArgs)
-                    { mProjectView.SetCustomTypeForSelectedBlock(customType, EmptyNode.Kind.Custom); });
+                item.Text = customClass;
+                item.Click += new System.EventHandler(delegate(object _sender, EventArgs _e)
+                    { mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Custom, customClass); });
                 mAssignRoleToolStripMenuItem.DropDownItems.Insert(menuIdx++, item);
             }
 
@@ -1676,8 +1688,9 @@ namespace Obi
 
         private void mClearRoleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.SetCustomTypeForSelectedBlock("", EmptyNode.Kind.Plain);
+            mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Plain, null);
         }
+
         private void mSetAsHeadingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.MakeSelectedBlockIntoHeadingPhrase();
@@ -1719,13 +1732,16 @@ namespace Obi
             //add a custom type to the presentation
             mSession.Presentation.AddCustomClass(mAddRoleToolStripTextBox.Text);
             //set it on the block
-            mProjectView.SetCustomTypeForSelectedBlock(mAddRoleToolStripTextBox.Text, EmptyNode.Kind.Custom);        
+            mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Custom, mAddRoleToolStripTextBox.Text);
+
         }
 
         private void mAddRoleToolStripTextBox_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-                mProjectView.AddCustomTypeAndSetOnBlock(mAddRoleToolStripTextBox.Text, EmptyNode.Kind.Custom);                    
+            {
+                mProjectView.AddCustomTypeAndSetOnBlock(EmptyNode.Kind.Custom, mAddRoleToolStripTextBox.Text);
+            }
         }
        
     }

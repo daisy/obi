@@ -21,7 +21,7 @@ namespace Obi.Commands.Node
         public PhraseDetection(ProjectView.ProjectView view  , long  threshold , double gap , double before )
             : base( view )
         {
-            mOriginalPhrase = view.SelectedBlockNode;
+            mOriginalPhrase = view.SelectedPhraseNode;
             mParentSection = view.SelectedBlockNode.ParentAs<SectionNode>();
             mOriginalPhraseIndex =  mOriginalPhrase.ParentAs<ObiNode>().Index;
             mPresentation = view.Presentation;

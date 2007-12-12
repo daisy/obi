@@ -73,7 +73,7 @@ namespace Obi.Dialogs
                 urakawa.undo.CompositeCommand command = new urakawa.undo.CompositeCommand();
                 //this will filter duplicates
                 Commands.AddCustomType cmd = new Obi.Commands.AddCustomType(mProjectView, mPresentation, mNewCustomType.Text);
-                Commands.Node.ChangeCustomType otherCmd = new Obi.Commands.Node.ChangeCustomType(mProjectView, mProjectView.SelectedBlockNode, mNewCustomType.Text, PhraseNode.Kind.Custom);
+                Commands.Node.ChangeCustomType otherCmd = new Obi.Commands.Node.ChangeCustomType(mProjectView, mProjectView.SelectedBlockNode, mNewCustomType.Text);
                 command.append(cmd);
                 command.append(otherCmd);
                 mPresentation.UndoRedoManager.execute(command);
@@ -102,7 +102,7 @@ namespace Obi.Dialogs
                     if (n is EmptyNode && ((EmptyNode)n).CustomClass == removedType)
                     {
                         foundNodeWithThisType = true;
-                        Commands.Node.ChangeCustomType cmd = new Commands.Node.ChangeCustomType(mProjectView, (PhraseNode)n, "", EmptyNode.Kind.Plain);
+                        Commands.Node.ChangeCustomType cmd = new Commands.Node.ChangeCustomType(mProjectView, (EmptyNode)n, EmptyNode.Kind.Plain);
                         command.append(cmd);
                     }
                     return true;
@@ -138,8 +138,8 @@ namespace Obi.Dialogs
 
         private void CustomTypes_Load(object sender, EventArgs e)
         {
-            if (mPresentation.CustomTypes == null || mPresentation.CustomTypes.Count == 0) return;
-            foreach (string customType in mPresentation.CustomTypes)
+            if (mPresentation.CustomClasses == null || mPresentation.CustomClasses.Count == 0) return;
+            foreach (string customType in mPresentation.CustomClasses)
             {
                 mCustomTypesList.Items.Add(customType);
             }

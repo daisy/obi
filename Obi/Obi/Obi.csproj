@@ -156,6 +156,12 @@
     <Compile Include="Dialogs\NewProject.Designer.cs">
       <DependentUpon>NewProject.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\SetPageNumber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SetPageNumber.Designer.cs">
+      <DependentUpon>SetPageNumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\Preferences.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -429,6 +435,10 @@
     <EmbeddedResource Include="Dialogs\SentenceDetection.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SentenceDetection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SetPageNumber.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SetPageNumber.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ShowSource.resx">
       <DependentUpon>ShowSource.cs</DependentUpon>

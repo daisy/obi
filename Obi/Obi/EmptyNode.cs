@@ -82,6 +82,33 @@ namespace Obi
         }
 
         /// <summary>
+        /// Get or set the page number for this node.
+        /// Will discard previous kind if it was not already a page node.
+        /// </summary>
+        public int PageNumber
+        {
+            get { return mKind == Kind.Page ? getProperty<PageProperty>().PageNumber : -1; }
+            set
+            {
+                if (mKind == Kind.Page)
+                {
+                    getProperty<PageProperty>().PageNumber = value;
+                }
+                else
+                {
+                    PageProperty prop = (PageProperty)
+                        getPresentation().getPropertyFactory().createProperty(PageProperty.XUK_ELEMENT_NAME, DataModelFactory.NS);
+                    prop.setPresentation(Presentation);
+                    prop.PageNumber = value;
+                    addProperty(prop);
+                    NodeKind = Kind.Page;
+                }
+            }
+        }
+
+
+
+        /// <summary>
         /// Set the kind or custom class of the node.
         /// </summary>
         public void SetKind(Kind kind, string customClass)

@@ -6,40 +6,67 @@ namespace Obi.Commands.Node
 {
     public class ChangeCustomType : Command
     {
-        //the node whose type is being changed
-        private PhraseNode mNode;
-        private string mCustomName;
-        private string mOldCustomName;
-        private EmptyNode.Kind mNodeKind;
-        private EmptyNode.Kind mOldNodeKind;
+        protected EmptyNode mNode;            // the concerned node
+        private EmptyNode.Kind mNodeKind;     // the new node kind
+        private string mCustomClass;          // the new custom class
+        private EmptyNode.Kind mOldNodeKind;  // the old node kind 
+        private string mOldCustomClass;       // the old custom class
+        private int mOldPageNumber;           // old page number (if previous kind was page)
 
-        //the node plus the information about the change that we're about to make
-        public ChangeCustomType(ProjectView.ProjectView view, PhraseNode node, string customName, EmptyNode.Kind nodeKind) : base(view)
+        /// <summary>
+        /// Change the type (either regular kind or custom type) of a node.
+        /// </summary>
+        public ChangeCustomType(ProjectView.ProjectView view, EmptyNode node, EmptyNode.Kind nodeKind, string customClass)
+            : base(view)
         {
-            mNode = null;
-            if (node != null)
-            {
-                mNode = node;
-                mCustomName = customName;
-                mNodeKind = nodeKind;
-                mOldCustomName = node.CustomClass;
-                mOldNodeKind = node.NodeKind;
-
-            }
+            mNode = node;
+            mNodeKind = nodeKind;
+            mCustomClass = customClass;
+            mOldNodeKind = mNode.NodeKind;
+            mOldCustomClass = mNode.CustomClass;
+            mOldPageNumber = mNode.PageNumber;
         }
+
+        /// <summary>
+        /// Set a custom class on a node.
+        /// </summary>
+        public ChangeCustomType(ProjectView.ProjectView view, EmptyNode node, string customClass)
+            : this(view, node, EmptyNode.Kind.Custom, customClass) {}
+
+        /// <summary>
+        /// Set a kind on the node.
+        /// </summary>
+        public ChangeCustomType(ProjectView.ProjectView view, EmptyNode node, EmptyNode.Kind nodeKind)
+            : this(view, node, nodeKind, null) { }
+
         public override void execute()
         {
-            if (mNode == null) return;
-            mNode.CustomClass = mCustomName;
-            mNode.NodeKind = mNodeKind;
-
+            mNode.SetKind(mNodeKind, mCustomClass);
+            base.execute();
         }
 
         public override void unExecute()
         {
-            if (mNode == null) return;
-            mNode.CustomClass = mOldCustomName;
-            mNode.NodeKind = mOldNodeKind;
+            if (mOldNodeKind == EmptyNode.Kind.Page) mNode.PageNumber = mOldPageNumber;
+            mNode.SetKind(mOldNodeKind, mOldCustomClass);
+            base.unExecute();
+        }
+    }
+
+    public class SetPageNumber : ChangeCustomType
+    {
+        private int mPageNumber;
+
+        public SetPageNumber(ProjectView.ProjectView view, EmptyNode node, int pageNumber)
+            : base(view, node, EmptyNode.Kind.Page)
+        {
+            mPageNumber = pageNumber;
+        }
+
+        public override void execute()
+        {
+            mNode.PageNumber = mPageNumber;
+            base.execute();
         }
     }
 }
