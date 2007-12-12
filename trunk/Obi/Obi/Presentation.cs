@@ -12,12 +12,12 @@ namespace Obi
     public class Presentation: urakawa.Presentation
     {
         private bool mInitialized;
-        private List<string> mCustomTypes;
+        private List<string> mCustomClasses;
 
         public Presentation() : base() 
         { 
             mInitialized = false; 
-            mCustomTypes = new List<string>();
+            mCustomClasses = new List<string>();
         }
 
         public static readonly string AUDIO_CHANNEL_NAME = "obi.audio";  // canonical name of the audio channel
@@ -87,7 +87,8 @@ namespace Obi
         /// <summary>
         /// Get a list of the custom classes that have been defined by the user for this presentation
         /// </summary>
-        public List<string> CustomTypes { get { return mCustomTypes; } }
+        public List<string> CustomClasses { get { return mCustomClasses; } }
+
         /// <summary>
         /// Add a custom class to the list.  Duplicates are filtered out.
         /// </summary>
@@ -96,16 +97,18 @@ namespace Obi
         {
             if (customType == null || customType == "") return;
             Predicate<string> exists = delegate(string matchThis){return matchThis == customType;};
-            if(!mCustomTypes.Exists(exists)) mCustomTypes.Add(customType);
+            if(!mCustomClasses.Exists(exists)) mCustomClasses.Add(customType);
         }
+
         /// <summary>
         /// Remove a custom class from the list.
         /// </summary>
         /// <param name="p"></param>
         public void RemoveCustomType(string customType)
         {
-            if (customType != "") mCustomTypes.Remove(customType);
+            if (customType != "") mCustomClasses.Remove(customType);
         }
+
         /// <summary>
         /// The Undo/redo manager for this presentation (with the correct type.)
         /// </summary>
@@ -370,6 +373,24 @@ namespace Obi
             getProject().saveXUK(writer, null);
             writer.Close();
             
+        }
+
+        /// <summary>
+        /// Get the page number for this node. If the node already has a page number, return it.
+        /// If it has no page number, find the nearest preceding block with a page number and add one.
+        /// </summary>
+        public int PageNumberFor(EmptyNode node)
+        {
+            if (node.NodeKind == EmptyNode.Kind.Page)
+            {
+                return node.PageNumber + 1;
+            }
+            else
+            {
+                ObiNode n = node.PrecedingNode;
+                while (n != null && !(n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)) n = n.PrecedingNode;
+                return n != null ? ((EmptyNode)n).PageNumber + 1 : 1;
+            }
         }
     }
 

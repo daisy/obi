@@ -41,6 +41,11 @@ namespace Obi.ProjectView
 
 
         /// <summary>
+        /// Get the next page number for the selected block.
+        /// </summary>
+        public int NextPageNumber { get { return mPresentation.PageNumberFor(SelectedBlockNode); }  }
+
+        /// <summary>
         /// Contents of the clipboard
         /// </summary>
         public Clipboard Clipboard
@@ -206,14 +211,30 @@ namespace Obi.ProjectView
         #region Strips
 
         /// <summary>
+        /// True if a block is selected (and not its contents.)
+        /// </summary>
+        public bool IsBlockSelected
+        {
+            get
+            {
+                return mSelection != null && mSelection.GetType() == typeof(NodeSelection) && mSelection.Node is EmptyNode;
+            }
+        }
+
+        /// <summary>
         /// The phrase node for the block selected in the strips view.
         /// Null if no strip is selected.
         /// TODO: we need a compound node kind for container blocks.
         /// </summary>
-        public PhraseNode SelectedBlockNode
+        public EmptyNode SelectedBlockNode
+        {
+            get { return mSelection == null ? null : mSelection.Node as EmptyNode; }
+            set { Selection = value == null ? null : new NodeSelection(value, mStripsView); }
+        }
+
+        public PhraseNode SelectedPhraseNode
         {
             get { return mSelection == null ? null : mSelection.Node as PhraseNode; }
-            set { Selection = value == null ? null : new NodeSelection(value, mStripsView); }
         }
 
         public PhraseNode PlaybackBlock { set { mStripsView.PlaybackBlock = value; } }
@@ -717,10 +738,12 @@ namespace Obi.ProjectView
 
         public void SelectNothing() { Selection = null; }
 
-        public void SetCustomTypeForSelectedBlock(string customName, EmptyNode.Kind nodeKind)
+        public void SetCustomTypeForSelectedBlock(EmptyNode.Kind kind, string custom)
         {
-            if (SelectedBlockNode != null)
-                mPresentation.UndoRedoManager.execute(new Commands.Node.ChangeCustomType(this, SelectedBlockNode, customName, nodeKind));
+            if (IsBlockSelected)
+            {
+                mPresentation.UndoRedoManager.execute(new Commands.Node.ChangeCustomType(this, SelectedBlockNode, kind, custom));
+            }
             //TODO: if there are problems, bring up the edit dialog
         }
 
@@ -773,14 +796,14 @@ namespace Obi.ProjectView
                     urakawa.undo.CompositeCommand command = new urakawa.undo.CompositeCommand();
 
                     //1. clear existing custom type
-                    Commands.Node.ChangeCustomType cmd1 = new Obi.Commands.Node.ChangeCustomType(this, SelectedBlockNode, "", EmptyNode.Kind.Plain);
+                    Commands.Node.ChangeCustomType cmd1 = new Obi.Commands.Node.ChangeCustomType(this, SelectedBlockNode, EmptyNode.Kind.Plain);
                     //2. unset existing heading on section
                     PhraseNode node = SelectedBlockNode.AncestorAs<SectionNode>().Heading;
                     Commands.Node.UnsetNodeAsHeadingPhrase cmd2 = new Obi.Commands.Node.UnsetNodeAsHeadingPhrase(this, node);
                     //3. set new heading
-                    Commands.Node.SetNodeAsHeadingPhrase cmd3 = new Obi.Commands.Node.SetNodeAsHeadingPhrase(this, SelectedBlockNode);
+                    Commands.Node.SetNodeAsHeadingPhrase cmd3 = new Obi.Commands.Node.SetNodeAsHeadingPhrase(this, SelectedPhraseNode);
                     //4. assign new custom type as "heading"
-                    Commands.Node.ChangeCustomType cmd4 = new Obi.Commands.Node.ChangeCustomType(this, SelectedBlockNode, Localizer.Message("heading"), EmptyNode.Kind.Heading);
+                    Commands.Node.ChangeCustomType cmd4 = new Obi.Commands.Node.ChangeCustomType(this, SelectedBlockNode, EmptyNode.Kind.Heading, null);
                     
                     command.append(cmd1);
                     command.append(cmd2);
@@ -799,16 +822,23 @@ namespace Obi.ProjectView
         /// </summary>
         /// <param name="customName"></param>
         /// <param name="kind"></param>
-        public void AddCustomTypeAndSetOnBlock(string customName, EmptyNode.Kind kind)
+        public void AddCustomTypeAndSetOnBlock(EmptyNode.Kind nodeKind, string customClass)
         {
             urakawa.undo.CompositeCommand command = new urakawa.undo.CompositeCommand();
             //add the custom type to the presentation
-            Commands.AddCustomType cmd1 = new Obi.Commands.AddCustomType(this, mPresentation, customName);
+            Commands.AddCustomType cmd1 = new Obi.Commands.AddCustomType(this, mPresentation, customClass);
             //set it on the block
-            Commands.Node.ChangeCustomType cmd2 = new Obi.Commands.Node.ChangeCustomType(this, SelectedBlockNode, customName, kind);
+            Commands.Node.ChangeCustomType cmd2 = new Obi.Commands.Node.ChangeCustomType(this, SelectedBlockNode, nodeKind, customClass);
             command.append(cmd1);
             command.append(cmd2);
             mPresentation.UndoRedoManager.execute(command);   
+        }
+
+        public bool CanSetPageNumber { get { return IsBlockSelected; } } 
+
+        public void SetPageNumberOnSelectedBock(int p)
+        {
+            if (CanSetPageNumber) mPresentation.UndoRedoManager.execute(new Commands.Node.SetPageNumber(this, SelectedBlockNode, p));
         }
     }
 

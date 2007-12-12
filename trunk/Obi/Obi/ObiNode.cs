@@ -34,6 +34,26 @@ namespace Obi
         }
 
         /// <summary>
+        /// Get the preceding node in the tree.
+        /// </summary>
+        public virtual ObiNode PrecedingNode
+        {
+            get { return Index > 0 ? ((ObiNode)getPreviousSibling()).LastDescendantNode : ParentAs<ObiNode>(); }
+        }
+
+        /// <summary>
+        /// Last descendant node of any kind.
+        /// </summary>
+        public ObiNode LastDescendantNode
+        {
+            get
+            {
+                int children = getChildCount();
+                return children == 0 ? this : ((ObiNode)getChild(children - 1)).LastDescendantNode;
+            }
+        }
+
+        /// <summary>
         /// Index of this node in its parent's list of children.
         /// </summary>
         public virtual int Index { get { return getParent().indexOf(this); } }
@@ -182,6 +202,8 @@ namespace Obi
             if (index < 0) index = getChildCount() - index;
             return (SectionNode)getChild(index);
         }
+
+        public override ObiNode PrecedingNode { get { return null; } }
 
         public override PhraseNode FirstUsedPhrase
         {

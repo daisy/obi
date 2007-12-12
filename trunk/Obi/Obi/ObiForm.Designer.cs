@@ -97,6 +97,7 @@ namespace Obi
             this.mMergeBlockWithNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.mAssignRoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSetAsHeadingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mCustomRoleToolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.mAddRoleToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
@@ -740,6 +741,7 @@ namespace Obi
             // mAssignRoleToolStripMenuItem
             // 
             this.mAssignRoleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mPageToolStripMenuItem,
             this.mSetAsHeadingToolStripMenuItem,
             this.mCustomRoleToolStripSeparator,
             this.mAddRoleToolStripTextBox});
@@ -747,6 +749,13 @@ namespace Obi
             this.mAssignRoleToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.mAssignRoleToolStripMenuItem.Text = "&Assign role";
             this.mAssignRoleToolStripMenuItem.DropDownOpening += new System.EventHandler(this.mAssignRoleToolStripMenuItem_DropDownOpening);
+            // 
+            // mPageToolStripMenuItem
+            // 
+            this.mPageToolStripMenuItem.Name = "mPageToolStripMenuItem";
+            this.mPageToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.mPageToolStripMenuItem.Text = "&Page";
+            this.mPageToolStripMenuItem.Click += new System.EventHandler(this.mPageToolStripMenuItem_Click);
             // 
             // mSetAsHeadingToolStripMenuItem
             // 
@@ -764,7 +773,7 @@ namespace Obi
             // 
             this.mAddRoleToolStripTextBox.Name = "mAddRoleToolStripTextBox";
             this.mAddRoleToolStripTextBox.Size = new System.Drawing.Size(100, 21);
-            this.mAddRoleToolStripTextBox.Text = "<Add role>";
+            this.mAddRoleToolStripTextBox.Text = "(Add role)";
             this.mAddRoleToolStripTextBox.Leave += new System.EventHandler(this.mAddRoleToolStripTextBox_Leave);
             this.mAddRoleToolStripTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.mAddRoleToolStripTextBox_KeyUp);
             // 
@@ -1165,6 +1174,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripTextBox mAddRoleToolStripTextBox;
         private System.Windows.Forms.ToolStripMenuItem mSetAsHeadingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mEditRolesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mPageToolStripMenuItem;
     }
 }
 
