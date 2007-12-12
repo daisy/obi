@@ -836,9 +836,27 @@ namespace Obi.ProjectView
 
         public bool CanSetPageNumber { get { return IsBlockSelected; } } 
 
-        public void SetPageNumberOnSelectedBock(int p)
+        public void SetPageNumberOnSelectedBock(int number, bool renumber)
         {
-            if (CanSetPageNumber) mPresentation.UndoRedoManager.execute(new Commands.Node.SetPageNumber(this, SelectedBlockNode, p));
+            if (CanSetPageNumber)
+            {
+                urakawa.undo.ICommand cmd = new Commands.Node.SetPageNumber(this, SelectedBlockNode, number);
+                if (renumber)
+                {
+                    urakawa.undo.CompositeCommand k = Presentation.getCommandFactory().createCompositeCommand();
+                    k.setShortDescription(cmd.getShortDescription());
+                    for (ObiNode n = SelectedBlockNode.FollowingNode; n != null; n = n.FollowingNode)
+                    {
+                        if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)
+                        {
+                            k.append(new Commands.Node.SetPageNumber(this, (EmptyNode)n, ++number));
+                        }
+                    }
+                    k.append(cmd);
+                    cmd = k;
+                }
+                mPresentation.UndoRedoManager.execute(cmd);
+            }
         }
     }
 

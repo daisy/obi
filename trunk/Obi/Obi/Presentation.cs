@@ -48,11 +48,6 @@ namespace Obi
         public Channel AudioChannel { get { return GetSingleChannelByName(AUDIO_CHANNEL_NAME); } }
 
         /// <summary>
-        /// Get the number of pages in the book.
-        /// </summary>
-        public int Pages { get { return 0; /* mPageCount */ } }
-
-        /// <summary>
         /// First section node in the project, or null if there are no sections.
         /// </summary>
         public SectionNode FirstSection
@@ -179,9 +174,10 @@ namespace Obi
             AddChannel(AUDIO_CHANNEL_NAME);
             AddChannel(TEXT_CHANNEL_NAME);
             if (createTitleSection) CreateTitleSection(title);
-            DataManager.getDefaultPCMFormat().setNumberOfChannels((ushort)settings.AudioChannels);
-            DataManager.getDefaultPCMFormat().setBitDepth((ushort)settings.BitDepth);
-            DataManager.getDefaultPCMFormat().setSampleRate((uint)settings.SampleRate);
+            DataManager.setDefaultBitDepth((ushort)settings.BitDepth);
+            DataManager.setDefaultNumberOfChannels((ushort)settings.AudioChannels);
+            DataManager.setDefaultSampleRate((uint)settings.SampleRate);
+            DataManager.setEnforceSinglePCMFormat(false);
         }
 
         /// <summary>
@@ -309,9 +305,9 @@ namespace Obi
                 Stream input = File.OpenRead(path);
                 PCMDataInfo info = PCMDataInfo.parseRiffWaveHeader(input);
                 input.Close();
-                getMediaDataManager().getDefaultPCMFormat().setBitDepth(info.getBitDepth());
-                getMediaDataManager().getDefaultPCMFormat().setNumberOfChannels(info.getNumberOfChannels());
-                getMediaDataManager().getDefaultPCMFormat().setSampleRate(info.getSampleRate());
+                DataManager.setDefaultBitDepth(info.getBitDepth());
+                DataManager.setDefaultNumberOfChannels(info.getNumberOfChannels());
+                DataManager.setDefaultSampleRate(info.getSampleRate());
                 DataManager.setEnforceSinglePCMFormat(true);
             }
             AudioMediaData data = getMediaDataFactory().createAudioMediaData();
@@ -383,7 +379,7 @@ namespace Obi
         {
             if (node.NodeKind == EmptyNode.Kind.Page)
             {
-                return node.PageNumber + 1;
+                return node.PageNumber;
             }
             else
             {

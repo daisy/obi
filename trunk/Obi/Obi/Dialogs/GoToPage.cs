@@ -28,25 +28,6 @@ namespace Obi.Dialogs
         public GoToPage(Presentation presentation)
         {
             InitializeComponent();
-            // populate the list of pages and the combo box items
-            // the combo box says "page 1", "page 2", ...
-            mPages = new List<PhraseNode>(presentation.Pages);
-            presentation.RootNode.acceptDepthFirst(
-                delegate(urakawa.core.TreeNode n)
-                {
-                    PhraseNode phrase = n as PhraseNode;
-                    /*
-                    if (phrase != null && phrase.PageProperty != null)
-                    {
-                        mPages.Add(phrase);
-                        mPagesComboBox.Items.Add(String.Format(Localizer.Message("page_number"),
-                            phrase.PageProperty.PageNumber));
-                    }
-                     * */
-                    return true;
-                },
-                delegate(urakawa.core.TreeNode n) { }
-            );
             SelectedPage = null;
         }
 
