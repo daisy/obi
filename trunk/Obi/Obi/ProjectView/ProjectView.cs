@@ -717,10 +717,11 @@ namespace Obi.ProjectView
 
         public void SelectNothing() { Selection = null; }
 
-        public void SetCustomTypeForSelectedBlock(string customType)
+        public void SetCustomTypeForSelectedBlock(string customName, EmptyNode.Kind nodeKind)
         {
             if (SelectedBlockNode != null)
-                mPresentation.UndoRedoManager.execute(new Commands.Node.ChangeCustomType(this, SelectedBlockNode, customType));
+                mPresentation.UndoRedoManager.execute(new Commands.Node.ChangeCustomType(this, SelectedBlockNode, customName, nodeKind));
+            //TODO: if there are problems, bring up the edit dialog
         }
 
         public void SplitBlock()
@@ -763,9 +764,52 @@ namespace Obi.ProjectView
                 parentNode.RemoveChild(SelectedBlockNode);
             }
         }
+        public void MakeSelectedBlockIntoHeadingPhrase()
+        {
+            if (SelectedBlockNode != null)
+            {
+                if (SelectedBlockNode != null)
+                {
+                    urakawa.undo.CompositeCommand command = new urakawa.undo.CompositeCommand();
 
+                    //1. clear existing custom type
+                    Commands.Node.ChangeCustomType cmd1 = new Obi.Commands.Node.ChangeCustomType(this, SelectedBlockNode, "", EmptyNode.Kind.Plain);
+                    //2. unset existing heading on section
+                    PhraseNode node = SelectedBlockNode.AncestorAs<SectionNode>().Heading;
+                    Commands.Node.UnsetNodeAsHeadingPhrase cmd2 = new Obi.Commands.Node.UnsetNodeAsHeadingPhrase(this, node);
+                    //3. set new heading
+                    Commands.Node.SetNodeAsHeadingPhrase cmd3 = new Obi.Commands.Node.SetNodeAsHeadingPhrase(this, SelectedBlockNode);
+                    //4. assign new custom type as "heading"
+                    Commands.Node.ChangeCustomType cmd4 = new Obi.Commands.Node.ChangeCustomType(this, SelectedBlockNode, Localizer.Message("heading"), EmptyNode.Kind.Heading);
+                    
+                    command.append(cmd1);
+                    command.append(cmd2);
+                    command.append(cmd3);
+                    command.append(cmd4);
+                    mPresentation.UndoRedoManager.execute(command);
+                 }     
+            }
+        }
         public void UpdateCursorPosition(double time) { mStripsView.UpdateCursorPosition(time); }
         public void SelectAtCurrentTime() { mStripsView.SelectAtCurrentTime(); }
+
+
+        /// <summary>
+        /// Used for adding custom types on the fly: add it to the presentation and also set it on the block
+        /// </summary>
+        /// <param name="customName"></param>
+        /// <param name="kind"></param>
+        public void AddCustomTypeAndSetOnBlock(string customName, EmptyNode.Kind kind)
+        {
+            urakawa.undo.CompositeCommand command = new urakawa.undo.CompositeCommand();
+            //add the custom type to the presentation
+            Commands.AddCustomType cmd1 = new Obi.Commands.AddCustomType(this, mPresentation, customName);
+            //set it on the block
+            Commands.Node.ChangeCustomType cmd2 = new Obi.Commands.Node.ChangeCustomType(this, SelectedBlockNode, customName, kind);
+            command.append(cmd1);
+            command.append(cmd2);
+            mPresentation.UndoRedoManager.execute(command);   
+        }
     }
 
     public class ImportingFileEventArgs

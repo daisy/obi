@@ -94,7 +94,7 @@ namespace Obi
         /// <param name="customClass"></param>
         public void AddCustomClass(string customType)
         {
-            if (customType == "") return;
+            if (customType == null || customType == "") return;
             Predicate<string> exists = delegate(string matchThis){return matchThis == customType;};
             if(!mCustomTypes.Exists(exists)) mCustomTypes.Add(customType);
         }

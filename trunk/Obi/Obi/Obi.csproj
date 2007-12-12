@@ -101,9 +101,11 @@
     <Compile Include="Audio\VuMeterForm.Designer.cs">
       <DependentUpon>VuMeterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\AddRemoveCustomType.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\Node\AddNewSection.cs" />
     <Compile Include="Commands\Node\AddNode.cs" />
+    <Compile Include="Commands\Node\SetNodeAsHeadingPhrase.cs" />
     <Compile Include="Commands\Node\ChangeCustomType.cs" />
     <Compile Include="Commands\Node\ChangeParent.cs" />
     <Compile Include="Commands\Node\Copy.cs" />
@@ -111,7 +113,6 @@
     <Compile Include="Commands\Node\AddContainer.cs" />
     <Compile Include="Commands\Node\MergeAudio.cs" />
     <Compile Include="Commands\Node\Paste.cs" />
-    <Compile Include="Commands\Node\AddRemoveCustomType.cs" />
     <Compile Include="Commands\Node\PhraseDetection.cs" />
     <Compile Include="Commands\Node\RenameSection.cs" />
     <Compile Include="Commands\Node\SplitAudio.cs" />

@@ -79,6 +79,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;Add new&gt;.
+        /// </summary>
+        internal static string add_new {
+            get {
+                return ResourceManager.GetString("add_new", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to add section.
         /// </summary>
         internal static string add_new_section_command {
@@ -916,6 +925,15 @@ namespace Obi {
         internal static string found_in_text {
             get {
                 return ResourceManager.GetString("found_in_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to heading.
+        /// </summary>
+        internal static string heading {
+            get {
+                return ResourceManager.GetString("heading", resourceCulture);
             }
         }
         

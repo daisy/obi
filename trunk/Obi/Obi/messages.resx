@@ -867,4 +867,12 @@ Error text: {1}</value>
   <data name="audio_accessible_name" xml:space="preserve">
     <value>Audio {0} of {1}</value>
   </data>
+  <data name="heading" xml:space="preserve">
+    <value>heading</value>
+    <comment>Used for node kind (MD)</comment>
+  </data>
+  <data name="add_new" xml:space="preserve">
+    <value>&lt;Add new&gt;</value>
+    <comment>For the custom types dropdown</comment>
+  </data>
 </root>
