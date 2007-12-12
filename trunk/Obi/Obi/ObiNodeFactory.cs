@@ -22,6 +22,10 @@ namespace Obi
                 {
                     return new RootNode(Presentation);
                 }
+                else if (localName == EmptyNode.XUK_ELEMENT_NAME)
+                {
+                    return new EmptyNode(Presentation);
+                }
                 else if (localName == PhraseNode.XUK_ELEMENT_NAME)
                 {
                     return new PhraseNode(Presentation);

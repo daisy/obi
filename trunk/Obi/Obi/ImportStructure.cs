@@ -91,7 +91,7 @@ namespace Obi
             // not ported from Project to Presentation yet:
             // mPresentation.AddEmptyPhraseNode(mLastSection, mLastSection.PhraseChildCount);
             //the phrase we just added should be at the end of the phrase child list
-            PhraseNode pagePhrase = mLastSection.PhraseChild(mLastSection.PhraseChildCount - 1);
+            EmptyNode pagePhrase = mLastSection.PhraseChild(mLastSection.PhraseChildCount - 1);
             //is this the right function to call?
             // mProject.DidSetPageNumberOnPhrase(pagePhrase);
            

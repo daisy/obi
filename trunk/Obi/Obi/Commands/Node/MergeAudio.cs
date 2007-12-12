@@ -9,7 +9,8 @@ namespace Obi.Commands.Node
         public MergeAudio(ProjectView.ProjectView view): base(view)
         {
             mNode = view.SelectedPhraseNode;
-            mNextNode = mNode.ParentAs<ObiNode>().PhraseChild(mNode.Index + 1);
+            // TODO this will blow up sooner or later!!! Handle empty nodes at least...
+            mNextNode = (PhraseNode)mNode.ParentAs<ObiNode>().PhraseChild(mNode.Index + 1);
             mSplitPoint = new urakawa.media.timing.Time(mNode.Audio.getDuration().getTimeDeltaAsMillisecondFloat());
         }
 

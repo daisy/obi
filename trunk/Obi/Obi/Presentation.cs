@@ -340,7 +340,7 @@ namespace Obi
         /// <summary>
         /// During recording of a phrase, its audio may/should be updated.
         /// </summary>
-        public void UpdateAudioForPhrase(PhraseNode phrase, ManagedAudioMedia media)
+        public void UpdateAudioForPhrase(EmptyNode phrase, ManagedAudioMedia media)
         {
         }
 

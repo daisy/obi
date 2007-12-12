@@ -18,7 +18,7 @@ namespace Obi.ProjectView
         {
             mNode = node;
             mParentContainer = parent;
-            CustomClassLabel = node.CustomClass;
+            CustomClassLabel = CustomClassLabelFromNode;
             mSelected = false;
             mTimeLabel.Text = "0s";
             node.ChangedKind += new EmptyNode.ChangedKindEventHandler(node_ChangedKind);
@@ -28,25 +28,27 @@ namespace Obi.ProjectView
         public Block() { InitializeComponent(); }
 
 
+        private string CustomClassLabelFromNode
+        {
+            get
+            {
+                return mNode.NodeKind == EmptyNode.Kind.Plain ? null :
+                    mNode.NodeKind == EmptyNode.Kind.Custom ? mNode.CustomClass :
+                    mNode.NodeKind == EmptyNode.Kind.Page ? String.Format(Localizer.Message("page_number"), mNode.PageNumber) :
+                        Localizer.Message(mNode.NodeKind.ToString());
+            }
+        }
+
         // Update the class label with the new page number
         private void node_ChangedPageNumber(object sender, NodeEventArgs<EmptyNode> e)
         {
-            CustomClassLabel = String.Format(Localizer.Message("page_number"), e.Node.PageNumber);
+            CustomClassLabel = CustomClassLabelFromNode;
         }
 
         // Update the class label with the new kind of node
         private void node_ChangedKind(object sender, ChangedKindEventArgs e)
         {
-            if (e.Node.NodeKind == EmptyNode.Kind.Plain)
-            {
-                CustomClassLabel = null;
-            }
-            else
-            {
-                CustomClassLabel = e.Node.NodeKind == EmptyNode.Kind.Custom ? e.Node.CustomClass :
-                    e.Node.NodeKind == EmptyNode.Kind.Page ? String.Format(Localizer.Message("page_number"), e.Node.PageNumber) :
-                    Localizer.Message(e.Node.NodeKind.ToString());
-            }
+            CustomClassLabel = CustomClassLabelFromNode;
         }
 
         public string CustomClassLabel
