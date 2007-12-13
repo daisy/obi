@@ -269,6 +269,7 @@ namespace Obi.Audio
 
 
         private Thread ThreadTriggerPeakEventWithDelay;
+        private byte[] m_RecorderArray;
 
 		// handles update event from audio recorder
 		public void CatchUpdateVuMeterEvent (object sender , Events.Audio.Recorder.UpdateVuMeterEventArgs UpdateVuMeter)
@@ -278,9 +279,13 @@ namespace Obi.Audio
 			m_FrameSize = ( Recorder.Channels * ( Recorder.BitDepth / 8 ) )   ;
 			m_Channels = Recorder.Channels ;
             m_UpdateVMArrayLength =  Recorder.m_UpdateVMArrayLength / 2 ;
-            m_UpdateVMArrayLength = (int) CalculationFunctions.AdaptToFrame(m_UpdateVMArrayLength, m_FrameSize);
+                        m_UpdateVMArrayLength = (int) CalculationFunctions.AdaptToFrame(m_UpdateVMArrayLength, m_FrameSize);
+
+                        m_RecorderArray = new byte[2 * m_UpdateVMArrayLength];
+                        Array.Copy(Recorder.arUpdateVM, m_RecorderArray ,m_RecorderArray.Length );
+
 			m_arUpdatedVM  = new byte [m_UpdateVMArrayLength ] ;
-			Array.Copy ( Recorder.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
+			Array.Copy ( m_RecorderArray , m_arUpdatedVM , m_UpdateVMArrayLength) ;
 
             //m_BufferReadInterval = ( m_arUpdatedVM.Length * 1000 ) / ( Recorder.SampleRate * m_FrameSize )  ;
             if (Recorder != null && m_BufferReadInterval != ((m_arUpdatedVM.Length * 1000) / (Recorder.SampleRate *  m_FrameSize  )))
@@ -345,11 +350,11 @@ namespace Obi.Audio
         private void TriggerPeakEventForSecondHalf()
         {
             Thread.Sleep(66);
-            if (m_Recorder != null && m_Recorder.arUpdateVM.Length > m_arUpdatedVM.Length)
+            if (m_Recorder != null && m_RecorderArray.Length > m_arUpdatedVM.Length)
             {
                 try
                 {
-                    Array.Copy(m_Recorder.arUpdateVM, m_UpdateVMArrayLength, m_arUpdatedVM, 0, m_arUpdatedVM.Length );
+                    Array.Copy(m_RecorderArray , m_UpdateVMArrayLength, m_arUpdatedVM, 0, m_arUpdatedVM.Length );
                 }
                 catch (System.Exception ex)
                 {
