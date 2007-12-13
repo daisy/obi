@@ -108,7 +108,7 @@ namespace Obi
         public virtual int IndexForNewNode(ObiNode newNode)
         {
             return newNode is SectionNode ?
-                (Node is SectionNode ? (Node.SectionChildCount + 1) : Node.AncestorAs<SectionNode>().SectionChildCount) :
+                (Node is SectionNode ? (Node.Index + 1) : Node.AncestorAs<SectionNode>().SectionChildCount) :
                 (Node is SectionNode ? Node.PhraseChildCount : (Node.Index + 1));
         }
 

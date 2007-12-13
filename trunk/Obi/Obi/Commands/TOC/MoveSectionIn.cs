@@ -29,7 +29,8 @@ namespace Obi.Commands.TOC
             SectionNode sibling = section.PrecedingSibling;
             section.Detach();
             sibling.AppendChild(section);
-            for (int i = 0; i < section.SectionChildCount; ++i)
+            int children = section.SectionChildCount;
+            for (int i = 0; i < children; ++i)
             {
                 SectionNode child = section.SectionChild(0);
                 child.Detach();
