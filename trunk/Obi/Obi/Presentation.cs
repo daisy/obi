@@ -399,11 +399,11 @@ namespace Obi
         /// Get the page number for this node. If the node already has a page number, return it.
         /// If it has no page number, find the nearest preceding block with a page number and add one.
         /// </summary>
-        public int PageNumberFor(EmptyNode node)
+        public int PageNumberFor(ObiNode node)
         {
-            if (node.NodeKind == EmptyNode.Kind.Page)
+            if (node is EmptyNode && ((EmptyNode)node).NodeKind == EmptyNode.Kind.Page)
             {
-                return node.PageNumber;
+                return ((EmptyNode)node).PageNumber;
             }
             else
             {

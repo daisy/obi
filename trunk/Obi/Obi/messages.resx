@@ -881,4 +881,7 @@ Error text: {1}</value>
   <data name="set_page_number" xml:space="preserve">
     <value>set page number</value>
   </data>
+  <data name="add_empty_page_blocks" xml:space="preserve">
+    <value>add empty page blocks</value>
+  </data>
 </root>

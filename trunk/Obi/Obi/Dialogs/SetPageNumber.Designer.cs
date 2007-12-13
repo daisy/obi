@@ -33,12 +33,14 @@ namespace Obi.Dialogs
             this.mOKButton = new System.Windows.Forms.Button();
             this.mCancelButton = new System.Windows.Forms.Button();
             this.mRenumber = new System.Windows.Forms.CheckBox();
+            this.mNumberOfPagesBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(12, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(135, 13);
             this.label1.TabIndex = 0;
@@ -47,7 +49,7 @@ namespace Obi.Dialogs
             // mNumberBox
             // 
             this.mNumberBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mNumberBox.Location = new System.Drawing.Point(153, 6);
+            this.mNumberBox.Location = new System.Drawing.Point(153, 12);
             this.mNumberBox.Name = "mNumberBox";
             this.mNumberBox.Size = new System.Drawing.Size(127, 20);
             this.mNumberBox.TabIndex = 1;
@@ -55,38 +57,57 @@ namespace Obi.Dialogs
             // mOKButton
             // 
             this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.mOKButton.Location = new System.Drawing.Point(205, 84);
+            this.mOKButton.Location = new System.Drawing.Point(205, 116);
             this.mOKButton.Name = "mOKButton";
             this.mOKButton.Size = new System.Drawing.Size(75, 23);
-            this.mOKButton.TabIndex = 4;
+            this.mOKButton.TabIndex = 5;
             this.mOKButton.Text = "&OK";
             this.mOKButton.UseVisualStyleBackColor = true;
             // 
             // mCancelButton
             // 
             this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.mCancelButton.Location = new System.Drawing.Point(124, 84);
+            this.mCancelButton.Location = new System.Drawing.Point(124, 116);
             this.mCancelButton.Name = "mCancelButton";
             this.mCancelButton.Size = new System.Drawing.Size(75, 23);
-            this.mCancelButton.TabIndex = 3;
+            this.mCancelButton.TabIndex = 4;
             this.mCancelButton.Text = "&Cancel";
             this.mCancelButton.UseVisualStyleBackColor = true;
             // 
             // mRenumber
             // 
             this.mRenumber.AutoSize = true;
-            this.mRenumber.Location = new System.Drawing.Point(12, 32);
+            this.mRenumber.Location = new System.Drawing.Point(12, 64);
             this.mRenumber.Name = "mRenumber";
             this.mRenumber.Size = new System.Drawing.Size(151, 17);
-            this.mRenumber.TabIndex = 2;
+            this.mRenumber.TabIndex = 3;
             this.mRenumber.Text = "&Renumber following pages";
             this.mRenumber.UseVisualStyleBackColor = true;
+            // 
+            // mNumberOfPagesBox
+            // 
+            this.mNumberOfPagesBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mNumberOfPagesBox.Location = new System.Drawing.Point(153, 38);
+            this.mNumberOfPagesBox.Name = "mNumberOfPagesBox";
+            this.mNumberOfPagesBox.Size = new System.Drawing.Size(127, 20);
+            this.mNumberOfPagesBox.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(56, 40);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(91, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "&Number of pages:";
             // 
             // SetPageNumber
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 119);
+            this.ClientSize = new System.Drawing.Size(292, 151);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.mNumberOfPagesBox);
             this.Controls.Add(this.mRenumber);
             this.Controls.Add(this.mCancelButton);
             this.Controls.Add(this.mOKButton);
@@ -111,5 +132,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button mOKButton;
         private System.Windows.Forms.Button mCancelButton;
         private System.Windows.Forms.CheckBox mRenumber;
+        private System.Windows.Forms.TextBox mNumberOfPagesBox;
+        private System.Windows.Forms.Label label2;
     }
 }
