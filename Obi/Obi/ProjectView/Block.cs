@@ -23,6 +23,7 @@ namespace Obi.ProjectView
             mTimeLabel.Text = "0s";
             node.ChangedKind += new EmptyNode.ChangedKindEventHandler(node_ChangedKind);
             node.ChangedPageNumber += new NodeEventHandler<EmptyNode>(node_ChangedPageNumber);
+            UpdateColors();
         }
 
         public Block() { InitializeComponent(); }
@@ -93,7 +94,20 @@ namespace Obi.ProjectView
             set
             {
                 mSelected = value;
-                BackColor = mSelected ? Color.Yellow : Color.HotPink;
+                UpdateColors();
+            }
+        }
+
+
+        /// <summary>
+        /// Update the colors of the block when the state of its node has changed.
+        /// </summary>
+        public void UpdateColors()
+        {
+            if (mNode != null)
+            {
+                // TODO Get colors from profile
+                BackColor = mSelected ? Color.Yellow : mNode.Used ? Color.HotPink : Color.LightGray;
             }
         }
 

@@ -42,36 +42,16 @@ namespace Obi.Dialogs
         /// <summary>
         /// Go through the tree and remove the given custom type from any node who has it
         /// </summary>
-        /// <param name="removedType"></param>
-        /// <returns></returns>
-        private bool RemoveCustomTypeFromNodes(string removedType)
+        private bool RemoveCustomTypeFromNodes(string customClass)
         {
+            List<EmptyNode> nodes = mPresentation.NodesForCustomClass(customClass);
+            if (nodes.Count == 0) return false;
             urakawa.undo.CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
-            command.setShortDescription(Localizer.Message("remove_custom_type"));
-            bool foundNodeWithThisType = false;
-            mPresentation.RootNode.acceptDepthFirst
-            (
-                // Remove the custom kind, phrase kind, and custom kind label for any phrase with
-                // a custom kind label that no longer exists
-                delegate(urakawa.core.TreeNode n)
-                {
-                    //is this a custom type of phrase?
-                    if (n is EmptyNode && ((EmptyNode)n).CustomClass == removedType)
-                    {
-                        foundNodeWithThisType = true;
-                        Commands.Node.ChangeCustomType cmd = new Commands.Node.ChangeCustomType(mProjectView, (EmptyNode)n, EmptyNode.Kind.Plain);
-                        command.append(cmd);
-                    }
-                    return true;
-                },
-                // nothing to do in post-visit
-                delegate(urakawa.core.TreeNode n) { }
-            );
-            Commands.RemoveCustomType otherCmd = new Commands.RemoveCustomType(mProjectView, mPresentation, removedType);
-            command.append(otherCmd);
+            command.setShortDescription("remove_custom_class");
+            foreach (EmptyNode node in nodes) command.append(new Commands.Node.ChangeCustomType(mProjectView, node, EmptyNode.Kind.Plain));
             mPresentation.UndoRedoManager.execute(command);
-            mNumberOfCommandsSinceOpened++;
-            return foundNodeWithThisType;
+            ++mNumberOfCommandsSinceOpened;
+            return true;
         }
 
         /// <summary>

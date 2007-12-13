@@ -119,6 +119,8 @@ namespace Obi.Dialogs
             this.Controls.Add(this.mCustomRolesList);
             this.MaximizeBox = false;
             this.Name = "EditRoles";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "Edit roles";
             this.Load += new System.EventHandler(this.CustomRoles_Load);
             this.ResumeLayout(false);

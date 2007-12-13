@@ -91,6 +91,14 @@ namespace Obi
         public Dictionary<string, List<EmptyNode>>.KeyCollection CustomClasses { get { return mCustomClasses.Keys; } }
 
         /// <summary>
+        /// Get all the nodes of given custom class.
+        /// </summary>
+        public List<EmptyNode> NodesForCustomClass(string customClass)
+        {
+            return mCustomClasses.ContainsKey(customClass) ? mCustomClasses[customClass] : new List<EmptyNode>();
+        }
+
+        /// <summary>
         /// Add a custom class to the list.  Duplicates are filtered out.
         /// </summary>
         public void AddCustomClass(string customClass, EmptyNode node)
@@ -105,7 +113,7 @@ namespace Obi
         }
 
         /// <summary>
-        /// Remove a custom class from the list. If removeAll is set, all nodes with this class become plain again.
+        /// Remove a custom class from the list.
         /// </summary>
         public void RemoveCustomClass(string customClass, EmptyNode node)
         {

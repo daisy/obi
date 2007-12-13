@@ -23,6 +23,9 @@ namespace Obi.ProjectView
         public event EventHandler FinishedImportingFiles;       // triggered when all files were imported
 
 
+        /// <summary>
+        /// Create a new project view with no project yet.
+        /// </summary>
         public ProjectView()
         {
             InitializeComponent();
@@ -41,11 +44,6 @@ namespace Obi.ProjectView
 
 
         /// <summary>
-        /// Get the next page number for the selected block.
-        /// </summary>
-        public int NextPageNumber { get { return mPresentation.PageNumberFor(SelectedBlockNode); }  }
-
-        /// <summary>
         /// Contents of the clipboard
         /// </summary>
         public Clipboard Clipboard
@@ -55,7 +53,7 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Enable/disable tooltips in the view.
+        /// Enable/disable tooltips in the view (currently mostly disabled.)
         /// </summary>
         public bool EnableTooltips
         {
@@ -68,6 +66,11 @@ namespace Obi.ProjectView
                 // mTransportBar.EnableTooltips = value;
             }
         }
+
+        /// <summary>
+        /// Get the next page number for the selected block.
+        /// </summary>
+        public int NextPageNumber { get { return mPresentation.PageNumberFor(SelectedBlockNode); }  }
 
         /// <summary>
         /// The parent form as an Obi form.
@@ -100,6 +103,9 @@ namespace Obi.ProjectView
                 }
             }
         }
+
+
+
 
         /// <summary>
         /// Show or hide the project display.
@@ -154,22 +160,6 @@ namespace Obi.ProjectView
             }
         }
 
-        /// <summary>
-        /// Get a label for the node currently selected, i.e. "" if nothing is seleced,
-        /// "audio block" for an audio block, "strip" for a strip and "section" for a
-        /// section.
-        /// </summary>
-        public string SelectedName
-        {
-            get
-            {
-                return
-                    mSelection == null ? "" :
-                    mSelection.Node is PhraseNode ? Localizer.Message("audio_block") :
-                    // mSelection.Control == mStripManagerPanel ? Localizer.Message("strip") :
-                                                               Localizer.Message("section");
-            }
-        }
 
         /// <summary>
         /// Currently selected node, regardless of its type or where it is selected.
@@ -787,6 +777,21 @@ namespace Obi.ProjectView
                 parentNode.RemoveChild(SelectedBlockNode);
             }
         }
+
+        public void MakeSelectedBlockIntoSilencePhrase()
+        {
+            EmptyNode node = SelectedBlockNode;
+            if (node != null)
+            {
+                urakawa.undo.CompositeCommand command = Presentation.getCommandFactory().createCompositeCommand();
+                Commands.Node.ChangeCustomType silence = new Commands.Node.ChangeCustomType(this, node, EmptyNode.Kind.Silence);
+                command.append(silence);
+                command.setShortDescription(silence.getShortDescription());
+                if (node.Used) command.append(new Commands.Node.ToggleNodeUsed(this, node));
+                Presentation.UndoRedoManager.execute(command);
+            }
+        }
+
         public void MakeSelectedBlockIntoHeadingPhrase()
         {
             if (SelectedBlockNode != null)

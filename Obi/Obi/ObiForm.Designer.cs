@@ -130,6 +130,7 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusTimer = new System.Windows.Forms.Timer(this.components);
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.mSilenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -739,8 +740,9 @@ namespace Obi
             // mAssignRoleToolStripMenuItem
             // 
             this.mAssignRoleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mPageToolStripMenuItem,
             this.mSetAsHeadingToolStripMenuItem,
+            this.mPageToolStripMenuItem,
+            this.mSilenceToolStripMenuItem,
             this.mCustomRoleToolStripSeparator,
             this.mAddRoleToolStripTextBox});
             this.mAssignRoleToolStripMenuItem.Name = "mAssignRoleToolStripMenuItem";
@@ -1028,6 +1030,13 @@ namespace Obi
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
             // 
+            // mSilenceToolStripMenuItem
+            // 
+            this.mSilenceToolStripMenuItem.Name = "mSilenceToolStripMenuItem";
+            this.mSilenceToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.mSilenceToolStripMenuItem.Text = "&Silence";
+            this.mSilenceToolStripMenuItem.Click += new System.EventHandler(this.mSilenceToolStripMenuItem_Click);
+            // 
             // ObiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1155,6 +1164,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mSetAsHeadingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mEditRolesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSilenceToolStripMenuItem;
     }
 }
 
