@@ -1573,7 +1573,8 @@ namespace Obi
             mListenToBlockToolStripMenuItem.Enabled = (mProjectView.SelectedBlockNode != null);
             mAssignRoleToolStripMenuItem.Enabled = (mProjectView.SelectedBlockNode != null);
             mPageToolStripMenuItem.Enabled = mProjectView.CanSetPageNumber;
-            mClearRoleToolStripMenuItem.Enabled = (mProjectView.SelectedBlockNode != null);
+            mClearRoleToolStripMenuItem.Enabled = (mProjectView.SelectedBlockNode != null && mProjectView.SelectedBlockNode.NodeKind != EmptyNode.Kind.Plain);
+            mEditRolesToolStripMenuItem.Enabled = (mProjectView != null && mProjectView.Presentation != null);
         }
 
         private void mAddEmptyBlockToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddEmptyBlock(); }
@@ -1682,7 +1683,7 @@ namespace Obi
             }
 
             //re-add the "add new" text box, making sure that its text reads correctly
-            mAddRoleToolStripTextBox.Text = Localizer.Message("add_new");
+            mAddRoleToolStripTextBox.Text = Localizer.Message("add_role");
             mAssignRoleToolStripMenuItem.DropDownItems.Insert(menuIdx++, mAddRoleToolStripTextBox);
         }
 
@@ -1698,10 +1699,17 @@ namespace Obi
 
         private void mEditRolesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CustomTypes dialog = new CustomTypes(mSession.Presentation, mProjectView);
+            EditRoles dialog = new EditRoles(mSession.Presentation, mProjectView);
             dialog.ShowDialog();
         }
-
+        private void mAddRoleToolStripTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                mProjectView.AddCustomTypeAndSetOnBlock(EmptyNode.Kind.Custom, mAddRoleToolStripTextBox.Text);
+                blocksToolStripMenuItem.DropDown.Close();
+            }
+        }
         private void mMakeBlockIntoContainerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.MakeBlockIntoContainer();
@@ -1727,22 +1735,9 @@ namespace Obi
             mProjectView.FindPreviousInText();
         }
 
-        private void mAddRoleToolStripTextBox_Leave(object sender, EventArgs e)
+        private void mAddRoleToolStripTextBox_Click(object sender, EventArgs e)
         {
-            //add a custom type to the presentation
-            mSession.Presentation.AddCustomClass(mAddRoleToolStripTextBox.Text);
-            //set it on the block
-            mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Custom, mAddRoleToolStripTextBox.Text);
-
+            if (mAddRoleToolStripTextBox.SelectedText == "") mAddRoleToolStripTextBox.SelectAll();
         }
-
-        private void mAddRoleToolStripTextBox_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                mProjectView.AddCustomTypeAndSetOnBlock(EmptyNode.Kind.Custom, mAddRoleToolStripTextBox.Text);
-            }
-        }
-       
     }
 }

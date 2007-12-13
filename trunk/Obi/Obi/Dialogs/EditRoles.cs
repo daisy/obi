@@ -9,13 +9,13 @@ using Obi.ProjectView;
 
 namespace Obi.Dialogs
 {
-    public partial class CustomTypes : Form
+    public partial class EditRoles : Form
     {
         private Presentation mPresentation;
         private ProjectView.ProjectView mProjectView;
         int mNumberOfCommandsSinceOpened;
 
-        public CustomTypes(Presentation presentation, ProjectView.ProjectView projectView)
+        public EditRoles(Presentation presentation, ProjectView.ProjectView projectView)
         {
             if (presentation == null) throw new Exception("Invalid presentation for custom types dialog");
             if (projectView == null) throw new Exception("Invalid project view for custom types dialog");
@@ -25,61 +25,18 @@ namespace Obi.Dialogs
             mProjectView = projectView;
          }
 
-        /// <summary>
-        /// Keypress in the list box.
-        /// Enter: apply the selected type to the selected block
-        /// Delete: remove the selected type
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void mCustomTypesList_KeyUp(object sender, KeyEventArgs e)
+        private void AddNewRole(string role)
         {
-            //Close the dialog and apply the change
-            if (e.KeyCode == Keys.Enter)
-            {
-                ApplyAndClose();
-            }
-            //Remove the custom type from the list and also from all blocks
-            //do not close the dialog
-            if (e.KeyCode == Keys.Delete)
-            {
-                string removedType = (string)mCustomTypesList.SelectedItem;
-                mCustomTypesList.Items.RemoveAt(mCustomTypesList.SelectedIndex);
-                bool res = RemoveCustomTypeFromNodes(removedType);
-            }
+            if (!mCustomRolesList.Items.Contains(role)) mCustomRolesList.Items.Add(role);
+            Commands.AddCustomType cmd = new Obi.Commands.AddCustomType(mProjectView, mPresentation, role);
+            mPresentation.UndoRedoManager.execute(cmd);
+            mNumberOfCommandsSinceOpened++;
         }
-        /// <summary>
-        /// Keypress in the text field.
-        /// Enter: apply the selected type to the selected block
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void mNewCustomType_KeyUp(object sender, KeyEventArgs e)
-        {
-            //Close the dialog and apply the change
-            if (e.KeyCode == Keys.Enter)
-            {
-                ApplyAndClose();
-            }
 
-        }
-        /// <summary>
-        /// If there is text in the text box, apply it to the block
-        /// </summary>
-        private void ApplyAndClose()
+        private void RemoveRole(string role)
         {
-            if (mNewCustomType.Text != "")
-            {
-                urakawa.undo.CompositeCommand command = new urakawa.undo.CompositeCommand();
-                //this will filter duplicates
-                Commands.AddCustomType cmd = new Obi.Commands.AddCustomType(mProjectView, mPresentation, mNewCustomType.Text);
-                Commands.Node.ChangeCustomType otherCmd = new Obi.Commands.Node.ChangeCustomType(mProjectView, mProjectView.SelectedBlockNode, mNewCustomType.Text);
-                command.append(cmd);
-                command.append(otherCmd);
-                mPresentation.UndoRedoManager.execute(command);
-            }
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            mCustomRolesList.Items.Remove(role);
+            RemoveCustomTypeFromNodes(role);
         }
 
         /// <summary>
@@ -117,14 +74,42 @@ namespace Obi.Dialogs
             return foundNodeWithThisType;
         }
 
-        private void mCustomTypesList_SelectedIndexChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Press delete to remove a role from the list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mCustomRolesList_KeyUp(object sender, KeyEventArgs e)
         {
-            mNewCustomType.Text = (string)mCustomTypesList.SelectedItem;
+            //Remove the custom type from the list and also from all blocks
+            if (e.KeyCode == Keys.Delete) RemoveRole((string)mCustomRolesList.SelectedItem);
+        }
+        
+        private void mRemove_Click(object sender, EventArgs e)
+        {
+            RemoveRole((string)mCustomRolesList.SelectedItem);
+        }
+
+        /// <summary>
+        /// Press enter after typing to add a role to the list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mNewCustomRole_KeyUp(object sender, KeyEventArgs e)
+        {
+            //Add to the list of roles
+            if (e.KeyCode == Keys.Enter) AddNewRole(mNewCustomRole.Text);
+        }
+
+        private void mAdd_Click(object sender, EventArgs e)
+        {
+            AddNewRole(mNewCustomRole.Text);
         }
 
         private void mOk_Click(object sender, EventArgs e)
         {
-            ApplyAndClose();
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void mCancel_Click(object sender, EventArgs e)
@@ -136,14 +121,11 @@ namespace Obi.Dialogs
             this.Close();
         }
 
-        private void CustomTypes_Load(object sender, EventArgs e)
+        private void CustomRoles_Load(object sender, EventArgs e)
         {
             if (mPresentation.CustomClasses == null || mPresentation.CustomClasses.Count == 0) return;
-            foreach (string customType in mPresentation.CustomClasses)
-            {
-                mCustomTypesList.Items.Add(customType);
-            }
-            mNewCustomType.Focus();
+            foreach (string customType in mPresentation.CustomClasses) mCustomRolesList.Items.Add(customType);
+            mNewCustomRole.Focus();
         }
     }
 }
