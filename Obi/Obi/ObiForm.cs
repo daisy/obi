@@ -17,9 +17,7 @@ namespace Obi
         private Session mSession;                // current work session
         private Settings mSettings;              // application settings
         private Dialogs.ShowSource mSourceView;  // maintain a single "source view" dialog
-		    private Audio.PeakMeterForm mPeakMeter;  // maintain a single "peak meter" form
-
-        private Audio.VuMeterForm mVuMeterForm;  // keep track of a single VU meter form
+		private Audio.PeakMeterForm mPeakMeter;  // maintain a single "peak meter" form
 
         private int STATUS_TIMER_DELAY_IN_SECONDS = 30;  // amount of time status messages stay on
 
@@ -383,6 +381,7 @@ namespace Obi
             mProjectView.Presentation = mSession.Presentation;
             mSession.Presentation.CommandExecuted += new UndoRedoEventHandler(Presentation_CommandExecuted);
             mSession.Presentation.CommandUnexecuted += new UndoRedoEventHandler(Presentation_CommandUnexecuted);
+            UpdateCustomClassMenu();
         }
 
         // Catch problems with initialization and report them.
@@ -661,16 +660,6 @@ namespace Obi
         #endregion
 
 
-
-        // setup a VuMeter form and show it
-        private void ShowVuMeterForm()
-        {
-            mVuMeterForm = new Audio.VuMeterForm(mProjectView.TransportBar.VuMeter);
-            mVuMeterForm.MagnificationFactor = 1.5;
-            // Kludgy
-            mVuMeterForm.Show();
-            //mVuMeterForm.Visible = false;
-        }
 
         /// <summary>
         /// Show the state of the transport bar in the status bar.
@@ -1136,23 +1125,6 @@ namespace Obi
         // Transport bar stuff
 
         #region transport bar
-
-        /// <summary>
-        /// Show the VU meter form (creating it if necessary) or hide it.
-        /// </summary>
-        private void mShowHideVUMeterToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mVuMeterForm != null && mVuMeterForm.Visible)
-            {
-
-                //mVuMeterForm.Hide();
-                mVuMeterForm.Close();
-            }
-            else
-            {
-                ShowVuMeterForm();
-            }
-        }
 
         /// <summary>
         /// Play the whole book from the selected node, or from the beginning.
@@ -1659,32 +1631,40 @@ namespace Obi
         }
         #endregion
 
-
-        private void mAssignRoleToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        // Update the custom class menu with the classes from the new project
+        private void UpdateCustomClassMenu()
         {
-            int menuIdx = 0;
+            foreach (string customClass in mSession.Presentation.CustomClasses) AddCustomClassToMenu(customClass);
+            mSession.Presentation.CustomClassAddded += new CustomClassEventHandler(Presentation_CustomClassAddded);
+            mSession.Presentation.CustomClassRemoved += new CustomClassEventHandler(Presentation_CustomClassRemoved);
+        }
 
-            //clear the menu
-            mAssignRoleToolStripMenuItem.DropDownItems.Clear();
-            //re-add the heading and separator items
-            mAssignRoleToolStripMenuItem.DropDownItems.Insert(menuIdx++, mPageToolStripMenuItem);
-            mAssignRoleToolStripMenuItem.DropDownItems.Insert(menuIdx++, mSetAsHeadingToolStripMenuItem);
-            mAssignRoleToolStripMenuItem.DropDownItems.Insert(menuIdx++, mCustomRoleToolStripSeparator);
-  
-            List<string> customClasses = mSession.Presentation.CustomClasses;
-             //Fill the drop down choices with the custom classes
-            foreach(string customClass in customClasses)
-            {
-                ToolStripMenuItem item = new ToolStripMenuItem();
-                item.Text = customClass;
-                item.Click += new System.EventHandler(delegate(object _sender, EventArgs _e)
-                    { mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Custom, customClass); });
-                mAssignRoleToolStripMenuItem.DropDownItems.Insert(menuIdx++, item);
-            }
+        private void AddCustomClassToMenu(string customClass)
+        {
+            ToolStripItemCollection items = mAssignRoleToolStripMenuItem.DropDownItems;
+            int index = items.IndexOf(mAddRoleToolStripTextBox);
+            // TODO find alphabetical spot for the new class
+            ToolStripMenuItem item = new ToolStripMenuItem();
+            item.Text = customClass;
+            item.Click += new EventHandler(delegate(object sender, EventArgs e)
+               { mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Custom, customClass); });
+            items.Insert(index, item);
+        }
 
-            //re-add the "add new" text box, making sure that its text reads correctly
-            mAddRoleToolStripTextBox.Text = Localizer.Message("add_role");
-            mAssignRoleToolStripMenuItem.DropDownItems.Insert(menuIdx++, mAddRoleToolStripTextBox);
+        // Update the custom class menu
+        private void Presentation_CustomClassAddded(object sender, CustomClassEventArgs e)
+        {
+            AddCustomClassToMenu(e.CustomClass);
+        }
+
+        // Update the custom class menu to remove this class
+        void Presentation_CustomClassRemoved(object sender, CustomClassEventArgs e)
+        {
+            ToolStripItemCollection items = mAssignRoleToolStripMenuItem.DropDownItems;
+            int index;
+            for (index = items.IndexOf(mCustomRoleToolStripSeparator); index < items.IndexOf(mAddRoleToolStripTextBox) &&
+                items[index].Text != e.CustomClass; ++index);
+            if (index < items.IndexOf(mAddRoleToolStripTextBox)) items.RemoveAt(index);
         }
 
         private void mClearRoleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1708,6 +1688,7 @@ namespace Obi
             {
                 mProjectView.AddCustomTypeAndSetOnBlock(EmptyNode.Kind.Custom, mAddRoleToolStripTextBox.Text);
                 blocksToolStripMenuItem.DropDown.Close();
+                mAddRoleToolStripTextBox.Text = Localizer.Message("add_role");
             }
         }
         private void mMakeBlockIntoContainerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1737,7 +1718,14 @@ namespace Obi
 
         private void mAddRoleToolStripTextBox_Click(object sender, EventArgs e)
         {
-            if (mAddRoleToolStripTextBox.SelectedText == "") mAddRoleToolStripTextBox.SelectAll();
+            if (mAddRoleToolStripTextBox.SelectedText == "")
+            {
+                // A little bit convoluted but otherwise the selection doesn't work :(
+                string text = mAddRoleToolStripTextBox.Text;
+                mAddRoleToolStripTextBox.Text = "";
+                mAddRoleToolStripTextBox.SelectedText = text;
+                mAddRoleToolStripTextBox.SelectAll();
+            }
         }
     }
 }

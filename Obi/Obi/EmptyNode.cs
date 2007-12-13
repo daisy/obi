@@ -159,7 +159,7 @@ namespace Obi
                 throw new Exception("Missing `page' attribute (page number for page node.)");
             }
             // add it to the presentation
-            Presentation.AddCustomClass(mCustomClass);
+            Presentation.AddCustomClass(mCustomClass, this);
             base.xukInAttributes(source);
         }
 
