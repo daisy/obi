@@ -278,6 +278,7 @@ namespace Obi.Audio
 			m_FrameSize = ( Recorder.Channels * ( Recorder.BitDepth / 8 ) )   ;
 			m_Channels = Recorder.Channels ;
             m_UpdateVMArrayLength =  Recorder.m_UpdateVMArrayLength / 2 ;
+            m_UpdateVMArrayLength = (int) CalculationFunctions.AdaptToFrame(m_UpdateVMArrayLength, m_FrameSize);
 			m_arUpdatedVM  = new byte [m_UpdateVMArrayLength ] ;
 			Array.Copy ( Recorder.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
 
@@ -290,16 +291,14 @@ namespace Obi.Audio
 
             //AnimationComputation();
             ComputePeakDbValue();
-
-
-            if ( ThreadTriggerPeakEventWithDelay != null    &&    ThreadTriggerPeakEventWithDelay.IsAlive)
-                ThreadTriggerPeakEventWithDelay.Abort(); 
-
-            ThreadTriggerPeakEventWithDelay = new Thread(new ThreadStart(TriggerPeakEventForSecondHalf ));
-            ThreadTriggerPeakEventWithDelay.IsBackground = true;
-            ThreadTriggerPeakEventWithDelay.Start(); 
             
-		}
+                if (ThreadTriggerPeakEventWithDelay != null && ThreadTriggerPeakEventWithDelay.IsAlive)
+                    ThreadTriggerPeakEventWithDelay.Abort();
+
+                ThreadTriggerPeakEventWithDelay = new Thread(new ThreadStart(TriggerPeakEventForSecondHalf));
+                ThreadTriggerPeakEventWithDelay.IsBackground = true;
+                ThreadTriggerPeakEventWithDelay.Start();
+            		}
         
         /// <summary>
         ///  Compute VuMeter peak values and triggeres peak value event
@@ -346,9 +345,21 @@ namespace Obi.Audio
         private void TriggerPeakEventForSecondHalf()
         {
             Thread.Sleep(66);
-            Array.Copy(m_Recorder.arUpdateVM, m_UpdateVMArrayLength, m_arUpdatedVM, 0, m_UpdateVMArrayLength - m_FrameSize);
-            ComputePeakDbValue();
+            if (m_Recorder != null && m_Recorder.arUpdateVM.Length > m_arUpdatedVM.Length)
+            {
+                try
+                {
+                    Array.Copy(m_Recorder.arUpdateVM, m_UpdateVMArrayLength, m_arUpdatedVM, 0, m_arUpdatedVM.Length );
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                ComputePeakDbValue();
+            }
         }
+
+
 		int m_PeakValueLeft = 0;
 		int m_PeakValueRight = 0;
 		void AnimationComputation ()
