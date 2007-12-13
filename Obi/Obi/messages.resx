@@ -868,8 +868,8 @@ Error text: {1}</value>
     <value>Heading</value>
     <comment>Used for node kind (MD)</comment>
   </data>
-  <data name="add_new" xml:space="preserve">
-    <value>&lt;Add new&gt;</value>
+  <data name="add_role" xml:space="preserve">
+    <value>(Add role)</value>
     <comment>For the custom types dropdown</comment>
   </data>
   <data name="Silence" xml:space="preserve">

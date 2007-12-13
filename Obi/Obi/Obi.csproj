@@ -131,11 +131,11 @@
     <Compile Include="Dialogs\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\CustomTypes.cs">
+    <Compile Include="Dialogs\EditRoles.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\CustomTypes.Designer.cs">
-      <DependentUpon>CustomTypes.cs</DependentUpon>
+    <Compile Include="Dialogs\EditRoles.Designer.cs">
+      <DependentUpon>EditRoles.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\GoToPage.cs">
       <SubType>Form</SubType>
@@ -416,9 +416,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\CustomTypes.resx">
+    <EmbeddedResource Include="Dialogs\EditRoles.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>CustomTypes.cs</DependentUpon>
+      <DependentUpon>EditRoles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\GoToPage.resx">
       <SubType>Designer</SubType>

@@ -11,7 +11,7 @@ namespace Obi.Commands.Node
     {
         private PhraseNode mNode;
 
-        public SetNodeAsHeadingPhrase(ProjectView.ProjectView view, PhraseNode node) : base(view)
+        public SetNodeAsHeadingPhrase(ProjectView.ProjectView view, PhraseNode node) : base(view, "")
         {
             mNode = node;
         }
@@ -25,8 +25,7 @@ namespace Obi.Commands.Node
         {
             if (mNode == null) return;
             mNode.AncestorAs<SectionNode>().Heading = null;
-        }
-          
+        } 
     }
 
     /// <summary>
@@ -37,7 +36,7 @@ namespace Obi.Commands.Node
         private PhraseNode mNode;
         
         public UnsetNodeAsHeadingPhrase(ProjectView.ProjectView view, PhraseNode node)
-            : base(view)
+            : base(view, "")
         {
             mNode = node;
         }

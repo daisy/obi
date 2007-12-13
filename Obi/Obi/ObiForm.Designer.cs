@@ -774,8 +774,8 @@ namespace Obi
             this.mAddRoleToolStripTextBox.Name = "mAddRoleToolStripTextBox";
             this.mAddRoleToolStripTextBox.Size = new System.Drawing.Size(100, 21);
             this.mAddRoleToolStripTextBox.Text = "(Add role)";
-            this.mAddRoleToolStripTextBox.Leave += new System.EventHandler(this.mAddRoleToolStripTextBox_Leave);
             this.mAddRoleToolStripTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.mAddRoleToolStripTextBox_KeyUp);
+            this.mAddRoleToolStripTextBox.Click += new System.EventHandler(this.mAddRoleToolStripTextBox_Click);
             // 
             // mEditRolesToolStripMenuItem
             // 

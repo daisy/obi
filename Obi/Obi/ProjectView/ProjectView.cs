@@ -744,7 +744,6 @@ namespace Obi.ProjectView
             {
                 mPresentation.UndoRedoManager.execute(new Commands.Node.ChangeCustomType(this, SelectedBlockNode, kind, custom));
             }
-            //TODO: if there are problems, bring up the edit dialog
         }
 
         public void SplitBlock()
@@ -763,7 +762,7 @@ namespace Obi.ProjectView
             //and Obi isn't used to dealing with empty nodes yet (which happens after cmd1 below gets executed)
             if (SelectedBlockNode != null)
             {
-                urakawa.undo.CompositeCommand command = new urakawa.undo.CompositeCommand();
+                urakawa.undo.CompositeCommand command = Presentation.getCommandFactory().createCompositeCommand();
                 Commands.Node.AddContainer cmd1 = new Obi.Commands.Node.AddContainer(this, SelectedBlockNode.ParentAs<ObiNode>(), SelectedBlockNode.Index);
                 Commands.Node.ChangeParent cmd2 = new Obi.Commands.Node.ChangeParent(this, SelectedBlockNode, cmd1.Container);
                 command.append(cmd1);
@@ -772,6 +771,7 @@ namespace Obi.ProjectView
             }
         }
 
+        //TODO: put this code into a command
         public void RemoveContainer()
         {
             if (SelectedBlockNode != null)
@@ -793,7 +793,7 @@ namespace Obi.ProjectView
             {
                 if (SelectedBlockNode != null)
                 {
-                    urakawa.undo.CompositeCommand command = new urakawa.undo.CompositeCommand();
+                    urakawa.undo.CompositeCommand command = Presentation.getCommandFactory().createCompositeCommand();
 
                     //1. clear existing custom type
                     Commands.Node.ChangeCustomType cmd1 = new Obi.Commands.Node.ChangeCustomType(this, SelectedBlockNode, EmptyNode.Kind.Plain);
@@ -804,7 +804,7 @@ namespace Obi.ProjectView
                     Commands.Node.SetNodeAsHeadingPhrase cmd3 = new Obi.Commands.Node.SetNodeAsHeadingPhrase(this, SelectedPhraseNode);
                     //4. assign new custom type as "heading"
                     Commands.Node.ChangeCustomType cmd4 = new Obi.Commands.Node.ChangeCustomType(this, SelectedBlockNode, EmptyNode.Kind.Heading, null);
-                    
+                    command.setShortDescription(cmd4.getShortDescription());
                     command.append(cmd1);
                     command.append(cmd2);
                     command.append(cmd3);
@@ -824,14 +824,18 @@ namespace Obi.ProjectView
         /// <param name="kind"></param>
         public void AddCustomTypeAndSetOnBlock(EmptyNode.Kind nodeKind, string customClass)
         {
-            urakawa.undo.CompositeCommand command = new urakawa.undo.CompositeCommand();
-            //add the custom type to the presentation
-            Commands.AddCustomType cmd1 = new Obi.Commands.AddCustomType(this, mPresentation, customClass);
-            //set it on the block
-            Commands.Node.ChangeCustomType cmd2 = new Obi.Commands.Node.ChangeCustomType(this, SelectedBlockNode, nodeKind, customClass);
-            command.append(cmd1);
-            command.append(cmd2);
-            mPresentation.UndoRedoManager.execute(command);   
+            if (IsBlockSelected)
+            {
+                urakawa.undo.CompositeCommand command = Presentation.getCommandFactory().createCompositeCommand();
+                //add the custom type to the presentation
+                Commands.AddCustomType cmd1 = new Obi.Commands.AddCustomType(this, mPresentation, customClass);
+                //set it on the block
+                Commands.Node.ChangeCustomType cmd2 = new Obi.Commands.Node.ChangeCustomType(this, SelectedBlockNode, nodeKind, customClass);
+                command.append(cmd1);
+                command.append(cmd2);
+                command.setShortDescription(cmd2.getShortDescription());
+                mPresentation.UndoRedoManager.execute(command);
+            }
         }
 
         public bool CanSetPageNumber { get { return IsBlockSelected; } } 
