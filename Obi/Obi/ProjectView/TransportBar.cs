@@ -906,10 +906,25 @@ namespace Obi.ProjectView
                 delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
                 {
                     PhraseNode phrase = mView.Presentation.CreatePhraseNode(_e.Audio);
-                    mRecordingCommand.append(new Commands.Node.AddNode(mView, phrase, mRecordingSection,
-                        mRecordingInitPhraseIndex + _e.PhraseIndex));
-                    mView.Presentation.UndoRedoManager.execute(mRecordingCommand);
+
+                    if (_e.PhraseIndex > 0)
+                    {
+                        mView.Presentation.UndoRedoManager.execute(new Commands.Node.AddNode(mView, phrase, mRecordingSection,
+                            mRecordingInitPhraseIndex + _e.PhraseIndex) );
+                    }
+                    else
+                    {
+                        mRecordingCommand.append(new Commands.Node.AddNode(mView, phrase, mRecordingSection,
+                            mRecordingInitPhraseIndex + _e.PhraseIndex));
+                        mView.Presentation.UndoRedoManager.execute(mRecordingCommand);
+                    }
                 });
+
+            mRecordingSession.FinishingPage += new Events.Audio.Recorder.FinishingPageHandler (
+                delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
+                {
+                    SetPageNumberWhileRecording(_e);
+                                                                            });
             if (startRecording)
             {
                 StartRecording();
@@ -919,6 +934,12 @@ namespace Obi.ProjectView
                 StartListening();
             }
         }
+
+        private void SetPageNumberWhileRecording( Obi.Events.Audio.Recorder.PhraseEventArgs  e )
+        {
+                        int PageNumber = mView.Presentation.PageNumberFor(mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + e.PhraseIndex)) ;
+            urakawa.undo.ICommand cmd = new Commands.Node.SetPageNumber(mView, mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + e.PhraseIndex ) ,  PageNumber );
+                    }
 
         // Start listening
         private void StartListening()
