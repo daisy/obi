@@ -1539,6 +1539,7 @@ namespace Obi
         private void UpdateBlocksMenu()
         {
             mAddEmptyBlockToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
+            mAddEmptyPageBlocksToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
             mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
             mSplitBlockToolStripMenuItem.Enabled = mProjectView.CanSplitBlock;
             mMergeBlockWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeBlockWithNext;
@@ -1581,11 +1582,20 @@ namespace Obi
             Disable(false);
         }
 
+        private void mAddEmptyPageBlocksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.CanAddEmptyBlock)
+            {
+                Dialogs.SetPageNumber dialog = new SetPageNumber(mProjectView.NextPageNumber, false, true);
+                if (dialog.ShowDialog() == DialogResult.OK) mProjectView.AddPageRange(dialog.Number, dialog.NumberOfPages, dialog.Renumber);
+            }
+        }
+
         private void mPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mProjectView.CanSetPageNumber)
             {
-                Dialogs.SetPageNumber dialog = new SetPageNumber(mProjectView.NextPageNumber, false);
+                Dialogs.SetPageNumber dialog = new SetPageNumber(mProjectView.NextPageNumber, false, false);
                 if (dialog.ShowDialog() == DialogResult.OK) mProjectView.SetPageNumberOnSelectedBock(dialog.Number, dialog.Renumber);
             }
         }

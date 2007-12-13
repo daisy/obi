@@ -70,7 +70,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// Get the next page number for the selected block.
         /// </summary>
-        public int NextPageNumber { get { return mPresentation.PageNumberFor(SelectedBlockNode); }  }
+        public int NextPageNumber { get { return mPresentation.PageNumberFor(mSelection.Node); }  }
 
         /// <summary>
         /// The parent form as an Obi form.
@@ -859,6 +859,35 @@ namespace Obi.ProjectView
                     }
                     k.append(cmd);
                     cmd = k;
+                }
+                mPresentation.UndoRedoManager.execute(cmd);
+            }
+        }
+
+        public void AddPageRange(int number, int count, bool renumber)
+        {
+            if (CanAddEmptyBlock)
+            {
+                urakawa.undo.CompositeCommand cmd = Presentation.getCommandFactory().createCompositeCommand();
+                cmd.setShortDescription(Localizer.Message("add_empty_page_blocks"));
+                ObiNode parent = mSelection.ParentForNewBlock();
+                int index = mSelection.IndexForNewBlock();
+                for (int i = 0; i < count; ++i)
+                {
+                    EmptyNode node = new EmptyNode(Presentation);
+                    cmd.append(new Commands.Node.AddEmptyNode(this, node, parent, index + i));
+                    cmd.append(new Commands.Node.SetPageNumber(this, node, number++));
+                }
+                if (renumber)
+                {
+                    ObiNode from = index < parent.getChildCount() ? (ObiNode)parent.getChild(index) : parent;
+                    for (ObiNode n = from; n != null; n = n.FollowingNode)
+                    {
+                        if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)
+                        {
+                            cmd.append(new Commands.Node.SetPageNumber(this, (EmptyNode)n, ++number));
+                        }
+                    }
                 }
                 mPresentation.UndoRedoManager.execute(cmd);
             }

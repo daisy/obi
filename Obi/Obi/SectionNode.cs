@@ -25,6 +25,8 @@ namespace Obi
         }
 
 
+        public override string ToString() { return string.Format("SectionNode<{0}>\"{1}\"", Level, Label); } 
+
         public override void AppendChild(ObiNode node)
         {
             int index = node is PhraseNode ? FirstSectionIndex : getChildCount();
@@ -237,34 +239,6 @@ namespace Obi
         /// Number of phrase children.
         /// </summary>
         public override int PhraseChildCount { get { return FirstSectionIndex; } }
-
-        /// <summary>
-        /// Position of this section in the "flat list" of sections. If the section is the first child,
-        /// then it is simply the position of its parent + 1. Otherwise, it is the position of its previous
-        /// sibling + the span of the previous sibling.
-        /// </summary>
-        public int Position__REMOVE__
-        {
-            get
-            {
-                /*SectionNode sibling = PrecedingSibling;
-                if (sibling != null)
-                {
-                    return sibling.Position + sibling.mSpan;
-                }
-                else if (this.getParent() is SectionNode)
-                {
-                    //this is the first section child of a section, so its position is 1 greater that the parent's
-                    return 1 + ParentAs<SectionNode>().Position;
-                }
-                else
-                {
-                    // this is the first node (no previous sibling, parent is not a section node)
-                    return 0;
-                }*/
-                return 0;
-            }
-        }
 
         /// <summary>
         /// Get the child phrase at an index relative to phrases only.

@@ -79,11 +79,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;Add new&gt;.
+        ///   Looks up a localized string similar to add empty page blocks.
         /// </summary>
-        internal static string add_new {
+        internal static string add_empty_page_blocks {
             get {
-                return ResourceManager.GetString("add_new", resourceCulture);
+                return ResourceManager.GetString("add_empty_page_blocks", resourceCulture);
             }
         }
         
@@ -102,6 +102,15 @@ namespace Obi {
         internal static string add_phrase_command_label {
             get {
                 return ResourceManager.GetString("add_phrase_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (Add role).
+        /// </summary>
+        internal static string add_role {
+            get {
+                return ResourceManager.GetString("add_role", resourceCulture);
             }
         }
         
