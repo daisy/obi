@@ -179,9 +179,10 @@ mSessionMedia                 = (ManagedAudioMedia)m_Presentation.getMediaFactor
         {
             if (mRecorder.State == AudioRecorderState.Recording)
             {
-                FinishingPage(this, FinishedPhrase());
+                PhraseEventArgs e = FinishedPhrase();
                 StartingPhrase(this, new PhraseEventArgs(mSessionMedia, mPhraseMarks.Count, 0.0));
-            }
+                FinishingPage(this, e);
+                }
         }
 
         /// <summary>

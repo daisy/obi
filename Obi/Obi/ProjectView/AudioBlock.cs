@@ -56,6 +56,10 @@ namespace Obi.ProjectView
             {
                 if (!value) mWaveform.Deselect();
                 base.Selected = value;
+                                
+                AccessibleName = CustomClassLabel + String.Format(Localizer.Message("audio_accessible_name"),
+                base.ObiNode.Index + 1, base.ObiNode.ParentAs<ObiNode>().PhraseChildCount);
+                mWaveform.AccessibleName = AccessibleName;
             }
         }
 

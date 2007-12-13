@@ -938,8 +938,9 @@ namespace Obi.ProjectView
         private void SetPageNumberWhileRecording( Obi.Events.Audio.Recorder.PhraseEventArgs  e )
         {
                         int PageNumber = mView.Presentation.PageNumberFor(mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + e.PhraseIndex)) ;
-            urakawa.undo.ICommand cmd = new Commands.Node.SetPageNumber(mView, mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + e.PhraseIndex ) ,  PageNumber );
-                    }
+                                                urakawa.undo.ICommand cmd = new Commands.Node.SetPageNumber(mView,(EmptyNode)  mRecordingSection.PhraseChild (mRecordingInitPhraseIndex + e.PhraseIndex + 1 ) ,  PageNumber );
+                                                cmd.execute();
+                                }
 
         // Start listening
         private void StartListening()
