@@ -1545,8 +1545,8 @@ namespace Obi
             mListenToBlockToolStripMenuItem.Enabled = (mProjectView.SelectedBlockNode != null);
             mAssignRoleToolStripMenuItem.Enabled = (mProjectView.SelectedBlockNode != null);
             mPageToolStripMenuItem.Enabled = mProjectView.CanSetPageNumber;
+            mEditRolesToolStripMenuItem.Enabled = mSession.Presentation != null;
             mClearRoleToolStripMenuItem.Enabled = (mProjectView.SelectedBlockNode != null && mProjectView.SelectedBlockNode.NodeKind != EmptyNode.Kind.Plain);
-            mEditRolesToolStripMenuItem.Enabled = (mProjectView != null && mProjectView.Presentation != null);
         }
 
         private void mAddEmptyBlockToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddEmptyBlock(); }
@@ -1676,6 +1676,8 @@ namespace Obi
         {
             mProjectView.MakeSelectedBlockIntoHeadingPhrase();
         }
+
+        private void mSilenceToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MakeSelectedBlockIntoSilencePhrase(); }
 
         private void mEditRolesToolStripMenuItem_Click(object sender, EventArgs e)
         {

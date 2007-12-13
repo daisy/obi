@@ -298,6 +298,11 @@ namespace Obi.ProjectView
                 Strip strip = FindStrip((SectionNode)e.Node);
                 if (strip != null) strip.UpdateColors();
             }
+            else if (e.Node is EmptyNode)
+            {
+                Block block = FindBlock((EmptyNode)e.Node);
+                if (block != null) block.UpdateColors();
+            }
         }
 
         // Handle addition of tree nodes: add a new strip for new section nodes.

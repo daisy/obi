@@ -111,6 +111,7 @@
     <Compile Include="Commands\Node\RenameSection.cs" />
     <Compile Include="Commands\Node\SplitAudio.cs" />
     <Compile Include="Commands\Node\SplitAudioSelection.cs" />
+    <Compile Include="Commands\Node\ToggleNodeUsed.cs" />
     <Compile Include="Commands\Strips\AddNewStrip.cs" />
     <Compile Include="Commands\Strips\ImportPhrases.cs" />
     <Compile Include="Commands\TOC\AddNewSection.cs" />
