@@ -346,6 +346,7 @@ namespace Obi
                 {
                     mSession.NewPresentation(path, title, createTitleSection, "(please set id)", mSettings);
                 }
+                UpdateMenus();
             }
             catch (Exception e)
             {
@@ -1660,7 +1661,6 @@ namespace Obi
                { mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Custom, customClass); });
             items.Insert(index, item);
         }
-
         // Update the custom class menu
         private void Presentation_CustomClassAddded(object sender, CustomClassEventArgs e)
         {

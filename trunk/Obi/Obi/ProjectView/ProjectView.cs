@@ -628,7 +628,7 @@ namespace Obi.ProjectView
             if (mFindInTextSplitter.Panel2Collapsed == true) mFindInTextSplitter.Panel2Collapsed = false;
             FindInTextVisible = true;
             //iterating over the layout panel seems to be the way to search the sections 
-            mFindInText.StartNewSearch(mStripsView.LayoutPanel);
+            mFindInText.StartNewSearch(mStripsView);
         }
 
         public void FindNextInText()

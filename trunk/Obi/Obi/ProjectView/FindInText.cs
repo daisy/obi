@@ -39,16 +39,17 @@ namespace Obi.ProjectView
     /// </remarks>
     public partial class FindInText : UserControl
     {
-        FlowLayoutPanel mStripsPanel;
+        StripsView mStripsView;
         int mOriginalPosition;
         bool mFoundFirst;
-        private ProjectView mView;  // the parent project view
-     
+        private ProjectView mProjectView;
+        private enum SearchDirection { NEXT, PREVIOUS };
+
         public FindInText()
         {
-            mStripsPanel = null;
-            mOriginalPosition = -1;
-            mView = null;
+            mStripsView = null;
+            mOriginalPosition = 0;
+            mProjectView = null;
             mFoundFirst = false;
             InitializeComponent();
         }
@@ -60,8 +61,8 @@ namespace Obi.ProjectView
         {
             set
             {
-                if (mView != null) throw new Exception("Cannot set the project view again!");
-                mView = value;
+                if (mProjectView != null) throw new Exception("Cannot set the project view again!");
+                mProjectView = value;
             }
         }
 
@@ -76,120 +77,125 @@ namespace Obi.ProjectView
         /// <summary>
         /// This function displays the find in text form.
         /// </summary>
-        public void StartNewSearch(FlowLayoutPanel strips)
+        public void StartNewSearch(StripsView strips)
         {
-            mStripsPanel = strips;
-            mView.ObiForm.Status(Localizer.Message("find_in_text_init"));
-            mView.FindInTextVisible = true;
+            mStripsView = strips;
+            mProjectView.FindInTextVisible = true;
             mFoundFirst = false;
-            mView.ObiForm.UpdateFindInTextMenuItems();
+            mProjectView.ObiForm.UpdateFindInTextMenuItems();
             mString.SelectAll();
             mString.Focus();
+            mProjectView.ObiForm.Status(Localizer.Message("find_in_text_init"));
         }
-
-        /// <summary>
-        /// Search for the next occurrence of the text.  
-        /// </summary>
         public void FindNext()
         {
-            if (!Visible || !mFoundFirst)
-            {
-                //debugging exception only!
-                throw new Exception("Find next not available; form is not being shown or text was never found in the first place.");
-            }
-            if (mString.Text.Length == 0)
-            {
-                mString.Focus();
-                mView.ObiForm.Status(Localizer.Message("please_enter_some_text"));
-                return;
-            }
-            int currentSelection = GetIndexOfCurrentlySelectedStrip(mStripsPanel);
-            mView.ObiForm.Status(Localizer.Message("find_next_in_text"));
-            search(GetIndexOfNextStrip(mStripsPanel, currentSelection), mString.Text, 1);
+            FindAnother(SearchDirection.NEXT);
+        }
+        public void FindPrevious()
+        {
+            FindAnother(SearchDirection.PREVIOUS);
         }
 
         /// <summary>
-        /// Search for the previous occurrence of the text
+        /// Search for the first occurrence, starting at the current selection
         /// </summary>
-        public void FindPrevious()
+        private void InitialSearch()
         {
-            if (!Visible || !mFoundFirst)
-            {
-                //debugging exception only!
-                throw new Exception("Find previous not available; form is not being shown or text was never found in the first place.");
-            }
-            if (mString.Text.Length == 0)
-            {
-                mString.Focus();
-                mView.ObiForm.Status(Localizer.Message("please_enter_some_text"));
-                return;
-            }
+            mOriginalPosition = GetCurrentIndex();
+            Search(mOriginalPosition, mString.Text, SearchDirection.NEXT, true);
+        }
 
-            int currentSelection = GetIndexOfCurrentlySelectedStrip(mStripsPanel);
-            //start at the strip before our current strip
-            int previousStrip = GetIndexOfPreviousStrip(mStripsPanel, currentSelection);
-            mView.ObiForm.Status(Localizer.Message("find_prev_in_text"));
-            search(GetIndexOfPreviousStrip(mStripsPanel, currentSelection), mString.Text, -1);
+        /// <summary>
+        /// Search for the next or previous occurrence of the text.  
+        /// </summary>
+        private void FindAnother(SearchDirection dir)
+        {
+            if (!mFoundFirst)
+            {
+                InitialSearch();
+            }
+            else
+            {
+                if (!Visible)
+                {
+                    //debugging exception only!
+                    throw new Exception("Find next/previous not available: form is not being shown.");
+                }
+                if (mString.Text.Length == 0)
+                {
+                    mString.Focus();
+                    mProjectView.ObiForm.Status(Localizer.Message("please_enter_some_text"));
+                    return;
+                }
+
+                //this returns an index into the StripsView.Searchables collection
+                int currentSelection = GetCurrentIndex();
+                if (dir == SearchDirection.NEXT)
+                {
+                    currentSelection = GetNextIndex(currentSelection);
+                    mProjectView.ObiForm.Status(Localizer.Message("find_next_in_text"));
+                }
+                else
+                {
+                    currentSelection = GetPreviousIndex(currentSelection);
+                    mProjectView.ObiForm.Status(Localizer.Message("find_prev_in_text"));
+                }
+                Search(currentSelection, mString.Text, dir, false);
+            }
         }
 
         /// <summary>
         /// Search from the starting point and continue in the specified direction
         /// </summary>
-        /// <param name="startingPoint">index of current position</param>
+        /// <param name="startingPoint">index in Searchables of current position.  this must be valid.</param>
         /// <param name="searchString">what to search for</param>
-        /// <param name="direction">1 = forward, -1 = backwards</param>
-        private void search(int startingPoint, String searchString, int direction)
+        /// <param name="direction">NEXT or PREVIOUS</param>
+        private void Search(int startingPoint, String searchString, SearchDirection direction, bool isInitialSearch)
         {
-            int startIndex = startingPoint;
-            if (startIndex == -1)
+            if (startingPoint < 0 || startingPoint >= mStripsView.Searchables.Count)
+                throw new Exception("Search index " + startingPoint + "out of bounds.  Min = 0, Max = " + mStripsView.Searchables.Count);
+            if (mStripsView.Searchables.Count == 0)
             {
-                startIndex = GetIndexOfFirstStrip(mStripsPanel);
-                if (startIndex == -1)
-                {
-                    mView.ObiForm.Status(Localizer.Message("nothing_to_search"));
-                    return;
-                }
+                mProjectView.ObiForm.Status(Localizer.Message("nothing_to_search"));
+                return;
             }
 
-            mView.ObiForm.Status(Localizer.Message("searching"));
-         
-            bool found = false;
-            while (startIndex != -1 && found == false)
-            {
-                Control control = mStripsPanel.Controls[startIndex];
-                //make sure that this is the type of control we want to search
-                System.Diagnostics.Debug.Assert(MeetsCriteria(control));
+            mProjectView.ObiForm.Status(Localizer.Message("searching"));
 
-                if (((ISearchable)control).Matches(mString.Text))
+            int startIndex = startingPoint;
+            bool found = false;
+            //there might be a way to wrangle Searchables.Find(...) to do the work for us with a Predicate, but
+            //as there is no FindNext or FindPrevious (especially the latter), it seems like more work than it's worth
+            while (found == false)
+            {
+                if (isInitialSearch == false && mFoundFirst == true && startIndex == mOriginalPosition) break;
+
+                if (mStripsView.Searchables[startIndex].Matches(mString.Text))
                 {
-                    mView.SelectedStripNode = ((Strip)control).Node;
+                    SetSelection(mStripsView.Searchables[startIndex]);
                     found = true;
                 }
                 else
                 {
-                    if (direction == 1) startIndex = GetIndexOfNextStrip(mStripsPanel, startIndex);
-                    else if (direction == -1) startIndex = GetIndexOfPreviousStrip(mStripsPanel, startIndex);
+                    if (direction == SearchDirection.NEXT) startIndex = GetNextIndex(startIndex);
+                    else if (direction == SearchDirection.PREVIOUS) startIndex = GetPreviousIndex(startIndex);
                 }
-
-                //don't loop forever
-                if (startIndex == mOriginalPosition) break;
             }
 
             if (found)
             {
                 if (!mFoundFirst) mFoundFirst = true;
-                mView.ObiForm.Status(String.Format(Localizer.Message("found_in_text"), mString.Text));
+                mProjectView.ObiForm.Status(String.Format(Localizer.Message("found_in_text"), mString.Text));
             }
             else
             {
-                if (startIndex == mOriginalPosition) mView.ObiForm.Status(Localizer.Message("finished_searching_all"));
-                else mView.ObiForm.Status(Localizer.Message("not_found_in_text"));
-                //reset the original position to wherever we are now
-                mOriginalPosition = startIndex;
-                // also deselect
-                mView.Selection = null;
+                if (startIndex == mOriginalPosition) mProjectView.ObiForm.Status(Localizer.Message("finished_searching_all"));
+                else mProjectView.ObiForm.Status(Localizer.Message("not_found_in_text"));
+                //deselect
+                mProjectView.Selection = null;
+                mFoundFirst = false;
             }
-            mView.ObiForm.UpdateFindInTextMenuItems();
+            mProjectView.ObiForm.UpdateFindInTextMenuItems();
         }
 
         /// <summary>
@@ -211,38 +217,27 @@ namespace Obi.ProjectView
             //start the search
             if (e.KeyCode == Keys.Return)
             {
-                mOriginalPosition = GetIndexOfCurrentlySelectedStrip(mStripsPanel);
-                //if nothing is selected, start at the top
-                if (mOriginalPosition == -1) mOriginalPosition = GetIndexOfFirstStrip(mStripsPanel);
-                search(mOriginalPosition, mString.Text, 1);
+                InitialSearch();
             }
             //close the form
             else if (e.KeyCode == Keys.Escape)
             {
-                mView.FindInTextVisible = false;
+                mProjectView.FindInTextVisible = false;
             }
             //find previous or next
             else if (e.KeyCode == Keys.F3)
             {
-                if (Control.ModifierKeys == Keys.Shift) FindPrevious();
-                else FindNext();
+                if (CanFindNextPreviousText)
+                {
+                    if (Control.ModifierKeys == Keys.Shift) FindPrevious();
+                    else FindNext();
+                }
             }
             //maybe the user wants to start a new search
             else if (e.KeyCode == Keys.F && Control.ModifierKeys == Keys.Control)
             {
-                StartNewSearch(mStripsPanel);
+                StartNewSearch(mStripsView);
             }
-        }
-
-        /// <summary>
-        /// Test if the widget meets our criteria for being a searchable widget
-        /// </summary>
-        /// <param name="control"></param>
-        /// <returns></returns>
-        private static bool MeetsCriteria(Control control)
-        {
-            if (control != null && control is ISearchable && control is Strip) return true;
-            else return false;
         }
 
         /// <summary>
@@ -266,91 +261,60 @@ namespace Obi.ProjectView
         private void mString_TextChanged(object sender, EventArgs e)
         {
             //if the text has been cleared, pretend it's a new search
-            if (mString.Text == "") StartNewSearch(mStripsPanel);
-        }
-
-        #region Indexing
-
-        /// <summary>
-        /// get the index of the currently selected ISearchable item
-        /// </summary>
-        /// <param name="stripsPanel"></param>
-        /// <returns></returns>
-        ///ideally, we could count on ISearchable objects to also be index-able, so this function would return ISearchable instead
-        private static int GetIndexOfCurrentlySelectedStrip(FlowLayoutPanel stripsPanel)
-        {
-            for (int i = 0; i < stripsPanel.Controls.Count; i++)
-            {
-                Control control = stripsPanel.Controls[i];
-                if (MeetsCriteria(control) && ((Strip)control).Selected) return i;
-            }
-            return -1;
+            if (mString.Text == "") StartNewSearch(mStripsView);
         }
 
         /// <summary>
-        /// get the index of the first ISearchable strip
+        /// Get the current selection and return its index in the Searchables collection
         /// </summary>
-        /// <param name="stripsPanel"></param>
         /// <returns></returns>
-        private static int GetIndexOfFirstStrip(FlowLayoutPanel stripsPanel)
+        private int GetCurrentIndex()
         {
-            for (int i = 0; i < stripsPanel.Controls.Count; i++)
+            if (mProjectView.Selection == null) return -1;
+            //need an easy way to convert between NodeSelection and ISearchable
+            //otherwise we break the genericity of ISearchable and write ugly code (see below)
+            else
             {
-                Control control = stripsPanel.Controls[i];
-                if (MeetsCriteria(control)) return i;
+                foreach (Control c in mStripsView.LayoutPanel.Controls)
+                {
+                    if (c is Strip && ((Strip)c).Selected) return mStripsView.Searchables.IndexOf((Strip)c);
+                    else if (c is Block && ((Block)c).Selected) return mStripsView.Searchables.IndexOf((Block)c);
+                }
             }
-            return -1;
-        }
-        
-        /// <summary>
-        /// get the index of the last ISearchable strip
-        /// </summary>
-        /// <param name="stripsPanel"></param>
-        /// <returns></returns>
-        private static int GetIndexOfLastStrip(FlowLayoutPanel stripsPanel)
-        {
-            for (int i = stripsPanel.Controls.Count - 1; i >= 0; i--)
-            {
-                Control control = stripsPanel.Controls[i];
-                if (MeetsCriteria(control)) return i;
-            }
-            return -1;
-        }
-        
-        /// <summary>
-        /// get the next ISearchable strip
-        /// </summary>
-        /// <param name="stripsPanel"></param>
-        /// <param name="startIndex"></param>
-        /// <returns></returns>
-        private int GetIndexOfNextStrip(FlowLayoutPanel stripsPanel, int startIndex)
-        {
-            for (int i = startIndex + 1; i < stripsPanel.Controls.Count; i++)
-            {
-                Control control = stripsPanel.Controls[i];
-                if (MeetsCriteria(control)) return i;
-            }
-            //loop back to the beginning
-            return GetIndexOfFirstStrip(stripsPanel);
+            return 0;
+
         }
 
         /// <summary>
-        /// get the previous ISearchable strip
+        /// Get the previous index in Searchables (loop to the end)
         /// </summary>
-        /// <param name="stripsPanel"></param>
-        /// <param name="startIndex"></param>
+        /// <param name="currentSelection"></param>
         /// <returns></returns>
-        private static int GetIndexOfPreviousStrip(FlowLayoutPanel stripsPanel, int startIndex)
+        private int GetPreviousIndex(int currentSelection)
         {
-            for (int i = startIndex - 1; i >= 0; i--)
-            {
-                Control control = stripsPanel.Controls[i];
-                if (MeetsCriteria(control)) return i;
-            }
-            //loop back to the end
-            return GetIndexOfLastStrip(stripsPanel);
+            if (currentSelection <= 0) return mStripsView.Searchables.Count - 1;
+            else return currentSelection-1;
         }
-    #endregion
+        /// <summary>
+        /// Get the next index in Searchables (loop to the beginning)
+        /// </summary>
+        /// <param name="currentSelection"></param>
+        /// <returns></returns>
+        private int GetNextIndex(int currentSelection)
+        {
+            if (currentSelection >= mStripsView.Searchables.Count-1) return 0;
+            else return currentSelection+1;
+        }
+        /// <summary>
+        /// Set the selection in the ProjectView
+        /// </summary>
+        /// <param name="selection"></param>
+        private void SetSelection(ISearchable selection)
+        {
+            //this breaks the genericity of ISearchable, but I don't know about (or I don't understand) generic selection in Obi
+            if (selection is Block) mProjectView.SelectedBlockNode = ((Block)selection).Node;
+            else if (selection is Strip) mProjectView.SelectedStripNode = ((Strip)selection).Node;
+        }
 
     }
 }
