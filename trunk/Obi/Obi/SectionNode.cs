@@ -12,7 +12,7 @@ namespace Obi
     /// </summary>
     public class SectionNode : ObiNode
     {
-        private PhraseNode mHeading;  // section heading
+        private EmptyNode mHeading;  // section heading
 
         public static readonly string XUK_ELEMENT_NAME = "section";
 
@@ -49,7 +49,7 @@ namespace Obi
             }
             else
             {
-                copy.Heading = mHeading;
+                copy.mHeading = mHeading;
             }
             return copy;
         }
@@ -172,7 +172,7 @@ namespace Obi
         /// <summary>
         /// Get or set the heading phrase for this section.
         /// </summary>
-        public PhraseNode Heading
+        public EmptyNode Heading
         {
             get { return mHeading; }
             set { mHeading = value; }
@@ -338,7 +338,7 @@ namespace Obi
             }
             for (int i = 0; i < SectionChildCount; ++i)
             {
-                destinationNode.AddChildSection__REMOVE__(SectionChild(i).copy(true), i);
+                //destinationNode.AddChildSection__REMOVE__(SectionChild(i).copy(true), i);
             }
         }
 
@@ -349,62 +349,5 @@ namespace Obi
         {
             get { return (TextMedia)getProperty<ChannelsProperty>().getMedia(Presentation.TextChannel); }
         }
-
-
-
-
-
-        // TO BE REMOVED
-
-        /// <summary>
-        /// Add a child phrase at the given index.
-        /// </summary>
-        public void AddChildPhrase__REMOVE__(PhraseNode node, int index)
-        {
-            insert(node, index);
-        }
-
-        /// <summary>
-        /// Add a child section at the given index.
-        /// The span of this section, plus that of parent sections,
-        /// is increased accordingly.
-        /// </summary>
-        public void AddChildSection__REMOVE__(SectionNode node, int index)
-        {
-            // insert(node, index + mSectionOffset);
-            // UpdateSpan(node.mSpan);
-        }
-
-        /// <summary>
-        /// Add a new child section right before the context seciont section.
-        /// </summary>
-        /// TODO: replace
-        public void AddChildSectionBefore__REMOVE__(SectionNode node, SectionNode anchorNode)
-        {
-            insertBefore(node, anchorNode);
-            // UpdateSpan(node.mSpan);
-        }
-
-        /// <summary>
-        /// Called when a new child phrase was added to maintain bookkeeping information.
-        /// </summary>
-        /// <param name="phrase">The new child phrase.</param>
-        public void AddedPhraseNode__REMOVE__(PhraseNode phrase)
-        {
-            if (phrase.Used) phrase.Used = Used;
-            // if (phrase.HasXukInHeadingFlag) Heading = phrase;
-            // ++mSectionOffset;
-        }
-
-        /// <summary>
-        /// Append a child section.
-        /// </summary>
-        /// TODO: replace
-        public void AppendChildSection__REMOVE__(SectionNode node)
-        {
-            base.appendChild(node);
-            // UpdateSpan(node.mSpan);
-        }
-
     }
 }

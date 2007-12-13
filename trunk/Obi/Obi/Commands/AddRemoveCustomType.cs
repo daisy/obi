@@ -10,10 +10,11 @@ namespace Obi.Commands
     /// </summary>
     class AddCustomType : Command
     {
-        Presentation mPresentation;
-        string mCustomType;
+        private Presentation mPresentation;
+        private string mCustomType;
 
-        public AddCustomType(ProjectView.ProjectView view, Presentation presentation, string customType) : base(view)
+        public AddCustomType(ProjectView.ProjectView view, Presentation presentation, string customType)
+            : base(view)
         {
             mPresentation = presentation;
             mCustomType = customType;
@@ -21,13 +22,13 @@ namespace Obi.Commands
 
         public override void execute()
         {
-            mPresentation.AddCustomClass(mCustomType);
-        }
-        public override void unExecute()
-        {
-            mPresentation.RemoveCustomType(mCustomType);
+            mPresentation.AddCustomClass(mCustomType, null);
         }
 
+        public override void unExecute()
+        {
+            mPresentation.RemoveCustomClass(mCustomType, null);
+        }
     }
 
     /// <summary>
@@ -46,11 +47,11 @@ namespace Obi.Commands
 
         public override void execute()
         {
-            mPresentation.RemoveCustomType(mCustomType);
+            mPresentation.RemoveCustomClass(mCustomType, null);
         }
         public override void unExecute()
         {
-            mPresentation.AddCustomClass(mCustomType);
+            mPresentation.AddCustomClass(mCustomType, null);
         }
 
     }

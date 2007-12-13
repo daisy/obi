@@ -798,7 +798,7 @@ namespace Obi.ProjectView
                     //1. clear existing custom type
                     Commands.Node.ChangeCustomType cmd1 = new Obi.Commands.Node.ChangeCustomType(this, SelectedBlockNode, EmptyNode.Kind.Plain);
                     //2. unset existing heading on section
-                    PhraseNode node = SelectedBlockNode.AncestorAs<SectionNode>().Heading;
+                    EmptyNode node = SelectedBlockNode.AncestorAs<SectionNode>().Heading;
                     Commands.Node.UnsetNodeAsHeadingPhrase cmd2 = new Obi.Commands.Node.UnsetNodeAsHeadingPhrase(this, node);
                     //3. set new heading
                     Commands.Node.SetNodeAsHeadingPhrase cmd3 = new Obi.Commands.Node.SetNodeAsHeadingPhrase(this, SelectedPhraseNode);
@@ -826,15 +826,11 @@ namespace Obi.ProjectView
         {
             if (IsBlockSelected)
             {
-                urakawa.undo.CompositeCommand command = Presentation.getCommandFactory().createCompositeCommand();
-                //add the custom type to the presentation
-                Commands.AddCustomType cmd1 = new Obi.Commands.AddCustomType(this, mPresentation, customClass);
-                //set it on the block
-                Commands.Node.ChangeCustomType cmd2 = new Obi.Commands.Node.ChangeCustomType(this, SelectedBlockNode, nodeKind, customClass);
-                command.append(cmd1);
-                command.append(cmd2);
-                command.setShortDescription(cmd2.getShortDescription());
-                mPresentation.UndoRedoManager.execute(command);
+                EmptyNode node = SelectedBlockNode;
+                if (node.NodeKind != nodeKind || node.CustomClass != customClass)
+                {
+                    mPresentation.UndoRedoManager.execute(new Obi.Commands.Node.ChangeCustomType(this, node, customClass));
+                }
             }
         }
 

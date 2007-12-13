@@ -43,6 +43,7 @@ namespace Obi.Commands.Node
         public override void execute()
         {
             mNode.SetKind(mNodeKind, mCustomClass);
+            if (mNodeKind == EmptyNode.Kind.Custom) View.Presentation.AddCustomClass(mCustomClass, mNode);
             View.SelectedBlockNode = mNode;
             base.execute();
         }
@@ -50,6 +51,7 @@ namespace Obi.Commands.Node
         public override void unExecute()
         {
             if (mOldNodeKind == EmptyNode.Kind.Page) mNode.PageNumber = mOldPageNumber;
+            if (mNodeKind == EmptyNode.Kind.Custom) View.Presentation.RemoveCustomClass(mCustomClass, mNode);
             mNode.SetKind(mOldNodeKind, mOldCustomClass);
             base.unExecute();
         }

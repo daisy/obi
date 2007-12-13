@@ -11,26 +11,32 @@ namespace Obi
 {
     public class Presentation: urakawa.Presentation
     {
-        private bool mInitialized;
-        private List<string> mCustomClasses;
+        private bool mInitialized;                                   // initialization flag
+        private Dictionary<string, List<EmptyNode>> mCustomClasses;  // custom classes and which nodes have them
 
+        /// <summary>
+        /// Create an uninitialized presentation.
+        /// </summary>
         public Presentation() : base() 
-        { 
-            mInitialized = false; 
-            mCustomClasses = new List<string>();
+        {
+            mInitialized = false;
+            mCustomClasses = new Dictionary<string, List<EmptyNode>>();
         }
+
 
         public static readonly string AUDIO_CHANNEL_NAME = "obi.audio";  // canonical name of the audio channel
         public static readonly string TEXT_CHANNEL_NAME = "obi.text";    // canonical name of the text channel
         public static readonly string PUBLISH_AUDIO_CHANNEL_NAME = "obi.publish.audio"; //canonical name of the published audio channel
 
+
         public event Commands.UndoRedoEventHandler CommandExecuted;     // triggered when a command was executed
         public event Commands.UndoRedoEventHandler CommandUnexecuted;   // triggered when a command was unexecuted
         public event NodeEventHandler<SectionNode> RenamedSectionNode;  // triggered after a section was renamed
         public event NodeEventHandler<ObiNode> UsedStatusChanged;       // triggered after a node used status changed
+        public event CustomClassEventHandler CustomClassAddded;         // triggered after a custom class was added
+        public event CustomClassEventHandler CustomClassRemoved;        // triggered after a custom class was removed
 
-       
-        
+               
         /// <summary>
         /// The media data manager for the project.
         /// </summary>
@@ -82,26 +88,36 @@ namespace Obi
         /// <summary>
         /// Get a list of the custom classes that have been defined by the user for this presentation
         /// </summary>
-        public List<string> CustomClasses { get { return mCustomClasses; } }
+        public Dictionary<string, List<EmptyNode>>.KeyCollection CustomClasses { get { return mCustomClasses.Keys; } }
 
         /// <summary>
         /// Add a custom class to the list.  Duplicates are filtered out.
         /// </summary>
-        /// <param name="customClass"></param>
-        public void AddCustomClass(string customType)
+        public void AddCustomClass(string customClass, EmptyNode node)
         {
-            if (customType == null || customType == "") return;
-            Predicate<string> exists = delegate(string matchThis){return matchThis == customType;};
-            if(!mCustomClasses.Exists(exists)) mCustomClasses.Add(customType);
+            if (customClass == null || customClass == "") return;
+            if (!mCustomClasses.ContainsKey(customClass))
+            {
+                if (node != null) mCustomClasses.Add(customClass, new List<EmptyNode>());
+                if (CustomClassAddded != null) CustomClassAddded(this, new CustomClassEventArgs(customClass));
+            }
+            mCustomClasses[customClass].Add(node);
         }
 
         /// <summary>
-        /// Remove a custom class from the list.
+        /// Remove a custom class from the list. If removeAll is set, all nodes with this class become plain again.
         /// </summary>
-        /// <param name="p"></param>
-        public void RemoveCustomType(string customType)
+        public void RemoveCustomClass(string customClass, EmptyNode node)
         {
-            if (customType != "") mCustomClasses.Remove(customType);
+            if (mCustomClasses.ContainsKey(customClass))
+            {
+                if (node != null) mCustomClasses[customClass].Remove(node);
+                if (mCustomClasses[customClass].Count == 0)
+                {
+                    mCustomClasses.Remove(customClass);
+                    if (CustomClassRemoved != null) CustomClassRemoved(this, new CustomClassEventArgs(customClass));
+                }
+            }
         }
 
         /// <summary>
@@ -398,4 +414,13 @@ namespace Obi
     }
 
     public delegate void NodeEventHandler<T>(object sender, NodeEventArgs<T> e);
+
+    public class CustomClassEventArgs : EventArgs
+    {
+        private string mCustomClass;
+        public CustomClassEventArgs(string customClass) : base() { mCustomClass = customClass; }
+        public string CustomClass { get { return mCustomClass; } }
+    }
+
+    public delegate void CustomClassEventHandler(object sender, CustomClassEventArgs e);
 }

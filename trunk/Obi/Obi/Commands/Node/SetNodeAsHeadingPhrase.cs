@@ -33,9 +33,9 @@ namespace Obi.Commands.Node
     /// </summary>
     class UnsetNodeAsHeadingPhrase : Command
     {
-        private PhraseNode mNode;
+        private EmptyNode mNode;
         
-        public UnsetNodeAsHeadingPhrase(ProjectView.ProjectView view, PhraseNode node)
+        public UnsetNodeAsHeadingPhrase(ProjectView.ProjectView view, EmptyNode node)
             : base(view, "")
         {
             mNode = node;

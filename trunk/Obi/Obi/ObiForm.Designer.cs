@@ -106,8 +106,6 @@ namespace Obi
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.mListenToBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTransportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mShowHideVUMeterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.mPreviousSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPreviousPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRewindToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -748,7 +746,6 @@ namespace Obi
             this.mAssignRoleToolStripMenuItem.Name = "mAssignRoleToolStripMenuItem";
             this.mAssignRoleToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.mAssignRoleToolStripMenuItem.Text = "&Assign role";
-            this.mAssignRoleToolStripMenuItem.DropDownOpening += new System.EventHandler(this.mAssignRoleToolStripMenuItem_DropDownOpening);
             // 
             // mPageToolStripMenuItem
             // 
@@ -806,8 +803,6 @@ namespace Obi
             // mTransportToolStripMenuItem
             // 
             this.mTransportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mShowHideVUMeterToolStripMenuItem,
-            this.toolStripSeparator7,
             this.mPreviousSectionToolStripMenuItem,
             this.mPreviousPhraseToolStripMenuItem,
             this.mRewindToolStripMenuItem,
@@ -824,19 +819,6 @@ namespace Obi
             this.mTransportToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.mTransportToolStripMenuItem.Text = "T&ransport";
             this.mTransportToolStripMenuItem.DropDownOpening += new System.EventHandler(this.mTransportToolStripMenuItem_DropDownOpening);
-            // 
-            // mShowHideVUMeterToolStripMenuItem
-            // 
-            this.mShowHideVUMeterToolStripMenuItem.Name = "mShowHideVUMeterToolStripMenuItem";
-            this.mShowHideVUMeterToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
-            this.mShowHideVUMeterToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
-            this.mShowHideVUMeterToolStripMenuItem.Text = "Show V&U meter";
-            this.mShowHideVUMeterToolStripMenuItem.Click += new System.EventHandler(this.mShowHideVUMeterToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(227, 6);
             // 
             // mPreviousSectionToolStripMenuItem
             // 
@@ -1110,8 +1092,6 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mPlaySelectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mRecordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPlayAllToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mShowHideVUMeterToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripMenuItem mStopToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPreviousSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPreviousPhraseToolStripMenuItem;
