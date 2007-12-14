@@ -48,6 +48,7 @@ namespace Obi.ProjectView
             this.mString.Name = "mString";
             this.mString.Size = new System.Drawing.Size(146, 20);
             this.mString.TabIndex = 1;
+            this.mString.Enter += new System.EventHandler(this.mString_Enter);
             this.mString.TextChanged += new System.EventHandler(this.mString_TextChanged);
             this.mString.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mString_KeyDown);
             // 
@@ -60,6 +61,8 @@ namespace Obi.ProjectView
             this.Controls.Add(this.mLabel);
             this.Name = "FindInText";
             this.Size = new System.Drawing.Size(972, 26);
+            this.Enter += new System.EventHandler(this.FindInText_Enter);
+            this.Leave += new System.EventHandler(this.FindInText_Leave);
             this.ResumeLayout(false);
             this.PerformLayout();
 
