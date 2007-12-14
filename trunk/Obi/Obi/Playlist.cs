@@ -574,6 +574,30 @@ namespace Obi
 
 
         /// <summary>
+        /// Navigate to previous page in playlist, do nothing if current phrase is first page node of playlist
+                /// </summary>
+        public void NavigateToPreviousPage ()
+        {
+            if (mCurrentPhraseIndex > 0)
+            {
+                int PrevPagePhraseIndex = mCurrentPhraseIndex - 1;
+                PhraseNode n = mPhrases[PrevPagePhraseIndex];
+
+                while (PrevPagePhraseIndex > 0
+                    && n.NodeKind != EmptyNode.Kind.Page)
+                {
+                    --PrevPagePhraseIndex;
+                    n = (PhraseNode)mPhrases[PrevPagePhraseIndex];
+                }
+
+                if (PrevPagePhraseIndex < mCurrentPhraseIndex && PrevPagePhraseIndex >= 0
+                    &&     n.NodeKind == EmptyNode.Kind.Page )
+                                    NavigateToPhrase(PrevPagePhraseIndex);
+                            }
+        }
+
+
+        /// <summary>
         /// Move to the first phrase of the previous section, or of this section if we are not yet past the initial threshold.
         /// </summary>
         public void NavigateToPreviousSection()
@@ -609,6 +633,30 @@ namespace Obi
             int next = NextSectionIndex;
             if (next != mCurrentPhraseIndex && next < mPhrases.Count) NavigateToPhrase(NextSectionIndex);
         }
+
+        /// <summary>
+        /// Navigate to next page in playlist, do nothing if current phrase is last page
+                /// </summary>
+        public void NavigateToNextPage()
+        {
+            if (mCurrentPhraseIndex < mPhrases.Count - 1)
+            {
+                int NextPagePhraseIndex = mCurrentPhraseIndex + 1;
+                PhraseNode n = mPhrases[NextPagePhraseIndex];
+
+                while (NextPagePhraseIndex < mPhrases.Count
+                    && n.NodeKind != EmptyNode.Kind.Page)
+                {
+                    ++NextPagePhraseIndex;
+                    n = (PhraseNode)mPhrases[NextPagePhraseIndex];
+                }
+
+                if (NextPagePhraseIndex > mCurrentPhraseIndex && NextPagePhraseIndex < mPhrases.Count
+                    &&     n.NodeKind == EmptyNode.Kind.Page )
+                    NavigateToPhrase(NextPagePhraseIndex);
+            }
+        }
+
 
         /// <summary>
         /// Navigate to a phrase and pause, keep playing or start playing depending on the state.

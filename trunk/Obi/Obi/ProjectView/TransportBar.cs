@@ -471,6 +471,7 @@ namespace Obi.ProjectView
             mPlayButton.Enabled = false;
             mPrevPhraseButton.Enabled = false;
             mPrevSectionButton.Enabled = false;
+            mPreviousPageButton.Enabled = false;
             mFastForwardButton.Enabled = false;
             mRewindButton.Enabled = false;
             ComboFastPlateRate.Enabled = false;
@@ -989,6 +990,7 @@ namespace Obi.ProjectView
                 mPlayButton.Enabled = true;
                 mPrevPhraseButton.Enabled = true;
                 mPrevSectionButton.Enabled = true;
+                mPreviousPageButton.Enabled = true;
                 mFastForwardButton.Enabled = true;
                 mRewindButton.Enabled = true;
                 ComboFastPlateRate.Enabled = true;
@@ -1008,12 +1010,29 @@ namespace Obi.ProjectView
             {
                 mRecordingSession.MarkPage();
             }
-        }
+            else if ( mRecordingSession == null )
+            {
+                    mIsSerialPlaying = true;
+            if (Enabled) mCurrentPlaylist.NavigateToNextPage ();
+            if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mIsSerialPlaying = false;
+                    }
+                }
 
         private void mPreviousPageButton_Click(object sender, EventArgs e)
         {
-
+            PreviousPage () ;
         }
+
+        public void PreviousPage()
+        {
+                        if ( mRecordingSession == null )
+                {
+            mIsSerialPlaying = true;
+            if (Enabled) mCurrentPlaylist.NavigateToPreviousPage();
+            if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mIsSerialPlaying = false;
+                }
+        }
+
 
 /*                // the following closures handle the various events sent during the recording session
                 mRecordingSession.ContinuingPhrase += new Events.Audio.Recorder.ContinuingPhraseHandler(
