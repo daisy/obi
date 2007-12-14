@@ -375,6 +375,7 @@ namespace Obi
         /// </summary>
         public void UpdateAudioForPhrase(EmptyNode phrase, ManagedAudioMedia media)
         {
+            ((PhraseNode)phrase).Audio = media;
         }
 
         public void ExportToZed(Uri destinationDirectory)
