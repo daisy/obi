@@ -356,9 +356,9 @@ namespace Obi.Audio
                 {
                     Array.Copy(m_RecorderArray , m_UpdateVMArrayLength, m_arUpdatedVM, 0, m_arUpdatedVM.Length );
                 }
-                catch (System.Exception ex)
+                catch (ThreadAbortException  ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                    return;
                 }
                 ComputePeakDbValue();
             }
