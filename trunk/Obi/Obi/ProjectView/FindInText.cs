@@ -57,7 +57,7 @@ namespace Obi.ProjectView
             mFoundFirst = false;
             InitializeComponent();
             mTimer = new Timer();
-            mTimer.Interval = 4000;
+            mTimer.Interval = 40000;
             mTimer.Tick += new EventHandler(mTimer_Tick);
         }
 

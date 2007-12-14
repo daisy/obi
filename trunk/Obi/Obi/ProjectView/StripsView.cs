@@ -463,16 +463,27 @@ namespace Obi.ProjectView
         public FlowLayoutPanel LayoutPanel { get { return mLayoutPanel; } }
 
         /// <summary>
-        /// Get all the searchable items (i.e. strips; later blocks) in the control
+        /// Get all the searchable items (i.e. strips, blocks) in the control.  This does not support nested blocks right now.
         /// </summary>
         public List<ISearchable> Searchables
         {
             get
             {
-                List<ISearchable> l = new List<ISearchable>(mLayoutPanel.Controls.Count);
-                foreach (Control c in mLayoutPanel.Controls) if (c is ISearchable) l.Add((ISearchable)c);
+                List<ISearchable> l = new List<ISearchable>();
+                AddToSearchables(mLayoutPanel, l);
                 return l;
             }
+        }
+
+        /// <summary>
+        /// Recursive function to go through all the controls in-order and add the ISearchable ones to the list
+        /// </summary>
+        /// <param name="c"></param>
+        /// <param name="searchables"></param>
+        private void AddToSearchables(Control c, List<ISearchable> searchables)
+        {
+            if (c is ISearchable) searchables.Add((ISearchable)c);
+            foreach (Control c2 in c.Controls) AddToSearchables(c2, searchables);
         }
 
         #region tabbing
