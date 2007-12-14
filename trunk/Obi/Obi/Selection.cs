@@ -111,26 +111,6 @@ namespace Obi
                 (Node is SectionNode ? (Node.Index + 1) : Node.AncestorAs<SectionNode>().SectionChildCount) :
                 (Node is SectionNode ? Node.PhraseChildCount : (Node.Index + 1));
         }
-
-        /// <summary>
-        /// Get the parent for adding a new block depending on the context.
-        /// </summary>
-        public ObiNode ParentForNewBlock()
-        {
-            // TODO: handle cursor
-            return Node is SectionNode ? Node : Node is EmptyNode ? Node.ParentAs<ObiNode>() : null;
-        }
-
-        /// <summary>
-        /// Get the index at which to insert a new block depending on the context.
-        /// </summary>
-        /// <returns></returns>
-        public int IndexForNewBlock()
-        {
-            // TODO: handle cursor
-            return Node is SectionNode ? Node.PhraseChildCount : Node is EmptyNode ? (Node.Index + 1) : -1;
-        }
-
     };
 
     /// <summary>

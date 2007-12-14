@@ -841,6 +841,11 @@ namespace Obi.ProjectView
 
         public bool CanSetPageNumber { get { return IsBlockSelected; } } 
 
+        /// <summary>
+        /// Set the page number on the selected block and optionally renumber subsequent blocks.
+        /// </summary>
+        /// <param name="number">The new page number.</param>
+        /// <param name="renumber">If true, renumber subsequent blocks.</param>
         public void SetPageNumberOnSelectedBock(int number, bool renumber)
         {
             if (CanSetPageNumber)
@@ -848,8 +853,7 @@ namespace Obi.ProjectView
                 urakawa.undo.ICommand cmd = new Commands.Node.SetPageNumber(this, SelectedBlockNode, number);
                 if (renumber)
                 {
-                    urakawa.undo.CompositeCommand k = Presentation.getCommandFactory().createCompositeCommand();
-                    k.setShortDescription(cmd.getShortDescription());
+                    urakawa.undo.CompositeCommand k = Presentation.CreateCompositeCommand(cmd.getShortDescription());
                     for (ObiNode n = SelectedBlockNode.FollowingNode; n != null; n = n.FollowingNode)
                     {
                         if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)
@@ -864,20 +868,34 @@ namespace Obi.ProjectView
             }
         }
 
+        /// <summary>
+        /// Add a range of pages at the selection position. The page number is increased by one for every subsequent page.
+        /// </summary>
+        /// <param name="number">The starting number for the range of pages.</param>
+        /// <param name="count">The number of pages to add.</param>
+        /// <param name="renumber">Renumber subsequent pages if true.</param>
         public void AddPageRange(int number, int count, bool renumber)
         {
             if (CanAddEmptyBlock)
             {
-                urakawa.undo.CompositeCommand cmd = Presentation.getCommandFactory().createCompositeCommand();
-                cmd.setShortDescription(Localizer.Message("add_empty_page_blocks"));
-                ObiNode parent = mSelection.ParentForNewBlock();
-                int index = mSelection.IndexForNewBlock();
+                urakawa.undo.CompositeCommand cmd =
+                    Presentation.CreateCompositeCommand(Localizer.Message("add_empty_page_blocks"));
+                int index = -1;
+                ObiNode parent = null;
+                // For every page, add a new empty block and give it a number.
                 for (int i = 0; i < count; ++i)
                 {
                     EmptyNode node = new EmptyNode(Presentation);
+                    if (parent == null)
+                    {
+                        parent = mSelection.ParentForNewNode(node);
+                        index = mSelection.IndexForNewNode(node);
+                    }
                     cmd.append(new Commands.Node.AddEmptyNode(this, node, parent, index + i));
                     cmd.append(new Commands.Node.SetPageNumber(this, node, number++));
                 }
+                // Add commands to renumber the following pages; be careful that the previous blocks have not
+                // been added yet!
                 if (renumber)
                 {
                     ObiNode from = index < parent.getChildCount() ? (ObiNode)parent.getChild(index) : parent;
@@ -885,7 +903,7 @@ namespace Obi.ProjectView
                     {
                         if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)
                         {
-                            cmd.append(new Commands.Node.SetPageNumber(this, (EmptyNode)n, ++number));
+                            cmd.append(new Commands.Node.SetPageNumber(this, (EmptyNode)n, number++));
                         }
                     }
                 }

@@ -74,7 +74,6 @@ namespace Obi
             }
         }
 
-
         /// <summary>
         /// Get the text channel of the presentation.
         /// </summary>
@@ -110,6 +109,16 @@ namespace Obi
                 if (CustomClassAddded != null) CustomClassAddded(this, new CustomClassEventArgs(customClass));
             }
             mCustomClasses[customClass].Add(node);
+        }
+
+        /// <summary>
+        /// Create a new composite command with the given label.
+        /// </summary>
+        public urakawa.undo.CompositeCommand CreateCompositeCommand(string label)
+        {
+            urakawa.undo.CompositeCommand command = getCommandFactory().createCompositeCommand();
+            command.setShortDescription(label);
+            return command;
         }
 
         /// <summary>
