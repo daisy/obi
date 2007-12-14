@@ -113,7 +113,33 @@ namespace Obi
         // Insert new tree nodes in the right place in the playlist.
         private void InsertNode(urakawa.core.TreeNode node)
         {
-
+            if (!(node is ObiNode)) return;
+            // Find where new nodes would have to be added
+            ObiNode prev = ((ObiNode)node).PrecedingNode;
+            while (prev != null && !(prev is PhraseNode && mPhrases.Contains((PhraseNode)prev))) prev = prev.PrecedingNode;
+            int index = prev == null ? 0 : (mPhrases.IndexOf((PhraseNode)prev) + 1);
+            // Add all of the used phrase nodes that we could find
+            node.acceptDepthFirst(
+                delegate(urakawa.core.TreeNode n)
+                {
+                    if (n is PhraseNode && ((PhraseNode)n).Used)
+                    {
+                        double time = ((PhraseNode)n).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
+                        System.Diagnostics.Debug.Print("PLAYLIST++ new phrase at index {0} ({1}ms)\n", index, time);
+                        mPhrases.Insert(index, (PhraseNode)n);
+                        mStartTimes.Add(0.0);
+                        mStartTimes[index] = index == 0 ? 0.0 :
+                            (mStartTimes[index - 1] + mPhrases[index - 1].Audio.getDuration().getTimeDeltaAsMillisecondFloat());
+                        mTotalTime += time;
+                        ++index;
+                    }
+                    return true;
+                }, delegate(urakawa.core.TreeNode n) { }
+            );
+            for (int i = index; i < mStartTimes.Count - 1; ++i)
+            {
+                mStartTimes[i + 1] = mStartTimes[i] + mPhrases[i].Audio.getDuration().getTimeDeltaAsMillisecondFloat();
+            }
         }
 
         private void Presentation_treeNodeRemoved(object o, urakawa.core.events.TreeNodeRemovedEventArgs e)
