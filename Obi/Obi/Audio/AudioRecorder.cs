@@ -423,17 +423,18 @@ namespace Obi.Audio
 			if (0 == LockSize)
 				return;
 
-            CaptureData = new byte [ LockSize ] ;
+            //CaptureData = new byte [ LockSize ] ;
 
 			// Read the capture buffer.
-            //try
-            //{
+            try
+            {
                 CaptureData = (byte[]) applicationBuffer.Read ( NextCaptureOffset , typeof(byte) , LockFlag.None , LockSize );
-            //}
-            //catch (System.Exception Ex)
-            //{
+            }
+            catch (System.Exception Ex)
+            {
+                return;
                 //MessageBox.Show( "Size" + ( m_iCaptureBufferSize.ToString () ) +  "Cap" + ( NextCaptureOffset.ToString () ) + "Log" + ( LockSize.ToString () ) + Ex.ToString());
-            //}
+            }
 
             // make update vumeter array length equal to CaptureData length
                 if (CaptureData.Length != arUpdateVM.Length
@@ -529,7 +530,8 @@ namespace Obi.Audio
 				throw new Exception("formats do not match");
 
 			if(SRecording)
-			{	
+			{
+                SampleCount = 0;
 				CreateCaptureBuffer();
 				applicationBuffer.Start(true);//it will set the looping till the stop is used
 
