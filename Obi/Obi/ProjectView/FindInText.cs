@@ -34,25 +34,34 @@ namespace Obi.ProjectView
     /// Type and press enter to start searching
     /// F3 to search next
     /// Shift-F3 to search previous
-    /// Esc to clear and close the form; or wait for the form timeout.
+    /// Esc to clear and close the form; or wait for the form timeout (4 seconds).
     /// As the search criteria is matched, the corresponding UI item is selected and played
     /// </remarks>
     public partial class FindInText : UserControl
     {
-        StripsView mStripsView;
-        int mOriginalPosition;
-        bool mFoundFirst;
+        private StripsView mStripsView;
+        private int mOriginalPosition;
+        private int mNumberSearched;
+        private bool mFoundFirst;
         private ProjectView mProjectView;
         private enum SearchDirection { NEXT, PREVIOUS };
-
+        private SearchDirection mLastDirection;
+        Timer mTimer;
+    
         public FindInText()
         {
             mStripsView = null;
             mOriginalPosition = 0;
+            mNumberSearched = 0;
             mProjectView = null;
             mFoundFirst = false;
             InitializeComponent();
+            mTimer = new Timer();
+            mTimer.Interval = 4000;
+            mTimer.Tick += new EventHandler(mTimer_Tick);
         }
+
+      
 
         /// <summary>
         /// The parent project view. Should be set ASAP, and only once.
@@ -82,11 +91,24 @@ namespace Obi.ProjectView
             mStripsView = strips;
             mProjectView.FindInTextVisible = true;
             mFoundFirst = false;
+            mNumberSearched = 0;
             mProjectView.ObiForm.UpdateFindInTextMenuItems();
             mString.SelectAll();
             mString.Focus();
             mProjectView.ObiForm.Status(Localizer.Message("find_in_text_init"));
         }
+
+        /// <summary>
+        /// See if it's time to close the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mTimer_Tick(object sender, EventArgs e)
+        {
+           mTimer.Stop();
+           mProjectView.FindInTextVisible = false;
+        }
+
         public void FindNext()
         {
             FindAnother(SearchDirection.NEXT);
@@ -102,6 +124,9 @@ namespace Obi.ProjectView
         private void InitialSearch()
         {
             mOriginalPosition = GetCurrentIndex();
+            mLastDirection = SearchDirection.NEXT;
+            //if nothing is selected, start at the top
+            if (mOriginalPosition == -1) mOriginalPosition = 0;
             Search(mOriginalPosition, mString.Text, SearchDirection.NEXT, true);
         }
 
@@ -162,14 +187,27 @@ namespace Obi.ProjectView
 
             mProjectView.ObiForm.Status(Localizer.Message("searching"));
 
+            //if we're switching direction, update the last position
+            if (direction != mLastDirection)
+            {
+                mLastDirection = direction;
+                mOriginalPosition = startingPoint;
+                mNumberSearched = 0;
+            }
             int startIndex = startingPoint;
             bool found = false;
             //there might be a way to wrangle Searchables.Find(...) to do the work for us with a Predicate, but
             //as there is no FindNext or FindPrevious (especially the latter), it seems like more work than it's worth
             while (found == false)
             {
-                if (isInitialSearch == false && mFoundFirst == true && startIndex == mOriginalPosition) break;
+                if (startIndex == mOriginalPosition && mNumberSearched == mStripsView.Searchables.Count)
+                {
+                    mProjectView.ObiForm.Status(Localizer.Message("finished_searching_all"));
+                    mNumberSearched = 0;
+                    return;
+                }
 
+                mNumberSearched++;
                 if (mStripsView.Searchables[startIndex].Matches(mString.Text))
                 {
                     SetSelection(mStripsView.Searchables[startIndex]);
@@ -189,8 +227,7 @@ namespace Obi.ProjectView
             }
             else
             {
-                if (startIndex == mOriginalPosition) mProjectView.ObiForm.Status(Localizer.Message("finished_searching_all"));
-                else mProjectView.ObiForm.Status(Localizer.Message("not_found_in_text"));
+                mProjectView.ObiForm.Status(Localizer.Message("not_found_in_text"));
                 //deselect
                 mProjectView.Selection = null;
                 mFoundFirst = false;
@@ -316,5 +353,19 @@ namespace Obi.ProjectView
             else if (selection is Strip) mProjectView.SelectedStripNode = ((Strip)selection).Node;
         }
 
+        private void FindInText_Enter(object sender, EventArgs e)
+        {
+            mTimer.Stop();
+        }
+
+        private void FindInText_Leave(object sender, EventArgs e)
+        {
+            mTimer.Start();
+        }
+
+        private void mString_Enter(object sender, EventArgs e)
+        {
+            mTimer.Stop();
+        }
     }
 }
