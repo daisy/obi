@@ -109,7 +109,7 @@ namespace Obi.ProjectView
         {
             get
             {
-                return mBlocksPanel.Controls.Count > 0 ? (Block)mBlocksPanel.Controls[0] : null;
+                return mBlocksPanel.Controls.Count > 1 ? (Block)mBlocksPanel.Controls[1] : null;
             }
         }
 
@@ -134,7 +134,7 @@ namespace Obi.ProjectView
         {
             get
             {
-                return mBlocksPanel.Controls.Count > 0 ? (Block)mBlocksPanel.Controls[mBlocksPanel.Controls.Count - 1] :
+                return mBlocksPanel.Controls.Count > 1 ? (Block)mBlocksPanel.Controls[mBlocksPanel.Controls.Count - 2] :
                     null;
             }
         }
