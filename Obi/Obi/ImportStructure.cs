@@ -12,6 +12,7 @@ namespace Obi
     {
         private Obi.Presentation mPresentation;
         private SectionNode mLastSection;
+        private Obi.ProjectView.ProjectView mView;
 
         //these are section nodes that could accept children
         private System.Collections.Generic.Stack <Obi.SectionNode> mOpenSectionNodes;
@@ -19,10 +20,11 @@ namespace Obi
         public ImportStructure(){}
 
         //this first pass will translate h1-h6 elements to SectionNodes
-        public void ImportFromXHTML(String xhtmlDocument, Obi.Presentation presentation)
+        public void ImportFromXHTML(String xhtmlDocument, Obi.Presentation presentation, Obi.ProjectView.ProjectView view)
         {            
             mOpenSectionNodes = new System.Collections.Generic.Stack<Obi.SectionNode>();
             mPresentation = presentation;
+            mView = view;
             LoadFromXHTML(new Uri(xhtmlDocument));
         }
 
@@ -66,12 +68,10 @@ namespace Obi
                             if (node != null && node.Level < 6) mOpenSectionNodes.Push(node);
                             mLastSection = node;
                         }
-                        else if (source.LocalName == "p" || source.LocalName == "span")
+                        else if ((source.LocalName == "p" || source.LocalName == "span") && 
+                            source.GetAttribute("class") == "page")
                         {
-                            if (source.GetAttribute("class") == "page")
-                            {
-                                addPage(source);
-                            }
+                            addPage(source);
                         }
                     }
                     if (source.EOF) break;
@@ -88,66 +88,49 @@ namespace Obi
         private void addPage(XmlTextReader source)
         {
             if (mLastSection == null) throw new Exception("Error adding page number: no parent section found");
-            // not ported from Project to Presentation yet:
-            // mPresentation.AddEmptyPhraseNode(mLastSection, mLastSection.PhraseChildCount);
-            //the phrase we just added should be at the end of the phrase child list
-            EmptyNode pagePhrase = mLastSection.PhraseChild(mLastSection.PhraseChildCount - 1);
-            //is this the right function to call?
-            // mProject.DidSetPageNumberOnPhrase(pagePhrase);
-           
+            
+            int pageNumber;
+            string pageNumberString = getElementText(source);
+            if (!int.TryParse(pageNumberString, out pageNumber)) return;
+            EmptyNode node = mPresentation.CreatePhraseNode();
+            mLastSection.AppendChild(node);
+            node.PageNumber = pageNumber;
         }
 
         //source points to a heading element (h1 through h6)
-        //weird behavior:  the first section will always be last, until Project.CreateSiblingSectionNode(..)
-        //inserts sections in-order.
         private SectionNode createSectionNode(XmlTextReader source)
         {
             //get the level of this node.  
             int level = int.Parse(source.LocalName.Substring(1));
-            SectionNode newNode = null;
-
-            //find the appropriate parent node
-            SectionNode parentNode = null;
-            int count = mOpenSectionNodes.Count;
-            for (int i = 0; i<count; i++)
-            {
-                if (mOpenSectionNodes.Peek().Level == level - 1)
-                {
-                    parentNode = mOpenSectionNodes.Peek();
-                    break;
-                }
-                else
-                {
-                    //pop off the ones we don't need
-                    mOpenSectionNodes.Pop();
-                }
-            }
-
+            SectionNode parent = getAvailableParent(level);
+            SectionNode section = mPresentation.CreateSectionNode();
             //if no parent was found, then we must be an h1 sibling or first node
-            if (parentNode == null)
+            if (parent == null)
             {
                 if (source.LocalName != "h1") throw new Exception("Heading element ordering is wrong.");
-
-                if (mPresentation.FirstSection == null)
-                {
-                    newNode = null; // mProject.CreateSiblingSectionNode(null);
-                }
-                else
-                {
-                    //walk up the tree to find the last top-level section
-                    //is there an easier way to do this?
-                    SectionNode lastSection = mPresentation.LastSection;
-                    while (lastSection.ParentAs<SectionNode>() != null) lastSection = lastSection.ParentAs<SectionNode>();
-                    newNode = null; // mProject.CreateSiblingSectionNode(lastSection);
-                }
+                mPresentation.RootNode.AppendChild(section);
             }
-            else
+            else parent.AppendChild(section);
+
+       //     section.Label = getElementText(source);
+            return section;
+        }
+
+        /// <summary>
+        /// Go through the available section nodes and find one that is allowed to have children with the given level
+        /// </summary>
+        /// <param name="level"></param>
+        /// <returns></returns>
+        private SectionNode getAvailableParent(int level)
+        {
+            int sz = mOpenSectionNodes.Count;
+            for (int i = 0; i < sz; i++)
             {
-                newNode = null; // mProject.CreateChildSectionNode(parentNode);
+                if (mOpenSectionNodes.Peek().Level == level - 1) return mOpenSectionNodes.Peek();
+                //remove the ones we aren't going to use (the stack will have h1 at the bottom, h5 at the top)
+                else mOpenSectionNodes.Pop();
             }
-
-            //if (newNode != null) mProject.RenameSectionNode(newNode, getElementText(source));
-            return newNode;
+            return null;
         }
 
         private string getElementText(XmlTextReader source)
@@ -155,17 +138,13 @@ namespace Obi
             string elementName = source.Name;
             string allText = "";
             allText += source.ReadString();
-           // source.Read();
             //wait for the end tag; acculumate the text inside
             while (!(source.NodeType == XmlNodeType.EndElement && source.Name == elementName))
             {
                 allText += source.ReadString();
                 source.Read();
             }
-
             return allText;
         }
     }
-
-    
 }

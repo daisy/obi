@@ -56,7 +56,7 @@ namespace Obi
         private void UpdateFileMenu()
         {
             mNewProjectToolStripMenuItem.Enabled = true;
-            mNewProjectFromImportToolStripMenuItem.Enabled = false;  // currently disabled
+            mNewProjectFromImportToolStripMenuItem.Enabled = true;  
             mOpenProjectToolStripMenuItem.Enabled = true;
             mOpenRecentProjectToolStripMenuItem.Enabled = mSettings.RecentProjects.Count > 0;
             mClearListToolStripMenuItem.Enabled = true;
@@ -96,7 +96,7 @@ namespace Obi
         // Create a new project by importing an XHTML file
         private void NewProjectFromImport()
         {
-            /*
+            /*old stuff
             mProjectView.TransportBar.Enabled = false;
             if (!DidCloseProject())
             {
@@ -104,12 +104,12 @@ namespace Obi
                 Ready();
                 return;
             }
+            */
 
             //select a file for import
             OpenFileDialog openFile = new OpenFileDialog();
-            openFile.Title = "Choose a file for import";
-            openFile.Filter = "HTML | *.html";
-
+            openFile.Title = "Choose a file for import";// Localizer.Message("choose_a_file_for_import");
+            openFile.Filter = "HTML | *.html";// Localizer.Message("import_structure_filter");
             if (openFile.ShowDialog() != DialogResult.OK) return;
 
             Dialogs.NewProject dialog = new Dialogs.NewProject(
@@ -118,7 +118,7 @@ namespace Obi
                 Localizer.Message("obi_project_extension"),
                 ImportStructure.grabTitle(new Uri(openFile.FileName)));
             dialog.MakeAutoTitleCheckboxInvisible();
-            dialog.Text = "Create a new project starting from XHTML import";
+            dialog.Text = Localizer.Message("create_a_new_project_from_xhtml_import");
             if (dialog.ShowDialog() != DialogResult.OK) return;
 
             // let's see if we can actually write the file that the user chose (bug #1679175)
@@ -134,27 +134,30 @@ namespace Obi
                 return;
             }
 
-
             CreateNewProject(dialog.Path, dialog.Title, false);
             try
             {
                 ImportStructure importer = new ImportStructure();
-                //importer.ImportFromXHTML(openFile.FileName, mProject);
+                importer.ImportFromXHTML(openFile.FileName, mSession.Presentation, mProjectView);
             }
             catch (Exception ex)
             {
                 //report failure and undo the creation of a new project
-                MessageBox.Show("Import failed: " + ex.Message);
-                //mProject.Close();
+                MessageBox.Show("Import failed: "/*(Localizer.Message("import_structure_failed"),*/ + ex.Message);
+                
+                if (mSession.CanClose) mSession.Close();
                 File.Delete(dialog.Path);
+                /*old stuff
                 mProjectView.TransportBar.Enabled = false;
                 RemoveRecentProject(dialog.Path);
+                */
                 return;
             }
 
-            Ready();
+          /*old stuff
+           Ready();
             mProjectView.TransportBar.Enabled = true;
-             * */
+           */
         }
 
         // Save the current project under a different name; ask for a new path first.
