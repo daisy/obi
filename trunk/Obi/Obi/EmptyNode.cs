@@ -128,7 +128,8 @@ namespace Obi
 
         public override string ToString()
         {
-            return String.Format("{0}[{1}] ({2})", GetType(), Index, mKind == Kind.Custom ? mCustomClass : mKind.ToString());
+            return String.Format("{0}[{1}] ({2})", GetType(), getParent() == null ? "detached" : Index.ToString(),
+                mKind == Kind.Custom ? mCustomClass : mKind.ToString());
         }
 
         public override void Insert(ObiNode node, int index) { throw new Exception("Empty nodes have no children."); }

@@ -24,10 +24,17 @@ namespace Obi.ProjectView
             node.ChangedKind += new EmptyNode.ChangedKindEventHandler(node_ChangedKind);
             node.ChangedPageNumber += new NodeEventHandler<EmptyNode>(node_ChangedPageNumber);
             UpdateColors();
+            if (parent != null) UpdateAccessibleName();
         }
 
         public Block() { InitializeComponent(); }
 
+
+        protected virtual void UpdateAccessibleName()
+        {
+            AccessibleName = String.Format(Localizer.Message("audio_accessible_name"),
+                mNode.Index + 1, mNode.ParentAs<ObiNode>().PhraseChildCount);
+        }
 
         private string CustomClassLabelFromNode
         {
@@ -134,7 +141,11 @@ namespace Obi.ProjectView
         /// <summary>
         /// The strip that contains this block.
         /// </summary>
-        public Strip Strip { get { return mParentContainer is Strip ? (Strip)mParentContainer : ((Block)mParentContainer).Strip; } }
+        public Strip Strip
+        {
+            get { return mParentContainer is Strip ? (Strip)mParentContainer : ((Block)mParentContainer).Strip; }
+
+        }
 
         // Select on click and tabbing
         private void Block_Click(object sender, EventArgs e)

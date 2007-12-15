@@ -16,37 +16,32 @@ namespace Obi.ProjectView
             : base(node, strip)
         {
             this.InitializeComponent();
-            AccessibleName = String.Format(Localizer.Message("audio_accessible_name"),
-                node.Index + 1, node.ParentAs<ObiNode>().PhraseChildCount);
-
-            if (node.Audio != null)
-            {
-                SetWaveform((PhraseNode)Node);
-            }
-            else
-            {
-                TimeLabel = "0s";
-                mWaveform.Visible = false;
-            }
+            SetWaveform((PhraseNode)Node);
             node.NodeAudioChanged += new NodeEventHandler<PhraseNode>(node_NodeAudioChanged);
         }
-      
+
+        protected override void UpdateAccessibleName()
+        {
+            base.UpdateAccessibleName();
+            mWaveform.AccessibleName = AccessibleName;
+        }
+
         private void SetWaveform(PhraseNode node)
         {
             mWaveform.AccessibleName = AccessibleName;
-             long time = node.Audio.getDuration().getTimeDeltaAsMilliseconds();
-             mWaveform.Width = (int)Math.Round(time * AUDIO_SCALE);
-             mWaveform.Media = node.Audio.getMediaData();
-             TimeLabel = String.Format("{0:0.00}s",
-             ((PhraseNode)Node).Audio.getDuration().getTimeDeltaAsMillisecondFloat() / 1000);
-             Size = new Size(mWaveform.Width + mWaveform.Margin.Right + mWaveform.Margin.Left, Height);
-             
+            long time = node.Audio.getDuration().getTimeDeltaAsMilliseconds();
+            mWaveform.Width = (int)Math.Round(time * AUDIO_SCALE);
+            mWaveform.Media = node.Audio.getMediaData();
+            TimeLabel = String.Format("{0:0.00}s",
+            ((PhraseNode)Node).Audio.getDuration().getTimeDeltaAsMillisecondFloat() / 1000);
+            Size = new Size(mWaveform.Width + mWaveform.Margin.Right + mWaveform.Margin.Left, Height);
         }
         
         private void node_NodeAudioChanged(object sender, NodeEventArgs<PhraseNode> e)
         {
             SetWaveform((PhraseNode)Node);
         }
+
         /// <summary>
         /// Set the selected flag for the block.
         /// </summary>
@@ -56,10 +51,6 @@ namespace Obi.ProjectView
             {
                 if (!value) mWaveform.Deselect();
                 base.Selected = value;
-                                
-                AccessibleName = CustomClassLabel + String.Format(Localizer.Message("audio_accessible_name"),
-                base.ObiNode.Index + 1, base.ObiNode.ParentAs<ObiNode>().PhraseChildCount);
-                mWaveform.AccessibleName = AccessibleName;
             }
         }
 
