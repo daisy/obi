@@ -310,9 +310,10 @@ namespace Obi.ProjectView
             if (mProjectView.Selection == null) return -1;
             //need an easy way to convert between NodeSelection and ISearchable
             //otherwise we break the genericity of ISearchable and write ugly code (see below)
+            //for now, the easiest thing is look for something that is selected in the Searchables collection
             else
             {
-                foreach (Control c in mStripsView.LayoutPanel.Controls)
+                foreach (ISearchable c in mStripsView.Searchables)
                 {
                     if (c is Strip && ((Strip)c).Selected) return mStripsView.Searchables.IndexOf((Strip)c);
                     else if (c is Block && ((Block)c).Selected) return mStripsView.Searchables.IndexOf((Block)c);
