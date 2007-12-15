@@ -104,15 +104,14 @@ namespace Obi
             int level = int.Parse(source.LocalName.Substring(1));
             SectionNode parent = getAvailableParent(level);
             SectionNode section = mPresentation.CreateSectionNode();
+            section.Label = getElementText(source);
             //if no parent was found, then we must be an h1 sibling or first node
             if (parent == null)
             {
                 if (source.LocalName != "h1") throw new Exception("Heading element ordering is wrong.");
                 mPresentation.RootNode.AppendChild(section);
-            }
-            else parent.AppendChild(section);
-
-       //     section.Label = getElementText(source);
+            }   
+            else parent.AppendChild(section); 
             return section;
         }
 
