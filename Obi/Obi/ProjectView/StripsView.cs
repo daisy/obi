@@ -530,6 +530,8 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.Right] = SelectFollowingBlock;
             mShortcutKeys[Keys.End] = SelectLastBlockInStrip;
             mShortcutKeys[Keys.Home] = SelectFirstBlockInStrip;
+            mShortcutKeys[Keys.PageDown ] = SelectNextPageNode ;
+            mShortcutKeys[Keys.PageUp ] = SelectPreviousPageNode;
 
             mShortcutKeys[Keys.Up] = SelectPreviousStrip;
             mShortcutKeys[Keys.Down] = SelectNextStrip;
@@ -696,6 +698,41 @@ namespace Obi.ProjectView
             return null;
         }
 
+
+        /// <summary>
+        ///  Moves keyboard focus to previous page node while in strips view
+        /// </summary>
+        /// <returns></returns>
+        public bool SelectPreviousPageNode ()
+        {
+            for (ObiNode n = mView.SelectedBlockNode.PrecedingNode ; n != null; n = n.PrecedingNode )
+            {
+                if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)
+                {
+                    mView.Selection = new NodeSelection(n, this);
+                    return true;
+                }
+                            }
+                        return false ;
+        }
+
+
+        /// <summary>
+        ///  moves keyboard focus to next page node while in strips view
+                /// </summary>
+        /// <returns></returns>
+        public bool SelectNextPageNode ()
+        {
+            for (ObiNode n = mView.SelectedBlockNode.FollowingNode; n != null; n = n.FollowingNode)
+            {
+                if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)
+                {
+                    mView.Selection = new NodeSelection(n, this);
+                    return true;
+                }
+                            }
+                        return false ;
+        }
 
         /// <summary>
         /// Toggles play selection and pause with spacebar
