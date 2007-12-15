@@ -2,9 +2,31 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using urakawa.core.events;
+using System.Collections;
 
 namespace Obi.ProjectView
 {
+    /// <summary>
+    /// This class represents a dummy TOC node.  It might turn out to be overkill, I'm not sure yet.
+    /// </summary>
+    public class DummyNode : TreeNode
+    {
+        private DummyType mDummyType;
+        public enum DummyType { BEFORE, CHILD };
+        
+        public DummyNode(DummyType type)
+            : base()
+        {
+            mDummyType = type;
+        }
+        
+        public DummyType Type 
+        {
+            get { return mDummyType; }
+            set { mDummyType = value; }
+        }
+            
+    }
     /// <summary>
     /// The view of the table of contents, mostly a wrapper over a tree view.
     /// </summary>
@@ -12,6 +34,8 @@ namespace Obi.ProjectView
     {
         private ProjectView mView;         // the parent project view
         private NodeSelection mSelection;  // actual selection context
+        private DummyNode mDummyBefore;
+        private DummyNode mDummyChild;
 
         /// <summary>
         /// Create a new TOC view as part of a project view.
@@ -323,6 +347,7 @@ namespace Obi.ProjectView
         private void TOCTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
             // check for dummy here
+            if (e.Node is DummyNode) return;
             NodeSelection s = new NodeSelection((SectionNode)e.Node.Tag, this);
             if (s != mView.Selection) mView.Selection = s;
         }
@@ -344,6 +369,51 @@ namespace Obi.ProjectView
         private void TOCTree_BeforeSelect(object sender, TreeViewCancelEventArgs e)
         {
             if (e.Action == TreeViewAction.Unknown) e.Cancel = true;
+            else
+            {
+                //remove the old dummy nodes (this code should move so it happens 1. after paste 2. on select changed)
+                if (!(e.Node is DummyNode))
+                {
+                    RemoveDummyNodes();
+                    //add new dummy nodes if we need to
+                    if (this.mView.CanPaste) AddDummyNodes(e.Node);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Remove our two dummy nodes
+        /// </summary>
+        private void RemoveDummyNodes()
+        {
+            if (mDummyBefore != null && mDummyBefore.TreeView != null) mDummyBefore.Remove();
+            if (mDummyChild != null && mDummyChild.TreeView != null) mDummyChild.Remove();
+        }
+        /// <summary>
+        /// See if there is ambiguity around the given node, and insert dummies.  The rules for inserting dummy nodes are:
+        /// 1. If the node is the first of a group of siblings, it gets a dummy node as an older sibling (DUMMY_BEFORE)
+        /// 2. If the node has no children, it gets a dummy child (DUMMY_CHILD)
+        /// </summary>
+        /// <param name="treeNode"></param>
+        private void AddDummyNodes(TreeNode treeNode)
+        {
+            if (treeNode is DummyNode) return;
+
+            //see if the node is the first of a group of siblings
+            if ((treeNode.Parent != null && treeNode.Parent.FirstNode == treeNode)||
+                (treeNode.Parent == null && treeNode.PrevNode == null))
+            {
+                mDummyBefore = new DummyNode(DummyNode.DummyType.BEFORE);
+                mDummyBefore.Text = "Dummy before";
+                if (treeNode.Parent != null) treeNode.Parent.Nodes.Insert(0, mDummyBefore);
+                else mTOCTree.Nodes.Insert(0, mDummyBefore);
+            }
+            if (treeNode.Nodes.Count == 0)
+            {
+                mDummyChild = new DummyNode(DummyNode.DummyType.CHILD);
+                mDummyChild.Text = "Dummy child";
+                treeNode.Nodes.Insert(0, mDummyChild);
+            }
         }
     }
 
