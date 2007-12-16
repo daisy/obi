@@ -92,7 +92,7 @@ namespace Obi
             int pageNumber;
             string pageNumberString = getElementText(source);
             if (!int.TryParse(pageNumberString, out pageNumber)) return;
-            EmptyNode node = mPresentation.CreatePhraseNode();
+            EmptyNode node = new EmptyNode(mPresentation);
             mLastSection.AppendChild(node);
             node.PageNumber = pageNumber;
         }
