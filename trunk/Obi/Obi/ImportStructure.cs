@@ -35,7 +35,7 @@ namespace Obi
         /// <returns></returns>
         public static String grabTitle(Uri fileUri)
         {
-            XmlTextReader source = new XmlTextReader(fileUri.ToString());
+            XmlTextReader source = GetXmlReader(fileUri);
             source.WhitespaceHandling = WhitespaceHandling.Significant;
             
             String title = "";
@@ -46,10 +46,17 @@ namespace Obi
             return title;
         }
 
+        private static XmlTextReader GetXmlReader(Uri uri)
+        {
+            XmlTextReader reader = new XmlTextReader(uri.ToString());
+            reader.XmlResolver = null;
+            return reader;
+        }
+
         //starts the process of creating SectionNode's from h1...h6 elements
         private void LoadFromXHTML(Uri fileUri)
         {
-            XmlTextReader source = new XmlTextReader(fileUri.ToString());
+            XmlTextReader source = GetXmlReader(fileUri);
             source.WhitespaceHandling = WhitespaceHandling.Significant;
             bool foundHeadings = false;
             mLastSection = null;
