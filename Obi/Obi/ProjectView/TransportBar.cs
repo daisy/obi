@@ -603,6 +603,9 @@ namespace Obi.ProjectView
                             if (mRecordingSession != null && mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording)
                 {
                     // mark section
+                    PauseRecording();
+                    mView.Presentation.UndoRedoManager.execute(new Commands.Node.AddNewSection(mView));
+                    PrepareForRecording(true, null);
                 }
                             else
             {
