@@ -1144,7 +1144,7 @@ namespace Obi
         /// </summary>
         private void mPlaySelectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Play(mProjectView.SelectionNode);
+            Play(mProjectView.SelectedNodeAs<ObiNode>());
         }
 
         /// <summary>
@@ -1509,7 +1509,7 @@ namespace Obi
             mSectionIsUsedToolStripMenuItem.Checked = mProjectView.CanMarkSectionUnused;
         }
 
-        private void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddNewSection(); }
+        private void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddSection(); }
         private void mAddSubSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddNewSubSection(); }
         private void mRenameSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.StartRenamingSelectedSection(); }
         private void mMoveOutToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MoveSelectedSectionOut(); }
@@ -1548,10 +1548,10 @@ namespace Obi
             mMergeBlockWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeBlockWithNext;
             mBlockIsUsedToolStripMenuItem.Enabled = mProjectView.CanToggleBlockUsedStatus;
             mBlockIsUsedToolStripMenuItem.Checked = mProjectView.IsBlockUsed;
-            mAssignRoleToolStripMenuItem.Enabled = (mProjectView.SelectedBlockNode != null);
+            mAssignRoleToolStripMenuItem.Enabled = mProjectView.CanAssignRole;
             mPageToolStripMenuItem.Enabled = mProjectView.CanSetPageNumber;
             mEditRolesToolStripMenuItem.Enabled = mSession.Presentation != null;
-            mClearRoleToolStripMenuItem.Enabled = (mProjectView.SelectedBlockNode != null && mProjectView.SelectedBlockNode.NodeKind != EmptyNode.Kind.Plain);
+            mClearRoleToolStripMenuItem.Enabled = mProjectView.CanClearRole;
         }
 
         private void mAddEmptyBlockToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddEmptyBlock(); }
@@ -1710,15 +1710,6 @@ namespace Obi
                 blocksToolStripMenuItem.DropDown.Close();
                 mAddRoleToolStripTextBox.Text = Localizer.Message("add_role");
             }
-        }
-        private void mMakeBlockIntoContainerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.MakeBlockIntoContainer();
-        }
-
-        private void mRemoveContainerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.RemoveContainer();
         }
 
         private void mShowPeakMeterMenuItem_Click(object sender, EventArgs e)

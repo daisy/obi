@@ -44,6 +44,39 @@ namespace Obi.ProjectView
 
 
         /// <summary>
+        /// Add a new section node to the project.
+        /// </summary>
+        public void AddSection()
+        {
+            if (CanAddSection)
+            {
+                mPresentation.UndoRedoManager.execute(new Commands.TOC.AddNewSection(this, mTOCView.Selection == null ?
+                    new DummySelection(mPresentation.RootNode, mTOCView) : mTOCView.Selection));
+            }
+        }
+
+        /// <summary>
+        /// Insert a new subsection in the book as the last child of the selected section node in the TOC view.
+        /// </summary>
+        public void AddNewSubSection()
+        {
+            if (CanAddSubSection)
+            {
+                // hack to simulate the dummy node
+                SectionNode section = (SectionNode)mTOCView.Selection.Node;
+                mPresentation.UndoRedoManager.execute(new Commands.TOC.AddNewSection(this,
+                    section.SectionChildCount > 0 ?
+                    new NodeSelection(section.SectionChild(section.SectionChildCount - 1), mTOCView) :
+                    new DummySelection(mTOCView.Selection.Node, mTOCView)));
+            }
+        }
+
+        public bool CanAddSection { get { return mTOCView.CanAddSection && !CanAddStrip; } }
+        public bool CanAddSubSection { get { return mTOCView.CanAddSection && mTOCView.Selection != null; } }
+        public bool CanAssignRole { get { return IsBlockSelected; } }
+        public bool CanClearRole { get { return IsBlockSelected && ((EmptyNode)mSelection.Node).NodeKind != EmptyNode.Kind.Plain; } }
+
+        /// <summary>
         /// Contents of the clipboard
         /// </summary>
         public Clipboard Clipboard
@@ -67,6 +100,11 @@ namespace Obi.ProjectView
             }
         }
 
+        // These methods are used to know what is currently selected:
+        // block, strip or section; strict (i.e. not the label or the waveform) or not.
+        public bool IsBlockSelected { get { return SelectedNodeAs<EmptyNode>() != null; } }
+        public bool IsBlockSelectedStrict { get { return IsBlockSelected && mSelection.GetType() == typeof(NodeSelection); } }
+
         /// <summary>
         /// Get the next page number for the selected block.
         /// </summary>
@@ -80,6 +118,11 @@ namespace Obi.ProjectView
             get { return mForm; }
             set { mForm = value; }
         }
+
+        /// <summary>
+        /// Set the block currently playing back as a "light" selection.
+        /// </summary>
+        public PhraseNode PlaybackBlock { set { mStripsView.PlaybackBlock = value; } }
 
         /// <summary>
         /// Set the presentation that the project view displays.
@@ -99,13 +142,11 @@ namespace Obi.ProjectView
                         mTOCView.SetNewPresentation();
                         mStripsView.NewPresentation();
                         mTransportBar.NewPresentation();
+                        mMetadataView.NewPresentation();
                     }
                 }
             }
         }
-
-
-
 
         /// <summary>
         /// Show or hide the project display.
@@ -116,18 +157,6 @@ namespace Obi.ProjectView
             {
                 mTransportBarSplitter.Visible = value;
                 mNoProjectLabel.Visible = !value;
-            }
-        }
-
-        /// <summary>
-        /// If the current selection is a section, return it, otherwise return null.
-        /// </summary>
-        public SectionNode SelectedSection
-        {
-            get
-            {
-                return mSelection == null ? // || mSelection.Control != mTOCPanel ?
-                    null : mSelection.Node as SectionNode;
             }
         }
 
@@ -160,14 +189,18 @@ namespace Obi.ProjectView
             }
         }
 
+        // Quick way to set the selection
+
+        public EmptyNode SelectedBlockNode { set { mSelection = new NodeSelection(value, mStripsView); } }
+        public SectionNode SelectedStripNode { set { mSelection = new NodeSelection(value, mStripsView); } }
 
         /// <summary>
-        /// Currently selected node, regardless of its type or where it is selected.
-        /// Null if nothing is selected.
+        /// Currently selected node of the given type (e.g. SectionNode, EmptyNode or PhraseNode).
+        /// Null if there is no selection, or selection of a different kind.
         /// </summary>
-        public ObiNode SelectionNode
+        public T SelectedNodeAs<T>() where T : ObiNode
         {
-            get { return mSelection == null ? null : mSelection.Node; }
+            return mSelection == null ? null : mSelection.Node as T;
         }
 
         /// <summary>
@@ -180,12 +213,10 @@ namespace Obi.ProjectView
                 mSynchronizeViews = value;
                 if (mSynchronizeViews)
                 {
-                    // TODO depending on where the focus is, resync TOC-wise or strips-wise
-                    // (now it is TOC-wise...)
                     mTOCView.ResyncViews();
                     if (mSelection != null && mSelection.Control == mTOCView)
                     {
-                        mStripsView.MakeStripVisibleForSection(SelectedSection);
+                        mStripsView.MakeStripVisibleForSection(SelectedNodeAs<SectionNode>());
                     }
                 }
                 else
@@ -195,80 +226,18 @@ namespace Obi.ProjectView
             }
         }
 
+        /// <summary>
+        /// Get the transport bar for this project view.
+        /// </summary>
         public TransportBar TransportBar { get { return mTransportBar; } }
 
 
-        #region Strips
-
-        /// <summary>
-        /// True if a block is selected (and not its contents.)
-        /// </summary>
-        public bool IsBlockSelected
-        {
-            get
-            {
-                return mSelection != null && mSelection.GetType() == typeof(NodeSelection) && mSelection.Node is EmptyNode;
-            }
-        }
-
-        /// <summary>
-        /// The phrase node for the block selected in the strips view.
-        /// Null if no strip is selected.
-        /// TODO: we need a compound node kind for container blocks.
-        /// </summary>
-        public EmptyNode SelectedBlockNode
-        {
-            get { return mSelection == null ? null : mSelection.Node as EmptyNode; }
-            set { Selection = value == null ? null : new NodeSelection(value, mStripsView); }
-        }
-
-        public PhraseNode SelectedPhraseNode
-        {
-            get { return mSelection == null ? null : mSelection.Node as PhraseNode; }
-        }
-
-        public PhraseNode PlaybackBlock { set { mStripsView.PlaybackBlock = value; } }
-
-        /// <summary>
-        /// The section node for the strip selected in the strips view.
-        /// Null if no strip is selected.
-        /// </summary>
-        public SectionNode SelectedStripNode
-        {
-            get { return mSelection == null ? null : mSelection.Node as SectionNode; }
-            set { Selection = value == null ? null : new NodeSelection(value, mStripsView); }
-        }
-
-        #endregion
 
 
-        /// <summary>
-        /// Add a new section node to the project.
-        /// </summary>
-        public void AddNewSection()
-        {
-            if (CanAddSection)
-            {
-                mPresentation.UndoRedoManager.execute(new Commands.TOC.AddNewSection(this, mTOCView.Selection == null ?
-                    new DummySelection(mPresentation.RootNode, mTOCView) : mTOCView.Selection));
-            }
-        }
 
-        /// <summary>
-        /// Insert a new subsection in the book as the last child of the selected section node in the TOC view.
-        /// </summary>
-        public void AddNewSubSection()
-        {
-            if (CanAddSubSection)
-            {
-                // hack to simulate the dummy node
-                SectionNode section = (SectionNode)mTOCView.Selection.Node;
-                mPresentation.UndoRedoManager.execute(new Commands.TOC.AddNewSection(this,
-                    section.SectionChildCount > 0 ?
-                    new NodeSelection(section.SectionChild(section.SectionChildCount - 1), mTOCView) :
-                    new DummySelection(mTOCView.Selection.Node, mTOCView)));
-            }
-        }
+
+
+
 
         /// <summary>
         /// Add a new strip after, and at the same level as, the selected strip
@@ -430,7 +399,7 @@ namespace Obi.ProjectView
             }
             else if (CanRemoveBlock)
             {
-                mPresentation.UndoRedoManager.execute(new Commands.Node.Delete(this, mStripsView.Selection.Phrase,
+                mPresentation.UndoRedoManager.execute(new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
                     Localizer.Message("delete_block_command")));
             }
         }
@@ -529,6 +498,10 @@ namespace Obi.ProjectView
             }
         }
 
+        public bool IsSectionSelected { get { return SelectedNodeAs<SectionNode>() != null && mSelection.Control == mTOCView; } }
+        public bool IsSectionSelectedStrict { get { return IsSectionSelected && mSelection.GetType() == typeof(NodeSelection); } }
+        public bool IsStripSelected { get { return SelectedNodeAs<SectionNode>() != null && mSelection.Control == mStripsView; } }
+        public bool IsStripSelectedStrict { get { return IsStripSelected && mSelection.GetType() == typeof(NodeSelection); } }
 
         public bool CanCut { get { return CanDelete; } }
         public bool CanCopy { get { return CanCopySection || CanCopyStrip || CanCopyBlock; } }
@@ -536,13 +509,11 @@ namespace Obi.ProjectView
         public bool CanPaste { get { return mSelection != null && mSelection.CanPaste(mClipboard); } }
         public bool CanDeselect { get { return mSelection != null; } }
 
-        public bool CanShowInStripsView { get { return SelectedSection != null && mSelection.Control == mTOCView; } }
-        public bool CanShowInTOCView { get { return SelectedSection != null && mSelection.Control == mStripsView; } }
+        public bool CanShowInStripsView { get { return IsSectionSelected; } }
+        public bool CanShowInTOCView { get { return IsStripSelected; } }
 
         public bool CanAddEmptyBlock { get { return mStripsView.Selection != null; } }
-        public bool CanAddSection { get { return mTOCView.CanAddSection && !mStripsView.CanAddStrip; } }
         public bool CanAddStrip { get { return mStripsView.CanAddStrip; } }
-        public bool CanAddSubSection { get { return mTOCView.CanAddSection && mTOCView.Selection != null; } }
         public bool CanCopySection { get { return mTOCView.CanCopySection; } }
         public bool CanCopyStrip { get { return mStripsView.CanCopyStrip; } }
         public bool CanCopyBlock { get { return mStripsView.CanCopyBlock; } }
@@ -735,7 +706,7 @@ namespace Obi.ProjectView
         {
             if (IsBlockSelected)
             {
-                mPresentation.UndoRedoManager.execute(new Commands.Node.ChangeCustomType(this, SelectedBlockNode, kind, custom));
+                mPresentation.UndoRedoManager.execute(new Commands.Node.ChangeCustomType(this, SelectedNodeAs<EmptyNode>(), kind, custom));
             }
         }
 
@@ -749,7 +720,9 @@ namespace Obi.ProjectView
             if (CanMergeBlockWithNext) mPresentation.UndoRedoManager.execute(new Commands.Node.MergeAudio(this));
         }
 
-        public void MakeBlockIntoContainer()
+        #region Containers (not yet...)
+
+        /*public void MakeBlockIntoContainer()
         {
             //there is a problem with this because the treenode_added event gets thrown for each step
             //and Obi isn't used to dealing with empty nodes yet (which happens after cmd1 below gets executed)
@@ -762,10 +735,10 @@ namespace Obi.ProjectView
                 command.append(cmd2);
                 mPresentation.UndoRedoManager.execute(command);
             }
-        }
+        }*/
 
         //TODO: put this code into a command
-        public void RemoveContainer()
+        /*public void RemoveContainer()
         {
             if (SelectedBlockNode != null)
             {
@@ -779,11 +752,13 @@ namespace Obi.ProjectView
                 }
                 parentNode.RemoveChild(SelectedBlockNode);
             }
-        }
+        }*/
+
+        #endregion
 
         public void MakeSelectedBlockIntoSilencePhrase()
         {
-            EmptyNode node = SelectedBlockNode;
+            EmptyNode node = SelectedNodeAs<EmptyNode>();
             if (node != null)
             {
                 urakawa.undo.CompositeCommand command = Presentation.getCommandFactory().createCompositeCommand();
@@ -797,30 +772,31 @@ namespace Obi.ProjectView
 
         public void MakeSelectedBlockIntoHeadingPhrase()
         {
-            if (SelectedBlockNode != null)
+            if (IsBlockSelected)
             {
-                if (SelectedBlockNode != null)
-                {
-                    urakawa.undo.CompositeCommand command = Presentation.getCommandFactory().createCompositeCommand();
+                urakawa.undo.CompositeCommand command = Presentation.getCommandFactory().createCompositeCommand();
 
-                    //1. clear existing custom type
-                    Commands.Node.ChangeCustomType cmd1 = new Obi.Commands.Node.ChangeCustomType(this, SelectedBlockNode, EmptyNode.Kind.Plain);
-                    //2. unset existing heading on section
-                    EmptyNode node = SelectedBlockNode.AncestorAs<SectionNode>().Heading;
-                    Commands.Node.UnsetNodeAsHeadingPhrase cmd2 = new Obi.Commands.Node.UnsetNodeAsHeadingPhrase(this, node);
-                    //3. set new heading
-                    Commands.Node.SetNodeAsHeadingPhrase cmd3 = new Obi.Commands.Node.SetNodeAsHeadingPhrase(this, SelectedPhraseNode);
-                    //4. assign new custom type as "heading"
-                    Commands.Node.ChangeCustomType cmd4 = new Obi.Commands.Node.ChangeCustomType(this, SelectedBlockNode, EmptyNode.Kind.Heading, null);
-                    command.setShortDescription(cmd4.getShortDescription());
-                    command.append(cmd1);
-                    command.append(cmd2);
-                    command.append(cmd3);
-                    command.append(cmd4);
-                    mPresentation.UndoRedoManager.execute(command);
-                 }     
+                //1. clear existing custom type
+                Commands.Node.ChangeCustomType cmd1 = new Obi.Commands.Node.ChangeCustomType(this, SelectedNodeAs<EmptyNode>(),
+                    EmptyNode.Kind.Plain);
+                //2. unset existing heading on section
+                EmptyNode node = SelectedNodeAs<EmptyNode>().AncestorAs<SectionNode>().Heading;
+                Commands.Node.UnsetNodeAsHeadingPhrase cmd2 = new Obi.Commands.Node.UnsetNodeAsHeadingPhrase(this, node);
+                //3. set new heading
+                Commands.Node.SetNodeAsHeadingPhrase cmd3 = new Obi.Commands.Node.SetNodeAsHeadingPhrase(this,
+                    SelectedNodeAs<PhraseNode>());
+                //4. assign new custom type as "heading"
+                Commands.Node.ChangeCustomType cmd4 = new Obi.Commands.Node.ChangeCustomType(this, SelectedNodeAs<EmptyNode>(),
+                    EmptyNode.Kind.Heading);
+                command.setShortDescription(cmd4.getShortDescription());
+                command.append(cmd1);
+                command.append(cmd2);
+                command.append(cmd3);
+                command.append(cmd4);
+                mPresentation.UndoRedoManager.execute(command);
             }
         }
+
         public void UpdateCursorPosition(double time) { mStripsView.UpdateCursorPosition(time); }
         public void SelectAtCurrentTime() { mStripsView.SelectAtCurrentTime(); }
 
@@ -834,7 +810,7 @@ namespace Obi.ProjectView
         {
             if (IsBlockSelected)
             {
-                EmptyNode node = SelectedBlockNode;
+                EmptyNode node = SelectedNodeAs<EmptyNode>();
                 if (node.NodeKind != nodeKind || node.CustomClass != customClass)
                 {
                     mPresentation.UndoRedoManager.execute(new Obi.Commands.Node.ChangeCustomType(this, node, customClass));
@@ -853,11 +829,11 @@ namespace Obi.ProjectView
         {
             if (CanSetPageNumber)
             {
-                urakawa.undo.ICommand cmd = new Commands.Node.SetPageNumber(this, SelectedBlockNode, number);
+                urakawa.undo.ICommand cmd = new Commands.Node.SetPageNumber(this, SelectedNodeAs<EmptyNode>(), number);
                 if (renumber)
                 {
                     urakawa.undo.CompositeCommand k = Presentation.CreateCompositeCommand(cmd.getShortDescription());
-                    for (ObiNode n = SelectedBlockNode.FollowingNode; n != null; n = n.FollowingNode)
+                    for (ObiNode n = SelectedNodeAs<EmptyNode>().FollowingNode; n != null; n = n.FollowingNode)
                     {
                         if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)
                         {
@@ -919,11 +895,11 @@ namespace Obi.ProjectView
         /// </summary>
         public void ToggleBlockUsed(bool used)
         {
-            if (mStripsView.CanToggleBlockUsedStatus && SelectedBlockNode.Used != used)
+            if (mStripsView.CanToggleBlockUsedStatus && SelectedNodeAs<EmptyNode>().Used != used)
             {
-                Commands.Node.ToggleNodeUsed command = new Commands.Node.ToggleNodeUsed(this, SelectedBlockNode);
+                Commands.Node.ToggleNodeUsed command = new Commands.Node.ToggleNodeUsed(this, SelectedNodeAs<EmptyNode>());
                 command.Label = String.Format(Localizer.Message("toggle_block_used"),
-                    Localizer.Message(SelectedBlockNode.Used ? "unused" : "used"));
+                    Localizer.Message(SelectedNodeAs<EmptyNode>().Used ? "unused" : "used"));
                 Presentation.UndoRedoManager.execute(command);
             }
         }
