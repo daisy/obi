@@ -546,7 +546,8 @@ namespace Obi.ProjectView
         public bool CanCopySection { get { return mTOCView.CanCopySection; } }
         public bool CanCopyStrip { get { return mStripsView.CanCopyStrip; } }
         public bool CanCopyBlock { get { return mStripsView.CanCopyBlock; } }
-        public bool CanMarkSectionUnused { get { return mTOCView.CanToggleSectionUsed && mTOCView.Selection.Node.Used; } }
+        public bool CanToggleBlockUsedStatus { get { return mStripsView.CanToggleBlockUsedStatus; } }
+        public bool CanMarkSectionUnused { get { return mTOCView.CanToggleSectionUsed && mSelection.Node.Used; } }
         public bool CanMergeBlockWithNext { get { return mStripsView.CanMergeBlockWithNext; } }
         public bool CanMergeStripWithNext { get { return mStripsView.CanMergeStripWithNext; } }
         public bool CanMoveSectionIn { get { return mTOCView.CanMoveSectionIn; } }
@@ -559,6 +560,8 @@ namespace Obi.ProjectView
         public bool CanSplitBlock { get { return mSelection is AudioSelection; } }
         public bool CanSplitStrip { get { return mStripsView.CanSplitStrip; } }
         public bool CanToggleSectionUsed { get { return mTOCView.CanToggleSectionUsed; } }
+
+        public bool IsBlockUsed { get { return mStripsView.IsBlockUsed; } }
 
         /// <summary>
         /// Show the strip for the given section
@@ -908,6 +911,20 @@ namespace Obi.ProjectView
                     }
                 }
                 mPresentation.UndoRedoManager.execute(cmd);
+            }
+        }
+
+        /// <summary>
+        /// Toggle the used status of the selected block (its parent must be selected!)
+        /// </summary>
+        public void ToggleBlockUsed(bool used)
+        {
+            if (mStripsView.CanToggleBlockUsedStatus && SelectedBlockNode.Used != used)
+            {
+                Commands.Node.ToggleNodeUsed command = new Commands.Node.ToggleNodeUsed(this, SelectedBlockNode);
+                command.Label = String.Format(Localizer.Message("toggle_block_used"),
+                    Localizer.Message(SelectedBlockNode.Used ? "unused" : "used"));
+                Presentation.UndoRedoManager.execute(command);
             }
         }
     }

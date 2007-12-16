@@ -878,10 +878,13 @@ Error text: {1}</value>
   <data name="change_role" xml:space="preserve">
     <value>change role</value>
   </data>
-  <data name="set_page_number" xml:space="preserve">
-    <value>set page number</value>
-  </data>
   <data name="add_empty_page_blocks" xml:space="preserve">
     <value>add empty page blocks</value>
+  </data>
+  <data name="toggle_block_used" xml:space="preserve">
+    <value>mark block as {0}</value>
+  </data>
+  <data name="set_page_number_" xml:space="preserve">
+    <value>set page number</value>
   </data>
 </root>

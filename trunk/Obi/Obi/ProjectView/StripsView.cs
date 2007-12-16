@@ -56,6 +56,7 @@ namespace Obi.ProjectView
         }
 
         private bool BlockSelected { get { return mSelectedItem is Block && mSelection.GetType() == typeof(NodeSelection); } }
+        private bool BlockOrWaveformSelected { get { return mSelectedItem is Block; } }
         private bool StripSelected { get { return mSelectedItem is Strip && mSelection.GetType() == typeof(NodeSelection); } }
 
         public bool CanAddStrip { get { return StripSelected; } }
@@ -65,6 +66,7 @@ namespace Obi.ProjectView
         public bool CanRemoveStrip { get { return StripSelected; } }
         public bool CanRenameStrip { get { return StripSelected; } }
         public bool CanSplitStrip { get { return BlockSelected && SelectedEmptyNode.Index > 0; } }
+        public bool CanToggleBlockUsedStatus { get { return BlockOrWaveformSelected && mSelection.Node.ParentAs<ObiNode>().Used; } }
 
         public bool CanMergeBlockWithNext
         {
@@ -122,6 +124,11 @@ namespace Obi.ProjectView
                 return delete;
             }
         }
+
+        /// <summary>
+        /// True if a block is selected and it is used.
+        /// </summary>
+        public bool IsBlockUsed { get { return BlockOrWaveformSelected && mSelection.Node.Used; } }
 
         /// <summary>
         /// Show the strip for this section node.
