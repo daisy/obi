@@ -28,6 +28,14 @@ namespace Obi
             LoadFromXHTML(new Uri(xhtmlDocument));
         }
 
+        // Get an XML reader without a resolver so that the DTD is skipped
+        private static XmlTextReader GetXmlReader(Uri uri)
+        {
+            XmlTextReader reader = new XmlTextReader(uri.ToString());
+            reader.XmlResolver = null;
+            return reader;
+        }
+
         /// <summary>
         /// Utility function to grab the text of the <title> element
         /// </summary>
@@ -44,13 +52,6 @@ namespace Obi
 
             source.Close();
             return title;
-        }
-
-        private static XmlTextReader GetXmlReader(Uri uri)
-        {
-            XmlTextReader reader = new XmlTextReader(uri.ToString());
-            reader.XmlResolver = null;
-            return reader;
         }
 
         //starts the process of creating SectionNode's from h1...h6 elements

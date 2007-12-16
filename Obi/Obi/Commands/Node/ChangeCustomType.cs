@@ -66,7 +66,7 @@ namespace Obi.Commands.Node
             : base(view, node, EmptyNode.Kind.Page)
         {
             mPageNumber = pageNumber;
-            Label = Localizer.Message("set_page_number");
+            Label = Localizer.Message("set_page_number_");
         }
 
         public override void execute()

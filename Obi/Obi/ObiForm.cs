@@ -1507,7 +1507,6 @@ namespace Obi
             mMoveInToolStripMenuItem.Enabled = mProjectView.CanMoveSectionIn;
             mSectionIsUsedToolStripMenuItem.Enabled = mProjectView.CanToggleSectionUsed;
             mSectionIsUsedToolStripMenuItem.Checked = mProjectView.CanMarkSectionUnused;
-            mListenToSectionToolStripMenuItem.Enabled = mProjectView.CanListenToSection;
         }
 
         private void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddNewSection(); }
@@ -1529,7 +1528,6 @@ namespace Obi
             mRenameStripToolStripMenuItem.Enabled = mProjectView.CanRenameStrip;
             mSplitStripToolStripMenuItem.Enabled = mProjectView.CanSplitStrip;
             mMergeWithNextStripToolStripMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
-            mListenToStripToolStripMenuItem.Enabled = mProjectView.CanListenToStrip;
         }
 
         private void mInsertStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddNewStrip(); }
@@ -1540,6 +1538,7 @@ namespace Obi
 
         // Blocks menu
 
+        // Update the status of the blocks menu item with the current selection and tree.
         private void UpdateBlocksMenu()
         {
             mAddEmptyBlockToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
@@ -1547,7 +1546,8 @@ namespace Obi
             mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
             mSplitBlockToolStripMenuItem.Enabled = mProjectView.CanSplitBlock;
             mMergeBlockWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeBlockWithNext;
-            mListenToBlockToolStripMenuItem.Enabled = (mProjectView.SelectedBlockNode != null);
+            mBlockIsUsedToolStripMenuItem.Enabled = mProjectView.CanToggleBlockUsedStatus;
+            mBlockIsUsedToolStripMenuItem.Checked = mProjectView.IsBlockUsed;
             mAssignRoleToolStripMenuItem.Enabled = (mProjectView.SelectedBlockNode != null);
             mPageToolStripMenuItem.Enabled = mProjectView.CanSetPageNumber;
             mEditRolesToolStripMenuItem.Enabled = mSession.Presentation != null;
@@ -1558,6 +1558,11 @@ namespace Obi
         private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ImportPhrases(); }
         private void mSplitBlockToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SplitBlock(); }
         private void mMergeBlockWithNextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeBlockWithNext(); }
+        private void mBlockIsUsedToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            mProjectView.ToggleBlockUsed(mBlockIsUsedToolStripMenuItem.Checked);
+        }
+
 
         private delegate void DisableCallback(bool disable);
 

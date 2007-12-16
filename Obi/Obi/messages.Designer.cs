@@ -1454,6 +1454,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to page {0}.
+        /// </summary>
+        internal static string page_number {
+            get {
+                return ResourceManager.GetString("page_number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to paste block.
         /// </summary>
         internal static string paste_block_command {
@@ -1882,9 +1891,9 @@ namespace Obi {
         /// <summary>
         ///   Looks up a localized string similar to set page number.
         /// </summary>
-        internal static string set_page_number {
+        internal static string set_page_number_ {
             get {
-                return ResourceManager.GetString("set_page_number", resourceCulture);
+                return ResourceManager.GetString("set_page_number_", resourceCulture);
             }
         }
         
@@ -2038,6 +2047,15 @@ namespace Obi {
         internal static string toc_view_tooltip {
             get {
                 return ResourceManager.GetString("toc_view_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mark block as {0}.
+        /// </summary>
+        internal static string toggle_block_used {
+            get {
+                return ResourceManager.GetString("toggle_block_used", resourceCulture);
             }
         }
         
