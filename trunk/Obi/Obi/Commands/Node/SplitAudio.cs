@@ -11,7 +11,7 @@ namespace Obi.Commands.Node
 
         public SplitAudio(ProjectView.ProjectView view) : base(view)
         {
-            mNode = (PhraseNode)view.SelectedBlockNode;
+            mNode = view.SelectedNodeAs<PhraseNode>();
             mSplitPoint = new Time(((AudioSelection)view.Selection).WaveformSelection.CursorTime);
         }
 

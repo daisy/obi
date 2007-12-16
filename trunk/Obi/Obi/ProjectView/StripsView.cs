@@ -707,38 +707,35 @@ namespace Obi.ProjectView
 
 
         /// <summary>
-        ///  Moves keyboard focus to previous page node while in strips view
+        /// Moves keyboard focus to previous page node while in strips view
         /// </summary>
-        /// <returns></returns>
-        public bool SelectPreviousPageNode ()
+        public bool SelectPreviousPageNode()
         {
-            for (ObiNode n = mView.SelectedBlockNode.PrecedingNode ; n != null; n = n.PrecedingNode )
+            for (ObiNode n = mView.SelectedNodeAs<EmptyNode>().PrecedingNode; n != null; n = n.PrecedingNode)
             {
                 if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)
                 {
                     mView.Selection = new NodeSelection(n, this);
                     return true;
                 }
-                            }
-                        return false ;
+            }
+            return false;
         }
 
-
         /// <summary>
-        ///  moves keyboard focus to next page node while in strips view
-                /// </summary>
-        /// <returns></returns>
-        public bool SelectNextPageNode ()
+        /// Moves keyboard focus to next page node while in strips view
+        /// </summary>
+        public bool SelectNextPageNode()
         {
-            for (ObiNode n = mView.SelectedBlockNode.FollowingNode; n != null; n = n.FollowingNode)
+            for (ObiNode n = mView.SelectedNodeAs<EmptyNode>().FollowingNode; n != null; n = n.FollowingNode)
             {
                 if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)
                 {
                     mView.Selection = new NodeSelection(n, this);
                     return true;
                 }
-                            }
-                        return false ;
+            }
+            return false;
         }
 
         /// <summary>

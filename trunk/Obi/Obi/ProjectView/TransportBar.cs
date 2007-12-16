@@ -860,7 +860,7 @@ namespace Obi.ProjectView
             mRecordingCommand = CreateRecordingCommand();
 
             if ( selected == null )
-            selected = mView.SelectionNode;
+            selected = mView.SelectedNodeAs<ObiNode>();
                         
             // If nothing is selected, create a new section to record in.
             if (selected == null)

@@ -14,5 +14,12 @@ namespace Obi.ProjectView
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// The project view is showing a new presentation.
+        /// </summary>
+        public void NewPresentation()
+        {
+        }
     }
 }
