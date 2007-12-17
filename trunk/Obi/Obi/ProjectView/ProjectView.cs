@@ -932,20 +932,14 @@ namespace Obi.ProjectView
                 IterationNode = IterationNode.FollowingNode;
             }
 
-            
-            if (SilenceNode == null)
+
+            Dialogs.SentenceDetection PhraseDetectionDialog = new Obi.Dialogs.SentenceDetection(SilenceNode);
+            PhraseDetectionDialog.ShowDialog();
+            if (PhraseDetectionDialog.DialogResult == DialogResult.OK)
             {
-                            MessageBox.Show("Error, no silence phrase found for reference.");
-        }
-            else
-            {
-                                Dialogs.SentenceDetection PhraseDetectionDialog = new Obi.Dialogs.SentenceDetection (SilenceNode  ) ;
-                                PhraseDetectionDialog.ShowDialog();
-                                if (PhraseDetectionDialog.DialogResult == DialogResult.OK)
-                                {
-                                    mPresentation.UndoRedoManager.execute ( new Commands.Node.PhraseDetection (this ,  PhraseDetectionDialog.Threshold , PhraseDetectionDialog.Gap , PhraseDetectionDialog.LeadingSilence )  ) ;
-                                }
-            }       
+                mPresentation.UndoRedoManager.execute(new Commands.Node.PhraseDetection(this, PhraseDetectionDialog.Threshold, PhraseDetectionDialog.Gap, PhraseDetectionDialog.LeadingSilence));
+            }
+
                 }// end of function
 
     }
