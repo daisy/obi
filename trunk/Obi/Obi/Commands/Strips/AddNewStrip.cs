@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Obi.Commands.Strips
 {
-    public class AddNewStrip: Commands.Node.AddNewSection
+    public class AddNewStrip: Commands.Node.AddSectionNode
     {
         // This is a bit ugly, but we don't have a dummy node yet. The point is that
         // the new strip is always right after the selected one: if the selected strip

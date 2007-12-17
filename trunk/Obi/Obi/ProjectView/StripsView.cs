@@ -60,6 +60,7 @@ namespace Obi.ProjectView
         private bool StripSelected { get { return mSelectedItem is Strip && mSelection.GetType() == typeof(NodeSelection); } }
 
         public bool CanAddStrip { get { return StripSelected; } }
+
         public bool CanCopyBlock { get { return BlockSelected; } }
         public bool CanCopyStrip { get { return StripSelected; } }
         public bool CanRemoveBlock { get { return BlockSelected; } }

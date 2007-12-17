@@ -88,15 +88,6 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to add section.
-        /// </summary>
-        internal static string add_new_section_command {
-            get {
-                return ResourceManager.GetString("add_new_section_command", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to add audio block.
         /// </summary>
         internal static string add_phrase_command_label {
@@ -117,18 +108,27 @@ namespace Obi {
         /// <summary>
         ///   Looks up a localized string similar to add section.
         /// </summary>
-        internal static string add_section_command_label {
+        internal static string add_section {
             get {
-                return ResourceManager.GetString("add_section_command_label", resourceCulture);
+                return ResourceManager.GetString("add_section", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to add strip.
         /// </summary>
-        internal static string add_strip_command {
+        internal static string add_strip {
             get {
-                return ResourceManager.GetString("add_strip_command", resourceCulture);
+                return ResourceManager.GetString("add_strip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add subsection.
+        /// </summary>
+        internal static string add_subsection {
+            get {
+                return ResourceManager.GetString("add_subsection", resourceCulture);
             }
         }
         

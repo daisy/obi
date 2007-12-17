@@ -1,44 +1,55 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Obi.Commands.Node
 {
-    public class AddNewSection: Command
+    public class AddSectionNode: Command
     {
-        private ObiNode mParent;
-        private int mIndex;
-        private SectionNode mNode;
-        private NodeSelection mSelection;  // hack while we don't have working dummy
+        protected ObiNode mParent;                        // the parent of the new section node
+        protected int mIndex;                             // the index where the section node is inserted
+        private SectionNode mNode;                        // the new section node
+        private IControlWithRenamableSelection mControl;  // control in which the section is added
 
         /// <summary>
-        /// Add a new section node in the context of the previous selection.
+        /// Add a new section node in the context of the previous selection. Pass along the control
+        /// in which the node is added as the selection might be null. The section node is created
+        /// here and will be added when the command is executed.
         /// </summary>
-        public AddNewSection(ProjectView.ProjectView view) : this(view, view.Selection) { }
-
-        public AddNewSection(ProjectView.ProjectView view, NodeSelection selection)
-            : base(view)
+        public AddSectionNode(ProjectView.ProjectView view, IControlWithRenamableSelection control): base(view)
         {
-            mSelection = selection;
             mNode = view.Presentation.CreateSectionNode();
-            mIndex = selection.IndexForNewNode(mNode);
-            mParent = selection.ParentForNewNode(mNode);
+            SetParentAndIndex(view);
             mNode.Used = mParent.Used;
-            View.SelectAndRenameSelection(new NodeSelection(mNode, mSelection.Control));
+            mControl = control;
+            view.SelectAndRenameSelection(new NodeSelection(mNode, mControl));
+        }
+
+        // Set parent and index for the new node
+        protected virtual void SetParentAndIndex(ProjectView.ProjectView view)
+        {
+            if (view.Selection == null)
+            {
+                mParent = view.Presentation.RootNode;
+                mIndex = mParent.SectionChildCount;
+            }
+            else
+            {
+                mParent = view.Selection.ParentForNewNode(mNode);
+                mIndex = view.Selection.IndexForNewNode(mNode);
+            }
         }
 
         /// <summary>
         /// The new section node to be added.
         /// </summary>
         public SectionNode NewSection { get { return mNode; } }
-        
+
+        public override string getShortDescription() { return Localizer.Message("add_section"); }
+
         /// <summary>
         /// Add or readd the new section node then restore this as the selection.
         /// </summary>
         public override void execute()
         {
             mParent.Insert(mNode, mIndex);
-            if (Redo) View.Selection = new NodeSelection(mNode, mSelection.Control);
+            if (Redo) View.Selection = new NodeSelection(mNode, mControl);
             base.execute();
         }
 
@@ -50,5 +61,18 @@ namespace Obi.Commands.Node
             mNode.Detach();
             base.unExecute();
         }
+    }
+
+    public class AddSubSection : AddSectionNode
+    {
+        public AddSubSection(ProjectView.ProjectView view) : base(view, (ProjectView.TOCView)view.Selection.Control) { }
+
+        protected override void SetParentAndIndex(Obi.ProjectView.ProjectView view)
+        {
+            mParent = view.Selection.Node;
+            mIndex = mParent.SectionChildCount;
+        }
+
+        public override string getShortDescription() { return Localizer.Message("add_subsection"); }
     }
 }

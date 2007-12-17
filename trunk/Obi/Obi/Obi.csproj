@@ -112,9 +112,7 @@
     <Compile Include="Commands\Node\SplitAudio.cs" />
     <Compile Include="Commands\Node\SplitAudioSelection.cs" />
     <Compile Include="Commands\Node\ToggleNodeUsed.cs" />
-    <Compile Include="Commands\Strips\AddNewStrip.cs" />
     <Compile Include="Commands\Strips\ImportPhrases.cs" />
-    <Compile Include="Commands\TOC\AddNewSection.cs" />
     <Compile Include="Commands\TOC\MoveSectionIn.cs" />
     <Compile Include="Commands\TOC\MoveSectionOut.cs" />
     <Compile Include="Commands\TOC\ToggleSectionUsed.cs" />
@@ -131,12 +129,6 @@
     </Compile>
     <Compile Include="Dialogs\EditRoles.Designer.cs">
       <DependentUpon>EditRoles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\GoToPage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\GoToPage.Designer.cs">
-      <DependentUpon>GoToPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Help.cs">
       <SubType>Form</SubType>
@@ -410,10 +402,6 @@
     <EmbeddedResource Include="Dialogs\EditRoles.resx">
       <SubType>Designer</SubType>
       <DependentUpon>EditRoles.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\GoToPage.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>GoToPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Help.resx">
       <SubType>Designer</SubType>

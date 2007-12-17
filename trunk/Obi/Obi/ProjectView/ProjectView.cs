@@ -50,28 +50,23 @@ namespace Obi.ProjectView
         {
             if (CanAddSection)
             {
-                mPresentation.UndoRedoManager.execute(new Commands.TOC.AddNewSection(this, mTOCView.Selection == null ?
-                    new DummySelection(mPresentation.RootNode, mTOCView) : mTOCView.Selection));
+                mPresentation.UndoRedoManager.execute(new Commands.Node.AddSectionNode(this, mTOCView));
             }
         }
 
         /// <summary>
         /// Insert a new subsection in the book as the last child of the selected section node in the TOC view.
         /// </summary>
-        public void AddNewSubSection()
+        public void AddSubSection()
         {
             if (CanAddSubSection)
             {
-                // hack to simulate the dummy node
-                SectionNode section = (SectionNode)mTOCView.Selection.Node;
-                mPresentation.UndoRedoManager.execute(new Commands.TOC.AddNewSection(this,
-                    section.SectionChildCount > 0 ?
-                    new NodeSelection(section.SectionChild(section.SectionChildCount - 1), mTOCView) :
-                    new DummySelection(mTOCView.Selection.Node, mTOCView)));
+                mPresentation.UndoRedoManager.execute(new Commands.Node.AddSubSection(this));
             }
         }
 
         public bool CanAddSection { get { return mTOCView.CanAddSection && !CanAddStrip; } }
+        public bool CanAddStrip { get { return mStripsView.CanAddStrip; } }
         public bool CanAddSubSection { get { return mTOCView.CanAddSection && mTOCView.Selection != null; } }
         public bool CanAssignRole { get { return IsBlockSelected; } }
         public bool CanClearRole { get { return IsBlockSelected && ((EmptyNode)mSelection.Node).NodeKind != EmptyNode.Kind.Plain; } }
@@ -239,13 +234,6 @@ namespace Obi.ProjectView
 
 
 
-        /// <summary>
-        /// Add a new strip after, and at the same level as, the selected strip
-        /// </summary>
-        public void AddNewStrip()
-        {
-            if (CanAddStrip) { mPresentation.UndoRedoManager.execute(new Commands.Strips.AddNewStrip(this)); }
-        }
 
         /// <summary>
         /// Select the name field of the selected section and start editing it.
@@ -519,7 +507,6 @@ namespace Obi.ProjectView
         public bool CanShowInTOCView { get { return IsStripSelected; } }
 
         public bool CanAddEmptyBlock { get { return mStripsView.Selection != null; } }
-        public bool CanAddStrip { get { return mStripsView.CanAddStrip; } }
         public bool CanCopySection { get { return mTOCView.CanCopySection; } }
         public bool CanCopyStrip { get { return mStripsView.CanCopyStrip; } }
         public bool CanCopyBlock { get { return mStripsView.CanCopyBlock; } }
