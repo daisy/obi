@@ -39,7 +39,14 @@ namespace Obi.Dialogs
         public SentenceDetection(PhraseNode silence)
         {
             InitializeComponent();
-            mThresholdBox.Text = Audio.PhraseDetection.GetSilenceAmplitude(silence.Audio).ToString();
+
+            if (silence != null)
+                mThresholdBox.Text = Audio.PhraseDetection.GetSilenceAmplitude(silence.Audio).ToString();
+            else
+            {
+                MessageBox.Show("No silence file for reference. Setting default value for  threshold");
+                mThresholdBox.Text = "0";
+            }
             mGapBox.Text = Audio.PhraseDetection.DEFAULT_GAP.ToString();
             mLeadingSilenceBox.Text = Audio.PhraseDetection.DEFAULT_LEADING_SILENCE.ToString();
         }
