@@ -206,30 +206,56 @@ function is provided.
 
 ### View menu (`Alt+V`)
 
+* __Focus on Strips view__ (`F6`)
+
 * __Show source view__ (`Alt+R`): show the source of the XUK file for this
   project. This is mainly useful for debugging and may be removed from the
   release version.
   * TODO: change keyboard shortcut.
 
+
 ### TOC menu (`Alt+C`)
 
-* __Add section__ (`Ctrl+A`): adds a new section after the selected section
-  and at the same level. If no section is selected, then add a new section at
-  the top level and at the end.
-  * TODO: right now when nothing is selected, the new section is added at the
-    beginning. Fix this when dummy section is implemented.
+The TOC menu provides operations on the table of contents.
 
-* __Ad sub-section__ (`Ctrl+Shift+A`): adds a new section as the last child of
+* __Add section__ (`Ctrl+A`): add a new section after the selected section
+  and at the same level. If no section is selected, then add a new section at
+  the top level and at the end. TODO: dummy section (adding before the first
+  section.)
+
+* __Ad sub-section__ (`Ctrl+Shift+A`): add a new section as the last child of
   the selected section.
 
 * __Rename section__ (`F2`): start editing the label of the section. The new
   name cannot be empty. The change is committed when pressing `Return` or
   cancelled when pressing `Esc`.
 
-* __Move section in__ (`Ctrl+Shift+Left`):
-* __Move section out__ (`Ctrl+Shift+Right`):
+* __Move section in__ (`Ctrl+Shift+Left`): increase the level of the section
+  by one. The section becomes the first subsection of its previous sibling
+  section; as a consequence, the first subsection of a section cannot be
+  moved in. Only the section moves, not its subsections.
+
+* __Move section out__ (`Ctrl+Shift+Right`): decrease the level of the section
+  by one. Only sections without subsections can be moved out. Top-level
+  sections can obviously not be moved out.
+
+* __Section is used__ (`Ctrl+K`): when a section is selected, the menu
+  item shows whether the section is used or not with a checkbox. The checkbox
+  is checked if the section is currently used. Selecting this item toggles the
+  used status of the section (from used to unused, and from unused to used.)
+  When the used status of the section changes, all subsections change to the
+  same status as well. The status of a section can only be changed if its
+  parent section is used (or if it is a top-level section), as there cannot
+  be used subsections of unused sections.
+
 
 ### Strips menu
+
+* __Rename strip__ (`F2`): start editing the label of the strip. The new name
+  cannot be empty. The change is committed when pressing `Return` or cancelled
+  when pressing `Esc`.
+
+* TODO: add strip, depending on cursor or strip selection.
 
 ### Blocks menu (`Alt+B`)
 
