@@ -82,22 +82,22 @@
               <a href="#id18992">View menu (<code>Alt+V</code>)</a>
             </li>
             <li>
-              <a href="#id19020">TOC menu (<code>Alt+C</code>)</a>
+              <a href="#id19032">TOC menu (<code>Alt+C</code>)</a>
             </li>
             <li>
-              <a href="#id19102">Strips menu</a>
+              <a href="#id19129">Strips menu</a>
             </li>
             <li>
-              <a href="#id19105">Blocks menu (<code>Alt+B</code>)</a>
+              <a href="#id19160">Blocks menu (<code>Alt+B</code>)</a>
             </li>
             <li>
-              <a href="#id19174">Transport menu</a>
+              <a href="#id19228">Transport menu</a>
             </li>
             <li>
-              <a href="#id19178">Tools menu</a>
+              <a href="#id19232">Tools menu</a>
             </li>
             <li>
-              <a href="#id19181">Help menu</a>
+              <a href="#id19235">Help menu</a>
             </li>
           </ul>
         </li>
@@ -301,24 +301,29 @@ of section titles, the strip corresponding to the section is selected.)</p>
     </ul>
     <h3 id="id18992">View menu (<code>Alt+V</code>)</h3>
     <ul>
-      <li><strong>Show source view</strong> (<code>Alt+R</code>): show the source of the XUK file for this
-project. This is mainly useful for debugging and may be removed from the
-release version.
-<ul><li><span class="todo">TODO</span>: change keyboard shortcut.</li></ul></li>
-    </ul>
-    <h3 id="id19020">TOC menu (<code>Alt+C</code>)</h3>
-    <ul>
       <li>
-        <p><strong>Add section</strong> (<code>Ctrl+A</code>): adds a new section after the selected section
-and at the same level. If no section is selected, then add a new section at
-the top level and at the end.</p>
-        <ul>
-          <li><span class="todo">TODO</span>: right now when nothing is selected, the new section is added at the
-beginning. Fix this when dummy section is implemented.</li>
-        </ul>
+        <p><strong>Focus on Strips view</strong> (<code>F6</code>)</p>
       </li>
       <li>
-        <p><strong>Ad sub-section</strong> (<code>Ctrl+Shift+A</code>): adds a new section as the last child of
+        <p><strong>Show source view</strong> (<code>Alt+R</code>): show the source of the XUK file for this
+project. This is mainly useful for debugging and may be removed from the
+release version.</p>
+        <ul>
+          <li><span class="todo">TODO</span>: change keyboard shortcut.</li>
+        </ul>
+      </li>
+    </ul>
+    <h3 id="id19032">TOC menu (<code>Alt+C</code>)</h3>
+    <p>The TOC menu provides operations on the table of contents.</p>
+    <ul>
+      <li>
+        <p><strong>Add section</strong> (<code>Ctrl+A</code>): add a new section after the selected section
+and at the same level. If no section is selected, then add a new section at
+the top level and at the end. <span class="todo">TODO</span>: dummy section (adding before the first
+section.)</p>
+      </li>
+      <li>
+        <p><strong>Ad sub-section</strong> (<code>Ctrl+Shift+A</code>): add a new section as the last child of
 the selected section.</p>
       </li>
       <li>
@@ -327,12 +332,39 @@ name cannot be empty. The change is committed when pressing <code>Return</code> 
 cancelled when pressing <code>Esc</code>.</p>
       </li>
       <li>
-        <p><strong>Move section in</strong> (<code>Ctrl+Shift+Left</code>):</p>
+        <p><strong>Move section in</strong> (<code>Ctrl+Shift+Left</code>): increase the level of the section
+by one. The section becomes the first subsection of its previous sibling
+section; as a consequence, the first subsection of a section cannot be
+moved in. Only the section moves, not its subsections.</p>
       </li>
-      <li><strong>Move section out</strong> (<code>Ctrl+Shift+Right</code>):</li>
+      <li>
+        <p><strong>Move section out</strong> (<code>Ctrl+Shift+Right</code>): decrease the level of the section
+by one. Only sections without subsections can be moved out. Top-level
+sections can obviously not be moved out.</p>
+      </li>
+      <li>
+        <p><strong>Section is used</strong> (<code>Ctrl+K</code>): when a section is selected, the menu
+item shows whether the section is used or not with a checkbox. The checkbox
+is checked if the section is currently used. Selecting this item toggles the
+used status of the section (from used to unused, and from unused to used.)
+When the used status of the section changes, all subsections change to the
+same status as well. The status of a section can only be changed if its
+parent section is used (or if it is a top-level section), as there cannot
+be used subsections of unused sections.</p>
+      </li>
     </ul>
-    <h3 id="id19102">Strips menu</h3>
-    <h3 id="id19105">Blocks menu (<code>Alt+B</code>)</h3>
+    <h3 id="id19129">Strips menu</h3>
+    <ul>
+      <li>
+        <p><strong>Rename strip</strong> (<code>F2</code>): start editing the label of the strip. The new name
+cannot be empty. The change is committed when pressing <code>Return</code> or cancelled
+when pressing <code>Esc</code>.</p>
+      </li>
+      <li>
+        <p><span class="todo">TODO</span>: add strip, depending on cursor or strip selection.</p>
+      </li>
+    </ul>
+    <h3 id="id19160">Blocks menu (<code>Alt+B</code>)</h3>
     <ul>
       <li>
         <p><strong>Add empty block</strong> (<code>Ctrl+Alt+A</code>): add a new empty block at the end of the
@@ -358,8 +390,8 @@ is kept. This means that page numbers may disappear, etc.</li>
         </ul>
       </li>
     </ul>
-    <h3 id="id19174">Transport menu</h3>
-    <h3 id="id19178">Tools menu</h3>
-    <h3 id="id19181">Help menu</h3>
+    <h3 id="id19228">Transport menu</h3>
+    <h3 id="id19232">Tools menu</h3>
+    <h3 id="id19235">Help menu</h3>
   </body>
 </html>
