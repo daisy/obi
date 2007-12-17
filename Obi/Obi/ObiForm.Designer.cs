@@ -82,7 +82,6 @@ namespace Obi
             this.mMoveInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSectionIsUsedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStripsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mInsertStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRenameStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSplitStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMergeWithNextStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -607,21 +606,12 @@ namespace Obi
             // mStripsToolStripMenuItem
             // 
             this.mStripsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mInsertStripToolStripMenuItem,
             this.mRenameStripToolStripMenuItem,
             this.mSplitStripToolStripMenuItem,
             this.mMergeWithNextStripToolStripMenuItem});
             this.mStripsToolStripMenuItem.Name = "mStripsToolStripMenuItem";
             this.mStripsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.mStripsToolStripMenuItem.Text = "&Strips";
-            // 
-            // mInsertStripToolStripMenuItem
-            // 
-            this.mInsertStripToolStripMenuItem.Name = "mInsertStripToolStripMenuItem";
-            this.mInsertStripToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.mInsertStripToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
-            this.mInsertStripToolStripMenuItem.Text = "&Add strip";
-            this.mInsertStripToolStripMenuItem.Click += new System.EventHandler(this.mInsertStripToolStripMenuItem_Click);
             // 
             // mRenameStripToolStripMenuItem
             // 
@@ -1002,8 +992,6 @@ namespace Obi
             this.mProjectView.ObiForm = null;
             this.mProjectView.Padding = new System.Windows.Forms.Padding(3);
             this.mProjectView.Presentation = null;
-            this.mProjectView.SelectedBlockNode = null;
-            this.mProjectView.SelectedStripNode = null;
             this.mProjectView.Selection = null;
             this.mProjectView.Size = new System.Drawing.Size(958, 582);
             this.mProjectView.TabIndex = 4;
@@ -1061,7 +1049,6 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mAddSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mAddSubSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mRenameSectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mInsertStripToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mRenameStripToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mAudioPreferencesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mHelpToolStripMenuItem;

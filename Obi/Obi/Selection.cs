@@ -45,6 +45,8 @@ namespace Obi
             return s != null && HasCursor ? s.HasCursor && s.CursorTime == CursorTime :
                 !s.HasCursor && s.SelectionBeginTime == SelectionBeginTime && s.SelectionEndTime == SelectionEndTime;
         }
+
+        public override int GetHashCode() { return base.GetHashCode(); }
     }
 
     /// <summary>
@@ -78,6 +80,8 @@ namespace Obi
             return obj != null && obj.GetType() == GetType() &&
                 ((NodeSelection)obj).Node == Node && ((NodeSelection)obj).Control == Control;
         }
+
+        public override int GetHashCode() { return base.GetHashCode(); }
 
         public SectionNode Section { get { return Node as SectionNode; } }
         public SectionNode SectionOf { get { return Node is PhraseNode ? Node.ParentAs<SectionNode>() : Node as SectionNode; } }
@@ -173,6 +177,8 @@ namespace Obi
             return obj != null && obj.GetType() == GetType() && ((TextSelection)obj).Text == mText && base.Equals(obj);
         }
 
+        public override int GetHashCode() { return base.GetHashCode(); }
+
         public override string ToString()
         {
             return String.Format("\"{0}\" in {1}", mText, base.ToString());
@@ -200,6 +206,8 @@ namespace Obi
                 ((AudioSelection)obj).WaveformSelection == mWaveformSeletion && base.Equals(obj);
         }
 
+        public override int GetHashCode() { return base.GetHashCode(); }
+
         public override string ToString()
         {
             return String.Format("Audio in {0}", base.ToString());
@@ -225,6 +233,8 @@ namespace Obi
         {
             return obj != null && obj.GetType() == GetType() && ((StripCursorSelection)obj).Index == mIndex && base.Equals(obj);
         }
+
+        public override int GetHashCode() { return base.GetHashCode(); }
 
         public override ObiNode ParentForNewNode(ObiNode newNode)
         {

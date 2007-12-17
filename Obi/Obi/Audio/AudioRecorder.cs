@@ -430,7 +430,7 @@ namespace Obi.Audio
             {
                 CaptureData = (byte[]) applicationBuffer.Read ( NextCaptureOffset , typeof(byte) , LockFlag.None , LockSize );
             }
-            catch (System.Exception Ex)
+            catch (System.Exception)
             {
                 return;
                 //MessageBox.Show( "Size" + ( m_iCaptureBufferSize.ToString () ) +  "Cap" + ( NextCaptureOffset.ToString () ) + "Log" + ( LockSize.ToString () ) + Ex.ToString());

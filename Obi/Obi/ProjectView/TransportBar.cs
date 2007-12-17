@@ -32,9 +32,6 @@ namespace Obi.ProjectView
         RecordingSession inlineRecordingSession = null; // LNN: hack for doing non-dialog recording.
         public bool IsInlineRecording
         { get { return (inlineRecordingSession != null); } }
-        private bool mDidCreateSectionForRecording = false;
-        private SectionNode mRecordingToSection = null;
-        private int mRecordingStartIndex = 0;
         private int m_PreviewDuration = 1500; // duration of preview playback, to be  included in settings.
 
         // constants from the display combo box
@@ -544,7 +541,6 @@ namespace Obi.ProjectView
                     // mProjectPanel.StripManager.UpdateAudioForPhrase(mRecordingToSection.PhraseChild(mRecordingStartIndex + i), inlineRecordingSession.RecordedAudio[i]);
                 }
                 
-                mDidCreateSectionForRecording = false;
                 inlineRecordingSession = null;
                 UpdateInlineRecordingState();
             }
@@ -600,14 +596,14 @@ namespace Obi.ProjectView
         /// </summary>
         public void NextSection()
         {
-                            if (mRecordingSession != null && mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording)
-                {
-                    // mark section
-                    PauseRecording();
-                    mView.Presentation.UndoRedoManager.execute(new Commands.Node.AddNewSection(mView));
-                    PrepareForRecording(true, null);
-                }
-                            else
+            if (mRecordingSession != null && mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording)
+            {
+                // mark section
+                PauseRecording();
+                mView.AddSection();
+                PrepareForRecording(true, null);
+            }
+            else
             {
                 mIsSerialPlaying = true;
                 if (Enabled) mCurrentPlaylist.NavigateToNextSection();
