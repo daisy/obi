@@ -46,7 +46,7 @@ namespace Obi.Commands.TOC
         {
             base.execute();
             Move(mSection);
-            View.SelectInTOCView(mSection);
+            View.SelectedSectionNode = mSection;
         }
 
         public override void unExecute()

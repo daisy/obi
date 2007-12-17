@@ -66,8 +66,19 @@ namespace Obi.ProjectView
         public bool CanRemoveBlock { get { return BlockSelected; } }
         public bool CanRemoveStrip { get { return StripSelected; } }
         public bool CanRenameStrip { get { return StripSelected; } }
-        public bool CanSplitStrip { get { return BlockSelected && SelectedEmptyNode.Index > 0; } }
-        public bool CanToggleBlockUsedStatus { get { return BlockOrWaveformSelected && mSelection.Node.ParentAs<ObiNode>().Used; } }
+
+        public bool IsStripCursorSelected { get { return mSelection is StripCursorSelection; } }
+
+        public bool CanSplitStrip
+        {
+            get
+            {
+                return (BlockSelected && SelectedEmptyNode.Index > 0)                          // block selected
+                    || (IsStripCursorSelected && ((StripCursorSelection)mSelection).Index > 0);  // strip cursor selected
+            }
+        }
+
+        public bool CanSetBlockUsedStatus { get { return BlockOrWaveformSelected && mSelection.Node.ParentAs<ObiNode>().Used; } }
 
         public bool CanMergeBlockWithNext
         {
@@ -82,8 +93,8 @@ namespace Obi.ProjectView
         {
             get
             {
-                return StripSelected &&
-                    mLayoutPanel.Controls.IndexOf((Control)mSelectedItem) < mLayoutPanel.Controls.Count - 1;
+                return StripSelected && (((SectionNode)mSelection.Node).PhraseChildCount > 0 ||
+                    mSelection.Node.Index < mSelection.Node.ParentAs<ObiNode>().SectionChildCount - 1);
             }
         }
 
@@ -140,7 +151,9 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Get a command to merge the selected strip with the next one.
+        /// Get a command to merge the selected strip with the next one. If the next strip is a child or a sibling, then
+        /// its contents are appended to the selected strip and it is removed from the project; but if the next strip has
+        /// a lower level, merging is not possible.
         /// </summary>
         public urakawa.undo.ICommand MergeSelectedStripWithNextCommand()
         {
@@ -148,10 +161,11 @@ namespace Obi.ProjectView
             if (CanMergeStripWithNext)
             {
                 command = mView.Presentation.getCommandFactory().createCompositeCommand();
-                command.setShortDescription(Localizer.Message("merge_strips_command"));
+                command.setShortDescription(Localizer.Message("merge_strips"));
                 SectionNode section = SelectedSection;
                 SectionNode next = section.SectionChildCount == 0 ? section.NextSibling : section.SectionChild(0);
-                for (int i = 0; i < next.PhraseChildCount; ++i)
+                int children = next.PhraseChildCount;
+                for (int i = 0; i < children; ++i)
                 {
                     command.append(new Commands.Node.ChangeParent(mView, next.PhraseChild(i), section)); 
                 }
@@ -182,7 +196,7 @@ namespace Obi.ProjectView
         }
 
         public EmptyNode SelectedEmptyNode { get { return BlockSelected ? ((Block)mSelectedItem).Node : null; } }
-        public PhraseNode SelectedPhrase { get { return BlockSelected ? ((Block)mSelectedItem).Node as PhraseNode : null; } }
+        public PhraseNode SelectedPhraseNode { get { return BlockSelected ? ((Block)mSelectedItem).Node as PhraseNode : null; } }
         public SectionNode SelectedSection { get { return StripSelected ? ((Strip)mSelectedItem).Node : null; } }
         public ObiNode SelectedNode { set { if (mView != null) mView.Selection = new NodeSelection(value, this); } }
         public NodeSelection SelectionFromStrip { set { if (mView != null) mView.Selection = value; } }
@@ -241,31 +255,32 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Split a strip at the given block; i.e. create a new sibling section which inherits the children of
-        /// the split section except for the phrases before the selected block. Do not do anything if there are
-        /// no phrases before.
+        /// Split a strip at the selected block or cursor position; i.e. create a new sibling section which
+        /// inherits the children of the split section except for the phrases before the selected block or
+        /// position. Do not do anything if there are no phrases before.
         /// </summary>
-        public urakawa.undo.CompositeCommand SplitStripFromSelectedBlockCommand()
+        public urakawa.undo.CompositeCommand SplitStripCommand()
         {
             urakawa.undo.CompositeCommand command = null;
             if (CanSplitStrip)
             {
-                PhraseNode phrase = SelectedPhrase;
-                SectionNode section = phrase.ParentAs<SectionNode>();
+                EmptyNode node = IsStripCursorSelected ?
+                    mSelection.Node.PhraseChild(((StripCursorSelection)mSelection).Index) : (EmptyNode)mSelection.Node;
+                SectionNode section = node.ParentAs<SectionNode>();
                 command = mView.Presentation.getCommandFactory().createCompositeCommand();
-                command.setShortDescription(Localizer.Message("split_strip_command"));
+                command.setShortDescription(Localizer.Message("split_strip"));
                 SectionNode sibling = mView.Presentation.CreateSectionNode();
                 sibling.Label = section.Label;
+                command.append(new Commands.Node.AddNode(mView, sibling, section.ParentAs<ObiNode>(),
+                    section.Index + 1));
                 for (int i = 0; i < section.SectionChildCount; ++i)
                 {
                     command.append(new Commands.Node.ChangeParent(mView, section.SectionChild(i), sibling));
                 }
-                for (int i = phrase.Index; i < section.PhraseChildCount; ++i)
+                for (int i = node.Index; i < section.PhraseChildCount; ++i)
                 {
-                    command.append(new Commands.Node.ChangeParent(mView, section.PhraseChild(i), sibling, phrase.Index));
+                    command.append(new Commands.Node.ChangeParent(mView, section.PhraseChild(i), sibling, node.Index));
                 }
-                command.append(new Commands.Node.AddNode(mView, sibling, section.ParentAs<ObiNode>(),
-                    section.Index + 1));
             }
             return command;
         }

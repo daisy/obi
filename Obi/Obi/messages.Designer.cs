@@ -1075,6 +1075,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to mark block as {0}.
+        /// </summary>
+        internal static string mark_block_used {
+            get {
+                return ResourceManager.GetString("mark_block_used", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to mark audio block as section heading.
         /// </summary>
         internal static string mark_section_heading_command_label {
@@ -1122,9 +1131,9 @@ namespace Obi {
         /// <summary>
         ///   Looks up a localized string similar to merge strips.
         /// </summary>
-        internal static string merge_strips_command {
+        internal static string merge_strips {
             get {
-                return ResourceManager.GetString("merge_strips_command", resourceCulture);
+                return ResourceManager.GetString("merge_strips", resourceCulture);
             }
         }
         
@@ -1954,9 +1963,9 @@ namespace Obi {
         /// <summary>
         ///   Looks up a localized string similar to split strip.
         /// </summary>
-        internal static string split_strip_command {
+        internal static string split_strip {
             get {
-                return ResourceManager.GetString("split_strip_command", resourceCulture);
+                return ResourceManager.GetString("split_strip", resourceCulture);
             }
         }
         
@@ -2047,42 +2056,6 @@ namespace Obi {
         internal static string toc_view_tooltip {
             get {
                 return ResourceManager.GetString("toc_view_tooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to mark block as {0}.
-        /// </summary>
-        internal static string toggle_block_used {
-            get {
-                return ResourceManager.GetString("toggle_block_used", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to mark section node as {0}.
-        /// </summary>
-        internal static string toggle_section_used_command {
-            get {
-                return ResourceManager.GetString("toggle_section_used_command", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to mark {0} as {1}.
-        /// </summary>
-        internal static string toggle_used_command_label {
-            get {
-                return ResourceManager.GetString("toggle_used_command_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to touch project.
-        /// </summary>
-        internal static string touch_command_label {
-            get {
-                return ResourceManager.GetString("touch_command_label", resourceCulture);
             }
         }
         

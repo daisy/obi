@@ -27,9 +27,9 @@ namespace Obi.Commands.Node
 
         public override void execute()
         {
-            base.execute();
             mNode.Detach();
             mNewParent.AppendChild(mNode);
+            base.execute();
         }
 
         public override void unExecute()
