@@ -490,9 +490,6 @@ Do you want to replace the project contained in this file?</value>
   <data name="block" xml:space="preserve">
     <value>block</value>
   </data>
-  <data name="mark_section_as_used_or_unused" xml:space="preserve">
-    <value>Mar&amp;k section as {0}</value>
-  </data>
   <data name="mark_x_as_y" xml:space="preserve">
     <value>Mar&amp;k {0} as {1}</value>
     <comment>Mark &lt;whatever&gt; as &lt;used/unused&gt;</comment>
@@ -885,5 +882,8 @@ Error text: {1}</value>
   </data>
   <data name="add_subsection" xml:space="preserve">
     <value>add subsection</value>
+  </data>
+  <data name="mark_section_used" xml:space="preserve">
+    <value>mark section as {0}</value>
   </data>
 </root>

@@ -1505,7 +1505,7 @@ namespace Obi
             mRenameSectionToolStripMenuItem.Enabled = mProjectView.CanRenameSection;
             mMoveOutToolStripMenuItem.Enabled = mProjectView.CanMoveSectionOut;
             mMoveInToolStripMenuItem.Enabled = mProjectView.CanMoveSectionIn;
-            mSectionIsUsedToolStripMenuItem.Enabled = mProjectView.CanToggleSectionUsed;
+            mSectionIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetSectionUsedStatus;
             mSectionIsUsedToolStripMenuItem.Checked = mProjectView.CanMarkSectionUnused;
         }
 
@@ -1516,7 +1516,7 @@ namespace Obi
         private void mMoveInToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MoveSelectedSectionIn(); }
         private void mSectionIsUsedToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            mProjectView.MarkSectionUsed(mSectionIsUsedToolStripMenuItem.Checked);
+            mProjectView.SetSectionUsedStatus(mSectionIsUsedToolStripMenuItem.Checked);
         }
         private void mListenToSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ListenToSelection(); }
 

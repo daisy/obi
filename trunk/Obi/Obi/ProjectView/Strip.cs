@@ -107,10 +107,7 @@ namespace Obi.ProjectView
         /// </summary>
         public Block FirstBlock
         {
-            get
-            {
-                return mBlocksPanel.Controls.Count > 1 ? (Block)mBlocksPanel.Controls[1] : null;
-            }
+            get { return mBlocksPanel.Controls.Count > 1 ? (Block)mBlocksPanel.Controls[1] : null; }
         }
 
         /// <summary>
@@ -318,7 +315,9 @@ namespace Obi.ProjectView
         // Select the label when it is clicked (i.e. made editable) by the user.
         private void Label_EditableChanged(object sender, EventArgs e)
         {
-            if (mLabel.Editable) mParentView.SelectionFromStrip = new TextSelection(mNode, mParentView, mLabel.Label);
+            mParentView.SelectionFromStrip = mLabel.Editable ?
+                new TextSelection(mNode, mParentView, mLabel.Label) :
+                new NodeSelection(mNode, mParentView);
         }
 
         // Update the label of the node after the user edited it.

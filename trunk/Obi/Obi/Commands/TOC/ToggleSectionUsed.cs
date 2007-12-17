@@ -7,6 +7,9 @@ namespace Obi.Commands.TOC
         private SectionNode mNode;     // the section node
         private bool mOriginalStatus;  // original used status of the node
 
+        /// <summary>
+        /// Create a command to toggle the used status of a single section.
+        /// </summary>
         public ToggleSectionUsed(ProjectView.ProjectView view, SectionNode node)
             : base(view)
         {
@@ -22,14 +25,14 @@ namespace Obi.Commands.TOC
 
         public override void execute()
         {
-            base.execute();
-            ChangeUsedStatusDeep(mNode, !mOriginalStatus);
+            mNode.Used = !mOriginalStatus;
             View.SelectInTOCView(mNode);
+            base.execute();
         }
 
         public override void unExecute()
         {
-            ChangeUsedStatusDeep(mNode, mOriginalStatus);
+            mNode.Used = mOriginalStatus;
             base.unExecute();
         }
 

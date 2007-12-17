@@ -70,6 +70,11 @@ namespace Obi.ProjectView
         public bool CanAddSubSection { get { return mTOCView.CanAddSection && mTOCView.Selection != null; } }
         public bool CanAssignRole { get { return IsBlockSelected; } }
         public bool CanClearRole { get { return IsBlockSelected && ((EmptyNode)mSelection.Node).NodeKind != EmptyNode.Kind.Plain; } }
+        public bool CanMoveSectionIn { get { return mTOCView.CanMoveSectionIn; } }
+        public bool CanMoveSectionOut { get { return mTOCView.CanMoveSectionOut; } }
+        public bool CanRenameSection { get { return mTOCView.CanRenameSection; } }
+        public bool CanRenameStrip { get { return mStripsView.CanRenameStrip; } }
+        public bool CanSetSectionUsedStatus { get { return mTOCView.CanSetSectionUsedStatus; } }
 
         /// <summary>
         /// Contents of the clipboard
@@ -99,6 +104,28 @@ namespace Obi.ProjectView
         // block, strip or section; strict (i.e. not the label or the waveform) or not.
         public bool IsBlockSelected { get { return SelectedNodeAs<EmptyNode>() != null; } }
         public bool IsBlockSelectedStrict { get { return IsBlockSelected && mSelection.GetType() == typeof(NodeSelection); } }
+
+        /// <summary>
+        /// Move the selected section node in.
+        /// </summary>
+        public void MoveSelectedSectionIn()
+        {
+            if (CanMoveSectionIn)
+            {
+                mPresentation.UndoRedoManager.execute(new Commands.TOC.MoveSectionIn(this, mTOCView.Selection.Section));
+            }
+        }
+
+        /// <summary>
+        /// Move the selected section node out.
+        /// </summary>
+        public void MoveSelectedSectionOut()
+        {
+            if (CanMoveSectionOut)
+            {
+                mPresentation.UndoRedoManager.execute(new Commands.TOC.MoveSectionOut(this, mTOCView.Selection.Section));
+            }
+        }
 
         /// <summary>
         /// Get the next page number for the selected block.
@@ -140,18 +167,6 @@ namespace Obi.ProjectView
                         mMetadataView.NewPresentation();
                     }
                 }
-            }
-        }
-
-        /// <summary>
-        /// Show or hide the project display.
-        /// </summary>
-        private bool ProjectVisible
-        {
-            set
-            {
-                mTransportBarSplitter.Visible = value;
-                mNoProjectLabel.Visible = !value;
             }
         }
 
@@ -199,6 +214,50 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Set the used status of the selected section, and of all its subsections.
+        /// </summary>
+        public void SetSectionUsedStatus(bool used)
+        {
+            if (CanSetSectionUsedStatus)
+            {
+                SectionNode section = (SectionNode)mSelection.Node;
+                if (section.Used != used)
+                {
+                    urakawa.undo.CompositeCommand command = Presentation.CreateCompositeCommand(
+                        String.Format(Localizer.Message("mark_section_used"),
+                        Localizer.Message(section.Used ? "unused" : "used")));
+                    section.acceptDepthFirst(delegate(urakawa.core.TreeNode node)
+                        {
+                            if (node is ObiNode && ((ObiNode)node).Used != used)
+                            {
+                                command.append(new Commands.Node.ToggleNodeUsed(this, (ObiNode)node));
+                            }
+                            return true;
+                        },
+                        delegate(urakawa.core.TreeNode node) { }
+                    );
+                    Presentation.UndoRedoManager.execute(command);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Select the name field of the selected section and start editing it.
+        /// </summary>
+        public void StartRenamingSelectedSection()
+        {
+            if (CanRenameSection) mTOCView.SelectAndRename(SelectedNodeAs<SectionNode>());
+        }
+
+        /// <summary>
+        /// Select the label of the strip and start editing it.
+        /// </summary>
+        public void StartRenamingSelectedStrip()
+        {
+            if (CanRenameStrip) mStripsView.SelectAndRename(mStripsView.Selection.Section);
+        }
+
+        /// <summary>
         /// Set the synchronize views flag for this view and resynchronize the views if necessary.
         /// </summary>
         public bool SynchronizeViews
@@ -227,29 +286,26 @@ namespace Obi.ProjectView
         public TransportBar TransportBar { get { return mTransportBar; } }
 
 
-
-
-
-
-
-
-
-
         /// <summary>
-        /// Select the name field of the selected section and start editing it.
+        /// Show or hide the project display.
         /// </summary>
-        public void StartRenamingSelectedSection()
+        private bool ProjectVisible
         {
-            if (CanRenameSection) mTOCView.SelectAndRename(mTOCView.Selection.Section);
+            set
+            {
+                mTransportBarSplitter.Visible = value;
+                mNoProjectLabel.Visible = !value;
+            }
         }
 
-        /// <summary>
-        /// Select the label of the strip and start editing it.
-        /// </summary>
-        public void StartRenamingSelectedStrip()
-        {
-            if (CanRenameStrip) mStripsView.SelectAndRename(mStripsView.Selection.Section);
-        }
+
+
+
+
+
+
+
+
 
         /// <summary>
         /// Split a strip at the selected position.
@@ -268,39 +324,7 @@ namespace Obi.ProjectView
         }
 
 
-        /// <summary>
-        /// Move the selected section node out.
-        /// </summary>
-        public void MoveSelectedSectionOut()
-        {
-            if (CanMoveSectionOut)
-            {
-                mPresentation.UndoRedoManager.execute(new Commands.TOC.MoveSectionOut(this, mTOCView.Selection.Section));
-            }
-        }
 
-        /// <summary>
-        /// Move the selected section node in.
-        /// </summary>
-        public void MoveSelectedSectionIn()
-        {
-            if (CanMoveSectionIn)
-            {
-                mPresentation.UndoRedoManager.execute(new Commands.TOC.MoveSectionIn(this, mTOCView.Selection.Section));
-            }
-        }
-
-        /// <summary>
-        /// Change the used status of the selected section, and of all its subsections.
-        /// </summary>
-        public void MarkSectionUsed(bool used)
-        {
-            if (CanToggleSectionUsed)
-            {
-                SectionNode section = mTOCView.Selection.Section;
-                if (section.Used != used) mPresentation.UndoRedoManager.execute(new Commands.TOC.ToggleSectionUsed(this, section));
-            }
-        }
 
         /// <summary>
         /// Cut (delete) the selection and store it in the clipboard.
@@ -511,20 +535,15 @@ namespace Obi.ProjectView
         public bool CanCopyStrip { get { return mStripsView.CanCopyStrip; } }
         public bool CanCopyBlock { get { return mStripsView.CanCopyBlock; } }
         public bool CanToggleBlockUsedStatus { get { return mStripsView.CanToggleBlockUsedStatus; } }
-        public bool CanMarkSectionUnused { get { return mTOCView.CanToggleSectionUsed && mSelection.Node.Used; } }
+        public bool CanMarkSectionUnused { get { return mTOCView.CanSetSectionUsedStatus && mSelection.Node.Used; } }
         public bool CanMergeBlockWithNext { get { return mStripsView.CanMergeBlockWithNext; } }
         public bool CanMergeStripWithNext { get { return mStripsView.CanMergeStripWithNext; } }
-        public bool CanMoveSectionIn { get { return mTOCView.CanMoveSectionIn; } }
-        public bool CanMoveSectionOut { get { return mTOCView.CanMoveSectionOut; } }
         public bool CanRemoveBlock { get { return mStripsView.CanRemoveBlock; } }
         public bool CanRemoveSection { get { return mTOCView.CanRemoveSection; } }
         public bool CanRemoveStrip { get { return mStripsView.CanRemoveStrip; } }
-        public bool CanRenameSection { get { return mTOCView.CanRenameSection; } }
-        public bool CanRenameStrip { get { return mStripsView.CanRenameStrip; } }
         public bool CanSplitBlock { get { return mSelection is AudioSelection; } }
         public bool CanSplitStrip { get { return mStripsView.CanSplitStrip; } }
-        public bool CanToggleSectionUsed { get { return mTOCView.CanToggleSectionUsed; } }
-
+        
         public bool IsBlockUsed { get { return mStripsView.IsBlockUsed; } }
 
         /// <summary>

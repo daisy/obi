@@ -115,7 +115,6 @@
     <Compile Include="Commands\Strips\ImportPhrases.cs" />
     <Compile Include="Commands\TOC\MoveSectionIn.cs" />
     <Compile Include="Commands\TOC\MoveSectionOut.cs" />
-    <Compile Include="Commands\TOC\ToggleSectionUsed.cs" />
     <Compile Include="Commands\UndoRedoManager.cs" />
     <Compile Include="DataModelFactory.cs" />
     <Compile Include="Dialogs\About.cs">
