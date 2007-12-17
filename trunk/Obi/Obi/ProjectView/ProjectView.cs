@@ -70,12 +70,16 @@ namespace Obi.ProjectView
         public bool CanAddSubSection { get { return mTOCView.CanAddSection && mTOCView.Selection != null; } }
         public bool CanAssignRole { get { return IsBlockSelected; } }
         public bool CanClearRole { get { return IsBlockSelected && ((EmptyNode)mSelection.Node).NodeKind != EmptyNode.Kind.Plain; } }
+        public bool CanMergeStripWithNext { get { return mStripsView.CanMergeStripWithNext; } }
         public bool CanMoveSectionIn { get { return mTOCView.CanMoveSectionIn; } }
         public bool CanMoveSectionOut { get { return mTOCView.CanMoveSectionOut; } }
         public bool CanRenameSection { get { return mTOCView.CanRenameSection; } }
         public bool CanRenameStrip { get { return mStripsView.CanRenameStrip; } }
+        public bool CanSetBlockUsedStatus { get { return mStripsView.CanSetBlockUsedStatus; } }
         public bool CanSetSectionUsedStatus { get { return mTOCView.CanSetSectionUsedStatus; } }
-
+        public bool CanSetSelectedNodeUsedStatus { get { return CanSetSectionUsedStatus || CanSetBlockUsedStatus; } }
+        public bool CanSplitStrip { get { return mStripsView.CanSplitStrip; } }
+        
         /// <summary>
         /// Contents of the clipboard
         /// </summary>
@@ -104,6 +108,14 @@ namespace Obi.ProjectView
         // block, strip or section; strict (i.e. not the label or the waveform) or not.
         public bool IsBlockSelected { get { return SelectedNodeAs<EmptyNode>() != null; } }
         public bool IsBlockSelectedStrict { get { return IsBlockSelected && mSelection.GetType() == typeof(NodeSelection); } }
+
+        /// <summary>
+        /// Merge the selection strip with the next one, i.e. either its first sibling or its first child.
+        /// </summary>
+        public void MergeStrips()
+        {
+            if (CanMergeStripWithNext) mPresentation.UndoRedoManager.execute(mStripsView.MergeSelectedStripWithNextCommand());
+        }
 
         /// <summary>
         /// Move the selected section node in.
@@ -171,6 +183,32 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Select a section or strip and start renaming it.
+        /// </summary>
+        public void SelectAndRenameSelection(NodeSelection selection)
+        {
+            if (selection.Control is IControlWithRenamableSelection)
+            {
+                ((IControlWithRenamableSelection)selection.Control).SelectAndRename(selection.Node);
+            }
+        }
+
+        // Quick way to set the selection
+
+        public EmptyNode SelectedBlockNode { set { Selection = new NodeSelection(value, mStripsView); } }
+        public SectionNode SelectedSectionNode { set { Selection = new NodeSelection(value, mTOCView); } }
+        public SectionNode SelectedStripNode { set { Selection = new NodeSelection(value, mStripsView); } }
+
+        /// <summary>
+        /// Currently selected node of the given type (e.g. SectionNode, EmptyNode or PhraseNode).
+        /// Null if there is no selection, or selection of a different kind.
+        /// </summary>
+        public T SelectedNodeAs<T>() where T : ObiNode
+        {
+            return mSelection == null ? null : mSelection.Node as T;
+        }
+
+        /// <summary>
         /// The current selection in the view.
         /// </summary>
         public NodeSelection Selection
@@ -199,45 +237,27 @@ namespace Obi.ProjectView
             }
         }
 
-        // Quick way to set the selection
-
-        public EmptyNode SelectedBlockNode { set { mSelection = new NodeSelection(value, mStripsView); } }
-        public SectionNode SelectedStripNode { set { mSelection = new NodeSelection(value, mStripsView); } }
-
         /// <summary>
-        /// Currently selected node of the given type (e.g. SectionNode, EmptyNode or PhraseNode).
-        /// Null if there is no selection, or selection of a different kind.
+        /// Set the used status of the selected node, and of all its descendants.
         /// </summary>
-        public T SelectedNodeAs<T>() where T : ObiNode
+        public void SetSelectedNodeUsedStatus(bool used)
         {
-            return mSelection == null ? null : mSelection.Node as T;
-        }
-
-        /// <summary>
-        /// Set the used status of the selected section, and of all its subsections.
-        /// </summary>
-        public void SetSectionUsedStatus(bool used)
-        {
-            if (CanSetSectionUsedStatus)
+            if (CanSetSelectedNodeUsedStatus && mSelection.Node.Used != used)
             {
-                SectionNode section = (SectionNode)mSelection.Node;
-                if (section.Used != used)
-                {
-                    urakawa.undo.CompositeCommand command = Presentation.CreateCompositeCommand(
-                        String.Format(Localizer.Message("mark_section_used"),
-                        Localizer.Message(section.Used ? "unused" : "used")));
-                    section.acceptDepthFirst(delegate(urakawa.core.TreeNode node)
+                urakawa.undo.CompositeCommand command = Presentation.CreateCompositeCommand(String.Format(
+                    Localizer.Message(mSelection.Node is SectionNode ? "mark_section_used" : "mark_block_used"),
+                    Localizer.Message(mSelection.Node.Used ? "unused" : "used")));
+                mSelection.Node.acceptDepthFirst(delegate(urakawa.core.TreeNode node)
+                    {
+                        if (node is ObiNode && ((ObiNode)node).Used != used)
                         {
-                            if (node is ObiNode && ((ObiNode)node).Used != used)
-                            {
-                                command.append(new Commands.Node.ToggleNodeUsed(this, (ObiNode)node));
-                            }
-                            return true;
-                        },
-                        delegate(urakawa.core.TreeNode node) { }
-                    );
-                    Presentation.UndoRedoManager.execute(command);
-                }
+                            command.append(new Commands.Node.ToggleNodeUsed(this, (ObiNode)node));
+                        }
+                        return true;
+                    },
+                    delegate(urakawa.core.TreeNode node) { }
+                );
+                Presentation.UndoRedoManager.execute(command);
             }
         }
 
@@ -255,6 +275,14 @@ namespace Obi.ProjectView
         public void StartRenamingSelectedStrip()
         {
             if (CanRenameStrip) mStripsView.SelectAndRename(mStripsView.Selection.Section);
+        }
+
+        /// <summary>
+        /// Split a strip at the selected position.
+        /// </summary>
+        public void SplitStrip()
+        {
+            if (CanSplitStrip) mPresentation.UndoRedoManager.execute(mStripsView.SplitStripCommand());
         }
 
         /// <summary>
@@ -307,21 +335,7 @@ namespace Obi.ProjectView
 
 
 
-        /// <summary>
-        /// Split a strip at the selected position.
-        /// </summary>
-        public void SplitStrip()
-        {
-            if (CanSplitStrip) mPresentation.UndoRedoManager.execute(mStripsView.SplitStripFromSelectedBlockCommand());
-        }
 
-        /// <summary>
-        /// Merge the selection strip with the next one, i.e. either its first sibling or its first child.
-        /// </summary>
-        public void MergeStrips()
-        {
-            if (CanMergeStripWithNext) mPresentation.UndoRedoManager.execute(mStripsView.MergeSelectedStripWithNextCommand());
-        }
 
 
 
@@ -422,22 +436,6 @@ namespace Obi.ProjectView
             }
         }
 
-        /// <summary>
-        /// Select a section node in the TOC view.
-        /// </summary>
-        public void SelectInTOCView(SectionNode section) { Selection = new NodeSelection(section, mTOCView); }
-
-        /// <summary>
-        /// Select a section or strip and start renaming it.
-        /// </summary>
-        public void SelectAndRenameSelection(NodeSelection selection)
-        {
-            if (selection.Control is IControlWithRenamableSelection)
-            {
-                ((IControlWithRenamableSelection)selection.Control).SelectAndRename(selection.Node);
-            }
-        }
-
         public void RenameSectionNode(SectionNode section, string label)
         {
             mPresentation.UndoRedoManager.execute(new Commands.Node.RenameSection(this, section, label));
@@ -534,15 +532,12 @@ namespace Obi.ProjectView
         public bool CanCopySection { get { return mTOCView.CanCopySection; } }
         public bool CanCopyStrip { get { return mStripsView.CanCopyStrip; } }
         public bool CanCopyBlock { get { return mStripsView.CanCopyBlock; } }
-        public bool CanToggleBlockUsedStatus { get { return mStripsView.CanToggleBlockUsedStatus; } }
         public bool CanMarkSectionUnused { get { return mTOCView.CanSetSectionUsedStatus && mSelection.Node.Used; } }
         public bool CanMergeBlockWithNext { get { return mStripsView.CanMergeBlockWithNext; } }
-        public bool CanMergeStripWithNext { get { return mStripsView.CanMergeStripWithNext; } }
         public bool CanRemoveBlock { get { return mStripsView.CanRemoveBlock; } }
         public bool CanRemoveSection { get { return mTOCView.CanRemoveSection; } }
         public bool CanRemoveStrip { get { return mStripsView.CanRemoveStrip; } }
         public bool CanSplitBlock { get { return mSelection is AudioSelection; } }
-        public bool CanSplitStrip { get { return mStripsView.CanSplitStrip; } }
         
         public bool IsBlockUsed { get { return mStripsView.IsBlockUsed; } }
 
@@ -637,7 +632,7 @@ namespace Obi.ProjectView
         public void ListenToSelection() { }
         public bool CanListenToSection { get { return mTransportBar.Enabled && mTOCView.Selection != null; } }
         public bool CanListenToStrip { get { return mTransportBar.Enabled && mStripsView.SelectedSection != null; } }
-        public bool CanListenToBlock { get { return mTransportBar.Enabled && mStripsView.SelectedPhrase != null; } }
+        public bool CanListenToBlock { get { return mTransportBar.Enabled && mStripsView.SelectedPhraseNode != null; } }
 
         // Blocks
 
@@ -899,20 +894,6 @@ namespace Obi.ProjectView
                     }
                 }
                 mPresentation.UndoRedoManager.execute(cmd);
-            }
-        }
-
-        /// <summary>
-        /// Toggle the used status of the selected block (its parent must be selected!)
-        /// </summary>
-        public void ToggleBlockUsed(bool used)
-        {
-            if (mStripsView.CanToggleBlockUsedStatus && SelectedNodeAs<EmptyNode>().Used != used)
-            {
-                Commands.Node.ToggleNodeUsed command = new Commands.Node.ToggleNodeUsed(this, SelectedNodeAs<EmptyNode>());
-                command.Label = String.Format(Localizer.Message("toggle_block_used"),
-                    Localizer.Message(SelectedNodeAs<EmptyNode>().Used ? "unused" : "used"));
-                Presentation.UndoRedoManager.execute(command);
             }
         }
 

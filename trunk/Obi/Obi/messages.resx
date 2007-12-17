@@ -435,10 +435,6 @@ Do you want to replace the project contained in this file?</value>
     <value>No project.</value>
     <comment>No open project (JQ)</comment>
   </data>
-  <data name="touch_command_label" xml:space="preserve">
-    <value>touch project</value>
-    <comment>Touch (JQ)</comment>
-  </data>
   <data name="copy_menu_label" xml:space="preserve">
     <value>Cop&amp;y{0}</value>
     <comment>copy {section/phrase} (JQ)</comment>
@@ -502,9 +498,6 @@ Do you want to replace the project contained in this file?</value>
   </data>
   <data name="used" xml:space="preserve">
     <value>used</value>
-  </data>
-  <data name="toggle_used_command_label" xml:space="preserve">
-    <value>mark {0} as {1}</value>
   </data>
   <data name="all_phrases" xml:space="preserve">
     <value>all phrases</value>
@@ -749,9 +742,6 @@ Do you want to replace the project contained in this file?</value>
   <data name="paste_section_command" xml:space="preserve">
     <value>paste section</value>
   </data>
-  <data name="toggle_section_used_command" xml:space="preserve">
-    <value>mark section node as {0}</value>
-  </data>
   <data name="import_phrases_command" xml:space="preserve">
     <value>import audio files</value>
   </data>
@@ -787,10 +777,10 @@ Error text: {1}</value>
   <data name="cut_strip_command" xml:space="preserve">
     <value>cut strip</value>
   </data>
-  <data name="split_strip_command" xml:space="preserve">
+  <data name="split_strip" xml:space="preserve">
     <value>split strip</value>
   </data>
-  <data name="merge_strips_command" xml:space="preserve">
+  <data name="merge_strips" xml:space="preserve">
     <value>merge strips</value>
   </data>
   <data name="cut_block_command" xml:space="preserve">
@@ -868,7 +858,7 @@ Error text: {1}</value>
   <data name="add_empty_page_blocks" xml:space="preserve">
     <value>add empty page blocks</value>
   </data>
-  <data name="toggle_block_used" xml:space="preserve">
+  <data name="mark_block_used" xml:space="preserve">
     <value>mark block as {0}</value>
   </data>
   <data name="set_page_number_" xml:space="preserve">
