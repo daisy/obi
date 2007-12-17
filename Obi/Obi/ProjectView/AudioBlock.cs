@@ -23,7 +23,7 @@ namespace Obi.ProjectView
         protected override void UpdateAccessibleName()
         {
             base.UpdateAccessibleName();
-            mWaveform.AccessibleName = AccessibleName;
+            if (mWaveform != null) mWaveform.AccessibleName = AccessibleName;
         }
 
         private void SetWaveform(PhraseNode node)
