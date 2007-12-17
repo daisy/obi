@@ -21,7 +21,7 @@ namespace Obi.ProjectView
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
         public event ImportingFileEventHandler ImportingFile;   // triggered when a file is being imported
         public event EventHandler FinishedImportingFiles;       // triggered when all files were imported
-
+        public event Obi.Events.SectionNodeHandler OnBeforePasteSection;    //triggered just before a section paste in the TOC view
 
         /// <summary>
         /// Create a new project view with no project yet.
@@ -375,6 +375,12 @@ namespace Obi.ProjectView
                     command.append(paste);
                     command.setShortDescription(paste.getShortDescription());
                     mPresentation.UndoRedoManager.execute(command);
+                }
+                else if (mSelection.Control is TOCView)
+                {
+                    //if no dummy nodes were required, proceed as normal
+                    //else, assume that TOC View took care of the command
+                    if (!mTOCView.AddDummyNodes()) mPresentation.UndoRedoManager.execute(paste);
                 }
                 else
                 {
