@@ -1075,20 +1075,20 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mar&amp;k section as {0}.
-        /// </summary>
-        internal static string mark_section_as_used_or_unused {
-            get {
-                return ResourceManager.GetString("mark_section_as_used_or_unused", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to mark audio block as section heading.
         /// </summary>
         internal static string mark_section_heading_command_label {
             get {
                 return ResourceManager.GetString("mark_section_heading_command_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mark section as {0}.
+        /// </summary>
+        internal static string mark_section_used {
+            get {
+                return ResourceManager.GetString("mark_section_used", resourceCulture);
             }
         }
         

@@ -103,14 +103,6 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Make sure that the label is not editable when it is first loaded.
-        /// </summary>
-        private void EditableLabel_Load(object sender, EventArgs e)
-        {
-            //Editable = false;
-        }
-
-        /// <summary>
         /// When the user clicks the OK button, the label is updated
         /// and the control returns back to non-editable.
         /// </summary>
@@ -171,7 +163,7 @@ namespace Obi.ProjectView
         /// </summary>
         private void EditableLabel_Leave(object sender, EventArgs e)
         {
-            Editable = false;
+            if (Editable) Editable = false;
         }
     }
 }

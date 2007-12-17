@@ -43,7 +43,7 @@ namespace Obi.ProjectView
         /// </summary>
         public bool CanMoveSectionIn
         {
-            get { return IsSelectionNotDummy && Commands.TOC.MoveSectionIn.CanMoveNode((SectionNode)mSelection.Node); }
+            get { return IsSectionSelected && Commands.TOC.MoveSectionIn.CanMoveNode((SectionNode)mSelection.Node); }
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Obi.ProjectView
         /// </summary>
         public bool CanMoveSectionOut
         {
-            get { return IsSelectionNotDummy && Commands.TOC.MoveSectionOut.CanMoveNode((SectionNode)mSelection.Node); }
+            get { return IsSectionSelected && Commands.TOC.MoveSectionOut.CanMoveNode((SectionNode)mSelection.Node); }
         }
 
         /// <summary>
@@ -67,9 +67,9 @@ namespace Obi.ProjectView
         /// <summary>
         /// True if the used state of the selected section can be changed
         /// </summary>
-        public bool CanToggleSectionUsed
+        public bool CanSetSectionUsedStatus
         {
-            get { return IsSelectionNotDummy && mSelection.Node.ParentAs<ObiNode>().Used; }
+            get { return IsSectionSelected && mSelection.Node.ParentAs<ObiNode>().Used; }
         }
 
         /// <summary>
@@ -324,6 +324,7 @@ namespace Obi.ProjectView
             else
             {
                 e.CancelEdit = true;
+                mView.Selection = new NodeSelection((SectionNode)e.Node.Tag, this);
             }
         }
 
