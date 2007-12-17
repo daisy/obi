@@ -22,8 +22,8 @@ namespace Obi.Commands.Node
             : base( view )
         {
             mOriginalPhrase = view.SelectedNodeAs<PhraseNode>();
-            mParentSection = view.SelectedNodeAs<EmptyNode>().ParentAs<SectionNode>();
-            mOriginalPhraseIndex =  mOriginalPhrase.ParentAs<ObiNode>().Index;
+            mParentSection = mOriginalPhrase.ParentAs<SectionNode>();
+            mOriginalPhraseIndex = mOriginalPhrase.Index;
             mPresentation = view.Presentation;
             mThreshold = threshold;
             mGap = gap;
@@ -33,14 +33,14 @@ namespace Obi.Commands.Node
 
         public override void execute()
         {
-                        mDetectedPhrases = mPresentation.CreatePhraseNodesFromAudioAssetList (   Audio.PhraseDetection.Apply ( mOriginalPhrase.Audio , mThreshold , mGap , mBeforePhraseSilence ) ) ;
-            mParentSection.RemoveChildPhrase(mOriginalPhrase);
-
-            for (int i = 0; i < mDetectedPhrases.Count; i++)
+                                    mDetectedPhrases = mPresentation.CreatePhraseNodesFromAudioAssetList (   Audio.PhraseDetection.Apply ( mOriginalPhrase.Audio , mThreshold , mGap , mBeforePhraseSilence ) ) ;
+                                                mParentSection.RemoveChildPhrase(mOriginalPhrase);
+                                                            
+                                                                        for (int i = 0; i < mDetectedPhrases.Count; i++)
             {
-                mParentSection.Insert(mDetectedPhrases [i], mOriginalPhraseIndex + i);
-            }
-
+                                mParentSection.Insert(mDetectedPhrases [i], mOriginalPhraseIndex + i);
+                            }
+                                                            base.execute();
         }
 
         public override void unExecute()
@@ -50,6 +50,7 @@ namespace Obi.Commands.Node
                 mParentSection.RemoveChildPhrase(mDetectedPhrases[i]);
             }
             mParentSection.Insert(mOriginalPhrase, mOriginalPhraseIndex);
+            base.unExecute();
         }
 
     }

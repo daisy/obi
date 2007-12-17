@@ -896,6 +896,39 @@ namespace Obi.ProjectView
                 Presentation.UndoRedoManager.execute(command);
             }
         }
+
+        public void ApplyPhraseDetection()
+        {
+                        PhraseNode SilenceNode= null ;
+
+            ObiNode  IterationNode = (EmptyNode)mPresentation.FirstSection.PhraseChild (0)  ;
+
+            while (IterationNode!= null)
+            {
+                if ( IterationNode is EmptyNode    &&     ((EmptyNode)  IterationNode).NodeKind == EmptyNode.Kind.Silence)
+                {
+                    SilenceNode =(PhraseNode)   IterationNode;
+                    break;
+                }
+                IterationNode = IterationNode.FollowingNode;
+            }
+
+            
+            if (SilenceNode == null)
+            {
+                            MessageBox.Show("Error, no silence phrase found for reference.");
+        }
+            else
+            {
+                                Dialogs.SentenceDetection PhraseDetectionDialog = new Obi.Dialogs.SentenceDetection (SilenceNode  ) ;
+                                PhraseDetectionDialog.ShowDialog();
+                                if (PhraseDetectionDialog.DialogResult == DialogResult.OK)
+                                {
+                                    mPresentation.UndoRedoManager.execute ( new Commands.Node.PhraseDetection (this ,  PhraseDetectionDialog.Threshold , PhraseDetectionDialog.Gap , PhraseDetectionDialog.LeadingSilence )  ) ;
+                                }
+            }       
+                }// end of function
+
     }
 
     public class ImportingFileEventArgs
