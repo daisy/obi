@@ -114,15 +114,42 @@ namespace Obi
     };
 
     /// <summary>
-    /// Section dummy selected in the TOC view. The selected section is then the parent of the dummy, which is
-    /// always the first child of its parent.
+    /// Section dummy selected in the TOC view. 
     /// </summary>
     public class DummySelection : NodeSelection
     {
+        private ProjectView.DummyNode mDummy;
+        public ProjectView.DummyNode Dummy
+        {
+            set {mDummy = value;}
+            get {return mDummy;}
+        }
         public DummySelection(ObiNode node, ProjectView.TOCView view) : base(node, view) { }
 
-        public override ObiNode ParentForNewNode(ObiNode newNode) { return Node; }
-        public override int IndexForNewNode(ObiNode newNode) { return 0; }
+        public override ObiNode ParentForNewNode(ObiNode newNode) 
+        {
+            //this was the old behavior, before mDummy was introduced.  keeping it so I don't break anything.
+            if (mDummy == null) return Node;
+
+            //the new node is getting pasted as an "oldest" sibling of the selection
+            if (mDummy.Type == Obi.ProjectView.DummyNode.DummyType.BEFORE) return Node.ParentAs<ObiNode>();
+            //the new node is getting pasted as a first child of the selection
+            else if (mDummy.Type == Obi.ProjectView.DummyNode.DummyType.CHILD) return Node;
+            //default: the new node is getting pasted after the selection
+            else return Node.ParentAs<ObiNode>();
+        }
+        public override int IndexForNewNode(ObiNode newNode) 
+        {
+            //this was the old behavior, before mDummy was introduced.  keeping it so I don't break anything.
+            if (mDummy == null) return 0;
+
+            //the new node is getting pasted before the selection (because the selection was a first child)
+            if (mDummy.Type == Obi.ProjectView.DummyNode.DummyType.BEFORE) return 0;
+            //the new node is getting pasted as a first child of the selection
+            else if (mDummy.Type == Obi.ProjectView.DummyNode.DummyType.CHILD) return 0;
+            //default: the new node is getting pasted after the selection
+            else return Node.Index + 1;
+        }
         public override string ToString() { return String.Format("Dummy for {0}", base.ToString()); }
     }
 

@@ -6,27 +6,7 @@ using System.Collections;
 
 namespace Obi.ProjectView
 {
-    /// <summary>
-    /// This class represents a dummy TOC node.  It might turn out to be overkill, I'm not sure yet.
-    /// </summary>
-    public class DummyNode : TreeNode
-    {
-        private DummyType mDummyType;
-        public enum DummyType { BEFORE, CHILD };
-        
-        public DummyNode(DummyType type)
-            : base()
-        {
-            mDummyType = type;
-        }
-        
-        public DummyType Type 
-        {
-            get { return mDummyType; }
-            set { mDummyType = value; }
-        }
-            
-    }
+  
     /// <summary>
     /// The view of the table of contents, mostly a wrapper over a tree view.
     /// </summary>
@@ -34,8 +14,13 @@ namespace Obi.ProjectView
     {
         private ProjectView mView;         // the parent project view
         private NodeSelection mSelection;  // actual selection context
+        //dummy nodes and their owner (the node that spawned them)
         private DummyNode mDummyBefore;
         private DummyNode mDummyChild;
+        private DummyNode mDefaultDummy;
+        private TreeNode mOwnerOfDummies;
+
+        public EventHandler DummyNodeSelected;  //triggered when a dummy node has been selected
 
         /// <summary>
         /// Create a new TOC view as part of a project view.
@@ -347,9 +332,17 @@ namespace Obi.ProjectView
         private void TOCTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
             // check for dummy here
-            if (e.Node is DummyNode) return;
-            NodeSelection s = new NodeSelection((SectionNode)e.Node.Tag, this);
-            if (s != mView.Selection) mView.Selection = s;
+            if (e.Node is DummyNode)
+            {
+                DummySelection ds = new DummySelection((SectionNode)mOwnerOfDummies.Tag, this);
+                ds.Dummy = (DummyNode)e.Node;
+                if (ds != mView.Selection) mView.Selection = ds;
+            }
+            else
+            {
+                NodeSelection s = new NodeSelection((SectionNode)e.Node.Tag, this);
+                if (s != mView.Selection) mView.Selection = s;
+            }
         }
 
         // Make a text selection in the view.
@@ -369,51 +362,77 @@ namespace Obi.ProjectView
         private void TOCTree_BeforeSelect(object sender, TreeViewCancelEventArgs e)
         {
             if (e.Action == TreeViewAction.Unknown) e.Cancel = true;
-            else
-            {
-                //remove the old dummy nodes (this code should move so it happens 1. after paste 2. on select changed)
-                if (!(e.Node is DummyNode))
-                {
-                    RemoveDummyNodes();
-                    //add new dummy nodes if we need to
-                    if (this.mView.CanPaste) AddDummyNodes(e.Node);
-                }
-            }
+            else if (!(e.Node is DummyNode)) RemoveDummyNodes();
         }
 
         /// <summary>
         /// Remove our two dummy nodes
         /// </summary>
-        private void RemoveDummyNodes()
+        public void RemoveDummyNodes()
         {
             if (mDummyBefore != null && mDummyBefore.TreeView != null) mDummyBefore.Remove();
             if (mDummyChild != null && mDummyChild.TreeView != null) mDummyChild.Remove();
         }
+      
         /// <summary>
         /// See if there is ambiguity around the given node, and insert dummies.  The rules for inserting dummy nodes are:
         /// 1. If the node is the first of a group of siblings, it gets a dummy node as an older sibling (DUMMY_BEFORE)
         /// 2. If the node has no children, it gets a dummy child (DUMMY_CHILD)
         /// </summary>
-        /// <param name="treeNode"></param>
-        private void AddDummyNodes(TreeNode treeNode)
+        /// <returns>true if dummy nodes had to be added; false otherwise</returns>
+        public bool AddDummyNodes()
         {
-            if (treeNode is DummyNode) return;
+            TreeNode treeNode = this.mTOCTree.SelectedNode;
+            if (treeNode == null || treeNode is DummyNode) return false;
 
+            bool ret = false;
             //see if the node is the first of a group of siblings
-            if ((treeNode.Parent != null && treeNode.Parent.FirstNode == treeNode)||
+            if ((treeNode.Parent != null && treeNode.Parent.FirstNode == treeNode) ||
                 (treeNode.Parent == null && treeNode.PrevNode == null))
             {
                 mDummyBefore = new DummyNode(DummyNode.DummyType.BEFORE);
                 mDummyBefore.Text = "Dummy before";
                 if (treeNode.Parent != null) treeNode.Parent.Nodes.Insert(0, mDummyBefore);
                 else mTOCTree.Nodes.Insert(0, mDummyBefore);
+                ret = true;
             }
             if (treeNode.Nodes.Count == 0)
             {
                 mDummyChild = new DummyNode(DummyNode.DummyType.CHILD);
                 mDummyChild.Text = "Dummy child";
                 treeNode.Nodes.Insert(0, mDummyChild);
+                ret = true;
             }
+            //if we added other dummies, we should also add the default dummy so that the user
+            //understands all their options
+            if (ret)
+            {
+                mDefaultDummy = new DummyNode(DummyNode.DummyType.DEFAULT);
+                mDefaultDummy.Text = "Default dummy";
+                if (treeNode.Parent != null) treeNode.Parent.Nodes.Insert(treeNode.Index+1, mDefaultDummy);
+                else mTOCTree.Nodes.Insert(treeNode.Index, mDefaultDummy);
+            }
+            if (ret) mOwnerOfDummies = treeNode;
+            else mOwnerOfDummies = null;
+            treeNode.Expand();
+            return ret;
+        }
+
+        private void mTOCTree_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (mView.Selection is DummySelection && mView.CanPaste) PasteAndRemoveDummyNodes();
+            }
+        }
+        private void mTOCTree_DoubleClick(object sender, EventArgs e)
+        {
+            if (mView.Selection is DummySelection && mView.CanPaste) PasteAndRemoveDummyNodes();
+        }
+        private void PasteAndRemoveDummyNodes()
+        {
+            mView.Paste();
+            RemoveDummyNodes();
         }
     }
 
@@ -431,5 +450,27 @@ namespace Obi.ProjectView
     public class TreeNodeFoundWithWrongLabelException: Exception
     {
         public TreeNodeFoundWithWrongLabelException(string msg) : base(msg) { }
+    }
+
+    /// <summary>
+    /// This class represents a dummy TOC node.  It might turn out to be overkill, I'm not sure yet.
+    /// </summary>
+    public class DummyNode : TreeNode
+    {
+        private DummyType mDummyType;
+        public enum DummyType { BEFORE, CHILD, DEFAULT };
+
+        public DummyNode(DummyType type)
+            : base()
+        {
+            mDummyType = type;
+        }
+
+        public DummyType Type
+        {
+            get { return mDummyType; }
+            set { mDummyType = value; }
+        }
+
     }
 }
