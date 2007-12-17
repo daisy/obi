@@ -4,7 +4,8 @@
 
 <div id="toc">Table of contents</div>
 
-Now this is really the reference section.
+Now this is really the reference section. If you're a user and not a
+developper, you can ignore the items marked as TODO.
 
 ## Views
 
@@ -255,7 +256,20 @@ The TOC menu provides operations on the table of contents.
   cannot be empty. The change is committed when pressing `Return` or cancelled
   when pressing `Esc`.
 
+* __Split strip__ (`Ctrl+Shift+P`): split the strip at the selected position
+  in the strip, or from the selected block. The new strip has the same label
+  and level as the original strip, and all the blocks starting from the split
+  position. If the first block or position is selected, there is no effect.
+
+* __Merge strip with next__ (`Ctrl+Shift+M`): merge the selected strip with the
+  next one; that is, all the blocks in the following strip are appended to the
+  selected strip. The following strip is then removed from the project. If the
+  following strip has a lower level than the selected strip, merging is not
+  possible. TODO: find out why phrases and empty blocks are not appended in
+  the right order?!
+
 * TODO: add strip, depending on cursor or strip selection.
+
 
 ### Blocks menu (`Alt+B`)
 
@@ -274,6 +288,12 @@ The TOC menu provides operations on the table of contents.
   the audio of both blocks.
   * TODO: if the blocks were of a different kind, the kind of the first block
     is kept. This means that page numbers may disappear, etc.
+
+* __Block is used__ (`Ctrl+K`): when a block is selected, the menu item shows
+  whether the block is used or not with a checkbox. The checkbox is checked if
+  the block is currently used. Selecting this item toggles the used status of
+  the block (from used to unused, and from unused to used.)
+
 
 ### Transport menu
 
