@@ -366,7 +366,7 @@ namespace Obi
 
             for (int i = 0; i < AssetList.Count; i++)
             {
-                CreatePhraseNode(AssetList[i]);
+                PhraseList.Add ( CreatePhraseNode(AssetList[i]) ) ;
             }
             return PhraseList ;
         }
