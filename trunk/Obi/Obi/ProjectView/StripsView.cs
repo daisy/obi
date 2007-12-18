@@ -555,6 +555,8 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.Home] = SelectFirstBlockInStrip;
             mShortcutKeys[Keys.PageDown ] = SelectNextPageNode ;
             mShortcutKeys[Keys.PageUp ] = SelectPreviousPageNode;
+            mShortcutKeys[Keys.Control | Keys.PageDown ] = SelectNextSpecialRoleNode ;
+            mShortcutKeys[ Keys.Control |  Keys.PageUp] = SelectPreviousSpecialRoleNode ;
 
             mShortcutKeys[Keys.Up] = SelectPreviousStrip;
             mShortcutKeys[Keys.Down] = SelectNextStrip;
@@ -727,9 +729,54 @@ namespace Obi.ProjectView
         /// </summary>
         public bool SelectPreviousPageNode()
         {
+            return  SelectNodeOfSpecificRole ( EmptyNode.Kind.Page , false ) ;
+        }
+
+        public bool SelectNodeOfSpecificRole(EmptyNode.Kind NodeKind , bool Next )
+        {
+            if (Next)
+            {
+                for (ObiNode n = mView.SelectedNodeAs<EmptyNode>().FollowingNode; n != null; n = n.FollowingNode)
+                {
+                    if (n is EmptyNode && ((EmptyNode)n).NodeKind == NodeKind )
+                    {
+                        mView.Selection = new NodeSelection(n, this);
+                        return true;
+                    }
+                }
+                return false;
+            }
+            else
+            {
+                for (ObiNode n = mView.SelectedNodeAs<EmptyNode>().PrecedingNode; n != null; n = n.PrecedingNode)
+                {
+                    if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)
+                    {
+                        mView.Selection = new NodeSelection(n, this);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Moves keyboard focus to next page node while in strips view
+        /// </summary>
+        public bool SelectNextPageNode()
+        {
+            return  SelectNodeOfSpecificRole  ( EmptyNode.Kind.Page , true ) ;
+        }
+
+        /// <summary>
+        ///  Move keyboard focus to block with some special role
+                /// </summary>
+        /// <returns></returns>
+        public bool SelectPreviousSpecialRoleNode()
+        {
             for (ObiNode n = mView.SelectedNodeAs<EmptyNode>().PrecedingNode; n != null; n = n.PrecedingNode)
             {
-                if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)
+                if (n is EmptyNode && ((EmptyNode)n).NodeKind != EmptyNode.Kind.Plain )
                 {
                     mView.Selection = new NodeSelection(n, this);
                     return true;
@@ -738,14 +785,16 @@ namespace Obi.ProjectView
             return false;
         }
 
+
         /// <summary>
-        /// Moves keyboard focus to next page node while in strips view
-        /// </summary>
-        public bool SelectNextPageNode()
+        /// Move keyboard focus to next block with special role 
+                /// </summary>
+        /// <returns></returns>
+        public bool SelectNextSpecialRoleNode()
         {
             for (ObiNode n = mView.SelectedNodeAs<EmptyNode>().FollowingNode; n != null; n = n.FollowingNode)
             {
-                if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)
+                if (n is EmptyNode && ((EmptyNode)n).NodeKind != EmptyNode.Kind.Plain  )
                 {
                     mView.Selection = new NodeSelection(n, this);
                     return true;
@@ -753,6 +802,7 @@ namespace Obi.ProjectView
             }
             return false;
         }
+
 
         /// <summary>
         /// Toggles play selection and pause with spacebar

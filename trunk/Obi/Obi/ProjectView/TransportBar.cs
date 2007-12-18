@@ -1045,6 +1045,26 @@ namespace Obi.ProjectView
                 }
         }
 
+        private void mCustomClassMarkButton_Click(object sender, EventArgs e)
+        {
+            MarkCustomClass();
+        }
+
+
+        public void MarkCustomClass()
+        {
+            EmptyNode ENode;
+            if (mRecordingSession != null
+                &&     mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording )
+            {
+                ENode = (EmptyNode)   mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);
+            }
+            else
+            {
+                ENode = mView.SelectedNodeAs<EmptyNode>();
+                            }
+                                                                                                                mView.Presentation.UndoRedoManager.execute(new Commands.Node.ChangeCustomType(mView, ENode, EmptyNode.Kind.Custom, "Custom"));
+                    }
 
 /*                // the following closures handle the various events sent during the recording session
                 mRecordingSession.ContinuingPhrase += new Events.Audio.Recorder.ContinuingPhraseHandler(
