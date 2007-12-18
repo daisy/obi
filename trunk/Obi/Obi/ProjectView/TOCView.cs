@@ -97,16 +97,18 @@ namespace Obi.ProjectView
                 if (mSelection != value)
                 {
                     mSelection = value;
-                    // do something for dummy here
-                    TreeNode n = value == null ? null : FindTreeNode((SectionNode)value.Node);
-                    // ignore the select event, since we were asked to change the selection;
-                    // but allow the selection not coming from the user
-                    mTOCTree.AfterSelect -= new TreeViewEventHandler(TOCTree_AfterSelect);
-                    mTOCTree.BeforeSelect -= new TreeViewCancelEventHandler(TOCTree_BeforeSelect);
-                    mTOCTree.SelectedNode = n;
-                    if (n != null) mView.MakeStripVisibleForSection(n.Tag as SectionNode);
-                    mTOCTree.AfterSelect += new TreeViewEventHandler(TOCTree_AfterSelect);
-                    mTOCTree.BeforeSelect += new TreeViewCancelEventHandler(TOCTree_BeforeSelect);
+                    if (!(value is DummySelection))
+                    {
+                        TreeNode n = value == null ? null : FindTreeNode((SectionNode)value.Node);
+                        // ignore the select event, since we were asked to change the selection;
+                        // but allow the selection not coming from the user
+                        mTOCTree.AfterSelect -= new TreeViewEventHandler(TOCTree_AfterSelect);
+                        mTOCTree.BeforeSelect -= new TreeViewCancelEventHandler(TOCTree_BeforeSelect);
+                        mTOCTree.SelectedNode = n;
+                        if (n != null) mView.MakeStripVisibleForSection(n.Tag as SectionNode);
+                        mTOCTree.AfterSelect += new TreeViewEventHandler(TOCTree_AfterSelect);
+                        mTOCTree.BeforeSelect += new TreeViewCancelEventHandler(TOCTree_BeforeSelect);
+                    }
                 }
             }
         }
@@ -373,6 +375,7 @@ namespace Obi.ProjectView
         {
             if (mDummyBefore != null && mDummyBefore.TreeView != null) mDummyBefore.Remove();
             if (mDummyChild != null && mDummyChild.TreeView != null) mDummyChild.Remove();
+            if (mDefaultDummy != null && mDefaultDummy.TreeView != null) mDefaultDummy.Remove();
         }
       
         /// <summary>
@@ -410,8 +413,10 @@ namespace Obi.ProjectView
             {
                 mDefaultDummy = new DummyNode(DummyNode.DummyType.DEFAULT);
                 mDefaultDummy.Text = "Default dummy";
-                if (treeNode.Parent != null) treeNode.Parent.Nodes.Insert(treeNode.Index+1, mDefaultDummy);
-                else mTOCTree.Nodes.Insert(treeNode.Index, mDefaultDummy);
+                int defaultIndex;
+                defaultIndex = treeNode.Index + 1;
+                if (treeNode.Parent != null) treeNode.Parent.Nodes.Insert(defaultIndex, mDefaultDummy);
+                else mTOCTree.Nodes.Insert(defaultIndex, mDefaultDummy);
             }
             if (ret) mOwnerOfDummies = treeNode;
             else mOwnerOfDummies = null;
