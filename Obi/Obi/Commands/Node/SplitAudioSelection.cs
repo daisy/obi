@@ -38,12 +38,12 @@ namespace Obi.Commands.Node
             mLastNode = Split( mMiddleNode , new Time ( mSplitTime2- mSplitTime1  ) );
             View.SelectedBlockNode = mMiddleNode ;
         }
+
         public override void unExecute()
         {
             MergeAudio.Merge(mOriginalNode , mMiddleNode );
             MergeAudio.Merge(mMiddleNode , mLastNode );
             base.unExecute();
         }
-
     }
 }

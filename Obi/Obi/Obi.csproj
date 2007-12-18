@@ -99,6 +99,7 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\Node\AddNewSection.cs" />
     <Compile Include="Commands\Node\AddNode.cs" />
+    <Compile Include="Commands\Node\DeleteAudio.cs" />
     <Compile Include="Commands\Node\SetNodeAsHeadingPhrase.cs" />
     <Compile Include="Commands\Node\ChangeCustomType.cs" />
     <Compile Include="Commands\Node\ChangeParent.cs" />

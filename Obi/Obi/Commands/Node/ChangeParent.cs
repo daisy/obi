@@ -27,8 +27,10 @@ namespace Obi.Commands.Node
 
         public override void execute()
         {
+            System.Diagnostics.Debug.Print("Detaching node <{0}> from parent <{1}>", mNode, mPreviousParent);
             mNode.Detach();
             mNewParent.AppendChild(mNode);
+            System.Diagnostics.Debug.Print("Added <{0}> to parent <{1}>", mNode, mNewParent);
             base.execute();
         }
 

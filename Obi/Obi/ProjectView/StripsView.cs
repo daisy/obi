@@ -63,6 +63,7 @@ namespace Obi.ProjectView
 
         public bool CanCopyBlock { get { return BlockSelected; } }
         public bool CanCopyStrip { get { return StripSelected; } }
+        public bool CanRemoveAudio { get { return mSelection is AudioSelection && !((AudioSelection)mSelection).WaveformSelection.HasCursor; } }
         public bool CanRemoveBlock { get { return BlockSelected; } }
         public bool CanRemoveStrip { get { return StripSelected; } }
         public bool CanRenameStrip { get { return StripSelected; } }
@@ -164,8 +165,7 @@ namespace Obi.ProjectView
                 command.setShortDescription(Localizer.Message("merge_strips"));
                 SectionNode section = SelectedSection;
                 SectionNode next = section.SectionChildCount == 0 ? section.NextSibling : section.SectionChild(0);
-                int children = next.PhraseChildCount;
-                for (int i = 0; i < children; ++i)
+                for (int i = 0; i < next.PhraseChildCount; ++i)
                 {
                     command.append(new Commands.Node.ChangeParent(mView, next.PhraseChild(i), section)); 
                 }

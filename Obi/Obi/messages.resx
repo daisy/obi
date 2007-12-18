@@ -227,9 +227,6 @@ Oh well.</value>
     <value>The file {0} already exists.
 Do you want to replace the project contained in this file?</value>
   </data>
-  <data name="delete_section_command_label" xml:space="preserve">
-    <value>delete section</value>
-  </data>
   <data name="redo" xml:space="preserve">
     <value>&amp;Redo</value>
   </data>
@@ -377,10 +374,6 @@ Do you want to replace the project contained in this file?</value>
   </data>
   <data name="paste_section_command_label" xml:space="preserve">
     <value>paste section</value>
-  </data>
-  <data name="shallow_delete_section_command_label" xml:space="preserve">
-    <value>delete strip</value>
-    <comment>Shallow deletion of sections is done by deleting a strip (MD)</comment>
   </data>
   <data name="cut_phrase_command_label" xml:space="preserve">
     <value>cut audio block</value>
@@ -730,7 +723,7 @@ Do you want to replace the project contained in this file?</value>
   <data name="move_section_in_command" xml:space="preserve">
     <value>move section in</value>
   </data>
-  <data name="delete_section_command" xml:space="preserve">
+  <data name="delete_section" xml:space="preserve">
     <value>delete section</value>
   </data>
   <data name="copy_section_command" xml:space="preserve">
@@ -759,7 +752,7 @@ Error text: {1}</value>
   <data name="created_new_project" xml:space="preserve">
     <value>Created new project "{0}".</value>
   </data>
-  <data name="delete_block_command" xml:space="preserve">
+  <data name="delete_block" xml:space="preserve">
     <value>delete block</value>
   </data>
   <data name="delete_strip_command" xml:space="preserve">
@@ -875,5 +868,8 @@ Error text: {1}</value>
   </data>
   <data name="mark_section_used" xml:space="preserve">
     <value>mark section as {0}</value>
+  </data>
+  <data name="delete_audio" xml:space="preserve">
+    <value>delete audio</value>
   </data>
 </root>

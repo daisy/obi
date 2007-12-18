@@ -657,11 +657,20 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to delete audio.
+        /// </summary>
+        internal static string delete_audio {
+            get {
+                return ResourceManager.GetString("delete_audio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to delete block.
         /// </summary>
-        internal static string delete_block_command {
+        internal static string delete_block {
             get {
-                return ResourceManager.GetString("delete_block_command", resourceCulture);
+                return ResourceManager.GetString("delete_block", resourceCulture);
             }
         }
         
@@ -686,18 +695,9 @@ namespace Obi {
         /// <summary>
         ///   Looks up a localized string similar to delete section.
         /// </summary>
-        internal static string delete_section_command {
+        internal static string delete_section {
             get {
-                return ResourceManager.GetString("delete_section_command", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to delete section.
-        /// </summary>
-        internal static string delete_section_command_label {
-            get {
-                return ResourceManager.GetString("delete_section_command_label", resourceCulture);
+                return ResourceManager.GetString("delete_section", resourceCulture);
             }
         }
         
@@ -1903,15 +1903,6 @@ namespace Obi {
         internal static string set_page_number_ {
             get {
                 return ResourceManager.GetString("set_page_number_", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to delete strip.
-        /// </summary>
-        internal static string shallow_delete_section_command_label {
-            get {
-                return ResourceManager.GetString("shallow_delete_section_command_label", resourceCulture);
             }
         }
         
