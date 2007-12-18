@@ -33,22 +33,18 @@ namespace Obi.Commands.Node
 
         public override void execute()
         {
-                                    mDetectedPhrases = mPresentation.CreatePhraseNodesFromAudioAssetList (   Audio.PhraseDetection.Apply ( mOriginalPhrase.Audio , mThreshold , mGap , mBeforePhraseSilence ) ) ;
-                                                mParentSection.RemoveChildPhrase(mOriginalPhrase);
-                                                            
-                                                                        for (int i = 0; i < mDetectedPhrases.Count; i++)
+            mDetectedPhrases = mPresentation.CreatePhraseNodesFromAudioAssetList(Obi.Audio.PhraseDetection.Apply(mOriginalPhrase.Audio, mThreshold, mGap, mBeforePhraseSilence));
+            mOriginalPhrase.Detach();
+            for (int i = 0; i < mDetectedPhrases.Count; i++)
             {
-                                mParentSection.Insert(mDetectedPhrases [i], mOriginalPhraseIndex + i);
-                            }
-                                                            base.execute();
+                mParentSection.Insert(mDetectedPhrases[i], mOriginalPhraseIndex + i);
+            }
+            base.execute();
         }
 
         public override void unExecute()
         {
-            for (int i = 0; i < mDetectedPhrases.Count; i++)
-            {
-                mParentSection.RemoveChildPhrase(mDetectedPhrases[i]);
-            }
+            for (int i = 0; i < mDetectedPhrases.Count; i++) mDetectedPhrases[i].Detach();
             mParentSection.Insert(mOriginalPhrase, mOriginalPhraseIndex);
             base.unExecute();
         }

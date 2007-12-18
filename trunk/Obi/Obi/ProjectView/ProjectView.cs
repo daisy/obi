@@ -44,6 +44,19 @@ namespace Obi.ProjectView
 
 
         /// <summary>
+        /// Add a new empty block.
+        /// </summary>
+        public void AddEmptyBlock()
+        {
+            if (CanAddEmptyBlock)
+            {
+                EmptyNode node = new EmptyNode(mPresentation);
+                mPresentation.UndoRedoManager.execute(new Commands.Node.AddEmptyNode(this, node,
+                    mStripsView.Selection.ParentForNewNode(node), mStripsView.Selection.IndexForNewNode(node)));
+            }
+        }
+
+        /// <summary>
         /// Add a new section node to the project.
         /// </summary>
         public void AddSection()
@@ -65,14 +78,20 @@ namespace Obi.ProjectView
             }
         }
 
+        public bool CanAddEmptyBlock { get { return mStripsView.Selection != null; } }
         public bool CanAddSection { get { return mTOCView.CanAddSection && !CanAddStrip; } }
         public bool CanAddStrip { get { return mStripsView.CanAddStrip; } }
         public bool CanAddSubSection { get { return mTOCView.CanAddSection && mTOCView.Selection != null; } }
         public bool CanAssignRole { get { return IsBlockSelected; } }
         public bool CanClearRole { get { return IsBlockSelected && ((EmptyNode)mSelection.Node).NodeKind != EmptyNode.Kind.Plain; } }
+        public bool CanDelete { get { return CanRemoveSection || CanRemoveStrip || CanRemoveBlock || CanRemoveAudio; } }
         public bool CanMergeStripWithNext { get { return mStripsView.CanMergeStripWithNext; } }
         public bool CanMoveSectionIn { get { return mTOCView.CanMoveSectionIn; } }
         public bool CanMoveSectionOut { get { return mTOCView.CanMoveSectionOut; } }
+        public bool CanRemoveAudio { get { return mStripsView.CanRemoveAudio; } }
+        public bool CanRemoveBlock { get { return mStripsView.CanRemoveBlock; } }
+        public bool CanRemoveSection { get { return mTOCView.CanRemoveSection; } }
+        public bool CanRemoveStrip { get { return mStripsView.CanRemoveStrip; } }
         public bool CanRenameSection { get { return mTOCView.CanRenameSection; } }
         public bool CanRenameStrip { get { return mStripsView.CanRenameStrip; } }
         public bool CanSetBlockUsedStatus { get { return mStripsView.CanSetBlockUsedStatus; } }
@@ -87,6 +106,31 @@ namespace Obi.ProjectView
         {
             get { return mClipboard; }
             set { mClipboard = value; }
+        }
+
+        /// <summary>
+        /// Delete the current selection. Noop if there is no selection.
+        /// </summary>
+        public void Delete()
+        {
+            if (CanRemoveSection)
+            {
+                mPresentation.UndoRedoManager.execute(new Commands.Node.Delete(this, mTOCView.Selection.Section,
+                    Localizer.Message("delete_section")));
+            }
+            else if (CanRemoveStrip)
+            {
+                mPresentation.UndoRedoManager.execute(mStripsView.DeleteStripCommand());
+            }
+            else if (CanRemoveBlock)
+            {
+                mPresentation.UndoRedoManager.execute(new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
+                    Localizer.Message("delete_block")));
+            }
+            else if (CanRemoveAudio)
+            {
+                mPresentation.UndoRedoManager.execute(new Commands.Node.DeleteAudio(this));
+            }
         }
 
         /// <summary>
@@ -180,6 +224,14 @@ namespace Obi.ProjectView
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Rename a section node after the name was changed directly by the user (not through a menu.)
+        /// </summary>
+        public void RenameSectionNode(SectionNode section, string label)
+        {
+            mPresentation.UndoRedoManager.execute(new Commands.Node.RenameSection(this, section, label));
         }
 
         /// <summary>
@@ -415,31 +467,6 @@ namespace Obi.ProjectView
             }
         }
 
-        /// <summary>
-        /// Delete the current selection. Noop if there is no selection.
-        /// </summary>
-        public void Delete()
-        {
-            if (CanRemoveSection)
-            {
-                mPresentation.UndoRedoManager.execute(new Commands.Node.Delete(this, mTOCView.Selection.Section,
-                    Localizer.Message("delete_section_command")));
-            }
-            else if (CanRemoveStrip)
-            {
-                mPresentation.UndoRedoManager.execute(mStripsView.DeleteStripCommand());
-            }
-            else if (CanRemoveBlock)
-            {
-                mPresentation.UndoRedoManager.execute(new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
-                    Localizer.Message("delete_block_command")));
-            }
-        }
-
-        public void RenameSectionNode(SectionNode section, string label)
-        {
-            mPresentation.UndoRedoManager.execute(new Commands.Node.RenameSection(this, section, label));
-        }
 
         private bool mTOCViewVisible;  // keep track of the TOC view visibility (don't reopen it accidentally)
 
@@ -521,22 +548,17 @@ namespace Obi.ProjectView
 
         public bool CanCut { get { return CanDelete; } }
         public bool CanCopy { get { return CanCopySection || CanCopyStrip || CanCopyBlock; } }
-        public bool CanDelete { get { return CanRemoveSection || CanRemoveStrip || CanRemoveBlock; } }
         public bool CanPaste { get { return mSelection != null && mSelection.CanPaste(mClipboard); } }
         public bool CanDeselect { get { return mSelection != null; } }
 
         public bool CanShowInStripsView { get { return IsSectionSelected; } }
         public bool CanShowInTOCView { get { return IsStripSelected; } }
 
-        public bool CanAddEmptyBlock { get { return mStripsView.Selection != null; } }
         public bool CanCopySection { get { return mTOCView.CanCopySection; } }
         public bool CanCopyStrip { get { return mStripsView.CanCopyStrip; } }
         public bool CanCopyBlock { get { return mStripsView.CanCopyBlock; } }
         public bool CanMarkSectionUnused { get { return mTOCView.CanSetSectionUsedStatus && mSelection.Node.Used; } }
         public bool CanMergeBlockWithNext { get { return mStripsView.CanMergeBlockWithNext; } }
-        public bool CanRemoveBlock { get { return mStripsView.CanRemoveBlock; } }
-        public bool CanRemoveSection { get { return mTOCView.CanRemoveSection; } }
-        public bool CanRemoveStrip { get { return mStripsView.CanRemoveStrip; } }
         public bool CanSplitBlock { get { return mSelection is AudioSelection; } }
         
         public bool IsBlockUsed { get { return mStripsView.IsBlockUsed; } }
@@ -637,18 +659,6 @@ namespace Obi.ProjectView
         // Blocks
 
 
-        /// <summary>
-        /// Add a new empty block.
-        /// </summary>
-        public void AddEmptyBlock()
-        {
-            if (CanAddEmptyBlock)
-            {
-                EmptyNode node = new EmptyNode(mPresentation);
-                mPresentation.UndoRedoManager.execute(new Commands.Node.AddEmptyNode(this, node,
-                    mStripsView.Selection.ParentForNewNode(node), mStripsView.Selection.IndexForNewNode(node)));
-            }
-        }
 
         /// <summary>
         /// Import new phrases in the strip, one block per file.

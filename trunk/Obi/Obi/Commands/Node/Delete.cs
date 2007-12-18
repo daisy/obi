@@ -11,26 +11,23 @@ namespace Obi.Commands.Node
         private ObiNode mNode;        // the node to remove
         private ObiNode mParent;      // its original parent node
         private int mIndex;           // its original index
-        private string mDescription;  // description (for undo/redo menu)
 
-        public Delete(ProjectView.ProjectView view, ObiNode node, string description)
+        public Delete(ProjectView.ProjectView view, ObiNode node, string label)
             : base(view)
         {
             mNode = node;
             mParent = node.ParentAs<ObiNode>();
             mIndex = mNode.Index;
-            mDescription = description;
+            Label = label;
         }
 
         public Delete(ProjectView.ProjectView view, ObiNode node) : this(view, node, "") { }
 
-        public override string getShortDescription() { return mDescription; }
-
         public override void execute()
         {
-            base.execute();
             mNode.Detach();
             View.Selection = null;
+            base.execute();
         }
 
         public override void unExecute()
