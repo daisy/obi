@@ -895,7 +895,7 @@ namespace Obi.ProjectView
             {
                 mRecordingSection = selected.ParentAs<SectionNode>();
 
-                    if ( m_IsAppendOnlyRecording    &&     IsInPhraseSelectionMarked )
+                    if ( !m_IsAppendOnlyRecording    &&     IsInPhraseSelectionMarked )
                     {
                         if (((AudioSelection)mView.Selection).WaveformSelection.SelectionEndTime != 0
                             && ((AudioSelection)mView.Selection).WaveformSelection.SelectionBeginTime < ((AudioSelection)mView.Selection).WaveformSelection.SelectionEndTime)
