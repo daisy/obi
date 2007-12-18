@@ -48,6 +48,7 @@ namespace Obi.ProjectView
             this.mVUMeterPanel = new Obi.UserControls.TextVUMeterPanel();
             this.mNextPageButton = new System.Windows.Forms.Button();
             this.mPreviousPageButton = new System.Windows.Forms.Button();
+            this.mCustomClassMarkButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // mPlayButton
@@ -279,11 +280,22 @@ namespace Obi.ProjectView
             this.mPreviousPageButton.UseVisualStyleBackColor = true;
             this.mPreviousPageButton.Click += new System.EventHandler(this.mPreviousPageButton_Click);
             // 
+            // mCustomClassMarkButton
+            // 
+            this.mCustomClassMarkButton.Location = new System.Drawing.Point(1130, 0);
+            this.mCustomClassMarkButton.Name = "mCustomClassMarkButton";
+            this.mCustomClassMarkButton.Size = new System.Drawing.Size(40, 32);
+            this.mCustomClassMarkButton.TabIndex = 18;
+            this.mCustomClassMarkButton.Text = "Custom Class";
+            this.mCustomClassMarkButton.UseVisualStyleBackColor = true;
+            this.mCustomClassMarkButton.Click += new System.EventHandler(this.mCustomClassMarkButton_Click);
+            // 
             // TransportBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.mCustomClassMarkButton);
             this.Controls.Add(this.mPreviousPageButton);
             this.Controls.Add(this.mNextPageButton);
             this.Controls.Add(this.ComboFastPlateRate);
@@ -301,7 +313,7 @@ namespace Obi.ProjectView
             this.Controls.Add(this.mPauseButton);
             this.Controls.Add(this.mPlayButton);
             this.Name = "TransportBar";
-            this.Size = new System.Drawing.Size(1130, 35);
+            this.Size = new System.Drawing.Size(1230, 35);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -327,5 +339,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ComboBox ComboFastPlateRate;
         private System.Windows.Forms.Button mNextPageButton;
         private System.Windows.Forms.Button mPreviousPageButton;
+        private System.Windows.Forms.Button mCustomClassMarkButton;
     }
 }
