@@ -32,7 +32,7 @@ namespace Obi.ProjectView
 
         protected virtual void UpdateAccessibleName()
         {
-            AccessibleName = String.Format(Localizer.Message("audio_accessible_name"),
+            AccessibleName = mCustomClassLabel.Text + String.Format(Localizer.Message("audio_accessible_name"),
                 mNode.Index + 1, mNode.ParentAs<ObiNode>().PhraseChildCount);
         }
 
@@ -73,6 +73,7 @@ namespace Obi.ProjectView
                     mCustomClassLabel.Text = value;
                     mCustomClassLabel.Visible = true;
                 }
+                UpdateAccessibleName();
             }
             get { return mCustomClassLabel.Text; }
         }
