@@ -29,10 +29,13 @@ namespace Obi.ProjectView
         private bool mIsSerialPlaying = false;
         private bool m_PlayOnFocusEnabled = true;     // Avn: for controlling triggering of OnFocus playback.
 
+
+        private int m_PreviewDuration = 1500; // duration of preview playback, to be  included in settings.
+        private bool m_IsAppendOnlyRecording;
         RecordingSession inlineRecordingSession = null; // LNN: hack for doing non-dialog recording.
         public bool IsInlineRecording
         { get { return (inlineRecordingSession != null); } }
-        private int m_PreviewDuration = 1500; // duration of preview playback, to be  included in settings.
+        
 
         // constants from the display combo box
         private static readonly int Elapsed = 0;
@@ -81,6 +84,9 @@ namespace Obi.ProjectView
                         mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
             mVUMeterPanel.VuMeter = mVuMeter;
 
+            // Append recording flag: to be updated from settings. Put to false for time being.
+            m_IsAppendOnlyRecording = false;
+
             ComboFastPlateRate.Items.Add("1.0");
             ComboFastPlateRate.Items.Add("1.125");
             ComboFastPlateRate.Items.Add("1.25");
@@ -119,6 +125,16 @@ namespace Obi.ProjectView
                     !IsInlineRecording;
             }
         }
+
+
+        /// <summary>
+        ///  flag to enable / disable append only recording mode for less skilled users
+                /// </summary>
+        public bool AppendOnlyRecording
+        {
+            get { return m_IsAppendOnlyRecording ; }
+            set { m_IsAppendOnlyRecording = value ; }
+                    }
 
         public Playlist CurrentPlaylist { get { return mCurrentPlaylist; } }
 
@@ -879,7 +895,7 @@ namespace Obi.ProjectView
             {
                 mRecordingSection = selected.ParentAs<SectionNode>();
 
-                    if ( IsInPhraseSelectionMarked )
+                    if ( m_IsAppendOnlyRecording    &&     IsInPhraseSelectionMarked )
                     {
                         if (((AudioSelection)mView.Selection).WaveformSelection.SelectionEndTime != 0
                             && ((AudioSelection)mView.Selection).WaveformSelection.SelectionBeginTime < ((AudioSelection)mView.Selection).WaveformSelection.SelectionEndTime)
@@ -889,13 +905,10 @@ namespace Obi.ProjectView
                                                     }
                         else
                         mView.Presentation.UndoRedoManager.execute(new Commands.Node.SplitAudio(mView ));
-
-                
-        if ( mCurrentPlaylist.State == Audio.AudioPlayerState.Paused )
-                        mCurrentPlaylist.Stop();
                        
                     }
-                
+                    if (mCurrentPlaylist.State == Audio.AudioPlayerState.Paused)
+                        mCurrentPlaylist.Stop();        
                 
                 mRecordingInitPhraseIndex =  1 + selected.Index;
             }
