@@ -1050,20 +1050,25 @@ namespace Obi.ProjectView
             MarkCustomClass();
         }
 
-
+        /// <summary>
+        /// Mark custom class on current block with default name as "Custom"
+        /// If recording, create new phrase and mark custom class this new phrase block
+        /// else mark on currently selected block
+                /// </summary>
         public void MarkCustomClass()
         {
             EmptyNode ENode;
             if (mRecordingSession != null
                 &&     mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording )
             {
+                NextPhrase();
                 ENode = (EmptyNode)   mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);
             }
             else
             {
                 ENode = mView.SelectedNodeAs<EmptyNode>();
                             }
-                                                                                                                mView.Presentation.UndoRedoManager.execute(new Commands.Node.ChangeCustomType(mView, ENode, EmptyNode.Kind.Custom, "Custom"));
+                                                                                                                mView.Presentation.UndoRedoManager.execute(new Commands.Node.ChangeCustomType(mView, ENode, EmptyNode.Kind.Custom,Localizer.Message ("Default_CustomClassName") ));
                     }
 
 /*                // the following closures handle the various events sent during the recording session
