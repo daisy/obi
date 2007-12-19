@@ -31,7 +31,6 @@ namespace Obi.Commands.Node
             mNode.Detach();
             mNewParent.AppendChild(mNode);
             System.Diagnostics.Debug.Print("Added <{0}> to parent <{1}>", mNode, mNewParent);
-            base.execute();
         }
 
         public override void unExecute()

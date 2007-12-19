@@ -1,35 +1,34 @@
 using urakawa.media.timing;
 using urakawa.media.data.audio;
 
-namespace Obi.Commands.Node
+namespace Obi.Commands.Audio
 {
-    class DeleteAudio : Command
+    class Delete : Command
     {
         private PhraseNode mNode;                 // the phrase node in which the deletion happens
         private ManagedAudioMedia mDeletedAudio;  // the deleted chunk of audio
-        private Time mSplitTimeBegin;
-        private Time mSplitTimeEnd;
-        private IControlWithSelection mControl;
+        private Time mSplitTimeBegin;             // begin time of audio split
+        private Time mSplitTimeEnd;               // end time of audio split
+        private NodeSelection mSelectionAfter;    // selection after deletion (cursor at split point)
 
-        public DeleteAudio(ProjectView.ProjectView view)
+        public Delete(ProjectView.ProjectView view)
             : base(view)
         {
             mNode = (PhraseNode)view.Selection.Node;
-            mControl = view.Selection.Control;
             mDeletedAudio = null;
             mSplitTimeBegin = new Time(((AudioSelection)view.Selection).WaveformSelection.SelectionBeginTime);
             mSplitTimeEnd = new Time(((AudioSelection)view.Selection).WaveformSelection.SelectionEndTime);
+            mSelectionAfter = new AudioSelection(mNode, view.Selection.Control,
+                new WaveformSelection(mSplitTimeBegin.getTimeAsMillisecondFloat()));
+            Label = Localizer.Message("delete_audio");
         }
-
-        public override string getShortDescription() { return Localizer.Message("delete_audio"); }
 
         public override void execute()
         {
             ManagedAudioMedia after = mNode.SplitAudio(mSplitTimeEnd);
             mDeletedAudio = mNode.SplitAudio(mSplitTimeBegin);
             mNode.MergeAudioWith(after);
-            View.Selection = new AudioSelection(mNode, mControl, new WaveformSelection(mSplitTimeBegin.getTimeAsMillisecondFloat()));
-            base.execute();
+            View.Selection = mSelectionAfter;
         }
 
         public override void unExecute()

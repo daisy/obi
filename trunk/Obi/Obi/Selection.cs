@@ -267,4 +267,19 @@ namespace Obi
         public bool Deep { get { return mDeep; } }
         public ObiNode Node { get { return mNode; } }
     }
+
+    public class AudioClipboard: Clipboard
+    {
+        private WaveformSelection mWaveformSelection;
+
+        public AudioClipboard(AudioSelection selection)
+            : base(selection.Node, true)
+        {
+            mWaveformSelection = selection.WaveformSelection;
+            if (mWaveformSelection.HasCursor) throw new Exception("Expected actual audio selection.");
+            if (!(Node is PhraseNode)) throw new Exception("Expected phrase node.");
+        }
+
+        public WaveformSelection WaveformSelection { get { return mWaveformSelection; } }
+    }
 }

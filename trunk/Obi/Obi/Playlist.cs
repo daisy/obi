@@ -733,7 +733,7 @@ namespace Obi
         /// <param name="node">The phrase node to add.</param>
         public void AddPhrase(PhraseNode node)
         {
-            PhraseNode prev = node.PreviousPhraseInProject;
+            PhraseNode prev = node.PrecedingPhraseInProject;
             int index = prev == null ? 0 : mPhrases.IndexOf(prev) + 1;
             mPhrases.Insert(index, node);
             mStartTimes.Add(0.0);

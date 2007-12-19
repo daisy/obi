@@ -21,9 +21,9 @@ namespace Obi.Commands.Node
             mParent = mSelection.ParentForNewNode(mCopy);
             mIndex = mSelection.IndexForNewNode(mCopy);
             Label = Localizer.Message(
-                mCopy is EmptyNode ? "paste_block_command" :
-                view.Selection.Control is ProjectView.TOCView ? "paste_section_command " :
-                mCopy.SectionChildCount > 0 ? "paste_strips_command" : "paste_strip_command"
+                mCopy is EmptyNode ? "paste_block" :
+                view.Selection.Control is ProjectView.TOCView ? "paste_section" :
+                mCopy.SectionChildCount > 0 ? "paste_strips" : "paste_strip"
             );
         }
 
@@ -34,7 +34,6 @@ namespace Obi.Commands.Node
 
         public override void execute()
         {
-            base.execute();
             mParent.Insert(mCopy, mIndex);
             if (!mParent.Used) MakeUnused(mCopy);
             View.Selection = new NodeSelection(mLastNode, mSelection.Control);

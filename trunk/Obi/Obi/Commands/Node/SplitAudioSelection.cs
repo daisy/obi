@@ -33,10 +33,9 @@ namespace Obi.Commands.Node
 
         public override void execute()
         {
-            base.execute();
-            mMiddleNode = Split(mOriginalNode , new Time ( mSplitTime1 ) ) ;
-            mLastNode = Split( mMiddleNode , new Time ( mSplitTime2- mSplitTime1  ) );
-            View.SelectedBlockNode = mMiddleNode ;
+            mMiddleNode = Split(mOriginalNode, new Time(mSplitTime1));
+            mLastNode = Split(mMiddleNode, new Time(mSplitTime2 - mSplitTime1));
+            View.SelectedBlockNode = mMiddleNode;
         }
 
         public override void unExecute()

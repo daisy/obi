@@ -39,7 +39,6 @@ namespace Obi.Commands.Node
             {
                 mParentSection.Insert(mDetectedPhrases[i], mOriginalPhraseIndex + i);
             }
-            base.execute();
         }
 
         public override void unExecute()

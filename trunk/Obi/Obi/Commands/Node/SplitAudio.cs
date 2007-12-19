@@ -26,7 +26,6 @@ namespace Obi.Commands.Node
 
         public override void execute()
         {
-            base.execute();
             mNewNode = Split(mNode, mSplitPoint);
             View.SelectedBlockNode = mNewNode;
         }

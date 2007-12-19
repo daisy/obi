@@ -20,7 +20,6 @@ namespace Obi.Commands.Node
         public override void execute()
         {
             mNode.Used = !mOriginalStatus;
-            base.execute();
         }
 
         public override void unExecute()
