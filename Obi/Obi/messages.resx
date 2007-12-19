@@ -344,12 +344,6 @@ Do you want to replace the project contained in this file?</value>
     <value>Playing on device {0}</value>
     <comment>Playing on an output device (JQ)</comment>
   </data>
-  <data name="copy_section_command_label" xml:space="preserve">
-    <value>copy section</value>
-  </data>
-  <data name="cut_section_command_label" xml:space="preserve">
-    <value>cut section</value>
-  </data>
   <data name="decrease_section_level_command_label" xml:space="preserve">
     <value>move section out</value>
     <comment>"out" is the wording used in menus (MD)</comment>
@@ -371,21 +365,6 @@ Do you want to replace the project contained in this file?</value>
   <data name="move_section_up_linear_command_label" xml:space="preserve">
     <value>move strip up</value>
     <comment>You move sections linearly by moving strips (MD)</comment>
-  </data>
-  <data name="paste_section_command_label" xml:space="preserve">
-    <value>paste section</value>
-  </data>
-  <data name="cut_phrase_command_label" xml:space="preserve">
-    <value>cut audio block</value>
-    <comment>Undo/redo paste phrase (JQ)</comment>
-  </data>
-  <data name="paste_phrase_command_label" xml:space="preserve">
-    <value>paste audio block</value>
-    <comment>Undo/redo paste audio block (JQ)</comment>
-  </data>
-  <data name="copy_phrase_command_label" xml:space="preserve">
-    <value>copy audio block</value>
-    <comment>Copy a phrase node (JQ)</comment>
   </data>
   <data name="no_page_label" xml:space="preserve">
     <value>page ...</value>
@@ -428,21 +407,9 @@ Do you want to replace the project contained in this file?</value>
     <value>No project.</value>
     <comment>No open project (JQ)</comment>
   </data>
-  <data name="copy_menu_label" xml:space="preserve">
-    <value>Cop&amp;y{0}</value>
-    <comment>copy {section/phrase} (JQ)</comment>
-  </data>
-  <data name="cut_menu_label" xml:space="preserve">
-    <value>&amp;Cut{0}</value>
-    <comment>cut {section/phrase} (JQ)</comment>
-  </data>
   <data name="delete_menu_label" xml:space="preserve">
     <value>&amp;Delete{0}</value>
     <comment>delete {section/phrase} (JQ)</comment>
-  </data>
-  <data name="paste_menu_label" xml:space="preserve">
-    <value>&amp;Paste{0}</value>
-    <comment>paste {section/phrase} (JQ)</comment>
   </data>
   <data name="phrase" xml:space="preserve">
     <value>phrase</value>
@@ -560,12 +527,6 @@ Do you want to replace the project contained in this file?</value>
   </data>
   <data name="export_directory_browser" xml:space="preserve">
     <value>Please choose a default export directory below.</value>
-  </data>
-  <data name="cut_strip_command_label" xml:space="preserve">
-    <value>cut strip</value>
-  </data>
-  <data name="copy_strip_command_label" xml:space="preserve">
-    <value>copy strip</value>
   </data>
   <data name="playback_rate" xml:space="preserve">
     <value>Playback rate x{0}</value>
@@ -726,13 +687,13 @@ Do you want to replace the project contained in this file?</value>
   <data name="delete_section" xml:space="preserve">
     <value>delete section</value>
   </data>
-  <data name="copy_section_command" xml:space="preserve">
+  <data name="copy_section" xml:space="preserve">
     <value>copy section</value>
   </data>
-  <data name="cut_section_command" xml:space="preserve">
+  <data name="cut_section" xml:space="preserve">
     <value>cut section</value>
   </data>
-  <data name="paste_section_command" xml:space="preserve">
+  <data name="paste_section" xml:space="preserve">
     <value>paste section</value>
   </data>
   <data name="import_phrases_command" xml:space="preserve">
@@ -758,16 +719,16 @@ Error text: {1}</value>
   <data name="delete_strip_command" xml:space="preserve">
     <value>delete strip</value>
   </data>
-  <data name="copy_strip_command" xml:space="preserve">
+  <data name="copy_strip" xml:space="preserve">
     <value>copy strip</value>
   </data>
-  <data name="paste_strip_command" xml:space="preserve">
+  <data name="paste_strip" xml:space="preserve">
     <value>paste strip</value>
   </data>
-  <data name="paste_strips_command" xml:space="preserve">
+  <data name="paste_strips" xml:space="preserve">
     <value>paste strips</value>
   </data>
-  <data name="cut_strip_command" xml:space="preserve">
+  <data name="cut_strip" xml:space="preserve">
     <value>cut strip</value>
   </data>
   <data name="split_strip" xml:space="preserve">
@@ -776,10 +737,10 @@ Error text: {1}</value>
   <data name="merge_strips" xml:space="preserve">
     <value>merge strips</value>
   </data>
-  <data name="cut_block_command" xml:space="preserve">
+  <data name="cut_block" xml:space="preserve">
     <value>cut block</value>
   </data>
-  <data name="copy_block_command" xml:space="preserve">
+  <data name="copy_block" xml:space="preserve">
     <value>copy block</value>
   </data>
   <data name="find_in_text_init" xml:space="preserve">
@@ -825,10 +786,10 @@ Error text: {1}</value>
   <data name="merge_block_with_next" xml:space="preserve">
     <value>merge block with next</value>
   </data>
-  <data name="paste_block_command" xml:space="preserve">
+  <data name="paste_block" xml:space="preserve">
     <value>paste block</value>
   </data>
-  <data name="add_empty_block_command" xml:space="preserve">
+  <data name="add_empty_block" xml:space="preserve">
     <value>add empty block</value>
   </data>
   <data name="audio_accessible_name" xml:space="preserve">
@@ -869,6 +830,9 @@ Error text: {1}</value>
   <data name="mark_section_used" xml:space="preserve">
     <value>mark section as {0}</value>
   </data>
+  <data name="cut_audio" xml:space="preserve">
+    <value>cut audio</value>
+  </data>
   <data name="delete_audio" xml:space="preserve">
     <value>delete audio</value>
   </data>
@@ -877,5 +841,11 @@ Error text: {1}</value>
   </data>
   <data name="No_Preceding_SilenceBlock" xml:space="preserve">
     <value>No preceding silence block for reference. Setting default value for  threshold</value>
+  </data>
+  <data name="paste_audio" xml:space="preserve">
+    <value>paste audio</value>
+  </data>
+  <data name="copy_audio" xml:space="preserve">
+    <value>copy audio</value>
   </data>
 </root>

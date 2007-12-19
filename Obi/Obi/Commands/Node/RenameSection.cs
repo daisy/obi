@@ -28,7 +28,6 @@ namespace Obi.Commands.Node
         {
             View.Presentation.RenameSectionNode(mNode, mNewLabel);
             View.Selection = new NodeSelection(mNode, SelectionBefore.Control);
-            base.execute();
         }
 
         public override void unExecute()

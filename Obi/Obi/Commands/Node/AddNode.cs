@@ -25,7 +25,6 @@ namespace Obi.Commands.Node
 
         public override void execute()
         {
-            base.execute();
             mParent.Insert(mNode, mIndex);
         }
 
@@ -44,9 +43,8 @@ namespace Obi.Commands.Node
             : base(view, node, parent, index)
         {
             mControl = view.Selection.Control;
+            Label = Localizer.Message("add_empty_block");
         }
-
-        public override string getShortDescription() { return Localizer.Message("add_empty_block_command"); }
 
         public override void execute()
         {

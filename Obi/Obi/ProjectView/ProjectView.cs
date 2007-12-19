@@ -84,6 +84,12 @@ namespace Obi.ProjectView
         public bool CanAddSubSection { get { return mTOCView.CanAddSection && mTOCView.Selection != null; } }
         public bool CanAssignRole { get { return IsBlockSelected; } }
         public bool CanClearRole { get { return IsBlockSelected && ((EmptyNode)mSelection.Node).NodeKind != EmptyNode.Kind.Plain; } }
+        public bool CanCopy { get { return CanCopySection || CanCopyStrip || CanCopyBlock || CanCopyAudio; } }
+        public bool CanCopyAudio { get { return mStripsView.CanCopyAudio; } }
+        public bool CanCopySection { get { return mTOCView.CanCopySection; } }
+        public bool CanCopyStrip { get { return mStripsView.CanCopyStrip; } }
+        public bool CanCopyBlock { get { return mStripsView.CanCopyBlock; } }
+        public bool CanCut { get { return CanDelete; } }
         public bool CanDelete { get { return CanRemoveSection || CanRemoveStrip || CanRemoveBlock || CanRemoveAudio; } }
         public bool CanMergeStripWithNext { get { return mStripsView.CanMergeStripWithNext; } }
         public bool CanMoveSectionIn { get { return mTOCView.CanMoveSectionIn; } }
@@ -109,6 +115,61 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Copy the current selection into the clipboard. Noop if there is no selection.
+        /// </summary>
+        public void Copy()
+        {
+            if (CanCopySection)
+            {
+                mPresentation.UndoRedoManager.execute(new Commands.Node.Copy(this, true, Localizer.Message("copy_section")));
+            }
+            else if (CanCopyStrip)
+            {
+                mPresentation.UndoRedoManager.execute(new Commands.Node.Copy(this, false, Localizer.Message("copy_strip")));
+            }
+            else if (CanCopyBlock)
+            {
+                mPresentation.UndoRedoManager.execute(new Commands.Node.Copy(this, true, Localizer.Message("copy_block")));
+            }
+            else if (CanCopyAudio)
+            {
+                mPresentation.UndoRedoManager.execute(new Commands.Audio.Copy(this));
+            }
+        }
+
+        /// <summary>
+        /// Cut (delete) the selection and store it in the clipboard.
+        /// </summary>
+        public void Cut()
+        {
+            if (CanRemoveSection || CanRemoveStrip)
+            {
+                bool isSection = mSelection.Control is TOCView;
+                urakawa.undo.CompositeCommand command = Presentation.CreateCompositeCommand(
+                    Localizer.Message(isSection ? "cut_section" : "cut_strip"));
+                command.append(new Commands.Node.Copy(this, isSection));
+                command.append(new Commands.Node.Delete(this, mSelection.Node));
+                mPresentation.UndoRedoManager.execute(command);
+            }
+            else if (CanRemoveBlock)
+            {
+                urakawa.undo.CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
+                command.setShortDescription(Localizer.Message("cut_block"));
+                command.append(new Commands.Node.Copy(this, true));
+                command.append(new Commands.Node.Delete(this, mSelection.Node));
+                mPresentation.UndoRedoManager.execute(command);
+            }
+            else if (CanRemoveAudio)
+            {
+                urakawa.undo.CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
+                command.setShortDescription(Localizer.Message("cut_audio"));
+                command.append(new Commands.Audio.Copy(this));
+                command.append(new Commands.Audio.Delete(this));
+                mPresentation.UndoRedoManager.execute(command);
+            }
+        }
+
+        /// <summary>
         /// Delete the current selection. Noop if there is no selection.
         /// </summary>
         public void Delete()
@@ -129,7 +190,7 @@ namespace Obi.ProjectView
             }
             else if (CanRemoveAudio)
             {
-                mPresentation.UndoRedoManager.execute(new Commands.Node.DeleteAudio(this));
+                mPresentation.UndoRedoManager.execute(new Commands.Audio.Delete(this));
             }
         }
 
@@ -392,48 +453,7 @@ namespace Obi.ProjectView
 
 
 
-        /// <summary>
-        /// Cut (delete) the selection and store it in the clipboard.
-        /// </summary>
-        public void Cut()
-        {
-            if (CanRemoveSection || CanRemoveStrip)
-            {
-                bool isSection = mSelection.Control is TOCView;
-                urakawa.undo.CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
-                command.setShortDescription(Localizer.Message(isSection ? "cut_section_command" : "cut_strip_command"));
-                command.append(new Commands.Node.Copy(this, isSection));
-                command.append(new Commands.Node.Delete(this, mSelection.Node));
-                mPresentation.UndoRedoManager.execute(command);
-            }
-            else if (CanRemoveBlock)
-            {
-                urakawa.undo.CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
-                command.setShortDescription(Localizer.Message("cut_block_command"));
-                command.append(new Commands.Node.Copy(this, true));
-                command.append(new Commands.Node.Delete(this, mSelection.Node));
-                mPresentation.UndoRedoManager.execute(command);
-            }
-        }
 
-        /// <summary>
-        /// Copy the current selection into the clipboard. Noop if there is no selection.
-        /// </summary>
-        public void Copy()
-        {
-            if (CanCopySection)
-            {
-                mPresentation.UndoRedoManager.execute(new Commands.Node.Copy(this, true, Localizer.Message("copy_section_command")));
-            }
-            else if (CanCopyStrip)
-            {
-                mPresentation.UndoRedoManager.execute(new Commands.Node.Copy(this, false, Localizer.Message("copy_strip_command")));
-            }
-            else if (CanCopyBlock)
-            {
-                mPresentation.UndoRedoManager.execute(new Commands.Node.Copy(this, true, Localizer.Message("copy_block_command")));
-            }
-        }
 
         /// <summary>
         /// Paste the contents of the clipboard in the current context. Noop if the clipboard is empty.
@@ -546,17 +566,12 @@ namespace Obi.ProjectView
         public bool IsStripSelected { get { return SelectedNodeAs<SectionNode>() != null && mSelection.Control == mStripsView; } }
         public bool IsStripSelectedStrict { get { return IsStripSelected && mSelection.GetType() == typeof(NodeSelection); } }
 
-        public bool CanCut { get { return CanDelete; } }
-        public bool CanCopy { get { return CanCopySection || CanCopyStrip || CanCopyBlock; } }
         public bool CanPaste { get { return mSelection != null && mSelection.CanPaste(mClipboard); } }
         public bool CanDeselect { get { return mSelection != null; } }
 
         public bool CanShowInStripsView { get { return IsSectionSelected; } }
         public bool CanShowInTOCView { get { return IsStripSelected; } }
 
-        public bool CanCopySection { get { return mTOCView.CanCopySection; } }
-        public bool CanCopyStrip { get { return mStripsView.CanCopyStrip; } }
-        public bool CanCopyBlock { get { return mStripsView.CanCopyBlock; } }
         public bool CanMarkSectionUnused { get { return mTOCView.CanSetSectionUsedStatus && mSelection.Node.Used; } }
         public bool CanMergeBlockWithNext { get { return mStripsView.CanMergeBlockWithNext; } }
         public bool CanSplitBlock { get { return mSelection is AudioSelection; } }

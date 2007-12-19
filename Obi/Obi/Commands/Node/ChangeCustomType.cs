@@ -46,7 +46,6 @@ namespace Obi.Commands.Node
             if (mOldNodeKind == EmptyNode.Kind.Custom) View.Presentation.RemoveCustomClass(mOldCustomClass, mNode);
             if (mNodeKind == EmptyNode.Kind.Custom) View.Presentation.AddCustomClass(mCustomClass, mNode);
             View.SelectedBlockNode = mNode;
-            base.execute();
         }
 
         public override void unExecute()

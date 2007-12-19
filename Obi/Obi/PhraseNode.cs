@@ -47,28 +47,25 @@ namespace Obi
         }
 
         /// <summary>
-        /// Next phrase for this phrase in its section. Null if this phrase is the last one.
+        /// Merge the audio of this phrase with the audio of another phrase and notify that audio has changed.
         /// </summary>
-        public EmptyNode NextPhraseInSection
+        /// <param name="audio"></param>
+        public void MergeAudioWith(ManagedAudioMedia audio)
         {
-            get
-            {
-                SectionNode parent = (SectionNode)getParent();
-                int index = Index;
-                return index < parent.PhraseChildCount - 1 ? parent.PhraseChild(index + 1) : null;
-            }
+            Audio.mergeWith(audio);
+            if (NodeAudioChanged != null) NodeAudioChanged(this, new NodeEventArgs<PhraseNode>(this));
         }
 
         /// <summary>
-        /// Previous phrase node in linear order in the whole project.
+        /// Preceding phrase node in linear order in the whole project.
         /// Null if it is the first phrase in the project.
         /// </summary>
-        public PhraseNode PreviousPhraseInProject
+        public PhraseNode PrecedingPhraseInProject
         {
             get
             {
                 ObiNode prev;
-                for (prev = PrecedingNode; prev != null && !(prev is PhraseNode); prev = PrecedingNode);
+                for (prev = PrecedingNode; prev != null && !(prev is PhraseNode); prev = PrecedingNode) ;
                 return prev as PhraseNode;
             }
         }
@@ -82,16 +79,6 @@ namespace Obi
             ManagedAudioMedia newAudio = Audio.split(splitPoint);
             if (NodeAudioChanged != null) NodeAudioChanged(this, new NodeEventArgs<PhraseNode>(this));
             return newAudio;
-        }
-
-        /// <summary>
-        /// Merge the audio of this phrase with the audio of another phrase and notify that audio has changed.
-        /// </summary>
-        /// <param name="audio"></param>
-        public void MergeAudioWith(ManagedAudioMedia audio)
-        {
-            Audio.mergeWith(audio);
-            if (NodeAudioChanged != null) NodeAudioChanged(this, new NodeEventArgs<PhraseNode>(this));
         }
 
         public override string getXukLocalName()

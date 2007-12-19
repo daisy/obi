@@ -27,7 +27,6 @@ namespace Obi.Commands.Node
 
         public override void execute()
         {
-            base.execute();
             Merge(mNode, mNextNode);
         }
 

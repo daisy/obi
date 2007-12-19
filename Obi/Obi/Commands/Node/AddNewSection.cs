@@ -19,6 +19,7 @@ namespace Obi.Commands.Node
             mNode.Used = mParent.Used;
             mControl = control;
             view.SelectAndRenameSelection(new NodeSelection(mNode, mControl));
+            Label = Localizer.Message("add_section");
         }
 
         // Set parent and index for the new node
@@ -41,16 +42,20 @@ namespace Obi.Commands.Node
         /// </summary>
         public SectionNode NewSection { get { return mNode; } }
 
-        public override string getShortDescription() { return Localizer.Message("add_section"); }
-
         /// <summary>
         /// Add or readd the new section node then restore this as the selection.
         /// </summary>
         public override void execute()
         {
             mParent.Insert(mNode, mIndex);
-            if (Redo) View.Selection = new NodeSelection(mNode, mControl);
-            base.execute();
+            if (mRedo)
+            {
+                View.Selection = new NodeSelection(mNode, mControl);
+            }
+            else
+            {
+                mRedo = true;
+            }
         }
 
         /// <summary>
@@ -65,14 +70,15 @@ namespace Obi.Commands.Node
 
     public class AddSubSection : AddSectionNode
     {
-        public AddSubSection(ProjectView.ProjectView view) : base(view, (ProjectView.TOCView)view.Selection.Control) { }
+        public AddSubSection(ProjectView.ProjectView view) : base(view, (ProjectView.TOCView)view.Selection.Control)
+        {
+            Label = Localizer.Message("add_subsection");
+        }
 
         protected override void SetParentAndIndex(Obi.ProjectView.ProjectView view)
         {
             mParent = view.Selection.Node;
             mIndex = mParent.SectionChildCount;
         }
-
-        public override string getShortDescription() { return Localizer.Message("add_subsection"); }
     }
 }

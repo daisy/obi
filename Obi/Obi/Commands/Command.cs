@@ -11,7 +11,7 @@ namespace Obi.Commands
         private ProjectView.ProjectView mView;   // the view that the command is executed in
         private NodeSelection mSelectionBefore;  // the selection before the command happened
         private string mLabel;                   // command label (can be overridden)
-        private bool mRedo;                      // true if redo, false on first execution
+        protected bool mRedo;                    // true if redo, false on first execution
 
         /// <summary>
         /// Create a new command for a view.
@@ -32,11 +32,6 @@ namespace Obi.Commands
         public string Label { set { mLabel = value; } }
 
         /// <summary>
-        /// Get the redo flag (true if the command is being redone, false if executed the first time.)
-        /// </summary>
-        public bool Redo { get { return mRedo; } }
-
-        /// <summary>
         /// Get the view that the command is executed into.
         /// </summary>
         public ProjectView.ProjectView View { get { return mView; } }
@@ -44,7 +39,7 @@ namespace Obi.Commands
         /// <summary>
         /// Execute and set the redo flag. If you need to use the redo flag, call base.execute() at the end of execute()!
         /// </summary>
-        public virtual void execute() { mRedo = true; }
+        public abstract void execute();
 
         /// <summary>
         /// Reset the selection to what it was before the command was executed.

@@ -96,16 +96,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\AddRemoveCustomType.cs" />
+    <Compile Include="Commands\Audio\Copy.cs" />
+    <Compile Include="Commands\Audio\Delete.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\Node\AddNewSection.cs" />
     <Compile Include="Commands\Node\AddNode.cs" />
-    <Compile Include="Commands\Node\DeleteAudio.cs" />
     <Compile Include="Commands\Node\SetNodeAsHeadingPhrase.cs" />
     <Compile Include="Commands\Node\ChangeCustomType.cs" />
     <Compile Include="Commands\Node\ChangeParent.cs" />
     <Compile Include="Commands\Node\Copy.cs" />
     <Compile Include="Commands\Node\Delete.cs" />
-    <Compile Include="Commands\Node\AddContainer.cs" />
     <Compile Include="Commands\Node\MergeAudio.cs" />
     <Compile Include="Commands\Node\Paste.cs" />
     <Compile Include="Commands\Node\PhraseDetection.cs" />
