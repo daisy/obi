@@ -113,7 +113,7 @@ namespace Obi
         // Insert new tree nodes in the right place in the playlist.
         private void InsertNode(urakawa.core.TreeNode node)
         {
-            if (!(node is ObiNode)) return;
+            if (!(node is ObiNode) || !((ObiNode)node).IsRooted) return;
             // Find where new nodes would have to be added
             ObiNode prev = ((ObiNode)node).PrecedingNode;
             while (prev != null && !(prev is PhraseNode && mPhrases.Contains((PhraseNode)prev))) prev = prev.PrecedingNode;

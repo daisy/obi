@@ -112,10 +112,16 @@ namespace Obi
             else
             {
                 Commands.Node.Paste paste = new Commands.Node.Paste(view);
+                urakawa.undo.CompositeCommand p = view.Presentation.CreateCompositeCommand(paste.getShortDescription());
+                p.append(paste);
+                if (paste.DeleteSelectedBlock)
+                {
+                    Commands.Node.Delete delete = new Commands.Node.Delete(view, view.Selection.Node);
+                    delete.UpdateSelection = false;
+                    p.append(delete);
+                }
                 if (paste.Copy.Used && !paste.CopyParent.Used)
                 {
-                    urakawa.undo.CompositeCommand p = view.Presentation.CreateCompositeCommand(paste.getShortDescription());
-                    p.append(paste);
                     paste.Copy.acceptDepthFirst(
                         delegate(urakawa.core.TreeNode node)
                         {
@@ -128,7 +134,7 @@ namespace Obi
                     );
                     return p;
                 }
-                return paste;
+                return p;
             }
         }
 

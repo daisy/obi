@@ -13,6 +13,8 @@ namespace Obi.Commands
         private string mLabel;                   // command label (can be overridden)
         protected bool mRedo;                    // true if redo, false on first execution
 
+        public bool UpdateSelection;             // flag to set the selection update
+
         /// <summary>
         /// Create a new command for a view.
         /// </summary>
@@ -22,6 +24,7 @@ namespace Obi.Commands
             mSelectionBefore = mView.Selection;
             mLabel = label;
             mRedo = false;
+            UpdateSelection = true;
         }
 
         public Command(ProjectView.ProjectView view) : this(view, "") { }
@@ -44,7 +47,7 @@ namespace Obi.Commands
         /// <summary>
         /// Reset the selection to what it was before the command was executed.
         /// </summary>
-        public virtual void unExecute() { mView.Selection = mSelectionBefore; }
+        public virtual void unExecute() { if (UpdateSelection) mView.Selection = mSelectionBefore; }
 
         /// <summary>
         /// Get the selection before the command was executed.

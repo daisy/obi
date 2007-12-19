@@ -180,7 +180,6 @@ namespace Obi
         {
             ObiNode copy = (ObiNode)base.copyProtected(deep, inclProperties);
             copy.mUsed = mUsed;
-            //if (inclProperties) copyProperties(copy);
             return copy;
         }
 
