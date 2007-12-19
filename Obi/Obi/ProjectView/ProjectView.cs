@@ -907,11 +907,16 @@ namespace Obi.ProjectView
             }
         }
 
+        /// <summary>
+        /// Apply phrase detection on selected audio block by computing silence threshold from a silence block
+        ///  nearest  preceding silence block is  used
+                /// </summary>
         public void ApplyPhraseDetection()
         {
                         PhraseNode SilenceNode= null ;
 
-            ObiNode  IterationNode = (EmptyNode)mPresentation.FirstSection.PhraseChild (0)  ;
+            //ObiNode  IterationNode = (EmptyNode)mPresentation.FirstSection.PhraseChild (0)  ;
+                        ObiNode IterationNode = SelectedNodeAs<EmptyNode> () ;
 
             while (IterationNode!= null)
             {
@@ -920,7 +925,7 @@ namespace Obi.ProjectView
                     SilenceNode =(PhraseNode)   IterationNode;
                     break;
                 }
-                IterationNode = IterationNode.FollowingNode;
+                IterationNode = IterationNode.PrecedingNode  ;
             }
 
 

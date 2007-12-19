@@ -872,4 +872,10 @@ Error text: {1}</value>
   <data name="delete_audio" xml:space="preserve">
     <value>delete audio</value>
   </data>
+  <data name="Default_CustomClassName" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="No_Preceding_SilenceBlock" xml:space="preserve">
+    <value>No preceding silence block for reference. Setting default value for  threshold</value>
+  </data>
 </root>

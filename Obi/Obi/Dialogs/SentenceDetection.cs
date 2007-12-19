@@ -44,7 +44,7 @@ namespace Obi.Dialogs
                 mThresholdBox.Text = Audio.PhraseDetection.GetSilenceAmplitude(silence.Audio).ToString();
             else
             {
-                MessageBox.Show("No silence file for reference. Setting default value for  threshold");
+                MessageBox.Show(Localizer.Message ("No_Preceding_SilenceBlock") ) ;
                 mThresholdBox.Text = "0";
             }
             mGapBox.Text = Audio.PhraseDetection.DEFAULT_GAP.ToString();
