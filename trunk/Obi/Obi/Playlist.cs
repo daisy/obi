@@ -76,9 +76,9 @@ namespace Obi
             mPlayer = player;
             Reset(false);
             AddPhraseNodesFromStripOrPhrase(selection.Node);
-            if (selection is AudioSelection && ((AudioSelection)selection).WaveformSelection.HasCursor)
+            if (selection is AudioSelection && ((AudioSelection)selection).AudioRange.HasCursor)
             {
-                mPlaybackStartTime = ((AudioSelection)selection).WaveformSelection.CursorTime;
+                mPlaybackStartTime = ((AudioSelection)selection).AudioRange.CursorTime;
             }
         }
 

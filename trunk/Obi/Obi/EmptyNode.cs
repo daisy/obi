@@ -67,6 +67,18 @@ namespace Obi
 
 
         /// <summary>
+        /// Copy the node.
+        /// </summary>
+        protected override TreeNode copyProtected(bool deep, bool inclProperties)
+        {
+            EmptyNode copy = (EmptyNode)base.copyProtected(deep, inclProperties);
+            copy.mKind = mKind;
+            copy.mCustomClass = mCustomClass;
+            copy.mPageNumber = mPageNumber;
+            return copy;
+        }
+
+        /// <summary>
         /// Custom class (may be null if it is a predefined kind such as plain, page or heading.)
         /// </summary>
         public string CustomClass

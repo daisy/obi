@@ -19,20 +19,20 @@ namespace Obi
         void SelectAndRename(ObiNode node);
     }
 
-    public class WaveformSelection
+    public class AudioRange
     {
         public bool HasCursor;             // selection is just a cursor position; if false, begin/end
         public double CursorTime;          // time position of the cursor (if true)
         public double SelectionBeginTime;  // begin time of selection
         public double SelectionEndTime;    // end time of selection
 
-        public WaveformSelection(double time)
+        public AudioRange(double time)
         {
             HasCursor = true;
             CursorTime = time;
         }
 
-        public WaveformSelection(double from, double to)
+        public AudioRange(double from, double to)
         {
             HasCursor = false;
             SelectionBeginTime = from;
@@ -41,7 +41,7 @@ namespace Obi
 
         public override bool Equals(object obj)
         {
-            WaveformSelection s = obj as WaveformSelection;
+            AudioRange s = obj as AudioRange;
             return s != null && HasCursor ? s.HasCursor && s.CursorTime == CursorTime :
                 !s.HasCursor && s.SelectionBeginTime == SelectionBeginTime && s.SelectionEndTime == SelectionEndTime;
         }
@@ -87,15 +87,50 @@ namespace Obi
         public SectionNode SectionOf { get { return Node is PhraseNode ? Node.ParentAs<SectionNode>() : Node as SectionNode; } }
         public PhraseNode Phrase { get { return Node as PhraseNode; } }
 
-        public bool CanPaste(Clipboard clipboard)
+        /// <summary>
+        /// What can be pasted where? Let's see.
+        /// We'll look in the clipboard and look at what is in this selection.
+        /// If we have nothing to paste, then we cannot paste.
+        /// If we have a section node, then it can be pasted in a section or a strip.
+        /// If we have an empty node, then it can be pasted in anything selected in the strips view. 
+        /// </summary>
+        public virtual bool CanPaste(Clipboard clipboard)
         {
             return clipboard == null ? false :
-                Control is ProjectView.TOCView ? clipboard.Node is SectionNode :
-                Control is ProjectView.StripsView ? (clipboard.Node is SectionNode && Node is SectionNode)
-                                                    || clipboard.Node is PhraseNode :
-                false;
+                clipboard.Node is SectionNode ? Node is SectionNode : Control is ProjectView.StripsView;
         }
 
+        /// <summary>
+        /// Create the paste command for pasting whatever is in the clipboard in the current selection.
+        /// </summary>
+        public virtual urakawa.undo.ICommand PasteCommand(ProjectView.ProjectView view)
+        {
+            if (view.Clipboard is AudioClipboard)
+            {
+                return null;
+            }
+            else
+            {
+                Commands.Node.Paste paste = new Commands.Node.Paste(view);
+                if (paste.Copy.Used && !paste.CopyParent.Used)
+                {
+                    urakawa.undo.CompositeCommand p = view.Presentation.CreateCompositeCommand(paste.getShortDescription());
+                    p.append(paste);
+                    paste.Copy.acceptDepthFirst(
+                        delegate(urakawa.core.TreeNode node)
+                        {
+                            if (node is ObiNode && ((ObiNode)node).Used)
+                            {
+                                p.append(new Commands.Node.ToggleNodeUsed(view, (ObiNode)node));
+                            }
+                            return true;
+                        }, delegate(urakawa.core.TreeNode node) { }
+                    );
+                    return p;
+                }
+                return paste;
+            }
+        }
 
         /// <summary>
         /// Find the parent node for a new node to be added at the current selection.
@@ -123,12 +158,19 @@ namespace Obi
     public class DummySelection : NodeSelection
     {
         private ProjectView.DummyNode mDummy;
+        
         public ProjectView.DummyNode Dummy
         {
-            set {mDummy = value;}
-            get {return mDummy;}
+            set { mDummy = value; }
+            get { return mDummy; }
         }
+
         public DummySelection(ObiNode node, ProjectView.TOCView view) : base(node, view) { }
+
+        /// <summary>
+        /// Only a section node can be pasted if the dummy selection is selected.
+        /// </summary>
+        public override bool CanPaste(Clipboard clipboard) { return clipboard.Node is SectionNode; }
 
         public override ObiNode ParentForNewNode(ObiNode newNode) 
         {
@@ -190,20 +232,25 @@ namespace Obi
     /// </summary>
     public class AudioSelection : NodeSelection
     {
-        private WaveformSelection mWaveformSeletion;
+        private AudioRange mAudioRange;
 
-        public AudioSelection(PhraseNode node, IControlWithSelection control, WaveformSelection waveformSelection)
+        public AudioSelection(PhraseNode node, IControlWithSelection control, AudioRange audioRange)
             : base(node, control)
         {
-            mWaveformSeletion = waveformSelection;
+            mAudioRange = audioRange;
         }
 
-        public WaveformSelection WaveformSelection { get { return mWaveformSeletion; } }
+        public AudioRange AudioRange { get { return mAudioRange; } }
+
+        /// <summary>
+        /// If audio is selected, then only audio can be pasted.
+        /// </summary>
+        public override bool CanPaste(Clipboard clipboard) { return clipboard is AudioClipboard; }
 
         public override bool Equals(object obj)
         {
             return obj != null && obj.GetType() == GetType() &&
-                ((AudioSelection)obj).WaveformSelection == mWaveformSeletion && base.Equals(obj);
+                ((AudioSelection)obj).AudioRange == mAudioRange && base.Equals(obj);
         }
 
         public override int GetHashCode() { return base.GetHashCode(); }
@@ -226,6 +273,11 @@ namespace Obi
         {
             mIndex = index;
         }
+
+        /// <summary>
+        /// Since we're in the strip, section nodes cannot be pasted.
+        /// </summary>
+        public override bool CanPaste(Clipboard clipboard) { return !(clipboard.Node is SectionNode); } 
 
         public int Index { get { return mIndex; } }
 
@@ -263,23 +315,22 @@ namespace Obi
             mDeep = deep;
         }
 
-        public ObiNode Copy { get { return (ObiNode)mNode.copy(mDeep, true); } }
         public bool Deep { get { return mDeep; } }
         public ObiNode Node { get { return mNode; } }
     }
 
     public class AudioClipboard: Clipboard
     {
-        private WaveformSelection mWaveformSelection;
+        private AudioRange mAudioRange;
 
         public AudioClipboard(AudioSelection selection)
             : base(selection.Node, true)
         {
-            mWaveformSelection = selection.WaveformSelection;
-            if (mWaveformSelection.HasCursor) throw new Exception("Expected actual audio selection.");
+            mAudioRange = selection.AudioRange;
+            if (mAudioRange.HasCursor) throw new Exception("Expected actual audio selection.");
             if (!(Node is PhraseNode)) throw new Exception("Expected phrase node.");
         }
 
-        public WaveformSelection WaveformSelection { get { return mWaveformSelection; } }
+        public AudioRange AudioRange { get { return mAudioRange; } }
     }
 }

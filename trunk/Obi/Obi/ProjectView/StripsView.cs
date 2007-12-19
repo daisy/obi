@@ -59,7 +59,7 @@ namespace Obi.ProjectView
         private bool BlockOrWaveformSelected { get { return mSelectedItem is Block; } }
         private bool StripSelected { get { return mSelectedItem is Strip && mSelection.GetType() == typeof(NodeSelection); } }
 
-        private bool IsAudioRangeSelected { get { return mSelection is AudioSelection && !((AudioSelection)mSelection).WaveformSelection.HasCursor; } }
+        private bool IsAudioRangeSelected { get { return mSelection is AudioSelection && !((AudioSelection)mSelection).AudioRange.HasCursor; } }
 
         public bool CanAddStrip { get { return StripSelected; } }
 

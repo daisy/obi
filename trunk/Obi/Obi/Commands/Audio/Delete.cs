@@ -16,10 +16,10 @@ namespace Obi.Commands.Audio
         {
             mNode = (PhraseNode)view.Selection.Node;
             mDeletedAudio = null;
-            mSplitTimeBegin = new Time(((AudioSelection)view.Selection).WaveformSelection.SelectionBeginTime);
-            mSplitTimeEnd = new Time(((AudioSelection)view.Selection).WaveformSelection.SelectionEndTime);
+            mSplitTimeBegin = new Time(((AudioSelection)view.Selection).AudioRange.SelectionBeginTime);
+            mSplitTimeEnd = new Time(((AudioSelection)view.Selection).AudioRange.SelectionEndTime);
             mSelectionAfter = new AudioSelection(mNode, view.Selection.Control,
-                new WaveformSelection(mSplitTimeBegin.getTimeAsMillisecondFloat()));
+                new AudioRange(mSplitTimeBegin.getTimeAsMillisecondFloat()));
             Label = Localizer.Message("delete_audio");
         }
 

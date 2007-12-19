@@ -12,7 +12,7 @@ namespace Obi.Commands.Node
         public SplitAudio(ProjectView.ProjectView view) : base(view)
         {
             mNode = view.SelectedNodeAs<PhraseNode>();
-            mSplitPoint = new Time(((AudioSelection)view.Selection).WaveformSelection.CursorTime);
+            mSplitPoint = new Time(((AudioSelection)view.Selection).AudioRange.CursorTime);
         }
 
         public override string getShortDescription() { return Localizer.Message("split_block"); }

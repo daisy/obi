@@ -61,7 +61,7 @@ namespace Obi.ProjectView
         {
             set
             {
-                if (value != null) mWaveform.Selection = value is AudioSelection ? ((AudioSelection)value).WaveformSelection : null;
+                if (value != null) mWaveform.Selection = value is AudioSelection ? ((AudioSelection)value).AudioRange : null;
                 base.SelectionFromView = value;
             }
         }
@@ -89,7 +89,7 @@ namespace Obi.ProjectView
 
         public void SetCursorTime(double time)
         {
-            mWaveform.Selection = new WaveformSelection(time);
+            mWaveform.Selection = new AudioRange(time);
             Strip.SelectTimeInBlock(this, mWaveform.Selection);
         }
 

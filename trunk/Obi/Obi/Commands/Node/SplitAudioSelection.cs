@@ -20,8 +20,8 @@ namespace Obi.Commands.Node
             : base(view)
         {
             mOriginalNode = view.Selection.Phrase;
-            mSplitTime1 = ((AudioSelection)view.Selection).WaveformSelection.SelectionBeginTime;
-            mSplitTime2 = ((AudioSelection)view.Selection).WaveformSelection.SelectionEndTime;
+            mSplitTime1 = ((AudioSelection)view.Selection).AudioRange.SelectionBeginTime;
+            mSplitTime2 = ((AudioSelection)view.Selection).AudioRange.SelectionEndTime;
         }
 
         public static PhraseNode Split(PhraseNode node, Time splitPoint)

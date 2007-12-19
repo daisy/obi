@@ -768,7 +768,7 @@ namespace Obi.ProjectView
             {
                 if (mView.Selection != null
                     && mView.Selection is AudioSelection
-                    && ((AudioSelection)mView.Selection).WaveformSelection.HasCursor)
+                    && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
                     return true;
                 else
                     return false;
@@ -779,7 +779,7 @@ namespace Obi.ProjectView
         {
             if ( IsInPhraseSelectionMarked )
                             {
-                ((AudioSelection)mView.Selection).WaveformSelection.SelectionBeginTime = ((AudioSelection)mView.Selection).WaveformSelection.CursorTime ;
+                ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime = ((AudioSelection)mView.Selection).AudioRange.CursorTime ;
                 return true;
             }
             return false;
@@ -788,9 +788,9 @@ namespace Obi.ProjectView
         public bool MarkSelectionEndTime()
         {
             if ( IsInPhraseSelectionMarked
-                                && mCurrentPlaylist.CurrentTimeInAsset > ((AudioSelection)mView.Selection).WaveformSelection.SelectionBeginTime )
+                                && mCurrentPlaylist.CurrentTimeInAsset > ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime )
             {
-                ((AudioSelection)mView.Selection).WaveformSelection.SelectionEndTime = ((AudioSelection)mView.Selection).WaveformSelection.CursorTime ;
+                ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime = ((AudioSelection)mView.Selection).AudioRange.CursorTime ;
                 return true;
             }
             return false;
@@ -801,7 +801,7 @@ namespace Obi.ProjectView
         {
             if ( IsInPhraseSelectionMarked )
                             {
-                mCurrentPlaylist.PreviewFromCurrentPosition(((AudioSelection)mView.Selection).WaveformSelection.CursorTime, m_PreviewDuration);
+                mCurrentPlaylist.PreviewFromCurrentPosition(((AudioSelection)mView.Selection).AudioRange.CursorTime, m_PreviewDuration);
                 return true;
             }
             return false;
@@ -810,9 +810,9 @@ namespace Obi.ProjectView
         public bool PlayPreviewSelectedFragment()
         {
                                     if ( IsInPhraseSelectionMarked
-                            &&    ((AudioSelection)mView.Selection).WaveformSelection.SelectionBeginTime < ((AudioSelection)mView.Selection).WaveformSelection.SelectionEndTime )
+                            &&    ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime < ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime )
             {
-                mCurrentPlaylist.PreviewSelectedFragment(((AudioSelection)mView.Selection).WaveformSelection.SelectionBeginTime, ((AudioSelection)mView.Selection).WaveformSelection.SelectionEndTime );
+                mCurrentPlaylist.PreviewSelectedFragment(((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime, ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime );
                 return true;
             }
             return false;
@@ -822,7 +822,7 @@ namespace Obi.ProjectView
         {
             if ( IsInPhraseSelectionMarked )
                             {
-                mCurrentPlaylist.PreviewUptoCurrentPosition(((AudioSelection)mView.Selection).WaveformSelection.CursorTime ,  m_PreviewDuration);
+                mCurrentPlaylist.PreviewUptoCurrentPosition(((AudioSelection)mView.Selection).AudioRange.CursorTime ,  m_PreviewDuration);
                 return true;
             }
             return false;
@@ -897,8 +897,8 @@ namespace Obi.ProjectView
 
                     if ( !m_IsAppendOnlyRecording    &&     IsInPhraseSelectionMarked )
                     {
-                        if (((AudioSelection)mView.Selection).WaveformSelection.SelectionEndTime != 0
-                            && ((AudioSelection)mView.Selection).WaveformSelection.SelectionBeginTime < ((AudioSelection)mView.Selection).WaveformSelection.SelectionEndTime)
+                        if (((AudioSelection)mView.Selection).AudioRange.SelectionEndTime != 0
+                            && ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime < ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime)
                         {
                             mView.Presentation.UndoRedoManager.execute(new Commands.Node.SplitAudioSelection(mView));
                             mView.Presentation.UndoRedoManager.execute(new Commands.Node.Delete(mView, mView.Selection.Node));
