@@ -35,15 +35,25 @@ namespace Obi
             insert(node, index);
         }
 
+        protected override TreeNode copyProtected(bool deep, bool inclProperties)
+        {
+            SectionNode copy = (SectionNode)base.copyProtected(deep, inclProperties);
+            // Even when doing a shallow copy, we still should copy children (!)
+            if (!deep)
+            {
+                for (int i = 0; i < PhraseChildCount; ++i) copy.AppendChild((EmptyNode)PhraseChild(i).copy(true, true));
+            }
+            return copy;
+        }
+
         /// <summary>
         /// Copy a section node (and its contents if the deep flag is set.)
         /// </summary>
-        public new SectionNode copy(bool deep)
+        /*protected override TreeNode copyProtected(bool deep, bool inclProperties)
         {
-            SectionNode copy = new SectionNode(Presentation);
+            SectionNode copy = Presentation.CreateSectionNode();
             copy.Label = Label;
             copy.Used = Used;
-            copyProperties(copy);
             if (deep)
             {
                 CopyChildren(copy);
@@ -54,7 +64,7 @@ namespace Obi
                 copy.mHeading = mHeading;
             }
             return copy;
-        }
+        }*/
 
         /// <summary>
         /// Find the first used phrase in the section, if any.
@@ -270,7 +280,7 @@ namespace Obi
             }
             for (int i = 0; i < SectionChildCount; ++i)
             {
-                destinationNode.Insert(SectionChild(i).copy(true), i);
+                destinationNode.Insert((SectionNode)SectionChild(i).copy(true, true), i);
             }
         }
 

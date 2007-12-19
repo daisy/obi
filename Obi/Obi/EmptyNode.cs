@@ -67,14 +67,23 @@ namespace Obi
 
 
         /// <summary>
+        /// Copy node kind/custom class and page number of another node.
+        /// </summary>
+        /// <param name="node"></param>
+        public void CopyKind(EmptyNode node)
+        {
+            mKind = node.mKind;
+            mCustomClass = node.mCustomClass;
+            mPageNumber = node.mPageNumber;
+        }
+
+        /// <summary>
         /// Copy the node.
         /// </summary>
         protected override TreeNode copyProtected(bool deep, bool inclProperties)
         {
             EmptyNode copy = (EmptyNode)base.copyProtected(deep, inclProperties);
-            copy.mKind = mKind;
-            copy.mCustomClass = mCustomClass;
-            copy.mPageNumber = mPageNumber;
+            copy.CopyKind(this);
             return copy;
         }
 

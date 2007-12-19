@@ -26,7 +26,7 @@ namespace Obi.Commands.Node
         public override void execute()
         {
             mNode.Detach();
-            View.Selection = null;
+            if (UpdateSelection) View.Selection = null;
         }
 
         public override void unExecute()
