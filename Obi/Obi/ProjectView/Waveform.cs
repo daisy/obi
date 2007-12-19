@@ -14,7 +14,7 @@ namespace Obi.ProjectView
     {
         private AudioMediaData mAudio;         // audio data to draw
         private Bitmap mBitmap;                // cached bitmap of the waveform
-        private WaveformSelection mSelection;  // selection in the waveform
+        private AudioRange mSelection;  // selection in the waveform
 
         private static readonly Pen Channel1Pen = new Pen(Color.FromArgb(128, 0, 0, 255));
         private static readonly Pen Channel2Pen = new Pen(Color.FromArgb(128, 255, 0, 255));
@@ -46,7 +46,7 @@ namespace Obi.ProjectView
             }
         }
 
-        public WaveformSelection Selection
+        public AudioRange Selection
         {
             get { return mSelection; }
             set { mSelection = value; }
@@ -89,7 +89,7 @@ namespace Obi.ProjectView
             get { return XFromTime(mSelection.CursorTime); }
             set
             {
-                mSelection = new WaveformSelection(TimeFromX(value));
+                mSelection = new AudioRange(TimeFromX(value));
                 Invalidate();
             }
         }

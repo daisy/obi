@@ -213,9 +213,9 @@ namespace Obi.ProjectView
         /// <summary>
         /// Show the cursor at the current time in the waveform of the current playing block.
         /// </summary>
-        public void SelectTimeInBlock(Block block, WaveformSelection waveformSelection)
+        public void SelectTimeInBlock(Block block, AudioRange audioRange)
         {
-            mParentView.SelectionFromStrip = new AudioSelection((PhraseNode)block.Node, mParentView, waveformSelection);
+            mParentView.SelectionFromStrip = new AudioSelection((PhraseNode)block.Node, mParentView, audioRange);
         }
 
         /// <summary>

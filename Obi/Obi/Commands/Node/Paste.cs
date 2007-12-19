@@ -6,20 +6,21 @@ namespace Obi.Commands.Node
 {
     public class Paste: Command
     {
-        private NodeSelection mSelection;  // the selection context
         private ObiNode mCopy;             // copy of the node to paste
-        private ObiNode mLastNode;         // last node copied (for selection)
         private ObiNode mParent;           // parent for the copy
         private int mIndex;                // index for the copy
+        private NodeSelection mSelection;  // the selection after pasting
         
+        /// <summary>
+        /// Paste a node.
+        /// </summary>
         public Paste(ProjectView.ProjectView view)
             : base(view)
         {
-            mSelection = view.Selection;
-            mCopy = view.Clipboard.Copy;
-            mLastNode = mCopy.LastDescendant;
-            mParent = mSelection.ParentForNewNode(mCopy);
-            mIndex = mSelection.IndexForNewNode(mCopy);
+            mCopy = (ObiNode)view.Clipboard.Node.copy(view.Clipboard.Deep, true);
+            mParent = view.Selection.ParentForNewNode(mCopy);
+            mIndex = view.Selection.IndexForNewNode(mCopy);
+            mSelection = new NodeSelection(mCopy.LastDescendant, view.Selection.Control);
             Label = Localizer.Message(
                 mCopy is EmptyNode ? "paste_block" :
                 view.Selection.Control is ProjectView.TOCView ? "paste_section" :
@@ -32,20 +33,15 @@ namespace Obi.Commands.Node
         /// </summary>
         public ObiNode Copy { get { return mCopy; } }
 
+        /// <summary>
+        /// The (future) parent of the copy.
+        /// </summary>
+        public ObiNode CopyParent { get { return mParent; } }
+
         public override void execute()
         {
             mParent.Insert(mCopy, mIndex);
-            if (!mParent.Used) MakeUnused(mCopy);
-            View.Selection = new NodeSelection(mLastNode, mSelection.Control);
-        }
-
-        private void MakeUnused(ObiNode node)
-        {
-            if (node != null && node.Used)
-            {
-                node.Used = false;
-                for (int i = 0; i < node.getChildCount(); ++i) MakeUnused(node.getChild(i) as ObiNode);
-            }
+            View.Selection = mSelection;
         }
 
         public override void unExecute()

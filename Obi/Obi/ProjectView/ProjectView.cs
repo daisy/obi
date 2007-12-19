@@ -94,6 +94,7 @@ namespace Obi.ProjectView
         public bool CanMergeStripWithNext { get { return mStripsView.CanMergeStripWithNext; } }
         public bool CanMoveSectionIn { get { return mTOCView.CanMoveSectionIn; } }
         public bool CanMoveSectionOut { get { return mTOCView.CanMoveSectionOut; } }
+        public bool CanPaste { get { return mSelection != null && mSelection.CanPaste(mClipboard); } }
         public bool CanRemoveAudio { get { return mStripsView.CanRemoveAudio; } }
         public bool CanRemoveBlock { get { return mStripsView.CanRemoveBlock; } }
         public bool CanRemoveSection { get { return mTOCView.CanRemoveSection; } }
@@ -257,6 +258,37 @@ namespace Obi.ProjectView
             get { return mForm; }
             set { mForm = value; }
         }
+
+        /// <summary>
+        /// Paste the contents of the clipboard in the current context. Noop if the clipboard is empty.
+        /// </summary>
+        public void Paste() { if (CanPaste) mPresentation.UndoRedoManager.execute(mSelection.PasteCommand(this)); }
+
+            /*if (CanPaste)
+            {
+                Commands.Node.Paste paste = new Commands.Node.Paste(this);
+                if (mSelection.Control is StripsView && mSelection.Node.SectionChildCount > 0)
+                {
+                    urakawa.undo.CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
+                    for (int i = 0; i < mSelection.Node.SectionChildCount; ++i)
+                    {
+                        command.append(new Commands.Node.ChangeParent(this, mSelection.Node.SectionChild(i), paste.Copy));
+                    }
+                    command.append(paste);
+                    command.setShortDescription(paste.getShortDescription());
+                    mPresentation.UndoRedoManager.execute(command);
+                }
+                else if (mSelection.Control is TOCView)
+                {
+                    //if no dummy nodes were required, proceed as normal
+                    //else, assume that TOC View took care of the command
+                    if (!mTOCView.AddDummyNodes()) mPresentation.UndoRedoManager.execute(paste);
+                }
+                else
+                {
+                    mPresentation.UndoRedoManager.execute(paste);
+                }
+            }*/
 
         /// <summary>
         /// Set the block currently playing back as a "light" selection.
@@ -455,37 +487,7 @@ namespace Obi.ProjectView
 
 
 
-        /// <summary>
-        /// Paste the contents of the clipboard in the current context. Noop if the clipboard is empty.
-        /// </summary>
-        public void Paste()
-        {
-            if (CanPaste)
-            {
-                Commands.Node.Paste paste = new Commands.Node.Paste(this);
-                if (mSelection.Control is StripsView && mSelection.Node.SectionChildCount > 0)
-                {
-                    urakawa.undo.CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
-                    for (int i = 0; i < mSelection.Node.SectionChildCount; ++i)
-                    {
-                        command.append(new Commands.Node.ChangeParent(this, mSelection.Node.SectionChild(i), paste.Copy));
-                    }
-                    command.append(paste);
-                    command.setShortDescription(paste.getShortDescription());
-                    mPresentation.UndoRedoManager.execute(command);
-                }
-                else if (mSelection.Control is TOCView)
-                {
-                    //if no dummy nodes were required, proceed as normal
-                    //else, assume that TOC View took care of the command
-                    if (!mTOCView.AddDummyNodes()) mPresentation.UndoRedoManager.execute(paste);
-                }
-                else
-                {
-                    mPresentation.UndoRedoManager.execute(paste);
-                }
-            }
-        }
+
 
 
         private bool mTOCViewVisible;  // keep track of the TOC view visibility (don't reopen it accidentally)
@@ -566,7 +568,6 @@ namespace Obi.ProjectView
         public bool IsStripSelected { get { return SelectedNodeAs<SectionNode>() != null && mSelection.Control == mStripsView; } }
         public bool IsStripSelectedStrict { get { return IsStripSelected && mSelection.GetType() == typeof(NodeSelection); } }
 
-        public bool CanPaste { get { return mSelection != null && mSelection.CanPaste(mClipboard); } }
         public bool CanDeselect { get { return mSelection != null; } }
 
         public bool CanShowInStripsView { get { return IsSectionSelected; } }
