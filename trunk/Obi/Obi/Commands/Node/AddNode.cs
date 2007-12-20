@@ -12,12 +12,14 @@ namespace Obi.Commands.Node
         protected ObiNode mNode;
         private ObiNode mParent;
         private int mIndex;
+        private NodeSelection mSelection;
 
         public AddNode(ProjectView.ProjectView view, ObiNode node, ObiNode parent, int index): base(view, "")
         {
             mNode = node;
             mParent = parent;
             mIndex = index;
+            mSelection = view.Selection == null ? null : new NodeSelection(mNode, view.Selection.Control);
         }
 
         public AddNode(ProjectView.ProjectView view, ObiNode node)
@@ -26,6 +28,7 @@ namespace Obi.Commands.Node
         public override void execute()
         {
             mParent.Insert(mNode, mIndex);
+            if (UpdateSelection) View.Selection = mSelection;
         }
 
         public override void unExecute()

@@ -105,37 +105,7 @@ namespace Obi
         /// </summary>
         public virtual urakawa.undo.ICommand PasteCommand(ProjectView.ProjectView view)
         {
-            if (view.Clipboard is AudioClipboard)
-            {
-                return null;
-            }
-            else
-            {
-                Commands.Node.Paste paste = new Commands.Node.Paste(view);
-                urakawa.undo.CompositeCommand p = view.Presentation.CreateCompositeCommand(paste.getShortDescription());
-                p.append(paste);
-                if (paste.DeleteSelectedBlock)
-                {
-                    Commands.Node.Delete delete = new Commands.Node.Delete(view, view.Selection.Node);
-                    delete.UpdateSelection = false;
-                    p.append(delete);
-                }
-                if (paste.Copy.Used && !paste.CopyParent.Used)
-                {
-                    paste.Copy.acceptDepthFirst(
-                        delegate(urakawa.core.TreeNode node)
-                        {
-                            if (node is ObiNode && ((ObiNode)node).Used)
-                            {
-                                p.append(new Commands.Node.ToggleNodeUsed(view, (ObiNode)node));
-                            }
-                            return true;
-                        }, delegate(urakawa.core.TreeNode node) { }
-                    );
-                    return p;
-                }
-                return p;
-            }
+            return view.Clipboard is AudioClipboard ? PasteCommandAudio(view) : PasteCommandNode(view);
         }
 
         /// <summary>
@@ -155,6 +125,62 @@ namespace Obi
             return newNode is SectionNode ?
                 (Node is SectionNode ? (Node.Index + 1) : Node.AncestorAs<SectionNode>().SectionChildCount) :
                 (Node is SectionNode ? Node.PhraseChildCount : (Node.Index + 1));
+        }
+
+
+
+        // Create a new phrase node with the audio from the clipboard
+        // and merge the selected node with this one.
+        private urakawa.undo.ICommand PasteCommandAudio(ProjectView.ProjectView view)
+        {
+            AudioClipboard c = (AudioClipboard)view.Clipboard;
+            urakawa.media.data.audio.ManagedAudioMedia media = ((PhraseNode)view.Clipboard.Node).Audio.copy(
+                new urakawa.media.timing.Time(c.AudioRange.SelectionBeginTime),
+                new urakawa.media.timing.Time(c.AudioRange.SelectionEndTime));
+            PhraseNode phrase = view.Presentation.CreatePhraseNode(media);
+            urakawa.undo.CompositeCommand p = view.Presentation.CreateCompositeCommand(Localizer.Message("paste_audio"));
+            p.append(new Commands.Node.AddNode(view, phrase, ParentForNewNode(phrase), IndexForNewNode(phrase)));
+            if (Node is PhraseNode)
+            {
+                p.append(new Commands.Node.MergeAudio(view, phrase));
+            }
+            else
+            {
+                phrase.CopyKind((EmptyNode)view.Selection.Node);
+                phrase.Used = view.Selection.Node.Used;
+                Commands.Node.Delete delete = new Commands.Node.Delete(view, view.Selection.Node);
+                delete.UpdateSelection = false;
+                p.append(delete);
+            }
+            return p;
+        }
+
+        // Paste a node in or after another node.
+        private urakawa.undo.ICommand PasteCommandNode(ProjectView.ProjectView view)
+        {
+            Commands.Node.Paste paste = new Commands.Node.Paste(view);
+            urakawa.undo.CompositeCommand p = view.Presentation.CreateCompositeCommand(paste.getShortDescription());
+            p.append(paste);
+            if (paste.DeleteSelectedBlock)
+            {
+                Commands.Node.Delete delete = new Commands.Node.Delete(view, view.Selection.Node);
+                delete.UpdateSelection = false;
+                p.append(delete);
+            }
+            if (paste.Copy.Used && !paste.CopyParent.Used)
+            {
+                paste.Copy.acceptDepthFirst(
+                    delegate(urakawa.core.TreeNode node)
+                    {
+                        if (node is ObiNode && ((ObiNode)node).Used)
+                        {
+                            p.append(new Commands.Node.ToggleNodeUsed(view, (ObiNode)node));
+                        }
+                        return true;
+                    }, delegate(urakawa.core.TreeNode node) { }
+                );
+            }
+            return p;
         }
     };
 
@@ -329,10 +355,10 @@ namespace Obi
     {
         private AudioRange mAudioRange;
 
-        public AudioClipboard(AudioSelection selection)
-            : base(selection.Node, true)
+        public AudioClipboard(PhraseNode node, AudioRange range)
+            : base(node, true)
         {
-            mAudioRange = selection.AudioRange;
+            mAudioRange = range;
             if (mAudioRange.HasCursor) throw new Exception("Expected actual audio selection.");
             if (!(Node is PhraseNode)) throw new Exception("Expected phrase node.");
         }
