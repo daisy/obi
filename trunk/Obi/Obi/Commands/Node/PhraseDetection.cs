@@ -30,11 +30,13 @@ namespace Obi.Commands.Node
             mBeforePhraseSilence = before;
         }
 
+        public override string getShortDescription() { return Localizer.Message("PhraseDetectionCommand_Label"); }
+
 
         public override void execute()
         {
-            mDetectedPhrases = mPresentation.CreatePhraseNodesFromAudioAssetList(Obi.Audio.PhraseDetection.Apply(mOriginalPhrase.Audio, mThreshold, mGap, mBeforePhraseSilence));
-            mOriginalPhrase.Detach();
+            mDetectedPhrases = mPresentation.CreatePhraseNodesFromAudioAssetList(Obi.Audio.PhraseDetection.Apply(mOriginalPhrase.Audio.copy () , mThreshold, mGap, mBeforePhraseSilence));
+            //mOriginalPhrase.Detach();
             for (int i = 0; i < mDetectedPhrases.Count; i++)
             {
                 mParentSection.Insert(mDetectedPhrases[i], mOriginalPhraseIndex + i);

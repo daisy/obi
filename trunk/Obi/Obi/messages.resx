@@ -848,4 +848,7 @@ Error text: {1}</value>
   <data name="copy_audio" xml:space="preserve">
     <value>copy audio</value>
   </data>
+  <data name="PhraseDetectionCommand_Label" xml:space="preserve">
+    <value>Phrase Detection Command</value>
+  </data>
 </root>
