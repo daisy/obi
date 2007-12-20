@@ -879,8 +879,10 @@ namespace Obi.ProjectView
             {
                 // create a new section node to record in
                 SectionNode section = mView.Presentation.CreateSectionNode();
-                mRecordingCommand.append(new Commands.Node.AddNode(mView, section, mView.Presentation.RootNode,
-                    mView.Presentation.RootNode.SectionChildCount));
+                Commands.Node.AddNode add = new Commands.Node.AddNode(mView, section, mView.Presentation.RootNode,
+                    mView.Presentation.RootNode.SectionChildCount);
+                add.UpdateSelection = false;
+                mRecordingCommand.append(add);
                 selected = section;
             }
             // Now we should always have a selection.
@@ -919,11 +921,10 @@ namespace Obi.ProjectView
                 delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
                 {
                     PhraseNode phrase = mView.Presentation.CreatePhraseNode(_e.Audio);
-
                     if (_e.PhraseIndex > 0)
                     {
                         mView.Presentation.UndoRedoManager.execute(new Commands.Node.AddNode(mView, phrase, mRecordingSection,
-                            mRecordingInitPhraseIndex + _e.PhraseIndex) );
+                            mRecordingInitPhraseIndex + _e.PhraseIndex));
                     }
                     else
                     {

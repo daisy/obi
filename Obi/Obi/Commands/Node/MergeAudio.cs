@@ -1,24 +1,33 @@
+using urakawa.media.timing;
+
 namespace Obi.Commands.Node
 {
     class MergeAudio: Command
     {
         private PhraseNode mNode;
         private PhraseNode mNextNode;
-        private urakawa.media.timing.Time mSplitPoint;
+        private Time mSplitPoint;
+        private NodeSelection mSelection;
 
-        public MergeAudio(ProjectView.ProjectView view): base(view)
+        public MergeAudio(ProjectView.ProjectView view, PhraseNode next)
+            : base(view)
         {
             mNode = view.SelectedNodeAs<PhraseNode>();
-            // TODO this will blow up sooner or later!!! Handle empty nodes at least...
-            mNextNode = (PhraseNode)mNode.ParentAs<ObiNode>().PhraseChild(mNode.Index + 1);
+            mNextNode = next;
             mSplitPoint = new urakawa.media.timing.Time(mNode.Audio.getDuration().getTimeDeltaAsMillisecondFloat());
+            // Selection could be an audio selection?
+            mSelection = new NodeSelection(mNode, view.Selection.Control);
+            Label = Localizer.Message("merge_block_with_next");
         }
 
-        public override string getShortDescription() { return Localizer.Message("merge_block_with_next"); }
-
         /// <summary>
-        /// Merge the audio of a node with the next, and remove next.
+        /// Merge the selected (phrase) node with the following (phrase) node.
         /// </summary>
+        public MergeAudio(ProjectView.ProjectView view):
+            this(view, (PhraseNode)view.Selection.Node.ParentAs<ObiNode>().PhraseChild(view.Selection.Node.Index + 1))
+        {
+        }
+
         public static void Merge(PhraseNode node, PhraseNode next)
         {
             next.Detach();
@@ -28,11 +37,13 @@ namespace Obi.Commands.Node
         public override void execute()
         {
             Merge(mNode, mNextNode);
+            if (UpdateSelection) View.Selection = mSelection;
         }
 
         public override void unExecute()
         {
-            SplitAudio.Split(mNode, mSplitPoint);
+            mNextNode.Audio = mNode.SplitAudio(mSplitPoint);
+            mNode.InsertAfterSelf(mNextNode);
             base.unExecute();
         }
     }

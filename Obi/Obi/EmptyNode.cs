@@ -67,7 +67,7 @@ namespace Obi
 
 
         /// <summary>
-        /// Copy node kind/custom class and page number of another node.
+        /// Copy node kind/custom class and page number from another node to this node.
         /// </summary>
         /// <param name="node"></param>
         public void CopyKind(EmptyNode node)

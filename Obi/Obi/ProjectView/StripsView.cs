@@ -77,7 +77,7 @@ namespace Obi.ProjectView
         {
             get
             {
-                return (BlockSelected && SelectedEmptyNode.Index > 0)                          // block selected
+                return (BlockSelected && SelectedEmptyNode.Index > 0)                            // block selected
                     || (IsStripCursorSelected && ((StripCursorSelection)mSelection).Index > 0);  // strip cursor selected
             }
         }
@@ -274,8 +274,10 @@ namespace Obi.ProjectView
                 command.setShortDescription(Localizer.Message("split_strip"));
                 SectionNode sibling = mView.Presentation.CreateSectionNode();
                 sibling.Label = section.Label;
-                command.append(new Commands.Node.AddNode(mView, sibling, section.ParentAs<ObiNode>(),
-                    section.Index + 1));
+                Commands.Node.AddNode add = new Commands.Node.AddNode(mView, sibling, section.ParentAs<ObiNode>(),
+                    section.Index + 1);
+                add.UpdateSelection = false;
+                command.append(add);
                 for (int i = 0; i < section.SectionChildCount; ++i)
                 {
                     command.append(new Commands.Node.ChangeParent(mView, section.SectionChild(i), sibling));
@@ -411,7 +413,8 @@ namespace Obi.ProjectView
         // Find the block for the given node
         private Block FindBlock(EmptyNode node)
         {
-            return FindStrip(node.ParentAs<SectionNode>()).FindBlock(node);
+            Strip strip = FindStrip(node.ParentAs<SectionNode>());
+            return strip == null ? null : strip.FindBlock(node);
         }
 
         // Find the selectable item for this selection object

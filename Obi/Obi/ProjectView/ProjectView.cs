@@ -164,8 +164,10 @@ namespace Obi.ProjectView
             {
                 urakawa.undo.CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
                 command.setShortDescription(Localizer.Message("cut_audio"));
-                command.append(new Commands.Audio.Copy(this));
-                command.append(new Commands.Audio.Delete(this));
+                Commands.Audio.Delete delete = new Commands.Audio.Delete(this);
+                command.append(new Commands.Audio.Copy(this, delete.Deleted,
+                    new AudioRange(0.0, delete.Deleted.Audio.getDuration().getTimeDeltaAsMillisecondFloat())));
+                command.append(delete);
                 mPresentation.UndoRedoManager.execute(command);
             }
         }
