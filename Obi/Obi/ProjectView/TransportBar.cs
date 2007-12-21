@@ -380,7 +380,12 @@ namespace Obi.ProjectView
                 if (mCurrentPlaylist.CurrentPhrase != null)
                 {
                     mIsSerialPlaying = true;
-                    mCurrentPlaylist.Play();
+                    if (mView.Selection is AudioSelection
+                        && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
+                                                                    mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.CursorTime);
+                                        else
+                        mCurrentPlaylist.Play();
+
                     mCurrentPlayingSection = mCurrentPlaylist.CurrentSection;
                 }
             }
@@ -415,7 +420,13 @@ namespace Obi.ProjectView
                 mCurrentPlaylist.CurrentPhrase = mLocalPlaylist.FirstPhrase;
                 // Avn: condition added on 13 may 2007
                 if (mCurrentPlaylist.PhraseList.Count > 1) mIsSerialPlaying = true;
-                mCurrentPlaylist.Play();
+
+                if (mView.Selection is AudioSelection
+                    && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
+                    mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.CursorTime);
+                else
+                    mCurrentPlaylist.Play();
+
                 mCurrentPlayingSection = mCurrentPlaylist.CurrentSection;
             }
             else if (CanResume)

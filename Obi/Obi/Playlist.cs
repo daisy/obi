@@ -413,11 +413,22 @@ namespace Obi
         /// </summary>
         public void Play()
         {
+            Play(0.0);
+        }
+        double mInPhrasePlayStartTime = 0;
+        /// <summary>
+        /// Play from an in phrase time position when in stopped state.
+        /// </summary>
+        /// <param name="StartTime"></param>
+        public void Play( double StartTime )
+        {
             System.Diagnostics.Debug.Assert(mPlaylistState == AudioPlayerState.Stopped, "Only play from stopped state.");
             if (mCurrentPhraseIndex < mPhrases.Count)
             {
+                mInPhrasePlayStartTime = StartTime;
                 PlayPhrase(mCurrentPhraseIndex);
-
+                // phrase start time should be put to 0.0 to avoid starting from same position again
+                mInPhrasePlayStartTime = 0;
                 // Avn": Following line commented for removing stuttering playback initialization problem.
                 //mPlayer.CurrentTimePosition = mPlaybackStartTime;
             }
@@ -704,8 +715,8 @@ namespace Obi
                 mPlayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
             }
             mPlaylistState = AudioPlayerState.Playing;
-            mPlayer.Play(mPhrases[mCurrentPhraseIndex].Audio.getMediaData());
-
+            mPlayer.Play(mPhrases[mCurrentPhraseIndex].Audio.getMediaData() , mInPhrasePlayStartTime );
+            mInPhrasePlayStartTime = 0;
             // send the state change event if the state actually changed
             if (StateChanged != null && mPlayer.State != evargs.OldState) StateChanged(this, evargs);
         }
