@@ -851,4 +851,16 @@ Error text: {1}</value>
   <data name="PhraseDetectionCommand_Label" xml:space="preserve">
     <value>Phrase Detection Command</value>
   </data>
+  <data name="create_new_project_from_import" xml:space="preserve">
+    <value>Create a new project from XHTML import</value>
+  </data>
+  <data name="import_failed" xml:space="preserve">
+    <value>Import failed: </value>
+  </data>
+  <data name="import_from_file" xml:space="preserve">
+    <value>Choose a file to import from</value>
+  </data>
+  <data name="xhtml_filter" xml:space="preserve">
+    <value>XHTML | *.html</value>
+  </data>
 </root>

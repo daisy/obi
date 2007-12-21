@@ -56,7 +56,7 @@ namespace Obi.Dialogs
         /// <summary>
         /// Make the "create title section" checkbox invisible (use only for project import.)
         /// </summary>
-        public void MakeAutoTitleCheckboxInvisible() { mAutoTitleCheckBox.Visible = false; }
+        public void DisableAutoTitleCheckbox() { mAutoTitleCheckBox.Enabled = false; }
 
         /// <summary>
         /// The chosen path for the XUK project file; derived from the title or chosen
