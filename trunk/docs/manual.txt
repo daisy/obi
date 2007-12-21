@@ -117,6 +117,13 @@ to select (see keyboard navigation below.)
   * The text inside a metadata entry is selectable (TODO). When selected, it
     becomes editable.
 
+### Label editing
+
+The label of a strip or a section, and the value of a metadata entry (TODO) can
+be directly edited by clicking them. When typing `Enter`, the new name is
+committed; typing `Esc` cancels the edit. Strips also have an `OK` and `Cancel`
+button which achieve the same effects.
+
 ## Transport bar and peak meter
 
 ### Controls
@@ -186,8 +193,6 @@ cut or copy operation restores the previous value of the clipboard.
   deleted. If the corresponding section has subsection, the first subsection
   is moved to the level of the deleted section so that the consistency of the
   TOC is preserved.
-  * TODO: delete a chunk of audio data. (Delete text works out of the box.)
-  * TODO: trim audio data? (but this is not a generic edit function.)
 
 * __Select nothing__ (`Alt+N`): deselect any item that was selected.
   * TODO: change the keyboard shortcut.
@@ -265,8 +270,7 @@ The TOC menu provides operations on the table of contents.
   next one; that is, all the blocks in the following strip are appended to the
   selected strip. The following strip is then removed from the project. If the
   following strip has a lower level than the selected strip, merging is not
-  possible. TODO: find out why phrases and empty blocks are not appended in
-  the right order?!
+  possible.
 
 * TODO: add strip, depending on cursor or strip selection.
 
@@ -275,6 +279,14 @@ The TOC menu provides operations on the table of contents.
 
 * __Add empty block__ (`Ctrl+Alt+A`): add a new empty block at the end of the
   selected strip, or after the selected item in the strip.
+
+* __Add empty page blocks__: add one or more empty blocks with a page number.
+  A dialog opens where the user can choose the page number for the first block,
+  the number of blocks to add, and whether to renumber subsequent page blocks
+  automatically. The page number increases by one for each block (_e.g._ if
+  three pages are added starting at page number 4, the three page blocks will
+  be numbered 4, 5 and 6) and for subsequent pages if the user chooses to
+  renumber them (_e.g._ following pages would be renumbered 7, 8, 9, etc.)
 
 * __Split block__ (`Ctrl+P`): split the block at the current cursor position.
   The block is split in two blocks, one with all the audio data before the
