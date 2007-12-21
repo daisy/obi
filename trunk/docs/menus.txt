@@ -5,303 +5,143 @@ $Id$
 Main form
 
   + [F] File
-    + [N] New project ....................... Ctrl+N
-    + [W] New project from import ........... Ctrl+Shift+N
-    + [O] Open project ...................... Ctrl+O
-    + [R] Open recent project ............... (none)
-    ------------------------------------------------------
-    + [S] Save project ...................... Ctrl+S
-    + [A] Save project as ................... Ctrl+Shift+S
-    + [D] Discard changes ................... Ctrl+D
-    + [C] Close project ..................... Ctrl+W
-    ------------------------------------------------------
-    + [L] Clean project ..................... (none)
-    + [E] Export as DAISY ................... Ctrl+E
-    ------------------------------------------------------
-    + [X] Exit .............................. Alt+F4
-
+    + [N] New project ............... Ctrl+N
+    + [W] New project from import ... Ctrl+Shift+N
+    + [O] Open project .............. Ctrl+O
+    + [R] Open recent project ....... (None)
+    ----------------------------------------------
+    + [S] Save project .............. Ctrl+S
+    + [A] Save project as ........... Ctrl+Shift+S
+    + [C] Close project ............. Ctrl+W
+    ----------------------------------------------
+    + [L] Clean project ............. (None)
+    + [E] Export as DAISY ........... Ctrl+E
+    ----------------------------------------------
+    + [X] Exit ...................... Alt+F4
+  
   + [E] Edit
-    + [U] Undo .............................. Ctrl+Z
-    + [R] Redo .............................. Ctrl+Y
-    ------------------------------------------------
-    + [C] Cut ............................... Ctrl+X
-    + [Y] Copy .............................. Ctrl+C
-    + [P] Paste ............................. Ctrl+V
-    + [D] Delete ............................ Del
-    + [S] Select nothing .................... Alt+N
-    ------------------------------------------------
-    + [F] Find .............................. F3
+    + [U] Undo ...................... Ctrl+Z
+    + [R] Redo ...................... Ctrl+Y
+    ----------------------------------------------
+    + [C] Cut ....................... Ctrl+X
+    + [Y] Copy ...................... Ctrl+C
+    + [P] Paste ..................... Ctrl+V
+    + [D] Delete .................... Del
+    + [S] Select nothing ............ (None)
+    ----------------------------------------------
+    + [F] Find ...................... Ctrl+F
+    + [N] Find next ................. F3
+    + [V] Find previous ............. Shift+F3
 
   + [V] View
-    + [T] Show TOC view...................... Shift+Alt+T
-    + [M] Show metadata view ................ Shift+Alt+M
-    + [S] Show search bar ................... Shift+Alt+S
-    + [B] Show transport bar ................ Shift+Alt+B
-    + [U] Show status bar ................... Shift+Alt+U
-    -----------------------------------------------------
-    + [C] Show in TOC view .................. Alt+T
-    + [P] Show in strips view ............... Alt+S
-    + [Y] Synchronize views ................. Alt+Y
-    -----------------------------------------------------
-    + [R] Show source view .................. Alt+R
+    + [T] Show TOC view ............. Alt+Shift+T
+    + [M] Show metadata view ........ Alt+Shift+M
+    + [S] Show search bar ........... Alt+Shift+S
+    + [B] Show transport bar ........ Alt+Shift+B
+    + [U] Show status bar ........... Alt+Shift+U
+    ----------------------------------------------
+    + [P] Focus on strips view ...... F6
+    + [C] Focus on TOC view ......... F7
+    + [Y] Synchronize views ......... Alt+Shift+Y
+    ----------------------------------------------
+    + [P] Show peak meter ........... Alt+Shift+P
+    + [R] Show source view .......... Alt+Shift+R
 
   + [C] TOC
-    + [A] Add section ....................... Ctrl+A
-    + [S] Add sub-section ................... Ctrl+Shift+A
-    + [N] Rename section .................... F2
-    + [O] Move section out .................. Ctrl+Shift+Left
-    + [I] Move section in ................... Ctrl+Shift+Right
-    + [U] Section is used ................... Ctrl+K
-    ----------------------------------------------------------
-    + [L] Listen to section ................. Alt+L
+    + [A] Add section ............... Ctrl+A
+    + [S] Add sub-section ........... Ctrl+Shift+A
+    + [M] Rename section ............ F2
+    + [O] Move section out .......... Ctrl+Shift+Left
+    + [I] Move section in ........... Ctrl+Sfhit+Right
+    + [U] Section is used ........... Ctrl+K
 
   + [S] Strips
-    + [A] Add strip ......................... Ctrl+A
-    + [M] Rename strip ...................... F2
-    + [S] Split strip ....................... Ctrl+Shift+P
-    + [G] Merge strip with next ............. Ctrl+Shift+M
-    ------------------------------------------------------
-    + [L] Listen to strip ................... Alt+L
+    + [M] Rename strip .............. F2
+    + [S] Split strip ............... Ctrl+Shift+P
+    + [G] Merge with next strip ..... Ctrl+Shift+M
 
   + [B] Blocks
-    + [I] Import audio files ................ Ctrl+I
-    + [S] Split block ....................... Ctrl+P
-    + [M] Merge block with next ............. Ctrl+M
-    ------------------------------------------------
-    + [L] Listen to block ................... Alt+L
-
-  (unupdated after this point)
-
-
-
-    + [I] Import audio file ..................... Ctrl+I
-    + [B] Insert empty audio block .............. Ctrl+J
-    + [S] Split audio block ..................... Ctrl+P
-    + [Q] Quick split audio block ............... Ctrl+Shift+P
-    + [H] Apply phrase detection ................ Ctrl+H
-    + [G] Merge with previous audio block ....... Ctrl+M
-    + [V] Move audio block....................... None
-      + [F] Forward ............................. Ctrl+Right
-      + [B] Backward ............................ Ctrl+Left
-    + [K] Mark audio block as used/unused ....... Ctrl+K
-    + [D] Mark audio block as section heading ... Ctrl+F 
-    + [E] Edit annotation ....................... F2
-    + [O] Remove annotation ..................... Shift+Ctrl+Del
-    + [F] Focus on annotation ................... Alt+Shift+A
-    + [T] Set page number ....................... Ctrl+G
-    + [N] Remove page number .................... Ctrl+Del
-    + [P] Go to page ............................ Alt+G
-    + [W] Show in TOC view ...................... Alt+V
+    + [E] Add empty block ........... Ctrl+Shift+A
+    + [P] Add empty page blocks ..... (None)
+    + [I] Import audio files ........ Ctrl+I
+    + [S] Split block ............... Ctrl+P
+    + [M] Merge block with next ..... Ctrl+M
+    + [U] Block is used ............. Ctrl+K
+    --------------------------------------
+    + [A] Assign role ............... (None)
+      + [H] Heading ................. (None)
+      + [P] Page .................... (None)
+      + [S] Silence ................. (None)
+      -------------------------------------
+      + (Add role) .................. (None)
+    + Edit roles... ................. (None)
+    + [C] Clear role ................ (None)
 
   + [R] Transport
-    + [U] Show/hide VU meter ................ Ctrl+U
-    + [E] Previous section .................. Alt+Up
-    + [V] Previous phrase ................... Alt+Left
-    + [W] Rewind ............................ Alt+Shift+Left
-    + [A] Play all .......................... Ctrl+Space
-    + [P] Play selection .................... Ctrl+Shift+Space
-    + [Z] Pause ............................. Alt+Shift+Space
-    + [S] Stop .............................. Ctrl+T
-    + [R] Record ............................ Ctrl+R
-    + [F] Fast forward ...................... Alt+Shift+Right
-    + [N] Next phrase ....................... Alt+Right
-    + [X] Next section ...................... Alt+Down
 
   + [T] Tools
-    + [U] User profile ...................... Alt+U
-    + [P] Project preferences ............... Alt+P
-    + [A] Audio preferences ................. Alt+A
-    + [D] Dump tree (DEBUG) ................. Debug
 
   + [H] Help
-    + [C] Contents .......................... F1
-    + [V] View help in external browser ..... Shift+F1
-    + [A] About Obi ......................... Missing
-    + [R] Report bug ........................ Ctrl+Shift+R
-
-
-TOC Panel's context menu
-
-  + [A] Add section ......................... Ctrl+A
-  + [S] Add sub-section ..................... Ctrl+B
-  + [N] Rename section ...................... F2
-  + [O] Move out ............................ Ctrl+Shift+Left
-  + [I] Move in ............................. Ctrl+Shift+Right
-  + [T] Cut section ......................... Ctrl+Shift+X
-  + [C] Copy section ........................ Ctrl+Shift+C
-  + [P] Paste section ....................... Ctrl+Shift+V
-  + [K] Mark section as used/unused ......... Ctrl+K
-  + [D] Delete section ...................... Del
-  + [V] Show in strip view .................. Alt+V
-
-
-Strip Manager Panel's context menu
-
-  + [A] Add strip ............................. Ctrl+A
-  + [N] Rename strip .......................... Shift+F2
-  + [D] Delete strip .......................... Shift+Del
-  + [W] Show in TOC view ...................... Alt+V
-  + [I] Import audio .......................... Ctrl+I
-  + [B] Insert empty audio block .............. Ctrl+J
-  + [C] Cut phrase ............................ Ctrl+X
-  + [Y] Copy phrase ........................... Ctrl+C
-  + [E] Paste phrase .......................... Ctrl+V
-  + [L] Delete phrase ......................... Del
-  + [K] Mark phrase as used/unused ............ Ctrl+K
-  + [I] Mark audio block as section heading ... Ctrl+F
-  + [S] Split audio block ..................... Ctrl+P
-  + [H] Apply phrase detection ................ Ctrl+H
-  + [G] Merge with previous audio block ....... Ctrl+M
-  + [V] Move audio block... ................... None
-    + [F] Forward ............................. Ctrl+Right
-    + [B] Backward ............................ Ctrl+Left
-  + [O] Edit annotation ....................... F2
-  + [M] Remove annotation ..................... Shift+Ctrl+Del
-  + [F] Focus on annotation ................... Shift+Alt+A
-  + [T] Set page number ....................... Ctrl+G
-  + [R] Remove page number .................... Ctrl+Del
-  + [P] Go to page ............................ Alt+G
+    + [C] Contents ........................ F1
+    + [V] View help in external browser ... Shift+F1
+    + [R] Report bug ...................... Ctrl+Shift+R
+    + [A] About Obi ....................... (None)
 
 
 Index of shortcuts
 
-  Del ................ Edit > Delete
-  Del ................ [TOC Panel] Delete section
-  Del ................ [Strip Manager Panel] Delete phrase
-  Ctrl+Del ........... Strips > Remove page number
-  Ctrl+Del ........... [Strip Manager Panel] Remove page number
-  Shift+Del .......... [Strip Manager Panel] Delete strip
-  Shift+Ctrl+Del ..... Strips > Remove annotation
-  Shift+Ctrl+Del ..... [Strip Manager Panel] Remove annotation
-  F1 ................. Help > Contents
-  Shift+F1 ........... Help > View help in external browser
-  F2 ................. TOC > Rename section
-  F2 ................. Strips > Edit annotation
-  F2 ................. [TOC Panel] Rename section
-  F2 ................. [Strip Manager Panel] Edit annotation
-  F2 ................. Strips > Rename strip
-  F2 ................. [Strip Manager Panel] Rename strip
-  Alt+F4 ............. File > Exit
-  F5 ................. Edit > Touch project
-  Alt+Down ........... Transport > Next section
-  Alt+Left ........... Transport > Previous phrase
-  Alt+Shift+Left ..... Transport > Rewind
-  Ctrl+Left .......... Strips > Move audio block > Backward
-  Ctrl+Left .......... [Strip Manager Panel] Move audio block > Backward
-  Ctrl+Shift+Left .... TOC > Move out
-  Ctrl+Shift+Left .... [TOC Panel] Move out
-  Alt+Right .......... Transport > Next phrase
-  Alt+Shift+Right .... Transport > Fast forward
-  Ctrl+Right ......... Strips > Move audio block > Forward
-  Ctrl+Right ......... [Strip Manager Panel] Move audio block > Forward
-  Ctrl+Shift+Right ... TOC > Move in
-  Ctrl+Shift+Right ... [TOC Panel] > Move in
-  Alt+Shift+Space ..... Transport > Pause
-  Ctrl+Space ......... Transport > Play all
-  Ctrl+Shift+Space ... Transport > Play selection
-  Alt+Up ............. Transport > Previous section
+  + Del ................ Edit > Delete
+  + F1 ................. Help > Contents
+  + Shift+F1 ........... Help > View help in external browser
+  + F2 ................. TOC > Rename section
+  + F2 ................. Strips > Rename strip
+  + F3 ................. Edit > Find next
+  + Shift+F3 ........... Edit > Find previous
+  + Alt+F4 ............. File > Exit
+  + F6 ................. View > Focus on strips view
+  + F7 ................. View > Focus on TOC view
+  + Ctrl+Shift+Left .... TOC > Move section out
+  + Ctrl+Shift+Right ... TOC > Move section in
 
-  Alt+A .............. Tools > Audio preferences
-  Alt+Shift+A ........ Strips > Focus on annotation
-  Alt+Shift+A ........ [Strip Manager Panel] Focus on annotation
-  Ctrl+A* ............ TOC > Add section
-  Ctrl+A* ............ Strips > Add strip
-  Ctrl+A* ............ [TOC Panel] Add section
-  Ctrl+A* ............ [Strip Manager Panel] Add strip
-  Alt+Shift+B ........ View > Show transport bar
-  Ctrl+B ............. TOC > Add subsection
-  Ctrl+B ............. [TOC Panel] Add sub-section
-  Ctrl+C* ............ File > Copy
-  Ctrl+C* ............ [Strip Manager Panel] Copy phrase
-  Ctrl+Shift+C ....... [TOC Panel] Copy section
-  Ctrl+D ............. File > Discard changes
-  Ctrl+E ............. File > Export as DAISY
-  Ctrl+F ............. Strips > Mark audio block as section heading
-  Ctrl+F ............. [Strip Manager Panel] > Mark audio block as section... 
-  Ctrl+G ............. Strips > Set page number
-  Ctrl+G ............. [Strip Manager Panel] Set page number
-  Alt+G .............. Strips > Go to page
-  Alt+G .............. [Strip Manager Panel] Go to page
-  Ctrl+H ............. Strips > Apply phrase detection
-  Ctrl+H ............. [Strip Manager Panel] Apply phrase detection
-  Ctrl+I ............. Strips > Import audio file
-  Ctrl+I ............. [Strip Manager Panel] Import audio
-  Ctrl+J ............. Insert empty audio block
-  Ctrl+J ............. [Strip Manager Panel] Insert empty audio block
-  Ctrl+K ............. TOC > Mark section as used/unused
-  Ctrl+K ............. [TOC Panel] Mark section as used/unused
-  Ctrl+K ............. Strips > Mark audio block as used/unused
-  Ctrl+K ............. [Strip Manager Panel] Mark audio block as used/unused*
-  Ctrl+L ............. FREE
-  Alt+Shift+M ........ View > Show metadata view
-  Ctrl+M ............. Strips > Merge with previous audio block
-  Ctrl+M ............. [Strip Manager Panel] Merge with previous audio block
-  Ctrl+N ............. File > New project
-  Ctrl+O ............. File > Open project
-  Alt+P .............. Tools > Project preferences
-  Ctrl+P ............. Strips > Split audio block
-  Ctrl+P ............. [Strip Manager Panel] Split Audio Block
-  Ctrl+Shift+P ....... Strips > Quick split audio block
-  Ctrl+Q ............. FREE
-  Alt+R .............. View > Show source view
-  Ctrl+R ............. Transport > Record
-  Ctrl+Shift+R ....... About > Report bug
-  Alt+S .............. View > Show in strips view
-  Ctrl+S ............. File > Save project
-  Ctrl+Shift+S ....... File > Save project as
-  Alt+T .............. View > Show in TOC view
-  Shift+Alt+T ........ TOC > Show/hide table of contents
-  Ctrl+T ............. Transport > Stop
-  Alt+U .............. Tools > User profile
-  Ctrl+U ............. Transport > Show/hide VU meter
-  Alt+V* ............. TOC > Show in strip view
-  Alt+V* ............. Strips > Show in TOC view
-  Alt+V* ............. [TOC Panel] Show in strip view
-  Alt+V* ............. [Strip Manager Panel] Show in TOC view
-  Ctrl+V* ............ Edit > Paste
-  Ctrl+V ............. [Strip Manager Panel] Paste phrase
-  Ctrl+Shift+V ....... [TOC Panel] Paste section
-  Ctrl+W ............. File > Close project
-  Ctrl+X* ............ Edit > Cut
-  Ctrl+X* ............ [Strip Manager Panel] > Cut phrase
-  Ctrl+Shift+X ....... [TOC Panel] Cut section
-  Ctrl+Y ............. Edit > Redo
-  Ctrl+Z ............. Edit > Undo
-
-Record Dialog shortcuts : Doc Updated by Avneesh on 17 jan 2007
-Control+Space 	Toggle Start Recording and pause recording
-Alt+S	Stop and close record dialog
-h	Mark Section
-j	 Mark Phrase
-k	 mark page
-R	Dedicated Start Recording.
-a	Dedicated pause recording
-
-
-  Missing ............ Strips > Remove annotation
-  Missing ............ [Strip Manager Panel] Remove annotation
-  Missing ............ Help > About Obi
-
-  Debug .............. Tools > Dump tree
-
-
-Transport bar shortcut keys
-
-  Space .............. Play
-  Escape ............. Stop
-  P .................. Pause
-  F .................. Next phrase (forward)
-  B .................. Previous phrase (backward)
-  U .................. Previous section (up)
-  D .................. Next section (down)
-  R .................. Record
-  Plus ............... Fast forward
-  Minus .............. Rewind
-
-
-Shortcut keys that could be reclaimed:
-
-  Ctrl+D (discard changes)
-  Ctrl+E (export as DAISY)
-  Ctrl+W (close project)
-  Ctrl+N (new project)
+  + Ctrl+A ............. TOC > Add section
+  + Ctrl+Shift+A ....... Blocks > Add empty block
+  + Ctrl+Shift+A ....... TOC > Add sub-section
+  + Alt+Shift+B ........ View > Show transport bar
+  + Ctrl+B ............. FREE
+  + Ctrl+C ............. Edit > Copy
+  + Ctrl+D ............. FREE
+  + Ctrl+E ............. File > Export as DAISY
+  + Ctrl+F ............. Edit > Find
+  + Ctrl+G ............. FREE
+  + Ctrl+H ............. FREE
+  + Ctrl+I ............. Blocks > Import audio files
+  + Ctrl+J ............. FREE
+  + Ctrl+K ............. Block > Block is used
+  + Ctrl+K ............. TOC > Section is used
+  + Ctrl+L ............. Clean
+  + Ctrl+M ............. Blocks > Merge block with next
+  + Alt+Shift+M ........ View > Show metadata view
+  + Ctrl+Shift+M ....... Strips > Merge with next strip
+  + Ctrl+N ............. File > New project
+  + Ctrl+Shift+N ....... File > New project from import
+  + Ctrl+O ............. File > Open
+  + Alt+Shift+P ........ View > Show peak meter
+  + Ctrl+P ............. Blocks > Split block
+  + Ctrl+Shift+P ....... Strips > Split strip
+  + Ctrl+Q ............. FREE
+  + Alt+Shift+R ........ View > Show source view
+  + Ctrl+R ............. FREE
+  + Ctrl+Shift+R ....... Help > Report bug
+  + Alt+Shift+S ........ View > Show search bar
+  + Ctrl+S ............. File > Save project
+  + Ctrl+Shift+S ....... File > Save project as
+  + Alt+Shift+T ........ View > Show TOC view
+  + Ctrl+T ............. FREE
+  + Alt+Shift+U ........ View > Show status bar
+  + Ctrl+U ............. FREE
+  + Ctrl+V ............. Edit > Paste
+  + Ctrl+W ............. File > Close project
+  + Ctrl+X ............. Edit > Cut
+  + Alt+Shift+Y ........ View > Synchronize views
+  + Ctrl+Y ............. Edit > Redo
+  + Ctrl+Z ............. Edit > Undo
