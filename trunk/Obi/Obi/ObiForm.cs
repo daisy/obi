@@ -62,7 +62,6 @@ namespace Obi
             mClearListToolStripMenuItem.Enabled = true;
             mSaveProjectToolStripMenuItem.Enabled = mSession.CanSave;
             mSaveProjectAsToolStripMenuItem.Enabled = false;  // mSession.HasProject;
-            mDiscardChangesToolStripMenuItem.Enabled = false;  // mSession.CanSave;
             mCloseProjectToolStripMenuItem.Enabled = mSession.HasProject;
             mCleanProjectToolStripMenuItem.Enabled = false; // currently disabled
             mExportAsDAISYToolStripMenuItem.Enabled = mSession.HasProject;  // currently disabled
@@ -75,89 +74,56 @@ namespace Obi
         private void mClearListToolStripMenuItem_Click(object sender, EventArgs e) { ClearRecentProjectsList(); }
         private void mSaveProjectToolStripMenuItem_Click(object sender, EventArgs e) { Save(); }
         private void mSaveProjectAsToolStripMenuItem_Click(object sender, EventArgs e) { SaveAs(); }
-        private void mDiscardChangesToolStripMenuItem_Click(object sender, EventArgs e) { DiscardChanges(); }
         private void mCloseProjectToolStripMenuItem_Click(object sender, EventArgs e) { DidCloseProject(); }
         private void mCleanProjectToolStripMenuItem_Click(object sender, EventArgs e) { Cleanup(); }
         private void mExportAsDAISYToolStripMenuItem_Click(object sender, EventArgs e) { Export(); }
         private void mExitToolStripMenuItem_Click(object sender, EventArgs e) { Close(); }
 
-        // Revert the project back to its last saved state.
-        private void DiscardChanges()
+        // Create a new project if the current one was closed properly, or if none was open.
+        private void NewProject()
         {
-            if (mSession.CanSave &&
-                MessageBox.Show(Localizer.Message("discard_changes_text"),
-                    Localizer.Message("discard_changes_caption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
-                    DialogResult.Yes)
+            Dialogs.NewProject dialog = new Dialogs.NewProject(
+                mSettings.DefaultPath,
+                Localizer.Message("default_project_filename"),
+                Localizer.Message("obi_project_extension"),
+                Localizer.Message("default_project_title"));
+            dialog.CreateTitleSection = mSettings.CreateTitleSection;
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
-                OpenProject(mSession.Path);
+                CreateNewProject(dialog.Path, dialog.Title, dialog.CreateTitleSection);
             }
         }
 
         // Create a new project by importing an XHTML file
         private void NewProjectFromImport()
         {
-            /*old stuff
-            mProjectView.TransportBar.Enabled = false;
-            if (!DidCloseProject())
-            {
-                mProjectView.TransportBar.Enabled = true;
-                Ready();
-                return;
-            }
-            */
-
-            //select a file for import
+            // Bring up a chooser for the import file
             OpenFileDialog openFile = new OpenFileDialog();
-            openFile.Title = "Choose a file for import";// Localizer.Message("choose_a_file_for_import");
-            openFile.Filter = "HTML | *.html";// Localizer.Message("import_structure_filter");
+            openFile.Title = Localizer.Message("choose_import_file");
+            openFile.Filter = Localizer.Message("xhtml_filter");
             if (openFile.ShowDialog() != DialogResult.OK) return;
-
+            // Then bring up the create project dialog
             Dialogs.NewProject dialog = new Dialogs.NewProject(
                 mSettings.DefaultPath,
                 Localizer.Message("default_project_filename"),
                 Localizer.Message("obi_project_extension"),
                 ImportStructure.grabTitle(new Uri(openFile.FileName)));
-            dialog.MakeAutoTitleCheckboxInvisible();
-            dialog.Text = Localizer.Message("create_a_new_project_from_xhtml_import");
+            dialog.DisableAutoTitleCheckbox();
+            dialog.Text = Localizer.Message("create_new_project_from_import");
             if (dialog.ShowDialog() != DialogResult.OK) return;
-
-            // let's see if we can actually write the file that the user chose (bug #1679175)
-            try
-            {
-                FileStream file = File.Create(dialog.Path);
-                file.Close();
-            }
-            catch (Exception x)
-            {
-                MessageBox.Show(String.Format(Localizer.Message("cannot_create_file_text"), dialog.Path, x.Message),
-                    Localizer.Message("cannot_create_file_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
             CreateNewProject(dialog.Path, dialog.Title, false);
             try
             {
                 ImportStructure importer = new ImportStructure();
                 importer.ImportFromXHTML(openFile.FileName, mSession.Presentation, mProjectView);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                //report failure and undo the creation of a new project
-                MessageBox.Show("Import failed: "/*(Localizer.Message("import_structure_failed"),*/ + ex.Message);
-                
+                MessageBox.Show(Localizer.Message("import_failed") + e.Message);                
                 if (mSession.CanClose) mSession.Close();
                 File.Delete(dialog.Path);
-                /*old stuff
-                mProjectView.TransportBar.Enabled = false;
-                RemoveRecentProject(dialog.Path);
-                */
                 return;
             }
-
-          /*old stuff
-           Ready();
-            mProjectView.TransportBar.Enabled = true;
-           */
         }
 
         // Save the current project under a different name; ask for a new path first.
@@ -435,23 +401,6 @@ namespace Obi
             mProjectView.TransportBar.PlaybackRateChanged += new EventHandler(TransportBar_PlaybackRateChanged);
             mProjectView.ImportingFile += new Obi.ProjectView.ImportingFileEventHandler(mProjectView_ImportingFile);
             mProjectView.FinishedImportingFiles += new EventHandler(mProjectView_FinishedImportingFiles);
-        }
-
-        /// <summary>
-        /// Create a new project if the current one was closed properly, or if none was open.
-        /// </summary>
-        private void NewProject()
-        {
-            Dialogs.NewProject dialog = new Dialogs.NewProject(
-                mSettings.DefaultPath,
-                Localizer.Message("default_project_filename"),
-                Localizer.Message("obi_project_extension"),
-                Localizer.Message("default_project_title"));
-            dialog.CreateTitleSection = mSettings.CreateTitleSection;
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                CreateNewProject(dialog.Path, dialog.Title, dialog.CreateTitleSection);
-            }
         }
 
         // Open a new project from a file chosen by the user.
