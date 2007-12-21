@@ -1,0 +1,98 @@
+This is a temporary write up for transport bar which should be copied to main manual.
+The write up contains description about transportbar buttons and other transport bar functions which are to be invoked through drop down menus and keyboard shortcuts.
+
+Description about buttons:
+1. Play button.
+This button gives Play All command while starting playback from currently selected block in strip view or currently selected node in tree view.
+1.1. If there is no in phrase selection, ( technically  termed as audio selection ) this button starts playback from starting of selected block or selected tree node.
+1.2. If there is Audio selection and cursor has a position marked inside phrase, this button starts playback from this cursor position.
+Keyboard shortcut: Control+Space.
+
+2. Pause button:
+- It pauses both playback as well as recording ( which ever is active ). 
+- Pause position and cursor position are synchronised with each other so pause position also acts as cursor position for operations like split and insert recording.
+Keyboard shortcut: Space bar.
+
+3. Stop button:
+- It stops playback or recording which ever is active.
+
+4. Rewind: It plays small  dhunks of audio while jumping backward in time.
+- Rewind continues across phrase boundaries.
+
+5. FastForward button:
+It plays small chunks of audio while  jumping forward in time.
+- FastForward continues across phrase  boundaries.
+
+6. Prev phrase, prev section, prev page buttons:
+Currently these buttons work only while playback and move to prev phrase, prev section, prev page phrase nodes in playlist.
+
+7. Next phrase, Next section, Next page buttons:
+During playback:
+These buttons move to next phrase, next section , next page phrase nodes in current playlist.
+
+During recording:
+These buttons become markup buttons i.e.
+Next Phrase button create a new phrase on the fly.
+Next section button creates a new section, creates a new phrase in this new section and continue recording in this new phrase.
+The rules for  creating new section is same as that of creating a new section in TOC view.
+Next Page creates a new phrase and marks custom page class on this new phrase on the fly. The numbering of pages is automatic i.e. an increment of previous page number and "1" if there is no preceding phrase block.
+
+8. Custom class mark button:
+While recording it is used for marking custom class on currently recording phrase on the fly. The default name used is "Custom".
+It creats a new audio block and mark custom class on it.
+These custom blocks can later on be reclassed.
+In all other conditions, this button mark custom class on currently selected audio block.
+
+
+9. Fast play rate combobox:
+This combobox increases playback rate above the normal playback rate for quick navigation / editting purpose and proof reading purpose.
+It contains valuse upto 2.0 times which is twice the normal playback rate.
+It works both on the fly with playback and also off the fly.
+The  strips view keyboard shortcuts for this combobox are:
+1. F: Increses FastPlay rate by one combobox value.
+2. S: decreases FastPlay rate by one combobox value.
+3. D: moves back to normal playback rate.
+4. E: Move back to normal playback rate with 1.5 seconds of rewind. This is helpfull in determining exact splitting position while  playing at higher speeds.
+
+
+10. Record button:
+Pressing this button first time starts listening and displays input values of microphone in graphical peak meter as well in text peak meter. Recording starts when this button is pressed second time.
+However user can start direct recording and bypass listening state by pressing 
+Control + shift + R.
+or selecting  direct recording sub menu item for record menu item of transport drop down menu.
+Recording can be done in normal mode or in append only mode.
+User can check or uncheck Append only sub menu item from recording item of transport drop down menu.
+10.1 In append only mode, recording is non distructive i.e. a new recording is appended to selected block or filled in a null audio block without inserting or overwriting existing recordings.
+10.2. In normal mode recording works as follows:
+- If selected block do not contain any audio e.g. empty page blocks, recording fills audio inside these blocks.
+- If there is a single point in-phrase selection, recording splits the selected block at cursor position and inserts new blocks between two splitted blocks.
+- If there is a part of audio selected  inside a phrase using  in-phrase Selection Start and in-phrase Selection End commands then the selected block is split in three blocks and the middle one is replaced by newly recorded blocks.
+
+Pausing recording:
+Recording can be paused at any time using pause button. When recording is paused, user can use playback to verify recording.
+Recording will resume by pressing record button again ( no listening stage will be there while resuming paused recording ).
+
+
+
+Other transport bar functions  operatable from drop down menus and keyboard shortcuts.
+11. Preview playback:
+It includes three functions.
+1.1. Preview from current position:
+provides 1.5 seconds of playback starting from current cursor position.
+Strips View shortcut: V
+
+1.2. Preview upto current position:
+Provides playback of duration of 1.5 seconds starting from 1.5 seconds before current position so that playback ends at current position.
+Strips view shortcut: X
+
+1.3. Preview selected audio:
+It provides playback of audio chumk lying between two audio mark points. 
+Strips view Shortcut: C
+
+12. Play selection: 
+It starts playback of currently selected blocks As Obi currently can select only one block at a time so in current senario it plays selected block in strips view or selected tree node in TOC view.
+- If there is no in-phrase selection i.e. cursor is not active, playback starts from begining of phrase 
+- if there is a in-phrase selection i.e. cursor is active, then playback starts from the cursor position.
+Keyboard shortcut: Space bar.
+This shortcut is same as pause. As it toggles between play selection and pause and also pauses play all command.
+
