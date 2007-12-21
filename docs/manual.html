@@ -50,54 +50,57 @@
             <li>
               <a href="#id18625">What is selectable?</a>
             </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#id18689">Transport bar and peak meter</a>
-          <ul>
             <li>
-              <a href="#id18693">Controls</a>
-            </li>
-            <li>
-              <a href="#id18696">Playback</a>
-            </li>
-            <li>
-              <a href="#id18700">Recording</a>
-            </li>
-            <li>
-              <a href="#id18703">Peak meter</a>
+              <a href="#id18689">Label editing</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="#id18706">Menus</a>
+          <a href="#id18714">Transport bar and peak meter</a>
           <ul>
             <li>
-              <a href="#id18710">File menu</a>
+              <a href="#id18718">Controls</a>
             </li>
             <li>
-              <a href="#id18713">Edit menu (<code>Alt+E</code>)</a>
+              <a href="#id18721">Playback</a>
             </li>
             <li>
-              <a href="#id18994">View menu (<code>Alt+V</code>)</a>
+              <a href="#id18725">Recording</a>
             </li>
             <li>
-              <a href="#id19034">TOC menu (<code>Alt+C</code>)</a>
+              <a href="#id18728">Peak meter</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#id18732">Menus</a>
+          <ul>
+            <li>
+              <a href="#id18735">File menu</a>
             </li>
             <li>
-              <a href="#id19130">Strips menu</a>
+              <a href="#id18738">Edit menu (<code>Alt+E</code>)</a>
             </li>
             <li>
-              <a href="#id19192">Blocks menu (<code>Alt+B</code>)</a>
+              <a href="#id19006">View menu (<code>Alt+V</code>)</a>
             </li>
             <li>
-              <a href="#id19276">Transport menu</a>
+              <a href="#id19047">TOC menu (<code>Alt+C</code>)</a>
             </li>
             <li>
-              <a href="#id19279">Tools menu</a>
+              <a href="#id19143">Strips menu</a>
             </li>
             <li>
-              <a href="#id19282">Help menu</a>
+              <a href="#id19204">Blocks menu (<code>Alt+B</code>)</a>
+            </li>
+            <li>
+              <a href="#id19309">Transport menu</a>
+            </li>
+            <li>
+              <a href="#id19313">Tools menu</a>
+            </li>
+            <li>
+              <a href="#id19316">Help menu</a>
             </li>
           </ul>
         </li>
@@ -201,14 +204,19 @@ editable.</li></ul></li>
 <ul><li>A metadata entry in the metadata view is selectable (<span class="todo">TODO</span>).</li><li>The text inside a metadata entry is selectable (<span class="todo">TODO</span>). When selected, it
 becomes editable.</li></ul></li>
     </ul>
-    <h2 id="id18689">Transport bar and peak meter</h2>
-    <h3 id="id18693">Controls</h3>
-    <h3 id="id18696">Playback</h3>
-    <h3 id="id18700">Recording</h3>
-    <h3 id="id18703">Peak meter</h3>
-    <h2 id="id18706">Menus</h2>
-    <h3 id="id18710">File menu</h3>
-    <h3 id="id18713">Edit menu (<code>Alt+E</code>)</h3>
+    <h3 id="id18689">Label editing</h3>
+    <p>The label of a strip or a section, and the value of a metadata entry (<span class="todo">TODO</span>) can
+be directly edited by clicking them. When typing <code>Enter</code>, the new name is
+committed; typing <code>Esc</code> cancels the edit. Strips also have an <code>OK</code> and <code>Cancel</code>
+button which achieve the same effects.</p>
+    <h2 id="id18714">Transport bar and peak meter</h2>
+    <h3 id="id18718">Controls</h3>
+    <h3 id="id18721">Playback</h3>
+    <h3 id="id18725">Recording</h3>
+    <h3 id="id18728">Peak meter</h3>
+    <h2 id="id18732">Menus</h2>
+    <h3 id="id18735">File menu</h3>
+    <h3 id="id18738">Edit menu (<code>Alt+E</code>)</h3>
     <p>Obi stores all executed commands in an <em>undo stack</em> so that commands can be
 undone later. All commands executed since the current project was loaded are
 stored so an unlimited number of commands can be undone. Undone commands are
@@ -272,10 +280,6 @@ subsections are deleted as well. If it is a strip, then only this strip is
 deleted. If the corresponding section has subsection, the first subsection
 is moved to the level of the deleted section so that the consistency of the
 TOC is preserved.</p>
-        <ul>
-          <li><span class="todo">TODO</span>: delete a chunk of audio data. (Delete text works out of the box.)</li>
-          <li><span class="todo">TODO</span>: trim audio data? (but this is not a generic edit function.)</li>
-        </ul>
       </li>
       <li>
         <p><strong>Select nothing</strong> (<code>Alt+N</code>): deselect any item that was selected.</p>
@@ -300,7 +304,7 @@ of section titles, the strip corresponding to the section is selected.)</p>
         </ul>
       </li>
     </ul>
-    <h3 id="id18994">View menu (<code>Alt+V</code>)</h3>
+    <h3 id="id19006">View menu (<code>Alt+V</code>)</h3>
     <ul>
       <li>
         <p><strong>Focus on Strips view</strong> (<code>F6</code>)</p>
@@ -314,7 +318,7 @@ release version.</p>
         </ul>
       </li>
     </ul>
-    <h3 id="id19034">TOC menu (<code>Alt+C</code>)</h3>
+    <h3 id="id19047">TOC menu (<code>Alt+C</code>)</h3>
     <p>The TOC menu provides operations on the table of contents.</p>
     <ul>
       <li>
@@ -354,7 +358,7 @@ parent section is used (or if it is a top-level section), as there cannot
 be used subsections of unused sections.</p>
       </li>
     </ul>
-    <h3 id="id19130">Strips menu</h3>
+    <h3 id="id19143">Strips menu</h3>
     <ul>
       <li>
         <p><strong>Rename strip</strong> (<code>F2</code>): start editing the label of the strip. The new name
@@ -372,18 +376,26 @@ position. If the first block or position is selected, there is no effect.</p>
 next one; that is, all the blocks in the following strip are appended to the
 selected strip. The following strip is then removed from the project. If the
 following strip has a lower level than the selected strip, merging is not
-possible. <span class="todo">TODO</span>: find out why phrases and empty blocks are not appended in
-the right order?!</p>
+possible.</p>
       </li>
       <li>
         <p><span class="todo">TODO</span>: add strip, depending on cursor or strip selection.</p>
       </li>
     </ul>
-    <h3 id="id19192">Blocks menu (<code>Alt+B</code>)</h3>
+    <h3 id="id19204">Blocks menu (<code>Alt+B</code>)</h3>
     <ul>
       <li>
         <p><strong>Add empty block</strong> (<code>Ctrl+Alt+A</code>): add a new empty block at the end of the
 selected strip, or after the selected item in the strip.</p>
+      </li>
+      <li>
+        <p><strong>Add empty page blocks</strong>: add one or more empty blocks with a page number.
+A dialog opens where the user can choose the page number for the first block,
+the number of blocks to add, and whether to renumber subsequent page blocks
+automatically. The page number increases by one for each block (<em>e.g.</em> if
+three pages are added starting at page number 4, the three page blocks will
+be numbered 4, 5 and 6) and for subsequent pages if the user chooses to
+renumber them (<em>e.g.</em> following pages would be renumbered 7, 8, 9, etc.)</p>
       </li>
       <li>
         <p><strong>Split block</strong> (<code>Ctrl+P</code>): split the block at the current cursor position.
@@ -411,8 +423,8 @@ the block is currently used. Selecting this item toggles the used status of
 the block (from used to unused, and from unused to used.)</p>
       </li>
     </ul>
-    <h3 id="id19276">Transport menu</h3>
-    <h3 id="id19279">Tools menu</h3>
-    <h3 id="id19282">Help menu</h3>
+    <h3 id="id19309">Transport menu</h3>
+    <h3 id="id19313">Tools menu</h3>
+    <h3 id="id19316">Help menu</h3>
   </body>
 </html>
