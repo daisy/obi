@@ -95,6 +95,8 @@ namespace Obi.ProjectView
         public bool CanMoveSectionIn { get { return mTOCView.CanMoveSectionIn; } }
         public bool CanMoveSectionOut { get { return mTOCView.CanMoveSectionOut; } }
         public bool CanPaste { get { return mSelection != null && mSelection.CanPaste(mClipboard); } }
+        public bool CanPlay { get { return mTransportBar.Enabled; } }
+        public bool CanPlaySelection { get { return CanPlay && mSelection != null && !(mSelection is TextSelection); } }
         public bool CanRemoveAudio { get { return mStripsView.CanRemoveAudio; } }
         public bool CanRemoveBlock { get { return mStripsView.CanRemoveBlock; } }
         public bool CanRemoveSection { get { return mTOCView.CanRemoveSection; } }

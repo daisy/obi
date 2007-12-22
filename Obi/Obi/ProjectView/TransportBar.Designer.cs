@@ -45,10 +45,10 @@ namespace Obi.ProjectView
             this.mDisplayTimer = new System.Windows.Forms.Timer(this.components);
             this.mDisplayBox = new System.Windows.Forms.ComboBox();
             this.ComboFastPlateRate = new System.Windows.Forms.ComboBox();
-            this.mVUMeterPanel = new Obi.UserControls.TextVUMeterPanel();
             this.mNextPageButton = new System.Windows.Forms.Button();
             this.mPreviousPageButton = new System.Windows.Forms.Button();
             this.mCustomClassMarkButton = new System.Windows.Forms.Button();
+            this.mVUMeterPanel = new Obi.UserControls.TextVUMeterPanel();
             this.SuspendLayout();
             // 
             // mPlayButton
@@ -58,10 +58,10 @@ namespace Obi.ProjectView
             this.mPlayButton.FlatAppearance.BorderSize = 0;
             this.mPlayButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mPlayButton.Image = ((System.Drawing.Image)(resources.GetObject("mPlayButton.Image")));
-            this.mPlayButton.Location = new System.Drawing.Point(114, 0);
+            this.mPlayButton.Location = new System.Drawing.Point(152, 0);
             this.mPlayButton.Name = "mPlayButton";
             this.mPlayButton.Size = new System.Drawing.Size(32, 35);
-            this.mPlayButton.TabIndex = 0;
+            this.mPlayButton.TabIndex = 4;
             this.mTransportBarTooltip.SetToolTip(this.mPlayButton, "Start or resume audio playback or recording.");
             this.mPlayButton.UseVisualStyleBackColor = true;
             this.mPlayButton.Click += new System.EventHandler(this.mPlayButton_Click);
@@ -73,10 +73,10 @@ namespace Obi.ProjectView
             this.mPauseButton.FlatAppearance.BorderSize = 0;
             this.mPauseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mPauseButton.Image = ((System.Drawing.Image)(resources.GetObject("mPauseButton.Image")));
-            this.mPauseButton.Location = new System.Drawing.Point(152, 0);
+            this.mPauseButton.Location = new System.Drawing.Point(190, 0);
             this.mPauseButton.Name = "mPauseButton";
             this.mPauseButton.Size = new System.Drawing.Size(32, 35);
-            this.mPauseButton.TabIndex = 1;
+            this.mPauseButton.TabIndex = 5;
             this.mTransportBarTooltip.SetToolTip(this.mPauseButton, "Pause audio playback or recording.");
             this.mPauseButton.UseVisualStyleBackColor = true;
             this.mPauseButton.Click += new System.EventHandler(this.mPauseButton_Click);
@@ -88,10 +88,10 @@ namespace Obi.ProjectView
             this.mStopButton.FlatAppearance.BorderSize = 0;
             this.mStopButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mStopButton.Image = ((System.Drawing.Image)(resources.GetObject("mStopButton.Image")));
-            this.mStopButton.Location = new System.Drawing.Point(190, 0);
+            this.mStopButton.Location = new System.Drawing.Point(228, 0);
             this.mStopButton.Name = "mStopButton";
             this.mStopButton.Size = new System.Drawing.Size(32, 35);
-            this.mStopButton.TabIndex = 2;
+            this.mStopButton.TabIndex = 6;
             this.mTransportBarTooltip.SetToolTip(this.mStopButton, "Stop audio playback or recording.");
             this.mStopButton.UseVisualStyleBackColor = true;
             this.mStopButton.Click += new System.EventHandler(this.mStopButton_Click);
@@ -103,10 +103,10 @@ namespace Obi.ProjectView
             this.mNextPhrase.FlatAppearance.BorderSize = 0;
             this.mNextPhrase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mNextPhrase.Image = ((System.Drawing.Image)(resources.GetObject("mNextPhrase.Image")));
-            this.mNextPhrase.Location = new System.Drawing.Point(304, 0);
+            this.mNextPhrase.Location = new System.Drawing.Point(342, 0);
             this.mNextPhrase.Name = "mNextPhrase";
             this.mNextPhrase.Size = new System.Drawing.Size(32, 35);
-            this.mNextPhrase.TabIndex = 3;
+            this.mNextPhrase.TabIndex = 9;
             this.mTransportBarTooltip.SetToolTip(this.mNextPhrase, "Move to the next phrase.");
             this.mNextPhrase.UseVisualStyleBackColor = true;
             this.mNextPhrase.Click += new System.EventHandler(this.mNextPhrase_Click);
@@ -118,10 +118,10 @@ namespace Obi.ProjectView
             this.mPrevPhraseButton.FlatAppearance.BorderSize = 0;
             this.mPrevPhraseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mPrevPhraseButton.Image = ((System.Drawing.Image)(resources.GetObject("mPrevPhraseButton.Image")));
-            this.mPrevPhraseButton.Location = new System.Drawing.Point(38, 0);
+            this.mPrevPhraseButton.Location = new System.Drawing.Point(76, 0);
             this.mPrevPhraseButton.Name = "mPrevPhraseButton";
             this.mPrevPhraseButton.Size = new System.Drawing.Size(32, 35);
-            this.mPrevPhraseButton.TabIndex = 4;
+            this.mPrevPhraseButton.TabIndex = 2;
             this.mTransportBarTooltip.SetToolTip(this.mPrevPhraseButton, "Move to the previous phrase.");
             this.mPrevPhraseButton.UseVisualStyleBackColor = true;
             this.mPrevPhraseButton.Click += new System.EventHandler(this.mPrevPhraseButton_Click);
@@ -133,10 +133,10 @@ namespace Obi.ProjectView
             this.mNextSectionButton.FlatAppearance.BorderSize = 0;
             this.mNextSectionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mNextSectionButton.Image = ((System.Drawing.Image)(resources.GetObject("mNextSectionButton.Image")));
-            this.mNextSectionButton.Location = new System.Drawing.Point(342, 0);
+            this.mNextSectionButton.Location = new System.Drawing.Point(418, 0);
             this.mNextSectionButton.Name = "mNextSectionButton";
             this.mNextSectionButton.Size = new System.Drawing.Size(32, 35);
-            this.mNextSectionButton.TabIndex = 5;
+            this.mNextSectionButton.TabIndex = 11;
             this.mTransportBarTooltip.SetToolTip(this.mNextSectionButton, "Move to the next section.");
             this.mNextSectionButton.UseVisualStyleBackColor = true;
             this.mNextSectionButton.Click += new System.EventHandler(this.mNextSectionButton_Click);
@@ -151,7 +151,7 @@ namespace Obi.ProjectView
             this.mPrevSectionButton.Location = new System.Drawing.Point(0, 0);
             this.mPrevSectionButton.Name = "mPrevSectionButton";
             this.mPrevSectionButton.Size = new System.Drawing.Size(32, 35);
-            this.mPrevSectionButton.TabIndex = 6;
+            this.mPrevSectionButton.TabIndex = 0;
             this.mTransportBarTooltip.SetToolTip(this.mPrevSectionButton, "Move to the previous section.");
             this.mPrevSectionButton.UseVisualStyleBackColor = true;
             this.mPrevSectionButton.Click += new System.EventHandler(this.mPrevSectionButton_Click);
@@ -164,7 +164,7 @@ namespace Obi.ProjectView
             this.mRecordButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mRecordButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.mRecordButton.Image = ((System.Drawing.Image)(resources.GetObject("mRecordButton.Image")));
-            this.mRecordButton.Location = new System.Drawing.Point(228, 0);
+            this.mRecordButton.Location = new System.Drawing.Point(266, 0);
             this.mRecordButton.Name = "mRecordButton";
             this.mRecordButton.Size = new System.Drawing.Size(32, 35);
             this.mRecordButton.TabIndex = 7;
@@ -177,11 +177,11 @@ namespace Obi.ProjectView
             this.mTimeDisplayBox.BackColor = System.Drawing.Color.Azure;
             this.mTimeDisplayBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mTimeDisplayBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mTimeDisplayBox.Location = new System.Drawing.Point(474, 0);
+            this.mTimeDisplayBox.Location = new System.Drawing.Point(494, 1);
             this.mTimeDisplayBox.Name = "mTimeDisplayBox";
             this.mTimeDisplayBox.ReadOnly = true;
             this.mTimeDisplayBox.Size = new System.Drawing.Size(118, 33);
-            this.mTimeDisplayBox.TabIndex = 9;
+            this.mTimeDisplayBox.TabIndex = 13;
             this.mTimeDisplayBox.Text = "00:00:00";
             this.mTimeDisplayBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -197,10 +197,10 @@ namespace Obi.ProjectView
             this.mRewindButton.FlatAppearance.BorderSize = 0;
             this.mRewindButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mRewindButton.Image = ((System.Drawing.Image)(resources.GetObject("mRewindButton.Image")));
-            this.mRewindButton.Location = new System.Drawing.Point(76, 0);
+            this.mRewindButton.Location = new System.Drawing.Point(114, 0);
             this.mRewindButton.Name = "mRewindButton";
             this.mRewindButton.Size = new System.Drawing.Size(32, 35);
-            this.mRewindButton.TabIndex = 12;
+            this.mRewindButton.TabIndex = 3;
             this.mTransportBarTooltip.SetToolTip(this.mRewindButton, "Move to the next section.");
             this.mRewindButton.UseVisualStyleBackColor = true;
             this.mRewindButton.Click += new System.EventHandler(this.mRewindButton_Click);
@@ -212,10 +212,10 @@ namespace Obi.ProjectView
             this.mFastForwardButton.FlatAppearance.BorderSize = 0;
             this.mFastForwardButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mFastForwardButton.Image = ((System.Drawing.Image)(resources.GetObject("mFastForwardButton.Image")));
-            this.mFastForwardButton.Location = new System.Drawing.Point(267, 0);
+            this.mFastForwardButton.Location = new System.Drawing.Point(305, 0);
             this.mFastForwardButton.Name = "mFastForwardButton";
             this.mFastForwardButton.Size = new System.Drawing.Size(32, 35);
-            this.mFastForwardButton.TabIndex = 13;
+            this.mFastForwardButton.TabIndex = 8;
             this.mTransportBarTooltip.SetToolTip(this.mFastForwardButton, "Move to the next section.");
             this.mFastForwardButton.UseVisualStyleBackColor = true;
             this.mFastForwardButton.Click += new System.EventHandler(this.mFastForwardButton_Click);
@@ -228,6 +228,7 @@ namespace Obi.ProjectView
             // 
             this.mDisplayBox.AllowDrop = true;
             this.mDisplayBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.mDisplayBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mDisplayBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mDisplayBox.FormattingEnabled = true;
             this.mDisplayBox.Items.AddRange(new object[] {
@@ -235,60 +236,67 @@ namespace Obi.ProjectView
             "elapsed (total)",
             "remaining",
             "remaining (total)"});
-            this.mDisplayBox.Location = new System.Drawing.Point(624, 3);
+            this.mDisplayBox.Location = new System.Drawing.Point(618, 6);
             this.mDisplayBox.Name = "mDisplayBox";
-            this.mDisplayBox.Size = new System.Drawing.Size(108, 23);
-            this.mDisplayBox.TabIndex = 10;
+            this.mDisplayBox.Size = new System.Drawing.Size(116, 23);
+            this.mDisplayBox.TabIndex = 14;
             this.mDisplayBox.SelectionChangeCommitted += new System.EventHandler(this.mDisplayBox_SelectionChangeCommitted);
             // 
             // ComboFastPlateRate
             // 
             this.ComboFastPlateRate.AccessibleName = "Fast Play Rate";
+            this.ComboFastPlateRate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ComboFastPlateRate.FormattingEnabled = true;
-            this.ComboFastPlateRate.Location = new System.Drawing.Point(1000, 0);
+            this.ComboFastPlateRate.ItemHeight = 13;
+            this.ComboFastPlateRate.Location = new System.Drawing.Point(950, 6);
             this.ComboFastPlateRate.Name = "ComboFastPlateRate";
-            this.ComboFastPlateRate.Size = new System.Drawing.Size(90, 21);
-            this.ComboFastPlateRate.TabIndex = 15;
+            this.ComboFastPlateRate.Size = new System.Drawing.Size(62, 21);
+            this.ComboFastPlateRate.TabIndex = 16;
             this.ComboFastPlateRate.SelectionChangeCommitted += new System.EventHandler(this.ComboFastPlateRate_SelectionChangeCommitted);
-            // 
-            // mVUMeterPanel
-            // 
-            this.mVUMeterPanel.BackColor = System.Drawing.Color.Transparent;
-            this.mVUMeterPanel.Location = new System.Drawing.Point(751, 0);
-            this.mVUMeterPanel.Name = "mVUMeterPanel";
-            this.mVUMeterPanel.Size = new System.Drawing.Size(204, 44);
-            this.mVUMeterPanel.TabIndex = 11;
-            this.mVUMeterPanel.VuMeter = null;
             // 
             // mNextPageButton
             // 
             this.mNextPageButton.AccessibleName = "Next Page";
-            this.mNextPageButton.Location = new System.Drawing.Point(389, 2);
+            this.mNextPageButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mNextPageButton.Location = new System.Drawing.Point(380, 0);
             this.mNextPageButton.Name = "mNextPageButton";
             this.mNextPageButton.Size = new System.Drawing.Size(32, 35);
-            this.mNextPageButton.TabIndex = 16;
+            this.mNextPageButton.TabIndex = 10;
+            this.mNextPageButton.Text = "P";
             this.mNextPageButton.UseVisualStyleBackColor = true;
             this.mNextPageButton.Click += new System.EventHandler(this.mNextPageButton_Click);
             // 
             // mPreviousPageButton
             // 
             this.mPreviousPageButton.AccessibleName = "Previous Page";
-            this.mPreviousPageButton.Location = new System.Drawing.Point(431, 2);
+            this.mPreviousPageButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mPreviousPageButton.Location = new System.Drawing.Point(38, 0);
             this.mPreviousPageButton.Name = "mPreviousPageButton";
             this.mPreviousPageButton.Size = new System.Drawing.Size(32, 35);
-            this.mPreviousPageButton.TabIndex = 17;
+            this.mPreviousPageButton.TabIndex = 1;
+            this.mPreviousPageButton.Text = "p";
             this.mPreviousPageButton.UseVisualStyleBackColor = true;
             this.mPreviousPageButton.Click += new System.EventHandler(this.mPreviousPageButton_Click);
             // 
             // mCustomClassMarkButton
             // 
-            this.mCustomClassMarkButton.Location = new System.Drawing.Point(1130, 0);
+            this.mCustomClassMarkButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mCustomClassMarkButton.Location = new System.Drawing.Point(456, 0);
             this.mCustomClassMarkButton.Name = "mCustomClassMarkButton";
-            this.mCustomClassMarkButton.Size = new System.Drawing.Size(40, 32);
-            this.mCustomClassMarkButton.TabIndex = 18;
-            this.mCustomClassMarkButton.Text = "Custom Class";
+            this.mCustomClassMarkButton.Size = new System.Drawing.Size(32, 35);
+            this.mCustomClassMarkButton.TabIndex = 12;
+            this.mCustomClassMarkButton.Text = "C";
             this.mCustomClassMarkButton.UseVisualStyleBackColor = true;
             this.mCustomClassMarkButton.Click += new System.EventHandler(this.mCustomClassMarkButton_Click);
+            // 
+            // mVUMeterPanel
+            // 
+            this.mVUMeterPanel.BackColor = System.Drawing.Color.Transparent;
+            this.mVUMeterPanel.Location = new System.Drawing.Point(740, 0);
+            this.mVUMeterPanel.Name = "mVUMeterPanel";
+            this.mVUMeterPanel.Size = new System.Drawing.Size(204, 44);
+            this.mVUMeterPanel.TabIndex = 15;
+            this.mVUMeterPanel.VuMeter = null;
             // 
             // TransportBar
             // 
@@ -313,7 +321,7 @@ namespace Obi.ProjectView
             this.Controls.Add(this.mPauseButton);
             this.Controls.Add(this.mPlayButton);
             this.Name = "TransportBar";
-            this.Size = new System.Drawing.Size(1230, 35);
+            this.Size = new System.Drawing.Size(1051, 35);
             this.ResumeLayout(false);
             this.PerformLayout();
 

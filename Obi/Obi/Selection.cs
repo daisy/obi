@@ -309,7 +309,7 @@ namespace Obi
         /// <summary>
         /// Since we're in the strip, section nodes cannot be pasted.
         /// </summary>
-        public override bool CanPaste(Clipboard clipboard) { return !(clipboard.Node is SectionNode); } 
+        public override bool CanPaste(Clipboard clipboard) { return clipboard != null && !(clipboard.Node is SectionNode); } 
 
         public int Index { get { return mIndex; } }
 

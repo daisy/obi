@@ -347,8 +347,8 @@ namespace Obi
         // A new presentation was loaded or created.
         private void GotNewPresentation()
         {
-            UpdateObi();
             mProjectView.Presentation = mSession.Presentation;
+            UpdateObi();
             mSession.Presentation.CommandExecuted += new UndoRedoEventHandler(Presentation_CommandExecuted);
             mSession.Presentation.CommandUnexecuted += new UndoRedoEventHandler(Presentation_CommandUnexecuted);
             UpdateCustomClassMenu();
@@ -556,6 +556,7 @@ namespace Obi
             UpdateTOCMenu();
             UpdateStripsMenu();
             UpdateBlocksMenu();
+            UpdateTransportMenu();
         }
 
         // Update the title and status bars to show the name of the project, and if it has unsaved changes
@@ -1086,14 +1087,6 @@ namespace Obi
         private void mPlayAllToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             mProjectView.TransportBar.Play();
-        }
-
-        /// <summary>
-        /// Play the current selection (phrase or section.)
-        /// </summary>
-        private void mPlaySelectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Play(mProjectView.SelectedNodeAs<ObiNode>());
         }
 
         /// <summary>
@@ -1684,6 +1677,23 @@ namespace Obi
                 mAddRoleToolStripTextBox.SelectedText = text;
                 mAddRoleToolStripTextBox.SelectAll();
             }
+        }
+
+        // Update the transport manu
+        private void UpdateTransportMenu()
+        {
+            mPlayAllToolStripMenuItem.Enabled = mProjectView.CanPlay;
+            mPlaySelectionToolStripMenuItem.Enabled = mProjectView.CanPlaySelection;
+        }
+
+        private void mPlayAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.CanPlay) mProjectView.TransportBar.Play();
+        }
+
+        private void mPlaySelectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.CanPlaySelection) mProjectView.TransportBar.Play(mProjectView.Selection.Node);
         }
     }
 }

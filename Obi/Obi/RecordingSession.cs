@@ -136,27 +136,25 @@ mSessionMedia                 = (ManagedAudioMedia)m_Presentation.getMediaFactor
             if (mRecorder.State != AudioRecorderState.Idle)
             {
                 bool wasRecording = mRecorder.State == AudioRecorderState.Recording;
-
                 if (wasRecording)
                 {
-                    FinishedPhrase();   // Avn:mRecorder.TimeOfAsset used in this will return time without exceptions if used before stopping recording     //tk 
+                    // Avn:mRecorder.TimeOfAsset used in this will return time without exceptions if used before stopping recording 
+                    FinishedPhrase();
                 }
-                    
                 mRecorder.StopRecording();
                 if (wasRecording)
                 {
-                                                                                // Split the session asset into smaller assets starting from the end
+                    // Split the session asset into smaller assets starting from the end
                     // (to keep the split times correct) until the second one
                     for (int i = mPhraseMarks.Count - 2; i >= 0; --i)
                     {
                         ManagedAudioMedia split = mSessionMedia.split(new urakawa.media.timing.Time(mPhraseMarks[i]));
-                        //mSessionMedia.getMediaData().getMediaDataManager().addMediaData(split.getMediaData());
                         mAudioList.Insert(mSessionOffset, split);
-                                            }
+                    }
                     // The first asset is what remains of the session asset
                     mAudioList.Insert(mSessionOffset, mSessionMedia);
                 }
-                            }
+            }
         }
 
         /// <summary>
