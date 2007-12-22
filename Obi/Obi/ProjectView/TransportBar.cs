@@ -876,11 +876,15 @@ namespace Obi.ProjectView
 
         urakawa.undo.CompositeCommand mRecordingCommand;
 
+        
+        private EmptyNode mRecordingEmptyNode = null;
+
         // Prepare for recording and return the corresponding recording command.
         private void PrepareForRecording(bool startRecording, ObiNode selected )
         {
                         if (!CanRecord) return;
             mRecordingCommand = CreateRecordingCommand();
+            mRecordingEmptyNode = null;
 
             if ( selected == null )
             selected = mView.SelectedNodeAs<ObiNode>();
@@ -925,6 +929,16 @@ namespace Obi.ProjectView
                 
                 mRecordingInitPhraseIndex =  1 + selected.Index;
             }
+            else if (selected is EmptyNode)
+            {
+                EmptyNode ENode = (EmptyNode)selected;
+                mRecordingSection = ENode.ParentAs<SectionNode>();
+                                mRecordingInitPhraseIndex = selected.Index;
+                                mRecordingEmptyNode = ENode;
+            }
+
+
+
             Settings settings = mView.ObiForm.Settings;
             mRecordingSession = new RecordingSession(mView.Presentation, mRecorder,
                 settings.AudioChannels, settings.SampleRate, settings.BitDepth);
@@ -939,9 +953,18 @@ namespace Obi.ProjectView
                     }
                     else
                     {
-                        mRecordingCommand.append(new Commands.Node.AddNode(mView, phrase, mRecordingSection,
-                            mRecordingInitPhraseIndex + _e.PhraseIndex));
-                        mView.Presentation.UndoRedoManager.execute(mRecordingCommand);
+                        if (mRecordingEmptyNode == null)
+                        {
+                            mRecordingCommand.append(new Commands.Node.AddNode(mView, phrase, mRecordingSection,
+                                                            mRecordingInitPhraseIndex + _e.PhraseIndex));
+                            mView.Presentation.UndoRedoManager.execute(mRecordingCommand);
+                        }
+                        else
+                        {
+                                                        mRecordingCommand.append(new Commands.Node.ReplaceEmptyNode(mView, mRecordingEmptyNode, phrase));
+                                                        mView.Presentation.UndoRedoManager.execute(mRecordingCommand);
+                            mRecordingEmptyNode = null;
+                                                    }
                     }
                 });
 
