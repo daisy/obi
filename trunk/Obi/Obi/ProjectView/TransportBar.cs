@@ -953,21 +953,24 @@ namespace Obi.ProjectView
                     }
                     else
                     {
-                        if (mRecordingEmptyNode == null)
+                        mRecordingCommand.append(new Commands.Node.AddNode(mView, phrase, mRecordingSection,
+                                                        mRecordingInitPhraseIndex + _e.PhraseIndex));
+                        if (mRecordingEmptyNode != null)
                         {
-                            mRecordingCommand.append(new Commands.Node.AddNode(mView, phrase, mRecordingSection,
-                                                            mRecordingInitPhraseIndex + _e.PhraseIndex));
-                            mView.Presentation.UndoRedoManager.execute(mRecordingCommand);
-                        }
-                        else
-                        {
-                                                        mRecordingCommand.append(new Commands.Node.ReplaceEmptyNode(mView, mRecordingEmptyNode, phrase));
-                                                        mView.Presentation.UndoRedoManager.execute(mRecordingCommand);
+                            phrase.CopyKind(mRecordingEmptyNode);
+                            phrase.Used = mRecordingEmptyNode.Used;
+                            mRecordingCommand.append(new Commands.Node.Delete(mView, mRecordingEmptyNode));
                             mRecordingEmptyNode = null;
-                                                    }
+                        }
+                        mView.Presentation.UndoRedoManager.execute(mRecordingCommand);
                     }
                 });
-
+            mRecordingSession.FinishingPhrase += new Obi.Events.Audio.Recorder.FinishingPhraseHandler(
+                delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)   
+                {
+                    PhraseNode phrase = (PhraseNode)mRecordingSection.PhraseChild(_e.PhraseIndex + mRecordingInitPhraseIndex);
+                    phrase.SignalAudioChanged(this, _e.Audio);
+                });
             mRecordingSession.FinishingPage += new Events.Audio.Recorder.FinishingPageHandler (
                 delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
                 {
@@ -981,6 +984,11 @@ namespace Obi.ProjectView
             {
                 StartListening();
             }
+        }
+
+        void mRecordingSession_FinishingPhrase(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e)
+        {
+            throw new Exception("The method or operation is not implemented.");
         }
 
         private void SetPageNumberWhileRecording( Obi.Events.Audio.Recorder.PhraseEventArgs  e )

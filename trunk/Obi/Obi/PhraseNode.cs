@@ -27,7 +27,11 @@ namespace Obi
         public ManagedAudioMedia Audio
         {
             get { return (ManagedAudioMedia)getProperty<ChannelsProperty>().getMedia(Presentation.AudioChannel); }
-            set { getProperty<ChannelsProperty>().setMedia(Presentation.AudioChannel, value); }
+            set
+            {
+                getProperty<ChannelsProperty>().setMedia(Presentation.AudioChannel, value);
+                if (NodeAudioChanged != null) NodeAudioChanged(this, new NodeEventArgs<PhraseNode>(this));
+            }
         }
 
         /// <summary>
@@ -84,6 +88,11 @@ namespace Obi
         public override string getXukLocalName()
         {
             return XUK_ELEMENT_NAME;
+        }
+
+        public void SignalAudioChanged(object sender, ManagedAudioMedia media)
+        {
+            if (NodeAudioChanged != null) NodeAudioChanged(sender, new NodeEventArgs<PhraseNode>(this));
         }
     }
 }
