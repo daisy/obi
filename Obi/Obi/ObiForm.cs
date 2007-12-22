@@ -621,6 +621,7 @@ namespace Obi
         void TransportBar_StateChanged(object sender, Obi.Events.Audio.Player.StateChangedEventArgs e)
         {
             Status(Localizer.Message(mProjectView.TransportBar.CurrentPlaylist.State.ToString()));
+            UpdateTransportMenu();
         }
 
         void TransportBar_PlaybackRateChanged(object sender, EventArgs e)
@@ -941,244 +942,8 @@ namespace Obi
             SynchronizeViews = mSettings.SynchronizeViews;
         }
 
-        /// <summary>
-        /// Update the title and status bar when the project is closed.
-        /// </summary>
-        private void StatusUpdateClosedProject()
-        {
-            /*this.Text = Localizer.Message("obi");
-            if (mProject == null)
-            {
-                Ready();
-            }
-            else
-            {
-                mStatusLabel.Text = String.Format(Localizer.Message("closed_project"), mProject.Title);
-                mProjectView.Project = null;
-                EnableItemsProjectClosed();
-            }*/
-        }
-
-        private void EnableItemsProjectClosed()
-        {
-        }
-
-        /// <summary>
-        /// Update the form (title and status bar) when a project is opened.
-        /// </summary>
-        private void FormUpdateOpenedProject()
-        {
-            /*this.Text = String.Format(Localizer.Message("title_bar"), mProject.Title);
-            Status(String.Format(Localizer.Message("opened_project"), mProject.XUKPath));*/
-        }
-
-        /// <summary>
-        /// Update the form (title and status bar) when the project is saved.
-        /// </summary>
-        private void FormUpdateSavedProject()
-        {
-            /*this.Text = String.Format(Localizer.Message("title_bar"), mProject.Title);
-            Status(String.Format(Localizer.Message("saved_project"), mProject.LastPath));*/
-        }
-
-        /// <summary>
-        /// Update the form (title and status bar) when the project is modified.
-        /// </summary>
-        private void FormUpdateModifiedProject()
-        {
-            /*this.Text = String.Format(Localizer.Message("title_bar"), mProject.Title + "*");
-            Ready();*/
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /// <summary>
-        /// Update the visibility and actual label of transport items.
-        /// </summary>
-        private void mTransportToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
-        {
-            UpdateEnabledItemsForTransportMenu();
-        }
-
-        private void UpdateEnabledItemsForTransportMenu()
-        {
-            /*bool isProjectOpen = mProject != null;
-            bool isNodeSelected = isProjectOpen && mProjectView.Selection != null;
-
-            mShowHideVUMeterToolStripMenuItem.Text = Localizer.Message((mVuMeterForm != null && mVuMeterForm.Visible) ? "hide_vu_meter" : "show_vu_meter");
-
-            if (mProjectView.TransportBar.IsInlineRecording)
-            {
-                mPlayAllToolStripMenuItem.Enabled = true;
-                mPlaySelectionToolStripMenuItem.Enabled = true;
-                mStopToolStripMenuItem.Enabled = true;
-            }
-            else
-            {
-
-                if (mProjectView.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
-                {
-                    mPlayAllToolStripMenuItem.Enabled = isProjectOpen;
-                    //mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
-                    mPlaySelectionToolStripMenuItem.Enabled = isNodeSelected;
-                    //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
-                    mStopToolStripMenuItem.Enabled = isNodeSelected;
-                }
-                else if (mProjectView.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.NotReady)
-                {
-                    mPlayAllToolStripMenuItem.Enabled = false;
-                    //mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
-                    mPlaySelectionToolStripMenuItem.Enabled = false;
-                    //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
-                    mStopToolStripMenuItem.Enabled = false;
-                }
-                else if (mProjectView.TransportBar._CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused)
-                {
-                    // Avn: changed to allowdirect change of Playback mode
-                    mPlayAllToolStripMenuItem.Enabled = true; // mProjectView.TransportBar._CurrentPlaylist.WholeBook;
-                    //mPlayAllToolStripMenuItem.Text = Localizer.Message("play_all");
-                    // Avn: changed to allowdirect change of Playback mode
-                    mPlaySelectionToolStripMenuItem.Enabled = (mProjectView.Selection != null);  // !mProjectView.TransportBar._CurrentPlaylist.WholeBook;
-                    //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("play");
-                    mStopToolStripMenuItem.Enabled = true;
-                }
-                else // playing
-                {
-                    // Avn: changed to allowdirect change of Playback mode
-                    mPlayAllToolStripMenuItem.Enabled = true; //mProjectView.TransportBar._CurrentPlaylist.WholeBook;
-                    //mPlayAllToolStripMenuItem.Text = Localizer.Message("pause_all");
-                    // Avn: changed to allowdirect change of Playback mode
-                    mPlaySelectionToolStripMenuItem.Enabled = (mProjectView.Selection != null);  // !mProjectView.TransportBar._CurrentPlaylist.WholeBook;
-                    //mPlaySelectionToolStripMenuItem.Text = Localizer.Message("pause");
-                    mStopToolStripMenuItem.Enabled = true;
-                }
-                mRecordToolStripMenuItem.Enabled = mProjectView.TransportBar.CanRecord;
-            }*/
-        }
-
-        internal void UndoLast()
-        {
-            /*if (mCommandManager.HasUndo)
-            {
-                mCommandManager.Undo();
-                //UpdateEnabledItemsForUndoRedo();
-            }*/
-        }
-
-        // Transport bar stuff
-
-        #region transport bar
-
-        /// <summary>
-        /// Play the whole book from the selected node, or from the beginning.
-        /// If already playing, pause.
-        /// </summary>
-        private void mPlayAllToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.Play();
-        }
-
-        /// <summary>
-        /// Play a single phrase node using the transport bar.
-        /// </summary>
-        private void Play(ObiNode node)
-        {
-            mProjectView.TransportBar.Play(node);
-        }
-
-        private void mPauseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.Pause();
-        }
-
-        /// <summary>
-        /// Stop playback.
-        /// </summary>
-        private void mStopToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            TransportBar_Stop();
-        }
-
-        private void TransportBar_Stop()
-        {
-            mProjectView.TransportBar.Stop();
-        }
-
-        /// <summary>
-        /// Record new assets.
-        /// </summary>
-        private void mRecordToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.Record();
-        }
-
-        #endregion
-
-        private void mRewindToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.Rewind();
-        }
-
-        private void mFastForwardToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.FastForward();
-        }
-
-        private void mPreviousSectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.PrevSection();
-        }
-
-        private void mPreviousPhraseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            TransportBar_PreviousPhrase();
-        }
-
-        private void TransportBar_PreviousPhrase()
-        {
-            if (mProjectView.TransportBar.CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
-            {
-            }
-            else
-            {
-                mProjectView.TransportBar.PrevPhrase();
-            }
-        }
-
-        private void mNextPhraseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            TransportBar_NextPhrase();
-        }
-
-        private void TransportBar_NextPhrase()
-        {
-            if (mProjectView.TransportBar.CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
-            {
-            }
-            else
-            {
-                mProjectView.TransportBar.NextPhrase();
-            }
-        }
-
-        private void mNextSectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.NextSection();
-        }
-
+        
         // Various utility functions
-
 
         private void mViewHelpInExternalBrowserToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1684,6 +1449,18 @@ namespace Obi
         {
             mPlayAllToolStripMenuItem.Enabled = mProjectView.CanPlay;
             mPlaySelectionToolStripMenuItem.Enabled = mProjectView.CanPlaySelection;
+            if (mProjectView.CanResume)
+            {
+                mPauseToolStripMenuItem.Visible = false;
+                mResumeToolStripMenuItem.Visible = true;
+            }
+            else
+            {
+                mPauseToolStripMenuItem.Visible = true;
+                mPauseToolStripMenuItem.Enabled = mProjectView.CanPause;
+                mResumeToolStripMenuItem.Visible = false;
+            }
+            mStopToolStripMenuItem.Enabled = mProjectView.CanStop;
         }
 
         private void mPlayAllToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1694,6 +1471,21 @@ namespace Obi
         private void mPlaySelectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mProjectView.CanPlaySelection) mProjectView.TransportBar.Play(mProjectView.Selection.Node);
+        }
+
+        private void mPauseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.CanPause) mProjectView.TransportBar.Pause();
+        }
+
+        private void mResumeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.CanResume) mProjectView.TransportBar.Play();
+        }
+
+        private void mStopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.CanStop) mProjectView.TransportBar.Stop();
         }
     }
 }

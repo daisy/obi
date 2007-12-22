@@ -95,18 +95,21 @@ namespace Obi.ProjectView
         public bool CanMoveSectionIn { get { return mTOCView.CanMoveSectionIn; } }
         public bool CanMoveSectionOut { get { return mTOCView.CanMoveSectionOut; } }
         public bool CanPaste { get { return mSelection != null && mSelection.CanPaste(mClipboard); } }
-        public bool CanPlay { get { return mTransportBar.Enabled; } }
+        public bool CanPause { get { return mTransportBar.CanPause; } }
+        public bool CanPlay { get { return mTransportBar.CanPlay || mTransportBar.CanResume; } }
         public bool CanPlaySelection { get { return CanPlay && mSelection != null && !(mSelection is TextSelection); } }
         public bool CanRemoveAudio { get { return mStripsView.CanRemoveAudio; } }
         public bool CanRemoveBlock { get { return mStripsView.CanRemoveBlock; } }
         public bool CanRemoveSection { get { return mTOCView.CanRemoveSection; } }
         public bool CanRemoveStrip { get { return mStripsView.CanRemoveStrip; } }
+        public bool CanResume { get { return mTransportBar.CanResume; } }
         public bool CanRenameSection { get { return mTOCView.CanRenameSection; } }
         public bool CanRenameStrip { get { return mStripsView.CanRenameStrip; } }
         public bool CanSetBlockUsedStatus { get { return mStripsView.CanSetBlockUsedStatus; } }
         public bool CanSetSectionUsedStatus { get { return mTOCView.CanSetSectionUsedStatus; } }
         public bool CanSetSelectedNodeUsedStatus { get { return CanSetSectionUsedStatus || CanSetBlockUsedStatus; } }
         public bool CanSplitStrip { get { return mStripsView.CanSplitStrip; } }
+        public bool CanStop { get { return mTransportBar.CanStop; } }
         
         /// <summary>
         /// Contents of the clipboard

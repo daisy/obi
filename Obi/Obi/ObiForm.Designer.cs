@@ -104,6 +104,7 @@ namespace Obi
             this.playToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlayAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlaySelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -116,7 +117,9 @@ namespace Obi
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusTimer = new System.Windows.Forms.Timer(this.components);
+            this.mResumeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.mStopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -756,7 +759,10 @@ namespace Obi
             // transportToolStripMenuItem
             // 
             this.transportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.playToolStripMenuItem});
+            this.playToolStripMenuItem,
+            this.mPauseToolStripMenuItem,
+            this.mResumeToolStripMenuItem,
+            this.mStopToolStripMenuItem});
             this.transportToolStripMenuItem.Name = "transportToolStripMenuItem";
             this.transportToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.transportToolStripMenuItem.Text = "T&ransport";
@@ -773,16 +779,26 @@ namespace Obi
             // mPlayAllToolStripMenuItem
             // 
             this.mPlayAllToolStripMenuItem.Name = "mPlayAllToolStripMenuItem";
-            this.mPlayAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mPlayAllToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Space)));
+            this.mPlayAllToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
             this.mPlayAllToolStripMenuItem.Text = "Play &all";
             this.mPlayAllToolStripMenuItem.Click += new System.EventHandler(this.mPlayAllToolStripMenuItem_Click);
             // 
-            // PlaySelectionToolStripMenuItem
+            // mPlaySelectionToolStripMenuItem
             // 
-            this.mPlaySelectionToolStripMenuItem.Name = "PlaySelectionToolStripMenuItem";
-            this.mPlaySelectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mPlaySelectionToolStripMenuItem.Name = "mPlaySelectionToolStripMenuItem";
+            this.mPlaySelectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.Space)));
+            this.mPlaySelectionToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
             this.mPlaySelectionToolStripMenuItem.Text = "Play &selection";
             this.mPlaySelectionToolStripMenuItem.Click += new System.EventHandler(this.mPlaySelectionToolStripMenuItem_Click);
+            // 
+            // mPauseToolStripMenuItem
+            // 
+            this.mPauseToolStripMenuItem.Name = "mPauseToolStripMenuItem";
+            this.mPauseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mPauseToolStripMenuItem.Text = "Pa&use";
+            this.mPauseToolStripMenuItem.Click += new System.EventHandler(this.mPauseToolStripMenuItem_Click);
             // 
             // mToolsToolStripMenuItem
             // 
@@ -879,6 +895,13 @@ namespace Obi
             this.mStatusLabel.Name = "mStatusLabel";
             this.mStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
+            // mResumeToolStripMenuItem
+            // 
+            this.mResumeToolStripMenuItem.Name = "mResumeToolStripMenuItem";
+            this.mResumeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mResumeToolStripMenuItem.Text = "Res&ume";
+            this.mResumeToolStripMenuItem.Click += new System.EventHandler(this.mResumeToolStripMenuItem_Click);
+            // 
             // mProjectView
             // 
             this.mProjectView.BackColor = System.Drawing.Color.Transparent;
@@ -897,6 +920,13 @@ namespace Obi
             this.mProjectView.TabIndex = 4;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
+            // 
+            // mStopToolStripMenuItem
+            // 
+            this.mStopToolStripMenuItem.Name = "mStopToolStripMenuItem";
+            this.mStopToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mStopToolStripMenuItem.Text = "&Stop";
+            this.mStopToolStripMenuItem.Click += new System.EventHandler(this.mStopToolStripMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -1012,6 +1042,9 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem playToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPlayAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPlaySelectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mPauseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mResumeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mStopToolStripMenuItem;
     }
 }
 
