@@ -18,7 +18,7 @@ Main form
     + [E] Export as DAISY ........... Ctrl+E
     ----------------------------------------------
     + [X] Exit ...................... Alt+F4
-  
+
   + [E] Edit
     + [U] Undo ...................... Ctrl+Z
     + [R] Redo ...................... Ctrl+Y
@@ -78,6 +78,11 @@ Main form
     + [C] Clear role ................ (None)
 
   + [R] Transport
+    + [P] Play ............................ (None)
+      + [A] Play all ...................... Ctrl+Space
+      + [S] Play selection ................ Ctrl+Shift+Space
+    + [U] Pause/Resume .................... (None)
+    + [S] Stop ............................ (None)
 
   + [T] Tools
 
@@ -86,6 +91,11 @@ Main form
     + [V] View help in external browser ... Shift+F1
     + [R] Report bug ...................... Ctrl+Shift+R
     + [A] About Obi ....................... (None)
+
+
+Transport bar
+
+  + Play button ........................... Ctrl+Space
 
 
 Index of shortcuts
@@ -102,6 +112,9 @@ Index of shortcuts
   + F7 ................. View > Focus on TOC view
   + Ctrl+Shift+Left .... TOC > Move section out
   + Ctrl+Shift+Right ... TOC > Move section in
+  + Ctrl+Space ......... Transport > Play > Play all
+  + Ctrl+Shift+Space ... Transport > Play > Play selection
+  + Space .............. Transport bar > play button
 
   + Ctrl+A ............. TOC > Add section
   + Ctrl+Shift+A ....... Blocks > Add empty block

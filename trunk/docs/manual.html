@@ -59,48 +59,42 @@
           <a href="#id18714">Transport bar and peak meter</a>
           <ul>
             <li>
-              <a href="#id18718">Controls</a>
+              <a href="#id18718">Transport bar buttons</a>
             </li>
             <li>
-              <a href="#id18721">Playback</a>
-            </li>
-            <li>
-              <a href="#id18725">Recording</a>
-            </li>
-            <li>
-              <a href="#id18728">Peak meter</a>
+              <a href="#id18786">Peak meter</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="#id18732">Menus</a>
+          <a href="#id18789">Menus</a>
           <ul>
             <li>
-              <a href="#id18735">File menu</a>
+              <a href="#id18793">File menu (<code>Alt+F</code>)</a>
             </li>
             <li>
-              <a href="#id18738">Edit menu (<code>Alt+E</code>)</a>
+              <a href="#id18836">Edit menu (<code>Alt+E</code>)</a>
             </li>
             <li>
-              <a href="#id19006">View menu (<code>Alt+V</code>)</a>
+              <a href="#id19104">View menu (<code>Alt+V</code>)</a>
             </li>
             <li>
-              <a href="#id19047">TOC menu (<code>Alt+C</code>)</a>
+              <a href="#id19144">TOC menu (<code>Alt+C</code>)</a>
             </li>
             <li>
-              <a href="#id19143">Strips menu</a>
+              <a href="#id19240">Strips menu</a>
             </li>
             <li>
-              <a href="#id19204">Blocks menu (<code>Alt+B</code>)</a>
+              <a href="#id19301">Blocks menu (<code>Alt+B</code>)</a>
             </li>
             <li>
-              <a href="#id19309">Transport menu</a>
+              <a href="#id19407">Transport menu (<code>Alt+R</code>)</a>
             </li>
             <li>
-              <a href="#id19313">Tools menu</a>
+              <a href="#id19461">Tools menu</a>
             </li>
             <li>
-              <a href="#id19316">Help menu</a>
+              <a href="#id19465">Help menu</a>
             </li>
           </ul>
         </li>
@@ -210,13 +204,52 @@ be directly edited by clicking them. When typing <code>Enter</code>, the new nam
 committed; typing <code>Esc</code> cancels the edit. Strips also have an <code>OK</code> and <code>Cancel</code>
 button which achieve the same effects.</p>
     <h2 id="id18714">Transport bar and peak meter</h2>
-    <h3 id="id18718">Controls</h3>
-    <h3 id="id18721">Playback</h3>
-    <h3 id="id18725">Recording</h3>
-    <h3 id="id18728">Peak meter</h3>
-    <h2 id="id18732">Menus</h2>
-    <h3 id="id18735">File menu</h3>
-    <h3 id="id18738">Edit menu (<code>Alt+E</code>)</h3>
+    <h3 id="id18718">Transport bar buttons</h3>
+    <ul>
+      <li>
+        <p><strong>Play button</strong> (<code>Ctrl+Space</code>): this button gives Play All command while
+starting playback from currently selected block in strip view or currently
+selected node in tree view.</p>
+        <ul>
+          <li>If there is no in phrase selection, (technically  termed as audio
+selection) this button starts playback from starting of selected block or
+selected tree node.</li>
+          <li>If there is Audio selection and cursor has a position marked inside
+phrase, this button starts playback from this cursor position.</li>
+          <li><span class="todo">TODO</span>: <code>Ctrl+Space</code> doesn't seem to work? And should play all;
+<code>Ctrl+Shift+Space</code> to play selection (see menu)?</li>
+        </ul>
+      </li>
+      <li>
+        <p><strong>Pause button</strong> (<code>Space</code>): pause both playback as well as recording (which
+ever is active). Pause position and cursor position are synchronised with
+each other so pause position also acts as cursor position for operations
+like split and insert recording.</p>
+      </li>
+      <li>
+        <p><strong>Stop button</strong>: stop playback or recording which ever is active.</p>
+      </li>
+    </ul>
+    <h3 id="id18786">Peak meter</h3>
+    <h2 id="id18789">Menus</h2>
+    <h3 id="id18793">File menu (<code>Alt+F</code>)</h3>
+    <p>Creating and opening projects:</p>
+    <ul>
+      <li>
+        <p><strong>New project</strong> (<code>Ctrl+N</code>): create a new project. If there is a project
+currently open, Obi will attempt to close it first. A dialog is shown where
+the user can enter a title for the project and choose a location for saving
+it. <span class="todo">TODO</span>: add instructions in the dialog.</p>
+      </li>
+      <li>
+        <p><strong>New project from import</strong> (<code>Ctrl+Shift+N</code>): create a new project by
+importing an XHTML file containing the structure of the project. You will
+have to choose a title (if different from the one given in the file) and
+a location for saving the project. <span class="todo">TODO</span>: better error handling (completely
+undo the import.)</p>
+      </li>
+    </ul>
+    <h3 id="id18836">Edit menu (<code>Alt+E</code>)</h3>
     <p>Obi stores all executed commands in an <em>undo stack</em> so that commands can be
 undone later. All commands executed since the current project was loaded are
 stored so an unlimited number of commands can be undone. Undone commands are
@@ -304,7 +337,7 @@ of section titles, the strip corresponding to the section is selected.)</p>
         </ul>
       </li>
     </ul>
-    <h3 id="id19006">View menu (<code>Alt+V</code>)</h3>
+    <h3 id="id19104">View menu (<code>Alt+V</code>)</h3>
     <ul>
       <li>
         <p><strong>Focus on Strips view</strong> (<code>F6</code>)</p>
@@ -318,7 +351,7 @@ release version.</p>
         </ul>
       </li>
     </ul>
-    <h3 id="id19047">TOC menu (<code>Alt+C</code>)</h3>
+    <h3 id="id19144">TOC menu (<code>Alt+C</code>)</h3>
     <p>The TOC menu provides operations on the table of contents.</p>
     <ul>
       <li>
@@ -358,7 +391,7 @@ parent section is used (or if it is a top-level section), as there cannot
 be used subsections of unused sections.</p>
       </li>
     </ul>
-    <h3 id="id19143">Strips menu</h3>
+    <h3 id="id19240">Strips menu</h3>
     <ul>
       <li>
         <p><strong>Rename strip</strong> (<code>F2</code>): start editing the label of the strip. The new name
@@ -382,7 +415,7 @@ possible.</p>
         <p><span class="todo">TODO</span>: add strip, depending on cursor or strip selection.</p>
       </li>
     </ul>
-    <h3 id="id19204">Blocks menu (<code>Alt+B</code>)</h3>
+    <h3 id="id19301">Blocks menu (<code>Alt+B</code>)</h3>
     <ul>
       <li>
         <p><strong>Add empty block</strong> (<code>Ctrl+Alt+A</code>): add a new empty block at the end of the
@@ -423,8 +456,26 @@ the block is currently used. Selecting this item toggles the used status of
 the block (from used to unused, and from unused to used.)</p>
       </li>
     </ul>
-    <h3 id="id19309">Transport menu</h3>
-    <h3 id="id19313">Tools menu</h3>
-    <h3 id="id19316">Help menu</h3>
+    <h3 id="id19407">Transport menu (<code>Alt+R</code>)</h3>
+    <ul>
+      <li>
+        <p><strong>Play</strong>: playback sub-menu.</p>
+        <ul>
+          <li><strong>Play all</strong> (Ctrl+Space): play from the current selection, or the
+beginning of the book if nothing is selected, until the end of the book is
+reached.</li>
+          <li><strong>Play selection</strong> (<code>Ctrl+Shift+Space</code>): play the current selection, or
+if a cursor is positionned inside a block, until the end of the block.</li>
+        </ul>
+      </li>
+      <li>
+        <p><strong>Pause/Resume</strong>: pause or resume playback.</p>
+      </li>
+      <li>
+        <p><strong>Stop</strong>: stop playback.</p>
+      </li>
+    </ul>
+    <h3 id="id19461">Tools menu</h3>
+    <h3 id="id19465">Help menu</h3>
   </body>
 </html>
