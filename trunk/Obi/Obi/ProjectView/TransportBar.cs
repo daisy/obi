@@ -98,6 +98,15 @@ namespace Obi.ProjectView
 
         public Audio.AudioPlayer AudioPlayer { get { return mPlayer; } }
 
+        public bool CanPause
+        {
+            get
+            {
+                return Enabled && (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing ||
+                    mRecorder.State == Obi.Audio.AudioRecorderState.Recording);
+            }
+        }
+
         public bool CanPlay
         {
             get { return Enabled && mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped && !IsInlineRecording; }
@@ -123,6 +132,18 @@ namespace Obi.ProjectView
                 return Enabled &&
                     mCurrentPlaylist.State == Audio.AudioPlayerState.Paused &&
                     !IsInlineRecording;
+            }
+        }
+
+        public bool CanStop
+        {
+            get
+            {
+                return Enabled && (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing ||
+                    mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused ||
+                    mRecorder.State == Obi.Audio.AudioRecorderState.Recording ||
+                    mRecorder.State == Obi.Audio.AudioRecorderState.Listening ||
+                    mView.Selection != null);
             }
         }
 
@@ -288,25 +309,8 @@ namespace Obi.ProjectView
         {
             mView.PlaybackBlock = null;
             mDisplayTime = 0.0;
-            /*
-            // Avn: condition added on 13 May 2007 
-            //to prevent focus from returning to initial position  after playback if focus is not in same view
-            if (IsSeriallyPlaying)
-            {
-                if (mPlayingFrom != null)
-                {
-                    if (mPlayingFrom.Control.GetType().FullName == "Obi.UserControls.TOCPanel"
-        && mProjectPanel.TOCPanel.ContainsFocus)
-                        mProjectPanel.CurrentSelection = mPlayingFrom;
-
-                    else if (mPlayingFrom.Control.GetType().FullName == "Obi.UserControls.StripManagerPanel"
-                    && mProjectPanel.StripManager.ContainsFocus)
-                        mProjectPanel.CurrentSelection = mPlayingFrom;
-                }
-                                            }
-            // Avn: statement added on 13 May 2007
-        m_IsSerialPlaying = false;
-             */
+            mView.Selection = mPlayingFrom;
+            mPlayingFrom = null;
         }
 
         #endregion
