@@ -508,6 +508,8 @@ namespace Obi.ProjectView
         PhraseNode m_ResumerecordingPhrase ;
         void PauseRecording()
         {
+            ResetTimeDisplayForFinishedRecording();
+
             mRecordingSession.Stop();
             for (int i = 0; i < mRecordingSession.RecordedAudio.Count; ++i)
             {
@@ -685,6 +687,9 @@ namespace Obi.ProjectView
         private void mDisplayTimer_Tick(object sender, EventArgs e)
         {
             UpdateTimeDisplay();
+
+            // Avn: Temprorary condition to avoid crash till recording starts working with waveform
+            if ( mRecordingSession == null )
             mView.UpdateCursorPosition(mCurrentPlaylist.CurrentTimeInAsset);
         }
 
@@ -695,26 +700,41 @@ namespace Obi.ProjectView
         /// </summary>
         public void UpdateTimeDisplay()
         {
-            if (Enabled && mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Stopped)
+            if (Enabled)
             {
-                if (mCurrentPlaylist.CurrentTimeInAsset > mDisplayTime)
+                // handle for recording
+                if (mRecordingSession != null)
                 {
-                    mDisplayTime = mCurrentPlaylist.CurrentTimeInAsset;
-                    mTimeDisplayBox.Text =
-                        mDisplayBox.SelectedIndex == Elapsed ?
-                            ObiForm.FormatTime_hh_mm_ss(mCurrentPlaylist.CurrentTimeInAsset) :
-                        mDisplayBox.SelectedIndex == ElapsedTotal ?
-                            ObiForm.FormatTime_hh_mm_ss(mCurrentPlaylist.CurrentTime) :
-                        mDisplayBox.SelectedIndex == Remain ?
-                            ObiForm.FormatTime_hh_mm_ss(mCurrentPlaylist.RemainingTimeInAsset) :
-                            ObiForm.FormatTime_hh_mm_ss(mCurrentPlaylist.RemainingTime);
+                    if (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Listening)
+                    {
+                        mTimeDisplayBox.Text = "Listening";
+                    }
+                    else if (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording)
+                    {
+                        mTimeDisplayBox.Text = ObiForm.FormatTime_hh_mm_ss(mRecordingSession.AudioRecorder.TimeOfAsset);
+                    }
+                }
+                // handle player time
+                else if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Stopped)
+                {
+                    if (mCurrentPlaylist.CurrentTimeInAsset > mDisplayTime)
+                    {
+                        mDisplayTime = mCurrentPlaylist.CurrentTimeInAsset;
+                        mTimeDisplayBox.Text =
+                            mDisplayBox.SelectedIndex == Elapsed ?
+                                ObiForm.FormatTime_hh_mm_ss(mCurrentPlaylist.CurrentTimeInAsset) :
+                            mDisplayBox.SelectedIndex == ElapsedTotal ?
+                                ObiForm.FormatTime_hh_mm_ss(mCurrentPlaylist.CurrentTime) :
+                            mDisplayBox.SelectedIndex == Remain ?
+                                ObiForm.FormatTime_hh_mm_ss(mCurrentPlaylist.RemainingTimeInAsset) :
+                                ObiForm.FormatTime_hh_mm_ss(mCurrentPlaylist.RemainingTime);
+                    }
+                }
+                else
+                {
+                    mTimeDisplayBox.Text = ObiForm.FormatTime_hh_mm_ss(0.0);
                 }
             }
-            else
-            {
-                mTimeDisplayBox.Text = ObiForm.FormatTime_hh_mm_ss(0.0);
-            }
-            //LNN: needs handling of inline recording time
         }
 
         /// <summary>
@@ -722,6 +742,13 @@ namespace Obi.ProjectView
         /// </summary>
         private void mDisplayBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            if (mRecordingSession != null)
+                mDisplayBox.SelectedIndex = mDisplayBox.Items.Count - 1;
+                            else if ( mDisplayBox.SelectedIndex == mDisplayBox.Items.Count - 1 )
+            {
+                mDisplayBox.SelectedIndex = mDisplayBox.SelectedIndex - 2;
+                                            }
+
             UpdateTimeDisplay();
             mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
         }
@@ -988,8 +1015,9 @@ namespace Obi.ProjectView
             {
                 StartListening();
             }
+            SetTimeDisplayForRecording();
         }
-
+        
         void mRecordingSession_FinishingPhrase(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e)
         {
             throw new Exception("The method or operation is not implemented.");
@@ -1001,6 +1029,21 @@ namespace Obi.ProjectView
                                                 urakawa.undo.ICommand cmd = new Commands.Node.SetPageNumber(mView,(EmptyNode)  mRecordingSection.PhraseChild (mRecordingInitPhraseIndex + e.PhraseIndex + 1 ) ,  PageNumber );
                                                 cmd.execute();
                                 }
+
+        private void SetTimeDisplayForRecording()
+        {
+                        mDisplayBox.SelectedIndex = mDisplayBox.Items.Count - 1;
+                        mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString () ;
+                        mDisplayTimer.Start();
+        }
+
+        public void ResetTimeDisplayForFinishedRecording()
+        {
+            mDisplayTimer.Stop();
+            mDisplayBox.SelectedIndex = 0;
+            mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
+            mTimeDisplayBox.Text = ObiForm.FormatTime_hh_mm_ss(0);
+        }
 
         // Start listening
         private void StartListening()
@@ -1023,6 +1066,8 @@ namespace Obi.ProjectView
                 DisablePlaybackButtonsForRecording();
                 mRecordingSession.Record();
                 mRecordButton.Enabled = false;
+
+                SetTimeDisplayForRecording();
             }
         }
 
@@ -1033,6 +1078,9 @@ namespace Obi.ProjectView
                 (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Listening ||
                 mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording))
             {
+                ResetTimeDisplayForFinishedRecording();
+                                                                
+
                 mRecordingSession.Stop();
                 // update phrases with audio assets
                 for (int i = 0; i < mRecordingSession.RecordedAudio.Count; ++i)

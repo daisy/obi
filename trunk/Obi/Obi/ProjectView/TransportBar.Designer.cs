@@ -235,7 +235,8 @@ namespace Obi.ProjectView
             "elapsed",
             "elapsed (total)",
             "remaining",
-            "remaining (total)"});
+            "remaining (total)",
+            "Recording Time"});
             this.mDisplayBox.Location = new System.Drawing.Point(618, 6);
             this.mDisplayBox.Name = "mDisplayBox";
             this.mDisplayBox.Size = new System.Drawing.Size(116, 23);
