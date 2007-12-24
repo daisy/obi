@@ -105,6 +105,20 @@ namespace Obi
             this.mPlayAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlaySelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mResumeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mStopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mStartListeningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mStartRecordingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.allowOverwriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.navigationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.previousSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.previousPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.previousPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nextPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nextPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nextSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -117,9 +131,9 @@ namespace Obi
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusTimer = new System.Windows.Forms.Timer(this.components);
-            this.mResumeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.mStopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rewindToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fastForwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -762,7 +776,12 @@ namespace Obi
             this.playToolStripMenuItem,
             this.mPauseToolStripMenuItem,
             this.mResumeToolStripMenuItem,
-            this.mStopToolStripMenuItem});
+            this.mStopToolStripMenuItem,
+            this.recordToolStripMenuItem,
+            this.toolStripSeparator5,
+            this.navigationToolStripMenuItem,
+            this.rewindToolStripMenuItem,
+            this.fastForwardToolStripMenuItem});
             this.transportToolStripMenuItem.Name = "transportToolStripMenuItem";
             this.transportToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.transportToolStripMenuItem.Text = "T&ransport";
@@ -799,6 +818,104 @@ namespace Obi
             this.mPauseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.mPauseToolStripMenuItem.Text = "Pa&use";
             this.mPauseToolStripMenuItem.Click += new System.EventHandler(this.mPauseToolStripMenuItem_Click);
+            // 
+            // mResumeToolStripMenuItem
+            // 
+            this.mResumeToolStripMenuItem.Name = "mResumeToolStripMenuItem";
+            this.mResumeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mResumeToolStripMenuItem.Text = "Res&ume";
+            this.mResumeToolStripMenuItem.Click += new System.EventHandler(this.mResumeToolStripMenuItem_Click);
+            // 
+            // mStopToolStripMenuItem
+            // 
+            this.mStopToolStripMenuItem.Name = "mStopToolStripMenuItem";
+            this.mStopToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mStopToolStripMenuItem.Text = "&Stop";
+            this.mStopToolStripMenuItem.Click += new System.EventHandler(this.mStopToolStripMenuItem_Click);
+            // 
+            // recordToolStripMenuItem
+            // 
+            this.recordToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mStartListeningToolStripMenuItem,
+            this.mStartRecordingToolStripMenuItem,
+            this.allowOverwriteToolStripMenuItem});
+            this.recordToolStripMenuItem.Name = "recordToolStripMenuItem";
+            this.recordToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.recordToolStripMenuItem.Text = "&Record";
+            // 
+            // mStartListeningToolStripMenuItem
+            // 
+            this.mStartListeningToolStripMenuItem.Name = "mStartListeningToolStripMenuItem";
+            this.mStartListeningToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mStartListeningToolStripMenuItem.Text = "Start &listening";
+            // 
+            // mStartRecordingToolStripMenuItem
+            // 
+            this.mStartRecordingToolStripMenuItem.Name = "mStartRecordingToolStripMenuItem";
+            this.mStartRecordingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mStartRecordingToolStripMenuItem.Text = "Start &recording";
+            // 
+            // allowOverwriteToolStripMenuItem
+            // 
+            this.allowOverwriteToolStripMenuItem.Checked = true;
+            this.allowOverwriteToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.allowOverwriteToolStripMenuItem.Name = "allowOverwriteToolStripMenuItem";
+            this.allowOverwriteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.allowOverwriteToolStripMenuItem.Text = "Allow &overwrite";
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
+            // 
+            // navigationToolStripMenuItem
+            // 
+            this.navigationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.previousSectionToolStripMenuItem,
+            this.previousPageToolStripMenuItem,
+            this.previousPhraseToolStripMenuItem,
+            this.nextPhraseToolStripMenuItem,
+            this.nextPageToolStripMenuItem,
+            this.nextSectionToolStripMenuItem});
+            this.navigationToolStripMenuItem.Name = "navigationToolStripMenuItem";
+            this.navigationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.navigationToolStripMenuItem.Text = "&Navigation";
+            // 
+            // previousSectionToolStripMenuItem
+            // 
+            this.previousSectionToolStripMenuItem.Name = "previousSectionToolStripMenuItem";
+            this.previousSectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.previousSectionToolStripMenuItem.Text = "Previous section";
+            // 
+            // previousPageToolStripMenuItem
+            // 
+            this.previousPageToolStripMenuItem.Name = "previousPageToolStripMenuItem";
+            this.previousPageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.previousPageToolStripMenuItem.Text = "Previous page";
+            // 
+            // previousPhraseToolStripMenuItem
+            // 
+            this.previousPhraseToolStripMenuItem.Name = "previousPhraseToolStripMenuItem";
+            this.previousPhraseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.previousPhraseToolStripMenuItem.Text = "Previous phrase";
+            // 
+            // nextPhraseToolStripMenuItem
+            // 
+            this.nextPhraseToolStripMenuItem.Name = "nextPhraseToolStripMenuItem";
+            this.nextPhraseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nextPhraseToolStripMenuItem.Text = "Next phrase";
+            // 
+            // nextPageToolStripMenuItem
+            // 
+            this.nextPageToolStripMenuItem.Name = "nextPageToolStripMenuItem";
+            this.nextPageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nextPageToolStripMenuItem.Text = "Next page";
+            // 
+            // nextSectionToolStripMenuItem
+            // 
+            this.nextSectionToolStripMenuItem.Name = "nextSectionToolStripMenuItem";
+            this.nextSectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nextSectionToolStripMenuItem.Text = "Next section";
             // 
             // mToolsToolStripMenuItem
             // 
@@ -895,13 +1012,6 @@ namespace Obi
             this.mStatusLabel.Name = "mStatusLabel";
             this.mStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
-            // mResumeToolStripMenuItem
-            // 
-            this.mResumeToolStripMenuItem.Name = "mResumeToolStripMenuItem";
-            this.mResumeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.mResumeToolStripMenuItem.Text = "Res&ume";
-            this.mResumeToolStripMenuItem.Click += new System.EventHandler(this.mResumeToolStripMenuItem_Click);
-            // 
             // mProjectView
             // 
             this.mProjectView.BackColor = System.Drawing.Color.Transparent;
@@ -921,12 +1031,17 @@ namespace Obi
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
             // 
-            // mStopToolStripMenuItem
+            // rewindToolStripMenuItem
             // 
-            this.mStopToolStripMenuItem.Name = "mStopToolStripMenuItem";
-            this.mStopToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.mStopToolStripMenuItem.Text = "&Stop";
-            this.mStopToolStripMenuItem.Click += new System.EventHandler(this.mStopToolStripMenuItem_Click);
+            this.rewindToolStripMenuItem.Name = "rewindToolStripMenuItem";
+            this.rewindToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rewindToolStripMenuItem.Text = "Re&wind";
+            // 
+            // fastForwardToolStripMenuItem
+            // 
+            this.fastForwardToolStripMenuItem.Name = "fastForwardToolStripMenuItem";
+            this.fastForwardToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fastForwardToolStripMenuItem.Text = "&Fast forward";
             // 
             // ObiForm
             // 
@@ -1045,6 +1160,20 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mPauseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mResumeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mStopToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem recordToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mStartListeningToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mStartRecordingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem allowOverwriteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem navigationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem previousSectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem previousPageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem previousPhraseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nextPhraseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nextPageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nextSectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rewindToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fastForwardToolStripMenuItem;
     }
 }
 

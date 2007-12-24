@@ -56,13 +56,47 @@ namespace Obi.ProjectView
             {
                 if (mView != null) throw new Exception("Cannot set the project view again!");
                 mView = value;
+                if (mView != null)
+                {
+                    mView.SelectionChanged += new EventHandler(View_SelectionChanged);
+                }
             }
+        }
+
+        // TODO: Update what's playing when the selection changes
+        // Right now, selection is ignored when the transport bar is active
+        private void View_SelectionChanged(object sender, EventArgs e)
+        {
         }
 
         public void NewPresentation()
         {
             mPlayingFrom = null;
             mMasterPlaylist.Presentation = mView.Presentation;
+            mView.Presentation.treeNodeAdded += new urakawa.core.events.TreeNodeAddedEventHandler(Presentation_treeNodeAdded);
+            mView.Presentation.treeNodeRemoved += new urakawa.core.events.TreeNodeRemovedEventHandler(Presentation_treeNodeRemoved);
+            mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
+        }
+
+        // Stop when the tree is modified.
+        // TODO be more clever about this.
+        void Presentation_treeNodeAdded(object o, urakawa.core.events.TreeNodeAddedEventArgs e)
+        {
+            if (IsActive) Stop();
+        }
+
+        // Stop when the tree is modified.
+        // TODO be more clever about this.
+        void Presentation_treeNodeRemoved(object o, urakawa.core.events.TreeNodeRemovedEventArgs e)
+        {
+            if (IsActive) Stop();
+        }
+
+        // Stop when the tree is modified.
+        // TODO be more clever about this.
+        void Presentation_UsedStatusChanged(object sender, NodeEventArgs<ObiNode> e)
+        {
+            if (IsActive) Stop();
         }
 
         /// <summary>
@@ -1140,55 +1174,52 @@ namespace Obi.ProjectView
                 }
         }
 
-        private void mCustomClassMarkButton_Click(object sender, EventArgs e)
+        private bool IsRecording
         {
-            MarkCustomClass();
+            get
+            {
+                return mRecordingSession != null &&
+                    mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording;
+            }
         }
+
+        private bool IsListening
+        {
+            get
+            {
+                return mRecordingSession != null &&
+                    mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Listening;
+            }
+        }
+
+        public bool IsActive { get { return IsPlayerActive || IsRecorderActive; } }
+        private bool IsPlaying { get { return mPlayer.State == Obi.Audio.AudioPlayerState.Playing; } }
+        private bool IsPlayerActive { get { return IsPaused || IsPlaying; } }
+        private bool IsPaused { get { return mPlayer.State == Obi.Audio.AudioPlayerState.Paused; } }
+        private bool IsRecorderActive { get { return IsListening || IsRecording; } }
+
+        private void mCustomClassMarkButton_Click(object sender, EventArgs e) { MarkCustomClass(); }
 
         /// <summary>
         /// Mark custom class on current block with default name as "Custom"
         /// If recording, create new phrase and mark custom class this new phrase block
         /// else mark on currently selected block
-                /// </summary>
+        /// </summary>
         public void MarkCustomClass()
         {
-            EmptyNode ENode;
-            if (mRecordingSession != null
-                &&     mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording )
+            EmptyNode node;
+            if (IsRecording)
             {
                 NextPhrase();
-                ENode = (EmptyNode)   mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);
+                node = mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);
             }
             else
             {
-                ENode = mView.SelectedNodeAs<EmptyNode>();
-                            }
-                                                                                                                mView.Presentation.UndoRedoManager.execute(new Commands.Node.ChangeCustomType(mView, ENode, EmptyNode.Kind.Custom,Localizer.Message ("Default_CustomClassName") ));
-                    }
-
-/*                // the following closures handle the various events sent during the recording session
-                mRecordingSession.ContinuingPhrase += new Events.Audio.Recorder.ContinuingPhraseHandler(
-                    delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
-                    {
-                        // mProjectPanel.Project.RecordingPhraseUpdate(_e, section, index + _e.PhraseIndex);
-                    }
-                );
-                mRecordingSession.FinishingPhrase += new Events.Audio.Recorder.FinishingPhraseHandler(
-                    delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
-                    {
-                        // mProjectPanel.Project.RecordingPhraseUpdate(_e, section, index + _e.PhraseIndex);
-                        mMasterPlaylist.UpdateTimeFrom(m_RecordingSection.PhraseChild(m_RecordingInitPhraseIndex + _e.PhraseIndex).PreviousPhraseInProject);
-                    }
-                );
-                mRecordingSession.FinishingPage += new Events.Audio.Recorder.FinishingPageHandler(
-                    delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
-                    {
-                        // PhraseNode _node = section.PhraseChild(index + _e.PhraseIndex);
-                        // mProjectPanel.Project.DidSetPageNumberOnPhrase(_node);
-                    }
-                );
+                node = mView.SelectedNodeAs<EmptyNode>();
             }
-        } */
+            mView.Presentation.UndoRedoManager.execute(new Commands.Node.ChangeCustomType(mView, node,
+                EmptyNode.Kind.Custom, Localizer.Message("default_custom_class_name")));
+        }
 
         #endregion
     }

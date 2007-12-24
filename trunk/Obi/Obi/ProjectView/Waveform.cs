@@ -12,8 +12,8 @@ namespace Obi.ProjectView
 {
     public partial class Waveform : Control
     {
-        private AudioMediaData mAudio;         // audio data to draw
-        private Bitmap mBitmap;                // cached bitmap of the waveform
+        private AudioMediaData mAudio;  // audio data to draw
+        private Bitmap mBitmap;         // cached bitmap of the waveform
         private AudioRange mSelection;  // selection in the waveform
 
         private static readonly Pen Channel1Pen = new Pen(Color.FromArgb(128, 0, 0, 255));
@@ -34,6 +34,78 @@ namespace Obi.ProjectView
             mSelection = null;
         }
 
+
+        /// <summary>
+        /// Set the cursor position for selection.
+        /// When playback is active, don't do anything.
+        /// </summary>
+        public int CursorPosition
+        {
+            get { return XFromTime(mSelection.CursorTime); }
+            set
+            {
+                if (((AudioBlock)Parent).CanSelectInWaveform)
+                {
+                    mSelection = new AudioRange(TimeFromX(value));
+                    Invalidate();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Set the cursor time (during playback only.)
+        /// </summary>
+        public double CursorTime
+        {
+            set
+            {
+                mSelection.CursorTime = value;
+                Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// Clear the current selection in the waveform.
+        /// </summary>
+        public void Deselect()
+        {
+            mSelection = null;
+            Invalidate();
+        }
+
+        /// <summary>
+        /// Get or set the final position of the selection (in pixels.)
+        /// Ignored if the transport bar is active.
+        /// </summary>
+        public int FinalSelectionPosition
+        {
+            get { return XFromTime(mSelection.SelectionEndTime); }
+            set
+            {
+                if (((AudioBlock)Parent).CanSelectInWaveform)
+                {
+                    double start = mSelection.CursorTime;
+                    double end = TimeFromX(value);
+                    if (start == end)
+                    {
+                        mSelection.HasCursor = true;
+                    }
+                    else
+                    {
+                        mSelection.HasCursor = false;
+                        mSelection.SelectionBeginTime = Math.Min(start, end);
+                        mSelection.SelectionEndTime = Math.Max(start, end);
+                    }
+                    Invalidate();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get the initial position of the selection (in pixels.)
+        /// </summary>
+        public int InitialSelectionPosition { get { return XFromTime(mSelection.SelectionBeginTime); } }
+
         /// <summary>
         /// Set the audio data to be displayed
         /// </summary>
@@ -46,104 +118,18 @@ namespace Obi.ProjectView
             }
         }
 
+        /// <summary>
+        /// Get or set the audio range selection in the waveform.
+        /// </summary>
         public AudioRange Selection
         {
             get { return mSelection; }
             set { mSelection = value; }
         }
 
-        public void Deselect()
-        {
-            mSelection = null;
-            Invalidate();
-        }
-
-        protected override void OnPaint(PaintEventArgs pe)
-        {
-            if (mBitmap != null) pe.Graphics.DrawImage(mBitmap, new Point(0, 0));
-            if (mSelection != null)
-            {
-                if (mSelection.HasCursor)
-                {
-                    pe.Graphics.DrawLine(CursorPen, new Point(CursorPosition, 0), new Point(CursorPosition, Height - 1));
-                }
-                else
-                {
-                    pe.Graphics.FillRectangle(SelectionBrush, InitialSelectionPosition, 0, FinalSelectionPosition - InitialSelectionPosition, Height);
-                }
-            }
-            base.OnPaint(pe);
-        }
-
-        public double CursorTime
-        {
-            set
-            {
-                mSelection.CursorTime = value;
-                Invalidate();
-            }
-        }
-
-        public int CursorPosition
-        {
-            get { return XFromTime(mSelection.CursorTime); }
-            set
-            {
-                mSelection = new AudioRange(TimeFromX(value));
-                Invalidate();
-            }
-        }
-
-        public int InitialSelectionPosition { get { return XFromTime(mSelection.SelectionBeginTime); } }
-
-        public int FinalSelectionPosition
-        {
-            get { return XFromTime(mSelection.SelectionEndTime); }
-            set
-            {
-                double start = mSelection.CursorTime;
-                double end = TimeFromX(value);
-                if (start == end)
-                {
-                    mSelection.HasCursor = true;
-                }
-                else
-                {
-                    mSelection.HasCursor = false;
-                    mSelection.SelectionBeginTime = Math.Min(start, end);
-                    mSelection.SelectionEndTime = Math.Max(start, end);
-                }
-                Invalidate();
-            }
-        }
-
-        private int XFromTime(double time)
-        {
-            return (int)Math.Round(time / mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat() * Width);
-        }
-
-        private double TimeFromX(int x)
-        {
-            return x * mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat() / Width;
-        }
-
-        private void Waveform_SizeChanged(object sender, EventArgs e) { UpdateWaveform(); }
-
-        // Update the waveform bitmap with the new size
-        private void UpdateWaveform()
-        {
-            if (Width > 0 && Height > 0)
-            {
-                mBitmap = new Bitmap(Width, Height);
-                Graphics g = Graphics.FromImage(mBitmap);
-                g.Clear(Color.White);
-                g.DrawLine(Pens.BlueViolet, new Point(0, Height / 2), new Point(Width - 1, Height / 2));
-                if (mAudio != null) DrawWaveform(g);
-                Invalidate();
-            }
-        }
 
         // Draw the waveform in a graphics
+        // TODO: handle other bit depths than 16 bit.
         private void DrawWaveform(Graphics g)
         {
             PCMFormatInfo format = mAudio.getPCMFormat();
@@ -186,5 +172,51 @@ namespace Obi.ProjectView
                 }
             }
         }
+
+        // Repaint the waveform bitmap.
+        protected override void OnPaint(PaintEventArgs pe)
+        {
+            if (mBitmap != null) pe.Graphics.DrawImage(mBitmap, new Point(0, 0));
+            if (mSelection != null)
+            {
+                if (mSelection.HasCursor)
+                {
+                    pe.Graphics.DrawLine(CursorPen, new Point(CursorPosition, 0), new Point(CursorPosition, Height - 1));
+                }
+                else
+                {
+                    pe.Graphics.FillRectangle(SelectionBrush, InitialSelectionPosition, 0, FinalSelectionPosition - InitialSelectionPosition, Height);
+                }
+            }
+            base.OnPaint(pe);
+        }
+
+        // Convert a pixel position into a time (in ms.)
+        private double TimeFromX(int x)
+        {
+            return x * mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat() / Width;
+        }
+
+        // Redraw the waveform to fit the available size.
+        private void UpdateWaveform()
+        {
+            if (Width > 0 && Height > 0)
+            {
+                mBitmap = new Bitmap(Width, Height);
+                Graphics g = Graphics.FromImage(mBitmap);
+                g.Clear(Color.White);
+                g.DrawLine(Pens.BlueViolet, new Point(0, Height / 2), new Point(Width - 1, Height / 2));
+                if (mAudio != null) DrawWaveform(g);
+                Invalidate();
+            }
+        }
+
+        // Convert a time (in ms) to a pixel position.
+        private int XFromTime(double time)
+        {
+            return (int)Math.Round(time / mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat() * Width);
+        }
+
+        private void Waveform_SizeChanged(object sender, EventArgs e) { UpdateWaveform(); }
     }
 }
