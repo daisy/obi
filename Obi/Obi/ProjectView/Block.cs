@@ -18,80 +18,41 @@ namespace Obi.ProjectView
         {
             mNode = node;
             mParentContainer = parent;
-            CustomClassLabel = CustomClassLabelFromNode;
             mSelected = false;
-            mTimeLabel.Text = "0s";
             node.ChangedKind += new EmptyNode.ChangedKindEventHandler(node_ChangedKind);
             node.ChangedPageNumber += new NodeEventHandler<EmptyNode>(node_ChangedPageNumber);
             UpdateColors();
-            if (parent != null) UpdateAccessibleName();
+            UpdateLabel();
         }
 
         public Block() { InitializeComponent(); }
 
 
-        protected virtual void UpdateAccessibleName()
+        // Generate the label string for this block.
+        protected virtual void UpdateLabel()
+        {
+            string name = mNode.NodeKind == EmptyNode.Kind.Plain ? Localizer.Message("empty_block") :
+                mNode.NodeKind == EmptyNode.Kind.Page ? String.Format(Localizer.Message("page_number"), mNode.PageNumber) :
+                String.Format(Localizer.Message("kind_block"),
+                    mNode.NodeKind == EmptyNode.Kind.Custom ? mNode.CustomClass : mNode.NodeKind.ToString());
+            mLabel.Text = name;
+            AccessibleName = name;
+        }
+
+        /*protected virtual void UpdateAccessibleName()
         {
             AccessibleName = mCustomClassLabel.Text + String.Format(Localizer.Message("audio_accessible_name"),
                 mNode.Index + 1, mNode.ParentAs<ObiNode>().PhraseChildCount);
-        }
+        }*/
 
-        private string CustomClassLabelFromNode
-        {
-            get
-            {
-                return mNode.NodeKind == EmptyNode.Kind.Plain ? null :
-                    mNode.NodeKind == EmptyNode.Kind.Custom ? mNode.CustomClass :
-                    mNode.NodeKind == EmptyNode.Kind.Page ? String.Format(Localizer.Message("page_number"), mNode.PageNumber) :
-                        Localizer.Message(mNode.NodeKind.ToString());
-            }
-        }
-
-        // Update the class label with the new page number
-        private void node_ChangedPageNumber(object sender, NodeEventArgs<EmptyNode> e)
-        {
-            CustomClassLabel = CustomClassLabelFromNode;
-        }
-
-        // Update the class label with the new kind of node
-        private void node_ChangedKind(object sender, ChangedKindEventArgs e)
-        {
-            CustomClassLabel = CustomClassLabelFromNode;
-        }
-
-        public string CustomClassLabel
-        {
-            set
-            {
-                if (value == null)
-                {
-                    mCustomClassLabel.Text = "";
-                    mCustomClassLabel.Visible = false;
-                }
-                else
-                {
-                    mCustomClassLabel.Text = value;
-                    mCustomClassLabel.Visible = true;
-                }
-                UpdateAccessibleName();
-            }
-            get { return mCustomClassLabel.Text; }
-        }
+        private void node_ChangedPageNumber(object sender, NodeEventArgs<EmptyNode> e) { UpdateLabel(); }
+        private void node_ChangedKind(object sender, ChangedKindEventArgs e) { UpdateLabel(); }
 
         /// <summary>
         /// The phrase node for this block.
         /// </summary>
         public EmptyNode Node { get { return mNode; } }
         public ObiNode ObiNode { get { return mNode; } }
-
-        /// <summary>
-        /// The time label control
-        /// </summary>
-        public string TimeLabel
-        {
-            get { return mTimeLabel.Text; }
-            set { mTimeLabel.Text = value; }
-        }
 
         /// <summary>
         /// Set the selected flag for the block.
@@ -168,14 +129,13 @@ namespace Obi.ProjectView
                 System.Diagnostics.Debug.Print("No.");
             }
         }
-        private void mTimeLabel_Click(object sender, EventArgs e) { Strip.SelectedBlock = this; }
-        private void mCustomKindLabel_Click(object sender, EventArgs e) { Strip.SelectedBlock = this; }
+        private void mLabel_Click(object sender, EventArgs e) { Strip.SelectedBlock = this; }
 
         #region ISearchable Members
 
         public bool Matches(string search)
         {
-            return FindInText.Match(this.CustomClassLabel, search);
+            return FindInText.Match(this.mLabel.Text, search);
         }
 
         public void Replace(string search, string replace)

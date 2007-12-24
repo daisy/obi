@@ -40,7 +40,7 @@ namespace Obi.ProjectView
                 PhraseNode phrase = Node.PhraseChild(i) as PhraseNode;
                 if (phrase != null) time += phrase.Audio.getDuration().getTimeDeltaAsMillisecondFloat();
             }
-            TimeLabel = String.Format("{0:0.00}s", time / 1000);
+            //TimeLabel = String.Format("{0:0.00}s", time / 1000);
         }
 
         private void UpdateWidth()

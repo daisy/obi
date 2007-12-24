@@ -187,7 +187,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to audio block.
+        ///   Looks up a localized string similar to Audio block.
         /// </summary>
         internal static string audio_block {
             get {
@@ -749,6 +749,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Empty block.
+        /// </summary>
+        internal static string empty_block {
+            get {
+                return ResourceManager.GetString("empty_block", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exporting to a non-empty directory.
         /// </summary>
         internal static string empty_directory_caption {
@@ -1035,6 +1044,15 @@ namespace Obi {
         internal static string init_error_title {
             get {
                 return ResourceManager.GetString("init_error_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} block.
+        /// </summary>
+        internal static string kind_block {
+            get {
+                return ResourceManager.GetString("kind_block", resourceCulture);
             }
         }
         

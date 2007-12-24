@@ -24,21 +24,30 @@ namespace Obi.ProjectView
         public bool CanSelectInWaveform { get { return !((ObiForm)ParentForm).IsTransportActive; } }
 
 
-        protected override void UpdateAccessibleName()
+        protected override void UpdateLabel()
         {
-            base.UpdateAccessibleName();
-            if (mWaveform != null) mWaveform.AccessibleName = AccessibleName;
+            base.UpdateLabel();
+            mLabel.Text = String.Format("{0} ({1:0.00}s)",
+                Node.NodeKind == EmptyNode.Kind.Plain ? Localizer.Message("audio_block") : mLabel.Text,
+                ((PhraseNode)Node).Audio.getDuration().getTimeDeltaAsMillisecondFloat() / 1000);
+            AccessibleName = mLabel.Text;
+            int w = mLabel.Margin.Left + mLabel.Width + mLabel.Margin.Right;
+            if (mWaveform == null || w > mWaveform.Margin.Left + mWaveform.Width + mWaveform.Margin.Right)
+            {
+                Size = new Size(w, Height);
+                if (mWaveform != null) mWaveform.Width = w;
+            }
         }
 
         private void SetWaveform(PhraseNode node)
         {
             mWaveform.AccessibleName = AccessibleName;
             long time = node.Audio.getDuration().getTimeDeltaAsMilliseconds();
-            mWaveform.Width = (int)Math.Round(time * AUDIO_SCALE);
+            int w = (int)Math.Round(time * AUDIO_SCALE);
+            mWaveform.Width = w < mLabel.Width ? mLabel.Width : w;
             mWaveform.Media = node.Audio.getMediaData();
-            TimeLabel = String.Format("{0:0.00}s",
-            ((PhraseNode)Node).Audio.getDuration().getTimeDeltaAsMillisecondFloat() / 1000);
-            Size = new Size(mWaveform.Width + mWaveform.Margin.Right + mWaveform.Margin.Left, Height);
+            int ww = mWaveform.Width + mWaveform.Margin.Right + mWaveform.Margin.Left;
+            if (ww > mLabel.Margin.Left + mLabel.Width + mLabel.Margin.Right) Size = new Size(ww, Height);
         }
         
         private void node_NodeAudioChanged(object sender, NodeEventArgs<PhraseNode> e)
