@@ -790,24 +790,12 @@ namespace Obi.ProjectView
             if (IsBlockSelected)
             {
                 urakawa.undo.CompositeCommand command = Presentation.getCommandFactory().createCompositeCommand();
-
-                //1. clear existing custom type
-                Commands.Node.ChangeCustomType cmd1 = new Obi.Commands.Node.ChangeCustomType(this, SelectedNodeAs<EmptyNode>(),
-                    EmptyNode.Kind.Plain);
-                //2. unset existing heading on section
-                EmptyNode node = SelectedNodeAs<EmptyNode>().AncestorAs<SectionNode>().Heading;
-                Commands.Node.UnsetNodeAsHeadingPhrase cmd2 = new Obi.Commands.Node.UnsetNodeAsHeadingPhrase(this, node);
-                //3. set new heading
-                Commands.Node.SetNodeAsHeadingPhrase cmd3 = new Obi.Commands.Node.SetNodeAsHeadingPhrase(this,
-                    SelectedNodeAs<PhraseNode>());
-                //4. assign new custom type as "heading"
-                Commands.Node.ChangeCustomType cmd4 = new Obi.Commands.Node.ChangeCustomType(this, SelectedNodeAs<EmptyNode>(),
-                    EmptyNode.Kind.Heading);
-                command.setShortDescription(cmd4.getShortDescription());
-                command.append(cmd1);
-                command.append(cmd2);
-                command.append(cmd3);
-                command.append(cmd4);
+                EmptyNode node = SelectedNodeAs<EmptyNode>();
+                SectionNode parent = node.AncestorAs<SectionNode>();
+                if (parent.Heading != null) command.append(new Commands.Node.ChangeCustomType(this, parent.Heading, EmptyNode.Kind.Plain));
+                Commands.Node.ChangeCustomType custom = new Commands.Node.ChangeCustomType(this, node, EmptyNode.Kind.Heading);
+                command.append(custom);
+                command.setShortDescription(custom.getShortDescription());
                 mPresentation.UndoRedoManager.execute(command);
             }
         }

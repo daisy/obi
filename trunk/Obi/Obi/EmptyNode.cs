@@ -143,6 +143,7 @@ namespace Obi
                 mKind = kind;
                 mCustomClass = customClass;
                 if (kind != Kind.Page) mPageNumber = 0;
+                if (kind == Kind.Heading) AncestorAs<SectionNode>().Heading = this;
                 if (ChangedKind != null) ChangedKind(this, args);
             }
         }
