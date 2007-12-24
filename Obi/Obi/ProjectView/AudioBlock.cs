@@ -20,6 +20,10 @@ namespace Obi.ProjectView
             node.NodeAudioChanged += new NodeEventHandler<PhraseNode>(node_NodeAudioChanged);
         }
 
+
+        public bool CanSelectInWaveform { get { return !((ObiForm)ParentForm).IsTransportActive; } }
+
+
         protected override void UpdateAccessibleName()
         {
             base.UpdateAccessibleName();

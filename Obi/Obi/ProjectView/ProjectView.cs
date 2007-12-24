@@ -271,32 +271,6 @@ namespace Obi.ProjectView
         /// </summary>
         public void Paste() { if (CanPaste) mPresentation.UndoRedoManager.execute(mSelection.PasteCommand(this)); }
 
-            /*if (CanPaste)
-            {
-                Commands.Node.Paste paste = new Commands.Node.Paste(this);
-                if (mSelection.Control is StripsView && mSelection.Node.SectionChildCount > 0)
-                {
-                    urakawa.undo.CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
-                    for (int i = 0; i < mSelection.Node.SectionChildCount; ++i)
-                    {
-                        command.append(new Commands.Node.ChangeParent(this, mSelection.Node.SectionChild(i), paste.Copy));
-                    }
-                    command.append(paste);
-                    command.setShortDescription(paste.getShortDescription());
-                    mPresentation.UndoRedoManager.execute(command);
-                }
-                else if (mSelection.Control is TOCView)
-                {
-                    //if no dummy nodes were required, proceed as normal
-                    //else, assume that TOC View took care of the command
-                    if (!mTOCView.AddDummyNodes()) mPresentation.UndoRedoManager.execute(paste);
-                }
-                else
-                {
-                    mPresentation.UndoRedoManager.execute(paste);
-                }
-            }*/
-
         /// <summary>
         /// Set the block currently playing back as a "light" selection.
         /// </summary>
@@ -369,7 +343,8 @@ namespace Obi.ProjectView
             set
             {
                 System.Diagnostics.Debug.Print("Selection: `{0}' >>> `{1}'", mSelection, value);
-                if (mSelection != value)
+                // Selection is disabled when the transport bar is active.
+                if (mSelection != value && !mTransportBar.IsActive)
                 {
                     // deselect if there was a selection in a different control
                     if (mSelection != null && (value == null || mSelection.Control != value.Control))

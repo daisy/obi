@@ -569,9 +569,9 @@ namespace Obi {
         /// <summary>
         ///   Looks up a localized string similar to Custom.
         /// </summary>
-        internal static string Default_CustomClassName {
+        internal static string default_custom_class_name {
             get {
-                return ResourceManager.GetString("Default_CustomClassName", resourceCulture);
+                return ResourceManager.GetString("default_custom_class_name", resourceCulture);
             }
         }
         

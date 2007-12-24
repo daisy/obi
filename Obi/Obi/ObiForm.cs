@@ -40,6 +40,8 @@ namespace Obi
         }
 
 
+        public bool IsTransportActive { get { return mProjectView.TransportBar.IsActive; } }
+        
         /// <summary>
         /// Application settings.
         /// </summary>
