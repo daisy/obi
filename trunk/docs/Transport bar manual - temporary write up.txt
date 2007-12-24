@@ -15,6 +15,7 @@ Keyboard shortcut: Space bar.
 
 3. Stop button:
 - It stops playback or recording which ever is active.
+Keyboard shortcut: control + T 
 
 4. Rewind: It plays small  dhunks of audio while jumping backward in time.
 - Rewind continues across phrase boundaries.
@@ -96,3 +97,27 @@ It starts playback of currently selected blocks As Obi currently can select only
 Keyboard shortcut: Space bar.
 This shortcut is same as pause. As it toggles between play selection and pause and also pauses play all command.
 
+13. Time display:
+Transport bar has a time display which displays both playback as well as recording time.
+13.1. Playback time.
+The display of playback time is configurable with an adjusant combobox. The available options are:
+13.1.1. Elapsed: This displays elapsed selection time.
+13.1.2. Elapsed (total): This displays elapsed time with respect to whole book.
+13.1.3. Remaining: This displays remaining time for current selection.
+13.1.4. Remaining (Total): This displays remaining time with respect to whole book.
+
+13.2. Recording time:
+This displays time of recording since it was started i.e. recording session time.
+
+
+14. Text Peak Meter:
+This control displays numerical values for peak meter which can be captured by screenreader.
+It has two textboxes for left and right channels. 
+Keyboard shortcuts:
+Focus Left channel value: Alt+l
+Focus right channel value: Alt+i
+The value displayed is relative to the peak value of audio with upper range of 0 db.
+
+Whenever overload is reached,  the "OL" tag appears before numerical value of that particular channel.
+This tag remains in text display of respective channel till reset button on text meter is pressed. 
+Remark: reset button is not visible till  overload is reached.
