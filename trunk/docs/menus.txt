@@ -50,19 +50,23 @@ Main form
   + [C] TOC
     + [A] Add section ............... Ctrl+A
     + [S] Add sub-section ........... Ctrl+Shift+A
+    + [I] Insert section ............ Ctrl+Alt+A
     + [M] Rename section ............ F2
     + [O] Move section out .......... Ctrl+Shift+Left
     + [I] Move section in ........... Ctrl+Sfhit+Right
     + [U] Section is used ........... Ctrl+K
 
   + [S] Strips
+    + [A] Add strip ................. Ctrl+A
+    + [I] Insert strip .............. Ctrl+Alt+A
     + [M] Rename strip .............. F2
     + [S] Split strip ............... Ctrl+Shift+P
     + [G] Merge with next strip ..... Ctrl+Shift+M
+    + [U] Strip is used ............. Ctrl+K
 
   + [B] Blocks
-    + [E] Add empty block ........... Ctrl+Shift+A
-    + [P] Add empty page blocks ..... (None)
+    + [E] Add empty block ........... Ctrl+B
+    + [P] Add empty page blocks ..... Ctrl+Shift+B
     + [I] Import audio files ........ Ctrl+I
     + [S] Split block ............... Ctrl+P
     + [M] Merge block with next ..... Ctrl+M
@@ -83,6 +87,18 @@ Main form
       + [S] Play selection ................ Ctrl+Shift+Space
     + [U] Pause/Resume .................... (None)
     + [S] Stop ............................ (None)
+    + [R] Record .......................... (None)
+      + [L] Start listening ............... (None)
+      + [R] Start recording ............... (None)
+      + [O] Allow overwrite ............... (None)
+    --------------------------------------------------------
+    + [N] Navigation ...................... (None)
+      + [ ] Previous section .............. (None)
+      + [ ] Previous page ................. (None)
+      + [ ] Previous phrase ............... (None)
+      + [ ] Next phrase ................... (None)
+      + [ ] Next page ..................... (None)
+      + [ ] Next section .................. (None)
 
   + [T] Tools
 
@@ -117,10 +133,13 @@ Index of shortcuts
   + Space .............. Transport bar > play button
 
   + Ctrl+A ............. TOC > Add section
-  + Ctrl+Shift+A ....... Blocks > Add empty block
+  + Ctrl+A ............. Strips > Add strip
+  + Ctrl+Alt+A ......... TOC > Insert section
+  + Ctrl+Alt+A ......... Strips > Insert strip
   + Ctrl+Shift+A ....... TOC > Add sub-section
+  + Ctrl+B ............. Blocks > Add empty block
+  + Ctrl+Shift+B ....... Blocks > Add empty page blocks
   + Alt+Shift+B ........ View > Show transport bar
-  + Ctrl+B ............. FREE
   + Ctrl+C ............. Edit > Copy
   + Ctrl+D ............. FREE
   + Ctrl+E ............. File > Export as DAISY
@@ -130,6 +149,7 @@ Index of shortcuts
   + Ctrl+I ............. Blocks > Import audio files
   + Ctrl+J ............. FREE
   + Ctrl+K ............. Block > Block is used
+  + Ctrl+K ............. Strips > Strip is used
   + Ctrl+K ............. TOC > Section is used
   + Ctrl+L ............. Clean
   + Ctrl+M ............. Blocks > Merge block with next

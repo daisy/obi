@@ -256,11 +256,13 @@ The TOC menu provides operations on the table of contents.
 
 * __Add section__ (`Ctrl+A`): add a new section after the selected section
   and at the same level. If no section is selected, then add a new section at
-  the top level and at the end. TODO: dummy section (adding before the first
-  section.)
+  the top level and at the end.
 
 * __Ad sub-section__ (`Ctrl+Shift+A`): add a new section as the last child of
   the selected section.
+
+* __Insert section__ (`Ctrl+Alt+A`): insert a new section before the selected
+  section and at the same level.
 
 * __Rename section__ (`F2`): start editing the label of the section. The new
   name cannot be empty. The change is committed when pressing `Return` or
@@ -285,7 +287,15 @@ The TOC menu provides operations on the table of contents.
   be used subsections of unused sections.
 
 
-### Strips menu
+### Strips menu (`Alt+S`)
+
+* __Add strip__ (`Ctrl+A`): add a new strip after the selected strip. The
+  corresponding section will be at the same level as the section of the
+  selected strip. If the section of the selected strip had subsections, they
+  become subsections of the new section.
+
+* __Insert strip__ (`Ctrl+Alt+A`): insert a new strip before the selected
+  strip.
 
 * __Rename strip__ (`F2`): start editing the label of the strip. The new name
   cannot be empty. The change is committed when pressing `Return` or cancelled
@@ -302,21 +312,28 @@ The TOC menu provides operations on the table of contents.
   following strip has a lower level than the selected strip, merging is not
   possible.
 
-* TODO: add strip, depending on cursor or strip selection.
+* __Strip is used__ (`Ctrl+K`): when a strip is selected, the menu
+  item shows whether the strip is used or not with a checkbox. The checkbox
+  is checked if the strip is currently used. Selecting this item toggles the
+  used status of the strip (from used to unused, and from unused to used.)
+  This operation can only be executed if the corresponding section has no
+  subsection; _i.e._ if the operation affects only the selected strip. The
+  contents of the strip are affected as well.
 
 
 ### Blocks menu (`Alt+B`)
 
-* __Add empty block__ (`Ctrl+Alt+A`): add a new empty block at the end of the
+* __Add empty block__ (`Ctrl+B`): add a new empty block at the end of the
   selected strip, or after the selected item in the strip.
 
-* __Add empty page blocks__: add one or more empty blocks with a page number.
-  A dialog opens where the user can choose the page number for the first block,
-  the number of blocks to add, and whether to renumber subsequent page blocks
-  automatically. The page number increases by one for each block (_e.g._ if
-  three pages are added starting at page number 4, the three page blocks will
-  be numbered 4, 5 and 6) and for subsequent pages if the user chooses to
-  renumber them (_e.g._ following pages would be renumbered 7, 8, 9, etc.)
+* __Add empty page blocks__ (`Ctrl+Shift+B`): add one or more empty blocks
+  with a page number.  A dialog opens where the user can choose the page
+  number for the first block, the number of blocks to add, and whether to
+  renumber subsequent page blocks automatically. The page number increases by
+  one for each block (_e.g._ if three pages are added starting at page number
+  4, the three page blocks will be numbered 4, 5 and 6) and for subsequent
+  pages if the user chooses to renumber them (_e.g._ following pages would be
+  renumbered 7, 8, 9, etc.)
 
 * __Split block__ (`Ctrl+P`): split the block at the current cursor position.
   The block is split in two blocks, one with all the audio data before the
@@ -349,6 +366,11 @@ The TOC menu provides operations on the table of contents.
 * __Pause/Resume__: pause or resume playback.
 
 * __Stop__: stop playback.
+
+* __Record__: recording sub-menu.
+  * __Start listening__:
+  * __Start recording__:
+  * __Allow overwrite__:
 
 
 ### Tools menu
