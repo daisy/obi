@@ -265,7 +265,7 @@ namespace Obi
         /// </summary>
         public override string ToString()
         {
-            return string.Format("SectionNode<{0}>\"{1}\"", getParent() == null ? "unrooted" : Level.ToString(), Label);
+            return string.Format("SectionNode<{0}>\"{1}\"", IsRooted ? Level.ToString() : "unrooted", Label);
         }
 
 

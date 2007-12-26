@@ -869,4 +869,10 @@ Error text: {1}</value>
   <data name="kind_block" xml:space="preserve">
     <value>{0} block</value>
   </data>
+  <data name="insert_section" xml:space="preserve">
+    <value>insert section</value>
+  </data>
+  <data name="insert_strip" xml:space="preserve">
+    <value>insert strip</value>
+  </data>
 </root>

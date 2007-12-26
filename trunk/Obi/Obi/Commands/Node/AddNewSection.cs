@@ -81,4 +81,20 @@ namespace Obi.Commands.Node
             mIndex = mParent.SectionChildCount;
         }
     }
+
+    public class InsertSectionNode : AddSectionNode
+    {
+        public InsertSectionNode(ProjectView.ProjectView view)
+            : base(view, (IControlWithRenamableSelection)view.Selection.Control)
+        {
+            Label = Localizer.Message(view.Selection.Control is ProjectView.TOCView ? "insert_section" : "insert_strip");
+        }
+
+        // Set parent and index for the new node
+        protected override void SetParentAndIndex(ProjectView.ProjectView view)
+        {
+            mParent = view.Selection.Node.ParentAs<ObiNode>();
+            mIndex = view.Selection.Node.Index;
+        }
+    }
 }

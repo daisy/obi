@@ -57,6 +57,7 @@ namespace Obi
     {
         public ObiNode Node;                   // the selected node
         public IControlWithSelection Control;  // control in which it is selected
+        public bool Soft;                      // soft selection flag
 
         /// <summary>
         /// Create a new selection object.
@@ -65,12 +66,13 @@ namespace Obi
         {
             Node = node;
             Control = control;
+            Soft = false;
         }
 
         /// <summary>
         /// Stringify the selection for debug printing.
         /// </summary>
-        public override string ToString() { return String.Format("{0} in {1}", Node, Control); }
+        public override string ToString() { return String.Format("{2}{0} in {1}", Node, Control, Soft ? "~" : ""); }
 
         /// <summary>
         /// Two node selections are equal if they are the selection of the same node in the same control.
@@ -78,7 +80,7 @@ namespace Obi
         public override bool Equals(object obj)
         {
             return obj != null && obj.GetType() == GetType() &&
-                ((NodeSelection)obj).Node == Node && ((NodeSelection)obj).Control == Control;
+                ((NodeSelection)obj).Soft == Soft && ((NodeSelection)obj).Node == Node && ((NodeSelection)obj).Control == Control;
         }
 
         public override int GetHashCode() { return base.GetHashCode(); }
@@ -183,53 +185,6 @@ namespace Obi
             return p;
         }
     };
-
-    /// <summary>
-    /// Section dummy selected in the TOC view. 
-    /// </summary>
-    public class DummySelection : NodeSelection
-    {
-        private ProjectView.DummyNode mDummy;
-        
-        public ProjectView.DummyNode Dummy
-        {
-            set { mDummy = value; }
-            get { return mDummy; }
-        }
-
-        public DummySelection(ObiNode node, ProjectView.TOCView view) : base(node, view) { }
-
-        /// <summary>
-        /// Only a section node can be pasted if the dummy selection is selected.
-        /// </summary>
-        public override bool CanPaste(Clipboard clipboard) { return clipboard.Node is SectionNode; }
-
-        public override ObiNode ParentForNewNode(ObiNode newNode) 
-        {
-            //this was the old behavior, before mDummy was introduced.  keeping it so I don't break anything.
-            if (mDummy == null) return Node;
-
-            //the new node is getting pasted as an "oldest" sibling of the selection
-            if (mDummy.Type == Obi.ProjectView.DummyNode.DummyType.BEFORE) return Node.ParentAs<ObiNode>();
-            //the new node is getting pasted as a first child of the selection
-            else if (mDummy.Type == Obi.ProjectView.DummyNode.DummyType.CHILD) return Node;
-            //default: the new node is getting pasted after the selection
-            else return Node.ParentAs<ObiNode>();
-        }
-        public override int IndexForNewNode(ObiNode newNode) 
-        {
-            //this was the old behavior, before mDummy was introduced.  keeping it so I don't break anything.
-            if (mDummy == null) return 0;
-
-            //the new node is getting pasted before the selection (because the selection was a first child)
-            if (mDummy.Type == Obi.ProjectView.DummyNode.DummyType.BEFORE) return 0;
-            //the new node is getting pasted as a first child of the selection
-            else if (mDummy.Type == Obi.ProjectView.DummyNode.DummyType.CHILD) return 0;
-            //default: the new node is getting pasted after the selection
-            else return Node.Index + 1;
-        }
-        public override string ToString() { return String.Format("Dummy for {0}", base.ToString()); }
-    }
 
     /// <summary>
     /// Text selected inside a strip or a section.

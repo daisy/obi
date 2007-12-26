@@ -13,6 +13,7 @@ namespace Obi.ProjectView
         private bool mEnableTooltips;            // tooltips flag
         private Presentation mPresentation;      // presentation
         private NodeSelection mSelection;        // currently selected node
+        private NodeSelection mSoftSelection;    // soft selection during playback
         private Clipboard mClipboard;            // the clipboard
         private bool mSynchronizeViews;          // synchronize views flag
         private ObiForm mForm;                   // parent form
@@ -38,6 +39,7 @@ namespace Obi.ProjectView
             mMetadataViewVisible = !mTOCSplitter.Panel1Collapsed && !mMetadataSplitter.Panel2Collapsed;
             mPresentation = null;
             mSelection = null;
+            mSoftSelection = null;
             mForm = null;
             mClipboard = null;
         }
@@ -57,13 +59,31 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Add a new section node to the project.
+        /// Add a new section.
         /// </summary>
         public void AddSection()
         {
-            if (CanAddSection)
+            if (CanAddSection) mPresentation.UndoRedoManager.execute(new Commands.Node.AddSectionNode(this, mTOCView));
+        }
+
+        /// <summary>
+        /// Add a new strip to the project.
+        /// </summary>
+        public void AddStrip()
+        {
+            if (CanAddStrip)
             {
-                mPresentation.UndoRedoManager.execute(new Commands.Node.AddSectionNode(this, mTOCView));
+                Commands.Node.AddSectionNode add = new Commands.Node.AddSectionNode(this, mStripsView);
+                urakawa.undo.CompositeCommand command = mPresentation.CreateCompositeCommand(add.getShortDescription());
+                SectionNode selected = (SectionNode)mStripsView.Selection.Node;
+                for (int i = selected.SectionChildCount - 1; i >= 0; --i)
+                {
+                    SectionNode child = selected.SectionChild(i);
+                    command.append(new Commands.Node.Delete(this, child));
+                    command.append(new Commands.Node.AddNode(this, child, add.NewSection, 0));
+                }
+                command.append(add);
+                mPresentation.UndoRedoManager.execute(command);
             }
         }
 
@@ -91,6 +111,8 @@ namespace Obi.ProjectView
         public bool CanCopyBlock { get { return mStripsView.CanCopyBlock; } }
         public bool CanCut { get { return CanDelete; } }
         public bool CanDelete { get { return CanRemoveSection || CanRemoveStrip || CanRemoveBlock || CanRemoveAudio; } }
+        public bool CanInsertSection { get { return mTOCView.Selection != null; } }
+        public bool CanInsertStrip { get { return mStripsView.Selection != null; } }
         public bool CanMergeStripWithNext { get { return mStripsView.CanMergeStripWithNext; } }
         public bool CanMoveSectionIn { get { return mTOCView.CanMoveSectionIn; } }
         public bool CanMoveSectionOut { get { return mTOCView.CanMoveSectionOut; } }
@@ -215,6 +237,22 @@ namespace Obi.ProjectView
                 // mTOCPanel.EnableTooltips = value;
                 // mTransportBar.EnableTooltips = value;
             }
+        }
+
+        /// <summary>
+        /// Insert a new section before the selected one at the same level.
+        /// </summary>
+        public void InsertSection()
+        {
+            if (CanInsertSection) mPresentation.UndoRedoManager.execute(new Commands.Node.InsertSectionNode(this));
+        }
+
+        /// <summary>
+        /// Insert a new strip before the selected one at the same level.
+        /// </summary>
+        public void InsertStrip()
+        {
+            if (CanInsertStrip) mPresentation.UndoRedoManager.execute(new Commands.Node.InsertSectionNode(this));
         }
 
         // These methods are used to know what is currently selected:
