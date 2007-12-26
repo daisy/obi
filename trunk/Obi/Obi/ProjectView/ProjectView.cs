@@ -13,7 +13,6 @@ namespace Obi.ProjectView
         private bool mEnableTooltips;            // tooltips flag
         private Presentation mPresentation;      // presentation
         private NodeSelection mSelection;        // currently selected node
-        private NodeSelection mSoftSelection;    // soft selection during playback
         private Clipboard mClipboard;            // the clipboard
         private bool mSynchronizeViews;          // synchronize views flag
         private ObiForm mForm;                   // parent form
@@ -22,7 +21,6 @@ namespace Obi.ProjectView
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
         public event ImportingFileEventHandler ImportingFile;   // triggered when a file is being imported
         public event EventHandler FinishedImportingFiles;       // triggered when all files were imported
-        public event Obi.Events.SectionNodeHandler OnBeforePasteSection;    //triggered just before a section paste in the TOC view
 
         /// <summary>
         /// Create a new project view with no project yet.
@@ -39,7 +37,6 @@ namespace Obi.ProjectView
             mMetadataViewVisible = !mTOCSplitter.Panel1Collapsed && !mMetadataSplitter.Panel2Collapsed;
             mPresentation = null;
             mSelection = null;
-            mSoftSelection = null;
             mForm = null;
             mClipboard = null;
         }
@@ -53,8 +50,9 @@ namespace Obi.ProjectView
             if (CanAddEmptyBlock)
             {
                 EmptyNode node = new EmptyNode(mPresentation);
-                mPresentation.UndoRedoManager.execute(new Commands.Node.AddEmptyNode(this, node,
-                    mStripsView.Selection.ParentForNewNode(node), mStripsView.Selection.IndexForNewNode(node)));
+                ObiNode parent = mStripsView.Selection.ParentForNewNode(node);
+                AddUnusedAndExecute(new Commands.Node.AddEmptyNode(this, node, parent, mStripsView.Selection.IndexForNewNode(node)),
+                    node, parent);
             }
         }
 
@@ -63,7 +61,11 @@ namespace Obi.ProjectView
         /// </summary>
         public void AddSection()
         {
-            if (CanAddSection) mPresentation.UndoRedoManager.execute(new Commands.Node.AddSectionNode(this, mTOCView));
+            if (CanAddSection)
+            {
+                Commands.Node.AddSectionNode add = new Commands.Node.AddSectionNode(this, mTOCView);
+                AddUnusedAndExecute(add, add.NewSection, add.NewSectionParent);
+            }
         }
 
         /// <summary>
@@ -83,6 +85,7 @@ namespace Obi.ProjectView
                     command.append(new Commands.Node.AddNode(this, child, add.NewSection, 0));
                 }
                 command.append(add);
+                if (!add.NewSectionParent.Used) AppendMakeUnused(command, add.NewSection);
                 mPresentation.UndoRedoManager.execute(command);
             }
         }
@@ -94,8 +97,24 @@ namespace Obi.ProjectView
         {
             if (CanAddSubSection)
             {
-                mPresentation.UndoRedoManager.execute(new Commands.Node.AddSubSection(this));
+                Commands.Node.AddSubSection add = new Commands.Node.AddSubSection(this);
+                AddUnusedAndExecute(add, add.NewSection, add.NewSectionParent);
             }
+        }
+
+        /// <summary>
+        /// Append commands to make a node and its descendants unused to a composite command.
+        /// This is used when adding new nodes under unused nodes.
+        /// </summary>
+        public void AppendMakeUnused(urakawa.undo.CompositeCommand command, ObiNode node)
+        {
+            node.acceptDepthFirst(
+                delegate(urakawa.core.TreeNode n)
+                {
+                    if (n is ObiNode && ((ObiNode)n).Used) command.append(new Commands.Node.ToggleNodeUsed(this, (ObiNode)n));
+                    return true;
+                }, delegate(urakawa.core.TreeNode n) { }
+            );
         }
 
         public bool CanAddEmptyBlock { get { return mStripsView.Selection != null; } }
@@ -117,6 +136,7 @@ namespace Obi.ProjectView
         public bool CanMoveSectionIn { get { return mTOCView.CanMoveSectionIn; } }
         public bool CanMoveSectionOut { get { return mTOCView.CanMoveSectionOut; } }
         public bool CanPaste { get { return mSelection != null && mSelection.CanPaste(mClipboard); } }
+        public bool CanPasteBefore { get { return mTOCView.CanPasteBefore(mClipboard); } }
         public bool CanPause { get { return mTransportBar.CanPause; } }
         public bool CanPlay { get { return mTransportBar.CanPlay || mTransportBar.CanResume; } }
         public bool CanPlaySelection { get { return CanPlay && mSelection != null && !(mSelection is TextSelection); } }
@@ -129,7 +149,8 @@ namespace Obi.ProjectView
         public bool CanRenameStrip { get { return mStripsView.CanRenameStrip; } }
         public bool CanSetBlockUsedStatus { get { return mStripsView.CanSetBlockUsedStatus; } }
         public bool CanSetSectionUsedStatus { get { return mTOCView.CanSetSectionUsedStatus; } }
-        public bool CanSetSelectedNodeUsedStatus { get { return CanSetSectionUsedStatus || CanSetBlockUsedStatus; } }
+        public bool CanSetStripUsedStatus { get { return mStripsView.CanSetStripUsedStatus; } }
+        public bool CanSetSelectedNodeUsedStatus { get { return CanSetSectionUsedStatus || CanSetBlockUsedStatus || CanSetStripUsedStatus; } }
         public bool CanSplitStrip { get { return mStripsView.CanSplitStrip; } }
         public bool CanStop { get { return mTransportBar.CanStop; } }
         
@@ -244,7 +265,11 @@ namespace Obi.ProjectView
         /// </summary>
         public void InsertSection()
         {
-            if (CanInsertSection) mPresentation.UndoRedoManager.execute(new Commands.Node.InsertSectionNode(this));
+            if (CanInsertSection)
+            {
+                Commands.Node.InsertSectionNode insert = new Commands.Node.InsertSectionNode(this);
+                AddUnusedAndExecute(insert, insert.NewSection, insert.NewSectionParent);
+            }
         }
 
         /// <summary>
@@ -252,7 +277,11 @@ namespace Obi.ProjectView
         /// </summary>
         public void InsertStrip()
         {
-            if (CanInsertStrip) mPresentation.UndoRedoManager.execute(new Commands.Node.InsertSectionNode(this));
+            if (CanInsertStrip)
+            {
+                Commands.Node.InsertSectionNode insert = new Commands.Node.InsertSectionNode(this);
+                AddUnusedAndExecute(insert, insert.NewSection, insert.NewSectionParent);
+            }
         }
 
         // These methods are used to know what is currently selected:
@@ -410,17 +439,15 @@ namespace Obi.ProjectView
             if (CanSetSelectedNodeUsedStatus && mSelection.Node.Used != used)
             {
                 urakawa.undo.CompositeCommand command = Presentation.CreateCompositeCommand(String.Format(
-                    Localizer.Message(mSelection.Node is SectionNode ? "mark_section_used" : "mark_block_used"),
+                    Localizer.Message(mSelection.Node is SectionNode ?
+                        mSelection.Control is TOCView ? "mark_section_used" : "mark_strip_used" : "mark_block_used"),
                     Localizer.Message(mSelection.Node.Used ? "unused" : "used")));
-                mSelection.Node.acceptDepthFirst(delegate(urakawa.core.TreeNode node)
+                mSelection.Node.acceptDepthFirst(
+                    delegate(urakawa.core.TreeNode n)
                     {
-                        if (node is ObiNode && ((ObiNode)node).Used != used)
-                        {
-                            command.append(new Commands.Node.ToggleNodeUsed(this, (ObiNode)node));
-                        }
+                        if (n is ObiNode && ((ObiNode)n).Used != used) command.append(new Commands.Node.ToggleNodeUsed(this, ((ObiNode)n)));
                         return true;
-                    },
-                    delegate(urakawa.core.TreeNode node) { }
+                    }, delegate(urakawa.core.TreeNode n) { }
                 );
                 Presentation.UndoRedoManager.execute(command);
             }
@@ -478,6 +505,32 @@ namespace Obi.ProjectView
         /// </summary>
         public TransportBar TransportBar { get { return mTransportBar; } }
 
+
+
+        // Execute a command, but first add some extra stuff to maintain the unusedness of the new node
+        // depending on the unusedness of its parent.
+        private void AddUnusedAndExecute(urakawa.undo.ICommand command, ObiNode node, ObiNode parent)
+        {
+            if (parent.Used)
+            {
+                mPresentation.UndoRedoManager.execute(command);
+            }
+            else
+            {
+                urakawa.undo.CompositeCommand c;
+                if (command is urakawa.undo.CompositeCommand)
+                {
+                    c = (urakawa.undo.CompositeCommand)command;
+                }
+                else
+                {
+                    c = mPresentation.CreateCompositeCommand(command.getShortDescription());
+                    c.append(command);
+                }
+                AppendMakeUnused(c, node);
+                mPresentation.UndoRedoManager.execute(c);
+            }
+        }
 
         /// <summary>
         /// Show or hide the project display.
@@ -598,6 +651,7 @@ namespace Obi.ProjectView
         public bool CanSplitBlock { get { return mSelection is AudioSelection; } }
         
         public bool IsBlockUsed { get { return mStripsView.IsBlockUsed; } }
+        public bool IsStripUsed { get { return mStripsView.IsStripUsed; } }
 
         /// <summary>
         /// Show the strip for the given section
@@ -613,6 +667,21 @@ namespace Obi.ProjectView
         public void MakeTreeNodeVisibleForSection(SectionNode section)
         {
             if (mSynchronizeViews) mTOCView.MakeTreeNodeVisibleForSection(section);
+        }
+
+        /// <summary>
+        /// Paste the contents of the clipboard before the selected section.
+        /// </summary>
+        public void PasteBefore()
+        {
+            if (CanPasteBefore)
+            {
+                Commands.Node.Paste paste = new Commands.Node.PasteBefore(this);
+                urakawa.undo.CompositeCommand p = Presentation.CreateCompositeCommand(paste.getShortDescription());
+                p.append(paste);
+                if (paste.Copy.Used && !paste.CopyParent.Used) AppendMakeUnused(p, paste.Copy);
+                Presentation.UndoRedoManager.execute(p);
+            }
         }
 
         /// <summary>
@@ -773,42 +842,6 @@ namespace Obi.ProjectView
             if (CanMergeBlockWithNext) mPresentation.UndoRedoManager.execute(new Commands.Node.MergeAudio(this));
         }
 
-        #region Containers (not yet...)
-
-        /*public void MakeBlockIntoContainer()
-        {
-            //there is a problem with this because the treenode_added event gets thrown for each step
-            //and Obi isn't used to dealing with empty nodes yet (which happens after cmd1 below gets executed)
-            if (SelectedBlockNode != null)
-            {
-                urakawa.undo.CompositeCommand command = Presentation.getCommandFactory().createCompositeCommand();
-                Commands.Node.AddContainer cmd1 = new Obi.Commands.Node.AddContainer(this, SelectedBlockNode.ParentAs<ObiNode>(), SelectedBlockNode.Index);
-                Commands.Node.ChangeParent cmd2 = new Obi.Commands.Node.ChangeParent(this, SelectedBlockNode, cmd1.Container);
-                command.append(cmd1);
-                command.append(cmd2);
-                mPresentation.UndoRedoManager.execute(command);
-            }
-        }*/
-
-        //TODO: put this code into a command
-        /*public void RemoveContainer()
-        {
-            if (SelectedBlockNode != null)
-            {
-                //here, selected block node is the container itself
-                int index = SelectedBlockNode.Index;
-                ObiNode parentNode = SelectedBlockNode.ParentAs<ObiNode>();
-                for (int i = 0; i < SelectedBlockNode.PhraseChildCount; i++)
-                {
-                    PhraseNode node = (PhraseNode)SelectedBlockNode.PhraseChild(0).Detach();
-                    parentNode.Insert(node, index + i);
-                }
-                parentNode.RemoveChild(SelectedBlockNode);
-            }
-        }*/
-
-        #endregion
-
         public void MakeSelectedBlockIntoSilencePhrase()
         {
             EmptyNode node = SelectedNodeAs<EmptyNode>();
@@ -962,7 +995,7 @@ namespace Obi.ProjectView
 
                 }// end of function
 
-    }
+            }
 
     public class ImportingFileEventArgs
     {

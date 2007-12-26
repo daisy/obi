@@ -48,6 +48,14 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// True if the contents of the clipboard can be pasted before the selected section.
+        /// </summary>
+        public bool CanPasteBefore(Clipboard clipboard)
+        {
+            return mSelection != null && clipboard != null && clipboard.Node is SectionNode;
+        }
+
+        /// <summary>
         /// True if the selected node can be removed (deleted or cut)
         /// </summary>
         public bool CanRemoveSection { get { return IsSectionSelected; } }

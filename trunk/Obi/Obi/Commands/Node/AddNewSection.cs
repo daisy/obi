@@ -43,6 +43,11 @@ namespace Obi.Commands.Node
         public SectionNode NewSection { get { return mNode; } }
 
         /// <summary>
+        /// The parent of the new section node to be added.
+        /// </summary>
+        public ObiNode NewSectionParent { get { return mParent; } }
+
+        /// <summary>
         /// Add or readd the new section node then restore this as the selection.
         /// </summary>
         public override void execute()

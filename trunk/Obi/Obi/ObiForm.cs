@@ -170,6 +170,7 @@ namespace Obi
             mCutToolStripMenuItem.Enabled = mProjectView.CanCut;
             mCopyToolStripMenuItem.Enabled = mProjectView.CanCopy;
             mPasteToolStripMenuItem.Enabled = mProjectView.CanPaste;
+            mPasteBeforeToolStripMenuItem.Enabled = mProjectView.CanPasteBefore;
             mDeleteToolStripMenuItem.Enabled = mProjectView.CanDelete;
             mSelectNothingToolStripMenuItem.Enabled = mProjectView.CanDeselect;
             mFindInTextToolStripMenuItem.Enabled = mSession.HasProject;
@@ -182,6 +183,7 @@ namespace Obi
         private void mCutToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Cut(); }
         private void mCopyToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Copy(); }
         private void mPasteToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Paste(); }
+        private void mPasteBeforeToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.PasteBefore(); }
         private void mDeleteToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Delete(); }
         private void mSelectNothingToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SelectNothing(); }
         private void mFindInTextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.FindInText(); }
@@ -1236,10 +1238,12 @@ namespace Obi
         private void UpdateStripsMenu()
         {
             mAddStripToolStripMenuItem.Enabled = mProjectView.CanAddStrip;
-            mInsertSectionToolStripMenuItem.Enabled = mProjectView.CanInsertStrip;
+            mInsertStripToolStripMenuItem.Enabled = mProjectView.CanInsertStrip;
             mRenameStripToolStripMenuItem.Enabled = mProjectView.CanRenameStrip;
             mSplitStripToolStripMenuItem.Enabled = mProjectView.CanSplitStrip;
             mMergeWithNextStripToolStripMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
+            mStripIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetStripUsedStatus;
+            mStripIsUsedToolStripMenuItem.Checked = mProjectView.IsStripUsed;
         }
 
         private void mAddStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddStrip(); }
@@ -1247,7 +1251,10 @@ namespace Obi
         private void mRenameStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.StartRenamingSelectedStrip(); }
         private void mSplitStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SplitStrip(); }
         private void mMergeWithNextStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeStrips(); }
-        private void mListenToStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ListenToSelection(); }
+        private void mStripIsUsedToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            mProjectView.SetSelectedNodeUsedStatus(mStripIsUsedToolStripMenuItem.Checked);
+        }
 
         // Blocks menu
 
