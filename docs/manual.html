@@ -82,19 +82,19 @@
               <a href="#id19144">TOC menu (<code>Alt+C</code>)</a>
             </li>
             <li>
-              <a href="#id19240">Strips menu</a>
+              <a href="#id19251">Strips menu (<code>Alt+S</code>)</a>
             </li>
             <li>
-              <a href="#id19301">Blocks menu (<code>Alt+B</code>)</a>
+              <a href="#id19356">Blocks menu (<code>Alt+B</code>)</a>
             </li>
             <li>
-              <a href="#id19407">Transport menu (<code>Alt+R</code>)</a>
+              <a href="#id19466">Transport menu (<code>Alt+R</code>)</a>
             </li>
             <li>
-              <a href="#id19461">Tools menu</a>
+              <a href="#id19548">Tools menu</a>
             </li>
             <li>
-              <a href="#id19465">Help menu</a>
+              <a href="#id19551">Help menu</a>
             </li>
           </ul>
         </li>
@@ -357,12 +357,15 @@ release version.</p>
       <li>
         <p><strong>Add section</strong> (<code>Ctrl+A</code>): add a new section after the selected section
 and at the same level. If no section is selected, then add a new section at
-the top level and at the end. <span class="todo">TODO</span>: dummy section (adding before the first
-section.)</p>
+the top level and at the end.</p>
       </li>
       <li>
         <p><strong>Ad sub-section</strong> (<code>Ctrl+Shift+A</code>): add a new section as the last child of
 the selected section.</p>
+      </li>
+      <li>
+        <p><strong>Insert section</strong> (<code>Ctrl+Alt+A</code>): insert a new section before the selected
+section and at the same level.</p>
       </li>
       <li>
         <p><strong>Rename section</strong> (<code>F2</code>): start editing the label of the section. The new
@@ -391,8 +394,18 @@ parent section is used (or if it is a top-level section), as there cannot
 be used subsections of unused sections.</p>
       </li>
     </ul>
-    <h3 id="id19240">Strips menu</h3>
+    <h3 id="id19251">Strips menu (<code>Alt+S</code>)</h3>
     <ul>
+      <li>
+        <p><strong>Add strip</strong> (<code>Ctrl+A</code>): add a new strip after the selected strip. The
+corresponding section will be at the same level as the section of the
+selected strip. If the section of the selected strip had subsections, they
+become subsections of the new section.</p>
+      </li>
+      <li>
+        <p><strong>Insert strip</strong> (<code>Ctrl+Alt+A</code>): insert a new strip before the selected
+strip.</p>
+      </li>
       <li>
         <p><strong>Rename strip</strong> (<code>F2</code>): start editing the label of the strip. The new name
 cannot be empty. The change is committed when pressing <code>Return</code> or cancelled
@@ -412,23 +425,30 @@ following strip has a lower level than the selected strip, merging is not
 possible.</p>
       </li>
       <li>
-        <p><span class="todo">TODO</span>: add strip, depending on cursor or strip selection.</p>
+        <p><strong>Strip is used</strong> (<code>Ctrl+K</code>): when a strip is selected, the menu
+item shows whether the strip is used or not with a checkbox. The checkbox
+is checked if the strip is currently used. Selecting this item toggles the
+used status of the strip (from used to unused, and from unused to used.)
+This operation can only be executed if the corresponding section has no
+subsection; <em>i.e.</em> if the operation affects only the selected strip. The
+contents of the strip are affected as well.</p>
       </li>
     </ul>
-    <h3 id="id19301">Blocks menu (<code>Alt+B</code>)</h3>
+    <h3 id="id19356">Blocks menu (<code>Alt+B</code>)</h3>
     <ul>
       <li>
-        <p><strong>Add empty block</strong> (<code>Ctrl+Alt+A</code>): add a new empty block at the end of the
+        <p><strong>Add empty block</strong> (<code>Ctrl+B</code>): add a new empty block at the end of the
 selected strip, or after the selected item in the strip.</p>
       </li>
       <li>
-        <p><strong>Add empty page blocks</strong>: add one or more empty blocks with a page number.
-A dialog opens where the user can choose the page number for the first block,
-the number of blocks to add, and whether to renumber subsequent page blocks
-automatically. The page number increases by one for each block (<em>e.g.</em> if
-three pages are added starting at page number 4, the three page blocks will
-be numbered 4, 5 and 6) and for subsequent pages if the user chooses to
-renumber them (<em>e.g.</em> following pages would be renumbered 7, 8, 9, etc.)</p>
+        <p><strong>Add empty page blocks</strong> (<code>Ctrl+Shift+B</code>): add one or more empty blocks
+with a page number.  A dialog opens where the user can choose the page
+number for the first block, the number of blocks to add, and whether to
+renumber subsequent page blocks automatically. The page number increases by
+one for each block (<em>e.g.</em> if three pages are added starting at page number
+4, the three page blocks will be numbered 4, 5 and 6) and for subsequent
+pages if the user chooses to renumber them (<em>e.g.</em> following pages would be
+renumbered 7, 8, 9, etc.)</p>
       </li>
       <li>
         <p><strong>Split block</strong> (<code>Ctrl+P</code>): split the block at the current cursor position.
@@ -456,7 +476,7 @@ the block is currently used. Selecting this item toggles the used status of
 the block (from used to unused, and from unused to used.)</p>
       </li>
     </ul>
-    <h3 id="id19407">Transport menu (<code>Alt+R</code>)</h3>
+    <h3 id="id19466">Transport menu (<code>Alt+R</code>)</h3>
     <ul>
       <li>
         <p><strong>Play</strong>: playback sub-menu.</p>
@@ -474,8 +494,16 @@ if a cursor is positionned inside a block, until the end of the block.</li>
       <li>
         <p><strong>Stop</strong>: stop playback.</p>
       </li>
+      <li>
+        <p><strong>Record</strong>: recording sub-menu.</p>
+        <ul>
+          <li><strong>Start listening</strong>:</li>
+          <li><strong>Start recording</strong>:</li>
+          <li><strong>Allow overwrite</strong>:</li>
+        </ul>
+      </li>
     </ul>
-    <h3 id="id19461">Tools menu</h3>
-    <h3 id="id19465">Help menu</h3>
+    <h3 id="id19548">Tools menu</h3>
+    <h3 id="id19551">Help menu</h3>
   </body>
 </html>
