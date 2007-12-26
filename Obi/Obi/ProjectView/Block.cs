@@ -28,6 +28,9 @@ namespace Obi.ProjectView
         public Block() { InitializeComponent(); }
 
 
+        // Width of the label (including margins)
+        protected int LabelWidth { get { return mLabel.Margin.Left + mLabel.Width + mLabel.Margin.Right; } }
+
         // Generate the label string for this block.
         protected virtual void UpdateLabel()
         {
@@ -36,6 +39,7 @@ namespace Obi.ProjectView
                 String.Format(Localizer.Message("kind_block"),
                     mNode.NodeKind == EmptyNode.Kind.Custom ? mNode.CustomClass : mNode.NodeKind.ToString());
             mLabel.Text = name;
+            Size = new Size(LabelWidth, Height);
             AccessibleName = name;
         }
 
