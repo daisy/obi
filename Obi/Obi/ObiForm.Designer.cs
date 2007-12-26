@@ -76,11 +76,14 @@ namespace Obi
             this.mTocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddSubSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mInsertSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRenameSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMoveOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMoveInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSectionIsUsedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStripsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mAddStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mInsertStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRenameStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSplitStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMergeWithNextStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -119,6 +122,8 @@ namespace Obi
             this.nextPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nextPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nextSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rewindToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fastForwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -132,8 +137,6 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusTimer = new System.Windows.Forms.Timer(this.components);
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.rewindToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fastForwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -539,6 +542,7 @@ namespace Obi
             this.mTocToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mAddSectionToolStripMenuItem,
             this.mAddSubSectionToolStripMenuItem,
+            this.mInsertSectionToolStripMenuItem,
             this.mRenameSectionToolStripMenuItem,
             this.mMoveOutToolStripMenuItem,
             this.mMoveInToolStripMenuItem,
@@ -563,6 +567,15 @@ namespace Obi
             this.mAddSubSectionToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
             this.mAddSubSectionToolStripMenuItem.Text = "Add &sub-section";
             this.mAddSubSectionToolStripMenuItem.Click += new System.EventHandler(this.mAddSubSectionToolStripMenuItem_Click);
+            // 
+            // mInsertSectionToolStripMenuItem
+            // 
+            this.mInsertSectionToolStripMenuItem.Name = "mInsertSectionToolStripMenuItem";
+            this.mInsertSectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt)
+                        | System.Windows.Forms.Keys.A)));
+            this.mInsertSectionToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.mInsertSectionToolStripMenuItem.Text = "&Insert section";
+            this.mInsertSectionToolStripMenuItem.Click += new System.EventHandler(this.mInsertSectionToolStripMenuItem_Click);
             // 
             // mRenameSectionToolStripMenuItem
             // 
@@ -604,12 +617,31 @@ namespace Obi
             // mStripsToolStripMenuItem
             // 
             this.mStripsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mAddStripToolStripMenuItem,
+            this.mInsertStripToolStripMenuItem,
             this.mRenameStripToolStripMenuItem,
             this.mSplitStripToolStripMenuItem,
             this.mMergeWithNextStripToolStripMenuItem});
             this.mStripsToolStripMenuItem.Name = "mStripsToolStripMenuItem";
             this.mStripsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.mStripsToolStripMenuItem.Text = "&Strips";
+            // 
+            // mAddStripToolStripMenuItem
+            // 
+            this.mAddStripToolStripMenuItem.Name = "mAddStripToolStripMenuItem";
+            this.mAddStripToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
+            this.mAddStripToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+            this.mAddStripToolStripMenuItem.Text = "&Add strip";
+            this.mAddStripToolStripMenuItem.Click += new System.EventHandler(this.mAddStripToolStripMenuItem_Click);
+            // 
+            // mInsertStripToolStripMenuItem
+            // 
+            this.mInsertStripToolStripMenuItem.Name = "mInsertStripToolStripMenuItem";
+            this.mInsertStripToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt)
+                        | System.Windows.Forms.Keys.A)));
+            this.mInsertStripToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+            this.mInsertStripToolStripMenuItem.Text = "&Insert strip";
+            this.mInsertStripToolStripMenuItem.Click += new System.EventHandler(this.mInsertStripToolStripMenuItem_Click);
             // 
             // mRenameStripToolStripMenuItem
             // 
@@ -792,7 +824,7 @@ namespace Obi
             this.mPlayAllToolStripMenuItem,
             this.mPlaySelectionToolStripMenuItem});
             this.playToolStripMenuItem.Name = "playToolStripMenuItem";
-            this.playToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.playToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.playToolStripMenuItem.Text = "&Play";
             // 
             // mPlayAllToolStripMenuItem
@@ -815,21 +847,21 @@ namespace Obi
             // mPauseToolStripMenuItem
             // 
             this.mPauseToolStripMenuItem.Name = "mPauseToolStripMenuItem";
-            this.mPauseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mPauseToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.mPauseToolStripMenuItem.Text = "Pa&use";
             this.mPauseToolStripMenuItem.Click += new System.EventHandler(this.mPauseToolStripMenuItem_Click);
             // 
             // mResumeToolStripMenuItem
             // 
             this.mResumeToolStripMenuItem.Name = "mResumeToolStripMenuItem";
-            this.mResumeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mResumeToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.mResumeToolStripMenuItem.Text = "Res&ume";
             this.mResumeToolStripMenuItem.Click += new System.EventHandler(this.mResumeToolStripMenuItem_Click);
             // 
             // mStopToolStripMenuItem
             // 
             this.mStopToolStripMenuItem.Name = "mStopToolStripMenuItem";
-            this.mStopToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mStopToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.mStopToolStripMenuItem.Text = "&Stop";
             this.mStopToolStripMenuItem.Click += new System.EventHandler(this.mStopToolStripMenuItem_Click);
             // 
@@ -840,19 +872,19 @@ namespace Obi
             this.mStartRecordingToolStripMenuItem,
             this.allowOverwriteToolStripMenuItem});
             this.recordToolStripMenuItem.Name = "recordToolStripMenuItem";
-            this.recordToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.recordToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.recordToolStripMenuItem.Text = "&Record";
             // 
             // mStartListeningToolStripMenuItem
             // 
             this.mStartListeningToolStripMenuItem.Name = "mStartListeningToolStripMenuItem";
-            this.mStartListeningToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mStartListeningToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.mStartListeningToolStripMenuItem.Text = "Start &listening";
             // 
             // mStartRecordingToolStripMenuItem
             // 
             this.mStartRecordingToolStripMenuItem.Name = "mStartRecordingToolStripMenuItem";
-            this.mStartRecordingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mStartRecordingToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.mStartRecordingToolStripMenuItem.Text = "Start &recording";
             // 
             // allowOverwriteToolStripMenuItem
@@ -860,13 +892,13 @@ namespace Obi
             this.allowOverwriteToolStripMenuItem.Checked = true;
             this.allowOverwriteToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.allowOverwriteToolStripMenuItem.Name = "allowOverwriteToolStripMenuItem";
-            this.allowOverwriteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.allowOverwriteToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.allowOverwriteToolStripMenuItem.Text = "Allow &overwrite";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(133, 6);
             // 
             // navigationToolStripMenuItem
             // 
@@ -878,7 +910,7 @@ namespace Obi
             this.nextPageToolStripMenuItem,
             this.nextSectionToolStripMenuItem});
             this.navigationToolStripMenuItem.Name = "navigationToolStripMenuItem";
-            this.navigationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.navigationToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.navigationToolStripMenuItem.Text = "&Navigation";
             // 
             // previousSectionToolStripMenuItem
@@ -916,6 +948,18 @@ namespace Obi
             this.nextSectionToolStripMenuItem.Name = "nextSectionToolStripMenuItem";
             this.nextSectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.nextSectionToolStripMenuItem.Text = "Next section";
+            // 
+            // rewindToolStripMenuItem
+            // 
+            this.rewindToolStripMenuItem.Name = "rewindToolStripMenuItem";
+            this.rewindToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.rewindToolStripMenuItem.Text = "Re&wind";
+            // 
+            // fastForwardToolStripMenuItem
+            // 
+            this.fastForwardToolStripMenuItem.Name = "fastForwardToolStripMenuItem";
+            this.fastForwardToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.fastForwardToolStripMenuItem.Text = "&Fast forward";
             // 
             // mToolsToolStripMenuItem
             // 
@@ -958,7 +1002,6 @@ namespace Obi
             this.mViewHelpInExternalBrowserToolStripMenuItem,
             this.mReportBugToolStripMenuItem,
             this.aboutObiToolStripMenuItem});
-            this.mHelpToolStripMenuItem.Enabled = false;
             this.mHelpToolStripMenuItem.Name = "mHelpToolStripMenuItem";
             this.mHelpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
             this.mHelpToolStripMenuItem.Text = "&Help";
@@ -1030,18 +1073,6 @@ namespace Obi
             this.mProjectView.TabIndex = 4;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
-            // 
-            // rewindToolStripMenuItem
-            // 
-            this.rewindToolStripMenuItem.Name = "rewindToolStripMenuItem";
-            this.rewindToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.rewindToolStripMenuItem.Text = "Re&wind";
-            // 
-            // fastForwardToolStripMenuItem
-            // 
-            this.fastForwardToolStripMenuItem.Name = "fastForwardToolStripMenuItem";
-            this.fastForwardToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.fastForwardToolStripMenuItem.Text = "&Fast forward";
             // 
             // ObiForm
             // 
@@ -1174,6 +1205,9 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem nextSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rewindToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fastForwardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mInsertSectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mAddStripToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mInsertStripToolStripMenuItem;
     }
 }
 

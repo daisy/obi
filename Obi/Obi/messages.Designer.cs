@@ -1048,6 +1048,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to insert section.
+        /// </summary>
+        internal static string insert_section {
+            get {
+                return ResourceManager.GetString("insert_section", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to insert strip.
+        /// </summary>
+        internal static string insert_strip {
+            get {
+                return ResourceManager.GetString("insert_strip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} block.
         /// </summary>
         internal static string kind_block {

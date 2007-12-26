@@ -246,13 +246,15 @@ namespace Obi.ProjectView
             // ComboFastPlateRate
             // 
             this.ComboFastPlateRate.AccessibleName = "Fast Play Rate";
+            this.ComboFastPlateRate.AllowDrop = true;
             this.ComboFastPlateRate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ComboFastPlateRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboFastPlateRate.FormattingEnabled = true;
-            this.ComboFastPlateRate.ItemHeight = 13;
-            this.ComboFastPlateRate.Location = new System.Drawing.Point(950, 6);
+            this.ComboFastPlateRate.ItemHeight = 15;
+            this.ComboFastPlateRate.Location = new System.Drawing.Point(740, 6);
             this.ComboFastPlateRate.Name = "ComboFastPlateRate";
-            this.ComboFastPlateRate.Size = new System.Drawing.Size(62, 21);
-            this.ComboFastPlateRate.TabIndex = 16;
+            this.ComboFastPlateRate.Size = new System.Drawing.Size(62, 23);
+            this.ComboFastPlateRate.TabIndex = 15;
             this.ComboFastPlateRate.SelectionChangeCommitted += new System.EventHandler(this.ComboFastPlateRate_SelectionChangeCommitted);
             // 
             // mNextPageButton
@@ -293,10 +295,10 @@ namespace Obi.ProjectView
             // mVUMeterPanel
             // 
             this.mVUMeterPanel.BackColor = System.Drawing.Color.Transparent;
-            this.mVUMeterPanel.Location = new System.Drawing.Point(740, 0);
+            this.mVUMeterPanel.Location = new System.Drawing.Point(808, 3);
             this.mVUMeterPanel.Name = "mVUMeterPanel";
             this.mVUMeterPanel.Size = new System.Drawing.Size(204, 44);
-            this.mVUMeterPanel.TabIndex = 15;
+            this.mVUMeterPanel.TabIndex = 16;
             this.mVUMeterPanel.VuMeter = null;
             // 
             // TransportBar
