@@ -24,6 +24,9 @@ namespace Obi.ProjectView
         public bool CanSelectInWaveform { get { return !((ObiForm)ParentForm).IsTransportActive; } }
 
 
+        // Width of the waveform.
+        protected int WaveformWidth { get { return mWaveform == null ? 0 : mWaveform.Margin.Left + mWaveform.Width + mWaveform.Margin.Right; } }
+
         protected override void UpdateLabel()
         {
             base.UpdateLabel();
@@ -31,11 +34,10 @@ namespace Obi.ProjectView
                 Node.NodeKind == EmptyNode.Kind.Plain ? Localizer.Message("audio_block") : mLabel.Text,
                 ((PhraseNode)Node).Audio.getDuration().getTimeDeltaAsMillisecondFloat() / 1000);
             AccessibleName = mLabel.Text;
-            int w = mLabel.Margin.Left + mLabel.Width + mLabel.Margin.Right;
-            if (mWaveform == null || w > mWaveform.Margin.Left + mWaveform.Width + mWaveform.Margin.Right)
+            if (LabelWidth > WaveformWidth)
             {
-                Size = new Size(w, Height);
-                if (mWaveform != null) mWaveform.Width = w;
+                Size = new Size(LabelWidth, Height);
+                if (mWaveform != null) mWaveform.Width = LabelWidth;
             }
         }
 
@@ -46,9 +48,8 @@ namespace Obi.ProjectView
             int w = (int)Math.Round(time * AUDIO_SCALE);
             mWaveform.Width = w < mLabel.Width ? mLabel.Width : w;
             mWaveform.Media = node.Audio.getMediaData();
-            int ww = mWaveform.Width + mWaveform.Margin.Right + mWaveform.Margin.Left;
-            if (ww > mLabel.Margin.Left + mLabel.Width + mLabel.Margin.Right) Size = new Size(ww, Height);
-        }
+            Size = new Size(WaveformWidth, Height);
+        }   
         
         private void node_NodeAudioChanged(object sender, NodeEventArgs<PhraseNode> e)
         {
