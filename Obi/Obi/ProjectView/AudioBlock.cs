@@ -24,31 +24,43 @@ namespace Obi.ProjectView
         public bool CanSelectInWaveform { get { return !((ObiForm)ParentForm).IsTransportActive; } }
 
 
-        // Width of the waveform.
-        protected int WaveformWidth { get { return mWaveform == null ? 0 : mWaveform.Margin.Left + mWaveform.Width + mWaveform.Margin.Right; } }
+        // Fill (current) width of the waveform.
+        protected int WaveformFullWidth { get { return mWaveform == null ? 0 : mWaveform.Margin.Left + mWaveform.Width + mWaveform.Margin.Right; } }
+
+        // Width that the waveform has by default.
+        protected int WaveformDefaultWidth
+        {
+            get
+            {
+                long time = ((PhraseNode)Node).Audio.getDuration().getTimeDeltaAsMilliseconds();
+                return (int)Math.Round(time * AUDIO_SCALE);
+            }
+        }
 
         protected override void UpdateLabel()
         {
-            base.UpdateLabel();
+            string name = mNode.NodeKind == EmptyNode.Kind.Plain ? Localizer.Message("empty_block") :
+                mNode.NodeKind == EmptyNode.Kind.Page ? String.Format(Localizer.Message("page_number"), mNode.PageNumber) :
+                String.Format(Localizer.Message("kind_block"),
+                    mNode.NodeKind == EmptyNode.Kind.Custom ? mNode.CustomClass : mNode.NodeKind.ToString());
             mLabel.Text = String.Format("{0} ({1:0.00}s)",
-                Node.NodeKind == EmptyNode.Kind.Plain ? Localizer.Message("audio_block") : mLabel.Text,
+                Node.NodeKind == EmptyNode.Kind.Plain ? Localizer.Message("audio_block") : name,
                 ((PhraseNode)Node).Audio.getDuration().getTimeDeltaAsMillisecondFloat() / 1000);
             AccessibleName = mLabel.Text;
-            if (LabelWidth > WaveformWidth)
+            if (LabelFullWidth > WaveformDefaultWidth)
             {
-                Size = new Size(LabelWidth, Height);
-                if (mWaveform != null) mWaveform.Width = LabelWidth;
+                if (mWaveform != null) mWaveform.Width = mLabel.Width;
+                Size = new Size(LabelFullWidth, Height);
             }
         }
 
         private void SetWaveform(PhraseNode node)
         {
             mWaveform.AccessibleName = AccessibleName;
-            long time = node.Audio.getDuration().getTimeDeltaAsMilliseconds();
-            int w = (int)Math.Round(time * AUDIO_SCALE);
+            int w = WaveformDefaultWidth;
             mWaveform.Width = w < mLabel.Width ? mLabel.Width : w;
             mWaveform.Media = node.Audio.getMediaData();
-            Size = new Size(WaveformWidth, Height);
+            Size = new Size(WaveformFullWidth, Height);
         }   
         
         private void node_NodeAudioChanged(object sender, NodeEventArgs<PhraseNode> e)

@@ -10,7 +10,7 @@ namespace Obi.ProjectView
 {
     public partial class Block : UserControl, ISelectableInStripView, ISearchable
     {
-        private EmptyNode mNode;                          // the corresponding node
+        protected EmptyNode mNode;                        // the corresponding node
         private bool mSelected;                           // selected flag
         private ISelectableInStripView mParentContainer;  // not necessarily a strip!
 
@@ -29,7 +29,7 @@ namespace Obi.ProjectView
 
 
         // Width of the label (including margins)
-        protected int LabelWidth { get { return mLabel.Margin.Left + mLabel.Width + mLabel.Margin.Right; } }
+        protected int LabelFullWidth { get { return mLabel.Margin.Left + mLabel.Width + mLabel.Margin.Right; } }
 
         // Generate the label string for this block.
         protected virtual void UpdateLabel()
@@ -39,7 +39,7 @@ namespace Obi.ProjectView
                 String.Format(Localizer.Message("kind_block"),
                     mNode.NodeKind == EmptyNode.Kind.Custom ? mNode.CustomClass : mNode.NodeKind.ToString());
             mLabel.Text = name;
-            Size = new Size(LabelWidth, Height);
+            Size = new Size(LabelFullWidth, Height);
             AccessibleName = name;
         }
 
