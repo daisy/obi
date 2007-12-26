@@ -36,6 +36,7 @@ namespace Obi.ProjectView
             this.mWaveform.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.mWaveform.Location = new System.Drawing.Point(3, 3);
             this.mWaveform.Name = "mWaveform";
+            this.mWaveform.Selection = null;
             this.mWaveform.Size = new System.Drawing.Size(98, 98);
             this.mWaveform.TabIndex = 1;
             this.mWaveform.Text = "waveform1";
@@ -43,9 +44,17 @@ namespace Obi.ProjectView
             this.mWaveform.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mWaveform_MouseDown);
             this.mWaveform.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mWaveform_MouseMove);
             this.mWaveform.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mWaveform_MouseUp);
-            base.Controls.Add(this.mWaveform);
+            // 
+            // AudioBlock
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.Controls.Add(this.mWaveform);
+            this.Name = "AudioBlock";
+            this.Controls.SetChildIndex(this.mWaveform, 0);
+            this.Controls.SetChildIndex(this.mLabel, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
