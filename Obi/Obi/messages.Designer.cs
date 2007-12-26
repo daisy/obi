@@ -1120,6 +1120,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to mark strip as {0}.
+        /// </summary>
+        internal static string mark_strip_used {
+            get {
+                return ResourceManager.GetString("mark_strip_used", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mar&amp;k {0} as {1}.
         /// </summary>
         internal static string mark_x_as_y {

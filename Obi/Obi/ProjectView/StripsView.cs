@@ -84,6 +84,8 @@ namespace Obi.ProjectView
 
         public bool CanSetBlockUsedStatus { get { return BlockOrWaveformSelected && mSelection.Node.ParentAs<ObiNode>().Used; } }
 
+        public bool CanSetStripUsedStatus { get { return StripSelected && mSelection.Node.SectionChildCount == 0; } }
+
         public bool CanMergeBlockWithNext
         {
             get
@@ -147,6 +149,19 @@ namespace Obi.ProjectView
         public bool IsBlockUsed { get { return BlockOrWaveformSelected && mSelection.Node.Used; } }
 
         /// <summary>
+        /// True if the strip where the selection is used.
+        /// </summary>
+        public bool IsStripUsed
+        {
+            get
+            {
+                return mSelection == null ? false :
+                    mSelection.Node is SectionNode ? mSelection.Node.Used :
+                        mSelection.Node.AncestorAs<SectionNode>().Used;
+            }
+        }
+
+        /// <summary>
         /// Show the strip for this section node.
         /// </summary>
         public void MakeStripVisibleForSection(SectionNode section)
@@ -168,6 +183,7 @@ namespace Obi.ProjectView
                 command.setShortDescription(Localizer.Message("merge_strips"));
                 SectionNode section = SelectedSection;
                 SectionNode next = section.SectionChildCount == 0 ? section.NextSibling : section.SectionChild(0);
+                if (!section.Used) mView.AppendMakeUnused(command, next);
                 for (int i = 0; i < next.PhraseChildCount; ++i)
                 {
                     command.append(new Commands.Node.ChangeParent(mView, next.PhraseChild(i), section)); 
