@@ -154,7 +154,12 @@ namespace Obi.Audio
                     // if refreshing of buffer has finished and player is near end of asset
                     if (mBufferStopPosition != -1)
                     {//3
-                        int subtractor = (mBufferStopPosition - PlayPosition);
+                        int subtractor  = 0 ;
+                        if (mBufferStopPosition >= PlayPosition)
+                            subtractor = (mBufferStopPosition - PlayPosition);
+                        else
+                            subtractor = mBufferStopPosition + ( mSoundBuffer.Caps.BufferBytes -  PlayPosition ) ;
+
                         lCurrentPosition = mCurrentAudio.getPCMLength() - subtractor;
                     }//-3
                     else if (m_BufferCheck % 2 == 1)
@@ -319,7 +324,7 @@ namespace Obi.Audio
 			}
 			set
 			{
-				SetCurrentTimePosition (value) ;
+                				SetCurrentTimePosition (value) ;
 			}
 		}
 
@@ -452,7 +457,7 @@ namespace Obi.Audio
         /// <param name="timeFrom"></param>
         public void Play(AudioMediaData  asset, double timeFrom)
         {
-            // it is public function so API state will be used
+                        // it is public function so API state will be used
             if (State == AudioPlayerState.Stopped || State == AudioPlayerState.Paused)
             {
                                 if (asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() > 0)
@@ -570,7 +575,7 @@ namespace Obi.Audio
         /// <param name="lEndPosition"></param>
 private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPosition)
 		{
-                            if (mState != AudioPlayerState.Playing )
+                                        if (mState != AudioPlayerState.Playing )
             {
                                                                 InitialiseWithAsset (asset ) ;
 
@@ -953,7 +958,7 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
 
 		void SetCurrentBytePosition (long localPosition) 
 		{
-			if (localPosition < 0)
+            			if (localPosition < 0)
 				localPosition = 0;
 
 			if (localPosition > mCurrentAudio.getPCMLength ()  )
