@@ -98,16 +98,22 @@ namespace Obi
             {
                 Reset(true);
                 if (value != null) AddPhraseNodes(value.RootNode);
-                value.treeNodeAdded += new urakawa.core.events.TreeNodeAddedEventHandler(Presentation_treeNodeAdded);
-                value.treeNodeRemoved += new urakawa.core.events.TreeNodeRemovedEventHandler(Presentation_treeNodeRemoved);
+                value.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(value_changed);
                 value.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
             }
         }
 
-        // Maintain the master playlist by adding (used) nodes
-        private void Presentation_treeNodeAdded(object o, urakawa.core.events.TreeNodeAddedEventArgs e)
+        // React to addition and removal of tree nodes.
+        private void value_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
         {
-            InsertNode(e.getTreeNode());
+            if (e is urakawa.events.core.ChildAddedEventArgs)
+            {
+                InsertNode(((urakawa.events.core.ChildAddedEventArgs)e).AddedChild);
+            }
+            else if (e is urakawa.events.core.ChildRemovedEventArgs)
+            {
+                RemoveNode(((urakawa.events.core.ChildRemovedEventArgs)e).RemovedChild);
+            }
         }
 
         // Insert new tree nodes in the right place in the playlist.
@@ -142,11 +148,6 @@ namespace Obi
             }
         }
 
-        private void Presentation_treeNodeRemoved(object o, urakawa.core.events.TreeNodeRemovedEventArgs e)
-        {
-            RemoveNode(e.getTreeNode());
-        }
-
         // Remove a node and all of its contents from the playlist
         private void RemoveNode(urakawa.core.TreeNode node)
         {
@@ -174,6 +175,17 @@ namespace Obi
 
         private void Presentation_UsedStatusChanged(object sender, NodeEventArgs<ObiNode> e)
         {
+            if (e.Node is PhraseNode)
+            {
+                if (e.Node.Used)
+                {
+                    InsertNode(e.Node);
+                }
+                else
+                {
+                    RemoveNode(e.Node);
+                }
+            }
         }
 
         /// <summary>

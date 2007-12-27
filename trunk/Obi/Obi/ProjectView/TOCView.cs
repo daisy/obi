@@ -1,7 +1,6 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using urakawa.core.events;
 using System.Collections;
 
 namespace Obi.ProjectView
@@ -130,10 +129,21 @@ namespace Obi.ProjectView
         {
             mTOCTree.Nodes.Clear();
             CreateTreeNodeForSectionNode(mView.Presentation.RootNode);
-            mView.Presentation.treeNodeAdded += new TreeNodeAddedEventHandler(Presentation_treeNodeAdded);
-            mView.Presentation.treeNodeRemoved += new TreeNodeRemovedEventHandler(Presentation_treeNodeRemoved);
+            mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_changed);
             mView.Presentation.RenamedSectionNode += new NodeEventHandler<SectionNode>(Presentation_RenamedSectionNode);
             mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
+        }
+
+        void Presentation_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
+        {
+            if (e is urakawa.events.core.ChildAddedEventArgs)
+            {
+                TreeNodeAdded((urakawa.events.core.ChildAddedEventArgs)e);
+            }
+            else if (e is urakawa.events.core.ChildRemovedEventArgs)
+            {
+                TreeNodeRemoved((urakawa.events.core.ChildRemovedEventArgs)e);
+            }
         }
 
         /// <summary>
@@ -197,16 +207,18 @@ namespace Obi.ProjectView
             }
             else
             {
-                TreeNodeAddedEventHandler h = delegate(object o, TreeNodeAddedEventArgs e) { };
-                h = delegate(object o, TreeNodeAddedEventArgs e)
+                EventHandler<urakawa.events.DataModelChangedEventArgs> h =
+                    delegate(object sender, urakawa.events.DataModelChangedEventArgs e) { };
+                h = delegate(object sender, urakawa.events.DataModelChangedEventArgs e)
                 {
-                    if (e.getTreeNode() == section)
+                    if (e is urakawa.events.core.ChildAddedEventArgs &&
+                        ((urakawa.events.core.ChildAddedEventArgs)e).AddedChild == section)
                     {
                         f();
-                        mView.Presentation.treeNodeAdded -= h;
+                        mView.Presentation.changed -= h;
                     }
                 };
-                mView.Presentation.treeNodeAdded += h;
+                mView.Presentation.changed += h;
             }
         }
 
@@ -264,13 +276,13 @@ namespace Obi.ProjectView
         }
 
         // Add new section nodes to the tree
-        private void Presentation_treeNodeAdded(object o, TreeNodeAddedEventArgs e)
+        private void TreeNodeAdded(urakawa.events.core.ChildAddedEventArgs e)
         {
-            if (e.getTreeNode() is SectionNode)
+            if (e.AddedChild is SectionNode)
             {
                 // ignore the selection of the new tree node
                 mTOCTree.AfterSelect -= new TreeViewEventHandler(TOCTree_AfterSelect);
-                CreateTreeNodeForSectionNode(e.getTreeNode() as SectionNode);
+                CreateTreeNodeForSectionNode((SectionNode)e.AddedChild);
                 mTOCTree.AfterSelect += new TreeViewEventHandler(TOCTree_AfterSelect);
             }
         }
@@ -282,10 +294,9 @@ namespace Obi.ProjectView
         }
 
         // Remove deleted section nodes from the tree
-        void Presentation_treeNodeRemoved(object o, TreeNodeRemovedEventArgs e)
+        void TreeNodeRemoved(urakawa.events.core.ChildRemovedEventArgs e)
         {
-            SectionNode section = e.getTreeNode() as SectionNode;
-            if (section != null && IsInTree(section)) mTOCTree.Nodes.Remove(FindTreeNode(section));
+            if (e.RemovedChild is SectionNode) mTOCTree.Nodes.Remove(FindTreeNode((SectionNode)e.RemovedChild));
         }
 
         // Set the strips visibility for the given tree node according to expandednessity

@@ -80,7 +80,7 @@ namespace Obi.ProjectView
             if (mNode != null)
             {
                 // TODO Get colors from profile
-                BackColor = mSelected ? Color.Yellow : mNode.Used ? Color.HotPink : Color.LightGray;
+                BackColor = mSelected ? Color.Yellow : mNode.Used ? Color.HotPink : Color.Gray;
             }
         }
 

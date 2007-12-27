@@ -5,7 +5,6 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using urakawa.core.events;
 
 namespace Obi.ProjectView
 {
@@ -200,8 +199,7 @@ namespace Obi.ProjectView
         {
             mLayoutPanel.Controls.Clear();
             AddStripForSection(mView.Presentation.RootNode);
-            mView.Presentation.treeNodeAdded += new TreeNodeAddedEventHandler(Presentation_treeNodeAdded);
-            mView.Presentation.treeNodeRemoved += new TreeNodeRemovedEventHandler(Presentation_treeNodeRemoved);
+            mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_changed);
             mView.Presentation.RenamedSectionNode += new NodeEventHandler<SectionNode>(Presentation_RenamedSectionNode);
             mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
         }
@@ -349,29 +347,45 @@ namespace Obi.ProjectView
             }
         }
 
-        // Handle addition of tree nodes: add a new strip for new section nodes.
-        private void Presentation_treeNodeAdded(object o, TreeNodeAddedEventArgs e)
+        // Listen to changes in the presentation
+        private void Presentation_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
         {
-            if (e.getTreeNode() is SectionNode)
+            if (e is urakawa.events.core.ChildAddedEventArgs)
             {
-                SectionNode section = (SectionNode)e.getTreeNode();
-                if (section.IsRooted)
-                {
-                    Strip strip = AddStripForSection(section);
-                    mLayoutPanel.ScrollControlIntoView(strip);
-                    UpdateTabIndex(strip);
-                }
+                TreeNodeAdded((urakawa.events.core.ChildAddedEventArgs)e);
             }
-            else if (e.getTreeNode() is EmptyNode)
+            else if (e is urakawa.events.core.ChildRemovedEventArgs)
             {
-                EmptyNode node = (EmptyNode)e.getTreeNode();
-                if (node.IsRooted)
-                {
-                    // TODO replace FindStrip with FindParentContainer, as it can be a strip or a block
-                    Block block = FindStrip(node.ParentAs<SectionNode>()).AddBlockForNode(node);
-                    mLayoutPanel.ScrollControlIntoView(block);
-                    UpdateTabIndex(block);
-                }
+                TreeNodeRemoved((urakawa.events.core.ChildRemovedEventArgs)e);
+            }
+        }
+
+        private void TreeNodeAdded(urakawa.events.core.ChildAddedEventArgs e)
+        {
+            Control c = e.AddedChild is SectionNode ? (Control)AddStripForSection((SectionNode)e.AddedChild) :
+                // TODO: in the future, the source node will not always be a section node!
+                e.AddedChild is EmptyNode ? (Control)FindStrip((SectionNode)e.SourceTreeNode).AddBlockForNode((EmptyNode)e.AddedChild) :
+                null;
+            if (c != null)
+            {
+                mLayoutPanel.ScrollControlIntoView(c);
+                UpdateTabIndex(c);
+            }
+        }
+
+        // Remove the strip or block for the removed tree node
+        private void TreeNodeRemoved(urakawa.events.core.ChildRemovedEventArgs e)
+        {
+            if (e.RemovedChild is SectionNode)
+            {
+                RemoveStripsForSection((SectionNode)e.RemovedChild);
+            }
+            else if (e.RemovedChild is EmptyNode)
+            {
+                // TODO in the future, the parent of a removed empty node
+                // will not always be a section node!
+                Strip strip = FindStrip((SectionNode)e.SourceTreeNode);
+                if (strip != null) strip.RemoveBlock((EmptyNode)e.RemovedChild);
             }
         }
 
@@ -392,20 +406,6 @@ namespace Obi.ProjectView
             return strip;
         }
 
-        // Handle removal of tree nodes: remove a strip for a section node and all of its children.
-        void Presentation_treeNodeRemoved(object o, TreeNodeRemovedEventArgs e)
-        {
-            if (e.getTreeNode() is SectionNode)
-            {
-                RemoveStripsForSection((SectionNode)e.getTreeNode());
-            }
-            else if (e.getTreeNode() is EmptyNode)
-            {
-                Strip strip = FindStrip((SectionNode)e.getFormerParent());
-                if (strip != null) strip.RemoveBlock((EmptyNode)e.getTreeNode());
-            }
-        }
-
         // Remove all strips for a section and its subsections
         private void RemoveStripsForSection(SectionNode section)
         {
@@ -414,12 +414,8 @@ namespace Obi.ProjectView
             mLayoutPanel.Controls.Remove(strip);
         }
 
-
         // Deselect everything when clicking the panel
-        private void mLayoutPanel_Click(object sender, EventArgs e)
-        {
-            mView.Selection = null;
-        }
+        private void mLayoutPanel_Click(object sender, EventArgs e) { mView.Selection = null; }
 
         #endregion
 
@@ -481,16 +477,18 @@ namespace Obi.ProjectView
             }
             else
             {
-                TreeNodeAddedEventHandler h = delegate(object o, TreeNodeAddedEventArgs e) { };
-                h = delegate(object o, TreeNodeAddedEventArgs e)
+                EventHandler<urakawa.events.DataModelChangedEventArgs> h =
+                    delegate(object sender, urakawa.events.DataModelChangedEventArgs e) { };
+                h = delegate(object sender, urakawa.events.DataModelChangedEventArgs e)
                 {
-                    if (e.getTreeNode() == node)
+                    if (e is urakawa.events.core.ChildAddedEventArgs &&
+                        ((urakawa.events.core.ChildAddedEventArgs)e).AddedChild == node)
                     {
                         f();
-                        mView.Presentation.treeNodeAdded -= h;
+                        mView.Presentation.changed -= h;
                     }
                 };
-                mView.Presentation.treeNodeAdded += h;
+                mView.Presentation.changed += h;
             }
         }
 
@@ -544,8 +542,18 @@ namespace Obi.ProjectView
             }
         }
 
-        // Update tab index for all controls after a newly added block
-        private void UpdateTabIndex(Block block) { UpdateTabIndex(block.Strip); }
+        // Update tab index for all controls after a block or a strip
+        private void UpdateTabIndex(Control c)
+        {
+            if (c is Block)
+            {
+                UpdateTabIndex(((Block)c).Strip);
+            }
+            else if (c is Strip)
+            {
+                UpdateTabIndex((Strip)c);
+            }
+        }
 
         #endregion
 
