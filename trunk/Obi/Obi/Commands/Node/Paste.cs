@@ -7,7 +7,7 @@ namespace Obi.Commands.Node
     public class Paste: Command
     {
         private ObiNode mCopy;              // copy of the node to paste
-        private ObiNode mParent;            // parent for the copy
+        protected ObiNode mParent;          // parent for the copy
         protected int mIndex;               // index for the copy
         private NodeSelection mSelection;   // the selection after pasting
         private bool mDeleteSelectedBlock;  // flag to require deletion of the previous block
@@ -75,6 +75,16 @@ namespace Obi.Commands.Node
             : base(view)
         {
             mIndex = view.Selection.Node.Index;
+        }
+    }
+
+    public class PasteInside : Paste
+    {
+        public PasteInside(ProjectView.ProjectView view)
+            : base(view)
+        {
+            mParent = view.Selection.Node;
+            mIndex = mParent.SectionChildCount;
         }
     }
 }

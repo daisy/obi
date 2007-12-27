@@ -137,6 +137,7 @@ namespace Obi.ProjectView
         public bool CanMoveSectionOut { get { return mTOCView.CanMoveSectionOut; } }
         public bool CanPaste { get { return mSelection != null && mSelection.CanPaste(mClipboard); } }
         public bool CanPasteBefore { get { return mTOCView.CanPasteBefore(mClipboard); } }
+        public bool CanPasteInside { get { return mTOCView.CanPasteInside(mClipboard); } }
         public bool CanPause { get { return mTransportBar.CanPause; } }
         public bool CanPlay { get { return mTransportBar.CanPlay || mTransportBar.CanResume; } }
         public bool CanPlaySelection { get { return CanPlay && mSelection != null && !(mSelection is TextSelection); } }
@@ -339,6 +340,30 @@ namespace Obi.ProjectView
         public void Paste()
         {
             if (CanPaste) mPresentation.UndoRedoManager.execute(mSelection.PasteCommand(this));
+        }
+
+        /// <summary>
+        /// Paste the contents of the clipboard before the selected section.
+        /// </summary>
+        public void PasteBefore()
+        {
+            if (CanPasteBefore)
+            {
+                Commands.Node.Paste paste = new Commands.Node.PasteBefore(this);
+                AddUnusedAndExecute(paste, paste.Copy, paste.CopyParent);
+            }
+        }
+
+        /// <summary>
+        /// Paste the contents of the clipboard inside (as the last child of) the selected section.
+        /// </summary>
+        public void PasteInside()
+        {
+            if (CanPasteInside)
+            {
+                Commands.Node.PasteInside paste = new Commands.Node.PasteInside(this);
+                AddUnusedAndExecute(paste, paste.Copy, paste.CopyParent);
+            }
         }
 
         /// <summary>
@@ -670,21 +695,6 @@ namespace Obi.ProjectView
         public void MakeTreeNodeVisibleForSection(SectionNode section)
         {
             if (mSynchronizeViews) mTOCView.MakeTreeNodeVisibleForSection(section);
-        }
-
-        /// <summary>
-        /// Paste the contents of the clipboard before the selected section.
-        /// </summary>
-        public void PasteBefore()
-        {
-            if (CanPasteBefore)
-            {
-                Commands.Node.Paste paste = new Commands.Node.PasteBefore(this);
-                urakawa.undo.CompositeCommand p = Presentation.CreateCompositeCommand(paste.getShortDescription());
-                p.append(paste);
-                if (paste.Copy.Used && !paste.CopyParent.Used) AppendMakeUnused(p, paste.Copy);
-                Presentation.UndoRedoManager.execute(p);
-            }
         }
 
         /// <summary>
