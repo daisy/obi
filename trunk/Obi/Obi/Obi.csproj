@@ -99,6 +99,7 @@
     <Compile Include="Commands\AddRemoveCustomType.cs" />
     <Compile Include="Commands\Audio\Copy.cs" />
     <Compile Include="Commands\Audio\Delete.cs" />
+    <Compile Include="Commands\Audio\Paste.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\Node\AddNewSection.cs" />
     <Compile Include="Commands\Node\AddNode.cs" />
