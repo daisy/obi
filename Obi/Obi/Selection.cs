@@ -19,6 +19,9 @@ namespace Obi
         void SelectAndRename(ObiNode node);
     }
 
+    /// <summary>
+    /// Audio range within a block. May be just a cursor (flag HasCursor is set) or a range between two points.
+    /// </summary>
     public class AudioRange
     {
         public bool HasCursor;             // selection is just a cursor position; if false, begin/end
@@ -39,14 +42,10 @@ namespace Obi
             SelectionEndTime = to;
         }
 
-        public override bool Equals(object obj)
+        public override string ToString()
         {
-            AudioRange s = obj as AudioRange;
-            return s != null && HasCursor ? s.HasCursor && s.CursorTime == CursorTime :
-                !s.HasCursor && s.SelectionBeginTime == SelectionBeginTime && s.SelectionEndTime == SelectionEndTime;
+            return HasCursor ? SelectionBeginTime.ToString() : String.Format("{0}-{1}", SelectionBeginTime, SelectionEndTime);
         }
-
-        public override int GetHashCode() { return base.GetHashCode(); }
     }
 
     /// <summary>
@@ -73,17 +72,6 @@ namespace Obi
         /// Stringify the selection for debug printing.
         /// </summary>
         public override string ToString() { return String.Format("{2}{0} in {1}", Node, Control, Soft ? "~" : ""); }
-
-        /// <summary>
-        /// Two node selections are equal if they are the selection of the same node in the same control.
-        /// </summary>
-        public override bool Equals(object obj)
-        {
-            return obj != null && obj.GetType() == GetType() &&
-                ((NodeSelection)obj).Soft == Soft && ((NodeSelection)obj).Node == Node && ((NodeSelection)obj).Control == Control;
-        }
-
-        public override int GetHashCode() { return base.GetHashCode(); }
 
         public SectionNode Section { get { return Node as SectionNode; } }
         public SectionNode SectionOf { get { return Node is PhraseNode ? Node.ParentAs<SectionNode>() : Node as SectionNode; } }
@@ -129,11 +117,9 @@ namespace Obi
                 (Node is SectionNode ? Node.PhraseChildCount : (Node.Index + 1));
         }
 
-
-
         // Create a new phrase node with the audio from the clipboard
         // and merge the selected node with this one.
-        private urakawa.undo.ICommand PasteCommandAudio(ProjectView.ProjectView view)
+        protected virtual urakawa.undo.ICommand PasteCommandAudio(ProjectView.ProjectView view)
         {
             AudioClipboard c = (AudioClipboard)view.Clipboard;
             urakawa.media.data.audio.ManagedAudioMedia media = ((PhraseNode)view.Clipboard.Node).Audio.copy(
@@ -158,7 +144,7 @@ namespace Obi
         }
 
         // Paste a node in or after another node.
-        private urakawa.undo.ICommand PasteCommandNode(ProjectView.ProjectView view)
+        protected virtual urakawa.undo.ICommand PasteCommandNode(ProjectView.ProjectView view)
         {
             Commands.Node.Paste paste = new Commands.Node.Paste(view);
             urakawa.undo.CompositeCommand p = view.Presentation.CreateCompositeCommand(paste.getShortDescription());
@@ -169,19 +155,7 @@ namespace Obi
                 delete.UpdateSelection = false;
                 p.append(delete);
             }
-            if (paste.Copy.Used && !paste.CopyParent.Used)
-            {
-                paste.Copy.acceptDepthFirst(
-                    delegate(urakawa.core.TreeNode node)
-                    {
-                        if (node is ObiNode && ((ObiNode)node).Used)
-                        {
-                            p.append(new Commands.Node.ToggleNodeUsed(view, (ObiNode)node));
-                        }
-                        return true;
-                    }, delegate(urakawa.core.TreeNode node) { }
-                );
-            }
+            if (paste.Copy.Used && !paste.CopyParent.Used) view.AppendMakeUnused(p, paste.Copy);
             return p;
         }
     };
@@ -200,13 +174,6 @@ namespace Obi
         }
 
         public string Text { get { return mText; } }
-
-        public override bool Equals(object obj)
-        {
-            return obj != null && obj.GetType() == GetType() && ((TextSelection)obj).Text == mText && base.Equals(obj);
-        }
-
-        public override int GetHashCode() { return base.GetHashCode(); }
 
         public override string ToString()
         {
@@ -230,21 +197,25 @@ namespace Obi
         public AudioRange AudioRange { get { return mAudioRange; } }
 
         /// <summary>
-        /// If audio is selected, then only audio can be pasted.
+        /// If audio is selected, then audio can be pasted, or the audio from a phrase node.
         /// </summary>
-        public override bool CanPaste(Clipboard clipboard) { return clipboard is AudioClipboard; }
-
-        public override bool Equals(object obj)
+        public override bool CanPaste(Clipboard clipboard)
         {
-            return obj != null && obj.GetType() == GetType() &&
-                ((AudioSelection)obj).AudioRange == mAudioRange && base.Equals(obj);
+            return clipboard is AudioClipboard || 
+                (clipboard != null && clipboard.Node is PhraseNode);
         }
 
-        public override int GetHashCode() { return base.GetHashCode(); }
+        /// <summary>
+        /// Create a paste command for this selection and the clipboard selection.
+        /// </summary>
+        public override urakawa.undo.ICommand PasteCommand(Obi.ProjectView.ProjectView view)
+        {
+            return new Commands.Audio.Paste(view);
+        }
 
         public override string ToString()
         {
-            return String.Format("Audio in {0}", base.ToString());
+            return String.Format("Audio<{0}> in {1}", AudioRange.ToString(), base.ToString());
         }
     }
 
@@ -264,16 +235,22 @@ namespace Obi
         /// <summary>
         /// Since we're in the strip, section nodes cannot be pasted.
         /// </summary>
-        public override bool CanPaste(Clipboard clipboard) { return clipboard != null && !(clipboard.Node is SectionNode); } 
+        public override bool CanPaste(Clipboard clipboard) { return clipboard != null && !(clipboard.Node is SectionNode); }
 
-        public int Index { get { return mIndex; } }
-
-        public override bool Equals(object obj)
+        protected override urakawa.undo.ICommand PasteCommandAudio(Obi.ProjectView.ProjectView view)
         {
-            return obj != null && obj.GetType() == GetType() && ((StripCursorSelection)obj).Index == mIndex && base.Equals(obj);
+            AudioClipboard c = (AudioClipboard)view.Clipboard;
+            urakawa.media.data.audio.ManagedAudioMedia media = ((PhraseNode)view.Clipboard.Node).Audio.copy(
+                new urakawa.media.timing.Time(c.AudioRange.SelectionBeginTime),
+                new urakawa.media.timing.Time(c.AudioRange.SelectionEndTime));
+            PhraseNode phrase = view.Presentation.CreatePhraseNode(media);
+            urakawa.undo.CompositeCommand p = view.Presentation.CreateCompositeCommand(Localizer.Message("paste_audio"));
+            p.append(new Commands.Node.AddNode(view, phrase, ParentForNewNode(phrase), IndexForNewNode(phrase)));
+            if (!Node.Used) view.AppendMakeUnused(p, phrase);
+            return p;
         }
 
-        public override int GetHashCode() { return base.GetHashCode(); }
+        public int Index { get { return mIndex; } }
 
         public override ObiNode ParentForNewNode(ObiNode newNode)
         {

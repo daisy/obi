@@ -336,7 +336,10 @@ namespace Obi.ProjectView
         /// <summary>
         /// Paste the contents of the clipboard in the current context. Noop if the clipboard is empty.
         /// </summary>
-        public void Paste() { if (CanPaste) mPresentation.UndoRedoManager.execute(mSelection.PasteCommand(this)); }
+        public void Paste()
+        {
+            if (CanPaste) mPresentation.UndoRedoManager.execute(mSelection.PasteCommand(this));
+        }
 
         /// <summary>
         /// Set the block currently playing back as a "light" selection.
