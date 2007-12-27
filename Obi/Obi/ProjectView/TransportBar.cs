@@ -73,21 +73,13 @@ namespace Obi.ProjectView
         {
             mPlayingFrom = null;
             mMasterPlaylist.Presentation = mView.Presentation;
-            mView.Presentation.treeNodeAdded += new urakawa.core.events.TreeNodeAddedEventHandler(Presentation_treeNodeAdded);
-            mView.Presentation.treeNodeRemoved += new urakawa.core.events.TreeNodeRemovedEventHandler(Presentation_treeNodeRemoved);
+            mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_changed);
             mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
         }
 
         // Stop when the tree is modified.
         // TODO be more clever about this.
-        void Presentation_treeNodeAdded(object o, urakawa.core.events.TreeNodeAddedEventArgs e)
-        {
-            if (IsActive) Stop();
-        }
-
-        // Stop when the tree is modified.
-        // TODO be more clever about this.
-        void Presentation_treeNodeRemoved(object o, urakawa.core.events.TreeNodeRemovedEventArgs e)
+        void Presentation_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
         {
             if (IsActive) Stop();
         }
